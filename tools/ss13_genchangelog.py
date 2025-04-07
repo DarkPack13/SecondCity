@@ -38,7 +38,7 @@ opt = argparse.ArgumentParser()
 opt.add_argument('ymlDir', help='The directory of YAML changelogs we will use.')
 
 args = opt.parse_args()
-archiveDir = os.path.join(args.ymlDir, 'archive')
+archiveDir = os.path.join(args.ymlDir, 'effigy_archive') # EffigyEdit Change - Changelog 2 - Original: archiveDir = os.path.join(args.ymlDir, 'archive')
 
 all_changelog_entries = {}
 
@@ -109,6 +109,7 @@ for fileName in glob.glob(os.path.join(args.ymlDir, "*.yml")):
     name, ext = os.path.splitext(os.path.basename(fileName))
     if name.startswith('.'): continue
     if name == 'example': continue
+    if "effigy" not in name: continue # EffigyEdit Add - Changelog 2
     fileName = os.path.abspath(fileName)
     formattedDate = today.strftime(fileDateFormat)
     monthFile = os.path.join(archiveDir, formattedDate + '.yml')
