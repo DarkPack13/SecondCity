@@ -14,9 +14,9 @@
 
 /modular_wod13/datums/actions/discipline.dm @TheCarnalest
 /modular_wod13/datums/powers/ @TheCarnalest
-/modular_wod13/kindred/ @TheCarnalest
-/code/**DEFINES/wod13/dcs/power_signals.dm @TheCarnalest
-/code/**DEFINES/wod13/discipline.dm @TheCarnalest
+/modular_wod13/modules/vampire_the_masquerade/ @TheCarnalest
+/code/\_\_DEFINES/wod13/dcs/power_signals.dm @TheCarnalest
+/code/\_\_DEFINES/wod13/discipline.dm @TheCarnalest
 
 # CONTRIBUTORS
 
