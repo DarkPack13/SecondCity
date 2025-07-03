@@ -1,3 +1,4 @@
+// VtM Clan and bloodline IDs for use with sprites and whatnot
 #define VAMPIRE_CLAN_BAALI "baali"
 #define VAMPIRE_CLAN_BANU_HAQIM "banu_haqim"
 #define VAMPIRE_CLAN_BRUJAH "brujah"

@@ -83,7 +83,7 @@
 /mob/living/carbon/proc/frenzystep()
 	if(!isturf(loc) || CheckFrenzyMove())
 		return
-	if(m_intent == MOVE_INTENT_WALK)
+	if(move_intent == MOVE_INTENT_WALK)
 		toggle_move_intent(src)
 	set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
 
@@ -124,7 +124,7 @@
 							var/mob/living/carbon/human/BT = L
 							BT.add_bite_animation()
 						if(CheckEyewitness(L, src, 7, FALSE))
-							H.AdjustMasquerade(-1)
+							H.adjust_masquerade(-1)
 						playsound(src, 'sound/wod13/drinkblood1.ogg', 50, TRUE)
 						L.visible_message("<span class='warning'><b>[src] bites [L]'s neck!</b></span>", "<span class='warning'><b>[src] bites your neck!</b></span>")
 						face_atom(L)

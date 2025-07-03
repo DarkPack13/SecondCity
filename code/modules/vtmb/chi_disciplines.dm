@@ -1,9 +1,9 @@
 /datum/action/chi_discipline
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
-	button_icon = 'icons/wod13/UI/kuei_jin.dmi' //This is the file for the BACKGROUND icon
+	button_icon = 'icons/wod13/ui/kuei_jin.dmi' //This is the file for the BACKGROUND icon
 	background_icon_state = "discipline" //And this is the state for the background icon
 
-	icon_icon = 'icons/wod13/UI/kuei_jin.dmi' //This is the file for the ACTION icon
+	icon_icon = 'icons/wod13/ui/kuei_jin.dmi' //This is the file for the ACTION icon
 	button_icon_state = "discipline" //And this is the state for the action icon
 	vampiric = TRUE
 	var/datum/chi_discipline/discipline
@@ -31,8 +31,8 @@
 	. = ..()
 
 /datum/action/chi_discipline/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
-	button_icon = 'icons/wod13/UI/kuei_jin.dmi'
-	icon_icon = 'icons/wod13/UI/kuei_jin.dmi'
+	button_icon = 'icons/wod13/ui/kuei_jin.dmi'
+	icon_icon = 'icons/wod13/ui/kuei_jin.dmi'
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
 		current_button.cut_overlays(TRUE)
 		if(discipline)
@@ -182,7 +182,7 @@
 
 	if(violates_masquerade)
 		if(caster.CheckEyewitness(target, caster, 7, TRUE))
-			caster.AdjustMasquerade(-1)
+			caster.adjust_masquerade(-1)
 
 	to_chat(caster, "<span class='notice'>You activate [src][(ranged && target) ? " on [target]" : ""].</span>")
 	log_attack("[key_name(caster)] casted level [src.level_casting] of the Discipline [src.name][target == caster ? "." : " on [key_name(target)]"]")
@@ -729,7 +729,7 @@
 		if(iscathayan(firer))
 			var/mob/living/carbon/human/H = firer
 			if(H.CheckEyewitness(H, H, 7, FALSE))
-				H.AdjustMasquerade(-1)
+				H.adjust_masquerade(-1)
 	..()
 
 /obj/projectile/flesh_shintai/on_hit(atom/target)
@@ -918,9 +918,9 @@
 	name = "Choose Demon Form"
 	desc = "Choose your form of a Demon."
 	button_icon_state = "demon_form"
-	button_icon = 'icons/wod13/UI/kuei_jin.dmi'
+	button_icon = 'icons/wod13/ui/kuei_jin.dmi'
 	background_icon_state = "discipline"
-	icon_icon = 'icons/wod13/UI/kuei_jin.dmi'
+	icon_icon = 'icons/wod13/ui/kuei_jin.dmi'
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 
 /datum/action/choose_demon_form/Trigger()
@@ -1565,7 +1565,7 @@
 		if(iscathayan(firer))
 			var/mob/living/carbon/human/H = firer
 			if(H.CheckEyewitness(H, H, 7, FALSE))
-				H.AdjustMasquerade(-1)
+				H.adjust_masquerade(-1)
 	..()
 
 /obj/projectile/storm_shintai/on_hit(atom/target)

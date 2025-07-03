@@ -206,9 +206,9 @@
 	name = "Blood Heal"
 	desc = "Use vitae in your blood to heal your wounds."
 	button_icon_state = "bloodheal"
-	button_icon = 'icons/wod13/UI/actions.dmi'
+	button_icon = 'icons/wod13/ui/actions.dmi'
 	background_icon_state = "discipline"
-	icon_icon = 'icons/wod13/UI/actions.dmi'
+	icon_icon = 'icons/wod13/ui/actions.dmi'
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 	vampiric = TRUE
 	var/last_heal = 0
@@ -222,8 +222,8 @@
 					button_icon = 'icons/wod13/disciplines.dmi'
 					icon_icon = 'icons/wod13/disciplines.dmi'
 				else
-					button_icon = 'icons/wod13/UI/actions.dmi'
-					icon_icon = 'icons/wod13/UI/actions.dmi'
+					button_icon = 'icons/wod13/ui/actions.dmi'
+					icon_icon = 'icons/wod13/ui/actions.dmi'
 	. = ..()
 
 /datum/action/blood_heal/Trigger()
@@ -278,7 +278,7 @@
 	. = ..()
 	if(HAS_TRAIT(H, TRAIT_UNMASQUERADE))
 		if(H.CheckEyewitness(H, H, 7, FALSE))
-			H.AdjustMasquerade(-1)
+			H.adjust_masquerade(-1)
 	if(istype(get_area(H), /area/vtm))
 		var/area/vtm/V = get_area(H)
 		if(V.zone_type == ZONE_MASQUERADE && V.upper)
@@ -341,7 +341,7 @@
 	. = ..()
 	if(HAS_TRAIT(H, TRAIT_UNMASQUERADE))
 		if(H.CheckEyewitness(H, H, 7, FALSE))
-			H.AdjustMasquerade(-1)
+			H.adjust_masquerade(-1)
 	if(istype(get_area(H), /area/vtm))
 		var/area/vtm/V = get_area(H)
 		if(V.zone_type == ZONE_MASQUERADE && V.upper)
