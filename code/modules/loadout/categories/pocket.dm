@@ -1,3 +1,5 @@
+// Start WoD13 Modification
+/*
 /// Pocket items (Moved to backpack)
 /datum/loadout_category/pocket
 	category_name = "Other"
@@ -321,3 +323,5 @@
 		if(thing.w_class > wallet.atom_storage.max_specific_storage)
 			continue
 		wallet.atom_storage.attempt_insert(thing, override = TRUE, force = STORAGE_FULLY_LOCKED, messages = FALSE)
+*/
+// End WoD13 Modification

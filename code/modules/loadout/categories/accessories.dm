@@ -1,3 +1,5 @@
+// Start WoD13 Modification
+/*
 /// Accessory Items (Moves overrided items to backpack)
 /datum/loadout_category/accessories
 	category_name = "Accessory"
@@ -87,3 +89,5 @@
 	name = "Pride Pin"
 	item_path = /obj/item/clothing/accessory/pride
 	can_be_reskinned = TRUE
+*/
+// End WoD13 Modification
