@@ -160,12 +160,6 @@
 							death()
 							if(P)
 								P.reason_of_death = "Failed the Diablerie ([time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")])."
-//							ghostize(FALSE)
-//							key = K.key
-//							generation = K.generation
-//							maxHealth = initial(maxHealth)+100*(13-generation)
-//							health = initial(health)+100*(13-generation)
-//							mob.death()
 						else
 							message_admins("[ADMIN_LOOKUPFLW(src)] successfully Diablerized [ADMIN_LOOKUPFLW(mob)]")
 							log_attack("[key_name(src)] successfully Diablerized [key_name(mob)].")
@@ -198,7 +192,6 @@
 						Npc.last_attacker = null
 						killed_count = killed_count+1
 						if(killed_count >= 5)
-//							GLOB.fuckers |= src
 							SEND_SOUND(src, sound('sound/wod13/humanity_loss.ogg', 0, 0, 75))
 							to_chat(src, "<span class='userdanger'><b>POLICE ASSAULT IN PROGRESS</b></span>")
 					SEND_SOUND(src, sound('sound/wod13/feed_failed.ogg', 0, 0, 75))

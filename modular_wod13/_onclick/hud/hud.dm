@@ -1,0 +1,12 @@
+/datum/hud
+	var/atom/movable/screen/block_icon
+	var/atom/movable/screen/jump_icon
+	var/atom/movable/screen/blood_icon
+	var/atom/movable/screen/rage_icon
+	var/atom/movable/screen/chi_pool/chi_icon
+	var/atom/movable/screen/yang_chi/yang_chi_icon
+	var/atom/movable/screen/yin_chi/yin_chi_icon
+	var/atom/movable/screen/imbalance_chi/imbalance_chi_icon
+	var/atom/movable/screen/demon_chi/demon_chi_icon
+	var/atom/movable/screen/drinkblood/drinkblood_icon
+	var/atom/movable/screen/zone_icon
