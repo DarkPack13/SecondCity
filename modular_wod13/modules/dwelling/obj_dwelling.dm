@@ -272,7 +272,7 @@
 	sleep(randomized_response_time)
 	for(var/obj/item/police_radio/radio in GLOB.police_radios)
 		radio.announce_crime("burglary", get_turf(src))
-	for(var/obj/machinery/p25transceiver/police/transceiver in GLOB.p25_tranceivers)
+	for(var/obj/machinery/p25transceiver/police/transceiver in GLOB.p25_transceivers)
 		if(transceiver.p25_network == "police")
 			transceiver.announce_crime("burglary", get_turf(src))
 			break

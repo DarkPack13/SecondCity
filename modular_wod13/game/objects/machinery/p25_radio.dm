@@ -1,7 +1,7 @@
 // P25 Radio System
 
 GLOBAL_LIST_EMPTY(p25_radios)
-GLOBAL_LIST_EMPTY(p25_tranceivers)
+GLOBAL_LIST_EMPTY(p25_transceivers)
 
 /obj/machinery/p25transceiver
 	name = "P25 transceiver"
@@ -17,7 +17,14 @@ GLOBAL_LIST_EMPTY(p25_tranceivers)
 
 /obj/machinery/p25transceiver/Initialize(mapload)
 	. = ..()
-	GLOB.p25_tranceivers += src
+
+	GLOB.p25_transceivers += src
+
+/obj/machinery/p25transceiver/Destroy(force)
+	GLOB.p25_transceivers -= src
+
+	. = ..()
+
 
 /obj/machinery/p25transceiver/ui_interact(mob/user)
 	. = ..()
@@ -226,7 +233,7 @@ GLOBAL_LIST_EMPTY(p25_tranceivers)
 
 /obj/machinery/p25policeportal/LateInitialize(mapload)
 	. = ..()
-	for(var/obj/machinery/p25transceiver/P in GLOB.p25_tranceivers)
+	for(var/obj/machinery/p25transceiver/P in GLOB.p25_transceivers)
 		if(P.p25_network == "police")
 			transceiver = P
 			break

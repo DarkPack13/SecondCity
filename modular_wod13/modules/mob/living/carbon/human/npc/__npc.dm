@@ -283,7 +283,7 @@
 		if (witness_count > 1)
 			for (var/obj/item/police_radio/radio in GLOB.police_radios)
 				radio.announce_crime("victim", get_turf(src))
-			for (var/obj/machinery/p25transceiver/police/radio in GLOB.p25_tranceivers)
+			for (var/obj/machinery/p25transceiver/police/radio in GLOB.p25_transceivers)
 				if (radio.p25_network == "police")
 					radio.announce_crime("victim", get_turf(src))
 					break
