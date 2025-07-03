@@ -6676,7 +6676,7 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
-#include "modular_wod13\__HELPERS\kindred.dm"
+#include "modular_wod13\__HELPERS\clan_helpers.dm"
 #include "modular_wod13\_globalvars\configuration.dm"
 #include "modular_wod13\_globalvars\garou.dm"
 #include "modular_wod13\_globalvars\graveyard.dm"
