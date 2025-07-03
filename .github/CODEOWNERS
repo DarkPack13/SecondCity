@@ -1,11 +1,7 @@
 # This list auto requests reviews from the specified org members
-
 # when a PR that modifies the file in question is opened
-
 # This list is alphabetized by User -> Filename and separated into sections for Maintainers/Contributors KEEP IT THAT WAY
-
 # In the event that people are to be informed of changes
-
 # to the same file or dir, add them to the end of under Multiple Owners
 
 # MAINTAINERS
@@ -15,15 +11,20 @@
 /modular_wod13/datums/actions/discipline.dm @TheCarnalest
 /modular_wod13/datums/powers/ @TheCarnalest
 /modular_wod13/modules/vampire_the_masquerade/ @TheCarnalest
-/code/\_\_DEFINES/wod13/dcs/power_signals.dm @TheCarnalest
-/code/\_\_DEFINES/wod13/discipline.dm @TheCarnalest
+/code/__DEFINES/wod13/dcs/power_signals.dm @TheCarnalest
+/code/__DEFINES/wod13/discipline.dm @TheCarnalest
 
 # CONTRIBUTORS
 
+
+
 # MULTIPLE OWNERS
+
+
 
 # Host Hell
 
-# Expensive files that touching basically always cause performance problems
 
+
+# Expensive files that touching basically always cause performance problems
 ## Init times
