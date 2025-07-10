@@ -536,6 +536,13 @@
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
 		return
 
+	// Start WoD13 Modification
+	if(ishuman(src))
+		var/mob/living/carbon/human/ueban = src
+		if(!do_after(src, max(1, 15-ueban.mentality*3), examinify, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)))
+			return
+	// End WoD13 Modification
+
 	var/turf/examine_turf = get_turf(examinify)
 	if(is_blind()) //blind people see things differently (through touch)
 		if(!blind_examine_check(examinify))
