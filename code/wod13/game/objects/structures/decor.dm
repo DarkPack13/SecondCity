@@ -243,7 +243,7 @@
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
-/obj/structure/closet/crate/dumpster/Initialize()
+/obj/structure/closet/crate/dumpster/Initialize(mapload)
 	if(prob(25))
 		icon_state = "garbageopen"
 	. = ..()
