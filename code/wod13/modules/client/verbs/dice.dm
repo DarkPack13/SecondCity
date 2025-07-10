@@ -1,3 +1,8 @@
+/datum/preference/toggle/chat_roll_info
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "chat_roll_info"
+	savefile_identifier = PREFERENCE_PLAYER
+
 /**
  * Rolls a number of dice according to Storyteller system rules to find
  * success or number of successes.
@@ -127,7 +132,7 @@
 
 /mob/proc/roll_to_chat_list(list/viewers, input)
 	for(var/mob/viewer in viewers)
-		if(viewer.client && viewer.client.prefs && viewer.client.prefs.chat_toggles & CHAT_ROLL_INFO)
+		if(viewer.client && viewer.client.prefs.read_preference(/datum/preference/toggle/chat_roll_info))
 			to_chat(viewer, input)
 
 /mob/proc/get_dice_char(input)
