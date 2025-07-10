@@ -230,8 +230,9 @@
 	. = ..()
 	icon_state = "rack[rand(1, 5)]"
 
-/obj/structure/trashcan
-	name = "trash can"
+//I should make these slow to move
+/obj/structure/closet/crate/dumpster
+	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'icons/wod13/props.dmi'
 	icon_state = "garbage"
@@ -239,30 +240,48 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	var/internal_trash_chance = 75
+	var/external_trash_chance = 10
 
-/obj/structure/trashcan/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/dumpster/Initialize()
 	if(prob(25))
-		icon_state = "garbage_open"
+		icon_state = "garbageopen"
+	. = ..()
+	//Letting you clear the snow by opening and closing it is acctually pretty flavor
 	if(GLOB.winter)
 		if(istype(get_area(src), /area/vtm))
 			var/area/vtm/V = get_area(src)
 			if(V.upper)
 				icon_state = "[initial(icon_state)]-snow"
 
+/obj/structure/closet/crate/dumpster/PopulateContents()
+	if(prob(internal_trash_chance))
+		if(prob(95))
+			new /obj/effect/spawner/random/trash/garbage(src)
+		else //Pretty rare while the loot table is un-audited
+			new /obj/effect/spawner/random/maintenance/random(src)
+	if(prob(external_trash_chance))
+		new /obj/effect/spawner/random/trash/grime(loc)
+
+/obj/structure/closet/crate/dumpster/empty
+	internal_trash_chance = 0
+	external_trash_chance = 0
+
 /obj/structure/trashbag
-	name = "trash bag"
-	desc = "Holds garbage inside."
+	name = "trash bags"
+	desc = "Enough trashbags to block your way."
 	icon = 'icons/wod13/props.dmi'
 	icon_state = "garbage1"
+	density = TRUE
 	anchored = TRUE
 
 /obj/structure/trashbag/Initialize(mapload)
 	. = ..()
-	var/garbagestate = rand(1, 9)
-	if(garbagestate > 6)
-		density = TRUE
-	icon_state = "garbage[garbagestate]"
+	icon_state = "garbage[rand(7, 9)]"
+
+/obj/structure/trashbag/Destroy()
+	new /obj/effect/spawner/random/trash/garbage(loc)
+	return ..()
 
 /obj/structure/hotelsign
 	name = "sign"

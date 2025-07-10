@@ -227,17 +227,3 @@
 	M.update_blood_hud()
 	playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 	return
-
-/obj/item/vtm_artifact/rand
-	icon_state = "art_rand"
-
-/obj/item/vtm_artifact/rand/Initialize(mapload)
-	. = ..()
-	if (prob(50)) //50% chance of spawning something
-		var/spawn_artifact = pick(/obj/item/vtm_artifact/odious_chalice, /obj/item/vtm_artifact/key_of_alamut,
-									/obj/item/vtm_artifact/daimonori, /obj/item/vtm_artifact/bloodstar,
-									/obj/item/vtm_artifact/heart_of_eliza, /obj/item/vtm_artifact/fae_charm,
-									/obj/item/vtm_artifact/galdjum, /obj/item/vtm_artifact/mummywrap_fetish,
-									/obj/item/vtm_artifact/weekapaug_thistle)
-		new spawn_artifact(loc)
-	qdel(src)
