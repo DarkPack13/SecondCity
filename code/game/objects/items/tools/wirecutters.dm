@@ -1,17 +1,24 @@
 /obj/item/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "cutters_map"
+	// Start WoD13 Modification
+	icon_state = "fixer"
+	icon = 'icons/wod13/items.dmi'
+	onflooricon = 'icons/wod13/onfloor.dmi'
+	// End WoD13 Modification
 	worn_icon_state = "cutters"
 	inhand_icon_state = "cutters"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 
+	// Start WoD13 Modification
+	/*
 	greyscale_config = /datum/greyscale_config/wirecutters
 	greyscale_config_belt = /datum/greyscale_config/wirecutters_belt_overlay
 	greyscale_config_inhand_left = /datum/greyscale_config/wirecutter_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/wirecutter_inhand_right
+	*/
+	// End WoD13 Modification
 
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
@@ -31,7 +38,9 @@
 	toolspeed = 1
 	armor_type = /datum/armor/item_wirecutters
 	/// If the item should be assigned a random color
-	var/random_color = TRUE
+	// Start WoD13 Modification
+	var/random_color = FALSE
+	// End WoD13 Modification
 	/// List of possible random colors
 	var/static/list/wirecutter_colors = list(
 		COLOR_TOOL_BLUE,
