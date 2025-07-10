@@ -20,32 +20,26 @@
 	var/id = 0
 
 /obj/keypad/proc/connect_to_shutter()
-	for(var/obj/machinery/door/poddoor/shutters/S in world)
+	for(var/obj/machinery/door/poddoor/shutters/S in GLOB.machines)
 		if(S.id == id)
 			connected_shutter = S
 			break
 
-/obj/machinery/door/poddoor/shutters/armory/New()
-	id = 10
-	..()
-
-/obj/machinery/door/poddoor/shutters/bankvault/New()
-	id = 11
-	..()
-
 /proc/find_keypad(keypad_type)
+	// Evil in world but luckiely this is not ran super often.
 	for(var/obj/keypad/K in world)
 		if(istype(K, keypad_type))
 			return K
 	return null
 
-/obj/keypad/New()
-	..()
+/obj/keypad/Initialize(mapload)
+	. = ..()
 	pincode = create_unique_pincode()
-	spawn(1)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/keypad/LateInitialize()
+	. = ..()
 	connect_to_shutter()
-
-
 
 /obj/keypad/attack_hand(mob/user as mob)
 	var/choice = input(user, "Please choose an action.", "Keypad") as null|anything in list("Enter Pincode", "Close Shutter")
@@ -61,18 +55,11 @@
 		if("Close Shutter")
 			if(connected_shutter && !connected_shutter.density)
 				connected_shutter.close()
+
 /obj/keypad/armory
-	name = "keypad"
-	desc = "Requires a password to open."
-	icon = 'icons/obj/terminals_vtm.dmi'
-	icon_state = "keypad"
 	id = 10
 
 /obj/keypad/bankvault
-	name = "keypad"
-	desc = "Requires a password to open."
-	icon = 'icons/obj/terminals_vtm.dmi'
-	icon_state = "keypad"
 	id = 11
 
 /obj/keypad/panic_room
