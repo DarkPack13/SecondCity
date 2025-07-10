@@ -16,6 +16,20 @@
 	/// travel time for ladder in deciseconds
 	var/travel_time = 1 SECONDS
 
+	// Start WoD13 Modification
+	/// played after the do_after is finished
+	var/travel_sound
+	// Requires a sister ladder to link up with us else we runtime
+	var/requires_friend = FALSE
+	/// If we DONT update our icon state based off our linked ladders, used for manholes.
+	var/static_apperance = FALSE
+	//Both of these only matter for the sake of late init to save on time searching
+	/// Determines if it will try and locate its up during late init, useful if you know there wont ever be one (Manholes)
+	var/connect_up = TRUE
+	/// Determines if it will try and locate its down during late init, useful if you know there wont ever be one (Manholes)
+	var/connect_down = TRUE
+	// End WoD13 Modification
+
 /obj/structure/ladder/Initialize(mapload, obj/structure/ladder/up, obj/structure/ladder/down)
 	..()
 	GLOB.ladders += src
@@ -199,12 +213,16 @@
 	// By default, discover ladders above and below us vertically
 	var/turf/base = get_turf(src)
 
-	if(isnull(down))
+	// Start WoD13 Modification
+	if(isnull(down) && connect_down)
+	// End WoD13 Modification
 		var/obj/structure/ladder/new_down = locate() in GET_TURF_BELOW(base)
 		if (new_down && crafted == new_down.crafted)
 			link_down(new_down)
 
-	if(isnull(up))
+	// Start WoD13 Modification
+	if(isnull(up) && connect_up)
+	// End WoD13 Modification
 		var/obj/structure/ladder/new_up = locate() in GET_TURF_ABOVE(base)
 		if (new_up && crafted == new_up.crafted)
 			link_up(new_up)
@@ -212,9 +230,16 @@
 	// Linking updates our icon, so if we failed both links we need a manual update
 	if(isnull(down) && isnull(up))
 		update_appearance(UPDATE_ICON_STATE)
+		// Start WoD13 Modification
+		if(requires_friend)
+			CRASH("[src] failed to find another ladder to link up with at: [x],[y],[z]")
+		// End WoD13 Modification
 
 /obj/structure/ladder/update_icon_state()
-	icon_state = "[base_icon_state][!!up][!!down]"
+	// Start WoD13 Modification
+	if(!static_apperance)
+		icon_state = "[base_icon_state][!!up][!!down]"
+	// End WoD13 Modification
 	return ..()
 
 /obj/structure/ladder/singularity_pull(atom/singularity, current_size)
@@ -281,7 +306,10 @@
 
 	if(!is_ghost)
 		show_final_fluff_message(user, ladder, going_up)
-
+		// Start WoD13 Modification
+		if(travel_sound)
+			playsound(src, travel_sound, 50, TRUE)
+		// End WoD13 Modification
 	// to avoid having players hunt for the pixels of a ladder that goes through several stories and is
 	// partially covered by the sprites of their mobs, a radial menu will be displayed over them.
 	// this way players can keep climbing up or down with ease until they reach an end.

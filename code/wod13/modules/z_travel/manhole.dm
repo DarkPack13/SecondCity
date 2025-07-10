@@ -5,21 +5,21 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	travel_time = 5 SECONDS
-	//travel_sound = 'sound/wod13/manhole.ogg'
-	//requires_friend = TRUE
-	//static_apperance = TRUE
+	travel_sound = 'sound/wod13/manhole.ogg'
+	requires_friend = TRUE
+	static_apperance = TRUE
 
 /obj/structure/ladder/manhole/up
 	name = "ladder"
 	icon_state = "ladder"
 	base_icon_state = "ladder"
-	//connect_down = FALSE
+	connect_down = FALSE
 
 /obj/structure/ladder/manhole/down
 	name = "manhole"
 	icon_state = "manhole"
 	base_icon_state = "manhole"
-	//connect_up = FALSE
+	connect_up = FALSE
 
 /obj/structure/ladder/manhole/down/Initialize()
 	. = ..()
