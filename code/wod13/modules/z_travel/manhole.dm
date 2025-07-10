@@ -21,7 +21,7 @@
 	base_icon_state = "manhole"
 	connect_up = FALSE
 
-/obj/structure/ladder/manhole/down/Initialize()
+/obj/structure/ladder/manhole/down/Initialize(mapload)
 	. = ..()
 	if(GLOB.winter)
 		if(istype(get_area(src), /area/vtm))
