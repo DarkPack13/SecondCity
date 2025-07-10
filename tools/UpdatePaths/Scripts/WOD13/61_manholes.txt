@@ -1,0 +1,2 @@
+/obj/manholedown : /obj/structure/ladder/manhole/down {@OLD}
+/obj/manholeup : /obj/structure/ladder/manhole/up {@OLD}
