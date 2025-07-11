@@ -48,6 +48,9 @@
 /obj/effect/celerity/Initialize(mapload, mob/living/creator)
 	. = ..()
 
+	if (!creator)
+		return
+
 	name = creator.name
 	appearance = creator.appearance
 	dir = creator.dir

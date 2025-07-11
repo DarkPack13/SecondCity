@@ -6727,6 +6727,7 @@
 #include "code\wod13\modules\mob\living\dancing.dm"
 #include "code\wod13\modules\mob\living\basic\werewolf.dm"
 #include "code\wod13\modules\mob\living\carbon\human\extra_human_sprites.dm"
+#include "code\wod13\modules\mob\living\carbon\human\human.dm"
 #include "code\wod13\modules\mob\living\carbon\human\shadows.dm"
 #include "code\wod13\modules\movespeed\modifiers\celerity.dm"
 #include "code\wod13\modules\npcs\__npc.dm"

@@ -71,9 +71,6 @@
 	new_kindred.yin_chi = 6
 	new_kindred.max_yin_chi = 6
 
-	//vampires die instantly upon having their heart removed
-	RegisterSignal(new_kindred, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
-
 	//vampires don't die while in crit, they just slip into torpor after 2 minutes of being critted
 	RegisterSignal(new_kindred, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(handle_enter_critical_condition))
 
@@ -91,7 +88,7 @@
 
 	human.set_clan()
 
-	UnregisterSignal(human, COMSIG_CARBON_LOSE_ORGAN)
+	//UnregisterSignal(human, COMSIG_CARBON_LOSE_ORGAN)
 	UnregisterSignal(human, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
 	UnregisterSignal(human, COMSIG_MOB_VAMPIRE_SUCKED)
 	UnregisterSignal(human, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
@@ -123,33 +120,6 @@
 	for (var/datum/discipline/discipline in disciplines)
 		if (istype(discipline, searched_discipline))
 			return discipline
-
-/datum/species/human/kindred/check_roundstart_eligible()
-	return TRUE
-
-/**
- * Signal handler for lose_organ to near-instantly kill Kindred whose hearts have been removed.
- *
- * Arguments:
- * * source - The Kindred whose organ has been removed.
- * * organ - The organ which has been removed.
- */
-/datum/species/human/kindred/proc/handle_lose_organ(mob/living/carbon/human/source, obj/item/organ/organ)
-	SIGNAL_HANDLER
-
-	if (!istype(organ, /obj/item/organ/heart))
-		return
-	// You don't want the character preview going sideways, and they lose organs a lot
-	if (isdummy(source))
-		return
-
-	addtimer(CALLBACK(src, PROC_REF(lose_heart), source, organ), 0.5 SECONDS)
-
-/datum/species/human/kindred/proc/lose_heart(mob/living/carbon/human/source, obj/item/organ/heart/heart)
-	if (source.get_organ_by_type(/obj/item/organ/heart))
-		return
-
-	source.death()
 
 /datum/species/human/kindred/proc/handle_enter_critical_condition(mob/living/carbon/human/source)
 	SIGNAL_HANDLER
