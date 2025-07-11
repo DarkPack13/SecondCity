@@ -116,14 +116,13 @@
 		to_chat(user, "<span class='notice'>Card swiped.</span>")
 		return
 
-	else if(istype(P, /obj/item/stack/dollar))
-		var/obj/item/stack/dollar/cash = P
+	else if(iscash(P))
 		if(!logged_in)
 			to_chat(user, "<span class='notice'>You need to be logged in.</span>")
 			return
 		else
-			atm_balance += cash.amount
-			to_chat(user, "<span class='notice'>You have deposited [cash.amount] dollars into the ATM. The ATM now holds [atm_balance] dollars.</span>")
+			atm_balance += P.get_item_credit_value()
+			to_chat(user, "<span class='notice'>You have deposited [P.get_item_credit_value()] dollars into the ATM. The ATM now holds [atm_balance] dollars.</span>")
 			qdel(P)
 			return
 
@@ -196,7 +195,7 @@
 					var/obj/item/stack/dollar/cash = new /obj/item/stack/dollar()
 					cash.amount = drop_amount
 					to_chat(usr, "<span class='notice'>You have withdrawn [drop_amount] dollars.</span>")
-					cash.loc = usr.loc
+					try_put_in_hand(cash, usr)
 					amount -= drop_amount
 					current_card.account.balance -= drop_amount
 			return TRUE
