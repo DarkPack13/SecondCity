@@ -5,28 +5,22 @@
 
 /obj/effect/spawner/random/trash/garbage
 	name = "garbage spawner"
+	// Start WoD13 Modification
 	loot = list(
-		/obj/effect/spawner/random/trash/food_packaging = 20,
-		/obj/item/trash/can = 15,
-		/obj/item/shard = 10,
-		/obj/effect/spawner/random/trash/cigbutt = 10,
-		/obj/effect/spawner/random/trash/bacteria = 5,
-		/obj/effect/spawner/random/trash/botanical_waste = 5,
-		/obj/item/reagent_containers/cup/glass/drinkingglass = 5,
-		/obj/item/broken_bottle = 5,
-		/obj/item/light/tube/broken = 5,
-		/obj/item/light/bulb/broken = 5,
-		/obj/item/assembly/mousetrap/armed = 5,
-		/obj/item/stack/cable_coil = 5,
-		/obj/item/food/deadmouse = 1,
+		/obj/effect/spawner/random/trash/food_packaging = 26,
+		/obj/effect/decal/cleanable/garbage = 20,
+		/obj/structure/trashbag = 10,
+		/obj/item/trash/can = 8,
+		/obj/item/shard = 8,
+		/obj/effect/spawner/random/trash/botanical_waste = 8,
+		/obj/effect/spawner/random/trash/cigbutt = 8,
+		/obj/item/reagent_containers/syringe = 5,
+		/obj/item/light/tube/broken = 3,
+		/obj/item/food/deadmouse = 2,
+		/obj/item/light/tube/broken = 1,
 		/obj/item/trash/candle = 1,
-		/obj/item/rag = 1,
-		/obj/item/trash/flare = 1,
-		/obj/item/popsicle_stick = 1,
-		/obj/item/reagent_containers/syringe = 1,
-		/obj/item/reagent_containers/cup/glass/sillycup = 1,
-		/obj/item/shard/plasma = 1,
 	)
+	// End WoD13 Modification
 
 /obj/effect/spawner/random/trash/deluxe_garbage
 	name = "fancy deluxe garbage spawner"

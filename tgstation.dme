@@ -6703,6 +6703,7 @@
 #include "code\wod13\game\area\interiors\endron_facility.dm"
 #include "code\wod13\game\area\interiors\millennium_tower.dm"
 #include "code\wod13\game\objects\effects\landmarks.dm"
+#include "code\wod13\game\objects\effects\spawners\occult.dm"
 #include "code\wod13\game\objects\items\clothes\eyes.dm"
 #include "code\wod13\game\objects\items\clothes\feet.dm"
 #include "code\wod13\game\objects\items\clothes\hands.dm"

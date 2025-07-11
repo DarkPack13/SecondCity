@@ -1,0 +1,4 @@
+/obj/item/vtm_artifact/rand : /obj/effect/spawner/random/occult/artifact
+/obj/structure/trashbag : /obj/effect/decal/cleanable/garbage{@OLD}
+
+/obj/structure/trashcan : /obj/structure/closet/crate/dumpster{@OLD}
