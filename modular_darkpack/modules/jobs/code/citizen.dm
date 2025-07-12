@@ -49,7 +49,7 @@
 		else
 			shoes = /obj/item/clothing/shoes/vampire/heels
 
-	backpack_contents = list(/obj/item/passport, /obj/item/flashlight, /obj/item/vamp/creditcard)
+	backpack_contents = list(/obj/item/passport, /obj/item/flashlight, /obj/item/card/credit)
 
 /obj/effect/landmark/start/citizen
 	name = "Citizen"

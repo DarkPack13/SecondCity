@@ -43,6 +43,10 @@
 	account_job = job
 	payday_modifier = modifier
 	add_to_accounts = player_account
+	// DARKPACK EDIT ADDITION START - Credit Cards
+	if(!bank_pin)
+		bank_pin = create_bank_pin()
+	// DARKPACK EDIT ADDITION END - Credit Cards
 	setup_unique_account_id()
 	update_account_job_lists(job)
 	pay_token = uppertext("[copytext(newname, 1, 2)][copytext(newname, -1)]-[random_capital_letter()]-[rand(1111,9999)]")

@@ -35,7 +35,7 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/capo
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/giovanniboss=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/giovanniboss=1)
 
 /datum/outfit/job/giovannielder/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -81,7 +81,7 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/giovanni
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/rich=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
 
 /datum/outfit/job/giovanni/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -128,7 +128,7 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/giovanni
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
 /datum/outfit/job/giovannimafia/pre_equip(mob/living/carbon/human/H)
 	..()

@@ -31,4 +31,4 @@
 	id = /obj/item/card/id/government
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/dispatch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/vamp/creditcard=1, /obj/item/flashlight=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/flashlight=1)

@@ -29,7 +29,7 @@
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/strip
 	id = /obj/item/cockclock
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
 /datum/outfit/job/strip/pre_equip(mob/living/carbon/human/H)
 	..()
