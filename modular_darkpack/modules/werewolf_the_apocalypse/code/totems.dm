@@ -1,7 +1,7 @@
 /obj/structure/werewolf_totem
 	name = "Tribe Totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon = 'icons/mob/32x64.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
 	icon_state = "glassw"
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER

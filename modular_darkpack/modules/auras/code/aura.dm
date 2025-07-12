@@ -26,7 +26,7 @@
 		holder.color = "#ffffff"
 		//only Baali can get antifrenzy through selling their soul, so this gives them the unholy halo (MAKE THIS BETTER)
 		if (antifrenzy)
-			holder.icon = 'icons/effects/32x64.dmi'
+			holder.icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
 		//black aura for diablerists
 		if (diablerist)
 			holder.icon_state = "diablerie_aura"

@@ -12,7 +12,6 @@
 	desc = "Protects places from walking in."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "fence"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -40,8 +39,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "gargoyle"
 	pixel_z = 8
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYERS_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /obj/structure/lamppost
@@ -49,7 +47,6 @@
 	desc = "Gives some light to the streets."
 	icon = 'modular_darkpack/modules/deprecated/icons/lamppost.dmi'
 	base_icon_state = "base"
-	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	var/number_of_lamps
 	pixel_w = -32
@@ -150,7 +147,6 @@
 	desc = "Shows when road is free or not."
 	icon = 'modular_darkpack/modules/deprecated/icons/lamppost.dmi'
 	icon_state = "traffic"
-	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	pixel_w = -32
 	anchored = TRUE
@@ -163,33 +159,11 @@
 			if(V.upper)
 				icon_state = "[initial(icon_state)]-snow"
 
-/obj/effect/decal/litter
-	name = "litter"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "paper1"
-
-/obj/effect/decal/litter/Initialize(mapload)
-	. = ..()
-	icon_state = "paper[rand(1, 6)]"
-
-/obj/effect/decal/cardboard
-	name = "cardboard"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "cardboard1"
-
-/obj/effect/decal/cardboard/Initialize(mapload)
-	. = ..()
-	icon_state = "cardboard[rand(1, 5)]"
-	var/matrix/M = matrix()
-	M.Turn(rand(0, 360))
-	transform = M
-
 /obj/structure/clothingrack
 	name = "clothing rack"
 	desc = "Have some clothes."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "rack"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -206,7 +180,6 @@
 	desc = "Have some clothes."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "hanger1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -220,7 +193,6 @@
 	desc = "Have some food."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "rack2"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -259,7 +231,7 @@
 		if(prob(95))
 			new /obj/effect/spawner/random/trash/garbage(src)
 		else //Pretty rare while the loot table is un-audited
-			new /obj/effect/spawner/random/maintenance/random(src)
+			new /obj/effect/spawner/random/maintenance(src)
 	if(prob(external_trash_chance))
 		new /obj/effect/spawner/random/trash/grime(loc)
 
@@ -283,30 +255,11 @@
 	new /obj/effect/spawner/random/trash/garbage(loc)
 	return ..()
 
-/obj/structure/hotelsign
-	name = "sign"
-	desc = "It says H O T E L."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "hotel"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/hotelsign/Initialize(mapload)
-	. = ..()
-	set_light(3, 3, "#8e509e")
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "[initial(icon_state)]-snow"
-
 /obj/structure/hotelbanner
 	name = "banner"
 	desc = "It says H O T E L."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "banner"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -319,66 +272,11 @@
 			if(V.upper)
 				icon_state = "[initial(icon_state)]-snow"
 
-/obj/structure/milleniumsign
-	name = "sign"
-	desc = "It says M I L L E N I U M."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "millenium"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/milleniumsign/Initialize(mapload)
-	. = ..()
-	set_light(3, 3, "#4299bb")
-
-/obj/structure/anarchsign
-	name = "sign"
-	desc = "It says B A R."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "bar"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/anarchsign/Initialize(mapload)
-	. = ..()
-	set_light(3, 3, "#ffffff")
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "[initial(icon_state)]-snow"
-
-/obj/structure/chinesesign
-	name = "sign"
-	desc = "雨天和血的机会."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "chinese1"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/chinesesign/Initialize(mapload)
-	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "[initial(icon_state)]-snow"
-
-/obj/structure/chinesesign/alt
-	icon_state = "chinese2"
-
-/obj/structure/chinesesign/alt/alt
-	icon_state = "chinese3"
-
 /obj/structure/arc
 	name = "chinatown arc"
 	desc = "Cool chinese architecture."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "ark1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -398,7 +296,6 @@
 	desc = "Cool chinese lamp."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "trad"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -406,7 +303,6 @@
 	name = "pipes"
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "piping1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -414,7 +310,6 @@
 	name = "wall"
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "the_wall"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -433,19 +328,20 @@
 			if(V.upper)
 				icon_state = "[initial(icon_state)]-snow"
 
+/* Dwarfs arent real
 /obj/structure/hydrant/MouseDrop_T(atom/dropping, mob/user, params)
 	. = ..()
 
 	if(HAS_TRAIT(user, TRAIT_DWARF)) //Only lean on the fire hydrant if we are smol
-		//Adds the component only once. We do it here & not in Initialize() because there are tons of windows & we don't want to add to their init times
+		//Adds the component only once. We do it here & not in Initialize(mapload) because there are tons of windows & we don't want to add to their init times
 		LoadComponent(/datum/component/leanable, dropping)
+*/
 
 /obj/structure/vampcar
 	name = "car"
 	desc = "It drives."
 	icon = 'modular_darkpack/modules/deprecated/icons/cars.dmi'
 	icon_state = "taxi"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -463,7 +359,6 @@
 	desc = "Protects places from walking in."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "roadblock"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -476,10 +371,15 @@
 
 /obj/machinery/light/prince/ghost
 
-/obj/machinery/light/prince/ghost/Crossed(atom/movable/AM)
+/obj/machinery/light/prince/ghost/Initialize(mapload)
 	. = ..()
-	if(ishuman(AM))
-		var/mob/living/L = AM
+	RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(jumpscare))
+
+/obj/machinery/light/prince/ghost/proc/jumpscare(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SIGNAL_HANDLER
+
+	if(ishuman(arrived))
+		var/mob/living/L = arrived
 		if(L.client)
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, get_turf(src))
@@ -495,7 +395,6 @@
 	name = "painting"
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "painting1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/decal/painting/second
@@ -509,7 +408,6 @@
 	desc = "Jesus said, “Father, forgive them, for they do not know what they are doing.” And they divided up his clothes by casting lots (Luke 23:34)."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "cross"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -521,7 +419,6 @@
 	desc = "Do not drive your car cluelessly."
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "stop"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -574,7 +471,6 @@
 	desc = "Storage some liquids."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "barrel1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -591,7 +487,6 @@
 	desc = "Building material."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "bricks"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -605,22 +500,11 @@
 	. = ..()
 	icon_state = "under[rand(1, 2)]"
 
-/obj/effect/decal/trash
-	name = "trash"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "trash1"
-
-/obj/effect/decal/trash/Initialize(mapload)
-	. = ..()
-	icon_state = "trash[rand(1, 30)]"
-
 /obj/cargotrain
 	name = "cargocrate"
 	desc = "It delivers a lot of things."
 	icon = 'modular_darkpack/modules/deprecated/icons/containers.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = FALSE
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSGLASS | PASSCLOSEDTURF
@@ -631,23 +515,21 @@
 	. = ..()
 	icon_state = "[rand(2, 5)]"
 
-/obj/cargotrain/Moved(atom/OldLoc, Dir, Forced = FALSE)
-	for(var/mob/living/L in get_step(src, Dir))
+/obj/cargotrain/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	for(var/mob/living/L in get_step(src, movement_dir))
 		if(isnpc(L))
 			if(starter)
 				if(ishuman(starter))
 					var/mob/living/carbon/human/H = starter
 					H.AdjustHumanity(-1, 0)
 		L.gib()
-	..()
+	. = ..()
 
 /obj/cargocrate
 	name = "cargocrate"
 	desc = "It delivers a lot of things."
 	icon = 'modular_darkpack/modules/deprecated/icons/containers.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 
 
@@ -689,8 +571,6 @@
 	desc = "Recent stocks visualization."
 	icon = 'modular_darkpack/modules/deprecated/icons/stonks.dmi'
 	icon_state = "marketplace"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 	pixel_w = -24
@@ -701,24 +581,27 @@
 	desc = "Fuel your car here. 50 dollars per 1000 units."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "fuelstation"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/stored_money = 0
 
+// TODO: [Rebase] - Refactor into signal handler
+/*
 /obj/structure/fuelstation/AltClick(mob/user)
 	if(stored_money)
 		say("Money refunded.")
 		for(var/i in 1 to stored_money)
 			new /obj/item/stack/dollar(loc)
 		stored_money = 0
+*/
 
 /obj/structure/fuelstation/examine(mob/user)
 	. = ..()
 	. += "<b>Balance</b>: [stored_money] dollars"
 
+// TODO: [Rebase] - Requires /obj/item/gas_can
+/*
 /obj/structure/fuelstation/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/stack/dollar))
 		var/obj/item/stack/dollar/dolla = I
@@ -736,14 +619,13 @@
 			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/gas_fill.ogg', 50, TRUE)
 			to_chat(user, "<span class='notice'>You fill [I].</span>")
 			say("Gas filled.")
+*/
 
 /obj/structure/bloodextractor
 	name = "blood extractor"
 	desc = "Extract blood in packs."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "bloodextractor"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -755,6 +637,7 @@
 	reagent_id = /datum/reagent/space_cleaner
 	icon_state = "water"
 
+/*
 /mob/living/carbon/human/MouseDrop(atom/over_object)
 	. = ..()
 	if(istype(over_object, /obj/structure/bloodextractor))
@@ -779,7 +662,7 @@
 			else
 				new /obj/item/drinkable_bloodpack/vitae(get_step(V, SOUTH))
 				bloodpool = max(0, bloodpool-4)
-
+*/
 
 /obj/structure/rack/tacobell
 	name = "table"
@@ -833,179 +716,27 @@
 /obj/structure/rack/bubway/west
 	icon_state = "bubway6"
 
-/obj/bacotell
-	name = "Baco Tell"
-	desc = "Eat some precious tacos and pizza!"
-	icon = 'modular_darkpack/modules/deprecated/icons/fastfood.dmi'
-	icon_state = "bacotell"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-	pixel_w = -16
-
-/obj/bubway
-	name = "BubWay"
-	desc = "Eat some precious burgers and pizza!"
-	icon = 'modular_darkpack/modules/deprecated/icons/fastfood.dmi'
-	icon_state = "bubway"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-	pixel_w = -16
-
-/obj/gummaguts
-	name = "Gumma Guts"
-	desc = "Eat some precious chicken nuggets and donuts!"
-	icon = 'modular_darkpack/modules/deprecated/icons/fastfood.dmi'
-	icon_state = "gummaguts"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-	pixel_w = -16
-
 /obj/underplate
 	name = "underplate"
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "underplate"
-	plane = GAME_PLANE
 	layer = TABLE_LAYER
 	anchored = TRUE
 
 /obj/underplate/stuff
 	icon_state = "stuff"
 
-/obj/order
-	name = "order sign"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "order"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/order1
-	name = "order screen"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "order1"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/order2
-	name = "order screen"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "order2"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/order3
-	name = "order screen"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "order3"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/order4
-	name = "order screen"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "order4"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/matrix
-	name = "matrix"
-	desc = "Suicide is no exit..."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "matrix"
-	plane = GAME_PLANE
-	layer = ABOVE_NORMAL_TURF_LAYER
-	anchored = TRUE
-	opacity = TRUE
-	density = TRUE
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/matrixing = FALSE
-
-/obj/matrix/attack_hand(mob/user)
-	if(user.client)
-		if(!matrixing)
-			matrixing = TRUE
-			if(do_after(user, 100, src))
-				cryoMob(user, src)
-				matrixing = FALSE
-			else
-				matrixing = FALSE
-	return TRUE
-
-/proc/cryoMob(mob/living/mob_occupant, obj/pod)
-	if(isnpc(mob_occupant))
-		return
-	if(iscarbon(mob_occupant))
-		var/mob/living/carbon/C = mob_occupant
-		if(C.transformator)
-			qdel(C.transformator)
-	var/list/crew_member = list()
-	crew_member["name"] = mob_occupant.real_name
-
-	if(mob_occupant.mind)
-		// Handle job slot/tater cleanup.
-		var/job = mob_occupant.mind.assigned_role
-		crew_member["job"] = job
-		SSjob.FreeRole(job, mob_occupant)
-//		if(LAZYLEN(mob_occupant.mind.objectives))
-//			mob_occupant.mind.objectives.Cut()
-		mob_occupant.mind.special_role = null
-	else
-		crew_member["job"] = "N/A"
-
-	if (pod)
-		pod.visible_message("\The [pod] hums and hisses as it teleports [mob_occupant.real_name].")
-
-	var/list/gear = list()
-	if(ishuman(mob_occupant))		// sorry simp-le-mobs deserve no mercy
-		var/mob/living/carbon/human/C = mob_occupant
-		if(C.bloodhunted)
-			SSbloodhunt.hunted -= C
-			C.bloodhunted = FALSE
-			SSbloodhunt.update_shit()
-		if(C.dna)
-			GLOB.fucking_joined -= C.dna.real_name
-		gear = C.get_all_gear()
-		for(var/obj/item/item_content as anything in gear)
-			qdel(item_content)
-		for(var/mob/living/L in mob_occupant.GetAllContents() - mob_occupant)
-			L.forceMove(pod.loc)
-		if(mob_occupant.client)
-			mob_occupant.client.screen.Cut()
-//			mob_occupant.client.screen += mob_ocupant.client.void
-			var/mob/dead/new_player/M = new /mob/dead/new_player()
-			M.key = mob_occupant.key
-	QDEL_NULL(mob_occupant)
-
 /obj/structure/billiard_table
 	name = "billiard table"
 	desc = "Come here, play some BALLS. I know you want it so much..."
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "billiard1"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/billiard_table/Initialize(mapload)
 	. = ..()
 	icon_state = "billiard[rand(1, 3)]"
-
-/obj/police_department
-	name = "San Francisco Police Department"
-	desc = "Stop right there you criminal scum! Nobody can break the law on my watch!!"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "police"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-	pixel_z = 40
 
 /obj/structure/pole
 	name = "stripper pole"
@@ -1017,25 +748,27 @@
 	var/icon_state_inuse
 	layer = 4 //make it the same layer as players.
 	density = 0 //easy to step up on
+	/// Is the pole in use currently?
+	var/pole_in_use
 
 /obj/structure/pole/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(obj_flags & IN_USE)
+	if(pole_in_use)
 		to_chat(user, "It's already in use - wait a bit.")
 		return
 	if(user.dancing)
 		return
 	else
-		obj_flags |= IN_USE
+		pole_in_use = TRUE
 		user.setDir(SOUTH)
 		user.Stun(100)
 		user.forceMove(src.loc)
 		user.visible_message("<B>[user] dances on [src]!</B>")
 		animatepole(user)
 		user.layer = layer //set them to the poles layer
-		obj_flags &= ~IN_USE
+		pole_in_use = FALSE
 		user.pixel_y = 0
 		icon_state = initial(icon_state)
 
@@ -1066,54 +799,11 @@
 	sleep(6)
 	user.dir = 2
 
-/obj/structure/strip_club
-	name = "sign"
-	desc = "It says DO RA. Maybe it's some kind of strip club..."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
-	icon_state = "dora"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	pixel_w = -8
-	pixel_z = 32
-
-/obj/structure/strip_club/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#8e509e")
-
-/obj/structure/cabaret_sign
-	name = "cabaret"
-	desc = "An enticing pair of legs... I wonder what's inside?"
-	icon = 'icons/cabaret.dmi'
-	icon_state = "cabar"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/cabaret_sign/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#d98aec")
-
-/obj/structure/cabaret_sign2
-	name = "cabaret"
-	desc = "An enticing pair of legs... I wonder what's inside?"
-	icon = 'icons/cabaret.dmi'
-	icon_state = "et"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/cabaret_sign2/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#d98aec")
-
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "barrel"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 
@@ -1126,8 +816,6 @@
 	desc = "Gothic water structure."
 	icon = 'modular_darkpack/modules/deprecated/icons/fountain.dmi'
 	icon_state = "fountain"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 	pixel_w = -16
@@ -1138,20 +826,17 @@
 	desc = "See the time."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "clock"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	pixel_z = 32
 
 /obj/structure/coclock/examine(mob/user)
 	. = ..()
-	to_chat(user, "<b>[SScity_time.timeofnight]</b>")
+	// TODO: [Rebase] - Port https://github.com/ApocryphaXIII/ApocryphaXIII/pull/51
+	//to_chat(user, "<b>[SScity_time.timeofnight]</b>")
 
 /obj/structure/coclock/grandpa
 	icon = 'modular_darkpack/modules/deprecated/icons/grandpa_cock.dmi'
 	icon_state = "cock"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	density = TRUE
 	pixel_z = 0
@@ -1179,98 +864,13 @@
 			if(T && !istype(T, /turf/open/floor/plating/bloodshit))
 				new /turf/open/floor/plating/bloodshit(T)
 
-/obj/american_flag
-	name = "american flag"
-	desc = "PATRIOTHICC!!!"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "flag_usa"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
 
-//flags
-
-/obj/flag
-	name = "DO NOT USE"
-	desc = "This shouldn't be used. If you see this in-game, someone has fucked up."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "flag_usa"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
-
-/obj/flag/usa
-	name = "flag of the United States"
-	desc = "The flag of the United States of America. In God we trust!"
-	icon_state = "flag_usa"
-
-/obj/flag/california
-	name = "flag of California"
-	desc = "The flag of the great State of California. Eureka!"
-	icon_state = "flag_california"
-
-/obj/flag/britain
-	name = "flag of Great Britain"
-	desc = "The flag of the United Kingdom of Great Britain and Northern Ireland. Dieu et mon droit!"
-	icon_state = "flag_britain"
-
-/obj/flag/france
-	name = "flag of France"
-	desc = "The flag of the French Republic. Liberte, egalite, fraternite!"
-	icon_state = "flag_france"
-
-/obj/flag/germany
-	name = "flag of Germany"
-	desc = "The flag of the Federal Republic of Germany."
-	icon_state = "flag_germany"
-
-/obj/flag/spain
-	name = "flag of Spain"
-	desc = "The flag of the Kingdom of Spain. Plus ultra!"
-	icon_state = "flag_spain"
-
-/obj/flag/italy
-	name = "flag of Italy"
-	desc = "The flag of the Republic of Italy."
-	icon_state = "flag_italy"
-
-/obj/flag/vatican
-	name = "flag of the Vatican"
-	desc = "The flag of Vatican City."
-	icon_state = "flag_vatican"
-
-/obj/flag/russia
-	name = "flag of Russia"
-	desc = "The flag of the Russian Federation."
-	icon_state = "flag_russia"
-
-/obj/flag/soviet
-	name = "flag of the Soviet Union"
-	desc = "The flag of the Union of Socialist Soviet Republics. Workers of the world, unite!"
-	icon_state = "flag_soviet"
-
-/obj/flag/china
-	name = "flag of China"
-	desc = "The flag of the People's Republic of China."
-	icon_state = "flag_china"
-
-/obj/flag/taiwan
-	name = "flag of Taiwan"
-	desc = "The flag of the Republic of China."
-	icon_state = "flag_taiwan"
-
-/obj/flag/japan
-	name = "flag of Japan"
-	desc = "The flag of the State of Japan."
-	icon_state = "flag_japan"
 
 /obj/effect/decal/graffiti
 	name = "graffiti"
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "graffiti1"
 	pixel_z = 32
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	anchored = TRUE
 	var/large = FALSE
 
@@ -1291,7 +891,6 @@
 	desc = "Air to inside."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "roof1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1329,6 +928,8 @@
 	icon_state = "baali"
 	var/total_corpses = 0
 
+// TODO: [Rebase] - Requires /mob/living/simple_animal/hostile/baali_guard
+/*
 /obj/effect/decal/baalirune/attack_hand(mob/living/user)
 	. = ..()
 	var/mob/living/carbon/human/H = locate() in get_turf(src)
@@ -1338,18 +939,18 @@
 			total_corpses += 1
 			if(total_corpses >= 20)
 				total_corpses = 0
-				playsound(get_turf(src), 'sound/magic/demon_dies.ogg', 100, TRUE)
+				playsound(get_turf(src), 'sound/effects/magic/demon_dies.ogg', 100, TRUE)
 				new /mob/living/simple_animal/hostile/baali_guard(get_turf(src))
 //			var/datum/preferences/P = GLOB.preferences_datums[ckey(user.key)]
 //			if(P)
 //				P.exper = min(calculate_mob_max_exper(user), P.exper+15)
+*/
 
 /obj/structure/vamptree
 	name = "tree"
 	desc = "Cute and tall flora."
 	icon = 'modular_darkpack/modules/deprecated/icons/trees.dmi'
 	icon_state = "tree1"
-	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1376,7 +977,6 @@
 	desc = "Cute and tall flora."
 	icon = 'modular_darkpack/modules/deprecated/icons/pines.dmi'
 	icon_state = "pine1"
-	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1403,9 +1003,8 @@
 /obj/structure/vampstatue
 	name = "statue"
 	desc = "A cloaked figure forgotten to the ages."
-	icon = 'icons/effects/32x64.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
 	icon_state = "statue"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1428,7 +1027,6 @@
 	desc = "Not big enough for hiding in."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "tub"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1441,7 +1039,6 @@
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -1461,7 +1058,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "rock1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1476,7 +1072,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "smallrock1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -1490,7 +1085,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "rock1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1506,7 +1100,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "stalagmite1"
-	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
@@ -1522,8 +1115,6 @@
 	desc = "Stores some precious organs..."
 	icon = 'modular_darkpack/modules/deprecated/icons/werewolf_lupus.dmi'
 	icon_state = "ice_man"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/were_ice/lupus
@@ -1539,13 +1130,14 @@
 	desc = "You can bury someone here."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "pit0"
-	plane = GAME_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/burying = FALSE
 
+// TODO: [Rebase]
+/*
 /obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/melee/vampirearms/shovel))
 		if(!burying)
@@ -1586,3 +1178,33 @@
 			burying = FALSE
 		else
 			burying = FALSE
+*/
+
+/obj/structure/fluff/tv
+	name = "\improper TV"
+	desc = "A slightly battered looking TV. Various infomercials play on a loop, accompanied by a jaunty tune."
+	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon_state = "tv_news"
+
+/obj/structure/fluff/tv/order
+	name = "order screen"
+	desc = "A slightly battered looking TV. It shows a menu to order from."
+	icon_state = "order1"
+
+/obj/structure/fluff/tv/order/one
+	icon_state = "order1"
+
+/obj/structure/fluff/tv/order/two
+	icon_state = "order2"
+
+/obj/structure/fluff/tv/order/three
+	icon_state = "order3"
+
+/obj/structure/fluff/tv/order/four
+	icon_state = "order4"
+
+/obj/structure/fluff/tv/order/random
+
+/obj/structure/fluff/tv/order/random/Initialize(mapload)
+	. = ..()
+	icon_state = "order[rand(1,4)]"

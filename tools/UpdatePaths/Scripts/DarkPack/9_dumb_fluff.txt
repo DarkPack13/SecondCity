@@ -1,0 +1,35 @@
+/obj/american_flag : /obj/flag/usa {@OLD}
+
+/obj/effect/decal/trash : /obj/effect/decal/cleanable/trash {@OLD}
+/obj/effect/decal/litter : /obj/effect/decal/cleanable/litter {@OLD}
+/obj/effect/decal/cardboard : /obj/effect/decal/cleanable/cardboard {@OLD}
+
+/obj/bacotell : /obj/structure/sign/city/store/bacotell {@OLD}
+/obj/bubway : /obj/structure/sign/city/store/bubway {@OLD}
+/obj/gummaguts : /obj/structure/sign/city/store/gummaguts {@OLD}
+
+/obj/police_department : /obj/structure/sign/city/police_department {@OLD}
+/obj/order : /obj/structure/sign/city/order {@OLD}
+/obj/structure/hotelsign : /obj/structure/sign/city/hotel {@OLD}
+/obj/structure/anarchsign : /obj/structure/sign/city/anarch {@OLD}
+/obj/structure/chinesesign : /obj/structure/sign/city/chinese {@OLD}
+/obj/structure/chinesesign/alt : /obj/structure/sign/city/chinese/alt {@OLD}
+/obj/structure/chinesesign/alt/alt : /obj/structure/sign/city/chinese/alt2 {@OLD}
+/obj/structure/milleniumsign : /obj/structure/sign/city/millenium {@OLD}
+/obj/structure/strip_club : /obj/structure/sign/city/strip_club {@OLD}
+/obj/structure/cabaret_sign : /obj/structure/sign/city/cabaret_sign {@OLD}
+/obj/structure/cabaret_sign2 : /obj/structure/sign/city/cabaret_sign/two {@OLD}
+
+/obj/structure/showcase/machinery/tv : /obj/structure/fluff/tv {@OLD}
+/obj/order1 : /obj/structure/fluff/tv/order/one {@OLD}
+/obj/order2 : /obj/structure/fluff/tv/order/two {@OLD}
+/obj/order3 : /obj/structure/fluff/tv/order/three {@OLD}
+/obj/order4 : /obj/structure/fluff/tv/order/four {@OLD}
+
+/obj/effect/decal/asphaltline : /obj/effect/turf_decal/asphaltline {@OLD}
+/obj/effect/decal/asphaltline/@SUBTYPES : /obj/effect/turf_decal/asphaltline/@SUBTYPES {@OLD}
+/obj/effect/decal/bordur : /obj/effect/turf_decal/bordur {@OLD}
+/obj/effect/decal/bordur/@SUBTYPES : /obj/effect/turf_decal/bordur/@SUBTYPES {@OLD}
+/obj/effect/decal/asphalt : /obj/effect/turf_decal/asphalt {@OLD}
+/obj/effect/decal/crosswalk : /obj/effect/turf_decal/crosswalk {@OLD}
+/obj/effect/decal/stock : /obj/effect/turf_decal/stock {@OLD}

@@ -6,7 +6,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/addwalls.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYERS_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	mouse_opacity = 0
 
@@ -376,64 +376,6 @@
 
 //TURFS
 
-/obj/effect/decal/asphalt
-	name = "asphalt"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "decal1"
-	mouse_opacity = 0
-
-/obj/effect/decal/asphalt/Initialize(mapload)
-	. = ..()
-	icon_state = "decal[rand(1, 24)]"
-	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				alpha = 25
-
-/obj/effect/decal/snow_overlay
-	name = "snow"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "snow_overlay"
-	alpha = 200
-	mouse_opacity = 0
-
-/obj/effect/decal/asphaltline
-	name = "asphalt"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "line"
-	mouse_opacity = 0
-
-/obj/effect/decal/asphaltline/alt
-	icon_state = "line_alt"
-
-/obj/effect/decal/asphaltline/Initialize(mapload)
-	. = ..()
-	icon_state = "[initial(icon_state)][rand(1, 3)]"
-	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "[initial(icon_state)][rand(1, 3)]-snow"
-
-/obj/effect/decal/crosswalk
-	name = "asphalt"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "crosswalk1"
-	mouse_opacity = 0
-
-/obj/effect/decal/crosswalk/Initialize(mapload)
-	. = ..()
-	icon_state = "crosswalk[rand(1, 3)]"
-	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "crosswalk[rand(1, 3)]-snow"
-
 /turf/open/floor/plating/asphalt
 	gender = PLURAL
 	name = "asphalt"
@@ -462,7 +404,7 @@
 		icon_state = "asphalt[rand(1, 3)]"
 		update_icon()
 	if(prob(25))
-		new /obj/effect/decal/asphalt(src)
+		new /obj/effect/turf_decal/asphalt(src)
 	set_light(1, 0.5, "#a4b7ff")
 
 /turf/open/floor/plating/asphalt/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
@@ -470,12 +412,6 @@
 
 /turf/open/floor/plating/asphalt/ex_act(severity, target)
 	contents_explosion(severity, target)
-
-/obj/effect/decal/stock
-	name = "stock"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "stock"
-	mouse_opacity = 0
 
 /turf/open/floor/plating/sidewalkalt
 	gender = PLURAL
@@ -576,27 +512,6 @@
 
 /turf/open/floor/plating/roofwalk/cobblestones
 	name = "cobblestones"
-
-/obj/effect/decal/bordur
-	name = "sidewalk"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "border"
-	mouse_opacity = 0
-
-/obj/effect/decal/bordur/Initialize(mapload)
-	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.upper)
-				icon_state = "[initial(icon_state)]-snow"
-//				footstep = FOOTSTEP_SNOW
-//				barefootstep = FOOTSTEP_SNOW
-//				clawfootstep = FOOTSTEP_SNOW
-//				heavyfootstep = FOOTSTEP_SNOW
-
-/obj/effect/decal/bordur/corner
-	icon_state = "border_corner"
 
 //OTHER TURFS
 
