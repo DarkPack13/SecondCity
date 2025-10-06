@@ -8,7 +8,7 @@
 	desc = "A hand-held emergency light."
 	custom_price = PAYCHECK_CREW
 	icon = 'modular_darkpack/master_files/icons/obj/lighting.dmi' // DARKPACK EDIT CHANGE
-	onflooricon = 'modular_darkpack/modules/deprecated/icons/onfloor.dmi' // DARKPACK EDIT ADD
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') // DARKPACK EDIT ADD
 	dir = WEST
 	icon_state = "flashlight"
 	inhand_icon_state = "flashlight"

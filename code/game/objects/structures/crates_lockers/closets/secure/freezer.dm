@@ -1,6 +1,7 @@
 /obj/structure/closet/secure_closet/freezer
 	icon_state = "freezer"
 	base_icon_state = "freezer"
+	icon = 'modular_darkpack/modules/decor/icons/closet.dmi' // DARKPACK EDIT ADD - DECOR
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	door_anim_squish = 0.22
 	door_anim_angle = 123

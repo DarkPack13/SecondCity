@@ -491,6 +491,14 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (is_station_level(station_area.z))
 			GLOB.the_station_areas += station_area.type
 
+	// DARKPACK EDIT ADD - Makes sure we acctually get "station" areas as a ton of stuff needs them
+	for(var/area/vtm/station_area in GLOB.areas)
+		if (!(station_area.area_flags & UNIQUE_AREA))
+			continue
+		if (is_station_level(station_area.z))
+			GLOB.the_station_areas += station_area.type
+	// DARKPACK EDIT ADD - Makes sure we acctually get "station" areas as a ton of stuff needs them
+
 	if(!GLOB.the_station_areas.len)
 		log_world("ERROR: Station areas list failed to generate!")
 

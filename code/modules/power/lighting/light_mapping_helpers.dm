@@ -94,7 +94,7 @@
 	fire_brightness = 4.5
 	fire_colour = "#d400ff"
 
-//DARKPACK EDIT START
+// DARKPACK EDIT START
 /obj/machinery/light/prince
 	base_state = "prince"
 

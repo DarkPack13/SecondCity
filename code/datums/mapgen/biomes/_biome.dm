@@ -178,44 +178,33 @@
 
 			new picked_mob(target_turf)
 
-
+// DARKPACK EDIT CHANGE START
 /datum/biome/mudlands
-	turf_type = /turf/open/misc/dirt/jungle/dark
+	turf_type = /turf/open/misc/dirt/vamp
 	flora_types = list(
-		/obj/structure/flora/grass/jungle/a/style_random = 1,
-		/obj/structure/flora/grass/jungle/b/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/large/style_random = 1,
+		/obj/structure/small_vamprocks = 2,
+		/obj/structure/vamprocks = 1,
+		/obj/structure/big_vamprocks = 1,
 	)
 	flora_density = 3
 
 /datum/biome/plains
-	turf_type = /turf/open/misc/grass/jungle
+	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/grass/jungle/a/style_random = 1,
-		/obj/structure/flora/grass/jungle/b/style_random = 1,
-		/obj/structure/flora/tree/jungle/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/style_random = 1,
-		/obj/structure/flora/bush/jungle/a/style_random = 1,
-		/obj/structure/flora/bush/jungle/b/style_random = 1,
-		/obj/structure/flora/bush/jungle/c/style_random = 1,
-		/obj/structure/flora/bush/large/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/large/style_random = 1,
+		/obj/structure/flora/bush/sparsegrass/style_random = 5,
+		/obj/structure/flora/tree/vamp/pine = 1,
+		/obj/structure/small_vamprocks = 1,
+		/obj/structure/vamprocks = 1,
 	)
-	flora_density = 15
+	flora_density = 50
 
 /datum/biome/jungle
-	turf_type = /turf/open/misc/grass/jungle
+	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/grass/jungle/a/style_random = 1,
-		/obj/structure/flora/grass/jungle/b/style_random = 1,
-		/obj/structure/flora/tree/jungle/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/style_random = 1,
-		/obj/structure/flora/bush/jungle/a/style_random = 1,
-		/obj/structure/flora/bush/jungle/b/style_random = 1,
-		/obj/structure/flora/bush/jungle/c/style_random = 1,
-		/obj/structure/flora/bush/large/style_random = 1,
-		/obj/structure/flora/rock/pile/jungle/large/style_random = 1,
+		/obj/structure/flora/bush/sparsegrass/style_random = 1,
+		/obj/structure/flora/tree/vamp/pine = 2,
+		/obj/structure/small_vamprocks = 1,
+		/obj/structure/vamprocks = 1,
 	)
 	flora_density = 40
 
@@ -223,10 +212,17 @@
 	flora_density = 65
 
 /datum/biome/wasteland
-	turf_type = /turf/open/misc/dirt/jungle/wasteland
+	turf_type = /turf/open/misc/dirt/vamp
+	flora_types = list(
+		/obj/structure/small_vamprocks = 10,
+		/obj/structure/vamprocks = 2,
+		/obj/structure/big_vamprocks = 1,
+	)
+	flora_density = 5
 
 /datum/biome/water
-	turf_type = /turf/open/water/jungle
+	turf_type = /turf/open/water/beach/vamp
 
 /datum/biome/mountain
 	turf_type = /turf/closed/mineral/random/jungle
+// DARKPACK EDIT CHANGE END

@@ -27,7 +27,7 @@
 	desc = "Who knows what secrets it could contain..."
 	icon_state = "arcane"
 	icon = 'modular_darkpack/modules/occult_artifacts/icons/artifacts.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/artifacts_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/owner
 	var/true_name = "artifact"

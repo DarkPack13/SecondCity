@@ -208,6 +208,10 @@
 
 /obj/item/gun/ballistic/update_overlays()
 	. = ..()
+	// DARKPACK EDIT ADD START - WORLD_ICON
+	if(item_flags & ACTIVE_WORLD_ICON) // World icons have nothing but the base state atm
+		return
+	// DARKPACK EDIT ADD END
 
 	if(selector_switch_icon)
 		switch(burst_fire_selection)

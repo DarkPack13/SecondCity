@@ -1,0 +1,8 @@
+/mob/living/simple_animal/hostile/beastmaster/rat/flying : /mob/living/basic/bat/vampire{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/shadow_guard : /mob/living/basic/shadow_guard{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/blood_guard : /mob/living/basic/blood_guard{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/fireball : @DELETE
+/mob/living/simple_animal/hostile/baali_guard : /mob/living/basic/baali_guard{@OLD}
+/mob/living/simple_animal/pet/rat : /mob/living/basic/mouse/vampire{@OLD}
+/mob/living/simple_animal/hostile/crinos_beast : /mob/living/basic/crinos_beast{@OLD}
+/mob/living/simple_animal/hostile/bear/wod13 : /mob/living/basic/bear/vampire{@OLD}

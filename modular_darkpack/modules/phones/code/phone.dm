@@ -740,7 +740,7 @@
 /obj/item/vamp/phone/street
 	desc = "An ordinary street payphone"
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	onflooricon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/props.dmi')
 	icon_state = "payphone"
 	anchored = TRUE
 	number = "1447"

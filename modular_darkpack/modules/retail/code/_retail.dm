@@ -35,7 +35,12 @@
 	. = ..()
 	if(owner_needed == TRUE)
 		my_owner = locate(/mob/living/carbon/human/npc) in range(2, src)
+		if(my_owner)
+			RegisterSignal(my_owner, COMSIG_QDELETING, PROC_REF(cleanup_owner))
 	build_inventory()
+
+/obj/structure/retail/proc/cleanup_owner()
+	my_owner = null
 
 //whether or not the user can shop at this store.
 /obj/structure/retail/proc/can_shop(mob/user)

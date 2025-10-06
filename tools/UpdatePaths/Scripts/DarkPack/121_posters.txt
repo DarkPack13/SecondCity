@@ -1,0 +1,4 @@
+/obj/structure/sign/poster/vampire/@SUBTYPES : /obj/structure/sign/poster/city_large/@SUBTYPES {@OLD}
+
+/obj/structure/sign/poster/contraband/dmc : /obj/structure/sign/poster/city/dmc
+/obj/structure/sign/poster/contraband/kish : /obj/structure/sign/poster/city/kish

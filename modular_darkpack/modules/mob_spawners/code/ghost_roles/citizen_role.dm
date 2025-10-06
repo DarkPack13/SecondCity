@@ -2,7 +2,7 @@
 	name = "just a civilian"
 	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
 	mob_name = "a civillian"
-	icon = 'icons/obj/lavaland/spawners.dmi'
+	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/civillian1
 	roundstart = FALSE

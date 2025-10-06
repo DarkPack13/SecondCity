@@ -503,6 +503,10 @@ Behavior that's still missing from this component that original food items had t
 	//Give a buff when the dish is hand-crafted and unbitten
 	if(bitecount == 0)
 		apply_buff(eater)
+		// DARKPACK EDIT ADD START - FOOD
+		if(food_flags & FOOD_BITE_SPRITE)
+			owner.icon_state = "[owner.icon_state]-biten"
+		// DARKPACK EDIT ADD END - FOOD
 
 	var/fraction = 0.3
 	fraction = min(bite_consumption / owner.reagents.total_volume, 1)

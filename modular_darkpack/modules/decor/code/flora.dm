@@ -38,8 +38,7 @@
 			if(V.outdoors)
 				icon_state = "pine[rand(1, 4)]-snow"
 	if(prob(2))
-		burned = TRUE
-		icon_state = "dead[rand(1, 5)]"
+		burnshit()
 
 /obj/structure/flora/tree/vamp/pine/get_seethrough_map()
 	return SEE_THROUGH_MAP_THREE_X_THREE

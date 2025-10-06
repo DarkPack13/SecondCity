@@ -177,12 +177,17 @@ GLOBAL_LIST_INIT(food_buffs, list(
 #define FOOD_NO_EXAMINE (1<<2)
 /// This food item doesn't track bitecounts, use responsibly.
 #define FOOD_NO_BITECOUNT (1<<3)
+// DARKPACK EDIT ADD START - FOOD
+//Food has state to swap to upon first bite
+#define FOOD_BITE_SPRITE (1<<4)
+// DARKPACK EDIT ADD
 
 DEFINE_BITFIELD(food_flags, list(
 	"FOOD_FINGER_FOOD" = FOOD_FINGER_FOOD,
 	"FOOD_IN_CONTAINER" = FOOD_IN_CONTAINER,
 	"FOOD_NO_EXAMINE" = FOOD_NO_EXAMINE,
 	"FOOD_NO_BITECOUNT" = FOOD_NO_BITECOUNT,
+	"FOOD_BITE_SPRITE" = FOOD_BITE_SPRITE, // DARKPACK EDIT ADD - FOOD
 ))
 
 ///Define for return value of the after_eat callback that will call OnConsume if it hasn't already.

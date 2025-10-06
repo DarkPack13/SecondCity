@@ -65,6 +65,12 @@
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass = 12,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/collins_glass = 15, // DARKPACK EDIT ADD START
+				/obj/item/reagent_containers/cup/glass/drinkingglass/martini_glass = 15,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass = 15,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/pint = 15,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/vodka_shot = 12,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 15, // DARKPACK EDIT ADD END
 				/obj/item/reagent_containers/cup/glass/flask = 3,
 				/obj/item/reagent_containers/cup/glass/bottle = 15,
 				/obj/item/reagent_containers/cup/glass/bottle/small = 15,
@@ -96,6 +102,22 @@
 	age_restrictions = FALSE
 	initial_language_holder = /datum/language_holder/syndicate
 	allow_custom = FALSE
+
+// DARKPACK EDIT ADD START
+/obj/machinery/vending/boozeomat/all_access
+	name = "liquor cabinet"
+	desc = "A climate controlled fridge for booze."
+	req_access = null
+	onstation = FALSE
+	all_products_free = TRUE
+
+	premium = list(
+		/obj/item/reagent_containers/cup/bottle/ethanol = 2,
+		/obj/item/reagent_containers/cup/glass/bottle/champagne = 1,
+		/obj/item/reagent_containers/cup/glass/bottle/trappist = 1,
+		/obj/item/reagent_containers/cup/glass/bottle/bitters = 1,
+	)
+// DARKPACK EDIT ADD END
 
 /obj/item/vending_refill/boozeomat
 	machine_name = "Booze-O-Mat"

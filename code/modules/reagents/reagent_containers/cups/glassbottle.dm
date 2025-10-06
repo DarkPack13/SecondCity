@@ -276,7 +276,7 @@
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	drink_type = GRAIN | ALCOHOL
-	custom_price = PAYCHECK_CREW
+	custom_price = 5 // DARKPACK EDIT CHANGE
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/almost_empty
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1)

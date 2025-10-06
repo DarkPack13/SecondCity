@@ -363,6 +363,7 @@
 	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 	merge_type = /obj/item/stack/medical/bruise_pack
 	apply_verb = "applying to"
+	custom_price = 50 // DARKPACK EDIT ADD
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -587,6 +588,7 @@
 	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
 	merge_type = /obj/item/stack/medical/ointment
 	apply_verb = "applying to"
+	custom_price = 50 // DARKPACK EDIT ADD
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is squeezing [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))

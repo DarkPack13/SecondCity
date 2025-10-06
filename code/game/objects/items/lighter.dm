@@ -10,7 +10,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FIRE_PROOF
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/fuel/oil = 5)
-	custom_price = PAYCHECK_CREW * 1.1
+	custom_price = 20 // DARKPACK EDIT CHANGE
 	light_system = OVERLAY_LIGHT
 	light_range = 2
 	light_power = 1.3

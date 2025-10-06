@@ -131,7 +131,7 @@
 		var/datum/action/beastmaster_deaggro/deaggro = new()
 		deaggro.Grant(owner)
 
-	var/mob/living/simple_animal/hostile/beastmaster/rat/flying/bat = new(get_turf(owner))
+	var/mob/living/basic/bat/vampire/bat = new(get_turf(owner))
 	bat.my_creator = owner
 	owner.beastmaster |= bat
 	bat.beastmaster = owner
@@ -144,7 +144,7 @@
 	cooldown_min = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/pet/rat
+	shapeshift_type = /mob/living/basic/mouse/rat/vampire
 
 /datum/discipline_power/animalism/rat_shapeshift
 	name = "Skitter"

@@ -120,6 +120,7 @@
 	list_reagents = null
 	lid_open = TRUE
 
+/* DARKPACK EDIT REMOVAL - Our coffee sprites only have one state
 /obj/item/reagent_containers/cup/glass/coffee/Initialize(mapload)
 	. = ..()
 	register_context()
@@ -145,6 +146,7 @@
 	else
 		icon_state = base_icon_state
 	return ..()
+*/
 
 /obj/item/reagent_containers/cup/glass/ice
 	name = "ice cup"

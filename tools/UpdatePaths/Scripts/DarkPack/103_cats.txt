@@ -1,3 +1,5 @@
 /mob/living/simple_animal/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack {@OLD}
+/mob/living/basic/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack {@OLD}
 
 /mob/living/simple_animal/pet/cat/vampiretzi : /mob/living/basic/pet/cat/darkpack/tzi {@OLD}
+/mob/living/basic/pet/cat/vampire/tzi : /mob/living/basic/pet/cat/darkpack/tzi {@OLD}

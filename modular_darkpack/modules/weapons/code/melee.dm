@@ -185,6 +185,7 @@
 	desc = "Can be used as a tool or as a weapon."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	icon_state = "pipe"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	force = 20
 	wound_bonus = 10
 	throwforce = 10
@@ -239,6 +240,7 @@
 	desc = "Reap what they have sowed."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	icon_state = "handsickle"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	force = 30
 	wound_bonus = -5
 	throwforce = 15
@@ -382,6 +384,7 @@
 	icon_state = "red_brick"
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_NORMAL
 	armour_penetration = 0
 	throwforce = 15

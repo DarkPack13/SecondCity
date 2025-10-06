@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	eatsound = 'modular_darkpack/modules/deprecated/sounds/eat.ogg'
+	eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 	tastes = list("fish" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 3)
 	foodtypes = RAW | MEAT

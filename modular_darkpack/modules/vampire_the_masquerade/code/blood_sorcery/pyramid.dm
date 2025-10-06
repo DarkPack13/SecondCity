@@ -108,7 +108,7 @@
 		E1.Grant(last_activator)
 		var/datum/action/beastmaster_deaggro/E2 = new()
 		E2.Grant(last_activator)
-	var/mob/living/simple_animal/hostile/beastmaster/blood_guard/BG = new(loc)
+	var/mob/living/basic/blood_guard/BG = new(loc)
 	BG.beastmaster = last_activator
 	H.beastmaster |= BG
 	BG.my_creator = last_activator

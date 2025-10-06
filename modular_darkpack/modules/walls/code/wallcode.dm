@@ -482,7 +482,10 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon_state = "grass1"
 	footstep = FOOTSTEP_TRAVA
 	barefootstep = FOOTSTEP_TRAVA
-	baseturfs = /turf/open/misc/dirt
+	baseturfs = /turf/open/misc/dirt/vamp
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+
 
 /*
 /turf/open/misc/grass/vamp/attackby(obj/item/I, mob/living/user, params)
@@ -541,6 +544,9 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon_state = "dirt"
 	footstep = FOOTSTEP_ASPHALT
 	barefootstep = FOOTSTEP_ASPHALT
+	baseturfs = /turf/open/misc/dirt/vamp
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = TRUE
 
 /*
 /turf/open/misc/dirt/vamp/attackby(obj/item/I, mob/living/user, params)
@@ -696,6 +702,10 @@ LOW_WALL_HELPER(vampwall/wood)
 	layer = ABOVE_NORMAL_TURF_LAYER	//WALLPAPER_LAYER dont work
 	mouse_opacity = 0
 
+// This sucks. Not within the scope of this pr to fix.
+/obj/effect/decal/wallpaper/NeverShouldHaveComeHere(turf/here_turf)
+	return !(isclosedturf(loc) || isclosedturf(get_step(src, NORTH)))
+
 /obj/effect/decal/wallpaper/Initialize(mapload)
 	. = ..()
 	if(isclosedturf(loc))
@@ -814,12 +824,23 @@ LOW_WALL_HELPER(vampwall/wood)
 				barefootstep = FOOTSTEP_SNOW
 				heavyfootstep = FOOTSTEP_SNOW
 
+// See about porting the apoc sprite for this
+/turf/open/floor/plating/woodrough
+	name = "wood"
+	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon_state = "bwood"
+	footstep = FOOTSTEP_PARKET
+	barefootstep = FOOTSTEP_PARKET
+
 /turf/open/misc/beach/vamp
 	name = "sand"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "sand1"
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
+	baseturfs = /turf/open/misc/beach/vamp
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = TRUE
 
 /*
 /turf/open/misc/beach/vamp/attackby(obj/item/I, mob/living/user, params)
@@ -952,7 +973,7 @@ LOW_WALL_HELPER(vampwall/wood)
 	. = ..()
 	if(istype(mover, /mob/living/carbon/human))
 		if(prob(10))
-			new /mob/living/simple_animal/pet/rat(oldloc)
+			new /mob/living/basic/mouse/rat/vampire(oldloc)
 */
 
 /turf/open/floor/plating/vampcanal/Initialize(mapload)
@@ -972,7 +993,7 @@ LOW_WALL_HELPER(vampwall/wood)
 	. = ..()
 	if(istype(mover, /mob/living/carbon/human))
 		if(prob(10))
-			new /mob/living/simple_animal/pet/rat(oldloc)
+			new /mob/living/basic/mouse/rat/vampire(oldloc)
 */
 
 /turf/open/floor/plating/vampcanal/Initialize(mapload)

@@ -161,7 +161,7 @@
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 		if(AGGRAVATED)
 			return adjustAggLoss(heal_amount)
-		// DARPACK EDIT ADDITION END
+		// DARPACK EDIT ADD END
 
 /// return the damage amount for the type given
 /**

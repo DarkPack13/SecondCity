@@ -1,0 +1,45 @@
+# Not related to any changes of speicifc second city prs. Just to convert old maps pre-rebase to second city
+
+# #66978 never made an updates path
+/obj/structure/flora/ausbushes : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/reedbush : /obj/structure/flora/bush/reed/style_random {@OLD}
+/obj/structure/flora/ausbushes/leafybush : /obj/structure/flora/bush/leafy/style_random {@OLD}
+/obj/structure/flora/ausbushes/palebush : /obj/structure/flora/bush/stalky/style_random {@OLD}
+/obj/structure/flora/ausbushes/stalkybush : /obj/structure/flora/bush/stalky/style_random {@OLD}
+/obj/structure/flora/ausbushes/grassybush : /obj/structure/flora/bush/grassy/style_random {@OLD}
+/obj/structure/flora/ausbushes/fernybush : /obj/structure/flora/bush/ferny/style_random {@OLD}
+/obj/structure/flora/ausbushes/sunnybush : /obj/structure/flora/bush/sunny/style_random {@OLD}
+/obj/structure/flora/ausbushes/genericbush : /obj/structure/flora/bush/generic/style_random {@OLD}
+/obj/structure/flora/ausbushes/pointybush : /obj/structure/flora/bush/pointy/style_random {@OLD}
+/obj/structure/flora/ausbushes/lavendergrass : /obj/structure/flora/bush/lavendergrass/style_random {@OLD}
+/obj/structure/flora/ausbushes/brflowers : /obj/structure/flora/bush/flowers_br/style_random {@OLD}
+/obj/structure/flora/ausbushes/ppflowers : /obj/structure/flora/bush/flowers_pp/style_random {@OLD}
+/obj/structure/flora/ausbushes/ywflowers : /obj/structure/flora/bush/flowers_yw/style_random {@OLD}
+/obj/structure/flora/ausbushes/sparsegrass : /obj/structure/flora/bush/sparsegrass/style_random {@OLD}
+/obj/structure/flora/ausbushes/fullgrass : /obj/structure/flora/bush/fullgrass/style_random {@OLD}
+/obj/structure/flora/stump : /obj/structure/flora/tree/stump
+
+/obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
+/obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
+/obj/structure/janitorialcart : /obj/structure/mop_bucket/janitorialcart {@OLD}
+/obj/structure/reagent_dispensers/peppertank : /obj/structure/reagent_dispensers/wall/peppertank {@OLD}
+
+/obj/structure/table/wood/bar : /obj/structure/table/wood/shuttle_bar
+
+/obj/item/grown/sunflower : /obj/item/food/grown/sunflower {@OLD}
+/obj/item/food/cheesewheel : /obj/item/food/cheese/wheel {@OLD}
+/obj/item/food/cheesewedge : /obj/item/food/cheese/wedge {@OLD}
+/obj/item/storage/pill_bottle/dice : /obj/item/storage/dice {@OLD}
+/obj/item/soapstone : @DELETE
+#this was a borg item that should not have been mapped in the first place
+/obj/item/organ_storage : @DELETE
+#why was this mapped
+/obj/item/mop/cyborg : /obj/item/mop
+/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
+/obj/item/anesthetic_tank : /obj/item/tank/internals/anesthetic {@OLD}
+/obj/item/trash/plate : /obj/item/plate {@OLD}
+/obj/item/toy/prize/@SUBTYPES : /obj/item/toy/mecha/@SUBTYPES {@OLD}
+
+/mob/living/simple_animal/deer : /mob/living/basic/deer
+/mob/living/simple_animal/cow : /mob/living/basic/cow
+/mob/living/simple_animal/hostile/cockroach : /mob/living/basic/cockroach/sewer

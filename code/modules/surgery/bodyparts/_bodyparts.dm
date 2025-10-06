@@ -739,7 +739,7 @@
 /obj/item/bodypart/proc/set_initial_damage(brute_damage, burn_damage, aggravated_damage) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 	set_brute_dam(brute_damage)
 	set_burn_dam(burn_damage)
-	set_aggravated_dam(aggravated_damage) // DARPACK EDIT ADDITION - AGGRAVATED_DAMAGE
+	set_aggravated_dam(aggravated_damage) // DARPACK EDIT ADD - AGGRAVATED_DAMAGE
 
 ///Proc to hook behavior associated to the change of the brute_dam variable's value.
 /obj/item/bodypart/proc/set_brute_dam(new_value)

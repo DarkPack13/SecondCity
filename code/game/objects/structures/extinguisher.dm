@@ -1,7 +1,7 @@
 /obj/structure/extinguisher_cabinet
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
-	icon = 'icons/obj/wallmounts.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/32x48.dmi' // DARKPACK EDIT CHANGE - DECOR
 	icon_state = "extinguisher"
 	anchored = TRUE
 	density = FALSE
@@ -139,6 +139,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		opened = !opened
 		update_appearance(UPDATE_ICON)
 
+/* // DARKPACK EDIT REMOVAL - We only have the one sprite
 /obj/structure/extinguisher_cabinet/update_icon_state()
 	icon_state = "extinguisher"
 
@@ -154,6 +155,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		icon_state += "_default"
 
 	return ..()
+*/
 
 /obj/structure/extinguisher_cabinet/update_overlays()
 	. = ..()

@@ -76,20 +76,15 @@
 	outdoors = FALSE
 	fire_controled = TRUE
 
+/area/vtm/clinic/haven
+	name = "Clinic - Psych Ward"
+	zone_type = "elysium"
+
 /area/vtm/supply
 	name = "Supply"
 	icon_state = "supply"
 	ambience_index = AMBIENCE_INTERIOR
 	outdoors = FALSE
-
-/area/vtm/anarch
-	name = "Bar"
-	icon_state = "anarch"
-	ambience_index = AMBIENCE_INTERIOR
-	outdoors = FALSE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/naive.ogg'
-	zone_type = "elysium"
-	fire_controled = TRUE
 
 /area/vtm/hotel
 	name = "Hotel"
