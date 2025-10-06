@@ -319,7 +319,14 @@
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	var/previous_damage = affecting.get_damage()
-	if(affecting.heal_damage(heal_brute, heal_burn))
+	// DARKPACK EDIT CHANGE ADD
+	// numbers needs a full rebalance centered on its interaction with STAT_MEDICINE.
+	var/mobs_to_show = list(patient)
+	if(patient != user)
+		mobs_to_show += user
+	var/healing_bonus = 5 * SSroll.storyteller_roll(user.st_get_stat(STAT_MEDICINE), 5, mobs_to_show, user, TRUE)
+	if(affecting.heal_damage(heal_brute ? heal_brute + healing_bonus : 0, heal_burn ? heal_burn + healing_bonus : 0))
+	// DARKPACK EDIT CHANGE END
 		patient.update_damage_overlays()
 	if(stop_bleeding)
 		for(var/datum/wound/wound as anything in affecting.wounds)

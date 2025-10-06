@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(roll)
  * * difficulty - the number that a dice must come up as to count as a success.
  * * mobs_to_show_output - mobs shown the result
  * * alert_atom - the atom over which balloon alerts should appear
+ * * numerical - whether the proc returns number of successes or outcome (botch, failure, success)
  */
 /datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null, numerical = FALSE)
 	var/list/rolled_dice = roll_dice(dice)
