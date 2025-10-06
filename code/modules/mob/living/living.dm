@@ -2966,7 +2966,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /// Returns an arbitrary number which very roughly correlates with how buff you look
 /mob/living/proc/calculate_fitness()
-	var/athletics_level = mind?.get_skill_level(/datum/skill/athletics) || 1
+	var/athletics_level = st_get_stat(STAT_STRENGTH) || 1 // DARKPACK EDIT CHANGE
 	var/damage = (melee_damage_lower + melee_damage_upper) / 2
 
 	return ceil(damage * (ceil(athletics_level / 2)) * maxHealth)
