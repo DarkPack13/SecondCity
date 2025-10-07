@@ -6,6 +6,7 @@
 		blocks_air = FALSE;								\
 		smoothing_groups = SMOOTH_GROUP_CITY_LOW_WALL;	\
 		canSmoothWith = SMOOTH_GROUP_CITY_LOW_WALL;		\
+		pass_flags_self = PASSTABLE | LETPASSTHROW;		\
 	}	\
 	/turf/closed/wall/##wall_type/low/window {			\
 		window = /obj/structure/window/fulltile;		\
@@ -21,11 +22,9 @@
 /obj/structure/window/reinforced/fulltile
 	icon = 'modular_darkpack/modules/deprecated/icons/obj/smooth_structures/reinforced_window.dmi'
 
-//Smooth Operator soset biby
-
-/obj/effect/addwall
-	name = "Debug"
-	desc = "First rule of debug placeholder: Do not talk about debug placeholder."
+/obj/effect/wall_overhang
+	name = "wall overhang"
+	desc = "Hey how are you reading this."
 	icon = 'modular_darkpack/modules/deprecated/icons/addwalls.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
@@ -33,7 +32,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/addwall/Initialize(mapload)
+/obj/effect/wall_overhang/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_WALLS)
 /* If we want to have transpanecy for ALL mobs instead of just you.
@@ -43,7 +42,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/effect/addwall/proc/update_alpha()
+/obj/effect/wall_overhang/proc/update_alpha()
 	if(locate(/mob/living) in get_turf(src))
 		alpha = 128
 	else
@@ -62,24 +61,27 @@
 	smoothing_groups = SMOOTH_GROUP_CITY_WALL
 	canSmoothWith = SMOOTH_GROUP_CITY_WALL
 
-	var/obj/effect/addwall/addwall
+	var/obj/effect/wall_overhang/addwall
 	var/low = FALSE
 	var/window
 
-/turf/closed/wall/vampwall/CanAllowThrough(atom/movable/mover, turf/target)
+/turf/closed/wall/vampwall/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
-	if(low)
-		if(.)
-			return
-		if(istype(mover) && (mover.pass_flags & PASSTABLE))
+	if(!low)
+		return .
+
+	if(.)
+		return
+	if(isprojectile(mover))
+		var/obj/projectile/proj = mover
+		//Lets through bullets shot from behind the cover of the lowwall
+		if(proj.movement_vector && angle2dir_cardinal(proj.movement_vector.angle) == dir)
 			return TRUE
-		if(istype(mover.loc, /turf/closed/wall/vampwall)) //Because "low" type walls aren't standardized and are subtypes of different wall types
-			var/turf/closed/wall/vampwall/vw = mover.loc
-			if(vw.low)
-				return TRUE
-		//Roughly the same elevation
-		if(locate(/obj/structure/table) in get_turf(mover))
-			return TRUE
+		return FALSE
+	if(border_dir == dir)
+		return FALSE
+
+	return TRUE
 
 /turf/closed/wall/vampwall/attackby(obj/item/W, mob/user, params)
 	return
@@ -118,7 +120,10 @@
 		addwall.desc = desc
 
 	if(low)
+		AddComponent(/datum/component/climb_walkable)
 		AddElement(/datum/element/climbable)
+		// So. This is an obj only thing. Turf are really missing alot of code to make them act more like tables.
+		//AddElement(/datum/element/elevation, pixel_shift = 12)
 
 /turf/closed/wall/vampwall/set_smoothed_icon_state(new_junction)
 	. = ..()
