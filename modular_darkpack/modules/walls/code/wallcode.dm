@@ -25,7 +25,7 @@
 /obj/effect/wall_overhang
 	name = "wall overhang"
 	desc = "Hey how are you reading this."
-	icon = 'modular_darkpack/modules/deprecated/icons/addwalls.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/overhangs.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
@@ -61,7 +61,7 @@
 	smoothing_groups = SMOOTH_GROUP_CITY_WALL
 	canSmoothWith = SMOOTH_GROUP_CITY_WALL
 
-	var/obj/effect/wall_overhang/addwall
+	var/obj/effect/wall_overhang/overhang
 	var/low = FALSE
 	var/window
 
@@ -114,10 +114,10 @@
 	if(window)
 		new window(src)
 	else if(!low)
-		addwall = new(get_step(src, NORTH))
-		addwall.icon_state = icon_state
-		addwall.name = name
-		addwall.desc = desc
+		overhang = new(get_step(src, NORTH))
+		overhang.icon_state = icon_state
+		overhang.name = name
+		overhang.desc = desc
 
 	if(low)
 		AddComponent(/datum/component/climb_walkable)
@@ -127,13 +127,13 @@
 
 /turf/closed/wall/vampwall/set_smoothed_icon_state(new_junction)
 	. = ..()
-	if(addwall)
-		addwall.icon_state = icon_state
+	if(overhang)
+		overhang.icon_state = icon_state
 
 /turf/closed/wall/vampwall/Destroy()
 	. = ..()
-	if(addwall)
-		qdel(addwall)
+	if(overhang)
+		qdel(overhang)
 
 LOW_WALL_HELPER(vampwall)
 /turf/closed/wall/vampwall/low/window
