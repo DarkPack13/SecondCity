@@ -9,6 +9,10 @@
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 
+/obj/item/clothing/glasses/vampire/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 150, "glasses", FALSE)
+
 /obj/item/clothing/glasses/vampire/yellow
 	name = "yellow aviators"
 	desc = "For working in dark environment."

@@ -6974,6 +6974,8 @@
 #include "modular_darkpack\modules\relationships\code\relationship_globals.dm"
 #include "modular_darkpack\modules\respawning\code\respawning_globals.dm"
 #include "modular_darkpack\modules\retail\code\_retail.dm"
+#include "modular_darkpack\modules\retail\code\pawnshop.dm"
+#include "modular_darkpack\modules\retail\code\selling.dm"
 #include "modular_darkpack\modules\retail\code\vending_product.dm"
 #include "modular_darkpack\modules\retail\code\stores\bacotell_menu.dm"
 #include "modular_darkpack\modules\retail\code\stores\black_market.dm"
