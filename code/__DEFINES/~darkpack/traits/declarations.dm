@@ -74,6 +74,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
 /// If the species has garou breeds to select.
-#define TRAIT_VTM_GAROU_BREEDS
+#define TRAIT_VTM_GAROU_BREEDS "vtm_garou_breeds"
 
 // END TRAIT DEFINES
