@@ -298,8 +298,7 @@
 	if(final_force <= 0)
 		return 0
 
-	var/force_with_stat = attacking_item.final_force * (user.st_get_stat(STAT_MELEE) * 0.4) // DARKPACK EDIT ADD
-	var/damage = take_damage(force_with_stat, attacking_item.damtype, MELEE, 1, get_dir(src, user)) // DARKPACK EDIT CHANGE
+	var/damage = take_damage(final_force, attacking_item.damtype, MELEE, 1, get_dir(src, user))
 	//only witnesses close by and the victim see a hit message.
 	user.visible_message(span_danger("[user] hits [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), \
 		span_danger("You hit [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), null, COMBAT_MESSAGE_RANGE)

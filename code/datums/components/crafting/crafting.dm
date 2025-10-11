@@ -234,12 +234,6 @@
 			for(var/behavior in recipe.tool_behaviors)
 				recipe_time += dynamic_recipe_time * found_behaviors[behavior]
 
-		var/mob/living/carbon/human/human_crafter
-		if(ishuman(crafter))
-			human_crafter = crafter
-			#warn ughhhh what to do here
-			recipe_time = recipe_time // human_crafter.st_get_stat(STAT_CRAFTS)
-
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))
 			return "."
 		contents = get_surroundings(crafter, recipe.blacklist)
