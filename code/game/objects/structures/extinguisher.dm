@@ -1,7 +1,7 @@
 /obj/structure/extinguisher_cabinet
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
-	icon = 'modular_darkpack/modules/decor/icons/32x48.dmi' // DARKPACK EDIT CHANGE - DECOR
+	icon = 'modular_darkpack/master_files/icons/obj/wallmounts32x48.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "extinguisher"
 	anchored = TRUE
 	density = FALSE

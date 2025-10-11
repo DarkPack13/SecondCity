@@ -6,7 +6,7 @@
 	can_adjust = FALSE
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/vampire/Initialize(mapload)

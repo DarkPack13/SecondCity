@@ -6,7 +6,7 @@
 	icon_state = "firstaid"
 	inhand_icon_state = "firstaid"
 	icon = 'modular_darkpack/modules/storage/icons/firstaidkit.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/storage/icons/firstaidkit.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/storage/icons/firstaidkit_onfloor.dmi')
 	lefthand_file = 'modular_darkpack/modules/storage/icons/firstaidkit_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/storage/icons/firstaidkit_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL

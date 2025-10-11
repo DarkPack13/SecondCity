@@ -1,6 +1,6 @@
 /obj/structure/sink
 	name = "sink"
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/watercloset.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face. Passively reclaims water over time."
 	anchored = TRUE
@@ -245,6 +245,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/kitchen, (-16))
 	icon_state = "sink_greyscale"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	buildstacktype = null
+
+// DARKPACK EDIT ADD START
+// Please no more map varedits for this.
+/obj/structure/sink/basin
+	icon_state = "basin"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/basin, (-14))
+// DARKPACK EDIT ADD END
 
 /obj/structure/sinkframe
 	name = "sink frame"

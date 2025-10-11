@@ -3,7 +3,7 @@
 	desc = "A hefty wooden crate. You'll need a crowbar to get it open."
 	icon_state = "largecrate"
 	base_icon_state = "largecrate"
-	icon = 'modular_darkpack/modules/decor/icons/crates.dmi' // DARKPACK EDIT ADD - DECOR
+	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi' // DARKPACK EDIT CHANGE
 	density = TRUE
 	pass_flags_self = PASSSTRUCTURE
 	material_drop = /obj/item/stack/sheet/mineral/wood
