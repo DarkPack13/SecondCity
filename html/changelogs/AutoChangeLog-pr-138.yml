@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - code_imp: "Proper traits organization, plus linter for globaltraits"
