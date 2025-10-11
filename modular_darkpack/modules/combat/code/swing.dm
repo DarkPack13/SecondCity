@@ -7,7 +7,6 @@
 	var/turf/left_turf = get_step(center_turf, turn(dir, -90))
 	var/turf/right_turf = get_step(center_turf, turn(dir, 90))
 
-
 	for(var/turf/swung_turf in list(center_turf, left_turf, right_turf))
 		hit_target = locate(/mob/living) in swung_turf
 		if(hit_target)
@@ -27,7 +26,7 @@
 
 /obj/item/proc/can_swing()
 	// Technicly meant for no flavor text but is semi widly used as a "noncombat" weapon check
-	if(item_flags & NOBLUDGEON)
+	if(!(item_flags & NOBLUDGEON))
 		return TRUE
 
 /obj/item/gun/can_swing()

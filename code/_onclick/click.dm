@@ -167,7 +167,7 @@
 	if(client?.prefs?.read_preference(/datum/preference/toggle/swing_combat) && isliving(src))
 		var/mob/living/living_src = src
 		// Considering swapping the type check to use NOBLUDGEON but that would include guns.
-		if(W.can_swing() && living_src.combat_mode)
+		if(W?.can_swing() && living_src.combat_mode)
 			if(A && CanReach(A,W))
 				living_src.melee_swing()
 				W.melee_attack_chain(src, A, modifiers)
