@@ -298,8 +298,8 @@
 	if(final_force <= 0)
 		return 0
 
-	var/force_with_stat = attacking_item.final_force * (user.st_get_stat(STAT_MELEE) * 0.4) // DARKPACK EDIT ADD
-	var/damage = take_damage(force_with_stat, attacking_item.damtype, MELEE, 1, get_dir(src, user)) // DARKPACK EDIT CHANGE
+	final_force = final_force * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT ADD
+	var/damage = take_damage(final_force, attacking_item.damtype, MELEE, 1, get_dir(src, user))
 	//only witnesses close by and the victim see a hit message.
 	user.visible_message(span_danger("[user] hits [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), \
 		span_danger("You hit [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), null, COMBAT_MESSAGE_RANGE)
@@ -335,6 +335,8 @@
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
 	if(mob_biotypes & MOB_ROBOTIC)
 		final_force *= attacking_item.get_demolition_modifier(src)
+
+	final_force = final_force * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT ADD
 
 	var/wounding = attacking_item.wound_bonus
 	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && body_position == LYING_DOWN && (LAZYLEN(surgeries) > 0))
