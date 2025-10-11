@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(masquerade)
 /datum/controller/subsystem/masquerade/proc/masquerade_breach(atom/source, mob/living/player_breacher, reason)
 	if(!GLOB.canon_event)
 		return
-	log_game("[player_breacher] has breached the veil in front of [source] by [reason]")
+	log_game("[player_breacher] has caused a masquerade breach in front of [source] by [reason]")
 	var/pre_breach_score = player_breacher.masquerade_score
 	if(pre_breach_score == 0)
 		return
