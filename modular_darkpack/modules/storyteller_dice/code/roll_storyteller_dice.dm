@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(roll)
  * * mobs_to_show_output - mobs shown the result
  * * alert_atom - the atom over which balloon alerts should appear
  */
-/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null)
+/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null, numerical = FALSE)
 	var/list/rolled_dice = roll_dice(dice)
 	if(!islist(mobs_to_show_output))
 		mobs_to_show_output = list(mobs_to_show_output)
@@ -38,6 +38,9 @@ SUBSYSTEM_DEF(roll)
 				alert_atom.balloon_alert(player_mob, "<span style='color: #14a833;'>[success_count]</span>", TRUE)
 			else
 				alert_atom.balloon_alert(player_mob, "<span style='color: #ff0000;'>[success_count]</span>", TRUE)
+
+	if(numerical)
+		return success_count
 
 	return output
 

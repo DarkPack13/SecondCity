@@ -15,8 +15,7 @@
 
 /obj/item/clothing/shoes/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	AddComponent(/datum/component/selling, 100, "shoes", FALSE)
+	AddComponent(/datum/component/selling, 50, "shoes", FALSE)
 
 /obj/item/clothing/shoes/vampire/brown
 	icon_state = "shoes_brown"

@@ -24,7 +24,7 @@
 
 /obj/item/clothing/mask/vampire/Initialize(mapload)
 	.=..()
-	AddComponent(/datum/component/selling, 70, "mask", FALSE)
+	AddComponent(/datum/component/selling, 35, "mask", FALSE)
 
 /obj/item/clothing/mask/vampire/balaclava
 	name = "balaclava"

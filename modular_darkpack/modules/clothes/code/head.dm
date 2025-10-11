@@ -20,8 +20,7 @@
 
 /obj/item/clothing/head/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	AddComponent(/datum/component/selling, 100, "headwear", FALSE)
+	AddComponent(/datum/component/selling, 50, "headwear", FALSE)
 
 /obj/item/clothing/head/vampire/malkav
 	name = "weirdo hat"
