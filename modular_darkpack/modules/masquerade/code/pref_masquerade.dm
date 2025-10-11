@@ -2,8 +2,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "masquerade"
 	savefile_identifier = PREFERENCE_CHARACTER
-	#warn 1 or 0
-	minimum = 0
+	minimum = 1
 	maximum = 5
 
 /datum/preference/numeric/masquerade/create_default_value()
