@@ -21,6 +21,8 @@
 			garou_icon.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_arm"), ICON_OVERLAY)
 			garou_icon.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_leg"), ICON_OVERLAY)
 			garou_icon.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_leg"), ICON_OVERLAY)
+			garou_icon.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_hand"), ICON_OVERLAY)
+			garou_icon.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_hand"), ICON_OVERLAY)
 			garou_icon.blend_color(skintone2hex("caucasian1"), ICON_MULTIPLY)
 		if(BREED_LUPUS)
 			garou_icon = uni_icon('modular_darkpack/modules/garou/icons/lupus.dmi', "black")
