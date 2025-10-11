@@ -3,7 +3,8 @@
 
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/art/camera.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/art/camera.dmi' // DARKPACK EDIT CHANGE
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') // DARKPACK EDIT ADD
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	inhand_icon_state = "camera"

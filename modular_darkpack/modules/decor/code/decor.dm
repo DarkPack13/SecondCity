@@ -45,14 +45,48 @@
 /obj/structure/lamppost
 	name = "lamppost"
 	desc = "Gives some light to the streets."
-	icon = 'modular_darkpack/modules/deprecated/icons/lamppost.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/lamppost.dmi'
 	base_icon_state = "base"
-	layer = SPACEVINE_LAYER
-	var/number_of_lamps
+	layer = SPACEVINE_LAYER // Cant even with flav bro - Fallcon
 	pixel_w = -32
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	var/number_of_lamps
+	var/list/my_lights = list()
+
+/obj/structure/lamppost/Initialize(mapload)
+	. = ..()
+	if(check_holidays(CHRISTMAS))
+		if(istype(get_area(src), /area/vtm))
+			var/area/vtm/V = get_area(src)
+			if(V.outdoors)
+				icon_state = "[initial(icon_state)]-snow"
+	switch(number_of_lamps)
+		if(1)
+			new_light(get_step(loc, dir))
+		if(2)
+			new_light(get_step(loc, dir))
+			new_light(get_step(loc, turn(dir, 180)))
+		if(3)
+			new_light(get_step(loc, dir))
+			new_light(get_step(loc, turn(dir, -90)))
+			new_light(get_step(loc, turn(dir, 90)))
+		if(4)
+			new_light(get_step(loc, NORTH))
+			new_light(get_step(loc, SOUTH))
+			new_light(get_step(loc, EAST))
+			new_light(get_step(loc, WEST))
+		else
+			new_light(loc)
+
+/obj/structure/lamppost/proc/new_light(location)
+	my_lights += new /obj/effect/decal/lamplight(location)
+
+/obj/structure/lamppost/Destroy(force)
+	QDEL_LIST(my_lights)
+	. = ..()
+
 
 /obj/effect/decal/lamplight
 	alpha = 0
@@ -64,64 +98,6 @@
 /obj/effect/decal/lamplight/Initialize(mapload)
 	. = ..()
 	set_light(4, 3, "#ffde9b")
-
-/obj/structure/lamppost/Initialize(mapload)
-	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
-	switch(number_of_lamps)
-		if(1)
-			switch(dir)
-				if(NORTH)
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-				if(SOUTH)
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-				if(EAST)
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-				if(WEST)
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-		if(2)
-			switch(dir)
-				if(NORTH)
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-				if(SOUTH)
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-				if(EAST)
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-				if(WEST)
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-		if(3)
-			switch(dir)
-				if(NORTH)
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-				if(SOUTH)
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-				if(EAST)
-					new /obj/effect/decal/lamplight(get_step(loc, EAST))
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-				if(WEST)
-					new /obj/effect/decal/lamplight(get_step(loc, WEST))
-					new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-					new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-		if(4)
-			new /obj/effect/decal/lamplight(get_step(loc, NORTH))
-			new /obj/effect/decal/lamplight(get_step(loc, SOUTH))
-			new /obj/effect/decal/lamplight(get_step(loc, EAST))
-			new /obj/effect/decal/lamplight(get_step(loc, WEST))
-		else
-			new /obj/effect/decal/lamplight(loc)
 
 /obj/structure/lamppost/one
 	icon_state = "one"
@@ -149,7 +125,7 @@
 /obj/structure/trafficlight
 	name = "traffic light"
 	desc = "Shows when road is free or not."
-	icon = 'modular_darkpack/modules/deprecated/icons/lamppost.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/lamppost.dmi'
 	icon_state = "traffic"
 	layer = SPACEVINE_LAYER
 	pixel_w = -32
@@ -167,7 +143,7 @@
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
-	icon = 'modular_darkpack/modules/decor/icons/crates.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
 	plane = GAME_PLANE

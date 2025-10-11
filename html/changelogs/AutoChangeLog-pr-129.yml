@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "Offsets transparency hud from lower z levels by 20 pixels to give the appearance of coherent buildings"

@@ -137,7 +137,7 @@
 /datum/pet_command/use_ability/take_photo
 	command_name = "Photo"
 	command_desc = "Make your pet take a photo!"
-	radial_icon = 'icons/obj/art/camera.dmi'
+	radial_icon = 'modular_darkpack/master_files/icons/obj/art/camera.dmi' // DARKPACK EDIT CHANGE
 	radial_icon_state = "camera"
 	speech_commands = list("photo", "picture", "image")
 	command_feedback = "Readys camera mode"

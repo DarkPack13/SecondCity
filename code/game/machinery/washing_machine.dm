@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 /obj/machinery/washing_machine
 	name = "washing machine"
 	desc = "Gets rid of those pesky bloodstains, or your money back!"
-	icon = 'icons/obj/machines/washing_machine.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/machines/washing_machine.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "wm_1_0"
 	density = TRUE
 	state_open = TRUE

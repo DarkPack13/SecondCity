@@ -109,12 +109,13 @@
 // It would be nice to setup parallaxing for stairs and things when doing this
 // So they look nicer. if you can't it's all good, if you think you can sanely look at monster's work
 // It's hard, and potentially expensive. be careful
-/datum/plane_master_group/proc/build_planes_offset(datum/hud/source, new_offset, use_scale = TRUE)
+/datum/plane_master_group/proc/build_planes_offset(datum/hud/source, new_offset, use_scale = FALSE) // DARKPACK EDIT CHANGE
 	// Check if this feature is disabled for the client, in which case don't use scale.
 	var/mob/our_mob = our_hud?.mymob
+	/*	// DARKPACK EDIT REMOVAL - Offsets Z levels to give the appearance of building 'stacking' - this will always be toggled off
 	if(!our_mob?.client?.prefs?.read_preference(/datum/preference/toggle/multiz_parallax))
 		use_scale = FALSE
-
+	*/ // DARKPACK EDIT REMOVAL END
 	// No offset? piss off
 	if(!SSmapping.max_plane_offset)
 		return

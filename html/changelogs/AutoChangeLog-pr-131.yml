@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Hub shows the ingame year after the city name."
