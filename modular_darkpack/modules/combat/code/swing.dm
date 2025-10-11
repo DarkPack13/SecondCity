@@ -1,5 +1,5 @@
 /mob/living/proc/melee_swing(visual_effect = /obj/effect/temp_visual/dir_setting/swing_effect)
-	changeNext_move(CLICK_CD_RAPID)
+	changeNext_move(CLICK_CD_RANGE)
 	new visual_effect(get_turf(src), dir)
 	playsound(loc, 'modular_darkpack/modules/combat/sounds/swing.ogg', 50, TRUE)
 	var/atom/hit_target
@@ -9,7 +9,7 @@
 
 
 	for(var/turf/swung_turf in list(center_turf, left_turf, right_turf))
-		hit_target = locate(/mob/living)
+		hit_target = locate(/mob/living) in swung_turf
 		if(hit_target)
 			break
 	if(!hit_target)
@@ -24,6 +24,14 @@
 	if(hit_target)
 		changeNext_move(CLICK_CD_MELEE)
 		return hit_target
+
+/obj/item/proc/can_swing()
+	// Technicly meant for no flavor text but is semi widly used as a "noncombat" weapon check
+	if(item_flags & NOBLUDGEON)
+		return TRUE
+
+/obj/item/gun/can_swing()
+	return FALSE
 
 /obj/effect/temp_visual/dir_setting/swing_effect
 	icon = 'modular_darkpack/modules/combat/icons/swing.dmi'
