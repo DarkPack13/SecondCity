@@ -38,3 +38,8 @@
 	pixel_w = -32
 	pixel_z = -32
 	duration = 0.3 SECONDS
+
+/datum/preference/toggle/swing_combat
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "swing_combat"
+	savefile_identifier = PREFERENCE_PLAYER

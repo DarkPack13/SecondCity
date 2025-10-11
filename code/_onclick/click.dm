@@ -162,6 +162,21 @@
 		if((item_atom.item_flags & IN_STORAGE) && (item_atom.loc.flags_1 & HAS_DISASSOCIATED_STORAGE_1))
 			UnarmedAttack(item_atom, TRUE, modifiers)
 
+	// DARKPACK EDIT ADD START - COMBAT
+	// This sucks. https://github.com/tgstation/tgstation/pull/76928 looked so promising but it was closed.
+	if(client?.prefs?.read_preference(/datum/preference/toggle/swing_combat) && isliving(src))
+		var/mob/living/living_src = src
+		if(istype(W, /obj/item/melee) && living_src.combat_mode)
+			if(A && CanReach(A,W))
+				living_src.melee_swing()
+				W.melee_attack_chain(src, A, modifiers)
+			else
+				A = living_src.melee_swing()
+				if(A)
+					W.melee_attack_chain(src, A, modifiers)
+			return
+	// DARKPACK EDIT ADD END - COMBAT
+
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A,W))
 		if(W)
