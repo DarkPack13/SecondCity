@@ -15,7 +15,7 @@
 
 /obj/item/clothing/shoes/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "shoes", FALSE)
+	AddComponent(/datum/component/selling, 20, "shoes", FALSE)
 
 /obj/item/clothing/shoes/vampire/brown
 	icon_state = "shoes_brown"

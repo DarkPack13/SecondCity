@@ -13,7 +13,6 @@
 	var/humanity_loss
 	///Down to what point humanity can be reduced when selling the item.
 	var/humanity_loss_limit
-	///Whether selling the item can trigger a masquerade breach (such as selling Millenium Tower secret documents or occult artifacts)
 
 /datum/component/selling/Initialize(new_cost, new_object_category, new_illegal, new_humanity_loss, new_humanity_loss_limit)
 	if(!isobj(parent)) //Only items can be sold
@@ -47,7 +46,7 @@
 		return FALSE
 	return TRUE
 
-/* This message happens on our base code but its irrelevant for enlightenment. // TODO: [Rebase] -- Implement Morality System
+/* This message happens on our base code but its irrelevant for enlightenment so the logic needs to be improved. // TODO: [Rebase] -- Implement Morality System
 /datum/component/selling/organ/sale_success_message()
 	return span_userdanger("Selling organs is a depraved act! If I keep doing this I will become a wight.")
 */
