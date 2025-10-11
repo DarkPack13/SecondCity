@@ -227,7 +227,7 @@
 	if(item_flags & NOBLUDGEON)
 		return FALSE
 
-	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
+	var/final_force = CALCULATE_FORCE(src, attack_modifiers) * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT CHANE
 	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return FALSE
@@ -294,11 +294,10 @@
 		stack_trace("attacked_by() was called on an object that doesn't use integrity!")
 		return ATTACK_FAILED
 
-	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
+	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT CHANE
 	if(final_force <= 0)
 		return 0
 
-	final_force = final_force * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT ADD
 	var/damage = take_damage(final_force, attacking_item.damtype, MELEE, 1, get_dir(src, user))
 	//only witnesses close by and the victim see a hit message.
 	user.visible_message(span_danger("[user] hits [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), \
@@ -332,11 +331,9 @@
 			weak_against_armour = attacking_item.weak_against_armour,
 		), ARMOR_MAX_BLOCK)
 
-	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
+	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT CHANE
 	if(mob_biotypes & MOB_ROBOTIC)
 		final_force *= attacking_item.get_demolition_modifier(src)
-
-	final_force = final_force * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT ADD
 
 	var/wounding = attacking_item.wound_bonus
 	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && body_position == LYING_DOWN && (LAZYLEN(surgeries) > 0))

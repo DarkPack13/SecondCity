@@ -348,7 +348,7 @@
 	return NONE
 
 /obj/vehicle/sealed/mecha/attacked_by(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
-	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * attacking_item.get_demolition_modifier(src)
+	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * attacking_item.get_demolition_modifier(src) * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT CHANE
 	if(!final_force)
 		return 0
 

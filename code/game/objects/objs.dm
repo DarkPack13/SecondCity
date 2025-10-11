@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 		return 0
 
 	var/demo_mod = attacking_item.get_demolition_modifier(src)
-	var/total_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * demo_mod
+	var/total_force = CALCULATE_FORCE(attacking_item, attack_modifiers) * demo_mod * user.st_stat_multiplier(STAT_MELEE) // DARKPACK EDIT CHANE
 	var/damage = take_damage(total_force, attacking_item.damtype, MELEE, TRUE, get_dir(src, user), attacking_item.armour_penetration)
 
 	if(!LAZYACCESS(attack_modifiers, SILENCE_DEFAULT_MESSAGES))
