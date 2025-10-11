@@ -73,7 +73,7 @@
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
 	if(levels <= 1 && can_help_themselves)
 		var/obj/item/organ/wings/gliders = get_organ_by_type(/obj/item/organ/wings)
-		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall()) // the power of parkour or wings allows falling short distances unscathed
+		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall() || st_get_stat(STAT_ATHLETICS) > 4) // the power of parkour or wings allows falling short distances unscathed // DARKPACK EDIT CHANGE
 			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
 
 			if(graceful_landing)
