@@ -308,11 +308,8 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
-	// TODO: [Rebase] reimplement werewolfs
-	/*
-	if(isgarou(target) || iswerewolf(target) || isanimal(target))
+	if(isgarou(target) || isanimal(target))
 		return
-	*/
 	if(target.IsParalyzed() || target.IsKnockdown() || target.IsStun())
 		return
 	if(!target.IsParalyzed() && iskindred(target) && !target.stakeimmune)

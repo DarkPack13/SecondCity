@@ -292,7 +292,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/bolt
 	max_ammo = 30
 
-// TODO: [Rebase] - Werewolf
+// TODO: [Rebase] - Garou
 /*
 //obj/item/ammo_casing/vampire/c12g/buck/silver
 //	name = "silver 12g shell casing"
@@ -301,7 +301,7 @@
 
 //obj/item/ammo_casing/vampire/c12g/buck/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 //	. = ..()
-//	if(iswerewolf(target) || isgarou(target))
+//	if(isgarou(target))
 //		var/mob/living/carbon/M = target
 //		if(M.auspice.gnosis)
 //			if(prob(40))
@@ -318,7 +318,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp556mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))
@@ -334,7 +334,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp9mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))
@@ -350,7 +350,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp45acp/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))
@@ -367,7 +367,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp44/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))

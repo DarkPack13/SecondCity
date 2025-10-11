@@ -57,21 +57,17 @@
 
 /atom/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
-	/* TODO: [Rebase] GAROU
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
+	if(isgarou(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
 		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/veil_violation.ogg', 0, 0, 75))
 		return
-	*/
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
 /atom/proc/observe_masquerade_reinforce(player_breacher)
-	/* TODO: [Rebase] GAROU
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
+	if(isgarou(player_breacher))
 		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/humanity_gain.ogg', 0, 0, 75))
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCEED")))
 		return
-	*/
 	to_chat(player_breacher, span_big(span_boldnicegreen("MASQUERADE REINFORCED")))
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_reinforce.ogg', 50, FALSE, -5)

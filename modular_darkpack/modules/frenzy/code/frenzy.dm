@@ -12,7 +12,7 @@
 
 /mob/living/carbon/proc/rollfrenzy()
 	if(client)
-		if(isgarou(src) || iswerewolf(src))
+		if(isgarou(src))
 			to_chat(src, "I'm full of [span_danger("<b>ANGER</b>")], and I'm about to flare up in [span_danger("<b>RAGE</b>")]. Rolling...")
 		else if(iskindred(src))
 			to_chat(src, "I need [span_danger("<b>BLOOD</b>")]. The [span_danger("<b>BEAST</b>")] is calling. Rolling...")

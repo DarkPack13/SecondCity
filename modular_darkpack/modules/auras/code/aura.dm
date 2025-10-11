@@ -31,7 +31,7 @@
 		if (diablerist)
 			holder.icon_state = "diablerie_aura"
 
-	if (isgarou(src) || iswerewolf(src))
+	if (isgarou(src))
 		//garou have bright auras due to their spiritual potence
 		holder.icon_state = "aura_bright"
 
