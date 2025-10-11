@@ -75,14 +75,6 @@
 	INVOKE_ASYNC(src, PROC_REF(jump), jumper, target)
 	return COMSIG_MOB_CANCEL_CLICKON
 
-/datum/config_entry/flag/jump_windup // Config datum
-
-/datum/config_entry/flag/jump_slowdown // Config datum
-
-/mob/living/proc/post_jump_slowdown(duration)
-	add_movespeed_modifier(/datum/movespeed_modifier/post_jump)
-	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), /datum/movespeed_modifier/post_jump), duration)
-
 /datum/movespeed_modifier/post_jump
 	multiplicative_slowdown = 2
 	flags = IGNORE_NOSLOW
@@ -125,10 +117,12 @@
 	jumper.newtonian_move(get_dir(adjusted_target, jumper))
 	jumper.safe_throw_at(adjusted_target, jumper.throw_range, jumper.throw_speed, jumper, null, null, null, jumper.move_force, spin = FALSE)
 
-	if(CONFIG_GET(flag/jump_slowdown))
-		jumper.post_jump_slowdown(get_dist(start_T, end_T)*JUMP_SLOWDOWN_MULT)
-
 	COOLDOWN_START(src, jump_cooldown, max(JUMP_DELAY - (0.4 * dexterity) - (1 * athletics), 1))
+
+	if(CONFIG_GET(flag/jump_slowdown))
+		jumper.add_movespeed_modifier(/datum/movespeed_modifier/post_jump)
+		spawn(get_dist(start_T, end_T)*JUMP_SLOWDOWN_MULT)
+			jumper.remove_movespeed_modifier(/datum/movespeed_modifier/post_jump)
 
 //Produces a boom effect for ludicrously high strength/physique scores
 /datum/component/jumper/proc/jump_boom(mob/living/jumper)

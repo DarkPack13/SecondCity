@@ -6879,6 +6879,7 @@
 #include "modular_darkpack\modules\jumping\code\crack_effect.dm"
 #include "modular_darkpack\modules\jumping\code\jump_ui_button.dm"
 #include "modular_darkpack\modules\jumping\code\jumper_component.dm"
+#include "modular_darkpack\modules\jumping\config\jump_config.dm"
 #include "modular_darkpack\modules\loadout\code\categories\glasses.dm"
 #include "modular_darkpack\modules\loadout\code\categories\hands.dm"
 #include "modular_darkpack\modules\loadout\code\categories\heads.dm"
