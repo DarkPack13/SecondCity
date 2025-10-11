@@ -1,0 +1,2 @@
+## Uncomment to use Requiem jump windup
+#JUMP_WINDUP

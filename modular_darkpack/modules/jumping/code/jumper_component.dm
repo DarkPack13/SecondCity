@@ -74,14 +74,17 @@
 	INVOKE_ASYNC(src, PROC_REF(jump), jumper, target)
 	return COMSIG_MOB_CANCEL_CLICKON
 
+/datum/config_entry/flag/jump_windup // Config datum
+
 //Actually executes the jump
 /datum/component/jumper/proc/jump(mob/living/jumper, atom/target)
 	var/strength = jumper.st_get_stat(STAT_STRENGTH)
 	var/dexterity = jumper.st_get_stat(STAT_DEXTERITY)
 	var/athletics = jumper.st_get_stat(STAT_ATHLETICS)
 
-	if(!do_after(jumper, 12 - athletics, interaction_key = DOAFTER_SOURCE_JUMP))
-		return
+	if(CONFIG_GET(flag/jump_windup))
+		if(!do_after(jumper, 12 - athletics, interaction_key = DOAFTER_SOURCE_JUMP))
+			return
 
 	var/adjusted_jump_range = clamp((BASE_JUMP_DISTANCE + 0.75 + max(0,(strength -1)) * 0.5 + athletics), 1, 6)
 
