@@ -1,7 +1,7 @@
-/obj/generator
+/obj/warehouse_generator
 	name = "generator"
 	desc = "Power the controlled area with pure electricity."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
+	icon = 'modular_darkpack/modules/electricity/icons/electricity.dmi'
 	icon_state = "gen"
 	plane = GAME_PLANE
 	layer = CAR_LAYER
@@ -10,30 +10,48 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/on = TRUE
 	var/switching_on = FALSE
+	var/time_since_toggle = 0
 	var/last_sound_played = 0
-	var/fuel_remain = 1000
+//	var/fuel_remain = 1000
 
-/obj/generator/examine(mob/user)
+/obj/warehouse_generator/proc/start_on(mob/user)
+	switching_on = TRUE
+	to_chat(user, span_notice("You turn [src] back on."))
+	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(finalize_on)), 5 SECONDS)
+
+/obj/warehouse_generator/proc/finalize_on()
+	on = TRUE
+	switching_on = FALSE
+	icon_state = "gen"
+	playsound(src.loc, 'sound/effects/supermatter.ogg', 25, TRUE)
+	var/area/A = get_area(src)
+	A.requires_power = FALSE
+	A.fire_controled = TRUE
+	for(var/obj/machinery/light/L in A)
+		L.update(FALSE)
+
+/obj/warehouse_generator/attack_hand(mob/user)
+	if(!time_since_toggle+100 <= world.time && !switching_on)
+		to_chat(user, span_warning("[src] needs a moment before you switch it back [on ? "on" : "off"]."))
+		if(on)
+			to_chat(user, span_notice("You turn [src] off."))
+			generator_shutdown()
+		else if(switching_on)
+			to_chat(user, span_warning("[src] is turning on right now!"))
+		else if(!on)
+			start_on(user)
+
+/obj/warehouse_generator/examine(mob/user)
 	. = ..()
-	. += "<b>Fuel</b>: [fuel_remain]/1000"
+	. += "[src] is [on ? "on" : "off"]."
 
-/obj/generator/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/gas_can))
-		var/obj/item/gas_can/G = I
-		if(G.stored_gasoline && fuel_remain < 1000 && isturf(user.loc))
-			var/gas_to_transfer = min(1000-fuel_remain, min(100, max(1, G.stored_gasoline)))
-			G.stored_gasoline = max(0, G.stored_gasoline-gas_to_transfer)
-			fuel_remain = min(1000, fuel_remain+gas_to_transfer)
-			playsound(loc, 'modular_darkpack/master_files/sounds/gas_fill.ogg', 25, TRUE)
-			to_chat(user, span_notice("You transfer [gas_to_transfer] fuel to [src]."))
-		return
-
-/obj/generator/proc/brek()
+/obj/warehouse_generator/proc/generator_shutdown()
 	on = FALSE
 	icon_state = "gen_off"
 	var/area/A = get_area(src)
-	for(var/mob/L in A)
-		SEND_SOUND(L, 'modular_darkpack/modules/deprecated/sounds/fuck.ogg')
+	for(var/mob/M in A)
+		SEND_SOUND(M, 'modular_darkpack/modules/electricity/sounds/generator_shutdown.ogg')
 	A.requires_power = TRUE
 	A.fire_controled = FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -41,40 +59,5 @@
 	s.start()
 	for(var/obj/machinery/light/L in A)
 		L.update(FALSE)
-	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
+	playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 
-/obj/generator/attack_hand(mob/user)
-	if(fuel_remain == 0)
-		to_chat(user, span_warning("There is no fuel in [src]."))
-		return
-	if(!switching_on)
-		switching_on = TRUE
-		if(do_after(user, 50, src))
-			var/area/A = get_area(src)
-			on = TRUE
-			icon_state = "gen"
-			A.requires_power = FALSE
-			if(initial(A.fire_controled))
-				A.fire_controled = TRUE
-			for(var/obj/machinery/light/L in A)
-				L.update(FALSE)
-			switching_on = FALSE
-			to_chat(user, span_notice("You switch [src] on."))
-		else
-			switching_on = FALSE
-
-/obj/generator/Initialize(mapload)
-	. = ..()
-	GLOB.generators += src
-	START_PROCESSING(SSobj, src)
-
-/obj/generator/Destroy()
-	. = ..()
-	GLOB.generators -= src
-	STOP_PROCESSING(SSobj, src)
-
-/obj/generator/process(delta_time)
-	if(on)
-		if(last_sound_played+40 <= world.time)
-			last_sound_played = world.time
-			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/guh.ogg', 50, FALSE)

@@ -1,7 +1,7 @@
 /obj/fusebox
 	name = "fuse box"
 	desc = "Power the controlled area with pure electricity."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
+	icon = 'modular_darkpack/modules/electricity/icons/electricity.dmi'
 	icon_state = "fusebox"
 	plane = GAME_PLANE
 	layer = CAR_LAYER
