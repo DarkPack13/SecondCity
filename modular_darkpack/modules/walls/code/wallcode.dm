@@ -1,6 +1,6 @@
 #define LOW_WALL_HELPER(wall_type)						\
 	/turf/closed/wall/##wall_type/low {					\
-		icon = 'modular_darkpack/modules/deprecated/icons/lowwalls.dmi'; \
+		icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'; \
 		opacity = FALSE;								\
 		low = TRUE;										\
 		blocks_air = FALSE;								\
@@ -25,7 +25,7 @@
 /obj/effect/wall_overhang
 	name = "wall overhang"
 	desc = "Hey how are you reading this."
-	icon = 'modular_darkpack/modules/deprecated/icons/overhangs.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/overhangs.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
@@ -52,7 +52,7 @@
 /turf/closed/wall/vampwall
 	name = "old brick wall"
 	desc = "A huge chunk of old bricks used to separate rooms."
-	icon = 'modular_darkpack/modules/deprecated/icons/walls.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/walls.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	opacity = TRUE
@@ -189,7 +189,7 @@ LOW_WALL_HELPER(vampwall/market)
 	base_icon_state = "old"
 
 /turf/closed/wall/vampwall/old/low
-	icon = 'modular_darkpack/modules/deprecated/icons/lowwalls.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'
 	opacity = FALSE
 	low = TRUE
 	blocks_air = FALSE
@@ -697,106 +697,6 @@ LOW_WALL_HELPER(vampwall/wood)
 	. = ..()
 	icon_state = "saint[rand(1, 2)]"
 
-//OBOI
-
-/obj/effect/decal/wallpaper
-	name = "wall paint"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "wallpaper"
-	plane = GAME_PLANE
-	layer = ABOVE_NORMAL_TURF_LAYER	//WALLPAPER_LAYER dont work
-	mouse_opacity = 0
-
-// This sucks. Not within the scope of this pr to fix.
-/obj/effect/decal/wallpaper/NeverShouldHaveComeHere(turf/here_turf)
-	return !(isclosedturf(loc) || isclosedturf(get_step(src, NORTH)))
-
-/obj/effect/decal/wallpaper/Initialize(mapload)
-	. = ..()
-	if(isclosedturf(loc))
-		forceMove(get_step(src, SOUTH))
-		pixel_y = 32
-
-/obj/effect/decal/wallpaper/low
-	icon_state = "wallpaper_low"
-
-/obj/effect/decal/wallpaper/grey
-	icon_state = "wallpaper-grey"
-
-/obj/effect/decal/wallpaper/grey/low
-	icon_state = "wallpaper-grey_low"
-
-/obj/effect/decal/wallpaper/light
-	icon_state = "wallpaper-light"
-
-/obj/effect/decal/wallpaper/light/low
-	icon_state = "wallpaper-light_low"
-
-/obj/effect/decal/wallpaper/red
-	icon_state = "wallpaper-asylum"
-
-/obj/effect/decal/wallpaper/red/low
-	icon_state = "wallpaper-asylum_low"
-
-/obj/effect/decal/wallpaper/blue
-	icon_state = "wallpaper-club"
-
-/obj/effect/decal/wallpaper/blue/low
-	icon_state = "wallpaper-club_low"
-
-/obj/effect/decal/wallpaper/paper
-	name = "wallpapers"
-	icon_state = "wallpaper-cheap"
-
-/obj/effect/decal/wallpaper/paper/low
-	icon_state = "wallpaper-cheap_low"
-
-/obj/effect/decal/wallpaper/paper/green
-	icon_state = "wallpaper-green"
-
-/obj/effect/decal/wallpaper/paper/green/low
-	icon_state = "wallpaper-green_low"
-
-/obj/effect/decal/wallpaper/paper/stripe
-	icon_state = "wallpaper-stripe"
-
-/obj/effect/decal/wallpaper/paper/stripe/low
-	icon_state = "wallpaper-stripe_low"
-
-/obj/effect/decal/wallpaper/paper/rich
-	icon_state = "wallpaper-rich"
-
-/obj/effect/decal/wallpaper/paper/rich/low
-	icon_state = "wallpaper-rich_low"
-
-/obj/effect/decal/wallpaper/paper/darkred
-	icon_state = "wallpaper-dred"
-
-/obj/effect/decal/wallpaper/paper/darkred/low
-	icon_state = "wallpaper-dred_low"
-
-/obj/effect/decal/wallpaper/paper/darkgreen
-	icon_state = "wallpaper-dgreen"
-
-/obj/effect/decal/wallpaper/paper/darkgreen/low
-	icon_state = "wallpaper-dgreen_low"
-
-/obj/effect/decal/wallpaper/stone
-	name = "wall decoration"
-	icon_state = "wallpaper-stone"
-
-/obj/effect/decal/wallpaper/stone/low
-	icon_state = "wallpaper-stone_low"
-
-/obj/effect/decal/wallpaper/gold
-	icon_state = "wallpaper-gold"
-
-/obj/effect/decal/wallpaper/gold/alt
-	icon_state = "wallpaper-gold_alt"
-
-/obj/effect/decal/wallpaper/gold/low
-	icon_state = "wallpaper-gold_low"
-
 /turf/open/proc/add_moonlight(add_to_starlight = TRUE)
 	set_light(l_on = TRUE, l_range = GLOB.starlight_range, l_power = GLOB.starlight_power, l_color = GLOB.starlight_color)
 
@@ -1001,7 +901,7 @@ LOW_WALL_HELPER(vampwall/wood)
 			new /mob/living/basic/mouse/rat/vampire(oldloc)
 */
 
-/turf/open/floor/plating/vampcanal/Initialize(mapload)
+/turf/open/floor/plating/vampcanalplating/Initialize(mapload)
 	. = ..()
 	icon_state = "canal_plating[rand(1, 4)]"
 

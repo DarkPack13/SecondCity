@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - refactor: "refactors old vampire food stuffs, mostly giving them sane tg paths."
