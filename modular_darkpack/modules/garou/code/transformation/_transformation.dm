@@ -2,32 +2,27 @@
 /// Will be removed once the transformation is complete.
 #define TEMPORARY_TRANSFORMATION_TRAIT "temporary_transformation"
 
-/mob/living/carbon/proc/transform_to_homid()
+/mob/living/carbon/proc/do_transformation(/datum/fera_form/form)
 	if (transformation_timer || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
-	if(ishomid(src))
+	if(!istype(src))
 		return
 
 	//Make mob invisible and spawn animation
 	ADD_TRAIT(src, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
 	Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
-	icon = null
-	cut_overlays()
 
-	var/obj/effect = new /obj/effect/temp_visual/monkeyify/humanify(loc)
-	effect.SetInvisibility(invisibility)
-	SetInvisibility(INVISIBILITY_MAXIMUM, id=type)
+	var/matrix/source_transform = matrix(transform) //aka transform.Copy()
+	source_transform.Scale(0.75, 0.75)
+	animate(src, transform = source_transform, color = "#000000", time = TRANSFORMATION_DURATION)
 
-	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_transform_to_homid)), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_transformation)), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
-/mob/living/carbon/proc/finish_transform_to_homid()
+/mob/living/carbon/proc/finish_transformation()
+	animate(src, transform = null, color = "#FFFFFF", time = 10)
 	transformation_timer = null
 	REMOVE_TRAIT(src, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
-	icon = initial(icon)
-	RemoveInvisibility(type)
-	SEND_SIGNAL(src, COMSIG_MONKEY_HUMANIZE)
-	return src
 
 #undef TEMPORARY_TRANSFORMATION_TRAIT
 #undef TRANSFORMATION_DURATION

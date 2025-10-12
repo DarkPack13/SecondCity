@@ -6884,6 +6884,7 @@
 #include "modular_darkpack\modules\garou\code\mobs\lupus.dm"
 #include "modular_darkpack\modules\garou\code\preferences\breed.dm"
 #include "modular_darkpack\modules\garou\code\transformation\_transformation.dm"
+#include "modular_darkpack\modules\garou\code\transformation\transformation_status_effect.dm"
 #include "modular_darkpack\modules\government\code\passport.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard_area.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard_globals.dm"
