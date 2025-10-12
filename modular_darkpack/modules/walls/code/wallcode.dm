@@ -122,7 +122,8 @@
 		wall_frill.desc = desc
 
 	if(low)
-		AddComponent(/datum/component/climb_walkable)
+		// Runtimes out the ass.
+		//AddComponent(/datum/component/climb_walkable)
 		AddElement(/datum/element/climbable)
 		// So. This is an obj only thing. Turf are really missing alot of code to make them act more like tables.
 		//AddElement(/datum/element/elevation, pixel_shift = 12)
