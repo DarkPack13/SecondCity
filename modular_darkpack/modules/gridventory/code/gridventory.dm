@@ -969,7 +969,7 @@ VENTORY!
 	grid_width = 1 GRID_BOXES
 	grid_height = 2 GRID_BOXES
 
-/obj/item/ammo_box/vampire/c9mm/moonclip
+/obj/item/ammo_box/darkpack/c9mm/moonclip
 	grid_width = 1 GRID_BOXES
 	grid_height = 1 GRID_BOXES
 
