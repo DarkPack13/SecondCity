@@ -101,6 +101,11 @@ PROCESSING_SUBSYSTEM_DEF(station)
 			setup_trait(trait_typepath)
 			continue
 
+		// DARKPACK EDIT ADD START
+		if(!initial(trait_typepath.darkpack_allowed))
+			continue
+		// DARKPACK EDIT ADD END
+
 		if(initial(trait_typepath.abstract_type) == trait_typepath)
 			continue //Dont add abstract ones to it
 
