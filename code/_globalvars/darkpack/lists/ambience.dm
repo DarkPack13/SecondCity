@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(city_ambience, list(
 	'modular_darkpack/modules/ambience/sounds/street.ogg',
-	'modular_darkpack/modules/ambience/sounds/street2.ogg',
+	'modular_darkpack/modules/ambience/sounds/street2.ogg'
 ))
 
 GLOBAL_LIST_INIT(beach_ambience, list(
