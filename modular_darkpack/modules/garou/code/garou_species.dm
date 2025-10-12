@@ -18,7 +18,7 @@
 /datum/species/human/garou/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
 	. = ..()
 	if(pref_load)
-		garou_transformation = new
+		garou_transformation = new(human_who_gained_species, list(/mob/living/carbon/fera/crinos, /mob/living/carbon/fera/lupus, /mob/living/carbon/human))
 		garou_transformation.Grant(human_who_gained_species)
 
 /datum/species/human/garou/prepare_human_for_preview(mob/living/carbon/human/human)
