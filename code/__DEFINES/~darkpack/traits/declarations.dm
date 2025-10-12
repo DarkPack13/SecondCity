@@ -7,6 +7,8 @@
 Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
 */
 
+#define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
+
 // Mob traits
 
 // If the user is unbondable via blood bonds.
