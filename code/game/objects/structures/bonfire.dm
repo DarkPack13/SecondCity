@@ -10,7 +10,7 @@
 /obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
-	icon = 'icons/obj/service/hydroponics/equipment.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "bonfire"
 	light_color = LIGHT_COLOR_FIRE
 	density = FALSE
