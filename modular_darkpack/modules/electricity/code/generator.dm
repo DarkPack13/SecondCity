@@ -29,6 +29,7 @@
 	A.requires_power = FALSE
 	A.fire_controled = TRUE
 	for(var/obj/machinery/light/L in A)
+		L.on = TRUE
 		L.update(FALSE)
 
 /obj/warehouse_generator/attack_hand(mob/user)
@@ -58,6 +59,23 @@
 	s.set_up(5, 1, get_turf(src))
 	s.start()
 	for(var/obj/machinery/light/L in A)
+		L.on = FALSE
 		L.update(FALSE)
 	playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 
+/obj/warehouse_generator/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/warehouse_generator/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
+/obj/warehouse_generator/process(delta_time)
+	if(time_since_toggle+100 <= world.time)
+		time_since_toggle = world.time
+
+	if(on)
+		if(last_sound_played+40 <= world.time)
+			last_sound_played = world.time
+			playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_loop.ogg', 25, FALSE)
