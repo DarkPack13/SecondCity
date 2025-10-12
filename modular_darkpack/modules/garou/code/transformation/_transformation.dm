@@ -2,7 +2,7 @@
 /// Will be removed once the transformation is complete.
 #define TEMPORARY_TRANSFORMATION_TRAIT "temporary_transformation"
 
-/mob/living/carbon/proc/do_transformation(/datum/fera_form/form)
+/mob/living/carbon/proc/do_transformation()
 	if (transformation_timer || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
