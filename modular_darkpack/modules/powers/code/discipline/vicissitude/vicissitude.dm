@@ -7,7 +7,7 @@
 
 /datum/discipline/vicissitude/post_gain()
 	. = ..()
-	owner.faction |= "Tzimisce"
+	owner.faction |= VAMPIRE_CLAN_TZIMISCE
 
 /datum/discipline_power/vicissitude
 	name = "Vicissitude power name"
