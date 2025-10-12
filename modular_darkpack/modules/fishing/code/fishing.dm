@@ -28,14 +28,16 @@
 /obj/item/fish/darkpack
 	abstract_type = /obj/item/fish/darkpack
 	desc = "marine life"
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 	//eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 
 /obj/item/fish/darkpack/shark
 	name = "leopard shark"
-	icon_state = "fish1"
+	icon_state = "shark"
+	icon = 'modular_darkpack/modules/fishing/icons/fish48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	base_pixel_w = -16
 	pixel_w = -16
 	fish_id = "darkpack_shark"
@@ -47,20 +49,20 @@
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
-	icon_state = "fish2"
+	icon_state = "fish"
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	num_fillets = 2
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
-	icon_state = "fish3"
+	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
-	icon_state = "fish4"
+	icon_state = "crab"
 	fillet_type = /obj/item/food/meat/slab/rawcrab
 	fish_id = "darkpack_crab"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
