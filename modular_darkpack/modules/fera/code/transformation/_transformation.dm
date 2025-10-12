@@ -23,9 +23,9 @@
 	if(carbon_owner.stat)
 		carbon_owner.balloon_alert(carbon_owner, "unconscious!")
 		return
-	var/datum/status_effect/shapechange_mob/shapechange = carbon_owner.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)
+	var/datum/status_effect/shapechange_mob/shapechange = carbon_owner.has_status_effect(/datum/status_effect/shapechange_mob/fera)
 	if(shapechange)
-		carbon_owner.remove_status_effect(/datum/status_effect/shapechange_mob/from_spell)
+		carbon_owner.remove_status_effect(/datum/status_effect/shapechange_mob/fera)
 
 	if(length(transformations_available) == 1)
 		shapeshift_type = transformations_available[1]
