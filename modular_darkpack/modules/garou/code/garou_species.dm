@@ -10,9 +10,16 @@
 	changesource_flags = MIRROR_BADMIN
 	species_language_holder = /datum/language_holder/garou
 	mutanttongue = /obj/item/organ/tongue/garou
+	var/datum/action/innate/transformation/garou_transformation
 
 /mob/living/carbon/human/species/garou
 	race = /datum/species/human/garou
+
+/datum/species/human/garou/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
+	. = ..()
+	if(pref_load)
+		garou_transformation = new
+		garou_transformation.Grant(human_who_gained_species)
 
 /datum/species/human/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
