@@ -27,7 +27,18 @@
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
 	if(user)
 		user.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
+/*
+/obj/fusebox/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(I.tool_behaviour == TOOL_WIRECUTTER && !open)
+		open = TRUE
+	else if(I.tool_behavior == TOOL_WIRECUTTER && damaged)
 
+
+	else if(I.force)
+		damage +=
+*/ // TODO: THIS
+/*
 /obj/fusebox/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
 		. = ..()
@@ -54,3 +65,4 @@
 	for (var/obj/machinery/light/L in A)
 		L.update(FALSE)
 	repairing = FALSE
+*/
