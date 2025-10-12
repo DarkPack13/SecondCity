@@ -61,7 +61,7 @@
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
 	icon_state = "fish4"
-	fillet_type =  = /obj/item/food/meat/slab/rawcrab
+	fillet_type = /obj/item/food/meat/slab/rawcrab
 	fish_id = "darkpack_crab"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
