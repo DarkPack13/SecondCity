@@ -1,4 +1,4 @@
-/mob/living/carbon/fera/lupus
+/mob/living/carbon/human/fera/lupus
 	name = "wolf"
 	icon_state = "black"
 	icon = 'modular_darkpack/modules/garou/icons/lupus.dmi'
@@ -8,5 +8,5 @@
 	has_limbs = FALSE
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-
+	race = /datum/species/human/fera/garou
 	default_hand_amount = 1

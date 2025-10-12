@@ -9,6 +9,15 @@
 		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
 	)
 
+/datum/language_holder/primal
+	understood_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
+	)
+	spoken_languages = list(
+		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
+	)
+
 /datum/language/garou_tongue
 	name = "Garou Tongue"
 	desc = "A guttural and pitchy language also known as 'High Tongue', the language of the Garou capable of being learned and spoken by Garou. It is hard to speak in human form."

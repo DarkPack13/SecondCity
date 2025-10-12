@@ -1,4 +1,4 @@
-/datum/species/human/garou
+/datum/species/human/fera/garou
 	name = "Garou"
 	plural_form = "Garou"
 	id = SPECIES_GAROU
@@ -10,18 +10,12 @@
 	changesource_flags = MIRROR_BADMIN
 	species_language_holder = /datum/language_holder/garou
 	mutanttongue = /obj/item/organ/tongue/garou
-	var/datum/action/innate/transformation/garou_transformation
+	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human)
 
 /mob/living/carbon/human/species/garou
-	race = /datum/species/human/garou
+	race = /datum/species/human/fera/garou
 
-/datum/species/human/garou/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
-	. = ..()
-	if(pref_load)
-		garou_transformation = new(human_who_gained_species, list(/mob/living/carbon/fera/crinos, /mob/living/carbon/fera/lupus, /mob/living/carbon/human))
-		garou_transformation.Grant(human_who_gained_species)
-
-/datum/species/human/garou/prepare_human_for_preview(mob/living/carbon/human/human)
+/datum/species/human/fera/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
 	human.set_hairstyle("Long Hair 3", update = TRUE)
 

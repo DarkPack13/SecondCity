@@ -1,1 +1,1 @@
-/mob/living/carbon/fera/glabro
+/mob/living/carbon/human/fera/glabro

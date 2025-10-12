@@ -1,1 +1,1 @@
-/mob/living/carbon/fera/hispo
+/mob/living/carbon/human/fera/hispo
