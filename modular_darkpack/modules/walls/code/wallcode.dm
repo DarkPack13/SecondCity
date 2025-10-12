@@ -782,11 +782,23 @@ LOW_WALL_HELPER(vampwall/wood)
 			if(V.outdoors)
 				icon_state = "snow[rand(1, 14)]"
 
+/turf/open/water/river
+	name = "river"
+	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon_state = "ocean"
+	baseturfs = /turf/open/water/river
+	fishing_datum = /datum/fish_source/river/darkpack
+
+/turf/open/water/river/Initialize(mapload)
+	. = ..()
+	add_moonlight(FALSE)
+
 /turf/open/water/beach/vamp
-	name = "water"
+	name = "ocean"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/beach/vamp
+	fishing_datum = /datum/fish_source/ocean/darkpack
 
 /turf/open/water/beach/vamp/Initialize(mapload)
 	. = ..()

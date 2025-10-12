@@ -1089,15 +1089,15 @@ VENTORY!
 	grid_width = 7 GRID_BOXES
 	grid_height = 3 GRID_BOXES
 
-/obj/item/food/fish/shark
+/obj/item/fish/darkpack/shark
 	grid_width = 3 GRID_BOXES
 	grid_height = 1 GRID_BOXES
 
-/obj/item/food/fish/tune
+/obj/item/fish/darkpack/tuna
 	grid_width = 2 GRID_BOXES
 	grid_height = 1 GRID_BOXES
 
-/obj/item/food/fish/catfish
+/obj/item/fish/darkpack/catfish
 	grid_width = 2 GRID_BOXES
 	grid_height = 1 GRID_BOXES
 
