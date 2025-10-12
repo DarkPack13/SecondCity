@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
+	//eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 	tastes = list("fish" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 3)
 	foodtypes = RAW | MEAT
@@ -79,7 +79,7 @@
 			catching = TRUE
 			user.isfishing = TRUE
 			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/catching.ogg', 50, FALSE)
-			if(do_mob(user, src, 15 SECONDS))
+			if(do_(user, src, 15 SECONDS))
 				catching = FALSE
 				user.isfishing = FALSE
 				var/diceroll = rand(1, 20)
