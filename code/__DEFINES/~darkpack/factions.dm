@@ -7,3 +7,5 @@
 
 // City faction
 #define FACTION_CITY "city"
+
+#define FACTION_GAIA "gaia"
