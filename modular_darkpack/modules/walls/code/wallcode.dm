@@ -22,17 +22,17 @@
 /obj/structure/window/reinforced/fulltile
 	icon = 'modular_darkpack/modules/deprecated/icons/obj/smooth_structures/reinforced_window.dmi'
 
-/obj/effect/wall_overhang
-	name = "wall overhang"
+/obj/effect/wall_frill
+	name = "wall frill"
 	desc = "Hey how are you reading this."
-	icon = 'modular_darkpack/modules/walls/icons/overhangs.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/wallfrills.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/wall_overhang/Initialize(mapload)
+/obj/effect/wall_frill/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_WALLS)
 /* If we want to have transpanecy for ALL mobs instead of just you.
@@ -42,7 +42,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/effect/wall_overhang/proc/update_alpha()
+/obj/effect/wall_frill/proc/update_alpha()
 	if(locate(/mob/living) in get_turf(src))
 		alpha = 128
 	else
@@ -61,7 +61,8 @@
 	smoothing_groups = SMOOTH_GROUP_CITY_WALL
 	canSmoothWith = SMOOTH_GROUP_CITY_WALL
 
-	var/obj/effect/wall_overhang/overhang
+	var/obj/effect/wall_frill/wall_frill
+	var/frill_icon = /obj/effect/wall_frill::icon
 	var/low = FALSE
 	var/window
 
@@ -114,10 +115,11 @@
 	if(window)
 		new window(src)
 	else if(!low)
-		overhang = new(get_step(src, NORTH))
-		overhang.icon_state = icon_state
-		overhang.name = name
-		overhang.desc = desc
+		wall_frill = new(get_step(src, NORTH))
+		wall_frill.icon = frill_icon
+		wall_frill.icon_state = icon_state
+		wall_frill.name = name
+		wall_frill.desc = desc
 
 	if(low)
 		AddComponent(/datum/component/climb_walkable)
@@ -127,13 +129,13 @@
 
 /turf/closed/wall/vampwall/set_smoothed_icon_state(new_junction)
 	. = ..()
-	if(overhang)
-		overhang.icon_state = icon_state
+	if(wall_frill)
+		wall_frill.icon_state = icon_state
 
 /turf/closed/wall/vampwall/Destroy()
 	. = ..()
-	if(overhang)
-		qdel(overhang)
+	if(wall_frill)
+		qdel(wall_frill)
 
 LOW_WALL_HELPER(vampwall)
 /turf/closed/wall/vampwall/low/window
