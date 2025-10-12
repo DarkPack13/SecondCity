@@ -34,3 +34,11 @@
   Hawk-v3:
   - rscadd: Goat Plushie + loot lists for mapping random spawn plushies.
   - rscadd: Tzimisce Plushie + loot lists for mapping random spawn plushies.
+2025-10-12:
+  FalloutFalcon:
+  - rscadd: Hub shows the ingame year after the city name.
+  XeonMations:
+  - code_imp: Proper traits organization, plus linter for globaltraits
+  chazzyjazzy:
+  - code_imp: Offsets transparency hud from lower z levels by 20 pixels to give the
+      appearance of coherent buildings

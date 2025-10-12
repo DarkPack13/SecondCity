@@ -907,7 +907,7 @@
 /obj/structure/table/optable
 	name = "operating table"
 	desc = "Used for advanced medical procedures."
-	icon = 'icons/obj/medical/surgery_table.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/medical/surgery_table.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "surgery_table"
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	smoothing_flags = NONE

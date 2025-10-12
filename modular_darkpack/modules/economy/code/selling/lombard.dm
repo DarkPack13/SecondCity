@@ -3,7 +3,7 @@
 	desc = "Sell your stuff."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	icon_state = "sell"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 	anchored = TRUE
 	var/black_market = FALSE
 

@@ -11,7 +11,7 @@
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	icon_state = "shoes"
 	gender = PLURAL
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 
 /obj/item/clothing/shoes/vampire/Initialize(mapload)
 	. = ..()

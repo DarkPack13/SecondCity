@@ -1,6 +1,6 @@
 #define LOW_WALL_HELPER(wall_type)						\
 	/turf/closed/wall/##wall_type/low {					\
-		icon = 'modular_darkpack/modules/deprecated/icons/lowwalls.dmi'; \
+		icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'; \
 		opacity = FALSE;								\
 		low = TRUE;										\
 		blocks_air = FALSE;								\
@@ -26,7 +26,7 @@
 /obj/effect/addwall
 	name = "Debug"
 	desc = "First rule of debug placeholder: Do not talk about debug placeholder."
-	icon = 'modular_darkpack/modules/deprecated/icons/addwalls.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/addwalls.dmi'
 	base_icon_state = "wall"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
@@ -53,7 +53,7 @@
 /turf/closed/wall/vampwall
 	name = "old brick wall"
 	desc = "A huge chunk of old bricks used to separate rooms."
-	icon = 'modular_darkpack/modules/deprecated/icons/walls.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/walls.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	opacity = TRUE
@@ -184,7 +184,7 @@ LOW_WALL_HELPER(vampwall/market)
 	base_icon_state = "old"
 
 /turf/closed/wall/vampwall/old/low
-	icon = 'modular_darkpack/modules/deprecated/icons/lowwalls.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'
 	opacity = FALSE
 	low = TRUE
 	blocks_air = FALSE
