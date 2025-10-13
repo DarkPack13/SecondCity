@@ -14,7 +14,7 @@
 
 /obj/lombard
 	icon_state = "sell"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 /obj/lombard/blackmarket
 
 /obj/machinery/atm
@@ -35,5 +35,5 @@
 	icon_state = "computerprince"
 
 /obj/item/vamp/phone/street
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"
