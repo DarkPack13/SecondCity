@@ -1,7 +1,7 @@
 /datum/fish_source/ocean
 	fish_table = list(
 		FISHING_DUD = 10,
-		/obj/effect/spawner/random/maintenance = 2,
+		/obj/effect/spawner/random/trash/garbage = 2,
 		/obj/effect/spawner/message_in_a_bottle = 1,
 		/obj/item/coin/gold = 3,
 		/obj/item/fish/darkpack/tuna = 20,
@@ -18,7 +18,7 @@
 /datum/fish_source/river
 	fish_table = list(
 		FISHING_DUD = 4,
-		/obj/effect/spawner/random/maintenance = 1,
+		/obj/effect/spawner/random/trash/garbage = 1,
 		/obj/item/fish/darkpack/catfish = 20,
 	)
 	fish_counts = list()
@@ -27,6 +27,6 @@
 /datum/fish_source/sand
 	fish_table = list(
 		FISHING_DUD = 15,
-		/obj/effect/spawner/random/maintenance = 5,
+		/obj/effect/spawner/random/trash/garbage = 5,
 		/obj/item/fish/darkpack/crab = 10,
 	)

@@ -1,14 +1,16 @@
 /datum/fish_source/moisture_trap
 	fish_table = list(
 		FISHING_DUD = 20,
-		/obj/effect/spawner/random/maintenance = 10,
+		/obj/effect/spawner/random/trash/garbage = 10
+		/obj/effect/spawner/random/maintenance = 1,
 	)
 
 /datum/fish_source/toilet
 	catalog_description = "City toilets"
 	fish_table = list(
-		FISHING_DUD = 18,
-		/obj/effect/spawner/random/maintenance = 10,
+		FISHING_DUD = 10,
+		/obj/effect/spawner/random/trash/garbage = 10
+		/obj/effect/spawner/random/maintenance = 3,
 		/obj/item/stack/dollar/rand = 2,
 	)
 	fish_counts = list(
