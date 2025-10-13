@@ -78,6 +78,9 @@ jobs:
       - name: Check Trait Validity
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/bootstrap/python -m trait_validity.check
+      - name: Check Darkpack Trait Validity
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: tools/bootstrap/python -m trait_validity.darkpack_check
       - name: Run DreamChecker
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         shell: bash

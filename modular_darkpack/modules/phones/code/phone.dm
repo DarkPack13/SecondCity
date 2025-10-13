@@ -22,7 +22,8 @@
 /obj/item/vamp/phone
 	name = "\improper phone"
 	desc = "A portable device to call anyone you want."
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/phones/icons/phone_onfloor.dmi')
 	icon_state = "phone0"
 	inhand_icon_state = "phone0"
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
@@ -32,7 +33,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 
 	var/exchange_num = 513
 	var/list/contacts = list()
@@ -739,8 +739,7 @@
 
 /obj/item/vamp/phone/street
 	desc = "An ordinary street payphone"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/props.dmi')
+	onflooricon = null
 	icon_state = "payphone"
 	anchored = TRUE
 	number = "1447"
@@ -753,7 +752,7 @@
 
 /obj/item/vamp/phone/clean
 	desc = "The usual phone of a cleaning company used to communicate with employees"
-	icon = 'modular_darkpack/modules/deprecated/icons/onfloor.dmi'
+	onflooricon = null
 	icon_state = "redphone"
 	anchored = TRUE
 	number = "700 4424"
@@ -765,7 +764,7 @@
 
 /obj/item/vamp/phone/emergency
 	desc = "The 911 dispatch phone"
-	icon = 'modular_darkpack/modules/deprecated/icons/onfloor.dmi'
+	onflooricon = null
 	icon_state = "redphone"
 	anchored = TRUE
 	number = "911"

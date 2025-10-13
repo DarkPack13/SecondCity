@@ -1,7 +1,7 @@
 /obj/structure/dresser
 	name = "dresser"
 	desc = "A nicely-crafted wooden dresser. It's filled with lots of undies."
-	icon = 'icons/obj/fluff/general.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/fluff/general.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "dresser"
 	resistance_flags = FLAMMABLE
 	density = TRUE

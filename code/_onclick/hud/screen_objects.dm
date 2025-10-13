@@ -8,7 +8,7 @@
 */
 /atom/movable/screen
 	name = ""
-	icon = 'icons/hud/screen_gen.dmi'
+	icon = 'modular_darkpack/master_files/icons/hud/screen_gen.dmi' // DARKPACK EDIT CHANGE
 	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
 	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE

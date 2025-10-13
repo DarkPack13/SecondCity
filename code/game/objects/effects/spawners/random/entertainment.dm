@@ -257,6 +257,7 @@
 		/obj/item/toy/plush/pkplush,
 		/obj/item/toy/plush/horse,
 		/obj/item/toy/plush/monkey,
+		/obj/item/toy/plush/goatplushie, 	// DARKPACK EDIT ADD - TOYS - Plushes.dm addition for mapping
 	)
 
 /obj/effect/spawner/random/entertainment/plushie_delux
@@ -273,6 +274,7 @@
 		/obj/item/toy/plush/pkplush = 5,
 		/obj/item/toy/plush/human = 5,
 		/obj/item/toy/plush/horse = 5,
+		/obj/item/toy/plush/goatplushie = 5,	// DARKPACK EDIT ADD - TOYS - Plushes.dm addition for mapping
 		// rare plushies
 		/obj/item/toy/plush/carpplushie = 3,
 		/obj/item/toy/plush/lizard_plushie/green = 3,
