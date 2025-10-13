@@ -1,36 +1,3 @@
-/datum/fish_source/ocean/darkpack
-	fish_table = list(
-		FISHING_DUD = 10,
-		/obj/effect/spawner/message_in_a_bottle = 2,
-		/obj/item/coin/gold = 3,
-		/obj/item/fish/darkpack/tuna = 20,
-		// /obj/item/fish/darkpack/catfish = 20,
-		/obj/item/fish/darkpack/crab = 11,
-		/obj/item/fish/darkpack/shark = 5,
-	)
-	fish_counts = list(
-		///obj/structure/mystery_box/fishing = 1,
-	)
-	fish_count_regen = list(
-		///obj/structure/mystery_box/fishing = 32 MINUTES,
-	)
-	associated_safe_turfs = list(/turf/open/water/beach/vamp)
-
-/datum/fish_source/river/darkpack
-	fish_table = list(
-		FISHING_DUD = 4,
-		/obj/item/fish/darkpack/catfish = 20,
-	)
-	fish_counts = list()
-	fish_count_regen = list()
-	associated_safe_turfs = list(/turf/open/water/river)
-
-/datum/fish_source/sand/darkpack
-	fish_table = list(
-		FISHING_DUD = 20,
-		/obj/item/fish/darkpack/crab = 10,
-	)
-
 /obj/item/fish/darkpack
 	abstract_type = /obj/item/fish/darkpack
 	desc = "marine life"

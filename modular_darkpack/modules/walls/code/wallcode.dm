@@ -741,7 +741,6 @@ LOW_WALL_HELPER(vampwall/wood)
 	baseturfs = /turf/open/misc/beach/vamp
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	fishing_datum = /datum/fish_source/sand/darkpack
 
 /*
 /turf/open/misc/beach/vamp/attackby(obj/item/I, mob/living/user, params)
@@ -788,7 +787,6 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/river
-	fishing_datum = /datum/fish_source/river/darkpack
 
 /turf/open/water/river/Initialize(mapload)
 	. = ..()
@@ -799,7 +797,6 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/beach/vamp
-	fishing_datum = /datum/fish_source/ocean/darkpack
 
 /turf/open/water/beach/vamp/Initialize(mapload)
 	. = ..()
