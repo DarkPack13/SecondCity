@@ -38,7 +38,7 @@
 /obj/item/stamp/head/Initialize(mapload)
 	. = ..()
 	// All maps should have at least 1 of each head of staff stamp
-	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
+	//REGISTER_REQUIRED_MAP_ITEM(1, INFINITY) // DARKPACK EDIT REMOVAL
 
 /obj/item/stamp/head/captain
 	name = "captain's rubber stamp"
