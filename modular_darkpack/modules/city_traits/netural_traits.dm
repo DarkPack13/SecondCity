@@ -4,19 +4,9 @@
 	trait_to_give = STATION_TRAIT_WILD_MASQUERADE
 	darkpack_allowed = TRUE
 
-/datum/station_trait/rainy
-	name = "Rainy Day"
-	darkpack_allowed = TRUE
-
-/datum/station_trait/rainy/on_round_start()
-	SSweather.run_weather(/datum/weather/rain_storm/eternal)
-
-/datum/weather/rain_storm/eternal
-	weather_duration_lower = INFINITY
-	weather_duration_upper = INFINITY
-
 /datum/station_trait/filled_trash
 	name = "Trash Man Strike"
+	//trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	//show_in_report = TRUE
