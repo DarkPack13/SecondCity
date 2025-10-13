@@ -1,4 +1,7 @@
 /datum/species/human/fera
+	name = "Fera"
+	plural_form = "Fera"
+	id = SPECIES_FERA
 	var/datum/action/innate/transformation/fera_transformation
 	var/list/transformation_list = list()
 

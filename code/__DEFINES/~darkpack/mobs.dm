@@ -1,6 +1,7 @@
 // Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
 #define SPECIES_KINDRED "kindred"
 #define SPECIES_GHOUL "ghoul"
+#define SPECIES_FERA "fera" // Generic transformable species. Used for things like Corax and Garou. Not intended as a playable species.
 #define SPECIES_GAROU "garou"
 
 /// Health level where mobs who can Torpor will actually die
