@@ -4,8 +4,8 @@
 
 /datum/action/innate/transformation
 	name = "Transform"
-	button_icon_state = "slimegrow"
-	desc = "This will let you evolve from baby to adult slime."
+	button_icon_state = "chameleon_outfit"
+	desc = "Transform into your different form!"
 
 	/// Our chosen type.
 	var/mob/living/shapeshift_type
@@ -17,15 +17,11 @@
 	. = ..()
 	transformations_available = transformations
 
-///Turns a baby slime into an adult slime
 /datum/action/innate/transformation/Activate()
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.stat)
 		carbon_owner.balloon_alert(carbon_owner, "unconscious!")
 		return
-	var/datum/status_effect/shapechange_mob/shapechange = carbon_owner.has_status_effect(/datum/status_effect/shapechange_mob/fera)
-	if(shapechange)
-		carbon_owner.remove_status_effect(/datum/status_effect/shapechange_mob/fera)
 
 	if(length(transformations_available) == 1)
 		shapeshift_type = transformations_available[1]
@@ -62,6 +58,7 @@
 
 /datum/status_effect/shapechange_mob/fera
 	alert_type = /atom/movable/screen/alert/status_effect/shapeshifted/fera
+	status_type = STATUS_EFFECT_REPLACE
 
 /mob/living/carbon/proc/do_transformation(shapeshift_type)
 	if (transformation_timer || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
@@ -85,6 +82,9 @@
 	animate(src, transform = null, color = "#FFFFFF", time = 10)
 	transformation_timer = null
 	REMOVE_TRAIT(src, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
+	if(ispath(shapeshift_type, /mob/living/carbon/human) && !(shapeshift_type in subtypesof(/mob/living/carbon/human)))
+		remove_status_effect(/datum/status_effect/shapechange_mob/fera)
+		return
 	var/mob/living/new_shape = new shapeshift_type(loc)
 	new_shape.apply_status_effect(/datum/status_effect/shapechange_mob/fera, src, src)
 
