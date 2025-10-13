@@ -2,10 +2,10 @@
 	fish_table = list(
 		FISHING_DUD = 10,
 		/obj/effect/spawner/random/maintenance = 2,
-		/obj/effect/spawner/message_in_a_bottle = 2,
+		/obj/effect/spawner/message_in_a_bottle = 1,
 		/obj/item/coin/gold = 3,
 		/obj/item/fish/darkpack/tuna = 20,
-		/obj/item/fish/darkpack/crab = 11,
+		/obj/item/fish/darkpack/crab = 5,
 		/obj/item/fish/darkpack/shark = 5,
 	)
 	fish_counts = list(
