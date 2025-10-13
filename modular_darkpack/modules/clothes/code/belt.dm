@@ -43,9 +43,9 @@
 	new /obj/item/ammo_box/magazine/glock45acp(src)
 	new /obj/item/ammo_box/magazine/glock45acp(src)
 
-/obj/item/storage/belt/holster/detective/vampire/endron
+/obj/item/storage/belt/holster/detective/darkpack/endron
 
-/obj/item/storage/belt/holster/detective/vampire/endron/PopulateContents()
+/obj/item/storage/belt/holster/detective/darkpack/endron/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19(src)
 	new /obj/item/ammo_box/magazine/glock9mm(src)
 
