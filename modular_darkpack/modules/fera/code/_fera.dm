@@ -8,6 +8,9 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_JUMPSUIT, "Fera")
 
+/mob/living/carbon/human/fera/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
+	return FALSE
+
 /mob/living/carbon/human/fera/create_dna()
 	dna = new /datum/dna(src)
 	dna.species = new race
