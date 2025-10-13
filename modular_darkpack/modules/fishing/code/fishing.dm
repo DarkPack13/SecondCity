@@ -9,10 +9,10 @@
 		/obj/item/fish/darkpack/shark = 5,
 	)
 	fish_counts = list(
-		/obj/structure/mystery_box/fishing = 1,
+		///obj/structure/mystery_box/fishing = 1,
 	)
 	fish_count_regen = list(
-		/obj/structure/mystery_box/fishing = 32 MINUTES,
+		///obj/structure/mystery_box/fishing = 32 MINUTES,
 	)
 	associated_safe_turfs = list(/turf/open/water/beach/vamp)
 
@@ -24,6 +24,12 @@
 	fish_counts = list()
 	fish_count_regen = list()
 	associated_safe_turfs = list(/turf/open/water/river)
+
+/datum/fish_source/sand/darkpack
+	fish_table = list(
+		FISHING_DUD = 20,
+		/obj/item/fish/darkpack/crab = 10,
+	)
 
 /obj/item/fish/darkpack
 	abstract_type = /obj/item/fish/darkpack

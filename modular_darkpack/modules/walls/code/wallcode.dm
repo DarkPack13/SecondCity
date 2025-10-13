@@ -741,6 +741,7 @@ LOW_WALL_HELPER(vampwall/wood)
 	baseturfs = /turf/open/misc/beach/vamp
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+	fishing_datum = /datum/fish_source/sand/darkpack
 
 /*
 /turf/open/misc/beach/vamp/attackby(obj/item/I, mob/living/user, params)
