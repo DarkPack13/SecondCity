@@ -2,7 +2,6 @@
 /mob/living/carbon/human/fera
 	rotate_on_lying = FALSE
 	initial_language_holder = /datum/language_holder/primal
-	var/race = /datum/species/human/fera
 
 /mob/living/carbon/human/fera/Initialize(mapload)
 	. = ..()
@@ -10,10 +9,6 @@
 
 /mob/living/carbon/human/fera/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	return FALSE
-
-/mob/living/carbon/human/fera/create_dna()
-	dna = new /datum/dna(src)
-	dna.species = new race
 
 /mob/living/carbon/human/fera/update_damage_overlays() //fera don't have damage overlays.
 	return

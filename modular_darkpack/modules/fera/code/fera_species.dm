@@ -2,7 +2,7 @@
 	name = "Fera"
 	plural_form = "Fera"
 	id = SPECIES_FERA
-	var/datum/action/innate/transformation/fera_transformation
+	var/datum/action/cooldown/spell/shapeshift/transformation/fera_transformation
 	var/list/transformation_list = list()
 
 /datum/species/human/fera/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
