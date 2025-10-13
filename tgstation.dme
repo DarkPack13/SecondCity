@@ -6970,7 +6970,6 @@
 #include "modular_darkpack\modules\preferences\code\generation.dm"
 #include "modular_darkpack\modules\preferences\code\immortal_age.dm"
 #include "modular_darkpack\modules\radios\code\radio_globals.dm"
-#include "modular_darkpack\modules\relationships\code\relationship_globals.dm"
 #include "modular_darkpack\modules\respawning\code\respawning_globals.dm"
 #include "modular_darkpack\modules\retail\code\_retail.dm"
 #include "modular_darkpack\modules\retail\code\vending_product.dm"
