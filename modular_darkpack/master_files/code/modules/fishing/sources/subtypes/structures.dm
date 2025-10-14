@@ -16,3 +16,11 @@
 	fish_counts = list(
 		/obj/item/stack/dollar/fifty = 2,
 	)
+
+/datum/fish_source/deepfryer
+	fish_table = list(
+		/obj/item/food/badrecipe = 15,
+		/obj/item/food/nugget = 5,
+	)
+	fish_counts = list()
+	fish_count_regen = list()
