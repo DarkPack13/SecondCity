@@ -35,7 +35,7 @@
 		icon_state = "boom"
 		if(!dangerous)
 			return
-		var/roll_result = SSroll.storyteller_roll(user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT), 6, list(user), user)
+		var/roll_result = SSroll.storyteller_roll(user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT), DIFF_STANDARD, list(user), user)
 		switch(roll_result)
 			if(ROLL_SUCCESS)
 				to_chat(user, span_revenwarning("Close... but the spirits do not punish you for this one."))

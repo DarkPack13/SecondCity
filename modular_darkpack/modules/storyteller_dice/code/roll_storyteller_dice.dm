@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(roll)
  * * mobs_to_show_output - mobs shown the result
  * * alert_atom - the atom over which balloon alerts should appear
  */
-/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null)
+/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = DIFF_STANDARD, list/mobs_to_show_output = list(), atom/alert_atom = null)
 	var/list/rolled_dice = roll_dice(dice)
 	if(!islist(mobs_to_show_output))
 		mobs_to_show_output = list(mobs_to_show_output)
