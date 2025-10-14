@@ -239,7 +239,6 @@
 	name = "black market"
 	desc = "Sell illegal goods."
 	icon_state = "sell_d"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	black_market = TRUE
 
 #undef SALE_DIFFICULTY
