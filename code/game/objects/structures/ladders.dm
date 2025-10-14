@@ -256,7 +256,7 @@
 	show_initial_fluff_message(user, going_up)
 
 	// Our climbers athletics ability
-	// DARKPACK EDIT CHANGE START
+	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
 	var/fitness_level = 1
 	if(isliving(user))
 		var/mob/living/living_user = user
