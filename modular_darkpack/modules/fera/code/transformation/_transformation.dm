@@ -14,6 +14,9 @@
 	. = ..()
 	possible_shapes = transformations
 
+/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/caster)
+	. = ..()
+	shapeshift_type = null
 
 /*
 /mob/living/carbon/proc/do_transformation(shapeshift_type)
