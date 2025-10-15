@@ -8,7 +8,7 @@
 	school = SCHOOL_UNSET
 	spell_requirements = NONE
 	revert_on_death = FALSE
-	transformation_list = list(/mob/living/carbon/human/fera/lupus) //Default is lupus form. CHANGE THIS FOR YOUR SUBTYPES.
+	possible_shapes = list(/mob/living/carbon/human/fera/lupus) //Default is lupus form. CHANGE THIS FOR YOUR SUBTYPES.
 
 /datum/action/cooldown/spell/shapeshift/transformation/New(Target, list/transformations)
 	. = ..()
