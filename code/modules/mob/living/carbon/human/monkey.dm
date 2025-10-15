@@ -49,7 +49,7 @@ GLOBAL_DATUM(the_one_and_only_punpun, /mob/living/carbon/human/species/monkey/pu
 
 /mob/living/carbon/human/species/monkey/punpun/Initialize(mapload)
 	// 1 Pun Pun should exist
-	REGISTER_REQUIRED_MAP_ITEM(1, 1)
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // DARKPACK EDIT REMOVAL
 	if(mapload && (locate(/datum/station_trait/job/pun_pun) in SSstation.station_traits))
 		new /obj/effect/landmark/start/pun_pun(loc) //Pun Pun is a crewmember, and may late-join.
 		return INITIALIZE_HINT_QDEL

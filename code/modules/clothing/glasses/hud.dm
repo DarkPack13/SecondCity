@@ -100,7 +100,7 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/clothing/glasses/hud/health/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunmedremoval)
@@ -109,7 +109,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
@@ -141,7 +141,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsundiagremoval)
@@ -150,7 +150,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
 	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records."
@@ -184,7 +184,7 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunsecremoval)
@@ -193,7 +193,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
 	desc = "An advanced heads-up display that provides ID data and vision in complete darkness."

@@ -185,7 +185,7 @@
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/ammo_casing/shotgun/techshell/Initialize(mapload)
 	. = ..()
 
@@ -195,7 +195,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 15 units of any chemical."
