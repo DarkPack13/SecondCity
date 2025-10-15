@@ -42,3 +42,11 @@
   chazzyjazzy:
   - code_imp: Offsets transparency hud from lower z levels by 20 pixels to give the
       appearance of coherent buildings
+2025-10-15:
+  FalloutFalcon:
+  - refactor: ghosts updated to use the existing basic mob subtype
+  dwinters99:
+  - rscdel: relationship system
+  - image: new default titlescreen
+  - rscdel: redundant click.dm
+  - image: new default species appearance

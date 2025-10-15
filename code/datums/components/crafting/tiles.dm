@@ -17,7 +17,7 @@
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_TILES
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/circuit
 	name = "Circuit Tile"
 	result = /obj/item/stack/tile/circuit
@@ -27,3 +27,4 @@
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_TILES
+ */
