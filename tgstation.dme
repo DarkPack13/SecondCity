@@ -6881,7 +6881,6 @@
 #include "modular_darkpack\modules\garou\code\garou_languages.dm"
 #include "modular_darkpack\modules\garou\code\garou_organs.dm"
 #include "modular_darkpack\modules\garou\code\garou_species.dm"
-#include "modular_darkpack\modules\garou\code\human_variables.dm"
 #include "modular_darkpack\modules\garou\code\mobs\crinos.dm"
 #include "modular_darkpack\modules\garou\code\mobs\glabro.dm"
 #include "modular_darkpack\modules\garou\code\mobs\hispo.dm"

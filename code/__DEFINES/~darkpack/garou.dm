@@ -9,3 +9,5 @@ GLOBAL_LIST_INIT(garou_breeds, list(
 	BREED_LUPUS = BREED_LUPUS,
 	BREED_CRINOS = BREED_CRINOS,
 ))
+
+#define FEATURE_GAROU_BREED "garou_breed"

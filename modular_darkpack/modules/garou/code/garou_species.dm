@@ -19,6 +19,11 @@
 	human.set_haircolor("#502D15", update = FALSE)
 	human.set_hairstyle("Long Hair 3", update = TRUE)
 
+/datum/species/human/fera/garou/randomize_features()
+	var/list/features = ..()
+	features[FEATURE_GAROU_BREED] = pick(GLOB.garou_breeds)
+	return features
+
 /datum/species/human/get_species_description()
 	return "Lorem Ipsum"
 

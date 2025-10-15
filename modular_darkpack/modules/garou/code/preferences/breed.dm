@@ -37,4 +37,4 @@
 	return garou_icon
 
 /datum/preference/choiced/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
-	target.garou_breed = value
+	target.dna.features[FEATURE_GAROU_BREED] = value
