@@ -39,3 +39,9 @@
 	if(user && W.force)
 		for(var/mob/living/simple_animal/hostile/beastmaster/B in H.beastmaster_minions)
 			B.add_beastmaster_enemies(user)
+
+/mob/living/carbon/human/pointed(atom/A as mob|obj|turf in view(client.view, src))
+	if(..())
+		if(isliving(A))
+			for(var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster_minions)
+				B.add_beastmaster_enemies(A)
