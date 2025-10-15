@@ -22,8 +22,6 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
-	a_intent = INTENT_HARM
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	bloodpool = 2
 	maxbloodpool = 2
@@ -35,13 +33,13 @@
 	AIStatus = AI_OFF
 
 	var/follow = TRUE
-	var/mob/living/carbon/human/beastmaster
+	var/mob/living/carbon/human/master
 	var/list/enemies = list()
-	var/mob/living/target
 
 /mob/living/simple_animal/hostile/beastmaster/Initialize(mapload)
 	. = ..()
 	GLOB.beast_list += src
+	RegisterSignal(src, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_hit))
 
 /mob/living/simple_animal/hostile/beastmaster/Destroy()
 	. = ..()
@@ -49,23 +47,23 @@
 	if (stat >= SOFT_CRIT)
 		return
 
-	if(beastmaster)
-		beastmaster.beastmaster -= src
-		if(!length(beastmaster.beastmaster))
-			for(var/datum/action/beastmaster_stay/E in beastmaster.actions)
+	if(master)
+		master.beastmaster_minions -= src
+		if(!length(master.beastmaster_minions))
+			for(var/datum/action/beastmaster_stay/E in master.actions)
 				qdel(E)
-			for(var/datum/action/beastmaster_deaggro/E in beastmaster.actions)
+			for(var/datum/action/beastmaster_deaggro/E in master.actions)
 				qdel(E)
 	GLOB.beast_list -= src
 
 /mob/living/simple_animal/hostile/beastmaster/death(gibbed)
 	. = ..()
-	if(beastmaster)
-		beastmaster.beastmaster -= src
-		if(!length(beastmaster.beastmaster))
-			for(var/datum/action/beastmaster_stay/E in beastmaster.actions)
+	if(master)
+		master.beastmaster_minions -= src
+		if(!length(master.beastmaster_minions))
+			for(var/datum/action/beastmaster_stay/E in master.actions)
 				qdel(E)
-			for(var/datum/action/beastmaster_deaggro/E in beastmaster.actions)
+			for(var/datum/action/beastmaster_deaggro/E in master.actions)
 				qdel(E)
 	GLOB.beast_list -= src
 
@@ -80,7 +78,7 @@
 			for(var/mob/living/L in enemies)
 				if(L.stat < 1 && L.z == z && get_dist(src, L) < 12)
 					target = L
-	else if(target.z != z || get_dist(src, target) > 11 || target.stat > 0)
+	else if(!ismob(target) || target.z != z || get_dist(src, target) > 11 || (ismob(target) && target:stat > 0))
 		target = null
 		if(length(enemies))
 			for(var/mob/living/L in enemies)
@@ -97,50 +95,42 @@
 		if(get_dist(src, target) <= 1)
 			ClickOn(target)
 	else
-		if(follow && isturf(beastmaster.loc))
-			if( (z != beastmaster.z) & (get_dist(beastmaster.loc, loc) <= 10) )
-				forceMove(get_turf(beastmaster))
-			else
+		if(follow && ismob(master) && isturf(master.loc))
+			var/mob/M = master
+			if(M.stat != DEAD && z != M.z && get_dist(M.loc, loc) <= 10)
+				forceMove(get_turf(M))
+			else if(M.stat != DEAD)
 				var/reqsteps = round((SSbeastmastering.next_fire-world.time)/totalshit)
-				walk_to(src, beastmaster, reqsteps, cached_multiplicative_slowdown)
+				walk_to(src, M, reqsteps, cached_multiplicative_slowdown)
 		else
 			walk(src, 0)
 
 /mob/living/simple_animal/hostile/beastmaster/proc/add_beastmaster_enemies(mob/living/L)
 	if(istype(L, /mob/living/simple_animal/hostile/beastmaster))
 		var/mob/living/simple_animal/hostile/beastmaster/M = L
-		if(M.beastmaster == beastmaster)
+		if(M.master == master)
 			return
-	if(L == beastmaster)
+	if(L == master)
 		return
 	enemies |= L
 	if(!target)
 		target = L
 
-/mob/living/simple_animal/hostile/beastmaster/attack_hand(mob/user)
+/mob/living/simple_animal/hostile/beastmaster/attack_hand(mob/living/user)
 	if(user)
-		if(user.a_intent != INTENT_HELP)
-			for(var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
+		if(!user.combat_mode)
+			for(var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
 				B.add_beastmaster_enemies(user)
 	. = ..()
 
-/mob/living/simple_animal/hostile/beastmaster/on_hit(obj/projectile/P)
-	. = ..()
+/mob/living/simple_animal/hostile/beastmaster/proc/on_hit(datum/source, obj/projectile/P)
+	SIGNAL_HANDLER
 
 	if (!P?.firer)
 		return
 
-	for (var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
+	for (var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
 		B.add_beastmaster_enemies(P.firer)
-
-/mob/living/simple_animal/hostile/beastmaster/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	. = ..()
-
-	if (!throwingdatum?.thrower)
-		return
-
-	for(var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
-		B.add_beastmaster_enemies(throwingdatum.thrower)
 
 /mob/living/simple_animal/hostile/beastmaster/attackby(obj/item/W, mob/living/user, params)
 	. = ..()
@@ -148,21 +138,8 @@
 	if (!user || !W.force)
 		return
 
-	for (var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
-		B.add_beastmaster_enemies(user)
-
-/mob/living/simple_animal/hostile/beastmaster/grabbedby(mob/living/carbon/user, supress_message = FALSE)
-	. = ..()
-
-	if (!user)
+	if(!master)
 		return
 
-	for(var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
+	for (var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
 		B.add_beastmaster_enemies(user)
-
-/mob/living/simple_animal/hostile/beastmaster/attack_animal(mob/user)
-	if (user)
-		for (var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster.beastmaster)
-			B.add_beastmaster_enemies(user)
-
-	. = ..()

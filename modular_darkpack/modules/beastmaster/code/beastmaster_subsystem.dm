@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(beastmastering)
 	name = "Beastmastering"
-	init_order = INIT_ORDER_DEFAULT
 	wait = 10
 	priority = FIRE_PRIORITY_NPC
 
@@ -21,16 +20,14 @@ SUBSYSTEM_DEF(beastmastering)
 	var/list/currentrun = src.currentrun
 
 	while(currentrun.len)
-		var/mob/living/simple_animal/hostile/beastmaster/NPC = currentrun[currentrun.len]
+		var/mob/living/simple_animal/hostile/beastmaster/beast = currentrun[currentrun.len]
 		--currentrun.len
 
-		if (QDELETED(NPC)) // Some issue causes nulls to get into this list some times. This keeps it running, but the bug is still there.
-			GLOB.npc_list -= NPC
-			GLOB.alive_npc_list -= NPC
-			log_world("Found a null in npc list!")
+		if (QDELETED(beast))
+			GLOB.beast_list -= beast
+			log_world("Found a null in beast list!")
 			continue
 
-		//NPC.observed_by_player()
 		if(MC_TICK_CHECK)
 			return
-		NPC.handle_automated_beasting()
+		beast.handle_automated_beasting()
