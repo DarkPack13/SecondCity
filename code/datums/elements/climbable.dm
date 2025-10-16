@@ -69,7 +69,7 @@
 	// Time in deciseonds that the mob is stunned after climbing successfully.
 	var/adjusted_climb_stun = climb_stun
 	// Our climbers fitness level, which removes some climb time and speeds up our climbing do_after, assuming they worked out
-	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics) - 1
+	var/fitness_level = user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_ATHLETICS) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	adjusted_climb_time = clamp(adjusted_climb_time - fitness_level, 1, climb_time) //Here we adjust the number of deciseconds we shave off per level of fitness, with a minimum of 1 decisecond and a maximum of climb_time (just in case)
 
 	var/obj/item/organ/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE)
@@ -101,7 +101,7 @@
 			if(istype(buckle_target))
 				if(buckle_target.is_buckle_possible(user))
 					buckle_target.buckle_mob(user)
-			user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //Get a bit fitter with every climb. But it has diminishing returns at a certain point.
+			// user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //Get a bit fitter with every climb. But it has diminishing returns at a certain point. // DARKPACK EDIT REMOVAL
 		else
 			to_chat(user, span_warning("You fail to climb onto [climbed_thing]."))
 	LAZYREMOVEASSOC(current_climbers, climbed_thing, user)
