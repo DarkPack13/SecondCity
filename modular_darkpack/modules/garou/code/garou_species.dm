@@ -18,6 +18,8 @@
 /datum/species/human/fera/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
 	human.set_hairstyle("Long Hair 3", update = TRUE)
+	human.undershirt = "Shirt (Alien)"
+	human.update_body()
 
 /datum/species/human/fera/garou/randomize_features()
 	var/list/features = ..()

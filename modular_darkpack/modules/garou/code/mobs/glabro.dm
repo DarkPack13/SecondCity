@@ -1,7 +1,7 @@
 /mob/living/carbon/human/fera/glabro
 	name = "glabro"
-	icon_state = "black"
-	icon = 'modular_darkpack/modules/garou/icons/lupus.dmi'
+	icon_state = "human_basic"
+	icon = 'icons/mob/human/human.dmi'
 	mob_size = MOB_SIZE_LARGE
 
 	melee_damage_lower = 10

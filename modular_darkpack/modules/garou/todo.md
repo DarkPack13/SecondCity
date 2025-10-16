@@ -1,4 +1,4 @@
-- [ ] Homid form
+- [x] Homid form
 - [ ] Glabro form
 - [ ] Crinos form
 - [ ] Hispo form
