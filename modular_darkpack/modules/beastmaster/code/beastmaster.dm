@@ -68,12 +68,14 @@
 			for(var/mob/living/L in enemies)
 				if(L.stat < 1 && L.z == z && get_dist(src, L) < 12)
 					target = L
-	else if(!ismob(target) || target.z != z || get_dist(src, target) > 11 || (ismob(target) && target:stat > 0))
-		target = null
-		if(length(enemies))
-			for(var/mob/living/L in enemies)
-				if(L.stat < 1 && L.z == z && get_dist(src, L) < 12)
-					target = L
+	else
+		var/mob/living/living_target = target
+		if(!isliving(target) || target.z != z || get_dist(src, target) > 11 || living_target.stat > 0)
+			target = null
+			if(length(enemies))
+				for(var/mob/living/L in enemies)
+					if(L.stat < 1 && L.z == z && get_dist(src, L) < 12)
+						target = L
 
 	var/totalshit = 1
 	if(cached_multiplicative_slowdown > 0)
