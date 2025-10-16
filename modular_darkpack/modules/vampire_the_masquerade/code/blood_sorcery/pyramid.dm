@@ -202,7 +202,7 @@
 	health = 1
 	melee_damage_lower = 1
 	melee_damage_upper = 1
-	faction = list("Tremere")
+	faction = list(VAMPIRE_CLAN_TREMERE)
 
 /obj/ritualrune/question/complete()
 	visible_message(span_notice("A call rings out to the dead from the [src.name] rune..."))

@@ -14,12 +14,14 @@
 	// Only actual lasguns can be converted
 	if(type != /obj/item/gun/energy/laser)
 		return
+/*
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/xraylaser, /datum/crafting_recipe/hellgun, /datum/crafting_recipe/ioncarbine)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
+	*/ // DARKPACK EDIT REMOVE
 /obj/item/gun/energy/laser/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
 		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \

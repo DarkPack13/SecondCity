@@ -25,7 +25,7 @@
 	)
 	result = /obj/item/food/sandwich/cheese
 	category = CAT_SANDWICH
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/slimesandwich
 	name = "Jelly sandwich"
 	reqs = list(
@@ -35,7 +35,7 @@
 	added_foodtypes = TOXIC
 	result = /obj/item/food/sandwich/jelly/slime
 	category = CAT_SANDWICH
-
+ */
 /datum/crafting_recipe/food/cherrysandwich
 	name = "Jelly sandwich"
 	reqs = list(
