@@ -71,7 +71,7 @@
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 
-/obj/warehouse_generator/process(delta_time)
+/obj/warehouse_generator/process(seconds_per_tick)
 	if(time_since_toggle+100 <= world.time)
 		time_since_toggle = world.time
 
