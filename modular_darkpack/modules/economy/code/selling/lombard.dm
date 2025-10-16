@@ -35,9 +35,8 @@
 	var/sale_price = calculate_sale_price(sold, user, selling_comp)
 	spawn_money(sale_price, loc)
 
-	// Apply humanity loss TODO: [Rebase] -- Implement Morality Systems
-	//if(ishuman(user))
-		//SEND_SIGNAL(user, COMSIG_PATH_HIT, PATH_SCORE_DOWN, selling_comp.humanity_loss_limit)
+	if(ishuman(user) && selling_comp.humanity_loss)
+		user.AdjustHumanity(selling_comp.humanity_loss, selling_comp.humanity_loss_limit)
 
 	// feedback
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
@@ -136,7 +135,7 @@
 		money.update_icon_state()
 		money.forceMove(spawn_location)
 
-/obj/lombard/mouse_drop_receive(atom/sold, mob/user, params)
+/obj/lombard/mouse_drop_receive(atom/sold, mob/living/user, params)
 	. = ..()
 
 	var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
@@ -170,27 +169,26 @@
 		sell_one_item(sold, user)
 		return
 
-	// TODO: [Rebase] Implement Morality Systems
-	/*
+	// Humanity loss warning for bulk sales
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(!H.client?.prefs?.is_enlightened)
+		var/datum/species/human/kindred/vampirism = H.dna.species
+		if(!iskindred(H) || !vampirism.enlightenment)
 			var/humanity_loss_modifier = HAS_TRAIT(H, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
 			var/total_humanity_risk = length(items_to_sell) * humanity_loss_modifier * selling_comp.humanity_loss
 
-			if(selling_comp.humanity_loss_limit < H.morality_path.score)
-				if((selling_comp.humanity_loss_limit <= 0) && ((H.morality_path.score + total_humanity_risk) <= 0))
+			if(selling_comp.humanity_loss_limit < H.humanity)
+				if((selling_comp.humanity_loss_limit <= 0) && ((H.humanity + total_humanity_risk) <= 0))
 					to_chat(user, span_warning("Selling all of this will remove all of your Humanity!"))
 					return
 
-				var/max_loss = min(H.morality_path.score - selling_comp.humanity_loss_limit, -total_humanity_risk)
-				var/choice = alert(H, "Your HUMANITY is currently at [H.morality_path.score], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
+				var/max_loss = min(H.humanity - selling_comp.humanity_loss_limit, -total_humanity_risk)
+				var/choice = alert(H, "Your HUMANITY is currently at [H.humanity], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
 				if(choice == "No")
 					return
 
 				if(!user.CanReach(src) || !user.CanReach(sold))
 					return
-	*/
 
 	var/list/sold_items = sell_multiple_items(items_to_sell, user)
 
@@ -198,13 +196,9 @@
 		return
 
 	// Apply humanity loss for all sold items at once
-	// TODO: [Rebase] Implement Morality Systems
-	/*
-	if(selling_comp.humanity_loss)
-		for(var/i in 1 to (selling_comp.humanity_loss * length(sold_items)))
-			if(ishuman(user))
-				SEND_SIGNAL(user, COMSIG_PATH_HIT, PATH_SCORE_DOWN, selling_comp.humanity_loss_limit)
-	*/
+	if(selling_comp.humanity_loss && ishuman(user))
+		var/total_humanity_loss = selling_comp.humanity_loss * length(sold_items)
+		user.AdjustHumanity(total_humanity_loss, selling_comp.humanity_loss_limit)
 
 	for(var/obj/item/sold_item in sold_items)
 		qdel(sold_item)

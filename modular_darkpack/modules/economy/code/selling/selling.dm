@@ -46,10 +46,22 @@
 		return FALSE
 	return TRUE
 
-/* This message happens on our base code but its irrelevant for enlightenment so the logic needs to be improved. // TODO: [Rebase] -- Implement Morality System
 /datum/component/selling/organ/sale_success_message()
+	var/obj/item/organ/organ = parent
+	var/mob/living/carbon/human/seller
+
+	// Try to find who's selling this (check if it's in someone's hands)
+	if(ishuman(organ.loc))
+		seller = organ.loc
+
+	// If we found a seller and they're on Enlightenment path, no warning
+	if(seller && iskindred(seller))
+		var/datum/species/human/kindred/vampirism = seller.dna.species
+		if(vampirism.enlightenment)
+			return span_notice("You've sold [parent]!")
+
+	// Default warning for Humanity path or non-vampires
 	return span_userdanger("Selling organs is a depraved act! If I keep doing this I will become a wight.")
-*/
 
 /datum/component/selling/organ/sale_fail_message()
 	return span_warning("[src] is too damaged to sell!")
