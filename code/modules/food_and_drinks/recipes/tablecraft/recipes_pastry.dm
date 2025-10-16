@@ -305,7 +305,7 @@
 	)
 	result = /obj/item/food/soylenviridians
 	category = CAT_PASTRY
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/soylentgreen
 	name = "Soylent green"
 	reqs = list(
@@ -326,7 +326,7 @@
 	result = /obj/item/food/rofflewaffles
 	added_foodtypes = VEGETABLES|BREAKFAST
 	category = CAT_PASTRY
-
+*/
 ////////////////////////////////////////////////DONKPOCCKETS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/donkpocket
@@ -404,7 +404,7 @@
 	result = /obj/item/food/donkpocket/berry
 	added_foodtypes = FRUIT|SUGAR
 	category = CAT_PASTRY
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/donkpocket/gondola
 	time = 1.5 SECONDS
 	name = "Gondola-pocket"
@@ -415,7 +415,7 @@
 	)
 	result = /obj/item/food/donkpocket/gondola
 	category = CAT_PASTRY
-
+ */
 /datum/crafting_recipe/food/donkpocket/deluxe
 	time = 1.5 SECONDS
 	name = "Deluxe Donk-pocket"

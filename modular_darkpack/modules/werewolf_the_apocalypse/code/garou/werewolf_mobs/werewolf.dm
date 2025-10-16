@@ -3,7 +3,7 @@
 	icon = 'code/modules/wod13/werewolf.dmi'
 	gender = MALE
 	dna = null
-	faction = list("Gaia")
+	faction = list(FACTION_GAIA)
 	ventcrawler = VENTCRAWLER_NONE
 	pass_flags = 0
 //	sight = SEE_MOBS

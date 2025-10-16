@@ -31,7 +31,7 @@
 	if(!GLOB.masquerade_breakers_list)
 		to_chat(user, span_info("No available Masquerade breakers in city..."))
 
-/* TODO: [Rebase] GAROU
+/* TODO: [Rebase] - GAROU
 /obj/item/veil_contract
 	name = "\improper brass pocketwatch"
 	desc = "A posh looking pocketwatch."

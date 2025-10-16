@@ -18,7 +18,7 @@
 	bloodpool = 1
 	maxbloodpool = 1
 
-	faction = list("Tremere")
+	faction = list(VAMPIRE_CLAN_TREMERE)
 	ai_controller = /datum/ai_controller/basic_controller/blood_guard
 
 /mob/living/basic/blood_guard/Initialize(mapload)

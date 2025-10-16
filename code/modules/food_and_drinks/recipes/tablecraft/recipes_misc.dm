@@ -12,7 +12,7 @@
 	result = /obj/item/food/candiedapple
 	added_foodtypes = JUNKFOOD|SUGAR
 	category = CAT_MISCFOOD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/spiderlollipop
 	name = "Spider Lollipop"
 	reqs = list(/obj/item/stack/rods = 1,
@@ -24,7 +24,7 @@
 	added_foodtypes = JUNKFOOD|SUGAR
 	removed_foodtypes = TOXIC
 	category = CAT_MISCFOOD
-
+ */
 /datum/crafting_recipe/food/chococoin
 	name = "Choco coin"
 	reqs = list(/obj/item/food/chocolatebar = 1)
@@ -108,7 +108,7 @@
 	result = /obj/item/food/honeybar
 	added_foodtypes = SUGAR
 	category = CAT_MISCFOOD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/powercrepe
 	name = "Powercrepe"
 	time = 4 SECONDS
@@ -122,7 +122,7 @@
 	result = /obj/item/food/powercrepe
 	added_foodtypes = FRUIT|SUGAR
 	category = CAT_MISCFOOD
-
+ */
 /datum/crafting_recipe/food/branrequests
 	name = "Bran Requests Cereal"
 	reqs = list(
@@ -159,7 +159,7 @@
 	result = /obj/item/food/salad/risotto
 	removed_foodtypes = BREAKFAST
 	category = CAT_MISCFOOD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/butterbear //ITS ALIVEEEEEE!
 	name = "Living bear/butter hybrid"
 	reqs = list(
@@ -172,7 +172,7 @@
 	)
 	result = /mob/living/basic/bear/butter
 	category = CAT_MISCFOOD
-
+ */
 /datum/crafting_recipe/food/crab_rangoon
 	name = "Crab Rangoon"
 	reqs = list(
@@ -184,7 +184,7 @@
 	result = /obj/item/food/crab_rangoon
 	removed_foodtypes = RAW
 	category = CAT_SEAFOOD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/royalcheese
 	name = "Royal Cheese"
 	reqs = list(
@@ -195,7 +195,7 @@
 	)
 	result = /obj/item/food/cheese/royal
 	category = CAT_MISCFOOD
-
+ */
 /datum/crafting_recipe/food/ant_candy
 	name = "Ant Candy"
 	reqs = list(/obj/item/stack/rods = 1,

@@ -11,10 +11,10 @@
 	icon_state = "hotel"
 	outdoors = FALSE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/nosferatu.ogg'
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 
 /area/vtm/sewer/old_clan_sanctum
 	name = "Old Clan Tzimisce Sanctum"
 	icon_state = "old_clan_sanctum"
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/nosferatu.ogg'
