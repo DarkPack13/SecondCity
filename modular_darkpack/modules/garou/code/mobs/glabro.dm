@@ -2,7 +2,6 @@
 	name = "glabro"
 	icon_state = "black"
 	icon = 'modular_darkpack/modules/garou/icons/lupus.dmi'
-	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_LARGE
 
 	melee_damage_lower = 10
