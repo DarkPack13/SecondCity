@@ -64,4 +64,5 @@
 	return span_userdanger("Selling organs is a depraved act! If I keep doing this I will become a wight.")
 
 /datum/component/selling/organ/sale_fail_message()
-	return span_warning("[src] is too damaged to sell!")
+	var/obj/item/organ/organ = parent
+	return span_warning("The [organ.name] is too damaged to sell!")
