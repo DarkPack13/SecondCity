@@ -63,7 +63,7 @@
 		L.update(FALSE)
 	playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 
-/obj/warehouse_generator/Initialize()
+/obj/warehouse_generator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
