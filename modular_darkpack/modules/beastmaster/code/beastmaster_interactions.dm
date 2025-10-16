@@ -80,13 +80,15 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
 	RegisterSignal(parent, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_hit))
 	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(on_hitby))
+	RegisterSignal(parent, COMSIG_MOVABLE_POINTED, PROC_REF(on_beastmaster_point))
 
 /datum/component/beastmaster_defender/Destroy()
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_ATTACK_HAND,
 		COMSIG_ATOM_BULLET_ACT,
-		COMSIG_ATOM_HITBY
+		COMSIG_ATOM_HITBY,
+		COMSIG_MOVABLE_POINTED
 	))
 	return ..()
 
@@ -118,8 +120,12 @@
 		for(var/mob/living/simple_animal/hostile/beastmaster/B in H.beastmaster_minions)
 			B.add_beastmaster_enemies(user)
 
-/mob/living/carbon/human/pointed(atom/A as mob|obj|turf in view(client.view, src))
-	if(length(beastmaster_minions) && isliving(A))
-		for(var/mob/living/simple_animal/hostile/beastmaster/B in beastmaster_minions)
-			B.add_beastmaster_enemies(A)
-	return ..()
+/datum/component/beastmaster_defender/proc/on_beastmaster_point(datum/source, atom/pointed_at)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/H = parent
+
+	if(!isliving(pointed_at))
+		return
+
+	for(var/mob/living/simple_animal/hostile/beastmaster/B in H.beastmaster_minions)
+		B.add_beastmaster_enemies(pointed_at)
