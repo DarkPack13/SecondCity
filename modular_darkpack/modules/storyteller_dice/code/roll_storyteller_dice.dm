@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(roll)
  * * alert_atom - the atom over which balloon alerts should appear
  * * numerical - whether the proc returns number of successes or outcome (botch, failure, success)
  */
-/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = DIFF_STANDARD, list/mobs_to_show_output = list(), atom/alert_atom = null)
+/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = DIFF_STANDARD, list/mobs_to_show_output = list(), atom/alert_atom = null, numerical = FALSE)
 	var/list/rolled_dice = roll_dice(dice)
 	if(!islist(mobs_to_show_output))
 		mobs_to_show_output = list(mobs_to_show_output)
