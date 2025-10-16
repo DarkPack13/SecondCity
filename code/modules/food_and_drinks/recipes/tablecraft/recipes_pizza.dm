@@ -98,7 +98,7 @@
 	)
 	result = /obj/item/food/pizzaslice/ants
 	added_foodtypes = BUGS
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/pizza/energy
 	reqs = list(
 		/obj/item/food/flatdough = 1,
@@ -106,7 +106,7 @@
 	)
 	result = /obj/item/food/pizza/energy/raw
 	added_foodtypes = parent_type::added_foodtypes|TOXIC
-
+ */
 /datum/crafting_recipe/food/pizza/raw_meat_calzone
 	name = "Meat calzone"
 	reqs = list(

@@ -14,7 +14,7 @@
 	name = "Giovanni Mansion"
 	icon_state = "giovanni"
 	outdoors = FALSE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
 /area/vtm/interior/techshop
@@ -27,7 +27,7 @@
 	name = "Bianchi Bank"
 	icon_state = "giovanni"
 	outdoors = FALSE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
 /area/vtm/interior/police
@@ -89,7 +89,7 @@
 /area/vtm/interior/old_clan_tzimisce_manor
 	name = "Old Clan Tzimisce Manor"
 	icon_state = "old_clan_tzimisce"
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/prince.ogg'
 
 /area/vtm/interior/strip_elysium
@@ -97,4 +97,4 @@
 	icon_state = "prince"
 	outdoors = FALSE
 	fire_controled = TRUE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM

@@ -1,4 +1,4 @@
-/datum/crafting_recipe/strobeshield
+/* /datum/crafting_recipe/strobeshield // DARKPACK EDIT REMOVE
 	name = "Strobe Shield"
 	result = /obj/item/shield/riot/flash
 	reqs = list(
@@ -12,7 +12,7 @@
 /datum/crafting_recipe/strobeshield/New()
 	..()
 	blacklist |= subtypesof(/obj/item/shield/riot)
-
+ */
 /datum/crafting_recipe/improvisedshield
 	name = "Improvised Shield"
 	result = /obj/item/shield/improvised
@@ -33,7 +33,7 @@
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
 
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/radiogloves
 	name = "Radio Gloves"
 	result = /obj/item/clothing/gloves/radio
@@ -50,7 +50,7 @@
 	..()
 	blacklist |= typesof(/obj/item/radio/headset)
 	blacklist |= typesof(/obj/item/radio/intercom)
-
+ */
 /datum/crafting_recipe/wheelchair
 	name = "Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair
@@ -147,7 +147,7 @@
 		/obj/item/stack/rods = 1,
 	)
 	category = CAT_EQUIPMENT
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
 	result = /obj/item/organ/eyes/robotic/flashlight
@@ -246,10 +246,11 @@
 	)
 	result = /obj/item/clothing/gloves/tackler/offbrand
 	category = CAT_EQUIPMENT
-
+ */
 /**
  * Recipe used for upgrading fake N-spect scanners to bananium HONK-spect scanners
  */
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/clown_scanner_upgrade
 	name = "Bananium HONK-spect scanner"
 	result = /obj/item/inspector/clown/bananium
@@ -261,7 +262,7 @@
 	tool_paths = list(/obj/item/bikehorn)
 	time = 40 SECONDS
 	category = CAT_EQUIPMENT
-
+ */
 /datum/crafting_recipe/rebar_quiver
 	name = "Rebar Storage Quiver"
 	result = /obj/item/storage/bag/rebar_quiver
@@ -283,7 +284,7 @@
 	)
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/tether_anchor
 	name = "Tether Anchor"
 	result = /obj/item/tether_anchor
@@ -319,3 +320,4 @@
 	time = 10 SECONDS
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+ */
