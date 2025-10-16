@@ -50,3 +50,6 @@
   - image: new default titlescreen
   - rscdel: redundant click.dm
   - image: new default species appearance
+2025-10-16:
+  KCartridge:
+  - rscdel: A lot of crafting recipes
