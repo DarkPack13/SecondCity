@@ -22,7 +22,6 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
-	minbodytemp = 0
 	bloodpool = 2
 	maxbloodpool = 2
 //	retreat_distance = 3
@@ -36,35 +35,25 @@
 	var/mob/living/carbon/human/master
 	var/list/enemies = list()
 
+// ============= BEASTMASTER MOB PROCS =============
 /mob/living/simple_animal/hostile/beastmaster/Initialize(mapload)
 	. = ..()
 	GLOB.beast_list += src
 	RegisterSignal(src, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_hit))
 
-/mob/living/simple_animal/hostile/beastmaster/Destroy()
-	. = ..()
-
-	if (stat >= SOFT_CRIT)
-		return
-
 	if(master)
-		master.beastmaster_minions -= src
-		if(!length(master.beastmaster_minions))
-			for(var/datum/action/beastmaster_stay/E in master.actions)
-				qdel(E)
-			for(var/datum/action/beastmaster_deaggro/E in master.actions)
-				qdel(E)
+		master.add_beastmaster_minion(src)
+
+/mob/living/simple_animal/hostile/beastmaster/Destroy()
+	if(master)
+		master.remove_beastmaster_minion(src)
 	GLOB.beast_list -= src
+	return ..()
 
 /mob/living/simple_animal/hostile/beastmaster/death(gibbed)
 	. = ..()
 	if(master)
-		master.beastmaster_minions -= src
-		if(!length(master.beastmaster_minions))
-			for(var/datum/action/beastmaster_stay/E in master.actions)
-				qdel(E)
-			for(var/datum/action/beastmaster_deaggro/E in master.actions)
-				qdel(E)
+		master.remove_beastmaster_minion(src)
 	GLOB.beast_list -= src
 
 /mob/living/simple_animal/hostile/beastmaster/proc/handle_automated_beasting()
@@ -73,6 +62,7 @@
 	if(stat > 0)
 		GLOB.beast_list -= src
 		return
+
 	if(!target)
 		if(length(enemies))
 			for(var/mob/living/L in enemies)
@@ -116,13 +106,6 @@
 	if(!target)
 		target = L
 
-/mob/living/simple_animal/hostile/beastmaster/attack_hand(mob/living/user)
-	if(user)
-		if(!user.combat_mode)
-			for(var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
-				B.add_beastmaster_enemies(user)
-	. = ..()
-
 /mob/living/simple_animal/hostile/beastmaster/proc/on_hit(datum/source, obj/projectile/P)
 	SIGNAL_HANDLER
 
@@ -131,15 +114,3 @@
 
 	for (var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
 		B.add_beastmaster_enemies(P.firer)
-
-/mob/living/simple_animal/hostile/beastmaster/attackby(obj/item/W, mob/living/user, params)
-	. = ..()
-
-	if (!user || !W.force)
-		return
-
-	if(!master)
-		return
-
-	for (var/mob/living/simple_animal/hostile/beastmaster/B in master.beastmaster_minions)
-		B.add_beastmaster_enemies(user)
