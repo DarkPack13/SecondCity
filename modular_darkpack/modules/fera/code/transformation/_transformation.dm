@@ -12,7 +12,8 @@
 
 /datum/action/cooldown/spell/shapeshift/transformation/New(Target, list/transformations)
 	. = ..()
-	possible_shapes = transformations
+	if(transformations)
+		possible_shapes = transformations
 
 /datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/caster)
 	. = ..()
