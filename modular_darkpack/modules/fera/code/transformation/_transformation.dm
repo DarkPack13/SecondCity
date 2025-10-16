@@ -36,7 +36,7 @@
 	shapeshift_type = null
 
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/human/fera/caster, shapeshift_type)
-	playsound(caster, transformation_sound, 50)
+	playsound(caster, caster.transformation_sound, 50)
 	var/matrix/source_transform = matrix(caster.transform) //aka transform.Copy()
 	source_transform.Scale(0.75, 0.75)
 	animate(caster, transform = source_transform, color = "#000000", time = TRANSFORMATION_DURATION)
