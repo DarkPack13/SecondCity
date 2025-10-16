@@ -9,6 +9,6 @@
 - [ ] Garou Tribes
 - [ ] Garou Auspice
 - [ ] Garou Clan
-- [ ] Garou Breeds
+- [x] Garou Breeds
 
 - [x] Garou Languages
