@@ -1,7 +1,7 @@
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal. Comes complete with experimental urinal cake."
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/watercloset.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "urinal"
 	density = FALSE
 	anchored = TRUE
@@ -92,7 +92,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 /obj/item/wallframe/urinal
 	name = "urinal frame"
 	desc = "An unmounted urinal. Attach it to a wall to use."
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/watercloset.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "urinal"
 	result_path = /obj/structure/urinal
 	pixel_shift = 32

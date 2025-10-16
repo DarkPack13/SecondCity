@@ -15,6 +15,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Trasen-Knox" = 'icons/hud/screen_trasenknox.dmi',
 	"Detective" = 'icons/hud/screen_detective.dmi',
+	"World of Darkness" = 'modular_darkpack/master_files/icons/hud/screen_darkness.dmi', // DARKPACK EDIT ADD - Put at the bottom as it has terrible coverage
+	"World of Darkness New" = 'modular_darkpack/master_files/icons/hud/screen_darkness_new.dmi', // DARKPACK EDIT ADD - Put at the bottom as it has terrible coverage
 ))
 
 /proc/ui_style2icon(ui_style)

@@ -24,7 +24,7 @@
 	bloodpool = 10
 	maxbloodpool = 10
 
-	faction = list("Baali")
+	faction = list(VAMPIRE_CLAN_BAALI)
 
 /mob/living/basic/baali_guard/Initialize(mapload)
 	. = ..()

@@ -51,7 +51,7 @@
 	icon_state = "prince"
 	ambience_index = AMBIENCE_INTERIOR
 	outdoors = FALSE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
 /area/vtm/jazzclub
@@ -59,7 +59,7 @@
 	icon_state = "camarilla"
 	ambience_index = AMBIENCE_INTERIOR
 	outdoors = FALSE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
 /area/vtm/cabaret
@@ -78,7 +78,7 @@
 
 /area/vtm/clinic/haven
 	name = "Clinic - Psych Ward"
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 
 /area/vtm/supply
 	name = "Supply"
@@ -112,7 +112,7 @@
 	icon_state = "prince"
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/lift.ogg'
 	outdoors = FALSE
-	zone_type = "elysium"
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
 /area/vtm/outside/forest

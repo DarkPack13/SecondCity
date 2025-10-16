@@ -123,7 +123,7 @@
 #define LIGHTING_DIRECTIONAL_HELPERS(path) \
 MAPPING_DIRECTIONAL_HELPERS(##path, 0) \
 ##path/directional/north {\
-	pixel_y = 12; \
+	pixel_y = 20; \
 } \
 ##path/directional/south {\
 	pixel_y = 16; \

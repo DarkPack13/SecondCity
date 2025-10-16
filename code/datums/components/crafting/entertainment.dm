@@ -1,4 +1,4 @@
-/datum/crafting_recipe/moffers
+/* /datum/crafting_recipe/moffers // DARKPACK EDIT REMOVE
 	name = "Moffers"
 	result = /obj/item/clothing/shoes/clown_shoes/moffers
 	time = 6 SECONDS //opportunity to rethink your life
@@ -25,7 +25,7 @@
 		/obj/item/stack/sheet/cloth = 3,
 	)
 	category = CAT_ENTERTAINMENT
-
+ */
 /datum/crafting_recipe/sharkplush
 	name = "Shark Plushie"
 	result = /obj/item/toy/plush/shark
@@ -178,7 +178,7 @@
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_ENTERTAINMENT
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/toiletbong
 	name = "Toiletbong"
 	category = CAT_ENTERTAINMENT
@@ -196,7 +196,7 @@
 	if(!flamethrower.ptank)
 		return FALSE
 	return ..()
-
+ */
 /datum/crafting_recipe/punching_bag
 	name = "Punching Bag"
 	result = /obj/structure/punching_bag

@@ -13,7 +13,7 @@
 		if(istype(get_area(src), /area/vtm))
 			var/area/vtm/V = get_area(src)
 			hud_used.zone_icon.icon_state = "[V.zone_type]"
-			if(V.zone_type == "elysium")
+			if(V.zone_type == ZONE_ELYSIUM)
 				if(!HAS_TRAIT(src, TRAIT_ELYSIUM))
 					ADD_TRAIT(src, TRAIT_ELYSIUM, "elysium")
 			else
