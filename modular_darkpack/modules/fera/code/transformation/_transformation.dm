@@ -7,6 +7,7 @@
 	desc = "Transform into your different form!"
 	school = SCHOOL_UNSET
 	spell_requirements = NONE
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_INCAPACITATED|AB_CHECK_LYING
 	revert_on_death = FALSE
 	possible_shapes = list(/mob/living/carbon/human/fera/lupus) //Default is lupus form. CHANGE THIS FOR YOUR SUBTYPES.
 
@@ -20,15 +21,19 @@
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	do_shapeshift_animation(caster)
-	. = ..()
+	var/unshapeshifted_mob = ..()
+	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
+	return unshapeshifted_mob
 
 /datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	do_shapeshift_animation(caster)
-	. = ..()
+	var/unshapeshifted_mob = ..()
 	shapeshift_type = null
+	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
+	return unshapeshifted_mob
 
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/caster)
 	ADD_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
@@ -45,6 +50,9 @@
 	animate(caster, transform = null, color = "#FFFFFF", time = 10)
 	caster.transformation_timer = null
 	REMOVE_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
+
+/datum/action/cooldown/spell/shapeshift/transformation/proc/do_post_shapeshift_adjustments(mob/living/carbon/caster, mob/living/carbon/unshapeshifted_mob)
+	return
 
 #undef TEMPORARY_TRANSFORMATION_TRAIT
 #undef TRANSFORMATION_DURATION
