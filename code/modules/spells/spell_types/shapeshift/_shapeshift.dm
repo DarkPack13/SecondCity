@@ -92,14 +92,15 @@
 
 	// DARKPACK EDIT START - Garou
 	var/unshapeshifted_creature
+	var/chosen_shapeshift_type
 	// Do the shift back or forth
 	if(is_shifted(cast_on))
-		var/chosen_shapeshift_type = shapeshift_type
+		chosen_shapeshift_type = shapeshift_type
 		unshapeshifted_creature = do_unshapeshift(cast_on)
 		shapeshift_type = chosen_shapeshift_type
 	if(!unshapeshifted_creature)
 		unshapeshifted_creature = cast_on
-	resulting_mob = do_shapeshift(unshapeshifted_creature, skip_animation = TRUE)
+	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE)
 	// DARKPACK EDIT END
 
 	// The shift is done, let's make sure they're in a valid state now
