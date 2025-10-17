@@ -54,6 +54,10 @@ SUBSYSTEM_DEF(ambience)
 ///Attempts to play an ambient sound to a mob, returning the cooldown in deciseconds
 /area/proc/play_ambience(mob/M, sound/override_sound, volume = 27)
 	var/sound/new_sound = override_sound || pick(ambientsounds)
+	// DARKPACK EDIT ADD START
+	if(!new_sound) // Dont try to play a sound if we dont have any, required by darkpack as not every area has a sound.
+		return 1 MINUTES
+	// DARKPACK EDIT ADD END
 	/// volume modifier for ambience as set by the player in preferences.
 	var/volume_modifier = (M.client?.prefs.read_preference(/datum/preference/numeric/volume/sound_ambience_volume))/100
 	new_sound = sound(new_sound, repeat = 0, wait = 0, volume = volume*volume_modifier, channel = CHANNEL_AMBIENCE)

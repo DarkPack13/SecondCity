@@ -1,0 +1,5 @@
+author: "Marshmellow105"
+delete-after: True
+changes:
+  - image: "removed some refs to ss13 and nanotrasen on icons"
+  - code_imp: "removed some refs to ss13 and nanotrasen in names and descs of things"

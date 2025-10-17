@@ -234,6 +234,13 @@
 			for(var/behavior in recipe.tool_behaviors)
 				recipe_time += dynamic_recipe_time * found_behaviors[behavior]
 
+		// DARKPACK EDIT ADD START - STORYTELLR_STATS
+		var/mob/living/carbon/human/human_crafter
+		if(ishuman(crafter))
+			human_crafter = crafter
+			recipe_time = recipe_time * human_crafter.st_stat_multiplier(STAT_CRAFTS)
+		// DARKPACK EDIT ADD END
+
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))
 			return "."
 		contents = get_surroundings(crafter, recipe.blacklist)

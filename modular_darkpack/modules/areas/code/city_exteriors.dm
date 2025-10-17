@@ -49,7 +49,7 @@
 /area/vtm/city_elevator
 	name = "City Elevator"
 	icon_state = "prince"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
@@ -57,7 +57,7 @@
 /area/vtm/jazzclub
 	name = "Jazz Club"
 	icon_state = "camarilla"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
@@ -65,14 +65,14 @@
 /area/vtm/cabaret
 	name = "Siren's Cabaret"
 	icon_state = "melpominee"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	fire_controled = TRUE
 
 /area/vtm/clinic
 	name = "Clinic"
 	icon_state = "clinic"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	fire_controled = TRUE
 
@@ -83,13 +83,13 @@
 /area/vtm/supply
 	name = "Supply"
 	icon_state = "supply"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 
 /area/vtm/hotel
 	name = "Hotel"
 	icon_state = "hotel"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	fire_controled = TRUE
 
@@ -97,7 +97,7 @@
 	name = "Church"
 	icon_state = "church"
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	fire_controled = TRUE
 

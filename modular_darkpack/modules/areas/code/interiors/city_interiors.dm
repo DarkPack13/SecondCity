@@ -74,7 +74,7 @@
 /area/vtm/interior/backrooms
 	name = "Backrooms"
 	icon_state = "church"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	zone_type = ZONE_NO_MASQUERADE
 	fire_controled = FALSE
