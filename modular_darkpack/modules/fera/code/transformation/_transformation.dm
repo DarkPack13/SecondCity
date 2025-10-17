@@ -22,7 +22,7 @@
 	do_shapeshift_animation(caster)
 	. = ..()
 
-/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/caster)
+/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
