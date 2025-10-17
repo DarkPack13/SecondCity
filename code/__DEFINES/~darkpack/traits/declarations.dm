@@ -75,5 +75,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 /// If the species has garou breeds to select.
 #define TRAIT_VTM_GAROU_BREEDS "vtm_garou_breeds"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED "wyrm_tainted"
 
 // END TRAIT DEFINES

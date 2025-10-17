@@ -10,3 +10,9 @@
 
 /mob/living/carbon/human/fera/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	return FALSE
+
+/mob/living/carbon/human/fera/update_damage_overlays() //aliens don't have damage overlays.
+	return
+
+/mob/living/carbon/human/fera/update_body(is_creating = FALSE)
+	return
