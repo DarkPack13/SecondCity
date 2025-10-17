@@ -49,7 +49,7 @@
 			to_chat(cast_on, span_warning("This spell won't un-shapeshift you from this form!"))
 			return . | SPELL_CANCEL_CAST
 
-		return
+		//return //DARKPACK EDIT REMOVAL
 
 	if(length(possible_shapes) == 1)
 		shapeshift_type = possible_shapes[1]
@@ -90,11 +90,17 @@
 	var/currently_ventcrawling = (cast_on.movement_type & VENTCRAWLING)
 	var/mob/living/resulting_mob
 
+	// DARKPACK EDIT START - Garou
+	var/unshapeshifted_creature
 	// Do the shift back or forth
 	if(is_shifted(cast_on))
-		resulting_mob = do_unshapeshift(cast_on)
-	else
-		resulting_mob = do_shapeshift(cast_on)
+		var/chosen_shapeshift_type = shapeshift_type
+		unshapeshifted_creature = do_unshapeshift(cast_on)
+		shapeshift_type = chosen_shapeshift_type
+	if(!unshapeshifted_creature)
+		unshapeshifted_creature = cast_on
+	resulting_mob = do_shapeshift(unshapeshifted_creature)
+	// DARKPACK EDIT END
 
 	// The shift is done, let's make sure they're in a valid state now
 	// If we're not ventcrawling, we don't need to mind

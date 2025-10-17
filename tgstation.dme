@@ -6869,6 +6869,7 @@
 #include "modular_darkpack\modules\fera\code\_fera.dm"
 #include "modular_darkpack\modules\fera\code\fera_species.dm"
 #include "modular_darkpack\modules\fera\code\fera_update_icons.dm"
+#include "modular_darkpack\modules\fera\code\human_additions.dm"
 #include "modular_darkpack\modules\fera\code\transformation\_transformation.dm"
 #include "modular_darkpack\modules\fire\code\fire_globals.dm"
 #include "modular_darkpack\modules\flags\code\flags.dm"

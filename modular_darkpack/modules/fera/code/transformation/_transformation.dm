@@ -15,14 +15,24 @@
 	. = ..()
 	if(transformations)
 		possible_shapes = transformations
+		possible_shapes += /mob/living/carbon/human
+
+/datum/action/cooldown/spell/shapeshift/transformation/before_cast(mob/living/cast_on)
+	. = ..()
+	if(shapeshift_type == cast_on.type)
+		shapeshift_type = null
+		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster)
+
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
+	if(shapeshift_type.type == /mob/living/carbon/human)
+		return
 	do_shapeshift_animation(caster)
 	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
-		owner.balloon_alert(owner, "must stand up!")
+		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
 	var/unshapeshifted_mob = ..()
@@ -35,7 +45,7 @@
 		return
 	do_shapeshift_animation(caster)
 	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
-		owner.balloon_alert(owner, "must stand up!")
+		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
 	var/unshapeshifted_mob = ..()
@@ -46,8 +56,8 @@
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/caster)
 	ADD_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
 	caster.Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
-	var/mob/living/carbon/human/fera/fera_shapeshift_type = shapeshift_type
-	playsound(caster, fera_shapeshift_type?.transformation_sound, 50)
+	var/mob/living/carbon/human/human_shapeshift_type = shapeshift_type
+	playsound(caster, human_shapeshift_type.transformation_sound, 50)
 	var/matrix/source_transform = matrix(caster.transform)
 	var/matrix/new_transform = matrix(source_transform)
 	new_transform.Scale(0.75, 0.75)

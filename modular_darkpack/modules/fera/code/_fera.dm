@@ -2,7 +2,6 @@
 /mob/living/carbon/human/fera
 	rotate_on_lying = FALSE
 	initial_language_holder = /datum/language_holder/primal
-	var/transformation_sound = 'modular_darkpack/modules/garou/sound/transform.ogg'
 
 /mob/living/carbon/human/fera/Initialize(mapload)
 	. = ..()
