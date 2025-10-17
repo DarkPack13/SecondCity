@@ -21,6 +21,10 @@
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	do_shapeshift_animation(caster)
+	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
+		owner.balloon_alert(owner, "must stand up!")
+		shapeshift_type = null
+		return
 	var/unshapeshifted_mob = ..()
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
 	return unshapeshifted_mob
@@ -30,6 +34,10 @@
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	do_shapeshift_animation(caster)
+	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
+		owner.balloon_alert(owner, "must stand up!")
+		shapeshift_type = null
+		return
 	var/unshapeshifted_mob = ..()
 	shapeshift_type = null
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
@@ -40,14 +48,15 @@
 	caster.Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
 	var/mob/living/carbon/human/fera/fera_shapeshift_type = shapeshift_type
 	playsound(caster, fera_shapeshift_type?.transformation_sound, 50)
-	var/matrix/source_transform = matrix(caster.transform) //aka transform.Copy()
-	source_transform.Scale(0.75, 0.75)
-	animate(caster, transform = source_transform, color = "#000000", time = TRANSFORMATION_DURATION)
+	var/matrix/source_transform = matrix(caster.transform)
+	var/matrix/new_transform = matrix(source_transform)
+	new_transform.Scale(0.75, 0.75)
+	animate(caster, transform = new_transform, color = "#000000", time = TRANSFORMATION_DURATION)
 	sleep(TRANSFORMATION_DURATION) //this pains me, please tell me if anyone finds a better solution for this
-	finish_shapeshift_animation(caster)
+	finish_shapeshift_animation(caster, source_transform)
 
-/datum/action/cooldown/spell/shapeshift/transformation/proc/finish_shapeshift_animation(mob/living/carbon/caster)
-	animate(caster, transform = null, color = "#FFFFFF", time = 10)
+/datum/action/cooldown/spell/shapeshift/transformation/proc/finish_shapeshift_animation(mob/living/carbon/caster, source_transform)
+	animate(caster, transform = source_transform, color = "#FFFFFF", time = 10)
 	caster.transformation_timer = null
 	REMOVE_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
 
