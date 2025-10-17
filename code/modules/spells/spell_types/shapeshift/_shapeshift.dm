@@ -99,7 +99,7 @@
 		shapeshift_type = chosen_shapeshift_type
 	if(!unshapeshifted_creature)
 		unshapeshifted_creature = cast_on
-	resulting_mob = do_shapeshift(unshapeshifted_creature)
+	resulting_mob = do_shapeshift(unshapeshifted_creature, skip_animation = TRUE)
 	// DARKPACK EDIT END
 
 	// The shift is done, let's make sure they're in a valid state now

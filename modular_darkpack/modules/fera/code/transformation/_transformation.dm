@@ -23,13 +23,14 @@
 		shapeshift_type = null
 		return . | SPELL_CANCEL_CAST
 
-/datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster)
+/datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster, skip_animation = FALSE)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	if(shapeshift_type.type == /mob/living/carbon/human)
 		return
-	do_shapeshift_animation(caster)
+	if(!skip_animation)
+		do_shapeshift_animation(caster)
 	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
@@ -38,11 +39,12 @@
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
 	return unshapeshifted_mob
 
-/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster)
+/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster, skip_animation = FALSE)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
-	do_shapeshift_animation(caster)
+	if(!skip_animation)
+		do_shapeshift_animation(caster)
 	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
