@@ -3,7 +3,7 @@
 
 	var/laid_down = FALSE
 
-	if(stat == UNCONSCIOUS || IsSleeping() || stat == HARD_CRIT || stat == SOFT_CRIT || IsParalyzed() || stat == DEAD || body_position == LYING_DOWN)
+	if(stat >= SOFT_CRIT || IsParalyzed() || body_position == LYING_DOWN)
 		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
 			icon_state = "spiral[sprite_color]_rest"
 		else
@@ -14,11 +14,6 @@
 			icon_state = "spiral[sprite_color]"
 		else
 			icon_state = "[sprite_color]"
-		var/mutable_appearance/shadow_overlay = mutable_appearance(icon, "undershadow")
-		shadow_overlay.pixel_z = -4
-		shadow_overlay.alpha = 64
-		shadow_overlay.layer = layer-1
-		add_overlay(shadow_overlay)
 
 	if(sprite_scar)
 		var/mutable_appearance/scar_overlay = mutable_appearance(icon, "scar[sprite_scar][laid_down ? "_rest" : ""]")
@@ -54,7 +49,6 @@
 
 /mob/living/carbon/human/fera/crinos/regenerate_icons()
 	if(!..())
-	//	update_icons() //Handled in update_transform(), leaving this here as a reminder
 		update_transform()
 
 /mob/living/carbon/human/fera/crinos/update_transform() //The old method of updating lying/standing was update_icons(). Aliens still expect that.
