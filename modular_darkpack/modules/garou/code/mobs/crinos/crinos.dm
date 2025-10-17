@@ -14,3 +14,9 @@
 	var/sprite_hair_color = "#000000"
 	var/sprite_eye_color = "#FFFFFF"
 	var/sprite_apparel = 0
+
+/mob/living/carbon/human/fera/crinos/Initialize(mapload)
+	. = ..()
+	RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HEAVY)
+
