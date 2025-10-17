@@ -3,6 +3,13 @@
 	rotate_on_lying = FALSE
 	initial_language_holder = /datum/language_holder/primal
 
+	var/sprite_color = "black"
+	var/sprite_scar = 0
+	var/sprite_hair = 0
+	var/sprite_hair_color = "#000000"
+	var/sprite_eye_color = "#FFFFFF"
+	var/sprite_apparel = 0
+
 /mob/living/carbon/human/fera/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_JUMPSUIT, "Fera")

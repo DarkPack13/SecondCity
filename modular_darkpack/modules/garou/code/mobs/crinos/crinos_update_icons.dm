@@ -4,16 +4,10 @@
 	var/laid_down = FALSE
 
 	if(stat >= SOFT_CRIT || IsParalyzed() || body_position == LYING_DOWN)
-		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
-			icon_state = "spiral[sprite_color]_rest"
-		else
-			icon_state = "[sprite_color]_rest"
+		icon_state = HAS_TRAIT(src, TRAIT_WYRMTAINTED) ? "spiral[sprite_color]_rest" : "[sprite_color]_rest"
 		laid_down = TRUE
 	else
-		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
-			icon_state = "spiral[sprite_color]"
-		else
-			icon_state = "[sprite_color]"
+		icon_state = HAS_TRAIT(src, TRAIT_WYRMTAINTED) ? "spiral[sprite_color]" : "[sprite_color]"
 
 	if(sprite_scar)
 		var/mutable_appearance/scar_overlay = mutable_appearance(icon, "scar[sprite_scar][laid_down ? "_rest" : ""]")
