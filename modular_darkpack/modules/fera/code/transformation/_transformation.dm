@@ -19,23 +19,20 @@
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")
 		return
-
-	if(!istype(caster))
-		return
-
-	ADD_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
-	caster.Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
-
 	do_shapeshift_animation(caster)
-
 	. = ..()
 
 /datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/caster)
+	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
+		caster.balloon_alert(caster, "can't transform!")
+		return
 	do_shapeshift_animation(caster)
 	. = ..()
 	shapeshift_type = null
 
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/caster)
+	ADD_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
+	caster.Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
 	var/mob/living/carbon/human/fera/fera_shapeshift_type = shapeshift_type
 	playsound(caster, fera_shapeshift_type?.transformation_sound, 50)
 	var/matrix/source_transform = matrix(caster.transform) //aka transform.Copy()
