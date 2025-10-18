@@ -19,5 +19,5 @@
 	RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW, 0.5, -11)
 
-/mob/living/carbon/werewolf/lupus/can_hold_items(obj/item/I)
+/mob/living/carbon/human/fera/lupus/can_hold_items(obj/item/I)
 	return ((I.w_class <= WEIGHT_CLASS_SMALL) && ..())
