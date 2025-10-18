@@ -35,9 +35,29 @@
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
-	var/unshapeshifted_mob = ..()
-	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
-	return unshapeshifted_mob
+
+	var/mob/living/new_shape = create_shapeshift_mob(caster.loc)
+	var/datum/status_effect/shapechange_mob/shapechange = new_shape.apply_status_effect(/datum/status_effect/shapechange_mob/from_spell/fera, caster, src)
+	if(!shapechange)
+		// We failed to shift, maybe because we were already shapeshifted?
+		// Whatver the case, this shouldn't happen, so throw a stack trace.
+		to_chat(caster, span_warning("You can't shapeshift in this form!"))
+		stack_trace("[type] do_shapeshift was called when the mob was already shapeshifted (from a spell).")
+		return
+
+	// Make sure it's castable even in their new form.
+	pre_shift_requirements = spell_requirements
+	spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB)
+	ADD_TRAIT(new_shape, TRAIT_DONT_WRITE_MEMORY, SHAPESHIFT_TRAIT) // If you shapeshift into a pet subtype we don't want to update Poly's deathcount or something when you die
+
+	// Make sure that if you shapechanged into a bot, the AI can't just turn you off.
+	var/mob/living/simple_animal/bot/polymorph_bot = new_shape
+	if (istype(polymorph_bot))
+		polymorph_bot.bot_cover_flags |= BOT_COVER_EMAGGED
+		polymorph_bot.bot_mode_flags &= ~BOT_MODE_REMOTE_ENABLED
+
+	do_post_shapeshift_adjustments(caster, new_shape)
+	return new_shape
 
 /datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster, skip_animation = FALSE)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
@@ -49,7 +69,21 @@
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
-	var/unshapeshifted_mob = ..()
+
+	var/datum/status_effect/shapechange_mob/shapechange = caster.has_status_effect(/datum/status_effect/shapechange_mob/from_spell/fera)
+	if(!shapechange)
+		// We made it to do_unshapeshift without having a shapeshift status effect, this shouldn't happen.
+		to_chat(caster, span_warning("You can't un-shapeshift from this form!"))
+		stack_trace("[type] do_unshapeshift was called when the mob wasn't even shapeshifted (from a spell).")
+		return
+
+	// Restore the requirements.
+	spell_requirements = pre_shift_requirements
+	pre_shift_requirements = null
+
+	var/mob/living/unshapeshifted_mob = shapechange.caster_mob
+	caster.remove_status_effect(/datum/status_effect/shapechange_mob/from_spell/fera)
+
 	shapeshift_type = null
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
 	return unshapeshifted_mob
@@ -62,7 +96,7 @@
 	var/matrix/new_transform = matrix(source_transform)
 	if(human_shapeshift_type)
 		playsound(caster, human_shapeshift_type.transformation_sound, 50)
-		new_transform.Scale(human_shapeshift_type.transformation_size_width * caster.transformation_size_width, human_shapeshift_type.transformation_size_height * caster.transformation_size_height)
+		new_transform.Scale(human_shapeshift_type.transformation_size_width, human_shapeshift_type.transformation_size_height)
 	animate(caster, transform = new_transform, color = "#000000", time = TRANSFORMATION_DURATION)
 	sleep(TRANSFORMATION_DURATION) //this pains me, please tell me if anyone finds a better solution for this
 	finish_shapeshift_animation(caster, source_transform)
