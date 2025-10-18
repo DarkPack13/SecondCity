@@ -1,3 +1,5 @@
+/// Helper for checking of someone's shapeshifted currently.
+#define is_shifted(mob) mob.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)
 #define TRANSFORMATION_DURATION 22
 /// Will be removed once the transformation is complete.
 #define TEMPORARY_TRANSFORMATION_TRAIT "temporary_transformation"
@@ -143,3 +145,4 @@
 
 #undef TEMPORARY_TRANSFORMATION_TRAIT
 #undef TRANSFORMATION_DURATION
+#undef is_shifted
