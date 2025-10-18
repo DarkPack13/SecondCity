@@ -10,5 +10,5 @@
 
 /mob/living/carbon/human/fera/hispo/Initialize(mapload)
 	. = ..()
-	add_offsets("Hispo", 0, -32, -32, 0, FALSE)
+	add_offsets("Hispo", 0, -16, -16, 0, FALSE)
 
