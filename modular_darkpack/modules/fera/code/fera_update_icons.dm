@@ -52,11 +52,12 @@
 /mob/living/carbon/human/fera/update_mutations_overlay()
 	return
 
-/mob/living/carbon/human/fera/update_damage_overlays() //aliens don't have damage overlays.
+/mob/living/carbon/human/fera/update_damage_overlays()
 	return
 
 /mob/living/carbon/human/fera/update_body(is_creating = FALSE)
 	return
 
-/mob/living/carbon/human/fera/update_body_parts()//we don't use the bodyparts layer for aliens.
+/mob/living/carbon/human/fera/update_body_parts(update_limb_data)
+	update_damage_overlays()
 	return
