@@ -2,33 +2,6 @@
 	update_icons()
 	return ..()
 
-/* --------------------------------------- */
-//For legacy support.
-/mob/living/carbon/human/fera/regenerate_icons()
-
-	if(!..())
-		update_worn_id()
-		update_worn_glasses()
-		update_worn_gloves()
-		update_worn_ears()
-		update_worn_shoes()
-		update_suit_storage()
-		update_worn_mask()
-		update_worn_head()
-		update_worn_belt()
-		update_worn_back()
-		update_worn_oversuit()
-		update_pockets()
-		update_worn_neck()
-		update_transform()
-		//mutations
-		update_mutations_overlay()
-		//damage overlays
-		update_damage_overlays()
-
-/* --------------------------------------- */
-//vvvvvv UPDATE_INV PROCS vvvvvv
-
 /mob/living/carbon/human/fera/update_worn_undersuit()
 	return
 
