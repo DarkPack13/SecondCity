@@ -23,6 +23,38 @@
 		shapeshift_type = null
 		return . | SPELL_CANCEL_CAST
 
+/datum/action/cooldown/spell/shapeshift/transformation/cast(mob/living/cast_on)
+	. = ..()
+	cast_on.buckled?.unbuckle_mob(cast_on, force = TRUE)
+
+	var/currently_ventcrawling = (cast_on.movement_type & VENTCRAWLING)
+	var/mob/living/resulting_mob
+
+	// DARKPACK EDIT START - Garou
+	var/unshapeshifted_creature
+	var/chosen_shapeshift_type
+	// Do the shift back or forth
+	if(is_shifted(cast_on))
+		chosen_shapeshift_type = shapeshift_type
+		unshapeshifted_creature = do_unshapeshift(cast_on)
+		shapeshift_type = chosen_shapeshift_type
+	if(!unshapeshifted_creature)
+		unshapeshifted_creature = cast_on
+	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE)
+	// DARKPACK EDIT END
+
+	// The shift is done, let's make sure they're in a valid state now
+	// If we're not ventcrawling, we don't need to mind
+	if(!currently_ventcrawling || !resulting_mob)
+		return
+
+	// We are ventcrawling - can our new form support ventcrawling?
+	if(HAS_TRAIT(resulting_mob, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(resulting_mob, TRAIT_VENTCRAWLER_NUDE))
+		return
+
+	// Uh oh. You've shapeshifted into something that can't fit into a vent, while ventcrawling.
+	eject_from_vents(resulting_mob)
+
 /datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster, skip_animation = FALSE)
 	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
 		caster.balloon_alert(caster, "can't transform!")

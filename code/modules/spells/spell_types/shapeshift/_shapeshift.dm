@@ -85,23 +85,20 @@
 
 /datum/action/cooldown/spell/shapeshift/cast(mob/living/cast_on)
 	. = ..()
+	//DARKPACK EDIT START
+	if(type == /datum/action/cooldown/spell/shapeshift/transformation)
+		return
+	//DARKPACK EDIT END
 	cast_on.buckled?.unbuckle_mob(cast_on, force = TRUE)
 
 	var/currently_ventcrawling = (cast_on.movement_type & VENTCRAWLING)
 	var/mob/living/resulting_mob
 
-	// DARKPACK EDIT START - Garou
-	var/unshapeshifted_creature
-	var/chosen_shapeshift_type
 	// Do the shift back or forth
 	if(is_shifted(cast_on))
-		chosen_shapeshift_type = shapeshift_type
-		unshapeshifted_creature = do_unshapeshift(cast_on)
-		shapeshift_type = chosen_shapeshift_type
-	if(!unshapeshifted_creature)
-		unshapeshifted_creature = cast_on
-	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE)
-	// DARKPACK EDIT END
+		resulting_mob = do_unshapeshift(cast_on)
+	else
+		resulting_mob = do_shapeshift(cast_on)
 
 	// The shift is done, let's make sure they're in a valid state now
 	// If we're not ventcrawling, we don't need to mind
