@@ -11,6 +11,9 @@
 
 	default_num_hands = 1
 
+	transformation_size_width = 0.75
+	transformation_size_height = 0.75
+
 /mob/living/carbon/human/fera/lupus/Initialize(mapload)
 	. = ..()
 	RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)

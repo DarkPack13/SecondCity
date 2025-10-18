@@ -54,14 +54,15 @@
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
 	return unshapeshifted_mob
 
-/datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/caster)
+/datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/human/caster)
 	ADD_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
 	caster.Stun(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
 	var/mob/living/carbon/human/human_shapeshift_type = shapeshift_type
-	playsound(caster, human_shapeshift_type.transformation_sound, 50)
 	var/matrix/source_transform = matrix(caster.transform)
 	var/matrix/new_transform = matrix(source_transform)
-	new_transform.Scale(0.75, 0.75)
+	if(human_shapeshift_type)
+		playsound(caster, human_shapeshift_type.transformation_sound, 50)
+		new_transform.Scale(human_shapeshift_type.transformation_size_width * caster.transformation_size_width, human_shapeshift_type.transformation_size_height * caster.transformation_size_height)
 	animate(caster, transform = new_transform, color = "#000000", time = TRANSFORMATION_DURATION)
 	sleep(TRANSFORMATION_DURATION) //this pains me, please tell me if anyone finds a better solution for this
 	finish_shapeshift_animation(caster, source_transform)
