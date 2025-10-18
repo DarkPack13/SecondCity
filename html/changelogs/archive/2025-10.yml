@@ -57,3 +57,7 @@
   FalloutFalcon:
   - balance: More stuff uses stats
   - bugfix: fixed runtime from trying to play empty* sound
+2025-10-18:
+  Marshmellow105:
+  - image: removed some refs to ss13 and nanotrasen on icons
+  - code_imp: removed some refs to ss13 and nanotrasen in names and descs of things
