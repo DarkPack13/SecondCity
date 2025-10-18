@@ -1,13 +1,13 @@
-/mob/living/carbon/human/fera/lupus/update_icons()
+/mob/living/carbon/human/fera/hispo/update_icons()
 	cut_overlays()
 
 	var/laid_down = FALSE
 
 	if(stat >= SOFT_CRIT || IsParalyzed() || body_position == LYING_DOWN)
-		icon_state = HAS_TRAIT(src, TRAIT_WYRMTAINTED) ? "spiral[sprite_color]_rest" : "[sprite_color]_rest"
+		icon_state = "[sprite_color]_rest"
 		laid_down = TRUE
 	else
-		icon_state = HAS_TRAIT(src, TRAIT_WYRMTAINTED) ? "spiral[sprite_color]" : "[sprite_color]"
+		icon_state = "[sprite_color]_rest"
 
 	switch(getFireLoss()+getBruteLoss())
 		if(25 to 75)
@@ -26,11 +26,11 @@
 	add_overlay(eye_overlay)
 	. = ..()
 
-/mob/living/carbon/human/fera/lupus/regenerate_icons()
+/mob/living/carbon/human/fera/hispo/regenerate_icons()
 	if(!..())
 		update_transform()
 
-/mob/living/carbon/human/fera/lupus/update_transform()
+/mob/living/carbon/human/fera/hispo/update_transform()
 	. = ..()
 	update_icons()
 
