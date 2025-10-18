@@ -11,8 +11,8 @@
 
 	default_num_hands = 1
 
-	transformation_size_width = 0.75
-	transformation_size_height = 0.75
+	transformation_size_width = 0.5
+	transformation_size_height = 0.5
 
 /mob/living/carbon/human/fera/lupus/Initialize(mapload)
 	. = ..()
