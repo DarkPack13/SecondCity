@@ -7,7 +7,7 @@
 		icon_state = "[sprite_color]_rest"
 		laid_down = TRUE
 	else
-		icon_state = "[sprite_color]_rest"
+		icon_state = "[sprite_color]"
 
 	var/mutable_appearance/eye_overlay = mutable_appearance(icon, "eyes[laid_down ? "_rest" : HAS_TRAIT(src, TRAIT_MOVE_FLYING) ? "_flying" : ""]")
 	eye_overlay.color = sprite_eye_color
