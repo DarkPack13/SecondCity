@@ -45,7 +45,7 @@
 	return
 
 /* Does not override, so that fera can be visibly wielding things.
-/mob/living/carbon/human/get_held_overlays()
+/mob/living/carbon/human/fera/get_held_overlays()
 	return
 */
 
