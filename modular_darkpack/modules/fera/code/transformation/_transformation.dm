@@ -46,7 +46,7 @@
 	var/list/shape_names_to_types = list()
 	var/list/shape_names_to_image = list()
 	if(!human_form_image)
-		human_form_image = mutable_appearance(image(cast_on.appearance))
+		human_form_image = image(cast_on.appearance)
 
 	if(!length(shape_names_to_types) || !length(shape_names_to_image))
 		for(var/atom/path as anything in possible_shapes)
@@ -54,7 +54,6 @@
 				var/mob/living/carbon/human/human_path = path
 				var/shape_name = cast_on.real_name
 				shape_names_to_types[shape_name] = human_path
-
 				shape_names_to_image[shape_name] = get_small_overlay(human_form_image)
 			else
 				var/shape_name = initial(path.name)
