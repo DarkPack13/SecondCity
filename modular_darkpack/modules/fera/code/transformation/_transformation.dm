@@ -21,9 +21,59 @@
 
 /datum/action/cooldown/spell/shapeshift/transformation/before_cast(mob/living/cast_on)
 	. = ..()
-	if(shapeshift_type == cast_on.type)
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	if(shapeshift_type)
+		// If another shapeshift spell was casted while we're already shifted, they could technically go to do_unshapeshift().
+		// However, we don't really want people casting shapeshift A to un-shapeshift from shapeshift B,
+		// as it could cause bugs or unintended behavior. So we'll just stop them here.
+		if(is_shifted(cast_on) && !is_type_in_list(cast_on, possible_shapes))
+			to_chat(cast_on, span_warning("This spell won't un-shapeshift you from this form!"))
+			return . | SPELL_CANCEL_CAST
+
+	if(shapeshift_type && (shapeshift_type == cast_on.type))
 		shapeshift_type = null
 		return . | SPELL_CANCEL_CAST
+
+	if(length(possible_shapes) == 1)
+		shapeshift_type = possible_shapes[1]
+		return
+
+	// Not bothering with caching these as they're only ever shown once
+	var/list/shape_names_to_types = list()
+	var/list/shape_names_to_image = list()
+	if(!length(shape_names_to_types) || !length(shape_names_to_image))
+		for(var/atom/path as anything in possible_shapes)
+			if(path == /mob/living/carbon/human)
+				var/mob/living/carbon/human/human_path = path
+				var/shape_name = initial(human_path.real_name)
+				shape_names_to_types[shape_name] = human_path
+				shape_names_to_image[shape_name] = get_small_overlay(get_flat_existing_human_icon(cast_on, SOUTH))
+			else
+				var/shape_name = initial(path.name)
+				shape_names_to_types[shape_name] = path
+				shape_names_to_image[shape_name] = get_small_overlay(image(icon = initial(path.icon), icon_state = initial(path.icon_state)))
+
+	var/picked_type = show_radial_menu(
+		cast_on,
+		cast_on,
+		shape_names_to_image,
+		custom_check = CALLBACK(src, PROC_REF(check_menu), cast_on),
+		radius = 38,
+	)
+
+	if(!picked_type)
+		return . | SPELL_CANCEL_CAST
+
+	var/atom/shift_type = shape_names_to_types[picked_type]
+	if(!ispath(shift_type))
+		return . | SPELL_CANCEL_CAST
+
+	shapeshift_type = shift_type || pick(possible_shapes)
+	if(QDELETED(src) || QDELETED(owner) || !can_cast_spell(feedback = FALSE))
+		return . | SPELL_CANCEL_CAST
+
 
 /datum/action/cooldown/spell/shapeshift/transformation/cast(mob/living/cast_on)
 	. = ..()
@@ -32,7 +82,6 @@
 	var/currently_ventcrawling = (cast_on.movement_type & VENTCRAWLING)
 	var/mob/living/resulting_mob
 
-	// DARKPACK EDIT START - Garou
 	var/unshapeshifted_creature
 	var/chosen_shapeshift_type
 	// Do the shift back or forth
@@ -43,7 +92,6 @@
 	if(!unshapeshifted_creature)
 		unshapeshifted_creature = cast_on
 	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE)
-	// DARKPACK EDIT END
 
 	// The shift is done, let's make sure they're in a valid state now
 	// If we're not ventcrawling, we don't need to mind
@@ -79,17 +127,6 @@
 		stack_trace("[type] do_shapeshift was called when the mob was already shapeshifted (from a spell).")
 		return
 
-	// Make sure it's castable even in their new form.
-	pre_shift_requirements = spell_requirements
-	spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB)
-	ADD_TRAIT(new_shape, TRAIT_DONT_WRITE_MEMORY, SHAPESHIFT_TRAIT) // If you shapeshift into a pet subtype we don't want to update Poly's deathcount or something when you die
-
-	// Make sure that if you shapechanged into a bot, the AI can't just turn you off.
-	var/mob/living/simple_animal/bot/polymorph_bot = new_shape
-	if (istype(polymorph_bot))
-		polymorph_bot.bot_cover_flags |= BOT_COVER_EMAGGED
-		polymorph_bot.bot_mode_flags &= ~BOT_MODE_REMOTE_ENABLED
-
 	do_post_shapeshift_adjustments(caster, new_shape)
 	return new_shape
 
@@ -111,15 +148,11 @@
 		stack_trace("[type] do_unshapeshift was called when the mob wasn't even shapeshifted (from a spell).")
 		return
 
-	// Restore the requirements.
-	spell_requirements = pre_shift_requirements
-	pre_shift_requirements = null
-
 	var/mob/living/unshapeshifted_mob = shapechange.caster_mob
 	caster.remove_status_effect(/datum/status_effect/shapechange_mob/from_spell/fera)
 
-	shapeshift_type = null
 	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
+	shapeshift_type = null
 	return unshapeshifted_mob
 
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_shapeshift_animation(mob/living/carbon/human/caster)
@@ -141,7 +174,7 @@
 	REMOVE_TRAIT(caster, TRAIT_NO_TRANSFORM, TEMPORARY_TRANSFORMATION_TRAIT)
 
 /datum/action/cooldown/spell/shapeshift/transformation/proc/do_post_shapeshift_adjustments(mob/living/carbon/caster, mob/living/carbon/unshapeshifted_mob)
-	return
+	caster.dna.copy_dna(unshapeshifted_mob.dna)
 
 #undef TEMPORARY_TRANSFORMATION_TRAIT
 #undef TRANSFORMATION_DURATION

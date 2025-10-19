@@ -7,6 +7,7 @@
 
 	melee_damage_lower = 10
 	melee_damage_upper = 10
+	race = /datum/species/human/fera/garou
 
 /mob/living/carbon/human/fera/hispo/Initialize(mapload)
 	. = ..()

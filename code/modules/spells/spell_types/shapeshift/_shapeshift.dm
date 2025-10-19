@@ -38,6 +38,10 @@
 
 /datum/action/cooldown/spell/shapeshift/before_cast(mob/living/cast_on)
 	. = ..()
+	//DARKPACK EDIT START
+	if(type == /datum/action/cooldown/spell/shapeshift/transformation)
+		return
+	//DARKPACK EDIT END
 	if(. & SPELL_CANCEL_CAST)
 		return
 
@@ -49,7 +53,7 @@
 			to_chat(cast_on, span_warning("This spell won't un-shapeshift you from this form!"))
 			return . | SPELL_CANCEL_CAST
 
-		//return //DARKPACK EDIT REMOVAL
+		return
 
 	if(length(possible_shapes) == 1)
 		shapeshift_type = possible_shapes[1]

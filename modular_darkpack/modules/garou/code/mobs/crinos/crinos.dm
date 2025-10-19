@@ -8,6 +8,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 
+	race = /datum/species/human/fera/garou
 	transformation_size_width = 1.5
 	transformation_size_height = 1.5
 

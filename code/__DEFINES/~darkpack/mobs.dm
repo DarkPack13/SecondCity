@@ -9,6 +9,7 @@
 
 #define iskindred(A) (is_species(A, /datum/species/human/kindred))
 #define isghoul(A) (is_species(A, /datum/species/human/ghoul))
+#define isfera(A) (is_species(A, /datum/species/human/fera))
 #define isgarou(A) (is_species(A, /datum/species/human/fera/garou))
 #define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A) || ishomid(A) || iscrinos(A) || isglabro(A) || ishispo(A) || islupus(A) || isfera(A))
 
@@ -17,7 +18,6 @@
 #define isglabro(A) (istype(A, /mob/living/carbon/human/fera/glabro))
 #define ishispo(A) (istype(A, /mob/living/carbon/human/fera/hispo))
 #define islupus(A) (istype(A, /mob/living/carbon/human/fera/lupus))
-#define isfera(A) (istype(A, /mob/living/carbon/human/fera))
 
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))
 

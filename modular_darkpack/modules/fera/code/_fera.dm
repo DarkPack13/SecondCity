@@ -3,6 +3,8 @@
 	rotate_on_lying = FALSE
 	initial_language_holder = /datum/language_holder/primal
 
+	var/race = /datum/species/human/fera //Used for setting the species of the subtype transformation mobs, for example crinos being a garou species.
+
 	var/sprite_color = "black"
 	var/sprite_scar = 0
 	var/sprite_hair = 0
@@ -17,3 +19,8 @@
 
 /mob/living/carbon/human/fera/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	return FALSE
+
+/mob/living/carbon/human/fera/create_dna()
+	dna = new /datum/dna(src)
+	if (!isnull(race))
+		dna.species = new race
