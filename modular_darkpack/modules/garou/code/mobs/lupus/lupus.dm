@@ -1,5 +1,5 @@
 /mob/living/carbon/human/fera/lupus
-	name = "wolf"
+	name = "lupus"
 	icon_state = "black"
 	icon = 'modular_darkpack/modules/garou/icons/lupus.dmi'
 	pass_flags = PASSTABLE
