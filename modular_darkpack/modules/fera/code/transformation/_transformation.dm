@@ -32,10 +32,6 @@
 			to_chat(cast_on, span_warning("This spell won't un-shapeshift you from this form!"))
 			return . | SPELL_CANCEL_CAST
 
-	if(shapeshift_type && (shapeshift_type == cast_on.type))
-		shapeshift_type = null
-		return . | SPELL_CANCEL_CAST
-
 	if(length(possible_shapes) == 1)
 		shapeshift_type = possible_shapes[1]
 		return
@@ -72,6 +68,10 @@
 
 	shapeshift_type = shift_type || pick(possible_shapes)
 	if(QDELETED(src) || QDELETED(owner) || !can_cast_spell(feedback = FALSE))
+		return . | SPELL_CANCEL_CAST
+
+	if(shapeshift_type && (shapeshift_type == cast_on.type))
+		shapeshift_type = null
 		return . | SPELL_CANCEL_CAST
 
 
