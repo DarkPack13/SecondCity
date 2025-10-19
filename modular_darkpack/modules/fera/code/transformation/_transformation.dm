@@ -150,8 +150,6 @@
 
 	var/mob/living/unshapeshifted_mob = shapechange.caster_mob
 	caster.remove_status_effect(/datum/status_effect/shapechange_mob/from_spell/fera)
-
-	do_post_shapeshift_adjustments(caster, unshapeshifted_mob)
 	shapeshift_type = null
 	return unshapeshifted_mob
 
