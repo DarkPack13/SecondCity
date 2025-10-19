@@ -12,12 +12,18 @@
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_INCAPACITATED|AB_CHECK_LYING
 	revert_on_death = FALSE
 	possible_shapes = list(/mob/living/carbon/human/fera/lupus) //Default is lupus form. CHANGE THIS FOR YOUR SUBTYPES.
+	var/image/human_form_image
 
 /datum/action/cooldown/spell/shapeshift/transformation/New(Target, list/transformations)
 	. = ..()
 	if(transformations)
 		possible_shapes = transformations
 		possible_shapes += /mob/living/carbon/human
+
+
+/datum/action/cooldown/spell/shapeshift/transformation/Destroy(mob/remove_from)
+	human_form_image = null
+	return ..()
 
 /datum/action/cooldown/spell/shapeshift/transformation/before_cast(mob/living/cast_on)
 	. = ..()
@@ -39,13 +45,17 @@
 	// Not bothering with caching these as they're only ever shown once
 	var/list/shape_names_to_types = list()
 	var/list/shape_names_to_image = list()
+	if(!human_form_image)
+		human_form_image = mutable_appearance(image(cast_on.appearance))
+
 	if(!length(shape_names_to_types) || !length(shape_names_to_image))
 		for(var/atom/path as anything in possible_shapes)
 			if(path == /mob/living/carbon/human)
 				var/mob/living/carbon/human/human_path = path
-				var/shape_name = initial(human_path.real_name)
+				var/shape_name = cast_on.real_name
 				shape_names_to_types[shape_name] = human_path
-				shape_names_to_image[shape_name] = get_small_overlay(get_flat_existing_human_icon(cast_on, SOUTH))
+
+				shape_names_to_image[shape_name] = get_small_overlay(human_form_image)
 			else
 				var/shape_name = initial(path.name)
 				shape_names_to_types[shape_name] = path
