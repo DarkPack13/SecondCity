@@ -1,7 +1,7 @@
 - [x] Homid form
 - [ ] Glabro form
 - [x] Crinos form
-- [ ] Hispo form
+- [x] Hispo form
 - [x] Lupus form
 
 - [ ] Garou Gifts (Dependent on Form, Tribe, Auspice and Clan)
