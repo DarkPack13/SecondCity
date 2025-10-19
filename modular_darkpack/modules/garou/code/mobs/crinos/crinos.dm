@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/modules/garou/icons/crinos.dmi'
 	mob_size = MOB_SIZE_HUGE
 	examine_thats = "That's a"
+	SET_BASE_PIXEL(-8, 0)
 
 	melee_damage_lower = 10
 	melee_damage_upper = 10

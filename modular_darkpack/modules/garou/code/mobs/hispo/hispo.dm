@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/modules/garou/icons/hispo.dmi'
 	mob_size = MOB_SIZE_LARGE
 	examine_thats = "That's a"
+	SET_BASE_PIXEL(-16, -16)
 
 	melee_damage_lower = 10
 	melee_damage_upper = 10
@@ -11,5 +12,5 @@
 
 /mob/living/carbon/human/fera/hispo/Initialize(mapload)
 	. = ..()
-	add_offsets("Hispo", 0, -24, -24, 0, FALSE)
-
+	RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HEAVY)
