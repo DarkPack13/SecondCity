@@ -6,8 +6,7 @@
 	inhand_icon_state = "battering_ram"
 	lefthand_file = 'modular_darkpack/modules/battering_ram/icons/inhand_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/battering_ram/icons/inhand_righthand.dmi'
-	onflooricon = 'modular_darkpack/modules/battering_ram/icons/onfloor.dmi'
-	onflooricon_state = "battering_ram"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/battering_ram/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
 	armour_penetration = 15
