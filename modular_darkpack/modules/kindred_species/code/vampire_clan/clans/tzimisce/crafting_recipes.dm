@@ -48,26 +48,6 @@
 	result = /obj/structure/chair/old/tzimisce
 	category = CAT_TZIMISCE
 
-/obj/structure/chair/old/tzimisce
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	icon_state = "tzimisce_stool"
-
-/obj/item/guts
-	name = "guts"
-	desc = "Just blood and guts..."
-	icon_state = "guts"
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/spine
-	name = "spine"
-	desc = "If only I had control..."
-	icon_state = "spine"
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
-	w_class = WEIGHT_CLASS_SMALL
-
 /datum/crafting_recipe/tzi_biter
 	name = "Biting Abomination"
 	time = 100
