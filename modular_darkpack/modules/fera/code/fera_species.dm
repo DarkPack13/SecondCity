@@ -14,5 +14,6 @@
 
 /datum/species/human/fera/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
+	fera_transformation.Remove(human)
 	QDEL_NULL(fera_transformation)
 

@@ -202,6 +202,6 @@
 	if (isnull(owner))
 		return
 	if (is_shifted(owner))
-		do_unshapeshift(owner)
+		do_unshapeshift(owner, TRUE, TRUE) //DARKPACK EDIT, ORGIINAL: do_unshapeshift(owner)
 
 #undef is_shifted
