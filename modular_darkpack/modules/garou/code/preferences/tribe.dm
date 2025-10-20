@@ -13,7 +13,7 @@
 
 /datum/preference/choiced/garou_tribe/icon_for(value)
 	var/datum/universal_icon/tribe_icon = uni_icon('icons/effects/effects.dmi', "nothing")
-	//tribe_icon.blend_icon(uni_icon('modular_darkpack/modules/garou/icons/tribes.dmi', LOWER_TEXT(value)), ICON_OVERLAY)
+	//tribe_icon.blend_icon(uni_icon('modular_darkpack/modules/garou/icons/tribes.dmi', replacetext(LOWER_TEXT(value), " ", "_")), ICON_OVERLAY)
 	return tribe_icon
 
 /datum/preference/choiced/garou_tribe/apply_to_human(mob/living/carbon/human/target, value)
