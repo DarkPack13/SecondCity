@@ -7,7 +7,7 @@
 	//if(issabbat(src)) //Because sabbatists are idiots.
 	//	return ..()
 
-	var/treated_message = translate_language(speaker, message_language, message, spans, message_mods)
+	var/treated_message = translate_language(speaker, message_language, raw_message, spans, message_mods)
 	if(lowertext(MASQUERADE_FILTER_CHECK(treated_message)))
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	..()
