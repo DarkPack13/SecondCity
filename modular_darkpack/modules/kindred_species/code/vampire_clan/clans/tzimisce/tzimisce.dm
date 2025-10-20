@@ -3,32 +3,31 @@
 	id = VAMPIRE_CLAN_TZIMISCE
 	desc = "If someone were to call a Tzimisce inhuman and sadistic, the Tzimisce would probably commend them for their perspicacity, and then demonstrate that their mortal definition of sadism was laughably inadequate. The Tzimisce have left the human condition behind gladly, and now focus on transcending the limitations of the vampiric state. At a casual glance or a brief conversation, a Tzimisce appears to be one of the more pleasant vampires. Polite, intelligent, and inquisitive, they seem a stark contrast to the howling Sabbat mobs or even the apparently more humane Brujah or Nosferatu. However, upon closer inspection, it becomes clear that this is merely a mask hiding something alien and monstrous."
 	curse = "Grounded to material domain."
+	/*
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/animalism,
 		/datum/discipline/vicissitude
-	)
+	)*/
 	male_clothes = /obj/item/clothing/under/vampire/sport
 	female_clothes = /obj/item/clothing/under/vampire/red
 	enlightenment = TRUE
-	accessories = list("spines", "spines_slim", "animal_skull", "none")
-	accessories_layers = list("spines" = UNICORN_LAYER, "spines_slim" = UNICORN_LAYER, "animal_skull" = UNICORN_LAYER, "none" = UNICORN_LAYER)
+	//accessories = list("spines", "spines_slim", "animal_skull", "none")
+	//accessories_layers = list("spines" = UNICORN_LAYER, "spines_slim" = UNICORN_LAYER, "animal_skull" = UNICORN_LAYER, "none" = UNICORN_LAYER)
 
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/tzimisce
+/datum/action/cooldown/spell/shapeshift/tzimisce
 	name = "Tzimisce Form"
 	desc = "Take on the shape a beast."
-	charge_max = 10 SECONDS
-	cooldown_min = 10 SECONDS
+	cooldown_time = 10 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
 	shapeshift_type = /mob/living/simple_animal/hostile/tzimisce_beast
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/bloodcrawler
+/datum/action/cooldown/spell/shapeshift/bloodcrawler
 	name = "Blood Crawler"
 	desc = "Take on the shape a beast."
-	charge_max = 5 SECONDS
-	cooldown_min = 5 SECONDS
+	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
 	shapeshift_type = /mob/living/simple_animal/hostile/bloodcrawler
@@ -40,76 +39,38 @@
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-		LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
+		LOCATION_BACKPACK = ITEM_SLOT_BACK,
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
 	H.equip_in_one_of_slots(heirloom, slots, FALSE)
 	H.AddComponent(/datum/component/needs_home_soil, heirloom)
-
-/datum/crafting_recipe/stake
-	name = "Stake"
-	time = 50
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
-	result = /obj/item/vampire_stake
-	always_available = TRUE
-	category = CAT_WEAPON
-
-/datum/crafting_recipe/molotov
-	name = "Molotov Cocktail"
-	time = 50
-	reqs = list(/obj/item/stack/sheet/cloth = 1, /obj/item/reagent_containers/cup/glass/bottle/beer/vampire = 1, /obj/item/gas_can = 1)
-	result = /obj/item/molotov
-	always_available = TRUE
-	category = CAT_WEAPON
 
 /datum/crafting_recipe/tzi_trench
 	name = "Leather-Bone Trenchcoat (Armor)"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 50, /obj/item/spine = 1)
 	result = /obj/item/clothing/suit/vampire/trench/tzi
-	always_available = FALSE
 	category = CAT_TZIMISCE
-
-/datum/crafting_recipe/tzi_med
-	name = "Medical Hand (Healing)"
-	time = 50
-	reqs = list(/obj/item/stack/human_flesh = 35, /obj/item/bodypart/r_arm = 1, /obj/item/organ/heart = 1, /obj/item/organ/tongue = 1)
-	result = /obj/item/organ/cyberimp/arm/medibeam
-	always_available = FALSE
-	category = CAT_TZIMISCE
-
 
 /datum/crafting_recipe/tzi_heart
 	name = "Second Heart (Antistun)"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 25, /obj/item/organ/heart = 1)
-	result = /obj/item/organ/cyberimp/brain/anti_stun/tzi
-	always_available = FALSE
+	result = /obj/item/organ/cyberimp/brain/anti_stun
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_eyes
 	name = "Better Eyes (Nightvision)"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 15, /obj/item/organ/eyes = 1)
-	result = /obj/item/organ/eyes/night_vision/nightmare
-	always_available = FALSE
-	category = CAT_TZIMISCE
-
-//unused due to being bad
-/datum/crafting_recipe/tzi_koldun
-	name = "Koldun Sorcery (Firebreath)"
-	time = 50
-	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/vampire_stake = 1, /obj/item/drinkable_bloodpack = 1)
-	result = /obj/item/dnainjector/koldun
-	always_available = FALSE
+	result = /obj/item/organ/eyes/night_vision
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_implant
 	name = "Implanting Flesh Device"
 	time = 50
-	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/knife/vamp = 1, /obj/item/drinkable_bloodpack = 1)
-	result = /obj/item/autosurgeon/organ
-	always_available = FALSE
+	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/knife/vamp = 1, /obj/item/reagent_containers/blood = 1)
+	result = /obj/item/autosurgeon // DARKPACK TODO: Tzimisce autosurgeon
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_floor
@@ -117,15 +78,13 @@
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 1, /obj/item/guts = 1)
 	result = /obj/effect/decal/gut_floor
-	always_available = FALSE
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_wall
 	name = "Flesh Wall"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 2)
-	result = /obj/structure/fleshwall
-	always_available = FALSE
+	result = /turf/closed/wall/mineral/iron // DARKPACK TODO: Tzimisce walls
 	category = CAT_TZIMISCE
 
 /obj/effect/decal/gut_floor
@@ -169,9 +128,9 @@
 /datum/crafting_recipe/tzi_stool
 	name = "Arm Stool"
 	time = 50
-	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/r_arm = 2, /obj/item/bodypart/l_arm = 2)
+	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/arm/right = 2, /obj/item/bodypart/arm/left = 2)
 	result = /obj/structure/chair/old/tzimisce
-	always_available = FALSE
+
 	category = CAT_TZIMISCE
 
 /obj/structure/chair/old/tzimisce
@@ -197,25 +156,25 @@
 /datum/crafting_recipe/tzi_biter
 	name = "Biting Abomination"
 	time = 100
-	reqs = list(/obj/item/stack/human_flesh = 2, /obj/item/bodypart/r_arm = 2, /obj/item/bodypart/l_arm = 2, /obj/item/spine = 1)
+	reqs = list(/obj/item/stack/human_flesh = 2, /obj/item/bodypart/arm/right = 2, /obj/item/bodypart/arm/left = 2, /obj/item/spine = 1)
 	result = /mob/living/simple_animal/hostile/biter
-	always_available = FALSE
+
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_fister
 	name = "Punching Abomination"
 	time = 100
-	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/r_arm = 1, /obj/item/bodypart/l_arm = 1, /obj/item/spine = 1, /obj/item/guts = 1)
+	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/spine = 1, /obj/item/guts = 1)
 	result = /mob/living/simple_animal/hostile/fister
-	always_available = FALSE
+
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_tanker
 	name = "Fat Abomination"
 	time = 100
-	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/bodypart/r_arm = 1, /obj/item/bodypart/l_arm = 1, /obj/item/bodypart/r_leg = 1, /obj/item/bodypart/l_leg = 1, /obj/item/spine = 1, /obj/item/guts = 2)
+	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/bodypart/leg/right = 1, /obj/item/bodypart/leg/left = 1, /obj/item/spine = 1, /obj/item/guts = 2)
 	result = /mob/living/simple_animal/hostile/tanker
-	always_available = FALSE
+
 	category = CAT_TZIMISCE
 
 /mob/living/simple_animal/hostile/biter
@@ -294,7 +253,7 @@
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	status_flags = CANPUSH
@@ -321,7 +280,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	faction = list(VAMPIRE_CLAN_TZIMISCE)
@@ -348,14 +307,12 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	bloodpool = 10
 	maxbloodpool = 10
-	dextrous = TRUE
 	held_items = list(null, null)
-	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 
 /mob/living/simple_animal/hostile/gangrel/better
 	maxHealth = 500
@@ -392,25 +349,13 @@
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	bloodpool = 10
 	maxbloodpool = 10
-	dextrous = TRUE
 	held_items = list(null, null)
-	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 	faction = list(VAMPIRE_CLAN_TREMERE)
-
-/mob/living/simple_animal/hostile/gargoyle/proc/gain_nigs()
-	set waitfor = FALSE
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as Embraced Gargoyle?", null, null, null, 50, src)
-	for(var/mob/dead/observer/G in GLOB.player_list)
-		if(G.key)
-			to_chat(G, span_ghostalert("New Gargoyle has been made."))
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
 
 /mob/living/simple_animal/hostile/gargoyle/Initialize(mapload)
 	. = ..()
@@ -456,7 +401,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	bloodpool = 10
@@ -481,7 +426,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
-	a_intent = INTENT_HARM
+	combat_mode = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	bloodpool = 20
@@ -522,4 +467,3 @@
 		playsound(get_turf(M), 'sound/misc/splort.ogg', 50, 1)
 		desc += "Looks like it's been used up."
 
-//GiveSpeciesFlight(mob/living/carbon/human/H)

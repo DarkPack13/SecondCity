@@ -17,7 +17,7 @@
 		return COMPONENT_INCOMPATIBLE
 	src.soil = soil
 
-	RegisterSignal(soil, COMSIG_PARENT_QDELETING, PROC_REF(handle_soil_destroyed))
+	RegisterSignal(soil, COMSIG_QDELETING, PROC_REF(handle_soil_destroyed))
 
 /datum/component/needs_home_soil/RegisterWithParent()
 	if (!isliving(parent))
@@ -29,14 +29,14 @@
 	SIGNAL_HANDLER
 
 	var/mob/living/needs_soil = parent
-	var/list/atom/movable/mob_contents = needs_soil.GetAllContents()
+	var/list/atom/movable/mob_contents = needs_soil.get_all_contents()
 	if (mob_contents.Find(source))
 		STOP_PROCESSING(SSdcs, src)
 	else
 		START_PROCESSING(SSdcs, src)
 
-/datum/component/needs_home_soil/process(delta_time)
-	if (!DT_PROB(3, delta_time))
+/datum/component/needs_home_soil/process(seconds_per_tick)
+	if (!SPT_PROB(3, seconds_per_tick))
 		return
 
 	var/mob/living/lacking_soil = parent
