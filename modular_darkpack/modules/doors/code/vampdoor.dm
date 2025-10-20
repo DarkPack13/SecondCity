@@ -126,8 +126,9 @@
 	playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
-	var/atom/throw_target = get_edge_target_turf(src, user.dir)
-	broken_door.throw_at(throw_target, rand(2, 4), 4, user)
+	if(user)
+		var/atom/throw_target = get_edge_target_turf(src, user.dir)
+		broken_door.throw_at(throw_target, rand(2, 4), 4, user)
 	name = "door frame"
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
