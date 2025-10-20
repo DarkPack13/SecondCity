@@ -11,12 +11,11 @@
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	icon_state = "shoes"
 	gender = PLURAL
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 
 /obj/item/clothing/shoes/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 5, "shoes", FALSE)
+	AddComponent(/datum/component/selling, 20, "shoes", FALSE)
 
 /obj/item/clothing/shoes/vampire/brown
 	icon_state = "shoes_brown"

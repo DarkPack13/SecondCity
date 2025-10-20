@@ -13,7 +13,7 @@
 	always_area_sensitive = TRUE
 	light_angle = 170
 	///What overlay the light should use
-	var/overlay_icon = 'modular_darkpack/master_files/icons/obj/lighting_overlay.dmi' // DARKPACK EDIT CHANGE
+	var/overlay_icon = 'icons/obj/lighting_overlay.dmi'
 	///base description and icon_state
 	var/base_state = "tube"
 	///Is the light on?

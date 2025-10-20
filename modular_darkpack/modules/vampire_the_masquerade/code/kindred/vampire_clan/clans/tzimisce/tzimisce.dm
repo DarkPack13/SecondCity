@@ -488,13 +488,13 @@
 	maxbloodpool = 20
 
 /mob/living/simple_animal/hostile/biter/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/simple_animal/hostile/fister/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/simple_animal/hostile/tanker/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /obj/item/ground_heir
 	name = "bag of ground"

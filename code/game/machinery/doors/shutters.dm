@@ -2,7 +2,7 @@
 	gender = PLURAL
 	name = "shutters"
 	desc = "Heavy duty mechanical shutters with an atmospheric seal that keeps them airtight once closed."
-	icon = 'icons/obj/doors/shutters.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters.dmi' // DARKPACK EDIT CHANGE
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
 	damage_deflection = 20
@@ -29,6 +29,14 @@
 			return 0.152 SECONDS
 		if(DOOR_CLOSING_FINISHED)
 			return 1.388 SECONDS
+
+// DARKPACK EDIT ADD START
+/obj/machinery/door/poddoor/shutters/topless
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters_topless.dmi'
+
+/obj/machinery/door/poddoor/shutters/preopen/topless
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters_topless.dmi'
+// DARKPACK EDIT ADD END
 
 /obj/machinery/door/poddoor/shutters/preopen
 	icon_state = "open"

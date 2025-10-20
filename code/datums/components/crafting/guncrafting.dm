@@ -16,7 +16,7 @@
 	desc = "A prototype modular receiver and trigger assembly for a firearm."
 	icon = 'icons/obj/weapons/improvised.dmi'
 	icon_state = "receiver"
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/weaponcrafting/receiver/create_slapcraft_component()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/pipegun)
 
@@ -24,7 +24,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/weaponcrafting/stock
 	name = "rifle stock"
 	desc = "A classic rifle stock that doubles as a grip, roughly carved out of wood."
@@ -32,7 +32,7 @@
 	resistance_flags = FLAMMABLE
 	icon = 'icons/obj/weapons/improvised.dmi'
 	icon_state = "riflestock"
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/weaponcrafting/stock/create_slapcraft_component()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/smoothbore_disabler, /datum/crafting_recipe/laser_musket)
 
@@ -40,13 +40,13 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/weaponcrafting/giant_wrench
 	name = "Big Slappy parts kit"
 	desc = "Illegal parts to make a giant like wrench commonly known as a Big Slappy."
 	icon = 'icons/obj/weapons/improvised.dmi'
 	icon_state = "weaponkit_gw"
-
+/*  // DARKPACK EDIT REMOVE
 /obj/item/weaponcrafting/giant_wrench/create_slapcraft_component() // slappycraft
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/giant_wrench)
 
@@ -54,7 +54,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 ///These gun kits are printed from the security protolathe to then be used in making new weapons
 
 // GUN PART KIT //

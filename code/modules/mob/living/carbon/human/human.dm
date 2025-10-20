@@ -918,7 +918,7 @@
 
 	var/carrydelay = 5 SECONDS //if you have latex you are faster at grabbing
 	var/skills_space
-	var/fitness_level = mind?.get_skill_level(/datum/skill/athletics) - 1
+	var/fitness_level = st_get_stat(STAT_STRENGTH) - 1 // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	var/experience_reward = ATHLETICS_SKILL_MISC_EXP
 	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
 		carrydelay -= 2 SECONDS

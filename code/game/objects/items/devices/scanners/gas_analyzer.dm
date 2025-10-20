@@ -37,12 +37,12 @@
 
 	if(type != /obj/item/analyzer)
 		return
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/material_sniffer)
+	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/material_sniffer)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
-	)
+	) */ // DARKPACK EDIT REMOVE
 
 /obj/item/analyzer/equipped(mob/user, slot, initial)
 	. = ..()

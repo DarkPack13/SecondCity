@@ -7,7 +7,7 @@
 /obj/item/clothing/head/vampire
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	armor_type = /datum/armor/vampire_hat
 
 /datum/armor/vampire_hat
@@ -20,8 +20,7 @@
 
 /obj/item/clothing/head/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 10, "headwear", FALSE)
+	AddComponent(/datum/component/selling, 10, "headwear", FALSE)
 
 /obj/item/clothing/head/vampire/malkav
 	name = "weirdo hat"

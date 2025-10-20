@@ -7,8 +7,12 @@
 /obj/item/clothing/gloves/vampire
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	undyeable = TRUE
+
+/obj/item/clothing/gloves/vampire/Initialize(mapload)
+	.=..()
+	AddComponent(/datum/component/selling, 30, "gloves", FALSE)
 
 /obj/item/clothing/gloves/vampire/leather
 	name = "leather gloves"

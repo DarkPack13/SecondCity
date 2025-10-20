@@ -58,6 +58,9 @@
 	resistance_flags = UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	throwforce = 150
 
+	MAP_SWITCH(pixel_x = 0, pixel_x = -32)
+	MAP_SWITCH(pixel_y = 0, pixel_y = -32)
+
 	glide_size = 96
 
 	light_system = OVERLAY_LIGHT_DIRECTIONAL

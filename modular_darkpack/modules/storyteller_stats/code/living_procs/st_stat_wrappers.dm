@@ -41,3 +41,8 @@
 	if(!storyteller_stat_holder)
 		return
 	return storyteller_stat_holder.get_stat_mod(stat_path, source)
+
+/mob/living/proc/st_stat_multiplier(stat_path, low_mod, high_mod)
+	if(!storyteller_stat_holder)
+		return 1
+	return storyteller_stat_holder.get_stat_multiplier(stat_path, low_mod, high_mod)

@@ -36,10 +36,12 @@
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
 	visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
 	name = "steamed ham"
-	desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
+	// DARKPACK EDIT CHANGE START
+	desc = pick("Ahh, Director, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",
-		"Aurora Station 13? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
-		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
+		"Aurora Borealis? At this time of night, in this time of year, in this city, localized entirely within your freezer?",
+		"You know, these hamburgers taste quite similar to the ones they have at O'tolleys.")
+	// DARKPACK EDIT CHANGE END
 
 /obj/item/food/burger/human
 	name = "human burger"
@@ -586,7 +588,7 @@
 
 /obj/item/food/burger/soylent
 	name = "soylent burger"
-	desc = "An eco-friendly burger made using upcycled low value biomass."
+	desc = "An eco-friendly burger made using upcycled low value soylent." // DARKPACK EDIT CHANGE
 	icon_state = "soylentburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -600,8 +602,8 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/burger/rib
-	name = "mcrib"
-	desc = "An elusive rib shaped burger with limited availability across the galaxy. Not as good as you remember it."
+	name = "gutbuster" // DARKPACK EDIT CHANGE
+	desc = "An elusive rib shaped burger with limited availability across the country. Not as good as you remember it." // DARKPACK EDIT CHANGE
 	icon_state = "mcrib"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -635,7 +637,7 @@
 	name = "chicken sandwich"
 	//Apparently the proud people of Americlapstan object to this thing being called a burger.
 	//Apparently McDonald's just calls it a burger in Europe as to not scare and confuse us.
-	desc = "A delicious chicken sandwich, it is said the proceeds from this treat helps criminalize disarming people on the space frontier."
+	desc = "A delicious chicken sandwich." // DARKPACK EDIT CHANGE
 	icon_state = "chickenburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,

@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY (dwelling_list)
 GLOBAL_LIST_EMPTY (dwelling_area_list)
 
 /datum/proc/distribute_dwelling_loot() //Primary setup proc. Calling this setups the loot tables and dwellings.
-	for(var/area/vtm/dwelling/dwelling_area in GLOB.dwelling_area_list)
+	for(var/area/vtm/interior/dwelling/dwelling_area in GLOB.dwelling_area_list)
 		dwelling_area.setup_loot()
 
 /datum/proc/adjust_dwelling_loot(type,value)

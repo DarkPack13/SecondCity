@@ -1,7 +1,7 @@
 /obj/machinery/jukebox
 	name = "jukebox"
 	desc = "A classic music player."
-	icon = 'icons/obj/machines/music.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/machines/music.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "jukebox"
 	base_icon_state = "jukebox"
 	verb_say = "states"
