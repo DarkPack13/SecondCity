@@ -49,23 +49,6 @@
 /datum/movespeed_modifier/centipede
 	multiplicative_slowdown = -0.6
 
-/mob/living/simple_animal/hostile/bloodcrawler
-	var/collected_blood = 0
-
-/mob/living/simple_animal/hostile/bloodcrawler/Move(NewLoc, direct)
-	. = ..()
-	var/obj/structure/vampdoor/V = locate() in NewLoc
-	if(V)
-		if(V.lockpick_difficulty <= 10)
-			forceMove(get_turf(V))
-	for(var/obj/effect/decal/cleanable/blood/B in range(1, NewLoc))
-		if(B.bloodiness)
-			collected_blood = collected_blood+1
-			to_chat(src, "You sense blood entering your mass...")
-			var/turf/T = get_turf(B)
-			if(T)
-				T.wash(CLEAN_WASH)
-
 /obj/effect/decal/gut_floor/Initialize(mapload)
 	. = ..()
 	if(isopenturf(get_turf(src)))
@@ -84,7 +67,6 @@
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/arm/right = 2, /obj/item/bodypart/arm/left = 2)
 	result = /obj/structure/chair/old/tzimisce
-
 	category = CAT_TZIMISCE
 
 /obj/structure/chair/old/tzimisce
@@ -111,22 +93,19 @@
 	name = "Biting Abomination"
 	time = 100
 	reqs = list(/obj/item/stack/human_flesh = 2, /obj/item/bodypart/arm/right = 2, /obj/item/bodypart/arm/left = 2, /obj/item/spine = 1)
-	result = /mob/living/simple_animal/hostile/biter
-
+	result = /mob/living/basic/biter
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_fister
 	name = "Punching Abomination"
 	time = 100
 	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/spine = 1, /obj/item/guts = 1)
-	result = /mob/living/simple_animal/hostile/fister
-
+	result = /mob/living/basic/fister
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_tanker
 	name = "Fat Abomination"
 	time = 100
 	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/bodypart/leg/right = 1, /obj/item/bodypart/leg/left = 1, /obj/item/spine = 1, /obj/item/guts = 2)
-	result = /mob/living/simple_animal/hostile/tanker
-
+	result = /mob/living/basic/tanker
 	category = CAT_TZIMISCE

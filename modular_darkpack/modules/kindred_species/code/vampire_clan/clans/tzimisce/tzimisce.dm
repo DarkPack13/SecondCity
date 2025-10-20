@@ -21,7 +21,7 @@
 	cooldown_time = 10 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/tzimisce_beast
+	possible_shapes = list(/mob/living/basic/tzimisce_beast)
 
 /datum/action/cooldown/spell/shapeshift/bloodcrawler
 	name = "Blood Crawler"
@@ -29,7 +29,7 @@
 	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/bloodcrawler
+	possible_shapes = list(/mob/living/basic/bloodcrawler)
 
 /datum/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/H)
 	. = ..()
