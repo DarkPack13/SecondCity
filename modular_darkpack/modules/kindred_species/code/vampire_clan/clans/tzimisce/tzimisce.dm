@@ -369,7 +369,7 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 	var/abuse_fix = 0
 
-/datum/action/gargoyle/Trigger()
+/datum/action/gargoyle/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(abuse_fix+100 > world.time)
 		return

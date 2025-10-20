@@ -70,16 +70,16 @@
 	vampiric = TRUE
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/malk_hivemind/Trigger()
+/datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
 	if(!IsAvailable())
 		return
 
 	var/datum/vampire_clan/malkavian/clan_malkavian = get_vampire_clan(VAMPIRE_CLAN_MALKAVIAN)
-	if (!(owner in clan_malkavian.madness_network))
+	if (!(clicker in clan_malkavian.madness_network))
 		return
 
-	var/new_thought = stripped_input(owner, "Have any thoughts about this, buddy?")
+	var/new_thought = stripped_input(clicker, "Have any thoughts about this, buddy?")
 	if (!new_thought)
 		return
 
@@ -97,15 +97,15 @@
 	vampiric = TRUE
 	cooldown_time = 5 MINUTES
 
-/datum/action/cooldown/malk_speech/Trigger()
+/datum/action/cooldown/malk_speech/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	var/mad_speak = FALSE
 	if(IsAvailable())
-		mad_speak = tgui_input_text(owner, "What revelations do we wish to convey?", encode = FALSE)
-	if(CAN_BYPASS_FILTER(owner) ? null : is_ic_filtered(mad_speak))
+		mad_speak = tgui_input_text(clicker, "What revelations do we wish to convey?", encode = FALSE)
+	if(CAN_BYPASS_FILTER(clicker) ? null : is_ic_filtered(mad_speak))
 		//before we inadvertently obfuscate the message to pass filters, filter it first.
 		//as funny as malkavians saying "amogus" would be, the filter also includes slurs... how unfortunate.
-		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[mad_speak]\"</span>"))
+		to_chat(clicker, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[mad_speak]\"</span>"))
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 
@@ -114,4 +114,4 @@
 		// replace some letters to make the font more closely resemble that of vtm: bloodlines' malkavian dialogue
 		// big thanks to Metek for helping me condense this from a bunch of ugly regex replace procs
 		mad_speak = spooky_font_replace(mad_speak)
-		owner.say(mad_speak, spans = list(SPAN_SANS)) // say() handles sanitation on its own
+		clicker.say(mad_speak, spans = list(SPAN_SANS)) // say() handles sanitation on its own
