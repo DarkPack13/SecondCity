@@ -140,10 +140,8 @@
 		to_chat(src, span_warning("You were interrupted and failed to climb down."))
 		return
 
-	if(zMove(DOWN, down_turf))
+	if(zMove(DOWN, down_turf, ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You climb down successfully."))
-	else
-		to_chat(src, span_warning("You fail to find a safe spot to climb down."))
 // DARKPACK EDIT ADD END
 
 /turf/open/openspace/attackby(obj/item/attacking_item, mob/user, list/modifiers)
