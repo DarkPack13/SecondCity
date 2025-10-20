@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(garou_auspices, list(
 #define TRIBE_GET_OF_FENRIS "Get of Fenris"
 #define TRIBE_RED_TALONS "Red Talons"
 #define TRIBE_SHADOW_LORDS "Shadow Lords"
-#define TRIBE_SILVERFANGS "Silverfangs"
+#define TRIBE_SILVER_FANGS "Silver Fangs"
 #define TRIBE_STARGAZERS "Stargazers"
 #define TRIBE_SKINDANCERS "Skindancers"
 #define TRIBE_GHOST_COUNCIL "Ghost Council"
