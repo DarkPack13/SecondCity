@@ -74,7 +74,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
 /// If the species has garou breeds to select.
-#define TRAIT_WW_GAROU_BREEDS "ww_garou_breeds"
+#define TRAIT_WW_GAROU_BREED "ww_garou_breeds"
+// if the species has garou tribes to select.
+#define TRAIT_WW_GAROU_TRIBE "ww_garou_tribes"
+// If the species has garou auspices to select.
+#define TRAIT_WW_GAROU_AUSPICE "ww_garou_auspice"
 /// If the fera is wyrm tainted. Affects their sprite.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
 

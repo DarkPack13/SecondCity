@@ -5,7 +5,9 @@
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(
 		TRAIT_USES_SKINTONES,
-		TRAIT_WW_GAROU_BREEDS,
+		TRAIT_WW_GAROU_BREED,
+		TRAIT_WW_GAROU_AUSPICE,
+		TRAIT_WW_GAROU_TRIBE,
 	)
 	changesource_flags = MIRROR_BADMIN
 	species_language_holder = /datum/language_holder/garou

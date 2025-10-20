@@ -1,4 +1,6 @@
-// List of Breeds that a garou can be.
+// Breeds
+#define FEATURE_GAROU_BREED "garou_breed"
+
 #define BREED_HOMID "Homid"
 #define BREED_LUPUS "Lupus"
 #define BREED_CRINOS "Metis" //Its called metis because anything player facing should only show "Metis" instead of "Crinos", despite it being a crinos form. Blame gadabout.
@@ -9,4 +11,56 @@ GLOBAL_LIST_INIT(garou_breeds, list(
 	BREED_CRINOS = BREED_CRINOS,
 ))
 
-#define FEATURE_GAROU_BREED "garou_breed"
+// Auspices
+#define FEATURE_GAROU_AUSPICE "garou_auspice"
+
+#define AUSPICE_RAGABASH "Ragabash"
+#define AUSPICE_THEURGE "Theurge"
+#define AUSPICE_PHILODOX "Philodox"
+#define AUSPICE_AHROUN "Ahroun"
+#define AUSPICE_GALLLIARD "Galliard"
+
+GLOBAL_LIST_INIT(garou_auspices, list(
+	AUSPICE_RAGABASH = AUSPICE_RAGABASH,
+	AUSPICE_THEURGE = AUSPICE_THEURGE,
+	AUSPICE_PHILODOX = AUSPICE_PHILODOX,
+	AUSPICE_AHROUN = AUSPICE_AHROUN,
+	AUSPICE_GALLLIARD = AUSPICE_GALLLIARD,
+))
+
+// Tribes
+#define FEATURE_GAROU_TRIBE "garou_tribe"
+
+#define TRIBE_BLACK_FURIES "Black Furies"
+#define TRIBE_BLACK_SPIRAL_DANCERS "Black Spiral Dancers"
+#define TRIBE_BONEGNAWERS "Bonegnawers"
+#define TRIBE_GLASSWALKERS "Glasswalkers"
+#define TRIBE_CHILDREN_OF_GAIA "Children of Gaia"
+#define TRIBE_FIANNA "Fianna"
+#define TRIBE_GET_OF_FENRIS "Get of Fenris"
+#define TRIBE_RED_TALONS "Red Talons"
+#define TRIBE_SHADOW_LORDS "Shadow Lords"
+#define TRIBE_SILVERFANGS "Silverfangs"
+#define TRIBE_STARGAZERS "Stargazers"
+#define TRIBE_SKINDANCERS "Skindancers"
+#define TRIBE_GHOST_COUNCIL "Ghost Council"
+#define TRIBE_GALESTALKERS "Galestalkers"
+#define TRIBE_RONIN "Ronin"
+
+GLOBAL_LIST_INIT(garou_tribes, list(
+	TRIBE_BLACK_FURIES = TRIBE_BLACK_FURIES,
+	TRIBE_BLACK_SPIRAL_DANCERS = TRIBE_BLACK_SPIRAL_DANCERS,
+	TRIBE_BONEGNAWERS = TRIBE_BONEGNAWERS,
+	TRIBE_GLASSWALKERS = TRIBE_GLASSWALKERS,
+	TRIBE_CHILDREN_OF_GAIA = TRIBE_CHILDREN_OF_GAIA,
+	TRIBE_FIANNA = TRIBE_FIANNA,
+	TRIBE_GET_OF_FENRIS = TRIBE_GET_OF_FENRIS,
+	TRIBE_RED_TALONS = TRIBE_RED_TALONS,
+	TRIBE_SHADOW_LORDS = TRIBE_SHADOW_LORDS,
+	TRIBE_SILVERFANGS = TRIBE_SILVERFANGS,
+	TRIBE_STARGAZERS = TRIBE_STARGAZERS,
+	TRIBE_SKINDANCERS = TRIBE_SKINDANCERS,
+	TRIBE_GHOST_COUNCIL = TRIBE_GHOST_COUNCIL,
+	TRIBE_GALESTALKERS = TRIBE_GALESTALKERS,
+	TRIBE_RONIN = TRIBE_RONIN,
+))
