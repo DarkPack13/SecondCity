@@ -1,5 +1,5 @@
 /obj/item/battering_ram
-	name = "\improper battering ram"
+	name = "battering ram"
 	desc = "WE CALL THIS A DIFFICULTY TWEAK"
 	icon = 'modular_darkpack/modules/battering_ram/icons/battering_ram.dmi'
 	icon_state = "battering_ram"
