@@ -420,6 +420,7 @@
 #include "code\__DEFINES\~darkpack\do_afters.dm"
 #include "code\__DEFINES\~darkpack\economy.dm"
 #include "code\__DEFINES\~darkpack\factions.dm"
+#include "code\__DEFINES\~darkpack\fera.dm"
 #include "code\__DEFINES\~darkpack\garou.dm"
 #include "code\__DEFINES\~darkpack\guns.dm"
 #include "code\__DEFINES\~darkpack\keybinding.dm"
