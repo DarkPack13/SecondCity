@@ -84,7 +84,7 @@
 		return . | SPELL_CANCEL_CAST
 
 
-/datum/action/cooldown/spell/shapeshift/transformation/cast(mob/living/cast_on)
+/datum/action/cooldown/spell/shapeshift/transformation/cast(mob/living/cast_on, force)
 	. = ..()
 	cast_on.buckled?.unbuckle_mob(cast_on, force = TRUE)
 
@@ -96,11 +96,11 @@
 	// Do the shift back or forth
 	if(is_shifted(cast_on))
 		chosen_shapeshift_type = shapeshift_type
-		unshapeshifted_creature = do_unshapeshift(cast_on)
+		unshapeshifted_creature = do_unshapeshift(cast_on, FALSE, force)
 		shapeshift_type = chosen_shapeshift_type
 	if(!unshapeshifted_creature)
 		unshapeshifted_creature = cast_on
-	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE)
+	resulting_mob = do_shapeshift(unshapeshifted_creature, chosen_shapeshift_type ? TRUE : FALSE, force)
 
 	// The shift is done, let's make sure they're in a valid state now
 	// If we're not ventcrawling, we don't need to mind
@@ -114,15 +114,15 @@
 	// Uh oh. You've shapeshifted into something that can't fit into a vent, while ventcrawling.
 	eject_from_vents(resulting_mob)
 
-/datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster, skip_animation = FALSE)
-	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
+/datum/action/cooldown/spell/shapeshift/transformation/do_shapeshift(mob/living/carbon/caster, skip_animation = FALSE, force)
+	if((caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM)) && !force)
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	if(shapeshift_type.type == /mob/living/carbon/human)
 		return
 	if(!skip_animation)
 		do_shapeshift_animation(caster)
-	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
+	if(caster.body_position == LYING_DOWN && !force) // User might stand up during animation.
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
@@ -139,13 +139,13 @@
 	do_post_shapeshift_adjustments(caster, new_shape)
 	return new_shape
 
-/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster, skip_animation = FALSE)
-	if(caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM))
+/datum/action/cooldown/spell/shapeshift/transformation/do_unshapeshift(mob/living/carbon/caster, skip_animation = FALSE, force)
+	if((caster.transformation_timer || HAS_TRAIT(caster, TRAIT_NO_TRANSFORM)) && !force)
 		caster.balloon_alert(caster, "can't transform!")
 		return
 	if(!skip_animation)
 		do_shapeshift_animation(caster)
-	if(caster.body_position == LYING_DOWN) // User might stand up during animation.
+	if(caster.body_position == LYING_DOWN && !force) // User might stand up during animation.
 		caster.balloon_alert(caster, "must stand up!")
 		shapeshift_type = null
 		return
