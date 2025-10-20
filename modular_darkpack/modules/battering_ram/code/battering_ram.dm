@@ -22,7 +22,7 @@
 		var/obj/structure/vampdoor/target_door = target
 		if(target_door.door_broken)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
-		var/dice_result = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, user, user, TRUE)
+		var/dice_result = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH)+user.st_get_stat(STAT_MELEE), 6, user, user, TRUE)
 		if(!do_after(user, ((5 SECONDS) / max(1, dice_result)), target))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 		if(prob(80 / max(1, dice_result)) || !dice_result)
