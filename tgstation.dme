@@ -6912,7 +6912,7 @@
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\giovanni.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\lasombra.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\malkavian.dm"
-#include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\ministry.dm"
+#include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\setite.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\nosferatu.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\old_clan_tzimisce.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\salubri.dm"
