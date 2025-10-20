@@ -34,8 +34,7 @@
 	for (var/datum/action/cooldown/malkavian_action in vampire.actions)
 		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
-
-		malkavian_action.Remove()
+		malkavian_action.Remove(vampire)
 
 	// Remove Madness Network
 	LAZYREMOVE(madness_network, vampire)
