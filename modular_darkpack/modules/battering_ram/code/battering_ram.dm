@@ -11,6 +11,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
 	armour_penetration = 15
+	demolition_mod = 2
 
 /obj/item/battering_ram/Initialize(mapload)
 	. = ..()
