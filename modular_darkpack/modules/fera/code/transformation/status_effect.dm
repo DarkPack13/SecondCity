@@ -13,6 +13,6 @@
 	if(source_spell.shapeshift_type.type == fera_breed)
 		return ..()
 	else
-		shift_spell.shapeshift_type = fera_breed
-		INVOKE_ASYNC(shift_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/shapeshift/transformation, cast), human_mob)
+		source_spell.shapeshift_type = fera_breed
+		INVOKE_ASYNC(source_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/shapeshift/transformation, cast), human_mob)
 		return TRUE
