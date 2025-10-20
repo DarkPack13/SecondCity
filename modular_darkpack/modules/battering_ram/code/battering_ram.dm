@@ -1,16 +1,16 @@
 /obj/item/battering_ram
-	name = "\improper battering ram"
+	name = "battering ram"
 	desc = "WE CALL THIS A DIFFICULTY TWEAK"
 	icon = 'modular_darkpack/modules/battering_ram/icons/battering_ram.dmi'
 	icon_state = "battering_ram"
 	inhand_icon_state = "battering_ram"
 	lefthand_file = 'modular_darkpack/modules/battering_ram/icons/inhand_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/battering_ram/icons/inhand_righthand.dmi'
-	onflooricon = 'modular_darkpack/modules/battering_ram/icons/onfloor.dmi'
-	onflooricon_state = "battering_ram"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/battering_ram/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
 	armour_penetration = 15
+	demolition_mod = 2
 
 /obj/item/battering_ram/Initialize(mapload)
 	. = ..()
@@ -22,7 +22,7 @@
 		var/obj/structure/vampdoor/target_door = target
 		if(target_door.door_broken)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
-		var/dice_result = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, user, user, TRUE)
+		var/dice_result = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH)+user.st_get_stat(STAT_MELEE), 6, user, user, TRUE)
 		if(!do_after(user, ((5 SECONDS) / max(1, dice_result)), target))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 		if(prob(80 / max(1, dice_result)) || !dice_result)
