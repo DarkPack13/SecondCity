@@ -1,7 +1,7 @@
 /area/vtm/graveyard
 	name = "Graveyard"
 	icon_state = "graveyard"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hollywood.ogg'
 	outdoors = TRUE
 	zone_type = ZONE_NO_MASQUERADE

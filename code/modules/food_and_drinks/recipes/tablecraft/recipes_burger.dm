@@ -32,7 +32,7 @@
 
 	result = /obj/item/food/burger/corgi
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/appendixburger
 	name = "Appendix burger"
 	reqs = list(
@@ -61,7 +61,7 @@
 	)
 	result = /obj/item/food/burger/xeno
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/bearger
 	name = "Bearger"
 	reqs = list(
@@ -89,7 +89,7 @@
 	)
 	result = /obj/item/food/burger/tofu
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/ghostburger
 	name = "Ghost burger"
 	reqs = list(
@@ -206,7 +206,7 @@
 	)
 	result = /obj/item/food/burger/spell
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/bigbiteburger
 	name = "Big bite burger"
 	reqs = list(
@@ -234,7 +234,7 @@
 	result = /obj/item/food/burger/superbite
 	removed_foodtypes = BREAKFAST
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/slimeburger
 	name = "Jelly burger"
 	reqs = list(
@@ -254,7 +254,7 @@
 	result = /obj/item/food/burger/jelly/cherry
 	added_foodtypes = FRUIT
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/fivealarmburger
 	name = "Five alarm burger"
 	reqs = list(
@@ -273,7 +273,7 @@
 	)
 	result = /obj/item/food/burger/rat
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/baseballburger
 	name = "Home run baseball burger"
 	reqs = list(
@@ -283,7 +283,7 @@
 	result = /obj/item/food/burger/baseball
 	added_foodtypes = GROSS
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/baconburger
 	name = "Bacon Burger"
 	reqs = list(
@@ -294,7 +294,7 @@
 	result = /obj/item/food/burger/baconburger
 	removed_foodtypes = BREAKFAST
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/empoweredburger
 	name = "Empowered Burger"
 	reqs = list(
@@ -317,7 +317,7 @@
 	result = /obj/item/food/burger/catburger
 	added_foodtypes = GORE
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/crabburger
 	name = "Crab Burger"
 	reqs = list(
@@ -337,7 +337,7 @@
 	)
 	result = /obj/item/food/burger/cheese
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/soylentburger
 	name = "Soylent Burger"
 	reqs = list(
@@ -347,7 +347,7 @@
 	)
 	result = /obj/item/food/burger/soylent
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/ribburger
 	name = "McRib"
 	reqs = list(
@@ -377,7 +377,7 @@
 	)
 	result = /obj/item/food/burger/chicken
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/crazyhamburger
 	name = "Crazy hamburger"
 	reqs = list(
@@ -392,7 +392,7 @@
 	)
 	result = /obj/item/food/burger/crazy
 	category = CAT_BURGER
-
+*/
 /datum/crafting_recipe/food/sloppy_moe
 	name = "Sloppy moe"
 	reqs = list(
@@ -403,7 +403,7 @@
 	)
 	result = /obj/item/food/burger/sloppy_moe
 	category = CAT_BURGER
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/kortaburger
 	name = "Plain Rootburger"
 	reqs = list(
@@ -471,3 +471,4 @@
 	)
 	result = /obj/item/food/burger/sloppyroot
 	category = CAT_BURGER
+ */

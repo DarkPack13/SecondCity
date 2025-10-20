@@ -22,4 +22,4 @@
 	. = ..()
 
 	H.vis_flags |= VIS_HIDE
-	H.faction |= "Lasombra"
+	H.faction |= VAMPIRE_CLAN_LASOMBRA

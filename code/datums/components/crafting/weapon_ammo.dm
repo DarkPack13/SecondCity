@@ -1,3 +1,4 @@
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/meteorslug
 	name = "Meteorslug Shell"
 	result = /obj/item/ammo_casing/shotgun/meteorslug
@@ -11,7 +12,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
-
+ */
 /datum/crafting_recipe/paperball
 	name = "Paper Ball"
 	result = /obj/item/ammo_casing/rebar/paperball
@@ -31,7 +32,7 @@
 	time = 0.1 SECONDS
 	category = CAT_WEAPON_AMMO
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/healium_bolt
 	name = "healium crystal crossbow bolt"
 	result = /obj/item/ammo_casing/rebar/healium
@@ -101,7 +102,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1.2 SECONDS
 	category = CAT_WEAPON_AMMO
-
+ */
 /datum/crafting_recipe/trashball
 	name = "Trashball"
 	result = /obj/item/stack/cannonball/trashball

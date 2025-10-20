@@ -36,7 +36,7 @@
 		roundend_callback = CALLBACK(src, PROC_REF(Write_Memory))
 		SSticker.OnRoundend(roundend_callback)
 
-	REGISTER_REQUIRED_MAP_ITEM(1, 1) // every map needs a poly!
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // every map needs a poly! // DARKPACK EDIT REMOVAL
 	update_appearance()
 
 	if(!SStts.tts_enabled)

@@ -1,6 +1,6 @@
 // WoD13 component
 // Items with this component can be sold and will also dictate how much humanity is gained or lost from it.
-// Does not cover individual item costs, it can be changed to allow for that but one would have to go through many items to individually add the selling component.
+// To make an item sellable, add component with the args (/datum/component/selling, cost at 5 successes of the roll, category, illegality true or false, humanity lost selling one item, humanity loss limit)
 
 /datum/component/selling
 	///Sale price of the item
@@ -23,22 +23,22 @@
 	humanity_loss = new_humanity_loss
 	humanity_loss_limit = new_humanity_loss_limit
 
-//Whether it can be sold
+//Whether it can be sold -- overriden by subtypes such as organs, which can only be sold if they have a certain health.
 /datum/component/selling/proc/can_sell()
 	return TRUE
 
 //Will display a message if it has been sold successfully
 /datum/component/selling/proc/sale_success_message()
-	return
+	return span_notice("You've sold [parent]!")
 
 //Will display a message if it hasn't been sold successfully (such as failing can_sell())
 /datum/component/selling/proc/sale_fail_message()
-	return
+	return span_notice("You cannot sell [parent].")
 
 /datum/component/selling/organ/Initialize(new_cost, new_object_category, new_illegal, new_humanity_loss, new_humanity_loss_limit)
 	if(!istype(parent, /obj/item/organ))
 		return COMPONENT_INCOMPATIBLE
-	. = ..()
+	..()
 
 /datum/component/selling/organ/can_sell()
 	var/obj/item/organ/organ = parent
@@ -47,7 +47,22 @@
 	return TRUE
 
 /datum/component/selling/organ/sale_success_message()
+	var/obj/item/organ/organ = parent
+	var/mob/living/carbon/human/seller
+
+	// Try to find who's selling this (check if it's in someone's hands)
+	if(ishuman(organ.loc))
+		seller = organ.loc
+
+	// If we found a seller and they're on Enlightenment path, no warning
+	if(seller && iskindred(seller))
+		var/datum/species/human/kindred/vampirism = seller.dna.species
+		if(vampirism.enlightenment)
+			return span_notice("You've sold [parent]!")
+
+	// Default warning for Humanity path or non-vampires
 	return span_userdanger("Selling organs is a depraved act! If I keep doing this I will become a wight.")
 
 /datum/component/selling/organ/sale_fail_message()
-	return span_warning("[src] is too damaged to sell!")
+	var/obj/item/organ/organ = parent
+	return span_warning("The [organ.name] is too damaged to sell!")

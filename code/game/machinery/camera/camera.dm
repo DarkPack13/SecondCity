@@ -4,7 +4,7 @@
  */
 /obj/item/wallframe/camera
 	name = "camera assembly"
-	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
+	desc = "The basic construction for SecurEYE-Always-Watching-You cameras." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "cameracase"
 	custom_materials = list(

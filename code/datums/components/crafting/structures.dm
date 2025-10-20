@@ -50,6 +50,7 @@
 	)
 	category = CAT_STRUCTURE
 
+/*// DARKPACK EDIT REMOVE
 /datum/crafting_recipe/mechcabinet
 	name = "Mech Removal Cabinet"
 	result = /obj/item/wallframe/fireaxecabinet/mechremoval
@@ -60,7 +61,7 @@
 		/obj/item/stack/cable_coil = 10,
 	)
 	category = CAT_STRUCTURE
-
+ */
 /datum/crafting_recipe/manucrate
 	name = "Manufacturing Storage Unit"
 	result = /obj/machinery/power/manufacturing/storagebox
@@ -71,7 +72,7 @@
 	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/adam_pedestal
 	name = "Adamantine Pedestal"
 	result = /obj/item/adamantine_pedestal
@@ -105,3 +106,4 @@
 		/obj/item/stack/sheet/iron = 30,
 	)
 	category = CAT_STRUCTURE
+ */

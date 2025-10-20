@@ -45,6 +45,14 @@
 /mob/living/carbon/human/species/kindred
 	race = /datum/species/human/kindred
 
+/datum/species/human/kindred/prepare_human_for_preview(mob/living/carbon/human/human)
+	human.set_haircolor("#333333", update = FALSE)
+	human.set_hairstyle("Undercut Left", update = TRUE)
+	human.set_eye_color("#ff0000")
+	human.undershirt = "T-Shirt (Red)"
+	human.update_body()
+//	human.equipOutfit(/datum/outfit/job/prince) // ! Uncomment when vampjobs are done
+
 /datum/species/human/kindred/on_species_gain(mob/living/carbon/human/new_kindred, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 

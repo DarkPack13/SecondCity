@@ -29,7 +29,7 @@ Buildable meters
 	var/pipe_color
 	///Initial direction of the created pipe (either made from the RPD or after unwrenching the pipe)
 	var/p_init_dir = SOUTH
-
+/*
 /obj/item/pipe/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	. = ..()
 	if(!istype(current_recipe, /datum/crafting_recipe/spec_pipe))
@@ -39,7 +39,7 @@ Buildable meters
 	pipe_color = ATMOS_COLOR_OMNI
 	setDir(crafter.dir)
 	update()
-
+ */ // DARKPACK EDIT REMOVE
 /obj/item/pipe/directional
 	RPD_type = PIPE_UNARY
 /obj/item/pipe/directional/he_junction
@@ -133,14 +133,14 @@ Buildable meters
 
 	// Only 'normal' pipes
 	if(type != /obj/item/pipe/quaternary)
-		return ..()
+		return ..()/* // DARKPACK EDIT REMOVE
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/ghettojetpack, /datum/crafting_recipe/pipegun, /datum/crafting_recipe/smoothbore_disabler, /datum/crafting_recipe/improvised_pneumatic_cannon)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 	return ..()
 
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
