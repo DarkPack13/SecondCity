@@ -119,29 +119,45 @@
 	if(.)
 		return
 
-	user.climb_down(src)
+	return user.climb_down(src)
+
+/turf/open/openspace/attack_animal(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+
+	return user.climb_down(src)
+
+/turf/open/openspace/attack_basic_mob(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+
+	return user.climb_down(src)
 
 /mob/proc/climb_down(turf/open/openspace/target_turf)
 	var/turf/down_turf = GET_TURF_BELOW(target_turf)
 	if(!can_z_move(DOWN, target_turf, down_turf, ZMOVE_FEEDBACK))
-		return
+		return FALSE
 
-	zMove(DOWN, down_turf)
+	return zMove(DOWN, down_turf, ZMOVE_FEEDBACK)
 
 /mob/living/climb_down(turf/open/openspace/target_turf)
 	var/turf/down_turf = GET_TURF_BELOW(target_turf)
 	if(!can_z_move(DOWN, target_turf, down_turf, ZMOVE_FEEDBACK))
-		return
+		return FALSE
 
 	to_chat(src, span_notice("You start climbing down..."))
 
-	var/result = do_after(src, 8 SECONDS - (st_get_stat(STAT_DEXTERITY) + st_get_stat(STAT_ATHLETICS)), target_turf)
+	// TODO: [Rebase] standardize stat doafter delays
+	var/result = do_after(src, 8 SECONDS - (st_get_stat(STAT_DEXTERITY) + st_get_stat(STAT_ATHLETICS) * 8), target_turf)
 	if(!result)
 		to_chat(src, span_warning("You were interrupted and failed to climb down."))
-		return
+		return FALSE
 
 	if(zMove(DOWN, down_turf, ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You climb down successfully."))
+		return TRUE
 // DARKPACK EDIT ADD END
 
 /turf/open/openspace/attackby(obj/item/attacking_item, mob/user, list/modifiers)
