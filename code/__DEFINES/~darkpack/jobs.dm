@@ -15,6 +15,7 @@
 #define JOB_PRINCE "Prince"
 #define JOB_SHERIFF "Sheriff"
 #define JOB_HOUND "Hound"
+#define JOB_HARPY "Harpy"
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
 #define JOB_PRIMOGEN_BANU_HAQIM "Primogen Banu Haqim"
 #define JOB_PRIMOGEN_LASOMBRA "Primogen Lasombra"
