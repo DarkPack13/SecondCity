@@ -113,6 +113,39 @@
 /turf/open/openspace/CanBuildHere()
 	return can_build_on
 
+// DARKPACK EDIT ADD START
+/turf/open/openspace/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+
+	user.climb_down(src)
+
+/mob/proc/climb_down(turf/open/openspace/target_turf)
+	var/turf/down_turf = GET_TURF_BELOW(target_turf)
+	if(!can_z_move(DOWN, target_turf, down_turf, ZMOVE_FEEDBACK))
+		return
+
+	zMove(DOWN, down_turf)
+
+/mob/living/climb_down(turf/open/openspace/target_turf)
+	var/turf/down_turf = GET_TURF_BELOW(target_turf)
+	if(!can_z_move(DOWN, target_turf, down_turf, ZMOVE_FEEDBACK))
+		return
+
+	to_chat(src, span_notice("You start climbing down..."))
+
+	var/result = do_after(src, 8 SECONDS - (st_get_stat(STAT_DEXTERITY) + st_get_stat(STAT_ATHLETICS)), target_turf)
+	if(!result)
+		to_chat(src, span_warning("You were interrupted and failed to climb down."))
+		return
+
+	if(zMove(DOWN, down_turf))
+		to_chat(src, span_notice("You climb down successfully."))
+	else
+		to_chat(src, span_warning("You fail to find a safe spot to climb down."))
+// DARKPACK EDIT ADD END
+
 /turf/open/openspace/attackby(obj/item/attacking_item, mob/user, list/modifiers)
 	..()
 	if(!CanBuildHere())
