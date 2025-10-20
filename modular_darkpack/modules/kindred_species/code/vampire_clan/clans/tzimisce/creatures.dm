@@ -15,7 +15,6 @@
 	speed = -1
 	maxHealth = 75
 	health = 75
-
 	obj_damage = 50
 	melee_damage_lower = 20
 	melee_damage_upper = 20
@@ -23,7 +22,6 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	speak_emote = list("gnashes")
-
 	faction = list(VAMPIRE_CLAN_TZIMISCE)
 	pressure_resistance = 200
 	bloodquality = BLOOD_QUALITY_LOW
@@ -132,52 +130,6 @@
 	melee_damage_lower = 55
 	melee_damage_upper = 55
 	speed = -0.8
-
-/mob/living/basic/gargoyle
-	name = "Gargoyle"
-	desc = "Stone-skinned..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "gargoyle_m"
-	icon_living = "gargoyle_m"
-	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	mob_size = MOB_SIZE_LARGE
-	speed = -1
-	maxHealth = 400
-	health = 400
-	butcher_results = list(/obj/item/stack/human_flesh = 10)
-	melee_damage_lower = 25
-	melee_damage_upper = 45
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
-	attack_sound = 'sound/items/weapons/punch1.ogg'
-	combat_mode = TRUE
-	bloodpool = 10
-	maxbloodpool = 10
-	held_items = list(null, null)
-	faction = list(VAMPIRE_CLAN_TREMERE)
-
-/mob/living/basic/gargoyle/Initialize(mapload)
-	. = ..()
-	var/datum/action/gargoyle/G = new()
-	G.Grant(src)
-
-/datum/action/gargoyle
-	name = "Turn into stone"
-	desc = "Save some time till healing..."
-	button_icon_state = "gargoyle"
-	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	COOLDOWN_DECLARE(healing_cooldown)
-
-/datum/action/gargoyle/Trigger(mob/clicker, trigger_flags)
-	. = ..()
-	if(!COOLDOWN_FINISHED(src, healing_cooldown))
-		return
-	COOLDOWN_START(src, healing_cooldown, 10 SECONDS)
-	var/mob/living/basic/gargoyle/G = owner
-	G.adjustBruteLoss(-300)
-	G.adjustFireLoss(-300)
-	G.Stun(5 SECONDS)
-	G.petrify(5 SECONDS)
 
 /mob/living/basic/tzimisce_beast
 	name = "Tzimisce Beast Form"

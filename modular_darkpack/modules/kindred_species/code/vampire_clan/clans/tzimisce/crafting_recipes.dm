@@ -41,27 +41,6 @@
 	result = /turf/closed/wall/mineral/iron // DARKPACK TODO: Tzimisce walls
 	category = CAT_TZIMISCE
 
-/obj/effect/decal/gut_floor
-	name = "gut floor"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "tzimisce_floor"
-
-/datum/movespeed_modifier/centipede
-	multiplicative_slowdown = -0.6
-
-/obj/effect/decal/gut_floor/Initialize(mapload)
-	. = ..()
-	if(isopenturf(get_turf(src)))
-		var/turf/open/T = get_turf(src)
-		if(T)
-			T.slowdown = 1
-
-/obj/effect/decal/gut_floor/Destroy()
-	. = ..()
-	var/turf/open/T = get_turf(src)
-	if(T)
-		T.slowdown = initial(T.slowdown)
-
 /datum/crafting_recipe/tzi_stool
 	name = "Arm Stool"
 	time = 50

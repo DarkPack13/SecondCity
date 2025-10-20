@@ -44,10 +44,5 @@
 	H.equip_in_one_of_slots(heirloom, slots, FALSE)
 	H.AddComponent(/datum/component/needs_home_soil, heirloom)
 
-/obj/item/ground_heir
-	name = "bag of ground"
-	desc = "Boghatyrskaya sila taitsa zdies'..."
-	icon_state = "dirt"
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
-	w_class = WEIGHT_CLASS_SMALL
+/datum/movespeed_modifier/centipede
+	multiplicative_slowdown = -0.6
