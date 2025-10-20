@@ -12,8 +12,8 @@
 	male_clothes = /obj/item/clothing/under/vampire/slickback
 	female_clothes = /obj/item/clothing/under/vampire/burlesque
 
-/datum/vampire_clan/setite/on_gain(mob/living/carbon/human/H)
+/datum/vampire_clan/setite/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
-	//H.add_quirk(/datum/quirk/lightophobia)
+	//vampire.add_quirk(/datum/quirk/lightophobia)
 	var/obj/item/organ/eyes/night_vision/NV = new()
-	NV.Insert(H, TRUE, FALSE)
+	NV.Insert(vampire, TRUE, DELETE_IF_REPLACED)

@@ -31,7 +31,7 @@
 	*/
 
 	var/obj/item/organ/eyes/night_vision/NV = new()
-	NV.Insert(vampire, TRUE)
+	NV.Insert(vampire, TRUE, DELETE_IF_REPLACED)
 
 /datum/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
 	. = ..()
