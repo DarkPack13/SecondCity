@@ -97,7 +97,7 @@
 	vampiric = TRUE
 	cooldown_time = 5 MINUTES
 
-/datum/action/cooldown/malk_speech/Trigger(mob/clicker, trigger_flags)
+/datum/action/cooldown/malk_speech/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
 	var/mad_speak = FALSE
 	if(IsAvailable())

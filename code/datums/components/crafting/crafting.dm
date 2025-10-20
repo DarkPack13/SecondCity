@@ -445,7 +445,7 @@
 		return FALSE
 	//DARKPACK EDIT ADD - START
 	// if (recipe.category == CAT_TZIMISCE) // TODO: [Disciplines] Uncomment when viscissitude is a thing.
-		return FALSE
+	//	return FALSE
 	//DARKPACK EDIT ADD - END
 	return TRUE
 
