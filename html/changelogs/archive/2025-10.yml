@@ -53,3 +53,17 @@
 2025-10-16:
   KCartridge:
   - rscdel: A lot of crafting recipes
+2025-10-17:
+  FalloutFalcon:
+  - balance: More stuff uses stats
+  - bugfix: fixed runtime from trying to play empty* sound
+2025-10-18:
+  Marshmellow105:
+  - image: removed some refs to ss13 and nanotrasen on icons
+  - code_imp: removed some refs to ss13 and nanotrasen in names and descs of things
+2025-10-21:
+  Marshmellow105:
+  - image: readded the wallening shutter sprites as replacements for the standard
+      TG ones
+  chazzyjazzy:
+  - code_imp: reimplements selling stuff

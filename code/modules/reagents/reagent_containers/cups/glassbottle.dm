@@ -270,8 +270,8 @@
 	to_mimic.transfer_fingerprints_to(src)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer
-	name = "space beer"
-	desc = "Beer. In space."
+	name = "Beer" // DARKPACK EDIT CHANGE
+	desc = "Beer." // DARKPACK EDIT CHANGE
 	icon_state = "beer"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
@@ -309,7 +309,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/gin
 	name = "Griffeater gin"
-	desc = "A bottle of high quality gin, produced in the New London Space Station."
+	desc = "A bottle of high quality gin, produced in London." // DARKPACK EDIT CHANGE
 	icon_state = "ginbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/gin = 100)
 	drink_type = ALCOHOL
@@ -363,7 +363,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/patron
 	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequila, served in space night clubs across the galaxy."
+	desc = "Silver laced tequila, served in night clubs across the world." // DARKPACK EDIT CHANGE
 	icon_state = "patronbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/patron = 100)
 	drink_type = ALCOHOL
@@ -450,7 +450,7 @@
 		LAZYSET(located_wine.data, "vintage", wine_info)
 
 /obj/item/reagent_containers/cup/glass/bottle/wine/proc/generate_vintage()
-	return "[CURRENT_STATION_YEAR] Nanotrasen Light Red"
+	return "[CURRENT_STATION_YEAR] Classic Light Red" // DARKPACK EDIT CHANGE
 
 /obj/item/reagent_containers/cup/glass/bottle/wine/unlabeled
 	name = "unlabeled wine bottle"
@@ -471,8 +471,8 @@
 	)
 	var/origin = pick(
 		"Local",
-		"Nanotrasen",
-		"Syndicate",
+		"Winehaven", // DARKPACK EDIT CHANGE
+		"Beaulieu", // DARKPACK EDIT CHANGE
 	)
 	return "[year] [origin] [type]"
 
@@ -500,7 +500,7 @@
 		if("A&A")
 			fullname = "Ash and Asher"
 		if("Generic")
-			fullname = "Nanotrasen Cheap Imitations"
+			fullname = "Leopold Cheap Imitations" // DARKPACK EDIT CHANGE
 	var/removals = list(
 		"\[REDACTED\]",
 		"\[EXPLETIVE DELETED\]",
@@ -538,7 +538,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/lizardwine
 	name = "bottle of lizard wine"
-	desc = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol. Inexplicably popular among command staff."
+	desc = "An alcoholic beverage from China, made by infusing lizard tails in ethanol. Inexplicably unpopular amongst the ruling elite." // DARKPACK EDIT CHANGE
 	icon_state = "lizardwine"
 	list_reagents = list(/datum/reagent/consumable/ethanol/lizardwine = 100)
 	drink_type = FRUIT | ALCOHOL
@@ -590,7 +590,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/fernet
 	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	desc = "A bottle of pure Fernet Bronca, produced in Italy." // DARKPACK EDIT CHANGE
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 	drink_type = ALCOHOL
@@ -814,7 +814,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/trappist
 	name = "Mont de Requin Trappistes Bleu"
-	desc = "Brewed in space-Belgium. Fancy!"
+	desc = "Brewed in Belgium. Fancy!" // DARKPACK EDIT CHANGE
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
@@ -957,7 +957,7 @@
 
 /obj/item/reagent_containers/cup/glass/bottle/pruno
 	name = "pruno mix"
-	desc = "A trash bag filled with fruit, sugar, yeast, and water, pulped together into a pungent slurry to be fermented in an enclosed space, traditionally the toilet. Security would love to confiscate this, one of the many things wrong with them."
+	desc = "A trash bag filled with fruit, sugar, yeast, and water, pulped together into a pungent slurry to be fermented in an enclosed space, traditionally the toilet. The police would love to confiscate this, one of the many things wrong with them." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "trashbag"
 	list_reagents = list(/datum/reagent/consumable/prunomix = 50)
