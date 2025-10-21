@@ -78,7 +78,21 @@
 	var/static/list/lang_list
 	if(!lang_list)
 		lang_list = list(
+			/datum/language/common,
+			/datum/language/uncommon,
+			/datum/language/spinwarder,
+			/datum/language/draconic,
+			/datum/language/codespeak,
+			/datum/language/monkey,
+			/datum/language/narsie,
 			/datum/language/beachbum,
+			/datum/language/aphasia,
+			/datum/language/piratespeak,
+			/datum/language/moffic,
+			/datum/language/sylvan,
+			/datum/language/shadowtongue,
+			/datum/language/terrum,
+			/datum/language/nekomimetic,
 			/datum/language/garou_tongue,
 			/datum/language/primal_tongue
 		)
