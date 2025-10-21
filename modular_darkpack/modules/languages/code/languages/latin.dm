@@ -16,4 +16,4 @@
 		"ex", "im", "ob", "sub", "ad", "per", "qua", "qui", "prae", "pro"
 	)
 	icon_state = "latin"
-	default_priority = 90
+	default_priority = 15

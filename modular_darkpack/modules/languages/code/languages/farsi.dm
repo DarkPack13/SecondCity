@@ -16,4 +16,4 @@
 		"nazdik","taghariban","dandannpana"
 	)
 	icon_state = "farsi"
-	default_priority = 90
+	default_priority = 15

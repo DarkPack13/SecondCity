@@ -13,4 +13,4 @@
 		"ffr", "ind", "nog", "gwe", "cwn", "cyf", "eil", "ll", "wch", "aed"
 	)
 	icon_state = "welsh"
-	default_priority = 90
+	default_priority = 15

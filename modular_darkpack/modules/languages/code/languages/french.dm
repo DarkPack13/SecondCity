@@ -13,4 +13,4 @@
 		"jo", "ja", "che", "tra", "ble", "tre", "clo", "cla", "cro", "fra"
 	)
 	icon_state = "french"
-	default_priority = 90
+	default_priority = 15

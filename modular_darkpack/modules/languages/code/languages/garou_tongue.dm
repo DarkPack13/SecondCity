@@ -12,7 +12,7 @@
 		"xa", "jo", "da", "ku", "pe", "su", "yo", "ve", "mi", "ba"
 	)
 	icon_state = "garou"
-	default_priority = 90
+	default_priority = 10
 
 /datum/language/primal_tongue
 	name = "Primal Tongue"
@@ -28,4 +28,4 @@
 		"kro", "thro", "zyi", "sha", "hza", "mru", "wru", "bruk", "hka", "tza"
 	)
 	icon_state = "garou"
-	default_priority = 90
+	default_priority = 10

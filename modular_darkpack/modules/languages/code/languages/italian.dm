@@ -16,4 +16,4 @@
 		"zio", "zio", "cia", "zio", "gli", "pia", "zza", "tor", "ino", "gra"
 	)
 	icon_state = "italian"
-	default_priority = 90
+	default_priority = 15

@@ -9,7 +9,7 @@
 		"δεν","της","από","ρα","ά","έ","ε","ο","ρ","τ","ά","κ","ή", "α","σ","ε","ζ","τ","τ","ικ","χ","α","π","δ","β","τής","θα"
 	)
 	icon_state = "greek" //Courtesy of Agate. I had made my own but lost it while shuffling files around. F
-	default_priority = 90
+	default_priority = 15
 	//But Mci, why do you have some letters in here more than once? Becuase they have a frequency level of fucking /ten/ percent across the /whole/ language. It's gonna be a common letter.
 	//Or, you know. I pasted it more than once by accident and since I'm dumb and doing this in DM I can't tell.
 	//Seriously it looks like a barcode.

@@ -14,4 +14,4 @@
 		"xiū","liào","zhù","jí", "lù", "xiàng"
 	)
 	icon_state = "chinese"
-	default_priority = 90
+	default_priority = 15

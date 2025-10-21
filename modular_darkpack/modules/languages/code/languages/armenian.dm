@@ -14,4 +14,4 @@
 		"shnorhakalut'yun","ktsats","sarsap'eli","chanaparhordut'yun","t'argmanel","khelagar"
 	)
 	icon_state = "armenian"
-	default_priority = 90
+	default_priority = 15

@@ -16,4 +16,4 @@
 		"mya", "myu", "myo", "rya", "ryu", "ryo", "tsu", "n"
 	)
 	icon_state = "japanese"
-	default_priority = 90
+	default_priority = 15

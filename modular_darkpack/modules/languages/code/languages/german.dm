@@ -16,4 +16,4 @@
 		"hund", "tag", "nacht", "ja", "nein", "bitte", "danke", "lieben", "fragen"
 	)
 	icon_state = "german"
-	default_priority = 90
+	default_priority = 15

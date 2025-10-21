@@ -74,23 +74,33 @@
 /obj/item/organ/tongue/proc/get_possible_languages()
 	RETURN_TYPE(/list)
 	// This is the default list of languages most humans should be capable of speaking
+	// DARKPACK EDIT CHANGE START - LANGUAGES
 	return list(
 		/datum/language/common,
-		/datum/language/uncommon,
-		/datum/language/spinwarder,
-		/datum/language/draconic,
-		/datum/language/codespeak,
-		/datum/language/monkey,
-		/datum/language/narsie,
+		/datum/language/espanol,
+		/datum/language/mandarin,
+		/datum/language/russian,
+		/datum/language/italian,
+		/datum/language/latin,
+		/datum/language/hebrew,
+		/datum/language/french,
+		/datum/language/arabic,
+		/datum/language/german,
+		/datum/language/hebrew,
+		/datum/language/japanese,
+		/datum/language/cantonese,
+		/datum/language/greek,
+		/datum/language/irish,
+		/datum/language/scottish,
+		/datum/language/welsh,
+		/datum/language/armenian,
+		/datum/language/farsi,
+		/datum/language/korean,
+		/datum/language/tagalog,
 		/datum/language/beachbum,
-		/datum/language/aphasia,
-		/datum/language/piratespeak,
-		/datum/language/moffic,
-		/datum/language/sylvan,
-		/datum/language/shadowtongue,
-		/datum/language/terrum,
-		/datum/language/nekomimetic,
-	)
+		/datum/language/garou_tongue,
+		/datum/language/primal_tongue,
+	) // DARKPACK EDIT CHANGE END
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
