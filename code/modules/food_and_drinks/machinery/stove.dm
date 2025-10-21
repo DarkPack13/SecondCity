@@ -1,7 +1,7 @@
 /obj/machinery/stove
 	name = "stove"
 	desc = "You'd think this thing would be more useful in here."
-	icon = 'icons/obj/machines/kitchen_stove.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/kitchen/kitchen_stove.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stove"
 	base_icon_state = "stove"
 	density = TRUE

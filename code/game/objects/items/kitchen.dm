@@ -84,7 +84,7 @@
 
 /obj/item/knife/kitchen
 	name = "kitchen knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	desc = "A general purpose Chef's Knife made by Cookoff Incorporated. Guaranteed to stay sharp for years to come." // DARKPACK EDIT CHANGE
 
 /obj/item/knife/plastic
 	name = "plastic knife"
