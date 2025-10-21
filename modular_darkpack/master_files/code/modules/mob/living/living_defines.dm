@@ -83,3 +83,4 @@
 
 	//beastmaster
 	var/list/beastmaster_minions = list()
+	var/list/beastmaster_minion_components = list()

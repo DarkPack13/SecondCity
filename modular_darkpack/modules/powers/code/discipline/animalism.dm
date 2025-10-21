@@ -24,20 +24,21 @@
 
 /datum/discipline_power/animalism/summon_rat/activate()
 	. = ..()
-	var/limit = min(2, level) + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-	if(!length(owner.beastmaster))
-		var/datum/action/beastmaster_stay/stay = new()
-		stay.Grant(owner)
-		var/datum/action/beastmaster_deaggro/deaggro = new()
-		deaggro.Grant(owner)
 
-	var/mob/living/simple_animal/hostile/beastmaster/rat/rat = new(get_turf(owner))
-	rat.my_creator = owner
-	owner.beastmaster |= rat
-	rat.beastmaster = owner
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/H = owner
+
+	// add_beastmaster_minion handles the limit check and returns FALSE if at limit
+	// So we need to manually remove one if we're at the limit
+	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(H.beastmaster_minions) >= max_minions)
+		// Remove oldest minion
+		var/mob/living/oldest = H.beastmaster_minions[1]
+		if(oldest)
+			qdel(oldest)
+		H.add_beastmaster_minion(/mob/living/basic/mouse/rat)
 
 //SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
@@ -53,32 +54,20 @@
 
 /datum/discipline_power/animalism/summon_cat/activate()
 	. = ..()
-	var/limit = min(2, level) + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-	if(!length(owner.beastmaster))
-		var/datum/action/beastmaster_stay/stay = new()
-		stay.Grant(owner)
-		var/datum/action/beastmaster_deaggro/deaggro = new()
-		deaggro.Grant(owner)
 
-	var/mob/living/simple_animal/hostile/beastmaster/cat/cat = new(get_turf(owner))
-	cat.my_creator = owner
-	owner.beastmaster |= cat
-	cat.beastmaster = owner
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/H = owner
+
+	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(H.beastmaster_minions) >= max_minions)
+		var/mob/living/oldest = H.beastmaster_minions[1]
+		if(oldest)
+			qdel(oldest)
+	H.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack)
 
 //SUMMON WOLF
-/*
-/obj/effect/spectral_wolf
-	name = "Spectral Wolf"
-	desc = "Bites enemies in other dimensions."
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
-	icon_state = "wolf"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-*/
-
 /datum/discipline_power/animalism/summon_wolf
 	name = "Spectral Wolf"
 	desc = "Summons a phantasmal wolf to attack the target."
@@ -92,20 +81,18 @@
 
 /datum/discipline_power/animalism/summon_wolf/activate()
 	. = ..()
-	var/limit = min(2, level) + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-	if(!length(owner.beastmaster))
-		var/datum/action/beastmaster_stay/stay = new()
-		stay.Grant(owner)
-		var/datum/action/beastmaster_deaggro/deaggro = new()
-		deaggro.Grant(owner)
 
-	var/mob/living/simple_animal/hostile/beastmaster/dog = new(get_turf(owner))
-	dog.my_creator = owner
-	owner.beastmaster |= dog
-	dog.beastmaster = owner
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/H = owner
+
+	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(H.beastmaster_minions) >= max_minions)
+		var/mob/living/oldest = H.beastmaster_minions[1]
+		if(oldest)
+			qdel(oldest)
+	H.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack)
 
 //SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
@@ -121,30 +108,34 @@
 
 /datum/discipline_power/animalism/summon_bat/activate()
 	. = ..()
-	var/limit = min(2, level) + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-	if(!length(owner.beastmaster))
-		var/datum/action/beastmaster_stay/stay = new()
-		stay.Grant(owner)
-		var/datum/action/beastmaster_deaggro/deaggro = new()
-		deaggro.Grant(owner)
 
-	var/mob/living/basic/bat/vampire/bat = new(get_turf(owner))
-	bat.my_creator = owner
-	owner.beastmaster |= bat
-	bat.beastmaster = owner
+	if(!ishuman(owner))
+		return
 
-//RAT SHAPESHIFT
-/obj/effect/proc_holder/spell/targeted/shapeshift/animalism
+	var/mob/living/carbon/human/H = owner
+
+	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(H.beastmaster_minions) >= max_minions)
+		var/mob/living/oldest = H.beastmaster_minions[1]
+		if(oldest)
+			qdel(oldest)
+	H.add_beastmaster_minion(/mob/living/basic/bat/vampire)
+
+// RAT SHAPESHIFT - Using modern /tg/ shapeshift system
+/datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
-	desc = "Take on the shape a rat."
-	charge_max = 5 SECONDS
-	cooldown_min = 5 SECONDS
+	desc = "Take on the shape of a rat."
+	button_icon_state = "shapeshift"
+
+	cooldown_time = 5 SECONDS
+
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/basic/mouse/rat/vampire
+	convert_damage = TRUE
+	convert_damage_type = BRUTE
+
+	shapeshift_type = /mob/living/basic/mouse/rat
+	possible_shapes = list(/mob/living/basic/mouse/rat)
 
 /datum/discipline_power/animalism/rat_shapeshift
 	name = "Skitter"
@@ -152,21 +143,36 @@
 
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
+	level = 5
 	violates_masquerade = TRUE
 
 	cooldown_length = 8 SECONDS
 	duration_length = 20 SECONDS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/animalism/shapeshift
+	/// The shapeshift spell we grant to the owner
+	var/datum/action/cooldown/spell/shapeshift/animalism/shapeshift_spell
 
 /datum/discipline_power/animalism/rat_shapeshift/activate()
 	. = ..()
-	if(!shapeshift)
-		shapeshift = new(owner)
-	shapeshift.Shapeshift(owner)
+
+	if(!ishuman(owner))
+		return
+
+	// Grant the shapeshift spell if we don't have it yet
+	if(!shapeshift_spell)
+		shapeshift_spell = new /datum/action/cooldown/spell/shapeshift/animalism()
+		shapeshift_spell.Grant(owner)
+
+	// Cast the spell to transform
+	shapeshift_spell.cast(owner)
 
 /datum/discipline_power/animalism/rat_shapeshift/deactivate()
 	. = ..()
-	if(owner.stat != DEAD)
-		shapeshift.Restore(shapeshift.myshape)
+
+	if(!owner || owner.stat == DEAD)
+		return
+
+	// If we're still shifted, unshift them
+	if(shapeshift_spell && is_type_in_list(owner, shapeshift_spell.possible_shapes))
+		shapeshift_spell.cast(owner) // Casting again will unshift
 		owner.Stun(1.5 SECONDS)
