@@ -12,7 +12,7 @@
 		"de", "di", "du", "go", "gu", "ve", "va", "bo", "ba", "lu",
 		"re", "ru", "fi", "fo", "fa", "ya", "yo", "za", "zo", "ze"
 	)
-	icon_state = "espanol"
+	icon_state = "spanish"
 	default_priority = 90
 
 	mutual_understanding = list(
