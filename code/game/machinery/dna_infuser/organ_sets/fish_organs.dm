@@ -316,7 +316,7 @@
 ///Lungs that replace the need of oxygen with water vapor or being wet
 /obj/item/organ/lungs/fish
 	name = "mutated gills"
-	desc = "Fish DNA infused on what once was a normal pair of lungs that now require spacemen to breathe water vapor, or keep themselves covered in water."
+	desc = "Fish DNA infused on what once was a normal pair of lungs that now require people to breathe water vapor, or keep themselves covered in water." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "gills"
 	breath_noise = "the dribbling of water"

@@ -9,7 +9,7 @@
 /obj/machinery/icecream_vat
 	name = "ice cream vat"
 	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
-	icon = 'icons/obj/service/kitchen.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "icecream_vat"
 	density = TRUE
 	anchored = FALSE

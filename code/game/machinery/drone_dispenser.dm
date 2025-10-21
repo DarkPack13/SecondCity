@@ -81,7 +81,7 @@
 	materials.insert_amount_mat(starting_amount, /datum/material/glass)
 	materials.precise_insertion = TRUE
 	using_materials = list(/datum/material/iron = iron_cost, /datum/material/glass = glass_cost)
-	REGISTER_REQUIRED_MAP_ITEM(1, 1)
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // DARKPACK EDIT REMOVAL
 
 /obj/machinery/drone_dispenser/Destroy()
 	materials = null

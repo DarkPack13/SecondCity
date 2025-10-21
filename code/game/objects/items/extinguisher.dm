@@ -56,13 +56,13 @@
 
 /obj/item/extinguisher/Initialize(mapload)
 	. = ..()
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/ghettojetpack)
+	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/ghettojetpack)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */ // DARKPACK EDIT REMOVE
 	register_context()
 
 /obj/item/extinguisher/add_context(atom/source, list/context, obj/item/held_item, mob/user)

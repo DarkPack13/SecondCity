@@ -14,6 +14,7 @@
 
 /obj/item/blood_hunt/Initialize(mapload)
 	. = ..()
+	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 	GLOB.blood_hunt_announcers += src
 	AddComponent(/datum/component/violation_observer, FALSE)
 
