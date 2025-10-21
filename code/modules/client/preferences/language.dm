@@ -5,7 +5,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/language/create_default_value()
-	return "Random"
+	return /datum/language/espanol::name // DARKPACK EDIT CHANGE - LANGUAGES
 
 /datum/preference/choiced/language/is_accessible(datum/preferences/preferences)
 	if (!..())
@@ -30,9 +30,11 @@
 	if(!GLOB.uncommon_roundstart_languages.len)
 		generate_selectable_species_and_languages()
 
+	/* DARKPACK EDIT REMOVAL - LANGUAGES
 	values += "Random"
 	//we add uncommon as it's foreigner-only.
 	values += /datum/language/uncommon::name
+	*/
 
 	for(var/datum/language/language_type as anything in GLOB.uncommon_roundstart_languages)
 		if(initial(language_type.name) in values)
