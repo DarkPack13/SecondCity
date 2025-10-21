@@ -17,5 +17,6 @@
 	//On the upside, it's all in lowercase now so it shouldn't look like greek people are always SCREAMING AT THE TOP OF THEIR LUNGS
 
 	mutual_understanding = list(
+		/datum/language/common = 10,
 		/datum/language/french = 10,
 	)
