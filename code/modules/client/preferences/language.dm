@@ -20,7 +20,7 @@
 		lang_icon.scale(32, 32)
 		return lang_icon
 
-	var/datum/universal_icon/unknown = uni_icon('icons/ui/chat/language.dmi', "unknown")
+	var/datum/universal_icon/unknown = uni_icon('modular_darkpack/master_files/icons/ui/chat/language.dmi', "unknown") // DARKPACK EDIT CHANGE - LANGUAGES
 	unknown.scale(32, 32)
 	return unknown
 
