@@ -17,3 +17,5 @@
 	)
 	icon_state = "farsi"
 	default_priority = 90
+
+	restricted = FALSE

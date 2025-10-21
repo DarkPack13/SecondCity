@@ -5,7 +5,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/language/create_default_value()
-	return /datum/language/espanol::name // DARKPACK EDIT CHANGE - LANGUAGES
+	return /datum/language/spanish::name // DARKPACK EDIT CHANGE - LANGUAGES
 
 /datum/preference/choiced/language/is_accessible(datum/preferences/preferences)
 	if (!..())

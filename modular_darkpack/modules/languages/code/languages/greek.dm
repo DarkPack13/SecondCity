@@ -20,3 +20,5 @@
 		/datum/language/common = 10,
 		/datum/language/french = 10,
 	)
+
+	restricted = FALSE

@@ -16,9 +16,11 @@
 
 	mutual_understanding = list(
 		/datum/language/beachbum = 33, // Lol I guess I can leave this
-		/datum/language/espanol = 25,
+		/datum/language/spanish = 25,
 		/datum/language/french = 10,
 		/datum/language/german = 10,
 		/datum/language/latin = 10,
 		/datum/language/greek = 10,
 	)
+
+	restricted = FALSE

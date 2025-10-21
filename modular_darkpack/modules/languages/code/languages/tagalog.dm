@@ -18,3 +18,5 @@
 	)
 	icon_state = "tagalog"
 	default_priority = 90
+
+	restricted = FALSE

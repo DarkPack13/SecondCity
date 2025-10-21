@@ -12,3 +12,5 @@
 	)
 	icon_state = "hebrew"
 	default_priority = 90
+
+	restricted = FALSE

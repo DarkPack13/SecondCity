@@ -20,3 +20,5 @@
 		/datum/language/greek = 10,
 		/datum/language/latin = 10,
 	)
+
+	restricted = FALSE

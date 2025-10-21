@@ -92,6 +92,11 @@
 	 */
 	var/list/mutual_understanding
 
+	// DARKPACK EDIT ADD START - LANGUAGES
+	/// If this langauge can be randomly picked or populated in common lists.
+	var/restricted = TRUE
+	// DARKPACK EDIT ADD END
+
 // Primarily for debugging, allows for easy iteration and testing of languages.
 /datum/language/vv_edit_var(var_name, var_value)
 	. = ..()

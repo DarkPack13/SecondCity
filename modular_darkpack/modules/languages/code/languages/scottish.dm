@@ -18,3 +18,5 @@
 	mutual_understanding = list(
 		/datum/language/irish = 25
 	)
+
+	restricted = FALSE

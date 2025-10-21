@@ -15,3 +15,5 @@
 	)
 	icon_state = "armenian"
 	default_priority = 90
+
+	restricted = FALSE

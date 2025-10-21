@@ -14,3 +14,5 @@
 	)
 	icon_state = "welsh"
 	default_priority = 90
+
+	restricted = FALSE

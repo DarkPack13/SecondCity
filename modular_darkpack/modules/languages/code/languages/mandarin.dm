@@ -19,3 +19,5 @@
 	mutual_understanding = list(
 		/datum/language/cantonese = 50,
 	)
+
+	restricted = FALSE

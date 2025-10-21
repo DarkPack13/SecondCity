@@ -75,31 +75,18 @@
 	RETURN_TYPE(/list)
 	// This is the default list of languages most humans should be capable of speaking
 	// DARKPACK EDIT CHANGE START - LANGUAGES
-	return list(
-		/datum/language/common,
-		/datum/language/espanol,
-		/datum/language/mandarin,
-		/datum/language/russian,
-		/datum/language/italian,
-		/datum/language/latin,
-		/datum/language/hebrew,
-		/datum/language/french,
-		/datum/language/arabic,
-		/datum/language/german,
-		/datum/language/japanese,
-		/datum/language/cantonese,
-		/datum/language/greek,
-		/datum/language/irish,
-		/datum/language/scottish,
-		/datum/language/welsh,
-		/datum/language/armenian,
-		/datum/language/farsi,
-		/datum/language/korean,
-		/datum/language/tagalog,
-		/datum/language/beachbum,
-		/datum/language/garou_tongue,
-		/datum/language/primal_tongue,
-	) // DARKPACK EDIT CHANGE END
+	var/static/list/lang_list
+	if(!lang_list)
+		lang_list = list(
+			/datum/language/beachbum,
+			/datum/language/garou_tongue,
+			/datum/language/primal_tongue
+		)
+		for(var/datum/language/lang as anything in subtypesof(/datum/language))
+			if(lang.restricted)
+				continue
+			lang_list |= lang
+	return lang_list // DARKPACK EDIT CHANGE END
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER

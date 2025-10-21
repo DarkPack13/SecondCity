@@ -1,4 +1,4 @@
-/datum/language/espanol
+/datum/language/spanish
 	name = "Español"
 	desc = "A romantic and widely spoken world language."
 	key = "e"
@@ -20,3 +20,5 @@
 		/datum/language/common = 25,
 		/datum/language/latin = 10,
 	)
+
+	restricted = FALSE

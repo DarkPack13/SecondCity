@@ -21,3 +21,5 @@
 	mutual_understanding = list(
 		/datum/language/common = 10,
 	)
+
+	restricted = FALSE
