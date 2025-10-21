@@ -121,7 +121,7 @@
 			qdel(oldest)
 	H.add_beastmaster_minion(/mob/living/basic/bat/vampire)
 
-// RAT SHAPESHIFT - Using modern /tg/ shapeshift system
+// RAT SHAPESHIFT
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
 	desc = "Take on the shape of a rat."
