@@ -15,3 +15,7 @@
 	)
 	icon_state = "chinese"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/cantonese = 50,
+	)

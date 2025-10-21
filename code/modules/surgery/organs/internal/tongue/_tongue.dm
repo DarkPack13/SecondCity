@@ -86,7 +86,6 @@
 		/datum/language/french,
 		/datum/language/arabic,
 		/datum/language/german,
-		/datum/language/hebrew,
 		/datum/language/japanese,
 		/datum/language/cantonese,
 		/datum/language/greek,

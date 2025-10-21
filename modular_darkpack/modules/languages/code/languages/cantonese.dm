@@ -15,3 +15,7 @@
 	)
 	icon_state = "cantonese"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/mandarin = 50,
+	)
