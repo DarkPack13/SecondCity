@@ -107,7 +107,7 @@
 	var/mob/living/carbon/H = quirk_holder
 	H.grant_language(/datum/language/greek)
 
-/datum/quirk/irish // APOC EDIT ADD // This is part of the TFN PR, but doesn't have comments.
+/datum/quirk/irish
 	name = "Irish"
 	desc = "You know the Irish language."
 	value = 1
@@ -168,13 +168,4 @@
 
 /datum/quirk/tagalog/add()
 	var/mob/living/carbon/H = quirk_holder
-	H.grant_language(/datum/language/tagalog) // This is where the TFN PR ends
-
-/datum/quirk/portuguese
-	name = "Portuguese"
-	desc = "You know the Portuguese language."
-	value = 1
-
-/datum/quirk/portuguese/add()
-	var/mob/living/carbon/H = quirk_holder
-	H.grant_language(/datum/language/tagalog) // APOC EDIT END
+	H.grant_language(/datum/language/tagalog)
