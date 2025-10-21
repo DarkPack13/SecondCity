@@ -6892,7 +6892,6 @@
 #include "modular_darkpack\modules\jumping\code\crack_effect.dm"
 #include "modular_darkpack\modules\jumping\code\jump_ui_button.dm"
 #include "modular_darkpack\modules\jumping\code\jumper_component.dm"
-#include "modular_darkpack\modules\languages\code\quirks.dm"
 #include "modular_darkpack\modules\languages\code\languages\arabic.dm"
 #include "modular_darkpack\modules\languages\code\languages\armenian.dm"
 #include "modular_darkpack\modules\languages\code\languages\cantonese.dm"
