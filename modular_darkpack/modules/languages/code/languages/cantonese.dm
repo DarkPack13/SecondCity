@@ -14,4 +14,4 @@
 		"lián","gé","ér", "r", "ba","chi"
 	)
 	icon_state = "cantonese"
-	default_priority = 15
+	default_priority = 90

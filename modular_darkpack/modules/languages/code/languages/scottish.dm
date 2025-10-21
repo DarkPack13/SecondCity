@@ -13,4 +13,4 @@
 		"rui", "each", "sios", "nai", "ch", "th", "àrn", "bhar", "dhu", "tua"
 	)
 	icon_state = "scottish"
-	default_priority = 15
+	default_priority = 90

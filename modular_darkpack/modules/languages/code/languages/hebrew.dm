@@ -11,4 +11,4 @@
 		"erev", "shlo", "lo", "ta", "im", "yom"
 	)
 	icon_state = "hebrew"
-	default_priority = 15
+	default_priority = 90

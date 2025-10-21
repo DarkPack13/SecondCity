@@ -13,7 +13,7 @@
 		"re", "ru", "fi", "fo", "fa", "ya", "yo", "za", "zo", "ze"
 	)
 	icon_state = "espanol"
-	default_priority = 15
+	default_priority = 90
 
 	mutual_understanding = list(
 		/datum/language/common = 25,

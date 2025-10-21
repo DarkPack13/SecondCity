@@ -13,6 +13,6 @@
 		"me", "te", "chi", "sha", "ska", "ski", "ova", "cha", "nya", "rya", "zha"
 	)
 	icon_state = "russian"
-	default_priority = 15
+	default_priority = 90
 
 // Fuck guest accounts, and fuck language testing.

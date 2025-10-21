@@ -16,4 +16,4 @@
 		"bir", "mar", "bar", "sah"
 	)
 	icon_state = "arabic"
-	default_priority = 15
+	default_priority = 90

@@ -13,4 +13,4 @@
 		"dor", "cha", "sor", "sao", "rs", "se", "fái", "séi", "oí", "che",
 	)
 	icon_state = "irish"
-	default_priority = 15
+	default_priority = 90

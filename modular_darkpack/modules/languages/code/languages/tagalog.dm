@@ -17,4 +17,4 @@
 		"mga","takot"
 	)
 	icon_state = "tagalog"
-	default_priority = 15
+	default_priority = 90

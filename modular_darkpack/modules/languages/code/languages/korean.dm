@@ -17,4 +17,4 @@
 		"jadongcha","daeyang","agma","gyohoe","malttug","sanyangkkun","dallida","doju","chaeg","jinsil"
 	)
 	icon_state = "korean"
-	default_priority = 15
+	default_priority = 90
