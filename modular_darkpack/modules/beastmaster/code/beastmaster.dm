@@ -1,29 +1,3 @@
-/mob/living/simple_animal/hostile/beastmaster
-	name = "dog"
-	desc = "Woof-woof."
-	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
-	icon_state = "dog"
-	icon_living = "dog"
-	icon_dead = "dog_dead"
-	del_on_death = 1
-	footstep_type = FOOTSTEP_MOB_SHOE
-	mob_biotypes = MOB_ORGANIC
-	speak_chance = 0
-	turns_per_move = 1
-	speed = 0.35
-	maxHealth = 80
-	health = 85
-	harm_intent_damage = 5
-	melee_damage_lower = 10
-	melee_damage_upper = 25
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
-	bloodpool = 2
-	maxbloodpool = 2
-	loot = list()
-	AIStatus = AI_OFF
-
 // ============= BEASTMASTER MINION COMPONENT =============
 /datum/component/beastmaster_minion
 	/// The master who controls this beast
@@ -50,6 +24,7 @@
 	var/mob/living/beast = parent
 
 	if(beast)
+		//stop the movement when this component is removed
 		walk(beast, 0)
 
 		if(istype(beast, /mob/living/simple_animal))
