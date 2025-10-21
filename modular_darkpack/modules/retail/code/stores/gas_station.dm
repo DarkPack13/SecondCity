@@ -2,9 +2,10 @@
 	products_list = list(
 		//new /datum/data/vending_product("full gas can", /obj/item/gas_can/full,	250),
 		new /datum/data/vending_product("tire iron", /obj/item/melee/vamp/tire,	50),
-		new /datum/data/vending_product("Spray Paint", /obj/item/toy/crayon/spraycan, 25),
-		new /datum/data/vending_product("Hair Spray", /obj/item/dyespray, 10),
+		new /datum/data/vending_product("spray paint", /obj/item/toy/crayon/spraycan, 25),
+		new /datum/data/vending_product("hair spray", /obj/item/dyespray, 10),
 		new /datum/data/vending_product("malboro", /obj/item/storage/fancy/cigarettes/cigpack_robust,	50),
+		new /datum/data/vending_product("malboro gold", /obj/item/storage/fancy/cigarettes/cigpack_robustgold,	80),
 		new /datum/data/vending_product("newport", /obj/item/storage/fancy/cigarettes/cigpack_xeno,	30),
 		new /datum/data/vending_product("camel", /obj/item/storage/fancy/cigarettes/dromedaryco,	30),
 		new /datum/data/vending_product("zippo lighter", /obj/item/lighter,	20),

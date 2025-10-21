@@ -250,7 +250,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	faction = list("Tzimisce")
+	faction = list(VAMPIRE_CLAN_TZIMISCE)
 	pressure_resistance = 200
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
@@ -266,7 +266,7 @@
 	health = 100
 	bloodpool = 0
 	maxbloodpool = 0
-	faction = list("Lasombra")
+	faction = list(VAMPIRE_CLAN_LASOMBRA)
 
 /mob/living/simple_animal/hostile/biter/lasombra/better
 	icon_state = "shadow2"
@@ -298,7 +298,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	status_flags = CANPUSH
-	faction = list("Tzimisce")
+	faction = list(VAMPIRE_CLAN_TZIMISCE)
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 5
 	maxbloodpool = 5
@@ -324,7 +324,7 @@
 	a_intent = INTENT_HARM
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
-	faction = list("Tzimisce")
+	faction = list(VAMPIRE_CLAN_TZIMISCE)
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 7
 	maxbloodpool = 7
@@ -400,7 +400,7 @@
 	dextrous = TRUE
 	held_items = list(null, null)
 	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
-	faction = list("Tremere")
+	faction = list(VAMPIRE_CLAN_TREMERE)
 
 /mob/living/simple_animal/hostile/gargoyle/proc/gain_nigs()
 	set waitfor = FALSE
@@ -488,13 +488,13 @@
 	maxbloodpool = 20
 
 /mob/living/simple_animal/hostile/biter/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/simple_animal/hostile/fister/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/simple_animal/hostile/tanker/hostile
-	faction = list("hostile")
+	faction = list(FACTION_HOSTILE)
 
 /obj/item/ground_heir
 	name = "bag of ground"

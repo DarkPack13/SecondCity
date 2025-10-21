@@ -48,13 +48,14 @@
 	init_slapcrafting()
 
 /obj/item/flashlight/proc/init_slapcrafting()
+/* // DARKPACK EDIT REMOVE
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/flashlight_eyes)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/flashlight/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	// single use lights can be toggled on once
 	if(isnull(held_item) && (toggle_context || !light_on))
@@ -422,7 +423,7 @@
 // FLARES
 /obj/item/flashlight/flare
 	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A red flare. There are instructions on the side, it reads 'pull cord, make light'." // DARKPACK EDIT CHANGE
 	light_range = 7 // Pretty bright.
 	icon_state = "flare"
 	inhand_icon_state = "flare"
@@ -708,7 +709,7 @@
 
 /obj/item/flashlight/flare/torch/everburning
 	name = "everburning torch"
-	desc = "A torch which burns continuously, even in the vacuum of space"
+	desc = "A torch which burns continuously, even in water!" // DARKPACK EDIT CHANGE
 	can_be_extinguished = FALSE
 	fuel = INFINITY
 	randomize_fuel = FALSE
@@ -1083,7 +1084,7 @@
 #define SLOWDOWN_ON 1
 
 /obj/item/flashlight/lamp/space_bubble
-	name = "space furnace"
+	name = "magic furnace" // DARKPACK EDIT CHANGE
 	desc = "A heavy furnace capable of forming a temporary bubble that holds in breathable air."
 	icon_state = "space_lamp"
 	worn_icon_state = "space_lamp"

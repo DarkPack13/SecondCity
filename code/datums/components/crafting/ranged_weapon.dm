@@ -7,7 +7,7 @@
 	)
 	time = 2 SECONDS //faster than crafting them by hand!
 	category = CAT_WEAPON_RANGED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"
 	result = /obj/item/restraints/legcuffs/bola/gonbola
@@ -247,7 +247,7 @@
 	tool_behaviors = list(TOOL_CROWBAR)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/pipegun_prime
 	name = "Regal Pipegun"
 	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
@@ -312,7 +312,7 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/pipe_organ_gun
 	name = "Pipe Organ Gun"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -328,7 +328,7 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
-
+*/
 /datum/crafting_recipe/trash_cannon
 	name = "Trash Cannon"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -342,7 +342,7 @@
 	)
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/laser_musket
 	name = "Laser Musket"
 	result = /obj/item/gun/energy/laser/musket
@@ -357,7 +357,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/laser_musket_prime
 	name = "Heroic Laser Musket"
 	result = /obj/item/gun/energy/laser/musket/prime
@@ -373,7 +373,7 @@
 	time = 30 SECONDS //contemplate for a bit
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/smoothbore_disabler
 	name = "Smoothbore Disabler"
 	result = /obj/item/gun/energy/disabler/smoothbore
@@ -388,7 +388,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/smoothbore_disabler_prime
 	name = "Elite Smoothbore Disabler"
 	result = /obj/item/gun/energy/disabler/smoothbore/prime
@@ -417,7 +417,7 @@
 	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/ashenbow
 	name = "Ashen Bow"
 	result = /obj/item/gun/ballistic/bow/ashenbow
@@ -465,3 +465,4 @@
 	steps = list(
 		"use high quality gibtonite and advanced release or large grenades for better yield",
 	)
+ */

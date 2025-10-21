@@ -5,7 +5,7 @@
  */
 /obj/item/newspaper
 	name = "newspaper"
-	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
+	desc = "An issue of The Griffon, the newspaper circulating in the city." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "newspaper"
 	inhand_icon_state = "newspaper"

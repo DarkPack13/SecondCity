@@ -28,8 +28,7 @@
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 15, "suit", FALSE)
+	AddComponent(/datum/component/selling, 75, "suit", FALSE)
 
 /obj/item/clothing/suit/vampire/trench/malkav
 	icon_state = "malkav_coat"

@@ -74,12 +74,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new /datum/stack_recipe("Black Checker Man", /obj/structure/chess/checker/blackman, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_ENTERTAINMENT), \
 		new /datum/stack_recipe("Black Checker King", /obj/structure/chess/checker/blackking, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_ENTERTAINMENT), \
 	)),
+	// DARKPACK EDIT CHANGE START
 	null, \
 	new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 1.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
-	null, \
-	new/datum/stack_recipe("atmos canister", /obj/machinery/portable_atmospherics/canister, 10, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_ATMOSPHERIC), \
-	new/datum/stack_recipe("pipe", /obj/item/pipe/quaternary/pipe/crafted, 1, time = 4 SECONDS, crafting_flags = NONE, category = CAT_ATMOSPHERIC), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/iron/base, 1, 4, 20, category = CAT_TILES), \
 	new/datum/stack_recipe("iron rod", /obj/item/stack/rods, 1, 2, 60, category = CAT_MISC), \
@@ -95,67 +93,29 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer, 10, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	null, \
-	new /datum/stack_recipe_list("airlock assemblies", list( \
-		new /datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("public airlock assembly", /obj/structure/door_assembly/door_assembly_public, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("security airlock assembly", /obj/structure/door_assembly/door_assembly_sec, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("engineering airlock assembly", /obj/structure/door_assembly/door_assembly_eng, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("mining airlock assembly", /obj/structure/door_assembly/door_assembly_min, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("atmospherics airlock assembly", /obj/structure/door_assembly/door_assembly_atmo, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("research airlock assembly", /obj/structure/door_assembly/door_assembly_research, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("freezer airlock assembly", /obj/structure/door_assembly/door_assembly_fre, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("science airlock assembly", /obj/structure/door_assembly/door_assembly_science, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("medical airlock assembly", /obj/structure/door_assembly/door_assembly_med, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("hydroponics airlock assembly", /obj/structure/door_assembly/door_assembly_hydro, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("virology airlock assembly", /obj/structure/door_assembly/door_assembly_viro, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("maintenance airlock assembly", /obj/structure/door_assembly/door_assembly_mai, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("external airlock assembly", /obj/structure/door_assembly/door_assembly_ext, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("external maintenance airlock assembly", /obj/structure/door_assembly/door_assembly_extmai, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-		new /datum/stack_recipe("maintenance hatch assembly", /obj/structure/door_assembly/door_assembly_mhatch, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-	)), \
-	null, \
 	new/datum/stack_recipe("firelock frame", /obj/structure/firelock_frame, 3, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("directional firelock frame", /obj/structure/firelock_frame/border_only, 2, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_DOORS), \
-	new/datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("meatspike frame", /obj/structure/kitchenspike_frame, 5, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	null, \
 	new/datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, crafting_flags = NONE, category = CAT_CHEMISTRY), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/wallframe/light_fixture, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/wallframe/light_fixture/small, 1, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	null, \
-	new/datum/stack_recipe("apc frame", /obj/item/wallframe/apc, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("air alarm frame", /obj/item/wallframe/airalarm, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("light switch frame", /obj/item/wallframe/light_switch, 1, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("sparker frame", /obj/item/wallframe/sparker, 1, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("turret control frame", /obj/item/wallframe/turret_control, 6, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("camera assembly", /obj/item/wallframe/camera, 1, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("newscaster  frame", /obj/item/wallframe/newscaster, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("status display frame", /obj/item/wallframe/status_display, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("intercom frame", /obj/item/wallframe/intercom, 2, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("requests console frame", /obj/item/wallframe/requests_console, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("telescreen turbine frame", /obj/item/wallframe/telescreen/turbine, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("telescreen engine frame", /obj/item/wallframe/telescreen/engine, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("telescreen auxbase frame", /obj/item/wallframe/telescreen/auxbase, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("tram controller frame", /obj/item/wallframe/tram/controller, 20, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("tram display frame", /obj/item/wallframe/indicator_display, 7, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	null, \
-	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_APPLIES_MATS, category = CAT_DOORS), \
 	new/datum/stack_recipe("filing cabinet", /obj/structure/filingcabinet, 2, time = 10 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("desk bell", /obj/structure/desk_bell, 2, time = 3 SECONDS, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("voting box", /obj/structure/votebox, 15, time = 5 SECONDS, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
 	new/datum/stack_recipe("pestle", /obj/item/pestle, 1, time = 5 SECONDS, crafting_flags = NONE, category = CAT_CHEMISTRY), \
-	new/datum/stack_recipe("hygienebot assembly", /obj/item/bot_assembly/hygienebot, 2, time = 5 SECONDS, crafting_flags = NONE, category = CAT_ROBOT), \
 	new/datum/stack_recipe("shower frame", /obj/structure/showerframe, 2, time = 2 SECONDS, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("urinal", /obj/item/wallframe/urinal, 2, time = 1 SECONDS, crafting_flags = NONE, category = CAT_FURNITURE)
 ))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/iron
 	name = "iron"
 	desc = "Sheets made out of iron."
@@ -289,10 +249,8 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 /*
  * Plasteel
  */
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("AI core", /obj/structure/ai_core, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, category = CAT_ROBOT),
-	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 5 SECONDS, crafting_flags = NONE, category = CAT_CHEMISTRY),
-	new/datum/stack_recipe("Large Gas Tank", /obj/structure/tank_frame, 4, time=1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, category = CAT_ATMOSPHERIC),
 	new/datum/stack_recipe("shutter assembly", /obj/machinery/door/poddoor/shutters/preopen/deconstructed, 5, time = 5 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF, category = CAT_DOORS),
 	null,
 	new /datum/stack_recipe_list("airlock assemblies", list( \
@@ -300,7 +258,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 		new/datum/stack_recipe("vault door assembly", /obj/structure/door_assembly/door_assembly_vault, 6, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS),
 	)), \
 ))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
 	singular_name = "plasteel sheet"
@@ -337,6 +295,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 /*
  * Wood
  */
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
@@ -349,10 +308,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden chair", /obj/structure/chair/wood/, 3, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("winged wooden chair", /obj/structure/chair/wood/wings, 3, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("wooden stairs frame", /obj/structure/stairs_frame/wood, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("wooden fence", /obj/structure/railing/wooden_fence, 2, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("raptor trough", /obj/structure/ore_container/food_trough/raptor_trough, 5, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("cat house", /obj/structure/cat_house, 5, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 1.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 1.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
@@ -371,7 +328,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("honey frame", /obj/item/honey_frame, 5, time = 1 SECONDS, crafting_flags = NONE, category = CAT_TOOLS),\
 	new/datum/stack_recipe("wooden bucket", /obj/item/reagent_containers/cup/bucket/wooden, 3, time = 1 SECONDS, crafting_flags = NONE, category = CAT_CONTAINERS),\
 	new/datum/stack_recipe("rake", /obj/item/cultivator/rake, 5, time = 1 SECONDS, crafting_flags = NONE, category = CAT_TOOLS),\
-	new/datum/stack_recipe("ore box", /obj/structure/ore_box, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_CONTAINERS),\
 	new/datum/stack_recipe("wooden crate", /obj/structure/closet/crate/wooden, 6, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE),\
 	new/datum/stack_recipe("baseball bat", /obj/item/melee/baseball_bat, 5, time = 1.5 SECONDS, crafting_flags = NONE, category = CAT_WEAPON_MELEE),\
 	new/datum/stack_recipe("wooden crutch", /obj/item/cane/crutch/wood, 5, time = 1.5 SECONDS, crafting_flags = NONE, category = CAT_WEAPON_MELEE),\
@@ -397,7 +353,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	)),
 	null, \
 	))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/mineral/wood
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."
@@ -560,14 +516,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 
 /obj/item/stack/sheet/cloth/five
 	amount = 5
-
-GLOBAL_LIST_INIT(durathread_recipes, list ( \
-	new/datum/stack_recipe("durathread jumpsuit", /obj/item/clothing/under/misc/durathread, 4, time = 4 SECONDS, crafting_flags = NONE, category = CAT_CLOTHING),
-	new/datum/stack_recipe("durathread beret", /obj/item/clothing/head/beret/durathread, 2, time = 4 SECONDS, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("durathread beanie", /obj/item/clothing/head/beanie/durathread, 2, time = 4 SECONDS, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("durathread bandana", /obj/item/clothing/mask/bandana/durathread, 1, time = 2.5 SECONDS, crafting_flags = NONE, category = CAT_CLOTHING), \
-	))
-
+// DARKPACK EDIT REMOVE
 /obj/item/stack/sheet/durathread
 	name = "durathread"
 	desc = "A fabric sown from incredibly durable threads, known for its usefulness in armor production."
@@ -580,7 +529,7 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/durathread
 	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
 	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/stack/sheet/durathread/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/durathread_helmet, /datum/crafting_recipe/durathread_vest)
@@ -593,7 +542,7 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 /obj/item/stack/sheet/durathread/get_main_recipes()
 	. = ..()
 	. += GLOB.durathread_recipes
-
+*/
 /obj/item/stack/sheet/durathread/on_item_crafted(mob/builder, atom/created)
 	created.set_armor_rating(CONSUME, max(50, created.get_armor_rating(CONSUME)))
 
@@ -637,10 +586,9 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 /*
  * Cardboard
  */
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe("box", /obj/item/storage/box, crafting_flags = NONE, category = CAT_CONTAINERS), \
-	new/datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/costume/cardborg, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/costume/cardborg, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("large box", /obj/structure/closet/cardboard, 4, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_CONTAINERS), \
 	new/datum/stack_recipe("cardboard cutout", /obj/item/cardboard_cutout, 5, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
 	null, \
@@ -658,7 +606,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes, crafting_flags = NONE, category = CAT_CONTAINERS),
 		new /datum/stack_recipe("nugget box", /obj/item/storage/fancy/nugget_box, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("drinking glasses box", /obj/item/storage/box/drinkingglasses, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("paper cups box", /obj/item/storage/box/cups, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -674,7 +621,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new /datum/stack_recipe("ID card box", /obj/item/storage/box/ids, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("PDA box", /obj/item/storage/box/pdas, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		null, \
-
 		new /datum/stack_recipe("pillbottle box", /obj/item/storage/box/pillbottles, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("medical gels box", /obj/item/storage/box/medigels, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("beaker box", /obj/item/storage/box/beakers, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -688,9 +634,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new /datum/stack_recipe("oxygen tank box", /obj/item/storage/box/emergencytank, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("extended oxygen tank box", /obj/item/storage/box/engitank, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		null, \
-
-		new /datum/stack_recipe("survival box", /obj/item/storage/box/survival/crafted, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new /datum/stack_recipe("extended tank survival box", /obj/item/storage/box/survival/engineer/crafted, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("disk box", /obj/item/storage/box/disks, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("light tubes box", /obj/item/storage/box/lights/tubes, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("light bulbs box", /obj/item/storage/box/lights/bulbs, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -702,7 +645,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 
 	null, \
 ))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/cardboard //BubbleWrap //it's cardboard you fuck
 	name = "cardboard"
 	desc = "Large sheets of card, like boxes folded flat."
@@ -718,7 +661,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	material_type = /datum/material/cardboard
 	pickup_sound = 'sound/items/handling/materials/cardboard_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/cardboard_drop.ogg'
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/cardboard_id)
@@ -727,7 +670,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/stack/sheet/cardboard/get_main_recipes()
 	. = ..()
 	. += GLOB.cardboard_recipes
@@ -755,15 +698,10 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 /*
  * Bronze
  */
-
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(bronze_recipes, list ( \
-	new/datum/stack_recipe("wall gear", /obj/structure/girder/bronze, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new /datum/stack_recipe("clockwork platform", /obj/structure/platform/bronze, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	null,
-	new/datum/stack_recipe("directional bronze window", /obj/structure/window/bronze/unanchored, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("fulltile bronze window", /obj/structure/window/bronze/fulltile/unanchored, 2, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("pinion airlock assembly", /obj/structure/door_assembly/door_assembly_bronze, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
-	new/datum/stack_recipe("bronze pinion airlock assembly", /obj/structure/door_assembly/door_assembly_bronze/seethru, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("bronze floor tile", /obj/item/stack/tile/bronze, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	new/datum/stack_recipe("bronze hat", /obj/item/clothing/head/costume/bronze, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("bronze suit", /obj/item/clothing/suit/costume/bronze, crafting_flags = NONE, category = CAT_CLOTHING), \
@@ -771,7 +709,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	null,
 	new/datum/stack_recipe("bronze chair", /obj/structure/chair/bronze, 1, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 ))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/bronze
 	name = "bronze"
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
@@ -872,10 +810,9 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic floor tile", /obj/item/stack/tile/plastic, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
-	new /datum/stack_recipe("light tram tile", /obj/item/stack/thermoplastic/light, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
-	new /datum/stack_recipe("dark tram tile", /obj/item/stack/thermoplastic, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
 	new /datum/stack_recipe("folding plastic chair", /obj/structure/chair/plastic, 2, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, time = 4 SECONDS, category = CAT_FURNITURE), \
 	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/cup/glass/waterbottle/empty, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -888,7 +825,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("liquid cooler jug", /obj/item/reagent_containers/cooler_jug, 4, time = 5 SECONDS, crafting_flags = NONE, category = CAT_CONTAINERS), \
 	new /datum/stack_recipe("liquid cooler", /obj/structure/reagent_dispensers/water_cooler/jugless, 25, time = 10 SECONDS, crafting_flags = NONE, category = CAT_STRUCTURE), \
 	new /datum/stack_recipe("rebellion mask", /obj/item/clothing/mask/rebellion, 1, crafting_flags = NONE, category = CAT_CLOTHING)))
-
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/plastic
 	name = "plastic"
 	desc = "Compress dinosaur over millions of years, then refine, split and mold, and voila! You have plastic."

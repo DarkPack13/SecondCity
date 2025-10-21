@@ -40,12 +40,16 @@ SUBSYSTEM_DEF(roll)
 			else
 				alert_atom.balloon_alert(player_mob, "<span style='color: #ff0000;'>[success_count]</span>", TRUE)
 
+	if(numerical)
+		return success_count
+
 	return output
 
-/* This was written with roll_dice returning a number rather then a list of numbers. Therefore it needs a rework before it will work.
 /datum/controller/subsystem/roll/proc/opposed_roll(mob/player_a, mob/player_b, dice_a = 1, dice_b = 1, show_player_a=TRUE, show_player_b=TRUE, atom/alert_atom = null, draw_goes_to_b=TRUE, numerical=FALSE)
-	var/success_count_a = roll_dice(dice_a)
-	var/success_count_b = roll_dice(dice_b)
+	var/list/roll_a = roll_dice(dice_a)
+	var/list/roll_b = roll_dice(dice_b)
+	var/success_count_a = count_success_no_output(roll_a)
+	var/success_count_b = count_success_no_output(roll_b)
 
 	var/player_a_succeeded = FALSE
 	if(success_count_a > success_count_b || (success_count_a == success_count_b && !draw_goes_to_b))
@@ -72,7 +76,6 @@ SUBSYSTEM_DEF(roll)
 		return success_count_a - success_count_b
 	else
 		return player_a_succeeded
-*/
 
 /datum/controller/subsystem/roll/proc/roll_dice(dice, sides = 10)
 	dice = max(dice, 1)
@@ -82,9 +85,9 @@ SUBSYSTEM_DEF(roll)
 	return rolled_dice
 
 //Count the number of successes.
-/datum/controller/subsystem/roll/proc/count_success(list/rolled_dice, difficulty, output_text)
+/datum/controller/subsystem/roll/proc/count_success(list/rolled_dice, difficulty = 6, output_text)
 	var/success_count = 0
-	for(var/roll as anything in rolled_dice)
+	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
@@ -94,6 +97,16 @@ SUBSYSTEM_DEF(roll)
 		else
 			output_text += span_danger("[get_dice_char(roll)]")
 		output_text += " "
+	return success_count
+
+//Count the number of successes.
+/datum/controller/subsystem/roll/proc/count_success_no_output(list/rolled_dice, difficulty = 6)
+	var/success_count = 0
+	for(var/roll in rolled_dice)
+		if(roll >= difficulty)
+			success_count++
+		else if(roll == 1)
+			success_count--
 	return success_count
 
 /datum/controller/subsystem/roll/proc/roll_answer(success_count, numerical, output_text)

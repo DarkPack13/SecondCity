@@ -55,13 +55,13 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 
 /obj/item/stack/sheet/animalhide/mothroach/five
 	amount = 5
-
+/* // DARKPACK EDIT REMOVE
 GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	new/datum/stack_recipe("gondola mask", /obj/item/clothing/mask/gondola, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("gondola suit", /obj/item/clothing/under/costume/gondola, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("gondola bedsheet", /obj/item/bedsheet/gondola, 1, crafting_flags = NONE, category = CAT_FURNITURE), \
 	))
-
+ */
 /obj/item/stack/sheet/animalhide/gondola
 	name = "gondola hide"
 	desc = "The extremely valuable product of gondola hunting."
@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/gondola
 
+/* // DARKPACK EDIT REMOVE
 /obj/item/stack/sheet/animalhide/gondola/get_main_recipes()
 	. = ..()
 	. += GLOB.gondola_recipes
@@ -81,7 +82,7 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 /obj/item/stack/sheet/animalhide/corgi/get_main_recipes()
 	. = ..()
 	. += GLOB.corgi_recipes
-
+ */
 /obj/item/stack/sheet/animalhide/cat
 	name = "cat hide"
 	desc = "The by-product of cat farming."
@@ -100,7 +101,7 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	icon_state = "sheet-monkey"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/monkey
-
+/* // DARKPACK EDIT REMOVE
 GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	new/datum/stack_recipe("monkey mask", /obj/item/clothing/mask/gas/monkeymask, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/costume/monkeysuit, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
@@ -109,7 +110,7 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 /obj/item/stack/sheet/animalhide/monkey/get_main_recipes()
 	. = ..()
 	. += GLOB.monkey_recipes
-
+ */
 /obj/item/stack/sheet/animalhide/monkey/five
 	amount = 5
 
@@ -131,7 +132,7 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	icon_state = "sheet-xeno"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/xeno
-
+/* // DARKPACK EDIT REMOVE
 GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	new/datum/stack_recipe("alien helmet", /obj/item/clothing/head/costume/xenos, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/costume/xenos, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
@@ -140,7 +141,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 /obj/item/stack/sheet/animalhide/xeno/get_main_recipes()
 	. = ..()
 	. += GLOB.xeno_recipes
-
+*/
 /obj/item/stack/sheet/animalhide/xeno/five
 	amount = 5
 
@@ -151,7 +152,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	icon_state = "sheet-carp"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/carp
-
+/* // DARKPACK EDIT REMOVE
 GLOBAL_LIST_INIT(carp_recipes, list ( \
 	new/datum/stack_recipe("carp costume", /obj/item/clothing/suit/hooded/carp_costume, 4, crafting_flags = NONE, category = CAT_CLOTHING), \
 	new/datum/stack_recipe("carp mask", /obj/item/clothing/mask/gas/carp, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
@@ -164,7 +165,7 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
 /obj/item/stack/sheet/animalhide/carp/get_main_recipes()
 	. = ..()
 	. += GLOB.carp_recipes
-
+ */
 /obj/item/stack/sheet/animalhide/carp/five
 	amount = 5
 
@@ -255,6 +256,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 
 	// As bone and sinew have just a little too many recipes for this, we'll just split them up.
 	// Sinew slapcrafting will mostly-sinew recipes, and bones will have mostly-bones recipes.
+/* // DARKPACK EDIT REMOVE
 	var/static/list/slapcraft_recipe_list = list(\
 		/datum/crafting_recipe/goliathcloak, /datum/crafting_recipe/skilt, /datum/crafting_recipe/drakecloak,\
 		)
@@ -263,7 +265,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/stack/sheet/sinew/wolf
 	name = "wolf sinew"
 	desc = "Long stringy filaments which came from the insides of a wolf."
@@ -313,7 +315,7 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
 	merge_type = /obj/item/stack/sheet/animalhide/ashdrake
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/stack/sheet/animalhide/ashdrake/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
 	. = ..()
 
@@ -323,7 +325,7 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/stack/sheet/animalhide/bear
 	name = "bear hide"
 	desc = "Fuzzy pelts from a bear. Imagine how warm you could be, wrapped up in a coat of this stuff."

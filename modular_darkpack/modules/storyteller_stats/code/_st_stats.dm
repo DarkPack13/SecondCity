@@ -29,3 +29,13 @@
 	for(var/source in modifiers)
 		bonus_score += modifiers[source]
 	bonus_score = clamp(bonus_score, 0, 10)
+
+/datum/st_stat/proc/get_score_multiplier(low_mod = 0.25, high_mod = 2)
+	var/used_score = score + bonus_score
+	// used max_score when it exists
+	var/max_score = 5
+	used_score = clamp(used_score, 0, max_score)
+
+	var/mult = low_mod + ((used_score / max_score) * (high_mod - low_mod))
+
+	return mult
