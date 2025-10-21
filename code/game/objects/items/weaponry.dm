@@ -489,7 +489,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		and carries blood and nutrients to its extremities. Try to find the heart of your home!",
 		"All the food you've tried is rotten. You've never eaten fresh food.",
 		"Viruses do not exist. Illness is simply your body punishing you for what you have done wrong.",
-		"Space stations must have at least 50 mammalian teeth embedded in the north walls for structural safety reasons.",
+		"Houses must have at least 50 mammalian teeth embedded in the north walls for structural safety reasons.", // DARKPACK EDIT CHANGE
 		"Queen dragonfly sleeps and smiles.",
 	)
 

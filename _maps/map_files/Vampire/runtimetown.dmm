@@ -12,7 +12,7 @@
 /obj/item/ammo_box/magazine/darkpack45acp,
 /obj/item/gun/ballistic/automatic/pistol/darkpack/m1911,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "aN" = (
 /obj/effect/landmark/npcbeacon/directed{
 	dir = 1
@@ -268,7 +268,7 @@
 /obj/item/ammo_box/vampire/c44,
 /obj/item/ammo_box/vampire/c44/silver,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "hz" = (
 /obj/structure/table,
 /obj/lombard/blackmarket,
@@ -459,7 +459,7 @@
 /obj/item/ammo_box/vampire/c45acp/silver,
 /obj/item/ammo_box/vampire/c45acp,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "nq" = (
 /obj/structure/lamppost/three{
 	dir = 8
@@ -754,7 +754,7 @@
 /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21,
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "uJ" = (
 /obj/machinery/button/door{
 	id = "debughouse";
@@ -870,7 +870,7 @@
 /obj/item/ammo_box/magazine/darkpackthompson,
 /obj/item/gun/ballistic/automatic/darkpack/thompson,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "xZ" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plating/rough,
@@ -1015,7 +1015,7 @@
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/darkpack/sniper,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "Cd" = (
 /mob/living/carbon/human/npc/shop,
 /turf/open/misc/beach/vamp,
@@ -1407,14 +1407,14 @@
 /obj/item/ammo_box/magazine/glock9mm,
 /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "JH" = (
 /turf/closed/wall/vampwall/rich/old,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "JJ" = (
 /obj/structure/vampdoor,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "JK" = (
 /obj/structure/vampdoor{
 	dir = 8
@@ -1456,7 +1456,7 @@
 /obj/item/ammo_box/magazine/darkpack545,
 /obj/item/gun/ballistic/automatic/darkpack/ak74,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "KU" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -1587,7 +1587,7 @@
 /obj/structure/table,
 /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "On" = (
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/plating/rough,
@@ -1605,7 +1605,7 @@
 /obj/item/ammo_box/magazine/darkpack9mm,
 /obj/item/gun/ballistic/automatic/darkpack/uzi,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "OH" = (
 /obj/effect/turf_decal/bordur,
 /obj/item/vamp/keys/police,
@@ -1646,7 +1646,7 @@
 /obj/item/ammo_box/magazine/darkpackaug,
 /obj/item/gun/ballistic/automatic/darkpack/aug,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "Pg" = (
 /obj/structure/retail/gun_store,
 /obj/structure/table,
@@ -1671,7 +1671,7 @@
 /area/vtm/outside/pacificheights)
 "PO" = (
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "PW" = (
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
@@ -1805,7 +1805,7 @@
 /obj/item/ammo_box/magazine/m44,
 /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "TO" = (
 /obj/machinery/recycler/deathtrap,
 /turf/open/floor/plating/toilet,
@@ -1832,7 +1832,7 @@
 /obj/item/ammo_box/magazine/darkpack9mp5,
 /obj/item/gun/ballistic/automatic/darkpack/mp5,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "Uw" = (
 /obj/structure/table,
 /obj/item/stack/dollar/hundred,
@@ -1946,7 +1946,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/ar15,
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "Wn" = (
 /obj/structure/roadblock{
 	dir = 4
@@ -1984,7 +1984,7 @@
 /obj/item/ammo_box/magazine/m50,
 /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle/c50,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "Xr" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/plating/concrete,
@@ -1996,7 +1996,7 @@
 /obj/item/ammo_box/vampire/c556,
 /obj/item/ammo_box/vampire/c545,
 /turf/open/floor/plating/rough,
-/area/vtm/anarch)
+/area/vtm/interior/anarch)
 "XE" = (
 /obj/structure/fence/door,
 /turf/open/misc/beach/vamp,

@@ -14,7 +14,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/janitorial/watercloset.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "soap"
 	inhand_icon_state = "soap"
 	worn_icon_state = "soap"
