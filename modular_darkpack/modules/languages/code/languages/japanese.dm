@@ -17,3 +17,7 @@
 	)
 	icon_state = "japanese"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/korean = 25,
+	)

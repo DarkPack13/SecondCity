@@ -14,5 +14,3 @@
 	)
 	icon_state = "russian"
 	default_priority = 90
-
-// Fuck guest accounts, and fuck language testing.

@@ -14,3 +14,7 @@
 	)
 	icon_state = "scottish"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/irish = 25
+	)

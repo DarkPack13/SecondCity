@@ -14,3 +14,8 @@
 	)
 	icon_state = "french"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/greek = 10,
+		/datum/language/latin = 10,
+	)
