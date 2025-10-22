@@ -7,7 +7,6 @@
 	button_icon_state = "vitae"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
-	unset_after_click = TRUE
 	vampiric = TRUE
 	ranged_mousepointer = 'icons/effects/mouse_pointers/discipline.dmi'
 	cooldown_time = 10 SECONDS
@@ -16,6 +15,7 @@
 
 /datum/action/cooldown/mob_cooldown/give_vitae/Activate(atom/target_atom)
 	StartCooldown()
+	unset_click_ability(owner, refund_cooldown = FALSE)
 	if(!do_after(owner, delay = charge_duration, target = target_atom))
 		return FALSE
 
@@ -27,4 +27,5 @@
 	message_admins("[ADMIN_LOOKUPFLW(carbon_owner)] poured their vitae into [ADMIN_LOOKUPFLW(target_atom)].")
 	carbon_owner.bloodpool = max(carbon_owner.bloodpool - 1, 0)
 	carbon_owner.transfer_blood_to(target_atom, 100, TRUE, TRUE)
+	target_atom.reagents.expose(target_atom, INGEST, 1, FALSE)
 	return TRUE
