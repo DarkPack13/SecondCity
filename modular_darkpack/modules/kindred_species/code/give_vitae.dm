@@ -17,13 +17,14 @@
 /datum/action/cooldown/mob_cooldown/give_vitae/Activate(atom/target_atom)
 	StartCooldown()
 	if(!do_after(owner, delay = charge_duration, target = target_atom))
-		return TRUE
+		return FALSE
 
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.bloodpool < 1)
 		to_chat(carbon_owner, span_danger("You don't have enough vitae!"))
-		return
+		return FALSE
 
 	message_admins("[ADMIN_LOOKUPFLW(carbon_owner)] poured their vitae into [ADMIN_LOOKUPFLW(target_atom)].")
 	carbon_owner.bloodpool = max(carbon_owner.bloodpool - 1, 0)
 	carbon_owner.transfer_blood_to(target_atom, 100, TRUE, TRUE)
+	return TRUE
