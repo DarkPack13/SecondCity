@@ -2,7 +2,7 @@
 	savefile_key = "vampire_clan"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
-	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
+	priority = PREFERENCE_PRIORITY_TABLETOP
 	main_feature_name = "Clan"
 	relevant_inherent_trait = TRAIT_VTM_CLANS
 	must_have_relevant_trait = TRUE
