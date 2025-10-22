@@ -18,6 +18,14 @@
 
 # MAINTAINERS
 
+# FalloutFalcon
+/modular_darkpack/modules/cars/code/ @FalloutFalcon
+/modular_darkpack/modules/city_time/code/ @FalloutFalcon
+/modular_darkpack/modules/doors/code/vampdoor.dm @FalloutFalcon
+
+# XeonMations
+/modular_darkpack/modules/masquerade/code/ @XeonMations
+
 # CONTRIBUTORS
 
 
