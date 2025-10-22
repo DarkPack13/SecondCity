@@ -162,8 +162,6 @@
 	icon_living = "liquid"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 3
-	maxHealth = 100
-	health = 100
 	butcher_results = list(/obj/item/stack/human_flesh = 1)
 	melee_damage_lower = 10
 	melee_damage_upper = 10
