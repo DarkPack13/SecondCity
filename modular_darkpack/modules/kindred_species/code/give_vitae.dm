@@ -7,9 +7,10 @@
 	button_icon_state = "vitae"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
-	vampiric = TRUE
 	ranged_mousepointer = 'icons/effects/mouse_pointers/discipline.dmi'
 	cooldown_time = 10 SECONDS
+	vampiric = TRUE
+
 	// How long do we take giving blood?
 	var/charge_duration = 10 SECONDS
 
