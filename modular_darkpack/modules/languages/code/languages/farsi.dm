@@ -3,6 +3,12 @@
 	desc = "Persian (or Farsi) is spoken by some residents of San Francisco. It is common in and around Iran and Afghanistan."
 	flags = TONGUELESS_SPEECH
 	key = "F"
+	space_chance = 100
+	sentence_chance = 10
+	between_word_sentence_chance = 10
+	between_word_space_chance = 75
+	additional_syllable_low = -2
+	additional_syllable_high = -1
 	syllables = list(
 		"zaman","haalaa","salám","elef","est","eshgh","baleh","nah","ketáb","dídan","kār","solh",
 		"omíd","ve","máh","shab","garmá","man","shma","to","ma","chegoneh","cheh","cheh zamani",

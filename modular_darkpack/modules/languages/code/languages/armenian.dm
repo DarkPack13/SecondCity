@@ -3,6 +3,12 @@
 	desc = "Armenian is spoken by those in the Armenian Highlands in Western Asia."
 	flags = TONGUELESS_SPEECH
 	key = "n"
+	space_chance = 100
+	sentence_chance = 10
+	between_word_sentence_chance = 10
+	between_word_space_chance = 75
+	additional_syllable_low = -2
+	additional_syllable_high = -1
 	syllables = list(
 		"es","du","na","menk'","duk'","nrank'","ays","ayn","aysteġ","aynteġ","ov","inč'","orteġ","ur",
 		"erb","inč'pes","oč'","bolor","šat","oroš","k'ič'","uriš","mek","mec","erkar","kin","ptuġ",

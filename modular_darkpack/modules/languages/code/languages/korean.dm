@@ -3,6 +3,12 @@
 	desc = "Korean is spoken in Korea, as well as being the eighth most spoken language in San Francisco."
 	flags = TONGUELESS_SPEECH
 	key = "K"
+	space_chance = 100
+	sentence_chance = 10
+	between_word_sentence_chance = 10
+	between_word_space_chance = 75
+	additional_syllable_low = -2
+	additional_syllable_high = -1
 	syllables = list(
 		"geureochiman","na","geona","geurigo","go","geuraeseo","seo","nikka","myeon","wa","wihae",
 		"geuttae","kkeudeopda","keuda","meolda","gabyeopda","gwayeon","jal","bammada","imi",

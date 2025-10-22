@@ -3,7 +3,12 @@
 	desc = "Filipino is the most common form of the Tagalog language in the Philippines, and is fourth most spoken language in San Francisco."
 	flags = TONGUELESS_SPEECH
 	key = "t"
-	space_chance = 60
+	space_chance = 100
+	sentence_chance = 10
+	between_word_sentence_chance = 10
+	between_word_space_chance = 75
+	additional_syllable_low = -2
+	additional_syllable_high = -1
 	syllables = list(
 		"na","ang","sa","ng","ay","at","mga","hindi","ko","ni",
 		"si","siya","isa","niya","ako","mo","pa","kung","may","kaniya",
