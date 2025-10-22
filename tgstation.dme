@@ -6804,6 +6804,7 @@
 #include "modular_darkpack\modules\areas\code\interiors\city_interiors.dm"
 #include "modular_darkpack\modules\areas\code\interiors\endron_facility.dm"
 #include "modular_darkpack\modules\areas\code\interiors\millennium_tower.dm"
+#include "modular_darkpack\modules\battering_ram\code\battering_ram.dm"
 #include "modular_darkpack\modules\beastmaster\code\beastmaster_globals.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_helper_procs.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_keybinding.dm"
