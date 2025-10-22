@@ -4,6 +4,18 @@
 # In the event that people are to be informed of changes
 # to the same file or dir, add them to the end of under Multiple Owners
 
+# Map Maintainers
+/_maps/ @DarkPack13/maptainers
+*.dmm @DarkPack13/maptainers
+
+# Sprite Maintainers
+/icons/ @DarkPack13/spritetainers
+*.dmi @DarkPack13/spritetainers
+
+# Code Maintainers
+/code/ @DarkPack13/maintainers
+*.dm @DarkPack13/maintainers
+
 # MAINTAINERS
 
 # Fallcon
