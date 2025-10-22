@@ -1,342 +1,6 @@
-#define LOW_WALL_HELPER(wall_type)						\
-	/turf/closed/wall/##wall_type/low {					\
-		icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'; \
-		opacity = FALSE;								\
-		low = TRUE;										\
-		blocks_air = FALSE;								\
-		smoothing_groups = SMOOTH_GROUP_CITY_LOW_WALL;	\
-		canSmoothWith = SMOOTH_GROUP_CITY_LOW_WALL;		\
-		pass_flags_self = PASSTABLE | LETPASSTHROW;		\
-	}	\
-	/turf/closed/wall/##wall_type/low/window {			\
-		window = /obj/structure/window/fulltile;		\
-	}	\
-	/turf/closed/wall/##wall_type/low/window/reinforced { \
-		window = /obj/structure/window/reinforced/fulltile; \
-	}
-
-
-/obj/structure/window/fulltile
-	icon = 'modular_darkpack/modules/deprecated/icons/obj/smooth_structures/window.dmi'
-
-/obj/structure/window/reinforced/fulltile
-	icon = 'modular_darkpack/modules/deprecated/icons/obj/smooth_structures/reinforced_window.dmi'
-
-/obj/effect/wall_frill
-	name = "wall frill"
-	desc = "Hey how are you reading this."
-	icon = 'modular_darkpack/modules/walls/icons/wallfrills.dmi'
-	base_icon_state = "wall"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	mouse_opacity = 0
-
-/obj/effect/wall_frill/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_WALLS)
-/* If we want to have transpanecy for ALL mobs instead of just you.
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(update_alpha),
-		COMSIG_ATOM_EXITED = PROC_REF(update_alpha),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
-
-/obj/effect/wall_frill/proc/update_alpha()
-	if(locate(/mob/living) in get_turf(src))
-		alpha = 128
-	else
-		alpha = 255
-*/
-
-/turf/closed/wall/vampwall
-	name = "old brick wall"
-	desc = "A huge chunk of old bricks used to separate rooms."
-	icon = 'modular_darkpack/modules/walls/icons/walls.dmi'
-	icon_state = "wall-0"
-	base_icon_state = "wall"
-	opacity = TRUE
-	density = TRUE
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = SMOOTH_GROUP_CITY_WALL
-	canSmoothWith = SMOOTH_GROUP_CITY_WALL
-
-	var/obj/effect/wall_frill/wall_frill
-	var/frill_icon = /obj/effect/wall_frill::icon
-	var/low = FALSE
-	var/window
-
-/turf/closed/wall/vampwall/CanAllowThrough(atom/movable/mover, border_dir)
-	. = ..()
-	if(!low)
-		return .
-
-	if(.)
-		return
-	if(isprojectile(mover))
-		var/obj/projectile/proj = mover
-		//Lets through bullets shot from behind the cover of the lowwall
-		if(proj.movement_vector && angle2dir_cardinal(proj.movement_vector.angle) == dir)
-			return TRUE
-		return FALSE
-	if(border_dir == dir)
-		return FALSE
-
-	return TRUE
-
-/turf/closed/wall/vampwall/attackby(obj/item/W, mob/user, params)
-	return
-
-/turf/closed/wall/vampwall/attack_hand(mob/user)
-	return
-
-// TODO: [Rebase] - Reimplement climbing
-/*
-/turf/closed/wall/vampwall/mouse_drop_receive(atom/dropped, mob/user, params)
-	. = ..()
-	if(user.a_intent != INTENT_HARM)
-		//Adds the component only once. We do it here & not in Initialize() because there are tons of windows & we don't want to add to their init times
-		LoadComponent(/datum/component/leanable, dropping)
-	else
-		if(get_dist(user, src) < 2)
-			var/turf/above_turf = locate(user.x, user.y, user.z + 1)
-			if(above_turf && istype(above_turf, /turf/open/openspace))
-				var/mob/living/carbon/human/carbon_human = user
-				carbon_human.climb_wall(above_turf)
-			else
-				to_chat(user, span_warning("You can't climb there!"))
-*/
-
-/turf/closed/wall/vampwall/ex_act(severity, target)
-	return
-
-/turf/closed/wall/vampwall/Initialize(mapload)
-	. = ..()
-	if(window)
-		new window(src)
-	else if(!low)
-		wall_frill = new(get_step(src, NORTH))
-		wall_frill.icon = frill_icon
-		wall_frill.icon_state = icon_state
-		wall_frill.name = name
-		wall_frill.desc = desc
-
-	if(low)
-		// Runtimes out the ass.
-		//AddComponent(/datum/component/climb_walkable)
-		AddElement(/datum/element/climbable)
-		// So. This is an obj only thing. Turf are really missing alot of code to make them act more like tables.
-		//AddElement(/datum/element/elevation, pixel_shift = 12)
-
-/turf/closed/wall/vampwall/set_smoothed_icon_state(new_junction)
-	. = ..()
-	if(wall_frill)
-		wall_frill.icon_state = icon_state
-
-/turf/closed/wall/vampwall/Destroy()
-	. = ..()
-	if(wall_frill)
-		qdel(wall_frill)
-
-LOW_WALL_HELPER(vampwall)
-/turf/closed/wall/vampwall/low/window
-	icon_state = "wall-window"
-	window = /obj/structure/window/fulltile
-
-/turf/closed/wall/vampwall/rich
-	name = "rich-looking wall"
-	desc = "A huge chunk of expensive bricks used to separate rooms."
-	icon_state = "rich-0"
-	base_icon_state = "rich"
-
-LOW_WALL_HELPER(vampwall/rich)
-/turf/closed/wall/vampwall/rich/low/window
-	icon_state = "rich-window"
-/turf/closed/wall/vampwall/rich/low/window/reinforced
-	icon_state = "rich-reinforced"
-
-/turf/closed/wall/vampwall/junk
-	name = "junk brick wall"
-	desc = "A huge chunk of dirty bricks used to separate rooms."
-	icon_state = "junk-0"
-	base_icon_state = "junk"
-
-LOW_WALL_HELPER(vampwall/junk)
-/turf/closed/wall/vampwall/junk/low/window
-	icon_state = "junk-window"
-
-/turf/closed/wall/vampwall/junk/alt
-	icon_state = "junkalt-0"
-	base_icon_state = "junkalt"
-
-LOW_WALL_HELPER(vampwall/junk/alt)
-/turf/closed/wall/vampwall/junk/alt/low/window
-	icon_state = "junkalt-window"
-
-/turf/closed/wall/vampwall/market
-	name = "concrete wall"
-	desc = "A huge chunk of concrete used to separate rooms."
-	icon_state = "market-0"
-	base_icon_state = "market"
-
-LOW_WALL_HELPER(vampwall/market)
-/turf/closed/wall/vampwall/market/low/window
-	icon_state = "market-window"
-/turf/closed/wall/vampwall/market/low/window/reinforced
-	icon_state = "market-reinforced"
-
-/turf/closed/wall/vampwall/old
-	name = "old brick wall"
-	desc = "A huge chunk of old bricks used to separate rooms."
-	icon_state = "old-0"
-	base_icon_state = "old"
-
-/turf/closed/wall/vampwall/old/low
-	icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'
-	opacity = FALSE
-	low = TRUE
-	blocks_air = FALSE
-	smoothing_groups = SMOOTH_GROUP_CITY_LOW_WALL
-	canSmoothWith = SMOOTH_GROUP_CITY_LOW_WALL
-/* Currently missing icon states for window
-LOW_WALL_HELPER(vampwall/low)
-/turf/closed/wall/vampwall/old/low/window
-	icon_state = "old-window"
-/turf/closed/wall/vampwall/old/low/window/reinforced
-	icon_state = "old-reinforced"
-*/
-
-/turf/closed/wall/vampwall/painted
-	name = "painted brick wall"
-	desc = "A huge chunk of painted bricks used to separate rooms."
-	icon_state = "painted-0"
-	base_icon_state = "painted"
-
-LOW_WALL_HELPER(vampwall/painted)
-/turf/closed/wall/vampwall/painted/low/window
-	icon_state = "painted-window"
-/turf/closed/wall/vampwall/painted/low/window/reinforced
-	icon_state = "painted-reinforced"
-
-/turf/closed/wall/vampwall/rich/old
-	name = "old rich-looking wall"
-	desc = "A huge chunk of old bricks used to separate rooms."
-	icon_state = "theater-0"
-	base_icon_state = "theater"
-
-LOW_WALL_HELPER(vampwall/rich/old)
-/turf/closed/wall/vampwall/rich/old/low/window
-	icon_state = "theater-window"
-/turf/closed/wall/vampwall/rich/old/low/window/reinforced
-	icon_state = "theater-reinforced"
-
-/turf/closed/wall/vampwall/brick
-	name = "brick wall"
-	desc = "A huge chunk of bricks used to separate rooms."
-	icon_state = "brick-0"
-	base_icon_state = "brick"
-
-LOW_WALL_HELPER(vampwall/brick)
-/turf/closed/wall/vampwall/brick/low/window
-	icon_state = "brick-window"
-
-/turf/closed/wall/vampwall/rock
-	name = "rock wall"
-	desc = "A huge chunk of rocks separating whole territory."
-	icon_state = "rock-0"
-	base_icon_state = "rock"
-
-/turf/closed/wall/vampwall/city
-	name = "wall"
-	desc = "A huge chunk of concrete and bricks used to separate rooms."
-	icon_state = "city-0"
-	base_icon_state = "city"
-
-LOW_WALL_HELPER(vampwall/city)
-/turf/closed/wall/vampwall/city/low/window
-	icon_state = "city-window"
-
-/turf/closed/wall/vampwall/metal
-	name = "metal wall"
-	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metal-0"
-	base_icon_state = "metal"
-
-/turf/closed/wall/vampwall/metal/reinforced
-	name = "reinforced metal wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon_state = "metalreinforced-0"
-	base_icon_state = "metalreinforced"
-
-/turf/closed/wall/vampwall/metal/alt
-	name = "metal wall"
-	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metalalt-0"
-	base_icon_state = "metalalt"
-
-/turf/closed/wall/vampwall/metal/glass
-	name = "metal wall"
-	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metalglass-0"
-	base_icon_state = "metalglass"
-	opacity = FALSE
-
-/turf/closed/wall/vampwall/bar
-	name = "dark brick wall"
-	desc = "A huge chunk of bricks used to separate rooms."
-	icon_state = "bar-0"
-	base_icon_state = "bar"
-
-LOW_WALL_HELPER(vampwall/bar)
-/turf/closed/wall/vampwall/bar/low/window
-	icon_state = "bar-window"
-
-/turf/closed/wall/vampwall/wood
-	name = "wood wall"
-	desc = "A huge chunk of dirty logs used to separate rooms."
-	icon_state = "wood-0"
-	base_icon_state = "wood"
-
-LOW_WALL_HELPER(vampwall/wood)
-/turf/closed/wall/vampwall/wood/low/window
-	icon_state = "wood-window"
-
-/turf/closed/wall/vampwall/rust
-	name = "rusty wall"
-	desc = "A huge chunk of rusty metal used to separate rooms."
-	icon_state = "rust-0"
-	base_icon_state = "rust"
-
-/turf/closed/wall/vampwall/dirtywood
-	name = "dirty wood wall"
-	desc = "A huge chunk of brown metal used to separate rooms."
-	icon_state = "dirtywood-0"
-	base_icon_state = "dirtywood"
-
-/turf/closed/wall/vampwall/green
-	name = "green wall"
-	desc = "A huge chunk of green metal used to separate rooms."
-	icon_state = "green-0"
-	base_icon_state = "green"
-
-/turf/closed/wall/vampwall/rustbad
-	name = "rusty wall"
-	desc = "A huge chunk of rusty metal used to separate rooms."
-	icon_state = "rustbad-0"
-	base_icon_state = "rustbad"
-
-/turf/closed/wall/vampwall/redbrick
-	name = "red brick wall"
-	desc = "A huge chunk of red bricks used to separate rooms."
-	icon_state = "redbrick-0"
-	base_icon_state = "redbrick"
-
-// TODO: [Rebase] - Move these to there own file in deticated pr. Want changes visable in this pr.
-//TURFS
-
 /turf/open/floor/plating/asphalt
 	name = "asphalt"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "asphalt1"
 	footstep = FOOTSTEP_ASPHALT
 	barefootstep = FOOTSTEP_ASPHALT
@@ -367,7 +31,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/sidewalkalt
 	name = "sidewalk"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "sidewalk_alt"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -387,7 +51,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/sidewalk
 	name = "sidewalk"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "sidewalk1"
 	var/number_of_variations = 3
 	base_icon_state = "sidewalk"
@@ -424,7 +88,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/roofwalk
 	name = "roof"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "roof"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -452,7 +116,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/parquetry
 	name = "parquetry"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "parquet"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -465,7 +129,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/granite
 	name = "granite"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "granite"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -475,7 +139,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/concrete
 	name = "concrete"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "concrete1"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -486,7 +150,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/misc/grass/vamp
 	name = "grass"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "grass1"
 	footstep = FOOTSTEP_TRAVA
 	barefootstep = FOOTSTEP_TRAVA
@@ -541,14 +205,14 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/vampcarpet
 	name = "carpet"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "carpet_black"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
 
 /turf/open/misc/dirt/vamp
 	name = "dirt"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "dirt"
 	footstep = FOOTSTEP_ASPHALT
 	barefootstep = FOOTSTEP_ASPHALT
@@ -617,7 +281,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/vampplating
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "plating"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -630,7 +294,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/rough
 	name = "rough floor"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "rough"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -644,7 +308,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/stone
 	name = "rough floor"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "stone"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -658,7 +322,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/toilet
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "toilet1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -669,7 +333,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/circled
 	name = "fancy plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "circle1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -680,7 +344,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/church
 	name = "fancy plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "church1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -691,7 +355,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/saint
 	name = "fancy plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "saint1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -714,7 +378,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/vampwood
 	name = "wood"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "bwood"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -735,14 +399,14 @@ LOW_WALL_HELPER(vampwall/wood)
 // See about porting the apoc sprite for this
 /turf/open/floor/plating/woodrough
 	name = "wood"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "bwood"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
 
 /turf/open/misc/beach/vamp
 	name = "sand"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "sand1"
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
@@ -792,7 +456,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/water/beach/vamp
 	name = "water"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/beach/vamp
 
@@ -810,7 +474,7 @@ LOW_WALL_HELPER(vampwall/wood)
 //Make a pr to TG eventually adding acid from shiptest mabye.
 /turf/open/water/acid/vamp
 	name = "goop"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "acid"
 	baseturfs = /turf/open/water/acid/vamp
 
@@ -832,7 +496,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /obj/effect/decal/coastline
 	name = "water"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "coastline"
 
 /obj/effect/decal/coastline/corner
@@ -840,7 +504,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /obj/effect/decal/shadow
 	name = "shadow"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "shadow"
 
 /obj/effect/decal/shadow/Initialize(mapload)
@@ -851,12 +515,12 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /obj/effect/decal/support
 	name = "support"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "support"
 
 /turf/open/water/vamp_sewer
 	name = "sewage"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "shit"
 
 /*
@@ -871,7 +535,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/vampcanal
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "canal1"
 	footstep = FOOTSTEP_FLOOR
 
@@ -890,7 +554,7 @@ LOW_WALL_HELPER(vampwall/wood)
 
 /turf/open/floor/plating/vampcanalplating
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "canal_plating1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
@@ -911,19 +575,19 @@ LOW_WALL_HELPER(vampwall/wood)
 /turf/closed/indestructible/elevatorshaft
 	name = "elevator shaft"
 	desc = "Floors, floors, floors..."
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "black"
 
 /turf/open/floor/plating/bacotell
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "bacotell"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
 
 /turf/open/floor/plating/gummaguts
 	name = "plating"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "gummaguts"
 	footstep = FOOTSTEP_SIDEWALK
 	barefootstep = FOOTSTEP_SIDEWALK
@@ -932,7 +596,7 @@ LOW_WALL_HELPER(vampwall/wood)
 /turf/open/water/bloodwave
 	gender = PLURAL
 	name = "blood"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "blood"
 	baseturfs = /turf/open/water/bloodwave
 	immerse_overlay = "immerse_deep"
@@ -978,5 +642,3 @@ LOW_WALL_HELPER(vampwall/wood)
 		//	qdel(checked_atom)
 
 	new /turf/open/water/bloodwave(next_turf, get_dir(next_turf, src))
-
-#undef LOW_WALL_HELPER
