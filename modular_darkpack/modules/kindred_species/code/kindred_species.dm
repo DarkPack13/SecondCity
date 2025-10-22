@@ -59,6 +59,9 @@
 	if(pref_load)
 		GLOB.kindred_list |= new_kindred
 
+	var/datum/action/cooldown/mob_cooldown/give_vitae/vitae = new()
+	vitae.Grant(new_kindred)
+
 	var/datum/action/cooldown/blood_power/bloodpower = new()
 	bloodpower.Grant(new_kindred)
 
@@ -67,9 +70,6 @@
 	var/datum/action/vampireinfo/infor = new()
 	infor.host = new_kindred
 	infor.Grant(new_kindred)
-
-	var/datum/action/give_vitae/vitae = new()
-	vitae.Grant(new_kindred)
 
 	add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 	*/
