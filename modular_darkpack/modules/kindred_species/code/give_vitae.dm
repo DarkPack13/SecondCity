@@ -10,6 +10,7 @@
 	unset_after_click = TRUE
 	vampiric = TRUE
 	ranged_mousepointer = 'icons/effects/mouse_pointers/discipline.dmi'
+	cooldown_time = 10 SECONDS
 	// How long do we take giving blood?
 	var/charge_duration = 10 SECONDS
 
