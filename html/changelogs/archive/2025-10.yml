@@ -67,3 +67,6 @@
       TG ones
   chazzyjazzy:
   - code_imp: reimplements selling stuff
+2025-10-22:
+  XeonMations:
+  - bugfix: fixed a runtime relating to masquerade NPCs hearing things

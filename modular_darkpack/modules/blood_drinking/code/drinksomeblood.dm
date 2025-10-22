@@ -45,7 +45,7 @@
 		if(H.reagents)
 			if(length(H.reagents.reagent_list))
 				if(prob(50))
-					H.reagents.trans_to(src, min(10, H.reagents.total_volume), transferred_by = mob, methods = EXPOSE_VAMPIRE)
+					H.reagents.trans_to(src, min(10, H.reagents.total_volume), transferred_by = mob, methods = INGEST)
 
 	if(HAS_TRAIT(src, TRAIT_PAINFUL_VAMPIRE_KISS))
 		mob.adjustBruteLoss(20, TRUE)

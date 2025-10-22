@@ -63,8 +63,8 @@
 				for(var/obj/item/I in get_turf(src))
 					for(var/item_type in sacrifices)
 						if(istype(I, item_type))
-							if(istype(I, /obj/item/drinkable_bloodpack))
-								var/obj/item/drinkable_bloodpack/bloodpack = I
+							if(istype(I, /obj/item/reagent_containers/blood))
+								var/obj/item/reagent_containers/blood/bloodpack = I
 								if(!bloodpack.empty)
 									found_items += I
 									break
@@ -195,7 +195,7 @@
 	icon_state = "rune5"
 	word = "TE-ME'LL"
 	thaumlevel = 3
-	sacrifices = list(/obj/item/drinkable_bloodpack)
+	sacrifices = list(/obj/item/reagent_containers/blood)
 
 /mob/living/simple_animal/hostile/ghost/tremere
 	maxHealth = 1
@@ -226,7 +226,7 @@
 	icon_state = "rune6"
 	word = "POR'TALE"
 	thaumlevel = 5
-	sacrifices = list(/obj/item/drinkable_bloodpack)
+	sacrifices = list(/obj/item/reagent_containers/blood)
 
 /obj/ritualrune/teleport/complete()
 	if(!activated)
@@ -469,7 +469,7 @@
 		message += "The blood is filled with traces of fae magic."
 	else if(clan == "Gargoyle")
 		message += "The blood of our stone servants."
-	else if(clan == "Ministry")
+	else if(clan == "Setite")
 		message += "Seduction and allure are in the blood. Ah, one of the snakes."
 	else
 		message += "The blood's origin is hard to trace. Perhaps it is one of the clanless?"

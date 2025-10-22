@@ -1,0 +1,5 @@
+author: "bomby, XeonMations"
+delete-after: True
+changes:
+  - rscadd: "Added a battering ram to the game"
+  - code_imp: "Tweaked some door code to be less bad."
