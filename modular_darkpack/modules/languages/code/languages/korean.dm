@@ -9,6 +9,7 @@
 	between_word_space_chance = 75
 	additional_syllable_low = -2
 	additional_syllable_high = -1
+	// Words instead of syllables
 	syllables = list(
 		"geureochiman","na","geona","geurigo","go","geuraeseo","seo","nikka","myeon","wa","wihae",
 		"geuttae","kkeudeopda","keuda","meolda","gabyeopda","gwayeon","jal","bammada","imi",

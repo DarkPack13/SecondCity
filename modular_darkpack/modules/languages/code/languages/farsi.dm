@@ -9,6 +9,7 @@
 	between_word_space_chance = 75
 	additional_syllable_low = -2
 	additional_syllable_high = -1
+	// Words instead of syllables
 	syllables = list(
 		"zaman","haalaa","salám","elef","est","eshgh","baleh","nah","ketáb","dídan","kār","solh",
 		"omíd","ve","máh","shab","garmá","man","shma","to","ma","chegoneh","cheh","cheh zamani",

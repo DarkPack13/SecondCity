@@ -9,6 +9,7 @@
 	between_word_space_chance = 75
 	additional_syllable_low = -2
 	additional_syllable_high = -1
+	// Words instead of syllables
 	syllables = list(
 		"es","du","na","menk'","duk'","nrank'","ays","ayn","aysteġ","aynteġ","ov","inč'","orteġ","ur",
 		"erb","inč'pes","oč'","bolor","šat","oroš","k'ič'","uriš","mek","mec","erkar","kin","ptuġ",

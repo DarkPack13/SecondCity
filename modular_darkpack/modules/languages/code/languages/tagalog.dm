@@ -9,6 +9,7 @@
 	between_word_space_chance = 75
 	additional_syllable_low = -2
 	additional_syllable_high = -1
+	// Words instead of syllables
 	syllables = list(
 		"na","ang","sa","ng","ay","at","mga","hindi","ko","ni",
 		"si","siya","isa","niya","ako","mo","pa","kung","may","kaniya",
