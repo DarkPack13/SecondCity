@@ -11,6 +11,10 @@
 	inhand_icon_state = ""
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/clothing/neck/vampire/Initialize(mapload)
+	.=..()
+	AddComponent(/datum/component/selling, 15, "neck", FALSE)
+
 /obj/item/clothing/neck/vampire/scarf
 	name = "black scarf"
 	desc = "Provides protection against cold."

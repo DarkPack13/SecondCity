@@ -61,3 +61,12 @@
   Marshmellow105:
   - image: removed some refs to ss13 and nanotrasen on icons
   - code_imp: removed some refs to ss13 and nanotrasen in names and descs of things
+2025-10-21:
+  Marshmellow105:
+  - image: readded the wallening shutter sprites as replacements for the standard
+      TG ones
+  chazzyjazzy:
+  - code_imp: reimplements selling stuff
+2025-10-22:
+  XeonMations:
+  - bugfix: fixed a runtime relating to masquerade NPCs hearing things
