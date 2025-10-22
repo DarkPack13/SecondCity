@@ -16,3 +16,24 @@
 	default_priority = 90
 
 	restricted = FALSE
+
+// Overides so the BODA machine uses real russian
+/datum/language_holder/spinwarder
+	understood_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/russian = list(LANGUAGE_ATOM),
+	)
+	spoken_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/russian = list(LANGUAGE_ATOM),
+	)
+	selected_language = /datum/language/russian
+
+/datum/language_holder/spinwarder_exclusive
+	understood_languages = list(
+		/datum/language/russian = list(LANGUAGE_ATOM),
+	)
+	spoken_languages = list(
+		/datum/language/russian = list(LANGUAGE_ATOM),
+	)
+	selected_language = /datum/language/russian
