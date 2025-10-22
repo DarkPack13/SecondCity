@@ -103,7 +103,7 @@
 	add_starting_software()
 	. = ..()
 	setup_starting_software()
-	REGISTER_REQUIRED_MAP_ITEM(1, 1)
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // DARKPACK EDIT REMOVAL
 	if(department_type)
 		name = "[LOWER_TEXT(initial(department_type.department_name))] [name]"
 		cpu.name = name

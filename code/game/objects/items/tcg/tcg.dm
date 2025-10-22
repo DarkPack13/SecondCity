@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 
 /obj/item/cardpack/series_one
 	name = "Trading Card Pack: Series 1"
-	desc = "Contains six cards of varying rarity from the 2560 Core Set. Collect them all!"
+	desc = "Contains six cards of varying rarity from the 2007 Core Set. Collect them all!" // DARKPACK EDIT CHANGE
 	icon_state = "cardpack_series1"
 	series = "coreset2020"
 	contains_coin = 10

@@ -42,3 +42,31 @@
   chazzyjazzy:
   - code_imp: Offsets transparency hud from lower z levels by 20 pixels to give the
       appearance of coherent buildings
+2025-10-15:
+  FalloutFalcon:
+  - refactor: ghosts updated to use the existing basic mob subtype
+  dwinters99:
+  - rscdel: relationship system
+  - image: new default titlescreen
+  - rscdel: redundant click.dm
+  - image: new default species appearance
+2025-10-16:
+  KCartridge:
+  - rscdel: A lot of crafting recipes
+2025-10-17:
+  FalloutFalcon:
+  - balance: More stuff uses stats
+  - bugfix: fixed runtime from trying to play empty* sound
+2025-10-18:
+  Marshmellow105:
+  - image: removed some refs to ss13 and nanotrasen on icons
+  - code_imp: removed some refs to ss13 and nanotrasen in names and descs of things
+2025-10-21:
+  Marshmellow105:
+  - image: readded the wallening shutter sprites as replacements for the standard
+      TG ones
+  chazzyjazzy:
+  - code_imp: reimplements selling stuff
+2025-10-22:
+  XeonMations:
+  - bugfix: fixed a runtime relating to masquerade NPCs hearing things
