@@ -414,3 +414,18 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "rubyBadge"
+
+
+/obj/item/card/id/tapster
+	name = "bartender badge"
+	id_type_name = "bartender badge"
+	desc = "A badge displaying a beverage glass."
+	icon = 'modular_darkpack/modules/deprecated/icons/id_items.dmi'
+	icon_state = "tapster_badge"
+	inhand_icon_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	worn_icon = 'code/modules/wod13/worn.dmi'
+	worn_icon_state = "bruiser_badge"
+	registered_name_is_public = FALSE

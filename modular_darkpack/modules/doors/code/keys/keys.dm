@@ -355,3 +355,11 @@
 		"taxi"
 	)
 	color = "#fffb8b"
+
+
+/obj/item/vamp/keys/anarch_limited
+	name = "Barkeeper keys"
+	accesslocks = list(
+		"biker_bar"
+	)
+	color = "#434343"

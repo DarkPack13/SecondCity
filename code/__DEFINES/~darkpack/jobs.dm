@@ -12,17 +12,24 @@
 
 //No department
 #define JOB_CITIZEN "Citizen"
+
+//FUCKING CAMMIES
 #define JOB_PRINCE "Prince"
 #define JOB_SHERIFF "Sheriff"
 #define JOB_HOUND "Hound"
 #define JOB_HARPY "Harpy"
 #define JOB_SENESCHAL "Seneschal"
+
+//COUNCIL SHADOW CABAL (Primogens)
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
 #define JOB_PRIMOGEN_BANU_HAQIM "Primogen Banu Haqim"
 #define JOB_PRIMOGEN_LASOMBRA "Primogen Lasombra"
 #define JOB_PRIMOGEN_MALKAVIAN "Primogen Malkavian"
 #define JOB_PRIMOGEN_NOSFERATU "Primogen Nosferatu"
 #define JOB_PRIMOGEN_VENTRUE "Primogen Ventrue"
+
+//The Real Heroes (Anarchs)
+#define JOB_TAPSTER "Bartender"
 
 #define JOB_DISPLAY_ORDER_CITIZEN 1
 #define JOB_DISPLAY_ORDER_SALUBRI 2
@@ -99,6 +106,9 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_TRADITIONS "the Traditions"
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
+
+
+#define SUPERVISOR_BARON_PUBLIC "The Bar's Owner"
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"
