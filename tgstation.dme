@@ -7052,7 +7052,6 @@
 #include "modular_darkpack\modules\storyteller_stats\code\living_procs\movespeed.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\living_procs\recalculate_max_health.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\living_procs\st_stat_wrappers.dm"
-#include "modular_darkpack\modules\storyteller_stats\code\points\points_list.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\prefs\stat_pref_middleware.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\_ability.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\_attribute.dm"

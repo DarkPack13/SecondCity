@@ -58,17 +58,18 @@
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	var/stat_path = text2path(params["stat"])
-	var/datum/st_stat/public_stat = GLOB.public_storyteller_stats[stat_path]
+	var/datum/st_stat/public_stat = GLOB.private_storyteller_stats[stat_path]
 	if(!public_stat) // We dont actually need public stat for this one, its just sanity to make sure you cant adjust non-existant stats
 		return FALSE
 	if(preferences.storyteller_stats[stat_path] < 0)
 		return FALSE
+	var/datum/st_stat/parent_stat_type = public_stat.abstract_type
 
 	preferences.storyteller_stats[stat_path] -= 1
 	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
 		preferences.storyteller_stat_points[stat_path] -= 1
-	if(preferences.storyteller_stat_points[stat_path] < initial(public_stat.abstract_type.points))
+	if(preferences.storyteller_stat_points[stat_path] < initial(parent_stat_type.points))
 		preferences.storyteller_stat_points[stat_path] += 1
 	else
-		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] += freebie_point_cost
+		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] += public_stat.freebie_point_cost
 	return TRUE
