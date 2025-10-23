@@ -30,6 +30,9 @@ export function StatsPage() {
         onClick={() =>
           act('reset_stats')
         }
+        color="red"
+        tooltip="Reset Stats"
+        tooltipPosition="top"
         />
       </Stack.Item>
       {Object.entries(grouped).map(([category, subcats]) => (
