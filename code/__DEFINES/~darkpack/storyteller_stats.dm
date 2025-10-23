@@ -48,5 +48,22 @@
 #define STAT_TECHNOLOGY /datum/st_stat/ability/technology
 
 // Advantages
-#define STAT_BLOOD_POOL /datum/st_stat/pooled/blood_pool
-#define STAT_WILLPOWER /datum/st_stat/pooled/willpower
+#define STAT_PERMANENT_WILLPOWER /datum/st_stat/pooled/permanent_willpower
+#define STAT_TEMPORARY_WILLPOWER /datum/st_stat/pooled/temporary_willpower
+
+// Virtues
+#define STAT_CONSCIENCE /datum/st_stat/virtue/conscience
+#define STAT_SELF_CONTROL /datum/st_stat/virtue/self_control
+#define STAT_CONVICTION /datum/st_stat/virtue/conviction
+#define STAT_INSTINCT /datum/st_stat/virtue/instinct
+#define STAT_COURAGE /datum/st_stat/virtue/courage
+
+// Parent stats, mainly used for point allocation in preferences.
+
+#define STAT_FREEBIE_POINTS /datum/st_stat/freebie
+#define STAT_ATTRIBUTE /datum/st_stat/attribute
+#define STAT_ABILITY /datum/st_stat/ability
+#define STAT_POOLED /datum/st_stat/pooled
+#define STAT_VIRTUE /datum/st_stat/virtue
+
+#define STAT_MORALITY_PATH /datum/st_stat/morality_path
