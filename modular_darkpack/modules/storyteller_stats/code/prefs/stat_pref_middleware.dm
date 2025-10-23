@@ -35,25 +35,24 @@
 		return FALSE
 
 	preferences.storyteller_stats[stat_path] += 1
-	/*
+
 	if(increased_stat.score < increased_stat.starting_score)
-			increase_base_type_stat.points += 1
-		if(!increase_base_type_stat.points && !freebie_stat.points)
+		increase_base_type_stat.points += 1
+	if(!increase_base_type_stat.points && !freebie_stat.points)
+		return
+	if(storyteller_stat_holder.get_stat(chosen_stat, FALSE) >= increase_base_type_stat.max_score)
+		return
+	if((storyteller_stat_holder.get_stat(chosen_stat) >= increase_base_type_stat.max_score) && increase_base_type_stat.count_bonus_score)
+		return
+	if(!storyteller_stat_holder.set_stat(chosen_stat, increased_stat.score + 1))
+		return
+	if(increase_base_type_stat.points > 0 && (increase_base_type_stat.score < increase_base_type_stat.max_level_before_freebie_points))
+		increase_base_type_stat.points -= 1
+	else
+		if((freebie_stat.points - freebie_point_usage) < 0)
+			storyteller_stat_holder.set_stat(chosen_stat, increased_stat.score - 1)
 			return
-		if(storyteller_stat_holder.get_stat(chosen_stat, FALSE) >= increase_base_type_stat.max_score)
-			return
-		if((storyteller_stat_holder.get_stat(chosen_stat) >= increase_base_type_stat.max_score) && increase_base_type_stat.count_bonus_score)
-			return
-		if(!storyteller_stat_holder.set_stat(chosen_stat, increased_stat.score + 1))
-			return
-		if(increase_base_type_stat.points > 0 && (increase_base_type_stat.score < increase_base_type_stat.max_level_before_freebie_points))
-			increase_base_type_stat.points -= 1
-		else
-			if((freebie_stat.points - freebie_point_usage) < 0)
-				storyteller_stat_holder.set_stat(chosen_stat, increased_stat.score - 1)
-				return
-			freebie_stat.points -= freebie_point_usage
-	*/
+		freebie_stat.points -= freebie_point_usage
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
