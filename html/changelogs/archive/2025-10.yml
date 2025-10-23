@@ -70,3 +70,9 @@
 2025-10-22:
   XeonMations:
   - bugfix: fixed a runtime relating to masquerade NPCs hearing things
+2025-10-23:
+  XeonMations:
+  - refactor: Refactored the kindred species
+  bomby, XeonMations:
+  - rscadd: Added a battering ram to the game
+  - code_imp: Tweaked some door code to be less bad.
