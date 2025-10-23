@@ -10,4 +10,3 @@
 	name = "Temporary Willpower"
 	description = "A character's inner drive and competence at overcoming unfavorable odds. Used for spendature."
 	max_score = 10
-	freebie_point_cost = FREEBIE_COST_WILLPOWER
