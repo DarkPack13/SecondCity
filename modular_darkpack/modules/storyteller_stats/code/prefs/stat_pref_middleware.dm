@@ -44,4 +44,13 @@
 	if(preferences.storyteller_stats[stat_path] > 0)
 		preferences.storyteller_stats[stat_path] -= 1
 		return TRUE
+
+	/*
+	if(decreased_stat.score < decreased_stat.starting_score)
+		decrease_base_type_stat.points -= 1
+	if(decrease_base_type_stat.points < initial(decrease_base_type_stat.points))
+		decrease_base_type_stat.points += 1
+	else
+		freebie_stat.points += freebie_point_usage
+	*/
 	return FALSE

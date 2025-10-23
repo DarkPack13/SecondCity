@@ -341,6 +341,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = save_data?["all_quirks"]
 	// DARKPACK EDIT ADD - STORYTELLR_STATS
 	storyteller_stats = save_data?["storyteller_stats"]
+	storyteller_stat_points = save_data?["storyteller_stat_points"]
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary
@@ -352,7 +353,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	randomise = SANITIZE_LIST(randomise)
 	job_preferences = SANITIZE_LIST(job_preferences)
 	all_quirks = SANITIZE_LIST(all_quirks)
-	storyteller_stats = SANITIZE_LIST(storyteller_stats) // DARKPACK EDIT ADD - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	storyteller_stats = SANITIZE_LIST(storyteller_stats)
+	storyteller_stat_points = SANITIZE_LIST(storyteller_stat_points)
+	// DARKPACK EDIT ADD END
 
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -360,7 +364,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences -= j
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
-	storyteller_stats = SSstats.sanitize_stat_list(storyteller_stats) // DARKPACK EDIT ADD - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	storyteller_stats = SSstats.sanitize_stat_list(storyteller_stats)
+	storyteller_stat_points = SSstats.sanitize_points_list(storyteller_stat_points)
+	// DARKPACK EDIT ADD END
+
 	validate_quirks()
 
 	return TRUE
@@ -404,6 +412,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
 	save_data["storyteller_stats"] = storyteller_stats
+	save_data["storyteller_stat_points"] = storyteller_stat_points
 	// DARKPACK EDIT END
 
 	return TRUE
