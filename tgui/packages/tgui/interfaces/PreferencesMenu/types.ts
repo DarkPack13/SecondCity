@@ -177,7 +177,7 @@ export type PreferencesMenuData = {
   species_disallowed_quirks: string[];
   // DARKPACK EDIT ADD START
   stats: Record<string, number>;
-
+  points: Record<string, number>;
   static_stats: Record<
     string,
     {

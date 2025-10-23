@@ -9,6 +9,7 @@ export function StatsPage() {
   if (!data) return;
   const stats = data.stats;
   const static_stats = data.static_stats;
+  const points = data.points;
   if (!stats || Object.keys(stats).length === 0) return null;
 
   // Group by category → subcategory using subtypes() order
