@@ -16,6 +16,7 @@
 #define JOB_SHERIFF "Sheriff"
 #define JOB_HOUND "Hound"
 #define JOB_HARPY "Harpy"
+#define JOB_SENESCHAL "Seneschal"
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
 #define JOB_PRIMOGEN_BANU_HAQIM "Primogen Banu Haqim"
 #define JOB_PRIMOGEN_LASOMBRA "Primogen Lasombra"
@@ -93,9 +94,6 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 /// Combination flag for jobs which are considered regular crew members of the station.
 #define CITY_JOB_FLAGS (JOB_CREW_MANIFEST|JOB_EQUIP_RANK|JOB_CREW_MEMBER|JOB_NEW_PLAYER_JOINABLE|JOB_REOPEN_ON_ROUNDSTART_LOSS|JOB_ASSIGN_QUIRKS)
-
-#define FACTION_CITY "City"
-#define FACTION_TREMERE VAMPIRE_CLAN_TREMERE
 
 // Variable macros used to declare who is the supervisor for a given job, announced to the player when they join as any given job.
 #define SUPERVISOR_TRADITIONS "the Traditions"

@@ -9,3 +9,5 @@
 #define FACTION_CITY "city"
 
 #define FACTION_GAIA "gaia"
+
+#define FACTION_TREMERE VAMPIRE_CLAN_TREMERE

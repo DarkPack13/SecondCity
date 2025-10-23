@@ -1,5 +1,5 @@
 /datum/job/vampire/clerk
-	title = "Seneschal"
+	title = JOB_SENESCHAL
 	description = "You are the right hand man or woman of the most powerful vampire in the city. The Camarilla trusts you to run the city, even in their stead."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = /datum/job/vampire/prince
