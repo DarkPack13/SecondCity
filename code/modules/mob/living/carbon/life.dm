@@ -482,7 +482,7 @@
 		return
 
 	var/datum/blood_type/blood_type = get_bloodtype()
-	if(blood_type.reagent_type != chem.type)
+	if(!(blood_type.reagent_type in typesof(chem.type))) //DARKPACK EDIT, ORIGINAL: if(blood_type.reagent_type != chem.type)
 		return
 
 	var/blood_stream_volume = min(round(reac_volume, CHEMICAL_VOLUME_ROUNDING), BLOOD_VOLUME_MAXIMUM - blood_volume)
