@@ -1,7 +1,8 @@
 /datum/preference_middleware/stats
 	action_delegations = list(
 		"increase_stat" = PROC_REF(increase_stat),
-		"decrease_stat" = PROC_REF(decrease_stat)
+		"decrease_stat" = PROC_REF(decrease_stat),
+		"reset_stats" = PROC_REF(reset_stats)
 	)
 
 /datum/preference_middleware/stats/get_ui_static_data(mob/user)
@@ -35,16 +36,14 @@
 		return FALSE
 
 	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
-		preferences.storyteller_stat_points[stat_path] += 1
-	if(!preferences.storyteller_stat_points[stat_path] && !preferences.storyteller_stat_points[STAT_FREEBIE_POINTS])
+		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
+	if(!preferences.storyteller_stat_points[public_stat.abstract_type] && !preferences.storyteller_stat_points[STAT_FREEBIE_POINTS])
 		return FALSE
-	if(preferences.storyteller_stat_points[stat_path] >= public_stat.max_score)
-		return FALSE
-	if((preferences.storyteller_stat_points[stat_path] >= public_stat.max_score) && public_stat.count_bonus_score)
+	if((preferences.storyteller_stat_points[public_stat.abstract_type] >= public_stat.max_score) && public_stat.count_bonus_score)
 		return FALSE
 	preferences.storyteller_stats[stat_path] += 1
-	if(preferences.storyteller_stat_points[stat_path] > 0 && (preferences.storyteller_stat_points[stat_path] < public_stat.max_level_before_freebie_points))
-		preferences.storyteller_stat_points[stat_path] -= 1
+	if(preferences.storyteller_stat_points[public_stat.abstract_type] > 0 && (preferences.storyteller_stats[stat_path] <= public_stat.max_level_before_freebie_points))
+		preferences.storyteller_stat_points[public_stat.abstract_type] -= 1
 	else
 		if((preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] - public_stat.freebie_point_cost) < 0)
 			preferences.storyteller_stats[stat_path] -= 1
@@ -63,9 +62,14 @@
 
 	preferences.storyteller_stats[stat_path] -= 1
 	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
-		preferences.storyteller_stat_points[stat_path] -= 1
-	if(preferences.storyteller_stat_points[stat_path] < initial(parent_stat_type.points))
-		preferences.storyteller_stat_points[stat_path] += 1
+		preferences.storyteller_stat_points[public_stat.abstract_type] -= 1
+	if(preferences.storyteller_stat_points[public_stat.abstract_type] < initial(parent_stat_type.points))
+		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
 	else
 		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] += public_stat.freebie_point_cost
+	return TRUE
+
+/datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
+	preferences.storyteller_stats = SSstats.sanitize_stat_list()
+	preferences.storyteller_stat_points = SSstats.sanitize_points_list()
 	return TRUE

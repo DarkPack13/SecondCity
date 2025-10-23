@@ -24,6 +24,14 @@ export function StatsPage() {
 
   return (
     <Stack vertical fill>
+      <Stack.Item>
+        <Button
+        icon="trash"
+        onClick={() =>
+          act('reset_stats')
+        }
+        />
+      </Stack.Item>
       {Object.entries(grouped).map(([category, subcats]) => (
         <Stack.Item key={category}>
           <b>{category}</b>

@@ -1,15 +1,15 @@
 // Physical
-#define STAT_STRENGTH /datum/st_stat/attribute/physical/strength
-#define STAT_DEXTERITY /datum/st_stat/attribute/physical/dexterity
-#define STAT_STAMINA /datum/st_stat/attribute/physical/stamina
+#define STAT_STRENGTH /datum/st_stat/attribute/strength
+#define STAT_DEXTERITY /datum/st_stat/attribute/dexterity
+#define STAT_STAMINA /datum/st_stat/attribute/stamina
 // Social
-#define STAT_CHARISMA /datum/st_stat/attribute/social/charisma
-#define STAT_MANIPULATION /datum/st_stat/attribute/social/manipulation
-#define STAT_APPEARANCE /datum/st_stat/attribute/social/appearance
+#define STAT_CHARISMA /datum/st_stat/attribute/charisma
+#define STAT_MANIPULATION /datum/st_stat/attribute/manipulation
+#define STAT_APPEARANCE /datum/st_stat/attribute/appearance
 // Mental
-#define STAT_PERCEPTION /datum/st_stat/attribute/mental/perception
-#define STAT_INTELLIGENCE /datum/st_stat/attribute/mental/intelligence
-#define STAT_WITS /datum/st_stat/attribute/mental/wits
+#define STAT_PERCEPTION /datum/st_stat/attribute/perception
+#define STAT_INTELLIGENCE /datum/st_stat/attribute/intelligence
+#define STAT_WITS /datum/st_stat/attribute/wits
 
 // Talents
 #define STAT_ALERTNESS /datum/st_stat/ability/alertness
