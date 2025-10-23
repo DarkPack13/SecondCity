@@ -1,7 +1,7 @@
 // This is the home of drink related tablecrafting recipes, I have opted to only let players bottle fancy boozes to reduce the number of entries.
 
 ///////////////// Booze & Bottles ///////////////////
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/lizardwine
 	name = "Lizard Wine"
 	time = 4 SECONDS
@@ -12,7 +12,7 @@
 	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	result = /obj/item/reagent_containers/cup/glass/bottle/lizardwine
 	category = CAT_DRINK
-
+ */
 /datum/crafting_recipe/moonshinejug
 	name = "Moonshine Jug"
 	time = 3 SECONDS

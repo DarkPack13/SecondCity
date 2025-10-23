@@ -11,7 +11,7 @@
  * * disciplines - list of Discipline typepaths to grant if discipline_pref is false.
  */
 /mob/living/carbon/human/proc/create_disciplines(discipline_pref = TRUE, list/disciplines)	//EMBRACE BASIC
-	if ((dna.species.id == "kindred") || (dna.species.id == "ghoul")) //only splats that have Disciplines qualify
+	if ((dna.species.id == SPECIES_KINDRED) || (dna.species.id == SPECIES_GHOUL)) //only splats that have Disciplines qualify
 		var/list/datum/discipline/adding_disciplines = list()
 
 		// TODO: [Rebase] reimplement Discipline selection?
@@ -38,22 +38,6 @@
 		for (var/datum/discipline/discipline in adding_disciplines)
 			give_discipline(discipline)
 
-	// TODO: [Rebase] reimplement kuei-jin
-	/*
-	else if ((dna.species.id == "kuei-jin")) //only splats that have Disciplines qualify
-		var/list/datum/chi_discipline/adding_disciplines = list()
-
-		if (discipline_pref) //initialise character's own disciplines
-			for (var/i in 1 to client.prefs.discipline_types.len)
-				var/type_to_create = client.prefs.discipline_types[i]
-				var/datum/chi_discipline/discipline = new type_to_create
-				discipline.level = client.prefs.discipline_levels[i]
-				adding_disciplines += discipline
-
-		for (var/datum/chi_discipline/discipline in adding_disciplines)
-			give_chi_discipline(discipline)
-	*/
-
 /**
  * Creates an action button and applies post_gain effects of the given Discipline.
  *
@@ -66,17 +50,6 @@
 		action.Grant(src)
 	var/datum/species/human/kindred/species = dna.species
 	LAZYADD(species.disciplines, discipline)
-
-// TODO: [Rebase] reimplement kuei-jin
-/*
-/mob/living/carbon/human/proc/give_chi_discipline(datum/chi_discipline/discipline)
-	if (discipline.level > 0)
-		var/datum/action/chi_discipline/action = new
-		action.discipline = discipline
-		action.Grant(src)
-	discipline.post_gain(src)
-*/
-
 
 /**
  * Checks a vampire for whitelist access to a Discipline.

@@ -73,7 +73,7 @@
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
 	if(levels <= 1 && can_help_themselves)
 		var/obj/item/organ/wings/gliders = get_organ_by_type(/obj/item/organ/wings)
-		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall()) // the power of parkour or wings allows falling short distances unscathed
+		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall() || st_get_stat(STAT_ATHLETICS) > 4) // the power of parkour or wings allows falling short distances unscathed // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
 
 			if(graceful_landing)
@@ -1182,6 +1182,7 @@
 /mob/proc/resist_grab(moving_resist)
 	return 1 //returning 0 means we successfully broke free
 
+// DARKPACKE EDIT CHANGE START - STORYTELLER_DICE
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 
@@ -1189,8 +1190,6 @@
 	var/effective_grab_state = pulledby.grab_state
 	//The amount of damage inflicted on a failed resist attempt.
 	var/damage_on_resist_fail = rand(7, 13)
-	// Base chance to escape a grab. Divided by effective grab state
-	var/escape_chance = BASE_GRAB_RESIST_CHANCE
 
 	if(body_position == LYING_DOWN) //If prone, treat the grab state as one higher
 		effective_grab_state++
@@ -1221,14 +1220,25 @@
 		if(puller_art?.can_use(human_puller))
 			damage_on_resist_fail += puller_art.grab_damage_modifier
 			effective_grab_state += puller_art.grab_state_modifier
-			escape_chance += puller_art.grab_escape_chance_modifier
 
 	//We only resist our grab state if we are currently in a grab equal to or greater than GRAB_AGGRESSIVE (1). Otherwise, break out immediately!
 	if(effective_grab_state >= GRAB_AGGRESSIVE)
-		// see defines/combat.dm, this should be baseline 60%
-		// Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
-		var/resist_chance = clamp(escape_chance / effective_grab_state, 0, 100)
-		if(prob(resist_chance))
+		// Grabber is the "action taker" so he is the "owner"
+		var/success = ROLL_SUCCESS
+		if(pulledby && isliving(pulledby))
+			var/mob/living/living_puller = pulledby
+			success = SSroll.opposed_roll(
+				player_a = living_puller,
+				player_b = src,
+				dice_a = living_puller.st_get_stat(STAT_STRENGTH)+living_puller.st_get_stat(STAT_BRAWL),
+				dice_b = st_get_stat(STAT_DEXTERITY)+st_get_stat(STAT_BRAWL),
+				show_player_a = TRUE,
+				show_player_b = TRUE,
+				alert_atom = src,
+				draw_goes_to_b = TRUE
+			)
+
+		if(!success)
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
 							span_danger("You break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_warning("[src] breaks free of your grip!"))
@@ -1245,6 +1255,7 @@
 	else
 		pulledby.stop_pulling()
 		return FALSE
+// DARKPACK EDIT CHANGE END
 
 /mob/living/proc/resist_buckle()
 	buckled.user_unbuckle_mob(src,src)
@@ -2966,7 +2977,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /// Returns an arbitrary number which very roughly correlates with how buff you look
 /mob/living/proc/calculate_fitness()
-	var/athletics_level = mind?.get_skill_level(/datum/skill/athletics) || 1
+	var/athletics_level = st_get_stat(STAT_STRENGTH) || 1 // DARKPACK EDIT CHANGE
 	var/damage = (melee_damage_lower + melee_damage_upper) / 2
 
 	return ceil(damage * (ceil(athletics_level / 2)) * maxHealth)

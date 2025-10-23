@@ -45,7 +45,7 @@
 	)
 	result = /obj/item/food/sundae
 	category = CAT_ICE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/honkdae
 	name ="Honkdae"
 	reqs = list(
@@ -57,7 +57,7 @@
 	)
 	result = /obj/item/food/honkdae
 	category = CAT_ICE
-
+ */
 /datum/crafting_recipe/food/cornuto
 	name = "Cornuto"
 	reqs = list(

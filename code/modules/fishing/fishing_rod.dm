@@ -367,7 +367,7 @@
 	user = user || loc
 	if (!isliving(user) || !user.mind || !user.is_holding(src))
 		return
-	. += round(user.mind.get_skill_level(/datum/skill/fishing) * 0.3)
+	. += round(user.st_get_stat(STAT_STRENGTH) * 0.3) // DARKPACK EDIT CHANGE - STORYTELLR_STATS
 	return max(., 1)
 
 /obj/item/fishing_rod/dropped(mob/user, silent)

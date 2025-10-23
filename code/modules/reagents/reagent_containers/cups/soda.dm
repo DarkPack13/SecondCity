@@ -174,15 +174,15 @@
 #undef SODA_FIZZINESS_SHAKE
 
 /obj/item/reagent_containers/cup/soda_cans/cola
-	name = "Space Cola"
-	desc = "Cola. in space."
+	name = "Cola" // DARKPACK EDIT CHANGE
+	desc = "Refreshing and caffinated cola." // DARKPACK EDIT CHANGE
 	icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	drink_type = SUGAR
 
 /obj/item/reagent_containers/cup/soda_cans/tonic
-	name = "T-Borg's tonic water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	name = "T-Bone's tonic water" // DARKPACK EDIT CHANGE
+	desc = "Quinine tastes funny, but at least it'll keep that Malaria away." // DARKPACK EDIT CHANGE
 	icon_state = "tonic"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/tonic = 50)
@@ -207,15 +207,15 @@
 	name = "lemon-lime soda"
 
 /obj/item/reagent_containers/cup/soda_cans/sol_dry
-	name = "Sol Dry"
+	name = "Sals Dry" // DARKPACK EDIT CHANGE
 	desc = "Maybe this will help your tummy feel better. Maybe not."
 	icon_state = "sol_dry"
 	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
 	drink_type = SUGAR
 
 /obj/item/reagent_containers/cup/soda_cans/space_up
-	name = "Space-Up!"
-	desc = "Tastes like a hull breach in your mouth."
+	name = "Six-Up!" // DARKPACK EDIT CHANGE
+	desc = "Half as good with none of the caffine!" // DARKPACK EDIT CHANGE
 	icon_state = "space-up"
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	drink_type = SUGAR | JUNKFOOD
@@ -228,15 +228,15 @@
 	drink_type = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/space_mountain_wind
-	name = "Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
+	name = "Mountain Wind" // DARKPACK EDIT CHANGE
+	desc = "Blows right through you like a steep mountain's wind." // DARKPACK EDIT CHANGE
 	icon_state = "space_mountain_wind"
 	list_reagents = list(/datum/reagent/consumable/spacemountainwind = 30)
 	drink_type = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/thirteenloko
 	name = "Thirteen Loko"
-	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
+	desc = "The FDA has advised citizens that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly." // DARKPACK EDIT CHANGE
 	icon_state = "thirteen_loko"
 	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30)
 	drink_type = SUGAR | JUNKFOOD
@@ -277,8 +277,8 @@
 	drink_type = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/grey_bull
-	name = "Grey Bull"
-	desc = "Grey Bull, it gives you gloves!"
+	name = "Red Bat" // DARKPACK EDIT CHANGE
+	desc = "Red Bat, it gives you wings!" // DARKPACK EDIT CHANGE
 	icon_state = "energy_drink"
 	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
 	drink_type = SUGAR | JUNKFOOD
@@ -313,8 +313,8 @@
 	list_reagents = list(/datum/reagent/nitrogen = 24, /datum/reagent/oxygen = 6)
 
 /obj/item/reagent_containers/cup/soda_cans/beer
-	name = "space beer"
-	desc = "Canned beer. In space."
+	name = "beer" // DARKPACK EDIT CHANGE
+	desc = "Canned beer." // DARKPACK EDIT CHANGE
 	icon_state = "space_beer"
 	volume = 40
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 40)
@@ -322,7 +322,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/beer/rice
 	name = "rice beer"
-	desc = "A light, rice-based lagered beer popular on Mars. Considered a hate crime against Bavarians under the Reinheitsgebot Act of 1516."
+	desc = "A light, rice-based lagered beer. Considered a hate crime against Bavarians under the Reinheitsgebot Act of 1516." // DARKPACK EDIT CHANGE
 	icon_state = "ebisu"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rice_beer = 40)
 
@@ -333,10 +333,10 @@
 	switch(brand)
 		if("Ebisu Super Dry")
 			icon_state = "ebisu"
-			desc = "Mars' favourite rice beer brand, 200 years running."
+			desc = "America's favourite rice beer brand, 200 years running." // DARKPACK EDIT CHANGE
 		if("Shimauma Ichiban")
 			icon_state = "shimauma"
-			desc = "Mars' most middling rice beer brand. Not as popular as Ebisu, but it's comfortable in second place."
+			desc = "America's most middling rice beer brand. Not as popular as Ebisu, but it's comfortable in second place." // DARKPACK EDIT CHANGE
 		if("Moonlabor Malt's")
 			icon_state = "moonlabor"
-			desc = "Mars' underdog rice beer brand. Popular amongst the Yakuza, for reasons unknown."
+			desc = "America's underdog rice beer brand. Popular amongst the Yakuza, for reasons unknown." // DARKPACK EDIT CHANGE
