@@ -25,6 +25,7 @@
 /datum/preference_middleware/stats/get_ui_data(mob/user)
 	var/list/data = list()
 	data["stats"] = preferences.storyteller_stats
+	data["points"] = preferences.storyteller_stat_points
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
