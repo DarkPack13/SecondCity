@@ -1,3 +1,7 @@
+/// Difficulty for the roll when selling an item (charisma + finance)
+#define SALE_DIFFICULTY 6
+#define BOTCH_FAILURE_PENALTY 0.5
+
 /obj/lombard
 	name = "pawnshop"
 	desc = "Sell your stuff."
@@ -7,145 +11,229 @@
 	anchored = TRUE
 	var/black_market = FALSE
 
-/obj/lombard/attackby(obj/item/W, mob/living/user, params)
-	var/datum/component/selling/selling_component = W.GetComponent(/datum/component/selling)
-	if(!selling_component)
-		return
-	if(istype(W, /obj/item/stack))
-		return
-	if(selling_component.illegal == black_market)
-		sell_one_item(W, user)
-	else
-		. = ..()
+/obj/lombard/attackby(obj/item/W, mob/living/carbon/human/user, params)
+	var/datum/component/selling/selling_comp = W.GetComponent(/datum/component/selling)
+	if(!selling_comp)
+		return ..()
 
+	if(selling_comp.illegal != black_market)
+		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
+		return
+
+	sell_one_item(W, user)
+
+/// Sell a single item
 /obj/lombard/proc/sell_one_item(obj/item/sold, mob/living/user)
-	var/datum/component/selling/sold_sc = sold.GetComponent(/datum/component/selling)
-	if(!sold_sc.can_sell())
-		to_chat(user, sold_sc.sale_fail_message())
-		return
-	generate_money(sold, user)
+	var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
+	if(!selling_comp)
+		return FALSE
+
+	if(!selling_comp.can_sell())
+		to_chat(user, selling_comp.sale_fail_message())
+		return FALSE
+
+	var/sale_price = calculate_sale_price(sold, user, selling_comp)
+	spawn_money(sale_price, loc)
+
+	if(ishuman(user) && selling_comp.humanity_loss)
+		user.AdjustHumanity(selling_comp.humanity_loss, selling_comp.humanity_loss_limit)
+
+	// feedback
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
-	to_chat(user, sold_sc.sale_success_message())
-	var/mob/living/carbon/human/seller = user
-	if(istype(seller))
-		seller.AdjustHumanity(sold_sc.humanity_loss, sold_sc.humanity_loss_limit)
+	to_chat(user, selling_comp.sale_success_message())
+
+	log_game("[key_name(user)] sold [sold] at [src] for $[sale_price]")
+
 	qdel(sold)
+	return TRUE
 
-//This assumes that all items are of the same type
+/// Sell multiple items of the same category
+/// Returns list of successfully sold items
 /obj/lombard/proc/sell_multiple_items(list/items_to_sell, mob/living/user)
-	var/succeeded_sale
-	var/list/sold_items = list() //This will be returned at the end of the proc for use in lombard/mouse_drop_receive()
+	if(!length(items_to_sell))
+		return list()
+
+	var/list/sold_items = list()
+	var/total_sale_price = 0
+
+	// Make a single roll to sell all your items in bulk
+	var/negotiation_success_count = 0
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
+		if(negotiation_dice > 0)
+			negotiation_success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+
 	for(var/obj/item/sold in items_to_sell)
-		var/datum/component/selling/sold_sc = sold.GetComponent(/datum/component/selling)
-		if(!sold_sc.can_sell())
-			to_chat(user, sold_sc.sale_fail_message())
+		var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
+		if(!selling_comp)
 			continue
-		generate_money(sold, user)
-		succeeded_sale = TRUE
-		to_chat(user, sold_sc.sale_success_message())
+
+		if(!selling_comp.can_sell())
+			to_chat(user, selling_comp.sale_fail_message())
+			continue
+
+		// calculate the sale price of each item with the successes from the roll and add it to total sale price.
+		//for ex, sell 2 under/vampire/archivist. var/cost is 75, 2 successes makes them $150 each, $300 is printed.
+		var/sale_price = calculate_sale_price(sold, user, selling_comp, negotiation_success_count)
+		total_sale_price += sale_price
+
 		sold_items += sold
-	if(succeeded_sale)
-		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
+		to_chat(user, selling_comp.sale_success_message())
+
+	if(!length(sold_items))
+		return list()
+
+	spawn_money(total_sale_price, loc)
+	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
+
 	return sold_items
-	//Humanity adjustment and item deletion is handled in lombard/mouse_drop_receive()
 
-/obj/lombard/proc/generate_money(obj/item/sold, mob/living/user)
-	var/datum/component/selling/sold_sc = sold.GetComponent(/datum/component/selling)
-	var/real_value = (sold_sc.cost / 5) * (user.social + (user.additional_social * 0.1))
-	var/obj/item/stack/dollar/money_to_spawn = new() //Don't pass off the loc until we add up the money, or else it will merge too early and delete some money entities
-	//In case we ever add items that sell for more than the maximum amount of dollars in a stack and can be mass-sold, we use this code.
-	if(real_value > money_to_spawn.max_amount)
-		money_to_spawn.amount = money_to_spawn.max_amount
-		var/extra_money_stack = real_value/money_to_spawn.max_amount - 1 //The -1 is the money already spawned
-		for(var/i in 1 to ceil(extra_money_stack)) //0.6 extra_money_stack = a new dollar stack, 1.3 extra_money_stack = two new dollar stacks etc.
-			var/obj/item/stack/dollar/extra_money_to_spawn = new()
-			if(extra_money_stack >= 1)
-				extra_money_to_spawn.amount = extra_money_to_spawn.max_amount
-				extra_money_stack -= 1
-			else
-				extra_money_to_spawn.amount = floor(extra_money_to_spawn.max_amount/extra_money_stack)
-			extra_money_to_spawn.icon = extra_money_to_spawn.onflooricon
-			extra_money_to_spawn.update_icon_state()
-			extra_money_to_spawn.forceMove(loc)
-	else
-		money_to_spawn.amount = real_value
-	money_to_spawn.icon = money_to_spawn.onflooricon //The nullspace workaround causes the money to show up in an unintentional way. Manually fix the icon.
-	money_to_spawn.update_icon_state()
-	money_to_spawn.forceMove(loc)
+/// calculate the actual sale price for an item - each success adds var/cost from selling component
+/obj/lombard/proc/calculate_sale_price(obj/item/sold, mob/living/user, datum/component/selling/selling_comp, negotiation_success_count = null)
+	var/base_price = selling_comp.cost
 
-//Click-dragging to the vendor to mass-sell a certain type of item
-/obj/lombard/mouse_drop_receive(atom/dropped, mob/user, params)
+	// handle for stacks - gold bars from bank vaults for example
+	var/stack_multiplier = 1
+	if(istype(sold, /obj/item/stack))
+		var/obj/item/stack/stack_item = sold
+		stack_multiplier = stack_item.amount
+
+	// if negotiation result was passed for a bulk sale, use it
+	if(!isnull(negotiation_success_count))
+		if(negotiation_success_count > 0)
+			return round(base_price * stack_multiplier * negotiation_success_count)
+		return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
+
+	// otherwise, roll for negotiation in a single item sale
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
+
+		if(negotiation_dice > 0)
+			var/success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+
+			if(success_count > 0)
+				return round(base_price * stack_multiplier * success_count)
+			return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
+
+	// No negotiation dice (which should rarely happen) = ZERO! Completely scammed at 0 finance 0 charisma
+	return 0
+
+/obj/lombard/proc/spawn_money(amount, atom/spawn_location)
+	if(amount <= 0)
+		return
+
+	var/remaining = amount
+
+	while(remaining > 0)
+		var/obj/item/stack/dollar/money = new()
+		money.amount = min(remaining, money.max_amount)
+		remaining -= money.amount
+
+		money.icon = money.onflooricon
+		money.update_icon_state()
+		money.forceMove(spawn_location)
+
+/obj/lombard/mouse_drop_receive(atom/sold, mob/living/user, params)
 	. = ..()
-	if(!istype(sold))
-		return
-	var/datum/component/selling/sold_sc = sold.GetComponent(/datum/component/selling)
-	if(!sold_sc) //Item has no selling component, do not sell.
-		return
-	if(sold_sc.illegal != black_market)
-		return
-	if(!user.CanReach(src)) //User has to be near the pawnshop/black market
-		return
-	if(!user.CanReach(sold)) //User has to be near the goods themselves
-		return
-	var/turf/turf_with_items = sold.loc
-	if(!isturf(turf_with_items)) //No mouse-dragging while it's inside a bag or a container. Has to be on the floor.
+
+	var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
+	if(!selling_comp)
+		to_chat(user, span_warning("[sold] cannot be sold here."))
 		return
 
-	var/mob/living/carbon/human/seller = user
-	var/list/item_list_to_sell = list() //Store this list for later, we are currently only doing a count to let the user know of their humanity hit.
-	for(var/obj/item/counted_item in turf_with_items)
-		var/datum/component/selling/item_sc = counted_item.GetComponent(/datum/component/selling)
-		if(item_sc && (sold_sc.object_category == item_sc.object_category)) //Has to be the exact same type
-			//A bunch of redundant checks to make sure that the item being sold has the same variable values as every other item.
-			//Just in case.
-			if(item_sc.illegal != sold_sc.illegal)
-				continue
-			if(item_sc.humanity_loss != sold_sc.humanity_loss)
-				continue
-			if(item_sc.humanity_loss_limit != sold_sc.humanity_loss_limit)
-				continue
-			item_list_to_sell += counted_item
-	if(length(item_list_to_sell) == 1) //Just one item, sell it normally
-		sell_one_item(sold, seller)
+	if(selling_comp.illegal != black_market)
+		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
 		return
 
-	var/humanity_penalty_limit = sold_sc.humanity_loss_limit
-	if(sold_sc.humanity_loss && !seller.client?.prefs?.enlightenment) //Do the prompt if the user cares about humanity.
-		//We use these variable to determine whether a prospective seller should be notified about their humanity hit, prompting them if they're gonna lose it.
-		var/humanity_loss_modifier = HAS_TRAIT(user, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
-		var/humanity_loss_risk = length(item_list_to_sell) * humanity_loss_modifier * sold_sc.humanity_loss
-		if(humanity_penalty_limit < seller.humanity) //Check if the user is actually at risk of losing more humanity.
-			if((humanity_penalty_limit <= 0) && ((user.humanity + humanity_loss_risk) <= 0)) //User will wight out if they do this, don't offer the alert, just warn the user.
-				to_chat(user, span_warning("Selling all of this will remove all of your Humanity!"))
-				return
-			var/maximum_humanity_loss = min(seller.humanity - humanity_penalty_limit, -humanity_loss_risk)
-			var/choice = alert(seller, "Your HUMANITY is currently at [seller.humanity], you will LOSE [maximum_humanity_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
-			if(choice == "No")
-				return
-			//Check for proximity again
-			if(!user.CanReach(src))
-				return
-			if(!user.CanReach(sold))
-				return
-	for(var/obj/item/selling_item in item_list_to_sell)
-		if(selling_item.loc != turf_with_items) //Item has been moved away.
-			item_list_to_sell -= selling_item //Removing items from the list to leave all the items that have been sold. Empty list = no items sold.
-	if(!length(item_list_to_sell))
+	if(!user.CanReach(src))
+		to_chat(user, span_warning("You're too far from [src]!"))
 		return
-	var/list/sold_items = sell_multiple_items(item_list_to_sell, seller)
-	//Items that have been returned were successfully sold
+
+	if(!user.CanReach(sold))
+		to_chat(user, span_warning("You can't reach [sold]!"))
+		return
+
+	var/turf/item_turf = sold.loc
+	if(!isturf(item_turf))
+		to_chat(user, span_warning("Items must be on the ground to bulk sell."))
+		return
+
+	var/list/items_to_sell = get_matching_items(item_turf, selling_comp)
+
+	if(!length(items_to_sell))
+		return
+
+	if(length(items_to_sell) == 1)
+		sell_one_item(sold, user)
+		return
+
+	// Humanity loss warning for bulk sales
+	if(selling_comp.humanity_loss && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/species/human/kindred/vampirism = H.dna.species
+		if(!iskindred(H) || !vampirism.enlightenment)
+			var/humanity_loss_modifier = HAS_TRAIT(H, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
+			var/total_humanity_risk = length(items_to_sell) * humanity_loss_modifier * selling_comp.humanity_loss
+
+			if(selling_comp.humanity_loss_limit < H.humanity)
+				if((selling_comp.humanity_loss_limit <= 0) && ((H.humanity + total_humanity_risk) <= 0))
+					to_chat(user, span_warning("Selling all of this will remove all of your Humanity!"))
+					return
+
+				var/max_loss = min(H.humanity - selling_comp.humanity_loss_limit, -total_humanity_risk)
+				var/choice = alert(H, "Your HUMANITY is currently at [H.humanity], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
+				if(choice == "No")
+					return
+
+				if(!user.CanReach(src) || !user.CanReach(sold))
+					return
+
+	var/list/sold_items = sell_multiple_items(items_to_sell, user)
+
 	if(!length(sold_items))
 		return
-	seller.AdjustHumanity(sold_sc.humanity_loss * length(sold_items), humanity_penalty_limit)
-	//Leave this deletion at the very end just in case any earlier qdel would decide to hard-del the item and remove the item from the list before actually adjusting humanity and such
-	for(var/item_to_delete in sold_items)
-		qdel(item_to_delete)
+
+	// Apply humanity loss for all sold items at once
+	if(selling_comp.humanity_loss && ishuman(user))
+		var/total_humanity_loss = selling_comp.humanity_loss * length(sold_items)
+		user.AdjustHumanity(total_humanity_loss, selling_comp.humanity_loss_limit)
+
+	for(var/obj/item/sold_item in sold_items)
+		qdel(sold_item)
+
+/obj/lombard/proc/get_matching_items(turf/item_turf, datum/component/selling/reference_comp)
+	var/list/matching_items = list()
+
+	for(var/obj/item/check_item in item_turf)
+		var/datum/component/selling/check_comp = check_item.GetComponent(/datum/component/selling)
+
+		if(!check_comp)
+			continue
+
+		// Must be exact same category such as "fish"
+		if(check_comp.object_category != reference_comp.object_category)
+			continue
+
+		if(check_comp.illegal != reference_comp.illegal)
+			continue
+
+		if(check_comp.humanity_loss != reference_comp.humanity_loss)
+			continue
+
+		if(check_comp.humanity_loss_limit != reference_comp.humanity_loss_limit)
+			continue
+
+		matching_items += check_item
+
+	return matching_items
 
 /obj/lombard/blackmarket
 	name = "black market"
 	desc = "Sell illegal goods."
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	icon_state = "sell_d"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
-	anchored = TRUE
 	black_market = TRUE
+
+#undef SALE_DIFFICULTY
+#undef BOTCH_FAILURE_PENALTY

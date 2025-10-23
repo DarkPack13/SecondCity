@@ -40,6 +40,9 @@ SUBSYSTEM_DEF(roll)
 			else
 				alert_atom.balloon_alert(player_mob, "<span style='color: #ff0000;'>[success_count]</span>", TRUE)
 
+	if(numerical)
+		return success_count
+
 	return output
 
 /datum/controller/subsystem/roll/proc/opposed_roll(mob/player_a, mob/player_b, dice_a = 1, dice_b = 1, show_player_a=TRUE, show_player_b=TRUE, atom/alert_atom = null, draw_goes_to_b=TRUE, numerical=FALSE)

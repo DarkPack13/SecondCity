@@ -10,6 +10,10 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	undyeable = TRUE
 
+/obj/item/clothing/gloves/vampire/Initialize(mapload)
+	.=..()
+	AddComponent(/datum/component/selling, 30, "gloves", FALSE)
+
 /obj/item/clothing/gloves/vampire/leather
 	name = "leather gloves"
 	desc = "Looks dangerous. Provides some kind of protection."

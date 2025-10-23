@@ -14,7 +14,7 @@
 
 /obj/item/food/fish/shark/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 400, "fish", FALSE)
+	AddComponent(/datum/component/selling, 100, "fish", FALSE)
 
 /obj/item/food/fish/tune
 	name = "tuna"
@@ -22,7 +22,7 @@
 
 /obj/item/food/fish/tune/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 125, "fish", FALSE)
+	AddComponent(/datum/component/selling, 40, "fish", FALSE)
 
 /obj/item/food/fish/catfish
 	name = "catfish"
@@ -30,7 +30,7 @@
 
 /obj/item/food/fish/catfish/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "fish", FALSE)
+	AddComponent(/datum/component/selling, 20, "fish", FALSE)
 
 /obj/item/food/fish/crab
 	name = "crab"
@@ -38,7 +38,7 @@
 
 /obj/item/food/fish/crab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 200, "fish", FALSE)
+	AddComponent(/datum/component/selling, 70, "fish", FALSE)
 
 /obj/item/fishing_rod
 	name = "fishing rod"

@@ -174,7 +174,7 @@
 
 /obj/item/storage/box/tail_pin
 	name = "pin the tail on the corgi supplies"
-	desc = "For ages 10 and up. ...Why is this even on a space station? Aren't you a little old for babby games?" //Intentional typo.
+	desc = "For ages 10 and up. ...Aren't you a little old for babby games?" //Intentional typo. // DARKPACK EDIT CHANGE
 	custom_price = PAYCHECK_COMMAND * 1.25
 
 /obj/item/storage/box/tail_pin/PopulateContents()
