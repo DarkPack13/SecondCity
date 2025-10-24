@@ -15,6 +15,7 @@
 
 //custom retaliate subtree that overrides selectbehaviors
 /datum/ai_planning_subtree/target_retaliate/beastmaster
+	operational_datums = list()
 
 /datum/ai_planning_subtree/target_retaliate/beastmaster/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/datum/pet_command/active_command = controller.blackboard[BB_ACTIVE_PET_COMMAND]
