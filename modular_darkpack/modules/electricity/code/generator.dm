@@ -10,9 +10,9 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/on = TRUE
 	var/switching_on = FALSE
-	var/time_since_toggle = 0
 	var/last_sound_played = 0
 //	var/fuel_remain = 1000
+	COOLDOWN_DECLARE(generator_cooldown)
 
 /obj/warehouse_generator/proc/start_on(mob/user)
 	switching_on = TRUE
@@ -33,8 +33,8 @@
 		L.update(FALSE)
 
 /obj/warehouse_generator/attack_hand(mob/user)
-	if(!time_since_toggle+100 <= world.time && !switching_on)
-		to_chat(user, span_warning("[src] needs a moment before you switch it back [on ? "on" : "off"]."))
+	if(COOLDOWN_FINISHED(src, generator_cooldown))
+		COOLDOWN_START(src, generator_cooldown, 10 SECONDS)
 		if(on)
 			to_chat(user, span_notice("You turn [src] off."))
 			generator_shutdown()
@@ -42,6 +42,8 @@
 			to_chat(user, span_warning("[src] is turning on right now!"))
 		else if(!on)
 			start_on(user)
+	else
+		to_chat(user, span_warning("[src] needs a moment before you switch it back [on ? "off" : "on"]."))
 
 /obj/warehouse_generator/examine(mob/user)
 	. = ..()
@@ -72,9 +74,6 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/warehouse_generator/process(seconds_per_tick)
-	if(time_since_toggle+100 <= world.time)
-		time_since_toggle = world.time
-
 	if(on)
 		if(last_sound_played+40 <= world.time)
 			last_sound_played = world.time
