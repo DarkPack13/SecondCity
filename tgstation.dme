@@ -6886,7 +6886,7 @@
 #include "modular_darkpack\modules\food\code\drinking_glass.dm"
 #include "modular_darkpack\modules\food\code\drinks.dm"
 #include "modular_darkpack\modules\food\code\food.dm"
-#include "modular_darkpack\modules\ghoul\code\ghoul\ghoul_species.dm"
+#include "modular_darkpack\modules\ghoul\code\ghoul_species.dm"
 #include "modular_darkpack\modules\government\code\passport.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard_area.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard_globals.dm"
