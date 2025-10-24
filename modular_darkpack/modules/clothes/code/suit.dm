@@ -367,6 +367,12 @@
 	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
 
 //Police + Army
+
+/obj/item/clothing/suit/vampire/coat/police
+	name = "police raincoat"
+	icon_state = "policecoat"
+	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
 	icon_state = "pdvest"
