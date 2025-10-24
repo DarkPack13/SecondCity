@@ -214,7 +214,7 @@
 		return FALSE
 	if((last_grab + 1.5 SECONDS) > world.time)
 		return FALSE
-	if(ghoulificated)
+	if(mind)
 		return FALSE
 	if(key)
 		return FALSE

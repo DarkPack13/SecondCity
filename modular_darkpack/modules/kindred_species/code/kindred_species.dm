@@ -38,7 +38,6 @@
 	mutanttongue = /obj/item/organ/tongue/kindred
 	exotic_bloodtype = BLOOD_TYPE_KINDRED
 	var/datum/vampire_clan/clan
-	var/list/disciplines
 	var/enlightenment
 	COOLDOWN_DECLARE(torpor_timer)
 
@@ -134,7 +133,7 @@
  * Arguments:
  * * searched_discipline - Name or typepath of the Discipline being searched for.
  */
-/datum/species/human/kindred/proc/get_discipline(searched_discipline)
+/datum/species/human/proc/get_discipline(searched_discipline)
 	for (var/datum/discipline/discipline in disciplines)
 		if (istype(discipline, searched_discipline))
 			return discipline
