@@ -368,6 +368,7 @@ ROUNDSTART_RACES human
 
 ## World of Darkness splats, currently coded as species
 ROUNDSTART_RACES kindred
+ROUNDSTART_RACES ghoul
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 #ROUNDSTART_RACES felinid
