@@ -9,8 +9,7 @@
 	new_ghoul.give_discipline(giving_bloodheal)
 
 /datum/species/human/ghoul/on_species_loss(mob/living/carbon/human/old_ghoul, datum/species/new_species, pref_load)
-	. = ..()
 	for(var/datum/action/A in old_ghoul.actions)
 		if(A.vampiric)
 			A.Remove(old_ghoul)
-
+	return ..()
