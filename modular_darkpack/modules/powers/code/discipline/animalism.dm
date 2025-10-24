@@ -7,172 +7,229 @@
 /datum/discipline_power/animalism
 	name = "Animalism power name"
 	desc = "Animalism power description"
-
 	effect_sound = 'modular_darkpack/modules/deprecated/sounds/wolves.ogg'
 
-//SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
-	name = "Skittering Critters"
-	desc = "Summons rats to follow you and gnaw on your enemies."
-
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-
+	name = "Summon Rat"
+	desc = "Summon a spectral rat to do your bidding."
 	level = 1
-	violates_masquerade = FALSE
-
-	cooldown_length = 8 SECONDS
+	violates_masquerade = TRUE
+	cooldown_length = 5 SECONDS
+	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_rat/activate()
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			H.beastmaster_minions -= minion
 
-	// add_beastmaster_minion handles the limit check and returns FALSE if at limit
-	// So we need to manually remove one if we're at the limit
 	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
 	if(length(H.beastmaster_minions) >= max_minions)
-		// Remove oldest minion
 		var/mob/living/oldest = H.beastmaster_minions[1]
 		if(oldest)
+			H.remove_beastmaster_minion(oldest)
 			qdel(oldest)
-		H.add_beastmaster_minion(/mob/living/basic/mouse/rat)
 
-//SUMMON CAT
+	H.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
+
 /datum/discipline_power/animalism/summon_cat
-	name = "Clawing Felines"
-	desc = "Summons very cute cats to accompany you in the night."
-
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-
+	name = "Summon Cat"
+	desc = "Summon a spectral cat to do your bidding."
 	level = 2
-	violates_masquerade = FALSE
-
-	cooldown_length = 8 SECONDS
+	violates_masquerade = TRUE
+	cooldown_length = 5 SECONDS
+	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_cat/activate()
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			H.beastmaster_minions -= minion
 
 	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
 	if(length(H.beastmaster_minions) >= max_minions)
 		var/mob/living/oldest = H.beastmaster_minions[1]
 		if(oldest)
+			H.remove_beastmaster_minion(oldest)
 			qdel(oldest)
-	H.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack)
 
-//SUMMON WOLF
+	H.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack/summoned)
+
 /datum/discipline_power/animalism/summon_wolf
-	name = "Spectral Wolf"
-	desc = "Summons a phantasmal wolf to attack the target."
-
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-
+	name = "Summon Wolf"
+	desc = "Summon a spectral wolf to do your bidding."
 	level = 3
 	violates_masquerade = TRUE
-
-	cooldown_length = 8 SECONDS
+	cooldown_length = 5 SECONDS
+	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_wolf/activate()
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			H.beastmaster_minions -= minion
 
 	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
 	if(length(H.beastmaster_minions) >= max_minions)
 		var/mob/living/oldest = H.beastmaster_minions[1]
 		if(oldest)
+			H.remove_beastmaster_minion(oldest)
 			qdel(oldest)
-	H.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack)
 
-//SUMMON BAT
+	H.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+
 /datum/discipline_power/animalism/summon_bat
-	name = "Bloodsucker's Communion"
-	desc = "Summons a swarm of bats to drain blood from the victim and transfer it to you."
-
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-
+	name = "Summon Bat"
+	desc = "Summon a spectral bat to do your bidding."
 	level = 4
 	violates_masquerade = TRUE
-
-	cooldown_length = 8 SECONDS
+	cooldown_length = 5 SECONDS
+	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_bat/activate()
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			H.beastmaster_minions -= minion
 
 	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
 	if(length(H.beastmaster_minions) >= max_minions)
 		var/mob/living/oldest = H.beastmaster_minions[1]
 		if(oldest)
+			H.remove_beastmaster_minion(oldest)
 			qdel(oldest)
-	H.add_beastmaster_minion(/mob/living/basic/bat/vampire)
 
-// RAT SHAPESHIFT
+	H.add_beastmaster_minion(/mob/living/basic/bat/vampire/summoned)
+
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
 	desc = "Take on the shape of a rat."
 	button_icon_state = "shapeshift"
-
 	cooldown_time = 5 SECONDS
-
+	spell_requirements = NONE
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
 	convert_damage_type = BRUTE
-
 	shapeshift_type = /mob/living/basic/mouse/rat
 	possible_shapes = list(/mob/living/basic/mouse/rat)
 
 /datum/discipline_power/animalism/rat_shapeshift
 	name = "Skitter"
 	desc = "Become one of the rats that crawl beneath the city."
-
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-
 	level = 5
 	violates_masquerade = TRUE
-
 	cooldown_length = 8 SECONDS
 	duration_length = 20 SECONDS
-
-	/// The shapeshift spell we grant to the owner
 	var/datum/action/cooldown/spell/shapeshift/animalism/shapeshift_spell
+	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/rat_shapeshift/activate()
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
-	// Grant the shapeshift spell if we don't have it yet
 	if(!shapeshift_spell)
 		shapeshift_spell = new /datum/action/cooldown/spell/shapeshift/animalism()
+		shapeshift_spell.spell_requirements = NONE
 		shapeshift_spell.Grant(owner)
+		RegisterSignal(shapeshift_spell, COMSIG_ACTION_TRIGGER, PROC_REF(on_shapeshift_toggle))
 
-	// Cast the spell to transform
 	shapeshift_spell.cast(owner)
+
+/datum/discipline_power/animalism/rat_shapeshift/proc/on_shapeshift_toggle(datum/source)
+	SIGNAL_HANDLER
+	if(!is_type_in_list(owner, shapeshift_spell.possible_shapes))
+		INVOKE_ASYNC(src, PROC_REF(delayed_deactivate))
+
+/datum/discipline_power/animalism/rat_shapeshift/proc/delayed_deactivate()
+	sleep(0.1 SECONDS)
+	deactivate()
 
 /datum/discipline_power/animalism/rat_shapeshift/deactivate()
 	. = ..()
-
 	if(!owner || owner.stat == DEAD)
 		return
 
-	// If we're still shifted, unshift them
 	if(shapeshift_spell && is_type_in_list(owner, shapeshift_spell.possible_shapes))
-		shapeshift_spell.cast(owner) // Casting again will unshift
+		shapeshift_spell.cast(owner)
 		owner.Stun(1.5 SECONDS)
+
+/mob/living/basic/mouse/rat/summoned
+	name = "rat"
+	desc = "A rat bound to its master's will."
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	melee_damage_lower = 3
+	melee_damage_upper = 8
+	obj_damage = 10
+
+/mob/living/basic/mouse/rat/summoned/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/relay_attackers)
+	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
+	if(old)
+		qdel(old)
+
+/mob/living/basic/pet/cat/darkpack/summoned
+	name = "cat"
+	desc = "A cat bound to its master's will."
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	melee_damage_lower = 5
+	melee_damage_upper = 12
+	obj_damage = 15
+
+/mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/relay_attackers)
+	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
+	if(old)
+		qdel(old)
+
+/mob/living/basic/pet/dog/darkpack/summoned
+	name = "wolf"
+	desc = "A wolf bound to its master's will."
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	melee_damage_lower = 10
+	melee_damage_upper = 20
+	obj_damage = 20
+
+/mob/living/basic/pet/dog/darkpack/summoned/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/relay_attackers)
+	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
+	if(old)
+		qdel(old)
+
+/mob/living/basic/bat/vampire/summoned
+	name = "bat"
+	desc = "A bat bound to its master's will."
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	melee_damage_lower = 4
+	melee_damage_upper = 10
+	obj_damage = 10
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+
+/mob/living/basic/bat/vampire/summoned/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/relay_attackers)
+	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
+	if(old)
+		qdel(old)

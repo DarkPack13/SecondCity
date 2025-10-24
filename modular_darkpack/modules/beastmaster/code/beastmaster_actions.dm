@@ -1,62 +1,75 @@
-// ============= ACTION DATUMS =============
-/datum/action/beastmaster_stay
-	name = "Stay/Follow"
-	desc = "Command to stay or follow."
-	button_icon_state = "wait"
-	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	var/following = FALSE
-
-/datum/action/beastmaster_stay/Trigger(mob/living/source, trigger_flags)
-	. = ..()
-
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-
-	if(!following)
-		following = TRUE
-		to_chat(owner, "You call your support.")
-		for(var/datum/component/beastmaster_minion/component in H.beastmaster_minion_components)
-			component.follow = TRUE
-	else
-		following = FALSE
-		to_chat(owner, "Your support will wait here.")
-		for(var/datum/component/beastmaster_minion/component in H.beastmaster_minion_components)
-			component.follow = FALSE
-
-/datum/action/beastmaster_deaggro
-	name = "End Aggression"
-	desc = "Command to stop any aggressive moves."
-	button_icon_state = "deaggro"
+//action buttons
+/datum/action/beastmaster_command_stay
+	name = "Command: Stay"
+	desc = "Order all minions to stay in place."
+	button_icon = 'icons/hud/radial_pets.dmi'
+	button_icon_state = "halt"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 
-/datum/action/beastmaster_deaggro/Trigger(mob/living/source, trigger_flags)
+/datum/action/beastmaster_command_stay/Trigger(trigger_flags)
 	. = ..()
-
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/H = owner
-	for(var/datum/component/beastmaster_minion/component in H.beastmaster_minion_components)
-		component.enemies = list()
-		component.target = null
-		to_chat(owner, "You command your minions to cease their attacks.")
-
-/datum/action/beastmaster_combat
-	name = "Engage Combat"
-	desc = "Command your minions to switch into combat mode, if they can."
-	button_icon_state = "combat"
-
-/datum/action/beastmaster_combat/Trigger(mob/living/source, trigger_flags)
-	. = ..()
-
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-
 	for(var/mob/living/minion in H.beastmaster_minions)
-		if("combat_mode" in minion.vars)
-			minion.combat_mode = !minion.combat_mode
-			to_chat(owner, "You change your minion's combat stance.")
+		if(QDELETED(minion))
+			continue
+		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
+		if(!obeys)
+			continue
+		var/datum/pet_command/idle/stay_cmd = obeys.available_commands["Stay"]
+		if(stay_cmd)
+			stay_cmd.try_activate_command(H, radial_command = FALSE)
+
+/datum/action/beastmaster_command_follow
+	name = "Command: Follow"
+	desc = "Order all minions to follow you."
+	button_icon = 'icons/hud/radial_pets.dmi'
+	button_icon_state = "follow"
+	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
+
+/datum/action/beastmaster_command_follow/Trigger(trigger_flags)
+	. = ..()
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion))
+			continue
+
+		//teleport if on different z-level
+		if(minion.z != owner.z && get_dist(minion, owner) < 12)
+			minion.forceMove(owner.loc)
+
+		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
+		if(!obeys)
+			continue
+		var/datum/pet_command/follow/follow_cmd = obeys.available_commands["Follow"]
+		if(follow_cmd)
+			follow_cmd.try_activate_command(H, radial_command = FALSE)
+
+/datum/action/beastmaster_command_loose
+	name = "Command: Calm Down"
+	desc = "Order all minions to stop attacking and calm down."
+	button_icon = 'icons/hud/radial_pets.dmi'
+	button_icon_state = "free"
+	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
+
+/datum/action/beastmaster_command_loose/Trigger(trigger_flags)
+	. = ..()
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/H = owner
+	for(var/mob/living/minion in H.beastmaster_minions)
+		if(QDELETED(minion))
+			continue
+		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
+		if(!obeys)
+			continue
+		var/datum/pet_command/free/loose_cmd = obeys.available_commands["Loose"]
+		if(loose_cmd)
+			loose_cmd.try_activate_command(H, radial_command = FALSE)
+
