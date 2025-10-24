@@ -256,7 +256,12 @@
 	show_initial_fluff_message(user, going_up)
 
 	// Our climbers athletics ability
-	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
+	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
+	var/fitness_level = 1
+	if(isliving(user))
+		var/mob/living/living_user = user
+		fitness_level = living_user.st_get_stat(STAT_DEXTERITY) + living_user.st_get_stat(STAT_ATHLETICS)
+	// DARKPACK EDIT CHANGE END
 
 	// Misc bonuses to the climb speed.
 	var/misc_multiplier = 1
@@ -287,9 +292,11 @@
 	var/turf/target = get_turf(ladder)
 	user.zMove(target = target, z_move_flags = ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED|ZMOVE_INCLUDE_PULLED)
 
+	/* DARKPACK EDIT REMOVAL
 	if(grant_exp)
 		var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
 		user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //get a little experience for our trouble
+	*/
 
 	if(!is_ghost)
 		show_final_fluff_message(user, ladder, going_up)

@@ -92,7 +92,7 @@
 	var/attack_sound = active_arm.unarmed_attack_sound
 
 	// Out athletics skill is added as a damage bonus
-	var/athletics_skill =  attacker.mind?.get_skill_level(/datum/skill/athletics)
+	var/athletics_skill = attacker.st_get_stat(STAT_BRAWL) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 
 	// If true, grants experience for punching; we only gain experience if we punch another boxer.
 	var/grant_experience = FALSE

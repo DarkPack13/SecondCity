@@ -176,12 +176,12 @@
 
 /obj/item/shield/riot/Initialize(mapload)
 	. = ..()
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield)
+	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield) // DARKPACK EDIT REMOVE
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
-	)
+	) */
 
 /obj/item/shield/riot/attackby(obj/item/attackby_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attackby_item, /obj/item/stack/sheet/mineral/titanium))

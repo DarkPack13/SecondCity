@@ -77,7 +77,7 @@
 
 ///Dispenses the proper prizes and gives them a positive mood event. If valid, has a small chance to give a pulse rifle.
 /obj/machinery/computer/arcade/proc/prizevend(mob/living/user, prizes = 1)
-	if(user.mind?.get_skill_level(/datum/skill/gaming) >= SKILL_LEVEL_LEGENDARY && HAS_TRAIT(user, TRAIT_GAMERGOD))
+	if((user.st_get_stat(STAT_TECHNOLOGY) >= SKILL_LEVEL_LEGENDARY) && HAS_TRAIT(user, TRAIT_GAMERGOD)) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 		visible_message(span_notice("[user] inputs an intense cheat code!"),\
 		span_notice("You hear a flurry of buttons being pressed."))
 		say("CODE ACTIVATED: EXTRA PRIZES.")

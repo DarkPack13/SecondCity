@@ -33,7 +33,7 @@
 	)
 	result = /obj/item/food/pie/tofupie
 	category = CAT_PIE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/xenopie
 	name = "Xeno pie"
 	reqs = list(
@@ -42,7 +42,7 @@
 	)
 	result = /obj/item/food/pie/xemeatpie
 	category = CAT_PIE
-
+ */
 /datum/crafting_recipe/food/cherrypie
 	name = "Cherry pie"
 	reqs = list(
@@ -248,7 +248,7 @@
 	)
 	result = /obj/item/food/pie/shepherds_pie
 	category = CAT_PIE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/asdfpie
 	name = "Pie-flavored pie"
 	reqs = list(
@@ -266,3 +266,4 @@
 	result = /obj/item/food/pie/bacid_pie
 	added_foodtypes = TOXIC
 	category = CAT_PIE
+ */
