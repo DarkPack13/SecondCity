@@ -1,3 +1,12 @@
+//beastmaster commands list from beastmaster_commands.dm, all summoned mobs can be set to idle, follow, attack, protect the owner, and roam freely.
+#define BEASTMASTER_COMMANDS list(\
+	/datum/pet_command/idle,\
+	/datum/pet_command/follow/start_active,\
+	/datum/pet_command/attack/beastmaster,\
+	/datum/pet_command/protect_owner,\
+	/datum/pet_command/free/beastmaster,\
+)
+
 /mob/living/carbon/human/proc/add_beastmaster_minion(mob/living/minion_or_type, turf/spawn_location)
 	//first, make sure the beastmaster_minions list is accurate
 	for(var/mob/living/minion in beastmaster_minions)
@@ -33,7 +42,7 @@
 		qdel(old_component)
 
 	//now we add the obeys commands component and befriend the beastmaster
-	var/datum/component/obeys_commands/new_component = minion.AddComponent(/datum/component/obeys_commands, get_beastmaster_commands())
+	var/datum/component/obeys_commands/new_component = minion.AddComponent(/datum/component/obeys_commands, BEASTMASTER_COMMANDS)
 	minion_command_components[minion] = new_component
 	minion.befriend(src)
 
@@ -62,16 +71,6 @@
 
 	if(!length(beastmaster_minions))
 		unregister_beastmaster_signals()
-
-//all summoned mobs can be set to idle, follow, attack, protect the owner, and roam freely.
-/mob/living/carbon/human/proc/get_beastmaster_commands()
-	return list(
-		/datum/pet_command/idle,
-		/datum/pet_command/follow/start_active,
-		/datum/pet_command/attack/beastmaster,
-		/datum/pet_command/protect_owner,
-		/datum/pet_command/free/beastmaster,
-	)
 
 /mob/living/carbon/human/proc/remove_beastmaster_minion(mob/living/minion)
 	if(!minion)
