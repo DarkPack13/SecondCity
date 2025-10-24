@@ -97,3 +97,5 @@
 
 	if(!length(beastmaster_minions))
 		unregister_beastmaster_signals()
+
+#undef BEASTMASTER_COMMANDS
