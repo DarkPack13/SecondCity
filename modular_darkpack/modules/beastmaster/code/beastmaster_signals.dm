@@ -8,8 +8,8 @@
 		stay.Grant(src)
 		var/datum/action/beastmaster_command_follow/follow = new()
 		follow.Grant(src)
-		var/datum/action/beastmaster_command_loose/loose = new()
-		loose.Grant(src)
+		var/datum/action/beastmaster_command_end_aggression/endaggro = new()
+		endaggro.Grant(src)
 
 /mob/living/carbon/human/proc/unregister_beastmaster_signals()
 	var/datum/component/beastmaster_defender/component = GetComponent(/datum/component/beastmaster_defender)
@@ -20,7 +20,7 @@
 	for(var/datum/action/beastmaster_cmd in actions)
 		if(istype(beastmaster_cmd, /datum/action/beastmaster_command_stay) || \
 			istype(beastmaster_cmd, /datum/action/beastmaster_command_follow) || \
-			istype(beastmaster_cmd, /datum/action/beastmaster_command_loose))
+			istype(beastmaster_cmd, /datum/action/beastmaster_command_end_aggression))
 			beastmaster_cmd.Remove(src)
 
 /datum/component/beastmaster_defender/Initialize()

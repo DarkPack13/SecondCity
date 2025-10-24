@@ -50,14 +50,14 @@
 		if(follow_cmd)
 			follow_cmd.try_activate_command(H, radial_command = FALSE)
 
-/datum/action/beastmaster_command_loose
-	name = "Command: Calm Down"
-	desc = "Order all minions to stop attacking and calm down."
+/datum/action/beastmaster_command_end_aggression
+	name = "Command: End Aggression"
+	desc = "Order all minions to stop attacking."
 	button_icon = 'icons/hud/radial_pets.dmi'
 	button_icon_state = "free"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 
-/datum/action/beastmaster_command_loose/Trigger(trigger_flags)
+/datum/action/beastmaster_command_end_aggression/Trigger(trigger_flags)
 	. = ..()
 	if(!ishuman(owner))
 		return
@@ -69,7 +69,7 @@
 		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
 		if(!obeys)
 			continue
-		var/datum/pet_command/free/loose_cmd = obeys.available_commands["Loose"]
-		if(loose_cmd)
-			loose_cmd.try_activate_command(H, radial_command = FALSE)
+		var/datum/pet_command/free/end_aggression_cmd = obeys.available_commands["Loose"]
+		if(end_aggression_cmd)
+			end_aggression_cmd.try_activate_command(H, radial_command = FALSE)
 
