@@ -16,6 +16,7 @@
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
+		stat_data["editable"] = stat.editable
 		stat_data["category"] = stat.category
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score

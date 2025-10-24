@@ -24,6 +24,9 @@
 	//If a stat affects the player's speed, such as dexterity.
 	var/affects_speed = FALSE
 
+	//if the user can spend points on that stat.
+	var/editable = TRUE
+
 	/// A dictionary of modifiers to this attribute.
 	var/list/modifiers = list()
 	//What score does this stat start out with at character creation.

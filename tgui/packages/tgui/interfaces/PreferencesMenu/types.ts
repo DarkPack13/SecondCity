@@ -184,6 +184,7 @@ export type PreferencesMenuData = {
       name: string;
       desc: string;
       max_score: number;
+      editable: number;
       category: string;
       subcategory: string;
     }
