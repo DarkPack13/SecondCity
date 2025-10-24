@@ -4,11 +4,27 @@
 # In the event that people are to be informed of changes
 # to the same file or dir, add them to the end of under Multiple Owners
 
+# Map Maintainers
+/_maps/ @DarkPack13/maptainers
+*.dmm @DarkPack13/maptainers
+
+# Sprite Maintainers
+/icons/ @DarkPack13/spritetainers
+*.dmi @DarkPack13/spritetainers
+
+# Code Maintainers
+/code/ @DarkPack13/maintainers
+*.dm @DarkPack13/maintainers
+
 # MAINTAINERS
 
-# Fallcon
-# Hey why are you touching these files thats not modular! (probally)
-/code/ @FalloutFalcon
+# FalloutFalcon
+/modular_darkpack/modules/cars/code/ @FalloutFalcon
+/modular_darkpack/modules/city_time/code/ @FalloutFalcon
+/modular_darkpack/modules/doors/code/vampdoor.dm @FalloutFalcon
+
+# XeonMations
+/modular_darkpack/modules/masquerade/code/ @XeonMations
 
 # CONTRIBUTORS
 
