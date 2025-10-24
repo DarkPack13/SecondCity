@@ -157,6 +157,12 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		minor_disabilities = person.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, from_scan = TRUE),
 		minor_disabilities_desc = person.get_quirk_string(TRUE, CAT_QUIRK_MINOR_DISABILITY),
 		quirk_notes = person.get_quirk_string(TRUE, CAT_QUIRK_NOTES),
+		// DARKPACK EDIT START - FLAVOR TEXT
+		background_information = person.client?.prefs.read_preference(/datum/preference/text/background) || "",
+		exploitable_information = person.client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
+		past_medical_records = person.client?.prefs.read_preference(/datum/preference/text/medical) || "",
+		past_criminal_records = person.client?.prefs.read_preference(/datum/preference/text/criminal) || "",
+		// DARKPACK EDIT END
 	)
 
 /// Edits the rank and trim of the found record.
