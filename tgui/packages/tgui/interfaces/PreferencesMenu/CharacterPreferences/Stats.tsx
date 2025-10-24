@@ -74,7 +74,7 @@ export function StatsPage() {
                           </Stack.Item>
                           <Stack.Item grow basis="50%" textAlign="right">
                             <Stack fill g={1}>
-                              {editable == 1 ? (
+                              {editable === 1 ? (
                                 <>
                                   <Stack.Item>
                                     <Button
