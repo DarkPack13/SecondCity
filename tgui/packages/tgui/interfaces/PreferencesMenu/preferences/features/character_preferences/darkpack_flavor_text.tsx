@@ -2,7 +2,7 @@
 import {
   Feature,
   FeatureTextInput,
-} from '../base.tsx';
+} from '../base';
 
 export const flavor_text: Feature<string> = {
   name: 'Flavor Text',
@@ -29,20 +29,22 @@ export const ooc_notes: Feature<string> = {
   component: FeatureTextInput,
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const criminal_record: Feature<string> = {
-  name: 'Records - Security',
+  name: 'Criminal Records',
   description: 'Viewable with security access. For criminal records, arrest history, things like that.',
   component: FeatureTextInput,
 };
 
 export const medical_record: Feature<string> = {
-  name: 'Records - Medical',
+  name: 'Medical Records',
   description: 'Viewable with medical access. For things like medical history, prescriptions, DNR orders, etc.',
   component: FeatureTextInput,
 };
 
 export const exploitable_info: Feature<string> = {
-  name: 'Records - Exploitable',
+  name: 'Exploitable Records',
   description:
     'Can be IC or OOC. Viewable by certain antagonists, as well as ghosts. Generally contains \
   things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
@@ -51,7 +53,7 @@ export const exploitable_info: Feature<string> = {
 };
 
 export const background_info: Feature<string> = {
-  name: 'Records - Background',
+  name: 'Background Records',
   description: 'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
   component: FeatureTextInput,
 };
