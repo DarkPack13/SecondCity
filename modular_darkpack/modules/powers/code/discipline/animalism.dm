@@ -15,7 +15,7 @@
 	desc = "Summon a spectral rat to do your bidding."
 	level = 1
 	violates_masquerade = TRUE
-	cooldown_length = 5 SECONDS
+	cooldown_length = 8 SECONDS
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_rat/activate()
@@ -43,7 +43,7 @@
 	desc = "Summon a spectral cat to do your bidding."
 	level = 2
 	violates_masquerade = TRUE
-	cooldown_length = 5 SECONDS
+	cooldown_length = 8 SECONDS
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_cat/activate()
@@ -71,7 +71,7 @@
 	desc = "Summon a spectral wolf to do your bidding."
 	level = 3
 	violates_masquerade = TRUE
-	cooldown_length = 5 SECONDS
+	cooldown_length = 8 SECONDS
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_wolf/activate()
@@ -99,7 +99,7 @@
 	desc = "Summon a spectral bat to do your bidding."
 	level = 4
 	violates_masquerade = TRUE
-	cooldown_length = 5 SECONDS
+	cooldown_length = 8 SECONDS
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
 /datum/discipline_power/animalism/summon_bat/activate()
