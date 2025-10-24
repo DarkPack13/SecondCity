@@ -42,25 +42,25 @@
 /mob/living/pixel_shift(direction)
 	switch(direction)
 		if(NORTH)
-			if(!canface())
+			if(!can_face())
 				return FALSE
 			if(pixel_y <= 16)
 				pixel_y++
 				is_shifted = TRUE
 		if(EAST)
-			if(!canface())
+			if(!can_face())
 				return FALSE
 			if(pixel_x <= 16)
 				pixel_x++
 				is_shifted = TRUE
 		if(SOUTH)
-			if(!canface())
+			if(!can_face())
 				return FALSE
 			if(pixel_y >= -16)
 				pixel_y--
 				is_shifted = TRUE
 		if(WEST)
-			if(!canface())
+			if(!can_face())
 				return FALSE
 			if(pixel_x >= -16)
 				pixel_x--
