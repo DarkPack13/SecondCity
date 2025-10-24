@@ -7004,6 +7004,7 @@
 #include "modular_darkpack\modules\onfloor_icons\code\apply_onfloor_icon_element.dm"
 #include "modular_darkpack\modules\onfloor_icons\code\dynamic_item_icon.dm"
 #include "modular_darkpack\modules\phones\code\phone_globals.dm"
+#include "modular_darkpack\modules\pixel_shift\code\pixel_shift.dm"
 #include "modular_darkpack\modules\powers\code\discipline_actions.dm"
 #include "modular_darkpack\modules\powers\code\discipline_gain.dm"
 #include "modular_darkpack\modules\powers\code\discipline\__discipline.dm"
