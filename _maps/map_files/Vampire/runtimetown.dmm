@@ -454,7 +454,7 @@
 "nm" = (
 /obj/effect/decal/pallet,
 /obj/item/ammo_box/vampire/c9mm/silver,
-/obj/item/ammo_box/vampire/c9mm/moonclip,
+/obj/item/ammo_box/darkpack/c9mm/moonclip,
 /obj/item/ammo_box/vampire/c9mm,
 /obj/item/ammo_box/vampire/c45acp/silver,
 /obj/item/ammo_box/vampire/c45acp,
