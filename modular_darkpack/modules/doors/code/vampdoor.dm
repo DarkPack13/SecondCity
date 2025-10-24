@@ -108,8 +108,6 @@
 
 /obj/structure/vampdoor/mouse_drop_receive(atom/dropped, mob/user, params)
 	. = ..()
-
-	//Adds the component only once. We do it here & not in Initialize() because there are tons of windows & we don't want to add to their init times
 	LoadComponent(/datum/component/leanable, dropped)
 
 /obj/structure/vampdoor/proc/proc_unlock(method) //I am here so that dwelling doors can call me to properly process their alarms.
@@ -124,7 +122,13 @@
 	. = ..()
 	fix_door()
 
-/obj/structure/vampdoor/proc/break_door()
+/obj/structure/vampdoor/proc/break_door(mob/user)
+	playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 100, FALSE)
+	var/obj/item/shield/door/broken_door = new(get_turf(src))
+	broken_door.icon_state = base_icon_state
+	if(user)
+		var/atom/throw_target = get_edge_target_turf(src, user.dir)
+		broken_door.throw_at(throw_target, rand(2, 4), 4, user)
 	name = "door frame"
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
@@ -195,29 +199,20 @@
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
 				if((human_user.st_get_stat(STAT_STRENGTH) * 2) >= lockpick_difficulty)
-					playsound(get_turf(src), 'modular_darkpack/modules/deprecated/sounds/get_bent.ogg', 100, FALSE)
-					var/obj/item/shield/door/D = new(get_turf(src))
-					D.icon_state = base_icon_state
-					var/atom/throw_target = get_edge_target_turf(src, user.dir)
-					D.throw_at(throw_target, rand(2, 4), 4, user)
 					proc_unlock(50)
-					break_door()
+					break_door(human_user)
 				else
 					pixel_z = pixel_z+rand(-1, 1)
 					pixel_w = pixel_w+rand(-1, 1)
-					playsound(get_turf(src), 'modular_darkpack/modules/deprecated/sounds/get_bent.ogg', 50, TRUE)
+					playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
 					to_chat(user, span_warning("You aren't strong enough to break it down!"))
-					spawn(2)
-						pixel_z = initial(pixel_z)
-						pixel_w = initial(pixel_w)
+					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 			else
 				pixel_z = pixel_z+rand(-1, 1)
 				pixel_w = pixel_w+rand(-1, 1)
-				playsound(src, 'modular_darkpack/modules/deprecated/sounds/knock.ogg', 75, TRUE)
-				spawn(2)
-					pixel_z = initial(pixel_z)
-					pixel_w = initial(pixel_w)
+				playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
+				addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 	else
 		if(locked)
 			playsound(src, lock_sound, 75, TRUE)
@@ -279,7 +274,7 @@
 		return
 	if(locked)
 		proc_unlock(5)
-		playsound(src, 'modular_darkpack/modules/deprecated/sounds/hack.ogg', 100, TRUE)
+		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
 		for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
 			P.Aggro(user)
 		var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
@@ -304,7 +299,7 @@
 		if(closed && lock_id) //yes, this is a thing you can extremely easily do in real life... FOR DOORS WITH LOCKS!
 			to_chat(user, span_notice("You re-lock the door with your lockpick."))
 			locked = TRUE
-			playsound(src, 'modular_darkpack/modules/deprecated/sounds/hack.ogg', 100, TRUE)
+			playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
 			return TRUE
 
 /obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used)
@@ -332,5 +327,9 @@
 					proc_unlock("key")
 					locked = FALSE
 				return TRUE
+
+/obj/structure/vampdoor/proc/reset_transform()
+	pixel_z = initial(pixel_z)
+	pixel_w = initial(pixel_w)
 
 #undef DOAFTER_SOURCE_DOOR
