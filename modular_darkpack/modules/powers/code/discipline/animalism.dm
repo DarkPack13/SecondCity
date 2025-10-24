@@ -9,6 +9,7 @@
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/deprecated/sounds/wolves.ogg'
 
+//SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
 	name = "Summon Rat"
 	desc = "Summon a spectral rat to do your bidding."
@@ -36,6 +37,7 @@
 
 	H.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
 
+//SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
 	name = "Summon Cat"
 	desc = "Summon a spectral cat to do your bidding."
@@ -63,6 +65,7 @@
 
 	H.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack/summoned)
 
+//SUMMON WOLF
 /datum/discipline_power/animalism/summon_wolf
 	name = "Summon Wolf"
 	desc = "Summon a spectral wolf to do your bidding."
@@ -90,6 +93,7 @@
 
 	H.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
 
+//SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
 	name = "Summon Bat"
 	desc = "Summon a spectral bat to do your bidding."
@@ -130,6 +134,7 @@
 	shapeshift_type = /mob/living/basic/mouse/rat
 	possible_shapes = list(/mob/living/basic/mouse/rat)
 
+//RAT SHAPESHIFT
 /datum/discipline_power/animalism/rat_shapeshift
 	name = "Skitter"
 	desc = "Become one of the rats that crawl beneath the city."
@@ -157,11 +162,7 @@
 /datum/discipline_power/animalism/rat_shapeshift/proc/on_shapeshift_toggle(datum/source)
 	SIGNAL_HANDLER
 	if(!is_type_in_list(owner, shapeshift_spell.possible_shapes))
-		INVOKE_ASYNC(src, PROC_REF(delayed_deactivate))
-
-/datum/discipline_power/animalism/rat_shapeshift/proc/delayed_deactivate()
-	sleep(0.1 SECONDS)
-	deactivate()
+		addtimer(CALLBACK(src, PROC_REF(deactivate)), 0.1 SECONDS)
 
 /datum/discipline_power/animalism/rat_shapeshift/deactivate()
 	. = ..()
