@@ -182,8 +182,9 @@
 	obj_damage = 10
 
 /mob/living/basic/mouse/rat/summoned/Initialize(mapload)
-	. = ..()
 	AddElement(/datum/element/relay_attackers)
+	AddElement(/datum/element/ai_retaliate)
+	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
 		qdel(old)
@@ -197,8 +198,9 @@
 	obj_damage = 15
 
 /mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
-	. = ..()
 	AddElement(/datum/element/relay_attackers)
+	AddElement(/datum/element/ai_retaliate)
+	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
 		qdel(old)
@@ -212,8 +214,9 @@
 	obj_damage = 20
 
 /mob/living/basic/pet/dog/darkpack/summoned/Initialize(mapload)
-	. = ..()
 	AddElement(/datum/element/relay_attackers)
+	AddElement(/datum/element/ai_retaliate)
+	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
 		qdel(old)
@@ -229,8 +232,9 @@
 	attack_verb_simple = "bite"
 
 /mob/living/basic/bat/vampire/summoned/Initialize(mapload)
-	. = ..()
 	AddElement(/datum/element/relay_attackers)
+	AddElement(/datum/element/ai_retaliate)
+	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
 		qdel(old)
