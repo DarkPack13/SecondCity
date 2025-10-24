@@ -182,6 +182,7 @@
 	obj_damage = 10
 
 /mob/living/basic/mouse/rat/summoned/Initialize(mapload)
+	AddElement(/datum/element/ai_retaliate)
 	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
