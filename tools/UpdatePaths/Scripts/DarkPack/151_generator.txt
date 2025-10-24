@@ -1,1 +1,1 @@
-/obj/generator: /obj/warehouse_generator
+/obj/generator : /obj/warehouse_generator{@OLD}
