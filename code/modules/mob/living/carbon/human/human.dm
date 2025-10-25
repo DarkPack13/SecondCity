@@ -70,6 +70,7 @@
 
 	//DARKPACK EDIT START
 	if (clan)
+		clan.on_lose(src)
 		QDEL_NULL(clan)
 	//DARKPACK EDIT END
 
