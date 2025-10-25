@@ -83,3 +83,9 @@
   - balance: SWAT officers now get police keys and an IFAK
   - image: updated icons for the unmarked police car and original police gear
   - map: added ranger car to runtimetown
+2025-10-25:
+  dwinters99:
+  - balance: Replaced jump windup with post-jump slowdown
+  - code_imp: Added skillchecks to carbon throw_impact code
+  - config: Jump windup and jump slowdown config options
+  - rscadd: Reimplement generators and fuseboxes
