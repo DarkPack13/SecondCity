@@ -101,28 +101,32 @@ export const ExaminePanel = (props) => {
             </Tabs>
             {tabIndex === 1 && (
               <Section
-                style={{ 'overflow-y': 'scroll' }}
+                style={{
+                overflowY: 'scroll',
+                minHeight: '50%',
+                maxHeight: '50%',
+                fontSize: '14px',
+                lineHeight: 1.7,
+                textIndent: '3em',
+                }}
                 fitted
                 preserveWhitespace
-                minHeight="50%"
-                maxHeight="50%"
-                fontSize="14px"
-                lineHeight="1.7"
-                textIndent="3em"
               >
                 {formatURLs(flavor_text)}
               </Section>
             )}
             {tabIndex === 2 && (
               <Section
-                style={{ 'overflow-y': 'scroll' }}
+                style={{
+                overflowY: 'scroll',
+                minHeight: '50%',
+                maxHeight: '50%',
+                fontSize: '14px',
+                lineHeight: 1.7,
+                textIndent: '3em',
+                }}
                 fitted
                 preserveWhitespace
-                minHeight="50%"
-                maxHeight="50%"
-                fontSize="14px"
-                lineHeight="1.7"
-                textIndent="3em"
               >
                 {formatURLs(flavor_text_nsfw)}
               </Section>
@@ -145,26 +149,32 @@ export const ExaminePanel = (props) => {
             </Tabs>
               {lowerTabIndex === 1 && (
                 <Section
-                  style={{ 'overflow-y': 'scroll' }}
-                  preserveWhitespace
-                  fitted
-                  minHeight="35%"
-                  maxHeight="35%"
-                  fontSize="14px"
-                  lineHeight="1.5"
+                  style={{
+                overflowY: 'scroll',
+                minHeight: '50%',
+                maxHeight: '50%',
+                fontSize: '14px',
+                lineHeight: 1.7,
+                textIndent: '3em',
+                }}
+                fitted
+                preserveWhitespace
                 >
                   <Stack.Item>{formatURLs(character_notes)}</Stack.Item>
                 </Section>
               )}
               {lowerTabIndex === 2 && (
                 <Section
-                  style={{ 'overflow-y': 'scroll' }}
-                  preserveWhitespace
-                  fitted
-                  minHeight="35%"
-                  maxHeight="35%"
-                  fontSize="14px"
-                  lineHeight="1.5"
+                  style={{
+                overflowY: 'scroll',
+                minHeight: '50%',
+                maxHeight: '50%',
+                fontSize: '14px',
+                lineHeight: 1.7,
+                textIndent: '3em',
+                }}
+                fitted
+                preserveWhitespace
                 >
                   <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
                 </Section>
