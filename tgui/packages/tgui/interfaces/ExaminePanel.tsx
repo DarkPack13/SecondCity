@@ -30,7 +30,7 @@ function formatURLs(text: string) {
       <a
         style={{
           color: '#0591e3',
-          'text-decoration': 'none',
+          'textDecoration': 'none',
         }}
         href={url}
       >
