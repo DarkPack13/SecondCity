@@ -51,3 +51,7 @@
 	icon_state = "park"
 	zone_type = ZONE_NO_MASQUERADE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+
+/area/vtm/outside/supply
+	name = "Supply"
+	icon_state = "supply"
