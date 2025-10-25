@@ -24,15 +24,17 @@ function formatURLs(text: string) {
   let regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
   let lastIndex = 0;
 
-  text.replace(regex, (url, index: number) => {
+  text.replace(regex, (url: string, index: number) => {
     parts.push(text.substring(lastIndex, index));
     parts.push(
       <a
         style={{
           color: '#0591e3',
-          'textDecoration': 'none',
+          textDecoration: 'none',
         }}
         href={url}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {url}
       </a>,
@@ -42,7 +44,6 @@ function formatURLs(text: string) {
   });
 
   parts.push(text.substring(lastIndex));
-
   return <div>{parts}</div>;
 };
 
