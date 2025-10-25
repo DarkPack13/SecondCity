@@ -295,6 +295,44 @@
 		"police_chief"
 	)
 
+//===========================GAROU KEYS===========================
+
+/obj/item/vamp/keys/nps
+	name = "Park Service keys"
+	accesslocks = list(
+		"nps"
+	)
+	color = "#1e7531"
+
+/obj/item/vamp/keys/techstore
+	name = "Tech Store keys"
+	accesslocks = list(
+		"wolftech"
+	)
+	color = "#466a72"
+
+/obj/item/vamp/keys/pentex
+	name = "Endron Facility keys"
+	accesslocks = list(
+		"pentex"
+	)
+	color = "#062e03"
+
+/obj/item/vamp/keys/pentex/leader
+	name = "Endron Management keys"
+	accesslocks = list(
+		"pentex",
+		"pentexleader"
+	)
+	color = "#062e03"
+
+/obj/item/vamp/keys/children_of_gaia
+	name = "Food Pantry keys"
+	accesslocks = list(
+		"coggie"
+	)
+	color = "#339933"
+
 //===========================MISC KEYS===========================
 
 /obj/item/vamp/keys/triads
@@ -303,20 +341,6 @@
 		"triad",
 		"laundromat"
 	)
-
-/obj/item/vamp/keys/techstore
-	name = "\improper Tech Store keys"
-	accesslocks = list(
-		"wolftech"
-	)
-	color = "#466a72"
-
-/obj/item/vamp/keys/pentex
-	name = "facility keys"
-	accesslocks = list(
-		"pentex"
-	)
-	color = "#062e03"
 
 /obj/item/vamp/keys/graveyard
 	name = "graveyard keys"

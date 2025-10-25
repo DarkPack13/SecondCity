@@ -11,7 +11,7 @@
 #define VAMPIRE_CLAN_KIASYD "kiasyd"
 #define VAMPIRE_CLAN_LASOMBRA "lasombra"
 #define VAMPIRE_CLAN_MALKAVIAN "malkavian"
-#define VAMPIRE_CLAN_FOLLOWERS_OF_SET "followers_of_set"
+#define VAMPIRE_CLAN_SETITE "setite"
 #define VAMPIRE_CLAN_NOSFERATU "nosferatu"
 #define VAMPIRE_CLAN_OLD_CLAN_TZIMISCE "old_clan_tzimisce"
 #define VAMPIRE_CLAN_SALUBRI "salubri"
