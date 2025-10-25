@@ -1,0 +1,37 @@
+/datum/status_effect/day_time_notif
+	id = "day_time_notif"
+	alert_type = /atom/movable/screen/alert/status_effect/day_time_notif
+
+/atom/movable/screen/alert/status_effect/day_time_notif
+	name = "The sun is out"
+	desc = "God, you must be tired..."
+	//icon_state = "asleep"
+
+/atom/movable/screen/alert/status_effect/day_time_notif/examine(mob/user)
+	. = ..()
+	if(iskindred(user))
+		. += span_boldwarning("The sun will sear your flesh and bring final death.")
+	var/area/my_area = get_area(user)
+	. += span_notice("You are currently [my_area.outdoors ? "outdoors" : "indoors"]")
+
+/datum/status_effect/sunlight_burning
+	id = "sunlight_burning"
+	alert_type = /atom/movable/screen/alert/status_effect/sunlight_burning
+
+/datum/status_effect/sunlight_burning/on_apply()
+	. = ..()
+	to_chat(owner, span_danger("THE SUN SEARS YOUR FLESH"))
+
+/datum/status_effect/sunlight_burning/tick(seconds_per_tick)
+	. = ..()
+	if(SScity_time.daytime_started)
+		var/area/my_area = owner.loc // Very delibritly using .loc rather then get_area to allow bodybags to prevent ashing.
+		if(istype(my_area) && my_area.outdoors && iskindred(owner))
+			owner.apply_damage(10, BURN)
+			return TRUE
+	qdel(src)
+
+/atom/movable/screen/alert/status_effect/sunlight_burning
+	name = "YOU ARE BURNING FROM THE SUN"
+	desc = "Get inside!"
+	//icon_state = "fire"

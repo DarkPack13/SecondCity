@@ -3,7 +3,7 @@
 
 SUBSYSTEM_DEF(city_time)
 	name = "City Time"
-	wait = 15 SECONDS
+	wait = 5 SECONDS
 	priority = FIRE_PRIORITY_DEFAULT
 
 	var/first_warning = FALSE
@@ -89,19 +89,24 @@ SUBSYSTEM_DEF(city_time)
 
 	if(daytime_started)
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
-			var/area/vtm/V = get_area(H)
-			if(!istype(V) || !V?.outdoors)
+			H.apply_status_effect(/datum/status_effect/day_time_notif)
+			var/area/mob_area = H.loc // Very delibritly using .loc rather then get_area to allow bodybags to prevent ashing.
+			if(!istype(mob_area) || !mob_area?.outdoors)
 				continue
 			if(iskindred(H))
 				/*
 				if(((H.morality_path.score >= 10) && (H.morality_path.alignment == MORALITY_HUMANITY)))
 					continue
 				*/
-				to_chat(H, span_danger("THE SUN SEARS YOUR FLESH"))
-				H.apply_damage(25, BURN)
+				H.apply_status_effect(/datum/status_effect/sunlight_burning)
+
+/datum/controller/subsystem/city_time/proc/extend_round(amount)
+	time_till_daytime += amount * SSticker.station_time_rate_multiplier
+	time_till_roundend += amount * SSticker.station_time_rate_multiplier
+	log_admin("the round was extended to [SScity_time.time_till_roundend]/[DisplayTimeText(SScity_time.time_till_roundend)].")
+	message_admins("the round was extended to [SScity_time.time_till_roundend]/[DisplayTimeText(SScity_time.time_till_roundend)].")
 
 #define COLOR_CYCLES 10
-
 /datum/controller/subsystem/city_time/proc/transition_light(end_color = GLOB.base_starlight_color, end_range = GLOB.starlight_range, end_power = GLOB.starlight_power)
 	set waitfor = FALSE
 	var/start_color = GLOB.base_starlight_color
@@ -116,5 +121,4 @@ SUBSYSTEM_DEF(city_time)
 		sleep(12 SECONDS)
 	set_starlight(end_color, end_range, end_power)
 	shifting_colors = FALSE
-
 #undef COLOR_CYCLES
