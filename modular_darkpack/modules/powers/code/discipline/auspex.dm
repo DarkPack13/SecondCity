@@ -105,6 +105,7 @@
 
 	owner.update_sight()
 
+/*
 //sobs loudly
 //rework me
 /atom/examine(mob/user)
@@ -196,6 +197,7 @@
 			if(!found_something)
 				to_chat(user, "<I># No forensic traces found #</I>") // Don't display this to the holder user
 			return
+*/
 
 //TELEPATHY
 /datum/discipline_power/auspex/telepathy
@@ -217,9 +219,10 @@
 
 	//sanitisation!
 	input_message = STRIP_HTML_SIMPLE(input_message, MAX_MESSAGE_LEN)
-	if(CHAT_FILTER_CHECK(input_message))
-		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input_message]\"</span>"))
-		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+	var/list/filter_result = CAN_BYPASS_FILTER(src) ? null : is_ooc_filtered(input_message)
+	if(filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("OOC", input_message, filter_result)
 		return
 
 	log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
