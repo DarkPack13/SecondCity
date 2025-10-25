@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - code_imp: "Removed some unnecessary files from the codebase"

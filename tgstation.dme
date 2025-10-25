@@ -6957,6 +6957,7 @@
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
 #include "modular_darkpack\modules\mobs\pets\cat.dm"
+#include "modular_darkpack\modules\mobs\pets\dog.dm"
 #include "modular_darkpack\modules\npc\code\human\__npc.dm"
 #include "modular_darkpack\modules\npc\code\human\npc_aggression.dm"
 #include "modular_darkpack\modules\npc\code\human\npc_globals.dm"
