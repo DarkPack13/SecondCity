@@ -42,7 +42,6 @@
 	known_contacts = list("Prince","Seneschal","Dealer")
 
 	v_duty = "Protect the Prince and the Masquerade. You are their sword."
-	experience_addition = 20
 
 /datum/outfit/job/sheriff
 	name = "Sheriff"
