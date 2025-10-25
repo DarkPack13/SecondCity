@@ -32,7 +32,7 @@
 	SIGNAL_HANDLER
 
 	// Holy weakness only triggers on entering churches
-	if (!istype(entered_area, /area/vtm/church))
+	if (!istype(entered_area, /area/vtm/interior/church))
 		return
 
 	to_chat(source, span_danger("Leave this holy place!"))
@@ -48,7 +48,7 @@
 	SIGNAL_HANDLER
 
 	// Signal should only trigger when the mob leaves a holy area, but just to be safe
-	if (!istype(exited_area, /area/vtm/church))
+	if (!istype(exited_area, /area/vtm/interior/church))
 		return
 
 	// Stop setting this mob on fire, stop processing if everyone's been removed
