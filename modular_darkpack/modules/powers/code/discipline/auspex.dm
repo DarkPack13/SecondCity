@@ -219,9 +219,9 @@
 
 	//sanitisation!
 	input_message = STRIP_HTML_SIMPLE(input_message, MAX_MESSAGE_LEN)
-	var/list/filter_result = CAN_BYPASS_FILTER(src) ? null : is_ooc_filtered(input_message)
+	var/list/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ooc_filtered(input_message)
 	if(filter_result)
-		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		REPORT_CHAT_FILTER_TO_USER(owner, filter_result)
 		log_filter("OOC", input_message, filter_result)
 		return
 
