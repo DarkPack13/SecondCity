@@ -43,19 +43,19 @@
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE))
 
 		//Check if the mob is obscured, then continue to headshot
-		if((obscured || !holder_human.dna) && (!isobserver(user) || !show_flavor_text_when_masked))
-			flavor_text = "Obscured"
-			flavor_text_nsfw = "Obscured"
-			character_notes = "Obscured"
-			ooc_notes = "Obscured"
-			name = "Unknown"
-		else
+		if(isobserver(user) || show_flavor_text_when_masked || !obscured)
 			headshot = holder_human.dna.features[EXAMINE_DNA_HEADSHOT]
 			flavor_text = holder_human.dna.features[EXAMINE_DNA_FLAVOR_TEXT]
 			flavor_text_nsfw = holder.dna.features[EXAMINE_DNA_NSFW_FLAVOR_TEXT]
 			ooc_notes = holder.dna.features[EXAMINE_DNA_OOC_NOTES]
 			character_notes = holder.dna.features[EXAMINE_DNA_CHARACTER_NOTES]
 			name = holder.name
+		else if(obscured || !holder_human.dna)
+			flavor_text = "Obscured"
+			flavor_text_nsfw = "Obscured"
+			character_notes = "Obscured"
+			ooc_notes = "Obscured"
+			name = "Unknown"
 
 	data["obscured"] = obscured ? TRUE : FALSE
 	data["character_name"] = name
