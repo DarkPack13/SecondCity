@@ -87,22 +87,53 @@
 /turf/closed/wall/vampwall/attack_hand(mob/user)
 	return
 
-// TODO: [Rebase] - Reimplement climbing
-/*
 /turf/closed/wall/vampwall/mouse_drop_receive(atom/dropped, mob/user, params)
 	. = ..()
-	if(user.a_intent != INTENT_HARM)
-		//Adds the component only once. We do it here & not in Initialize() because there are tons of windows & we don't want to add to their init times
-		LoadComponent(/datum/component/leanable, dropping)
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	if(!living_user.combat_mode)
+		//Adds the component only once. We do it here & not in Initialize() because there are tons of walls & we don't want to add to their init times
+		LoadComponent(/datum/component/leanable, dropped)
 	else
 		if(get_dist(user, src) < 2)
-			var/turf/above_turf = locate(user.x, user.y, user.z + 1)
-			if(above_turf && istype(above_turf, /turf/open/openspace))
-				var/mob/living/carbon/human/carbon_human = user
-				carbon_human.climb_wall(above_turf)
+			var/turf/user_turf = get_turf(user)
+			var/turf/above_turf = GET_TURF_ABOVE(user_turf)
+			if(living_user.can_z_move(UP, user_turf, above_turf, ZMOVE_STAIRS_FLAGS, user))
+				climb_wall(user, above_turf)
 			else
 				to_chat(user, span_warning("You can't climb there!"))
-*/
+
+/turf/closed/wall/vampwall/proc/climb_wall(mob/living/user, turf/above_turf)
+	if(user.body_position != STANDING_UP)
+		return
+	if(above_turf && istype(above_turf, /turf/open/openspace))
+		var/total_dexterity = user.st_get_stat(STAT_DEXTERITY)
+		var/total_athletics = user.st_get_stat(STAT_ATHLETICS)
+		to_chat(user, span_notice("You start climbing up..."))
+		add_fingerprint(user)
+
+		var/result = do_after(user, (11 - total_dexterity - total_athletics) SECONDS, src)
+		if(!result || HAS_TRAIT(user, LEANING_TRAIT))
+			to_chat(user, span_notice("You were interrupted and failed to climb up."))
+			return
+
+		//(Botch, slip and take damage), (Fail, fail to climb), (Success, climb up successfully)
+		var/roll = SSroll.storyteller_roll(total_dexterity+total_athletics, 6, user)
+		switch(roll)
+			if(ROLL_BOTCH)
+				user.ZImpactDamage(loc, 1)
+				to_chat(user, span_warning("You slip while climbing!"))
+				return
+			if(ROLL_FAILURE)
+				to_chat(user, span_warning("You fail to climb up."))
+				return
+			else
+				user.zMove(UP, above_turf)
+				var/turf/forward_turf = get_step(user.loc, user.dir)
+				if(forward_turf && !forward_turf.density)
+					user.forceMove(forward_turf)
+					to_chat(user, span_notice("You climb up successfully."))
 
 /turf/closed/wall/vampwall/ex_act(severity, target)
 	return
