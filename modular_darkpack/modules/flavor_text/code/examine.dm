@@ -43,7 +43,7 @@
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE))
 
 		//Check if the mob is obscured, then continue to headshot
-		if((obscured || !holder_human.dna) && (!isobserver(user) || show_flavor_text_when_masked))
+		if((obscured || !holder_human.dna) && (!isobserver(user) || !show_flavor_text_when_masked))
 			flavor_text = "Obscured"
 			flavor_text_nsfw = "Obscured"
 			character_notes = "Obscured"
@@ -66,12 +66,6 @@
 	data["headshot"] = headshot
 	data["nsfw_content"] = nsfw_content ? TRUE : FALSE
 	return data
-
-
-/mob/living/carbon/proc/custom_examine_message_creation()
-	if(custom_examine_message)
-		return span_purple(custom_examine_message)
-	return
 
 /mob/living/carbon/proc/flavor_text_creation()
 	var/flavor_text_to_show

@@ -1,11 +1,3 @@
-/datum/preferences
-	//BACKGROUND STUFF
-	var/criminal_record = ""
-	var/medical_record = ""
-
-	var/background_info = ""
-	var/exploitable_info = ""
-
 // All of these are handled in datacore, so we dont apply it to the human.
 /datum/preference/text/medical
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL

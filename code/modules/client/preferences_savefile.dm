@@ -358,13 +358,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 	validate_quirks()
 
-	//DARKPACK EDIT ADDITION START
-	criminal_record = sanitize_text(criminal_record)
-	medical_record = sanitize_text(medical_record)
-	background_info = sanitize_text(background_info)
-	exploitable_info = sanitize_text(exploitable_info)
-	//DARKPACK EDIT END
-
 	return TRUE
 
 /datum/preferences/proc/save_character()

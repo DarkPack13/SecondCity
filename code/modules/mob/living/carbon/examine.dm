@@ -303,7 +303,8 @@
 		. += compare_fitness(user)
 
 	//DARKPACK EDIT START
-	. += custom_examine_message_creation()
+	if(custom_examine_message)
+		. += span_purple(custom_examine_message)
 
 	if(ishumanbasic(user))
 		. += "<a href='byond://?src=[REF(src)];masquerade=1'>Report a Masquerade violation</a>"
