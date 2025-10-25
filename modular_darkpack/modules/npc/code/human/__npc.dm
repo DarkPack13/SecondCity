@@ -302,7 +302,7 @@
 
 /mob/living/carbon/human/npc/ghoulificate(mob/owner)
 	set waitfor = FALSE
-	var/mob/dead/observer/candidate = SSpolling.poll_ghosts_for_target("Do you want to play as [owner]`s ghoul?", check_jobban = ROLL_GHOUL, role = ROLL_GHOUL, poll_time = 15 SECONDS, checked_target = src, alert_pic = src)
+	var/mob/dead/observer/candidate = SSpolling.poll_ghosts_for_target("Do you want to play as [owner]`s ghoul?", check_jobban = ROLL_GHOUL, role = ROLE_GHOUL, poll_time = 15 SECONDS, checked_target = src, alert_pic = src)
 	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
 	if(isnull(candidate))
 		return FALSE
