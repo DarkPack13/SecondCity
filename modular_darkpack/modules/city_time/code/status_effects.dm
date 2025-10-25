@@ -5,7 +5,8 @@
 /atom/movable/screen/alert/status_effect/day_time_notif
 	name = "The sun is out"
 	desc = "God, you must be tired..."
-	//icon_state = "asleep"
+	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
+	icon_state = "asleep"
 
 /atom/movable/screen/alert/status_effect/day_time_notif/examine(mob/user)
 	. = ..()
@@ -42,4 +43,5 @@
 /atom/movable/screen/alert/status_effect/sunlight_burning
 	name = "YOU ARE BURNING FROM THE SUN"
 	desc = "Get inside!"
-	//icon_state = "fire"
+	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
+	icon_state = "fire"
