@@ -1,4 +1,4 @@
-
+// The primary reasn for it being an element is to prevent signal overlap with lazy fishing but also acts to make it a bit easier to manage behavoir.
 /datum/element/moonlight
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
@@ -30,6 +30,10 @@
 	add_moonlight()
 
 /turf/open/floor/Initialize(mapload)
+	. = ..()
+	add_moonlight()
+
+/turf/open/water/Initialize(mapload)
 	. = ..()
 	add_moonlight()
 

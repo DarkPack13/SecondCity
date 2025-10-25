@@ -782,10 +782,9 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "acid"
 	baseturfs = /turf/open/water/acid/vamp
-
-/turf/open/water/acid/vamp/Initialize(mapload)
-	. = ..()
-	set_light(1, 0.5, "#1b7c4c")
+	light_color = "#1b7c4c"
+	light_range = 1
+	light_power = 0.5
 
 /turf/open/water/acid/vamp/Entered(atom/movable/AM)
 	if(acid_burn(AM))

@@ -9,10 +9,10 @@
 
 /atom/movable/screen/alert/status_effect/day_time_notif/examine(mob/user)
 	. = ..()
-	if(iskindred(user))
-		. += span_boldwarning("The sun will sear your flesh and bring final death.")
 	var/area/my_area = get_area(user)
 	. += span_notice("You are currently [my_area.outdoors ? "outdoors" : "indoors"]")
+	if(iskindred(user))
+		. += span_warning("The sun will sear your flesh and bring final death.")
 
 /datum/status_effect/sunlight_burning
 	id = "sunlight_burning"
@@ -25,7 +25,7 @@
 /datum/status_effect/sunlight_burning/tick(seconds_per_tick)
 	. = ..()
 	if(SScity_time.daytime_started)
-		var/area/my_area = owner.loc // Very delibritly using .loc rather then get_area to allow bodybags to prevent ashing.
+		var/area/my_area = get_area(owner)
 		if(istype(my_area) && my_area.outdoors && iskindred(owner))
 			owner.apply_damage(10, BURN)
 			return TRUE

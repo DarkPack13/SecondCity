@@ -69,19 +69,19 @@ SUBSYSTEM_DEF(city_time)
 	if(station_time_passed() > time_till_daytime - 30 MINUTES && !first_warning && !shifting_colors)
 		first_warning = TRUE
 		shifting_colors = TRUE
-		transition_light("#584d88", 1)
+		transition_light("#584d88")
 		to_chat(world, span_ghostalert("The night is ending..."))
 
 	if(station_time_passed() > time_till_daytime - 15 MINUTES && !second_warning && !shifting_colors)
 		second_warning = TRUE
 		shifting_colors = TRUE
-		transition_light("#dd80b0", 2)
+		transition_light("#dd80b0")
 		to_chat(world, span_ghostalert("First rays of the sun illuminate the sky..."))
 
 	if(station_time_passed() > time_till_daytime && !daytime_started && !shifting_colors)
 		daytime_started = TRUE
 		shifting_colors = TRUE
-		transition_light("#faeacb", 3, 1)
+		transition_light("#faeacb", 1, 0.75)
 		to_chat(world, span_ghostalert("THE NIGHT IS OVER."))
 
 	if(station_time_passed() > time_till_roundend && !roundend_started)
@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(city_time)
 	if(daytime_started)
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			H.apply_status_effect(/datum/status_effect/day_time_notif)
-			var/area/mob_area = H.loc // Very delibritly using .loc rather then get_area to allow bodybags to prevent ashing.
+			var/area/mob_area = get_area(H)
 			if(!istype(mob_area) || !mob_area?.outdoors)
 				continue
 			if(iskindred(H))
@@ -106,7 +106,10 @@ SUBSYSTEM_DEF(city_time)
 	log_admin("the round was extended to [SScity_time.time_till_roundend]/[DisplayTimeText(SScity_time.time_till_roundend)].")
 	message_admins("the round was extended to [SScity_time.time_till_roundend]/[DisplayTimeText(SScity_time.time_till_roundend)].")
 
-#define COLOR_CYCLES 10
+/// Full length of time it takes to transition the lights
+#define TRANSITION_TIME 2.5 MINUTES
+/// How many cycles the transition is broken up into. Expensive to increase but makes the transition smoother
+#define COLOR_CYCLES 15
 /datum/controller/subsystem/city_time/proc/transition_light(end_color = GLOB.base_starlight_color, end_range = GLOB.starlight_range, end_power = GLOB.starlight_power)
 	set waitfor = FALSE
 	var/start_color = GLOB.base_starlight_color
@@ -118,7 +121,8 @@ SUBSYSTEM_DEF(city_time)
 		var/walked_range = LERP(start_range, end_range, i/COLOR_CYCLES)
 		var/walked_power = LERP(start_power, end_power, i/COLOR_CYCLES)
 		set_starlight(walked_color, walked_range, walked_power)
-		sleep(12 SECONDS)
-	set_starlight(end_color, end_range, end_power)
+		sleep(TRANSITION_TIME/COLOR_CYCLES)
+	set_base_starlight(end_color, end_range, end_power)
 	shifting_colors = FALSE
 #undef COLOR_CYCLES
+#undef TRANSITION_TIME
