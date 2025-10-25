@@ -20,7 +20,7 @@ type ExamineData = {
 
 function formatURLs(text: string) {
   if (!text) return;
-  const parts: Array<string> = [];
+  const parts: React.ReactNode[] = [];
   let regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
   let lastIndex = 0;
 
