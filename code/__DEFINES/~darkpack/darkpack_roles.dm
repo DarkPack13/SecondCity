@@ -1,1 +1,1 @@
-#define ROLL_GHOUL "Ghoul"
+#define ROLE_GHOUL "Ghoul"
