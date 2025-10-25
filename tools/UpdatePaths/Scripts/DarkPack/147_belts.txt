@@ -1,3 +1,0 @@
-/obj/item/storage/belt/holster/detective/vampire/@SUBTYPES : /obj/item/storage/belt/holster/detective/darkpack/@SUBTYPES {@OLD}
-
-/obj/item/ammo_box/vampire/c9mm/moonclip : /obj/item/ammo_box/darkpack/c9mm/moonclip {@OLD}
