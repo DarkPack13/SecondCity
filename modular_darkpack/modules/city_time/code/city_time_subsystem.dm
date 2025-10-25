@@ -90,15 +90,7 @@ SUBSYSTEM_DEF(city_time)
 	if(daytime_started)
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			H.apply_status_effect(/datum/status_effect/day_time_notif)
-			var/area/mob_area = get_area(H)
-			if(!istype(mob_area) || !mob_area?.outdoors)
-				continue
-			if(iskindred(H))
-				/*
-				if(((H.morality_path.score >= 10) && (H.morality_path.alignment == MORALITY_HUMANITY)))
-					continue
-				*/
-				H.apply_status_effect(/datum/status_effect/sunlight_burning)
+			H.apply_status_effect(/datum/status_effect/sunlight_burning)
 
 /datum/controller/subsystem/city_time/proc/extend_round(amount)
 	time_till_daytime += amount * SSticker.station_time_rate_multiplier

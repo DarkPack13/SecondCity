@@ -19,8 +19,16 @@
 	alert_type = /atom/movable/screen/alert/status_effect/sunlight_burning
 
 /datum/status_effect/sunlight_burning/on_apply()
-	. = ..()
+	if(!SScity_time.daytime_started)
+		return FALSE
+	if(!iskindred(owner))
+		return FALSE
+	var/area/my_area = get_area(owner)
+	if(!istype(my_area) || !my_area.outdoors)
+		return FALSE
+
 	to_chat(owner, span_danger("THE SUN SEARS YOUR FLESH"))
+	return TRUE
 
 /datum/status_effect/sunlight_burning/tick(seconds_per_tick)
 	. = ..()
