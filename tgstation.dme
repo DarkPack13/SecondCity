@@ -7010,6 +7010,7 @@
 #include "modular_darkpack\modules\powers\code\discipline_gain.dm"
 #include "modular_darkpack\modules\powers\code\discipline\__discipline.dm"
 #include "modular_darkpack\modules\powers\code\discipline\__discipline_power.dm"
+#include "modular_darkpack\modules\powers\code\discipline\auspex.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
 #include "modular_darkpack\modules\powers\code\discipline\bloodheal\bloodheal.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\afterimage.dm"
