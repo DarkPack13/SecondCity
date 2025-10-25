@@ -80,6 +80,16 @@
 /datum/preference/text/nsfw_flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features[EXAMINE_DNA_NSFW_FLAVOR_TEXT] = value
 
+/datum/preference/text/nsfw_flavor_text/is_accessible(datum/preferences/preferences)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(CONFIG_GET(flag/nsfw_content))
+		return TRUE
+
+	return FALSE
+
 ///////////////////////////////////////////////////////////////////////////
 
 /datum/preference/text/character_notes
@@ -101,3 +111,13 @@
 
 /datum/preference/text/ooc_notes/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features[EXAMINE_DNA_OOC_NOTES] = value
+
+/datum/preference/text/ooc_notes/is_accessible(datum/preferences/preferences)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(CONFIG_GET(flag/nsfw_content))
+		return TRUE
+
+	return FALSE

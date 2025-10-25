@@ -1,0 +1,2 @@
+## If the server has NSFW content enabled.
+# NSFW_CONTENT

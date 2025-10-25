@@ -6882,6 +6882,7 @@
 #include "modular_darkpack\modules\flags\code\loadout.dm"
 #include "modular_darkpack\modules\flags\code\pride_flags.dm"
 #include "modular_darkpack\modules\flags\code\recipes.dm"
+#include "modular_darkpack\modules\flavor_text\code\config.dm"
 #include "modular_darkpack\modules\flavor_text\code\custom_examine_text.dm"
 #include "modular_darkpack\modules\flavor_text\code\examine.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences.dm"
