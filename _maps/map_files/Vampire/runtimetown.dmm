@@ -68,13 +68,13 @@
 /obj/item/storage/box/syringes,
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "bD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "bE" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/mummywrap_fetish,
@@ -102,7 +102,7 @@
 /obj/item/stock_parts/power_store/cell/high,
 /obj/item/defibrillator/compact,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "cf" = (
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
@@ -128,7 +128,7 @@
 /obj/item/storage/medkit/darkpack/ifak,
 /obj/item/storage/medkit/darkpack/ifak,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "cT" = (
 /obj/effect/turf_decal/bordur,
 /obj/darkpack_car/rand/camarilla{
@@ -175,7 +175,7 @@
 "eG" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "eJ" = (
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash5"
@@ -198,7 +198,7 @@
 "ff" = (
 /obj/cargocrate,
 /turf/open/misc/dirt/vamp/rails,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "fh" = (
 /obj/structure/chair/stool/bar/directional/west,
 /turf/open/misc/beach/vamp,
@@ -206,7 +206,7 @@
 "fi" = (
 /obj/effect/decal/pallet,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "fn" = (
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/misc/beach/vamp,
@@ -341,7 +341,7 @@
 	dir = 1
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "jt" = (
 /obj/effect/decal/cleanable/litter,
 /obj/effect/spawner/random/occult/artifact,
@@ -401,7 +401,7 @@
 /area/vtm/outside/pacificheights)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "lP" = (
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash5"
@@ -413,7 +413,7 @@
 /obj/effect/decal/pallet,
 /obj/machinery/light/directional/west,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "mb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -446,7 +446,7 @@
 /obj/structure/closet,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "nh" = (
 /obj/weapon_showcase,
 /turf/open/floor/plating/parquetry/old,
@@ -491,7 +491,7 @@
 /obj/item/storage/medkit/darkpack/standard,
 /obj/structure/table,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "ok" = (
 /obj/effect/decal/cleanable/litter,
 /turf/open/misc/beach/vamp,
@@ -510,7 +510,7 @@
 /area/shuttle/arrival)
 "oM" = (
 /turf/open/floor/plating/sidewalk,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "oU" = (
 /obj/weapon_showcase,
 /obj/structure/sign/flag/usa{
@@ -532,7 +532,7 @@
 	dir = 6
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "pt" = (
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/plating/toilet,
@@ -560,7 +560,7 @@
 /area/vtm/sewer)
 "pN" = (
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "qn" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -578,7 +578,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "qz" = (
 /obj/structure/lamppost/one,
 /turf/open/floor/plating/sidewalk,
@@ -586,7 +586,7 @@
 "qN" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "qR" = (
 /obj/structure/closet/secure_closet/freezer,
 /obj/machinery/light/directional/west,
@@ -594,7 +594,7 @@
 /area/vtm/interior/shop)
 "qT" = (
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "qV" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
@@ -629,7 +629,7 @@
 /obj/item/storage/pill_bottle/epinephrine,
 /obj/item/storage/pill_bottle/mutadone,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "rL" = (
 /obj/structure/vampfence{
 	dir = 8
@@ -714,7 +714,7 @@
 	dir = 5
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "tr" = (
 /obj/structure/sign/city/police_department{
 	dir = 1
@@ -826,7 +826,7 @@
 /obj/item/storage/medkit/darkpack/brute,
 /obj/item/storage/medkit/darkpack/brute,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "wm" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/parquetry/old,
@@ -861,7 +861,7 @@
 /obj/item/storage/medkit/darkpack/advanced,
 /obj/item/storage/medkit/darkpack/advanced,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "xH" = (
 /obj/structure/table,
 /obj/lombard,
@@ -885,13 +885,13 @@
 /area/vtm/outside/pacificheights)
 "yk" = (
 /turf/closed/wall/vampwall/brick,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "yr" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/doctor,
 /obj/item/storage/medkit/darkpack/doctor,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "yt" = (
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/interior/shop)
@@ -901,7 +901,7 @@
 /obj/item/storage/medkit/darkpack/burn,
 /obj/item/storage/medkit/darkpack/burn,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "yE" = (
 /obj/effect/gibspawner/human,
 /obj/machinery/light/directional/west,
@@ -1051,7 +1051,7 @@
 "Db" = (
 /obj/machinery/light/directional/west,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1063,7 +1063,7 @@
 /obj/item/reagent_containers/blood/vitae,
 /obj/item/reagent_containers/blood/vitae,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Dh" = (
 /obj/effect/turf_decal/bordur,
 /obj/darkpack_car/rand/anarch{
@@ -1078,7 +1078,7 @@
 /obj/item/storage/medkit/darkpack/oxy,
 /obj/item/storage/medkit/darkpack/oxy,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Dr" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 1
@@ -1108,7 +1108,7 @@
 /area/vtm/outside/pacificheights)
 "DM" = (
 /turf/open/misc/dirt/vamp/rails,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "DN" = (
 /obj/structure/rack/clothing/rand{
 	dir = 8
@@ -1129,7 +1129,7 @@
 	pixel_y = 30
 	},
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Ev" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "debughouse"
@@ -1141,10 +1141,10 @@
 	dir = 9
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "EL" = (
 /turf/closed/wall/vampwall/rich/old/low/window,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "EN" = (
 /obj/effect/landmark/error,
 /turf/open/floor/plating/rough/cave,
@@ -1212,7 +1212,7 @@
 "FO" = (
 /obj/structure/table,
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "Gm" = (
 /obj/structure/vampdoor/prison,
 /turf/open/floor/plating/rough,
@@ -1223,7 +1223,7 @@
 /obj/item/storage/medkit/darkpack/tox,
 /obj/item/storage/medkit/darkpack/tox,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Gu" = (
 /turf/closed/wall/vampwall/brick/low/window,
 /area/vtm/interior/shop)
@@ -1238,7 +1238,7 @@
 "GB" = (
 /obj/structure/barrels/rand,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "GE" = (
 /obj/structure/retail/flower_shop,
 /obj/structure/table/wood,
@@ -1368,7 +1368,7 @@
 	anchored = 1
 	},
 /turf/open/misc/dirt/vamp/rails,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "ID" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/outside/pacificheights)
@@ -1381,7 +1381,7 @@
 	dir = 4
 	},
 /turf/open/misc/dirt/vamp/rails,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "IX" = (
 /obj/machinery/fax/admin/aasimites,
 /turf/open/misc/beach/vamp,
@@ -1395,7 +1395,7 @@
 /obj/item/reagent_containers/blood,
 /obj/item/reagent_containers/blood,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Jv" = (
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/plating/parquetry/old,
@@ -1424,7 +1424,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "JP" = (
 /obj/effect/decal/cleanable/garbage,
 /turf/open/misc/beach/vamp,
@@ -1496,7 +1496,7 @@
 "LR" = (
 /obj/structure/cargo_put,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "LW" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
@@ -1586,7 +1586,7 @@
 /obj/item/reagent_containers/blood/vitae,
 /obj/item/reagent_containers/blood/vitae,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Of" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire,
@@ -1668,7 +1668,7 @@
 "Pu" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Py" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/rough/cave,
@@ -1725,12 +1725,12 @@
 "Re" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "Ri" = (
 /obj/structure/table,
 /obj/item/surgery_tray/full,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Rj" = (
 /turf/open/genturf,
 /area/vtm/planetgeneration)
@@ -1757,7 +1757,7 @@
 /obj/item/stack/medical/bone_gel,
 /obj/item/clothing/gloves/vampire/latex,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Sv" = (
 /obj/effect/turf_decal/bordur,
 /obj/structure/barrels/rand,
@@ -1776,10 +1776,10 @@
 "SG" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "SK" = (
 /turf/closed/wall/vampwall/rich/old,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "SY" = (
 /obj/structure/table,
 /obj/vampire_computer/prince,
@@ -1788,7 +1788,7 @@
 "Tb" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "Tp" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner,
@@ -1864,7 +1864,7 @@
 /obj/item/stack/dollar/hundred,
 /obj/item/stack/dollar/hundred,
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "UG" = (
 /obj/structure/table/wood,
 /obj/structure/retail/hardware_store,
@@ -1880,7 +1880,7 @@
 /area/vtm/interior/shop)
 "UL" = (
 /turf/closed/wall/vampwall,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "UQ" = (
 /obj/structure/vampdoor/wood/old/salubri{
 	dir = 4
@@ -1932,7 +1932,7 @@
 "VK" = (
 /obj/structure/cargo_take,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "VP" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/concrete,
@@ -1963,7 +1963,7 @@
 	dir = 4
 	},
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "Ws" = (
 /obj/structure/table,
 /obj/vampire_computer,
@@ -1977,7 +1977,7 @@
 "Wz" = (
 /obj/structure/sink/directional/east,
 /turf/open/floor/plating/rough,
-/area/vtm/clinic)
+/area/vtm/interior/clinic)
 "WR" = (
 /obj/structure/lamppost/one,
 /turf/open/misc/beach/vamp,
@@ -2054,11 +2054,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "YF" = (
 /obj/item/clothing/head/cone,
 /turf/open/misc/dirt/vamp,
-/area/vtm/supply)
+/area/vtm/interior/supply)
 "YJ" = (
 /obj/structure/table,
 /turf/closed/wall/vampwall/brick/low,
