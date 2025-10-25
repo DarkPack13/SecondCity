@@ -24,7 +24,7 @@ export const character_notes: Feature<string> = {
 };
 
 export const ooc_notes: Feature<string> = {
-  name: 'OOC Notes',
+  name: 'OOC Notes (NSFW))',
   description: 'Anything you want other players to know about you goes here, such as antag information, OOC triggers, etc.',
   component: FeatureTextInput,
 };

@@ -1,4 +1,3 @@
-
 /datum/record/crew
 	/// Contains their background information.
 	var/background_information
