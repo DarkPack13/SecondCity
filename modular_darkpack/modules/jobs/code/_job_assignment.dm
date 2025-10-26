@@ -1,5 +1,5 @@
 /*
- * Runs an extended suite of eligibility checks to make sure the player can take the reqeusted job.
+ * Runs an extended suite of eligibility checks to make sure the player can take the requested job.
  *
  * Checks:
  * * Species Availability
