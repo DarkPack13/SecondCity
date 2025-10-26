@@ -6,9 +6,10 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 
+// Why is this NOT a floor type.
 /obj/effect/decal/gut_floor
 	name = "gut floor"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "tzimisce_floor"
 
 /obj/effect/decal/gut_floor/Initialize(mapload)
