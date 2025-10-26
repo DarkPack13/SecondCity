@@ -134,131 +134,12 @@
 	. = ..()
 	icon_state = "concrete[rand(1, 4)]"
 
-/turf/open/misc/grass/vamp
-	name = "grass"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "grass1"
-	footstep = FOOTSTEP_TRAVA
-	barefootstep = FOOTSTEP_TRAVA
-	baseturfs = /turf/open/misc/dirt/vamp
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	planetary_atmos = TRUE
-
-
-/*
-/turf/open/misc/grass/vamp/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		var/obj/structure/bury_pit/P = locate() in src
-		if(P)
-			if(!P.burying)
-				P.burying = TRUE
-				user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-				if(do_mob(user, src, 10 SECONDS))
-					P.burying = FALSE
-					if(P.icon_state == "pit0")
-						for(var/mob/living/L in src)
-							L.forceMove(P)
-						P.icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					else
-						for(var/mob/living/L in P)
-							L.forceMove(src)
-						P.icon_state = "pit0"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					P.burying = FALSE
-		else
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				if(!locate(/obj/structure/bury_pit) in src)
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					new /obj/structure/bury_pit(src)
-*/
-
-/turf/open/misc/grass/vamp/Initialize(mapload)
-	. = ..()
-	icon_state = "grass[rand(1, 3)]"
-	var/area/my_area = loc
-	if(my_area.outdoors)
-		if(check_holidays(FESTIVE_SEASON))
-			//initial_gas_mix = WINTER_DEFAULT_ATMOS
-			icon_state = "snow[rand(1, 14)]"
-			footstep = FOOTSTEP_SNOW
-			barefootstep = FOOTSTEP_SNOW
-			heavyfootstep = FOOTSTEP_SNOW
-
 /turf/open/floor/plating/vampcarpet
 	name = "carpet"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "carpet_black"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/misc/dirt/vamp
-	name = "dirt"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "dirt"
-	footstep = FOOTSTEP_ASPHALT
-	barefootstep = FOOTSTEP_ASPHALT
-	baseturfs = /turf/open/misc/dirt/vamp
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	planetary_atmos = TRUE
-
-/*
-/turf/open/misc/dirt/vamp/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		var/obj/structure/bury_pit/P = locate() in src
-		if(P)
-			if(!P.burying)
-				P.burying = TRUE
-				user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-				if(do_mob(user, src, 10 SECONDS))
-					P.burying = FALSE
-					if(P.icon_state == "pit0")
-						for(var/mob/living/L in src)
-							L.forceMove(P)
-						P.icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					else
-						for(var/mob/living/L in P)
-							L.forceMove(src)
-						P.icon_state = "pit0"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					P.burying = FALSE
-		else
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				if(!locate(/obj/structure/bury_pit) in src)
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					new /obj/structure/bury_pit(src)
-*/
-
-/turf/open/misc/dirt/vamp/Initialize(mapload)
-	. = ..()
-	var/area/my_area = loc
-	if(my_area.outdoors)
-		if(check_holidays(FESTIVE_SEASON))
-			//initial_gas_mix = WINTER_DEFAULT_ATMOS
-			icon_state = "snow[rand(1, 14)]"
-			footstep = FOOTSTEP_SNOW
-			barefootstep = FOOTSTEP_SNOW
-			heavyfootstep = FOOTSTEP_SNOW
-
-/turf/open/misc/dirt/vamp/rails
-	name = "rails"
-	icon_state = "dirt_rails"
-
-/turf/open/misc/dirt/vamp/rails/Initialize(mapload)
-	. = ..()
-	var/area/my_area = loc
-	if(my_area.outdoors)
-		if(check_holidays(FESTIVE_SEASON))
-			//initial_gas_mix = WINTER_DEFAULT_ATMOS
-			icon_state = "snow_rails"
-			footstep = FOOTSTEP_SNOW
-			barefootstep = FOOTSTEP_SNOW
-			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/floor/plating/vampplating
 	name = "plating"
@@ -371,6 +252,78 @@
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
 
+/turf/open/floor/plating/bacotell
+	name = "plating"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "bacotell"
+	footstep = FOOTSTEP_SIDEWALK
+	barefootstep = FOOTSTEP_SIDEWALK
+
+/turf/open/floor/plating/gummaguts
+	name = "plating"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "gummaguts"
+	footstep = FOOTSTEP_SIDEWALK
+	barefootstep = FOOTSTEP_SIDEWALK
+
+/turf/open/misc/grass/vamp
+	name = "grass"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "grass1"
+	footstep = FOOTSTEP_TRAVA
+	barefootstep = FOOTSTEP_TRAVA
+	baseturfs = /turf/open/misc/dirt/vamp
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+
+/turf/open/misc/grass/vamp/Initialize(mapload)
+	. = ..()
+	icon_state = "grass[rand(1, 3)]"
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
+
+/turf/open/misc/dirt/vamp
+	name = "dirt"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "dirt"
+	footstep = FOOTSTEP_ASPHALT
+	barefootstep = FOOTSTEP_ASPHALT
+	baseturfs = /turf/open/misc/dirt/vamp
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+
+/turf/open/misc/dirt/vamp/Initialize(mapload)
+	. = ..()
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
+
+/turf/open/misc/dirt/vamp/rails
+	name = "rails"
+	icon_state = "dirt_rails"
+
+/turf/open/misc/dirt/vamp/rails/Initialize(mapload)
+	. = ..()
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow_rails"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
+
 /turf/open/misc/beach/vamp
 	name = "sand"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
@@ -380,36 +333,6 @@
 	baseturfs = /turf/open/misc/beach/vamp
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-
-/*
-/turf/open/misc/beach/vamp/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		var/obj/structure/bury_pit/P = locate() in src
-		if(P)
-			if(!P.burying)
-				P.burying = TRUE
-				user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-				if(do_mob(user, src, 10 SECONDS))
-					P.burying = FALSE
-					if(P.icon_state == "pit0")
-						for(var/mob/living/L in src)
-							L.forceMove(P)
-						P.icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					else
-						for(var/mob/living/L in P)
-							L.forceMove(src)
-						P.icon_state = "pit0"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					P.burying = FALSE
-		else
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				if(!locate(/obj/structure/bury_pit) in src)
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-					new /obj/structure/bury_pit(src)
-*/
 
 /turf/open/misc/beach/vamp/Initialize(mapload)
 	. = ..()
@@ -453,80 +376,6 @@
 		L.apply_damage(10, AGGRAVATED)
 		L.apply_damage(30, TOX)
 		to_chat(L, span_warning("Your flesh burns!"))
-
-/turf/open/water/vamp_sewer
-	name = "sewage"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "shit"
-
-/*
-/turf/open/water/vamp_sewer/Initialize(mapload)
-	. = ..()
-	if(prob(50))
-		new /obj/effect/realistic_fog(src)
-*/
-
-/turf/open/water/vamp_sewer/border
-	icon_state = "shit_border"
-
-/turf/open/floor/plating/vampcanal
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "canal1"
-	footstep = FOOTSTEP_FLOOR
-
-// TODO: [Rebase] - Port https://github.com/ApocryphaXIII/ApocryphaXIII/pull/52
-/*
-/turf/open/floor/plating/vampcanal/Enter(atom/movable/mover, atom/oldloc)
-	. = ..()
-	if(istype(mover, /mob/living/carbon/human))
-		if(prob(10))
-			new /mob/living/basic/mouse/rat/vampire(oldloc)
-*/
-
-/turf/open/floor/plating/vampcanal/Initialize(mapload)
-	. = ..()
-	icon_state = "canal[rand(1, 3)]"
-
-/turf/open/floor/plating/vampcanalplating
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "canal_plating1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-// TODO: [Rebase] - Port https://github.com/ApocryphaXIII/ApocryphaXIII/pull/52
-/*
-/turf/open/floor/plating/vampcanalplating/Enter(atom/movable/mover, atom/oldloc)
-	. = ..()
-	if(istype(mover, /mob/living/carbon/human))
-		if(prob(10))
-			new /mob/living/basic/mouse/rat/vampire(oldloc)
-*/
-
-/turf/open/floor/plating/vampcanalplating/Initialize(mapload)
-	. = ..()
-	icon_state = "canal_plating[rand(1, 4)]"
-
-/turf/closed/indestructible/elevatorshaft
-	name = "elevator shaft"
-	desc = "Floors, floors, floors..."
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "black"
-
-/turf/open/floor/plating/bacotell
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "bacotell"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
-
-/turf/open/floor/plating/gummaguts
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "gummaguts"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
 
 //Code mostly taken from /obj/crystal_mass
 /turf/open/water/bloodwave
@@ -578,3 +427,9 @@
 		//	qdel(checked_atom)
 
 	new /turf/open/water/bloodwave(next_turf, get_dir(next_turf, src))
+
+/turf/closed/indestructible/elevatorshaft
+	name = "elevator shaft"
+	desc = "Floors, floors, floors..."
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "black"
