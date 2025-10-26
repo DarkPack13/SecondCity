@@ -37,7 +37,6 @@
 	antagpanel_category = FACTION_SABBAT
 	job_rank = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
-	antag_hud_type = ANTAG_HUD_REV
 	antag_hud_name = "rev"
 
 /datum/antagonist/sabbatist/on_gain()

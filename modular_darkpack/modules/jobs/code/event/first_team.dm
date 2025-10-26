@@ -1,6 +1,6 @@
 /datum/outfit/job/first_team
 	name = "First Team Operator"
-	ears = /obj/item/p25radio/police/government
+	//ears = /obj/item/p25radio/police/government
 	uniform = /obj/item/clothing/under/response/firstteam_uniform
 	gloves = /obj/item/clothing/gloves/response/firstteam
 	mask = /obj/item/clothing/mask/vampire/balaclava
@@ -15,12 +15,12 @@
 	implants = list(/obj/item/implant/explosive)
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/px66f = 3,
-		/obj/item/gun/ballistic/automatic/vampire/beretta=1,
+		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1,
 		/obj/item/ammo_box/vampire/c556/bale = 1,
 		/obj/item/vamp/keys/pentex = 1,
-		/obj/item/veil_contract = 1,
+		///obj/item/veil_contract = 1,
 		/obj/item/grenade/frag = 3,
-		/obj/item/storage/firstaid/ifak = 1,
+		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/reagent_containers/hypospray/medipen/first = 1
 
 		)
@@ -36,11 +36,11 @@
 	H.st_set_stat(5, STAT_STAMINA)
 	H.st_set_stat(5, STAT_DEXTERITY)
 	H.st_set_stat(5, STAT_FIREARMS)
-	H.st_set_stat(7, STAT_PERMANENT_WILLPOWER)
-	H.st_set_stat(7, STAT_TEMPORARY_WILLPOWER)
+	//H.st_set_stat(7, STAT_PERMANENT_WILLPOWER)
+	//H.st_set_stat(7, STAT_TEMPORARY_WILLPOWER)
 	H.st_set_stat(5, STAT_LARCENY)
 	H.st_set_stat(5, STAT_ATHLETICS)
-	H.st_recalculate_stats(null, TRUE)
+	//H.st_recalculate_stats(null, TRUE)
 
 	for(var/datum/action/A in H.actions)
 		if(A.vampiric)
@@ -67,7 +67,7 @@
 		if("Exterminator")
 			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/l6_saw/vamp(owner.current))
 		if("Field Medic")
-			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/storage/medkit/tactical(owner.current))
 		if("Specialist")
 			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/shotgun/vampire/px12r(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/f12g(owner.current))
@@ -84,8 +84,7 @@
 	roundend_category = "first_team"
 	antagpanel_category = "First Team"
 	job_rank = ROLE_FIRST_TEAM
-	antag_hud_type = ANTAG_HUD_OPS
-	antag_hud_name = "synd"
+	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
 	var/always_new_team = FALSE
@@ -405,12 +404,12 @@
 /obj/item/clothing/shoes/response
 	name = "shoes"
 	desc = "Comfortable-looking shoes."
-	icon = 'modular_tfn/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
 	icon_state = "shoes"
 	gender = PLURAL
 	can_be_tied = FALSE
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	body_worn = TRUE
 	cost = 5
 
@@ -422,9 +421,9 @@
 //------------GLOVES------------
 
 /obj/item/clothing/gloves/response
-	icon = 'modular_tfn/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	inhand_icon_state = "fingerless"
 	undyeable = TRUE
 	body_worn = TRUE
@@ -438,9 +437,9 @@
 //------------HELMET------------
 
 /obj/item/clothing/head/response
-	icon = 'modular_tfn/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 10, WOUND = 10)
 	body_worn = TRUE
 
@@ -464,9 +463,9 @@
 //------------ARMOR------------
 
 /obj/item/clothing/suit/response
-	icon = 'modular_tfn/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 
 	body_parts_covered = CHEST
 	cold_protection = CHEST|GROIN
@@ -498,10 +497,10 @@
 	has_sensor = NO_SENSORS
 	random_sensor = FALSE
 	can_adjust = FALSE
-	icon = 'modular_tfn/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 15)
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	body_worn = TRUE
 	fitted = NO_FEMALE_UNIFORM
 
@@ -523,17 +522,17 @@
 
 /obj/item/gun/ballistic/automatic/response
 	icon = 'code/modules/wod13/weapons.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	can_suppress = FALSE
 	recoil = 2
 
 /obj/item/ammo_box/vampire/c556/bale //DONT EVER PUT THIS IN A MAP
 	name = "balefire ammo box (5.56)"
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "556box-bale"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 
@@ -542,8 +541,8 @@
 	desc = "A modified 5.56mm bullet casing."
 	caliber = CALIBER_556
 	projectile_type = /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "b556"
 	base_iconstate = "b556"
 
@@ -560,7 +559,7 @@
 			H.apply_damage(20, BURN)
 			return
 		H.bloodpool = max(H.bloodpool - bloodloss, 0)
-		playsound(H, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
+		playsound(H, 'modular_darkpack/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		to_chat(H, span_warning("green flames errupt from the bullets impact, boiling your blood"))
 	if(iswerewolf(target) || isgarou(target))
 		var/mob/living/carbon/M = target
@@ -568,7 +567,7 @@
 			if(prob(50))
 				adjust_gnosis(-1, M)
 		M.apply_damage(20, CLONE)
-		playsound(M, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
+		playsound(M, 'modular_darkpack/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
 
 /obj/item/ammo_casing/vampire/c12g/f12g
@@ -576,8 +575,8 @@
 	desc = "A 12g explosive shell casing."
 	caliber = CALIBER_12G
 	projectile_type = /obj/projectile/beam/beam_rifle/vampire/f12g
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "f12"
 	base_iconstate = "f12"
 
@@ -595,19 +594,19 @@
 
 /obj/item/ammo_box/vampire/f12g //DO NOT DISTRIBUTE NORMALLY
 	name = "ammo box (f12g)"
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "12box_frag"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
 	max_ammo = 40
 
 /obj/item/ammo_box/magazine/px66f
 	name = "PX66F magazine (5.56mm)"
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px66f"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 	caliber = CALIBER_556
@@ -616,11 +615,11 @@
 
 /obj/item/ammo_box/magazine/px249f
 	name = "PX249F box magazine (5.56mm)"
-	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px249f"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 	caliber = CALIBER_556
@@ -638,11 +637,11 @@
 /obj/item/gun/ballistic/automatic/response/px66f //DO NOT DISTRIBUTE IN MAPPING
 	name = "\improper PX66F Rifle" //four bursts to kill a fullHP crinos
 	desc = "A three-round burst 5.56 death machine, with a Spiral brand below the barrel."
-	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px66f"
 	inhand_icon_state = "px66f"
 	worn_icon_state = "rifle"
@@ -655,7 +654,7 @@
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
-	fire_sound = 'modular_tfn/modules/first_team/audio/silenced_rifle.ogg'
+	fire_sound = 'modular_darkpack/modules/first_team/audio/silenced_rifle.ogg'
 	masquerade_violating = TRUE
 	is_iron = FALSE
 
@@ -666,11 +665,11 @@
 /obj/item/gun/ballistic/shotgun/vampire/px12r  //DONT DISTRIBUTE IN MAPPING
 	name = "\improper PX12R Breaching Shotgun"
 	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
-	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	icon_state = "px12r"
@@ -680,9 +679,9 @@
 	fire_delay = 6
 	mag_type = /obj/item/ammo_box/magazine/internal/px12r
 	can_be_sawn_off	= FALSE
-	fire_sound = 'modular_tfn/modules/first_team/audio/shotgun_firing.ogg'
-	load_sound = 'modular_tfn/modules/first_team/audio/shell_load.ogg'
-	rack_sound = 'modular_tfn/modules/first_team/audio/cycling.ogg'
+	fire_sound = 'modular_darkpack/modules/first_team/audio/shotgun_firing.ogg'
+	load_sound = 'modular_darkpack/modules/first_team/audio/shell_load.ogg'
+	rack_sound = 'modular_darkpack/modules/first_team/audio/cycling.ogg'
 	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
@@ -691,10 +690,10 @@
 /obj/item/gun/ballistic/automatic/l6_saw/vamp
 	name = "\improper PX249F Light Machine Gun"
 	desc = "A modified M249 Machine Gun with an engraving of a Hydra on the grip"
-	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px249f"
 	inhand_icon_state = "px249f"
 	base_icon_state = "px249f"
@@ -707,8 +706,8 @@
 	burst_size = 5
 	fire_delay = 2
 	spread = 6
-	fire_sound = 'modular_tfn/modules/first_team/audio/m249fire.ogg'
-	rack_sound = 'modular_tfn/modules/first_team/audio/m249rack.ogg'
+	fire_sound = 'modular_darkpack/modules/first_team/audio/m249fire.ogg'
+	rack_sound = 'modular_darkpack/modules/first_team/audio/m249rack.ogg'
 	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 
 /obj/item/gun/ballistic/automatic/l6_saw/vamp/update_icon_state()
@@ -725,8 +724,8 @@
 /obj/item/reagent_containers/hypospray/medipen/first
 	name = "Stimulant autoinjector"
 	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. DO NOT USE TWICE IN A ROW"
-	icon = 'modular_tfn/modules/first_team/icons/medical.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon = 'modular_darkpack/modules/first_team/icons/medical.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "fpen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "fpen"

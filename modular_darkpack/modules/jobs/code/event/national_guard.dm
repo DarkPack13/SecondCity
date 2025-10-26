@@ -76,7 +76,6 @@
 	roundend_category = "national guard"
 	antagpanel_category = "National Guard"
 	job_rank = ROLE_NATIONAL_GUARD
-	antag_hud_type = ANTAG_HUD_OPS
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE

@@ -4,7 +4,7 @@
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench
 	id = /obj/item/cockclock
-	backpack_contents = list(/obj/item/passport=1, /obj/item/vampire_stake=3, /obj/item/gun/ballistic/vampire/revolver=1, /obj/item/melee/vampirearms/knife=1, /obj/item/vamp/keys/hack=1, /obj/item/melee/vampirearms/katana/kosa=1, /obj/item/vamp/keys/sabbat=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/melee/vampirearms/knife=1, /obj/item/vamp/keys/hack=1, /obj/item/melee/vampirearms/katana/kosa=1, /obj/item/vamp/keys/sabbat=1)
 	//v_duty = "You are a member of the Sabbat. You are charged with rebellion against the Elders and the Camarilla, against the Jyhad, against the Masquerade and the Traditions, and the recognition of Caine as the true Dark Father of all Kindred kind. <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. </b>"
 
 
@@ -49,25 +49,13 @@
 	name = "Sabbatist"
 	roundend_category = "sabbattites"
 	antagpanel_category = FACTION_SABBAT
-	job_rank = ROLE_REV
+	job_rank = ROLE_SABBAT
 	antag_moodlet = /datum/mood_event/revolution
-	antag_hud_type = ANTAG_HUD_REV
 	antag_hud_name = "rev"
-
-/datum/antagonist/sabbatist/on_gain()
-	. = ..()
-	if(antag_hud_type && antag_hud_name)
-		add_antag_hud(antag_hud_type, antag_hud_name, owner.current)
-	else
-		add_antag_hud(ANTAG_HUD_REV, "rev", owner.current)
-	owner.special_role = src
-	owner.current.playsound_local(get_turf(owner.current), 'code/modules/wod13/sounds/evil_start.ogg', 100, FALSE, use_reverb = FALSE)
-	return ..()
 
 /datum/antagonist/sabbatist/on_removal()
 	..()
 	to_chat(owner.current,"<span class='userdanger'>You are no longer the part of Sabbat!</span>")
-	owner.special_role = null
 
 /datum/antagonist/sabbatist/greet()
 	to_chat(owner.current, "<span class='alertsyndie'>You are now part of the Sabbat.</span>")
