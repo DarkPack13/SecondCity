@@ -7076,7 +7076,6 @@
 #include "modular_darkpack\modules\vitae\code\status_effect_blood_bond.dm"
 #include "modular_darkpack\modules\vitae\code\vitae.dm"
 #include "modular_darkpack\modules\vitae\code\vitae_blood_type.dm"
-#include "modular_darkpack\modules\walls\code\decals.dm"
 #include "modular_darkpack\modules\walls\code\floors.dm"
 #include "modular_darkpack\modules\walls\code\wallpaper.dm"
 #include "modular_darkpack\modules\walls\code\walls.dm"
