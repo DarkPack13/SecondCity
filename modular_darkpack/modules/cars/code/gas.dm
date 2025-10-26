@@ -49,7 +49,7 @@
 			return ITEM_INTERACT_FAILURE
 		stored_gasoline = max(0, stored_gasoline-50)
 		new /obj/effect/decal/cleanable/gasoline(get_turf(interacting_with))
-		playsound(get_turf(src), 'modular_darkpack/modules/deprecated/sounds/gas_splat.ogg', 50, TRUE)
+		playsound(get_turf(src), 'modular_darkpack/modules/cars/sounds/gas_splat.ogg', 50, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/gas_can/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
@@ -60,7 +60,7 @@
 			return
 		stored_gasoline = max(0, stored_gasoline-50)
 		H.fire_stacks = min(10, H.fire_stacks+10)
-		playsound(get_turf(H), 'modular_darkpack/modules/deprecated/sounds/gas_splat.ogg', 50, TRUE)
+		playsound(get_turf(H), 'modular_darkpack/modules/cars/sounds/gas_splat.ogg', 50, TRUE)
 		user.visible_message(span_warning("[user] covers [target] in something flammable!"))
 
 /obj/effect/decal/cleanable/gasoline

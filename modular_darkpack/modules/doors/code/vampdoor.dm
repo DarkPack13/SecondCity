@@ -29,9 +29,9 @@
 	var/lockpick_timer = LOCKTIMER_1
 	var/lockpick_difficulty = LOCKDIFFICULTY_1
 
-	var/open_sound = 'modular_darkpack/modules/deprecated/sounds/door_open.ogg'
-	var/close_sound = 'modular_darkpack/modules/deprecated/sounds/door_close.ogg'
-	var/lock_sound = 'modular_darkpack/modules/deprecated/sounds/door_locked.ogg'
+	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
+	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
+	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
 
 /obj/structure/vampdoor/Initialize(mapload)
