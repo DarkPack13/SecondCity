@@ -11,7 +11,7 @@
 			var/cap = CONFIG_GET(number/ratcap)
 			if(LAZYLEN(SSmobs.cheeserats) >= cap)
 				return
-			SSmobs.cheeserats += new /mob/living/basic/mouse/vampire(oldloc)
+			new /mob/living/basic/mouse/vampire(oldloc)
 
 /turf/open/floor/plating/vampcanal/Initialize(mapload)
 	. = ..()
@@ -31,7 +31,7 @@
 			var/cap = CONFIG_GET(number/ratcap)
 			if(LAZYLEN(SSmobs.cheeserats) >= cap)
 				return
-			SSmobs.cheeserats += new /mob/living/basic/mouse/vampire(oldloc)
+			new /mob/living/basic/mouse/vampire(oldloc)
 
 /turf/open/floor/plating/vampcanalplating/Initialize(mapload)
 	. = ..()
