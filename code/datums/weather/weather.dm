@@ -437,7 +437,7 @@
 		if(HAS_TRAIT(hit_thing, TRAIT_UNDERFLOOR))
 			continue
 		hit_thing.take_damage(20, BURN, ENERGY, FALSE)
-	playsound(weather_turf, 'sound/effects/magic/lightningbolt.ogg', 100, extrarange = 10, falloff_distance = 10)
+	playsound(weather_turf, 'modular_darkpack/master_files/sounds/lightning.ogg', 100, extrarange = 10, falloff_distance = 10) // DARKPACK EDIT CHANGE
 	weather_turf.visible_message(span_danger("A thunderbolt strikes [weather_turf]!"))
 	explosion(weather_turf, light_impact_range = 1, flame_range = 1, silent = TRUE, adminlog = FALSE)
 
