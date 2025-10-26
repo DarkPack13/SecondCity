@@ -818,8 +818,6 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = DECEMBER
 	end_day = 31
 	holiday_hat = /obj/item/clothing/head/costume/santa
-	#warn do not leave in
-	always_celebrate = TRUE
 
 /datum/holiday/festive_season/greet()
 	return "Have a nice festive season!"
