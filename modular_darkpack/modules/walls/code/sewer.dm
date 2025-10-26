@@ -6,7 +6,8 @@
 
 /turf/open/floor/plating/vampcanal/Enter(atom/movable/mover, atom/oldloc)
 	. = ..()
-	if(isliving(mover) && mover.client)
+	var/mob/living/living_mover = mover
+	if(istype(living_mover) && living_mover.client)
 		if(prob(0.5))
 			var/cap = CONFIG_GET(number/ratcap)
 			if(LAZYLEN(SSmobs.cheeserats) >= cap)
@@ -26,7 +27,8 @@
 
 /turf/open/floor/plating/vampcanalplating/Enter(atom/movable/mover, atom/oldloc)
 	. = ..()
-	if(isliving(mover) && mover.client)
+	var/mob/living/living_mover = mover
+	if(istype(living_mover) && living_mover.client)
 		if(prob(0.5))
 			var/cap = CONFIG_GET(number/ratcap)
 			if(LAZYLEN(SSmobs.cheeserats) >= cap)
