@@ -89,3 +89,16 @@
   - code_imp: Added skillchecks to carbon throw_impact code
   - config: Jump windup and jump slowdown config options
   - rscadd: Reimplement generators and fuseboxes
+2025-10-26:
+  Hawk-v3:
+  - rscadd: Wallclimbing- Now with forensics markers.
+  KCartridge:
+  - rscadd: Stray dogs
+  - rscadd: taming said stray dogs
+  - image: dog rests sprites
+  - image: re-done dog_dead sprites Courtesy of Paynt
+  XeonMations:
+  - rscdel: Removed experience from the game.
+  - rscadd: Added the ability to give vitae!
+  - code_imp: Removed some unnecessary files from the codebase
+  - bugfix: Fixed a hard delete relating to the madness network.
