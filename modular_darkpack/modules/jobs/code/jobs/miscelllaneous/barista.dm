@@ -12,7 +12,7 @@
 	species_slots = list(SPECIES_KINDRED = 8, SPECIES_GHOUL = 50, SPECIES_HUMAN = 50)
 
 	description = "You work at a little quiet coffee shop in the ghetto, and you have some inkling of what goes on there - Perhaps you are a retainer or ghoul of one of the higher-tier members - Either way, you turn a blind eye to it for one reason or another."
-	allowed_clans = list(CLAN_BANU_HAQIM)
+	allowed_clans = list(VAMPIRE_CLAN_BANU_HAQIM)
 
 /datum/outfit/job/banu
 	name = "banu"
