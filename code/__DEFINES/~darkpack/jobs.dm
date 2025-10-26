@@ -32,6 +32,7 @@
 #define JOB_PRIMOGEN_VENTRUE "Primogen Ventrue"
 
 //Anarch
+#define JOB_BARON "Baron"
 #define JOB_TAPSTER "Bartender"
 
 
