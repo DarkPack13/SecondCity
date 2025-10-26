@@ -1,9 +1,3 @@
-/area/vtm/outside
-	outdoors = TRUE
-	//Looks bad rn.
-	//base_lighting_alpha = 80
-	//base_lighting_color = COLOR_MOONLIGHT
-
 /area/vtm/outside/financialdistrict
 	name = "Financial District"
 	icon_state = "financialdistrict"
@@ -46,77 +40,18 @@
 	ambience_index = AMBIENCE_CITY
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
 
-/area/vtm/city_elevator
-	name = "City Elevator"
-	icon_state = "prince"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	zone_type = ZONE_ELYSIUM
-	fire_controled = TRUE
-
-/area/vtm/jazzclub
-	name = "Jazz Club"
-	icon_state = "camarilla"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	zone_type = ZONE_ELYSIUM
-	fire_controled = TRUE
-
-/area/vtm/cabaret
-	name = "Siren's Cabaret"
-	icon_state = "melpominee"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	fire_controled = TRUE
-
-/area/vtm/clinic
-	name = "Clinic"
-	icon_state = "clinic"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	fire_controled = TRUE
-
-/area/vtm/clinic/haven
-	name = "Clinic - Psych Ward"
-	zone_type = ZONE_ELYSIUM
-
-/area/vtm/supply
-	name = "Supply"
-	icon_state = "supply"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-
-/area/vtm/hotel
-	name = "Hotel"
-	icon_state = "hotel"
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	fire_controled = TRUE
-
-/area/vtm/church
-	name = "Church"
-	icon_state = "church"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
-	ambience_index = AMBIENCE_OFFICE
-	outdoors = FALSE
-	fire_controled = TRUE
-
 /area/vtm/outside/park
 	name = "Park"
 	icon_state = "park"
 	ambience_index = AMBIENCE_NATURE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
 
-/area/vtm/elevator
-	name = "Elevator"
-	icon_state = "prince"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/lift.ogg'
-	outdoors = FALSE
-	zone_type = ZONE_ELYSIUM
-	fire_controled = TRUE
-
 /area/vtm/outside/forest
 	name = "Forest"
 	icon_state = "park"
 	zone_type = ZONE_NO_MASQUERADE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+
+/area/vtm/outside/supply
+	name = "Supply"
+	icon_state = "supply"

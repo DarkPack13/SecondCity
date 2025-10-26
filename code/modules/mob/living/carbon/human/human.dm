@@ -68,6 +68,11 @@
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
 
+	//DARKPACK EDIT START
+	if (clan)
+		clan.on_lose(src)
+	//DARKPACK EDIT END
+
 	return ..()
 
 /mob/living/carbon/human/prepare_data_huds()

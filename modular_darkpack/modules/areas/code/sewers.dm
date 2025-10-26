@@ -9,7 +9,6 @@
 /area/vtm/sewer/nosferatu_town
 	name = "Underground Town"
 	icon_state = "hotel"
-	outdoors = FALSE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/nosferatu.ogg'
 	zone_type = ZONE_ELYSIUM
 
