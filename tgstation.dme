@@ -6934,7 +6934,6 @@
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\janitor.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\police.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\priest.dm"
-#include "modular_darkpack\modules\jobs\code\miscelllaneous\sabbat.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\stripper.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\taxi.dm"
 #include "modular_darkpack\modules\jobs\code\sabbat\ductus.dm"

@@ -9,7 +9,7 @@
 	outfit = /datum/outfit/job/axe_gangster
 
 	display_order = JOB_DISPLAY_ORDER_AXE_GANGSTER
-	exp_type_department = EXP_TYPE_GANG
+	exp_required_type_department = EXP_TYPE_GANG
 
 	allowed_species = list("Vampire", "Ghoul", "Human")
 	allowed_bloodlines = list(CLAN_NONE, CLAN_GANGREL, CLAN_GARGOYLE, CLAN_DAUGHTERS_OF_CACOPHONY, CLAN_CAPPADOCIAN, CLAN_NAGARAJA,)

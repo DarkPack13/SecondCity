@@ -9,7 +9,7 @@
 	minimal_access = list()
 	outfit = /datum/outfit/job/sabbatpack
 	allowed_species = list("Vampire")
-	exp_type_department = EXP_TYPE_SABBAT
+	exp_required_type_department = EXP_TYPE_SABBAT
 	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
 	paycheck_department = ACCOUNT_CIV
 

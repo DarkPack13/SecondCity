@@ -13,7 +13,7 @@
 	minimal_access = list(ACCESS_LIBRARY, ACCESS_AUX_BASE, ACCESS_MINING_STATION)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
-	exp_type_department = EXP_TYPE_TREMERE
+	exp_required_type_department = EXP_TYPE_TREMERE
 
 	display_order = JOB_DISPLAY_ORDER_GARGOYLE
 
@@ -43,7 +43,7 @@
 		/obj/item/flashlight=1,
 		/obj/item/arcane_tome=1,
 		/obj/item/vamp/creditcard=1,
-		/obj/item/melee/vampirearms/katana/kosa=1,
+		/obj/item/scythe/vamp=1,
 	)
 
 /obj/effect/landmark/start/gargoyle

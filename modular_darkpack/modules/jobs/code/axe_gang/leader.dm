@@ -9,7 +9,7 @@
 	outfit = /datum/outfit/job/axe_leader
 
 	display_order = JOB_DISPLAY_ORDER_AXE_LEADER
-	exp_type_department = EXP_TYPE_GANG
+	exp_required_type_department = EXP_TYPE_GANG
 
 	known_contacts = list("Prince","Seneschal", "Sheriff", "Baron")
 	allowed_species = list("Kuei-Jin", "Human")

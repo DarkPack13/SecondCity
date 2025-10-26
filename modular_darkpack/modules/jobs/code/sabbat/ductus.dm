@@ -9,7 +9,7 @@
 	minimal_access = list()
 	outfit = /datum/outfit/job/sabbatductus
 	allowed_species = list("Vampire")
-	exp_type_department = EXP_TYPE_SABBAT
+	exp_required_type_department = EXP_TYPE_SABBAT
 	access = list(ACCESS_MAINT_TUNNELS)
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 

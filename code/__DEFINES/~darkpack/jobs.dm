@@ -35,6 +35,7 @@
 #define JOB_BARON "Baron"
 #define JOB_TAPSTER "Bartender"
 #define JOB_BRUISER "Bruiser"
+#define JOB_EMISSARY "Emissary"
 
 //Tzimisce
 #define JOB_BOGATYR "Bogatyr"
@@ -74,7 +75,7 @@
 #define JOB_DISPLAY_ORDER_STRIP 27
 #define JOB_DISPLAY_ORDER_TAXI 28
 #define JOB_DISPLAY_ORDER_AXE_GANGSTER 29
-#define JOB_DISPLAY_ORDER_BARKEEPER 30
+#define JOB_DISPLAY_ORDER_BARON 30
 #define JOB_DISPLAY_ORDER_EMISSARY 31
 #define JOB_DISPLAY_ORDER_SWEEPER 32
 #define JOB_DISPLAY_ORDER_BRUISER 33
@@ -126,6 +127,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
+#define SUPERVISOR_BARON "The Baron"
 
 
 #define SUPERVISOR_BARON_PUBLIC "The Bar's Owner"

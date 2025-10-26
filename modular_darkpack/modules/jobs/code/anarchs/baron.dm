@@ -1,4 +1,4 @@
-/datum/job/vampire/barkeeper
+/datum/job/vampire/baron
 	title = JOB_BARON
 	department_head = list("Justicar")
 	faction = FACTION_CITY
@@ -7,17 +7,17 @@
 	supervisors = "the Anarchs and the Traditions"
 	config_tag = "BARON"
 
-	outfit = /datum/outfit/job/barkeeper
+	outfit = /datum/outfit/job/baron
 
-	display_order = JOB_DISPLAY_ORDER_BARKEEPER
+	display_order = JOB_DISPLAY_ORDER_BARON
 	description = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
 
-/datum/outfit/job/barkeeper
+/datum/outfit/job/baron
 	name = "Baron"
-	jobtype = /datum/job/vampire/barkeeper
+	jobtype = /datum/job/vampire/baron
 
 	id = /obj/item/card/baron
 	glasses = /obj/item/clothing/glasses/vampire/sun
@@ -25,10 +25,10 @@
 	suit = /obj/item/clothing/suit/vampire/jacket/better
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/work
-	//l_pocket = /obj/item/vamp/phone/barkeeper
+	//l_pocket = /obj/item/vamp/phone/baron
 	r_pocket = /obj/item/vamp/keys/bar
 	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
-/obj/effect/landmark/start/barkeeper
+/obj/effect/landmark/start/baron
 	name = "Baron"
-	icon_state = "Barkeeper"
+	icon_state = "Baron"

@@ -1,22 +1,13 @@
 
 /datum/job/vampire/emissary
 	title = JOB_EMISSARY
-	department_head = list("Baron")
+	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Baron"
 
-
 	outfit = /datum/outfit/job/emissary
-
-
-
-
-
-
-	mind_traits = list(TRAIT_DONUT_LOVER)
-
 
 	display_order = JOB_DISPLAY_ORDER_EMISSARY
 
