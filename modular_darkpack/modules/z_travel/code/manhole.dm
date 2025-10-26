@@ -6,7 +6,7 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	travel_time = 5 SECONDS
-	travel_sound = 'modular_darkpack/modules/deprecated/sounds/manhole.ogg'
+	travel_sound = 'modular_darkpack/modules/z_travel/sounds/manhole.ogg'
 	requires_friend = TRUE
 	static_appearance = TRUE
 
