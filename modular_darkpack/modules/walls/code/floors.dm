@@ -395,6 +395,7 @@
 	COOLDOWN_DECLARE(wave_cooldown)
 
 /turf/open/water/bloodwave/Initialize(mapload, dir_to_remove)
+	. = ..()
 	if(mapload)
 		return
 	START_PROCESSING(SSsupermatter_cascade, src)
