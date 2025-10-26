@@ -66,8 +66,6 @@
 
 	var/spawned_backup_weapon = FALSE
 
-	var/ghoulificated = FALSE
-
 	var/staying = FALSE
 
 	var/lifespan = 0	//How many cycles. He'll be deleted if over than a ten thousand
@@ -302,23 +300,14 @@
 
 	last_grab = world.time
 
-// TODO: [Rebase] reimplement ghouls
-/*
-/mob/living/carbon/human/npc/proc/ghoulificate(mob/owner)
+/mob/living/carbon/human/npc/ghoulificate(mob/owner)
 	set waitfor = FALSE
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [owner]`s ghoul?", null, null, null, 50, src)
-	for(var/mob/dead/observer/G in GLOB.player_list)
-		if(G.key)
-			to_chat(G, span_ghostalert("[owner] is ghoulificating [src]."))
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
-		ghoulificated = TRUE
-		set_species(/datum/species/ghoul)
-		if(mind)
-			if(mind.enslaved_to != owner)
-				mind.enslave_mind_to_creator(owner)
-				to_chat(src, span_userdanger("<b>AS PRECIOUS VITAE ENTER YOUR MOUTH, YOU NOW ARE IN THE BLOODBOND OF [owner]. SERVE YOUR REGNANT CORRECTLY, OR YOUR ACTIONS WILL NOT BE TOLERATED.</b>"))
-				return TRUE
-	return FALSE
-*/
+	var/mob/dead/observer/candidate = SSpolling.poll_ghosts_for_target("Do you want to play as [owner]`s ghoul?", check_jobban = ROLE_GHOUL, role = ROLE_GHOUL, poll_time = 15 SECONDS, checked_target = src, alert_pic = src)
+	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
+	if(isnull(candidate))
+		return FALSE
+	message_admins("[key_name_admin(candidate)] has became a ghoul by [key_name_admin(owner)].")
+	ghostize(FALSE)
+	PossessByPlayer(candidate.key)
+	. = ..()
+	return TRUE

@@ -21,7 +21,6 @@
 	minimal_generation = 13
 
 	duty = "Make money, do drugs, fight law. Your hideout is the laundromat in Chinatown."
-	experience_addition = 10
 	minimal_masquerade = 0
 	my_contact_is_important = FALSE
 

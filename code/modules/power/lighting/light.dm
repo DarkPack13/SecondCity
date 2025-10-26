@@ -42,7 +42,7 @@
 	/// This is to defer emergency cell creation unless necessary, as it is very expensive.
 	var/has_mock_cell = TRUE
 	///If true, this fixture generates a very weak cell at roundstart
-	var/start_with_cell = TRUE
+	var/start_with_cell = FALSE // DARKPACK EDIT CHANGE // SF doesn't have backup cells
 	///Currently in night shift mode?
 	var/nightshift_enabled = FALSE
 	///Set to FALSE to never let this light get switched to night mode.
