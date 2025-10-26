@@ -26,7 +26,6 @@
 	v_duty = "You are a diplomat for the anarchs. Make deals, keep the peace, all through words, not violence. But the latter may come to pass if the former fails."
 	minimal_masquerade = 2
 
-
 /datum/outfit/job/emissary
 	name = "emissary"
 	jobtype = /datum/job/vampire/emissary

@@ -24,7 +24,6 @@
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_GARGOYLE)
 	known_contacts = list("Tremere Regent")
 
-
 /datum/outfit/job/archivist
 	name = "Archivist"
 	jobtype = /datum/job/vampire/archivist

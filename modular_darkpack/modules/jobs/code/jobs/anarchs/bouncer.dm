@@ -26,7 +26,6 @@
 	v_duty = "You are the enforcer of the Anarchs. The baron is always in need of muscle power. Enforce the Traditions - in the anarch way."
 	minimal_masquerade = 2
 
-
 /datum/outfit/job/bruiser
 	name = "Bruiser"
 	jobtype = /datum/job/vampire/bruiser

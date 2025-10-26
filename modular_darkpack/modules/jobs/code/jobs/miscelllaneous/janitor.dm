@@ -24,7 +24,6 @@
 	duty = "Keep the streets clean. You are paid to keep your mouth shut about the things you see."
 	minimal_masquerade = 0
 
-
 /datum/outfit/job/vjanitor
 	name = "Street Janitor"
 	jobtype = /datum/job/vampire/vjanitor

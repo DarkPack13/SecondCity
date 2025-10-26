@@ -25,7 +25,6 @@
 	duty = "Though your boss is odd and only works late night hours, they pay you well enough that you avoid questioning it."
 	minimal_masquerade = 2
 
-
 /datum/outfit/job/supply
 	name = "Supply Technician"
 	jobtype = /datum/job/vampire/supply

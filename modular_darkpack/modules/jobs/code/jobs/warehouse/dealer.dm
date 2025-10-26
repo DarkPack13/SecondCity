@@ -31,7 +31,6 @@
 	minimal_masquerade = 3
 	allowed_species = list("Vampire", "Werewolf", "Kuei-Jin")
 
-
 /datum/outfit/job/dealer
 	name = "Dealer"
 	jobtype = /datum/job/vampire/dealer
