@@ -17,8 +17,8 @@
 
 	outfit = /datum/outfit/job/nosferatu
 
-	paycheck = PAYCHECK_CREW
-	paycheck_department = ACCOUNT_SRV
+
+
 
 	display_order = JOB_DISPLAY_ORDER_NOSFERATU
 	department_for_prefs = /datum/job_department/camarilla
@@ -49,4 +49,4 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	//l_pocket = /obj/item/vamp/phone/nosferatu_primo
 	r_pocket = /obj/item/cockclock
-	//backpack_contents = list(/obj/item/vamp/keys/nosferatu/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/id/whip, /obj/item/card/id/steward, /obj/item/card/id/myrmidon)
+	//backpack_contents = list(/obj/item/vamp/keys/nosferatu/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

@@ -17,8 +17,8 @@
 
 	outfit = /datum/outfit/job/prince
 
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_SEC
+
+
 
 	display_order = JOB_DISPLAY_ORDER_PRINCE
 	department_for_prefs = /datum/job_department/prince

@@ -1,26 +1,26 @@
 /datum/job/vampire/giovannielder
-	title = "Capo"
+	title = JOB_CAPO
 	department_head = list("Uncle Augie")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Family and the Traditions"
-	selection_color = "#cb4aad"
+
 
 	outfit = /datum/outfit/job/giovannielder
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
-	exp_type_department = EXP_TYPE_GIOVANNI
+	exp_required_type_department = EXP_TYPE_GIOVANNI
 
 	minimal_generation = 11	//Uncomment when players get exp enough
 
-	v_duty = "Pure blood runs through your veins and, with it, old power. Throughout your long life you have learnt to hold onto two things and never let go: money, and family."
+	description = "Pure blood runs through your veins and, with it, old power. Throughout your long life you have learnt to hold onto two things and never let go: money, and family."
 	minimal_masquerade = 0
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
 
 /datum/outfit/job/giovannielder
@@ -46,26 +46,26 @@
 	name = "Capo"
 
 /datum/job/vampire/giovanni
-	title = "La Squadra"
+	title = JOB_LA_SQUADRA
 	department_head = list("Capo")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"
-	selection_color = "#cb4aad"
+
 
 	outfit = /datum/outfit/job/giovanni
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
-	display_order = JOB_DISPLAY_ORDER_GIOVANNI
-	exp_type_department = EXP_TYPE_GIOVANNI
 
-	v_duty = "Whether born or Embraced into the family, you are one of the Giovanni. Be you a necromancer, financier or lowly fledgling, remember that so long as you stand with your family, they too will stand with you."
+
+
+
+	display_order = JOB_DISPLAY_ORDER_GIOVANNI
+	exp_required_type_department = EXP_TYPE_GIOVANNI
+
+	description = "Whether born or Embraced into the family, you are one of the Giovanni. Be you a necromancer, financier or lowly fledgling, remember that so long as you stand with your family, they too will stand with you."
 	minimal_masquerade = 0
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
 
 /datum/outfit/job/giovanni
@@ -91,27 +91,27 @@
 	name = "La Squadra"
 
 /datum/job/vampire/giovannimafia
-	title = "La Famiglia"
+	title = JOB_LA_FAMIGLIA
 	department_head = list("Capo")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family"
-	selection_color = "#cb4aad"
+
 
 	outfit = /datum/outfit/job/giovannimafia
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
-	exp_type_department = EXP_TYPE_GIOVANNI
+	exp_required_type_department = EXP_TYPE_GIOVANNI
 
 //	minimal_generation = 11	//Uncomment when players get exp enough
 
-	allowed_species = list("Ghoul", "Human")
-	duty = "Your family is a strange one. Maybe you are strange too, because sitting next to your great uncles as an equal is something you are greatly interested in."
+	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
+	description = "Your family is a strange one. Maybe you are strange too, because sitting next to your great uncles as an equal is something you are greatly interested in."
 	minimal_masquerade = 0
 
 

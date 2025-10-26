@@ -1,29 +1,29 @@
 
 /datum/job/vampire/bogatyr
-	title = "Bogatyr"
+	title = JOB_BOGATYR
 	department_head = list("Voivode")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = " the Laws of Hospitality"
-	selection_color = "#953d2d"
+
 
 	outfit = /datum/outfit/job/bogatyr
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
-	display_order = JOB_DISPLAY_ORDER_BOGATYR
-	exp_type_department = EXP_TYPE_TZIMISCE
 
-	allowed_species = list("Vampire")
+
+
+
+	display_order = JOB_DISPLAY_ORDER_BOGATYR
+	exp_required_type_department = EXP_TYPE_TZIMISCE
+
+	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE)
 	minimal_generation = 13	//Uncomment when players get exp enough
 
-	v_duty = "Whether you are of Voivode-in-Waiting's blood or if you've been honored, you are one of the Kin of the Voivode. Protect your Family, as your Family would protect you."
+	description = "Whether you are of Voivode-in-Waiting's blood or if you've been honored, you are one of the Kin of the Voivode. Protect your Family, as your Family would protect you."
 	minimal_masquerade = 2
-	my_contact_is_important = TRUE
+
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
 /datum/outfit/job/bogatyr/pre_equip(mob/living/carbon/human/H)
@@ -36,7 +36,7 @@
 /datum/outfit/job/bogatyr
 	name = "Bogatyr"
 	jobtype = /datum/job/vampire/bogatyr
-	id = /obj/item/card/id/bogatyr
+	id = /obj/item/card/bogatyr
 	//glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/bogatyr
 	//suit = /obj/item/clothing/suit/vampire/jacket/punk

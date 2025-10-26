@@ -17,3 +17,12 @@
 	display_order = 1
 	label_class = "camarilla"
 	ui_color = "#6681a5"
+
+/datum/job_department/church
+	department_name = DEPARTMENT_CHURCH
+	department_bitflags = DEPARTMENT_BITFLAG_CHURCH
+	department_head = /datum/job/vampire/prince
+	department_experience_type = EXP_TYPE_CHURCH
+	display_order = 1
+	label_class = "camarilla"
+	ui_color = "#6681a5"

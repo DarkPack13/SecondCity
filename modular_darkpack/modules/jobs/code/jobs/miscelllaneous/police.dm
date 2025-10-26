@@ -1,28 +1,28 @@
 
 /datum/job/vampire/police_officer
-	title = "Police Officer"
+	title = JOB_POLICE_OFFICER
 	department_head = list("Police Department")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = " the SFPD Chief and your Sergeant."
-	selection_color = "#7e7e7e"
+
 
 	outfit = /datum/outfit/job/police_officer
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_ARMORY, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_POLICE
-	exp_type_department = EXP_TYPE_POLICE
+	exp_required_type_department = EXP_TYPE_POLICE
 
-	allowed_species = list("Ghoul", "Human")
-	species_slots = list("Ghoul" = 2)
+	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
+	species_slots = list(SPECIES_GHOUL = 2)
 
-	duty = "Enforce the Law."
+	description = "Enforce the Law."
 	minimal_masquerade = 0
-	my_contact_is_important = FALSE
+
 	known_contacts = list("Police Chief")
 
 /datum/outfit/job/police_officer
@@ -35,34 +35,34 @@
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	belt = /obj/item/storage/belt/holster/detective/vampire/police
 	gloves = /obj/item/cockclock
-	id = /obj/item/card/id/police
+	id = /obj/item/card/police
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/vampire/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
 
 /datum/job/vampire/police_sergeant
-	title = "Police Sergeant"
+	title = JOB_POLICE_SERGEANT
 	department_head = list("Police Department")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = " the SFPD Chief"
-	selection_color = "#7e7e7e"
+
 
 	outfit = /datum/outfit/job/police_sergeant
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_ARMORY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_HARD
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_POLICE_SERGEANT
-	exp_type_department = EXP_TYPE_POLICE
+	exp_required_type_department = EXP_TYPE_POLICE
 
-	allowed_species = list("Human")
+	allowed_species = list(SPECIES_HUMAN)
 
-	duty = "Enforce the law. Keep the officers in line. Follow what the Chief says."
+	description = "Enforce the law. Keep the officers in line. Follow what the Chief says."
 	minimal_masquerade = 0
-	my_contact_is_important = FALSE
+
 	known_contacts = list("Police Chief")
 
 /datum/outfit/job/police_sergeant
@@ -75,34 +75,34 @@
 	suit = /obj/item/clothing/suit/vampire/vest/police/sergeant
 	belt = /obj/item/storage/belt/holster/detective/vampire/officer
 	gloves = /obj/item/cockclock
-	id = /obj/item/card/id/police/sergeant
+	id = /obj/item/card/police/sergeant
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police/secure
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/vampire/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
 
 /datum/job/vampire/police_chief
-	title = "Police Chief"
+	title = JOB_POLICE_CHIEF
 	department_head = list("Police Department")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = " the SFPD"
-	selection_color = "#7e7e7e"
+
 
 	outfit = /datum/outfit/job/police_chief
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_ARMORY, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_POLICE_CHIEF
-	exp_type_department = EXP_TYPE_POLICE
+	exp_required_type_department = EXP_TYPE_POLICE
 
-	allowed_species = list("Human")
+	allowed_species = list(SPECIES_HUMAN)
 
-	duty = "Underpaid, overworked, and understrength. Do your best to keep the order in San Francisco. Keep the officers in line."
+	description = "Underpaid, overworked, and understrength. Do your best to keep the order in San Francisco. Keep the officers in line."
 	minimal_masquerade = 0
-	my_contact_is_important = FALSE
+
 //	known_contacts = list("Investigator")
 
 /datum/outfit/job/police_chief
@@ -115,7 +115,7 @@
 	suit = /obj/item/clothing/suit/vampire/vest/police/chief
 	belt = /obj/item/storage/belt/holster/detective/vampire/officer
 	gloves = /obj/item/cockclock
-	id = /obj/item/card/id/police/chief
+	id = /obj/item/card/police/chief
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police/secure/chief
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/vampire/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)

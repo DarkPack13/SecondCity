@@ -6,11 +6,8 @@
 	total_positions = -1
 	spawn_positions = -1
 	outfit = /datum/outfit/job/vampire/citizen
-	paycheck = PAYCHECK_LOWER
-
 	exp_granted_type = EXP_TYPE_KINDRED
 
-	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_CITIZEN
 
 	department_for_prefs = /datum/job_department/citizen

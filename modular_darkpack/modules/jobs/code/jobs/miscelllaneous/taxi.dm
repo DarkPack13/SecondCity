@@ -1,25 +1,25 @@
 /datum/job/vampire/taxi
-	title = "Taxi Driver"
+	title = JOB_TAXI_DRIVER
 	department_head = list("Justicar")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = " the Traditions"
-	selection_color = "#e3e3e3"
+
 
 	outfit = /datum/outfit/job/taxi
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
+
+
+
+
 	display_order = JOB_DISPLAY_ORDER_TAXI
-	exp_type_department = EXP_TYPE_SERVICES
+	exp_required_type_department = EXP_TYPE_SERVICES
 
-	allowed_species = list("Vampire", "Ghoul", "Human", "Werewolf", "Kuei-Jin")
+	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 
-	v_duty = "Drive people in the city."
-	duty = "Drive people in the city."
+	description = "Drive people in the city."
+	description = "Drive people in the city."
 	minimal_masquerade = 0
 
 	allowed_clans = list(VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN)

@@ -1,18 +1,18 @@
 /datum/outfit/job/national_guard
 	name = "National Guard Soldier"
-	ears = /obj/item/p25radio/police/government
+	//ears = /obj/item/p25radio/police/government
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
-	l_pocket = /obj/item/ammo_box/magazine/darkpackaug
+	l_pocket = /obj/item/ammo_box/magazine/vampaug
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	belt = /obj/item/gun/ballistic/automatic/darkpack/aug
+	belt = /obj/item/gun/ballistic/automatic/vampire/aug
 	suit = /obj/item/clothing/suit/vampire/vest/army
 	head = /obj/item/clothing/head/vampire/army
 	backpack_contents = list(
-		/obj/item/ammo_box/magazine/darkpackaug = 3,
-		/obj/item/radio/military = 1,
-		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta=1
+		/obj/item/ammo_box/magazine/vampaug = 3,
+		/obj/item/radio = 1,
+		/obj/item/gun/ballistic/automatic/vampire/beretta=1
 		)
 
 /datum/antagonist/national_guard/proc/equip_national_guard()
@@ -23,12 +23,15 @@
 	H.set_species(/datum/species/human)
 	H.set_clan(null)
 	H.generation = 13
-	H.ignores_warrant = TRUE
+	H.st_set_stat(5, STAT_STAMINA)
+	H.st_set_stat(5, STAT_LARCENY)
+	H.st_set_stat(4, STAT_STRENGTH)
+	H.recalculate_max_health(TRUE)
 
 	for(var/datum/action/A in H.actions)
 		if(A.vampiric)
 			A.Remove(H)
-	H.thaumaturgy_knowledge = FALSE
+	REMOVE_TRAIT(H, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	var/obj/item/organ/eyes/NV = new()
 	NV.Insert(H, TRUE, FALSE)
 
@@ -56,9 +59,9 @@
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/clothing/head/vampire/eod(owner.current))
 		if("Medic")
-			owner.current.put_in_r_hand(new /obj/item/storage/medkit/darkpack/combat(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
 		if("Sniper")
-			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/darkpack/sniper(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/vampire/sniper(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556(owner.current))
 		if("Ammo Carrier")
 			owner.current.put_in_r_hand(new /obj/item/ammo_box/vampire/c556/incendiary(owner.current))
@@ -99,12 +102,12 @@
 
 /datum/antagonist/national_guard/on_removal()
 	..()
-	to_chat(owner.current,span_userdanger("You are no longer in the National Guard!"))
+	to_chat(owner.current,"<span class='userdanger'>You are no longer in the National Guard!</span>")
 	owner.special_role = null
 
 /datum/antagonist/national_guard/greet()
-	to_chat(owner.current, span_alertsyndie("You're in the national guard."))
-	to_chat(owner, span_notice("You are a [national_guard_team ? national_guard_team.national_guard_name : "national guard"] soldier!"))
+	to_chat(owner.current, "<span class='alertsyndie'>You're in the national guard.</span>")
+	to_chat(owner, "<span class='notice'>You are a [national_guard_team ? national_guard_team.national_guard_name : "national guard"] soldier!</span>")
 	owner.announce_objectives()
 
 
@@ -120,6 +123,7 @@
 	owner.current.fully_replace_character_name(null,"[selected_rank] [my_name] [my_surname]")
 
 /datum/antagonist/national_guard/proc/forge_objectives()
+	spawn(2 SECONDS)
 	if(national_guard_team)
 		objectives |= national_guard_team.objectives
 
@@ -280,25 +284,27 @@
 	var/mob/living/carbon/human/H = owner.current
 	H.gender = pick(MALE, FEMALE)
 	H.body_type = H.gender
-
 	H.age = rand(18, 36)
+//	if(age >= 55)
+//		hair_color = "a2a2a2"
+//		facial_hair_color = hair_color
+//	else
+	H.hair_color = pick(h_gen.hair_colors)
+	H.facial_hair_color = H.hair_color
+	if(H.gender == MALE)
+		H.hairstyle = pick(h_gen.male_hair)
+		if(prob(25) || H.age >= 25)
+			H.facial_hairstyle = pick(h_gen.male_facial)
+		else
+			H.facial_hairstyle = "Shaved"
+	else
+		H.hairstyle = pick(h_gen.female_hair)
+		H.facial_hairstyle = "Shaved"
 	H.name = H.real_name
 	H.dna.real_name = H.real_name
-
-	H.set_haircolor(pick(h_gen.hair_colors))
-	H.set_facial_haircolor(H.hair_color)
-	if(H.gender == MALE)
-		H.set_hairstyle(pick(h_gen.male_hair))
-		if(prob(25) || H.age >= 25)
-			H.set_facial_hairstyle(pick(h_gen.male_facial))
-		else
-			H.set_facial_hairstyle("Shaved")
-	else
-		H.set_hairstyle(pick(h_gen.female_hair))
-		H.set_facial_hairstyle("Shaved")
-
-	H.set_eye_color(random_eye_color())
-
+	var/obj/item/organ/eyes/organ_eyes = H.getorgan(/obj/item/organ/eyes)
+	if(organ_eyes)
+		organ_eyes.eye_color = random_eye_color()
 	H.underwear = random_underwear(H.gender)
 	if(prob(50))
 		H.underwear_color = organ_eyes.eye_color
@@ -306,8 +312,9 @@
 		H.undershirt = random_undershirt(H.gender)
 	if(prob(25))
 		H.socks = random_socks()
-
 	H.update_body()
+	H.update_hair()
+	H.update_body_parts()
 
 /datum/team/national_guard/proc/rename_team(new_name)
 	national_guard_name = new_name
@@ -334,9 +341,9 @@
 
 /datum/team/national_guard/roundend_report()
 	var/list/parts = list()
-	parts += span_header("[national_guard_name] Operatives:")
+	parts += "<span class='header'>[national_guard_name] Operatives:</span>"
 
-	var/text = "<br>[span_header("The national guard were:")]"
+	var/text = "<br><span class='header'>The national guard were:</span>"
 	text += printplayerlist(members)
 	parts += text
 

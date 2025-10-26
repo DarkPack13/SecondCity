@@ -9,7 +9,7 @@
 	belt = /obj/item/gun/ballistic/automatic/darkpack/ar15
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	head = /obj/item/clothing/head/vampire/helmet
-	id = /obj/item/card/id/police
+	id = /obj/item/card/police
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 4,
 		/obj/item/radio/cop = 1,

@@ -1,27 +1,27 @@
 
 /datum/job/vampire/regent
-	title = "Chantry Regent"
+	title = JOB_CHANTRY_REGENT
 	department_head = list("Prince")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Pyramid"
-	selection_color = "#ab2508"
+
 
 	outfit = /datum/outfit/job/regent
 
-	access = list(ACCESS_LIBRARY, ACCESS_AUX_BASE, ACCESS_MINING_STATION)
-	minimal_access = list(ACCESS_LIBRARY, ACCESS_AUX_BASE, ACCESS_MINING_STATION)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
-	exp_type_department = EXP_TYPE_TREMERE
 
-	my_contact_is_important = TRUE
+
+
+
+	exp_required_type_department = EXP_TYPE_TREMERE
+
+
 	display_order = JOB_DISPLAY_ORDER_REGENT
-	v_duty = "Lead the Chantry. You serve as both the Regent and Tremere Primogen. You report to the Tremere Lord of this region first, Prince second."
+	description = "Lead the Chantry. You serve as both the Regent and Tremere Primogen. You report to the Tremere Lord of this region first, Prince second."
 	minimal_masquerade = 4
 	minimal_generation = 10
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
 
 	known_contacts = list("Prince")
@@ -30,7 +30,7 @@
 	name = "Chantry Regent"
 	jobtype = /datum/job/vampire/regent
 
-	id = /obj/item/card/id/regent
+	id = /obj/item/card/regent
 	glasses = /obj/item/clothing/glasses/vampire/perception
 	suit = /obj/item/clothing/suit/vampire/trench/archive
 	shoes = /obj/item/clothing/shoes/vampire

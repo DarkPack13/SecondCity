@@ -18,10 +18,10 @@
 
 	outfit = /datum/outfit/job/harpy
 
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_SRV
 
-	liver_traits = list(TRAIT_ROYAL_METABOLISM)
+
+
+
 
 	display_order = JOB_DISPLAY_ORDER_HARPY
 
@@ -30,7 +30,7 @@
 	minimal_generation = 12	//Uncomment when players get exp enough
 	minimal_masquerade = 5
 
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
 
 	known_contacts = list("Prince","Sheriff","Tremere Regent","Dealer","Emissary","Baron","Primogens")
 
@@ -41,7 +41,7 @@
 	jobtype = /datum/job/vamp/harpy
 
 	ears = /obj/item/p25radio
-	id = /obj/item/card/id/clerk/harpy
+	id = /obj/item/card/clerk/harpy
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
 //	l_pocket = /obj/item/vamp/phone/harpy

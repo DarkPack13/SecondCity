@@ -44,9 +44,9 @@
  **/
 
 /datum/job/vampire/unassigned
-	title = "Ordinary Citizen"
+	title = JOB_ORDINARY_CITIZEN
 	rpg_title = "Peasant"
-	paycheck = PAYCHECK_ZERO
+
 
 /// Returns information pertaining to this job's radio.
 /datum/job/vampire/get_radio_information()

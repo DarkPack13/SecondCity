@@ -12,15 +12,18 @@
 
 //No department
 #define JOB_CITIZEN "Citizen"
+#define JOB_ORDINARY_CITIZEN "Ordinary Citizen"
+#define JOB_BARISTA "Barista"
 
-//FUCKING CAMMIES
+
+//Camarilla
 #define JOB_PRINCE "Prince"
 #define JOB_SHERIFF "Sheriff"
 #define JOB_HOUND "Hound"
 #define JOB_HARPY "Harpy"
 #define JOB_SENESCHAL "Seneschal"
 
-//COUNCIL SHADOW CABAL (Primogens)
+//Primogens
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
 #define JOB_PRIMOGEN_BANU_HAQIM "Primogen Banu Haqim"
 #define JOB_PRIMOGEN_LASOMBRA "Primogen Lasombra"
@@ -28,11 +31,23 @@
 #define JOB_PRIMOGEN_NOSFERATU "Primogen Nosferatu"
 #define JOB_PRIMOGEN_VENTRUE "Primogen Ventrue"
 
-//The Real Heroes (Anarchs)
+//Anarch
 #define JOB_TAPSTER "Bartender"
 
+
+//Tzimisce
+#define JOB_BOGATYR "Bogatyr"
+
+//Police
+
+//Clinic
+
+//Church
+#define JOB_PRIEST "Priest"
+
+
 #define JOB_DISPLAY_ORDER_CITIZEN 1
-#define JOB_DISPLAY_ORDER_SALUBRI 2
+#define JOB_DISPLAY_ORDER_VETERINARIAN 2
 #define JOB_DISPLAY_ORDER_DAUGHTER 4
 #define JOB_DISPLAY_ORDER_BAALI 5
 #define JOB_DISPLAY_ORDER_TRUJAH 6
@@ -91,12 +106,15 @@
 #define DEPARTMENT_PRINCE "Prince"
 #define DEPARTMENT_BITFLAG_CAMARILLA (1<<2)
 #define DEPARTMENT_CAMARILLA "Camarilla"
+#define DEPARTMENT_BITFLAG_CHURCH (1<<3)
+#define DEPARTMENT_CHURCH "Church"
 
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
 	"PRINCE" = DEPARTMENT_BITFLAG_PRINCE,
 	"CAMARILLA" = DEPARTMENT_BITFLAG_CAMARILLA,
+	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -106,6 +124,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_TRADITIONS "the Traditions"
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
+#define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
 
 
 #define SUPERVISOR_BARON_PUBLIC "The Bar's Owner"
@@ -125,7 +144,6 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_CLINIC "St. John's Clinic"
 #define EXP_TYPE_GIOVANNI "Giovanni Family"
 #define EXP_TYPE_TZIMISCE "Tzimisce Mansion"
-#define EXP_TYPE_WAREHOUSE "Warehouse"
 #define EXP_TYPE_CHURCH "Church"
 #define EXP_TYPE_PAINTED_CITY "Sept of the Painted City"
 #define EXP_TYPE_AMBERGLADE "Sept of the Amberglade"

@@ -17,8 +17,8 @@
 
 	outfit = /datum/outfit/job/clerk
 
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_SRV
+
+
 
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	department_for_prefs = /datum/job_department/camarilla

@@ -1,48 +1,6 @@
 /obj/item/card/hunter
 	COOLDOWN_DECLARE(detonation_timer)
 
-/obj/item/card/prince/click_alt(mob/user)
-	return
-
-/obj/item/card/sheriff/click_alt(mob/user)
-	return
-
-/obj/item/card/camarilla/click_alt(mob/user)
-	return
-
-/obj/item/card/clerk/click_alt(mob/user)
-	return
-
-/obj/item/card/anarch/click_alt(mob/user)
-	return
-
-/obj/item/card/clinic/click_alt(mob/user)
-	return
-
-/obj/item/card/archive/click_alt(mob/user)
-	return
-
-/obj/item/card/cleaning/click_alt(mob/user)
-	return
-
-/obj/item/card/dealer/click_alt(mob/user)
-	return
-
-/obj/item/card/supplytech/click_alt(mob/user)
-	return
-
-/obj/item/card/hunter/click_alt(mob/user)
-	return
-
-/obj/item/card/primogen/click_alt(mob/user)
-	return
-
-/obj/item/card/police/click_alt(mob/user)
-	return
-
-/obj/item/card/hunter
-	var/last_detonated = 0
-
 /obj/item/card/hunter/attack_self(mob/user)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, detonation_timer))

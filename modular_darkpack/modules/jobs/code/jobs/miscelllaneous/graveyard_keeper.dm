@@ -1,35 +1,35 @@
 
 /datum/job/vampire/graveyard
-	title = "Graveyard Keeper"
+	title = JOB_GRAVEYARD_KEEPER
 	department_head = list("Seneschal")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 6
 	spawn_positions = 6
 	supervisors = "the Camarilla or the Anarchs"
-	selection_color = "#e3e3e3"
-	exp_type_department = EXP_TYPE_SERVICES
+
+	exp_required_type_department = EXP_TYPE_SERVICES
 
 
 	outfit = /datum/outfit/job/graveyard
 
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_AUX_BASE)
-	minimal_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_AUX_BASE)
-	paycheck = PAYCHECK_MEDIUM
-	paycheck_department = ACCOUNT_CAR
+
+
+
+
 
 	display_order = JOB_DISPLAY_ORDER_GRAVEYARD
-	bounty_types = CIV_JOB_MINE
 
-	v_duty = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."
+
+	description = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."
 	minimal_masquerade = 0
-	allowed_species = list("Vampire", "Ghoul", "Kuei-Jin")
+	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL)
 	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_CAPPADOCIAN)
 
 /datum/outfit/job/graveyard
 	name = "Graveyard Keeper"
 	jobtype = /datum/job/vampire/graveyard
 
-	id = /obj/item/card/id/graveyard
+	id = /obj/item/card/graveyard
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 //	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/vampire/graveyard

@@ -17,9 +17,6 @@
 
 	outfit = /datum/outfit/job/sheriff
 
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_SEC
-
 	display_order = JOB_DISPLAY_ORDER_SHERIFF
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(

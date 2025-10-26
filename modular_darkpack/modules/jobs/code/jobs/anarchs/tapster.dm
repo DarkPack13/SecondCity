@@ -11,8 +11,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_TAPSTER
 	known_contacts = list("Baron","Bouncer","Emissary","Sweeper")
-	allowed_species = list("Human", "Ghoul")
-	species_slots = list("Human" = 2, "Ghoul" = 2)
+	allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL)
+	species_slots = list(SPECIES_HUMAN = 2, SPECIES_GHOUL = 2)
 	minimal_masquerade = 0
 
 /datum/outfit/job/tapster

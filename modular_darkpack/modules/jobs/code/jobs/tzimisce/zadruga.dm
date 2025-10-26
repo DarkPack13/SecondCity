@@ -1,37 +1,25 @@
 /datum/job/vampire/zadruga
-	title = "Zadruga"
+	title = JOB_ZADRUGA
 	department_head = list("Voivode")
-	faction = "Ghoul" //[Lucifernix] - Change this to vampire when I actually fix this.
+	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = " the Laws of Hospitality"
-	selection_color = "#953d2d"
+
 
 	outfit = /datum/outfit/job/zadruga
-
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_ZADRUGA
-	exp_type_department = EXP_TYPE_TZIMISCE
-
-	//ghoul_only = TRUE
-	//allowed_clans = list(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE, VAMPIRE_CLAN_TZIMISCE)
-	//minimal_generation = 7	//Uncomment when players get exp enough
-
-	duty = "You were born in servitude to the Master of the Manor: your father served the Voivode, as did his father. Now, you carry their blood, and with it their responsibilities."
+	exp_required_type_department = EXP_TYPE_TZIMISCE
+	allowed_species = list(SPECIES_GHOUL)
+	description = "You were born in servitude to the Master of the Manor: your father served the Voivode, as did his father. Now, you carry their blood, and with it their responsibilities."
 	minimal_masquerade = 2
-	my_contact_is_important = FALSE
+
 	known_contacts = list("Prince", "Baron", "Sheriff")
-
-
-
 
 /datum/outfit/job/zadruga
 	name = "zadruga"
 	jobtype = /datum/job/vampire/zadruga
-	id = /obj/item/card/id/bogatyr
+	id = /obj/item/card/bogatyr
 	//glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/bogatyr
 	//suit = /obj/item/clothing/suit/vampire/jacket/punk

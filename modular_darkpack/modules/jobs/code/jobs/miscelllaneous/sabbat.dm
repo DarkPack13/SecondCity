@@ -6,19 +6,6 @@
 	id = /obj/item/cockclock
 	backpack_contents = list(/obj/item/passport=1, /obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/scythe/vamp=1)
 
-/datum/outfit/job/sabbatist/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == MALE)
-		shoes = /obj/item/clothing/shoes/vampire
-		if(H.clan)
-			if(H.clan.male_clothes)
-				uniform = H.clan.male_clothes
-	else
-		shoes = /obj/item/clothing/shoes/vampire/heels
-		if(H.clan)
-			if(H.clan.female_clothes)
-				uniform = H.clan.female_clothes
-
 /datum/outfit/job/sabbatist/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)

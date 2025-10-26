@@ -1,26 +1,26 @@
 
 /datum/job/vampire/archivist
-	title = "Chantry Archivist"
+	title = JOB_CHANTRY_ARCHIVIST
 	department_head = list("Prince")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Traditions and the Regent"
-	selection_color = "#ab2508"
+
 
 	outfit = /datum/outfit/job/archivist
 
-	access = list(ACCESS_LIBRARY, ACCESS_AUX_BASE, ACCESS_MINING_STATION)
-	minimal_access = list(ACCESS_LIBRARY, ACCESS_AUX_BASE, ACCESS_MINING_STATION)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
-	exp_type_department = EXP_TYPE_TREMERE
+
+
+
+
+	exp_required_type_department = EXP_TYPE_TREMERE
 
 	display_order = JOB_DISPLAY_ORDER_ARCHIVIST
 
-	v_duty = "Keep a census of events and provide information to neonates. Listen to the Regent Carefully. Study blood magic and protect the chantry."
+	description = "Keep a census of events and provide information to neonates. Listen to the Regent Carefully. Study blood magic and protect the chantry."
 	minimal_masquerade = 3
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_GARGOYLE)
 	known_contacts = list("Tremere Regent")
 
@@ -28,7 +28,7 @@
 	name = "Archivist"
 	jobtype = /datum/job/vampire/archivist
 
-	id = /obj/item/card/id/archive
+	id = /obj/item/card/archive
 	glasses = /obj/item/clothing/glasses/vampire/perception
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/latex
