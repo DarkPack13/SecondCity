@@ -7,15 +7,14 @@
 
 /turf/open/floor/plating/asphalt/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				new /obj/effect/decal/snow_overlay(src)
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			new /obj/effect/decal/snow_overlay(src)
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 	if(prob(50))
 		icon_state = "asphalt[rand(1, 3)]"
 		update_icon()
@@ -37,15 +36,14 @@
 
 /turf/open/floor/plating/sidewalkalt/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/floor/plating/sidewalk
 	name = "sidewalk"
@@ -59,15 +57,14 @@
 /turf/open/floor/plating/sidewalk/Initialize(mapload)
 	. = ..()
 	icon_state = "[base_icon_state][rand(1, number_of_variations)]"
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/floor/plating/sidewalk/poor
 	icon_state = "sidewalk_poor1"
@@ -92,15 +89,14 @@
 
 /turf/open/floor/plating/roofwalk/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 //Airless version of this because they are used as a z-level 4 roof on a z-level 3 building, and since they aren't meant to be reached...
 /turf/open/floor/plating/roofwalk/no_air
@@ -189,15 +185,14 @@
 /turf/open/misc/grass/vamp/Initialize(mapload)
 	. = ..()
 	icon_state = "grass[rand(1, 3)]"
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/floor/plating/vampcarpet
 	name = "carpet"
@@ -248,15 +243,14 @@
 
 /turf/open/misc/dirt/vamp/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/misc/dirt/vamp/rails
 	name = "rails"
@@ -264,15 +258,14 @@
 
 /turf/open/misc/dirt/vamp/rails/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow_rails"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow_rails"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/open/floor/plating/vampplating
 	name = "plating"
@@ -368,15 +361,14 @@
 
 /turf/open/floor/plating/vampwood/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				//initial_gas_mix = WINTER_DEFAULT_ATMOS
-				icon_state = "snow[rand(1, 14)]"
-				footstep = FOOTSTEP_SNOW
-				barefootstep = FOOTSTEP_SNOW
-				heavyfootstep = FOOTSTEP_SNOW
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			//initial_gas_mix = WINTER_DEFAULT_ATMOS
+			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 // See about porting the apoc sprite for this
 /turf/open/floor/plating/woodrough
@@ -429,11 +421,10 @@
 /turf/open/misc/beach/vamp/Initialize(mapload)
 	. = ..()
 	icon_state = "sand[rand(1, 4)]"
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "snow[rand(1, 14)]"
+	var/area/my_area = loc
+	if(my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
+			icon_state = "snow[rand(1, 14)]"
 
 /turf/open/water/beach/vamp
 	name = "water"

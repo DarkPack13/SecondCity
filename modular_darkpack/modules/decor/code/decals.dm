@@ -8,11 +8,10 @@
 	. = ..()
 	icon_state = "decal[rand(1, 24)]"
 	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				alpha = 25
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			alpha = 25
 
 /obj/effect/decal/snow_overlay
 	name = "snow"
@@ -35,11 +34,10 @@
 	. = ..()
 	icon_state = "[initial(icon_state)][rand(1, 3)]"
 	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)][rand(1, 3)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)][rand(1, 3)]-snow"
 
 /obj/effect/turf_decal/crosswalk
 	name = "asphalt"
@@ -51,11 +49,10 @@
 	. = ..()
 	icon_state = "crosswalk[rand(1, 3)]"
 	update_icon()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "crosswalk[rand(1, 3)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "crosswalk[rand(1, 3)]-snow"
 
 /obj/effect/turf_decal/stock
 	name = "stock"
@@ -71,15 +68,10 @@
 
 /obj/effect/turf_decal/bordur/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
-//				footstep = FOOTSTEP_SNOW
-//				barefootstep = FOOTSTEP_SNOW
-//				clawfootstep = FOOTSTEP_SNOW
-//				heavyfootstep = FOOTSTEP_SNOW
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/effect/turf_decal/bordur/corner
 	icon_state = "border_corner"
