@@ -17,15 +17,8 @@
 			heavyfootstep = FOOTSTEP_SNOW
 	if(prob(50))
 		icon_state = "asphalt[rand(1, 3)]"
-		update_icon()
 	if(prob(25))
 		new /obj/effect/turf_decal/asphalt(src)
-
-/turf/open/floor/plating/asphalt/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
-	return
-
-/turf/open/floor/plating/asphalt/ex_act(severity, target)
-	contents_explosion(severity, target)
 
 /turf/open/floor/plating/sidewalkalt
 	name = "sidewalk"
