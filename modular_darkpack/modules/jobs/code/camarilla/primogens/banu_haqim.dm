@@ -44,7 +44,7 @@
 	//suit = /obj/item/clothing/suit/vampire/jacket/banu
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	//l_pocket = /obj/item/vamp/phone/banu_primo
-	r_pocket = /obj/item/cockclock
+	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/banuhaqim/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
 
 /obj/effect/landmark/start/primogen_banu

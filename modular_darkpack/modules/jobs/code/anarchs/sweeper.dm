@@ -1,22 +1,13 @@
-
 /datum/job/vampire/sweeper
 	title = JOB_SWEEPER
-	department_head = list("Baron")
+	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Baron"
-
+	supervisors = SUPERVISOR_BARON
+	config_tag = "SWEEPER"
 
 	outfit = /datum/outfit/job/sweeper
-
-
-
-
-
-
-	mind_traits = list(TRAIT_DONUT_LOVER)
-
 
 	display_order = JOB_DISPLAY_ORDER_SWEEPER
 
@@ -35,8 +26,8 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	l_pocket = /obj/item/vamp/phone/anarch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)
+	//l_pocket = /obj/item/vamp/phone/anarch
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)
 
 /obj/effect/landmark/start/sweeper
 	name = "Sweeper"

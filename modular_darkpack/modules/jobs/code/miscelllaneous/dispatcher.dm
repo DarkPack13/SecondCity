@@ -27,7 +27,7 @@
 	uniform = /obj/item/clothing/under/vampire/office
 	ears = /obj/item/p25radio/police/dispatch
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
-	gloves = /obj/item/cockclock
+	gloves = /obj/item/watch
 	id = /obj/item/card/government
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/dispatch

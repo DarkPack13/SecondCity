@@ -327,6 +327,24 @@
 	first_team_name = new_name
 	name = "[first_team_name] Team"
 
+/proc/first_team_name() //TFN Change Start
+	var/name = ""
+
+	// Prefix
+	name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
+
+	// Suffix
+	if	(prob(80))
+		name += " "
+
+		// Full
+		if(prob(60))
+			name += pick("Squad", "Team", "Unit", "Group", "Section", "Element", "Detachment")
+		// Broken
+		else
+			name += pick("-", "*", "")
+			name += "Ops"
+
 /datum/team/first_team
 	var/first_team_name
 	var/core_objective = /datum/objective/first_team

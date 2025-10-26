@@ -1,17 +1,17 @@
-
 /datum/job/vampire/emissary
 	title = JOB_EMISSARY
 	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Baron"
+	supervisors = SUPERVISOR_BARON
+	config_tag = "EMISSARY"
 
 	outfit = /datum/outfit/job/emissary
 
 	display_order = JOB_DISPLAY_ORDER_EMISSARY
 
-	known_contacts = list("Baron","Bouncer","Emissary","Sweeper","Prince","Sheriff")
+	known_contacts = list("Baron", "Bouncer", "Emissary", "Sweeper", "Prince", "Sheriff")
 	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_SALUBRI)
 
 	description = "You are a diplomat for the anarchs. Make deals, keep the peace, all through words, not violence. But the latter may come to pass if the former fails."
@@ -26,11 +26,8 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	l_pocket = /obj/item/vamp/phone/anarch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit/rich=1)
-
-/datum/outfit/job/emissary/pre_equip(mob/living/carbon/human/H)
-	..()
+	//l_pocket = /obj/item/vamp/phone/anarch
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit/rich=1)
 
 /obj/effect/landmark/start/emissary
 	name = "Emissary"

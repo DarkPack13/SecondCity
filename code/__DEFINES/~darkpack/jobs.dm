@@ -36,6 +36,7 @@
 #define JOB_TAPSTER "Bartender"
 #define JOB_BRUISER "Bruiser"
 #define JOB_EMISSARY "Emissary"
+#define JOB_SWEEPER "Sweeper"
 
 //Tzimisce
 #define JOB_BOGATYR "Bogatyr"
@@ -127,10 +128,10 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
-#define SUPERVISOR_BARON "The Baron"
+#define SUPERVISOR_BARON "the Baron"
 
 
-#define SUPERVISOR_BARON_PUBLIC "The Bar's Owner"
+#define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"

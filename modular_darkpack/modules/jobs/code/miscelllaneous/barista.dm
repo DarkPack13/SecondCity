@@ -18,7 +18,7 @@
 	name = "banu"
 	jobtype = /datum/job/vamp/banu
 	l_pocket = /obj/item/vamp/phone
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	backpack_contents = list(
 		/obj/item/passport=1,
 		/obj/item/flashlight=1,

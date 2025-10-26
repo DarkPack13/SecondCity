@@ -3,3 +3,4 @@
 #define ROLE_FIRST_TEAM "first_team"
 #define ROLE_SWAT "swat"
 #define ROLE_SABBAT "sabbat"
+#define ROLE_NATIONAL_GUARD "national_guard"

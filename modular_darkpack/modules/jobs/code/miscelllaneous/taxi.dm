@@ -32,7 +32,7 @@
 	name = "Taxi Driver"
 	jobtype = /datum/job/vampire/taxi
 
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	shoes = /obj/item/clothing/shoes/vampire

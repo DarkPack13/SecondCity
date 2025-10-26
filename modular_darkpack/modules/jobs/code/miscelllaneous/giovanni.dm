@@ -27,7 +27,7 @@
 	name = "Capo"
 	jobtype = /datum/job/vampire/giovannielder
 
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
@@ -72,7 +72,7 @@
 	name = "La Squadra"
 	jobtype = /datum/job/vampire/giovanni
 
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
@@ -118,7 +118,7 @@
 /datum/outfit/job/giovannimafia
 	name = "La Famiglia"
 	jobtype = /datum/job/vampire/giovannimafia
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench

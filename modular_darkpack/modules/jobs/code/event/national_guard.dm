@@ -4,15 +4,15 @@
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
-	l_pocket = /obj/item/ammo_box/magazine/vampaug
+	l_pocket = /obj/item/ammo_box/magazine/darkpackaug
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	belt = /obj/item/gun/ballistic/automatic/vampire/aug
+	belt = /obj/item/gun/ballistic/automatic/darkpack/aug
 	suit = /obj/item/clothing/suit/vampire/vest/army
 	head = /obj/item/clothing/head/vampire/army
 	backpack_contents = list(
-		/obj/item/ammo_box/magazine/vampaug = 3,
+		/obj/item/ammo_box/magazine/darkpackaug = 3,
 		/obj/item/radio = 1,
-		/obj/item/gun/ballistic/automatic/vampire/beretta=1
+		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1
 		)
 
 /datum/antagonist/national_guard/proc/equip_national_guard()
@@ -59,9 +59,9 @@
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/clothing/head/vampire/eod(owner.current))
 		if("Medic")
-			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/storage/medkit/tactical(owner.current))
 		if("Sniper")
-			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/vampire/sniper(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/darkpack/sniper(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556(owner.current))
 		if("Ammo Carrier")
 			owner.current.put_in_r_hand(new /obj/item/ammo_box/vampire/c556/incendiary(owner.current))
@@ -92,8 +92,6 @@
 /datum/antagonist/national_guard/on_gain()
 	randomize_appearance()
 	forge_objectives()
-	add_antag_hud(ANTAG_HUD_OPS, "synd", owner.current)
-	owner.special_role = src
 	equip_national_guard()
 	give_alias()
 	offer_loadout()
@@ -102,7 +100,6 @@
 /datum/antagonist/national_guard/on_removal()
 	..()
 	to_chat(owner.current,"<span class='userdanger'>You are no longer in the National Guard!</span>")
-	owner.special_role = null
 
 /datum/antagonist/national_guard/greet()
 	to_chat(owner.current, "<span class='alertsyndie'>You're in the national guard.</span>")
@@ -121,7 +118,7 @@
 	var/my_surname = pick(GLOB.last_names)
 	owner.current.fully_replace_character_name(null,"[selected_rank] [my_name] [my_surname]")
 
-/datum/antagonist/national_guard/proc/forge_objectives()
+/datum/antagonist/national_guard/forge_objectives()
 	spawn(2 SECONDS)
 	if(national_guard_team)
 		objectives |= national_guard_team.objectives
@@ -282,7 +279,7 @@
 	var/datum/random_gen/national_guard/h_gen = new
 	var/mob/living/carbon/human/H = owner.current
 	H.gender = pick(MALE, FEMALE)
-	H.body_type = H.gender
+	H.physique = H.gender
 	H.age = rand(18, 36)
 //	if(age >= 55)
 //		hair_color = "a2a2a2"
@@ -301,12 +298,13 @@
 		H.facial_hairstyle = "Shaved"
 	H.name = H.real_name
 	H.dna.real_name = H.real_name
-	var/obj/item/organ/eyes/organ_eyes = H.getorgan(/obj/item/organ/eyes)
+	var/obj/item/organ/eyes/organ_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
 	if(organ_eyes)
-		organ_eyes.eye_color = random_eye_color()
+		organ_eyes.eye_color_left = random_eye_color()
+		organ_eyes.eye_color_right = organ_eyes.eye_color_left
 	H.underwear = random_underwear(H.gender)
 	if(prob(50))
-		H.underwear_color = organ_eyes.eye_color
+		H.underwear_color = organ_eyes.eye_color_left
 	if(prob(50) || H.gender == FEMALE)
 		H.undershirt = random_undershirt(H.gender)
 	if(prob(25))
@@ -318,6 +316,29 @@
 /datum/team/national_guard/proc/rename_team(new_name)
 	national_guard_name = new_name
 	name = "[national_guard_name] Team"
+
+/datum/objective/national_guard
+	name = "national_guard"
+	explanation_text = "Follow the orders of your sergeant."
+	martyr_compatible = TRUE
+
+/proc/national_guard_name()
+	var/name = ""
+
+	// Prefix
+	name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
+
+	// Suffix
+	if	(prob(80))
+		name += " "
+
+		// Full
+		if(prob(60))
+			name += pick("Squad", "Team", "Unit", "Group", "Section", "Element", "Detachment")
+		// Broken
+		else
+			name += pick("-", "*", "")
+			name += "Ops"
 
 /datum/team/national_guard
 	var/national_guard_name
@@ -336,7 +357,6 @@
 		var/datum/objective/O = new core_objective
 		O.team = src
 		objectives += O
-
 
 /datum/team/national_guard/roundend_report()
 	var/list/parts = list()

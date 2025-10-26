@@ -34,7 +34,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	belt = /obj/item/storage/belt/holster/detective/vampire/police
-	gloves = /obj/item/cockclock
+	gloves = /obj/item/watch
 	id = /obj/item/card/police
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police
@@ -74,7 +74,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police/sergeant
 	belt = /obj/item/storage/belt/holster/detective/vampire/officer
-	gloves = /obj/item/cockclock
+	gloves = /obj/item/watch
 	id = /obj/item/card/police/sergeant
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police/secure
@@ -114,7 +114,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police/chief
 	belt = /obj/item/storage/belt/holster/detective/vampire/officer
-	gloves = /obj/item/cockclock
+	gloves = /obj/item/watch
 	id = /obj/item/card/police/chief
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police/secure/chief

@@ -45,7 +45,7 @@
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	//l_pocket = /obj/item/vamp/phone/lasombra_primo
-	r_pocket = /obj/item/cockclock
+	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1,/obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
 
 /obj/effect/landmark/start/primogen_lasombra

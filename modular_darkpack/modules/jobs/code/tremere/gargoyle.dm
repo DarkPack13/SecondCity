@@ -39,7 +39,7 @@
 	l_pocket = /obj/item/vamp/phone/gargoyle
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
-		/obj/item/cockclock=1,
+		/obj/item/watch=1,
 		/obj/item/flashlight=1,
 		/obj/item/arcane_tome=1,
 		/obj/item/vamp/creditcard=1,

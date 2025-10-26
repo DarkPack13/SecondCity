@@ -36,7 +36,7 @@
 	r_pocket = /obj/item/vamp/keys/archive
 	l_pocket = /obj/item/vamp/phone/archivist
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	backpack_contents = list(/obj/item/passport=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
 
 /datum/outfit/job/archivist/pre_equip(mob/living/carbon/human/H)
 	..()

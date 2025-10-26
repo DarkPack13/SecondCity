@@ -293,6 +293,26 @@
 	swat_name = new_name
 	name = "[swat_name] Team"
 
+/proc/swat_name()
+	var/name = ""
+
+	// Prefix
+	name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
+
+	// Suffix
+	if	(prob(80))
+		name += " "
+
+		// Full
+		if(prob(60))
+			name += pick("Squad", "Team", "Unit", "Group", "Section", "Element", "Detachment")
+		// Broken
+		else
+			name += pick("-", "*", "")
+			name += "Ops"
+
+	return name
+
 /datum/team/swat
 	var/swat_name
 	var/core_objective = /datum/objective/swat

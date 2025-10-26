@@ -9,7 +9,7 @@
 	minimal_access = list()
 	outfit = /datum/outfit/job/sabbatpriest
 	allowed_species = list("Vampire")
-	exp_required_type_department =  = EXP_TYPE_SABBAT
+	exp_required_type_department = EXP_TYPE_SABBAT
 
 
 	v_duty = "You are the Sabbat Priest. You are charged with the supervision of the ritae of your pack. You also serve as the second-in-command to the Ductus. Consecrate the Vaulderie for new Sabbat, consult your tome for rites to aid your pack, and ensure the Sabbat live on in Caine's favor.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
@@ -23,7 +23,7 @@
 	name = "Sabbat Priest"
 	jobtype = /datum/job/vamp/sabbatpriest
 	l_pocket = /obj/item/vamp/phone
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
 /datum/outfit/job/sabbatpriest/pre_equip(mob/living/carbon/human/H)
