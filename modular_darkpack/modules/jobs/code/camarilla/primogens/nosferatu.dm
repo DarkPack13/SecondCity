@@ -17,9 +17,6 @@
 
 	outfit = /datum/outfit/job/nosferatu
 
-
-
-
 	display_order = JOB_DISPLAY_ORDER_NOSFERATU
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(

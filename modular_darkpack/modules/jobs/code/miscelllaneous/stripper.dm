@@ -6,15 +6,17 @@
 	spawn_positions = 4
 	supervisors = "the Camarilla or the Anarchs"
 
-
-
 	outfit = /datum/outfit/job/strip
-	antag_rep = 7
 
-	exp_required_type_department = EXP_TYPE_SERVICES
+	exp_required_type_department = EXP_TYPE_CLUB
 
 
 	display_order = JOB_DISPLAY_ORDER_STRIP
+	department_for_prefs = /datum/job_department/strip_club
+	departments_list = list(
+		/datum/job_department/strip_club
+	)
+
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 
 	description = "Offer strip club services to humans, undead or anything else that walks through the door."

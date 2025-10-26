@@ -17,13 +17,11 @@
 
 	outfit = /datum/outfit/job/malkav
 
-
-
-
 	display_order = JOB_DISPLAY_ORDER_MALKAVIAN
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
 		/datum/job_department/camarilla,
+		/datum/job_department/clinic,
 	)
 
 	job_flags = CITY_JOB_FLAGS

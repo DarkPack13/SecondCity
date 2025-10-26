@@ -17,9 +17,6 @@
 
 	outfit = /datum/outfit/job/ventrue
 
-
-
-
 	display_order = JOB_DISPLAY_ORDER_VENTRUE
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(

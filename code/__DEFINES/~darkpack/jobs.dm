@@ -44,6 +44,8 @@
 //Police
 
 //Clinic
+#define JOB_CLINIC_DIRECTOR "Clinic Director"
+#define JOB_DOCTOR "Doctor"
 
 //Church
 #define JOB_PRIEST "Priest"
@@ -116,6 +118,8 @@
 #define DEPARTMENT_CLINIC "Clinic"
 #define DEPARTMENT_BITFLAG_ANARCH (1<<5)
 #define DEPARTMENT_ANARCH "Anarch"
+#define DEPARTMENT_BITFLAG_STRIP_CLUB (1<<6)
+#define DEPARTMENT_STRIP_CLUB "Strip Club"
 
 
 DEFINE_BITFIELD(departments_bitflags, list(
@@ -125,6 +129,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
 	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
 	"ANARCH" = DEPARTMENT_BITFLAG_ANARCH,
+	"STRIP_CLUB" = DEPARTMENT_BITFLAG_STRIP_CLUB,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -136,8 +141,8 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
 #define SUPERVISOR_BARON "the Baron"
-#define SUPERVISOR_DIRECTOR "the Clinic Director"
-
+#define SUPERVISOR_CLINIC_DIRECTOR "the Clinic Director"
+#define SUPERVISOR_CLUB_DIRECTOR "the Strip Club Owner"
 
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 
@@ -157,6 +162,8 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_GIOVANNI "Giovanni Family"
 #define EXP_TYPE_TZIMISCE "Tzimisce Mansion"
 #define EXP_TYPE_CHURCH "Church"
+#define EXP_TYPE_CLUB "Strip Club"
+
 #define EXP_TYPE_PAINTED_CITY "Sept of the Painted City"
 #define EXP_TYPE_AMBERGLADE "Sept of the Amberglade"
 #define EXP_TYPE_SPIRAL "Hive of the Poisoned Shore"

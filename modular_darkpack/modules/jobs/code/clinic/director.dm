@@ -1,22 +1,23 @@
 
 /datum/job/vampire/clinic_director
 	title = JOB_CLINIC_DIRECTOR
-	department_head = list("Seneschal")
+	department_head = list("The City")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Camarilla or the Anarchs"
 	exp_required_type_department = EXP_TYPE_CLINIC
 
-	outfit = /datum/outfit/job/vdirector
+	outfit = /datum/outfit/job/clinic_director
 
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 	display_order = JOB_DISPLAY_ORDER_CLINICS_DIRECTOR
+	department_for_prefs = /datum/job_department/clinic
+	departments_list = list(
+		/datum/job_department/clinic,
+	)
 
-
-	description = "Keep Saint John's clinic up and running. Sell blood. Keep your human colleagues ignorant."
 	description = "Keep Saint John's clinic up and running. Collect blood by helping mortals at the Clinic."
-
+	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_KIASYD)
 
 /datum/outfit/job/clinic_director
@@ -37,7 +38,7 @@
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
 
-	skillchips = list(/obj/item/skillchip/entrails_reader, /obj/item/skillchip/quickcarry)
+	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /obj/effect/landmark/start/clinic_director
 	name = "Director"

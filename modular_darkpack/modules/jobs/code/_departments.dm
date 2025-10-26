@@ -53,3 +53,12 @@
 	display_order = 1
 	label_class = "axe_gang"
 	ui_color = "#a58866"
+
+/datum/job_department/strip_club
+	department_name = DEPARTMENT_STRIP_CLUB
+	department_bitflags = DEPARTMENT_BITFLAG_STRIP_CLUB
+	department_head = /datum/job/vampire/primogen_toreador
+	department_experience_type = EXP_TYPE_CLUB
+	display_order = 1
+	label_class = "strip_club"
+	ui_color = "#6691a5"
