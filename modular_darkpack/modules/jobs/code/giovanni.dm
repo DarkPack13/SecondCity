@@ -20,7 +20,6 @@
 
 	v_duty = "Pure blood runs through your veins and, with it, old power. Throughout your long life you have learnt to hold onto two things and never let go: money, and family."
 	minimal_masquerade = 0
-	experience_addition = 10
 	allowed_species = list("Vampire")
 	allowed_bloodlines = list("Giovanni", "Cappadocian")
 
@@ -66,7 +65,6 @@
 
 	v_duty = "Whether born or Embraced into the family, you are one of the Giovanni. Be you a necromancer, financier or lowly fledgling, remember that so long as you stand with your family, they too will stand with you."
 	minimal_masquerade = 0
-	experience_addition = 10
 	allowed_species = list("Vampire")
 	allowed_bloodlines = list("Giovanni", "Cappadocian")
 
@@ -115,7 +113,6 @@
 	allowed_species = list("Ghoul", "Human")
 	duty = "Your family is a strange one. Maybe you are strange too, because sitting next to your great uncles as an equal is something you are greatly interested in."
 	minimal_masquerade = 0
-	experience_addition = 10
 
 
 /datum/outfit/job/giovannimafia

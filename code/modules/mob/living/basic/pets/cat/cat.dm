@@ -153,12 +153,15 @@
 		return
 	update_appearance(UPDATE_ICON_STATE)
 
+// DARKPACK EDIT START
 /mob/living/basic/pet/cat/update_icon_state()
 	. = ..()
-	if (resting)
-		icon_state = "[icon_living]_rest"
-		return
-	icon_state = "[icon_living]"
+	if(stat != DEAD)
+		if(resting)
+			icon_state = "[icon_living]_rest"
+		else
+			icon_state = "[icon_living]"
+// DARKPACK EDIT END
 
 /mob/living/basic/pet/cat/proc/add_breeding_component()
 	var/static/list/partner_types = typecacheof(list(/mob/living/basic/pet/cat))
