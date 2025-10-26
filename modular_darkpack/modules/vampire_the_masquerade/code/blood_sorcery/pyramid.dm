@@ -469,7 +469,7 @@
 		message += "The blood is filled with traces of fae magic."
 	else if(clan == VAMPIRE_CLAN_GARGOYLE)
 		message += "The blood of our stone servants."
-	else if(clan == VAMPIRE_CLAN_FOLLOWERS_OF_SET)
+	else if(clan == VAMPIRE_CLAN_SETITE)
 		message += "Seduction and allure are in the blood. Ah, one of the snakes."
 	else
 		message += "The blood's origin is hard to trace. Perhaps it is one of the clanless?"
