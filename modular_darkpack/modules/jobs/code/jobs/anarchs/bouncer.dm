@@ -7,16 +7,7 @@
 	spawn_positions = 7
 	supervisors = "the Baron"
 
-
 	outfit = /datum/outfit/job/bruiser
-
-
-
-
-
-
-	mind_traits = list(TRAIT_DONUT_LOVER)
-
 
 	display_order = JOB_DISPLAY_ORDER_BRUISER
 
@@ -35,7 +26,7 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	l_pocket = /obj/item/vamp/phone/anarch
+	//l_pocket = /obj/item/vamp/phone/anarch
 	r_hand = /obj/item/melee/baseball_bat/vamp
 	backpack_contents = list(/obj/item/passport=1, /obj/item/cockclock=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
 

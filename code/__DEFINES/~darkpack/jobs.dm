@@ -34,7 +34,7 @@
 //Anarch
 #define JOB_BARON "Baron"
 #define JOB_TAPSTER "Bartender"
-
+#define JOB_BRUISER "Bruiser"
 
 //Tzimisce
 #define JOB_BOGATYR "Bogatyr"
