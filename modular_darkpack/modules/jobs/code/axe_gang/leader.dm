@@ -11,9 +11,9 @@
 	display_order = JOB_DISPLAY_ORDER_AXE_LEADER
 	exp_required_type_department = EXP_TYPE_GANG
 
-	known_contacts = list("Prince","Seneschal", "Sheriff", "Baron")
-	allowed_species = list("Kuei-Jin", "Human")
-	species_slots = list("Human" = 1, "Kuei-Jin" = 1)
+	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
+	allowed_species = list(SPECIES_HUMAN)
+	species_slots = list(SPECIES_HUMAN = 1)
 
 	description = "You lead a particular group, known as the Axe Gang, with the assistance of an enigmatic partner. You may understand the true identity of your co-conspirators, or not. Either way, they respect the position your co-leader and you hold."
 	minimal_masquerade = 0

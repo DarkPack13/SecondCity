@@ -112,6 +112,10 @@
 #define DEPARTMENT_CAMARILLA "Camarilla"
 #define DEPARTMENT_BITFLAG_CHURCH (1<<3)
 #define DEPARTMENT_CHURCH "Church"
+#define DEPARTMENT_BITFLAG_CLINIC (1<<4)
+#define DEPARTMENT_CLINIC "Clinic"
+#define DEPARTMENT_BITFLAG_ANARCH (1<<5)
+#define DEPARTMENT_ANARCH "Anarch"
 
 
 DEFINE_BITFIELD(departments_bitflags, list(
@@ -119,6 +123,8 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"PRINCE" = DEPARTMENT_BITFLAG_PRINCE,
 	"CAMARILLA" = DEPARTMENT_BITFLAG_CAMARILLA,
 	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
+	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
+	"ANARCH" = DEPARTMENT_BITFLAG_ANARCH,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -130,6 +136,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
 #define SUPERVISOR_BARON "the Baron"
+#define SUPERVISOR_DIRECTOR "the Clinic Director"
 
 
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"

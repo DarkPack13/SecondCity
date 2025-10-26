@@ -30,8 +30,17 @@
 /datum/job_department/clinic
 	department_name = DEPARTMENT_CLINIC
 	department_bitflags = DEPARTMENT_BITFLAG_CLINIC
-	department_head =/datum/job/vampire/primogen_malkavian
+	department_head = /datum/job/vampire/primogen_malkavian
 	department_experience_type = EXP_TYPE_CLINIC
 	display_order = 1
-	label_class = "camarilla"
+	label_class = "clinic"
 	ui_color = "#6681a5"
+
+/datum/job_department/anarch
+	department_name = DEPARTMENT_ANARCH
+	department_bitflags = DEPARTMENT_BITFLAG_ANARCH
+	department_head = /datum/job/vampire/baron
+	department_experience_type = EXP_TYPE_ANARCH
+	display_order = 1
+	label_class = "clinic"
+	ui_color = "#a56666"

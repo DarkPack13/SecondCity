@@ -1,6 +1,5 @@
 /datum/job/vampire/tapster
 	title = JOB_TAPSTER
-	description = "You are a bartender of the local biker hangout. Serve the eclectic clients that pass through, and try not to ask too many questions."
 	department_head = /datum/job/vampire/baron
 	faction = FACTION_ANARCHS
 	total_positions = 2
@@ -11,9 +10,15 @@
 	outfit = /datum/outfit/job/tapster
 
 	display_order = JOB_DISPLAY_ORDER_TAPSTER
+	department_for_prefs = /datum/job_department/anarch
+	departments_list = list(
+		/datum/job_department/anarch,
+	)
+
 	known_contacts = list("Baron", "Bouncer", "Emissary", "Sweeper")
 	allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL)
 	species_slots = list(SPECIES_HUMAN = 2, SPECIES_GHOUL = 2)
+	description = "You are a bartender of the local biker hangout. Serve the eclectic clients that pass through, and try not to ask too many questions."
 	minimal_masquerade = 0
 
 /datum/outfit/job/tapster
