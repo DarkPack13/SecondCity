@@ -10,6 +10,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_AXE_LEADER
 	exp_required_type_department = EXP_TYPE_GANG
+	department_for_prefs = /datum/job_department/axe_gang
+	departments_list = list(
+		/datum/job_department/axe_gang,
+	)
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
 	allowed_species = list(SPECIES_HUMAN)

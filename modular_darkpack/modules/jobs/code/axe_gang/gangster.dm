@@ -10,6 +10,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_AXE_GANGSTER
 	exp_required_type_department = EXP_TYPE_GANG
+	department_for_prefs = /datum/job_department/axe_gang
+	departments_list = list(
+		/datum/job_department/axe_gang,
+	)
 
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 	allowed_clans = list(VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_NAGARAJA)

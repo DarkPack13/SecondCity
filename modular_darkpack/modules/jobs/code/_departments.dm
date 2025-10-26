@@ -44,3 +44,12 @@
 	display_order = 1
 	label_class = "clinic"
 	ui_color = "#a56666"
+
+/datum/job_department/axe_gang
+	department_name = DEPARTMENT_AXE_GANG
+	department_bitflags = DEPARTMENT_BITFLAG_AXE_GANG
+	department_head = /datum/job/vampire/axe_leader
+	department_experience_type = EXP_TYPE_GANG
+	display_order = 1
+	label_class = "axe_gang"
+	ui_color = "#a58866"
