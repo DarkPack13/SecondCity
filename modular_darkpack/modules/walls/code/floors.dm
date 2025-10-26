@@ -360,10 +360,10 @@
 	name = "goop"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "acid"
-	baseturfs = /turf/open/water/acid/vamp
 	light_color = "#1b7c4c"
 	light_range = 1
 	light_power = 0.5
+	baseturfs = /turf/open/water/acid/vamp
 
 /turf/open/water/acid/vamp/Entered(atom/movable/AM)
 	if(acid_burn(AM))
@@ -383,6 +383,9 @@
 	name = "blood"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "blood"
+	light_color = COLOR_MAROON
+	light_range = 1
+	light_power = 0.5
 	baseturfs = /turf/open/water/bloodwave
 	immerse_overlay = "immerse_deep"
 	is_swimming_tile = TRUE
@@ -392,8 +395,6 @@
 	COOLDOWN_DECLARE(wave_cooldown)
 
 /turf/open/water/bloodwave/Initialize(mapload, dir_to_remove)
-	. = ..()
-	set_light(1, 0.5, COLOR_MAROON)
 	if(mapload)
 		return
 	START_PROCESSING(SSsupermatter_cascade, src)
