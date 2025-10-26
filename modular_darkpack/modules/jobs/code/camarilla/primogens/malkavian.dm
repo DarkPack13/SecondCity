@@ -1,4 +1,4 @@
-/datum/job/vamp/primogen_malkavian
+/datum/job/vampire/primogen_malkavian
 	title = JOB_PRIMOGEN_MALKAVIAN
 	description = "Offer your infinite knowledge to Prince of the City. You likely have a hold over the local hospital, make good use of it and ensure the blood bags remain available."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -38,7 +38,7 @@
 
 /datum/outfit/job/malkav
 	name = "Primogen Malkavian"
-	jobtype = /datum/job/vamp/primogen_malkavian
+	jobtype = /datum/job/vampire/primogen_malkavian
 
 	//ears = /obj/item/p25radio
 	id = /obj/item/card/primogen

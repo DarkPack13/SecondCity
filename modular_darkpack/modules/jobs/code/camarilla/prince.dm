@@ -17,16 +17,11 @@
 
 	outfit = /datum/outfit/job/prince
 
-
-
-
 	display_order = JOB_DISPLAY_ORDER_PRINCE
 	department_for_prefs = /datum/job_department/prince
 	departments_list = list(
 		/datum/job_department/camarilla,
 	)
-
-	job_flags = CITY_JOB_FLAGS
 
 	minimal_generation = 10
 	minimum_vampire_age = 75

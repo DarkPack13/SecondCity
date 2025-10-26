@@ -23,8 +23,6 @@
 		/datum/job_department/camarilla,
 	)
 
-	job_flags = CITY_JOB_FLAGS
-
 	minimal_generation = 12
 	minimal_masquerade = 5
 	allowed_species = list(SPECIES_KINDRED)

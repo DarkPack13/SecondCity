@@ -1,4 +1,4 @@
-/datum/job/vamp/banu
+/datum/job/vampire/banu
 	title = JOB_BARISTA
 	faction = FACTION_CITY
 	total_positions = 12
@@ -16,7 +16,7 @@
 
 /datum/outfit/job/banu
 	name = "banu"
-	jobtype = /datum/job/vamp/banu
+	jobtype = /datum/job/vampire/banu
 	l_pocket = /obj/item/vamp/phone
 	id = /obj/item/watch
 	backpack_contents = list(

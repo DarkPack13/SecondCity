@@ -1,5 +1,5 @@
 //THE HARPY
-/datum/job/vamp/harpy
+/datum/job/vampire/harpy
 	title =  JOB_HARPY
 	description = "You are an expert on the nightlife of Cainite society. Acting as one of the chief advisors on all things related to boons and diplomacy, the Prince defers quite the amount of judgement to you. Don't squander it."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -8,6 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_PRINCE
+	config_tag = "HARPY"
 
 	req_admin_notify = 1
 	minimal_player_age = 10
@@ -18,14 +19,11 @@
 
 	outfit = /datum/outfit/job/harpy
 
-
-
-
-
-
 	display_order = JOB_DISPLAY_ORDER_HARPY
-
-	job_flags = CITY_JOB_FLAGS
+	department_for_prefs = /datum/job_department/camarilla
+	departments_list = list(
+		/datum/job_department/camarilla,
+	)
 
 	minimal_generation = 12	//Uncomment when players get exp enough
 	minimal_masquerade = 5
@@ -38,7 +36,7 @@
 
 /datum/outfit/job/harpy
 	name = "Harpy"
-	jobtype = /datum/job/vamp/harpy
+	jobtype = /datum/job/vampire/harpy
 
 	ears = /obj/item/p25radio
 	id = /obj/item/card/clerk/harpy

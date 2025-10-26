@@ -25,4 +25,13 @@
 	department_experience_type = EXP_TYPE_CHURCH
 	display_order = 1
 	label_class = "camarilla"
+	ui_color = "#8c66a5"
+
+/datum/job_department/clinic
+	department_name = DEPARTMENT_CLINIC
+	department_bitflags = DEPARTMENT_BITFLAG_CLINIC
+	department_head =/datum/job/vampire/primogen_malkavian
+	department_experience_type = EXP_TYPE_CLINIC
+	display_order = 1
+	label_class = "camarilla"
 	ui_color = "#6681a5"

@@ -17,16 +17,11 @@
 
 	outfit = /datum/outfit/job/clerk
 
-
-
-
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
 		/datum/job_department/camarilla,
 	)
-
-	job_flags = CITY_JOB_FLAGS
 
 	minimal_generation = 12
 	minimal_masquerade = 5

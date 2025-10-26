@@ -1,4 +1,4 @@
-/datum/job/vamp/sabbatductus
+/datum/job/vampire/sabbatductus
 	title = "Sabbat Ductus"
 	faction = "Vampire"
 	total_positions = 1
@@ -22,7 +22,7 @@
 
 /datum/outfit/job/sabbatductus
 	name = "Sabbat Ductus"
-	jobtype = /datum/job/vamp/sabbatductus
+	jobtype = /datum/job/vampire/sabbatductus
 	l_pocket = /obj/item/vamp/phone
 	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat

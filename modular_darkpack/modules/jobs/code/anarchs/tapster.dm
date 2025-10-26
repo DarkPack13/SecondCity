@@ -1,4 +1,4 @@
-/datum/job/vamp/tapster
+/datum/job/vampire/tapster
 	title = JOB_TAPSTER
 	description = "You are a bartender of the local biker hangout. Serve the eclectic clients that pass through, and try not to ask too many questions."
 	department_head = /datum/job/vampire/baron
@@ -18,7 +18,7 @@
 
 /datum/outfit/job/tapster
 	name = "Tapster"
-	jobtype = /datum/job/vamp/tapster
+	jobtype = /datum/job/vampire/tapster
 
 	//ears = /obj/item/p25radio
 	id = /obj/item/card/tapster

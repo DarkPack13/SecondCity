@@ -1,4 +1,4 @@
-/datum/job/vamp/primogen_ventrue
+/datum/job/vampire/primogen_ventrue
 	title = JOB_PRIMOGEN_VENTRUE
 	description = "Offer your infinite knowledge to Prince of the City. Maintain the local Jazz Club, in front of the Tower, and its Elysium."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -38,7 +38,7 @@
 
 /datum/outfit/job/ventrue
 	name = "Primogen Ventrue"
-	jobtype = /datum/job/vamp/primogen_ventrue
+	jobtype = /datum/job/vampire/primogen_ventrue
 
 	//ears = /obj/item/p25radio
 	id = /obj/item/card/primogen

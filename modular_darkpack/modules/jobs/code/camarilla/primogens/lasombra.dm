@@ -1,4 +1,4 @@
-/datum/job/vamp/primogen_lasombra
+/datum/job/vampire/primogen_lasombra
 	title = JOB_PRIMOGEN_LASOMBRA
 	description = "Offer your infinite knowledge to Prince of the City. Monitor those of your Clan and your lesser cousins, while holding a Court of Blood as need be, for all it takes for the Camarilla to turn on you is one mistake. You and Your Clan were given a domain in the local Church and in the vicinity of a swarm of Lupines, keep matters under control."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -36,7 +36,7 @@
 
 /datum/outfit/job/lasombraprim
 	name = "Primogen Lasombra"
-	jobtype = /datum/job/vamp/primogen_lasombra
+	jobtype = /datum/job/vampire/primogen_lasombra
 
 	//ears = /obj/item/p25radio
 	id = /obj/item/card/primogen

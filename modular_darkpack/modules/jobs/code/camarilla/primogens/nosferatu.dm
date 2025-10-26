@@ -1,4 +1,4 @@
-/datum/job/vamp/primogen_nosferatu
+/datum/job/vampire/primogen_nosferatu
 	title = JOB_PRIMOGEN_NOSFERATU
 	description = "Offer your infinite knowledge to Prince of the City, and run the warren, your domain watches over the sewers."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -38,7 +38,7 @@
 
 /datum/outfit/job/nosferatu
 	name = "Primogen Nosferatu"
-	jobtype = /datum/job/vamp/primogen_nosferatu
+	jobtype = /datum/job/vampire/primogen_nosferatu
 
 	//ears = /obj/item/p25radio
 	id = /obj/item/card/primogen
