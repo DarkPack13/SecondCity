@@ -224,14 +224,12 @@ LOW_WALL_HELPER(vampwall/low)
 /turf/closed/wall/vampwall/painted
 	name = "painted brick wall"
 	desc = "A huge chunk of painted bricks used to separate rooms."
-	icon_state = "painted-0"
-	base_icon_state = "painted"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/painted/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/painted/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/painted)
-/turf/closed/wall/vampwall/painted/low/window
-	icon_state = "painted-window"
-/turf/closed/wall/vampwall/painted/low/window/reinforced
-	icon_state = "painted-reinforced"
+/turf/closed/wall/vampwall/painted/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/painted/low_wall.dmi'
 
 /turf/closed/wall/vampwall/rich/old
 	name = "old rich-looking wall"
