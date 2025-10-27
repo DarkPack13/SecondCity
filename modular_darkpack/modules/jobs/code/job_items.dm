@@ -1,44 +1,3 @@
-/obj/item/card/hunter
-	COOLDOWN_DECLARE(detonation_timer)
-
-/obj/item/card/hunter/attack_self(mob/user)
-	. = ..()
-	if(!COOLDOWN_FINISHED(src, detonation_timer))
-		return
-	if(!user.mind)
-		return
-	if(user.mind.holy_role != HOLY_ROLE_PRIEST)
-		return
-	COOLDOWN_START(src, detonation_timer, 30 SECONDS)
-	do_sparks(rand(5, 9), FALSE, user)
-	playsound(user.loc, 'modular_darkpack/modules/deprecated/sounds/cross.ogg', 100, FALSE, 8, 0.9)
-	for(var/mob/living/M in get_hearers_in_view(4, src))
-		bang(get_turf(src), M, user)
-
-/obj/item/card/hunter/proc/bang(turf/turf, mob/living/living_mob, mob/living/user)
-	if(living_mob.stat == DEAD) //They're dead!
-		return
-	living_mob.show_message(span_warning(span_bold("GOD SEES YOU!")), MSG_AUDIBLE)
-
-	if(HAS_TRAIT(living_mob, TRAIT_REPELLED_BY_HOLINESS))
-		living_mob.emote("scream")
-		living_mob.pointed(user)
-
-	var/distance = max(0, get_dist(get_turf(src), turf))
-	if(living_mob.flash_act(affect_silicon = 1))
-		living_mob.Paralyze(max(10/max(1, distance), 5))
-		living_mob.Knockdown(max(100/max(1, distance), 40))
-
-/obj/item/card/hunter/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		return
-	if(!COOLDOWN_FINISHED(src, detonation_timer))
-		return
-	if(HAS_TRAIT(target, TRAIT_REPELLED_BY_HOLINESS))
-		COOLDOWN_START(src, detonation_timer, 30 SECONDS)
-		lightningbolt(target)
-		to_chat(target, span_userdanger("The gods have punished you for your sins!"))
 
 /obj/item/card/prince
 	name = "leader badge"
@@ -251,6 +210,47 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id11"
+	COOLDOWN_DECLARE(detonation_timer)
+
+/obj/item/card/hunter/attack_self(mob/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, detonation_timer))
+		return
+	if(!user.mind)
+		return
+	if(user.mind.holy_role != HOLY_ROLE_PRIEST)
+		return
+	COOLDOWN_START(src, detonation_timer, 30 SECONDS)
+	do_sparks(rand(5, 9), FALSE, user)
+	playsound(user.loc, 'modular_darkpack/modules/deprecated/sounds/cross.ogg', 100, FALSE, 8, 0.9)
+	for(var/mob/living/M in get_hearers_in_view(4, src))
+		bang(get_turf(src), M, user)
+
+/obj/item/card/hunter/proc/bang(turf/turf, mob/living/living_mob, mob/living/user)
+	if(living_mob.stat == DEAD) //They're dead!
+		return
+	living_mob.show_message(span_warning(span_bold("GOD SEES YOU!")), MSG_AUDIBLE)
+
+	if(HAS_TRAIT(living_mob, TRAIT_REPELLED_BY_HOLINESS))
+		living_mob.emote("scream")
+		living_mob.pointed(user)
+
+	var/distance = max(0, get_dist(get_turf(src), turf))
+	if(living_mob.flash_act(affect_silicon = 1))
+		living_mob.Paralyze(max(10/max(1, distance), 5))
+		living_mob.Knockdown(max(100/max(1, distance), 40))
+
+/obj/item/card/hunter/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		return
+	if(!COOLDOWN_FINISHED(src, detonation_timer))
+		return
+	if(HAS_TRAIT(target, TRAIT_REPELLED_BY_HOLINESS))
+		COOLDOWN_START(src, detonation_timer, 30 SECONDS)
+		lightningbolt(target)
+		to_chat(target, span_userdanger("The gods have punished you for your sins!"))
+
 
 // POLICE
 /obj/item/card/police
