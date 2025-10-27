@@ -6,7 +6,7 @@
 	supervisors = /datum/job/vampire/primogen_toreador
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/club_worker
-
+	config_tag = "CLUB_WORKER"
 	display_order = JOB_DISPLAY_ORDER_STRIP
 	exp_required_type_department = EXP_TYPE_CLUB
 	department_for_prefs = /datum/job_department/strip_club

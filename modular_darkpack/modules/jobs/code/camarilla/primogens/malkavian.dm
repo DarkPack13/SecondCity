@@ -37,7 +37,7 @@
 	jobtype = /datum/job/vampire/primogen_malkavian
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/primogen
+	id = /obj/item/card/id/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/primogen_malkavian
 	suit = /obj/item/clothing/suit/vampire/trench/malkav
@@ -45,4 +45,4 @@
 	head = /obj/item/clothing/head/vampire/malkav
 	//l_pocket = /obj/item/vamp/phone/malkavian_primo
 	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	//backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/id/whip, /obj/item/card/id/steward, /obj/item/card/id/myrmidon)

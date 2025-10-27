@@ -31,7 +31,7 @@
 	jobtype = /datum/job/vampire/axe_leader
 	uniform = /obj/item/clothing/under/vampire/suit
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	id = /obj/item/card/dealer
+	id = /obj/item/card/id/dealer
 	//l_pocket = /obj/item/vamp/phone/axe_leader
 	r_pocket = /obj/item/vamp/keys/axes
 	backpack_contents = list(/obj/item/vamp/keys/supply, /obj/item/flashlight=1, /obj/item/watch=1, /obj/item/passport=1, /obj/item/card/credit/rich=1, /obj/item/hatchet)

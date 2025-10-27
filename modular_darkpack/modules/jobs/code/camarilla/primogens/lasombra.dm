@@ -37,14 +37,14 @@
 	jobtype = /datum/job/vampire/primogen_lasombra
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/primogen
+	id = /obj/item/card/id/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/turtleneck_black
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	//l_pocket = /obj/item/vamp/phone/lasombra_primo
 	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1,/obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1,/obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/id/whip, /obj/item/card/id/steward, /obj/item/card/id/myrmidon)
 
 /obj/effect/landmark/start/primogen_lasombra
 	name = "Primogen Lasombra"

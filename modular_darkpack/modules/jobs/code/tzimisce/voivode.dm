@@ -26,7 +26,7 @@
 /datum/outfit/job/voivode
 	name = "Voivode"
 	jobtype = /datum/job/vampire/voivode
-	id = /obj/item/card/voivode
+	id = /obj/item/card/id/voivode
 	//glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/voivode
 	suit = /obj/item/clothing/suit/vampire/trench/voivode

@@ -23,7 +23,7 @@
 	name = "Graveyard Keeper"
 	jobtype = /datum/job/vampire/graveyard
 
-	id = /obj/item/card/graveyard
+	id = /obj/item/card/id/graveyard
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/vampire/graveyard

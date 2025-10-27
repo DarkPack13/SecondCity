@@ -24,7 +24,7 @@
 /datum/outfit/job/zadruga
 	name = "zadruga"
 	jobtype = /datum/job/vampire/zadruga
-	id = /obj/item/card/bogatyr
+	id = /obj/item/card/id/bogatyr
 	glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/bogatyr
 	suit = /obj/item/clothing/suit/vampire/jacket/punk
