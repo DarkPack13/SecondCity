@@ -652,10 +652,10 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "sb" = (
-/turf/closed/wall/vampwall,
+/turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
 "se" = (
-/turf/closed/wall/vampwall,
+/turf/closed/wall/vampwall/brick_old,
 /area/vtm)
 "sg" = (
 /obj/structure/table/reinforced,

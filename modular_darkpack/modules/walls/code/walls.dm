@@ -57,6 +57,7 @@
 	icon = 'modular_darkpack/modules/walls/icons/walls.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
+	abstract_type = /turf/closed/wall/vampwall
 	opacity = TRUE
 	density = TRUE
 	smoothing_flags = SMOOTH_BITMASK
@@ -179,6 +180,14 @@ LOW_WALL_HELPER(vampwall/rich)
 LOW_WALL_HELPER(vampwall/rich/old)
 /turf/closed/wall/vampwall/rich/old/low
 	icon = 'icons/obj/smooth_structures/darkpack/wall/rich_old/low_wall.dmi'
+
+/turf/closed/wall/vampwall/brick_old
+	icon = 'icons/obj/smooth_structures/darkpack/wall/brick_old/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/brick_old/frill.dmi'
+
+LOW_WALL_HELPER(vampwall/brick_old)
+/turf/closed/wall/vampwall/brick_old/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/brick_old/low_wall.dmi'
 
 /turf/closed/wall/vampwall/junk
 	name = "junk brick wall"
