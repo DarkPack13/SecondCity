@@ -10,7 +10,7 @@
 	outfit = /datum/outfit/job/graveyard
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GRAVEYARD
-
+	department_for_prefs = /datum/job_department/citizen
 	description = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."
 	minimal_masquerade = 0
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL)
