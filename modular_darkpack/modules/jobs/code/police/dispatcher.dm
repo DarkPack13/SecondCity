@@ -9,7 +9,6 @@
 
 	outfit = /datum/outfit/job/dispatcher
 
-
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
 
