@@ -38,7 +38,6 @@
 	)
 	color = "#bd3327"
 
-
 /obj/item/vamp/keys/sheriff
 	name = "sheriff's keys"
 	accesslocks = list(
@@ -72,6 +71,16 @@
 		"camarilla",
 		"millenium_delivery",
 	)
+	color = "#bd3327"
+
+/obj/item/vamp/keys/camarilla/ghoul
+	name = "Millenium Tower Employee keys"
+	accesslocks = list(
+		"milleniumCommon",
+		"clerk",
+		"camarilla"
+	)
+	color = "#bd3327"
 
 /obj/item/vamp/keys/archive
 	name = "archive keys"

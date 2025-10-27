@@ -367,6 +367,7 @@ export function JobsPage() {
                 <Department department="Clinic"/>
                 <Department department="Strip Club" />
                 <Department department="Axe Gang" />
+                <Department department="Police" />
               </Stack>
             </Stack.Item>
             <Stack.Item>
@@ -376,6 +377,7 @@ export function JobsPage() {
                 <Department department="Manor" />
                 <Department department="Sabbat" />
                 <Department department="Citizen" />
+                <Department department="City Services" />
               </Stack>
             </Stack.Item>
             {

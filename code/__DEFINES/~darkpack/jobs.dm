@@ -194,7 +194,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_POLICE_CHIEF_AND_SERGEANT "the Police Chief and Sergeant"
 #define SUPERVISOR_CAMARILLA "the Camarilla"
 #define SUPERVISOR_REGENT "the Regent"
-
+#define SUPERVISOR_SENESCHAL_PUBLIC "the COO"
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 
 // Playtime tracking system, see jobs_exp.dm

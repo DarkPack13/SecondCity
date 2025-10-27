@@ -88,6 +88,22 @@
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id1"
 
+/obj/item/card/clerk/harpy
+	name = "public relations manager badge"
+	desc = "A badge which denotes the wearer as a PR Manager of Transamerica."
+
+/obj/item/card/tower_employee
+	name = "Millenium Tower Employee ID"
+	desc = "An ID showing employment with the Millenium Tower - Maybe they give you free donuts."
+	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
+	icon_state = "id2"
+	inhand_icon_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	worn_icon_state = "id2"
+
 /obj/item/card/bruiser
 	name = "bruiser badge"
 	desc = "A badge which shows grit."
