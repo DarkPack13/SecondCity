@@ -79,7 +79,7 @@
 	department_experience_type = EXP_TYPE_POLICE
 	display_order = 1
 	label_class = "police"
-	ui_color = "#2e1781ff"
+	ui_color = "#574b85ff"
 
 /datum/job_department/sabbat
 	department_name = DEPARTMENT_SABBAT
