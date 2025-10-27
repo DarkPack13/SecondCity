@@ -4,20 +4,14 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "Caine"
-	selection_color = "#7B0000"
-	access = list()
-	minimal_access = list()
+
 	outfit = /datum/outfit/job/sabbatpack
-	allowed_species = list("Vampire")
+
+	allowed_species = list(SPECIES_KINDRED)
 	exp_required_type_department = EXP_TYPE_SABBAT
-	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
-	paycheck_department = ACCOUNT_CIV
 
-	access = list(ACCESS_MAINT_TUNNELS)
-	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
-	v_duty = "You are a member of the Sabbat. You are charged with rebellion against the Elders and the Camarilla, against the Jyhad, against the Masquerade and the Traditions, and the recognition of Caine as the true Dark Father of all Kindred kind.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
-	duty = "Down with the Camarilla. Down with the Elders. Down with the Jyhad! The Kindred are the true rulers of Earth, blessed by Caine, the Dark Father."
+	description = "You are a member of the Sabbat. You are charged with rebellion against the Elders and the Camarilla, against the Jyhad, against the Masquerade and the Traditions, and the recognition of Caine as the true Dark Father of all Kindred kind.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
 	minimal_masquerade = 0
 	allowed_bloodlines = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophony", "True Brujah", "Nagaraja", "Caitiff")
 	display_order = JOB_DISPLAY_ORDER_SABBATPACK

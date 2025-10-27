@@ -42,6 +42,7 @@
 #define JOB_BOGATYR "Bogatyr"
 
 //Police
+#define JOB_EMERGENCY_DISPATCHER "Emergency Dispatcher"
 
 //Clinic
 #define JOB_CLINIC_DIRECTOR "Clinic Director"
@@ -50,6 +51,10 @@
 //Church
 #define JOB_PRIEST "Priest"
 
+//Giovanni
+#define JOB_CAPO "Capo"
+#define JOB_LA_SQUADRA "La Squadra"
+#define JOB_LA_FAMIGLIA "La Famiglia"
 
 #define JOB_DISPLAY_ORDER_CITIZEN 1
 #define JOB_DISPLAY_ORDER_VETERINARIAN 2
@@ -122,7 +127,8 @@
 #define DEPARTMENT_STRIP_CLUB "Strip Club"
 #define DEPARTMENT_BITFLAG_AXE_GANG (1<<7)
 #define DEPARTMENT_AXE_GANG "Axe Gang"
-
+#define DEPARTMENT_BITFLAG_GIOVANNI (1<<8)
+#define DEPARTMENT_GIOVANNI "Giovanni"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -133,6 +139,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"ANARCH" = DEPARTMENT_BITFLAG_ANARCH,
 	"STRIP_CLUB" = DEPARTMENT_BITFLAG_STRIP_CLUB,
 	"AXE_GANG" = DEPARTMENT_BITFLAG_AXE_GANG,
+	"GIOVANNI" = DEPARTMENT_BITFLAG_GIOVANNI,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.

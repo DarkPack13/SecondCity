@@ -1,4 +1,3 @@
-
 /datum/job/vampire/clinic_director
 	title = JOB_CLINIC_DIRECTOR
 	department_head = list("The City")
@@ -7,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the Camarilla or the Anarchs"
 	exp_required_type_department = EXP_TYPE_CLINIC
-
+	config_tag = "CLINIC_DIRECTOR"
 	outfit = /datum/outfit/job/clinic_director
 
 	display_order = JOB_DISPLAY_ORDER_CLINICS_DIRECTOR

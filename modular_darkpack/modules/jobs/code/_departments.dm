@@ -62,3 +62,12 @@
 	display_order = 1
 	label_class = "strip_club"
 	ui_color = "#a566a5ff"
+
+/datum/job_department/giovanni
+	department_name = DEPARTMENT_GIOVANNI
+	department_bitflags = DEPARTMENT_BITFLAG_GIOVANNI
+	department_head = /datum/job/vampire/capo
+	department_experience_type = EXP_TYPE_GIOVANNI
+	display_order = 1
+	label_class = "giovanni"
+	ui_color = "#66a569ff"
