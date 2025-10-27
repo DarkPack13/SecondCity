@@ -111,4 +111,3 @@
 /datum/job_department/city_services
 	department_name = DEPARTMENT_CITY_SERVICES
 	department_bitflags = DEPARTMENT_BITFLAG_CITY_SERVICES
-	// Don't add department_head! citizens names should not be in bold.

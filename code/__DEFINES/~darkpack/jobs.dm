@@ -159,6 +159,8 @@
 #define DEPARTMENT_CHANTRY "Chantry"
 #define DEPARTMENT_BITFLAG_MANOR (1<<12)
 #define DEPARTMENT_MANOR "Manor"
+#define DEPARTMENT_BITFLAG_CITY_SERVICES (1<<13)
+#define DEPARTMENT_CITY_SERVICES "City Services"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -174,6 +176,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"SABBAT" = DEPARTMENT_BITFLAG_SABBAT,
 	"CHANTRY" = DEPARTMENT_BITFLAG_CHANTRY,
 	"MANOR" = DEPARTMENT_BITFLAG_MANOR,
+	"CITY_SERVICES" = DEPARTMENT_BITFLAG_CITY_SERVICES,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
