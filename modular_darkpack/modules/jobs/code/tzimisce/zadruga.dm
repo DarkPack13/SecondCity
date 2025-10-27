@@ -1,6 +1,6 @@
 /datum/job/vampire/zadruga
 	title = JOB_ZADRUGA
-	department_head = list("Voivode")
+	department_head = /datum/job/vampire/voivode
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
