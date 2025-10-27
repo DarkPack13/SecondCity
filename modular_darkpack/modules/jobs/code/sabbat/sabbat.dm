@@ -35,7 +35,7 @@
 	name = "Sabbatist"
 	roundend_category = "sabbattites"
 	antagpanel_category = FACTION_SABBAT
-	job_rank = ROLE_SABBAT
+	pref_flag = ROLE_SABBAT
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
 

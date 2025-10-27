@@ -75,7 +75,7 @@
 	name = "National Guard"
 	roundend_category = "national guard"
 	antagpanel_category = "National Guard"
-	job_rank = ROLE_NATIONAL_GUARD
+	pref_flag = ROLE_NATIONAL_GUARD
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
@@ -367,45 +367,3 @@
 	parts += text
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
-
-
-
-
-//////////////////////////////////////////////
-//                                          //
-//       NATIONAL GUARD SQUAD (MIDROUND)    //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/midround/from_ghosts/national_guard
-	name = "National Guard Squad"
-	antag_flag = ROLE_NATIONAL_GUARD
-	antag_datum = /datum/antagonist/national_guard
-	required_candidates = 1
-	weight = 5
-	cost = 35
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
-	var/datum/team/national_guard/national_guard_team
-	flags = HIGHLANDER_RULESET
-
-/datum/dynamic_ruleset/midround/from_ghosts/national_guard/acceptable(population=0, threat=0)
-	indice_pop = min(operative_cap.len, round(living_players.len/5)+1)
-	required_candidates = max(5, operative_cap[indice_pop])
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/national_guard/ready(forced = FALSE)
-	if (required_candidates > (dead_players.len + list_observers.len))
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/national_guard/finish_setup(mob/new_character, index)
-	new_character.mind.special_role = "National Guard"
-	new_character.mind.assigned_role = "National Guard"
-	if (index == 1) // Our first guy is the leader
-		var/datum/antagonist/national_guard/sergeant/new_role = new
-		national_guard_team = new_role.national_guard_team
-		new_character.mind.add_antag_datum(new_role)
-	else
-		return ..()
-

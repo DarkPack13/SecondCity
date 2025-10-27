@@ -1,6 +1,6 @@
 /datum/outfit/job/swat
 	name = "Swat Officer"
-	ears = /obj/item/p25radio/police/tactical
+	//ears = /obj/item/p25radio/police/tactical
 	uniform = /obj/item/clothing/under/vampire/police/utility
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
@@ -12,7 +12,7 @@
 	id = /obj/item/card/police
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 4,
-		/obj/item/radio/cop = 1,
+		///obj/item/radio/cop = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)
@@ -51,7 +51,7 @@
 	name = "Swat Officer"
 	roundend_category = "Swat"
 	antagpanel_category = "Swat"
-	job_rank = ROLE_SWAT
+	pref_flag = ROLE_SWAT
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
@@ -68,8 +68,6 @@
 /datum/antagonist/swat/on_gain()
 	randomize_appearance()
 	forge_objectives()
-	add_antag_hud(ANTAG_HUD_OPS, "synd", owner.current)
-	owner.special_role = src
 	equip_swat()
 	give_alias()
 	return ..()
@@ -77,7 +75,6 @@
 /datum/antagonist/swat/on_removal()
 	..()
 	to_chat(owner.current,span_userdanger("You are no longer in the Special Weapons and Tactics squad!"))
-	owner.special_role = null
 
 /datum/antagonist/swat/greet()
 	to_chat(owner.current, span_alertsyndie("You're in the Special Weapons and Tactics squad."))
@@ -97,7 +94,7 @@
 	var/my_surname = pick(GLOB.last_names)
 	owner.current.fully_replace_character_name(null,"[selected_rank] [my_name] [my_surname]")
 
-/datum/antagonist/swat/proc/forge_objectives()
+/datum/antagonist/swat/forge_objectives()
 	spawn(2 SECONDS)
 	if(swat_team)
 		objectives |= swat_team.objectives
@@ -262,7 +259,7 @@
 	H.name = H.real_name
 	H.dna.real_name = H.real_name
 	H.gender = pick(MALE, FEMALE)
-	H.body_type = H.gender
+	H.physique = H.gender
 	H.age = rand(18, 36)
 
 	H.set_haircolor(pick(h_gen.hair_colors))
@@ -270,7 +267,7 @@
 	if(H.gender == MALE)
 		H.set_hairstyle(pick(h_gen.male_hair))
 		if(prob(25) || H.age >= 25)
-			H.set_faical_hairstyle(pick(h_gen.male_facial))
+			H.set_facial_hairstyle(pick(h_gen.male_facial))
 		else
 			H.set_facial_hairstyle("Shaved")
 	else
@@ -280,8 +277,9 @@
 	H.set_eye_color(random_eye_color())
 
 	H.underwear = random_underwear(H.gender)
-	if(prob(50))
-		H.underwear_color = organ_eyes.eye_color
+	var/obj/item/organ/eyes/organ_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
+	if(organ_eyes)
+		H.underwear_color = organ_eyes.eye_color_left
 	if(prob(50) || H.gender == FEMALE)
 		H.undershirt = random_undershirt(H.gender)
 	if(prob(25))
@@ -313,13 +311,15 @@
 
 	return name
 
+/datum/objective/swat
+	name = "swat"
+	explanation_text = "Follow the orders of your commander."
+	martyr_compatible = TRUE
+
 /datum/team/swat
 	var/swat_name
 	var/core_objective = /datum/objective/swat
 	member_name = "Swat Officer"
-	var/memorized_code
-	var/list/team_discounts
-	var/obj/item/nuclear_challenge/war_button
 
 /datum/team/swat/New()
 	..()
@@ -341,45 +341,4 @@
 	parts += text
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
-
-
-
-
-//////////////////////////////////////////////
-//                                          //
-//       		SWAT (MIDROUND)			    //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/midround/from_ghosts/swat
-	name = "Swat Officer"
-	antag_flag = ROLE_SWAT
-	antag_datum = /datum/antagonist/swat
-	required_candidates = 1
-	weight = 5
-	cost = 35
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
-	var/datum/team/swat/swat_team
-	flags = HIGHLANDER_RULESET
-
-/datum/dynamic_ruleset/midround/from_ghosts/swat/acceptable(population=0, threat=0)
-	indice_pop = min(operative_cap.len, round(living_players.len/5)+1)
-	required_candidates = max(5, operative_cap[indice_pop])
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/swat/ready(forced = FALSE)
-	if (required_candidates > (dead_players.len + list_observers.len))
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/swat/finish_setup(mob/new_character, index)
-	new_character.mind.special_role = "Swat Officer"
-	new_character.mind.assigned_role = "Swat Officer"
-	if (index == 1) // Our first guy is the leader
-		var/datum/antagonist/swat/leader/new_role = new
-		swat_team = new_role.swat_team
-		new_character.mind.add_antag_datum(new_role)
-	else
-		return ..()
 

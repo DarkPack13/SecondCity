@@ -120,6 +120,8 @@
 #define DEPARTMENT_ANARCH "Anarch"
 #define DEPARTMENT_BITFLAG_STRIP_CLUB (1<<6)
 #define DEPARTMENT_STRIP_CLUB "Strip Club"
+#define DEPARTMENT_BITFLAG_AXE_GANG (1<<7)
+#define DEPARTMENT_AXE_GANG "Axe Gang"
 
 
 DEFINE_BITFIELD(departments_bitflags, list(
@@ -130,6 +132,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
 	"ANARCH" = DEPARTMENT_BITFLAG_ANARCH,
 	"STRIP_CLUB" = DEPARTMENT_BITFLAG_STRIP_CLUB,
+	"AXE_GANG" = DEPARTMENT_BITFLAG_AXE_GANG,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.

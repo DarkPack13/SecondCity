@@ -83,6 +83,7 @@
 	name = "First Team"
 	roundend_category = "first_team"
 	antagpanel_category = "First Team"
+	pref_flag = ROLE_FIRST_TEAM
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
