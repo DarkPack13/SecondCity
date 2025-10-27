@@ -54,7 +54,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/vampire/eod(H), ITEM_SLOT_OCLOTHING)
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/vampire/eod(H), ITEM_SLOT_HEAD)
 				H.put_in_r_hand(new /obj/item/gun/ballistic/shotgun/vampire(H))
-				H.put_in_l_hand(new /obj/item/ammo_box/vampire/c12g(H))
+				H.put_in_l_hand(new /obj/item/ammo_box/darkpack/c12g(H))
 			if("Holy Presence")
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/vampire/vest/army(H), ITEM_SLOT_OCLOTHING)
 				H.put_in_r_hand(new /obj/item/chainsaw/vamp(H))
