@@ -266,11 +266,11 @@
 /area/vtm/outside/pacificheights)
 "hu" = (
 /obj/effect/decal/pallet,
-/obj/item/ammo_box/vampire/arrows,
-/obj/item/ammo_box/vampire/c12g,
-/obj/item/ammo_box/vampire/c12g/buck,
-/obj/item/ammo_box/vampire/c44,
-/obj/item/ammo_box/vampire/c44/silver,
+/obj/item/ammo_box/darkpack/arrows,
+/obj/item/ammo_box/darkpack/c12g,
+/obj/item/ammo_box/darkpack/c12g/buck,
+/obj/item/ammo_box/darkpack/c44,
+/obj/item/ammo_box/darkpack/c44/silver,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "hz" = (
@@ -460,11 +460,11 @@
 /area/vtm/interior/shop)
 "nm" = (
 /obj/effect/decal/pallet,
-/obj/item/ammo_box/vampire/c9mm/silver,
+/obj/item/ammo_box/darkpack/c9mm/silver,
 /obj/item/ammo_box/darkpack/c9mm/moonclip,
-/obj/item/ammo_box/vampire/c9mm,
-/obj/item/ammo_box/vampire/c45acp/silver,
-/obj/item/ammo_box/vampire/c45acp,
+/obj/item/ammo_box/darkpack/c9mm,
+/obj/item/ammo_box/darkpack/c45acp/silver,
+/obj/item/ammo_box/darkpack/c45acp,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "nq" = (
@@ -2010,10 +2010,10 @@
 /area/vtm/interior/shop)
 "Xz" = (
 /obj/effect/decal/pallet,
-/obj/item/ammo_box/vampire/c556/silver,
-/obj/item/ammo_box/vampire/c556/incendiary,
-/obj/item/ammo_box/vampire/c556,
-/obj/item/ammo_box/vampire/c545,
+/obj/item/ammo_box/darkpack/c556/silver,
+/obj/item/ammo_box/darkpack/c556/incendiary,
+/obj/item/ammo_box/darkpack/c556,
+/obj/item/ammo_box/darkpack/c545,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "XE" = (
