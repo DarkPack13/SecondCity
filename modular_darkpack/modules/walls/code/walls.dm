@@ -248,18 +248,18 @@ LOW_WALL_HELPER(vampwall/rich/old)
 /turf/closed/wall/vampwall/brick
 	name = "brick wall"
 	desc = "A huge chunk of bricks used to separate rooms."
-	icon = 'icons/obj/smooth_structures/darkpack/wall/brick_wall.dmi'
-	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/brick_frill.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/wall/brick/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/brick/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/brick)
 /turf/closed/wall/vampwall/brick/low
-	icon = 'icons/obj/smooth_structures/darkpack/wall/brick_low_wall.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/wall/brick/low_wall.dmi'
 
 /turf/closed/wall/vampwall/redbrick
 	name = "red brick wall"
 	desc = "A huge chunk of red bricks used to separate rooms."
-	icon = 'icons/obj/smooth_structures/darkpack/wall/red_brick_wall.dmi'
-	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/red_brick_frill.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/wall/red_brick/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/red_brick/frill.dmi'
 
 /turf/closed/wall/vampwall/city
 	name = "wall"
@@ -299,12 +299,12 @@ LOW_WALL_HELPER(vampwall/city)
 /turf/closed/wall/vampwall/bar
 	name = "dark brick wall"
 	desc = "A huge chunk of bricks used to separate rooms."
-	icon_state = "bar-0"
-	base_icon_state = "bar"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/bar/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/bar/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/bar)
-/turf/closed/wall/vampwall/bar/low/window
-	icon_state = "bar-window"
+/turf/closed/wall/vampwall/bar/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/bar/low_wall.dmi'
 
 /turf/closed/wall/vampwall/wood
 	name = "wood wall"
@@ -343,8 +343,8 @@ LOW_WALL_HELPER(vampwall/wood)
 /turf/closed/wall/vampwall/rock
 	name = "rock wall"
 	desc = "A huge chunk of rocks separating whole territory."
-	icon = 'icons/obj/smooth_structures/darkpack/wall/rock_wall.dmi'
-	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock_frill.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rock/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock/frill.dmi'
 
 /*
 /turf/closed/wall/vampwall/mojave/brick
