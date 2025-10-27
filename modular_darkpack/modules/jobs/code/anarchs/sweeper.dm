@@ -6,7 +6,7 @@
 	spawn_positions = 3
 	supervisors = SUPERVISOR_BARON
 	config_tag = "SWEEPER"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/sweeper
 
 	display_order = JOB_DISPLAY_ORDER_SWEEPER

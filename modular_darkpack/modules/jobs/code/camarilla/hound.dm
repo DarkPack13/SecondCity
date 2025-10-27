@@ -7,14 +7,13 @@
 	total_positions = 7
 	spawn_positions = 7
 	supervisors = SUPERVISOR_SHERIFF
-
 	minimal_player_age = 7
 	exp_requirements = 20
 	exp_required_type = EXP_TYPE_CAMARILLA
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "HOUND"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/hound
 
 	display_order = JOB_DISPLAY_ORDER_HOUND

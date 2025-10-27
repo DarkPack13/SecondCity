@@ -6,7 +6,7 @@
 	supervisors = " the SF local government."
 	config_tag = "DISPATCHER"
 	outfit = /datum/outfit/job/dispatcher
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
 	department_for_prefs = /datum/job_department/police

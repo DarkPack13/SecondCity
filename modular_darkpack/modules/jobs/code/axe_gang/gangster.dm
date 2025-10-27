@@ -5,7 +5,7 @@
 	spawn_positions = 8
 	supervisors = "the other Axes"
 	config_tag = "AXE_GANG"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/axe_gangster
 
 	display_order = JOB_DISPLAY_ORDER_AXE_GANGSTER

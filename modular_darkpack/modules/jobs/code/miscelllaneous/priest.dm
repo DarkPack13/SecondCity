@@ -7,7 +7,7 @@
 	supervisors = "God"
 	config_tag = "PRIEST"
 	outfit = /datum/outfit/job/priest
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_PRIEST
 	exp_required_type_department = EXP_TYPE_CHURCH
 

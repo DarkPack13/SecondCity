@@ -8,14 +8,13 @@
 	spawn_positions = 1
 	supervisors = SUPERVISOR_PRINCE
 	config_tag = "HARPY"
-
 	req_admin_notify = 1
 	minimal_player_age = 10
 	exp_requirements = 180
 	exp_required_type = EXP_TYPE_CAMARILLA
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/harpy
 
 	display_order = JOB_DISPLAY_ORDER_HARPY

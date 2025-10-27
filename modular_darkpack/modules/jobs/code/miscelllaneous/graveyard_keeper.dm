@@ -8,7 +8,7 @@
 	exp_required_type_department = EXP_TYPE_SERVICES
 	config_tag = "GRAVEYARD_KEEPER"
 	outfit = /datum/outfit/job/graveyard
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GRAVEYARD
 
 	description = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."

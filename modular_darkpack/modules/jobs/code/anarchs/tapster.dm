@@ -6,7 +6,7 @@
 	spawn_positions = 2
 	supervisors = SUPERVISOR_BARON_PUBLIC
 	config_tag = "TAPSTER"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/tapster
 
 	display_order = JOB_DISPLAY_ORDER_TAPSTER

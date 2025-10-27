@@ -6,7 +6,7 @@
 	supervisors = "Caine"
 	config_tag = "SABBAT_PACK"
 	outfit = /datum/outfit/job/sabbatpack
-
+	job_flags = CITY_JOB_FLAGS
 	allowed_species = list(SPECIES_KINDRED)
 
 	exp_required_type_department = EXP_TYPE_SABBAT

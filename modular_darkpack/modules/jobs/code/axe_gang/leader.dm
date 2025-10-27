@@ -5,7 +5,7 @@
 	spawn_positions = 2
 	supervisors = "nobody. You are beholden only to yourself."
 	config_tag = "AXE_GANG_LEADER"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/axe_leader
 
 	display_order = JOB_DISPLAY_ORDER_AXE_LEADER

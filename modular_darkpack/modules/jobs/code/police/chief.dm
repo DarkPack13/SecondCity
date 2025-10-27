@@ -7,7 +7,7 @@
 	supervisors = " the SFPD"
 	config_tag = "POLICE_CHIEF"
 	outfit = /datum/outfit/job/police_chief
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE_CHIEF
 	exp_required_type_department = EXP_TYPE_POLICE
 	department_for_prefs = /datum/job_department/police

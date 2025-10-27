@@ -7,7 +7,7 @@
 	supervisors = "the Family and the Traditions"
 	config_tag = "LA_SQUADRA"
 	outfit = /datum/outfit/job/squadra
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
 	department_for_prefs = /datum/job_department/giovanni

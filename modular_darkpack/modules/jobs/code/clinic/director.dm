@@ -8,7 +8,7 @@
 	exp_required_type_department = EXP_TYPE_CLINIC
 	config_tag = "CLINIC_DIRECTOR"
 	outfit = /datum/outfit/job/clinic_director
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_CLINICS_DIRECTOR
 	department_for_prefs = /datum/job_department/clinic
 	departments_list = list(

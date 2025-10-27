@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_REGENT
 	config_tag = "CHANTRY_ARCHIVIST"
 	outfit = /datum/outfit/job/archivist
-
+	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
 	departments_list = list(

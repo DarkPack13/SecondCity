@@ -14,7 +14,7 @@
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_MALKAVIAN"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/malkav
 
 	display_order = JOB_DISPLAY_ORDER_MALKAVIAN
@@ -23,8 +23,6 @@
 		/datum/job_department/camarilla,
 		/datum/job_department/clinic,
 	)
-
-	job_flags = CITY_JOB_FLAGS
 
 	minimal_generation = 12
 	minimum_vampire_age = 5 // Actually Malkavian Primo is whoever showed for work that day. Crazy bunch.

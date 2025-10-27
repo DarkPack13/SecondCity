@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the Anarchs and the Traditions"
 	config_tag = "BARON"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/baron
 
 	display_order = JOB_DISPLAY_ORDER_BARON

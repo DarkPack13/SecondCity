@@ -4,7 +4,7 @@
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = /datum/job/vampire/primogen_toreador
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/club_worker
 
 	display_order = JOB_DISPLAY_ORDER_STRIP

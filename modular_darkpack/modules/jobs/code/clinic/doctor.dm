@@ -7,7 +7,7 @@
 	supervisors = "the Camarilla or the Anarchs"
 	exp_required_type_department = EXP_TYPE_CLINIC
 	config_tag = "DOCTOR"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/doctor
 
 	display_order = JOB_DISPLAY_ORDER_DOCTOR

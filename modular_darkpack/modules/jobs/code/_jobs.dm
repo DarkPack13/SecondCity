@@ -26,9 +26,6 @@
 	// Only for display in memories
 	var/list/known_contacts = null
 
-/datum/job/vampire
-	job_flags = CITY_JOB_FLAGS
-
 // Default vampire job outfits.
 /datum/outfit/job/vampire
 	uniform = /obj/item/clothing/under/color/grey

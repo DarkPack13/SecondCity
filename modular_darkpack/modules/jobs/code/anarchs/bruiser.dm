@@ -6,7 +6,7 @@
 	spawn_positions = 7
 	supervisors = SUPERVISOR_BARON
 	config_tag = "BRUISER"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/bruiser
 
 	display_order = JOB_DISPLAY_ORDER_BRUISER

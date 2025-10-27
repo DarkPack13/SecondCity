@@ -7,7 +7,7 @@
 	supervisors = " the Laws of Hospitality"
 	config_tag = "VOIVODE"
 	outfit = /datum/outfit/job/voivode
-
+	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
 	department_for_prefs = /datum/job_department/manor
 	departments_list = list(

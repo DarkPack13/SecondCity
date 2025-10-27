@@ -14,7 +14,7 @@
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_LASOMBRA"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/lasombraprim
 
 	display_order = JOB_DISPLAY_ORDER_LASOMBRA
@@ -23,8 +23,6 @@
 		/datum/job_department/camarilla,
 		/datum/job_department/church,
 	)
-
-	job_flags = CITY_JOB_FLAGS
 
 	minimal_generation = 12
 	minimum_vampire_age = 50

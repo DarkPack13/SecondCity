@@ -14,7 +14,7 @@
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "SHERIFF"
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/sheriff
 
 	display_order = JOB_DISPLAY_ORDER_SHERIFF

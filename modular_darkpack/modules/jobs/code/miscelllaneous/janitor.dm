@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_CAMARILLA
 	config_tag = "JANITOR"
 	outfit = /datum/outfit/job/janitor
-
+	job_flags = CITY_JOB_FLAGS
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 
 	display_order = JOB_DISPLAY_ORDER_STREETJAN

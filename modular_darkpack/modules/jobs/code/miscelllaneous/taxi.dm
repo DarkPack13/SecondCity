@@ -5,7 +5,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = SUPERVISOR_TRADITIONS
-
+	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/taxi
 	display_order = JOB_DISPLAY_ORDER_TAXI
 	exp_required_type_department = EXP_TYPE_SERVICES
