@@ -10,6 +10,8 @@
 	}	\
 	/turf/closed/wall/##wall_type/low/window {			\
 		window = /obj/structure/window/fulltile;		\
+		WHEN_MAP(icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'); \
+		WHEN_MAP(icon_state = "window_spawner"); 		\
 	}	\
 	/turf/closed/wall/##wall_type/low/window/reinforced { \
 		window = /obj/structure/window/reinforced/fulltile; \
@@ -191,22 +193,22 @@ LOW_WALL_HELPER(vampwall/junk/alt)
 /turf/closed/wall/vampwall/market
 	name = "concrete wall"
 	desc = "A huge chunk of concrete used to separate rooms."
-	icon_state = "market-0"
-	base_icon_state = "market"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/market/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/market/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/market)
-/turf/closed/wall/vampwall/market/low/window
-	icon_state = "market-window"
-/turf/closed/wall/vampwall/market/low/window/reinforced
-	icon_state = "market-reinforced"
+/turf/closed/wall/vampwall/market/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/market/low_wall.dmi'
 
 /turf/closed/wall/vampwall/old
 	name = "old brick wall"
 	desc = "A huge chunk of old bricks used to separate rooms."
-	icon_state = "old-0"
-	base_icon_state = "old"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/old/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/old/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/old)
+/turf/closed/wall/vampwall/old/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/old/low_wall.dmi'
 
 /turf/closed/wall/vampwall/painted
 	name = "painted brick wall"
