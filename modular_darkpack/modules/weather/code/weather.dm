@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(cityweather)
 		var/weather = "Clear"
 		if(i != 1 && i != 9)
 			if(prob(50))
-				if(check_holidays(CHRISTMAS))
+				if(check_holidays(FESTIVE_SEASON))
 					weather = pick("Clear", "Snow", "Fog")
 				else
 					weather = pick("Clear", "Rain", "Fog")

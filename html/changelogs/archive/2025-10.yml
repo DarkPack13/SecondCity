@@ -102,3 +102,10 @@
   - rscadd: Added the ability to give vitae!
   - code_imp: Removed some unnecessary files from the codebase
   - bugfix: Fixed a hard delete relating to the madness network.
+2025-10-27:
+  FalloutFalcon:
+  - rscadd: Sunlight and daytime now have nice status effects
+  - admin: vote for extending time of day
+  - bugfix: lowwalls should act more like tables, mainly jumping over them.
+  XeonMations:
+  - rscadd: Added ghouls to the game.
