@@ -1,2 +1,2 @@
-output_name = "frill"
+output_name = "wall"
 template = "bitmask/frills.toml"

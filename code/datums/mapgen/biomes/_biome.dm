@@ -224,5 +224,5 @@
 	turf_type = /turf/open/water/beach/vamp
 
 /datum/biome/mountain
-	turf_type = /turf/closed/mineral/random/jungle
+	turf_type = /turf/closed/wall/vampwall/rock
 // DARKPACK EDIT CHANGE END
