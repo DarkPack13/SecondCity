@@ -16,7 +16,7 @@
 
 /obj/effect/decal/snow_overlay
 	name = "snow"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "snow_overlay"
 	alpha = 200
 	mouse_opacity = 0

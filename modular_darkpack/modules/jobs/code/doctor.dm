@@ -25,7 +25,6 @@
 
 	v_duty = "Help your fellow kindred in all matters medicine related. Sell blood. Keep your human colleagues ignorant."
 	duty = "Collect blood by helping mortals at the Clinic."
-	experience_addition = 15
 	allowed_bloodlines = list("Daughters of Cacophony", "Salubri", "Baali", "Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Giovanni", "Ministry", "Tzimisce", "Lasombra", "Caitiff", "Kiasyd")
 	known_contacts = list("Clinic Director")
 
@@ -80,7 +79,6 @@
 
 	v_duty = "Keep Saint John's clinic up and running. Sell blood. Keep your human colleagues ignorant."
 	duty = "Keep Saint John's clinic up and running. Collect blood by helping mortals at the Clinic."
-	experience_addition = 15
 	allowed_bloodlines = list("Daughters of Cacophony", "Salubri", "Baali", "Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Giovanni", "Ministry", "Tzimisce", "Lasombra", "Caitiff", "Kiasyd")
 
 /datum/outfit/job/vdirector
