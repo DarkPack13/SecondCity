@@ -23,7 +23,10 @@
 		to_chat(friend, span_warning("[parent] refuses to attack [living_target]!"))
 		return FALSE
 
-	// don't attack dead things
+	if(living_target == friend)
+		to_chat(friend, span_warning("[parent] refuses to attack you!"))
+		return FALSE
+
 	if(living_target.stat == DEAD)
 		return FALSE
 
@@ -46,6 +49,7 @@
 /datum/pet_command/free/beastmaster
 
 /datum/pet_command/free/beastmaster/execute_action(datum/ai_controller/controller)
+	controller.CancelActions()
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 	controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
 	controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)

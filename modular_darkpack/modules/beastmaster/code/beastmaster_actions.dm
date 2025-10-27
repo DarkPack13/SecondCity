@@ -1,9 +1,9 @@
 //action buttons
 /datum/action/beastmaster_command_toggle_follow
-	name = "Command: Follow"
+	name = "Command: Stay"
 	desc = "Toggle between Follow and Stay for all minions."
 	button_icon = 'icons/hud/radial_pets.dmi'
-	button_icon_state = "follow"
+	button_icon_state = "halt"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
 	var/is_following = TRUE  // Track current state
 
@@ -19,12 +19,13 @@
 
 	// Update button appearance
 	if(is_following)
-		name = "Command: Follow"
-		button_icon_state = "follow"
-	else
 		name = "Command: Stay"
 		button_icon_state = "halt"
-	//UpdateButtons()
+	else
+		name = "Command: Follow"
+		button_icon_state = "follow"
+
+	build_all_button_icons(UPDATE_BUTTON_NAME | UPDATE_BUTTON_ICON)
 
 	// Apply command to all minions
 	for(var/mob/living/minion in H.beastmaster_minions)
@@ -65,17 +66,16 @@
 		if(QDELETED(minion))
 			continue
 
-		// Clear the AI target from blackboard
 		var/datum/ai_controller/controller = minion.ai_controller
 		if(controller)
+			controller.CancelActions()
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
 
-		// Also trigger the "Loose" command for good measure
 		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
 		if(!obeys)
 			continue
-		var/datum/pet_command/free/end_aggression_cmd = obeys.available_commands["Loose"]
+		var/datum/pet_command/free/beastmaster/end_aggression_cmd = obeys.available_commands["Loose"]
 		if(end_aggression_cmd)
 			end_aggression_cmd.try_activate_command(H, radial_command = FALSE)
 
