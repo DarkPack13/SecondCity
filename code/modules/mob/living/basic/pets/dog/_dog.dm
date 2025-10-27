@@ -42,18 +42,18 @@
 		/datum/pet_command/move,
 		/datum/pet_command/good_boy/dog,
 		/datum/pet_command/follow/dog,
-//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVE - Might be usable later
+//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVE - Might be usable later - NPC
 		/datum/pet_command/attack/dog,
 		/datum/pet_command/fetch,
 		/datum/pet_command/play_dead,
-		/datum/pet_command/protect_owner, // DARKPACK EDIT ADD
+		/datum/pet_command/protect_owner, // DARKPACK EDIT ADD - NPC
 	)
 	///icon state of the collar we can wear
 	var/collar_icon_state
 	///icon state of our cult icon
 	var/cult_icon_state
 
-// DARKPACK EDIT ADD START
+// DARKPACK EDIT ADD START - NPC
 	maxHealth = 70
 	health = 70
 	obj_damage = 15
@@ -111,14 +111,14 @@
 	var/static/list/food_types = list(
 		/obj/item/food/meat/slab/human/mutant/skeleton,
 		/obj/item/stack/sheet/bone,
-// DARKPACK EDIT ADD START
+// DARKPACK EDIT ADD START - NPC
 		/obj/item/food/meat/slab,
 		/obj/item/food/meat/rawbacon,
 		/obj/item/food/meat/bacon,
 		/obj/item/food/meat/rawcutlet,
 // DARKPACK EDIT ADD END
 	)
-	AddElement(/datum/element/ai_flee_while_injured) // DARKPACK EDIT ADD
+	AddElement(/datum/element/ai_flee_while_injured) // DARKPACK EDIT ADD - NPC
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 30, bonus_tame_chance = 15, unique = FALSE)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 	var/dog_area = get_area(src)
