@@ -60,8 +60,8 @@ GLOBAL_LIST_EMPTY(starlight)
 	run_later = TRUE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
-	light_power = 0.5 // DARKPACK EDIT CHANGE, ORIGINAL: light_power = 1
-	light_range = 0.5 // DARKPACK EDIT CHANGE, ORIGINAL: light_range = 2
+	light_power = 0.25 // DARKPACK EDIT CHANGE, ORIGINAL: light_power = 1 - CITY_TIME
+	light_range = 0.5 // DARKPACK EDIT CHANGE, ORIGINAL: light_range = 2 - CITY_TIME
 	light_color = COLOR_STARLIGHT
 	light_height = LIGHTING_HEIGHT_SPACE
 	light_on = FALSE

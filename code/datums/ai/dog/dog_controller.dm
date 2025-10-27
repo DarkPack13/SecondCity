@@ -9,6 +9,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/random_speech/dog,
 		/datum/ai_planning_subtree/pet_planning,
+		/datum/ai_planning_subtree/find_and_hunt_target/find_dog_food, // DARKPACK EDIT ADD
 		/datum/ai_planning_subtree/dog_harassment,
 	)
 

@@ -83,3 +83,29 @@
   - balance: SWAT officers now get police keys and an IFAK
   - image: updated icons for the unmarked police car and original police gear
   - map: added ranger car to runtimetown
+2025-10-25:
+  dwinters99:
+  - balance: Replaced jump windup with post-jump slowdown
+  - code_imp: Added skillchecks to carbon throw_impact code
+  - config: Jump windup and jump slowdown config options
+  - rscadd: Reimplement generators and fuseboxes
+2025-10-26:
+  Hawk-v3:
+  - rscadd: Wallclimbing- Now with forensics markers.
+  KCartridge:
+  - rscadd: Stray dogs
+  - rscadd: taming said stray dogs
+  - image: dog rests sprites
+  - image: re-done dog_dead sprites Courtesy of Paynt
+  XeonMations:
+  - rscdel: Removed experience from the game.
+  - rscadd: Added the ability to give vitae!
+  - code_imp: Removed some unnecessary files from the codebase
+  - bugfix: Fixed a hard delete relating to the madness network.
+2025-10-27:
+  FalloutFalcon:
+  - rscadd: Sunlight and daytime now have nice status effects
+  - admin: vote for extending time of day
+  - bugfix: lowwalls should act more like tables, mainly jumping over them.
+  XeonMations:
+  - rscadd: Added ghouls to the game.
