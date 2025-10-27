@@ -1,19 +1,23 @@
 /datum/job/vampire/sabbatpack
-	title = "Sabbat Pack"
-	faction = "Vampire"
+	title = JOB_SABBAT_PACK
+	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "Caine"
-
+	config_tag = "SABBAT_PACK"
 	outfit = /datum/outfit/job/sabbatpack
 
 	allowed_species = list(SPECIES_KINDRED)
-	exp_required_type_department = EXP_TYPE_SABBAT
 
+	exp_required_type_department = EXP_TYPE_SABBAT
+	department_for_prefs = /datum/job_department/sabbat
+	departments_list = list(
+		/datum/job_department/sabbat,
+	)
 
 	description = "You are a member of the Sabbat. You are charged with rebellion against the Elders and the Camarilla, against the Jyhad, against the Masquerade and the Traditions, and the recognition of Caine as the true Dark Father of all Kindred kind.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
 	minimal_masquerade = 0
-	allowed_bloodlines = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophony", "True Brujah", "Nagaraja", "Caitiff")
+	allowed_clans = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophony", "True Brujah", "Nagaraja", "Caitiff")
 	display_order = JOB_DISPLAY_ORDER_SABBATPACK
 	whitelisted = TRUE
 
@@ -25,33 +29,9 @@
 	r_pocket = /obj/item/vamp/keys/sabbat
 
 /datum/outfit/job/sabbatpack/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.clan)
-		if(H.gender == MALE)
-			shoes = /obj/item/clothing/shoes/vampire
-			if(H.clan.male_clothes)
-				uniform = H.clan.male_clothes
-		else
-			shoes = /obj/item/clothing/shoes/vampire/heels
-			if(H.clan.female_clothes)
-				uniform = H.clan.female_clothes
-	else
-		uniform = /obj/item/clothing/under/vampire/emo
-		if(H.gender == MALE)
-			shoes = /obj/item/clothing/shoes/vampire
-		else
-			shoes = /obj/item/clothing/shoes/vampire/heels
-	if(H.clan)
-		if(H.clan.name == "Lasombra")
-			backpack_contents = list(/obj/item/passport =1, /obj/item/vamp/creditcard=1)
-	if(!H.clan)
-		backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
-	if(H.clan && H.clan.name != "Lasombra")
-		backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
+	. = ..()
 	if(H.mind)
-		var/datum/antagonist/temp_antag = new()
-		temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev", H)
-		qdel(temp_antag)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
 
 /obj/effect/landmark/start/sabbatpack
 	name = "Sabbat Pack"
@@ -65,10 +45,4 @@
 	pref_flag = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
-
-/datum/antagonist/sabbatist/on_gain()
-	add_antag_hud(ANTAG_HUD_REV, "rev", owner.current)
-	owner.special_role = src
-	owner.current.playsound_local(get_turf(owner.current), 'code/modules/wod13/sounds/evil_start.ogg', 100, FALSE, use_reverb = FALSE)
-	return ..()
 

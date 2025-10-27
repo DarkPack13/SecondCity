@@ -1,23 +1,20 @@
-
 /datum/job/vampire/regent
 	title = JOB_CHANTRY_REGENT
-	department_head = list("Prince")
+	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Pyramid"
-
-
+	supervisors = SUPERVISOR_CAMARILLA
+	config_tag = "CHANTRY_REGENT"
 	outfit = /datum/outfit/job/regent
 
-
-
-
-
-	exp_required_type_department = EXP_TYPE_TREMERE
-
-
+	exp_required_type_department = EXP_TYPE_CHANTRY
+	department_for_prefs = /datum/job_department/chantry
+	departments_list = list(
+		/datum/job_department/chantry,
+	)
 	display_order = JOB_DISPLAY_ORDER_REGENT
+
 	description = "Lead the Chantry. You serve as both the Regent and Tremere Primogen. You report to the Tremere Lord of this region first, Prince second."
 	minimal_masquerade = 4
 	minimal_generation = 10
@@ -37,9 +34,9 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	uniform = /obj/item/clothing/under/vampire/archivist
 	r_pocket = /obj/item/vamp/keys/regent
-	l_pocket = /obj/item/vamp/phone/tremere
+	//l_pocket = /obj/item/vamp/phone/tremere
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
+	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
 
 /datum/outfit/job/regent/pre_equip(mob/living/carbon/human/H)
 	..()

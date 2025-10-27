@@ -1,37 +1,28 @@
 
 /datum/job/vampire/bogatyr
 	title = JOB_BOGATYR
-	department_head = list("Voivode")
+	department_head = /datum/job/vampire/voivode
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = " the Laws of Hospitality"
-
-
+	config_tag = "BOGATYR"
 	outfit = /datum/outfit/job/bogatyr
 
-
-
-
-
+	exp_required_type_department = EXP_TYPE_MANOR
+	department_for_prefs = /datum/job_department/manor
+	departments_list = list(
+		/datum/job_department/manor,
+	)
 	display_order = JOB_DISPLAY_ORDER_BOGATYR
-	exp_required_type_department = EXP_TYPE_TZIMISCE
 
 	allowed_species = list(SPECIES_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE)
-	minimal_generation = 13	//Uncomment when players get exp enough
+	allowed_clans = list(VAMPIRE_CLAN_TZIMISCE)
 
 	description = "Whether you are of Voivode-in-Waiting's blood or if you've been honored, you are one of the Kin of the Voivode. Protect your Family, as your Family would protect you."
 	minimal_masquerade = 2
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
-
-/datum/outfit/job/bogatyr/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == FEMALE)
-		uniform = /obj/item/clothing/under/vampire/bogatyr/female
-		shoes = /obj/item/clothing/shoes/vampire/heels
-
 
 /datum/outfit/job/bogatyr
 	name = "Bogatyr"

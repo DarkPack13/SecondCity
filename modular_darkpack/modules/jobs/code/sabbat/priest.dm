@@ -1,21 +1,22 @@
 /datum/job/vampire/sabbatpriest
-	title = "Sabbat Priest"
-	faction = "Vampire"
+	title = JOB_SABBAT_PRIEST
+	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "Caine"
-	selection_color = "#7B0000"
-	access = list()
-	minimal_access = list()
+	config_tag = "SABBAT_PRIEST"
 	outfit = /datum/outfit/job/sabbatpriest
-	allowed_species = list("Vampire")
+	allowed_species = list(SPECIES_KINDRED)
+
 	exp_required_type_department = EXP_TYPE_SABBAT
+	department_for_prefs = /datum/job_department/sabbat
+	departments_list = list(
+		/datum/job_department/sabbat,
+	)
 
-
-	v_duty = "You are the Sabbat Priest. You are charged with the supervision of the ritae of your pack. You also serve as the second-in-command to the Ductus. Consecrate the Vaulderie for new Sabbat, consult your tome for rites to aid your pack, and ensure the Sabbat live on in Caine's favor.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
-	duty = "Down with the Camarilla. Down with the Elders. Down with the Jyhad! The Kindred are the true rulers of Earth, blessed by Caine, the Dark Father."
+	description = "You are the Sabbat Priest. You are charged with the supervision of the ritae of your pack. You also serve as the second-in-command to the Ductus. Consecrate the Vaulderie for new Sabbat, consult your tome for rites to aid your pack, and ensure the Sabbat live on in Caine's favor.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN. "
 	minimal_masquerade = 0
-	allowed_bloodlines = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophany", "True Brujah", "Nagaraja", "Caitiff")
+	allowed_clans = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophany", "True Brujah", "Nagaraja", "Caitiff")
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
 
@@ -28,32 +29,8 @@
 
 /datum/outfit/job/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
-	if(H.clan)
-		if(H.gender == MALE)
-			shoes = /obj/item/clothing/shoes/vampire
-			if(H.clan.male_clothes)
-				uniform = H.clan.male_clothes
-		else
-			shoes = /obj/item/clothing/shoes/vampire/heels
-			if(H.clan.female_clothes)
-				uniform = H.clan.female_clothes
-	else
-		uniform = /obj/item/clothing/under/vampire/emo
-		if(H.gender == MALE)
-			shoes = /obj/item/clothing/shoes/vampire
-		else
-			shoes = /obj/item/clothing/shoes/vampire/heels
-	if(H.clan)
-		if(H.clan.name == "Lasombra")
-			backpack_contents = list(/obj/item/passport =1, /obj/item/vamp/creditcard=1)
-	if(!H.clan)
-		backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
-	if(H.clan && H.clan.name != "Lasombra")
-		backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard=1)
 	if(H.mind)
-		var/datum/antagonist/temp_antag = new()
-		temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev_head", H)
-		qdel(temp_antag)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
 
 /obj/effect/landmark/start/sabbatpriest
 	name = "Sabbat Priest"
@@ -71,7 +48,7 @@
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"
 	desc = "A tome adorned with the symbol of the Sabbat."
-	icon = 'code/modules/wod13/items.dmi'
+	icon = 'modular_darkpack/modules/jobs/icons/sabbat.dmi'
 	icon_state = "sabbat-tome"
 
 /datum/sabbat_ritae/ritae_description

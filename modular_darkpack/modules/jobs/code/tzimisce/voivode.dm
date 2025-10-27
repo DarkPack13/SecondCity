@@ -5,27 +5,23 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = " the Laws of Hospitality"
-
-
+	config_tag = "VOIVODE"
 	outfit = /datum/outfit/job/voivode
 
-
-
-
-
+	exp_required_type_department = EXP_TYPE_MANOR
+	department_for_prefs = /datum/job_department/manor
+	departments_list = list(
+		/datum/job_department/manor,
+	)
 	display_order = JOB_DISPLAY_ORDER_VOIVODE
-	exp_required_type_department = EXP_TYPE_TZIMISCE
 
 	allowed_species = list(SPECIES_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE)
-	minimal_generation = 10
+	allowed_clans = list(VAMPIRE_CLAN_TZIMISCE)
 
 	description = "You are a Childe of the Voivode-in-Waiting, the ancient Tzimisce Elder who has rested beneath the Earth for an age longer than the city that now rests on their bones. Honor them in all your actions, and remember that you walk with their favor."
 	minimal_masquerade = 2
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
-
-
 
 /datum/outfit/job/voivode
 	name = "Voivode"

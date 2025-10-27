@@ -80,3 +80,30 @@
 	display_order = 1
 	label_class = "police"
 	ui_color = "#66a569ff"
+
+/datum/job_department/sabbat
+	department_name = DEPARTMENT_SABBAT
+	department_bitflags = DEPARTMENT_BITFLAG_SABBAT
+	department_head = /datum/job/vampire/sabbatductus
+	department_experience_type = EXP_TYPE_SABBAT
+	display_order = 1
+	label_class = "sabbat"
+	ui_color = "#4e4e4eff"
+
+/datum/job_department/chantry
+	department_name = DEPARTMENT_CHANTRY
+	department_bitflags = DEPARTMENT_BITFLAG_CHANTRY
+	department_head = /datum/job/vampire/regent
+	department_experience_type = EXP_TYPE_CHANTRY
+	display_order = 1
+	label_class = "chantry"
+	ui_color = "#a56666ff"
+
+/datum/job_department/manor
+	department_name = DEPARTMENT_MANOR
+	department_bitflags = DEPARTMENT_BITFLAG_MANOR
+	department_head = /datum/job/vampire/voivode
+	department_experience_type = EXP_TYPE_MANOR
+	display_order = 1
+	label_class = "manor"
+	ui_color = "#a066a5ff"

@@ -1,21 +1,18 @@
-
 /datum/job/vampire/archivist
 	title = JOB_CHANTRY_ARCHIVIST
-	department_head = list("Prince")
+	department_head = /datum/job/vampire/regent
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Traditions and the Regent"
-
-
+	supervisors = SUPERVISOR_REGENT
+	config_tag = "CHANTRY_ARCHIVIST"
 	outfit = /datum/outfit/job/archivist
 
-
-
-
-
-	exp_required_type_department = EXP_TYPE_TREMERE
-
+	exp_required_type_department = EXP_TYPE_CHANTRY
+	department_for_prefs = /datum/job_department/chantry
+	departments_list = list(
+		/datum/job_department/chantry,
+	)
 	display_order = JOB_DISPLAY_ORDER_ARCHIVIST
 
 	description = "Keep a census of events and provide information to neonates. Listen to the Regent Carefully. Study blood magic and protect the chantry."
@@ -34,15 +31,9 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	uniform = /obj/item/clothing/under/vampire/archivist
 	r_pocket = /obj/item/vamp/keys/archive
-	l_pocket = /obj/item/vamp/phone/archivist
+	//l_pocket = /obj/item/vamp/phone/archivist
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
-
-/datum/outfit/job/archivist/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == FEMALE)
-		uniform = /obj/item/clothing/under/vampire/archivist/female
-		shoes = /obj/item/clothing/shoes/vampire/heels
 
 /obj/effect/landmark/start/archivist
 	name = "Archivist"

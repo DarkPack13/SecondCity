@@ -41,8 +41,15 @@
 #define JOB_EMISSARY "Emissary"
 #define JOB_SWEEPER "Sweeper"
 
+//Tremere
+#define JOB_CHANTRY_ARCHIVIST "Chantry Archivist"
+#define JOB_CHANTRY_REGENT "Chantry Regent"
+#define JOB_CHANTRY_GARGOYLE "Chantry Gargoyle"
+
 //Tzimisce
 #define JOB_BOGATYR "Bogatyr"
+#define JOB_VOIVODE "Voivode"
+#define JOB_ZADRUGA "Zadruga"
 
 //Police
 #define JOB_POLICE_CHIEF "Police Chief"
@@ -63,6 +70,10 @@
 #define JOB_LA_SQUADRA "La Squadra"
 #define JOB_LA_FAMIGLIA "La Famiglia"
 
+//Sabbat
+#define JOB_SABBAT_DUCTUS "Sabbat Ductus"
+#define JOB_SABBAT_PRIEST "Sabbat Priest"
+#define JOB_SABBAT_PACK "Sabbat Pack"
 
 
 #define JOB_DISPLAY_ORDER_CITIZEN 1
@@ -140,6 +151,12 @@
 #define DEPARTMENT_GIOVANNI "Giovanni"
 #define DEPARTMENT_BITFLAG_POLICE (1<<9)
 #define DEPARTMENT_POLICE "Giovanni"
+#define DEPARTMENT_BITFLAG_SABBAT (1<<10)
+#define DEPARTMENT_SABBAT "Sabbat"
+#define DEPARTMENT_BITFLAG_CHANTRY (1<<11)
+#define DEPARTMENT_CHANTRY "Chantry"
+#define DEPARTMENT_BITFLAG_MANOR (1<<12)
+#define DEPARTMENT_MANOR "Manor"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -152,6 +169,9 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"AXE_GANG" = DEPARTMENT_BITFLAG_AXE_GANG,
 	"GIOVANNI" = DEPARTMENT_BITFLAG_GIOVANNI,
 	"POLICE" = DEPARTMENT_BITFLAG_POLICE,
+	"SABBAT" = DEPARTMENT_BITFLAG_SABBAT,
+	"CHANTRY" = DEPARTMENT_BITFLAG_CHANTRY,
+	"MANOR" = DEPARTMENT_BITFLAG_MANOR,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -168,6 +188,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_POLICE_CHIEF "the Police Chief"
 #define SUPERVISOR_POLICE_CHIEF_AND_SERGEANT "the Police Chief and Sergeant"
 #define SUPERVISOR_CAMARILLA "the Camarilla"
+#define SUPERVISOR_REGENT "the Regent"
 
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 
@@ -176,7 +197,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_GAROU "Garou"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
 #define EXP_TYPE_GANG "Gangs"
-#define EXP_TYPE_TREMERE "Tremere"
+#define EXP_TYPE_CHANTRY "Chantry"
 #define EXP_TYPE_ANARCH "Anarchs"
 #define EXP_TYPE_SABBAT "Sabbat"
 #define EXP_TYPE_COUNCIL "Camarilla Primogen Council"
@@ -185,7 +206,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_SERVICES "City Services"
 #define EXP_TYPE_CLINIC "St. John's Clinic"
 #define EXP_TYPE_GIOVANNI "Giovanni Family"
-#define EXP_TYPE_TZIMISCE "Tzimisce Mansion"
+#define EXP_TYPE_MANOR "Tzimisce Manor"
 #define EXP_TYPE_CHURCH "Church"
 #define EXP_TYPE_CLUB "Strip Club"
 
