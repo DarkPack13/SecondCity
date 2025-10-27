@@ -1,6 +1,6 @@
 /datum/job/vampire/axe_leader
 	title = "Screentender"
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "nobody. You are beholden only to yourself."
