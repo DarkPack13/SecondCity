@@ -6,14 +6,14 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	var/can_be_snowy = TRUE
 
 /obj/structure/roofstuff/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(can_be_snowy && check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/roofstuff/alt1
 	icon_state = "roof2"
@@ -31,6 +31,7 @@
 	icon_state = "vent-0"
 	base_icon_state = "vent"
 	smoothing_groups = SMOOTH_GROUP_VENTS
+	can_be_snowy = FALSE
 
 /obj/structure/roofstuff/vent/south
 	icon_state = "vent-3"
