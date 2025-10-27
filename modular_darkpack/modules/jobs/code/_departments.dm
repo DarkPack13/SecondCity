@@ -61,4 +61,4 @@
 	department_experience_type = EXP_TYPE_CLUB
 	display_order = 1
 	label_class = "strip_club"
-	ui_color = "#6691a5"
+	ui_color = "#a566a5ff"
