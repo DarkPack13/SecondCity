@@ -163,14 +163,22 @@ LOW_WALL_HELPER(vampwall)
 /turf/closed/wall/vampwall/rich
 	name = "rich-looking wall"
 	desc = "A huge chunk of expensive bricks used to separate rooms."
-	icon_state = "rich-0"
-	base_icon_state = "rich"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rich/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rich/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/rich)
-/turf/closed/wall/vampwall/rich/low/window
-	icon_state = "rich-window"
-/turf/closed/wall/vampwall/rich/low/window/reinforced
-	icon_state = "rich-reinforced"
+/turf/closed/wall/vampwall/rich/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rich/low_wall.dmi'
+
+/turf/closed/wall/vampwall/rich/old
+	name = "old rich-looking wall"
+	desc = "A huge chunk of old bricks used to separate rooms."
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rich_old/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rich_old/frill.dmi'
+
+LOW_WALL_HELPER(vampwall/rich/old)
+/turf/closed/wall/vampwall/rich/old/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rich_old/low_wall.dmi'
 
 /turf/closed/wall/vampwall/junk
 	name = "junk brick wall"
@@ -220,18 +228,6 @@ LOW_WALL_HELPER(vampwall/painted)
 /turf/closed/wall/vampwall/painted/low
 	icon = 'icons/obj/smooth_structures/darkpack/wall/painted/low_wall.dmi'
 
-/turf/closed/wall/vampwall/rich/old
-	name = "old rich-looking wall"
-	desc = "A huge chunk of old bricks used to separate rooms."
-	icon_state = "theater-0"
-	base_icon_state = "theater"
-
-LOW_WALL_HELPER(vampwall/rich/old)
-/turf/closed/wall/vampwall/rich/old/low/window
-	icon_state = "theater-window"
-/turf/closed/wall/vampwall/rich/old/low/window/reinforced
-	icon_state = "theater-reinforced"
-
 /turf/closed/wall/vampwall/brick
 	name = "brick wall"
 	desc = "A huge chunk of bricks used to separate rooms."
@@ -251,12 +247,12 @@ LOW_WALL_HELPER(vampwall/brick)
 /turf/closed/wall/vampwall/city
 	name = "wall"
 	desc = "A huge chunk of concrete and bricks used to separate rooms."
-	icon_state = "city-0"
-	base_icon_state = "city"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/city/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/city/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/city)
-/turf/closed/wall/vampwall/city/low/window
-	icon_state = "city-window"
+/turf/closed/wall/vampwall/city/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/city/low_wall.dmi'
 
 /turf/closed/wall/vampwall/metal
 	name = "metal wall"
