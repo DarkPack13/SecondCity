@@ -14,7 +14,10 @@
 #define JOB_CITIZEN "Citizen"
 #define JOB_ORDINARY_CITIZEN "Ordinary Citizen"
 #define JOB_BARISTA "Barista"
-
+#define JOB_GRAVEYARD_KEEPER "Graveyard Keeper"
+#define JOB_STREET_JANITOR "Street Janitor"
+#define JOB_CLUB_WORKER "Club Worker"
+#define JOB_TAXI_DRIVER "Taxi Driver"
 
 //Camarilla
 #define JOB_PRINCE "Prince"
@@ -42,7 +45,11 @@
 #define JOB_BOGATYR "Bogatyr"
 
 //Police
+#define JOB_POLICE_CHIEF "Police Chief"
+#define JOB_POLICE_SERGEANT "Police Sergeant"
+#define JOB_POLICE_OFFICER "Police Officer"
 #define JOB_EMERGENCY_DISPATCHER "Emergency Dispatcher"
+#define JOB_FEDERAL_INVESTIGATOR "Federal Investigator"
 
 //Clinic
 #define JOB_CLINIC_DIRECTOR "Clinic Director"
@@ -55,6 +62,8 @@
 #define JOB_CAPO "Capo"
 #define JOB_LA_SQUADRA "La Squadra"
 #define JOB_LA_FAMIGLIA "La Famiglia"
+
+
 
 #define JOB_DISPLAY_ORDER_CITIZEN 1
 #define JOB_DISPLAY_ORDER_VETERINARIAN 2
@@ -129,6 +138,8 @@
 #define DEPARTMENT_AXE_GANG "Axe Gang"
 #define DEPARTMENT_BITFLAG_GIOVANNI (1<<8)
 #define DEPARTMENT_GIOVANNI "Giovanni"
+#define DEPARTMENT_BITFLAG_POLICE (1<<9)
+#define DEPARTMENT_POLICE "Giovanni"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -140,6 +151,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"STRIP_CLUB" = DEPARTMENT_BITFLAG_STRIP_CLUB,
 	"AXE_GANG" = DEPARTMENT_BITFLAG_AXE_GANG,
 	"GIOVANNI" = DEPARTMENT_BITFLAG_GIOVANNI,
+	"POLICE" = DEPARTMENT_BITFLAG_POLICE,
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -153,6 +165,9 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_BARON "the Baron"
 #define SUPERVISOR_CLINIC_DIRECTOR "the Clinic Director"
 #define SUPERVISOR_CLUB_DIRECTOR "the Strip Club Owner"
+#define SUPERVISOR_POLICE_CHIEF "the Police Chief"
+#define SUPERVISOR_POLICE_CHIEF_AND_SERGEANT "the Police Chief and Sergeant"
+#define SUPERVISOR_CAMARILLA "the Camarilla"
 
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 

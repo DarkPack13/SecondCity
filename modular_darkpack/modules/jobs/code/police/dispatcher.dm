@@ -1,16 +1,19 @@
-
 /datum/job/vampire/dispatcher
 	title = JOB_EMERGENCY_DISPATCHER
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = " the SF local government."
-
-
+	config_tag = "DISPATCHER"
 	outfit = /datum/outfit/job/dispatcher
 
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
+	department_for_prefs = /datum/job_department/police
+	departments_list = list(
+		/datum/job_department/police,
+		/datum/job_department/clinic,
+	)
 
 	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
 	species_slots = list(SPECIES_GHOUL = 1)
@@ -19,12 +22,11 @@
 	minimal_masquerade = 0
 	known_contacts = list("Police Chief")
 
-
 /datum/outfit/job/dispatcher
 	name = "Dispatcher"
 	jobtype = /datum/job/vampire/dispatcher
 	uniform = /obj/item/clothing/under/vampire/office
-	ears = /obj/item/p25radio/police/dispatch
+	//ears = /obj/item/p25radio/police/dispatch
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	gloves = /obj/item/watch
 	id = /obj/item/card/government

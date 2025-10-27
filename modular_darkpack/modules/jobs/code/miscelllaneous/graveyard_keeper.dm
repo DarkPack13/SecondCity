@@ -1,24 +1,15 @@
-
 /datum/job/vampire/graveyard
 	title = JOB_GRAVEYARD_KEEPER
-	department_head = list("Seneschal")
+	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 6
 	spawn_positions = 6
 	supervisors = "the Camarilla or the Anarchs"
-
 	exp_required_type_department = EXP_TYPE_SERVICES
-
-
+	config_tag = "GRAVEYARD_KEEPER"
 	outfit = /datum/outfit/job/graveyard
 
-
-
-
-
-
 	display_order = JOB_DISPLAY_ORDER_GRAVEYARD
-
 
 	description = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."
 	minimal_masquerade = 0
@@ -31,7 +22,7 @@
 
 	id = /obj/item/card/graveyard
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-//	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/vampire/graveyard
 	suit = /obj/item/clothing/suit/vampire/trench
 	glasses = /obj/item/clothing/glasses/vampire/yellow

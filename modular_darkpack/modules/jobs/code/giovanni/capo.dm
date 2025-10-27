@@ -5,7 +5,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Family and the Traditions"
-
+	config_tag = "CAPO"
 	outfit = /datum/outfit/job/capo
 
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI

@@ -1,13 +1,12 @@
-
-/datum/job/vampire/giovanni
+/datum/job/vampire/squadra
 	title = JOB_LA_SQUADRA
 	department_head = /datum/job/vampire/capo
 	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"
-
-	outfit = /datum/outfit/job/giovanni
+	config_tag = "LA_SQUADRA"
+	outfit = /datum/outfit/job/squadra
 
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -21,9 +20,9 @@
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
 
-/datum/outfit/job/giovanni
+/datum/outfit/job/squadra
 	name = "La Squadra"
-	jobtype = /datum/job/vampire/giovanni
+	jobtype = /datum/job/vampire/squadra
 
 	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
@@ -34,6 +33,6 @@
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
 
-/obj/effect/landmark/start/giovanni
+/obj/effect/landmark/start/squadra
 	name = "La Squadra"
 

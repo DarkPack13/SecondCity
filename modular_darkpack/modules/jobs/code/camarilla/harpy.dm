@@ -1,4 +1,3 @@
-//THE HARPY
 /datum/job/vampire/harpy
 	title =  JOB_HARPY
 	description = "You are an expert on the nightlife of Cainite society. Acting as one of the chief advisors on all things related to boons and diplomacy, the Prince defers quite the amount of judgement to you. Don't squander it."

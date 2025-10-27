@@ -1,4 +1,3 @@
-
 /datum/job/vampire/priest
 	title = JOB_PRIEST
 	department_head = list("Bishop")
@@ -6,7 +5,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "God"
-
+	config_tag = "PRIEST"
 	outfit = /datum/outfit/job/priest
 
 	display_order = JOB_DISPLAY_ORDER_PRIEST
