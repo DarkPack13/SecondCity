@@ -10,7 +10,10 @@
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_PRIEST
 	exp_required_type_department = EXP_TYPE_CHURCH
-	department_for_prefs = /datum/job_department/citizen
+	department_for_prefs = /datum/job_department/city_services
+	departments_list = list(
+		/datum/job_department/city_services,
+	)
 	allowed_species = list(SPECIES_HUMAN)
 	description = "Be the shepherd of the flock in San Francisco, lead them to salvation, piety and righteousness."
 

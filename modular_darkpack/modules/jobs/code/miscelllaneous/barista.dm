@@ -8,7 +8,10 @@
 	config_tag = "BARISTA"
 	display_order = JOB_DISPLAY_ORDER_BANU
 	job_flags = CITY_JOB_FLAGS
-	department_for_prefs = /datum/job_department/citizen
+	department_for_prefs = /datum/job_department/city_services
+	departments_list = list(
+		/datum/job_department/city_services,
+	)
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 	species_slots = list(SPECIES_KINDRED = 8, SPECIES_GHOUL = 50, SPECIES_HUMAN = 50)
 

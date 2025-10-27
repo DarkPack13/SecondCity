@@ -9,7 +9,10 @@
 	outfit = /datum/outfit/job/taxi
 	display_order = JOB_DISPLAY_ORDER_TAXI
 	exp_required_type_department = EXP_TYPE_SERVICES
-	department_for_prefs = /datum/job_department/citizen
+	department_for_prefs = /datum/job_department/city_services
+	departments_list = list(
+		/datum/job_department/city_services,
+	)
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 
 	description = "Drive people in the city."

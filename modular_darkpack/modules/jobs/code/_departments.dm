@@ -79,7 +79,7 @@
 	department_experience_type = EXP_TYPE_POLICE
 	display_order = 1
 	label_class = "police"
-	ui_color = "#66a569ff"
+	ui_color = "#2e1781ff"
 
 /datum/job_department/sabbat
 	department_name = DEPARTMENT_SABBAT
@@ -107,3 +107,8 @@
 	display_order = 1
 	label_class = "manor"
 	ui_color = "#a066a5ff"
+
+/datum/job_department/city_services
+	department_name = DEPARTMENT_CITY_SERVICES
+	department_bitflags = DEPARTMENT_BITFLAG_CITY_SERVICES
+	// Don't add department_head! citizens names should not be in bold.
