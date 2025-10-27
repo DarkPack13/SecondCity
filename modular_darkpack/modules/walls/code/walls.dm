@@ -173,20 +173,20 @@ LOW_WALL_HELPER(vampwall/rich)
 /turf/closed/wall/vampwall/junk
 	name = "junk brick wall"
 	desc = "A huge chunk of dirty bricks used to separate rooms."
-	icon_state = "junk-0"
-	base_icon_state = "junk"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/junk/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/junk/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/junk)
-/turf/closed/wall/vampwall/junk/low/window
-	icon_state = "junk-window"
+/turf/closed/wall/vampwall/junk/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/junk/low_wall.dmi'
 
 /turf/closed/wall/vampwall/junk/alt
-	icon_state = "junkalt-0"
-	base_icon_state = "junkalt"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/junk_alt/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/junk_alt/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/junk/alt)
-/turf/closed/wall/vampwall/junk/alt/low/window
-	icon_state = "junkalt-window"
+/turf/closed/wall/vampwall/junk/alt/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/junk_alt/low_wall.dmi'
 
 /turf/closed/wall/vampwall/market
 	name = "concrete wall"
@@ -206,20 +206,7 @@ LOW_WALL_HELPER(vampwall/market)
 	icon_state = "old-0"
 	base_icon_state = "old"
 
-/turf/closed/wall/vampwall/old/low
-	icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'
-	opacity = FALSE
-	low = TRUE
-	blocks_air = FALSE
-	smoothing_groups = SMOOTH_GROUP_CITY_LOW_WALL
-	canSmoothWith = SMOOTH_GROUP_CITY_LOW_WALL
-/* Currently missing icon states for window
-LOW_WALL_HELPER(vampwall/low)
-/turf/closed/wall/vampwall/old/low/window
-	icon_state = "old-window"
-/turf/closed/wall/vampwall/old/low/window/reinforced
-	icon_state = "old-reinforced"
-*/
+LOW_WALL_HELPER(vampwall/old)
 
 /turf/closed/wall/vampwall/painted
 	name = "painted brick wall"
