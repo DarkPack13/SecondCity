@@ -83,7 +83,6 @@
 	name = "First Team"
 	roundend_category = "first_team"
 	antagpanel_category = "First Team"
-	job_rank = ROLE_FIRST_TEAM
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
@@ -100,8 +99,6 @@
 /datum/antagonist/first_team/on_gain()
 	randomize_appearance()
 	forge_objectives()
-	add_antag_hud(ANTAG_HUD_OPS, "synd", owner.current)
-	owner.special_role = src
 	equip_first_team()
 	give_alias()
 	offer_loadout()
@@ -110,7 +107,6 @@
 /datum/antagonist/first_team/on_removal()
 	..()
 	to_chat(owner.current,span_userdanger("You are no longer in the First Team!"))
-	owner.special_role = null
 
 /datum/antagonist/first_team/greet()
 	to_chat(owner.current,span_alertsyndie("You're in the First Team."))
@@ -129,7 +125,7 @@
 	var/my_surname = pick(GLOB.last_names)
 	owner.current.fully_replace_character_name(null,"[selected_rank] [my_name] [my_surname]")
 
-/datum/antagonist/first_team/proc/forge_objectives()
+/datum/antagonist/first_team/forge_objectives()
 	spawn(2 SECONDS)
 	if(first_team_team)
 		objectives |= first_team_team.objectives
@@ -290,12 +286,8 @@
 	var/datum/random_gen/first_team/h_gen = new
 	var/mob/living/carbon/human/H = owner.current
 	H.gender = pick(MALE, FEMALE)
-	H.body_type = H.gender
+	H.physique = H.gender
 	H.age = rand(18, 36)
-//	if(age >= 55)
-//		hair_color = "a2a2a2"
-//		facial_hair_color = hair_color
-//	else
 	H.hair_color = pick(h_gen.hair_colors)
 	H.facial_hair_color = H.hair_color
 	if(H.gender == MALE)
@@ -309,12 +301,13 @@
 		H.facial_hairstyle = "Shaved"
 	H.name = H.real_name
 	H.dna.real_name = H.real_name
-	var/obj/item/organ/eyes/organ_eyes = H.getorgan(/obj/item/organ/eyes)
+	var/obj/item/organ/eyes/organ_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
 	if(organ_eyes)
-		organ_eyes.eye_color = random_eye_color()
+		organ_eyes.eye_color_left = random_eye_color()
+		organ_eyes.eye_color_right = organ_eyes.eye_color_left
 	H.underwear = random_underwear(H.gender)
 	if(prob(50))
-		H.underwear_color = organ_eyes.eye_color
+		H.underwear_color = organ_eyes.eye_color_left
 	if(prob(50) || H.gender == FEMALE)
 		H.undershirt = random_undershirt(H.gender)
 	if(prob(25))
@@ -345,13 +338,15 @@
 			name += pick("-", "*", "")
 			name += "Ops"
 
+/datum/objective/first_team
+	name = "first_team"
+	explanation_text = "Follow the orders of your sergeant. Protect ENDRON executives. Liquidate hazards."
+	martyr_compatible = TRUE
+
 /datum/team/first_team
 	var/first_team_name
 	var/core_objective = /datum/objective/first_team
 	member_name = "First Team Operative"
-	var/memorized_code
-	var/list/team_discounts
-	var/obj/item/nuclear_challenge/war_button
 
 /datum/team/first_team/New()
 	..()
@@ -362,7 +357,6 @@
 		var/datum/objective/O = new core_objective
 		O.team = src
 		objectives += O
-
 
 /datum/team/first_team/roundend_report()
 	var/list/parts = list()
@@ -375,46 +369,6 @@
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 
-
-
-//////////////////////////////////////////////
-//                                          //
-//        FIRST TEAM SQUAD (MIDROUND)    //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/midround/from_ghosts/first_team
-	name = "First Team Squad"
-	antag_flag = ROLE_FIRST_TEAM
-	antag_datum = /datum/antagonist/first_team
-	required_candidates = 1
-	weight = 5
-	cost = 35
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
-	var/datum/team/first_team/first_team_team
-	flags = HIGHLANDER_RULESET
-
-/datum/dynamic_ruleset/midround/from_ghosts/first_team/acceptable(population=0, threat=0)
-	indice_pop = min(operative_cap.len, round(living_players.len/5)+1)
-	required_candidates = max(5, operative_cap[indice_pop])
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/first_team/ready(forced = FALSE)
-	if (required_candidates > (dead_players.len + list_observers.len))
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/from_ghosts/first_team/finish_setup(mob/new_character, index)
-	new_character.mind.special_role = "First Team"
-	new_character.mind.assigned_role = "First Team"
-	if (index == 1) // Our first guy is the leader
-		var/datum/antagonist/first_team/sergeant/new_role = new
-		first_team_team = new_role.first_team_team
-		new_character.mind.add_antag_datum(new_role)
-	else
-		return ..()
-
 //------------EQUIPMENT------------
 
 
@@ -426,10 +380,8 @@
 	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
 	icon_state = "shoes"
 	gender = PLURAL
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON
 	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
-	body_worn = TRUE
-	cost = 5
 
 /obj/item/clothing/shoes/response/firstteam
 	name = "first-team boots"
@@ -444,39 +396,53 @@
 	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	inhand_icon_state = "fingerless"
 	undyeable = TRUE
-	body_worn = TRUE
 
 /obj/item/clothing/gloves/response/firstteam
 	name = "First Team gloves"
 	desc = "Provides protection from the good, the bad and the ugly."
 	icon_state = "ftgloves"
-	armor = list(MELEE = 80, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 80, BIO = 80, RAD = 80, FIRE = 80, ACID = 80)
+	armor_type = /datum/armor/first_team_gloves
+
+/datum/armor/first_team_gloves
+	melee = 80
+	bullet = 80
+	laser = 80
+	energy = 80
+	bomb = 80
+	bio = 80
+	fire = 80
 
 //------------HELMET------------
-
-/obj/item/clothing/head/response
-	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
-	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
-	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 10, WOUND = 10)
-	body_worn = TRUE
-
-/obj/item/clothing/head/response/Initialize()
-	. = ..()
-	AddComponent(/datum/component/selling, 10, "headwear", FALSE)
 
 /obj/item/clothing/head/response/firstteam_helmet
 	name = "First Team helmet"
 	desc = "A black helmet with two, green-glowing eye-pieces that seem to stare through your soul."
+	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "fthelmet"
-	armor = list(MELEE = 80, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 80, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 80)
+	armor_type =  /datum/armor/first_team_helmet
+
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
-	clothing_flags = NO_HAT_TRICKS|SNUG_FIT
-	dynamic_hair_suffix = ""
-	dynamic_fhair_suffix = ""
+	clothing_flags = SNUG_FIT
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+
+/datum/armor/first_team_helmet
+	melee = 80
+	bullet = 80
+	laser = 80
+	energy = 80
+	bomb = 80
+	bio = 80
+	fire = 80
+	acid = 80
+	wound = 80
+
+/obj/item/clothing/head/response/firstteam_helmet/Initialize()
+	. = ..()
+	AddComponent(/datum/component/selling, 10, "headwear", FALSE)
 
 //------------ARMOR------------
 
@@ -492,19 +458,39 @@
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	max_integrity = 250
 	resistance_flags = NONE
-	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 10, WOUND = 10)
-	body_worn = TRUE
+	armor_type = /datum/armor/first_team_suit
+
+/datum/armor/first_team_suit
+	melee = 10
+	bullet = 0
+	laser = 10
+	energy = 10
+	bomb = 10
+	bio = 0
+	fire = 0
+	acid = 10
+	wound = 10
 
 /obj/item/clothing/suit/response/Initialize()
 	. = ..()
 	AddComponent(/datum/component/selling, 15, "suit", FALSE)
 
-
 /obj/item/clothing/suit/response/firstteam_armor
 	name = "First Team Armoured Vest"
-	desc = "A strong looking, armoured-vest with a large '1' engraved onto the breast."
+	desc = "A strong looking, armoured-vest with a large '1' engraved onto the chest."
 	icon_state = "ftarmor"
-	armor = list(MELEE = 80, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 80, BIO = 80, RAD = 80, FIRE = 80, ACID = 90, WOUND = 40)
+	armor_type = /datum/armor/first_team_armor
+
+/datum/armor/first_team_armor
+	melee = 80
+	bullet = 80
+	laser = 80
+	energy = 80
+	bomb = 80
+	bio = 80
+	fire = 80
+	acid = 90
+	wound = 40
 
 //------------SUIT------------
 
@@ -517,10 +503,20 @@
 	can_adjust = FALSE
 	icon = 'modular_darkpack/modules/first_team/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 15)
+	armor_type = /datum/armor/first_team_clothes
 	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
-	body_worn = TRUE
-	fitted = NO_FEMALE_UNIFORM
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/datum/armor/first_team_clothes
+	melee = 0
+	bullet = 0
+	laser = 0
+	energy = 0
+	bomb = 0
+	bio = 0
+	fire = 0
+	acid = 0
+	wound = 15
 
 /obj/item/clothing/under/response/Initialize()
 	. = ..()
@@ -539,7 +535,6 @@
 //------------Weapons------------
 
 /obj/item/gun/ballistic/automatic/response
-	icon = 'code/modules/wod13/weapons.dmi'
 	lefthand_file = 'modular_darkpack/modules/first_team/icons/righthand.dmi'
 	righthand_file = 'modular_darkpack/modules/first_team/icons/lefthand.dmi'
 	worn_icon = 'modular_darkpack/modules/first_team/icons/worn.dmi'
@@ -562,23 +557,24 @@
 	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
 	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "b556"
-	base_iconstate = "b556"
+	base_icon_state = "b556"
 
 /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
 	armour_penetration = 50
 	damage = 45
 	var/bloodloss = 1
 
-/obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale/on_hit(atom/target, blocked = 0, pierce_hit)
 	if(iskindred(target) || isghoul(target))
 		var/mob/living/carbon/human/H = target
 		if(H.bloodpool == 0)
-			to_chat(H, span_warning("only ash remains in my veins"))
+			to_chat(H, span_warning("Only ash remains in my veins..."))
 			H.apply_damage(20, BURN)
-			return
+			return ..()
 		H.bloodpool = max(H.bloodpool - bloodloss, 0)
 		playsound(H, 'modular_darkpack/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
-		to_chat(H, span_warning("green flames errupt from the bullets impact, boiling your blood"))
+		to_chat(H, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
+	/* TODO - GAROU
 	if(iswerewolf(target) || isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
@@ -587,6 +583,9 @@
 		M.apply_damage(20, CLONE)
 		playsound(M, 'modular_darkpack/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
+		return ..()
+	*/
+	return ..()
 
 /obj/item/ammo_casing/vampire/c12g/f12g
 	name = "Frag-12g shell casing"
@@ -596,19 +595,18 @@
 	icon = 'modular_darkpack/modules/first_team/icons/ammo.dmi'
 	onflooricon = 'modular_darkpack/modules/first_team/icons/onfloor.dmi'
 	icon_state = "f12"
-	base_iconstate = "f12"
+	base_icon_state = "f12"
 
 /obj/projectile/beam/beam_rifle/vampire/f12g
 	name = "12g explosive slug"
 	damage = 60
 	armour_penetration = 50
-	bare_wound_bonus = 10
+	exposed_wound_bonus = 10
 	wound_bonus = 5
 
-/obj/projectile/beam/beam_rifle/vampire/f12g/on_hit(atom/target, blocked = FALSE)
-	..()
+/obj/projectile/beam/beam_rifle/vampire/f12g/on_hit(atom/target, blocked = 0, pierce_hit)
 	explosion(target, -1, 0, 2)
-	return BULLET_ACT_HIT
+	return ..()
 
 /obj/item/ammo_box/vampire/f12g //DO NOT DISTRIBUTE NORMALLY
 	name = "ammo box (f12g)"
@@ -648,7 +646,7 @@
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
 	caliber = CALIBER_12G
-	multiload = FALSE
+	ammo_box_multiload = AMMO_BOX_MULTILOAD_NONE
 	max_ammo = 8
 	masquerade_violating = FALSE
 
@@ -665,7 +663,7 @@
 	worn_icon_state = "rifle"
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM //Bullpup makes it easy to fire with one hand, but we still don't want these dual-wielded
-	mag_type = /obj/item/ammo_box/magazine/px66f
+	accepted_magazine_type = /obj/item/ammo_box/magazine/px66f
 	burst_size = 3
 	fire_delay = 1
 	spread = 2
@@ -674,7 +672,6 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/first_team/audio/silenced_rifle.ogg'
 	masquerade_violating = TRUE
-	is_iron = FALSE
 
 /obj/item/gun/ballistic/automatic/response/px66f/Initialize()
 	. = ..()
@@ -695,7 +692,7 @@
 	worn_icon_state = "px12r"
 	recoil = 3
 	fire_delay = 6
-	mag_type = /obj/item/ammo_box/magazine/internal/px12r
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/px12r
 	can_be_sawn_off	= FALSE
 	fire_sound = 'modular_darkpack/modules/first_team/audio/shotgun_firing.ogg'
 	load_sound = 'modular_darkpack/modules/first_team/audio/shell_load.ogg'
@@ -719,14 +716,14 @@
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/px249f
+	accepted_magazine_type = /obj/item/ammo_box/magazine/px249f
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 5
 	fire_delay = 2
 	spread = 6
 	fire_sound = 'modular_darkpack/modules/first_team/audio/m249fire.ogg'
 	rack_sound = 'modular_darkpack/modules/first_team/audio/m249rack.ogg'
-	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
+	suppressed_sound = 'sound/items/weapons/gun/general/heavy_shot_suppressed.ogg'
 
 /obj/item/gun/ballistic/automatic/l6_saw/vamp/update_icon_state()
 	. = ..()
@@ -768,19 +765,19 @@
 /datum/reagent/medicine/vamp/ert/on_mob_metabolize(mob/living/L)
 	..()
 	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
-	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_NOHARDCRIT, type)
 	ADD_TRAIT(L, TRAIT_NOSOFTCRIT, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
-	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	ADD_TRAIT(L, TRAIT_IGNORESLOWDOWN, type)
 
 /datum/reagent/medicine/vamp/ert/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
-	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_NOHARDCRIT, type)
 	REMOVE_TRAIT(L, TRAIT_NOSOFTCRIT, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
-	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	REMOVE_TRAIT(L, TRAIT_IGNORESLOWDOWN, type)
 	..()
 
 /datum/reagent/medicine/vamp/ert/on_mob_life(mob/living/carbon/M)

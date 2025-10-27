@@ -433,6 +433,7 @@
 #include "code\__DEFINES\~darkpack\mobs.dm"
 #include "code\__DEFINES\~darkpack\names.dm"
 #include "code\__DEFINES\~darkpack\npc.dm"
+#include "code\__DEFINES\~darkpack\projectiles.dm"
 #include "code\__DEFINES\~darkpack\signals_kindred.dm"
 #include "code\__DEFINES\~darkpack\sound.dm"
 #include "code\__DEFINES\~darkpack\status_effects_debuffs.dm"
