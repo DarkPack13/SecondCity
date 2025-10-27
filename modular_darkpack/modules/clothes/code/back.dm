@@ -22,7 +22,7 @@
 
 	var/mob/living/carbon/human/H = user
 	if(src == H.back && H.w_uniform && !user.get_active_held_item())
-		context[SCREENTIP_CONTEXT_ALT_LMB] =  "[icon_hidden ? "Reveal" : "Conceal"]"
+		context[SCREENTIP_CONTEXT_ALT_RMB] =  "[icon_hidden ? "Reveal" : "Conceal"]"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
