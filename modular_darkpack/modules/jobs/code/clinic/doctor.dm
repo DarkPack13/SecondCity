@@ -26,7 +26,7 @@
 	jobtype = /datum/job/vampire/doctor
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/id/clinic
+	id = /obj/item/card/clinic
 	uniform = /obj/item/clothing/under/vampire/nurse
 	shoes = /obj/item/clothing/shoes/vampire/white
 	suit =  /obj/item/clothing/suit/vampire/labcoat

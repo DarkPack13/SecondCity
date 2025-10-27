@@ -25,7 +25,7 @@
 	name = "Archivist"
 	jobtype = /datum/job/vampire/archivist
 
-	id = /obj/item/card/id/archive
+	id = /obj/item/card/archive
 	glasses = /obj/item/clothing/glasses/vampire/perception
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/latex

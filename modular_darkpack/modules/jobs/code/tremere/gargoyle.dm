@@ -25,7 +25,7 @@
 	name = "Chantry Gargoyle"
 	jobtype = /datum/job/vampire/gargoyle
 
-	id = /obj/item/card/id/archive
+	id = /obj/item/card/archive
 	glasses = /obj/item/clothing/glasses/vampire/red
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/work

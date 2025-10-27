@@ -25,7 +25,7 @@
 	name = "Baron"
 	jobtype = /datum/job/vampire/baron
 
-	id = /obj/item/card/id/baron
+	id = /obj/item/card/baron
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/bar
 	suit = /obj/item/clothing/suit/vampire/jacket/better

@@ -36,14 +36,14 @@
 	jobtype = /datum/job/vampire/primogen_banu
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/id/primogen
+	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/turtleneck_navy
 	//suit = /obj/item/clothing/suit/vampire/jacket/banu
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	//l_pocket = /obj/item/vamp/phone/banu_primo
 	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/banuhaqim/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/id/whip, /obj/item/card/id/steward, /obj/item/card/id/myrmidon)
+	//backpack_contents = list(/obj/item/vamp/keys/banuhaqim/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
 
 /obj/effect/landmark/start/primogen_banu
 	name = "Primogen Banu Haqim"

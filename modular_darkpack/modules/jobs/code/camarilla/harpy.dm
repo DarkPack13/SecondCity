@@ -37,7 +37,7 @@
 	jobtype = /datum/job/vampire/harpy
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/id/clerk/harpy
+	id = /obj/item/card/clerk/harpy
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
 	//l_pocket = /obj/item/vamp/phone/harpy

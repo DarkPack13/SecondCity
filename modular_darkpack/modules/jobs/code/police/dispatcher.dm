@@ -29,7 +29,7 @@
 	//ears = /obj/item/p25radio/police/dispatch
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	gloves = /obj/item/watch
-	id = /obj/item/card/id/government
+	id = /obj/item/card/government
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/dispatch
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/flashlight=1)

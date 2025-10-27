@@ -25,7 +25,7 @@
 	name = "Tower Employee"
 	jobtype = /datum/job/vampire/towerwork
 
-	id = /obj/item/card/id/tower_employee
+	id = /obj/item/card/tower_employee
 	uniform = /obj/item/clothing/under/vampire/hound
 	gloves = /obj/item/clothing/gloves/vampire/work
 	suit = /obj/item/clothing/suit/vampire/trench

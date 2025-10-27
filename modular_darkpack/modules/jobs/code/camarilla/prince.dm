@@ -47,7 +47,7 @@
 	jobtype = /datum/job/vampire/prince
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/id/prince
+	id = /obj/item/card/prince
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	uniform =  /obj/item/clothing/under/vampire/prince

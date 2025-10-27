@@ -33,7 +33,7 @@
 	jobtype = /datum/job/vampire/hound
 
 	//ears = /obj/item/p25radio
-	id = /obj/item/card/id/camarilla
+	id = /obj/item/card/camarilla
 	uniform = /obj/item/clothing/under/vampire/hound
 	gloves = /obj/item/clothing/gloves/vampire/work
 	suit = /obj/item/clothing/suit/vampire/trench
