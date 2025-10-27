@@ -8,7 +8,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "TOWER_EMPLOYEE"
 	outfit = /datum/outfit/job/towerwork
-
+	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_TOWERWORK
 	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
