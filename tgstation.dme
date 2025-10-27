@@ -6932,7 +6932,6 @@
 #include "modular_darkpack\modules\jobs\code\giovanni\capo.dm"
 #include "modular_darkpack\modules\jobs\code\giovanni\la_famiglia.dm"
 #include "modular_darkpack\modules\jobs\code\giovanni\la_squadra.dm"
-#include "modular_darkpack\modules\jobs\code\miscelllaneous\barista.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\citizen.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\graveyard_keeper.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\janitor.dm"
