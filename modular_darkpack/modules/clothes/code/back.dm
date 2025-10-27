@@ -1,18 +1,4 @@
-/datum/storage/backpack/satchel/on_click_alt(datum/source, mob/user)
-	if(!ishuman(user)) // You're not a *dog*, are you?
-		return ..()
-
-	var/obj/item/storage/backpack/satchel/S = parent
-	var/mob/living/carbon/human/H = user
-	if(S == H.back && H.w_uniform && !user.get_active_held_item()) // Make sure the bag is on our back, we have clothes on, and there isn't anything in our hands
-		S.add_fingerprint(H)
-		S.conceal(H)
-		return COMPONENT_NO_AFTERATTACK
-	else // It's not on our back AND/OR we don't have clothes AND/OR we have something in our hands
-		return ..()
-
 /obj/item/storage/backpack/satchel
-	storage_type = /datum/storage/backpack/satchel
 	var/icon_hidden = FALSE
 
 /obj/item/storage/backpack/satchel/Initialize(mapload)
@@ -40,18 +26,15 @@
 
 	return CONTEXTUAL_SCREENTIP_SET
 
-/*
-/obj/item/storage/backpack/satchel/click_alt(mob/user)
+/obj/item/storage/backpack/satchel/click_alt_secondary(mob/user)
 	if(!ishuman(user)) // You're not a *dog*, are you?
 		return ..()
 
+	var/obj/item/storage/backpack/satchel/S = src
 	var/mob/living/carbon/human/H = user
-	if(src == H.back && H.w_uniform && !user.get_active_held_item()) // Make sure the bag is on our back, we have clothes on, and there isn't anything in our hands
-		add_fingerprint(H)
-		icon_hidden = !icon_hidden
-		worn_icon_state = icon_hidden ? "nothing" : initial(worn_icon_state)
-		to_chat(H, span_notice("You [icon_hidden ? "conceal" : "reveal"] [src].</span>"))
-		H.update_appearance()
+	if(S == H.back && H.w_uniform && !user.get_active_held_item()) // Make sure the bag is on our back, we have clothes on, and there isn't anything in our hands
+		S.add_fingerprint(H)
+		S.conceal(H)
+		return COMPONENT_NO_AFTERATTACK
 	else // It's not on our back AND/OR we don't have clothes AND/OR we have something in our hands
 		return ..()
-*/
