@@ -1,4 +1,4 @@
-//beastmaster commands list from beastmaster_commands.dm, all summoned mobs can be set to idle, follow, attack, protect the owner, and roam freely.
+//beastmaster commands list. some are from the parent, some are custom and from beastmaster_commands.dm
 #define BEASTMASTER_COMMANDS list(\
 	/datum/pet_command/idle,\
 	/datum/pet_command/follow/start_active,\

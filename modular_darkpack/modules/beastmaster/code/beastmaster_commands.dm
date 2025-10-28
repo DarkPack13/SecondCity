@@ -65,6 +65,25 @@
 		if(!target)
 			controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+
+			// get owner and check their follow/stay state
+			var/mob/living/pawn = controller.pawn
+			var/list/friends = controller.blackboard[BB_FRIENDS_LIST]
+			if(friends && length(friends))
+				//the master should be the first friend in the list
+				var/mob/living/carbon/human/owner = friends[1]
+				if(ishuman(owner))
+					//check whether they were following or staying before and then return to that after all enemies are defeated
+					var/datum/action/beastmaster_command_toggle_follow/toggle = locate() in owner.actions
+					var/datum/component/obeys_commands/obeys = owner.minion_command_components[pawn]
+					if(toggle && obeys)
+						if(toggle.is_following)
+							var/datum/pet_command/follow/follow_cmd = obeys.available_commands["Follow"]
+							follow_cmd?.set_command_active(pawn, owner)
+						else
+							var/datum/pet_command/idle/stay_cmd = obeys.available_commands["Stay"]
+							stay_cmd?.set_command_active(pawn, owner)
+
 			return
 
 	// attack the target
@@ -151,6 +170,7 @@
 
 	parent.befriend(living_target)
 
+	//tell all the other summons to befriend this guy too
 	if(ishuman(friend))
 		var/mob/living/carbon/human/H = friend
 		for(var/mob/living/other_minion in H.beastmaster_minions)
@@ -158,11 +178,13 @@
 				continue
 			other_minion.befriend(living_target)
 
+	//remove this guy from the enemies list if we're queued up to attack them
 	var/list/enemies = parent.ai_controller.blackboard[BB_BEASTMASTER_ENEMIES_LIST]
 	if(enemies && (living_target in enemies))
 		enemies -= living_target
 		UnregisterSignal(living_target, COMSIG_LIVING_DEATH)
 
+	//and if theyre the current target remove that too
 	if(parent.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] == living_target)
 		parent.ai_controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
 		parent.ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
