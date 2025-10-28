@@ -5,6 +5,7 @@
 	/datum/pet_command/attack/beastmaster,\
 	/datum/pet_command/protect_owner,\
 	/datum/pet_command/free/beastmaster,\
+	/datum/pet_command/befriend_target,\
 )
 
 /mob/living/carbon/human/proc/add_beastmaster_minion(mob/living/minion_or_type, turf/spawn_location)
@@ -46,13 +47,21 @@
 	minion_command_components[minion] = new_component
 	minion.befriend(src)
 
-	//now we befriend all the other minions so that we don't attack each other
+	// befriend all existing minions and share their friends
 	for(var/mob/living/other_minion in beastmaster_minions)
 		minion.befriend(other_minion)
 		other_minion.befriend(minion)
 
+		// share all friends from existing minions to new minion
+		var/list/other_friends = other_minion.ai_controller?.blackboard[BB_FRIENDS_LIST]
+		if(other_friends)
+			for(var/mob/living/shared_friend in other_friends)
+				if(shared_friend == minion || shared_friend == other_minion || shared_friend == src)
+					continue
+				minion.befriend(shared_friend)
+
 	//if we didnt have beastmaster minions before, then register beastmaster signals.
-	var/had_minions = !!length(beastmaster_minions)
+	var/had_minions = length(beastmaster_minions)
 	beastmaster_minions += minion
 	RegisterSignal(minion, COMSIG_LIVING_DEATH, PROC_REF(on_minion_death))
 

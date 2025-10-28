@@ -14,7 +14,6 @@
 
 /datum/targeting_strategy/basic/beastmaster_enemies
 
-
 //this is an exact copy of the parent without faction logic.
 /datum/targeting_strategy/basic/beastmaster_enemies/can_attack(mob/living/source, atom/movable/target, vision_range)
 	var/datum/ai_controller/basic_controller/our_controller = source.ai_controller
