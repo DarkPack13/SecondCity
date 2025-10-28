@@ -100,19 +100,6 @@
 
 //OTHER TURFS
 
-/turf/open/floor/plating/parquetry
-	name = "parquetry"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "parquet"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/parquetry/old
-	icon_state = "parquet-old"
-
-/turf/open/floor/plating/parquetry/rich
-	icon_state = "parquet-rich"
-
 /turf/open/floor/plating/granite
 	name = "granite"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
@@ -225,32 +212,6 @@
 /turf/open/floor/plating/saint/Initialize(mapload)
 	. = ..()
 	icon_state = "saint[rand(1, 2)]"
-
-/turf/open/floor/plating/vampwood
-	name = "wood"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "bwood"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/vampwood/Initialize(mapload)
-	. = ..()
-	var/area/my_area = loc
-	if(my_area.outdoors)
-		if(check_holidays(FESTIVE_SEASON))
-			//initial_gas_mix = WINTER_DEFAULT_ATMOS
-			icon_state = "snow[rand(1, 14)]"
-			footstep = FOOTSTEP_SNOW
-			barefootstep = FOOTSTEP_SNOW
-			heavyfootstep = FOOTSTEP_SNOW
-
-// See about porting the apoc sprite for this
-/turf/open/floor/plating/woodrough
-	name = "wood"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "bwood"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
 
 /turf/open/floor/plating/bacotell
 	name = "plating"

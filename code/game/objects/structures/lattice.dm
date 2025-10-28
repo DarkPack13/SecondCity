@@ -149,6 +149,14 @@
 		qdel(src)
 		return TRUE
 
+// DARKPACK EDIT ADD START
+/obj/structure/lattice/catwalk/borderless
+	icon = 'icons/obj/smooth_structures/darkpack/catwalk_borderless.dmi'
+
+/obj/structure/lattice/catwalk/borderless/smooth_walls
+	canSmoothWith = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_CITY_WALL + SMOOTH_GROUP_WALLS
+// DARKPACK EDIT ADD END
+
 /obj/structure/lattice/catwalk/mining
 	name = "reinforced catwalk"
 	desc = "A heavily reinforced catwalk used to build bridges in hostile environments. It doesn't look like anything could make this budge."
