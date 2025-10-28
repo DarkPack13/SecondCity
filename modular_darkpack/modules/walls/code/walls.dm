@@ -335,8 +335,13 @@ LOW_WALL_HELPER(vampwall/wood)
 /turf/closed/wall/vampwall/rock
 	name = "rock wall"
 	desc = "A huge chunk of rocks separating whole territory."
-	icon = 'icons/obj/smooth_structures/darkpack/wall/rock/wall.dmi'
+	//icon = 'icons/obj/smooth_structures/darkpack/wall/rock/wall.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/rock_wall.dmi' // Unfortuante case where its autocutting is a bit lacking so I manually edit it.
 	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock/frill.dmi'
+
+/turf/closed/wall/vampwall/rock/brown
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rock_brown/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock_brown/frill.dmi'
 
 /*
 /turf/closed/wall/vampwall/mojave/brick
