@@ -11,7 +11,7 @@
 	base_icon_state = "wood"
 	floor_tile = null
 
-/turf/open/floor/wood/rough/Initialize()
+/turf/open/floor/wood/rough/Initialize(mapload)
 	. = ..()
 	icon_state = "[base_icon_state][rand(1, 12)]"
 
@@ -22,7 +22,7 @@
 	base_icon_state = "woodd"
 	floor_tile = null
 
-/turf/open/floor/wood/herring/Initialize()
+/turf/open/floor/wood/herring/Initialize(mapload)
 	. = ..()
 	icon_state = "[base_icon_state][rand(1, 12)]"
 
