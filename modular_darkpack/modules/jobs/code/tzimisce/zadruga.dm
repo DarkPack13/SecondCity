@@ -22,7 +22,7 @@
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
 /datum/outfit/job/zadruga
-	name = "zadruga"
+	name = "Zadruga"
 	jobtype = /datum/job/vampire/zadruga
 	id = /obj/item/card/bogatyr
 	glasses = /obj/item/clothing/glasses/vampire/yellow
