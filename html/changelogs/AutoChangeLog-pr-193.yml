@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Sunlight and daytime now have nice status effects"
-  - admin: "vote for extending time of day"
