@@ -9,6 +9,24 @@
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/deprecated/sounds/wolves.ogg'
 
+/datum/discipline_power/animalism/activate()
+	. = ..()
+
+	if(!ishuman(owner))
+		return
+
+	for(var/mob/living/minion in owner.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			owner.beastmaster_minions -= minion
+
+	var/max_minions = owner.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(owner.beastmaster_minions) >= max_minions)
+		var/mob/living/oldest = owner.beastmaster_minions[1]
+		if(oldest)
+			owner.remove_beastmaster_minion(oldest)
+			qdel(oldest)
+
+
 //SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
 	name = "Summon Rat"
@@ -20,22 +38,7 @@
 
 /datum/discipline_power/animalism/summon_rat/activate()
 	. = ..()
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-	for(var/mob/living/minion in H.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			H.beastmaster_minions -= minion
-
-	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(H.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = H.beastmaster_minions[1]
-		if(oldest)
-			H.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-	H.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
 
 //SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
@@ -48,22 +51,7 @@
 
 /datum/discipline_power/animalism/summon_cat/activate()
 	. = ..()
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-	for(var/mob/living/minion in H.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			H.beastmaster_minions -= minion
-
-	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(H.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = H.beastmaster_minions[1]
-		if(oldest)
-			H.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-	H.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack/summoned)
 
 //SUMMON WOLF
 /datum/discipline_power/animalism/summon_wolf
@@ -76,22 +64,7 @@
 
 /datum/discipline_power/animalism/summon_wolf/activate()
 	. = ..()
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-	for(var/mob/living/minion in H.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			H.beastmaster_minions -= minion
-
-	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(H.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = H.beastmaster_minions[1]
-		if(oldest)
-			H.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-	H.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
 
 //SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
@@ -104,22 +77,7 @@
 
 /datum/discipline_power/animalism/summon_bat/activate()
 	. = ..()
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/H = owner
-	for(var/mob/living/minion in H.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			H.beastmaster_minions -= minion
-
-	var/max_minions = H.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(H.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = H.beastmaster_minions[1]
-		if(oldest)
-			H.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-	H.add_beastmaster_minion(/mob/living/basic/bat/vampire/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/bat/vampire/summoned)
 
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
@@ -206,9 +164,18 @@
 	name = "wolf"
 	desc = "A wolf bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	basic_mob_flags = DEL_ON_DEATH
+	mob_biotypes = MOB_ORGANIC
+	speed = 0.35
+	maxHealth = 80
+	health = 80
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	obj_damage = 20
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
+	random_dog_color = FALSE
 
 /mob/living/basic/pet/dog/darkpack/summoned/Initialize(mapload)
 	. = ..()

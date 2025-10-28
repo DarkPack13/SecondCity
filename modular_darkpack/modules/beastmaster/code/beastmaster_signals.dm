@@ -3,11 +3,9 @@
 	if(!GetComponent(/datum/component/beastmaster_defender))
 		AddComponent(/datum/component/beastmaster_defender)
 
-	if(!locate(/datum/action/beastmaster_command_stay) in actions)
-		var/datum/action/beastmaster_command_stay/stay = new()
-		stay.Grant(src)
-		var/datum/action/beastmaster_command_follow/follow = new()
-		follow.Grant(src)
+	if(!locate(/datum/action/beastmaster_command_toggle_follow) in actions)
+		var/datum/action/beastmaster_command_toggle_follow/toggle_follow = new()
+		toggle_follow.Grant(src)
 		var/datum/action/beastmaster_command_end_aggression/endaggro = new()
 		endaggro.Grant(src)
 
@@ -18,8 +16,7 @@
 
 	//remove action buttons
 	for(var/datum/action/beastmaster_cmd in actions)
-		if(istype(beastmaster_cmd, /datum/action/beastmaster_command_stay) || \
-			istype(beastmaster_cmd, /datum/action/beastmaster_command_follow) || \
+		if(istype(beastmaster_cmd, /datum/action/beastmaster_command_toggle_follow) || \
 			istype(beastmaster_cmd, /datum/action/beastmaster_command_end_aggression))
 			beastmaster_cmd.Remove(src)
 
