@@ -1,3 +1,4 @@
+#define BB_BEASTMASTER_ENEMIES_LIST "beastmaster_enemies"
 //action buttons
 /datum/action/beastmaster_command_toggle_follow
 	name = "Command: Stay"
@@ -70,7 +71,14 @@
 		if(controller)
 			controller.CancelActions()
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+			controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
+
+			var/list/enemies = controller.blackboard[BB_BEASTMASTER_ENEMIES_LIST]
+			if(enemies)
+				for(var/mob/living/enemy in enemies)
+					UnregisterSignal(enemy, COMSIG_LIVING_DEATH)
+				enemies.Cut()
 
 		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
 		if(!obeys)
@@ -78,4 +86,3 @@
 		var/datum/pet_command/free/beastmaster/end_aggression_cmd = obeys.available_commands["Loose"]
 		if(end_aggression_cmd)
 			end_aggression_cmd.try_activate_command(H, radial_command = FALSE)
-
