@@ -94,6 +94,7 @@
 	name = "mining point transfer card"
 	desc = "A small, reusable card for transferring mining points. Swipe your ID card over it to start the process."
 	icon_state = "data_1"
+	slot_flags = NONE //DARKPACK EDIT ADDITION
 
 	///Amount of points this card contains.
 	var/points = 0

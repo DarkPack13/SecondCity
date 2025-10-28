@@ -301,7 +301,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	worn_icon_state = "id14"
+	worn_icon_state = "id13"
 
 /obj/item/card/noddist
 	name = "cultist badge"
@@ -313,7 +313,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	worn_icon_state = "id15"
+	worn_icon_state = "id13"
 
 //TZIMISCE ROLES
 /obj/item/card/voivode
@@ -326,7 +326,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	worn_icon_state = "id12"
+	worn_icon_state = "id4"
 
 /obj/item/card/bogatyr
 	name = "dusty badge"
@@ -338,7 +338,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	worn_icon_state = "id12"
+	worn_icon_state = "id4"
 
 // PRIMOGEN STUFF
 /obj/item/card/primogen
@@ -351,7 +351,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	worn_icon_state = "id12"
+	worn_icon_state = "id4"
 
 /obj/item/card/whip
 	name = "primogen's whip badge"
