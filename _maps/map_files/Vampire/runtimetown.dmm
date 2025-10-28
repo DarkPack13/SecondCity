@@ -73,7 +73,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "bE" = (
 /obj/structure/table/wood,
@@ -197,7 +197,7 @@
 /area/vtm/outside/pacificheights)
 "ff" = (
 /obj/cargocrate,
-/turf/open/misc/dirt/vamp/rails,
+/turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
 "fh" = (
 /obj/structure/chair/stool/bar/directional/west,
@@ -205,7 +205,7 @@
 /area/vtm/outside/pacificheights)
 "fi" = (
 /obj/effect/decal/pallet,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "fn" = (
 /obj/effect/decal/cleanable/cardboard,
@@ -344,7 +344,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "jp" = (
 /turf/closed/wall/vampwall/brick/low,
@@ -419,7 +419,7 @@
 "lU" = (
 /obj/effect/decal/pallet,
 /obj/machinery/light/directional/west,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "mb" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -538,7 +538,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "pt" = (
 /mob/living/carbon/human/npc/shop,
@@ -600,7 +600,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "qT" = (
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "qV" = (
 /turf/closed/wall/vampwall/brick,
@@ -720,7 +720,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "tr" = (
 /obj/structure/sign/city/police_department{
@@ -1061,7 +1061,7 @@
 /area/vtm/outside/pacificheights)
 "Db" = (
 /obj/machinery/light/directional/west,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
@@ -1118,7 +1118,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "DM" = (
-/turf/open/misc/dirt/vamp/rails,
+/turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
 "DN" = (
 /obj/structure/rack/clothing/rand{
@@ -1151,7 +1151,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "EL" = (
 /turf/closed/wall/vampwall/rich/old/low/window,
@@ -1248,7 +1248,7 @@
 /area/vtm/interior/shop)
 "GB" = (
 /obj/structure/barrels/rand,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "GE" = (
 /obj/structure/retail/flower_shop,
@@ -1378,7 +1378,7 @@
 /obj/item/supplypod_beacon{
 	anchored = 1
 	},
-/turf/open/misc/dirt/vamp/rails,
+/turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
 "ID" = (
 /turf/closed/wall/vampwall/market,
@@ -1391,7 +1391,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/misc/dirt/vamp/rails,
+/turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
 "IX" = (
 /obj/machinery/fax/admin/aasimites,
@@ -1506,7 +1506,7 @@
 /area/vtm/outside/pacificheights)
 "LR" = (
 /obj/structure/cargo_put,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "LW" = (
 /obj/structure/table,
@@ -1735,7 +1735,7 @@
 /area/vtm/outside/pacificheights)
 "Re" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "Ri" = (
 /obj/structure/table,
@@ -1939,7 +1939,7 @@
 /area/vtm/outside/pacificheights)
 "VK" = (
 /obj/structure/cargo_take,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "VP" = (
 /obj/machinery/light/directional/north,
@@ -1970,7 +1970,7 @@
 /obj/structure/roadblock{
 	dir = 4
 	},
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "Ws" = (
 /obj/structure/table,
@@ -2065,7 +2065,7 @@
 /area/vtm/outside/supply)
 "YF" = (
 /obj/item/clothing/head/cone,
-/turf/open/misc/dirt/vamp,
+/turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "YJ" = (
 /obj/structure/table,
