@@ -344,7 +344,7 @@
 
 /turf/open/water/river
 	name = "river"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/river
 
