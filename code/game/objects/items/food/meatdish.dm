@@ -138,7 +138,7 @@
 ///donkfish fillets. The yuck reagent is now added by the fish trait of the same name.
 /obj/item/food/fishmeat/donkfish
 	name = "donkfillet"
-	desc = "The dreaded donkfish fillet. No sane spaceman would eat this, and it does not get better when cooked."
+	desc = "The dreaded donkfish fillet. No sane person would eat this, and it does not get better when cooked." // DARKPACK EDIT CHANGE
 	icon_state = "donkfillet"
 	starting_reagent_purity = 0.3
 
@@ -567,7 +567,7 @@
 
 /obj/item/food/patty
 	name = "patty"
-	desc = "The Nanotrasen patty is the patty for you and me!"
+	desc = "The patty for you and me!" // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "patty"
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
@@ -748,7 +748,7 @@
 
 /obj/item/food/spidereggsham
 	name = "green eggs and ham"
-	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
+	desc = "Would you eat them on a train? Would you eat them on a plane?" // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spidereggsham"
 	food_reagents = list(

@@ -3,7 +3,7 @@
 // Broadcasts its surroundings to entertainment monitors and its audio to entertainment radio channel
 /obj/item/broadcast_camera
 	name = "broadcast camera"
-	desc = "A large camera that streams its live feed and audio to entertainment monitors across the station, allowing everyone to watch the broadcast."
+	desc = "A large camera that streams its live feed and audio to televisions across the city, allowing everyone to watch the broadcast." // DARKPACK EDIT CHANGE
 	desc_controls = "Right-click to change the broadcast name. Alt-click to toggle microphone."
 	icon = 'icons/obj/service/broadcast.dmi'
 	icon_state = "broadcast_cam0"

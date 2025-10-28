@@ -12,4 +12,4 @@
 
 /obj/item/food/vampire/weed/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "weed", TRUE, -1, 7)
+	AddComponent(/datum/component/selling, 25, "weed", TRUE, -1, 7)

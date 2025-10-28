@@ -48,12 +48,12 @@
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
-
+/* // DARKPACK EDIT REMOVE
 /obj/item/bag_of_holding_inert/Initialize(mapload)
 	. = ..()
 	var/static/list/recipes = list(/datum/crafting_recipe/boh)
 	AddElement(/datum/element/slapcrafting, recipes)
-
+ */
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of bluespace."

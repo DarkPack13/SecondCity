@@ -45,7 +45,7 @@
 	)
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	category = CAT_MISC
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/cardboard_id
 	name = "Cardboard ID Card"
 	tool_behaviors = list(TOOL_WIRECUTTER)
@@ -65,3 +65,4 @@
 		/obj/item/storage/bubblegum_wrapper = 1,
 	)
 	category = CAT_MISC
+ */

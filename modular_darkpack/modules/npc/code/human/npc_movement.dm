@@ -214,9 +214,7 @@
 		return FALSE
 	if((last_grab + 1.5 SECONDS) > world.time)
 		return FALSE
-	if(ghoulificated)
-		return FALSE
-	if(key)
+	if(mind || client)
 		return FALSE
 	if(IsSleeping())
 		return FALSE

@@ -20,6 +20,10 @@
 	average_weight = 1400
 	stable_population = 4
 
+/obj/item/fish/darkpack/shark/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 100, "fish", FALSE)
+
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
 	icon_state = "fish"
@@ -27,11 +31,19 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	num_fillets = 2
 
+/obj/item/fish/darkpack/tuna/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 40, "fish", FALSE)
+
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+
+/obj/item/fish/darkpack/catfish/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 20, "fish", FALSE)
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
@@ -42,6 +54,10 @@
 
 	average_size = 50
 	average_weight = 600
+
+/obj/item/fish/darkpack/crab/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 70, "fish", FALSE)
 
 /*
 /obj/item/fishing_rod

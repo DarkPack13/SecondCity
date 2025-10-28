@@ -1,0 +1,4 @@
+## Uncomment to use Requiem jump windup
+#JUMP_WINDUP
+## Comment to remove Apocrypha post-jump slowdown
+JUMP_SLOWDOWN

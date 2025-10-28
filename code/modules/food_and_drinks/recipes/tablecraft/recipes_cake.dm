@@ -77,7 +77,7 @@
 	result = /obj/item/food/cake/birthday
 	added_foodtypes = JUNKFOOD
 	category = CAT_CAKE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/energycake
 	name = "Energy cake"
 	reqs = list(
@@ -106,7 +106,7 @@
 	)
 	result = /obj/item/food/cake/slimecake
 	category = CAT_CAKE
-
+*/
 /datum/crafting_recipe/food/pumpkinspicecake
 	name = "Pumpkin spice cake"
 	reqs = list(
@@ -115,7 +115,7 @@
 	)
 	result = /obj/item/food/cake/pumpkinspice
 	category = CAT_CAKE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/holycake
 	name = "Angel food cake"
 	reqs = list(
@@ -124,7 +124,7 @@
 	)
 	result = /obj/item/food/cake/holy_cake
 	category = CAT_CAKE
-
+ */
 /datum/crafting_recipe/food/poundcake
 	name = "Pound cake"
 	reqs = list(
@@ -133,7 +133,7 @@
 	result = /obj/item/food/cake/pound_cake
 	added_foodtypes = JUNKFOOD
 	category = CAT_CAKE
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/hardwarecake
 	name = "Hardware cake"
 	reqs = list(
@@ -144,7 +144,7 @@
 	result = /obj/item/food/cake/hardware_cake
 	added_foodtypes = GROSS
 	category = CAT_CAKE
-
+ */
 /datum/crafting_recipe/food/berry_chocolate_cake
 	name = "strawberry chocolate cake"
 	reqs = list(
@@ -222,7 +222,7 @@
 	added_foodtypes = FRUIT
 	category = CAT_CAKE
 
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/cak
 	name = "Living cat/cake hybrid"
 	reqs = list(
@@ -236,7 +236,7 @@
 	)
 	result = /mob/living/basic/pet/cat/cak
 	category = CAT_CAKE //Cat! Haha, get it? CAT? GET IT? We get it - Love Felines
-
+ */
 /datum/crafting_recipe/food/fruitcake
 	name = "english fruitcake"
 	reqs = list(
