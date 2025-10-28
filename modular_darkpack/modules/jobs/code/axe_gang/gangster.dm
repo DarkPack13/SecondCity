@@ -37,4 +37,4 @@
 
 /obj/effect/landmark/start/axe_gang
 	name = "Axe Gang"
-	icon_state = "bouncer"
+	icon_state = "Bouncer"

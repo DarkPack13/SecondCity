@@ -38,4 +38,4 @@
 
 /obj/effect/landmark/start/axe_leader
 	name = "Screentender"
-	icon_state = "dealer"
+	icon_state = "Dealer"
