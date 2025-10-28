@@ -7,6 +7,7 @@
 	supervisors = SUPERVISOR_TRADITIONS
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/taxi
+	config_tag = "TAXI_DRIVER"
 	display_order = JOB_DISPLAY_ORDER_TAXI
 	exp_required_type_department = EXP_TYPE_SERVICES
 	department_for_prefs = /datum/job_department/city_services
