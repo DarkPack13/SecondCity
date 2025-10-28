@@ -62,6 +62,7 @@
 		return
 
 	var/mob/living/carbon/human/H = owner
+
 	for(var/mob/living/minion in H.beastmaster_minions)
 		if(QDELETED(minion))
 			continue
@@ -78,10 +79,3 @@
 				for(var/mob/living/enemy in enemies)
 					UnregisterSignal(enemy, COMSIG_LIVING_DEATH)
 				enemies.Cut()
-
-		var/datum/component/obeys_commands/obeys = H.minion_command_components[minion]
-		if(!obeys)
-			continue
-		var/datum/pet_command/free/beastmaster/end_aggression_cmd = obeys.available_commands["Loose"]
-		if(end_aggression_cmd)
-			end_aggression_cmd.try_activate_command(H, radial_command = FALSE)
