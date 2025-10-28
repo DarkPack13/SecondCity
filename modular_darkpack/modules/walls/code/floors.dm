@@ -242,8 +242,6 @@
 	icon_state = "lattice_new"
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_PARKET
-	clawfootstep = FOOTSTEP_HARD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/floor/plating/grate/dirty
 	icon_state = "lattice_new_dirt"

@@ -1,6 +1,7 @@
-// dwinters99 (Carpenter) consulted for wood type paths
+// dwinters99 (carpenter) consulted for wood type paths
 
-#warn consider just fully removing this, it overlaps with FOOTSTEP_WOOD very hard
+// consider just fully removing these, it overlaps with FOOTSTEP_WOOD very hard
+// and FOOTSTEP_WOOD sounds better imo
 //	footstep = FOOTSTEP_PARKET
 //	barefootstep = FOOTSTEP_PARKET
 
