@@ -1,4 +1,3 @@
-#define BB_BEASTMASTER_ENEMIES_LIST "beastmaster_enemies"
 //action buttons
 /datum/action/beastmaster_command_toggle_follow
 	name = "Command: Stay"

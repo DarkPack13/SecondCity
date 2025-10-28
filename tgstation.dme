@@ -415,6 +415,7 @@
 #include "code\__DEFINES\~darkpack\aggravated_damage.dm"
 #include "code\__DEFINES\~darkpack\alerts.dm"
 #include "code\__DEFINES\~darkpack\areas.dm"
+#include "code\__DEFINES\~darkpack\beastmaster.dm"
 #include "code\__DEFINES\~darkpack\branding.dm"
 #include "code\__DEFINES\~darkpack\darkpack_roles.dm"
 #include "code\__DEFINES\~darkpack\discipline.dm"

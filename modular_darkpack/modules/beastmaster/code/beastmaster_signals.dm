@@ -50,5 +50,3 @@
 			continue
 
 		attack_command.try_activate_command(H, pointed_at, radial_command = FALSE)
-
-#undef BB_BEASTMASTER_ENEMIES_LIST
