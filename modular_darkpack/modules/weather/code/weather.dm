@@ -1,8 +1,6 @@
 // Everything here should be worked into /datum/weather
 /*
-GLOBAL_LIST_EMPTY(rain_list)
-GLOBAL_LIST_EMPTY(fog_list)
-GLOBAL_LIST_EMPTY(snow_list)
+GLOBAL_LIST_EMPTY(managed_weather)
 
 #define WEATHER_CLEAR "Clear"
 #define WEATHER_RAIN "Rain"
@@ -52,17 +50,17 @@ SUBSYSTEM_DEF(cityweather)
 			if(WEATHER_CLEAR)
 				to_chat(world, "The night sky becomes clear...")
 				if(raining)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				if(fogging)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				if(snowing)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
@@ -70,16 +68,16 @@ SUBSYSTEM_DEF(cityweather)
 				to_chat(world, "Clouds are uniting on the sky, small raindrops irrigate the city...")
 				raining = TRUE
 				if(fogging)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				if(snowing)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
-				for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -94,17 +92,17 @@ SUBSYSTEM_DEF(cityweather)
 			if(WEATHER_SNOW)
 				to_chat(world, "Clouds are uniting on the sky, small snowflakes irrigate the city...")
 				if(raining)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				if(fogging)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				snowing = TRUE
-				for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -116,17 +114,17 @@ SUBSYSTEM_DEF(cityweather)
 			if(WEATHER_FOG)
 				to_chat(world, "Visibility range quickly decreases...")
 				if(raining)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				fogging = TRUE
 				if(snowing)
-					for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
-				for(var/obj/effect/weather_manager/V in GLOB.rain_list)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -188,7 +186,7 @@ SUBSYSTEM_DEF(cityweather)
 
 /obj/effect/weather_manager/Initialize(mapload)
 	. = ..()
-	GLOB.rain_list += src
+	GLOB.managed_weather += src
 
 /turf/open/Initialize(mapload)
 	. = ..()

@@ -1,3 +1,7 @@
+GLOBAL_LIST_EMPTY(rain_list)
+GLOBAL_LIST_EMPTY(fog_list)
+GLOBAL_LIST_EMPTY(snow_list)
+
 /obj/effect/realistic_fog
 	icon = 'modular_darkpack/modules/weather/icons/fog.dmi'
 	icon_state = "fog"
@@ -68,13 +72,16 @@
 	for(var/turf/open/O in src)
 		var/obj/effect/realistic_fog/F = new(O)
 		GLOB.fog_list += F
+		CHECK_TICK // All of these are admin proc calls atm so this is fine. If its moved to any type of subsystem remove this
 
 /area/proc/rain_setup()
 	for(var/turf/open/O in src)
 		var/obj/effect/new_rain/R = new(O)
 		GLOB.rain_list += R
+		CHECK_TICK // All of these are admin proc calls atm so this is fine. If its moved to any type of subsystem remove this
 
 /area/proc/snow_setup()
 	for(var/turf/open/O in src)
 		var/obj/effect/new_snow/S = new(O)
 		GLOB.snow_list += S
+		CHECK_TICK // All of these are admin proc calls atm so this is fine. If its moved to any type of subsystem remove this
