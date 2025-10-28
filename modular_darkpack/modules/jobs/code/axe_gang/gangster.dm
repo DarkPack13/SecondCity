@@ -33,7 +33,7 @@
 	id = /obj/item/card/supplytech
 	//l_pocket = /obj/item/vamp/phone/axe_gangster
 	r_pocket = /obj/item/vamp/keys/axes
-	backpack_contents = list(/obj/item/vamp/keys/supply, /obj/item/flashlight=1, /obj/item/passport=1, /obj/item/card/credit=1, /obj/item/clothing/mask/vampire/balaclava =1, /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta=2,/obj/item/ammo_box/magazine/semi9mm=2, /obj/item/knife/vamp, /obj/item/hatchet)
+	backpack_contents = list(/obj/item/vamp/keys/supply, /obj/item/flashlight=1, /obj/item/passport=1, /obj/item/card/credit=1, /obj/item/clothing/mask/vampire/balaclava =1, /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta=2,/obj/item/ammo_box/magazine/semi9mm=2, /obj/item/knife/vamp)
 
 /obj/effect/landmark/start/axe_gang
 	name = "Axe Gang"

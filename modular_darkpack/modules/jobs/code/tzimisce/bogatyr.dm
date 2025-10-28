@@ -28,16 +28,16 @@
 	name = "Bogatyr"
 	jobtype = /datum/job/vampire/bogatyr
 	id = /obj/item/card/bogatyr
-	//glasses = /obj/item/clothing/glasses/vampire/yellow
+	glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/bogatyr
-	//suit = /obj/item/clothing/suit/vampire/jacket/punk
+	suit = /obj/item/clothing/suit/vampire/jacket/punk
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	head = /obj/item/clothing/head/vampire/bogatyr
 	suit = /obj/item/clothing/suit/vampire/bogatyr
 	belt = /obj/item/storage/belt/sheath/vamp/sword
 	l_pocket = /obj/item/vamp/phone
-	//r_pocket = /obj/item/watch
-	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/fireaxe/vamp=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	r_pocket = /obj/item/watch
+	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
 /obj/effect/landmark/start/bogatyr
 	name = "Bogatyr"
