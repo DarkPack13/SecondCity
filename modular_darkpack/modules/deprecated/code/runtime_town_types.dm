@@ -42,3 +42,5 @@
 
 /obj/item/vamp/phone
 	slot_flags = ITEM_SLOT_POCKETS
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
+	icon_state = "payphone"
