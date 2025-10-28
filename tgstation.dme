@@ -7087,6 +7087,7 @@
 #include "modular_darkpack\modules\weapons\code\guns.dm"
 #include "modular_darkpack\modules\weapons\code\melee.dm"
 #include "modular_darkpack\modules\weapons\code\sheath.dm"
+#include "modular_darkpack\modules\weather\code\effects.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\werewolf_globals.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
 #include "modular_darkpack\modules\z_travel\code\transfer_point.dm"
