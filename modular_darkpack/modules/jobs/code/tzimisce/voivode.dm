@@ -27,13 +27,12 @@
 	name = "Voivode"
 	jobtype = /datum/job/vampire/voivode
 	id = /obj/item/card/voivode
-	//glasses = /obj/item/clothing/glasses/vampire/yellow
+	glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/voivode
 	suit = /obj/item/clothing/suit/vampire/trench/voivode
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	belt = /obj/item/storage/belt/sheath/vamp/sword
 	l_pocket = /obj/item/vamp/phone
-	//r_pocket =
 	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/instrument/eguitar/vamp=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/elder=1)
 
 /obj/effect/landmark/start/voivode
