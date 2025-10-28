@@ -6,3 +6,10 @@
 /turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate/rich
 
 /turf/open/floor/plating/vampcrossableocean : /turf/open/water/beach/vamp
+
+/turf/open/misc/dirt/vamp : /turf/open/misc/dirt
+/turf/open/misc/dirt/vamp/@SUBTYPES : /turf/open/misc/dirt/@SUBTYPES
+/turf/open/misc/grass/vamp : /turf/open/misc/grass
+/turf/open/misc/grass/vamp/@SUBTYPES : /turf/open/misc/grass/@SUBTYPES
+
+/turf/open/water/acid/vamp : /turf/open/water/acid

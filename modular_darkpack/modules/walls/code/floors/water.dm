@@ -16,23 +16,23 @@
 	immerse_overlay = "immerse_deep"
 	baseturfs = /turf/open/water/beach/vamp/deep
 	is_swimming_tile = TRUE
-	color = "#cccccc"
+	color = "#979797"
 
 //Make a pr to TG eventually adding acid from shiptest mabye.
-/turf/open/water/acid/vamp
+/turf/open/water/acid
 	name = "goop"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "acid"
 	light_color = "#1b7c4c"
 	light_range = 1
 	light_power = 0.5
-	baseturfs = /turf/open/water/acid/vamp
+	baseturfs = /turf/open/water/acid
 
-/turf/open/water/acid/vamp/Entered(atom/movable/AM)
+/turf/open/water/acid/Entered(atom/movable/AM)
 	if(acid_burn(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/open/water/acid/vamp/proc/acid_burn(mob/living/L)
+/turf/open/water/acid/proc/acid_burn(mob/living/L)
 	if(isliving(L))
 		if(L.movement_type & FLYING)
 			return

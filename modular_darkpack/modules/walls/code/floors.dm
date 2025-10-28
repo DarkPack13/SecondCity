@@ -246,17 +246,7 @@
 /turf/open/floor/plating/grate/dirty
 	icon_state = "lattice_new_dirt"
 
-/turf/open/misc/grass/vamp
-	name = "grass"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "grass1"
-	footstep = FOOTSTEP_TRAVA
-	barefootstep = FOOTSTEP_TRAVA
-	baseturfs = /turf/open/misc/dirt/vamp
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	planetary_atmos = TRUE
-
-/turf/open/misc/grass/vamp/Initialize(mapload)
+/turf/open/misc/grass/Initialize(mapload)
 	. = ..()
 	icon_state = "grass[rand(1, 3)]"
 	var/area/my_area = loc
@@ -268,17 +258,7 @@
 			barefootstep = FOOTSTEP_SNOW
 			heavyfootstep = FOOTSTEP_SNOW
 
-/turf/open/misc/dirt/vamp
-	name = "dirt"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "dirt"
-	footstep = FOOTSTEP_ASPHALT
-	barefootstep = FOOTSTEP_ASPHALT
-	baseturfs = /turf/open/misc/dirt/vamp
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	planetary_atmos = TRUE
-
-/turf/open/misc/dirt/vamp/Initialize(mapload)
+/turf/open/misc/dirt/Initialize(mapload)
 	. = ..()
 	var/area/my_area = loc
 	if(my_area.outdoors)
@@ -289,11 +269,11 @@
 			barefootstep = FOOTSTEP_SNOW
 			heavyfootstep = FOOTSTEP_SNOW
 
-/turf/open/misc/dirt/vamp/rails
+/turf/open/misc/dirt/rails
 	name = "rails"
 	icon_state = "dirt_rails"
 
-/turf/open/misc/dirt/vamp/rails/Initialize(mapload)
+/turf/open/misc/dirt/rails/Initialize(mapload)
 	. = ..()
 	var/area/my_area = loc
 	if(my_area.outdoors)
