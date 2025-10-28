@@ -339,14 +339,18 @@ LOW_WALL_HELPER(vampwall/wood)
 	icon = 'modular_darkpack/modules/walls/icons/rock_wall.dmi' // Unfortuante case where its autocutting is a bit lacking so I manually edit it.
 	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock/frill.dmi'
 
-/turf/closed/wall/vampwall/rock/brown
-	icon = 'icons/obj/smooth_structures/darkpack/wall/rock_brown/wall.dmi'
-	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rock_brown/frill.dmi'
-
 /*
+/turf/closed/wall/vampwall/rock/brown
+	icon = 'icons/obj/smooth_structures/darkpack/mojave/rock_brown/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/mojave/rock_brown/frill.dmi'
+
+/turf/closed/wall/vampwall/rock/brown/full
+	icon = 'icons/obj/smooth_structures/darkpack/mojave/rock_brown_full/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/mojave/rock_brown_full/frill.dmi'
+
 /turf/closed/wall/vampwall/mojave/brick
-	icon = 'icons/obj/smooth_structures/darkpack/mojave/brick_wall.dmi'
-	frill_icon = 'icons/obj/smooth_structures/darkpack/mojave/brick_frill.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/mojave/brick/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/mojave/brick/frill.dmi'
 */
 
 #undef LOW_WALL_HELPER
