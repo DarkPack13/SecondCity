@@ -3,7 +3,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "rock1"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -17,7 +16,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "smallrock1"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -30,7 +28,6 @@
 	desc = "Rokk."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "rock1"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
