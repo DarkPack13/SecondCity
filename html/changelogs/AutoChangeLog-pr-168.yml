@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "Climbing down open space takes longer then using ladders but now also uses your stats."
+  - refactor: "Refactors climbing down to be doable by more then just humans"
