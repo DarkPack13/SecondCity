@@ -123,12 +123,20 @@
 	icon = 'modular_darkpack/modules/drugs/icons/items.dmi' // DARKPACK EDIT CHANGE - DRUGS
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/drugs/icons/onfloor.dmi')// DARKPACK EDIT ADD - DRUGS
 	name = "cannabis leaf"
-	desc = "Recently* legalized in most San Fran." // DARKPACK EDIT CHANGE
+	desc = "They say that next year they're going to try to legalise it." // DARKPACK EDIT CHANGE
 	icon_state = "cannabis"
 	bite_consumption_mod = 4
 	foodtypes = VEGETABLES //i dont really know what else weed could be to be honest
 	tastes = list("cannabis" = 1)
 	wine_power = 20
+
+// DARKPACK EDIT ADD START
+/obj/item/food/grown/cannabis/Initialize(mapload, obj/item/seeds/new_seed)
+	. = ..()
+	AddComponent(/datum/component/selling, 100, "weed", TRUE, -1, 7)
+	//In 2015 Cannabis was only legally distributed in California by medical dispensary. https://web.archive.org/web/20161109220853/http://www.times-standard.com/article/NJ/20161107/NEWS/161109826
+	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
+// DARKPACK EDIT ADD END
 
 /obj/item/food/grown/cannabis/rainbow
 	seed = /obj/item/seeds/cannabis/rainbow

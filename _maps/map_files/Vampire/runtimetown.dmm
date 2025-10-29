@@ -421,6 +421,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/misc/dirt/vamp,
 /area/vtm/outside/supply)
+"lY" = (
+/obj/structure/closet/crate/wooden/communitygardens/seeds,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "mb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -471,6 +475,10 @@
 /obj/structure/lamppost/three{
 	dir = 8
 	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"ns" = (
+/obj/machinery/hydroponics/simple/wooden,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "nA" = (
@@ -602,6 +610,10 @@
 "qT" = (
 /turf/open/misc/dirt/vamp,
 /area/vtm/outside/supply)
+"qU" = (
+/obj/structure/closet/crate/wooden/communitygardens/tools,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "qV" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
@@ -1791,6 +1803,10 @@
 "SK" = (
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/clinic)
+"SV" = (
+/obj/machinery/hydroponics/simple/metal,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
 /obj/vampire_computer/prince,
@@ -1881,6 +1897,10 @@
 /obj/structure/retail/hardware_store,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"UH" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "UJ" = (
 /obj/structure/closet/crate/dumpster,
 /turf/open/misc/beach/vamp,
@@ -1895,6 +1915,13 @@
 	},
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/interior/shop)
+"UV" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -11
+	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "Va" = (
 /obj/machinery/computer/order_console/mining/restricted/hospital,
 /obj/structure/table/reinforced,
@@ -1986,6 +2013,16 @@
 /obj/structure/sink/directional/east,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"WE" = (
+/obj/structure/table/wood,
+/obj/item/seeds/cannabis,
+/obj/item/seeds/cannabis,
+/obj/item/seeds/cannabis,
+/obj/item/seeds/cannabis,
+/obj/item/seeds/cannabis,
+/obj/item/seeds/cannabis,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "WR" = (
 /obj/structure/lamppost/one,
 /turf/open/misc/beach/vamp,
@@ -7217,7 +7254,7 @@ eQ
 eQ
 eQ
 eQ
-MS
+eQ
 nY
 Nx
 Ys
@@ -7281,10 +7318,10 @@ GJ
 (11,1,2) = {"
 GJ
 MS
-eQ
-eQ
-eQ
-eQ
+MS
+MS
+MS
+MS
 MS
 nY
 Nx
@@ -7349,10 +7386,10 @@ GJ
 (12,1,2) = {"
 GJ
 MS
-eQ
-eQ
-eQ
-eQ
+UH
+UV
+UV
+UH
 MS
 nY
 Nx
@@ -7417,10 +7454,10 @@ GJ
 (13,1,2) = {"
 GJ
 MS
+SV
 eQ
 eQ
-eQ
-eQ
+ns
 MS
 nY
 Nx
@@ -7485,10 +7522,10 @@ GJ
 (14,1,2) = {"
 GJ
 MS
+SV
 eQ
 eQ
-eQ
-eQ
+ns
 MS
 nY
 Nx
@@ -7553,10 +7590,10 @@ GJ
 (15,1,2) = {"
 GJ
 MS
+UH
 eQ
 eQ
-eQ
-eQ
+UH
 MS
 vJ
 nY
@@ -7621,10 +7658,10 @@ GJ
 (16,1,2) = {"
 GJ
 MS
+ns
 eQ
 eQ
-eQ
-eQ
+SV
 MS
 nY
 Nx
@@ -7689,10 +7726,10 @@ GJ
 (17,1,2) = {"
 GJ
 MS
+ns
 eQ
 eQ
-eQ
-eQ
+SV
 MS
 nY
 Nx
@@ -7757,10 +7794,10 @@ GJ
 (18,1,2) = {"
 GJ
 MS
+WE
 eQ
 eQ
-eQ
-eQ
+lY
 MS
 nY
 XU
@@ -7825,10 +7862,10 @@ GJ
 (19,1,2) = {"
 GJ
 MS
+WE
 eQ
 eQ
-eQ
-eQ
+lY
 MS
 nY
 Nx
@@ -7893,10 +7930,10 @@ GJ
 (20,1,2) = {"
 GJ
 MS
+UH
 eQ
 eQ
-eQ
-eQ
+qU
 MS
 nY
 Nx
@@ -7961,10 +7998,10 @@ GJ
 (21,1,2) = {"
 GJ
 MS
+UH
 eQ
 eQ
-eQ
-eQ
+qU
 MS
 vJ
 Nx
@@ -8029,7 +8066,7 @@ GJ
 (22,1,2) = {"
 GJ
 MS
-eQ
+UH
 eQ
 eQ
 eQ
@@ -8097,7 +8134,7 @@ GJ
 (23,1,2) = {"
 GJ
 MS
-eQ
+UH
 eQ
 eQ
 eQ

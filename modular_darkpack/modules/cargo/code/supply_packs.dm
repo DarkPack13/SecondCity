@@ -70,11 +70,11 @@
 	desc = "Customized fertilizer mixed for the superior homegrown botanist."
 	cost = 500
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
 		)
 	crate_name = "hydro crate"
 
