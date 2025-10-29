@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(cityweather)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -96
 	pixel_z = -96
 
@@ -193,7 +193,7 @@ SUBSYSTEM_DEF(cityweather)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -16
 	pixel_z = -32
 
@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(cityweather)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -16
 
 /obj/effect/new_snow/Initialize(mapload)
@@ -231,7 +231,7 @@ SUBSYSTEM_DEF(cityweather)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/vamp_weather/Initialize(mapload)
 	. = ..()

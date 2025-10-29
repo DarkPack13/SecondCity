@@ -1173,7 +1173,7 @@
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
 	name = "soil"
 	desc = "A patch of dirt."
-	icon = 'icons/obj/service/hydroponics/equipment.dmi'
+	icon = 'modular_darkpack/modules/drugs/icons/tray.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "soil"
 	gender = PLURAL
 	circuit = null
@@ -1195,6 +1195,10 @@
 		add_atom_colour(rgb(255, 175, 0), FIXED_COLOUR_PRIORITY)
 
 /obj/machinery/hydroponics/soil/update_status_light_overlays()
+	// DARKPACK EDIT ADD START
+	if(waterlevel > 10)
+		. += mutable_appearance('modular_darkpack/modules/drugs/icons/tray.dmi', "soil_wet")
+	// DARKPACK EDIT ADD END
 	return // Has no lights
 
 /obj/machinery/hydroponics/soil/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)

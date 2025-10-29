@@ -6874,6 +6874,8 @@
 #include "modular_darkpack\modules\drugs\code\meth\methlab.dm"
 #include "modular_darkpack\modules\drugs\code\meth\pills.dm"
 #include "modular_darkpack\modules\drugs\code\meth\reagents.dm"
+#include "modular_darkpack\modules\drugs\code\weed\bong.dm"
+#include "modular_darkpack\modules\drugs\code\weed\fake_steam.dm"
 #include "modular_darkpack\modules\drugs\code\weed\gear.dm"
 #include "modular_darkpack\modules\drugs\code\weed\tray.dm"
 #include "modular_darkpack\modules\economy\code\account.dm"

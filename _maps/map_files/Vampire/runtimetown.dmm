@@ -788,6 +788,10 @@
 /obj/darkpack_car/police/ranger,
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
+"ud" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "uC" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/glock45acp,
@@ -1953,10 +1957,7 @@
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/interior/shop)
 "UV" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = -11
-	},
+/obj/structure/sink/directional/east,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Va" = (
@@ -7494,7 +7495,7 @@ MS
 ns
 eQ
 eQ
-ns
+ud
 MS
 nY
 Nx
@@ -7562,7 +7563,7 @@ MS
 ns
 eQ
 eQ
-ns
+ud
 MS
 nY
 Nx

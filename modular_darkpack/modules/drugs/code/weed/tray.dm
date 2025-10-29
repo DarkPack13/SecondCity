@@ -8,6 +8,8 @@
 	self_sustaining_overlay_icon_state = null
 
 /obj/machinery/hydroponics/simple/update_status_light_overlays()
+	if(waterlevel > 10)
+		. += mutable_appearance('modular_darkpack/modules/drugs/icons/tray.dmi', "tray_wet")
 	return // Has no lights
 
 /obj/machinery/hydroponics/simple/click_ctrl(mob/user)

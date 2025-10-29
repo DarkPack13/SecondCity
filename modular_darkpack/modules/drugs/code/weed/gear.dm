@@ -17,11 +17,13 @@
 
 /obj/structure/closet/crate/wooden/communitygardens/tools/PopulateContents()
 	new /obj/item/storage/bag/plants(src)
+	new /obj/item/clothing/gloves/botanic_leather(src)
 	new /obj/item/reagent_containers/cup/bottle/nutrient/rh(src)
 	new /obj/item/reagent_containers/spray/weedspray(src)
 	new /obj/item/reagent_containers/spray/pestspray(src)
 	new /obj/item/cultivator(src)
-	new /obj/item/clothing/gloves/botanic_leather(src)
+	new /obj/item/hatchet(src)
+	new /obj/item/secateurs(src)
 	new /obj/item/reagent_containers/cup/watering_can/metal(src)
 
 /obj/structure/closet/crate/wooden/communitygardens/seeds
