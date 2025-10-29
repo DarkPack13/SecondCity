@@ -49,6 +49,7 @@
 		update_name()
 		if(attacking_item.reagents)
 			attacking_item.reagents.trans_to(src, attacking_item.reagents.total_volume, transferred_by = user)
+			reagent_transfer_per_use = reagents.total_volume / max_hits
 		qdel(attacking_item)
 	else
 		var/lighting_text = attacking_item.ignition_effect(src, user)
@@ -77,14 +78,16 @@
 /obj/item/bong/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!packeditem || !lit)
 		return
-	#warn fix
-	//target_mob.visible_message(span_notice("[user] starts [target_mob == user ? "taking a hit from [src]." : "forcing [target_mob] to take a hit from [src]!"]", "[target_mob == user ? "<span class='notice'>You start taking a hit from [src].") : span_danger("[user] starts forcing you to take a hit from [src]!")]")
-	playsound(src, 'modular_darkpack/modules/deprecated/sounds/heatdam.ogg', 50, TRUE)
+	target_mob.visible_message(
+		span_notice("[user] starts [target_mob == user ? "taking a hit from [src]." : "forcing [target_mob] to take a hit from [src]!"]"),
+		"[target_mob == user ? span_notice("You start taking a hit from [src].") : span_danger("[user] starts forcing you to take a hit from [src]!")]"
+	)
+	playsound(src, 'modular_darkpack/modules/drugs/sounds/heatdam.ogg', 50, TRUE)
 	if(!do_after(user, 4 SECONDS, src))
 		return
 	to_chat(target_mob, span_notice("You finish taking a hit from [src]."))
 	if(reagents.total_volume)
-		reagents.trans_to(target_mob, reagent_transfer_per_use, methods = VAPOR)
+		reagents.trans_to(target_mob, reagent_transfer_per_use, methods = INHALE, ignore_stomach = TRUE)
 		bong_hits--
 	var/turf/open/pos = get_turf(src)
 	if(istype(pos))
@@ -92,10 +95,10 @@
 			spawn_cloud(pos, smoke_range)
 	if(moan_chance > 0)
 		if(prob(moan_chance))
-			playsound(target_mob, pick('modular_darkpack/modules/deprecated/sounds/lungbust_moan1.ogg','modular_darkpack/modules/deprecated/sounds/lungbust_moan2.ogg', 'modular_darkpack/modules/deprecated/sounds/lungbust_moan3.ogg'), 50, TRUE)
+			playsound(target_mob, pick('modular_darkpack/modules/drugs/sounds/lungbust_moan1.ogg','modular_darkpack/modules/drugs/sounds/lungbust_moan2.ogg', 'modular_darkpack/modules/drugs/sounds/lungbust_moan3.ogg'), 50, TRUE)
 			target_mob.emote("moan")
 		else
-			playsound(target_mob, pick('modular_darkpack/modules/deprecated/sounds/lungbust_cough1.ogg','modular_darkpack/modules/deprecated/sounds/lungbust_cough2.ogg'), 50, TRUE)
+			playsound(target_mob, pick('modular_darkpack/modules/drugs/sounds/lungbust_cough1.ogg','modular_darkpack/modules/drugs/sounds/lungbust_cough2.ogg'), 50, TRUE)
 			target_mob.emote("cough")
 	if(bong_hits <= 0)
 		to_chat(target_mob, span_warning("Out of uses!"))
@@ -135,8 +138,7 @@
 	icon_state = icon_on
 	inhand_icon_state = icon_on
 	if(flavor_text)
-		var/turf/bong_turf = get_turf(src)
-		bong_turf.visible_message(flavor_text)
+		visible_message(flavor_text)
 
 /obj/item/bong/proc/spawn_cloud(turf/open/location, smoke_range)
 	var/list/turfs_affected = list(location)

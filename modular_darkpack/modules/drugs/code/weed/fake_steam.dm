@@ -1,6 +1,7 @@
 
 #define MAX_FAKE_STEAM_STAGES 5
 #define STAGE_DOWN_TIME (10 SECONDS)
+#define FAKE_STEAM_TARGET_ALPHA 204
 
 /// Fake steam effect
 /obj/effect/abstract/fake_steam
@@ -25,12 +26,8 @@
 		return
 	stage_down()
 
-#define FAKE_STEAM_TARGET_ALPHA 204
-
 /obj/effect/abstract/fake_steam/proc/update_alpha()
 	alpha = FAKE_STEAM_TARGET_ALPHA * (current_stage / MAX_FAKE_STEAM_STAGES)
-
-#undef FAKE_STEAM_TARGET_ALPHA
 
 /obj/effect/abstract/fake_steam/proc/stage_down()
 	if(!current_stage)
@@ -46,6 +43,6 @@
 	next_stage_down = world.time + STAGE_DOWN_TIME
 	update_alpha()
 
-#undef STAGE_DOWN_TIME
 #undef MAX_FAKE_STEAM_STAGES
-
+#undef STAGE_DOWN_TIME
+#undef FAKE_STEAM_TARGET_ALPHA
