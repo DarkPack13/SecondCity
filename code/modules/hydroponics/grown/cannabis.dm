@@ -33,7 +33,7 @@
 	desc = "These seeds grow into rainbow weed. Groovy... and also highly addictive."
 	// icon_state = "seed-megacannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "megacannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
-	species = "megacannabis"
+	// species = "megacannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	plantname = "Rainbow Weed"
 	product = /obj/item/food/grown/cannabis/rainbow
 	mutatelist = null
@@ -45,7 +45,7 @@
 	desc = "These seeds grow into deathweed. Not groovy."
 	// icon_state = "seed-blackcannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "blackcannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
-	species = "blackcannabis"
+	// species = "blackcannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	plantname = "Deathweed"
 	product = /obj/item/food/grown/cannabis/death
 	mutatelist = null
@@ -57,7 +57,7 @@
 	desc = "I will give unto him that is munchies of the fountain of the cravings of life, freely."
 	// icon_state = "seed-whitecannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "whitecannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
-	species = "whitecannabis"
+	// species = "whitecannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	plantname = "Lifeweed"
 	instability = 30
 	product = /obj/item/food/grown/cannabis/white
@@ -72,7 +72,7 @@
 	// icon_state = "seed-ocannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	// plant_icon_offset = 1 // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "ocannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
-	species = "ocannabis"
+	// species = "ocannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	plantname = "Omega Weed"
 	product = /obj/item/food/grown/cannabis/ultimate
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/green, /datum/plant_gene/trait/modified_volume/omega_weed)
@@ -98,7 +98,7 @@
 	// icon_state = "seed-ocannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	// plant_icon_offset = 0 // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "ocannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
-	species = "ocannabis"
+	// species = "ocannabis" // DARKPACK EDIT REMOVAL - DRUGS
 	plantname = "Anti Weed"
 	product = /obj/item/food/grown/cannabis/anti
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/shadow)
