@@ -2,6 +2,7 @@
 /obj/machinery/hydroponics/simple
 	abstract_type = /obj/machinery/hydroponics/simple
 	icon = 'modular_darkpack/modules/drugs/icons/tray.dmi'
+	icon_state = null
 	circuit = null
 	use_power = NO_POWER_USE
 	unwrenchable = TRUE

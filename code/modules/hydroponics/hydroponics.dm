@@ -1219,7 +1219,7 @@
 /obj/machinery/hydroponics/soil/rich
 	name = "rich soil"
 	desc = "A rich patch of dirt, usually used in gardens."
-	icon_state = "rich_soil"
+	// icon_state = "rich_soil" // DARKPACK EDIT REMOVAL
 	maxnutri = 20
 
 ///The usb port circuit
