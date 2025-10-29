@@ -49,7 +49,7 @@
 			grown_item.reagents.trans_to(src, grown_item.reagents.total_volume)
 			reagent_transfer_per_use = reagents.total_volume / max_hits
 		qdel(grown_item)
-	else if(istype(used_item, /obj/item/weedpack)) //for hash/dabs
+	else if(istype(used_item, /obj/item/food/grown/cannabis)) //for hash/dabs
 		if(packed_item)
 			to_chat(user, span_warning("Already packed!"))
 			return

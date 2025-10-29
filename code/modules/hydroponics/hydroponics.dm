@@ -61,6 +61,7 @@
 	var/light_level = 0
 	///our snail overlay, if any
 	var/obj/effect/overlay/vis_effect/snail/our_snail
+	var/tray_offset = 0 // DARKPACK EDIT CHANGE
 
 /obj/machinery/hydroponics/Initialize(mapload)
 	//ALRIGHT YOU DEGENERATES. YOU HAD REAGENT HOLDERS FOR AT LEAST 4 YEARS AND NONE OF YOU MADE HYDROPONICS TRAYS HOLD NUTRIENT CHEMS INSTEAD OF USING "Points".
@@ -508,7 +509,7 @@
 /obj/machinery/hydroponics/update_overlays()
 	. = ..()
 	if(myseed)
-		. += myseed.get_tray_overlay(age, plant_status)
+		. += myseed.get_tray_overlay(age, plant_status, tray_offset) // DARKPACK EDIT CHANGE
 		. += update_status_light_overlays()
 
 	if(self_sustaining && self_sustaining_overlay_icon_state)

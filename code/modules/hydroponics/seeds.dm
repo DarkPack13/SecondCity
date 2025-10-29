@@ -647,7 +647,7 @@
 		reagents_from_genes()
 
 /// Returns a mutable appearance to be used as an overlay for the plant in hydro trays.
-/obj/item/seeds/proc/get_tray_overlay(age, status)
+/obj/item/seeds/proc/get_tray_overlay(age, status, tray_offset = 0) // DARKPACK EDIT CHANGE
 	var/mutable_appearance/plant_overlay = mutable_appearance(growing_icon, layer = OBJ_LAYER + 0.01)
 	switch(status)
 		if(HYDROTRAY_PLANT_DEAD)
@@ -657,7 +657,7 @@
 		else
 			var/t_growthstate = clamp(round((age / maturation) * growthstages), 1, growthstages)
 			plant_overlay.icon_state = "[icon_grow][t_growthstate]"
-	plant_overlay.pixel_z = plant_icon_offset
+	plant_overlay.pixel_z = plant_icon_offset + tray_offset // DARKPACK EDIT CHANGE
 	return plant_overlay
 
 /// Called when the seed is set in a tray
