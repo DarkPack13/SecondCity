@@ -86,10 +86,10 @@
 	crate_name = "hydro crate"
 
 /datum/supply_pack/vampire/weed_tray
-	name = "Botany Tray"
+	name = "Hydroponics Tray"
 	desc = "Contains a tray for growing plants."
 	cost = 300
-	contains = list(/obj/machinery/hydroponics/simple/metal/unanchored)
+	contains = list(/obj/machinery/hydroponics/simple/plastic/unanchored)
 	crate_name = "weed crate"
 
 /datum/supply_pack/vampire/methlab
