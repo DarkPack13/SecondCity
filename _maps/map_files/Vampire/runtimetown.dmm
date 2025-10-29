@@ -130,6 +130,14 @@
 /obj/item/food/grown/cannabis,
 /obj/item/food/grown/cannabis,
 /obj/item/food/grown/cannabis,
+/obj/item/bong{
+	pixel_y = 10;
+	pixel_x = 10
+	},
+/obj/item/bong{
+	pixel_y = 2;
+	pixel_x = 10
+	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "cQ" = (
@@ -211,6 +219,9 @@
 /area/vtm/outside/supply)
 "fg" = (
 /obj/machinery/smartfridge/drying/rack,
+/obj/item/food/grown/cannabis,
+/obj/item/food/grown/cannabis,
+/obj/item/food/grown/cannabis,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "fh" = (
@@ -296,6 +307,11 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/interior/shop)
+"hJ" = (
+/obj/structure/table,
+/obj/lombard/blackmarket,
+/turf/closed/wall/vampwall/rich/old/low,
+/area/vtm/outside/pacificheights)
 "id" = (
 /obj/effect/decal/graffiti,
 /turf/open/floor/plating/rough,
@@ -595,6 +611,11 @@
 "pN" = (
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"qd" = (
+/obj/structure/table,
+/obj/lombard,
+/turf/closed/wall/vampwall/rich/old/low,
+/area/vtm/outside/pacificheights)
 "qn" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -830,10 +851,13 @@
 /area/vtm/interior/shop)
 "vh" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/rollingpapers,
-/obj/item/storage/fancy/rollingpapers,
-/obj/item/storage/fancy/rollingpapers,
-/obj/item/storage/box/matches,
+/obj/item/storage/fancy/rollingpapers{
+	pixel_x = -6
+	},
+/obj/item/storage/box/matches{
+	pixel_x = 6;
+	pixel_y = 10
+	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "vl" = (
@@ -1202,6 +1226,10 @@
 "EN" = (
 /obj/effect/landmark/error,
 /turf/open/floor/plating/rough/cave,
+/area/vtm/outside/pacificheights)
+"EO" = (
+/obj/structure/toiletbong,
+/turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "ES" = (
 /obj/structure/roofstuff/vent,
@@ -2167,6 +2195,10 @@
 "Zf" = (
 /obj/machinery/fax/camarilla,
 /turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
+"Zq" = (
+/mob/living/carbon/human/npc/shop,
+/turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Zw" = (
 /obj/structure/table,
@@ -7288,7 +7320,7 @@ GJ
 (10,1,2) = {"
 GJ
 MS
-eQ
+MS
 eQ
 eQ
 eQ
@@ -7424,7 +7456,7 @@ GJ
 (12,1,2) = {"
 GJ
 MS
-UH
+EO
 UV
 UV
 UH
@@ -8240,8 +8272,8 @@ GJ
 (24,1,2) = {"
 GJ
 MS
-MS
-MS
+qd
+hJ
 MS
 MS
 MS
@@ -8308,8 +8340,8 @@ GJ
 (25,1,2) = {"
 GJ
 MS
-eQ
-eQ
+Zq
+NP
 NP
 Lw
 Vg

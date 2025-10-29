@@ -4,7 +4,11 @@
 	icon = 'modular_darkpack/modules/drugs/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/drugs/icons/onfloor.dmi')
 	icon_state = "bulbulator"
-	inhand_icon_state = "bulbulator"
+
+	light_range = 1
+	light_color = LIGHT_COLOR_FIRE
+	light_system = OVERLAY_LIGHT
+	light_on = FALSE
 
 	///The icon state when the bong is lit
 	var/icon_on = "bulbulator"
@@ -20,7 +24,7 @@
 	var/moan_chance = 0
 
 	///Max units able to be stored inside the bong
-	var/chem_volume = 200
+	var/chem_volume = 100
 	///Is it filled?
 	var/packeditem = FALSE
 
@@ -64,15 +68,11 @@
 	var/turf/location = get_turf(user)
 	if(lit)
 		user.visible_message(span_notice("[user] puts out [src]."), span_notice("You put out [src]."))
-		lit = FALSE
-		icon_state = icon_off
-		inhand_icon_state = icon_off
+		put_out()
 	else if(!lit && bong_hits > 0)
 		to_chat(user, span_notice("You empty [src] onto [location]."))
 		new /obj/effect/decal/cleanable/ash(location)
-		packeditem = FALSE
-		bong_hits = 0
-		reagents.clear_reagents()
+		empty_out()
 	return
 
 /obj/item/bong/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -102,22 +102,18 @@
 			target_mob.emote("cough")
 	if(bong_hits <= 0)
 		to_chat(target_mob, span_warning("Out of uses!"))
-		lit = FALSE
-		packeditem = FALSE
-		icon_state = icon_off
-		inhand_icon_state = icon_off
-		name = "[initial(name)]"
-		reagents.clear_reagents() //just to make sure
+		put_out()
+		empty_out()
 
 /obj/item/bong/proc/light(flavor_text = null)
 	if(lit)
 		return
 	if(!(flags_1 & INITIALIZED_1))
 		icon_state = icon_on
-		inhand_icon_state = icon_on
 		return
 	lit = TRUE
 	name = "lit [initial(name)]"
+	set_light_on(TRUE)
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/explosion = new()
@@ -136,9 +132,19 @@
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
-	inhand_icon_state = icon_on
 	if(flavor_text)
 		visible_message(flavor_text)
+
+/obj/item/bong/proc/put_out()
+	set_light_on(FALSE)
+	lit = FALSE
+	name = "[initial(name)]"
+	icon_state = icon_off
+
+/obj/item/bong/proc/empty_out()
+	packeditem = FALSE
+	bong_hits = 0
+	reagents.clear_reagents() //just to make sure
 
 /obj/item/bong/proc/spawn_cloud(turf/open/location, smoke_range)
 	var/list/turfs_affected = list(location)
