@@ -4,7 +4,7 @@
 	desc = "Taxable."
 	icon = 'modular_darkpack/modules/drugs/icons/items.dmi' // DARKPACK EDIT CHANGE - DRUGS
 	icon_state = "seed-cannabis"
-	plant_icon_offset = 6
+	plant_icon_offset = 7 // DARKPACK EDIT CHANGE - DRUGS
 	species = "cannabis"
 	plantname = "Cannabis Plant"
 	product = /obj/item/food/grown/cannabis
@@ -37,7 +37,7 @@
 	plantname = "Rainbow Weed"
 	product = /obj/item/food/grown/cannabis/rainbow
 	mutatelist = null
-	reagents_add = list(/datum/reagent/colorful_reagent = 0.05, /datum/reagent/medicine/psicodine = 0.03, /datum/reagent/drug/happiness = 0.1, /datum/reagent/toxin/mindbreaker = 0.1, /datum/reagent/toxin/lipolicide = 0.15, /datum/reagent/drug/space_drugs = 0.15)
+	// reagents_add = list(/datum/reagent/colorful_reagent = 0.05, /datum/reagent/medicine/psicodine = 0.03, /datum/reagent/drug/happiness = 0.1, /datum/reagent/toxin/mindbreaker = 0.1, /datum/reagent/toxin/lipolicide = 0.15, /datum/reagent/drug/space_drugs = 0.15) // DARKPACK EDIT REMOVAL - DRUGS
 	rarity = 40
 
 /obj/item/seeds/cannabis/death
@@ -49,7 +49,7 @@
 	plantname = "Deathweed"
 	product = /obj/item/food/grown/cannabis/death
 	mutatelist = null
-	reagents_add = list(/datum/reagent/toxin/cyanide = 0.35, /datum/reagent/drug/cannabis = 0.15)
+	// reagents_add = list(/datum/reagent/toxin/cyanide = 0.35, /datum/reagent/drug/cannabis = 0.15) // DARKPACK EDIT REMOVAL - DRUGS
 	rarity = 40
 
 /obj/item/seeds/cannabis/white
@@ -62,7 +62,7 @@
 	instability = 30
 	product = /obj/item/food/grown/cannabis/white
 	mutatelist = null
-	reagents_add = list(/datum/reagent/medicine/omnizine = 0.35, /datum/reagent/drug/cannabis = 0.15)
+	// reagents_add = list(/datum/reagent/medicine/omnizine = 0.35, /datum/reagent/drug/cannabis = 0.15) // DARKPACK EDIT REMOVAL - DRUGS
 	rarity = 40
 
 
@@ -70,13 +70,14 @@
 	name = "omega weed seed pack"
 	desc = "These seeds grow into omega weed."
 	// icon_state = "seed-ocannabis" // DARKPACK EDIT REMOVAL - DRUGS
-	// plant_icon_offset = 0 // DARKPACK EDIT REMOVAL - DRUGS
+	// plant_icon_offset = 1 // DARKPACK EDIT REMOVAL - DRUGS
 	// icon_grow = "ocannabis-grow" // DARKPACK EDIT REMOVAL - DRUGS
 	species = "ocannabis"
 	plantname = "Omega Weed"
 	product = /obj/item/food/grown/cannabis/ultimate
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/green, /datum/plant_gene/trait/modified_volume/omega_weed)
 	mutatelist = null
+	/* DARKPACK EDIT REMOVAL - DRUGS
 	reagents_add = list(/datum/reagent/drug/cannabis = 0.3,
 		/datum/reagent/toxin/mindbreaker = 0.3,
 		/datum/reagent/mercury = 0.15,
@@ -87,7 +88,7 @@
 		/datum/reagent/drug/krokodil = 0.15,
 		/datum/reagent/toxin/lipolicide = 0.15,
 		/datum/reagent/drug/nicotine = 0.1,
-	)
+	)*/
 	rarity = 69
 	graft_gene = /datum/plant_gene/trait/glow/green
 
@@ -102,7 +103,7 @@
 	product = /obj/item/food/grown/cannabis/anti
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/shadow)
 	mutatelist = null
-	reagents_add = list(/datum/reagent/medicine/naloxone = 0.3, /datum/reagent/medicine/antihol = 0.2, /datum/reagent/medicine/synaphydramine = 0.1)
+	// reagents_add = list(/datum/reagent/medicine/naloxone = 0.3, /datum/reagent/medicine/antihol = 0.2, /datum/reagent/medicine/synaphydramine = 0.1) // DARKPACK EDIT REMOVAL - DRUGS
 	rarity = 40
 	instability = 0
 
