@@ -59,7 +59,7 @@
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/clothing/head/vampire/eod(owner.current))
 		if("Medic")
-			owner.current.put_in_r_hand(new /obj/item/storage/medkit/tactical(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/storage/medkit/darkpack/combat(owner.current))
 		if("Sniper")
 			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/darkpack/sniper(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556(owner.current))
