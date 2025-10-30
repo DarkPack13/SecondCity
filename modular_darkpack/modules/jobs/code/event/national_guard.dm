@@ -100,7 +100,7 @@
 
 /datum/antagonist/national_guard/on_removal()
 	..()
-	to_chat(owner.current,"<span class='userdanger'>You are no longer in the National Guard!</span>")
+	to_chat(owner.current, span_userdanger("You are no longer in the National Guard!"))
 
 /datum/antagonist/national_guard/greet()
 	to_chat(owner.current, "<span class='alertsyndie'>You're in the national guard.</span>")
