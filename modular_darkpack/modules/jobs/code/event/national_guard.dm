@@ -228,7 +228,7 @@
 
 /datum/team/national_guard/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>[national_guard_name] Operatives:</span>"
+	parts += span_header("[national_guard_name] Operatives:")
 
 	var/text = "<br>[span_header("The national guard were:")]"
 	text += printplayerlist(members)
