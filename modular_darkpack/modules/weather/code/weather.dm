@@ -1,5 +1,4 @@
 // Everything here should be worked into /datum/weather
-/*
 GLOBAL_LIST_EMPTY(managed_weather)
 
 #define WEATHER_CLEAR "Clear"
@@ -198,4 +197,3 @@ SUBSYSTEM_DEF(cityweather)
 #undef WEATHER_RAIN
 #undef WEATHER_SNOW
 #undef WEATHER_FOG
-*/
