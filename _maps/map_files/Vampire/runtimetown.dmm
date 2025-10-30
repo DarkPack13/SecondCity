@@ -1873,7 +1873,7 @@
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/clinic)
 "SV" = (
-/obj/machinery/hydroponics/simple/metal,
+/obj/machinery/hydroponics/simple/plastic,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "SY" = (
