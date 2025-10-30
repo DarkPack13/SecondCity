@@ -22,11 +22,10 @@
 /obj/structure/sign/city/hotel/Initialize(mapload)
 	. = ..()
 	set_light(3, 3, "#8e509e")
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/sign/city/millenium
 	name = "sign"
@@ -51,11 +50,10 @@
 /obj/structure/sign/city/anarch/Initialize(mapload)
 	. = ..()
 	set_light(3, 3, "#ffffff")
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/sign/city/chinese
 	name = "sign"
@@ -67,11 +65,10 @@
 
 /obj/structure/sign/city/chinese/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/sign/city/chinese/alt
 	icon_state = "chinese2"
