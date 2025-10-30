@@ -230,7 +230,7 @@
 	var/list/parts = list()
 	parts += "<span class='header'>[national_guard_name] Operatives:</span>"
 
-	var/text = "<br><span class='header'>The national guard were:</span>"
+	var/text = "<br>[span_header("The national guard were:")]"
 	text += printplayerlist(members)
 	parts += text
 
