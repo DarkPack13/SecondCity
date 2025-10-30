@@ -11,3 +11,10 @@ ADMIN_VERB(set_day_time, R_ADMIN, "Set Day Time", "Set time for day to start", "
 		SScity_time.time_till_daytime = newtime*600
 		log_admin("[key_name(usr)] set day time.")
 		message_admins("[key_name_admin(usr)] has set day time to [SScity_time.time_till_daytime]/[DisplayTimeText(SScity_time.time_till_daytime)].")
+
+ADMIN_VERB(admin_set_starlight, R_FUN, "Set Starlight", "Set base starlight.", ADMIN_CATEGORY_EVENTS)
+	var/star_color = input(user, "", "Choose Color", GLOB.base_starlight_color) as color
+	var/star_range = tgui_input_number(user, "Choose light range", "Light Range", default = GLOB.starlight_range, round_value = FALSE)
+	var/star_power = tgui_input_number(user, "Choose light power", "Light Power", default = GLOB.starlight_power, round_value = FALSE)
+
+	set_base_starlight(star_color, star_range, star_power)

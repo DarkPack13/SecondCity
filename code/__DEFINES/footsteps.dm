@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(footstep, list(
 		'sound/effects/footstep/catwalk3.ogg',
 		'sound/effects/footstep/catwalk4.ogg',
 		'sound/effects/footstep/catwalk5.ogg'), 100, 1),
-	FOOTSTEP_PARKET = list(list(
+	FOOTSTEP_PARKET = list(list( // DARKPACK EDIT ADD START
 		'modular_darkpack/modules/deprecated/sounds/parket1.ogg',
 		'modular_darkpack/modules/deprecated/sounds/parket2.ogg',
 		'modular_darkpack/modules/deprecated/sounds/parket3.ogg'), 75, 1),
@@ -123,8 +123,8 @@ GLOBAL_LIST_INIT(footstep, list(
 	FOOTSTEP_SIDEWALK = list(list(
 		'modular_darkpack/modules/deprecated/sounds/sidewalk1.ogg',
 		'modular_darkpack/modules/deprecated/sounds/sidewalk2.ogg',
-		'modular_darkpack/modules/deprecated/sounds/sidewalk3.ogg'), 75, 1),
-)) // DARKPACK EDIT
+		'modular_darkpack/modules/deprecated/sounds/sidewalk3.ogg'), 75, 1), // DARKPACK EDIT ADD END
+))
 
 //bare footsteps lists
 GLOBAL_LIST_INIT(barefootstep, list(
@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/lava3.ogg'), 100, 0),
 	FOOTSTEP_MEAT = list(list(
 		'sound/effects/meatslap.ogg'), 100, 0),
-	FOOTSTEP_PARKET = list(list(
+	FOOTSTEP_PARKET = list(list( // DARKPACK EDIT ADD START
 		'sound/effects/footstep/woodbarefoot1.ogg',
 		'sound/effects/footstep/woodbarefoot2.ogg',
 		'sound/effects/footstep/woodbarefoot3.ogg',
@@ -192,8 +192,8 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/hardbarefoot2.ogg',
 		'sound/effects/footstep/hardbarefoot3.ogg',
 		'sound/effects/footstep/hardbarefoot4.ogg',
-		'sound/effects/footstep/hardbarefoot5.ogg'), 75, 1),
-)) // DARKPACK EDIT
+		'sound/effects/footstep/hardbarefoot5.ogg'), 75, 1), // DARKPACK EDIT ADD END
+))
 
 //claw footsteps lists
 GLOBAL_LIST_INIT(clawfootstep, list(
