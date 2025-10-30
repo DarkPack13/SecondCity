@@ -229,7 +229,7 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	if(GLOB.revolution_handler?.result == REVOLUTION_VICTORY)
 		return TRUE
-	// DARKPACK ADDITION START
+	// DARKPACK ADDITION START - CITY_TIME
 	if(SScity_time.roundend_started)
 		return TRUE
 	// DARKPACK ADDITION END

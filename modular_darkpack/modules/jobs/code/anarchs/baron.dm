@@ -33,7 +33,6 @@
 	minimal_masquerade = 3
 	allowed_species = list("Vampire")
 	allowed_bloodlines = list("Daughters of Cacophony", "Baali", "Banu Haqim", "Caitiff", "True Brujah", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Ventrue", "Lasombra", "Gargoyle", "Ministry")
-	experience_addition = 20
 
 /datum/outfit/job/barkeeper
 	name = "Baron"
