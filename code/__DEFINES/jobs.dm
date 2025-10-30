@@ -13,14 +13,16 @@
 
 /// Checks for character species.
 #define JOB_UNAVAILABLE_SPECIES 8
-/// Checks for character bloodline.
-#define JOB_UNAVAILABLE_BLOODLINE 9
-/// Checks for character tribe.
-#define JOB_UNAVAILABLE_TRIBE 10
-/// Checks for character auspice.
-#define JOB_UNAVAILABLE_AUSPICE 11
+/// Checks if the job has available species slots.
+#define JOB_UNAVAILABLE_SPECIES_SLOTS 9
 /// Checks for character whitelist.
-#define JOB_UNAVAILABLE_WHITELIST 12
+#define JOB_UNAVAILABLE_WHITELIST 10
+/// Checks for character kindred age.
+#define JOB_UNAVAILABLE_KINDRED_AGE 11
+/// Checks for character kindred generation.
+#define JOB_UNAVAILABLE_KINDRED_GENERATION 12
+/// Checks for character clan.
+#define JOB_UNAVAILABLE_KINDRED_CLAN 13
 
 // DARKPACK EDIT ADD END
 

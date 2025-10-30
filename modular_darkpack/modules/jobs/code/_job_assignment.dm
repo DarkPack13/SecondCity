@@ -4,12 +4,12 @@
  * Checks:
  * * Species Availability
  * * Species Slots
- * * Whitelist
+ * * Whitelist - TODO
  * * Kindred Age
  * * Kindred Generation
  * * Kindred Clan
- * * Garou Tribe
- * * Garou Auspice
+ * * Garou Tribe - TODO
+ * * Garou Auspice - TODO
  *
  * Arguments:
  * * player - The player to check for job eligibility.
@@ -19,9 +19,31 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	if(player_client.prefs.read_preference(/datum/preference/choiced/species) in possible_job.species_slots)
+	if(player_client.prefs.read_preference(/datum/preference/choiced/species) in possible_job.allowed_species)
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
+
+	if(possible_job.species_slots[player_client.prefs.read_preference(/datum/preference/choiced/species)])
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_SPECIES_SLOTS
+
+	/*
+	if(player_client.prefs.read_preference(/datum/preference/choiced/species) in possible_job.whitelisted)
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_WHITELIST, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_WHITELIST
+	*/
+
+	if(player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) >= possible_job.minimum_vampire_age)
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_AGE
+
+	if(player_client.prefs.read_preference(/datum/preference/numeric/generation) >= possible_job.minimal_generation)
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_GENERATION, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_GENERATION
+
+	if(player_client.prefs.read_preference(/datum/preference/choiced/vampire_clan) in possible_job.allowed_clans)
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_CLAN
 
 	return JOB_AVAILABLE
 
