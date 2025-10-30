@@ -1,5 +1,5 @@
 /datum/keybinding/mob/item_pixel_shift
-	hotkey_keys = list("V")
+	hotkey_keys = list("Unbound")
 	name = "item_pixel_shift"
 	full_name = "Item Pixel Shift"
 	description = "Shift a pulled item's offset"
@@ -18,7 +18,7 @@
 	SEND_SIGNAL(user.mob, COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_UP)
 
 /datum/keybinding/mob/pixel_shift
-	hotkey_keys = list("B")
+	hotkey_keys = list("Unbound")
 	name = "pixel_shift"
 	full_name = "Pixel Shift"
 	description = "Shift your characters offset."
@@ -37,7 +37,7 @@
 	SEND_SIGNAL(user.mob, COMSIG_KB_MOB_PIXEL_SHIFT_UP)
 
 /datum/keybinding/mob/pixel_tilting
-	hotkey_keys = list("N")
+	hotkey_keys = list("Unbound")
 	name = "Pixel Tilting"
 	full_name = "Pixel Tilt"
 	description = "Shift a mob's rotational value"
