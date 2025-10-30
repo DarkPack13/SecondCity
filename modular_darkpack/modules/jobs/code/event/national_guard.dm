@@ -90,7 +90,8 @@
 	var/title
 
 /datum/antagonist/national_guard/on_gain()
-	randomize_appearance()
+	var/mob/living/carbon/human/guard_character = owner.current
+	guard_character.randomize_human_appearance()
 	forge_objectives()
 	equip_national_guard()
 	give_alias()
@@ -179,139 +180,6 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has national guard'd [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has national guard'd [key_name(new_owner)].")
-
-/datum/random_gen/national_guard
-	var/hair_colors = list("040404",	//Black
-										"120b05",	//Dark Brown
-										"342414",	//Brown
-										"554433",	//Light Brown
-										"695c3b",	//Dark Blond
-										"ad924e",	//Blond
-										"dac07f",	//Light Blond
-										"802400",	//Ginger
-										"a5380e",	//Ginger alt
-										"ffeace",	//Albino
-										"650b0b",	//Punk Red
-										"14350e",	//Punk Green
-										"080918")	//Punk Blue
-
-	var/male_hair = list("Balding Hair",
-										"Bedhead",
-										"Bedhead 2",
-										"Bedhead 3",
-										"Boddicker",
-										"Business Hair",
-										"Business Hair 2",
-										"Business Hair 3",
-										"Business Hair 4",
-										"Coffee House",
-										"Combover",
-										"Crewcut",
-										"Father",
-										"Flat Top",
-										"Gelled Back",
-										"Joestar",
-										"Keanu Hair",
-										"Oxton",
-										"Volaju")
-
-	var/male_facial = list("Beard (Abraham Lincoln)",
-											"Beard (Chinstrap)",
-											"Beard (Full)",
-											"Beard (Cropped Fullbeard)",
-											"Beard (Hipster)",
-											"Beard (Neckbeard)",
-											"Beard (Three o Clock Shadow)",
-											"Beard (Five o Clock Shadow)",
-											"Beard (Seven o Clock Shadow)",
-											"Moustache (Hulk Hogan)",
-											"Moustache (Watson)",
-											"Sideburns (Elvis)",
-											"Sideburns")
-
-	var/female_hair = list("Ahoge",
-										"Long Bedhead",
-										"Beehive",
-										"Beehive 2",
-										"Bob Hair",
-										"Bob Hair 2",
-										"Bob Hair 3",
-										"Bob Hair 4",
-										"Bobcurl",
-										"Braided",
-										"Braided Front",
-										"Braid (Short)",
-										"Braid (Low)",
-										"Bun Head",
-										"Bun Head 2",
-										"Bun Head 3",
-										"Bun (Large)",
-										"Bun (Tight)",
-										"Double Bun",
-										"Emo",
-										"Emo Fringe",
-										"Feather",
-										"Gentle",
-										"Long Hair 1",
-										"Long Hair 2",
-										"Long Hair 3",
-										"Long Over Eye",
-										"Long Emo",
-										"Long Fringe",
-										"Ponytail",
-										"Ponytail 2",
-										"Ponytail 3",
-										"Ponytail 4",
-										"Ponytail 5",
-										"Ponytail 6",
-										"Ponytail 7",
-										"Ponytail (High)",
-										"Ponytail (Short)",
-										"Ponytail (Long)",
-										"Ponytail (Country)",
-										"Ponytail (Fringe)",
-										"Poofy",
-										"Short Hair Rosa",
-										"Shoulder-length Hair",
-										"Volaju")
-
-/datum/antagonist/national_guard/proc/randomize_appearance()
-	var/datum/random_gen/national_guard/h_gen = new
-	var/mob/living/carbon/human/H = owner.current
-	H.gender = pick(MALE, FEMALE)
-	H.physique = H.gender
-	H.age = rand(18, 36)
-//	if(age >= 55)
-//		hair_color = "a2a2a2"
-//		facial_hair_color = hair_color
-//	else
-	H.hair_color = pick(h_gen.hair_colors)
-	H.facial_hair_color = H.hair_color
-	if(H.gender == MALE)
-		H.hairstyle = pick(h_gen.male_hair)
-		if(prob(25) || H.age >= 25)
-			H.facial_hairstyle = pick(h_gen.male_facial)
-		else
-			H.facial_hairstyle = "Shaved"
-	else
-		H.hairstyle = pick(h_gen.female_hair)
-		H.facial_hairstyle = "Shaved"
-	H.name = H.real_name
-	H.dna.real_name = H.real_name
-	var/obj/item/organ/eyes/organ_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
-	if(organ_eyes)
-		organ_eyes.eye_color_left = random_eye_color()
-		organ_eyes.eye_color_right = organ_eyes.eye_color_left
-	H.underwear = random_underwear(H.gender)
-	if(prob(50))
-		H.underwear_color = organ_eyes.eye_color_left
-	if(prob(50) || H.gender == FEMALE)
-		H.undershirt = random_undershirt(H.gender)
-	if(prob(25))
-		H.socks = random_socks()
-	H.update_body()
-	H.update_hair()
-	H.update_body_parts()
 
 /datum/team/national_guard/proc/rename_team(new_name)
 	national_guard_name = new_name

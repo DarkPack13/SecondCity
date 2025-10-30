@@ -66,7 +66,8 @@
 	var/title
 
 /datum/antagonist/swat/on_gain()
-	randomize_appearance()
+	var/mob/living/carbon/human/swat_character = owner.current
+	swat_character.randomize_human_appearance()
 	forge_objectives()
 	equip_swat()
 	give_alias()
@@ -156,136 +157,6 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has swat'd [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has swat'd [key_name(new_owner)].")
-
-/datum/random_gen/swat
-	var/hair_colors = list("040404",	//Black
-										"120b05",	//Dark Brown
-										"342414",	//Brown
-										"554433",	//Light Brown
-										"695c3b",	//Dark Blond
-										"ad924e",	//Blond
-										"dac07f",	//Light Blond
-										"802400",	//Ginger
-										"a5380e",	//Ginger alt
-										"ffeace",	//Albino
-										"650b0b",	//Punk Red
-										"14350e",	//Punk Green
-										"080918")	//Punk Blue
-
-	var/male_hair = list("Balding Hair",
-										"Bedhead",
-										"Bedhead 2",
-										"Bedhead 3",
-										"Boddicker",
-										"Business Hair",
-										"Business Hair 2",
-										"Business Hair 3",
-										"Business Hair 4",
-										"Coffee House",
-										"Combover",
-										"Crewcut",
-										"Father",
-										"Flat Top",
-										"Gelled Back",
-										"Joestar",
-										"Keanu Hair",
-										"Oxton",
-										"Volaju")
-
-	var/male_facial = list("Beard (Abraham Lincoln)",
-											"Beard (Chinstrap)",
-											"Beard (Full)",
-											"Beard (Cropped Fullbeard)",
-											"Beard (Hipster)",
-											"Beard (Neckbeard)",
-											"Beard (Three o Clock Shadow)",
-											"Beard (Five o Clock Shadow)",
-											"Beard (Seven o Clock Shadow)",
-											"Moustache (Hulk Hogan)",
-											"Moustache (Watson)",
-											"Sideburns (Elvis)",
-											"Sideburns")
-
-	var/female_hair = list("Ahoge",
-										"Long Bedhead",
-										"Beehive",
-										"Beehive 2",
-										"Bob Hair",
-										"Bob Hair 2",
-										"Bob Hair 3",
-										"Bob Hair 4",
-										"Bobcurl",
-										"Braided",
-										"Braided Front",
-										"Braid (Short)",
-										"Braid (Low)",
-										"Bun Head",
-										"Bun Head 2",
-										"Bun Head 3",
-										"Bun (Large)",
-										"Bun (Tight)",
-										"Double Bun",
-										"Emo",
-										"Emo Fringe",
-										"Feather",
-										"Gentle",
-										"Long Hair 1",
-										"Long Hair 2",
-										"Long Hair 3",
-										"Long Over Eye",
-										"Long Emo",
-										"Long Fringe",
-										"Ponytail",
-										"Ponytail 2",
-										"Ponytail 3",
-										"Ponytail 4",
-										"Ponytail 5",
-										"Ponytail 6",
-										"Ponytail 7",
-										"Ponytail (High)",
-										"Ponytail (Short)",
-										"Ponytail (Long)",
-										"Ponytail (Country)",
-										"Ponytail (Fringe)",
-										"Poofy",
-										"Short Hair Rosa",
-										"Shoulder-length Hair",
-										"Volaju")
-
-/datum/antagonist/swat/proc/randomize_appearance()
-	var/datum/random_gen/swat/h_gen = new
-	var/mob/living/carbon/human/H = owner.current
-
-	H.name = H.real_name
-	H.dna.real_name = H.real_name
-	H.gender = pick(MALE, FEMALE)
-	H.physique = H.gender
-	H.age = rand(18, 36)
-
-	H.set_haircolor(pick(h_gen.hair_colors))
-	H.set_facial_haircolor(H.hair_color)
-	if(H.gender == MALE)
-		H.set_hairstyle(pick(h_gen.male_hair))
-		if(prob(25) || H.age >= 25)
-			H.set_facial_hairstyle(pick(h_gen.male_facial))
-		else
-			H.set_facial_hairstyle("Shaved")
-	else
-		H.set_hairstyle(pick(h_gen.female_hair))
-		H.set_facial_hairstyle("Shaved")
-
-	H.set_eye_color(random_eye_color())
-
-	H.underwear = random_underwear(H.gender)
-	var/obj/item/organ/eyes/organ_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
-	if(organ_eyes)
-		H.underwear_color = organ_eyes.eye_color_left
-	if(prob(50) || H.gender == FEMALE)
-		H.undershirt = random_undershirt(H.gender)
-	if(prob(25))
-		H.socks = random_socks()
-
-	H.update_body()
 
 /datum/team/swat/proc/rename_team(new_name)
 	swat_name = new_name
