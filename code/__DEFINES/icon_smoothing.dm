@@ -231,11 +231,13 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_PLATFORMS_PIZZA S_OBJ(85) ///obj/structure/platform/pizza
 #define SMOOTH_GROUP_PLATFORMS_PAPER S_OBJ(86) ///obj/structure/platform/paper
 
-// DARKPACK EDIT START
-#define SMOOTH_GROUP_VENTS S_OBJ(87) ///obj/structure/roofstuff/vent/autotiling
-#define SMOOTH_GROUP_SPILL S_OBJ(88) ///obj/effect/decal/cleanable/gasoline
+#define SMOOTH_GROUP_BOULDER_PLATFORM S_OBJ(87) ///obj/structure/lattice/catwalk/boulder
 
-#define SMOOTH_GROUP_COLOR_COUNTERTOP S_OBJ(89) ///obj/structure/table/countertop/(color)
+// DARKPACK EDIT START
+#define SMOOTH_GROUP_VENTS S_OBJ(88) ///obj/structure/roofstuff/vent/autotiling
+#define SMOOTH_GROUP_SPILL S_OBJ(89) ///obj/effect/decal/cleanable/gasoline
+
+#define SMOOTH_GROUP_COLOR_COUNTERTOP S_OBJ(90) ///obj/structure/table/countertop/(color)
 // DARKPACK EDIT END
 
 /// Performs the work to set smoothing_groups and canSmoothWith.
