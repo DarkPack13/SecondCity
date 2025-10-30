@@ -73,5 +73,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOOD_DRINKER "blood_drinker"
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
+// If the trait owner knows thaumaturgical rituals.
+#define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
 
 // END TRAIT DEFINES
