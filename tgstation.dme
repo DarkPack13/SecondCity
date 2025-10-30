@@ -6837,6 +6837,7 @@
 #include "modular_darkpack\modules\city_time\code\status_effects.dm"
 #include "modular_darkpack\modules\city_time\code\vote.dm"
 #include "modular_darkpack\modules\city_time\code\wrist_watch.dm"
+#include "modular_darkpack\modules\clothes\code\back.dm"
 #include "modular_darkpack\modules\clothes\code\eyes.dm"
 #include "modular_darkpack\modules\clothes\code\feet.dm"
 #include "modular_darkpack\modules\clothes\code\hands.dm"
