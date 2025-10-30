@@ -103,8 +103,8 @@
 	to_chat(owner.current, span_userdanger("You are no longer in the National Guard!"))
 
 /datum/antagonist/national_guard/greet()
-	to_chat(owner.current, "<span class='alertsyndie'>You're in the national guard.</span>")
-	to_chat(owner, "<span class='notice'>You are a [national_guard_team ? national_guard_team.national_guard_name : "national guard"] soldier!</span>")
+	to_chat(owner.current, span_alertsyndie("You're in the national guard."))
+	to_chat(owner, span_notice("You are a [national_guard_team ? national_guard_team.national_guard_name : "national guard"] soldier!"))
 	owner.announce_objectives()
 
 
