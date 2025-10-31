@@ -39,10 +39,10 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
 "bo" = (
-/obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/closed/wall/vampwall/painted/low,
+/obj/structure/table/countertop/red,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "bp" = (
 /obj/effect/turf_decal/bordur,
@@ -112,10 +112,10 @@
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/sewer)
 "ci" = (
-/obj/structure/table/bacotell,
 /obj/underplate/stuff{
 	pixel_y = 8
 	},
+/obj/structure/table/countertop/bacotell,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "cj" = (
@@ -160,7 +160,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "el" = (
-/obj/structure/table/bubway,
+/obj/structure/table/countertop/bubway,
 /obj/structure/retail/bubway_menu,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
@@ -274,9 +274,9 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "hz" = (
-/obj/structure/table,
 /obj/lombard/blackmarket,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/beige,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "hA" = (
 /obj/item/kirbyplants/random,
@@ -606,8 +606,8 @@
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
 "ri" = (
-/obj/structure/table/wood,
-/turf/closed/wall/vampwall/painted/low,
+/obj/structure/table/countertop/purple,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "rB" = (
 /turf/closed/indestructible/the_matrix,
@@ -704,6 +704,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"sY" = (
+/obj/structure/table/countertop/black,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/shop)
 "tb" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur,
@@ -787,7 +791,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
 "uL" = (
-/obj/structure/table/bubway,
+/obj/structure/table/countertop/bubway,
 /obj/underplate/stuff{
 	pixel_y = 8
 	},
@@ -870,9 +874,9 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "xH" = (
-/obj/structure/table,
 /obj/lombard,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/beige,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "xU" = (
 /obj/structure/table,
@@ -950,9 +954,9 @@
 /turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
 "Af" = (
-/obj/structure/table,
 /obj/structure/retail/junkfood_menu,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/teal,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "Ak" = (
 /obj/effect/turf_decal/crosswalk{
@@ -1036,9 +1040,9 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Cg" = (
-/obj/structure/table/wood,
 /obj/structure/retail/library,
-/turf/closed/wall/vampwall/painted/low,
+/obj/structure/table/countertop/red,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "Cr" = (
 /obj/structure/vampdoor/glass/police_chief,
@@ -1110,8 +1114,8 @@
 /area/vtm/interior/shop)
 "DG" = (
 /obj/structure/retail/gas_station,
-/obj/structure/table,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/yellow,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "DJ" = (
 /obj/item/vamp/keys/anarch,
@@ -1367,9 +1371,9 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "Ip" = (
-/obj/structure/table,
 /obj/structure/retail/black_market,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/black,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Is" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1460,9 +1464,9 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Kt" = (
-/obj/structure/table/wood,
 /obj/structure/retail/pharmacy,
-/turf/closed/wall/vampwall/painted/low,
+/obj/structure/table/countertop/purple,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "KB" = (
 /obj/structure/table,
@@ -1478,6 +1482,10 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"KW" = (
+/obj/structure/table/countertop/yellow,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/shop)
 "Lk" = (
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash7"
@@ -1570,8 +1578,8 @@
 /turf/open/floor/plating/vampcanal,
 /area/vtm/outside/pacificheights)
 "NI" = (
-/obj/structure/table/bacotell,
 /obj/structure/retail/bacotell_menu,
+/obj/structure/table/countertop/bacotell,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "NO" = (
@@ -1702,8 +1710,8 @@
 /area/vtm/outside/pacificheights)
 "Qv" = (
 /obj/structure/retail/smoke_menu,
-/obj/structure/table,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/teal,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "QK" = (
 /obj/effect/turf_decal/bordur,
@@ -1978,9 +1986,9 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "Wy" = (
-/obj/structure/table,
 /obj/structure/retail/grocery_store,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/green,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "Wz" = (
 /obj/structure/sink/directional/east,
@@ -2068,8 +2076,8 @@
 /turf/open/misc/dirt/vamp,
 /area/vtm/outside/supply)
 "YJ" = (
-/obj/structure/table,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/table/countertop/green,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "YL" = (
 /obj/effect/turf_decal/bordur{
@@ -4027,7 +4035,7 @@ Kt
 iD
 NR
 Fg
-YJ
+sY
 Ip
 Fg
 xH
@@ -4634,7 +4642,7 @@ Fg
 sX
 NR
 NR
-YJ
+KW
 bL
 BL
 DN
