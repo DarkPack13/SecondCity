@@ -88,3 +88,4 @@
 			mannequin.examine_panel_tgui = new()
 		mannequin.setup_examine_preview(src)
 		mannequin.examine_panel_tgui.ui_interact(usr)
+	..()
