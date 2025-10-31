@@ -28,6 +28,7 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = null
+	pda_slot = null
 
 /**
  * This type is used to indicate a lack of a job.

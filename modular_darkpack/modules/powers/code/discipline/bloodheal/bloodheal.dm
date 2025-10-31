@@ -77,11 +77,6 @@
 	owner.update_damage_overlays()
 	owner.update_health_hud()
 
-/datum/discipline_power/bloodheal/can_activate_untargeted(alert)
-	adjust_vitae_cost()
-
-	. = ..()
-
 /datum/discipline_power/bloodheal/spend_resources()
 	adjust_vitae_cost()
 
