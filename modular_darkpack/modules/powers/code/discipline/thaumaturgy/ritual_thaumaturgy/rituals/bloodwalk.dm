@@ -45,6 +45,7 @@
 				message += "This is the vitae of a thinblood!\n"
 
 	//clan
+	//TODO: [Rebase] - Reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 			message += "The blood is sweet and rich. The owner must, too, be beautiful.\n"
@@ -54,8 +55,8 @@
 			message += "Cold and dark, this blood has a mystical connection to the Abyss.\n"
 		if(VAMPIRE_CLAN_TZIMISCE)
 			message += "The vitae is mutable and twisted. Is there any doubt to the cursed line it belongs to?\n"
-		if(VAMPIRE_CLAN_OLD_TZIMISCE)
-			message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
+		//if(VAMPIRE_CLAN_OLD_TZIMISCE)
+			//message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
 		if(VAMPIRE_CLAN_GANGREL)
 			message += "The blood emits a primal and feral aura. The same is likely of the owner.\n"
 		if(VAMPIRE_CLAN_MALKAVIAN)
@@ -74,18 +75,18 @@
 			message += "The blood is cold and static... It's hard to feel any emotion within it.\n"
 		if(VAMPIRE_CLAN_SALUBRI)
 			message += "The cursed blood of the Salubri! The owner of this blood must be slain.\n"
-		if(VAMPIRE_CLAN_SALUBRI_WARRIOR)
-			message += "The avatar of Samiel's vengeance stands before you, do you dare return their bitter hatred?\n"
+		//if(VAMPIRE_CLAN_SALUBRI_WARRIOR)
+			//message += "The avatar of Samiel's vengeance stands before you, do you dare return their bitter hatred?\n"
 		if(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
 			message += "The blood is very cold and filled with death. The owner must be a necromancer.\n"
 		if(VAMPIRE_CLAN_KIASYD)
 			message += "The blood is filled with traces of fae magic.\n"
 		if(VAMPIRE_CLAN_GARGOYLE)
 			message += "The blood of our stone servants.\n"
-		if(VAMPIRE_CLAN_SETITES)
-			message += "Seduction and allure are in the blood. Ah, one of the snakes.\n"
-		if(VAMPIRE_CLAN_NAGARAJA)
-			message += "This blood has an unsettling hunger to it, cold and stained with death.\n"
+		//if(VAMPIRE_CLAN_SETITES)
+			//message += "Seduction and allure are in the blood. Ah, one of the snakes.\n"
+		//if(VAMPIRE_CLAN_NAGARAJA)
+			//message += "This blood has an unsettling hunger to it, cold and stained with death.\n"
 		else
 			message += "The blood's origin is hard to trace. Perhaps it is one of the clanless?\n"
 

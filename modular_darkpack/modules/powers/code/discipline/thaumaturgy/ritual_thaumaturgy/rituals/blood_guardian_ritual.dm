@@ -12,10 +12,11 @@
 	H.add_beastmaster_minion(/mob/living/basic/blood_guard)
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
 	if(length(H.beastmaster_minions) > 3+H.st_get_stat(STAT_LEADERSHIP))
-		var/mob/living/basic/blood_guard/B = pick(H.beastmaster)
+		var/mob/living/basic/blood_guard/B = pick(H.beastmaster_minions)
 		B.death()
 	qdel(src)
 
+/*
 /mob/living/simple_animal/hostile/beastmaster/blood_guard
 	name = "blood guardian"
 	desc = "A clot of blood in humanoid form."
@@ -23,7 +24,6 @@
 	icon_state = "blood_guardian"
 	icon_living = "blood_guardian"
 	del_on_death = 1
-	healable = 0
 	mob_biotypes = MOB_SPIRIT
 	speak_chance = 0
 	turns_per_move = 5
@@ -51,3 +51,4 @@
 	faction = list(VAMPIRE_CLAN_TREMERE)
 	bloodpool = 1
 	maxbloodpool = 1
+*/

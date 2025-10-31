@@ -24,7 +24,7 @@
 			else if(H.stat > SOFT_CRIT)
 				valid_bodies += H
 			else
-				H.adjustCloneLoss(50)
+				H.adjustAggLoss(50)
 				playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
@@ -57,9 +57,9 @@
 
 		var/transformation_message
 		if(perfect_gargoyle)
-			transformation_message = span_gargoylealert("The bodies begin to merge and petrify into a massive stone form!")
+			transformation_message = span_cult("The bodies begin to merge and petrify into a massive stone form!")
 		else
-			transformation_message = span_gargoylealert("The body begins to petrify into a stone form!")
+			transformation_message = span_cult("The body begins to petrify into a stone form!")
 		visible_message(transformation_message)
 
 		// Complete the transformation
@@ -77,7 +77,7 @@
 	if(perfect_gargoyle)
 		// Create perfect gargoyle (2+ bodies) -- you'd have to frag two different kindred players to create a perfect gargoyle.
 		var/mob/living/simple_animal/hostile/gargoyle/perfect/G = new /mob/living/simple_animal/hostile/gargoyle/perfect(loc)
-		G.visible_message(span_gargoylealert("A massive perfect Gargoyle rises from the ritual!"))
+		G.visible_message(span_cult("A massive perfect Gargoyle rises from the ritual!"))
 
 		// Ensure perfect gargoyle is at full health
 		G.revive(TRUE)
@@ -93,7 +93,6 @@
 
 				H.gib(FALSE, FALSE, TRUE)
 
-		// This function asks the ghosts and observers if theyd like to control the perfect Gargoyle. No clue why it's named that or what it stands for. It's from tzimisce.dm.
 		G.gain_sentience()
 
 		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
@@ -118,7 +117,7 @@
 		target_body.revive(TRUE)
 		target_body.set_species(/datum/species/kindred)
 		target_body.set_clan(/datum/vampire_clan/gargoyle)
-		target_body.apply_status_effect(STATUS_EFFECT_INLOVE, usr)
+		target_body.blood_bond(usr)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name
 		target_body.update_name()
@@ -148,11 +147,11 @@
 				target_body.name = chosen_gargoyle_name
 				target_body.update_name()
 			else
-				target_body.visible_message(span_gargoylealert("A Gargoyle rises from the ritual!"))
+				target_body.visible_message(span_cult("A Gargoyle rises from the ritual!"))
 				qdel(src)
 				return
 
-		target_body.visible_message(span_gargoylealert("A Gargoyle rises from the ritual!"))
+		target_body.visible_message(span_cult("A Gargoyle rises from the ritual!"))
 
 	qdel(src)
 

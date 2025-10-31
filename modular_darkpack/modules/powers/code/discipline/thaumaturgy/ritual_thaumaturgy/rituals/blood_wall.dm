@@ -15,7 +15,7 @@
 /obj/structure/bloodwall
 	name = "blood wall"
 	desc = "Wall from BLOOD."
-	icon = 'code/modules/wod13/icons.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "bloodwall"
 	plane = GAME_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -28,7 +28,7 @@
 /obj/structure/fleshwall
 	name = "flesh wall"
 	desc = "Wall from FLESH."
-	icon = 'code/modules/wod13/icons.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "fleshwall"
 	plane = GAME_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -39,7 +39,7 @@
 /obj/structure/tzijelly
 	name = "jelly thing"
 	desc = "an important part of the meat matrix."
-	icon = 'code/modules/wod13/icons.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "tzijelly"
 	plane = GAME_PLANE
 	layer = ABOVE_MOB_LAYER

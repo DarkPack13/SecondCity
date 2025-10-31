@@ -20,7 +20,6 @@
 	SIGNAL_HANDLER
 
 	qdel(src)
-	return COMSIG_CLICK_ALT_HANDLED
 
 /obj/ritualrune/proc/complete()
 	return
