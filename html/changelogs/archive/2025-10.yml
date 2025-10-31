@@ -121,3 +121,13 @@
   - balance: Climbing down open space takes longer then using ladders but now also
       uses your stats.
   - refactor: Refactors climbing down to be doable by more then just humans
+2025-10-31:
+  Beautiful TG coders:
+  - code_imp: Monthly TG Pull. Thank you TG.
+  KCartridge, Paynt:
+  - rscadd: Colored countertops
+  Melbert:
+  - refactor: Refactored species unique organs slightly, particularly how they are
+      set up at game start. Report any oddities, like invisible tails or wings
+  dwinters99:
+  - rscadd: alt-click to conceal/reveal satchels

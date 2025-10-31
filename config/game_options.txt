@@ -89,12 +89,14 @@ STATION_GOAL_BUDGET 1
 ## If TRUE / 1, station is raised to blue alert at roundstart.
 ## If FALSE / 0, station remains at green alert.
 ## Roundstart command report and greendshift announcements are unaffected.
-ROUNDSTART_BLUE_ALERT 1
+ROUNDSTART_BLUE_ALERT 0
+#DARKPACK EDIT: ROUNDSTART_BLUE_ALERT SET TO 0
 
 ## GAME MODES ###
 
 ## Uncomment to not send a roundstart intercept report. Gamemodes may override this.
-#NO_INTERCEPT_REPORT
+NO_INTERCEPT_REPORT
+#DARKPACK EDIT: CONFIG ENABLED
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -204,7 +206,8 @@ CONFIG_GATEWAY_CHANCE 0
 ## If the number of players ready at round starts exceeds this threshold, JOBS_HAVE_MINIMAL_ACCESS will automatically be enabled. Otherwise, it will be disabled.
 ## This is useful for accommodating both low and high population rounds on the same server.
 ## Comment this out or set to 0 to disable this automatic toggle.
-MINIMAL_ACCESS_THRESHOLD 20
+#MINIMAL_ACCESS_THRESHOLD 20
+#DARKPACK EDIT: CONFIG DISABLED
 
 ## Comment this out this if you wish to use the setup where jobs have more access.
 ## This is intended for servers with low populations - where there are not enough
@@ -228,8 +231,8 @@ MINIMAL_ACCESS_THRESHOLD 20
 ## Set to 0/commented out for "off", Departmental Security Officers will never get additional room-specific access (beyond general departmental doors).
 ## Set to 1 if you want to enable "Scaling Access", where Departmental Security Officers will get access to most rooms within a department depending on how many security officers there are relative to the number of people on a station.
 ## Set to 2 if you want Departmental Security Officers to always have access to all rooms in a department.
-DEPSEC_ACCESS_LEVEL 1
-
+DEPSEC_ACCESS_LEVEL 0
+#DARKPACK EDIT: DEPSEC_ACCESS_LEVEL SET TO 0 INSTEAD OF 1
 
 ## GHOST INTERACTION ###
 ## Uncomment to let ghosts spin chairs. You may be wondering why this is a config option. Don't ask.
@@ -407,7 +410,8 @@ ROUNDSTART_RACES ghoul
 ## Disable roundstart species morgue cadavers?
 ## Cadavers in the morgue at the start of the round will be randomly picked from all enabled ROUNDSTART_RACES
 ## Recommended to leave this commented out so nonhuman species will have viable replacement bodies / organs when they die.
-# MORGUE_CADAVER_DISABLE_NONHUMANS
+MORGUE_CADAVER_DISABLE_NONHUMANS
+#DARKPACK CONFIG ENABLED
 
 ## Morgue Cadaver Species Probability
 ## The probability for nonhuman cadavers to spawn in the morgue.
@@ -424,7 +428,8 @@ MORGUE_CADAVER_OTHER_SPECIES_PROBABILITY 50
 
 ##Overflow job. Default is assistant.
 ## NOTE: This will overwrite anything you put in jobconfig.toml!
-OVERFLOW_JOB Assistant
+OVERFLOW_JOB Citizen
+#DARKPACK EDIT: OVERFLOW_JOB SET TO "Citizen" FROM "Assistant"
 
 ## Overflow slot cap. Set to -1 for unlimited. If limited, it will still open up if every other job is full.
 ## NOTE: This will overwrite anything you put in jobconfig.toml!
