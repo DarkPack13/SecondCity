@@ -103,8 +103,9 @@
 	passthroughable = NONE
 	if(is_shifted)
 		var/mob/living/owner = parent
-		owner.pixel_x = owner.body_position_pixel_x_offset + owner.base_pixel_x
-		owner.pixel_y = owner.body_position_pixel_y_offset + owner.base_pixel_y
+		var/offset_lying = owner.rotate_on_lying ? PIXEL_Y_OFFSET_LYING : owner.get_transform_translation_size(owner.current_size)
+		owner.pixel_x = offset_lying + owner.base_pixel_x
+		owner.pixel_y = offset_lying + owner.base_pixel_y
 		owner.transform = turn(owner.transform, -how_tilted)
 	qdel(src)
 
