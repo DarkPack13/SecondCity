@@ -988,7 +988,7 @@ SUBSYSTEM_DEF(job)
 		job_debug("[debug_prefix]: Player is qdeleted, Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_GENERIC
 
-	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log)
+	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log) //DARKPACK EDIT, ORIGINAL: return JOB_AVAILABLE
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type.
