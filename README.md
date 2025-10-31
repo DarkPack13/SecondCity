@@ -2,11 +2,11 @@
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-| Website                 | Link                                                                                 |
-| ----------------------- | ------------------------------------------------------------------------------------ |
-| Code                    | [https://github.com/DarkPack13/SecondCity](https://github.com/DarkPack13/SecondCity) |
-| The Second City Discord | [https://discord.gg/rmAbJcuChD](https://discord.gg/rmAbJcuChD)                       |
-| Coderbus Discord        | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                             |
+| Website                 | Link                                     |
+| ----------------------- | -----------------------------------------|
+| Code                    | https://github.com/DarkPack13/SecondCity |
+| The Second City Discord | https://discord.gg/rmAbJcuChD            |
+| Coderbus Discord        | https://discord.gg/Vh8TJp9               |
 
 This is the codebase for the Darkpack13 Project, a fork of TGstation 2025 for the purposes of being an upstream for The Final Nights, Apocrypha, Requiem and World of Darkness 13.
 
@@ -40,9 +40,9 @@ For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
 
 ## LICENSE
 
-All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
+All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
 
-All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
+All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
 (Including tools unless their readme specifies otherwise.)
 
 See LICENSE and GPLv3.txt for more details.

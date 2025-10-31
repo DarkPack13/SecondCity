@@ -257,10 +257,11 @@
 
 	// Our climbers athletics ability
 	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
+	// TODO: [Rebase] standardize stat doafter delays
 	var/fitness_level = 1
 	if(isliving(user))
 		var/mob/living/living_user = user
-		fitness_level = living_user.st_get_stat(STAT_DEXTERITY) + living_user.st_get_stat(STAT_ATHLETICS)
+		fitness_level = living_user.st_get_stat(STAT_DEXTERITY) + living_user.st_get_stat(STAT_ATHLETICS) * travel_time/10
 	// DARKPACK EDIT CHANGE END
 
 	// Misc bonuses to the climb speed.

@@ -192,8 +192,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 // DARKPACK EDIT START
 #define SMOOTH_GROUP_REINFORCED_TABLES S_OBJ(57) ///obj/structure/table/reinforced
-#define SMOOTH_GROUP_BACO_TABLES S_OBJ(58) ///obj/structure/table/bacotell
-#define SMOOTH_GROUP_BUB_TABLES S_OBJ(59) ///obj/structure/table/bubway
+#define SMOOTH_GROUP_BACO_TABLES S_OBJ(58) ///obj/structure/table/countertop/bacotell
+#define SMOOTH_GROUP_BUB_TABLES S_OBJ(59) ///obj/structure/table/countertop/bubway
 // DARKPACK EDIT END
 
 #define SMOOTH_GROUP_ALIEN_NEST S_OBJ(60) ///obj/structure/bed/nest
@@ -231,9 +231,13 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_PLATFORMS_PIZZA S_OBJ(85) ///obj/structure/platform/pizza
 #define SMOOTH_GROUP_PLATFORMS_PAPER S_OBJ(86) ///obj/structure/platform/paper
 
+#define SMOOTH_GROUP_BOULDER_PLATFORM S_OBJ(87) ///obj/structure/lattice/catwalk/boulder
+
 // DARKPACK EDIT START
-#define SMOOTH_GROUP_VENTS S_OBJ(87) ///obj/structure/roofstuff/vent/autotiling
-#define SMOOTH_GROUP_SPILL S_OBJ(88) ///obj/effect/decal/cleanable/gasoline
+#define SMOOTH_GROUP_VENTS S_OBJ(88) ///obj/structure/roofstuff/vent/autotiling
+#define SMOOTH_GROUP_SPILL S_OBJ(89) ///obj/effect/decal/cleanable/gasoline
+
+#define SMOOTH_GROUP_COLOR_COUNTERTOP S_OBJ(90) ///obj/structure/table/countertop/(color)
 // DARKPACK EDIT END
 
 /// Performs the work to set smoothing_groups and canSmoothWith.

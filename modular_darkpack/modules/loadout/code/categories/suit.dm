@@ -1,9 +1,10 @@
-/datum/loadout_category/suit
+/datum/loadout_category/suits
 	category_name = "Outerwear"
-	category_ui_icon = FA_ICON_SHIRT
+	category_ui_icon = FA_ICON_USER_SECRET
 	type_to_generate = /datum/loadout_item/suit
 	tab_order = /datum/loadout_category/head::tab_order + 10
 
+/*
 /datum/loadout_item/suit
 	abstract_type = /datum/loadout_item/suit
 
@@ -11,6 +12,7 @@
 	if(outfit.suit)
 		LAZYADD(outfit.backpack_contents, outfit.suit)
 	outfit.suit = item_path
+*/
 
 // Coats
 /datum/loadout_item/suit/coat
