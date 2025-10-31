@@ -8,8 +8,6 @@
  * * Kindred Age
  * * Kindred Generation
  * * Kindred Clan
- * * Garou Tribe - TODO
- * * Garou Auspice - TODO
  *
  * Arguments:
  * * player - The player to check for job eligibility.
