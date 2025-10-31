@@ -15,7 +15,7 @@
 /obj/item/spirit_chime
 	name = "Chime of Unseen Spirits"
 	desc = "A mystical chime that reacts to nearby spirits."
-	icon = 'modular_tfn/modules/spirit_chime/icons/spirit_chime.dmi'
+	icon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/spirit_chime.dmi'
 	icon_state = "bell"
 	anchored = FALSE
 	var/isplaced = FALSE
@@ -47,7 +47,7 @@
 			return
 
 		anchored = TRUE
-		icon = 'modular_tfn/modules/spirit_chime/icons/spirit_chime.dmi'
+		icon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/spirit_chime.dmi'
 		icon_state = "bell"
 		isplaced = TRUE
 		user.visible_message(span_notice("[user] places the bell on the table."))
@@ -65,7 +65,7 @@
 
 		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
 		placed_chime.anchored = TRUE
-		placed_chime.icon = 'modular_tfn/modules/spirit_chime/icons/spirit_chime.dmi'
+		placed_chime.icon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/spirit_chime.dmi'
 		placed_chime.icon_state = "chime"
 
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
@@ -89,7 +89,7 @@
 
 		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
 		placed_chime.anchored = TRUE
-		placed_chime.icon = 'modular_tfn/modules/spirit_chime/icons/spirit_chime.dmi'
+		placed_chime.icon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/spirit_chime.dmi'
 		placed_chime.icon_state = "bell"
 
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
@@ -202,7 +202,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/spirit_chime/proc/ring()
-	playsound(src, 'modular_tfn/modules/spirit_chime/sound/spirit_chime_ring.ogg', 25, FALSE)
+	playsound(src, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/sounds/spirit_chime_ring.ogg', 25, FALSE)
 	visible_message(span_notice("The chime rings out!"), vision_distance = range)
 
 /obj/item/spirit_chime/proc/initial_check()
