@@ -19,11 +19,21 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	if(!(player_client.prefs.read_preference(/datum/preference/choiced/species) in GLOB.species_list[possible_job.allowed_species]))
+
+	var/list/allowed_species_list = list()
+	for(var/species_id as anything in possible_job.allowed_species)
+		allowed_species_list += GLOB.species_list[species_id]
+
+	if(!(player_client.prefs.read_preference(/datum/preference/choiced/species) in allowed_species_list))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
 
-	if(!(possible_job.species_slots[GLOB.species_list[player_client.prefs.read_preference(/datum/preference/choiced/species)]]))
+	var/list/allowed_species_slots_list = list()
+	for(var/species_id as anything in possible_job.species_slots)
+		var/gotten_species = GLOB.species_list[species_id]
+		allowed_species_slots_list[gotten_species] = possible_job.species_slots[species_id]
+
+	if((allowed_species_slots_list[allowed_species_list[player_client.prefs.read_preference(/datum/preference/choiced/species)]]) == 0)
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES_SLOTS
 
