@@ -139,9 +139,6 @@
 	if(!pet_able_to_respond())
 		return FALSE
 
-	parent.ai_controller.CancelActions()
-	parent.ai_controller.set_blackboard_key(BB_ACTIVE_PET_COMMAND, src)
-
 	if(command_feedback)
 		parent.balloon_alert_to_viewers("[command_feedback]")
 
