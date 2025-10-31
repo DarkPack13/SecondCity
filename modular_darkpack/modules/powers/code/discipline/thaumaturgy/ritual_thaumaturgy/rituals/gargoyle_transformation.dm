@@ -170,7 +170,7 @@
 	melee_damage_upper = 60
 	attack_verb_continuous = "brutally crushes"
 	attack_verb_simple = "brutally crush"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	bloodpool = 15
 	maxbloodpool = 15
 
