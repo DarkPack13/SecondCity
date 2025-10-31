@@ -55,7 +55,7 @@
 /datum/species/human/kindred/on_species_gain(mob/living/carbon/human/new_kindred, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
-	if(!pref_load)
+	if(pref_load)
 		GLOB.kindred_list |= new_kindred
 
 	var/datum/action/cooldown/mob_cooldown/give_vitae/vitae = new()
