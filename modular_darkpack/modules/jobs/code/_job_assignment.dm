@@ -19,11 +19,11 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	if(!(player_client.prefs.read_preference(/datum/preference/choiced/species) in possible_job.allowed_species))
+	if(!(player_client.prefs.read_preference(/datum/preference/choiced/species) in GLOB.species_list[possible_job.allowed_species]))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
 
-	if(!(possible_job.species_slots[player_client.prefs.read_preference(/datum/preference/choiced/species)]))
+	if(!(possible_job.species_slots[GLOB.species_list[player_client.prefs.read_preference(/datum/preference/choiced/species)]]))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES_SLOTS
 
