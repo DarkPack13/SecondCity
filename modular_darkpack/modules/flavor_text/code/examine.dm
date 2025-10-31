@@ -40,7 +40,7 @@
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE))
+		obscured = holder_human.obscured_slots & HIDEFACE
 
 		//Check if the mob is obscured, then continue to headshot
 		if(isobserver(user) || show_flavor_text_when_masked || !obscured)
