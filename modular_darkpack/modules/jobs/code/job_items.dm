@@ -8,6 +8,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id6"
 
@@ -20,6 +21,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id4"
 
@@ -32,6 +34,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id3"
 
@@ -44,6 +47,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id1"
 
@@ -60,6 +64,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id2"
 
@@ -72,6 +77,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "bruiser_badge"
 
@@ -84,6 +90,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "sweeper_badge"
 
@@ -96,6 +103,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "emissary_badge"
 
@@ -108,6 +116,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "eagle_badge"
 
@@ -120,6 +129,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id2"
 
@@ -136,6 +146,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id7"
 
@@ -148,6 +159,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id7_regent"
 
@@ -160,6 +172,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id8"
 
@@ -172,6 +185,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id8"
 
@@ -184,6 +198,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id9"
 
@@ -196,6 +211,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id10"
 
@@ -208,6 +224,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id11"
 	COOLDOWN_DECLARE(detonation_timer)
@@ -262,6 +279,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id13"
 
@@ -274,6 +292,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id1"
 
@@ -300,6 +319,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id13"
 
@@ -312,6 +332,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id13"
 
@@ -325,6 +346,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id4"
 
@@ -337,6 +359,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id4"
 
@@ -350,6 +373,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "id4"
 
@@ -362,6 +386,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "onyxBadge"
 
@@ -374,6 +399,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "emeraldBadge"
 
@@ -386,6 +412,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "rubyBadge"
 
@@ -399,5 +426,6 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICONSTATE_HELPER("card3")
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	worn_icon_state = "bruiser_badge"
