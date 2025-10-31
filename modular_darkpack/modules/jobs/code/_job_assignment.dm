@@ -40,7 +40,7 @@
 		return JOB_AVAILABLE
 	// Beyond this point, we know our species is a kindred.
 
-	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_vampire_age))
+	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_immortal_age))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_AGE
 

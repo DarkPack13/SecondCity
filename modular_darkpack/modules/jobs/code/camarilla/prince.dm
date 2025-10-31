@@ -24,7 +24,7 @@
 	)
 
 	minimal_generation = 10
-	minimum_vampire_age = 75
+	minimum_immortal_age = 75
 	minimal_masquerade = 5
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_BANU_HAQIM)
