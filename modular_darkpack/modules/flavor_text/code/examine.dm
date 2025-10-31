@@ -1,6 +1,6 @@
 /mob/living/carbon
 	///The Examine Panel TGUI.
-	var/datum/examine_panel/tgui = new()
+	var/datum/examine_panel/examine_panel_tgui
 	//Custom examine text, set via IC verb.
 	var/custom_examine_message = null
 
@@ -60,8 +60,8 @@
 	data["obscured"] = obscured ? TRUE : FALSE
 	data["character_name"] = name
 	data["flavor_text"] = flavor_text
-	data["flavor_text_nsfw"] = flavor_text_nsfw
-	data["ooc_notes"] = ooc_notes
+	data["flavor_text_nsfw"] = CONFIG_GET(flag/nsfw_content) ? flavor_text_nsfw : null
+	data["ooc_notes"] = CONFIG_GET(flag/nsfw_content) ? ooc_notes : null
 	data["character_notes"] = character_notes
 	data["headshot"] = headshot
 	data["nsfw_content"] = nsfw_content ? TRUE : FALSE
@@ -78,11 +78,13 @@
 	return flavor_text_to_show
 
 /mob/living/carbon/human/dummy/proc/setup_examine_preview(mob/living/carbon/user)
-	tgui.holder = user
+	examine_panel_tgui.holder = user
 
 /mob/living/carbon/Topic(href, href_list)
 	if(href_list["view_flavortext"])
 		// The examine preview dummy will be cleaned up once the user closes the TGUI window.
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy()
+		if(!mannequin.examine_panel_tgui)
+			mannequin.examine_panel_tgui = new()
 		mannequin.setup_examine_preview(src)
-		mannequin.tgui?.ui_interact(usr)
+		mannequin.examine_panel_tgui.ui_interact(usr)

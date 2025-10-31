@@ -78,7 +78,8 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/nsfw_flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target.dna.features[EXAMINE_DNA_NSFW_FLAVOR_TEXT] = value
+	if(CONFIG_GET(flag/nsfw_content))
+		target.dna.features[EXAMINE_DNA_NSFW_FLAVOR_TEXT] = value
 
 /datum/preference/text/nsfw_flavor_text/is_accessible(datum/preferences/preferences)
 	. = ..()
@@ -110,7 +111,8 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/ooc_notes/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target.dna.features[EXAMINE_DNA_OOC_NOTES] = value
+	if(CONFIG_GET(flag/nsfw_content))
+		target.dna.features[EXAMINE_DNA_OOC_NOTES] = value
 
 /datum/preference/text/ooc_notes/is_accessible(datum/preferences/preferences)
 	. = ..()
