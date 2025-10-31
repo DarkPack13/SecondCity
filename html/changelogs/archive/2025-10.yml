@@ -109,3 +109,15 @@
   - bugfix: lowwalls should act more like tables, mainly jumping over them.
   XeonMations:
   - rscadd: Added ghouls to the game.
+2025-10-29:
+  FalloutFalcon:
+  - balance: readds rats spawning in sewers but massivly restricts there spawning
+      conditions
+  - balance: snow now appears through the entire month of december
+  - bugfix: turf decals should now properly adjust there apparence
+  - code_imp: turf init should be a tiny bit faster
+2025-10-30:
+  FalloutFalcon:
+  - balance: Climbing down open space takes longer then using ladders but now also
+      uses your stats.
+  - refactor: Refactors climbing down to be doable by more then just humans
