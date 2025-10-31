@@ -19,39 +19,37 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
+	var/datum/species/player_species = GLOB.species_prototypes[player_client.prefs.read_preference(/datum/preference/choiced/species)]
+	var/player_species_id = player_species.id
 
-	var/list/allowed_species_list = list()
-	for(var/species_id as anything in possible_job.allowed_species)
-		allowed_species_list += GLOB.species_list[species_id]
-
-	if(!(player_client.prefs.read_preference(/datum/preference/choiced/species) in allowed_species_list))
+	if(!(player_species_id in possible_job.allowed_species))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
 
-	var/list/allowed_species_slots_list = list()
-	for(var/species_id as anything in possible_job.species_slots)
-		var/gotten_species = GLOB.species_list[species_id]
-		allowed_species_slots_list[gotten_species] = possible_job.species_slots[species_id]
-
-	if((allowed_species_slots_list[allowed_species_list[player_client.prefs.read_preference(/datum/preference/choiced/species)]]) == 0)
+	if(possible_job.species_slots[player_species_id] == 0)
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES_SLOTS
 
 	/*
-	if(player_client.prefs.read_preference(/datum/preference/choiced/species) in possible_job.whitelisted)
+	if(possible_job.whitelisted)
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_WHITELIST, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_WHITELIST
 	*/
 
-	if((player_client.prefs.read_preference(/datum/preference/choiced/species) == SPECIES_KINDRED) & (player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_vampire_age))
+	if(player_species_id != SPECIES_KINDRED)
+		return JOB_AVAILABLE
+	// Beyond this point, we know our species is a kindred.
+
+	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_vampire_age))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_AGE
 
-	if((player_client.prefs.read_preference(/datum/preference/choiced/species) == SPECIES_KINDRED) & (player_client.prefs.read_preference(/datum/preference/numeric/generation) < possible_job.minimal_generation))
+	if((player_client.prefs.read_preference(/datum/preference/numeric/generation) > possible_job.minimal_generation))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_GENERATION, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_GENERATION
 
-	if((player_client.prefs.read_preference(/datum/preference/choiced/species) == SPECIES_KINDRED) & !(player_client.prefs.read_preference(/datum/preference/choiced/vampire_clan) in possible_job.allowed_clans))
+	var/datum/vampire_clan/clan = get_vampire_clan(player_client.prefs.read_preference(/datum/preference/choiced/vampire_clan))
+	if(!(clan.id in possible_job.allowed_clans))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_CLAN
 

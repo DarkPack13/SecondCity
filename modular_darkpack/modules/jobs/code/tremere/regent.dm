@@ -17,9 +17,8 @@
 
 	description = "Lead the Chantry. You serve as both the Regent and Tremere Primogen. You report to the Tremere Lord of this region first, Prince second."
 	minimal_masquerade = 4
-	minimal_generation = 10
 	allowed_species = list(SPECIES_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
+	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_GARGOYLE)
 
 	known_contacts = list("Prince")
 

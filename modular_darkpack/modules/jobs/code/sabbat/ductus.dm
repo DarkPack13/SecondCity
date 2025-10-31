@@ -16,7 +16,7 @@
 
 	description = "You are a Ductus and Pack Leader of your Sabbat pack. You are charged with rebellion against the Elders and the Camarilla, against the Jyhad, against the Masquerade and the Traditions, and the recognition of Caine as the true Dark Father of all Kindred kind.  <br> <b> NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN.</b>"
 	minimal_masquerade = 0
-	allowed_clans = list("Brujah", "Tremere", "Ventrue", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Banu Haqim", "Setite", "Lasombra", "Gargoyle", "Tzimisce", "Baali", "Cappadocian", "Kiasyd", "Salubri", "Salubri Warrior", "Daughters of Cacophany", "True Brujah", "Nagaraja", "Caitiff")
+	allowed_clans = VAMPIRE_CLAN_ALL
 	display_order = JOB_DISPLAY_ORDER_SABBATDUCTUS
 	whitelisted = TRUE
 
