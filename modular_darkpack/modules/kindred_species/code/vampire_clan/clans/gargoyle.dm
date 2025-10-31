@@ -16,9 +16,9 @@
 	alt_sprite = "gargoyle"
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian
-	//default_accessory = "gargoyle_full"
-	//accessories = list("gargoyle_full", "gargoyle_left", "gargoyle_right", "gargoyle_broken", "gargoyle_round", "none")
-	//accessories_layers = list("gargoyle_full" = UNICORN_LAYER, "gargoyle_left" = UNICORN_LAYER, "gargoyle_right" = UNICORN_LAYER, "gargoyle_broken" = UNICORN_LAYER, "gargoyle_round" = UNICORN_LAYER, "none" = UNICORN_LAYER)
+	default_accessory = "gargoyle_full"
+	accessories = list("gargoyle_full", "gargoyle_left", "gargoyle_right", "gargoyle_broken", "gargoyle_round", "none")
+	accessories_layers = list("gargoyle_full" = BODY_ADJ_LAYER, "gargoyle_left" = BODY_ADJ_LAYER, "gargoyle_right" = BODY_ADJ_LAYER, "gargoyle_broken" = BODY_ADJ_LAYER, "gargoyle_round" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 	whitelisted = TRUE
 
 /datum/vampire_clan/gargoyle/on_gain(mob/living/carbon/human/H)
@@ -27,3 +27,8 @@
 	//H.dna.species.wings_icon = "Gargoyle"
 	//H.dna.species.GiveSpeciesFlight(H)
 	H.physiology.brute_mod = 0.8
+
+	//H.remove_overlay(BODY_ADJ_LAYER)
+	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/kindred_species/icons/features.dmi', "gargoyle_legs_n_tails", -BODY_ADJ_LAYER)
+	H.overlays_standing[BODY_ADJ_LAYER] = acc_overlay
+	H.apply_overlay(BODY_ADJ_LAYER)
