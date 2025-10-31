@@ -21,10 +21,12 @@
 	new /obj/item/reagent_containers/cup/bottle/nutrient/rh(src)
 	new /obj/item/reagent_containers/spray/weedspray(src)
 	new /obj/item/reagent_containers/spray/pestspray(src)
-	new /obj/item/cultivator(src)
-	new /obj/item/hatchet(src)
+	new /obj/item/cultivator/rake(src)
+	new /obj/item/hatchet/wooden(src)
 	new /obj/item/secateurs(src)
 	new /obj/item/reagent_containers/cup/watering_can/metal(src)
+	new /obj/item/soil_sack(src)
+	new /obj/item/soil_sack(src)
 
 /obj/structure/closet/crate/wooden/communitygardens/seeds
 	name = "community garden seeds"

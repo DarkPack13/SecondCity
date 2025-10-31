@@ -3,7 +3,7 @@
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
 	name = "soil"
 	desc = "A patch of dirt."
-	icon = 'icons/obj/service/hydroponics/equipment.dmi'
+	icon = 'modular_darkpack/modules/drugs/icons/tray.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "soil"
 	gender = PLURAL
 	circuit = null
@@ -16,6 +16,7 @@
 	armor_type = /datum/armor/obj_soil
 	//which type of sack to create when shovled.
 	var/sack_type = /obj/item/soil_sack
+	var/wet_overlay = "soil_wet" // DARKPACK EDIT ADD
 
 /obj/machinery/hydroponics/soil/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
 	return NONE
@@ -29,6 +30,10 @@
 		add_atom_colour(rgb(255, 175, 0), FIXED_COLOUR_PRIORITY)
 
 /obj/machinery/hydroponics/soil/update_status_light_overlays()
+	// DARKPACK EDIT ADD START
+	if(waterlevel > 10 && wet_overlay)
+		. += mutable_appearance('modular_darkpack/modules/drugs/icons/tray.dmi', "soil_wet")
+	// DARKPACK EDIT ADD END
 	return // Has no lights
 
 /obj/machinery/hydroponics/soil/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
@@ -64,47 +69,55 @@
 /obj/machinery/hydroponics/soil/vermaculite
 	name = "vermaculite growing medium"
 	desc = "A plant bed made of light, expanded mineral granules.\n\nThe plant health benefits from the high degree of soil aeration is especially useful for when propagating grafts."
+	icon = 'icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT ADD
 	icon_state = "soil_verm"
 	maxnutri = 20
 	maxwater =  150
 	tray_flags = SOIL | MULTIGRAFT | GRAFT_MEDIUM
 	sack_type = /obj/item/soil_sack/vermaculite
+	wet_overlay = null // DARKPACK EDIT ADD
 
 /obj/machinery/hydroponics/soil/gel
 	name = "hydrogel beads"
 	desc = "A plant bed made of superabsorbent polymer beads.\n\nThese types of water gel beads can hold onto an incredible amount of water and reduces evaporative losses to almost nothing."
+	icon = 'icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT ADD
 	icon_state = "soil_gel"
 	maxwater = 300
 	tray_flags = SOIL | HYDROPONIC | SUPERWATER
 	plant_offset_y = 2
 	sack_type = /obj/item/soil_sack/gel
+	wet_overlay = null // DARKPACK EDIT ADD
 
 /obj/machinery/hydroponics/soil/coir
-	name = "korta root coir"
-	desc = "A type of traditional growing medium from Tizira.\n\nUsed by the natives as a resourceful way to cultivate seraka mushrooms using waste korta roots.\nMushrooms of all kinds thrive due to the high organic content enabling them to mature faster."
+	name = "coconut coir" // DARKPACK EDIT CHANGE
+	desc = "A type of traditional growing medium made from the husk of coconuts.\nMushrooms of all kinds thrive due to the high organic content enabling them to mature faster." // DARKPACK EDIT CHANGE
+	icon = 'icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT ADD
 	icon_state = "soil_coir"
 	maxnutri = 20
 	tray_flags = SOIL | FAST_MUSHROOMS
 	sack_type = /obj/item/soil_sack/coir
+	wet_overlay = null // DARKPACK EDIT ADD
 
 /obj/machinery/hydroponics/soil/worm
 	name = "worm castings"
 	desc = "A type of compost created when the humble worm dutifully works the soil.\n\nIt is packed with nutrients unlocked by said creatures digestive system. Give thanks to the worm!"
-	icon_state = "soil_worm"
+	// icon_state = "soil_worm" // DARKPACK EDIT REMOVAL
 	maxnutri = 35
 	maxwater = 200
 	tray_flags = SOIL | WORM_HABITAT | SLOW_RELEASE
 	plant_offset_y = 4
 	sack_type = /obj/item/soil_sack/worm
 
+/* DARKPACK EDIT REMOVAL
 /obj/machinery/hydroponics/soil/worm/on_place()
 	. = ..()
 	flick("soil_worm_wiggle", src)
+*/
 
 /obj/machinery/hydroponics/soil/rich
 	name = "rich soil"
 	desc = "A rich patch of dirt, usually used in gardens."
-	icon_state = "rich_soil"
+	//icon_state = "rich_soil" // DARKPACK EDIT REMOVAL
 	maxnutri = 20
 	sack_type = /obj/item/soil_sack/rich
 
@@ -213,8 +226,8 @@
 	stored_soil = /obj/machinery/hydroponics/soil/gel
 
 /obj/item/soil_sack/coir
-	name = "#1™ korta coir sack"
-	desc = "A sack of Tiziran korta root coir. The fiberous roots are composted until they separate into individual fibres.\n\nProvides an excellent food source for saprotrophic mushrooms and helps hold onto water in the hot Tizirian climate."
+	name = "#1™ coconut coir sack" // DARKPACK EDIT CHANGE
+	desc = "A sack of coconut coir. The fiberous roots are composted until they separate into individual fibres.\n\nProvides an excellent food source for mushrooms." // DARKPACK EDIT CHANGE
 	icon_state = "soil_sack_coir"
 	base_icon_state = "soil_sack_coir"
 	custom_premium_price = PAYCHECK_CREW * 3

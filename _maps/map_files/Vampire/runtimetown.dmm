@@ -1976,6 +1976,12 @@
 /area/vtm/outside/pacificheights)
 "UH" = (
 /obj/structure/table/wood,
+/obj/item/soil_sack,
+/obj/item/soil_sack/coir,
+/obj/item/soil_sack/gel,
+/obj/item/soil_sack/rich,
+/obj/item/soil_sack/vermaculite,
+/obj/item/soil_sack/worm,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "UJ" = (

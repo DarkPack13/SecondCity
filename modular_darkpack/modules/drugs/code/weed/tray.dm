@@ -29,7 +29,7 @@
 	name = "wooden planter box"
 	desc = "A wooden plant tray"
 	icon_state = "wooden_tray"
-	tray_offset = 2
+	plant_offset_y = 2
 
 /obj/machinery/hydroponics/simple/wooden/on_deconstruction()
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 5)
@@ -38,8 +38,8 @@
 /obj/machinery/hydroponics/simple/plastic
 	name = "plastic planter box"
 	desc = "A plastic plant tray"
-	icon_state = "metal_tray"
-	tray_offset = 3
+	icon_state = "plastic_tray"
+	plant_offset_y = 3
 
 /obj/machinery/hydroponics/simple/plastic/on_deconstruction()
 	new /obj/item/stack/sheet/plastic(drop_location(), 5)
