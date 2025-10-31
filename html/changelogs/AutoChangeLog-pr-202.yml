@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Re implements the basic weather effects, only found in sewers or admin bus atm"

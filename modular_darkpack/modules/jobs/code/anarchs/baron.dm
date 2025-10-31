@@ -1,59 +1,40 @@
-
-/datum/job/vamp/barkeeper
-	title = "Baron"
+/datum/job/vampire/baron
+	title = JOB_BARON
 	department_head = list("Justicar")
-	faction = "Vampire"
+	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Anarchs and the Traditions"
-	selection_color = "#434343"
+	config_tag = "BARON"
+	job_flags = CITY_JOB_FLAGS
+	outfit = /datum/outfit/job/baron
 
-	outfit = /datum/outfit/job/barkeeper
-
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_THEATRE)
-	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_SRV
-	display_order = JOB_DISPLAY_ORDER_BARKEEPER
-	bounty_types = CIV_JOB_DRINK
-
-//	minimal_generation = 11	//Uncomment when players get exp enough
-
-	my_contact_is_important = TRUE
-	known_contacts = list(
-		"Prince",
-		"Sheriff",
-		"Dealer",
-		"Bouncer",
-		"Emissary",
-		"Sweeper"
+	display_order = JOB_DISPLAY_ORDER_BARON
+	department_for_prefs = /datum/job_department/anarch
+	departments_list = list(
+		/datum/job_department/anarch,
 	)
 
-	v_duty = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
+	known_contacts = list("Bouncer", "Emissary", "Sweeper", "Prince", "Sheriff")
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
+	allowed_species = list(SPECIES_KINDRED)
+	description = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
-	allowed_species = list("Vampire")
-	allowed_bloodlines = list("Daughters of Cacophony", "Baali", "Banu Haqim", "Caitiff", "True Brujah", "Brujah", "Nosferatu", "Gangrel", "Toreador", "Malkavian", "Ventrue", "Lasombra", "Gargoyle", "Ministry")
 
-/datum/outfit/job/barkeeper
+/datum/outfit/job/baron
 	name = "Baron"
-	jobtype = /datum/job/vamp/barkeeper
+	jobtype = /datum/job/vampire/baron
 
-	id = /obj/item/card/id/baron
+	id = /obj/item/card/baron
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/bar
 	suit = /obj/item/clothing/suit/vampire/jacket/better
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/work
-	l_pocket = /obj/item/vamp/phone/barkeeper
+	//l_pocket = /obj/item/vamp/phone/baron
 	r_pocket = /obj/item/vamp/keys/bar
-	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
-/datum/outfit/job/barkeeper/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == FEMALE)
-		uniform = /obj/item/clothing/under/vampire/bar/female
-		shoes = /obj/item/clothing/shoes/vampire/heels
-
-/obj/effect/landmark/start/barkeeper
+/obj/effect/landmark/start/baron
 	name = "Baron"
-	icon_state = "Barkeeper"
+	icon_state = "Baron"

@@ -29,6 +29,7 @@
 	pickup_sound = 'sound/items/handling/id_card/id_card_pickup1.ogg'
 	drop_sound = 'sound/items/handling/id_card/id_card_drop1.ogg'
 	sound_vary = TRUE
+	slot_flags = ITEM_SLOT_ID //DARKPACK EDIT ADDITION
 
 	/// Cached icon that has been built for this card. Intended to be displayed in chat. Cardboards IDs and actual IDs use it.
 	var/icon/cached_flat_icon

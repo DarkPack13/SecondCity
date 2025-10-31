@@ -8,6 +8,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	slot_flags = NONE
 
 	var/registered_name
 	var/datum/bank_account/registered_account

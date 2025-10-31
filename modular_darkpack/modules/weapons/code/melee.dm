@@ -332,6 +332,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	icon_state = "kosa"
 	inhand_icon_state = "kosa"
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/instrument/eguitar/vamp
 	name = "electric guitar"
