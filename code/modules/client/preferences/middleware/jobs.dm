@@ -15,7 +15,7 @@
 	if (isnull(job))
 		return FALSE
 
-	if (job.faction != FACTION_STATION)
+	if (job.faction != FACTION_CITY) //DARKPACK EDIT, ORGINAL: if (job.faction != FACTION_STATION)
 		return FALSE
 
 	if (!preferences.set_job_preference_level(job, level))

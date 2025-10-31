@@ -125,6 +125,20 @@
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
 			return "Your character is not old enough for [jobtitle]."
+		//DARKPACK EDIT START
+		if(JOB_UNAVAILABLE_SPECIES)
+			return "You can't play [jobtitle] as this species."
+		if(JOB_UNAVAILABLE_SPECIES_SLOTS)
+			return "[jobtitle] doesn't have any free species slots for you."
+		if(JOB_UNAVAILABLE_WHITELIST)
+			return "You aren't whitelisted for [jobtitle]."
+		if(JOB_UNAVAILABLE_KINDRED_AGE)
+			return "Your character is too young for [jobtitle]."
+		if(JOB_UNAVAILABLE_KINDRED_GENERATION)
+			return "Your character's generation is too high for [jobtitle]."
+		if(JOB_UNAVAILABLE_KINDRED_CLAN)
+			return "Your character's clan is incompatible for [jobtitle]."
+		//DARKPACK EDIT END
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
@@ -198,7 +212,7 @@
 	var/is_captain = IS_NOT_CAPTAIN
 	var/captain_sound = 'sound/announcer/notice/notice2.ogg'
 	// If we already have a captain, are they a "Captain" rank and are we allowing multiple of them to be assigned?
-	if(is_captain_job(job))
+	if(is_prince_job(job)) //DARKPACK EDIT, ORIGINAL: if(is_captain_job(job))
 		is_captain = IS_FULL_CAPTAIN
 		captain_sound = 'sound/announcer/announcement/announce.ogg'
 	// If we don't have an assigned cap yet, check if this person qualifies for some from of captaincy.
@@ -235,8 +249,12 @@
 	if(CONFIG_GET(flag/allow_latejoin_antagonists) && !EMERGENCY_PAST_POINT_OF_NO_RETURN && humanc) //Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
 		SSdynamic.on_latejoin(humanc)
 
-	if((job.job_flags & JOB_ASSIGN_QUIRKS) && humanc && CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(humanc, humanc.client)
+	if(humanc)
+		if(job.job_flags & JOB_ASSIGN_QUIRKS)
+			if(CONFIG_GET(flag/roundstart_traits))
+				SSquirks.AssignQuirks(humanc, humanc.client)
+		else // clear any personalities the prefs added since our job clearly does not want them
+			humanc.clear_personalities()
 
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
 		GLOB.manifest.inject(humanc)
