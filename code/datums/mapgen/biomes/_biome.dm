@@ -191,29 +191,40 @@
 /datum/biome/plains
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/fullgrass/style_random = 15,
-		/obj/structure/flora/bush/sparsegrass/style_random = 5,
-		/obj/structure/flora/grass/short/style_random = 3,
-		/obj/structure/flora/grass/tall/style_random = 2,
-		/obj/structure/flora/grass/tall/dry/style_random = 1,
-		/obj/structure/flora/bush/redflower/style_random = 1,
+		/obj/effect/spawner/random/flora/grass = 25,
+		/obj/effect/spawner/random/flora/bushes = 10,
 		/obj/structure/flora/tree/vamp/pine = 1,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
 	)
 	flora_density = 60
+	fauna_types = list(
+		/mob/living/basic/butterfly = 3,
+		/mob/living/basic/deer = 1,
+		/mob/living/basic/goose = 0.5,
+		/mob/living/basic/frog = 0.5,
+		/mob/living/basic/pet/fox = 0.1,
+	)
+	fauna_density = 2
 
 /datum/biome/jungle
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/fullgrass/style_random = 3,
-		/obj/structure/flora/bush/sparsegrass/style_random = 2,
-		/obj/structure/flora/grass/short/style_random = 1,
+		/obj/effect/spawner/random/flora/grass = 5,
+		/obj/effect/spawner/random/flora/bushes = 2,
 		/obj/structure/flora/tree/vamp/pine = 3,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
 	)
 	flora_density = 30
+	fauna_types = list(
+		/mob/living/basic/butterfly = 3,
+		/mob/living/basic/deer = 1,
+		/mob/living/basic/goose = 0.5,
+		/mob/living/basic/frog = 0.5,
+		/mob/living/basic/pet/fox = 0.1,
+	)
+	fauna_density = 1
 
 /datum/biome/jungle/deep
 	flora_density = 50

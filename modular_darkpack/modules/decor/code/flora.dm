@@ -160,7 +160,7 @@
 /obj/effect/spawner/random/flora/all
 	loot = list(
 		/obj/effect/spawner/random/flora/grass = 5,
-		/obj/effect/spawner/random/flora/bushes = 3,
+		/obj/effect/spawner/random/flora/bushes = 2,
 		/obj/effect/spawner/random/flora/rocks = 1
 	)
 
@@ -168,7 +168,8 @@
 	loot = list(
 		/obj/structure/flora/bush/fullgrass/style_random = 3,
 		/obj/structure/flora/bush/sparsegrass/style_random = 2,
-		/obj/structure/flora/grass/short/style_random = 1,
+		/obj/structure/flora/bush/lavendergrass/style_random = 2,
+		/obj/structure/flora/bush/style_random = 1
 	)
 
 /obj/effect/spawner/random/flora/bushes
