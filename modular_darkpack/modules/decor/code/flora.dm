@@ -136,6 +136,7 @@
 	icon_state = "smallrock[rand(1, 6)]"
 
 /obj/structure/flora/rock/darkpack_big
+	icon_state = "rock1"
 	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
 	pixel_w = -16
 
