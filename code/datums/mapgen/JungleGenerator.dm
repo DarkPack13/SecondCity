@@ -2,7 +2,6 @@
 #define BIOME_RANDOM_SQUARE_DRIFT 2
 
 /datum/map_generator/jungle_generator
-	buildmode_name = "Pattern: Forest" // DARKPACK EDIT ADD
 	///2D list of all biomes based on heat and humidity combos.
 	var/list/possible_biomes = list(
 	BIOME_LOW_HEAT = list(
