@@ -202,7 +202,7 @@ export function JobSelection(props) {
             <>
               {shuttle_status && <NoticeBox info>{shuttle_status}</NoticeBox>}
               <Box as="span" color="label">
-                It is currently {round_duration} into the shift.
+                It is currently {round_duration} into the night. {/* DARKPACK EDIT, ORIGINAL: It is currently {round_duration} into the shift. */}
               </Box>
             </>
           }

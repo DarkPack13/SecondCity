@@ -2,3 +2,6 @@
 #JUMP_WINDUP
 ## Comment to remove Apocrypha post-jump slowdown
 JUMP_SLOWDOWN
+
+## If the server has NSFW content enabled. Majority have it enabled, so this is default to true.
+NSFW_CONTENT

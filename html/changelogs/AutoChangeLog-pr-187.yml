@@ -1,0 +1,6 @@
+author: "Marshmellow105"
+delete-after: True
+changes:
+  - rscdel: "removes old elevator code/icons I think"
+  - sound: "added elevator door sounds"
+  - image: "added animated elevator doors and elevator buttons"

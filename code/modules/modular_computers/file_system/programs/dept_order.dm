@@ -149,7 +149,7 @@ GLOBAL_VAR(department_cd_override)
 		else
 			computer.physical.balloon_alert(orderer, "linked")
 			playsound(computer, 'sound/machines/ping.ogg', 30, TRUE)
-			set_linked_department(new_dept_type)
+			//set_linked_department(new_dept_type) // DARKPACK EDIT REMOVAL
 		return TRUE
 
 	if(isnull(linked_department))

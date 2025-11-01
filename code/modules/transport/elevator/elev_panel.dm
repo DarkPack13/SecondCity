@@ -15,7 +15,7 @@
 	desc = "<i>\"In case of emergency, please use the stairs.\"</i> Thus, always use the stairs."
 	density = FALSE
 
-	icon = 'icons/obj/wallmounts.dmi'
+	icon = 'modular_darkpack/modules/elevators/icons/buttons.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "elevpanel0"
 	base_icon_state = "elevpanel"
 
