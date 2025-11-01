@@ -182,9 +182,9 @@
 /datum/biome/mudlands
 	turf_type = /turf/open/misc/dirt/vamp
 	flora_types = list(
-		/obj/structure/small_vamprocks = 2,
-		/obj/structure/vamprocks = 1,
-		/obj/structure/big_vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 2,
+		/obj/structure/flora/rock/darkpack = 1,
+		/obj/structure/flora/rock/darkpack_big = 1,
 	)
 	flora_density = 3
 
@@ -194,8 +194,8 @@
 		/obj/structure/flora/grass/short/style_random = 5,
 		/obj/structure/flora/bush/sparsegrass/style_random = 5,
 		/obj/structure/flora/tree/vamp/pine = 1,
-		/obj/structure/small_vamprocks = 1,
-		/obj/structure/vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 1,
+		/obj/structure/flora/rock/darkpack = 1,
 	)
 	flora_density = 50
 
@@ -205,8 +205,8 @@
 		/obj/structure/flora/grass/short/style_random = 1,
 		/obj/structure/flora/bush/sparsegrass/style_random = 1,
 		/obj/structure/flora/tree/vamp/pine = 2,
-		/obj/structure/small_vamprocks = 1,
-		/obj/structure/vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 1,
+		/obj/structure/flora/rock/darkpack = 1,
 	)
 	flora_density = 40
 
@@ -216,9 +216,9 @@
 /datum/biome/wasteland
 	turf_type = /turf/open/misc/dirt/vamp
 	flora_types = list(
-		/obj/structure/small_vamprocks = 10,
-		/obj/structure/vamprocks = 2,
-		/obj/structure/big_vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 10,
+		/obj/structure/flora/rock/darkpack = 2,
+		/obj/structure/flora/rock/darkpack_big = 1,
 	)
 	flora_density = 5
 

@@ -119,6 +119,40 @@
 	update_appearance()
 
 
+/obj/structure/flora/rock/darkpack
+	icon_state = "rock1"
+	icon = 'modular_darkpack/modules/decor/icons/flora.dmi'
+
+/obj/structure/flora/rock/darkpack/Initialize(mapload)
+	. = ..()
+	icon_state = "rock[rand(1, 9)]"
+
+/obj/structure/flora/rock/pile/darkpack
+	icon_state = "smallrock1"
+	icon = 'modular_darkpack/modules/decor/icons/flora.dmi'
+
+/obj/structure/flora/rock/pile/darkpack/Initialize(mapload)
+	. = ..()
+	icon_state = "smallrock[rand(1, 6)]"
+
+/obj/structure/flora/rock/darkpack_big
+	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
+	pixel_w = -16
+
+/obj/structure/flora/rock/darkpack_big/Initialize(mapload)
+	. = ..()
+	icon_state = "rock[rand(1, 4)]"
+
+/obj/structure/flora/rock/stalagmite
+	icon_state = "stalagmite1"
+	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
+	pixel_w = -16
+
+/obj/structure/flora/rock/stalagmite/Initialize(mapload)
+	. = ..()
+	icon_state = "stalagmite[rand(1, 5)]"
+
+
 /obj/effect/spawner/random/flora
 	icon_state = "flower"
 	abstract_type = /obj/effect/spawner/random/flora
@@ -145,4 +179,4 @@
 	)
 
 /obj/effect/spawner/random/flora/rocks
-	loot = list(/obj/structure/small_vamprocks = 5, /obj/structure/vamprocks = 1)
+	loot = list(/obj/structure/flora/rock/pile/darkpack = 5, /obj/structure/flora/rock/darkpack = 1)
