@@ -149,7 +149,7 @@ GLOBAL_VAR(department_cd_override)
 		else
 			computer.physical.balloon_alert(orderer, "linked")
 			playsound(computer, 'sound/machines/ping.ogg', 30, TRUE)
-			set_linked_department(new_dept_type)
+			//set_linked_department(new_dept_type) // DARKPACK EDIT REMOVAL
 		return TRUE
 
 	if(isnull(linked_department))
@@ -266,7 +266,7 @@ GLOBAL_VAR(department_cd_override)
 	return FALSE
 
 /datum/aas_config_entry/department_orders
-	name = "Departmental Order Announcement"
+	name = "Departmental: Order Announcement"
 	announcement_lines_map = list(
 		"Order Placed" = "A department order has been placed by %PERSON for %ORDER.",
 		"Cooldown Reset" = "Department order cooldown has expired! A new order may now be placed!",

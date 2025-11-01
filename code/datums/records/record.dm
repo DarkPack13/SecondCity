@@ -108,6 +108,12 @@
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
+	// DARKPACK EDIT START - FLAVOR TEXT
+	background_information = "",
+	exploitable_information = "",
+	past_medical_records = "",
+	past_criminal_records = "",
+	// DARKPACK EDIT END
 )
 	. = ..()
 	src.lock_ref = lock_ref
@@ -118,6 +124,12 @@
 	src.physical_status = physical_status
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
+	// DARKPACK EDIT START - FLAVOR TEXT
+	src.background_information = background_information
+	src.exploitable_information = exploitable_information
+	src.past_medical_records = past_medical_records
+	src.past_criminal_records = past_criminal_records
+	// DARKPACK EDIT END
 
 	GLOB.manifest.general += src
 
