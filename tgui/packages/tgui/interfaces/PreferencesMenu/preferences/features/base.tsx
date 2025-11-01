@@ -15,6 +15,7 @@ import {
   NumberInput,
   Slider,
   Stack,
+  TextArea, // DARKPACK EDIT ADDITION
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -259,3 +260,26 @@ export function FeatureShortTextInput(
     />
   );
 }
+
+// DARKPACK EDIT ADDITION START - FLAVOR TEXT
+export const FeatureTextInput = (
+  props: FeatureValueProps<string, string, FeatureShortTextData>,
+) => {
+  const { serverData, handleSetValue, value } = props;
+
+  if (!serverData) {
+    return <Box>Loading...</Box>;
+  }
+
+  return (
+    <TextArea
+      height="100px"
+      fluid
+      expensive
+      value={value}
+      maxLength={serverData?.maximum_length}
+      onChange={(value) => handleSetValue(value)}
+    />
+  );
+};
+// DARKPACK EDIT ADDITION END

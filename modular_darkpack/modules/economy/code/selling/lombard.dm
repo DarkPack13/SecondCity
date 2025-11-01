@@ -147,11 +147,11 @@
 		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
 		return
 
-	if(!user.CanReach(src))
+	if(!src.IsReachableBy(user))
 		to_chat(user, span_warning("You're too far from [src]!"))
 		return
 
-	if(!user.CanReach(sold))
+	if(!sold.IsReachableBy(user))
 		to_chat(user, span_warning("You can't reach [sold]!"))
 		return
 
@@ -187,7 +187,7 @@
 				if(choice == "No")
 					return
 
-				if(!user.CanReach(src) || !user.CanReach(sold))
+				if(!src.IsReachableBy(user) || !sold.IsReachableBy(user))
 					return
 
 	var/list/sold_items = sell_multiple_items(items_to_sell, user)
