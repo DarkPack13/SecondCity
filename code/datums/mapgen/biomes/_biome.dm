@@ -191,6 +191,7 @@
 /datum/biome/plains
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
+		/obj/structure/flora/grass/short/style_random = 5,
 		/obj/structure/flora/bush/sparsegrass/style_random = 5,
 		/obj/structure/flora/tree/vamp/pine = 1,
 		/obj/structure/small_vamprocks = 1,
@@ -201,6 +202,7 @@
 /datum/biome/jungle
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
+		/obj/structure/flora/grass/short/style_random = 1,
 		/obj/structure/flora/bush/sparsegrass/style_random = 1,
 		/obj/structure/flora/tree/vamp/pine = 2,
 		/obj/structure/small_vamprocks = 1,
