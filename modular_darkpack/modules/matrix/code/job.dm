@@ -1,19 +1,11 @@
-/datum/controller/subsystem/job/proc/FreeRole(rank)
-	if(!rank)
+/datum/controller/subsystem/job/proc/FreeRole(mob/living/carbon/despawning_mob)
+	var/datum/job/job_datum = despawning_mob.mind.assigned_role
+	if(!job_datum)
 		return
-	job_debug("Freeing role: [rank]")
-	var/datum/job/job = get_job(rank)
-	if(!job)
-		return FALSE
-	job.current_positions = max(0, job.current_positions - 1)
+	job_debug("Freeing role: [job_datum.title]")
+	job_datum.current_positions = max(0, job_datum.current_positions - 1)
 
-/// Used for clocking back in, re-claiming the previously freed role. Returns false if no slot is available.
-/datum/controller/subsystem/job/proc/OccupyRole(rank)
-	if(!rank)
-		return FALSE
-	job_debug("Occupying role: [rank]")
-	var/datum/job/job = get_job(rank)
-	if(!job || job.current_positions >= job.total_positions)
-		return FALSE
-	job.current_positions = job.current_positions + 1
-	return TRUE
+	var/datum/species/player_species = despawning_mob.dna?.species
+	var/player_species_id = player_species?.id
+	if(job_datum.species_slots[player_species_id] >= 0)
+		job_datum.species_slots[player_species_id] = job_datum.species_slots[player_species_id] + 1

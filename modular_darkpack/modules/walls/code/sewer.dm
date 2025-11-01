@@ -44,12 +44,10 @@
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "shit"
 
-/*
 /turf/open/water/vamp_sewer/Initialize(mapload)
 	. = ..()
-	if(prob(50))
+	if(prob(25))
 		new /obj/effect/realistic_fog(src)
-*/
 
 /turf/open/water/vamp_sewer/border
 	icon_state = "shit_border"

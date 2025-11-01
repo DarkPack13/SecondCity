@@ -50,7 +50,7 @@
 	human.set_eye_color("#ff0000")
 	human.undershirt = "T-Shirt (Red)"
 	human.update_body()
-//	human.equipOutfit(/datum/outfit/job/prince) // ! Uncomment when vampjobs are done
+	human.equipOutfit(/datum/outfit/job/prince)
 
 /datum/species/human/kindred/on_species_gain(mob/living/carbon/human/new_kindred, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
