@@ -1,0 +1,12 @@
+2025-11-01:
+  FalloutFalcon:
+  - rscadd: Re implements the basic weather effects, only found in sewers or admin
+      bus atm
+  - bugfix: most walls should no longer become missing textures if placed weird
+  TheTrueSilverRat, chazzyjazzy, XeonMations:
+  - refactor: Added special checks for jobs
+  - rscadd: City jobs!
+  XeonMations:
+  - rscadd: Added pixelshifting  to the game.
+  chazzyjazzy:
+  - code_imp: remakes beastmaster subsystem and makes it easier to use

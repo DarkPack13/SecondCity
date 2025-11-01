@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(graveyard)
 
 	SSgraveyard.graves += src
 	icon_state = "grave[rand(1, 10)]"
-	if (check_holidays(CHRISTMAS))
+	if (check_holidays(FESTIVE_SEASON))
 		if (istype(get_area(src), /area/vtm))
 			var/area/vtm/V = get_area(src)
 			if (V.outdoors)

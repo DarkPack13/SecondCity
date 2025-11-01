@@ -1,0 +1,40 @@
+/datum/job/vampire/archivist
+	title = JOB_CHANTRY_ARCHIVIST
+	department_head = /datum/job/vampire/regent
+	faction = FACTION_CITY
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = SUPERVISOR_REGENT
+	config_tag = "CHANTRY_ARCHIVIST"
+	outfit = /datum/outfit/job/archivist
+	job_flags = CITY_JOB_FLAGS
+	exp_required_type_department = EXP_TYPE_CHANTRY
+	department_for_prefs = /datum/job_department/chantry
+	departments_list = list(
+		/datum/job_department/chantry,
+	)
+	display_order = JOB_DISPLAY_ORDER_ARCHIVIST
+
+	description = "Keep a census of events and provide information to neonates. Listen to the Regent Carefully. Study blood magic and protect the chantry."
+	minimal_masquerade = 3
+	allowed_species = list(SPECIES_KINDRED)
+	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
+	known_contacts = list("Tremere Regent")
+
+/datum/outfit/job/archivist
+	name = "Archivist"
+	jobtype = /datum/job/vampire/archivist
+
+	id = /obj/item/card/archive
+	glasses = /obj/item/clothing/glasses/vampire/perception
+	shoes = /obj/item/clothing/shoes/vampire
+	gloves = /obj/item/clothing/gloves/vampire/latex
+	uniform = /obj/item/clothing/under/vampire/archivist
+	r_pocket = /obj/item/vamp/keys/archive
+	//l_pocket = /obj/item/vamp/phone/archivist
+	accessory = /obj/item/clothing/accessory/pocketprotector/full
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
+
+/obj/effect/landmark/start/archivist
+	name = "Archivist"
+	icon_state = "Archivist"

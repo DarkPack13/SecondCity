@@ -1,7 +1,0 @@
-author: "KCartridge"
-delete-after: True
-changes:
-  - rscadd: "Stray dogs"
-  - rscadd: "taming said stray dogs"
-  - image: "dog rests sprites"
-  - image: "re-done dog_dead sprites Courtesy of Paynt"
