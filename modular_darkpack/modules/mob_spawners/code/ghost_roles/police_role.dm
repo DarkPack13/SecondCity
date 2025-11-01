@@ -28,7 +28,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest
 	belt = /obj/item/melee/classic_baton
-	id = /obj/item/cockclock
+	id = /obj/item/watch
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/radio/cop
 	l_hand = /obj/item/vamp/keys/police

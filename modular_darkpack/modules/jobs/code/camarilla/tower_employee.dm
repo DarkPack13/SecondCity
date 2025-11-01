@@ -1,0 +1,39 @@
+/datum/job/vampire/towerwork
+	title = "Tower Employee"
+	department_head = /datum/job/vampire/prince
+	faction = FACTION_CITY
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = SUPERVISOR_SENESCHAL_PUBLIC
+	exp_granted_type = EXP_TYPE_CAMARILLA
+	config_tag = "TOWER_EMPLOYEE"
+	outfit = /datum/outfit/job/towerwork
+	job_flags = CITY_JOB_FLAGS
+	display_order = JOB_DISPLAY_ORDER_TOWERWORK
+	department_for_prefs = /datum/job_department/camarilla
+	departments_list = list(
+		/datum/job_department/camarilla,
+	)
+
+	known_contacts = list("Prince", "Sheriff", "Seneschal")
+	allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL, SPECIES_KINDRED)
+	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_TZIMISCE)
+	description = "You work directly for the Millenium Tower and its administrative staff in a variety of ways, you may even be a personal retainer of one of the top three, to the point that any oddities that you may see over night or hear are either things you are already aware or you simply laugh them off and try not to think about it."
+	minimal_masquerade = 4
+
+/datum/outfit/job/towerwork
+	name = "Tower Employee"
+	jobtype = /datum/job/vampire/towerwork
+
+	id = /obj/item/card/tower_employee
+	uniform = /obj/item/clothing/under/vampire/hound
+	gloves = /obj/item/clothing/gloves/vampire/work
+	suit = /obj/item/clothing/suit/vampire/trench
+	shoes = /obj/item/clothing/shoes/vampire
+	r_pocket = /obj/item/vamp/keys/camarilla/ghoul
+	//l_pocket = /obj/item/vamp/phone/tower_employee
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+
+/obj/effect/landmark/start/towerwork
+	name = "Tower Employee"
+	icon_state = "Hound"

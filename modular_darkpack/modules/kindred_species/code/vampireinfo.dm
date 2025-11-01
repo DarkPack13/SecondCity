@@ -29,7 +29,6 @@
 			dat += " the caitiff"
 
 		if(host.mind)
-
 			if(host.mind.assigned_role)
 				if(host.mind.special_role)
 					dat += ", carrying the [host.mind.assigned_role] (<font color=red>[host.mind.special_role]</font>) role."
@@ -113,26 +112,6 @@
 
 		dat += "<p>[humanity]</p>"
 
-		if(host.clan.name == "Brujah")
-			if(GLOB.brujahname != "")
-				if(host.real_name != GLOB.brujahname)
-					dat += "<p> My primogen is:  [GLOB.brujahname].</p>"
-		if(host.clan.name == "Malkavian")
-			if(GLOB.malkavianname != "")
-				if(host.real_name != GLOB.malkavianname)
-					dat += "<p> My primogen is:  [GLOB.malkavianname].</p>"
-		if(host.clan.name == "Nosferatu")
-			if(GLOB.nosferatuname != "")
-				if(host.real_name != GLOB.nosferatuname)
-					dat += "<p> My primogen is:  [GLOB.nosferatuname].</p>"
-		if(host.clan.name == "Toreador")
-			if(GLOB.toreadorname != "")
-				if(host.real_name != GLOB.toreadorname)
-					dat += "<p> My primogen is:  [GLOB.toreadorname].</p>"
-		if(host.clan.name == "Ventrue")
-			if(GLOB.ventruename != "")
-				if(host.real_name != GLOB.ventruename)
-					dat += "<p> My primogen is:  [GLOB.ventruename].</p>"
 
 		if(host.hud_used)
 			dat += "<p><b>Known disciplines:</b><BR>"

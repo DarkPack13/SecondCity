@@ -62,7 +62,7 @@
 	///callback for after a kitten is born
 	var/datum/callback/post_birth_callback
 
-	// DARKPACK ADD START
+	// DARKPACK ADD START - NPC
 	bloodpool = 2
 	maxbloodpool = 2
 	// DARKPACK ADD END
@@ -153,7 +153,7 @@
 		return
 	update_appearance(UPDATE_ICON_STATE)
 
-// DARKPACK EDIT START
+// DARKPACK EDIT START - NPC
 /mob/living/basic/pet/cat/update_icon_state()
 	. = ..()
 	if(stat != DEAD)
