@@ -80,3 +80,7 @@
 	var/datum/storyteller_stats/storyteller_stat_holder
 	// TODO, replace with social/leadership
 	var/more_companions = 0
+
+	//beastmaster
+	var/list/beastmaster_minions = list()
+	var/list/datum/component/obeys_commands/minion_command_components = list()

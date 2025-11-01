@@ -72,5 +72,5 @@
 
 /datum/loadout_item/pocket_items/wristwatch
 	name = "Wrist watch"
-	item_path = /obj/item/cockclock
+	item_path = /obj/item/watch
 */

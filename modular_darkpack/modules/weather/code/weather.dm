@@ -1,10 +1,18 @@
+// Everything here should be worked into /datum/weather
+GLOBAL_LIST_EMPTY(managed_weather)
+
+#define WEATHER_CLEAR "Clear"
+#define WEATHER_RAIN "Rain"
+#define WEATHER_SNOW "Snow"
+#define WEATHER_FOG "Fog"
+
 SUBSYSTEM_DEF(cityweather)
 	name = "City Weather"
 	init_order = INIT_ORDER_DEFAULT
-	wait = 600
+	wait = 60 SECONDS
 	priority = FIRE_PRIORITY_DEFAULT
 
-	var/current_weather = "Clear"	//"Clear", "Rain" and "Fog"
+	var/current_weather = WEATHER_CLEAR	//"Clear", "Rain" and "Fog"
 	var/list/forecast = list()
 	var/raining = FALSE
 	var/fogging = FALSE
@@ -38,37 +46,37 @@ SUBSYSTEM_DEF(cityweather)
 	if(forecast[cityhour] != current_weather)
 		current_weather = forecast[cityhour]
 		switch(forecast[cityhour])
-			if("Clear")
+			if(WEATHER_CLEAR)
 				to_chat(world, "The night sky becomes clear...")
 				if(raining)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				if(fogging)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				if(snowing)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
-			if("Rain")
+			if(WEATHER_RAIN)
 				to_chat(world, "Clouds are uniting on the sky, small raindrops irrigate the city...")
 				raining = TRUE
 				if(fogging)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				if(snowing)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
-				for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -80,20 +88,20 @@ SUBSYSTEM_DEF(cityweather)
 					var/matrix/M = new
 					M.Scale(0.5, 0.5)
 					V.transform = M
-			if("Snow")
+			if(WEATHER_SNOW)
 				to_chat(world, "Clouds are uniting on the sky, small snowflakes irrigate the city...")
 				if(raining)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				if(fogging)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				fogging = FALSE
 				snowing = TRUE
-				for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -102,20 +110,20 @@ SUBSYSTEM_DEF(cityweather)
 					V.icon_state = "snow[rand(1, 15)]"
 					V.pixel_w = -16
 					V.pixel_z = 0
-			if("Fog")
+			if(WEATHER_FOG)
 				to_chat(world, "Visibility range quickly decreases...")
 				if(raining)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				raining = FALSE
 				fogging = TRUE
 				if(snowing)
-					for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+					for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 						V.invisibility = INVISIBILITY_MAXIMUM
 						animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 				snowing = FALSE
-				for(var/obj/effect/vamp_weather/V in GLOB.rain_suka)
+				for(var/obj/effect/weather_manager/V in GLOB.managed_weather)
 					V.invisibility = 0
 					animate(V, transform = null, pixel_w = 0, pixel_z = 0, alpha = 255)
 					V.layer = SPACEVINE_LAYER
@@ -134,13 +142,13 @@ SUBSYSTEM_DEF(cityweather)
 /datum/controller/subsystem/cityweather/proc/create_forecast()
 	for(var/i in 1 to 9)
 		forecast += i
-		var/weather = "Clear"
+		var/weather = WEATHER_CLEAR
 		if(i != 1 && i != 9)
 			if(prob(50))
 				if(check_holidays(FESTIVE_SEASON))
-					weather = pick("Clear", "Snow", "Fog")
+					weather = pick(WEATHER_CLEAR, WEATHER_SNOW, WEATHER_FOG)
 				else
-					weather = pick("Clear", "Rain", "Fog")
+					weather = pick(WEATHER_CLEAR, WEATHER_RAIN, WEATHER_FOG)
 		forecast[i] = weather
 
 /datum/controller/subsystem/cityweather/proc/get_forecast(mob/user)
@@ -168,80 +176,24 @@ SUBSYSTEM_DEF(cityweather)
 				time = "05:00"
 		to_chat(user, "[time], [weath]")
 
-/obj/effect/realistic_fog
-	icon = 'modular_darkpack/modules/deprecated/icons/fog.dmi'
-	icon_state = "fog"
-	alpha = 0
-	plane = GAME_PLANE
-	layer = SPACEVINE_LAYER
-	anchored = TRUE
-	density = FALSE
-	mouse_opacity = 0
-	pixel_w = -96
-	pixel_z = -96
-
-/obj/effect/realistic_fog/Initialize(mapload)
-	. = ..()
-	animate(src, pixel_x = rand(-96, 96), pixel_y = rand(-96, 96), alpha = rand(5, 21), transform = matrix()*rand(1, 3), transform = turn(matrix(), rand(0, 360)), time = rand(100, 200), loop = -1)
-	animate(transform = null, pixel_x = 0, pixel_y = 0, alpha = rand(5, 21), time = rand(100, 200))
-
-/obj/effect/new_rain
-	icon = 'modular_darkpack/modules/deprecated/icons/newweather.dmi'
-	icon_state = "rain1"
-	alpha = 0
-	plane = GAME_PLANE
-	layer = SPACEVINE_LAYER
-	anchored = TRUE
-	density = FALSE
-	mouse_opacity = 0
-	pixel_w = -16
-	pixel_z = -32
-
-/obj/effect/new_rain/Initialize(mapload)
-	. = ..()
-	icon_state = "rain[rand(1, 15)]"
-	var/matrix/M = new
-	M.Scale(0.5, 0.5)
-	transform = M
-	animate(src, alpha = 64, time = 30)
-
-/obj/effect/new_rain/Cross(atom/movable/AM)
-	. = ..()
-	if(isitem(AM))
-		AM.wash(CLEAN_WASH)
-
-/obj/effect/new_snow
-	icon = 'modular_darkpack/modules/deprecated/icons/newweather.dmi'
-	icon_state = "snow1"
-	alpha = 0
-	plane = GAME_PLANE
-	layer = SPACEVINE_LAYER
-	anchored = TRUE
-	density = FALSE
-	mouse_opacity = 0
-	pixel_w = -16
-
-/obj/effect/new_snow/Initialize(mapload)
-	. = ..()
-	icon_state = "snow[rand(1, 15)]"
-	animate(src, alpha = 128, time = 30)
-
-/obj/effect/vamp_weather
+/obj/effect/weather_manager
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
 	mouse_opacity = 0
 
-/obj/effect/vamp_weather/Initialize(mapload)
+/obj/effect/weather_manager/Initialize(mapload)
 	. = ..()
-	GLOB.rain_suka += src
+	GLOB.managed_weather += src
 
 /turf/open/Initialize(mapload)
 	. = ..()
-	if(istype(get_area(src), /area/vtm))
-		var/area/vtm/V = get_area(src)
-		if(V.outdoors)
-			new /obj/effect/vamp_weather(src)
+	var/area/my_area = loc
+	if(istype(my_area, /area/vtm) && my_area.outdoors)
+		new /obj/effect/weather_manager(src)
 
-
+#undef WEATHER_CLEAR
+#undef WEATHER_RAIN
+#undef WEATHER_SNOW
+#undef WEATHER_FOG

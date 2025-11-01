@@ -1,4 +1,4 @@
-/obj/item/cockclock
+/obj/item/watch
 	name = "\improper wrist watch"
 	desc = "A portable device to check time."
 	icon = 'modular_darkpack/modules/city_time/icons/clock.dmi'
@@ -12,7 +12,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	custom_price = 20
 
-/obj/item/cockclock/examine(mob/user)
+/obj/item/watch/examine(mob/user)
 	. = ..()
 	. += "The watch reads: <b>[station_time_timestamp("hh:mm:ss, MMM DD")]</b>"
 	. += "That should make it <b>[station_time_timestamp("Day")]</b>"

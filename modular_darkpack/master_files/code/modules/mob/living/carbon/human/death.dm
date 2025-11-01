@@ -8,11 +8,6 @@
 			var/area/vtm/V = get_area(src)
 			if(V.zone_type == ZONE_MASQUERADE)
 				SSmasquerade.dead_level = max(0, SSmasquerade.dead_level-25)
-
-	if(bloodhunted)
-		SSbloodhunt.hunted -= src
-		bloodhunted = FALSE
-		SSbloodhunt.update_shit()
 	var/witness_count
 	for(var/mob/living/carbon/human/npc/NEPIC in viewers(7, usr))
 		if(NEPIC && NEPIC.stat != DEAD)

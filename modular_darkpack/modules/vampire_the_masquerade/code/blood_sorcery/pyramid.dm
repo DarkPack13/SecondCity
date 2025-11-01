@@ -437,39 +437,39 @@
 	else if(generation >=12)
 		message += "The blood is of waning strength. It must come from a neonate. "
 
-	if(clan == "Toreador" || clan == "Daughters of Cacophony")
+	if(clan == VAMPIRE_CLAN_TOREADOR || clan == VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 		message += "The blood is sweet and rich. The owner must, too, be beautiful."
-	else if(clan == "Ventrue")
+	else if(clan == VAMPIRE_CLAN_VENTRUE)
 		message += "The blood has kingly power in it, descending from Mithras or Hardestadt."
-	else if(clan == "Lasombra")
+	else if(clan == VAMPIRE_CLAN_LASOMBRA)
 		message += "Cold and dark, this blood has a mystical connection to the Abyss."
-	else if(clan == "Tzimisce")
+	else if(clan == VAMPIRE_CLAN_TZIMISCE)
 		message += "The vitae is mutable and twisted. Is there any doubt to the cursed line it belongs to?"
-	else if(clan == "Gangrel")
+	else if(clan == VAMPIRE_CLAN_GANGREL)
 		message += "The blood emits a primal and feral aura. The same is likely of the owner."
-	else if(clan == "Malkavian")
+	else if(clan == VAMPIRE_CLAN_MALKAVIAN)
 		message += "You can sense chaos and madness within this blood. It's owner must be maddened too."
-	else if(clan == "Brujah")
+	else if(clan == VAMPIRE_CLAN_BRUJAH)
 		message += "The blood is filled with passion and anger. So must be the owner of the blood."
-	else if(clan == "Nosferatu")
+	else if(clan == VAMPIRE_CLAN_NOSFERATU)
 		message += "The blood is foul and disgusting. Same must apply to the owner."
-	else if(clan == "Tremere")
+	else if(clan == VAMPIRE_CLAN_TREMERE)
 		message += "The blood is filled with the power of magic. The owner must be a thaumaturge."
-	else if(clan == "Baali")
+	else if(clan == VAMPIRE_CLAN_BAALI)
 		message += "Tainted and corrupt. Vile and filthy. You see your reflection in the blood, but something else stares back."
-	else if(clan == "Assamite")
+	else if(clan == VAMPIRE_CLAN_BANU_HAQIM)
 		message += "Potent... Deadly... And cursed. You know well the curse laid by Tremere on the assassins."
-	else if(clan == "True Brujah")
+	else if(clan == VAMPIRE_CLAN_TRUE_BRUJAH)
 		message += "The blood is cold and static... It's hard to feel any emotion within it."
-	else if(clan == "Salubri")
+	else if(clan == VAMPIRE_CLAN_SALUBRI)
 		message += "The cursed blood of the Salubri! The owner of this blood must be slain."
-	else if(clan == "Giovanni" || clan == "Cappadocian")
+	else if(clan == VAMPIRE_CLAN_GIOVANNI || clan == VAMPIRE_CLAN_CAPPADOCIAN)
 		message += "The blood is very cold and filled with death. The owner must be a necromancer."
-	else if(clan == "Kiasyd")
+	else if(clan == VAMPIRE_CLAN_KIASYD)
 		message += "The blood is filled with traces of fae magic."
-	else if(clan == "Gargoyle")
+	else if(clan == VAMPIRE_CLAN_GARGOYLE)
 		message += "The blood of our stone servants."
-	else if(clan == "Setite")
+	else if(clan == VAMPIRE_CLAN_SETITE)
 		message += "Seduction and allure are in the blood. Ah, one of the snakes."
 	else
 		message += "The blood's origin is hard to trace. Perhaps it is one of the clanless?"

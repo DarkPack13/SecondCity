@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()
 
-	var/datum/job/overflow_role = /datum/job/assistant
+	var/datum/job/overflow_role = /datum/job/vampire/citizen //DARKPACK EDIT, ORIGINAL: var/datum/job/overflow_role = /datum/job/assistant
 
 	var/list/level_order = list(JP_HIGH, JP_MEDIUM, JP_LOW)
 
@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(job)
 	 * See [/datum/controller/subsystem/ticker/proc/equip_characters]
 	 */
 	var/list/chain_of_command = list(
+		/* // DARKPACK EDIT START
 		JOB_CAPTAIN = 1,
 		JOB_HEAD_OF_PERSONNEL = 2,
 		JOB_RESEARCH_DIRECTOR = 3,
@@ -55,6 +56,9 @@ SUBSYSTEM_DEF(job)
 		JOB_CHIEF_MEDICAL_OFFICER = 5,
 		JOB_HEAD_OF_SECURITY = 6,
 		JOB_QUARTERMASTER = 7,
+		*/
+		JOB_PRINCE = 1,
+		// DARKPACK EDIT END
 	)
 
 	/// If TRUE, some player has been assigned Captaincy or Acting Captaincy at some point during the shift and has been given the spare ID safe code.
@@ -426,7 +430,7 @@ SUBSYSTEM_DEF(job)
 	job_debug("DO: Player count to assign roles to: [initial_players_to_assign]")
 
 	//Scale number of open security officer slots to population
-	setup_officer_positions()
+	//setup_officer_positions() DAKRPACK EDIT REMOVAL - JOBS
 
 	//Jobs will have fewer access permissions if the number of players exceeds the threshold defined in game_options.txt
 	var/min_access_threshold = CONFIG_GET(number/minimal_access_threshold)
@@ -984,7 +988,7 @@ SUBSYSTEM_DEF(job)
 		job_debug("[debug_prefix]: Player is qdeleted, Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_GENERIC
 
-	return JOB_AVAILABLE
+	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log) //DARKPACK EDIT, ORIGINAL: return JOB_AVAILABLE
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type.
