@@ -27,6 +27,7 @@ export type MedicalRecord = {
   rank: string;
   species: string;
   trim: string;
+  past_medical_records: string; // DARKPACK EDIT - Flavor Text
 };
 
 export type MedicalNote = {
