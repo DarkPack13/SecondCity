@@ -1,5 +1,0 @@
-/obj/structure/rack/bubway : /obj/structure/table/bubway
-/obj/structure/rack/bubway/@SUBTYPES : /obj/structure/table/bubway
-
-/obj/structure/rack/tacobell : /obj/structure/table/bacotell
-/obj/structure/rack/tacobell/@SUBTYPES : /obj/structure/table/bacotell

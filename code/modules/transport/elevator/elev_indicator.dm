@@ -4,7 +4,7 @@
 /obj/machinery/lift_indicator
 	name = "elevator indicator"
 	desc = "Indicates what floor the elevator is at and which way it's going."
-	icon = 'icons/obj/machines/lift_indicator.dmi'
+	icon = 'modular_darkpack/modules/elevators/icons/buttons.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "lift_indo-base"
 	base_icon_state = "lift_indo-"
 	max_integrity = 500

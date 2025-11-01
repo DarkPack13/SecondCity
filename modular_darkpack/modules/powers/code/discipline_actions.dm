@@ -58,7 +58,10 @@
 		SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 	)
 
-	RegisterSignals(owner, relevant_signals, TYPE_PROC_REF(/mob, update_action_buttons))
+	RegisterSignals(owner, relevant_signals, PROC_REF(update_owner_action_buttons))
+
+/datum/action/discipline/proc/update_owner_action_buttons()
+	owner.update_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
 	return discipline.current_power.can_activate_untargeted(feedback)
@@ -141,7 +144,7 @@
 	var/list/modifiers = params2list(click_parameters)
 
 	//ensure we actually need a target, or cancel on right click
-	if (!targeting || modifiers["right"])
+	if (!targeting || modifiers[RIGHT_CLICK])
 		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', 0, 0, 50))
 		end_targeting()
 		return
@@ -171,7 +174,7 @@
 		var/list/modifiers = params2list(params)
 
 		//increase on right click, decrease on shift right click
-		if(LAZYACCESS(modifiers, "right"))
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
 			var/datum/action/discipline/discipline = linked_action
 			if (LAZYACCESS(modifiers, "alt"))
 				discipline.switch_level(-1)

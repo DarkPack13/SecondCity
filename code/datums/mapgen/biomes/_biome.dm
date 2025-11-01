@@ -191,25 +191,25 @@
 /datum/biome/plains
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/sparsegrass/style_random = 5,
+		/obj/structure/flora/bush/sparsegrass/style_random = 10,
 		/obj/structure/flora/tree/vamp/pine = 1,
-		/obj/structure/small_vamprocks = 1,
-		/obj/structure/vamprocks = 1,
-	)
-	flora_density = 50
-
-/datum/biome/jungle
-	turf_type = /turf/open/misc/grass/vamp
-	flora_types = list(
-		/obj/structure/flora/bush/sparsegrass/style_random = 1,
-		/obj/structure/flora/tree/vamp/pine = 2,
 		/obj/structure/small_vamprocks = 1,
 		/obj/structure/vamprocks = 1,
 	)
 	flora_density = 40
 
+/datum/biome/jungle
+	turf_type = /turf/open/misc/grass/vamp
+	flora_types = list(
+		/obj/structure/flora/bush/sparsegrass/style_random = 6,
+		/obj/structure/flora/tree/vamp/pine = 2,
+		/obj/structure/small_vamprocks = 1,
+		/obj/structure/vamprocks = 1,
+	)
+	flora_density = 30
+
 /datum/biome/jungle/deep
-	flora_density = 65
+	flora_density = 50
 
 /datum/biome/wasteland
 	turf_type = /turf/open/misc/dirt/vamp
@@ -224,5 +224,5 @@
 	turf_type = /turf/open/water/beach/vamp
 
 /datum/biome/mountain
-	turf_type = /turf/closed/mineral/random/jungle
+	turf_type = /turf/closed/wall/vampwall/rock
 // DARKPACK EDIT CHANGE END

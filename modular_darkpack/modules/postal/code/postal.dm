@@ -77,7 +77,7 @@
 			/obj/item/stack/dollar/rand,
 			/obj/item/knife/vamp,
 			/obj/item/melee/vamp/tire,
-			/obj/item/drinkable_bloodpack,
+			/obj/item/reagent_containers/blood,
 			/obj/item/gun/ballistic/revolver/darkpack/snub,
 			/obj/item/vamp/keys/hack
 		)

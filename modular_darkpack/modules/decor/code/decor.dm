@@ -57,11 +57,10 @@
 
 /obj/structure/lamppost/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 	switch(number_of_lamps)
 		if(1)
 			new_light(get_step(loc, dir))
@@ -133,11 +132,10 @@
 
 /obj/structure/trafficlight/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 //I should make these slow to move
 /obj/structure/closet/crate/dumpster
@@ -158,11 +156,10 @@
 		icon_state = "garbageopen"
 	. = ..()
 	//Letting you clear the snow by opening and closing it is acctually pretty flavor
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[base_icon_state]-snow"
 
 /obj/structure/closet/crate/dumpster/PopulateContents()
 	if(prob(internal_trash_chance))
@@ -204,11 +201,10 @@
 
 /obj/structure/hotelbanner/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/arc
 	name = "chinatown arc"
@@ -220,11 +216,10 @@
 
 /obj/structure/arc/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/arc/add
 	icon_state = "ark2"
@@ -260,11 +255,10 @@
 
 /obj/structure/hydrant/Initialize(mapload)
 	. = ..()
-	if(check_holidays(CHRISTMAS))
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			if(V.outdoors)
-				icon_state = "[initial(icon_state)]-snow"
+	if(check_holidays(FESTIVE_SEASON))
+		var/area/my_area = get_area(src)
+		if(istype(my_area) && my_area.outdoors)
+			icon_state = "[initial(icon_state)]-snow"
 
 /obj/structure/hydrant/mouse_drop_receive(atom/dropped, mob/user, params)
 	if(HAS_TRAIT(user, TRAIT_DWARF)) //Only lean on the fire hydrant if we are smol
