@@ -191,19 +191,25 @@
 /datum/biome/plains
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/sparsegrass/style_random = 10,
+		/obj/structure/flora/bush/fullgrass/style_random = 15,
+		/obj/structure/flora/bush/sparsegrass/style_random = 5,
+		/obj/structure/flora/grass/short/style_random = 3,
+		/obj/structure/flora/grass/tall/style_random = 2,
+		/obj/structure/flora/grass/tall/dry/style_random = 1,
+		/obj/structure/flora/bush/redflower/style_random = 1,
 		/obj/structure/flora/tree/vamp/pine = 1,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
 	)
-	flora_density = 50
+	flora_density = 60
 
 /datum/biome/jungle
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
+		/obj/structure/flora/bush/fullgrass/style_random = 3,
+		/obj/structure/flora/bush/sparsegrass/style_random = 2,
 		/obj/structure/flora/grass/short/style_random = 1,
-		/obj/structure/flora/bush/sparsegrass/style_random = 1,
-		/obj/structure/flora/tree/vamp/pine = 2,
+		/obj/structure/flora/tree/vamp/pine = 3,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
 	)

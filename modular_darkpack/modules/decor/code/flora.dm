@@ -166,17 +166,27 @@
 
 /obj/effect/spawner/random/flora/grass
 	loot = list(
+		/obj/structure/flora/bush/fullgrass/style_random = 3,
+		/obj/structure/flora/bush/sparsegrass/style_random = 2,
 		/obj/structure/flora/grass/short/style_random = 1,
-		/obj/structure/flora/bush/sparsegrass/style_random = 1
 	)
 
 /obj/effect/spawner/random/flora/bushes
 	loot = list(
-		/obj/structure/flora/grass/tall/style_random = 1,
+		/obj/structure/flora/grass/tall/style_random = 4,
+		/obj/structure/flora/grass/short/style_random = 3,
+		/obj/structure/flora/bush/fullgrass/style_random = 2,
 		/obj/structure/flora/grass/tall/dry/style_random = 1,
-		/obj/structure/flora/grass/short/style_random = 1,
-		/obj/structure/flora/bush/redflower/style_random = 1
+		/obj/structure/flora/bush/redflower/style_random = 1,
 	)
 
 /obj/effect/spawner/random/flora/rocks
 	loot = list(/obj/structure/flora/rock/pile/darkpack = 5, /obj/structure/flora/rock/darkpack = 1)
+
+/obj/effect/spawner/random/flora/flowers
+	loot = list(
+		/obj/structure/flora/bush/lavendergrass/style_random = 1,
+		/obj/structure/flora/bush/flowers_yw/style_random = 1,
+		/obj/structure/flora/bush/flowers_br/style_random = 1,
+		/obj/structure/flora/bush/flowers_pp/style_random = 1
+	)

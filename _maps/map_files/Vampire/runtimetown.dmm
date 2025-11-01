@@ -20,12 +20,13 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "aO" = (
-/obj/machinery/fax/admin/camarilla,
+/obj/machinery/fax/admin/police,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "aW" = (
 /obj/structure/roofstuff/vent_end,
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "ba" = (
 /obj/structure/retail/clothing_store,
@@ -162,7 +163,8 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "em" = (
-/obj/machinery/fax/aasimites,
+/obj/machinery/fax/admin/endron,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "en" = (
@@ -321,7 +323,7 @@
 /area/vtm/outside/pacificheights)
 "iQ" = (
 /obj/structure/roofstuff/vent/autotiling,
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "iV" = (
 /obj/darkpack_car/track{
@@ -410,7 +412,7 @@
 /obj/structure/roofstuff/vent_end{
 	dir = 4
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "kR" = (
 /obj/structure/transport/linear/public,
@@ -792,7 +794,8 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "ts" = (
-/obj/machinery/fax/endron,
+/obj/machinery/fax/admin/glasswalker,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "tu" = (
@@ -822,6 +825,9 @@
 "tO" = (
 /obj/structure/sign/city/police_department,
 /turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
+"tV" = (
+/turf/open/misc/grass/vamp/random/grass,
 /area/vtm/outside/pacificheights)
 "tW" = (
 /obj/darkpack_car/police/ranger,
@@ -908,6 +914,9 @@
 "vK" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
+"vN" = (
+/turf/open/misc/grass/vamp/random,
+/area/vtm/outside/pacificheights)
 "wb" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/brute,
@@ -951,7 +960,7 @@
 	pixel_y = 20;
 	linked_elevator_id = "DebugElevator2"
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "xC" = (
 /obj/effect/decal/cleanable/litter,
@@ -990,7 +999,7 @@
 /area/vtm/interior/techshop)
 "yc" = (
 /obj/structure/roofstuff/vent/south,
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "yi" = (
 /obj/machinery/light/directional/west,
@@ -1045,7 +1054,7 @@
 	pixel_y = 20;
 	linked_elevator_id = "DebugElevator"
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "zk" = (
 /obj/darkpack_car/track/ambulance{
@@ -1099,7 +1108,8 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
 "AC" = (
-/obj/machinery/fax/admin/glasswalker,
+/obj/machinery/fax/tremere,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "AE" = (
@@ -1107,7 +1117,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "AT" = (
-/obj/machinery/fax/admin/anarch,
+/obj/machinery/fax/police,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "AU" = (
@@ -1305,7 +1316,7 @@
 /area/vtm/outside/pacificheights)
 "ES" = (
 /obj/structure/roofstuff/vent,
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "ET" = (
 /obj/structure/vampdoor/camarilla{
@@ -1314,7 +1325,9 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "EX" = (
-/obj/machinery/fax/glasswalker,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "EY" = (
@@ -1347,7 +1360,8 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "FD" = (
-/obj/machinery/fax/admin/police,
+/obj/machinery/fax/aasimites,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "FG" = (
@@ -1592,7 +1606,8 @@
 /turf/open/misc/dirt/vamp/rails,
 /area/vtm/outside/supply)
 "IX" = (
-/obj/machinery/fax/admin/aasimites,
+/obj/machinery/fax/anarch,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Jo" = (
@@ -1610,7 +1625,8 @@
 /turf/open/floor/plating/parquetry/old,
 /area/vtm/sewer)
 "JE" = (
-/obj/machinery/fax/tremere,
+/obj/machinery/fax/glasswalker,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "JG" = (
@@ -1702,7 +1718,9 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Ln" = (
-/turf/open/floor/light,
+/obj/machinery/fax/admin/camarilla,
+/obj/structure/table/wood,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Lw" = (
 /obj/structure/table,
@@ -1776,7 +1794,7 @@
 /obj/structure/roofstuff/vent_end{
 	dir = 8
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "Nw" = (
 /obj/machinery/light/directional/north,
@@ -1875,7 +1893,8 @@
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
 "OX" = (
-/obj/machinery/fax/admin/endron,
+/obj/machinery/fax/endron,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "OZ" = (
@@ -1892,8 +1911,8 @@
 /turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
 "Po" = (
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
+/obj/machinery/fax/camarilla,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Ps" = (
@@ -1924,6 +1943,9 @@
 "PO" = (
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"PP" = (
+/turf/open/misc/grass/vamp,
+/area/vtm/outside/pacificheights)
 "PW" = (
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
@@ -1970,7 +1992,8 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Rb" = (
-/obj/machinery/fax/police,
+/obj/machinery/fax/admin/aasimites,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Re" = (
@@ -2064,7 +2087,8 @@
 /turf/open/floor/plating/toilet,
 /area/vtm/interior/shop)
 "Tw" = (
-/obj/machinery/fax/anarch,
+/obj/machinery/fax/admin/anarch,
+/obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "TD" = (
@@ -2189,7 +2213,7 @@
 	pixel_y = 20;
 	linked_elevator_id = "DebugElevator3"
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp/random/grass,
 /area/vtm/outside/pacificheights)
 "Vu" = (
 /obj/structure/closet/cardboard,
@@ -2296,7 +2320,7 @@
 	pixel_y = 20;
 	linked_elevator_id = "DebugElevator4"
 	},
-/turf/open/misc/beach/vamp,
+/turf/open/misc/grass/vamp,
 /area/vtm/outside/pacificheights)
 "Xr" = (
 /obj/machinery/bookbinder,
@@ -2392,10 +2416,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
-/area/vtm/outside/pacificheights)
-"Zf" = (
-/obj/machinery/fax/camarilla,
-/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Zw" = (
 /obj/structure/table,
@@ -2583,7 +2603,7 @@ tY
 tY
 tY
 NR
-NR
+AC
 NR
 NR
 NR
@@ -2649,9 +2669,9 @@ VQ
 ik
 Fs
 NR
+Rb
 NR
-NR
-NR
+FD
 NR
 NR
 NR
@@ -2717,9 +2737,9 @@ VQ
 ik
 sm
 NR
+Tw
 NR
-NR
-NR
+IX
 NR
 NR
 NR
@@ -2785,9 +2805,9 @@ VQ
 ik
 Fs
 NR
+Ln
 NR
-NR
-NR
+Po
 NR
 NR
 NR
@@ -2853,9 +2873,9 @@ VQ
 ik
 Fs
 NR
+em
 NR
-NR
-NR
+OX
 NR
 NR
 NR
@@ -2921,9 +2941,9 @@ VQ
 zk
 Fs
 NR
+ts
 NR
-NR
-NR
+JE
 NR
 NR
 NR
@@ -2989,9 +3009,9 @@ VQ
 ik
 fd
 NR
+aO
 NR
-NR
-NR
+AT
 NR
 NR
 NR
@@ -3057,7 +3077,7 @@ VQ
 ik
 Fs
 NR
-NR
+EX
 NR
 NR
 NR
@@ -3261,9 +3281,9 @@ rW
 rW
 Fs
 NR
-IX
 NR
-em
+NR
+NR
 NR
 NR
 NR
@@ -3329,9 +3349,9 @@ VQ
 ik
 Fs
 NR
-AT
 NR
-Tw
+NR
+NR
 NR
 NR
 NR
@@ -3397,9 +3417,9 @@ VQ
 ik
 Fs
 NR
-aO
 NR
-Zf
+NR
+NR
 NR
 NR
 NR
@@ -3465,9 +3485,9 @@ VQ
 ik
 YL
 NR
-OX
-Ln
-ts
+NR
+NR
+NR
 NR
 NR
 NR
@@ -3533,9 +3553,9 @@ VQ
 ik
 Fs
 NR
-AC
 NR
-EX
+NR
+NR
 NR
 NR
 NR
@@ -3601,9 +3621,9 @@ VQ
 tW
 VD
 NR
-FD
 NR
-Rb
+NR
+NR
 NR
 NR
 NR
@@ -3669,9 +3689,9 @@ VQ
 ik
 Fs
 NR
-Po
 NR
-JE
+NR
+NR
 NR
 NR
 NR
@@ -5549,10 +5569,10 @@ GF
 (47,1,1) = {"
 GF
 vK
-NR
-NR
+vN
+vN
 iQ
-NR
+vN
 ES
 kM
 NR
@@ -5617,12 +5637,12 @@ GF
 (48,1,1) = {"
 GF
 vK
-NR
-NR
+vN
+vN
 iQ
 iQ
 iQ
-NR
+vN
 NR
 NR
 NR
@@ -5685,13 +5705,13 @@ GF
 (49,1,1) = {"
 GF
 vK
-NR
-NR
+vN
+vN
 Nu
-NR
+vN
 Nu
-NR
-NR
+vN
+vN
 NR
 NR
 NR
@@ -5753,13 +5773,13 @@ GF
 (50,1,1) = {"
 GF
 vK
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -5821,14 +5841,14 @@ GF
 (51,1,1) = {"
 GF
 vK
-NR
+vN
 aW
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -5891,12 +5911,12 @@ GF
 vK
 yc
 iQ
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -5957,15 +5977,15 @@ GF
 (53,1,1) = {"
 GF
 vK
-NR
+vN
 kM
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -6025,17 +6045,17 @@ GF
 (54,1,1) = {"
 GF
 vK
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -6098,13 +6118,13 @@ pb
 pb
 sb
 Vs
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+tV
+PP
+tV
+tV
+PP
+PP
+PP
 NR
 NR
 NR
@@ -6165,14 +6185,14 @@ cA
 dC
 CC
 CT
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+PP
+tV
+PP
+PP
+tV
+tV
+tV
 NR
 NR
 NR
@@ -6233,14 +6253,14 @@ yA
 CC
 CC
 CT
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+PP
+vN
+tV
+PP
+vN
+vN
+vN
 NR
 NR
 NR
@@ -6301,15 +6321,15 @@ sb
 sb
 sb
 sb
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+tV
+vN
+PP
+PP
+vN
+vN
+vN
+vN
 NR
 NR
 NR
@@ -6370,17 +6390,17 @@ CC
 KM
 sb
 zh
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+tV
+vN
+PP
+PP
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 NR
 NR
 Bq
@@ -6437,20 +6457,20 @@ Gh
 YK
 gM
 TD
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+PP
+vN
+PP
+PP
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 cj
 ik
 VQ
@@ -6505,20 +6525,20 @@ Hu
 CC
 KZ
 XF
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+PP
+vN
+PP
+tV
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 Ig
 ik
 VQ
@@ -6573,20 +6593,20 @@ KD
 CC
 Hr
 sb
-NR
-NR
+tV
+PP
 sb
 Xl
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+PP
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 cj
 kc
 Cz
@@ -6642,19 +6662,19 @@ sb
 sb
 sb
 xs
-NR
+PP
 sb
 lC
 Qa
 sb
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
+vN
+vN
 cj
 ik
 VQ
@@ -6709,18 +6729,18 @@ kR
 GZ
 CC
 mE
-NR
-NR
+PP
+PP
 sb
 Az
 CC
 sb
-NR
-NR
-NR
-NR
-NR
-NR
+vN
+vN
+vN
+vN
+vN
+vN
 tY
 tY
 tY
