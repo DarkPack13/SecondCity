@@ -69,7 +69,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/fish_mount/proc/add_first_fish()
-	var/list/valid_picks = subtypesof(/obj/item/fish) - typesof(/obj/item/fish/holo) - /obj/item/fish/starfish/chrystarfish // chrystarfish immediately shatters when placed
+	var/list/valid_picks = valid_subtypesof(/obj/item/fish) - typesof(/obj/item/fish/holo) - /obj/item/fish/starfish/chrystarfish // chrystarfish immediately shatters when placed // DARKPACK EDIT CHANGE - FISHING
 	var/obj/item/fish/fish_path = pick(valid_picks)
 	if(fish_path.fish_id_redirect_path)
 		fish_path = fish_path.fish_id_redirect_path

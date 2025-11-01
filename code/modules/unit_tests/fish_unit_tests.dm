@@ -113,7 +113,7 @@
 
 /datum/unit_test/fish_scanning/Run()
 	var/scannable_fishes = 0
-	for(var/obj/item/fish/fish_prototype as anything in subtypesof(/obj/item/fish))
+	for(var/obj/item/fish/fish_prototype as anything in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 		if(initial(fish_prototype.fish_flags) & FISH_FLAG_EXPERIMENT_SCANNABLE)
 			scannable_fishes++
 	for(var/datum/experiment/scanning/fish/fish_scan as anything in typesof(/datum/experiment/scanning/fish))

@@ -1609,7 +1609,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		if(!probability_table)
 			probability_table = list()
 		var/chance_table = list()
-		for(var/_fish_type in subtypesof(/obj/item/fish))
+		for(var/_fish_type in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 			var/obj/item/fish/fish = _fish_type
 			var/rarity = initial(fish.random_case_rarity)
 			if(!rarity)
