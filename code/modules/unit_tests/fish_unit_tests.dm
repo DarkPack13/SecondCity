@@ -5,7 +5,7 @@
 /datum/unit_test/fish_aquarium_icons
 
 /datum/unit_test/fish_aquarium_icons/Run()
-	for(var/obj/item/fish/fish as anything in subtypesof(/obj/item/fish))
+	for(var/obj/item/fish/fish as anything in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISH
 		if(ispath(fish, /obj/item/fish/testdummy)) //We don't care about unit test fish.
 			continue
 		var/init_icon = fish::dedicated_in_aquarium_icon

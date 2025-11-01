@@ -14,7 +14,7 @@
 		/obj/item/stack/dollar/rand = 2,
 	)
 	fish_counts = list(
-		/obj/item/stack/dollar/fifty = 2,
+		/obj/item/stack/dollar/rand = 2,
 	)
 
 /datum/fish_source/deepfryer

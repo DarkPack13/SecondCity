@@ -20,6 +20,11 @@
 	average_weight = 1400
 	stable_population = 4
 
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
+
 /obj/item/fish/darkpack/shark/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 100, "fish", FALSE)
@@ -31,6 +36,11 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	num_fillets = 2
 
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
+
 /obj/item/fish/darkpack/tuna/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 40, "fish", FALSE)
@@ -40,6 +50,11 @@
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
 
 /obj/item/fish/darkpack/catfish/Initialize(mapload)
 	. = ..()
@@ -54,6 +69,10 @@
 
 	average_size = 50
 	average_weight = 600
+
+	dedicated_in_aquarium_icon_state = "crab_small"
+	sprite_height = 6
+	sprite_width = 10
 
 /obj/item/fish/darkpack/crab/Initialize(mapload)
 	. = ..()
