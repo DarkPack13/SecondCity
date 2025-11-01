@@ -108,6 +108,21 @@
 	for(var/datum/callback/callback as anything in post_replacement_callbacks)
 		callback.Invoke(new_catwalk)
 
+// DARKPACK EDIT ADD START
+/obj/structure/lattice/grate
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "lattice_grate"
+	base_icon_state = "lattice_grate"
+
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
+/obj/structure/lattice/pentex
+	desc = "Looks sturdy enough and made of advanced materials."
+	icon = 'icons/obj/smooth_structures/darkpack/pentexcatwalk.dmi'
+// DARKPACK EDIT ADD END
+
 /obj/structure/lattice/catwalk
 	name = "catwalk"
 	desc = "A catwalk for easier EVA maneuvering and cable placement."

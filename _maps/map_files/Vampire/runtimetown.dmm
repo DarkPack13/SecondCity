@@ -663,6 +663,11 @@
 "qT" = (
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"qU" = (
+/obj/machinery/light/directional/north,
+/obj/structure/lattice/grate,
+/turf/open/openspace,
+/area/vtm/outside/pacificheights)
 "qV" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
@@ -761,6 +766,10 @@
 /obj/structure/table/countertop/bacotell,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"sU" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating/vampcanal,
+/area/vtm/outside/pacificheights)
 "sX" = (
 /obj/structure/sign/city/store/bubway{
 	pixel_y = 40
@@ -1211,6 +1220,11 @@
 /obj/machinery/light/directional/west,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"Dd" = (
+/obj/structure/railing,
+/obj/structure/lattice/grate,
+/turf/open/openspace,
+/area/vtm/outside/pacificheights)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1810,6 +1824,10 @@
 /obj/item/reagent_containers/blood/vitae,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"Oe" = (
+/obj/structure/lattice/grate,
+/turf/open/openspace,
+/area/vtm/outside/pacificheights)
 "Of" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire,
@@ -2330,7 +2348,8 @@
 	connect_down = 1;
 	connect_up = 0
 	},
-/turf/open/floor/plating/vampcanal,
+/obj/structure/lattice/grate,
+/turf/open/openspace,
 /area/vtm/outside/pacificheights)
 "XW" = (
 /obj/effect/turf_decal/bordur,
@@ -7330,7 +7349,7 @@ Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7391,14 +7410,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7459,14 +7478,14 @@ eQ
 eQ
 eQ
 MS
-vJ
-Nx
+qU
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7527,14 +7546,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7595,14 +7614,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7663,14 +7682,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7738,7 +7757,7 @@ Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -7800,13 +7819,13 @@ eQ
 eQ
 MS
 nY
-Nx
+sU
+vn
+by
 Ys
 Ys
 Ys
-Ys
-Ys
-Ys
+Oe
 eR
 oJ
 oJ
@@ -7868,13 +7887,13 @@ eQ
 eQ
 MS
 vJ
-nY
-vn
-by
+Nx
 Ys
 Ys
 Ys
 Ys
+Ys
+Oe
 eR
 oJ
 oJ
@@ -7935,14 +7954,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -8003,14 +8022,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -8071,14 +8090,14 @@ eQ
 eQ
 eQ
 MS
-nY
+Oe
 XU
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -8139,14 +8158,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -8207,14 +8226,14 @@ eQ
 eQ
 eQ
 MS
-nY
-Nx
+Oe
+Dd
 Ys
 Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 eR
 oJ
 oJ
@@ -8282,7 +8301,7 @@ Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 eR
 oJ
 oJ
@@ -8350,7 +8369,7 @@ Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
@@ -8418,7 +8437,7 @@ Ys
 Ys
 Ys
 Ys
-Ys
+Oe
 MS
 oJ
 oJ
