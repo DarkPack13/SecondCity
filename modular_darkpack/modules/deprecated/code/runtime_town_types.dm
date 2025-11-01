@@ -31,9 +31,16 @@
 /obj/vampire_computer
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "computer"
+
 /obj/vampire_computer/prince
 	icon_state = "computerprince"
 
 /obj/item/vamp/phone/street
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
+	icon_state = "payphone"
+
+
+/obj/item/vamp/phone
+	slot_flags = ITEM_SLOT_POCKETS
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"

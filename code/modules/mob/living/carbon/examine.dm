@@ -248,7 +248,7 @@
 						living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
 						living_user.set_jitter_if_lower(15 SECONDS)
 
-			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role)
+			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
 
@@ -301,6 +301,18 @@
 			. += span_notice("A skilled hand has mapped this one's internal intricacies. It will be far easier to perform future experimentations upon [user.p_them()]. <b><i>Exquisite.</i></b>")
 	if(isliving(user) && HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		. += compare_fitness(user)
+
+	//DARKPACK EDIT START
+	if(custom_examine_message)
+		. += span_purple(custom_examine_message)
+
+	if(ishumanbasic(user))
+		. += "<a href='byond://?src=[REF(src)];masquerade=1'>Report a Masquerade violation</a>"
+		. += "---------------"
+		. += "<a href='byond://?src=[REF(src)];reinforcement=1'>Report a Masquerade reinforcement</a>"
+
+	. += flavor_text_creation()
+	//DARKPACK EDIT END
 
 	var/hud_info = get_hud_examine_info(user)
 	if(length(hud_info))
