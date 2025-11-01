@@ -36,6 +36,10 @@
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	num_fillets = 2
 
+	stable_population = 9
+	average_size = 50
+	average_weight = 600
+
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#33302e"
 	sprite_width = 5
@@ -50,6 +54,10 @@
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+
+	stable_population = 9
+	average_size = 55
+	average_weight = 800
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#33302e"
@@ -67,6 +75,7 @@
 	fish_id = "darkpack_crab"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
+	stable_population = 8
 	average_size = 50
 	average_weight = 600
 
