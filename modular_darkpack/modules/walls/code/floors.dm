@@ -159,17 +159,27 @@
 /turf/open/floor/plating/grate/dirty
 	icon_state = "lattice_new_dirt"
 
-/turf/open/misc/grass/Initialize(mapload)
+/turf/open/misc/grass/random
+	WHEN_MAP(icon = 'modular_darkpack/modules/walls/icons/floors.dmi')
+	WHEN_MAP(icon_state = "grass_autodec_all")
+	var/autodecor = /obj/effect/spawner/random/flora/all
+
+/turf/open/misc/grass/random/grass
+	WHEN_MAP(icon_state = "grass_autodec_grass")
+	autodecor = /obj/effect/spawner/random/flora/grass
+
+/turf/open/misc/grass/random/bushes
+	WHEN_MAP(icon_state = "grass_autodec_bushes")
+	autodecor = /obj/effect/spawner/random/flora/bushes
+
+/turf/open/misc/grass/random/rocks
+	WHEN_MAP(icon_state = "grass_autodec_rocks")
+	autodecor = /obj/effect/spawner/random/flora/rocks
+
+/turf/open/misc/grass/random/Initialize(mapload)
 	. = ..()
-	icon_state = "grass[rand(1, 3)]"
-	var/area/my_area = loc
-	if(my_area.outdoors)
-		if(check_holidays(FESTIVE_SEASON))
-			//initial_gas_mix = WINTER_DEFAULT_ATMOS
-			icon_state = "snow[rand(1, 14)]"
-			footstep = FOOTSTEP_SNOW
-			barefootstep = FOOTSTEP_SNOW
-			heavyfootstep = FOOTSTEP_SNOW
+	if(prob(33))
+		new autodecor(src)
 
 /turf/open/misc/dirt/Initialize(mapload)
 	. = ..()
