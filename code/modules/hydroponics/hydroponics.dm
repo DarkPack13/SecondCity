@@ -904,6 +904,7 @@
 			if(reagent_source.is_drainable())
 				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 				var/mutable_appearance/splash_animation = mutable_appearance('icons/effects/effects.dmi', "splash_hydroponics")
+				splash_animation.pixel_z += plant_offset_y // DARKPACK EDIT ADD
 				splash_animation.color = mix_color_from_reagents(reagent_source.reagents.reagent_list)
 				flick_overlay_view(splash_animation, 1.1 SECONDS)
 
