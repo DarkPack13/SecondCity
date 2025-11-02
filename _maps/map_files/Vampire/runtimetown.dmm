@@ -625,7 +625,7 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/turf/closed/wall/vampwall/low,
+/turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/outside/pacificheights)
 "pd" = (
 /obj/structure/cargo_take,
@@ -743,9 +743,6 @@
 "rW" = (
 /obj/effect/turf_decal/crosswalk,
 /turf/open/floor/plating/asphalt,
-/area/vtm/outside/pacificheights)
-"sb" = (
-/turf/closed/wall/vampwall,
 /area/vtm/outside/pacificheights)
 "sk" = (
 /obj/effect/landmark/npcbeacon,
@@ -6228,7 +6225,7 @@ vK
 pb
 pb
 pb
-sb
+vK
 Vs
 NR
 NR
@@ -6429,10 +6426,10 @@ GF
 (58,1,1) = {"
 GF
 vK
-sb
-sb
-sb
-sb
+vK
+vK
+vK
+vK
 NR
 NR
 NR
@@ -6500,7 +6497,7 @@ vK
 So
 CC
 KM
-sb
+vK
 zh
 NR
 NR
@@ -6704,10 +6701,10 @@ vK
 KD
 CC
 Hr
-sb
+vK
 NR
 NR
-sb
+vK
 Xl
 NR
 NR
@@ -6769,16 +6766,16 @@ GF
 (63,1,1) = {"
 GF
 vK
-sb
-sb
-sb
-sb
+vK
+vK
+vK
+vK
 xs
 NR
-sb
+vK
 lC
 Qa
-sb
+vK
 NR
 NR
 NR
@@ -6843,10 +6840,10 @@ CC
 mE
 NR
 NR
-sb
+vK
 Az
 CC
-sb
+vK
 NR
 NR
 NR
