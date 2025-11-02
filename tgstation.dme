@@ -6949,6 +6949,7 @@
 #include "modular_darkpack\modules\food\code\drinking_glass.dm"
 #include "modular_darkpack\modules\food\code\drinks.dm"
 #include "modular_darkpack\modules\food\code\food.dm"
+#include "modular_darkpack\modules\food\code\recipes.dm"
 #include "modular_darkpack\modules\food\code\structure.dm"
 #include "modular_darkpack\modules\ghoul\code\ghoul_species.dm"
 #include "modular_darkpack\modules\government\code\passport.dm"
