@@ -120,7 +120,7 @@
 
 /obj/structure/lattice/pentex
 	desc = "Looks sturdy enough and made of advanced materials."
-	icon = 'icons/obj/smooth_structures/darkpack/pentexcatwalk.dmi'
+	icon = 'icons/obj/smooth_structures/darkpack/catwalk_pentex_opaque.dmi'
 // DARKPACK EDIT ADD END
 
 /obj/structure/lattice/catwalk
