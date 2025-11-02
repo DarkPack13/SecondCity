@@ -209,7 +209,6 @@
 /obj/structure/vampgate/atom_destruction(damage_flag)
 	.=..()
 	break_open()
-	return QDEL_HINT_LETMELIVE
 
 /obj/structure/vampgate/proc/shake_gate()
 	pixel_z += rand(-1, 1)
