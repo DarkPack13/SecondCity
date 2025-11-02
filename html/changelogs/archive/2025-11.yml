@@ -10,3 +10,10 @@
   - rscadd: Added pixelshifting  to the game.
   chazzyjazzy:
   - code_imp: remakes beastmaster subsystem and makes it easier to use
+2025-11-02:
+  Marshmellow105:
+  - rscdel: removes old elevator code/icons I think
+  - sound: added elevator door sounds
+  - image: added animated elevator doors and elevator buttons
+  XeonMations:
+  - rscadd: Added flavor text to the game
