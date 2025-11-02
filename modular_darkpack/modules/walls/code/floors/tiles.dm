@@ -11,20 +11,20 @@
 /turf/open/floor/city/plating
 	name = "plating"
 	icon_state = "plating"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
+	footstep = FOOTSTEP_PLATING
 
-/turf/open/floor/city/plating/mono
+/turf/open/floor/city/plating_mono
+	name = "plating"
 	icon_state = "plating-mono"
+	footstep = FOOTSTEP_PLATING
 
-/turf/open/floor/city/plating/stone
+/turf/open/floor/city/plating_stone
+	name = "plating"
 	icon_state = "plating-stone"
 
 /turf/open/floor/city/toilet
 	name = "plating"
 	icon_state = "toilet1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
 
 /turf/open/floor/city/toilet/Initialize(mapload)
 	. = ..()
@@ -41,8 +41,6 @@
 /turf/open/floor/city/circled
 	name = "fancy plating"
 	icon_state = "circle1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
 
 /turf/open/floor/city/circled/Initialize(mapload)
 	. = ..()
@@ -71,11 +69,7 @@
 /turf/open/floor/city/bacotell
 	name = "plating"
 	icon_state = "bacotell"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
 
 /turf/open/floor/city/gummaguts
 	name = "plating"
 	icon_state = "gummaguts"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
