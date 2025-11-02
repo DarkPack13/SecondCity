@@ -214,11 +214,21 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 		if(species.check_roundstart_eligible())
 			selectable_species += species.id
+	// DARKPACK EDIT CHANGE START - LANGUAGES
+			/*
 			var/datum/language_holder/temp_holder = GLOB.prototype_language_holders[species.species_language_holder]
 			for(var/datum/language/spoken_language as anything in temp_holder.understood_languages)
 				GLOB.uncommon_roundstart_languages |= spoken_language
+			*/
 
+	// The changes here mean this can be moved to just a glob list init but that would mean even more non-modular edits. Will do if I can get demodularization.
+	GLOB.uncommon_roundstart_languages = list()
+	for(var/datum/language/lang as anything in subtypesof(/datum/language))
+		if(lang.restricted)
+			continue
+		GLOB.uncommon_roundstart_languages |= lang
 	GLOB.uncommon_roundstart_languages -= /datum/language/common
+	// DARKPACK EDIT CHANGE END
 	if(!selectable_species.len)
 		selectable_species += SPECIES_HUMAN
 
