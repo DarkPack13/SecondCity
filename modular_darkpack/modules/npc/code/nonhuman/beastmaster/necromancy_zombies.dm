@@ -45,7 +45,7 @@
 	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_power = 2
-	faction = list("Giovanni")
+	faction = list(VAMPIRE_CLAN_GIOVANNI)
 
 /mob/living/basic/beastmaster/giovanni_zombie/level1/Initialize(mapload)
 	. = ..()
