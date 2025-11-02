@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - code_imp: "remakes beastmaster subsystem and makes it easier to use"

@@ -66,6 +66,7 @@
 			rank = target.rank,
 			species = target.species,
 			trim = target.trim,
+			past_medical_records = target.past_medical_records, //DARKPACK EDIT - FLAVOR TEXT
 		))
 
 	data["records"] = records
