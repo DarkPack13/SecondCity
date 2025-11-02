@@ -249,8 +249,9 @@
 		if(76 to INFINITY)
 			. += span_notice("Integrity: [atom_integrity]/[max_integrity] - Good condition")
 
-/obj/structure/vampgate/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/melee/vamp/tire))
+/obj/structure/vampgate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(istype(tool, /obj/item/melee/vamp/tire))
 		attempt_repair(user)
 		return TRUE
 
