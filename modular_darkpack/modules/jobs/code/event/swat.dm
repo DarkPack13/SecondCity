@@ -16,7 +16,7 @@
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)
-	r_hand = /obj/item/gun/ballistic/automatic/vampire/ar15
+	r_hand = /obj/item/gun/ballistic/automatic/darkpack/ar15
 
 /datum/antagonist/swat/proc/equip_swat()
 	var/mob/living/carbon/human/H = owner.current
