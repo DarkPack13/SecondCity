@@ -1,5 +1,0 @@
-author: "TheTrueSilverRat, chazzyjazzy, XeonMations"
-delete-after: True
-changes:
-  - refactor: "Added special checks for jobs"
-  - rscadd: "City jobs!"

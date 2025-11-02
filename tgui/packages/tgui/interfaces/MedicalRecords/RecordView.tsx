@@ -48,6 +48,7 @@ export const MedicalRecordView = (props) => {
     quirk_notes,
     rank,
     species,
+    past_medical_records, // DARKPACK EDIT - Flavor Text
   } = foundRecord;
 
   const minor_disabilities_array = getQuirkStrings(minor_disabilities);
@@ -211,6 +212,13 @@ export const MedicalRecordView = (props) => {
                 <Box key={index}>&#8226; {quirk}</Box>
               ))}
             </LabeledList.Item>
+            {/* DARKPACK EDIT START - Flavor Text */}
+            <LabeledList.Item label="Past Medical Records">
+              <Box maxWidth="100%" preserveWhitespace>
+                {past_medical_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            {/* DARKPACK EDIT END */}
           </LabeledList>
         </Section>
       </Stack.Item>
