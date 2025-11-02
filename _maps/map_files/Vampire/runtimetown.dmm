@@ -668,7 +668,7 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/turf/closed/wall/vampwall/low,
+/turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/outside/pacificheights)
 "pf" = (
 /obj/effect/turf_decal/stripes/line{
@@ -805,9 +805,6 @@
 "rW" = (
 /obj/effect/turf_decal/crosswalk,
 /turf/open/floor/plating/asphalt,
-/area/vtm/outside/pacificheights)
-"sb" = (
-/turf/closed/wall/vampwall,
 /area/vtm/outside/pacificheights)
 "sg" = (
 /obj/structure/table/reinforced,
@@ -6229,7 +6226,7 @@ vK
 pb
 pb
 pb
-sb
+vK
 Nf
 gX
 wp
@@ -6430,10 +6427,10 @@ GF
 (58,1,1) = {"
 GF
 vK
-sb
-sb
-sb
-sb
+vK
+vK
+vK
+vK
 wp
 gX
 RP
@@ -6501,7 +6498,7 @@ vK
 So
 CC
 KM
-sb
+vK
 om
 gX
 RP
@@ -6705,10 +6702,10 @@ vK
 KD
 CC
 Hr
-sb
+vK
 gX
 wp
-sb
+vK
 dG
 wp
 RP
@@ -6770,16 +6767,16 @@ GF
 (63,1,1) = {"
 GF
 vK
-sb
-sb
-sb
-sb
+vK
+vK
+vK
+vK
 Mz
 wp
-sb
+vK
 lC
 Qa
-sb
+vK
 RP
 RP
 RP
@@ -6844,10 +6841,10 @@ CC
 mE
 wp
 wp
-sb
+vK
 Az
 CC
-sb
+vK
 RP
 RP
 RP
