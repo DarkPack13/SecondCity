@@ -288,6 +288,27 @@
 			barefootstep = FOOTSTEP_SNOW
 			heavyfootstep = FOOTSTEP_SNOW
 
+/turf/open/misc/grass/vamp/random
+	MAP_SWITCH(icon_state = "grass1", icon_state = "grass_autodec_all")
+	var/autodecor = /obj/effect/spawner/random/flora/all
+
+/turf/open/misc/grass/vamp/random/grass
+	MAP_SWITCH(icon_state = "grass1", icon_state = "grass_autodec_grass")
+	autodecor = /obj/effect/spawner/random/flora/grass
+
+/turf/open/misc/grass/vamp/random/bushes
+	MAP_SWITCH(icon_state = "grass1", icon_state = "grass_autodec_bushes")
+	autodecor = /obj/effect/spawner/random/flora/bushes
+
+/turf/open/misc/grass/vamp/random/rocks
+	MAP_SWITCH(icon_state = "grass1", icon_state = "grass_autodec_rocks")
+	autodecor = /obj/effect/spawner/random/flora/rocks
+
+/turf/open/misc/grass/vamp/random/Initialize(mapload)
+	. = ..()
+	if(prob(33))
+		new autodecor(src)
+
 /turf/open/misc/dirt/vamp
 	name = "dirt"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'

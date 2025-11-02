@@ -45,3 +45,150 @@
 	if(!burned)
 		burned = TRUE
 		icon_state = "dead[rand(1, 5)]"
+
+
+/obj/structure/flora/grass/tall
+	icon_state = "tallgrass_1"
+	icon = 'modular_darkpack/modules/decor/icons/flora32x48.dmi'
+
+/obj/structure/flora/grass/tall/style_2
+	icon_state = "tallgrass_2"
+
+/obj/structure/flora/grass/tall/style_3
+	icon_state = "tallgrass_3"
+
+/obj/structure/flora/grass/tall/style_4
+	icon_state = "tallgrass_4"
+
+/obj/structure/flora/grass/tall/style_random/Initialize(mapload)
+	. = ..()
+	icon_state = "tallgrass_[rand(1, 4)]"
+	update_appearance()
+
+/obj/structure/flora/grass/tall/dry
+	icon_state = "drytallgrass_1"
+
+/obj/structure/flora/grass/tall/dry/style_2
+	icon_state = "drytallgrass_2"
+
+/obj/structure/flora/grass/tall/dry/style_3
+	icon_state = "drytallgrass_3"
+
+/obj/structure/flora/grass/tall/dry/style_4
+	icon_state = "drytallgrass_4"
+
+/obj/structure/flora/grass/tall/dry/style_random/Initialize(mapload)
+	. = ..()
+	icon_state = "drytallgrass_[rand(1, 4)]"
+	update_appearance()
+
+/obj/structure/flora/grass/short
+	icon_state = "grass_1"
+	icon = 'modular_darkpack/modules/decor/icons/flora32x48.dmi'
+
+/obj/structure/flora/grass/short/style_2
+	icon_state = "grass_2"
+
+/obj/structure/flora/grass/short/style_3
+	icon_state = "grass_3"
+
+/obj/structure/flora/grass/short/style_4
+	icon_state = "grass_4"
+
+/obj/structure/flora/grass/short/style_random/Initialize(mapload)
+	. = ..()
+	icon_state = "grass_[rand(1, 4)]"
+	update_appearance()
+
+/obj/structure/flora/bush/redflower
+	icon_state = "redplant_1"
+	icon = 'modular_darkpack/modules/decor/icons/flora32x48.dmi'
+
+/obj/structure/flora/bush/redflower/style_2
+	icon_state = "redplant_2"
+
+/obj/structure/flora/bush/redflower/style_3
+	icon_state = "redplant_3"
+
+/obj/structure/flora/bush/redflower/style_4
+	icon_state = "redplant_4"
+
+/obj/structure/flora/bush/redflower/style_random/Initialize(mapload)
+	. = ..()
+	icon_state = "redplant_[rand(1, 4)]"
+	update_appearance()
+
+
+/obj/structure/flora/rock/darkpack
+	icon_state = "rock1"
+	icon = 'modular_darkpack/modules/decor/icons/flora.dmi'
+
+/obj/structure/flora/rock/darkpack/Initialize(mapload)
+	. = ..()
+	icon_state = "rock[rand(1, 9)]"
+
+/obj/structure/flora/rock/pile/darkpack
+	icon_state = "smallrock1"
+	icon = 'modular_darkpack/modules/decor/icons/flora.dmi'
+
+/obj/structure/flora/rock/pile/darkpack/Initialize(mapload)
+	. = ..()
+	icon_state = "smallrock[rand(1, 6)]"
+
+/obj/structure/flora/rock/darkpack_big
+	icon_state = "rock1"
+	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
+	pixel_w = -16
+
+/obj/structure/flora/rock/darkpack_big/Initialize(mapload)
+	. = ..()
+	icon_state = "rock[rand(1, 4)]"
+
+/obj/structure/flora/rock/stalagmite
+	icon_state = "stalagmite1"
+	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
+	pixel_w = -16
+
+/obj/structure/flora/rock/stalagmite/Initialize(mapload)
+	. = ..()
+	icon_state = "stalagmite[rand(1, 5)]"
+
+
+/obj/effect/spawner/random/flora
+	icon_state = "flower"
+	abstract_type = /obj/effect/spawner/random/flora
+
+/obj/effect/spawner/random/flora/all
+	loot = list(
+		/obj/effect/spawner/random/flora/grass = 5,
+		/obj/effect/spawner/random/flora/bushes = 2,
+		/obj/effect/spawner/random/flora/rocks = 1
+	)
+
+/obj/effect/spawner/random/flora/grass
+	loot = list(
+		/obj/structure/flora/bush/fullgrass/style_random = 3,
+		/obj/structure/flora/bush/sparsegrass/style_random = 2,
+		/obj/structure/flora/bush/lavendergrass/style_random = 2,
+		/obj/structure/flora/bush/style_random = 1
+	)
+
+/obj/effect/spawner/random/flora/bushes
+	loot = list(
+		/obj/structure/flora/grass/tall/style_random = 4,
+		/obj/structure/flora/grass/short/style_random = 3,
+		/obj/structure/flora/bush/fullgrass/style_random = 2,
+		/obj/structure/flora/grass/tall/dry/style_random = 1,
+		/obj/structure/flora/bush/redflower/style_random = 1,
+	)
+
+/obj/effect/spawner/random/flora/rocks
+	loot = list(/obj/structure/flora/rock/pile/darkpack = 5, /obj/structure/flora/rock/darkpack = 1)
+
+/obj/effect/spawner/random/flora/flowers
+	loot = list(
+		/obj/structure/flora/bush/lavendergrass/style_random = 1,
+		/obj/structure/flora/bush/flowers_yw/style_random = 1,
+		/obj/structure/flora/bush/flowers_br/style_random = 1,
+		/obj/structure/flora/bush/flowers_pp/style_random = 1
+	)
