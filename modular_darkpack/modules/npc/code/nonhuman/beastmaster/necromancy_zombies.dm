@@ -42,7 +42,6 @@
 	attack_verb_simple = "grip"
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	death_message = "wails, disintegrating into a pile of ectoplasm!"
-	butcher_results = list(/obj/item/ectoplasm = 1)
 	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_power = 2
