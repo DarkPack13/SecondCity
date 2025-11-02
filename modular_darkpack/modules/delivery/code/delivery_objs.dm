@@ -239,7 +239,7 @@
 		"green" = 0,
 		)
 	animate(src, alpha = 0, time = 5 SECONDS)
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	set_light(0)
 
 /obj/structure/delivery_receiver/proc/check_deliveries()
@@ -249,7 +249,7 @@
 /obj/structure/delivery_receiver/Initialize(mapload)
 	. = ..()
 	alpha = 0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	GLOB.delivery_available_receivers.Add(src)
 	name = "[initial(name)] - [capitalize(chute_name)]"
 
@@ -303,7 +303,7 @@
 	. = ..()
 	GLOB.delivery_available_dispensers.Add(src)
 	alpha = 0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	name = "[initial(name)] - [capitalize(chute_name)]]"
 
 /obj/structure/delivery_dispenser/Destroy()
@@ -316,7 +316,7 @@
 	light_color = initial(light_color)
 	set_light(0)
 	animate(src,alpha = 0,5 SECONDS)
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/delivery_dispenser/proc/dispense_cargo(obj/truck_key, turf/target_turf)
 	if(!truck_key) return

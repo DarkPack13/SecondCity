@@ -1,0 +1,9 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "wood plant trays"
+  - qol: "you can cut seeds out of plants with any sharp object"
+  - refactor: "weed is now normal botany, meaning it functions like how all the other plants work"
+  - image: "pretty new crate and plant tray sprites by paynt"
+  - refactor: "weed is now normal botany, meaning it functions like how all the other plants work"
+  - bugfix: "retail stores will use custom premium price if it doesnt have normal custom_price nor passed in the retail store"
