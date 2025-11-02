@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(snow_list)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -96
 	pixel_z = -96
 
@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(snow_list)
 	alpha = 0
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -16
 	pixel_z = -32
 
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(snow_list)
 	alpha = 0
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_w = -16
 
 /obj/effect/new_snow/Initialize(mapload)

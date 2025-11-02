@@ -12,7 +12,7 @@
 		CRASH("Retail product equipment path of [product_path] is not a valid path!")
 
 	if(!price)
-		src.price = item.custom_price
+		src.price = item.custom_price || item.custom_premium_price
 
 	var/icon_file = initial(item.icon)
 	var/icon_state = initial(item.icon_state)
