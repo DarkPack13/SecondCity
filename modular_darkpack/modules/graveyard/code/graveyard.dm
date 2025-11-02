@@ -176,8 +176,6 @@
 	desc = "It opens and closes."
 	icon = 'modular_darkpack/modules/graveyard/icons/gate.dmi'
 	icon_state = "gate"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
 	pixel_w = -32
 	anchored = TRUE
 	density = TRUE

@@ -16,7 +16,7 @@
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	status_flags = CANPUSH
 	basic_mob_flags = DEL_ON_DEATH
-	faction = list("Giovanni")
+	faction = list(VAMPIRE_CLAN_GIOVANNI)
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
 
 /mob/living/basic/beastmaster/giovanni_zombie/Initialize(mapload)
@@ -45,7 +45,7 @@
 	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_power = 2
-	faction = list("Giovanni")
+	faction = list(VAMPIRE_CLAN_GIOVANNI)
 
 /mob/living/basic/beastmaster/giovanni_zombie/level1/Initialize(mapload)
 	. = ..()
