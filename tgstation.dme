@@ -6895,7 +6895,6 @@
 #include "modular_darkpack\modules\decor\code\flora.dm"
 #include "modular_darkpack\modules\decor\code\posters.dm"
 #include "modular_darkpack\modules\decor\code\racks.dm"
-#include "modular_darkpack\modules\decor\code\rocks.dm"
 #include "modular_darkpack\modules\decor\code\signs_city.dm"
 #include "modular_darkpack\modules\decor\code\tables.dm"
 #include "modular_darkpack\modules\decor\code\trash.dm"
