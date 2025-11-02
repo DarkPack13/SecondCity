@@ -169,7 +169,7 @@
 	icon = 'icons/obj/smooth_structures/darkpack/catwalk_borderless.dmi'
 
 /obj/structure/lattice/catwalk/borderless/smooth_walls
-	canSmoothWith = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_CITY_WALL + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CITY_WALL
 // DARKPACK EDIT ADD END
 
 /obj/structure/lattice/catwalk/mining
