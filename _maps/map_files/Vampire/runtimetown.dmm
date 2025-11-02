@@ -153,7 +153,7 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
 "ee" = (
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "eg" = (
 /obj/structure/extinguisher_cabinet{
@@ -211,7 +211,7 @@
 "fS" = (
 /obj/structure/ladder/manhole/down,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "gb" = (
 /obj/effect/decal/cleanable/cardboard,
@@ -544,7 +544,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "nY" = (
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "of" = (
 /obj/item/storage/medkit/darkpack/standard,
@@ -603,7 +603,7 @@
 /area/vtm/outside/supply)
 "pt" = (
 /mob/living/carbon/human/npc/shop,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "pz" = (
 /obj/darkpack_car/rand{
@@ -768,7 +768,7 @@
 /area/vtm/interior/shop)
 "sU" = (
 /obj/structure/railing/corner,
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "sX" = (
 /obj/structure/sign/city/store/bubway{
@@ -901,7 +901,7 @@
 /obj/structure/vampdoor{
 	dir = 4
 	},
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "vC" = (
 /obj/structure/vampfence/rich{
@@ -912,7 +912,7 @@
 /area/vtm/outside/pacificheights)
 "vJ" = (
 /obj/machinery/light/directional/north,
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "vK" = (
 /turf/closed/wall/vampwall/brick_old,
@@ -1033,7 +1033,7 @@
 "yE" = (
 /obj/effect/gibspawner/human,
 /obj/machinery/light/directional/west,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "yK" = (
 /obj/structure/vampdoor,
@@ -1183,7 +1183,7 @@
 /area/vtm/outside/pacificheights)
 "Cr" = (
 /obj/structure/vampdoor/glass/police_chief,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "Ct" = (
 /obj/structure/lamppost/one{
@@ -1268,7 +1268,7 @@
 	pixel_y = 38
 	},
 /obj/structure/closet/secure_closet/freezer,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "DJ" = (
 /obj/item/vamp/keys/anarch,
@@ -1798,7 +1798,7 @@
 /area/vtm/interior/shop)
 "Nx" = (
 /obj/structure/railing,
-/turf/open/floor/plating/vampcanal,
+/turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
 "NO" = (
 /obj/structure/table/wood/fancy/red,
@@ -2079,7 +2079,7 @@
 /area/vtm/outside/pacificheights)
 "Tq" = (
 /obj/effect/gibspawner/human,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "Tw" = (
 /obj/machinery/fax/anarch,
@@ -2101,7 +2101,7 @@
 /area/vtm/interior/anarch)
 "TO" = (
 /obj/machinery/recycler/deathtrap,
-/turf/open/floor/plating/toilet,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "TY" = (
 /obj/structure/rack/food{

@@ -1,3 +1,14 @@
+/turf/open/floor/plating/concrete
+	name = "concrete"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "concrete1"
+	footstep = FOOTSTEP_SIDEWALK
+	barefootstep = FOOTSTEP_SIDEWALK
+
+/turf/open/floor/plating/concrete/Initialize(mapload)
+	. = ..()
+	icon_state = "concrete[rand(1, 4)]"
+
 /turf/open/floor/plating/asphalt
 	name = "asphalt"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
@@ -110,37 +121,6 @@
 /turf/open/floor/plating/granite/black
 	icon_state = "granite-black"
 
-/turf/open/floor/plating/concrete
-	name = "concrete"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "concrete1"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
-
-/turf/open/floor/plating/concrete/Initialize(mapload)
-	. = ..()
-	icon_state = "concrete[rand(1, 4)]"
-
-/turf/open/floor/plating/vampcarpet
-	name = "carpet"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "carpet_black"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/vampplating
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "plating"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
-
-/turf/open/floor/plating/vampplating/mono
-	icon_state = "plating-mono"
-
-/turf/open/floor/plating/vampplating/stone
-	icon_state = "plating-stone"
-
 /turf/open/floor/plating/rough
 	name = "rough floor"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
@@ -168,73 +148,6 @@
 /turf/open/floor/plating/stone/Initialize(mapload)
 	. = ..()
 	icon_state = "cave[rand(1, 7)]"
-
-/turf/open/floor/plating/toilet
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "toilet1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/toilet/Initialize(mapload)
-	. = ..()
-	icon_state = "toilet[rand(1, 9)]"
-
-/turf/open/floor/plating/industrial
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "industrial1"
-
-/turf/open/floor/plating/industrial/Initialize(mapload)
-	. = ..()
-	icon_state = "industrial[rand(1, 9)]"
-
-/turf/open/floor/plating/circled
-	name = "fancy plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "circle1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/circled/Initialize(mapload)
-	. = ..()
-	icon_state = "circle[rand(1, 8)]"
-
-/turf/open/floor/plating/church
-	name = "fancy plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "church1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/church/Initialize(mapload)
-	. = ..()
-	icon_state = "church[rand(1, 4)]"
-
-/turf/open/floor/plating/saint
-	name = "fancy plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "saint1"
-	footstep = FOOTSTEP_PARKET
-	barefootstep = FOOTSTEP_PARKET
-
-/turf/open/floor/plating/saint/Initialize(mapload)
-	. = ..()
-	icon_state = "saint[rand(1, 2)]"
-
-/turf/open/floor/plating/bacotell
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "bacotell"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
-
-/turf/open/floor/plating/gummaguts
-	name = "plating"
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "gummaguts"
-	footstep = FOOTSTEP_SIDEWALK
-	barefootstep = FOOTSTEP_SIDEWALK
 
 /turf/open/floor/plating/grate
 	name = "grate"
