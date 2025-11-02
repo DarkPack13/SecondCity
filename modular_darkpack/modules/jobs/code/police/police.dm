@@ -31,7 +31,7 @@
 	uniform = /obj/item/clothing/under/vampire/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police
-	//belt = /obj/item/storage/belt/holster/detective/vampire/police
+	belt = /obj/item/storage/belt/security/police
 	gloves = /obj/item/watch
 	id = /obj/item/card/police
 	l_pocket = /obj/item/vamp/phone
