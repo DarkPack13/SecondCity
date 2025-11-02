@@ -83,6 +83,8 @@
 	seed.prepare_result(src)
 	transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5 //Makes the resulting produce's sprite larger or smaller based on potency!
 
+	AddElement(/datum/element/contextual_screentip_sharpness, rmb_text = "Extract Seed") // DARKPACK EDIT ADD
+
 /obj/item/food/grown/Destroy()
 	if(isatom(seed))
 		QDEL_NULL(seed)
@@ -166,6 +168,18 @@
 		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
+
+// DARKPACK EDIT ADD START
+/obj/item/food/grown/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.get_sharpness())
+		playsound(src, 'sound/items/weapons/slice.ogg', 25, TRUE, -1)
+		if(do_after(user, 2 SECONDS, src))
+			to_chat(user, span_notice("You split apart the [src]!"))
+			seedify(src, 1, user = user)
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
+	. = ..()
+// DARKPACK EDIT ADD END
 
 #undef BITE_SIZE_POTENCY_MULTIPLIER
 #undef BITE_SIZE_VOLUME_MULTIPLIER

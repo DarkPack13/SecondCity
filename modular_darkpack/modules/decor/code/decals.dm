@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "snow_overlay"
 	alpha = 200
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/decal/coastline
 	name = "water"
@@ -35,7 +35,7 @@
 	name = "asphalt"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "decal1"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/turf_decal/asphalt/Initialize(mapload)
 	icon_state = "decal[rand(1, 24)]"
@@ -49,7 +49,7 @@
 	name = "asphalt"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "line"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = TURF_DECAL_LAYER
 
 /obj/effect/turf_decal/asphaltline/alt
@@ -67,7 +67,7 @@
 	name = "asphalt"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "crosswalk1"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/turf_decal/crosswalk/Initialize(mapload)
 	icon_state = "crosswalk[rand(1, 3)]"
@@ -81,13 +81,13 @@
 	name = "stock"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "stock"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/turf_decal/bordur
 	name = "sidewalk"
 	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
 	icon_state = "border"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/turf_decal/bordur/Initialize(mapload)
 	if(check_holidays(FESTIVE_SEASON))

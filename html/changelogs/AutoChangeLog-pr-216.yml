@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "vamprocks are now normal rocks that can be smashed"
+  - map: "random spawners for flora"

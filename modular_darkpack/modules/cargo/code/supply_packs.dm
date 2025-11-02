@@ -70,11 +70,11 @@
 	desc = "Customized fertilizer mixed for the superior homegrown botanist."
 	cost = 500
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
 		)
 	crate_name = "hydro crate"
 
@@ -82,20 +82,14 @@
 /datum/supply_pack/vampire/weed_supplies
 	desc = "Contains a bailer and some seeds. No trays."
 	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
-	crate_name = "hydro crate"
-
-/datum/supply_pack/vampire/weed_supplies
-	desc = "Contains a bailer and some seeds. No trays."
-	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
+	contains = list(/obj/item/reagent_containers/cup/watering_can/metal, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis)
 	crate_name = "hydro crate"
 
 /datum/supply_pack/vampire/weed_tray
-	name = "Weed Tray"
-	desc = "Contains a tray of weed."
+	name = "Hydroponics Tray"
+	desc = "Contains a tray for growing plants."
 	cost = 300
-	contains = list(/obj/structure/weedshit/buyable)
+	contains = list(/obj/machinery/hydroponics/simple/plastic/unanchored)
 	crate_name = "weed crate"
 
 /datum/supply_pack/vampire/methlab
