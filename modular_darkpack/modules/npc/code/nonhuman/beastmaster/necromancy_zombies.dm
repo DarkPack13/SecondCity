@@ -48,6 +48,10 @@
 	light_power = 2
 	faction = list("Giovanni")
 
+/mob/living/basic/beastmaster/giovanni_zombie/level1/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/death_drops, /obj/item/ectoplasm)
+
 /mob/living/basic/beastmaster/giovanni_zombie/level2
 	maxHealth = 75
 	health = 75
