@@ -1,7 +1,7 @@
 /mob/living/basic/zombie/darkpack
 	name = "Shambling Corpse"
 	desc = "When there is no more room in Hell, the dead will walk on Earth."
-	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
+	icon = 'modular_darkpack/modules/graveyard/icons/zombies.dmi'
 	icon_state = "zombie"
 	icon_living = "zombie"
 	icon_dead = "zombie_dead"
@@ -26,7 +26,7 @@
 /mob/living/basic/zombie/darkpack/Initialize(mapload)
 	. = ..()
 	// the parent is causing them to appear as space station 13 zombies - this removes that.
-	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
+	icon = 'modular_darkpack/modules/graveyard/icons/zombies.dmi'
 	icon_state = icon_living
 	cut_overlays()
 	update_body()
@@ -107,7 +107,7 @@
 	)
 
 /obj/vampgrave
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/graveyard/icons/graves.dmi'
 	icon_state = "grave1"
 	name = "grave"
 	plane = GAME_PLANE
@@ -174,7 +174,7 @@
 /obj/structure/vampgate
 	name = "Graveyard Gate"
 	desc = "It opens and closes."
-	icon = 'modular_darkpack/modules/deprecated/icons/gate.dmi'
+	icon = 'modular_darkpack/modules/graveyard/icons/gate.dmi'
 	icon_state = "gate"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER

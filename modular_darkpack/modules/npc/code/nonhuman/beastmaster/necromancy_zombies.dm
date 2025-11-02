@@ -1,7 +1,7 @@
 /mob/living/basic/beastmaster/giovanni_zombie
 	name = "Shambling Corpse"
 	desc = "When there is no more room in hell, the dead will walk on Earth."
-	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
+	icon = 'modular_darkpack/modules/graveyard/icons/zombies.dmi'
 	icon_state = "zombie"
 	icon_living = "zombie"
 	icon_dead = "zombie_dead"
