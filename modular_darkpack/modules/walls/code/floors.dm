@@ -153,8 +153,7 @@
 	name = "grate"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "lattice_new"
-	footstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PARKET
+	footstep = FOOTSTEP_CATWALK
 
 /turf/open/floor/plating/grate/dirty
 	icon_state = "lattice_new_dirt"
@@ -224,6 +223,9 @@
 	if(my_area.outdoors)
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "snow[rand(1, 14)]"
+			footstep = FOOTSTEP_SNOW
+			barefootstep = FOOTSTEP_SNOW
+			heavyfootstep = FOOTSTEP_SNOW
 
 /turf/closed/indestructible/elevatorshaft
 	name = "elevator shaft"
