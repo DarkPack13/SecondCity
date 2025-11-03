@@ -3,7 +3,7 @@
 	desc = "The secrets of Blood Magic..."
 	icon_state = "arcane"
 	icon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/arcane_tome.dmi'
-	onflooricon = 'modular_darkpack/modules/deprecated/icons/onfloor.dmi'
+	onflooricon = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/ritual_thaumaturgy/icons/arcane_tome_onfloor.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/rituals = list()
 
