@@ -199,7 +199,7 @@
 	atom_integrity = max(0, atom_integrity - damage_amount)
 
 	if(sound_effect)
-		playsound(get_turf(src), 'modular_darkpack/master_files/sounds/get_bent.ogg', 100, FALSE)
+		playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 
 	shake_gate()
 
@@ -276,7 +276,7 @@
 			icon_state = "gate"
 			visible_message(span_notice("[src] is repaired and closed!"))
 
-		playsound(src, 'modular_darkpack/master_files/sounds/repair.ogg', 50, TRUE)
+		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		to_chat(user, span_notice("You repair some damage on [src]. ([atom_integrity]/[max_integrity])"))
 	else
 		to_chat(user, span_warning("You stop repairing [src]."))

@@ -163,6 +163,6 @@
 			var/money_to_spend = round(gas_to_dispense/20)
 			G.stored_gasoline = min(1000, G.stored_gasoline+gas_to_dispense)
 			stored_money = max(0, stored_money-money_to_spend)
-			playsound(loc, 'modular_darkpack/master_files/sounds/gas_fill.ogg', 50, TRUE)
+			playsound(loc, 'modular_darkpack/master_files/sounds/effects/gas_fill.ogg', 50, TRUE)
 			to_chat(user, span_notice("You fill [I]."))
 			say("Gas filled.")
