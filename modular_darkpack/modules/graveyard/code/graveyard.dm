@@ -199,7 +199,7 @@
 	atom_integrity = max(0, atom_integrity - damage_amount)
 
 	if(sound_effect)
-		playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 100, FALSE)
+		playsound(get_turf(src), 'modular_darkpack/master_files/sounds/get_bent.ogg', 100, FALSE)
 
 	shake_gate()
 
