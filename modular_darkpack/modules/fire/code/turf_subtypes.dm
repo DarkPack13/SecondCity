@@ -35,8 +35,14 @@
 /turf/open/space
 	flammability = -INFINITY // not a single chance in hell
 
-/turf/open/floor/grass
+/turf/open/water
+	flammability = 0
+
+/turf/open/misc/grass
 	flammability = 2
 
-/turf/open/floor/dirt/burn_tile()
+/turf/open/misc/grass/dirt/burn_tile()
 	return FALSE
+
+/turf/open/floor/wood
+	flammability = 2

@@ -81,7 +81,7 @@
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 	var/atom/fear
-	for(var/obj/effect/fire/F in GLOB.fires_list)
+	for(var/obj/effect/abstract/turf_fire/F in GLOB.fires_list)
 		if(get_dist(src, F) < 7 && F.z == src.z)
 			if(get_dist(src, F) < 6)
 				fear = F

@@ -1,5 +1,5 @@
 /*
-/obj/effect/fire
+/obj/effect/abstract/turf_fire
 	name = "fire"
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "fire"
@@ -18,7 +18,7 @@
 		pepeled = TRUE
 		color = "#808080"
 
-/obj/effect/fire/proc/handle_automated_spread()
+/obj/effect/abstract/turf_fire/proc/handle_automated_spread()
 	playsound(get_turf(src), 'modular_darkpack/modules/deprecated/sounds/fire.ogg', 80, TRUE)
 	var/area/AR = get_area(src)
 	if(AR.fire_controled)
@@ -74,34 +74,34 @@
 
 			if(allowed_to_spread)
 				if(A != loc && A.burn_material)
-					var/obj/effect/fire/F = locate() in A
+					var/obj/effect/abstract/turf_fire/F = locate() in A
 					if(!F && prob(A.spread_chance))
 						playsound(get_turf(A), 'modular_darkpack/modules/deprecated/sounds/spread.ogg', 80, TRUE)
-						var/obj/effect/fire/R = new(A)
+						var/obj/effect/abstract/turf_fire/R = new(A)
 						R.color = color
 	else
 		qdel(src)
 
-/obj/effect/fire/Crossed(atom/movable/AM, oldloc)
+/obj/effect/abstract/turf_fire/Crossed(atom/movable/AM, oldloc)
 	. = ..()
 	if(isliving(AM))
 		var/mob/living/L = AM
 		L.fire_stacks += 5
 		L.IgniteMob()
 
-/obj/effect/fire/Initialize(mapload)
+/obj/effect/abstract/turf_fire/Initialize(mapload)
 	. = ..()
 
 	set_light(3, 2, "#ffa800")
 	GLOB.fires_list += src
 
-/obj/effect/fire/Destroy()
+/obj/effect/abstract/turf_fire/Destroy()
 	. = ..()
 
 	set_light(0)
 	GLOB.fires_list -= src
 
-/obj/effect/fire/proc/change_stage(stag)
+/obj/effect/abstract/turf_fire/proc/change_stage(stag)
 	switch(stag)
 		if(0)
 			qdel(src)

@@ -51,4 +51,4 @@
 						oil = max(0, oil-10)
 						if(oil == 0)
 							icon_state = "flamethrower1"
-					new /obj/effect/fire(F)
+					F.ignite_turf(30, "red")

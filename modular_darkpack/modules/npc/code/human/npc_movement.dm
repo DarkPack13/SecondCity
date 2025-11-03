@@ -266,7 +266,7 @@
 	// TODO: [Rebase] reimplement fire
 	/*
 	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(7, src))
+	for (var/obj/effect/abstract/turf_fire/seen_fire in view(7, src))
 		afraid_of_fire = seen_fire
 		seeing_fire = TRUE
 	if (!seeing_fire)

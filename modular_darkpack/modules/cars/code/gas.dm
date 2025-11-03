@@ -72,6 +72,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_SPILL
 	canSmoothWith = SMOOTH_GROUP_SPILL + SMOOTH_GROUP_WALLS
+	resistance_flags = UNACIDABLE | ACID_PROOF
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	beauty = -50
 	alpha = 64
@@ -88,10 +89,10 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.on_fire)
-			var/obj/effect/fire/F = locate() in get_turf(src)
+			var/obj/effect/abstract/turf_fire/F = locate() in get_turf(src)
 			if(!F)
-				new /obj/effect/fire(get_turf(src))
-	..(AM)
+				new /obj/effect/abstract/turf_fire(get_turf(src))
+	. = ..()
 */
 
 /obj/effect/decal/cleanable/gasoline/Initialize()
@@ -111,18 +112,16 @@
 	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
-/*
 /obj/effect/decal/cleanable/gasoline/fire_act(exposed_temperature, exposed_volume)
-	var/obj/effect/fire/F = locate() in loc
-	if(!F)
-		new /obj/effect/fire(loc)
-	..()
-*/
+	var/turf/open/gas_turf = get_turf(src)
+	if(isopenturf(gas_turf))
+		gas_turf.ignite_turf(30 + gas_turf.flammability)
+	. = ..()
 
 /obj/effect/decal/cleanable/gasoline/attackby(obj/item/I, mob/living/user)
 	var/attacked_by_hot_thing = I.get_temperature()
 	if(attacked_by_hot_thing)
-		visible_message("<span class='warning'>[user] tries to ignite [src] with [I]!</span>", "<span class='warning'>You try to ignite [src] with [I].</span>")
+		visible_message(span_warning("[user] tries to ignite [src] with [I]!"), span_warning("You try to ignite [src] with [I]."))
 		log_combat(user, src, (attacked_by_hot_thing < 480) ? "tried to ignite" : "ignited", I)
 		fire_act(attacked_by_hot_thing)
 		return

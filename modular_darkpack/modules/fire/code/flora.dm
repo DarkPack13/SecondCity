@@ -10,3 +10,6 @@
 
 /obj/structure/flora/tree
 	fuel_power = 1 // trees are more resistant to fire and take much longer to burn
+
+/obj/structure/flora/rock
+	fuel_power = 0

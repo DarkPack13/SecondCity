@@ -9,6 +9,10 @@
 	var/active = FALSE
 	var/explode_timer
 
+/obj/item/molotov/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
+
 /obj/item/molotov/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	explode()
@@ -27,13 +31,15 @@
 /obj/item/molotov/proc/explode()
 	deltimer(explode_timer)
 
-	var/atom/explode_location = get_turf(src)
+	var/turf/explode_location = get_turf(src)
 
-	for(var/turf/open/floor/floor in range(2, explode_location))
-		new /obj/effect/decal/cleanable/gasoline(floor)
+	for(var/turf/open/floor in range(3, explode_location))
+		if(prob(65))
+			if(get_dist(explode_location, floor) <= 1 || prob(40))
+				new /obj/effect/decal/cleanable/gasoline(floor)
 
 	if(active)
-		new /obj/effect/fire(explode_location)
+		explode_location.ignite_turf(30)
 
-	playsound(explode_location, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
+	playsound(explode_location, 'modular_darkpack/modules/fire/sounds/explode.ogg', 100, TRUE)
 	qdel(src)
