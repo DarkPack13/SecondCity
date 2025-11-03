@@ -97,13 +97,9 @@
 
 /obj/effect/decal/cleanable/gasoline/Initialize()
 	. = ..()
-	/*
-	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open/floor))
-		var/turf/open/floor/F = T
-		F.spread_chance = 100
-		F.burn_material += 100
-	*/
+	var/turf/open/my_turf = get_turf(src)
+	if(istype(my_turf))
+		my_turf.flammability += 5
 	if(smoothing_flags & USES_SMOOTHING)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)

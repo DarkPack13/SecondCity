@@ -1,11 +1,10 @@
 /obj/item/molotov
 	name = "molotov cocktail"
-	desc = "Well fire weapon."
+	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
 	icon_state = "molotov"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	masquerade_violating = TRUE
 	var/active = FALSE
 	var/explode_timer
 
@@ -33,10 +32,8 @@
 
 	var/turf/explode_location = get_turf(src)
 
-	for(var/turf/open/floor in range(3, explode_location))
-		if(prob(65))
-			if(get_dist(explode_location, floor) <= 1 || prob(40))
-				new /obj/effect/decal/cleanable/gasoline(floor)
+	for(var/turf/open/floor in range(2, explode_location))
+		new /obj/effect/decal/cleanable/gasoline(floor)
 
 	if(active)
 		explode_location.ignite_turf(30)
