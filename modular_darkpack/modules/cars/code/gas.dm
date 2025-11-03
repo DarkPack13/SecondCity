@@ -105,6 +105,9 @@
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/effect/decal/cleanable/gasoline/Destroy()
+	var/turf/open/my_turf = get_turf(src)
+	if(istype(my_turf))
+		my_turf.flammability -= 5 // Technicly no validtiy for if its the same turf we started on. Making something less flamible is a nothing burger tho
 	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
@@ -112,7 +115,14 @@
 	var/turf/open/gas_turf = get_turf(src)
 	if(isopenturf(gas_turf))
 		gas_turf.ignite_turf(30 + gas_turf.flammability)
+	addtimer(CALLBACK(src, PROC_REF(ignite_others)), 0.5 SECONDS)
 	. = ..()
+
+/obj/effect/decal/cleanable/gasoline/proc/ignite_others()
+	for(var/obj/effect/decal/cleanable/gasoline/oil in range(1, get_turf(src)))
+		if(prob(25))
+			continue
+		oil.fire_act()
 
 /obj/effect/decal/cleanable/gasoline/attackby(obj/item/I, mob/living/user)
 	var/attacked_by_hot_thing = I.get_temperature()

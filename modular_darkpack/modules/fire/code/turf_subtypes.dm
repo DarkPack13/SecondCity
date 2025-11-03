@@ -25,7 +25,8 @@
 		return
 	if(!active_hotspot && !turf_fire)
 		return
-	//air.set_temperature(max(min(air.return_temperature() - (cooling_power * 1000), air.return_temperature() / cooling_power), TCMB))
+	air.temperature = min(max(min(air.temperature-(cooling_power*1000), air.temperature/cooling_power), T0C), air.temperature) // the outer min temperature check is for weird phenomena like freon combustion
+	temperature = clamp(min(temperature-(cooling_power*1000), temperature/cooling_power), T20C, temperature) // turfs normally don't go below T20C so I'll just clamp it to that in case of weird phenomena.
 	air.react(src)
 	if(active_hotspot)
 		qdel(active_hotspot)
@@ -41,7 +42,11 @@
 /turf/open/misc/grass
 	flammability = 2
 
-/turf/open/misc/grass/dirt/burn_tile()
+/turf/open/misc/grass/burn_tile()
+	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+	return TRUE
+
+/turf/open/misc/dirt/burn_tile()
 	return FALSE
 
 /turf/open/floor/wood

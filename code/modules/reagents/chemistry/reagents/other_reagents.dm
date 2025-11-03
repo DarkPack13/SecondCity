@@ -137,6 +137,7 @@
 
 	var/cool_temp = cooling_temperature
 
+	/* DARKPACK EDIT REMOVAL
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
 	if(hotspot && !isspaceturf(exposed_turf)) // the water evaporates in an endothermic reaction
 		if(exposed_turf.air)
@@ -145,6 +146,8 @@
 			exposed_turf.temperature = clamp(min(exposed_turf.temperature-(cool_temp*1000), exposed_turf.temperature/cool_temp), T20C, exposed_turf.temperature) // turfs normally don't go below T20C so I'll just clamp it to that in case of weird phenomena.
 			air.react(src)
 			qdel(hotspot)
+	*/
+	exposed_turf.extinguish_turf(cool_temp) // DARKPACK EDIT ADD
 
 	if(isgroundlessturf(exposed_turf) || isnoslipturf(exposed_turf))
 		return
