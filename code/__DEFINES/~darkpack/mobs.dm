@@ -9,6 +9,7 @@
 #define isghoul(A) (is_species(A, /datum/species/human/ghoul))
 #define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A))
 
+#define isavatar(A) (istype(A, /mob/dead/observer/avatar))
 
 // TODO: [Rebase] implement other splats
 #define isgarou(A) (FALSE)

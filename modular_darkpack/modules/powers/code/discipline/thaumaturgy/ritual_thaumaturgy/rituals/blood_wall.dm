@@ -9,7 +9,7 @@
 
 /obj/ritualrune/blood_wall/complete()
 	new /obj/structure/bloodwall(loc)
-	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
+	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)
 
 /obj/structure/bloodwall

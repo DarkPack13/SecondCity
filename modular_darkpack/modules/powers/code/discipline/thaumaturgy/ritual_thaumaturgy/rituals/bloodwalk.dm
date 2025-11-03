@@ -19,7 +19,7 @@
 
 			else
 				to_chat(user, "The blood speaks not; it is empty of power!")
-		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
 		qdel(src)

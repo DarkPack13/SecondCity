@@ -8,7 +8,7 @@
 
 /obj/ritualrune/chime_of_unseen_spirits/complete()
     new /obj/item/spirit_chime(loc)
-    playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
+    playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
     qdel(src)
 
 // The spirit chime item itself
@@ -217,8 +217,11 @@
 /proc/valid_target(atom/movable/target)
 	if(istype(target, /mob/dead/observer))
 		var/mob/dead/observer/ghost = target
+		//TODO: [Rebase] -- reimplement auspex
+		/*
 		if((ghost.mind && !ghost.aghosted) || isavatar(ghost)) // Checks only for ghosts of the dead & Auspex 5 avatars
 			return TRUE
 		if(ghost.mind && ghost.orbiting) // Checks for orbiting ghosts
 			return TRUE
+		*/
 	return FALSE

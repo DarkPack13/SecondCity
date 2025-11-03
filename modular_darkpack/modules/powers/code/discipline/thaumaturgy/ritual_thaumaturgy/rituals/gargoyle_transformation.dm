@@ -14,7 +14,7 @@
 	var/list/valid_bodies = list()
 
 	for(var/mob/living/carbon/human/H in loc)
-		if(H && H.dna && istype(H.dna.species, /datum/species/kindred))
+		if(H && H.dna && istype(H.dna.species, /datum/species/human/kindred))
 			if(H == usr)
 				to_chat(usr, span_warning("You may not turn yourself into a Gargoyle!"))
 				return
@@ -25,7 +25,7 @@
 				valid_bodies += H
 			else
 				H.adjustAggLoss(50)
-				playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 10, FALSE)
+				playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
 
@@ -39,8 +39,9 @@
 	to_chat(usr, span_notice("You begin invoking the ritual of Gargoyle Creation with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 	usr.visible_message(span_notice("[usr] begins invoking a ritual with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 
-	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
-	playsound(loc, 'code/modules/wod13/sounds/vicissitude.ogg', 50, FALSE)
+	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+	//TODO: [Rebase] -- vicissitude, when its reintroduced re-path this
+	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 
 	// Apply stun so that they cant just crawl away in crit - caster must also stay still
 	for(var/mob/living/carbon/human/H in valid_bodies)
@@ -76,13 +77,12 @@
 
 	if(perfect_gargoyle)
 		// Create perfect gargoyle (2+ bodies) -- you'd have to frag two different kindred players to create a perfect gargoyle.
-		var/mob/living/simple_animal/hostile/gargoyle/perfect/G = new /mob/living/simple_animal/hostile/gargoyle/perfect(loc)
+		var/mob/living/basic/gargoyle/perfect/G = new /mob/living/basic/gargoyle/perfect(loc)
 		G.visible_message(span_cult("A massive perfect Gargoyle rises from the ritual!"))
 
 		// Ensure perfect gargoyle is at full health
 		G.revive(TRUE)
 		G.health = G.maxHealth
-		G.apply_status_effect(STATUS_EFFECT_INLOVE, usr)
 
 		// Handle the other bodies
 		for(var/mob/living/carbon/human/H in bodies)
@@ -93,10 +93,23 @@
 
 				H.gib(FALSE, FALSE, TRUE)
 
-		G.gain_sentience()
+		// Poll for a ghost to control the perfect gargoyle
+		var/list/candidates = SSpolling.poll_ghosts_for_targets(
+			question = "Do you wish to play as [span_notice("Perfect Gargoyle")]?",
+			role = ROLE_SENTIENCE,
+			check_jobban = ROLE_SENTIENCE,
+			poll_time = 20 SECONDS,
+			checked_targets = list(G),
+			//ignore_category = POLL_IGNORE_GARGOYLE
+		)
 
-		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
-		playsound(loc, 'code/modules/wod13/sounds/vicissitude.ogg', 50, FALSE)
+		if(length(candidates))
+			var/mob/dead/observer/chosen = pick(candidates)
+			G.key = chosen.key
+			message_admins("[key_name_admin(chosen)] has become a Perfect Gargoyle.")
+
+		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 	else
 		// Create normal sentient gargoyle (1 body)
 		var/mob/living/carbon/human/target_body = bodies[1]
@@ -115,7 +128,7 @@
 
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
-		target_body.set_species(/datum/species/kindred)
+		target_body.set_species(/datum/species/human/kindred)
 		target_body.set_clan(/datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
@@ -127,18 +140,24 @@
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
 
-		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/thaum.ogg', 50, FALSE)
-		playsound(target_body.loc, 'code/modules/wod13/sounds/vicissitude.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(target_body.loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 
 		// Handle key assignment
 		if(!target_body.key)
-			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you wish to play as Sentient Gargoyle?", null, null, null, 20 SECONDS, src)
-			for(var/mob/dead/observer/G in GLOB.player_list)
-				if(G.key)
-					to_chat(G, span_ghostalert("Gargoyle Transformation rune has been triggered."))
-			if(LAZYLEN(candidates))
-				var/mob/dead/observer/C = pick(candidates)
-				target_body.key = C.key
+			var/list/candidates = SSpolling.poll_ghosts_for_targets(
+				question = "Do you wish to play as [span_notice("Sentient Gargoyle")]?",
+				role = ROLE_SENTIENCE,
+				check_jobban = ROLE_SENTIENCE,
+				poll_time = 20 SECONDS,
+				checked_targets = list(target_body), // Note: it's checked_targets, not target_mobs
+				//ignore_category = POLL_IGNORE_GARGOYLE
+			)
+
+			if(length(candidates))
+				var/mob/dead/observer/chosen = pick(candidates) // NOW we use pick() since it returns a flat list
+				target_body.key = chosen.key
+				message_admins("[key_name_admin(chosen)] has become a Sentient Gargoyle.")
 
 			var/choice = tgui_alert(target_body, "Do you want to pick a new name as a Gargoyle?", "Gargoyle Choose Name", list("Yes", "No"), 10 SECONDS)
 			if(choice == "Yes")
@@ -156,7 +175,7 @@
 	qdel(src)
 
 // Perfect Gargoyle definition
-/mob/living/simple_animal/hostile/gargoyle/perfect
+/mob/living/basic/gargoyle/perfect
 	name = "Perfect Gargoyle"
 	desc = "A massive stone-skinned monstrosity with enhanced strength and durability."
 	icon_state = "gargoyle_m"
@@ -165,7 +184,7 @@
 	speed = -2
 	maxHealth = 600
 	health = 600
-	harm_intent_damage = 8
+	//harm_intent_damage = 8
 	melee_damage_lower = 35
 	melee_damage_upper = 60
 	attack_verb_continuous = "brutally crushes"
@@ -174,7 +193,7 @@
 	bloodpool = 15
 	maxbloodpool = 15
 
-/mob/living/simple_animal/hostile/gargoyle/perfect/Initialize()
+/mob/living/basic/gargoyle/perfect/Initialize()
 	. = ..()
 	// Make the perfect gargoyle slightly larger
 	transform = transform.Scale(1.10, 1.10)

@@ -18,7 +18,7 @@
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
 
-	activate_sound = 'code/modules/wod13/sounds/thaum.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg'
 
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED
 	aggravating = TRUE
@@ -31,7 +31,7 @@
 /datum/discipline_power/thaumaturgy/activate(atom/target)
 	. = ..()
 	//Thaumaturgy powers have different effects based off the amount of successes. I dont want to copy paste the code, so this is being put here.
-	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner, force_chat_result = TRUE)
+	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
 	if(success_count < 0)
 		thaumaturgy_botch_effect()
 		return TRUE
@@ -46,7 +46,7 @@
 		if(1)
 			to_chat(owner, span_userdanger("You feel like something snapped inside of you!"))
 			for(var/obj/item/bodypart/limb in owner.bodyparts)
-				var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
+				///var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/severe, /datum/wound/blunt/moderate)) TODO : chaz, wounds
 				limb.force_wound_upwards(type_wound)
 		if(2)
 			to_chat(owner, span_userdanger("You feel like there's a sun inside of you!"))
@@ -54,7 +54,7 @@
 			owner.IgniteMob()
 		if(3)
 			to_chat(owner, span_userdanger("You feel slightly less competent!"))
-			owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "thaummaturgy_failure")
+			owner.st_add_stat_mod(STAT_WILLPOWER, -1, "thaummaturgy_failure")
 
 //------------------------------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@
 		message += span_notice("The owner of the blood has [rand(1, blood_owner.bloodpool)] blood points left.")
 
 	if(success_count > 4)
-		if(blood_owner.client.prefs.diablerist)
+		if(HAS_TRAIT(blood_owner, TRAIT_DIABLERIE))
 			message += span_danger("The owner of this blood has commmited the act of Diablerie in their past.")
 	else if(success_count <= 0) //Botches.
 		message += span_danger("The owner of this blood has commmited the act of Diablerie in their past.")
@@ -131,7 +131,7 @@
 	name = "Blood Rage"
 	desc = "Impose your will on another Kindred's vitae and force them to spend it as you wish."
 
-	effect_sound = 'sound/magic/demon_consume.ogg'
+	effect_sound = 'sound/effects/magic/demon_consume.ogg'
 
 	level = 2
 	range = 1
@@ -151,7 +151,7 @@
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return
-	var/datum/species/kindred/kindred_species = target.dna.species // Get the vampire's species
+	var/datum/species/human/kindred/kindred_species = target.dna.species // Get the vampire's species
 	for(var/i in 1 to success_count)
 		var/datum/discipline/random_discipline = pick(kindred_species.disciplines) //Choose a random discipline that they have
 		var/datum/discipline_power/random_discipline_power = pick(random_discipline.known_powers) //Choose a random level of that discipline
@@ -231,7 +231,7 @@
 	level = 4
 
 	vitae_cost = 0 //Since 1 success should give one vitae, balancing.
-	effect_sound = 'sound/magic/enter_blood.ogg'
+	effect_sound = 'sound/effects/magic/enter_blood.ogg'
 	range = 8 // Within 50 feet (15 meters).
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED | DISC_CHECK_SEE | DISC_CHECK_DIRECT_SEE // The subject must be visible to the thaumaturge
 	target_type = TARGET_MOB
@@ -259,8 +259,11 @@
 		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
 	else
 		var/blood_coefficient = (5 / target.bloodpool)
+		//TODO: [Rebase] -- reimplement quirks -- potent blood
+		/*
 		if(HAS_TRAIT(target, TRAIT_POTENT_BLOOD))
 			blood_coefficient *= 0.5
+		*/
 		var/blood_taken = clamp(success_count, 0, target.bloodpool)
 		target.blood_volume = max (0, (target.blood_volume - (blood_taken * (70*blood_coefficient))))
 
@@ -296,6 +299,6 @@
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
 	target.bloodpool = max(target.bloodpool - success_count, 0)
 	if(isnpc(target))
-		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, CLONE) //A single success kills any mortal
+		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
 	else
-		target.apply_damage(success_count * 40 + owner.thaum_damage_plus, CLONE) //8 successes = 320 aggravated damage, however this is diffulty 8 so more than 2 successes is rare.
+		target.apply_damage(success_count * 40 + owner.thaum_damage_plus, AGGRAVATED) //8 successes = 320 aggravated damage, however this is diffulty 8 so more than 2 successes is rare.
