@@ -182,31 +182,49 @@
 /datum/biome/mudlands
 	turf_type = /turf/open/misc/dirt/vamp
 	flora_types = list(
-		/obj/structure/small_vamprocks = 2,
-		/obj/structure/vamprocks = 1,
-		/obj/structure/big_vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 2,
+		/obj/structure/flora/rock/darkpack = 1,
+		/obj/structure/flora/rock/darkpack_big = 1,
 	)
 	flora_density = 3
 
 /datum/biome/plains
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/sparsegrass/style_random = 10,
+		/obj/effect/spawner/random/flora/grass = 25,
+		/obj/effect/spawner/random/flora/bushes = 10,
 		/obj/structure/flora/tree/vamp/pine = 1,
-		/obj/structure/small_vamprocks = 1,
-		/obj/structure/vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 1,
+		/obj/structure/flora/rock/darkpack = 1,
 	)
-	flora_density = 40
+	flora_density = 60
+	fauna_types = list(
+		/mob/living/basic/butterfly = 30,
+		/mob/living/basic/deer = 10,
+		/mob/living/basic/goose = 5,
+		/mob/living/basic/frog = 5,
+		/mob/living/basic/pet/fox = 1,
+	)
+	fauna_density = 2
 
 /datum/biome/jungle
 	turf_type = /turf/open/misc/grass/vamp
 	flora_types = list(
-		/obj/structure/flora/bush/sparsegrass/style_random = 6,
-		/obj/structure/flora/tree/vamp/pine = 2,
-		/obj/structure/small_vamprocks = 1,
-		/obj/structure/vamprocks = 1,
+		/obj/effect/spawner/random/flora/grass = 5,
+		/obj/effect/spawner/random/flora/bushes = 2,
+		/obj/structure/flora/tree/vamp/pine = 3,
+		/obj/structure/flora/rock/pile/darkpack = 1,
+		/obj/structure/flora/rock/darkpack = 1,
 	)
 	flora_density = 30
+	fauna_types = list(
+		/mob/living/basic/butterfly = 30,
+		/mob/living/basic/deer = 10,
+		/mob/living/basic/goose = 5,
+		/mob/living/basic/frog = 5,
+		/mob/living/basic/pet/fox = 1,
+	)
+	fauna_density = 1
 
 /datum/biome/jungle/deep
 	flora_density = 50
@@ -214,9 +232,9 @@
 /datum/biome/wasteland
 	turf_type = /turf/open/misc/dirt/vamp
 	flora_types = list(
-		/obj/structure/small_vamprocks = 10,
-		/obj/structure/vamprocks = 2,
-		/obj/structure/big_vamprocks = 1,
+		/obj/structure/flora/rock/pile/darkpack = 10,
+		/obj/structure/flora/rock/darkpack = 2,
+		/obj/structure/flora/rock/darkpack_big = 1,
 	)
 	flora_density = 5
 
