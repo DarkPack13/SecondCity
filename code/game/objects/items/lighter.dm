@@ -10,7 +10,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FIRE_PROOF
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/fuel/oil = 5)
-	custom_price = PAYCHECK_CREW * 1.1
+	custom_price = 20 // DARKPACK EDIT CHANGE
 	light_system = OVERLAY_LIGHT
 	light_range = 2
 	light_power = 1.3
@@ -37,11 +37,14 @@
 		"thirteen",
 		"snake",
 	)
+	/// Whether the lighter starts with fuel
+	var/spawns_with_reagent = TRUE
 
 /obj/item/lighter/Initialize(mapload)
 	. = ..()
 	create_reagents(maximum_fuel, REFILLABLE | DRAINABLE)
-	reagents.add_reagent(/datum/reagent/fuel, maximum_fuel)
+	if(spawns_with_reagent)
+		reagents.add_reagent(/datum/reagent/fuel, maximum_fuel)
 	if(!overlay_state)
 		overlay_state = pick(overlay_list)
 	AddComponent(\
@@ -227,11 +230,10 @@
 
 /obj/item/lighter/process(seconds_per_tick)
 	if(lit)
+		open_flame(heat)
 		burned_fuel_for += seconds_per_tick
 		if(burned_fuel_for >= TOOL_FUEL_BURN_INTERVAL)
 			use(used = 0.25)
-
-	open_flame(heat)
 
 /obj/item/lighter/get_temperature()
 	return lit * heat
@@ -325,7 +327,7 @@
 	desc = "In lieu of fuel, performative spirit can be used to light cigarettes."
 	icon_state = "mlighter" //These ones don't show a flame.
 	light_color = LIGHT_COLOR_HALOGEN
-	heat_while_on = 0 //I swear it's a real lighter dude you just can't see the flame dude I promise
+	heat_while_on = TCMB //I swear it's a real lighter dude you just can't see the flame dude I promise
 	overlay_state = "mime"
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/consumable/nothing = 10)
 	light_range = 0
@@ -367,3 +369,9 @@
 		/obj/item/lighter/mime,
 		/obj/item/lighter/bright,
 	)
+
+/obj/item/lighter/empty
+	spawns_with_reagent = FALSE
+
+/obj/item/lighter/greyscale/empty
+	spawns_with_reagent = FALSE

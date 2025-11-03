@@ -1,5 +1,3 @@
 /obj/structure/vampdoor/baali : /obj/structure/vampdoor/wood/old/baali {@OLD}
 /obj/structure/vampdoor/salubri : /obj/structure/vampdoor/wood/old/salubri {@OLD}
 /obj/structure/vampdoor/old_clan_tzimisce : /obj/structure/vampdoor/wood/old/clan_tzimisce {@OLD}
-
-/obj/item/vamp/keys/hack : /obj/item/vamp/lockpick {@OLD}

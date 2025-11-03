@@ -15,6 +15,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Trasen-Knox" = 'icons/hud/screen_trasenknox.dmi',
 	"Detective" = 'icons/hud/screen_detective.dmi',
+	"World of Darkness" = 'modular_darkpack/master_files/icons/hud/screen_darkness.dmi', // DARKPACK EDIT ADD - Put at the bottom as it has terrible coverage
+	"World of Darkness New" = 'modular_darkpack/master_files/icons/hud/screen_darkness_new.dmi', // DARKPACK EDIT ADD - Put at the bottom as it has terrible coverage
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -240,6 +242,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	throw_icon = null
 	resist_icon = null
 	QDEL_LIST(infodisplay)
+	open_containers = null
 
 	healths = null
 	stamina = null
@@ -343,7 +346,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				screenmob.client.screen += infodisplay
 			if(always_visible_inventory.len)
 				screenmob.client.screen += always_visible_inventory
-			if(open_containers.len)
+			if(open_containers.len && screenmob == mymob) // Don't show open inventories to ghosts
+				list_clear_nulls(open_containers)
 				screenmob.client.screen += open_containers
 			screenmob.client.screen += toggle_palette
 

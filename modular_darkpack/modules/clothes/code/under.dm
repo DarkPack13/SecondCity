@@ -6,13 +6,12 @@
 	can_adjust = FALSE
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 10, "undersuit", FALSE)
+	AddComponent(/datum/component/selling, 75, "undersuit", FALSE)
 
 /obj/item/clothing/under/vampire/brujah
 	name = "punk attire"
@@ -231,9 +230,25 @@
 //Police and Guards
 
 /obj/item/clothing/under/vampire/police
-	name = "police officer uniform"
+	name = "police uniform"
 	desc = "The clothes of the boys in blue. Did you know that 44% of Cops have heard of Pentex? Google 44% of Cops for more information."
 	icon_state = "police"
+
+/obj/item/clothing/under/vampire/police/long
+	name = "police uniform"
+	icon_state = "policelong"
+
+/obj/item/clothing/under/vampire/police/turtleneck
+	name = "police turtleneck"
+	icon_state = "policeturtleneck"
+
+/obj/item/clothing/under/vampire/police/pants
+	name = "police fatigue pants"
+	icon_state = "policepants"
+
+/obj/item/clothing/under/vampire/police/utility
+	name = "police fatigues"
+	icon_state = "policeutil"
 
 /obj/item/clothing/under/vampire/guard
 	name = "security guard uniform"

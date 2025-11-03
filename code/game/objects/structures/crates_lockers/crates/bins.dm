@@ -1,8 +1,9 @@
 /obj/structure/closet/crate/bin
 	desc = "A trash bin, place your trash here for the janitor to collect."
 	name = "trash bin"
-	icon_state = "trashbin"
-	base_icon_state = "trashbin"
+	icon_state = "trashcan"
+	base_icon_state = "trashcan"
+	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi' // DARKPACK EDIT CHANGE
 	open_sound = 'sound/effects/bin/bin_open.ogg'
 	close_sound = 'sound/effects/bin/bin_close.ogg'
 	anchored = TRUE
@@ -22,6 +23,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
+/* // DARKPACK EDIT REMOVAL - No sprites for this yet.
 /obj/structure/closet/crate/bin/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, base_icon_state + "_empty", src, alpha = src.alpha)
@@ -32,6 +34,7 @@
 		. += base_icon_state + "_full"
 		return
 	. += base_icon_state + "_some"
+*/
 
 /obj/structure/closet/crate/bin/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(W, /obj/item/storage/bag/trash) && !opened)

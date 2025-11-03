@@ -1,6 +1,6 @@
 /area/vtm
 	name = CITY_NAME
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/areas/icons/areas.dmi'
 	icon_state = "sewer"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY

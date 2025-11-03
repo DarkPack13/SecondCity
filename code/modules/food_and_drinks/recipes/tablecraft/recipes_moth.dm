@@ -1,4 +1,4 @@
-/datum/crafting_recipe/food/herby_cheese
+/* /datum/crafting_recipe/food/herby_cheese // DARKPACK EDIT REMOVE
 	name = "Herby cheese"
 	reqs = list(
 		/obj/item/food/cheese/curd_cheese = 1,
@@ -436,3 +436,4 @@
 	name = "Chili Sin Carne (Vegetarian Chili)"
 	reaction = /datum/chemical_reaction/food/soup/chili_sin_carne
 	category = CAT_MOTH
+ */

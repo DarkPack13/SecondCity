@@ -1,0 +1,3 @@
+/obj/minespot:
+  banned_neighbors:
+    - /obj/minespot

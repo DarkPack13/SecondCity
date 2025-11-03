@@ -1,9 +1,9 @@
-#define MAX_NOTICES 8
+#define MAX_NOTICES 5 // DARKPACK EDIT CHANGE - Only have sprite state up to 5.
 
 /obj/structure/noticeboard
 	name = "notice board"
 	desc = "A board for pinning important notices upon. It is made of the finest Spanish cork."
-	icon = 'icons/obj/wallmounts.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/wallmounts.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "noticeboard"
 	density = FALSE
 	anchored = TRUE
@@ -35,7 +35,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 		paper.forceMove(src)
 		notices++
 	update_appearance(UPDATE_ICON)
-	find_and_hang_on_wall()
+	if(mapload)
+		find_and_hang_on_wall()
 
 //attaching papers!!
 /obj/structure/noticeboard/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
@@ -102,7 +103,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, 32)
 /obj/structure/noticeboard/update_overlays()
 	. = ..()
 	if(notices)
-		. += "notices_[notices]"
+		. += "notices_[clamp(notices, 1, MAX_NOTICES)]" // DARKPACK EDIT CHANGE
 
 /**
  * Removes an item from the notice board

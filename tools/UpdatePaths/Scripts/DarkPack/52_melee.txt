@@ -1,23 +1,24 @@
-/obj/item/storage/belt/vampire/sheathe/longsword : /obj/item/storage/belt/sheath/vamp/sword
-/obj/item/storage/belt/vampire/sheathe/rapier : /obj/item/storage/belt/sheath/vamp/rapier
-/obj/item/storage/belt/vampire/sheathe/sabre : /obj/item/storage/belt/sheath/vamp/sabre
+/obj/item/storage/belt/vampire/sheathe/longsword : /obj/item/storage/belt/sheath/vamp/sword {@OLD}
+/obj/item/storage/belt/vampire/sheathe/rapier : /obj/item/storage/belt/sheath/vamp/rapier {@OLD}
+/obj/item/storage/belt/vampire/sheathe/sabre : /obj/item/storage/belt/sheath/vamp/sabre {@OLD}
 
-/obj/item/melee/vampirearms/fireaxe : /obj/item/fireaxe/vamp
-/obj/item/melee/vampirearms/katana : /obj/item/katana/vamp
-/obj/item/melee/vampirearms/katana/kosa : /obj/item/scythe/vamp
-/obj/item/melee/vampirearms/sabre : /obj/item/melee/sabre/vamp
-/obj/item/melee/vampirearms/longsword : /obj/item/claymore/longsword
-/obj/item/melee/vampirearms/machete : /obj/item/claymore/machete
-/obj/item/melee/vampirearms/shovel : /obj/item/shovel/vamp
-/obj/item/melee/vampirearms/chainsaw : /obj/item/chainsaw/vamp
-/obj/item/melee/vampirearms/baseball : /obj/item/melee/baseball_bat/vamp
+/obj/item/melee/vampirearms/fireaxe : /obj/item/fireaxe/vamp {@OLD}
+/obj/item/melee/vampirearms/katana : /obj/item/katana/vamp {@OLD}
+/obj/item/melee/vampirearms/katana/kosa : /obj/item/scythe/vamp {@OLD}
+/obj/item/melee/vampirearms/sabre : /obj/item/melee/sabre/vamp {@OLD}
+/obj/item/melee/vampirearms/rapier : /obj/item/melee/sabre/rapier {@OLD}
+/obj/item/melee/vampirearms/longsword : /obj/item/claymore/longsword {@OLD}
+/obj/item/melee/vampirearms/machete : /obj/item/claymore/machete {@OLD}
+/obj/item/melee/vampirearms/shovel : /obj/item/shovel/vamp {@OLD}
+/obj/item/melee/vampirearms/chainsaw : /obj/item/chainsaw/vamp {@OLD}
+/obj/item/melee/vampirearms/baseball : /obj/item/melee/baseball_bat/vamp {@OLD}
 
-/obj/item/melee/vampirearms/eguitar : /obj/item/instrument/eguitar/vamp
+/obj/item/melee/vampirearms/eguitar : /obj/item/instrument/eguitar/vamp {@OLD}
 
-/obj/item/melee/vamp/knife/switchblade : /obj/item/switchblade/vamp
-/obj/item/melee/vamp/knife : /obj/item/knife/vamp
-/obj/item/melee/vamp/knife/@SUBTYPES : /obj/item/knife/vamp/@SUBTYPES
+/obj/item/melee/vampirearms/knife/switchblade : /obj/item/switchblade/vamp {@OLD}
+/obj/item/melee/vampirearms/knife : /obj/item/knife/vamp {@OLD}
+/obj/item/melee/vampirearms/knife/@SUBTYPES : /obj/item/knife/vamp/@SUBTYPES {@OLD}
 
-/obj/item/melee/classic_baton/vampire : /obj/item/melee/baton/vamp
+/obj/item/melee/classic_baton/vampire : /obj/item/melee/baton/vamp {@OLD}
 
-/obj/item/melee/vampirearms/@SUBTYPES : /obj/item/melee/vamp/@SUBTYPES
+/obj/item/melee/vampirearms/@SUBTYPES : /obj/item/melee/vamp/@SUBTYPES {@OLD}

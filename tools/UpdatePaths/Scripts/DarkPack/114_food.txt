@@ -1,0 +1,16 @@
+/obj/item/food/carpmeat : /obj/item/food/fishmeat {@OLD}
+
+/obj/item/food/vampire/burger : /obj/item/food/burger/plain {@OLD}
+/obj/item/food/vampire/donut : /obj/item/food/donut/plain {@OLD}
+/obj/item/food/vampire/pizza : /obj/item/food/pizzaslice/square {@OLD}
+/obj/item/food/vampire/taco : /obj/item/food/taco {@OLD}
+
+/obj/item/reagent_containers/food/condiment/vampiremilk : /obj/item/reagent_containers/condiment/milk {@OLD}
+/obj/item/reagent_containers/food/condiment/vampiremilk/malk : /obj/item/reagent_containers/condiment/milk/malk {@OLD}
+
+/obj/item/food/vampire/bar : /obj/item/food/chocolatebar {@OLD}
+
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw {@OLD}
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola/thaw_club : /obj/item/reagent_containers/cup/soda_cans/thaw_club {@OLD}
+
+/obj/food_cart : /obj/structure/food_cart {@OLD}

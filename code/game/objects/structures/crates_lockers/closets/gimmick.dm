@@ -2,6 +2,7 @@
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
 	icon_state = "cabinet"
+	icon = 'modular_darkpack/master_files/icons/obj/storage/closet.dmi' // DARKPACK EDIT ADD
 	resistance_flags = FLAMMABLE
 	open_sound = 'sound/machines/closet/wooden_closet_open.ogg'
 	close_sound = 'sound/machines/closet/wooden_closet_close.ogg'

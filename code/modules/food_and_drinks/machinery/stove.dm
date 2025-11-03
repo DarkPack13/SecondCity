@@ -1,7 +1,7 @@
 /obj/machinery/stove
 	name = "stove"
 	desc = "You'd think this thing would be more useful in here."
-	icon = 'icons/obj/machines/kitchen_stove.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/kitchen/kitchen_stove.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stove"
 	base_icon_state = "stove"
 	density = TRUE
@@ -39,6 +39,9 @@
 	w_class = WEIGHT_CLASS_BULKY
 	custom_price = PAYCHECK_LOWER * 8
 	fill_icon_thresholds = null
+	sound_vary = TRUE
+	pickup_sound = SFX_POT_PICKUP
+	drop_sound = SFX_POT_DROP
 
 	/// Max number of ingredients we can add
 	var/max_ingredients = 24
@@ -47,6 +50,7 @@
 
 /obj/item/reagent_containers/cup/soup_pot/Initialize(mapload, vol)
 	. = ..()
+	AddElement(/datum/element/cuffable_item)
 	RegisterSignal(src, COMSIG_ATOM_REAGENT_EXAMINE, PROC_REF(reagent_special_examine))
 	register_context()
 

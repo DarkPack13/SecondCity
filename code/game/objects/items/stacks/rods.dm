@@ -42,6 +42,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	pickup_sound = 'sound/items/handling/materials/iron_rod_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/metal_drop.ogg'
 	sound_vary = TRUE
+	usable_for_construction = TRUE
 
 /datum/embedding/rods
 	embed_chance = 50
@@ -62,7 +63,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/spear, /datum/crafting_recipe/stunprod, /datum/crafting_recipe/teleprod) // snatcher prod isn't here as a spoopy secret
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/spear, /datum/crafting_recipe/stunprod, /* /datum/crafting_recipe/teleprod*/) // snatcher prod isn't here as a spoopy secret // DARKPACK EDIT REMOVE
 
 	AddElement(
 		/datum/element/slapcrafting,\

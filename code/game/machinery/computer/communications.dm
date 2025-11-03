@@ -88,7 +88,7 @@
 /obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	// All maps should have at least 1 comms console
-	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
+	//REGISTER_REQUIRED_MAP_ITEM(1, INFINITY) // DARKPACK EDIT REMOVAL
 
 	GLOB.shuttle_caller_list += src
 
@@ -261,7 +261,7 @@
 				if (can_buy_shuttles_or_fail_reason != FALSE)
 					to_chat(user, span_alert("[can_buy_shuttles_or_fail_reason]"))
 				return
-			var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
+			var/list/shuttles = assoc_to_values(SSmapping.shuttle_templates)
 			var/datum/map_template/shuttle/shuttle = locate(params["shuttle"]) in shuttles
 			if (!istype(shuttle))
 				return

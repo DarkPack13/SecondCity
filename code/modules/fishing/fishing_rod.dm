@@ -367,7 +367,7 @@
 	user = user || loc
 	if (!isliving(user) || !user.mind || !user.is_holding(src))
 		return
-	. += round(user.mind.get_skill_level(/datum/skill/fishing) * 0.3)
+	. += round(user.st_get_stat(STAT_STRENGTH) * 0.3) // DARKPACK EDIT CHANGE - STORYTELLR_STATS
 	return max(., 1)
 
 /obj/item/fishing_rod/dropped(mob/user, silent)
@@ -543,13 +543,13 @@
 	var/list/data = list()
 
 	data["bait_name"] = format_text(bait?.name)
-	data["bait_icon"] = bait != null ? icon2base64(icon(bait.icon, bait.icon_state)) : null
+	data["bait_icon"] = bait != null ? icon2base64(icon(bait.icon, bait.icon_state, frame = 1)) : null
 
 	data["line_name"] = format_text(line?.name)
-	data["line_icon"] = line != null ? icon2base64(icon(line.icon, line.icon_state)) : null
+	data["line_icon"] = line != null ? icon2base64(icon(line.icon, line.icon_state, frame = 1)) : null
 
 	data["hook_name"] = format_text(hook?.name)
-	data["hook_icon"] = hook != null ? icon2base64(icon(hook.icon, hook.icon_state)) : null
+	data["hook_icon"] = hook != null ? icon2base64(icon(hook.icon, hook.icon_state, frame = 1)) : null
 
 	data["busy"] = fishing_line
 

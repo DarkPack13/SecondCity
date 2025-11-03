@@ -342,11 +342,11 @@
 	for(var/datum/quirk/quirk as anything in quirks)
 		blood_data["quirks"] += quirk.type
 
-	//DARKPACK EDIT START - Vitae
+	// DARKPACK EDIT START - Vitae
 	blood_data["donor"] = WEAKREF(src)
 	blood_data["generation"] = generation
 	blood_data["clan"] = clan?.name
-	//DARKPACK EDIT END
+	// DARKPACK EDIT END
 
 	return blood_data
 

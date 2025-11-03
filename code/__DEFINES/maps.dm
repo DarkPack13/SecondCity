@@ -131,7 +131,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 ///Z level traits for CentCom
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_NOPHASE = TRUE)
 ///Z level traits for Space Station 13
-#define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
+#define ZTRAITS_STATION list(ZTRAIT_LINKAGE = UNAFFECTED, ZTRAIT_STATION = TRUE) // DARKPACK EDIT CHANGE - San Fran does not loop in on itself lol
 ///Z level traits for Deep Space
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
 ///Z level traits for

@@ -47,6 +47,10 @@
 	var/datum/st_stat/checking_trait = get_stat_datum(trait)
 	return LAZYACCESS(checking_trait.modifiers, source)
 
+/datum/storyteller_stats/proc/get_stat_multiplier(stat_path, low_mod, high_mod)
+	var/datum/st_stat/A = st_stats[stat_path]
+	return A.get_score_multiplier(low_mod, high_mod)
+
 /datum/storyteller_stats/proc/randomize_attributes(min_score, max_score)
 	for(var/datum/st_stat/attribute/A in st_stats)
 		A.set_score(rand(min_score, max_score))

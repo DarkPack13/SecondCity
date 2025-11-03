@@ -1,6 +1,7 @@
 /turf/open/floor/plating/vampocean : /turf/open/water/beach/vamp/deep
 /turf/open/floor/plating/vampacid : /turf/open/water/acid/vamp
 /turf/open/floor/plating/shit : /turf/open/water/vamp_sewer
+/turf/open/floor/plating/shit/border : /turf/open/water/vamp_sewer/border
 
 /turf/open/floor/plating/vampbeach : /turf/open/misc/beach/vamp
 /turf/open/floor/plating/vampdirt : /turf/open/misc/dirt/vamp

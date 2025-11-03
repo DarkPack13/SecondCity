@@ -53,7 +53,6 @@
 	var/last_bloodpower_click = 0
 
 	var/harm_focus = SOUTH
-	var/flavor_text
 	var/true_real_name
 	var/died_already = FALSE
 
@@ -80,3 +79,7 @@
 	var/datum/storyteller_stats/storyteller_stat_holder
 	// TODO, replace with social/leadership
 	var/more_companions = 0
+
+	//beastmaster
+	var/list/beastmaster_minions = list()
+	var/list/datum/component/obeys_commands/minion_command_components = list()

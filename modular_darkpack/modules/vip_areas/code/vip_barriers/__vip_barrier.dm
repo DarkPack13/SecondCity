@@ -4,7 +4,7 @@
 /obj/effect/vip_barrier
 	name = "Basic Check Point"
 	desc = "Not a real checkpoint."
-	icon = 'icons/obj/wod13/barrier.dmi'
+	icon = 'modular_darkpack/modules/vip_areas/icons/barrier.dmi'
 	icon_state = "camarilla_blocking"
 	var/block_sound = "modular_darkpack/modules/deprecated/sounds/bouncer_blocked.ogg"
 

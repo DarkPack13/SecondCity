@@ -150,6 +150,7 @@
 
 	var/punctuation = ismob(target) ? "!" : "."
 
+	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message(
 		span_danger("[user] splashes the contents of [src] onto [target][punctuation]"),
 		span_danger("You splash the contents of [src] onto [target][punctuation]"),
@@ -286,6 +287,10 @@
 	. = ..()
 	if(!fill_icon_thresholds)
 		return
+	// DARKPACK EDIT ADD START - WORLD_ICON
+	if(item_flags & ACTIVE_WORLD_ICON) // world icons dont have reagent filling
+		return
+	// DARKPACK EDIT ADD END
 	if(!reagents.total_volume)
 		return
 

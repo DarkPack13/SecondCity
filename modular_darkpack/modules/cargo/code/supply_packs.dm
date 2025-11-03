@@ -70,11 +70,11 @@
 	desc = "Customized fertilizer mixed for the superior homegrown botanist."
 	cost = 500
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
 		)
 	crate_name = "hydro crate"
 
@@ -82,20 +82,14 @@
 /datum/supply_pack/vampire/weed_supplies
 	desc = "Contains a bailer and some seeds. No trays."
 	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
-	crate_name = "hydro crate"
-
-/datum/supply_pack/vampire/weed_supplies
-	desc = "Contains a bailer and some seeds. No trays."
-	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
+	contains = list(/obj/item/reagent_containers/cup/watering_can/metal, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis)
 	crate_name = "hydro crate"
 
 /datum/supply_pack/vampire/weed_tray
-	name = "Weed Tray"
-	desc = "Contains a tray of weed."
+	name = "Hydroponics Tray"
+	desc = "Contains a tray for growing plants."
 	cost = 300
-	contains = list(/obj/structure/weedshit/buyable)
+	contains = list(/obj/machinery/hydroponics/simple/plastic/unanchored)
 	crate_name = "weed crate"
 
 /datum/supply_pack/vampire/methlab
@@ -127,14 +121,14 @@
 	name = "Blood Pack"
 	desc = "Contains 5 default blood packs."
 	cost = 100
-	contains = list(/obj/item/drinkable_bloodpack, /obj/item/drinkable_bloodpack, /obj/item/drinkable_bloodpack, /obj/item/drinkable_bloodpack, /obj/item/drinkable_bloodpack)
+	contains = list(/obj/item/reagent_containers/blood, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/blood)
 	crate_name = "blood crate"
 
 /datum/supply_pack/vampire/bloodpack_elite
 	name = "Elite Blood Pack"
 	desc = "Contains 5 elite blood packs."
 	cost = 300
-	contains = list(/obj/item/drinkable_bloodpack/elite, /obj/item/drinkable_bloodpack/elite, /obj/item/drinkable_bloodpack/elite, /obj/item/drinkable_bloodpack/elite, /obj/item/drinkable_bloodpack/elite)
+	contains = list(/obj/item/reagent_containers/blood/elite, /obj/item/reagent_containers/blood/elite, /obj/item/reagent_containers/blood/elite, /obj/item/reagent_containers/blood/elite, /obj/item/reagent_containers/blood/elite)
 	crate_name = "blood crate"
 
 /datum/supply_pack/vampire/camera

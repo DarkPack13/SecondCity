@@ -12,7 +12,7 @@
 	)
 	result = /obj/item/food/bread/meat
 	category = CAT_BREAD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/xenomeatbread
 	name = "Xenomeat bread"
 	reqs = list(
@@ -32,7 +32,7 @@
 	)
 	result = /obj/item/food/bread/spidermeat
 	category = CAT_BREAD
-
+*/
 /datum/crafting_recipe/food/sausagebread
 	name = "Sausage bread"
 	reqs = list(
@@ -74,7 +74,7 @@
 	)
 	result = /obj/item/food/bread/creamcheese
 	category = CAT_BREAD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/mimanabread
 	name = "Mimana bread"
 	reqs = list(
@@ -85,7 +85,7 @@
 	)
 	result = /obj/item/food/bread/mimana
 	category = CAT_BREAD
-
+*/
 /datum/crafting_recipe/food/garlicbread
 	name = "Garlic Bread"
 	time = 4 SECONDS
@@ -154,7 +154,7 @@
 	result = /obj/item/food/croissant/throwing
 	category = CAT_BREAD
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/breaddog
 	name = "Living dog/bread hybrid"
 	reqs = list(
@@ -165,9 +165,13 @@
 		/datum/reagent/blood = 30,
 		/datum/reagent/teslium = 1 //To shock the whole thing into life
 	)
+	parts = list(
+		/obj/item/organ/brain,
+		/obj/item/organ/heart
+	)
 	result = /mob/living/basic/pet/dog/breaddog
 	category = CAT_BREAD
-
+*/
 ////////////////////////////////////////////////TOAST////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/slimetoast
@@ -219,7 +223,7 @@
 	removed_foodtypes = VEGETABLES|GRAIN
 	added_foodtypes = GROSS
 	category = CAT_BREAD
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/food/breadcat
 	name = "Bread cat/bread hybrid"
 	reqs = list(
@@ -232,7 +236,7 @@
 	)
 	result = /mob/living/basic/pet/cat/breadcat
 	category = CAT_BREAD
-
+*/
 /datum/crafting_recipe/food/frenchtoast
 	name = "Raw french toast"
 	reqs = list(

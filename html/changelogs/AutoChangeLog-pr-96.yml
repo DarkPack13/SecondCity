@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - refactor: "Refactored animal NPCs, moves human NPCs into module"

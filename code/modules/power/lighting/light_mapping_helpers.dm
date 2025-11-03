@@ -94,7 +94,7 @@
 	fire_brightness = 4.5
 	fire_colour = "#d400ff"
 
-//DARKPACK EDIT START
+// DARKPACK EDIT START
 /obj/machinery/light/prince
 	base_state = "prince"
 
@@ -113,7 +113,7 @@
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, get_turf(src))
 			s.start()
-			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
+			playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 			qdel(src)
 
 /obj/machinery/light/prince/broken
@@ -123,7 +123,7 @@
 #define LIGHTING_DIRECTIONAL_HELPERS(path) \
 MAPPING_DIRECTIONAL_HELPERS(##path, 0) \
 ##path/directional/north {\
-	pixel_y = 12; \
+	pixel_y = 20; \
 } \
 ##path/directional/south {\
 	pixel_y = 16; \

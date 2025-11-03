@@ -1,3 +1,4 @@
+/*// DARKPACK EDIT REMOVE
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
@@ -7,7 +8,7 @@
 		/obj/item/bikehorn = 1,
 	)
 	category = CAT_TOOLS
-
+ */
 /datum/crafting_recipe/bonfire
 	name = "Bonfire"
 	time = 6 SECONDS
@@ -55,7 +56,7 @@
 	)
 	result = /obj/item/stack/medical/bandage/makeshift
 	category = CAT_TOOLS
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/bone_rod
 	name = "Bone Fishing Rod"
 	result = /obj/item/fishing_rod/bone
@@ -107,7 +108,7 @@
 		if(final_check ? crayon.use_charges(user, 10) : !crayon.check_empty(user, 10))
 			return TRUE
 	return FALSE
-
+ */
 /datum/crafting_recipe/makeshift_radio_jammer
 	name = "Makeshift Radio Jammer"
 	result = /obj/item/jammer/makeshift
@@ -115,6 +116,17 @@
 		/obj/item/universal_scanner = 1,
 		/obj/item/encryptionkey = 1,
 		/obj/item/stack/cable_coil = 5,
+	)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/jaws_of_recovery
+	name = "Modified Jaws of Life"
+	time = 10 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	result = /obj/item/crowbar/power/paramedic/silent
+	reqs = list(
+		/obj/item/crowbar/power = 1,
+		/obj/item/bonesetter = 1,
 	)
 	category = CAT_TOOLS
 

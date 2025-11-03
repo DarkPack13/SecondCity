@@ -131,17 +131,6 @@ GLOBAL_LIST_INIT(food_quality_description, list(
 	FOOD_QUALITY_TOP = "godlike",
 ))
 
-/// Mood events for food quality
-GLOBAL_LIST_INIT(food_quality_events, list(
-	FOOD_QUALITY_NORMAL = /datum/mood_event/food,
-	FOOD_QUALITY_NICE = /datum/mood_event/food/nice,
-	FOOD_QUALITY_GOOD = /datum/mood_event/food/good,
-	FOOD_QUALITY_VERYGOOD = /datum/mood_event/food/verygood,
-	FOOD_QUALITY_FANTASTIC = /datum/mood_event/food/fantastic,
-	FOOD_QUALITY_AMAZING = /datum/mood_event/food/amazing,
-	FOOD_QUALITY_TOP = /datum/mood_event/food/top,
-))
-
 /// Weighted lists of crafted food buffs randomly given according to crafting_complexity unless the food has a specific buff
 GLOBAL_LIST_INIT(food_buffs, list(
 	FOOD_COMPLEXITY_1 = list(
@@ -177,12 +166,17 @@ GLOBAL_LIST_INIT(food_buffs, list(
 #define FOOD_NO_EXAMINE (1<<2)
 /// This food item doesn't track bitecounts, use responsibly.
 #define FOOD_NO_BITECOUNT (1<<3)
+// DARKPACK EDIT ADD START - FOOD
+//Food has state to swap to upon first bite
+#define FOOD_BITE_SPRITE (1<<4)
+// DARKPACK EDIT ADD
 
 DEFINE_BITFIELD(food_flags, list(
 	"FOOD_FINGER_FOOD" = FOOD_FINGER_FOOD,
 	"FOOD_IN_CONTAINER" = FOOD_IN_CONTAINER,
 	"FOOD_NO_EXAMINE" = FOOD_NO_EXAMINE,
 	"FOOD_NO_BITECOUNT" = FOOD_NO_BITECOUNT,
+	"FOOD_BITE_SPRITE" = FOOD_BITE_SPRITE, // DARKPACK EDIT ADD - FOOD
 ))
 
 ///Define for return value of the after_eat callback that will call OnConsume if it hasn't already.

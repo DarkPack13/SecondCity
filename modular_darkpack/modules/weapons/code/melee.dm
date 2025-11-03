@@ -5,12 +5,11 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	var/quieted = FALSE
 
-// TODO: [Rebase] reimplement selling stuff
-/*
+
 /obj/item/melee/vamp/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 25, "melee", FALSE)
-*/
+	AddComponent(/datum/component/selling, 75, "melee", FALSE)
+
 
 /obj/item/fireaxe/vamp
 	name = "fire axe"
@@ -34,8 +33,7 @@
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 250, "katana", FALSE)
+	AddComponent(/datum/component/selling, 100, "katana", FALSE)
 
 /obj/item/katana/vamp/fire
 	name = "burning katana"
@@ -44,15 +42,14 @@
 	obj_flags = NONE
 	masquerade_violating = TRUE
 
-// TODO: [Rebase] reimplement selling stuff
-/*
+
 //Do not sell the magically summoned katanas for infinite cash
 /obj/item/katana/vamp/fire/Initialize(mapload)
 	. = ..()
 	var/datum/component/selling/sell_component = GetComponent(/datum/component/selling)
 	if(sell_component)
-		sell_component.RemoveComponent()
-*/
+		qdel(sell_component)
+
 
 /obj/item/katana/vamp/fire/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -69,12 +66,9 @@
 
 /obj/item/katana/vamp/blood/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	/*
 	var/datum/component/selling/sell_component = GetComponent(/datum/component/selling)
 	if(sell_component)
-		sell_component.RemoveComponent()
-	*/
+		qdel(sell_component)
 
 /obj/item/katana/vamp/blood/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -92,12 +86,11 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	icon_state = "rapier"
 
-// TODO: [Rebase] reimplement selling stuff
-/*
+
 /obj/item/melee/sabre/rapier/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 800, "rapier", FALSE)
-*/
+	AddComponent(/datum/component/selling, 700, "rapier", FALSE)
+
 
 /obj/item/claymore/machete
 	name = "machete"
@@ -112,12 +105,9 @@
 	pixel_w = -8
 	masquerade_violating = FALSE
 
-// TODO: [Rebase] reimplement selling stuff
-/*
 /obj/item/claymore/machete/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 150, "machete", FALSE)
-*/
+	AddComponent(/datum/component/selling, 70, "machete", FALSE)
 
 /obj/item/melee/sabre/vamp
 	name = "sabre"
@@ -129,12 +119,9 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	icon_state = "sabre"
 
-// TODO: [Rebase] reimplement selling stuff
-/*
 /obj/item/melee/sabre/vamp/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 1000, "sabre", FALSE)
-*/
 
 /obj/item/claymore/longsword
 	name = "longsword"
@@ -147,12 +134,11 @@
 	icon_state = "longsword"
 	inhand_icon_state = "longsword"
 
-// TODO: [Rebase] reimplement selling stuff
-/*
+
 /obj/item/claymore/longsword/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 1800, "longsword", FALSE)
-*/
+	AddComponent(/datum/component/selling, 600, "longsword", FALSE)
+
 
 /obj/item/melee/baseball_bat/vamp
 	name = "baseball bat"
@@ -165,12 +151,9 @@
 	icon_state = "baseball"
 	inhand_icon_state = "baseball"
 
-// TODO: [Rebase] reimplement selling stuff
-/*
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "baseball", FALSE)
-*/
+	AddComponent(/datum/component/selling, 20, "baseball", FALSE)
 
 /obj/item/melee/baseball_bat/vamp/hand
 	name = "ripped arm"
@@ -185,6 +168,7 @@
 	desc = "Can be used as a tool or as a weapon."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	icon_state = "pipe"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	force = 20
 	wound_bonus = 10
 	throwforce = 10
@@ -239,6 +223,7 @@
 	desc = "Reap what they have sowed."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	icon_state = "handsickle"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	force = 30
 	wound_bonus = -5
 	throwforce = 15
@@ -347,6 +332,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	icon_state = "kosa"
 	inhand_icon_state = "kosa"
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/instrument/eguitar/vamp
 	name = "electric guitar"
@@ -382,6 +368,7 @@
 	icon_state = "red_brick"
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_NORMAL
 	armour_penetration = 0
 	throwforce = 15

@@ -3,7 +3,7 @@
 	desc = "This cuts wires."
 	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: icon = 'icons/obj/tools.dmi'
 	icon_state = "fixer" // DARKPACK EDIT CHANGE - ORIGINAL: icon_state = "cutters_map"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') //DARKPACK EDIT ADDITION
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') // DARKPACK EDIT ADD
 	worn_icon_state = "cutters"
 	inhand_icon_state = "cutters"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'

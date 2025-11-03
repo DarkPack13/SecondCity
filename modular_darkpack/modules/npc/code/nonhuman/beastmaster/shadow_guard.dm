@@ -18,7 +18,7 @@
 	attack_verb_simple = "gouge"
 	attack_sound = 'sound/mobs/non-humanoids/venus_trap/venus_trap_hit.ogg'
 
-	faction = list("Lasombra")
+	faction = list(VAMPIRE_CLAN_LASOMBRA)
 	bloodpool = 1
 	maxbloodpool = 1
 

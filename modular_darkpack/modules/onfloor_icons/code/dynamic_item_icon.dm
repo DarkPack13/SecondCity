@@ -40,11 +40,8 @@
 	item.icon = initial(item.icon)
 	item.pixel_w = initial(item.pixel_w)
 
-	// TODO: [Rebase] - Get bolt states for world icons so we can remove this
-	if(istype(item, /obj/item/gun/ballistic))
-		var/obj/item/gun/ballistic/gun_item = item
-		gun_item.show_bolt_icon = gun_item::show_bolt_icon
-		gun_item.mag_display = gun_item::mag_display
+	if(item.item_flags & ACTIVE_WORLD_ICON)
+		item.item_flags &= ~ACTIVE_WORLD_ICON
 
 	item.update_icon()
 
@@ -56,10 +53,7 @@
 	if (item.onflooricon_state)
 		item.icon_state = item.onflooricon_state
 
-	// TODO: [Rebase] - Get bolt states for world icons so we can remove this
-	if(istype(item, /obj/item/gun/ballistic))
-		var/obj/item/gun/ballistic/gun_item = item
-		gun_item.show_bolt_icon = FALSE
-		gun_item.mag_display = FALSE
+	if(!(item.item_flags & ACTIVE_WORLD_ICON))
+		item.item_flags |= ACTIVE_WORLD_ICON
 
 	item.update_icon()

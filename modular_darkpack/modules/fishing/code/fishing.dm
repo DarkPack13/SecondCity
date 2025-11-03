@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	eatsound = 'modular_darkpack/modules/deprecated/sounds/eat.ogg'
+	eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 	tastes = list("fish" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 3)
 	foodtypes = RAW | MEAT
@@ -14,7 +14,7 @@
 
 /obj/item/food/fish/shark/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 400, "fish", FALSE)
+	AddComponent(/datum/component/selling, 100, "fish", FALSE)
 
 /obj/item/food/fish/tune
 	name = "tuna"
@@ -22,7 +22,7 @@
 
 /obj/item/food/fish/tune/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 125, "fish", FALSE)
+	AddComponent(/datum/component/selling, 40, "fish", FALSE)
 
 /obj/item/food/fish/catfish
 	name = "catfish"
@@ -30,7 +30,7 @@
 
 /obj/item/food/fish/catfish/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "fish", FALSE)
+	AddComponent(/datum/component/selling, 20, "fish", FALSE)
 
 /obj/item/food/fish/crab
 	name = "crab"
@@ -38,7 +38,7 @@
 
 /obj/item/food/fish/crab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 200, "fish", FALSE)
+	AddComponent(/datum/component/selling, 70, "fish", FALSE)
 
 /obj/item/fishing_rod
 	name = "fishing rod"

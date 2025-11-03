@@ -25,7 +25,7 @@
 
 /obj/item/reagent_containers/condiment/update_icon_state()
 	. = ..()
-	if(reagents.reagent_list.len)
+	if(reagents?.reagent_list.len) // DARKPACK EDIT CHANGE - world icon can call update_icon_state before reagents exist
 		if(icon_preempty)
 			icon_state = icon_preempty
 			icon_preempty = null
@@ -44,6 +44,7 @@
 	if(!canconsume(target, user))
 		return ITEM_INTERACT_BLOCKING
 
+	user.changeNext_move(CLICK_CD_MELEE)
 	if(target == user)
 		user.visible_message(
 			span_notice("[user] swallows some of the contents of \the [src]."),
@@ -412,6 +413,7 @@
 	name = "condiment pack"
 	desc = "A small plastic pack with condiments to put on your food."
 	icon_state = "condi_empty"
+	initial_reagent_flags = parent_type::initial_reagent_flags | NO_SPLASH
 	volume = 10
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(10)
