@@ -60,7 +60,7 @@ export const CameraAppIcon = (props) => {
   return (
     <AppIcon text="Camera">
       <Box
-        className="Telephone__GalaxyS6Camera"
+        className="Telephone__Camera"
         p={4}
         style={{ borderRadius: '30%' }}
       />
