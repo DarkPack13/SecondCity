@@ -5,9 +5,8 @@
 
 /datum/looping_sound/sprinkler
 	mid_sounds = list('modular_darkpack/modules/deprecated/sounds/rain.ogg' = 1)
-	mid_length = 1 SECONDS
+	mid_length = 7 SECONDS
 	volume = 50
-
 
 /obj/machinery/sprinkler
 	name = "fire sprinkler"
@@ -15,8 +14,9 @@
 	icon_state = "sprinkler"
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_y = 8
-	var/fire_detection_range = 2
-	var/sprinkler_spray_range = 5
+	var/fire_detection_range = 1
+	var/current_spray_range = 1
+	var/sprinkler_spray_range = 6
 
 	var/has_water_reclaimer = TRUE
 	var/last_fire_detection
@@ -31,6 +31,14 @@
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_DEFAULT)
 	//AddComponent(/datum/component/plumbing/simple_demand)
 
+	for(var/turf/open/open_turf in RANGE_TURFS(fire_detection_range, src))
+		RegisterSignal(open_turf, COMSIG_ATOM_FIRE_ACT, PROC_REF(fire_act_listener))
+
+/obj/machinery/sprinkler/proc/fire_act_listener()
+	SIGNAL_HANDLER
+
+	trigger_sprinkler()
+
 /obj/machinery/sprinkler/fire_act(exposed_temperature, exposed_volume)
 	trigger_sprinkler()
 	. = ..()
@@ -39,18 +47,25 @@
 	if(has_water_reclaimer)
 		reagents.add_reagent(/datum/reagent/water, 0.5 * seconds_per_tick)
 
+	/*
 	#warn likely rework to a signal
 	if(locate(/obj/effect/abstract/turf_fire) in view(fire_detection_range, src))
 		trigger_sprinkler()
+	*/
 
 	if(is_active())
 		looping_sound.start()
-		for(var/turf/open/turf in view(sprinkler_spray_range, src))
-			reagents.expose(turf, TOUCH)
+		for(var/turf/open/turf in circle_view_turfs(src, current_spray_range))
+			reagents.expose(turf, TOUCH, current_spray_range/sprinkler_spray_range)
 			new /obj/effect/temp_visual/rain(turf)
+		for(var/atom/movable/stuff in circle_view(src, current_spray_range))
+			reagents.expose(stuff, TOUCH, current_spray_range/sprinkler_spray_range)
+
 		reagents.remove_all(1 * seconds_per_tick)
+		current_spray_range = min(sprinkler_spray_range, current_spray_range + 2)
 	else
 		looping_sound.stop()
+		current_spray_range = 1
 	update_overlays()
 
 /obj/machinery/sprinkler/update_overlays()

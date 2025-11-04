@@ -1944,7 +1944,20 @@
 /area/vtm/interior/clinic)
 "Of" = (
 /obj/structure/table,
-/obj/item/gun/ballistic/shotgun/toy/crossbow/vampire,
+/obj/item/gun/ballistic/shotgun/toy/crossbow/vampire{
+	pixel_y = 16
+	},
+/obj/item/molotov{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/molotov{
+	pixel_x = -9
+	},
+/obj/item/molotov,
+/obj/item/lighter/skull{
+	pixel_x = 8
+	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "On" = (

@@ -32,7 +32,7 @@
 
 	var/turf/explode_location = get_turf(src)
 
-	for(var/turf/open/floor in range(2, explode_location))
+	for(var/turf/open/floor in circle_view_turfs(explode_location, 2))
 		new /obj/effect/decal/cleanable/gasoline(floor)
 
 	if(active)
