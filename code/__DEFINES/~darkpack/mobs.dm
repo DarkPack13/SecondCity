@@ -8,7 +8,7 @@
 #define iskindred(A) (is_species(A, /datum/species/human/kindred))
 #define isghoul(A) (is_species(A, /datum/species/human/ghoul))
 #define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A))
-
+#define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
 // TODO: [Rebase] implement other splats
 #define isgarou(A) (FALSE)

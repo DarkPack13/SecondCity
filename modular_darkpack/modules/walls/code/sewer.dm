@@ -1,10 +1,10 @@
-/turf/open/floor/plating/vampcanal
+/turf/open/floor/plating/canal
 	name = "plating"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "canal1"
 	footstep = FOOTSTEP_FLOOR
 
-/turf/open/floor/plating/vampcanal/Enter(atom/movable/mover, atom/oldloc)
+/turf/open/floor/plating/canal/Enter(atom/movable/mover, atom/oldloc)
 	. = ..()
 	var/mob/living/living_mover = mover
 	if(istype(living_mover) && living_mover.client)
@@ -14,18 +14,18 @@
 				return
 			new /mob/living/basic/mouse/vampire(oldloc)
 
-/turf/open/floor/plating/vampcanal/Initialize(mapload)
+/turf/open/floor/plating/canal/Initialize(mapload)
 	. = ..()
 	icon_state = "canal[rand(1, 3)]"
 
-/turf/open/floor/plating/vampcanalplating
+/turf/open/floor/plating/canalplating
 	name = "plating"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "canal_plating1"
 	footstep = FOOTSTEP_PARKET
 	barefootstep = FOOTSTEP_PARKET
 
-/turf/open/floor/plating/vampcanalplating/Enter(atom/movable/mover, atom/oldloc)
+/turf/open/floor/plating/canalplating/Enter(atom/movable/mover, atom/oldloc)
 	. = ..()
 	var/mob/living/living_mover = mover
 	if(istype(living_mover) && living_mover.client)
@@ -35,7 +35,7 @@
 				return
 			new /mob/living/basic/mouse/vampire(oldloc)
 
-/turf/open/floor/plating/vampcanalplating/Initialize(mapload)
+/turf/open/floor/plating/canalplating/Initialize(mapload)
 	. = ..()
 	icon_state = "canal_plating[rand(1, 4)]"
 
