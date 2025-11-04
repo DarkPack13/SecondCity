@@ -2545,7 +2545,7 @@
 /area/vtm/outside/pacificheights)
 "Zw" = (
 /obj/structure/table,
-/obj/item/vampire_flamethrower,
+/obj/item/liquid_flamethrower,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "ZB" = (

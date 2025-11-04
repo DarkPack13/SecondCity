@@ -7219,6 +7219,7 @@
 #include "modular_darkpack\modules\walls\code\walls.dm"
 #include "modular_darkpack\modules\weapons\code\ammostack.dm"
 #include "modular_darkpack\modules\weapons\code\crafting_recipes.dm"
+#include "modular_darkpack\modules\weapons\code\flamethrower.dm"
 #include "modular_darkpack\modules\weapons\code\guns.dm"
 #include "modular_darkpack\modules\weapons\code\melee.dm"
 #include "modular_darkpack\modules\weapons\code\sheath.dm"
