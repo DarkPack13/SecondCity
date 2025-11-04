@@ -6891,6 +6891,7 @@
 #include "modular_darkpack\modules\clothes\code\suit.dm"
 #include "modular_darkpack\modules\clothes\code\under.dm"
 #include "modular_darkpack\modules\dancing\code\dancing.dm"
+#include "modular_darkpack\modules\decor\code\city_map.dm"
 #include "modular_darkpack\modules\decor\code\decals.dm"
 #include "modular_darkpack\modules\decor\code\decor.dm"
 #include "modular_darkpack\modules\decor\code\flora.dm"
