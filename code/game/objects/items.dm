@@ -1012,7 +1012,7 @@
 			location = get_turf(pyromanic)
 	if(isturf(location))
 		location.hotspot_expose(flame_heat, 5)
-		// DARKPACK EDIT ADD START - FIRE
+		// DARKPACK EDIT ADD START - TURF_FIRE
 		if(SEND_SIGNAL(location, COMSIG_TURF_OPEN_FLAME, flame_heat) & BLOCK_TURF_IGNITION)
 			return
 		var/turf/open/open_location = loc // NOT the location variable used earlier else cigarettes in mouths start fires

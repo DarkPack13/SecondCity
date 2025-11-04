@@ -108,7 +108,7 @@
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
-	var/cooling_temperature = 1.2 // DARKPACK EDIT CHANGE - FIRE
+	var/cooling_temperature = 1.2 // DARKPACK EDIT CHANGE - TURF_FIRE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS
 	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
 
@@ -137,7 +137,7 @@
 
 	var/cool_temp = cooling_temperature
 
-	/* DARKPACK EDIT REMOVAL - FIRE
+	/* DARKPACK EDIT REMOVAL - TURF_FIRE
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
 	if(hotspot && !isspaceturf(exposed_turf)) // the water evaporates in an endothermic reaction
 		if(exposed_turf.air)
@@ -147,12 +147,12 @@
 			air.react(src)
 			qdel(hotspot)
 	*/
-	exposed_turf.extinguish_turf(cool_temp) // DARKPACK EDIT ADD
+	exposed_turf.extinguish_turf(cool_temp) // DARKPACK EDIT ADD - TURF_FIRE
 
 	if(isgroundlessturf(exposed_turf) || isnoslipturf(exposed_turf))
 		return
 
-	// DARKPACK EDIT CHANGE START - FIRE
+	// DARKPACK EDIT CHANGE START - TURF_FIRE
 	if(reac_volume >= 5 && prob(25+reac_volume))
 		exposed_turf.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
 	// DARKPACK EDIT CHANGE END

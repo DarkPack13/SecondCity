@@ -183,7 +183,7 @@
 
 	deal_damage(seconds_between_ticks)
 
-	// DARKPACK EDIT ADD START
+	// DARKPACK EDIT ADD START - TURF_FIRE
 	var/turf/owner_turf = owner.loc
 	if(istype(owner_turf))
 		owner_turf.fire_act(stacks * 25)

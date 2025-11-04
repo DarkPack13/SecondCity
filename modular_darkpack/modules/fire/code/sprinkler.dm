@@ -25,9 +25,9 @@
 /obj/machinery/sprinkler/Initialize(mapload)
 	. = ..()
 	looping_sound = new(src)
-	create_reagents(5)
+	create_reagents(20)
 	if(src.has_water_reclaimer)
-		reagents.add_reagent(/datum/reagent/water, 5)
+		reagents.add_reagent(/datum/reagent/water, 20)
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_DEFAULT)
 	//AddComponent(/datum/component/plumbing/simple_demand)
 
@@ -46,7 +46,7 @@
 
 /obj/machinery/sprinkler/process(seconds_per_tick)
 	if(has_water_reclaimer)
-		reagents.add_reagent(/datum/reagent/water, 0.5 * seconds_per_tick)
+		reagents.add_reagent(/datum/reagent/water, 2.5 * seconds_per_tick)
 
 	/*
 	#warn likely rework to a signal
@@ -87,3 +87,10 @@
 	//var/area/my_area = get_area(src)
 	//if(my_area)
 	//	return my_area.fire
+
+/obj/machinery/sprinkler/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
+	. = ..()
+	msg = weapon.ignition_effect(src, user)
+	if(msg)
+		visible_message(msg)
+		trigger_sprinkler()

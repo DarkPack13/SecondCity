@@ -175,7 +175,7 @@
 	if(!istype(location) || !location.air)
 		return FALSE
 
-	// DARKPACK EDIT ADD START - FIRE
+	// DARKPACK EDIT ADD START - TURF_FIRE
 	if(SEND_SIGNAL(location, COMSIG_TURF_HOTSPOT_EXPOSE) & SUPPRESS_FIRE)
 		return FALSE
 	// DARKPACK EDIT ADD END
