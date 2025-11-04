@@ -144,7 +144,7 @@
 /datum/round_event/wizard/object_rain/fish
 
 /datum/round_event/wizard/object_rain/fish/get_item()
-	var/fish_path = pick(subtypesof(/obj/item/fish))
+	var/fish_path = pick(valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 	return new fish_path()
 
 /// Admin configuration
