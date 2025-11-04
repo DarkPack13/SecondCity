@@ -29,7 +29,7 @@
 			target_door.pixel_z = target_door.pixel_z+rand(-1, 1)
 			target_door.pixel_w = target_door.pixel_w+rand(-1, 1)
 			addtimer(CALLBACK(target_door, TYPE_PROC_REF(/obj/structure/vampdoor, reset_transform)), 2)
-			playsound(get_turf(target_door), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 50, TRUE)
+			playsound(get_turf(target_door), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 		target_door.break_door(user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
