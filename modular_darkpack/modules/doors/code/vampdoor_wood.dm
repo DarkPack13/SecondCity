@@ -1,7 +1,11 @@
+// TODO: [Rebase] - Alot of wooden doors that dont acctually use this subtype
 /obj/structure/vampdoor/wood
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	burnable = TRUE
+	open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
+	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
+	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
 /obj/structure/vampdoor/wood/strip
 	lock_id = "strip"

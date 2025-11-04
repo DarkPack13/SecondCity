@@ -1,0 +1,12 @@
+/obj/structure/flora/ausbushes/tallgrass : /obj/structure/flora/grass/tall/style_random
+/obj/structure/flora/ausbushes/tallgrass/dry : /obj/structure/flora/grass/tall/dry/style_random
+/obj/structure/flora/ausbushes/shortgrass : /obj/structure/flora/grass/short/style_random
+/obj/structure/flora/ausbushes/redflower : /obj/structure/flora/bush/redflower/style_random
+
+/turf/open/floor/plating/vampgrass/random : /turf/open/misc/grass/vamp/random
+/turf/open/floor/plating/vampgrass/random/@SUBTYPES : /turf/open/misc/grass/vamp/random/@SUBTYPES
+
+/obj/structure/vamprocks : /obj/structure/flora/rock/darkpack
+/obj/structure/small_vamprocks : /obj/structure/flora/rock/pile/darkpack
+/obj/structure/big_vamprocks : /obj/structure/flora/rock/darkpack_big
+/obj/structure/stalagmite : /obj/structure/flora/rock/stalagmite

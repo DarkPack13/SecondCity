@@ -36,7 +36,7 @@
 	//r_pocket = /obj/item/radio/cop
 	l_hand = /obj/item/vamp/keys/police
 	//r_hand = /obj/item/police_radio
-	backpack_contents = list(/obj/item/card/police/sergeant=1, /obj/item/passport=1, /obj/item/camera/detective=1, /obj/item/camera_film=1, /obj/item/taperecorder=1, /obj/item/tape=1, /obj/item/card/credit=1, /obj/item/ammo_box/vampire/c45acp=1, /obj/item/storage/medkit/darkpack/ifak=1)
+	backpack_contents = list(/obj/item/card/police/sergeant=1, /obj/item/passport=1, /obj/item/camera/detective=1, /obj/item/camera_film=1, /obj/item/taperecorder=1, /obj/item/tape=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c45acp=1, /obj/item/storage/medkit/darkpack/ifak=1)
 
 /datum/outfit/job/fbi/post_equip(mob/living/carbon/human/agent)
 	..()

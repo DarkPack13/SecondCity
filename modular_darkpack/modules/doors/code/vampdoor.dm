@@ -29,9 +29,9 @@
 	var/lockpick_timer = LOCKTIMER_1
 	var/lockpick_difficulty = LOCKDIFFICULTY_1
 
-	var/open_sound = 'modular_darkpack/modules/deprecated/sounds/door_open.ogg'
-	var/close_sound = 'modular_darkpack/modules/deprecated/sounds/door_close.ogg'
-	var/lock_sound = 'modular_darkpack/modules/deprecated/sounds/door_locked.ogg'
+	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
+	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
+	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
 
 /obj/structure/vampdoor/Initialize(mapload)
@@ -123,7 +123,7 @@
 	fix_door()
 
 /obj/structure/vampdoor/proc/break_door(mob/user)
-	playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 100, FALSE)
+	playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
 	if(user)
@@ -204,7 +204,7 @@
 				else
 					pixel_z = pixel_z+rand(-1, 1)
 					pixel_w = pixel_w+rand(-1, 1)
-					playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 50, TRUE)
+					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
 					to_chat(user, span_warning("You aren't strong enough to break it down!"))
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)

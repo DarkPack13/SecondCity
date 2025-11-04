@@ -181,7 +181,7 @@ SUBSYSTEM_DEF(cityweather)
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/weather_manager/Initialize(mapload)
 	. = ..()

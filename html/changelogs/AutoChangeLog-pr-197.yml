@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - sound: "Adds wooden door knocking, Sounds where in the repo just unused."
+  - sound: "Replaces the end of round sounds with bloopers from the HTP episode 6.2"
