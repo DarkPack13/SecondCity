@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(phones)
 	// List of frequencies in use
 	var/list/frequencies_in_use = list()
 	var/list/ringing_timers = list()
+	// Published phone numbers, with the key being what the user named the number.
+	var/list/published_phone_numbers = list()
 
 
 /datum/controller/subsystem/phones/Initialize()
