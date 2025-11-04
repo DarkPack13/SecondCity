@@ -50,12 +50,6 @@
 	if(has_water_reclaimer)
 		reagents.add_reagent(/datum/reagent/water, 2.5 * seconds_per_tick)
 
-	/*
-	#warn likely rework to a signal
-	if(locate(/obj/effect/abstract/turf_fire) in view(fire_detection_range, src))
-		trigger_sprinkler()
-	*/
-
 	if(is_active())
 		looping_sound.start()
 		for(var/turf/open/turf in circle_view_turfs(src, current_spray_range))

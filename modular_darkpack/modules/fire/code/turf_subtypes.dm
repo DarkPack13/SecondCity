@@ -25,9 +25,10 @@
 		return
 	if(!active_hotspot && !turf_fire)
 		return
-	air.temperature = min(max(min(air.temperature-(cooling_power*1000), air.temperature/cooling_power), T0C), air.temperature) // the outer min temperature check is for weird phenomena like freon combustion
-	temperature = clamp(min(temperature-(cooling_power*1000), temperature/cooling_power), T20C, temperature) // turfs normally don't go below T20C so I'll just clamp it to that in case of weird phenomena.
-	air.react(src)
+	// Cooling down the turf ONLY when there was a fire is just really strange behavoir
+	//air.temperature = min(max(min(air.temperature-(cooling_power*1000), air.temperature/cooling_power), T0C), air.temperature) // the outer min temperature check is for weird phenomena like freon combustion
+	//temperature = clamp(min(temperature-(cooling_power*1000), temperature/cooling_power), T20C, temperature) // turfs normally don't go below T20C so I'll just clamp it to that in case of weird phenomena.
+	//air.react(src)
 	if(active_hotspot)
 		qdel(active_hotspot)
 	if(turf_fire)
