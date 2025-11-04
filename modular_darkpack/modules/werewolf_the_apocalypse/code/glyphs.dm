@@ -13,7 +13,8 @@
 	icon = 'icons/obj/art/crayons.dmi'
 	icon_state = "crayonblack"
 	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_EARS
+	// TODO: Needs a ear icon state
+	// slot_flags = ITEM_SLOT_EARS
 
 /obj/item/charcoal_stick/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	// TODO: [Rebase] - GAROU
