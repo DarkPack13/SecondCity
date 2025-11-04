@@ -12,7 +12,6 @@
 /obj/machinery/sprinkler
 	name = "fire sprinkler"
 	icon = 'modular_darkpack/modules/fire/icons/sprinkler.dmi'
-	#warn get better sprite
 	icon_state = "sprinkler"
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_y = 8
@@ -46,14 +45,18 @@
 
 	if(is_active())
 		looping_sound.start()
-		icon_state = "sprinkler_on"
 		for(var/turf/open/turf in view(sprinkler_spray_range, src))
 			reagents.expose(turf, TOUCH)
 			new /obj/effect/temp_visual/rain(turf)
 		reagents.remove_all(1 * seconds_per_tick)
 	else
 		looping_sound.stop()
-		icon_state = "sprinkler"
+	update_overlays()
+
+/obj/machinery/sprinkler/update_overlays()
+	. = ..()
+	if(is_active())
+		. += mutable_appearance('modular_darkpack/modules/fire/icons/sprinkler.dmi', "sprinkler_water")
 
 /obj/machinery/sprinkler/proc/trigger_sprinkler()
 	//var/area/my_area = get_area(src)
@@ -63,7 +66,7 @@
 	last_fire_detection = world.time
 
 /obj/machinery/sprinkler/proc/is_active()
-	if(last_fire_detection && (last_fire_detection + 10 SECONDS > world.time))
+	if(last_fire_detection && (last_fire_detection + 15 SECONDS > world.time))
 		return TRUE
 	//var/area/my_area = get_area(src)
 	//if(my_area)
