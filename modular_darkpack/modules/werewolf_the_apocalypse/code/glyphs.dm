@@ -169,4 +169,4 @@
 	name = "Terrifying Glyph"
 	garou_name = "War Against Wyrm Glyph"
 	garou_desc = "A glyph that represents the apocalyptic war of the Garou against the Wyrm."
-	icon_state = "war_against_wyrm	"
+	icon_state = "war_against_wyrm"
