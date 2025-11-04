@@ -45,13 +45,13 @@
 	switch(random_effect)
 		if(1)
 			to_chat(owner, span_userdanger("You feel like something snapped inside of you!"))
-			for(var/obj/item/bodypart/limb in owner.bodyparts)
+			//for(var/obj/item/bodypart/limb in owner.bodyparts)
 				///var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/severe, /datum/wound/blunt/moderate)) TODO : chaz, wounds
-				limb.force_wound_upwards(type_wound)
+				//limb.force_wound_upwards(type_wound)
 		if(2)
 			to_chat(owner, span_userdanger("You feel like there's a sun inside of you!"))
 			owner.adjust_fire_stacks(5)
-			owner.IgniteMob()
+			owner.ignite_mob()
 		if(3)
 			to_chat(owner, span_userdanger("You feel slightly less competent!"))
 			owner.st_add_stat_mod(STAT_WILLPOWER, -1, "thaummaturgy_failure")
@@ -200,7 +200,7 @@
 	var/list/generation_choices = list()
 	for(var/i in 1 to points_to_spend)
 		generation_choices += clamp((owner.generation - i), 4, HIGHEST_GENERATION_LIMIT) //No becoming an Antediluvian.
-	chosen_generation = tgui_input_list(owner, "What Generation would you like to lower your blood's potency to?", "Generation", uniqueList(generation_choices), null)
+	chosen_generation = tgui_input_list(owner, "What Generation would you like to lower your blood's potency to?", "Generation", generation_choices, null)
 
 	if(!chosen_generation)
 		chosen_generation = owner.generation - 1
@@ -302,3 +302,42 @@
 		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
 	else
 		target.apply_damage(success_count * 40 + owner.thaum_damage_plus, AGGRAVATED) //8 successes = 320 aggravated damage, however this is diffulty 8 so more than 2 successes is rare.
+
+ADMIN_VERB(grant_discipline, R_ADMIN, "Grant Discipline", "Grant a Discipline to a player.", ADMIN_CATEGORY_GAME)
+	var/mob/living/carbon/human/target = input(user, "Select a player to grant a Discipline to:", "Grant Discipline") as null|mob in GLOB.player_list
+	if(!target || !ishuman(target))
+		to_chat(user, span_warning("Invalid target selected."))
+		return
+
+	// Check if they're a vampire/ghoul (adjust this check based on your species system)
+	if(!ishuman(target))
+		to_chat(user, span_warning("Target must be a vampire or ghoul."))
+		return
+
+	var/list/available_disciplines = subtypesof(/datum/discipline) - /datum/discipline/bloodheal
+	var/datum/discipline/chosen_discipline = input(user, "Select a Discipline:", "Grant Discipline") as null|anything in available_disciplines
+	if(!chosen_discipline)
+		return
+
+	var/chosen_level = input(user, "Select Discipline level (1-6):", "Grant Discipline") as null|num
+	if(isnull(chosen_level) || chosen_level < 1 || chosen_level > 6)
+		return
+
+	var/reason = input(user, "Reason for granting this Discipline:", "Grant Discipline") as null|text
+	if(!reason)
+		return
+
+	// Create and grant the discipline
+	var/datum/discipline/new_discipline = new chosen_discipline(chosen_level)
+
+	// Grant it to the target
+	target.give_discipline(new_discipline)
+
+	// Logging
+	message_admins("[ADMIN_LOOKUPFLW(user)] gave [ADMIN_LOOKUPFLW(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
+	log_admin("[key_name(user)] gave [key_name(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
+
+	to_chat(user, span_notice("Granted [new_discipline.name] (Level [chosen_level]) to [target]."))
+	to_chat(target, span_notice("You have been granted the Discipline: [new_discipline.name] (Level [chosen_level])"))
+
+	BLACKBOX_LOG_ADMIN_VERB("Grant Discipline")

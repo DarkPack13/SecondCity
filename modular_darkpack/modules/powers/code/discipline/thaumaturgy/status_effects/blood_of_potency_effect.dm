@@ -11,7 +11,7 @@
 		duration = time
 	stored_generation = owner.generation
 	owner.generation = generation
-	owner.calculate_max_bloodpool()
+	owner.update_blood_hud()
 
 /datum/status_effect/blood_of_potency/on_remove()
 	. = ..()
@@ -20,7 +20,7 @@
 	owner.generation = stored_generation
 	stored_generation = null
 
-	owner.calculate_max_bloodpool()
+	owner.update_blood_hud()
 
 	if(owner.bloodpool > owner.maxbloodpool)
 		owner.bloodpool = owner.maxbloodpool
