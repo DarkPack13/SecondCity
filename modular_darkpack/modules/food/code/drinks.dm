@@ -30,6 +30,7 @@
 	icon_state = "beer_blue"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 25, /datum/reagent/toxin/amatoxin = 5)
 
+// TODO: [Rebase] - Typhon's Beer
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
 	name = "Typhon's Beer"
 	desc = "A sanguine drink to sate those of vampiric tastes"

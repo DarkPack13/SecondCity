@@ -5,7 +5,7 @@
 	baseturfs = /turf/open/water/river
 
 /turf/open/water/beach/vamp
-	name = "water"
+	name = "ocean"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "ocean"
 	baseturfs = /turf/open/water/beach/vamp
