@@ -1,0 +1,5 @@
+author: "dwinters99"
+delete-after: True
+changes:
+  - rscadd: "wod belts"
+  - rscadd: "TFN tasers"

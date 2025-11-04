@@ -406,7 +406,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			SSblackbox.LogAhelp(recipient_ticket_id, "Reply", send_message, recip_ckey, our_ckey)
 
 		//always play non-admin recipients the adminhelp sound
-		SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+		SEND_SOUND(recipient, sound('modular_darkpack/master_files/sounds/adminhelp.ogg')) // DARKPACK EDIT CHANGE
 		return TRUE
 
 	// Ok if we're here, either this message is for an admin, or someone somehow figured out how to send a new message as a player
@@ -443,7 +443,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 	// Let's play some music for the admin, only if they want it tho
 	if(sound_prefs & SOUND_ADMINHELP)
-		SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+		SEND_SOUND(recipient, sound('modular_darkpack/master_files/sounds/adminhelp.ogg')) // DARKPACK EDIT CHANGE
 
 	SEND_SIGNAL(ticket, COMSIG_ADMIN_HELP_REPLIED)
 
@@ -709,7 +709,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	// Nullcheck because we run a winset in window flash and I do not trust byond
 	if(recipient)
 		//always play non-admin recipients the adminhelp sound
-		SEND_SOUND(recipient, 'sound/effects/adminhelp.ogg')
+		SEND_SOUND(recipient, 'modular_darkpack/master_files/sounds/adminhelp.ogg') // DARKPACK EDIT CHANGE
 
 		recipient.externalreplyamount = EXTERNALREPLYCOUNT
 	return "Message Successful"
