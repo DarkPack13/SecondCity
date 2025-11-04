@@ -136,3 +136,14 @@
 	icon_state = "ambulance"
 	access = "clinic"
 	car_storage_type = /datum/storage/car/van
+
+/obj/darkpack_car/endroncar
+	icon_state = "endron"
+	max_passengers = 4
+	access = "pentex"
+
+/obj/darkpack_car/endrontruck
+	icon_state = "endrontruck"
+	max_passengers = 6
+	access = "pentex"
+	car_storage_type = /datum/storage/car/truck
