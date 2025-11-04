@@ -918,7 +918,7 @@
 	..()
 	if(firestarter && active)
 		target.fire_act()
-		// DARKPACK EDIT CHANGE START
+		// DARKPACK EDIT CHANGE START - FIRE
 		var/turf/the_turf = get_turf(target)
 		the_turf.ignite_turf(30)
 		new /obj/effect/hotspot(the_turf)
