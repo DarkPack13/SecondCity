@@ -14,7 +14,3 @@
 /area/vtm/sewer/@SUBTYPES : /area/vtm/interior/sewer/@SUBTYPES
 /area/vtm/pacificheights/@SUBTYPES : /area/vtm/outside/pacificheights/@SUBTYPES
 /area/vtm/substation : /area/vtm/interior/substation
-
-/obj/effect/landmark/start/garou/@SUBTYPES : @DELETE
-/obj/effect/landmark/start/garou : @DELETE
-/obj/effect/landmark/start/first_team : @DELETE
