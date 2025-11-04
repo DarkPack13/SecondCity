@@ -14,3 +14,8 @@
 /area/vtm/sewer/@SUBTYPES : /area/vtm/interior/sewer/@SUBTYPES
 /area/vtm/pacificheights/@SUBTYPES : /area/vtm/outside/pacificheights/@SUBTYPES
 /area/vtm/substation : /area/vtm/interior/substation
+/area/vtm/inside/substation : /area/vtm/interior/substation
+
+/mob/living/carbon/human/npc/sabbat/shovelhead/@SUBTYPES : @DELETE
+
+/obj/effect/landmark/start/assamite : @DELETE

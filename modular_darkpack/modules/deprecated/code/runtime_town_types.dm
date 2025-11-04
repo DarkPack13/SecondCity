@@ -45,36 +45,6 @@
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"
 
-/obj/structure/werewolf_totem
-	icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
-	icon_state = "glassw"
-
-/obj/structure/werewolf_totem/wendigo
-	name = "Galestalkers Totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon_state = "wendigo"
-
-/obj/structure/werewolf_totem/children_of_gaia
-	name = "Children of Gaia Totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon_state = "wendigo"
-
-/obj/structure/werewolf_totem/bone_gnawer
-	name = "Bone Gnawer Totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon_state = "wendigo"
-
-/obj/structure/werewolf_totem/glasswalker
-	name = "Glasswalker Totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon_state = "glassw"
-
-/obj/structure/werewolf_totem/spiral
-	name = "Spiral Totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
-	icon_state = "spiral"
-
 /obj/effect/landmark/start/garou/glade/council
 	name = "Amberglade Councillor"
 	icon_state = "Prince"
