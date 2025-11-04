@@ -769,8 +769,7 @@
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
 "qX" = (
-/obj/machinery/light/directional/east,
-/obj/machinery/sprinkler,
+/obj/machinery/sprinkler/area_managed,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "rB" = (
@@ -3327,12 +3326,12 @@ pN
 Jo
 EL
 Id
+qX
+Id
+Id
+Id
+Id
 lm
-Id
-Id
-Id
-Id
-Id
 Id
 Ev
 lk
@@ -3871,12 +3870,12 @@ pN
 pN
 pN
 Id
+qX
 Id
 Id
 Id
 Id
-Id
-Id
+lm
 Id
 Ev
 lk
@@ -3939,7 +3938,7 @@ pN
 pN
 pN
 Id
-qX
+sw
 Id
 Id
 Id
