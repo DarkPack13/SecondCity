@@ -36,3 +36,5 @@
 /obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/doctor
 /obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/janitor
 
+/obj/effect/mob_spawn/human/chunkguard : @DELETE
+/obj/effect/mob_spawn/human/corpse/@SUBTYPES : @DELETE
