@@ -300,7 +300,7 @@
 			return TRUE
 
 		if("terminal_sound")
-			if(!call_sound)
+			if(call_sound)
 				playsound(loc, 'sound/machines/terminal/terminal_select.ogg', 15, TRUE)
 			return TRUE
 	return FALSE
