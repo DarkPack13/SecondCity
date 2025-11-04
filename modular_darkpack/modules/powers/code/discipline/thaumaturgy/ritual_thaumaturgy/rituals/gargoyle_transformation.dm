@@ -178,6 +178,7 @@
 /mob/living/basic/gargoyle/perfect
 	name = "Perfect Gargoyle"
 	desc = "A massive stone-skinned monstrosity with enhanced strength and durability."
+	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "gargoyle_m"
 	icon_living = "gargoyle_m"
 	mob_size = MOB_SIZE_LARGE
@@ -192,6 +193,7 @@
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	bloodpool = 15
 	maxbloodpool = 15
+	//ai_controller = null
 
 /mob/living/basic/gargoyle/perfect/Initialize()
 	. = ..()

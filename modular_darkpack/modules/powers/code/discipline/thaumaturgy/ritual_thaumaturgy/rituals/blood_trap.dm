@@ -11,11 +11,20 @@
 		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		activated = TRUE
 		alpha = 28
+		// Register the signal to detect when something crosses this turf
+		RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(on_crossed))
 
-/obj/ritualrune/blood_trap/Crossed(atom/movable/AM)
-	..()
-	if(isliving(AM) && activated)
-		var/mob/living/L = AM
-		L.adjustFireLoss(50+activator_bonus)
+/obj/ritualrune/blood_trap/proc/on_crossed(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SIGNAL_HANDLER
+
+	if(isliving(arrived) && activated)
+		var/mob/living/L = arrived
+		L.adjustFireLoss(50 + activator_bonus)
 		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		qdel(src)
+
+/obj/ritualrune/blood_trap/Destroy()
+	// Clean up the signal when the trap is destroyed
+	if(loc)
+		UnregisterSignal(loc, COMSIG_ATOM_ENTERED)
+	return ..()
