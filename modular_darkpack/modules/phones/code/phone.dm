@@ -130,7 +130,7 @@
 	data["calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
 	data["being_called"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	data["in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
-	data["calling_user"] = incoming_sim_card.phone_number
+	data["calling_user"] = incoming_sim_card ? incoming_sim_card.phone_number : null
 
 	data["online"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
 	data["talking"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
@@ -315,7 +315,7 @@
 	update_icon()
 
 /*
- / Proc used for intializing a phone call, if secure_frequqncy isn't set, the phone is calling someone.
+ / Proc used for intializing a phone call, if secure_frequency isn't set, the phone is calling someone.
  / If secure_frequency is set, the phone is being called by someone.
 */
 /obj/item/smartphone/proc/initialize_phone_call(mob/user)
