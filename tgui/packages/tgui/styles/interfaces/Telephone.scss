@@ -2,7 +2,7 @@
 @use 'sass:meta';
 
 .Telephone__HomeScreen {
-  background-image: url('../../assets/Phone/bg-phone.jpg');
+  background-image: url('@assets/bg-phone.jpg');
   background-size: cover;
 }
 
@@ -11,32 +11,32 @@
 }
 
 .Telephone__Camera {
-  background-image: url('../../assets/Phone/Camera.jpg');
+  background-image: url('@assets/Phone/Camera.jpg');
   background-size: cover;
 }
 
 .Telephone__Chrome {
-  background-image: url('../../assets/Phone/chrome.svg');
+  background-image: url('@assets/Phone/chrome.svg');
   background-size: cover;
 }
 
 .Telephone__PlayStore {
-  background-image: url('../../assets/Phone/playstore.svg');
+  background-image: url('@assets/Phone/playstore.svg');
   background-size: cover;
 }
 
 .Telephone__Google {
-  background-image: url('../../assets/Phone/google.svg');
+  background-image: url('@assets/Phone/google.svg');
   background-size: cover;
 }
 
 .Telephone__Mic {
-  background-image: url('../../assets/Phone/mic.svg');
+  background-image: url('@assets/Phone/mic.svg');
   background-size: cover;
 }
 
 .Telephone__BlueTooth {
-  background-image: url('../../assets/Phone/bluetooth.svg');
+  background-image: url('@assets/Phone/bluetooth.svg');
   background-size: cover;
 }
 
