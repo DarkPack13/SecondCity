@@ -180,7 +180,7 @@
 
 // DARKPACK EDIT CHANGE START
 /datum/biome/mudlands
-	turf_type = /turf/open/misc/dirt/vamp
+	turf_type = /turf/open/misc/dirt
 	flora_types = list(
 		/obj/structure/flora/rock/pile/darkpack = 2,
 		/obj/structure/flora/rock/darkpack = 1,
@@ -189,7 +189,7 @@
 	flora_density = 3
 
 /datum/biome/plains
-	turf_type = /turf/open/misc/grass/vamp
+	turf_type = /turf/open/misc/grass
 	flora_types = list(
 		/obj/effect/spawner/random/flora/grass = 25,
 		/obj/effect/spawner/random/flora/bushes = 10,
@@ -208,7 +208,7 @@
 	fauna_density = 2
 
 /datum/biome/jungle
-	turf_type = /turf/open/misc/grass/vamp
+	turf_type = /turf/open/misc/grass
 	flora_types = list(
 		/obj/effect/spawner/random/flora/grass = 5,
 		/obj/effect/spawner/random/flora/bushes = 2,
@@ -230,7 +230,7 @@
 	flora_density = 50
 
 /datum/biome/wasteland
-	turf_type = /turf/open/misc/dirt/vamp
+	turf_type = /turf/open/misc/dirt
 	flora_types = list(
 		/obj/structure/flora/rock/pile/darkpack = 10,
 		/obj/structure/flora/rock/darkpack = 2,

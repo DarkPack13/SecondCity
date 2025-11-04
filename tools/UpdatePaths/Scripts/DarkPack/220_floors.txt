@@ -1,0 +1,31 @@
+/turf/open/floor/plating/vampcanal : /turf/open/floor/plating/canal
+/turf/open/floor/plating/vampcanalplating : /turf/open/floor/plating/canalplating
+
+/turf/open/floor/plating/woodrough : /turf/open/floor/wood/rough
+/turf/open/floor/plating/woodfancy : /turf/open/floor/wood/herring
+/turf/open/floor/plating/vampwood : /turf/open/floor/wood/old
+/turf/open/floor/plating/parquetry : /turf/open/floor/wood/smooth
+/turf/open/floor/plating/parquetry/old: /turf/open/floor/wood/smooth/old
+/turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate/rich
+
+/turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack
+
+/turf/open/floor/plating/vampplating : /turf/open/floor/city/plating
+/turf/open/floor/plating/vampplating/mono : /turf/open/floor/city/plating_mono
+/turf/open/floor/plating/vampplating/stone : /turf/open/floor/city/plating_stone
+/turf/open/floor/plating/toilet : /turf/open/floor/city/toilet
+/turf/open/floor/plating/industrial : /turf/open/floor/city/industrial
+/turf/open/floor/plating/circled : /turf/open/floor/city/circled
+/turf/open/floor/plating/church : /turf/open/floor/city/church
+/turf/open/floor/plating/saint : /turf/open/floor/city/saint
+/turf/open/floor/plating/bacotell : /turf/open/floor/city/bacotell
+/turf/open/floor/plating/gummaguts : /turf/open/floor/city/gummaguts
+
+/turf/open/floor/plating/vampcrossableocean : /turf/open/water/beach/vamp
+
+/turf/open/misc/dirt/vamp : /turf/open/misc/dirt
+/turf/open/misc/dirt/vamp/@SUBTYPES : /turf/open/misc/dirt/@SUBTYPES
+/turf/open/misc/grass/vamp : /turf/open/misc/grass
+/turf/open/misc/grass/vamp/@SUBTYPES : /turf/open/misc/grass/@SUBTYPES
+
+/turf/open/water/acid/vamp : /turf/open/water/acid
