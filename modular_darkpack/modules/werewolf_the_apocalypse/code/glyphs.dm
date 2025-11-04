@@ -1,6 +1,3 @@
-
-GLOBAL_LIST_INIT(glyph_list, init_glyphs())
-
 /// Inits GLOB.glyph_list
 /proc/init_glyphs()
 	var/glyph_list = list()
