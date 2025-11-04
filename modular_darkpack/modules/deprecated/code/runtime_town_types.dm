@@ -44,3 +44,101 @@
 	slot_flags = ITEM_SLOT_POCKETS
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"
+
+/obj/structure/werewolf_totem
+	icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
+	icon_state = "glassw"
+
+/obj/structure/werewolf_totem/wendigo
+	name = "Galestalkers Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "wendigo"
+
+/obj/structure/werewolf_totem/children_of_gaia
+	name = "Children of Gaia Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "wendigo"
+
+/obj/structure/werewolf_totem/bone_gnawer
+	name = "Bone Gnawer Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "wendigo"
+
+/obj/structure/werewolf_totem/glasswalker
+	name = "Glasswalker Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "glassw"
+
+/obj/structure/werewolf_totem/spiral
+	name = "Spiral Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
+	icon_state = "spiral"
+
+/obj/effect/landmark/start/garou/glade/council
+	name = "Amberglade Councillor"
+	icon_state = "Prince"
+
+/obj/effect/landmark/start/garou/glade/keeper
+	name = "Amberglade Keeper"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/glade/catcher
+	name = "Amberglade Truthcatcher"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/glade/warder
+	name = "Amberglade Warder"
+	icon_state = "Sheriff"
+
+/obj/effect/landmark/start/garou/glade/guardian
+	name = "Amberglade Guardian"
+	icon_state = "Hound"
+
+/obj/effect/landmark/start/garou/painted/council
+	name = "Painted City Councillor"
+	icon_state = "Prince"
+
+/obj/effect/landmark/start/garou/painted/keeper
+	name = "Painted City Keeper"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/painted/catcher
+	name = "Painted City Truthcatcher"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/painted/warder
+	name = "Painted City Warder"
+	icon_state = "Sheriff"
+
+/obj/effect/landmark/start/garou/painted/guardian
+	name = "Painted City Guardian"
+	icon_state = "Hound"
+
+/obj/effect/landmark/start/garou/spiral/lead
+	name = "Endron Branch Lead"
+	icon_state = "Prince"
+
+/obj/effect/landmark/start/garou/spiral/executive
+	name = "Endron Executive"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/spiral/affairs
+	name = "Endron Internal Affairs Agent"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/garou/spiral/secchief
+	name = "Endron Chief of Security"
+	icon_state = "Sheriff"
+
+/obj/effect/landmark/start/garou/spiral/sec
+	name = "Endron Security Agent"
+	icon_state = "Hound"
+
+/obj/effect/landmark/start/garou/spiral/employee
+	name = "Endron Employee"
+	icon_state = "Hound"
+
+/obj/effect/landmark/start/first_team
+	name = "First Team"
+	delete_after_roundstart = FALSE
