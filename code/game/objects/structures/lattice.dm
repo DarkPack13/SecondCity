@@ -108,21 +108,6 @@
 	for(var/datum/callback/callback as anything in post_replacement_callbacks)
 		callback.Invoke(new_catwalk)
 
-// DARKPACK EDIT ADD START
-/obj/structure/lattice/grate
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "lattice_grate"
-	base_icon_state = "lattice_grate"
-
-	smoothing_flags = null
-	smoothing_groups = null
-	canSmoothWith = null
-
-/obj/structure/lattice/pentex
-	desc = "Looks sturdy enough and made of advanced materials."
-	icon = 'icons/obj/smooth_structures/darkpack/catwalk_pentex_opaque.dmi'
-// DARKPACK EDIT ADD END
-
 /obj/structure/lattice/catwalk
 	name = "catwalk"
 	desc = "A catwalk for easier EVA maneuvering and cable placement."
@@ -163,14 +148,6 @@
 			cable_coil.deconstruct()
 		qdel(src)
 		return TRUE
-
-// DARKPACK EDIT ADD START
-/obj/structure/lattice/catwalk/borderless
-	icon = 'icons/obj/smooth_structures/darkpack/catwalk_borderless.dmi'
-
-/obj/structure/lattice/catwalk/borderless/smooth_walls
-	canSmoothWith = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CITY_WALL
-// DARKPACK EDIT ADD END
 
 /obj/structure/lattice/catwalk/mining
 	name = "reinforced catwalk"
