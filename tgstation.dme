@@ -6838,6 +6838,8 @@
 #include "modular_darkpack\modules\areas\code\interiors\anarch.dm"
 #include "modular_darkpack\modules\areas\code\interiors\city_interiors.dm"
 #include "modular_darkpack\modules\areas\code\interiors\endron_facility.dm"
+#include "modular_darkpack\modules\areas\code\interiors\forest.dm"
+#include "modular_darkpack\modules\areas\code\interiors\garou.dm"
 #include "modular_darkpack\modules\areas\code\interiors\library.dm"
 #include "modular_darkpack\modules\areas\code\interiors\millennium_tower.dm"
 #include "modular_darkpack\modules\areas\code\interiors\sewers.dm"
