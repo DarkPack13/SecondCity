@@ -13,6 +13,13 @@
 // TODO: [Rebase] implement other splats
 #define isgarou(A) (FALSE)
 
+#define iswerewolf(A) (FALSE)
+#define iscrinos(A) (FALSE)
+#define islupus(A) (FALSE)
+
+#define iscorax(A) (FALSE)
+#define iscorvid(A) (FALSE)
+#define iscoraxcrinos(A) (FALSE)
 
 
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))

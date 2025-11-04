@@ -1,7 +1,7 @@
 /obj/structure/werewolf_totem
 	name = "Tribe Totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x64.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/totems.dmi'
 	icon_state = "glassw"
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
@@ -18,6 +18,8 @@
 	var/turf/teleport_turf
 	var/opening = FALSE
 
+// TODO: [Rebase] - GAROU - Fuck this not respecting normal integrity
+/*
 /obj/structure/werewolf_totem/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(I.force)
@@ -89,6 +91,7 @@
 				overlays -= totem_light_overlay
 				totem_light_overlay.icon_state = "[icon_state]_overlay"
 				overlays |= totem_light_overlay
+*/
 
 /obj/structure/werewolf_totem/wendigo
 	name = "Wendigo Totem"
@@ -107,7 +110,7 @@
 /obj/structure/werewolf_totem/spiral
 	name = "Spiral Totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
-	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/spiral_totem.dmi'
 	icon_state = "spiral"
 	tribe = "Black Spiral Dancers"
 	totem_overlay_color = "#ff5235"
@@ -117,6 +120,8 @@
 	icon_state = "x"
 	var/tribe
 
+// TODO: [Rebase] - GAROU
+/*
 /obj/structure/werewolf_totem/attack_hand(mob/user)
 	. = ..()
 	if(iswerewolf(user) || isgarou(user))
@@ -150,3 +155,4 @@
 					qdel(prev)
 		else
 			adjust_totem_health(round(C.melee_damage_lower/2))
+*/
