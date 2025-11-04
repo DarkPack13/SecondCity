@@ -240,6 +240,9 @@
 		fire_power = min(TURF_FIRE_MAX_POWER, power)
 	UpdateFireState()
 
+	if(!mapload)
+		playsound(src, 'modular_darkpack/modules/fire/sounds/spread.ogg', 80, TRUE)
+
 /obj/effect/abstract/turf_fire/Destroy()
 	var/turf/open/open_turf = loc
 	open_turf.turf_fire = null
@@ -361,7 +364,7 @@
 	update_light()
 
 /particles/smoke/turf_fire
-	spawning = 1 // don't turn this up or forest fires cause way too much lag
+	spawning = 0.5 // don't turn this up or forest fires cause way too much lag
 	position = generator(GEN_SPHERE, 16, 24, NORMAL_RAND)
 
 #undef TURF_FIRE_REQUIRED_TEMP

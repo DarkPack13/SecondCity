@@ -6932,6 +6932,7 @@
 #include "modular_darkpack\modules\fire\code\fire.dm"
 #include "modular_darkpack\modules\fire\code\flora.dm"
 #include "modular_darkpack\modules\fire\code\molotov.dm"
+#include "modular_darkpack\modules\fire\code\sprinkler.dm"
 #include "modular_darkpack\modules\fire\code\turf_fire_subsystem.dm"
 #include "modular_darkpack\modules\fire\code\turf_subtypes.dm"
 #include "modular_darkpack\modules\flags\code\flags.dm"

@@ -108,7 +108,7 @@
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
-	var/cooling_temperature = 2
+	var/cooling_temperature = 1.2 // DARKPACK EDIT CHANGE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS
 	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
 
@@ -152,8 +152,10 @@
 	if(isgroundlessturf(exposed_turf) || isnoslipturf(exposed_turf))
 		return
 
-	if(reac_volume >= 5)
+	// DARKPACK EDIT CHANGE START
+	if(reac_volume >= 5 && prob(25+reac_volume))
 		exposed_turf.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
+	// DARKPACK EDIT CHANGE END
 
 /*
  * Water reaction to an object

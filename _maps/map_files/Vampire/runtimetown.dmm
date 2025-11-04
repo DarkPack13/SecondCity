@@ -493,6 +493,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"lm" = (
+/obj/machinery/sprinkler,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "lC" = (
 /obj/machinery/door/airlock/elevator/right{
 	dir = 4;
@@ -764,6 +768,11 @@
 "qV" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
+"qX" = (
+/obj/machinery/light/directional/east,
+/obj/machinery/sprinkler,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "rB" = (
 /turf/closed/indestructible/the_matrix,
 /area/vtm)
@@ -3305,7 +3314,7 @@ pN
 Jo
 EL
 Id
-Id
+lm
 Id
 Id
 Id
@@ -3917,7 +3926,7 @@ pN
 pN
 pN
 Id
-sw
+qX
 Id
 Id
 Id

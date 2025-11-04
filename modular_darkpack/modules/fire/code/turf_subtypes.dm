@@ -20,7 +20,7 @@
 		return
 	new /obj/effect/abstract/turf_fire(src, power, fire_color)
 
-/turf/open/extinguish_turf(cooling_power = 2)
+/turf/open/extinguish_turf(cooling_power = 1.2)
 	if(!air)
 		return
 	if(!active_hotspot && !turf_fire)
@@ -49,5 +49,11 @@
 /turf/open/misc/dirt/burn_tile()
 	return FALSE
 
+/turf/open/misc/snow
+	flammability = 0
+
 /turf/open/floor/wood
+	flammability = 2
+
+/turf/open/floor/carpet
 	flammability = 2
