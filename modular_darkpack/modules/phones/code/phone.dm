@@ -1,1018 +1,510 @@
-/proc/create_unique_phone_number(exchange = 513)
-	if(length(GLOB.subscribers_numbers_list) < 1)
-		create_subscribers_numbers()
-	var/subscriber_code = pick(GLOB.subscribers_numbers_list)
-	GLOB.subscribers_numbers_list -= subscriber_code
-	return "[exchange][subscriber_code]"
-
-/proc/create_subscribers_numbers()
-	for(var/i in 1 to 9999)
-		var/ii = "0000"
-		switch(i)
-			if(1 to 9)
-				ii = "000[i]"
-			if(10 to 99)
-				ii = "00[i]"
-			if(100 to 999)
-				ii = "0[i]"
-			if(1000 to 9999)
-				ii = "[i]"
-		GLOB.subscribers_numbers_list += ii
-
-/obj/item/vamp/phone
-	name = "\improper phone"
+/obj/item/smartphone
+	name = "flip phone"
 	desc = "A portable device to call anyone you want."
-	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/phones/icons/phone_onfloor.dmi')
+	icon = 'code/modules/wod13/items.dmi'
 	icon_state = "phone0"
 	inhand_icon_state = "phone0"
-	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	lefthand_file = 'code/modules/wod13/lefthand.dmi'
+	righthand_file = 'code/modules/wod13/righthand.dmi'
 	item_flags = NOBLUDGEON
-	flags_1 = HEAR_1
 	w_class = WEIGHT_CLASS_SMALL
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-	var/exchange_num = 513
+	// There's a radio in my phone that calls me stud muffin.
+	var/obj/item/radio/phone_radio
+
+	// Contacts the phone has saved.
 	var/list/contacts = list()
-	var/blocked = FALSE
+	// Contacts the phone has blocked.
 	var/list/blocked_contacts = list()
-	var/closed = TRUE
-	var/owner = ""
-	var/number
-	var/obj/item/vamp/phone/online
-	var/talking = FALSE
-	var/choosed_number = ""
-	var/last_call = 0
-	var/call_sound = 'modular_darkpack/modules/deprecated/sounds/call.ogg'
-	var/can_fold = 1
-	var/interface = "Telephone"
-	var/silence = FALSE
-	var/toggle_published_contacts = FALSE
-	var/list/published_numbers_contacts = list()
+	// The phone history of the phone.
 	var/list/phone_history_list = list()
+	// Currently viewed newscaster channel. Used for IRC Announcements
+	var/obj/machinery/newscaster/irc_channel
+	//Current sound to play when the phone is ringing.
+	var/call_sound = 'modular_darkpack/modules/phones/sounds/call.ogg'
+	/// Do we have a SIM card?
+	var/obj/item/sim_card/sim_card
+	/// Phone flags
+	var/phone_flags = NONE
+	/// The number the user is currently dialing.
+	var/dialed_number
+	// The frequency the phone is currently using to call another phone.
+	var/secure_frequency
+	// The frequency that is calling us.
+	var/incoming_frequency
+	var/obj/item/sim_card/incoming_sim_card
 
-	/// Phone icon states
-	var/open_state = "phone2"
-	var/closed_state = "phone1"
-	var/folded_state = "phone0"
-
-/obj/item/vamp/phone/Initialize(mapload)
+/obj/item/smartphone/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
-	if(!number || number == "")
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H_O = loc
-			owner = H_O.real_name
-		number = create_unique_phone_number(exchange_num)
-		GLOB.phone_numbers_list += number
-		GLOB.phones_list += src
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.Myself)
-				H.Myself.phone_number = number
+	sim_card = new()
+	sim_card.phone_weakref = WEAKREF(src)
+	phone_radio = new()
+	RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
+	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
+	irc_channel = new()
 
-	AddComponent(/datum/component/violation_observer, FALSE)
-
-/obj/item/vamp/phone/Destroy()
-	GLOB.phone_numbers_list -= number
-	GLOB.phones_list -= src
-	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
-	..()
-
-/obj/item/vamp/phone/attack_hand(mob/user)
+/obj/item/smartphone/Destroy(force)
 	. = ..()
-	ui_interact(user)
+	UnregisterSignal(COMSIG_PHONE_RING)
+	UnregisterSignal(COMSIG_PHONE_RING_TIMEOUT)
+	if(sim_card)
+		sim_card.phone_weakref = null
+		QDEL_NULL(sim_card)
+	if(phone_radio)
+		QDEL_NULL(phone_radio)
 
-/obj/item/vamp/phone/interact(mob/user)
+/obj/item/smartphone/examine(mob/user)
 	. = ..()
-	ui_interact(user)
+	. += span_notice("[EXAMINE_HINT("Interact")] to look at the screen.")
+	. += span_notice("[EXAMINE_HINT("Alt-Click")] or [EXAMINE_HINT("Right-Click")] to toggle the screen.")
+	if(sim_card)
+		. += span_notice("[EXAMINE_HINT("Ctrl-Click")] to remove [sim_card].")
+	else
+		. += span_notice("You can [EXAMINE_HINT("Insert")] a SIM card.")
 
-/obj/item/vamp/phone/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/smartphone/attack_self(mob/user, modifiers)
 	. = ..()
+	if(!(phone_flags & PHONE_OPEN))
+		toggle_screen(user)
+	ui_interact()
 
-	if(closed)
-		closed = FALSE
-		icon_state = open_state
+/obj/item/smartphone/click_alt(mob/user)
+	. = ..()
+	toggle_screen(user)
+	return TRUE
+
+/obj/item/smartphone/click_ctrl(mob/user)
+	. = ..()
+	if(!(user.is_holding(src)))
+		return FALSE
+	if(!sim_card)
+		balloon_alert(user, "no sim card!")
+		return FALSE
+	if(do_after(user, 2 SECONDS, src))
+		balloon_alert(user, "you remove \the [sim_card]!")
+		end_phone_call()
+		user.put_in_hands(sim_card)
+		sim_card.phone_weakref = null
+		sim_card = null
+		phone_flags |= PHONE_NO_SIM
+		UnregisterSignal(COMSIG_PHONE_RING)
+		UnregisterSignal(COMSIG_PHONE_RING_TIMEOUT)
+		return TRUE
+	return FALSE
+
+/obj/item/smartphone/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/sim_card))
+		if(sim_card)
+			balloon_alert(user, "[sim_card] already installed!")
+			return FALSE
+		balloon_alert(user, "you insert \the [attacking_item]!")
+		sim_card = attacking_item
+		user.transferItemToLoc(attacking_item, src)
+		sim_card.phone_weakref = WEAKREF(src)
+		phone_flags &= ~PHONE_NO_SIM
+		RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
+		RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
+		return TRUE
+	return ..()
+
+/obj/item/smartphone/ui_status(mob/user, datum/ui_state/state)
+	if(!(phone_flags & PHONE_OPEN))
+		return UI_CLOSE
+	return ..()
+
+/obj/item/smartphone/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, interface, interface)
+		ui = new(user, src, "Telephone")
 		ui.open()
 
-/obj/item/vamp/phone/click_alt(mob/user)
-	if(can_fold && !closed)
-		closed = TRUE
-		icon_state = folded_state
-		talking = FALSE
-		if(online)
-			online.online = null
-			online.talking = FALSE
-			online = null
-
-/obj/item/vamp/phone/ui_data(mob/user)
+/obj/item/smartphone/ui_data(mob/user)
 	var/list/data = list()
-	data["calling"] = FALSE
-	if(last_call+100 > world.time && !talking)
-		data["calling"] = TRUE
+	data["dialed_number"] = dialed_number
+	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
+	data["calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
+	data["being_called"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
+	data["in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
+	data["calling_user"] = incoming_sim_card.phone_number
 
-	data["online"] = online
-	data["talking"] = talking
-	data["my_number"] = choosed_number
-	data["choosed_number"] = choosed_number
-	if(online)
-		data["calling_user"] = "(+1 707) [online.number]"
+	data["online"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
+	data["talking"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
+	if(phone_flags & PHONE_IN_CALL)
+		data["calling_user"] = "(+1 707) [incoming_sim_card.phone_number]"
 		for(var/datum/phonecontact/P in contacts)
-			if(P.number == online.number)
+			if(P.number == incoming_sim_card.phone_number)
 				data["calling_user"] = P.name
 
-	return data
-/*
-/obj/item/vamp/phone/proc/OpenMenu(mob/mobila)
-	var/dat = "<body><center><h2>Phone</h2><BR>"
-	if(last_call+100 > world.time && !talking)
-		dat += "Calling...<BR>"
-		dat += "<a href='byond://?src=[REF(src)];choice=hang'><b>Hang up</b></a><BR>"
-	else
-		if(online)
-			var/who_talking_with = "(+1 707) [online.number]"
-			for(var/datum/phonecontact/P in contacts)
-				if(P.number == online.number)
-					who_talking_with = P.name
-			if(talking)
-				dat += "Current call: [who_talking_with]<BR>"
-				dat += "<a href='byond://?src=[REF(src)];choice=hang'><b>Hang up</b></a><BR>"
-			else
-				dat += "[who_talking_with] is calling!<BR>"
-				dat += "<a href='byond://?src=[REF(src)];choice=accept'><b>Accept</b></a><BR>"
-				dat += "<a href='byond://?src=[REF(src)];choice=decline'><b>Decline</b></a><BR>"
-		else
-			if(number)
-				dat += "My number is (+1 707) [number]<BR>"
-			dat += "Typed number: [choosed_number]_<BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=1'>1</a>||<a href='byond://?src=[REF(src)];choice=2'>2</a>||<a href='byond://?src=[REF(src)];choice=3'>3</a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=4'>4</a>||<a href='byond://?src=[REF(src)];choice=5'>5</a>||<a href='byond://?src=[REF(src)];choice=6'>6</a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=7'>7</a>||<a href='byond://?src=[REF(src)];choice=8'>8</a>||<a href='byond://?src=[REF(src)];choice=9'>9</a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=space'>_</a>||<a href='byond://?src=[REF(src)];choice=0'>0</a>||<a href='byond://?src=[REF(src)];choice=cage'>#</a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=reset'>*</a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=call'><b>Call</b></a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=contacts'><b>Contacts</b></a><BR>"
-			dat += "<a href='byond://?src=[REF(src)];choice=add'><b>Add contact</b></a><BR>"
-	dat += "</center>"
-	dat += "Ambulance number is: 911<BR>"
-	dat += "Cleaning services number is: 700 4424<BR>"
-	dat += "</body>"
-	mobila << browse(dat, "window=phone;size=250x350;border=1;can_resize=0;can_minimize=0")
-	onclose(mobila, "phone", src)
-*/
+	data["silence"] = isnull(call_sound)
+	data["our_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 
-/obj/item/vamp/phone/ui_act(action, params)
+	var/list/published_numbers = list()
+	for(var/i in 1 to min(LAZYLEN(GLOB.published_numbers), LAZYLEN(GLOB.published_number_names)))
+		var/number = GLOB.published_numbers[i]
+		var/name = GLOB.published_number_names[i]
+
+		UNTYPED_LIST_ADD(published_numbers, list(
+			"name" = name,
+			"number" = number,
+		))
+	data["published_numbers"] = published_numbers
+
+	var/list/our_contacts = list()
+	for(var/datum/phonecontact/contact in contacts)
+		UNTYPED_LIST_ADD(our_contacts, list(
+			"name" = contact.name,
+			"number" = contact.number,
+		))
+	data["our_contacts"] = our_contacts
+
+	var/list/our_blocked_contacts = list()
+	for(var/datum/phonecontact/contact in blocked_contacts)
+		UNTYPED_LIST_ADD(our_blocked_contacts, list(
+			"name" = contact.name,
+			"number" = contact.number,
+		))
+	data["our_blocked_contacts"] = our_blocked_contacts
+
+	var/list/phone_history = list()
+	for(var/datum/phonehistory/PH in phone_history_list)
+		UNTYPED_LIST_ADD(phone_history, list(
+			"type" = PH.call_type,
+			"name" = PH.name,
+			"number" = PH.number,
+			"time" = PH.time
+		))
+	data["phone_history"] = phone_history
+
+	/*
+	var/list/newscaster_channels = list()
+	for(var/datum/newscaster/feed_channel/CHANNEL in GLOB.news_network.network_channels)
+		UNTYPED_LIST_ADD(newscaster_channels, list(
+			"name" = CHANNEL.channel_name,
+			"censored" = CHANNEL.censored,
+			"ref" = FAST_REF(CHANNEL),
+		))
+	data["newscaster_channels"] = newscaster_channels
+
+	data["viewing_channel"] = null
+	if(viewing_newscaster_channel)
+		var/datum/newscaster/feed_channel/channel = locate(viewing_newscaster_channel)
+		if(istype(channel))
+			var/list/channel_data = list("messages" = list())
+			if(channel.censored)
+				channel_data["censored"] = TRUE
+			else
+				for(var/datum/newscaster/feed_message/MESSAGE in channel.messages)
+					var/list/comments = list()
+
+					for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
+						UNTYPED_LIST_ADD(comments, list(
+							"body" = comment.body,
+							"author" = comment.author,
+							"time_stamp" = comment.time_stamp,
+						))
+
+					UNTYPED_LIST_ADD(channel_data["messages"], list(
+						"body" = MESSAGE.returnBody(-1),
+						"caption" = MESSAGE.caption,
+						"author" = MESSAGE.returnAuthor(-1),
+						"time_stamp" = MESSAGE.time_stamp,
+						"comments" = comments,
+					))
+			data["viewing_channel"] = channel_data
+	*/
+
+	data += newscaster_information_request(user)
+	return data
+
+/obj/item/smartphone/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
-//	var/mob/living/carbon/human/V = usr
-
 
 	switch(action)
-		if("hang")
-			last_call = 0
-			if(talking)
-				talking = FALSE
-				if(online)
-					online.talking = FALSE
-			if(online)
-				if(!silence)
-					playsound(online, 'modular_darkpack/modules/deprecated/sounds/phonestop.ogg', 25, FALSE)
-				online.online = null
-				online = null
-			.= TRUE
-		if("accept")
-			if(online)
-				talking = TRUE
-				online.online = src
-				online.talking = TRUE
-
-				var/datum/phonehistory/NEWH_caller = new()
-				var/datum/phonehistory/NEWH_being_called = new()
-
-				//Being called History
-				NEWH_being_called.name = "Unknown"
-				for(var/datum/phonecontact/Contact in contacts)
-					if(Contact.number == online.number)
-						//Verify if they have a contact with the number if so, save their name
-						NEWH_being_called.name = Contact.name
-						break
-				NEWH_being_called.number = online.number
-				NEWH_being_called.time = "[station_time_timestamp("hh:mm")]"
-				NEWH_being_called.call_type = "I accepted the call"
-				phone_history_list += NEWH_being_called
-
-				//Caller History
-				NEWH_caller.name = "Unknown"
-				for(var/datum/phonecontact/Contact in online.contacts)
-					if(Contact.number == number)
-						//Verify if they have a contact with the number if so, save their name
-						NEWH_caller.name = Contact.name
-						break
-				NEWH_caller.number = number
-				NEWH_caller.time = "[station_time_timestamp("hh:mm")]"
-				NEWH_caller.call_type = "They accepted the call"
-				online.phone_history_list += NEWH_caller
-			.= TRUE
-		if("decline")
-			talking = FALSE
-			if(online)
-
-				if(!silence)
-					playsound(online, 'modular_darkpack/modules/deprecated/sounds/phonestop.ogg', 25, FALSE)
-				online.talking = FALSE
-
-
-				var/datum/phonehistory/NEWH_caller = new()
-				var/datum/phonehistory/NEWH_being_called = new()
-
-				//Being called History
-				NEWH_being_called.name = "Unknown"
-				for(var/datum/phonecontact/Contact in contacts)
-					if(Contact.number == online.number)
-						//Verify if they have a contact with the number if so, save their name
-						NEWH_being_called.name = Contact.name
-						break
-				NEWH_being_called.number = online.number
-				NEWH_being_called.time = "[station_time_timestamp("hh:mm")]"
-				NEWH_being_called.call_type = "I declined the call"
-				phone_history_list += NEWH_being_called
-
-				//Caller History
-				NEWH_caller.name = "Unknown"
-				for(var/datum/phonecontact/Contact in online.contacts)
-					if(Contact.number == number)
-						//Verify if they have a contact with the number if so, save their name
-						NEWH_caller.name = Contact.name
-						break
-				NEWH_caller.number = number
-				NEWH_caller.time = "[station_time_timestamp("hh:mm")]"
-				NEWH_caller.call_type = "They declined the call"
-				online.phone_history_list += NEWH_caller
-
-				online.online = null
-				online = null
-
-			.= TRUE
-		if("call")
-			choosed_number = replacetext(choosed_number, " ", "")
-			for(var/obj/item/vamp/phone/PHN in GLOB.phones_list)
-			//Loop through the Phone Global List
-				if(PHN.number == choosed_number)
-				// Verify if number wrote actually meets another PHN(Phone number) in the list
-					blocked = FALSE // Not blocked YET.
-					for(var/datum/phonecontact/BlockC in PHN.blocked_contacts)
-					// Loop through the blocked numbers in the PHN Blocked LIST
-						if(BlockC.number == number)
-							// Verify if the caller has their number blocked by the PHN
-							blocked = TRUE
-							// If he is, Blocked is TRUE.
-							to_chat(usr, span_notice("You have been blocked by this number."))
-							break
-							// Stop loops once it is found
-					if(!blocked)
-					// If the Caller is not blocked and the PHN is flipped and they are not talking, then the call goes through.
-						if(!PHN.online && !PHN.talking)
-							last_call = world.time
-							online = PHN
-							PHN.online = src
-							Recall(online, usr)
-							var/datum/phonehistory/NEWH_caller = new()
-							var/datum/phonehistory/NEWH_being_called = new()
-							if(PHN.number == number)
-								//Verify if you are calling yourself
-								NEWH_caller.name = owner
-								NEWH_caller.call_type = "I called myself"
-								NEWH_caller.time = "[station_time_timestamp("hh:mm")]"
-								NEWH_caller.number = number
-								phone_history_list += NEWH_caller
-							else
-								//Caller History
-								NEWH_caller.name = "Unknown"
-								for(var/datum/phonecontact/Contact in contacts)
-									if(Contact.number == PHN.number)
-										//Verify if they have a contact with the number if so, save their name
-										NEWH_caller.name = Contact.name
-										break
-								NEWH_caller.number = PHN.number
-								NEWH_caller.time = "[station_time_timestamp("hh:mm")]"
-								NEWH_caller.call_type = "I called"
-								phone_history_list += NEWH_caller
-
-								//Being Called History
-								NEWH_being_called.name = "Unknown"
-								for(var/datum/phonecontact/Contact in PHN.contacts)
-									if(Contact.number == number)
-										//Verify if they have a contact with the number if so, save their name
-										NEWH_being_called.name = Contact.name
-										break
-								NEWH_being_called.number = number
-								NEWH_being_called.time = "[station_time_timestamp("hh:mm")]"
-								NEWH_being_called.call_type = "They called me"
-								PHN.phone_history_list += NEWH_being_called
-						else
-							to_chat(usr, span_notice("Abonent is busy."))
-			if(!online && !blocked)
-			// If the phone is not flipped or the phone user has left the city and they are not blocked.
-				if(choosed_number == "#111")
-					call_sound = 'modular_darkpack/modules/deprecated/sounds/call.ogg'
-					to_chat(usr, span_notice("Settings are now reset to default."))
-				else if(choosed_number == "#228")
-					call_sound = 'modular_darkpack/modules/deprecated/sounds/nokia.ogg'
-					to_chat(usr, span_notice("Code activated."))
-				else if(choosed_number == "#666")
-					call_sound = 'sound/voice/human/malescream_6.ogg'
-					to_chat(usr, span_notice("Code activated."))
-				else if(choosed_number == "#34")
-					if(ishuman(usr))
-						var/mob/living/carbon/human/H = usr
-						H.emote("moan")
-					to_chat(usr, span_notice("Code activated."))
-				else
-					to_chat(usr, span_notice("Invalid number."))
-			.= TRUE
-		if("contacts")
-			var/list/options = list("Add","Remove","Choose","Block", "Unblock", "My Number", "Publish Number", "Published Numbers", "Call History", "Delete Call History")
-			var/option =  input(usr, "Select an option", "Contacts Option") as null|anything in options
-			var/result
-			switch(option)
-				if("Publish Number")
-					if (!islist(GLOB.published_numbers))
-						GLOB.published_numbers = list()
-					if (!islist(GLOB.published_number_names))
-						GLOB.published_number_names = list()
-
-					var/name = input(usr, "Input name", "Publish Number") as null|text
-					if(name && src.number)
-						name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
-						if(src.number in GLOB.published_numbers)
-							to_chat(usr, "<span class ='notice'>This number is already published.</span>")
-						else
-							GLOB.published_numbers += src.number
-							GLOB.published_number_names += name
-							to_chat(usr, span_notice("Your number is now published."))
-							for(var/obj/item/vamp/phone/PHN in GLOB.phones_list)
-								//Gather all the Phones in the game to check if they got the toggle for published contacts
-								if(PHN.toggle_published_contacts == TRUE)
-									//If they got it, their published number will be added to those phones
-									var/datum/phonecontact/NEWC = new()
-									var/p_number = src.number
-									NEWC.number = "[p_number]"
-									NEWC.name = "[name]"
-									if(NEWC.number != PHN.number)
-										//Check if it is not your own number that you are adding to contacts
-										var/GOT_CONTACT = FALSE
-										for(var/datum/phonecontact/Contact in PHN.contacts)
-											if(Contact.number == NEWC.number)
-												//Check if the number is not already in your contact list
-												GOT_CONTACT = TRUE
-												break
-										if(!GOT_CONTACT)
-											PHN.contacts += NEWC
-						//to_chat(usr, span_notice("Published numbers: [GLOB.published_numbers]"))
-						//to_chat(usr, span_notice("Published names: [GLOB.published_number_names]"))
-					else
-						to_chat(usr, span_notice("You must input a name to publish your number."))
-
-				if ("Published Numbers")
-					var/list_length = min(length(GLOB.published_numbers), length(GLOB.published_number_names))
-					for(var/i = 1 to list_length)
-						var/number = GLOB.published_numbers[i]
-						var/display_number_first = copytext(number, 1, 4)
-						var/display_number_second = copytext(number, 4, 8)
-						var/split_number = display_number_first + " " + display_number_second
-						var/name = GLOB.published_number_names[i]
-						to_chat(usr, "- [name]: [split_number]")
-				if("Add")
-					var/new_contact = input(usr, "Input phone number", "Add Contact")  as null|text
-					if(new_contact)
-						new_contact = trim(copytext_char(sanitize(new_contact), 1, MAX_MESSAGE_LEN))
-						var/datum/phonecontact/NEWC = new()
-						new_contact = replacetext(new_contact, " ", "") //Removes spaces
-						NEWC.number = "[new_contact]"
-						contacts += NEWC
-						var/new_contact_name = input(usr, "Input name", "Add Contact")  as null|text
-						new_contact_name = trim(copytext_char(sanitize(new_contact_name), 1, MAX_MESSAGE_LEN))
-						if(new_contact_name)
-							NEWC.name = "[new_contact_name]"
-						else
-							var/numbrr = length(contacts)+1
-							NEWC.name = "Contact [numbrr]"
-				if("Remove")
-					var/list/removing = list()
-					for(var/datum/phonecontact/CNT_REMOVE in contacts)
-						removing += CNT_REMOVE.name
-					if(length(removing) >= 1)
-						result = input(usr, "Select a contact", "Contact Selection") as null|anything in removing
-						if(result)
-							for(var/datum/phonecontact/CNT_REMOVE in contacts)
-								if(CNT_REMOVE.name == result)
-									contacts -= CNT_REMOVE
-				if("Choose")
-					var/list/shit = list()
-					for(var/datum/phonecontact/CNTCT in contacts)
-						shit += CNTCT.name
-					if(length(shit) >= 1)
-						result = input(usr, "Select a contact", "Contact Selection") as null|anything in shit
-						if(result)
-							for(var/datum/phonecontact/CNTCT in contacts)
-								if(CNTCT.name == result)
-									if(CNTCT.number == "")
-										CNTCT.check_global_contacts()
-										if(CNTCT.number == "")
-											to_chat(usr, span_notice("Sorry, [CNTCT.name] does not have a number."))
-									choosed_number = CNTCT.number
-				if("Block")
-					var/block_number = input(usr, "Input phone number", "Block Number")  as text|null
-					if(block_number)
-						var/datum/phonecontact/BlockC = new()
-						block_number = replacetext(block_number, " ", "") //Removes spaces
-						BlockC.number = "[block_number]"
-						blocked_contacts += BlockC
-						var/block_contact_name = input(usr, "Input name", "Add name of the Blocked number")  as text|null
-						if(block_contact_name)
-							BlockC.name = "[block_contact_name]"
-						else
-							var/number = length(blocked_contacts)+1
-							BlockC.name = "Blocked [number]"
-				if("Unblock")
-					var/list/unblocking = list()
-					for(var/datum/phonecontact/CNT_UNBLOCK in blocked_contacts)
-						unblocking += CNT_UNBLOCK.name
-					if(length(unblocking) >= 1)
-						result = input(usr, "Select a blocked number", "Blocked Selection") as null|anything in unblocking
-						if(result)
-							for(var/datum/phonecontact/CNT_UNBLOCK in blocked_contacts)
-								if(CNT_UNBLOCK.name == result)
-									blocked_contacts -= CNT_UNBLOCK
-				if("Call History")
-					if(phone_history_list.len > 0)
-						for(var/datum/phonehistory/PH in phone_history_list)
-							//loop through the phone_history_list searching for a phonehistory datums and display them.
-							var/display_number_first = copytext(PH.number, 1, 4)
-							var/display_number_second = copytext(PH.number, 4, 8)
-							var/split_number = display_number_first + " " + display_number_second
-							to_chat(usr, "# [PH.call_type]: [PH.name] , [split_number] at [PH.time]")
-					else
-						to_chat(usr, "You have no call history.") //PSEUDO_M return to fix all this
-				if("Delete Call History")
-					if(phone_history_list.len > 0)
-						to_chat(usr, "Your total amount of history saved is: [phone_history_list.len]")
-						var/number_of_deletions = text2num(input(usr, "Input the amount that you want to delete", "Deletion Amount")  as null|text)
-						//Delete the call history depending on the amount inputed by the User
-						if(number_of_deletions > phone_history_list.len)
-						// Verify if the requested amount in bigger than the history list.
-							to_chat(usr, "You cannot delete more items than the history contains.")
-						else
-							for(var/i = 1 to number_of_deletions)
-								//It will always delete the first item of the list, so the last logs are deleted first
-								var/item_to_remove = phone_history_list[1]
-								phone_history_list -= item_to_remove
-						to_chat(usr, "[number_of_deletions] call history entries were deleted. Remaining: [phone_history_list.len]")
-
-					else
-						to_chat(usr, "You have no call history to delete it.")
-				if("My Number")
-					var/number_first_part = copytext(number, 1, 4)
-					var/number_second_part = copytext(number, 4, 8)
-					to_chat(usr, number_first_part + " " + number_second_part)
-			.= TRUE
-		if("settings")
-			//Wrench Icon, more focused on toggles or later more complex options.
-			var/list/options = list("Notifications and Sounds Toggle", "Published Numbers as Contacts Toggle")
-			var/option =  input(usr, "Select a setting", "Settings Selection") as null|anything in options
-			switch(option)
-				if("Notifications and Sounds Toggle")
-					if(!silence)
-						//If it is true, it will check all the other sounds for phone and disable them
-						silence = TRUE
-						to_chat(usr, span_notice("Notifications and Sounds toggled off."))
-					else
-						silence = FALSE
-						to_chat(usr, span_notice("Notifications and Sounds toggled on."))
-				if ("Published Numbers as Contacts Toggle")
-					if(!toggle_published_contacts)
-						var/contacts_added_lenght = published_numbers_contacts.len
-						var/list_length = min(length(GLOB.published_numbers), length(GLOB.published_number_names))
-						log_admin(contacts_added_lenght)
-						log_admin(list_length)
-						if(contacts_added_lenght < list_length)
-						// checks the size difference between the GLOB published list and the phone published list
-							var/ADDED_CONTACTS = 0
-							to_chat(usr, span_notice("New contacts are being added to your contact list."))
-							for(var/i = 1 to list_length)
-								var/number_v = GLOB.published_numbers[i]
-								var/name_v = GLOB.published_number_names[i]
-								var/datum/phonecontact/NEWC = new()
-								NEWC.number = "[number_v]"
-								NEWC.name = "[name_v]"
-								if(NEWC.number != number)
-									//Check if it is not your own number that you are adding to contacts
-									var/GOT_CONTACT = FALSE
-									for(var/datum/phonecontact/Contact in contacts)
-									//Check if the number is not already in your contact list
-										if(Contact.number == NEWC.number)
-											GOT_CONTACT = TRUE
-											break
-									if(!GOT_CONTACT)
-										contacts += NEWC
-										published_numbers_contacts += NEWC
-										ADDED_CONTACTS +=1
-							if(ADDED_CONTACTS > 1)
-								to_chat(usr, span_notice("New contacts are added to your contact list."))
-						else if(contacts_added_lenght == list_length)
-							to_chat(usr, span_notice("You have all the contacts in the published list already."))
-						toggle_published_contacts = TRUE
-						to_chat(usr, span_notice("The toggle of the published numbers in contacts is active."))
-					else
-						toggle_published_contacts = FALSE
-						to_chat(usr, span_notice("The toggle of the published numbers in contacts is disabled."))
-			.= TRUE
 		if("keypad")
-			if(!silence)
-				playsound(loc, 'sound/machines/terminal_select.ogg', 15, TRUE)
 			switch(params["value"])
 				if("C")
-					choosed_number = ""
-					.= TRUE
-					return
-				if("_")
-					choosed_number += " "
-					.= TRUE
-					return
+					dialed_number = null
+					return TRUE
+			dialed_number += params["value"]
+			return TRUE
 
-			choosed_number += params["value"]
-			.= TRUE
+		if("call")
+			initialize_phone_call(usr)
+			return TRUE
 
+		if("hang")
+			end_phone_call()
+			return TRUE
+
+		if("accept")
+			accept_phone_call()
+			return TRUE
+
+		if("decline")
+			end_phone_call()
+			return TRUE
+
+		if("publish_number")
+			var/name = tgui_input_text(usr, "Input name", "Publish Number")
+			if(!name)
+				to_chat(usr, span_danger("You must input a name to publish your number."))
+				return
+			if(!sim_card?.phone_number)
+				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
+				return
+			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
+			if(sim_card.phone_number in GLOB.published_numbers)
+				to_chat(usr, span_danger("Error: This number is already published."))
+			else
+				GLOB.published_numbers += sim_card.phone_number
+				GLOB.published_number_names += name
+				to_chat(usr, span_notice("Your number is now published."))
+			return TRUE
+
+		if("add_contact")
+			var/number = params["number"]
+			if(length(number) > 15)
+				to_chat(usr, span_danger("Entered number is too long"))
+				return
+			var/stripped_number = replacetext(number, " ", "") // remove spaces
+			var/new_contact_name = tgui_input_text(usr, "Input name", "Add Contact")
+			if(!new_contact_name)
+				to_chat(usr, span_danger("You must input a name to add a contact."))
+				return
+
+			var/datum/phonecontact/new_contact = new()
+			new_contact.number = "[stripped_number]"
+			new_contact.name = "[new_contact_name]"
+			contacts += new_contact
+
+			return TRUE
+
+		if("remove_contact")
+			var/name = params["name"]
+			for(var/datum/phonecontact/contact in contacts)
+				if(contact.name == name)
+					contacts -= contact
+					return TRUE
+			return FALSE
+
+		if("block")
+			var/block_number = params["number"]
+			if(!block_number)
+				to_chat(usr, span_warning("You must provide a number."))
+			if(length(block_number) > 15)
+				to_chat(usr, span_warning("Invalid number."))
+				return
+
+			var/datum/phonecontact/blocked_contact = new()
+			block_number = replacetext(block_number, " ", "")
+			blocked_contact.number = "[block_number]"
+			blocked_contact.name = "Blocked [length(blocked_contacts)+1]"
+			blocked_contacts += blocked_contact
+			return TRUE
+
+		if("unblock")
+			var/result = params["name"]
+			for(var/datum/phonecontact/unblocked_contact in blocked_contacts)
+				if(unblocked_contact.name == result)
+					blocked_contacts -= unblocked_contact
+					return TRUE
+			return FALSE
+
+		if("delete_call_history")
+			if(!length(phone_history_list))
+				to_chat(usr, span_danger("You have no call history to delete."))
+				return
+
+			to_chat(usr, "Your total amount of history saved is: [length(phone_history_list)]")
+			var/number_of_deletions = tgui_input_number(usr, "Input the amount that you want to delete", "Deletion Amount", max_value = length(phone_history_list))
+			//Delete the call history depending on the amount inputed by the User
+			if(number_of_deletions > length(phone_history_list))
+				//Verify if the requested amount in bigger than the history list.
+				to_chat(usr, "You cannot delete more items than the history contains.")
+				return FALSE
+			else
+				for(var/i in number_of_deletions)
+					//It will always delete the first item of the list, so the last logs are deleted first
+					var/item_to_remove = phone_history_list[1]
+					phone_history_list -= item_to_remove
+			to_chat(usr, "[number_of_deletions] call history entries were deleted. Remaining: [length(phone_history_list)]")
+			return TRUE
+
+
+		if("silent")
+			if(call_sound)
+				//If it is true, it will check all the other sounds for phone and disable them
+				call_sound = null
+				to_chat(usr, "<span class='notice'>Notifications and Sounds toggled off.</span>")
+			else
+				call_sound = 'modular_darkpack/modules/phones/sounds/call.ogg'
+				to_chat(usr, "<span class='notice'>Notifications and Sounds toggled on.</span>")
+			return TRUE
+
+		if("terminal_sound")
+			if(!call_sound)
+				playsound(loc, 'sound/machines/terminal_select.ogg', 15, TRUE)
+			return TRUE
 	return FALSE
 
+/obj/item/smartphone/proc/newscaster_information_request(mob/user)
+	var/list/data = list()
+	var/list/message_list = list()
 
-/obj/item/vamp/phone/proc/add_important_contacts()
-	var/mob/living/L
-	if(isliving(loc))
-		L = loc
-	for(var/datum/phonecontact/PHNCNTCT in contacts)
-		if(PHNCNTCT.check_global_contacts())
-			if(L)
-				to_chat(L, span_notice("Some important contacts in your phone work again."))
+	data["user"] = list()
+	data["user"]["name"] = user.name
+	data["user"]["job"] = "N/A"
+	data["user"]["department"] = "N/A"
 
-/*obj/item/vamp/phone/proc/publish_number(var/name)
-	var/list/entry = list("number" = src.number, "name" = name)
-	published_numbers |= entry
+	data["photo_data"] = !isnull(irc_channel.current_image)
+	data["creating_channel"] = irc_channel.creating_channel
+	data["creating_comment"] = irc_channel.creating_comment
+	data["viewing_wanted"] = irc_channel.viewing_wanted
 
-/obj/item/vamp/phone/proc/view_published_numbers()
-	var/list/display = list()
-	for(var/list/entry in published_numbers)
-		display |= "[entry["name"]]: [entry["number"]]
-	return display"*/
+	//Here is all the UI_data sent about the current wanted issue, as well as making a new one in the UI.
+	data["making_wanted_issue"] = !(GLOB.news_network.wanted_issue?.active)
+	data["criminal_name"] = irc_channel.criminal_name
+	data["crime_description"] = irc_channel.crime_description
+	var/list/wanted_info = list()
+	if(GLOB.news_network.wanted_issue)
+		var/has_wanted_issue = !isnull(GLOB.news_network.wanted_issue.img)
+		if(has_wanted_issue)
+			user << browse_rsc(GLOB.news_network.wanted_issue.img, "wanted_photo.png")
+		wanted_info = list(list(
+			"active" = GLOB.news_network.wanted_issue.active,
+			"criminal" = GLOB.news_network.wanted_issue.criminal,
+			"crime" = GLOB.news_network.wanted_issue.body,
+			"author" = GLOB.news_network.wanted_issue.scanned_user,
+			"image" = (has_wanted_issue ? "wanted_photo.png" : null)
+		))
 
-/obj/item/vamp/phone/proc/Recall(obj/item/vamp/phone/abonent, mob/usar)
-	if(last_call+100 <= world.time && !talking)
-		last_call = 0
-		if(online)
-			if(online.silence == FALSE)
-				playsound(src, 'modular_darkpack/modules/deprecated/sounds/phonestop.ogg', 25, FALSE)
-			online.online = null
-			online = null
-	if(!talking && online)
-		if(online.silence == FALSE)
-			playsound(src, 'modular_darkpack/modules/deprecated/sounds/phone.ogg', 10, FALSE)
-			playsound(online, online.call_sound, 25, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(Recall), online, usar), 20)
-//	usar << browse(null, "window=phone")
-//	OpenMenu(usar)
-/*
-/obj/item/vamp/phone/Topic(href, href_list)
-	..()
-	var/mob/living/U = usr
-	if(usr.canUseTopic(src, FALSE, FALSE, NO_TK) && !href_list["close"] && !closed)
-		switch(href_list["choice"])
-			if("hang")
-				last_call = 0
-				if(talking)
-					talking = FALSE
-					if(online)
-						online.talking = FALSE
-				if(online)
-					playsound(online, 'modular_darkpack/modules/deprecated/sounds/phonestop.ogg', 25, FALSE)
-					online.online = null
-					online = null
-			if("accept")
-				if(online)
-					talking = TRUE
-					online.online = src
-					online.talking = TRUE
-					for(var/mob/living/L in oviewers(online))
-						L << browse(null, "window=phone")
-						online.OpenMenu(L)
-			if("decline")
-				talking = FALSE
-				if(online)
-					playsound(online, 'modular_darkpack/modules/deprecated/sounds/phonestop.ogg', 25, FALSE)
-					online.online = null
-					online.talking = FALSE
-					online = null
-			if("call")
-				for(var/obj/item/vamp/phone/PHN in GLOB.phones_list)
-					if(PHN.number == choosed_number)
-						if(!PHN.online && !PHN.talking)
-							last_call = world.time
-							online = PHN
-							PHN.online = src
-							Recall(online, usr)
-						else
-							to_chat(usr, span_notice("Abonent is busy."))
-				if(online)
-					for(var/mob/living/L in oviewers(online))
-						L << browse(null, "window=phone")
-						online.OpenMenu(L)
-				else
-					if(choosed_number == "#111")
-						call_sound = 'modular_darkpack/modules/deprecated/sounds/call.ogg'
-						to_chat(usr, span_notice("Settings are now reset to default."))
-					else if(choosed_number == "#228")
-						call_sound = 'modular_darkpack/modules/deprecated/sounds/nokia.ogg'
-						to_chat(usr, span_notice("Code activated."))
-					else if(choosed_number == "#666")
-						call_sound = 'sound/voice/human/malescream_6.ogg'
-						to_chat(usr, span_notice("Code activated."))
-					else if(choosed_number == "#34")
-						usr << link("https://rule34.xxx/index.php?page=post&s=list&tags=werewolf")
-						to_chat(usr, span_notice("Code activated."))
-					else
-						to_chat(usr, span_notice("Invalid number."))
-			if("contacts")
-				var/list/shit = list()
-				for(var/datum/phonecontact/CNTCT in contacts)
-					shit += CNTCT.name
-				if(length(shit) >= 1)
-					var/result = input(usr, "Select a contact", "Contact Selection") as null|anything in shit
-					if(result)
-						for(var/datum/phonecontact/CNTCT in contacts)
-							if(CNTCT.name == result)
-								if(CNTCT.number == "")
-									CNTCT.check_global_contacts()
-									if(CNTCT.number == "")
-										to_chat(usr, span_notice("Sorry, [CNTCT.name] still got no actual number."))
-								choosed_number = CNTCT.number
-			if("add")
-				var/new_contact = input(usr, "Input phone number", "Add Contact")  as text|null
-				if(new_contact)
-					var/datum/phonecontact/NEWC = new()
-					NEWC.number = "[new_contact]"
-					contacts += NEWC
-					var/new_contact_name = input(usr, "Input name", "Add Contact")  as text|null
-					if(new_contact_name)
-						NEWC.name = "[new_contact_name]"
-					else
-						var/numbrr = length(contacts)+1
-						NEWC.name = "Contact [numbrr]"
-			if("1")
-				choosed_number += "1"
-			if("2")
-				choosed_number += "2"
-			if("3")
-				choosed_number += "3"
-			if("4")
-				choosed_number += "4"
-			if("5")
-				choosed_number += "5"
-			if("6")
-				choosed_number += "6"
-			if("7")
-				choosed_number += "7"
-			if("8")
-				choosed_number += "8"
-			if("9")
-				choosed_number += "9"
-			if("0")
-				choosed_number += "0"
-			if("space")
-				choosed_number += " "
-			if("cage")
-				choosed_number += "#"
-			if("reset")
-				choosed_number = ""
-		U << browse(null, "window=phone")
-		OpenMenu(usr)
-		playsound(loc, 'sound/machines/terminal_select.ogg', 15, TRUE)
+	//Code breaking down the channels that have been made on-station thus far. ha
+	//Then, breaks down the messages that have been made on those channels.
+	if(irc_channel.current_channel)
+		for(var/datum/feed_message/feed_message as anything in irc_channel.current_channel.messages)
+			var/photo_ID = null
+			var/list/comment_list
+			if(feed_message.img)
+				user << browse_rsc(feed_message.img, "tmp_photo[feed_message.message_ID].png")
+				photo_ID = "tmp_photo[feed_message.message_ID].png"
+			for(var/datum/feed_comment/comment_message as anything in feed_message.comments)
+				comment_list += list(list(
+					"auth" = comment_message.author,
+					"body" = comment_message.body,
+					"time" = comment_message.time_stamp,
+				))
+			message_list += list(list(
+				"auth" = feed_message.author,
+				"body" = feed_message.body,
+				"time" = feed_message.time_stamp,
+				"channel_num" = feed_message.parent_ID,
+				"censored_message" = feed_message.body_censor,
+				"censored_author" = feed_message.author_censor,
+				"ID" = feed_message.message_ID,
+				"photo" = photo_ID,
+				"comments" = comment_list
+			))
+
+
+	data["viewing_channel"] = irc_channel.current_channel?.channel_ID
+	data["paper"] = irc_channel.paper_remaining
+	//Here we display all the information about the current channel.
+	data["channelName"] = irc_channel.current_channel?.channel_name
+	data["channelAuthor"] = irc_channel.current_channel?.author
+
+	if(!irc_channel.current_channel)
+		data["channelAuthor"] = "Nanotrasen Inc"
+		data["channelDesc"] = "Welcome to Newscaster Net. Interface & News networks Operational."
+		data["channelLocked"] = TRUE
 	else
-		U << browse(null, "window=phone")
+		data["channelDesc"] = irc_channel.current_channel.channel_desc
+		data["channelLocked"] = irc_channel.current_channel.locked
+		data["channelCensored"] = irc_channel.current_channel.censored
+
+	//We send all the information about all messages in existence.
+	data["messages"] = message_list
+	data["wanted"] = wanted_info
+
+	var/list/formatted_requests = list()
+	var/list/formatted_applicants = list()
+	for (var/datum/station_request/request as anything in GLOB.request_list)
+		formatted_requests += list(list("owner" = request.owner, "value" = request.value, "description" = request.description, "acc_number" = request.req_number))
+		if(request.applicants)
+			for(var/datum/bank_account/applicant_bank_account as anything in request.applicants)
+				formatted_applicants += list(list("name" = applicant_bank_account.account_holder, "request_id" = request.owner_account.account_id, "requestee_id" = applicant_bank_account.account_id))
+	data["requests"] = formatted_requests
+	data["applicants"] = formatted_applicants
+	data["bountyValue"] = irc_channel.bounty_value
+	data["bountyText"] = irc_channel.bounty_text
+
+	return data
+
+/obj/item/smartphone/proc/toggle_screen(mob/user)
+	if(phone_flags & PHONE_OPEN)
+		phone_flags &= ~PHONE_OPEN
+	else
+		phone_flags |= PHONE_OPEN
+	icon_state = (phone_flags & PHONE_OPEN) ? "phone2" : "phone0"
+	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone2" : "phone0"
+	update_icon()
+
+/*
+// Proc used for intializing a phone call, if secure_frequqncy isn't set, the phone is calling someone.
+// If secure_frequency is set, the phone is being called by someone.
 */
+/obj/item/smartphone/proc/initialize_phone_call(mob/user)
+	if(!sim_card)
+		balloon_alert(user, "no SIM card installed!")
+		return
+	if(!secure_frequency)
+		secure_frequency = SSphones.initiate_phone_call(sim_card, dialed_number)
+		phone_flags |= PHONE_CALLING
+	if(secure_frequency)
+		phone_radio.set_frequency(secure_frequency)
+		phone_radio.broadcasting = TRUE
+		phone_radio.listening = TRUE
+		phone_flags |= PHONE_IN_CALL
+		phone_flags &= ~PHONE_CALLING
 
+/obj/item/smartphone/proc/end_phone_call()
+	phone_radio.set_frequency(0)
+	phone_radio.broadcasting = FALSE
+	phone_radio.listening = FALSE
+	secure_frequency = null
+	SSphones.end_phone_call(sim_card, dialed_number)
+	phone_flags &= ~PHONE_IN_CALL
 
-/obj/item/vamp/phone/proc/handle_hearing(datum/source, list/hearing_args)
-	var/message = hearing_args[HEARING_RAW_MESSAGE]
-	if(online && talking)
-		if(hearing_args[HEARING_SPEAKER])
-			if(isliving(hearing_args[HEARING_SPEAKER]))
-				var/voice_saying = "unknown voice"
-				var/spchspn = SPAN_ROBOT
-				switch(get_dist(src, hearing_args[HEARING_SPEAKER]))
-					if(3 to INFINITY)
-						return
-					if(1 to 2)
-						spchspn = "small"
-					else
-						spchspn = SPAN_ROBOT
-				if(ishuman(hearing_args[HEARING_SPEAKER]))
-					var/mob/living/carbon/human/SPK = hearing_args[HEARING_SPEAKER]
-					voice_saying = "[age2agedescription(SPK.age)] [SPK.gender] voice ([SPK.phonevoicetag])"
+/obj/item/smartphone/proc/accept_phone_call()
+	SSphones.cancel_ring_timeout(incoming_sim_card)
+	incoming_sim_card = null
+	secure_frequency = incoming_frequency
+	phone_flags &= ~PHONE_RINGING
+	initialize_phone_call()
 
-					// Speech will be scrambled if the speaker doesn't work well with technology
-					if (HAS_TRAIT(SPK, TRAIT_REJECTED_BY_TECHNOLOGY))
-						message = scramble_lasombra_message(message)
-						playsound(online, 'modular_darkpack/modules/deprecated/sounds/lasombra_whisper.ogg', 50, FALSE)
-					else
-						playsound(online, 'modular_darkpack/modules/deprecated/sounds/phonetalk.ogg', 50, FALSE)
+// called_sim_card: the SIM card that is being called right now.
+// caller_sim_card: the SIM card that is calling right now.
+// phone_number: The phone number of who is calling.
+// established_frequency: On what frequency we are being called.
+/obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, phone_number, established_frequency)
+	SIGNAL_HANDLER
 
-				var/obj/phonevoice/VOIC = new(online)
-				VOIC.name = voice_saying
-				VOIC.speech_span = spchspn
-				VOIC.say("[message]")
-				qdel(VOIC)
+	say("RING RING RING")
+	incoming_frequency = established_frequency
+	incoming_sim_card = caller_sim_card
+	phone_flags |= PHONE_RINGING
 
-/obj/item/vamp/phone/street
-	desc = "An ordinary street payphone"
-	onflooricon = null
-	icon_state = "payphone"
-	anchored = TRUE
-	number = "1447"
-	can_fold = 0
+// sim_card: the SIM card that was calling right now.
+// phone_number: The phone number of who was calling.
+// established_frequency: On what frequency we were being called.
+/obj/item/smartphone/proc/ring_timeout(obj/item/sim_card/sim_card, phone_number, established_frequency)
+	SIGNAL_HANDLER
 
-	/// Phone icon states
-	open_state = "payphone"
-	closed_state = "payphone"
-	folded_state = "payphone"
-
-/obj/item/vamp/phone/clean
-	desc = "The usual phone of a cleaning company used to communicate with employees"
-	onflooricon = null
-	icon_state = "redphone"
-	anchored = TRUE
-	number = "700 4424"
-	can_fold = 0
-
-	open_state = "redphone"
-	closed_state = "redphone"
-	folded_state = "redphone"
-
-/obj/item/vamp/phone/emergency
-	desc = "The 911 dispatch phone"
-	onflooricon = null
-	icon_state = "redphone"
-	anchored = TRUE
-	number = "911"
-	can_fold = 0
-	open_state = "redphone"
-	closed_state = "redphone"
-	folded_state = "redphone"
-	var/obj/machinery/p25transceiver/clinic_transceiver
-	var/obj/machinery/p25transceiver/police_transceiver
-
-/obj/item/vamp/phone/emergency/Initialize(mapload)
-	. = ..()
-	GLOB.phone_numbers_list += number
-	GLOB.phones_list += src
-
-/obj/item/vamp/phone/clean/Initialize(mapload)
-	. = ..()
-	GLOB.phone_numbers_list += number
-	GLOB.phones_list += src
-
-/// Phone Types
-
-/obj/item/vamp/phone/prince
-	exchange_num = 267
-
-/obj/item/vamp/phone/prince/Initialize(mapload)
-	..()
-	GLOB.princenumber = number
-	GLOB.princename = owner
-	var/datum/phonecontact/sheriff/SHERIFF = new()
-	contacts += SHERIFF
-	var/datum/phonecontact/clerk/CLERK = new()
-	contacts += CLERK
-	var/datum/phonecontact/barkeeper/BARKEEPER = new()
-	contacts += BARKEEPER
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/dealer/DEALER = new()
-	contacts += DEALER
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/sheriff
-	exchange_num = 267
-
-/obj/item/vamp/phone/sheriff/Initialize(mapload)
-	..()
-	GLOB.sheriffnumber = number
-	GLOB.sheriffname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/clerk/CLERK = new()
-	contacts += CLERK
-	var/datum/phonecontact/dealer/DEALER = new()
-	contacts += DEALER
-
-/obj/item/vamp/phone/clerk
-	exchange_num = 267
-
-/obj/item/vamp/phone/clerk/Initialize(mapload)
-	..()
-	GLOB.clerknumber = number
-	GLOB.clerkname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/sheriff/SHERIFF = new()
-	contacts += SHERIFF
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/dealer/DEALER = new()
-	contacts += DEALER
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/barkeeper
-	exchange_num = 485
-
-/obj/item/vamp/phone/barkeeper/Initialize(mapload)
-	..()
-	GLOB.barkeepernumber = number
-	GLOB.barkeepername = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/dealer/DEALER = new()
-	contacts += DEALER
-
-/obj/item/vamp/phone/dealer
-	exchange_num = 485
-
-/obj/item/vamp/phone/dealer/Initialize(mapload)
-	..()
-	GLOB.dealernumber = number
-	GLOB.dealername = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/sheriff/SHERIFF = new()
-	contacts += SHERIFF
-	var/datum/phonecontact/clerk/CLERK = new()
-	contacts += CLERK
-	var/datum/phonecontact/barkeeper/BARKEEPER = new()
-	contacts += BARKEEPER
-
-/obj/item/vamp/phone/supply_tech/Initialize(mapload)
-	..()
-	var/datum/phonecontact/dealer/DEALER = new()
-	contacts += DEALER
-
-/obj/item/vamp/phone/camarilla
-	exchange_num = 267
-
-/obj/item/vamp/phone/camarilla/Initialize(mapload)
-	..()
-//	GLOB.dealernumber = number
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/clerk/CLERK = new()
-	contacts += CLERK
-
-/obj/item/vamp/phone/anarch
-	exchange_num = 485
-
-/obj/item/vamp/phone/anarch/Initialize(mapload)
-	..()
-//	GLOB.dealernumber = number
-	var/datum/phonecontact/barkeeper/BARKEEPER = new()
-	contacts += BARKEEPER
-
-/obj/item/vamp/phone/malkavian/Initialize(mapload)
-	..()
-	GLOB.malkaviannumber = number
-	GLOB.malkavianname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/nosferatu/Initialize(mapload)
-	..()
-	GLOB.nosferatunumber = number
-	GLOB.nosferatuname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/toreador/Initialize(mapload)
-	..()
-	GLOB.toreadornumber = number
-	GLOB.toreadorname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/brujah/Initialize(mapload)
-	..()
-	GLOB.brujahnumber = number
-	GLOB.brujahname = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-
-/obj/item/vamp/phone/ventrue/Initialize(mapload)
-	..()
-	GLOB.ventruenumber = number
-	GLOB.ventruename = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/tremere/Initialize(mapload)
-	..()
-	GLOB.tremerenumber = number
-	GLOB.tremerename = owner
-	var/datum/phonecontact/prince/PRINCE = new()
-	contacts += PRINCE
-	var/datum/phonecontact/malkavian/M = new()
-	contacts += M
-	var/datum/phonecontact/nosferatu/N = new()
-	contacts += N
-	var/datum/phonecontact/toreador/T = new()
-	contacts += T
-	var/datum/phonecontact/ventrue/V = new()
-	contacts += V
-	var/datum/phonecontact/brujah/B = new()
-	contacts += B
-
-/obj/item/vamp/phone/archivist/Initialize(mapload)
-	..()
-	var/datum/phonecontact/tremere/REGENT = new()
-	contacts += REGENT
-
-
+	if(secure_frequency)
+		end_phone_call()
+	incoming_frequency = null
+	incoming_sim_card = null
+	phone_flags &= ~PHONE_RINGING
