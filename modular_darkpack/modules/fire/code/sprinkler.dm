@@ -20,6 +20,8 @@
 
 	var/has_water_reclaimer = TRUE
 	var/last_fire_detection
+	/// If the sprinkler triggers and is triggered my the area being set to on fire
+	var/area_managed = FALSE
 	var/datum/looping_sound/sprinkler/looping_sound
 
 /obj/machinery/sprinkler/Initialize(mapload)
@@ -75,22 +77,34 @@
 		. += mutable_appearance('modular_darkpack/modules/fire/icons/sprinkler.dmi', "sprinkler_water")
 
 /obj/machinery/sprinkler/proc/trigger_sprinkler()
-	//var/area/my_area = get_area(src)
-	//if(my_area)
-	//	my_area.set_fire_effect(TRUE, AREA_FAULT_AUTOMATIC, name)
-	//	my_area.alarm_manager.send_alarm(ALARM_FIRE, src)
 	last_fire_detection = world.time
+
+	if(!area_managed)
+		return
+	var/area/my_area = get_area(src)
+	if(my_area)
+		my_area.set_fire_effect(TRUE, AREA_FAULT_AUTOMATIC, name)
+		my_area.alarm_manager.send_alarm(ALARM_FIRE, src)
+	spawn(30 SECONDS)
+		my_area.set_fire_effect(FALSE)
+		my_area.alarm_manager.clear_alarm(ALARM_FIRE, my_area)
 
 /obj/machinery/sprinkler/proc/is_active()
 	if(last_fire_detection && (last_fire_detection + 15 SECONDS > world.time))
 		return TRUE
-	//var/area/my_area = get_area(src)
-	//if(my_area)
-	//	return my_area.fire
+
+	if(!area_managed)
+		return
+	var/area/my_area = get_area(src)
+	if(my_area)
+		return my_area.fire
 
 /obj/machinery/sprinkler/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	msg = weapon.ignition_effect(src, user)
+	var/msg = weapon.ignition_effect(src, user)
 	if(msg)
 		visible_message(msg)
 		trigger_sprinkler()
+
+/obj/machinery/sprinkler/area_managed
+	area_managed = TRUE
