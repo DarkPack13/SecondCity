@@ -16,6 +16,18 @@
 	ambience_index = AMBIENCE_NATURE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hollywood.ogg'
 
+/area/vtm/outside/pacificheights/forest
+	name = "Pacific Heights Forest Outskirts"
+
+/area/vtm/outside/pacificheights/old
+	name = "Pacific Heights - Old District"
+
+/area/vtm/outside/pacificheights/community
+	name = "Pacific Heights - Community Road"
+
+/area/vtm/outside/pacificheights/industrial
+	name = "Pacific Heights - Industrial District"
+
 /area/vtm/outside/chinatown
 	name = "Chinatown"
 	icon_state = "chinatown"
@@ -28,8 +40,23 @@
 	ambience_index = AMBIENCE_CITY
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
 
+/area/vtm/outside/fishermanswharf/ghetto
+	name = "Fisherman's Wharf - Ghetto"
+
+/area/vtm/outside/fishermanswharf/lower
+	name = "Fisherman's Wharf - Lower Beachside"
+
+/area/vtm/outside/fishermanswharf/industrial
+	name = "Fisherman's Wharf - Industrial District"
+
 /area/vtm/outside/northbeach
 	name = "North Beach"
+	icon_state = "northbeach"
+	ambience_index = AMBIENCE_BEACH
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
+
+/area/vtm/outside/baywalk
+	name = "Baywalk District"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
@@ -46,12 +73,12 @@
 	ambience_index = AMBIENCE_NATURE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
 
-/area/vtm/outside/forest
-	name = "Forest"
-	icon_state = "park"
-	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
-
 /area/vtm/outside/supply
 	name = "Supply"
 	icon_state = "supply"
+
+/area/vtm/outside/giovanni/courtyard
+	name = "Giovanni Mansion - Courtyard"
+	icon_state = "giovanni"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = FALSE

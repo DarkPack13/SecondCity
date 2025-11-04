@@ -1,0 +1,26 @@
+/area/vtm/baywalk: /area/vtm/outside/baywalk
+/area/vtm/substation : /area/vtm/inside/substation
+/area/vtm/cabdepot : /area/vtm/interior/cabdepot
+/area/vtm/church/interior : /area/vtm/interior/church
+/area/vtm/church/interior/haven : /area/vtm/interior/church/haven
+/area/vtm/church/interior/staff : /area/vtm/interior/church/staff
+/area/vtm/financialdistrict/library : /area/vtm/interior/library
+/area/vtm/fishermanswharf/ghetto : /area/vtm/outside/fishermanswharf/ghetto
+/area/vtm/fishermanswharf/lower : /area/vtm/outside/fishermanswharf/lower
+/area/vtm/fishermanswharf/industrial : /area/vtm/outside/fishermanswharf/industrial
+/area/vtm/forest/caves : /area/vtm/outside/forest/caves
+/area/vtm/interior/cog/caern : @DELETE
+/area/vtm/interior/cog/pantry : @DELETE
+/area/vtm/interior/giovanni/outside : /area/vtm/outside/giovanni/courtyard
+/area/vtm/sewer/tzimisce_sanctum : /area/vtm/interior/tzimisce_sanctum
+/area/vtm/sewer/@SUBTYPES : /area/vtm/interior/sewer/@SUBTYPES
+/area/vtm/pacificheights/@SUBTYPES : /area/vtm/outside/pacificheights/@SUBTYPES
+/area/vtm/substation : /area/vtm/interior/substation
+
+/obj/effect/landmark/start/garou/@SUBTYPES : @DELETE
+/obj/effect/landmark/start/garou : @DELETE
+/obj/effect/landmark/start/first_team : @DELETE
+
+/obj/structure/werewolf_totem/@SUBTYPES : @DELETE
+
+/obj/item/card/id/@SUBTYPES : /obj/item/card/@SUBTYPES
