@@ -25,7 +25,7 @@
 
 	visible_message(span_notice("A call rings out to the dead from the [src.name] rune..."))
 
-	var/mob/living/basic/hostile/ghost/tremere/TR = new(loc)
+	var/mob/living/basic/ghost/tremere/TR = new(loc)
 
 	TR.AddComponent(\
 		/datum/component/ghost_direct_control,\
@@ -40,7 +40,7 @@
 	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)
 
-/obj/ritualrune/question/proc/ghost_name_prompt(mob/living/basic/hostile/ghost/tremere/ghost_mob)
+/obj/ritualrune/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)
 	message_admins("[key_name_admin(ghost_mob)] has become a Tremere Ghost.")
 
 	var/choice = tgui_alert(ghost_mob, "Do you want to pick a new name as a Ghost?", "Ghost Choose Name", list("Yes", "No"), 10 SECONDS)
