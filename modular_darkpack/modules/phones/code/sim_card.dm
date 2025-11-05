@@ -18,6 +18,9 @@
 /obj/item/sim_card/Destroy(force)
 	. = ..()
 	SSphones.assigned_phone_numbers.Remove(src)
+	if(SSphones.published_phone_numbers[phone_number])
+		SSphones.published_phone_numbers.Remove(src)
+	phone_weakref = null
 
 /obj/item/sim_card/examine(mob/user)
 	. = ..()

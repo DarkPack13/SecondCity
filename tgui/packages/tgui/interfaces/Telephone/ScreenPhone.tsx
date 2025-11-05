@@ -17,15 +17,16 @@ export const ScreenPhone = (props: {
   const [settings, setSettings] = useState(false);
 
   const enterNumber = (digit: string) => {
-    if(enteredNumber.length > 10){
+    if (digit === 'C') {
+      setEnteredNumber('');
       return;
     }
 
+    if(enteredNumber.length >= 10){
+      return;
+    }
     act('terminal_sound');
-
-    if (digit === 'C') {
-      setEnteredNumber('');
-    } else if (digit === '_') {
+    if (digit === '_') {
       setEnteredNumber(enteredNumber + ' ');
     } else {
       setEnteredNumber(enteredNumber + digit);

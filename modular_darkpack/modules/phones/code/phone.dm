@@ -125,17 +125,14 @@
 
 /obj/item/smartphone/ui_data(mob/user)
 	var/list/data = list()
-	data["dialed_number"] = dialed_number
 	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 	data["calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
-	data["being_called"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
-	data["in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
 	data["calling_user"] = incoming_sim_card ? incoming_sim_card.phone_number : null
 
 	data["online"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
-	data["talking"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
+	data["talking"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	if(phone_flags & PHONE_IN_CALL)
-		data["calling_user"] = "(+1 707) [incoming_sim_card.phone_number]"
+		data["calling_user"] = "[incoming_sim_card.phone_number]"
 		for(var/datum/phonecontact/P in contacts)
 			if(P.number == incoming_sim_card.phone_number)
 				data["calling_user"] = P.name
@@ -143,7 +140,13 @@
 	data["silence"] = isnull(call_sound)
 	data["our_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 
-	data["published_numbers"] = SSphones.published_phone_numbers
+	var/list/published_numbers = list()
+	for(var/contact in SSphones.published_phone_numbers)
+		UNTYPED_LIST_ADD(published_numbers, list(
+			"name" = contact,
+			"number" = SSphones.published_phone_numbers[contact],
+		))
+	data["published_numbers"] = published_numbers
 
 	var/list/our_contacts = list()
 	for(var/datum/phonecontact/contact in contacts)
@@ -177,18 +180,10 @@
 	. = ..()
 	if(.)
 		return
-
 	switch(action)
-		if("keypad")
-			switch(params["value"])
-				if("C")
-					dialed_number = null
-					return TRUE
-			dialed_number += params["value"]
-			return TRUE
-
 		if("call")
-			initialize_phone_call(usr)
+			var/phone_number = params["number"]
+			initialize_phone_call(usr, phone_number)
 			return TRUE
 
 		if("hang")
@@ -215,7 +210,7 @@
 			if(sim_card.phone_number in SSphones.published_phone_numbers)
 				to_chat(usr, span_danger("Error: This number is already published."))
 			else
-				SSphones.published_phone_numbers |= sim_card.phone_number[name]
+				SSphones.published_phone_numbers[name] = sim_card.phone_number
 				to_chat(usr, span_notice("Your number is now published."))
 			return TRUE
 
@@ -314,18 +309,20 @@
 	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone2" : "phone0"
 	update_icon()
 
-/*
- / Proc used for intializing a phone call, if secure_frequency isn't set, the phone is calling someone.
- / If secure_frequency is set, the phone is being called by someone.
-*/
-/obj/item/smartphone/proc/initialize_phone_call(mob/user)
+/**
+ * Proc used for intializing a phone call, if secure_frequency isn't set, the phone is calling someone.
+ * If secure_frequency is set, the phone is being called by someone.
+ */
+/obj/item/smartphone/proc/initialize_phone_call(mob/user, new_dialed_number)
 	if(!sim_card)
 		balloon_alert(user, "no SIM card installed!")
 		return
 	if(!secure_frequency)
-		secure_frequency = SSphones.initiate_phone_call(sim_card, dialed_number)
-		phone_flags |= PHONE_CALLING
-	if(secure_frequency)
+		secure_frequency = SSphones.initiate_phone_call(sim_card, new_dialed_number)
+		if(secure_frequency)
+			dialed_number = new_dialed_number
+			phone_flags |= PHONE_CALLING
+	else
 		phone_radio.set_frequency(secure_frequency)
 		phone_radio.set_broadcasting(TRUE)
 		phone_radio.set_listening(TRUE)
@@ -338,7 +335,9 @@
 	phone_radio.set_listening(FALSE)
 	secure_frequency = null
 	SSphones.end_phone_call(sim_card, dialed_number)
+	dialed_number = null
 	phone_flags &= ~PHONE_IN_CALL
+	phone_flags &= ~PHONE_CALLING
 
 /obj/item/smartphone/proc/accept_phone_call()
 	SSphones.cancel_ring_timeout(incoming_sim_card)
@@ -347,12 +346,12 @@
 	phone_flags &= ~PHONE_RINGING
 	initialize_phone_call()
 
-/*
- / called_sim_card: the SIM card that is being called right now.
- / caller_sim_card: the SIM card that is calling right now.
- / phone_number: The phone number of who is calling.
- / established_frequency: On what frequency we are being called.
-*/
+/**
+ * called_sim_card: the SIM card that is being called right now.
+ * caller_sim_card: the SIM card that is calling right now.
+ * phone_number: The phone number of who is calling.
+ * established_frequency: On what frequency we are being called.
+ */
 /obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, phone_number, established_frequency)
 	SIGNAL_HANDLER
 
@@ -361,11 +360,11 @@
 	incoming_sim_card = caller_sim_card
 	phone_flags |= PHONE_RINGING
 
-/*
- / sim_card: the SIM card that was calling right now.
- / phone_number: The phone number of who was calling.
- / established_frequency: On what frequency we were being called.
-*/
+/**
+ * sim_card: the SIM card that was calling right now.
+ * phone_number: The phone number of who was calling.
+ * established_frequency: On what frequency we were being called.
+ */
 /obj/item/smartphone/proc/ring_timeout(obj/item/sim_card/sim_card, phone_number, established_frequency)
 	SIGNAL_HANDLER
 
@@ -374,3 +373,4 @@
 	incoming_frequency = null
 	incoming_sim_card = null
 	phone_flags &= ~PHONE_RINGING
+	phone_flags &= ~PHONE_CALLING
