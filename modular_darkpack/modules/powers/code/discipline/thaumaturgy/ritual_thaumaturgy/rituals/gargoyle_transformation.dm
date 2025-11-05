@@ -93,20 +93,20 @@
 
 				H.gib(FALSE, FALSE, TRUE)
 
-		// Poll for a ghost to control the perfect gargoyle
-		var/list/candidates = SSpolling.poll_ghosts_for_targets(
-			question = "Do you wish to play as [span_notice("Perfect Gargoyle")]?",
-			role = ROLE_SENTIENCE,
-			check_jobban = ROLE_SENTIENCE,
-			poll_time = 20 SECONDS,
-			checked_targets = list(G),
-			//ignore_category = POLL_IGNORE_GARGOYLE
+		// Add ghost control component
+		G.AddComponent(\
+			/datum/component/ghost_direct_control,\
+			poll_candidates = TRUE,\
+			role_name = "a Perfect Gargoyle",\
+			poll_length = 30 SECONDS,\
+			assumed_control_message = "You are a Perfect Gargoyle! A massive stone creation of Tremere magic.",\
+			after_assumed_control = CALLBACK(src, PROC_REF(perfect_gargoyle_player_controlled), G)\
 		)
+		//poll_ignore_key = POLL_IGNORE_PERFECT_GARGOYLE,
 
-		if(length(candidates))
-			var/mob/dead/observer/chosen = pick(candidates)
-			G.key = chosen.key
-			message_admins("[key_name_admin(chosen)] has become a Perfect Gargoyle.")
+
+		// Set up timer to give AI if no one takes control
+		addtimer(CALLBACK(src, PROC_REF(perfect_gargoyle_check_ai), G, last_activator), 31 SECONDS)
 
 		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
@@ -128,6 +128,7 @@
 
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
+		target_body.adjustAggLoss(-100)
 		target_body.set_species(/datum/species/human/kindred)
 		target_body.set_clan(/datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)
@@ -145,34 +146,44 @@
 
 		// Handle key assignment
 		if(!target_body.key)
-			var/list/candidates = SSpolling.poll_ghosts_for_targets(
-				question = "Do you wish to play as [span_notice("Sentient Gargoyle")]?",
-				role = ROLE_SENTIENCE,
-				check_jobban = ROLE_SENTIENCE,
-				poll_time = 20 SECONDS,
-				checked_targets = list(target_body), // Note: it's checked_targets, not target_mobs
-				//ignore_category = POLL_IGNORE_GARGOYLE
+			target_body.AddComponent(\
+				/datum/component/ghost_direct_control,\
+				poll_candidates = TRUE,\
+				role_name = "a Sentient Gargoyle",\
+				poll_length = 30 SECONDS,\
+
+				assumed_control_message = "You have been transformed into a Gargoyle!",\
+				after_assumed_control = CALLBACK(src, PROC_REF(sentient_gargoyle_name_prompt), target_body)\
 			)
 
-			if(length(candidates))
-				var/mob/dead/observer/chosen = pick(candidates) // NOW we use pick() since it returns a flat list
-				target_body.key = chosen.key
-				message_admins("[key_name_admin(chosen)] has become a Sentient Gargoyle.")
-
-			var/choice = tgui_alert(target_body, "Do you want to pick a new name as a Gargoyle?", "Gargoyle Choose Name", list("Yes", "No"), 10 SECONDS)
-			if(choice == "Yes")
-				var/chosen_gargoyle_name = tgui_input_text(target_body, "What is your new name as a Gargoyle?", "Gargoyle Name Input")
-				target_body.real_name = chosen_gargoyle_name
-				target_body.name = chosen_gargoyle_name
-				target_body.update_name()
-			else
-				target_body.visible_message(span_cult("A Gargoyle rises from the ritual!"))
-				qdel(src)
-				return
+		//poll_ignore_key = POLL_IGNORE_SENTIENT_GARGOYLE,
 
 		target_body.visible_message(span_cult("A Gargoyle rises from the ritual!"))
 
 	qdel(src)
+
+/obj/ritualrune/gargoyle/proc/perfect_gargoyle_player_controlled(mob/living/basic/gargoyle/perfect/G)
+	message_admins("[key_name_admin(G)] has become a Perfect Gargoyle.")
+
+/obj/ritualrune/gargoyle/proc/perfect_gargoyle_check_ai(mob/living/basic/gargoyle/perfect/G, mob/living/carbon/human/activator)
+	// Check if someone took control, if not give it AI
+	if(!G || QDELETED(G))
+		return
+	if(!G.key || !G.client)
+		G.ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(G)
+		if(activator)
+			activator.add_beastmaster_minion(G)
+
+/obj/ritualrune/gargoyle/proc/sentient_gargoyle_name_prompt(mob/living/carbon/human/target_body)
+	message_admins("[key_name_admin(target_body)] has become a Sentient Gargoyle.")
+
+	var/choice = tgui_alert(target_body, "Do you want to pick a new name as a Gargoyle?", "Gargoyle Choose Name", list("Yes", "No"), 10 SECONDS)
+	if(choice == "Yes")
+		var/chosen_gargoyle_name = tgui_input_text(target_body, "What is your new name as a Gargoyle?", "Gargoyle Name Input")
+		if(chosen_gargoyle_name)
+			target_body.real_name = chosen_gargoyle_name
+			target_body.name = chosen_gargoyle_name
+			target_body.update_name()
 
 // Perfect Gargoyle definition
 /mob/living/basic/gargoyle/perfect
@@ -193,7 +204,7 @@
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	bloodpool = 15
 	maxbloodpool = 15
-	//ai_controller = null
+	ai_controller = null // Start with no AI, will be assigned if no player takes it
 
 /mob/living/basic/gargoyle/perfect/Initialize()
 	. = ..()

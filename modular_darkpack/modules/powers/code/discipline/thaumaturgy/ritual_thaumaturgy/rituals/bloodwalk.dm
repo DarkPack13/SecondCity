@@ -9,11 +9,15 @@
 
 /obj/ritualrune/bloodwalk/attack_hand(mob/living/user)
 	for(var/obj/item/reagent_containers/syringe/S in loc)
+		to_chat(world,"found syringe")
 		for(var/datum/reagent/blood/B in S.reagents.reagent_list)
+			to_chat(world,"found blood")
 			var/blood_data = B.data
 			if(blood_data)
 				var/generation = blood_data["generation"]
+				to_chat(world, "generation : [generation]")
 				var/clan = blood_data["clan"]
+				to_chat(world, "clan : [clan]")
 				var/message = generate_message(generation, clan)
 				to_chat(user, "[message]")
 
@@ -22,11 +26,13 @@
 		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
+		to_chat(world, "ritual completed")
 		qdel(src)
 
 /obj/ritualrune/bloodwalk/proc/generate_message(generation, clan)
 	var/message = ""
-
+	to_chat(world, "generate message started -- generation")
+	to_chat(world, "generation passed : [generation]")
 	switch(generation)
 		if(4)
 			message += "The blood is incredibly ancient and powerful! It must be from an ancient Methuselah!\n"
@@ -43,9 +49,11 @@
 		else
 			if(generation >= 14)
 				message += "This is the vitae of a thinblood!\n"
-
+	to_chat(world, "generate message started -- clan")
+	to_chat(world, "clan passed : [clan]")
 	//clan
 	//TODO: [Rebase] - Reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
+	clan = lowertext(clan)
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 			message += "The blood is sweet and rich. The owner must, too, be beautiful.\n"
@@ -69,7 +77,7 @@
 			message += "The blood is filled with the power of magic. The owner must be a thaumaturge.\n"
 		if(VAMPIRE_CLAN_BAALI)
 			message += "Tainted and corrupt. Vile and filthy. You see your reflection in the blood, but something else stares back.\n"
-		if("Assamite")
+		if(VAMPIRE_CLAN_BANU_HAQIM)
 			message += "Potent... deadly... and cursed. You know well the curse laid by Tremere on the assassins.\n"
 		if(VAMPIRE_CLAN_TRUE_BRUJAH)
 			message += "The blood is cold and static... It's hard to feel any emotion within it.\n"

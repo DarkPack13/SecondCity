@@ -215,13 +215,11 @@
 			START_PROCESSING(SSprocessing, src)
 
 /proc/valid_target(atom/movable/target)
-	//if(istype(target, /mob/dead/observer))
-		//var/mob/dead/observer/ghost = target
-		//TODO: [Rebase] -- reimplement auspex
-		/*
-		if((ghost.mind && !ghost.aghosted) || isavatar(ghost)) // Checks only for ghosts of the dead & Auspex 5 avatars
+	if(istype(target, /mob/dead/observer))
+		var/mob/dead/observer/ghost = target
+		if((ghost.mind)) //&& !ghost.aghosted) || isavatar(ghost)) // Checks only for ghosts of the dead & Auspex 5 avatars
 			return TRUE
 		if(ghost.mind && ghost.orbiting) // Checks for orbiting ghosts
 			return TRUE
-		*/
-	//return FALSE
+
+	return FALSE

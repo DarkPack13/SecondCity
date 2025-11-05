@@ -30,9 +30,9 @@
 				else
 					for(var/item_name in required_items)
 						required_list += (required_list == "" ? item_name : ", [item_name]")
-				to_chat(user, "[R.thaumlevel] [R.name] - [R.desc] Requirements: [required_list].")
+				to_chat(user, span_cult("[R.thaumlevel] [R.name] - [R.desc] Requirements: [required_list]."))
 			else
-				to_chat(user, "[R.thaumlevel] [R.name] - [R.desc]")
+				to_chat(user, span_cult("[R.thaumlevel] [R.name] - [R.desc]"))
 
 /datum/crafting_recipe/arctome
 	name = "Arcane Tome"
