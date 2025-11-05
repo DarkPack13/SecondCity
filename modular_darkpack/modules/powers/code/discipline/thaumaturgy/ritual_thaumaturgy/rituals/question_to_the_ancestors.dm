@@ -34,7 +34,8 @@
 		poll_length = 30 SECONDS,\
 		poll_question = "Do you wish to answer a question? (You are allowed to spread meta information)\nThe question is: [text_question]",\
 		assumed_control_message = "You are an Ancestor Spirit summoned to answer: [text_question]",\
-		after_assumed_control = CALLBACK(src, PROC_REF(ghost_name_prompt), TR)\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghost_name_prompt), TR),\
+		on_after_controls_expire = CALLBACK(src, PROC_REF(ghost_poll_expired), TR)\
 	)
 
 	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
@@ -49,6 +50,14 @@
 		if(chosen_ghost_name)
 			ghost_mob.real_name = chosen_ghost_name
 			ghost_mob.name = chosen_ghost_name
+
+/obj/ritualrune/question/proc/ghost_poll_expired(mob/living/basic/ghost/tremere/ghost_mob)
+	if(!ghost_mob || QDELETED(ghost_mob))
+		return
+
+	if(!ghost_mob.key || !ghost_mob.client)
+		visible_message(span_notice("No one answers the call..."))
+		qdel(ghost_mob)
 
 
 	//poll_ignore_key = POLL_IGNORE_ANCESTOR_SPIRIT,
