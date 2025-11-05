@@ -21,7 +21,7 @@
 	var/static/fish_info
 	if(!fish_info)
 		fish_info = list()
-		for(var/obj/item/fish/fish as anything in subtypesof(/obj/item/fish))
+		for(var/obj/item/fish/fish as anything in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 			if(!(initial(fish.fish_flags) & FISH_FLAG_SHOW_IN_CATALOG))
 				continue
 			var/list/fish_data = list()

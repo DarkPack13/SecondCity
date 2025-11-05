@@ -1,45 +1,93 @@
-/obj/item/food/fish
-	desc = "Marine life."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+/obj/item/fish/darkpack
+	abstract_type = /obj/item/fish/darkpack
+	desc = "marine life"
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
-	tastes = list("fish" = 1)
-	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 3)
-	foodtypes = RAW | MEAT
+	//eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 
-/obj/item/food/fish/shark
+/obj/item/fish/darkpack/shark
 	name = "leopard shark"
-	icon_state = "fish1"
+	icon_state = "shark"
+	icon = 'modular_darkpack/modules/fishing/icons/fish48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
+	base_pixel_w = -16
+	pixel_w = -16
+	fish_id = "darkpack_shark"
+	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
-/obj/item/food/fish/shark/Initialize(mapload)
+	average_size = 60
+	average_weight = 1400
+	stable_population = 4
+
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
+
+/obj/item/fish/darkpack/shark/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 100, "fish", FALSE)
 
-/obj/item/food/fish/tune
-	name = "tuna"
-	icon_state = "fish2"
+/obj/item/fish/darkpack/tuna
+	name = "bluefin tuna"
+	icon_state = "fish"
+	fish_id = "darkpack_tuna"
+	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+	num_fillets = 2
 
-/obj/item/food/fish/tune/Initialize(mapload)
+	stable_population = 9
+	average_size = 50
+	average_weight = 600
+
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
+
+/obj/item/fish/darkpack/tuna/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 40, "fish", FALSE)
 
-/obj/item/food/fish/catfish
-	name = "catfish"
-	icon_state = "fish3"
+/obj/item/fish/darkpack/catfish
+	name = "channel catfish"
+	icon_state = "catfish"
+	fish_id = "darkpack_catfish"
+	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
-/obj/item/food/fish/catfish/Initialize(mapload)
+	stable_population = 9
+	average_size = 55
+	average_weight = 800
+
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	aquarium_vc_color = "#33302e"
+	sprite_width = 5
+	sprite_height = 3
+
+/obj/item/fish/darkpack/catfish/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 20, "fish", FALSE)
 
-/obj/item/food/fish/crab
-	name = "crab"
-	icon_state = "fish4"
+/obj/item/fish/darkpack/crab
+	name = "dungeness crab"
+	icon_state = "crab"
+	fillet_type = /obj/item/food/meat/slab/rawcrab
+	fish_id = "darkpack_crab"
+	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 
-/obj/item/food/fish/crab/Initialize(mapload)
+	stable_population = 8
+	average_size = 50
+	average_weight = 600
+
+	dedicated_in_aquarium_icon_state = "crab_small"
+	sprite_height = 6
+	sprite_width = 10
+
+/obj/item/fish/darkpack/crab/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 70, "fish", FALSE)
 
+/*
 /obj/item/fishing_rod
 	name = "fishing rod"
 	icon_state = "fishing"
@@ -79,23 +127,24 @@
 			catching = TRUE
 			user.isfishing = TRUE
 			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/catching.ogg', 50, FALSE)
-			if(do_mob(user, src, 15 SECONDS))
+			if(do_after(user, 15 SECONDS, src))
 				catching = FALSE
 				user.isfishing = FALSE
 				var/diceroll = rand(1, 20)
-				var/IT
+				var/obj/item/fish/darkpack/new_fish
 				if(diceroll <= 5)
-					IT = /obj/item/food/fish/tune
+					new_fish = /obj/item/fish/darkpack/tuna
 				else if(diceroll <= 10)
-					IT = /obj/item/food/fish/catfish
+					new_fish = /obj/item/fish/darkpack/catfish
 				else if(diceroll <= 15)
-					IT = /obj/item/food/fish/crab
+					new_fish = /obj/item/fish/darkpack/crab
 				else
-					IT = /obj/item/food/fish/shark
-				new IT(user.loc)
+					new_fish = /obj/item/fish/darkpack/shark
+				new new_fish(user.loc)
 				playsound(loc, 'modular_darkpack/modules/deprecated/sounds/catched.ogg', 50, FALSE)
 			else
 				catching = FALSE
 				user.isfishing = FALSE
 		return
 	. = ..()
+*/
