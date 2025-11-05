@@ -1,3 +1,4 @@
+#if !defined(CBT)
 /obj/effect/mapping_helpers/viewport_helper
 	name = "viewport helper"
 	desc = "If you see this, the maptainers are all dead or dying. Mappers! Make sure to delete this later."
@@ -15,3 +16,4 @@
 
 /obj/effect/mapping_helpers/viewport_helper/transparent
 	icon_state = "transparent"
+#endif
