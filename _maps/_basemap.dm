@@ -1,7 +1,16 @@
 //#define LOWMEMORYMODE //uncomment this to load centcom and runtime station and thats it.
-//#define SHOW_INVENTORY_ICONS //uncomment this to make mapping software use inventory icons rather then world icons
+//#define ABSOLUTE_MINIMUM //uncomment this to load a smaller centcomm and smaller runtime station, only works together with LOWMEMORYMODE
+//#define SHOW_INVENTORY_ICONS //uncomment this to make mapping software use inventory icons rather then world icons // DARKPACK EDIT ADD
 
+#ifdef ABSOLUTE_MINIMUM
+#define LOWMEMORYMODE
+#endif
+
+#ifndef ABSOLUTE_MINIMUM
 #include "map_files\generic\CentCom.dmm"
+#else
+#include "map_files\generic\CentCom_minimal.dmm"
+#endif
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS

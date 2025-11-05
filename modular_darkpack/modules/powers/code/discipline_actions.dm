@@ -58,7 +58,10 @@
 		SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 	)
 
-	RegisterSignals(owner, relevant_signals, TYPE_PROC_REF(/mob, update_action_buttons))
+	RegisterSignals(owner, relevant_signals, PROC_REF(update_owner_action_buttons))
+
+/datum/action/discipline/proc/update_owner_action_buttons()
+	owner.update_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
 	return discipline.current_power.can_activate_untargeted(feedback)

@@ -4,10 +4,10 @@
 /datum/asset/spritesheet_batched/chat/create_spritesheets()
 	insert_all_icons("emoji", EMOJI_SET)
 	// pre-loading all lanugage icons also helps to avoid meta
-	insert_all_icons("language", 'icons/ui/chat/language.dmi')
+	insert_all_icons("language", 'modular_darkpack/master_files/icons/ui/chat/language.dmi') // DARKPACK EDIT CHANGE - LANGUAGES
 	// catch languages which are pulling icons from another file
 	for(var/datum/language/L as anything in subtypesof(/datum/language))
 		var/icon = initial(L.icon)
-		if (icon != 'icons/ui/chat/language.dmi')
+		if (icon != 'modular_darkpack/master_files/icons/ui/chat/language.dmi') // DARKPACK EDIT CHANGE - LANGUAGES
 			var/icon_state = initial(L.icon_state)
 			insert_icon("language-[icon_state]", uni_icon(icon, icon_state))

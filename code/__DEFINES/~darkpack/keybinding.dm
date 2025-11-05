@@ -1,2 +1,10 @@
 //Human
 #define COMSIG_KB_HUMAN_BITE_DOWN "keybinding_human_bite_down"
+
+//Pixelshifting
+#define COMSIG_KB_MOB_PIXEL_SHIFT_DOWN "keybinding_mob_pixel_shift_down"
+#define COMSIG_KB_MOB_PIXEL_SHIFT_UP "keybinding_mob_pixel_shift_up"
+#define COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_DOWN "keybinding_mob_item_pixelshift_down"
+#define COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_UP "keybinding_mob_item_pixelshift_up"
+#define COMSIG_KB_MOB_PIXEL_TILT_DOWN "keybinding_mob_pixeltilt_down"
+#define COMSIG_KB_MOB_PIXEL_TILT_UP "keybinding_mob_pixeltilt_up"

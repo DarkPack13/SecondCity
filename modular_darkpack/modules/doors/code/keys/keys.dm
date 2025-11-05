@@ -38,7 +38,6 @@
 	)
 	color = "#bd3327"
 
-
 /obj/item/vamp/keys/sheriff
 	name = "sheriff's keys"
 	accesslocks = list(
@@ -72,6 +71,16 @@
 		"camarilla",
 		"millenium_delivery",
 	)
+	color = "#bd3327"
+
+/obj/item/vamp/keys/camarilla/ghoul
+	name = "Millenium Tower Employee keys"
+	accesslocks = list(
+		"milleniumCommon",
+		"clerk",
+		"camarilla"
+	)
+	color = "#bd3327"
 
 /obj/item/vamp/keys/archive
 	name = "archive keys"
@@ -252,6 +261,20 @@
 	)
 	color = "#e8ff29"
 
+/obj/item/vamp/keys/cappadocian
+	name = "Eroded keys"
+	accesslocks = list(
+		"cappadocian"
+	)
+	color = "#99620e"
+
+/obj/item/vamp/keys/sabbat
+	name = "Dirty keys"
+	accesslocks = list(
+		"sabbat"
+	)
+	color = "#6a2e1d"
+
 //===========================CLINIC KEYS===========================
 /obj/item/vamp/keys/clinic
 	name = "clinic keys"
@@ -293,6 +316,15 @@
 		"police",
 		"police_secure",
 		"police_chief"
+	)
+
+//===========================MISC KEYS===========================
+
+/obj/item/vamp/keys/axes
+	name = "Rusty keys"
+	accesslocks = list(
+		"axes",
+		"laundromat"
 	)
 
 //===========================GAROU KEYS===========================
@@ -379,3 +411,11 @@
 		"taxi"
 	)
 	color = "#fffb8b"
+
+
+/obj/item/vamp/keys/anarch_limited
+	name = "Barkeeper keys"
+	accesslocks = list(
+		"biker_bar"
+	)
+	color = "#434343"

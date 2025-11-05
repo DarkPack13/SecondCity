@@ -1,0 +1,44 @@
+/datum/job/vampire/clinic_director
+	title = JOB_CLINIC_DIRECTOR
+	department_head = list("The City")
+	faction = FACTION_CITY
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Camarilla or the Anarchs"
+	exp_required_type_department = EXP_TYPE_CLINIC
+	config_tag = "CLINIC_DIRECTOR"
+	outfit = /datum/outfit/job/clinic_director
+	job_flags = CITY_JOB_FLAGS
+	display_order = JOB_DISPLAY_ORDER_CLINICS_DIRECTOR
+	department_for_prefs = /datum/job_department/clinic
+	departments_list = list(
+		/datum/job_department/clinic,
+	)
+
+	description = "Keep Saint John's clinic up and running. Collect blood by helping mortals at the Clinic."
+	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_KIASYD)
+
+/datum/outfit/job/clinic_director
+	name = "Clinic Director"
+	jobtype = /datum/job/vampire/clinic_director
+
+	//ears = /obj/item/p25radio
+	id = /obj/item/card/clinic/director
+	uniform = /obj/item/clothing/under/vampire/nurse
+	shoes = /obj/item/clothing/shoes/vampire/white
+	suit =  /obj/item/clothing/suit/vampire/labcoat/director
+	gloves = /obj/item/clothing/gloves/vampire/latex
+	l_pocket = /obj/item/vamp/phone
+	r_pocket = /obj/item/vamp/keys/clinics_director
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
+
+	backpack = /obj/item/storage/backpack
+	satchel = /obj/item/storage/backpack/satchel
+	duffelbag = /obj/item/storage/backpack/duffelbag
+
+	skillchips = list(/obj/item/skillchip/entrails_reader)
+
+/obj/effect/landmark/start/clinic_director
+	name = "Director"
+	icon_state = "Doctor"
