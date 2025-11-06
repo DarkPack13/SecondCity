@@ -188,10 +188,14 @@
 	if(dialed_number)
 		calling = dialed_number
 	// Default to the contact name calling the phone.
-	data["calling_user"] = our_contacts[calling]
+	for(var/list/contact as anything in our_contacts)
+		if(calling == contact["number"])
+			data["calling_user"] = contact["name"]
 	// If we dont have a contact name, refer to the published listings.
 	if(!data["calling_user"])
-		data["calling_user"] = published_numbers[calling]
+		for(var/contact as anything in SSphones.published_phone_numbers)
+			if(calling == SSphones.published_phone_numbers[contact])
+				data["calling_user"] = contact
 	// Not in our contacts or published listings? Then resolve to showing the phone number.
 	if(!data["calling_user"])
 		data["calling_user"] = "+" + calling
@@ -356,10 +360,12 @@
 		phone_radio.set_listening(TRUE)
 		phone_flags |= PHONE_IN_CALL
 		phone_flags &= ~PHONE_CALLING
+	SSphones.cancel_ring_timeout(sim_card)
 
 /obj/item/smartphone/proc/end_phone_call()
 	SIGNAL_HANDLER
 
+	SSphones.cancel_ring_timeout(sim_card)
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
 	phone_radio.set_listening(FALSE)
@@ -373,7 +379,7 @@
 /obj/item/smartphone/proc/decline_phone_call()
 	SIGNAL_HANDLER
 
-	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
+	SSphones.cancel_ring_timeout(sim_card)
 	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref.resolve()
 	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_BUSY)
 	secure_frequency = null
@@ -384,7 +390,6 @@
 	phone_flags &= ~PHONE_RINGING
 
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
-	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 	secure_frequency = incoming_frequency
 	phone_flags &= ~PHONE_RINGING
 	initialize_phone_call(user)
