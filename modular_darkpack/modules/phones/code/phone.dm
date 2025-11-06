@@ -349,12 +349,13 @@
 /obj/item/smartphone/proc/decline_phone_call()
 	SIGNAL_HANDLER
 
+	SSphones.cancel_ring_timeout(incoming_sim_card)
 	secure_frequency = null
-	SSphones.cancel_ring_timeout(sim_card)
 	dialed_number = null
 	incoming_sim_card = null
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_CALLING
+	phone_flags &= ~PHONE_RINGING
 
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
 	SSphones.cancel_ring_timeout(incoming_sim_card)
@@ -380,5 +381,6 @@
 		end_phone_call()
 	incoming_frequency = null
 	incoming_sim_card = null
+	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_RINGING
 	phone_flags &= ~PHONE_CALLING

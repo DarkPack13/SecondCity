@@ -58,13 +58,13 @@ SUBSYSTEM_DEF(phones)
 		return
 
 	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING, sim_card, established_frequency) // Tell the phone number they are being called.
-	ringing_timers[sim_card] = addtimer(CALLBACK(src, PROC_REF(phone_ring_timeout)), TIME_TO_RING, TIMER_STOPPABLE)
+	ringing_timers[sim_card] = addtimer(CALLBACK(src, PROC_REF(phone_ring_timeout), sim_card, called_sim_card), TIME_TO_RING, TIMER_STOPPABLE)
 	return established_frequency // Give the phone who is calling which frequency to use.
 
 /datum/controller/subsystem/phones/proc/cancel_ring_timeout(obj/item/sim_card/sim_card)
 	deltimer(ringing_timers[sim_card])
 
-/datum/controller/subsystem/phones/proc/phone_ring_timeout(obj/item/sim_card/sim_card, obj/item/sim_card/called_sim_card, phone_number, established_frequency)
+/datum/controller/subsystem/phones/proc/phone_ring_timeout(obj/item/sim_card/sim_card, obj/item/sim_card/called_sim_card)
 	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_TIMEOUT)
 	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_TIMEOUT)
 
@@ -78,6 +78,7 @@ SUBSYSTEM_DEF(phones)
 	var/obj/item/sim_card/called_sim_card = validate_phone_number(phone_number)
 	if(called_sim_card)
 		SEND_SIGNAL(called_sim_card, COMSIG_PHONE_CALL_ENDED, sim_card.phone_number)
+		SEND_SIGNAL(sim_card, COMSIG_PHONE_CALL_ENDED, called_sim_card.phone_number)
 		frequencies_in_use.Remove(sim_card.phone_number)
 
 /datum/controller/subsystem/phones/proc/validate_phone_number(phone_number)

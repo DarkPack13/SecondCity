@@ -37,15 +37,12 @@ export const ScreenPhone = (props: {
     <Stack vertical fill backgroundColor="#fff" textColor="#000">
       <Stack.Item>
         <Stack fill align="center" justify="space-between" ml={2} mr={2} mt={1}>
-          <Stack.Item>
-            <Icon name="chevron-left" size={2} />
-          </Stack.Item>
           <Stack.Item
             style={{ cursor: 'pointer' }}
             onClick={() => setSettings((x) => !x)}
           >
             <Icon
-              name="ellipsis-vertical"
+              name="ellipsis"
               color={settings ? 'blue' : ''}
               size={2}
             />
