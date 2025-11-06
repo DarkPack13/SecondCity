@@ -3,10 +3,9 @@
 	name = "leader badge"
 	desc = "King in the castle!"
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id6"
+	icon_state = "prince_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id6"
 
 /obj/item/card/sheriff
 	name = "head security badge"
@@ -30,10 +29,10 @@
 	name = "clerk badge"
 	desc = "A badge which shows buerocracy qualification."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id1"
+	icon_state = "red_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id1"
+	worn_icon_state = "red_id"
 
 /obj/item/card/clerk/harpy
 	name = "public relations manager badge"
@@ -43,10 +42,10 @@
 	name = "Millenium Tower Employee ID"
 	desc = "An ID showing employment with the Millenium Tower - Maybe they give you free donuts."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id2"
+	icon_state = "green_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id2"
+	worn_icon_state = "green_id"
 
 /obj/item/card/bruiser
 	name = "bruiser badge"
@@ -84,14 +83,22 @@
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
 	worn_icon_state = "eagle_badge"
 
+/obj/item/card/tapster
+	name = "bartender badge"
+	desc = "A badge displaying a beverage glass."
+	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
+	icon_state = "tapster_badge"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = "bruiser_badge"
+
 /obj/item/card/clinic
 	name = "medical badge"
 	desc = "A badge which shows medical qualification."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id2"
+	icon_state = "green_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id2"
 
 /obj/item/card/clinic/director
 	name = "clinic director's badge"
@@ -101,10 +108,9 @@
 	name = "scholar badge"
 	desc = "A badge which shows a love of culture."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id7"
+	icon_state = "grey_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id7"
 
 /obj/item/card/regent
 	name = "erudite scholar badge"
@@ -119,46 +125,43 @@
 	name = "janitor badge"
 	desc = "A badge which shows cleaning employment."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id8"
+	icon_state = "blue_card"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id8"
+	worn_icon_state = "blue_card"
 
 /obj/item/card/graveyard
 	name = "keeper badge"
 	desc = "A badge which shows graveyard employment."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id8"
+	icon_state = "blue_card"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id8"
 
 /obj/item/card/dealer
 	name = "business badge"
 	desc = "A badge which shows business."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id9"
+	icon_state = "red_card"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id9"
 
 /obj/item/card/supplytech
 	name = "technician badge"
 	desc = "A badge which shows supply employment."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id10"
+	icon_state = "supply_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
-	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id10"
+	// worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = null
 
 /obj/item/card/hunter
 	name = "cross"
 	desc = "When you come into the land that the Lord your God is giving you, you must not learn to imitate the abhorrent practices of those nations. No one shall be found among you who makes a son or daughter pass through fire, or who practices divination, or is a soothsayer, or an augur, or a sorcerer, or one who casts spells, or who consults ghosts or spirits, or who seeks oracles from the dead. For whoever does these things is abhorrent to the Lord; it is because of such abhorrent practices that the Lord your God is driving them out before you (Deuteronomy 18:9-12)."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id11"
+	icon_state = "hunter_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id11"
 	COOLDOWN_DECLARE(detonation_timer)
 
 /obj/item/card/hunter/attack_self(mob/user)
@@ -206,19 +209,19 @@
 	name = "police officer badge"
 	desc = "Sponsored by the Government."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id13"
+	icon_state = "police_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id13"
+	worn_icon_state = "police_badge"
 
 /obj/item/card/government
 	name = "emergency dispatcher badge"
 	desc = "Sponsored by the Government."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id1"
+	icon_state = "red_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id1"
+	worn_icon_state = "red_id"
 
 /obj/item/card/police/sergeant
 	name = "police sergeant badge"
@@ -241,7 +244,7 @@
 	icon_state = "id14"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id13"
+	worn_icon_state = "police_badge"
 
 /obj/item/card/noddist
 	name = "cultist badge"
@@ -250,7 +253,7 @@
 	icon_state = "id15"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id13"
+	worn_icon_state = "police_badge"
 
 //TZIMISCE ROLES
 /obj/item/card/voivode
@@ -285,35 +288,25 @@
 	name = "primogen's whip badge"
 	desc = "This badge shows your servitude to an important person."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "onyxBadge"
+	icon_state = "onyx_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "onyxBadge"
+	worn_icon_state = "onyx_badge"
 
 /obj/item/card/steward
 	name = "primogen's steward badge"
 	desc = "This badge shows you're very good at taking care of someone else's property."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "emeraldBadge"
+	icon_state = "emerald_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "emeraldBadge"
+	worn_icon_state = "emerald_badge"
 
 /obj/item/card/myrmidon
 	name = "primogen's myrmidon badge"
 	desc = "A badge which shows you're responsible enough to protect someone important but not responsible enough to protect the most important."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "rubyBadge"
+	icon_state = "ruby_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "rubyBadge"
-
-
-/obj/item/card/tapster
-	name = "bartender badge"
-	desc = "A badge displaying a beverage glass."
-	icon = 'modular_darkpack/modules/deprecated/icons/id_items.dmi'
-	icon_state = "tapster_badge"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
-	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "bruiser_badge"
+	worn_icon_state = "ruby_badge"
