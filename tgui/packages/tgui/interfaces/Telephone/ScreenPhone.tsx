@@ -12,7 +12,7 @@ export const ScreenPhone = (props: {
 }) => {
   const { enteredNumber, setEnteredNumber, setApp } = props;
   const { act, data } = useBackend<Data>();
-  const { silence } = data;
+  const { ringer, vibration } = data;
 
   const [settings, setSettings] = useState(false);
 
@@ -62,7 +62,20 @@ export const ScreenPhone = (props: {
                 className="Telephone__ContactsElement"
               >
                 <Stack.Item>Silent Mode:</Stack.Item>
-                <Stack.Item>{silence ? 'On' : 'Off'}</Stack.Item>
+                <Stack.Item>{ringer ? 'Off' : 'On'}</Stack.Item>
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              <Stack
+                fill
+                align="center"
+                justify="space-between"
+                p={1}
+                onClick={() => act('silent')}
+                className="Telephone__ContactsElement"
+              >
+                <Stack.Item>Vibration Mode:</Stack.Item>
+                <Stack.Item>{vibration ? 'On' : 'Off'}</Stack.Item>
               </Stack>
             </Stack.Item>
           </Stack>

@@ -23,8 +23,12 @@
 	var/list/phone_history_list = list()
 	// Currently viewed newscaster channel. Used for IRC Announcements
 	var/obj/machinery/newscaster/irc_channel
-	//Current sound to play when the phone is ringing.
+	// Current sound to play when the phone is ringing.
 	var/call_sound = 'modular_darkpack/modules/phones/sounds/call.ogg'
+	// If the phone should play a sound when ringing.
+	var/ringer = TRUE
+	// If the phone shows balloon alerts when ringing.
+	var/vibration = TRUE
 	/// Do we have a SIM card?
 	var/obj/item/sim_card/sim_card
 	/// Phone flags
@@ -49,11 +53,13 @@
 	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
 	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(phone_call_declined))
 	RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
+	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
 	UnregisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED)
 	UnregisterSignal(src, COMSIG_PHONE_CALL_BUSY)
+	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	if(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
@@ -141,9 +147,8 @@
 	data["phone_in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
 	data["phone_ringing"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
-
-
-	data["silence"] = isnull(call_sound)
+	data["ringer"] = ringer
+	data["vibration"] = vibration
 
 	var/list/published_numbers = list()
 	for(var/contact in SSphones.published_phone_numbers)
@@ -302,17 +307,17 @@
 
 
 		if("silent")
-			if(call_sound)
-				//If it is true, it will check all the other sounds for phone and disable them
-				call_sound = null
-				to_chat(usr, "<span class='notice'>Notifications and Sounds toggled off.</span>")
-			else
-				call_sound = 'modular_darkpack/modules/phones/sounds/call.ogg'
-				to_chat(usr, "<span class='notice'>Notifications and Sounds toggled on.</span>")
+			ringer = !ringer
+			to_chat(usr, span_notice("Notifications and Sounds toggled [ringer ? "on" : "off"]."))
+			return TRUE
+
+		if("vibration")
+			vibration = !vibration
+			to_chat(usr, span_notice("Phone vibration toggled [vibration ? "on" : "off"]."))
 			return TRUE
 
 		if("terminal_sound")
-			if(call_sound)
+			if(ringer)
 				playsound(loc, 'sound/machines/terminal/terminal_select.ogg', 15, TRUE)
 			return TRUE
 	return FALSE
@@ -397,8 +402,10 @@
 	if(!COOLDOWN_FINISHED(src, ringer_cooldown))
 		return
 	COOLDOWN_START(src, ringer_cooldown, 4 SECONDS)
-	balloon_alert_to_viewers("*buzz")
-	playsound(src, call_sound, 50, TRUE, 0, 2)
+	if(vibration)
+		balloon_alert_to_viewers(pick("zzZz!", "ZZZT!", "zZzZ!", "Zzz...", "zzz...", "ZzZZT!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	if(ringer)
+		playsound(src, call_sound, 50, TRUE, 0, 2)
 
 /obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, established_frequency)
 	SIGNAL_HANDLER
@@ -424,3 +431,10 @@
 	SIGNAL_HANDLER
 
 	STOP_PROCESSING(SSprocessing, src)
+
+/obj/item/smartphone/proc/handle_hearing(mob/living/owner, list/hearing_args)
+	SIGNAL_HANDLER
+
+	phone_radio.talk_into(hearing_args[HEARING_SPEAKER], hearing_args[HEARING_RAW_MESSAGE], language = hearing_args[HEARING_LANGUAGE], message_mods = hearing_args)
+
+//TODO: Call history, speaker mode, mute button, nimi!!
