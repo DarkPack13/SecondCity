@@ -1,43 +1,8 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-.Telephone__HomeScreen {
-  background-image: url('assets/Phone/bg-phone.jpg');
-  background-size: cover;
-}
-
 .Telephone__PhoneScreen {
   background: linear-gradient(45deg, #76a0f4, #8a7bd3);
-}
-
-.Telephone__Camera {
-  background-image: url('assets/Phone/Camera.jpg');
-  background-size: cover;
-}
-
-.Telephone__Browser {
-  background-image: url('assets/Phone/chrome.svg');
-  background-size: cover;
-}
-
-.Telephone__PlayStore {
-  background-image: url('assets/Phone/playstore.svg');
-  background-size: cover;
-}
-
-.Telephone__Google {
-  background-image: url('assets/Phone/google.svg');
-  background-size: cover;
-}
-
-.Telephone__Mic {
-  background-image: url('assets/Phone/mic.svg');
-  background-size: cover;
-}
-
-.Telephone__BlueTooth {
-  background-image: url('assets/Phone/bluetooth.svg');
-  background-size: cover;
 }
 
 .Telephone__HomeButton {

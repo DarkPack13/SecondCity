@@ -44,6 +44,9 @@
 	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
 	phone_radio = new()
 	irc_channel = new()
+	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
+	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(ring_timeout))
+	RegisterSignal(src, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
@@ -126,17 +129,11 @@
 /obj/item/smartphone/ui_data(mob/user)
 	var/list/data = list()
 	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
-	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
 	data["no_sim_card"] = (phone_flags & PHONE_NO_SIM) ? TRUE : FALSE
 	data["phone_in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
 	data["phone_ringing"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
-	data["calling_user"] = incoming_sim_card ? incoming_sim_card.phone_number : null
+	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
 
-	if(phone_flags & PHONE_IN_CALL)
-		data["calling_user"] = incoming_sim_card.phone_number
-		for(var/datum/phonecontact/P in contacts)
-			if(P.number == incoming_sim_card.phone_number)
-				data["calling_user"] = P.name
 
 	data["silence"] = isnull(call_sound)
 
@@ -174,6 +171,11 @@
 		))
 	data["phone_history"] = phone_history
 
+	data["calling_user"] = incoming_sim_card?.phone_number
+	data["calling_user"] = published_numbers[incoming_sim_card?.phone_number]
+	data["calling_user"] = our_contacts[incoming_sim_card?.phone_number]
+
+
 	return data
 
 /obj/item/smartphone/ui_act(action, params, datum/tgui/ui)
@@ -191,11 +193,11 @@
 			return TRUE
 
 		if("accept")
-			accept_phone_call()
+			accept_phone_call(usr)
 			return TRUE
 
 		if("decline")
-			end_phone_call()
+			decline_phone_call()
 			return TRUE
 
 		if("publish_number")
@@ -314,6 +316,8 @@
  * If secure_frequency is set, the phone is being called by someone.
  */
 /obj/item/smartphone/proc/initialize_phone_call(mob/user, new_dialed_number)
+	SIGNAL_HANDLER
+
 	if(!sim_card)
 		balloon_alert(user, "no SIM card installed!")
 		return
@@ -330,29 +334,38 @@
 		phone_flags &= ~PHONE_CALLING
 
 /obj/item/smartphone/proc/end_phone_call()
+	SIGNAL_HANDLER
+
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
 	phone_radio.set_listening(FALSE)
 	secure_frequency = null
 	SSphones.end_phone_call(sim_card, dialed_number)
 	dialed_number = null
+	incoming_sim_card = null
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_CALLING
 
-/obj/item/smartphone/proc/accept_phone_call()
-	SSphones.cancel_ring_timeout(incoming_sim_card)
+/obj/item/smartphone/proc/decline_phone_call()
+	SIGNAL_HANDLER
+
+	secure_frequency = null
+	SSphones.cancel_ring_timeout(sim_card)
+	dialed_number = null
 	incoming_sim_card = null
+	phone_flags &= ~PHONE_IN_CALL
+	phone_flags &= ~PHONE_CALLING
+
+/obj/item/smartphone/proc/accept_phone_call(mob/user)
+	SSphones.cancel_ring_timeout(incoming_sim_card)
 	secure_frequency = incoming_frequency
 	phone_flags &= ~PHONE_RINGING
-	initialize_phone_call()
+	initialize_phone_call(user)
+	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref?.resolve()
+	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_ACCEPTED)
 
-/**
- * called_sim_card: the SIM card that is being called right now.
- * caller_sim_card: the SIM card that is calling right now.
- * phone_number: The phone number of who is calling.
- * established_frequency: On what frequency we are being called.
- */
-/obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, phone_number, established_frequency)
+
+/obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, established_frequency)
 	SIGNAL_HANDLER
 
 	say("RING RING RING")
@@ -360,12 +373,7 @@
 	incoming_sim_card = caller_sim_card
 	phone_flags |= PHONE_RINGING
 
-/**
- * sim_card: the SIM card that was calling right now.
- * phone_number: The phone number of who was calling.
- * established_frequency: On what frequency we were being called.
- */
-/obj/item/smartphone/proc/ring_timeout(obj/item/sim_card/sim_card, phone_number, established_frequency)
+/obj/item/smartphone/proc/ring_timeout()
 	SIGNAL_HANDLER
 
 	if(secure_frequency)

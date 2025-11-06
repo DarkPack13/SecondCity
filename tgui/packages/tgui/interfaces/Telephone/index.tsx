@@ -87,7 +87,7 @@ const PhysicalScreen = (props: {
 
   if (data.phone_calling) {
     return <ScreenCalling />;
-  } else if (data.phone_in_call) {
+  } else if (data.phone_in_call || data.phone_ringing) {
     return <ScreenInCall />;
   } else if (data.viewing_channel) {
     return <ScreenViewingChannel setApp={setApp} />;
@@ -169,10 +169,15 @@ const NavigationBar = (props: {
         align="center"
         justify="space-around"
       >
-        <Stack.Item>
-          <Box textAlign="center">
-            <Icon name="bars" rotation={90} size={1.5} />
-          </Box>
+        <Stack.Item
+          width={8}
+          height="100%"
+        >
+        <Stack align="center" justify="center" fill>
+          <Stack.Item>
+            <Icon name="bars" size={1.5} />
+          </Stack.Item>
+        </Stack>
         </Stack.Item>
         <Stack.Item
           onClick={() => {
@@ -189,10 +194,20 @@ const NavigationBar = (props: {
             </Stack.Item>
           </Stack>
         </Stack.Item>
-        <Stack.Item>
-          <Box textAlign="center">
-            <Icon name="chevron-left" size={1.5} />
-          </Box>
+        <Stack.Item
+          onClick={() => {
+            act('viewing_newscaster_channel', { ref: null });
+            setApp(null);
+          }}
+          className="Telephone__HomeButton"
+          width={8}
+          height="100%"
+        >
+          <Stack align="center" justify="center" fill>
+            <Stack.Item>
+              <Icon name="chevron-left" size={1.5} />
+            </Stack.Item>
+          </Stack>
         </Stack.Item>
       </Stack>
     </Box>

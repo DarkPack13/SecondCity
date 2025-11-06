@@ -60,7 +60,6 @@ export const CameraAppIcon = (props) => {
   return (
     <AppIcon text="Camera">
       <Box
-        className="Telephone__Camera"
         p={4}
         style={{ borderRadius: '30%' }}
       />
@@ -68,22 +67,6 @@ export const CameraAppIcon = (props) => {
   );
 };
 
-export const BrowserAppIcon = (props: { onClick?: () => void }) => {
-  const { onClick } = props;
-  return (
-    <AppIcon text="Browser" size={1.6} backgroundColor="#fff" onClick={onClick}>
-      <Box className="Telephone__Browser" p={2.5} />
-    </AppIcon>
-  );
-};
-
-export const PlayStoreAppIcon = (props) => {
-  return (
-    <AppIcon text="Play Store" backgroundColor="#fff">
-      <Box className="Telephone__PlayStore" p={2.5} />
-    </AppIcon>
-  );
-};
 
 export const IconDots = (props) => {
   return (
@@ -170,7 +153,7 @@ export const ScreenHome = (props: {
   const { setApp } = props;
 
   return (
-    <Stack fill vertical className="Telephone__HomeScreen">
+    <Stack fill vertical>
       <Stack.Item grow>
         <Stack align="center" justify="space-between">
           <Stack.Item>
@@ -209,10 +192,20 @@ export const ScreenHome = (props: {
             />
           </Stack.Item>
           <Stack.Item>
-            <CameraAppIcon />
+            <AppIcon
+              backgroundColor="#fff"
+              text="Camera"
+              iconName="camera"
+              iconColor="black"
+            />
           </Stack.Item>
           <Stack.Item>
-            <PlayStoreAppIcon />
+            <AppIcon
+              backgroundColor="#fff"
+              text="Notes"
+              iconName="file-invoice"
+              iconColor="yellow"
+            />
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -270,21 +263,16 @@ export const ScreenHome = (props: {
             />
           </Stack.Item>
           <Stack.Item>
-            <BrowserAppIcon
-            // onClick={() => {
-            //   setApp(NavigableApps.Browser);
-            // }}
-            />
-          </Stack.Item>
-          <Stack.Item>
             <AppIcon
               size={1.6}
-              backgroundColor="#eff6ff"
-              iconColor="#798289"
-              text="Apps"
-            >
-              <IconDots />
-            </AppIcon>
+              backgroundColor="#00f7ffff"
+              text="Browser"
+              iconName="globe-americas"
+              iconColor="black"
+              onClick={() => {
+                setApp(NavigableApps.Browser);
+              }}
+            />
           </Stack.Item>
         </Stack>
       </Stack.Item>

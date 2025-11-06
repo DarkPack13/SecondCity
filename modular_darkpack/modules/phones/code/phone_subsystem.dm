@@ -57,16 +57,16 @@ SUBSYSTEM_DEF(phones)
 		to_chat(user, span_notice("The number you have dialed is currently busy."))
 		return
 
-	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING, sim_card, sim_card.phone_number, established_frequency) // Tell the phone number they are being called.
-	ringing_timers[sim_card] = addtimer(CALLBACK(src, PROC_REF(phone_ring_timeout), sim_card, called_sim_card, sim_card.phone_number, established_frequency), TIME_TO_RING)
+	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING, sim_card, established_frequency) // Tell the phone number they are being called.
+	ringing_timers[sim_card] = addtimer(CALLBACK(src, PROC_REF(phone_ring_timeout)), TIME_TO_RING, TIMER_STOPPABLE)
 	return established_frequency // Give the phone who is calling which frequency to use.
 
 /datum/controller/subsystem/phones/proc/cancel_ring_timeout(obj/item/sim_card/sim_card)
 	deltimer(ringing_timers[sim_card])
 
 /datum/controller/subsystem/phones/proc/phone_ring_timeout(obj/item/sim_card/sim_card, obj/item/sim_card/called_sim_card, phone_number, established_frequency)
-	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_TIMEOUT, phone_number, established_frequency)
-	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_TIMEOUT, phone_number, established_frequency)
+	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_TIMEOUT)
+	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_TIMEOUT)
 
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE

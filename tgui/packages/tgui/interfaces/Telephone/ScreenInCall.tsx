@@ -32,17 +32,6 @@ const FakeCallingControls = (props: { phone_calling: BooleanLike }) => {
         </Box>
         Extra Volume
       </Box>
-      {/* Bluetooth */}
-      <Box>
-        <Box height={4}>
-          <Stack fill align="center" justify="center">
-            <Stack.Item>
-              <Box className="Telephone__BlueTooth" width={1.2} height={2} />
-            </Stack.Item>
-          </Stack>
-        </Box>
-        Bluetooth
-      </Box>
       {/* Speaker */}
       <Box>
         <Box height={4}>
@@ -84,7 +73,7 @@ const FakeCallingControls = (props: { phone_calling: BooleanLike }) => {
 // to manage a three-variable state machine in one component
 export const ScreenCalling = (props) => {
   const { act, data } = useBackend<Data>();
-  const { calling_user, phone_calling, phone_in_call, phone_ringing } = data;
+  const { calling_user } = data;
 
   return (
     <Stack fill vertical className="Telephone__PhoneScreen">
@@ -136,13 +125,13 @@ export const ScreenCalling = (props) => {
 
 export const ScreenInCall = (props) => {
   const { act, data } = useBackend<Data>();
-  const { calling_user, phone_calling, phone_in_call, phone_ringing } = data;
+  const { calling_user, phone_ringing } = data;
 
   return (
     <Stack fill vertical className="Telephone__PhoneScreen">
       <Stack.Item>
         <Box mt={2} ml={2}>
-          {phone_ringing ? 'Online' : 'Call From'}
+          {phone_ringing ? 'Call From' : 'Online'}
         </Box>
       </Stack.Item>
       <Stack.Item height={15}>
@@ -160,7 +149,7 @@ export const ScreenInCall = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Stack mt={-3} fill align="center" justify="center">
-          {phone_ringing ? null : (
+          {phone_ringing ? (
             <Stack.Item>
               <Box
                 backgroundColor="#fff"
@@ -179,7 +168,7 @@ export const ScreenInCall = (props) => {
                 </Stack>
               </Box>
             </Stack.Item>
-          )}
+          ) : null}
           <Stack.Item>
             <Box
               backgroundColor="#fff"
@@ -190,7 +179,7 @@ export const ScreenInCall = (props) => {
               height={4}
               width={4}
               onClick={() => {
-                phone_ringing ? act('hang') : act('decline');
+                phone_ringing ? act('decline'): act('hang');
               }}
             >
               <Stack fill align="center" justify="center">
