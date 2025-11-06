@@ -71,7 +71,7 @@
 	var/always_use_default_namelist = FALSE
 	/// Icon displayed in the chat window when speaking this language.
 	/// if you are seeing someone speak popcorn language, then something is wrong.
-	var/icon = 'icons/ui/chat/language.dmi'
+	var/icon = 'modular_darkpack/master_files/icons/ui/chat/language.dmi' // DARKPACK EDIT CHANGE - LANGUAGES
 	/// Icon state displayed in the chat window when speaking this language.
 	var/icon_state = "unknown"
 
@@ -91,6 +91,11 @@
 	 * Not sure why you would do that though.
 	 */
 	var/list/mutual_understanding
+
+	// DARKPACK EDIT ADD START - LANGUAGES
+	/// If this langauge can be randomly picked or populated in common lists.
+	var/restricted = TRUE
+	// DARKPACK EDIT ADD END
 
 // Primarily for debugging, allows for easy iteration and testing of languages.
 /datum/language/vv_edit_var(var_name, var_value)

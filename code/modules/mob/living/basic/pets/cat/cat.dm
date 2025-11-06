@@ -62,7 +62,7 @@
 	///callback for after a kitten is born
 	var/datum/callback/post_birth_callback
 
-	// DARKPACK ADD START
+	// DARKPACK ADD START - NPC
 	bloodpool = 2
 	maxbloodpool = 2
 	// DARKPACK ADD END
@@ -153,12 +153,15 @@
 		return
 	update_appearance(UPDATE_ICON_STATE)
 
+// DARKPACK EDIT START - NPC
 /mob/living/basic/pet/cat/update_icon_state()
 	. = ..()
-	if (resting)
-		icon_state = "[icon_living]_rest"
-		return
-	icon_state = "[icon_living]"
+	if(stat != DEAD)
+		if(resting)
+			icon_state = "[icon_living]_rest"
+		else
+			icon_state = "[icon_living]"
+// DARKPACK EDIT END
 
 /mob/living/basic/pet/cat/proc/add_breeding_component()
 	var/static/list/partner_types = typecacheof(list(/mob/living/basic/pet/cat))

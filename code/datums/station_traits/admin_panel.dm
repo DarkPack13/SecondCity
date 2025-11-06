@@ -28,10 +28,8 @@ ADMIN_VERB(station_traits_panel, R_FUN, "Modify Station Traits", "Modify the sta
 
 	var/list/valid_station_traits = list()
 
-	for (var/datum/station_trait/station_trait_path as anything in subtypesof(/datum/station_trait))
+	for (var/datum/station_trait/station_trait_path as anything in valid_subtypesof(/datum/station_trait))
 		// DARKPACK EDIT ADD
-		if(initial(station_trait_path.abstract_type) == station_trait_path)
-			continue
 		if(!initial(station_trait_path.darkpack_allowed))
 			continue
 		// DARKPACK EDIT END

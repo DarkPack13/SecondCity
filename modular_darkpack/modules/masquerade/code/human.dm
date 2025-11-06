@@ -4,7 +4,7 @@
 	SSbloodhunt.update_alert()
 	for(var/player_mob in GLOB.kindred_list)
 		to_chat(player_mob, span_bold("The Blood Hunt after <span class='warning'>[real_name]</span> has been announced! <br> Reason: [reason]"))
-		SEND_SOUND(player_mob, sound('modular_darkpack/modules/masquerade/sound/announce.ogg'))
+		SEND_SOUND(player_mob, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 
 
 /mob/proc/clear_blood_hunt()
@@ -13,4 +13,4 @@
 	SSbloodhunt.update_alert()
 	for(var/player_mob in GLOB.kindred_list)
 		to_chat(player_mob, span_bold("The Blood Hunt after <span class='green'>[real_name]</span> is over!"))
-		SEND_SOUND(player_mob, sound('modular_darkpack/modules/masquerade/sound/announce.ogg'))
+		SEND_SOUND(player_mob, sound('modular_darkpack/master_files/sounds/announce.ogg'))

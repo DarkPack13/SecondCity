@@ -150,7 +150,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/power, 32)
 
 /obj/structure/sign/poster/contraband/space_cube
 	name = "Space Cube"
-	desc = "Ignorant of Nature's Harmonic 6 Side Space Cube Creation, the Spacemen are Dumb, Educated Singularity Stupid and Evil."
+	desc = "Ignorant of Nature's Harmonic 6 Side Space Cube Creation, the humans are Dumb, Educated Singularity Stupid and Evil." // DARKPACK EDIT CHANGE
 	icon_state = "space_cube"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/space_cube, 32)

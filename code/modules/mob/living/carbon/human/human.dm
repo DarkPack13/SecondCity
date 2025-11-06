@@ -68,6 +68,11 @@
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
 
+	//DARKPACK EDIT START
+	if (clan)
+		clan.on_lose(src)
+	//DARKPACK EDIT END
+
 	return ..()
 
 /mob/living/carbon/human/prepare_data_huds()
@@ -127,7 +132,7 @@
 			id_species ||= dna.species.name
 			id_blood_type ||= get_bloodtype()
 
-		if(istype(id, /obj/item/card/id/advanced))
+		else if(istype(id, /obj/item/card/id/advanced))
 			var/obj/item/card/id/advanced/advancedID = id
 			id_job = advancedID.trim_assignment_override || id_job
 
@@ -918,7 +923,7 @@
 
 	var/carrydelay = 5 SECONDS //if you have latex you are faster at grabbing
 	var/skills_space
-	var/fitness_level = mind?.get_skill_level(/datum/skill/athletics) - 1
+	var/fitness_level = st_get_stat(STAT_STRENGTH) - 1 // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	var/experience_reward = ATHLETICS_SKILL_MISC_EXP
 	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
 		carrydelay -= 2 SECONDS
@@ -1080,7 +1085,7 @@
 	var/chest_covered = FALSE
 	var/head_covered = FALSE
 	var/hands_covered = FALSE
-	for (var/obj/item/clothing/equipped in get_equipped_items())
+	for (var/obj/item/clothing/equipped in get_equipped_items(INCLUDE_ABSTRACT))
 		// We don't really have space-proof gloves, so even if we're checking them we ignore the flags
 		if ((equipped.body_parts_covered & HANDS) && num_hands >= default_num_hands)
 			hands_covered = TRUE

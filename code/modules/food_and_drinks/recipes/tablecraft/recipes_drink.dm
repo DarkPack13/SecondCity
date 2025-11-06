@@ -1,7 +1,7 @@
 // This is the home of drink related tablecrafting recipes, I have opted to only let players bottle fancy boozes to reduce the number of entries.
 
 ///////////////// Booze & Bottles ///////////////////
-
+/* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/lizardwine
 	name = "Lizard Wine"
 	time = 4 SECONDS
@@ -12,7 +12,7 @@
 	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	result = /obj/item/reagent_containers/cup/glass/bottle/lizardwine
 	category = CAT_DRINK
-
+ */
 /datum/crafting_recipe/moonshinejug
 	name = "Moonshine Jug"
 	time = 3 SECONDS
@@ -145,4 +145,14 @@
 	)
 	//We can't spawn the abstract food/grown path
 	unit_test_spawn_extras = list(/obj/item/food/grown/banana = 4)
+	category = CAT_DRINK
+
+/datum/crafting_recipe/lean
+	name = "lean"
+	result = /obj/item/reagent_containers/cup/glass/colocup/lean
+	time = 1 SECONDS
+	reqs = list(/obj/item/reagent_containers/cup/glass/colocup = 1,
+				/obj/item/food/gumball = 2,
+				/datum/reagent/medicine/morphine = 5,
+				/datum/reagent/consumable/space_up = 15)
 	category = CAT_DRINK

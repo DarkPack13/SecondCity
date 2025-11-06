@@ -94,7 +94,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 		return
 
-	for(var/datum/station_trait/trait_typepath as anything in subtypesof(/datum/station_trait))
+	for(var/datum/station_trait/trait_typepath as anything in valid_subtypesof(/datum/station_trait))
 
 		// If forced, (probably debugging), just set it up now, keep it out of the pool.
 		if(initial(trait_typepath.force))
@@ -105,9 +105,6 @@ PROCESSING_SUBSYSTEM_DEF(station)
 		if(!initial(trait_typepath.darkpack_allowed))
 			continue
 		// DARKPACK EDIT ADD END
-
-		if(initial(trait_typepath.abstract_type) == trait_typepath)
-			continue //Dont add abstract ones to it
 
 		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_PLANETARY) && SSmapping.is_planetary()) // we're on a planet but we can't do planet ;_;
 			continue

@@ -130,6 +130,7 @@
 			species = target.species,
 			trim = target.trim,
 			wanted_status = target.wanted_status,
+			past_criminal_records = target.past_criminal_records, //DARKPACK EDIT - FLAVOR TEXT
 		))
 
 	data["records"] = records

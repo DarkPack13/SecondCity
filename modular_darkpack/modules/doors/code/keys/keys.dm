@@ -38,7 +38,6 @@
 	)
 	color = "#bd3327"
 
-
 /obj/item/vamp/keys/sheriff
 	name = "sheriff's keys"
 	accesslocks = list(
@@ -72,6 +71,16 @@
 		"camarilla",
 		"millenium_delivery",
 	)
+	color = "#bd3327"
+
+/obj/item/vamp/keys/camarilla/ghoul
+	name = "Millenium Tower Employee keys"
+	accesslocks = list(
+		"milleniumCommon",
+		"clerk",
+		"camarilla"
+	)
+	color = "#bd3327"
 
 /obj/item/vamp/keys/archive
 	name = "archive keys"
@@ -252,6 +261,20 @@
 	)
 	color = "#e8ff29"
 
+/obj/item/vamp/keys/cappadocian
+	name = "Eroded keys"
+	accesslocks = list(
+		"cappadocian"
+	)
+	color = "#99620e"
+
+/obj/item/vamp/keys/sabbat
+	name = "Dirty keys"
+	accesslocks = list(
+		"sabbat"
+	)
+	color = "#6a2e1d"
+
 //===========================CLINIC KEYS===========================
 /obj/item/vamp/keys/clinic
 	name = "clinic keys"
@@ -297,26 +320,59 @@
 
 //===========================MISC KEYS===========================
 
-/obj/item/vamp/keys/triads
-	name = "rusty keys"
+/obj/item/vamp/keys/axes
+	name = "Rusty keys"
 	accesslocks = list(
-		"triad",
+		"axes",
 		"laundromat"
 	)
 
+//===========================GAROU KEYS===========================
+
+/obj/item/vamp/keys/nps
+	name = "Park Service keys"
+	accesslocks = list(
+		"nps"
+	)
+	color = "#1e7531"
+
 /obj/item/vamp/keys/techstore
-	name = "\improper Tech Store keys"
+	name = "Tech Store keys"
 	accesslocks = list(
 		"wolftech"
 	)
 	color = "#466a72"
 
 /obj/item/vamp/keys/pentex
-	name = "facility keys"
+	name = "Endron Facility keys"
 	accesslocks = list(
 		"pentex"
 	)
 	color = "#062e03"
+
+/obj/item/vamp/keys/pentex/leader
+	name = "Endron Management keys"
+	accesslocks = list(
+		"pentex",
+		"pentexleader"
+	)
+	color = "#062e03"
+
+/obj/item/vamp/keys/children_of_gaia
+	name = "Food Pantry keys"
+	accesslocks = list(
+		"coggie"
+	)
+	color = "#339933"
+
+//===========================MISC KEYS===========================
+
+/obj/item/vamp/keys/triads
+	name = "rusty keys"
+	accesslocks = list(
+		"triad",
+		"laundromat"
+	)
 
 /obj/item/vamp/keys/graveyard
 	name = "graveyard keys"
@@ -355,3 +411,11 @@
 		"taxi"
 	)
 	color = "#fffb8b"
+
+
+/obj/item/vamp/keys/anarch_limited
+	name = "Barkeeper keys"
+	accesslocks = list(
+		"biker_bar"
+	)
+	color = "#434343"

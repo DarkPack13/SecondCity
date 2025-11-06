@@ -9,6 +9,11 @@
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE | REACTION_TAG_OTHER
 
+/datum/chemical_reaction/lube/superlube
+	results = list(/datum/reagent/lube/superlube = 3)
+	required_reagents = list(/datum/reagent/lube = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/consumable/banana = 1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE | REACTION_TAG_OTHER
+
 /datum/chemical_reaction/spraytan
 	results = list(/datum/reagent/spraytan = 2)
 	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/fuel/oil = 1)
@@ -580,7 +585,7 @@
 
 	// create fish possibles
 	var/list/fish_types = list()
-	for(var/path in subtypesof(/obj/item/fish))
+	for(var/path in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 		var/obj/item/fish/fake_fish = path
 		if(initial(fake_fish.random_case_rarity) == FISH_RARITY_NOPE) // means they aren't mean to be randomly available
 			continue

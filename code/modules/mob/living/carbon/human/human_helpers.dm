@@ -306,6 +306,9 @@
 	for(var/datum/quirk/original_quircks as anything in quirks)
 		clone.add_quirk(original_quircks.type, override_client = client, announce = FALSE)
 
+	for(var/personality_type in personalities)
+		clone.add_personality(personality_type)
+
 	clone.updateappearance(mutcolor_update = TRUE, mutations_overlay_update = TRUE)
 
 	return clone
@@ -325,7 +328,7 @@
 	if (HAS_TRAIT(src, TRAIT_GRABWEAKNESS))
 		fitness_modifier /= 1.5
 
-	var/athletics_level = mind?.get_skill_level(/datum/skill/athletics) || 1
+	var/athletics_level = st_get_stat(STAT_STRENGTH) || 1 // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 
 	var/min_damage = 0
 	var/max_damage = 0

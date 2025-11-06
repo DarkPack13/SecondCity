@@ -190,7 +190,7 @@
 			picked_dispenser.set_light(1)
 	delivery_dispensers.Add(picked_dispenser)
 	animate(picked_dispenser,alpha = 255,time = 5 SECONDS)
-	picked_dispenser.mouse_opacity = 1
+	picked_dispenser.mouse_opacity = MOUSE_OPACITY_ICON
 	return 1
 
 /datum/delivery_datum/proc/assign_receivers(ammount)
@@ -221,7 +221,7 @@
 			crate_number -= 1
 		animate(receiver,alpha = 255, time = 5 SECONDS)
 		receiver.set_light(2)
-		receiver.mouse_opacity = 1
+		receiver.mouse_opacity = MOUSE_OPACITY_ICON
 
 /datum/delivery_datum/proc/assign_garage()
 	if(!delivery_employer_tag) return 0

@@ -292,7 +292,7 @@
 			possible_headwear += item
 	if(!length(possible_headwear))
 		for(var/obj/item/item in orange(1))
-			if(ispath(item.dog_fashion, /datum/dog_fashion/head) && CanReach(item))
+			if(ispath(item.dog_fashion, /datum/dog_fashion/head) && item.IsReachableBy(src))
 				possible_headwear += item
 	if(!length(possible_headwear))
 		return
@@ -362,7 +362,7 @@
 /mob/living/basic/pet/dog/corgi/ian/Initialize(mapload)
 	. = ..()
 	// Ensure Ian exists
-	REGISTER_REQUIRED_MAP_ITEM(1, 1)
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // DARKPACK EDIT REMOVAL
 
 	//parent call must happen first to ensure IAN
 	//is not in nullspace when child puppies spawn

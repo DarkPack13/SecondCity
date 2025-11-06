@@ -56,13 +56,13 @@
 	color = "#A17037"
 	density = TRUE
 	anchored = TRUE
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	var/search_tries = 0
 	var/search_hits_left = 0 // These should be automated by the system, btu tries typically are double the hits.
 	var/currently_searched = 0 // Terminator for when in use
 
 /obj/structure/vtm/dwelling_container/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.loot_containers.Add(src)
 		area_reference = current_area
@@ -143,7 +143,7 @@
 
 	base_icon_state = "wood"
 	icon_state = "wood-1"
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	locked = 1
 
 /obj/structure/vampdoor/dwelling/proc/set_security(sec_type)
@@ -185,7 +185,7 @@
 		start_casing(user)
 
 /obj/structure/vampdoor/dwelling/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.dwelling_doors.Add(src)
 		area_reference = current_area
@@ -197,7 +197,7 @@
 	area_reference = null
 
 /obj/structure/window/fulltile/dwelling
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 
 /obj/structure/window/fulltile/dwelling/process_break_in(severity)
 	if(!area_reference) return
@@ -205,7 +205,7 @@
 
 /obj/structure/window/fulltile/dwelling/Initialize(mapload, direct)
 	. = ..()
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		area_reference = current_area
 		area_reference.dwelling_windows.Add(src)
@@ -255,13 +255,13 @@
 	density = FALSE
 	anchored = TRUE
 	pixel_y = 32
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	var/alarm_timer = 0
 	var/alarm_active = 0
 	var/alarm_safety = 0
 
 /obj/structure/vtm/dwelling_alarm/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.alarm_panel = src
 		area_reference = current_area
