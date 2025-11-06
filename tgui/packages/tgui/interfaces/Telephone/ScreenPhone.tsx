@@ -71,7 +71,7 @@ export const ScreenPhone = (props: {
                 align="center"
                 justify="space-between"
                 p={1}
-                onClick={() => act('silent')}
+                onClick={() => act('vibration')}
                 className="Telephone__ContactsElement"
               >
                 <Stack.Item>Vibration Mode:</Stack.Item>

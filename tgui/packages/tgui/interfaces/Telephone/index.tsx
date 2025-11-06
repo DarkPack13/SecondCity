@@ -59,6 +59,7 @@ export type Data = {
   calling_user?: string;
   ringer: BooleanLike;
   vibration: BooleanLike;
+  speaker_mode: BooleanLike;
 
   published_numbers: Contact[];
   our_contacts: Contact[];

@@ -48,18 +48,19 @@
 	RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
 	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
 	RegisterSignal(sim_card, COMSIG_PHONE_RING_FINISH, PROC_REF(finish_ringing))
-	phone_radio = new()
+	phone_radio = new(src)
+	phone_radio.keyslot = new
+	phone_radio.radio_noise = FALSE
+	phone_radio.canhear_range = 1
 	irc_channel = new()
 	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
 	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(phone_call_declined))
 	RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
-	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
 	UnregisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED)
 	UnregisterSignal(src, COMSIG_PHONE_CALL_BUSY)
-	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	if(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
@@ -68,6 +69,7 @@
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
 	if(phone_radio)
+		QDEL_NULL(phone_radio.keyslot)
 		QDEL_NULL(phone_radio)
 	if(irc_channel)
 		QDEL_NULL(irc_channel)
@@ -101,7 +103,7 @@
 		return CLICK_ACTION_BLOCKING
 	if(do_after(user, 2 SECONDS, src))
 		balloon_alert(user, "you remove \the [sim_card]!")
-		SSphones.end_phone_call(sim_card, dialed_number)
+		SSphones.end_phone_call(sim_card, dialed_number ? dialed_number : incoming_sim_card?.phone_number)
 		user.put_in_hands(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
@@ -149,6 +151,7 @@
 	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
 	data["ringer"] = ringer
 	data["vibration"] = vibration
+	data["speaker_mode"] = (phone_radio.canhear_range == 3) ? TRUE : FALSE
 
 	var/list/published_numbers = list()
 	for(var/contact in SSphones.published_phone_numbers)
@@ -324,6 +327,14 @@
 			if(ringer)
 				playsound(loc, 'sound/machines/terminal/terminal_select.ogg', 15, TRUE)
 			return TRUE
+
+		if("speaker")
+			if(phone_radio.canhear_range == 1)
+				phone_radio.canhear_range = 3
+			else
+				phone_radio.canhear_range = 1
+			return TRUE
+
 	return FALSE
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
@@ -358,6 +369,7 @@
 		phone_radio.set_frequency(secure_frequency)
 		phone_radio.set_broadcasting(TRUE)
 		phone_radio.set_listening(TRUE)
+		phone_radio.recalculateChannels()
 		phone_flags |= PHONE_IN_CALL
 		phone_flags &= ~PHONE_CALLING
 	SSphones.cancel_ring_timeout(sim_card)
@@ -369,6 +381,7 @@
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
 	phone_radio.set_listening(FALSE)
+	phone_radio.recalculateChannels()
 	secure_frequency = null
 	dialed_number = null
 	incoming_sim_card = null
@@ -408,7 +421,7 @@
 		return
 	COOLDOWN_START(src, ringer_cooldown, 4 SECONDS)
 	if(vibration)
-		balloon_alert_to_viewers(pick("zzZz!", "ZZZT!", "zZzZ!", "Zzz...", "zzz...", "ZzZZT!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		balloon_alert_to_viewers(pick("zzZz!", "ZZZT!", "zZzZ!", "Zzz...", "zzZ...", "ZzZZT!"), vision_distance = COMBAT_MESSAGE_RANGE)
 	if(ringer)
 		playsound(src, call_sound, 50, TRUE, 0, 2)
 
@@ -437,9 +450,8 @@
 
 	STOP_PROCESSING(SSprocessing, src)
 
-/obj/item/smartphone/proc/handle_hearing(mob/living/owner, list/hearing_args)
-	SIGNAL_HANDLER
+/obj/item/smartphone/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
+	. = ..()
+	phone_radio.talk_into(speaker, raw_message, secure_frequency, spans, message_language, message_mods)
 
-	phone_radio.talk_into(hearing_args[HEARING_SPEAKER], hearing_args[HEARING_RAW_MESSAGE], language = hearing_args[HEARING_LANGUAGE], message_mods = hearing_args)
-
-//TODO: Call history, speaker mode, mute button, nimi!!
+//TODO: Call history, mute button

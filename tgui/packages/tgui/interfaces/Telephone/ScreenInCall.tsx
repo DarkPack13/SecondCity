@@ -5,39 +5,28 @@ import { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../../backend';
 import { Data } from '.';
 
-const FakeCallingControls = (props: { phone_calling: BooleanLike }) => {
-  const { phone_calling } = props;
+const FakeCallingControls = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { phone_calling, speaker_mode } = data;
 
   return (
     <Box className="Telephone__CallOptionsGrid" textAlign="center">
-      {/* Add Call */}
-      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
-        <Box height={4}>
-          <Stack fill align="center" justify="center">
-            <Stack.Item>
-              <Icon name="plus" size={2} />
-            </Stack.Item>
-          </Stack>
-        </Box>
-        Add Call
-      </Box>
-      {/* Extra Volume */}
-      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
-        <Box height={4}>
-          <Stack fill align="center" justify="center">
-            <Stack.Item>
-              <Icon name="phone-volume" size={2} />
-            </Stack.Item>
-          </Stack>
-        </Box>
-        Extra Volume
-      </Box>
       {/* Speaker */}
       <Box>
         <Box height={4}>
           <Stack fill align="center" justify="center">
             <Stack.Item>
-              <Icon name="volume-high" size={2} />
+              <Icon
+              name="volume-high"
+              size={2}
+              color={speaker_mode ? 'green' : ''}
+              onClick={() => {
+                act('speaker');
+              }}
+              style={{
+                borderRadius: '50%',
+                cursor: 'pointer',
+              }}/>
             </Stack.Item>
           </Stack>
         </Box>
@@ -125,7 +114,7 @@ export const ScreenCalling = (props) => {
 
 export const ScreenInCall = (props) => {
   const { act, data } = useBackend<Data>();
-  const { calling_user, phone_ringing } = data;
+  const { calling_user, phone_ringing, speaker_mode } = data;
 
   return (
     <Stack fill vertical className="Telephone__PhoneScreen">
