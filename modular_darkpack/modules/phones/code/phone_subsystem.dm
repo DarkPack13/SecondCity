@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(phones)
 			randomly_generated_phone_number = random_number()
 		if(randomly_generated_phone_number in assigned_phone_numbers)
 			continue
-		assigned_phone_numbers[sim_card] |= randomly_generated_phone_number
+		assigned_phone_numbers[sim_card] = randomly_generated_phone_number
 		return randomly_generated_phone_number
 	CRASH("[src] failed to generate a unique phone number after 10 attempts.")
 
