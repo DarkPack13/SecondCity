@@ -1,5 +1,5 @@
 /obj/item/smartphone
-	name = "flip phone"
+	name = "smartphone"
 	desc = "A portable device to call anyone you want."
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/phones/icons/phone_onfloor.dmi')

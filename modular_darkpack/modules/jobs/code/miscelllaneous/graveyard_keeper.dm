@@ -30,7 +30,7 @@
 	suit = /obj/item/clothing/suit/vampire/trench
 	glasses = /obj/item/clothing/glasses/vampire/yellow
 	gloves = /obj/item/clothing/gloves/vampire/work
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/graveyard
 	r_hand = /obj/item/shovel/vamp
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)

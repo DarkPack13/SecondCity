@@ -40,7 +40,7 @@
 	id = /obj/item/card/clerk/harpy
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
-	//l_pocket = /obj/item/vamp/phone/harpy
+	l_pocket = /obj/item/smartphone/harpy
 	r_pocket = /obj/item/vamp/keys/clerk
 	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
 

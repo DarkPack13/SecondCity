@@ -67,6 +67,8 @@
 
 /obj/item/smartphone/anarch
 
+/obj/item/smartphone/tapster
+
 // Endron
 
 /obj/item/smartphone/endron_lead
@@ -89,6 +91,8 @@
 
 /obj/item/smartphone/giovanni_famiglia
 
-// Triads
+// Axe gang
 
-/obj/item/smartphone/triads_soldier
+/obj/item/smartphone/axe_leader
+
+/obj/item/smartphone/axe_gangster

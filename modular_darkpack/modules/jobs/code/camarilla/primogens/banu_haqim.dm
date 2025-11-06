@@ -39,9 +39,9 @@
 	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/yellow
 	uniform = /obj/item/clothing/under/vampire/turtleneck_navy
-	//suit = /obj/item/clothing/suit/vampire/jacket/banu
+	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	//l_pocket = /obj/item/vamp/phone/banu_primo
+	l_pocket = /obj/item/smartphone/banu_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/banuhaqim/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
 

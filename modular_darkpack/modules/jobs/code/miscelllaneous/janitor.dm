@@ -25,7 +25,7 @@
 
 	id = /obj/item/card/cleaning
 	uniform = /obj/item/clothing/under/vampire/janitor
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/cleaning
 	shoes = /obj/item/clothing/shoes/vampire/jackboots/work
 	gloves = /obj/item/clothing/gloves/vampire/cleaning

@@ -23,7 +23,7 @@
 /datum/outfit/job/sabbatductus
 	name = "Sabbat Ductus"
 	jobtype = /datum/job/vampire/sabbatductus
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
