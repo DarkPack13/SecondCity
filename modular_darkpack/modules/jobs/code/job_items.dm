@@ -11,19 +11,17 @@
 	name = "head security badge"
 	desc = "A badge which shows honour and dedication."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id4"
+	icon_state = "head_sec_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id4"
 
 /obj/item/card/camarilla
 	name = "security badge"
 	desc = "A badge which shows honour and dedication."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id3"
+	icon_state = "sec_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id3"
 
 /obj/item/card/clerk
 	name = "clerk badge"
@@ -89,6 +87,7 @@
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
 	icon_state = "tapster_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	ONFLOOR_ICONSTATE_HELPER("brusier_badge")
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
 	worn_icon_state = "bruiser_badge"
 
@@ -116,10 +115,10 @@
 	name = "erudite scholar badge"
 	desc = "A badge which shows a deep understanding of culture."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
-	icon_state = "id7_regent"
+	icon_state = "regent_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	ONFLOOR_ICONSTATE_HELPER("grey_id")
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id7_regent"
 
 /obj/item/card/cleaning
 	name = "janitor badge"
