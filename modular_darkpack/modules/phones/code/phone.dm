@@ -13,7 +13,8 @@
 
 	// There's a radio in my phone that calls me stud muffin.
 	var/obj/item/radio/phone_radio
-
+	// Cooldown for the phone call sound.
+	COOLDOWN_DECLARE(ringer_cooldown)
 	// Contacts the phone has saved.
 	var/list/contacts = list()
 	// Contacts the phone has blocked.
@@ -42,6 +43,7 @@
 	sim_card.phone_weakref = WEAKREF(src)
 	RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
 	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
+	RegisterSignal(sim_card, COMSIG_PHONE_RING_FINISH, PROC_REF(finish_ringing))
 	phone_radio = new()
 	irc_channel = new()
 	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
@@ -50,10 +52,13 @@
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
+	UnregisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED)
+	UnregisterSignal(src, COMSIG_PHONE_CALL_BUSY)
 	if(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
 		UnregisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED)
+		UnregisterSignal(sim_card, COMSIG_PHONE_RING_FINISH)
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
 	if(phone_radio)
@@ -363,7 +368,7 @@
 /obj/item/smartphone/proc/decline_phone_call()
 	SIGNAL_HANDLER
 
-	SSphones.cancel_ring_timeout(incoming_sim_card)
+	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref.resolve()
 	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_BUSY)
 	secure_frequency = null
@@ -374,7 +379,7 @@
 	phone_flags &= ~PHONE_RINGING
 
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
-	SSphones.cancel_ring_timeout(incoming_sim_card)
+	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 	secure_frequency = incoming_frequency
 	phone_flags &= ~PHONE_RINGING
 	initialize_phone_call(user)
@@ -388,13 +393,20 @@
 	to_chat(usr, span_notice("The user you are attempting to call is currently busy. Please try again later."))
 	ring_timeout()
 
+/obj/item/smartphone/process(seconds_per_tick)
+	if(!COOLDOWN_FINISHED(src, ringer_cooldown))
+		return
+	COOLDOWN_START(src, ringer_cooldown, 4 SECONDS)
+	balloon_alert_to_viewers("*buzz")
+	playsound(src, call_sound, 50, TRUE, 0, 2)
+
 /obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, established_frequency)
 	SIGNAL_HANDLER
 
-	say("RING RING RING")
 	incoming_frequency = established_frequency
 	incoming_sim_card = caller_sim_card
 	phone_flags |= PHONE_RINGING
+	START_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/ring_timeout()
 	SIGNAL_HANDLER
@@ -407,3 +419,8 @@
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_RINGING
 	phone_flags &= ~PHONE_CALLING
+
+/obj/item/smartphone/proc/finish_ringing()
+	SIGNAL_HANDLER
+
+	STOP_PROCESSING(SSprocessing, src)

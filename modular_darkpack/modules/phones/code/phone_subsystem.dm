@@ -61,12 +61,16 @@ SUBSYSTEM_DEF(phones)
 	ringing_timers[sim_card] = addtimer(CALLBACK(src, PROC_REF(phone_ring_timeout), sim_card, called_sim_card), TIME_TO_RING, TIMER_STOPPABLE)
 	return established_frequency // Give the phone who is calling which frequency to use.
 
-/datum/controller/subsystem/phones/proc/cancel_ring_timeout(obj/item/sim_card/sim_card)
+/datum/controller/subsystem/phones/proc/cancel_ring_timeout(obj/item/sim_card/sim_card, obj/item/sim_card/called_sim_card)
+	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_FINISH)
+	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_FINISH)
 	deltimer(ringing_timers[sim_card])
 
 /datum/controller/subsystem/phones/proc/phone_ring_timeout(obj/item/sim_card/sim_card, obj/item/sim_card/called_sim_card)
 	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_TIMEOUT)
 	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_TIMEOUT)
+	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_FINISH)
+	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_FINISH)
 
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
