@@ -3,8 +3,8 @@
 	desc = "A portable device to call anyone you want."
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/phones/icons/phone_onfloor.dmi')
-	icon_state = "phone0"
-	inhand_icon_state = "phone0"
+	icon_state = "phone"
+	inhand_icon_state = "phone"
 	lefthand_file = 'modular_darkpack/modules/phones/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/phones/icons/righthand.dmi'
 	item_flags = NOBLUDGEON
@@ -305,8 +305,8 @@
 		phone_flags &= ~PHONE_OPEN
 	else
 		phone_flags |= PHONE_OPEN
-	icon_state = (phone_flags & PHONE_OPEN) ? "phone2" : "phone0"
-	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone2" : "phone0"
+	icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
+	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
 	update_icon()
 
 /**

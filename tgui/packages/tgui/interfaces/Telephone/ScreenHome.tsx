@@ -68,11 +68,11 @@ export const CameraAppIcon = (props) => {
   );
 };
 
-export const ChromeAppIcon = (props: { onClick?: () => void }) => {
+export const BrowserAppIcon = (props: { onClick?: () => void }) => {
   const { onClick } = props;
   return (
-    <AppIcon text="Chrome" size={1.6} backgroundColor="#fff" onClick={onClick}>
-      <Box className="Telephone__Chrome" p={2.5} />
+    <AppIcon text="Browser" size={1.6} backgroundColor="#fff" onClick={onClick}>
+      <Box className="Telephone__Browser" p={2.5} />
     </AppIcon>
   );
 };
@@ -164,28 +164,6 @@ export const IconDots = (props) => {
   );
 };
 
-export const GoogleSearchBar = (props) => {
-  return (
-    <Stack fill align="center" justify="center">
-      <Stack.Item width="90%">
-        <Box backgroundColor="#fff" style={{ borderRadius: '2px' }} height={3}>
-          <Stack fill align="center" pl={1} pr={2}>
-            <Stack.Item grow>
-              <Box className="Telephone__Google" height={1.6} width={5} />
-            </Stack.Item>
-            <Stack.Item textColor="gray" mr={2}>
-              Say &quot;Ok Google&quot;
-            </Stack.Item>
-            <Stack.Item>
-              <Box className="Telephone__Mic" height={1.5} width={1} />
-            </Stack.Item>
-          </Stack>
-        </Box>
-      </Stack.Item>
-    </Stack>
-  );
-};
-
 export const ScreenHome = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
 }) => {
@@ -209,9 +187,6 @@ export const ScreenHome = (props: {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item mb={2}>
-        <GoogleSearchBar />
-      </Stack.Item>
       <Stack.Item>
         <Stack fill align="center" justify="space-around" wrap="wrap">
           <Stack.Item>
@@ -221,15 +196,15 @@ export const ScreenHome = (props: {
               onClick={() => setApp(NavigableApps.IRC)}
             >
               <Box fontSize={1.2} bold>
-                I R C
+                #irc
               </Box>
             </AppIcon>
           </Stack.Item>
           <Stack.Item>
             <AppIcon
               backgroundColor="#fff"
-              text="Email"
-              iconName="envelope-open"
+              text="Gallery"
+              iconName="file-image"
               iconColor="orange"
             />
           </Stack.Item>
@@ -295,7 +270,7 @@ export const ScreenHome = (props: {
             />
           </Stack.Item>
           <Stack.Item>
-            <ChromeAppIcon
+            <BrowserAppIcon
             // onClick={() => {
             //   setApp(NavigableApps.Browser);
             // }}
