@@ -151,8 +151,8 @@
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
 	icon_state = "supply_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
-	// worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = null
+	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = "head_sec_badge"
 
 /obj/item/card/hunter
 	name = "cross"
@@ -262,7 +262,7 @@
 	icon_state = "id12"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id4"
+	worn_icon_state = "head_sec_badge"
 
 /obj/item/card/bogatyr
 	name = "dusty badge"
@@ -271,7 +271,7 @@
 	icon_state = "id12"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id4"
+	worn_icon_state = "head_sec_badge"
 
 // PRIMOGEN STUFF
 /obj/item/card/primogen
@@ -281,7 +281,7 @@
 	icon_state = "id12"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
-	worn_icon_state = "id4"
+	worn_icon_state = "head_sec_badge"
 
 /obj/item/card/whip
 	name = "primogen's whip badge"
