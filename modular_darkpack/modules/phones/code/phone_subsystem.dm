@@ -41,20 +41,20 @@ SUBSYSTEM_DEF(phones)
 		return randomly_generated_phone_number
 	CRASH("[src] failed to generate a unique phone number after 10 attempts.")
 
-/datum/controller/subsystem/phones/proc/initiate_phone_call(obj/item/sim_card/sim_card, phone_number)
+/datum/controller/subsystem/phones/proc/initiate_phone_call(mob/user, obj/item/sim_card/sim_card, phone_number)
 	var/established_frequency = establish_secure_frequency()
 	frequencies_in_use[sim_card.phone_number] |= established_frequency // The frequency in use is being used by the phone number that is calling the other phone.
 
 	var/obj/item/sim_card/called_sim_card = validate_phone_number(phone_number)
 	if(!called_sim_card)
-		to_chat(usr, span_notice("The number you have dialed is not in service."))
+		to_chat(user, span_notice("The number you have dialed is not in service at this time."))
 		return
 
 	var/obj/item/smartphone/phone = called_sim_card.phone_weakref?.resolve()
 	if(!phone)
-		CRASH("SIM card without a phone weakref. This should not be happening.")
+		to_chat(user, span_notice("The number you have dialed is not in service at this time."))
 	if(phone.phone_flags & PHONE_IN_CALL)
-		to_chat(usr, span_notice("The number you have dialed is currently busy."))
+		to_chat(user, span_notice("The number you have dialed is currently busy."))
 		return
 
 	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING, sim_card, sim_card.phone_number, established_frequency) // Tell the phone number they are being called.

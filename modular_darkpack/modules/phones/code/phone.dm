@@ -40,16 +40,16 @@
 	. = ..()
 	sim_card = new()
 	sim_card.phone_weakref = WEAKREF(src)
-	phone_radio = new()
 	RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
 	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
+	phone_radio = new()
 	irc_channel = new()
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
-	UnregisterSignal(COMSIG_PHONE_RING)
-	UnregisterSignal(COMSIG_PHONE_RING_TIMEOUT)
 	if(sim_card)
+		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
+		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
 	if(phone_radio)
@@ -88,11 +88,11 @@
 		balloon_alert(user, "you remove \the [sim_card]!")
 		end_phone_call()
 		user.put_in_hands(sim_card)
+		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
+		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
 		sim_card.phone_weakref = null
 		sim_card = null
 		phone_flags |= PHONE_NO_SIM
-		UnregisterSignal(COMSIG_PHONE_RING)
-		UnregisterSignal(COMSIG_PHONE_RING_TIMEOUT)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -126,11 +126,12 @@
 /obj/item/smartphone/ui_data(mob/user)
 	var/list/data = list()
 	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
-	data["calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
+	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
+	data["no_sim_card"] = (phone_flags & PHONE_NO_SIM) ? TRUE : FALSE
+	data["phone_in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
+	data["phone_ringing"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	data["calling_user"] = incoming_sim_card ? incoming_sim_card.phone_number : null
 
-	data["online"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
-	data["talking"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	if(phone_flags & PHONE_IN_CALL)
 		data["calling_user"] = incoming_sim_card.phone_number
 		for(var/datum/phonecontact/P in contacts)
@@ -317,7 +318,7 @@
 		balloon_alert(user, "no SIM card installed!")
 		return
 	if(!secure_frequency)
-		secure_frequency = SSphones.initiate_phone_call(sim_card, new_dialed_number)
+		secure_frequency = SSphones.initiate_phone_call(user, sim_card, new_dialed_number)
 		if(secure_frequency)
 			dialed_number = new_dialed_number
 			phone_flags |= PHONE_CALLING

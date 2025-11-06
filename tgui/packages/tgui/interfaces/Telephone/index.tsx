@@ -51,9 +51,9 @@ export type NewscasterChannelEntry = {
 };
 
 export type Data = {
-  calling: BooleanLike;
-  online: BooleanLike;
-  talking: BooleanLike;
+  phone_calling: BooleanLike;
+  phone_in_call: BooleanLike;
+  phone_ringing: BooleanLike;
   my_number: string;
   choosed_number: string;
   calling_user?: string;
@@ -85,9 +85,9 @@ const PhysicalScreen = (props: {
   const { act, data } = useBackend<Data>();
   const { app, setApp } = props;
 
-  if (data.calling) {
+  if (data.phone_calling) {
     return <ScreenCalling />;
-  } else if (data.online) {
+  } else if (data.phone_in_call) {
     return <ScreenInCall />;
   } else if (data.viewing_channel) {
     return <ScreenViewingChannel setApp={setApp} />;

@@ -5,13 +5,13 @@ import { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../../backend';
 import { Data } from '.';
 
-const FakeCallingControls = (props: { calling: BooleanLike }) => {
-  const { calling } = props;
+const FakeCallingControls = (props: { phone_calling: BooleanLike }) => {
+  const { phone_calling } = props;
 
   return (
     <Box className="Telephone__CallOptionsGrid" textAlign="center">
       {/* Add Call */}
-      <Box textColor={calling ? '#fffa' : '#fff'}>
+      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
         <Box height={4}>
           <Stack fill align="center" justify="center">
             <Stack.Item>
@@ -22,7 +22,7 @@ const FakeCallingControls = (props: { calling: BooleanLike }) => {
         Add Call
       </Box>
       {/* Extra Volume */}
-      <Box textColor={calling ? '#fffa' : '#fff'}>
+      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
         <Box height={4}>
           <Stack fill align="center" justify="center">
             <Stack.Item>
@@ -66,7 +66,7 @@ const FakeCallingControls = (props: { calling: BooleanLike }) => {
         Keypad
       </Box>
       {/* Mute */}
-      <Box textColor={calling ? '#fffa' : '#fff'}>
+      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
         <Box height={4}>
           <Stack fill align="center" justify="center">
             <Stack.Item>
@@ -84,7 +84,7 @@ const FakeCallingControls = (props: { calling: BooleanLike }) => {
 // to manage a three-variable state machine in one component
 export const ScreenCalling = (props) => {
   const { act, data } = useBackend<Data>();
-  const { calling_user, calling, online, talking } = data;
+  const { calling_user, phone_calling, phone_in_call, phone_ringing } = data;
 
   return (
     <Stack fill vertical className="Telephone__PhoneScreen">
@@ -104,7 +104,7 @@ export const ScreenCalling = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <FakeCallingControls calling />
+        <FakeCallingControls phone_calling />
       </Stack.Item>
       <Stack.Item>
         <Stack mt={-3} fill align="center" justify="center">
@@ -136,13 +136,13 @@ export const ScreenCalling = (props) => {
 
 export const ScreenInCall = (props) => {
   const { act, data } = useBackend<Data>();
-  const { calling_user, calling, online, talking } = data;
+  const { calling_user, phone_calling, phone_in_call, phone_ringing } = data;
 
   return (
     <Stack fill vertical className="Telephone__PhoneScreen">
       <Stack.Item>
         <Box mt={2} ml={2}>
-          {talking ? 'Online' : 'Call From'}
+          {phone_ringing ? 'Online' : 'Call From'}
         </Box>
       </Stack.Item>
       <Stack.Item height={15}>
@@ -156,11 +156,11 @@ export const ScreenInCall = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <FakeCallingControls calling />
+        <FakeCallingControls phone_calling />
       </Stack.Item>
       <Stack.Item>
         <Stack mt={-3} fill align="center" justify="center">
-          {talking ? null : (
+          {phone_ringing ? null : (
             <Stack.Item>
               <Box
                 backgroundColor="#fff"
@@ -190,7 +190,7 @@ export const ScreenInCall = (props) => {
               height={4}
               width={4}
               onClick={() => {
-                talking ? act('hang') : act('decline');
+                phone_ringing ? act('hang') : act('decline');
               }}
             >
               <Stack fill align="center" justify="center">
