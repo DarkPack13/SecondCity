@@ -57,7 +57,6 @@ export type Data = {
   my_number: string;
   choosed_number: string;
   calling_user?: string;
-  our_number: string;
   silence: BooleanLike;
 
   published_numbers: Contact[];

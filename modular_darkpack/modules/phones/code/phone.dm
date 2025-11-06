@@ -132,13 +132,12 @@
 	data["online"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
 	data["talking"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
 	if(phone_flags & PHONE_IN_CALL)
-		data["calling_user"] = "[incoming_sim_card.phone_number]"
+		data["calling_user"] = incoming_sim_card.phone_number
 		for(var/datum/phonecontact/P in contacts)
 			if(P.number == incoming_sim_card.phone_number)
 				data["calling_user"] = P.name
 
 	data["silence"] = isnull(call_sound)
-	data["our_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 
 	var/list/published_numbers = list()
 	for(var/contact in SSphones.published_phone_numbers)

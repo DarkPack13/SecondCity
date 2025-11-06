@@ -21,11 +21,11 @@ SUBSYSTEM_DEF(phones)
 
 // Generates a random phone number from the available ranges, ten digits, starts with a 415.
 /datum/controller/subsystem/phones/proc/random_number()
-	return text2num("415[rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]")
+	return "415[rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]"
 
 // Generates a random landline phone number from the available ranges, ten digits, starts with a 1415.
 /datum/controller/subsystem/phones/proc/random_landline_number()
-	return text2num("1415[rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]")
+	return "1415[rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]"
 
 // If this ever goes over the hard limit of 1000000 phone numbers, we have a problem.
 /datum/controller/subsystem/phones/proc/generate_phone_number(obj/item/sim_card/sim_card, landline)
@@ -42,8 +42,8 @@ SUBSYSTEM_DEF(phones)
 	CRASH("[src] failed to generate a unique phone number after 10 attempts.")
 
 /datum/controller/subsystem/phones/proc/initiate_phone_call(obj/item/sim_card/sim_card, phone_number)
-	var/established_frequency = establish_secure_frequency(sim_card.phone_number)
-	frequencies_in_use["[sim_card.phone_number]"] |= established_frequency // The frequency in use is being used by the phone number that is calling the other phone.
+	var/established_frequency = establish_secure_frequency()
+	frequencies_in_use[sim_card.phone_number] |= established_frequency // The frequency in use is being used by the phone number that is calling the other phone.
 
 	var/obj/item/sim_card/called_sim_card = validate_phone_number(phone_number)
 	if(!called_sim_card)
@@ -68,8 +68,11 @@ SUBSYSTEM_DEF(phones)
 	SEND_SIGNAL(sim_card, COMSIG_PHONE_RING_TIMEOUT, phone_number, established_frequency)
 	SEND_SIGNAL(called_sim_card, COMSIG_PHONE_RING_TIMEOUT, phone_number, established_frequency)
 
-/datum/controller/subsystem/phones/proc/establish_secure_frequency(phone_number)
-	return phone_number + USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
+/datum/controller/subsystem/phones/proc/establish_secure_frequency()
+	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
+	while(frequency_to_use in frequencies_in_use)
+		frequency_to_use++
+	return frequency_to_use
 
 /datum/controller/subsystem/phones/proc/end_phone_call(obj/item/sim_card/sim_card, phone_number)
 	var/obj/item/sim_card/called_sim_card = validate_phone_number(phone_number)
@@ -80,6 +83,6 @@ SUBSYSTEM_DEF(phones)
 /datum/controller/subsystem/phones/proc/validate_phone_number(phone_number)
 	var/obj/item/sim_card/called_sim_card
 	for(var/obj/item/sim_card/checking_sim_card as anything in assigned_phone_numbers)
-		if(checking_sim_card.phone_number == text2num(phone_number))
+		if(checking_sim_card.phone_number == phone_number)
 			called_sim_card = checking_sim_card
 	return called_sim_card
