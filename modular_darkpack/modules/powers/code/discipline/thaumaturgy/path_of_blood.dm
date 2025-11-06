@@ -85,7 +85,12 @@
 		to_chat(owner, span_notice("This blood tastes bland."))
 		return
 
-	var/mob/living/carbon/human/blood_owner = blood.data["donor"]
+	var/datum/weakref/donor_ref = blood.data["donor"]
+	if(!donor_ref)
+		to_chat(owner, span_notice("This blood tastes bland."))
+		return
+
+	var/mob/living/carbon/human/blood_owner = donor_ref.resolve()
 	if(!blood_owner)
 		to_chat(owner, span_notice("This blood tastes bland."))
 		return
