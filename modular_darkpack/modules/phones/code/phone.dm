@@ -45,14 +45,15 @@
 	phone_radio = new()
 	irc_channel = new()
 	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
-	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(ring_timeout))
-	RegisterSignal(src, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
+	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(phone_call_declined))
+	RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
 
 /obj/item/smartphone/Destroy(force)
 	. = ..()
 	if(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
+		UnregisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED)
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
 	if(phone_radio)
@@ -89,10 +90,11 @@
 		return CLICK_ACTION_BLOCKING
 	if(do_after(user, 2 SECONDS, src))
 		balloon_alert(user, "you remove \the [sim_card]!")
-		end_phone_call()
+		SSphones.end_phone_call(sim_card, dialed_number)
 		user.put_in_hands(sim_card)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
 		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
+		UnregisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED)
 		sim_card.phone_weakref = null
 		sim_card = null
 		phone_flags |= PHONE_NO_SIM
@@ -111,6 +113,7 @@
 		phone_flags &= ~PHONE_NO_SIM
 		RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
 		RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
+		RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
 		return TRUE
 	return ..()
 
@@ -171,10 +174,17 @@
 		))
 	data["phone_history"] = phone_history
 
-	data["calling_user"] = incoming_sim_card?.phone_number
-	data["calling_user"] = published_numbers[incoming_sim_card?.phone_number]
-	data["calling_user"] = our_contacts[incoming_sim_card?.phone_number]
-
+	var/calling = incoming_sim_card?.phone_number
+	if(dialed_number)
+		calling = dialed_number
+	// Default to the contact name calling the phone.
+	data["calling_user"] = our_contacts[calling]
+	// If we dont have a contact name, refer to the published listings.
+	if(!data["calling_user"])
+		data["calling_user"] = published_numbers[calling]
+	// Not in our contacts or published listings? Then resolve to showing the phone number.
+	if(!data["calling_user"])
+		data["calling_user"] = "+" + calling
 
 	return data
 
@@ -189,7 +199,7 @@
 			return TRUE
 
 		if("hang")
-			end_phone_call()
+			SSphones.end_phone_call(sim_card, dialed_number ? dialed_number : incoming_sim_card?.phone_number)
 			return TRUE
 
 		if("accept")
@@ -321,6 +331,10 @@
 	if(!sim_card)
 		balloon_alert(user, "no SIM card installed!")
 		return
+	if(new_dialed_number == sim_card.phone_number)
+		balloon_alert(user, "busy!")
+		to_chat(user, span_notice("The user you are attempting to call is currently busy. Please try again later."))
+		return
 	if(!secure_frequency)
 		secure_frequency = SSphones.initiate_phone_call(user, sim_card, new_dialed_number)
 		if(secure_frequency)
@@ -340,16 +354,18 @@
 	phone_radio.set_broadcasting(FALSE)
 	phone_radio.set_listening(FALSE)
 	secure_frequency = null
-	SSphones.end_phone_call(sim_card, dialed_number)
 	dialed_number = null
 	incoming_sim_card = null
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_CALLING
+	phone_flags &= ~PHONE_RINGING
 
 /obj/item/smartphone/proc/decline_phone_call()
 	SIGNAL_HANDLER
 
 	SSphones.cancel_ring_timeout(incoming_sim_card)
+	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref.resolve()
+	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_BUSY)
 	secure_frequency = null
 	dialed_number = null
 	incoming_sim_card = null
@@ -365,6 +381,12 @@
 	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref?.resolve()
 	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_ACCEPTED)
 
+/obj/item/smartphone/proc/phone_call_declined(datum/source)
+	SIGNAL_HANDLER
+
+	balloon_alert(usr, "busy!")
+	to_chat(usr, span_notice("The user you are attempting to call is currently busy. Please try again later."))
+	ring_timeout()
 
 /obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, established_frequency)
 	SIGNAL_HANDLER
@@ -381,6 +403,7 @@
 		end_phone_call()
 	incoming_frequency = null
 	incoming_sim_card = null
+	dialed_number = null
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_RINGING
 	phone_flags &= ~PHONE_CALLING

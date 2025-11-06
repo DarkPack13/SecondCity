@@ -56,18 +56,6 @@ export const AppIcon = (
   );
 };
 
-export const CameraAppIcon = (props) => {
-  return (
-    <AppIcon text="Camera">
-      <Box
-        p={4}
-        style={{ borderRadius: '30%' }}
-      />
-    </AppIcon>
-  );
-};
-
-
 export const IconDots = (props) => {
   return (
     <Box position="relative" ml={-2} mt={-2}>

@@ -161,11 +161,11 @@ export const ScreenInCall = (props) => {
                 width={4}
                 onClick={() => act('accept')}
               >
-                <Stack fill align="center" justify="center">
-                  <Stack.Item>
-                    <Icon name="phone" textColor="green" size={2} />
-                  </Stack.Item>
-                </Stack>
+              <Stack fill align="center" justify="center">
+                <Stack.Item>
+                  <Icon name="phone" textColor="green" size={2} />
+                </Stack.Item>
+              </Stack>
               </Box>
             </Stack.Item>
           ) : null}
