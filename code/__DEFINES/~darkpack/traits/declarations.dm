@@ -8,6 +8,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 #define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
+#define STATION_TRAIT_INFESTATION "station_trait_infestation"
+#define STATION_TRAIT_PEST_CONTROL "station_pest_control"
 
 // Mob traits
 
