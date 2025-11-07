@@ -217,7 +217,7 @@ const NavigationBar = (props: {
 };
 
 export const Telephone = (props) => {
-  const [app, setApp] = useState<NavigableApps | null>(null);
+  const [app, setApp] = useSharedState<NavigableApps | null>('telephone_state', null);
 
   return (
     <Window width={285} height={521}>
