@@ -143,7 +143,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	var/news_worthy_info
 	var/list/trait_list_strings = list()
 	for(var/datum/station_trait/station_trait as anything in station_traits)
-		if(!(station_trait.newspaper_message && prob(station_trait.newspaper_change)))
+		if(!(station_trait.newspaper_message && prob(station_trait.newspaper_chance)))
 			continue
 		trait_list_strings += "[station_trait.newspaper_message]<BR>"
 	if(trait_list_strings.len > 0)

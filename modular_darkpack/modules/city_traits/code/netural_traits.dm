@@ -1,9 +1,12 @@
 // inspired* by Fallout NV's Wild Wasteland Trait
+// TODO: Make this do anything lol
+/*
 /datum/station_trait/wild_masquerade
 	name = "Wild Masquerade"
 	weight = 1
 	trait_to_give = STATION_TRAIT_WILD_MASQUERADE
 	darkpack_allowed = TRUE
+*/
 
 /datum/station_trait/filled_trash
 	name = "Trash Man Strike"
@@ -16,7 +19,7 @@
 
 	darkpack_allowed = TRUE
 	newspaper_message = "The local trash mans union has gone on strike, dont except your trash taken out this week."
-	newspaper_change = 90
+	newspaper_chance = 90
 
 /datum/station_trait/empty_trash
 	name = "Trash Day"
@@ -67,4 +70,4 @@
 
 	darkpack_allowed = TRUE
 	newspaper_message = "A \"cosplay\" convention is being run in the local city center."
-	newspaper_change = 90
+	newspaper_chance = 90

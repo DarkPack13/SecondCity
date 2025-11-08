@@ -5,7 +5,7 @@
 
 	darkpack_allowed = TRUE
 	newspaper_message = "Expect a pretty fierce storm tonight."
-	newspaper_change = 75
+	newspaper_chance = 75
 
 /datum/station_trait/thunder_storm/on_round_start()
 	. = ..()
@@ -25,7 +25,7 @@
 
 	darkpack_allowed = TRUE
 	newspaper_message = "Forecasts predict foggy driving conditions, make sure to use your high beams."
-	newspaper_change = 60
+	newspaper_chance = 60
 
 /datum/station_trait/foggy_night/on_round_start()
 	. = ..()
