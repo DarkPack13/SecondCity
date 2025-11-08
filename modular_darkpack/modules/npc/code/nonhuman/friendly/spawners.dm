@@ -30,7 +30,6 @@
 		/mob/living/basic/mouse/vampire = 1
 	)
 
-#warn add station trait
 /obj/effect/spawner/random/stray_animal/Initialize(mapload)
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_STRAY_MIGRATION))
 		spawn_loot_chance = FLOOR(spawn_loot_chance * 2, 1)

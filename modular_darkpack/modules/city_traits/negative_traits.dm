@@ -6,6 +6,7 @@
 
 /datum/station_trait/thunder_storm/on_round_start()
 	. = ..()
+	#warn does not work
 	SSweather.run_weather(/datum/weather/rain_storm/endless)
 
 /datum/weather/rain_storm/endless
