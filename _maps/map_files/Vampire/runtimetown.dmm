@@ -118,6 +118,11 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
+"cs" = (
+/obj/effect/decal/cleanable/litter,
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "cQ" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/ifak,
@@ -310,6 +315,7 @@
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash5"
 	},
+/obj/effect/spawner/random/stray_animal,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "hu" = (
@@ -330,6 +336,10 @@
 /obj/structure/cargo_take,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"hP" = (
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "hT" = (
 /obj/structure/transport/linear/public,
 /obj/structure/table,
@@ -736,6 +746,10 @@
 /obj/structure/table/countertop/purple,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"rq" = (
+/obj/effect/spawner/random/trash/rat,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "rs" = (
 /obj/machinery/fax/camarilla,
 /obj/structure/table/wood,
@@ -1761,6 +1775,7 @@
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash7"
 	},
+/obj/effect/spawner/random/stray_animal,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Lw" = (
@@ -2077,6 +2092,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/pacificheights)
+"QO" = (
+/obj/effect/decal/cleanable/cardboard,
+/obj/effect/spawner/random/trash/rat,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "QR" = (
 /obj/machinery/elevator_control_panel/directional/north{
@@ -2717,7 +2737,7 @@ NR
 NR
 Ff
 NR
-fn
+QO
 ok
 rL
 Vu
@@ -2780,7 +2800,7 @@ hb
 CL
 Ul
 FG
-NR
+rq
 wO
 NR
 NR
@@ -4339,7 +4359,7 @@ GF
 GF
 MS
 iA
-ok
+cs
 iD
 AE
 oW
@@ -4543,7 +4563,7 @@ GF
 GF
 MS
 JP
-NR
+hP
 XE
 NR
 NR

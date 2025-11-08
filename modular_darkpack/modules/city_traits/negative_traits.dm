@@ -4,6 +4,7 @@
 	darkpack_allowed = TRUE
 
 /datum/station_trait/thunder_storm/on_round_start()
+	. = ..()
 	SSweather.run_weather(/datum/weather/rain_storm/endless)
 
 /datum/weather/rain_storm/endless
