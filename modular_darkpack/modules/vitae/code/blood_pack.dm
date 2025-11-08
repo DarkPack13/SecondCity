@@ -14,6 +14,8 @@
 
 /obj/item/reagent_containers/blood/update_icon_state()
 	. = ..()
+	if(!reagents)
+		return
 	var/percent = round((reagents.total_volume / volume) * 100)
 	switch(percent)
 		if(76 to 100)

@@ -142,12 +142,12 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	// DARKPACK EDIT ADD START - CITY_TRAITS
 	var/news_worthy_info
 	var/list/trait_list_strings = list()
-	for(var/datum/station_trait/station_trait as anything in SSstation.station_traits)
-		if(!(station_trait.newspaper_message || prob(station_trait.newspaper_change)))
+	for(var/datum/station_trait/station_trait as anything in station_traits)
+		if(!(station_trait.newspaper_message && prob(station_trait.newspaper_change)))
 			continue
 		trait_list_strings += "[station_trait.newspaper_message]<BR>"
 	if(trait_list_strings.len > 0)
-		news_worthy_info = "<hr><b>The Daily Collum:</b><BR>" + trait_list_strings.Join()
+		news_worthy_info = "<b>Todays events to look out for:</b>" + trait_list_strings.Join()
 		GLOB.news_network.submit_article(news_worthy_info, "The Daily Collum", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 	// DARKPACK EDIT ADD END
 
