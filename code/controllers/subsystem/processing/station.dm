@@ -101,7 +101,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 			setup_trait(trait_typepath)
 			continue
 
-		// DARKPACK EDIT ADD START
+		// DARKPACK EDIT ADD START - CITY_TRAITS
 		if(!initial(trait_typepath.darkpack_allowed))
 			continue
 		// DARKPACK EDIT ADD END
@@ -138,6 +138,18 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	pick_traits(STATION_TRAIT_POSITIVE, positive_trait_budget)
 	pick_traits(STATION_TRAIT_NEUTRAL, neutral_trait_budget)
 	pick_traits(STATION_TRAIT_NEGATIVE, negative_trait_budget)
+
+	// DARKPACK EDIT ADD START - CITY_TRAITS
+	var/news_worthy_info
+	var/list/trait_list_strings = list()
+	for(var/datum/station_trait/station_trait as anything in SSstation.station_traits)
+		if(!(station_trait.newspaper_message || prob(station_trait.newspaper_change)))
+			continue
+		trait_list_strings += "[station_trait.newspaper_message]<BR>"
+	if(trait_list_strings.len > 0)
+		news_worthy_info = "<hr><b>The Daily Collum:</b><BR>" + trait_list_strings.Join()
+		GLOB.news_network.submit_article(news_worthy_info, "The Daily Collum", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
+	// DARKPACK EDIT ADD END
 
 /**
  * Picks traits of a specific category (e.g. bad or good), initializes them, adds them to the list of traits,
