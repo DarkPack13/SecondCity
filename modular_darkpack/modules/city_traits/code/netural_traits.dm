@@ -9,15 +9,14 @@
 	name = "Trash Man Strike"
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
-	#warn reflavor
-	//show_in_report = TRUE
-	//report_message = "Our workers accidentally forgot more of their personal belongings in the maintenace areas."
 	blacklist = list(/datum/station_trait/empty_trash)
 	trait_to_give = STATION_TRAIT_FILLED_MAINT
-
 	// This station trait is checked when loot drops initialize, so it's too late
 	can_revert = FALSE
+
 	darkpack_allowed = TRUE
+	newspaper_message = "The local trash mans union has gone on strike, dont except your trash taken out this week."
+	newspaper_change = 90
 
 /datum/station_trait/empty_trash
 	name = "Trash Day"
@@ -75,3 +74,5 @@
 	weight = 3
 	trait_to_give = STATION_TRAIT_COSPLAY_CONVENTION
 	darkpack_allowed = TRUE
+	newspaper_message = "A \"cosplay\" convention is being run in the local city center."
+	newspaper_change = 90

@@ -7,6 +7,7 @@
 Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
 */
 
+// CITY_TRAITS
 #define STATION_TRAIT_RED_STAR "station_trait_red_star"
 #define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
 #define STATION_TRAIT_INFESTATION "station_trait_infestation"

@@ -11,6 +11,8 @@
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 2
 	darkpack_allowed = TRUE
+	newspaper_message = "The moon the brighest it will be this month!"
+	newspaper_change = 95
 
 /datum/station_trait/full_moon/on_round_start()
 	. = ..()

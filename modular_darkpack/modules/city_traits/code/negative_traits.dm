@@ -2,7 +2,10 @@
 	name = "Thunder Storm"
 	trait_type = STATION_TRAIT_NEGATIVE
 	can_revert = FALSE
+
 	darkpack_allowed = TRUE
+	newspaper_message = "Expect a pretty fierce storm tonight."
+	newspaper_change = 75
 
 /datum/station_trait/thunder_storm/on_round_start()
 	. = ..()
@@ -19,7 +22,10 @@
 /datum/station_trait/foggy_night
 	name = "Foggy Night"
 	trait_type = STATION_TRAIT_NEGATIVE
+
 	darkpack_allowed = TRUE
+	newspaper_message = "Forecasts predict foggy driving conditions, make sure to use your high beams."
+	newspaper_change = 60
 
 /datum/station_trait/foggy_night/on_round_start()
 	. = ..()
