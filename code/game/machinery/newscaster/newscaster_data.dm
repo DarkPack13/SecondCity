@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(request_list)
 
 /datum/feed_network/New()
 	#warn reflavor
-	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, "Chronicle", "Local news, Help Wanted, and all the hottest stories!", locked = TRUE) // DARKPACK EDIT CHANGE
+	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, "The Chronicle", "Local news, Help Wanted, and all the hottest stories!", locked = TRUE) // DARKPACK EDIT CHANGE
 	// create_feed_channel(NEWSCASTER_SPACE_BETTING, "NtOS", "News from the SpaceBet PDA App! Download now and make your own bets!", locked = TRUE) // DARKPACK EDIT REMOVAL
 	wanted_issue = new /datum/wanted_message
 
