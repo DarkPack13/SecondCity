@@ -62,10 +62,16 @@
 	trait_to_give = STATION_TRAIT_PEST_CONTROL
 	darkpack_allowed = TRUE
 
-
 /datum/station_trait/stray_migration
 	name = "Stray migration"
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	trait_to_give = STATION_TRAIT_PEST_CONTROL
+	darkpack_allowed = TRUE
+
+#warn finish
+/datum/station_trait/cosplay_convention
+	name = "Cosplay convention"
+	weight = 3
+	trait_to_give = STATION_TRAIT_COSPLAY_CONVENTION
 	darkpack_allowed = TRUE

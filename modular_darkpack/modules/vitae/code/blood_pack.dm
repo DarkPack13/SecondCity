@@ -12,7 +12,7 @@
 	. = ..()
 	update_appearance()
 
-/obj/item/reagent_containers/blood/update_appearance(updates)
+/obj/item/reagent_containers/blood/update_icon_state()
 	. = ..()
 	var/percent = round((reagents.total_volume / volume) * 100)
 	switch(percent)
