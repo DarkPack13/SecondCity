@@ -7,9 +7,9 @@
 
 /datum/station_trait/filled_trash
 	name = "Trash Man Strike"
-	//trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
+	#warn reflavor
 	//show_in_report = TRUE
 	//report_message = "Our workers accidentally forgot more of their personal belongings in the maintenace areas."
 	blacklist = list(/datum/station_trait/empty_trash)
@@ -21,9 +21,9 @@
 
 /datum/station_trait/empty_trash
 	name = "Trash Day"
-	//trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
+	#warn reflavor
 	//show_in_report = TRUE
 	//report_message = "Our workers cleaned out most of the junk in the maintenace areas."
 	blacklist = list(/datum/station_trait/filled_trash)
@@ -35,14 +35,13 @@
 
 /datum/station_trait/infestation
 	name = "Rat Infestation"
-	//trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
+	#warn reflavor
 	//show_in_report = TRUE
 	//report_message = "Our workers accidentally forgot more of their personal belongings in the maintenace areas."
 	blacklist = list(/datum/station_trait/pest_control)
 	trait_to_give = STATION_TRAIT_INFESTATION
-
 	darkpack_allowed = TRUE
 
 /datum/station_trait/infestation/revert()
@@ -54,14 +53,13 @@
 
 /datum/station_trait/pest_control
 	name = "Pest Control"
-	//trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
+	#warn reflavor
 	//show_in_report = TRUE
 	//report_message = "Our workers cleaned out most of the junk in the maintenace areas."
 	blacklist = list(/datum/station_trait/infestation)
 	trait_to_give = STATION_TRAIT_PEST_CONTROL
-
 	darkpack_allowed = TRUE
 
 
@@ -70,3 +68,4 @@
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	trait_to_give = STATION_TRAIT_PEST_CONTROL
+	darkpack_allowed = TRUE
