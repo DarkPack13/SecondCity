@@ -34,8 +34,8 @@
 /datum/station_trait/faulty_power_grid
 	name = "Faulty power grid"
 	trait_type = STATION_TRAIT_NEGATIVE
-	darkpack_allowed = TRUE
 	can_revert = FALSE
+	darkpack_allowed = TRUE
 
 /datum/station_trait/faulty_power_grid/on_round_start()
 	. = ..()
