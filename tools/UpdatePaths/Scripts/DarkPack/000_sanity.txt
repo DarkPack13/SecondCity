@@ -44,3 +44,5 @@
 /obj/item/kirbyplants {icon_state="plant5"} : /obj/item/kirbyplants/darkpack/plant5 {@OLD;icon_state=@SKIP}
 
 /obj/structure/table/optable/optable2 : /obj/structure/table/optable {@OLD}
+
+/turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit
