@@ -310,8 +310,7 @@
 
 	//DARKPACK EDIT START
 	if(ishumanbasic(user))
-		. += "<a href='byond://?src=[REF(src)];masquerade=1'>Report a Masquerade violation</a>"
-		. += "<a href='byond://?src=[REF(src)];reinforcement=1'>Report a Masquerade reinforcement</a>"
+		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
 
 	ADD_NEWLINE_IF_NECESSARY(.)
 	if(custom_examine_message)

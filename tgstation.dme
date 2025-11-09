@@ -6817,6 +6817,7 @@
 #include "modular_darkpack\master_files\code\modules\mob\living\basic\space_fauna\ghost.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon_defines.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon_movement.dm"
+#include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\initialize.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\physiology.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\simple_animal\hostile\hostile.dm"
