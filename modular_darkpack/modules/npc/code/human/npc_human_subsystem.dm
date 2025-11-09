@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(humannpcpool)
 	name = "Human NPC Pool"
-	flags = SS_POST_FIRE_TIMING|SS_NO_INIT|SS_BACKGROUND
+	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND
 	priority = FIRE_PRIORITY_NPC
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 30
