@@ -50,7 +50,7 @@
 	. = ..()
 
 /obj/effect/decal/garou_glyph
-	name = "Odd Glyph"
+	name = "Odd glyph"
 	desc = "An odd collection of symbols drawn in what seems to be charcoal."
 	var/garou_name = "basic glyph"
 	var/garou_desc = "a basic glyph with no meaning." // This is shown to werewolves who examine the glyph in order to determine its true meaning.
@@ -71,103 +71,103 @@
 	*/
 
 /obj/effect/decal/garou_glyph/wyrm
-	name = "Creepy Glyph"
-	garou_name = "Wyrm Glyph"
+	name = "creepy glyph"
+	garou_name = "wyrm glyph"
 	garou_desc = "A glyph that represents the Wyrm, a force of corruption and destruction."
 	icon_state = "wyrm"
 
 /obj/effect/decal/garou_glyph/vampire
-	name = "Weird Glyph"
-	garou_name = "Vampire Glyph"
+	name = "weird glyph"
+	garou_name = "vampire glyph"
 	garou_desc = "A glyph that represents the Kindred, leeches of the Weaver and Wyrm."
 	icon_state = "vampire"
 
 /obj/effect/decal/garou_glyph/kinfolk
-	name = "Uncanny Glyph"
-	garou_name = "Kinfolk Glyph"
+	name = "uncanny glyph"
+	garou_name = "kinfolk glyph"
 	garou_desc = "A glyph that represents the Kinfolk, the human relatives of the Garou."
 	icon_state = "kinfolk"
 
 /obj/effect/decal/garou_glyph/dance
-	name = "Funky Glyph"
-	garou_name = "Dancing Glyph"
+	name = "funky glyph"
+	garou_name = "dancing glyph"
 	garou_desc = "A glyph that represents the spiritual dancing of the Garou."
 	icon_state = "dance"
 
 /obj/effect/decal/garou_glyph/caern
-	name = "Eerie Glyph"
-	garou_name = "Caern Glyph"
+	name = "eerie glyph"
+	garou_name = "caern glyph"
 	garou_desc = "A glyph that represents the Caern, a sacred location that naturally flows with spiritual energy."
 	icon_state = "caern"
 
 /obj/effect/decal/garou_glyph/danger
-	name = "Peculiar Glyph"
-	garou_name = "Danger Glyph"
+	name = "peculiar glyph"
+	garou_name = "danger glyph"
 	garou_desc = "A glyph that represents danger! Proceed with caution."
 	icon_state = "danger"
 
 /obj/effect/decal/garou_glyph/garou
-	name = "Freakish Glyph"
-	garou_name = "Garou Glyph"
+	name = "freakish glyph"
+	garou_name = "garou glyph"
 	garou_desc = "A glyph that represents the Garou, the warriors of Gaia."
 	icon_state = "garou"
 
 /obj/effect/decal/garou_glyph/conceal
-	name = "Mysterious Glyph"
-	garou_name = "Conceal Glyph"
+	name = "mysterious glyph"
+	garou_name = "conceal glyph"
 	garou_desc = "A glyph that represents the obfuscation of something. What may be hidden from you?"
 	icon_state = "conceal"
 
 /obj/effect/decal/garou_glyph/hive
-	name = "Outlandish Glyph"
-	garou_name = "Hive Glyph"
+	name = "outlandish glyph"
+	garou_name = "hive glyph"
 	garou_desc = "A glyph that represents a Hive, the foul home of a Black Spiral Dancer pack."
 	icon_state = "hive"
 
 /obj/effect/decal/garou_glyph/howl
-	name = "Unusual Glyph"
-	garou_name = "Howling Glyph"
+	name = "unusual glyph"
+	garou_name = "howling glyph"
 	garou_desc = "A glyph that represents the natural song of the Garou, the howl."
 	icon_state = "howl"
 
 /obj/effect/decal/garou_glyph/remembrance
-	name = "Morose Glyph"
-	garou_name = "Remembrance Glyph"
+	name = "morose glyph"
+	garou_name = "remembrance glyph"
 	garou_desc = "A glyph that represents the mourning and remembrance of the fallen."
 	icon_state = "remembrance"
 
 /obj/effect/decal/garou_glyph/watch
-	name = "Odd Glyph"
-	garou_name = "Watch Glyph"
+	name = "odd glyph"
+	garou_name = "watch glyph"
 	garou_desc = "A glyph that marks something as in need of monitoring"
 	icon_state = "watch"
 
 /obj/effect/decal/garou_glyph/toxic
-	name = "Foul Glyph"
-	garou_name = "Toxic Glyph"
+	name = "foul glyph"
+	garou_name = "toxic glyph"
 	garou_desc = "A glyph that represents toxicity, the material corruption of the Wyrm on the Earth."
 	icon_state = "toxic"
 
 /obj/effect/decal/garou_glyph/dancers
-	name = "Alien Glyph"
-	garou_name = "Black Spiral Dancer Glyph"
+	name = "alien glyph"
+	garou_name = "\improper Black Spiral Dancer glyph"
 	garou_desc = "A glyph that represents the tribe of the Black Spiral Dancers."
 	icon_state = "black_spiral_dancers"
 
 /obj/effect/decal/garou_glyph/glasswalkers
-	name = "Quirky Glyph"
-	garou_name = "Glasswalkers Glyph"
+	name = "quirky glyph"
+	garou_name = "\improper Glasswalkers glyph"
 	garou_desc = "A glyph that represents the Glasswalkers tribe."
 	icon_state = "glasswalkers"
 
 /obj/effect/decal/garou_glyph/galestalkers
-	name = "Abnormal Glyph"
-	garou_name = "Younger Brother Glyph"
+	name = "abnormal glyph"
+	garou_name = "\improper Younger Brother glyph"
 	garou_desc = "A glyph that represents the Galestalkers tribe."
 	icon_state = "younger_brother"
 
 /obj/effect/decal/garou_glyph/war_against_wyrm
-	name = "Terrifying Glyph"
-	garou_name = "War Against Wyrm Glyph"
+	name = "terrifying glyph"
+	garou_name = "war against wyrm glyph"
 	garou_desc = "A glyph that represents the apocalyptic war of the Garou against the Wyrm."
 	icon_state = "war_against_wyrm"
