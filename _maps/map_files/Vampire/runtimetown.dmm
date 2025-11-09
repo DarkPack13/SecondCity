@@ -133,6 +133,10 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
+"cX" = (
+/obj/effect/landmark/npc_spawn_point,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "cZ" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner{
@@ -330,10 +334,6 @@
 /obj/structure/cargo_take,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"hL" = (
-/obj/effect/landmark/npcbeacon,
-/turf/open/floor/plating/asphalt,
-/area/vtm/outside/pacificheights)
 "hT" = (
 /obj/structure/transport/linear/public,
 /obj/structure/table,
@@ -409,6 +409,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"jm" = (
+/obj/structure/fire_barrel,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "jp" = (
 /turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/supply)
@@ -482,9 +486,6 @@
 /obj/item/molotov,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
-"kG" = (
-/turf/closed/wall/vampwall/rich/old/low/window,
-/area/vtm/outside/ghetto)
 "kS" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
@@ -509,15 +510,9 @@
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
-"lC" = (
-/turf/closed/wall/vampwall/rich/old,
-/area/vtm/outside/ghetto)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
-"lQ" = (
-/turf/closed/wall/vampwall/brick_old,
-/area/vtm/outside/ghetto)
 "lY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -1033,6 +1028,10 @@
 /obj/weapon_showcase,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"xg" = (
+/obj/effect/spawner/random/trash/hobo_squat,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "xh" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -1050,6 +1049,11 @@
 	pixel_y = 20;
 	linked_elevator_id = "DebugElevator2"
 	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"xx" = (
+/obj/effect/turf_decal/bordur,
+/obj/effect/landmark/npc_spawn_point,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "xC" = (
@@ -1457,6 +1461,10 @@
 /obj/structure/vampdoor/prison,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
+"Gs" = (
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "Gt" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/tox,
@@ -1620,6 +1628,10 @@
 "ID" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/outside/pacificheights)
+"IF" = (
+/obj/effect/turf_decal/bordur,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "IJ" = (
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
@@ -1758,10 +1770,6 @@
 "Lb" = (
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
-"Lc" = (
-/obj/effect/landmark/npc_spawn_point,
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/ghetto)
 "Le" = (
 /obj/structure/transport/linear/public,
 /obj/structure/closet/crate/freezer/food,
@@ -1797,6 +1805,12 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
+"LJ" = (
+/turf/closed/wall/vampwall/brick_old,
+/area/vtm/outside/ghetto)
+"LM" = (
+/turf/closed/wall/vampwall/rich/old/low/window,
+/area/vtm/outside/ghetto)
 "LW" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
@@ -2185,15 +2199,6 @@
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
-"SO" = (
-/obj/effect/turf_decal/bordur,
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/ghetto)
-"SS" = (
-/obj/effect/turf_decal/bordur,
-/obj/effect/landmark/npc_spawn_point,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
 /obj/vampire_computer/prince,
@@ -2568,6 +2573,9 @@
 /obj/item/vtm_artifact/fae_charm,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"Zo" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/outside/ghetto)
 "Zs" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
@@ -7166,14 +7174,14 @@ MS
 MS
 MS
 MS
-lC
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
+Zo
+LJ
+LJ
+LJ
+LJ
+LJ
+LJ
+LJ
 Zs
 Zs
 qV
@@ -7234,14 +7242,14 @@ Ys
 Ys
 Ys
 Ys
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 qz
 XJ
 FB
@@ -7302,14 +7310,14 @@ Ys
 Ys
 Ys
 Ys
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 rF
 XW
 ik
@@ -7370,14 +7378,14 @@ Ys
 Ys
 Ys
 Ys
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 eQ
 XJ
 ik
@@ -7438,14 +7446,14 @@ MS
 MS
 MS
 MS
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 eQ
 XJ
 ik
@@ -7506,14 +7514,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 eQ
 XJ
 ik
@@ -7574,14 +7582,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-lQ
+LJ
 eQ
 XJ
 ik
@@ -7642,14 +7650,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
-lQ
+LJ
 oJ
 oJ
-lQ
+LJ
 eQ
 tb
 rW
@@ -7710,14 +7718,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
-lQ
+LJ
 oJ
 oJ
-lQ
+LJ
 qz
 XJ
 ik
@@ -7778,14 +7786,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
-lQ
+LJ
 oJ
 oJ
-lQ
+LJ
 eQ
 XJ
 ik
@@ -7846,14 +7854,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
-lQ
-lQ
-lQ
-lQ
+LJ
+LJ
+LJ
+LJ
 eQ
 XJ
 ik
@@ -7914,14 +7922,14 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-SO
+IF
 eQ
 tb
 rW
@@ -7982,14 +7990,14 @@ Ys
 Ys
 Ys
 di
-kG
+LM
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-SO
+IF
 aN
 XJ
 ik
@@ -8050,14 +8058,14 @@ Ys
 Ys
 Ys
 di
-kG
+LM
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-SO
+IF
 eQ
 XJ
 ik
@@ -8118,7 +8126,7 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
@@ -8186,13 +8194,13 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
 md
-Lc
-oJ
+cX
+xg
 md
 qz
 XJ
@@ -8254,7 +8262,7 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
@@ -8322,12 +8330,12 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
 oJ
-oJ
+jm
 oJ
 md
 eQ
@@ -8390,7 +8398,7 @@ Ys
 Ys
 Ys
 di
-kG
+LM
 oJ
 oJ
 oJ
@@ -8458,16 +8466,16 @@ Ys
 Ys
 Ys
 di
-kG
+LM
 oJ
 oJ
 oJ
 md
-oJ
-oJ
+xg
+cX
 md
 eQ
-SS
+xx
 ik
 ik
 VQ
@@ -8526,7 +8534,7 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
@@ -8594,7 +8602,7 @@ Ys
 Ys
 Ys
 di
-lC
+Zo
 oJ
 oJ
 oJ
@@ -8662,7 +8670,7 @@ Zs
 Zs
 Zs
 Zs
-lQ
+LJ
 MH
 QM
 QM
@@ -9204,7 +9212,7 @@ ik
 ik
 ik
 ik
-hL
+Gs
 ik
 gs
 eR
