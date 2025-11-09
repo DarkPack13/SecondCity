@@ -470,7 +470,7 @@
 	var/datum/phone_history/new_contact = new()
 	new_contact.name = get_number_contact_name()
 	new_contact.number = incoming_sim_card.phone_number
-	new_contact.call_type =
+	new_contact.call_type = call_type
 	new_contact.time = station_time_timestamp("hh:mm:ss, MMM DD")
 	phone_history_list += new_contact
 

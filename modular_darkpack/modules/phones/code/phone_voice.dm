@@ -18,7 +18,7 @@
 
 /obj/phone_voice/Destroy(force)
 	phone = null
-	..()
+	return ..()
 
 /proc/scramble_lasombra_message(message, mob/living/carbon/human/lasombra)
 	var/static/list/zalgo_letters = list(
