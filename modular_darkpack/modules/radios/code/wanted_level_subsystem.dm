@@ -4,11 +4,12 @@ SUBSYSTEM_DEF(wanted_level)
 
 /datum/controller/subsystem/wanted_level/proc/announce_crime(crime_type = "unknown", atom/location, requires_witness = FALSE)
 	if(requires_witness)
-		for(var/mob/living/carbon/human/npc/npcs_around in viewers(DEFAULT_SIGHT_DISTANCE, location))
-			if(npcs_around && npcs_around.stat != DEAD)
+		var/witness_count = 0
+		for(var/mob/living/carbon/human/npc/npc_around in viewers(DEFAULT_SIGHT_DISTANCE, location))
+			if(npc_around.stat != DEAD)
 				witness_count++
-			if(witness_count <= 0)
-				return
+		if(witness_count <= 0)
+			return
 	return
 	// TODO: [Rebase] - RADIOS
 	/*
