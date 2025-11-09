@@ -203,6 +203,7 @@
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
 		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(7, src))
 			nearby_npcs.Aggro(attacker)
+		SSwanted_level.announce_crime("assault", get_turf(src), TRUE)
 	Aggro(attacker, TRUE)
 
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)

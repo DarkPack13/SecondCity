@@ -7170,6 +7170,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\potence\potence_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\human_flesh.dm"
 #include "modular_darkpack\modules\radios\code\radio_globals.dm"
+#include "modular_darkpack\modules\radios\code\wanted_level_subsystem.dm"
 #include "modular_darkpack\modules\respawning\code\respawning_globals.dm"
 #include "modular_darkpack\modules\retail\code\_retail.dm"
 #include "modular_darkpack\modules\retail\code\vending_product.dm"

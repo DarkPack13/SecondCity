@@ -13,12 +13,7 @@
 		if(NEPIC && NEPIC.stat != DEAD)
 			witness_count++
 		if(witness_count > 1)
-			for(var/obj/item/police_radio/radio in GLOB.police_radios)
-				radio.announce_crime("murder", get_turf(src))
-			for(var/obj/machinery/p25transceiver/police/radio in GLOB.p25_transceivers)
-				if(radio.p25_network == "police")
-					radio.announce_crime("murder", get_turf(src))
-					break
+			SSwanted_level.announce_crime("murder", get_turf(src))
 	GLOB.masquerade_breakers_list -= src
 	GLOB.sabbatites -= src
 
