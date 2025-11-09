@@ -66,7 +66,7 @@
 	/// Boolean that tells SSmapping to load all away missions in the codebase.
 	var/load_all_away_missions = FALSE
 
-	var/max_npcs = 0 // DARKPACK EDIT ADD
+	var/max_npcs = 0 // DARKPACK EDIT ADD - NPC
 
 /**
  * Proc that simply loads the default map config, which should always be functional.
@@ -253,7 +253,7 @@
 			maps_to_spawn += pick_weight_take(wilderness)
 		shuffle(maps_to_spawn)
 
-	// DARKPACK EDIT ADD START
+	// DARKPACK EDIT ADD START - NPC
 	if ("max_npcs" in json)
 		max_npcs = json["max_npcs"]
 	// DARKPACK EDIT ADD END
