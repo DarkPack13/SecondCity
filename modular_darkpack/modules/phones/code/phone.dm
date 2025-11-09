@@ -359,7 +359,7 @@
 		if(secure_frequency)
 			dialed_number = new_dialed_number
 			phone_flags |= PHONE_CALLING
-		add_phone_call_history(incoming_sim_card, PHONE_CALL_STARTED)
+		add_phone_call_history(incoming_sim_card, PHONE_CALL_SENT)
 	else
 		phone_radio.set_frequency(secure_frequency)
 		phone_radio.set_broadcasting(TRUE)
@@ -367,12 +367,11 @@
 		phone_radio.recalculateChannels()
 		phone_flags |= PHONE_IN_CALL
 		phone_flags &= ~PHONE_CALLING
-	SSphones.cancel_ring_timeout(sim_card)
+		SSphones.cancel_ring_timeout(sim_card)
 
-/obj/item/smartphone/proc/end_phone_call()
+/obj/item/smartphone/proc/end_phone_call(phone_number)
 	SIGNAL_HANDLER
 
-	add_phone_call_history(incoming_sim_card, PHONE_CALL_STOPPED)
 	SSphones.cancel_ring_timeout(sim_card)
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
@@ -412,6 +411,7 @@
 
 	balloon_alert(usr, "busy!")
 	to_chat(usr, span_notice("The user you are attempting to call is currently busy. Please try again later."))
+	add_phone_call_history(incoming_sim_card, PHONE_CALL_DECLINED)
 	ring_timeout()
 
 /obj/item/smartphone/process(seconds_per_tick)
@@ -443,10 +443,11 @@
 	phone_flags &= ~PHONE_RINGING
 	phone_flags &= ~PHONE_CALLING
 
-/obj/item/smartphone/proc/finish_ringing()
+/obj/item/smartphone/proc/finish_ringing(obj/item/sim_card/incoming_sim_card)
 	SIGNAL_HANDLER
 
 	STOP_PROCESSING(SSprocessing, src)
+	add_phone_call_history(incoming_sim_card, PHONE_CALL_MISSED)
 
 /obj/item/smartphone/proc/get_number_contact_name()
 	var/output_user

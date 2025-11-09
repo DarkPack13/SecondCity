@@ -15,3 +15,9 @@ DEFINE_BITFIELD(phone_flags, list(
 	"PHONE_NO_SIM" = PHONE_NO_SIM,
 	"PHONE_OPEN" = PHONE_OPEN,
 ))
+
+// Used for call history logging
+#define PHONE_CALL_ACCEPTED "phone_call_accepted"
+#define PHONE_CALL_DECLINED "phone_call_declined"
+#define PHONE_CALL_MISSED "phone_call_missed"
+#define PHONE_CALL_SENT "phone_call_sent"
