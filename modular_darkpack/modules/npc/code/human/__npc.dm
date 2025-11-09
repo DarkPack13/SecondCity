@@ -201,7 +201,7 @@
 /mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
 	// Only aggro nearby npcs if its lethal.
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
-		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(7, src))
+		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			nearby_npcs.Aggro(attacker)
 		SSwanted_level.announce_crime("assault", get_turf(src), TRUE)
 	Aggro(attacker, TRUE)

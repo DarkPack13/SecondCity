@@ -45,7 +45,7 @@
 		walk_to(H, 0)
 
 /datum/species/vamp_mannequin/proc/do_spooky(mob/living/carbon/human/man)
-	for(var/mob/living/L in range(7, man))
+	for(var/mob/living/L in range(DEFAULT_SIGHT_DISTANCE, man))
 		if(L.client)
 			man.face_atom(L)
 			if(prob(50))

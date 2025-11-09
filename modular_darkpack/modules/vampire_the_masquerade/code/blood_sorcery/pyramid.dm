@@ -334,7 +334,7 @@
 	word = "CL-ENE"
 
 /obj/ritualrune/blood_to_water/complete()
-	for(var/atom/A in range(7, src))
+	for(var/atom/A in range(DEFAULT_SIGHT_DISTANCE, src))
 		A.wash(CLEAN_WASH)
 	qdel(src)
 

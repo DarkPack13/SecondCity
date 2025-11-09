@@ -9,7 +9,7 @@
 			if(V.zone_type == ZONE_MASQUERADE)
 				SSmasquerade.dead_level = max(0, SSmasquerade.dead_level-25)
 	var/witness_count
-	for(var/mob/living/carbon/human/npc/NEPIC in viewers(7, usr))
+	for(var/mob/living/carbon/human/npc/NEPIC in viewers(DEFAULT_SIGHT_DISTANCE, usr))
 		if(NEPIC && NEPIC.stat != DEAD)
 			witness_count++
 		if(witness_count > 1)

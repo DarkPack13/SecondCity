@@ -3,6 +3,12 @@ SUBSYSTEM_DEF(wanted_level)
 	flags = SS_NO_INIT|SS_NO_FIRE
 
 /datum/controller/subsystem/wanted_level/proc/announce_crime(crime_type = "unknown", atom/location, requires_witness = FALSE)
+	if(requires_witness)
+		for(var/mob/living/carbon/human/npc/npcs_around in viewers(DEFAULT_SIGHT_DISTANCE, location))
+			if(npcs_around && npcs_around.stat != DEAD)
+				witness_count++
+			if(witness_count <= 0)
+				return
 	return
 	// TODO: [Rebase] - RADIOS
 	/*
