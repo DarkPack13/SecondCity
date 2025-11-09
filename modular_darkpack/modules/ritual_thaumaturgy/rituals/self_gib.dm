@@ -1,5 +1,3 @@
-// **************************************************************** SELF GIB *************************************************************
-
 /obj/ritualrune/selfgib
 	name = "Self Destruction"
 	desc = "Meet the Final Death."

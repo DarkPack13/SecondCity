@@ -1,5 +1,3 @@
-// **************************************************************** BLOODWALK *************************************************************
-
 /obj/ritualrune/bloodwalk
 	name = "Blood Walk"
 	desc = "Trace the subject's lineage from a blood syringe."
@@ -63,8 +61,8 @@
 			message += "Cold and dark, this blood has a mystical connection to the Abyss.\n"
 		if(VAMPIRE_CLAN_TZIMISCE)
 			message += "The vitae is mutable and twisted. Is there any doubt to the cursed line it belongs to?\n"
-		//if(VAMPIRE_CLAN_OLD_TZIMISCE)
-			//message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
+		if(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE)
+			message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
 		if(VAMPIRE_CLAN_GANGREL)
 			message += "The blood emits a primal and feral aura. The same is likely of the owner.\n"
 		if(VAMPIRE_CLAN_MALKAVIAN)
@@ -91,8 +89,8 @@
 			message += "The blood is filled with traces of fae magic.\n"
 		if(VAMPIRE_CLAN_GARGOYLE)
 			message += "The blood of our stone servants.\n"
-		//if(VAMPIRE_CLAN_SETITES)
-			//message += "Seduction and allure are in the blood. Ah, one of the snakes.\n"
+		if(VAMPIRE_CLAN_SETITE)
+			message += "Seduction and allure are in the blood. Ah, one of the snakes.\n"
 		//if(VAMPIRE_CLAN_NAGARAJA)
 			//message += "This blood has an unsettling hunger to it, cold and stained with death.\n"
 		else

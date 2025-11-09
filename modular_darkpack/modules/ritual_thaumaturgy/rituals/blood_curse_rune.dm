@@ -1,5 +1,3 @@
-// **************************************************************** CURSE RUNE AKA BLOODCURSE *************************************************************
-
 /obj/ritualrune/curse
 	name = "Curse Rune"
 	desc = "Curse your enemies from afar. Place multiple hearts on the rune to increase the curse duration."
@@ -118,7 +116,7 @@
 			H.adjustAggLoss(25)
 			playsound(H.loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 			to_chat(H, span_warning("You feel dark energy tearing at your very being!"))
-			H.Stun(2) // Brief stun each pulse
+			H.Stun(2)
 			break
 
 	if(!found_target)

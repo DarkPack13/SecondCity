@@ -1,5 +1,3 @@
-// **************************************************************** QUESTION TO THE ANCESTORS *************************************************************
-
 /obj/ritualrune/question
 	name = "Question to the Ancestors Rune"
 	desc = "Summon souls from the dead. Ask a question and get answers. Requires a bloodpack."

@@ -1,5 +1,3 @@
-// **************************************************************** BLOOD TRAP *************************************************************
-
 /obj/ritualrune/blood_trap
 	name = "Blood Trap"
 	desc = "Creates the Blood Trap to protect tremere or his domain."
@@ -11,8 +9,7 @@
 		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
 		activated = TRUE
 		alpha = 28
-		// Register the signal to detect when something crosses this turf
-		RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(on_crossed))
+		AddElement(/datum/element/connect_loc, list(COMSIG_ATOM_ENTERED = PROC_REF(on_crossed)))
 
 /obj/ritualrune/blood_trap/proc/on_crossed(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
@@ -24,7 +21,6 @@
 		qdel(src)
 
 /obj/ritualrune/blood_trap/Destroy()
-	// Clean up the signal when the trap is destroyed
 	if(loc)
 		UnregisterSignal(loc, COMSIG_ATOM_ENTERED)
 	return ..()

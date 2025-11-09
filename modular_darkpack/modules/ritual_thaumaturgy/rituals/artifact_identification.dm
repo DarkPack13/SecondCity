@@ -1,5 +1,3 @@
-// **************************************************************** ARTIFACT IDENTIFICATION *************************************************************
-
 /obj/ritualrune/identification
 	name = "Identification Rune"
 	desc = "Identifies a single occult item."

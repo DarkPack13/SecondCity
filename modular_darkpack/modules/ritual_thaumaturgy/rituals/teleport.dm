@@ -1,5 +1,3 @@
-// **************************************************************** TELEPORT *************************************************************
-
 /obj/ritualrune/teleport
 	name = "Teleportation Rune"
 	desc = "Move your body among the city streets. Requires a bloodpack."

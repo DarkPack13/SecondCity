@@ -1,6 +1,3 @@
-// **************************************************************** GARGOYLE TRANSFORMATION *************************************************************
-
-
 /obj/ritualrune/gargoyle
 	name = "Gargoyle Transformation"
 	desc = "Create a Gargoyle from vampire bodies. One body creates a normal Gargoyle, two bodies create a perfect Gargoyle."

@@ -1,6 +1,3 @@
-// **************************************************************** BLOOD TO WATER *************************************************************
-
-
 /obj/ritualrune/blood_to_water
 	name = "Blood To Water"
 	desc = "Purges all blood in range into the water."
