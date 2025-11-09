@@ -367,12 +367,12 @@
 		phone_radio.recalculateChannels()
 		phone_flags |= PHONE_IN_CALL
 		phone_flags &= ~PHONE_CALLING
-		SSphones.cancel_ring_timeout(sim_card)
+		SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 
-/obj/item/smartphone/proc/end_phone_call(phone_number)
+/obj/item/smartphone/proc/end_phone_call(sim_card, phone_number)
 	SIGNAL_HANDLER
 
-	SSphones.cancel_ring_timeout(sim_card)
+	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
 	phone_radio.set_listening(FALSE)
@@ -387,7 +387,7 @@
 /obj/item/smartphone/proc/decline_phone_call()
 	SIGNAL_HANDLER
 
-	SSphones.cancel_ring_timeout(sim_card)
+	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
 	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref.resolve()
 	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_BUSY)
 	secure_frequency = null
@@ -469,6 +469,8 @@
 	return output_user
 
 /obj/item/smartphone/proc/add_phone_call_history(obj/item/sim_card/incoming_sim_card, call_type)
+	if(incoming_sim_card == sim_card)
+		return
 	var/datum/phone_history/new_contact = new()
 	new_contact.name = get_number_contact_name()
 	new_contact.number = dialed_number ? dialed_number : incoming_sim_card?.phone_number
