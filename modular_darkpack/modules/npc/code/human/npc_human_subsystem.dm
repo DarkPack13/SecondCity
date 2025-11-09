@@ -5,8 +5,15 @@ SUBSYSTEM_DEF(humannpcpool)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 30
 
+	dependencies = list(
+		/datum/controller/subsystem/humannpcpool,
+	)
+
 	var/list/currentrun = list()
-	var/npc_max = 220
+
+/datum/controller/subsystem/humannpcpool/Initialize()
+	try_repopulate()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/humannpcpool/stat_entry(msg)
 	var/list/activelist = GLOB.npc_list
@@ -31,11 +38,11 @@ SUBSYSTEM_DEF(humannpcpool)
 			return
 		NPC.handle_automated_movement()
 
-/datum/controller/subsystem/humannpcpool/proc/npclost()
+/datum/controller/subsystem/humannpcpool/proc/try_repopulate()
 	if (!length(GLOB.npc_spawn_points))
 		return
 
-	while (length(GLOB.alive_npc_list) < npc_max)
+	while (length(GLOB.alive_npc_list) < SSmapping.current_map.max_npcs)
 		var/atom/chosen_spawn_point = pick(GLOB.npc_spawn_points)
 		var/creating_npc = pick(
 			/mob/living/carbon/human/npc/police, \

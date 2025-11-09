@@ -330,6 +330,10 @@
 /obj/structure/cargo_take,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"hL" = (
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "hT" = (
 /obj/structure/transport/linear/public,
 /obj/structure/table,
@@ -478,6 +482,9 @@
 /obj/item/molotov,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"kG" = (
+/turf/closed/wall/vampwall/rich/old/low/window,
+/area/vtm/outside/ghetto)
 "kS" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
@@ -502,9 +509,15 @@
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"lC" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/outside/ghetto)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
+"lQ" = (
+/turf/closed/wall/vampwall/brick_old,
+/area/vtm/outside/ghetto)
 "lY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -519,7 +532,7 @@
 /area/vtm/outside/pacificheights)
 "md" = (
 /turf/closed/wall/vampwall/old,
-/area/vtm/outside/pacificheights)
+/area/vtm/outside/ghetto)
 "mj" = (
 /obj/structure/vampdoor/anarch{
 	dir = 4
@@ -622,7 +635,7 @@
 /area/vtm/outside/pacificheights)
 "oJ" = (
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/pacificheights)
+/area/vtm/outside/ghetto)
 "oK" = (
 /turf/open/misc/beach/vamp,
 /area/shuttle/arrival)
@@ -1745,6 +1758,10 @@
 "Lb" = (
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
+"Lc" = (
+/obj/effect/landmark/npc_spawn_point,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "Le" = (
 /obj/structure/transport/linear/public,
 /obj/structure/closet/crate/freezer/food,
@@ -1841,7 +1858,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/pacificheights)
+/area/vtm/outside/ghetto)
 "MJ" = (
 /obj/structure/table,
 /obj/item/blood_hunt,
@@ -2077,7 +2094,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/pacificheights)
+/area/vtm/outside/ghetto)
 "QR" = (
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "DebugElevator";
@@ -2167,6 +2184,15 @@
 	dir = 4
 	},
 /turf/open/floor/plating/canal,
+/area/vtm/outside/pacificheights)
+"SO" = (
+/obj/effect/turf_decal/bordur,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
+"SS" = (
+/obj/effect/turf_decal/bordur,
+/obj/effect/landmark/npc_spawn_point,
+/turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
@@ -7140,14 +7166,14 @@ MS
 MS
 MS
 MS
-MS
-Zs
-Zs
-Zs
-Zs
-Zs
-Zs
-Zs
+lC
+lQ
+lQ
+lQ
+lQ
+lQ
+lQ
+lQ
 Zs
 Zs
 qV
@@ -7208,14 +7234,14 @@ Ys
 Ys
 Ys
 Ys
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 qz
 XJ
 FB
@@ -7276,14 +7302,14 @@ Ys
 Ys
 Ys
 Ys
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 rF
 XW
 ik
@@ -7344,14 +7370,14 @@ Ys
 Ys
 Ys
 Ys
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 eQ
 XJ
 ik
@@ -7412,14 +7438,14 @@ MS
 MS
 MS
 MS
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 eQ
 XJ
 ik
@@ -7480,14 +7506,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 eQ
 XJ
 ik
@@ -7548,14 +7574,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-Zs
+lQ
 eQ
 XJ
 ik
@@ -7616,14 +7642,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
-Zs
+lQ
 oJ
 oJ
-Zs
+lQ
 eQ
 tb
 rW
@@ -7684,14 +7710,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
-Zs
+lQ
 oJ
 oJ
-Zs
+lQ
 qz
 XJ
 ik
@@ -7752,14 +7778,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
-Zs
+lQ
 oJ
 oJ
-Zs
+lQ
 eQ
 XJ
 ik
@@ -7820,14 +7846,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
-Zs
-Zs
-Zs
-Zs
+lQ
+lQ
+lQ
+lQ
 eQ
 XJ
 ik
@@ -7888,14 +7914,14 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-cj
+SO
 eQ
 tb
 rW
@@ -7956,14 +7982,14 @@ Ys
 Ys
 Ys
 di
-eR
+kG
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-cj
+SO
 aN
 XJ
 ik
@@ -8024,14 +8050,14 @@ Ys
 Ys
 Ys
 di
-eR
+kG
 oJ
 oJ
 oJ
 oJ
 oJ
 oJ
-cj
+SO
 eQ
 XJ
 ik
@@ -8092,7 +8118,7 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
@@ -8160,12 +8186,12 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
 md
-oJ
+Lc
 oJ
 md
 qz
@@ -8228,7 +8254,7 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
@@ -8296,7 +8322,7 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
@@ -8364,7 +8390,7 @@ Ys
 Ys
 Ys
 di
-eR
+kG
 oJ
 oJ
 oJ
@@ -8432,7 +8458,7 @@ Ys
 Ys
 Ys
 di
-eR
+kG
 oJ
 oJ
 oJ
@@ -8441,7 +8467,7 @@ oJ
 oJ
 md
 eQ
-XJ
+SS
 ik
 ik
 VQ
@@ -8500,7 +8526,7 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
@@ -8568,7 +8594,7 @@ Ys
 Ys
 Ys
 di
-MS
+lC
 oJ
 oJ
 oJ
@@ -8636,7 +8662,7 @@ Zs
 Zs
 Zs
 Zs
-Zs
+lQ
 MH
 QM
 QM
@@ -9178,7 +9204,7 @@ ik
 ik
 ik
 ik
-ik
+hL
 ik
 gs
 eR
