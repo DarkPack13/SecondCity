@@ -36,7 +36,7 @@
 /obj/darkpack_car/retro/rand/camarilla
 	access = "camarilla"
 
-/obj/vampire_car/retro/rand/voivodate
+/obj/darkpack_car/retro/rand/voivodate
 	access = "voivodate_citizen"
 
 /obj/darkpack_car/rand/anarch
@@ -64,7 +64,7 @@
 /obj/darkpack_car/limousine/camarilla
 	access = "camarilla"
 
-/obj/vampire_car/limousine/voivodate
+/obj/darkpack_car/limousine/voivodate
 	access = "seer_voivodate"
 
 /obj/darkpack_car/police
