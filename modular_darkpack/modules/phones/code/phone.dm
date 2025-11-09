@@ -472,7 +472,7 @@
 	new_contact.name = get_number_contact_name()
 	new_contact.number = dialed_number ? dialed_number : incoming_sim_card?.phone_number
 	new_contact.call_type = call_type
-	new_contact.time = station_time_timestamp("hh:mm:ss, MMM DD")
+	new_contact.time = station_time_timestamp("hh:mm:ss")
 	phone_history_list += new_contact
 
 //TODO: Call history
