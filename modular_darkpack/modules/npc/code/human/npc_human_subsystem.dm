@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(humannpcpool)
 	wait = 30
 
 	dependencies = list(
-		/datum/controller/subsystem/humannpcpool,
+		/datum/controller/subsystem/mapping,
 	)
 
 	var/list/currentrun = list()
