@@ -190,7 +190,7 @@
 		))
 	data["phone_history"] = phone_history
 
-	data["calling_user"] = "+" + get_number_contact_name()
+	data["calling_user"] = get_number_contact_name()
 
 	return data
 
@@ -372,6 +372,7 @@
 /obj/item/smartphone/proc/end_phone_call()
 	SIGNAL_HANDLER
 
+	add_phone_call_history(incoming_sim_card, PHONE_CALL_STOPPED)
 	SSphones.cancel_ring_timeout(sim_card)
 	phone_radio.set_frequency(0)
 	phone_radio.set_broadcasting(FALSE)
@@ -463,7 +464,7 @@
 				output_user = contact
 	// Not in our contacts or published listings? Then resolve to showing the phone number.
 	if(!output_user)
-		output_user = calling
+		output_user = "+" + calling
 	return output_user
 
 /obj/item/smartphone/proc/add_phone_call_history(obj/item/sim_card/incoming_sim_card, call_type)
