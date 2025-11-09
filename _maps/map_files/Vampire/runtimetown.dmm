@@ -1,10 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ap" = (
-/obj/item/vamp/phone/street{
-	pixel_z = 24
-	},
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "av" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/darkpack45acp,
@@ -4287,7 +4281,7 @@ Fg
 Fg
 Fg
 Fg
-ap
+NR
 cj
 ik
 VQ
@@ -4355,7 +4349,7 @@ gF
 id
 gF
 Fg
-ap
+NR
 cj
 ik
 VQ
@@ -4423,7 +4417,7 @@ gF
 On
 gF
 Fg
-ap
+NR
 OH
 OB
 VQ
@@ -4491,7 +4485,7 @@ Fg
 xH
 hz
 Fg
-ap
+NR
 cj
 ik
 VQ
