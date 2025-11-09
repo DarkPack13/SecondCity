@@ -60,6 +60,7 @@ export type Data = {
   ringer: BooleanLike;
   vibration: BooleanLike;
   speaker_mode: BooleanLike;
+  muted: BooleanLike;
 
   published_numbers: Contact[];
   our_contacts: Contact[];

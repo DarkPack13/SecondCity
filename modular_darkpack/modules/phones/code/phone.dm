@@ -29,6 +29,8 @@
 	var/ringer = TRUE
 	// If the phone shows balloon alerts when ringing.
 	var/vibration = TRUE
+	// If the phone's microphone is muted.
+	var/muted = FALSE
 	/// Do we have a SIM card?
 	var/obj/item/sim_card/sim_card
 	/// Phone flags
@@ -152,6 +154,7 @@
 	data["ringer"] = ringer
 	data["vibration"] = vibration
 	data["speaker_mode"] = (phone_radio.canhear_range == 3) ? TRUE : FALSE
+	data["muted"] = muted
 
 	var/list/published_numbers = list()
 	for(var/contact in SSphones.published_phone_numbers)
@@ -335,6 +338,11 @@
 				phone_radio.canhear_range = 1
 			return TRUE
 
+		if("mute")
+			muted = !muted
+			phone_radio.set_listening(!muted)
+			to_chat(usr, span_notice("Phone microphone [muted ? "muted" : "unmuted"]."))
+
 	return FALSE
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
@@ -450,4 +458,4 @@
 
 	STOP_PROCESSING(SSprocessing, src)
 
-//TODO: Call history, mute button
+//TODO: Call history

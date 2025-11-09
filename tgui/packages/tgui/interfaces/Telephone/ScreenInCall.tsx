@@ -7,7 +7,7 @@ import { Data } from '.';
 
 const FakeCallingControls = (props) => {
   const { act, data } = useBackend<Data>();
-  const { phone_calling, speaker_mode } = data;
+  const { phone_calling, speaker_mode, muted } = data;
 
   return (
     <Box className="Telephone__CallOptionsGrid" textAlign="center">
@@ -44,11 +44,21 @@ const FakeCallingControls = (props) => {
         Keypad
       </Box>
       {/* Mute */}
-      <Box textColor={phone_calling ? '#fffa' : '#fff'}>
+      <Box>
         <Box height={4}>
           <Stack fill align="center" justify="center">
             <Stack.Item>
-              <Icon name="microphone-slash" size={2} />
+              <Icon
+              name="microphone-slash"
+              size={2}
+              color={muted ? 'green' : ''}
+              onClick={() => {
+                act('mute');
+              }}
+              style={{
+                borderRadius: '50%',
+                cursor: 'pointer',
+              }}/>
             </Stack.Item>
           </Stack>
         </Box>
