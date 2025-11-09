@@ -5,3 +5,8 @@
 #define COMSIG_PHONE_RING "phone_ring"
 #define COMSIG_PHONE_RING_TIMEOUT "phone_ring_timeout"
 #define COMSIG_PHONE_RING_FINISH "phone_ring_finish"
+
+#define PHONE_CALL_ACCEPTED "Phone call accepted."
+#define PHONE_CALL_DECLINED "Phone call declined."
+#define PHONE_CALL_STARTED "Phone call started."
+

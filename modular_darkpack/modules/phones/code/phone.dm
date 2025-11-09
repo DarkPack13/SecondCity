@@ -181,7 +181,7 @@
 	data["our_blocked_contacts"] = our_blocked_contacts
 
 	var/list/phone_history = list()
-	for(var/datum/phonehistory/PH in phone_history_list)
+	for(var/datum/phone_history/PH in phone_history_list)
 		UNTYPED_LIST_ADD(phone_history, list(
 			"type" = PH.call_type,
 			"name" = PH.name,
@@ -190,21 +190,7 @@
 		))
 	data["phone_history"] = phone_history
 
-	var/calling = incoming_sim_card?.phone_number
-	if(dialed_number)
-		calling = dialed_number
-	// Default to the contact name calling the phone.
-	for(var/list/contact as anything in our_contacts)
-		if(calling == contact["number"])
-			data["calling_user"] = contact["name"]
-	// If we dont have a contact name, refer to the published listings.
-	if(!data["calling_user"])
-		for(var/contact as anything in SSphones.published_phone_numbers)
-			if(calling == SSphones.published_phone_numbers[contact])
-				data["calling_user"] = contact
-	// Not in our contacts or published listings? Then resolve to showing the phone number.
-	if(!data["calling_user"])
-		data["calling_user"] = "+" + calling
+	data["calling_user"] = "+" + get_number_contact_name()
 
 	return data
 
@@ -373,6 +359,7 @@
 		if(secure_frequency)
 			dialed_number = new_dialed_number
 			phone_flags |= PHONE_CALLING
+		add_phone_call_history(incoming_sim_card, PHONE_CALL_STARTED)
 	else
 		phone_radio.set_frequency(secure_frequency)
 		phone_radio.set_broadcasting(TRUE)
@@ -409,6 +396,7 @@
 	phone_flags &= ~PHONE_IN_CALL
 	phone_flags &= ~PHONE_CALLING
 	phone_flags &= ~PHONE_RINGING
+	add_phone_call_history(incoming_sim_card, PHONE_CALL_DECLINED)
 
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
 	secure_frequency = incoming_frequency
@@ -416,6 +404,7 @@
 	initialize_phone_call(user)
 	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref?.resolve()
 	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_ACCEPTED)
+	add_phone_call_history(incoming_sim_card, PHONE_CALL_ACCEPTED)
 
 /obj/item/smartphone/proc/phone_call_declined(datum/source)
 	SIGNAL_HANDLER
@@ -457,5 +446,32 @@
 	SIGNAL_HANDLER
 
 	STOP_PROCESSING(SSprocessing, src)
+
+/obj/item/smartphone/proc/get_number_contact_name()
+	var/output_user
+	var/calling = incoming_sim_card?.phone_number
+	if(dialed_number)
+		calling = dialed_number
+	// Default to the contact name calling the phone.
+	for(var/datum/phonecontact/contact in contacts)
+		if(contact.number == calling)
+			output_user = contact.name
+	// If we dont have a contact name, refer to the published listings.
+	if(!output_user)
+		for(var/contact as anything in SSphones.published_phone_numbers)
+			if(calling == SSphones.published_phone_numbers[contact])
+				output_user = contact
+	// Not in our contacts or published listings? Then resolve to showing the phone number.
+	if(!output_user)
+		output_user = calling
+	return output_user
+
+/obj/item/smartphone/proc/add_phone_call_history(obj/item/sim_card/incoming_sim_card, call_type)
+	var/datum/phone_history/new_contact = new()
+	new_contact.name = get_number_contact_name()
+	new_contact.number = incoming_sim_card.phone_number
+	new_contact.call_type =
+	new_contact.time = station_time_timestamp("hh:mm:ss, MMM DD")
+	phone_history_list += new_contact
 
 //TODO: Call history
