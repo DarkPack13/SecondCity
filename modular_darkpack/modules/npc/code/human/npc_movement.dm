@@ -122,7 +122,7 @@
 	face_atom(T)
 	step_to(src, T, 0)
 
-	if (!walktarget && old_movement)
+	if (!walktarget || old_movement)
 		return
 	if (observed_by_player())
 		return
