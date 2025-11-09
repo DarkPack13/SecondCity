@@ -10,11 +10,11 @@ SUBSYSTEM_DEF(wanted_level)
 				witness_count++
 		if(witness_count <= 0)
 			return
-	return
-	// TODO: [Rebase] - RADIOS
-	/*
+
 	for(var/obj/item/police_radio/radio in GLOB.police_radios)
 		radio.announce_crime(crime_type, location)
+	// TODO: [Rebase] - RADIOS
+	/*
 	for(var/obj/machinery/p25transceiver/police/transceiver in GLOB.p25_transceivers)
 		if(transceiver.p25_network == "police")
 			transceiver.announce_crime(crime_type, location)

@@ -1,8 +1,5 @@
 // P25 Radio System
 
-GLOBAL_LIST_EMPTY(p25_radios)
-GLOBAL_LIST_EMPTY(p25_transceivers)
-
 /obj/machinery/p25transceiver
 	name = "P25 transceiver"
 	desc = "A stationary P25 radio transceiver that handles radio connections."
