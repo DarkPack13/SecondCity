@@ -308,7 +308,7 @@
 	if(isliving(user) && HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		. += compare_fitness(user)
 
-	//DARKPACK EDIT START
+	//DARKPACK EDIT ADD START
 	if(ishumanbasic(user))
 		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
 
@@ -316,7 +316,7 @@
 	if(custom_examine_message)
 		. += span_purple(custom_examine_message)
 	. += flavor_text_creation()
-	//DARKPACK EDIT END
+	//DARKPACK EDIT ADD END
 
 	var/hud_info = get_hud_examine_info(user)
 	if(length(hud_info))
