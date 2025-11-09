@@ -50,7 +50,7 @@
 	. = ..()
 
 /obj/effect/decal/garou_glyph
-	name = "Odd glyph"
+	name = "odd glyph"
 	desc = "An odd collection of symbols drawn in what seems to be charcoal."
 	var/garou_name = "basic glyph"
 	var/garou_desc = "a basic glyph with no meaning." // This is shown to werewolves who examine the glyph in order to determine its true meaning.

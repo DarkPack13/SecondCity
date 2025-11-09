@@ -1,5 +1,5 @@
 /obj/structure/werewolf_totem
-	name = "Tribe Totem"
+	name = "tribe totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/totems.dmi'
 	icon_state = "glassw"
@@ -94,21 +94,21 @@
 */
 
 /obj/structure/werewolf_totem/wendigo
-	name = "Wendigo Totem"
+	name = "\improper Wendigo totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
 	icon_state = "wendigo"
 	tribe = "Wendigo"
 	totem_overlay_color = "#81ff4f"
 
 /obj/structure/werewolf_totem/glasswalker
-	name = "Glasswalker Totem"
+	name = "\improper Glasswalker totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
 	icon_state = "glassw"
 	tribe = "Glasswalkers"
 	totem_overlay_color = "#35b0ff"
 
 /obj/structure/werewolf_totem/spiral
-	name = "Spiral Totem"
+	name = "spiral totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/spiral_totem.dmi'
 	icon_state = "spiral"
