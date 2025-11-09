@@ -166,6 +166,12 @@
 		var/mob/living/carbon/human/husrc = src // gross istypesrc but easier than refactoring even further for now
 		if(husrc.skin_tone == "albino")
 			apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25) // knocks you down a few pegs
+	if(HAS_TRAIT(user, TRAIT_COLD_AURA))
+		apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25)
+	if(HAS_TRAIT(user, TRAIT_WARM_AURA))
+		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.25)
+	if(HAS_TRAIT(user, TRAIT_BLUSH_OF_HEALTH))
+		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.50)
 	switch(apparent_blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			. += span_warning("[t_He] [t_has] pale skin.")
@@ -303,14 +309,13 @@
 		. += compare_fitness(user)
 
 	//DARKPACK EDIT START
-	if(custom_examine_message)
-		. += span_purple(custom_examine_message)
-
 	if(ishumanbasic(user))
 		. += "<a href='byond://?src=[REF(src)];masquerade=1'>Report a Masquerade violation</a>"
-		. += "---------------"
 		. += "<a href='byond://?src=[REF(src)];reinforcement=1'>Report a Masquerade reinforcement</a>"
 
+	ADD_NEWLINE_IF_NECESSARY(.)
+	if(custom_examine_message)
+		. += span_purple(custom_examine_message)
 	. += flavor_text_creation()
 	//DARKPACK EDIT END
 
