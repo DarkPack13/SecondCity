@@ -1,4 +1,4 @@
-/datum/phone_voice
+/obj/phone_voice
 	name = "unknown voice"
 	speech_span = SPAN_ROBOT
 	anchored = FALSE
@@ -6,7 +6,7 @@
 	opacity = FALSE
 	var/phone = null
 
-/datum/phone_voice/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced, filterproof, message_range, datum/saymode/saymode, list/message_mods)
+/obj/phone_voice/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced, filterproof, message_range, datum/saymode/saymode, list/message_mods)
 	if(message == "" || !message)
 		return
 	spans |= speech_span
@@ -16,7 +16,7 @@
 	SSmasquerade.log_phone_message(rendered, phone)
 	send_speech(message, 2, src, , spans, message_language=language)
 
-/datum/phone_voice/Destroy(force)
+/obj/phone_voice/Destroy(force)
 	phone = null
 	..()
 
