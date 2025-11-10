@@ -119,6 +119,7 @@
 	tastes = list("salt" = 1, "crisps" = 1)
 	food_flags = FOOD_IN_CONTAINER | FOOD_BITE_SPRITE
 	foodtypes = JUNKFOOD | FRIED
+	custom_price = 2
 	//eatsound = 'modular_darkpack/modules/depricated/sounds/crisp.ogg'
 
 /obj/item/food/vampire/crisps/proc/open_crisps(mob/user)

@@ -6,7 +6,7 @@
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola = 20,
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola/blue = 10,
-		/obj/item/reagent_containers/cup/glass/waterbottle = 10,
+		// /obj/item/reagent_containers/cup/glass/waterbottle = 10, // TODO: Resprite
 	)
 	contraband = list()
 	premium = list()
