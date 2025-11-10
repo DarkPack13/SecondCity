@@ -6805,6 +6805,8 @@
 #include "modular_darkpack\master_files\code\datums\components\dejavu.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
+#include "modular_darkpack\master_files\code\game\objects\items\trash.dm"
+#include "modular_darkpack\master_files\code\game\objects\items\food\snack.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\ladders.dm"
 #include "modular_darkpack\master_files\code\game\turfs\turf.dm"
 #include "modular_darkpack\master_files\code\modules\client\preferences\_preference.dm"

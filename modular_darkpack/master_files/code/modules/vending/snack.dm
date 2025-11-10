@@ -2,7 +2,7 @@
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 	products = list(
 		/obj/item/food/chocolatebar = 25,
-		/obj/item/food/vampire/crisps = 20,
+		/obj/item/food/chips = 20,
 		// /obj/item/reagent_containers/cup/glass/dry_ramen = 10, // TODO: Resprite
 		// /obj/item/storage/box/gum = 10 // TODO: Resprite
 	)
