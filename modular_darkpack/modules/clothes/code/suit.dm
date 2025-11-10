@@ -503,14 +503,14 @@
 
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
-	name = "Endron labcoat"
-	desc = "A crisp white labcoat. This one has the Endron International logo stiched onto the breast!"
+	name = EVIL_OIL_COMPANY + " abcoat"
+	desc = "A crisp white labcoat. This one has the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
-	name = "Endron labcoat"
-	desc = "A crisp white labcoat. This one has a green trim and the Endron International logo stiched onto the breast!"
+	name = EVIL_OIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has a green trim and the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
 

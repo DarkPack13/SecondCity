@@ -49,12 +49,12 @@
 	special_networks = list(anarchsadmin = list(fax_name = "Free State Movement", fax_id = "anarchsadmin", color = "red", emag_needed = FALSE))
 
 /obj/machinery/fax/police
-	fax_name = "San Francisco Police Department"
+	fax_name = CITY_POLICE_DEPARTMENT
 	fax_id = "police"
 	special_networks = list(policeadmin = list(fax_name = "Federal Government", fax_id = "policeadmin", color = "blue", emag_needed = FALSE))
 
 /obj/machinery/fax/endron
-	fax_name = "Endron International HQ"
+	fax_name = EVIL_OIL_COMPANY + " International HQ"
 	fax_id = "endron"
 	special_networks = list(endronadmim = list(fax_name = EVIL_COMPANY + " Corporate", fax_id = "endronadmin", color = "green", emag_needed = FALSE))
 
