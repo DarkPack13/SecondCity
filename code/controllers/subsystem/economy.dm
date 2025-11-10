@@ -190,8 +190,8 @@ SUBSYSTEM_DEF(economy)
 			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] credits saved. "
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
-	earning_report += "That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE
-	GLOB.news_network.submit_article(earning_report, "Station Earnings Report", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts)
+	earning_report += "<br>That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE
+	GLOB.news_network.submit_article(earning_report, "[CITY_NAME] Earnings Report", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts) // DARKPACK EDIT CHANGE
 	return TRUE
 
 /**
