@@ -14,6 +14,7 @@ type Data = {
   wanted_criminal: string | null;
   wanted_body: string | null;
   wanted_photo: string | null;
+  newspaper_company: string; // DARKPACK EDIT ADD
 };
 
 type ChannelNames = {
@@ -89,7 +90,7 @@ const NewspaperIntro = (props) => {
     <Section>
       {/* DARKPACK EDIT START*/}
       <Box bold fontSize="30px">
-        data.newspaper_company
+        {data.newspaper_company}
       </Box>
       {/* DARKPACK EDIT END*/}
       <Box fontSize="12px">Table of Contents:</Box>
