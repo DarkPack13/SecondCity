@@ -301,13 +301,24 @@
 	last_grab = world.time
 
 /mob/living/carbon/human/npc/ghoulificate(mob/owner)
-	set waitfor = FALSE
-	var/mob/dead/observer/candidate = SSpolling.poll_ghosts_for_target("Do you want to play as [owner]`s ghoul?", check_jobban = ROLE_GHOUL, role = ROLE_GHOUL, poll_time = 15 SECONDS, checked_target = src, alert_pic = src)
 	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
-	if(isnull(candidate))
-		return FALSE
-	message_admins("[key_name_admin(candidate)] has became a ghoul by [key_name_admin(owner)].")
-	ghostize(FALSE)
-	PossessByPlayer(candidate.key)
+
+	AddComponent(\
+		/datum/component/ghost_direct_control,\
+		ban_type = ROLE_GHOUL,\
+		poll_candidates = TRUE,\
+		role_name = "[owner]'s ghoul",\
+		poll_length = 30 SECONDS,\
+		poll_question = "Do you want to play as [owner]'s ghoul?",\
+
+		assumed_control_message = "You are now [owner]'s ghoul!",\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
+	)
+
+	//poll_ignore_key = POLL_IGNORE_GHOUL,
+
 	. = ..()
 	return TRUE
+
+/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
+	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")

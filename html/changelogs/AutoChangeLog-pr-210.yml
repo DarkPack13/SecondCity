@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "ticking thaumaturgy and file management for ritual thaumaturgy"
