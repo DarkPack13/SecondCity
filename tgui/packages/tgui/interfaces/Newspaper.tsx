@@ -89,7 +89,7 @@ const NewspaperIntro = (props) => {
     <Section>
       {/* DARKPACK EDIT START*/}
       <Box bold fontSize="30px">
-        The Chronicle
+        data.newspaper_company
       </Box>
       {/* DARKPACK EDIT END*/}
       <Box fontSize="12px">Table of Contents:</Box>

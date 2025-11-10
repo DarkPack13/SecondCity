@@ -231,7 +231,15 @@
 
 /obj/item/clothing/under/vampire/police
 	name = "police uniform"
-	desc = "The clothes of the boys in blue. Did you know that 44% of Cops have heard of Pentex? Google 44% of Cops for more information."
+	/*
+	 * I did like a fair bit of research tracking down the statistic, 44% was the original value here but I cant find anything supporting that,
+	 * The commonly thrown around number of 40% is from
+	 * Johnson, L.B. (1991). On the front lines: Police stress and family well-being. Hearing before the Select Committee on Children, Youth, and Families House of Representatives: 102 Congress First Session May 20 (p. 32-48). Washington DC: US Government Printing Office.
+	 * Most other stuides get lower numbers e.g
+	 * Neidig, P.H., Russell, H.E. & Seng, A.F. (1992). Interspousal aggression in law enforcement families: A preliminary investigation. Police Studies, Vol. 15 (1), p. 30-38.
+	 * Anyway im done doing research for this joke. - Fallcon
+	 */
+	desc = "The clothes of the boys in blue. Did you know that 40% of Cops have heard of " + EVIL_COMPANY + "? Google 40% of Cops for more information."
 	icon_state = "police"
 
 /obj/item/clothing/under/vampire/police/long

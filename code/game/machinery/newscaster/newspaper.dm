@@ -5,7 +5,7 @@
  */
 /obj/item/newspaper
 	name = "newspaper"
-	desc = "An issue of The Chronicle, the newspaper circulating around San Francisco and surrounding cities." // DARKPACK EDIT CHANGE
+	desc = "An issue of %NEWSPAPER_COMPANY, the newspaper circulating around San Francisco and surrounding cities." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "newspaper"
 	inhand_icon_state = "newspaper"
@@ -38,6 +38,7 @@
 
 /obj/item/newspaper/Initialize(mapload)
 	. = ..()
+	desc = replacetext(desc, "%NEWSPAPER_COMPANY", NEWSPAPER_COMPANY) // DARKPACK EDIT ADD
 	register_context()
 	AddComponent(\
 		/datum/component/two_handed,\
@@ -234,6 +235,7 @@
 			"name" = news_channels.channel_name,
 			"page_number" = news_content.Find(news_channels),
 		))
+	data["newspaper_company"] = NEWSPAPER_COMPANY // DARKPACK EDIT ADD
 	return data
 
 /obj/item/newspaper/ui_data(mob/user)
