@@ -21,7 +21,6 @@ enum Page {
   Quirks,
   Loadout,
   Stats, // DARKPACK EDIT ADD
-  Merits, // DARKPACK EDIT ADD
 }
 
 type ProfileProps = {
