@@ -5,7 +5,7 @@
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola = 20,
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola/blue = 10,
-		// /obj/item/reagent_containers/cup/glass/waterbottle = 10, // TODO: Resprite
+		/obj/item/reagent_containers/cup/glass/waterbottle = 10, // TODO: Resprite
 	)
 	contraband = list()
 	premium = list()
@@ -34,8 +34,15 @@
 	name = "\improper 13 Vitamins Vendor"
 	desc = "13 stimulants in every bottle!!!"
 	icon_state = "thirteen"
-	light_mask = "thirteen-light-mask"
+	light_mask = "front_cola-light-mask"
 	light_color = COLOR_YELLOW
+	products = list(
+		/obj/item/reagent_containers/cup/soda_cans/thirteenloko = 30, // TODO: Resprite
+	)
+	premium = list(
+		/obj/item/reagent_containers/cup/soda_cans/monkey_energy = 10, // TODO: Resprite
+		/obj/item/reagent_containers/cup/soda_cans/grey_bull = 5, // TODO: Resprite
+	)
 
 /obj/machinery/vending/cola/sodie
 	icon_state = "cola_red"
@@ -47,10 +54,10 @@
 	name = "\improper Liquid Demon Seed Vendor"
 	desc = "Slobber it DOWN!!"
 	icon_state = "demon_seed"
-	light_mask = "demon_seed-light-mask"
+	light_mask = "front_cola-light-mask"
 
 /obj/machinery/vending/cola/shamblers
-	name = "\improper Yumco Softdrinks"
+	name = "\improper Yumco Vendor"
 	icon_state = "yumco"
 	light_mask = "yumco-light-mask"
 	light_color = COLOR_YELLOW
