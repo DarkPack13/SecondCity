@@ -5,17 +5,10 @@
 
 /datum/storyteller_stats/New()
 	. = ..()
-	for(var/datum/st_stat/path as anything in subtypesof(/datum/st_stat))
-		if(path == path.abstract_type)
-			continue
+	for(var/datum/st_stat/path as anything in valid_subtypesof(/datum/st_stat))
 		var/datum/st_stat/new_trait = new path
 		st_stats[path] = new_trait
-
-	for(var/datum/path as anything in subtypesof(/datum/st_stat))
-		if(path == path.abstract_type)
-			continue
-		var/datum/st_stat/A = st_stats[path]
-		set_stat(path, A.starting_score)
+		set_stat(path, new_trait.starting_score)
 
 	recalculate_all_willpower()
 

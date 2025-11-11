@@ -19,7 +19,7 @@
 
 	//if a stat affects the hp pool, recalculate the hp of the mob when changed.
 	var/affects_health_pool = FALSE
-	//if a stat affects the willpower pool, recalculate the hp of the mob when changed.
+	//if a stat affects the willpower pool.
 	var/affects_willpower = FALSE
 	//If a stat affects the player's speed, such as dexterity.
 	var/affects_speed = FALSE

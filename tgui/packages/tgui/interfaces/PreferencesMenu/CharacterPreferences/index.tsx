@@ -12,7 +12,6 @@ import { MainPage } from './MainPage';
 import { QuirkPersonalityPage } from './QuirksPage';
 import { SpeciesPage } from './SpeciesPage';
 import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
-import { MeritsPage } from './Merits'; //DARKPACK EDIT ADD
 
 enum Page {
   Antags,
@@ -90,10 +89,6 @@ export function CharacterPreferenceWindow(props) {
     // DARKPACK EDIT ADD START - Stats
     case Page.Stats:
       pageContents = <StatsPage />;
-      break;
-
-    case Page.Merits:
-      pageContents = <MeritsPage />;
       break;
     // DARKPACK EDIT ADD END
 
@@ -189,7 +184,7 @@ export function CharacterPreferenceWindow(props) {
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
-              page={Page.Merits}
+              page={Page.Quirks}
               setPage={setCurrentPage}
             >
               Merits / Flaws
