@@ -32,7 +32,7 @@
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/wall_frill/Initialize(mapload)
 	. = ..()

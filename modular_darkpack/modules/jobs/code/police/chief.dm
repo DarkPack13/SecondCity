@@ -33,7 +33,7 @@
 	id = /obj/item/card/police/chief
 	l_pocket = /obj/item/vamp/phone
 	r_pocket = /obj/item/vamp/keys/police/secure/chief
-	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/vampire/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
+	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
 
 /datum/outfit/job/police_chief/post_equip(mob/living/carbon/human/H)
 	. = ..()

@@ -53,7 +53,6 @@
 	var/last_bloodpower_click = 0
 
 	var/harm_focus = SOUTH
-	var/flavor_text
 	var/true_real_name
 	var/died_already = FALSE
 

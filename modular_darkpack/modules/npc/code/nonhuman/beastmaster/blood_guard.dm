@@ -19,23 +19,8 @@
 	maxbloodpool = 1
 
 	faction = list(VAMPIRE_CLAN_TREMERE)
-	ai_controller = /datum/ai_controller/basic_controller/blood_guard
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
 
 /mob/living/basic/blood_guard/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
-
-///nothing unique, just retaliation.
-/datum/ai_controller/basic_controller/blood_guard
-	blackboard = list(
-		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
-	)
-
-	ai_traits = PASSIVE_AI_FLAGS
-	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk/less_walking
-
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/target_retaliate,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-	)
