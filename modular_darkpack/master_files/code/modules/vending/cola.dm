@@ -2,7 +2,6 @@
 	icon_state = "cola_red"
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 	light_mask = "cola-light-mask"
-	light_color = COLOR_DARK_RED
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola = 20,
 		/obj/item/reagent_containers/cup/soda_cans/vampirecola/blue = 10,
@@ -17,9 +16,8 @@
 	light_color = COLOR_MODERATE_BLUE
 
 /obj/machinery/vending/cola/black
-	icon_state = "cola_blue"
+	icon_state = "cola_black"
 	light_mask = "cola-light-mask"
-	light_color = COLOR_MODERATE_BLUE
 
 /obj/machinery/vending/cola/red
 	icon_state = "cola_red"
@@ -31,22 +29,28 @@
 	light_mask = "cola-light-mask"
 	light_color = COLOR_DARK_RED
 
+// Bloodlines Refrence
 /obj/machinery/vending/cola/starkist
-	icon_state = "cola_red"
-	light_mask = "cola-light-mask"
-	light_color = COLOR_DARK_RED
+	name = "\improper 13 Vitamins Vendor"
+	desc = "13 stimulants in every bottle!!!"
+	icon_state = "thirteen"
+	light_mask = "thirteen-light-mask"
+	light_color = COLOR_YELLOW
 
 /obj/machinery/vending/cola/sodie
 	icon_state = "cola_red"
 	light_mask = "cola-light-mask"
 	light_color = COLOR_DARK_RED
 
+// Bloodlines Refrence
 /obj/machinery/vending/cola/pwr_game
-	icon_state = "cola_red"
-	light_mask = "cola-light-mask"
-	light_color = COLOR_DARK_RED
+	name = "\improper Liquid Demon Seed Vendor"
+	desc = "Slobber it DOWN!!"
+	icon_state = "demon_seed"
+	light_mask = "demon_seed-light-mask"
 
 /obj/machinery/vending/cola/shamblers
-	icon_state = "cola_red"
-	light_mask = "cola-light-mask"
-	light_color = COLOR_DARK_RED
+	name = "\improper Yumco Softdrinks"
+	icon_state = "yumco"
+	light_mask = "yumco-light-mask"
+	light_color = COLOR_YELLOW

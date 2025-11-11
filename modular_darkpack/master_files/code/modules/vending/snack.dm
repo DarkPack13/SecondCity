@@ -8,16 +8,3 @@
 	)
 	contraband = list()
 	premium = list()
-
-/obj/machinery/vending/snack/blue
-	icon_state = "snack"
-
-/obj/machinery/vending/snack/orange
-	icon_state = "snack"
-
-/obj/machinery/vending/snack/green
-	icon_state = "snack"
-
-/obj/machinery/vending/snack/teal
-	icon_state = "snack"
-
