@@ -18,7 +18,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			log_manifest(readied_player.ckey, readied_player.new_character.mind, readied_player.new_character)
 			players_to_log[readied_player.ckey] = readied_player.new_character
 		if(ishuman(readied_player.new_character))
-			inject(readied_player.new_character)
+			inject(readied_player.new_character, person_client = readied_player.client) // DARKPACK EDIT - Flavor Text - ORIGINAL: inject(readied_player.new_character)
 		CHECK_TICK
 	if(length(players_to_log))
 		SSblackbox.ReportRoundstartManifest(players_to_log)
@@ -103,7 +103,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 
 /// Injects a record into the manifest.
-/datum/manifest/proc/inject(mob/living/carbon/human/person, atom/appearance_proxy)
+/datum/manifest/proc/inject(mob/living/carbon/human/person, atom/appearance_proxy, client/person_client) // DARKPACKED EDIT CHANGE - FLAVOR TEXT - ORIGINAL: /datum/manifest/proc/inject(mob/living/carbon/human/person, atom/appearance_proxy)
 	set waitfor = FALSE
 	if(!(person.mind?.assigned_role.job_flags & JOB_CREW_MANIFEST))
 		return
@@ -141,7 +141,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	new /datum/record/crew(
 		age = person.age,
 		blood_type = person.get_bloodtype()?.name || "UNKNOWN",
-		character_appearance = character_appearance,
+		character_appearance = null, //DARKPACK EDIT - RECORDS, ORIGINAL: character_appearance = character_appearance
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),
 		gender = person_gender,
@@ -157,6 +157,12 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		minor_disabilities = person.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, from_scan = TRUE),
 		minor_disabilities_desc = person.get_quirk_string(TRUE, CAT_QUIRK_MINOR_DISABILITY),
 		quirk_notes = person.get_quirk_string(TRUE, CAT_QUIRK_NOTES),
+		// DARKPACK EDIT START - FLAVOR TEXT
+		background_information = person_client?.prefs.read_preference(/datum/preference/text/background) || "",
+		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
+		past_medical_records = person_client?.prefs.read_preference(/datum/preference/text/medical) || "",
+		past_criminal_records = person_client?.prefs.read_preference(/datum/preference/text/criminal) || "",
+		// DARKPACK EDIT END
 	)
 
 /// Edits the rank and trim of the found record.

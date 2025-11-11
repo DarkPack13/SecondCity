@@ -4,8 +4,8 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_TABLETOP
 	relevant_inherent_trait = TRAIT_DRINKS_BLOOD
-	minimum = 7
-	maximum = 13
+	minimum = MAX_PUBLIC_GENERATION
+	maximum = HIGHEST_GENERATION_LIMIT
 
 /datum/preference/numeric/generation/apply_to_human(mob/living/carbon/human/target, value)
 	target.generation = value

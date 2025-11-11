@@ -585,7 +585,7 @@
 
 	// create fish possibles
 	var/list/fish_types = list()
-	for(var/path in subtypesof(/obj/item/fish))
+	for(var/path in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 		var/obj/item/fish/fake_fish = path
 		if(initial(fake_fish.random_case_rarity) == FISH_RARITY_NOPE) // means they aren't mean to be randomly available
 			continue
