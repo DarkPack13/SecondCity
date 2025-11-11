@@ -1,4 +1,5 @@
 /mob/living/Login()
+	throw_alert(ALERT_MULTI_Z, /atom/movable/screen/alert/multi_z) // DARKPACK EDIT ADD
 	. = ..()
 	if(!. || !client)
 		return FALSE

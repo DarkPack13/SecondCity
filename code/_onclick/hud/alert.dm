@@ -69,6 +69,7 @@
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
+	thealert.alert_post_setup(src) // DARKPACK EDIT ADD - HUD
 	return thealert
 
 /mob/proc/alert_timeout(atom/movable/screen/alert/alert, category)

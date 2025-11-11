@@ -6957,6 +6957,7 @@
 #include "modular_darkpack\modules\government\code\passport.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard.dm"
 #include "modular_darkpack\modules\graveyard\code\graveyard_area.dm"
+#include "modular_darkpack\modules\hud\code\multi_z.dm"
 #include "modular_darkpack\modules\human_visuals\code\extra_human_sprites.dm"
 #include "modular_darkpack\modules\human_visuals\code\shadows.dm"
 #include "modular_darkpack\modules\jobs\code\_departments.dm"
