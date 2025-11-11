@@ -1,6 +1,4 @@
-<!-- This should be copy-pasted into the root of your module folder as readme.md -->
-
-https://github.com/NovaSector/NovaSector/pull/<!--PR Number-->
+https://github.com/DarkPack13/SecondCity/pull/153
 
 ## \<Title City Traits> <!--Title of your addition.-->
 
@@ -30,7 +28,7 @@ E.g:
 
 ### Defines:
 
-- N/A
+- `code/__DEFINES/~darkpack/traits/declarations.dm`: `STATION_TRAIT_RED_STAR`, `STATION_TRAIT_WILD_MASQUERADE`, `STATION_TRAIT_INFESTATION`, `STATION_TRAIT_PEST_CONTROL`, `STATION_TRAIT_STRAY_MIGRATION`, `STATION_TRAIT_COSPLAY_CONVENTION`
 <!-- If you needed to add any defines, mention the files you added those defines in, along with the name of the defines. -->
 
 ### Included files that are not contained in this module:
@@ -40,4 +38,4 @@ E.g:
 
 ### Credits:
 
-<!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code. -->
+FalloutFalcon
