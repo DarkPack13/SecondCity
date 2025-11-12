@@ -7,9 +7,9 @@
 	)
 	ai_movement = /datum/ai_movement/basic_avoidance
 	planning_subtrees = list(
-		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/target_retaliate,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
+		/datum/ai_planning_subtree/target_retaliate,
+		/datum/ai_planning_subtree/pet_planning,
 	)
 
 /datum/targeting_strategy/basic/beastmaster_enemies

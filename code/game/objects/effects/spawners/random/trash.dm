@@ -37,7 +37,7 @@
 		/obj/item/broken_bottle = 3,
 		/obj/item/reagent_containers/cup/soda_cans/grey_bull = 1,
 		/obj/effect/spawner/random/engineering/tool = 1,
-		/mob/living/basic/mouse = 1,
+		/obj/effect/spawner/random/trash/rat = 1, // DARKPACK EDIT CHANGE
 		/mob/living/basic/snail = 1,
 		/obj/item/food/grown/cannabis = 1,
 		/obj/item/rag = 1,
@@ -51,7 +51,7 @@
 	if(mapload)
 		var/turf/location = get_turf(loc)
 		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
-			loot -= /mob/living/basic/mouse
+			loot -= /obj/effect/spawner/random/trash/rat
 			loot -= /mob/living/basic/snail
 	return ..()
 
@@ -205,19 +205,20 @@
 	spawn_scatter_radius = 2
 	loot = list( // This spawner will scatter garbage around a dirty site.
 		/obj/effect/spawner/random/trash/garbage = 6,
-		// DARKPACK EDIT CHANGE START
-		/mob/living/basic/cockroach = 4,
+// DARKPACK EDIT CHANGE START
 		/obj/effect/decal/cleanable/garbage = 4,
 		/obj/effect/decal/cleanable/vomit/old = 3,
 		/obj/effect/spawner/random/trash/cigbutt = 2,
+		/mob/living/basic/cockroach = 1,
 	)
 
 /obj/effect/spawner/random/trash/grime/Initialize(mapload)
 	if(mapload)
 		var/turf/location = get_turf(loc)
 		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
-			loot -= list(/mob/living/basic/cockroach, /mob/living/basic/cockroach/bloodroach)
+			loot -= /mob/living/basic/cockroach
 	return ..()
+// DARKPACK EDIT CHANGE END
 
 /obj/effect/spawner/random/trash/moisture
 	name = "water hazard spawner"

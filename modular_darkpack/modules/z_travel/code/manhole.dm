@@ -24,6 +24,15 @@
 
 /obj/structure/ladder/manhole/down/Initialize(mapload)
 	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_INFESTATION))
+		AddComponent(\
+			/datum/component/spawner,\
+			spawn_types = list(/mob/living/basic/mouse/vampire),\
+			spawn_time = 15 MINUTES,\
+			max_spawned = 1,\
+			spawn_text = "crawls out from",\
+		)
+
 	if(check_holidays(FESTIVE_SEASON))
 		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
