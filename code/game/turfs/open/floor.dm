@@ -3,7 +3,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	base_icon_state = "floor"
-	baseturfs = /turf/open/floor/plating
+	baseturfs = /turf/open/floor/plating/concrete // DARKPACK EDIT CHANGE
 
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT

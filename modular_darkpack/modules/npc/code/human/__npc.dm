@@ -66,8 +66,6 @@
 
 	var/spawned_backup_weapon = FALSE
 
-	var/ghoulificated = FALSE
-
 	var/staying = FALSE
 
 	var/lifespan = 0	//How many cycles. He'll be deleted if over than a ten thousand
@@ -130,7 +128,7 @@
 /mob/living/carbon/human/npc/Destroy()
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 
 	. = ..()
 
@@ -302,23 +300,25 @@
 
 	last_grab = world.time
 
-// TODO: [Rebase] reimplement ghouls
-/*
-/mob/living/carbon/human/npc/proc/ghoulificate(mob/owner)
-	set waitfor = FALSE
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [owner]`s ghoul?", null, null, null, 50, src)
-	for(var/mob/dead/observer/G in GLOB.player_list)
-		if(G.key)
-			to_chat(G, span_ghostalert("[owner] is ghoulificating [src]."))
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
-		ghoulificated = TRUE
-		set_species(/datum/species/ghoul)
-		if(mind)
-			if(mind.enslaved_to != owner)
-				mind.enslave_mind_to_creator(owner)
-				to_chat(src, span_userdanger("<b>AS PRECIOUS VITAE ENTER YOUR MOUTH, YOU NOW ARE IN THE BLOODBOND OF [owner]. SERVE YOUR REGNANT CORRECTLY, OR YOUR ACTIONS WILL NOT BE TOLERATED.</b>"))
-				return TRUE
-	return FALSE
-*/
+/mob/living/carbon/human/npc/ghoulificate(mob/owner)
+	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
+
+	AddComponent(\
+		/datum/component/ghost_direct_control,\
+		ban_type = ROLE_GHOUL,\
+		poll_candidates = TRUE,\
+		role_name = "[owner]'s ghoul",\
+		poll_length = 30 SECONDS,\
+		poll_question = "Do you want to play as [owner]'s ghoul?",\
+
+		assumed_control_message = "You are now [owner]'s ghoul!",\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
+	)
+
+	//poll_ignore_key = POLL_IGNORE_GHOUL,
+
+	. = ..()
+	return TRUE
+
+/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
+	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")

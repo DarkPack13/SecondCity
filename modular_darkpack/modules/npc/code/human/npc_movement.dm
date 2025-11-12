@@ -50,7 +50,7 @@
 
 /mob/living/carbon/human/npc/death()
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 	GLOB.move_manager.stop_looping(src)
 
 	if (!last_attacker || (get_dist(src, last_attacker) >= 10) || key || hostile)
@@ -122,7 +122,7 @@
 	face_atom(T)
 	step_to(src, T, 0)
 
-	if (!walktarget && old_movement)
+	if (!walktarget || old_movement)
 		return
 	if (observed_by_player())
 		return
@@ -214,9 +214,7 @@
 		return FALSE
 	if((last_grab + 1.5 SECONDS) > world.time)
 		return FALSE
-	if(ghoulificated)
-		return FALSE
-	if(key)
+	if(mind || client)
 		return FALSE
 	if(IsSleeping())
 		return FALSE

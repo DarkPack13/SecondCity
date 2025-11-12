@@ -32,27 +32,24 @@
 
 /obj/darkpack_car/rand/camarilla
 	access = "camarilla"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/camarilla
 	access = "camarilla"
-	icon_state = "5"
+
+/obj/darkpack_car/retro/rand/voivodate
+	access = "voivodate_citizen"
 
 /obj/darkpack_car/rand/anarch
 	access = "anarch"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/anarch
 	access = "anarch"
-	icon_state = "5"
 
 /obj/darkpack_car/rand/clinic
 	access = "clinic"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/clinic
 	access = "clinic"
-	icon_state = "5"
 
 /obj/darkpack_car/limousine
 	icon_state = "limo"
@@ -65,7 +62,10 @@
 	access = "giovanni"
 
 /obj/darkpack_car/limousine/camarilla
-	icon_state = "limo"
+	access = "camarilla"
+
+/obj/darkpack_car/limousine/voivodate
+	access = "seer_voivodate"
 
 /obj/darkpack_car/police
 	icon_state = "police"
@@ -74,27 +74,40 @@
 	beep_sound = 'modular_darkpack/modules/deprecated/sounds/migalka.ogg'
 	access = "police"
 	light_system = OVERLAY_LIGHT
-	light_color = "#ff0000"
 	light_range = 6
 	light_power = 6
-	var/color_blue = FALSE
+	var/primary_light_color = "#ff0000"
+	var/secondary_light_color = "#0000ff"
+	var/next_color_primary = FALSE
 	COOLDOWN_DECLARE(last_color_change)
 
+/obj/darkpack_car/police/Initialize(mapload)
+	. = ..()
+	set_light_color(primary_light_color)
+	if(!secondary_light_color)
+		secondary_light_color = primary_light_color
+
+/obj/darkpack_car/police/ranger
+	icon_state = "ranger"
+	access = "nps"
+	primary_light_color = "#ffa500"
+	secondary_light_color = "#ff8c00"
+
 /obj/darkpack_car/police/unmarked
-	icon_state = "4"
+	icon_state = "unmarked"
 
 /obj/darkpack_car/police/process()
-	if(!light_on)
+    // If the light is not on, OR if we only have 1 light color, there is 0 reason to swap between light states
+	if(!light_on || (primary_light_color == secondary_light_color))
 		return ..()
 	if(!COOLDOWN_FINISHED(src, last_color_change))
 		return ..()
 	COOLDOWN_START(src, last_color_change, 1 SECONDS)
-	if(color_blue)
-		color_blue = FALSE
-		set_light_color("#ff0000")
+	if(next_color_primary)
+		set_light_color(primary_light_color)
 	else
-		color_blue = TRUE
-		set_light_color("#0000ff")
+		set_light_color(secondary_light_color)
+	next_color_primary = !next_color_primary
 	return ..()
 
 /obj/darkpack_car/taxi
@@ -123,3 +136,14 @@
 	icon_state = "ambulance"
 	access = "clinic"
 	car_storage_type = /datum/storage/car/van
+
+/obj/darkpack_car/endroncar
+	icon_state = "endron"
+	max_passengers = 4
+	access = "pentex"
+
+/obj/darkpack_car/endrontruck
+	icon_state = "endrontruck"
+	max_passengers = 6
+	access = "pentex"
+	car_storage_type = /datum/storage/car/truck

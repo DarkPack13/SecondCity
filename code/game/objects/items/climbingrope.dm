@@ -52,7 +52,7 @@
 	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(interacting_with, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))
 
 	// Our climbers athletics ability
-	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
+	var/fitness_level = user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_ATHLETICS) // DARKPACK EDIT CHANGE
 
 	// Misc bonuses to the climb speed.
 	var/misc_multiplier = 1

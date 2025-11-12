@@ -28,8 +28,7 @@
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 15, "suit", FALSE)
+	AddComponent(/datum/component/selling, 75, "suit", FALSE)
 
 /obj/item/clothing/suit/vampire/trench/malkav
 	icon_state = "malkav_coat"
@@ -368,6 +367,12 @@
 	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
 
 //Police + Army
+
+/obj/item/clothing/suit/vampire/coat/police
+	name = "police raincoat"
+	icon_state = "policecoat"
+	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
 	icon_state = "pdvest"
@@ -498,14 +503,14 @@
 
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
-	name = "Endron labcoat"
-	desc = "A crisp white labcoat. This one has the Endron International logo stiched onto the breast!"
+	name = EVIL_OIL_COMPANY + " abcoat"
+	desc = "A crisp white labcoat. This one has the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
-	name = "Endron labcoat"
-	desc = "A crisp white labcoat. This one has a green trim and the Endron International logo stiched onto the breast!"
+	name = EVIL_OIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has a green trim and the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
 

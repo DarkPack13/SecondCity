@@ -25,10 +25,9 @@
 	name = "Millennium Tower Penthouse"
 	icon_state = "millenniumtowerpenthouse"
 
-/area/vtm/prince_elevator
+/area/vtm/interior/prince_elevator
 	name = "Millenium Elevator"
 	icon_state = "prince"
-	ambience_index = AMBIENCE_INTERIOR
-	outdoors = FALSE
+	ambience_index = AMBIENCE_OFFICE
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE

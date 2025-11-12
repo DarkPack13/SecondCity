@@ -8,7 +8,7 @@
 /obj/structure/delivery_board/oops_office
 	name = "OOPS delivery assigment board"
 	delivery_employer_tag = "oops"
-	desc = "The OOPS Delivery Service is said to be ran by the same forces that established and maintain the San Francisco nightly delivery market and the ones ultimately setting and surprisingly, diligently following their own rules per securing the surplus of each night's crate 'trade'. Contracts taken from this board will aid the OOPS service in maintaining the market for everyone involved, however this will also have the side effect of filling the coffers of the powers running the company for their unknown ends."
+	desc = "The OOPS Delivery Service is said to be ran by the same forces that established and maintain the " + CITY_NAME + " nightly delivery market and the ones ultimately setting and surprisingly, diligently following their own rules per securing the surplus of each night's crate 'trade'. Contracts taken from this board will aid the OOPS service in maintaining the market for everyone involved, however this will also have the side effect of filling the coffers of the powers running the company for their unknown ends."
 
 /area/vtm/interior/delivery/oops_office
 	name = "OOPS delivery office"

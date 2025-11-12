@@ -27,7 +27,7 @@
 		value *= loss_modifier
 
 		new_humanity = clamp(humanity + value, limit, 10)
-		humanity_change = humanity - new_humanity
+		humanity_change = new_humanity - humanity
 
 		// Hit the limit for decrease, no change
 		if (humanity_change >= 0)

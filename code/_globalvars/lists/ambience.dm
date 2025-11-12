@@ -206,4 +206,10 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_RUINS = GLOB.ruins_ambience,
 	AMBIENCE_SPACE = GLOB.space_ambience,
 	AMBIENCE_SPOOKY = GLOB.spooky_ambience,
+	AMBIENCE_CITY = GLOB.city_ambience, // DARKPACK EDIT ADD START
+	AMBIENCE_BEACH = GLOB.beach_ambience,
+	AMBIENCE_NATURE = GLOB.nature_ambience,
+	AMBIENCE_SEWER = GLOB.sewer_ambience,
+	AMBIENCE_OFFICE = GLOB.office_ambience,
+	AMBIENCE_PRINCE = GLOB.prince_ambience // DARKPACK EDIT ADD END
 ))

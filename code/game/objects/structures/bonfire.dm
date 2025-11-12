@@ -12,6 +12,7 @@
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
 	icon = 'modular_darkpack/master_files/icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "bonfire"
+	base_icon_state = "bonfire" // DARKPACK EDIT ADD
 	light_color = LIGHT_COLOR_FIRE
 	density = FALSE
 	anchored = TRUE
@@ -20,7 +21,7 @@
 	/// is the bonfire lit?
 	var/burning = FALSE
 	/// icon for the bonfire while on. for a softer more burning embers icon, use "bonfire_warm"
-	var/burn_icon = "bonfire_on_fire"
+	var/burn_icon = "_on_fire"
 	/// if the bonfire has a grill attached
 	var/grill = FALSE
 	/// the looping sound effect that is played while burning
@@ -108,7 +109,7 @@
 		return
 
 	burning_loop.start()
-	icon_state = burn_icon
+	icon_state = "[base_icon_state][burn_icon]" // DARKPACK EDIT CHANGE
 	burning = TRUE
 	set_light(6)
 	bonfire_burn()
@@ -167,7 +168,7 @@
 		return
 
 	burning_loop.stop()
-	icon_state = "bonfire"
+	icon_state = base_icon_state // DARKPACK EDIT CHANGE
 	burning = FALSE
 	set_light(0)
 	QDEL_NULL(particles)
@@ -198,5 +199,15 @@
 // Late init so that we can wait for air to exist in lazyloaded templates
 /obj/structure/bonfire/prelit/LateInitialize()
 	start_burning()
+
+// DARKPACK EDIT ADD START
+/obj/structure/bonfire/alt
+	icon_state = "campfire"
+	base_icon_state = "campfire"
+
+/obj/structure/bonfire/prelit/alt
+	icon_state = "campfire"
+	base_icon_state = "campfire"
+// DARKPACK EDIT ADD END
 
 #undef BONFIRE_FIRE_STACK_STRENGTH

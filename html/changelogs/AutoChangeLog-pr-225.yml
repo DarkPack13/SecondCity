@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "City Maps either open the wiki or navigate verb depending on input"

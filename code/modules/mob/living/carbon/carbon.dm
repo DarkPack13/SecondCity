@@ -68,6 +68,24 @@
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		var/blocked = FALSE
+// DARKPACK EDIT ADD START
+		if(isliving(thrower))
+			var/mob/living/attacker = thrower
+			var/attacker_strengthbrawl = attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)
+			var/attacker_dexathletics = attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_ATHLETICS)
+			var/attacker_keephigher = max(attacker_strengthbrawl, attacker_dexathletics)
+
+			var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
+			var/victim_stambrawl = victim_stamina + victim.st_get_stat(STAT_BRAWL)
+			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
+			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
+
+			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, numerical = TRUE)
+			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, mobs_to_show_output = list(victim), alert_atom = victim, numerical = TRUE)
+
+			if(victim_roll > attacker_roll)
+				blocked = TRUE
+// DARKPACK EDIT ADD END
 		if(victim.movement_type & FLYING)
 			return
 		if(!hurt)
@@ -514,7 +532,7 @@
  */
 /mob/living/carbon/proc/update_tint()
 	var/tint = 0
-	for(var/obj/item/clothing/worn_item in get_equipped_items())
+	for(var/obj/item/clothing/worn_item in get_equipped_items(INCLUDE_ABSTRACT))
 		tint += worn_item.tint
 
 	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
@@ -822,7 +840,10 @@
 	return ..()
 
 /mob/living/carbon/can_be_revived()
-	if(!get_organ_by_type(/obj/item/organ/brain) && (!IS_CHANGELING(src)) || HAS_TRAIT(src, TRAIT_HUSK))
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		return FALSE
+	var/brainless_creature = IS_CHANGELING(src) || isdullahan(src)
+	if(!brainless_creature && !get_organ_by_type(/obj/item/organ/brain))
 		return FALSE
 	return ..()
 
@@ -850,6 +871,9 @@
 			return DEFIB_FAIL_FAILING_HEART
 
 	var/obj/item/organ/brain/current_brain = get_organ_by_type(/obj/item/organ/brain)
+	if(isdullahan(src))
+		var/datum/species/dullahan/dullahan_species = src.dna.species
+		current_brain = locate() in dullahan_species.my_head.loc
 
 	if (QDELETED(current_brain))
 		return DEFIB_FAIL_NO_BRAIN
@@ -1084,18 +1108,6 @@
 
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
-
-/mob/living/carbon/proc/hypnosis_vulnerable()
-	if(HAS_MIND_TRAIT(src, TRAIT_UNCONVERTABLE))
-		return FALSE
-	if(has_status_effect(/datum/status_effect/hallucination) || has_status_effect(/datum/status_effect/drugginess))
-		return TRUE
-	if(IsSleeping() || IsUnconscious())
-		return TRUE
-	if(HAS_TRAIT(src, TRAIT_DUMB))
-		return TRUE
-	if(mob_mood.sanity < SANITY_UNSTABLE)
-		return TRUE
 
 /mob/living/carbon/wash(clean_types)
 	. = ..()

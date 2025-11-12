@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "NPC cap has been moved to map configs, expect less npcs in smaller maps."
+  - bugfix: "NPC repopulate is called on round start to get up to the correct number"

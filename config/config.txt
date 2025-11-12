@@ -9,6 +9,9 @@ $include interviews.txt
 $include lua.txt
 $include auxtools.txt
 $include map_vote.txt
+## DARKPACK EDIT ADD START
+$include darkpack_config.txt
+## DARKPACK EDIT ADD END
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -25,7 +28,7 @@ $include map_vote.txt
 # SERVERSQLNAME tgstation
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME San Francisco
+# STATIONNAME San Francisco
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -651,3 +654,6 @@ TGUI_MAX_CHUNK_COUNT 32
 ## While this is uncommented, server initialization will include some asset generation usually useful for development.
 ## It increases initialization time significantly so you'll want to disable this in live environments.
 GENERATE_ASSETS_IN_INIT
+
+## Minimum time before a heretic can ascend, in minutes
+# MINIMUM_ASCENSION_TIME 3

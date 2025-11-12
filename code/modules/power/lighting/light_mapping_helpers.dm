@@ -94,7 +94,7 @@
 	fire_brightness = 4.5
 	fire_colour = "#d400ff"
 
-// DARKPACK EDIT START
+// DARKPACK EDIT CHANGE START
 /obj/machinery/light/prince
 	base_state = "prince"
 
@@ -113,7 +113,7 @@
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, get_turf(src))
 			s.start()
-			playsound(loc, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
+			playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 			qdel(src)
 
 /obj/machinery/light/prince/broken
@@ -200,7 +200,7 @@ LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red/dim)
 // ---- Blacklight bulbs
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight)
 
-LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince) // DARKPACK EDIT ADD
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince)
 
 #undef LIGHTING_DIRECTIONAL_HELPERS
-// DARKPACK EDIT END
+// DARKPACK EDIT CHANGE END

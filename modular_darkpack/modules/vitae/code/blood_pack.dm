@@ -12,8 +12,10 @@
 	. = ..()
 	update_appearance()
 
-/obj/item/reagent_containers/blood/update_appearance(updates)
+/obj/item/reagent_containers/blood/update_icon_state()
 	. = ..()
+	if(!reagents)
+		return
 	var/percent = round((reagents.total_volume / volume) * 100)
 	switch(percent)
 		if(76 to 100)
@@ -35,7 +37,7 @@
 		return
 	if(!do_after(user, 3 SECONDS, M))
 		return
-	reagents.trans_to(M, reagents.total_volume, transferred_by = user, methods = EXPOSE_VAMPIRE, show_message = FALSE)
+	reagents.trans_to(M, reagents.total_volume, transferred_by = user, methods = INGEST, show_message = FALSE)
 	playsound(M.loc, 'sound/items/drink.ogg', 50, TRUE)
 	update_appearance()
 	//SEND_SIGNAL(M, COMSIG_MASQUERADE_VIOLATION)

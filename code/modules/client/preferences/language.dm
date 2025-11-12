@@ -5,7 +5,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/language/create_default_value()
-	return "Random"
+	return /datum/language/spanish::name // DARKPACK EDIT CHANGE - LANGUAGES
 
 /datum/preference/choiced/language/is_accessible(datum/preferences/preferences)
 	if (!..())
@@ -20,7 +20,7 @@
 		lang_icon.scale(32, 32)
 		return lang_icon
 
-	var/datum/universal_icon/unknown = uni_icon('icons/ui/chat/language.dmi', "unknown")
+	var/datum/universal_icon/unknown = uni_icon('modular_darkpack/master_files/icons/ui/chat/language.dmi', "unknown") // DARKPACK EDIT CHANGE - LANGUAGES
 	unknown.scale(32, 32)
 	return unknown
 
@@ -30,9 +30,11 @@
 	if(!GLOB.uncommon_roundstart_languages.len)
 		generate_selectable_species_and_languages()
 
+	/* DARKPACK EDIT REMOVAL - LANGUAGES
 	values += "Random"
 	//we add uncommon as it's foreigner-only.
 	values += /datum/language/uncommon::name
+	*/
 
 	for(var/datum/language/language_type as anything in GLOB.uncommon_roundstart_languages)
 		if(initial(language_type.name) in values)
