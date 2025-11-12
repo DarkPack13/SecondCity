@@ -137,8 +137,9 @@ export const IconDots = (props) => {
 
 export const ScreenHome = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
+  time?: string | null;
 }) => {
-  const { setApp } = props;
+  const { setApp, time } = props;
 
   return (
     <Stack fill vertical>
@@ -147,7 +148,7 @@ export const ScreenHome = (props: {
           <Stack.Item>
             <Box>
               <Box inline fontFamily="sans-serif" fontSize={4} ml={2} mt={2}>
-                4:20
+                {time}
               </Box>
               PM
             </Box>
@@ -164,7 +165,7 @@ export const ScreenHome = (props: {
             <AppIcon
               backgroundColor="#005555"
               text="IRC"
-              onClick={() => setApp(NavigableApps.IRC)}
+              //onClick={() => setApp(NavigableApps.IRC)}
             >
               <Box fontSize={1.2} bold>
                 #irc

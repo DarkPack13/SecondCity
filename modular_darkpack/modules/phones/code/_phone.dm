@@ -236,6 +236,8 @@
 
 	data["calling_user"] = get_number_contact_name()
 
+	data["time"] = time_to_twelve_hour(station_time(), format = "hh:mm")
+
 	return data
 
 /obj/item/smartphone/ui_act(action, params, datum/tgui/ui)
@@ -350,33 +352,34 @@
 			to_chat(usr, "[number_of_deletions] call history entries were deleted. Remaining: [length(phone_history_list)]")
 			return TRUE
 
-
-		if("silent")
-			ringer = !ringer
-			to_chat(usr, span_notice("Notifications and Sounds toggled [ringer ? "on" : "off"]."))
-			return TRUE
-
-		if("vibration")
-			vibration = !vibration
-			to_chat(usr, span_notice("Phone vibration toggled [vibration ? "on" : "off"]."))
-			return TRUE
-
 		if("terminal_sound")
 			if(ringer)
 				playsound(loc, 'sound/machines/terminal/terminal_select.ogg', 15, TRUE)
 			return TRUE
 
+		if("silent")
+			ringer = !ringer
+			balloon_alert(usr, "ringer [ringer ? "on" : "off"]!")
+			return TRUE
+
+		if("vibration")
+			vibration = !vibration
+			balloon_alert(usr, "vibration [vibration ? "on" : "off"]!")
+			return TRUE
+
 		if("speaker")
 			if(phone_radio.canhear_range == 1)
 				phone_radio.canhear_range = 3
+				balloon_alert(usr, "speaker on!")
 			else
 				phone_radio.canhear_range = 1
+				balloon_alert(usr, "speaker off!")
 			return TRUE
 
 		if("mute")
 			muted = !muted
 			phone_radio.set_listening(!muted)
-			to_chat(usr, span_notice("Phone microphone [muted ? "muted" : "unmuted"]."))
+			balloon_alert(usr, "[muted ? "muted" : "unmuted"]!")
 
 	return FALSE
 

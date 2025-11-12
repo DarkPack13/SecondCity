@@ -43,7 +43,7 @@ export const ContactElement = (props: {
           </Stack.Item>
           <Stack.Item grow>
             <Box>{contact.name}</Box>
-            <Box textColor="#aaa">{time ? null : (contact.number || 'Unknown Number')}</Box>
+            <Box textColor="#aaa">{time ? (time) : (contact.number || 'Unknown Number')}</Box>
           </Stack.Item>
         </Stack>
       </Stack.Item>
