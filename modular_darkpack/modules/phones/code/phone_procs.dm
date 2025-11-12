@@ -1,5 +1,3 @@
-// Helper procs
-
 // Updates the phone's contacts, for when a new contact joins the game.
 /obj/item/smartphone/proc/update_contacts()
 	for(var/datum/contact_network/contact_network as anything in contact_networks)
@@ -52,14 +50,17 @@
 	if(current_state == new_state)
 		return
 	current_state = new_state
+
 	if(current_state == PHONE_AVAILABLE)
+		dialed_number = null
+		incoming_phone_number = null
+	if(current_state == PHONE_RINGING)
+		START_PROCESSING(SSprocessing, src)
+
+	if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
 		if(phone_ringing_timer)
 			deltimer(phone_ringing_timer)
 		STOP_PROCESSING(SSprocessing, src)
-		dialed_number = null
-		incoming_phone_number = null
-	else if(current_state == PHONE_RINGING)
-		START_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
 	if(phone_flags & PHONE_NO_SIM)
@@ -81,8 +82,6 @@
 /obj/item/smartphone/proc/start_phone_call(mob/user, called_phone_number)
 	if(check_missing_sim_card(user))
 		return
-	set_phone_state(PHONE_CALLING)
-	add_phone_call_history(PHONE_CALL_SENT)
 
 	var/obj/item/smartphone/calling_smartphone = SSphones.get_phone_from_number(called_phone_number)
 	if(!calling_smartphone)
@@ -92,7 +91,9 @@
 	dialed_number = called_phone_number
 	calling_smartphone.incoming_phone_number = sim_card.phone_number
 	calling_smartphone.receive_phone_call()
-	phone_ringing_timer = addtimer(CALLBACK(src, PROC_REF(miss_phone_call)), TIME_TO_RING, TIMER_STOPPABLE | TIMER_DELETE_ME)
+	phone_ringing_timer = addtimer(CALLBACK(src, PROC_REF(set_phone_available)), TIME_TO_RING, TIMER_STOPPABLE | TIMER_DELETE_ME)
+	add_phone_call_history(PHONE_CALL_SENT)
+	set_phone_state(PHONE_CALLING)
 
 // Used for when the receiving phone picks up a phone call.
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
@@ -104,11 +105,12 @@
 // Used for when the receiving phone declines a phone call.
 /obj/item/smartphone/proc/decline_phone_call()
 	add_phone_call_history(PHONE_CALL_DECLINED)
-	set_phone_state(PHONE_AVAILABLE)
+	terminate_call_connection()
 
 // Used for when the receiving phone or the calling phone end the phone call after it has started.
 /obj/item/smartphone/proc/end_phone_call()
-	terminate_call_connection(incoming_phone_number)
+	add_phone_call_history(PHONE_CALL_ENDED)
+	terminate_call_connection()
 
 // Used for when the calling phone ends the phone call before the receiving phone picks up.
 /obj/item/smartphone/proc/hang_up_phone_call(called_phone_number)
@@ -127,6 +129,10 @@
 // Used for when the receiving phone fails to pick up the phone call in time.
 /obj/item/smartphone/proc/miss_phone_call()
 	add_phone_call_history(PHONE_CALL_MISSED)
+	set_phone_state(PHONE_AVAILABLE)
+
+// General purpose failsafe of setting it to its proper state.
+/obj/item/smartphone/proc/set_phone_available()
 	set_phone_state(PHONE_AVAILABLE)
 
 // Only used to indicate to the receiving phone that they are being called.
@@ -166,6 +172,9 @@
 	PROTECTED_PROC(TRUE)
 
 	var/obj/item/smartphone/calling_smartphone = SSphones.get_phone_from_number(incoming_phone_number)
+	calling_smartphone = SSphones.get_phone_from_number(incoming_phone_number)
+	if(!calling_smartphone)
+		calling_smartphone = SSphones.get_phone_from_number(dialed_number)
 	if(!calling_smartphone)
 		return
 

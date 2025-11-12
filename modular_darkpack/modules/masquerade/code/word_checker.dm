@@ -12,7 +12,7 @@
 /obj/item/smartphone/proc/handle_hearing(datum/source, list/hearing_args)
 	SIGNAL_HANDLER
 
-	if(phone_flags & PHONE_IN_CALL)
+	if(current_state == PHONE_IN_CALL)
 		if(istype(hearing_args[HEARING_SPEAKER], /obj/phone_voice))
 			return
 		if(lowertext(MASQUERADE_FILTER_CHECK(hearing_args[HEARING_RAW_MESSAGE])))

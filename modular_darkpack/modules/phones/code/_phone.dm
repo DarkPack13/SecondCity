@@ -339,7 +339,7 @@
 				to_chat(usr, "You cannot delete more items than the history contains.")
 				return FALSE
 			else
-				for(var/i in number_of_deletions)
+				for(var/i in 1 to number_of_deletions)
 					//It will always delete the first item of the list, so the last logs are deleted first
 					var/item_to_remove = phone_history_list[1]
 					phone_history_list -= item_to_remove
