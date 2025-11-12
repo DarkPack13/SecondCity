@@ -1,5 +1,6 @@
 https://github.com/DarkPack13/SecondCity/pull/38
 https://github.com/DarkPack13/SecondCity/pull/58
+https://github.com/DarkPack13/SecondCity/pull/69
 
 ## Storyteller stats
 
