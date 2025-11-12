@@ -5,13 +5,14 @@ import { Box, Icon, Stack } from 'tgui-core/components';
 import { useBackend } from '../../backend';
 import { Contact, Data, NavigableApps } from '.';
 
-const ContactElement = (props: {
+export const ContactElement = (props: {
   contact: Contact;
   deleteIcon?: string | null;
   onClick?: () => void;
   onDelete?: () => void;
+  historyIcon?: string | null;
 }) => {
-  const { contact, onClick, deleteIcon, onDelete } = props;
+  const { contact, onClick, deleteIcon, onDelete, historyIcon } = props;
   const { act } = useBackend();
 
   return (
@@ -51,6 +52,14 @@ const ContactElement = (props: {
           onClick={onDelete}
         >
           <Icon name={deleteIcon} size={1.5} />
+        </Stack.Item>
+      ) : null}
+      {historyIcon ? (
+        <Stack.Item
+          className="Telephone__ContactsElement"
+          mr={1}
+        >
+          <Icon name={historyIcon} size={1.5} />
         </Stack.Item>
       ) : null}
     </Stack>

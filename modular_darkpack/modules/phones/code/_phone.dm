@@ -333,6 +333,9 @@
 
 			to_chat(usr, "Your total amount of history saved is: [length(phone_history_list)]")
 			var/number_of_deletions = tgui_input_number(usr, "Input the amount that you want to delete", "Deletion Amount", max_value = length(phone_history_list))
+			if(!number_of_deletions)
+				return FALSE
+
 			//Delete the call history depending on the amount inputed by the User
 			if(number_of_deletions > length(phone_history_list))
 				//Verify if the requested amount in bigger than the history list.

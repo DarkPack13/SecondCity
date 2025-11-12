@@ -118,7 +118,13 @@ const PhysicalScreen = (props: {
       );
     }
     case NavigableApps.Recents: {
-      return <ScreenRecents />;
+      return (
+        <ScreenRecents
+          enteredNumber={enteredNumber}
+          setEnteredNumber={setEnteredNumber}
+          setApp={setApp}
+        />
+      );
     }
     case NavigableApps.Messages: {
       return <ScreenMessages />;

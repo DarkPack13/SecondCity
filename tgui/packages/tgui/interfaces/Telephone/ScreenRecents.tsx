@@ -2,9 +2,15 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack } from 'tgui-core/components';
 
-import { Data } from '.';
+import { Data, NavigableApps } from '.';
+import { ContactElement } from './ScreenContacts';
 
-export const ScreenRecents = (props) => {
+export const ScreenRecents = (props: {
+  enteredNumber: string;
+  setEnteredNumber: React.Dispatch<React.SetStateAction<string>>;
+  setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
+}) => {
+  const { enteredNumber, setEnteredNumber, setApp } = props;
   const { act, data } = useBackend<Data>();
   const { phone_history } = data;
 
@@ -33,11 +39,16 @@ export const ScreenRecents = (props) => {
         </Box>
       </Stack.Item>
       <Stack.Item grow mb={6} mt={0} style={{ overflowY: 'scroll' }}>
-        {phone_history.length === 0 ? 'No calls :)' : null}
-        {phone_history.map((entry) => (
-          <Box key={entry.time + entry.name + entry.number}>
-            [{entry.time}]: {entry.name} ({entry.number}) called. {entry.type}.
-          </Box>
+        {phone_history.map((contact) => (
+          <ContactElement
+            contact={contact}
+            key={contact.name + contact.number}
+            onClick={() => {
+              setEnteredNumber(contact.number);
+              setApp(NavigableApps.Phone);
+            }}
+            historyIcon='trash'
+          />
         ))}
       </Stack.Item>
     </Stack>
