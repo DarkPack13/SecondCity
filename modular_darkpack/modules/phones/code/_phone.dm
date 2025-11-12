@@ -27,6 +27,8 @@
 	var/obj/machinery/newscaster/irc_channel
 	// Do we have a SIM card?
 	var/obj/item/sim_card/sim_card
+	// There's a wiki in our phone. Literally.
+	var/obj/item/book/manual/wiki/wiki_book
 	// Phone flags, for things like if its open or if it has no sim card.
 	var/phone_flags = NONE
 	// The phone's current state.
@@ -64,6 +66,7 @@
 	phone_radio.radio_noise = FALSE
 	phone_radio.canhear_range = 1
 	irc_channel = new()
+	wiki_book = new()
 	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /// Index to a define to point at a runtime-global list at compile-time.
@@ -117,6 +120,8 @@
 		QDEL_NULL(phone_radio)
 	if(irc_channel)
 		QDEL_NULL(irc_channel)
+	if(wiki_book)
+		QDEL_NULL(wiki_book)
 	return ..()
 
 /obj/item/smartphone/examine(mob/user)
@@ -382,17 +387,7 @@
 			balloon_alert(usr, "[muted ? "muted" : "unmuted"]!")
 
 		if("wiki")
-			var/wiki_url = CONFIG_GET(string/wikiurl)
-			if(!wiki_url)
-				balloon_alert(usr, "this page is empty!")
-				return
-			if(usr.client.byond_version < 516) //Remove this once 516 is stable
-				if(tgui_alert(usr, "This app's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
-					return
-				DIRECT_OUTPUT(usr, link("[wiki_url]/[page_link]"))
-			else
-				DIRECT_OUTPUT(usr, browse(WIKI_PAGE_IFRAME(wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
-
+			wiki_book.display_content(usr)
 	return FALSE
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
