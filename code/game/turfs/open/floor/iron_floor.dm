@@ -489,6 +489,7 @@
 	floor_tile = /obj/item/stack/tile/iron/goonplaque
 
 /turf/open/floor/iron/stairs
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stairs"
 	base_icon_state = "stairs"
 	tiled_dirt = FALSE
