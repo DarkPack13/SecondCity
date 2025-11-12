@@ -165,8 +165,8 @@ GLOBAL_LIST_EMPTY(request_list)
 	var/message_count = 0
 
 /datum/feed_network/New()
-	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, "SS13", "Company news, staff announcements, and all the latest information. Have a secure shift!", locked = TRUE)
-	create_feed_channel(NEWSCASTER_SPACE_BETTING, "NtOS", "News from the SpaceBet PDA App! Download now and make your own bets!", locked = TRUE)
+	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, NEWSPAPER_COMPANY, "Local news, Help Wanted, and all the hottest stories!", locked = TRUE) // DARKPACK EDIT CHANGE
+	// create_feed_channel(NEWSCASTER_SPACE_BETTING, "NtOS", "News from the SpaceBet PDA App! Download now and make your own bets!", locked = TRUE) // DARKPACK EDIT REMOVAL
 	wanted_issue = new /datum/wanted_message
 
 /datum/feed_network/proc/add_feed_channel(datum/feed_channel/new_channel)
