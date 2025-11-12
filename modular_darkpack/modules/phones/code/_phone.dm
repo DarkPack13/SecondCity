@@ -30,7 +30,7 @@
 	// Phone flags, for things like if its open or if it has no sim card.
 	var/phone_flags = NONE
 	// The phone's current state.
-	var/current_state = PHONE_AVAILABLE
+	VAR_PRIVATE/current_state = PHONE_AVAILABLE
 	// The number the phone has dialed.
 	var/dialed_number
 	// The frequency in use for a phone call.

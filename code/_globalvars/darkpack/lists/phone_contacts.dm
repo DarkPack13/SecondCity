@@ -30,25 +30,25 @@ GLOBAL_LIST_EMPTY(endron_network)
 
 
 /proc/contact_network_from_define(network_id)
-    switch(network_id)
-        if(MILLENIUM_TOWER_NETWORK)
-            return GLOB.millenium_tower_network
-        if(LASOMBRA_NETWORK)
-            return GLOB.lasombra_network
-        if(TREMERE_NETWORK)
-            return GLOB.tremere_network
-        if(GIOVANNI_NETWORK)
-            return GLOB.giovanni_network
-        if(TZMISCE_NETWORK)
-            return GLOB.tzmisce_network
-        if(ANARCH_NETWORK)
-            return GLOB.anarch_network
-        if(WAREHOUSE_NETWORK)
-            return GLOB.warehouse_network
-        if(AXES_NETWORK)
-            return GLOB.axes_network
-        if(VAMPIRE_LEADER_NETWORK)
-            return GLOB.vampire_leader_network
-        if(ENDRON_NETWORK)
-            return GLOB.endron_network
-    CRASH("contact_network_from_define() called with invalid network_id: [isnull(network_id) ? "(null)" : network_id]")
+	switch(network_id)
+		if(MILLENIUM_TOWER_NETWORK)
+			return GLOB.millenium_tower_network
+		if(LASOMBRA_NETWORK)
+			return GLOB.lasombra_network
+		if(TREMERE_NETWORK)
+			return GLOB.tremere_network
+		if(GIOVANNI_NETWORK)
+			return GLOB.giovanni_network
+		if(TZMISCE_NETWORK)
+			return GLOB.tzmisce_network
+		if(ANARCH_NETWORK)
+			return GLOB.anarch_network
+		if(WAREHOUSE_NETWORK)
+			return GLOB.warehouse_network
+		if(AXES_NETWORK)
+			return GLOB.axes_network
+		if(VAMPIRE_LEADER_NETWORK)
+			return GLOB.vampire_leader_network
+		if(ENDRON_NETWORK)
+			return GLOB.endron_network
+	CRASH("contact_network_from_define() called with invalid network_id: [isnull(network_id) ? "(null)" : network_id]")
