@@ -108,7 +108,8 @@
 
 /turf/open/floor/city/bacotell
 	name = "plating"
-	icon_state = "bacotell"
+	icon_state = "bacotell1"
+	base_icon_state = "bacotell1"
 
 /turf/open/floor/city/bacotell/Initialize(mapload)
 	. = ..()
@@ -116,7 +117,8 @@
 
 /turf/open/floor/city/gummaguts
 	name = "plating"
-	icon_state = "gummaguts"
+	icon_state = "gummaguts1"
+	base_icon_state = "gummaguts1"
 
 /turf/open/floor/city/gummaguts/Initialize(mapload)
 	. = ..()
