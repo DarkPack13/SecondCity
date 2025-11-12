@@ -171,6 +171,11 @@
 	set_phone_state(PHONE_IN_CALL)
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
 
+	phone_radio.canhear_range = 1
+	calling_smartphone.phone_radio.canhear_range = 1
+	muted = FALSE
+	calling_smartphone.muted = FALSE
+
 // Internal only proc, used for ending a calll connection.
 /obj/item/smartphone/proc/terminate_call_connection()
 	PROTECTED_PROC(TRUE)
