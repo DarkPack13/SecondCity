@@ -98,3 +98,6 @@
 
 /obj/effect/turf_decal/bordur/corner
 	icon_state = "border_corner"
+
+/obj/effect/turf_decal/bordur/end
+	icon_state = "border_end"
