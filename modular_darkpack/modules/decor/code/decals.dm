@@ -101,3 +101,37 @@
 
 /obj/effect/turf_decal/bordur/end
 	icon_state = "border_end"
+
+/obj/effect/turf_decal/darkpack // These open a massive can of worms. Maybe keep their use to when it's needed only?
+	name = "detail"
+	icon = 'modular_darkpack/modules/decor/icons/natural_turf_borders.dmi'
+
+/obj/effect/turf_decal/darkpack/dirt
+	icon_state = "vampdirt_side"
+
+/obj/effect/turf_decal/darkpack/dirt/corner
+	icon_state = "vampdirt_corner"
+
+/obj/effect/turf_decal/darkpack/sand
+	icon_state = "vampbeach_side"
+
+/obj/effect/turf_decal/darkpack/sand/corner
+	icon_state = "vampbeach_corner"
+
+/obj/effect/turf_decal/darkpack/grass
+	icon_state = "vampgrass_side"
+
+/obj/effect/turf_decal/darkpack/grass/corner
+	icon_state = "vampgrass_corner"
+
+/obj/effect/turf_decal/darkpack/rough
+	icon_state = "rough_side"
+
+/obj/effect/turf_decal/darkpack/rough/corner
+	icon_state = "rough_corner"
+
+/obj/effect/turf_decal/darkpack/cave
+	icon_state = "cave_side"
+
+/obj/effect/turf_decal/darkpack/cave/corner
+	icon_state = "cave_corner"

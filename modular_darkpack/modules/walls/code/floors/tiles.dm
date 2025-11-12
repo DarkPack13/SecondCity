@@ -30,6 +30,14 @@
 	. = ..()
 	icon_state = "toilet[rand(1, 9)]"
 
+/turf/open/floor/city/toilet/large
+	name = "plating"
+	icon_state = "toilet_large1"
+
+/turf/open/floor/city/toilet/large/Initialize(mapload)
+	. = ..()
+	icon_state = "toilet_large[rand(1, 9)]"
+
 /turf/open/floor/city/clinic
 	name = "plating"
 	icon_state = "clinic1"
