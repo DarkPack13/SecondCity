@@ -166,6 +166,12 @@
 		var/mob/living/carbon/human/husrc = src // gross istypesrc but easier than refactoring even further for now
 		if(husrc.skin_tone == "albino")
 			apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25) // knocks you down a few pegs
+	if(HAS_TRAIT(user, TRAIT_COLD_AURA))
+		apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25)
+	if(HAS_TRAIT(user, TRAIT_WARM_AURA))
+		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.25)
+	if(HAS_TRAIT(user, TRAIT_BLUSH_OF_HEALTH))
+		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.50)
 	switch(apparent_blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			. += span_warning("[t_He] [t_has] pale skin.")
@@ -252,6 +258,26 @@
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
 
+		// DARKPACK EDIT ADD START
+		if(iskindred(src) && !(obscured_slots & HIDEFACE))
+			switch(clan.alt_sprite)
+				if("nosferatu")
+					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
+				if("gargoyle")
+					. += span_warning("[p_they(TRUE)] seem[p_s()] to be made out of stone!<br>")
+				if("kiasyd")
+					if (!is_eyes_covered())
+						. += span_boldwarning("[p_they(TRUE)] [p_have()] no whites in [p_their()] eyes!</b><br>")
+				if("rotten1")
+					. += span_warning("[p_they(TRUE)] seem[p_s()] oddly gaunt.<br>")
+				if("rotten2")
+					. += span_warning("[p_they(TRUE)] [p_have()] a corpselike complexion.<br>")
+				if("rotten3")
+					. += span_boldwarning("[p_they(TRUE)] [p_are()] a decayed corpse!<br>")
+				if("rotten4")
+					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
+		// DARKPACK EDIT ADD END
+
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
 				. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
@@ -302,17 +328,15 @@
 	if(isliving(user) && HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		. += compare_fitness(user)
 
-	//DARKPACK EDIT START
+	//DARKPACK EDIT ADD START
+	if(ishumanbasic(user))
+		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
+
+	ADD_NEWLINE_IF_NECESSARY(.)
 	if(custom_examine_message)
 		. += span_purple(custom_examine_message)
-
-	if(ishumanbasic(user))
-		. += "<a href='byond://?src=[REF(src)];masquerade=1'>Report a Masquerade violation</a>"
-		. += "---------------"
-		. += "<a href='byond://?src=[REF(src)];reinforcement=1'>Report a Masquerade reinforcement</a>"
-
 	. += flavor_text_creation()
-	//DARKPACK EDIT END
+	//DARKPACK EDIT ADD END
 
 	var/hud_info = get_hud_examine_info(user)
 	if(length(hud_info))

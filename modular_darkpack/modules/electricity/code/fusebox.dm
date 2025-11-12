@@ -16,7 +16,7 @@
 	//Repairing var for the loop
 	var/repairing = FALSE
 
-/obj/fusebox/update_icon(updates)
+/obj/fusebox/update_icon_state()
 	. = ..()
 	if(damaged > 100)
 		icon_state = "fusebox_open"

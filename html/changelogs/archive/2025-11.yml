@@ -28,3 +28,27 @@
   - image: pretty new crate and plant tray sprites by paynt
   - bugfix: retail stores will use custom premium price if it doesnt have normal custom_price
       nor passed in the retail store
+2025-11-05:
+  FalloutFalcon:
+  - sound: Adds wooden door knocking, Sounds where in the repo just unused.
+  - sound: Replaces the end of round sounds with bloopers from the HTP episode 6.2
+  - refactor: fishing has been TGified
+  chazzyjazzy:
+  - code_imp: reticks necromancy and remakes graveyard subsystem
+  dwinters99:
+  - rscadd: wod belts
+  - rscadd: TFN tasers
+2025-11-06:
+  dwinters99:
+  - map: viewport helpers for mapping
+2025-11-09:
+  dwinters99:
+  - bugfix: lizard and ethereal blood no longer spawns in blood freezers
+2025-11-11:
+  chazzyjazzy:
+  - code_imp: ticking thaumaturgy and file management for ritual thaumaturgy
+  dwinters99:
+  - balance: loadout cowboy hat changed to the unarmored variant
+2025-11-12:
+  FalloutFalcon:
+  - rscadd: deer are scared of darkpack cars lol
