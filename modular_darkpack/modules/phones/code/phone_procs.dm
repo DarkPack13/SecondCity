@@ -74,6 +74,10 @@
 		balloon_alert(user, "busy!")
 		to_chat(user, span_notice("The number you are attempting to reach is currently busy. Please try again later."))
 		return TRUE
+	if(calling_smartphone.sim_card?.phone_number == sim_card?.phone_number)
+		balloon_alert(user, "busy!")
+		to_chat(user, span_notice("The number you are attempting to reach is currently busy. Please try again later."))
+		return TRUE
 	return FALSE
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
