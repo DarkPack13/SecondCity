@@ -62,6 +62,8 @@ export type Data = {
   vibration: BooleanLike;
   speaker_mode: BooleanLike;
   muted: BooleanLike;
+  time: string;
+  date: string;
 
   published_numbers: Contact[];
   our_contacts: Contact[];

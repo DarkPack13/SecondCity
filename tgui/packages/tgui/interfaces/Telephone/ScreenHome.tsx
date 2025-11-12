@@ -2,7 +2,8 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import { Box, Icon, Stack } from 'tgui-core/components';
 
-import { NavigableApps } from '.';
+import { useBackend } from 'tgui/backend';
+import { NavigableApps, Data } from '.';
 
 export const AppIcon = (
   props: PropsWithChildren<{
@@ -137,22 +138,20 @@ export const IconDots = (props) => {
 
 export const ScreenHome = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
-  time?: string | null;
 }) => {
-  const { setApp, time } = props;
+  const { act, data } = useBackend<Data>();
+  const { setApp } = props;
+  const { time, date } = data;
 
   return (
     <Stack fill vertical>
       <Stack.Item grow>
         <Stack align="center" justify="space-between">
           <Stack.Item>
-            <Box>
-              <Box inline fontFamily="sans-serif" fontSize={4} ml={2} mt={2}>
-                {time}
-              </Box>
-              PM
+            <Box inline fontFamily="sans-serif" fontSize={4} ml={2} mt={2}>
+              {time}
             </Box>
-            <Box ml={2.5}>Monday, April 20</Box>
+            <Box ml={2.5}>{date}</Box>
           </Stack.Item>
           <Stack.Item mr={2}>
             <Icon name="cloud" size={2} />
@@ -258,9 +257,7 @@ export const ScreenHome = (props: {
               text="Browser"
               iconName="globe-americas"
               iconColor="black"
-              onClick={() => {
-                setApp(NavigableApps.Browser);
-              }}
+              onClick={() => act('wiki')}
             />
           </Stack.Item>
         </Stack>

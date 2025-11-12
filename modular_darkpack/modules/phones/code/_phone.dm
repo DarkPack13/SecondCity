@@ -237,7 +237,7 @@
 	data["calling_user"] = get_number_contact_name()
 
 	data["time"] = time_to_twelve_hour(station_time(), format = "hh:mm")
-
+	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
 	return data
 
 /obj/item/smartphone/ui_act(action, params, datum/tgui/ui)
@@ -380,6 +380,18 @@
 			muted = !muted
 			phone_radio.set_listening(!muted)
 			balloon_alert(usr, "[muted ? "muted" : "unmuted"]!")
+
+		if("wiki")
+			var/wiki_url = CONFIG_GET(string/wikiurl)
+			if(!wiki_url)
+				balloon_alert(usr, "this page is empty!")
+				return
+			if(usr.client.byond_version < 516) //Remove this once 516 is stable
+				if(tgui_alert(usr, "This app's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
+					return
+				DIRECT_OUTPUT(usr, link("[wiki_url]/[page_link]"))
+			else
+				DIRECT_OUTPUT(usr, browse(WIKI_PAGE_IFRAME(wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
 
 	return FALSE
 
