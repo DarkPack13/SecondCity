@@ -22,10 +22,11 @@ This module handles everything related to phones, contacts, sim cards, and so on
 
 ### Included files that are not contained in this module:
 
-- `code/__DEFINES/~darkpack/dcs/phone_signals.dm`
+- `code/_globalvars/darkpack/lists/phone_contacts.dm`
 
 ### Credits:
 
 XeonMations
+Shadow for the initial TGUI work!
 Marshmellow105 for inhand sprites + Sprite conversion!
 Azlan (Github: SomeAngryMiner) for the sprites!
