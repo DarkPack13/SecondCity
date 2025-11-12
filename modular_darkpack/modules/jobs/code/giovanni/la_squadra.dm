@@ -6,7 +6,7 @@
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"
 	config_tag = "LA_SQUADRA"
-	outfit = /datum/outfit/job/squadra
+	outfit = /datum/outfit/job/vampire/squadra
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -20,7 +20,7 @@
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 
-/datum/outfit/job/squadra
+/datum/outfit/job/vampire/squadra
 	name = "La Squadra"
 	jobtype = /datum/job/vampire/squadra
 

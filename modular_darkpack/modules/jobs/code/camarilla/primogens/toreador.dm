@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_TOREADOR"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/toreador
+	outfit = /datum/outfit/job/vampire/toreador
 
 	display_order = JOB_DISPLAY_ORDER_TOREADOR
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/toreador
+/datum/outfit/job/vampire/toreador
 	name = "Primogen Toreador"
 	jobtype = /datum/job/vampire/primogen_toreador
 

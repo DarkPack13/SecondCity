@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = " the Laws of Hospitality"
 	config_tag = "VOIVODE"
-	outfit = /datum/outfit/job/voivode
+	outfit = /datum/outfit/job/vampire/voivode
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
 	department_for_prefs = /datum/job_department/manor
@@ -23,7 +23,7 @@
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
-/datum/outfit/job/voivode
+/datum/outfit/job/vampire/voivode
 	name = "Voivode"
 	jobtype = /datum/job/vampire/voivode
 	id = /obj/item/card/voivode

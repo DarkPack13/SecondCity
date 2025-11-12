@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_VENTRUE"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/ventrue
+	outfit = /datum/outfit/job/vampire/ventrue
 
 	display_order = JOB_DISPLAY_ORDER_VENTRUE
 	department_for_prefs = /datum/job_department/camarilla
@@ -31,7 +31,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/ventrue
+/datum/outfit/job/vampire/ventrue
 	name = "Primogen Ventrue"
 	jobtype = /datum/job/vampire/primogen_ventrue
 

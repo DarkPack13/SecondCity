@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_BARON_PUBLIC
 	config_tag = "TAPSTER"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/tapster
+	outfit = /datum/outfit/job/vampire/tapster
 
 	display_order = JOB_DISPLAY_ORDER_TAPSTER
 	department_for_prefs = /datum/job_department/anarch
@@ -21,7 +21,7 @@
 	description = "You are a bartender of the local biker hangout. Serve the eclectic clients that pass through, and try not to ask too many questions."
 	minimal_masquerade = 0
 
-/datum/outfit/job/tapster
+/datum/outfit/job/vampire/tapster
 	name = "Tapster"
 	jobtype = /datum/job/vampire/tapster
 

@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRINCE"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/prince
+	outfit = /datum/outfit/job/vampire/prince
 
 	display_order = JOB_DISPLAY_ORDER_PRINCE
 	department_for_prefs = /datum/job_department/prince
@@ -42,7 +42,7 @@
 /datum/job/vampire/prince/get_captaincy_announcement(mob/living/captain)
 	return "Prince [captain.real_name] is in the city!"
 
-/datum/outfit/job/prince
+/datum/outfit/job/vampire/prince
 	name = "Prince"
 	jobtype = /datum/job/vampire/prince
 

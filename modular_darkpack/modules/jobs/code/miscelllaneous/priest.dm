@@ -6,7 +6,7 @@
 	spawn_positions = 2
 	supervisors = "God"
 	config_tag = "PRIEST"
-	outfit = /datum/outfit/job/priest
+	outfit = /datum/outfit/job/vampire/priest
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_PRIEST
 	exp_required_type_department = EXP_TYPE_CHURCH
@@ -17,7 +17,7 @@
 	allowed_species = list(SPECIES_HUMAN)
 	description = "Be the shepherd of the flock in " + CITY_NAME + ", lead them to salvation, piety and righteousness."
 
-/datum/outfit/job/priest
+/datum/outfit/job/vampire/priest
 	name = "Priest"
 	jobtype = /datum/job/vampire/priest
 

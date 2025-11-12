@@ -20,7 +20,7 @@
 	var/list/known_contacts = null
 
 // Default vampire job outfits.
-/datum/outfit/job
+/datum/outfit/job/vampire
 	uniform = /obj/item/clothing/under/color/grey
 	id = null
 	ears = null
@@ -30,7 +30,7 @@
 	box = null
 	pda_slot = null
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+/datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()
 	var/obj/item/smartphone/phone = locate() in user.contents
 	if(phone)

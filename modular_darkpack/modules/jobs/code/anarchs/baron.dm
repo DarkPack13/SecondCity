@@ -7,7 +7,7 @@
 	supervisors = "the Anarchs and the Traditions"
 	config_tag = "BARON"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/baron
+	outfit = /datum/outfit/job/vampire/baron
 
 	display_order = JOB_DISPLAY_ORDER_BARON
 	department_for_prefs = /datum/job_department/anarch
@@ -21,7 +21,7 @@
 	description = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
 
-/datum/outfit/job/baron
+/datum/outfit/job/vampire/baron
 	name = "Baron"
 	jobtype = /datum/job/vampire/baron
 

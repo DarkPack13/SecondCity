@@ -7,7 +7,7 @@
 	spawn_positions = 4
 	supervisors = " the Laws of Hospitality"
 	config_tag = "BOGATYR"
-	outfit = /datum/outfit/job/bogatyr
+	outfit = /datum/outfit/job/vampire/bogatyr
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
 	department_for_prefs = /datum/job_department/manor
@@ -24,7 +24,7 @@
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
-/datum/outfit/job/bogatyr
+/datum/outfit/job/vampire/bogatyr
 	name = "Bogatyr"
 	jobtype = /datum/job/vampire/bogatyr
 	id = /obj/item/card/bogatyr

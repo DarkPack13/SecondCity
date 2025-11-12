@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_NOSFERATU"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/nosferatu
+	outfit = /datum/outfit/job/vampire/nosferatu
 
 	display_order = JOB_DISPLAY_ORDER_NOSFERATU
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/nosferatu
+/datum/outfit/job/vampire/nosferatu
 	name = "Primogen Nosferatu"
 	jobtype = /datum/job/vampire/primogen_nosferatu
 

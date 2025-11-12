@@ -14,7 +14,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "HOUND"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/hound
+	outfit = /datum/outfit/job/vampire/hound
 
 	display_order = JOB_DISPLAY_ORDER_HOUND
 	department_for_prefs = /datum/job_department/camarilla
@@ -28,7 +28,7 @@
 
 	known_contacts = list("Prince", "Sheriff")
 
-/datum/outfit/job/hound
+/datum/outfit/job/vampire/hound
 	name = "Hound"
 	jobtype = /datum/job/vampire/hound
 

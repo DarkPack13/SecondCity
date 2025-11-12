@@ -6,7 +6,7 @@
 	spawn_positions = 4
 	supervisors = SUPERVISOR_REGENT
 	config_tag = "CHANTRY_ARCHIVIST"
-	outfit = /datum/outfit/job/archivist
+	outfit = /datum/outfit/job/vampire/archivist
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
@@ -21,7 +21,7 @@
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
 	known_contacts = list("Tremere Regent")
 
-/datum/outfit/job/archivist
+/datum/outfit/job/vampire/archivist
 	name = "Archivist"
 	jobtype = /datum/job/vampire/archivist
 

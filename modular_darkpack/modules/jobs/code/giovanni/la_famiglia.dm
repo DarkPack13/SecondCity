@@ -6,7 +6,7 @@
 	spawn_positions = 10
 	supervisors = "the Family or your Spouse"
 	config_tag = "LA_FAMIGLIA"
-	outfit = /datum/outfit/job/famiglia
+	outfit = /datum/outfit/job/vampire/famiglia
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -20,7 +20,7 @@
 	description = "Your family is a strange one. Maybe you are strange too, because sitting next to your great uncles as an equal is something you are greatly interested in."
 	minimal_masquerade = 0
 
-/datum/outfit/job/famiglia
+/datum/outfit/job/vampire/famiglia
 	name = "La Famiglia"
 	jobtype = /datum/job/vampire/famiglia
 	id = /obj/item/watch

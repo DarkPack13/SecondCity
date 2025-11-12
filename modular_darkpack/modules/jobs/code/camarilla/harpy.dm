@@ -15,7 +15,7 @@
 	exp_required_type_department = EXP_TYPE_CAMARILLA
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/harpy
+	outfit = /datum/outfit/job/vampire/harpy
 
 	display_order = JOB_DISPLAY_ORDER_HARPY
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD)
 
-/datum/outfit/job/harpy
+/datum/outfit/job/vampire/harpy
 	name = "Harpy"
 	jobtype = /datum/job/vampire/harpy
 

@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_BANU_HAQIM"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/banuprim
+	outfit = /datum/outfit/job/vampire/banuprim
 
 	display_order = JOB_DISPLAY_ORDER_BANU
 	department_for_prefs = /datum/job_department/camarilla
@@ -31,7 +31,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/banuprim
+/datum/outfit/job/vampire/banuprim
 	name = "Primogen Banu Haqim"
 	jobtype = /datum/job/vampire/primogen_banu
 

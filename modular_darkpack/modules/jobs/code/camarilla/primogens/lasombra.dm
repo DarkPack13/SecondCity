@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_LASOMBRA"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/lasombraprim
+	outfit = /datum/outfit/job/vampire/lasombraprim
 
 	display_order = JOB_DISPLAY_ORDER_LASOMBRA
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/lasombraprim
+/datum/outfit/job/vampire/lasombraprim
 	name = "Primogen Lasombra"
 	jobtype = /datum/job/vampire/primogen_lasombra
 

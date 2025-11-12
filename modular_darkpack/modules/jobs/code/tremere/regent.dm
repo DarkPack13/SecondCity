@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = SUPERVISOR_CAMARILLA
 	config_tag = "CHANTRY_REGENT"
-	outfit = /datum/outfit/job/regent
+	outfit = /datum/outfit/job/vampire/regent
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
@@ -22,7 +22,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/regent
+/datum/outfit/job/vampire/regent
 	name = "Chantry Regent"
 	jobtype = /datum/job/vampire/regent
 

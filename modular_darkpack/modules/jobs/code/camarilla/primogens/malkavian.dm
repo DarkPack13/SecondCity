@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_MALKAVIAN"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/malkav
+	outfit = /datum/outfit/job/vampire/malkav
 
 	display_order = JOB_DISPLAY_ORDER_MALKAVIAN
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/malkav
+/datum/outfit/job/vampire/malkav
 	name = "Primogen Malkavian"
 	jobtype = /datum/job/vampire/primogen_malkavian
 

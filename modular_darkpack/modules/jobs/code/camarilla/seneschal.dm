@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "SENESCHAL"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/clerk
+	outfit = /datum/outfit/job/vampire/clerk
 
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	department_for_prefs = /datum/job_department/camarilla
@@ -30,7 +30,7 @@
 
 	known_contacts = list("Prince","Sheriff","Tremere Regent","Dealer","Primogens")
 
-/datum/outfit/job/clerk
+/datum/outfit/job/vampire/clerk
 	name = "Seneschal"
 	jobtype = /datum/job/vampire/clerk
 

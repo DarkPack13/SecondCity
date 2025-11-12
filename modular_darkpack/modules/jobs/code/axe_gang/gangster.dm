@@ -6,7 +6,7 @@
 	supervisors = "the other Axes"
 	config_tag = "AXE_GANG"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/axe_gangster
+	outfit = /datum/outfit/job/vampire/axe_gangster
 
 	display_order = JOB_DISPLAY_ORDER_AXE_GANGSTER
 	exp_required_type_department = EXP_TYPE_GANG
@@ -21,11 +21,11 @@
 	description = "You are a member of a Scarlet Screen known as the Axe Gang. Your leaders, the Screentenders, provide a place for outcasts like yourself to find fulfillment, and comradery. Sell weapons using your Warehouse, do drugs, commit crime, and protect your own."
 	minimal_masquerade = 0
 
-/datum/outfit/job/axe_gangster/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/axe_gangster/pre_equip(mob/living/carbon/human/H)
 	..()
 	//H.grant_language(/datum/language/cantonese)
 
-/datum/outfit/job/axe_gangster
+/datum/outfit/job/vampire/axe_gangster
 	name = "Axe Gangster"
 	jobtype = /datum/job/vampire/axe_gang
 	uniform = /obj/item/clothing/under/vampire/suit

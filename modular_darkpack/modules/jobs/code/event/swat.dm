@@ -1,4 +1,4 @@
-/datum/outfit/job/swat
+/datum/outfit/job/vampire/swat
 	name = "Swat Officer"
 	//ears = /obj/item/p25radio/police/tactical
 	uniform = /obj/item/clothing/under/vampire/police/utility
@@ -58,7 +58,7 @@
 	show_to_ghosts = TRUE
 	var/always_new_team = FALSE
 	var/datum/team/swat/swat_team
-	var/swat_outfit = /datum/outfit/job/swat
+	var/swat_outfit = /datum/outfit/job/vampire/swat
 	var/custom_objective
 
 /datum/antagonist/swat/team_leader
