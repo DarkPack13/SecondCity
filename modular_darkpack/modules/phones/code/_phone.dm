@@ -11,6 +11,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
+	// Who owns this phone on initialization?
+	var/datum/weakref/owner_weakref
 	// There's a radio in my phone that calls me stud muffin.
 	var/obj/item/radio/phone_radio
 	// Cooldown for the phone call sound.
@@ -23,6 +25,16 @@
 	var/list/phone_history_list = list()
 	// Currently viewed newscaster channel. Used for IRC Announcements
 	var/obj/machinery/newscaster/irc_channel
+	// Do we have a SIM card?
+	var/obj/item/sim_card/sim_card
+	// Phone flags, for things like if its open or if it has no sim card.
+	var/phone_flags = NONE
+	// The phone's current state.
+	var/current_state = PHONE_AVAILABLE
+	// The number the phone has dialed.
+	var/dialed_number
+	// The frequency in use for a phone call.
+	var/secure_frequency
 	// Current sound to play when the phone is ringing.
 	var/call_sound = 'modular_darkpack/modules/phones/sounds/call.ogg'
 	// If the phone should play a sound when ringing.
@@ -31,43 +43,73 @@
 	var/vibration = TRUE
 	// If the phone's microphone is muted.
 	var/muted = FALSE
-	/// Do we have a SIM card?
-	var/obj/item/sim_card/sim_card
-	/// Phone flags
-	var/phone_flags = NONE
-	/// The number the user is currently dialing.
-	var/dialed_number
-	// The frequency the phone is currently using to call another phone.
-	var/secure_frequency
-	// The frequency that is calling us.
-	var/incoming_frequency
-	var/obj/item/sim_card/incoming_sim_card
+	// ID of the timer that the phone uses for ringing. Deleted once the user denies a phone call or misses it.
+	var/phone_ringing_timer = null
+	// The phone number of the phone calling us. If any.
+	var/incoming_phone_number = null
+
+	/// A list of associative lists with three indeces: NETWORK_ID, OUR_ROLE and USE_JOB_TITLE. So that contact_networks is populated on init.
+	var/list/contact_networks_pre_init = null
+	/// A list of contact networks to be added in. Order matters, as if members overlap they will only get the first contact.
+	var/list/contact_networks = null
+	var/important_contact_of = null
 
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
+	GLOB.phones_list += src
 	sim_card = new()
 	sim_card.phone_weakref = WEAKREF(src)
-	RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
-	RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
-	RegisterSignal(sim_card, COMSIG_PHONE_RING_FINISH, PROC_REF(finish_ringing))
 	phone_radio = new(src)
 	phone_radio.keyslot = new
 	phone_radio.radio_noise = FALSE
 	phone_radio.canhear_range = 1
 	irc_channel = new()
-	RegisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED, PROC_REF(initialize_phone_call))
-	RegisterSignal(src, COMSIG_PHONE_CALL_BUSY, PROC_REF(phone_call_declined))
-	RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
+	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
+
+/// Index to a define to point at a runtime-global list at compile-time.
+#define NETWORK_ID 1
+/// Index to a string, for the contact title.
+#define OUR_ROLE 2
+/// Index to a boolean, on whether to replace role with job title (or alt-title).
+#define USE_JOB_TITLE 3
+
+/obj/item/smartphone/proc/update_initialized_contacts()
+	var/mob/living/carbon/owner = owner_weakref.resolve()
+	if(LAZYLEN(contact_networks_pre_init))
+		LAZYINITLIST(contact_networks)
+		for(var/list/contact_network_info  as anything in contact_networks_pre_init)
+			var/list/network_contacts = contact_network_from_define(contact_network_info[NETWORK_ID])
+
+			var/our_role = contact_network_info[OUR_ROLE]
+			if(contact_network_info[USE_JOB_TITLE] && !isnull(owner) && owner?.job)
+				var/datum/job/job = SSjob.get_job(owner.job)
+				our_role = job.title
+
+			var/datum/contact_network/contact_network = new(network_contacts, our_role)
+			contact_networks += contact_network
+
+			var/datum/contact/our_contact = new(owner.real_name, sim_card.phone_number, our_role, WEAKREF(src))
+			network_contacts |= our_contact
+
+	for(var/obj/item/smartphone/P as anything in GLOB.phones_list)
+		P.update_contacts()
+
+	if(important_contact_of && owner && sim_card.phone_number)
+		GLOB.important_contacts[important_contact_of] = new /datum/phonecontact(owner.real_name, sim_card.phone_number)
+
+#undef NETWORK_ID
+#undef OUR_ROLE
+#undef USE_JOB_TITLE
 
 /obj/item/smartphone/Destroy(force)
-	. = ..()
-	UnregisterSignal(src, COMSIG_PHONE_CALL_ACCEPTED)
-	UnregisterSignal(src, COMSIG_PHONE_CALL_BUSY)
+	GLOB.phones_list -= src
+	for(var/datum/contact_network/contact_network as anything in contact_networks)
+		for(var/datum/contact/our_contact in contact_network.contacts)
+			if(our_contact.number == sim_card.phone_number)
+				contact_network.contacts -= our_contact
+
+	RegisterSignal(src, COMSIG_MOVABLE_HEAR)
 	if(sim_card)
-		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
-		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
-		UnregisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED)
-		UnregisterSignal(sim_card, COMSIG_PHONE_RING_FINISH)
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
 	if(phone_radio)
@@ -75,6 +117,7 @@
 		QDEL_NULL(phone_radio)
 	if(irc_channel)
 		QDEL_NULL(irc_channel)
+	return ..()
 
 /obj/item/smartphone/examine(mob/user)
 	. = ..()
@@ -105,11 +148,14 @@
 		return CLICK_ACTION_BLOCKING
 	if(do_after(user, 2 SECONDS, src))
 		balloon_alert(user, "you remove \the [sim_card]!")
-		SSphones.end_phone_call(sim_card, dialed_number ? dialed_number : incoming_sim_card?.phone_number)
+		switch(current_state)
+			if(PHONE_CALLING)
+				hang_up_phone_call(dialed_number)
+			if(PHONE_RINGING)
+				decline_phone_call()
+			if(PHONE_IN_CALL)
+				end_phone_call()
 		user.put_in_hands(sim_card)
-		UnregisterSignal(sim_card, COMSIG_PHONE_RING)
-		UnregisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT)
-		UnregisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED)
 		sim_card.phone_weakref = null
 		sim_card = null
 		phone_flags |= PHONE_NO_SIM
@@ -126,9 +172,6 @@
 		user.transferItemToLoc(attacking_item, src)
 		sim_card.phone_weakref = WEAKREF(src)
 		phone_flags &= ~PHONE_NO_SIM
-		RegisterSignal(sim_card, COMSIG_PHONE_RING, PROC_REF(ring))
-		RegisterSignal(sim_card, COMSIG_PHONE_RING_TIMEOUT, PROC_REF(ring_timeout))
-		RegisterSignal(sim_card, COMSIG_PHONE_CALL_ENDED, PROC_REF(end_phone_call))
 		return TRUE
 	return ..()
 
@@ -148,9 +191,9 @@
 	var/list/data = list()
 	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 	data["no_sim_card"] = (phone_flags & PHONE_NO_SIM) ? TRUE : FALSE
-	data["phone_in_call"] = (phone_flags & PHONE_IN_CALL) ? TRUE : FALSE
-	data["phone_ringing"] = (phone_flags & PHONE_RINGING) ? TRUE : FALSE
-	data["phone_calling"] = (phone_flags & PHONE_CALLING) ? TRUE : FALSE
+	data["phone_in_call"] = (current_state == PHONE_IN_CALL) ? TRUE : FALSE
+	data["phone_ringing"] = (current_state == PHONE_RINGING) ? TRUE : FALSE
+	data["phone_calling"] = (current_state == PHONE_CALLING) ? TRUE : FALSE
 	data["ringer"] = ringer
 	data["vibration"] = vibration
 	data["speaker_mode"] = (phone_radio.canhear_range == 3) ? TRUE : FALSE
@@ -200,12 +243,14 @@
 		return
 	switch(action)
 		if("call")
-			var/phone_number = params["number"]
-			initialize_phone_call(usr, phone_number)
+			start_phone_call(usr, params["number"])
 			return TRUE
 
 		if("hang")
-			SSphones.end_phone_call(sim_card, dialed_number ? dialed_number : incoming_sim_card?.phone_number)
+			if(current_state == PHONE_IN_CALL)
+				end_phone_call()
+			else
+				hang_up_phone_call(dialed_number)
 			return TRUE
 
 		if("accept")
@@ -339,143 +384,3 @@
 	icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
 	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
 	update_icon()
-
-/**
- * Proc used for intializing a phone call, if secure_frequency isn't set, the phone is calling someone.
- * If secure_frequency is set, the phone is being called by someone.
- */
-/obj/item/smartphone/proc/initialize_phone_call(mob/user, new_dialed_number)
-	SIGNAL_HANDLER
-
-	if(!sim_card)
-		balloon_alert(user, "no SIM card installed!")
-		return
-	if(new_dialed_number == sim_card.phone_number)
-		balloon_alert(user, "busy!")
-		to_chat(user, span_notice("The user you are attempting to call is currently busy. Please try again later."))
-		return
-	if(!secure_frequency)
-		secure_frequency = SSphones.initiate_phone_call(user, sim_card, new_dialed_number)
-		if(secure_frequency)
-			dialed_number = new_dialed_number
-			phone_flags |= PHONE_CALLING
-		add_phone_call_history(incoming_sim_card, PHONE_CALL_SENT)
-	else
-		phone_radio.set_frequency(secure_frequency)
-		phone_radio.set_broadcasting(TRUE)
-		phone_radio.set_listening(TRUE)
-		phone_radio.recalculateChannels()
-		phone_flags |= PHONE_IN_CALL
-		phone_flags &= ~PHONE_CALLING
-		SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
-
-/obj/item/smartphone/proc/end_phone_call(sim_card, phone_number)
-	SIGNAL_HANDLER
-
-	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
-	phone_radio.set_frequency(0)
-	phone_radio.set_broadcasting(FALSE)
-	phone_radio.set_listening(FALSE)
-	phone_radio.recalculateChannels()
-	secure_frequency = null
-	dialed_number = null
-	incoming_sim_card = null
-	phone_flags &= ~PHONE_IN_CALL
-	phone_flags &= ~PHONE_CALLING
-	phone_flags &= ~PHONE_RINGING
-
-/obj/item/smartphone/proc/decline_phone_call()
-	SIGNAL_HANDLER
-
-	SSphones.cancel_ring_timeout(sim_card, incoming_sim_card)
-	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref.resolve()
-	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_BUSY)
-	secure_frequency = null
-	dialed_number = null
-	incoming_sim_card = null
-	phone_flags &= ~PHONE_IN_CALL
-	phone_flags &= ~PHONE_CALLING
-	phone_flags &= ~PHONE_RINGING
-	add_phone_call_history(incoming_sim_card, PHONE_CALL_DECLINED)
-
-/obj/item/smartphone/proc/accept_phone_call(mob/user)
-	secure_frequency = incoming_frequency
-	phone_flags &= ~PHONE_RINGING
-	initialize_phone_call(user)
-	var/obj/item/smartphone/phone = incoming_sim_card.phone_weakref?.resolve()
-	SEND_SIGNAL(phone, COMSIG_PHONE_CALL_ACCEPTED)
-	add_phone_call_history(incoming_sim_card, PHONE_CALL_ACCEPTED)
-
-/obj/item/smartphone/proc/phone_call_declined(datum/source)
-	SIGNAL_HANDLER
-
-	balloon_alert(usr, "busy!")
-	to_chat(usr, span_notice("The user you are attempting to call is currently busy. Please try again later."))
-	add_phone_call_history(incoming_sim_card, PHONE_CALL_DECLINED)
-	ring_timeout()
-
-/obj/item/smartphone/process(seconds_per_tick)
-	if(!COOLDOWN_FINISHED(src, ringer_cooldown))
-		return
-	COOLDOWN_START(src, ringer_cooldown, 4 SECONDS)
-	if(vibration)
-		balloon_alert_to_viewers(pick("zzZz!", "ZZZT!", "zZzZ!", "Zzz...", "zzZ...", "ZzZZT!"), vision_distance = COMBAT_MESSAGE_RANGE)
-	if(ringer)
-		playsound(src, call_sound, 50, TRUE, 0, 2)
-
-/obj/item/smartphone/proc/ring(obj/item/sim_card/called_sim_card, obj/item/sim_card/caller_sim_card, established_frequency)
-	SIGNAL_HANDLER
-
-	incoming_frequency = established_frequency
-	incoming_sim_card = caller_sim_card
-	phone_flags |= PHONE_RINGING
-	START_PROCESSING(SSprocessing, src)
-
-/obj/item/smartphone/proc/ring_timeout()
-	SIGNAL_HANDLER
-
-	if(secure_frequency)
-		end_phone_call()
-	incoming_frequency = null
-	incoming_sim_card = null
-	dialed_number = null
-	phone_flags &= ~PHONE_IN_CALL
-	phone_flags &= ~PHONE_RINGING
-	phone_flags &= ~PHONE_CALLING
-
-/obj/item/smartphone/proc/finish_ringing(obj/item/sim_card/incoming_sim_card)
-	SIGNAL_HANDLER
-
-	STOP_PROCESSING(SSprocessing, src)
-	add_phone_call_history(incoming_sim_card, PHONE_CALL_MISSED)
-
-/obj/item/smartphone/proc/get_number_contact_name()
-	var/output_user
-	var/calling = incoming_sim_card?.phone_number
-	if(dialed_number)
-		calling = dialed_number
-	// Default to the contact name calling the phone.
-	for(var/datum/phonecontact/contact in contacts)
-		if(contact.number == calling)
-			output_user = contact.name
-	// If we dont have a contact name, refer to the published listings.
-	if(!output_user)
-		for(var/contact as anything in SSphones.published_phone_numbers)
-			if(calling == SSphones.published_phone_numbers[contact])
-				output_user = contact
-	// Not in our contacts or published listings? Then resolve to showing the phone number.
-	if(!output_user)
-		output_user = "+" + calling
-	return output_user
-
-/obj/item/smartphone/proc/add_phone_call_history(obj/item/sim_card/incoming_sim_card, call_type)
-	if(incoming_sim_card == sim_card)
-		return
-	var/datum/phone_history/new_contact = new()
-	new_contact.name = get_number_contact_name()
-	new_contact.number = dialed_number ? dialed_number : incoming_sim_card?.phone_number
-	new_contact.call_type = call_type
-	new_contact.time = station_time_timestamp("hh:mm:ss")
-	phone_history_list += new_contact
-
-//TODO: Call history

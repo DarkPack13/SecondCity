@@ -20,7 +20,7 @@
 	var/list/known_contacts = null
 
 // Default vampire job outfits.
-/datum/outfit/job/vampire
+/datum/outfit/job
 	uniform = /obj/item/clothing/under/color/grey
 	id = null
 	ears = null
@@ -29,6 +29,13 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = null
 	pda_slot = null
+
+/datum/outfit/job/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+	. = ..()
+	var/obj/item/smartphone/phone = locate() in user.contents
+	if(phone)
+		phone.owner_weakref = WEAKREF(user)
+		phone.update_initialized_contacts()
 
 /**
  * This type is used to indicate a lack of a job.

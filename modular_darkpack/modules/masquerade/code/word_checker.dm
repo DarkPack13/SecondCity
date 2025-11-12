@@ -4,22 +4,18 @@
 	if(stat >= SOFT_CRIT)
 		return ..()
 
-	//if(issabbat(src)) //Because sabbatists are idiots.
-	//	return ..()
-
 	var/treated_message = translate_language(speaker, message_language, raw_message, spans, message_mods)
 	if(lowertext(MASQUERADE_FILTER_CHECK(treated_message)))
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	..()
 
-/* DARKPACK TODO: PHONES
-/obj/item/smartphone/handle_hearing(datum/source, list/hearing_args)
-	if(online && talking)
+/obj/item/smartphone/proc/handle_hearing(datum/source, list/hearing_args)
+	SIGNAL_HANDLER
+
+	if(phone_flags & PHONE_IN_CALL)
 		if(istype(hearing_args[HEARING_SPEAKER], /obj/phone_voice))
-			return ..()
+			return
 		if(lowertext(MASQUERADE_FILTER_CHECK(hearing_args[HEARING_RAW_MESSAGE])))
 			SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, hearing_args[HEARING_SPEAKER])
-	..()
-*/
 
 #undef MASQUERADE_FILTER_CHECK
