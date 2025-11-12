@@ -227,6 +227,7 @@
 	for(var/datum/phone_history/PH in phone_history_list)
 		UNTYPED_LIST_ADD(phone_history, list(
 			"type" = PH.call_type,
+			"type_tooltip" = PH.call_type_tooltip,
 			"name" = PH.name,
 			"number" = PH.number,
 			"time" = PH.time

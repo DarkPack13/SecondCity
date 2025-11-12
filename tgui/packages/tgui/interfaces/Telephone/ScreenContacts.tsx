@@ -1,6 +1,6 @@
 // THIS IS A DARKPACK UI FILE
 import { useState } from 'react';
-import { Box, Icon, Stack } from 'tgui-core/components';
+import { Box, Icon, Stack, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { Contact, Data, NavigableApps } from '.';
@@ -11,8 +11,10 @@ export const ContactElement = (props: {
   onClick?: () => void;
   onDelete?: () => void;
   historyIcon?: string | null;
+  time?: string | null;
+  historyTooltip?: string | null;
 }) => {
-  const { contact, onClick, deleteIcon, onDelete, historyIcon } = props;
+  const { contact, onClick, deleteIcon, onDelete, historyIcon, time, historyTooltip } = props;
   const { act } = useBackend();
 
   return (
@@ -41,7 +43,7 @@ export const ContactElement = (props: {
           </Stack.Item>
           <Stack.Item grow>
             <Box>{contact.name}</Box>
-            <Box textColor="#aaa">{contact.number || 'Unknown Number'}</Box>
+            <Box textColor="#aaa">{time ? null : (contact.number || 'Unknown Number')}</Box>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -55,12 +57,13 @@ export const ContactElement = (props: {
         </Stack.Item>
       ) : null}
       {historyIcon ? (
-        <Stack.Item
-          className="Telephone__ContactsElement"
-          mr={1}
-        >
-          <Icon name={historyIcon} size={1.5} />
-        </Stack.Item>
+        <Tooltip content={historyTooltip}>
+        <Icon
+        name={historyIcon}
+        size={1.5}
+        pr={1}
+        />
+        </Tooltip>
       ) : null}
     </Stack>
   );

@@ -47,7 +47,9 @@ export const ScreenRecents = (props: {
               setEnteredNumber(contact.number);
               setApp(NavigableApps.Phone);
             }}
-            historyIcon='trash'
+            historyIcon={contact.type}
+            historyTooltip={contact.type_tooltip}
+            time={contact.time}
           />
         ))}
       </Stack.Item>

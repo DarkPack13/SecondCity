@@ -448,7 +448,6 @@
 #include "code\__DEFINES\~darkpack\dcs\bouncer_signals.dm"
 #include "code\__DEFINES\~darkpack\dcs\gun_signals.dm"
 #include "code\__DEFINES\~darkpack\dcs\masquerade_signals.dm"
-#include "code\__DEFINES\~darkpack\dcs\phone_signals.dm"
 #include "code\__DEFINES\~darkpack\dcs\power_signals.dm"
 #include "code\__DEFINES\~darkpack\dcs\signals_object.dm"
 #include "code\__DEFINES\~darkpack\dcs\vampire_signals.dm"

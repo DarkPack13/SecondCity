@@ -20,6 +20,7 @@ export type Contact = {
 
 export type PhoneHistoryEntry = {
   type: string;
+  type_tooltip: string;
   name: string;
   number: string;
   time: string;

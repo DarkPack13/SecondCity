@@ -38,11 +38,12 @@
 	return output_user
 
 // Helper proc to add a history log to the phone's records.
-/obj/item/smartphone/proc/add_phone_call_history(call_type)
+/obj/item/smartphone/proc/add_phone_call_history(call_type, call_type_tooltip)
 	var/datum/phone_history/new_contact = new()
 	new_contact.name = get_number_contact_name()
 	new_contact.number = dialed_number ? dialed_number : incoming_phone_number
 	new_contact.call_type = call_type
+	new_contact.call_type_tooltip = call_type_tooltip
 	new_contact.time = station_time_timestamp("hh:mm:ss")
 	phone_history_list += new_contact
 
@@ -96,24 +97,24 @@
 	calling_smartphone.incoming_phone_number = sim_card.phone_number
 	calling_smartphone.receive_phone_call()
 	phone_ringing_timer = addtimer(CALLBACK(src, PROC_REF(set_phone_available)), TIME_TO_RING, TIMER_STOPPABLE | TIMER_DELETE_ME)
-	add_phone_call_history(PHONE_CALL_SENT)
+	add_phone_call_history(PHONE_CALL_SENT, PHONE_CALL_SENT_TOOLTIP)
 	set_phone_state(PHONE_CALLING)
 
 // Used for when the receiving phone picks up a phone call.
 /obj/item/smartphone/proc/accept_phone_call(mob/user)
 	if(check_missing_sim_card(user))
 		return
-	add_phone_call_history(PHONE_CALL_ACCEPTED)
+	add_phone_call_history(PHONE_CALL_ACCEPTED, PHONE_CALL_ACCEPTED_TOOLTIP)
 	establish_call_connection(incoming_phone_number)
 
 // Used for when the receiving phone declines a phone call.
 /obj/item/smartphone/proc/decline_phone_call()
-	add_phone_call_history(PHONE_CALL_DECLINED)
+	add_phone_call_history(PHONE_CALL_DECLINED, PHONE_CALL_DECLINED_TOOLTIP)
 	terminate_call_connection()
 
 // Used for when the receiving phone or the calling phone end the phone call after it has started.
 /obj/item/smartphone/proc/end_phone_call()
-	add_phone_call_history(PHONE_CALL_ENDED)
+	add_phone_call_history(PHONE_CALL_ENDED, PHONE_CALL_ENDED_TOOLTIP)
 	terminate_call_connection()
 
 // Used for when the calling phone ends the phone call before the receiving phone picks up.
@@ -128,11 +129,11 @@
 /obj/item/smartphone/proc/receive_phone_call()
 	set_phone_state(PHONE_RINGING)
 	phone_ringing_timer = addtimer(CALLBACK(src, PROC_REF(miss_phone_call)), TIME_TO_RING, TIMER_STOPPABLE | TIMER_DELETE_ME)
-	add_phone_call_history(PHONE_CALL_RECEIVED)
+	add_phone_call_history(PHONE_CALL_RECEIVED, PHONE_CALL_RECEIVED_TOOLTIP)
 
 // Used for when the receiving phone fails to pick up the phone call in time.
 /obj/item/smartphone/proc/miss_phone_call()
-	add_phone_call_history(PHONE_CALL_MISSED)
+	add_phone_call_history(PHONE_CALL_MISSED, PHONE_CALL_MISSED_TOOLTIP)
 	set_phone_state(PHONE_AVAILABLE)
 
 // General purpose failsafe of setting it to its proper state.

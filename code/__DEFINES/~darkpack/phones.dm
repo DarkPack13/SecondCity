@@ -15,10 +15,17 @@ DEFINE_BITFIELD(phone_flags, list(
 	"PHONE_OPEN" = PHONE_OPEN,
 ))
 
-// Used for call history logging
-#define PHONE_CALL_ACCEPTED "phone_call_accepted"
-#define PHONE_CALL_DECLINED "phone_call_declined"
-#define PHONE_CALL_RECEIVED "phone_call_received"
-#define PHONE_CALL_MISSED "phone_call_missed"
-#define PHONE_CALL_SENT "phone_call_sent"
-#define PHONE_CALL_ENDED "phone_call_ended"
+// Icons used for call history logging
+#define PHONE_CALL_ACCEPTED "fa-phone-volume"
+#define PHONE_CALL_DECLINED "fa-phone-slash"
+#define PHONE_CALL_RECEIVED "fa-phone"
+#define PHONE_CALL_MISSED "fa-history"
+#define PHONE_CALL_SENT "fa-share"
+#define PHONE_CALL_ENDED "fa-tty"
+
+#define PHONE_CALL_ACCEPTED_TOOLTIP "Phone call accepted"
+#define PHONE_CALL_DECLINED_TOOLTIP "Phone call declined"
+#define PHONE_CALL_RECEIVED_TOOLTIP "Phone call received"
+#define PHONE_CALL_MISSED_TOOLTIP "Phone call missed"
+#define PHONE_CALL_SENT_TOOLTIP "Phone call sent"
+#define PHONE_CALL_ENDED_TOOLTIP "Phone call ended"
