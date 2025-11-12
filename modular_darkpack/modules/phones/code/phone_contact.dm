@@ -13,13 +13,13 @@
 	var/datum/weakref/phone_ref = null
 
 /datum/contact/New(name, number, role, phone_ref)
-	if (!isnull(name))
+	if(!isnull(name))
 		src.name = name
-	if (!isnull(number))
+	if(!isnull(number))
 		src.number = number
-	if (!isnull(role))
+	if(!isnull(role))
 		src.role = role
-	if (!isnull(phone_ref))
+	if(!isnull(phone_ref))
 		src.phone_ref = phone_ref
 
 /datum/phonecontact
@@ -27,7 +27,7 @@
 	var/number = ""
 
 /datum/phonecontact/New(name, number)
-	if (!isnull(name))
+	if(!isnull(name))
 		src.name = name
-	if (!isnull(number))
+	if(!isnull(number))
 		src.number = number
