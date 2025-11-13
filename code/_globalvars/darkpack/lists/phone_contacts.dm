@@ -16,7 +16,6 @@ GLOBAL_LIST_EMPTY(axes_network)
 GLOBAL_LIST_EMPTY(vampire_leader_network)
 GLOBAL_LIST_EMPTY(endron_network)
 
-
 #define MILLENIUM_TOWER_NETWORK 1
 #define LASOMBRA_NETWORK 2
 #define TREMERE_NETWORK 3
@@ -28,27 +27,16 @@ GLOBAL_LIST_EMPTY(endron_network)
 #define VAMPIRE_LEADER_NETWORK 9
 #define ENDRON_NETWORK 10
 
-
-/proc/contact_network_from_define(network_id)
-	switch(network_id)
-		if(MILLENIUM_TOWER_NETWORK)
-			return GLOB.millenium_tower_network
-		if(LASOMBRA_NETWORK)
-			return GLOB.lasombra_network
-		if(TREMERE_NETWORK)
-			return GLOB.tremere_network
-		if(GIOVANNI_NETWORK)
-			return GLOB.giovanni_network
-		if(TZMISCE_NETWORK)
-			return GLOB.tzmisce_network
-		if(ANARCH_NETWORK)
-			return GLOB.anarch_network
-		if(WAREHOUSE_NETWORK)
-			return GLOB.warehouse_network
-		if(AXES_NETWORK)
-			return GLOB.axes_network
-		if(VAMPIRE_LEADER_NETWORK)
-			return GLOB.vampire_leader_network
-		if(ENDRON_NETWORK)
-			return GLOB.endron_network
-	CRASH("contact_network_from_define() called with invalid network_id: [isnull(network_id) ? "(null)" : network_id]")
+// An indexed list of all the different phone networks that connect the phones that are part of them together.
+GLOBAL_LIST_INIT(contact_networks, list(
+		MILLENIUM_TOWER_NETWORK = GLOB.millenium_tower_network,
+		LASOMBRA_NETWORK = GLOB.lasombra_network,
+		TREMERE_NETWORK = GLOB.tremere_network,
+		GIOVANNI_NETWORK = GLOB.giovanni_network,
+		TZMISCE_NETWORK = GLOB.tzmisce_network,
+		ANARCH_NETWORK = GLOB.anarch_network,
+		WAREHOUSE_NETWORK = GLOB.warehouse_network,
+		AXES_NETWORK = GLOB.axes_network,
+		VAMPIRE_LEADER_NETWORK = GLOB.vampire_leader_network,
+		ENDRON_NETWORK = GLOB.endron_network,
+	))

@@ -81,8 +81,9 @@
 	var/mob/living/carbon/owner = owner_weakref.resolve()
 	if(LAZYLEN(contact_networks_pre_init))
 		LAZYINITLIST(contact_networks)
-		for(var/list/contact_network_info  as anything in contact_networks_pre_init)
-			var/list/network_contacts = contact_network_from_define(contact_network_info[NETWORK_ID])
+		for(var/list/contact_network_info as anything in contact_networks_pre_init)
+			var/wew = contact_network_info[NETWORK_ID]
+			var/list/network_contacts = GLOB.contact_networks[wew]
 
 			var/our_role = contact_network_info[OUR_ROLE]
 			if(contact_network_info[USE_JOB_TITLE] && !isnull(owner) && owner?.job)
