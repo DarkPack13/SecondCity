@@ -85,7 +85,7 @@
 
 	for(var/discipline in clan_disciplines)
 		// TODO: [Rebase] reimplement choosing disciplines
-		if(ispath(discipline))
+		if(ispath(discipline, /datum/discipline))
 			vampire.give_discipline(new discipline(5))
 
 /**
