@@ -34,8 +34,3 @@
 
 /obj/vampire_computer/prince
 	icon_state = "computerprince"
-
-/obj/item/smartphone/street
-	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
-	icon_state = "payphone"
-
