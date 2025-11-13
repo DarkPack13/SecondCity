@@ -18,7 +18,7 @@
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
 
-	activate_sound = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/thaum.ogg'
 
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED
 	aggravating = TRUE

@@ -22,7 +22,7 @@
 				valid_bodies += H
 			else
 				H.adjustAggLoss(50)
-				playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 10, FALSE)
+				playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
 
@@ -36,7 +36,7 @@
 	to_chat(usr, span_notice("You begin invoking the ritual of Gargoyle Creation with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 	usr.visible_message(span_notice("[usr] begins invoking a ritual with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 
-	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	//TODO: [Rebase] -- vicissitude, when its reintroduced re-path this
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 
@@ -105,7 +105,7 @@
 		// Set up timer to give AI if no one takes control
 		addtimer(CALLBACK(src, PROC_REF(perfect_gargoyle_check_ai), G, last_activator), 31 SECONDS)
 
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 	else
 		// Create normal sentient gargoyle (1 body)
@@ -138,7 +138,7 @@
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
 
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		playsound(target_body.loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 
 		// Handle key assignment

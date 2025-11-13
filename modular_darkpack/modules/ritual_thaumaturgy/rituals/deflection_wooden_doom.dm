@@ -16,6 +16,6 @@
 			if(!HAS_TRAIT(H, TRAIT_STAKE_RESISTANT))
 				ADD_TRAIT(H, TRAIT_STAKE_RESISTANT, MAGIC_TRAIT)
 				qdel(src)
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
