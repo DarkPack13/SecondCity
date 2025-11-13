@@ -1,6 +1,6 @@
 /obj/item/kirbyplants
 	name = "potted plant"
-	icon = 'icons/obj/fluff/flora/plants.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/fluff/flora/plants.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
@@ -178,3 +178,45 @@
 /obj/item/kirbyplants/fern/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_ALGAE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 5)
+
+// DARKPACK EDIT ADD START
+/obj/item/kirbyplants/darkpack
+	icon_state = "plant0"
+	base_icon_state = "plant0"
+
+/obj/item/kirbyplants/darkpack/generate_states()
+	var/list/plant_states = list()
+	for(var/i in 1 to 5)
+		var/number = "[i]"
+		plant_states += "plant[number]"
+
+	return plant_states
+
+/obj/item/kirbyplants/darkpack/random
+
+/obj/item/kirbyplants/darkpack/random/proc/randomize_base_icon_state()
+	if(isnull(random_plant_states))
+		random_plant_states = generate_states()
+	base_icon_state = pick(random_plant_states)
+	if(!dead) //no need to update the icon if we're already dead.
+		update_appearance(UPDATE_ICON)
+
+/obj/item/kirbyplants/darkpack/random/Initialize(mapload)
+	. = ..()
+	randomize_base_icon_state()
+
+/obj/item/kirbyplants/darkpack/plant1
+	icon_state = "plant1"
+
+/obj/item/kirbyplants/darkpack/plant2
+	icon_state = "plant2"
+
+/obj/item/kirbyplants/darkpack/plant3
+	icon_state = "plant3"
+
+/obj/item/kirbyplants/darkpack/plant4
+	icon_state = "plant4"
+
+/obj/item/kirbyplants/darkpack/plant5
+	icon_state = "plant5"
+// DARKPACK EDIT ADD END

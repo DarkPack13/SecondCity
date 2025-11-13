@@ -94,7 +94,7 @@
 	fire_brightness = 4.5
 	fire_colour = "#d400ff"
 
-// DARKPACK EDIT START
+// DARKPACK EDIT CHANGE START
 /obj/machinery/light/prince
 	base_state = "prince"
 
@@ -200,7 +200,7 @@ LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red/dim)
 // ---- Blacklight bulbs
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight)
 
-LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince) // DARKPACK EDIT ADD
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince)
 
 #undef LIGHTING_DIRECTIONAL_HELPERS
-// DARKPACK EDIT END
+// DARKPACK EDIT CHANGE END

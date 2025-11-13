@@ -5,7 +5,7 @@
 		camarillaadmin = list(fax_name = "High Council", fax_id = "camarillaadmin", color = "teal", emag_needed = TRUE),
 		anarchsadmin = list(fax_name = "Free State Movement", fax_id = "anarchsadmin", color = "red", emag_needed = TRUE),
 		policeadmin = list(fax_name = "Federal Government", fax_id = "policeadmin", color = "blue", emag_needed = TRUE),
-		endronadmin = list(fax_name = "Pentex Corporate", fax_id = "endronadmin", color = "green", emag_needed = TRUE),
+		endronadmin = list(fax_name = EVIL_COMPANY + " Corporate", fax_id = "endronadmin", color = "green", emag_needed = TRUE),
 		aasimitesadmin = list(fax_name = "Element Relay", fax_id = "aasimitesadmin", color = "purple", emag_needed = TRUE),
 		glasswalkeradmin = list(fax_name = "Nightwolf Corporate", fax_id = "glasswalkeradmin", color = "grey", emag_needed = TRUE),
 	)
@@ -23,7 +23,7 @@
 	fax_id = "policeadmin"
 
 /obj/machinery/fax/admin/endron
-	fax_name = "Pentex Corporate"
+	fax_name = EVIL_COMPANY + " Corporate"
 	fax_id = "endronadmin"
 
 /obj/machinery/fax/admin/aasimites
@@ -49,14 +49,14 @@
 	special_networks = list(anarchsadmin = list(fax_name = "Free State Movement", fax_id = "anarchsadmin", color = "red", emag_needed = FALSE))
 
 /obj/machinery/fax/police
-	fax_name = "San Francisco Police Department"
+	fax_name = CITY_POLICE_DEPARTMENT
 	fax_id = "police"
 	special_networks = list(policeadmin = list(fax_name = "Federal Government", fax_id = "policeadmin", color = "blue", emag_needed = FALSE))
 
 /obj/machinery/fax/endron
-	fax_name = "Endron International HQ"
+	fax_name = EVIL_OIL_COMPANY + " International HQ"
 	fax_id = "endron"
-	special_networks = list(endronadmim = list(fax_name = "Pentex Corporate", fax_id = "endronadmin", color = "green", emag_needed = FALSE))
+	special_networks = list(endronadmim = list(fax_name = EVIL_COMPANY + " Corporate", fax_id = "endronadmin", color = "green", emag_needed = FALSE))
 
 /obj/machinery/fax/aasimites
 	fax_name = "Chubby Lion Coffee Shop"

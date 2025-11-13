@@ -24,7 +24,7 @@
 	department_head = /datum/job/vampire/prince
 	department_experience_type = EXP_TYPE_CHURCH
 	display_order = 1
-	label_class = "camarilla"
+	label_class = "church"
 	ui_color = "#8c66a5"
 
 /datum/job_department/clinic
@@ -42,7 +42,7 @@
 	department_head = /datum/job/vampire/baron
 	department_experience_type = EXP_TYPE_ANARCH
 	display_order = 1
-	label_class = "clinic"
+	label_class = "anarch"
 	ui_color = "#a56666"
 
 /datum/job_department/axe_gang

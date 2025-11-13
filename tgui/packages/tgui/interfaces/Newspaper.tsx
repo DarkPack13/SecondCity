@@ -14,6 +14,7 @@ type Data = {
   wanted_criminal: string | null;
   wanted_body: string | null;
   wanted_photo: string | null;
+  newspaper_company: string; // DARKPACK EDIT ADD
 };
 
 type ChannelNames = {
@@ -87,12 +88,11 @@ const NewspaperIntro = (props) => {
 
   return (
     <Section>
+      {/* DARKPACK EDIT START*/}
       <Box bold fontSize="30px">
-        The Griffon
+        {data.newspaper_company}
       </Box>
-      <Box bold fontSize="15px">
-        For use on Space Facilities only!
-      </Box>
+      {/* DARKPACK EDIT END*/}
       <Box fontSize="12px">Table of Contents:</Box>
       {channels.map((channel) => (
         <Box key={channel.page_number}>

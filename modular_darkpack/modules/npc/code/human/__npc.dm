@@ -128,7 +128,7 @@
 /mob/living/carbon/human/npc/Destroy()
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 
 	. = ..()
 
