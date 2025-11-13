@@ -378,10 +378,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	randomise = SANITIZE_LIST(randomise)
 	job_preferences = SANITIZE_LIST(job_preferences)
 	all_quirks = SANITIZE_LIST(all_quirks)
-	// DARKPACK EDIT ADD START - STORYTELLR_STATS
-	storyteller_stats = SANITIZE_LIST(storyteller_stats)
-	storyteller_stat_points = SANITIZE_LIST(storyteller_stat_points)
-	// DARKPACK EDIT ADD END
 
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -389,7 +385,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences -= j
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
-	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	storyteller_stats = SSstats.sanitize_stat_list(storyteller_stats)
 	storyteller_stat_points = SSstats.sanitize_points_list(storyteller_stat_points)
 	// DARKPACK EDIT ADD END
