@@ -7162,6 +7162,7 @@
 #include "modular_darkpack\modules\onfloor_icons\code\apply_onfloor_icon_element.dm"
 #include "modular_darkpack\modules\onfloor_icons\code\dynamic_item_icon.dm"
 #include "modular_darkpack\modules\phones\code\phone_globals.dm"
+#include "modular_darkpack\modules\piano\code\stationary_pianos.dm"
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_component.dm"
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_keybind.dm"
 #include "modular_darkpack\modules\powers\code\discipline_actions.dm"

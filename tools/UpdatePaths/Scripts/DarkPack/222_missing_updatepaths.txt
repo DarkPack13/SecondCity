@@ -16,8 +16,10 @@
 /area/vtm/substation : /area/vtm/interior/substation
 /area/vtm/inside/substation : /area/vtm/interior/substation
 
+# Shovelheads should probably be reintroduced after we refactor NPC code.
 /mob/living/carbon/human/npc/sabbat/shovelhead/@SUBTYPES : @DELETE
 
+# Deleted landmarks are for landmarks with no job attached.
 /obj/effect/landmark/start/assamite : @DELETE
 /obj/effect/landmark/start/baali : @DELETE
 /obj/effect/landmark/start/barkeeper : /obj/effect/landmark/start/baron
@@ -36,5 +38,16 @@
 /obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/doctor
 /obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/janitor
 
+# we're removing these mob spawners.
 /obj/effect/mob_spawn/human/chunkguard : @DELETE
 /obj/effect/mob_spawn/human/corpse/@SUBTYPES : @DELETE
+
+# This item doesn't exist on TG anymore.
+/obj/item/melee/rune_knife : @DELETE
+
+/obj/structure/railing/metal/corner : /obj/structure/railing/corner{@OLD}
+/obj/structure/railing/metal : /obj/structure/railing {@OLD}
+
+/turf/open/floor/circuit/telecomms/normal_temp : /turf/open/floor/circuit
+
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano/darkpack
