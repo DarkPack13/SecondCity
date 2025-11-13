@@ -7255,6 +7255,7 @@
 #include "modular_darkpack\modules\walls\code\sewer.dm"
 #include "modular_darkpack\modules\walls\code\wallpaper.dm"
 #include "modular_darkpack\modules\walls\code\walls.dm"
+#include "modular_darkpack\modules\walls\code\floors\carpets.dm"
 #include "modular_darkpack\modules\walls\code\floors\tiles.dm"
 #include "modular_darkpack\modules\walls\code\floors\water.dm"
 #include "modular_darkpack\modules\walls\code\floors\wood.dm"

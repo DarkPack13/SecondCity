@@ -4,7 +4,8 @@
 //	barefootstep = FOOTSTEP_TRAVA
 
 /turf/open/misc/grass
-	//icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/darkpack/floor/grass.dmi'
 	//icon_state = "grass1"
 
 	baseturfs = /turf/open/misc/dirt
