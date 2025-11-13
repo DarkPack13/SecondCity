@@ -141,7 +141,7 @@
 	///How likely this is to happen (prob 100) per second
 	var/shoot_inventory_chance = 1
 	//Stop spouting those godawful pitches!
-	var/shut_up = FALSE
+	var/shut_up = TRUE // DARKPACK EDIT CHANGE
 	///can we access the hidden inventory?
 	var/extended_inventory = FALSE
 	///Are we checking the users ID

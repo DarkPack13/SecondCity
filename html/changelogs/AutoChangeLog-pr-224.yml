@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "alt sprite for bonfires should behave better"

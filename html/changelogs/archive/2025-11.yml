@@ -52,3 +52,14 @@
 2025-11-12:
   FalloutFalcon:
   - rscadd: deer are scared of darkpack cars lol
+2025-11-13:
+  FalloutFalcon:
+  - rscadd: Added a few new "City" traits
+  - rscdel: Disables all old station traits
+  - qol: thunder can be heard from MUCH MUCH further away
+  - admin: Only city traits that are real show up in the station trait select menu
+  - image: adds or fixes a few missing icon states
+  - qol: City Maps either open the wiki or navigate verb depending on input
+  - rscadd: NPC cap has been moved to map configs, expect less npcs in smaller maps.
+  - bugfix: NPC repopulate is called on round start to get up to the correct number
+  - bugfix: alt sprite for bonfires should behave better
