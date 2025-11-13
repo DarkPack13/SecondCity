@@ -200,7 +200,6 @@
 // ENDRON
 
 /obj/item/smartphone/endron_lead
-
 	contact_networks_pre_init = list(
 		list(NETWORK_ID = ENDRON_NETWORK, OUR_ROLE = "Endron Branch Lead", USE_JOB_TITLE = FALSE)
 		)
