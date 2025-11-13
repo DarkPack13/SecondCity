@@ -45,9 +45,15 @@
 # This item doesn't exist on TG anymore.
 /obj/item/melee/rune_knife : @DELETE
 
-/obj/structure/railing/metal/corner : /obj/structure/railing/corner{@OLD}
+/obj/structure/railing/metal/corner : /obj/structure/railing/corner {@OLD}
 /obj/structure/railing/metal : /obj/structure/railing {@OLD}
 
 /turf/open/floor/circuit/telecomms/normal_temp : /turf/open/floor/circuit
 
-/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano/darkpack
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano/darkpack/ipiano
+
+/obj/structure/closet/crate/freezer/surplus_limbs/organs : /obj/structure/closet/crate/freezer/organ
+/obj/structure/closet/crate/freezer/fridge : /obj/structure/closet/secure_closet/freezer/fridge/all_access
+
+/obj/structure/chair/sofa/old : /obj/structure/chair/sofa {@OLD}
+/obj/structure/chair/sofa/old/@SUBTYPES : /obj/structure/chair/sofa/@SUBTYPES {@OLD}
