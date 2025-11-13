@@ -95,7 +95,7 @@
 		/obj/item/trash/raisins = 2,
 		/obj/item/trash/cheesie = 2,
 		/obj/item/trash/candy = 2,
-		/obj/item/trash/chips = 2,
+		/obj/item/trash/chips = 10, // DARKPACK EDIT CHANGE
 		/obj/item/trash/sosjerky = 2,
 		/obj/item/trash/pistachios = 2,
 		/obj/item/trash/peanuts = 2,
@@ -139,8 +139,7 @@
 		/obj/item/popsicle_stick = 1,
 		/obj/item/trash/ready_donk = 1,
 		/obj/item/trash/tray = 1,
-		/obj/item/trash/vampirebar = 10, // DARKPACK EDIT ADD START
-		/obj/item/trash/vampirecrisps = 10,
+		/obj/item/trash/vampirebar = 5, // DARKPACK EDIT ADD START
 		/obj/item/trash/vampirenugget = 1, // DARKPACK EDIT ADD END
 	)
 
