@@ -87,9 +87,6 @@
 		// TODO: [Rebase] reimplement choosing disciplines
 		if(ispath(discipline))
 			vampire.give_discipline(new discipline(5))
-	new_kindred.give_discipline(new /datum/discipline/celerity(5))
-	new_kindred.give_discipline(new /datum/discipline/potence(5))
-	new_kindred.give_discipline(new /datum/discipline/fortitude(5))
 
 /**
  * Undoes the effects of on_gain to more or less
