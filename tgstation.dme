@@ -7165,6 +7165,7 @@
 #include "modular_darkpack\modules\phones\code\phone_subtypes.dm"
 #include "modular_darkpack\modules\phones\code\phone_voice.dm"
 #include "modular_darkpack\modules\phones\code\sim_card.dm"
+#include "modular_darkpack\modules\phones\code\stationary_subrypes.dm"
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_component.dm"
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_keybind.dm"
 #include "modular_darkpack\modules\powers\code\discipline_actions.dm"

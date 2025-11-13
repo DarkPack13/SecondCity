@@ -13,7 +13,8 @@
 
 /obj/item/sim_card/Initialize(mapload)
 	. = ..()
-	phone_number = SSphones.generate_phone_number(src)
+	if(!phone_number)
+		phone_number = SSphones.generate_phone_number(src)
 
 /obj/item/sim_card/Destroy(force)
 	. = ..()
@@ -37,3 +38,30 @@
 		return TRUE
 	return FALSE
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/sim_card/emergency
+	name = "\improper Emergency Services SIM card"
+	desc = "A SIM card with the number of 911."
+	phone_number = "911"
+
+/obj/item/sim_card/emergency/Initialize(mapload)
+	SSphones.assigned_phone_numbers[src] = phone_number
+	. = ..()
+
+/obj/item/sim_card/cleaner
+	name = "\improper Cleaning Services SIM card"
+	desc = "A SIM card with the number of the cleaners."
+	phone_number = "1415444444"
+
+/obj/item/sim_card/cleaner/Initialize(mapload)
+	SSphones.assigned_phone_numbers[src] = phone_number
+	. = ..()
+
+/obj/item/sim_card/landline
+	name = "\improper Landline SIM card"
+	desc = "Please put me back into the payphone."
+
+/obj/item/sim_card/landline/Initialize(mapload)
+	phone_number = SSphones.generate_phone_number(src, TRUE)
+	. = ..()

@@ -59,8 +59,9 @@
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
 	GLOB.phones_list += src
-	sim_card = new()
-	sim_card.phone_weakref = WEAKREF(src)
+	if(!sim_card)
+		sim_card = new()
+		sim_card.phone_weakref = WEAKREF(src)
 	phone_radio = new(src)
 	phone_radio.keyslot = new
 	phone_radio.radio_noise = FALSE

@@ -20,10 +20,18 @@ SUBSYSTEM_DEF(phones)
 /datum/controller/subsystem/phones/proc/random_number()
 	return "[pick("415","628")][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]"
 
+// Generates a random landline phone number from the available ranges, ten digits, starts with a 1415 or 1628.
+/datum/controller/subsystem/phones/proc/random_landline_number()
+	return "1[pick("415","628")][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]"
+
 // If this ever cannot generate a unique number after 10 tries, we have a problem.
-/datum/controller/subsystem/phones/proc/generate_phone_number(obj/item/sim_card/sim_card)
+/datum/controller/subsystem/phones/proc/generate_phone_number(obj/item/sim_card/sim_card, landline = FALSE)
 	for(var/generation_attempt in 1 to 10)
-		var/randomly_generated_phone_number = random_number()
+		var/randomly_generated_phone_number
+		if(landline)
+			randomly_generated_phone_number = random_landline_number()
+		else
+			randomly_generated_phone_number = random_number()
 		if(randomly_generated_phone_number in assigned_phone_numbers)
 			continue
 		assigned_phone_numbers[sim_card] = randomly_generated_phone_number
