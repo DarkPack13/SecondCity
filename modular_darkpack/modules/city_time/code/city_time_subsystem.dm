@@ -22,9 +22,9 @@ SUBSYSTEM_DEF(city_time)
 	var/shifting_colors = FALSE
 
 /datum/controller/subsystem/city_time/Initialize(start_timeofday)
-	. = ..()
 	time_till_daytime = CONFIG_GET(number/time_till_day)
 	time_till_roundend = CONFIG_GET(number/time_till_roundend)
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/city_time/fire()
 	if(station_time_passed() > time_till_daytime - 30 MINUTES && !first_warning && !shifting_colors)

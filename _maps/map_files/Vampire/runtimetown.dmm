@@ -17,6 +17,10 @@
 /obj/structure/toiletbong,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"aM" = (
+/obj/effect/spawner/random/trash/rat,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "aN" = (
 /obj/effect/landmark/npcbeacon/directed{
 	dir = 1
@@ -92,6 +96,9 @@
 /obj/item/defibrillator/compact,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"ca" = (
+/turf/closed/wall/vampwall/old,
+/area/vtm/outside/ghetto)
 "cf" = (
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
@@ -117,11 +124,6 @@
 	transport_linked_id = "DebugElevator"
 	},
 /turf/open/floor/iron/smooth_large,
-/area/vtm/outside/pacificheights)
-"cs" = (
-/obj/effect/decal/cleanable/litter,
-/obj/effect/spawner/random/stray_animal,
-/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "cQ" = (
 /obj/structure/table,
@@ -242,6 +244,14 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"fV" = (
+/obj/effect/spawner/random/trash/hobo_squat,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
+"fZ" = (
+/obj/structure/fire_barrel,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "gb" = (
 /obj/effect/decal/cleanable/cardboard,
 /obj/structure/closet/cardboard,
@@ -311,13 +321,6 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
-"ht" = (
-/obj/effect/decal/cleanable/trash{
-	icon_state = "trash5"
-	},
-/obj/effect/spawner/random/stray_animal,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "hu" = (
 /obj/effect/decal/pallet,
 /obj/item/ammo_box/darkpack/arrows,
@@ -336,10 +339,6 @@
 /obj/structure/cargo_take,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"hP" = (
-/obj/effect/spawner/random/stray_animal,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "hT" = (
 /obj/structure/transport/linear/public,
 /obj/structure/table,
@@ -418,6 +417,13 @@
 "jp" = (
 /turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/supply)
+"jw" = (
+/obj/effect/decal/cleanable/trash{
+	icon_state = "trash7"
+	},
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "jD" = (
 /obj/structure/railing{
 	dir = 5
@@ -515,22 +521,15 @@
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
+"lX" = (
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "lY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"mb" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/structure/city_map,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
-"md" = (
-/turf/closed/wall/vampwall/old,
-/area/vtm/outside/pacificheights)
 "mj" = (
 /obj/structure/vampdoor/anarch{
 	dir = 4
@@ -579,10 +578,6 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
-"nu" = (
-/obj/effect/landmark/navigate_destination,
-/turf/open/floor/plating/rough,
-/area/vtm/interior/clinic)
 "nw" = (
 /obj/structure/table,
 /obj/lombard,
@@ -634,9 +629,6 @@
 /area/vtm/outside/pacificheights)
 "oD" = (
 /turf/open/misc/grass,
-/area/vtm/outside/pacificheights)
-"oJ" = (
-/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "oK" = (
 /turf/open/misc/beach/vamp,
@@ -693,6 +685,14 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"pU" = (
+/obj/effect/landmark/npc_spawn_point,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
+"pV" = (
+/obj/effect/turf_decal/bordur,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "qc" = (
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
@@ -751,10 +751,6 @@
 /obj/structure/table/countertop/purple,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
-"rq" = (
-/obj/effect/spawner/random/trash/rat,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "rs" = (
 /obj/machinery/fax/camarilla,
 /obj/structure/table/wood,
@@ -895,10 +891,6 @@
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
-"tE" = (
-/obj/effect/landmark/navigate_destination,
-/turf/open/floor/plating/rough,
-/area/vtm/interior/anarch)
 "tF" = (
 /obj/darkpack_car/retro/rand{
 	locked = 0
@@ -964,6 +956,10 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"uX" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "vl" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -1126,6 +1122,10 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
+"ze" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/misc/dirt,
+/area/vtm/outside/supply)
 "zk" = (
 /obj/darkpack_car/track/ambulance{
 	dir = 4;
@@ -1141,15 +1141,18 @@
 "zx" = (
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/interior/shop)
+"zA" = (
+/obj/effect/decal/cleanable/trash{
+	icon_state = "trash5"
+	},
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "zB" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/saulocept,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
-"zK" = (
-/obj/effect/landmark/navigate_destination,
-/turf/open/misc/dirt,
-/area/vtm/outside/supply)
 "zT" = (
 /obj/structure/chair/greyscale,
 /turf/open/floor/plating/rough,
@@ -1168,6 +1171,11 @@
 /obj/structure/table/countertop/teal,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"Ag" = (
+/obj/effect/decal/cleanable/litter,
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Ak" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 1
@@ -1455,6 +1463,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"FM" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/anarch)
 "FO" = (
 /obj/structure/table,
 /turf/open/floor/plating/sidewalk/poor,
@@ -1517,6 +1529,9 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"GN" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/outside/ghetto)
 "GO" = (
 /obj/structure/table,
 /obj/machinery/button/door{
@@ -1583,6 +1598,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"HE" = (
+/obj/structure/city_map,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "HJ" = (
 /obj/effect/turf_decal/stock,
 /turf/open/floor/plating/asphalt,
@@ -1600,6 +1619,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"HQ" = (
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "Id" = (
 /turf/open/floor/plating/rough,
@@ -1677,10 +1700,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
-"JA" = (
-/obj/structure/city_map,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "JB" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/smooth/old,
@@ -1710,9 +1729,19 @@
 /obj/effect/decal/cleanable/garbage,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"JR" = (
+/obj/effect/decal/cleanable/cardboard,
+/obj/effect/spawner/random/trash/rat,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "JZ" = (
 /obj/item/clothing/head/collectable/pirate,
 /turf/open/floor/wood/rough,
+/area/vtm/outside/pacificheights)
+"Kc" = (
+/obj/effect/turf_decal/bordur,
+/obj/effect/landmark/npc_spawn_point,
+/turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Kg" = (
 /obj/effect/turf_decal/bordur,
@@ -1727,6 +1756,9 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"Kk" = (
+/turf/closed/wall/vampwall/brick_old,
+/area/vtm/outside/ghetto)
 "Ko" = (
 /obj/effect/landmark/npcbeacon/directed{
 	dir = 8
@@ -1788,13 +1820,6 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"Lk" = (
-/obj/effect/decal/cleanable/trash{
-	icon_state = "trash7"
-	},
-/obj/effect/spawner/random/stray_animal,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "Lw" = (
 /obj/structure/table,
 /obj/item/gas_can,
@@ -1812,6 +1837,9 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
+"LU" = (
+/turf/closed/wall/vampwall/rich/old/low/window,
+/area/vtm/outside/ghetto)
 "LW" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
@@ -1829,6 +1857,13 @@
 /obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"Mg" = (
+/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "Mm" = (
 /obj/structure/ladder/manhole/down,
 /obj/machinery/light/small/directional/west,
@@ -1866,13 +1901,6 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plating/sidewalk,
-/area/vtm/outside/pacificheights)
-"MH" = (
-/obj/machinery/light/small/directional/north,
-/obj/effect/turf_decal/bordur{
-	dir = 4
-	},
-/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "MJ" = (
 /obj/structure/table,
@@ -2088,6 +2116,10 @@
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
+"Qe" = (
+/obj/effect/spawner/random/stray_animal,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Qi" = (
 /obj/effect/turf_decal/asphaltline/alt,
 /turf/open/floor/plating/asphalt,
@@ -2103,17 +2135,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk,
-/area/vtm/outside/pacificheights)
-"QM" = (
-/obj/effect/turf_decal/bordur{
-	dir = 4
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/pacificheights)
-"QO" = (
-/obj/effect/decal/cleanable/cardboard,
-/obj/effect/spawner/random/trash/rat,
-/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "QR" = (
 /obj/machinery/elevator_control_panel/directional/north{
@@ -2193,6 +2214,12 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"SJ" = (
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "SK" = (
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/clinic)
@@ -2204,6 +2231,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating/canal,
+/area/vtm/outside/pacificheights)
+"SP" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/city_map,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
@@ -2754,7 +2788,7 @@ NR
 NR
 Ff
 NR
-QO
+JR
 ok
 rL
 Vu
@@ -2817,7 +2851,7 @@ hb
 CL
 Ul
 FG
-rq
+aM
 wO
 NR
 NR
@@ -3165,7 +3199,7 @@ PO
 PO
 nm
 JH
-JA
+HE
 NR
 NR
 NR
@@ -3230,10 +3264,10 @@ xU
 OD
 Of
 hu
-tE
+FM
 Xz
 JH
-mb
+SP
 NR
 NR
 NR
@@ -3563,7 +3597,7 @@ pN
 pN
 pN
 pN
-nu
+uX
 Id
 Id
 Id
@@ -4240,7 +4274,7 @@ GF
 GF
 MS
 Bt
-Lk
+jw
 XE
 NR
 NR
@@ -4376,7 +4410,7 @@ GF
 GF
 MS
 iA
-cs
+Ag
 iD
 AE
 oW
@@ -4511,7 +4545,7 @@ GF
 (29,1,1) = {"
 GF
 MS
-ht
+zA
 NR
 iD
 bo
@@ -4580,7 +4614,7 @@ GF
 GF
 MS
 JP
-hP
+Qe
 XE
 NR
 NR
@@ -5146,7 +5180,7 @@ ik
 VQ
 ik
 Fs
-zK
+ze
 Wa
 Wa
 Lb
@@ -7177,14 +7211,14 @@ MS
 MS
 MS
 MS
-MS
-Zs
-Zs
-Zs
-Zs
-Zs
-Zs
-Zs
+GN
+Kk
+Kk
+Kk
+Kk
+Kk
+Kk
+Kk
 Zs
 Zs
 qV
@@ -7245,14 +7279,14 @@ Ys
 Ys
 Ys
 Ys
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 qz
 XJ
 FB
@@ -7313,14 +7347,14 @@ Ys
 Ys
 Ys
 Ys
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 rF
 XW
 ik
@@ -7381,14 +7415,14 @@ Ys
 Ys
 Ys
 Ys
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 eQ
 XJ
 ik
@@ -7449,14 +7483,14 @@ MS
 MS
 MS
 MS
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 eQ
 XJ
 ik
@@ -7517,14 +7551,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 eQ
 XJ
 ik
@@ -7585,14 +7619,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+Kk
 eQ
 XJ
 ik
@@ -7653,14 +7687,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-Zs
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+Kk
+lX
+lX
+Kk
 eQ
 tb
 rW
@@ -7721,14 +7755,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-Zs
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+Kk
+lX
+lX
+Kk
 qz
 XJ
 ik
@@ -7789,14 +7823,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-Zs
-oJ
-oJ
-Zs
+GN
+lX
+lX
+lX
+Kk
+lX
+lX
+Kk
 eQ
 XJ
 ik
@@ -7857,14 +7891,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-Zs
-Zs
-Zs
-Zs
+GN
+lX
+lX
+lX
+Kk
+Kk
+Kk
+Kk
 eQ
 XJ
 ik
@@ -7925,14 +7959,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-cj
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+pV
 eQ
 tb
 rW
@@ -7993,14 +8027,14 @@ Ys
 Ys
 Ys
 di
-eR
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-cj
+LU
+lX
+lX
+lX
+lX
+lX
+lX
+pV
 aN
 XJ
 ik
@@ -8061,14 +8095,14 @@ Ys
 Ys
 Ys
 di
-eR
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-cj
+LU
+lX
+lX
+lX
+lX
+lX
+lX
+pV
 eQ
 XJ
 ik
@@ -8129,14 +8163,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-md
-md
-md
-md
+GN
+lX
+lX
+lX
+ca
+ca
+ca
+ca
 eQ
 XJ
 ik
@@ -8197,14 +8231,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-md
-oJ
-oJ
-md
+GN
+lX
+lX
+lX
+ca
+pU
+fV
+ca
 qz
 XJ
 ik
@@ -8265,14 +8299,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-md
+GN
+lX
+lX
+lX
+lX
+lX
+lX
+ca
 eQ
 XJ
 ik
@@ -8333,14 +8367,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-md
+GN
+lX
+lX
+lX
+lX
+fZ
+lX
+ca
 eQ
 XJ
 FB
@@ -8401,14 +8435,14 @@ Ys
 Ys
 Ys
 di
-eR
-oJ
-oJ
-oJ
-oJ
-oJ
-oJ
-md
+LU
+lX
+lX
+lX
+lX
+lX
+lX
+ca
 eQ
 XJ
 ik
@@ -8469,16 +8503,16 @@ Ys
 Ys
 Ys
 di
-eR
-oJ
-oJ
-oJ
-md
-oJ
-oJ
-md
+LU
+lX
+lX
+lX
+ca
+fV
+pU
+ca
 eQ
-XJ
+Kc
 ik
 ik
 VQ
@@ -8537,14 +8571,14 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-md
-md
-md
-md
+GN
+lX
+lX
+lX
+ca
+ca
+ca
+ca
 eQ
 XJ
 ik
@@ -8605,12 +8639,12 @@ Ys
 Ys
 Ys
 di
-MS
-oJ
-oJ
-oJ
-md
-md
+GN
+lX
+lX
+lX
+ca
+ca
 eQ
 eQ
 eQ
@@ -8673,12 +8707,12 @@ Zs
 Zs
 Zs
 Zs
-Zs
-MH
-QM
-QM
-md
-md
+Kk
+Mg
+SJ
+SJ
+ca
+ca
 eQ
 eQ
 XY
@@ -9215,7 +9249,7 @@ ik
 ik
 ik
 ik
-ik
+HQ
 ik
 gs
 eR
