@@ -18,8 +18,8 @@
 /obj/structure/flora/ausbushes/sparsegrass : /obj/structure/flora/bush/sparsegrass/style_random {@OLD}
 /obj/structure/flora/ausbushes/fullgrass : /obj/structure/flora/bush/fullgrass/style_random {@OLD}
 /obj/structure/flora/stump : /obj/structure/flora/tree/stump
-/obj/structure/flora/ausbushes/shortgrass  /obj/structure/flora/bush/style_random {@OLD}
-/obj/structure/flora/ausbushes/tallgrass/dry  /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/shortgrass : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/tallgrass/dry : /obj/structure/flora/bush/style_random {@OLD}
 /obj/structure/flora/junglebush : /obj/structure/flora/bush/style_random {@OLD}
 /obj/structure/flora/junglebush/b : /obj/structure/flora/bush/style_random {@OLD}
 /obj/structure/flora/junglebush/c : /obj/structure/flora/bush/style_random {@OLD}
