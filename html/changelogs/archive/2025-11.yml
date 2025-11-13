@@ -17,3 +17,49 @@
   - image: added animated elevator doors and elevator buttons
   XeonMations:
   - rscadd: Added flavor text to the game
+2025-11-03:
+  FalloutFalcon:
+  - qol: vamprocks are now normal rocks that can be smashed
+  - map: random spawners for flora
+  - rscadd: wood plant trays
+  - qol: you can cut seeds out of plants with any sharp object
+  - refactor: weed is now normal botany, meaning it functions like how all the other
+      plants work
+  - image: pretty new crate and plant tray sprites by paynt
+  - bugfix: retail stores will use custom premium price if it doesnt have normal custom_price
+      nor passed in the retail store
+2025-11-05:
+  FalloutFalcon:
+  - sound: Adds wooden door knocking, Sounds where in the repo just unused.
+  - sound: Replaces the end of round sounds with bloopers from the HTP episode 6.2
+  - refactor: fishing has been TGified
+  chazzyjazzy:
+  - code_imp: reticks necromancy and remakes graveyard subsystem
+  dwinters99:
+  - rscadd: wod belts
+  - rscadd: TFN tasers
+2025-11-06:
+  dwinters99:
+  - map: viewport helpers for mapping
+2025-11-09:
+  dwinters99:
+  - bugfix: lizard and ethereal blood no longer spawns in blood freezers
+2025-11-11:
+  chazzyjazzy:
+  - code_imp: ticking thaumaturgy and file management for ritual thaumaturgy
+  dwinters99:
+  - balance: loadout cowboy hat changed to the unarmored variant
+2025-11-12:
+  FalloutFalcon:
+  - rscadd: deer are scared of darkpack cars lol
+2025-11-13:
+  FalloutFalcon:
+  - rscadd: Added a few new "City" traits
+  - rscdel: Disables all old station traits
+  - qol: thunder can be heard from MUCH MUCH further away
+  - admin: Only city traits that are real show up in the station trait select menu
+  - image: adds or fixes a few missing icon states
+  - qol: City Maps either open the wiki or navigate verb depending on input
+  - rscadd: NPC cap has been moved to map configs, expect less npcs in smaller maps.
+  - bugfix: NPC repopulate is called on round start to get up to the correct number
+  - bugfix: alt sprite for bonfires should behave better

@@ -33,3 +33,16 @@
 /obj/structure/window/@SUBTYPES : /obj/structure/window/@SUBTYPES{@OLD;dir=@SKIP}
 
 /turf/closed/wall/vampwall/@SUBTYPES{density=0} : @OLD{@OLD;color="#BBBBBB"}
+
+/obj/structure/noticeboard : /obj/structure/noticeboard {@OLD;icon_state=@SKIP}
+
+/obj/item/kirbyplants {icon_state="plant0"} : /obj/item/kirbyplants/darkpack {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant1"} : /obj/item/kirbyplants/darkpack/plant1 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant2"} : /obj/item/kirbyplants/darkpack/plant2 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant3"} : /obj/item/kirbyplants/darkpack/plant3 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant4"} : /obj/item/kirbyplants/darkpack/plant4 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant5"} : /obj/item/kirbyplants/darkpack/plant5 {@OLD;icon_state=@SKIP}
+
+/obj/structure/table/optable/optable2 : /obj/structure/table/optable {@OLD}
+
+/turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit

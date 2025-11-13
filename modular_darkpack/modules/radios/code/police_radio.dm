@@ -32,7 +32,7 @@
 		direction = "North [direction]"
 	else
 		direction = "South [direction]"
-	direction += " San Francisco"
+	direction += " [CITY_NAME]"
 	return direction
 
 /obj/item/police_radio/proc/announce_crime(crime, atom/location)

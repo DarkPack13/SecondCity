@@ -439,8 +439,7 @@
 	</table>
 	<br/>
 	Blood types not written above can only receive from the same blood type.
-	Certain species do not have blood.
-	"}
+	"} // DARKPACK EDIT REMOVE - Removed "Certain species do not have blood."
 
 	/*
 	* Stations

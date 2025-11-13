@@ -29,6 +29,10 @@ ADMIN_VERB(station_traits_panel, R_FUN, "Modify Station Traits", "Modify the sta
 	var/list/valid_station_traits = list()
 
 	for (var/datum/station_trait/station_trait_path as anything in valid_subtypesof(/datum/station_trait))
+		// DARKPACK EDIT ADD - CITY_TRAITS
+		if(!initial(station_trait_path.darkpack_allowed))
+			continue
+		// DARKPACK EDIT END
 		valid_station_traits += list(list(
 			"name" = initial(station_trait_path.name),
 			"path" = station_trait_path,

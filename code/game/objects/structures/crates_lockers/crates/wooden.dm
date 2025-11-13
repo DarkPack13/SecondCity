@@ -1,6 +1,7 @@
 /obj/structure/closet/crate/wooden
 	name = "wooden crate"
 	desc = "Works just as well as a metal one."
+	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi' // DARKPACK EDIT CHANGE
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
 	icon_state = "wooden"

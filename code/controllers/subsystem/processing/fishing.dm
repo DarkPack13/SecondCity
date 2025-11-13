@@ -29,7 +29,7 @@ PROCESSING_SUBSYSTEM_DEF(fishing)
 	var/icon/questionmark = icon('icons/effects/random_spawners.dmi', "questionmark")
 	var/list/mark_dimension = get_icon_dimensions(questionmark)
 	var/list/spawned_fish = list()
-	var/list/fish_subtypes = sortTim(subtypesof(/obj/item/fish), GLOBAL_PROC_REF(cmp_init_name_asc))
+	var/list/fish_subtypes = sortTim(valid_subtypesof(/obj/item/fish), GLOBAL_PROC_REF(cmp_init_name_asc)) // DARKPACK EDIT CHANGE - FISHING
 	for(var/obj/item/fish/fish_type as anything in fish_subtypes)
 		var/list/fish_dimensions = get_icon_dimensions(fish_type::icon)
 		var/icon/fish_icon = icon(fish_type::icon, fish_type::icon_state, frame = 1, moving = FALSE)

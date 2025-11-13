@@ -6,7 +6,7 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	travel_time = 5 SECONDS
-	travel_sound = 'modular_darkpack/modules/deprecated/sounds/manhole.ogg'
+	travel_sound = 'modular_darkpack/modules/z_travel/sounds/manhole.ogg'
 	requires_friend = TRUE
 	static_appearance = TRUE
 
@@ -24,6 +24,15 @@
 
 /obj/structure/ladder/manhole/down/Initialize(mapload)
 	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_INFESTATION))
+		AddComponent(\
+			/datum/component/spawner,\
+			spawn_types = list(/mob/living/basic/mouse/vampire),\
+			spawn_time = 15 MINUTES,\
+			max_spawned = 1,\
+			spawn_text = "crawls out from",\
+		)
+
 	if(check_holidays(FESTIVE_SEASON))
 		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)

@@ -295,7 +295,7 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	to_chat(world, span_notice(span_bold("Welcome to [station_name()], enjoy your stay!")))
+	to_chat(world, span_notice(span_bold("Another night in [station_name()], another dollar."))) // DARKPACK EDIT CHANGE
 	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
@@ -704,7 +704,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "Nanotrasen News Network"
+	var/news_source = "[CITY_NAME] News Network"
 	var/decoded_station_name = html_decode(station_name()) //decode station_name to avoid minor_announce double encode
 	var/decoded_emergency_reason = html_decode(emergency_reason)
 

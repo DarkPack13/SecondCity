@@ -13,4 +13,4 @@
 
 /obj/machinery/reagentgrinder/kitchen
 	name = "kitchen mixer"
-	beaker_type = /obj/item/reagent_containers/glass/mixing_bowl
+	//beaker_type = /obj/item/reagent_containers/glass/mixing_bowl
