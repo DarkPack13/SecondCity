@@ -1,3 +1,2 @@
-/obj/item/vamp/phone/street : @DELETE
 /obj/item/vamp/phone/@SUBTYPES : /obj/item/smartphone/@SUBTYPES {@OLD}
 /obj/item/vamp/phone : /obj/item/smartphone {@OLD}
