@@ -186,9 +186,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
 "eg" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 32
-	},
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "el" = (
@@ -2180,6 +2178,10 @@
 /obj/structure/retail/gummaguts_menu,
 /turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
+"Rw" = (
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Rx" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner{
@@ -4758,7 +4760,7 @@ NR
 NR
 NR
 NR
-NR
+Rw
 NR
 NR
 NR
