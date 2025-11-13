@@ -76,68 +76,6 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 
-/obj/item/food/chocolatebar
-	icon_state = "bar2"
-	icon = 'modular_darkpack/modules/food/icons/items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
-	custom_price = 1
-	trash_type = /obj/item/trash/vampirebar
-	tastes = list("chocolate" = 1)
-	food_flags = FOOD_BITE_SPRITE
-
-/obj/item/food/chocolatebar/proc/open_bar(mob/user)
-	to_chat(user, span_notice("You pull back the wrapper of \the [src]."))
-	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
-	icon_state = "bar1"
-	reagents.flags |= OPENCONTAINER
-
-/obj/item/food/chocolatebar/attack_self(mob/user)
-	if(!is_drainable())
-		open_bar(user)
-	return ..()
-
-/obj/item/food/chocolatebar/attack(mob/living/M, mob/user, def_zone)
-	if (!is_drainable())
-		to_chat(user, span_warning("[src]'s wrapper hasn't been opened!"))
-		return FALSE
-	return ..()
-
-/obj/item/trash/vampirecrisps
-	name = "chips wrapper"
-	icon_state = "crisps0"
-	icon = 'modular_darkpack/modules/food/icons/items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
-
-/obj/item/food/vampire/crisps
-	name = "chips"
-	desc = "\"Days\" chips... Crispy!"
-	icon_state = "crisps2"
-	trash_type = /obj/item/trash/vampirecrisps
-	bite_consumption = 1
-	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/salt = 1)
-	junkiness = 10
-	tastes = list("salt" = 1, "crisps" = 1)
-	food_flags = FOOD_IN_CONTAINER | FOOD_BITE_SPRITE
-	foodtypes = JUNKFOOD | FRIED
-	//eatsound = 'modular_darkpack/modules/depricated/sounds/crisp.ogg'
-
-/obj/item/food/vampire/crisps/proc/open_crisps(mob/user)
-	to_chat(user, span_notice("You pull back the wrapper of \the [src]."))
-	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
-	icon_state = "crisps1"
-	reagents.flags |= OPENCONTAINER
-
-/obj/item/food/vampire/crisps/attack_self(mob/user)
-	if(!is_drainable())
-		open_crisps(user)
-	return ..()
-
-/obj/item/food/vampire/crisps/attack(mob/living/M, mob/user, def_zone)
-	if (!is_drainable())
-		to_chat(user, span_warning("[src]'s wrapper hasn't been opened!"))
-		return FALSE
-	return ..()
-
 /obj/item/food/vampire/icecream
 	name = "ice cream"
 	desc = "Taste the childhood."
