@@ -6,7 +6,7 @@
 /turf/open/floor/plating/vampwood : /turf/open/floor/wood/old
 /turf/open/floor/plating/parquetry : /turf/open/floor/wood/smooth
 /turf/open/floor/plating/parquetry/old: /turf/open/floor/wood/smooth/old
-/turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate/rich
+/turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate
 
 /turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack
 
