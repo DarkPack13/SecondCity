@@ -447,7 +447,7 @@
 	if (effect_sound)
 		playsound(target ? target : owner, effect_sound, 50, FALSE)
 
-// TODO: [Rebase] reimplement npcs
+// DARKPACK TODO - reimplement npcs
 /**
  * Overridable proc handling how the power aggravates NPCs
  * it's used on.

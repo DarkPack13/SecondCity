@@ -84,7 +84,7 @@
 		RegisterSignal(vampire, COMSIG_MOB_LOGIN, PROC_REF(on_join_round), override = TRUE)
 
 	for(var/discipline in clan_disciplines)
-		// TODO: [Rebase] reimplement choosing disciplines
+		// DARKPACK TODO - reimplement choosing disciplines
 		if(ispath(discipline, /datum/discipline))
 			vampire.give_discipline(new discipline(5))
 
@@ -108,7 +108,7 @@
 	if (alt_sprite)
 		vampire.set_body_sprite(ignore_clan = TRUE)
 
-	// TODO: [Rebase] reimplement clan accessories
+	// DARKPACK TODO - reimplement clan accessories
 	/*
 	// Remove Clan accessories
 	if (vampire.client?.prefs?.clan_accessory)

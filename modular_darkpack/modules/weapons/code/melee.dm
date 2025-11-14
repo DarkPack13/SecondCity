@@ -291,7 +291,7 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
-	// TODO: [Rebase] reimplement werewolfs
+	// DARKPACK TODO - reimplement werewolfs
 	/*
 	if(isgarou(target) || iswerewolf(target) || isanimal(target))
 		return
