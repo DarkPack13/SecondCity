@@ -103,6 +103,7 @@
 	name = "Clinic"
 	icon_state = "clinic"
 	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_SAFE
 	fire_controled = TRUE
 
 /area/vtm/interior/clinic/haven
@@ -131,5 +132,6 @@
 	name = "Elevator"
 	icon_state = "prince"
 	zone_type = ZONE_ELYSIUM
-	ambientsounds = list('modular_darkpack/modules/ambience/sounds/lift.ogg')
+	// Most elevators handle themselves with those little effect thingys
+	ambience_index = null
 	fire_controled = TRUE
