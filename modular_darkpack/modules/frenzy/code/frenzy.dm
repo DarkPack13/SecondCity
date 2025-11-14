@@ -81,20 +81,11 @@
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 	var/atom/fear
-	for(var/obj/effect/abstract/turf_fire/F in GLOB.fires_list)
-		if(get_dist(src, F) < 7 && F.z == src.z)
-			if(get_dist(src, F) < 6)
-				fear = F
-			if(get_dist(src, F) < 5)
-				fear = F
-			if(get_dist(src, F) < 4)
-				fear = F
-			if(get_dist(src, F) < 3)
-				fear = F
-			if(get_dist(src, F) < 2)
-				fear = F
-			if(get_dist(src, F) < 1)
-				fear = F
+	var/greatest_distance = INFINITY
+	for(var/obj/effect/abstract/turf_fire/fire in view(7, src))
+		var/this_fires_distance = get_dist(src, fire)
+		if(this_fires_distance < greatest_distance)
+			fear = fire
 
 //	if(!fear && !frenzy_target)
 //		return
