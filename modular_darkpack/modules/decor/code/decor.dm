@@ -716,7 +716,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/burying = FALSE
 
-// DARKPACK TODO -
+// DARKPACK TODO - reimplement
 /*
 /obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/shovel/vamp))
