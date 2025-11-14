@@ -11,6 +11,12 @@
 	var/opened = FALSE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
+// DARKPACK EDIT ADD START
+/obj/structure/extinguisher_cabinet/directional/east
+	pixel_x = 0
+/obj/structure/extinguisher_cabinet/directional/west
+	pixel_x = 0
+// DARKPACK EDIT ADD END
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload)
 	. = ..()

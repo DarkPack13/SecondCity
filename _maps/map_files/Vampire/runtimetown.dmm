@@ -1806,6 +1806,10 @@
 "Lb" = (
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
+"Lc" = (
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Le" = (
 /obj/structure/transport/linear/public,
 /obj/structure/closet/crate/freezer/food,
@@ -2179,7 +2183,7 @@
 /turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
 "Rw" = (
-/obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Rx" = (
@@ -4625,7 +4629,7 @@ NR
 NR
 NR
 NR
-NR
+Lc
 NR
 NR
 NR
