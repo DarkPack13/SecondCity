@@ -81,10 +81,6 @@ export const ScreenContacts = (props: {
 
   const [showSettings, setShowSettings] = useState(false);
 
-  our_contacts.sort((a, b) => a.name.localeCompare(b.name));
-  published_numbers.sort((a, b) => a.name.localeCompare(b.name));
-  our_blocked_contacts.sort((a, b) => a.name.localeCompare(b.name));
-
   return (
     <Stack vertical fill backgroundColor="#fff" textColor="#000">
       <Stack.Item>

@@ -212,6 +212,7 @@
 			"name" = contact,
 			"number" = SSphones.published_phone_numbers[contact],
 		))
+	published_numbers = sort_list(published_numbers)
 	data["published_numbers"] = published_numbers
 
 	var/list/our_contacts = list()
@@ -220,6 +221,7 @@
 			"name" = contact.name,
 			"number" = contact.number,
 		))
+	our_contacts = sort_list(our_contacts)
 	data["our_contacts"] = our_contacts
 
 	var/list/our_blocked_contacts = list()
@@ -228,6 +230,7 @@
 			"name" = contact.name,
 			"number" = contact.number,
 		))
+	our_blocked_contacts = sort_list(our_blocked_contacts)
 	data["our_blocked_contacts"] = our_blocked_contacts
 
 	var/list/phone_history = list()
