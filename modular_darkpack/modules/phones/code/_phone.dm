@@ -82,8 +82,7 @@
 	if(LAZYLEN(contact_networks_pre_init))
 		LAZYINITLIST(contact_networks)
 		for(var/list/contact_network_info as anything in contact_networks_pre_init)
-			var/wew = contact_network_info[NETWORK_ID]
-			var/list/network_contacts = GLOB.contact_networks[wew]
+			var/list/network_contacts = GLOB.contact_networks[contact_network_info[NETWORK_ID]]
 
 			var/our_role = contact_network_info[OUR_ROLE]
 			if(contact_network_info[USE_JOB_TITLE] && !isnull(owner) && owner?.job)
@@ -279,7 +278,7 @@
 			if(!name)
 				to_chat(usr, span_danger("You must input a name to publish your number."))
 				return
-			if(!sim_card?.phone_number)
+			if(!sim_card)
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
 				return
 			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
