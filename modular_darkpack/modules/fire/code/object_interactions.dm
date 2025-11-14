@@ -1,13 +1,10 @@
+// All the code for interacting with other objects that doesnt require master_files
+
 /turf/proc/ignite_turf(power, fire_color = "red")
 	return SEND_SIGNAL(src, COMSIG_TURF_IGNITED, power, fire_color)
 
 /turf/proc/extinguish_turf()
 	return
-
-/turf/open
-	/// How much fuel this open turf provides to turf fires
-	var/flammability = 0.2
-	var/obj/effect/abstract/turf_fire/turf_fire
 
 /turf/open/ignite_turf(power, fire_color)
 	. = ..()
@@ -34,15 +31,6 @@
 	if(turf_fire)
 		qdel(turf_fire)
 
-/turf/open/space
-	flammability = -INFINITY // not a single chance in hell
-
-/turf/open/water
-	flammability = 0
-
-/turf/open/misc/grass
-	flammability = 2
-
 /turf/open/misc/grass/burn_tile()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
@@ -50,11 +38,8 @@
 /turf/open/misc/dirt/burn_tile()
 	return FALSE
 
-/turf/open/misc/snow
-	flammability = 0
-
-/turf/open/floor/wood
-	flammability = 2
-
-/turf/open/floor/carpet
-	flammability = 2
+/obj/structure/flora/fire_act(exposed_temperature, exposed_volume)
+	. = ..()
+	var/turf/open/plant_turf = get_turf(src)
+	if(isopenturf(plant_turf) && prob(plant_turf.flammability >= 1))
+		plant_turf.ignite_turf(fuel_power + plant_turf.flammability)
