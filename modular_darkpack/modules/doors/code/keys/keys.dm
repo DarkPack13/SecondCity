@@ -344,14 +344,14 @@
 	color = "#466a72"
 
 /obj/item/vamp/keys/pentex
-	name = "Endron Facility keys"
+	name = EVIL_OIL_COMPANY + "  Facility keys"
 	accesslocks = list(
 		"pentex"
 	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/pentex/leader
-	name = "Endron Management keys"
+	name = EVIL_OIL_COMPANY + " Management keys"
 	accesslocks = list(
 		"pentex",
 		"pentexleader"

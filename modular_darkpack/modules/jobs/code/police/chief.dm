@@ -17,7 +17,7 @@
 
 	allowed_species = list(SPECIES_HUMAN)
 
-	description = "Underpaid, overworked, and understrength. Do your best to keep the order in San Francisco. Keep the officers in line."
+	description = "Underpaid, overworked, and understrength. Do your best to keep the order in " + CITY_NAME + ". Keep the officers in line."
 	minimal_masquerade = 0
 
 /datum/outfit/job/police_chief

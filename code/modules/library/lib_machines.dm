@@ -256,7 +256,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 #define PRINTER_COOLDOWN (6 SECONDS)
 #define NEWSCASTER_COOLDOWN (10 SECONDS)
-#define LIBRARY_NEWSFEED "Nanotrasen Book Club"
+#define LIBRARY_NEWSFEED "[CITY_NAME] Book Club" // DARKPACK EDIT CHANGE
 //The different states the computer can be in, only send the info we need yeah?
 #define LIBRARY_INVENTORY 1
 #define LIBRARY_CHECKOUT 2
@@ -509,7 +509,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 				say("No news network found on station. Aborting.")
 			var/datum/feed_channel/library_channel = GLOB.news_network.network_channels_by_name[LIBRARY_NEWSFEED]
 			if(isnull(library_channel))
-				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Library", "The official station book club!", null)
+				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Library", "The official city book club!", null) // DARKPACK EDIT CHANGE
 
 			var/obj/machinery/libraryscanner/scan = get_scanner()
 			if(!scan)
