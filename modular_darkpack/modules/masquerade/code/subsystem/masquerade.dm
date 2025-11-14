@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(masquerade)
 		//GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
-	/* TODO: [Rebase] - GAROU
+	/* DARKPACK TODO - GAROU
 	if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		var/random_renown = pick("Honor","Wisdom","Glory")
 		switch(random_renown)

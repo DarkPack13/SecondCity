@@ -12,7 +12,7 @@
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	..()
 
-/* TODO: [Rebase]: PHONES
+/* DARKPACK TODO - PHONES
 /obj/item/vamp/phone/handle_hearing(datum/source, list/hearing_args)
 	if(online && talking)
 		if(istype(hearing_args[HEARING_SPEAKER], /obj/phonevoice))
