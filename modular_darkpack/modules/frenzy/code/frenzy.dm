@@ -80,12 +80,7 @@
 		toggle_move_intent(src)
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
-	var/atom/fear
-	var/greatest_distance = INFINITY
-	for(var/obj/effect/abstract/turf_fire/fire in view(7, src))
-		var/this_fires_distance = get_dist(src, fire)
-		if(this_fires_distance < greatest_distance)
-			fear = fire
+	var/atom/fear = get_closest_atom(/obj/effect/abstract/turf_fire, view(7, src), src)
 
 //	if(!fear && !frenzy_target)
 //		return
