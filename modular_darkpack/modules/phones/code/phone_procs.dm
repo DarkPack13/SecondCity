@@ -182,7 +182,6 @@
 	PROTECTED_PROC(TRUE)
 
 	var/obj/item/smartphone/calling_smartphone = SSphones.get_phone_from_number(incoming_phone_number)
-	calling_smartphone = SSphones.get_phone_from_number(incoming_phone_number)
 	if(!calling_smartphone)
 		calling_smartphone = SSphones.get_phone_from_number(dialed_number)
 	if(!calling_smartphone)
