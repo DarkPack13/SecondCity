@@ -33,10 +33,14 @@
 	balloon_alert(user, "you start crushing [src]!")
 	if(do_after(user, 5 SECONDS, src))
 		balloon_alert(user, "you crush [src]!")
-		new /obj/effect/decal/cleanable/blood/gibs/robot_debris(get_turf(user))
+		new /obj/effect/decal/cleanable/blood/gibs/robot_debris/plastic(get_turf(user))
 		qdel(src)
 		return TRUE
 	return FALSE
+
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/plastic
+	name = "plastic debris"
+	desc = "It's a useless heap of junk..."
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
