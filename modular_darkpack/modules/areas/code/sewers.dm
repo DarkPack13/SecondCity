@@ -1,6 +1,7 @@
 /area/vtm/sewer
 	name = "Sewer"
 	icon_state = "sewer"
+	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 	ambience_index = AMBIENCE_SEWER
 	musictracks = list('modular_darkpack/modules/ambience/sounds/music/enterlair.ogg', 'modular_darkpack/modules/ambience/sounds/music/infected_warehouse.ogg', 'modular_darkpack/modules/ambience/sounds/music/rotting_stones.ogg')
 	outdoors = FALSE

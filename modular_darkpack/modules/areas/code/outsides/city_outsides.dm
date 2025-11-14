@@ -32,6 +32,9 @@
 	name = "North Beach"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
+	//The waves dont really stop.
+	min_ambience_cooldown = 0 SECONDS
+	max_ambience_cooldown = 5 SECONDS
 	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/unionsquare
@@ -49,8 +52,9 @@
 /area/vtm/outside/forest
 	name = "Forest"
 	icon_state = "park"
-	zone_type = ZONE_NO_MASQUERADE
+	sound_environment = SOUND_ENVIRONMENT_FOREST
 	music_index = MUSIC_FOREST
+	zone_type = ZONE_NO_MASQUERADE
 
 /area/vtm/outside/supply
 	name = "Supply"

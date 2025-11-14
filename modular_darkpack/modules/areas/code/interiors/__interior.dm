@@ -2,5 +2,6 @@
 /area/vtm/interior
 	name = "Interior"
 	icon_state = "interior"
+	sound_environment = SOUND_ENVIRONMENT_
 	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
