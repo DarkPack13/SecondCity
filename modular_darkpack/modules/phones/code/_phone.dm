@@ -113,7 +113,7 @@
 			if(our_contact.number == sim_card.phone_number)
 				contact_network.contacts -= our_contact
 
-	RegisterSignal(src, COMSIG_MOVABLE_HEAR)
+	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	if(sim_card)
 		sim_card.phone_weakref = null
 		QDEL_NULL(sim_card)
