@@ -86,6 +86,9 @@ SUBSYSTEM_DEF(music)
 	SEND_SOUND(M, new_sound)
 
 	var/sound_length = SSsounds.get_sound_length(new_sound.file)
+	if(!sound_length)
+		// This will cause sounds to cut into eachother if the sound is longer then the min_ambience_cooldown
+		stack_trace("play_music failed to get soundlength from [new_sound] with a file of [new_sound.file].")
 	return sound_length + rand(min_music_cooldown, max_music_cooldown)
 
 /datum/controller/subsystem/music/proc/remove_music_client(client/to_remove)
