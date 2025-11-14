@@ -66,18 +66,15 @@
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
 	if(phone_flags & PHONE_NO_SIM)
 		balloon_alert(user, "no SIM!")
-		to_chat(user, span_notice("No SIM Card detected."))
 		return TRUE
 	return FALSE
 
 /obj/item/smartphone/proc/check_phone_busy(mob/user, obj/item/smartphone/calling_smartphone)
 	if(calling_smartphone.current_state > PHONE_AVAILABLE)
 		balloon_alert(user, "busy!")
-		to_chat(user, span_notice("The number you are attempting to reach is currently busy. Please try again later."))
 		return TRUE
 	if(calling_smartphone.sim_card?.phone_number == sim_card?.phone_number)
 		balloon_alert(user, "busy!")
-		to_chat(user, span_notice("The number you are attempting to reach is currently busy. Please try again later."))
 		return TRUE
 	return FALSE
 
@@ -140,15 +137,24 @@
 /obj/item/smartphone/proc/set_phone_available()
 	set_phone_state(PHONE_AVAILABLE)
 
+#define VIBRATION_LOOP_DURATION (1 SECONDS)
+
 // Only used to indicate to the receiving phone that they are being called.
 /obj/item/smartphone/process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, ringer_cooldown))
 		return
 	COOLDOWN_START(src, ringer_cooldown, 4 SECONDS)
 	if(vibration)
+		animate(src, pixel_w = 1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+		for(var/i in 1 to VIBRATION_LOOP_DURATION / (0.2 SECONDS)) //desired total duration divided by the iteration duration to give the necessary iteration count
+			animate(pixel_w = -2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
+			animate(pixel_w = 2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
+		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
 		balloon_alert_to_viewers(pick("zzZz!", "ZZZT!", "zZzZ!", "Zzz...", "zzZ...", "ZzZZT!"), vision_distance = COMBAT_MESSAGE_RANGE)
 	if(ringer)
 		playsound(src, call_sound, 50, TRUE, 0, 2)
+
+#undef VIBRATION_LOOP_DURATION
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
