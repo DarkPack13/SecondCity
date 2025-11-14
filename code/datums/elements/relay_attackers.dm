@@ -90,11 +90,11 @@
 	relay_attacker(target, mecha_attacker, ATTACKER_DAMAGING_ATTACK)
 
 // DARKPACK EDIT ADD START
-/datum/element/relay_attackers/proc/on_power_use(atom/target, mob/power_user, hostile_usage)
+/datum/element/relay_attackers/proc/on_power_use(atom/target, datum/discipline_power/used_power, hostile_usage)
 	SIGNAL_HANDLER
 
 	if(hostile_usage)
-		relay_attacker(target, power_user, ATTACKER_DAMAGING_ATTACK)
+		relay_attacker(target, used_power.discipline.owner, ATTACKER_DAMAGING_ATTACK)
 // DARKPACK EDIT ADD END
 
 /// Send out a signal identifying whoever just attacked us (usually a mob but sometimes a mech or turret)
