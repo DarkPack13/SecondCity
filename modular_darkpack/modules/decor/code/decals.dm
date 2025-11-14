@@ -29,6 +29,15 @@
 	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
 	icon_state = "support"
 
+/obj/effect/decal/rugs
+	name = "rugs"
+	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
+	icon_state = "rugs"
+
+/obj/effect/decal/rugs/Initialize(mapload)
+	. = ..()
+	icon_state = "rugs[rand(1, 11)]"
+
 // Turf decals, init behavoir is all before the parent call as the parent call is what bakes them into the turf so icon updates need to happen before that.
 
 /obj/effect/turf_decal/asphalt
@@ -98,12 +107,3 @@
 
 /obj/effect/turf_decal/bordur/corner
 	icon_state = "border_corner"
-
-/obj/effect/decal/rugs
-	name = "rugs"
-	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
-	icon_state = "rugs"
-
-/obj/effect/decal/rugs/Initialize(mapload)
-	. = ..()
-	icon_state = "rugs[rand(1, 11)]"
