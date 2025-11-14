@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	for(var/option in options)
 		if(!length(options[option]))
 			options[option] = list()
-	advertise_bet()
+	// advertise_bet() // DARKPACK EDIT REMOVAL
 
 /datum/active_bet/Destroy(force)
 	GLOB.active_bets -= src
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 				refunded_account.adjust_money(text2num(existing_bets[2]), "Refund: [name] gamble cancelled.")
 		return
 
-	reply_to_feed(winning_option)
+	// reply_to_feed(winning_option) // DARKPACK EDIT REMOVAL
 	var/list/winners = options[winning_option]
 	if(!length(winners))
 		return

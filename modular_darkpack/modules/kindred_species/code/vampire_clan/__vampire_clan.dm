@@ -9,11 +9,11 @@
 	var/curse
 
 	/// List of Disciplines that are innate to this Clan
-	var/list/clan_disciplines
+	var/list/clan_disciplines = list()
 	/// List of Disciplines that are rejected by this Clan
-	var/list/restricted_disciplines
+	var/list/restricted_disciplines = list()
 	/// List of traits that are applied to members of this Clan
-	var/list/clan_traits
+	var/list/clan_traits = list()
 
 	/// The Clan's unique body sprite
 	var/alt_sprite
@@ -82,6 +82,11 @@
 	// Applies on_join_round effects when a client logs into this mob
 	if (joining_round)
 		RegisterSignal(vampire, COMSIG_MOB_LOGIN, PROC_REF(on_join_round), override = TRUE)
+
+	for(var/discipline in clan_disciplines)
+		// TODO: [Rebase] reimplement choosing disciplines
+		if(ispath(discipline, /datum/discipline))
+			vampire.give_discipline(new discipline(5))
 
 /**
  * Undoes the effects of on_gain to more or less

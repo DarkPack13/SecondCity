@@ -320,14 +320,14 @@
 	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/vampire/pentex_yellowhardhat
-	name = "Endron hardhat"
-	desc = "A yellow hardhat. This one has an Endron International logo on it!"
+	name = EVIL_OIL_COMPANY + " hardhat"
+	desc = "A yellow hardhat. This one has an " + EVIL_OIL_COMPANY + " International logo on it!"
 	icon_state = "pentex_hardhat_yellow"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/vampire/pentex_whitehardhat
-	name = "Endron hardhat"
-	desc = "A white hardhat. This one has an Endron International logo on it!"
+	name = EVIL_OIL_COMPANY + " hardhat"
+	desc = "A white hardhat. This one has an " + EVIL_OIL_COMPANY + " International logo on it!"
 	icon_state = "pentex_hardhat_white"
 	flags_inv = HIDEHAIR
 

@@ -50,7 +50,7 @@
 
 /mob/living/carbon/human/npc/death()
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 	GLOB.move_manager.stop_looping(src)
 
 	if (!last_attacker || (get_dist(src, last_attacker) >= 10) || key || hostile)
@@ -122,7 +122,7 @@
 	face_atom(T)
 	step_to(src, T, 0)
 
-	if (!walktarget && old_movement)
+	if (!walktarget || old_movement)
 		return
 	if (observed_by_player())
 		return

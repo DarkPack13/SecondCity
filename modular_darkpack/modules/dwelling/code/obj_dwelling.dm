@@ -169,7 +169,7 @@
 			if("major")
 				to_chat(user, span_notice("Both the door and the security system are top notch. Robbing this house is risky but should carry a decent reward. If triggered, the security system will need to be reset every thirty seconds."))
 			if("moderate")
-				to_chat(user, span_notice("The door and security system seem average for San Francisco. Robbing this house carries a moderate risk and moderate rewards. If triggered, the security system will need to be reset every two minutes. "))
+				to_chat(user, span_notice("The door and security system seem average for [CITY_NAME]. Robbing this house carries a moderate risk and moderate rewards. If triggered, the security system will need to be reset every two minutes. "))
 			if("minor")
 				to_chat(user, span_notice("The door and security system seem to be of poor quality. Robbing this house should provide minor rewards, but the security system can be disabled completely."))
 		area_reference.cased_by.Add(user)

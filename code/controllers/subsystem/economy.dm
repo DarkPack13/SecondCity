@@ -168,12 +168,14 @@ SUBSYSTEM_DEF(economy)
  * Updates the the inflation_value, effecting newscaster alerts and the mail system.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
+	/* DARKPACK EDIT REMOVAL
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		fluff_string = ", but company countermeasures protect <b>YOU</b> from being affected!"
 	else
 		fluff_string = ", and company countermeasures are failing to protect <b>YOU</b> from being affected. We're all doomed!"
-	earning_report = "<b>Sector Economic Report</b><br><br> Sector vendor prices is currently at <b>[SSeconomy.inflation_value()*100]%</b>[fluff_string]<br><br> The station spending power is currently <b>[station_total] Credits</b>, and the crew's targeted allowance is at <b>[station_target] Credits</b>.<br><br>[SSstock_market.news_string]"
+	*/
+	earning_report = "<b>[CITY_NAME] Economic Report</b><br><br> Expected inflation rates are measured at <b>[SSeconomy.inflation_value()*100]%</b>" // DARKPACK EDIT CHANGE
 	var/update_alerts = FALSE
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS))
 		var/datum/bank_account/moneybags
@@ -188,8 +190,8 @@ SUBSYSTEM_DEF(economy)
 			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] credits saved. "
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
-	earning_report += "That's all from the <i>Nanotrasen Economist Division</i>."
-	GLOB.news_network.submit_article(earning_report, "Station Earnings Report", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts)
+	earning_report += "<br>That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE
+	GLOB.news_network.submit_article(earning_report, "[CITY_NAME] Earnings Report", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts) // DARKPACK EDIT CHANGE
 	return TRUE
 
 /**
@@ -204,7 +206,7 @@ SUBSYSTEM_DEF(economy)
 		return 1
 	if(HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		return inflation_value //early return instead of the actual check
-	inflation_value = max(round(((station_total / bank_accounts_by_id.len) / station_target), 0.1), 1.0)
+	inflation_value = clamp(round(((station_total / bank_accounts_by_id.len) / station_target), 0.1), 0.9, 1.1) // DARKPACK EDIT CHANGE
 	return inflation_value
 
 /**

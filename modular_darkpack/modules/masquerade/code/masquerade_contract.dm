@@ -31,18 +31,18 @@
 	if(!GLOB.masquerade_breakers_list)
 		to_chat(user, span_info("No available Masquerade breakers in city..."))
 
-/* TODO: [Rebase] - GAROU
 /obj/item/veil_contract
 	name = "\improper brass pocketwatch"
 	desc = "A posh looking pocketwatch."
-	icon = 'icons/obj/items_and_weapons.dmi'
-	onflooricon = 'code/modules/wod13/onfloor.dmi'
+	icon = 'modular_darkpack/modules/masquerade/icons/masquerade_contract.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/masquerade/icons/onfloor.dmi')
 	icon_state = "pocketwatch"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	armor_type = /datum/armor/masquerade_contract
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
+/* TODO: [Rebase] - GAROU
 /obj/item/veil_contract/attack_self(mob/user)
 	. = ..()
 	if(!isgarou(user))

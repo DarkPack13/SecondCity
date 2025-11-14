@@ -29,13 +29,23 @@
 	UnregisterSignal(parent, COMSIG_MOVABLE_POINTED)
 	return ..()
 
-/datum/component/beastmaster_defender/proc/on_beastmaster_point(datum/source, atom/pointed_at, obj/effect/temp_visual/point/point)
+/datum/component/beastmaster_defender/proc/on_beastmaster_point(datum/source, atom/pointed_at, obj/effect/temp_visual/point/point, intentional)
 	SIGNAL_HANDLER
 
-	if(!isliving(pointed_at))
+	var/atom/target = pointed_at
+
+	//latest /tg/ pull makes it so that pointing at something out of reach registers as the turf rather than whatever you point at. i discovered this through debug messages
+	//so lets instead just grab the mobs on top of the turf.
+	if(isturf(pointed_at))
+		for(var/mob/living/L in pointed_at)
+			target = L
+			break
+
+	if(!isliving(target))
 		return
 
 	var/mob/living/carbon/human/H = parent
+	var/mob/living/living_target = target
 
 	for(var/mob/living/minion in H.beastmaster_minions)
 		if(QDELETED(minion) || !minion.ai_controller)
@@ -49,4 +59,6 @@
 		if(!attack_command)
 			continue
 
-		attack_command.try_activate_command(H, pointed_at, radial_command = FALSE)
+		//stop everything we're doing if the beastmaster points at an enemy - its time to attack
+		minion.ai_controller.CancelActions()
+		attack_command.on_target_set(H, living_target)

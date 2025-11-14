@@ -5,8 +5,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/doors.dmi'
 	icon_state = "door-1"
 	base_icon_state = "door"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = CLOSED_DOOR_LAYER
 	pixel_w = -16
 
 	anchored = TRUE
@@ -23,7 +22,7 @@
 	var/closed = TRUE
 	var/locked = FALSE
 	var/door_broken = FALSE
-	var/door_layer = ABOVE_ALL_MOB_LAYER
+	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
 	var/glass = FALSE
 	var/lockpick_timer = LOCKTIMER_1

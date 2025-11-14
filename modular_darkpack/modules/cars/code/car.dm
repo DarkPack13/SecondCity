@@ -219,7 +219,7 @@
 		color = "#ffffff"
 		return TRUE
 	else
-		take_damage((world.time - start_time) * -2 / 5) //partial repair
+		repair_damage((world.time - start_time) * 2 / 5) //partial repair
 		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		user.visible_message(span_notice("[user] repairs [src]."), \
 			span_notice("You repair some of the dents on [src]."))
