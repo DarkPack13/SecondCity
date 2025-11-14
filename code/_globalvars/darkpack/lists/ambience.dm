@@ -19,11 +19,6 @@ GLOBAL_LIST_INIT(office_ambience, list(
 	'modular_darkpack/modules/ambience/sounds/interior.ogg'
 ))
 
-GLOBAL_LIST_INIT(prince_ambience, list(
-	'modular_darkpack/modules/ambience/sounds/music/prince.ogg'
-))
-
-
 GLOBAL_LIST_INIT(music_assoc,list(
 	MUSIC_CITY = list('modular_darkpack/modules/ambience/sounds/music/downtown.ogg', 'modular_darkpack/modules/ambience/sounds/music/downtown_alt.ogg', 'modular_darkpack/modules/ambience/sounds/music/what_comes_next.ogg'),
 	MUSIC_FOREST = list('modular_darkpack/modules/ambience/sounds/music/night_ambience.ogg', 'modular_darkpack/modules/ambience/sounds/music/for_my_clan.ogg'),
