@@ -3,12 +3,12 @@
 /turf/open/space/basic,
 /area/space)
 "b" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/machinery/light/blacklight/directional/north,
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
@@ -43,11 +43,11 @@
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "g" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
@@ -56,10 +56,10 @@
 /turf/open/floor/city/plating,
 /area/space)
 "i" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/structure/chair/stool/bar/directional/east,
+/obj/effect/turf_decal/siding/wood/dark{
 	dir = 8
 	},
-/obj/structure/chair/stool/bar/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "j" = (
@@ -73,9 +73,6 @@
 /turf/open/floor/city/toilet/large,
 /area/space)
 "k" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/rack/food/rand{
 	dir = 4;
 	pixel_x = 23;
@@ -85,6 +82,9 @@
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "m" = (
@@ -92,11 +92,11 @@
 /turf/open/floor/city/toilet/large,
 /area/space)
 "n" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 5
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
@@ -116,7 +116,7 @@
 /turf/open/floor/city/plating,
 /area/space)
 "q" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/dark{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
@@ -135,7 +135,7 @@
 /turf/open/floor/city/plating,
 /area/space)
 "t" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/dark{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -170,7 +170,7 @@
 /turf/closed/wall/vampwall/market/low/window,
 /area/space)
 "x" = (
-/obj/effect/turf_decal/siding/wood/corner{
+/obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -181,9 +181,6 @@
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "z" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
 /obj/structure/closet/crate/bin,
 /obj/structure/sign/poster/city/blade{
 	pixel_y = 32;
@@ -196,12 +193,12 @@
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 9
+	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "A" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/rack/food/rand{
 	dir = 4;
 	pixel_x = 8;
@@ -211,26 +208,22 @@
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "B" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/dark{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "C" = (
-/obj/effect/turf_decal/siding/wood/corner{
+/obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
-"D" = (
-/obj/structure/sign/poster/city/tiamat{
-	pixel_x = -7;
-	pixel_y = -1
-	},
-/turf/closed/wall/vampwall/market,
 /area/space)
 "E" = (
 /obj/structure/vampdoor/glass{
@@ -242,10 +235,10 @@
 /turf/open/floor/city/plating,
 /area/space)
 "G" = (
-/obj/machinery/vending/cola/red,
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
+/obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating,
 /area/space)
 "H" = (
@@ -253,25 +246,22 @@
 /area/space)
 "J" = (
 /obj/structure/extinguisher_cabinet/directional/north,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "K" = (
-/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/dark,
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "L" = (
 /turf/open/floor/city/toilet/large,
 /area/space)
 "P" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/table/modern,
 /obj/machinery/light/blacklight/directional/north,
 /obj/item/seeds/cannabis{
@@ -307,12 +297,12 @@
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "Q" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/sign/poster/city/vesuvius{
 	pixel_x = 9;
 	pixel_y = 34
@@ -320,20 +310,21 @@
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
-/turf/open/floor/wood/smooth/old,
-/area/space)
-"R" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
+/obj/structure/sign/poster/city/tiamat{
+	pixel_x = -7;
+	pixel_y = 31
 	},
 /turf/open/floor/wood/smooth/old,
 /area/space)
 "T" = (
 /obj/structure/vampdoor,
-/turf/open/floor/city/factory,
+/turf/open/floor/city/toilet/large,
 /area/space)
 "W" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/dark{
 	dir = 10
 	},
 /turf/open/floor/wood/smooth/old,
@@ -89639,7 +89630,7 @@ a
 a
 a
 a
-D
+u
 Q
 H
 H
@@ -90674,7 +90665,7 @@ u
 n
 B
 B
-R
+H
 u
 a
 a
