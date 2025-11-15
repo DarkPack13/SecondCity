@@ -116,7 +116,7 @@
 		return
 
 
-	if(!do_after(user, bouncer, max(5 SECONDS, social_bypass_time - (user.st_get_stat(STAT_CHARISMA) * 2 SECONDS))))
+	if(!do_after(user, max(5 SECONDS, social_bypass_time - (user.st_get_stat(STAT_CHARISMA) * 2 SECONDS)), bouncer))
 		return
 
 

@@ -240,6 +240,10 @@
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"fu" = (
+/mob/living/carbon/human/npc/bouncer/elysium/stripclub,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "fI" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood/smooth/old,
@@ -874,6 +878,10 @@
 /obj/structure/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"tg" = (
+/mob/living/carbon/human/npc/bouncer/elysium/theatre,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "tr" = (
 /obj/structure/sign/city/police_department{
 	dir = 1
@@ -1007,6 +1015,10 @@
 /obj/item/vtm_artifact/heart_of_eliza,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"wh" = (
+/obj/effect/vip_barrier/stripclub,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "wj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1201,6 +1213,10 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"Bd" = (
+/obj/effect/vip_barrier/elysium_2,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Bf" = (
 /obj/effect/decal/cleanable/garbage,
 /obj/effect/decal/cleanable/trash{
@@ -1275,6 +1291,10 @@
 /obj/structure/lattice/grate,
 /turf/open/openspace,
 /area/vtm/outside/pacificheights)
+"Cn" = (
+/obj/effect/vip_barrier/elysium/theatre,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Ct" = (
 /obj/structure/lamppost/one{
 	dir = 1
@@ -1300,6 +1320,10 @@
 /obj/item/vtm_artifact/mummywrap_fetish,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"Da" = (
+/mob/living/carbon/human/npc/bouncer/elysium/theatre_backdoor,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1700,6 +1724,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
+"Jz" = (
+/obj/effect/vip_barrier/elysium/theatre_backdoor,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "JB" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/smooth/old,
@@ -1715,6 +1743,10 @@
 "JH" = (
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/anarch)
+"JI" = (
+/mob/living/carbon/human/npc/bouncer/giovanni,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "JJ" = (
 /obj/structure/vampdoor,
 /turf/open/floor/plating/rough,
@@ -1836,6 +1868,10 @@
 	locked = 0
 	},
 /turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
+"LO" = (
+/obj/effect/vip_barrier/giovanni,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "LU" = (
 /turf/closed/wall/vampwall/rich/old/low/window,
@@ -2335,6 +2371,10 @@
 /obj/item/stack/dollar/hundred,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
+"Uz" = (
+/mob/living/carbon/human/npc/bouncer/elysium,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "UC" = (
 /obj/item/paper_bin,
 /obj/item/pen/fourcolor,
@@ -2367,6 +2407,10 @@
 "UN" = (
 /obj/structure/closet/crate/wooden/communitygardens/tools,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"UT" = (
+/mob/living/carbon/human/npc/bouncer/elysium/elysium_2,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Va" = (
 /obj/machinery/computer/order_console/mining/restricted/hospital,
@@ -2601,6 +2645,10 @@
 	},
 /obj/structure/roadsign/speedlimit,
 /turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/pacificheights)
+"YZ" = (
+/obj/effect/vip_barrier/elysium,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Zc" = (
 /obj/effect/turf_decal/bordur{
@@ -3416,7 +3464,7 @@ NR
 NR
 NR
 NR
-NR
+YZ
 NR
 NR
 NR
@@ -3485,7 +3533,7 @@ NR
 NR
 NR
 NR
-NR
+Uz
 NR
 NR
 NR
@@ -3620,7 +3668,7 @@ NR
 NR
 NR
 NR
-NR
+Cn
 NR
 NR
 NR
@@ -3689,7 +3737,7 @@ NR
 NR
 NR
 NR
-NR
+Da
 NR
 NR
 NR
@@ -3824,7 +3872,7 @@ NR
 NR
 NR
 NR
-NR
+Jz
 NR
 NR
 NR
@@ -3893,7 +3941,7 @@ NR
 NR
 NR
 NR
-NR
+tg
 NR
 NR
 NR
@@ -4028,7 +4076,7 @@ NR
 NR
 NR
 NR
-NR
+Bd
 NR
 NR
 NR
@@ -4097,7 +4145,7 @@ NR
 NR
 NR
 NR
-NR
+UT
 NR
 NR
 NR
@@ -4232,7 +4280,7 @@ NR
 NR
 NR
 NR
-NR
+LO
 NR
 NR
 NR
@@ -4301,7 +4349,7 @@ NR
 NR
 NR
 NR
-NR
+JI
 NR
 NR
 NR
@@ -4436,7 +4484,7 @@ NR
 NR
 NR
 NR
-NR
+wh
 NR
 NR
 NR
@@ -4505,7 +4553,7 @@ NR
 NR
 NR
 NR
-NR
+fu
 NR
 NR
 NR
