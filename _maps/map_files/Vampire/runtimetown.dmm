@@ -125,6 +125,10 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
+"cP" = (
+/mob/living/carbon/human/npc/bouncer/endron/endron_2,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "cQ" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/ifak,
@@ -210,6 +214,10 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"eM" = (
+/mob/living/carbon/human/npc/bouncer/endron/endron_lab,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "eQ" = (
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
@@ -280,6 +288,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/rich,
+/area/vtm/outside/pacificheights)
+"gv" = (
+/mob/living/carbon/human/npc/bouncer/endron/endron_lab_2,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "gA" = (
 /obj/machinery/fax/admin/aasimites,
@@ -640,6 +652,10 @@
 "oM" = (
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/supply)
+"oT" = (
+/mob/living/carbon/human/npc/bouncer/endron,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "oV" = (
 /obj/weapon_showcase,
 /obj/structure/sign/flag/usa{
@@ -870,6 +886,10 @@
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"tc" = (
+/mob/living/carbon/human/npc/bouncer/endron/endron_backdoor,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "tf" = (
 /obj/effect/turf_decal/bordur{
@@ -1320,6 +1340,10 @@
 /obj/item/vtm_artifact/mummywrap_fetish,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"CU" = (
+/obj/effect/vip_barrier/endron/endron_backdoor,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Da" = (
 /mob/living/carbon/human/npc/bouncer/elysium/theatre_backdoor,
 /turf/open/misc/beach/vamp,
@@ -1533,6 +1557,10 @@
 /obj/structure/table/reinforced,
 /turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
+"GI" = (
+/obj/effect/vip_barrier/endron,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "GJ" = (
 /turf/cordon,
 /area/space)
@@ -1852,6 +1880,10 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"Lp" = (
+/obj/effect/vip_barrier/endron/endron_lab,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Lw" = (
 /obj/structure/table,
 /obj/item/gas_can,
@@ -1891,6 +1923,10 @@
 "LY" = (
 /obj/machinery/fax/admin/glasswalker,
 /obj/structure/table/wood,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
+"Mc" = (
+/obj/effect/vip_barrier/endron/endron_2,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Mg" = (
@@ -2300,6 +2336,10 @@
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"Ty" = (
+/obj/effect/vip_barrier/endron/endron_lab_2,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "TL" = (
 /obj/structure/table,
@@ -3535,7 +3575,7 @@ NR
 NR
 Uz
 NR
-NR
+GI
 NR
 Rj
 Rj
@@ -3604,7 +3644,7 @@ NR
 NR
 NR
 NR
-NR
+oT
 Rj
 Rj
 Rj
@@ -3739,7 +3779,7 @@ NR
 NR
 Da
 NR
-NR
+Mc
 NR
 NR
 Rj
@@ -3808,7 +3848,7 @@ NR
 NR
 NR
 NR
-NR
+cP
 NR
 Rj
 Rj
@@ -3943,7 +3983,7 @@ NR
 NR
 tg
 NR
-NR
+CU
 NR
 NR
 Rj
@@ -4012,7 +4052,7 @@ NR
 NR
 NR
 NR
-NR
+tc
 NR
 Rj
 Rj
@@ -4147,7 +4187,7 @@ NR
 NR
 UT
 NR
-NR
+Lp
 NR
 NR
 Rj
@@ -4216,7 +4256,7 @@ NR
 NR
 NR
 NR
-NR
+eM
 NR
 Rj
 Rj
@@ -4351,7 +4391,7 @@ NR
 NR
 JI
 NR
-NR
+Ty
 NR
 NR
 Rj
@@ -4420,7 +4460,7 @@ NR
 NR
 NR
 NR
-NR
+gv
 NR
 Rj
 Rj
