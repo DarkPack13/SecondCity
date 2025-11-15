@@ -1,9 +1,9 @@
 /obj/item/sim_card
 	name = "\improper SIM card"
 	desc = "A SIM card with a phone number attached to it."
-	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
+	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	ONFLOOR_ICON_HELPER(null)
-	icon_state = "phonebook"
+	icon_state = "ssd_micro"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
