@@ -282,11 +282,12 @@
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
 				return
 			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
-			if(sim_card.phone_number in SSphones.published_phone_numbers)
-				to_chat(usr, span_danger("Error: This number is already published."))
-			else
-				SSphones.published_phone_numbers[name] = sim_card.phone_number
-				to_chat(usr, span_notice("Your number is now published."))
+			for(var/contact as anything in SSphones.published_phone_numbers)
+				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
+					to_chat(usr, span_danger("Error: This number is already published."))
+					return TRUE
+			SSphones.published_phone_numbers[name] = sim_card.phone_number
+			to_chat(usr, span_notice("Your number is now published."))
 			return TRUE
 
 		if("add_contact")
