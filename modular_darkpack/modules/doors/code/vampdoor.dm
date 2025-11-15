@@ -24,7 +24,6 @@
 	var/door_broken = FALSE
 	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
-	var/glass = FALSE
 	var/lockpick_timer = LOCKTIMER_1
 	var/lockpick_difficulty = LOCKDIFFICULTY_1
 
@@ -144,7 +143,7 @@
 	desc = initial(desc)
 	door_broken = FALSE
 	set_density(TRUE)
-	if(!glass)
+	if(initial(opacity))
 		opacity = 1
 	layer = ABOVE_ALL_MOB_LAYER
 	closed = TRUE
@@ -178,7 +177,7 @@
 	playsound(src, close_sound, 75, TRUE)
 	icon_state = "[base_icon_state]-1"
 	set_density(TRUE)
-	if(!glass)
+	if(initial(opacity))
 		set_opacity(TRUE)
 	layer = ABOVE_ALL_MOB_LAYER
 	to_chat(user, span_notice("You close [src]."))
