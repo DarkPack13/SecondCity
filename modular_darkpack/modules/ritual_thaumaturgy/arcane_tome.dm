@@ -40,4 +40,4 @@
 	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 2)
 	result = /obj/item/arcane_tome
 	category = CAT_MISC
-
+	crafting_flags = CRAFT_MUST_BE_LEARNED
