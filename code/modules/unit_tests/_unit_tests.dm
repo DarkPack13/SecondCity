@@ -144,7 +144,7 @@
 #include "crayons.dm"
 #include "create_and_destroy.dm"
 #include "damp_rag.dm"
-#include "darkpack_unit_tests.dm" // DARKPACK EDIT ADD
+#include "darkpack_unit_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "designs.dm"
