@@ -14,7 +14,7 @@
 	/// my_backup_weapon = type_path
 	/// This only determines my_weapon, you set my_backup_weapon yourself
 	/// The last entry in the list for a type of NPC should always have 100 as the index
-	// TODO: [Rebase] reimplement weapons
+	// DARKPACK TODO - reimplement weapons
 	/*
 	var/static/list/role_weapons_chances = list(
 		BANDIT_TYPE_NPC = list(
@@ -100,7 +100,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/npc/LateInitialize(mapload)
-	// TODO: [Rebase] reimplement weapons
+	// DARKPACK TODO - reimplement weapons
 	/*
 	if (role_weapons_chances.Find(type))
 		for(var/weapon in role_weapons_chances[type])
@@ -262,7 +262,7 @@
 		INVOKE_ASYNC(NEPIC, PROC_REF(Aggro), firer)
 	INVOKE_ASYNC(src, PROC_REF(Aggro), firer, TRUE)
 
-	// TODO: [Rebase] reimplement P25 radios and crime stuff
+	// DARKPACK TODO - reimplement P25 radios and crime stuff
 	/*
 	var/witness_count
 

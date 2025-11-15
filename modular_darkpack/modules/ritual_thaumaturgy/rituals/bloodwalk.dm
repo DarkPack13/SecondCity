@@ -50,7 +50,7 @@
 	to_chat(world, "generate message started -- clan")
 	to_chat(world, "clan passed : [clan]")
 	//clan
-	//TODO: [Rebase] - Reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
+	// DARKPACK TODO - reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
 	clan = lowertext(clan)
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)

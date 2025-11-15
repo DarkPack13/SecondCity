@@ -5,7 +5,7 @@
 	return ..()
 
 /mob/living/carbon/human/Topic(href, href_list)
-	// TODO: [Rebase] - Reimplement in a sane way.
+	// DARKPACK TODO - reimplement in a sane way.
 	if(href_list["masquerade_violation"])
 		return
 

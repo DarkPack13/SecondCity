@@ -264,7 +264,7 @@
 		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
 	else
 		var/blood_coefficient = (5 / target.bloodpool)
-		//TODO: [Rebase] -- reimplement quirks -- potent blood
+		// DARKPACK TODO - reimplement quirks -- potent blood
 		/*
 		if(HAS_TRAIT(target, TRAIT_POTENT_BLOOD))
 			blood_coefficient *= 0.5

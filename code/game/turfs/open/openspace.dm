@@ -149,7 +149,7 @@
 
 	to_chat(src, span_notice("You start climbing down..."))
 
-	// TODO: [Rebase] standardize stat doafter delays
+	// DARKPACK TODO - standardize stat doafter delays
 	var/result = do_after(src, (11 - (st_get_stat(STAT_DEXTERITY) + st_get_stat(STAT_ATHLETICS))) SECONDS, target_turf)
 	if(!result)
 		to_chat(src, span_warning("You were interrupted and failed to climb down."))

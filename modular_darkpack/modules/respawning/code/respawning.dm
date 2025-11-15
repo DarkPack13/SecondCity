@@ -1,4 +1,4 @@
-// TODO: [Rebase] reimplement respawn timers
+// DARKPACK TODO - reimplement respawn timers
 /mob/proc/can_respawn()
 	if (client?.ckey)
 		if (GLOB.respawn_timers[client.ckey])
