@@ -141,7 +141,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	new /datum/record/crew(
 		age = person.age,
 		blood_type = person.get_bloodtype()?.name || "UNKNOWN",
-		character_appearance = null, //DARKPACK EDIT - RECORDS, ORIGINAL: character_appearance = character_appearance
+		character_appearance = null, // DARKPACK EDIT - RECORDS, ORIGINAL: character_appearance = character_appearance
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),
 		gender = person_gender,

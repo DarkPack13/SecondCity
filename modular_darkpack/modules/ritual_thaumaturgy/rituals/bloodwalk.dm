@@ -21,7 +21,7 @@
 
 			else
 				to_chat(user, "The blood speaks not; it is empty of power!")
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
 		to_chat(world, "ritual completed")
@@ -50,7 +50,7 @@
 	to_chat(world, "generate message started -- clan")
 	to_chat(world, "clan passed : [clan]")
 	//clan
-	//TODO: [Rebase] - Reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
+	// DARKPACK TODO - reimplement Old Clan Tzimisce, Setite, Nagaraja, and Salubri Warrior
 	clan = lowertext(clan)
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)

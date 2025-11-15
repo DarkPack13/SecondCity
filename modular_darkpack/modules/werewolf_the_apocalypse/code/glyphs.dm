@@ -17,7 +17,7 @@
 	// slot_flags = ITEM_SLOT_EARS
 
 /obj/item/charcoal_stick/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	// TODO: [Rebase] - GAROU
+	// DARKPACK TODO - GAROU
 	//if(!isgarou(user))
 	//	return
 
@@ -63,7 +63,7 @@
 
 /obj/effect/decal/garou_glyph/examine(mob/user)
 	. = ..()
-	// TODO: [Rebase] - GAROU
+	// DARKPACK TODO - GAROU
 	/*
 	if(isgarou(user) || iswerewolf(user)) // If they're a werewolf, show them the true meaning of the glyph.
 		. += "<b>Name:</b> [garou_name]\n" + \
