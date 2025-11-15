@@ -90,7 +90,7 @@
 /obj/effect/decal/lamplight
 	alpha = 0
 
-// TODO: [Rebase] Fix lol.
+// DARKPACK TODO - Fix lol.
 /obj/effect/decal/lamplight/NeverShouldHaveComeHere(turf/here_turf)
 	return FALSE
 
@@ -716,7 +716,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/burying = FALSE
 
-// TODO: [Rebase]
+// DARKPACK TODO - reimplement
 /*
 /obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/shovel/vamp))

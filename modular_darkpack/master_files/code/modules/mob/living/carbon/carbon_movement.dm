@@ -3,7 +3,7 @@
 		var/mob/living/carbon/human/H = src
 		H.update_shadow()
 
-	// TODO: [Rebase] reimplement walls, also this handling could be improved
+	// DARKPACK TODO - reimplement walls, also this handling could be improved
 	/*
 	if (HAS_TRAIT(src, TRAIT_RUBICON))
 		if(istype(NewLoc, /turf/open/water/vamp_sewer))
@@ -12,7 +12,7 @@
 
 	. = ..()
 
-	// TODO: [Rebase] - face target
+	// DARKPACK TODO - face target
 	/*
 	if(combat_mode && client)
 		setDir(harm_focus)

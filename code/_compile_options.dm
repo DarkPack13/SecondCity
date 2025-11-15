@@ -142,7 +142,7 @@
 
 #ifdef LOWMEMORYMODE
 #ifndef ABSOLUTE_MINIMUM
-#define FORCE_MAP "runtimetown" //DARKPACK EDIT, ORIGINAL: #define FORCE_MAP "runtimestation"
+#define FORCE_MAP "runtimetown" // DARKPACK EDIT, ORIGINAL: #define FORCE_MAP "runtimestation"
 #else
 #define FORCE_MAP "runtimestation_minimal"
 #endif
