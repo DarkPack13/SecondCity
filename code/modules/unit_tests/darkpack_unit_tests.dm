@@ -2,7 +2,6 @@
 /datum/unit_test/apply_all_clans
 
 /datum/unit_test/apply_all_clans/Run()
-	var/datum/preferences/preferences = new(new /datum/client_interface)
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human/consistent)
 
 	human.set_species(/datum/species/human/kindred)
