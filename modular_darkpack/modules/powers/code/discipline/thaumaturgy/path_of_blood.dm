@@ -12,7 +12,7 @@
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
-	owner?.mind.teach_crafting_recipe(/datum/crafting_recipe/arctome)
+	owner.mind?.teach_crafting_recipe(/datum/crafting_recipe/arctome)
 
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
