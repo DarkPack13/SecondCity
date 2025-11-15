@@ -69,11 +69,11 @@ SUBSYSTEM_DEF(masquerade)
 				. = TRUE
 				break
 	if(player_breacher.masquerade_score == 5) //Doesn't matter if they weren't in one of these lists.
-		// TODO: [Rebase] - GAROU
+		// DARKPACK TODO - GAROU
 		//GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
-	/* TODO: [Rebase] - GAROU
+	/* DARKPACK TODO - GAROU
 	if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		var/random_renown = pick("Honor","Wisdom","Glory")
 		switch(random_renown)
@@ -103,7 +103,7 @@ SUBSYSTEM_DEF(masquerade)
 		return
 	player_breacher.masquerade_score = max(0, player_breacher.masquerade_score - 1)
 	masquerade_breachers += list(list(player_breacher, source, reason))
-	// TODO: [Rebase] - GAROU
+	// DARKPACK TODO - GAROU
 	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
 	//	GLOB.veil_breakers_list |= player_breacher
 	//else
@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(masquerade)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)
 			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
-	// TODO: [Rebase] - GAROU
+	// DARKPACK TODO - GAROU
 	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
 	//	GLOB.veil_breakers_list -= player_breacher
 	//else
@@ -143,13 +143,13 @@ SUBSYSTEM_DEF(masquerade)
 // This is for checking if a joined player should be on the breachers list.
 /datum/controller/subsystem/masquerade/proc/masquerade_breacher_check(mob/living/player_breacher)
 	if(player_breacher.masquerade_score < 5)
-		// TODO: [Rebase] - GAROU
+		// DARKPACK TODO - GAROU
 		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		//	GLOB.veil_breakers_list |= player_breacher
 		//else
 		GLOB.masquerade_breakers_list |= player_breacher
 	else
-		// TODO: [Rebase] - GAROU
+		// DARKPACK TODO - GAROU
 		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		//	GLOB.veil_breakers_list -= player_breacher
 		//else

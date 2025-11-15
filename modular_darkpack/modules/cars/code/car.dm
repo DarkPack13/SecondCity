@@ -116,7 +116,7 @@
 	create_storage(storage_type = car_storage_type)
 	atom_storage.set_real_location(trunk)
 
-	// TODO: [Rebase] see about reimplementing this sprite for cars
+	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
 	headlight_image = new(src)
 	headlight_image.icon = 'icons/effects/light_overlays/light_cone_car.dmi'

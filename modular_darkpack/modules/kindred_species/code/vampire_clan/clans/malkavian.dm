@@ -3,12 +3,11 @@
 	id = VAMPIRE_CLAN_MALKAVIAN
 	desc = "Derided as Lunatics by other vampires, the Blood of the Malkavians lets them perceive and foretell truths hidden from others. Like the �wise madmen� of poetry their fractured perspective stems from seeing too much of the world at once, from understanding too deeply, and feeling emotions that are just too strong to bear."
 	curse = "Insanity."
-	/*
 	clan_disciplines = list(
-		/datum/discipline/auspex,
-		/datum/discipline/dementation,
-		/datum/discipline/obfuscate
-	)*/
+		// /datum/discipline/auspex,
+		// /datum/discipline/dementation,
+		// /datum/discipline/obfuscate
+	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
 	clan_keys = /obj/item/vamp/keys/malkav

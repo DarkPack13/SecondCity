@@ -63,3 +63,8 @@
   - rscadd: NPC cap has been moved to map configs, expect less npcs in smaller maps.
   - bugfix: NPC repopulate is called on round start to get up to the correct number
   - bugfix: alt sprite for bonfires should behave better
+2025-11-14:
+  FalloutFalcon, Major00:
+  - image: Re-sprites drink and snack vending machine
+  Marshmellow105:
+  - bugfix: fixes shutters layering under shit

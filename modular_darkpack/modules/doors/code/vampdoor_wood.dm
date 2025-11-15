@@ -1,4 +1,4 @@
-// TODO: [Rebase] - Alot of wooden doors that dont acctually use this subtype
+// DARKPACK TODO - Alot of wooden doors that dont acctually use this subtype
 /obj/structure/vampdoor/wood
 	icon_state = "wood-1"
 	base_icon_state = "wood"

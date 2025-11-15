@@ -8,7 +8,7 @@
 
 /obj/ritualrune/chime_of_unseen_spirits/complete()
     new /obj/item/spirit_chime(loc)
-    playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+    playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
     qdel(src)
 
 // The spirit chime item itself
@@ -190,7 +190,7 @@
 				tracked_mobs -= ghost
 
 // Procs
-//TODO: [Rebase] -- chime get it working please
+// DARKPACK TODO - chime get it working please
 /obj/item/spirit_chime/proc/start_ringing()
 	if(ringing || !isplaced || !chime_field)
 		return
