@@ -14,7 +14,7 @@ export const sound_ambience_volume: Feature<number> = {
   component: FeatureSliderInput,
 };
 
-// DARKPACK EDIT ADD START
+// DARKPACK EDIT ADD START - AMBIENCE
 export const sound_music_volume: Feature<number> = {
   name: 'Music volume',
   category: 'SOUND',
