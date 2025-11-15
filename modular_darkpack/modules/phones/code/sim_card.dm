@@ -2,7 +2,7 @@
 	name = "\improper SIM card"
 	desc = "A SIM card with a phone number attached to it."
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/phones/icons/phone_onfloor.dmi')
+	ONFLOOR_ICON_HELPER(null)
 	icon_state = "phonebook"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
@@ -19,8 +19,9 @@
 /obj/item/sim_card/Destroy(force)
 	. = ..()
 	SSphones.assigned_phone_numbers.Remove(src)
-	if(SSphones.published_phone_numbers[phone_number])
-		SSphones.published_phone_numbers.Remove(src)
+	for(var/contact as anything in SSphones.published_phone_numbers)
+		if(SSphones.published_phone_numbers[contact] == phone_number)
+			SSphones.published_phone_numbers.Remove(src)
 	phone_weakref = null
 
 /obj/item/sim_card/examine(mob/user)
