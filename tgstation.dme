@@ -6920,6 +6920,7 @@
 #include "modular_darkpack\modules\doors\code\vampdoor_misc.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_npc.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_police.dm"
+#include "modular_darkpack\modules\doors\code\vampdoor_types.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_wood.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_wood_old.dm"
 #include "modular_darkpack\modules\doors\code\keys\keys.dm"
