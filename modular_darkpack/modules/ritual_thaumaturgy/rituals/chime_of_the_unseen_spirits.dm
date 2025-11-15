@@ -190,7 +190,7 @@
 				tracked_mobs -= ghost
 
 // Procs
-//TODO: [Rebase] -- chime get it working please
+// DARKPACK TODO - chime get it working please
 /obj/item/spirit_chime/proc/start_ringing()
 	if(ringing || !isplaced || !chime_field)
 		return

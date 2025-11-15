@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(food_buffs, list(
 // DARKPACK EDIT ADD START - FOOD
 //Food has state to swap to upon first bite
 #define FOOD_BITE_SPRITE (1<<4)
-// DARKPACK EDIT ADD
+// DARKPACK EDIT ADD END
 
 DEFINE_BITFIELD(food_flags, list(
 	"FOOD_FINGER_FOOD" = FOOD_FINGER_FOOD,

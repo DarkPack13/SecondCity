@@ -1,4 +1,4 @@
-// TODO: [Rebase] This file should not exist and is only so we can save runtime town
+// DARKPACK TODO - This file should not exist and is only so we can save runtime town
 
 /obj/item/arcane_tome
 	icon = 'icons/effects/mapping_helpers.dmi'

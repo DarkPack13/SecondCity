@@ -37,7 +37,7 @@
 	usr.visible_message(span_notice("[usr] begins invoking a ritual with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 
 	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
-	//TODO: [Rebase] -- vicissitude, when its reintroduced re-path this
+	// DARKPACK TODO - vicissitude, when its reintroduced re-path this
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 50, FALSE)
 
 	// Apply stun so that they cant just crawl away in crit - caster must also stay still

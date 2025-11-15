@@ -64,7 +64,7 @@
 	var/datum/action/cooldown/blood_power/bloodpower = new()
 	bloodpower.Grant(new_kindred)
 
-	// TODO: [Rebase] reimplement these vars and the actions
+	// DARKPACK TODO - reimplement these vars and the actions
 	/*
 	var/datum/action/vampireinfo/infor = new()
 	infor.host = new_kindred
@@ -105,7 +105,7 @@
 	UnregisterSignal(human, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
 	UnregisterSignal(human, COMSIG_HUMAN_ON_HANDLE_BLOOD)
 
-	// TODO: [Rebase] reimplement vampire actions
+	// DARKPACK TODO - reimplement vampire actions
 	/*
 	for (var/datum/action/vampireinfo/VI in human.actions)
 		VI.Remove(human)
