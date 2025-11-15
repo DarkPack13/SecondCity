@@ -6,7 +6,7 @@
 	clan_disciplines = list(
 		/datum/discipline/animalism,
 		/datum/discipline/fortitude,
-		// /datum/discipline/protean
+		/datum/discipline/protean
 	)
 	start_humanity = 6
 	male_clothes = /obj/item/clothing/under/vampire/gangrel
@@ -41,45 +41,14 @@
 	if(clan.accessories)
 		return TRUE
 
+/datum/preference/choiced/clan_mark/init_possible_values()
+	var/list/all_features = list()
+	for(var/clan_id in GLOB.vampire_clans)
+		var/datum/vampire_clan/clan = GLOB.vampire_clans[clan_id]
+		if(clan.accessories)
+			for(var/feature in clan.accessories)
+				all_features |= feature
+	return all_features
 
-/*
-/datum/preference/choiced/species_feature/vampire_clan
-	abstract_type = /datum/preference/choiced/species_feature/vampire_clan
-	var/clans_allowed = list()
-
-/datum/preference/choiced/species_feature/vampire_clan/has_relevant_feature(datum/preferences/preferences)
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
-	if(clan && (clan.id in clans_allowed))
-		return TRUE
-
-/datum/preference/choiced/species_feature/vampire_clan/gangrel_legs
-	savefile_key = "feature_gangrel_legs"
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	main_feature_name = "Legs"
-	clans_allowed = list(VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL)
-	relevant_body_markings = /datum/bodypart_overlay/simple/body_marking/gangrel_legs
-
-/datum/bodypart_overlay/simple/body_marking/gangrel_legs
-	dna_feature_key = FEATURE_GANGREL_LEGS
-	layers = EXTERNAL_ADJACENT
-
-/datum/sprite_accessory/gangrel_legs
-	icon = 'modular_darkpack/modules/kindred_species/icons/features.dmi'
-
-/datum/sprite_accessory/gangrel_legs/just_legs
-	name = "Legs"
-	icon_state = "beast_legs"
-
-/datum/sprite_accessory/gangrel_legs/tail
-	name = "Tail"
-	icon_state = "beast_tail"
-
-/datum/sprite_accessory/gangrel_legs/both
-	name = "Tail and Legs"
-	icon_state = "beast_tail_and_legs"
-
-/datum/dna_block/feature/accessory/gangrel_legs
-	feature_key = FEATURE_GANGREL_LEGS
-*/
+/datum/preference/choiced/clan_mark/apply_to_human(mob/living/carbon/human/target, value)
+	return

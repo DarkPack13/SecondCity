@@ -117,7 +117,7 @@
 	cooldown_length = 10 SECONDS
 	grouped_powers = list(/datum/discipline_power/daimonion/condemnation)
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/bat_shapeshift
+	var/datum/action/cooldown/spell/shapeshift/bat/bat_shapeshift
 
 /datum/discipline_power/daimonion/psychomachia/activate()
 	. = ..()
@@ -147,7 +147,7 @@
 	cooldown_length = 10 SECONDS
 	grouped_powers = list(/datum/discipline_power/daimonion/psychomachia)
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/bat_shapeshift
+	var/datum/action/cooldown/spell/shapeshift/bat/bat_shapeshift
 
 /datum/discipline_power/daimonion/condemnation/activate()
 	. = ..()
