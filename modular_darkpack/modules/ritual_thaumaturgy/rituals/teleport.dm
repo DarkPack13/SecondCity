@@ -68,7 +68,7 @@
 					step += 1
 
 			if(valid_destination)
-				playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+				playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 				user.forceMove(destination)
 				qdel(src)
 			else

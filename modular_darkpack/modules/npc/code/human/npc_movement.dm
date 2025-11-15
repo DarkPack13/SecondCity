@@ -135,7 +135,7 @@
 		if(iswallturf(location))
 			return location
 		for(var/atom/A in location)
-			// TODO: [Rebase] reimplement decor
+			// DARKPACK TODO - reimplement decor
 			/*
 			if(A.density && !istype(A, /obj/structure/lamppost))
 				return location
@@ -263,7 +263,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// TODO: [Rebase] reimplement fire
+	// DARKPACK TODO - reimplement fire
 	/*
 	var/seeing_fire
 	for (var/obj/effect/fire/seen_fire in view(7, src))
@@ -280,7 +280,7 @@
 			GLOB.move_manager.move_away(src, danger_source, 10, cached_multiplicative_slowdown)
 		else
 			// Criminals will attack anyone, others will only attack non-police
-			// TODO: [Rebase] reimplement IDs
+			// DARKPACK TODO - reimplement IDs
 			/*
 			var/obj/item/card/id/id_card = danger_source.get_idcard(FALSE)
 			if (!istype(id_card, /obj/item/card/id/police) || is_criminal)
@@ -306,7 +306,7 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// TODO: [Rebase] reimplement fire
+	// DARKPACK TODO - reimplement fire
 	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
