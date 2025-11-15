@@ -3,7 +3,7 @@
 	ADD_TRAIT(src, TRAIT_HUNTED, "bloodhunt")
 	SSbloodhunt.update_alert()
 	for(var/player_mob in GLOB.kindred_list)
-		to_chat(player_mob, span_bold("The Blood Hunt after <span class='warning'>[real_name]</span> has been announced! <br> Reason: [reason]"))
+		to_chat(player_mob, span_bold("The Blood Hunt after [span_warning("[real_name]")] has been announced! <br> Reason: [reason]"))
 		SEND_SOUND(player_mob, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 
 
@@ -12,5 +12,5 @@
 	REMOVE_TRAIT(src, TRAIT_HUNTED, "bloodhunt")
 	SSbloodhunt.update_alert()
 	for(var/player_mob in GLOB.kindred_list)
-		to_chat(player_mob, span_bold("The Blood Hunt after <span class='green'>[real_name]</span> is over!"))
+		to_chat(player_mob, span_bold("The Blood Hunt after [span_green("[real_name]")] is over!"))
 		SEND_SOUND(player_mob, sound('modular_darkpack/master_files/sounds/announce.ogg'))
