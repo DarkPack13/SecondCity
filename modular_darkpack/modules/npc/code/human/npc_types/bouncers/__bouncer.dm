@@ -146,10 +146,10 @@
 
 	if(can_be_reasoned_with() && in_range(src, user))
 		var/list/interact_options = list(
-			"Persuade for Entry" = image(icon = 'icons/obj/dice.dmi', icon_state = "d10"))
+			"Persuade for Entry" = image(icon = 'icons/obj/toys/dice.dmi', icon_state = "d10"))
 
 		var/obj/item/held_item = user.get_active_held_item()
-		if(held_item && istype(held_item,/obj/item/card/id/police))
+		if(held_item && istype(held_item, /obj/item/card/police))
 			interact_options["Show Badge"] = image(icon = held_item.icon, icon_state = held_item.icon_state)
 		var/picked_option = show_radial_menu(user, src, interact_options, radius = 38, require_near = TRUE)
 		switch(picked_option)

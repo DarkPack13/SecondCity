@@ -116,7 +116,7 @@
 		return
 
 
-	if(!do_mob(user, bouncer, max(5 SECONDS, social_bypass_time - (user.st_get_stat(STAT_CHARISMA) * 2 SECONDS))))
+	if(!do_after(user, bouncer, max(5 SECONDS, social_bypass_time - (user.st_get_stat(STAT_CHARISMA) * 2 SECONDS))))
 		return
 
 
@@ -139,7 +139,7 @@
 
 
 /obj/effect/vip_barrier/proc/identify_cop(mob/living/carbon/human/user, used_badge = FALSE)
-	if(mean_to_cops && (used_badge || (user.wear_id && istype(user.wear_id,/obj/item/card/id/police))))
+	if(mean_to_cops && (used_badge || (user.wear_id && istype(user.wear_id,/obj/item/card/police))))
 		return TRUE
 	return FALSE
 
@@ -150,6 +150,7 @@
 	update_icon()
 
 /obj/effect/vip_barrier/update_icon()
+	.=..()
 	if(always_invisible)
 		alpha = 0
 		return
