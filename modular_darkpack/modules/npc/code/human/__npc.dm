@@ -7,6 +7,9 @@
 	// NPCs normally walk around slowly
 	move_intent = MOVE_INTENT_WALK
 
+	// NPC humans get the area of effect, player humans dont.
+	violation_aoe = TRUE
+
 	/// Until we do a full NPC refactor (see: rewriting every single bit of code)
 	/// use this to determine NPC weapons and their chances to spawn with them -- assuming you want the NPC to do that
 	/// Otherwise just set it under the NPC's type as
@@ -84,18 +87,13 @@
 	GLOB.npc_list += src
 	GLOB.alive_npc_list += src
 
+	AddElement(/datum/element/relay_attackers)
+	RegisterSignal(src, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(handle_attacked))
+
 	// Annoy the NPC when pushed around
 	RegisterSignal(src, COMSIG_LIVING_MOB_BUMPED, PROC_REF(handle_bumped))
-	// Aggro the NPC when shoved
-	RegisterSignal(src, COMSIG_LIVING_DISARM_HIT, PROC_REF(handle_shoved))
 	// Be annoyed if helped
 	RegisterSignal(src, COMSIG_CARBON_HELP_ACT, PROC_REF(handle_helped))
-	// Aggro if shot or hit by any projectile
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(handle_projectile_hit))
-
-	// NPC humans get the area of effect, player humans dont. This is a fucky way of doing this.
-	qdel(GetComponent(/datum/component/violation_observer))
-	AddComponent(/datum/component/violation_observer, TRUE)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -150,12 +148,6 @@
 		REMOVE_TRAIT(dropping_item, TRAIT_NODROP, NPC_ITEM_TRAIT)
 		dropItemToGround(dropping_item, TRUE)
 
-//If an npc's item has TRAIT_NODROP, we NEVER drop it, even if it is forced.
-/mob/living/carbon/human/npc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
-	if (I && HAS_TRAIT(I, TRAIT_NODROP))
-		return FALSE
-
-	. = ..()
 //============================================================
 
 /mob/living/carbon/human/npc/proc/realistic_say(message)
@@ -206,6 +198,14 @@
 			phrase = pick(socialrole.female_phrases)
 	realistic_say(phrase)
 
+/mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
+	// Only aggro nearby npcs if its lethal.
+	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
+		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
+			nearby_npcs.Aggro(attacker)
+		SSwanted_level.announce_crime("victim", get_turf(src), TRUE)
+	Aggro(attacker, TRUE)
+
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)
 	SIGNAL_HANDLER
 
@@ -214,6 +214,10 @@
 
 	source.Annoy(bumping)
 
+/mob/living/carbon/human/npc/proc/handle_helped(mob/living/carbon/human/npc/source, mob/living/helper)
+	SIGNAL_HANDLER
+
+	source.Annoy(helper)
 
 /mob/living/carbon/human/npc/Move(NewLoc, direct)
 	if (!can_npc_move())
@@ -229,71 +233,6 @@
 		walktarget = null
 
 	. = ..()
-
-/mob/living/carbon/human/npc/attack_hand(mob/user, list/modifiers)
-	if (!isliving(user))
-		return
-	var/mob/living/hit_by = user
-
-	if (hit_by.combat_mode)
-		for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-			NEPIC.Aggro(user)
-		Aggro(user, TRUE)
-
-	. = ..()
-
-/mob/living/carbon/human/npc/proc/handle_helped(mob/living/carbon/human/npc/source, mob/living/helper)
-	SIGNAL_HANDLER
-
-	source.Annoy(helper)
-
-/mob/living/carbon/human/npc/proc/handle_shoved(mob/living/carbon/human/npc/source, mob/living/attacker, zone_targeted, obj/item/weapon)
-	SIGNAL_HANDLER
-
-	INVOKE_ASYNC(source, PROC_REF(Aggro), attacker, TRUE)
-
-/mob/living/carbon/human/npc/proc/handle_projectile_hit(mob/living/carbon/human/npc/source, atom/movable/firer, atom/target, angle, hit_limb, blocked, pierce_hit)
-	SIGNAL_HANDLER
-
-	if (!isliving(firer))
-		return
-
-	for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-		INVOKE_ASYNC(NEPIC, PROC_REF(Aggro), firer)
-	INVOKE_ASYNC(src, PROC_REF(Aggro), firer, TRUE)
-
-	// DARKPACK TODO - reimplement P25 radios and crime stuff
-	/*
-	var/witness_count
-
-	for (var/mob/living/carbon/human/npc/NEPIC in viewers(7, usr))
-		if (NEPIC?.stat != DEAD)
-			witness_count++
-		if (witness_count > 1)
-			for (var/obj/item/police_radio/radio in GLOB.police_radios)
-				radio.announce_crime("victim", get_turf(src))
-			for (var/obj/machinery/p25transceiver/police/radio in GLOB.p25_transceivers)
-				if (radio.p25_network == "police")
-					radio.announce_crime("victim", get_turf(src))
-					break
-	*/
-
-/mob/living/carbon/human/npc/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	. = ..()
-	if(throwingdatum?.thrower && (AM.throwforce > 5 || (AM.throwforce && src.health < src.maxHealth)))
-		Aggro(throwingdatum.thrower, TRUE)
-
-/mob/living/carbon/human/npc/attackby(obj/item/W, mob/living/user, params)
-	. = ..()
-
-	if (!user)
-		return
-	if (!W.force || ((W.force <= 5) && (health >= maxHealth)))
-		return
-
-	for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-		NEPIC.Aggro(user)
-	Aggro(user, TRUE)
 
 /mob/living/carbon/human/npc/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	. = ..()
