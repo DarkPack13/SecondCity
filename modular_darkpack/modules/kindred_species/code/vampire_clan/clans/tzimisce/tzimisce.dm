@@ -12,8 +12,8 @@
 	male_clothes = /obj/item/clothing/under/vampire/sport
 	female_clothes = /obj/item/clothing/under/vampire/red
 	enlightenment = TRUE
-	//accessories = list("spines", "spines_slim", "animal_skull", "none")
-	//accessories_layers = list("spines" = UNICORN_LAYER, "spines_slim" = UNICORN_LAYER, "animal_skull" = UNICORN_LAYER, "none" = UNICORN_LAYER)
+	accessories = list("spines", "spines_slim", "animal_skull", "none")
+	accessories_layers = list("spines" = BODY_ADJ_LAYER, "spines_slim" = BODY_ADJ_LAYER, "animal_skull" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 
 /datum/action/cooldown/spell/shapeshift/tzimisce
 	name = "Tzimisce Form"

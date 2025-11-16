@@ -3,14 +3,14 @@
 	icon = 'modular_darkpack/modules/powers/icons/dirt_pile.dmi'
 	icon_state = "dirt_pile"
 	alpha = 64
-	var/expiring
+	var/expiring = FALSE
 
 /obj/effect/decal/dirt_pile/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
 		to_chat(user,"You begin to dig up the disturbed earth.")
 		if(!tool.use_tool(src, user, 2 SECONDS))
 			return ITEM_INTERACT_BLOCKING
-		expiring = 1
+		expiring = TRUE
 		if(contents) // Is there a mob in here?
 			for(var/mob/living/L in contents)
 				to_chat(L, span_warning("Your resting place is disturbed by [user]!"))
