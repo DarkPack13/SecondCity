@@ -387,6 +387,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	storyteller_stats = SANITIZE_LIST(storyteller_stats)
+	storyteller_stat_points = SANITIZE_LIST(storyteller_stat_points)
 	storyteller_stats = SSstats.sanitize_stat_list(storyteller_stats)
 	storyteller_stat_points = SSstats.sanitize_points_list(storyteller_stat_points)
 	// DARKPACK EDIT ADD END
