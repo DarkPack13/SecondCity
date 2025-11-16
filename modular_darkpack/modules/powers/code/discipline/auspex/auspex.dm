@@ -115,7 +115,7 @@
 	// Can scan items we hold and store
 	if(!(scanned_atom in user.get_all_contents()))
 		// Can remotely scan objects and mobs.
-		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user)) && TRUE))
+		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user))))
 			return TRUE
 	owner.playsound_local(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
@@ -183,7 +183,7 @@
 	// Perform sorting now, because probably this will be never modified
 	log_entry.sort_data_entries()
 
-	examine_strings += log_entry
+	examine_strings += boxed_message(log_entry.generate_report_text())
 	return TRUE
 
 //TELEPATHY
