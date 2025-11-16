@@ -16,19 +16,19 @@
 
 /proc/get_cardinal_direction(x, y)
 	var/direction = ""
-	var/center_x = (x >= 98 && x <= 158)
-	var/center_y = (y >= 98 && y <= 158)
+	var/center_x = (x >= world.maxx/2 - 30 && x <= world.maxx/2 + 30)
+	var/center_y = (y >= world.maxy/2 - 30 && y <= world.maxy/2 + 30)
 	if(center_x && center_y)
-		return "Central"
+		return "Central [CITY_NAME]"
 	if(center_x)
 		direction = ""
-	else if(x >= 128)
+	else if(x >= world.maxx/2)
 		direction += "East"
 	else
 		direction += "West"
 	if(center_y)
 		direction = "Central [direction]"
-	else if(y >= 128)
+	else if(y >= world.maxy/2)
 		direction = "North [direction]"
 	else
 		direction = "South [direction]"
@@ -54,17 +54,12 @@
 		if("burglary")
 			message = "Burglary reported by automated security device at [crime_location.name], the [direction], [location.x]:[location.y]..."
 
-	if(message != "")
-		for(var/obj/item/police_radio/radio in GLOB.police_radios)
-			radio.say(message)
-
-/obj/item/police_radio/proc/dispatcher_talk(said)
-	say(said)
+	say(message)
 
 /obj/item/police_radio/Initialize(mapload)
 	. = ..()
 	GLOB.police_radios += src
 
-/obj/item/police_radio/Destroy()
+/obj/item/police_radio/Destroy(force)
 	. = ..()
 	GLOB.police_radios -= src

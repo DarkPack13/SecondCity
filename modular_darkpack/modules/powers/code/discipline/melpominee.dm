@@ -57,7 +57,7 @@
 		if (victim.overlays_standing[SAY_LAYER]) //ugly way to check for if the victim is currently typing
 			base_difficulty += 2
 
-	for (var/mob/living/hearer in (oviewers(7, target) - owner))
+	for (var/mob/living/hearer in (oviewers(DEFAULT_SIGHT_DISTANCE, target) - owner))
 		if (!hearer.client)
 			continue
 		difficulty_malus = 0
@@ -116,7 +116,7 @@
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		listener.create_walk_to(2 SECONDS, owner)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -151,7 +151,7 @@
 
 /datum/discipline_power/melpominee/sirens_beckoning/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		listener.Stun(2 SECONDS)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -181,7 +181,7 @@
 
 /datum/discipline_power/melpominee/shattering_crescendo/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		listener.Stun(2 SECONDS)
 		listener.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
 

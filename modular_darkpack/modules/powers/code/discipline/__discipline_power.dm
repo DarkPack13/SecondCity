@@ -404,7 +404,7 @@
 	SEND_SIGNAL(src, COMSIG_POWER_ACTIVATE, src, target)
 	SEND_SIGNAL(owner, COMSIG_POWER_ACTIVATE, src, target)
 	if (target)
-		SEND_SIGNAL(target, COMSIG_POWER_ACTIVATE_ON, src)
+		SEND_SIGNAL(target, COMSIG_POWER_ACTIVATE_ON, src, was_hostile_usage(target))
 
 	//make it active if it can only have one active instance at a time
 	if (!multi_activate)
@@ -419,8 +419,6 @@
 	do_activate_sound()
 
 	do_effect_sound(target)
-
-	INVOKE_ASYNC(src, PROC_REF(do_npc_aggro), target)
 
 	INVOKE_ASYNC(src, PROC_REF(do_masquerade_violation), target)
 
@@ -447,17 +445,13 @@
 	if (effect_sound)
 		playsound(target ? target : owner, effect_sound, 50, FALSE)
 
-// DARKPACK TODO - reimplement npcs
 /**
  * Overridable proc handling how the power aggravates NPCs
  * it's used on.
  */
-/datum/discipline_power/proc/do_npc_aggro(atom/target)
-	/*
-	if (aggravating && isnpc(target))
-		var/mob/living/carbon/human/npc/npc = target
-		npc.Aggro(owner, hostile)
-	*/
+/datum/discipline_power/proc/was_hostile_usage(atom/target)
+	if(aggravating)
+		return TRUE
 
 /**
  * Overridable proc handling Masquerade violations as a result

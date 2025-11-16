@@ -270,12 +270,7 @@
 /obj/structure/vtm/dwelling_alarm/proc/contact_cops() //Contains the actual act of yelling at cops
 	var/randomized_response_time = rand(1 SECONDS, 30 SECONDS)
 	sleep(randomized_response_time)
-	for(var/obj/item/police_radio/radio in GLOB.police_radios)
-		radio.announce_crime("burglary", get_turf(src))
-	for(var/obj/machinery/p25transceiver/police/transceiver in GLOB.p25_transceivers)
-		if(transceiver.p25_network == "police")
-			transceiver.announce_crime("burglary", get_turf(src))
-			break
+	SSwanted_level.announce_crime("burglary", get_turf(src))
 
 /obj/structure/vtm/dwelling_alarm/proc/alarm_trigger() //Starts the alarm for the house, calls cops
 	area_reference.alarm_trigerred = 1
