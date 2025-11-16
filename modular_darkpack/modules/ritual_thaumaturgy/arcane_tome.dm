@@ -38,4 +38,6 @@
 	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 2)
 	result = /obj/item/arcane_tome
 	category = CAT_MISC
-	crafting_flags = CRAFT_MUST_BE_LEARNED
+
+/datum/crafting_recipe/arctome/is_recipe_available(mob/user)
+	return HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE)
