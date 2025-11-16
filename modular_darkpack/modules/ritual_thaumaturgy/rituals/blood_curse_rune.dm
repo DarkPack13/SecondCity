@@ -11,7 +11,7 @@
 
 /obj/ritualrune/curse/complete()
 	if(!activated)
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
 
@@ -104,7 +104,7 @@
 	hearts -= heart
 
 	// Apply visual effects
-	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 25, FALSE)
+	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 25, FALSE)
 	animate(src, color = rgb(255, 0, 0), time = 1.5)
 	animate(color = rgb(128, 0, 0), time = 1.5)
 
@@ -114,7 +114,7 @@
 		if(H.real_name == curse_target)
 			found_target = TRUE
 			H.adjustAggLoss(25)
-			playsound(H.loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+			playsound(H.loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 			to_chat(H, span_warning("You feel dark energy tearing at your very being!"))
 			H.Stun(2)
 			break

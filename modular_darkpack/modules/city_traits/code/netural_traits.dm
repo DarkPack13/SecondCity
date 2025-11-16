@@ -62,7 +62,7 @@
 	trait_to_give = STATION_TRAIT_PEST_CONTROL
 	darkpack_allowed = TRUE
 
-// TODO: [Rebase] - Not touching this till npc outfit refactor
+// DARKPACK TODO - Not touching this till npc outfit refactor
 /datum/station_trait/cosplay_convention
 	name = "Cosplay convention"
 	weight = 3

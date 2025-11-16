@@ -1,7 +1,7 @@
 
 /obj/effect/decal/cleanable/trash
 	name = "trash"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "trash1"
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
@@ -11,7 +11,7 @@
 
 /obj/effect/decal/cleanable/litter
 	name = "litter"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "paper1"
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
@@ -21,7 +21,7 @@
 
 /obj/effect/decal/cleanable/cardboard
 	name = "cardboard"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "cardboard1"
 	clean_type = CLEAN_TYPE_HARD_DECAL
 

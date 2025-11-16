@@ -18,7 +18,7 @@
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
 
-	activate_sound = 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/thaum.ogg'
 
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED
 	aggravating = TRUE
@@ -264,7 +264,7 @@
 		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
 	else
 		var/blood_coefficient = (5 / target.bloodpool)
-		//TODO: [Rebase] -- reimplement quirks -- potent blood
+		// DARKPACK TODO - reimplement quirks -- potent blood
 		/*
 		if(HAS_TRAIT(target, TRAIT_POTENT_BLOOD))
 			blood_coefficient *= 0.5

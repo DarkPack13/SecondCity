@@ -125,7 +125,7 @@
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
 			return "Your character is not old enough for [jobtitle]."
-		//DARKPACK EDIT START
+		// DARKPACK EDIT START
 		if(JOB_UNAVAILABLE_SPECIES)
 			return "You can't play [jobtitle] as this species."
 		if(JOB_UNAVAILABLE_SPECIES_SLOTS)
@@ -138,7 +138,7 @@
 			return "Your character's generation is too high for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_CLAN)
 			return "Your character's clan is incompatible for [jobtitle]."
-		//DARKPACK EDIT END
+		// DARKPACK EDIT END
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
@@ -212,7 +212,7 @@
 	var/is_captain = IS_NOT_CAPTAIN
 	var/captain_sound = 'sound/announcer/notice/notice2.ogg'
 	// If we already have a captain, are they a "Captain" rank and are we allowing multiple of them to be assigned?
-	if(is_prince_job(job)) //DARKPACK EDIT, ORIGINAL: if(is_captain_job(job))
+	if(is_prince_job(job)) // DARKPACK EDIT, ORIGINAL: if(is_captain_job(job))
 		is_captain = IS_FULL_CAPTAIN
 		captain_sound = 'sound/announcer/announcement/announce.ogg'
 	// If we don't have an assigned cap yet, check if this person qualifies for some from of captaincy.

@@ -196,7 +196,7 @@ Dancer
 		dancesecond(owner)
 
 	if(last_added_humanity+6000 < world.time)
-		for(var/obj/machinery/jukebox/J in range(7, owner))
+		for(var/obj/machinery/jukebox/J in range(DEFAULT_SIGHT_DISTANCE, owner))
 			if(J.active)
 				if(ishuman(owner))
 					var/mob/living/carbon/human/human = owner

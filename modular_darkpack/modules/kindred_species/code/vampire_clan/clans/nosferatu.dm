@@ -5,12 +5,11 @@
 	icon = "nosferatu"
 	curse = "Masquerade-violating appearance."
 	alt_sprite = "nosferatu"
-	/*
 	clan_disciplines = list(
 		/datum/discipline/animalism,
 		/datum/discipline/potence,
-		/datum/discipline/obfuscate
-	)*/
+		// /datum/discipline/obfuscate
+	)
 	clan_traits = list(
 		TRAIT_MASQUERADE_VIOLATING_FACE,
 		TRAIT_VENTCRAWLER_ALWAYS
