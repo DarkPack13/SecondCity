@@ -482,8 +482,8 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "kk" = (
-/obj/structure/vampdoor/wood/old/salubri{
-	dir = 4
+/obj/structure/vampdoor{
+	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
@@ -504,7 +504,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "ld" = (
-/obj/structure/vampdoor/glass/police_chief,
+/obj/structure/vampdoor,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "lk" = (
@@ -2628,9 +2628,8 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
 "ZT" = (
-/obj/structure/vampdoor/oldwood/graveyard{
-	dir = 4;
-	locked = 0
+/obj/structure/vampdoor{
+	dir = 8
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
