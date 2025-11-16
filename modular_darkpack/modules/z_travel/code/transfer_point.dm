@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 
 /obj/transfer_point_vamp
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/z_travel/icons/z_travel.dmi'
 	icon_state = "matrix_go"
 	name = "transfer point"
 	plane = GAME_PLANE

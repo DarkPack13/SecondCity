@@ -140,13 +140,13 @@
 /mob/living/carbon/proc/get_frenzy_targets()
 	var/list/targets = list()
 	if(iskindred(src))
-		for(var/mob/living/L in oviewers(7, src))
+		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			if(!iskindred(L) && L.bloodpool && L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)
 					return L
 	else
-		for(var/mob/living/L in oviewers(7, src))
+		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			if(L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)

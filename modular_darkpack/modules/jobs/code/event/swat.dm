@@ -12,7 +12,7 @@
 	id = /obj/item/card/police
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 4,
-		///obj/item/radio/cop = 1,
+		/obj/item/radio/cop = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)

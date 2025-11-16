@@ -230,7 +230,7 @@
 	if(!locked)
 		to_chat(user, span_warning("The [src] is already unlocked."))
 		return
-	for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+	for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 		P.Aggro(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
@@ -281,7 +281,7 @@
 		if(!driver && !length(passengers) && COOLDOWN_FINISHED(src, beep_cooldown) && locked)
 			COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
-			for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+			for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 				P.Aggro(user)
 
 		if(prob(10) && locked)

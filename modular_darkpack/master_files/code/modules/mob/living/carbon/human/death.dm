@@ -8,17 +8,7 @@
 			var/area/vtm/V = get_area(src)
 			if(V.zone_type == ZONE_MASQUERADE)
 				SSmasquerade.dead_level = max(0, SSmasquerade.dead_level-25)
-	var/witness_count
-	for(var/mob/living/carbon/human/npc/NEPIC in viewers(7, usr))
-		if(NEPIC && NEPIC.stat != DEAD)
-			witness_count++
-		if(witness_count > 1)
-			for(var/obj/item/police_radio/radio in GLOB.police_radios)
-				radio.announce_crime("murder", get_turf(src))
-			for(var/obj/machinery/p25transceiver/police/radio in GLOB.p25_transceivers)
-				if(radio.p25_network == "police")
-					radio.announce_crime("murder", get_turf(src))
-					break
+	SSwanted_level.announce_crime("murder", get_turf(src), TRUE)
 	GLOB.masquerade_breakers_list -= src
 	GLOB.sabbatites -= src
 
