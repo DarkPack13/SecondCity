@@ -1,5 +1,5 @@
-
-name: Run Storyteller System BYOND Version Tests
+# DARKPACK EDIT ADD START
+name: Run Storyteller System Tests
 
 on:
   workflow_call:
@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         system_define:
-          - SYSTEM_WOD_V20
+          - SYSTEM_WOD_V20 # The default* one
           - SYSTEM_WOD_V5
           - SYSTEM_COD
 
@@ -24,3 +24,4 @@ jobs:
       map: runtimetown
       define: ${{ matrix.define }}
       max_required_byond_client: ${{ inputs.max_required_byond_client }}
+# DARKPACK EDIT ADD END
