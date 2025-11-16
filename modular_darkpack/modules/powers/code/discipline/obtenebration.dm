@@ -145,7 +145,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/mystome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE)
+	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
 
 /datum/action/mysticism
 	name = "Mysticism"
