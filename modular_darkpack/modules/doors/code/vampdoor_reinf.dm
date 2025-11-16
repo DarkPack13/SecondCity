@@ -4,8 +4,6 @@
 	base_icon_state = "reinf-1"
 
 /obj/structure/vampdoor/reinf/cleaning
-	icon_state = "reinf-1"
-	base_icon_state = "reinf"
 	locked = TRUE
 	lock_id = "cleaning"
 	lockpick_difficulty = 4
