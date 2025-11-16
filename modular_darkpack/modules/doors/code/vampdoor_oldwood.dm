@@ -7,12 +7,23 @@
 	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
-/obj/structure/vampdoor/oldwood/graveyard
+/obj/structure/vampdoor/oldwood/chantry
+	lock_id = "chantry"
+	lockpick_difficulty = 12
 	locked = TRUE
-	lock_id = "graveyard"
-	lockpick_difficulty = 2
 
-/obj/structure/vampdoor/oldwood/church
+/obj/structure/vampdoor/oldwood/baali
 	locked = TRUE
-	lock_id = "church"
-	lockpick_difficulty = 10
+	lock_id = "baali"
+	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/oldwood/salubri
+	locked = TRUE
+	lock_id = "salubri"
+	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/oldwood/clan_tzimisce
+	locked = TRUE
+	lock_id = "old_clan_tzimisce"
+	lockpick_difficulty = 8
+

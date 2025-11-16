@@ -1,4 +1,4 @@
-/obj/structure/vampdoor/wood/npc
+/obj/structure/vampdoor/wood/npc // Random access wooden door
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	locked = TRUE
