@@ -393,6 +393,8 @@ GLOBAL_VAR(restart_counter)
 
 	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
 
+	features += "Inspired by [STORYTELLR_SYSTEM]" // DARKPACK EDIT ADD
+
 	if (!host && hostedby)
 		features += "hosted by <b>[hostedby]</b>"
 
