@@ -1,4 +1,5 @@
 /obj/structure/vampdoor/wood // Six paneled plain wooden door
+	name = "wooden door"
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	burnable = TRUE
