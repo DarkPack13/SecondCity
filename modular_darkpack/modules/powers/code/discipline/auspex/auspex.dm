@@ -26,7 +26,7 @@
 	. = ..()
 
 	// Kindred are more susceptible to sensory attacks while their senses are heightened.
-	owner.AddElement(/datum/component/ear_damage)
+	owner.AddElement(/datum/element/ear_damage)
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(istype(kindred_eyes))
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
@@ -40,7 +40,7 @@
 /datum/discipline_power/auspex/heightened_senses/deactivate()
 	. = ..()
 
-	owner.RemoveElement(/datum/component/ear_damage)
+	owner.RemoveElement(/datum/element/ear_damage)
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(istype(kindred_eyes))
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
@@ -100,7 +100,7 @@
 	health_hud.show_to(owner)
 	owner.update_sight()
 
-	RegisterSignal(parent, COMSIG_MOB_EXAMINING, PROC_REF(scan))
+	RegisterSignal(owner, COMSIG_MOB_EXAMINING, PROC_REF(scan))
 
 /datum/discipline_power/auspex/the_spirits_touch/deactivate()
 	. = ..()
@@ -109,17 +109,15 @@
 	health_hud.hide_from(owner)
 	owner.update_sight()
 
-	UnregisterSignal(parent, COMSIG_MOB_EXAMINING)
+	UnregisterSignal(owner, COMSIG_MOB_EXAMINING)
 
 /datum/discipline_power/auspex/the_spirits_touch/proc/scan(mob/user, atom/scanned_atom, list/examine_strings)
-	if(loc != user)
-		return TRUE
 	// Can scan items we hold and store
 	if(!(scanned_atom in user.get_all_contents()))
 		// Can remotely scan objects and mobs.
-		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user)) && view_check))
+		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user)) && TRUE))
 			return TRUE
-	playsound_local(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
+	owner.playsound_local(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
 	// GATHER INFORMATION
 
@@ -223,7 +221,7 @@
 	name = "Psychic Projection"
 	desc = "Leave your body behind and fly across the land."
 
-	willpower_cost = 1
+	//willpower_cost = 1
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
