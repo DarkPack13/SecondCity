@@ -25,21 +25,29 @@
 /datum/discipline_power/auspex/heightened_senses/activate()
 	. = ..()
 
-	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
-	ADD_TRAIT(owner, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
+	// Kindred are more susceptible to sensory attacks while their senses are heightened.
+	owner.AddElement(/datum/component/ear_damage)
+	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	if(istype(kindred_eyes))
+		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
 
 	owner.st_add_stat_mod(STAT_PERCEPTION, discipline.level, "heightened_senses")
 
+	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
+	ADD_TRAIT(owner, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
 	owner.update_sight()
 
 /datum/discipline_power/auspex/heightened_senses/deactivate()
 	. = ..()
 
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
-	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
-
+	owner.RemoveElement(/datum/component/ear_damage)
+	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	if(istype(kindred_eyes))
+		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
 	owner.st_remove_stat_mod(STAT_PERCEPTION, "heightened_senses")
 
+	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
+	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
 	owner.update_sight()
 
 //AURA PERCEPTION
