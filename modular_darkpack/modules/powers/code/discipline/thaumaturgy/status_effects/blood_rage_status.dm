@@ -6,11 +6,11 @@
 
 /datum/status_effect/blood_rage/on_creation(mob/living/new_owner, success_count)
 	. = ..()
-	//owner.frenzy_hardness += success_count TODO: [Rebase] -- reimplement frenzy
+	//owner.frenzy_hardness += success_count DARKPACK TODO - reimplement frenzy
 
 /datum/status_effect/blood_rage/on_remove()
 	. = ..()
-	//owner.frenzy_hardness = initial(owner.frenzy_hardness) TODO: [Rebase] -- reimplement frenzy
+	//owner.frenzy_hardness = initial(owner.frenzy_hardness) DARKPACK TODO - reimplement frenzy
 
 /atom/movable/screen/alert/status_effect/blood_rage
 	name = "Blood Rage"
