@@ -115,7 +115,7 @@
 	// Can scan items we hold and store
 	if(!(scanned_atom in user.get_all_contents()))
 		// Can remotely scan objects and mobs.
-		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user))))
+		if((get_dist(scanned_atom, user) > 8) || (!(scanned_atom in view(8, user))))
 			return TRUE
 	owner.playsound_local(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
@@ -126,7 +126,6 @@
 	// Start gathering
 
 	log_entry.scan_target = scanned_atom.name
-	log_entry.scan_time = station_time_timestamp()
 
 	var/list/atom_fibers = GET_ATOM_FIBRES(scanned_atom)
 	if(length(atom_fibers))
@@ -182,8 +181,10 @@
 
 	// Perform sorting now, because probably this will be never modified
 	log_entry.sort_data_entries()
+	var/list/generated_report_text = log_entry.generate_report_text()
+	var/output_report = generated_report_text.Join()
 
-	examine_strings += boxed_message(log_entry.generate_report_text())
+	examine_strings += boxed_message(output_report)
 	return TRUE
 
 //TELEPATHY
