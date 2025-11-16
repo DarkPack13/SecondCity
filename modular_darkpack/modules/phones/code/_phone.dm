@@ -68,7 +68,9 @@
 	phone_radio.canhear_range = 1
 	irc_channel = new()
 	wiki_book = new()
+	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
+	AddComponent(/datum/component/violation_observer, FALSE)
 
 /// Index to a define to point at a runtime-global list at compile-time.
 #define NETWORK_ID 1
@@ -112,6 +114,7 @@
 			if(our_contact.number == sim_card.phone_number)
 				contact_network.contacts -= our_contact
 
+	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
 	if(sim_card)
 		sim_card.phone_weakref = null
