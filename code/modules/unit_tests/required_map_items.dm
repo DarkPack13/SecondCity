@@ -14,6 +14,7 @@
 /// More detailed information about each item (mainly, how much of each should exist) is set on a per item basis
 /datum/unit_test/maptest_required_map_items/proc/setup_expected_types()
 	expected_types += /obj/item/blood_hunt
+	expected_types += /obj/effect/landmark/latejoin_masquerade
 	// DARKPACK EDIT REMOVAL START
 	// expected_types += subtypesof(/obj/item/stamp/head)
 	// expected_types += subtypesof(/obj/machinery/modular_computer/preset/cargochat)

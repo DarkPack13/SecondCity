@@ -38,10 +38,12 @@
 
 /// Preferences relating to World of Darkness TTRPG elements
 #define PREFERENCE_PRIORITY_WORLD_OF_DARKNESS 11
+
+#define PREFERENCE_PRIORITY_REQUIRES_CLAN 12
 // DARKPACK EDIT ADD END - TTRPG preferences
 
 /// The maximum preference priority, keep this updated, but don't use it for `priority`.
-#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_WORLD_OF_DARKNESS // DARKPACK EDIT CHANGE - TTRPG Preferences
+#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_REQUIRES_CLAN // DARKPACK EDIT CHANGE - TTRPG Preferences
 
 /// For choiced preferences, this key will be used to set display names in constant data.
 #define CHOICED_PREFERENCE_DISPLAY_NAMES "display_names"
@@ -195,7 +197,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Returns TRUE for a successful application.
 /// Return FALSE if it is invalid.
 /datum/preference/proc/write(list/save_data, value)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	//SHOULD_NOT_OVERRIDE(TRUE) // DARKPACK EDIT REMOVAL - I want to overide this acctually c:
 
 	if (!is_valid(value))
 		return FALSE
@@ -281,7 +283,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preferences/proc/write_preference(datum/preference/preference, preference_value)
 	var/save_data = get_save_data_for_savefile_identifier(preference.savefile_identifier)
 	var/new_value = preference.deserialize(preference_value, src)
-	var/success = preference.write(save_data, new_value)
+	var/success = preference.write(save_data, new_value, src) // DARKPACK EDIT ADD END
 	if (success)
 		value_cache[preference.type] = new_value
 	return success
@@ -294,7 +296,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		return FALSE
 
 	var/new_value = preference.deserialize(preference_value, src)
-	var/success = preference.write(null, new_value)
+	var/success = preference.write(null, new_value, src) // DARKPACK EDIT CHANGE
 
 	if (!success)
 		return FALSE
@@ -486,6 +488,35 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Get a specific accessory for a given value
 /datum/preference/choiced/species_feature/proc/get_accessory_for_value(value)
 	return get_accessory_list()[value]
+
+// DARKPACK EDIT ADD START
+/// A preference that is a choice of one option among a fixed set.
+/// Used for preferences such as clothing.
+/datum/preference/external_choiced
+	abstract_type = /datum/preference/external_choiced
+
+/datum/preference/external_choiced/proc/get_choices(datum/preferences/preferences)
+	CRASH("`get_choices()` was not implemented for [type]!")
+
+/datum/preference/external_choiced/is_valid(value, datum/preferences/preferences)
+	return value in get_choices(preferences)
+
+// This guy is evil and needs preferences for like every proc
+/datum/preference/external_choiced/write(list/save_data, value, datum/preferences/preferences)
+	if (!is_valid(value, preferences))
+		return FALSE
+
+	if (!isnull(save_data))
+		save_data[savefile_key] = serialize(value)
+
+	return TRUE
+
+/datum/preference/external_choiced/deserialize(input, datum/preferences/preferences)
+	return sanitize_inlist(input, get_choices(preferences), create_default_value(preferences))
+
+/datum/preference/external_choiced/create_default_value(datum/preferences/preferences)
+	return pick(get_choices(preferences))
+// DARKPACK EDIT ADD END
 
 /// A preference that represents an RGB color of something.
 /// Will give the value as 6 hex digits, without a hash.

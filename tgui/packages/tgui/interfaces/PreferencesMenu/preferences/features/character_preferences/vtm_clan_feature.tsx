@@ -1,15 +1,14 @@
 import {
   type FeatureChoiced,
-  type FeatureChoicedServerData,
   type FeatureValueProps,
+  FeatureExternalInput,
 } from '../base';
-import { FeatureDropdownInput } from '../dropdowns';
 
 export const clan_mark: FeatureChoiced = {
   name: 'Marks',
   component: (
-    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+    props: FeatureValueProps<string, string>,
   ) => {
-    return <FeatureDropdownInput buttons {...props} />;
+    return <FeatureExternalInput {...props} />;
   },
 };
