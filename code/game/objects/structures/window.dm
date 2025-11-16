@@ -424,7 +424,7 @@
 	ratio = CEILING(ratio*4, 1) * 25
 	if(ratio > 75)
 		return
-	. += mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1))
+	. += mutable_appearance('modular_darkpack/modules/deprecated/icons/32x48.dmi', "damage[ratio]", -(layer+0.1)) // DARKPACK EDIT CHANGE
 
 /obj/structure/window/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return exposed_temperature > T0C + heat_resistance

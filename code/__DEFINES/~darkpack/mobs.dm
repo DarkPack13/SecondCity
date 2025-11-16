@@ -11,7 +11,7 @@
 #define isavatar(A) (FALSE)
 #define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
-// TODO: [Rebase] implement other splats
+// DARKPACK TODO - implement other splats
 #define isgarou(A) (FALSE)
 
 #define iswerewolf(A) (FALSE)
