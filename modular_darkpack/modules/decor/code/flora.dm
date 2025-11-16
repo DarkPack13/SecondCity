@@ -1,18 +1,30 @@
 /obj/structure/flora/tree/vamp
 	name = "tree"
 	desc = "Cute and tall flora."
-	icon = 'modular_darkpack/modules/decor/icons/trees.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trees_animated.dmi'
 	icon_state = "tree1"
-	SET_BASE_PIXEL(-32,0)
+	plane = GAME_PLANE
+	layer = SPACEVINE_LAYER
+	pixel_w = -32
+	pixel_z = -96
 	var/burned = FALSE
 
 /obj/structure/flora/tree/vamp/Initialize(mapload)
 	. = ..()
+	var/matrix/M1 = matrix()
+	M1.Turn(4)
+	var/matrix/M2 = matrix()
+	M2.Turn(-4)
 	icon_state = "tree[rand(1, 11)]"
-	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
-		if(istype(my_area) && my_area.outdoors)
+	if(istype(get_area(src), /area/vtm))
+		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "[initial(icon_state)][rand(1, 11)]-snow"
+		if(prob(50))
+			animate(src, transform = M1, time = 4 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M2, time = 4 SECONDS)
+		else
+			animate(src, transform = M2, time = 4 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M1, time = 4 SECONDS)
 
 /obj/structure/flora/tree/vamp/get_seethrough_map()
 	return SEE_THROUGH_MAP_DEFAULT
@@ -21,22 +33,42 @@
 	if(!burned)
 		burned = TRUE
 		icon_state = "dead[rand(1, 3)]"
+		animate(src, transform = null, time = 1 SECONDS, loop = 1)
 
 /obj/structure/flora/tree/vamp/pine
 	name = "pine"
 	desc = "Cute and tall flora."
-	icon = 'modular_darkpack/modules/decor/icons/pines.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/pines_animated.dmi'
 	icon_state = "pine1"
+	pixel_w = -24
+	pixel_z = -256
 
 /obj/structure/flora/tree/vamp/pine/Initialize(mapload)
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
-		if(istype(my_area) && my_area.outdoors)
+		if(istype(get_area(src), /area/vtm))
 			icon_state = "pine[rand(1, 4)]-snow"
 	if(prob(2))
-		burnshit()
+		burned = TRUE
+		icon_state = "dead[rand(1, 5)]"
+	if(!burned)
+		var/matrix/M1 = matrix()
+		M1.Turn(4)
+		var/matrix/M2 = matrix()
+		M2.Turn(-4)
+		if(prob(50))
+			animate(src, transform = M1, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M2, time = 6 SECONDS)
+		else
+			animate(src, transform = M2, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M1, time = 6 SECONDS)
+
+/obj/structure/flora/tree/vamp/pine/burnshit()
+	if(!burned)
+		burned = TRUE
+		icon_state = "dead[rand(1, 5)]"
+		animate(src, transform = null, time = 1 SECONDS, loop = 1)
 
 /obj/structure/flora/tree/vamp/pine/get_seethrough_map()
 	return SEE_THROUGH_MAP_THREE_X_THREE
