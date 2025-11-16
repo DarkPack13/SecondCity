@@ -18,7 +18,6 @@
 	var/thaum_damage_plus = 0
 
 	var/resistant_to_disciplines = FALSE
-	var/auspex_examine = FALSE
 
 	var/dancing = FALSE
 

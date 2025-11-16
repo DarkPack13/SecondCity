@@ -98,114 +98,95 @@
 
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	health_hud.show_to(owner)
-
-	owner.auspex_examine = TRUE
-
 	owner.update_sight()
+
+	RegisterSignal(parent, COMSIG_MOB_EXAMINING, PROC_REF(scan))
 
 /datum/discipline_power/auspex/the_spirits_touch/deactivate()
 	. = ..()
 
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	health_hud.hide_from(owner)
-
-	owner.auspex_examine = FALSE
-
 	owner.update_sight()
 
-/*
-//sobs loudly
-//rework me
-/atom/examine(mob/user)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/Z = user
-		if(Z.auspex_examine)
-			if(!isturf(src) && !isobj(src) && !ismob(src))
-				return
-			var/list/fingerprints = list()
-			var/list/blood = return_blood_DNA()
-			var/list/fibers = return_fibers()
-			var/list/reagents = list()
+	UnregisterSignal(parent, COMSIG_MOB_EXAMINING)
 
-			if(ishuman(src))
-				var/mob/living/carbon/human/H = src
-				if(!H.gloves)
-					fingerprints += md5(H.dna.uni_identity)
+/datum/discipline_power/auspex/the_spirits_touch/proc/scan(mob/user, atom/scanned_atom, list/examine_strings)
+	if(loc != user)
+		return TRUE
+	// Can scan items we hold and store
+	if(!(scanned_atom in user.get_all_contents()))
+		// Can remotely scan objects and mobs.
+		if((get_dist(scanned_atom, user) > range) || (!(scanned_atom in view(range, user)) && view_check))
+			return TRUE
+	playsound_local(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
-			else if(!ismob(src))
-				fingerprints = return_fingerprints()
+	// GATHER INFORMATION
 
+	var/datum/detective_scanner_log/log_entry = new
 
-				if(isturf(src))
-					var/turf/T = src
-					// Only get reagents from non-mobs.
-					if(T.reagents && T.reagents.reagent_list.len)
+	// Start gathering
 
-						for(var/datum/reagent/R in T.reagents.reagent_list)
-							T.reagents[R.name] = R.volume
+	log_entry.scan_target = scanned_atom.name
+	log_entry.scan_time = station_time_timestamp()
 
-							// Get blood data from the blood reagent.
-							if(istype(R, /datum/reagent/blood))
+	var/list/atom_fibers = GET_ATOM_FIBRES(scanned_atom)
+	if(length(atom_fibers))
+		log_entry.add_data_entry(DETSCAN_CATEGORY_FIBER, atom_fibers.Copy())
 
-								if(R.data["blood_DNA"] && R.data["blood_type"])
-									var/blood_DNA = R.data["blood_DNA"]
-									var/blood_type = R.data["blood_type"]
-									LAZYINITLIST(blood)
-									blood[blood_DNA] = blood_type
-				if(isobj(src))
-					var/obj/T = src
-					// Only get reagents from non-mobs.
-					if(T.reagents && T.reagents.reagent_list.len)
+	var/list/blood = GET_ATOM_BLOOD_DNA(scanned_atom)
+	if(length(blood))
+		log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, blood.Copy())
 
-						for(var/datum/reagent/R in T.reagents.reagent_list)
-							T.reagents[R.name] = R.volume
+	if(ishuman(scanned_atom))
+		var/mob/living/carbon/human/scanned_human = scanned_atom
+		if(!scanned_human.gloves)
+			log_entry.add_data_entry(
+				DETSCAN_CATEGORY_FINGERS,
+				rustg_hash_string(RUSTG_HASH_MD5, scanned_human.dna?.unique_identity)
+			)
 
-							// Get blood data from the blood reagent.
-							if(istype(R, /datum/reagent/blood))
+	else if(!ismob(scanned_atom))
 
-								if(R.data["blood_DNA"] && R.data["blood_type"])
-									var/blood_DNA = R.data["blood_DNA"]
-									var/blood_type = R.data["blood_type"]
-									LAZYINITLIST(blood)
-									blood[blood_DNA] = blood_type
+		var/list/atom_fingerprints = GET_ATOM_FINGERPRINTS(scanned_atom)
+		if(length(atom_fingerprints))
+			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, atom_fingerprints.Copy())
 
-			// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
+		// Only get reagents from non-mobs.
+		for(var/datum/reagent/present_reagent as anything in scanned_atom.reagents?.reagent_list)
+			log_entry.add_data_entry(DETSCAN_CATEGORY_REAGENTS, list(present_reagent.name = present_reagent.volume))
 
-			var/found_something = FALSE
+			// Get blood data from the blood reagent.
+			if(!istype(present_reagent, /datum/reagent/blood))
+				continue
 
-			// Fingerprints
-			if(length(fingerprints))
-				to_chat(user, "<span class='info'><B>Prints:</B></span>")
-				for(var/finger in fingerprints)
-					to_chat(user, "[finger]")
-				found_something = TRUE
+			var/blood_DNA = present_reagent.data["blood_DNA"]
+			var/blood_type = present_reagent.data["blood_type"]
+			if(!blood_DNA || !blood_type)
+				continue
 
-			// Blood
-			if (length(blood))
-				to_chat(user, "<span class='info'><B>Blood:</B></span>")
-				found_something = TRUE
-				for(var/B in blood)
-					to_chat(user, "Type: <font color='red'>[blood[B]]</font> DNA (UE): <font color='red'>[B]</font>")
+			log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, list(blood_DNA = blood_type))
 
-			//Fibers
-			if(length(fibers))
-				to_chat(user, "<span class='info'><B>Fibers:</B></span>")
-				for(var/fiber in fibers)
-					to_chat(user, "[fiber]")
-				found_something = TRUE
+	if(istype(scanned_atom, /obj/item/card/id))
+		var/obj/item/card/id/user_id = scanned_atom
+		for(var/region in DETSCAN_ACCESS_ORDER())
+			var/access_in_region = SSid_access.accesses_by_region[region] & user_id.GetAccess()
+			if(!length(access_in_region))
+				continue
+			var/list/access_names = list()
+			for(var/access_num in access_in_region)
+				access_names += SSid_access.get_access_desc(access_num)
 
-			//Reagents
-			if(length(reagents))
-				to_chat(user, "<span class='info'><B>Reagents:</B></span>")
-				for(var/R in reagents)
-					to_chat(user, "Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
-				found_something = TRUE
+			log_entry.add_data_entry(DETSCAN_CATEGORY_ACCESS, list("[region]" = english_list(access_names)))
 
-			if(!found_something)
-				to_chat(user, "<I># No forensic traces found #</I>") // Don't display this to the holder user
-			return
-*/
+	// sends it off to be modified by the items
+	SEND_SIGNAL(scanned_atom, COMSIG_DETECTIVE_SCANNED, user, log_entry)
+
+	// Perform sorting now, because probably this will be never modified
+	log_entry.sort_data_entries()
+
+	examine_strings += log_entry
+	return TRUE
 
 //TELEPATHY
 /datum/discipline_power/auspex/telepathy
@@ -237,7 +218,6 @@
 	to_chat(owner, span_notice("You project your thoughts into [target]'s mind: [input_message]"))
 	to_chat(target, span_boldannounce("You hear a voice in your head... [input_message]"))
 
-/*
 //PSYCHIC PROJECTION
 /datum/discipline_power/auspex/psychic_projection
 	name = "Psychic Projection"
@@ -250,6 +230,5 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	owner.enter_avatar()
-	owner.soul_state = SOUL_PROJECTING
-*/
+	//owner.enter_avatar()
+	//owner.soul_state = SOUL_PROJECTING
