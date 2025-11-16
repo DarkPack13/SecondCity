@@ -1,0 +1,26 @@
+
+name: Run Storyteller System BYOND Version Tests
+
+on:
+  workflow_call:
+    inputs:
+      max_required_byond_client:
+        required: true
+        type: string
+
+jobs:
+  run:
+    uses: ./.github/workflows/run_integration_tests.yml
+
+    strategy:
+      fail-fast: false
+      matrix:
+        system_define:
+          - SYSTEM_WOD_V20
+          - SYSTEM_WOD_V5
+          - SYSTEM_COD
+
+    with:
+      map: runtimetown
+      define: ${{ matrix.define }}
+      max_required_byond_client: ${{ inputs.max_required_byond_client }}

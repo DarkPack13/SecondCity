@@ -17,7 +17,11 @@ on:
       max_required_byond_client:
         required: true
         type: string
-
+      # DARKPACK EDIT ADD START
+      define:
+        required: false
+        type: string
+       # DARKPACK EDIT ADD END
 jobs:
   run_integration_tests:
     # If `inputs.major` is specified, this will output `Run Tests (major.minor; map; max)`.
@@ -58,9 +62,11 @@ jobs:
           bash tools/ci/install_dreamluau.sh
       - name: Run Tests
         id: run_tests
+        # DARKPACK EDIT CHANGE START
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
-          bash tools/ci/run_server.sh ${{ inputs.map }}
+          bash tools/ci/run_server.sh ${{ inputs.map }} "-D${{ matrix.system_define }}" 
+        # DARKPACK EDIT CHANGE END
       - name: Upload screenshot tests
         if: always()
         uses: actions/upload-artifact@v5

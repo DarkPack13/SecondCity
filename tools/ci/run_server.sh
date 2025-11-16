@@ -2,6 +2,7 @@
 set -euo pipefail
 
 MAP=$1
+DEFINE_FLAG="${2:-}" # DARKPACK EDIT ADD
 
 echo Testing $MAP
 
@@ -16,7 +17,14 @@ cp tools/ci/ci_config.txt ci_test/config/config.txt
 cp _maps/$MAP.json ci_test/data/next_map.json
 
 cd ci_test
-DreamDaemon tgstation.dmb -close -trusted -verbose -params "log-directory=ci"
+# DARKPACK EDIT ADD START
+if [[ -n "$DEFINE_FLAG" ]]; then
+    echo "Compiling with define: $DEFINE_FLAG"
+    DreamMaker $DEFINE_FLAG tgstation.dme
+else
+    DreamMaker tgstation.dme
+fi
+# DARKPACK EDIT ADD END
 
 cd ..
 
