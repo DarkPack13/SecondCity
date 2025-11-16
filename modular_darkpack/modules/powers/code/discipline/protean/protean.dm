@@ -62,11 +62,7 @@
 	toggled = TRUE
 	duration_length = 1 SCENES
 
-	grouped_powers = list(
-		/datum/discipline_power/protean/earth_meld,
-		/datum/discipline_power/protean/shape_of_the_beast,
-		/datum/discipline_power/protean/mist_form
-	)
+	grouped_powers = list()
 
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
@@ -92,11 +88,10 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 20 SECONDS
-	cooldown_length = 20 SECONDS
+	duration_length = 1 SCENES
+	cooldown_length = 1 SCENES
 
 	grouped_powers = list(
-		/datum/discipline_power/protean/feral_claws,
 		/datum/discipline_power/protean/shape_of_the_beast,
 		/datum/discipline_power/protean/mist_form
 	)
@@ -109,7 +104,9 @@
 	owner.forceMove(D) // Put ourselves inside the dirt
 
 /datum/discipline_power/protean/earth_meld/pre_activation_checks()
-	var/allowed_turfs = list()
+	var/allowed_turfs = list(
+		/turf/open/misc,
+	)
 
 	if(!is_type_in_list(owner.loc, allowed_turfs)) // Check if the turf we're standing on is in allowed_turfs
 		to_chat(owner, span_warning("You can't meld into the ground here!"))
@@ -120,8 +117,8 @@
 /datum/discipline_power/protean/earth_meld/activate()
 	. = ..()
 	owner.drop_all_held_items()
-	owner.Stun(20 SECONDS) // Dirt can't move, and neither can you!
-	animate(owner, transform = matrix()/4, color = "#35240b", time = 10) // Sink into the earth
+	owner.Stun(1 TURNS) // Dirt can't move, and neither can you!
+	animate(owner, transform = matrix()/4, color = "#35240b", time = 1 SECONDS) // Sink into the earth
 	addtimer(CALLBACK(src, PROC_REF(become_soil)), 1 SECONDS)
 
 /datum/discipline_power/protean/earth_meld/deactivate()
@@ -129,7 +126,7 @@
 	if(owner.IsStun())
 		owner.SetStun(0) // End the ongoing stun
 	if(!D.expiring) // If D.expiring == 1, the following will occur anyways.
-		owner.Knockdown(3 SECONDS) // Get-up lag
+		owner.Knockdown(1 TURNS) // Get-up lag
 		owner.forceMove(get_turf(D))
 		D.remove_dirt_pile()
 
@@ -145,16 +142,15 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 20 SECONDS
-	cooldown_length = 20 SECONDS
+	duration_length = 1 SCENES
+	cooldown_length = 1 SCENES
 
 	grouped_powers = list(
-		/datum/discipline_power/protean/feral_claws,
 		/datum/discipline_power/protean/earth_meld,
 		/datum/discipline_power/protean/mist_form
 	)
 
-	var/datum/action/cooldown/spell/shapeshift/gangrel/gangy_form
+	var/datum/action/cooldown/spell/shapeshift/gangrel/beast_form/gangy_form
 
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
@@ -166,8 +162,9 @@
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	. = ..()
+	gangy_form.do_unshapeshift(owner)
 	qdel(gangy_form)
-	owner.Stun(1 SECONDS)
+	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
 
 //MIST FORM
@@ -182,16 +179,15 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 20 SECONDS
-	cooldown_length = 20 SECONDS
+	duration_length = 1 SCENES
+	cooldown_length = 1 SCENES
 
 	grouped_powers = list(
-		/datum/discipline_power/protean/feral_claws,
 		/datum/discipline_power/protean/earth_meld,
 		/datum/discipline_power/protean/shape_of_the_beast
 	)
 
-	var/datum/action/cooldown/spell/shapeshift/mist/mist_form
+	var/datum/action/cooldown/spell/shapeshift/gangrel/mist/mist_form
 
 /datum/discipline_power/protean/mist_form/activate()
 	. = ..()
@@ -203,6 +199,17 @@
 
 /datum/discipline_power/protean/mist_form/deactivate()
 	. = ..()
+	mist_form.do_unshapeshift(owner)
 	qdel(mist_form)
-	owner.Stun(1 SECONDS)
+	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
+
+/datum/action/cooldown/spell/shapeshift/gangrel
+	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
+	button_icon_state = "gangrel"
+	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
+	background_icon_state = "bg_discipline"
+	spell_requirements = NONE
+	cooldown_time = 5 SECONDS
+	revert_on_death = TRUE
+	die_with_shapeshifted_form = FALSE

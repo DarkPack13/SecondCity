@@ -75,12 +75,12 @@
 /datum/discipline_power/obtenebration/arms_of_the_abyss/activate()
 	. = ..()
 	owner.drop_all_held_items()
-	owner.put_in_r_hand(new /obj/item/knife/vamp/gangrel/lasombra(owner))
-	owner.put_in_l_hand(new /obj/item/knife/vamp/gangrel/lasombra(owner))
+	owner.put_in_r_hand(new /obj/item/knife/vamp/lasombra_tentacle(owner))
+	owner.put_in_l_hand(new /obj/item/knife/vamp/lasombra_tentacle(owner))
 
 /datum/discipline_power/obtenebration/arms_of_the_abyss/deactivate()
 	. = ..()
-	for(var/obj/item/knife/vamp/gangrel/lasombra/arm in owner.contents)
+	for(var/obj/item/knife/vamp/lasombra_tentacle/arm in owner.contents)
 		qdel(arm)
 
 //BLACK METAMORPHOSIS

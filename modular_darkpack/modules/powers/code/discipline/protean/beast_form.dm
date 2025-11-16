@@ -1,17 +1,17 @@
-/datum/action/cooldown/spell/shapeshift/gangrel
+/datum/action/cooldown/spell/shapeshift/gangrel/beast_form
 	name = "Gangrel Form"
 	desc = "Take on the shape of a wolf."
-	//charge_max = 50
-	cooldown_time = 5 SECONDS
-	revert_on_death = TRUE
-	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/basic/gangrel
+
+	possible_shapes = list(
+		/mob/living/basic/gangrel,
+		/mob/living/basic/bear/vampire,
+		/mob/living/basic/pet/dog/darkpack,
+		/mob/living/basic/pet/cat/darkpack
+	)
 
 /mob/living/basic/gangrel
-	#warn dont dox that this is a gangrel I think.
-	name = "gangrel form"
-	#warn wtf does this mean
-	desc = "The peak of abominations armor. Unbelievably undamagable..."
+	name = "horrid form"
+	desc = "The pinnacle of bestial terror. Unbelievably tough."
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "gangrel_f"
 	icon_living = "gangrel_f"
