@@ -1,4 +1,4 @@
-/obj/structure/vampdoor/glass
+/obj/structure/vampdoor/glass // Blue door with dual glass panels
 	name = "glass door"
 	icon_state = "glass_blue-1"
 	opacity = FALSE
