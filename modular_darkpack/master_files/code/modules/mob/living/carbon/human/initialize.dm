@@ -2,4 +2,4 @@
 	. = ..()
 	//Initializes Jumping on the player
 	AddComponent(/datum/component/jumper)
-	AddComponent(/datum/component/violation_observer, FALSE)
+	AddComponent(/datum/component/violation_observer, violation_aoe)
