@@ -34,7 +34,7 @@
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /datum/discipline_power/obfuscate/proc/is_seen_check()
-	for (var/mob/living/viewer in oviewers(7, owner))
+	for (var/mob/living/viewer in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		//cats cannot stop you from Obfuscating
 		if (!istype(viewer, /mob/living/carbon) && !viewer.client)
 			continue
