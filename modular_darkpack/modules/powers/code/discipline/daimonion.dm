@@ -72,6 +72,7 @@
 /datum/discipline_power/daimonion/conflagration/activate()
 	. = ..()
 	owner.drop_all_held_items()
+	#warn how fucking lazy man
 	owner.put_in_r_hand(new /obj/item/knife/vamp/gangrel(owner))
 	owner.put_in_l_hand(new /obj/item/knife/vamp/gangrel(owner))
 

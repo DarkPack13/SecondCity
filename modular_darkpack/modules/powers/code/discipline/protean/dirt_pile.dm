@@ -5,19 +5,20 @@
 	alpha = 64
 	var/expiring
 
-/obj/effect/decal/dirt_pile/attackby(obj/item/I, mob/user)
-	if(I.tool_behaviour == TOOL_SHOVEL)
-		playsound(user, 'sound/effects/shovel_dig.ogg', 100)
+/obj/effect/decal/dirt_pile/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.tool_behaviour == TOOL_SHOVEL)
 		to_chat(user,"You begin to dig up the disturbed earth.")
-		if(do_after(user, 20))
-			expiring = 1
-			if(contents) // Is there a mob in here?
-				for(var/mob/living/L in contents)
-					to_chat(L, "<span class='warning'>Your resting place is disturbed by [user]!</span>")
-					L.forceMove(get_turf(loc))
-					L.Knockdown(3 SECONDS) // Get-up lag for anyone hiding in here
-					L.SetStun(0) // End the hider's stun to allow them to crawl
-			remove_dirt_pile()
+		if(!tool.use_tool(src, user, 2 SECONDS))
+			return ITEM_INTERACT_BLOCKING
+		expiring = 1
+		if(contents) // Is there a mob in here?
+			for(var/mob/living/L in contents)
+				to_chat(L, span_warning("Your resting place is disturbed by [user]!"))
+				L.forceMove(get_turf(loc))
+				L.Knockdown(3 SECONDS) // Get-up lag for anyone hiding in here
+				L.SetStun(0) // End the hider's stun to allow them to crawl
+		remove_dirt_pile()
+		return ITEM_INTERACT_SUCCESS
 
 /obj/effect/decal/dirt_pile/Initialize(mapload)
 	. = ..()

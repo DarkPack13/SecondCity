@@ -188,6 +188,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 
+#warn kill
 /obj/item/knife/vamp/gangrel
 	name = "claws"
 	icon_state = "gangrel"
@@ -198,6 +199,11 @@
 	item_flags = DROPDEL
 	masquerade_violating = TRUE
 	obj_flags = NONE
+
+#warn was this meant to be gangrel hands or touch
+/obj/item/knife/vamp/gangrel/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/knife/vamp/gangrel/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(isliving(target))
@@ -257,9 +263,12 @@
 			L.toggle_resting()
 	return ..()
 
+#warn was this mean to be for gangrel or the above type???
+/*
 /obj/item/knife/vamp/gangrel/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+*/
 
 /obj/item/chainsaw/vamp
 	name = "chainsaw"

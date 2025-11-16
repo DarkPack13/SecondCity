@@ -13,7 +13,7 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/protean_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/deprecated/sounds/protean_deactivate.ogg'
 
-//EYES OF THE BEAST
+//EYES OF THE BEAST // VTM5 Corebook, page 270
 /datum/discipline_power/protean/eyes_of_the_beast
 	name = "Eyes of the Beast"
 	desc = "Let your eyes be a gateway to your Beast. Gain its eyes."
@@ -29,14 +29,24 @@
 
 /datum/discipline_power/protean/eyes_of_the_beast/activate()
 	. = ..()
+	var/obj/item/organ/eyes/owners_eyes = owner.get_organ_by_type(/obj/item/organ/eyes)
 	ADD_TRAIT(owner, TRAIT_NIGHT_VISION, type)
-	owner.update_sight()
+	owners_eyes?.refresh()
+	owner.st_add_stat_mod(STAT_CHARISMA, -1, type) // 20th edition
+	owner.st_add_stat_mod(STAT_MANIPULATION, -1, type) // 20th edition
+	owner.st_add_stat_mod(STAT_APPEARANCE, -1, type) // 20th edition
+	owner.st_add_stat_mod(STAT_INTIMIDATION, 2, type) // 5th edition
 	owner.add_eye_color("#ff0000", EYE_COLOR_SPECIES_PRIORITY+1)
 
 /datum/discipline_power/protean/eyes_of_the_beast/deactivate()
 	. = ..()
+	var/obj/item/organ/eyes/owners_eyes = owner.get_organ_by_type(/obj/item/organ/eyes)
 	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, type)
-	owner.update_sight()
+	owners_eyes?.refresh()
+	owner.st_remove_stat_mod(STAT_CHARISMA, type) // 20th edition
+	owner.st_remove_stat_mod(STAT_MANIPULATION, type) // 20th edition
+	owner.st_remove_stat_mod(STAT_APPEARANCE, type) // 20th edition
+	owner.st_remove_stat_mod(STAT_INTIMIDATION, type) // 5th edition
 	owner.remove_eye_color(EYE_COLOR_SPECIES_PRIORITY+1)
 
 /datum/discipline_power/protean/feral_claws
@@ -50,7 +60,7 @@
 	violates_masquerade = TRUE
 
 	toggled = TRUE
-	duration_length = 2 TURNS
+	duration_length = 1 SCENES
 
 	grouped_powers = list(
 		/datum/discipline_power/protean/earth_meld,
@@ -60,14 +70,15 @@
 
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
+	sleep(1 TURNS)
 	owner.drop_all_held_items()
-	owner.put_in_r_hand(new /obj/item/knife/vamp/gangrel(owner))
-	owner.put_in_l_hand(new /obj/item/knife/vamp/gangrel(owner))
+	owner.put_in_r_hand(new /obj/item/gangrel_claws(owner))
+	owner.put_in_l_hand(new /obj/item/gangrel_claws(owner))
 
 /datum/discipline_power/protean/feral_claws/deactivate()
 	. = ..()
-	for(var/obj/item/knife/vamp/gangrel/G in owner.contents)
-		qdel(G)
+	for(var/obj/item/gangrel_claws/old_claws in owner.contents)
+		qdel(old_claws)
 
 //EARTH MELD
 /datum/discipline_power/protean/earth_meld
@@ -143,30 +154,23 @@
 		/datum/discipline_power/protean/mist_form
 	)
 
-	var/datum/action/cooldown/spell/shapeshift/gangrel/better/GA
+	var/datum/action/cooldown/spell/shapeshift/gangrel/gangy_form
 
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
-	if (!GA)
-		GA = new(owner.mind)
+	if (!gangy_form)
+		gangy_form = new(owner.mind)
 	owner.drop_all_held_items()
-	#warn fix
-	//GA.Shapeshift(owner)
+	gangy_form.Grant(owner)
+	gangy_form.Activate(owner)
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	. = ..()
-	//GA.Restore(GA.myshape)
+	qdel(gangy_form)
 	owner.Stun(1 SECONDS)
 	owner.do_jitter_animation(15)
 
-
-
 //MIST FORM
-/* APOC EDIT REMOVE
-/datum/action/cooldown/spell/shapeshift/gangrel/best
-	shapeshift_type = /mob/living/simple_animal/hostile/gangrel/best
-*/
-
 /datum/discipline_power/protean/mist_form
 	name = "Mist Form"
 	desc = "Dissipate your body and move as mist."
@@ -187,18 +191,18 @@
 		/datum/discipline_power/protean/shape_of_the_beast
 	)
 
-	var/datum/action/cooldown/spell/shapeshift/mist/GA
+	var/datum/action/cooldown/spell/shapeshift/mist/mist_form
 
 /datum/discipline_power/protean/mist_form/activate()
 	. = ..()
-	if (!GA)
-		GA = new(owner.mind)
+	if (!mist_form)
+		mist_form = new(owner.mind)
 	owner.drop_all_held_items()
-	#warn fix
-	//GA.Shapeshift(owner)
+	mist_form.Grant(owner)
+	mist_form.Activate(owner)
 
 /datum/discipline_power/protean/mist_form/deactivate()
 	. = ..()
-	//GA.Restore(GA.myshape)
+	qdel(mist_form)
 	owner.Stun(1 SECONDS)
 	owner.do_jitter_animation(15)
