@@ -163,7 +163,7 @@ SUBSYSTEM_DEF(die_in_a_fire)
 	spread_chance = 10
 	burn_material = 20
 
-/turf/open/misc/grass/vamp
+/turf/open/misc/grass
 	spread_chance = 10
 	burn_material = 10
 
@@ -175,7 +175,7 @@ SUBSYSTEM_DEF(die_in_a_fire)
 	spread_chance = 20
 	burn_material = 20
 
-/turf/open/misc/dirt/vamp
+/turf/open/misc/dirt
 	spread_chance = 5
 	burn_material = 5
 

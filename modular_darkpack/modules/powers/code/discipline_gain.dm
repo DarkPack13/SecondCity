@@ -14,7 +14,7 @@
 	if ((dna.species.id == SPECIES_KINDRED) || (dna.species.id == SPECIES_GHOUL)) //only splats that have Disciplines qualify
 		var/list/datum/discipline/adding_disciplines = list()
 
-		// TODO: [Rebase] reimplement Discipline selection?
+		// DARKPACK TODO - reimplement Discipline selection?
 		/*
 		if (discipline_pref) //initialise player's own disciplines
 			for (var/i in 1 to client.prefs.discipline_types.len)
@@ -87,7 +87,7 @@
 		var/datum/vampire_clan/clan_checking = new clan_type
 
 		//skip this if they can't access it due to whitelists
-		// TODO: [Rebase] reimplement whitelisting
+		// DARKPACK TODO - reimplement whitelisting
 		/*
 		if (clan_checking.whitelisted)
 			if (!SSwhitelists.is_whitelisted(checked_ckey = vampire_checking.ckey, checked_whitelist = clan_checking.name))

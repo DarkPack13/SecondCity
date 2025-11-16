@@ -1,12 +1,20 @@
 SUBSYSTEM_DEF(humannpcpool)
 	name = "Human NPC Pool"
-	flags = SS_POST_FIRE_TIMING|SS_NO_INIT|SS_BACKGROUND
+	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND
 	priority = FIRE_PRIORITY_NPC
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
-	wait = 30
+	wait = 0.3 SECONDS
+
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
 
 	var/list/currentrun = list()
-	var/npc_max = 220
+
+/datum/controller/subsystem/humannpcpool/Initialize()
+	try_repopulate()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/humannpcpool/stat_entry(msg)
 	var/list/activelist = GLOB.npc_list
@@ -31,11 +39,11 @@ SUBSYSTEM_DEF(humannpcpool)
 			return
 		NPC.handle_automated_movement()
 
-/datum/controller/subsystem/humannpcpool/proc/npclost()
+/datum/controller/subsystem/humannpcpool/proc/try_repopulate()
 	if (!length(GLOB.npc_spawn_points))
 		return
 
-	while (length(GLOB.alive_npc_list) < npc_max)
+	while (length(GLOB.alive_npc_list) < SSmapping.current_map.max_npcs)
 		var/atom/chosen_spawn_point = pick(GLOB.npc_spawn_points)
 		var/creating_npc = pick(
 			/mob/living/carbon/human/npc/police, \

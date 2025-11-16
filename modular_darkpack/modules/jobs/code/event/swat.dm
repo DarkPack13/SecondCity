@@ -6,7 +6,7 @@
 	r_pocket = /obj/item/flashlight
 	l_pocket = /obj/item/vamp/keys/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	belt = /obj/item/gun/ballistic/automatic/darkpack/ar15
+	belt = /obj/item/storage/belt/security/police/swat
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	head = /obj/item/clothing/head/vampire/helmet
 	id = /obj/item/card/police
@@ -16,6 +16,7 @@
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)
+	r_hand = /obj/item/gun/ballistic/automatic/darkpack/ar15
 
 /datum/antagonist/swat/proc/equip_swat()
 	var/mob/living/carbon/human/H = owner.current

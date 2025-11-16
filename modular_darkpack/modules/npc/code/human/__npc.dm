@@ -14,7 +14,7 @@
 	/// my_backup_weapon = type_path
 	/// This only determines my_weapon, you set my_backup_weapon yourself
 	/// The last entry in the list for a type of NPC should always have 100 as the index
-	// TODO: [Rebase] reimplement weapons
+	// DARKPACK TODO - reimplement weapons
 	/*
 	var/static/list/role_weapons_chances = list(
 		BANDIT_TYPE_NPC = list(
@@ -100,7 +100,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/npc/LateInitialize(mapload)
-	// TODO: [Rebase] reimplement weapons
+	// DARKPACK TODO - reimplement weapons
 	/*
 	if (role_weapons_chances.Find(type))
 		for(var/weapon in role_weapons_chances[type])
@@ -128,7 +128,7 @@
 /mob/living/carbon/human/npc/Destroy()
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 
 	. = ..()
 
@@ -262,7 +262,7 @@
 		INVOKE_ASYNC(NEPIC, PROC_REF(Aggro), firer)
 	INVOKE_ASYNC(src, PROC_REF(Aggro), firer, TRUE)
 
-	// TODO: [Rebase] reimplement P25 radios and crime stuff
+	// DARKPACK TODO - reimplement P25 radios and crime stuff
 	/*
 	var/witness_count
 
@@ -301,13 +301,24 @@
 	last_grab = world.time
 
 /mob/living/carbon/human/npc/ghoulificate(mob/owner)
-	set waitfor = FALSE
-	var/mob/dead/observer/candidate = SSpolling.poll_ghosts_for_target("Do you want to play as [owner]`s ghoul?", check_jobban = ROLE_GHOUL, role = ROLE_GHOUL, poll_time = 15 SECONDS, checked_target = src, alert_pic = src)
 	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
-	if(isnull(candidate))
-		return FALSE
-	message_admins("[key_name_admin(candidate)] has became a ghoul by [key_name_admin(owner)].")
-	ghostize(FALSE)
-	PossessByPlayer(candidate.key)
+
+	AddComponent(\
+		/datum/component/ghost_direct_control,\
+		ban_type = ROLE_GHOUL,\
+		poll_candidates = TRUE,\
+		role_name = "[owner]'s ghoul",\
+		poll_length = 30 SECONDS,\
+		poll_question = "Do you want to play as [owner]'s ghoul?",\
+
+		assumed_control_message = "You are now [owner]'s ghoul!",\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
+	)
+
+	//poll_ignore_key = POLL_IGNORE_GHOUL,
+
 	. = ..()
 	return TRUE
+
+/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
+	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")

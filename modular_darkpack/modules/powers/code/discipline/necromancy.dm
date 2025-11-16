@@ -1,3 +1,5 @@
+// necromancy mobs located in modular_darkpack\modules\npc\code\nonhuman\beastmaster\necromancy_zombies.dm
+
 /datum/discipline/necromancy
 	name = "Necromancy"
 	desc = "Offers control over another, undead reality."
@@ -7,13 +9,32 @@
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
-	owner.faction |= VAMPIRE_CLAN_GIOVANNI
 
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
 
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/necromancy.ogg'
+
+//Necromancy in its current implementation across all codebases is not lore accurate so this roll is just something I grabbed from Bone Path v20.
+/datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
+	. = ..()
+	return SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_OCCULT), 6, owner)
+
+//lets not repeat ourselves with the minion management stuff.
+/datum/discipline_power/necromancy/activate(mob/living/target)
+	. = ..()
+
+	for(var/mob/living/minion in owner.beastmaster_minions)
+		if(QDELETED(minion) || minion.stat == DEAD)
+			owner.beastmaster_minions -= minion
+
+	var/max_minions = owner.st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(owner.beastmaster_minions) >= max_minions)
+		var/mob/living/oldest = owner.beastmaster_minions[1]
+		if(oldest)
+			owner.remove_beastmaster_minion(oldest)
+			qdel(oldest)
 
 //SEAL OF ABAMIXTRA
 /datum/discipline_power/necromancy/seal_of_abamixtra
@@ -37,24 +58,13 @@
 		/datum/discipline_power/necromancy/daemonic_possession
 	)
 
+/datum/discipline_power/necromancy/seal_of_abamixtra/pre_activation_checks(mob/living/target)
+	. = ..()
+
 /datum/discipline_power/necromancy/seal_of_abamixtra/activate(mob/living/target)
 	. = ..()
-	var/limit = 1 + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-
 	if (target.stat == DEAD)
-		if(!length(owner.beastmaster))
-			var/datum/action/beastmaster_stay/stay_action = new()
-			stay_action.Grant(owner)
-			var/datum/action/beastmaster_deaggro/deaggro_action = new()
-			deaggro_action.Grant(owner)
-
-		var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level1(owner.loc)
-		zombie.my_creator = owner
-		owner.beastmaster |= zombie
-		zombie.beastmaster = owner
+		owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level1)
 		qdel(target)
 	else
 		target.apply_damage(5, BRUTE, owner.zone_selected)
@@ -83,24 +93,13 @@
 		/datum/discipline_power/necromancy/daemonic_possession
 	)
 
+/datum/discipline_power/necromancy/awaken_the_homuncular_servant/pre_activation_checks(mob/living/target)
+	. = ..()
+
 /datum/discipline_power/necromancy/awaken_the_homuncular_servant/activate(mob/living/target)
 	. = ..()
-	var/limit = 2 + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-
 	if (target.stat == DEAD)
-		if(!length(owner.beastmaster))
-			var/datum/action/beastmaster_stay/stay_action = new()
-			stay_action.Grant(owner)
-			var/datum/action/beastmaster_deaggro/deaggro_action = new()
-			deaggro_action.Grant(owner)
-
-		var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level2(owner.loc)
-		zombie.my_creator = owner
-		owner.beastmaster |= zombie
-		zombie.beastmaster = owner
+		owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level2)
 		qdel(target)
 	else
 		target.apply_damage(10, BRUTE, owner.zone_selected)
@@ -112,6 +111,111 @@
 	var/datum/action/ghost_hear/see_ghosts = new()
 	see_ghosts.Grant(owner)
 
+//SHAMBLING HORDES
+/datum/discipline_power/necromancy/shambling_hordes
+	name = "Shambling Hordes"
+	desc = "Raise your enemies as upgraded zombies under your command."
+
+	level = 3
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = TARGET_MOB
+	range = 2
+
+	aggravating = TRUE
+	hostile = TRUE
+	violates_masquerade = TRUE
+
+	cooldown_length = 5 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/seal_of_abamixtra,
+		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
+		/datum/discipline_power/necromancy/baleful_exorcism,
+		/datum/discipline_power/necromancy/daemonic_possession
+	)
+
+/datum/discipline_power/necromancy/shambling_hordes/pre_activation_checks(mob/living/target)
+	. = ..()
+
+/datum/discipline_power/necromancy/shambling_hordes/activate(mob/living/target)
+	. = ..()
+	if (target.stat == DEAD)
+		owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level3)
+		qdel(target)
+	else
+		target.apply_damage(15, BRUTE, owner.zone_selected)
+		target.apply_damage(18, AGGRAVATED, owner.zone_selected)
+		target.emote("scream")
+
+//BALEFUL EXORCISM
+/datum/discipline_power/necromancy/baleful_exorcism
+	name = "Baleful Exorcism"
+	desc = "Raise your enemies as skeletons under your command."
+
+	level = 4
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = TARGET_MOB
+	range = 2
+
+	aggravating = TRUE
+	hostile = TRUE
+	violates_masquerade = TRUE
+
+	cooldown_length = 5 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/seal_of_abamixtra,
+		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
+		/datum/discipline_power/necromancy/shambling_hordes,
+		/datum/discipline_power/necromancy/daemonic_possession
+	)
+
+/datum/discipline_power/necromancy/baleful_exorcism/pre_activation_checks(mob/living/target)
+	. = ..()
+
+/datum/discipline_power/necromancy/baleful_exorcism/activate(mob/living/target)
+	. = ..()
+	if (target.stat == DEAD)
+		owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level4)
+		qdel(target)
+	else
+		target.apply_damage(20, BRUTE, owner.zone_selected)
+		target.apply_damage(24, AGGRAVATED, owner.zone_selected)
+		target.emote("scream")
+
+//DAEMONIC POSSESSION
+/datum/discipline_power/necromancy/daemonic_possession
+	name = "Daemonic Possession"
+	desc = "Raise your enemies as powerful zombies under your command."
+
+	level = 5
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = TARGET_MOB
+	range = 2
+
+	aggravating = TRUE
+	hostile = TRUE
+	violates_masquerade = TRUE
+
+	cooldown_length = 5 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/seal_of_abamixtra,
+		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
+		/datum/discipline_power/necromancy/shambling_hordes,
+		/datum/discipline_power/necromancy/baleful_exorcism
+	)
+
+/datum/discipline_power/necromancy/daemonic_possession/pre_activation_checks(mob/living/target)
+	. = ..()
+
+/datum/discipline_power/necromancy/daemonic_possession/activate(mob/living/target)
+	. = ..()
+	if (target.stat == DEAD)
+		owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level5)
+		qdel(target)
+	else
+		target.apply_damage(25, BRUTE, owner.zone_selected)
+		target.apply_damage(30, AGGRAVATED, owner.zone_selected)
+		target.emote("scream")
+
 /datum/action/ghost_hear
 	name = "See Ghosts"
 	desc = "Allows you to see ghosts."
@@ -121,7 +225,7 @@
 	var/datum/timedevent/loop_timer
 	var/duration_length = 15 SECONDS
 
-/datum/action/ghost_hear/Trigger()
+/datum/action/ghost_hear/Trigger(trigger_flags)
 	. = ..()
 	if (loop_timer)
 		deactivate()
@@ -162,141 +266,3 @@
 		loop_timer = addtimer(CALLBACK(src, PROC_REF(refresh)), duration_length, TIMER_STOPPABLE | TIMER_DELETE_ME)
 	else
 		deactivate()
-
-//SHAMBLING HORDES
-/datum/discipline_power/necromancy/shambling_hordes
-	name = "Shambling Hordes"
-	desc = "Raise your enemies as upgraded zombies under your command."
-
-	level = 3
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
-	target_type = TARGET_MOB
-	range = 2
-
-	aggravating = TRUE
-	hostile = TRUE
-	violates_masquerade = TRUE
-
-	cooldown_length = 5 SECONDS
-	grouped_powers = list(
-		/datum/discipline_power/necromancy/seal_of_abamixtra,
-		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
-		/datum/discipline_power/necromancy/baleful_exorcism,
-		/datum/discipline_power/necromancy/daemonic_possession
-	)
-
-/datum/discipline_power/necromancy/shambling_hordes/activate(mob/living/target)
-	. = ..()
-	var/limit = 3 + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-
-	if (target.stat == DEAD)
-		if(!length(owner.beastmaster))
-			var/datum/action/beastmaster_stay/stay_action = new()
-			stay_action.Grant(owner)
-			var/datum/action/beastmaster_deaggro/deaggro_action = new()
-			deaggro_action.Grant(owner)
-
-		var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level3(owner.loc)
-		zombie.my_creator = owner
-		owner.beastmaster |= zombie
-		zombie.beastmaster = owner
-		qdel(target)
-	else
-		target.apply_damage(15, BRUTE, owner.zone_selected)
-		target.apply_damage(18, AGGRAVATED, owner.zone_selected)
-		target.emote("scream")
-
-//BALEFUL EXORCISM
-/datum/discipline_power/necromancy/baleful_exorcism
-	name = "Baleful Exorcism"
-	desc = "Raise your enemies as skeletons under your command."
-
-	level = 4
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
-	target_type = TARGET_MOB
-	range = 2
-
-	aggravating = TRUE
-	hostile = TRUE
-	violates_masquerade = TRUE
-
-	cooldown_length = 5 SECONDS
-	grouped_powers = list(
-		/datum/discipline_power/necromancy/seal_of_abamixtra,
-		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
-		/datum/discipline_power/necromancy/shambling_hordes,
-		/datum/discipline_power/necromancy/daemonic_possession
-	)
-
-/datum/discipline_power/necromancy/baleful_exorcism/activate(mob/living/target)
-	. = ..()
-	var/limit = 4 + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-
-	if (target.stat == DEAD)
-		if(!length(owner.beastmaster))
-			var/datum/action/beastmaster_stay/stay_action = new()
-			stay_action.Grant(owner)
-			var/datum/action/beastmaster_deaggro/deaggro_action = new()
-			deaggro_action.Grant(owner)
-
-		var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level4(owner.loc)
-		zombie.my_creator = owner
-		owner.beastmaster |= zombie
-		zombie.beastmaster = owner
-		qdel(target)
-	else
-		target.apply_damage(20, BRUTE, owner.zone_selected)
-		target.apply_damage(24, AGGRAVATED, owner.zone_selected)
-		target.emote("scream")
-
-//DAEMONIC POSSESSION
-/datum/discipline_power/necromancy/daemonic_possession
-	name = "Daemonic Possession"
-	desc = "Raise your enemies as powerful zombies under your command."
-
-	level = 5
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
-	target_type = TARGET_MOB
-	range = 2
-
-	aggravating = TRUE
-	hostile = TRUE
-	violates_masquerade = TRUE
-
-	cooldown_length = 5 SECONDS
-	grouped_powers = list(
-		/datum/discipline_power/necromancy/seal_of_abamixtra,
-		/datum/discipline_power/necromancy/awaken_the_homuncular_servant,
-		/datum/discipline_power/necromancy/shambling_hordes,
-		/datum/discipline_power/necromancy/baleful_exorcism
-	)
-
-/datum/discipline_power/necromancy/daemonic_possession/activate(mob/living/target)
-	. = ..()
-	var/limit = 5 + owner.st_get_stat(STAT_LEADERSHIP)
-	if(length(owner.beastmaster) >= limit)
-		var/mob/living/simple_animal/hostile/beastmaster/beast = pick(owner.beastmaster)
-		beast.death()
-
-	if (target.stat == DEAD)
-		if(!length(owner.beastmaster))
-			var/datum/action/beastmaster_stay/stay_action = new()
-			stay_action.Grant(owner)
-			var/datum/action/beastmaster_deaggro/deaggro_action = new()
-			deaggro_action.Grant(owner)
-
-		var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level5(owner.loc)
-		zombie.my_creator = owner
-		owner.beastmaster |= zombie
-		zombie.beastmaster = owner
-		qdel(target)
-	else
-		target.apply_damage(25, BRUTE, owner.zone_selected)
-		target.apply_damage(30, AGGRAVATED, owner.zone_selected)
-		target.emote("scream")

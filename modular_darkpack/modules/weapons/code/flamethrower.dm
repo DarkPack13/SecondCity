@@ -19,7 +19,7 @@
 			G.stored_gasoline = max(0, G.stored_gasoline-gas_to_transfer)
 			oil = min(1000, oil+gas_to_transfer)
 			if(oil)
-				playsound(get_turf(user), 'modular_darkpack/master_files/sounds/gas_fill.ogg', 50, TRUE)
+				playsound(get_turf(user), 'modular_darkpack/master_files/sounds/effects/gas_fill.ogg', 50, TRUE)
 				to_chat(user, span_notice("You fill [src]."))
 				icon_state = "flamethrower4"
 

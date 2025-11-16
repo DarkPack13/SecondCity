@@ -70,11 +70,11 @@
 	desc = "Customized fertilizer mixed for the superior homegrown botanist."
 	cost = 500
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
-		/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
 		)
 	crate_name = "hydro crate"
 
@@ -82,20 +82,14 @@
 /datum/supply_pack/vampire/weed_supplies
 	desc = "Contains a bailer and some seeds. No trays."
 	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
-	crate_name = "hydro crate"
-
-/datum/supply_pack/vampire/weed_supplies
-	desc = "Contains a bailer and some seeds. No trays."
-	cost = 100
-	contains = list(/obj/item/bailer, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed, /obj/item/weedseed)
+	contains = list(/obj/item/reagent_containers/cup/watering_can/metal, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis, /obj/item/seeds/cannabis)
 	crate_name = "hydro crate"
 
 /datum/supply_pack/vampire/weed_tray
-	name = "Weed Tray"
-	desc = "Contains a tray of weed."
+	name = "Hydroponics Tray"
+	desc = "Contains a tray for growing plants."
 	cost = 300
-	contains = list(/obj/structure/weedshit/buyable)
+	contains = list(/obj/machinery/hydroponics/simple/plastic/unanchored)
 	crate_name = "weed crate"
 
 /datum/supply_pack/vampire/methlab
@@ -365,97 +359,97 @@
 	name = "Ammo (9mm)"
 	desc = "Contains a box of 9mm ammunition."
 	cost = 200
-	contains = list(/obj/item/ammo_box/vampire/c9mm, /obj/item/ammo_box/vampire/c9mm)
+	contains = list(/obj/item/ammo_box/darkpack/c9mm, /obj/item/ammo_box/darkpack/c9mm)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo12g
 	name = "Ammo (12g, slug)"
 	desc = "Contains a box of 12 gauge shotgun slugs."
 	cost = 400
-	contains = list(/obj/item/ammo_box/vampire/c12g, /obj/item/ammo_box/vampire/c12g)
+	contains = list(/obj/item/ammo_box/darkpack/c12g, /obj/item/ammo_box/darkpack/c12g)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo12gbuck
 	name = "Ammo (12g, buckshot)"
 	desc = "Contains a box of 12g 00 buckshot shells."
 	cost = 400
-	contains = list(/obj/item/ammo_box/vampire/c12g/buck, /obj/item/ammo_box/vampire/c12g/buck)
+	contains = list(/obj/item/ammo_box/darkpack/c12g/buck, /obj/item/ammo_box/darkpack/c12g/buck)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo545
 	name = "Ammo (5.45)"
 	desc = "Contains a box of 5.45 ammunition."
 	cost = 500
-	contains = list(/obj/item/ammo_box/vampire/c545, /obj/item/ammo_box/vampire/c545)
+	contains = list(/obj/item/ammo_box/darkpack/c545, /obj/item/ammo_box/darkpack/c545)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo44
 	name = "Ammo (.44)"
 	desc = "Contains a box of .44 ammunition."
 	cost = 600
-	contains = list(/obj/item/ammo_box/vampire/c44, /obj/item/ammo_box/vampire/c44)
+	contains = list(/obj/item/ammo_box/darkpack/c44, /obj/item/ammo_box/darkpack/c44)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo556
 	name = "Ammo (5.56)"
 	desc = "Contains a box of 5.56 ammunition."
 	cost = 1500
-	contains = list(/obj/item/ammo_box/vampire/c556, /obj/item/ammo_box/vampire/c556)
+	contains = list(/obj/item/ammo_box/darkpack/c556, /obj/item/ammo_box/darkpack/c556)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo9/silver
 	name = "Ammo (9mm, silver)"
 	desc = "Contains a box of silver 9mm ammunition."
 	cost = 2000
-	contains = list(/obj/item/ammo_box/vampire/c9mm/silver)
+	contains = list(/obj/item/ammo_box/darkpack/c9mm/silver)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo44/silver
 	name = "Ammo (.44, silver)"
 	desc = "Contains a box of silver .44 ammunition."
 	cost = 2000
-	contains = list(/obj/item/ammo_box/vampire/c44/silver)
+	contains = list(/obj/item/ammo_box/darkpack/c44/silver)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo45/silver
 	name = "Ammo (.45, silver)"
 	desc = "Contains a box of silver .45 ammunition."
 	cost = 2000
-	contains = list(/obj/item/ammo_box/vampire/c45acp/silver)
+	contains = list(/obj/item/ammo_box/darkpack/c45acp/silver)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo556/silver
 	name = "Ammo (5.56, silver)"
 	desc = "Contains a box of silver 5.56 ammunition."
 	cost = 3000
-	contains = list(/obj/item/ammo_box/vampire/c556/silver)
+	contains = list(/obj/item/ammo_box/darkpack/c556/silver)
 
 /datum/supply_pack/vampire/ammo50
 	name = "Ammo (.50)"
 	desc = "Contains a box of .50 ammunition."
 	cost = 2500
-	contains = list(/obj/item/ammo_box/vampire/c50)
+	contains = list(/obj/item/ammo_box/darkpack/c50)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo556
 	name = "Ammo (5.56)"
 	desc = "Contains a box of 5.56 ammunition."
 	cost = 1500
-	contains = list(/obj/item/ammo_box/vampire/c556)
+	contains = list(/obj/item/ammo_box/darkpack/c556)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammo556/incendiart
 	name = "Ammo (5.56 incendiary)"
 	desc = "Contains a box of incendiary 5.56 ammunition."
 	cost = 4500
-	contains = list(/obj/item/ammo_box/vampire/c556/incendiary)
+	contains = list(/obj/item/ammo_box/darkpack/c556/incendiary)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/ammobolt
 	name = "Ammo (bolts)"
 	desc = "Contains three boxes of crossbow ammunition."
 	cost = 600
-	contains = list(/obj/item/ammo_box/vampire/arrows, /obj/item/ammo_box/vampire/arrows, /obj/item/ammo_box/vampire/arrows)
+	contains = list(/obj/item/ammo_box/darkpack/arrows, /obj/item/ammo_box/darkpack/arrows, /obj/item/ammo_box/darkpack/arrows)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/vampire/magazine_colt1911

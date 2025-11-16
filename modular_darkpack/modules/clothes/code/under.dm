@@ -231,7 +231,15 @@
 
 /obj/item/clothing/under/vampire/police
 	name = "police uniform"
-	desc = "The clothes of the boys in blue. Did you know that 44% of Cops have heard of Pentex? Google 44% of Cops for more information."
+	/*
+	 * I did like a fair bit of research tracking down the statistic, 44% was the original value here but I cant find anything supporting that,
+	 * The commonly thrown around number of 40% is from
+	 * Johnson, L.B. (1991). On the front lines: Police stress and family well-being. Hearing before the Select Committee on Children, Youth, and Families House of Representatives: 102 Congress First Session May 20 (p. 32-48). Washington DC: US Government Printing Office.
+	 * Most other stuides get lower numbers e.g
+	 * Neidig, P.H., Russell, H.E. & Seng, A.F. (1992). Interspousal aggression in law enforcement families: A preliminary investigation. Police Studies, Vol. 15 (1), p. 30-38.
+	 * Anyway im done doing research for this joke. - Fallcon
+	 */
+	desc = "The clothes of the boys in blue. Did you know that 40% of Cops have heard of " + EVIL_COMPANY + "? Google 40% of Cops for more information."
 	icon_state = "police"
 
 /obj/item/clothing/under/vampire/police/long
@@ -416,38 +424,38 @@
 	icon_state = "pentex_janitor"
 
 /obj/item/clothing/under/vampire/pentex_shortsleeve
-	name = "Endron polo-shirt"
-	desc = "An Endron International employee uniform. This one is a nice polo!"
+	name = EVIL_OIL_COMPANY + " polo-shirt"
+	desc = "An " + EVIL_OIL_COMPANY + " International employee uniform. This one is a nice polo!"
 	icon_state = "pentex_shortsleeve"
 
 /obj/item/clothing/under/vampire/pentex_longleeve
-	name = "Endron shirt"
-	desc = "An Endron International employee uniform. This one has sleeves!"
+	name = EVIL_OIL_COMPANY + " shirt"
+	desc = "An " + EVIL_OIL_COMPANY + " International employee uniform. This one has sleeves!"
 	icon_state = "pentex_longsleeve"
 
 /obj/item/clothing/under/vampire/pentex_turtleneck
-	name = "Endron turtleneck"
-	desc = "An Endron International employee uniform. This one is a nice turtleneck!"
+	name = EVIL_OIL_COMPANY + " turtleneck"
+	desc = "An " + EVIL_OIL_COMPANY + " International employee uniform. This one is a nice turtleneck!"
 	icon_state = "pentex_turtleneck"
 
 /obj/item/clothing/under/vampire/pentex_suit
-	name = "Endron suit"
-	desc = "A nice suit with a green dress-shirt. This one has an Endron International tag on it!"
+	name = EVIL_OIL_COMPANY + " suit"
+	desc = "A nice suit with a green dress-shirt. This one has an " + EVIL_OIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_suit"
 
 /obj/item/clothing/under/vampire/pentex_suitskirt
-	name = "Endron suitskirt"
-	desc = "A nice suitskirt with a green dress-shirt. This one has an Endron International tag on it!"
+	name = EVIL_OIL_COMPANY + " suitskirt"
+	desc = "A nice suitskirt with a green dress-shirt. This one has an " + EVIL_OIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_suitskirt"
 
 /obj/item/clothing/under/vampire/pentex_executive_suit
-	name = "Endron executive suit"
-	desc = "A  white designer suit with a green dress shirt. This one has an Endron International tag on it!"
+	name = EVIL_OIL_COMPANY + " executive suit"
+	desc = "A  white designer suit with a green dress shirt. This one has an " + EVIL_OIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_executivesuit"
 
 /obj/item/clothing/under/vampire/pentex_executiveskirt
-	name = "Endron executive suitskirt"
-	desc = "A white designer suitskirt with a green dress shirt. This one has an Endron International tag on it!"
+	name = EVIL_OIL_COMPANY + " executive suitskirt"
+	desc = "A white designer suitskirt with a green dress shirt. This one has an " + EVIL_OIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_executiveskirt"
 
 
