@@ -13,7 +13,7 @@
 	icon_state_preview = "cola"
 	abstract_type = /obj/item/reagent_containers/cup/soda_cans
 	initial_reagent_flags = NONE
-	custom_price = PAYCHECK_CREW * 0.9
+	custom_price = 1 // DARKPACK EDIT CHANGE
 	obj_flags = CAN_BE_HIT
 	possible_transfer_amounts = list(5, 10, 15, 25, 30)
 	volume = 30

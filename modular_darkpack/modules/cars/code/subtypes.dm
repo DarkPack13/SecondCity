@@ -32,27 +32,24 @@
 
 /obj/darkpack_car/rand/camarilla
 	access = "camarilla"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/camarilla
 	access = "camarilla"
-	icon_state = "5"
+
+/obj/darkpack_car/retro/rand/voivodate
+	access = "voivodate_citizen"
 
 /obj/darkpack_car/rand/anarch
 	access = "anarch"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/anarch
 	access = "anarch"
-	icon_state = "5"
 
 /obj/darkpack_car/rand/clinic
 	access = "clinic"
-	icon_state = "6"
 
 /obj/darkpack_car/retro/rand/clinic
 	access = "clinic"
-	icon_state = "5"
 
 /obj/darkpack_car/limousine
 	icon_state = "limo"
@@ -65,7 +62,10 @@
 	access = "giovanni"
 
 /obj/darkpack_car/limousine/camarilla
-	icon_state = "limo"
+	access = "camarilla"
+
+/obj/darkpack_car/limousine/voivodate
+	access = "seer_voivodate"
 
 /obj/darkpack_car/police
 	icon_state = "police"
@@ -136,3 +136,14 @@
 	icon_state = "ambulance"
 	access = "clinic"
 	car_storage_type = /datum/storage/car/van
+
+/obj/darkpack_car/endroncar
+	icon_state = "endron"
+	max_passengers = 4
+	access = "pentex"
+
+/obj/darkpack_car/endrontruck
+	icon_state = "endrontruck"
+	max_passengers = 6
+	access = "pentex"
+	car_storage_type = /datum/storage/car/truck

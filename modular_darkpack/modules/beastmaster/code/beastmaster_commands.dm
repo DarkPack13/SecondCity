@@ -103,10 +103,41 @@
 
 	UnregisterSignal(dead_enemy, COMSIG_LIVING_DEATH)
 
-	// if this was our current target, clear it
+	// if this was our current target, find next target, if there is one
 	if(parent.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] == dead_enemy)
-		parent.ai_controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
-		parent.ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+		var/mob/living/new_target = null
+
+		// find the next enemy
+		if(enemies && length(enemies))
+			for(var/mob/living/enemy in enemies)
+				if(!QDELETED(enemy) && enemy.stat != DEAD)
+					new_target = enemy
+					break
+
+		if(new_target)
+			// theres a new target so plan your attack
+			parent.ai_controller.set_blackboard_key(BB_CURRENT_PET_TARGET, new_target)
+			parent.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, new_target)
+			parent.ai_controller.CancelActions()
+			parent.ai_controller.able_to_plan = TRUE
+		else
+			// no more enemies, clear and return to previous behavior
+			parent.ai_controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
+			parent.ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+
+			var/list/friends = parent.ai_controller.blackboard[BB_FRIENDS_LIST]
+			if(friends && length(friends))
+				var/mob/living/carbon/human/owner = friends[1]
+				if(ishuman(owner))
+					var/datum/action/beastmaster_command_toggle_follow/toggle = locate() in owner.actions
+					var/datum/component/obeys_commands/obeys = owner.minion_command_components[parent]
+					if(toggle && obeys)
+						if(toggle.is_following)
+							var/datum/pet_command/follow/follow_cmd = obeys.available_commands["Follow"]
+							follow_cmd?.set_command_active(parent, owner)
+						else
+							var/datum/pet_command/idle/stay_cmd = obeys.available_commands["Stay"]
+							stay_cmd?.set_command_active(parent, owner)
 
 /datum/pet_command/free/beastmaster
 

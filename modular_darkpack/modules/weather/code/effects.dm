@@ -3,21 +3,28 @@ GLOBAL_LIST_EMPTY(fog_list)
 GLOBAL_LIST_EMPTY(snow_list)
 
 /obj/effect/realistic_fog
-	icon = 'modular_darkpack/modules/weather/icons/fog.dmi'
-	icon_state = "fog"
+	// Smaller sprite so you can use it in mapping without it sucking
+	icon = MAP_SWITCH('modular_darkpack/modules/weather/icons/fog.dmi', 'icons/effects/effects.dmi')
+	icon_state = MAP_SWITCH("fog", "smoke")
 	alpha = 0
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pixel_w = -96
-	pixel_z = -96
+	WHEN_COMPILE(pixel_w = -96)
+	WHEN_COMPILE(pixel_z = -96)
+	var/alpha_lower = 5
+	var/alpha_upper = 21
+
+/obj/effect/realistic_fog/strong
+	alpha_lower = 10
+	alpha_upper = 40
 
 /obj/effect/realistic_fog/Initialize(mapload)
 	. = ..()
-	animate(src, pixel_x = rand(-96, 96), pixel_y = rand(-96, 96), alpha = rand(5, 21), transform = matrix()*rand(1, 3), transform = turn(matrix(), rand(0, 360)), time = rand(100, 200), loop = -1)
-	animate(transform = null, pixel_x = 0, pixel_y = 0, alpha = rand(5, 21), time = rand(100, 200))
+	animate(src, pixel_x = rand(-96, 96), pixel_y = rand(-96, 96), alpha = rand(alpha_lower, alpha_upper), transform = matrix()*rand(1, 3), transform = turn(matrix(), rand(0, 360)), time = rand(100, 200), loop = -1)
+	animate(transform = null, pixel_x = 0, pixel_y = 0, alpha = rand(alpha_lower, alpha_upper), time = rand(100, 200))
 
 /obj/effect/realistic_fog/Destroy(force)
 	GLOB.fog_list -= src

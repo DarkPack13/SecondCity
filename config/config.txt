@@ -28,7 +28,7 @@ $include darkpack_config.txt
 # SERVERSQLNAME tgstation
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME San Francisco
+# STATIONNAME San Francisco
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
