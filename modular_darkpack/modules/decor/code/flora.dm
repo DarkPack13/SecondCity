@@ -57,7 +57,7 @@
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
 	if(check_holidays(FESTIVE_SEASON))
-		if(istype(get_area(src), /area/vtm))
+		if(istype(get_area(src), /area/vtm/outside))
 			icon_state = "pine[rand(1, 4)]-snow"
 	if(prob(2))
 		burned = TRUE
