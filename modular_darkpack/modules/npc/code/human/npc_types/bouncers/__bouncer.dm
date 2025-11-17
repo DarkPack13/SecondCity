@@ -54,6 +54,13 @@
 	else if(mapload && SSbouncer_barriers.initialized)
 		CRASH("A Bouncer was created for vip_barrier_perms that were not loaded!")
 
+/mob/living/carbon/human/npc/bouncer/Destroy()
+	if(linked_perm)
+		linked_perm.linked_bouncers -= src
+		linked_perm = null
+
+	return ..()
+
 /mob/living/carbon/human/npc/bouncer/on_knockedout_trait_gain(datum/source)
 	..()
 	set_is_guarding_false()
