@@ -162,7 +162,7 @@
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	. = ..()
-	gangy_form.do_unshapeshift(owner)
+	gangy_form.Remove(owner)
 	qdel(gangy_form)
 	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
@@ -199,7 +199,7 @@
 
 /datum/discipline_power/protean/mist_form/deactivate()
 	. = ..()
-	mist_form.do_unshapeshift(owner)
+	mist_form.Remove(owner)
 	qdel(mist_form)
 	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
@@ -209,6 +209,7 @@
 	button_icon_state = "gangrel"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
+	overlay_icon_state = null
 	spell_requirements = NONE
 	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE

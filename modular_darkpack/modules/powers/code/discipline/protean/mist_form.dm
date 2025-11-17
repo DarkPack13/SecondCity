@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/shapeshift/gangrel/mist
 	name = "Mist Form"
 	desc = "Dissipate your body and move as mist."
-	shapeshift_type = /mob/living/basic/mist
+	possible_shapes = list(/mob/living/basic/mist)
 
 /mob/living/basic/mist
 	name = "mist"

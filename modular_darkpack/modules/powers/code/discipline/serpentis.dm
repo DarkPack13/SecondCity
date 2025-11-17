@@ -152,7 +152,7 @@
 	cooldown_min = 15 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/cobra
+	possible_shapes = list(/mob/living/simple_animal/hostile/cobra)
 
 /mob/living/simple_animal/hostile/cobra
 	name = "Cobra Form"
