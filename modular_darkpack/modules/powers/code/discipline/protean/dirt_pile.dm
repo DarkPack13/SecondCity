@@ -19,9 +19,16 @@
 		remove_dirt_pile()
 		return ITEM_INTERACT_SUCCESS
 
-#warn copy mask code from /datum/element/immerse/proc/generate_immerse_mask
 /obj/effect/decal/dirt_pile/Initialize(mapload)
 	. = ..()
+	update_overlays()
+
+/obj/effect/decal/dirt_pile/update_overlays()
+	. = ..()
+	var/turf/my_turf = get_turf(src)
+	var/mutable_appearance/mask = new(my_turf.appearance)
+	mask.blend_mode = BLEND_MULTIPLY
+	. += mask
 
 /obj/effect/decal/dirt_pile/proc/remove_dirt_pile()
 	animate(src, alpha = 0, time = 1 SECONDS) // Fade out

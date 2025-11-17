@@ -9,3 +9,5 @@
 	health = 850
 	melee_damage_lower = 40
 	melee_damage_upper = 40 //Good luck lol
+	pixel_x = -16
+	base_pixel_x = -16

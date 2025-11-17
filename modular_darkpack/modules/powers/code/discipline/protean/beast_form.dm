@@ -6,7 +6,6 @@
 		/mob/living/basic/gangrel,
 		/mob/living/basic/bear/vampire,
 		/mob/living/basic/pet/dog/darkpack,
-		/mob/living/basic/pet/cat/darkpack
 	)
 
 /mob/living/basic/gangrel
