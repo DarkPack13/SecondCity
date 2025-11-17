@@ -6,7 +6,7 @@
 	spawn_positions = 5
 	supervisors = SUPERVISOR_POLICE_CHIEF_AND_SERGEANT
 	config_tag = "POLICE_OFFICER"
-	outfit = /datum/outfit/job/police_officer
+	outfit = /datum/outfit/job/vampire/police_officer
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
@@ -23,7 +23,7 @@
 
 	known_contacts = list("Police Chief")
 
-/datum/outfit/job/police_officer
+/datum/outfit/job/vampire/police_officer
 	name = "Police Officer"
 	jobtype = /datum/job/vampire/police_officer
 
@@ -34,10 +34,10 @@
 	belt = /obj/item/storage/belt/security/police
 	gloves = /obj/item/watch
 	id = /obj/item/card/police
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/police
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
 
-/datum/outfit/job/police_officer/post_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/police_officer/post_equip(mob/living/carbon/human/H)
 	..()
 	H.ignores_warrant = TRUE

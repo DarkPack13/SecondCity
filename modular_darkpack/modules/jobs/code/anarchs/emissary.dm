@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_BARON
 	config_tag = "EMISSARY"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/emissary
+	outfit = /datum/outfit/job/vampire/emissary
 
 	display_order = JOB_DISPLAY_ORDER_EMISSARY
 	department_for_prefs = /datum/job_department/anarch
@@ -21,7 +21,7 @@
 	description = "You are a diplomat for the anarchs. Make deals, keep the peace, all through words, not violence. But the latter may come to pass if the former fails."
 	minimal_masquerade = 2
 
-/datum/outfit/job/emissary
+/datum/outfit/job/vampire/emissary
 	name = "emissary"
 	jobtype = /datum/job/vampire/emissary
 
@@ -30,7 +30,7 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	//l_pocket = /obj/item/vamp/phone/anarch
+	l_pocket = /obj/item/smartphone/emissary
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit/rich=1)
 
 /obj/effect/landmark/start/emissary

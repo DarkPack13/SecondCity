@@ -30,6 +30,13 @@
 	box = null
 	pda_slot = null
 
+/datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+	. = ..()
+	var/obj/item/smartphone/phone = locate() in user.contents
+	if(phone)
+		phone.owner_weakref = WEAKREF(user)
+		phone.update_initialized_contacts()
+
 /**
  * This type is used to indicate a lack of a job.
  * The mind variable assigned_role will point here by default.
