@@ -3,7 +3,6 @@
 	desc = "Cute and tall flora."
 	icon = 'modular_darkpack/modules/decor/icons/trees.dmi'
 	icon_state = "tree1"
-	plane = GAME_PLANE
 	SET_BASE_PIXEL(-32,0)
 	var/burned = FALSE
 
