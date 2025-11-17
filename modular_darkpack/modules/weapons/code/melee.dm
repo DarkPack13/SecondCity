@@ -198,6 +198,10 @@
 	masquerade_violating = TRUE
 	obj_flags = NONE
 
+/obj/item/knife/vamp/lasombra_tentacle/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+
 /obj/item/knife/vamp/lasombra_tentacle/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(isliving(target))
 		var/mob/living/L = target

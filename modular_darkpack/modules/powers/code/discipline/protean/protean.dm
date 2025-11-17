@@ -89,7 +89,7 @@
 
 	cancelable = TRUE
 	duration_length = 1 SCENES
-	cooldown_length = 1 SCENES
+	cooldown_length = 1 TURNS
 
 	grouped_powers = list(
 		/datum/discipline_power/protean/shape_of_the_beast,
@@ -143,7 +143,7 @@
 
 	cancelable = TRUE
 	duration_length = 1 SCENES
-	cooldown_length = 1 SCENES
+	cooldown_length = 1 TURNS
 
 	grouped_powers = list(
 		/datum/discipline_power/protean/earth_meld,
@@ -180,7 +180,7 @@
 
 	cancelable = TRUE
 	duration_length = 1 SCENES
-	cooldown_length = 1 SCENES
+	cooldown_length = 1 TURNS
 
 	grouped_powers = list(
 		/datum/discipline_power/protean/earth_meld,

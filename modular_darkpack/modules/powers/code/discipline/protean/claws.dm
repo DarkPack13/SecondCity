@@ -15,6 +15,10 @@
 	masquerade_violating = TRUE
 	obj_flags = NONE
 
+/obj/item/gangrel_claws/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+
 /obj/item/gangrel_claws/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	// Based on V20
