@@ -8,16 +8,21 @@
 	)
 
 /mob/living/basic/bat/protean
-	maxHealth = 200
-	health = 200
+	maxHealth = 300
+	health = 300
+	mob_size = MOB_SIZE_SMALL
 
 /mob/living/basic/pet/dog/darkpack/protean
-	maxHealth = 200
-	health = 200
+	maxHealth = 300
+	health = 300
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 
 /mob/living/basic/bear/vampire/protean
-	maxHealth = 200
-	health = 200
+	maxHealth = 300
+	health = 300
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 
 /datum/action/cooldown/spell/shapeshift/gangrel/beast_form/Grant(mob/grant_to)
 	. = ..()
