@@ -14,7 +14,7 @@
 	///List of Clans that are allowed to do this job.
 	var/list/allowed_clans
 	///List of Clans that are disallowed to do this job.
-	var/list/allowed_clans
+	var/list/disallowed_clans
 	///If this job requires whitelisting before it can be selected for characters.
 	var/whitelisted = FALSE
 
