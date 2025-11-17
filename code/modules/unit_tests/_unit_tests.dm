@@ -87,6 +87,7 @@
 #define EASY_ALLOCATE(arguments...) allocate(__IMPLIED_TYPE__, run_loc_floor_bottom_left, ##arguments)
 
 // BEGIN_INCLUDE
+#include "_darkpack_unit_tests.dm"
 #include "abductor_baton_spell.dm"
 #include "ablative_hud.dm"
 #include "achievements.dm"
@@ -144,7 +145,6 @@
 #include "crayons.dm"
 #include "create_and_destroy.dm"
 #include "damp_rag.dm"
-#include "darkpack_unit_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "designs.dm"
