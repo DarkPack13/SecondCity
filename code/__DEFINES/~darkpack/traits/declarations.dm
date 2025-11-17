@@ -87,5 +87,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 // Does the mob know thaumaturgy?
 #define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
+// Does the mob have ghostsight?
+#define TRAIT_GHOST_VISION "ghost_vision"
 
 // END TRAIT DEFINES

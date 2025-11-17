@@ -522,6 +522,11 @@
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
 		new_sight = NONE
 
+	//DARKPACK EDIT ADDITION -- Necromancy
+	if(HAS_TRAIT(src, TRAIT_GHOST_VISION))
+		see_override = SEE_INVISIBLE_OBSERVER
+	//DARKPACK EDIT END -- Necromancy
+
 	set_sight(new_sight)
 	return ..()
 
