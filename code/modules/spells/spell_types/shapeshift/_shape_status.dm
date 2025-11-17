@@ -112,6 +112,7 @@
 /datum/status_effect/shapechange_mob/proc/after_unchange()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(owner, COMSIG_LIVING_UNSHAPESHIFTED, caster_mob)
+	SEND_SIGNAL(caster_mob, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT, owner) // DARKPACK EDIT ADD
 
 /// Signal proc for [COMSIG_LIVING_DEATH] from our owner.
 /// If our owner mob is killed, we should revert back to normal.
