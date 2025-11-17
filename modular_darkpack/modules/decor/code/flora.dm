@@ -53,7 +53,8 @@
 /obj/structure/flora/tree/vamp/pine/Initialize(mapload)
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
-	if(istype(get_area(src), /area/vtm/outside))
+	var/area/my_area = get_area(src)
+	if(istype(my_area) && my_area.outside)
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "pine[rand(1, 4)]-snow"
 		if(prob(2))
