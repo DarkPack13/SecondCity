@@ -10,7 +10,7 @@
 	. = ..()
 	icon_state = "tree[rand(1, 11)]"
 	var/area/my_area = get_area(src)
-	if(istype(my_area) && my_area.outside)
+	if(istype(my_area) && my_area.outdoors)
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "[initial(icon_state)][rand(1, 11)]-snow"
 
@@ -53,7 +53,7 @@
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
 	var/area/my_area = get_area(src)
-	if(istype(my_area) && my_area.outside)
+	if(istype(my_area) && my_area.outdoors)
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "pine[rand(1, 4)]-snow"
 		if(prob(2))
