@@ -16,7 +16,7 @@
 	)
 
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
-	allowed_clans = list(VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_NAGARAJA)
+	allowed_clans = list(VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_NAGARAJA)
 
 	description = "You are a member of a Scarlet Screen known as the Axe Gang. Your leaders, the Screentenders, provide a place for outcasts like yourself to find fulfillment, and comradery. Sell weapons using your Warehouse, do drugs, commit crime, and protect your own."
 	minimal_masquerade = 0

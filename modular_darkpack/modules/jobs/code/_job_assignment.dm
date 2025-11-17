@@ -47,7 +47,10 @@
 		return JOB_UNAVAILABLE_KINDRED_GENERATION
 
 	var/datum/vampire_clan/clan = get_vampire_clan(player_client.prefs.read_preference(/datum/preference/choiced/vampire_clan))
-	if(!(clan.id in possible_job.allowed_clans))
+	if(possible_job.allowed_clans && !(clan.id in possible_job.allowed_clans))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_CLAN
+	if(possible_job.disallowed_clans && (clan.id in possible_job.disallowed_clans))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_CLAN
 
