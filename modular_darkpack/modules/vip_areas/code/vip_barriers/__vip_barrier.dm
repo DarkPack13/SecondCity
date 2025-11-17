@@ -33,7 +33,7 @@
 /obj/effect/vip_barrier/Initialize(mapload)
 	. = ..()
 
-	if(src.type == /obj/effect/vip_barrier)
+	if(mapload && src.type == /obj/effect/vip_barrier)
 		CRASH("VIP Barrier created using default type, please use a child of this type in mapping.")
 
 	//we do this in an initialize so mappers do not have to code as much
@@ -43,7 +43,7 @@
 		//spessman purity means I have to register a signal with myself, pain
 		RegisterSignal(src, COMSIG_BARRIER_NOTIFY_GUARD_BLOCKED, PROC_REF(playBlockSound))
 		update_icon()
-	else if(SSbouncer_barriers.initialized)
+	else if(mapload && SSbouncer_barriers.initialized)
 		CRASH("A VIP barrier was created for vip_barrier_perms that were not loaded!")
 
 /obj/effect/vip_barrier/CanPass(atom/movable/mover, turf/target)
