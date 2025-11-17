@@ -4,9 +4,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/trees.dmi'
 	icon_state = "tree1"
 	plane = GAME_PLANE
-	layer = SPACEVINE_LAYER
-	pixel_w = -32
-	pixel_z = -96
+	SET_BASE_PIXEL(-32,0)
 	var/burned = FALSE
 
 /obj/structure/flora/tree/vamp/Initialize(mapload)
@@ -50,8 +48,6 @@
 	desc = "Cute and tall flora."
 	icon = 'modular_darkpack/modules/decor/icons/pines.dmi'
 	icon_state = "pine1"
-	pixel_w = -24
-	pixel_z = -256
 
 /obj/structure/flora/tree/vamp/pine/Initialize(mapload)
 	. = ..()
