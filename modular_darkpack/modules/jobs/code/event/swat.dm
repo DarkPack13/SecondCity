@@ -33,7 +33,6 @@
 	for(var/datum/action/A in H.actions)
 		if(A.vampiric)
 			A.Remove(H)
-	H.thaumaturgy_knowledge = FALSE
 	var/obj/item/organ/eyes/NV = new()
 	NV.Insert(H, TRUE, FALSE)
 

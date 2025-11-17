@@ -52,8 +52,7 @@
 
 				if(found_items.len == sacrifices.len)
 					for(var/obj/item/I in found_items)
-						if(I)
-							qdel(I)
+						qdel(I)
 					complete()
 				else
 					to_chat(user, "You lack the necessary sacrifices to complete the ritual. Found [found_items.len], required [sacrifices.len].")
