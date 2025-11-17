@@ -56,32 +56,31 @@
 /obj/structure/flora/tree/vamp/pine/Initialize(mapload)
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
-	if(check_holidays(FESTIVE_SEASON))
-		if(istype(get_area(src), /area/vtm/outside))
+	if(istype(get_area(src), /area/vtm/outside))
+		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "pine[rand(1, 4)]-snow"
-	if(prob(2))
-		burned = TRUE
-		icon_state = "dead[rand(1, 5)]"
-	if(!burned)
-		var/pivot_offset = 128
-		var/angle = 4
+		if(prob(2))
+			burnshit()
+		if(!burned)
+			var/pivot_offset = 128
+			var/angle = 4
 
-		var/matrix/M1 = matrix()
-		M1.Translate(0, pivot_offset)
-		M1.Turn(angle)
-		M1.Translate(0, -pivot_offset)
+			var/matrix/M1 = matrix()
+			M1.Translate(0, pivot_offset)
+			M1.Turn(angle)
+			M1.Translate(0, -pivot_offset)
 
-		var/matrix/M2 = matrix()
-		M2.Translate(0, pivot_offset)
-		M2.Turn(-angle)
-		M2.Translate(0, -pivot_offset)
+			var/matrix/M2 = matrix()
+			M2.Translate(0, pivot_offset)
+			M2.Turn(-angle)
+			M2.Translate(0, -pivot_offset)
 
-		if(prob(50))
-			animate(src, transform = M1, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M2, time = 6 SECONDS)
-		else
-			animate(src, transform = M2, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M1, time = 6 SECONDS)
+			if(prob(50))
+				animate(src, transform = M1, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+				animate(transform = M2, time = 6 SECONDS)
+			else
+				animate(src, transform = M2, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+				animate(transform = M1, time = 6 SECONDS)
 
 /obj/structure/flora/tree/vamp/pine/burnshit()
 	if(!burned)
