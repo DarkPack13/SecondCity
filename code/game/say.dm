@@ -151,6 +151,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Speaker name
 	var/namepart = speaker.get_message_voice(visible_name)
 
+	//DARKPACK EDIT START - PHONES
+	if(radio_freq >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
+		var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
+		freqpart = sheet.icon_tag("phone-phone") + " "
+	//DARKPACK EDIT END
+
 	//End name span.
 	var/endspanpart = "</span>"
 

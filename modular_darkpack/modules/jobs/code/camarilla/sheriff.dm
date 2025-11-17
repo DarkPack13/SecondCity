@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "SHERIFF"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/sheriff
+	outfit = /datum/outfit/job/vampire/sheriff
 
 	display_order = JOB_DISPLAY_ORDER_SHERIFF
 	department_for_prefs = /datum/job_department/camarilla
@@ -30,7 +30,7 @@
 
 	known_contacts = list("Prince","Seneschal","Dealer")
 
-/datum/outfit/job/sheriff
+/datum/outfit/job/vampire/sheriff
 	name = "Sheriff"
 	jobtype = /datum/job/vampire/sheriff
 
@@ -43,10 +43,10 @@
 	gloves = /obj/item/clothing/gloves/vampire/leather
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	r_pocket = /obj/item/vamp/keys/sheriff
-	//l_pocket = /obj/item/vamp/phone/sheriff
+	l_pocket = /obj/item/smartphone/sheriff
 	//backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/vampire_stake=3, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/card/credit/elder=1)
 
-/datum/outfit/job/sheriff/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/sheriff/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	H.ignores_warrant = TRUE
 

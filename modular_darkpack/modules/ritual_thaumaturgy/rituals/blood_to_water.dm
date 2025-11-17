@@ -6,6 +6,5 @@
 
 /obj/ritualrune/blood_to_water/complete()
 	for(var/atom/A in range(7, src))
-		if(A)
-			A.wash(CLEAN_WASH)
+		A.wash(CLEAN_WASH)
 	qdel(src)

@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_BARON
 	config_tag = "SWEEPER"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/sweeper
+	outfit = /datum/outfit/job/vampire/sweeper
 
 	display_order = JOB_DISPLAY_ORDER_SWEEPER
 	department_for_prefs = /datum/job_department/anarch
@@ -21,7 +21,7 @@
 	description = "You are the observer of the anarchs. You watch out for any new kindred, suspicious individuals, and any new rumors near the anarch turf, and then report it to your anarchs."
 	minimal_masquerade = 2
 
-/datum/outfit/job/sweeper
+/datum/outfit/job/vampire/sweeper
 	name = "Sweeper"
 	jobtype = /datum/job/vampire/sweeper
 
@@ -30,7 +30,7 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	//l_pocket = /obj/item/vamp/phone/anarch
+	l_pocket = /obj/item/smartphone/sweeper
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)
 
 /obj/effect/landmark/start/sweeper

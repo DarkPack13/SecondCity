@@ -14,7 +14,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "HOUND"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/hound
+	outfit = /datum/outfit/job/vampire/hound
 
 	display_order = JOB_DISPLAY_ORDER_HOUND
 	department_for_prefs = /datum/job_department/camarilla
@@ -28,7 +28,7 @@
 
 	known_contacts = list("Prince", "Sheriff")
 
-/datum/outfit/job/hound
+/datum/outfit/job/vampire/hound
 	name = "Hound"
 	jobtype = /datum/job/vampire/hound
 
@@ -39,8 +39,8 @@
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
 	r_pocket = /obj/item/vamp/keys/camarilla
-	//l_pocket = /obj/item/vamp/phone/camarilla
-	//backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
+	l_pocket = /obj/item/smartphone/hound
+	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
 
 /obj/effect/landmark/start/hound
 	name = "Hound"
