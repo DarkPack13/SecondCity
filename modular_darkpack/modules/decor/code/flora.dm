@@ -11,14 +11,24 @@
 
 /obj/structure/flora/tree/vamp/Initialize(mapload)
 	. = ..()
-	var/matrix/M1 = matrix()
-	M1.Turn(4)
-	var/matrix/M2 = matrix()
-	M2.Turn(-4)
 	icon_state = "tree[rand(1, 11)]"
-	if(istype(get_area(src), /area/vtm))
+	if(istype(get_area(src), /area/vtm/outside))
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "[initial(icon_state)][rand(1, 11)]-snow"
+
+		var/pivot_offset = 48
+		var/angle = 4
+
+		var/matrix/M1 = matrix()
+		M1.Translate(0, pivot_offset)
+		M1.Turn(angle)
+		M1.Translate(0, -pivot_offset)
+
+		var/matrix/M2 = matrix()
+		M2.Translate(0, pivot_offset)
+		M2.Turn(-angle)
+		M2.Translate(0, -pivot_offset)
+
 		if(prob(50))
 			animate(src, transform = M1, time = 4 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
 			animate(transform = M2, time = 4 SECONDS)
@@ -38,7 +48,7 @@
 /obj/structure/flora/tree/vamp/pine
 	name = "pine"
 	desc = "Cute and tall flora."
-	icon = 'modular_darkpack/modules/decor/icons/pines_animated.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/pines.dmi'
 	icon_state = "pine1"
 	pixel_w = -24
 	pixel_z = -256
@@ -53,10 +63,19 @@
 		burned = TRUE
 		icon_state = "dead[rand(1, 5)]"
 	if(!burned)
+		var/pivot_offset = 128
+		var/angle = 4
+
 		var/matrix/M1 = matrix()
-		M1.Turn(4)
+		M1.Translate(0, pivot_offset)
+		M1.Turn(angle)
+		M1.Translate(0, -pivot_offset)
+
 		var/matrix/M2 = matrix()
-		M2.Turn(-4)
+		M2.Translate(0, pivot_offset)
+		M2.Turn(-angle)
+		M2.Translate(0, -pivot_offset)
+
 		if(prob(50))
 			animate(src, transform = M1, time = 6 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
 			animate(transform = M2, time = 6 SECONDS)
