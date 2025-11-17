@@ -35,7 +35,7 @@
 		after_assumed_control = CALLBACK(src, PROC_REF(ghost_name_prompt), TR)\
 	)
 
-	playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)
 
 /obj/ritualrune/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)

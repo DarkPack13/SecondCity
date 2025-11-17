@@ -50,7 +50,7 @@
 	human.set_eye_color("#ff0000")
 	human.undershirt = "T-Shirt (Red)"
 	human.update_body()
-	human.equipOutfit(/datum/outfit/job/prince)
+	human.equipOutfit(/datum/outfit/job/vampire/prince, TRUE)
 
 /datum/species/human/kindred/on_species_gain(mob/living/carbon/human/new_kindred, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
@@ -64,7 +64,7 @@
 	var/datum/action/cooldown/blood_power/bloodpower = new()
 	bloodpower.Grant(new_kindred)
 
-	// TODO: [Rebase] reimplement these vars and the actions
+	// DARKPACK TODO - reimplement these vars and the actions
 	/*
 	var/datum/action/vampireinfo/infor = new()
 	infor.host = new_kindred
@@ -91,11 +91,6 @@
 
 	RegisterSignal(new_kindred, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
 
-	// TODO: [Rebase] reimplement choosing disciplines
-	new_kindred.give_discipline(new /datum/discipline/celerity(5))
-	new_kindred.give_discipline(new /datum/discipline/potence(5))
-	new_kindred.give_discipline(new /datum/discipline/fortitude(5))
-
 /datum/species/human/kindred/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 
@@ -110,7 +105,7 @@
 	UnregisterSignal(human, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
 	UnregisterSignal(human, COMSIG_HUMAN_ON_HANDLE_BLOOD)
 
-	// TODO: [Rebase] reimplement vampire actions
+	// DARKPACK TODO - reimplement vampire actions
 	/*
 	for (var/datum/action/vampireinfo/VI in human.actions)
 		VI.Remove(human)

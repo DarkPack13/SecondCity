@@ -5,8 +5,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/doors.dmi'
 	icon_state = "door-1"
 	base_icon_state = "door"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = CLOSED_DOOR_LAYER
 	pixel_w = -16
 
 	anchored = TRUE
@@ -23,7 +22,7 @@
 	var/closed = TRUE
 	var/locked = FALSE
 	var/door_broken = FALSE
-	var/door_layer = ABOVE_ALL_MOB_LAYER
+	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
 	var/glass = FALSE
 	var/lockpick_timer = LOCKTIMER_1
@@ -275,7 +274,7 @@
 	if(locked)
 		proc_unlock(5)
 		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
-		for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+		for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			P.Aggro(user)
 		var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))

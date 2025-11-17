@@ -1,5 +1,5 @@
 /datum/preference/numeric/masquerade
-	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED // TODO: [Rebase] - Render this somewhere
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED // DARKPACK TODO - Render this somewhere
 	savefile_key = "masquerade"
 	savefile_identifier = PREFERENCE_CHARACTER
 	minimum = 1

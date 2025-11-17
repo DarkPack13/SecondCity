@@ -28,7 +28,7 @@
 	uniform = /obj/item/clothing/under/vampire/graveyard
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	id = /obj/item/card/id/hunter
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/church
 	r_hand = /obj/item/gun/ballistic/shotgun/vampire

@@ -6,7 +6,7 @@
 	spawn_positions = 3
 	supervisors = SUPERVISOR_TRADITIONS
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/taxi
+	outfit = /datum/outfit/job/vampire/taxi
 	config_tag = "TAXI_DRIVER"
 	display_order = JOB_DISPLAY_ORDER_TAXI
 	exp_required_type_department = EXP_TYPE_SERVICES
@@ -21,7 +21,7 @@
 
 	allowed_clans = list(VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN)
 
-/datum/outfit/job/taxi
+/datum/outfit/job/vampire/taxi
 	name = "Taxi Driver"
 	jobtype = /datum/job/vampire/taxi
 
@@ -29,7 +29,7 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	shoes = /obj/item/clothing/shoes/vampire
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/taxi
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/melee/vamp/tire=1)
 
