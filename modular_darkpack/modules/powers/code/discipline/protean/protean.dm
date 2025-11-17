@@ -205,6 +205,7 @@
 	owner.do_jitter_animation(15)
 
 /datum/action/cooldown/spell/shapeshift/gangrel
+	abstract_type = /datum/action/cooldown/spell/shapeshift/gangrel
 	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
 	button_icon_state = "gangrel"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
