@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_TOREADOR"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/toreador
+	outfit = /datum/outfit/job/vampire/toreador
 
 	display_order = JOB_DISPLAY_ORDER_TOREADOR
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/toreador
+/datum/outfit/job/vampire/toreador
 	name = "Primogen Toreador"
 	jobtype = /datum/job/vampire/primogen_toreador
 
@@ -42,6 +42,6 @@
 	uniform = /obj/item/clothing/under/vampire/primogen_toreador
 	suit = /obj/item/clothing/suit/vampire/trench/alt
 	shoes = /obj/item/clothing/shoes/vampire
-	//l_pocket = /obj/item/vamp/phone/toreador_primo
+	l_pocket = /obj/item/smartphone/toreador_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/toreador/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon, /obj/item/gun/ballistic/automatic/vampire/beretta/toreador=1, /obj/item/ammo_box/magazine/semi9mm/toreador=1)

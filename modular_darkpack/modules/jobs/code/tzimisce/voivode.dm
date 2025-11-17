@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = " the Laws of Hospitality"
 	config_tag = "VOIVODE"
-	outfit = /datum/outfit/job/voivode
+	outfit = /datum/outfit/job/vampire/voivode
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
 	department_for_prefs = /datum/job_department/manor
@@ -23,7 +23,7 @@
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
-/datum/outfit/job/voivode
+/datum/outfit/job/vampire/voivode
 	name = "Voivode"
 	jobtype = /datum/job/vampire/voivode
 	id = /obj/item/card/voivode
@@ -32,7 +32,7 @@
 	suit = /obj/item/clothing/suit/vampire/trench/voivode
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	belt = /obj/item/storage/belt/sheath/vamp/sword
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone/voivode
 	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/instrument/eguitar/vamp=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/elder=1)
 
 /obj/effect/landmark/start/voivode

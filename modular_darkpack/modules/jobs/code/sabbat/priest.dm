@@ -5,7 +5,7 @@
 	spawn_positions = 2
 	supervisors = "Caine"
 	config_tag = "SABBAT_PRIEST"
-	outfit = /datum/outfit/job/sabbatpriest
+	outfit = /datum/outfit/job/vampire/sabbatpriest
 	allowed_species = list(SPECIES_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
@@ -20,14 +20,14 @@
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
 
-/datum/outfit/job/sabbatpriest
+/datum/outfit/job/vampire/sabbatpriest
 	name = "Sabbat Priest"
 	jobtype = /datum/job/vampire/sabbatpriest
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
-/datum/outfit/job/sabbatpriest/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
