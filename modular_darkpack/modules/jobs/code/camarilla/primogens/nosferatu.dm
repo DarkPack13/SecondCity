@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_NOSFERATU"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/nosferatu
+	outfit = /datum/outfit/job/vampire/nosferatu
 
 	display_order = JOB_DISPLAY_ORDER_NOSFERATU
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/nosferatu
+/datum/outfit/job/vampire/nosferatu
 	name = "Primogen Nosferatu"
 	jobtype = /datum/job/vampire/primogen_nosferatu
 
@@ -43,6 +43,6 @@
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
-	//l_pocket = /obj/item/vamp/phone/nosferatu_primo
+	l_pocket = /obj/item/smartphone/nosferatu_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/nosferatu/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

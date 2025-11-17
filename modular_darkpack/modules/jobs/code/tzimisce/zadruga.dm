@@ -6,7 +6,7 @@
 	spawn_positions = 2
 	supervisors = " the Laws of Hospitality"
 	config_tag = "ZADRUGA"
-	outfit = /datum/outfit/job/zadruga
+	outfit = /datum/outfit/job/vampire/zadruga
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
 	department_for_prefs = /datum/job_department/manor
@@ -21,7 +21,7 @@
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
-/datum/outfit/job/zadruga
+/datum/outfit/job/vampire/zadruga
 	name = "Zadruga"
 	jobtype = /datum/job/vampire/zadruga
 	id = /obj/item/card/bogatyr
@@ -29,7 +29,7 @@
 	uniform = /obj/item/clothing/under/vampire/bogatyr
 	suit = /obj/item/clothing/suit/vampire/jacket/punk
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone/zadruga
 	r_pocket = /obj/item/watch
 	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 

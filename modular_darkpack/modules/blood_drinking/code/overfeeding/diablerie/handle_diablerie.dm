@@ -16,7 +16,7 @@
 		if(HAS_TRAIT(src, TRAIT_DIABLERIE))
 			start_prob = 30
 		if(prob(min(99, start_prob+((generation-mob_human.generation)*10))))
-			to_chat(src, "<span class='userdanger'><b>[mob_human]'s SOUL OVERCOMES YOURS AND GAINS CONTROL OF YOUR BODY.</b></span>")
+			to_chat(src, span_userdanger("<b>[mob_human]'s SOUL OVERCOMES YOURS AND GAINS CONTROL OF YOUR BODY.</b>"))
 			message_admins("[ADMIN_LOOKUPFLW(src)] tried to Diablerize [ADMIN_LOOKUPFLW(mob)] and was overtaken.")
 			log_attack("[key_name(src)] tried to Diablerize [key_name(mob)] and was overtaken.")
 			generation = mob_human.generation

@@ -1,4 +1,4 @@
-/datum/outfit/job/swat
+/datum/outfit/job/vampire/swat
 	name = "Swat Officer"
 	//ears = /obj/item/p25radio/police/tactical
 	uniform = /obj/item/clothing/under/vampire/police/utility
@@ -12,7 +12,7 @@
 	id = /obj/item/card/police
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 4,
-		///obj/item/radio/cop = 1,
+		/obj/item/radio/cop = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)
@@ -33,7 +33,6 @@
 	for(var/datum/action/A in H.actions)
 		if(A.vampiric)
 			A.Remove(H)
-	H.thaumaturgy_knowledge = FALSE
 	var/obj/item/organ/eyes/NV = new()
 	NV.Insert(H, TRUE, FALSE)
 
@@ -58,7 +57,7 @@
 	show_to_ghosts = TRUE
 	var/always_new_team = FALSE
 	var/datum/team/swat/swat_team
-	var/swat_outfit = /datum/outfit/job/swat
+	var/swat_outfit = /datum/outfit/job/vampire/swat
 	var/custom_objective
 
 /datum/antagonist/swat/team_leader

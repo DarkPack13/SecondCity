@@ -6,7 +6,7 @@
 	supervisors = "nobody. You are beholden only to yourself."
 	config_tag = "AXE_GANG_LEADER"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/axe_leader
+	outfit = /datum/outfit/job/vampire/axe_leader
 
 	display_order = JOB_DISPLAY_ORDER_AXE_LEADER
 	exp_required_type_department = EXP_TYPE_GANG
@@ -22,17 +22,17 @@
 	description = "You lead a particular group, known as the Axe Gang, with the assistance of an enigmatic partner. You may understand the true identity of your co-conspirators, or not. Either way, they respect the position your co-leader and you hold."
 	minimal_masquerade = 0
 
-/datum/outfit/job/axe_leader/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/axe_leader/pre_equip(mob/living/carbon/human/H)
 	..()
 	//H.grant_language(/datum/language/cantonese)
 
-/datum/outfit/job/axe_leader
+/datum/outfit/job/vampire/axe_leader
 	name = "Screentender"
 	jobtype = /datum/job/vampire/axe_leader
 	uniform = /obj/item/clothing/under/vampire/suit
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	id = /obj/item/card/dealer
-	//l_pocket = /obj/item/vamp/phone/axe_leader
+	l_pocket = /obj/item/smartphone/axe_leader
 	r_pocket = /obj/item/vamp/keys/axes
 	backpack_contents = list(/obj/item/vamp/keys/supply, /obj/item/flashlight=1, /obj/item/watch=1, /obj/item/passport=1, /obj/item/card/credit/rich=1, /obj/item/hatchet)
 
