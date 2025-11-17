@@ -355,7 +355,14 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "ig" = (
-/obj/item/kirbyplants/random,
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -8;
+	pixel_y = -1
+	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "ik" = (
@@ -447,6 +454,13 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
+"jV" = (
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "jW" = (
 /obj/effect/decal/wallpaper/paper/stripe,
 /turf/closed/wall/vampwall/market,
@@ -512,6 +526,17 @@
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
+"lz" = (
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
@@ -555,6 +580,10 @@
 "mZ" = (
 /obj/machinery/fax/police,
 /obj/structure/table/wood,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
+"nf" = (
+/obj/effect/landmark/latejoin,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "nm" = (
@@ -742,6 +771,21 @@
 "qV" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
+"qZ" = (
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -7;
+	pixel_y = 19
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 4;
+	pixel_y = 21
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 13;
+	pixel_y = 18
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "ri" = (
 /obj/structure/table/countertop/purple,
 /turf/open/floor/plating/concrete,
@@ -868,6 +912,21 @@
 	},
 /obj/structure/lamppost/four,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"tk" = (
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kirbyplants/random{
+	pixel_x = 7;
+	pixel_y = 13
+	},
+/obj/effect/decal/carpet{
+	pixel_x = -17;
+	pixel_y = -5
+	},
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "tr" = (
 /obj/structure/sign/city/police_department{
@@ -1254,6 +1313,10 @@
 /area/vtm/interior/anarch)
 "Cd" = (
 /mob/living/carbon/human/npc/shop,
+/obj/effect/decal/carpet{
+	pixel_x = 5;
+	pixel_y = -14
+	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Cg" = (
@@ -1493,8 +1556,8 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
 "GE" = (
-/obj/structure/retail/flower_shop,
 /obj/structure/table/wood,
+/obj/structure/retail/flower_shop,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "GF" = (
@@ -2111,6 +2174,13 @@
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
+"Qd" = (
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 3;
+	pixel_y = 16
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Qe" = (
 /obj/effect/spawner/random/stray_animal,
 /turf/open/misc/beach/vamp,
@@ -2339,6 +2409,37 @@
 "UG" = (
 /obj/structure/table/wood,
 /obj/structure/retail/hardware_store,
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 10;
+	pixel_y = 17
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -11;
+	pixel_y = -21
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 4;
+	pixel_y = -14
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_y = 18
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 12;
+	pixel_y = 9
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = 10;
+	pixel_y = -16
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -5;
+	pixel_y = -13
+	},
+/obj/item/kirbyplants/darkpack/random{
+	pixel_x = -9;
+	pixel_y = 16
+	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "UH" = (
@@ -3604,7 +3705,7 @@ Id
 Ev
 lk
 NR
-NR
+nf
 NR
 cj
 ik
@@ -3740,7 +3841,7 @@ Id
 Ev
 lk
 NR
-NR
+nf
 NR
 cj
 ik
@@ -5572,10 +5673,10 @@ VJ
 Nd
 FH
 Nd
-ig
+NR
 UG
 GE
-ig
+qZ
 NR
 NR
 cj
@@ -5640,10 +5741,10 @@ NR
 NR
 NR
 NR
-ig
+NR
 ig
 Cd
-ig
+Qd
 NR
 NR
 cj
@@ -5708,10 +5809,10 @@ NR
 NR
 NR
 GL
-ig
-ig
-ig
-ig
+NR
+tk
+lz
+jV
 NR
 NR
 cj
