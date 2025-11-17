@@ -38,7 +38,7 @@
 /mob/living/carbon/human/npc/bouncer/Initialize(mapload)
 	.=..()
 
-	if(src.type == /mob/living/carbon/human/npc/bouncer)
+	if(mapload && src.type == /mob/living/carbon/human/npc/bouncer)
 		CRASH("Bouncer created using default type, please use a child of this type in mapping.")
 
 	AssignSocialRole(our_role)
