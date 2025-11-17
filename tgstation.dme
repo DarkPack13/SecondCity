@@ -315,7 +315,6 @@
 #include "code\__DEFINES\dcs\signals\signals_bitrunning.dm"
 #include "code\__DEFINES\dcs\signals\signals_blob.dm"
 #include "code\__DEFINES\dcs\signals\signals_bot.dm"
-#include "code\__DEFINES\dcs\signals\signals_bouncer.dm"
 #include "code\__DEFINES\dcs\signals\signals_camera.dm"
 #include "code\__DEFINES\dcs\signals\signals_changeling.dm"
 #include "code\__DEFINES\dcs\signals\signals_circuit.dm"
