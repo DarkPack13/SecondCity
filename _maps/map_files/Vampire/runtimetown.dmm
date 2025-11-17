@@ -625,8 +625,9 @@
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
 "oK" = (
+/obj/effect/landmark/latejoin_masquerade,
 /turf/open/misc/beach/vamp,
-/area/shuttle/arrival)
+/area/vtm/outside/pacificheights)
 "oM" = (
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/supply)
@@ -1020,7 +1021,7 @@
 	delete_after_roundstart = 0
 	},
 /turf/open/misc/beach/vamp,
-/area/shuttle/arrival)
+/area/vtm/outside/pacificheights)
 "wO" = (
 /obj/effect/decal/cleanable/trash,
 /turf/open/misc/beach/vamp,
@@ -1028,7 +1029,7 @@
 "wW" = (
 /obj/effect/landmark/observer_start,
 /turf/open/misc/beach/vamp,
-/area/shuttle/arrival)
+/area/vtm/outside/pacificheights)
 "xc" = (
 /obj/weapon_showcase,
 /turf/open/floor/wood/smooth/old,
@@ -2912,7 +2913,7 @@ lq
 wx
 we
 Ul
-NR
+oK
 ok
 gb
 Bf
@@ -3398,8 +3399,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 bp
 ik
@@ -3466,8 +3467,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 cj
 rW
@@ -3534,7 +3535,7 @@ Id
 Id
 ZU
 je
-oK
+NR
 wD
 NR
 Bq
@@ -3602,8 +3603,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 cj
 ik
@@ -3738,8 +3739,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 cj
 ik
@@ -3806,7 +3807,7 @@ Id
 Id
 ZU
 je
-oK
+NR
 wD
 NR
 cj
@@ -3874,8 +3875,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 cj
 ik
@@ -3942,8 +3943,8 @@ Id
 Id
 Ev
 lk
-oK
-wD
+NR
+NR
 NR
 cj
 ik
