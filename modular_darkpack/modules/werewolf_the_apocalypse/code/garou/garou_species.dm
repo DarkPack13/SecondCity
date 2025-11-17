@@ -62,32 +62,6 @@
 			for(var/datum/antagonist/A in host.mind.antag_datums)
 				if(A.objectives)
 					dat += "<p>[printobjectives(A.objectives)]</p>"
-
-		if(host.Myself)
-			if(host.Myself.Friend)
-				if(host.Myself.Friend.owner)
-					dat += "<p>My friend's name is [host.Myself.Friend.owner.true_real_name].</b><BR>"
-					if(host.Myself.Friend.phone_number)
-						dat += "Their number is [host.Myself.Friend.phone_number].<BR>"
-					if(host.Myself.Friend.friend_text)
-						dat += "[host.Myself.Friend.friend_text]</p>"
-			if(host.Myself.Enemy)
-				if(host.Myself.Enemy.owner)
-					dat += "<p><b>My nemesis is [host.Myself.Enemy.owner.true_real_name]!</b><BR>"
-					if(host.Myself.Enemy.enemy_text)
-						dat += "[host.Myself.Enemy.enemy_text]</p>"
-			if(host.Myself.Lover)
-				if(host.Myself.Lover.owner)
-					dat += "<p><b>I'm in love with [host.Myself.Lover.owner.true_real_name].</b><BR>"
-					if(host.Myself.Lover.phone_number)
-						dat += "Their number is [host.Myself.Lover.phone_number].<BR>"
-					if(host.Myself.Lover.lover_text)
-						dat += "[host.Myself.Lover.lover_text]</p>"
-		if(length(host.knowscontacts) > 0)
-			dat += "<p><b>I know some other of my kind in this city. Need to check my phone, there definetely should be:</b><BR>"
-			for(var/i in host.knowscontacts)
-				dat += "-[i] contact<BR>"
-			dat += "</p>"
 		host << browse(HTML_SKELETON(dat), "window=vampire;size=400x450;border=1;can_resize=1;can_minimize=0")
 		onclose(host, "vampire", src)
 

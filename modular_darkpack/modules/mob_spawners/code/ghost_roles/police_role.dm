@@ -29,7 +29,7 @@
 	suit = /obj/item/clothing/suit/vampire/vest
 	belt = /obj/item/melee/classic_baton
 	id = /obj/item/watch
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/radio/cop
 	l_hand = /obj/item/vamp/keys/police
 	r_hand = /obj/item/police_radio
