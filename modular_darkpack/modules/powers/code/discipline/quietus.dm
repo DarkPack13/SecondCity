@@ -25,7 +25,7 @@
 
 /datum/discipline_power/quietus/silence_of_death/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/H in viewers(7, owner))
+	for(var/mob/living/carbon/human/H in viewers(DEFAULT_SIGHT_DISTANCE, owner))
 		ADD_TRAIT(H, TRAIT_DEAF, "quietus")
 		if(H.get_confusion() < 15)
 			var/diff = 15 - H.get_confusion()

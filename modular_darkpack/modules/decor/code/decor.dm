@@ -1,16 +1,7 @@
-/obj/effect/decal/rugs
-	name = "rugs"
-	icon = 'modular_darkpack/modules/deprecated/icons/tiles.dmi'
-	icon_state = "rugs"
-
-/obj/effect/decal/rugs/Initialize(mapload)
-	. = ..()
-	icon_state = "rugs[rand(1, 11)]"
-
 /obj/structure/vampfence
 	name = "\improper fence"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "fence"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -177,7 +168,7 @@
 /obj/structure/trashbag
 	name = "trash bags"
 	desc = "Enough trashbags to block your way."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "garbage1"
 	density = TRUE
 	anchored = TRUE
@@ -193,7 +184,7 @@
 /obj/structure/hotelbanner
 	name = "banner"
 	desc = "It says H O T E L."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "banner"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -209,7 +200,7 @@
 /obj/structure/arc
 	name = "chinatown arc"
 	desc = "Cool chinese architecture."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "ark1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -227,21 +218,21 @@
 /obj/structure/trad
 	name = "traditional lamp"
 	desc = "Cool chinese lamp."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "trad"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /obj/structure/vampipe
 	name = "pipes"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/pipes.dmi'
 	icon_state = "piping1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /obj/structure/vamproofwall
 	name = "wall"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "the_wall"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -249,7 +240,7 @@
 /obj/structure/hydrant
 	name = "hydrant"
 	desc = "Used for firefighting."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "hydrant"
 	anchored = TRUE
 
@@ -268,7 +259,7 @@
 /obj/structure/roadblock
 	name = "\improper road block"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "roadblock"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -279,7 +270,7 @@
 
 /obj/effect/decal/painting
 	name = "painting"
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "painting1"
 	layer = ABOVE_ALL_MOB_LAYER
 
@@ -300,62 +291,10 @@
 	pixel_w = -16
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
-/obj/structure/roadsign
-	name = "road sign"
-	desc = "Do not drive your car cluelessly."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "stop"
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-
-/obj/structure/roadsign/stop
-	name = "stop sign"
-	icon_state = "stop"
-
-/obj/structure/roadsign/noparking
-	name = "no parking sign"
-	icon_state = "noparking"
-
-/obj/structure/roadsign/nopedestrian
-	name = "no pedestrian sign"
-	icon_state = "nopedestrian"
-
-/obj/structure/roadsign/busstop
-	name = "bus stop sign"
-	icon_state = "busstop"
-
-/obj/structure/roadsign/speedlimit
-	name = "speed limit sign"
-	icon_state = "speed50"
-
-/obj/structure/roadsign/speedlimit40
-	name = "speed limit sign"
-	icon_state = "speed40"
-
-/obj/structure/roadsign/speedlimit25
-	name = "speed limit sign"
-	icon_state = "speed25"
-
-/obj/structure/roadsign/warningtrafficlight
-	name = "traffic light warning sign"
-	icon_state = "warningtrafficlight"
-
-/obj/structure/roadsign/warningpedestrian
-	name = "pedestrian warning sign"
-	icon_state = "warningpedestrian"
-
-/obj/structure/roadsign/parking
-	name = "parking sign"
-	icon_state = "parking"
-
-/obj/structure/roadsign/crosswalk
-	name = "crosswalk sign"
-	icon_state = "crosswalk"
-
 /obj/structure/barrels
 	name = "barrel"
 	desc = "Storage some liquids."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrel1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -371,7 +310,7 @@
 /obj/structure/bricks
 	name = "bricks"
 	desc = "Building material."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "bricks"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -379,7 +318,7 @@
 
 /obj/effect/decal/pallet
 	name = "pallet"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "under1"
 
 /obj/effect/decal/pallet/Initialize(mapload)
@@ -389,7 +328,7 @@
 /obj/cargotrain
 	name = "cargocrate"
 	desc = "It delivers a lot of things."
-	icon = 'modular_darkpack/modules/deprecated/icons/containers.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/containers.dmi'
 	icon_state = "1"
 	anchored = TRUE
 	density = FALSE
@@ -414,7 +353,7 @@
 /obj/cargocrate
 	name = "cargocrate"
 	desc = "It delivers a lot of things."
-	icon = 'modular_darkpack/modules/deprecated/icons/containers.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/containers.dmi'
 	icon_state = "1"
 	anchored = TRUE
 
@@ -455,7 +394,7 @@
 /obj/structure/marketplace
 	name = "stock market"
 	desc = "Recent stocks visualization."
-	icon = 'modular_darkpack/modules/deprecated/icons/stonks.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/stonks.dmi'
 	icon_state = "marketplace"
 	anchored = TRUE
 	density = TRUE
@@ -470,7 +409,7 @@
 
 /obj/underplate
 	name = "underplate"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "underplate"
 	layer = TABLE_LAYER
 	anchored = TRUE
@@ -554,7 +493,7 @@
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "barrel"
 	anchored = TRUE
 	density = TRUE
@@ -566,7 +505,7 @@
 /obj/structure/fountain
 	name = "fountain"
 	desc = "Gothic water structure."
-	icon = 'modular_darkpack/modules/deprecated/icons/fountain.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/fountain.dmi'
 	icon_state = "fountain"
 	anchored = TRUE
 	density = TRUE
@@ -662,7 +601,7 @@
 /obj/structure/bath
 	name = "bath"
 	desc = "Not big enough for hiding in."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "tub"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -672,7 +611,7 @@
 /obj/weapon_showcase
 	name = "weapon showcase"
 	desc = "Look, a gun."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
@@ -708,7 +647,7 @@
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "pit0"
 	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = TRUE
@@ -753,7 +692,7 @@
 /obj/structure/fluff/tv
 	name = "\improper TV"
 	desc = "A slightly battered looking TV. Various infomercials play on a loop, accompanied by a jaunty tune."
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "tv_news"
 
 /obj/structure/fluff/tv/order
