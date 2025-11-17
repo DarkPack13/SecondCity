@@ -1,6 +1,3 @@
-
-
-
 /obj/effect/vip_barrier
 	name = "Basic Check Point"
 	desc = "Not a real checkpoint."
@@ -45,6 +42,13 @@
 		update_icon()
 	else if(mapload && SSbouncer_barriers.initialized)
 		CRASH("A VIP barrier was created for vip_barrier_perms that were not loaded!")
+
+/obj/effect/vip_barrier/Destroy()
+	if(linked_perm)
+		linked_perm.linked_barriers -= src
+		linked_perm = null
+	return ..()
+
 
 /obj/effect/vip_barrier/CanPass(atom/movable/mover, turf/target)
 	. = ..()
