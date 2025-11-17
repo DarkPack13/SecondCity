@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/beastmaster/rat/flying : /mob/living/basic/bat/vampire{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/rat/flying : /mob/living/basic/bat{@OLD}
 /mob/living/simple_animal/hostile/beastmaster/shadow_guard : /mob/living/basic/shadow_guard{@OLD}
 /mob/living/simple_animal/hostile/beastmaster/blood_guard : /mob/living/basic/blood_guard{@OLD}
 /mob/living/simple_animal/hostile/beastmaster/fireball : @DELETE

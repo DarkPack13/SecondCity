@@ -1,12 +1,32 @@
 /datum/action/cooldown/spell/shapeshift/gangrel/beast_form
 	name = "Gangrel Form"
-	desc = "Take on the shape of a wolf."
+	desc = "Take on the shape of an animal."
 
 	possible_shapes = list(
-		/mob/living/basic/gangrel,
-		/mob/living/basic/bear/vampire,
-		/mob/living/basic/pet/dog/darkpack,
+		/mob/living/basic/bat/protean,
+		/mob/living/basic/pet/dog/darkpack/protean, // DARKPACK TODO - WOLF
 	)
+
+/mob/living/basic/bat/protean
+	maxHealth = 200
+	health = 200
+
+/mob/living/basic/pet/dog/darkpack/protean
+	maxHealth = 200
+	health = 200
+
+/mob/living/basic/bear/vampire/protean
+	maxHealth = 200
+	health = 200
+
+/datum/action/cooldown/spell/shapeshift/gangrel/beast_form/Grant(mob/grant_to)
+	. = ..()
+	if(ishuman(grant_to))
+		var/mob/living/carbon/human/grant_to_human = grant_to
+		if(istype(grant_to_human.clan, /datum/vampire_clan/gangrel))
+			possible_shapes += list(
+				/mob/living/basic/bear/vampire/protean
+			)
 
 /mob/living/basic/gangrel
 	name = "horrid form"

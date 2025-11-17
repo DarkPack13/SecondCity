@@ -1,4 +1,4 @@
-/mob/living/basic/bat/vampire
+/mob/living/basic/bat
 	name = "bat"
 	desc = "It's a bat."
 
