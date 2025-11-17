@@ -7038,6 +7038,7 @@
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\__vampire_clan.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clan_globals.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clan_helpers.dm"
+#include "modular_darkpack\modules\kindred_species\code\vampire_clan\clan_mark_pref.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\banu_haqim.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\brujah.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clans\caitiff.dm"
