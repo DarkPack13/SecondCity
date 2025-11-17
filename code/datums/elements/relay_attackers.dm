@@ -16,6 +16,7 @@
 		RegisterSignal(target, COMSIG_ATOM_PREHITBY, PROC_REF(on_hitby))
 		RegisterSignal(target, COMSIG_ATOM_HULK_ATTACK, PROC_REF(on_attack_hulk))
 		RegisterSignal(target, COMSIG_ATOM_ATTACK_MECH, PROC_REF(on_attack_mech))
+		RegisterSignal(target, COMSIG_POWER_ACTIVATE_ON, PROC_REF(on_power_use)) // DARKPACK EDIT ADD
 	ADD_TRAIT(target, TRAIT_RELAYING_ATTACKER, REF(src))
 
 /datum/element/relay_attackers/Detach(datum/source, ...)
@@ -31,6 +32,7 @@
 		COMSIG_ATOM_PREHITBY,
 		COMSIG_ATOM_HULK_ATTACK,
 		COMSIG_ATOM_ATTACK_MECH,
+		COMSIG_POWER_ACTIVATE_ON, // DARKPACK EDIT ADD
 	))
 	REMOVE_TRAIT(source, TRAIT_RELAYING_ATTACKER, REF(src))
 
@@ -86,6 +88,14 @@
 /datum/element/relay_attackers/proc/on_attack_mech(atom/target, obj/vehicle/sealed/mecha/mecha_attacker, mob/living/pilot, mecha_attack_cooldown)
 	SIGNAL_HANDLER
 	relay_attacker(target, mecha_attacker, ATTACKER_DAMAGING_ATTACK)
+
+// DARKPACK EDIT ADD START
+/datum/element/relay_attackers/proc/on_power_use(atom/target, datum/discipline_power/used_power, hostile_usage)
+	SIGNAL_HANDLER
+
+	if(hostile_usage)
+		relay_attacker(target, used_power.discipline.owner, ATTACKER_DAMAGING_ATTACK)
+// DARKPACK EDIT ADD END
 
 /// Send out a signal identifying whoever just attacked us (usually a mob but sometimes a mech or turret)
 /datum/element/relay_attackers/proc/relay_attacker(atom/victim, atom/attacker, attack_flags)

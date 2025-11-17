@@ -5,7 +5,7 @@
 	spawn_positions = 2
 	supervisors = "Caine"
 	config_tag = "SABBAT_PACK"
-	outfit = /datum/outfit/job/sabbatpack
+	outfit = /datum/outfit/job/vampire/sabbatpack
 	job_flags = CITY_JOB_FLAGS
 	allowed_species = list(SPECIES_KINDRED)
 
@@ -21,14 +21,14 @@
 	display_order = JOB_DISPLAY_ORDER_SABBATPACK
 	whitelisted = TRUE
 
-/datum/outfit/job/sabbatpack
+/datum/outfit/job/vampire/sabbatpack
 	name = "Sabbat Pack"
 	jobtype = /datum/job/vampire/sabbatpack
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
-/datum/outfit/job/sabbatpack/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/sabbatpack/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)

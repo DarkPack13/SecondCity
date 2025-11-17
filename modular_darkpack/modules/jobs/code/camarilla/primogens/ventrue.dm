@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_VENTRUE"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/ventrue
+	outfit = /datum/outfit/job/vampire/ventrue
 
 	display_order = JOB_DISPLAY_ORDER_VENTRUE
 	department_for_prefs = /datum/job_department/camarilla
@@ -31,7 +31,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/ventrue
+/datum/outfit/job/vampire/ventrue
 	name = "Primogen Ventrue"
 	jobtype = /datum/job/vampire/primogen_ventrue
 
@@ -41,6 +41,6 @@
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
-	//l_pocket = /obj/item/vamp/phone/ventrue_primo
+	l_pocket = /obj/item/smartphone/ventrue_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/ventrue/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

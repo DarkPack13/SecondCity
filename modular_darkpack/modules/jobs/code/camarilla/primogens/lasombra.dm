@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_LASOMBRA"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/lasombraprim
+	outfit = /datum/outfit/job/vampire/lasombraprim
 
 	display_order = JOB_DISPLAY_ORDER_LASOMBRA
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/lasombraprim
+/datum/outfit/job/vampire/lasombraprim
 	name = "Primogen Lasombra"
 	jobtype = /datum/job/vampire/primogen_lasombra
 
@@ -42,9 +42,9 @@
 	uniform = /obj/item/clothing/under/vampire/turtleneck_black
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	//l_pocket = /obj/item/vamp/phone/lasombra_primo
+	l_pocket = /obj/item/smartphone/lasombra_primo
 	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1,/obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1, /obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
 
 /obj/effect/landmark/start/primogen_lasombra
 	name = "Primogen Lasombra"

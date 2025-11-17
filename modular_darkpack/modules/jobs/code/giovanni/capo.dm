@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the Family and the Traditions"
 	config_tag = "CAPO"
-	outfit = /datum/outfit/job/capo
+	outfit = /datum/outfit/job/vampire/capo
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -20,7 +20,7 @@
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
 
-/datum/outfit/job/capo
+/datum/outfit/job/vampire/capo
 	name = "Capo"
 	jobtype = /datum/job/vampire/capo
 
@@ -29,7 +29,7 @@
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone/giovanni_capo
 	r_pocket = /obj/item/vamp/keys/capo
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/giovanniboss=1)
 
