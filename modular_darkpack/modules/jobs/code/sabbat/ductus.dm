@@ -5,7 +5,7 @@
 	spawn_positions = 1
 	supervisors = "Caine"
 	config_tag = "SABBAT_DUCTUS"
-	outfit = /datum/outfit/job/sabbatductus
+	outfit = /datum/outfit/job/vampire/sabbatductus
 	allowed_species = list(SPECIES_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
@@ -20,14 +20,14 @@
 	display_order = JOB_DISPLAY_ORDER_SABBATDUCTUS
 	whitelisted = TRUE
 
-/datum/outfit/job/sabbatductus
+/datum/outfit/job/vampire/sabbatductus
 	name = "Sabbat Ductus"
 	jobtype = /datum/job/vampire/sabbatductus
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
-/datum/outfit/job/sabbatductus/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/sabbatductus/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)

@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_SENESCHAL_PUBLIC
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "TOWER_EMPLOYEE"
-	outfit = /datum/outfit/job/towerwork
+	outfit = /datum/outfit/job/vampire/towerwork
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_TOWERWORK
 	department_for_prefs = /datum/job_department/camarilla
@@ -21,7 +21,7 @@
 	description = "You work directly for the Millenium Tower and its administrative staff in a variety of ways, you may even be a personal retainer of one of the top three, to the point that any oddities that you may see over night or hear are either things you are already aware or you simply laugh them off and try not to think about it."
 	minimal_masquerade = 4
 
-/datum/outfit/job/towerwork
+/datum/outfit/job/vampire/towerwork
 	name = "Tower Employee"
 	jobtype = /datum/job/vampire/towerwork
 
@@ -31,7 +31,7 @@
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
 	r_pocket = /obj/item/vamp/keys/camarilla/ghoul
-	//l_pocket = /obj/item/vamp/phone/tower_employee
+	l_pocket = /obj/item/smartphone/tower_employee
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
 
 /obj/effect/landmark/start/towerwork

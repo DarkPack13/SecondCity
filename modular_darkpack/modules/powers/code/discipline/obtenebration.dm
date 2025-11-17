@@ -133,18 +133,19 @@
 /datum/discipline_power/obtenebration/tenebrous_form/post_gain()
 	. = ..()
 	var/datum/action/mysticism/mystic = new()
-	owner.mysticism_knowledge = TRUE
+	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
 	mystic.Grant(owner)
 	mystic.level = level
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/mystome)
 
 /datum/crafting_recipe/mystome
 	name = "Abyss Mysticism Tome"
 	time = 10 SECONDS
 	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 1)
 	result = /obj/item/mystic_tome
-	always_available = FALSE
 	category = CAT_MISC
+
+/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
+	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
 
 /datum/action/mysticism
 	name = "Mysticism"

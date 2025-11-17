@@ -27,7 +27,7 @@
 	uniform = /obj/item/clothing/under/vampire/guard
 	shoes = /obj/item/clothing/shoes/vampire
 	belt = /obj/item/gun/ballistic/automatic/pistol/darkpack/m1911
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/camarilla
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/flashlight=1, /obj/item/card/credit=1,/obj/item/food/donut/plain=5,/obj/item/card/id/chunk=1)

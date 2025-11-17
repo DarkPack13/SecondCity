@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_MALKAVIAN"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/malkav
+	outfit = /datum/outfit/job/vampire/malkav
 
 	display_order = JOB_DISPLAY_ORDER_MALKAVIAN
 	department_for_prefs = /datum/job_department/camarilla
@@ -32,7 +32,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/malkav
+/datum/outfit/job/vampire/malkav
 	name = "Primogen Malkavian"
 	jobtype = /datum/job/vampire/primogen_malkavian
 
@@ -43,6 +43,6 @@
 	suit = /obj/item/clothing/suit/vampire/trench/malkav
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	head = /obj/item/clothing/head/vampire/malkav
-	//l_pocket = /obj/item/vamp/phone/malkavian_primo
+	l_pocket = /obj/item/smartphone/malkavian_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
