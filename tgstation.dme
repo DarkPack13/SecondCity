@@ -7171,7 +7171,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\necromancy.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\auspex.dm"
-#include "modular_darkpack\modules\powers\code\discipline\auspex\ear_damage_component.dm"
+#include "modular_darkpack\modules\powers\code\discipline\auspex\ear_damage_element.dm"
 #include "modular_darkpack\modules\powers\code\discipline\bloodheal\bloodheal.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\afterimage.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\celerity.dm"

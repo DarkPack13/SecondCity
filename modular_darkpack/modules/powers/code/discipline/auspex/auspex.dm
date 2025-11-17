@@ -1,3 +1,9 @@
+#define SENSE_VISION "Vision"
+#define SENSE_HEARING "Hearing"
+#define SENSE_SMELL "Smell"
+#define SENSE_TASTE "Taste"
+#define SENSE_TOUCH "Touch"
+
 /datum/discipline/auspex
 	name = "Auspex"
 	desc = "Allows to see entities, auras and their health through walls."
@@ -25,28 +31,62 @@
 /datum/discipline_power/auspex/heightened_senses/activate()
 	. = ..()
 
-	// Kindred are more susceptible to sensory attacks while their senses are heightened.
-	owner.AddElement(/datum/element/ear_damage)
-	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
-	if(istype(kindred_eyes))
-		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
+	var/chosen_sense = tgui_input_list(owner, "Choose a sense to heighten", "Heightened Senses", list(
+		SENSE_VISION,
+		SENSE_HEARING,
+		SENSE_SMELL,
+		SENSE_TASTE,
+		SENSE_TOUCH
+	), SENSE_VISION)
+	if(!chosen_sense)
+		return
+
+	switch(chosen_sense)
+		if(SENSE_VISION)
+			ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+			var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+			if(kindred_eyes)
+				kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
+		if(SENSE_HEARING)
+			ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+			owner.AddElement(/datum/element/ear_damage)
+		if(SENSE_SMELL)
+			owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
+		if(SENSE_TASTE)
+			ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+		if(SENSE_TOUCH)
+			RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
+			owner.AddComponent(/datum/component/echolocation, echo_group = "psyker", echo_icon = "psyker", color_path = /datum/client_colour/psyker, blinding = FALSE)
 
 	owner.st_add_stat_mod(STAT_PERCEPTION, discipline.level, "heightened_senses")
 
-	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
-	owner.update_sight()
-
 /datum/discipline_power/auspex/heightened_senses/deactivate()
 	. = ..()
-
+	// Smell
+	var/datum/mutation/mutation = owner.dna?.get_mutation(/datum/mutation/olfaction)
+	if(mutation)
+		owner.dna?.remove_mutation(mutation, mutation.sources)
+	// Hearing
+	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
 	owner.RemoveElement(/datum/element/ear_damage)
+	// Vision
+	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
-	if(istype(kindred_eyes))
+	if(kindred_eyes)
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
+	// Taste
+	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+	// Touch
+	UnregisterSignal(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL))
+	qdel(owner.GetComponent(/datum/component/echolocation))
+
 	owner.st_remove_stat_mod(STAT_PERCEPTION, "heightened_senses")
 
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, TRAIT_GENERIC)
-	owner.update_sight()
+/datum/discipline_power/auspex/heightened_senses/proc/on_touch(datum/source)
+	SIGNAL_HANDLER
+
+	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "shiver", forced = TRUE)
+	owner.Stun(0.5 SECONDS)
 
 //AURA PERCEPTION
 /datum/discipline_power/auspex/aura_perception
@@ -199,12 +239,12 @@
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
 	. = ..()
-	var/input_message = tgui_input_text(owner, "What message will you project to them?", encode = FALSE)
+	var/input_message = tgui_input_text(owner, "What message will you project to them?", max_length = MAX_MESSAGE_LEN, encode = FALSE)
 	if (!input_message)
 		return
 
 	//sanitisation!
-	input_message = STRIP_HTML_SIMPLE(input_message, MAX_MESSAGE_LEN)
+	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, MAX_MESSAGE_LEN) : input_message
 	var/list/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ooc_filtered(input_message)
 	if(filter_result)
 		REPORT_CHAT_FILTER_TO_USER(owner, filter_result)
@@ -229,3 +269,9 @@
 	. = ..()
 	//owner.enter_avatar()
 	//owner.soul_state = SOUL_PROJECTING
+
+#undef SENSE_VISION
+#undef SENSE_HEARING
+#undef SENSE_SMELL
+#undef SENSE_TASTE
+#undef SENSE_TOUCH
