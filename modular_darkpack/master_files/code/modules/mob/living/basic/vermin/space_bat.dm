@@ -4,13 +4,12 @@
 
 	basic_mob_flags = DEL_ON_DEATH
 
-	icon = 'modular_darkpack/modules/npc/icons/bat.dmi'
-	icon_state = "bat"
-	icon_living = "bat"
-	icon_dead = "bat_dead"
-	icon_gib = "bat_dead"
 	attack_sound = 'modular_darkpack/modules/npc/sound/rat.ogg'
 
 	maxHealth = 10
 	health = 10
-	speed = -0.8
+	speed = -0.5
+
+/mob/living/basic/bat/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/clickbox, icon_state = "sphere", max_scale = 2)
