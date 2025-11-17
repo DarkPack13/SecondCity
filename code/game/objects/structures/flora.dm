@@ -845,6 +845,22 @@
 /obj/structure/flora/bush/flowers_yw
 	icon_state = "ywflowers_1"
 
+//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+/obj/structure/flora/bush/flowers_yw/Initialize(mapload)
+	. = ..()
+	var/matrix/M1 = matrix()
+	M1.Turn(4)
+	var/matrix/M2 = matrix()
+	M2.Turn(-4)
+	if(istype(get_area(src), /area/vtm/outside))
+		if(prob(50))
+			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M2, time = 2 SECONDS)
+		else
+			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M1, time = 2 SECONDS)
+//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
+
 /obj/structure/flora/bush/flowers_yw/style_2
 	icon_state = "ywflowers_2"
 
@@ -859,6 +875,22 @@
 /obj/structure/flora/bush/flowers_br
 	icon_state = "brflowers_1"
 
+//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+/obj/structure/flora/bush/flowers_br/Initialize(mapload)
+	. = ..()
+	var/matrix/M1 = matrix()
+	M1.Turn(4)
+	var/matrix/M2 = matrix()
+	M2.Turn(-4)
+	if(istype(get_area(src), /area/vtm/outside))
+		if(prob(50))
+			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M2, time = 2 SECONDS)
+		else
+			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M1, time = 2 SECONDS)
+//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
+
 /obj/structure/flora/bush/flowers_br/style_2
 	icon_state = "brflowers_2"
 
@@ -872,6 +904,22 @@
 
 /obj/structure/flora/bush/flowers_pp
 	icon_state = "ppflowers_1"
+
+//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+/obj/structure/flora/bush/flowers_pp/Initialize(mapload)
+	. = ..()
+	var/matrix/M1 = matrix()
+	M1.Turn(4)
+	var/matrix/M2 = matrix()
+	M2.Turn(-4)
+	if(istype(get_area(src), /area/vtm/outside))
+		if(prob(50))
+			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M2, time = 2 SECONDS)
+		else
+			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
+			animate(transform = M1, time = 2 SECONDS)
+//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
 
 /obj/structure/flora/bush/flowers_pp/style_2
 	icon_state = "ppflowers_2"

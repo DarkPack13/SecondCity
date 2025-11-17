@@ -1,7 +1,7 @@
 /obj/structure/flora/tree/vamp
 	name = "tree"
 	desc = "Cute and tall flora."
-	icon = 'modular_darkpack/modules/decor/icons/trees_animated.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trees.dmi'
 	icon_state = "tree1"
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
