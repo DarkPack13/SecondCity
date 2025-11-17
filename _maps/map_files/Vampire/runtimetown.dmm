@@ -5,10 +5,6 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
-"ar" = (
-/obj/structure/flora/bush/flowers_yw,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "av" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/darkpack45acp,
@@ -175,10 +171,6 @@
 /obj/item/clothing/head/cone,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"dS" = (
-/obj/structure/hedge,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "dU" = (
 /obj/structure/railing/corner,
 /turf/open/floor/plating/canal,
@@ -629,11 +621,6 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
-"ot" = (
-/obj/structure/flora/bush/flowers_pp,
-/obj/structure/hedge,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "ov" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 8
@@ -973,10 +960,6 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
-"vc" = (
-/obj/structure/flora/bush/flowers_br/style_3,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "vl" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -1205,10 +1188,6 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
-"AA" = (
-/obj/structure/flora/bush/flowers_pp/style_2,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "AE" = (
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/plating/concrete,
@@ -1496,11 +1475,6 @@
 /obj/cargocrate,
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
-"Gg" = (
-/obj/structure/hedge,
-/obj/structure/flora/bush/flowers_yw,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "Gj" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/city/toilet,
@@ -2412,11 +2386,6 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
-"Vi" = (
-/obj/structure/hedge,
-/obj/structure/flora/bush/flowers_br,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "Vr" = (
 /obj/machinery/fax/tremere,
 /obj/structure/table/wood,
@@ -2632,11 +2601,6 @@
 	},
 /obj/structure/roadsign/speedlimit,
 /turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/pacificheights)
-"YO" = (
-/obj/structure/hedge,
-/obj/structure/flora/bush/flowers_pp,
-/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Zc" = (
 /obj/effect/turf_decal/bordur{
@@ -3451,10 +3415,10 @@ Fs
 NR
 NR
 NR
-vc
 NR
 NR
-dS
+NR
+NR
 NR
 NR
 Rj
@@ -3520,9 +3484,9 @@ NR
 NR
 NR
 NR
-ot
 NR
-dS
+NR
+NR
 NR
 NR
 Rj
@@ -3585,12 +3549,12 @@ VQ
 ik
 Fs
 NR
-YO
 NR
 NR
-dS
 NR
-YO
+NR
+NR
+NR
 NR
 NR
 Rj
@@ -3658,7 +3622,7 @@ NR
 NR
 NR
 NR
-dS
+NR
 NR
 NR
 Rj
@@ -3723,10 +3687,10 @@ YL
 NR
 NR
 NR
-ar
 NR
 NR
-dS
+NR
+NR
 NR
 NR
 NR
@@ -3794,7 +3758,7 @@ NR
 NR
 NR
 NR
-dS
+NR
 NR
 NR
 NR
@@ -3857,12 +3821,12 @@ VQ
 tW
 VD
 NR
-Vi
 NR
 NR
 NR
 NR
-dS
+NR
+NR
 NR
 NR
 NR
@@ -3928,9 +3892,9 @@ NR
 NR
 NR
 NR
-Gg
 NR
-dS
+NR
+NR
 NR
 NR
 NR
@@ -3994,7 +3958,7 @@ ik
 Fs
 NR
 NR
-AA
+NR
 NR
 NR
 NR
