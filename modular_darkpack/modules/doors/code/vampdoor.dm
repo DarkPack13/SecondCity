@@ -131,7 +131,7 @@
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
 	set_density(FALSE)
-	opacity = 0
+	set_opacity(FALSE)
 	layer = OPEN_DOOR_LAYER
 	closed = FALSE
 	locked = FALSE
