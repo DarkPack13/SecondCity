@@ -50,6 +50,15 @@
 /obj/effect/mapping_helpers/door/toggle_lock/payload(obj/structure/vampdoor/payload)
 	payload.lock_difficulty = lockpick_difficulty
 
+/obj/effect/mapping_helpers/door/lock_difficulty/one
+	lock_difficulty = 1
+
+/obj/effect/mapping_helpers/door/lock_difficulty/two
+	lock_difficulty = 2
+
+/obj/effect/mapping_helpers/door/lock_difficulty/three
+	lock_difficulty = 3
+
 /obj/effect/mapping_helpers/door/lock_difficulty/four
 	lock_difficulty = 4
 
@@ -64,3 +73,9 @@
 
 /obj/effect/mapping_helpers/door/lock_difficulty/eight
 	lock_difficulty = 8
+
+/obj/effect/mapping_helpers/door/lock_difficulty/nine
+	lock_difficulty = 9
+
+/obj/effect/mapping_helpers/door/lock_difficulty/ten
+	lock_difficulty = 10
