@@ -1,4 +1,4 @@
-/datum/outfit/job/national_guard
+/datum/outfit/job/vampire/national_guard
 	name = "National Guard Soldier"
 	//ears = /obj/item/p25radio/police/government
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
@@ -81,7 +81,7 @@
 	show_to_ghosts = TRUE
 	var/always_new_team = FALSE
 	var/datum/team/national_guard/national_guard_team
-	var/national_guard_outfit = /datum/outfit/job/national_guard
+	var/national_guard_outfit = /datum/outfit/job/vampire/national_guard
 	var/custom_objective
 
 /datum/antagonist/national_guard/sergeant

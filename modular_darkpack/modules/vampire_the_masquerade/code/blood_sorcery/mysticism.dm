@@ -43,7 +43,7 @@
 /obj/abyssrune/attack_hand(mob/user)
 	if(!activated)
 		var/mob/living/L = user
-		if(L.mysticism_knowledge)
+		if(HAS_TRAIT(L, TRAIT_MYSTICISM_KNOWLEDGE))
 			L.say("[word]")
 			L.Immobilize(30)
 			last_activator = user

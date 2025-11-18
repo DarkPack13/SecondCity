@@ -68,3 +68,10 @@
   - image: Re-sprites drink and snack vending machine
   Marshmellow105:
   - bugfix: fixes shutters layering under shit
+2025-11-17:
+  FalloutFalcon:
+  - bugfix: NPCs should behave saner when it comes to being attacked
+  XeonMations:
+  - rscadd: Added phones
+  akbar-kurnia1:
+  - spellcheck: Reflavored the catatonic NPC message to be more generic.
