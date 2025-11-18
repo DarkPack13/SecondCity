@@ -7156,6 +7156,8 @@
 #include "modular_darkpack\modules\npc\code\nonhuman\beastmaster\blood_guard.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\beastmaster\necromancy_zombies.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\beastmaster\shadow_guard.dm"
+#include "modular_darkpack\modules\npc\code\nonhuman\friendly\bird.dm"
+#include "modular_darkpack\modules\npc\code\nonhuman\friendly\bird_ai.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\cat.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\dog.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\rat.dm"
