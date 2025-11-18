@@ -21,7 +21,7 @@
 
 /obj/structure/sign/city/hotel/Initialize(mapload)
 	. = ..()
-	set_light(3, 3, "#8e509e")t
+	set_light(3, 3, "#8e509e")
 	if(check_holidays(FESTIVE_SEASON))
 		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
