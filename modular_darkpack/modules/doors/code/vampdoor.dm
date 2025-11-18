@@ -240,6 +240,10 @@
 				if(try_keys(user, found_key))
 					return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
+	if(lock_id == LOCKACCESS_ANY)
+		if(try_keys(mob/living/user, need_key = FALSE))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 	if(!has_keys)
 		to_chat(user, span_warning("You need a key to lock/unlock this door!"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -300,13 +304,17 @@
 			playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
 			return TRUE
 
-/obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used)
+/obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used, need_key = TRUE)
 	/*
 	if(key_used != user.get_active_hand())
 		if(!do_after(human_user, 0.5 SECONDS, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			return
 	*/
-	to_chat(user, span_notice("You try [key_used] against [src]"))
+	if(need_key)
+		to_chat(user, span_notice("You try [key_used] against [src]"))
+	else
+		to_chat(user, span_notice("You try to unlock [src]"))
+
 	if(door_broken)
 		to_chat(user,span_warning("There is no door to open/close here."))
 		return
@@ -325,6 +333,16 @@
 					proc_unlock("key")
 					locked = FALSE
 				return TRUE
+	if(!need_key)
+		playsound(src, lock_sound, 75, TRUE)
+		if(!locked)
+			to_chat(user, "[src] is now locked.")
+			locked = TRUE
+		else
+			to_chat(user, "[src] is now unlocked.")
+			proc_unlock("key")
+			locked = FALSE
+		return TRUE
 
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)
