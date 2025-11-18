@@ -1,3 +1,3 @@
 // BEGIN_INCLUDE
-#include "apply_all_clans.dm"
+#include "darkpack/apply_all_clans.dm"
 // END_INCLUDE
