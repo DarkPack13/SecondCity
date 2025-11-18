@@ -178,6 +178,7 @@ export const DmTarget = new Juke.Target({
     'sound/**',
     'tgui/public/tgui.html',
     'modular_darkpack/**', // DARKPACK EDIT ADDITION
+    'modular_downstream/**', // DOWNSTREAM EDIT ADD
     `${DME_NAME}.dme`,
     NamedVersionFile,
   ],

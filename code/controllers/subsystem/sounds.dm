@@ -84,6 +84,10 @@ SUBSYSTEM_DEF(sounds)
 	all_sounds += pathwalk("modular_darkpack/master_files/sounds/", valid_file_extensions)
 	all_sounds += pathwalk("modular_darkpack/modules/", valid_file_extensions)
 	// DARKPACK EDIT ADD END
+	// DOWNSTREAM EDIT ADD START
+	all_sounds += pathwalk("modular_downstream/master_files/sounds/", valid_file_extensions)
+	all_sounds += pathwalk("modular_downstream/modules/", valid_file_extensions)
+	// DOWNSTREAM EDIT ADD END
 
 /// Removes a channel from using list.
 /datum/controller/subsystem/sounds/proc/free_sound_channel(channel)
