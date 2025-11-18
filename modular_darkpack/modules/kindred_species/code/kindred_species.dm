@@ -50,7 +50,7 @@
 	human.set_eye_color("#ff0000")
 	human.undershirt = "T-Shirt (Red)"
 	human.update_body()
-	human.equipOutfit(/datum/outfit/job/prince)
+	human.equipOutfit(/datum/outfit/job/vampire/prince, TRUE)
 
 /datum/species/human/kindred/on_species_gain(mob/living/carbon/human/new_kindred, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()

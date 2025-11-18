@@ -65,12 +65,10 @@
 	name = "Flashlight"
 	item_path = /obj/item/flashlight
 
-/*
 /datum/loadout_item/pocket_items/phone
 	name = "Phone"
-	item_path = /obj/item/vamp/phone
+	item_path = /obj/item/smartphone
 
 /datum/loadout_item/pocket_items/wristwatch
 	name = "Wrist watch"
 	item_path = /obj/item/watch
-*/
