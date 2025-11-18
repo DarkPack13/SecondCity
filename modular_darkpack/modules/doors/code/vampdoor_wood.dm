@@ -32,7 +32,7 @@
 /obj/structure/vampdoor/wood/theatre
 	name = "Theatre"
 	locked = TRUE
-	lock_id = "theatre"
+	lock_id = LOCKACCESS_THEATRE
 	lockpick_difficulty = 15
 
 /obj/structure/vampdoor/wood/theatre/unlocked
@@ -45,5 +45,5 @@
 
 /obj/structure/vampdoor/wood/daughters
 	locked = TRUE
-	lock_id = "daughters"
+	lock_id = LOCKACCESS_DAUGHTERS
 	lockpick_difficulty = 10

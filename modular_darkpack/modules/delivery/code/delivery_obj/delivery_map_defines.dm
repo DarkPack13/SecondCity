@@ -68,7 +68,7 @@
 
 /obj/structure/vampdoor/glass/bar_office
 	name = "Bar delivery garage"
-	lock_id = "bar_delivery"
+	lock_id = LOCKACCESS_BAR_DELIVERY
 	lockpick_difficulty = 12
 
 /obj/structure/delivery_board/bar_office

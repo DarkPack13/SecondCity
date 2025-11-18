@@ -89,7 +89,7 @@
 
 /obj/darkpack_car/police/ranger
 	icon_state = "ranger"
-	access = "nps"
+	access = LOCKACCESS_PARK_RANGER
 	primary_light_color = "#ffa500"
 	secondary_light_color = "#ff8c00"
 
@@ -114,7 +114,7 @@
 	icon_state = "taxi"
 	max_passengers = 3
 	dir = WEST
-	access = "taxi"
+	access = LOCKACCESS_TAXI
 
 /obj/darkpack_car/track
 	icon_state = "track"

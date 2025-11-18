@@ -31,7 +31,7 @@
 		LOCKACCESS_PRINCE,
 		LOCKACCESS_CLERK,
 		LOCKACCESS_CHANTRY,
-		"theatre",
+		LOCKACCESS_THEATRE,
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_PRIOGEN,
 		LOCKACCESS_JAZZ_CLUB_DELIVERY,
@@ -43,7 +43,7 @@
 	accesslocks = list(
 		LOCKACCESS_CAMARILLA,
 		LOCKACCESS_PRINCE,
-		"theatre",
+		LOCKACCESS_THEATRE,
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_PRIOGEN,
 		LOCKACCESS_CLERK,
@@ -56,7 +56,7 @@
 	accesslocks = list(
 		LOCKACCESS_CAMARILLA,
 		LOCKACCESS_CLERK,
-		"theatre",
+		LOCKACCESS_THEATRE,
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_PRIOGEN,
 		LOCKACCESS_JAZZ_CLUB_DELIVERY,
@@ -101,8 +101,9 @@
 /obj/item/vamp/keys/anarch
 	name = "anarch keys"
 	accesslocks = list(
+		LOCKACCESS_BAR,
 		LOCKACCESS_ANARCH,
-		"bar_delivery",
+		LOCKACCESS_BAR_DELIVERY,
 	)
 	color = "#434343"
 
@@ -111,7 +112,7 @@
 	accesslocks = list(
 		LOCKACCESS_BAR,
 		LOCKACCESS_ANARCH,
-		"bar_delivery",
+		LOCKACCESS_BAR_DELIVERY,
 	)
 	color = "#434343"
 
@@ -119,14 +120,14 @@
 	name = "mafia keys"
 	accesslocks = list(
 		LOCKACCESS_GIOVANNI,
-		"bianchiBank"
+		LOCKACCESS_BANK
 	)
 
 /obj/item/vamp/keys/capo
 	name = "capo keys"
 	accesslocks = list(
 		LOCKACCESS_BANKBOSS,
-		"bianchiBank",
+		LOCKACCESS_BANK,
 		LOCKACCESS_GIOVANNI
 	)
 
@@ -140,33 +141,33 @@
 /obj/item/vamp/keys/daughters
 	name = "eclectic keys"
 	accesslocks = list(
-		"daughters"
+		LOCKACCESS_DAUGHTERS
 	)
 
 /obj/item/vamp/keys/salubri
 	name = "conspiracy keys"
 	accesslocks = list(
-		"salubri"
+		LOCKACCESS_SALUBRI
 	)
 
 /obj/item/vamp/keys/old_clan_tzimisce
 	name = "regal keys"
 	accesslocks = list(
-		"old_clan_tzimisce"
+		LOCKACCESS_OLD_CLAN_TZI
 	)
 
 /obj/item/vamp/keys/malkav
 	name = "insane keys"
 	accesslocks = list(
-		"malkav"
+		LOCKACCESS_MALK
 	)
 	color = "#8cc4ff"
 
 /obj/item/vamp/keys/malkav/primogen
 	name = "really insane keys"
 	accesslocks = list(
-		"primMalkav",
-		"malkav",
+		LOCKACCESS_MALK_PRIMOGEN,
+		LOCKACCESS_MALK,
 		LOCKACCESS_PRIOGEN,
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_CAMARILLA,
@@ -286,7 +287,7 @@
 	name = "clinic director keys"
 	accesslocks = list(
 		LOCKACCESS_CLINIC,
-		"director"
+		LOCKACCESS_DIRECTOR
 	)
 
 //===========================POLICE KEYS===========================
@@ -332,7 +333,7 @@
 /obj/item/vamp/keys/nps
 	name = "Park Service keys"
 	accesslocks = list(
-		"nps"
+		LOCKACCESS_PARK_RANGER
 	)
 	color = "#1e7531"
 
@@ -354,14 +355,13 @@
 	name = EVIL_OIL_COMPANY + " Management keys"
 	accesslocks = list(
 		LOCKACCESS_PENTEX,
-		"pentexleader"
-	)
+		LOCKACCESS_PENTEX_LEADER	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/children_of_gaia
 	name = "Food Pantry keys"
 	accesslocks = list(
-		"coggie"
+		LOCKACCESS_COGGIE
 	)
 	color = "#339933"
 
@@ -389,7 +389,7 @@
 /obj/item/vamp/keys/church
 	name = "church keys"
 	accesslocks = list(
-		"church"
+		LOCKACCESS_CHURCH
 	)
 
 /obj/item/vamp/keys/supply
@@ -408,7 +408,7 @@
 /obj/item/vamp/keys/taxi
 	name = "taxi keys"
 	accesslocks = list(
-		"taxi"
+		LOCKACCESS_TAXI
 	)
 	color = "#fffb8b"
 

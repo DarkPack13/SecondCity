@@ -19,11 +19,11 @@
 
 /obj/structure/vampdoor/oldwood/salubri
 	locked = TRUE
-	lock_id = "salubri"
+	lock_id = LOCKACCESS_SALUBRI
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/oldwood/clan_tzimisce
 	locked = TRUE
-	lock_id = "old_clan_tzimisce"
+	lock_id = LOCKACCESS_OLD_CLAN_TZI
 	lockpick_difficulty = 8
 
