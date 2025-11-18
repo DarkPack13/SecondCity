@@ -113,6 +113,3 @@
 /mob/living/basic/corvid/raven/Initialize(mapload)
 	. = ..()
 	update_transform(1.2)
-
-
-

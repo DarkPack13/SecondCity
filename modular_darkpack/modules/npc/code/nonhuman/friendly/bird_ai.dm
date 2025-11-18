@@ -24,7 +24,7 @@
 	target_key = BB_LOW_PRIORITY_HUNTING_TARGET
 	hunting_behavior = /datum/ai_behavior/hunt_target/find_shiney
 	finding_behavior = /datum/ai_behavior/find_hunt_target/find_shiney
-	hunt_targets = list(/obj/item/ammo_casing, /obj/item/watch, /obj/item/vamp/keys, /obj/item/vtm_artifact)
+	hunt_targets = list(/obj/item/ammo_casing, /obj/item/watch, /obj/item/vamp/keys, /obj/item/vtm_artifact, /obj/item/knife)
 	hunt_range = 10
 
 /datum/ai_behavior/find_hunt_target/find_shiney
@@ -33,7 +33,6 @@
 	return can_see(source, shiney, radius)
 
 /datum/ai_behavior/hunt_target/find_shiney
-	always_reset_target = TRUE
 
 /datum/ai_behavior/hunt_target/find_shiney/target_caught(mob/living/hunter, obj/item/shiney)
 	hunter.start_pulling(shiney)
