@@ -56,7 +56,7 @@
 			ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
 		if(SENSE_TOUCH)
 			RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
-			owner.AddComponent(/datum/component/echolocation, echo_group = "psyker", echo_icon = "psyker", color_path = /datum/client_colour/psyker, blinding = FALSE)
+			owner.AddComponent(/datum/component/heartbeat_sensing, echo_icon = "psyker", color_path = /datum/client_colour/psyker)
 
 	owner.st_add_stat_mod(STAT_PERCEPTION, discipline.level, "heightened_senses")
 
@@ -78,7 +78,7 @@
 	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
 	// Touch
 	UnregisterSignal(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL))
-	qdel(owner.GetComponent(/datum/component/echolocation))
+	qdel(owner.GetComponent(/datum/component/heartbeat_sensing))
 
 	owner.st_remove_stat_mod(STAT_PERCEPTION, "heightened_senses")
 
