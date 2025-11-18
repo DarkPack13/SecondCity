@@ -29,7 +29,7 @@
 
 /obj/structure/vampdoor/glass/laundromat
 	name = "Laundromat"
-	lock_id = "laundromat"
+	lock_id = LOCKACCESS_LAUNDROMAT
 	lockpick_difficulty = 7
 
 /obj/structure/vampdoor/glass/nightwolf
