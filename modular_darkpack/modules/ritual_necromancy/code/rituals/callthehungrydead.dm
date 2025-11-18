@@ -17,8 +17,8 @@
 /obj/necrorune/question/complete()
 	var/text_question = tgui_input_text(last_activator, "Enter your summons to the wraiths:", "Call the Hungry Dead", encode = FALSE)
 	visible_message(span_notice("A call rings out to the dead from the rune..."))
-	var/mob/living/simple_animal/hostile/ghost/giovanni/TR = new(loc)
-	AddComponent(\
+	var/mob/living/basic/ghost/TR = new(loc)
+	TR.AddComponent(\
 		/datum/component/ghost_direct_control,\
 		poll_candidates = TRUE,\
 		role_name = "a Bound Wraith",\

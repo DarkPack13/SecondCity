@@ -50,11 +50,12 @@
 		var/original_location = get_turf(target_body)
 
 		// Revive the specimen and turn them into a zombie
-		target_body.revive(TRUE)
+		target_body.revive(HEAL_ALL)
 		target_body.set_species(/datum/species/zombie)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name
 		target_body.update_name()
+		target_body.adjustBruteLoss(-200)
 
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
@@ -63,7 +64,7 @@
 
 		// Handle key assignment
 		if(!target_body.key)
-			AddComponent(\
+			target_body.AddComponent(\
 				/datum/component/ghost_direct_control,\
 				poll_candidates = TRUE,\
 				role_name = "a Sentient Zombie",\
