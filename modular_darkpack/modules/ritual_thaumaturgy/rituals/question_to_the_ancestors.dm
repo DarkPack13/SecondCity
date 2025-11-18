@@ -30,7 +30,7 @@
 		poll_candidates = TRUE,\
 		role_name = "an Ancestor Spirit",\
 		poll_length = 30 SECONDS,\
-		poll_question = "Do you wish to answer a question? (You are allowed to spread meta information)\nThe question is: [text_question]",\
+		poll_question = "Do you wish to answer a question?\nThe question is: [text_question]",\
 		assumed_control_message = "You are an Ancestor Spirit summoned to answer: [text_question]",\
 		after_assumed_control = CALLBACK(src, PROC_REF(ghost_name_prompt), TR)\
 	)

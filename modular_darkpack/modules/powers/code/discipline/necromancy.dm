@@ -9,6 +9,10 @@
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
+	var/datum/action/necroritualism/ritualist = new()
+	ADD_TRAIT(owner, TRAIT_NECROMANCY_KNOWLEDGE, DISCIPLINE_TRAIT)
+	ritualist.Grant(owner)
+	ritualist.level = level
 
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
