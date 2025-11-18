@@ -2,7 +2,7 @@
 	name = "Bar"
 	icon_state = "anarch"
 	ambience_index = AMBIENCE_OFFICE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/naive.ogg'
+	music_index = MUSIC_BAR
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
