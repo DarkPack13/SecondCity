@@ -1,13 +1,16 @@
 /obj/item/molotov
 	name = "molotov cocktail"
-	desc = "Well fire weapon."
+	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
 	icon_state = "molotov"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	masquerade_violating = TRUE
 	var/active = FALSE
 	var/explode_timer
+
+/obj/item/molotov/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/molotov/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -27,13 +30,13 @@
 /obj/item/molotov/proc/explode()
 	deltimer(explode_timer)
 
-	var/atom/explode_location = get_turf(src)
+	var/turf/explode_location = get_turf(src)
 
-	for(var/turf/open/floor/floor in range(2, explode_location))
+	for(var/turf/open/floor in circle_view_turfs(explode_location, 2))
 		new /obj/effect/decal/cleanable/gasoline(floor)
 
 	if(active)
-		new /obj/effect/fire(explode_location)
+		explode_location.ignite_turf(30)
 
-	playsound(explode_location, 'modular_darkpack/modules/deprecated/sounds/explode.ogg', 100, TRUE)
+	playsound(explode_location, 'modular_darkpack/modules/fire/sounds/explode.ogg', 100, TRUE)
 	qdel(src)

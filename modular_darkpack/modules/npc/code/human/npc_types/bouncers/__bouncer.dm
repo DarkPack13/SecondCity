@@ -38,7 +38,7 @@
 /mob/living/carbon/human/npc/bouncer/Initialize(mapload)
 	.=..()
 
-	if(src.type == /mob/living/carbon/human/npc/bouncer)
+	if(mapload && src.type == /mob/living/carbon/human/npc/bouncer)
 		CRASH("Bouncer created using default type, please use a child of this type in mapping.")
 
 	AssignSocialRole(our_role)
@@ -51,8 +51,15 @@
 	if(SSbouncer_barriers.vip_barrier_perms?[protected_zone_id])
 		linked_perm = SSbouncer_barriers.vip_barrier_perms[protected_zone_id]
 		linked_perm.add_bouncer(src)
-	else if(SSbouncer_barriers.initialized)
+	else if(mapload && SSbouncer_barriers.initialized)
 		CRASH("A Bouncer was created for vip_barrier_perms that were not loaded!")
+
+/mob/living/carbon/human/npc/bouncer/Destroy()
+	if(linked_perm)
+		linked_perm.linked_bouncers -= src
+		linked_perm = null
+
+	return ..()
 
 /mob/living/carbon/human/npc/bouncer/on_knockedout_trait_gain(datum/source)
 	..()
@@ -146,10 +153,10 @@
 
 	if(can_be_reasoned_with() && in_range(src, user))
 		var/list/interact_options = list(
-			"Persuade for Entry" = image(icon = 'icons/obj/dice.dmi', icon_state = "d10"))
+			"Persuade for Entry" = image(icon = 'icons/obj/toys/dice.dmi', icon_state = "d10"))
 
 		var/obj/item/held_item = user.get_active_held_item()
-		if(held_item && istype(held_item,/obj/item/card/id/police))
+		if(held_item && istype(held_item, /obj/item/card/police))
 			interact_options["Show Badge"] = image(icon = held_item.icon, icon_state = held_item.icon_state)
 		var/picked_option = show_radial_menu(user, src, interact_options, radius = 38, require_near = TRUE)
 		switch(picked_option)
