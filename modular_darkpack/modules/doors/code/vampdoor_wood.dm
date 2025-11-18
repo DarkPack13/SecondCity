@@ -1,5 +1,5 @@
-// DARKPACK TODO - Alot of wooden doors that dont acctually use this subtype
-/obj/structure/vampdoor/wood
+/obj/structure/vampdoor/wood // Six paneled plain wooden door
+	name = "wooden door"
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	burnable = TRUE
@@ -42,3 +42,8 @@
 	name = "Jazz Club"
 	lock_id = "milleniumCommon"
 	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/wood/daughters
+	locked = TRUE
+	lock_id = "daughters"
+	lockpick_difficulty = 10

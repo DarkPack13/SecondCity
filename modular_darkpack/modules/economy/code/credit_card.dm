@@ -73,7 +73,7 @@
 /obj/item/card/credit/GetCreditCard()
 	return src
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+/datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()
 
 	var/obj/item/storage/backpack/b = locate() in user

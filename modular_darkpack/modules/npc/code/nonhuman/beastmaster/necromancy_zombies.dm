@@ -97,14 +97,14 @@
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as summoned ghost?", null, null, null, 50, src)
 	for(var/mob/dead/observer/G in GLOB.player_list)
 		if(G.key)
-			to_chat(G, "<span class='ghostalert'>Someone is summoning a ghost!</span>")
+			to_chat(G, span_ghostalert("Someone is summoning a ghost!"))
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		name = C.name
 		key = C.key
-		visible_message("<span class='danger'>[src] rises with fresh soul!</span>")
+		visible_message(span_danger("[src] rises with fresh soul!"))
 		return TRUE
-	visible_message("<span class='warning'>[src] remains unsouled...</span>")
+	visible_message(span_warning("[src] remains unsouled..."))
 	return FALSE
 */
 
