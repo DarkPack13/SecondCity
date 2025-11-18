@@ -240,7 +240,7 @@
 				if(try_keys(user, found_key))
 					return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	if(lock_id == LOCKACCESS_ANY)
+	if(lock_id == LOCKACCESS_ALL)
 		if(try_keys(user, need_key = FALSE))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
