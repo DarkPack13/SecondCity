@@ -47,7 +47,7 @@
 /obj/effect/mapping_helpers/door/lock_difficulty
 	var/lock_difficulty
 
-/obj/effect/mapping_helpers/door/toggle_lock/payload(obj/structure/vampdoor/payload)
+/obj/effect/mapping_helpers/door/lock_difficulty/payload(obj/structure/vampdoor/payload)
 	payload.lockpick_difficulty = lock_difficulty
 
 /obj/effect/mapping_helpers/door/lock_difficulty/one
