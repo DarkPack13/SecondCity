@@ -19,7 +19,10 @@
 	dir = 9
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"aL" = (
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/shop)
 "bW" = (
 /mob/living/carbon/human/npc/bacotell,
 /obj/effect/turf_decal/siding/dark{
@@ -86,7 +89,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "ew" = (
 /obj/structure/table/countertop/black,
 /obj/structure/sink/basin{
@@ -100,7 +103,13 @@
 	dir = 10
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"gH" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/closed/wall/vampwall/market/low/window,
+/area/vtm/interior/shop)
 "gN" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
@@ -111,7 +120,16 @@
 /obj/structure/table/modern,
 /obj/underplate,
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"iV" = (
+/obj/structure/vampdoor/glass{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/shop)
 "ji" = (
 /obj/machinery/light/blacklight/directional/north,
 /obj/effect/decal/wallpaper/grey{
@@ -121,7 +139,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "jE" = (
 /obj/structure/sign/city/store/bacotell{
 	pixel_y = 36;
@@ -172,6 +190,11 @@
 /obj/structure/vampdoor/old,
 /turf/open/floor/city/gummaguts,
 /area/space)
+"kT" = (
+/obj/structure/sign/poster/random/directional/north,
+/obj/effect/spawner/random/entertainment/arcade,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "kW" = (
 /turf/open/floor/city/plating_mono,
 /area/space)
@@ -186,7 +209,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "mn" = (
 /obj/effect/decal/wallpaper/red,
 /turf/closed/wall/vampwall/painted,
@@ -198,7 +221,11 @@
 "nA" = (
 /obj/structure/vampdoor,
 /turf/open/floor/city/toilet/large,
-/area/space)
+/area/vtm/interior/shop)
+"nB" = (
+/obj/structure/chair/stool/bar/directional/west,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "nH" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -212,7 +239,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "oh" = (
 /obj/structure/toilet{
 	dir = 8
@@ -222,7 +249,11 @@
 	pixel_y = 32
 	},
 /turf/open/floor/city/toilet/large,
-/area/space)
+/area/vtm/interior/shop)
+"op" = (
+/obj/machinery/vending/games,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "oA" = (
 /turf/open/floor/plating/sidewalk/old,
 /area/space)
@@ -247,11 +278,19 @@
 "pa" = (
 /turf/open/floor/city/gummaguts,
 /area/space)
+"pt" = (
+/obj/effect/spawner/random/entertainment/arcade,
+/obj/structure/sign/poster/random/directional/north,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "pu" = (
 /obj/machinery/light/directional/south,
 /obj/structure/closet/crate/large,
 /turf/open/floor/city/circled/large,
 /area/space)
+"pv" = (
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "pw" = (
 /turf/open/genturf/blue,
 /area/space)
@@ -263,7 +302,7 @@
 	dir = 5
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "pT" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/city/circled/large,
@@ -286,20 +325,29 @@
 	pixel_y = 32
 	},
 /turf/open/floor/city/toilet/large,
-/area/space)
+/area/vtm/interior/shop)
+"rV" = (
+/obj/effect/spawner/random/entertainment/arcade,
+/obj/machinery/light/dim/directional/north,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "si" = (
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"sZ" = (
+/obj/structure/chair/stool/bar/directional/east,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "ta" = (
 /turf/open/floor/city/toilet/large,
-/area/space)
+/area/vtm/interior/shop)
 "tk" = (
 /obj/effect/decal/rugs,
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
 "tw" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -328,6 +376,10 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"ug" = (
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/city/plating_mono,
 /area/space)
 "uE" = (
 /obj/structure/chair/stool/bar/directional/east,
@@ -335,7 +387,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "uX" = (
 /obj/structure/retail/deli,
 /obj/structure/table/countertop/teal,
@@ -349,7 +401,7 @@
 /obj/structure/table/modern,
 /obj/structure/retail/smoke_menu,
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "vF" = (
 /turf/closed/wall/vampwall/painted,
 /area/space)
@@ -372,6 +424,15 @@
 /obj/structure/vampdoor/old,
 /turf/open/floor/plating/concrete,
 /area/space)
+"wW" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/landmark/navigate_destination{
+	location = "Arcade"
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "xp" = (
 /obj/structure/vampfence/rich{
 	dir = 1
@@ -386,12 +447,40 @@
 /obj/machinery/oven,
 /turf/open/floor/city/circled/large,
 /area/space)
+"yk" = (
+/obj/structure/chair/stool/directional/south,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "yl" = (
 /obj/structure/vampdoor/glass,
 /turf/open/floor/city/plating_mono,
 /area/space)
+"yn" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"zk" = (
+/obj/machinery/vending/donksofttoyvendor,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"zw" = (
+/obj/structure/chair/stool/directional/north,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
+"As" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Aw" = (
 /turf/open/floor/plating/concrete,
+/area/space)
+"Ay" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/maintenance/three,
+/turf/open/floor/city/plating_mono,
 /area/space)
 "AX" = (
 /obj/structure/vampdoor/glass,
@@ -411,6 +500,12 @@
 /obj/structure/vampfence/rich,
 /turf/open/floor/city/plating_mono,
 /area/space)
+"BI" = (
+/obj/structure/vampdoor/old{
+	dir = 8
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/shop)
 "BT" = (
 /obj/structure/table/countertop/bacotell,
 /obj/effect/turf_decal/siding/dark{
@@ -418,9 +513,28 @@
 	},
 /turf/open/floor/city/bacotell,
 /area/space)
+"Cu" = (
+/obj/structure/vampdoor/old{
+	dir = 8
+	},
+/turf/open/floor/plating/concrete,
+/area/space)
+"CP" = (
+/turf/open/floor/city/plating,
+/area/vtm/interior/shop)
+"CX" = (
+/obj/effect/turf_decal/siding/dark/inner_corner{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Dr" = (
 /obj/structure/table/countertop/green,
 /turf/open/floor/city/gummaguts,
+/area/space)
+"DF" = (
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/city/plating_mono,
 /area/space)
 "DL" = (
 /obj/effect/decal/wallpaper/grey{
@@ -430,6 +544,10 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"DQ" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/city/plating_mono,
 /area/space)
 "Em" = (
 /obj/structure/fake_stairs/directional/west,
@@ -454,13 +572,13 @@
 	pixel_y = 6
 	},
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
 "EB" = (
 /obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "Fc" = (
 /turf/cordon,
 /area/misc/cordon)
@@ -481,15 +599,31 @@
 	anchored = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"FN" = (
+/obj/machinery/light/dim/directional/south,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Gl" = (
 /obj/structure/table/modern,
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "Gx" = (
 /obj/effect/turf_decal/siding/wood/dark,
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"GB" = (
+/obj/structure/rack/food{
+	dir = 8;
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/entertainment/toy,
+/obj/effect/spawner/random/entertainment/toy,
+/obj/effect/spawner/random/entertainment/toy,
+/obj/structure/sign/poster/random/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "GI" = (
 /obj/machinery/deepfryer,
 /obj/structure/table/countertop/red,
@@ -517,11 +651,25 @@
 	pixel_y = 31
 	},
 /turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"Hj" = (
+/obj/structure/city_map,
+/turf/open/floor/city/plating_mono,
+/area/space)
+"HF" = (
+/mob/living/carbon/human/npc/shop,
+/turf/open/floor/city/gummaguts,
 /area/space)
 "Ie" = (
 /obj/structure/rack/food/rand,
 /turf/open/floor/city/circled/large,
 /area/space)
+"Ih" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "In" = (
 /obj/structure/table/countertop/bubway,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -533,6 +681,20 @@
 "IT" = (
 /turf/open/misc/grass,
 /area/space)
+"Jf" = (
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/city/plating_mono,
+/area/space)
+"Jj" = (
+/mob/living/carbon/human/npc/shop,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"Jv" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "JD" = (
 /obj/structure/table,
 /obj/item/bong{
@@ -549,7 +711,7 @@
 	color = "#47FF93"
 	},
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
 "JE" = (
 /obj/effect/decal/wallpaper/red,
 /turf/closed/wall/vampwall/market,
@@ -571,10 +733,16 @@
 	},
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
 "Lg" = (
 /turf/closed/wall/vampwall/market,
 /area/space)
+"Lv" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "LC" = (
 /obj/structure/table/wood,
 /turf/open/floor/city/gummaguts,
@@ -587,7 +755,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "LU" = (
 /turf/open/floor/wood/smooth/old,
 /area/space)
@@ -603,6 +771,15 @@
 	},
 /turf/open/floor/city/gummaguts,
 /area/space)
+"Mq" = (
+/obj/structure/rack/food{
+	dir = 4;
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/entertainment/toy_figure,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "MO" = (
 /obj/effect/turf_decal/asphaltline/alt{
 	dir = 4
@@ -633,7 +810,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "Nm" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
@@ -663,7 +840,19 @@
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
+"ON" = (
+/obj/effect/spawner/random/entertainment/arcade{
+	dir = 1
+	},
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
+"OP" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Pk" = (
 /turf/closed/wall/vampwall/painted/low/window/reinforced,
 /area/space)
@@ -699,10 +888,20 @@
 /obj/effect/mapping_helpers/viewport_helper/transparent,
 /turf/open/genturf/blue,
 /area/space)
+"QU" = (
+/obj/effect/spawner/random/entertainment/toy,
+/obj/effect/spawner/random/entertainment/toy,
+/obj/effect/spawner/random/entertainment/toy,
+/obj/structure/sign/poster/random/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "RP" = (
 /obj/structure/rack/clothing/rand,
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
+"RT" = (
+/turf/open/floor/eighties,
+/area/vtm/interior/shop)
 "RX" = (
 /obj/effect/decal/wallpaper/light,
 /turf/closed/wall/vampwall/market,
@@ -714,9 +913,20 @@
 "Su" = (
 /turf/open/floor/city/circled/large,
 /area/space)
+"Sw" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Tg" = (
 /turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/planetgeneration)
+"Ts" = (
+/obj/structure/table/wood,
+/obj/machinery/light/dim/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Ur" = (
 /obj/structure/table/countertop/bubway,
 /obj/structure/retail/bubway_menu{
@@ -727,6 +937,12 @@
 	},
 /turf/open/floor/city/gummaguts,
 /area/space)
+"UO" = (
+/obj/effect/landmark/navigate_destination{
+	location = "Smoke Shop"
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/shop)
 "Vc" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
@@ -765,7 +981,7 @@
 /mob/living/carbon/human/npc/shop,
 /obj/effect/decal/carpet,
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "YG" = (
 /turf/open/floor/plating/sidewalk,
 /area/space)
@@ -774,11 +990,11 @@
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
-/area/space)
+/area/vtm/interior/shop)
 "Za" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/city/toilet/large,
-/area/space)
+/area/vtm/interior/shop)
 "Zb" = (
 /obj/structure/sign/city/store/gummaguts{
 	pixel_y = 36;
@@ -804,7 +1020,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/city/plating,
-/area/space)
+/area/vtm/interior/shop)
 
 (1,1,1) = {"
 vR
@@ -32620,7 +32836,7 @@ vF
 vR
 vR
 vF
-vR
+Aw
 vF
 vR
 vR
@@ -32638,8 +32854,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -32772,7 +32988,7 @@ vR
 vR
 vR
 vF
-vR
+Aw
 vF
 vR
 vR
@@ -32790,8 +33006,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -32924,7 +33140,7 @@ vF
 vF
 vF
 vF
-vR
+Aw
 vF
 vR
 vR
@@ -32942,8 +33158,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33075,8 +33291,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33094,8 +33310,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33227,8 +33443,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33246,8 +33462,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33379,8 +33595,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33398,8 +33614,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33531,8 +33747,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33550,8 +33766,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33683,8 +33899,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33702,8 +33918,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33835,8 +34051,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33854,8 +34070,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -33987,8 +34203,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34006,8 +34222,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34139,8 +34355,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34158,8 +34374,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34291,8 +34507,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34310,8 +34526,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34443,8 +34659,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Cu
+Cu
 vF
 vR
 vR
@@ -34462,8 +34678,8 @@ vR
 vR
 vR
 vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -34574,18 +34790,18 @@ vR
 vR
 vR
 vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
 vF
 gN
 gN
@@ -34595,8 +34811,8 @@ gN
 gN
 gN
 vF
-vR
-vR
+kW
+kW
 vF
 vF
 vF
@@ -34614,8 +34830,8 @@ vF
 vF
 vF
 vF
-vR
-vR
+Aw
+Aw
 vF
 vF
 vF
@@ -34726,7 +34942,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 kW
 kW
@@ -34749,7 +34965,7 @@ kW
 kW
 kW
 kW
-kW
+DQ
 kW
 kW
 kW
@@ -34878,7 +35094,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35030,7 +35246,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35182,7 +35398,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35211,11 +35427,11 @@ IT
 IT
 IT
 IT
-IT
-IT
-IT
-IT
-IT
+Hj
+kW
+kW
+kW
+Hj
 IT
 IT
 IT
@@ -35334,7 +35550,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35486,7 +35702,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35638,7 +35854,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35647,6 +35863,8 @@ Xr
 Xr
 kW
 kW
+Ay
+Xr
 kW
 kW
 kW
@@ -35675,9 +35893,7 @@ kW
 kW
 kW
 kW
-kW
-kW
-kW
+DQ
 kW
 kW
 kW
@@ -35790,7 +36006,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35799,10 +36015,29 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+ug
+Xr
+kW
+aL
+gH
+gH
+gH
+iV
+gH
+gH
+gH
+aL
+Jf
+kW
+aL
+gH
+gH
+gH
+iV
+gH
+gH
+gH
+aL
 gN
 gN
 gN
@@ -35811,27 +36046,8 @@ gN
 gN
 gN
 vF
-vR
-vR
-vF
-gN
-gN
-gN
-qr
-gN
-gN
-gN
-vF
-gN
-gN
-gN
-qr
-gN
-gN
-gN
-vF
-vR
-vR
+Aw
+Aw
 vF
 gN
 gN
@@ -35942,7 +36158,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -35951,39 +36167,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+DF
+Xr
+kW
+aL
 ZC
-Xr
-Xr
+CP
+CP
 tk
-Xr
+CP
 JD
 Ez
+aL
+Cu
+Cu
+aL
+kT
+zw
+Ih
+pv
+pv
+pv
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36094,7 +36310,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36103,39 +36319,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+DF
+Xr
+kW
+aL
 Kv
-Xr
-Xr
-Xr
-Xr
-Xr
-Xr
+CP
+CP
+UO
+CP
+CP
+CP
+aL
+Aw
+Aw
+aL
+rV
+zw
+CX
+wW
+OP
+Sw
+FN
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36246,7 +36462,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36255,39 +36471,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 aJ
 uE
 uE
 fU
-Xr
-Xr
-Xr
+CP
+CP
+CP
+aL
+Aw
+Aw
+aL
+pt
+zw
+RT
+yk
+ON
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36398,7 +36614,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36407,39 +36623,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 dZ
 hM
 Gl
 Gx
-Xr
+CP
 RP
 RP
+aL
+Aw
+Aw
+aL
+pt
+zw
+RT
+yk
+ON
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36550,7 +36766,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36559,39 +36775,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 MY
-LU
+pv
 Gl
 Gx
-Xr
-Xr
-Xr
+CP
+CP
+CP
+aL
+Aw
+Aw
+aL
+Lv
+RT
+RT
+RT
+RT
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36702,7 +36918,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36711,39 +36927,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 NT
 Ya
 vC
 Gx
-Xr
+CP
 RP
 RP
+aL
+Aw
+Aw
+aL
+pt
+zw
+RT
+yk
+ON
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -36854,7 +37070,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -36863,39 +37079,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 DL
-LU
+pv
 Gl
 Gx
-Xr
-Xr
-Xr
+CP
+CP
+CP
+aL
+Aw
+Aw
+aL
+pt
+zw
+RT
+yk
+ON
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37006,7 +37222,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37015,39 +37231,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 ji
 of
 Fh
 Gx
-Xr
+CP
 RP
 RP
+aL
+Aw
+Aw
+aL
+pt
+zw
+RT
+yk
+ON
+Ih
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37158,7 +37374,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37167,39 +37383,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 Hi
-LU
-LU
+pv
+pv
 EB
 YR
 YR
 fU
+aL
+Aw
+Aw
+aL
+As
+As
+As
+As
+As
+Jv
+pv
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37310,7 +37526,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37319,39 +37535,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 pF
 si
 si
 LF
-LU
-LU
+pv
+pv
 Gx
+aL
+Aw
+Aw
+aL
+Ts
+yn
+yn
+yn
+pv
+pv
+FN
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37462,7 +37678,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37471,39 +37687,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
-vF
-vF
-vF
+kW
+Xr
+kW
+aL
+aL
+aL
+aL
 uf
-LU
-LU
+pv
+pv
 Gx
+aL
+Aw
+Aw
+aL
+GB
+pv
+Jj
+yn
+pv
+pv
+sZ
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37614,7 +37830,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37623,39 +37839,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+Xr
+kW
+aL
 rU
 ta
 nA
 lF
-LU
-LU
+pv
+pv
 Gx
+aL
+Aw
+Aw
+aL
+QU
+pv
+pv
+pv
+pv
+pv
+yn
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37766,7 +37982,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37775,39 +37991,39 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vF
+kW
+kW
+kW
+aL
 oh
 Za
-vF
+aL
 pF
 si
 si
-LU
+Gx
+aL
+Aw
+Aw
+aL
+Mq
+pv
+op
+zk
+pv
+pv
+nB
+aL
+vR
+vR
+vR
+vR
+vR
+vR
+vR
 vF
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vF
-vR
-vR
+Aw
+Aw
 vF
 vR
 vR
@@ -37918,7 +38134,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -37928,7 +38144,28 @@ Xr
 kW
 vF
 vF
-vR
+Cu
+vF
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+BI
+aL
+Aw
+Aw
+aL
+aL
+BI
+aL
+aL
+aL
+aL
+aL
+aL
 vF
 vF
 vF
@@ -37937,29 +38174,8 @@ vF
 vF
 vF
 vF
-vF
-vF
-vR
-vR
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vR
-vR
+Aw
+Aw
 vF
 vF
 vF
@@ -38070,7 +38286,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38079,47 +38295,47 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -38222,7 +38438,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38231,47 +38447,47 @@ Xr
 Xr
 kW
 vF
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
-vR
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
 vR
 vR
 vR
@@ -38374,7 +38590,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38395,7 +38611,7 @@ vF
 vF
 vF
 vF
-vR
+Cu
 vF
 vF
 vF
@@ -38526,7 +38742,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38547,9 +38763,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -38678,7 +38894,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38699,9 +38915,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -38830,7 +39046,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -38851,9 +39067,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -38982,7 +39198,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39003,9 +39219,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39134,7 +39350,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39155,9 +39371,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39286,7 +39502,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39307,9 +39523,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39438,7 +39654,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39459,9 +39675,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39590,7 +39806,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39611,9 +39827,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39742,7 +39958,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39763,9 +39979,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -39894,7 +40110,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -39915,9 +40131,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40046,7 +40262,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -40067,9 +40283,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40198,7 +40414,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -40219,9 +40435,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40350,7 +40566,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 Xr
@@ -40371,9 +40587,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40502,7 +40718,7 @@ vR
 vR
 vR
 vR
-vR
+vF
 kW
 Xr
 IT
@@ -40523,9 +40739,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40675,9 +40891,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40827,9 +41043,9 @@ vR
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -40979,9 +41195,9 @@ vF
 vR
 vR
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -41131,9 +41347,9 @@ vF
 vF
 vF
 vF
-vR
-vR
-vR
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -41280,12 +41496,12 @@ pa
 pa
 kW
 vF
-vR
-vR
-vR
-vR
-vR
-vR
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -41432,12 +41648,12 @@ LC
 pa
 kW
 vF
-vR
-vR
-vR
-vR
-vR
-vR
+Aw
+Aw
+Aw
+Aw
+Aw
+Aw
 vF
 vR
 vR
@@ -41869,7 +42085,7 @@ Lg
 Lg
 Lg
 pa
-pa
+HF
 xu
 LU
 LU
@@ -42629,7 +42845,7 @@ Lg
 pa
 pa
 pa
-pa
+HF
 ds
 LU
 LU
