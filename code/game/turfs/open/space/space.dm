@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	MAP_SWITCH(icon_state = "space", icon_state = "space_map")
-	name = CITY_NAME // DARKPACK EDIT CHANGE - ORIGINAL: name = "\proper space"
+	name = "\proper space"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
@@ -60,8 +60,8 @@ GLOBAL_LIST_EMPTY(starlight)
 	run_later = TRUE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
-	light_power = 0.25 // DARKPACK EDIT CHANGE, ORIGINAL: light_power = 1 - CITY_TIME
-	light_range = 0.5 // DARKPACK EDIT CHANGE, ORIGINAL: light_range = 2 - CITY_TIME
+	light_power = 1
+	light_range = 2
 	light_color = COLOR_STARLIGHT
 	light_height = LIGHTING_HEIGHT_SPACE
 	light_on = FALSE
