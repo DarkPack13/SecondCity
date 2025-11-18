@@ -280,7 +280,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "gI" = (
-/obj/structure/vampdoor/supply,
+/obj/structure/vampdoor/simple/supply,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/supply)
 "gN" = (
@@ -476,8 +476,8 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "kk" = (
-/obj/structure/vampdoor/wood/old/salubri{
-	dir = 4
+/obj/structure/vampdoor{
+	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
@@ -498,7 +498,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "ld" = (
-/obj/structure/vampdoor/glass/police_chief,
+/obj/structure/vampdoor,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
 "lk" = (
@@ -525,7 +525,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "mj" = (
-/obj/structure/vampdoor/anarch{
+/obj/structure/vampdoor/simple/anarch{
 	dir = 4
 	},
 /turf/open/floor/plating/concrete,
@@ -1410,7 +1410,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
 "ET" = (
-/obj/structure/vampdoor/camarilla{
+/obj/structure/vampdoor/simple/camarilla{
 	dir = 4
 	},
 /turf/open/floor/plating/concrete,
@@ -1535,7 +1535,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "GS" = (
-/obj/structure/vampdoor/police,
+/obj/structure/vampdoor/simple/police,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "GX" = (
@@ -2303,30 +2303,9 @@
 /area/vtm/interior/anarch)
 "Uw" = (
 /obj/structure/table,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
-/obj/item/stack/dollar/hundred,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
 "UC" = (
@@ -2622,9 +2601,8 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
 "ZT" = (
-/obj/structure/vampdoor/graveyard{
-	dir = 4;
-	locked = 0
+/obj/structure/vampdoor{
+	dir = 8
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)

@@ -75,3 +75,8 @@
   - rscadd: Added phones
   akbar-kurnia1:
   - spellcheck: Reflavored the catatonic NPC message to be more generic.
+2025-11-18:
+  FalloutFalcon:
+  - bugfix: Tzi content and arcane book must be learned
+  dwinters99:
+  - code_imp: doors repathed
