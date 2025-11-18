@@ -1,0 +1,34 @@
+# Simple doors
+/obj/structure/vampdoor/camarilla : /obj/structure/vampdoor/simple/camarilla{@OLD}
+/obj/structure/vampdoor/anarch : /obj/structure/vampdoor/simple/anarch{@OLD}
+/obj/structure/vampdoor/bar : /obj/structure/vampdoor/simple/bar{@OLD}
+/obj/structure/vampdoor/supply : /obj/structure/vampdoor/simple/supply{@OLD}
+/obj/structure/vampdoor/strip : /obj/structure/vampdoor/simple/strip{@OLD}
+/obj/structure/vampdoor/dispatch : /obj/structure/vampdoor/simple/dispatch{@OLD}
+/obj/structure/vampdoor/police : /obj/structure/vampdoor/simple/police{@OLD}
+/obj/structure/vampdoor/police/secure : /obj/structure/vampdoor/simple/police/secure{@OLD}
+
+# Wood doors
+/obj/structure/vampdoor/daughters : /obj/structure/vampdoor/wood/daughters{@OLD}
+/obj/structure/vampdoor/npc : /obj/structure/vampdoor/wood/npc{@OLD}
+
+# Oldwood doors
+/obj/structure/vampdoor/wood/old : /obj/structure/vampdoor/oldwood{@OLD}
+/obj/structure/vampdoor/graveyard : /obj/structure/vampdoor/oldwood/graveyard{@OLD}
+/obj/structure/vampdoor/church : /obj/structure/vampdoor/oldwood/church{@OLD}
+/obj/structure/vampdoor/wood/old/chantry : /obj/structure/vampdoor/oldwood/chantry{@OLD}
+/obj/structure/vampdoor/baali : /obj/structure/vampdoor/oldwood/baali {@OLD}
+/obj/structure/vampdoor/salubri : /obj/structure/vampdoor/wood/old/salubri {@OLD}
+/obj/structure/vampdoor/old_clan_tzimisce : /obj/structure/vampdoor/wood/old/clan_tzimisce {@OLD}
+
+# Reinf doors
+/obj/structure/vampdoor/cleaning : /obj/structure/vampdoor/reinf/cleaning{@OLD}
+
+# Old doors
+/obj/structure/vampdoor/chantry : /obj/structure/vampdoor/old/chantry{@OLD}
+
+# Woodglass doors
+/obj/structure/vampdoor/glass/prince : /obj/structure/vampdoor/woodglass/prince{@OLD}
+
+
+

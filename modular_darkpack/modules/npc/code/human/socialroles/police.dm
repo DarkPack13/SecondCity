@@ -93,7 +93,7 @@
 	uniforms = list(/obj/item/clothing/under/vampire/police)
 	hats = list(/obj/item/clothing/head/vampire/police)
 	suits = list(/obj/item/clothing/suit/vampire/vest/police)
-	pockets = list(/obj/item/stack/dollar/rand)
+	// pockets = list(/obj/item/stack/dollar/rand)
 
 	male_phrases = list(
 		"I see you.",
