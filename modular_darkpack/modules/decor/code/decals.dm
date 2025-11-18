@@ -98,6 +98,12 @@
 	icon_state = "border"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/obj/effect/turf_decal/bordur/inverse
+	name = "sidewalk"
+	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
+	icon_state = "border_inverse"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 /obj/effect/turf_decal/bordur/Initialize(mapload)
 	if(check_holidays(FESTIVE_SEASON))
 		var/area/my_area = get_area(src)
@@ -108,8 +114,14 @@
 /obj/effect/turf_decal/bordur/corner
 	icon_state = "border_corner"
 
+/obj/effect/turf_decal/bordur/corner/inverse // DARKPACK TODO: needs a snow sprite
+	icon_state = "border_corner_inverse"
+
 /obj/effect/turf_decal/bordur/end
 	icon_state = "border_end"
+
+/*/obj/effect/turf_decal/bordur/end/inverse // DARKPACK TODO: Needs a sprite and a snow sprite
+	icon_state = "border_end_inverse"*/
 
 /obj/effect/turf_decal/darkpack // These open a massive can of worms. Maybe keep their use to when it's needed only?
 	name = "detail"
