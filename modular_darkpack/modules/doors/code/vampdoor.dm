@@ -241,7 +241,7 @@
 					return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(lock_id == LOCKACCESS_ANY)
-		if(try_keys(mob/living/user, need_key = FALSE))
+		if(try_keys(user, need_key = FALSE))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!has_keys)

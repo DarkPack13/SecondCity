@@ -23,7 +23,7 @@
 		qdel(src)
 		return
 
-	late_payload(payload)
+	late_payload(door)
 
 /obj/effect/mapping_helpers/door/proc/payload(obj/structure/vampdoor/payload)
 	return
