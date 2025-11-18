@@ -6807,6 +6807,7 @@
 #include "modular_darkpack\master_files\code\controllers\configuration\entries\general.dm"
 #include "modular_darkpack\master_files\code\datums\actions\action.dm"
 #include "modular_darkpack\master_files\code\datums\components\dejavu.dm"
+#include "modular_darkpack\master_files\code\datums\mapgen\woods_generator.dm"
 #include "modular_darkpack\master_files\code\datums\station_traits\_station_trait.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
@@ -7225,6 +7226,7 @@
 #include "modular_darkpack\modules\retail\code\stores\junkfood_menu.dm"
 #include "modular_darkpack\modules\retail\code\stores\library.dm"
 #include "modular_darkpack\modules\retail\code\stores\pharmacy.dm"
+#include "modular_darkpack\modules\retail\code\stores\skate_shop.dm"
 #include "modular_darkpack\modules\retail\code\stores\smoke_menu.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\arcane_tome.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rune_drawing.dm"
@@ -7289,6 +7291,7 @@
 #include "modular_darkpack\modules\weather\code\effects.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\glyphs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\werewolf_globals.dm"
+#include "modular_darkpack\modules\westfield_mall\code\mall_areas.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
 #include "modular_darkpack\modules\z_travel\code\transfer_point.dm"
 // END_INCLUDE
