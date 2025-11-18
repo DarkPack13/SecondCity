@@ -55,7 +55,6 @@
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name
 		target_body.update_name()
-		target_body.adjustBruteLoss(-200)
 
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
