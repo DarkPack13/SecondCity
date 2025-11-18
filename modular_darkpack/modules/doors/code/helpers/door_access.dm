@@ -10,3 +10,9 @@
 	name = "all access"
 	desc = "Any keys can lock or unlock this door."
 	lock_id = LOCK_ACCESS_ANY
+
+/obj/effect/mapping_helpers/door/access/camarilla
+	lock_id = LOCKACCESS_CAMARILLA
+
+/obj/effect/mapping_helpers/door/access/anarch
+	lock_id = LOCKACCESS_ANARCH
