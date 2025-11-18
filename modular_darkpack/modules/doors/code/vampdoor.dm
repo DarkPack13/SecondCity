@@ -144,7 +144,7 @@
 	door_broken = FALSE
 	set_density(TRUE)
 	if(initial(opacity))
-		opacity = 1
+		set_opacity(TRUE)
 	layer = ABOVE_ALL_MOB_LAYER
 	closed = TRUE
 	locked = FALSE

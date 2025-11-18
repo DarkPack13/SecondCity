@@ -15,7 +15,7 @@
 #define VAMPIRE_CLAN_NOSFERATU "nosferatu"
 #define VAMPIRE_CLAN_OLD_CLAN_TZIMISCE "old_clan_tzimisce"
 #define VAMPIRE_CLAN_SALUBRI "salubri"
-#define VAMPIRE_CLAN_TOREADOR LOCKACCESS_TOREADOR
+#define VAMPIRE_CLAN_TOREADOR "toreador"
 #define VAMPIRE_CLAN_TREMERE "tremere"
 #define VAMPIRE_CLAN_TRUE_BRUJAH "true_brujah"
 #define VAMPIRE_CLAN_TZIMISCE "tzimisce"
