@@ -64,7 +64,7 @@
 
 /turf/open/floor/city/industrial/large
 	name = "plating"
-	icon_state = "industrial1"
+	icon_state = "industrial_large1"
 
 /turf/open/floor/city/industrial/large/Initialize(mapload)
 	. = ..()
