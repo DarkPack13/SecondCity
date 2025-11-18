@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
 
 /obj/structure/sign/city/police_department
-	name = "\improper" + CITY_POLICE_DEPARTMENT
+	name = "\improper " + CITY_POLICE_DEPARTMENT + " sign."
 	desc = "Stop right there you criminal scum! Nobody can break the law on my watch!!"
 	icon_state = "police"
 	pixel_z = 40
@@ -21,7 +21,7 @@
 
 /obj/structure/sign/city/hotel/Initialize(mapload)
 	. = ..()
-	set_light(3, 3, "#8e509e")
+	set_light(3, 3, "#8e509e")t
 	if(check_holidays(FESTIVE_SEASON))
 		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
