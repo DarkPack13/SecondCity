@@ -5,5 +5,5 @@
 
 /obj/structure/vampdoor/reinf/cleaning
 	locked = TRUE
-	lock_id = "cleaning"
+	lock_id = LOCKACCESS_CLEANING
 	lockpick_difficulty = 4

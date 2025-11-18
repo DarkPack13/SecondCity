@@ -5,5 +5,5 @@
 
 /obj/structure/vampdoor/old/chantry
 	locked = TRUE
-	lock_id = "chantry"
+	lock_id = LOCKACCESS_CHANTRY
 	lockpick_difficulty = 10

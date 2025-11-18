@@ -8,5 +8,5 @@
 
 /obj/structure/vampdoor/woodglass/prince
 	locked = TRUE
-	lock_id = "prince"
+	lock_id = LOCKACCESS_PRINCE
 	lockpick_difficulty = 12

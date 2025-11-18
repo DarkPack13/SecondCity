@@ -8,12 +8,12 @@
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
 /obj/structure/vampdoor/wood/strip
-	lock_id = "strip"
+	lock_id = LOCKACCESS_STRIP
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/wood/giovanni
 	locked = TRUE
-	lock_id = "giovanni"
+	lock_id = LOCKACCESS_GIOVANNI
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/wood/giovanni/high_security
@@ -21,7 +21,7 @@
 
 /obj/structure/vampdoor/wood/pentex
 	locked = TRUE
-	lock_id = "pentex"
+	lock_id = LOCKACCESS_PENTEX
 	lockpick_difficulty = 16
 
 /obj/structure/vampdoor/wood/madman
@@ -40,7 +40,7 @@
 
 /obj/structure/vampdoor/wood/jazz_club
 	name = "Jazz Club"
-	lock_id = "milleniumCommon"
+	lock_id = LOCKACCESS_JAZZ_CLUB
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/wood/daughters
