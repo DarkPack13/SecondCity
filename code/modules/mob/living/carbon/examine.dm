@@ -277,8 +277,8 @@
 				if("rotten4")
 					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
 
-		if (iszombie(src) && is_face_visible()) // for necromancy player-controlled zombies
-			msg += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
+		if (iszombie(src) && !(obscured_slots & HIDEFACE)) // for necromancy player-controlled zombies
+			. += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
 
 		// DARKPACK EDIT ADD END
 

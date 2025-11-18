@@ -91,5 +91,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GHOST_VISION "ghost_vision"
 #define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
+#define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 
 // END TRAIT DEFINES
