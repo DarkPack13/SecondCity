@@ -43,8 +43,8 @@
 		if(!repairing)
 			repairing = TRUE
 			if(do_after(user, 10 SECONDS, src))
-				icon_state = "fusebox"
 				damaged = 0
+				update_icon_state()
 				playsound(get_turf(src),'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
 				var/area/A = get_area(src)
 				A.requires_power = FALSE
@@ -60,3 +60,30 @@
 		if(I.force)
 			damaged += I.force
 			check_damage(user)
+
+
+// transformers (another type of fusebox)
+/obj/fusebox/transformer
+	name = "transformer"
+	desc = "Power the controlled area with pure electricity."
+	icon_state = "sstation"
+	plane = GAME_PLANE
+	layer = CAR_LAYER
+	anchored = TRUE
+	pixel_y = 0
+	density = 1
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	var/datum/looping_sound/generator/soundloop
+
+/obj/fusebox/transformer/Initialize()
+	. = ..()
+	soundloop = new(list(src), TRUE)
+
+/obj/fusebox/transformer/update_icon_state()
+	. = ..()
+	if(damaged > 100)
+		icon_state = "sstation_off"
+		soundloop.stop()
+	else
+		icon_state = "sstation"
+		soundloop.start()
