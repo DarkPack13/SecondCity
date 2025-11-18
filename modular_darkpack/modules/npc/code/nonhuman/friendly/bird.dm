@@ -27,6 +27,7 @@
 	maxHealth = 20
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 	ai_controller = /datum/ai_controller/basic_controller/corvid
@@ -54,7 +55,6 @@
 	else
 		icon_state = "[sprite_color]"
 
-
 /mob/living/basic/corvid/update_overlays()
 	. = ..()
 
@@ -75,6 +75,9 @@
 	var/mob/living/basic/corvid/corvid = owner
 	if(!istype(corvid))
 		return
+	// Consider giving them instant do after for moving up and down z levels but require time to get into the air
+	// if(!do_after(src, 0.5 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+	// 	return
 	if (!(HAS_TRAIT(corvid, TRAIT_MOVE_FLYING)))
 		to_chat(corvid, span_notice("You beat your wings and begin to hover gently above the ground..."))
 		corvid.set_resting(FALSE, TRUE)
