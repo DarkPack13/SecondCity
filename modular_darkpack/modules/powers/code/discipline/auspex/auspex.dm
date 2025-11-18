@@ -56,7 +56,7 @@
 			ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
 		if(SENSE_TOUCH)
 			RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
-			owner.AddComponent(/datum/component/heartbeat_sensing, echo_icon = "psyker", color_path = /datum/client_colour/psyker)
+			owner.AddComponent(/datum/component/heartbeat_sensing, color_path = /datum/client_colour/psyker)
 
 	owner.st_add_stat_mod(STAT_PERCEPTION, discipline.level, "heightened_senses")
 
