@@ -374,7 +374,7 @@ ROUNDSTART_RACES human
 ## World of Darkness splats, currently coded as species
 ROUNDSTART_RACES kindred
 ROUNDSTART_RACES ghoul
-ROUNDSTART_RACES garou
+#ROUNDSTART_RACES garou
 
 ## DARKPACK EDIT END
 
