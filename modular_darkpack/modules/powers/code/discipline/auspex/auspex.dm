@@ -46,6 +46,7 @@
 		output_senses += sense[1]
 
 	if(SENSE_VISION in output_senses)
+		owner.client?.view_size?.setTo(2)
 		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
@@ -73,6 +74,7 @@
 	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
 	owner.RemoveElement(/datum/element/ear_damage)
 	// Vision
+	owner.client?.view_size?.resetToDefault()
 	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)
