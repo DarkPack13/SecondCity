@@ -61,7 +61,7 @@
 /obj/abyssrune/reflections_of_hollow_revelation/proc/scry_target(mob/living/carbon/human/target, mob/living/user)
 	// If the target has Obtenebration or Auspex, roll to see if they detect the shadows
 	if(iskindred(target))
-		var/datum/species/kindred/vampire = target.dna?.species
+		var/datum/species/human/kindred/vampire = target.dna?.species
 		if(vampire && (vampire.get_discipline("Obtenebration") || vampire.get_discipline("Auspex")))
 			var/theirpower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
 			if(SSroll.storyteller_roll(theirpower, 8, FALSE) == ROLL_SUCCESS)
@@ -137,7 +137,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shadow"
 	invisibility = INVISIBILITY_ABSTRACT
-	layer = CAMERA_STATIC_LAYER
+	layer = CAMERA_STATIC_PLANE
 	var/obj/abyssrune/reflections_of_hollow_revelation/parent_rune
 
 /obj/shadow_window/Initialize(mapload, obj/abyssrune/reflections_of_hollow_revelation/rune)
@@ -154,7 +154,7 @@
 /datum/action/close_window
 	name = "End Scrying"
 	desc = "Stop viewing through the shadows"
-	button_icon =  = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/obj/abyssrune/reflections_of_hollow_revelation/parent_rune
 

@@ -19,7 +19,7 @@
 /obj/abyssrune/attack_hand(mob/user)
 	if(!activated)
 		var/mob/living/L = user
-		if(L.mysticism_knowledge)
+		if(HAS_TRAIT(L, TRAIT_MYSTICISM_KNOWLEDGE))
 			L.say("[word]")
 			L.Immobilize(30)
 			last_activator = user
@@ -33,6 +33,7 @@
 			else
 				complete()
 
-/obj/abyssrune/AltClick(mob/user)
-	..()
+/obj/abyssrune/proc/on_alt_click(datum/source, mob/user)
+	SIGNAL_HANDLER
+
 	qdel(src)

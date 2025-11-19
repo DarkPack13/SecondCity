@@ -17,7 +17,7 @@
 		H.add_beastmaster_minion(/mob/living/basic/shadow_guard)
 		//BG.melee_damage_lower = BG.melee_damage_lower+activator_bonus
 		//BG.melee_damage_upper = BG.melee_damage_upper+activator_bonus
-		playsound(loc, 'sound/magic/voidblink.ogg', 50, FALSE)
+		playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 		//if(length(H.beastmaster) > H.st_get_stat(STAT_OCCULT))
 			//var/mob/living/simple_animal/hostile/beastmaster/B = pick(H.beastmaster)
 			//B.death()

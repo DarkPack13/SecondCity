@@ -55,7 +55,7 @@
 		invoker.apply_status_effect(/datum/status_effect/blood_debt, 2 * spent_points) // Apply debuff with debt amount
 		for(var/mob/living/carbon/human/target in heal_targets)
 			target.heal_ordered_damage(60 * spent_points, list(BRUTE, TOX, OXY, STAMINA)) // Heals 2 levels of lethal/bashing per point spent
-			target.heal_ordered_damage(30 * spent_points, list(BURN, CLONE)) // Heals aggravated at half effectiveness, TTRPG-inaccurate implementation but necessary
+			target.heal_ordered_damage(30 * spent_points, list(BURN, AGGRAVATED)) // Heals aggravated at half effectiveness, TTRPG-inaccurate implementation but necessary
 
 	else if(roll == 0)
 		invoker.bloodpool = max(invoker.bloodpool - 1, 0)
@@ -64,7 +64,7 @@
 	else if(roll <= -1)
 		to_chat(invoker, span_warning("You lose focus, failing to control the darkness as it burns you!"))
 		invoker.bloodpool = max(invoker.bloodpool - 1, 0)
-		invoker.apply_damage(30, CLONE)
+		invoker.apply_damage(30, AGGRAVATED)
 		qdel(src)
 
 	playsound(rune_location, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
