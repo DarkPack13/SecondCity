@@ -50,7 +50,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, NECROMANCY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
 
-	owner.see_override = initial(owner.see_override)
+	//owner.see_override = initial(owner.see_override)
 
 	owner.update_sight()
 
@@ -110,9 +110,9 @@
 /datum/discipline_power/necromancy/ashes_to_ashes/activate(mob/target)
 	. = ..()
 
-	if(isavatar(target))
-		to_chat(owner, span_warning("This spirit is yet linked to a corporeal form.")) // cant absorb auspex ghosts
-		return
+	//if(isavatar(target))
+		//to_chat(owner, span_warning("This spirit is yet linked to a corporeal form.")) // cant absorb auspex ghosts
+		//return
 
 	if (isobserver(target))
 		var/mob/dead/observer/ghost = target
@@ -182,7 +182,10 @@
 		// removed iscathayan(target) || from line 183 DARKPACK TODO - readd KJs Kuei-Jin
 		if(iskindred(target) || iszombie(target)) //undead become spongier, but move slightly slower
 			corpsebuff.visible_message(span_danger("[target]'s body seizes with rigor mortis."), span_danger("Your senses dull to pain and everything else."))
-			corpsebuff.dna.species.brutemod = max(0.2, corpsebuff.dna.species.brutemod-0.3) //equivalent of the existing artifact
+
+			for(var/obj/item/bodypart/part as anything in corpsebuff.bodyparts)
+				part.brute_modifier = max(0.2, part.brute_modifier - 0.3)
+
 			ADD_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			ADD_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
 			//ADD_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
@@ -191,8 +194,13 @@
 		else //everyone else eats tox and CC
 			corpsebuff.visible_message(span_danger("[target]'s skin grays, terrible illness gripping [target.p_their()] body."), span_userdanger("You feel terribly sick."))
 			corpsebuff.vomit()
-			corpsebuff.dizziness += 10
-			corpsebuff.add_confusion(10)
+
+			// Apply dizziness status effect (10 seconds duration)
+			corpsebuff.apply_status_effect(/datum/status_effect/dizziness, 10 SECONDS)
+
+			// Apply confusion status effect (10 seconds duration)
+			corpsebuff.apply_status_effect(/datum/status_effect/confusion, 10 SECONDS)
+
 			corpsebuff.apply_damage(50, TOX)
 			corpsebuff.Stun(3 SECONDS) // ignored by tough flesh and shapeshifted werewolves
 			corpsebuff.add_movespeed_modifier(/datum/movespeed_modifier/corpsenerf)
@@ -210,7 +218,8 @@
 		// || iscathayan(target) removed that from line 211 DARKPACK TODO -- readd KJS Kuei-Jin
 		if(iskindred(target))
 			corpsebuff.visible_message(span_notice("[target]'s body regains its luster."), span_notice("Feeling comes flooding back into your body."))
-			corpsebuff.dna.species.brutemod = initial(corpsebuff.dna.species.brutemod)
+			for(var/obj/item/bodypart/part as anything in corpsebuff.bodyparts)
+				part.brute_modifier = initial(part.brute_modifier)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
 			//REMOVE_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
