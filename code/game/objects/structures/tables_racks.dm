@@ -257,6 +257,13 @@
 	if(border_dir == dir)
 		return FALSE
 
+	// DARKPACK EDIT START - Obtenebration & Mysticism Rework: Check for trait to allow phasing through tables
+	if(istype(mover, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = mover
+		if(HAS_TRAIT(H, TRAIT_PASSTABLE))
+			return TRUE
+	// DARKPACK EDIT END
+
 	return TRUE
 
 /obj/structure/table/update_icon(updates=ALL)
