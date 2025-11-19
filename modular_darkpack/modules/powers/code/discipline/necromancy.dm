@@ -195,10 +195,8 @@
 			corpsebuff.visible_message(span_danger("[target]'s skin grays, terrible illness gripping [target.p_their()] body."), span_userdanger("You feel terribly sick."))
 			corpsebuff.vomit()
 
-			// Apply dizziness status effect (10 seconds duration)
 			corpsebuff.apply_status_effect(/datum/status_effect/dizziness, 10 SECONDS)
 
-			// Apply confusion status effect (10 seconds duration)
 			corpsebuff.apply_status_effect(/datum/status_effect/confusion, 10 SECONDS)
 
 			corpsebuff.apply_damage(50, TOX)
