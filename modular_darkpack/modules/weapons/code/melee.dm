@@ -218,6 +218,14 @@
 		L.apply_damage(16, AGGRAVATED)
 		L.apply_damage(7, BURN)
 
+//its the lasombra ranged grabby tentacle so its technically melee? file management demons
+/obj/item/ammo_casing/magic/tentacle/lasombra
+	projectile_type = /obj/projectile/tentacle/lasombra
+
+/obj/projectile/tentacle/lasombra
+	damage_type = BURN
+	icon_state = "curse0"
+
 /obj/item/melee/vamp/handsickle
 	name = "hand sickle"
 	desc = "Reap what they have sowed."

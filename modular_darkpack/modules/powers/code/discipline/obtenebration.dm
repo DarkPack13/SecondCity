@@ -91,7 +91,11 @@
 	. = ..()
 	target.Stun(1 SECONDS)
 	var/obj/item/ammo_casing/magic/tentacle/lasombra/casing = new (owner.loc)
-	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
+	var/obj/projectile/tentacle/lasombra/projectile = casing.loaded_projectile
+	if(projectile)
+		projectile.firer = owner
+		projectile.fired_from = owner
+		projectile.fire(get_angle(owner, target))
 
 // **************************************************************** ARMS OF THE ABYSS *************************************************************
 /datum/discipline_power/obtenebration/arms_of_the_abyss
@@ -317,10 +321,6 @@
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
 
-/datum/action/aggro_mode/New()
-	..()
-	UpdateButton()
-
 /datum/action/aggro_mode/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
@@ -349,9 +349,9 @@
 
 	if(tentacles)
 		to_chat(Tuser, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
-		UpdateButton()
+		update_button_icon()
 
-/datum/action/aggro_mode/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force = FALSE)
+/datum/action/aggro_mode/proc/update_button_icon()
 	switch(current_mode)
 		if("Aggressive")
 			button_icon_state = "harm"
@@ -359,7 +359,7 @@
 			button_icon_state = "grab"
 		if("Passive")
 			button_icon_state = "disarm"
-	return ..()
+	build_all_button_icons()
 
 // Shadow removal button for Shadow Play
 /datum/action/clear_shadows
@@ -374,6 +374,7 @@
 	power = Target
 
 /datum/action/clear_shadows/Trigger(trigger_flags)
-	. = ..()
-	if(.)
-		power.remove_all_shadows()
+	if(!power)
+		return
+	power.remove_all_shadows()
+	return TRUE
