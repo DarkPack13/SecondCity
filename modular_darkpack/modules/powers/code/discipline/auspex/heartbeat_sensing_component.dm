@@ -57,7 +57,7 @@
 	var/mob/living/parent_mob = parent
 	if(isnull(receivers[parent_mob]))
 		receivers[parent_mob] = list()
-	for(var/mob/living/living_mob in orange(parent_mob.client.view, get_turf(parent_mob)))
+	for(var/mob/living/living_mob in orange(parent_mob.client?.view, get_turf(parent_mob)))
 		var/obj/item/organ/heart/beating_heart = living_mob.get_organ_slot(ORGAN_SLOT_HEART)
 		if(!istype(beating_heart) && !(beating_heart.is_beating()))
 			continue

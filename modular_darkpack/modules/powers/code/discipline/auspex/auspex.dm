@@ -31,32 +31,35 @@
 /datum/discipline_power/auspex/heightened_senses/activate()
 	. = ..()
 
-	var/chosen_sense = tgui_input_list(owner, "Choose a sense to heighten", "Heightened Senses", list(
+	var/list/chosen_sense = tgui_input_checkboxes(owner, "Choose a sense to heighten", "Heightened Senses", list(
 		SENSE_VISION,
 		SENSE_HEARING,
 		SENSE_SMELL,
 		SENSE_TASTE,
 		SENSE_TOUCH
-	), SENSE_VISION)
-	if(!chosen_sense)
+	))
+	if(isnull(chosen_sense))
+		deactivate()
 		return
+	var/list/output_senses = list()
+	for(var/list/sense as anything in chosen_sense)
+		output_senses += sense[1]
 
-	switch(chosen_sense)
-		if(SENSE_VISION)
-			ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
-			var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
-			if(kindred_eyes)
-				kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
-		if(SENSE_HEARING)
-			ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
-			owner.AddElement(/datum/element/ear_damage)
-		if(SENSE_SMELL)
-			owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
-		if(SENSE_TASTE)
-			ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
-		if(SENSE_TOUCH)
-			RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
-			owner.AddComponent(/datum/component/heartbeat_sensing, color_path = /datum/client_colour/psyker)
+	if(SENSE_VISION in output_senses)
+		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+		if(kindred_eyes)
+			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
+	if(SENSE_HEARING in output_senses)
+		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+		owner.AddElement(/datum/element/ear_damage)
+	if(SENSE_SMELL in output_senses)
+		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
+	if(SENSE_TASTE in output_senses)
+		ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+	if(SENSE_TOUCH in output_senses)
+		RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
+		owner.AddComponent(/datum/component/heartbeat_sensing, color_path = /datum/client_colour/psyker)
 
 	owner.st_add_stat_mod(STAT_PERCEPTION, discipline.level, "heightened_senses")
 
