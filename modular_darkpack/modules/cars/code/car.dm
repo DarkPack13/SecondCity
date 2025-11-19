@@ -116,7 +116,7 @@
 	create_storage(storage_type = car_storage_type)
 	atom_storage.set_real_location(trunk)
 
-	// TODO: [Rebase] see about reimplementing this sprite for cars
+	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
 	headlight_image = new(src)
 	headlight_image.icon = 'icons/effects/light_overlays/light_cone_car.dmi'
@@ -199,7 +199,7 @@
 			can_used.stored_gasoline = max(0, can_used.stored_gasoline-gas_to_transfer)
 			gas = min(CAR_TANK_MAX, gas+gas_to_transfer)
 			to_chat(user, span_notice("You transfer [gas_to_transfer] fuel to [src]."))
-			playsound(loc, 'modular_darkpack/master_files/sounds/gas_fill.ogg', 25, TRUE)
+			playsound(loc, 'modular_darkpack/master_files/sounds/effects/gas_fill.ogg', 25, TRUE)
 
 /obj/darkpack_car/proc/try_repair(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
@@ -213,14 +213,14 @@
 		span_notice("You begin repairing [src]. Stop at any time to only partially repair it."))
 	if(do_after(user, time_to_repair SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		atom_integrity = max_integrity
-		playsound(src, 'modular_darkpack/master_files/sounds/repair.ogg', 50, TRUE)
+		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		user.visible_message(span_notice("[user] repairs [src]."), \
 			span_notice("You finish repairing all the dents on [src]."))
 		color = "#ffffff"
 		return TRUE
 	else
-		take_damage((world.time - start_time) * -2 / 5) //partial repair
-		playsound(src, 'modular_darkpack/master_files/sounds/repair.ogg', 50, TRUE)
+		repair_damage((world.time - start_time) * 2 / 5) //partial repair
+		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		user.visible_message(span_notice("[user] repairs [src]."), \
 			span_notice("You repair some of the dents on [src]."))
 		color = "#ffffff"
@@ -230,7 +230,7 @@
 	if(!locked)
 		to_chat(user, span_warning("The [src] is already unlocked."))
 		return
-	for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+	for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 		P.Aggro(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
@@ -281,7 +281,7 @@
 		if(!driver && !length(passengers) && COOLDOWN_FINISHED(src, beep_cooldown) && locked)
 			COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
-			for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+			for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 				P.Aggro(user)
 
 		if(prob(10) && locked)
@@ -417,7 +417,7 @@
 	user.forceMove(src)
 	visible_message(span_notice("[user] enters [src]."), \
 		span_notice("You enter [src]."))
-	playsound(src, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(src, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 
 //Dump out all living from the car
 /obj/darkpack_car/proc/empty_car()
@@ -452,7 +452,7 @@
 	if(dumpe?.client)
 		dumpe.client.pixel_x = 0
 		dumpe.client.pixel_y = 0
-	playsound(src, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(src, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 	for(var/datum/action/darkpack_car/C in dumpe.actions)
 		qdel(C)
 

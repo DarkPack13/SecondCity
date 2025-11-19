@@ -9,7 +9,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/vampire_clan/init_possible_values()
-	// TODO: [Rebase] implement whitelisting
+	// DARKPACK TODO - implement whitelisting
 	return assoc_to_keys(GLOB.vampire_clan_list)
 
 /datum/preference/choiced/vampire_clan/icon_for(value)

@@ -159,7 +159,7 @@ DYNAMIC_CONFIG_ENABLED
 #ALLOW_RANDOM_EVENTS
 
 ## Uncomment this to disable station traits.
-FORBID_STATION_TRAITS
+#FORBID_STATION_TRAITS
 
 ## The lower bound, in deciseconds, for how soon another random event can be scheduled.
 ## Defaults to 1500 deciseconds or 2.5 minutes

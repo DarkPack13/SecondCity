@@ -5,8 +5,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/doors.dmi'
 	icon_state = "door-1"
 	base_icon_state = "door"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = CLOSED_DOOR_LAYER
 	pixel_w = -16
 
 	anchored = TRUE
@@ -23,15 +22,15 @@
 	var/closed = TRUE
 	var/locked = FALSE
 	var/door_broken = FALSE
-	var/door_layer = ABOVE_ALL_MOB_LAYER
+	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
 	var/glass = FALSE
 	var/lockpick_timer = LOCKTIMER_1
 	var/lockpick_difficulty = LOCKDIFFICULTY_1
 
-	var/open_sound = 'modular_darkpack/modules/deprecated/sounds/door_open.ogg'
-	var/close_sound = 'modular_darkpack/modules/deprecated/sounds/door_close.ogg'
-	var/lock_sound = 'modular_darkpack/modules/deprecated/sounds/door_locked.ogg'
+	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
+	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
+	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
 
 /obj/structure/vampdoor/Initialize(mapload)
@@ -123,7 +122,7 @@
 	fix_door()
 
 /obj/structure/vampdoor/proc/break_door(mob/user)
-	playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 100, FALSE)
+	playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
 	if(user)
@@ -204,7 +203,7 @@
 				else
 					pixel_z = pixel_z+rand(-1, 1)
 					pixel_w = pixel_w+rand(-1, 1)
-					playsound(get_turf(src), 'modular_darkpack/modules/doors/sounds/get_bent.ogg', 50, TRUE)
+					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
 					to_chat(user, span_warning("You aren't strong enough to break it down!"))
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
@@ -275,7 +274,7 @@
 	if(locked)
 		proc_unlock(5)
 		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
-		for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+		for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			P.Aggro(user)
 		var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))

@@ -13,7 +13,7 @@
 
 	RESET_TO_EXPECTED(run_loc_floor_bottom_left)
 	run_loc_floor_bottom_left.ScrapeAway()
-	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/floor/plating, "Iron floors should scrape away to plating")
+	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/floor/plating/concrete, "Iron floors should scrape away to plating") // DARKPACK EDIT CHANGE
 
 	run_loc_floor_bottom_left.ScrapeAway()
 	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/space, "Plating should scrape away to space")
@@ -57,7 +57,7 @@
 	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, EXPECTED_FLOOR_TYPE, "PlaceOnBottom shouldn't have changed turf")
 
 	run_loc_floor_bottom_left.ScrapeAway()
-	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/floor/plating, "Iron floors should scrape away to plating")
+	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/floor/plating/concrete, "Iron floors should scrape away to plating") // DARKPACK EDIT CHANGE
 
 	run_loc_floor_bottom_left.ScrapeAway()
 	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/open/space, "Plating should've scraped off to space")

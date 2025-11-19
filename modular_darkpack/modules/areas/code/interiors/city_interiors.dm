@@ -49,7 +49,7 @@
 	name = "Glasswalker's Lab"
 	icon_state = "supply"
 	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+	music_index = MUSIC_FOREST
 	fire_controled = TRUE
 
 /area/vtm/interior/penumbra
@@ -57,7 +57,7 @@
 	icon_state = "church"
 	ambience_index = AMBIENCE_NATURE
 	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/penumbra.ogg'
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/penumbra.ogg')
 	fire_controled = FALSE
 
 /area/vtm/interior/backrooms
@@ -71,14 +71,14 @@
 	name = "Wyrm Corruption"
 	icon_state = "graveyard"
 	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+	music_index = MUSIC_FOREST
 	fire_controled = FALSE
 
 /area/vtm/interior/old_clan_tzimisce_manor
 	name = "Old Clan Tzimisce Manor"
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/prince.ogg'
+	music_index = MUSIC_PRINCE
 
 /area/vtm/interior/strip_elysium
 	name = "Strip Club Elysium"
@@ -103,6 +103,7 @@
 	name = "Clinic"
 	icon_state = "clinic"
 	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_SAFE
 	fire_controled = TRUE
 
 /area/vtm/interior/clinic/haven
@@ -123,13 +124,14 @@
 /area/vtm/interior/church
 	name = "Church"
 	icon_state = "church"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
 	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_CHURCH
 	fire_controled = TRUE
 
 /area/vtm/interior/elevator
 	name = "Elevator"
 	icon_state = "prince"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/lift.ogg'
 	zone_type = ZONE_ELYSIUM
+	// Most elevators handle themselves with those little effect thingys
+	ambience_index = null
 	fire_controled = TRUE

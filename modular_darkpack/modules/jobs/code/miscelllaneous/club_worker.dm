@@ -5,7 +5,7 @@
 	spawn_positions = 4
 	supervisors = /datum/job/vampire/primogen_toreador
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/club_worker
+	outfit = /datum/outfit/job/vampire/club_worker
 	config_tag = "CLUB_WORKER"
 	display_order = JOB_DISPLAY_ORDER_STRIP
 	exp_required_type_department = EXP_TYPE_CLUB
@@ -20,10 +20,10 @@
 	minimal_masquerade = 3
 	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_KIASYD)
 
-/datum/outfit/job/club_worker
+/datum/outfit/job/vampire/club_worker
 	name = "Stripper"
 	jobtype = /datum/job/vampire/citizen
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/strip
 	id = /obj/item/watch
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)

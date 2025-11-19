@@ -31,10 +31,6 @@
 
 	var/list/knowscontacts = list()
 
-	var/mysticism_knowledge = FALSE
-
-	var/thaumaturgy_knowledge = FALSE
-
 	var/elysium_checks = 0
 	var/bloodhunted = FALSE
 
@@ -53,7 +49,6 @@
 	var/last_bloodpower_click = 0
 
 	var/harm_focus = SOUTH
-	var/flavor_text
 	var/true_real_name
 	var/died_already = FALSE
 

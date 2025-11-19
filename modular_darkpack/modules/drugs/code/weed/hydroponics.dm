@@ -1,7 +1,7 @@
 /obj/structure/weedshit
 	name = "hydroponics"
 	desc = "Definitely not for the weed."
-	icon = 'modular_darkpack/modules/deprecated/icons/weed.dmi'
+	icon = 'modular_darkpack/modules/drugs/icons/weed.dmi'
 	icon_state = "soil_dry0"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
@@ -55,8 +55,8 @@
 			return
 
 /obj/structure/weedshit/attackby(obj/item/W, mob/living/user, params)
-	if(istype(W, /obj/item/bailer))
-		var/obj/item/bailer/B = W
+	if(istype(W, /obj/item/reagent_containers/cup/watering_can/metal))
+		var/obj/item/reagent_containers/cup/watering_can/metal/B = W
 		if(B.amount_of_water)
 			B.amount_of_water = max(0, B.amount_of_water-1)
 			wet = TRUE
@@ -64,7 +64,7 @@
 			playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
 		else
 			to_chat(user, span_warning("[W] is empty!"))
-	if(istype(W, /obj/item/weedseed))
+	if(istype(W, /obj/item/seeds/cannabis))
 		if(growth_stage == 0)
 			health = 3
 			growth_stage = 1

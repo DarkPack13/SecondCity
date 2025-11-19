@@ -1,7 +1,11 @@
-/obj/structure/vampdoor/wood
+/obj/structure/vampdoor/wood // Six paneled plain wooden door
+	name = "wooden door"
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	burnable = TRUE
+	open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
+	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
+	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
 /obj/structure/vampdoor/wood/strip
 	lock_id = "strip"
@@ -38,3 +42,8 @@
 	name = "Jazz Club"
 	lock_id = "milleniumCommon"
 	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/wood/daughters
+	locked = TRUE
+	lock_id = "daughters"
+	lockpick_difficulty = 10

@@ -9,6 +9,11 @@
 
 #define iskindred(A) (is_species(A, /datum/species/human/kindred))
 #define isghoul(A) (is_species(A, /datum/species/human/ghoul))
+#define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A))
+#define isavatar(A) (FALSE)
+#define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
+
+// DARKPACK TODO - implement other splats
 #define isfera(A) (is_species(A, /datum/species/human/fera))
 #define isgarou(A) (is_species(A, /datum/species/human/fera/garou))
 #define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A) || ishomid(A) || iscrinos(A) || isglabro(A) || ishispo(A) || islupus(A) || isfera(A))

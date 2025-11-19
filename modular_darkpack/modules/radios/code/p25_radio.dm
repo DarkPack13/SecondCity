@@ -1,8 +1,5 @@
 // P25 Radio System
 
-GLOBAL_LIST_EMPTY(p25_radios)
-GLOBAL_LIST_EMPTY(p25_transceivers)
-
 /obj/machinery/p25transceiver
 	name = "P25 transceiver"
 	desc = "A stationary P25 radio transceiver that handles radio connections."
@@ -177,7 +174,7 @@ GLOBAL_LIST_EMPTY(p25_transceivers)
 
 	message = replacetext(message, "\[<b>", "\[<b>TRANSCEIVER</b>\] \[<b>")
 
-	for(var/mob/listener in get_hearers_in_view(7, get_turf(src)))
+	for(var/mob/listener in get_hearers_in_view(DEFAULT_SIGHT_DISTANCE, get_turf(src)))
 		to_chat(listener, message)
 
 /obj/machinery/p25transceiver/proc/broadcast_to_network(message, network = src.p25_network, play_sound = 'sound/effects/radioclick.ogg', sound_volume = 30, check_dispatch = FALSE)
@@ -380,7 +377,7 @@ GLOBAL_LIST_EMPTY(p25_transceivers)
 	var/area/A = get_area(source)
 	var/coords = "[T.x], [T.y]"
 	var/prefix = source.get_prefix()
-	var/emergency_msg = "\[<b>[span_red("[prefix]-[source.callsign]")]</b>\]: [span_robot("<b><span class='red'>11-99 OFFICER NEEDS ASSISTANCE AT: [A.name] ([coords])")]</b></span>"
+	var/emergency_msg = "\[<b>[span_red("[prefix]-[source.callsign]")]</b>\]: [span_robot("<b>[span_red("11-99 OFFICER NEEDS ASSISTANCE AT: [A.name] ([coords])")]</b>")]"
 	var/formatted = "[icon2html(source, world)] [emergency_msg]"
 
 	return broadcast_to_network(formatted, "police", 'sound/effects/radioalert.ogg', 100)

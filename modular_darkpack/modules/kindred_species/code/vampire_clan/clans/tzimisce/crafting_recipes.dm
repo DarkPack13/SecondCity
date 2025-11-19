@@ -24,7 +24,7 @@
 	name = "Implanting Flesh Device"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/knife/vamp = 1, /obj/item/reagent_containers/blood = 1)
-	result = /obj/item/autosurgeon // DARKPACK TODO: Tzimisce autosurgeon
+	result = /obj/item/autosurgeon // DARKPACK TODO - Tzimisce autosurgeon
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_floor
@@ -33,13 +33,15 @@
 	reqs = list(/obj/item/stack/human_flesh = 1, /obj/item/guts = 1)
 	result = /obj/effect/decal/gut_floor
 	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_ON_SOLID_GROUND|CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/tzi_wall
 	name = "Flesh Wall"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 2)
-	result = /turf/closed/wall/mineral/iron // DARKPACK TODO: Tzimisce walls
+	result = /turf/closed/wall/mineral/iron // DARKPACK TODO - Tzimisce walls
 	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/tzi_stool
 	name = "Arm Stool"
@@ -61,6 +63,7 @@
 	reqs = list(/obj/item/stack/human_flesh = 5, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/spine = 1, /obj/item/guts = 1)
 	result = /mob/living/basic/fister
 	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/tzi_tanker
 	name = "Fat Abomination"
@@ -68,3 +71,4 @@
 	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/bodypart/arm/right = 1, /obj/item/bodypart/arm/left = 1, /obj/item/bodypart/leg/right = 1, /obj/item/bodypart/leg/left = 1, /obj/item/spine = 1, /obj/item/guts = 2)
 	result = /mob/living/basic/tanker
 	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_CHECK_DENSITY

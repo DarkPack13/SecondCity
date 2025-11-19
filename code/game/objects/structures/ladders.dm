@@ -257,7 +257,7 @@
 
 	// Our climbers athletics ability
 	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
-	// TODO: [Rebase] standardize stat doafter delays
+	// DARKPACK TODO - standardize stat doafter delays
 	var/fitness_level = 1
 	if(isliving(user))
 		var/mob/living/living_user = user

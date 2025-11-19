@@ -80,21 +80,7 @@
 		toggle_move_intent(src)
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
-	var/atom/fear
-	for(var/obj/effect/fire/F in GLOB.fires_list)
-		if(get_dist(src, F) < 7 && F.z == src.z)
-			if(get_dist(src, F) < 6)
-				fear = F
-			if(get_dist(src, F) < 5)
-				fear = F
-			if(get_dist(src, F) < 4)
-				fear = F
-			if(get_dist(src, F) < 3)
-				fear = F
-			if(get_dist(src, F) < 2)
-				fear = F
-			if(get_dist(src, F) < 1)
-				fear = F
+	var/atom/fear = get_closest_atom(/obj/effect/abstract/turf_fire, view(7, src), src)
 
 //	if(!fear && !frenzy_target)
 //		return
@@ -140,13 +126,13 @@
 /mob/living/carbon/proc/get_frenzy_targets()
 	var/list/targets = list()
 	if(iskindred(src))
-		for(var/mob/living/L in oviewers(7, src))
+		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			if(!iskindred(L) && L.bloodpool && L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)
 					return L
 	else
-		for(var/mob/living/L in oviewers(7, src))
+		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			if(L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)

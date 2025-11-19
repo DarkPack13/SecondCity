@@ -1,0 +1,3 @@
+/obj/item/trash/vampirecrisps : /obj/item/trash/chips {@OLD}
+/obj/item/food/vampire/crisps : /obj/item/food/chips {@OLD}
+
