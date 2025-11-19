@@ -85,7 +85,7 @@
 	name = "Glasswalker's Lab"
 	icon_state = "supply"
 	zone_type = ZONE_NO_MASQUERADE
-	music_index = MUSIC_FOREST
+	musictracks = MUSIC_FOREST
 	fire_controled = TRUE
 
 /area/vtm/interior/penumbra
@@ -107,14 +107,14 @@
 	name = "Wyrm Corruption"
 	icon_state = "graveyard"
 	zone_type = ZONE_NO_MASQUERADE
-	music_index = MUSIC_FOREST
+	musictracks = MUSIC_FOREST
 	fire_controled = FALSE
 
 /area/vtm/interior/tzimisce_manor
 	name = "Tzimisce Manor"
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
-	music_index = MUSIC_PRINCE
+	musictracks = MUSIC_PRINCE
 
 /area/vtm/interior/strip_elysium
 	name = "Strip Club - Elysium"
@@ -139,7 +139,7 @@
 	name = "Clinic"
 	icon_state = "clinic"
 	ambience_index = AMBIENCE_OFFICE
-	music_index = MUSIC_SAFE
+	musictracks = MUSIC_SAFE
 	fire_controled = TRUE
 
 /area/vtm/interior/clinic/haven
@@ -175,7 +175,7 @@
 	name = "Church"
 	icon_state = "church"
 	ambience_index = AMBIENCE_OFFICE
-	music_index = MUSIC_CHURCH
+	musictracks = MUSIC_CHURCH
 	fire_controled = TRUE
 
 /area/vtm/interior/church/staff

@@ -1,7 +1,7 @@
 /area/vtm/interior/millennium_tower
 	name = "Millennium Tower F1"
 	icon_state = "millenniumtowerf1"
-	music_index = MUSIC_PRINCE
+	musictracks = MUSIC_PRINCE
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
