@@ -6827,6 +6827,7 @@
 #include "modular_darkpack\master_files\code\modules\mob\living\living.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\living_defines.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\living_movement.dm"
+#include "modular_darkpack\master_files\code\modules\mob\living\basic\farm_animals\deer\deer.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\basic\space_fauna\ghost.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon_defines.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon_movement.dm"
