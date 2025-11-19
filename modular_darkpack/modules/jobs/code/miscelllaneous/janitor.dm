@@ -6,7 +6,7 @@
 	spawn_positions = 6
 	supervisors = SUPERVISOR_CAMARILLA
 	config_tag = "JANITOR"
-	outfit = /datum/outfit/job/janitor
+	outfit = /datum/outfit/job/vampire/janitor
 	job_flags = CITY_JOB_FLAGS
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
 	department_for_prefs = /datum/job_department/city_services
@@ -19,13 +19,13 @@
 	description = "Keep the streets clean. You are paid to keep your mouth shut about the things you see."
 	minimal_masquerade = 0
 
-/datum/outfit/job/janitor
+/datum/outfit/job/vampire/janitor
 	name = "Street Janitor"
 	jobtype = /datum/job/vampire/janitor
 
 	id = /obj/item/card/cleaning
 	uniform = /obj/item/clothing/under/vampire/janitor
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/cleaning
 	shoes = /obj/item/clothing/shoes/vampire/jackboots/work
 	gloves = /obj/item/clothing/gloves/vampire/cleaning

@@ -6,7 +6,7 @@
 
 /obj/ritualrune/blood_trap/complete()
 	if(!activated)
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		activated = TRUE
 		alpha = 28
 		AddElement(/datum/element/connect_loc, list(COMSIG_ATOM_ENTERED = PROC_REF(on_crossed)))
@@ -17,7 +17,7 @@
 	if(isliving(arrived) && activated)
 		var/mob/living/L = arrived
 		L.adjustFireLoss(50 + activator_bonus)
-		playsound(loc, 'modular_darkpack/modules/powers/code/discipline/thaumaturgy/sounds/thaum.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		qdel(src)
 
 /obj/ritualrune/blood_trap/Destroy()

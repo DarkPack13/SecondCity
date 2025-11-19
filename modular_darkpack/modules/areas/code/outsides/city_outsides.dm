@@ -2,19 +2,19 @@
 	name = "Financial District"
 	icon_state = "financialdistrict"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/ghetto
 	name = "Ghetto"
 	icon_state = "ghetto"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/pacificheights
 	name = "Pacific Heights"
 	icon_state = "pacificheights"
 	ambience_index = AMBIENCE_NATURE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hollywood.ogg'
+	music_index = MUSIC_HOLLYWOOD
 
 /area/vtm/outside/pacificheights/forest
 	name = "Pacific Heights Forest Outskirts"
@@ -32,13 +32,13 @@
 	name = "Chinatown"
 	icon_state = "chinatown"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/chinatown.ogg'
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/chinatown.ogg')
 
 /area/vtm/outside/fishermanswharf
 	name = "Fisherman's Wharf"
 	icon_state = "fishermanswharf"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
+	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/fishermanswharf/ghetto
 	name = "Fisherman's Wharf - Ghetto"
@@ -53,7 +53,10 @@
 	name = "North Beach"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
+	//The waves dont really stop.
+	min_ambience_cooldown = 0 SECONDS
+	max_ambience_cooldown = 5 SECONDS
+	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/baywalk
 	name = "Baywalk District"
@@ -65,13 +68,13 @@
 	name = "Union Square"
 	icon_state = "unionsquare"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/park
 	name = "Park"
 	icon_state = "park"
 	ambience_index = AMBIENCE_NATURE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/supply
 	name = "Supply"

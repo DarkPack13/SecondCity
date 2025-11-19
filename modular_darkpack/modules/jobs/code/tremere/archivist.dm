@@ -6,7 +6,7 @@
 	spawn_positions = 4
 	supervisors = SUPERVISOR_REGENT
 	config_tag = "CHANTRY_ARCHIVIST"
-	outfit = /datum/outfit/job/archivist
+	outfit = /datum/outfit/job/vampire/archivist
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
@@ -21,7 +21,7 @@
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
 	known_contacts = list("Tremere Regent")
 
-/datum/outfit/job/archivist
+/datum/outfit/job/vampire/archivist
 	name = "Archivist"
 	jobtype = /datum/job/vampire/archivist
 
@@ -31,7 +31,7 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	uniform = /obj/item/clothing/under/vampire/archivist
 	r_pocket = /obj/item/vamp/keys/archive
-	//l_pocket = /obj/item/vamp/phone/archivist
+	l_pocket = /obj/item/smartphone/archivist
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
 

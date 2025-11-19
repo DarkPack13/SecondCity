@@ -135,7 +135,7 @@
 		if(iswallturf(location))
 			return location
 		for(var/atom/A in location)
-			// TODO: [Rebase] reimplement decor
+			// DARKPACK TODO - reimplement decor
 			/*
 			if(A.density && !istype(A, /obj/structure/lamppost))
 				return location
@@ -240,7 +240,7 @@
 	return TRUE
 
 /mob/living/carbon/human/npc/proc/observed_by_player()
-	for (var/mob/observing_mob in viewers(7, src))
+	for (var/mob/observing_mob in viewers(DEFAULT_SIGHT_DISTANCE, src))
 		if (!observing_mob.client)
 			continue
 		return TRUE
@@ -263,15 +263,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// TODO: [Rebase] reimplement fire
-	/*
-	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(7, src))
-		afraid_of_fire = seen_fire
-		seeing_fire = TRUE
-	if (!seeing_fire)
-		afraid_of_fire = null
-	*/
+	afraid_of_fire = locate(/obj/effect/abstract/turf_fire) in view(DEFAULT_SIGHT_DISTANCE, src)
 
 	// Combat behaviour
 	if (danger_source)
@@ -280,7 +272,7 @@
 			GLOB.move_manager.move_away(src, danger_source, 10, cached_multiplicative_slowdown)
 		else
 			// Criminals will attack anyone, others will only attack non-police
-			// TODO: [Rebase] reimplement IDs
+			// DARKPACK TODO - reimplement IDs
 			/*
 			var/obj/item/card/id/id_card = danger_source.get_idcard(FALSE)
 			if (!istype(id_card, /obj/item/card/id/police) || is_criminal)
@@ -306,13 +298,10 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// TODO: [Rebase] reimplement fire
-	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
 		if (prob(25))
 			emote("scream")
-	*/
 
 	// Walking around behaviour
 	else if (walktarget && !staying)

@@ -292,7 +292,7 @@
 			if(HAS_TRAIT(brain, TRAIT_GHOSTROLE_ON_REVIVE))
 				npc_message = "Soul is pending..."
 			else if(!key)
-				npc_message = "[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely."
+				npc_message = "[t_He] [t_is] totally catatonic. The horrors of this place must have been too much for [t_him]. Any recovery is unlikely." // DARKPACK EDIT CHANGE
 			else if(!client)
 				npc_message ="[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon."
 			if(npc_message)
@@ -328,7 +328,7 @@
 	if(isliving(user) && HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		. += compare_fitness(user)
 
-	//DARKPACK EDIT ADD START
+	// DARKPACK EDIT ADD START
 	if(ishumanbasic(user))
 		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
 
@@ -336,7 +336,7 @@
 	if(custom_examine_message)
 		. += span_purple(custom_examine_message)
 	. += flavor_text_creation()
-	//DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD END
 
 	var/hud_info = get_hud_examine_info(user)
 	if(length(hud_info))

@@ -1,4 +1,4 @@
-/datum/outfit/job/national_guard
+/datum/outfit/job/vampire/national_guard
 	name = "National Guard Soldier"
 	//ears = /obj/item/p25radio/police/government
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
@@ -53,7 +53,7 @@
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
 		if("Flamethrower")
-			owner.current.put_in_r_hand(new /obj/item/vampire_flamethrower(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/liquid_flamethrower(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/gas_can/full(owner.current))
 		if("EOD")
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))
@@ -81,7 +81,7 @@
 	show_to_ghosts = TRUE
 	var/always_new_team = FALSE
 	var/datum/team/national_guard/national_guard_team
-	var/national_guard_outfit = /datum/outfit/job/national_guard
+	var/national_guard_outfit = /datum/outfit/job/vampire/national_guard
 	var/custom_objective
 
 /datum/antagonist/national_guard/sergeant

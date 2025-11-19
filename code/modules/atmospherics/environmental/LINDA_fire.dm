@@ -175,6 +175,11 @@
 	if(!istype(location) || !location.air)
 		return FALSE
 
+	// DARKPACK EDIT ADD START - TURF_FIRE
+	if(SEND_SIGNAL(location, COMSIG_TURF_HOTSPOT_EXPOSE) & SUPPRESS_FIRE)
+		return FALSE
+	// DARKPACK EDIT ADD END
+
 	if(location.active_hotspot && location.active_hotspot != src)
 		// If we're attempting to spawn on a turf which *just* had a hotspot spawned on it, abort and kill ourselves
 		if(location.active_hotspot.just_spawned)

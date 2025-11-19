@@ -135,7 +135,7 @@
 			for(var/mob/living/L in orange(5, owner))
 				L.adjustFireLoss(40)
 			for(var/turf/T in orange(4, get_turf(owner)))
-				var/obj/effect/fire/F = new(T)
+				var/obj/effect/abstract/turf_fire/F = new(T)
 				spawn(5)
 					qdel(F)
 
