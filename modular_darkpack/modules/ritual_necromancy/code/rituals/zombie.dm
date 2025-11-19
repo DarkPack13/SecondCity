@@ -68,17 +68,26 @@
 				poll_candidates = TRUE,\
 				role_name = "a Sentient Zombie",\
 				assumed_control_message = "You are a Sentient Zombie, a Wraith who has been mercifully granted a skinride by your master. Serve them well, and enjoy your taste of a life taken from you.",\
+				after_assumed_control = CALLBACK(src, PROC_REF(on_zombie_possess), target_body),\
 			)
-			var/choice = tgui_alert(target_body, "Do you want to pick a new name as a Zombie?", "Zombie Choose Name", list("Yes", "No"), 10 SECONDS)
-			if(choice == "Yes")
-				var/chosen_zombie_name = tgui_input_text(target_body, "What is your new name as a Zombie?", "Zombie Name Input")
-				target_body.real_name = chosen_zombie_name
-				target_body.name = chosen_zombie_name
-				target_body.update_name()
-			else
-				target_body.visible_message(span_ghostalert("[target_body.name] twitches to unlife!"))
-				qdel(src)
-				return
+			qdel(src)
+			return
 
 		target_body.visible_message(span_ghostalert("[target_body.name] twitches to unlife!"))
 		qdel(src)
+
+/obj/necrorune/zombie/proc/on_zombie_possess(mob/living/carbon/human/zombie)
+	zombie.visible_message(span_ghostalert("A Wraith posesses the corpse, [zombie.name] twitches to unlife!"))
+	ask_zombie_name(zombie)
+	qdel(src)
+
+/obj/necrorune/zombie/proc/ask_zombie_name(mob/living/carbon/human/zombie)
+	var/choice = tgui_alert(zombie, "Do you want to pick a new name as a Zombie?", "Zombie Choose Name", list("Yes", "No"), 10 SECONDS)
+	if(choice == "Yes")
+		var/chosen_zombie_name = tgui_input_text(zombie, "What is your new name as a Zombie?", "Zombie Name Input")
+		if(chosen_zombie_name)
+			zombie.real_name = chosen_zombie_name
+			zombie.name = chosen_zombie_name
+			zombie.update_name()
+	else
+		return

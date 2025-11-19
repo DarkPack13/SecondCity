@@ -193,7 +193,7 @@
 #define SPECIES_SKELETON "skeleton"
 #define SPECIES_SNAIL "snail"
 #define SPECIES_VAMPIRE "vampire"
-#define SPECIES_ZOMBIE "zombie"
+#define SPECIES_ZOMBIE "rotten2" // DARKPACK EDIT -- Original : #define SPECIES_ZOMBIE "zombie"
 #define SPECIES_ZOMBIE_INFECTIOUS "memezombie"
 #define SPECIES_ZOMBIE_KROKODIL "krokodil_zombie"
 #define SPECIES_VOIDWALKER "voidwalker"

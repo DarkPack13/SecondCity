@@ -525,6 +525,7 @@
 	//DARKPACK EDIT ADDITION -- Necromancy
 	if(HAS_TRAIT(src, TRAIT_GHOST_VISION))
 		new_sight |= SEE_INVISIBLE_OBSERVER
+		see_invisible = SEE_INVISIBLE_OBSERVER
 	//DARKPACK EDIT END -- Necromancy
 
 	set_sight(new_sight)
