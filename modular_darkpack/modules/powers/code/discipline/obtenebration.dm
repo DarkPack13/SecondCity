@@ -113,7 +113,7 @@
 
 	if(target_turf && target_turf.get_lumcount() <= 0.4) // Only works if the area is dark enough. Modify as needed.
 		// Remove any existing tentacles first
-		for(var/mob/living/simple_animal/hostile/abyss_tentacle/T in world)
+		for(var/mob/living/basic/abyss_tentacle/T in world)
 			if(T.owner == owner)
 				T.release_grabbed_mob()
 				qdel(T)
@@ -133,7 +133,7 @@
 		for(var/i in 1 to roll)
 			// For the first tentacle, use the target turf
 			if(i == 1 && !target_turf.is_blocked_turf(exclude_mobs = TRUE))
-				new /mob/living/simple_animal/hostile/abyss_tentacle(target_turf, owner)
+				new /mob/living/basic/abyss_tentacle(target_turf, owner)
 			else
 				// For additional tentacles, find nearby valid turfs
 				var/list/open_turfs = list()
@@ -141,7 +141,7 @@
 					if(!T.is_blocked_turf(exclude_mobs = TRUE) && T.get_lumcount() <= 0.4)
 						open_turfs += T
 				if(open_turfs.len)
-					new /mob/living/simple_animal/hostile/abyss_tentacle(pick(open_turfs), owner)
+					new /mob/living/basic/abyss_tentacle(pick(open_turfs), owner)
 	else
 		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
 		return FALSE
@@ -208,7 +208,7 @@
 	if(!successful)
 		return
 	to_chat(owner, span_notice("The shadows fall away from your body."))
-	playsound(owner.loc, 'sound/magic/voidblink.ogg', 50, FALSE)
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.damage_resistance -= 60
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
@@ -265,7 +265,7 @@
 /datum/discipline_power/obtenebration/tenebrous_form/activate()
 	. = ..()
 	activating = FALSE
-	playsound(owner.loc, 'sound/magic/voidblink.ogg', 50, FALSE)
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	saved_brute_mod = owner.physiology.brute_mod
 	owner.physiology.brute_mod = 0
 	saved_clone_mod = owner.physiology.clone_mod
@@ -276,13 +276,13 @@
 	owner.physiology.brain_mod = 0
 	animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
 
-	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
-	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
+	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
-	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC) // Flying to simulate being unaffected by gravity
-	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC) // Trait to phase through doors
-	ADD_TRAIT(owner, TRAIT_PASSTABLE, MAGIC) // Trait to phase through tables
+	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
+	ADD_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT) // Trait to phase through tables
 
 	saved_density = owner.density
 	owner.density = FALSE
@@ -290,20 +290,20 @@
 /datum/discipline_power/obtenebration/tenebrous_form/deactivate()
 	. = ..()
 	to_chat(owner, span_notice("You return to your normal form."))
-	playsound(owner.loc, 'sound/magic/voidblink.ogg', 50, FALSE)
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.brute_mod = saved_brute_mod
 	owner.physiology.clone_mod = saved_clone_mod
 	owner.physiology.stamina_mod = saved_stamina_mod
 	owner.physiology.brain_mod = saved_brain_mod
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
-	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
-	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
+	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC)
-	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC)
-	REMOVE_TRAIT(owner, TRAIT_PASSTABLE, MAGIC)
+	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT)
 
 	owner.density = saved_density
 
@@ -335,7 +335,7 @@
 /datum/action/aggro_mode
 	name = "Tentacle Control"
 	desc = "Switches the aggro mode of your Arms of the Abyss"
-	icon_icon = 'icons/hud/screen_glass.dmi'
+	button_icon = 'icons/hud/screen_glass.dmi'
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
 
@@ -365,7 +365,7 @@
 	Tuser.tentacle_aggro_mode = select
 
 	var/tentacles = 0
-	for(var/mob/living/simple_animal/hostile/abyss_tentacle/T in world)
+	for(var/mob/living/basic/abyss_tentacle/T in world)
 		if(T.owner == Tuser)
 			T.aggro_mode = select
 			tentacles++
@@ -396,7 +396,7 @@
 /datum/action/clear_shadows
 	name = "Clear Shadows"
 	desc = "Clears all currently active Shadow Play shadows"
-	icon_icon = 'icons/effects/genetics.dmi'
+	button_icon = 'icons/effects/genetics.dmi'
 	button_icon_state = "shadow_portal"
 	var/datum/discipline_power/obtenebration/shadow_play/power
 
