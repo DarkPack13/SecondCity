@@ -4,34 +4,27 @@ var/global/list/global_tentacle_grabs = list()
 /mob/living/basic/abyss_tentacle
 	name = "abyssal tentacle"
 	desc = "A shadowy tentacle from the abyss that seeks to grab and crush its prey."
-	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "Goliath_tentacle_wiggle"
 	icon_living = "Goliath_tentacle_wiggle"
 	icon_dead = "Goliath_tentacle_retract"
 	color = rgb(0,0,0)
 	layer = BELOW_MOB_LAYER
 	anchored = TRUE
-	notransform = TRUE
 	density = FALSE
 	maxHealth = 120
 	health = 120
 	see_in_dark = 10
 
-	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	speak_emote = list("writhes")
+	basic_mob_flags = DEL_ON_DEATH
 
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
-	maxbodytemp = 1500
-	del_on_death = TRUE
 
-	vision_range = 7
-	aggro_vision_range = 7
 	environment_smash = ENVIRONMENT_SMASH_NONE
 
 	var/mob/living/owner
@@ -110,7 +103,7 @@ var/global/list/global_tentacle_grabs = list()
 		COOLDOWN_START(src, damage_cooldown, 5 SECONDS)
 		grabbed_mob.apply_damage(40, BRUTE)
 		to_chat(grabbed_mob, span_danger("The tentacle tightens its grip, crushing you!"))
-		playsound(/mob/living/basic/abyss_tentacle, 'sound/creatures/venus_trap_hurt.ogg', 50, FALSE)
+		playsound(/mob/living/basic/abyss_tentacle, 'sound/mobs/non-humanoids/venus_trap/venus_trap_hurt.ogg', 50, FALSE)
 
 /mob/living/basic/abyss_tentacle/proc/grab_mob(mob/living/target)
 	// More checks

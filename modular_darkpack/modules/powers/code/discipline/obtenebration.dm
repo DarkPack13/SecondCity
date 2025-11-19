@@ -189,7 +189,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_COURAGE), 7, FALSE, owner)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, FALSE, owner)
 	if(roll == ROLL_SUCCESS)
 		successful = TRUE
 		owner.physiology.damage_resistance += 60
@@ -268,8 +268,8 @@
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	saved_brute_mod = owner.physiology.brute_mod
 	owner.physiology.brute_mod = 0
-	saved_clone_mod = owner.physiology.clone_mod
-	owner.physiology.clone_mod = 0
+	//saved_clone_mod = owner.physiology.clone_mod
+	//owner.physiology.clone_mod = 0
 	saved_stamina_mod = owner.physiology.stamina_mod
 	owner.physiology.stamina_mod = 0
 	saved_brain_mod = owner.physiology.brain_mod
@@ -278,7 +278,7 @@
 
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
-	ADD_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
 	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
@@ -292,42 +292,20 @@
 	to_chat(owner, span_notice("You return to your normal form."))
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.brute_mod = saved_brute_mod
-	owner.physiology.clone_mod = saved_clone_mod
+	//owner.physiology.clone_mod = saved_clone_mod
 	owner.physiology.stamina_mod = saved_stamina_mod
 	owner.physiology.brain_mod = saved_brain_mod
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT)
 
 	owner.density = saved_density
-
-//SHADOWSTEP
-/datum/discipline_power/obtenebration/shadowstep
-	name = "Shadowstep"
-	desc = "Become one with the shadows and move without your physical form."
-
-	level = 6
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
-	vitae_cost = 0
-
-	violates_masquerade = TRUE
-
-	cooldown_length = 20 SECONDS
-
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/shadowstep
-
-/datum/discipline_power/obtenebration/shadowstep/activate()
-	. = ..()
-	if (!shadowstep)
-		shadowstep = new
-
-	shadowstep.cast(user = owner)
 
 // **************************************************************** ACTIONS ****************************************************************
 
@@ -341,8 +319,7 @@
 
 /datum/action/aggro_mode/New()
 	..()
-	button.name = name
-	update_icon_state()
+	UpdateButton()
 
 /datum/action/aggro_mode/Trigger(trigger_flags)
 	. = ..()
@@ -372,14 +349,9 @@
 
 	if(tentacles)
 		to_chat(Tuser, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
-		update_icon_state()
+		UpdateButton()
 
-/datum/action/aggro_mode/proc/update_icon_state()
-	if(button)
-		button.overlays.Cut()
-		button.icon = null
-		button.icon_state = ""
-
+/datum/action/aggro_mode/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force = FALSE)
 	switch(current_mode)
 		if("Aggressive")
 			button_icon_state = "harm"
@@ -387,16 +359,13 @@
 			button_icon_state = "grab"
 		if("Passive")
 			button_icon_state = "disarm"
-
-	if(button)
-		button.icon = icon_icon
-		button.icon_state = button_icon_state
+	return ..()
 
 // Shadow removal button for Shadow Play
 /datum/action/clear_shadows
 	name = "Clear Shadows"
 	desc = "Clears all currently active Shadow Play shadows"
-	button_icon = 'icons/effects/genetics.dmi'
+	button_icon = 'icons/mob/effects/genetics.dmi'
 	button_icon_state = "shadow_portal"
 	var/datum/discipline_power/obtenebration/shadow_play/power
 
