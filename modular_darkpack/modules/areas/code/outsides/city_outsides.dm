@@ -62,7 +62,7 @@
 	name = "Baywalk District"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/santamonica.ogg'
+	musictracks = MUSIC_SANTAMONICA
 
 /area/vtm/outside/unionsquare
 	name = "Union Square"

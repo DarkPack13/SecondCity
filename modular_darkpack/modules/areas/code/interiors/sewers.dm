@@ -2,14 +2,14 @@
 	name = "Sewer"
 	icon_state = "sewer"
 	ambience_index = AMBIENCE_SEWER
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/enterlair.ogg'
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/nosferatu.ogg')
 	outdoors = FALSE
 	zone_type = ZONE_NO_MASQUERADE
 
 /area/vtm/interior/sewer/nosferatu_town
 	name = "Underground Town"
 	icon_state = "hotel"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/nosferatu.ogg'
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/nosferatu.ogg')
 	zone_type = ZONE_ELYSIUM
 
 /area/vtm/interior/sewer/police

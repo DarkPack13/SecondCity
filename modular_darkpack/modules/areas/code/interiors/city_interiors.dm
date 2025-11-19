@@ -160,14 +160,14 @@
 /area/vtm/interior/cabdepot
 	name = "Cab Depot"
 	icon_state = "hotel"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	musictracks = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
 /area/vtm/interior/substation
 	name = "Grid Substation"
 	icon_state = "hotel"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/downtown.ogg'
+	musictracks = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
@@ -182,14 +182,14 @@
 	name = "Church - Backrooms"
 	icon_state = "church"
 	zone_type = ZONE_ELYSIUM
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
+	musictracks = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
 /area/vtm/interior/church/haven
 	name = "Church - Restricted Floor"
 	icon_state = "old_clan_tzimisce"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
+	musictracks = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 	zone_type = ZONE_ELYSIUM
@@ -205,7 +205,7 @@
 /area/vtm/interior/theatre
 	name = "Theatre"
 	icon_state = "theatre"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/theatre.ogg'
+	musictracks = MUSIC_CITY
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
@@ -287,7 +287,7 @@
 	name = "Tzimisce Sanctum"
 	icon_state = "old_clan_sanctum"
 	zone_type = ZONE_ELYSIUM
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/nosferatu.ogg'
+	music_index = MUSIC_PRINCE
 
 /area/vtm/interior/sabbat_lair
 	name = "Interior"
