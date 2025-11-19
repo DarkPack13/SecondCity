@@ -162,7 +162,7 @@
 	var/impact_type
 
 	//Fancy hitscan lighting effects!
-	var/hitscan_light_intensity = 1.5
+	var/hitscan_light_intensity = 0.0 // DARKPACK EDIT CHANGE - ORIGINAL var/hitscan_light_intensity =  1.5
 	var/hitscan_light_range = 0.75
 	var/hitscan_light_color_override
 	var/muzzle_flash_intensity = 3
