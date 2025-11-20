@@ -36,7 +36,7 @@ path/left/color_name {\
 /obj/structure/chair/sofa/bench/metal/right
 	icon_state = "metal_right"
 
-COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, black, COLOR_ALMOST_BLACK)
+COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, black, COLOR_DARK)
 COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, yellow, "#af7d28")
 COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, blue, COLOR_TRAM_BLUE)
 COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, puce, "#cc8899") // TODO: Puce #94055
