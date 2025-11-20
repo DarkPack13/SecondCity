@@ -1,0 +1,4 @@
+author: "dwinters99"
+delete-after: True
+changes:
+  - bugfix: "NPC name and real_name now match"
