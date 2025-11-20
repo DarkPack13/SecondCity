@@ -30,6 +30,7 @@ path/corner/color_name {\
 /obj/structure/chair/sofa/bench/metal
 	name = "metal bench"
 	desc = "An uncomfortable metal bench."
+	icon = 'modular_darkpack/modules/decor/icons/bench.dmi'
 	icon_state = "metal"
 
 /obj/structure/chair/sofa/bench/metal/left
