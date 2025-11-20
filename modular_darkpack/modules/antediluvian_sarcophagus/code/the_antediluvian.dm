@@ -12,7 +12,7 @@
 	base_pixel_x = 0
 	guaranteed_butcher_results = list()
 	crusher_loot = null
-	deathmessage = "falls, shaking the ground around it"
+	death_message = "falls, shaking the ground around it"
 	score_achievement_type = /datum/award/score/antediluvian_score
 
 /datum/award/score/antediluvian_score

@@ -79,9 +79,7 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 			final_message += "[get_uncipher_num(letter, password)]"
 		return final_message
 
-/obj/sarcophagus/examine(mob/user)
-	. = ..()
-	. += "You see an engraved text on it: <b>[encipher(password, passkey)]<b>. You have no clue what that could possibly mean..."
+
 
 /obj/sarcophagus
 	name = "Unknown Sarcophagus"
@@ -90,9 +88,32 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 	icon_state = "b_sarcophagus"
 	// layer = CAR_LAYER
 	density = TRUE
+	anchored = TRUE
 	pixel_w = -8
 	var/password = "Brongus"
 	var/passkey = 5
+
+/obj/sarcophagus/Initialize(mapload)
+	. = ..()
+	password = pick(GLOB.sarcophagus_passwords)
+	if(prob(50))
+		passkey = rand(5, 15)
+	else
+		passkey = rand(-15, -5)
+	//to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS POSITION HAS BEEN LEAKED</b>"))
+	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+
+/obj/sarcophagus/examine(mob/user)
+	. = ..()
+	var/message = "You see an engraved text on it: <b>[encipher(password, passkey)]</b>."
+	if(isliving(user))
+		var/mob/living/living_user = user
+		var/roll_result = SSroll.storyteller_roll(living_user.st_get_stat(STAT_INTELLIGENCE) + living_user.st_get_stat(STAT_OCCULT), 9, list(user), user)
+		if(roll_result == ROLL_SUCCESS)
+			message += "Its definitly an ancient cipher. You shift letters in your head till you end up with [uppertext(password)]."
+		else
+			message += "You have no clue what that could possibly mean..."
+	. += message
 
 #define OPEN_SOUND 'modular_darkpack/modules/deprecated/sounds/mp_hello.ogg'
 /obj/sarcophagus/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -105,24 +126,15 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 			to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
 			SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 			var/sound_length = SSsounds.get_sound_length(OPEN_SOUND)
-			playsound(get_turf(src), OPEN_SOUND, 100, TRUE)
+			playsound(src, OPEN_SOUND, 100, FALSE)
 			spawn(sound_length)
 				icon_state = "b_sarcophagus-open0"
 				new /mob/living/simple_animal/hostile/megafauna/wendigo/antediluvian(loc)
 		return ITEM_INTERACT_SUCCESS
-
-/obj/sarcophagus/Initialize(mapload)
-	. = ..()
-	password = pick(GLOB.sarcophagus_passwords)
-	if(prob(50))
-		passkey = rand(5, 15)
-	else
-		passkey = rand(-15, -5)
-	//to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS POSITION HAS BEEN LEAKED</b>"))
-	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+#undef OPEN_SOUND
 
 /obj/fake_sarcophagus
-	name = "Voivode-in-Waiting's Sarcophagus"
+	name = "\improper Voivode-in-Waiting's Sarcophagus"
 	desc = "The Voivode-in-Waiting lies here."
 	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/sarcophagus.dmi'
 	icon_state = "b_sarcophagus"
