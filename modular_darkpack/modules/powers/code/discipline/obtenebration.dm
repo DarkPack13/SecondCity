@@ -19,6 +19,17 @@
 
 	effect_sound = 'sound/effects/magic/voidblink.ogg'
 
+/obj/item/ammo_casing/magic/tentacle/lasombra
+	projectile_type = /obj/projectile/tentacle/lasombra
+	icon_state = ""
+
+/obj/projectile/tentacle/lasombra
+	damage_type = BURN
+	icon_state = "curse0"
+
+/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
+	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
+
 // **************************************************************** SHADOW PLAY *************************************************************
 /datum/discipline_power/obtenebration/shadow_play
 	name = "Shadow Play"
@@ -91,11 +102,7 @@
 	. = ..()
 	target.Stun(1 SECONDS)
 	var/obj/item/ammo_casing/magic/tentacle/lasombra/casing = new (owner.loc)
-	var/obj/projectile/tentacle/lasombra/projectile = casing.loaded_projectile
-	if(projectile)
-		projectile.firer = owner
-		projectile.fired_from = owner
-		projectile.fire(get_angle(owner, target))
+	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 
 // **************************************************************** ARMS OF THE ABYSS *************************************************************
 /datum/discipline_power/obtenebration/arms_of_the_abyss
@@ -284,7 +291,7 @@
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
-	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
 	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
 	ADD_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT) // Trait to phase through tables
 
@@ -305,7 +312,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT)
 
@@ -379,41 +386,3 @@
 	power.remove_all_shadows()
 	return TRUE
 
-ADMIN_VERB(grant_discipline, R_ADMIN, "Grant Discipline", "Grant a Discipline to a player.", ADMIN_CATEGORY_GAME)
-	var/mob/living/carbon/human/target = input(user, "Select a player to grant a Discipline to:", "Grant Discipline") as null|mob in GLOB.player_list
-	if(!target || !ishuman(target))
-		to_chat(user, span_warning("Invalid target selected."))
-		return
-
-	// Check if they're a vampire/ghoul (adjust this check based on your species system)
-	if(!ishuman(target))
-		to_chat(user, span_warning("Target must be a vampire or ghoul."))
-		return
-
-	var/list/available_disciplines = subtypesof(/datum/discipline) - /datum/discipline/bloodheal
-	var/datum/discipline/chosen_discipline = input(user, "Select a Discipline:", "Grant Discipline") as null|anything in available_disciplines
-	if(!chosen_discipline)
-		return
-
-	var/chosen_level = input(user, "Select Discipline level (1-6):", "Grant Discipline") as null|num
-	if(isnull(chosen_level) || chosen_level < 1 || chosen_level > 6)
-		return
-
-	var/reason = input(user, "Reason for granting this Discipline:", "Grant Discipline") as null|text
-	if(!reason)
-		return
-
-	// Create and grant the discipline
-	var/datum/discipline/new_discipline = new chosen_discipline(chosen_level)
-
-	// Grant it to the target
-	target.give_discipline(new_discipline)
-
-	// Logging
-	message_admins("[ADMIN_LOOKUPFLW(user)] gave [ADMIN_LOOKUPFLW(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
-	log_admin("[key_name(user)] gave [key_name(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
-
-	to_chat(user, span_notice("Granted [new_discipline.name] (Level [chosen_level]) to [target]."))
-	to_chat(target, span_notice("You have been granted the Discipline: [new_discipline.name] (Level [chosen_level])"))
-
-	BLACKBOX_LOG_ADMIN_VERB("Grant Discipline")

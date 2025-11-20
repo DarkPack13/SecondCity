@@ -5,9 +5,9 @@ var/global/list/global_tentacle_grabs = list()
 	name = "abyssal tentacle"
 	desc = "A shadowy tentacle from the abyss that seeks to grab and crush its prey."
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
-	icon_state = "Goliath_tentacle_wiggle"
-	icon_living = "Goliath_tentacle_wiggle"
-	icon_dead = "Goliath_tentacle_retract"
+	icon_state = "goliath_tentacle_wiggle"
+	icon_living = "goliath_tentacle_wiggle"
+	icon_dead = "goliath_tentacle_retract"
 	color = rgb(0,0,0)
 	layer = BELOW_MOB_LAYER
 	anchored = TRUE
@@ -112,7 +112,7 @@ var/global/list/global_tentacle_grabs = list()
 /datum/ai_behavior/tentacle_crush_victim
 	action_cooldown = 5 SECONDS
 
-/datum/ai_behavior/tentacle_crush_victim/perform(datum/ai_controller/controller)
+/datum/ai_behavior/tentacle_crush_victim/perform(seconds_per_tick, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
 
@@ -190,10 +190,14 @@ var/global/list/global_tentacle_grabs = list()
 
 /mob/living/basic/abyss_tentacle/proc/on_grabbed_mob_move(mob/living/source, atom/old_loc, movement_dir, forced)
 	SIGNAL_HANDLER
+
+	if(!source || QDELETED(source))
+		return
+
 	if(get_dist(source, src) > 0)
 		if(world.time >= source.escape_attempt)
 			source.escape_attempt = world.time + 5 SECONDS
-			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, FALSE, source)
+			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, list(source), numerical = FALSE)
 			if(rollcheck == ROLL_SUCCESS)
 				to_chat(source, span_notice("You break free from the tentacle's grasp!"))
 				release_mob(source, TRUE)

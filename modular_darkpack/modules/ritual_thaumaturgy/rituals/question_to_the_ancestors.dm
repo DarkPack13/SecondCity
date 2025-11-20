@@ -12,9 +12,9 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	faction = list(VAMPIRE_CLAN_TREMERE)
-	icon = 'modular_darkpack/modules/deprecated/icons/mob.dmi'
-	icon_state = "ghost"
-	icon_living = "ghost"
+	icon = 'modular_darkpack/modules/npc/icons/necromancy_zombies.dmi'
+	icon_state = "ghost_animated"
+	icon_living = "ghost_animated"
 
 /obj/ritualrune/question/complete()
 	var/text_question = tgui_input_text(usr, "Enter your question to the Ancestors:", "Question to Ancestors")

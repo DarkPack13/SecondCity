@@ -18,6 +18,8 @@
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
 
+/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
+	return HAS_TRAIT(user, TRAIT_NECROMANCY_KNOWLEDGE)
 
 //SHROUDSIGHT
 /datum/discipline_power/necromancy/shroudsight

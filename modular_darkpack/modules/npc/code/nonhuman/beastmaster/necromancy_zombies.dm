@@ -33,9 +33,9 @@
 /mob/living/basic/beastmaster/giovanni_zombie/level1 // Low health, low damage distraction unit
 	name = "drone"
 	desc = "A mindless, tormented wraith."
-	icon = 'icons/mob/simple/mob.dmi'
-	icon_state = "ghost"
-	icon_living = "ghost"
+	icon = 'modular_darkpack/modules/npc/icons/necromancy_zombies.dmi'
+	icon_state = "ghost_animated"
+	icon_living = "ghost_animated"
 	mob_biotypes = MOB_UNDEAD
 	response_help_continuous = "passes through"
 	response_help_simple = "pass through"
