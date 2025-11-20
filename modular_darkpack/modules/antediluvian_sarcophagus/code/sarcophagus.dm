@@ -108,11 +108,11 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 	var/message = "You see an engraved text on it: <b>[encipher(password, passkey)]</b>."
 	if(isliving(user))
 		var/mob/living/living_user = user
-		var/roll_result = SSroll.storyteller_roll(living_user.st_get_stat(STAT_INTELLIGENCE) + living_user.st_get_stat(STAT_OCCULT), 9, list(user), user)
+		var/roll_result = SSroll.storyteller_roll(living_user.st_get_stat(STAT_INTELLIGENCE) + living_user.st_get_stat(STAT_OCCULT), 10, list(user), user)
 		if(roll_result == ROLL_SUCCESS)
-			message += "Its definitly an ancient cipher. You shift letters in your head till you end up with [uppertext(password)]."
+			message += " It's an ancient cipher. You shift letters in your head till you end up with [uppertext(password)]."
 		else
-			message += "You have no clue what that could possibly mean..."
+			message += " You have no clue what that could possibly mean..."
 	. += message
 
 #define OPEN_SOUND 'modular_darkpack/modules/deprecated/sounds/mp_hello.ogg'
