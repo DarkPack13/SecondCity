@@ -33,91 +33,121 @@ var/global/list/global_tentacle_grabs = list()
 	var/aggro_mode = "Aggressive"
 	COOLDOWN_DECLARE(grab_cooldown)
 	COOLDOWN_DECLARE(damage_cooldown)
+	ai_controller = /datum/ai_controller/basic_controller/abyss_tentacle
+
+/datum/ai_controller/basic_controller/abyss_tentacle
+	blackboard = list(
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+	)
+	//i mean they're anchored anyways
+	ai_movement = /datum/ai_movement/basic_avoidance
+	idle_behavior = /datum/idle_behavior/idle_random_walk
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/tentacle_grab_and_crush,
+	)
+
+/datum/ai_planning_subtree/tentacle_grab_and_crush
+
+/datum/ai_planning_subtree/tentacle_grab_and_crush/SelectBehaviors(datum/ai_controller/controller, delta_time)
+	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
+	if(!istype(tentacle))
+		return
+
+	if(tentacle.aggro_mode == "Passive")
+		if(tentacle.grabbed_mob)
+			tentacle.release_grabbed_mob()
+		return
+
+	if(tentacle.grabbed_mob)
+		if(tentacle.aggro_mode == "Aggressive")
+			controller.queue_behavior(/datum/ai_behavior/tentacle_crush_victim)
+		return SUBTREE_RETURN_FINISH_PLANNING
+
+	var/mob/living/target = find_valid_grab_target(tentacle)
+	if(target)
+		controller.queue_behavior(/datum/ai_behavior/tentacle_grab_target, target)
+		return SUBTREE_RETURN_FINISH_PLANNING
+
+	return
+
+
+/datum/ai_planning_subtree/tentacle_grab_and_crush/proc/find_valid_grab_target(mob/living/basic/abyss_tentacle/tentacle)
+	for(var/mob/living/potential_target in oview(2, tentacle))
+		//dont attack our owner, dead things, other tentacles, things being grabbed by tentacles, or things recently released
+		if(potential_target == tentacle.owner)
+			continue
+		if(potential_target.stat == DEAD)
+			continue
+		if(istype(potential_target, /mob/living/basic/abyss_tentacle))
+			continue
+		if(potential_target in global.global_tentacle_grabs)
+			continue
+		if(potential_target in tentacle.recently_released)
+			continue
+
+		return potential_target
+	return null
+
+/datum/ai_behavior/tentacle_grab_target
+	action_cooldown = 2 SECONDS
+
+/datum/ai_behavior/tentacle_grab_target/setup(datum/ai_controller/controller, target_key)
+	. = ..()
+	var/mob/living/target = target_key
+	if(!istype(target))
+		return FALSE
+	return TRUE
+
+/datum/ai_behavior/tentacle_grab_target/perform(seconds_per_tick, datum/ai_controller/controller, mob/living/target)
+	. = ..()
+	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
+
+	if(!istype(tentacle))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+
+	tentacle.grab_mob(target)
+
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+
+/datum/ai_behavior/tentacle_crush_victim
+	action_cooldown = 5 SECONDS
+
+/datum/ai_behavior/tentacle_crush_victim/perform(datum/ai_controller/controller)
+	. = ..()
+	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
+
+	if(!istype(tentacle) || !tentacle.grabbed_mob)
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+
+	tentacle.grabbed_mob.apply_damage(40, BRUTE)
+	to_chat(tentacle.grabbed_mob, span_danger("The tentacle tightens its grip, crushing you!"))
+	playsound(tentacle, 'sound/mobs/non-humanoids/venus_trap/venus_trap_hurt.ogg', 50, FALSE)
+
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /mob/living/basic/abyss_tentacle/Initialize(mapload, mob/living/summoner)
 	. = ..()
 	if(summoner)
 		owner = summoner
-	if(owner.tentacle_aggro_mode)
+	if(owner?.tentacle_aggro_mode)
 		aggro_mode = owner.tentacle_aggro_mode
-
-	COOLDOWN_START(src, grab_cooldown, 1 SECONDS)
-	COOLDOWN_START(src, damage_cooldown, 1 SECONDS)
-	START_PROCESSING(SSobj, src)
 
 /mob/living/basic/abyss_tentacle/Destroy()
 	release_grabbed_mob()
-	STOP_PROCESSING(SSobj, src)
 	return ..()
-
-/mob/living/basic/abyss_tentacle/CanAttack(atom/targ)
-	if(!isliving(targ))
-		return FALSE
-
-	var/mob/living/L = targ
-
-	if(L == owner)
-		return FALSE
-	if(istype(L, /mob/living/basic/abyss_tentacle))
-		return FALSE
-	if(L.stat == DEAD)
-		return FALSE
-	if(L == grabbed_mob)
-		return FALSE
-	if(L in global.global_tentacle_grabs)
-		return FALSE
-	if(L in recently_released)
-		return FALSE
-	if(get_dist(src, L) > vision_range)
-		return FALSE
-
-	return ..()
-
-/mob/living/basic/abyss_tentacle/process(delta_time)
-	if(aggro_mode == "Passive")
-		if(grabbed_mob)
-			release_grabbed_mob()
-		else
-			return
-
-	if(COOLDOWN_FINISHED(src, grab_cooldown) && !grabbed_mob && aggro_mode != "Passive")
-		COOLDOWN_START(src, grab_cooldown, 2 SECONDS)
-
-		// Find & grab target
-		var/mob/living/target_to_grab
-		for(var/mob/living/L in view(2, src))
-			if(L == owner || L.stat == DEAD || L == grabbed_mob || (L in recently_released)) // Not owner, dead, grabbed, or recently released
-				continue
-			if(istype(L, /mob/living/basic/abyss_tentacle)) // Not another tentacle
-				continue
-			if(L in global.global_tentacle_grabs) // Not on The List tm
-				continue
-			target_to_grab = L
-			break
-
-		if(target_to_grab)
-			grab_mob(target_to_grab)
-
-	// Damage grabbed mob occasionally
-	if(aggro_mode == "Aggressive" && COOLDOWN_FINISHED(src, damage_cooldown) && grabbed_mob)
-		COOLDOWN_START(src, damage_cooldown, 5 SECONDS)
-		grabbed_mob.apply_damage(40, BRUTE)
-		to_chat(grabbed_mob, span_danger("The tentacle tightens its grip, crushing you!"))
-		playsound(/mob/living/basic/abyss_tentacle, 'sound/mobs/non-humanoids/venus_trap/venus_trap_hurt.ogg', 50, FALSE)
 
 /mob/living/basic/abyss_tentacle/proc/grab_mob(mob/living/target)
 	// More checks
-	if(target == owner || istype(target, /mob/living/basic/abyss_tentacle)) // Not owner, not another tentacle
+	if(target == owner || istype(target, /mob/living/basic/abyss_tentacle))
 		return
-	if(target in global.global_tentacle_grabs) // Not grabbed by another tentacle
+	if(target in global.global_tentacle_grabs)
 		return
-	if(grabbed_mob) // Not already grabbing someone
+	if(grabbed_mob)
 		return
 	if(target.client)
 		to_chat(target, span_userdanger("A shadowy tentacle grabs you!"))
 	visible_message(span_danger("[src] grabs hold of [target]!"))
 
-	// Grab effects, short stun & drag
 	playsound(/mob/living/basic/abyss_tentacle, 'sound/misc/moist_impact.ogg', 50, FALSE)
 	target.Stun(5)
 	target.forceMove(get_turf(src))
@@ -160,14 +190,13 @@ var/global/list/global_tentacle_grabs = list()
 
 /mob/living/basic/abyss_tentacle/proc/on_grabbed_mob_move(mob/living/source, atom/old_loc, movement_dir, forced)
 	SIGNAL_HANDLER
-	// If they try to move away, roll to break free
 	if(get_dist(source, src) > 0)
 		if(world.time >= source.escape_attempt)
 			source.escape_attempt = world.time + 5 SECONDS
 			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, FALSE, source)
 			if(rollcheck == ROLL_SUCCESS)
 				to_chat(source, span_notice("You break free from the tentacle's grasp!"))
-				release_mob(source, TRUE) // Cooldown!
+				release_mob(source, TRUE)
 				return
 
 			else if(rollcheck == ROLL_BOTCH || rollcheck == ROLL_FAILURE)
@@ -180,11 +209,6 @@ var/global/list/global_tentacle_grabs = list()
 	visible_message(span_danger("[src] retracts back into the shadows!"))
 	release_grabbed_mob()
 	. = ..()
-
-/mob/living
-	var/obj/grabbed_by_tentacle = null
-	var/escape_attempt = 0
-	var/tentacle_aggro_mode = "Aggressive"
 
 /mob/living/proc/set_tentacle_grab(obj/tentacle)
 	grabbed_by_tentacle = tentacle

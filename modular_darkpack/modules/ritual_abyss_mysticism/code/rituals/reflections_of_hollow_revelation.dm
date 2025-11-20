@@ -39,7 +39,7 @@
 		return
 
 	var/mypower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
-	var/roll_result = SSroll.storyteller_roll(mypower, 7, FALSE, user)
+	var/roll_result = SSroll.storyteller_roll(mypower, 7, user, numerical = FALSE)
 	if (roll_result == ROLL_SUCCESS)
 		scry_target(window_target, user)
 		playsound(user, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
@@ -64,7 +64,7 @@
 		var/datum/species/human/kindred/vampire = target.dna?.species
 		if(vampire && (vampire.get_discipline("Obtenebration") || vampire.get_discipline("Auspex")))
 			var/theirpower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
-			if(SSroll.storyteller_roll(theirpower, 8, FALSE) == ROLL_SUCCESS)
+			if(SSroll.storyteller_roll(theirpower, 8, target, numerical = FALSE) == ROLL_SUCCESS)
 				to_chat(target, span_warning("You notice the nearby shadows flicker... something is watching you."))
 
 	shadowview(target, user)

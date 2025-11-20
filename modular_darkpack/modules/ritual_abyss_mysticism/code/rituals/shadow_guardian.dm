@@ -10,7 +10,7 @@
 	var/mob/living/carbon/human/H = last_activator
 	var/dice = (last_activator.st_get_stat(STAT_INTELLIGENCE) + last_activator.st_get_stat(STAT_OCCULT))
 
-	var/roll = SSroll.storyteller_roll(dice, 6, FALSE, last_activator)
+	var/roll = SSroll.storyteller_roll(dice, 6, last_activator, numerical = FALSE)
 	last_activator.apply_damage(30, AGGRAVATED)
 
 	if(roll == ROLL_SUCCESS)

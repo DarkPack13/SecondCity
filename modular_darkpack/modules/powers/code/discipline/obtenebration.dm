@@ -83,7 +83,7 @@
 	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/obtenebration/shroud_of_night/pre_activation_checks(atom/target)
-	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT), 7, FALSE, owner))
+	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT), 7, owner))
 		return TRUE
 	return FALSE
 
@@ -121,7 +121,7 @@
 			if(T.owner == owner)
 				T.release_grabbed_mob()
 				qdel(T)
-		var/roll = SSroll.storyteller_roll(dice, 7, TRUE, owner)
+		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
 		var/has_action = FALSE
 		for(var/datum/action/A in owner.actions)
 			if(istype(A, /datum/action/aggro_mode))
@@ -193,7 +193,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, FALSE, owner)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, owner)
 	if(roll == ROLL_SUCCESS)
 		successful = TRUE
 		owner.physiology.damage_resistance += 60
@@ -378,3 +378,42 @@
 		return
 	power.remove_all_shadows()
 	return TRUE
+
+ADMIN_VERB(grant_discipline, R_ADMIN, "Grant Discipline", "Grant a Discipline to a player.", ADMIN_CATEGORY_GAME)
+	var/mob/living/carbon/human/target = input(user, "Select a player to grant a Discipline to:", "Grant Discipline") as null|mob in GLOB.player_list
+	if(!target || !ishuman(target))
+		to_chat(user, span_warning("Invalid target selected."))
+		return
+
+	// Check if they're a vampire/ghoul (adjust this check based on your species system)
+	if(!ishuman(target))
+		to_chat(user, span_warning("Target must be a vampire or ghoul."))
+		return
+
+	var/list/available_disciplines = subtypesof(/datum/discipline) - /datum/discipline/bloodheal
+	var/datum/discipline/chosen_discipline = input(user, "Select a Discipline:", "Grant Discipline") as null|anything in available_disciplines
+	if(!chosen_discipline)
+		return
+
+	var/chosen_level = input(user, "Select Discipline level (1-6):", "Grant Discipline") as null|num
+	if(isnull(chosen_level) || chosen_level < 1 || chosen_level > 6)
+		return
+
+	var/reason = input(user, "Reason for granting this Discipline:", "Grant Discipline") as null|text
+	if(!reason)
+		return
+
+	// Create and grant the discipline
+	var/datum/discipline/new_discipline = new chosen_discipline(chosen_level)
+
+	// Grant it to the target
+	target.give_discipline(new_discipline)
+
+	// Logging
+	message_admins("[ADMIN_LOOKUPFLW(user)] gave [ADMIN_LOOKUPFLW(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
+	log_admin("[key_name(user)] gave [key_name(target)] the Discipline [new_discipline.name] at rank [chosen_level]. Reason: [reason]")
+
+	to_chat(user, span_notice("Granted [new_discipline.name] (Level [chosen_level]) to [target]."))
+	to_chat(target, span_notice("You have been granted the Discipline: [new_discipline.name] (Level [chosen_level])"))
+
+	BLACKBOX_LOG_ADMIN_VERB("Grant Discipline")

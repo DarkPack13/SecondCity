@@ -41,7 +41,7 @@
 	if(ckey in roll_cache)
 		roll = roll_cache[ckey]
 	else
-		roll = SSroll.storyteller_roll(dice, 8, TRUE, invoker)
+		roll = SSroll.storyteller_roll(dice, 8, invoker, numerical = TRUE)
 		roll_cache[ckey] = roll
 
 	if(roll >= 1)
