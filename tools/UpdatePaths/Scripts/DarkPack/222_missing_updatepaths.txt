@@ -38,9 +38,10 @@
 /obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/doctor
 /obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/janitor
 
-# we're removing these mob spawners.
+# we're removing this mob spawner
 /obj/effect/mob_spawn/human/chunkguard : @DELETE
-/obj/effect/mob_spawn/human/corpse/@SUBTYPES : @DELETE
+
+/obj/effect/mob_spawn/human/corpse/@SUBTYPES : /obj/effect/mob_spawn/corpse/@SUBTYPES
 
 # This item doesn't exist on TG anymore.
 /obj/item/melee/rune_knife : @DELETE

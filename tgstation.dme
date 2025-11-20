@@ -7132,6 +7132,7 @@
 #include "modular_darkpack\modules\masquerade\code\subsystem\masquerade.dm"
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
+#include "modular_darkpack\modules\mob_spawners\code\citizen.dm"
 #include "modular_darkpack\modules\npc\code\human\__npc.dm"
 #include "modular_darkpack\modules\npc\code\human\npc_aggression.dm"
 #include "modular_darkpack\modules\npc\code\human\npc_globals.dm"
