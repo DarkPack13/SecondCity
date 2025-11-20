@@ -102,28 +102,11 @@
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
 
-	toggled = TRUE
-
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
-	/*
-	var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR] // Yep, this uses the god damn Abductor HUD to apply the auras, as defined in auspex_auras.dm,
-	abductor_hud.add_hud_to(owner)
 
-	owner.see_invisible = SEE_OBFUSCATE_INVISIBLITY
-	*/
+	for(var/mob/living/carbon/human/human_mob as anything in oview(7, get_turf(owner)))
 
-	owner.update_sight()
-
-/datum/discipline_power/auspex/aura_perception/deactivate()
-	. = ..()
-	/*
-	var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	abductor_hud.remove_hud_from(owner)
-
-	owner.see_invisible = SEE_INVISIBLE_LIVING
-	*/
-	owner.update_sight()
 
 //THE SPIRIT'S TOUCH
 /datum/discipline_power/auspex/the_spirits_touch
