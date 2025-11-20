@@ -58,8 +58,8 @@
 	inhand_items = list(/obj/item/storage/briefcase)
 	pockets = list(
 		/obj/item/vamp/keys/npc,
-		/obj/item/stack/dollar/fifty,
-		/obj/item/stack/dollar/hundred
+		// /obj/item/stack/dollar/fifty,
+		// /obj/item/stack/dollar/hundred
 	)
 
 	male_phrases = list(

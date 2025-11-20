@@ -31,10 +31,6 @@
 
 	var/list/knowscontacts = list()
 
-	var/mysticism_knowledge = FALSE
-
-	var/thaumaturgy_knowledge = FALSE
-
 	var/elysium_checks = 0
 	var/bloodhunted = FALSE
 

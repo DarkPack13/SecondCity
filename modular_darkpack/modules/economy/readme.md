@@ -18,7 +18,7 @@ E.g:
   -->
 
 - `code/game/objects/items/cards_ids.dm`: `proc/obj/item/card/id/Initialize`, `proc/obj/item/card/id/examine`
-- `code/modules/jobs/job_types/_job.dm`: `proc/datum/outfit/job/post_equip`
+- `code/modules/jobs/job_types/_job.dm`: `proc/datum/outfit/job/vampire/post_equip`
 - `modular_darkpack/master_files/code/modules/economy/account.dm`: `/datum/bank_account/New`
 
 ### Modular Overrides:

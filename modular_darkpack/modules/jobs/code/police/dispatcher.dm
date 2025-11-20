@@ -5,7 +5,7 @@
 	spawn_positions = 2
 	supervisors = " the SF local government."
 	config_tag = "DISPATCHER"
-	outfit = /datum/outfit/job/dispatcher
+	outfit = /datum/outfit/job/vampire/dispatcher
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
@@ -22,7 +22,7 @@
 	minimal_masquerade = 0
 	known_contacts = list("Police Chief")
 
-/datum/outfit/job/dispatcher
+/datum/outfit/job/vampire/dispatcher
 	name = "Dispatcher"
 	jobtype = /datum/job/vampire/dispatcher
 	uniform = /obj/item/clothing/under/vampire/office
@@ -30,6 +30,6 @@
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	gloves = /obj/item/watch
 	id = /obj/item/card/government
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/dispatch
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/flashlight=1)

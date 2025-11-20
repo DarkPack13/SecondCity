@@ -1,12 +1,12 @@
-/datum/outfit/job/sabbatist
+/datum/outfit/job/vampire/sabbatist
 	name = "Sabbatist"
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench
 	id = /obj/item/watch
 	backpack_contents = list(/obj/item/passport=1, /obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/scythe/vamp=1, /obj/item/vamp/keys/sabbat=1)
 
-/datum/outfit/job/sabbatist/post_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/sabbatist/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)

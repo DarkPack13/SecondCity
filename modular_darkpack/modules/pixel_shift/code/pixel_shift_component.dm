@@ -103,9 +103,7 @@
 	passthroughable = NONE
 	if(is_shifted)
 		var/mob/living/owner = parent
-		var/offset_lying = owner.rotate_on_lying ? PIXEL_Y_OFFSET_LYING : owner.get_transform_translation_size(owner.current_size)
-		owner.pixel_x = offset_lying + owner.base_pixel_x
-		owner.pixel_y = offset_lying + owner.base_pixel_y
+		owner.remove_offsets(type)
 		owner.transform = turn(owner.transform, -how_tilted)
 	qdel(src)
 
@@ -135,20 +133,24 @@
 		if(SHIFTING_PARENT)
 			switch(direct)
 				if(NORTH)
-					if(owner.pixel_y <= maximum_pixel_shift + owner.base_pixel_y)
+					if(owner.pixel_y <= maximum_pixel_shift)
 						owner.pixel_y++
+						owner.add_offsets(type, y_add = owner.pixel_y)
 						is_shifted = TRUE
 				if(EAST)
-					if(owner.pixel_x <= maximum_pixel_shift + owner.base_pixel_x)
+					if(owner.pixel_x <= maximum_pixel_shift)
 						owner.pixel_x++
+						owner.add_offsets(type, x_add = owner.pixel_x)
 						is_shifted = TRUE
 				if(SOUTH)
-					if(owner.pixel_y >= -maximum_pixel_shift + owner.base_pixel_y)
+					if(owner.pixel_y >= -maximum_pixel_shift)
 						owner.pixel_y--
+						owner.add_offsets(type, y_add = owner.pixel_y)
 						is_shifted = TRUE
 				if(WEST)
-					if(owner.pixel_x >= -maximum_pixel_shift + owner.base_pixel_x)
+					if(owner.pixel_x >= -maximum_pixel_shift)
 						owner.pixel_x--
+						owner.add_offsets(type, x_add = owner.pixel_x)
 						is_shifted = TRUE
 		if(TILTING_PARENT)
 			switch(direct)

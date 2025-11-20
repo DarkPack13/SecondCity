@@ -1,5 +1,5 @@
 /obj/machinery/door/airlock/elevator
-	name = "Elevator Door"
+	name = "elevator door"
 	icon = 'modular_darkpack/modules/elevators/icons/doorleft.dmi'
 	icon_state = "closed"
 	abstract_type = /obj/machinery/door/airlock/elevator
@@ -35,7 +35,7 @@
 
 /obj/structure/door_assembly/elevator
 	name = "door assembly"
-	base_name = "Elevator Door"
+	base_name = "elevator door"
 	icon = 'modular_darkpack/modules/elevators/icons/doorleft.dmi'
 	icon_state = "construction"
 	abstract_type = /obj/structure/door_assembly/elevator
