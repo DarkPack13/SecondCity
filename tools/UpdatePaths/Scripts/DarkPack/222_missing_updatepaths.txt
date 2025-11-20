@@ -16,9 +16,6 @@
 /area/vtm/substation : /area/vtm/interior/substation
 /area/vtm/inside/substation : /area/vtm/interior/substation
 
-# Shovelheads should probably be reintroduced after we refactor NPC code.
-/mob/living/carbon/human/npc/sabbat/shovelhead/@SUBTYPES : @DELETE
-
 # Deleted landmarks are for landmarks with no job attached.
 /obj/effect/landmark/start/assamite : @DELETE
 /obj/effect/landmark/start/baali : @DELETE
