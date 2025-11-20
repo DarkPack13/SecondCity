@@ -85,7 +85,7 @@
 	name = "Glasswalker's Lab"
 	icon_state = "supply"
 	zone_type = ZONE_NO_MASQUERADE
-	musictracks = MUSIC_FOREST
+	music_index = MUSIC_FOREST
 	fire_controled = TRUE
 
 /area/vtm/interior/penumbra
@@ -107,14 +107,14 @@
 	name = "Wyrm Corruption"
 	icon_state = "graveyard"
 	zone_type = ZONE_NO_MASQUERADE
-	musictracks = MUSIC_FOREST
+	music_index = MUSIC_FOREST
 	fire_controled = FALSE
 
 /area/vtm/interior/tzimisce_manor
 	name = "Tzimisce Manor"
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
-	musictracks = MUSIC_PRINCE
+	music_index = MUSIC_PRINCE
 
 /area/vtm/interior/strip_elysium
 	name = "Strip Club - Elysium"
@@ -139,7 +139,7 @@
 	name = "Clinic"
 	icon_state = "clinic"
 	ambience_index = AMBIENCE_OFFICE
-	musictracks = MUSIC_SAFE
+	music_index = MUSIC_SAFE
 	fire_controled = TRUE
 
 /area/vtm/interior/clinic/haven
@@ -160,14 +160,14 @@
 /area/vtm/interior/cabdepot
 	name = "Cab Depot"
 	icon_state = "hotel"
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
 /area/vtm/interior/substation
 	name = "Grid Substation"
 	icon_state = "hotel"
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
@@ -175,21 +175,21 @@
 	name = "Church"
 	icon_state = "church"
 	ambience_index = AMBIENCE_OFFICE
-	musictracks = MUSIC_CHURCH
+	music_index = MUSIC_CHURCH
 	fire_controled = TRUE
 
 /area/vtm/interior/church/staff
 	name = "Church - Backrooms"
 	icon_state = "church"
 	zone_type = ZONE_ELYSIUM
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
 /area/vtm/interior/church/haven
 	name = "Church - Restricted Floor"
 	icon_state = "old_clan_tzimisce"
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 	zone_type = ZONE_ELYSIUM
@@ -205,7 +205,7 @@
 /area/vtm/interior/theatre
 	name = "Theatre"
 	icon_state = "theatre"
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 

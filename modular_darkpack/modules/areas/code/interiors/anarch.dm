@@ -2,7 +2,7 @@
 	name = "Bar"
 	icon_state = "anarch"
 	ambience_index = AMBIENCE_OFFICE
-	musictracks = MUSIC_BAR
+	music_index = MUSIC_BAR
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 

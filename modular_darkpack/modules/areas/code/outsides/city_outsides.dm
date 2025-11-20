@@ -2,19 +2,19 @@
 	name = "Financial District"
 	icon_state = "financialdistrict"
 	ambience_index = AMBIENCE_CITY
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/ghetto
 	name = "Ghetto"
 	icon_state = "ghetto"
 	ambience_index = AMBIENCE_CITY
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/pacificheights
 	name = "Pacific Heights"
 	icon_state = "pacificheights"
 	ambience_index = AMBIENCE_NATURE
-	musictracks = MUSIC_HOLLYWOOD
+	music_index = MUSIC_HOLLYWOOD
 
 /area/vtm/outside/pacificheights/forest
 	name = "Pacific Heights Forest Outskirts"
@@ -38,7 +38,7 @@
 	name = "Fisherman's Wharf"
 	icon_state = "fishermanswharf"
 	ambience_index = AMBIENCE_CITY
-	musictracks = MUSIC_SANTAMONICA
+	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/fishermanswharf/ghetto
 	name = "Fisherman's Wharf - Ghetto"
@@ -56,25 +56,25 @@
 	//The waves dont really stop.
 	min_ambience_cooldown = 0 SECONDS
 	max_ambience_cooldown = 5 SECONDS
-	musictracks = MUSIC_SANTAMONICA
+	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/baywalk
 	name = "Baywalk District"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
-	musictracks = MUSIC_SANTAMONICA
+	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/unionsquare
 	name = "Union Square"
 	icon_state = "unionsquare"
 	ambience_index = AMBIENCE_CITY
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/park
 	name = "Park"
 	icon_state = "park"
 	ambience_index = AMBIENCE_NATURE
-	musictracks = MUSIC_CITY
+	music_index = MUSIC_CITY
 
 /area/vtm/outside/supply
 	name = "Supply"
