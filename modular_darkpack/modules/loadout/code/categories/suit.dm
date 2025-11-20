@@ -102,3 +102,43 @@
 /datum/loadout_item/suit/letterman_red
 	name = "Letterman (Red)"
 	item_path = /obj/item/clothing/suit/jacket/letterman_syndie
+
+// Robes
+/datum/loadout_item/suit/robes
+	abstract_type = /datum/loadout_item/suit/robes
+
+/datum/loadout_item/suit/robes/white
+	name = "Robes (White)"
+	item_path = /obj/item/clothing/suit/hooded/robes
+
+/datum/loadout_item/suit/robes/black
+	name = "Robes (Black)"
+	item_path = /obj/item/clothing/suit/hooded/robes/black
+
+/datum/loadout_item/suit/robes/grey
+	name = "Robes (Grey)"
+	item_path = /obj/item/clothing/suit/hooded/robes/grey
+
+/datum/loadout_item/suit/robes/darkred
+	name = "Robes (Dark Red)"
+	item_path = /obj/item/clothing/suit/hooded/robes/darkred
+
+/datum/loadout_item/suit/robes/yellow
+	name = "Robes (Yellow)"
+	item_path = /obj/item/clothing/suit/hooded/robes/yellow
+
+/datum/loadout_item/suit/robes/green
+	name = "Robes (Green)"
+	item_path = /obj/item/clothing/suit/hooded/robes/green
+
+/datum/loadout_item/suit/robes/Red
+	name = "Robes (Red)"
+	item_path = /obj/item/clothing/suit/hooded/robes/red
+
+/datum/loadout_item/suit/robes/purple
+	name = "Robes (Purple)"
+	item_path = /obj/item/clothing/suit/hooded/robes/purple
+
+/datum/loadout_item/suit/robes/blue
+	name = "Robes (Blue)"
+	item_path = /obj/item/clothing/suit/hooded/robes/blue
