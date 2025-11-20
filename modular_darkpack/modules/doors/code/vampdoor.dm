@@ -5,7 +5,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/doors.dmi'
 	icon_state = "door-1"
 	base_icon_state = "door"
-	layer = CLOSED_DOOR_LAYER
+	layer = MAP_SWITCH(CLOSED_DOOR_LAYER, OPEN_DOOR_LAYER)
 	pixel_w = -16
 
 	anchored = TRUE
