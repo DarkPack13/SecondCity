@@ -1,3 +1,18 @@
+/// Create colored subtypes for BENCHES
+#define COLORED_BENCH(path, color_name, bench_color) \
+path/middle/color_name {\
+	color = bench_color; \
+} \
+path/right/color_name {\
+	color = bench_color; \
+} \
+path/left/color_name {\
+	color = bench_color; \
+} \
+path/corner/color_name {\
+	color = bench_color; \
+}
+
 //Icons by -Jay- (hyphenjayhyphen) 7/30/25
 
 /obj/structure/chair/sofa/bench/wood
@@ -23,8 +38,9 @@
 /obj/structure/chair/sofa/bench/metal/right
 	icon_state = "metal_right"
 
-COLORED_SOFA(/obj/structure/chair/sofa/bench/metal, black, COLOR_ALMOST_BLACK)
-COLORED_SOFA(/obj/structure/chair/sofa/bench/metal, yellow, "#af7d28")
-COLORED_SOFA(/obj/structure/chair/sofa/bench/metal, blue, COLOR_TRAM_BLUE)
-COLORED_SOFA(/obj/structure/chair/sofa/bench/metal, puce, "#cc8899") // TODO: Puce #94055
+COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, black, COLOR_ALMOST_BLACK)
+COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, yellow, "#af7d28")
+COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, blue, COLOR_TRAM_BLUE)
+COLORED_BENCH(/obj/structure/chair/sofa/bench/metal, puce, "#cc8899") // TODO: Puce #94055
 
+#undef COLORED_BENCH
