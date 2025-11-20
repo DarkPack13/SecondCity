@@ -274,7 +274,7 @@
 	if(locked)
 		proc_unlock(5)
 		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
-		for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+		for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			P.Aggro(user)
 		var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))
