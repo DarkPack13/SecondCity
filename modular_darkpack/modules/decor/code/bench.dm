@@ -8,9 +8,6 @@ path/right/color_name {\
 } \
 path/left/color_name {\
 	color = bench_color; \
-} \
-path/corner/color_name {\
-	color = bench_color; \
 }
 
 //Icons by -Jay- (hyphenjayhyphen) 7/30/25
