@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 
 
 /obj/sarcophagus
-	name = "Unknown Sarcophagus"
+	name = "unknown sarcophagus"
 	desc = "Contains elder devil..."
 	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/sarcophagus.dmi'
 	icon_state = "b_sarcophagus"
