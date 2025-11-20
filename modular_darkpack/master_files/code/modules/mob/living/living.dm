@@ -4,6 +4,7 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	storyteller_stat_holder = new() // STORYTELLER_STATS
+	AddComponent(/datum/component/aura)
 
 /mob/living/set_pull_offsets(mob/living/mob_to_set, grab_state = GRAB_PASSIVE, animate = TRUE)
 	. = ..()
