@@ -125,3 +125,9 @@
 	name = "Gumma Guts"
 	desc = "Eat some precious chicken nuggets and donuts!"
 	icon_state = "gummaguts"
+
+/obj/structure/sign/city/skateshop
+	name = "Beralta Skateshop"
+	icon_state = "beralta"
+	desc = "Bowell Beralta, apart from having a very unfortunate name, is one of the biggest names in authentic knock-off skateboards."
+	pixel_y = 32
