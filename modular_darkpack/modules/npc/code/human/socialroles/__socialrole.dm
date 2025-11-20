@@ -306,6 +306,7 @@
 			set_facial_hairstyle("Shaved")
 			random_name = "[pick(f_names)] [pick(s_names)]"
 			fully_replace_character_name(newname = random_name)
+
 		set_eye_color(random_eye_color())
 
 		underwear = random_underwear(gender)
