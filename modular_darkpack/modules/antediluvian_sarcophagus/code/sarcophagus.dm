@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 			message += " You have no clue what that could possibly mean..."
 	. += message
 
-#define OPEN_SOUND 'modular_darkpack/modules/deprecated/sounds/mp_hello.ogg'
+#define OPEN_SOUND 'modular_darkpack/modules/antediluvian_sarcophagus/sounds/mp_hello.ogg'
 /obj/sarcophagus/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/sarcophagus_key))
 		var/pass = tgui_input_text(user, "???", "???")
