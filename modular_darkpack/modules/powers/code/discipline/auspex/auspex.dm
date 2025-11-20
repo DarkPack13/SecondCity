@@ -46,7 +46,7 @@
 		output_senses += sense[1]
 
 	if(SENSE_VISION in output_senses)
-		owner.client?.view_size?.setTo(2)
+		owner.client?.view_size?.setTo(2) // This increases the view size of the player by 2 tiles in each direction. I dont know why it's called Set if it Adds.
 		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
