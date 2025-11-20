@@ -291,12 +291,10 @@
 			var/npc_message = ""
 			if(HAS_TRAIT(brain, TRAIT_GHOSTROLE_ON_REVIVE))
 				npc_message = "Soul is pending..."
-			else if(!key && !isnpc(src))
+			else if(!key)
 				npc_message = "[t_He] [t_is] totally catatonic. The horrors of this place must have been too much for [t_him]. Any recovery is unlikely." // DARKPACK EDIT CHANGE
-			else if(!client && !isnpc(src))
+			else if(!client)
 				npc_message ="[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon."
-			else if(isnpc(src))
-				npc_message = "[t_He] looks busy. Probably wise not to bother [t_him]."
 			if(npc_message)
 				// give some space since this is usually near the end
 				ADD_NEWLINE_IF_NECESSARY(.)
