@@ -15,8 +15,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Operative" = 'icons/hud/screen_operative.dmi',
 	"Clockwork" = 'icons/hud/screen_clockwork.dmi',
 	"Glass" = 'icons/hud/screen_glass.dmi',
-	"Detective" = 'icons/hud/screen_detective.dmi',
-	"World of Darkness" = 'modular_darkpack/master_files/icons/hud/screen_darkness.dmi' // DARKPACK EDIT ADD - Put at the bottom as it has terrible coverage
+	"Detective" = 'icons/hud/screen_detective.dmi'
 ))
 
 /proc/ui_style2icon(ui_style)
