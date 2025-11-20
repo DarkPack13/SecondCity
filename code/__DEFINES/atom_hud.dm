@@ -46,6 +46,10 @@
 #define DIAG_CAMERA_HUD "21"
 /// Steady Hacked APC effect, visible only to Malf AIs
 #define MALF_APC_HUD "22"
+// DARKPACK EDIT START
+/// Auspex aura HUD
+#define AUSPEX_AURA_HUD "23"
+// DARKPACK EDIT END
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
@@ -63,6 +67,7 @@
 #define DATA_HUD_AI_DETECT 8
 #define DATA_HUD_FAN 9
 #define DATA_HUD_MALF_APC 10
+#define DATA_HUD_AUSPEX_AURAS 11 //DARKPACK EDIT ADDITION
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20

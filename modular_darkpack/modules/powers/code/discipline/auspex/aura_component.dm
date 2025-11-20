@@ -3,8 +3,6 @@
 	var/current_aura = AURA_DEPRESSED
 	// The image of the aura.
 	var/image/aura_image
-	// Weakref list of mobs with the aura_image shown to
-	var/list/shown_to
 
 /datum/component/aura/RegisterWithParent()
 	. = ..()
@@ -14,39 +12,25 @@
 
 /datum/component/aura/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_SHOW_AURA, COMSIG_HIDE_AURA))
-	for(var/datum/weakref/mob_weakref as anything in shown_to)
-		var/mob/mob_reference = mob_weakref.resolve()
-		if(mob_reference)
-			hide_aura(src, mob_reference)
-	shown_to = null
-	destroy_aura()
+	QDEL_NULL(aura_image)
 	return ..()
 
 /datum/component/aura/proc/create_aura()
 	var/mob/parent_mob = parent
-
-	var/mutable_appearance/aura = new(parent_mob.appearance)
-
-	var/mutable_appearance/overlay = mutable_appearance('icons/effects/effects.dmi', "static_base", ABOVE_NORMAL_TURF_LAYER)
-	overlay.color = current_aura
-	overlay.appearance_flags |= RESET_COLOR
-
-	aura.add_overlay(overlay)
-	aura_image = aura
-	aura_image.loc = parent_mob
-
-/datum/component/aura/proc/destroy_aura()
-	QDEL_NULL(aura_image)
+	var/image/hud_image = image(icon = 'icons/effects/effects.dmi', icon_state = "static_base")
+	hud_image.pixel_w = parent_mob.pixel_x
+	hud_image.pixel_z = parent_mob.pixel_y
+	hud_image.color = current_aura
+	parent_mob.hud_list[AUSPEX_AURA_HUD] = hud_image
+	parent_mob.set_hud_image_active(AUSPEX_AURA_HUD)
 
 /datum/component/aura/proc/show_aura(datum/source, mob/viewing_mob)
 	if(!aura_image)
 		create_aura()
-	viewing_mob.client?.images += aura_image
-	shown_to += WEAKREF(viewing_mob)
+	var/image/holder = hud_list[AUSPEX_AURA_HUD]
+	holder.icon_state = "static_base"
+	SET_PLANE(holder, ABOVE_LIGHTING_PLANE, parent)
 
 /datum/component/aura/proc/hide_aura(datum/source, mob/viewing_mob)
-	viewing_mob.client?.images -= aura_image
-	for(var/datum/weakref/mob_weakref as anything in shown_to)
-		var/mob/mob_reference = mob_weakref.resolve()
-		if(mob_reference == viewing_mob)
-			shown_to -= mob_weakref
+	var/image/holder = hud_list[AUSPEX_AURA_HUD]
+	holder.icon_state = null
