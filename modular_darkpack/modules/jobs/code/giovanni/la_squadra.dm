@@ -6,7 +6,7 @@
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"
 	config_tag = "LA_SQUADRA"
-	outfit = /datum/outfit/job/squadra
+	outfit = /datum/outfit/job/vampire/squadra
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -20,7 +20,7 @@
 	allowed_species = list(SPECIES_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 
-/datum/outfit/job/squadra
+/datum/outfit/job/vampire/squadra
 	name = "La Squadra"
 	jobtype = /datum/job/vampire/squadra
 
@@ -29,7 +29,7 @@
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone/giovanni_squadra
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
 

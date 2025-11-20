@@ -364,6 +364,7 @@
 		else if(istype(foam))
 			foam.lifetime = initial(foam.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
 
+	/* DARKPACK EDIT REMOVAL - TURF_FIRE
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
 	if(hotspot && !isspaceturf(exposed_turf) && exposed_turf.air)
 		var/datum/gas_mixture/air = exposed_turf.air
@@ -371,6 +372,8 @@
 			air.temperature = max(air.temperature/2,T20C)
 		air.react(src)
 		qdel(hotspot)
+	*/
+	exposed_turf.extinguish_turf() // DARKPACK EDIT ADD
 
 /datum/reagent/firefighting_foam/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE)
 	. = ..()

@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "PRINCE"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/prince
+	outfit = /datum/outfit/job/vampire/prince
 
 	display_order = JOB_DISPLAY_ORDER_PRINCE
 	department_for_prefs = /datum/job_department/prince
@@ -42,7 +42,7 @@
 /datum/job/vampire/prince/get_captaincy_announcement(mob/living/captain)
 	return "Prince [captain.real_name] is in the city!"
 
-/datum/outfit/job/prince
+/datum/outfit/job/vampire/prince
 	name = "Prince"
 	jobtype = /datum/job/vampire/prince
 
@@ -53,7 +53,7 @@
 	uniform =  /obj/item/clothing/under/vampire/prince
 	suit = /obj/item/clothing/suit/vampire/trench/alt
 	shoes = /obj/item/clothing/shoes/vampire
-	//l_pocket = /obj/item/vamp/phone/prince
+	l_pocket = /obj/item/smartphone/prince
 	r_pocket = /obj/item/vamp/keys/prince
 	//backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/card/credit/prince=1)
 

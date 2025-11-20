@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = SUPERVISOR_CAMARILLA
 	config_tag = "CHANTRY_REGENT"
-	outfit = /datum/outfit/job/regent
+	outfit = /datum/outfit/job/vampire/regent
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
@@ -22,7 +22,7 @@
 
 	known_contacts = list("Prince")
 
-/datum/outfit/job/regent
+/datum/outfit/job/vampire/regent
 	name = "Chantry Regent"
 	jobtype = /datum/job/vampire/regent
 
@@ -33,15 +33,9 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	uniform = /obj/item/clothing/under/vampire/archivist
 	r_pocket = /obj/item/vamp/keys/regent
-	//l_pocket = /obj/item/vamp/phone/tremere
+	l_pocket = /obj/item/smartphone/tremere_regent
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
-
-/datum/outfit/job/regent/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == FEMALE)
-		uniform = /obj/item/clothing/under/vampire/archivist/female
-		shoes = /obj/item/clothing/shoes/vampire/heels
+	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
 
 /obj/effect/landmark/start/regent
 	name = "Chantry Regent"

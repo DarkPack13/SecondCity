@@ -6,7 +6,7 @@
 	spawn_positions = 5
 	supervisors = SUPERVISOR_REGENT
 	config_tag = "CHANTRY_GARGOYLE"
-	outfit = /datum/outfit/job/gargoyle
+	outfit = /datum/outfit/job/vampire/gargoyle
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_CHANTRY
 	department_for_prefs = /datum/job_department/chantry
@@ -21,7 +21,7 @@
 	allowed_clans = list(VAMPIRE_CLAN_GARGOYLE)
 	known_contacts = list("Tremere Regent")
 
-/datum/outfit/job/gargoyle
+/datum/outfit/job/vampire/gargoyle
 	name = "Chantry Gargoyle"
 	jobtype = /datum/job/vampire/gargoyle
 
@@ -33,7 +33,7 @@
 	suit = /obj/item/clothing/suit/hooded/robes/tremere
 	mask = /obj/item/clothing/mask/vampire/venetian_mask
 	r_pocket = /obj/item/vamp/keys/archive
-	//l_pocket = /obj/item/vamp/phone/gargoyle
+	l_pocket = /obj/item/smartphone/gargoyle
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
 		/obj/item/watch=1,
