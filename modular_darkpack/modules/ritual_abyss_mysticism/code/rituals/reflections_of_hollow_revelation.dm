@@ -135,7 +135,7 @@
 	name = "Shadow"
 	desc = "A shadow..."
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "shadow"
+	icon_state = ""
 	invisibility = INVISIBILITY_ABSTRACT
 	layer = CAMERA_STATIC_PLANE
 	var/obj/abyssrune/reflections_of_hollow_revelation/parent_rune

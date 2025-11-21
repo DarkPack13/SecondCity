@@ -24,6 +24,7 @@
 	icon_state = ""
 
 /obj/projectile/tentacle/lasombra
+	icon = 'icons/effects/beam.dmi'
 	damage_type = BURN
 	icon_state = "curse0"
 

@@ -7,7 +7,7 @@
 	word = "METEH' GHM'IEN"
 	necrolevel = 2
 
-/mob/living/simple_animal/hostile/ghost/giovanni
+/mob/living/basic/ghost/giovanni
 	maxHealth = 100 //Can be annoying right back if they're pestered for nothing.
 	health = 100
 	melee_damage_lower = 30

@@ -10,7 +10,6 @@ var/global/list/global_tentacle_grabs = list()
 	icon_dead = "goliath_tentacle_retract"
 	color = rgb(0,0,0)
 	layer = BELOW_MOB_LAYER
-	anchored = TRUE
 	density = FALSE
 	maxHealth = 120
 	health = 120
@@ -23,6 +22,7 @@ var/global/list/global_tentacle_grabs = list()
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	speak_emote = list("writhes")
 	basic_mob_flags = DEL_ON_DEATH
+	mobility_flags = NONE
 
 
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -39,8 +39,7 @@ var/global/list/global_tentacle_grabs = list()
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
-	//i mean they're anchored anyways
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = null
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/tentacle_grab_and_crush,
