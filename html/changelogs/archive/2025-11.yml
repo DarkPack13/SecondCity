@@ -80,3 +80,24 @@
   - bugfix: Tzi content and arcane book must be learned
   dwinters99:
   - code_imp: doors repathed
+2025-11-19:
+  Eli-Hodges:
+  - bugfix: fixed pixel shifting offset
+  - code_imp: changed logic to use in-built offset logic.
+  - spellcheck: Lowercased the name of elevators
+  FalloutFalcon:
+  - rscadd: 'Seperates non-diagetic music into its own subsystem
+
+      add Adds some placeholder sound environments for some of the area types, full
+      pass still required'
+  - refactor: ports shiptest's turf fire and spreading
+  - rscadd: Raven and crow basic mobs (corax kinfolk)
+  chazzyjazzy:
+  - code_imp: ticking vip barriers and now they work so
+2025-11-21:
+  Eli-Hodges:
+  - bugfix: runtime from elevator wire cutting
+  dwinters99:
+  - bugfix: NPC name and real_name now match
+  - rscadd: robes in loadout
+  - bugfix: NPCs are no longer catatonic. Just busy.
