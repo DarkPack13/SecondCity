@@ -6854,6 +6854,8 @@
 #include "modular_darkpack\master_files\code\turfs\open\planet.dm"
 #include "modular_darkpack\modules\aggravated_damage\code\damage_procs.dm"
 #include "modular_darkpack\modules\ambience\code\music_subsystem.dm"
+#include "modular_darkpack\modules\antediluvian_sarcophagus\code\sarcophagus.dm"
+#include "modular_darkpack\modules\antediluvian_sarcophagus\code\the_antediluvian.dm"
 #include "modular_darkpack\modules\areas\code\__vtm.dm"
 #include "modular_darkpack\modules\areas\code\random_gen.dm"
 #include "modular_darkpack\modules\areas\code\sewers.dm"
