@@ -25,7 +25,7 @@
 	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
 	var/lockpick_timer = LOCKTIMER_1
-	var/lockpick_difficulty = LOCKDIFFICULTY_1
+	var/lockpick_difficulty = 6
 
 	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
