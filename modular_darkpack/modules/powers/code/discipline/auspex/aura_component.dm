@@ -44,8 +44,6 @@
 	update_aura_overlays(holder)
 	update_aura_filters(holder)
 
-// use RGB blend for multiple emotions being selected
-
 /datum/component/aura/proc/is_color(input_text)
 	if(findtext(input_text, GLOB.is_color))
 		return TRUE
@@ -53,11 +51,9 @@
 
 /datum/component/aura/proc/update_aura_colors(mutable_appearance/aura_appearance)
 	if(is_color(current_aura))
-		aura_appearance.color = current_aura
-		aura_appearance.alpha = 255
+		output_color = current_aura
 	else
-		aura_appearance.alpha = 0
-		aura_appearance.color = null
+		output_color = null
 
 /datum/component/aura/proc/update_aura_overlays(image/holder)
 	holder.cut_overlays()
@@ -66,13 +62,12 @@
 	if(current_aura == AURA_ANXIOUS)
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aura")
 		var/icon/static_icon = getStaticIcon(temporary_icon_holder)
-		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
-		static_image.appearance_flags |= RESET_COLOR | RESET_ALPHA
+		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE, 70)
+		static_image.appearance_flags |= RESET_COLOR
 		holder.add_overlay(static_image)
 
 	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
-		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
-		diablerie_image.color = COLOR_HALF_TRANSPARENT_BLACK
+		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "diab", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
 		holder.add_overlay(diablerie_image)
 
 /datum/component/aura/proc/update_aura_filters(image/holder)
@@ -81,3 +76,4 @@
 	remove_wibbly_filters(holder)
 	if(HAS_TRAIT(parent_mob, TRAIT_IN_FRENZY))
 		apply_wibbly_filters(holder)
+
