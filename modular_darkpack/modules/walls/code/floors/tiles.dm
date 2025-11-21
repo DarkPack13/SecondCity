@@ -146,3 +146,7 @@
 	icon_state = "dancefloor"
 	base_icon_state = "dancefloor"
 
+/turf/open/floor/iron/stairs/ramp
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "ramp"
+	base_icon_state = "ramp"
