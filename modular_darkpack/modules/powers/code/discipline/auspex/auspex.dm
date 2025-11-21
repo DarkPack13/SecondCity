@@ -100,7 +100,7 @@
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS
-	duration_length = 1 TURNS
+	duration_length = 1 SCENES
 	cooldown_length = 1 TURNS
 	vitae_cost = 0
 

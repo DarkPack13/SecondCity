@@ -16,6 +16,6 @@
 /datum/component/aura/proc/update_aura()
 	var/mob/parent_mob = parent
 	var/image/holder = parent_mob.hud_list[AUSPEX_AURA_HUD]
-	var/mutable_appearance/target = mutable_appearance('icons/mob/huds/hud.dmi', "hudstat", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+	var/mutable_appearance/target = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+	target.color = current_aura
 	holder.appearance = target
-	holder.color = current_aura
