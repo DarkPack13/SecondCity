@@ -27,7 +27,7 @@ var/global/list/global_tentacle_grabs = list()
 
 	environment_smash = ENVIRONMENT_SMASH_NONE
 
-	var/mob/living/owner
+	var/mob/living/carbon/human/owner
 	var/mob/living/grabbed_mob = null
 	var/list/recently_released = list()
 	var/aggro_mode = "Aggressive"
@@ -133,8 +133,14 @@ var/global/list/global_tentacle_grabs = list()
 		aggro_mode = owner.tentacle_aggro_mode
 
 /mob/living/basic/abyss_tentacle/Destroy()
-	release_grabbed_mob()
-	return ..()
+	if(owner)
+		var/datum/species/human/species = owner.dna?.species
+		if(species?.disciplines)
+			for(var/datum/discipline/obtenebration/obt_disc in species.disciplines)
+				for(var/datum/discipline_power/obtenebration/arms_of_the_abyss/power in obt_disc.known_powers)
+					power.active_tentacles -= src
+					break
+	. = ..()
 
 /mob/living/basic/abyss_tentacle/proc/grab_mob(mob/living/target)
 	// More checks

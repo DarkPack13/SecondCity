@@ -117,17 +117,21 @@
 	violates_masquerade = TRUE
 	cooldown_length = 1 TURNS
 
+	var/list/active_tentacles = list()
+
 /datum/discipline_power/obtenebration/arms_of_the_abyss/activate(var/atom/target)
 	. = ..()
 	var/turf/target_turf = get_turf(target)
 	var/dice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT))
 
-	if(target_turf && target_turf.get_lumcount() <= 0.4) // Only works if the area is dark enough. Modify as needed.
+	if(target_turf && target_turf.get_lumcount() <= 0.4)
 		// Remove any existing tentacles first
-		for(var/mob/living/basic/abyss_tentacle/T in world)
-			if(T.owner == owner)
+		for(var/mob/living/basic/abyss_tentacle/T in active_tentacles)
+			if(T && !QDELETED(T))
 				T.release_grabbed_mob()
 				qdel(T)
+		active_tentacles.Cut()
+
 		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
 		var/has_action = FALSE
 		for(var/datum/action/A in owner.actions)
@@ -135,16 +139,16 @@
 				has_action = TRUE
 				break
 
-		// Grant the aggro mode button if it doesn't exist
 		if(!has_action)
 			var/datum/action/aggro_mode/A = new()
 			A.Grant(owner)
 
 		// Create tentacles based on successes
 		for(var/i in 1 to roll)
+			var/mob/living/basic/abyss_tentacle/new_tentacle
 			// For the first tentacle, use the target turf
 			if(i == 1 && !target_turf.is_blocked_turf(exclude_mobs = TRUE))
-				new /mob/living/basic/abyss_tentacle(target_turf, owner)
+				new_tentacle = new /mob/living/basic/abyss_tentacle(target_turf, owner)
 			else
 				// For additional tentacles, find nearby valid turfs
 				var/list/open_turfs = list()
@@ -152,7 +156,11 @@
 					if(!T.is_blocked_turf(exclude_mobs = TRUE) && T.get_lumcount() <= 0.4)
 						open_turfs += T
 				if(open_turfs.len)
-					new /mob/living/basic/abyss_tentacle(pick(open_turfs), owner)
+					new_tentacle = new /mob/living/basic/abyss_tentacle(pick(open_turfs), owner)
+
+			// if we ended up making a new tentacle add it to our list
+			if(new_tentacle)
+				active_tentacles += new_tentacle
 	else
 		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
 		return FALSE
@@ -332,27 +340,52 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/user = owner
-	if(!isliving(user))
+
+	if(!owner || !isliving(owner))
 		return
-	var/mob/living/Tuser = user
+
+	var/mob/living/carbon/human/tentacle_owner = owner
+
+	if(!istype(tentacle_owner))
+		return
+
 	var/list/options = list(
 		"Aggressive" = "Aggressive (grab and damage targets)",
 		"Control" = "Control (grab and restrain without damage)",
 		"Passive" = "Passive (don't attack or grab)"
 	)
 
-	var/select = tgui_input_list(user, "Select tentacle behaviour", "Tentacle Mode", options)
-	if(!select || !Tuser)
+	var/select = tgui_input_list(tentacle_owner, "Select tentacle behaviour", "Tentacle Mode", options)
+	if(!select || !tentacle_owner)
 		return
+
 	current_mode = select
-	Tuser.tentacle_aggro_mode = select
+	tentacle_owner.tentacle_aggro_mode = select
+
+
+	// need to access the discipline_power so we can grab the list
+	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power
+	var/datum/species/human/species = tentacle_owner.dna?.species
+
+	if(species?.disciplines)
+		for(var/datum/discipline/obtenebration/obt_disc in species.disciplines)
+			for(var/datum/discipline_power/obtenebration/arms_of_the_abyss/power in obt_disc.known_powers)
+				abyss_power = power
+				break
+			if(abyss_power)
+				break
 
 	var/tentacles = 0
-	for(var/mob/living/basic/abyss_tentacle/T in world)
-		if(T.owner == Tuser)
+	for(var/mob/living/basic/abyss_tentacle/T in abyss_power.active_tentacles)
+		if(T && !QDELETED(T))
+			var/was_passive = (T.aggro_mode == "Passive")
 			T.aggro_mode = select
 			tentacles++
+
+			if(select == "Passive" && T.grabbed_mob)
+				T.release_grabbed_mob()
+			else if(was_passive && select != "Passive")
+				T.recently_released.Cut()
 
 	if(tentacles)
 		to_chat(Tuser, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
