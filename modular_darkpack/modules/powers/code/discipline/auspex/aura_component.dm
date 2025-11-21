@@ -42,6 +42,7 @@
 	update_aura_colors(aura_appearance)
 	holder.appearance = aura_appearance
 	update_aura_overlays(holder)
+	update_aura_filters(holder)
 
 // use RGB blend for multiple emotions being selected
 
@@ -73,3 +74,10 @@
 		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
 		diablerie_image.color = COLOR_HALF_TRANSPARENT_BLACK
 		holder.add_overlay(diablerie_image)
+
+/datum/component/aura/proc/update_aura_filters(image/holder)
+	var/mob/parent_mob = parent
+
+	remove_wibbly_filters(holder)
+	if(HAS_TRAIT(parent_mob, TRAIT_IN_FRENZY))
+		apply_wibbly_filters(holder)
