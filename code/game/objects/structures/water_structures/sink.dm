@@ -251,7 +251,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/kitchen, (-16))
 /obj/structure/sink/basin
 	icon_state = "basin"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/basin, (-14))
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/basin, (-16))
 // DARKPACK EDIT ADD END
 
 /obj/structure/sinkframe
