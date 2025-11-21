@@ -19,6 +19,7 @@
 	var/mob/parent_mob = parent
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
+
 	remove_verb(parent_mob, /mob/verb/emotion_panel)
 	UnregisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED)
 	return ..()
