@@ -169,7 +169,6 @@
 	pockets = list(/obj/item/vamp/keys/npc, /obj/item/stack/dollar/rand)
 	gloves = list(/obj/item/clothing/gloves/vampire/work)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
-	glasses = list(/obj/item/clothing/glasses/night)
 	hats = list(/obj/item/clothing/head/vampire/pentex_beret)
 	masks = list(/obj/item/clothing/mask/gas/sechailer)
 
