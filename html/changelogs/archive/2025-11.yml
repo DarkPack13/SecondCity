@@ -94,3 +94,10 @@
   - rscadd: Raven and crow basic mobs (corax kinfolk)
   chazzyjazzy:
   - code_imp: ticking vip barriers and now they work so
+2025-11-21:
+  Eli-Hodges:
+  - bugfix: runtime from elevator wire cutting
+  dwinters99:
+  - bugfix: NPC name and real_name now match
+  - rscadd: robes in loadout
+  - bugfix: NPCs are no longer catatonic. Just busy.
