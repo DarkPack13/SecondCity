@@ -74,7 +74,7 @@
 	color = "#bd3327"
 
 /obj/item/vamp/keys/camarilla/ghoul
-	name = "Millenium Tower Employee keys"
+	name = "\improper Millenium Tower Employee keys"
 	accesslocks = list(
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_CLERK,
