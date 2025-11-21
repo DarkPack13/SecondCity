@@ -23,12 +23,12 @@
 #define AURA_SUSPICIOUS COLOR_STRONG_BLUE // Dark Blue
 
 // Modifier auras.
-#define AURA_ANXIOUS (FALSE) // Auras appear scrambled like static or white noise
-#define AURA_CONFUSED (FALSE) // Mottled, shifting colors
-#define AURA_DAYDREAMING (FALSE) // Sharp flickering colors
-#define AURA_PSYCHOTIC (FALSE) // Hypnotic, swirling colors
+#define AURA_ANXIOUS "Anxious" // Auras appear scrambled like static or white noise
+#define AURA_CONFUSED "Confused" // Mottled, shifting colors
+#define AURA_DAYDREAMING "Daydreaming" // Sharp flickering colors
+#define AURA_PSYCHOTIC "Psychotic" // Hypnotic, swirling colors
 
-// Untoggleable auras.
+// Untoggleable auras. Left in here as reminders of what is used by outside variables.
 #define AURA_DIABLERIST (FALSE) // Black veins in aura
 #define AURA_FRENZIED (FALSE) // Rapidly rippling colors
 #define AURA_VAMPIRE (FALSE) // Aura colors are pale
