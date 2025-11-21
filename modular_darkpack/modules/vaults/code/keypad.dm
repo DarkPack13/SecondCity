@@ -7,7 +7,7 @@
 /obj/keypad
 	name = "keypad"
 	desc = "Requires a password to open."
-	icon = 'icons/obj/terminals_vtm.dmi'
+	icon = 'modular_darkpack/modules/vaults/icons/keypad.dmi'
 	icon_state = "keypad"
 	plane = GAME_PLANE
 	layer = CAR_LAYER
@@ -20,10 +20,10 @@
 	var/id = 0
 
 /obj/keypad/proc/connect_to_shutter()
-	for(var/obj/machinery/door/poddoor/shutters/S in GLOB.machines)
+	for(var/obj/machinery/door/poddoor/shutters/S in range(20, src))
 		if(S.id == id)
 			connected_shutter = S
-			break
+			return
 
 /proc/find_keypad(keypad_type)
 	// Evil in world but luckiely this is not ran super often.

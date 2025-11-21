@@ -46,11 +46,11 @@
 	var/active = FALSE
 	var/attached_door = null
 
-	var/drill_sound = 'modular_darkpack/modules/deprecated/sounds/vault_drilling.ogg'
+	var/drill_sound = 'modular_darkpack/modules/vaults/sounds/vault_drilling.ogg'
 
 /obj/structure/drill/proc/health_status()
-	if(obj_integrity < max_integrity)
-		switch(obj_integrity)
+	if(atom_integrity < max_integrity)
+		switch(atom_integrity)
 			if(2500 to 3000)
 				return "slightly damaged"
 			if(2000 to 2500)
@@ -66,17 +66,17 @@
 	. = ..()
 	var/health_status = health_status()
 	. += "[src] has [gas] gas left."
-	if(obj_integrity < max_integrity)
+	if(atom_integrity < max_integrity)
 		. += span_notice("[src] is [health_status].")
 
 /obj/structure/drill/mouse_drop_receive(over_object, src_location, over_location)
 	. = ..()
 	if(over_object == usr && Adjacent(usr) && !active)
 		if(do_after(usr, 5 SECONDS))
-			if(!item_drill || src.flags_1 & NODECONSTRUCT_1)
+			if(!item_drill)
 				return
-			if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
-				return
+			//if(!usr.canUseTopic(src, BE_CLOSE, FALSE, TRUE))
+				//return
 			usr.visible_message(span_notice("[usr] lifts \the [src.name]."), span_notice("You grab \the [src.name]."))
 			ready = FALSE
 			attached_door = null
