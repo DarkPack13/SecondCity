@@ -6814,6 +6814,7 @@
 #include "modular_darkpack\master_files\code\game\objects\items\food\snack.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\flora.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\ladders.dm"
+#include "modular_darkpack\master_files\code\game\objects\structures\railings.dm"
 #include "modular_darkpack\master_files\code\game\turfs\turf.dm"
 #include "modular_darkpack\master_files\code\game\turfs\open\_open.dm"
 #include "modular_darkpack\master_files\code\game\turfs\open\snow.dm"
