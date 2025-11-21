@@ -1,1 +1,1 @@
-/obj/item/ammo_box/magazine/darkpack/mp5 : /obj/item/ammo_box/magazine/darkpack9mp5 {@OLD}
+/obj/item/ammo_box/magazine/darkpack9mp5 : /obj/item/ammo_box/magazine/darkpack/mp5 {@OLD}
