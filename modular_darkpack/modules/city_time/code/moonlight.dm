@@ -25,6 +25,10 @@
 	GLOB.starlight -= target
 	UnregisterSignal(target, COMSIG_TURF_CHANGE)
 
+/turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
+	. = ..()
+	add_moonlight()
+
 /turf/open/misc/Initialize(mapload)
 	. = ..()
 	add_moonlight()
