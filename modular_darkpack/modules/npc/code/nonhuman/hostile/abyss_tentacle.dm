@@ -39,7 +39,7 @@ var/global/list/global_tentacle_grabs = list()
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
-	ai_movement = null
+	ai_movement = /datum/ai_movement/complete_stop
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/tentacle_grab_and_crush,
