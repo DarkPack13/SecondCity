@@ -117,8 +117,8 @@
 
 /turf/open/floor/city/gummaguts
 	name = "plating"
-	icon_state = "gummaguts1"
-	base_icon_state = "gummaguts1"
+	icon_state = "gummaguts"
+	base_icon_state = "gummaguts"
 
 /turf/open/floor/city/gummaguts/Initialize(mapload)
 	. = ..()
