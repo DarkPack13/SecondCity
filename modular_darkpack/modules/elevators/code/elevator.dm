@@ -6,8 +6,6 @@
 	doorOpen = 'modular_darkpack/modules/elevators/sounds/elevatoropen.ogg'
 	doorClose = 'modular_darkpack/modules/elevators/sounds/elevatorclose.ogg'
 	doorDeni = null
-	boltUp = null
-	boltDown = null
 
 	overlays_file = null
 
