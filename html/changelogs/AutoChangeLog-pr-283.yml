@@ -1,5 +1,0 @@
-author: "Eli-Hodges"
-delete-after: True
-changes:
-  - bugfix: "fixed pixel shifting offset"
-  - code_imp: "changed logic to use in-built offset logic."

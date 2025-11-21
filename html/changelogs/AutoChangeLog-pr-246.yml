@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Seperates non-diagetic music into its own subsystem\nadd Adds some placeholder sound environments for some of the area types, full pass still required"
