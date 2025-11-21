@@ -18,8 +18,8 @@
 /obj/machinery/light/prince{dir = @UNSET} : /obj/machinery/light/prince/directional/north
 /obj/machinery/light/prince{dir = 1} : /obj/machinery/light/prince/directional/south
 /obj/machinery/light/prince{dir = 2} : /obj/machinery/light/prince/directional/north
-/obj/machinery/light/prince{dir = 4} : /obj/machinery/light/prince/directional/east
-/obj/machinery/light/prince{dir = 8} : /obj/machinery/light/prince/directional/west
+/obj/machinery/light/prince{dir = 4} : /obj/machinery/light/prince/directional/west
+/obj/machinery/light/prince{dir = 8} : /obj/machinery/light/prince/directional/east
 
 
 # Fixing terrible mapping partices or linting fails
