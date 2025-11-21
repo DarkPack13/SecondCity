@@ -1,9 +1,9 @@
 /obj/item/smartphone/payphone
 	name = "payphone"
 	desc = "Ring ring. Ring ring. Ring ring."
+	ONFLOOR_ICON_HELPER(null)
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"
-	ONFLOOR_ICON_HELPER(null)
 	anchored = TRUE
 
 /obj/item/smartphone/payphone/Initialize(mapload)
@@ -19,9 +19,9 @@
 /obj/item/smartphone/clean
 	name = "cleaner phone"
 	desc = "The usual phone of a cleaning company used to communicate with employees"
+	ONFLOOR_ICON_HELPER(null)
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "phone_black"
-	ONFLOOR_ICON_HELPER(null)
 	anchored = TRUE
 
 /obj/item/smartphone/clean/Initialize(mapload)
@@ -37,9 +37,9 @@
 /obj/item/smartphone/emergency
 	name = "911 dispatch phone"
 	desc = "A phone used for emergency calls."
+	ONFLOOR_ICON_HELPER(null)
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "phone_red"
-	ONFLOOR_ICON_HELPER(null)
 	anchored = TRUE
 
 /obj/item/smartphone/emergency/Initialize(mapload)
