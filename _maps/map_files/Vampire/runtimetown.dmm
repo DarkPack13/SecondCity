@@ -924,6 +924,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"uD" = (
+/obj/fusebox/transformer,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "uJ" = (
 /obj/machinery/button/door{
 	id = "debughouse";
@@ -3586,7 +3590,7 @@ GF
 (15,1,1) = {"
 GF
 SK
-pN
+uD
 pN
 pN
 pN

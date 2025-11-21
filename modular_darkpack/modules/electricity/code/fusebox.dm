@@ -27,10 +27,10 @@
 	if(damaged > 100 && !open)
 		open = TRUE
 		var/area/power_area = get_area(src)
-					power_area.power_light = FALSE
-					power_area.power_equip = FALSE
-					power_area.power_environ = FALSE
-					power_area.power_change()
+		power_area.power_light = FALSE
+		power_area.power_equip = FALSE
+		power_area.power_environ = FALSE
+		power_area.power_change()
 		power_area.fire_controled = FALSE
 		var/datum/effect_system/spark_spread/local_spark = new /datum/effect_system/spark_spread
 		local_spark.set_up(5, 1, get_turf(src))
@@ -50,10 +50,10 @@
 				update_icon_state()
 				playsound(get_turf(src),'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
 				var/area/power_area = get_area(src)
-					power_area.power_light = TRUE
-					power_area.power_equip = TRUE
-					power_area.power_environ = TRUE
-					power_area.power_change()
+				power_area.power_light = TRUE
+				power_area.power_equip = TRUE
+				power_area.power_environ = TRUE
+				power_area.power_change()
 				if(initial(power_area.fire_controled))
 					power_area.fire_controled = TRUE
 				for(var/obj/machinery/light/L in power_area)
