@@ -128,17 +128,13 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-//I should make these slow to move
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = TRUE
+	drag_slowdown = 3
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 

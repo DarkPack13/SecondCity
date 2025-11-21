@@ -96,6 +96,7 @@
 
 // DARKPACK EDIT CHANGE START
 /obj/machinery/light/prince
+	icon_state = "prince"
 	base_state = "prince"
 
 /obj/machinery/light/prince/ghost
