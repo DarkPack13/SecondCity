@@ -32,7 +32,6 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 	TRAIT_MIME_FAN = DATA_HUD_FAN,
 	TRAIT_SECURITY_HUD = DATA_HUD_SECURITY_ADVANCED,
 	TRAIT_SECURITY_HUD_ID_ONLY = DATA_HUD_SECURITY_BASIC,
-	TRAIT_SEES_AURAS = DATA_HUD_AUSPEX_AURAS, //DARKPACK EDIT ADDITION
 ))
 
 /// Assoc list of traits that block other traits' huds to list of hud (traits) that they block

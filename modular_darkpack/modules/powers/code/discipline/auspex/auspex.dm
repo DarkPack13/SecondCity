@@ -100,21 +100,19 @@
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS
+	duration_length = 1 TURNS
 	cooldown_length = 1 TURNS
 	vitae_cost = 0
 
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
+	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
+	target_hud.show_to(owner)
 
-	for(var/mob/spotted_mob in range(7, get_turf(owner)))
-		show_aura(spotted_mob)
-		addtimer(CALLBACK(src, PROC_REF(hide_aura), spotted_mob), 1 TURNS, TIMER_DELETE_ME)
-
-/datum/discipline_power/auspex/aura_perception/proc/show_aura(mob/spotted_mob)
-	SEND_SIGNAL(spotted_mob, COMSIG_SHOW_AURA, owner)
-
-/datum/discipline_power/auspex/aura_perception/proc/hide_aura(mob/spotted_mob)
-	SEND_SIGNAL(spotted_mob, COMSIG_HIDE_AURA, owner)
+/datum/discipline_power/auspex/aura_perception/deactivate()
+	. = ..()
+	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
+	target_hud.hide_from(owner)
 
 //THE SPIRIT'S TOUCH
 /datum/discipline_power/auspex/the_spirits_touch
