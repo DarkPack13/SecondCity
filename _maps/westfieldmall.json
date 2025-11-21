@@ -16,29 +16,24 @@
 	"traits": [
 		{
 			"Up": 1,
-			"Baseturf": "/turf/open/misc/dirt/vamp",
-			"Linkage": "Cross"
+			"Baseturf": "/turf/open/misc/dirt/vamp"
 		},
 		{
 			"Up": 1,
 			"Down": -1,
-			"Baseturf": "/turf/open/misc/dirt/vamp",
-			"Linkage": "Cross"
+			"Baseturf": "/turf/open/misc/dirt/vamp"
 		},
 		{
 			"Up": 1,
 			"Down": -1,
-			"Baseturf": "/turf/open/openspace",
-			"Linkage": "Cross"
+			"Baseturf": "/turf/open/openspace"
 		},
 		{
 			"Down": -1,
-			"Baseturf": "/turf/open/openspace",
-			"Linkage": "Cross"
+			"Baseturf": "/turf/open/openspace"
 		},
 		{
-			"Baseturf": "/turf/open/openspace",
-			"Linkage": "Cross"
+			"Baseturf": "/turf/open/openspace"
 		}
 	],
 	"max_npcs": 60
