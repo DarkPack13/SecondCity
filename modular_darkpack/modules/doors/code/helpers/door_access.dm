@@ -17,5 +17,14 @@
 /obj/effect/mapping_helpers/door/access/anarch
 	lock_id = LOCKACCESS_ANARCH
 
+/obj/effect/mapping_helpers/door/access/giovanni
+	lock_id = LOCKACCESS_GIOVANNI
+
+/obj/effect/mapping_helpers/door/access/bank
+	lock_id = LOCKACCESS_BANK
+
+/obj/effect/mapping_helpers/door/access/bankboss
+	lock_id = LOCKACCESS_BANKBOSS
+
 /obj/effect/mapping_helpers/door/access/npc/payload(obj/structure/vampdoor/payload)
 	payload.lock_id = "npc[rand(1, 20)]"
