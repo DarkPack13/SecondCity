@@ -109,7 +109,7 @@
 /turf/open/floor/city/bacotell
 	name = "plating"
 	icon_state = "bacotell1"
-	base_icon_state = "bacotell1"
+	base_icon_state = "bacotell"
 
 /turf/open/floor/city/bacotell/Initialize(mapload)
 	. = ..()
