@@ -8,7 +8,6 @@
 	//mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	heatmod = 1
 	mutanttongue = /obj/item/organ/tongue
-	bodytemp_normal = T0C // They have no natural body heat, the environment regulates body temp
 
 /datum/species/zombie/check_roundstart_eligible()
 	return FALSE

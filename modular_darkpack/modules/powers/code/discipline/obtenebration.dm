@@ -388,7 +388,7 @@
 				T.recently_released.Cut()
 
 	if(tentacles)
-		to_chat(Tuser, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
+		to_chat(tentacle_owner, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
 		update_button_icon()
 
 /datum/action/aggro_mode/proc/update_button_icon()

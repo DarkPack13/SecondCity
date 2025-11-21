@@ -19,9 +19,6 @@
 	combat_mode = TRUE
 	faction = list(VAMPIRE_CLAN_GIOVANNI)
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	// Atmospheric requirements (undead don't need air)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 1500
 
 /mob/living/basic/beastmaster/giovanni_zombie/Initialize(mapload)
 	. = ..()
@@ -51,7 +48,6 @@
 	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_power = 2
-	// Ghost-specific emotes
 	speak_emote = list("weeps")
 
 /mob/living/basic/beastmaster/giovanni_zombie/level1/Initialize(mapload)
@@ -157,7 +153,6 @@
 	speak_emote = list("gurgles")
 	death_message = "collapses down into a rancid puddle!"
 
-// Player possession proc - commented out as noted in original
 /*
 /mob/living/basic/beastmaster/giovanni_zombie/level1/Initialize(mapload)
 	. = ..()

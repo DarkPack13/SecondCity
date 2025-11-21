@@ -2,7 +2,6 @@
 	COOLDOWN_DECLARE(masquerade_timer)
 	//thaumaturgy & necro path stuff
 	var/research_points = 0
-	var/list/artifact_owned_amounts = list()// allows for the tracking of multiple artifacts to prevent linear 'stacking', instead introducing exponential decay
 	var/collected_souls = 0
 
 /mob/living/Initialize(mapload)

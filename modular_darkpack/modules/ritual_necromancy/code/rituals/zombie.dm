@@ -67,6 +67,7 @@
 				/datum/component/ghost_direct_control,\
 				poll_candidates = TRUE,\
 				role_name = "a Sentient Zombie",\
+				poll_length = 30 SECONDS,\
 				assumed_control_message = "You are a Sentient Zombie, a Wraith who has been mercifully granted a skinride by your master. Serve them well, and enjoy your taste of a life taken from you.",\
 				after_assumed_control = CALLBACK(src, PROC_REF(on_zombie_possess), target_body),\
 			)

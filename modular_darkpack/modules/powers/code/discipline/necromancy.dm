@@ -1,3 +1,5 @@
+// necromancy zombies located in npc module, beastmaster/necromancy_zombies.dm
+
 /datum/discipline/necromancy
 	name = "Necromancy"
 	desc = "Offers control over another, undead reality."
@@ -13,6 +15,10 @@
 	ADD_TRAIT(owner, TRAIT_NECROMANCY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	ritualist.Grant(owner)
 	ritualist.level = level
+
+/datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
+	. = ..()
+	return SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_OCCULT), 6, owner)
 
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
@@ -52,8 +58,6 @@
 	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, NECROMANCY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
 
-	//owner.see_override = initial(owner.see_override)
-
 	owner.update_sight()
 
 	to_chat(owner, span_warning("Your vision returns to the mortal realm."))
@@ -72,6 +76,11 @@
 	violates_masquerade = TRUE
 
 	cooldown_length = 5 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/ashes_to_ashes,
+		/datum/discipline_power/necromancy/cold_of_the_grave,
+		/datum/discipline_power/necromancy/shambling_horde
+	)
 
 /datum/discipline_power/necromancy/ethereal_horde/activate()
 	. = ..()
@@ -108,6 +117,11 @@
 	violates_masquerade = TRUE
 
 	cooldown_length = 10 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/ethereal_horde,
+		/datum/discipline_power/necromancy/cold_of_the_grave,
+		/datum/discipline_power/necromancy/shambling_horde
+	)
 
 /datum/discipline_power/necromancy/ashes_to_ashes/activate(mob/target)
 	. = ..()
@@ -168,6 +182,11 @@
 	multi_activate = TRUE
 	cooldown_length = 20 SECONDS
 	duration_length = 20 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/ethereal_horde,
+		/datum/discipline_power/necromancy/ashes_to_ashes,
+		/datum/discipline_power/necromancy/shambling_horde
+	)
 
 /datum/movespeed_modifier/corpsebuff
 	multiplicative_slowdown = 0.4
@@ -246,6 +265,12 @@
 	violates_masquerade = TRUE
 
 	cooldown_length = 5 SECONDS
+	grouped_powers = list(
+		/datum/discipline_power/necromancy/ethereal_horde,
+		/datum/discipline_power/necromancy/ashes_to_ashes,
+		/datum/discipline_power/necromancy/cold_of_the_grave
+
+	)
 
 /datum/discipline_power/necromancy/shambling_horde/activate(mob/living/target)
 	. = ..()
