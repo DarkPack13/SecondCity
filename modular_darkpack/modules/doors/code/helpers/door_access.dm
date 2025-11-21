@@ -14,8 +14,171 @@
 /obj/effect/mapping_helpers/door/access/camarilla
 	lock_id = LOCKACCESS_CAMARILLA
 
+/obj/effect/mapping_helpers/door/access/prince
+	lock_id = LOCKACCESS_PRINCE
+
+/obj/effect/mapping_helpers/door/access/primogen
+	lock_id = LOCKACCESS_PRIOGEN
+
+
+/obj/effect/mapping_helpers/door/access/banu
+	lock_id = LOCKACCESS_BANU
+
+/obj/effect/mapping_helpers/door/access/strip
+	lock_id = LOCKACCESS_STRIP
+
+/obj/effect/mapping_helpers/door/access/chantry
+	lock_id = LOCKACCESS_CHANTRY
+
+/obj/effect/mapping_helpers/door/access/clerk
+	lock_id = LOCKACCESS_CLERK
+
+
+/obj/effect/mapping_helpers/door/access/bankboss
+	lock_id = LOCKACCESS_BANKBOSS
+
+/obj/effect/mapping_helpers/door/access/bank
+	lock_id = LOCKACCESS_BANK
+
+
+/obj/effect/mapping_helpers/door/access/theatre
+	lock_id = LOCKACCESS_THEATRE
+
+/obj/effect/mapping_helpers/door/access/jazz_club
+	lock_id = LOCKACCESS_JAZZ_CLUB
+
+/obj/effect/mapping_helpers/door/access/jazz_club_delivery
+	lock_id = LOCKACCESS_JAZZ_CLUB_DELIVERY
+
+
+/obj/effect/mapping_helpers/door/access/director
+	lock_id = LOCKACCESS_DIRECTOR
+
+/obj/effect/mapping_helpers/door/access/clinic
+	lock_id = LOCKACCESS_CLINIC
+
+
+/obj/effect/mapping_helpers/door/access/primogen_ventrue
+	lock_id = LOCKACCESS_PRIMOGEN_VENTRUE
+
+/obj/effect/mapping_helpers/door/access/ventrue
+	lock_id = LOCKACCESS_VENTRUE
+
+
+/obj/effect/mapping_helpers/door/access/primogen_toreador
+	lock_id = LOCKACCESS_PRIMOGEN_TOREADOR
+
+/obj/effect/mapping_helpers/door/access/toreador
+	lock_id = LOCKACCESS_TOREADOR
+
+
+/obj/effect/mapping_helpers/door/access/primogen_malkavian
+	lock_id = LOCKACCESS_MALK_PRIMOGEN
+
+/obj/effect/mapping_helpers/door/access/malkavian
+	lock_id = LOCKACCESS_MALK
+
+
+/obj/effect/mapping_helpers/door/access/primogen_brujah
+	lock_id = LOCKACCESS_PRIMOGEN_BRUJAH
+
+/obj/effect/mapping_helpers/door/access/brujah
+	lock_id = LOCKACCESS_BRUJAH
+
+
+/obj/effect/mapping_helpers/door/access/primogen_nosferatu
+	lock_id = LOCKACCESS_PRIMOGEN_NOSFERATU
+
+/obj/effect/mapping_helpers/door/access/nosferatu
+	lock_id = LOCKACCESS_NOSFERATU
+
+
+/obj/effect/mapping_helpers/door/access/giovanni
+	lock_id = LOCKACCESS_GIOVANNI
+
+/obj/effect/mapping_helpers/door/access/daughters
+	lock_id = LOCKACCESS_DAUGHTERS
+
+/obj/effect/mapping_helpers/door/access/cappadocian
+	lock_id = LOCKACCESS_CAPPADOCIAN
+
+/obj/effect/mapping_helpers/door/access/salubri
+	lock_id = LOCKACCESS_SALUBRI
+
+/obj/effect/mapping_helpers/door/access/old_clan_tzimisce
+	lock_id = LOCKACCESS_OLD_CLAN_TZI
+
+/obj/effect/mapping_helpers/door/access/baali
+	lock_id = LOCKACCESS_BAALI
+
+
+/obj/effect/mapping_helpers/door/access/sabbat
+	lock_id = LOCKACCESS_SABBAT
+
+
 /obj/effect/mapping_helpers/door/access/anarch
 	lock_id = LOCKACCESS_ANARCH
+
+/obj/effect/mapping_helpers/door/access/bar
+	lock_id = LOCKACCESS_BAR
+
+/obj/effect/mapping_helpers/door/access/bar_delivery
+	lock_id = LOCKACCESS_BAR_DELIVERY
+
+
+/obj/effect/mapping_helpers/door/access/supply
+	lock_id = LOCKACCESS_SUPPLY
+
+/obj/effect/mapping_helpers/door/access/graveyard
+	lock_id = LOCKACCESS_GRAVEYARD
+
+/obj/effect/mapping_helpers/door/access/church
+	lock_id = LOCKACCESS_CHURCH
+
+/obj/effect/mapping_helpers/door/access/taxi
+	lock_id = LOCKACCESS_TAXI
+
+
+/obj/effect/mapping_helpers/door/access/axe_gang
+	lock_id = LOCKACCESS_AXE_GANG
+
+/obj/effect/mapping_helpers/door/access/triad
+	lock_id = LOCKACCESS_TRAID
+
+/obj/effect/mapping_helpers/door/access/cleaning
+	lock_id = LOCKACCESS_CLEANING
+
+/obj/effect/mapping_helpers/door/access/laundromat
+	lock_id = LOCKACCESS_LAUNDROMAT
+
+
+/obj/effect/mapping_helpers/door/access/police
+	lock_id = LOCKACCESS_POLICE
+
+/obj/effect/mapping_helpers/door/access/dispatch
+	lock_id = LOCKACCESS_DISPATCH
+
+/obj/effect/mapping_helpers/door/access/police_secure
+	lock_id = LOCKACCESS_POLICE_SECURE
+
+/obj/effect/mapping_helpers/door/access/police_chief
+	lock_id = LOCKACCESS_POLICE_CHIEF
+
+
+/obj/effect/mapping_helpers/door/access/wolftech
+	lock_id = LOCKACCESS_WOLFTECH
+
+/obj/effect/mapping_helpers/door/access/park_ranger
+	lock_id = LOCKACCESS_PARK_RANGER
+
+/obj/effect/mapping_helpers/door/access/coggie
+	lock_id = LOCKACCESS_COGGIE
+
+/obj/effect/mapping_helpers/door/access/pentex
+	lock_id = LOCKACCESS_PENTEX
+
+/obj/effect/mapping_helpers/door/access/pentex_leader
+	lock_id = LOCKACCESS_PENTEX_LEADER
 
 /obj/effect/mapping_helpers/door/access/npc/payload(obj/structure/vampdoor/payload)
 	payload.lock_id = "npc[rand(1, 20)]"
