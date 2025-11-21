@@ -24,6 +24,7 @@
 		return
 
 	late_payload(door)
+	qdel(src)
 
 /obj/effect/mapping_helpers/door/proc/payload(obj/structure/vampdoor/payload)
 	return
@@ -32,50 +33,70 @@
 	return
 
 /obj/effect/mapping_helpers/door/lock
+	icon_state = "start_locked"
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
+
 /obj/effect/mapping_helpers/door/lock/payload(obj/structure/vampdoor/payload)
 	payload.locked = TRUE
 
 /obj/effect/mapping_helpers/door/unlock
+	icon_state = "start_unlocked"
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
+
 /obj/effect/mapping_helpers/door/unlock/payload(obj/structure/vampdoor/payload)
 	payload.locked = FALSE
 
 /obj/effect/mapping_helpers/door/toggle_lock
+	icon_state = "toggle_locked"
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
+
 /obj/effect/mapping_helpers/door/toggle_lock/payload(obj/structure/vampdoor/payload)
 	payload.locked = !payload.locked
 
 
 /obj/effect/mapping_helpers/door/lock_difficulty
+	icon_state = "locklevel_easy"
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
 	var/lock_difficulty
 
 /obj/effect/mapping_helpers/door/lock_difficulty/payload(obj/structure/vampdoor/payload)
 	payload.lockpick_difficulty = lock_difficulty
 
 /obj/effect/mapping_helpers/door/lock_difficulty/one
+	icon_state = "locklevel_trivial"
 	lock_difficulty = 1
 
 /obj/effect/mapping_helpers/door/lock_difficulty/two
+	icon_state = "locklevel_trivial"
 	lock_difficulty = 2
 
 /obj/effect/mapping_helpers/door/lock_difficulty/three
+	icon_state = "locklevel_trivial"
 	lock_difficulty = 3
 
 /obj/effect/mapping_helpers/door/lock_difficulty/four
+	icon_state = "locklevel_trivial"
 	lock_difficulty = 4
 
 /obj/effect/mapping_helpers/door/lock_difficulty/five
+	icon_state = "locklevel_trivial"
 	lock_difficulty = 5
 
 /obj/effect/mapping_helpers/door/lock_difficulty/six
 	lock_difficulty = 6
 
 /obj/effect/mapping_helpers/door/lock_difficulty/seven
+	icon_state = "locklevel_medium"
 	lock_difficulty = 7
 
 /obj/effect/mapping_helpers/door/lock_difficulty/eight
+	icon_state = "locklevel_hard"
 	lock_difficulty = 8
 
 /obj/effect/mapping_helpers/door/lock_difficulty/nine
+	icon_state = "locklevel_harder"
 	lock_difficulty = 9
 
 /obj/effect/mapping_helpers/door/lock_difficulty/ten
+	icon_state = "locklevel_hardest"
 	lock_difficulty = 10
