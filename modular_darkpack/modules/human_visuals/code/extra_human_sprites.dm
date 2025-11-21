@@ -26,6 +26,7 @@
 		var/icon_to_set = greyscale ? DEFAULT_BODYPART_ICON_ORGANIC : bodypart.icon
 		bodypart.change_appearance(icon_to_set, sprite_name, greyscale)
 
+
 /**
  * Rots the vampire's body along four stages of decay.
  *

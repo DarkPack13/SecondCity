@@ -235,7 +235,7 @@
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/uzi.ogg'
 
-/obj/item/ammo_box/magazine/darkpack9mp5
+/obj/item/ammo_box/magazine/darkpack/mp5
 	name = "mp5 magazine (9mm)"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
@@ -252,7 +252,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	inhand_icon_state = "mp5"
-	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack9mp5
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack/mp5
 	burst_size = 4
 	spread = 4
 	bolt_type = BOLT_TYPE_LOCKING
