@@ -39,18 +39,18 @@
 	l_hand = /obj/item/vamp/keys/npc/fix
 	back = /obj/item/storage/backpack/satchel
 
-/obj/effect/mob_spawn/corpse/ciz1
+/obj/effect/mob_spawn/corpse/human/ciz1
 	name = "Citizen"
 	outfit = /datum/outfit/civillian1
 
-/obj/effect/mob_spawn/corpse/ciz2
+/obj/effect/mob_spawn/corpse/human/ciz2
 	name = "Citizen"
 	outfit = /datum/outfit/civillian2
 
-/obj/effect/mob_spawn/corpse/ciz3
+/obj/effect/mob_spawn/corpse/human/ciz3
 	name = "Citizen"
 	outfit = /datum/outfit/civillian3
 
-/obj/effect/mob_spawn/corpse/ciz4
+/obj/effect/mob_spawn/corpse/human/ciz4
 	name = "Citizen"
 	outfit = /datum/outfit/civillian4

@@ -38,7 +38,7 @@
 # we're removing this mob spawner
 /obj/effect/mob_spawn/human/chunkguard : @DELETE
 
-/obj/effect/mob_spawn/human/corpse/@SUBTYPES : /obj/effect/mob_spawn/corpse/@SUBTYPES
+/obj/effect/mob_spawn/human/corpse/@SUBTYPES : /obj/effect/mob_spawn/corpse/human/@SUBTYPES
 
 # This item doesn't exist on TG anymore.
 /obj/item/melee/rune_knife : @DELETE
