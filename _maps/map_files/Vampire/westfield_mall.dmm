@@ -26,7 +26,8 @@
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/vampdoor/prison,
 /obj/effect/mapping_helpers/door/lock_difficulty/ten,
-/obj/effect/mapping_helpers/door/toggle_lock,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/bank,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "ar" = (
@@ -228,8 +229,11 @@
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/techshop)
 "cj" = (
-/obj/structure/vampdoor/glass,
 /obj/machinery/door/poddoor/shutters/preopen,
+/obj/structure/vampdoor/woodglass,
+/obj/effect/mapping_helpers/door/lock_difficulty/five,
+/obj/effect/mapping_helpers/door/unlock,
+/obj/effect/mapping_helpers/door/access/bank,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior)
 "cm" = (
@@ -661,6 +665,14 @@
 "gG" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/techshop)
+"gL" = (
+/obj/effect/turf_decal/siding/wood/dark,
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/interior)
 "gM" = (
 /obj/effect/turf_decal/siding/wood/dark,
 /turf/open/floor/city/bacotell,
@@ -922,8 +934,10 @@
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
 "jK" = (
-/obj/structure/vampdoor/wood/giovanni,
+/obj/structure/vampdoor/wood,
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "jN" = (
@@ -1027,10 +1041,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/concrete,
 /area/vtm/sewer)
-"kJ" = (
-/obj/effect/mapping_helpers/viewport_helper/transparent,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "kK" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -2264,10 +2274,12 @@
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 8
 	},
-/obj/structure/vampdoor/wood/giovanni{
-	dir = 8
+/obj/structure/vampdoor/wood{
+	dir = 4
 	},
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "wJ" = (
@@ -43456,7 +43468,7 @@ Xr
 IT
 Xr
 Xr
-kJ
+kW
 cj
 XU
 XU
@@ -44836,7 +44848,7 @@ LU
 LU
 LU
 LU
-LU
+sC
 Yl
 Aw
 Aw
@@ -44988,8 +45000,8 @@ Kf
 LU
 LU
 LU
-sC
-Yl
+LU
+gL
 Aw
 Aw
 Aw
