@@ -567,7 +567,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/phone
 	name = "red phone"
 	desc = "Should anything ever go wrong..."
-	icon = 'modular_darkpack/master_files/icons/obj/devices/voice.dmi' // DARKPACK EDIT CHANGE
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "red_phone"
 	force = 3
 	throwforce = 2
