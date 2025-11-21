@@ -1,5 +1,6 @@
 /obj/effect/mapping_helpers/door/access
 	layer = DOOR_ACCESS_HELPER_LAYER
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
 	icon_state = "access_helper"
 	var/lock_id
 
@@ -12,25 +13,32 @@
 	lock_id = LOCKACCESS_ALL
 
 /obj/effect/mapping_helpers/door/access/camarilla
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_CAMARILLA
 
 /obj/effect/mapping_helpers/door/access/prince
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_PRINCE
 
 /obj/effect/mapping_helpers/door/access/primogen
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_PRIOGEN
 
 
 /obj/effect/mapping_helpers/door/access/banu
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_BANU
 
 /obj/effect/mapping_helpers/door/access/strip
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_STRIP
 
 /obj/effect/mapping_helpers/door/access/chantry
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_CHANTRY
 
 /obj/effect/mapping_helpers/door/access/clerk
+	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_CLERK
 
 
@@ -179,6 +187,9 @@
 
 /obj/effect/mapping_helpers/door/access/pentex_leader
 	lock_id = LOCKACCESS_PENTEX_LEADER
+
+/obj/effect/mapping_helpers/door/access/npc
+	icon_state = "access_helper_rand"
 
 /obj/effect/mapping_helpers/door/access/npc/payload(obj/structure/vampdoor/payload)
 	payload.lock_id = "npc[rand(1, 20)]"
