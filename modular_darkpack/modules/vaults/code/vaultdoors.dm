@@ -28,7 +28,7 @@
 	var/is_locked = FALSE
 
 /obj/structure/vaultdoor/pincode
-	name = "Vault Door"
+	name = "vault door"
 	desc = "A heavy duty door that looks like it could withstand a lot of punishment."
 
 /obj/structure/vaultdoor/pincode/bank
