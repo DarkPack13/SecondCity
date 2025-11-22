@@ -1,5 +1,6 @@
 //parent rune type for thaumaturgy, necromancy, obtenebration
 /obj/ritual_rune
+	abstract_type = /obj/ritual_rune
 	name = "ritual rune"
 	desc = "A mystical rune."
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
