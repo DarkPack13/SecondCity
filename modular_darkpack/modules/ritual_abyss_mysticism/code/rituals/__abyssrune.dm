@@ -1,5 +1,5 @@
 /obj/ritual_rune/abyss
-	name = "Abyss Rune"
+	name = "abyss rune"
 	desc = "Learn the secrets of the Abyss, neonate..."
 	color = rgb(0, 0, 0)
 	word = "IDI NAH"
