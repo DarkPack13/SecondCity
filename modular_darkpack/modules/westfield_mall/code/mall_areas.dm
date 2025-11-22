@@ -61,15 +61,19 @@
 
 /area/vtm/westfield_mall/interior/arcade
 	name = "Master Controller Arcade"
+	icon_state = "arcade"
 
 /area/vtm/westfield_mall/interior/smokeshop
 	name = "Paqadube Smokestuff and Tobacco"
+	icon_state = "smoke_shop"
 
 /area/vtm/westfield_mall/interior/clothing_store
 	name = "Snarshals Clothing and Fabric"
-
+	icon_state = "clothing"
 /area/vtm/westfield_mall/interior/hot_ishu
 	name = "Hot Ishu"
+	name = "clothing_ishu"
 
 /area/vtm/westfield_mall/interior/camarilla
 	name = "Westfield Management"
+	name = "camallrilla"
