@@ -32,7 +32,7 @@
 	desc = "A heavy duty door that looks like it could withstand a lot of punishment."
 
 /obj/structure/vaultdoor/pincode/bank
-	name = "Bank Vault Door"
+	name = "bank vault door"
 	desc = "A massive reinforced vault door protecting the bank's reserves."
 	lock_id = "bank_vault"
 
