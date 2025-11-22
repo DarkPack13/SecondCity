@@ -848,18 +848,7 @@
 //DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_yw/Initialize(mapload)
 	. = ..()
-	var/matrix/M1 = matrix()
-	M1.Turn(4)
-	var/matrix/M2 = matrix()
-	M2.Turn(-4)
-	var/area/my_area = get_area(src)
-	if(istype(my_area) && my_area.outdoors)
-		if(prob(50))
-			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M2, time = 2 SECONDS)
-		else
-			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M1, time = 2 SECONDS)
+	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
 //DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
 
 /obj/structure/flora/bush/flowers_yw/style_2
@@ -879,18 +868,7 @@
 //DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_br/Initialize(mapload)
 	. = ..()
-	var/matrix/M1 = matrix()
-	M1.Turn(4)
-	var/matrix/M2 = matrix()
-	M2.Turn(-4)
-	var/area/my_area = get_area(src)
-	if(istype(my_area) && my_area.outdoors)
-		if(prob(50))
-			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M2, time = 2 SECONDS)
-		else
-			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M1, time = 2 SECONDS)
+	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
 //DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
 
 /obj/structure/flora/bush/flowers_br/style_2
@@ -910,18 +888,7 @@
 //DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_pp/Initialize(mapload)
 	. = ..()
-	var/matrix/M1 = matrix()
-	M1.Turn(4)
-	var/matrix/M2 = matrix()
-	M2.Turn(-4)
-	var/area/my_area = get_area(src)
-	if(istype(my_area) && my_area.outdoors)
-		if(prob(50))
-			animate(src, transform = M1, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M2, time = 2 SECONDS)
-		else
-			animate(src, transform = M2, time = 2 SECONDS, loop = -1, easing = SINE_EASING, delay = rand(1, 15))
-			animate(transform = M1, time = 2 SECONDS)
+	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
 //DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
 
 /obj/structure/flora/bush/flowers_pp/style_2
