@@ -29,7 +29,7 @@
 	desc = "Blue stripe beer, brought to you by King Breweries and Distilleries!"
 	icon_state = "beer_blue"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 25, /datum/reagent/toxin/amatoxin = 5)
-	custom_price = 8 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
+	custom_price = 8
 // DARKPACK TODO - Typhon's Beer
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
 	name = "Typhon's Beer"
@@ -54,7 +54,7 @@
 	list_reagents = list(/datum/reagent/consumable/space_cola = 100)
 	volume = 100
 	age_restricted = FALSE
-	custom_price = 7 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
+	custom_price = 7
 /obj/item/reagent_containers/cup/glass/vampirecola/blue
 	desc = "Pep Cola. Put some pep in your step"
 	list_reagents = list(/datum/reagent/consumable/space_up = 100)
@@ -69,7 +69,7 @@
 	isGlass = FALSE
 	list_reagents = list(/datum/reagent/water = 50)
 	age_restricted = FALSE
-	custom_price = 3 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
+	custom_price = 3
 /obj/item/reagent_containers/cup/soda_cans/vampirecola
 	name = "cola"
 	desc = "Coca cola espuma..."
@@ -98,7 +98,7 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	list_reagents = list(/datum/reagent/consumable/space_cola = 20, /datum/reagent/medicine/muscle_stimulant = 5, /datum/reagent/toxin/amatoxin = 5)
-	custom_price = 5 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
+	custom_price = 5
 /obj/item/reagent_containers/cup/soda_cans/thaw_club
 	name = "thaw club soda"
 	desc = "For your energy needs. Brought to you by King Breweries and Distilleries!"
@@ -123,4 +123,4 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	icon_state = "mixingbowl"
 	custom_materials = list(/datum/material/glass=500)
-	custom_price = 100 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
+	custom_price = 15
