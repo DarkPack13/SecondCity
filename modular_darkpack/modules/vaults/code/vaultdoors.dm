@@ -1,5 +1,5 @@
 /obj/structure/vaultdoor
-	name = "Vault Door"
+	name = "vault door"
 	desc = "A heavy duty door that looks like it could withstand a lot of punishment."
 	icon = 'modular_darkpack/modules/vaults/icons/vault.dmi'
 	icon_state = "vault-1"
