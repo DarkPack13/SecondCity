@@ -1,6 +1,6 @@
 /datum/status_effect/blood_debt
 	id = "blood_debt"
-	duration = 999 SCENES
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = /atom/movable/screen/alert/status_effect/blood_debt
 	var/debt_amount = 0
 	var/initial_bloodpool = 0
