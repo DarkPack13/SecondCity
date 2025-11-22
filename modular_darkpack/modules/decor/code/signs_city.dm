@@ -3,7 +3,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
 
 /obj/structure/sign/city/police_department
-	name = CITY_POLICE_DEPARTMENT
+	name = "\improper " + CITY_POLICE_DEPARTMENT + " sign"
 	desc = "Stop right there you criminal scum! Nobody can break the law on my watch!!"
 	icon_state = "police"
 	pixel_z = 40
