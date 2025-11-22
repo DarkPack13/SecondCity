@@ -83,9 +83,6 @@
 		aura_image.color = hsv2rgb(hsv_color_value)
 		holder.appearance = aura_image
 
-/datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
-	var/mob/parent_mob = parent
-
 	if(isghoul(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
 		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
@@ -99,12 +96,10 @@
 		aura_icon.add_filter("alpha_mask", 1, alpha_mask_filter(icon = icon_mask))
 		holder.add_overlay(aura_icon)
 
-	remove_wibbly_filters(holder)
-	for(var/image/iterated_image in holder.overlays)
-		remove_wibbly_filters(iterated_image)
+/datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
+	var/mob/parent_mob = parent
 
+	remove_wibbly_filters(holder)
 	if(HAS_TRAIT(parent_mob, TRAIT_IN_FRENZY))
 		apply_wibbly_filters(holder)
-		for(var/image/iterated_image in holder.overlays)
-			apply_wibbly_filters(iterated_image)
 
