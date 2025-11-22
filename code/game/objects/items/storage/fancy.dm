@@ -146,7 +146,7 @@
 	spawn_count = 12
 	contents_tag = "egg"
 	storage_type = /datum/storage/egg_box
-
+	custom_price = 3 //DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
 /*
  * Fertile Egg Box
  */

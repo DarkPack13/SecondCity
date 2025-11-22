@@ -78,6 +78,7 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_1
+	custom_price =  3 // DARKPACK EDIT ADD - Added a price so we can buy and sell this item
 
 /obj/item/food/virtual_chocolate
 	name = "virtual chocolate bar"

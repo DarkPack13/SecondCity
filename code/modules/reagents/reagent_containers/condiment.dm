@@ -186,7 +186,7 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/milk = 50)
 	fill_icon_thresholds = null
-
+	custom_price = 5 // DARKPACK EDIT ADD - Added a custom price so we can buy and sell this item
 /obj/item/reagent_containers/condiment/milk/examine(mob/user)
 	. = ..()
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cheesewheel]
