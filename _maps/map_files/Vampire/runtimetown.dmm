@@ -182,7 +182,7 @@
 "ea" = (
 /obj/structure/vampdoor,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "ef" = (
 /obj/structure/roofstuff/vent_end{
 	dir = 4
@@ -315,7 +315,7 @@
 /obj/effect/decal/cleanable/trash,
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "hi" = (
 /obj/effect/turf_decal/asphaltline,
 /turf/open/floor/plating/asphalt,
@@ -534,7 +534,7 @@
 /obj/effect/decal/cleanable/litter,
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
@@ -695,7 +695,7 @@
 "pO" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "pU" = (
 /obj/effect/landmark/npc_spawn_point,
 /turf/open/floor/plating/sidewalk/poor,
@@ -942,7 +942,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/daimonori,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "uC" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/glock45acp,
@@ -1035,7 +1035,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/heart_of_eliza,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "wj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1048,7 +1048,7 @@
 	},
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "wD" = (
 /obj/effect/landmark/start{
 	jobspawn_override = 1;
@@ -1195,7 +1195,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/saulocept,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "zT" = (
 /obj/structure/chair/darkpack/red,
 /turf/open/floor/plating/rough,
@@ -1204,7 +1204,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/odious_chalice,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "zX" = (
 /obj/effect/decal/wallpaper/red,
 /turf/closed/wall/vampwall/market,
@@ -1352,12 +1352,12 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/galdjum,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "CQ" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/mummywrap_fetish,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1670,7 +1670,7 @@
 	},
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "HO" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur{
@@ -1704,7 +1704,7 @@
 "Iq" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "IA" = (
 /obj/structure/railing{
 	dir = 10
@@ -1724,7 +1724,7 @@
 "IJ" = (
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "IL" = (
 /obj/structure/ladder/manhole/up,
 /turf/open/floor/plating/rough,
@@ -1858,7 +1858,7 @@
 /obj/item/vtm_artifact/tarulfang,
 /mob/living/basic/pet/cat/darkpack/cain,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "KR" = (
 /obj/structure/transport/linear/public,
 /obj/structure/railing/corner/end/flip{
@@ -1954,7 +1954,7 @@
 /obj/structure/table/reinforced,
 /obj/item/arcane_tome,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "My" = (
 /obj/structure/retail/costume_store{
 	pixel_x = 2;
@@ -2272,7 +2272,7 @@
 /obj/item/vtm_artifact/weekapaug_thistle,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Sg" = (
 /obj/structure/chair/office/darkpack/red{
 	dir = 1
@@ -2332,7 +2332,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/key_of_alamut,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Ti" = (
 /obj/structure/transport/linear/public,
 /obj/effect/landmark/transport/transport_id{
@@ -2367,7 +2367,7 @@
 /area/vtm/interior/shop)
 "Ul" = (
 /turf/closed/wall/vampwall/rich/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Uq" = (
 /obj/machinery/fax/admin/anarch,
 /obj/structure/table/wood,
@@ -2530,7 +2530,7 @@
 /obj/machinery/light/directional/north,
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "WR" = (
 /obj/structure/lamppost/one,
 /turf/open/misc/beach/vamp,
@@ -2634,7 +2634,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/bloodstar,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "YB" = (
 /obj/machinery/fax/admin/endron,
 /obj/structure/table/wood,
@@ -2668,7 +2668,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/fae_charm,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Zs" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
@@ -2677,7 +2677,7 @@
 /area/vtm/outside/pacificheights)
 "ZI" = (
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "ZS" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire{
