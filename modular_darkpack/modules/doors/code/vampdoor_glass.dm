@@ -1,21 +1,13 @@
-/obj/structure/vampdoor/glass
+/obj/structure/vampdoor/glass // Blue door with dual glass panels
+	name = "glass door"
 	icon_state = "glass_blue-1"
 	opacity = FALSE
 	base_icon_state = "glass_blue"
-	glass = TRUE
-	burnable = TRUE
 
 /obj/structure/vampdoor/glass/clerk
 	lock_id = "clerk"
 	lockpick_difficulty = 12
 	locked = TRUE
-
-/obj/structure/vampdoor/glass/prince
-	icon_state = "glass-1"
-	base_icon_state = "glass"
-	locked = TRUE
-	lock_id = "prince"
-	lockpick_difficulty = 12
 
 /obj/structure/vampdoor/glass/banu_haqim
 	lock_id = "banuhaqim"

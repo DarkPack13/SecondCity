@@ -100,6 +100,20 @@
 	tribe = "Wendigo"
 	totem_overlay_color = "#81ff4f"
 
+/obj/structure/werewolf_totem/children_of_gaia
+	name = "Children of Gaia Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "wendigo"
+	tribe = "Children of Gaia"
+	totem_overlay_color = "#00CEC8"
+
+/obj/structure/werewolf_totem/bone_gnawer
+	name = "Bone Gnawer Totem"
+	desc = "Gives power to all Garou of that tribe and steals it from others."
+	icon_state = "wendigo"
+	tribe = "Bone Gnawers"
+	totem_overlay_color = "#FFA500"
+
 /obj/structure/werewolf_totem/glasswalker
 	name = "\improper Glasswalker totem"
 	desc = "Gives power to all Garou of that tribe and steals it from others."

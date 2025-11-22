@@ -263,15 +263,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// DARKPACK TODO - reimplement fire
-	/*
-	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(DEFAULT_SIGHT_DISTANCE, src))
-		afraid_of_fire = seen_fire
-		seeing_fire = TRUE
-	if (!seeing_fire)
-		afraid_of_fire = null
-	*/
+	afraid_of_fire = locate(/obj/effect/abstract/turf_fire) in view(DEFAULT_SIGHT_DISTANCE, src)
 
 	// Combat behaviour
 	if (danger_source)
@@ -306,13 +298,10 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// DARKPACK TODO - reimplement fire
-	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
 		if (prob(25))
 			emote("scream")
-	*/
 
 	// Walking around behaviour
 	else if (walktarget && !staying)

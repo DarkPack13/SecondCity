@@ -122,3 +122,8 @@
 /// Additional UI data to be passed to the crafting UI for this recipe
 /datum/crafting_recipe/proc/crafting_ui_data()
 	return list()
+
+// DARKPACK EDIT ADD START
+/datum/crafting_recipe/proc/is_recipe_available(mob/user)
+	return TRUE
+// DARKPACK EDIT ADD END

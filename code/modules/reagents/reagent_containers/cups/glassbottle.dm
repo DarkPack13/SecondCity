@@ -918,7 +918,11 @@
 	..()
 	if(firestarter && active)
 		target.fire_act()
-		new /obj/effect/hotspot(get_turf(target))
+		// DARKPACK EDIT CHANGE START - TURF_FIRE
+		var/turf/the_turf = get_turf(target)
+		the_turf.ignite_turf(30)
+		new /obj/effect/hotspot(the_turf)
+		// DARKPACK EDIT CHANGE END
 
 /obj/item/reagent_containers/cup/glass/bottle/molotov/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(!item.get_temperature() || active)
