@@ -128,7 +128,7 @@
 
 		if(can.stored_gasoline <= 0)
 			balloon_alert(user, "empty!")
-			return ITEM_INTERACT_SUCCESS
+			return ITEM_INTERACT_BLOCKING
 
 		var/gas_space = max_gas - gas
 		if(gas_space <= 0)
