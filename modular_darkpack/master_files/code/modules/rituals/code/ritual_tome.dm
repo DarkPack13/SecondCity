@@ -1,5 +1,6 @@
 //the parent type of necromancy, arcane, abyss mysticism tomes
 /obj/item/ritual_tome
+	abstract_type = /obj/item/ritual_tome
 	name = "ritual tome"
 	desc = "A mysterious tome. This shouldnt be spawning ingame, if it is, something's wrong."
 	w_class = WEIGHT_CLASS_SMALL
