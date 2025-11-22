@@ -3,6 +3,7 @@
 	desc = "A heavy duty door that looks like it could withstand a lot of punishment."
 	icon = 'modular_darkpack/modules/vaults/icons/vault.dmi'
 	icon_state = "vault-1"
+	base_icon_state = "vault"
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_w = -16
@@ -12,7 +13,6 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 	var/id = ""
-	var/baseicon = "vault"
 	var/brokenicon = "vault_broken"
 	var/pincode
 	var/closed = TRUE
@@ -70,8 +70,8 @@
 	playsound(src, open_sound, 75, TRUE)
 	door_moving = TRUE
 	if(do_after(user, 4 SECONDS))
-		icon_state = "[baseicon]-0"
-		density = FALSE
+		icon_state = "[base_icon_state]-0"
+		set_density(FALSE)
 		opacity = FALSE
 		layer = OPEN_DOOR_LAYER
 		to_chat(user, span_notice("You open [src]."))
@@ -86,11 +86,11 @@
 	playsound(src, close_sound, 75, TRUE)
 	door_moving = TRUE
 	if(do_after(user, 4 SECONDS))
-		icon_state = "[baseicon]-1"
-		density = TRUE
+		icon_state = "[base_icon_state]-1"
+		set_density(TRUE)
 		opacity = TRUE
 		layer = ABOVE_ALL_MOB_LAYER
-		to_chat(user,span_notice("You close [src]."))
+		to_chat(user, span_notice("You close [src]."))
 		closed = TRUE
 		is_locked = TRUE
 		to_chat(user, span_notice("[src] automatically locks."))

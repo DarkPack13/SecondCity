@@ -140,12 +140,12 @@
 		gas += transfer_amount
 
 		balloon_alert(user, "filled [transfer_amount] gas")
-		to_chat(user, span_notice("You fill [src] with [transfer_amount] gas. [src] now has [gas]/[max_gas] gas."))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
-/obj/structure/drill/proc/update_effects()
+/obj/structure/drill/update_overlays()
+	. = ..()
 	cut_overlays()
 	if(active)
 		var/mutable_appearance/sparks = mutable_appearance('modular_darkpack/modules/deprecated/icons/particle_effects.dmi', "welding_sparks", ABOVE_ALL_MOB_LAYER, src, ABOVE_LIGHTING_PLANE)
@@ -154,7 +154,7 @@
 /obj/structure/drill/proc/process_drill()
 	while(active && ready && gas > 0)
 		playsound(src, drill_sound, 100, TRUE, ignore_walls = TRUE)
-		update_effects()
+		update_overlays()
 
 		if(!attached_door || !istype(attached_door, /obj/structure/vaultdoor))
 			active = FALSE
@@ -167,7 +167,7 @@
 		if(vault_door.door_health <= 0)
 			vault_door.break_open()
 			active = FALSE
-			update_effects()
+			update_overlays()
 
 		sleep(3 SECONDS)
 
@@ -186,7 +186,7 @@
 	else
 		if(do_after(user, 2 SECONDS, target = src))
 			active = FALSE
-			update_effects()
+			update_overlays()
 			visible_message(span_warning("[src] shuts off!"))
 
 /obj/structure/drill/proc/handle_layer()
