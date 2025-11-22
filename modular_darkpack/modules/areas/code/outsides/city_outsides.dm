@@ -16,6 +16,18 @@
 	ambience_index = AMBIENCE_NATURE
 	music_index = MUSIC_HOLLYWOOD
 
+/area/vtm/outside/pacificheights/forest
+	name = "Pacific Heights Forest Outskirts"
+
+/area/vtm/outside/pacificheights/old
+	name = "Pacific Heights - Old District"
+
+/area/vtm/outside/pacificheights/community
+	name = "Pacific Heights - Community Road"
+
+/area/vtm/outside/pacificheights/industrial
+	name = "Pacific Heights - Industrial District"
+
 /area/vtm/outside/chinatown
 	name = "Chinatown"
 	icon_state = "chinatown"
@@ -28,6 +40,15 @@
 	ambience_index = AMBIENCE_CITY
 	music_index = MUSIC_SANTAMONICA
 
+/area/vtm/outside/fishermanswharf/ghetto
+	name = "Fisherman's Wharf - Ghetto"
+
+/area/vtm/outside/fishermanswharf/lower
+	name = "Fisherman's Wharf - Lower Beachside"
+
+/area/vtm/outside/fishermanswharf/industrial
+	name = "Fisherman's Wharf - Industrial District"
+
 /area/vtm/outside/northbeach
 	name = "North Beach"
 	icon_state = "northbeach"
@@ -35,6 +56,12 @@
 	//The waves dont really stop.
 	min_ambience_cooldown = 0 SECONDS
 	max_ambience_cooldown = 5 SECONDS
+	music_index = MUSIC_SANTAMONICA
+
+/area/vtm/outside/baywalk
+	name = "Baywalk District"
+	icon_state = "northbeach"
+	ambience_index = AMBIENCE_BEACH
 	music_index = MUSIC_SANTAMONICA
 
 /area/vtm/outside/unionsquare
@@ -49,13 +76,12 @@
 	ambience_index = AMBIENCE_NATURE
 	music_index = MUSIC_CITY
 
-/area/vtm/outside/forest
-	name = "Forest"
-	icon_state = "park"
-	sound_environment = SOUND_ENVIRONMENT_FOREST
-	music_index = MUSIC_FOREST
-	zone_type = ZONE_NO_MASQUERADE
-
 /area/vtm/outside/supply
 	name = "Supply"
 	icon_state = "supply"
+
+/area/vtm/outside/giovanni/courtyard
+	name = "Giovanni Mansion - Courtyard"
+	icon_state = "giovanni"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = FALSE
