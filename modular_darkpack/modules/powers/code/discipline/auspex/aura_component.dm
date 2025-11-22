@@ -96,8 +96,8 @@
 		aura_icon.add_filter("alpha_mask", 1, alpha_mask_filter(icon = icon_mask))
 		holder.add_overlay(aura_icon)
 
-	if(isavatar(parent_mob))
-		holder.opacity = holder.opacity * 0.5
+	//if(isavatar(parent_mob))
+	//	holder.opacity = holder.opacity * 0.5
 
 /datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
 	var/mob/parent_mob = parent
