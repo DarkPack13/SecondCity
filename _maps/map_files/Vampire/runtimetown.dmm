@@ -11,6 +11,12 @@
 /obj/structure/toiletbong,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"aG" = (
+/obj/structure/chair/comfy/darkpack{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "aM" = (
 /obj/effect/spawner/random/trash/rat,
 /turf/open/misc/beach/vamp,
@@ -90,6 +96,10 @@
 /obj/item/defibrillator/compact,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"bW" = (
+/obj/structure/chair/darkpack/blue,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "ca" = (
 /turf/closed/wall/vampwall/old,
 /area/vtm/outside/ghetto)
@@ -282,6 +292,12 @@
 /obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"gB" = (
+/obj/structure/chair/comfy/darkpack/red{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "gF" = (
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
@@ -496,6 +512,12 @@
 "kS" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
+"kU" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 1
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "kX" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 4
@@ -843,6 +865,12 @@
 /obj/effect/decal/pallet,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"sU" = (
+/obj/structure/chair/office/darkpack/green{
+	dir = 1
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "sX" = (
 /obj/structure/sign/city/store/bubway{
 	pixel_y = 40
@@ -1059,6 +1087,16 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"xn" = (
+/obj/structure/chair/comfy/darkpack/blue{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
+"xB" = (
+/obj/structure/chair/wood/darkpack,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "xC" = (
 /obj/effect/decal/cleanable/litter,
 /turf/open/floor/plating/concrete,
@@ -1159,7 +1197,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
 "zT" = (
-/obj/structure/chair/greyscale,
+/obj/structure/chair/darkpack/red,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "zU" = (
@@ -1255,6 +1293,13 @@
 /area/vtm/interior/shop)
 "BQ" = (
 /obj/structure/closet/crate/bin,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
+"BW" = (
+/obj/machinery/sprinkler,
+/obj/structure/chair/office/darkpack{
+	dir = 1
+	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "BX" = (
@@ -1482,6 +1527,10 @@
 /obj/cargocrate,
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
+"Gc" = (
+/obj/structure/chair/darkpack/green,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Gj" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/city/toilet,
@@ -1605,6 +1654,12 @@
 /obj/structure/city_map,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"HI" = (
+/obj/structure/chair/comfy/darkpack/dark{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "HJ" = (
 /obj/effect/turf_decal/stock,
 /turf/open/floor/plating/asphalt,
@@ -1657,6 +1712,12 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
+"IC" = (
+/obj/structure/chair/comfy/darkpack/green{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "ID" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/outside/pacificheights)
@@ -1980,6 +2041,10 @@
 "NR" = (
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"NT" = (
+/obj/structure/chair/wood/darkpack/red,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "NX" = (
 /obj/effect/decal/pallet,
 /obj/machinery/light/directional/west,
@@ -2209,8 +2274,8 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/sewer)
 "Sg" = (
-/obj/structure/chair/office{
-	dir = 8
+/obj/structure/chair/office/darkpack/red{
+	dir = 1
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
@@ -2589,6 +2654,10 @@
 /obj/structure/roadsign/speedlimit,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
+"YZ" = (
+/obj/structure/chair/darkpack,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Zc" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -3320,11 +3389,11 @@ Wz
 bU
 EL
 Id
-Id
-Id
-Id
-Id
-Id
+aG
+HI
+xn
+IC
+gB
 Id
 Id
 Ev
@@ -3387,7 +3456,7 @@ pN
 pN
 Jo
 EL
-Id
+xB
 ho
 Id
 Id
@@ -3455,7 +3524,7 @@ Tb
 pN
 Od
 EL
-Id
+NT
 Id
 Id
 Id
@@ -3867,9 +3936,9 @@ Id
 Id
 Id
 Id
-Id
-Id
-Id
+YZ
+MJ
+BW
 Id
 Ev
 lk
@@ -3935,9 +4004,9 @@ Id
 ho
 Id
 Id
-Id
-Id
-yw
+bW
+GO
+kU
 Id
 Ev
 lk
@@ -4003,9 +4072,9 @@ Id
 sw
 Id
 Id
-Id
-MJ
-GO
+Gc
+Ws
+sU
 Id
 Ev
 lk
@@ -4072,7 +4141,7 @@ ZU
 rN
 Id
 zT
-Ws
+SY
 Sg
 Id
 ZU
@@ -4139,8 +4208,8 @@ Id
 ZU
 rN
 Id
-zT
-SY
+Id
+Id
 sw
 BQ
 ZU
