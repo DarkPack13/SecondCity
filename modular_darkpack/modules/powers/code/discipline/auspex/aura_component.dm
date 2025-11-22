@@ -71,17 +71,20 @@
 		var/icon/static_icon = getStaticIcon(temporary_icon_holder)
 		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
 		static_image.appearance_flags |= RESET_COLOR
-		holder.add_overlay(static_image)
+		holder.appearance = static_image
 
 	if(iskindred(parent_mob))
-		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aura")
+		var/icon/temporary_icon_holder = holder.appearance
 		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
 
-		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
+		var/list/hsv_color_value = rgb2hsv(holder.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
 
 		aura_image.color = hsv2rgb(hsv_color_value)
-		holder.add_overlay(aura_image)
+		holder.appearance = aura_image
+
+/datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
+	var/mob/parent_mob = parent
 
 	if(isghoul(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
@@ -90,14 +93,18 @@
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
 
-		aura_blotches.color = hsv2rgb(hsv_color_value)
-		holder.add_overlay(aura_blotches)
-
-
-/datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
-	var/mob/parent_mob = parent
+		var/icon/icon_mask = getIconMask(aura_blotches)
+		var/mutable_appearance/aura_icon = new(aura_appearance)
+		aura_icon.color = hsv2rgb(hsv_color_value)
+		aura_icon.add_filter("alpha_mask", 1, alpha_mask_filter(icon = icon_mask))
+		holder.add_overlay(aura_icon)
 
 	remove_wibbly_filters(holder)
+	for(var/image/iterated_image in holder.overlays)
+		remove_wibbly_filters(iterated_image)
+
 	if(HAS_TRAIT(parent_mob, TRAIT_IN_FRENZY))
 		apply_wibbly_filters(holder)
+		for(var/image/iterated_image in holder.overlays)
+			apply_wibbly_filters(iterated_image)
 
