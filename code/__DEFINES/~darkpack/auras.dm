@@ -32,13 +32,12 @@
 // Untoggleable auras. Left in here as reminders of what is used by outside variables.
 #define AURA_DIABLERIST (FALSE) // Black veins in aura
 #define AURA_FRENZIED (FALSE) // Rapidly rippling colors
-
 #define AURA_VAMPIRE (FALSE) // Aura colors are pale
 #define AURA_GHOUL (FALSE) // Pale blotches in the aura
-#define AURA_MAGIC_USE (FALSE) // Myriad sparkles in aura
-#define AURA_WEREBEAST (FALSE) // Bright, vibrant aura
+#define AURA_MAGIC_USE (FALSE) // Myriad sparkles in aura -- Not implemented. Mages.
+#define AURA_WEREBEAST (FALSE) // Bright, vibrant aura -- DARKPACK TODO - GAROU
 #define AURA_GHOST (FALSE) // Weak, intermittent aura
-#define AURA_FAERIE (FALSE) // Rainbow highlights in aura
+#define AURA_FAERIE (FALSE) // Rainbow highlights in aura -- Not implemented. Changelings.
 
 GLOBAL_LIST_INIT(aura_list, sort_list(list(
 "Afraid" = AURA_AFRAID,
