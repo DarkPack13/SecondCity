@@ -41,8 +41,9 @@
 	if(iszombie(being_bitten))
 		return COMPONENT_RESIST_VAMPIRE_KISS
 
-/datum/species/ghoul/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	. = ..()
-	UnregisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED)
+// wtf is this? it applies the kiss status effect?
+///datum/species/ghoul/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	//. = ..()
+	//UnregisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED)
 
 #undef REGENERATION_DELAY
