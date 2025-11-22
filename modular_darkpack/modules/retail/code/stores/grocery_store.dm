@@ -2,7 +2,7 @@
 	desc = "A small grocery store."
 	products_list = list(
 		new /datum/data/vending_product("chocolate bar", /obj/item/food/chocolatebar, 3),
-		new /datum/data/vending_product("chips", /obj/item/food/chip, 5),
+		new /datum/data/vending_product("chips", /obj/item/food/chips, 5),
 		new /datum/data/vending_product("water bottle", /obj/item/reagent_containers/cup/glass/vampirewater, 3),
 		new /datum/data/vending_product("soda can", /obj/item/reagent_containers/cup/soda_cans/vampiresoda, 3),
 		new /datum/data/vending_product("two liter cola bottle", /obj/item/reagent_containers/cup/glass/vampirecola, 7),
@@ -36,7 +36,7 @@
 		new /datum/data/vending_product("bruise pack", /obj/item/stack/medical/bruise_pack, 100),
 		new /datum/data/vending_product("kitchen knife", /obj/item/knife, 26),
 		new /datum/data/vending_product("rolling pin", /obj/item/kitchen/rollingpin, 8),
-		new /datum/data/vending_product("mixing bowl", /obj/item/reagent_containers/glass/mixing_bow, 15),
+		new /datum/data/vending_product("mixing bowl", /obj/item/reagent_containers/glass/mixing_bowl, 15),
 	)
 
 /obj/structure/retail/deli
