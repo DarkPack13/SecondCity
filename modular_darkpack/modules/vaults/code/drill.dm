@@ -123,7 +123,7 @@
 		user.visible_message(span_notice("[user] attaches [src] to [over_object]."))
 
 /obj/structure/drill/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(istype(tool, /obj/item/gas_can/))
+	if(istype(tool, /obj/item/gas_can))
 		var/obj/item/gas_can/can = tool
 
 		if(can.stored_gasoline <= 0)
