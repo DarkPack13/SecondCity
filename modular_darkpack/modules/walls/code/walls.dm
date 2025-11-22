@@ -266,26 +266,26 @@ LOW_WALL_HELPER(vampwall/city)
 /turf/closed/wall/vampwall/metal
 	name = "metal wall"
 	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metal-0"
-	base_icon_state = "metal"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/metal/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/metal/frill.dmi'
 
 /turf/closed/wall/vampwall/metal/reinforced
 	name = "reinforced metal wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon_state = "metalreinforced-0"
-	base_icon_state = "metalreinforced"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/metal_reinforced/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/metal_reinforced/frill.dmi'
 
 /turf/closed/wall/vampwall/metal/alt
 	name = "metal wall"
 	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metalalt-0"
-	base_icon_state = "metalalt"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/metal_alt/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/metal_alt/frill.dmi'
 
 /turf/closed/wall/vampwall/metal/glass
 	name = "metal wall"
 	desc = "A huge chunk of metal used to separate rooms."
-	icon_state = "metalglass-0"
-	base_icon_state = "metalglass"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/metal_glass/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/metal_glass/frill.dmi'
 	opacity = FALSE
 
 /turf/closed/wall/vampwall/bar
@@ -301,36 +301,37 @@ LOW_WALL_HELPER(vampwall/bar)
 /turf/closed/wall/vampwall/wood
 	name = "wood wall"
 	desc = "A huge chunk of dirty logs used to separate rooms."
-	icon_state = "wood-0"
-	base_icon_state = "wood"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/wood/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/wood/frill.dmi'
 
 LOW_WALL_HELPER(vampwall/wood)
-/turf/closed/wall/vampwall/wood/low/window
-	icon_state = "wood-window"
+/turf/closed/wall/vampwall/wood/low
+	icon = 'icons/obj/smooth_structures/darkpack/wall/wood/low_wall.dmi'
 
 /turf/closed/wall/vampwall/rust
 	name = "rusty wall"
 	desc = "A huge chunk of rusty metal used to separate rooms."
-	icon_state = "rust-0"
-	base_icon_state = "rust"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rust/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rust/frill.dmi'
 
 /turf/closed/wall/vampwall/dirtywood
 	name = "dirty wood wall"
 	desc = "A huge chunk of brown metal used to separate rooms."
-	icon_state = "dirtywood-0"
-	base_icon_state = "dirtywood"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/wood_dirty/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/wood_dirty/frill.dmi'
+
 
 /turf/closed/wall/vampwall/green
 	name = "green wall"
 	desc = "A huge chunk of green metal used to separate rooms."
-	icon_state = "green-0"
-	base_icon_state = "green"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/green/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/green/frill.dmi'
 
 /turf/closed/wall/vampwall/rustbad
 	name = "rusty wall"
 	desc = "A huge chunk of rusty metal used to separate rooms."
-	icon_state = "rustbad-0"
-	base_icon_state = "rustbad"
+	icon = 'icons/obj/smooth_structures/darkpack/wall/rustbad/wall.dmi'
+	frill_icon = 'icons/obj/smooth_structures/darkpack/wall/rustbad/frill.dmi'
 
 /turf/closed/wall/vampwall/rock
 	name = "rock wall"
