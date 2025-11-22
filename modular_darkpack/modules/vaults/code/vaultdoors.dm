@@ -61,7 +61,7 @@
 	is_broken = TRUE
 	is_locked = FALSE
 	icon_state = "[brokenicon]-1"
-	density = FALSE
+	set_density(FALSE)
 	opacity = FALSE
 	layer = OPEN_DOOR_LAYER
 	visible_message("<span class='warning' style='color:red; font-size:20px;'><b>[src] breaks open!</b></span>")
