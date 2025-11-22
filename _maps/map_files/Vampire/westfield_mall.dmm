@@ -15,20 +15,15 @@
 /obj/structure/bed/dogbed,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"ae" = (
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "ak" = (
 /obj/machinery/atm{
 	dir = 4;
 	pixel_x = -8
 	},
 /turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
-"ao" = (
-/obj/effect/turf_decal/siding/dark,
-/obj/structure/vampdoor/prison,
-/obj/effect/mapping_helpers/door/lock_difficulty/ten,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/access/bank,
-/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "ar" = (
 /obj/structure/table/wood,
@@ -38,26 +33,15 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
-"as" = (
-/obj/structure/filingcabinet{
-	pixel_x = -7
-	},
-/obj/structure/filingcabinet{
-	pixel_x = 7
-	},
-/obj/machinery/light/dim/directional/north,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "at" = (
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
-"az" = (
-/obj/structure/table,
-/obj/vampire_computer{
-	pixel_y = 4
+"ay" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 10
 	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
 "aA" = (
 /obj/structure/vampipe{
 	pixel_y = 32
@@ -68,11 +52,10 @@
 /obj/structure/city_map,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
-"aE" = (
-/obj/structure/stairs/east,
-/obj/structure/railing,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+"aI" = (
+/obj/effect/decal/wallpaper/blue/low,
+/turf/closed/wall/vampwall/painted/low/window,
+/area/vtm/interior/police)
 "aJ" = (
 /obj/structure/closet/crate/bin,
 /obj/structure/sign/poster/city/blade{
@@ -119,19 +102,6 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
-"bb" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_y = 10;
-	pixel_x = -4
-	},
-/obj/machinery/light/dim/directional/south,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "bc" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 1
@@ -176,35 +146,43 @@
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/wood/old,
 /area/vtm/westfield_mall/interior)
+"bv" = (
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/obj/item/storage/box/teargas,
+/obj/item/storage/box/flashbangs,
+/obj/item/megaphone,
+/obj/item/megaphone,
+/obj/structure/closet/crate,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "bw" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"bB" = (
-/obj/structure/chair/office,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+"by" = (
+/obj/structure/table,
+/obj/item/storage/box/handcuffs{
+	pixel_y = 15
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "bC" = (
 /obj/structure/railing,
 /obj/structure/chair/stool/bar/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"bJ" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/suit/vampire/vest/police,
-/obj/item/clothing/suit/vampire/vest/police,
-/obj/item/clothing/suit/vampire/vest/police,
-/obj/item/clothing/suit/vampire/vest/police,
-/obj/item/clothing/head/vampire/helmet,
-/obj/item/clothing/head/vampire/helmet,
-/obj/item/clothing/head/vampire/helmet,
-/obj/item/clothing/head/vampire/helmet,
-/obj/item/clothing/gloves/tackler/combat/insulated,
-/obj/item/clothing/gloves/tackler/combat/insulated,
-/obj/item/clothing/gloves/tackler/combat/insulated,
-/obj/item/clothing/gloves/tackler/combat/insulated,
+"bH" = (
+/obj/structure/vampdoor/prison,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/eight,
 /turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "bL" = (
 /obj/machinery/photocopier/prebuilt,
 /turf/open/floor/plating/granite/black,
@@ -231,14 +209,6 @@
 "bR" = (
 /turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/westfield_mall/skatepark)
-"bS" = (
-/obj/structure/reagent_dispensers/water_cooler{
-	pixel_y = 23;
-	density = 0;
-	pixel_x = -1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "bT" = (
 /obj/structure/rack/clothing/rand,
 /obj/machinery/light/blacklight/directional/south,
@@ -291,17 +261,11 @@
 	},
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/techshop)
-"cf" = (
-/obj/effect/landmark/navigate_destination,
+"ck" = (
+/obj/structure/stairs/east,
+/obj/structure/railing,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"cj" = (
-/obj/machinery/door/poddoor/shutters/preopen,
-/obj/structure/vampdoor/woodglass,
-/obj/effect/mapping_helpers/door/lock_difficulty/five,
-/obj/effect/mapping_helpers/door/access/bank,
-/turf/open/floor/carpet/darkpack/redsilver,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "cm" = (
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/interior)
@@ -314,14 +278,25 @@
 "co" = (
 /turf/open/floor/plating/canalplating,
 /area/vtm/sewer)
-"cr" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
 "ct" = (
 /obj/darkpack_car/retro/rand,
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"cv" = (
+/obj/structure/table/wood,
+/obj/machinery/coffeemaker/impressa{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_y = 11;
+	pixel_x = 13
+	},
+/obj/item/reagent_containers/cup/glass/mug/britcup{
+	pixel_y = 2;
+	pixel_x = 13
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "cC" = (
 /obj/structure/transport/linear,
 /obj/effect/landmark/transport/transport_id{
@@ -359,13 +334,17 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"cM" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_y = 23;
+	density = 0;
+	pixel_x = -1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "cN" = (
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/interior/chantry)
-"cO" = (
-/obj/machinery/light/red/directional/west,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "cQ" = (
 /obj/structure/railing,
 /obj/structure/table/wood,
@@ -379,10 +358,6 @@
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/interior/elevator)
-"cS" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
 "cV" = (
 /obj/structure/vampdoor/glass{
 	dir = 8
@@ -390,6 +365,9 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"cX" = (
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "de" = (
 /obj/structure/rack,
 /obj/item/assembly/signaler{
@@ -417,6 +395,13 @@
 "dg" = (
 /turf/open/misc/grass/random/grass,
 /area/vtm/westfield_mall)
+"dk" = (
+/obj/machinery/light/directional/south,
+/obj/structure/chair/darkpack/blue{
+	dir = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "dl" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 8
@@ -474,13 +459,31 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
-"dS" = (
-/obj/structure/vampdoor/glass,
-/obj/effect/turf_decal/siding/wood/dark,
-/obj/effect/mapping_helpers/door/access/police,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+"dH" = (
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"dN" = (
+/obj/structure/closet/crate,
+/obj/item/clothing/suit/vampire/vest/police,
+/obj/item/clothing/suit/vampire/vest/police,
+/obj/item/clothing/suit/vampire/vest/police,
+/obj/item/clothing/suit/vampire/vest/police,
+/obj/item/clothing/head/vampire/helmet,
+/obj/item/clothing/head/vampire/helmet,
+/obj/item/clothing/head/vampire/helmet,
+/obj/item/clothing/head/vampire/helmet,
+/obj/item/clothing/gloves/tackler/combat/insulated,
+/obj/item/clothing/gloves/tackler/combat/insulated,
+/obj/item/clothing/gloves/tackler/combat/insulated,
+/obj/item/clothing/gloves/tackler/combat/insulated,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"dT" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "dU" = (
 /obj/effect/spawner/random/stray_animal,
@@ -530,13 +533,6 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
-"ee" = (
-/obj/structure/table/wood,
-/obj/vampire_computer{
-	pixel_y = 5
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "ei" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -558,6 +554,10 @@
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"er" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/bianchiBank)
 "es" = (
 /obj/darkpack_car/retro/rand{
 	dir = 4
@@ -586,25 +586,36 @@
 	},
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
+"ex" = (
+/turf/closed/wall/vampwall/painted/low/window/reinforced,
+/area/vtm/interior/bianchiBank)
 "eF" = (
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"eG" = (
+/obj/structure/vampdoor/simple{
+	dir = 4
+	},
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/city/toilet,
+/area/vtm/westfield_mall/interior)
 "eH" = (
 /turf/closed/wall/vampwall/rock,
 /area/vtm/westfield_mall/interior)
+"eI" = (
+/obj/structure/vampdoor/reinf,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "eM" = (
 /obj/effect/turf_decal/siding/wood/light{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"eO" = (
-/obj/effect/turf_decal/siding/wood/dark/corner{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "eT" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
@@ -628,21 +639,20 @@
 /obj/effect/spawner/random/flora/flowers,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
+"fe" = (
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "ff" = (
 /obj/structure/table/wood,
 /obj/structure/table/wood,
 /obj/structure/desk_bell,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"fj" = (
-/obj/structure/filingcabinet/security{
-	pixel_x = 7
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -7
-	},
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
 "fn" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -654,13 +664,6 @@
 /obj/structure/table/countertop/black,
 /turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior)
-"fq" = (
-/obj/item/kirbyplants/darkpack/random,
-/obj/structure/sign/flag/italy{
-	pixel_y = 30
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "fr" = (
 /obj/structure/table/countertop/red,
 /obj/machinery/processor{
@@ -669,22 +672,38 @@
 	},
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
-"fz" = (
-/obj/structure/closet,
-/obj/item/gun/ballistic/automatic/darkpack/ar15,
-/obj/item/gun/ballistic/automatic/darkpack/ar15,
-/obj/item/ammo_box/magazine/darkpack556,
-/obj/item/ammo_box/magazine/darkpack556,
-/obj/item/ammo_box/magazine/darkpack556,
-/obj/item/ammo_box/magazine/darkpack556,
-/obj/item/ammo_box/darkpack/c556,
-/obj/item/ammo_box/darkpack/c556,
+"fv" = (
+/obj/structure/closet/secure_closet/freezer/empty,
+/obj/item/storage/box/coffeepack,
+/obj/item/reagent_containers/condiment/milk,
+/obj/item/reagent_containers/condiment/milk,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"fx" = (
+/obj/machinery/light/directional/north{
+	pixel_x = -16
+	},
 /turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "fA" = (
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior)
+"fB" = (
+/obj/structure/safe,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/sheet/mineral/gold/fifty,
+/obj/item/clothing/accessory/medal/gold/heroism,
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
+"fE" = (
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "fI" = (
 /obj/effect/turf_decal/bordur/inverse,
 /turf/open/misc/grass/nosmooth,
@@ -738,15 +757,6 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
-"fW" = (
-/obj/structure/hedge{
-	plane = -4.1
-	},
-/obj/machinery/light/directional/north{
-	pixel_x = -16
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "fX" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating/concrete,
@@ -779,6 +789,10 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
+"go" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "gs" = (
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
@@ -795,12 +809,6 @@
 "gv" = (
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior)
-"gw" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "gB" = (
 /obj/item/kirbyplants/darkpack/random,
 /turf/open/floor/city/plating,
@@ -808,18 +816,6 @@
 "gG" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/techshop)
-"gL" = (
-/obj/effect/turf_decal/siding/wood/dark,
-/obj/structure/vampdoor/wood,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/obj/effect/mapping_helpers/door/access/bank,
-/obj/effect/mapping_helpers/door/lock,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"gM" = (
-/obj/effect/turf_decal/siding/wood/dark,
-/turf/open/floor/city/bacotell,
-/area/vtm/westfield_mall/interior)
 "gN" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
@@ -834,6 +830,18 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"gQ" = (
+/obj/structure/closet,
+/obj/item/gun/ballistic/automatic/darkpack/ar15,
+/obj/item/gun/ballistic/automatic/darkpack/ar15,
+/obj/item/ammo_box/magazine/darkpack556,
+/obj/item/ammo_box/magazine/darkpack556,
+/obj/item/ammo_box/magazine/darkpack556,
+/obj/item/ammo_box/magazine/darkpack556,
+/obj/item/ammo_box/darkpack/c556,
+/obj/item/ammo_box/darkpack/c556,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "gT" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -870,16 +878,6 @@
 /obj/item/surgery_tray/full,
 /turf/open/floor/city/circled,
 /area/vtm/interior)
-"hl" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_y = 6
-	},
-/obj/item/pen{
-	pixel_y = 7
-	},
-/turf/closed/wall/vampwall/painted/low,
-/area/vtm/westfield_mall/interior)
 "ht" = (
 /obj/structure/vampipe{
 	pixel_y = 32
@@ -890,15 +888,24 @@
 /obj/item/clothing/suit/caution,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
-"hA" = (
-/obj/structure/filingcabinet{
-	pixel_x = -7
+"hv" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 4
 	},
-/obj/structure/filingcabinet/security{
-	pixel_x = 7
-	},
-/turf/open/floor/wood/smooth/old,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior)
+"hB" = (
+/obj/structure/closet,
+/obj/item/clothing/under/vampire/police,
+/obj/item/clothing/under/vampire/police/long,
+/obj/item/clothing/under/vampire/police/pants,
+/obj/item/clothing/under/vampire/police/turtleneck,
+/obj/item/clothing/under/vampire/police/utility,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "hD" = (
 /obj/effect/turf_decal/asphaltline/alt{
 	dir = 4
@@ -917,12 +924,6 @@
 /obj/machinery/light/prince/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"hK" = (
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "hL" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
@@ -931,6 +932,23 @@
 /obj/underplate,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"hR" = (
+/mob/living/carbon/human/npc/police,
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"hS" = (
+/obj/effect/turf_decal/siding/wood/light{
+	dir = 1
+	},
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "hT" = (
 /obj/effect/turf_decal/bordur{
 	dir = 5
@@ -959,6 +977,10 @@
 /obj/item/mop,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"ie" = (
+/obj/structure/chair/comfy/darkpack/blue,
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "if" = (
 /obj/structure/chair/office,
 /obj/effect/landmark/start/archivist,
@@ -975,6 +997,18 @@
 "im" = (
 /turf/closed/wall/vampwall/bar,
 /area/vtm/interior/techshop)
+"ip" = (
+/obj/structure/closet,
+/obj/item/gun/ballistic/automatic/darkpack/mp5,
+/obj/item/gun/ballistic/automatic/darkpack/mp5,
+/obj/item/ammo_box/magazine/darkpack9mp5,
+/obj/item/ammo_box/magazine/darkpack9mp5,
+/obj/item/ammo_box/magazine/darkpack9mp5,
+/obj/item/ammo_box/magazine/darkpack9mp5,
+/obj/item/ammo_box/darkpack/c9mm,
+/obj/item/ammo_box/darkpack/c9mm,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "is" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
@@ -1015,6 +1049,12 @@
 /obj/machinery/light/dim/directional/north,
 /turf/open/floor/city/plating,
 /area/vtm/interior/techshop)
+"iG" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/deluxe_garbage,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "iJ" = (
 /obj/effect/turf_decal/siding/wood/light/corner{
 	dir = 4
@@ -1049,16 +1089,14 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"iV" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/water,
-/area/vtm/westfield_mall/interior)
 "iX" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"jb" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "ji" = (
 /obj/machinery/light/blacklight/directional/north,
 /obj/effect/decal/wallpaper/grey{
@@ -1069,6 +1107,13 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"jj" = (
+/obj/structure/table/wood,
+/obj/vampire_computer{
+	pixel_y = 5
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "jk" = (
 /obj/machinery/light/directional/north,
 /turf/open/openspace,
@@ -1085,10 +1130,6 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
-"jv" = (
-/obj/machinery/vending/cola,
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
 "jx" = (
 /obj/effect/turf_decal/darkpack/grass/corner{
 	dir = 8
@@ -1124,16 +1165,20 @@
 	},
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
-"jK" = (
-/obj/structure/vampdoor/wood,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/obj/effect/mapping_helpers/door/access/bank,
-/obj/effect/mapping_helpers/door/lock,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "jN" = (
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
+"jO" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/coffee_condi_display{
+	pixel_y = 11;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel{
+	pixel_y = 6
+	},
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
 "jR" = (
 /mob/living/carbon/human/npc/gummaguts,
 /obj/effect/turf_decal/siding/dark{
@@ -1148,6 +1193,15 @@
 	},
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
+"jY" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "ka" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 4
@@ -1160,6 +1214,9 @@
 	},
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior)
+"kc" = (
+/turf/open/openspace,
+/area/vtm/interior/police)
 "kf" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/bulbs{
@@ -1200,6 +1257,10 @@
 /obj/structure/rack/food/rand,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"kp" = (
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/city/toilet,
+/area/vtm/westfield_mall/interior)
 "kq" = (
 /obj/structure/table/countertop/red,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -1228,14 +1289,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
-"kF" = (
-/obj/structure/closet,
-/obj/item/gun/energy/taser/darkpack,
-/obj/item/gun/energy/taser/darkpack,
-/obj/item/melee/baton/vamp,
-/obj/item/melee/baton/vamp,
+"kz" = (
+/obj/machinery/light/directional/south,
 /turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/bianchiBank)
 "kG" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/concrete,
@@ -1260,12 +1317,34 @@
 	},
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall)
+"kP" = (
+/obj/effect/turf_decal/siding/white/inner_corner{
+	dir = 1
+	},
+/turf/open/water,
+/area/vtm/interior/bianchiBank)
 "kQ" = (
 /obj/structure/chair/darkpack/green{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"kR" = (
+/obj/structure/table/wood,
+/obj/vampire_computer{
+	pixel_y = 7;
+	pixel_x = 4
+	},
+/obj/item/kirbyplants/darkpack/plant4{
+	pixel_y = 16;
+	pixel_x = -9
+	},
+/obj/item/kirbyplants/darkpack/plant2{
+	pixel_y = 6;
+	pixel_x = -11
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "kS" = (
 /obj/structure/vampdoor/old,
 /turf/open/floor/city/gummaguts,
@@ -1280,6 +1359,14 @@
 "kW" = (
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"kY" = (
+/obj/structure/vampdoor/glass,
+/obj/effect/turf_decal/siding/wood/dark,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "la" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4;
@@ -1288,17 +1375,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/elevator)
-"lb" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/coffee_condi_display{
-	pixel_y = 11;
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel{
-	pixel_y = 6
-	},
-/turf/open/floor/city/bacotell,
-/area/vtm/westfield_mall/interior)
 "ld" = (
 /obj/structure/filingcabinet/white{
 	pixel_x = 7
@@ -1331,6 +1407,53 @@
 /obj/machinery/light/dim/directional/north,
 /turf/open/floor/eighties,
 /area/vtm/interior/shop)
+"lp" = (
+/obj/structure/secure_safe/directional/north,
+/obj/structure/table,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "lu" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 8
@@ -1365,32 +1488,22 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior)
+"lN" = (
+/obj/structure/coclock,
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_y = 10;
+	pixel_x = -4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "lO" = (
 /turf/open/floor/city/circled,
 /area/vtm/interior)
-"lQ" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/structure/vampdoor/reinf{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/door/access/police_secure,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/ten,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"lT" = (
-/obj/structure/closet/secure_closet/freezer/empty,
-/obj/item/storage/box/coffeepack,
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 8
-	},
-/obj/machinery/light/dim/directional/north,
-/obj/item/reagent_containers/condiment/milk,
-/obj/item/reagent_containers/condiment/milk,
-/turf/open/floor/city/bacotell,
-/area/vtm/westfield_mall/interior)
 "mh" = (
 /obj/structure/chair/sofa/bench/metal/right/puce{
 	dir = 8
@@ -1428,6 +1541,11 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
+"mv" = (
+/obj/structure/hedge,
+/obj/machinery/light/directional/west,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "mz" = (
 /obj/structure/vampdoor/old{
 	dir = 8
@@ -1467,23 +1585,31 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/sewer)
+"mX" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"mY" = (
+/obj/effect/spawner/random/trash/grime,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "nb" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall)
+"nc" = (
+/obj/structure/reagent_dispensers/water_cooler{
+	density = 0;
+	pixel_x = 9
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "nd" = (
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/techshop)
-"ne" = (
-/obj/structure/toilet{
-	dir = 4;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior)
 "nf" = (
 /obj/effect/decal/wallpaper/paper/rich,
 /turf/closed/wall/vampwall/painted,
@@ -1508,6 +1634,10 @@
 /obj/structure/transport/linear,
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/interior/elevator)
+"ny" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "nz" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -1568,13 +1698,6 @@
 "nV" = (
 /turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior)
-"oe" = (
-/obj/structure/vampdoor/glass,
-/obj/effect/mapping_helpers/door/access/police_chief,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "of" = (
 /obj/structure/table/modern,
 /obj/item/toy/plush/shark{
@@ -1593,97 +1716,16 @@
 	},
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/shop)
-"ol" = (
-/obj/structure/secure_safe/directional/north,
-/obj/structure/table,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "on" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 8
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"oq" = (
+/obj/effect/turf_decal/siding/white,
+/turf/open/water,
+/area/vtm/interior/bianchiBank)
 "or" = (
 /obj/item/clothing/suit/hooded/heisenberg,
 /turf/open/floor/plating/concrete,
@@ -1694,12 +1736,6 @@
 "ow" = (
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/skatepark)
-"ox" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "oy" = (
 /obj/effect/turf_decal/bordur/corner/inverse,
 /turf/open/misc/grass/nosmooth,
@@ -1721,6 +1757,10 @@
 /obj/structure/chair/office,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/skatepark)
+"oE" = (
+/obj/effect/decal/wallpaper/blue,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/police)
 "oK" = (
 /obj/structure/table,
 /obj/structure/sink/basin/directional/south{
@@ -1739,6 +1779,13 @@
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
+"oT" = (
+/obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/access/police_chief,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "oU" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 10
@@ -1761,12 +1808,6 @@
 	},
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/techshop)
-"oX" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "oZ" = (
 /obj/structure/closet/crate/bin{
 	pixel_y = 16;
@@ -1782,22 +1823,14 @@
 /obj/structure/ladder/manhole/up,
 /turf/open/floor/plating/canal,
 /area/vtm/sewer)
-"ph" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"pj" = (
-/obj/item/kirbyplants/darkpack/plant4{
-	pixel_y = 16;
-	pixel_x = 11
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+"pp" = (
+/obj/structure/closet,
+/obj/item/clothing/suit/vampire/eod,
+/obj/item/clothing/head/vampire/eod,
+/obj/item/wirecutters,
+/obj/item/screwdriver,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "pt" = (
 /turf/closed/wall/vampwall/wood,
 /area/vtm/westfield_mall/skatepark)
@@ -1827,6 +1860,12 @@
 /obj/item/paper_bin,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"pE" = (
+/obj/structure/chair/office/darkpack/red{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "pF" = (
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
@@ -1836,6 +1875,11 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"pG" = (
+/obj/structure/hedge,
+/obj/machinery/light/directional/south,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "pT" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/city/circled/large,
@@ -1865,6 +1909,60 @@
 /obj/item/pen/fountain,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"pW" = (
+/obj/structure/table,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/cup/glass/trophy/gold_cup{
+	pixel_y = 13
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "pZ" = (
 /obj/structure/closet/crate/dumpster,
 /turf/open/floor/plating/concrete,
@@ -1895,6 +1993,12 @@
 	},
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
+"qg" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "qh" = (
 /obj/structure/table/wood,
 /obj/item/arcane_tome,
@@ -1911,18 +2015,6 @@
 "qj" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"ql" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"qp" = (
-/obj/effect/turf_decal/siding/white/inner_corner{
-	dir = 8
-	},
-/turf/open/water,
 /area/vtm/westfield_mall/interior)
 "qq" = (
 /obj/structure/chair/sofa/corp/right{
@@ -1945,12 +2037,6 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
-"qy" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "qz" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/sewer)
@@ -1977,17 +2063,52 @@
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"qT" = (
+/obj/structure/railing/corner,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "qU" = (
 /obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/chantry)
+"qV" = (
+/obj/structure/filingcabinet{
+	pixel_x = -7
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 7
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "qX" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/westfield_mall/skatepark)
+"re" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"rg" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/westfield_mall/interior)
 "ri" = (
 /obj/item/kirbyplants/darkpack/random,
 /turf/open/floor/wood/ornate,
 /area/vtm/westfield_mall/interior)
+"rj" = (
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "rk" = (
 /obj/machinery/light/prince/directional/south,
 /turf/open/floor/wood/smooth/old,
@@ -2028,16 +2149,23 @@
 /obj/machinery/light/dim/directional/east,
 /turf/open/floor/city/circled,
 /area/vtm/interior)
-"rA" = (
-/obj/structure/hedge{
-	plane = -4.1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "rG" = (
 /obj/effect/spawner/random/flora/grass,
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
+"rJ" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/obj/effect/turf_decal/siding/wood/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"rO" = (
+/obj/structure/table,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "rP" = (
 /obj/structure/table/wood,
 /obj/structure/retail/skate_shop,
@@ -2046,21 +2174,6 @@
 "rS" = (
 /obj/machinery/light/directional/south,
 /turf/open/openspace,
-/area/vtm/westfield_mall/interior)
-"rT" = (
-/obj/structure/table/wood,
-/obj/machinery/coffeemaker/impressa{
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/cup/glass/mug{
-	pixel_y = 11;
-	pixel_x = 13
-	},
-/obj/item/reagent_containers/cup/glass/mug/britcup{
-	pixel_y = 2;
-	pixel_x = 13
-	},
-/turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "rU" = (
 /obj/structure/sink/directional/south,
@@ -2123,6 +2236,19 @@
 "sm" = (
 /turf/open/floor/plating/granite/black,
 /area/vtm/westfield_mall/interior)
+"so" = (
+/obj/item/kirbyplants/darkpack/random,
+/obj/structure/sign/flag/italy{
+	pixel_y = 30
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
+"sq" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "sr" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/toy_xeno{
@@ -2143,6 +2269,11 @@
 /obj/structure/aquarium/prefilled,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"su" = (
+/obj/structure/table,
+/obj/item/battering_ram,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "sw" = (
 /obj/machinery/computer/camera_advanced,
 /turf/open/floor/city/plating,
@@ -2153,10 +2284,13 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
-"sC" = (
-/obj/machinery/light/dim/directional/south,
+"sA" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/obj/effect/turf_decal/siding/wood/dark,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "sF" = (
 /obj/structure/toilet{
 	dir = 4;
@@ -2194,37 +2328,6 @@
 /obj/machinery/light/prince/directional/south,
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
-"sW" = (
-/obj/structure/table,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/machinery/recharger{
-	pixel_y = 16;
-	pixel_x = 6
-	},
-/obj/machinery/recharger{
-	pixel_y = 16;
-	pixel_x = -6
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"sX" = (
-/obj/structure/table,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"sY" = (
-/obj/structure/closet,
-/obj/item/gun/ballistic/automatic/darkpack/mp5,
-/obj/item/gun/ballistic/automatic/darkpack/mp5,
-/obj/item/ammo_box/magazine/darkpack9mp5,
-/obj/item/ammo_box/magazine/darkpack9mp5,
-/obj/item/ammo_box/magazine/darkpack9mp5,
-/obj/item/ammo_box/magazine/darkpack9mp5,
-/obj/item/ammo_box/darkpack/c9mm,
-/obj/item/ammo_box/darkpack/c9mm,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "ta" = (
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/shop)
@@ -2252,21 +2355,116 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"tg" = (
+/obj/structure/table,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/recharger{
+	pixel_y = 16;
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_y = 16;
+	pixel_x = -6
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "tk" = (
 /obj/effect/decal/rugs,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
+"tl" = (
+/obj/structure/secure_safe/directional/north,
+/obj/structure/table,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "tm" = (
 /obj/effect/turf_decal/siding/wood/light{
 	dir = 1
 	},
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
-"to" = (
-/obj/effect/decal/wallpaper/red/low,
-/obj/machinery/door/poddoor/shutters/preopen,
-/turf/closed/wall/vampwall/painted/low/window/reinforced,
-/area/vtm/westfield_mall/interior)
 "ts" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 1
@@ -2274,6 +2472,10 @@
 /obj/darkpack_car/retro/rand,
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"tt" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "tw" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -2284,6 +2486,12 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
+"tA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/water,
+/area/vtm/interior/bianchiBank)
 "tD" = (
 /obj/effect/decal/pallet,
 /obj/structure/closet/crate/cardboard,
@@ -2321,13 +2529,6 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
-"tO" = (
-/obj/structure/statue/sandstone/venus{
-	plane = 4.2;
-	pixel_y = 10
-	},
-/turf/closed/wall/vampwall/painted/low,
-/area/vtm/westfield_mall/interior)
 "tQ" = (
 /obj/structure/vampdoor/old,
 /turf/open/floor/plating/canalplating,
@@ -2386,13 +2587,6 @@
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior)
-"uo" = (
-/obj/structure/table/wood,
-/obj/vampire_computer{
-	pixel_y = 4
-	},
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
 "up" = (
 /obj/effect/turf_decal/darkpack/grass{
 	dir = 8
@@ -2441,13 +2635,6 @@
 "uG" = (
 /obj/effect/landmark/start,
 /turf/open/floor/city/gummaguts,
-/area/vtm/westfield_mall/interior)
-"uH" = (
-/mob/living/carbon/human/npc/police,
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "uJ" = (
 /obj/structure/vampipe{
@@ -2501,10 +2688,6 @@
 /obj/structure/retail/deli,
 /obj/structure/table/countertop/teal,
 /turf/open/floor/city/gummaguts,
-/area/vtm/westfield_mall/interior)
-"uZ" = (
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior)
 "va" = (
 /obj/effect/turf_decal/bordur/inverse{
@@ -2587,6 +2770,18 @@
 /obj/effect/mapping_helpers/door/access/chantry,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"vA" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood/dark,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
+"vB" = (
+/obj/structure/table,
+/obj/vampire_computer{
+	pixel_y = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "vC" = (
 /obj/structure/table/modern,
 /obj/structure/retail/smoke_menu,
@@ -2614,6 +2809,16 @@
 	},
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior)
+"vQ" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 7
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "vR" = (
 /turf/open/space/basic,
 /area/space)
@@ -2625,6 +2830,24 @@
 /obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"vX" = (
+/obj/structure/closet,
+/obj/item/gun/energy/taser/darkpack,
+/obj/item/gun/energy/taser/darkpack,
+/obj/item/melee/baton/vamp,
+/obj/item/melee/baton/vamp,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"wa" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
+"wd" = (
+/obj/effect/turf_decal/siding/wood/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "we" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -2680,6 +2903,11 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/techshop)
+"wm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/south,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "wn" = (
 /obj/structure/chair/sofa/bench/left{
 	dir = 4
@@ -2697,20 +2925,13 @@
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"wA" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/city/toilet,
+/area/vtm/westfield_mall/interior)
 "wB" = (
 /turf/open/openspace,
-/area/vtm/westfield_mall/interior)
-"wH" = (
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 8
-	},
-/obj/structure/vampdoor/wood{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/obj/effect/mapping_helpers/door/access/bank,
-/obj/effect/mapping_helpers/door/lock,
-/turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "wJ" = (
 /obj/effect/turf_decal/bordur/corner{
@@ -2736,27 +2957,27 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
 "wV" = (
-/obj/effect/turf_decal/siding/wood/light{
-	dir = 1
-	},
 /obj/structure/hedge{
 	plane = -4.1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
-"xd" = (
+"wY" = (
 /obj/structure/table,
-/obj/item/storage/box/handcuffs{
-	pixel_y = 15
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "xi" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 5
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
+"xj" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "xl" = (
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 4
@@ -2782,21 +3003,6 @@
 "xu" = (
 /obj/structure/table/countertop/teal,
 /turf/open/floor/city/gummaguts,
-/area/vtm/westfield_mall/interior)
-"xv" = (
-/obj/structure/filingcabinet{
-	pixel_x = -7
-	},
-/obj/structure/filingcabinet{
-	pixel_x = 7
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"xw" = (
-/obj/structure/chair/sofa/bench/metal/right{
-	dir = 4
-	},
-/turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "xx" = (
 /obj/structure/extinguisher_cabinet/directional/east,
@@ -2868,10 +3074,12 @@
 	},
 /turf/open/floor/city/circled,
 /area/vtm/interior)
-"xX" = (
-/obj/effect/decal/wallpaper/blue,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior)
+"xW" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "xY" = (
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
@@ -2907,9 +3115,9 @@
 /obj/effect/landmark/start/archivist,
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
-"ys" = (
-/obj/structure/hedge{
-	plane = -4.1
+"yr" = (
+/obj/structure/railing{
+	dir = 1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -2981,6 +3189,17 @@
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"zc" = (
+/obj/structure/closet/secure_closet/freezer/empty,
+/obj/item/storage/box/coffeepack,
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
+	},
+/obj/machinery/light/directional/north,
+/obj/item/reagent_containers/condiment/milk,
+/obj/item/reagent_containers/condiment/milk,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
 "zf" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood/light{
@@ -2988,6 +3207,14 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"zi" = (
+/obj/structure/table/wood,
+/obj/machinery/coffeemaker/impressa{
+	pixel_y = 8
+	},
+/obj/structure/coclock,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
 "zj" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/item/blood_hunt,
@@ -3000,53 +3227,9 @@
 /obj/effect/landmark/start/gargoyle,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/chantry)
-"zm" = (
-/obj/structure/secure_safe/directional/north,
-/obj/structure/table,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+"zo" = (
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "zp" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 1
@@ -3058,43 +3241,28 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood/old,
 /area/vtm/westfield_mall/interior)
-"zy" = (
-/obj/structure/railing/corner,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+"zw" = (
+/obj/structure/filingcabinet{
+	pixel_x = -7
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 7
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
+"zx" = (
+/obj/structure/table,
+/turf/closed/wall/vampwall/painted/low,
+/area/vtm/interior/police)
 "zz" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/sewer)
-"zB" = (
-/obj/structure/reagent_dispensers/water_cooler{
-	density = 0;
-	pixel_x = 9
-	},
-/obj/machinery/light/directional/east,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"zC" = (
-/obj/structure/table,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "zI" = (
 /obj/structure/chair/sofa/bench/metal/right/black{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
-"zJ" = (
-/obj/effect/spawner/random/trash/garbage,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"zP" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 1;
-	pixel_y = 5
-	},
-/turf/open/floor/wood/smooth,
-/area/vtm/westfield_mall/interior)
 "zQ" = (
 /obj/structure/vampdoor/old{
 	dir = 8
@@ -3103,13 +3271,15 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
-"zR" = (
-/obj/structure/vampdoor/reinf,
-/obj/effect/mapping_helpers/door/access/police,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+"zS" = (
+/obj/structure/filingcabinet{
+	pixel_x = -7
+	},
+/obj/structure/filingcabinet/security{
+	pixel_x = 7
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "zT" = (
 /obj/effect/turf_decal/darkpack/grass{
 	dir = 5
@@ -3135,18 +3305,6 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior)
-"Ad" = (
-/obj/structure/safe,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/sheet/mineral/gold/fifty,
-/obj/item/clothing/accessory/medal/gold/heroism,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Af" = (
 /obj/structure/railing/corner/end/flip{
 	dir = 8
@@ -3170,9 +3328,11 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
-"Ar" = (
-/obj/structure/table,
-/turf/closed/wall/vampwall/painted/low,
+"Ap" = (
+/obj/structure/chair/darkpack/blue{
+	dir = 1
+	},
+/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "Aw" = (
 /turf/open/floor/plating/concrete,
@@ -3190,14 +3350,6 @@
 /obj/structure/railing,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall)
-"AL" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/vampire/eod,
-/obj/item/clothing/head/vampire/eod,
-/obj/item/wirecutters,
-/obj/item/screwdriver,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "AT" = (
 /turf/open/floor/glass/reinforced,
 /area/vtm/westfield_mall)
@@ -3229,12 +3381,6 @@
 /obj/item/paper_bin,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/skatepark)
-"Ba" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Bc" = (
 /obj/structure/table/wood,
 /obj/vampire_computer,
@@ -3299,6 +3445,15 @@
 /obj/item/paper_bin,
 /turf/closed/wall/vampwall/painted/low,
 /area/vtm/interior)
+"BC" = (
+/obj/structure/closet,
+/obj/item/clothing/under/vampire/police,
+/obj/item/clothing/under/vampire/police/long,
+/obj/item/clothing/under/vampire/police/pants,
+/obj/item/clothing/under/vampire/police/turtleneck,
+/obj/item/clothing/under/vampire/police/utility,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "BJ" = (
 /obj/structure/vampipe{
 	pixel_y = 32
@@ -3309,6 +3464,10 @@
 /obj/transfer_point_vamp,
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"BQ" = (
+/obj/machinery/light/red/directional/west,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "BS" = (
 /obj/darkpack_car/track,
 /turf/open/floor/plating/asphalt,
@@ -3336,13 +3495,12 @@
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
-"BY" = (
-/obj/structure/closet/secure_closet/freezer/empty,
-/obj/item/storage/box/coffeepack,
-/obj/item/reagent_containers/condiment/milk,
-/obj/item/reagent_containers/condiment/milk,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+"BZ" = (
+/obj/effect/turf_decal/siding/white/inner_corner{
+	dir = 8
+	},
+/turf/open/water,
+/area/vtm/interior/bianchiBank)
 "Cj" = (
 /obj/structure/table/wood,
 /obj/item/clothing/under/vampire/turtleneck_black,
@@ -3379,6 +3537,10 @@
 /obj/structure/table/wood/fancy/red,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"Cw" = (
+/obj/effect/turf_decal/siding/wood/dark,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/bianchiBank)
 "Cz" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet/darkpack/blacksilver,
@@ -3394,28 +3556,6 @@
 /obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior)
-"CF" = (
-/obj/effect/spawner/random/trash/grime,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"CG" = (
-/obj/machinery/light/directional/north{
-	pixel_x = -16
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"CH" = (
-/obj/structure/vampdoor,
-/obj/effect/turf_decal/siding/wood/dark,
-/obj/effect/mapping_helpers/door/access/all,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/two,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"CI" = (
-/obj/structure/sink/directional/south,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "CK" = (
 /obj/structure/table/wood,
 /obj/item/book/random{
@@ -3428,6 +3568,10 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"CL" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "CP" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -3450,6 +3594,27 @@
 /obj/structure/railing,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"Dc" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/obj/machinery/light/directional/north{
+	pixel_x = -16
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"Df" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
+	},
+/obj/structure/vampdoor/wood{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "Dh" = (
 /obj/effect/spawner/random/trash/grime,
 /turf/open/water/vamp_sewer,
@@ -3515,6 +3680,12 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/chantry)
+"Dn" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "Dp" = (
 /obj/structure/table/countertop/yellow,
 /turf/closed/wall/vampwall/painted,
@@ -3577,13 +3748,15 @@
 /obj/effect/landmark/start/citizen,
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior)
-"DR" = (
-/obj/structure/hedge{
-	plane = -4.1
+"DS" = (
+/obj/structure/filingcabinet/security{
+	pixel_x = 7
 	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+/obj/structure/filingcabinet{
+	pixel_x = -7
+	},
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "DT" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
@@ -3591,6 +3764,12 @@
 /obj/effect/landmark/start/harpy,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior)
+"DX" = (
+/obj/structure/chair/sofa/bench/metal/right{
+	dir = 4
+	},
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "DZ" = (
 /obj/structure/table/reinforced,
 /obj/item/food/donut/choco{
@@ -3628,6 +3807,9 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"Ek" = (
+/turf/closed/wall/vampwall/painted/low/window/reinforced,
+/area/vtm/interior/police)
 "Em" = (
 /obj/structure/stairs/west,
 /turf/open/floor/city/plating_mono,
@@ -3638,11 +3820,6 @@
 	},
 /turf/open/openspace,
 /area/vtm/westfield_mall)
-"Eq" = (
-/obj/structure/table,
-/obj/item/battering_ram,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Er" = (
 /obj/effect/landmark/start/sheriff,
 /obj/structure/chair/office/darkpack/blue{
@@ -3660,64 +3837,6 @@
 	icon_state = "piping29"
 	},
 /turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"Ev" = (
-/obj/structure/secure_safe/directional/north,
-/obj/structure/table,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "Ey" = (
 /obj/structure/table/wood/poker,
@@ -3747,14 +3866,6 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
-"EA" = (
-/obj/structure/toilet{
-	dir = 4;
-	pixel_y = 4
-	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "EB" = (
 /obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 8
@@ -3771,14 +3882,6 @@
 	pixel_y = 33
 	},
 /turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"EE" = (
-/obj/effect/decal/wallpaper/blue/low,
-/turf/closed/wall/vampwall/painted/low/window,
-/area/vtm/westfield_mall/interior)
-"EG" = (
-/obj/machinery/light/dim/directional/south,
-/turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "EI" = (
 /obj/structure/table/reinforced,
@@ -3801,16 +3904,9 @@
 "EJ" = (
 /turf/open/floor/city/plating,
 /area/vtm/interior/techshop)
-"EO" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_y = 6
-	},
-/obj/item/pen{
-	pixel_y = 7
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+"EQ" = (
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/bianchiBank)
 "EW" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/figure/dsquad,
@@ -3825,6 +3921,10 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/techshop)
+"EX" = (
+/obj/effect/decal/wallpaper/blue/low,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/police)
 "EY" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 4
@@ -3837,12 +3937,6 @@
 "Ff" = (
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Fg" = (
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 4
-	},
-/turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "Fh" = (
 /obj/structure/table/modern,
@@ -3874,6 +3968,12 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"Fo" = (
+/obj/structure/chair/office/darkpack/red{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "Fp" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/city/plating,
@@ -3900,36 +4000,16 @@
 /obj/structure/frame/machine/secured,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/techshop)
-"FO" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite{
-	pixel_y = 5
-	},
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite{
-	pixel_y = 5
-	},
+"FU" = (
+/obj/structure/sink/directional/south,
 /turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"FV" = (
-/obj/structure/vampdoor/simple{
-	dir = 4
-	},
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "FW" = (
 /obj/structure/chair/office{
 	dir = 4
 	},
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/interior/chantry)
-"FY" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood/dark,
-/turf/open/floor/city/bacotell,
-/area/vtm/westfield_mall/interior)
 "Gd" = (
 /obj/structure/filingcabinet{
 	pixel_x = -7
@@ -3977,6 +4057,16 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
+"Gz" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"GA" = (
+/obj/structure/hedge,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "GF" = (
 /turf/open/floor/plating/rough/cave,
 /area/vtm/sewer)
@@ -3995,6 +4085,12 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"GN" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "GP" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/elevator)
@@ -4004,10 +4100,15 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
-"GT" = (
-/obj/structure/table/wood,
+"GR" = (
+/obj/structure/closet/secure_closet/evidence,
+/obj/item/storage/box/evidence,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"GS" = (
+/obj/structure/chair/office/darkpack/blue,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/police)
 "GU" = (
 /turf/open/floor/carpet/darkpack/cyan,
 /area/vtm/interior)
@@ -4065,6 +4166,64 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"Hk" = (
+/obj/structure/secure_safe/directional/north,
+/obj/structure/table,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "Hl" = (
 /obj/structure/lamppost/four{
 	pixel_y = 8
@@ -4088,10 +4247,6 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
-"Hr" = (
-/obj/effect/turf_decal/siding/white,
-/turf/open/water,
-/area/vtm/westfield_mall/interior)
 "Hv" = (
 /obj/effect/turf_decal/bordur{
 	dir = 9
@@ -4116,6 +4271,13 @@
 	},
 /turf/open/floor/plating/granite/black,
 /area/vtm/westfield_mall/interior)
+"HB" = (
+/obj/structure/statue/sandstone/venus{
+	plane = 4.2;
+	pixel_y = 10
+	},
+/turf/closed/wall/vampwall/painted/low,
+/area/vtm/interior/bianchiBank)
 "HG" = (
 /obj/machinery/light/cold/directional/north,
 /turf/open/floor/plating/asphalt,
@@ -4143,33 +4305,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/skatepark)
-"HZ" = (
-/obj/structure/hedge,
-/obj/machinery/light/dim/directional/south,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Ia" = (
-/obj/effect/turf_decal/siding/white/inner_corner{
-	dir = 1
-	},
-/turf/open/water,
-/area/vtm/westfield_mall/interior)
 "Ib" = (
 /obj/effect/spawner/random/entertainment/arcade,
 /obj/structure/sign/poster/random/directional/north,
 /turf/open/floor/eighties,
 /area/vtm/interior/shop)
-"Id" = (
-/obj/structure/hedge,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "Ie" = (
 /obj/structure/rack/food/rand,
 /turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"Ig" = (
-/obj/structure/table/wood,
-/turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "Ii" = (
 /obj/structure/table/reinforced,
@@ -4196,23 +4339,13 @@
 	},
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior)
-"It" = (
-/obj/effect/spawner/random/trash/graffiti,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Iu" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Iw" = (
-/obj/machinery/light/directional/south,
-/obj/structure/chair/office{
+"Iq" = (
+/obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
+/obj/machinery/light/dim/directional/east,
+/turf/open/water,
+/area/vtm/interior/bianchiBank)
 "Ix" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -4231,6 +4364,18 @@
 /obj/effect/spawner/random/entertainment/arcade,
 /turf/open/floor/eighties,
 /area/vtm/interior/shop)
+"IE" = (
+/obj/structure/vampdoor,
+/obj/effect/turf_decal/siding/wood/dark,
+/obj/effect/mapping_helpers/door/access/all,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/two,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"II" = (
+/obj/structure/table/wood,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "IL" = (
 /mob/living/carbon/human/npc/shop,
 /obj/structure/chair/office{
@@ -4281,19 +4426,9 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
-"Jd" = (
-/obj/effect/decal/wallpaper/blue/low,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior)
 "Jg" = (
 /obj/structure/sign/departments/restroom/directional/north,
 /turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
-"Jh" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "Js" = (
 /obj/effect/turf_decal/siding/wood/dark{
@@ -4333,6 +4468,14 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"JJ" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 4
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "JM" = (
 /obj/structure/table/countertop/yellow,
 /turf/open/floor/city/plating,
@@ -4372,12 +4515,10 @@
 	},
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
-"Kf" = (
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 10
-	},
-/turf/open/floor/city/bacotell,
-/area/vtm/westfield_mall/interior)
+"JY" = (
+/obj/structure/noticeboard/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "Kh" = (
 /obj/effect/decal/wallpaper/stone,
 /obj/structure/sign/poster/city/tiamat{
@@ -4401,11 +4542,6 @@
 /obj/structure/gargoyle,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
-"Kw" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior)
 "Kx" = (
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
@@ -4413,13 +4549,6 @@
 /obj/structure/cat_house,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
-"Kz" = (
-/obj/structure/table,
-/obj/effect/turf_decal/siding/wood/dark{
-	dir = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "KC" = (
 /obj/structure/hedge,
 /obj/machinery/light/prince/directional/north,
@@ -4454,6 +4583,10 @@
 /obj/structure/destructible/cult/item_dispenser/archives/library,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"KS" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "KU" = (
 /obj/structure/table/wood,
 /obj/item/storage/bag/books{
@@ -4470,10 +4603,6 @@
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
-"KW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "KZ" = (
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/techshop)
@@ -4532,6 +4661,19 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/techshop)
+"Ll" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Ln" = (
+/obj/structure/hedge{
+	plane = -4.1
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "Lp" = (
 /obj/structure/chair/stool/directional/north,
 /turf/open/floor/eighties,
@@ -4544,13 +4686,6 @@
 /obj/effect/decal/wallpaper/stone,
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/westfield_mall/skatepark)
-"Ly" = (
-/obj/structure/vampdoor/prison,
-/obj/effect/mapping_helpers/door/access/police,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/eight,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Lz" = (
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 4
@@ -4585,14 +4720,6 @@
 /area/vtm/interior)
 "LU" = (
 /turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"LW" = (
-/obj/structure/table/wood,
-/obj/machinery/coffeemaker/impressa{
-	pixel_y = 8
-	},
-/obj/structure/coclock,
-/turf/open/floor/city/bacotell,
 /area/vtm/westfield_mall/interior)
 "LZ" = (
 /obj/structure/closet/crate/wooden,
@@ -4637,6 +4764,13 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
+"Ms" = (
+/obj/structure/table/wood,
+/obj/vampire_computer{
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "Mv" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 4
@@ -4711,11 +4845,6 @@
 	},
 /turf/open/floor/city/bacotell,
 /area/vtm/westfield_mall/interior)
-"MX" = (
-/turf/open/floor/iron/stairs/black{
-	dir = 4
-	},
-/area/vtm/westfield_mall/interior)
 "MY" = (
 /obj/structure/rack/food/rand{
 	dir = 4;
@@ -4758,10 +4887,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
-"Nk" = (
-/obj/machinery/light/directional/north,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
 "Nl" = (
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
@@ -4791,15 +4916,6 @@
 /obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
-"Nw" = (
-/obj/structure/closet,
-/obj/item/clothing/under/vampire/police,
-/obj/item/clothing/under/vampire/police/long,
-/obj/item/clothing/under/vampire/police/pants,
-/obj/item/clothing/under/vampire/police/turtleneck,
-/obj/item/clothing/under/vampire/police/utility,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Ny" = (
 /obj/structure/chair/office/darkpack/blue{
 	dir = 8
@@ -4815,28 +4931,12 @@
 /obj/effect/mapping_helpers/door/access/wolftech,
 /turf/open/floor/city/plating,
 /area/vtm/interior/techshop)
-"NB" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "ND" = (
 /obj/effect/landmark/start/prince,
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 8
 	},
 /turf/open/floor/plating/granite/black,
-/area/vtm/westfield_mall/interior)
-"NG" = (
-/obj/structure/closet,
-/obj/item/clothing/under/vampire/police,
-/obj/item/clothing/under/vampire/police/long,
-/obj/item/clothing/under/vampire/police/pants,
-/obj/item/clothing/under/vampire/police/turtleneck,
-/obj/item/clothing/under/vampire/police/utility,
-/obj/item/storage/fancy/donut_box,
-/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "NH" = (
 /obj/effect/turf_decal/bordur{
@@ -4857,20 +4957,6 @@
 /area/vtm/interior/chantry)
 "NL" = (
 /obj/structure/table/wood,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"NN" = (
-/obj/structure/hedge{
-	plane = -4.1
-	},
-/obj/effect/turf_decal/siding/wood/dark/corner{
-	dir = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"NQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/directional/south,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "NT" = (
@@ -4904,10 +4990,26 @@
 	},
 /turf/open/floor/city/plating_stone,
 /area/vtm/interior/techshop)
+"Oa" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "Oc" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/techshop)
+"Of" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 7
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "Og" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -4915,20 +5017,15 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
-"Ol" = (
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/shield/riot,
-/obj/item/shield/riot,
-/obj/item/shield/riot,
-/obj/item/storage/box/teargas,
-/obj/item/storage/box/flashbangs,
-/obj/item/megaphone,
-/obj/item/megaphone,
-/obj/structure/closet/crate,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+"Oh" = (
+/obj/effect/decal/wallpaper/red/low,
+/obj/machinery/door/poddoor/shutters/preopen,
+/turf/closed/wall/vampwall/painted/low/window/reinforced,
+/area/vtm/interior/bianchiBank)
+"Oi" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "On" = (
 /obj/structure/destructible/cult/item_dispenser/archives/library,
 /turf/open/floor/plating/concrete,
@@ -4939,14 +5036,6 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
-"Oq" = (
-/obj/structure/bed,
-/obj/structure/bed{
-	pixel_y = 11
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Os" = (
 /obj/machinery/light/prince/directional/south,
 /turf/open/floor/wood/ornate,
@@ -4957,24 +5046,27 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"OB" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/vampdoor/reinf{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/door/access/police_secure,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/ten,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "OD" = (
 /obj/fusebox,
 /obj/item/kirbyplants/random,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/skatepark)
-"OH" = (
-/obj/structure/hedge,
+"OK" = (
+/obj/machinery/light/directional/south,
 /turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
-"OJ" = (
-/obj/structure/vampfence/rich{
-	dir = 4;
-	pixel_y = 8;
-	name = "bars"
-	},
-/obj/effect/decal/wallpaper/blue/low,
-/turf/closed/wall/vampwall/painted/low/window/reinforced,
-/area/vtm/westfield_mall/interior)
+/area/vtm/interior/bianchiBank)
 "OQ" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating/concrete,
@@ -4998,12 +5090,6 @@
 	dir = 8
 	},
 /area/vtm/sewer)
-"OZ" = (
-/obj/structure/railing{
-	dir = 9
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Pb" = (
 /obj/vampire_computer/prince,
 /obj/structure/table/wood/fancy/royalblack,
@@ -5012,6 +5098,14 @@
 	},
 /turf/open/floor/plating/granite/black,
 /area/vtm/westfield_mall/interior)
+"Ph" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/vampdoor/prison,
+/obj/effect/mapping_helpers/door/lock_difficulty/ten,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/bank,
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "Pi" = (
 /obj/structure/coclock,
 /turf/open/floor/city/plating,
@@ -5050,6 +5144,10 @@
 /obj/machinery/light/dim/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"PG" = (
+/obj/structure/railing,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "PJ" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -5084,15 +5182,17 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
-"PO" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
 "PP" = (
 /turf/open/water/vamp_sewer/border,
 /area/vtm/sewer)
 "PV" = (
 /turf/open/floor/wood/ornate,
+/area/vtm/westfield_mall/interior)
+"PX" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "Qa" = (
 /obj/structure/sign/city/store/bubway{
@@ -5121,26 +5221,6 @@
 /obj/machinery/light/dim/directional/west,
 /turf/open/floor/city/circled,
 /area/vtm/interior)
-"Qj" = (
-/obj/structure/coclock,
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_y = 10;
-	pixel_x = -4
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Ql" = (
-/obj/machinery/light/directional/south,
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
 "Qo" = (
 /obj/structure/table/wood,
 /obj/item/kirbyplants/darkpack/plant4{
@@ -5160,17 +5240,10 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall)
-"Qw" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Qz" = (
-/obj/structure/closet/secure_closet/evidence,
-/obj/item/storage/box/evidence,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
+"Qs" = (
+/obj/effect/decal/wallpaper/red,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/bianchiBank)
 "QA" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 1
@@ -5236,26 +5309,14 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"QW" = (
+/obj/effect/decal/wallpaper/stone,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/bianchiBank)
 "QX" = (
 /obj/structure/table/wood,
 /obj/structure/closet/mini_fridge,
 /turf/open/floor/carpet/darkpack/blacksilver,
-/area/vtm/westfield_mall/interior)
-"QZ" = (
-/obj/structure/table/wood,
-/obj/vampire_computer{
-	pixel_y = 7;
-	pixel_x = 4
-	},
-/obj/item/kirbyplants/darkpack/plant4{
-	pixel_y = 16;
-	pixel_x = -9
-	},
-/obj/item/kirbyplants/darkpack/plant2{
-	pixel_y = 6;
-	pixel_x = -11
-	},
-/turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "Ra" = (
 /obj/effect/turf_decal/asphaltline/alt{
@@ -5344,885 +5405,18 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
+"Rt" = (
+/obj/item/kirbyplants/darkpack/plant4{
+	pixel_y = 16;
+	pixel_x = 11
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
 "Rx" = (
 /obj/darkpack_car/rand,
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
-"RE" = (
-/obj/machinery/door/poddoor/shutters/preopen,
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/interior)
-"RG" = (
-/obj/structure/table/countertop/yellow,
-/obj/vampire_computer,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"RN" = (
-/obj/machinery/light/dim/directional/south,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"RO" = (
-/obj/structure/extinguisher_cabinet/directional/north,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"RP" = (
-/obj/structure/rack/clothing/rand,
-/turf/open/floor/city/plating,
-/area/vtm/interior/shop)
-"RT" = (
-/obj/machinery/light/prince/directional/north,
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
-"RV" = (
-/obj/effect/turf_decal/bordur{
-	dir = 5
-	},
-/obj/effect/turf_decal/bordur{
-	dir = 5
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"RW" = (
-/obj/structure/vampstatue,
-/obj/effect/turf_decal/bordur{
-	dir = 10
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"RX" = (
-/obj/effect/decal/wallpaper/light,
-/turf/closed/wall/vampwall/market,
-/area/vtm/westfield_mall/interior)
-"Sf" = (
-/obj/effect/turf_decal/bordur/corner{
-	dir = 1
-	},
-/obj/structure/vampdoor/glass,
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall/interior)
-"Sk" = (
-/obj/machinery/lift_indicator/directional/north{
-	pixel_x = -5;
-	pixel_y = 20;
-	linked_elevator_id = "mall_elevator_1"
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "mall_elevator_1";
-	pixel_y = 35;
-	pixel_x = 9
-	},
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"Sn" = (
-/obj/structure/table/countertop/red,
-/turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"Sr" = (
-/obj/machinery/vending/coffee/private,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"St" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light/small/dim/directional/east,
-/turf/open/floor/city/toilet/large,
-/area/vtm/interior/techshop)
-"Su" = (
-/turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"Sw" = (
-/obj/effect/spawner/random/flora/all,
-/turf/open/misc/grass/nosmooth,
-/area/vtm/westfield_mall)
-"Sy" = (
-/obj/structure/bed,
-/obj/structure/bed{
-	pixel_y = 11
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"SA" = (
-/obj/structure/vampdoor/wood,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/obj/effect/mapping_helpers/door/access/chantry,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/chantry)
-"SI" = (
-/obj/effect/spawner/random/maintenance/five,
-/turf/open/floor/plating/concrete,
-/area/vtm/sewer)
-"SK" = (
-/obj/effect/turf_decal/bordur/corner{
-	dir = 1
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"SP" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"SQ" = (
-/obj/effect/turf_decal/bordur/corner/inverse{
-	dir = 8
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/skatepark)
-"SS" = (
-/obj/machinery/light/cold/directional/west,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"SW" = (
-/obj/structure/stairs/east{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Td" = (
-/obj/structure/safe,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/sheet/mineral/gold/fifty,
-/obj/item/stack/sheet/mineral/diamond,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Tg" = (
-/turf/closed/wall/vampwall/brick_old/low,
-/area/vtm/planetgeneration)
-"Th" = (
-/obj/structure/hedge,
-/turf/open/floor/wood/old,
-/area/vtm/interior/chantry)
-"Ti" = (
-/obj/structure/table,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/cup/glass/trophy/gold_cup{
-	pixel_y = 13
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Tm" = (
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
-"Tn" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/spawner/random/trash/garbage,
-/obj/effect/spawner/random/trash/deluxe_garbage,
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
-"Tt" = (
-/obj/structure/table/reinforced,
-/obj/item/masquerade_contract,
-/obj/item/masquerade_contract,
-/obj/item/masquerade_contract,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Ty" = (
-/mob/living/carbon/human/npc/shop,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
-"TA" = (
-/obj/machinery/autolathe,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/techshop)
-"TD" = (
-/obj/effect/turf_decal/bordur/corner{
-	dir = 1
-	},
-/obj/structure/lamppost/sidewalk,
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"TH" = (
-/obj/structure/table/countertop/black,
-/turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"TR" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_y = 6
-	},
-/obj/item/pen{
-	pixel_y = 7
-	},
-/obj/item/kirbyplants/darkpack/plant4{
-	pixel_y = 7;
-	pixel_x = 11
-	},
-/obj/item/kirbyplants/darkpack/plant1{
-	pixel_y = 17;
-	pixel_x = -12
-	},
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
-"TS" = (
-/obj/structure/vampstatue,
-/obj/effect/turf_decal/bordur{
-	dir = 9
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"TV" = (
-/obj/structure/vampipe{
-	pixel_y = 32;
-	icon_state = "piping2"
-	},
-/turf/open/openspace,
-/area/vtm/westfield_mall/interior)
-"TW" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Ub" = (
-/obj/effect/landmark/start,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Uc" = (
-/obj/structure/vampdoor/simple/anarch,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/skatepark)
-"Uf" = (
-/obj/machinery/libraryscanner,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Ug" = (
-/obj/structure/table/wood,
-/obj/vampire_computer{
-	pixel_y = 4
-	},
-/obj/item/kirbyplants/darkpack/plant2{
-	pixel_y = 19;
-	pixel_x = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Ul" = (
-/obj/machinery/light/prince/directional/east,
-/turf/open/floor/carpet/darkpack/redsilver,
-/area/vtm/interior/chantry)
-"Uo" = (
-/obj/structure/vampdoor/glass{
-	dir = 4
-	},
-/turf/open/floor/city/plating,
-/area/vtm/interior/techshop)
-"Uq" = (
-/obj/structure/ladder,
-/obj/structure/lattice,
-/obj/structure/railing{
-	dir = 9
-	},
-/obj/structure/railing,
-/turf/open/openspace,
-/area/vtm/westfield_mall)
-"Ur" = (
-/obj/structure/table/countertop/bubway,
-/obj/structure/retail/bubway_menu{
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/turf/open/floor/city/gummaguts,
-/area/vtm/westfield_mall/interior)
-"Uu" = (
-/obj/structure/hedge{
-	plane = -4.1
-	},
-/turf/open/floor/carpet/darkpack/bluegold,
-/area/vtm/westfield_mall/interior)
-"Uw" = (
-/obj/item/instrument/eguitar/vamp{
-	pixel_y = -10;
-	anchored = 1
-	},
-/obj/item/instrument/eguitar/vamp{
-	pixel_y = 1;
-	anchored = 1
-	},
-/obj/effect/decal/wallpaper/stone,
-/turf/closed/wall/vampwall/brick_old,
-/area/vtm/westfield_mall/skatepark)
-"Ux" = (
-/obj/effect/spawner/random/vending/colavend,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Uy" = (
-/obj/effect/landmark/start/regent,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"UA" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/paper_bin,
-/obj/item/pen/fountain,
-/obj/effect/turf_decal/siding/wood/light,
-/turf/open/floor/plating/granite/black,
-/area/vtm/westfield_mall/interior)
-"UF" = (
-/obj/structure/vampdoor/old,
-/obj/effect/mapping_helpers/door/access/clerk,
-/obj/effect/mapping_helpers/door/lock,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"UI" = (
-/obj/structure/table,
-/obj/machinery/fax/camarilla,
-/turf/open/floor/wood/ornate,
-/area/vtm/westfield_mall/interior)
-"UK" = (
-/obj/structure/railing{
-	dir = 5
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall)
-"UN" = (
-/obj/structure/closet,
-/obj/item/clothing/under/vampire/police,
-/obj/item/clothing/under/vampire/police/long,
-/obj/item/clothing/under/vampire/police/pants,
-/obj/item/clothing/under/vampire/police/turtleneck,
-/obj/item/clothing/under/vampire/police/utility,
-/obj/item/storage/fancy/cigarettes/cigpack_robust,
-/obj/item/lighter/greyscale,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"UP" = (
-/obj/structure/railing,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"UR" = (
-/obj/structure/table,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/turf/open/floor/city/circled,
-/area/vtm/interior)
-"US" = (
-/obj/structure/hedge,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"UX" = (
-/obj/effect/turf_decal/bordur/corner,
-/obj/structure/lamppost/sidewalk,
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall)
-"UY" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/carpet/darkpack/blacksilver,
-/area/vtm/westfield_mall/interior)
-"Vc" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"Vd" = (
-/obj/effect/turf_decal/bordur{
-	dir = 10
-	},
-/turf/open/floor/plating/sidewalk/rich,
-/area/vtm/westfield_mall)
-"Ve" = (
-/obj/structure/table/countertop/red,
-/obj/machinery/griddle,
-/turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"Vf" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/light,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Vg" = (
-/obj/structure/ladder/manhole/down,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/westfield_mall)
-"Vj" = (
-/obj/structure/vampfence/corner/rich{
-	dir = 8
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall)
-"Vk" = (
-/turf/open/floor/plating/asphalt,
-/area/vtm/sewer)
-"Vp" = (
-/obj/structure/vampdoor,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/skatepark)
-"VD" = (
-/turf/closed/wall/vampwall/painted/low,
-/area/vtm/westfield_mall)
-"VH" = (
-/obj/structure/sign/city/skateshop{
-	dir = 1
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/westfield_mall/skatepark)
-"VI" = (
-/turf/open/floor/carpet/darkpack/redsilver,
-/area/vtm/interior/chantry)
-"VO" = (
-/obj/structure/chair/sofa/corp/right,
-/obj/effect/landmark/start/archivist,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"VQ" = (
-/obj/structure/noticeboard/directional/north,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"VR" = (
-/obj/structure/table,
-/obj/effect/spawner/random/engineering/material,
-/obj/effect/spawner/random/engineering/material,
-/obj/effect/spawner/random/engineering/material,
-/obj/effect/spawner/random/engineering/material,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/techshop)
-"VV" = (
-/obj/machinery/vending/cola/blue,
-/obj/machinery/light/directional/south,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"VX" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
-"Wc" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/chantry)
-"Wl" = (
-/obj/effect/landmark/start/archivist,
-/obj/structure/chair/wood/darkpack/red{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Wm" = (
-/turf/open/openspace,
-/area/vtm/interior/chantry)
-"Wp" = (
-/obj/structure/table/wood,
-/obj/machinery/light/prince/directional/north,
-/obj/machinery/computer/libraryconsole{
-	pixel_y = 9
-	},
-/turf/open/floor/wood/old,
-/area/vtm/interior/chantry)
-"Wr" = (
-/obj/darkpack_car/retro/rand{
-	dir = 1
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/skatepark)
-"Ws" = (
-/obj/structure/table,
-/obj/machinery/coffeemaker{
-	pixel_y = 12
-	},
-/obj/item/coffee_cartridge{
-	pixel_y = 1
-	},
-/obj/item/coffee_cartridge/decaf{
-	pixel_x = -6
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/techshop)
-"Wt" = (
-/obj/structure/chair/wood/darkpack/red,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Wu" = (
-/obj/structure/hedge,
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Wz" = (
-/obj/item/chair/plastic,
-/obj/item/chair/plastic{
-	pixel_y = 2
-	},
-/obj/item/chair/plastic{
-	pixel_y = 4
-	},
-/obj/machinery/light/dim/directional/west,
-/turf/open/floor/city/plating,
-/area/vtm/interior/techshop)
-"WA" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/obj/machinery/light/dim/directional/east,
-/turf/open/water,
-/area/vtm/westfield_mall/interior)
-"WD" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/pen/fourcolor{
-	pixel_x = 7;
-	pixel_y = 11
-	},
-/obj/effect/spawner/random/bureaucracy/pen{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/effect/spawner/random/bureaucracy/pen{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/turf/open/floor/wood/old,
-/area/vtm/interior/chantry)
-"WF" = (
-/obj/effect/mapping_helpers/door/lock,
-/obj/structure/vampdoor/reinf{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/door/lock_difficulty/nine,
-/obj/effect/mapping_helpers/door/access/wolftech,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/techshop)
-"WG" = (
-/obj/structure/table,
-/turf/open/floor/carpet/darkpack/blacksilver,
-/area/vtm/westfield_mall/interior)
-"WI" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"WJ" = (
-/obj/effect/turf_decal/bordur/inverse{
-	dir = 9
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/skatepark)
-"WL" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"WM" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4;
-	transport_linked_id = "mall_elevator_1";
-	elevator_mode = 1
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/elevator)
-"WN" = (
-/obj/effect/turf_decal/siding/wood/light,
-/turf/open/floor/plating/granite/black,
-/area/vtm/westfield_mall/interior)
-"WT" = (
-/obj/effect/turf_decal/asphaltline/alt{
-	dir = 4
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/skatepark)
-"WY" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"WZ" = (
-/obj/item/kirbyplants/darkpack/random,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Xa" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/food_or_drink/snack{
-	pixel_x = -6;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass{
-	pixel_x = -9
-	},
-/turf/open/floor/wood/old,
-/area/vtm/interior/chantry)
-"Xd" = (
-/obj/effect/decal/wallpaper/stone,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior)
-"Xe" = (
-/obj/machinery/light/prince/directional/north,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Xk" = (
-/obj/structure/table,
-/obj/item/stack/dollar/thousand{
-	pixel_y = 5;
-	pixel_x = 8
-	},
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand,
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 8;
-	pixel_x = -6
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_y = 13;
-	pixel_x = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/stack/dollar/thousand{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Xl" = (
-/obj/structure/chair/sofa/bench/metal/right/black{
-	dir = 8
-	},
-/turf/open/floor/plating/sidewalk/rich,
-/area/vtm/westfield_mall)
-"Xm" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/carpet/darkpack/cyan,
-/area/vtm/interior)
-"Xn" = (
-/obj/structure/coclock/grandpa,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Xo" = (
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall)
-"Xr" = (
-/turf/open/floor/city/plating,
-/area/vtm/westfield_mall/interior)
-"Xt" = (
-/obj/effect/turf_decal/bordur{
-	dir = 9
-	},
-/turf/open/floor/plating/sidewalk,
-/area/vtm/westfield_mall)
-"Xu" = (
-/obj/structure/table/countertop/red,
-/obj/structure/sink/basin{
-	dir = 4;
-	pixel_y = -4
-	},
-/turf/open/floor/city/circled/large,
-/area/vtm/westfield_mall/interior)
-"Xx" = (
-/obj/effect/decal/wallpaper/gold,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior)
-"Xz" = (
-/obj/structure/hedge,
-/obj/machinery/light/dim/directional/west,
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
-"XE" = (
-/obj/structure/vampipe{
-	pixel_y = 32;
-	icon_state = "piping23"
-	},
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"XF" = (
-/obj/structure/table/wood,
-/obj/machinery/fax/tremere,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"XH" = (
-/obj/effect/turf_decal/darkpack/grass{
-	dir = 6
-	},
-/turf/open/misc/dirt,
-/area/vtm/westfield_mall)
-"XJ" = (
-/obj/structure/table/wood,
-/obj/machinery/light/directional/south,
-/obj/item/storage/fancy/donut_box{
-	pixel_y = 9
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"XM" = (
-/obj/structure/extinguisher_cabinet/directional/west,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior)
-"XO" = (
-/obj/machinery/light/directional/south,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
-"XQ" = (
-/obj/structure/table/optable,
-/turf/open/floor/city/circled,
-/area/vtm/interior)
-"XT" = (
-/turf/open/openspace,
-/area/vtm/interior/techshop)
-"XU" = (
-/turf/open/floor/carpet/darkpack/redsilver,
-/area/vtm/westfield_mall/interior)
-"XV" = (
-/obj/structure/hedge{
-	plane = -4.1
-	},
-/obj/effect/turf_decal/siding/wood/dark,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"XW" = (
-/obj/structure/vampdoor/simple,
-/obj/effect/turf_decal/siding/white,
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/access/salubri,
-/turf/open/floor/city/circled,
-/area/vtm/interior)
-"XY" = (
-/turf/open/floor/plating/sidewalk/rich,
-/area/vtm/westfield_mall)
-"XZ" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/westfield_mall)
-"Ya" = (
-/mob/living/carbon/human/npc/shop,
-/obj/effect/decal/carpet,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
-"Yb" = (
-/obj/machinery/camera/autoname/directional/east,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
-"Yc" = (
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/skatepark)
-"Yj" = (
-/obj/structure/table/countertop/black,
-/obj/structure/sink/basin/directional/west,
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior)
-"Yl" = (
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior)
-"Yn" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
-"Yu" = (
-/obj/machinery/photocopier/prebuilt,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/chantry)
-"Yv" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
-"YE" = (
-/obj/item/melee/skateboard/pro{
-	pixel_y = -3;
-	anchored = 1
-	},
-/obj/effect/decal/wallpaper/stone,
-/turf/closed/wall/vampwall/brick_old,
-/area/vtm/westfield_mall/skatepark)
-"YG" = (
-/turf/open/floor/plating/sidewalk,
-/area/vtm/westfield_mall)
-"YQ" = (
+"RC" = (
 /obj/structure/secure_safe/directional/north,
 /obj/structure/table,
 /obj/item/stack/dollar/thousand,
@@ -6291,19 +5485,865 @@
 	pixel_y = 1
 	},
 /turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
+"RE" = (
+/obj/machinery/door/poddoor/shutters/preopen,
+/turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior)
+"RG" = (
+/obj/structure/table/countertop/yellow,
+/obj/vampire_computer,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"RO" = (
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"RP" = (
+/obj/structure/rack/clothing/rand,
+/turf/open/floor/city/plating,
+/area/vtm/interior/shop)
+"RT" = (
+/obj/machinery/light/prince/directional/north,
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/westfield_mall/interior)
+"RV" = (
+/obj/effect/turf_decal/bordur{
+	dir = 5
+	},
+/obj/effect/turf_decal/bordur{
+	dir = 5
+	},
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"RW" = (
+/obj/structure/vampstatue,
+/obj/effect/turf_decal/bordur{
+	dir = 10
+	},
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"RX" = (
+/obj/effect/decal/wallpaper/light,
+/turf/closed/wall/vampwall/market,
+/area/vtm/westfield_mall/interior)
+"RY" = (
+/obj/machinery/door/poddoor/shutters/preopen,
+/obj/structure/vampdoor/woodglass,
+/obj/effect/mapping_helpers/door/lock_difficulty/five,
+/obj/effect/mapping_helpers/door/access/bank,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/bianchiBank)
+"Sf" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 1
+	},
+/obj/structure/vampdoor/glass,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall/interior)
+"Sk" = (
+/obj/machinery/lift_indicator/directional/north{
+	pixel_x = -5;
+	pixel_y = 20;
+	linked_elevator_id = "mall_elevator_1"
+	},
+/obj/machinery/button/elevator/directional/north{
+	id = "mall_elevator_1";
+	pixel_y = 35;
+	pixel_x = 9
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"Sn" = (
+/obj/structure/table/countertop/red,
+/turf/open/floor/city/circled/large,
+/area/vtm/westfield_mall/interior)
+"Sq" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_y = 10;
+	pixel_x = -4
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
+"Sr" = (
+/obj/machinery/vending/coffee/private,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"St" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light/small/dim/directional/east,
+/turf/open/floor/city/toilet/large,
+/area/vtm/interior/techshop)
+"Su" = (
+/turf/open/floor/city/circled/large,
+/area/vtm/westfield_mall/interior)
+"Sw" = (
+/obj/effect/spawner/random/flora/all,
+/turf/open/misc/grass/nosmooth,
+/area/vtm/westfield_mall)
+"Sz" = (
+/obj/structure/chair/darkpack/blue{
+	dir = 8
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"SA" = (
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/chantry,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/chantry)
+"SI" = (
+/obj/effect/spawner/random/maintenance/five,
+/turf/open/floor/plating/concrete,
+/area/vtm/sewer)
+"SK" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"SP" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"SQ" = (
+/obj/effect/turf_decal/bordur/corner/inverse{
+	dir = 8
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/skatepark)
+"SS" = (
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"SW" = (
+/obj/structure/stairs/east{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Tf" = (
+/obj/structure/table/wood,
+/obj/machinery/light/directional/south,
+/obj/item/storage/fancy/donut_box{
+	pixel_y = 9
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"Tg" = (
+/turf/closed/wall/vampwall/brick_old/low,
+/area/vtm/planetgeneration)
+"Th" = (
+/obj/structure/hedge,
+/turf/open/floor/wood/old,
+/area/vtm/interior/chantry)
+"Tq" = (
+/obj/item/kirbyplants/darkpack/random,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
+"Tt" = (
+/obj/structure/table/reinforced,
+/obj/item/masquerade_contract,
+/obj/item/masquerade_contract,
+/obj/item/masquerade_contract,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Ty" = (
+/mob/living/carbon/human/npc/shop,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"TA" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/techshop)
+"TC" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 7
+	},
+/turf/closed/wall/vampwall/painted/low,
+/area/vtm/interior/police)
+"TD" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 1
+	},
+/obj/structure/lamppost/sidewalk,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"TH" = (
+/obj/structure/table/countertop/black,
+/turf/open/floor/city/circled/large,
+/area/vtm/westfield_mall/interior)
+"TM" = (
+/obj/structure/vampfence/rich{
+	dir = 4;
+	pixel_y = 8;
+	name = "bars"
+	},
+/obj/effect/decal/wallpaper/blue/low,
+/turf/closed/wall/vampwall/painted/low/window/reinforced,
+/area/vtm/interior/police)
+"TS" = (
+/obj/structure/vampstatue,
+/obj/effect/turf_decal/bordur{
+	dir = 9
+	},
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"TV" = (
+/obj/structure/vampipe{
+	pixel_y = 32;
+	icon_state = "piping2"
+	},
+/turf/open/openspace,
+/area/vtm/westfield_mall/interior)
+"TW" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"TX" = (
+/obj/structure/sign/flag/usa{
+	pixel_y = 30
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"Ub" = (
+/obj/effect/landmark/start,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Uc" = (
+/obj/structure/vampdoor/simple/anarch,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/skatepark)
+"Ue" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"Uf" = (
+/obj/machinery/libraryscanner,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Ul" = (
+/obj/machinery/light/prince/directional/east,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/chantry)
+"Um" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Un" = (
+/turf/open/floor/iron/stairs/black{
+	dir = 4
+	},
+/area/vtm/interior/police)
+"Uo" = (
+/obj/structure/vampdoor/glass{
+	dir = 4
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/techshop)
+"Up" = (
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/police)
+"Uq" = (
+/obj/structure/ladder,
+/obj/structure/lattice,
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/structure/railing,
+/turf/open/openspace,
+/area/vtm/westfield_mall)
+"Ur" = (
+/obj/structure/table/countertop/bubway,
+/obj/structure/retail/bubway_menu{
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/turf/open/floor/city/gummaguts,
+/area/vtm/westfield_mall/interior)
+"Uw" = (
+/obj/item/instrument/eguitar/vamp{
+	pixel_y = -10;
+	anchored = 1
+	},
+/obj/item/instrument/eguitar/vamp{
+	pixel_y = 1;
+	anchored = 1
+	},
+/obj/effect/decal/wallpaper/stone,
+/turf/closed/wall/vampwall/brick_old,
+/area/vtm/westfield_mall/skatepark)
+"Ux" = (
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Uy" = (
+/obj/effect/landmark/start/regent,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Uz" = (
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
+"UA" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/effect/turf_decal/siding/wood/light,
+/turf/open/floor/plating/granite/black,
+/area/vtm/westfield_mall/interior)
+"UF" = (
+/obj/structure/vampdoor/old,
+/obj/effect/mapping_helpers/door/access/clerk,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"UI" = (
+/obj/structure/table,
+/obj/machinery/fax/camarilla,
+/turf/open/floor/wood/ornate,
+/area/vtm/westfield_mall/interior)
+"UK" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall)
+"UR" = (
+/obj/structure/table,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/city/circled,
+/area/vtm/interior)
+"US" = (
+/obj/structure/hedge,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"UX" = (
+/obj/effect/turf_decal/bordur/corner,
+/obj/structure/lamppost/sidewalk,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
+"UY" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/carpet/darkpack/blacksilver,
+/area/vtm/westfield_mall/interior)
+"Vc" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"Vd" = (
+/obj/effect/turf_decal/bordur{
+	dir = 10
+	},
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/westfield_mall)
+"Ve" = (
+/obj/structure/table/countertop/red,
+/obj/machinery/griddle,
+/turf/open/floor/city/circled/large,
+/area/vtm/westfield_mall/interior)
+"Vf" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/light,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Vg" = (
+/obj/structure/ladder/manhole/down,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/westfield_mall)
+"Vj" = (
+/obj/structure/vampfence/corner/rich{
+	dir = 8
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall)
+"Vk" = (
+/turf/open/floor/plating/asphalt,
+/area/vtm/sewer)
+"Vp" = (
+/obj/structure/vampdoor,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/skatepark)
+"Vr" = (
+/obj/structure/chair/sofa/bench/metal/left{
+	dir = 4
+	},
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
+"VD" = (
+/turf/closed/wall/vampwall/painted/low,
+/area/vtm/westfield_mall)
+"VH" = (
+/obj/structure/sign/city/skateshop{
+	dir = 1
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
+"VI" = (
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/chantry)
+"VK" = (
+/obj/structure/table,
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
+"VN" = (
+/obj/structure/table/wood,
+/obj/vampire_computer{
+	pixel_y = 4
+	},
+/obj/item/kirbyplants/darkpack/plant2{
+	pixel_y = 19;
+	pixel_x = 8
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"VO" = (
+/obj/structure/chair/sofa/corp/right,
+/obj/effect/landmark/start/archivist,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"VR" = (
+/obj/structure/table,
+/obj/effect/spawner/random/engineering/material,
+/obj/effect/spawner/random/engineering/material,
+/obj/effect/spawner/random/engineering/material,
+/obj/effect/spawner/random/engineering/material,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/techshop)
+"VV" = (
+/obj/machinery/vending/cola/blue,
+/obj/machinery/light/directional/south,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"VX" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"Wb" = (
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 11
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"Wc" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/chantry)
+"Wl" = (
+/obj/effect/landmark/start/archivist,
+/obj/structure/chair/wood/darkpack/red{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Wm" = (
+/turf/open/openspace,
+/area/vtm/interior/chantry)
+"Wp" = (
+/obj/structure/table/wood,
+/obj/machinery/light/prince/directional/north,
+/obj/machinery/computer/libraryconsole{
+	pixel_y = 9
+	},
+/turf/open/floor/wood/old,
+/area/vtm/interior/chantry)
+"Wr" = (
+/obj/darkpack_car/retro/rand{
+	dir = 1
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/skatepark)
+"Ws" = (
+/obj/structure/table,
+/obj/machinery/coffeemaker{
+	pixel_y = 12
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 1
+	},
+/obj/item/coffee_cartridge/decaf{
+	pixel_x = -6
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/techshop)
+"Wt" = (
+/obj/structure/chair/wood/darkpack/red,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Wu" = (
+/obj/structure/hedge,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Wz" = (
+/obj/item/chair/plastic,
+/obj/item/chair/plastic{
+	pixel_y = 2
+	},
+/obj/item/chair/plastic{
+	pixel_y = 4
+	},
+/obj/machinery/light/dim/directional/west,
+/turf/open/floor/city/plating,
+/area/vtm/interior/techshop)
+"WD" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/pen/fourcolor{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/obj/effect/spawner/random/bureaucracy/pen{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/bureaucracy/pen{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/turf/open/floor/wood/old,
+/area/vtm/interior/chantry)
+"WF" = (
+/obj/effect/mapping_helpers/door/lock,
+/obj/structure/vampdoor/reinf{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/door/lock_difficulty/nine,
+/obj/effect/mapping_helpers/door/access/wolftech,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/techshop)
+"WG" = (
+/obj/structure/table,
+/turf/open/floor/carpet/darkpack/blacksilver,
+/area/vtm/westfield_mall/interior)
+"WI" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"WJ" = (
+/obj/effect/turf_decal/bordur/inverse{
+	dir = 9
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/skatepark)
+"WM" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	transport_linked_id = "mall_elevator_1";
+	elevator_mode = 1
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/elevator)
+"WN" = (
+/obj/effect/turf_decal/siding/wood/light,
+/turf/open/floor/plating/granite/black,
+/area/vtm/westfield_mall/interior)
+"WT" = (
+/obj/effect/turf_decal/asphaltline/alt{
+	dir = 4
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/skatepark)
+"WW" = (
+/obj/structure/table,
+/obj/item/stack/dollar/thousand{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 8;
+	pixel_x = -6
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_y = 13;
+	pixel_x = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/stack/dollar/thousand{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
+"Xa" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/snack{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass{
+	pixel_x = -9
+	},
+/turf/open/floor/wood/old,
+/area/vtm/interior/chantry)
+"Xc" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/police)
+"Xe" = (
+/obj/machinery/light/prince/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Xl" = (
+/obj/structure/chair/sofa/bench/metal/right/black{
+	dir = 8
+	},
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/westfield_mall)
+"Xm" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/darkpack/cyan,
+/area/vtm/interior)
+"Xn" = (
+/obj/structure/coclock/grandpa,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Xo" = (
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall)
+"Xr" = (
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
+"Xt" = (
+/obj/effect/turf_decal/bordur{
+	dir = 9
+	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/westfield_mall)
+"Xu" = (
+/obj/structure/table/countertop/red,
+/obj/structure/sink/basin{
+	dir = 4;
+	pixel_y = -4
+	},
+/turf/open/floor/city/circled/large,
+/area/vtm/westfield_mall/interior)
+"Xx" = (
+/obj/effect/decal/wallpaper/gold,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/westfield_mall/interior)
+"XE" = (
+/obj/structure/vampipe{
+	pixel_y = 32;
+	icon_state = "piping23"
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"XF" = (
+/obj/structure/table/wood,
+/obj/machinery/fax/tremere,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"XH" = (
+/obj/effect/turf_decal/darkpack/grass{
+	dir = 6
+	},
+/turf/open/misc/dirt,
+/area/vtm/westfield_mall)
+"XM" = (
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior)
+"XO" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
+"XQ" = (
+/obj/structure/table/optable,
+/turf/open/floor/city/circled,
+/area/vtm/interior)
+"XT" = (
+/turf/open/openspace,
+/area/vtm/interior/techshop)
+"XW" = (
+/obj/structure/vampdoor/simple,
+/obj/effect/turf_decal/siding/white,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/salubri,
+/turf/open/floor/city/circled,
+/area/vtm/interior)
+"XY" = (
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/westfield_mall)
+"XZ" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/westfield_mall)
+"Ya" = (
+/mob/living/carbon/human/npc/shop,
+/obj/effect/decal/carpet,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"Yb" = (
+/obj/machinery/camera/autoname/directional/east,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
+"Yc" = (
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/skatepark)
+"Yi" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite{
+	pixel_y = 5
+	},
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite{
+	pixel_y = 5
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
+"Yj" = (
+/obj/structure/table/countertop/black,
+/obj/structure/sink/basin/directional/west,
+/turf/open/floor/city/toilet,
+/area/vtm/westfield_mall/interior)
+"Yl" = (
+/turf/closed/wall/vampwall/painted,
+/area/vtm/westfield_mall/interior)
+"Yn" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"Yr" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 7
+	},
+/obj/item/kirbyplants/darkpack/plant4{
+	pixel_y = 7;
+	pixel_x = 11
+	},
+/obj/item/kirbyplants/darkpack/plant1{
+	pixel_y = 17;
+	pixel_x = -12
+	},
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
+"Yu" = (
+/obj/machinery/photocopier/prebuilt,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/chantry)
+"Yv" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"YE" = (
+/obj/item/melee/skateboard/pro{
+	pixel_y = -3;
+	anchored = 1
+	},
+/obj/effect/decal/wallpaper/stone,
+/turf/closed/wall/vampwall/brick_old,
+/area/vtm/westfield_mall/skatepark)
+"YG" = (
+/turf/open/floor/plating/sidewalk,
+/area/vtm/westfield_mall)
+"YK" = (
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
+"YL" = (
+/obj/structure/safe,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/dollar/thousand,
+/obj/item/stack/sheet/mineral/gold/fifty,
+/obj/item/stack/sheet/mineral/diamond,
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
+"YM" = (
+/obj/structure/hedge,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "YR" = (
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
-"YV" = (
-/obj/structure/chair/sofa/bench/metal/left{
-	dir = 4
-	},
-/turf/open/floor/city/plating_stone,
-/area/vtm/westfield_mall/interior)
 "YW" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -6332,20 +6372,17 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
-"Zd" = (
-/obj/structure/sign/flag/usa{
-	pixel_y = 30
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior)
-"Zj" = (
-/obj/effect/landmark/navigate_destination,
-/turf/open/floor/carpet/darkpack/redsilver,
-/area/vtm/westfield_mall/interior)
 "Zl" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
+"Zn" = (
+/obj/machinery/light/directional/south,
+/obj/structure/chair/office/darkpack/blue{
+	dir = 1
+	},
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "Zq" = (
 /obj/structure/rack/food/rand{
 	dir = 4;
@@ -6354,6 +6391,17 @@
 	},
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior)
+"Zt" = (
+/obj/structure/closet,
+/obj/item/clothing/under/vampire/police,
+/obj/item/clothing/under/vampire/police/long,
+/obj/item/clothing/under/vampire/police/pants,
+/obj/item/clothing/under/vampire/police/turtleneck,
+/obj/item/clothing/under/vampire/police/utility,
+/obj/item/storage/fancy/cigarettes/cigpack_robust,
+/obj/item/lighter/greyscale,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "Zu" = (
 /obj/structure/table/wood,
 /obj/structure/retail/clothing_store,
@@ -6389,6 +6437,9 @@
 /obj/structure/bookcase,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
+"ZB" = (
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/bianchiBank)
 "ZC" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/decal/wallpaper/grey{
@@ -6414,6 +6465,14 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior)
+"ZL" = (
+/obj/effect/turf_decal/siding/wood/dark,
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "ZR" = (
 /obj/machinery/bookbinder,
 /obj/structure/coclock,
@@ -44000,19 +44059,19 @@ IT
 Xr
 Xr
 kW
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
 mz
 Yl
 Yl
@@ -44152,19 +44211,19 @@ IT
 Xr
 Xr
 kW
-to
-Xz
-xw
-YV
-Ig
-xw
-YV
-Xz
-cS
-jv
-Tm
-Tn
-Yl
+Oh
+mv
+DX
+Vr
+II
+DX
+Vr
+mv
+Oi
+KS
+fE
+iG
+EQ
 Aw
 qj
 um
@@ -44304,19 +44363,19 @@ IT
 Xr
 Xr
 kW
-to
-OH
-Tm
-Tm
-Tm
-Tm
-Tm
-OH
-Tm
-Tm
-Tm
-EG
-Yl
+Oh
+YM
+fE
+fE
+fE
+fE
+fE
+YM
+fE
+fE
+fE
+OK
+EQ
 Aw
 Aw
 mo
@@ -44456,19 +44515,19 @@ IT
 Xr
 Xr
 kW
-cj
-Zj
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-Tm
-Yl
+RY
+er
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+fE
+EQ
 Aw
 Aw
 mo
@@ -44608,19 +44667,19 @@ IT
 Xr
 Xr
 kW
-cj
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-Tm
-Yl
+RY
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+ZB
+fE
+EQ
 Aw
 Aw
 WG
@@ -44760,19 +44819,19 @@ IT
 Xr
 Xr
 kW
-to
-OH
-Tm
-Tm
-Tm
-Tm
-Tm
-Ia
-iV
-qp
-XU
-EG
-Yl
+Oh
+YM
+fE
+fE
+fE
+fE
+fE
+kP
+tA
+BZ
+ZB
+OK
+EQ
 Aw
 Aw
 mo
@@ -44912,19 +44971,19 @@ IT
 Xr
 Xr
 kW
-to
-OH
-Tm
-Tm
-Tm
-Tm
-Tm
-WA
-tO
-Hr
-XU
-Tm
-Yl
+Oh
+YM
+fE
+fE
+fE
+fE
+fE
+Iq
+HB
+oq
+ZB
+fE
+EQ
 fX
 Aw
 mo
@@ -45064,19 +45123,19 @@ IT
 Xr
 Xr
 kW
-Yl
-Pk
-Kz
-Pk
-Pk
-Kz
-Pk
-Yl
-Yl
-mn
-wH
-Yl
-Yl
+EQ
+ex
+VK
+ex
+ex
+VK
+ex
+EQ
+EQ
+Qs
+Df
+EQ
+EQ
 Aw
 Aw
 Cz
@@ -45116,14 +45175,14 @@ Xr
 kW
 Yl
 Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
 Xr
 Xr
 Xr
@@ -45216,19 +45275,19 @@ IT
 Xr
 Xr
 kW
-mn
-as
-Iu
-LU
-LU
-Iu
-bb
-mn
-WZ
-LU
-LU
-Id
-Yl
+Qs
+qV
+pE
+ae
+ae
+pE
+Sq
+Qs
+Tq
+ae
+ae
+GA
+EQ
 Aw
 Aw
 um
@@ -45268,14 +45327,14 @@ Xr
 kW
 Xr
 Xr
-Yl
-EA
-Xr
-xX
-hA
-az
-zC
-Pk
+Up
+JJ
+cX
+oE
+zS
+vB
+wY
+Ek
 Xr
 Xr
 Xr
@@ -45368,19 +45427,19 @@ IT
 Xr
 Xr
 kW
-mn
-Qj
-LU
-LU
-LU
-LU
-LU
-jK
-LU
-LU
-LU
-HZ
-Yl
+Qs
+lN
+ae
+ae
+ae
+ae
+ae
+rj
+ae
+ae
+ae
+pG
+EQ
 Aw
 Aw
 mo
@@ -45420,14 +45479,14 @@ Xr
 kW
 wn
 MR
-Yl
-CI
-Xr
-CH
-LU
-LU
-bB
-Ar
+Up
+FU
+cX
+IE
+zo
+zo
+GS
+zx
 Xr
 Xr
 Xr
@@ -45520,19 +45579,19 @@ IT
 Xr
 Xr
 kW
-mn
-ee
-LU
-GT
-xv
-WZ
-Id
-mn
-VQ
-LU
-LU
-Id
-Yl
+Qs
+jj
+ae
+tt
+zw
+Tq
+GA
+Qs
+JY
+ae
+ae
+GA
+EQ
 Aw
 Aw
 mo
@@ -45572,18 +45631,18 @@ Xr
 kW
 NL
 NL
-Yl
-Yl
-Yl
-xX
-Nk
-LU
-LU
-hl
+Up
+Up
+Up
+oE
+dH
+zo
+zo
+TC
 Xr
 Xr
 Xr
-oX
+Ap
 Yl
 oA
 oA
@@ -45672,19 +45731,19 @@ IT
 Xr
 Xr
 kW
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-mn
-bS
-LU
-QZ
-EO
-Yl
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+EQ
+Qs
+cM
+ae
+kR
+Of
+EQ
 Aw
 Aw
 WG
@@ -45724,14 +45783,14 @@ Xr
 kW
 IN
 Zc
-xX
-rA
-LU
-LU
-LU
-LU
-LU
-Pk
+oE
+re
+zo
+zo
+zo
+zo
+zo
+Ek
 Xr
 Xr
 Xr
@@ -45824,19 +45883,19 @@ IT
 Xr
 Xr
 kW
-Xd
-zm
-Ti
-Xr
-Xr
-mn
-fq
-LU
-LU
-LU
-LU
-Iu
-Yl
+QW
+lp
+pW
+YK
+YK
+Qs
+so
+ae
+ae
+ae
+ae
+pE
+EQ
 Yl
 mz
 Yl
@@ -45876,18 +45935,18 @@ Xr
 kW
 Xr
 wz
-xX
-fW
-aE
-LU
-LU
-LU
-cf
-dS
+oE
+Dc
+ck
+zo
+zo
+zo
+Xc
+kY
 Xr
 Xr
 Xr
-Ql
+dk
 Yl
 oA
 oA
@@ -45976,19 +46035,19 @@ IT
 Xr
 Xr
 kW
-Xd
-YQ
-Xr
-Xr
-Xr
-ao
-LU
-LU
-LU
-LU
-LU
-sC
-Yl
+QW
+RC
+YK
+YK
+YK
+Ph
+ae
+ae
+ae
+ae
+ae
+ny
+EQ
 Aw
 Aw
 Aw
@@ -46028,17 +46087,17 @@ Xr
 kW
 Xr
 wz
-Yl
-Yl
-Yl
-Yl
-xX
-Fg
-Fg
-Yl
+Up
+Up
+Up
+Up
+oE
+sq
+sq
+Up
 Wu
-WL
-WL
+Sz
+Sz
 Wu
 Yl
 oA
@@ -46128,19 +46187,19 @@ IT
 IT
 Xr
 kW
-Xd
-ol
-Xr
-Xr
-RN
-mn
-lT
-Kf
-LU
-LU
-WY
-LU
-gL
+QW
+tl
+YK
+YK
+kz
+Qs
+zc
+ay
+ae
+ae
+Fo
+ae
+ZL
 Aw
 Aw
 Aw
@@ -46180,19 +46239,19 @@ Xr
 kW
 Xr
 Ux
-xX
-bJ
-FO
-Ol
-xX
-MX
-MX
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+oE
+dN
+Yi
+bv
+oE
+Un
+Un
+Up
+Up
+Up
+Up
+Up
+Up
 oA
 oA
 Ng
@@ -46280,19 +46339,19 @@ IT
 IT
 Xr
 kW
-Xd
-Ev
-Xk
-Td
-Ad
-mn
-LW
-gM
-LU
-xv
-ee
-EO
-Yl
+QW
+Hk
+WW
+YL
+fB
+Qs
+zi
+Cw
+ae
+zw
+jj
+Of
+EQ
 Aw
 Aw
 Aw
@@ -46332,19 +46391,19 @@ Xr
 kW
 Xr
 Ux
-xX
-Xr
-Xr
-Xr
-zR
-Xr
-Xr
-OJ
-KW
-Xr
-Xr
-CF
-Yl
+oE
+cX
+cX
+cX
+eI
+cX
+cX
+TM
+go
+cX
+cX
+mY
+Up
 oA
 oA
 Ng
@@ -46432,19 +46491,19 @@ IT
 IT
 Xr
 kW
-Yl
-Yl
-Yl
-Yl
-Yl
-mn
-lb
-FY
-Id
-Yl
-Yl
-Yl
-Yl
+EQ
+EQ
+EQ
+EQ
+EQ
+Qs
+jO
+vA
+GA
+EQ
+EQ
+EQ
+EQ
 Aw
 Aw
 Aw
@@ -46484,19 +46543,19 @@ Xr
 kW
 wn
 MR
-xX
-CG
-Xr
-Xr
-xX
-Fn
-Xr
-Ly
-Xr
-Xr
-KW
-NQ
-Yl
+oE
+fx
+cX
+cX
+oE
+Ue
+cX
+bH
+cX
+cX
+go
+wm
+Up
 oA
 oA
 Ng
@@ -46589,11 +46648,11 @@ Yl
 Em
 Em
 Em
-Yl
-Yl
-Yl
-Yl
-Yl
+EQ
+EQ
+EQ
+EQ
+EQ
 wB
 wB
 Yl
@@ -46636,19 +46695,19 @@ Xr
 kW
 NL
 NL
-xX
-UN
-Nw
-NG
-xX
-xd
-sX
-OJ
-Oq
-It
-Sy
-zJ
-Yl
+oE
+Zt
+BC
+hB
+oE
+by
+rO
+TM
+fe
+CL
+Wb
+jb
+Up
 oA
 oA
 Ng
@@ -46788,19 +46847,19 @@ Xr
 kW
 IN
 Zc
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
 oA
 oA
 Ng
@@ -47217,7 +47276,7 @@ Xr
 Xr
 kW
 Yl
-ne
+hv
 Yl
 sQ
 Yl
@@ -47522,7 +47581,7 @@ Xr
 kW
 Yl
 nV
-uZ
+kp
 nV
 nV
 nV
@@ -47676,7 +47735,7 @@ Yl
 nV
 nV
 nV
-uZ
+kp
 nV
 Yl
 kW
@@ -48283,7 +48342,7 @@ kW
 Yl
 uq
 Yl
-FV
+eG
 Yl
 nV
 Yl
@@ -48585,7 +48644,7 @@ Xr
 Xr
 Xr
 Yl
-uZ
+kp
 nV
 nV
 nV
@@ -48741,7 +48800,7 @@ QO
 fp
 fp
 fp
-Kw
+wA
 GP
 sL
 sL
@@ -63299,61 +63358,61 @@ wB
 wB
 Yl
 Xr
-zy
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
+qT
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
 Xr
 Xr
 Xr
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-gw
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Ll
 Xr
 wB
 wB
@@ -63451,7 +63510,7 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -63505,7 +63564,7 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -63603,7 +63662,7 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -63657,7 +63716,7 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -63755,7 +63814,7 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -63809,7 +63868,7 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -63907,61 +63966,61 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-OZ
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
+Gz
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
 Xr
 Xr
 Xr
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-Qw
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+qg
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64059,11 +64118,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -64109,11 +64168,11 @@ Xr
 Xr
 Xr
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64211,11 +64270,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 Yl
@@ -64261,11 +64320,11 @@ Yl
 Yl
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64363,11 +64422,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -64413,11 +64472,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64515,11 +64574,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -64565,11 +64624,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64667,11 +64726,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -64717,11 +64776,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 wB
 wB
@@ -64819,11 +64878,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -64869,12 +64928,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-zy
+yr
+qT
 wB
 wB
 wB
@@ -64971,11 +65030,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65021,12 +65080,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65123,11 +65182,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65173,12 +65232,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65275,11 +65334,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65325,12 +65384,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65427,11 +65486,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65477,12 +65536,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65579,11 +65638,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65629,12 +65688,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65731,11 +65790,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65781,12 +65840,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -65883,11 +65942,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -65933,12 +65992,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66035,11 +66094,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66085,12 +66144,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66187,11 +66246,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66237,12 +66296,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66339,11 +66398,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66389,12 +66448,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66491,11 +66550,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66541,12 +66600,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66643,11 +66702,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66693,12 +66752,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66795,11 +66854,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66845,12 +66904,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -66947,11 +67006,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -66997,12 +67056,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -67099,11 +67158,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67149,12 +67208,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -67251,11 +67310,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67301,12 +67360,12 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-UP
+yr
+PG
 wB
 wB
 wB
@@ -67403,11 +67462,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67453,14 +67512,14 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
-NB
-ql
-ql
+yr
+dT
+Oa
+Oa
 wB
 wB
 wB
@@ -67555,11 +67614,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67605,11 +67664,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -67707,11 +67766,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67757,11 +67816,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -67859,11 +67918,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -67909,26 +67968,26 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+wB
+wB
+wB
+wB
 Yl
 hY
 hY
@@ -68011,11 +68070,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68061,22 +68120,22 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-Yl
-Jd
-kF
-AL
-cO
-Xr
-Qz
-Yl
+Up
+EX
+vX
+pp
+BQ
+cX
+GR
+Up
 wB
 wB
 wB
@@ -68163,11 +68222,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68213,22 +68272,22 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-Jd
-fz
-Xr
-Xr
-Xr
-Xr
-Qz
-Yl
+EX
+gQ
+cX
+cX
+cX
+cX
+GR
+Up
 wB
 wB
 wB
@@ -68315,11 +68374,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68365,22 +68424,22 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-Jd
-sY
-Xr
-Xr
-Xr
-uH
-Eq
-Yl
+EX
+ip
+cX
+cX
+cX
+hR
+su
+Up
 wB
 wB
 wB
@@ -68467,11 +68526,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68517,22 +68576,22 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-Yl
-Yl
-Jd
-lQ
-Jd
-sW
-Yl
-Yl
+Up
+Up
+EX
+OB
+EX
+tg
+Up
+Up
 wB
 wB
 wB
@@ -68619,11 +68678,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68669,22 +68728,22 @@ Yl
 Yl
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-XV
-wB
-ph
-LU
-LU
-rA
-Pk
+oE
+sA
+kc
+jY
+zo
+zo
+re
+Ek
 wB
 wB
 wB
@@ -68771,11 +68830,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 wB
@@ -68821,27 +68880,27 @@ Xr
 Xr
 Xr
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-NN
-hK
-eO
-uu
-uu
-rT
-Yl
-Yl
-Pk
-Pk
-Yl
-Yl
+oE
+rJ
+xj
+wd
+Uz
+Uz
+cv
+Up
+Up
+Ek
+Ek
+Up
+Up
 hY
 hY
 hY
@@ -68923,11 +68982,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Yl
 Yl
@@ -68945,55 +69004,55 @@ Xr
 Xr
 Xr
 Xr
-zy
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-gw
+qT
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Ll
 Xr
-zy
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-ox
-Jh
+qT
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Dn
+Um
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-DR
-LU
-LU
-uu
-uu
-XJ
-xX
-Zd
-LU
-LU
-LU
-Yl
+oE
+Ln
+zo
+zo
+Uz
+Uz
+Tf
+oE
+TX
+zo
+zo
+zo
+Up
 hY
 hY
 hY
@@ -69075,11 +69134,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -69097,7 +69156,7 @@ Xr
 Xr
 Xr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69112,9 +69171,9 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69129,23 +69188,23 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-EO
-LU
-LU
-uu
-uu
-BY
-EE
-LU
-cr
-PO
-uu
-Yl
+oE
+vQ
+zo
+zo
+Uz
+Uz
+fv
+aI
+zo
+ie
+wa
+Uz
+Up
 hY
 hY
 hY
@@ -69227,11 +69286,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -69249,7 +69308,7 @@ Xr
 Xr
 Xr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69264,9 +69323,9 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69281,23 +69340,23 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-Ug
-WY
-LU
-LU
-LU
-LU
-oe
-LU
-cr
-uo
-Iw
-Yl
+oE
+VN
+GN
+zo
+zo
+zo
+zo
+oT
+zo
+ie
+Ms
+Zn
+Up
 hY
 hY
 hY
@@ -69379,11 +69438,11 @@ wB
 wB
 Yl
 Xr
-UP
+PG
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
@@ -69401,7 +69460,7 @@ Xr
 Xr
 Xr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69416,9 +69475,9 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
-UP
+PG
 wB
 wB
 wB
@@ -69433,23 +69492,23 @@ wB
 wB
 wB
 wB
-Ba
+yr
 Xr
 Xr
 Xr
-xX
-GT
-GT
-hA
-zB
-pj
-LU
-EE
-rA
-Uu
-TR
-fj
-Yl
+oE
+mX
+mX
+zS
+nc
+Rt
+zo
+aI
+re
+xW
+Yr
+DS
+Up
 hY
 hY
 hY
@@ -69530,8 +69589,8 @@ wB
 wB
 wB
 Yl
-ox
-Jh
+Dn
+Um
 wB
 wB
 wB
@@ -69553,55 +69612,55 @@ Xr
 Xr
 Xr
 Xr
-NB
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-qy
+dT
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+PX
 Xr
-NB
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-ql
-qy
+dT
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+Oa
+PX
 Xr
 Xr
 Xr
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
 hY
 hY
 hY
@@ -71079,9 +71138,9 @@ PV
 Yl
 ou
 ou
-zP
+rg
+hS
 wV
-ys
 Yl
 et
 Gr

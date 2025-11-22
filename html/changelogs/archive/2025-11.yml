@@ -101,3 +101,13 @@
   - bugfix: NPC name and real_name now match
   - rscadd: robes in loadout
   - bugfix: NPCs are no longer catatonic. Just busy.
+2025-11-22:
+  FalloutFalcon:
+  - qol: examing the Sarcophagus lets you roll to auto decipher the cipher
+  KCartridge:
+  - rscadd: Fixed walls that are now good and awesome
+  - image: Removed old evil walls that were replaced yayyy
+  Marshmellow105:
+  - rscadd: adds old chairs back along with some new variants
+  dwinters99:
+  - image: technically unorphaned two phone sprites
