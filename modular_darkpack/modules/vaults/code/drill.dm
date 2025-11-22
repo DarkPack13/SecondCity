@@ -133,7 +133,7 @@
 		var/gas_space = max_gas - gas
 		if(gas_space <= 0)
 			balloon_alert(user, "already full!")
-			return ITEM_INTERACT_SUCCESS
+			return ITEM_INTERACT_BLOCKING
 
 		var/transfer_amount = min(gas_space, can.stored_gasoline)
 		can.stored_gasoline -= transfer_amount
