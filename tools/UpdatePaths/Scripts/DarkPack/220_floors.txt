@@ -9,6 +9,7 @@
 /turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate
 
 /turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack
+/turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
 
 /turf/open/floor/plating/vampplating : /turf/open/floor/city/plating
 /turf/open/floor/plating/vampplating/mono : /turf/open/floor/city/plating_mono
