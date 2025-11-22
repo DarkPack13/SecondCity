@@ -83,13 +83,11 @@
 
 /obj/fusebox/transformer/Initialize()
 	. = ..()
-	soundloop = new(list(src), TRUE)
+// There's meant to be a generator soundloop here but if I make it work, the transformer ceases function, which makes no sense. Regardless, removing it for Runtimes.
 
 /obj/fusebox/transformer/update_icon_state()
 	. = ..()
 	if(damaged > 100)
 		icon_state = "sstation_off"
-		soundloop.stop()
 	else
 		icon_state = "sstation"
-		soundloop.start()
