@@ -28,8 +28,6 @@
 	damage_type = BURN
 	icon_state = "curse0"
 
-	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
-
 // **************************************************************** SHADOW PLAY *************************************************************
 /datum/discipline_power/obtenebration/shadow_play
 	name = "Shadow Play"
