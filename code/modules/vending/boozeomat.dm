@@ -103,7 +103,7 @@
 	allow_custom = FALSE
 
 // DARKPACK EDIT ADD START
-/obj/machinery/vending/boozeomat/all_access
+/obj/machinery/vending/boozeomat/private
 	name = "liquor cabinet"
 	desc = "A climate controlled fridge for booze."
 	req_access = null

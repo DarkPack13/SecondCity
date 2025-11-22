@@ -1,0 +1,8 @@
+/turf/open/floor/plating/toilet/clinic : /turf/open/floor/city/clinic
+/turf/open/floor/plating/industrial/factory : /turf/open/floor/city/factory
+
+/turf/open/floor/plating/vampplating/stairs/@SUBTYPES : /turf/open/floor/iron/stairs/@SUBTYPES
+
+/turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
+
+
