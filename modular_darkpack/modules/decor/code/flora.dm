@@ -14,7 +14,7 @@
 		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "[initial(icon_state)][rand(1, 11)]-snow"
 
-	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 4 SECONDS, pivot_offset = 48)
+		AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 4 SECONDS, pivot_offset = 48)
 
 
 /obj/structure/flora/tree/vamp/get_seethrough_map()
@@ -42,8 +42,8 @@
 		if(prob(2))
 			burnshit()
 
-	if(!burned)
-		AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 6 SECONDS, pivot_offset = 128)
+		if(!burned)
+			AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 6 SECONDS, pivot_offset = 128)
 
 /obj/structure/flora/tree/vamp/pine/burnshit()
 	if(!burned)
