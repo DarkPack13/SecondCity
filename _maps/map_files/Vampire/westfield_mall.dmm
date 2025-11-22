@@ -753,7 +753,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
 "fn" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/red{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
@@ -3539,10 +3539,10 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "yp" = (
-/obj/structure/chair/office{
+/obj/effect/landmark/start/archivist,
+/obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
-/obj/effect/landmark/start/archivist,
 /turf/open/floor/wood/old,
 /area/vtm/interior/chantry)
 "yr" = (

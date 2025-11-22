@@ -1,9 +1,3 @@
-/turf/open/floor/carpet/darkpack
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
-	icon_state = "carpet_black"
-	smoothing_flags = NONE
-	floor_tile = null
-
 /turf/open/floor/city
 	abstract_type = /turf/open/floor/city
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'

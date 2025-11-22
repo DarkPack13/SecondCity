@@ -2,8 +2,16 @@
 	icon = 'icons/obj/smooth_structures/darkpack/floor/carpet/redgoldcarpet.dmi'
 	icon_state = "redgoldcarpet-255"
 	base_icon_state = "redgoldcarpet"
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
 	canSmoothWith = SMOOTH_GROUP_CARPET
+	floor_tile = null
+
+// Shitty old carpet with no smoothing.
+/turf/open/floor/carpet/darkpack/old
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "carpet_black"
+	smoothing_flags = NONE
 
 /turf/open/floor/carpet/darkpack/redsilver
 	icon = 'icons/obj/smooth_structures/darkpack/floor/carpet/redsilvercarpet.dmi'
