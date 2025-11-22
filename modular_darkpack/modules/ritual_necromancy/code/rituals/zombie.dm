@@ -44,7 +44,7 @@
 
 		// Remove any vampiric actions
 		for(var/datum/action/A in target_body.actions)
-			if(A && A.vampiric)
+			if(A.vampiric)
 				A.Remove(target_body)
 
 		var/original_location = get_turf(target_body)
