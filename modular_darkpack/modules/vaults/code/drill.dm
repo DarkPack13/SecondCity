@@ -68,7 +68,6 @@
 		. += span_notice("[src] is [health_status].")
 
 /obj/structure/drill/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)
-	. = ..()
 
 	//lifting onto myself to pick it up
 	if(over_object == user && Adjacent(user) && !active)
