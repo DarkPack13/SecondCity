@@ -1,0 +1,4 @@
+/mob/living/simple_animal/hostile/beastmaster : @DELETE
+/mob/living/simple_animal/hostile/biter : /mob/living/basic/biter
+/mob/living/simple_animal/hostile/fister : /mob/living/basic/fister
+/mob/living/simple_animal/hostile/tanker : /mob/living/basic/tanker
