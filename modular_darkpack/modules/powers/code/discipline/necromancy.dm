@@ -11,7 +11,7 @@
 	. = ..()
 
 	owner.faction |= VAMPIRE_CLAN_GIOVANNI
-	var/datum/action/necroritualism/ritualist = new()
+	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ADD_TRAIT(owner, TRAIT_NECROMANCY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	ritualist.Grant(owner)
 	ritualist.level = level
@@ -23,9 +23,6 @@
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
-
-/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_NECROMANCY_KNOWLEDGE)
 
 //SHROUDSIGHT
 /datum/discipline_power/necromancy/shroudsight

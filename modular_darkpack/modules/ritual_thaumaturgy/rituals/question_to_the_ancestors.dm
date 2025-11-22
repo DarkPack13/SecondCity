@@ -1,9 +1,9 @@
-/obj/ritualrune/question
+/obj/ritual_rune/thaumaturgy/question
 	name = "Question to the Ancestors Rune"
 	desc = "Summon souls from the dead. Ask a question and get answers. Requires a bloodpack."
 	icon_state = "rune5"
 	word = "VOCA-ANI'MA"
-	thaumlevel = 3
+	level = 3
 	sacrifices = list(/obj/item/reagent_containers/blood)
 
 /mob/living/basic/ghost/tremere
@@ -16,7 +16,7 @@
 	icon_state = "ghost_animated"
 	icon_living = "ghost_animated"
 
-/obj/ritualrune/question/complete()
+/obj/ritual_rune/thaumaturgy/question/complete()
 	var/text_question = tgui_input_text(usr, "Enter your question to the Ancestors:", "Question to Ancestors")
 	if(!text_question)
 		return
@@ -38,7 +38,7 @@
 	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)
 
-/obj/ritualrune/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)
+/obj/ritual_rune/thaumaturgy/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)
 	message_admins("[key_name_admin(ghost_mob)] has become a Tremere Ghost.")
 
 	var/choice = tgui_alert(ghost_mob, "Do you want to pick a new name as a Ghost?", "Ghost Choose Name", list("Yes", "No"), 10 SECONDS)

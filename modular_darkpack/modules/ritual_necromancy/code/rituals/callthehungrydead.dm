@@ -1,11 +1,11 @@
 // **************************************************************** CALL THE HUNGRY DEAD *************************************************************
 
-/obj/necrorune/question //No bloodpack requirement, but the wraiths aren't implied to owe answers.
+/obj/ritual_rune/necromancy/question //No bloodpack requirement, but the wraiths aren't implied to owe answers.
 	name = "Call the Hungry Dead"
 	desc = "Summon a wraith from the Shadowlands to converse."
 	icon_state = "rune4"
 	word = "METEH' GHM'IEN"
-	necrolevel = 2
+	level = 2
 
 /mob/living/basic/ghost/giovanni
 	maxHealth = 100 //Can be annoying right back if they're pestered for nothing.
@@ -14,7 +14,7 @@
 	melee_damage_upper = 30
 	faction = list("Giovanni")
 
-/obj/necrorune/question/complete()
+/obj/ritual_rune/necromancy/question/complete()
 	var/text_question = tgui_input_text(last_activator, "Enter your summons to the wraiths:", "Call the Hungry Dead", encode = FALSE)
 	visible_message(span_notice("A call rings out to the dead from the rune..."))
 	var/mob/living/basic/ghost/TR = new(loc)
@@ -33,7 +33,7 @@
 	visible_message(span_notice("[TR.name] slowly fades into view over the rune..."))
 	qdel(src)
 
-/obj/necrorune/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)
+/obj/ritual_rune/necromancy/question/proc/ghost_name_prompt(mob/living/basic/ghost/tremere/ghost_mob)
 	message_admins("[key_name_admin(ghost_mob)] has become a Bound Wraith.")
 
 	var/choice = tgui_alert(ghost_mob, "Do you want to pick a new name as a Wraith?", "Wraith Choose Name", list("Yes", "No"), 10 SECONDS)

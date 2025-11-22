@@ -1,14 +1,14 @@
 // **************************************************************** DAEMONIC POSSESSION *************************************************************
 
-/obj/necrorune/zombie
+/obj/ritual_rune/necromancy/zombie
 	name = "Daemonic Possession"
 	desc = "Place a wraith inside of a dead body and raise it as a sentient zombie."
 	icon_state = "rune7"
 	word = "GI'TI FOA'HP"
-	necrolevel = 5
+	level = 5
 	var/duration_length = 15 SECONDS
 
-/obj/necrorune/zombie/complete()
+/obj/ritual_rune/necromancy/zombie/complete()
 
 	var/list/valid_bodies = list()
 
@@ -77,12 +77,12 @@
 		target_body.visible_message(span_ghostalert("[target_body.name] twitches to unlife!"))
 		qdel(src)
 
-/obj/necrorune/zombie/proc/on_zombie_possess(mob/living/carbon/human/zombie)
+/obj/ritual_rune/necromancy/zombie/proc/on_zombie_possess(mob/living/carbon/human/zombie)
 	zombie.visible_message(span_ghostalert("A Wraith posesses the corpse, [zombie.name] twitches to unlife!"))
 	ask_zombie_name(zombie)
 	qdel(src)
 
-/obj/necrorune/zombie/proc/ask_zombie_name(mob/living/carbon/human/zombie)
+/obj/ritual_rune/necromancy/zombie/proc/ask_zombie_name(mob/living/carbon/human/zombie)
 	var/choice = tgui_alert(zombie, "Do you want to pick a new name as a Zombie?", "Zombie Choose Name", list("Yes", "No"), 10 SECONDS)
 	if(choice == "Yes")
 		var/chosen_zombie_name = tgui_input_text(zombie, "What is your new name as a Zombie?", "Zombie Name Input")

@@ -7,7 +7,7 @@
 
 /datum/discipline/obtenebration/post_gain()
 	. = ..()
-	var/datum/action/mysticism/mystic = new()
+	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
 	mystic.level = level
 	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
@@ -28,7 +28,6 @@
 	damage_type = BURN
 	icon_state = "curse0"
 
-/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
 	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
 
 // **************************************************************** SHADOW PLAY *************************************************************

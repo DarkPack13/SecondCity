@@ -1,14 +1,14 @@
 // **************************************************************** MINESTRA DI MORTE *************************************************************
 
-/obj/necrorune/locate
+/obj/ritual_rune/necromancy/locate
 	name = "Minestra di Morte"
 	desc = "Verify a soul's status and try to divine its location."
 	icon_state = "rune5"
 	word = "UAH'V OUH'RAN"
-	necrolevel = 3
+	level = 3
 	sacrifices = list(/obj/item/shard)
 
-/obj/necrorune/locate/complete()
+/obj/ritual_rune/necromancy/locate/complete()
 
 	var/chosen_name = tgui_input_text(usr, "Invoke the true name of the soul you seek:", "Minestra di Morte")
 	var/target = find_target(chosen_name)
@@ -50,7 +50,7 @@
 			qdel(src)
 			return
 
-/obj/necrorune/locate/proc/find_target(chosen_name)
+/obj/ritual_rune/necromancy/locate/proc/find_target(chosen_name)
 	var/mob/target_found
 	for(var/mob/target in GLOB.player_list)
 		if(target.real_name == chosen_name)

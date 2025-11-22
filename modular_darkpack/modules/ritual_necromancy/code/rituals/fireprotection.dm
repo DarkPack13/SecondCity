@@ -1,13 +1,13 @@
 // **************************************************************** CHILL OF OBLIVION *************************************************************
 
-/obj/necrorune/fireprotection
+/obj/ritual_rune/necromancy/fireprotection
 	name = "Chill of Oblivion"
 	desc = "Invite the cold of the Shadowlands into your soul to undo the body's fire-weakness. This profane blessing <b>taints the recipient's aura</b>."
 	icon_state = "rune1"
 	word = "DHAI'AD BHA'II DAWH'N"
-	necrolevel = 4
+	level = 4
 
-/obj/necrorune/fireprotection/complete()
+/obj/ritual_rune/necromancy/fireprotection/complete()
 
 	var/list/valid_bodies = list()
 

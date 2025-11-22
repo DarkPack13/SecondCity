@@ -1,9 +1,9 @@
-/obj/abyssrune/reflections_of_hollow_revelation
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation
 	name = "Reflections of Hollow Revelation"
 	desc = "Use a conjured Nocturne to spy on a target through nearby shadows"
 	icon_state = "teleport"
 	word = ""
-	mystlevel = 4
+	level = 4
 	cost = 1
 	var/datum/action/close_window/end_action
 	var/mob/living/nocturne_user
@@ -11,7 +11,7 @@
 	var/mob/living/carbon/human/window_target
 	var/isactive = FALSE
 
-/obj/abyssrune/reflections_of_hollow_revelation/complete()
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/complete()
 	var/mob/living/user = usr
 	if(!user)
 		return
@@ -54,11 +54,11 @@
 			user.st_add_stat_mod(stat, -2, "reflections_of_hollow_revelation")
 		addtimer(CALLBACK(src, PROC_REF(restore_stats), user), 1 SCENES)
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/restore_stats(mob/living/user)
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/restore_stats(mob/living/user)
 	for(var/datum/st_stat/stat as anything in subtypesof(/datum/st_stat))
 		user.st_remove_stat_mod(stat, "reflections_of_hollow_revelation")
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/scry_target(mob/living/carbon/human/target, mob/living/user)
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/scry_target(mob/living/carbon/human/target, mob/living/user)
 	// If the target has Obtenebration or Auspex, roll to see if they detect the shadows
 	if(iskindred(target))
 		var/datum/species/human/kindred/vampire = target.dna?.species
@@ -70,10 +70,9 @@
 	shadowview(target, user)
 	to_chat(user, span_notice("You peer through the shadows near [target.name]..."))
 
-	RegisterSignal(user, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_end))
 	addtimer(CALLBACK(src, PROC_REF(on_end),user), 1 SCENES) // 3 minute timer, AKA 1 Scene
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/shadowview(mob/living/target, mob/user)
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/shadowview(mob/living/target, mob/user)
 	nocturne_user = user
 	//user.notransform = TRUE
 
@@ -90,7 +89,7 @@
 
 	to_chat(user, span_notice("You are now viewing through the shadows. Use the 'End Scrying' action to stop."))
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/check_target_distance()
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/check_target_distance()
 	SIGNAL_HANDLER
 	if(!window_target || !shadow_window)
 		return
@@ -101,12 +100,12 @@
 			to_chat(nocturne_user, span_warning("The window closes as [window_target.name] moves away from the shadows."))
 		on_end(nocturne_user)
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/on_end(mob/user)
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/on_end(mob/user)
 	SIGNAL_HANDLER
 	if(user == nocturne_user)
 		close_window(user)
 
-/obj/abyssrune/reflections_of_hollow_revelation/proc/close_window(mob/user)
+/obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/close_window(mob/user)
 	if(!user)
 		return
 
@@ -138,9 +137,9 @@
 	icon_state = ""
 	invisibility = INVISIBILITY_ABSTRACT
 	layer = CAMERA_STATIC_PLANE
-	var/obj/abyssrune/reflections_of_hollow_revelation/parent_rune
+	var/obj/ritual_rune/abyss/reflections_of_hollow_revelation/parent_rune
 
-/obj/shadow_window/Initialize(mapload, obj/abyssrune/reflections_of_hollow_revelation/rune)
+/obj/shadow_window/Initialize(mapload, obj/ritual_rune/abyss/reflections_of_hollow_revelation/rune)
 	. = ..()
 	parent_rune = rune
 
@@ -156,9 +155,9 @@
 	desc = "Stop viewing through the shadows"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
-	var/obj/abyssrune/reflections_of_hollow_revelation/parent_rune
+	var/obj/ritual_rune/abyss/reflections_of_hollow_revelation/parent_rune
 
-/datum/action/close_window/New(obj/abyssrune/reflections_of_hollow_revelation/rune)
+/datum/action/close_window/New(obj/ritual_rune/abyss/reflections_of_hollow_revelation/rune)
 	..()
 	parent_rune = rune
 

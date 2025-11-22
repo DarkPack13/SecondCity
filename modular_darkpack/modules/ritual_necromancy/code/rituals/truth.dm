@@ -1,13 +1,13 @@
 // **************************************************************** CALL UPON THE SHADOW'S GRACE *************************************************************
 
-/obj/necrorune/truth
+/obj/ritual_rune/necromancy/truth
 	name = "Call upon the Shadow's Grace"
 	desc = "Bring forth the shadows in your victim's mind and force out their darkest truths."
 	icon_state = "rune8"
 	word = "MIKHH' AHPP"
-	necrolevel = 3
+	level = 3
 
-/obj/necrorune/truth/complete()
+/obj/ritual_rune/necromancy/truth/complete()
 
 	var/list/valid_bodies = list()
 

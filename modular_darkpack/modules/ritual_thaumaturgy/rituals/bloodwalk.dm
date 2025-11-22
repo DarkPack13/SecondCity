@@ -1,11 +1,11 @@
-/obj/ritualrune/bloodwalk
+/obj/ritual_rune/thaumaturgy/bloodwalk
 	name = "Blood Walk"
 	desc = "Trace the subject's lineage from a blood syringe."
 	icon_state = "rune7"
 	word = "Reveal thy bloodline for mine eyes."
-	thaumlevel = 2
+	level = 2
 
-/obj/ritualrune/bloodwalk/attack_hand(mob/living/user)
+/obj/ritual_rune/thaumaturgy/bloodwalk/attack_hand(mob/living/user)
 	for(var/obj/item/reagent_containers/syringe/S in loc)
 		to_chat(world,"found syringe")
 		for(var/datum/reagent/blood/B in S.reagents.reagent_list)
@@ -27,7 +27,7 @@
 		to_chat(world, "ritual completed")
 		qdel(src)
 
-/obj/ritualrune/bloodwalk/proc/generate_message(generation, clan)
+/obj/ritual_rune/thaumaturgy/bloodwalk/proc/generate_message(generation, clan)
 	var/message = ""
 	to_chat(world, "generate message started -- generation")
 	to_chat(world, "generation passed : [generation]")

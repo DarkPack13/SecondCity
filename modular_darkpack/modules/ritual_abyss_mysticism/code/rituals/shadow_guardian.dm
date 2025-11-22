@@ -1,12 +1,12 @@
-/obj/abyssrune/heart_that_beats_in_silence
+/obj/ritual_rune/abyss/heart_that_beats_in_silence
 	name = "The Heart That Beats in Silence"
 	desc = "Creates a shadowy abomination to protect the Lasombra and his domain."
 	icon_state = "rune1"
 	word = "ANI UMRA"
-	mystlevel = 2
+	level = 2
 	cost = 1
 
-/obj/abyssrune/heart_that_beats_in_silence/complete()
+/obj/ritual_rune/abyss/heart_that_beats_in_silence/complete()
 	var/mob/living/carbon/human/H = last_activator
 	var/dice = (last_activator.st_get_stat(STAT_INTELLIGENCE) + last_activator.st_get_stat(STAT_OCCULT))
 

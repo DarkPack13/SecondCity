@@ -1,13 +1,13 @@
 // **************************************************************** INSIGHT *************************************************************
 
-/obj/necrorune/insight
+/obj/ritual_rune/necromancy/insight
 	name = "Insight"
 	desc = "Determine a cadaver's passing by questioning its soul."
 	icon_state = "rune6"
 	word = "IH'DET ULYSS RES'SAR"
-	necrolevel = 2
+	level = 2
 
-/obj/necrorune/insight/complete()
+/obj/ritual_rune/necromancy/insight/complete()
 
 	var/list/valid_bodies = list()
 

@@ -8,7 +8,7 @@
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
 	owner.faction |= VAMPIRE_CLAN_TREMERE
-	var/datum/action/thaumaturgy/thaumaturgy = new()
+	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)

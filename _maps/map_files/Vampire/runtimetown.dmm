@@ -1952,7 +1952,7 @@
 /area/vtm/outside/supply)
 "Mo" = (
 /obj/structure/table/reinforced,
-/obj/item/arcane_tome,
+/obj/item/ritual_tome/arcane,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "My" = (
