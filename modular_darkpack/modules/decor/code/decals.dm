@@ -156,3 +156,43 @@
 
 /obj/effect/turf_decal/darkpack/cave/corner
 	icon_state = "cave_corner"
+
+
+
+/obj/effect/turf_decal/siding/grey
+	color = "#636363"
+
+/obj/effect/turf_decal/siding/grey/corner
+	icon_state = "siding_plain_corner"
+
+/obj/effect/turf_decal/siding/grey/inner_corner
+	icon_state = "siding_plain_corner_inner"
+
+/obj/effect/turf_decal/siding/grey/end
+	icon_state = "siding_plain_end"
+
+
+/obj/effect/turf_decal/siding/dark_purple
+	color = "#570090"
+
+/obj/effect/turf_decal/siding/dark_purple/corner
+	icon_state = "siding_plain_corner"
+
+/obj/effect/turf_decal/siding/dark_purple/inner_corner
+	icon_state = "siding_plain_corner_inner"
+
+/obj/effect/turf_decal/siding/dark_purple/end
+	icon_state = "siding_plain_end"
+
+
+/obj/effect/turf_decal/siding/beige
+	color = "#6e635a"
+
+/obj/effect/turf_decal/siding/beige/corner
+	icon_state = "siding_plain_corner"
+
+/obj/effect/turf_decal/siding/beige/inner_corner
+	icon_state = "siding_plain_corner_inner"
+
+/obj/effect/turf_decal/siding/beige/end
+	icon_state = "siding_plain_end"
