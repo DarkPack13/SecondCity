@@ -33,6 +33,12 @@ ADMIN_VERB(admin_ghost, R_ADMIN, "AGhost", "Become a ghost without DNR.", ADMIN_
 		//ghostize
 		log_admin("[key_name(user)] admin ghosted.")
 		message_admins("[key_name_admin(user)] admin ghosted.")
+		// DARKPACK EDIT START
+		if(isavatar(user.mob))
+			var/original_body = user.mob.mind.current
+			qdel(user.mob)
+			user.mob = original_body
+		// DARKPACK EDIT END
 		var/mob/body = user.mob
 		body.ghostize(TRUE, TRUE)
 		user.init_verbs()

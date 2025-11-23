@@ -83,6 +83,10 @@
 	ADD_TRAIT(src, TRAIT_HEAR_THROUGH_DARKNESS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_GOOD_HEARING, INNATE_TRAIT)
 
+/mob/living/basic/avatar/Destroy()
+	SSpoints_of_interest.remove_point_of_interest(src)
+	return ..()
+
 //We don't want to update the current var
 //But we will still carry a mind.
 /mob/living/basic/avatar/mind_initialize()
