@@ -9,8 +9,7 @@
 	desc = "Requires a password to open."
 	icon = 'modular_darkpack/modules/vaults/icons/keypad.dmi'
 	icon_state = "keypad"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
+	layer = SIGN_LAYER
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/list/connected_shutters = list()
