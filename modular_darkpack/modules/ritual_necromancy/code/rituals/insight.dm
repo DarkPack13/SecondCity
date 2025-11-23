@@ -1,7 +1,7 @@
 // **************************************************************** INSIGHT *************************************************************
 
 /obj/ritual_rune/necromancy/insight
-	name = "Insight"
+	name = "insight"
 	desc = "Determine a cadaver's passing by questioning its soul."
 	icon_state = "rune6"
 	word = "IH'DET ULYSS RES'SAR"

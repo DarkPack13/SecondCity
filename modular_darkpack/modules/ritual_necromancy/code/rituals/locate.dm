@@ -1,7 +1,7 @@
 // **************************************************************** MINESTRA DI MORTE *************************************************************
 
 /obj/ritual_rune/necromancy/locate
-	name = "Minestra di Morte"
+	name = "minestra di morte"
 	desc = "Verify a soul's status and try to divine its location."
 	icon_state = "rune5"
 	word = "UAH'V OUH'RAN"

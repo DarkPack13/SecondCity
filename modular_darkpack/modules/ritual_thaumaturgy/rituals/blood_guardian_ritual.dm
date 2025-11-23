@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/blood_guardian
-	name = "Blood Guardian"
+	name = "blood guardian"
 	desc = "Creates the Blood Guardian to protect tremere or his domain."
 	icon_state = "rune1"
 	word = "UR'JOLA"

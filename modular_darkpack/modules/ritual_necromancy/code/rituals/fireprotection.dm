@@ -1,7 +1,7 @@
 // **************************************************************** CHILL OF OBLIVION *************************************************************
 
 /obj/ritual_rune/necromancy/fireprotection
-	name = "Chill of Oblivion"
+	name = "chill of oblivion"
 	desc = "Invite the cold of the Shadowlands into your soul to undo the body's fire-weakness. This profane blessing <b>taints the recipient's aura</b>."
 	icon_state = "rune1"
 	word = "DHAI'AD BHA'II DAWH'N"

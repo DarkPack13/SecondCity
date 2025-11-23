@@ -1,6 +1,6 @@
 // **************************************************************** CHIME OF UNSEEN SPIRITS *************************************************************
 /obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits
-	name = "Chime of Unseen Spirits"
+	name = "chime of unseen spirits"
 	desc = "Enchant a chime to reveal the presence of nearby spirits."
 	icon_state = "rune6"
 	word = "Sonitus occultorum."
@@ -13,7 +13,7 @@
 
 // The spirit chime item itself
 /obj/item/spirit_chime
-	name = "Chime of Unseen Spirits"
+	name = "chime of unseen spirits"
 	desc = "A mystical chime that reacts to nearby spirits."
 	icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
 	icon_state = "bell"

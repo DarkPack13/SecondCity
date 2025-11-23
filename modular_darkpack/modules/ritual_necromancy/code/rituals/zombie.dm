@@ -1,7 +1,7 @@
 // **************************************************************** DAEMONIC POSSESSION *************************************************************
 
 /obj/ritual_rune/necromancy/zombie
-	name = "Daemonic Possession"
+	name = "daemonic possession"
 	desc = "Place a wraith inside of a dead body and raise it as a sentient zombie."
 	icon_state = "rune7"
 	word = "GI'TI FOA'HP"

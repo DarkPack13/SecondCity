@@ -1,16 +1,8 @@
 /obj/ritual_rune/abyss/comforting_darkness
-	name = "Comforting Darkness"
+	name = "comforting darkness rune"
 	desc = "Use the power of the abyss to mend the wounds of yourself and others."
 	icon_state = "rune8"
 	word = "KEYUR'AGA"
-	level = 2
-	cost = 0
-
-/obj/ritual_rune/abyss/comforting_darkness
-	name = "Comforting Darkness"
-	desc = "Use the power of the abyss to mend the wounds of yourself and others."
-	icon_state = "rune8"
-	word = ""
 	level = 2
 	cost = 0
 	var/static/list/roll_cache = list()

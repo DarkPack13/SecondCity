@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/identification
-	name = "Identification Rune"
+	name = "identification rune"
 	desc = "Identifies a single occult item."
 	icon_state = "rune4"
 	word = "IN'DAR"

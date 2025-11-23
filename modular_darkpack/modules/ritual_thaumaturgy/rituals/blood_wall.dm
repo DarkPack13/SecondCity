@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/blood_wall
-	name = "Blood Wall"
+	name = "blood wall"
 	desc = "Creates the Blood Wall to protect tremere or his domain."
 	icon_state = "rune3"
 	word = "SOT'PY-O"

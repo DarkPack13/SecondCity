@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/bloodwalk
-	name = "Blood Walk"
+	name = "blood walk"
 	desc = "Trace the subject's lineage from a blood syringe."
 	icon_state = "rune7"
 	word = "Reveal thy bloodline for mine eyes."

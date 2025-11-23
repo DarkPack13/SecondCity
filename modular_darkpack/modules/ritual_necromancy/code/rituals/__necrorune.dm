@@ -1,5 +1,5 @@
 /obj/ritual_rune/necromancy
-	name = "Necromancy Rune"
+	name = "necromancy rune"
 	desc = "Death is only the beginning."
 	color = rgb(10, 128, 20)
 	word = "THURI'LLAH 'NHT"

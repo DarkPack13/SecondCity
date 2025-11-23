@@ -28,7 +28,6 @@
 	damage_type = BURN
 	icon_state = "curse0"
 
-// **************************************************************** SHADOW PLAY *************************************************************
 /datum/discipline_power/obtenebration/shadow_play
 	name = "Shadow Play"
 	desc = "Manipulate shadows to block visibility."
@@ -76,7 +75,6 @@
 		cbutton.Remove(owner)
 		QDEL_NULL(cbutton)
 
-// **************************************************************** SHROUD OF NIGHT *************************************************************
 /datum/discipline_power/obtenebration/shroud_of_night
 	name = "Shroud of Night"
 	desc = "Turn the shadows into appendages to pull your enemies."
@@ -102,7 +100,6 @@
 	var/obj/item/ammo_casing/magic/tentacle/lasombra/casing = new (owner.loc)
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 
-// **************************************************************** ARMS OF THE ABYSS *************************************************************
 /datum/discipline_power/obtenebration/arms_of_the_abyss
 	name = "Arms of the Abyss"
 	desc = "Use shadows as your arms to harm and grab others from afar."
@@ -163,7 +160,6 @@
 		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
 		return FALSE
 
-// **************************************************************** BLACK METAMORPHOSIS *************************************************************
 /datum/discipline_power/obtenebration/black_metamorphosis
 	name = "Black Metamorphosis"
 	desc = "Fuse with your inner darkness, gaining shadowy armor."
@@ -207,18 +203,19 @@
 	. = ..()
 	activating = FALSE
 	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, owner)
-	if(roll == ROLL_SUCCESS)
-		successful = TRUE
-		owner.physiology.damage_resistance += 60
-		animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
-		to_chat(owner, span_green("You successfully fuse with the shadows!"))
-	else if(roll == ROLL_FAILURE)
-		to_chat(owner, span_warning("You fail to control the shadows!"))
-		deactivate()
-	else if(roll == ROLL_BOTCH)
-		owner.apply_damage(60, BRUTE) // 2 levels of lethal damage on a botch
-		to_chat(owner, span_danger("The shadows lash out at you as you fail to fuse with them!"))
-		deactivate()
+	switch(roll)
+		if(ROLL_SUCCESS)
+			successful = TRUE
+			owner.physiology.damage_resistance += 60
+			animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
+			to_chat(owner, span_green("You successfully fuse with the shadows!"))
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("You fail to control the shadows!"))
+			deactivate()
+		if(ROLL_BOTCH)
+			owner.apply_damage(60, BRUTE) // 2 levels of lethal damage on a botch
+			to_chat(owner, span_danger("The shadows lash out at you as you fail to fuse with them!"))
+			deactivate()
 
 /datum/discipline_power/obtenebration/black_metamorphosis/deactivate()
 	. = ..()
@@ -229,7 +226,6 @@
 	owner.physiology.damage_resistance -= 60
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
-// **************************************************************** TENEBROUS FORM *************************************************************
 /datum/discipline_power/obtenebration/tenebrous_form
 	name = "Tenebrous Form"
 	desc = "Become a shadow and resist all but fire, sunlight, and magic!"
@@ -324,7 +320,7 @@
 
 	owner.density = saved_density
 
-// **************************************************************** ACTIONS ****************************************************************
+//ACTIONS
 
 // Aggro mode control for Arms of the Abyss
 /datum/action/aggro_mode

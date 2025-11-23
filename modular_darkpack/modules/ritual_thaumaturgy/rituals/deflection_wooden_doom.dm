@@ -3,7 +3,7 @@
 //Deflection of the Wooden Doom ritual
 //Protects you from being staked for a single hit. Is it useful? Marginally. But it is a level 1 rite.
 /obj/ritual_rune/thaumaturgy/deflection_stake
-	name = "Deflection of the Wooden Doom"
+	name = "deflection of the wooden doom"
 	desc = "Shield your heart and splinter the enemy stake. Requires a stake."
 	icon_state = "rune7"
 	word = "Splinter, shatter, break the wooden doom."

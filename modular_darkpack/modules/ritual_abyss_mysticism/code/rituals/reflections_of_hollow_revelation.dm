@@ -1,5 +1,5 @@
 /obj/ritual_rune/abyss/reflections_of_hollow_revelation
-	name = "Reflections of Hollow Revelation"
+	name = "reflections of hollow revelation rune"
 	desc = "Use a conjured Nocturne to spy on a target through nearby shadows"
 	icon_state = "teleport"
 	word = ""
@@ -40,19 +40,20 @@
 
 	var/mypower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
 	var/roll_result = SSroll.storyteller_roll(mypower, 7, user, numerical = FALSE)
-	if (roll_result == ROLL_SUCCESS)
-		scry_target(window_target, user)
-		playsound(user, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
-		isactive = TRUE
-	else if(roll_result == ROLL_FAILURE)
-		qdel(src)
-		to_chat(user, span_warning("The Nocturne collapses!"))
-	else if(roll_result == ROLL_BOTCH)
-		qdel(src)
-		to_chat(user, span_warning("You feel drained..."))
-		for(var/datum/st_stat/stat as anything in subtypesof(/datum/st_stat))
-			user.st_add_stat_mod(stat, -2, "reflections_of_hollow_revelation")
-		addtimer(CALLBACK(src, PROC_REF(restore_stats), user), 1 SCENES)
+	switch(roll_result)
+		if(ROLL_SUCCESS)
+			scry_target(window_target, user)
+			playsound(user, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
+			isactive = TRUE
+		if(ROLL_FAILURE)
+			qdel(src)
+			to_chat(user, span_warning("The Nocturne collapses!"))
+		if(ROLL_BOTCH)
+			qdel(src)
+			to_chat(user, span_warning("You feel drained..."))
+			for(var/datum/st_stat/stat as anything in subtypesof(/datum/st_stat))
+				user.st_add_stat_mod(stat, -2, "reflections_of_hollow_revelation")
+			addtimer(CALLBACK(src, PROC_REF(restore_stats), user), 1 SCENES)
 
 /obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/restore_stats(mob/living/user)
 	for(var/datum/st_stat/stat as anything in subtypesof(/datum/st_stat))

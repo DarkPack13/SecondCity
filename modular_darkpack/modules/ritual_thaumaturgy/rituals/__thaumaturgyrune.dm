@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy
-	name = "Tremere Rune"
+	name = "tremere rune"
 	desc = "Learn the secrets of blood, neonate..."
 	color = rgb(128, 0, 0)
 	word = "IDI NAH"

@@ -7,8 +7,7 @@
 
 /obj/ritual_rune/abyss/identification/complete()
 	for(var/obj/item/vtm_artifact/VA in loc)
-		if(VA)
-			VA.identify()
-			playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
-			qdel(src)
-			return
+		VA.identify()
+		playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
+		qdel(src)
+		return
