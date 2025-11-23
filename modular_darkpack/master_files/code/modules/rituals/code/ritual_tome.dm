@@ -6,15 +6,20 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/rituals = list()
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
+	var/static/list/ritual_cache = list()
 
 /obj/item/ritual_tome/Initialize()
 	. = ..()
 	if(!rune_type)
 		return
 
-	for(var/rune_path in subtypesof(rune_type))
-		var/obj/R = new rune_path(src)
-		rituals += R
+	if(!ritual_cache[rune_type])
+		ritual_cache[rune_type] = list()
+		for(var/rune_path in subtypesof(rune_type))
+			var/obj/R = new rune_path()
+			ritual_cache[rune_type] += R
+
+	rituals = ritual_cache[rune_type]
 
 /obj/item/ritual_tome/attack_self(mob/user)
 	. = ..()
@@ -27,7 +32,7 @@
 		var/ritual_name = R.name
 		var/ritual_desc = R.desc
 
-		to_chat(user, span_cult("[level] [ritual_name] - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))
+		to_chat(user, span_cult("[level] <b>[ritual_name]</b> - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))
 
 /obj/item/ritual_tome/proc/get_ritual_requirements(obj/rune)
 	if(!islist(rune.vars["sacrifices"]))
@@ -38,10 +43,8 @@
 		return ""
 
 	var/list/required_items = list()
-	for(var/item_type in sacrifices)
-		var/obj/item/I = new item_type(src)
-		required_items += I.name
-		qdel(I)
+	for(var/obj/item/item_type as anything in sacrifices)
+		required_items += item_type::name
 
 	return required_items.Join("\n")
 

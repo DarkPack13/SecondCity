@@ -1,5 +1,3 @@
-// **************************************************************** DEATH *************************************************************
-
 /obj/ritual_rune/necromancy/death
 	name = "death"
 	desc = "Instantly transport yourself to the Shadowlands."

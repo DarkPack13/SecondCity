@@ -1,5 +1,3 @@
-// **************************************************************** CALL THE HUNGRY DEAD *************************************************************
-
 /obj/ritual_rune/necromancy/question //No bloodpack requirement, but the wraiths aren't implied to owe answers.
 	name = "call the hungry dead"
 	desc = "Summon a wraith from the Shadowlands to converse."

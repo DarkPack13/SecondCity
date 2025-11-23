@@ -1,5 +1,3 @@
-// **************************************************************** MINESTRA DI MORTE *************************************************************
-
 /obj/ritual_rune/necromancy/locate
 	name = "minestra di morte"
 	desc = "Verify a soul's status and try to divine its location."

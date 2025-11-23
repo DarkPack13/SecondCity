@@ -1,5 +1,3 @@
-// **************************************************************** CALL UPON THE SHADOW'S GRACE *************************************************************
-
 /obj/ritual_rune/necromancy/truth
 	name = "call upon the shadow's grace"
 	desc = "Bring forth the shadows in your victim's mind and force out their darkest truths."

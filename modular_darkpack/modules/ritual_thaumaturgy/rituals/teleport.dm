@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/teleport
-	name = "Teleportation Rune"
+	name = "teleportation rune"
 	desc = "Move your body among the city streets. Requires a bloodpack."
 	icon_state = "rune6"
 	word = "CLAV'TRANSITUM"
