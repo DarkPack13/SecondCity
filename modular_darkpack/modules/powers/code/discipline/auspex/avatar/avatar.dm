@@ -43,6 +43,7 @@
 	var/facial_hairstyle
 	var/facial_hair_color
 	var/mutable_appearance/facial_hair_overlay
+	var/image/ghostimage_default = null //this mobs ghost image without accessories and dirs
 
 /mob/living/basic/avatar/Initialize(mapload)
 	. = ..()
@@ -75,6 +76,8 @@
 	name ||= generate_random_mob_name(FALSE)
 	real_name = name
 
+	update_appearance()
+
 	abstract_move(get_turf(body))
 
 	AddElement(/datum/element/movetype_handler)
@@ -91,3 +94,47 @@
 //But we will still carry a mind.
 /mob/living/basic/avatar/mind_initialize()
 	return
+
+/*
+ * This proc will update the icon of the ghost itself, with hair overlays, as well as the ghost image.
+ * Please call update_icon(updates, icon_state) from now on when you want to update the icon_state of the ghost,
+ * or you might end up with hair on a sprite that's not supposed to get it.
+ * Hair will always update its dir, so if your sprite has no dirs the haircut will go all over the place.
+ * |- Ricotez
+ */
+/mob/living/basic/avatar/update_icon(updates=ALL, new_form)
+	. = ..()
+
+	if(hair_overlay)
+		cut_overlay(hair_overlay)
+		hair_overlay = null
+
+	if(facial_hair_overlay)
+		cut_overlay(facial_hair_overlay)
+		facial_hair_overlay = null
+
+
+	if(new_form)
+		icon_state = new_form
+		if(icon_state in GLOB.ghost_forms_with_directions_list)
+			ghostimage_default.icon_state = new_form + "_nodir" //if this icon has dirs, the default ghostimage must use its nodir version or clients with the preference set to default sprites only will see the dirs
+		else
+			ghostimage_default.icon_state = new_form
+
+	if(facial_hairstyle)
+		var/datum/sprite_accessory/S = SSaccessories.facial_hairstyles_list[facial_hairstyle]
+		if(S)
+			facial_hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
+			if(facial_hair_color)
+				facial_hair_overlay.color = facial_hair_color
+			facial_hair_overlay.alpha = 200
+			add_overlay(facial_hair_overlay)
+	if(hairstyle)
+		var/datum/sprite_accessory/hair/S = SSaccessories.hairstyles_list[hairstyle]
+		if(S)
+			hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
+			if(hair_color)
+				hair_overlay.color = hair_color
+			hair_overlay.alpha = 200
+			hair_overlay.pixel_z = S.y_offset
+			add_overlay(hair_overlay)
