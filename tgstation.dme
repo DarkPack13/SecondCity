@@ -6841,6 +6841,7 @@
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\physiology.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\simple_animal\hostile\hostile.dm"
 #include "modular_darkpack\master_files\code\modules\paperwork\fax.dm"
+#include "modular_darkpack\master_files\code\modules\power\lighting\lighting_mapping_helpers.dm"
 #include "modular_darkpack\master_files\code\modules\projectiles\ammunition\_ammunition.dm"
 #include "modular_darkpack\master_files\code\modules\projectiles\projectile\bullets.dm"
 #include "modular_darkpack\master_files\code\modules\surgery\bodyparts\_bodyparts.dm"
