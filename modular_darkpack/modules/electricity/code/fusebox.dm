@@ -78,16 +78,19 @@
 	anchored = TRUE
 	pixel_y = 0
 	density = 1
+	var/fusebox_active = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/datum/looping_sound/generator/soundloop
 
 /obj/fusebox/transformer/Initialize()
 	. = ..()
-// There's meant to be a generator soundloop here but if I make it work, the transformer ceases function, which makes no sense. Regardless, removing it for Runtimes.
+	soundloop = new(src, fusebox_active)
 
 /obj/fusebox/transformer/update_icon_state()
 	. = ..()
 	if(damaged > 100)
 		icon_state = "sstation_off"
+		fusebox_active = FALSE
 	else
 		icon_state = "sstation"
+		fusebox_active = TRUE
