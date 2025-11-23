@@ -57,11 +57,11 @@
 	var/mob/living/parent_mob = parent
 	if(isnull(receivers[parent_mob]))
 		receivers[parent_mob] = list()
-	for(var/mob/living/living_mob in orange(parent_mob.client?.view, get_turf(parent_mob)))
-		var/obj/item/organ/heart/beating_heart = living_mob.get_organ_slot(ORGAN_SLOT_HEART)
+	for(var/mob/living/carbon/living_carbon in orange(parent_mob.client?.view, get_turf(parent_mob)))
+		var/obj/item/organ/heart/beating_heart = living_carbon.get_organ_slot(ORGAN_SLOT_HEART)
 		if(!istype(beating_heart) && !(beating_heart.is_beating()))
 			continue
-		show_heartbeat_image(living_mob)
+		show_heartbeat_image(living_carbon)
 
 /datum/component/heartbeat_sensing/proc/show_heartbeat_image(mob/living_mob)
 	var/current_time = "[world.time]"
