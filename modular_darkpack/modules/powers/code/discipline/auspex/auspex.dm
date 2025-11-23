@@ -261,7 +261,11 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	owner.enter_avatar()
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, owner, TRUE)
+	if(roll > 0)
+		owner.enter_avatar()
+	else
+		to_chat(owner, span_warning("Your mind fails to leave your body."))
 
 #undef SENSE_VISION
 #undef SENSE_HEARING

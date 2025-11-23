@@ -75,8 +75,6 @@
 	final_image.loc = input
 	final_image.dir = input.dir
 	final_image.alpha = 0
-	var/mob/living/parent_mob = parent
-	parent_mob.client.images += final_image
 	var/list/fade_ins = list(final_image)
 	for(var/mob/living/echolocate_receiver as anything in receivers)
 		if(echolocate_receiver == input)
