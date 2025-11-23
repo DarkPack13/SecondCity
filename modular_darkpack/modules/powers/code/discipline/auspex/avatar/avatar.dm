@@ -6,6 +6,7 @@
 	mob_biotypes = MOB_SPIRIT
 	incorporeal_move = INCORPOREAL_MOVE_AVATAR
 	invisibility = INVISIBILITY_REVENANT
+	see_invisible = INVISIBILITY_REVENANT
 	health = INFINITY // You cant kill a ghost
 	maxHealth = INFINITY
 	plane = GHOST_PLANE
@@ -73,6 +74,8 @@
 	//To prevent nameless ghosts
 	name ||= generate_random_mob_name(FALSE)
 	real_name = name
+
+	abstract_move(get_turf(body))
 
 	AddElement(/datum/element/movetype_handler)
 

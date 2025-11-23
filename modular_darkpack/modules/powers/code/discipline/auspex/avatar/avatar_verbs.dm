@@ -6,6 +6,9 @@
 	if(!mind || QDELETED(mind.current))
 		to_chat(src, span_warning("You have no body."))
 		return
+	if(get_turf(src) != get_turf(mind.current))
+		to_chat(src, span_warning("You must be at your body's location to re-enter it."))
+		return
 	if(mind.current.key && !IS_FAKE_KEY(mind.current.key)) //makes sure we don't accidentally kick any clients
 		to_chat(usr, span_warning("Another consciousness is in your body...It is resisting you."))
 		return
@@ -15,6 +18,7 @@
 		to_chat(src, span_warning("To leave your body again use the Ghost verb."))
 	mind.current.PossessByPlayer(key)
 	mind.current.client.init_verbs()
+	qdel(src)
 	return TRUE
 
 /mob/living/basic/avatar/down()
