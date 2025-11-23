@@ -619,7 +619,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch/basement)
 "ei" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/blue{
 	dir = 8
 	},
 /turf/open/floor/carpet/darkpack/old,
@@ -6903,7 +6903,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall)
 "UY" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/blue{
 	dir = 4
 	},
 /turf/open/floor/carpet/darkpack/old,
