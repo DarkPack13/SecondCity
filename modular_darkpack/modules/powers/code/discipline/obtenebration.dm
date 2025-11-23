@@ -162,7 +162,7 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
-	vitae_cost = 0
+	vitae_cost = 2
 
 	violates_masquerade = TRUE
 
@@ -177,12 +177,6 @@
 	if(activating) // Prevent multi-activation while the do_after is ongoing
 		to_chat(owner, span_warning("You are already attempting to activate Black Metamorphosis!"))
 		return FALSE
-	else if(!activating)
-		if(owner.bloodpool >= 2)
-			owner.bloodpool -= 2 // Pay the cost here to prevent spending more from multi-activation attempts
-		else
-			to_chat(owner, span_warning("You do not have enough vitae to activate Black Metamorphosis!"))
-			return FALSE
 
 	if(owner.generation >= 10)
 		activating = TRUE
@@ -228,7 +222,7 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
-	vitae_cost = 0
+	vitae_cost = 3
 	duration_length = 999 SCENES
 	toggled = TRUE
 
@@ -247,12 +241,6 @@
 	if(activating) // Prevent multi-activation while the do_after is ongoing
 		to_chat(owner, span_warning("You are already attempting to activate Tenebrous Form!"))
 		return FALSE
-	else if(!activating)
-		if(owner.bloodpool >= 3)
-			owner.bloodpool -= 3 // Pay the cost here to prevent spending more from multi-activation attempts
-		else
-			to_chat(owner, span_warning("You do not have enough vitae to activate Tenebrous Form!"))
-			return FALSE
 
 	// do_after timer based on generation; gen 9 and below can spend more BP per turn, so it activates faster
 	if(owner.generation >= 10)
