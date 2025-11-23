@@ -11,6 +11,12 @@
 /obj/structure/toiletbong,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"aG" = (
+/obj/structure/chair/comfy/darkpack{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "aM" = (
 /obj/effect/spawner/random/trash/rat,
 /turf/open/misc/beach/vamp,
@@ -90,6 +96,10 @@
 /obj/item/defibrillator/compact,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"bW" = (
+/obj/structure/chair/darkpack/blue,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "ca" = (
 /turf/closed/wall/vampwall/old,
 /area/vtm/outside/ghetto)
@@ -172,7 +182,7 @@
 "ea" = (
 /obj/structure/vampdoor,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "ef" = (
 /obj/structure/roofstuff/vent_end{
 	dir = 4
@@ -282,6 +292,12 @@
 /obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"gB" = (
+/obj/structure/chair/comfy/darkpack/red{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "gF" = (
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
@@ -299,7 +315,7 @@
 /obj/effect/decal/cleanable/trash,
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "hi" = (
 /obj/effect/turf_decal/asphaltline,
 /turf/open/floor/plating/asphalt,
@@ -496,6 +512,12 @@
 "kS" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
+"kU" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 1
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "kX" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 4
@@ -512,7 +534,7 @@
 /obj/effect/decal/cleanable/litter,
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "lN" = (
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
@@ -673,7 +695,7 @@
 "pO" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "pU" = (
 /obj/effect/landmark/npc_spawn_point,
 /turf/open/floor/plating/sidewalk/poor,
@@ -843,6 +865,12 @@
 /obj/effect/decal/pallet,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"sU" = (
+/obj/structure/chair/office/darkpack/green{
+	dir = 1
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "sX" = (
 /obj/structure/sign/city/store/bubway{
 	pixel_y = 40
@@ -914,7 +942,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/daimonori,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "uC" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/glock45acp,
@@ -1007,7 +1035,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/heart_of_eliza,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "wj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1020,7 +1048,7 @@
 	},
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "wD" = (
 /obj/effect/landmark/start{
 	jobspawn_override = 1;
@@ -1059,6 +1087,16 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"xn" = (
+/obj/structure/chair/comfy/darkpack/blue{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
+"xB" = (
+/obj/structure/chair/wood/darkpack,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "xC" = (
 /obj/effect/decal/cleanable/litter,
 /turf/open/floor/plating/concrete,
@@ -1157,16 +1195,16 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/saulocept,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "zT" = (
-/obj/structure/chair/greyscale,
+/obj/structure/chair/darkpack/red,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "zU" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/odious_chalice,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "zX" = (
 /obj/effect/decal/wallpaper/red,
 /turf/closed/wall/vampwall/market,
@@ -1257,6 +1295,13 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
+"BW" = (
+/obj/machinery/sprinkler,
+/obj/structure/chair/office/darkpack{
+	dir = 1
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "BX" = (
 /obj/structure/table,
 /turf/closed/wall/vampwall/market/low,
@@ -1307,12 +1352,12 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/galdjum,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "CQ" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/mummywrap_fetish,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1482,6 +1527,10 @@
 /obj/cargocrate,
 /turf/open/misc/dirt/rails,
 /area/vtm/outside/supply)
+"Gc" = (
+/obj/structure/chair/darkpack/green,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Gj" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/city/toilet,
@@ -1605,6 +1654,12 @@
 /obj/structure/city_map,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"HI" = (
+/obj/structure/chair/comfy/darkpack/dark{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "HJ" = (
 /obj/effect/turf_decal/stock,
 /turf/open/floor/plating/asphalt,
@@ -1615,7 +1670,7 @@
 	},
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "HO" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur{
@@ -1649,7 +1704,7 @@
 "Iq" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "IA" = (
 /obj/structure/railing{
 	dir = 10
@@ -1657,13 +1712,19 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
+"IC" = (
+/obj/structure/chair/comfy/darkpack/green{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "ID" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/outside/pacificheights)
 "IJ" = (
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "IL" = (
 /obj/structure/ladder/manhole/up,
 /turf/open/floor/plating/rough,
@@ -1797,7 +1858,7 @@
 /obj/item/vtm_artifact/tarulfang,
 /mob/living/basic/pet/cat/darkpack/cain,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "KR" = (
 /obj/structure/transport/linear/public,
 /obj/structure/railing/corner/end/flip{
@@ -1893,7 +1954,7 @@
 /obj/structure/table/reinforced,
 /obj/item/arcane_tome,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "My" = (
 /obj/structure/retail/costume_store{
 	pixel_x = 2;
@@ -1980,6 +2041,10 @@
 "NR" = (
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"NT" = (
+/obj/structure/chair/wood/darkpack/red,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "NX" = (
 /obj/effect/decal/pallet,
 /obj/machinery/light/directional/west,
@@ -2207,10 +2272,10 @@
 /obj/item/vtm_artifact/weekapaug_thistle,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Sg" = (
-/obj/structure/chair/office{
-	dir = 8
+/obj/structure/chair/office/darkpack/red{
+	dir = 1
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
@@ -2267,7 +2332,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/key_of_alamut,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Ti" = (
 /obj/structure/transport/linear/public,
 /obj/effect/landmark/transport/transport_id{
@@ -2302,7 +2367,7 @@
 /area/vtm/interior/shop)
 "Ul" = (
 /turf/closed/wall/vampwall/rich/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Uq" = (
 /obj/machinery/fax/admin/anarch,
 /obj/structure/table/wood,
@@ -2465,7 +2530,7 @@
 /obj/machinery/light/directional/north,
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "WR" = (
 /obj/structure/lamppost/one,
 /turf/open/misc/beach/vamp,
@@ -2569,7 +2634,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/bloodstar,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "YB" = (
 /obj/machinery/fax/admin/endron,
 /obj/structure/table/wood,
@@ -2589,6 +2654,10 @@
 /obj/structure/roadsign/speedlimit,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
+"YZ" = (
+/obj/structure/chair/darkpack,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Zc" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -2599,7 +2668,7 @@
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/fae_charm,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "Zs" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
@@ -2608,7 +2677,7 @@
 /area/vtm/outside/pacificheights)
 "ZI" = (
 /turf/open/floor/wood/smooth/old,
-/area/vtm/sewer)
+/area/vtm/interior/sewer)
 "ZS" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire{
@@ -3320,11 +3389,11 @@ Wz
 bU
 EL
 Id
-Id
-Id
-Id
-Id
-Id
+aG
+HI
+xn
+IC
+gB
 Id
 Id
 Ev
@@ -3387,7 +3456,7 @@ pN
 pN
 Jo
 EL
-Id
+xB
 ho
 Id
 Id
@@ -3455,7 +3524,7 @@ Tb
 pN
 Od
 EL
-Id
+NT
 Id
 Id
 Id
@@ -3867,9 +3936,9 @@ Id
 Id
 Id
 Id
-Id
-Id
-Id
+YZ
+MJ
+BW
 Id
 Ev
 lk
@@ -3935,9 +4004,9 @@ Id
 ho
 Id
 Id
-Id
-Id
-yw
+bW
+GO
+kU
 Id
 Ev
 lk
@@ -4003,9 +4072,9 @@ Id
 sw
 Id
 Id
-Id
-MJ
-GO
+Gc
+Ws
+sU
 Id
 Ev
 lk
@@ -4072,7 +4141,7 @@ ZU
 rN
 Id
 zT
-Ws
+SY
 Sg
 Id
 ZU
@@ -4139,8 +4208,8 @@ Id
 ZU
 rN
 Id
-zT
-SY
+Id
+Id
 sw
 BQ
 ZU
