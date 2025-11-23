@@ -1,5 +1,5 @@
 /obj/ritual_rune/abyss/reflections_of_hollow_revelation
-	name = "reflections of hollow revelation rune"
+	name = "reflections of hollow revelation"
 	desc = "Use a conjured Nocturne to spy on a target through nearby shadows"
 	icon_state = "teleport"
 	word = ""

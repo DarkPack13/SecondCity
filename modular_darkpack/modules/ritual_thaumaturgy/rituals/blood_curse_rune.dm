@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/curse
-	name = "curse rune"
+	name = "blood curse"
 	desc = "Curse your enemies from afar. Place multiple hearts on the rune to increase the curse duration."
 	icon_state = "rune7"
 	word = "MAL'DICTO-SANGUINIS"

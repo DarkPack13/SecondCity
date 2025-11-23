@@ -15,6 +15,7 @@
 	var/list/sacrifices = list()
 	var/activation_color
 	var/cost = 2
+	var/ritual_name
 
 	// TRAIT_MYSTICISM_KNOWLEDGE, TRAIT_THAUMATURGY_KNOWLEDGE, TRAIT_NECROMANCY_KNOWLEDGE
 	var/required_trait
@@ -22,6 +23,8 @@
 
 /obj/ritual_rune/Initialize(mapload)
 	. = ..()
+	ritual_name = name
+	name = "[name] rune"
 	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
 
 /obj/ritual_rune/proc/on_alt_click(datum/source, mob/user)

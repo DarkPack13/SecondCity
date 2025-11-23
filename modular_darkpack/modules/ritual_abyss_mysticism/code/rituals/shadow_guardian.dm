@@ -1,5 +1,5 @@
 /obj/ritual_rune/abyss/heart_that_beats_in_silence
-	name = "the heart that beats in silence rune"
+	name = "the heart that beats in silence"
 	desc = "Creates a shadowy abomination to protect the Lasombra and his domain."
 	icon_state = "rune1"
 	word = "ANI UMRA"

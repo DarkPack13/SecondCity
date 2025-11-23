@@ -1,5 +1,5 @@
 /obj/ritual_rune/abyss/comforting_darkness
-	name = "comforting darkness rune"
+	name = "comforting darkness"
 	desc = "Use the power of the abyss to mend the wounds of yourself and others."
 	icon_state = "rune8"
 	word = "KEYUR'AGA"

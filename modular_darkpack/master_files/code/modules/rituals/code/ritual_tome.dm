@@ -26,10 +26,10 @@
 	display_rituals(user)
 
 /obj/item/ritual_tome/proc/display_rituals(mob/user)
-	for(var/obj/R in rituals)
+	for(var/obj/ritual_rune/R in rituals)
 		var/requirements = get_ritual_requirements(R)
 		var/level = get_ritual_level(R)
-		var/ritual_name = R.name
+		var/ritual_name = R.ritual_name
 		var/ritual_desc = R.desc
 
 		to_chat(user, span_cult("[level] <b>[ritual_name]</b> - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))

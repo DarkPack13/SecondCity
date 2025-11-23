@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/question
-	name = "question to the ancestors rune"
+	name = "question to the ancestors"
 	desc = "Summon souls from the dead. Ask a question and get answers. Requires a bloodpack."
 	icon_state = "rune5"
 	word = "VOCA-ANI'MA"

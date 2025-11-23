@@ -50,7 +50,7 @@
 	for(var/rune_path in subtypesof(rune_type))
 		var/obj/ritual_rune/R = new rune_path(owner)
 		if(R.level <= level)
-			runes[R.name] = list("path" = rune_path, "cost" = R.cost)
+			runes[R.ritual_name] = list("path" = rune_path, "cost" = R.cost)
 		qdel(R)
 	return runes
 
