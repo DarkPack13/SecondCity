@@ -264,11 +264,13 @@
 /obj/structure/roadblock/alt
 	icon_state = "barrier"
 
+// DARKPACK TODO - Does not pass the sniff test of being a decal. Make a structure
 /obj/effect/decal/painting
 	name = "painting"
 	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
 	icon_state = "painting1"
-	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE
+	layer = SIGN_LAYER
 
 /obj/effect/decal/painting/second
 	icon_state = "painting2"
