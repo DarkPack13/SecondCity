@@ -45,11 +45,8 @@
 /mob/living/basic/avatar/Initialize(mapload)
 	. = ..()
 
-	var/turf/T
 	var/mob/body = loc
 	if(ismob(body))
-		T = get_turf(body) //Where is the body located?
-
 		gender = body.gender
 		if(body.mind && body.mind.name)
 			name = body.mind.ghostname || body.mind.name
