@@ -128,11 +128,7 @@
 		active_tentacles.Cut()
 
 		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
-		var/has_action = FALSE
-		for(var/datum/action/A in owner.actions)
-			if(istype(A, /datum/action/aggro_mode))
-				has_action = TRUE
-				break
+		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
 
 		if(!has_action)
 			var/datum/action/aggro_mode/A = new()
