@@ -37,6 +37,7 @@
 
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
+// Overlaps with TG type...
 /obj/effect/landmark/start/doctor
 	name = "Doctor"
 	icon_state = "Doctor"
