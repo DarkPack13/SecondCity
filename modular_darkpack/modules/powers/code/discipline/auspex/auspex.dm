@@ -247,7 +247,7 @@
 
 	log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
 	to_chat(owner, span_notice("You project your thoughts into [target]'s mind: [input_message]"))
-	to_chat(target, span_boldannounce("You hear a voice in your head... [input_message]"))
+	to_chat(target, span_boldannounce("You hear a voice in your head: [input_message]"))
 
 //PSYCHIC PROJECTION
 /datum/discipline_power/auspex/psychic_projection
