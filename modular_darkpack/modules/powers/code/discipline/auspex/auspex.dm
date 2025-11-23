@@ -149,7 +149,7 @@
 		// Can remotely scan objects and mobs.
 		if((get_dist(scanned_atom, user) > 8) || (!(scanned_atom in view(8, user))))
 			return TRUE
-	owner.playsound_local(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
+	playsound(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
 	// GATHER INFORMATION
 
