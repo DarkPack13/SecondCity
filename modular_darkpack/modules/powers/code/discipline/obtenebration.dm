@@ -279,7 +279,7 @@
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
 	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
-	ADD_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT) // Trait to phase through tables
+	owner.pass_flags |= PASSTABLE
 
 	saved_density = owner.density
 	owner.density = FALSE
@@ -300,7 +300,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_PASSTABLE, MAGIC_TRAIT)
+	owner.pass_flags &= ~PASSTABLE
 
 	owner.density = saved_density
 
