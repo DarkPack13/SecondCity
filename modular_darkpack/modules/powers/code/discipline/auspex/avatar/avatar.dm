@@ -30,6 +30,7 @@
 	density = FALSE
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_TINY
+	movement_type = GROUND | FLYING
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	speed = 1
 	hud_type = /datum/hud/avatar
@@ -79,3 +80,7 @@
 	ADD_TRAIT(src, TRAIT_HEAR_THROUGH_DARKNESS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_GOOD_HEARING, INNATE_TRAIT)
 
+//We don't want to update the current var
+//But we will still carry a mind.
+/mob/living/basic/avatar/mind_initialize()
+	return
