@@ -1,4 +1,4 @@
-/mob/living/basic/avatar/verb/reenter_corpse()
+/mob/living/basic/avatar/verb/reenter_corpse(force = FALSE)
 	set name = "Re-enter Corpse"
 
 	if(!client)
@@ -6,7 +6,7 @@
 	if(!mind || QDELETED(mind.current))
 		to_chat(src, span_warning("You have no body."))
 		return
-	if(get_turf(src) != get_turf(mind.current))
+	if((get_turf(src) != get_turf(mind.current)) && !force)
 		to_chat(src, span_warning("You must be at your body's location to re-enter it."))
 		return
 	if(mind.current.key && !IS_FAKE_KEY(mind.current.key)) //makes sure we don't accidentally kick any clients

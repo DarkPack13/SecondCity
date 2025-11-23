@@ -35,9 +35,8 @@ ADMIN_VERB(admin_ghost, R_ADMIN, "AGhost", "Become a ghost without DNR.", ADMIN_
 		message_admins("[key_name_admin(user)] admin ghosted.")
 		// DARKPACK EDIT START
 		if(isavatar(user.mob))
-			var/original_body = user.mob.mind.current
-			qdel(user.mob)
-			user.mob = original_body
+			var/mob/living/basic/avatar/ghost = user.mob
+			ghost.reenter_corpse(force = TRUE)
 		// DARKPACK EDIT END
 		var/mob/body = user.mob
 		body.ghostize(TRUE, TRUE)
