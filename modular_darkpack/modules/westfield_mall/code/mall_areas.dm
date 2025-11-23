@@ -1,6 +1,7 @@
 /area/vtm/westfield_mall
 	name = "Mall Exterior"
 	outdoors = TRUE
+	icon_state = "outside"
 	icon = 'modular_darkpack/modules/westfield_mall/icons/mall_areas.dmi'
 
 /area/vtm/westfield_mall/skatepark
@@ -51,6 +52,7 @@
 /area/vtm/westfield_mall/interior/foodcourt/restaurant
 	name = "Combination Gummaguts Bubway Bacotell"
 	name = "foodcourt2"
+
 /area/vtm/westfield_mall/interior/foodcourt/grocery
 	name = "Beffley's Green Grocer"
 	icon_state = "foodcourt3"
