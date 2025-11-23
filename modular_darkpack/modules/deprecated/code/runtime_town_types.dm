@@ -1,9 +1,5 @@
 // DARKPACK TODO - This file should not exist and is only so we can save runtime town
 
-/obj/item/ritual_tome/arcane
-	icon = 'icons/effects/mapping_helpers.dmi'
-	icon_state = "merge_conflict_marker"
-
 /obj/item/molotov
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "merge_conflict_marker"
