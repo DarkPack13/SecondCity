@@ -7214,6 +7214,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\auspex\avatar\avatar.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\avatar\avatar_hud.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\avatar\avatar_verbs.dm"
+#include "modular_darkpack\modules\powers\code\discipline\auspex\avatar\mob_procs.dm"
 #include "modular_darkpack\modules\powers\code\discipline\bloodheal\bloodheal.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\afterimage.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\celerity.dm"

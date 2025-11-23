@@ -81,3 +81,4 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	ADD_TRAIT(src, TRAIT_HEAR_THROUGH_DARKNESS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_GOOD_HEARING, INNATE_TRAIT)
+

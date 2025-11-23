@@ -261,8 +261,7 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	//owner.enter_avatar()
-	//owner.soul_state = SOUL_PROJECTING
+	owner.enter_avatar()
 
 #undef SENSE_VISION
 #undef SENSE_HEARING
