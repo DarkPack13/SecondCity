@@ -111,3 +111,12 @@
   - rscadd: adds old chairs back along with some new variants
   dwinters99:
   - image: technically unorphaned two phone sprites
+2025-11-23:
+  Eli-Hodges:
+  - spellcheck: Added improper grammar to the city police sign
+  FalloutFalcon, ghoulpen:
+  - image: deer sprites from ghoulpen
+  XeonMations:
+  - map: Updated updatepaths scripts to not miss some stuff.
+  dwinters99 & Major00 (Paynt):
+  - image: new hud by Major00 (Paynt)

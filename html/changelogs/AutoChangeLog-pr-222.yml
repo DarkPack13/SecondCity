@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - map: "Updated updatepaths scripts to not miss some stuff."
