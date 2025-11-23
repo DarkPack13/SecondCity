@@ -1,6 +1,9 @@
-/mob/living/basic/avatar/verb/reenter_corpse(force = FALSE)
+/mob/living/basic/avatar/verb/reenter_corpse()
 	set name = "Re-enter Corpse"
 
+	exit_avatar(force = FALSE)
+
+/mob/living/basic/avatar/proc/exit_avatar(force = FALSE)
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current))

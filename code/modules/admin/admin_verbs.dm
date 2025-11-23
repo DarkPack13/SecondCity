@@ -36,7 +36,7 @@ ADMIN_VERB(admin_ghost, R_ADMIN, "AGhost", "Become a ghost without DNR.", ADMIN_
 		// DARKPACK EDIT START
 		if(isavatar(user.mob))
 			var/mob/living/basic/avatar/ghost = user.mob
-			ghost.reenter_corpse(force = TRUE)
+			ghost.exit_avatar(force = TRUE)
 		// DARKPACK EDIT END
 		var/mob/body = user.mob
 		body.ghostize(TRUE, TRUE)
