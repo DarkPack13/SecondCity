@@ -1,7 +1,4 @@
-/mob/living/carbon/Move(atom/newloc, direct, glide_size_override)
-	if (ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.update_shadow()
+// /mob/living/carbon/Move(atom/newloc, direct, glide_size_override)
 
 	// DARKPACK TODO - reimplement walls, also this handling could be improved
 	/*
@@ -10,7 +7,7 @@
 			return
 	*/
 
-	. = ..()
+	// . = ..()
 
 	// DARKPACK TODO - face target
 	/*
