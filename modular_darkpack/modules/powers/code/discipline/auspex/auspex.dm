@@ -25,6 +25,7 @@
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
+	cooldown_length = 1 TURNS
 
 	toggled = TRUE
 
@@ -101,7 +102,7 @@
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS
 	duration_length = 1 SCENES
-	cooldown_length = 1 TURNS
+	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
 /datum/discipline_power/auspex/aura_perception/activate()
@@ -122,6 +123,7 @@
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
+	cooldown_length = 1 TURNS
 
 	toggled = TRUE
 
@@ -228,7 +230,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS
 	target_type = TARGET_LIVING
 	vitae_cost = 0
-	cooldown_length = 15 SECONDS
+	cooldown_length = 1 TURNS
 	range = 7
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
@@ -258,6 +260,7 @@
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
+	cooldown_length = 1 TURNS
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
