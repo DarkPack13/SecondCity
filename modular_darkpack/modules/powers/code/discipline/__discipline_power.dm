@@ -47,6 +47,8 @@
 	var/cooldown_override = FALSE
 	/// List of Discipline power types that cannot be activated alongside this power and share a cooldown with it.
 	var/list/grouped_powers
+	/// Group this Discipline belongs to. Only one discipline of a group may be active at a time. No cooldown is shared.
+	var/power_group = DISCIPLINE_POWER_GROUP_NONE
 
 	/* NOT MEANT TO BE OVERRIDDEN */
 	/// Timer(s) tracking the duration of the power. Can have multiple if multi_activate is true.

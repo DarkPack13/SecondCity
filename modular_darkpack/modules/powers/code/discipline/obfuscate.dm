@@ -14,14 +14,13 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_deactivate.ogg'
 
+	power_group = DISCIPLINE_POWER_GROUP_COMBAT
+
 	var/static/list/aggressive_signals = list(
 		COMSIG_MOB_ATTACK_HAND,
-		COMSIG_MOB_ATTACKED_HAND,
-		COMSIG_MOB_MELEE_SWING,
 		COMSIG_MOB_FIRED_GUN,
-		COMSIG_MOB_THREW_MOVABLE,
-		COMSIG_MOB_ATTACKING_MELEE,
-		COMSIG_MOB_ATTACKED_BY_MELEE,
+		COMSIG_MOB_THROW,
+		COMSIG_PROJECTILE_PREHIT,
 	)
 
 /datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source)
@@ -34,13 +33,14 @@
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /datum/discipline_power/obfuscate/proc/is_seen_check()
-	for (var/mob/living/viewer in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
+	for (var/mob/living/viewer in oviewers(7, owner))
 		//cats cannot stop you from Obfuscating
 		if (!istype(viewer, /mob/living/carbon) && !viewer.client)
 			continue
 
 		//the corpses are not watching you
-		if (HAS_TRAIT(viewer, TRAIT_BLIND) || viewer.stat >= UNCONSCIOUS)
+		//removed (HAS_TRAIT(viewer, TRAIT_BLIND) ||
+		if (viewer.stat >= UNCONSCIOUS)
 			continue
 
 		to_chat(owner, span_warning("You cannot use [src] while you're being observed!"))
@@ -73,20 +73,20 @@
 
 /datum/discipline_power/obfuscate/cloak_of_shadows/activate()
 	. = ..()
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
+	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
-	owner.alpha = 10
+	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/cloak_of_shadows/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-	owner.alpha = 255
+	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/cloak_of_shadows/proc/handle_move(datum/source, atom/moving_thing, dir)
 	SIGNAL_HANDLER
@@ -122,21 +122,21 @@
 
 /datum/discipline_power/obfuscate/unseen_presence/activate()
 	. = ..()
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
+	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
 
-	owner.alpha = 10
+	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/unseen_presence/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-	owner.alpha = 255
+	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 //remove this when Mask of a Thousand Faces is made tabletop accurate
 /datum/discipline_power/obfuscate/unseen_presence/proc/handle_move(datum/source, atom/moving_thing, dir)
@@ -156,6 +156,7 @@
 
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE
+	vitae_cost = 1
 
 	toggled = TRUE
 
@@ -168,23 +169,22 @@
 	)
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	. = ..()
 	return is_seen_check()
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
+	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
-	owner.alpha = 10
+	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 
-	owner.alpha = 255
+	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 //VANISH FROM THE MIND'S EYE
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye
@@ -193,6 +193,7 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CAPABLE
+	vitae_cost = 2
 
 	toggled = TRUE
 
@@ -204,20 +205,28 @@
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
 
+/datum/discipline_power/obfuscate/vanish_from_the_minds_eye/pre_activation_checks(atom/target)
+	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner))
+		return TRUE
+	return FALSE
+
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/activate()
 	. = ..()
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
+	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
-	owner.alpha = 10
+	if(prob(1))
+		SEND_SIGNAL(SSmasquerade, COMSIG_PLAYER_MASQUERADE_REINFORCE, owner)
+
+	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 
-	owner.alpha = 255
+	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 //CLOAK THE GATHERING
 /datum/discipline_power/obfuscate/cloak_the_gathering
@@ -226,7 +235,7 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CAPABLE
-	vitae_cost = 0
+	vitae_cost = 2
 
 	toggled = TRUE
 
@@ -240,18 +249,18 @@
 
 /datum/discipline_power/obfuscate/cloak_the_gathering/activate()
 	. = ..()
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
+	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
-	owner.alpha = 10
+	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/cloak_the_gathering/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 
-	owner.alpha = 255
+	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 #undef COMBAT_COOLDOWN_LENGTH
 #undef REVEAL_COOLDOWN_LENGTH

@@ -15,6 +15,9 @@
 	RegisterSignals(src, list(SIGNAL_ADDTRAIT(TRAIT_HUSK), SIGNAL_REMOVETRAIT(TRAIT_HUSK)), PROC_REF(refresh_obscured))
 	RegisterSignals(src, list(SIGNAL_ADDTRAIT(TRAIT_INVISIBLE_MAN), SIGNAL_REMOVETRAIT(TRAIT_INVISIBLE_MAN)), PROC_REF(invisible_man_toggle))
 	RegisterSignals(src, list(SIGNAL_ADDTRAIT(TRAIT_DISFIGURED), SIGNAL_REMOVETRAIT(TRAIT_DISFIGURED)), PROC_REF(update_visible_name))
+	//DARKPACK EDIT ADD -- Obfuscate Discipline
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_OBFUSCATED), PROC_REF(make_invisible))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_OBFUSCATED), PROC_REF(make_visible))
 
 /// Gaining or losing [TRAIT_DWARF] updates our height and grants passtable
 /mob/living/carbon/human/proc/on_dwarf_trait(datum/source)
@@ -75,3 +78,17 @@
 	SIGNAL_HANDLER
 	refresh_obscured()
 	update_visible_name()
+
+// DARKPACK EDIT START -- Obfuscate Discipline
+/// Called when [TRAIT_OBFUSCATED] is added to the mob.
+/mob/living/proc/make_invisible(datum/source)
+	SIGNAL_HANDLER
+	animate(src, invisibility = OBFUSCATE_INVISIBILITY, time = 0.5 SECONDS)
+	add_obficon()
+
+/// Called when [TRAIT_OBFUSCATED] is removed from the mob.
+/mob/living/proc/make_visible(datum/source)
+	SIGNAL_HANDLER
+	animate(src, invisibility = NONE, time = 0.5 SECONDS)
+	remove_obficon()
+// DARKPACK EDIT END

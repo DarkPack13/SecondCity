@@ -7214,6 +7214,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\__discipline_power.dm"
 #include "modular_darkpack\modules\powers\code\discipline\animalism.dm"
 #include "modular_darkpack\modules\powers\code\discipline\necromancy.dm"
+#include "modular_darkpack\modules\powers\code\discipline\obfuscate.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
 #include "modular_darkpack\modules\powers\code\discipline\bloodheal\bloodheal.dm"
 #include "modular_darkpack\modules\powers\code\discipline\celerity\afterimage.dm"
