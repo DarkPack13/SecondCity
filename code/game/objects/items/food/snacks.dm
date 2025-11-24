@@ -97,7 +97,7 @@
 	tastes = list("salt" = 1, "crisps" = 1)
 	foodtypes = VEGETABLES|JUNKFOOD|FRIED
 	w_class = WEIGHT_CLASS_SMALL
-
+	custom_price = 5 // DARKPACK EDIT ADD - Added a price so we can buy and sell this item
 /obj/item/food/chips/make_leave_trash()
 	if(trash_type)
 		AddElement(/datum/element/food_trash, trash_type, FOOD_TRASH_POPABLE)

@@ -77,7 +77,7 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
-
+	custom_price = 5
 /obj/item/reagent_containers/cup/soda_cans/vampirecola/blue
 	desc = "Pep cola. Put some Pep in your step"
 	icon_state = "colablue2"
