@@ -120,3 +120,10 @@
   - map: Updated updatepaths scripts to not miss some stuff.
   dwinters99 & Major00 (Paynt):
   - image: new hud by Major00 (Paynt)
+2025-11-24:
+  XeonMations:
+  - bugfix: Fixed phone call records not properly cllearing and dead NPCs not fully
+      restoring your masquerade.
+  - rscdel: Removed player shadow disc
+  dwinters99:
+  - image: old vehicle sprites

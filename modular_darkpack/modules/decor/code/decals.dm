@@ -24,6 +24,9 @@
 		forceMove(get_step(src, NORTH))
 		pixel_y = -32
 
+/obj/effect/decal/shadow/low
+	icon_state = "shadow_low"
+
 /obj/effect/decal/support
 	name = "support"
 	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
