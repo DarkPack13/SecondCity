@@ -79,3 +79,18 @@
 /area/vtm/westfield_mall/interior/camarilla
 	name = "Westfield Management"
 	name = "camallrilla"
+
+/area/vtm/westfield_mall/interior/anarch
+	name = "Silchester & Thorne Body Art"
+
+/area/vtm/westfield_mall/interior/chantry
+	name = "Noble's Books"
+
+/area/vtm/westfield_mall/interior/vet_clinic
+	name = "Nottingham's Pet Emporium"
+
+/area/vtm/westfield_mall/interior/custodian
+	name = "Custodial Office"
+
+/area/vtm/westfield_mall/interior/dojo
+	name = "Matrak Self-Defence"
