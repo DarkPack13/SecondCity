@@ -2,7 +2,7 @@
 	masks = list(/obj/item/clothing/mask/vampire/balaclava)
 	shoes = list(/obj/item/clothing/shoes/vampire/sneakers)
 	uniforms = list(/obj/item/clothing/under/vampire/emo)
-	pockets = list(/obj/item/stack/dollar/rand)
+	// pockets = list(/obj/item/stack/dollar/rand)
 
 	male_phrases = list(
 		"Pss... wanna try some weed?",

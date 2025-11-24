@@ -64,6 +64,11 @@ SUBSYSTEM_DEF(ambience)
 	SEND_SOUND(M, new_sound)
 
 	var/sound_length = SSsounds.get_sound_length(new_sound.file)
+	// DARKPACK EDIT ADD START
+	if(!sound_length)
+		// This will cause sounds to cut into eachother if the sound is longer then the min_ambience_cooldown
+		stack_trace("play_ambience failed to get soundlength from [new_sound] with a file of [new_sound.file].")
+	// DARKPACK EDIT ADD END
 	return sound_length + rand(min_ambience_cooldown, max_ambience_cooldown)
 
 /datum/controller/subsystem/ambience/proc/remove_ambience_client(client/to_remove)

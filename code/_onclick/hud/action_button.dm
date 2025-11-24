@@ -268,7 +268,7 @@
 
 /atom/movable/screen/button_palette
 	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click any button</b> to begin binding it to a key<br><b>Alt-click this</b> to reset all buttons"
-	icon = 'icons/hud/64x16_actions.dmi'
+	icon = 'modular_darkpack/master_files/icons/hud/64x16_actions.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "screen_gen_palette"
 	screen_loc = ui_action_palette
 	mouse_over_pointer = MOUSE_HAND_POINTER

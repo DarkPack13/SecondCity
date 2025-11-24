@@ -46,6 +46,10 @@ SUBSYSTEM_DEF(sounds)
 	// Precache ambience sounds
 	for(var/key in GLOB.ambience_assoc)
 		sounds_to_precache |= GLOB.ambience_assoc[key]
+	// DARKPACK EDIT ADD START
+	for(var/key in GLOB.music_assoc)
+		sounds_to_precache |= GLOB.music_assoc[key]
+	// DARKPACK EDIT ADD END
 
 	precache_sounds()
 

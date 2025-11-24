@@ -165,6 +165,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 				// Stops playing lobby music and admin loaded music automatically.
 				SEND_SOUND(C, sound(null, channel = CHANNEL_LOBBYMUSIC))
 				SEND_SOUND(C, sound(null, channel = CHANNEL_ADMIN))
+				SEND_SOUND(C, sound(null, channel = CHANNEL_MUSIC)) // DARKPACK EDIT ADD - AMBIENCE
 				if(!stop_web_sounds)
 					C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 				else

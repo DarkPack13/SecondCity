@@ -53,7 +53,7 @@
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
 		if("Flamethrower")
-			owner.current.put_in_r_hand(new /obj/item/vampire_flamethrower(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/liquid_flamethrower(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/gas_can/full(owner.current))
 		if("EOD")
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))

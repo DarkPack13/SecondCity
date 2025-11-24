@@ -1,4 +1,5 @@
 /datum/vampire_clan
+	abstract_type = /datum/vampire_clan
 	/// Name of the Clan
 	var/name
 	/// Identifier in sprites for the Clan

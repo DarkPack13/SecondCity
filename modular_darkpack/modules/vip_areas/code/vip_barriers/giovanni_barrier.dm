@@ -5,6 +5,6 @@
 	social_roll_difficulty = 7
 
 /obj/effect/vip_barrier/giovanni/check_entry_permission_custom(mob/living/carbon/human/entering_mob)
-	if(entering_mob.mind && entering_mob.mind.assigned_role && GLOB.giovanni_positions.Find(entering_mob.mind.assigned_role))
+	if(entering_mob.mind && entering_mob.mind.assigned_role && (entering_mob.mind.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_GIOVANNI))
 		return TRUE
 	return FALSE

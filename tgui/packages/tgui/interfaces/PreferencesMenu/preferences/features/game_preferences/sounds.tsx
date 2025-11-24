@@ -14,6 +14,16 @@ export const sound_ambience_volume: Feature<number> = {
   component: FeatureSliderInput,
 };
 
+// DARKPACK EDIT ADD START - AMBIENCE
+export const sound_music_volume: Feature<number> = {
+  name: 'Music volume',
+  category: 'SOUND',
+  description: `Music refers to the non-diagetic tracks that can be played for areas very similar to ambience.`,
+  component: FeatureSliderInput,
+};
+// DARKPACK EDIT ADD END
+
+
 export const sound_breathing: FeatureToggle = {
   name: 'Enable breathing sounds',
   category: 'SOUND',

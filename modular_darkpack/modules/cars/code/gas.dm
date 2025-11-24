@@ -72,6 +72,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_SPILL
 	canSmoothWith = SMOOTH_GROUP_SPILL + SMOOTH_GROUP_WALLS
+	resistance_flags = UNACIDABLE | ACID_PROOF
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	beauty = -50
 	alpha = 64
@@ -88,36 +89,40 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.on_fire)
-			var/obj/effect/fire/F = locate() in get_turf(src)
+			var/obj/effect/abstract/turf_fire/F = locate() in get_turf(src)
 			if(!F)
-				new /obj/effect/fire(get_turf(src))
-	..(AM)
+				new /obj/effect/abstract/turf_fire(get_turf(src))
+	. = ..()
 */
 
 /obj/effect/decal/cleanable/gasoline/Initialize()
 	. = ..()
-	/*
-	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open/floor))
-		var/turf/open/floor/F = T
-		F.spread_chance = 100
-		F.burn_material += 100
-	*/
+	var/turf/open/my_turf = get_turf(src)
+	if(istype(my_turf))
+		my_turf.flammability += 5
 	if(smoothing_flags & USES_SMOOTHING)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/effect/decal/cleanable/gasoline/Destroy()
+	var/turf/open/my_turf = get_turf(src)
+	if(istype(my_turf))
+		my_turf.flammability -= 5 // Technicly no validtiy for if its the same turf we started on. Making something less flamible is a nothing burger tho
 	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
-/*
 /obj/effect/decal/cleanable/gasoline/fire_act(exposed_temperature, exposed_volume)
-	var/obj/effect/fire/F = locate() in loc
-	if(!F)
-		new /obj/effect/fire(loc)
-	..()
-*/
+	var/turf/open/gas_turf = get_turf(src)
+	if(isopenturf(gas_turf))
+		gas_turf.ignite_turf(30 + gas_turf.flammability)
+	addtimer(CALLBACK(src, PROC_REF(ignite_others)), 0.5 SECONDS)
+	. = ..()
+
+/obj/effect/decal/cleanable/gasoline/proc/ignite_others()
+	for(var/obj/effect/decal/cleanable/gasoline/oil in range(1, get_turf(src)))
+		if(prob(25))
+			continue
+		oil.fire_act()
 
 /obj/effect/decal/cleanable/gasoline/attackby(obj/item/I, mob/living/user)
 	var/attacked_by_hot_thing = I.get_temperature()
