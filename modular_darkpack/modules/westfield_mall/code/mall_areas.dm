@@ -74,23 +74,40 @@
 	icon_state = "clothing"
 /area/vtm/westfield_mall/interior/hot_ishu
 	name = "Hot Ishu"
-	name = "clothing_ishu"
+	icon_state = "clothing_ishu"
 
 /area/vtm/westfield_mall/interior/camarilla
 	name = "Westfield Management"
-	name = "camallrilla"
+	icon_state = "camallrilla"
 
 /area/vtm/westfield_mall/interior/anarch
 	name = "Silchester & Thorne Body Art"
+	icon_state = "anarch"
 
 /area/vtm/westfield_mall/interior/chantry
 	name = "Noble's Books"
+	icon_state = "chantry"
 
 /area/vtm/westfield_mall/interior/vet_clinic
 	name = "Nottingham's Pet Emporium"
+	icon_state = "vet"
 
-/area/vtm/westfield_mall/interior/custodian
+/area/vtm/westfield_mall/interior/janitor
 	name = "Custodial Office"
+	icon_state = "janitor"
 
 /area/vtm/westfield_mall/interior/dojo
 	name = "Matrak Self-Defence"
+	icon_state = "dojo"
+
+/area/vtm/westfield_mall/interior/techshop
+	name = "Transistor Town Hobbyist Electronics"
+	icon_state = "tech"
+
+/area/vtm/westfield_mall/interior/bank
+	name = "Bianchi Banking Westfield Branch"
+	icon_state = "bank"
+
+/area/vtm/westfield_mall/interior/supply
+	name = "Trout Expert Store"
+	icon_state = "supply"
