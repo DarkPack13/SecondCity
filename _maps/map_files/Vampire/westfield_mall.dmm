@@ -2109,6 +2109,10 @@
 "lO" = (
 /turf/open/floor/city/circled,
 /area/vtm/westfield_mall/interior/vet_clinic)
+"lQ" = (
+/obj/fake_platform/stone/easyclimb,
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/skatepark)
 "lS" = (
 /obj/structure/curtain/bounty,
 /turf/open/floor/plating/rough,
@@ -4126,8 +4130,7 @@
 /area/vtm/westfield_mall/interior/supply)
 "wS" = (
 /obj/structure/lattice/grate,
-/obj/effect/spawner/random/trash/grime,
-/turf/open/water/vamp_sewer,
+/turf/open/openspace,
 /area/vtm/westfield_mall/skatepark)
 "wT" = (
 /obj/structure/vampdoor/old,
@@ -4165,10 +4168,10 @@
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/anarch)
 "xi" = (
-/obj/effect/turf_decal/bordur/inverse{
-	dir = 5
+/obj/effect/turf_decal/bordur{
+	dir = 9
 	},
-/turf/open/floor/plating/asphalt,
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
 "xj" = (
 /obj/effect/turf_decal/siding/wood/dark{
@@ -8480,6 +8483,12 @@
 	},
 /turf/open/misc/dirt/rails,
 /area/vtm/westfield_mall/interior/supply)
+"UQ" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
 "UR" = (
 /obj/structure/table,
 /obj/item/tank/internals/anesthetic,
@@ -8572,6 +8581,12 @@
 "Vv" = (
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
+"VA" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
 "VD" = (
 /turf/closed/wall/vampwall/painted/low,
 /area/vtm/westfield_mall)
@@ -8728,6 +8743,12 @@
 /obj/machinery/light/dim/directional/west,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/techshop)
+"WA" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
 "WC" = (
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/boxing,
@@ -8786,10 +8807,10 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/underground_parking)
 "WJ" = (
-/obj/effect/turf_decal/bordur/inverse{
-	dir = 9
+/obj/effect/turf_decal/bordur{
+	dir = 5
 	},
-/turf/open/floor/plating/asphalt,
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
 "WL" = (
 /turf/closed/wall/vampwall/painted,
@@ -9137,6 +9158,12 @@
 /obj/effect/decal/wallpaper/stone,
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/westfield_mall/interior/skatepark)
+"YF" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
 "YG" = (
 /turf/open/floor/plating/sidewalk,
 /area/vtm/westfield_mall)
@@ -40315,11 +40342,11 @@ bR
 hL
 hL
 hL
-hL
-hL
-hL
-hL
-hL
+Ec
+qB
+qB
+qB
+WJ
 hL
 hL
 hL
@@ -40466,13 +40493,13 @@ dg
 bR
 hL
 hL
-hL
-hL
-SQ
-xy
-yu
-hL
-hL
+Ec
+YF
+lQ
+jN
+jN
+UQ
+WJ
 hL
 hL
 hL
@@ -40618,13 +40645,13 @@ dg
 bR
 hL
 hL
-hL
-SQ
-WJ
+oR
+lQ
 jN
-oU
-yu
-hL
+jN
+jN
+jN
+WA
 hL
 hL
 hL
@@ -40770,13 +40797,13 @@ dg
 bR
 hL
 hL
-hL
-km
+oR
+lQ
 jN
 wS
 jN
-bc
-hL
+jN
+WA
 hL
 hL
 hL
@@ -40922,13 +40949,13 @@ dg
 bR
 hL
 hL
-hL
-qw
-xi
+oR
+lQ
 jN
-tH
-ka
-hL
+jN
+jN
+jN
+WA
 hL
 hL
 hL
@@ -41074,13 +41101,13 @@ dg
 bR
 hL
 hL
-hL
-hL
-qw
-Op
-ka
-hL
-hL
+gn
+lm
+lQ
+jN
+jN
+VA
+xi
 hL
 hL
 hL
@@ -41227,11 +41254,11 @@ bR
 hL
 hL
 hL
-hL
-hL
-hL
-hL
-hL
+gn
+nz
+nz
+nz
+xi
 hL
 hL
 hL
