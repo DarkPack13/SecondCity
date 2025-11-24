@@ -1,5 +1,5 @@
 /datum/job/vampire/axe_leader
-	title = "Screentender"
+	title = JOB_AXE_LEADER
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2

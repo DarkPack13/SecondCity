@@ -1,81 +1,146 @@
+#define JOB_START_HELPER(job_type, job_name)	\
+	/obj/effect/landmark/start/darkpack/##job_type {	\
+		name = ##job_name; \
+		icon_state = ##job_name; \
+	}
+
+/obj/effect/landmark/start/darkpack
+	name = "generic darkpack start"
+	desc = "Var-edit me if you're an idiot who doesn't like making subtypes!"
+	icon = 'modular_darkpack/modules/jobs/icons/landmarks.dmi'
+
 /* Anarchs */
-/obj/effect/landmark/start/baron
-/obj/effect/landmark/start/bruiser
-/obj/effect/landmark/start/emissary
-/obj/effect/landmark/start/sweeper
-/obj/effect/landmark/start/tapster
+/obj/effect/landmark/start/darkpack/anarch
+	name = "generic anarch start"
+
+JOB_START_HELPER(anarch/baron, JOB_BARON)
+JOB_START_HELPER(anarch/bruiser, JOB_BRUISER)
+JOB_START_HELPER(anarch/emissary, JOB_EMISSARY)
+JOB_START_HELPER(anarch/sweeper, JOB_SWEEPER)
+JOB_START_HELPER(anarch/tapster, JOB_TAPSTER)
 
 /* Axe Gang */
-/obj/effect/landmark/start/axe_leader
-/obj/effect/landmark/start/axe_gang
+/obj/effect/landmark/start/darkpack/axe
+	name = "generic axe gang start"
+
+JOB_START_HELPER(axe/leader, JOB_AXE_LEADER)
+JOB_START_HELPER(axe/gang, JOB_AXE_GANG)
 
 /* Camarilla */
-/obj/effect/landmark/start/prince
-/obj/effect/landmark/start/clerk
-/obj/effect/landmark/start/sheriff
-/obj/effect/landmark/start/hound
-/obj/effect/landmark/start/harpy
-/obj/effect/landmark/start/towerwork
+/obj/effect/landmark/start/darkpack/camarilla
+	name = "generic camarilla start"
+
+JOB_START_HELPER(camarilla/prince, JOB_PRINCE)
+JOB_START_HELPER(camarilla/clerk, JOB_SENESCHAL)
+JOB_START_HELPER(camarilla/sheriff, JOB_SHERIFF)
+JOB_START_HELPER(camarilla/hound, JOB_HOUND)
+JOB_START_HELPER(camarilla/harpy, JOB_HARPY)
+JOB_START_HELPER(camarilla/towerwork, JOB_TOWERWORK)
 
 /* Primogen Council */
-/obj/effect/landmark/start/primogen_banu
-/obj/effect/landmark/start/primogen_lasombra
+/obj/effect/landmark/start/darkpack/primogen
+	name = "generic primogen start"
+
+JOB_START_HELPER(primogen/toreador, JOB_PRIMOGEN_TOREADOR)
+JOB_START_HELPER(primogen/banu, JOB_PRIMOGEN_BANU_HAQIM)
+JOB_START_HELPER(primogen/lasombra, JOB_PRIMOGEN_LASOMBRA)
+JOB_START_HELPER(primogen/malkavian, JOB_PRIMOGEN_MALKAVIAN)
+JOB_START_HELPER(primogen/nosferatu, JOB_PRIMOGEN_NOSFERATU)
+JOB_START_HELPER(primogen/ventrue, JOB_PRIMOGEN_VENTRUE)
 
 /* Hospital */
-/obj/effect/landmark/start/clinic_director
-/obj/effect/landmark/start/doctor
+/obj/effect/landmark/start/darkpack/hospital
+	name = "generic hospital start"
+
+JOB_START_HELPER(hospital/clinic_director, JOB_CLINIC_DIRECTOR)
+JOB_START_HELPER(hospital/doctor, JOB_DOCTOR)
 
 /* Government & Police */
-/obj/effect/landmark/start/national_guard
-/obj/effect/landmark/start/swat
+/obj/effect/landmark/start/darkpack/law_enforcement
+	name = "generic police start"
+
+JOB_START_HELPER(law_enforcement/national_guard, JOB_NATIONAL_GUARD)
+JOB_START_HELPER(law_enforcement/swat, JOB_POLICE_SWAT)
+JOB_START_HELPER(law_enforcement/chief, JOB_POLICE_CHIEF)
+JOB_START_HELPER(law_enforcement/sergeant, JOB_POLICE_SERGEANT)
+JOB_START_HELPER(law_enforcement/officer, JOB_POLICE_OFFICER)
+JOB_START_HELPER(law_enforcement/dispatcher, JOB_EMERGENCY_DISPATCHER)
+JOB_START_HELPER(law_enforcement/fbi, JOB_FEDERAL_INVESTIGATOR)
 
 /* Giovanni */
-/obj/effect/landmark/start/capo
-/obj/effect/landmark/start/famiglia
-/obj/effect/landmark/start/squadra
-/obj/effect/landmark/start/graveyardkeeper
+/obj/effect/landmark/start/darkpack/hecata
+	name = "generic hecata start"
+
+JOB_START_HELPER(hecata/capo, JOB_CAPO)
+JOB_START_HELPER(hecata/famiglia, JOB_LA_SQUADRA)
+JOB_START_HELPER(hecata/squadra, JOB_LA_FAMIGLIA)
 
 /* Civilian */
-/obj/effect/landmark/start/citizen
-/obj/effect/landmark/start/club_woker
-/obj/effect/landmark/start/janitor
-/obj/effect/landmark/start/priest
-/obj/effect/landmark/start/taxi
+/obj/effect/landmark/start/darkpack/citizen
+	name = "generic citizen start"
+
+JOB_START_HELPER(citizen/citizen, JOB_CITIZEN)
+JOB_START_HELPER(citizen/club_woker, JOB_CLUB_WORKER)
+JOB_START_HELPER(citizen/janitor, JOB_STREET_JANITOR)
+JOB_START_HELPER(citizen/priest, JOB_PRIEST)
+JOB_START_HELPER(citizen/taxi, JOB_TAXI_DRIVER)
+JOB_START_HELPER(citizen/graveyardkeeper, JOB_GRAVEYARD_KEEPER)
 
 /* Sabbat */
-/obj/effect/landmark/start/sabbatductus
-/obj/effect/landmark/start/sabbatpack
-/obj/effect/landmark/start/sabbatpriest
-/obj/effect/landmark/start/sabbatist
+/obj/effect/landmark/start/darkpack/sabbat
+	name = "generic sabbat start"
+
+JOB_START_HELPER(sabbat/ductus, JOB_SABBAT_DUCTUS)
+JOB_START_HELPER(sabbat/pack, JOB_SABBAT_PACK)
+JOB_START_HELPER(sabbat/priest, JOB_SABBAT_PRIEST)
+JOB_START_HELPER(sabbat/sabbatist, JOB_SABBAT_SABBATIST)
 
 /* Chantry */
-/obj/effect/landmark/start/regent
-/obj/effect/landmark/start/archivist
-/obj/effect/landmark/start/gargoyle
+/obj/effect/landmark/start/darkpack/chantry
+	name = "generic chantry start"
+
+JOB_START_HELPER(chantry/regent, JOB_CHANTRY_REGENT)
+JOB_START_HELPER(chantry/archivist, JOB_CHANTRY_ARCHIVIST)
+JOB_START_HELPER(chantry/gargoyle, JOB_CHANTRY_GARGOYLE)
 
 /* Forest Wolves */
-/obj/effect/landmark/start/garou/glade/council
-/obj/effect/landmark/start/garou/glade/keeper
-/obj/effect/landmark/start/garou/glade/catcher
-/obj/effect/landmark/start/garou/glade/warder
-/obj/effect/landmark/start/garou/glade/guardian
+/obj/effect/landmark/start/darkpack/forest_wolves
+	name = "generic dog start"
+
+JOB_START_HELPER(forest_wolves/council, JOB_GAROU_FOREST_COUNCIL)
+JOB_START_HELPER(forest_wolves/keeper, JOB_GAROU_FOREST_KEEPER)
+JOB_START_HELPER(forest_wolves/catcher, JOB_GAROU_FOREST_CATCHER)
+JOB_START_HELPER(forest_wolves/warder, JOB_GAROU_FOREST_WARDER)
+JOB_START_HELPER(forest_wolves/guardian, JOB_GAROU_FOREST_GUARDIAN)
 
 /* City Wolves */
-/obj/effect/landmark/start/garou/painted/council
-/obj/effect/landmark/start/garou/painted/keeper
-/obj/effect/landmark/start/garou/painted/catcher
-/obj/effect/landmark/start/garou/painted/warder
-/obj/effect/landmark/start/garou/painted/guardian
+/obj/effect/landmark/start/darkpack/city_wolves
+	name = "generic concrete dog start"
+
+JOB_START_HELPER(city_wolves/council, JOB_GAROU_CITY_COUNCIL)
+JOB_START_HELPER(city_wolves/keeper, JOB_GAROU_CITY_KEEPER)
+JOB_START_HELPER(city_wolves/catcher, JOB_GAROU_CITY_CATCHER)
+JOB_START_HELPER(city_wolves/warder, JOB_GAROU_CITY_WARDER)
+JOB_START_HELPER(city_wolves/guardian, JOB_GAROU_CITY_GUARDIAN)
+
 /* Pentex */
-/obj/effect/landmark/start/first_team
-/obj/effect/landmark/start/garou/spiral/lead
-/obj/effect/landmark/start/garou/spiral/executive
-/obj/effect/landmark/start/garou/spiral/affairs
-/obj/effect/landmark/start/garou/spiral/secchief
-/obj/effect/landmark/start/garou/spiral/sec
-/obj/effect/landmark/start/garou/spiral/employee
+/obj/effect/landmark/start/darkpack/pentex
+	name = "generic evil dog start"
+
+JOB_START_HELPER(pentex/first_team, JOB_PENTEX_FIRST)
+JOB_START_HELPER(pentex/lead, JOB_PENTEX_LEAD)
+JOB_START_HELPER(pentex/executive, JOB_PENTEX_EXEC)
+JOB_START_HELPER(pentex/affairs, JOB_PENTEX_AFFAIRS)
+JOB_START_HELPER(pentex/secchief, JOB_PENTEX_SEC_CHIEF)
+JOB_START_HELPER(pentex/sec, JOB_PENTEX_SEC)
+JOB_START_HELPER(pentex/employee, JOB_PENTEX_EMPLOYEE)
 
 /* Voivodate */
-/obj/effect/landmark/start/bogatyr
-/obj/effect/landmark/start/voivode
-/obj/effect/landmark/start/zadruga
+/obj/effect/landmark/start/darkpack/voivode
+	name = "generic voivodate start"
+
+JOB_START_HELPER(voivode/voivode, JOB_VOIVODE)
+JOB_START_HELPER(voivode/bogatyr, JOB_BOGATYR)
+JOB_START_HELPER(voivode/zadruga, JOB_ZADRUGA)
+
+#undef JOB_START_HELPER

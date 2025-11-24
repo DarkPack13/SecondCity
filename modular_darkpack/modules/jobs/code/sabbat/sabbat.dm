@@ -1,5 +1,5 @@
 /datum/outfit/job/vampire/sabbatist
-	name = "Sabbatist"
+	name = JOB_SABBAT_SABBATIST
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench

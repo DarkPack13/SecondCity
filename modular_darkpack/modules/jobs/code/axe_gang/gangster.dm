@@ -1,5 +1,5 @@
 /datum/job/vampire/axe_gang
-	title = "Axe Gang"
+	title = JOB_AXE_GANG
 	faction = FACTION_CITY
 	total_positions = 8
 	spawn_positions = 8
