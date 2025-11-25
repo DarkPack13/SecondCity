@@ -42,8 +42,7 @@
 	if(!holder)
 		holder = new
 	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
-	update_aura_colors(aura_appearance)
-	holder.appearance = aura_appearance
+	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
 	update_aura_filters(aura_appearance, holder)
 
@@ -52,7 +51,7 @@
 		return TRUE
 	return FALSE
 
-/datum/component/aura/proc/update_aura_colors(mutable_appearance/aura_appearance)
+/datum/component/aura/proc/update_aura_colors(mutable_appearance/aura_appearance, image/holder)
 	var/output_color
 	if(is_color(current_aura))
 		output_color = current_aura
@@ -60,22 +59,9 @@
 		output_color = null
 
 	aura_appearance.color = output_color
+	holder.appearance = aura_appearance
 
-/datum/component/aura/proc/update_aura_overlays(mutable_appearance/aura_appearance, image/holder)
-	holder.cut_overlays()
 	var/mob/parent_mob = parent
-
-	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
-		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "diab", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
-		holder.add_overlay(diablerie_image)
-
-	if(current_aura == AURA_ANXIOUS)
-		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aura")
-		var/icon/static_icon = getStaticIcon(temporary_icon_holder)
-		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
-		static_image.appearance_flags |= RESET_COLOR
-		holder.appearance = static_image
-
 	if(iskindred(parent_mob))
 		var/icon/temporary_icon_holder = holder.appearance
 		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
@@ -86,9 +72,25 @@
 		aura_image.color = hsv2rgb(hsv_color_value)
 		holder.appearance = aura_image
 
+
+/datum/component/aura/proc/update_aura_overlays(mutable_appearance/aura_appearance, image/holder)
+	holder.cut_overlays()
+	var/mob/parent_mob = parent
+
+	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
+		var/image/diablerie_image = image('modular_darkpack/modules/powers/icons/auras.dmi', parent_mob, "diab", ABOVE_MOB_LAYER+1)
+		holder.add_overlay(diablerie_image)
+
+	if(current_aura == AURA_ANXIOUS)
+		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aura")
+		var/icon/static_icon = getStaticIcon(temporary_icon_holder)
+		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER+2, parent_mob, GAME_PLANE)
+		static_image.appearance_flags |= RESET_COLOR
+		holder.add_overlay(static_image)
+
 	if(isghoul(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
-		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", ABOVE_MOB_LAYER+3, parent_mob, GAME_PLANE)
 
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
