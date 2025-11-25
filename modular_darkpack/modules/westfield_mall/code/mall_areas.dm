@@ -111,3 +111,8 @@
 /area/vtm/westfield_mall/interior/supply
 	name = "Trout Expert Store"
 	icon_state = "supply"
+
+/area/vtm/westfield_mall/interior/games_store
+	#warn get draken's name for it
+	name = "Games Store"
+	icon_state = "arcade"
