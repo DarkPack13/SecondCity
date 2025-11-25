@@ -144,6 +144,10 @@
 /obj/structure/vampfence/rich,
 /turf/closed/wall/vampwall/painted/low,
 /area/vtm/interior/shop)
+"aP" = (
+/obj/machinery/oven,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "aQ" = (
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/chantry)
@@ -300,6 +304,14 @@
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
+"bG" = (
+/obj/structure/table/wood,
+/obj/structure/sign/flag/italy{
+	pixel_y = 30
+	},
+/obj/machinery/processor,
+/turf/open/floor/city/bacotell,
 /area/vtm/interior/shop)
 "bH" = (
 /obj/structure/vampdoor/prison,
@@ -1282,10 +1294,6 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
-"gI" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
 "gJ" = (
 /obj/effect/spawner/random/trash/grime,
 /turf/open/floor/plating/concrete,
@@ -1854,6 +1862,7 @@
 /area/vtm/interior/chantry)
 "js" = (
 /obj/structure/vampdoor/woodglass,
+/obj/effect/mapping_helpers/door/access/npc,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "jt" = (
@@ -2658,6 +2667,13 @@
 /obj/structure/vampdoor,
 /turf/open/floor/city/toilet/large,
 /area/vtm/westfield_mall/interior/smokeshop)
+"nC" = (
+/obj/machinery/fax/aasimites{
+	fax_name = "Matrak Self-Defence"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/interior/dojo)
 "nE" = (
 /obj/effect/turf_decal/asphaltline/alt{
 	dir = 4
@@ -2741,6 +2757,10 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"od" = (
+/obj/machinery/griddle,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "oe" = (
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating,
@@ -3306,6 +3326,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/npc,
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/hot_ishu)
 "qw" = (
@@ -3342,6 +3363,12 @@
 /obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/foodcourt)
+"qF" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "qG" = (
 /obj/structure/table/wood,
 /obj/machinery/coffeemaker/impressa,
@@ -3363,6 +3390,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/npc,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/arcade)
 "qJ" = (
@@ -3516,6 +3544,10 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior/supply)
+"rF" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/herring,
+/area/vtm/interior/shop)
 "rG" = (
 /obj/effect/spawner/random/flora/grass,
 /turf/open/misc/dirt,
@@ -4638,6 +4670,9 @@
 /obj/item/gun/ballistic/automatic/darkpack/huntrifle,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
+"wH" = (
+/turf/open/floor/wood/herring,
+/area/vtm/interior/shop)
 "wI" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/structure/reagent_dispensers/water_cooler{
@@ -4656,6 +4691,10 @@
 /obj/structure/roofstuff/alt2,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall)
+"wL" = (
+/obj/effect/decal/wallpaper/paper/darkgreen,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/shop)
 "wN" = (
 /obj/effect/spawner/random/trash/rat,
 /turf/open/water/vamp_sewer,
@@ -4734,6 +4773,29 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/arcade)
+"xm" = (
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/raw_meatball,
+/obj/item/food/cheese/wedge,
+/obj/item/food/cheese/wedge,
+/obj/item/food/cheese/wedge,
+/obj/item/food/cheese/wedge,
+/obj/item/food/cheese/wedge,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/cannoli,
+/obj/item/food/cannoli,
+/obj/item/food/cannoli,
+/obj/item/food/cannoli,
+/obj/structure/closet/secure_closet/freezer/kitchen/all_access,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "xn" = (
 /obj/structure/fluff/sat_dish,
 /turf/open/floor/plating/concrete,
@@ -4892,6 +4954,10 @@
 	},
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
+"xX" = (
+/obj/machinery/stove,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "xY" = (
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
@@ -5340,6 +5406,9 @@
 /obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance)
+"Am" = (
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "An" = (
 /obj/effect/turf_decal/stripes/white/line,
 /turf/open/floor/wood/smooth/old,
@@ -5601,6 +5670,11 @@
 /obj/structure/curtain/cloth/fancy,
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/dojo)
+"BN" = (
+/obj/structure/vampdoor/woodglass,
+/obj/effect/mapping_helpers/door/access/npc,
+/turf/open/floor/wood/herring,
+/area/vtm/interior/shop)
 "BO" = (
 /obj/transfer_point_vamp,
 /turf/open/floor/plating/asphalt,
@@ -6494,6 +6568,14 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
+"Gf" = (
+/obj/structure/vampdoor/old{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/npc,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "Gg" = (
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/rich,
@@ -6965,10 +7047,6 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
-"Ip" = (
-/obj/effect/decal/wallpaper/paper/darkgreen,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/interior/shop)
 "Iq" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -7096,13 +7174,6 @@
 "Jh" = (
 /turf/open/openspace,
 /area/vtm/interior/supply)
-"Jj" = (
-/obj/machinery/fax/aasimites{
-	fax_name = "Matrak Self-Defence"
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior/dojo)
 "Jk" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -7277,6 +7348,12 @@
 /obj/structure/guncase,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
+"Kc" = (
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/herring,
+/area/vtm/interior/shop)
 "Kg" = (
 /obj/structure/mop_bucket/janitorialcart,
 /turf/open/floor/plating/concrete,
@@ -7325,12 +7402,6 @@
 /obj/item/ammo_box/darkpack/c556,
 /obj/item/ammo_box/darkpack/c556/incendiary,
 /turf/closed/wall/vampwall/painted/low,
-/area/vtm/interior/shop)
-"Ku" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/food_packaging,
-/turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "Kv" = (
 /obj/effect/decal/wallpaper/grey{
@@ -7745,6 +7816,11 @@
 	},
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
+"Mx" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "My" = (
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/westfield_mall/interior/techshop)
@@ -9017,6 +9093,10 @@
 /obj/effect/spawner/random/flora/all,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
+"Sx" = (
+/obj/structure/closet/secure_closet/freezer/fridge/all_access,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
 "Sy" = (
 /obj/structure/chair/wood/darkpack{
 	dir = 8
@@ -9674,6 +9754,14 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/arcade)
+"VY" = (
+/obj/structure/table/wood,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/shop)
+"VZ" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "Wb" = (
 /obj/structure/bed,
 /obj/structure/bed{
@@ -69827,7 +69915,7 @@ bV
 bV
 pH
 bV
-Jj
+nC
 lJ
 Ld
 lj
@@ -73285,15 +73373,15 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
+vF
 vF
 Xr
 dT
@@ -73437,15 +73525,15 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+od
+Am
+Am
+vF
+wH
+wH
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -73589,16 +73677,16 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-vF
+od
+Am
+Am
+rF
+wH
+wH
+wH
+wH
+wH
+BN
 Xr
 Xr
 wB
@@ -73741,16 +73829,16 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-vF
+Mx
+Am
+Am
+rF
+wH
+wH
+wH
+wH
+wH
+zv
 Xr
 Xr
 wB
@@ -73893,16 +73981,16 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-vF
+VY
+Am
+Am
+rF
+wH
+wH
+wH
+wH
+wH
+zv
 Xr
 Xr
 wB
@@ -74045,16 +74133,16 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-vF
+bG
+Am
+Am
+rF
+wH
+wH
+wH
+wH
+wH
+zv
 Xr
 Xr
 wB
@@ -74197,16 +74285,16 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-vF
+aP
+Am
+Am
+rF
+wH
+wH
+wH
+wH
+wH
+zv
 Xr
 Xr
 wB
@@ -74349,15 +74437,15 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+xX
+Am
+Am
+vF
+wH
+wH
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -74501,15 +74589,15 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+xm
+Am
+Am
+vF
+wH
+wH
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -74653,15 +74741,15 @@ vF
 ib
 ib
 vF
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+Sx
+Am
+Am
+Kc
+wH
+wH
+wH
+wH
+wH
 vF
 hq
 Xr
@@ -74807,13 +74895,13 @@ ib
 vF
 vF
 vF
+Gf
 vF
-vF
-gw
-gw
-gw
-gw
-gw
+wH
+wH
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -74962,10 +75050,10 @@ ib
 ib
 vF
 vF
-gw
-gw
-gw
-gw
+wH
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -75115,9 +75203,9 @@ ib
 ib
 vF
 vF
-gw
-gw
-gw
+wH
+wH
+wH
 vF
 Xr
 Xr
@@ -75409,7 +75497,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 tP
 zY
 lk
@@ -75561,7 +75649,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 JV
 oL
 oL
@@ -75713,7 +75801,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 qG
 oL
 oL
@@ -75865,7 +75953,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 oL
 oL
 YP
@@ -75873,7 +75961,7 @@ oL
 rA
 MJ
 CX
-gI
+VZ
 tX
 Au
 gb
@@ -76017,7 +76105,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 Aj
 ox
 Ym
@@ -76025,7 +76113,7 @@ Jn
 ym
 MJ
 CX
-Ku
+qF
 Ti
 oI
 eZ
@@ -76169,7 +76257,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 CX
 CX
 CX
@@ -76321,7 +76409,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 gg
 CX
 CX
@@ -76473,7 +76561,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 aC
 CX
 CX
@@ -76625,7 +76713,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 Pa
 bE
 ZT
@@ -76777,7 +76865,7 @@ hY
 hY
 hY
 hY
-Ip
+wL
 MJ
 lE
 Sm
