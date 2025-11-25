@@ -3,7 +3,7 @@
 # #66978 never made an updates path
 /obj/structure/flora/ausbushes : /obj/structure/flora/bush/style_random {@OLD}
 /obj/structure/flora/ausbushes/reedbush : /obj/structure/flora/bush/reed/style_random {@OLD}
-/obj/structure/flora/ausbushes/leafybush : /obj/structure/flora/bush/leafy/style_random {@OLD}
+/obj/structure/flora/ausbushes/leafybush : /obj/structure/flora/bush/leavy/style_random {@OLD}
 /obj/structure/flora/ausbushes/palebush : /obj/structure/flora/bush/stalky/style_random {@OLD}
 /obj/structure/flora/ausbushes/stalkybush : /obj/structure/flora/bush/stalky/style_random {@OLD}
 /obj/structure/flora/ausbushes/grassybush : /obj/structure/flora/bush/grassy/style_random {@OLD}
@@ -18,6 +18,14 @@
 /obj/structure/flora/ausbushes/sparsegrass : /obj/structure/flora/bush/sparsegrass/style_random {@OLD}
 /obj/structure/flora/ausbushes/fullgrass : /obj/structure/flora/bush/fullgrass/style_random {@OLD}
 /obj/structure/flora/stump : /obj/structure/flora/tree/stump
+/obj/structure/flora/ausbushes/shortgrass : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/tallgrass/dry : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/b : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/c : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/large : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/rock/jungle : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/rock/pile/largejungle : /obj/structure/flora/bush/style_random {@OLD}
 
 /obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
 /obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
