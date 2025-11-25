@@ -91,4 +91,23 @@
 	SIGNAL_HANDLER
 	animate(src, invisibility = NONE, time = 0.5 SECONDS)
 	remove_obficon()
+
+/// Creating & Handling obfuscate indicator
+/mob/living/proc/add_obficon()
+	if(!client)
+		return
+	var/image/icon = image('modular_darkpack/modules/powers/icons/obfuscate_shadow.dmi', src, "shadow", FLY_LAYER)
+	icon.alpha = 100
+	icon.pixel_y = -4
+	LAZYINITLIST(obf_icons)
+	obf_icons += icon
+	client.images |= icon
+
+/mob/living/proc/remove_obficon()
+	if(!client || !obf_icons)
+		return
+	for(var/image/I in obf_icons)
+		if(I in client.images)
+			client.images -= I
+	obf_icons.Cut()
 // DARKPACK EDIT END
