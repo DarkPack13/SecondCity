@@ -169,22 +169,24 @@
 	)
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	return is_seen_check()
+	//numerical check because in the future need to implement only partially gaining their appearance based on successes
+	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+	if(successes > 0) // success
+		return is_seen_check()
+	if(successes == 0) // failure
+		return FALSE
+	if(successes < 0) // botch
+		return FALSE
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
-	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
-
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
-	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
-	UnregisterSignal(owner, aggressive_signals)
 
-	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 //VANISH FROM THE MIND'S EYE
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye
