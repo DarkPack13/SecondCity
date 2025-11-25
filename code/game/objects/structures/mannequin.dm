@@ -160,6 +160,33 @@
 		/obj/item/clothing/suit/costume/hawaiian,
 	)
 
+// DARKPACK EDIT ADD START
+/obj/structure/mannequin/plastic/fancy/Initialize(mapload)
+	if(prob(75))
+		starting_items += pick(list(
+			/obj/item/clothing/under/vampire/ventrue,
+			/obj/item/clothing/under/vampire/ventrue/female,
+			/obj/item/clothing/under/vampire/fancy_gray,
+			/obj/item/clothing/under/vampire/fancy_red,
+			/obj/item/clothing/under/vampire/leatherpants,
+		))
+	. = ..()
+
+/obj/structure/mannequin/plastic/punk/Initialize(mapload)
+	if(prob(75))
+		starting_items += pick(list(
+			/obj/item/clothing/under/vampire/punk,
+			/obj/item/clothing/under/vampire/black,
+			/obj/item/clothing/under/vampire/red,
+			/obj/item/clothing/under/vampire/gothic,
+			/obj/item/clothing/under/vampire/brujah,
+			/obj/item/clothing/under/vampire/brujah/female,
+			/obj/item/clothing/under/vampire/gangrel,
+			/obj/item/clothing/under/vampire/gangrel/female,
+		))
+	. = ..()
+// DARKPACK EDIT ADD END
+
 GLOBAL_LIST_INIT(strippable_mannequin_items, create_strippable_list(list(
 	/datum/strippable_item/mannequin_slot/head,
 	/datum/strippable_item/mannequin_slot/eyes,
