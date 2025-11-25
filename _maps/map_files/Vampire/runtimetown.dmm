@@ -1825,7 +1825,7 @@
 /area/vtm/interior/shop)
 "Jz" = (
 /obj/structure/table/reinforced,
-/obj/item/arcane_tome,
+/obj/item/ritual_tome_arcane,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "JB" = (
@@ -2022,11 +2022,6 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
-"Mo" = (
-/obj/structure/table/reinforced,
-/obj/item/ritual_tome/arcane,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/sewer)
 "My" = (
 /obj/structure/retail/costume_store{
 	pixel_x = 2;
