@@ -1011,7 +1011,7 @@
 /area/vtm/outside/pacificheights)
 "vo" = (
 /obj/structure/vampdoor{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
@@ -1231,7 +1231,7 @@
 /area/vtm/outside/pacificheights)
 "Ao" = (
 /obj/structure/vampdoor{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
@@ -1786,7 +1786,7 @@
 /area/vtm/interior/anarch)
 "JK" = (
 /obj/structure/vampdoor{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
@@ -2250,7 +2250,7 @@
 /area/vtm/planetgeneration)
 "Rm" = (
 /obj/structure/vampdoor{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
