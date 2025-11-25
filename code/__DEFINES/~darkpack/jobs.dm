@@ -203,7 +203,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_KINDRED "Kindred"
 #define EXP_TYPE_GAROU "Garou"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
-#define EXP_TYPE_SUPPLY "Supply"
+#define EXP_TYPE_WAREHOUSE "Supply"
 #define EXP_TYPE_CHANTRY "Chantry"
 #define EXP_TYPE_ANARCH "Anarchs"
 #define EXP_TYPE_SABBAT "Sabbat"

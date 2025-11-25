@@ -9,7 +9,7 @@
 	outfit = /datum/outfit/job/vampire/supply_tech
 
 	display_order = JOB_DISPLAY_ORDER_SUPPLY
-	exp_required_type_department = EXP_TYPE_SUPPLY
+	exp_required_type_department = EXP_TYPE_WAREHOUSE
 	department_for_prefs = /datum/job_department/supply
 	departments_list = list(
 		/datum/job_department/supply,

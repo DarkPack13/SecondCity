@@ -49,7 +49,7 @@
 	department_name = DEPARTMENT_SUPPLY
 	department_bitflags = DEPARTMENT_BITFLAG_SUPPLY
 	department_head = /datum/job/vampire/dealer
-	department_experience_type = EXP_TYPE_SUPPLY
+	department_experience_type = EXP_TYPE_WAREHOUSE
 	display_order = 1
 	label_class = "supply"
 	ui_color = "#a58866"
