@@ -127,3 +127,13 @@
   - rscdel: Removed player shadow disc
   dwinters99:
   - image: old vehicle sprites
+2025-11-25:
+  FalloutFalcon:
+  - rscadd: city gangrel
+  - rscadd: reimplements protean
+  - rscadd: readds beast marks selection conveted to tgui pref
+  - balance: tunes back gangrel form health and damage
+  chazzyjazzy:
+  - image: flowers & trees now sway in the wind
+  dwinters99:
+  - map: fake platforms and low shadows

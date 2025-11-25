@@ -270,6 +270,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return FALSE
 
 			return TRUE
+		// DARKPACK EDIT ADD START
+		if ("open_external_input_list")
+			var/requested_preference_key = params["preference"]
+
+			var/datum/preference/external_choiced/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
+			if (isnull(requested_preference))
+				return FALSE
+
+			if (!istype(requested_preference))
+				return FALSE
+
+			var/default_value = read_preference(requested_preference.type)
+
+			// Yielding
+			var/new_value = tgui_input_list(usr, "Set Preference Option", "Set Preference", requested_preference.get_choices(src), default_value)
+
+			if (!new_value)
+				return FALSE
+
+			if (!update_preference(requested_preference, new_value))
+				return FALSE
+
+			return TRUE
+		// DARKPACK EDIT ADD END
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
