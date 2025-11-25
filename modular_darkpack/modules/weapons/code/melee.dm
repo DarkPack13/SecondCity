@@ -188,31 +188,21 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 
-/obj/item/knife/vamp/gangrel
-	name = "claws"
-	icon_state = "gangrel"
-	w_class = WEIGHT_CLASS_BULKY
-	force = 6
-	armour_penetration = 100 //It's magical damage
-	block_chance = 20
-	item_flags = DROPDEL
-	masquerade_violating = TRUE
-	obj_flags = NONE
-
-/obj/item/knife/vamp/gangrel/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	if(isliving(target))
-		var/mob/living/L = target
-		L.apply_damage(30, AGGRAVATED)
-
-/obj/item/knife/vamp/gangrel/lasombra
+/obj/item/knife/vamp/lasombra_tentacle
 	name = "shadow tentacle"
 	force = 7
 	armour_penetration = 100
 	block_chance = 0
 	icon_state = "lasombra"
+	item_flags = DROPDEL
 	masquerade_violating = TRUE
+	obj_flags = NONE
 
-/obj/item/knife/vamp/gangrel/lasombra/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/knife/vamp/lasombra_tentacle/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+
+/obj/item/knife/vamp/lasombra_tentacle/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(isliving(target))
 		var/mob/living/L = target
 		L.apply_damage(16, AGGRAVATED)
@@ -256,10 +246,6 @@
 		if(L.body_position != LYING_DOWN)
 			L.toggle_resting()
 	return ..()
-
-/obj/item/knife/vamp/gangrel/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/chainsaw/vamp
 	name = "chainsaw"

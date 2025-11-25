@@ -215,6 +215,10 @@
 #define COMSIG_LIVING_SHAPESHIFTED "living_shapeshifted"
 /// From /datum/status_effect/shapechange_mob/after_unchange(): (mob/living/caster)
 #define COMSIG_LIVING_UNSHAPESHIFTED "living_unshapeshifted"
+// DARKPACK EDIT ADD START
+/// From /datum/status_effect/shapechange_mob/after_unchange(): (mob/living/old_mob)
+#define COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT "living_return_from_shapeshift"
+// DARKPACK EDIT ADD END
 
 ///From /obj/effect/rune/convert/do_sacrifice() : (list/invokers)
 #define COMSIG_LIVING_CULT_SACRIFICED "living_cult_sacrificed"
