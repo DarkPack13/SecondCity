@@ -43,10 +43,6 @@
 	var/obj/effect/landmark/start/D = pick(landmarkslist)
 	H.forceMove(D.loc)
 
-/obj/effect/landmark/start/swat
-	name = "Swat Officer"
-	delete_after_roundstart = FALSE
-
 /datum/antagonist/swat
 	name = "Swat Officer"
 	roundend_category = "Swat"

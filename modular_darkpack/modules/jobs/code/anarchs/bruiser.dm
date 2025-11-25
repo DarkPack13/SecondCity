@@ -33,7 +33,3 @@
 	l_pocket = /obj/item/smartphone/bruiser
 	r_hand = /obj/item/melee/baseball_bat/vamp
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/bruiser
-	name = "Bruiser"
-	icon_state = "Bouncer"

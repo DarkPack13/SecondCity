@@ -32,7 +32,3 @@
 	l_pocket = /obj/item/smartphone/giovanni_squadra
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
-
-/obj/effect/landmark/start/squadra
-	name = "La Squadra"
-

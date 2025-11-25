@@ -35,7 +35,3 @@
 	l_pocket = /obj/item/smartphone/axe_leader
 	r_pocket = /obj/item/vamp/keys/axes
 	backpack_contents = list(/obj/item/vamp/keys/supply, /obj/item/flashlight=1, /obj/item/watch=1, /obj/item/passport=1, /obj/item/card/credit/rich=1, /obj/item/hatchet)
-
-/obj/effect/landmark/start/axe_leader
-	name = "Screentender"
-	icon_state = "Dealer"

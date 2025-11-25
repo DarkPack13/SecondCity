@@ -33,7 +33,3 @@
 	r_pocket = /obj/item/vamp/keys/camarilla/ghoul
 	l_pocket = /obj/item/smartphone/tower_employee
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/towerwork
-	name = "Tower Employee"
-	icon_state = "Hound"

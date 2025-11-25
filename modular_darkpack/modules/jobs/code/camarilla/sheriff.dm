@@ -49,7 +49,3 @@
 /datum/outfit/job/vampire/sheriff/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	H.ignores_warrant = TRUE
-
-/obj/effect/landmark/start/sheriff
-	name = "Sheriff"
-	icon_state = "Sheriff"

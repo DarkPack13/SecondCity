@@ -36,8 +36,3 @@
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
 
 	skillchips = list(/obj/item/skillchip/entrails_reader)
-
-/obj/effect/landmark/start/doctor
-	name = "Doctor"
-	icon_state = "Doctor"
-

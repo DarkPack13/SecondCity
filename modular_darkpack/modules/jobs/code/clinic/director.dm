@@ -38,7 +38,3 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag
 
 	skillchips = list(/obj/item/skillchip/entrails_reader)
-
-/obj/effect/landmark/start/clinic_director
-	name = "Director"
-	icon_state = "Doctor"

@@ -18,12 +18,18 @@
 /obj/effect/landmark/start/towerwork : /obj/effect/landmark/start/darkpack/camarilla/towerwork
 
 #  Primogen Council
-/obj/effect/landmark/start{name="Primogen Toreador"} : /obj/effect/landmark/start/darkpack/primogen/toreador
+/obj/effect/landmark/start/citizen{name="Primogen Toreador"} : /obj/effect/landmark/start/darkpack/primogen/toreador
+
+# Banu and Lasombra starts are fixed on TFN but not APOC so these need to be duplicated
 /obj/effect/landmark/start/primogen_banu : /obj/effect/landmark/start/darkpack/primogen/banu
+/obj/effect/landmark/start/citizen{name="Primogen Banu Haqim"} : /obj/effect/landmark/start/darkpack/primogen/banu
+
 /obj/effect/landmark/start/primogen_lasombra : /obj/effect/landmark/start/darkpack/primogen/lasombra
-/obj/effect/landmark/start{name="Primogen Malkavian"} : /obj/effect/landmark/start/darkpack/primogen/malkavian
-/obj/effect/landmark/start{name="Primogen Nosferatu"} : /obj/effect/landmark/start/darkpack/primogen/nosferatu
-/obj/effect/landmark/start{name="Primogen Ventrue"} : /obj/effect/landmark/start/darkpack/primogen/ventrue
+/obj/effect/landmark/start/citizen{name="Primogen Lasombra"} : /obj/effect/landmark/start/darkpack/primogen/lasombra
+
+/obj/effect/landmark/start/citizen{name="Primogen Malkavian"} : /obj/effect/landmark/start/darkpack/primogen/malkavian
+/obj/effect/landmark/start/citizen{name="Primogen Nosferatu"} : /obj/effect/landmark/start/darkpack/primogen/nosferatu
+/obj/effect/landmark/start/citizen{name="Primogen Ventrue"} : /obj/effect/landmark/start/darkpack/primogen/ventrue
 
 #  Hospital
 /obj/effect/landmark/start/clinic_director : /obj/effect/landmark/start/darkpack/hospital/clinic_director
