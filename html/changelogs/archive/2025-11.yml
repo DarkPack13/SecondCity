@@ -120,3 +120,20 @@
   - map: Updated updatepaths scripts to not miss some stuff.
   dwinters99 & Major00 (Paynt):
   - image: new hud by Major00 (Paynt)
+2025-11-24:
+  XeonMations:
+  - bugfix: Fixed phone call records not properly cllearing and dead NPCs not fully
+      restoring your masquerade.
+  - rscdel: Removed player shadow disc
+  dwinters99:
+  - image: old vehicle sprites
+2025-11-25:
+  FalloutFalcon:
+  - rscadd: city gangrel
+  - rscadd: reimplements protean
+  - rscadd: readds beast marks selection conveted to tgui pref
+  - balance: tunes back gangrel form health and damage
+  chazzyjazzy:
+  - image: flowers & trees now sway in the wind
+  dwinters99:
+  - map: fake platforms and low shadows

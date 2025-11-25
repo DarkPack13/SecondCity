@@ -375,7 +375,7 @@
 	duration_length = 20 SECONDS
 	cooldown_length = 20 SECONDS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/tzimisce/horrid_form_shapeshift
+	var/datum/action/cooldown/spell/shapeshift/tzimisce/horrid_form_shapeshift
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
@@ -409,7 +409,7 @@
 	duration_length = 20 SECONDS
 	cooldown_length = 20 SECONDS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bloodcrawler/bloodform_shapeshift
+	var/datum/action/cooldown/spell/shapeshift/bloodcrawler/bloodform_shapeshift
 
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
