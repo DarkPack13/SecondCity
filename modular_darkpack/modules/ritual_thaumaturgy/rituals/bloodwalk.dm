@@ -54,7 +54,7 @@
 			message += "The vitae is mutable and twisted. Is there any doubt to the cursed line it belongs to?\n"
 		if(VAMPIRE_CLAN_OLD_CLAN_TZIMISCE)
 			message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
-		if(VAMPIRE_CLAN_GANGREL)
+		if(VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL)
 			message += "The blood emits a primal and feral aura. The same is likely of the owner.\n"
 		if(VAMPIRE_CLAN_MALKAVIAN)
 			message += "You can sense chaos and madness within this blood. It's owner must be maddened too.\n"
