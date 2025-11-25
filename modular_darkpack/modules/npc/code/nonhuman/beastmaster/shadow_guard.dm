@@ -1,5 +1,5 @@
 /mob/living/basic/shadow_guard
-	name = "Heart of Silence"
+	name = "heart of silence"
 	desc = "A shadow given life, creature of fathomless..."
 	icon = 'modular_darkpack/modules/npc/icons/shadow_guard.dmi'
 	icon_state = "shadow2"
