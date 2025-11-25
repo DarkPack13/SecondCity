@@ -252,7 +252,9 @@
 /area/vtm/interior/police)
 "bC" = (
 /obj/structure/railing,
-/obj/structure/chair/stool/bar/directional/west,
+/obj/structure/chair/comfy/darkpack/green{
+	dir = 8
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
 "bD" = (
@@ -295,6 +297,10 @@
 "bR" = (
 /turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/westfield_mall/skatepark)
+"bS" = (
+/obj/machinery/camera/motion/directional/west,
+/turf/open/floor/city/plating,
+/area/vtm/interior/bianchiBank)
 "bT" = (
 /obj/structure/rack/clothing/rand,
 /obj/machinery/light/blacklight/directional/south,
@@ -357,6 +363,10 @@
 	},
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/westfield_mall/interior/techshop)
+"ch" = (
+/obj/machinery/camera/autoname/directional/west,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall/parking_lot)
 "ci" = (
 /obj/structure/table/wood,
 /turf/open/floor/city/plating_mono,
@@ -1808,6 +1818,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
+/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "kc" = (
@@ -2540,6 +2551,13 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"ob" = (
+/obj/machinery/camera/autoname/directional/north{
+	pixel_x = 5;
+	pixel_y = 20
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/interior/chantry)
 "oe" = (
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating,
@@ -2811,6 +2829,10 @@
 /obj/structure/closet/crate/large,
 /turf/open/floor/city/circled/large,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
+"py" = (
+/obj/machinery/camera/autoname/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/maintenance/basement)
 "pz" = (
 /turf/closed/wall/vampwall/painted/low,
 /area/vtm/westfield_mall/interior/maintenance)
@@ -3290,6 +3312,10 @@
 "rV" = (
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/arcade)
+"rW" = (
+/obj/machinery/camera/autoname/directional/east,
+/turf/open/openspace,
+/area/vtm/interior/chantry)
 "rY" = (
 /obj/machinery/deepfryer{
 	pixel_x = 2
@@ -4454,6 +4480,13 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
+"xN" = (
+/obj/machinery/camera/autoname/directional/north{
+	pixel_x = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior/camarilla)
 "xO" = (
 /obj/machinery/light/directional/south,
 /turf/open/openspace,
@@ -5152,6 +5185,10 @@
 /obj/structure/curtain/cloth/fancy,
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/dojo)
+"BN" = (
+/obj/machinery/camera/autoname/directional/south,
+/turf/open/openspace,
+/area/vtm/westfield_mall/interior)
 "BO" = (
 /obj/transfer_point_vamp,
 /turf/open/floor/plating/asphalt,
@@ -5883,6 +5920,12 @@
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"Fm" = (
+/obj/machinery/camera/autoname/directional/north{
+	pixel_y = 21
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/interior/underground_parking)
 "Fn" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/city/plating,
@@ -6033,6 +6076,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
+"Gf" = (
+/obj/machinery/camera/motion/directional/north,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "Gg" = (
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/rich,
@@ -6062,6 +6109,10 @@
 /area/vtm/westfield_mall/interior/smokeshop)
 "Gm" = (
 /obj/effect/spawner/random/structure/billboard,
+/turf/open/misc/grass/random/grass,
+/area/vtm/westfield_mall)
+"Gn" = (
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/misc/grass/random/grass,
 /area/vtm/westfield_mall)
 "Gq" = (
@@ -6110,6 +6161,10 @@
 /obj/structure/hedge,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
+"GB" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/interior/chantry)
 "GF" = (
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
@@ -6372,7 +6427,9 @@
 /area/vtm/westfield_mall/interior/anarch)
 "HI" = (
 /obj/structure/railing,
-/obj/structure/chair/stool/bar/directional/east,
+/obj/structure/chair/comfy/darkpack/green{
+	dir = 4
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/chantry)
 "HL" = (
@@ -6966,6 +7023,10 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
+"Lk" = (
+/obj/machinery/camera/autoname/directional/east,
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/westfield_mall)
 "Ll" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -8352,6 +8413,7 @@
 /area/vtm/interior/bianchiBank)
 "Sr" = (
 /obj/machinery/vending/coffee/private,
+/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "St" = (
@@ -18773,7 +18835,7 @@ ht
 ht
 ht
 ht
-ht
+py
 ht
 ht
 ht
@@ -25444,7 +25506,7 @@ eH
 jc
 ht
 ht
-ht
+py
 ht
 ht
 jc
@@ -27436,7 +27498,7 @@ jc
 jc
 jc
 pj
-Vk
+Fm
 Vk
 lK
 Vk
@@ -41238,7 +41300,7 @@ dg
 dg
 XY
 Mm
-XY
+Lk
 QQ
 QQ
 QQ
@@ -41288,7 +41350,7 @@ QQ
 QQ
 QQ
 QQ
-XY
+Lk
 Mm
 XY
 dg
@@ -42047,7 +42109,7 @@ sa
 qN
 sa
 sa
-Yu
+GB
 zL
 XF
 sa
@@ -42340,7 +42402,7 @@ gG
 uQ
 uQ
 zL
-sa
+ob
 sa
 sa
 sa
@@ -43970,7 +44032,7 @@ ib
 ib
 ib
 vF
-kW
+Gf
 Iy
 Xr
 Xr
@@ -46624,7 +46686,7 @@ Xr
 Xr
 Xr
 Xr
-Xr
+Sv
 Yl
 zG
 gs
@@ -47232,7 +47294,7 @@ Xr
 Xr
 Xr
 Xr
-Xr
+Sv
 Yl
 zG
 gs
@@ -49149,7 +49211,7 @@ QW
 lp
 pW
 YK
-YK
+bS
 Qs
 so
 ae
@@ -50273,7 +50335,7 @@ gd
 gd
 gd
 gd
-gd
+ch
 gd
 gd
 Nt
@@ -51405,7 +51467,7 @@ dg
 dg
 dg
 Rw
-Jl
+cl
 Jl
 Jl
 cY
@@ -53535,6 +53597,7 @@ dg
 dg
 dg
 dg
+Gn
 dg
 dg
 dg
@@ -53603,8 +53666,7 @@ dg
 dg
 dg
 dg
-dg
-dg
+Gn
 Fs
 bl
 bl
@@ -66213,7 +66275,7 @@ jo
 Nl
 Nl
 Wm
-Wm
+rW
 Wm
 Wm
 nf
@@ -69729,7 +69791,7 @@ wB
 wB
 wB
 wB
-wB
+BN
 Yl
 hY
 hY
@@ -73649,7 +73711,7 @@ ir
 ir
 ir
 yZ
-ir
+xN
 ir
 ir
 yZ
