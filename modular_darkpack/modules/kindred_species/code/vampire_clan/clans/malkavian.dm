@@ -62,15 +62,14 @@
 /datum/action/cooldown/malk_hivemind
 	name = "Hivemind"
 	desc = "Talk"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
 	button_icon_state = "hivemind"
 	check_flags = AB_CHECK_CONSCIOUS
 	vampiric = TRUE
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
+/datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags)
 	. = ..()
-	if(!IsAvailable())
-		return
 	var/mob/living/carbon/human/malk = clicker
 	if(!malk.clan || !istype(malk.clan, /datum/vampire_clan/malkavian))
 		return
@@ -86,16 +85,15 @@
 /datum/action/cooldown/malk_speech
 	name = "Madness Speech"
 	desc = "Unleash your innermost thoughts"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
 	button_icon_state = "malk_speech"
 	check_flags = AB_CHECK_CONSCIOUS
 	vampiric = TRUE
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/malk_speech/Trigger(mob/clicker, trigger_flags, atom/target)
+/datum/action/cooldown/malk_speech/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	var/malkavian_spans = list("singing", "bold")
-	if(!IsAvailable())
-		return
 	var/mad_speak = tgui_input_text(clicker, "Malkavian Speech", encode = FALSE)
 	if(CAN_BYPASS_FILTER(clicker) ? null : is_ic_filtered(mad_speak))
 		//before we inadvertently obfuscate the message to pass filters, filter it first.
