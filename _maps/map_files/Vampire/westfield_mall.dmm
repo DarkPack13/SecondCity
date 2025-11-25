@@ -318,7 +318,6 @@
 /obj/effect/spawner/random/entertainment/plushie{
 	pixel_y = 9
 	},
-/obj/structure/fake_stairs/wood/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "bH" = (
@@ -402,7 +401,6 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/wizrobe/fake,
 /obj/item/clothing/head/wizard,
-/obj/item/clothing/suit/armor/riot/knight,
 /obj/item/clothing/head/costume/knight,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
