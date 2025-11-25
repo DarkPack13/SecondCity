@@ -5,7 +5,7 @@
 	curse = "Grounded to material domain."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
-		// /datum/discipline/animalism,
+		/datum/discipline/animalism,
 		// /datum/discipline/vicissitude
 	)
 	male_clothes = /obj/item/clothing/under/vampire/sport
