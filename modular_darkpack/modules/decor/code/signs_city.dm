@@ -8,9 +8,14 @@
 	icon_state = "police"
 	pixel_z = 40
 
+// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/police_department, 32)
+
 /obj/structure/sign/city/order
 	name = "order sign"
 	icon_state = "order"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/order, 32)
 
 /obj/structure/sign/city/hotel
 	name = "sign"
@@ -18,6 +23,8 @@
 	icon_state = "hotel"
 	//plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/hotel, 0)
 
 /obj/structure/sign/city/hotel/Initialize(mapload)
 	. = ..()
@@ -27,6 +34,7 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
+// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 /obj/structure/sign/city/millenium
 	name = "sign"
 	desc = "It says M I L L E N I U M."
@@ -34,6 +42,8 @@
 	icon_state = "millenium"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/millenium, 0)
 
 /obj/structure/sign/city/millenium/Initialize(mapload)
 	. = ..()
@@ -46,6 +56,8 @@
 	icon_state = "bar"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/anarch, 0)
 
 /obj/structure/sign/city/anarch/Initialize(mapload)
 	. = ..()
@@ -63,6 +75,9 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
+// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese, 0)
+
 /obj/structure/sign/city/chinese/Initialize(mapload)
 	. = ..()
 	if(check_holidays(FESTIVE_SEASON))
@@ -73,8 +88,14 @@
 /obj/structure/sign/city/chinese/alt
 	icon_state = "chinese2"
 
+// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt, 0)
+
 /obj/structure/sign/city/chinese/alt2
 	icon_state = "chinese3"
+
+// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt2, 0)
 
 /obj/structure/sign/city/strip_club
 	name = "sign"
@@ -84,7 +105,9 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	pixel_w = -8
-	pixel_z = 32
+	//pixel_z = 32
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/strip_club, 32)
 
 /obj/structure/sign/city/strip_club/Initialize(mapload)
 	. = ..()
@@ -98,12 +121,16 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/cabaret_sign, 32)
+
 /obj/structure/sign/city/cabaret_sign/Initialize(mapload)
 	. = ..()
 	set_light(3, 2, "#d98aec")
 
 /obj/structure/sign/city/cabaret_sign/two
 	icon_state = "et"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/cabaret_sign/two, 32)
 
 /obj/structure/sign/city/store
 	icon = 'modular_darkpack/modules/decor/icons/store_sign.dmi'
@@ -116,12 +143,18 @@
 	desc = "Eat some precious tacos and pizza!"
 	icon_state = "bacotell"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bacotell, 32)
+
 /obj/structure/sign/city/store/bubway
 	name = "BubWay"
 	desc = "Eat some precious burgers and pizza!"
 	icon_state = "bubway"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bubway, 32)
+
 /obj/structure/sign/city/store/gummaguts
 	name = "Gumma Guts"
 	desc = "Eat some precious chicken nuggets and donuts!"
 	icon_state = "gummaguts"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
