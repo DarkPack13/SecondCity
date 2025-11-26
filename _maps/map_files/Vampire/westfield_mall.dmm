@@ -98,8 +98,7 @@
 "aC" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks{
-	pixel_x = 2;
-	pixel_y = 15
+	pixel_y = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
@@ -256,6 +255,11 @@
 /obj/effect/mapping_helpers/door/access/camarilla,
 /turf/open/floor/wood/ornate,
 /area/vtm/westfield_mall/interior/camarilla)
+"bq" = (
+/obj/structure/table/wood,
+/obj/vampire_computer,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "br" = (
 /obj/structure/sign/poster/city/gravitykills{
 	pixel_x = -10;
@@ -556,6 +560,14 @@
 /obj/structure/rack/clothing/rand,
 /turf/open/floor/wood/old,
 /area/vtm/westfield_mall/interior/clothing_store)
+"cF" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/mob/living/carbon/human/npc/shop,
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "cG" = (
 /obj/structure/table/countertop/red,
 /obj/structure/sink/basin/directional/north{
@@ -855,6 +867,10 @@
 "dV" = (
 /turf/open/water/vamp_sewer,
 /area/vtm/interior/sewer)
+"dW" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "dY" = (
 /turf/closed/indestructible/the_matrix,
 /area/vtm/interior/sewer)
@@ -1215,6 +1231,12 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/police)
+"fz" = (
+/obj/structure/chair/sofa/right/brown{
+	dir = 8
+	},
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "fA" = (
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/wood/smooth,
@@ -1467,6 +1489,10 @@
 /obj/item/ammo_box/darkpack/c556,
 /turf/open/floor/city/plating,
 /area/vtm/interior/police)
+"gR" = (
+/obj/structure/table,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "gS" = (
 /obj/effect/decal/pallet,
 /obj/effect/spawner/random/maintenance,
@@ -2467,6 +2493,10 @@
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
+"lf" = (
+/obj/effect/decal/wallpaper/blue,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/westfield_mall/interior/janitor)
 "lh" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 4
@@ -2567,14 +2597,11 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance/atrium)
 "lu" = (
-/obj/effect/turf_decal/crosswalk{
-	dir = 8
-	},
 /obj/effect/turf_decal/bordur/inverse{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/parking_lot)
+/area/vtm/westfield_mall)
 "lx" = (
 /obj/structure/rack/food,
 /obj/effect/spawner/random/engineering/vending_restock,
@@ -2786,6 +2813,15 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/skatepark)
+"mB" = (
+/obj/effect/turf_decal/siding/wood/dark,
+/obj/structure/table/wood,
+/obj/item/clipboard{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "mD" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -2848,6 +2884,10 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
+"mT" = (
+/obj/effect/turf_decal/siding/wood/dark,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "mU" = (
 /obj/structure/rack/food,
 /obj/item/reagent_containers/spray/cleaner,
@@ -2914,6 +2954,15 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/shop)
+"ng" = (
+/obj/structure/filingcabinet/medical{
+	pixel_x = -6
+	},
+/obj/structure/filingcabinet/medical{
+	pixel_x = 5
+	},
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "nj" = (
 /obj/structure/vampfence/corner/rich,
 /turf/open/floor/city/plating_mono,
@@ -3020,6 +3069,10 @@
 "nJ" = (
 /turf/open/openspace,
 /area/vtm/westfield_mall/interior/maintenance/atrium)
+"nL" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "nM" = (
 /obj/item/assembly/mousetrap/armed,
 /obj/item/assembly/mousetrap/armed,
@@ -3037,6 +3090,12 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
+"nN" = (
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "nO" = (
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/city/circled,
@@ -3100,6 +3159,19 @@
 	},
 /turf/open/floor/city/toilet/large,
 /area/vtm/westfield_mall/interior/smokeshop)
+"oj" = (
+/obj/structure/rack,
+/obj/item/surgery_tray/full,
+/obj/item/stack/sticky_tape/surgical,
+/obj/item/stack/medical/bone_gel,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
+"ok" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "ol" = (
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 1
@@ -3501,6 +3573,10 @@
 /obj/effect/landmark/latejoin_masquerade,
 /turf/open/floor/plating/canal,
 /area/vtm/interior/sewer)
+"pQ" = (
+/obj/structure/filingcabinet/white,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "pS" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave,
@@ -3768,6 +3844,13 @@
 /obj/structure/reagent_dispensers/water_cooler/jugless,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
+"qK" = (
+/obj/effect/decal/wallpaper/blue,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/clinic)
+"qM" = (
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "qN" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood/smooth/old,
@@ -3854,6 +3937,13 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
+"rh" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 1
+	},
+/obj/effect/landmark/start/doctor,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "ri" = (
 /obj/item/kirbyplants/darkpack/random,
 /turf/open/floor/wood/ornate,
@@ -3898,6 +3988,9 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
+"rq" = (
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "rr" = (
 /obj/structure/closet/crate/cardboard,
 /obj/structure/closet/crate/cardboard,
@@ -4604,6 +4697,15 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/smokeshop)
+"ug" = (
+/obj/structure/table/countertop/black,
+/obj/structure/sink/basin/directional/east,
+/obj/item/storage/box/gloves{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "uh" = (
 /obj/effect/turf_decal/siding/wood/light{
 	dir = 1
@@ -5069,6 +5171,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
+"wb" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "wd" = (
 /obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 1
@@ -5617,6 +5723,13 @@
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/camarilla)
+"yF" = (
+/obj/structure/chair/office/darkpack/red{
+	dir = 8
+	},
+/obj/effect/landmark/start/clinic_director,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "yG" = (
 /obj/structure/table,
 /turf/open/floor/plating/concrete,
@@ -6082,6 +6195,14 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
+"AH" = (
+/obj/structure/vampdoor/wood{
+	lock_id = "banuhaqim"
+	},
+/obj/effect/mapping_helpers/door/access/clinic,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "AJ" = (
 /obj/effect/turf_decal/siding/grey/corner{
 	dir = 4
@@ -6174,6 +6295,12 @@
 /obj/item/paper_bin,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/skatepark)
+"Ba" = (
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/clinic,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "Bb" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -6342,6 +6469,13 @@
 /obj/structure/curtain/cloth/fancy,
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/dojo)
+"BM" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/obj/effect/landmark/start/doctor,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "BO" = (
 /obj/transfer_point_vamp,
 /turf/open/floor/plating/asphalt,
@@ -6412,6 +6546,12 @@
 /obj/machinery/sprinkler,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"Cf" = (
+/obj/structure/vampdoor/glass{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "Cg" = (
 /obj/effect/spawner/random/entertainment/arcade,
 /turf/open/floor/eighties,
@@ -6527,6 +6667,14 @@
 	},
 /turf/open/floor/carpet/darkpack,
 /area/vtm/westfield_mall/interior/games_store)
+"CI" = (
+/obj/effect/mapping_helpers/door/access/clinic,
+/obj/effect/mapping_helpers/door/lock,
+/obj/structure/vampdoor/glass{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "CJ" = (
 /obj/structure/rack/food,
 /obj/machinery/light/cold/directional/east,
@@ -6579,6 +6727,14 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
+"CQ" = (
+/obj/structure/retail/pharmacy{
+	pixel_y = 10
+	},
+/obj/structure/retail/gas_station,
+/obj/structure/table/countertop/black,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "CS" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/concrete,
@@ -6816,6 +6972,13 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/chantry)
+"DK" = (
+/obj/structure/chair/sofa/left/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/dark,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "DL" = (
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
@@ -6868,6 +7031,10 @@
 /obj/effect/landmark/start/harpy,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
+"DU" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "DX" = (
 /obj/structure/chair/sofa/city_bench/metal/right{
 	dir = 4
@@ -7332,6 +7499,12 @@
 /obj/effect/spawner/random/trash/grime,
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer)
+"Ga" = (
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/clinic,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/clinic)
 "Gb" = (
 /mob/living/carbon/human/npc/shop,
 /obj/structure/chair/darkpack,
@@ -7373,6 +7546,14 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance)
+"Gj" = (
+/obj/vampire_computer,
+/obj/structure/table,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
+"Gk" = (
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "Gl" = (
 /obj/structure/table/modern,
 /turf/open/floor/wood/smooth/old,
@@ -7389,6 +7570,13 @@
 	},
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
+"Go" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
+/obj/structure/chair/plastic/darkpack,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "Gq" = (
 /obj/structure/chair/stool/bar/directional/east,
 /turf/open/floor/wood/smooth/old,
@@ -7522,6 +7710,12 @@
 /obj/effect/spawner/random/flora/grass,
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
+"GX" = (
+/obj/structure/coclock/grandpa{
+	pixel_y = 12
+	},
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "GZ" = (
 /obj/effect/turf_decal/bordur/corner/inverse{
 	dir = 8
@@ -7943,6 +8137,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/mob_buckler,
 /turf/open/floor/carpet/darkpack/cyan,
 /area/vtm/westfield_mall/interior/vet_clinic)
 "IM" = (
@@ -8111,6 +8306,15 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/westfield_mall/interior/supply)
+"Jy" = (
+/obj/structure/rack,
+/obj/item/storage/medkit/darkpack/advanced,
+/obj/item/storage/medkit/darkpack,
+/obj/item/storage/medkit/darkpack,
+/obj/item/storage/medkit/darkpack/burn,
+/obj/item/storage/medkit/darkpack/brute,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "JA" = (
 /obj/effect/turf_decal/siding/grey/end{
 	dir = 8
@@ -8359,6 +8563,10 @@
 /obj/machinery/light/prince/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
+"KE" = (
+/obj/effect/decal/wallpaper/red,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/clinic)
 "KF" = (
 /obj/structure/bricks,
 /turf/open/floor/plating/asphalt,
@@ -8443,6 +8651,11 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/city/plating_stone,
 /area/vtm/interior/bianchiBank)
+"KT" = (
+/obj/effect/landmark/start/doctor,
+/obj/machinery/light/small/directional/east,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "KU" = (
 /obj/structure/table/wood,
 /obj/item/storage/bag/books{
@@ -9090,6 +9303,13 @@
 /obj/effect/mapping_helpers/door/access/wolftech,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/techshop)
+"NA" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_x = 3
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/clinic)
 "ND" = (
 /obj/effect/landmark/start/prince,
 /obj/structure/chair/comfy/darkpack/dark{
@@ -9349,6 +9569,9 @@
 /obj/structure/rack/clothing/rand,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
+"ON" = (
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "OP" = (
 /obj/structure/railing{
 	dir = 8
@@ -9420,6 +9643,17 @@
 "Pe" = (
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/westfield_mall/interior/smokeshop)
+"Pf" = (
+/obj/structure/table/wood,
+/obj/item/taperecorder,
+/obj/item/tape,
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_y = 4;
+	pixel_x = 10
+	},
+/obj/item/paper,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "Pg" = (
 /obj/structure/sink/directional/west,
 /obj/structure/table/countertop/teal,
@@ -9458,6 +9692,14 @@
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
+"Po" = (
+/obj/structure/table/countertop/black,
+/obj/item/storage/medkit/darkpack/doctor{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "Pq" = (
 /obj/effect/spawner/random/trash/mopbucket,
 /turf/open/floor/plating/concrete,
@@ -9510,6 +9752,10 @@
 /obj/structure/railing,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"PH" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "PI" = (
 /obj/effect/landmark/npcability,
 /turf/open/floor/plating/sidewalk,
@@ -9804,14 +10050,12 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "QS" = (
-/obj/effect/turf_decal/crosswalk{
-	dir = 8
-	},
-/obj/effect/turf_decal/bordur/inverse{
-	dir = 4
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/westfield_mall/parking_lot)
+/turf/closed/wall/vampwall/painted,
+/area/vtm/interior/clinic)
+"QT" = (
+/obj/structure/table/optable,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "QU" = (
 /obj/structure/closet/secure_closet/freezer/empty,
 /obj/item/food/pizzaslice/square,
@@ -10173,6 +10417,13 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
+"Sl" = (
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "Sm" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small/directional/east,
@@ -10254,6 +10505,13 @@
 /obj/effect/mapping_helpers/door/access/npc,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
+"SE" = (
+/obj/effect/landmark/start/doctor,
+/obj/structure/chair/office/darkpack/blue{
+	dir = 8
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "SF" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/carpet/darkpack/greengold,
@@ -10306,6 +10564,17 @@
 /obj/machinery/light/cold/directional/west,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
+"SU" = (
+/obj/structure/table/countertop/black,
+/obj/machinery/light/directional/west,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
+"SV" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "SW" = (
 /obj/structure/stairs/east{
 	dir = 1
@@ -10475,10 +10744,20 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
+"TO" = (
+/obj/machinery/light/small/directional/north,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/clinic)
 "TP" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/foodcourt)
+"TQ" = (
+/obj/effect/mapping_helpers/door/access/clinic,
+/obj/effect/mapping_helpers/door/lock,
+/obj/structure/vampdoor,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "TR" = (
 /obj/machinery/light/directional/north,
 /turf/open/openspace,
@@ -10729,6 +11008,10 @@
 	},
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/westfield_mall/interior/maintenance)
+"UZ" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/clinic)
 "Va" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 1
@@ -10944,6 +11227,10 @@
 "VT" = (
 /turf/closed/wall/vampwall/rock,
 /area/vtm/westfield_mall/interior/supply)
+"VU" = (
+/obj/effect/decal/wallpaper/red,
+/turf/closed/wall/vampwall/painted,
+/area/vtm/westfield_mall/interior/janitor)
 "VV" = (
 /obj/machinery/light/directional/south,
 /obj/effect/spawner/random/vending/colavend,
@@ -11264,6 +11551,10 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/bianchiBank)
+"WY" = (
+/obj/structure/rack/food/rand,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "WZ" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/darkpack/redsilver,
@@ -11306,6 +11597,12 @@
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance)
+"Xi" = (
+/obj/effect/turf_decal/crosswalk{
+	dir = 4
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall)
 "Xj" = (
 /obj/effect/turf_decal/bordur,
 /obj/structure/railing,
@@ -11736,6 +12033,10 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
+"Ze" = (
+/obj/structure/table/countertop/black,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "Zf" = (
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall/interior/supply)
@@ -35168,7 +35469,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -35320,8 +35621,8 @@ Xo
 lB
 Xo
 Xo
-Xo
-vJ
+lu
+YG
 Qw
 YG
 Tg
@@ -35472,8 +35773,8 @@ Xo
 lB
 Xo
 Xo
-Xo
-SZ
+lu
+nl
 nl
 nl
 Tg
@@ -35624,8 +35925,8 @@ Xo
 lB
 Xo
 Xo
-Xo
-vZ
+lu
+PI
 PI
 PI
 Tg
@@ -35776,7 +36077,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -35928,7 +36229,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36080,7 +36381,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36232,7 +36533,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36384,7 +36685,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36536,7 +36837,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36688,7 +36989,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36840,7 +37141,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -36992,7 +37293,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37144,7 +37445,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37296,7 +37597,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37448,7 +37749,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37600,7 +37901,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37752,7 +38053,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -37904,7 +38205,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -38056,7 +38357,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -38208,7 +38509,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -38360,7 +38661,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 Vg
 YG
 YG
@@ -38512,7 +38813,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -38664,7 +38965,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -38816,7 +39117,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 En
 YG
 YG
@@ -38968,7 +39269,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 En
 YG
 YG
@@ -39120,7 +39421,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -39272,7 +39573,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -39424,7 +39725,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -39576,7 +39877,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -39728,7 +40029,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -39880,7 +40181,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40032,7 +40333,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40184,7 +40485,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40336,7 +40637,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40488,7 +40789,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40640,7 +40941,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40792,7 +41093,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -40944,7 +41245,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41096,7 +41397,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41232,7 +41533,7 @@ xy
 xy
 xy
 Lz
-Lz
+Xi
 Lz
 GV
 Xo
@@ -41248,7 +41549,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41384,7 +41685,7 @@ Op
 Op
 Op
 yD
-yD
+Xi
 yD
 Rs
 Xo
@@ -41400,7 +41701,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41552,7 +41853,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41704,7 +42005,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -41856,7 +42157,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42008,7 +42309,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42160,7 +42461,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42312,7 +42613,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42464,7 +42765,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42616,7 +42917,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42768,7 +43069,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -42920,7 +43221,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43072,7 +43373,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43224,7 +43525,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43376,7 +43677,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43528,7 +43829,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43680,7 +43981,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43832,7 +44133,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -43984,7 +44285,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44136,7 +44437,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44288,7 +44589,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44440,7 +44741,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44592,7 +44893,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44744,7 +45045,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -44896,7 +45197,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45048,7 +45349,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45200,7 +45501,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45352,7 +45653,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45504,7 +45805,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45656,7 +45957,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45808,7 +46109,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -45960,7 +46261,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46112,7 +46413,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46264,7 +46565,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46416,7 +46717,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46568,7 +46869,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46720,7 +47021,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -46872,7 +47173,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47024,7 +47325,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47176,7 +47477,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47328,7 +47629,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47480,7 +47781,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47632,7 +47933,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47784,7 +48085,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -47936,7 +48237,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48088,7 +48389,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48240,7 +48541,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48392,7 +48693,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48544,7 +48845,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48696,7 +48997,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -48848,7 +49149,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49000,7 +49301,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49152,7 +49453,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49304,7 +49605,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49456,7 +49757,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49608,7 +49909,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49760,7 +50061,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -49912,7 +50213,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50064,7 +50365,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50216,7 +50517,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50368,7 +50669,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50520,7 +50821,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50672,7 +50973,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50824,7 +51125,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -50976,7 +51277,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51128,7 +51429,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51280,7 +51581,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51432,7 +51733,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51568,7 +51869,7 @@ Gt
 Gt
 Bx
 ml
-QS
+tf
 Lz
 GV
 Xo
@@ -51584,7 +51885,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51736,7 +52037,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -51872,7 +52173,7 @@ Gt
 Gt
 mr
 QK
-lu
+tf
 yD
 Rs
 Xo
@@ -51888,7 +52189,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52040,7 +52341,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52192,7 +52493,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52344,7 +52645,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52496,7 +52797,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52648,7 +52949,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52800,7 +53101,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -52952,7 +53253,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53104,7 +53405,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53256,7 +53557,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53408,7 +53709,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53560,7 +53861,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53712,7 +54013,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -53864,7 +54165,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54016,7 +54317,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54168,7 +54469,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54320,7 +54621,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54472,7 +54773,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54624,7 +54925,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54760,7 +55061,7 @@ Gt
 Gt
 Bx
 ml
-QS
+tf
 Lz
 GV
 Xo
@@ -54776,7 +55077,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -54928,7 +55229,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55064,7 +55365,7 @@ Gt
 Gt
 mr
 QK
-lu
+tf
 yD
 Rs
 Xo
@@ -55080,7 +55381,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55232,7 +55533,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55384,7 +55685,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55536,7 +55837,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55688,7 +55989,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55840,7 +56141,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -55992,7 +56293,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -56144,7 +56445,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -56296,7 +56597,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -56448,7 +56749,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -56600,7 +56901,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -56752,7 +57053,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 PI
 PI
 PI
@@ -56904,7 +57205,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 nl
 nl
 nl
@@ -57056,7 +57357,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 Qw
 YG
@@ -57208,7 +57509,7 @@ Xo
 lB
 Xo
 Xo
-Xo
+lu
 YG
 YG
 YG
@@ -69758,9 +70059,9 @@ vF
 rv
 zv
 zv
-rz
-rz
-rz
+zv
+zv
+zv
 vF
 vF
 Xr
@@ -72325,18 +72626,18 @@ cD
 cD
 uQ
 uQ
-Rw
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
 vF
 vF
 vF
@@ -72477,18 +72778,18 @@ Nh
 cD
 uQ
 uQ
-Rw
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+qK
+oj
+ON
+ON
+TQ
+ON
+ON
+ON
+ok
+pQ
+pQ
+QS
 ib
 ib
 ib
@@ -72629,18 +72930,18 @@ mQ
 cD
 Jl
 Jl
-Rw
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+qK
+Jy
+KT
+PH
+qK
+Gj
+rh
+ON
+ON
+ON
+ON
+QS
 ib
 ib
 ib
@@ -72782,17 +73083,17 @@ cD
 cD
 Od
 cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+QS
+QS
+QS
+qK
+gR
+DU
+BM
+cF
+ON
+ON
+QS
 ib
 ib
 ib
@@ -72933,18 +73234,18 @@ rQ
 Ct
 Pq
 fg
-cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+lf
+Po
+SU
+ug
+QS
+QS
+qK
+Ze
+CQ
+qK
+CI
+QS
 ib
 ib
 ib
@@ -73085,18 +73386,18 @@ rQ
 rQ
 rQ
 rQ
-cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+lf
+QT
+ON
+SE
+qK
+ON
+ok
+ON
+ON
+ON
+ON
+QS
 ib
 ib
 ib
@@ -73237,18 +73538,18 @@ rQ
 mU
 rQ
 oS
-cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+lf
+ON
+ON
+ON
+TQ
+ON
+ON
+ON
+ON
+ON
+ON
+QS
 ib
 ib
 ib
@@ -73390,18 +73691,18 @@ cD
 cD
 cD
 cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+QS
+QS
+QS
+QS
+qK
+WY
+ON
+ON
+ON
+WY
+QS
+QS
 ib
 ib
 ib
@@ -73537,23 +73838,23 @@ gw
 gw
 cD
 rQ
-cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+VU
+GX
+mB
+nN
+KE
+wb
+SV
+rq
+ng
+qK
+WY
+ON
+ON
+ON
+WY
+WY
+QS
 ib
 ib
 ib
@@ -73689,23 +73990,23 @@ gw
 vF
 cD
 Od
-cD
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+VU
+TO
+mT
+Gk
+Ba
+Gk
+SV
+rq
+rq
+AH
+ON
+ON
+ON
+ON
+ON
+ON
+QS
 ib
 ib
 ib
@@ -73841,23 +74142,23 @@ gw
 vF
 EE
 Aw
-vF
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+Ga
+qM
+mT
+Gk
+KE
+Gk
+Go
+bq
+yF
+qK
+ON
+ON
+ON
+ON
+ON
+ON
+QS
 ib
 ib
 ib
@@ -73993,23 +74294,23 @@ gw
 vF
 xC
 Aw
-vF
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+KE
+fz
+DK
+NA
+KE
+dW
+Sl
+Pf
+UZ
+qK
+WY
+ON
+nL
+ON
+WY
+WY
+QS
 ib
 ib
 ib
@@ -74145,23 +74446,23 @@ vF
 vF
 Xr
 Xr
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
-vF
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+QS
+Cf
+QS
+QS
+QS
+QS
+QS
 vF
 vF
 vF
