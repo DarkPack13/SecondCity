@@ -115,3 +115,12 @@
 /area/vtm/westfield_mall/interior/games_store
 	name = "Glamour Games"
 	icon_state = "arcade"
+
+/area/vtm/westfield_mall/interior/cave
+	name = "Forest Cave"
+
+/area/vtm/westfield_mall/forest
+	name = "Forest"
+
+/area/vtm/westfield_mall/interior/endron_logging
+	name = "Logging Facility"

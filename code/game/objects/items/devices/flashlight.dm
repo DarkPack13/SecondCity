@@ -564,6 +564,7 @@
 	name = "red candle"
 	desc = "In Greek myth, Prometheus stole fire from the Gods and gave it to \
 		humankind. The jewelry he kept for himself."
+	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	inhand_icon_state = "candle"
