@@ -4,6 +4,7 @@
 	desc = "Power the controlled area with pure electricity."
 	icon = 'modular_darkpack/modules/electricity/icons/electricity.dmi'
 	icon_state = "fusebox"
+	base_icon_state = "fusebox"
 	layer = SIGN_LAYER
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -15,13 +16,22 @@
 	var/open = FALSE
 	//Repairing var for the loop
 	var/repairing = FALSE
+	//Soundloop for Transformers
+	var/datum/looping_sound/generator/soundloop
 
 /obj/fusebox/update_icon_state()
 	. = ..()
 	if(damaged > 100)
-		icon_state = "fusebox_open"
+		icon_state = "[base_icon_state]_off"
 	else
-		icon_state = "fusebox"
+		icon_state = base_icon_state
+
+/obj/fusebox/proc/update_sound_state()
+	if(!isnull(soundloop))
+		if(damaged > 100)
+			soundloop.stop()
+		else
+			soundloop.start(src)
 
 /obj/fusebox/proc/check_damage(mob/living/user)
 	if(damaged > 100 && !open)
@@ -40,6 +50,7 @@
 		playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 		user?.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
 	update_icon()
+	update_sound_state()
 
 /obj/fusebox/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
@@ -48,6 +59,7 @@
 			if(do_after(user, 10 SECONDS, src))
 				damaged = 0
 				update_icon_state()
+				update_sound_state()
 				playsound(get_turf(src),'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
 				var/area/power_area = get_area(src)
 				power_area.power_light = TRUE
@@ -67,29 +79,15 @@
 			damaged += I.force
 			check_damage(user)
 
-
 // transformers (another type of fusebox)
 /obj/fusebox/transformer
 	name = "transformer"
-	desc = "Power the controlled area with pure electricity."
 	icon_state = "sstation"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
-	anchored = TRUE
+	base_icon_state = "sstation"
 	pixel_y = 0
 	density = 1
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/datum/looping_sound/generator/soundloop
 
-/obj/fusebox/transformer/Initialize()
+/obj/fusebox/transformer/Initialize(mapload)
 	. = ..()
 	soundloop = new(src, TRUE)
 
-/obj/fusebox/transformer/update_icon_state()
-	. = ..()
-	if(damaged > 100)
-		icon_state = "sstation_off"
-		soundloop.stop()
-	else
-		icon_state = "sstation"
-		soundloop.start(src)
