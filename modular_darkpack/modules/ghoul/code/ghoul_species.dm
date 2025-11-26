@@ -3,6 +3,9 @@
 	plural_form = "Ghouls"
 	id = SPECIES_GHOUL
 
+/mob/living/carbon/human/species/ghoul
+	race = /datum/species/human/ghoul
+
 /datum/species/human/ghoul/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#ac151d", update = FALSE)
 	human.set_hairstyle("Long Fringe", update = TRUE)

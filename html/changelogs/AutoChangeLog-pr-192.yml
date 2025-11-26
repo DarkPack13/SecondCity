@@ -1,0 +1,5 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - rscadd: "Added Auspex to the game"
+  - balance: "You are now more sensitive to noises and bright lights while using Heightened Senses."

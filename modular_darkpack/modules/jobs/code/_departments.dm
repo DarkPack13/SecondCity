@@ -45,13 +45,13 @@
 	label_class = "anarch"
 	ui_color = "#a56666"
 
-/datum/job_department/axe_gang
-	department_name = DEPARTMENT_AXE_GANG
-	department_bitflags = DEPARTMENT_BITFLAG_AXE_GANG
-	department_head = /datum/job/vampire/axe_leader
-	department_experience_type = EXP_TYPE_GANG
+/datum/job_department/supply
+	department_name = DEPARTMENT_SUPPLY
+	department_bitflags = DEPARTMENT_BITFLAG_SUPPLY
+	department_head = /datum/job/vampire/dealer
+	department_experience_type = EXP_TYPE_WAREHOUSE
 	display_order = 1
-	label_class = "axe_gang"
+	label_class = "supply"
 	ui_color = "#a58866"
 
 /datum/job_department/strip_club
