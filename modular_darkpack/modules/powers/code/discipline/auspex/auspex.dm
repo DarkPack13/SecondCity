@@ -54,7 +54,8 @@
 			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
 	if(SENSE_HEARING in output_senses)
 		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
-		owner.AddElement(/datum/element/ear_damage)
+		var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
+		kindred_ears.damage_multiplier = kindred_ears.damage_multiplier + 1
 	if(SENSE_SMELL in output_senses)
 		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
 	if(SENSE_TASTE in output_senses)
@@ -73,7 +74,8 @@
 		owner.dna?.remove_mutation(mutation, mutation.sources)
 	// Hearing
 	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
-	owner.RemoveElement(/datum/element/ear_damage)
+	var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
+	kindred_ears.damage_multiplier = initial(kindred_ears.damage_multiplier)
 	// Vision
 	owner.client?.view_size?.resetToDefault()
 	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
