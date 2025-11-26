@@ -26,6 +26,13 @@ JOB_START_HELPER(anarch/tapster, JOB_TAPSTER)
 JOB_START_HELPER(axe/leader, JOB_AXE_LEADER)
 JOB_START_HELPER(axe/gang, JOB_AXE_GANG)
 
+/* Supply */
+/obj/effect/landmark/start/darkpack/axe
+	name = "generic warehouse start"
+
+JOB_START_HELPER(supply/dealer, JOB_DEALER)
+JOB_START_HELPER(supply/tech, JOB_SUPPLY_TECH)
+
 /* Camarilla */
 /obj/effect/landmark/start/darkpack/camarilla
 	name = "generic camarilla start"

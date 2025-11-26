@@ -9,6 +9,10 @@
 /obj/effect/landmark/start/axe_leader : /obj/effect/landmark/start/darkpack/axe/leader
 /obj/effect/landmark/start/axe_gang : /obj/effect/landmark/start/darkpack/axe/gang
 
+# Supply
+/obj/effect/landmark/start/dealer : /obj/effect/landmark/start/darkpack/supply/dealer
+/obj/effect/landmark/start/supply : /obj/effect/landmark/start/darkpack/supply/tech
+
 #  Camarilla
 /obj/effect/landmark/start/prince : /obj/effect/landmark/start/darkpack/camarilla/prince
 /obj/effect/landmark/start/clerk : /obj/effect/landmark/start/darkpack/camarilla/clerk

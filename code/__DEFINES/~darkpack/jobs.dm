@@ -83,6 +83,10 @@
 #define JOB_AXE_LEADER "Screentender"
 #define JOB_AXE_GANG "Axe Gang"
 
+// Supply
+#define JOB_DEALER "Dealer"
+#define JOB_SUPPLY_TECH "Dealer"
+
 // Forest Wolves
 #define JOB_GAROU_FOREST_COUNCIL "Amberglade Councillor"
 #define JOB_GAROU_FOREST_KEEPER "Amberglade Keeper"
