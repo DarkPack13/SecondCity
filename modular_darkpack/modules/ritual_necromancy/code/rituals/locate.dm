@@ -17,11 +17,11 @@
 
 	var/area/targetarea = get_area(target)
 
-	//if(isavatar(target))
-	//	to_chat(usr, span_ghostalert("This soul has bridged the two realities - their astral projection wanders [targetarea.name]."))
-	//	playsound(loc, 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1on.ogg', 50, FALSE)
-	//	qdel(src)
-	//	return
+	if(isavatar(target))
+		to_chat(usr, span_ghostalert("This soul has bridged the two realities - their astral projection wanders [targetarea.name]."))
+		playsound(loc, 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1on.ogg', 50, FALSE)
+		qdel(src)
+		return
 
 	if(isobserver(target))
 		to_chat(usr, span_ghostalert("This soul has departed the realm of the living - they wander [targetarea.name]."))

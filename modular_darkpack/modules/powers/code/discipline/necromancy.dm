@@ -123,9 +123,9 @@
 /datum/discipline_power/necromancy/ashes_to_ashes/activate(mob/target)
 	. = ..()
 
-	//if(isavatar(target))
-		//to_chat(owner, span_warning("This spirit is yet linked to a corporeal form.")) // cant absorb auspex ghosts
-		//return
+	if(isavatar(target))
+		to_chat(owner, span_warning("This spirit is yet linked to a corporeal form.")) // cant absorb auspex ghosts
+		return
 
 	if (isobserver(target))
 		var/mob/dead/observer/ghost = target
