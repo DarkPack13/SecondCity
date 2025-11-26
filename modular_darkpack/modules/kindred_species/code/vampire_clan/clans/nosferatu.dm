@@ -15,8 +15,8 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/nosferatu
 	female_clothes = /obj/item/clothing/under/vampire/nosferatu/female
-	//accessories = list("nosferatu_ears", "none")
-	//accessories_layers = list("nosferatu_ears" = UPPER_EARS_LAYER, "none" = UPPER_EARS_LAYER)
+	accessories = list("nosferatu_ears", "none")
+	accessories_layers = list("nosferatu_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
 	default_accessory = "nosferatu_ears"
 	clan_keys = /obj/item/vamp/keys/nosferatu
 
