@@ -35,6 +35,10 @@
 /obj/vampire_computer/prince
 	icon_state = "computerprince"
 
+/obj/vampire_computer/box
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "oldcomp"
+
 /obj/effect/landmark/start/garou/glade/council
 	name = "Amberglade Councillor"
 	icon_state = "Prince"

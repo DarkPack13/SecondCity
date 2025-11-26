@@ -715,3 +715,8 @@
 /obj/structure/fluff/tv/order/random/Initialize(mapload)
 	. = ..()
 	icon_state = "order[rand(1,4)]"
+
+/obj/structure/projector
+	name = "projector"
+	icon = 'icons/obj/machines/stationary_camera.dmi'
+	icon_state = "camera"

@@ -100,6 +100,10 @@
 	name = "Matrak Self-Defence"
 	icon_state = "dojo"
 
+/area/vtm/westfield_mall/interior/theatre
+	name = "Absolute Cinema"
+	icon_state = "arcade"
+
 /area/vtm/westfield_mall/interior/techshop
 	name = "Transistor Town Hobbyist Electronics"
 	icon_state = "tech"
