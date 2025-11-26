@@ -16,6 +16,7 @@
 
 	power_group = DISCIPLINE_POWER_GROUP_COMBAT
 
+	//need a signal for talking, being attacked
 	var/static/list/aggressive_signals = list(
 		COMSIG_MOB_ATTACK_HAND,
 		COMSIG_MOB_FIRED_GUN,
@@ -227,6 +228,7 @@
 			original_sprite = SPECIES_HUMAN
 			original_sprite_greyscale = TRUE
 
+	owner.name = target.name
 	owner.real_name = target.real_name
 	owner.dna.real_name = target.real_name
 	target.dna.copy_dna(owner.dna, 0)
@@ -234,6 +236,10 @@
 	if(target.clan?.alt_sprite)
 		owner.set_body_sprite(target.clan.alt_sprite, target.clan.alt_sprite_greyscale, TRUE)
 	else
+		if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
+		if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
@@ -245,10 +251,14 @@
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
+	owner.name = original_name
 	owner.real_name = original_name
 	owner.dna.real_name = original_name
 	original_dna.copy_dna(owner.dna, 0)
-
+	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
+	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
 	owner.updateappearance(mutcolor_update = TRUE)
 	to_chat(owner, span_notice("You assume your original form."))
