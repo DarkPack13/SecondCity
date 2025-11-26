@@ -47,11 +47,11 @@
 
 /area/vtm/westfield_mall/interior/foodcourt
 	name = "Penzera Foodcourt at Westfield"
-	name = "foodcourt"
+	icon_state = "foodcourt"
 
 /area/vtm/westfield_mall/interior/foodcourt/restaurant
 	name = "Combination Gummaguts Bubway Bacotell"
-	name = "foodcourt2"
+	icon_state = "foodcourt2"
 
 /area/vtm/westfield_mall/interior/foodcourt/grocery
 	name = "Beffley's Green Grocer"
@@ -113,6 +113,5 @@
 	icon_state = "supply"
 
 /area/vtm/westfield_mall/interior/games_store
-	#warn get draken's name for it
-	name = "Games Store"
+	name = "Glamour Games"
 	icon_state = "arcade"
