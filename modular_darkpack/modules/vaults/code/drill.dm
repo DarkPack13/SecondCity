@@ -1,4 +1,4 @@
-/obj/item/vampire/drill
+/obj/item/darkpack/drill
 	name = "thermal drill"
 	desc = "Guys! The thermal drill, go get it!"
 	icon = 'modular_darkpack/modules/vaults/icons/drill48x32.dmi'
@@ -13,7 +13,7 @@
 	throw_range = 3
 	var/obj/structure/drill/origin_type = /obj/structure/drill
 
-/obj/item/vampire/drill/proc/plant(mob/user)
+/obj/item/darkpack/drill/proc/plant(mob/user)
 	var/turf/T = get_turf(loc)
 	if(!isfloorturf(T))
 		to_chat(user, span_warning("You need ground to put this on!"))
@@ -25,7 +25,7 @@
 	placed_drill.setDir(user.dir)
 	qdel(src)
 
-/obj/item/vampire/drill/attack_self(mob/user)
+/obj/item/darkpack/drill/attack_self(mob/user)
 	plant(user)
 
 /obj/structure/drill
@@ -38,7 +38,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	layer = GASFIRE_LAYER
 	max_integrity = 3000
-	var/item_drill = /obj/item/vampire/drill
+	var/item_drill = /obj/item/darkpack/drill
 	var/gas = 0
 	var/max_gas = 300
 	var/ready = FALSE
