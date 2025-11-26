@@ -356,7 +356,7 @@
 /datum/crafting_recipe/food/knife/lil_baked_rice
 	reqs = list(/obj/item/food/big_baked_rice = 1)
 	result = /obj/item/food/lil_baked_rice
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/knife/watermelonslice
 	reqs = list(/obj/item/food/grown/watermelon = 1)
@@ -786,7 +786,7 @@
 /datum/crafting_recipe/food/oven/big_baked_rice
 	reqs = list(/obj/item/food/raw_baked_rice = 1)
 	result = /obj/item/food/big_baked_rice
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/oven/ratatouille
 	reqs = list(/obj/item/food/raw_ratatouille = 1)
@@ -796,7 +796,7 @@
 /datum/crafting_recipe/food/oven/stuffed_peppers
 	reqs = list(/obj/item/food/raw_stuffed_peppers = 1)
 	result = /obj/item/food/stuffed_peppers
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/oven/roasted_bell_pepper
 	reqs = list(/obj/item/food/grown/bell_pepper = 1)
