@@ -83,8 +83,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	return ..()
 
 ///Copies the variables of a dna datum onto another.
-/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
-	new_dna.unique_enzymes = unique_enzymes
+/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_ENZYMES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT -- added flags 'COPY_DNA_ENZYMES' and 'COPY_DNA_BLOOD_TYPE'
+	// DARKPACK EDIT ADD - Flag that copies over fingerprints
+	if(transfer_flags & COPY_DNA_ENZYMES)
+		new_dna.unique_enzymes = unique_enzymes
+	// DARKPACK EDIT END
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
 	new_dna.features = features.Copy()
@@ -94,13 +97,14 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.default_mutation_genes = default_mutation_genes
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
-		if (iscarbon(new_dna.holder))
+		if (iscarbon(new_dna.holder) && (transfer_flags & COPY_DNA_BLOOD_TYPE)) // DARKPACK EDIT - added & COPY_DNA_BLOOD_TYPE
 			var/mob/living/carbon/as_carbon = new_dna.holder
 			as_carbon.set_blood_type(blood_type)
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.holder.set_species(species.type, icon_update = FALSE)
 	else
-		new_dna.blood_type = blood_type
+		if(transfer_flags & COPY_DNA_BLOOD_TYPE)
+			new_dna.blood_type = blood_type
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.species = new species.type
 	if(transfer_flags & COPY_DNA_MUTATIONS && holder?.can_mutate())

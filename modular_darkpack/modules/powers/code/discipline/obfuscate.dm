@@ -62,7 +62,6 @@
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
@@ -111,7 +110,6 @@
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
@@ -156,37 +154,92 @@
 
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE
-	vitae_cost = 1
+	vitae_cost = 0 // vitae cost handled in activate()
 
 	toggled = TRUE
 
-	grouped_powers = list(
-		/datum/discipline_power/obfuscate/cloak_of_shadows,
-		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/mask_of_a_thousand_faces,
-		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/discipline_power/obfuscate/cloak_the_gathering
-	)
+	var/datum/dna/original_dna
+	var/original_name
+	var/original_sprite
+	var/original_sprite_greyscale
 
+//mask of a thousand faces is supposed to have varying levels of success based on successes rolled
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	//numerical check because in the future need to implement only partially gaining their appearance based on successes
 	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
-	if(successes > 0) // success
+	if(successes > 0)
 		return is_seen_check()
-	if(successes == 0) // failure
-		return FALSE
-	if(successes < 0) // botch
+	else
+		to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
 		return FALSE
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
+
+	//this 'only within 12 tiles' limitation is extremely lazy and should be treated as a placeholder for a more robust system down the line
+	//probably something like examining the target. COMSIG_ATOM_EXAMINE or something.
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/H in range(12, owner))
+		if(H == owner)
+			continue
+		targets[H.real_name] = image(icon = H.icon, icon_state = H.icon_state)
+
+	if(!targets.len)
+		to_chat(owner, span_warning("There isn't anyone nearby to mimic!"))
+		return
+
+	var/chosen_name = show_radial_menu(owner, owner, targets, radius = 40, require_near = TRUE, tooltips = TRUE)
+	if(!chosen_name)
+		return
+
+	var/mob/living/carbon/human/target
+	for(var/mob/living/carbon/human/H in range(12, owner))
+		if(H.real_name == chosen_name)
+			target = H
+			break
+
+	//transforming into someone more attractive than you requires a higher blood investment
+	var/appearance_difference = target.st_get_stat(STAT_APPEARANCE) - owner.st_get_stat(STAT_APPEARANCE)
+	if(appearance_difference > 1)
+		owner.bloodpool = max(owner.bloodpool - appearance_difference, 0)
+	else
+		owner.bloodpool = max(owner.bloodpool - 1, 0)
+
+	if(!original_dna)
+		original_dna = new /datum/dna()
+		owner.dna.copy_dna(original_dna, 0)
+		original_name = owner.real_name
+		if(owner.clan?.alt_sprite)
+			original_sprite = owner.clan.alt_sprite
+			original_sprite_greyscale = owner.clan.alt_sprite_greyscale
+		else
+			original_sprite = SPECIES_HUMAN
+			original_sprite_greyscale = TRUE
+
+	owner.real_name = target.real_name
+	owner.dna.real_name = target.real_name
+	target.dna.copy_dna(owner.dna, 0)
+
+	if(target.clan?.alt_sprite)
+		owner.set_body_sprite(target.clan.alt_sprite, target.clan.alt_sprite_greyscale, TRUE)
+	else
+		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
+
+	owner.updateappearance(mutcolor_update = TRUE)
+	to_chat(owner, span_notice("You assume the appearance of [target.real_name]."))
+
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
 			NPC.danger_source = null
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
+	owner.real_name = original_name
+	owner.dna.real_name = original_name
+	original_dna.copy_dna(owner.dna, 0)
 
+	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
+	owner.updateappearance(mutcolor_update = TRUE)
+	to_chat(owner, span_notice("You assume your original form."))
 
 //VANISH FROM THE MIND'S EYE
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye
@@ -202,7 +255,6 @@
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
@@ -244,7 +296,6 @@
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
