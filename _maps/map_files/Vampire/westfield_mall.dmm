@@ -3253,6 +3253,11 @@
 /obj/structure/table/countertop/black,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/shop)
+"ls" = (
+/obj/structure/table/countertop/red,
+/obj/structure/table/countertop/red,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "lt" = (
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance/atrium)
@@ -10088,6 +10093,10 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/shop)
+"Jo" = (
+/obj/structure/table/countertop/red,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "Jq" = (
 /obj/effect/decal/pallet,
 /obj/effect/spawner/random/maintenance,
@@ -53976,13 +53985,13 @@ ib
 ib
 ib
 ib
-ib
-ib
-ib
-ib
-ib
-ib
-ib
+vF
+vF
+vF
+vF
+vF
+vF
+vF
 vF
 kW
 Xr
@@ -54128,7 +54137,7 @@ ib
 ib
 ib
 ib
-ib
+vF
 ib
 ib
 ib
@@ -54280,7 +54289,7 @@ ib
 ib
 ib
 ib
-ib
+vF
 ib
 ib
 ib
@@ -54432,7 +54441,7 @@ ib
 ib
 ib
 ib
-ib
+vF
 ib
 ib
 ib
@@ -54584,7 +54593,7 @@ ib
 ib
 ib
 ib
-ib
+vF
 ib
 ib
 ib
@@ -77563,10 +77572,10 @@ Xr
 mZ
 Xr
 Xr
+Jo
+Jo
 Xr
-Xr
-Xr
-Xr
+ls
 Xr
 PG
 wB
@@ -77715,10 +77724,10 @@ Xr
 Xr
 Xr
 Xr
-Xr
+Jo
 Tb
 Xr
-Xr
+Jo
 Xr
 PG
 wB
@@ -77867,10 +77876,10 @@ Dn
 Dn
 Ll
 Xr
-Xr
-Xr
-Xr
-Xr
+Jo
+Jo
+Jo
+ls
 Xr
 PG
 wB
