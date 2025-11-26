@@ -18,6 +18,7 @@
 	//DARKPACK EDIT ADD -- Obfuscate Discipline
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_OBFUSCATED), PROC_REF(make_invisible))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_OBFUSCATED), PROC_REF(make_visible))
+	//DARKPACK EDIT END
 
 /// Gaining or losing [TRAIT_DWARF] updates our height and grants passtable
 /mob/living/carbon/human/proc/on_dwarf_trait(datum/source)

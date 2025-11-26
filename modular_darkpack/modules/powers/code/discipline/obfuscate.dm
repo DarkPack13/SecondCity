@@ -33,13 +33,13 @@
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /datum/discipline_power/obfuscate/proc/is_seen_check()
-	for (var/mob/living/viewer in oviewers(7, owner))
+	for (var/mob/living/viewer in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		//cats cannot stop you from Obfuscating
 		if (!istype(viewer, /mob/living/carbon) && !viewer.client)
 			continue
 
 		//the corpses are not watching you
-		//removed (HAS_TRAIT(viewer, TRAIT_BLIND) ||
+		//removed (HAS_TRAIT(viewer, TRAIT_BLIND) || -- this needs to be added
 		if (viewer.stat >= UNCONSCIOUS)
 			continue
 
@@ -289,7 +289,7 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CAPABLE
-	vitae_cost = 2
+	vitae_cost = 0
 
 	toggled = TRUE
 
