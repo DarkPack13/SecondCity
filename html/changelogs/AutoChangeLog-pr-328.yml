@@ -1,0 +1,4 @@
+author: "dwinters99"
+delete-after: True
+changes:
+  - bugfix: "woodglass doors no longer are opaque"
