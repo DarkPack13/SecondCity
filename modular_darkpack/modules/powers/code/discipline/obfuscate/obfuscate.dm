@@ -23,6 +23,18 @@
 		COMSIG_PROJECTILE_PREHIT,
 	)
 
+/*
+	var/static/list/aggressive_signals = list(
+		COMSIG_MOB_ATTACK_HAND,
+		COMSIG_MOB_ATTACKED_HAND,
+		COMSIG_MOB_MELEE_SWING,
+		COMSIG_MOB_FIRED_GUN,
+		COMSIG_MOB_THREW_MOVABLE,
+		COMSIG_MOB_ATTACKING_MELEE,
+		COMSIG_MOB_ATTACKED_BY_MELEE,
+	)
+*/
+
 /datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source)
 	SIGNAL_HANDLER
 
