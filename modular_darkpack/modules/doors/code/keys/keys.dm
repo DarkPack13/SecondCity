@@ -138,6 +138,30 @@
 		LOCKACCESS_BAALI
 	)
 
+/obj/item/vamp/keys/lasombra
+	name = "Dark keys"
+	accesslocks = list(
+		LOCKACCESS_LASOMBRA,
+		"kyasid",
+		"church"
+	)
+	color = "#290355"
+
+/obj/item/vamp/keys/lasombra/primogen
+	name = "Really Dark keys"
+	accesslocks = list(
+		LOCKACCESS_LASOMBRA,
+		"kyasid",
+		"church",
+		"primogen",
+		"primLasombra",
+		"milleniumCommon",
+		"theatre",
+		"ventrueGreenroom",
+		"camarilla"
+	)
+	color = "#4b039c"
+
 /obj/item/vamp/keys/daughters
 	name = "eclectic keys"
 	accesslocks = list(

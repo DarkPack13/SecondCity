@@ -40,6 +40,8 @@
 #define LOCKACCESS_OLD_CLAN_TZI "old_clan_tzimisce"
 #define LOCKACCESS_BAALI "baali"
 
+#define LOCKACCESS_LASOMBRA "lasombra"
+
 #define LOCKACCESS_SABBAT "sabbat"
 
 #define LOCKACCESS_ANARCH "anarch"

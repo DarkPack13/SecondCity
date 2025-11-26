@@ -119,6 +119,8 @@
 /obj/effect/mapping_helpers/door/access/baali
 	lock_id = LOCKACCESS_BAALI
 
+/obj/effect/mapping_helpers/door/access/lasombra
+	lock_id = LOCKACCESS_LASOMBRA
 
 /obj/effect/mapping_helpers/door/access/sabbat
 	lock_id = LOCKACCESS_SABBAT
