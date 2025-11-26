@@ -453,6 +453,10 @@
 /obj/machinery/light/blacklight/directional/south,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"ch" = (
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/shop)
 "ci" = (
 /obj/structure/table/wood,
 /turf/open/floor/city/plating_mono,
@@ -2002,6 +2006,7 @@
 /area/vtm/interior/sewer)
 "iP" = (
 /obj/structure/table,
+/obj/machinery/light_switch/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "iQ" = (
@@ -3366,6 +3371,13 @@
 	},
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
+"oN" = (
+/obj/structure/railing/wooden_fence{
+	dir = 4
+	},
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/carpet/darkpack/orangesilver,
+/area/vtm/interior/supply)
 "oO" = (
 /obj/effect/turf_decal/bordur{
 	dir = 10
@@ -3487,6 +3499,11 @@
 "pj" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/underground_parking)
+"pl" = (
+/obj/machinery/griddle,
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/city/bacotell,
+/area/vtm/interior/littleitaly)
 "pm" = (
 /obj/structure/chair/wood/darkpack{
 	dir = 1
@@ -3494,6 +3511,12 @@
 /obj/effect/landmark/start/bruiser,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
+"pn" = (
+/obj/structure/closet/secure_closet/medical1,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/maintenance)
 "pp" = (
 /obj/structure/closet,
 /obj/item/clothing/suit/vampire/eod,
@@ -4038,6 +4061,14 @@
 "rB" = (
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"rD" = (
+/obj/structure/vampdoor{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/clinic,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "rE" = (
 /obj/effect/turf_decal/siding/grey{
 	dir = 8
@@ -4863,6 +4894,7 @@
 /obj/effect/spawner/random/structure/crate_loot,
 /obj/effect/decal/pallet,
 /obj/machinery/light/small/directional/east,
+/obj/machinery/light_switch/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "uP" = (
@@ -5377,6 +5409,10 @@
 /obj/item/storage/medkit/darkpack,
 /obj/item/storage/medkit/darkpack/burn,
 /obj/item/storage/medkit/darkpack/brute,
+/obj/item/defibrillator/loaded,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/internals/anesthetic,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "wN" = (
@@ -7581,6 +7617,7 @@
 	pixel_x = -1;
 	pixel_y = 11
 	},
+/obj/machinery/light_switch/directional/north,
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/westfield_mall/interior/janitor)
 "Gi" = (
@@ -8157,11 +8194,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/police)
 "IG" = (
-/obj/structure/table/countertop/black,
-/obj/item/storage/medkit/darkpack/doctor{
-	pixel_x = -6;
-	pixel_y = 8
-	},
+/obj/machinery/computer/operating,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "II" = (
@@ -8958,10 +8991,6 @@
 "LP" = (
 /obj/structure/rack,
 /obj/item/surgery_tray/full,
-/obj/item/stack/sticky_tape/surgical,
-/obj/item/stack/medical/bone_gel,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "LQ" = (
@@ -9461,6 +9490,11 @@
 "NQ" = (
 /obj/structure/table/countertop/black,
 /obj/machinery/light/directional/west,
+/obj/item/storage/medkit/darkpack/doctor{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/clothing/neck/stethoscope,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "NS" = (
@@ -67376,7 +67410,7 @@ hY
 hY
 hY
 WL
-nG
+oN
 nG
 dL
 dL
@@ -72586,7 +72620,7 @@ pz
 uQ
 uQ
 Rw
-Jl
+pn
 Jl
 Jl
 Jl
@@ -72740,7 +72774,7 @@ uQ
 uZ
 uZ
 uZ
-uZ
+rD
 uZ
 uZ
 uZ
@@ -75283,7 +75317,7 @@ vF
 ib
 ib
 xo
-rW
+pl
 ey
 qP
 xo
@@ -75294,12 +75328,12 @@ yC
 yC
 iV
 Xr
-Xr
-Xr
-Xr
-Xr
-Xr
-Xr
+qT
+Dn
+Dn
+Dn
+Dn
+Dn
 Yl
 Yl
 wB
@@ -75307,9 +75341,9 @@ wB
 wB
 Yl
 Yl
-Xr
-Xr
-Xr
+Dn
+Dn
+Ll
 Xr
 Xr
 Xr
@@ -75446,7 +75480,7 @@ yC
 yC
 Jt
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -75461,7 +75495,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xr
@@ -75598,7 +75632,7 @@ yc
 pO
 Rn
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -75613,7 +75647,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xr
@@ -75750,7 +75784,7 @@ yc
 pO
 Rn
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -75765,7 +75799,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 yZ
@@ -75902,7 +75936,7 @@ vP
 vP
 Rn
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -75917,7 +75951,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Ck
@@ -76054,7 +76088,7 @@ vP
 vP
 Rn
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76069,7 +76103,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xx
@@ -76206,7 +76240,7 @@ yc
 pO
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76221,7 +76255,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xx
@@ -76358,7 +76392,7 @@ yc
 pO
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76373,7 +76407,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Ck
@@ -76510,7 +76544,7 @@ vP
 vP
 iV
 hq
-Xr
+PG
 wB
 wB
 wB
@@ -76525,7 +76559,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Sv
 Ck
@@ -76662,7 +76696,7 @@ vP
 vP
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76677,7 +76711,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xx
@@ -76814,7 +76848,7 @@ yc
 pO
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76829,7 +76863,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Xx
@@ -76966,7 +77000,7 @@ yc
 pO
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -76981,7 +77015,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Ck
@@ -77118,7 +77152,7 @@ iV
 iV
 iV
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -77133,7 +77167,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 yZ
@@ -77270,7 +77304,7 @@ ib
 ib
 vF
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -77285,7 +77319,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -77422,7 +77456,7 @@ ib
 ib
 lP
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -77437,7 +77471,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -77574,7 +77608,7 @@ vF
 vF
 vF
 hq
-Xr
+PG
 wB
 wB
 wB
@@ -77589,7 +77623,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Sv
 Yl
@@ -77712,7 +77746,7 @@ hY
 hY
 hY
 wL
-oL
+ch
 oL
 YP
 oL
@@ -77726,7 +77760,7 @@ gb
 Ih
 zv
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -77741,7 +77775,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -77878,7 +77912,7 @@ eZ
 Va
 zv
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -77893,7 +77927,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -78030,7 +78064,7 @@ CX
 CX
 vF
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -78045,7 +78079,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -78182,7 +78216,7 @@ CX
 CX
 js
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -78197,7 +78231,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -78334,7 +78368,7 @@ CX
 CX
 vF
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -78349,7 +78383,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -78486,7 +78520,7 @@ Bl
 YD
 zv
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -78501,7 +78535,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl
@@ -78638,7 +78672,7 @@ eV
 Vs
 zv
 Xr
-Xr
+PG
 wB
 wB
 wB
@@ -78653,7 +78687,7 @@ wB
 wB
 wB
 wB
-Xr
+yr
 Xr
 Xr
 Yl

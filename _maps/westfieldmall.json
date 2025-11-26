@@ -36,5 +36,43 @@
 			"Baseturf": "/turf/open/openspace"
 		}
 	],
+	"job_changes": {
+		"Graveyard Keeper": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Street Janitor": {
+			"spawn_positions": 2,
+			"total_positions": 2
+		},
+		"Taxi Driver": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Sweeper": {
+			"spawn_positions": 2,
+			"total_positions": 2
+		},
+		"Brusier": {
+			"spawn_positions": 4,
+			"total_positions": 4
+		},
+		"Bartender": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Priest": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Doctor": {
+			"spawn_positions": 3,
+			"total_positions": 3
+		},
+		"Club Worker": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		}
+	},
 	"max_npcs": 60
 }
