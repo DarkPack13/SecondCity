@@ -4,6 +4,9 @@
 	id = SPECIES_GHOUL
 	changesource_flags = MIRROR_BADMIN
 
+/mob/living/carbon/human/species/ghoul
+	race = /datum/species/human/ghoul
+
 /datum/species/human/ghoul/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#362925", update = FALSE)
 	human.set_hairstyle("Nitori", update = TRUE)

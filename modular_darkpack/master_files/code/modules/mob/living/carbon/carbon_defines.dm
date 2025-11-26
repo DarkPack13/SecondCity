@@ -35,6 +35,4 @@
 
 	bloodquality = 2
 
-	var/soul_state = SOUL_PRESENT
-
 	var/can_be_embraced = TRUE

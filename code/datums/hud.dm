@@ -18,6 +18,7 @@ GLOBAL_ALIST_INIT(huds, alist(
 	DATA_HUD_AI_DETECT = new /datum/atom_hud/ai_detector(),
 	DATA_HUD_FAN = new /datum/atom_hud/data/human/fan_hud(),
 	DATA_HUD_MALF_APC = new /datum/atom_hud/data/malf_apc(),
+	DATA_HUD_AUSPEX_AURAS = new /datum/atom_hud/data/auspex_aura(), //DARKPACK EDIT ADDITION
 ))
 
 /// Assoc list of traits to the huds they give.
