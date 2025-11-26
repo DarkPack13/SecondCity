@@ -122,7 +122,7 @@
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stairs_black"
 	base_icon_state = "stairs_black"
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/floor/iron/stairs/black/left
 	icon_state = "stairs_black-l"

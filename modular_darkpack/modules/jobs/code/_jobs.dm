@@ -12,7 +12,9 @@
 	///List of species that are limited to a certain amount of that species doing this job.
 	var/list/species_slots = list(SPECIES_HUMAN = -1, SPECIES_GHOUL = -1, SPECIES_KINDRED = -1)
 	///List of Clans that are allowed to do this job.
-	var/list/allowed_clans = VAMPIRE_CLAN_ALL
+	var/list/allowed_clans
+	///List of Clans that are disallowed to do this job.
+	var/list/disallowed_clans
 	///If this job requires whitelisting before it can be selected for characters.
 	var/whitelisted = FALSE
 

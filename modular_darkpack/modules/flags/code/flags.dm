@@ -52,14 +52,20 @@
 	icon_state = "flag_usa"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/usa, 32)
+
 /obj/structure/sign/flag/california
 	name = "flag of California"
 	desc = "The flag of the great State of California. Eureka!"
 	icon_state = "flag_california"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/california, 32)
+
 /obj/structure/sign/flag/california/rare
 	var/always = FALSE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/califorina/rare, 32)
 
 /obj/structure/sign/flag/california/rare/Initialize(mapload)
 	. = ..()
@@ -74,11 +80,15 @@
 	icon_state = "flag_britain"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/britain, 32)
+
 /obj/structure/sign/flag/france
 	name = "flag of France"
 	desc = "The flag of the French Republic. Liberte, egalite, fraternite!"
 	icon_state = "flag_france"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/france, 32)
 
 /obj/structure/sign/flag/germany
 	name = "flag of Germany"
@@ -86,11 +96,15 @@
 	icon_state = "flag_germany"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/germany, 32)
+
 /obj/structure/sign/flag/spain
 	name = "flag of Spain"
 	desc = "The flag of the Kingdom of Spain. Plus ultra!"
 	icon_state = "flag_spain"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/spain, 32)
 
 /obj/structure/sign/flag/italy
 	name = "flag of Italy"
@@ -98,11 +112,15 @@
 	icon_state = "flag_italy"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/italy, 32)
+
 /obj/structure/sign/flag/vatican
 	name = "flag of the Vatican"
 	desc = "The flag of Vatican City."
 	icon_state = "flag_vatican"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/vatican, 32)
 
 /obj/structure/sign/flag/russia
 	name = "flag of Russia"
@@ -110,11 +128,15 @@
 	icon_state = "flag_russia"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/russia, 32)
+
 /obj/structure/sign/flag/soviet
 	name = "flag of the Soviet Union"
 	desc = "The flag of the Union of Socialist Soviet Republics. Workers of the world, unite!"
 	icon_state = "flag_soviet"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/soviet, 32)
 
 /obj/structure/sign/flag/china
 	name = "flag of China"
@@ -122,11 +144,15 @@
 	icon_state = "flag_china"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/china, 32)
+
 /obj/structure/sign/flag/taiwan
 	name = "flag of Taiwan"
 	desc = "The flag of the Republic of China."
 	icon_state = "flag_taiwan"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/taiwan, 32)
 
 /obj/structure/sign/flag/japan
 	name = "flag of Japan"
@@ -134,8 +160,12 @@
 	icon_state = "flag_japan"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/japan, 32)
+
 /obj/structure/sign/flag/anarchy
 	name = "anarchist flag"
 	desc = "The flag of the anarchist movement."
 	icon_state = "flag_anarchy"
 	icon = 'modular_darkpack/modules/flags/icons/flags.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/anarchy, 32)
