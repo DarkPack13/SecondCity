@@ -26,7 +26,3 @@
 	r_pocket = /obj/item/vamp/keys/strip
 	id = /obj/item/watch
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/club_worker
-	name = "Strip"
-	icon_state = "Assistant"
