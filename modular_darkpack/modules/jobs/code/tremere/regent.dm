@@ -36,7 +36,3 @@
 	l_pocket = /obj/item/smartphone/tremere_regent
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/arcane_tome=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
-
-/obj/effect/landmark/start/regent
-	name = "Chantry Regent"
-	icon_state = "Archivist"

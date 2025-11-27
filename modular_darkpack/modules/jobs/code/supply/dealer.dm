@@ -31,7 +31,3 @@
 	l_pocket = /obj/item/smartphone/dealer
 	r_pocket = /obj/item/vamp/keys/supply
 	backpack_contents = list(/obj/item/flashlight=1, /obj/item/watch=1, /obj/item/passport=1, /obj/item/card/credit/rich=1, /obj/item/hatchet)
-
-/obj/effect/landmark/start/dealer
-	name = "Dealer"
-	icon_state = "Dealer"
