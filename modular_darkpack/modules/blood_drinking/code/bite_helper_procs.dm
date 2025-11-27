@@ -2,7 +2,7 @@
 /mob/living/proc/adjustBloodPool(amount, updating_health = TRUE, on_spawn)
 	if(on_spawn)
 		bloodpool = 0
-	bloodpool = clamp(bloodpool+blood_delta, 0, maxbloodpool)
+	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
 	if(updating_health)
 		update_blood_hud()
 
