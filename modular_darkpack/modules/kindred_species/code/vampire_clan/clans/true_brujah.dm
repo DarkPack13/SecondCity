@@ -6,7 +6,7 @@
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		// /datum/discipline/presence,
-		// /datum/discipline/temporis
+		/datum/discipline/temporis
 	)
 	enlightenment = TRUE
 	male_clothes = /obj/item/clothing/under/vampire/rich

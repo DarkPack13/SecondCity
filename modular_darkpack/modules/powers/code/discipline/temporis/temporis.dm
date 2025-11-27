@@ -34,7 +34,7 @@
 
 /datum/discipline_power/temporis/hourglass_of_the_mind/activate()
 	. = ..()
-	to_chat(owner, "<b>[station_time_timestamp("hh:mm")]</b>")
+	to_chat(owner, "<b>[station_time_timestamp("hh:mm:ss")]</b>")
 
 //RECURRING CONTEMPLATION
 /datum/discipline_power/temporis/recurring_contemplation
@@ -118,24 +118,9 @@
 /datum/discipline_power/temporis/patience_of_the_norns/proc/temporis_visual(datum/discipline_power/temporis/source, atom/newloc, dir)
 	SIGNAL_HANDLER
 
-	spawn()
-		var/obj/effect/temporis/temporis_visual = new(owner.loc)
-		temporis_visual.name = owner.name
-		temporis_visual.appearance = owner.appearance
-		temporis_visual.dir = owner.dir
-		animate(temporis_visual, pixel_x = rand(-32,32), pixel_y = rand(-32,32), alpha = 255, time = 1 SECONDS)
-		if(owner.CheckEyewitness(owner, owner, 7, FALSE))
-			owner.adjust_masquerade(-1)
+	new /obj/effect/temporis/patience_of_the_norns(owner.loc, owner)
 
-/obj/effect/temporis
-	name = "Za Warudo"
-	desc = "..."
-	anchored = TRUE
-
-/obj/effect/temporis/Initialize(mapload)
-	. = ..()
-	spawn(0.5 SECONDS)
-		qdel(src)
+	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 //CLOTHO'S GIFT
 /datum/discipline_power/temporis/clothos_gift
@@ -169,14 +154,9 @@
 /datum/discipline_power/temporis/clothos_gift/proc/temporis_visual(datum/discipline_power/temporis/source, atom/newloc, dir)
 	SIGNAL_HANDLER
 
-	spawn()
-		var/obj/effect/temporis/temporis_visual = new(owner.loc)
-		temporis_visual.name = owner.name
-		temporis_visual.appearance = owner.appearance
-		temporis_visual.dir = owner.dir
-		animate(temporis_visual, pixel_x = rand(-32,32), pixel_y = rand(-32,32), alpha = 155, time = 0.5 SECONDS)
-		if(owner.CheckEyewitness(owner, owner, 7, FALSE))
-			owner.adjust_masquerade(-1)
+	new /obj/effect/temporis/clothos_gift(owner.loc, owner)
+
+	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/movespeed_modifier/temporis5
 	multiplicative_slowdown = -2.5
