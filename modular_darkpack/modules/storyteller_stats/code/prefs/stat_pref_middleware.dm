@@ -11,8 +11,8 @@
 
 	var/list/data = list()
 	data["static_stats"] = list()
-	for(var/stat_type in GLOB.public_storyteller_stats)
-		var/datum/st_stat/stat = GLOB.public_storyteller_stats[stat_type]
+	for(var/stat_type in GLOB.storyteller_stats)
+		var/datum/st_stat/stat = GLOB.storyteller_stats[stat_type]
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -31,44 +31,18 @@
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	var/stat_path = text2path(params["stat"])
-	var/datum/st_stat/public_stat = GLOB.public_storyteller_stats[stat_path]
+	var/datum/st_stat/public_stat = GLOB.storyteller_stats[stat_path]
 	if(!public_stat)
 		return FALSE
-	if(preferences.storyteller_stats[stat_path] >= public_stat.max_score)
-		return FALSE
 
-	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
-		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
-	if(!preferences.storyteller_stat_points[public_stat.abstract_type] && !preferences.storyteller_stat_points[STAT_FREEBIE_POINTS])
-		return FALSE
-	if((preferences.storyteller_stat_points[public_stat.abstract_type] >= public_stat.max_score) && public_stat.count_bonus_score)
-		return FALSE
-	preferences.storyteller_stats[stat_path] += 1
-	if(preferences.storyteller_stat_points[public_stat.abstract_type] > 0 && (preferences.storyteller_stats[stat_path] <= public_stat.max_level_before_freebie_points))
-		preferences.storyteller_stat_points[public_stat.abstract_type] -= 1
-	else
-		if((preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] - public_stat.freebie_point_cost) < 0)
-			preferences.storyteller_stats[stat_path] -= 1
-			return TRUE
-		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] -= public_stat.freebie_point_cost
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	var/stat_path = text2path(params["stat"])
-	var/datum/st_stat/public_stat = GLOB.private_storyteller_stats[stat_path]
+	var/datum/st_stat/public_stat = GLOB.storyteller_stats[stat_path]
 	if(!public_stat)
 		return FALSE
-	if(preferences.storyteller_stats[stat_path] < 0)
-		return FALSE
-	var/datum/st_stat/parent_stat_type = public_stat.abstract_type
 
-	preferences.storyteller_stats[stat_path] -= 1
-	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
-		preferences.storyteller_stat_points[public_stat.abstract_type] -= 1
-	if(preferences.storyteller_stat_points[public_stat.abstract_type] < initial(parent_stat_type.points))
-		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
-	else
-		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] += public_stat.freebie_point_cost
 	return TRUE
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
