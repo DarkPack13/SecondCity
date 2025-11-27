@@ -131,7 +131,7 @@
 	duration_length = 15 SECONDS
 	cooldown_length = 30 SECONDS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/cobra/BC
+	var/datum/action/cooldown/spell/shapeshift/cobra/BC
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/activate()
 	. = ..()
@@ -145,14 +145,14 @@
 	owner.Stun(1.5 SECONDS)
 	owner.do_jitter_animation(3 SECONDS)
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/cobra
+/datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
 	desc = "Take on the shape a beast."
 	charge_max = 15 SECONDS
 	cooldown_min = 15 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/cobra
+	possible_shapes = list(/mob/living/simple_animal/hostile/cobra)
 
 /mob/living/simple_animal/hostile/cobra
 	name = "Cobra Form"

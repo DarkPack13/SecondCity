@@ -38,6 +38,3 @@
 	l_pocket = /obj/item/smartphone/bogatyr
 	r_pocket = /obj/item/watch
 	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/bogatyr
-	name = "Bogatyr"
