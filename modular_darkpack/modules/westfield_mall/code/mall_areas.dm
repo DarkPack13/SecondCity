@@ -42,7 +42,7 @@
 	icon_state = "parking_interior"
 
 /area/vtm/westfield_mall/interior/bathroom
-	name = "Public Restroom"
+	name = "\improper Public Restroom"
 	icon_state = "pooper"
 
 /area/vtm/westfield_mall/interior/foodcourt
@@ -119,6 +119,26 @@
 /area/vtm/westfield_mall/interior/games_store
 	name = "Glamour Games"
 	icon_state = "arcade"
+
+/area/vtm/westfield_mall/interior/candy_store
+	name = "Rosie Confections"
+	icon_state = "arcade"
+
+/area/vtm/westfield_mall/interior/art_store
+	name = "The Drawn Line"
+	icon_state = "arcade"
+
+/area/vtm/westfield_mall/interior/groundskeeper_garage
+	name = "Groundskeeping Garage"
+	icon_state = "janitor"
+
+/area/vtm/westfield_mall/interior/groundskeeper_garage
+	name = "Groundskeeping Garage"
+	icon_state = "janitor"
+
+/area/vtm/westfield_mall/interior/law_office
+	name = "Venture Law LLC"
+	icon_state = "bank"
 
 /area/vtm/westfield_mall/interior/cave
 	name = "Forest Cave"
