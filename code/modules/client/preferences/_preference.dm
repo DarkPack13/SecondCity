@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preferences/proc/write_preference(datum/preference/preference, preference_value)
 	var/save_data = get_save_data_for_savefile_identifier(preference.savefile_identifier)
 	var/new_value = preference.deserialize(preference_value, src)
-	var/success = preference.write(save_data, new_value, src) // DARKPACK EDIT CHANGE
+	var/success = preference.write(save_data, new_value, src) // DARKPACK EDIT ADD END
 	if (success)
 		value_cache[preference.type] = new_value
 	return success
