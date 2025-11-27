@@ -19,6 +19,6 @@
 	id = VAMPIRE_CLAN_CITY_GANGREL
 	clan_disciplines = list(
 		/datum/discipline/celerity,
-		// /datum/discipline/obfuscate,
+		/datum/discipline/obfuscate,
 		/datum/discipline/protean
 	)
