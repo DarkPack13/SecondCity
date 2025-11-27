@@ -7,30 +7,14 @@
 /obj/keypad
 	name = "keypad"
 	desc = "Requires a password to open."
-	icon = 'icons/obj/terminals_vtm.dmi'
+	icon = 'modular_darkpack/modules/vaults/icons/keypad.dmi'
 	icon_state = "keypad"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
+	layer = SIGN_LAYER
 	anchored = TRUE
-	var/obj/machinery/door/poddoor/shutters/connected_shutter
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/x_pos = 0
-	var/y_pos = 0
+	var/list/connected_shutters = list()
 	var/pincode
 	var/id = 0
-
-/obj/keypad/proc/connect_to_shutter()
-	for(var/obj/machinery/door/poddoor/shutters/S in GLOB.machines)
-		if(S.id == id)
-			connected_shutter = S
-			break
-
-/proc/find_keypad(keypad_type)
-	// Evil in world but luckiely this is not ran super often.
-	for(var/obj/keypad/K in world)
-		if(istype(K, keypad_type))
-			return K
-	return null
 
 /obj/keypad/Initialize(mapload)
 	. = ..()
@@ -38,23 +22,35 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/keypad/LateInitialize()
-	. = ..()
-	connect_to_shutter()
+	if(!id)
+		return
+	connect_to_shutters()
 
-/obj/keypad/attack_hand(mob/user as mob)
-	var/choice = input(user, "Please choose an action.", "Keypad") as null|anything in list("Enter Pincode", "Close Shutter")
-	switch(choice)
-		if("Enter Pincode")
-			var/input_pincode = input(user, "Please enter the pincode.", "Keypad") as null|text
-			if(input_pincode && "[input_pincode]" == pincode)
-				to_chat(user, span_notice("Access Granted."))
-				if(connected_shutter.density)
-					connected_shutter.open()
-			else
-				to_chat(user, "<span class ='notice'>Access Denied.</span>")
-		if("Close Shutter")
-			if(connected_shutter && !connected_shutter.density)
-				connected_shutter.close()
+/obj/keypad/proc/connect_to_shutters()
+	for(var/obj/machinery/door/poddoor/shutters/S in range(20, src))
+		if(S.id == id)
+			connected_shutters += S
+
+/obj/keypad/attack_hand(mob/user)
+	if(!length(connected_shutters))
+		to_chat(user, span_warning("No connected shutters."))
+		return
+
+	var/choice = tgui_alert(user, "Enter pincode or close shutters?", "Keypad", list("Enter Pincode", "Close Shutters", "Cancel"))
+	if(choice == "Enter Pincode")
+		var/input = tgui_input_text(user, "Enter 5-digit pincode:", "Keypad")
+		if("[input]" == pincode)
+			to_chat(user, span_notice("ACCESS GRANTED"))
+			for(var/obj/machinery/door/poddoor/shutters/S in connected_shutters)
+				if(S.density)
+					INVOKE_ASYNC(S, TYPE_PROC_REF(/obj/machinery/door/poddoor/shutters, open))
+		else
+			to_chat(user, span_warning("ACCESS DENIED"))
+
+	else if(choice == "Close Shutters")
+		for(var/obj/machinery/door/poddoor/shutters/S in connected_shutters)
+			if(!S.density)
+				INVOKE_ASYNC(S, TYPE_PROC_REF(/obj/machinery/door/poddoor/shutters, close))
 
 /obj/keypad/armory
 	id = 10
