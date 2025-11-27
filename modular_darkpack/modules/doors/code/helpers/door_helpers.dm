@@ -32,6 +32,14 @@
 /obj/effect/mapping_helpers/door/proc/late_payload(obj/structure/vampdoor/payload)
 	return
 
+/obj/effect/mapping_helpers/door/autoname
+	name = "door autoname helper"
+	icon_state = "airlock_autoname"
+
+/obj/effect/mapping_helpers/door/autoname/late_payload(obj/structure/vampdoor/payload)
+	. = ..()
+	payload.name = get_area_name(src, TRUE)
+
 /obj/effect/mapping_helpers/door/lock
 	icon_state = "start_locked"
 	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'

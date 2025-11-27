@@ -923,6 +923,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/chantry,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "bkg" = (
@@ -1218,6 +1219,7 @@
 /obj/structure/vampdoor/glass{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "bMg" = (
@@ -1454,6 +1456,7 @@
 /obj/structure/vampdoor/woodglass,
 /obj/effect/mapping_helpers/door/lock_difficulty/five,
 /obj/effect/mapping_helpers/door/access/bank,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/interior/bianchiBank)
 "bTe" = (
@@ -1644,9 +1647,6 @@
 "cgI" = (
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
-"cgM" = (
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
 "cgO" = (
 /obj/structure/curtain/cloth/fancy,
 /turf/closed/wall/vampwall/painted/low/window,
@@ -2237,6 +2237,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/salubri,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/vet_clinic)
 "cTV" = (
@@ -2792,6 +2793,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "dEa" = (
@@ -2995,6 +2997,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/hot_ishu)
 "dTP" = (
@@ -3028,6 +3031,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/arcade)
 "dXG" = (
@@ -3164,6 +3168,7 @@
 /obj/structure/vampdoor/old{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
 "ehO" = (
@@ -3310,6 +3315,7 @@
 /area/vtm/westfield_mall/interior/games_store)
 "eta" = (
 /obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "etC" = (
@@ -3608,6 +3614,7 @@
 "eTx" = (
 /obj/structure/vampdoor/woodglass,
 /obj/effect/mapping_helpers/door/access/lasombra,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/church)
 "eTL" = (
@@ -4494,6 +4501,7 @@
 	},
 /obj/effect/mapping_helpers/door/lock_difficulty/eight,
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "gdc" = (
@@ -4686,6 +4694,7 @@
 	},
 /obj/effect/mapping_helpers/door/access/banu,
 /obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
 "gto" = (
@@ -4821,6 +4830,7 @@
 /obj/structure/vampdoor/glass,
 /obj/effect/turf_decal/bordur,
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/skatepark)
 "gFf" = (
@@ -5182,6 +5192,7 @@
 /area/vtm/westfield_mall/interior/supply)
 "hhx" = (
 /obj/structure/vampdoor/woodglass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/shop)
 "hhM" = (
@@ -5263,6 +5274,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/bar,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "hoh" = (
@@ -6432,6 +6444,7 @@
 "jix" = (
 /obj/structure/vampdoor/woodglass,
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/littleitaly)
 "jiW" = (
@@ -6629,7 +6642,7 @@
 	},
 /obj/machinery/light/small/dim/directional/north,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/area/vtm/westfield_mall/interior/bathroom)
 "jAW" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -7803,12 +7816,13 @@
 	dir = 8
 	},
 /obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/interior)
 "lgR" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/area/vtm/westfield_mall/interior/bathroom)
 "lgS" = (
 /obj/structure/closet/crate/cardboard,
 /obj/effect/decal/pallet,
@@ -8495,6 +8509,7 @@
 /area/vtm/interior/mansion)
 "mgf" = (
 /obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "mgp" = (
@@ -9826,6 +9841,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/old_clan_tzimisce,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/shop)
 "ogY" = (
@@ -10029,8 +10045,9 @@
 /area/vtm/westfield_mall/interior/anarch)
 "otv" = (
 /obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/foodcourt)
+/area/vtm/westfield_mall/interior/bathroom)
 "otU" = (
 /obj/structure/noticeboard/directional/north,
 /obj/item/gun/ballistic/automatic/darkpack/huntrifle{
@@ -10419,9 +10436,8 @@
 /turf/closed/wall/vampwall/painted/low,
 /area/vtm/westfield_mall/interior/maintenance)
 "oUu" = (
-/obj/structure/vampdoor/simple,
-/turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/turf/closed/wall/vampwall/market,
+/area/vtm/westfield_mall/interior/bathroom)
 "oVG" = (
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
@@ -10525,6 +10541,7 @@
 /obj/effect/mapping_helpers/door/access/police,
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "pdw" = (
@@ -10951,7 +10968,7 @@
 "pMV" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/area/vtm/westfield_mall/interior/bathroom)
 "pMY" = (
 /obj/structure/closet/crate/dumpster,
 /turf/open/floor/plating/asphalt,
@@ -11374,6 +11391,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/smokeshop)
 "qyp" = (
@@ -11656,6 +11674,7 @@
 /obj/structure/vampdoor/woodglass{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "qXM" = (
@@ -12971,6 +12990,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/wolftech,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/techshop)
 "sXa" = (
@@ -13031,6 +13051,7 @@
 	dir = 1
 	},
 /obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/interior)
 "tdV" = (
@@ -13708,6 +13729,7 @@
 "ujL" = (
 /obj/structure/vampdoor/woodglass,
 /obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "ujN" = (
@@ -13951,6 +13973,7 @@
 /obj/structure/vampdoor/glass{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "uFS" = (
@@ -14224,7 +14247,7 @@
 "vgW" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/area/vtm/westfield_mall/interior/bathroom)
 "vhc" = (
 /obj/item/kirbyplants/darkpack/random{
 	pixel_x = 10;
@@ -14465,7 +14488,7 @@
 /obj/structure/sink/directional/south,
 /obj/structure/mirror/directional/north,
 /turf/open/floor/city/toilet,
-/area/vtm/westfield_mall/interior/maintenance)
+/area/vtm/westfield_mall/interior/bathroom)
 "vuP" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/figure/cmo{
@@ -15055,6 +15078,7 @@
 	dir = 1
 	},
 /obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/interior)
 "woK" = (
@@ -16160,6 +16184,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/toreador,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/theatre)
 "xQS" = (
@@ -16343,6 +16368,7 @@
 	},
 /obj/effect/mapping_helpers/door/access/cleaning,
 /obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
 "ydf" = (
@@ -56918,13 +56944,13 @@ jDn
 jDn
 uZi
 uZi
-uZi
-uZi
-uZi
-uZi
-uZi
-uZi
-vsR
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
 vsR
 qSk
 qSk
@@ -57070,13 +57096,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-jAP
 oUu
-cgM
+jAP
+kIY
+oRh
 pMV
 lgR
-vsR
+oUu
 bpq
 qSk
 qSk
@@ -57222,13 +57248,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-uZi
-uZi
+oUu
+oUu
+oUu
 vui
-cgM
-cgM
-vsR
+oRh
+oRh
+oUu
 bpq
 qSk
 qSk
@@ -57267,7 +57293,7 @@ xLD
 vpq
 xLD
 oRh
-kIY
+otv
 ggZ
 ggZ
 xBv
@@ -57374,12 +57400,12 @@ jDn
 jDn
 jDn
 jDn
-uZi
-jAP
 oUu
-cgM
+jAP
+kIY
+oRh
 vgW
-cgM
+oRh
 otv
 bpq
 qSk
@@ -57526,13 +57552,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-uZi
-uZi
-uZi
-uZi
-uZi
-vsR
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
 bpq
 qSk
 qSk
@@ -57678,12 +57704,12 @@ jDn
 jDn
 jDn
 jDn
-uZi
-jAP
 oUu
-cgM
+jAP
+kIY
+oRh
 pMV
-cgM
+oRh
 otv
 bpq
 qSk
@@ -57830,13 +57856,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-uZi
-uZi
+oUu
+oUu
+oUu
 vui
-cgM
-cgM
-vsR
+oRh
+oRh
+oUu
 vsR
 hqW
 qSk
@@ -57982,13 +58008,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-jAP
 oUu
-cgM
+jAP
+kIY
+oRh
 vgW
 lgR
-vsR
+oUu
 sCY
 qSk
 qSk
@@ -58134,13 +58160,13 @@ jDn
 jDn
 jDn
 jDn
-uZi
-uZi
-uZi
-uZi
-uZi
-uZi
-vsR
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
+oUu
 ksd
 qSk
 qSk
@@ -58179,7 +58205,7 @@ xLD
 qwQ
 xLD
 oRh
-kIY
+otv
 ggZ
 ggZ
 xBv
