@@ -5,7 +5,7 @@
 	icon = "salubri"
 	curse = "Hunted and consensual feeding."
 	clan_disciplines = list(
-		// /datum/discipline/auspex,
+		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
 		// /datum/discipline/valeren
 	)

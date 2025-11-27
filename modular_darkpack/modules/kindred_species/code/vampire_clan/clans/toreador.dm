@@ -5,7 +5,7 @@
 	icon = "toreador"
 	curse = "Doubled humanity changes."
 	clan_disciplines = list(
-		// /datum/discipline/auspex,
+		/datum/discipline/auspex,
 		/datum/discipline/celerity,
 		// /datum/discipline/presence
 	)

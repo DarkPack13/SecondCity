@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(economy)
 	*/
 	earning_report = "<b>[CITY_NAME] Economic Report</b><br><br> Expected inflation rates are measured at <b>[SSeconomy.inflation_value()*100]%</b>" // DARKPACK EDIT CHANGE
 	var/update_alerts = FALSE
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS))
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS) && (living_player_count() > 1))
 		var/datum/bank_account/moneybags
 		var/static/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))
 		for(var/i in bank_accounts_by_id)

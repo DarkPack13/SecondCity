@@ -5,7 +5,7 @@
 	icon = "cappadocian"
 	curse = "Extremely corpselike appearance that worsens with age."
 	clan_disciplines = list(
-		// /datum/discipline/auspex,
+		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
 		/datum/discipline/necromancy
 	)

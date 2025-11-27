@@ -5,7 +5,7 @@
 	icon = "old_clan_tzimisce"
 	curse = "Grounded to material domain."
 	clan_disciplines = list(
-		// /datum/discipline/auspex,
+		/datum/discipline/auspex,
 		/datum/discipline/animalism,
 		// /datum/discipline/dominate
 	)

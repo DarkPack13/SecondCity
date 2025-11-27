@@ -5,7 +5,7 @@
 	icon = "tremere"
 	curse = "Blood magic."
 	clan_disciplines = list(
-		// /datum/discipline/auspex,
+		/datum/discipline/auspex,
 		// /datum/discipline/dominate,
 		/datum/discipline/thaumaturgy
 	)
