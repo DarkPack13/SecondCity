@@ -234,7 +234,7 @@
 
 		// DARKPACK EDIT ADD START
 		if(iskindred(src) && !(obscured_slots & HIDEFACE))
-			switch(clan.alt_sprite)
+			switch(clan?.alt_sprite)
 				if("nosferatu")
 					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
 				if("gargoyle")

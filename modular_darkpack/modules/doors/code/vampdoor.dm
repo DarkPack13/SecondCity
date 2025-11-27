@@ -11,6 +11,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
+	flags_1 = IGNORE_TURF_PIXEL_OFFSET_1
 	pass_flags_self = PASSDOORS
 
 	max_integrity = 350
@@ -53,6 +54,9 @@
 			lockpick_timer = LOCKTIMER_2
 		if(-INFINITY to LOCKDIFFICULTY_2) //LOCKDIFFICULTY_1 is basically the minimum so we can just do LOCKTIMER_1 from -INFINITY
 			lockpick_timer = LOCKTIMER_1
+
+/obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
+	return !density || !locked
 
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
 /obj/structure/vampdoor/examine(mob/user)

@@ -343,15 +343,6 @@
 		LOCKACCESS_POLICE_CHIEF
 	)
 
-//===========================MISC KEYS===========================
-
-/obj/item/vamp/keys/axes
-	name = "Rusty keys"
-	accesslocks = list(
-		LOCKACCESS_AXE_GANG,
-		LOCKACCESS_LAUNDROMAT
-	)
-
 //===========================GAROU KEYS===========================
 
 /obj/item/vamp/keys/nps
