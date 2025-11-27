@@ -2,40 +2,42 @@
 /datum/st_stat
 	//determines the base type for this class, so we don't add in empty types
 	abstract_type = /datum/st_stat
-
+	/// The name of the stat
 	var/name = ""
+	/// The description of the stat, shown when hovering over it in the UI.
 	var/description = ""
+	/// The category this stat belongs to. For example, "Attribute" or "Ability".
 	var/category = ""
+	/// The subcategory this stat belongs to. For example, "Physical" or "Social".
 	var/subcategory = ""
+	/// The current score of this stat.
 	VAR_PROTECTED/score = 0
-	var/bonus_score = 0
-	//The minimum score this stat can be.
+	/// Temporary bonus score applied to this stat from various ingame sources.
+	VAR_PROTECTED/bonus_score = 0
+	/// The minimum score this stat can be.
 	var/min_score = 0
-	//The maximum score this stat can be.
+	/// The maximum score this stat can be.
 	var/max_score = 5
-
-	var/xp_cost = 0
+	/// The amount of freebie points that are required to increase this stat by 1 point.
 	var/freebie_point_cost = 0
-
-	//if a stat affects the hp pool, recalculate the hp of the mob when changed.
+	/// If a stat affects the hp pool, recalculate the hp of the mob when changed.
 	var/affects_health_pool = FALSE
-	//if a stat affects the willpower pool.
+	/// if a stat affects the willpower pool.
 	var/affects_willpower = FALSE
-	//If a stat affects the player's speed, such as dexterity.
+	/// If a stat affects the player's speed, such as dexterity.
 	var/affects_speed = FALSE
 
-	//if the user can spend points on that stat.
+	/// If the user can spend points on that stat.
 	var/editable = TRUE
-
 	/// A dictionary of modifiers to this attribute.
 	var/list/modifiers = list()
-	//What score does this stat start out with at character creation.
+	/// What score does this stat start out with at character creation.
 	var/starting_score = 0
-	//How many points are in this stat category that the player can use.
+	/// How many points are in this stat category that the player can use.
 	var/points = 0
-	//At what score amount further upgrades require freebie point expendature to level up.
+	/// At what score amount further upgrades require freebie point expendature to level up.
 	var/max_level_before_freebie_points = 5
-	//If the preferences menu should count the bonus score as a normal score, used for things like willpower.
+	/// If the preferences menu should count the bonus score as a normal score, used for things like willpower.
 	var/count_bonus_score = FALSE
 
 /datum/st_stat/proc/get_score(include_bonus = TRUE)
