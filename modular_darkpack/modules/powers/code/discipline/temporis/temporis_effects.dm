@@ -12,10 +12,10 @@
 	appearance = creator?.appearance
 	dir = creator?.dir
 
-	animate(temporis_visual, pixel_x = rand(-32,32), pixel_y = rand(-32,32), alpha = effect_alpha, time = effect_fadeout)
+	animate(src, pixel_x = rand(-32,32), pixel_y = rand(-32,32), alpha = effect_alpha, time = effect_fadeout)
 
 	// Delete this effect after half a second
-	QDEL_IN(src, 0.5 SECONDS)
+	QDEL_IN(src, effect_fadeout)
 
 /obj/effect/temporis/patience_of_the_norns
 

@@ -9,7 +9,11 @@
 	name = "Temporis power name"
 	desc = "Temporis power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/temporis.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/temporis/temporis.ogg'
+
+/datum/discipline_power/temporis/activate()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_TIMEWARPER, DISCIPLINE_TRAIT)
 
 /datum/discipline_power/temporis/proc/celerity_explode(datum/source, datum/discipline_power/power, atom/target)
 	SIGNAL_HANDLER
@@ -35,6 +39,26 @@
 /datum/discipline_power/temporis/hourglass_of_the_mind/activate()
 	. = ..()
 	to_chat(owner, "<b>[station_time_timestamp("hh:mm:ss")]</b>")
+
+	// Check range for targets with that have warped time this round and display them, if any exist
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/target in view(range, owner))
+		if(target == owner)
+			continue
+		if(HAS_TRAIT(target, TRAIT_TIMEWARPER))
+			targets += target
+	if(targets.len)
+		var/target_list = ""
+		for(var/i = 1 to targets.len)
+			var/mob/living/carbon/human/target = targets[i]
+			target_list += target.name
+			if(i < targets.len - 1)
+				target_list += ", "
+			else if(i == targets.len - 1)
+				target_list += " and "
+		to_chat(owner, span_notice("[english_list(targets)] [targets.len == 1 ? "has" : "have"] temporal distortions around [targets.len == 1 ? "themself" : "themselves"]."))
+	else
+		to_chat(owner, span_notice("There are no temporal distortions nearby."))
 
 //RECURRING CONTEMPLATION
 /datum/discipline_power/temporis/recurring_contemplation
@@ -122,7 +146,7 @@
 
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
-//CLOTHO'S GIFT
+//CLOTHOS GIFT
 /datum/discipline_power/temporis/clothos_gift
 	name = "Clotho's Gift"
 	desc = "Accelerate yourself through time and magnify your speed."
