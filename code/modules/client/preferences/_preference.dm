@@ -33,7 +33,7 @@
 #define PREFERENCE_PRIORITY_NAME_MODIFICATIONS 9
 
 // DARKPACK EDIT ADD START - TTRPG preferences
-/// Preferences that work with TTRPG mechanics
+/// Preferences that work with TTRPG mechanics but aren't magical
 #define PREFERENCE_PRIORITY_TABLETOP 10
 
 /// Preferences relating to World of Darkness TTRPG elements
