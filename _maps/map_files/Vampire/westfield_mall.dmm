@@ -169,19 +169,19 @@
 /area/vtm/interior/police)
 "aJ" = (
 /obj/structure/closet/crate/bin,
-/obj/structure/sign/poster/city/blade{
-	pixel_y = 32;
-	pixel_x = -7
-	},
-/obj/structure/sign/poster/city/bloodrayne{
-	pixel_x = 8;
-	pixel_y = 32
-	},
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 9
+	},
+/obj/structure/sign/poster/city/blade/directional/north{
+	pixel_x = -5;
+	pixel_y = 31
+	},
+/obj/structure/sign/poster/city/bloodrayne/directional/north{
+	pixel_x = 8;
+	pixel_y = 34
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/smokeshop)
@@ -337,13 +337,12 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "br" = (
-/obj/structure/sign/poster/city/gravitykills{
-	pixel_x = -10;
-	pixel_y = 33
+/obj/structure/sign/poster/city/gravitykills/directional/north{
+	pixel_x = -9;
+	pixel_y = 34
 	},
-/obj/structure/sign/poster/city/lacunacoil{
-	pixel_x = 5;
-	pixel_y = 31
+/obj/structure/sign/poster/city/lacunacoil/directional/north{
+	pixel_x = 6
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/skatepark)
@@ -604,9 +603,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "cr" = (
-/obj/structure/sign/poster/city/pixies{
-	pixel_x = 2;
-	pixel_y = 32
+/obj/structure/sign/poster/city/pixies/directional/north{
+	pixel_x = 2
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
@@ -962,9 +960,9 @@
 /area/vtm/westfield_mall/interior/skatepark)
 "dA" = (
 /obj/structure/table/wood,
-/obj/structure/sign/poster/city/bloodrayne{
-	pixel_x = 8;
-	pixel_y = 32
+/obj/structure/sign/poster/city/bloodrayne/directional/north{
+	pixel_x = 7;
+	pixel_y = 33
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/hot_ishu)
@@ -1813,9 +1811,7 @@
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
 "gt" = (
-/obj/structure/sign/poster/city/dmc{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/city/dmc/directional/north,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/techshop)
 "gu" = (
@@ -2377,7 +2373,7 @@
 /obj/structure/chair/darkpack{
 	dir = 8
 	},
-/obj/effect/landmark/start/axe_gang,
+/obj/effect/landmark/start/supply,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/westfield_mall/interior/supply)
 "in" = (
@@ -2599,9 +2595,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/dojo)
 "ja" = (
-/obj/structure/sign/poster/city/kish{
-	pixel_y = 33;
-	pixel_x = -17
+/obj/structure/sign/poster/city/kish/directional/north{
+	pixel_x = -6
 	},
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/theatre)
@@ -3159,7 +3154,6 @@
 /obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
-/obj/effect/landmark/start/axe_gang,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "lc" = (
@@ -4139,12 +4133,11 @@
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/police)
 "oF" = (
-/obj/structure/sign/poster/city/pixies{
-	pixel_x = -7;
-	pixel_y = 32
+/obj/structure/sign/poster/city/pixies/directional/north{
+	pixel_x = -6
 	},
-/obj/structure/sign/poster/city/tiamat{
-	pixel_x = 6;
+/obj/structure/sign/poster/city/tiamat/directional/north{
+	pixel_x = 7;
 	pixel_y = 31
 	},
 /turf/open/floor/city/plating,
@@ -5187,10 +5180,10 @@
 /area/vtm/westfield_mall/interior/anarch)
 "sf" = (
 /obj/structure/table/wood,
-/obj/structure/sign/flag/italy{
+/obj/machinery/processor,
+/obj/structure/sign/flag/italy/directional/north{
 	pixel_y = 30
 	},
-/obj/machinery/processor,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/littleitaly)
 "sg" = (
@@ -5394,9 +5387,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "sP" = (
-/obj/structure/sign/poster/city/bloodrayne{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/city/bloodrayne/directional/north,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/theatre)
 "sQ" = (
@@ -6859,8 +6850,8 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior/maintenance/basement)
 "xH" = (
-/obj/structure/sign/poster/city/car{
-	pixel_x = 8;
+/obj/structure/sign/poster/city/car/directional/north{
+	pixel_x = 7;
 	pixel_y = 31
 	},
 /turf/open/floor/city/plating,
@@ -7392,7 +7383,7 @@
 /area/vtm/westfield_mall/interior/clothing_store)
 "zu" = (
 /obj/structure/chair/darkpack,
-/obj/effect/landmark/start/axe_gang,
+/obj/effect/landmark/start/supply,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "zv" = (
@@ -7566,10 +7557,6 @@
 /obj/structure/coclock,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
-"Ad" = (
-/obj/effect/landmark/start/axe_gang,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior/supply)
 "Ae" = (
 /obj/structure/table,
 /obj/item/smartphone/emergency,
@@ -7783,10 +7770,10 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "AQ" = (
-/obj/effect/landmark/start/axe_gang,
 /obj/structure/chair/darkpack{
 	dir = 4
 	},
+/obj/effect/landmark/start/supply,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/westfield_mall/interior/supply)
 "AR" = (
@@ -7828,17 +7815,16 @@
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "AY" = (
 /obj/structure/table/wood,
-/obj/structure/sign/poster/city/vesuvius{
-	pixel_y = 32;
-	pixel_x = -4
+/obj/effect/spawner/random/bureaucracy/folder,
+/obj/effect/spawner/random/bureaucracy/folder,
+/obj/effect/spawner/random/bureaucracy/folder,
+/obj/structure/sign/poster/city/vesuvius/directional/north{
+	pixel_x = -6
 	},
-/obj/structure/sign/poster/city/tiamat{
-	pixel_y = 33;
-	pixel_x = 9
+/obj/structure/sign/poster/city/tiamat/directional/north{
+	pixel_x = 8;
+	pixel_y = 33
 	},
-/obj/effect/spawner/random/bureaucracy/folder,
-/obj/effect/spawner/random/bureaucracy/folder,
-/obj/effect/spawner/random/bureaucracy/folder,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "AZ" = (
@@ -7927,10 +7913,6 @@
 "Bp" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/vet_clinic)
-"Bq" = (
-/obj/effect/landmark/start/axe_leader,
-/turf/open/floor/carpet/darkpack/orangesilver,
-/area/vtm/interior/supply)
 "Br" = (
 /obj/effect/turf_decal/asphaltline/alt,
 /turf/open/floor/plating/asphalt,
@@ -9603,17 +9585,17 @@
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/westfield_mall/interior/techshop)
 "Hi" = (
-/obj/structure/sign/poster/city/vesuvius{
-	pixel_x = 9;
-	pixel_y = 34
-	},
 /obj/effect/decal/wallpaper/grey{
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 1
 	},
-/obj/structure/sign/poster/city/tiamat{
+/obj/structure/sign/poster/city/vesuvius/directional/north{
+	pixel_x = 9;
+	pixel_y = 33
+	},
+/obj/structure/sign/poster/city/tiamat/directional/north{
 	pixel_x = -7;
 	pixel_y = 31
 	},
@@ -10029,9 +10011,7 @@
 /area/vtm/westfield_mall)
 "ID" = (
 /obj/effect/spawner/random/entertainment/arcade,
-/obj/structure/sign/poster/city/dmc{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/city/dmc/directional/north,
 /turf/open/floor/eighties,
 /area/vtm/westfield_mall/interior/arcade)
 "IE" = (
@@ -10480,14 +10460,6 @@
 /obj/structure/mop_bucket/janitorialcart,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
-"Kh" = (
-/obj/effect/decal/wallpaper/stone,
-/obj/structure/sign/poster/city/tiamat{
-	pixel_x = -9;
-	pixel_y = -1
-	},
-/turf/closed/wall/vampwall/brick_old,
-/area/vtm/westfield_mall/interior/skatepark)
 "Ki" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/smooth/old,
@@ -10755,9 +10727,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/techshop)
 "La" = (
-/obj/structure/sign/poster/city/tiamat{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/city/tiamat/directional/north,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/theatre)
 "Lb" = (
@@ -12528,10 +12498,6 @@
 /area/vtm/westfield_mall/parking_lot)
 "Re" = (
 /obj/structure/table/wood,
-/obj/structure/sign/poster/city/genitorturers{
-	pixel_x = 7;
-	pixel_y = 33
-	},
 /obj/item/screwdriver{
 	pixel_y = -2;
 	anchored = 1
@@ -12543,6 +12509,14 @@
 	pixel_x = 5;
 	pixel_y = -8;
 	anchored = 1
+	},
+/obj/structure/sign/poster/city/genitorturers/directional/north{
+	pixel_x = 6;
+	pixel_y = 34
+	},
+/obj/structure/sign/poster/city/tiamat/directional/north{
+	pixel_x = -9;
+	pixel_y = 30
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/skatepark)
@@ -12648,10 +12622,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall)
 "Rv" = (
-/obj/structure/sign/poster/city/blade{
-	pixel_y = 31;
-	pixel_x = 7
-	},
+/obj/structure/sign/poster/city/blade/directional/north,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/theatre)
 "Rw" = (
@@ -13386,8 +13357,8 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "TX" = (
-/obj/structure/sign/flag/usa{
-	pixel_y = 30
+/obj/structure/sign/flag/usa/directional/north{
+	pixel_y = 29
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
@@ -13738,7 +13709,6 @@
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/axe_leader,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "Vn" = (
@@ -14365,13 +14335,12 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall)
 "Xp" = (
-/obj/structure/sign/poster/city/blade{
-	pixel_y = 31;
-	pixel_x = 7
+/obj/structure/sign/poster/city/dmc/directional/north{
+	pixel_x = -8;
+	pixel_y = 33
 	},
-/obj/structure/sign/poster/city/dmc{
-	pixel_x = -10;
-	pixel_y = 31
+/obj/structure/sign/poster/city/blade/directional/north{
+	pixel_x = 8
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
@@ -14403,13 +14372,12 @@
 /area/vtm/westfield_mall/interior/camarilla)
 "Xy" = (
 /obj/structure/table/wood,
-/obj/structure/sign/poster/city/darlingvioletta{
-	pixel_x = -8;
-	pixel_y = 32
-	},
-/obj/structure/sign/poster/city/genitorturers{
+/obj/structure/sign/poster/city/genitorturers/directional/north{
 	pixel_x = 8;
-	pixel_y = 30
+	pixel_y = 31
+	},
+/obj/structure/sign/poster/city/darlingvioletta/directional/north{
+	pixel_x = -7
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/hot_ishu)
@@ -14584,8 +14552,8 @@
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/clinic)
 "Yh" = (
-/obj/structure/sign/flag/usa{
-	pixel_y = 30
+/obj/structure/sign/flag/usa/directional/north{
+	pixel_y = 29
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
@@ -22738,7 +22706,7 @@ Zf
 aV
 Zf
 rs
-Ad
+rs
 rs
 NJ
 rs
@@ -24872,8 +24840,8 @@ eW
 eW
 Fq
 xR
-Ad
-Ad
+rs
+rs
 JZ
 Fq
 eH
@@ -44263,7 +44231,7 @@ my
 my
 my
 my
-Kh
+Lw
 Re
 HY
 HY
@@ -70018,7 +69986,7 @@ WL
 dL
 lb
 dL
-Bq
+dL
 he
 Xb
 nW
