@@ -27,4 +27,4 @@
 	for(var/image/I in obf_icons)
 		if(I in client.images)
 			client.images -= I
-	obf_icons.Cut()
+	obf_icons = null

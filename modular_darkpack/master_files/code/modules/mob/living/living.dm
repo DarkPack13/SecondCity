@@ -1,7 +1,7 @@
 /mob/living
 	COOLDOWN_DECLARE(masquerade_timer)
 	//List for icons created for obfuscated mobs
-	var/list/obf_icons
+	var/obf_icons
 
 /mob/living/Initialize(mapload)
 	. = ..()
