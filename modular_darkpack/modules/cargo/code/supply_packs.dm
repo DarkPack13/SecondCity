@@ -112,7 +112,7 @@
 /datum/supply_pack/local/fixing
 	name = "Fixing kit (wirecutters, lamps)"
 	desc = "Contains wirecutters, lamps and other stuff to restore light in the area."
-	cost = 50
+	cost = 100
 	contains = list(/obj/item/wirecutters, /obj/item/storage/box/lights/mixed)
 	crate_name = "weapon crate"
 

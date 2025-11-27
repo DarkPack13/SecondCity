@@ -335,6 +335,7 @@
 	crate_type = /obj/structure/closet/crate/cardboard/tiziran
 	test_ignored = TRUE
 
+/* DARKPACK EDIT REMOVAL
 /datum/supply_pack/organic/mothic_supply
 	name = "Mothic Supply Box"
 	desc = "A packaged box of surplus supplies from the Mothic Fleet. \
@@ -346,6 +347,7 @@
 				)
 	crate_name = "\improper Mothic Supply box"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
+*/
 
 /datum/supply_pack/organic/syrup
 	name = "Coffee Syrups Box"

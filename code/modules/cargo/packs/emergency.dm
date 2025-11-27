@@ -154,6 +154,7 @@
 	crate_name = "weed control crate"
 	crate_type = /obj/structure/closet/crate/secure/hydroponics
 
+/* DARKPACK EDIT REMOVAL
 /datum/supply_pack/emergency/mothic_rations
 	name = "Surplus Mothic Rations Triple-Pak"
 	desc = "Crew starving? Chef slacking off? Keep everyone fed on the barest minimum of what can be considered food \
@@ -162,3 +163,4 @@
 	contains = list(/obj/item/storage/box/mothic_rations = 3)
 	crate_name = "surplus rations box"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
+*/
