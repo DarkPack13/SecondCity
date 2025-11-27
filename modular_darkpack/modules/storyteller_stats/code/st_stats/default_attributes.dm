@@ -10,7 +10,7 @@
 
 /datum/st_stat/attribute/stamina
 	name = "Stamina"
-	description = "Affects your health, wounding chance and mental defense dice amount."
+	description = "Affects your health."
 	subcategory = "Physical"
 	affects_health_pool = TRUE
 
