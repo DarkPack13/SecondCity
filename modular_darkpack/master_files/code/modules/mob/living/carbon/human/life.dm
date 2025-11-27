@@ -2,6 +2,10 @@
 	if(!iskindred(src))
 		if(prob(5))
 			adjustAggLoss(-5, TRUE)
+
+	update_blood_hud()
+
+	/*
 	update_zone_hud()
 	update_rage_hud()
 	update_shadow()
@@ -32,5 +36,6 @@
 		if(last_nonraid+1800 < world.time)
 			last_nonraid = world.time
 			killed_count = max(0, killed_count-1)
+	*/
 
 	. = ..()
