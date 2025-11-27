@@ -48,3 +48,6 @@
 /obj/structure/table/optable/optable2 : /obj/structure/table/optable {@OLD}
 
 /turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit
+
+# WOD13 made them real gasmasks in some pr.
+/obj/item/clothing/mask/vampire : /obj/item/clothing/mask/gas/vampire {@OLD}
