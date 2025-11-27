@@ -89,5 +89,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
 #define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
+#define TRAIT_IN_FRENZY "in_frenzy"
 
 // END TRAIT DEFINES

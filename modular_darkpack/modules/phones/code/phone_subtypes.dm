@@ -184,16 +184,16 @@
 		list(NETWORK_ID = ANARCH_NETWORK, OUR_ROLE = "Club Bartender", USE_JOB_TITLE = FALSE)
 		)
 
-// AXE GANG
+// SUPPLY
 
-/obj/item/smartphone/axe_gangster
+/obj/item/smartphone/supply_tech
 	contact_networks_pre_init = list(
-		list(NETWORK_ID = AXES_NETWORK, OUR_ROLE = "Supply Technician", USE_JOB_TITLE = FALSE)
+		list(NETWORK_ID = SUPPLY_NETWORK, OUR_ROLE = "Supply Technician", USE_JOB_TITLE = FALSE)
 		)
 
-/obj/item/smartphone/axe_leader
+/obj/item/smartphone/dealer
 	contact_networks_pre_init = list(
-		list(NETWORK_ID = AXES_NETWORK, OUR_ROLE = "Supply Manager", USE_JOB_TITLE = FALSE),
+		list(NETWORK_ID = SUPPLY_NETWORK, OUR_ROLE = "Supply Manager", USE_JOB_TITLE = FALSE),
 		list(NETWORK_ID = VAMPIRE_LEADER_NETWORK, OUR_ROLE = "Warehouse Manager", USE_JOB_TITLE = FALSE)
 	)
 

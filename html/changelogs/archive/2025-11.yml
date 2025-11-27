@@ -137,3 +137,23 @@
   - image: flowers & trees now sway in the wind
   dwinters99:
   - map: fake platforms and low shadows
+2025-11-27:
+  Beautiful TG coders:
+  - code_imp: Monthly TG Pull. Thank you TG.
+  FalloutFalcon:
+  - bugfix: Doors no longer think they are on the tile above them
+  JohnFulpWillard:
+  - bugfix: Headslugs are now small.
+  XeonMations:
+  - rscadd: Added Auspex to the game
+  - balance: You are now more sensitive to noises and bright lights while using Heightened
+      Senses.
+  Y0SH1M4S73R:
+  - sound: Squid tongues have a distinctive effect on your text-to-speech voice.
+  buffyuwu:
+  - bugfix: fixes malkavian hivemind and madness speech features
+  dwinters99:
+  - bugfix: woodglass doors no longer are opaque
+  - rscdel: the Axe Gang is dead. Long live the Warehouse.
+  lelandkemble:
+  - bugfix: Ghosts can no longer try and fail to admire aquariums.
