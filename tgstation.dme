@@ -7025,6 +7025,7 @@
 #include "modular_darkpack\modules\jobs\code\_job_assignment.dm"
 #include "modular_darkpack\modules\jobs\code\_jobs.dm"
 #include "modular_darkpack\modules\jobs\code\job_items.dm"
+#include "modular_darkpack\modules\jobs\code\landmarks.dm"
 #include "modular_darkpack\modules\jobs\code\anarchs\baron.dm"
 #include "modular_darkpack\modules\jobs\code\anarchs\bruiser.dm"
 #include "modular_darkpack\modules\jobs\code\anarchs\emissary.dm"

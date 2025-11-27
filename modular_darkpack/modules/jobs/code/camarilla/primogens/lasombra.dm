@@ -45,7 +45,3 @@
 	l_pocket = /obj/item/smartphone/lasombra_primo
 	r_pocket = /obj/item/watch
 	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1, /obj/item/passport=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
-
-/obj/effect/landmark/start/primogen_lasombra
-	name = "Primogen Lasombra"
-	icon_state = "Assistant"

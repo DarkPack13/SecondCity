@@ -32,7 +32,3 @@
 	r_pocket = /obj/item/vamp/keys/anarch
 	l_pocket = /obj/item/smartphone/sweeper
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)
-
-/obj/effect/landmark/start/sweeper
-	name = "Sweeper"
-	icon_state = "Bouncer"
