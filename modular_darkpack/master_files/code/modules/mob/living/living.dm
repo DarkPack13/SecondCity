@@ -1,5 +1,6 @@
 /mob/living
 	COOLDOWN_DECLARE(masquerade_timer)
+	var/possessed = FALSE //dominate 5 body posession
 
 /mob/living/Initialize(mapload)
 	. = ..()
