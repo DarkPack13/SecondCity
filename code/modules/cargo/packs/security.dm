@@ -1,3 +1,4 @@
+/* DARKPACK EDIT REMOVAL
 /datum/supply_pack/security
 	group = "Security"
 	access = ACCESS_SECURITY
@@ -399,3 +400,4 @@
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno,
 	)
 	crate_name = "thermal cannons crate"
+*/
