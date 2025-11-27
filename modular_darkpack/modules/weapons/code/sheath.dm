@@ -1,4 +1,5 @@
 /obj/item/storage/belt/sheath/vamp
+	name = "sheath"
 	icon_state = "longsword_sheathe-full"
 	worn_icon_state = "longsword_sheathe"
 	//inhand_icon_state = "longsword_sheathe"
