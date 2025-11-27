@@ -16998,7 +16998,7 @@
 /area/vtm/interior/shop)
 "mFb" = (
 /obj/machinery/door/poddoor/shutters{
-	id = keepershutters
+	id = "keepershutters"
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior/groundskeeper_garage)
@@ -17414,7 +17414,7 @@
 /area/vtm/westfield_mall/interior/law_office)
 "taO" = (
 /obj/machinery/button{
-	id = keepershutters
+	id = "keepershutters"
 	},
 /obj/effect/decal/wallpaper/grey,
 /turf/closed/wall/vampwall/painted,
