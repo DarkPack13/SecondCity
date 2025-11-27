@@ -1028,6 +1028,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"uD" = (
+/obj/fusebox/transformer,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "uJ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1853,6 +1857,7 @@
 /obj/item/ammo_box/magazine/darkpack545,
 /obj/item/ammo_box/magazine/darkpack545,
 /obj/item/gun/ballistic/automatic/darkpack/ak74,
+/obj/fusebox,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "KF" = (
@@ -3695,7 +3700,7 @@ GF
 (15,1,1) = {"
 GF
 SK
-pN
+uD
 pN
 pN
 pN

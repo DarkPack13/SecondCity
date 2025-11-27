@@ -42,7 +42,3 @@
 		/obj/item/card/credit=1,
 		/obj/item/scythe/vamp=1,
 	)
-
-/obj/effect/landmark/start/gargoyle
-	name = "Chantry Gargoyle"
-	icon_state = "Archivist"
