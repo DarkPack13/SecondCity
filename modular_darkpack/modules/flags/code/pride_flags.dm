@@ -3,6 +3,8 @@
 	desc = "You probably shouldn't be seeing this. Yell at the coders about it."
 	icon = 'modular_darkpack/modules/flags/icons/pride_flags.dmi'
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride, 32)
+
 /obj/structure/sign/flag/pride/click_alt(mob/user)
 	var/init_icon_state = initial(icon_state)
 	if(icon_state == init_icon_state)
@@ -17,11 +19,15 @@
 	icon_state = "flag_pride"
 	item_flag = /obj/item/sign/flag/pride/gay
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/gay, 32)
+
 /obj/structure/sign/flag/pride/ace
 	name = "asexual pride flag"
 	desc = "The flag of asexual pride."
 	icon_state = "flag_ace"
 	item_flag = /obj/item/sign/flag/pride/ace
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/ace, 32)
 
 /obj/structure/sign/flag/pride/bi
 	name = "bisexual pride flag"
@@ -29,11 +35,15 @@
 	icon_state = "flag_bi"
 	item_flag = /obj/item/sign/flag/pride/bi
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/bi, 32)
+
 /obj/structure/sign/flag/pride/lesbian
 	name = "lesbian pride flag"
 	desc = "The flag of lesbian pride."
 	icon_state = "flag_lesbian"
 	item_flag = /obj/item/sign/flag/pride/lesbian
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/lesbian, 32)
 
 /obj/structure/sign/flag/pride/pan
 	name = "pansexual pride flag"
@@ -41,11 +51,15 @@
 	icon_state = "flag_pan"
 	item_flag = /obj/item/sign/flag/pride/pan
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/pan, 32)
+
 /obj/structure/sign/flag/pride/trans
 	name = "trans pride flag"
 	desc = "The flag of trans pride."
 	icon_state = "flag_trans"
 	item_flag = /obj/item/sign/flag/pride/trans
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/trans, 32)
 
 // FOLDED
 

@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(tremere_network)
 GLOBAL_LIST_EMPTY(giovanni_network)
 GLOBAL_LIST_EMPTY(tzmisce_network)
 GLOBAL_LIST_EMPTY(anarch_network)
-GLOBAL_LIST_EMPTY(axes_network)
+GLOBAL_LIST_EMPTY(supply_network)
 GLOBAL_LIST_EMPTY(vampire_leader_network)
 GLOBAL_LIST_EMPTY(endron_network)
 
@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(endron_network)
 #define GIOVANNI_NETWORK 4
 #define TZMISCE_NETWORK 5
 #define ANARCH_NETWORK 6
-#define AXES_NETWORK 7
+#define SUPPLY_NETWORK 7
 #define VAMPIRE_LEADER_NETWORK 8
 #define ENDRON_NETWORK 9
 
@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(contact_networks, list(
 		GIOVANNI_NETWORK = GLOB.giovanni_network,
 		TZMISCE_NETWORK = GLOB.tzmisce_network,
 		ANARCH_NETWORK = GLOB.anarch_network,
-		AXES_NETWORK = GLOB.axes_network,
+		SUPPLY_NETWORK = GLOB.supply_network,
 		VAMPIRE_LEADER_NETWORK = GLOB.vampire_leader_network,
 		ENDRON_NETWORK = GLOB.endron_network,
 	))

@@ -68,6 +68,9 @@
 	if(istype(target, /atom/movable/screen))
 		return
 
+	if(get_turf(jumper) == get_turf(target)) // We can't jump on ourselves
+		return
+
 	if(!COOLDOWN_FINISHED(src, jump_cooldown))
 		to_chat(jumper, span_notice("You can't jump so soon!"))
 		return
@@ -80,6 +83,9 @@
 /datum/config_entry/flag/jump_slowdown // Config datum
 
 /mob/living/proc/post_jump_slowdown(duration)
+	if(duration < 1)
+		duration = 1
+
 	add_movespeed_modifier(/datum/movespeed_modifier/post_jump)
 	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), /datum/movespeed_modifier/post_jump), duration)
 
