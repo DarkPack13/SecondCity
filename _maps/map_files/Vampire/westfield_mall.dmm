@@ -5091,6 +5091,10 @@
 /obj/structure/desk_bell,
 /turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior/techshop)
+"aqI" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/iron/grimy,
+/area/vtm/westfield_mall/interior/art_store)
 "aqJ" = (
 /obj/structure/reagent_dispensers/water_cooler/jugless,
 /turf/open/floor/plating/concrete,
@@ -12153,6 +12157,10 @@
 /obj/effect/decal/wallpaper/blue,
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/theatre)
+"aNN" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/carpet/darkpack/purplegold,
+/area/vtm/westfield_mall/interior/law_office)
 "aNO" = (
 /obj/structure/table,
 /obj/effect/decal/rugs,
@@ -14146,6 +14154,10 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
+"aUu" = (
+/obj/effect/landmark/navigate_destination,
+/turf/open/floor/wood/smooth,
+/area/vtm/westfield_mall/interior/candy_store)
 "aUv" = (
 /obj/transfer_point_vamp/backrooms/map,
 /turf/open/openspace,
@@ -58738,7 +58750,7 @@ qae
 xRE
 lBR
 uGN
-ifk
+aqI
 ifk
 xmh
 ifk
@@ -81530,12 +81542,12 @@ anJ
 anJ
 lCz
 gsP
-jCI
+aUu
 jCI
 viX
 ofB
 jxp
-sQh
+aNN
 sQh
 kno
 sQh
