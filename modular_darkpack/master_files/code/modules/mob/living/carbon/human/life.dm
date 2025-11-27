@@ -6,7 +6,6 @@
 	update_zone_hud()
 	update_rage_hud()
 	update_shadow()
-	update_auspex_hud()
 	if(warrant)
 		last_nonraid = world.time
 		if(key)
