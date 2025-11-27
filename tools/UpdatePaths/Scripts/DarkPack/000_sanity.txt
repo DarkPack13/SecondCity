@@ -1,9 +1,3 @@
-/obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
-/obj/structure/extinguisher_cabinet{dir = 1} : /obj/structure/extinguisher_cabinet/directional/north
-/obj/structure/extinguisher_cabinet{dir = 2} : /obj/structure/extinguisher_cabinet/directional/south
-/obj/structure/extinguisher_cabinet{dir = 4} : /obj/structure/extinguisher_cabinet/directional/east
-/obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west
-
 # OLD LIGHTS FROM 70277
 
 /obj/machinery/light{dir = @UNSET} : /obj/machinery/light/directional/north
@@ -27,6 +21,7 @@
 /obj/machinery/light/prince{dir = 4} : /obj/machinery/light/prince/directional/west
 /obj/machinery/light/prince{dir = 8} : /obj/machinery/light/prince/directional/east
 
+/obj/item/clothing/mask/vampire
 
 # Fixing terrible mapping partices or linting fails
 
@@ -53,3 +48,6 @@
 /obj/structure/table/optable/optable2 : /obj/structure/table/optable {@OLD}
 
 /turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit
+
+# WOD13 made them real gasmasks in some pr.
+/obj/item/clothing/mask/vampire : /obj/item/clothing/mask/gas/vampire {@OLD}

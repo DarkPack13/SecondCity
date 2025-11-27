@@ -18,6 +18,9 @@
 	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
 	icon_state = "shadow"
 
+/obj/effect/decal/shadow/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
+
 /obj/effect/decal/shadow/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /turf/open/openspace))
@@ -31,6 +34,9 @@
 	name = "support"
 	icon = 'modular_darkpack/modules/decor/icons/decals.dmi'
 	icon_state = "support"
+
+/obj/effect/decal/support/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
 
 /obj/effect/decal/rugs
 	name = "rugs"

@@ -42,7 +42,7 @@
 	icon_state = "parking_interior"
 
 /area/vtm/westfield_mall/interior/bathroom
-	name = "Public Restroom"
+	name = "\improper Public Restroom"
 	icon_state = "pooper"
 
 /area/vtm/westfield_mall/interior/foodcourt

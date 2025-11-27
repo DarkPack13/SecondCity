@@ -317,6 +317,9 @@
 	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "under1"
 
+/obj/effect/decal/pallet/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
+
 /obj/effect/decal/pallet/Initialize(mapload)
 	. = ..()
 	icon_state = "under[rand(1, 2)]"
