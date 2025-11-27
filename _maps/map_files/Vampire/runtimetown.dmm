@@ -24,7 +24,7 @@
 "ba" = (
 /obj/structure/retail/clothing_store,
 /obj/structure/table,
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
 "bh" = (
 /obj/structure/chair/greyscale{
@@ -91,7 +91,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "ca" = (
-/obj/structure/platform/lowwall/old,
+/turf/closed/wall/vampwall/old,
 /area/vtm/outside/ghetto)
 "cf" = (
 /turf/open/floor/plating/sidewalk/rich,
@@ -207,6 +207,9 @@
 /area/vtm/interior/shop)
 "eQ" = (
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"eR" = (
+/turf/closed/wall/vampwall/rich/old/low/window,
 /area/vtm/outside/pacificheights)
 "eU" = (
 /mob/living/carbon/human/npc/shop,
@@ -375,7 +378,7 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "iD" = (
-/obj/structure/platform/lowwall/painted,
+/turf/closed/wall/vampwall/painted,
 /area/vtm/interior/shop)
 "iH" = (
 /turf/open/floor/plating/rough/cave,
@@ -429,7 +432,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "jp" = (
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/supply)
 "jw" = (
 /obj/effect/decal/cleanable/trash{
@@ -469,7 +472,7 @@
 /area/vtm/outside/pacificheights)
 "jW" = (
 /obj/effect/decal/wallpaper/paper/stripe,
-/obj/structure/platform/lowwall/market,
+/turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
 "kb" = (
 /obj/effect/landmark/start{
@@ -507,7 +510,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "kS" = (
-/obj/structure/platform/lowwall/market,
+/turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
 "kX" = (
 /obj/effect/turf_decal/crosswalk{
@@ -557,7 +560,7 @@
 "mm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/order_console/mining/restricted/police,
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
 "mn" = (
 /obj/structure/barrels/rand,
@@ -635,7 +638,7 @@
 "nw" = (
 /obj/structure/table,
 /obj/lombard,
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old/low,
 /area/vtm/outside/pacificheights)
 "nA" = (
 /obj/effect/decal/cleanable/garbage,
@@ -711,7 +714,7 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/obj/structure/platform/lowwall/brick_old/low,
+/turf/closed/wall/vampwall/brick_old/low,
 /area/vtm/outside/pacificheights)
 "pz" = (
 /obj/darkpack_car/rand{
@@ -795,7 +798,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "qV" = (
-/obj/structure/platform/lowwall/brick,
+/turf/closed/wall/vampwall/brick,
 /area/vtm/outside/pacificheights)
 "qY" = (
 /obj/structure/table/wood,
@@ -1025,6 +1028,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"uD" = (
+/obj/fusebox/transformer,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "uJ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1125,7 +1132,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/platform/lowwall/junk/alt,
+/turf/closed/wall/vampwall/junk/alt,
 /area/vtm/outside/pacificheights)
 "xj" = (
 /obj/machinery/button/elevator/directional/north{
@@ -1172,7 +1179,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/supply)
 "yk" = (
-/obj/structure/platform/lowwall/brick,
+/turf/closed/wall/vampwall/brick,
 /area/vtm/interior/supply)
 "yr" = (
 /obj/structure/table,
@@ -1228,7 +1235,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "zx" = (
-/obj/structure/platform/lowwall/market/low/window,
+/turf/closed/wall/vampwall/market/low/window,
 /area/vtm/interior/shop)
 "zA" = (
 /obj/effect/decal/cleanable/trash{
@@ -1249,7 +1256,7 @@
 /area/vtm/interior/sewer)
 "zX" = (
 /obj/effect/decal/wallpaper/red,
-/obj/structure/platform/lowwall/market,
+/turf/closed/wall/vampwall/market,
 /area/vtm/interior/shop)
 "Af" = (
 /obj/structure/retail/junkfood_menu,
@@ -1339,7 +1346,7 @@
 /area/vtm/interior/techshop)
 "BX" = (
 /obj/structure/table,
-/obj/structure/platform/lowwall/market/low,
+/turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
 "BZ" = (
 /obj/structure/railing,
@@ -1467,7 +1474,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
 "Ef" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/sewer)
 "Em" = (
 /obj/structure/cargo_put,
@@ -1491,14 +1498,14 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "EL" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old/low/window,
 /area/vtm/interior/clinic)
 "EN" = (
 /obj/effect/landmark/error,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
 "EY" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich,
 /area/vtm/outside/pacificheights)
 "Ff" = (
 /obj/effect/spawner/random/trash/grime{
@@ -1508,7 +1515,7 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Fg" = (
-/obj/structure/platform/lowwall/brick,
+/turf/closed/wall/vampwall/brick,
 /area/vtm/interior/shop)
 "Fs" = (
 /obj/effect/turf_decal/bordur{
@@ -1567,7 +1574,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "Gu" = (
-/obj/structure/platform/lowwall/brick/low/window,
+/turf/closed/wall/vampwall/brick/low/window,
 /area/vtm/interior/shop)
 "Gw" = (
 /obj/machinery/light/directional/west,
@@ -1578,7 +1585,7 @@
 /area/misc/cordon)
 "GH" = (
 /obj/structure/table/reinforced,
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
 "GJ" = (
 /turf/cordon,
@@ -1601,7 +1608,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "GN" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old,
 /area/vtm/outside/ghetto)
 "GO" = (
 /obj/structure/table,
@@ -1663,7 +1670,7 @@
 /area/vtm/outside/pacificheights)
 "Hp" = (
 /obj/effect/decal/wallpaper,
-/obj/structure/platform/lowwall/brick,
+/turf/closed/wall/vampwall/brick,
 /area/vtm/interior/shop)
 "Hy" = (
 /obj/machinery/atm{
@@ -1718,7 +1725,7 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
 "ID" = (
-/obj/structure/platform/lowwall/market,
+/turf/closed/wall/vampwall/market,
 /area/vtm/outside/pacificheights)
 "IL" = (
 /obj/structure/ladder/manhole/up,
@@ -1742,7 +1749,7 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old/low,
 /area/vtm/outside/pacificheights)
 "Jo" = (
 /obj/structure/closet/crate/freezer/blood,
@@ -1781,7 +1788,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "JH" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/anarch)
 "JJ" = (
 /obj/structure/vampdoor,
@@ -1819,7 +1826,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Kk" = (
-/obj/structure/platform/lowwall/brick_old,
+/turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/ghetto)
 "Ko" = (
 /obj/effect/landmark/npcbeacon/directed{
@@ -1850,6 +1857,7 @@
 /obj/item/ammo_box/magazine/darkpack545,
 /obj/item/ammo_box/magazine/darkpack545,
 /obj/item/gun/ballistic/automatic/darkpack/ak74,
+/obj/fusebox,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "KF" = (
@@ -1918,6 +1926,9 @@
 /obj/structure/vampdoor/simple/police,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"LU" = (
+/turf/closed/wall/vampwall/rich/old/low/window,
+/area/vtm/outside/ghetto)
 "LW" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
@@ -1962,7 +1973,7 @@
 /obj/structure/retail/hot_ishu{
 	pixel_y = 10
 	},
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
 "Mz" = (
 /obj/structure/table/wood,
@@ -1980,6 +1991,9 @@
 /obj/item/blood_hunt,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
+"MS" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/outside/pacificheights)
 "Nb" = (
 /obj/structure/table/wood,
 /obj/item/vtm_artifact/tarulfang,
@@ -2016,7 +2030,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Ny" = (
-/obj/structure/platform/lowwall/brick_old,
+/turf/closed/wall/vampwall/brick_old,
 /area/vtm)
 "Nz" = (
 /obj/structure/chair/darkpack/red,
@@ -2158,7 +2172,7 @@
 "Pg" = (
 /obj/structure/retail/gun_store,
 /obj/structure/table,
-/obj/structure/platform/lowwall/market/low,
+/turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
 "Pr" = (
 /obj/structure/roofstuff/vent_end,
@@ -2197,7 +2211,7 @@
 "PP" = (
 /obj/structure/table,
 /obj/lombard/blackmarket,
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old/low,
 /area/vtm/outside/pacificheights)
 "PW" = (
 /obj/effect/turf_decal/bordur/corner,
@@ -2297,7 +2311,7 @@
 "Ro" = (
 /obj/structure/table,
 /obj/structure/retail/gummaguts_menu,
-/obj/structure/platform/lowwall/market/low,
+/turf/closed/wall/vampwall/market/low,
 /area/vtm/interior/shop)
 "Rx" = (
 /obj/effect/landmark/npcbeacon,
@@ -2338,6 +2352,9 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/ghetto)
+"SK" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/interior/clinic)
 "SL" = (
 /turf/open/floor/wood/rough,
 /area/vtm/outside/pacificheights)
@@ -2458,7 +2475,7 @@
 "Va" = (
 /obj/machinery/computer/order_console/mining/restricted/hospital,
 /obj/structure/table/reinforced,
-/obj/structure/platform/lowwall/brick/low,
+/turf/closed/wall/vampwall/brick/low,
 /area/vtm/interior/shop)
 "Vg" = (
 /obj/structure/table,
@@ -2640,7 +2657,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "XM" = (
-/obj/structure/platform/lowwall/junk/alt,
+/turf/closed/wall/vampwall/junk/alt,
 /area/vtm/outside/pacificheights)
 "XP" = (
 /obj/machinery/fax/admin/police,
@@ -2701,7 +2718,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Zs" = (
-/obj/structure/platform/lowwall/brick_old,
+/turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
 "Zz" = (
 /turf/open/misc/grass/random/grass,
@@ -2725,7 +2742,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "ZU" = (
-/obj/structure/platform/lowwall/rich,
+/turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/techshop)
 
 (1,1,1) = {"
@@ -3410,7 +3427,7 @@ GF
 "}
 (11,1,1) = {"
 GF
-EL
+SK
 Sp
 Ri
 Wz
@@ -3478,7 +3495,7 @@ GF
 "}
 (12,1,1) = {"
 GF
-EL
+SK
 Et
 pN
 pN
@@ -3546,7 +3563,7 @@ GF
 "}
 (13,1,1) = {"
 GF
-EL
+SK
 Pu
 Tb
 pN
@@ -3614,12 +3631,12 @@ GF
 "}
 (14,1,1) = {"
 GF
-EL
+SK
 mW
 pN
 pN
 Df
-EL
+SK
 Id
 Id
 Id
@@ -3682,8 +3699,8 @@ GF
 "}
 (15,1,1) = {"
 GF
-EL
-pN
+SK
+uD
 pN
 pN
 pN
@@ -3750,7 +3767,7 @@ GF
 "}
 (16,1,1) = {"
 GF
-EL
+SK
 Dp
 pN
 pN
@@ -3818,7 +3835,7 @@ GF
 "}
 (17,1,1) = {"
 GF
-EL
+SK
 wb
 pN
 pN
@@ -3886,12 +3903,12 @@ GF
 "}
 (18,1,1) = {"
 GF
-EL
+SK
 yD
 pN
 pN
 of
-EL
+SK
 Id
 IL
 Id
@@ -3954,7 +3971,7 @@ GF
 "}
 (19,1,1) = {"
 GF
-EL
+SK
 Gt
 cQ
 pN
@@ -4022,7 +4039,7 @@ GF
 "}
 (20,1,1) = {"
 GF
-EL
+SK
 eG
 pN
 pN
@@ -4090,7 +4107,7 @@ GF
 "}
 (21,1,1) = {"
 GF
-EL
+SK
 Tb
 pN
 pN
@@ -4158,12 +4175,12 @@ GF
 "}
 (22,1,1) = {"
 GF
-EL
+SK
 qN
 SG
 pN
 pN
-EL
+SK
 ZU
 ZU
 rN
@@ -4226,12 +4243,12 @@ GF
 "}
 (23,1,1) = {"
 GF
-EL
+SK
 Tb
 Tb
 pN
 pN
-EL
+SK
 Id
 ZU
 rN
@@ -4294,12 +4311,12 @@ GF
 "}
 (24,1,1) = {"
 GF
-EL
-EL
-EL
-EL
+SK
+SK
+SK
+SK
 JK
-EL
+SK
 ZU
 ZU
 ZU
@@ -4362,7 +4379,7 @@ GF
 "}
 (25,1,1) = {"
 GF
-EY
+MS
 Bt
 jw
 XE
@@ -4430,7 +4447,7 @@ GF
 "}
 (26,1,1) = {"
 GF
-EY
+MS
 UJ
 fn
 iD
@@ -4498,7 +4515,7 @@ GF
 "}
 (27,1,1) = {"
 GF
-EY
+MS
 iA
 Ag
 iD
@@ -4566,7 +4583,7 @@ GF
 "}
 (28,1,1) = {"
 GF
-EY
+MS
 nA
 NR
 iD
@@ -4634,7 +4651,7 @@ GF
 "}
 (29,1,1) = {"
 GF
-EY
+MS
 zA
 NR
 iD
@@ -4702,7 +4719,7 @@ GF
 "}
 (30,1,1) = {"
 GF
-EY
+MS
 JP
 Qe
 XE
@@ -7287,20 +7304,20 @@ GJ
 "}
 (2,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
 GN
 Kk
 Kk
@@ -7355,12 +7372,12 @@ GJ
 "}
 (3,1,2) = {"
 GJ
-EY
+MS
 tr
 Gw
 iH
 iH
-EY
+MS
 Mm
 Ys
 Ys
@@ -7423,12 +7440,12 @@ GJ
 "}
 (4,1,2) = {"
 GJ
-EY
+MS
 uP
 EN
 Hg
 iH
-EY
+MS
 tY
 Ys
 Ys
@@ -7491,7 +7508,7 @@ GJ
 "}
 (5,1,2) = {"
 GJ
-EY
+MS
 Jq
 Py
 bh
@@ -7559,20 +7576,20 @@ GJ
 "}
 (6,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
+MS
 SM
-EY
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
+MS
+MS
 GN
 lX
 lX
@@ -7627,12 +7644,12 @@ GJ
 "}
 (7,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
 eQ
-EY
+MS
 tY
 BZ
 Ys
@@ -7695,12 +7712,12 @@ GJ
 "}
 (8,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
 eQ
-EY
+MS
 di
 dc
 Ys
@@ -7763,12 +7780,12 @@ GJ
 "}
 (9,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
 eQ
-EY
+MS
 pD
 dc
 Ys
@@ -7831,7 +7848,7 @@ GJ
 "}
 (10,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -7899,12 +7916,12 @@ GJ
 "}
 (11,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
+MS
 di
 dc
 Ys
@@ -7967,12 +7984,12 @@ GJ
 "}
 (12,1,2) = {"
 GJ
-EY
+MS
 ax
 sZ
 sZ
 vW
-EY
+MS
 di
 dc
 Ys
@@ -8035,12 +8052,12 @@ GJ
 "}
 (13,1,2) = {"
 GJ
-EY
+MS
 sQ
 eQ
 eQ
 gl
-EY
+MS
 tY
 BZ
 Ys
@@ -8103,12 +8120,12 @@ GJ
 "}
 (14,1,2) = {"
 GJ
-EY
+MS
 sQ
 eQ
 eQ
 gl
-EY
+MS
 tY
 dU
 SL
@@ -8117,7 +8134,7 @@ Ys
 Ys
 Ys
 di
-GN
+LU
 lX
 lX
 lX
@@ -8171,12 +8188,12 @@ GJ
 "}
 (15,1,2) = {"
 GJ
-EY
+MS
 Yh
 eQ
 eQ
 dL
-EY
+MS
 OQ
 BZ
 Ys
@@ -8185,7 +8202,7 @@ Ys
 Ys
 Ys
 di
-GN
+LU
 lX
 lX
 lX
@@ -8239,12 +8256,12 @@ GJ
 "}
 (16,1,2) = {"
 GJ
-EY
+MS
 sQ
 eQ
 eQ
 iZ
-EY
+MS
 di
 dc
 Ys
@@ -8307,12 +8324,12 @@ GJ
 "}
 (17,1,2) = {"
 GJ
-EY
+MS
 sQ
 eQ
 eQ
 iZ
-EY
+MS
 di
 dc
 Ys
@@ -8375,12 +8392,12 @@ GJ
 "}
 (18,1,2) = {"
 GJ
-EY
+MS
 rO
 eQ
 eQ
 oi
-EY
+MS
 di
 Cj
 Ys
@@ -8443,12 +8460,12 @@ GJ
 "}
 (19,1,2) = {"
 GJ
-EY
+MS
 rO
 eQ
 eQ
 oi
-EY
+MS
 di
 dc
 Ys
@@ -8511,12 +8528,12 @@ GJ
 "}
 (20,1,2) = {"
 GJ
-EY
+MS
 NK
 eQ
 eQ
 UN
-EY
+MS
 di
 dc
 Ys
@@ -8525,7 +8542,7 @@ Ys
 Ys
 Ys
 di
-GN
+LU
 lX
 lX
 lX
@@ -8579,12 +8596,12 @@ GJ
 "}
 (21,1,2) = {"
 GJ
-EY
+MS
 TU
 eQ
 eQ
 UN
-EY
+MS
 OQ
 BZ
 Ys
@@ -8593,7 +8610,7 @@ Ys
 Ys
 Ys
 di
-GN
+LU
 lX
 lX
 lX
@@ -8647,7 +8664,7 @@ GJ
 "}
 (22,1,2) = {"
 GJ
-EY
+MS
 OV
 eQ
 eQ
@@ -8715,7 +8732,7 @@ GJ
 "}
 (23,1,2) = {"
 GJ
-EY
+MS
 Mz
 eQ
 eQ
@@ -8783,16 +8800,16 @@ GJ
 "}
 (24,1,2) = {"
 GJ
-EY
+MS
 nw
 PP
-EY
-EY
-EY
+MS
+MS
+MS
 SM
 SM
-EY
-EY
+MS
+MS
 Zs
 Zs
 Zs
@@ -8851,7 +8868,7 @@ GJ
 "}
 (25,1,2) = {"
 GJ
-EY
+MS
 KF
 NP
 NP
@@ -8919,7 +8936,7 @@ GJ
 "}
 (26,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -8987,7 +9004,7 @@ GJ
 "}
 (27,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9055,7 +9072,7 @@ GJ
 "}
 (28,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9123,7 +9140,7 @@ GJ
 "}
 (29,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9140,9 +9157,9 @@ ik
 Hb
 EY
 EY
-EY
-EY
-EY
+eR
+eR
+eR
 EY
 EY
 cf
@@ -9191,7 +9208,7 @@ GJ
 "}
 (30,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9259,7 +9276,7 @@ GJ
 "}
 (31,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9274,13 +9291,13 @@ ik
 ik
 ik
 Hb
-EY
+eR
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+eR
 cf
 ty
 ik
@@ -9327,7 +9344,7 @@ GJ
 "}
 (32,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9342,13 +9359,13 @@ ik
 HQ
 ik
 gs
-EY
+eR
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+eR
 DY
 ty
 FB
@@ -9395,7 +9412,7 @@ GJ
 "}
 (33,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9410,13 +9427,13 @@ ik
 ik
 ik
 Hb
-EY
+eR
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+eR
 cf
 ty
 ik
@@ -9463,7 +9480,7 @@ GJ
 "}
 (34,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9531,7 +9548,7 @@ GJ
 "}
 (35,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9548,9 +9565,9 @@ ik
 Hb
 EY
 EY
-EY
-EY
-EY
+eR
+eR
+eR
 EY
 EY
 cf
@@ -9599,7 +9616,7 @@ GJ
 "}
 (36,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9667,7 +9684,7 @@ GJ
 "}
 (37,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9735,7 +9752,7 @@ GJ
 "}
 (38,1,2) = {"
 GJ
-EY
+MS
 Hd
 Hd
 Hd
@@ -9803,7 +9820,7 @@ GJ
 "}
 (39,1,2) = {"
 GJ
-EY
+MS
 Hd
 Hd
 Hd
@@ -9871,7 +9888,7 @@ GJ
 "}
 (40,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -9939,7 +9956,7 @@ GJ
 "}
 (41,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10007,7 +10024,7 @@ GJ
 "}
 (42,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10075,7 +10092,7 @@ GJ
 "}
 (43,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10090,13 +10107,13 @@ XJ
 ik
 ik
 Hb
-EY
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+eR
+eR
+eR
+MS
+MS
 cf
 ty
 ik
@@ -10143,7 +10160,7 @@ GJ
 "}
 (44,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10158,13 +10175,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10211,7 +10228,7 @@ GJ
 "}
 (45,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10226,13 +10243,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10279,7 +10296,7 @@ GJ
 "}
 (46,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10294,13 +10311,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10347,7 +10364,7 @@ GJ
 "}
 (47,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10362,13 +10379,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10415,7 +10432,7 @@ GJ
 "}
 (48,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10430,13 +10447,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10483,7 +10500,7 @@ GJ
 "}
 (49,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10498,13 +10515,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10551,7 +10568,7 @@ GJ
 "}
 (50,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10566,13 +10583,13 @@ XJ
 ik
 ik
 gs
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 DY
 ty
 ik
@@ -10619,7 +10636,7 @@ GJ
 "}
 (51,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10634,13 +10651,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10687,7 +10704,7 @@ GJ
 "}
 (52,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10702,13 +10719,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10755,7 +10772,7 @@ GJ
 "}
 (53,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10770,13 +10787,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 FB
@@ -10823,7 +10840,7 @@ GJ
 "}
 (54,1,2) = {"
 GJ
-EY
+MS
 eQ
 eQ
 eQ
@@ -10838,13 +10855,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10891,11 +10908,11 @@ GJ
 "}
 (55,1,2) = {"
 GJ
-EY
+MS
 Jk
 Jk
 Jk
-EY
+MS
 Dx
 eQ
 eQ
@@ -10906,13 +10923,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -10959,7 +10976,7 @@ GJ
 "}
 (56,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
@@ -10974,13 +10991,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -11027,7 +11044,7 @@ GJ
 "}
 (57,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
@@ -11042,13 +11059,13 @@ XJ
 ik
 ik
 Hb
-EY
+MS
 Ys
 Ys
 Ys
 Ys
 Ys
-EY
+MS
 cf
 ty
 ik
@@ -11095,11 +11112,11 @@ GJ
 "}
 (58,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
 eQ
 eQ
 eQ
@@ -11110,13 +11127,13 @@ XJ
 ik
 ik
 Hb
-EY
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+eR
+eR
+eR
+MS
+MS
 cf
 ty
 ik
@@ -11163,11 +11180,11 @@ GJ
 "}
 (59,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
-EY
+MS
 VL
 eQ
 eQ
@@ -11231,7 +11248,7 @@ GJ
 "}
 (60,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
@@ -11299,7 +11316,7 @@ GJ
 "}
 (61,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
@@ -11367,14 +11384,14 @@ GJ
 "}
 (62,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
-EY
+MS
 eQ
 eQ
-EY
+MS
 hk
 eQ
 Hd
@@ -11435,17 +11452,17 @@ GJ
 "}
 (63,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
 xj
 eQ
-EY
+MS
 XD
 Jf
-EY
+MS
 LX
 Zc
 Zc
@@ -11503,17 +11520,17 @@ GJ
 "}
 (64,1,2) = {"
 GJ
-EY
+MS
 Ys
 Ys
 Ys
 ug
 eQ
 eQ
-EY
+MS
 Ys
 Ys
-EY
+MS
 eQ
 WZ
 eQ
@@ -11571,16 +11588,16 @@ GJ
 "}
 (65,1,2) = {"
 GJ
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
-EY
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
+MS
 Zs
 Zs
 Zs
