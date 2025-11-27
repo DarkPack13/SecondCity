@@ -32,6 +32,3 @@
 	l_pocket = /obj/item/smartphone/giovanni_capo
 	r_pocket = /obj/item/vamp/keys/capo
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/giovanniboss=1)
-
-/obj/effect/landmark/start/capo
-	name = "Capo"

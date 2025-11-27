@@ -1,0 +1,4 @@
+author: "Hawk-v3"
+delete-after: True
+changes:
+  - rscadd: "Reimplements the Fusebox."

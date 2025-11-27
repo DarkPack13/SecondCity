@@ -41,7 +41,3 @@
 	l_pocket = /obj/item/smartphone/seneschal
 	r_pocket = /obj/item/vamp/keys/clerk
 	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
-
-/obj/effect/landmark/start/clerk
-	name = "Seneschal"
-	icon_state = "Clerk"

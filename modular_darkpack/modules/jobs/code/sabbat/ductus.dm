@@ -30,7 +30,3 @@
 	. = ..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
-
-/obj/effect/landmark/start/sabbatductus
-	name = "Sabbat Ductus"
-	icon_state = "Assistant"
