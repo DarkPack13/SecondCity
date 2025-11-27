@@ -32,10 +32,6 @@
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
 
-/obj/effect/landmark/start/sabbatpack
-	name = "Sabbat Pack"
-	icon_state = "Assistant"
-
 // keeping this for lateparty sabbat
 /datum/antagonist/sabbatist
 	name = "Sabbatist"

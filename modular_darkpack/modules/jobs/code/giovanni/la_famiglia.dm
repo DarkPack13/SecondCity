@@ -31,6 +31,3 @@
 	l_pocket = /obj/item/smartphone/giovanni_famiglia
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/famiglia
-	name = "La Famiglia"

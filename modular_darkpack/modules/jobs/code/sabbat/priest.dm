@@ -31,10 +31,6 @@
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
 
-/obj/effect/landmark/start/sabbatpriest
-	name = "Sabbat Priest"
-	icon_state = "Assistant"
-
 /proc/is_sabbatist(mob/living/user)
 	return user?.mind?.assigned_role in list("Sabbat Priest", "Sabbat Ductus", "Sabbat Pack")
 

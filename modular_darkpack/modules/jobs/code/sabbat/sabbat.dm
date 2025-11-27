@@ -1,5 +1,5 @@
 /datum/outfit/job/vampire/sabbatist
-	name = "Sabbatist"
+	name = JOB_SABBAT_SABBATIST
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench
@@ -18,10 +18,6 @@
 			landmarkslist += S
 	var/obj/effect/landmark/start/D = pick(landmarkslist)
 	H.forceMove(D.loc)
-
-/obj/effect/landmark/start/sabbatist
-	name = "Sabbatist"
-	delete_after_roundstart = FALSE
 
 /datum/antagonist/sabbatist
 	name = "Sabbatist"
