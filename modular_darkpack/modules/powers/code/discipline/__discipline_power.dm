@@ -474,7 +474,7 @@
  */
 /datum/discipline_power/proc/spend_resources()
 	if (can_afford())
-		owner.bloodpool = owner.bloodpool - vitae_cost
+		owner.adjustBloodPool(-vitae_cost)
 		owner.update_action_buttons()
 		return TRUE
 	else

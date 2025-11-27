@@ -239,7 +239,7 @@
 	if (user.bloodpool < 1)
 		to_chat(owner, span_warning("You don't have enough blood to peek into the Shadowlands!"))
 		return
-	user.bloodpool = max(user.bloodpool - 1, 0)
+	user.adjustBloodPool(-1)
 
 	loop_timer = addtimer(CALLBACK(src, PROC_REF(refresh)), duration_length, TIMER_STOPPABLE | TIMER_DELETE_ME)
 	user.see_invisible = SEE_INVISIBLE_OBSERVER
@@ -261,7 +261,7 @@
 	var/mob/living/user = owner
 
 	if (user.bloodpool >= 1)
-		user.bloodpool = max(user.bloodpool - 1, 0)
+		user.adjustBloodPool(-1)
 		to_chat(owner, span_warning("Your ghost sight consumes blood to stay active..."))
 		loop_timer = addtimer(CALLBACK(src, PROC_REF(refresh)), duration_length, TIMER_STOPPABLE | TIMER_DELETE_ME)
 	else

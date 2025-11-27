@@ -32,7 +32,7 @@
 				drawing = FALSE
 				var/ritual_type = rune_names[ritual]
 				new ritual_type(H.loc)
-				H.bloodpool = max(H.bloodpool - 2, 0)
+				H.adjustBloodPool(-2)
 				SEND_SIGNAL(H, COMSIG_MASQUERADE_VIOLATION)
 			else
 				drawing = FALSE
@@ -50,7 +50,7 @@
 				drawing = FALSE
 				var/rune = pick(shit)
 				new rune(H.loc)
-				H.bloodpool = max(H.bloodpool - 2, 0)
+				H.adjustBloodPool(-2)
 				SEND_SIGNAL(H, COMSIG_MASQUERADE_VIOLATION)
 			else
 				drawing = FALSE

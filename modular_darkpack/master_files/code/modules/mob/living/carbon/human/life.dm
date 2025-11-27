@@ -2,7 +2,6 @@
 	if(!iskindred(src))
 		if(prob(5))
 			adjustAggLoss(-5, TRUE)
-	update_blood_hud()
 	update_zone_hud()
 	update_rage_hud()
 	update_shadow()

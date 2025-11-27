@@ -92,8 +92,8 @@
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/activate(mob/living/target)
 	. = ..()
-	target.bloodpool = max(target.bloodpool - 2, 0)
-	owner.bloodpool = min(owner.bloodpool + 2, owner.maxbloodpool)
+	target.adjustBloodPool(-2)
+	owner.adjustBloodPool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 	qdel(casing)

@@ -76,7 +76,6 @@
 		adjustFireLoss(-10, TRUE)
 		update_damage_overlays()
 		update_health_hud()
-		update_blood_hud()
 
 	if(mob.bloodpool <= 0)
 		handle_drink_dry(mob)

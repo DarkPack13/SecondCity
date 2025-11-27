@@ -421,7 +421,7 @@
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodcrawler/bloodform = bloodform_shapeshift.myshape
-	owner.bloodpool = min(owner.bloodpool + round(bloodform.collected_blood / 2), owner.maxbloodpool)
+	owner.adjustBloodPool(round(bloodform.collected_blood / 2))
 	bloodform_shapeshift.Restore(bloodform_shapeshift.myshape)
 	owner.Stun(1.5 SECONDS)
 	owner.do_jitter_animation(30)

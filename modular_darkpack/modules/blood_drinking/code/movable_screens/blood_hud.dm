@@ -23,7 +23,10 @@
 /mob/living/proc/update_blood_hud()
 	if(!client || !hud_used)
 		return
-	maxbloodpool = 10+((13-generation)*3)
 	if(hud_used.bloodpool_icon)
 		var/emm = clamp(round((bloodpool/maxbloodpool)*10), 0, 10)
 		hud_used.bloodpool_icon.icon_state = "blood[emm]"
+
+/mob/living/carbon/human/update_blood_hud()
+	maxbloodpool = get_max_bloodpool(generation)
+	. = ..()
