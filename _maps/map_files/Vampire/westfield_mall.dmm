@@ -16923,11 +16923,6 @@
 /obj/effect/mapping_helpers/door/access/director,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
-"lgB" = (
-/obj/machinery/light/directional/east,
-/obj/machinery/light/directional/east,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "lra" = (
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/roofwalk,
@@ -61765,7 +61760,7 @@ emu
 akW
 akW
 akW
-lgB
+aOV
 akW
 akW
 hBm
