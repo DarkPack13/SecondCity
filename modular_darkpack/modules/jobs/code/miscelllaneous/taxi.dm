@@ -30,6 +30,3 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/taxi
 	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/melee/vamp/tire=1)
-
-/obj/effect/landmark/start/taxi
-	name = "Taxi Driver"
