@@ -1,5 +1,5 @@
 //Wrapper function for adjusting a kindred/ghoul's blood pool
-/mob/living/proc/adjustBloodPool(amount, updating_health = TRUE, on_spawn)
+/mob/living/proc/adjust_blood_pool(amount, updating_health = TRUE, on_spawn)
 	if(on_spawn)
 		bloodpool = 0
 	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)

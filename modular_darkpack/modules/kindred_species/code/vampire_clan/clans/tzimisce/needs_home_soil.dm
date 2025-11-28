@@ -40,7 +40,7 @@
 		return
 
 	var/mob/living/lacking_soil = parent
-	lacking_soil.adjustBloodPool(-1)
+	lacking_soil.adjust_blood_pool(-1)
 
 	to_chat(lacking_soil, span_warning("You are missing your home soil. Being without it weakens you..."))
 
@@ -52,7 +52,7 @@
 	lacking_soil.apply_damage(0.25 * lacking_soil.getMaxHealth(), AGGRAVATED)
 	// Currently nonfunctional, will be fixed in the splat rework
 	// lacking_soil.maxbloodpool = max(lacking_soil.maxbloodpool - 3, 8)
-	lacking_soil.adjustBloodPool(-3)
+	lacking_soil.adjust_blood_pool(-3)
 
 	to_chat(lacking_soil, span_danger("Your home soil has been destroyed! Its loss debilitates you."))
 
