@@ -396,4 +396,3 @@
 		return
 	power.remove_all_shadows()
 	return TRUE
-

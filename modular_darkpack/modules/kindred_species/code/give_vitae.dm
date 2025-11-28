@@ -37,7 +37,7 @@
 	owner.visible_message(span_danger("[owner] finishes pouring blood into \the [target_atom][ismob(target_atom) ? "'s mouth" : null]!"), span_info("You finish pouring blood into \the [target_atom][ismob(target_atom) ? "'s mouth" : null]."))
 	owner.log_message("poured their vitae into [key_name(target_atom)].", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(carbon_owner)] poured their vitae into [ADMIN_LOOKUPFLW(target_atom)].")
-	carbon_owner.bloodpool = max(carbon_owner.bloodpool - 1, 0)
+	carbon_owner.adjust_blood_pool(-1)
 	carbon_owner.transfer_blood_to(target_atom, 100, TRUE, TRUE)
 	target_atom.reagents.expose(target_atom, INGEST, 1, FALSE)
 	return TRUE

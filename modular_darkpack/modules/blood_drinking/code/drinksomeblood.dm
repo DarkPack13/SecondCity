@@ -32,7 +32,7 @@
 			mob.apply_status_effect(/datum/status_effect/kissed)
 		return
 
-	mob.adjustBloodPool(-1)
+	mob.adjust_blood_pool(-1)
 	suckbar.icon_state = "[round(14*(mob.bloodpool/mob.maxbloodpool))]"
 
 	if(ishuman(mob))
@@ -71,12 +71,11 @@
 	var/drink_mod = calculate_drink_modifier(mob)
 
 	if(drink_mod)
-		adjustBloodPool(drink_mod*max(1, mob.bloodquality-1))
+		adjust_blood_pool(drink_mod*max(1, mob.bloodquality-1))
 		adjustBruteLoss(-10, TRUE)
 		adjustFireLoss(-10, TRUE)
 		update_damage_overlays()
 		update_health_hud()
-		update_blood_hud()
 
 	if(mob.bloodpool <= 0)
 		handle_drink_dry(mob)
