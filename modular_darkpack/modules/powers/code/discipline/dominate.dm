@@ -223,7 +223,7 @@
 	. = ..()
 	to_chat(owner, span_warning("You've successfully dominated [target]'s mind!"))
 	log_combat(owner, target, "Dominated with Command: [custom_command]")
-	owner.say(custom_command)
+	owner.say(custom_command, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
 
 
 	to_chat(target, span_big("[custom_command]"))
@@ -294,7 +294,7 @@
 
 	log_combat(owner, target, "Dominated with Mesmerize: [custom_message]")
 	to_chat(owner, span_warning("You've successfully planted a hypnotic suggestion in [target]'s mind!"))
-	owner.say(custom_message)
+	owner.say(custom_message, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
 
 	to_chat(target, span_info("An urging, subconcious thought has entered your mind. Youre not sure how this happened - but it keeps pulsing, forcing your conscious thought to bend toward it."))
 	to_chat(target, span_hypnophrase(custom_message))
@@ -424,7 +424,7 @@
 
 	log_combat(owner, target, "Dominated with The Forgetful Mind: [custom_memory]")
 	to_chat(owner, span_warning("You've successfully invaded [target]'s mind and altered their memories!"))
-	owner.say(custom_memory)
+	owner.say(custom_memory, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
 
 	to_chat(target, span_hypnophrase(custom_memory))
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
@@ -486,7 +486,7 @@
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("LOOK AT ME"))
 
-	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
+	owner.say("Look at me.", forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE) //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
 
 	if(do_after(owner, 20 SECONDS, target))
 		target.conditioned = TRUE
@@ -679,7 +679,7 @@
 	to_chat(src, span_warning("Your consciousness has been displaced from your body by a supernatural force. You can only observe as another mind controls your physical form."))
 	to_chat(src, span_notice("You are helpless to act, but can still observe and think. Pray that the intruder releases control soon..."))
 
-/mob/living/possession_observer/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/possession_observer/say(message,bubble_type,list/spans = list(),sanitize = TRUE,datum/language/language,ignore_spam = FALSE,forced,filterproof = FALSE,message_range = 7,datum/saymode/saymode,list/message_mods = list())
 	to_chat(src, span_warning("You have no voice while displaced from your body!"))
 	return FALSE
 
