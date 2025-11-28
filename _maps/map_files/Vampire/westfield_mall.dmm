@@ -2879,10 +2879,6 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
 "ajE" = (
-/obj/structure/sign/city/store/bacotell{
-	pixel_y = 36;
-	pixel_x = 16
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
@@ -5541,7 +5537,7 @@
 /area/vtm/westfield_mall/interior/maintenance/roof)
 "aso" = (
 /obj/item/kirbyplants/darkpack/random,
-/obj/structure/sign/flag/italy{
+/obj/structure/sign/flag/italy/directional/north{
 	pixel_y = 30
 	},
 /turf/open/floor/wood/smooth/old,
@@ -5938,7 +5934,8 @@
 /area/vtm/interior/bianchiBank)
 "atu" = (
 /obj/structure/sign/flag/california/rare{
-	pixel_y = 28
+	pixel_y = 28;
+	dir = 1
 	},
 /turf/open/floor/carpet,
 /area/awaymission/errorroom)
@@ -10615,9 +10612,7 @@
 /turf/open/floor/wood/old,
 /area/vtm/westfield_mall/interior/clothing_store)
 "aIR" = (
-/obj/structure/sign/city/skateshop{
-	dir = 8
-	},
+/obj/structure/sign/city/skateshop/directional/north,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
 "aIS" = (
@@ -10660,12 +10655,6 @@
 /obj/machinery/light/prince/directional/south,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
-"aIZ" = (
-/obj/structure/sign/city/skateshop{
-	dir = 4
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/westfield_mall/skatepark)
 "aJa" = (
 /obj/structure/vampipe{
 	icon_state = "piping9";
@@ -10895,10 +10884,6 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/westfield_mall)
-"aJQ" = (
-/obj/structure/sign/city/skateshop,
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/westfield_mall/skatepark)
 "aJR" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/white{
@@ -11630,6 +11615,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
+/obj/structure/sign/city/store/gummaguts/directional/north{
+	pixel_x = -16;
+	pixel_y = 35
+	},
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "aMo" = (
@@ -11897,9 +11886,9 @@
 /turf/open/floor/city/industrial,
 /area/vtm/interior/sewer/nosferatu_town)
 "aNe" = (
-/obj/structure/sign/city/order,
-/turf/closed/wall/vampwall/market,
-/area/vtm/westfield_mall/interior/foodcourt/restaurant)
+/obj/structure/sign/city/order/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/westfield_mall/interior/foodcourt)
 "aNf" = (
 /obj/structure/lattice/grate{
 	dir = 4
@@ -12584,6 +12573,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
+/obj/structure/sign/city/store/bacotell/directional/north{
+	pixel_x = -15;
+	pixel_y = 36
+	},
 /turf/open/floor/city/bacotell,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "aPw" = (
@@ -12797,10 +12790,6 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "aQa" = (
-/obj/structure/sign/city/store/bubway{
-	pixel_y = 36;
-	pixel_x = 16
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
@@ -14284,6 +14273,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
+/obj/structure/sign/city/store/bubway/directional/north{
+	pixel_x = -14;
+	pixel_y = 37
+	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "aVd" = (
@@ -15497,10 +15490,6 @@
 /turf/open/floor/city/toilet/large,
 /area/vtm/westfield_mall/interior/smokeshop)
 "aZb" = (
-/obj/structure/sign/city/store/gummaguts{
-	pixel_y = 36;
-	pixel_x = 16
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
@@ -16411,10 +16400,7 @@
 	pixel_x = 1;
 	pixel_y = 4
 	},
-/obj/structure/sign/poster/contraband/jumbo_bar{
-	pixel_x = 1;
-	pixel_y = 35
-	},
+/obj/structure/sign/poster/contraband/jumbo_bar/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
 "gyy" = (
@@ -17442,9 +17428,7 @@
 /obj/structure/chair/wood/darkpack/red{
 	dir = 8
 	},
-/obj/structure/sign/poster/contraband/donut_corp{
-	pixel_y = 34
-	},
+/obj/structure/sign/poster/contraband/donut_corp/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
 "tRn" = (
@@ -46294,7 +46278,7 @@ amy
 amy
 amy
 amy
-aJQ
+aIR
 aSQ
 anE
 axy
@@ -46446,7 +46430,7 @@ aow
 aow
 aow
 amy
-aJQ
+aIR
 aes
 aWT
 aMM
@@ -46598,7 +46582,7 @@ aow
 aow
 aow
 amy
-aIZ
+aIR
 akm
 aWT
 ajN
@@ -60194,8 +60178,8 @@ aIe
 asb
 asb
 asb
+asb
 aNe
-aLU
 aLU
 abf
 apa
