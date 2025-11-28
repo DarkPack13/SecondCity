@@ -4868,10 +4868,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
 "aqa" = (
-/obj/machinery/light/prince/ghost{
-	pixel_x = -32;
-	pixel_y = 32
-	},
+/obj/machinery/light/prince/ghost/directional/north,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/forest)
 "aqb" = (
@@ -6565,13 +6562,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
-"avx" = (
-/obj/machinery/light/prince/ghost{
-	pixel_x = 32;
-	pixel_y = 32
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall/forest)
 "avy" = (
 /obj/structure/curtain/bounty/start_closed,
 /turf/open/floor/wood/smooth/old,
@@ -122918,7 +122908,7 @@ ayT
 aaa
 aaa
 aMh
-alg
+aqa
 awi
 asv
 aVo
@@ -123070,7 +123060,7 @@ asK
 aku
 aaa
 abh
-aqa
+alg
 alg
 awi
 aPp
@@ -123374,7 +123364,7 @@ aun
 aaa
 aaa
 abh
-avx
+alg
 alg
 aqS
 asI
@@ -123526,7 +123516,7 @@ amS
 aaa
 aaa
 aMh
-alg
+aqa
 aqS
 azM
 aVo
