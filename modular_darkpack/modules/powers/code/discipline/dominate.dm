@@ -92,7 +92,7 @@
 		to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
 		return FALSE
 
-	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
 	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
 	//automatically succeed against my conditioned servant

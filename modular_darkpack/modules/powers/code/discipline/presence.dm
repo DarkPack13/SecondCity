@@ -56,7 +56,7 @@
 	presence_overlay.pixel_z = 1
 	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
-	SEND_SOUND(target, sound('code/modules/wod13/sounds/presence_activate.ogg'))
+	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
 	// Grant the resist action
 	var/datum/action/resist_presence/resist_action = new(target)
@@ -69,12 +69,12 @@
 /datum/discipline_power/presence/proc/sort_targets_by_willpower(list/targets)
 	var/list/sorted = list()
 	for(var/mob/living/carbon/target in targets)
-		var/target_willpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+		var/target_willpower = target.st_get_stat(STAT_WILLPOWER)
 		var/inserted = FALSE
 
 		for(var/i = 1; i <= length(sorted); i++)
 			var/mob/living/carbon/existing = sorted[i]
-			if(target_willpower < existing.st_get_stat(STAT_TEMPORARY_WILLPOWER))
+			if(target_willpower < existing.st_get_stat(STAT_WILLPOWER))
 				sorted.Insert(i, target)
 				inserted = TRUE
 				break
@@ -93,7 +93,7 @@
 /datum/action/resist_presence
 	name = "Resist Presence"
 	desc = "Burn a point of your temporary willpower to resist the effects of Presence."
-	button_icon = 'code/modules/wod13/UI/actions.dmi'
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
 	button_icon_state = "presence"
 	check_flags = AB_CHECK_CONSCIOUS
 
@@ -106,14 +106,14 @@
 	if(!ishuman(user))
 		return FALSE
 
-	if(user.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 0)
+	if(user.st_get_stat(STAT_WILLPOWER) <= 0)
 		to_chat(user, span_warning("You don't have any temporary willpower left to resist!"))
 		return FALSE
 
-	user.st_decrease_stat_score(STAT_TEMPORARY_WILLPOWER, 1)
+	user.st_decrease_stat_score(STAT_WILLPOWER, 1)
 	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
 
-	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
+	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
 
 	if(roll_success)
 		user.remove_overlay(MUTATIONS_LAYER)
