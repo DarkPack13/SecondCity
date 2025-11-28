@@ -42,8 +42,8 @@
 			"total_positions": 0
 		},
 		"Street Janitor": {
-			"spawn_positions": 2,
-			"total_positions": 2
+			"spawn_positions": 4,
+			"total_positions": 4
 		},
 		"Taxi Driver": {
 			"spawn_positions": 0,
@@ -69,9 +69,21 @@
 			"spawn_positions": 3,
 			"total_positions": 3
 		},
+		"La Squadra": {
+			"spawn_positions": 5,
+			"total_positions": 5
+		},
+		"La Famiglia": {
+			"spawn_positions": 5,
+			"total_positions": 5
+		},
 		"Club Worker": {
 			"spawn_positions": 0,
 			"total_positions": 0
+		},
+		"Emergency Dispatcher": {
+			"spawn_positions": 1,
+			"total_positions": 1
 		}
 	},
 	"max_npcs": 60

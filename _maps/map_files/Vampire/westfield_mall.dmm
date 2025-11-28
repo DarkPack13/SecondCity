@@ -171,7 +171,7 @@
 "aaF" = (
 /obj/structure/chair/sofa/corp/left,
 /obj/machinery/light/directional/north,
-/obj/effect/landmark/start/sweeper,
+/obj/effect/landmark/start/darkpack/anarch/sweeper,
 /turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior/anarch)
 "aaG" = (
@@ -1116,6 +1116,7 @@
 /area/vtm/westfield_mall/interior/theatre)
 "adQ" = (
 /obj/structure/chair/comfy/darkpack/dark,
+/obj/effect/landmark/start/darkpack/voivode/voivode,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "adR" = (
@@ -1240,6 +1241,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/camarilla/towerwork,
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/westfield_mall/interior/maintenance)
 "aej" = (
@@ -1341,9 +1343,7 @@
 /turf/closed/wall/vampwall/painted/low/window/reinforced,
 /area/vtm/interior/bianchiBank)
 "aey" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 8
-	},
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/littleitaly)
 "aez" = (
@@ -1951,6 +1951,7 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/effect/landmark/start/darkpack/primogen/nosferatu,
 /turf/open/floor/plating/rough{
 	icon_state = "carpet_black"
 	},
@@ -2040,7 +2041,7 @@
 /obj/structure/chair/sofa/corp{
 	dir = 4
 	},
-/obj/effect/landmark/start/harpy,
+/obj/effect/landmark/start/darkpack/camarilla/harpy,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
 "agZ" = (
@@ -2099,7 +2100,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/chantry)
 "ahg" = (
@@ -2423,11 +2424,12 @@
 /area/vtm/interior/church)
 "aie" = (
 /obj/structure/chair/comfy/darkpack/blue,
+/obj/effect/landmark/start/darkpack/law_enforcement/sergeant,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
 "aif" = (
 /obj/structure/chair/office,
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aig" = (
@@ -2509,7 +2511,7 @@
 /obj/structure/chair/darkpack{
 	dir = 8
 	},
-/obj/effect/landmark/start/supply,
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/westfield_mall/interior/supply)
 "ain" = (
@@ -2878,7 +2880,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "ajB" = (
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /obj/structure/chair/wood/darkpack/red,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
@@ -2921,9 +2923,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "ajM" = (
-/obj/effect/landmark/start/bartender,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
+/obj/effect/landmark/start/darkpack/citizen/janitor,
+/turf/open/floor/carpet/darkpack/old,
+/area/vtm/westfield_mall/interior/janitor)
 "ajN" = (
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
@@ -2985,7 +2987,7 @@
 /area/vtm/interior/sewer)
 "ajW" = (
 /obj/structure/chair/wood/darkpack,
-/obj/effect/landmark/start/bruiser,
+/obj/effect/landmark/start/darkpack/anarch/bruiser,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "ajX" = (
@@ -3590,7 +3592,7 @@
 /obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
-/obj/effect/landmark/start/bruiser,
+/obj/effect/landmark/start/darkpack/anarch/bruiser,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
 "alV" = (
@@ -3803,7 +3805,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/arcade)
 "amJ" = (
-/obj/effect/landmark/start/janitor,
+/obj/effect/landmark/start/darkpack/citizen/janitor,
 /obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
@@ -4114,7 +4116,7 @@
 /obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
-/obj/effect/landmark/start/clinic_director,
+/obj/effect/landmark/start/darkpack/primogen/malkavian,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/clinic)
 "anL" = (
@@ -4602,7 +4604,7 @@
 /obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
-/obj/effect/landmark/start/bruiser,
+/obj/effect/landmark/start/darkpack/anarch/bruiser,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "apn" = (
@@ -4714,6 +4716,7 @@
 /obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/hecata/famiglia,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "apF" = (
@@ -4953,7 +4956,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aqi" = (
-/obj/effect/landmark/start/doctor,
+/obj/effect/landmark/start/darkpack/hospital/doctor,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
@@ -5817,7 +5820,7 @@
 /obj/structure/chair/sofa/corp/corner{
 	dir = 4
 	},
-/obj/effect/landmark/start/sweeper,
+/obj/effect/landmark/start/darkpack/anarch/sweeper,
 /turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior/anarch)
 "ati" = (
@@ -6412,6 +6415,7 @@
 /obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
 "auV" = (
@@ -6928,7 +6932,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
 	},
-/obj/effect/landmark/start/doctor,
+/obj/effect/landmark/start/darkpack/hospital/doctor,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "awD" = (
@@ -7484,7 +7488,7 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "ayp" = (
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
@@ -7733,7 +7737,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
 "azl" = (
-/obj/effect/landmark/start/gargoyle,
+/obj/effect/landmark/start/darkpack/chantry/gargoyle,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/chantry)
 "azm" = (
@@ -7782,7 +7786,7 @@
 /area/vtm/westfield_mall/interior/clothing_store)
 "azu" = (
 /obj/structure/chair/darkpack,
-/obj/effect/landmark/start/supply,
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "azv" = (
@@ -8068,7 +8072,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "aAv" = (
-/obj/effect/landmark/start/citizen,
+/obj/effect/landmark/start/darkpack/citizen/citizen,
 /obj/structure/chair/plastic/darkpack{
 	dir = 1
 	},
@@ -8182,7 +8186,7 @@
 /obj/structure/chair/darkpack{
 	dir = 4
 	},
-/obj/effect/landmark/start/supply,
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/westfield_mall/interior/supply)
 "aAR" = (
@@ -8422,7 +8426,7 @@
 /area/vtm/westfield_mall/interior/supply)
 "aBH" = (
 /obj/structure/chair/wood/darkpack,
-/obj/effect/landmark/start/tapster,
+/obj/effect/landmark/start/darkpack/anarch/tapster,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "aBI" = (
@@ -8606,7 +8610,7 @@
 /obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
-/obj/effect/landmark/start/tapster,
+/obj/effect/landmark/start/darkpack/anarch/tapster,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "aCq" = (
@@ -8637,13 +8641,14 @@
 /area/vtm/westfield_mall/interior/theatre)
 "aCw" = (
 /obj/effect/turf_decal/siding/wood/dark,
+/obj/effect/landmark/start/darkpack/hecata/famiglia,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/bianchiBank)
 "aCx" = (
 /obj/structure/chair/wood/darkpack/red{
 	dir = 1
 	},
-/obj/effect/landmark/start/primogen_banu,
+/obj/effect/landmark/start/darkpack/primogen/banu,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/dojo)
 "aCy" = (
@@ -9075,7 +9080,7 @@
 /obj/structure/chair/sofa/corp/corner{
 	dir = 4
 	},
-/obj/effect/landmark/start/harpy,
+/obj/effect/landmark/start/darkpack/camarilla/harpy,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
 "aDN" = (
@@ -9095,7 +9100,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "aDQ" = (
-/obj/effect/landmark/start/citizen,
+/obj/effect/landmark/start/darkpack/citizen/citizen,
 /obj/structure/chair/plastic/darkpack,
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior/foodcourt)
@@ -9116,7 +9121,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
 	},
-/obj/effect/landmark/start/harpy,
+/obj/effect/landmark/start/darkpack/camarilla/harpy,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
 "aDU" = (
@@ -9266,7 +9271,7 @@
 /turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "aEr" = (
-/obj/effect/landmark/start/sheriff,
+/obj/effect/landmark/start/darkpack/camarilla/sheriff,
 /obj/structure/chair/office/darkpack/blue{
 	dir = 1
 	},
@@ -9587,6 +9592,7 @@
 /obj/structure/chair/office/darkpack/red{
 	dir = 4
 	},
+/obj/effect/landmark/start/darkpack/hecata/capo,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "aFp" = (
@@ -9885,7 +9891,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/arcade)
 "aGr" = (
-/obj/effect/landmark/start/hound,
+/obj/effect/landmark/start/darkpack/camarilla/hound,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "aGs" = (
@@ -9998,6 +10004,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
 	},
+/obj/effect/landmark/start/darkpack/law_enforcement/dispatcher,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aGO" = (
@@ -10030,6 +10037,7 @@
 /area/vtm/interior/police)
 "aGS" = (
 /obj/structure/chair/office/darkpack/blue,
+/obj/effect/landmark/start/darkpack/law_enforcement/officer,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aGT" = (
@@ -10243,7 +10251,7 @@
 /obj/structure/chair/comfy/darkpack/red{
 	dir = 4
 	},
-/obj/effect/landmark/start/baron,
+/obj/effect/landmark/start/darkpack/anarch/baron,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/anarch)
 "aHv" = (
@@ -10914,6 +10922,7 @@
 	pixel_y = 4
 	},
 /obj/machinery/light/directional/north,
+/obj/effect/landmark/start/darkpack/law_enforcement/officer,
 /turf/open/floor/city/plating,
 /area/vtm/interior/police)
 "aJK" = (
@@ -11169,6 +11178,7 @@
 /obj/structure/chair/comfy/darkpack/green{
 	dir = 1
 	},
+/obj/effect/landmark/start/darkpack/primogen/toreador,
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior/theatre)
 "aKF" = (
@@ -11222,7 +11232,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance)
 "aKM" = (
-/obj/effect/landmark/start/hound,
+/obj/effect/landmark/start/darkpack/camarilla/hound,
 /obj/structure/chair/office/darkpack/blue{
 	dir = 1
 	},
@@ -11447,7 +11457,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior/supply)
 "aLu" = (
-/obj/effect/landmark/start/doctor,
+/obj/effect/landmark/start/darkpack/hospital/doctor,
 /obj/structure/chair/office/darkpack/blue{
 	dir = 8
 	},
@@ -11628,7 +11638,7 @@
 /area/vtm/interior)
 "aMb" = (
 /obj/structure/chair/sofa/corp/left,
-/obj/effect/landmark/start/harpy,
+/obj/effect/landmark/start/darkpack/camarilla/harpy,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/camarilla)
@@ -12102,7 +12112,7 @@
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer/nosferatu_town)
 "aND" = (
-/obj/effect/landmark/start/prince,
+/obj/effect/landmark/start/darkpack/camarilla/prince,
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 8
 	},
@@ -12170,6 +12180,7 @@
 /area/vtm/interior/sewer/nosferatu_town)
 "aNP" = (
 /obj/structure/chair/comfy/darkpack/dark,
+/obj/effect/landmark/start/darkpack/voivode/zadruga,
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "aNQ" = (
@@ -12360,7 +12371,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "aOu" = (
-/obj/effect/landmark/start/primogen_lasombra,
+/obj/effect/landmark/start/darkpack/primogen/lasombra,
 /obj/structure/chair/wood/darkpack/red,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/church)
@@ -12888,7 +12899,7 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/chantry)
 "aQf" = (
@@ -13335,7 +13346,7 @@
 /obj/structure/chair/sofa/corp{
 	dir = 4
 	},
-/obj/effect/landmark/start/sweeper,
+/obj/effect/landmark/start/darkpack/anarch/sweeper,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
 "aRB" = (
@@ -13537,7 +13548,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
 	},
-/obj/effect/landmark/start/sweeper,
+/obj/effect/landmark/start/darkpack/anarch/sweeper,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
 "aSc" = (
@@ -13667,7 +13678,7 @@
 /obj/structure/chair/wood/darkpack{
 	dir = 8
 	},
-/obj/effect/landmark/start/emissary,
+/obj/effect/landmark/start/darkpack/anarch/emissary,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/anarch)
 "aSz" = (
@@ -14179,7 +14190,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "aUy" = (
-/obj/effect/landmark/start/regent,
+/obj/effect/landmark/start/darkpack/chantry/regent,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aUz" = (
@@ -14323,6 +14334,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
 	},
+/obj/effect/landmark/start/darkpack/camarilla/towerwork,
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/westfield_mall/interior/maintenance)
 "aUZ" = (
@@ -14388,7 +14400,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 1
 	},
-/obj/effect/landmark/start/doctor,
+/obj/effect/landmark/start/darkpack/hospital/doctor,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
 "aVj" = (
@@ -14409,6 +14421,7 @@
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 4
 	},
+/obj/effect/landmark/start/darkpack/supply/dealer,
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "aVn" = (
@@ -14559,7 +14572,7 @@
 /area/vtm/interior/police)
 "aVO" = (
 /obj/structure/chair/sofa/corp/right,
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aVP" = (
@@ -14680,7 +14693,7 @@
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer)
 "aWl" = (
-/obj/effect/landmark/start/archivist,
+/obj/effect/landmark/start/darkpack/chantry/archivist,
 /obj/structure/chair/wood/darkpack/red{
 	dir = 1
 	},
@@ -15018,7 +15031,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance)
 "aXi" = (
-/obj/effect/landmark/start/garou/glade/keeper,
+/obj/effect/landmark/start/darkpack/forest_wolves/keeper,
 /obj/structure/chair/wood{
 	dir = 8
 	},
@@ -15639,6 +15652,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 1
 	},
+/obj/effect/landmark/start/darkpack/law_enforcement/chief,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
 "aZo" = (
@@ -15926,10 +15940,25 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
+"bsj" = (
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "buD" = (
 /obj/structure/vampstatue/cloaked,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
+"bDk" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/obj/effect/landmark/start/darkpack/camarilla/clerk,
+/turf/open/floor/wood/ornate,
+/area/vtm/westfield_mall/interior/camarilla)
+"bGA" = (
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "bPq" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -16100,6 +16129,12 @@
 /obj/structure/table/countertop/green,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
+"dtZ" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/railing,
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "dvM" = (
 /obj/structure/bed/double,
 /obj/structure/railing/wooden_fence{
@@ -16159,6 +16194,7 @@
 /area/vtm/interior/sewer)
 "dTh" = (
 /obj/structure/chair/office/darkpack/red,
+/obj/effect/landmark/start/darkpack/law_enforcement/fbi,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/art_store)
 "dYz" = (
@@ -16623,6 +16659,7 @@
 /obj/structure/chair/comfy/darkpack/dark{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/primogen/ventrue,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
 "hTH" = (
@@ -16791,6 +16828,10 @@
 /obj/structure/mirror/directional/north,
 /turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior/bathroom)
+"kmf" = (
+/obj/effect/landmark/start/darkpack/hospital/clinic_director,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "kno" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -17019,6 +17060,10 @@
 /obj/effect/mapping_helpers/mob_buckler,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/westfield_mall/interior/theatre)
+"mMo" = (
+/obj/effect/landmark/start/darkpack/hecata/famiglia,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "mPi" = (
 /obj/structure/safe,
 /obj/item/stack/dollar/hundred{
@@ -17094,6 +17139,10 @@
 	},
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
+"nLW" = (
+/obj/effect/landmark/start/darkpack/law_enforcement/officer,
+/turf/open/floor/city/plating,
+/area/vtm/interior/police)
 "nRx" = (
 /obj/structure/vampdoor/simple,
 /obj/effect/mapping_helpers/door/access/cleaning,
@@ -17275,6 +17324,10 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/interior)
+"pSY" = (
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "qae" = (
 /obj/effect/decal/wallpaper/light,
 /turf/closed/wall/vampwall/painted,
@@ -17309,6 +17362,10 @@
 	dir = 8
 	},
 /area/vtm/westfield_mall/interior/law_office)
+"qRg" = (
+/obj/effect/landmark/start/darkpack/voivode/zadruga,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "qVZ" = (
 /obj/structure/vampdoor/glass{
 	dir = 4
@@ -17333,6 +17390,7 @@
 /obj/structure/chair/plastic/darkpack{
 	dir = 4
 	},
+/obj/effect/landmark/start/darkpack/citizen/janitor,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/groundskeeper_garage)
 "rvI" = (
@@ -17350,6 +17408,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/law_enforcement/fbi,
 /turf/open/floor/iron/dark,
 /area/vtm/westfield_mall/interior/art_store)
 "rHM" = (
@@ -17377,6 +17436,7 @@
 /obj/structure/chair/plastic/darkpack{
 	dir = 1
 	},
+/obj/effect/landmark/start/darkpack/citizen/janitor,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/groundskeeper_garage)
 "spN" = (
@@ -17679,6 +17739,11 @@
 /obj/structure/lattice/grate,
 /turf/open/water/vamp_sewer,
 /area/vtm/interior/sewer)
+"vuW" = (
+/obj/item/kirbyplants/darkpack/random,
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "vxJ" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -17717,6 +17782,10 @@
 "vHC" = (
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/interior/groundskeeper_garage)
+"vND" = (
+/obj/effect/landmark/start/darkpack/pentex/employee,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "vPZ" = (
 /obj/structure/table/wood,
 /obj/vampire_computer{
@@ -31536,11 +31605,11 @@ aeH
 aeH
 aeH
 aLs
+bGA
 akW
 akW
 akW
-akW
-aQS
+dtZ
 adx
 aIz
 aIz
@@ -31842,7 +31911,7 @@ aQH
 atq
 akW
 akW
-akW
+qRg
 aPd
 aQS
 apv
@@ -32148,7 +32217,7 @@ aUi
 aPU
 auU
 aHV
-aQS
+dtZ
 agk
 aIz
 aIz
@@ -55699,11 +55768,11 @@ auL
 aYl
 akW
 aUk
-akW
+vND
 aci
 akW
 aUk
-akW
+vND
 aci
 akW
 aIy
@@ -56149,7 +56218,7 @@ aMf
 aft
 aft
 aQy
-akW
+vND
 aJH
 aqZ
 aZO
@@ -56272,7 +56341,7 @@ aXr
 akW
 aOh
 aYM
-afE
+pSY
 afE
 afE
 afE
@@ -56433,7 +56502,7 @@ aIq
 aHB
 aoq
 aZB
-afE
+pSY
 aEQ
 afX
 aJl
@@ -56734,7 +56803,7 @@ aae
 apE
 aSq
 aQs
-aTq
+vuW
 aae
 aae
 aGA
@@ -56757,7 +56826,7 @@ avD
 aSY
 aSY
 aQy
-akW
+vND
 aJH
 aqZ
 aZO
@@ -57040,7 +57109,7 @@ aGA
 aQs
 aJY
 aae
-aae
+mMo
 aGA
 aEQ
 aJl
@@ -57341,7 +57410,7 @@ aYK
 aVq
 aQs
 aso
-aae
+bsj
 aDy
 aae
 aae
@@ -57798,7 +57867,7 @@ afB
 aQs
 azi
 aCw
-aae
+bsj
 azw
 ajj
 aOf
@@ -57843,7 +57912,7 @@ akW
 aXr
 aUx
 aoE
-acX
+nLW
 acX
 acX
 aeI
@@ -57997,10 +58066,10 @@ aMR
 aoE
 afx
 acX
-acX
+nLW
 aoE
 aUe
-acX
+nLW
 abH
 acX
 acX
@@ -75785,7 +75854,7 @@ aXe
 aXe
 ark
 aVZ
-ajM
+aCX
 aCX
 aVZ
 ark
@@ -78629,7 +78698,7 @@ agw
 agw
 acD
 aCN
-ahn
+ajM
 arM
 arQ
 amQ
@@ -78797,7 +78866,7 @@ aiP
 aFe
 awC
 aFz
-aQl
+kmf
 aQl
 auZ
 aZy
@@ -81974,7 +82043,7 @@ aXr
 aCk
 ari
 axY
-axY
+bDk
 aPV
 aPV
 aPV

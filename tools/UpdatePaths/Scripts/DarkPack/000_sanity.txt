@@ -21,8 +21,6 @@
 /obj/machinery/light/prince{dir = 4} : /obj/machinery/light/prince/directional/west
 /obj/machinery/light/prince{dir = 8} : /obj/machinery/light/prince/directional/east
 
-/obj/item/clothing/mask/vampire
-
 # Fixing terrible mapping partices or linting fails
 
 # You are NOT allowed to varedit area subtypes

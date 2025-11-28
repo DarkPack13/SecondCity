@@ -4,5 +4,3 @@
 /turf/open/floor/plating/vampplating/stairs/@SUBTYPES : /turf/open/floor/iron/stairs/@SUBTYPES
 
 /turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
-
-

@@ -2184,13 +2184,6 @@
 /obj/structure/roofstuff/vent_end,
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
-"Ps" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/spawner/random/vending/colavend,
-/turf/open/misc/beach/vamp,
-/area/vtm/outside/pacificheights)
 "Pu" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/plating/rough,
@@ -4209,7 +4202,7 @@ SY
 aP
 Id
 ZU
-Ps
+uJ
 NR
 NR
 NR
