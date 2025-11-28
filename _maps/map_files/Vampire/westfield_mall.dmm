@@ -9825,10 +9825,6 @@
 "aGp" = (
 /turf/open/water/beach/vamp,
 /area/vtm/westfield_mall/forest)
-"aGq" = (
-/obj/structure/chair/stool/bar/directional/east,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/westfield_mall/interior/arcade)
 "aGr" = (
 /obj/effect/landmark/start/darkpack/camarilla/hound,
 /turf/open/floor/city/plating,
@@ -11366,10 +11362,6 @@
 /obj/machinery/vending/coffee/private,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/shop)
-"aLp" = (
-/obj/structure/chair/stool/directional/north,
-/turf/open/floor/eighties,
-/area/vtm/westfield_mall/interior/arcade)
 "aLq" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/concrete,
@@ -16176,7 +16168,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "ewS" = (
-/obj/machinery/photocopier,
+/obj/machinery/photocopier/prebuilt,
 /obj/machinery/light/warm/directional/north,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
@@ -16618,10 +16610,6 @@
 /obj/effect/landmark/start/darkpack/hecata/famiglia,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
-"iQd" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior/groundskeeper_garage)
 "iRP" = (
 /obj/structure/vampdoor/woodglass,
 /obj/effect/mapping_helpers/door/access/npc,
@@ -53079,7 +53067,7 @@ asd
 asd
 aSc
 aID
-aLp
+adf
 aYv
 aBq
 arV
@@ -53231,7 +53219,7 @@ aOg
 aJl
 aSc
 aln
-aLp
+adf
 axl
 aVX
 aVX
@@ -53383,7 +53371,7 @@ aRB
 aJl
 aSc
 aIb
-aLp
+adf
 aga
 adf
 aRp
@@ -53535,7 +53523,7 @@ aRB
 aWV
 aSc
 aCg
-aLp
+adf
 aga
 adf
 aRp
@@ -53839,7 +53827,7 @@ ahW
 aJl
 aSc
 aCg
-aLp
+adf
 aga
 adf
 aRp
@@ -53991,7 +53979,7 @@ aRB
 aJl
 aSc
 aIb
-aLp
+adf
 aga
 adf
 aRp
@@ -54143,7 +54131,7 @@ aRB
 aCS
 aSc
 aIb
-aLp
+adf
 aga
 adf
 aRp
@@ -54604,7 +54592,7 @@ aTy
 aMd
 arV
 arV
-aGq
+akr
 aSc
 aws
 aws
@@ -61169,7 +61157,7 @@ xpz
 fwG
 paE
 xpz
-iQd
+tey
 jjQ
 agd
 agd
@@ -61320,7 +61308,7 @@ xpz
 xpz
 tey
 xpz
-iQd
+tey
 xpz
 nRx
 agd
