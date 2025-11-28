@@ -1,4 +1,3 @@
-
 #define ui_living_bloodpool "EAST-1:28,CENTER-4:14"
 /atom/movable/screen/bloodpool
 	name = "bloodpool"
@@ -8,7 +7,6 @@
 	icon_state = "blood0"
 	screen_loc = ui_living_bloodpool
 	mouse_over_pointer = MOUSE_HAND_POINTER
-#undef ui_living_bloodpool
 
 /atom/movable/screen/bloodpool/Click()
 	if(isliving(usr))
@@ -30,3 +28,5 @@
 /mob/living/carbon/human/update_blood_hud()
 	maxbloodpool = get_max_bloodpool(generation)
 	. = ..()
+
+#undef ui_living_bloodpool
