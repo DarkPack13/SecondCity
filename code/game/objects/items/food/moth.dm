@@ -229,8 +229,8 @@
 
 /obj/item/food/big_baked_rice
 	name = "big baked rice"
-	desc = "A mothic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share. \
-		Potatoes are also often layered on the bottom of the cooking vessel to create a flavourful crust which is hotly contested amongst diners."
+	desc = "An iconic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share. \
+		Potatoes are also often layered on the bottom of the cooking vessel to create a flavourful crust which is hotly contested amongst diners." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/moth.dmi'
 	icon_state = "big_baked_rice"
 	food_reagents = list(

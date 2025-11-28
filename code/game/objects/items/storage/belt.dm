@@ -609,7 +609,7 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/belt/sheath/update_icon_state()
-	icon_state = initial(inhand_icon_state)
+	icon_state = initial(base_icon_state) // DARKPACK TODO - Fallcon will make a PR that upstreams this change soon
 	inhand_icon_state = initial(inhand_icon_state)
 	worn_icon_state = initial(worn_icon_state)
 	if(contents.len)
