@@ -315,10 +315,10 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/peachjuice)
 	reagent_type = /datum/reagent/consumable/peachjuice
 
-/datum/ice_cream_flavour/vanilla/korta
+/*/datum/ice_cream_flavour/vanilla/korta // DARKPACK EDIT REMOVE START - No lizzers
 	name = ICE_CREAM_KORTA_VANILLA
 	desc = "filled with vanilla ice cream made with korta milk. Lizards love it!"
-	ingredients = list(/datum/reagent/consumable/korta_milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)
+	ingredients = list(/datum/reagent/consumable/korta_milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)*/ // DARKPACK EDIT REMOVE END - No lizzers
 
 /datum/ice_cream_flavour/cherry_chocolate
 	name = ICE_CREAM_CHERRY_CHOCOLATE
@@ -343,11 +343,11 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 	ingredients_text = "optional flavorings"
 	takes_custom_ingredients = TRUE
 
-/datum/ice_cream_flavour/custom/korta
+/*/datum/ice_cream_flavour/custom/korta // DARKPACK EDIT REMOVE START - No lizzers
 	name = ICE_CREAM_KORTA_CUSTOM
 	desc = "filled with artisanal lizard-friendly ice cream. Made with real $CUSTOM_NAME. Ain't that something."
 	ingredients = list(/datum/reagent/consumable/korta_milk, /datum/reagent/consumable/ice)
-	ingredients_text = "optional flavorings"
+	ingredients_text = "optional flavorings"*/ // DARKPACK EDIT REMOVE END - No lizzers
 
 /datum/ice_cream_flavour/custom/add_flavour(datum/component/ice_cream_holder/target, datum/reagents/custom_ingredients)
 	if(!custom_ingredients || custom_ingredients.total_volume < 4) //consumable reagents have stronger taste so higher volume are required to allow non-food flavourings to break through better.

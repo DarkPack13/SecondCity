@@ -31,6 +31,7 @@
 	var/last_showed = 0
 	var/last_raid = 0
 	var/killed_count = 0
+	var/fakediablerist = FALSE
 
 	bloodquality = 2
 

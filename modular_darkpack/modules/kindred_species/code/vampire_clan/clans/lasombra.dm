@@ -6,7 +6,7 @@
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		// /datum/discipline/dominate,
-		// /datum/discipline/obtenebration
+		/datum/discipline/obtenebration
 	)
 	clan_traits = list(
 		TRAIT_REJECTED_BY_TECHNOLOGY,
