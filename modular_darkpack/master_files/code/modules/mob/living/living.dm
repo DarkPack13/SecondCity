@@ -2,6 +2,9 @@
 	COOLDOWN_DECLARE(masquerade_timer)
 	//List for icons created for obfuscated mobs
 	var/obf_icons
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
 
 /mob/living/Initialize(mapload)
 	. = ..()

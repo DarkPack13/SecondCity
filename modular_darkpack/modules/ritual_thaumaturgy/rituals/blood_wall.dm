@@ -1,11 +1,11 @@
-/obj/ritualrune/blood_wall
-	name = "Blood Wall"
+/obj/ritual_rune/thaumaturgy/blood_wall
+	name = "blood wall"
 	desc = "Creates the Blood Wall to protect tremere or his domain."
 	icon_state = "rune3"
 	word = "SOT'PY-O"
-	thaumlevel = 2
+	level = 2
 
-/obj/ritualrune/blood_wall/complete()
+/obj/ritual_rune/thaumaturgy/blood_wall/complete()
 	new /obj/structure/bloodwall(loc)
 	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)

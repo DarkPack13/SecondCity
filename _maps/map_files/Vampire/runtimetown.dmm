@@ -1772,7 +1772,7 @@
 /area/vtm/interior/shop)
 "Jz" = (
 /obj/structure/table/reinforced,
-/obj/item/arcane_tome,
+/obj/item/ritual_tome/arcane,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "JB" = (

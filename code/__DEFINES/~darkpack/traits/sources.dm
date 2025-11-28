@@ -5,3 +5,6 @@
 #define DISCIPLINE_TRAIT "discipline"
 // used by the obfuscate ability
 #define OBFUSCATE_TRAIT "obfuscate_trait"
+
+
+#define NECROMANCY_TRAIT "necromancy"
