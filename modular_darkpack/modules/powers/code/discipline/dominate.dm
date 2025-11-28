@@ -28,7 +28,7 @@
 		switch(emote_args.key)
 			if("snap")
 				target.SetSleeping(0)
-				target.silent = 3
+				//target.silent = 3 wtf is this var anyways
 				target.dir = get_dir(target, owner)
 				target.emote("me", 1, "faces towards <b>[owner]</b> attentively.", TRUE)
 				to_chat(target, span_danger("ATTENTION"))
@@ -62,7 +62,7 @@
 
 	var/mob/living/carbon/human/dominate_target = target
 	dominate_target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dominate_overlay = mutable_appearance('code/modules/wod13/icons.dmi', "dominate", -MUTATIONS_LAYER)
+	var/mutable_appearance/dominate_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dominate.dmi', "dominate", -MUTATIONS_LAYER)
 	dominate_overlay.pixel_z = 2
 	dominate_target.overlays_standing[MUTATIONS_LAYER] = dominate_overlay
 	dominate_target.apply_overlay(MUTATIONS_LAYER)
@@ -102,7 +102,7 @@
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	var/mob/living/carbon/human/human_target = target
-	if(human_target.clan?.name == CLAN_GARGOYLE)
+	if(human_target.clan?.name == VAMPIRE_CLAN_GARGOYLE)
 		theirpower -= 2
 
 	//wearing dark sunglasses makes it harder for dominators to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
@@ -134,7 +134,7 @@
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
-	if(do_mob(owner, target, duration))
+	if(do_after(owner, target, duration))
 		release_target(target)
 		return TRUE
 	release_target(target)
@@ -488,7 +488,7 @@
 
 	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
 
-	if(do_mob(owner, target, 20 SECONDS))
+	if(do_after(owner, target, 20 SECONDS))
 		target.conditioned = TRUE
 		target.conditioner = WEAKREF(owner)
 		target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
@@ -517,7 +517,7 @@
 		return FALSE
 
 	//v20 states that posession may not work on other Kindred as 'even the weakest Kindred mind can resist'. Extending this to Garou because players posessing Garous to insta-Crinos I think is griefing.
-	if(iskindred(target) || isgarou(target) || iscathayan(target) || (target.dna.species.name == "mannequin"))
+	if(iskindred(target) || isgarou(target) || (target.dna.species.name == "mannequin")) // note : removed || iscathayan(target), reimplement KJs
 		to_chat(owner, span_warning("You cannot possess [iskindred(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 
@@ -709,6 +709,7 @@
 	return TRUE
 
 //only in use in dementation 5 now
+/*
 /mob/living/carbon/human/proc/attack_myself_command()
 	if(!CheckFrenzyMove())
 		set_combat_mode(TRUE)
@@ -719,6 +720,7 @@
 			if(I)
 				drop_all_held_items()
 			ClickOn(src)
+*/
 
 /mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
 	dominate_target?.remove_overlay(MUTATIONS_LAYER)
@@ -780,7 +782,7 @@
 				owner.say("Live")
 				target.set_heartattack(FALSE)
 				to_chat(target, span_danger("You feel your heart pound!"))
-				target.revive(full_heal = FALSE, admin_revive = FALSE)
+				target.revive()
 				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 	else
 		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))

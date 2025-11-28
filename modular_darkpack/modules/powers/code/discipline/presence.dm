@@ -34,7 +34,7 @@
 		return 0
 
 	//is the difficulty pre-defined? if not, its probably their total willpower.
-	var/theirpower = difficulty || target.st_get_stat(STAT_PERMANENT_WILLPOWER)
+	var/theirpower = difficulty || target.st_get_stat(STAT_WILLPOWER)
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
@@ -52,7 +52,7 @@
 
 /datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target, resist_timer = 30 SECONDS)
 	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/presence_overlay = mutable_appearance('code/modules/wod13/icons.dmi', "presence", -MUTATIONS_LAYER)
+	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
 	presence_overlay.pixel_z = 1
 	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
@@ -110,7 +110,7 @@
 		to_chat(user, span_warning("You don't have any temporary willpower left to resist!"))
 		return FALSE
 
-	user.st_decrease_stat_score(STAT_WILLPOWER, 1)
+	user.st_set_stat(STAT_WILLPOWER, max((user.st_get_stat(STAT_WILLPOWER) - 1),0))
 	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
 
 	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
@@ -209,7 +209,7 @@
 		return FALSE
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS))) //+ target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -228,9 +228,9 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//v20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
-		for(var/i in 1 to 30)
-			addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
+		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
+		//for(var/i in 1 to 30)
+			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
@@ -375,7 +375,8 @@
 			continue
 
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
+		//note to self -- stat_willpower for now, needs to be changed to courage after the playtest
+		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_WILLPOWER), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
