@@ -37,7 +37,3 @@
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
-
-/obj/effect/landmark/start/graveyardkeeper
-	name = "Graveyard Keeper"
-	icon_state = "Graveyard Keeper"

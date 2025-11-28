@@ -8,7 +8,7 @@
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
 	owner.faction |= VAMPIRE_CLAN_TREMERE
-	var/datum/action/thaumaturgy/thaumaturgy = new()
+	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
@@ -221,10 +221,6 @@
 	chosen_generation = max(BLOOD_POTENCY_GENERATION, chosen_generation) //Lowest im gonna let you go is BLOOD_POTENCY_GENERATION bucko
 	owner.apply_status_effect(/datum/status_effect/blood_of_potency, chosen_generation, set_time * 22 MINUTES)
 	activated = TRUE
-
-/datum/discipline_power/thaumaturgy/blood_of_potency/deactivate()
-	. = ..()
-	owner.remove_status_effect(/datum/status_effect/blood_of_potency)
 
 //------------------------------------------------------------------------------------------------
 

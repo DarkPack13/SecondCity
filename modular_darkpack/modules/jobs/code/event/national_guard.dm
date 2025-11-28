@@ -67,10 +67,6 @@
 			owner.current.put_in_r_hand(new /obj/item/ammo_box/darkpack/c556/incendiary(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/darkpack/c556/incendiary(owner.current))
 
-/obj/effect/landmark/start/national_guard
-	name = "National Guard"
-	delete_after_roundstart = FALSE
-
 /datum/antagonist/national_guard
 	name = "National Guard"
 	roundend_category = "national guard"

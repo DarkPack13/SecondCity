@@ -1,18 +1,18 @@
-/obj/ritualrune/teleport
-	name = "Teleportation Rune"
+/obj/ritual_rune/thaumaturgy/teleport
+	name = "teleportation"
 	desc = "Move your body among the city streets. Requires a bloodpack."
 	icon_state = "rune6"
 	word = "CLAV'TRANSITUM"
-	thaumlevel = 5
+	level = 5
 	sacrifices = list(/obj/item/reagent_containers/blood)
 
-/obj/ritualrune/teleport/complete()
+/obj/ritual_rune/thaumaturgy/teleport/complete()
 	if(!activated)
 		activated = TRUE
 		color = rgb(255,255,255)
 		icon_state = "teleport"
 
-/obj/ritualrune/teleport/attack_hand(mob/user)
+/obj/ritual_rune/thaumaturgy/teleport/attack_hand(mob/user)
 	..()
 	if(activated)
 		if(last_activator != user)

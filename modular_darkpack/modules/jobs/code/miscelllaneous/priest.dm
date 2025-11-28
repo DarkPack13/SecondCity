@@ -29,6 +29,3 @@
 	l_hand = /obj/item/vamp/keys/church
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/priest
-	name = "Priest"

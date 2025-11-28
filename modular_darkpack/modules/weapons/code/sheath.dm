@@ -1,5 +1,7 @@
 /obj/item/storage/belt/sheath/vamp
+	name = "sheath"
 	icon_state = "longsword_sheathe-full"
+	base_icon_state = "longsword_sheathe"
 	worn_icon_state = "longsword_sheathe"
 	//inhand_icon_state = "longsword_sheathe"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'

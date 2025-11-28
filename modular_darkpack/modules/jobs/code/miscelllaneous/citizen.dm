@@ -19,7 +19,3 @@
 	l_pocket = /obj/item/smartphone
 	id = /obj/item/watch
 	backpack_contents = list(/obj/item/passport, /obj/item/flashlight, /obj/item/card/credit)
-
-/obj/effect/landmark/start/citizen
-	name = "Citizen"
-	icon_state = "Assistant"

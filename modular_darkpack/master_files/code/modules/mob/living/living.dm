@@ -1,5 +1,8 @@
 /mob/living
 	COOLDOWN_DECLARE(masquerade_timer)
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
 
 /mob/living/Initialize(mapload)
 	. = ..()

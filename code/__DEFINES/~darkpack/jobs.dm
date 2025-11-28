@@ -25,6 +25,7 @@
 #define JOB_HOUND "Hound"
 #define JOB_HARPY "Harpy"
 #define JOB_SENESCHAL "Seneschal"
+#define JOB_TOWERWORK "Tower Employee"
 
 //Primogens
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
@@ -57,6 +58,8 @@
 #define JOB_POLICE_OFFICER "Police Officer"
 #define JOB_EMERGENCY_DISPATCHER "Emergency Dispatcher"
 #define JOB_FEDERAL_INVESTIGATOR "Federal Investigator"
+#define JOB_NATIONAL_GUARD "National Guard Soldier"
+#define JOB_POLICE_SWAT "Swat Officer"
 
 //Clinic
 #define JOB_CLINIC_DIRECTOR "Clinic Director"
@@ -74,6 +77,38 @@
 #define JOB_SABBAT_DUCTUS "Sabbat Ductus"
 #define JOB_SABBAT_PRIEST "Sabbat Priest"
 #define JOB_SABBAT_PACK "Sabbat Pack"
+#define JOB_SABBAT_SABBATIST "Sabbatist"
+
+// Axe Gang
+#define JOB_AXE_LEADER "Screentender"
+#define JOB_AXE_GANG "Axe Gang"
+
+// Supply
+#define JOB_DEALER "Dealer"
+#define JOB_SUPPLY_TECH "Dealer"
+
+// Forest Wolves
+#define JOB_GAROU_FOREST_COUNCIL "Amberglade Councillor"
+#define JOB_GAROU_FOREST_KEEPER "Amberglade Keeper"
+#define JOB_GAROU_FOREST_CATCHER "Amberglade Truthcatcher"
+#define JOB_GAROU_FOREST_WARDER "Amberglade Warder"
+#define JOB_GAROU_FOREST_GUARDIAN "Amberglade Guardian"
+
+// City Wolves
+#define JOB_GAROU_CITY_COUNCIL "Painted City Councillor"
+#define JOB_GAROU_CITY_KEEPER "Painted City Keeper"
+#define JOB_GAROU_CITY_CATCHER "Painted City Truthcatcher"
+#define JOB_GAROU_CITY_WARDER "Painted City Warder"
+#define JOB_GAROU_CITY_GUARDIAN "Painted City Guardian"
+
+// Pentex
+#define JOB_PENTEX_FIRST "First Team"
+#define JOB_PENTEX_LEAD "Endron Branch Lead"
+#define JOB_PENTEX_EXEC "Endron Executive"
+#define JOB_PENTEX_AFFAIRS "Endron Internal Affairs Agent"
+#define JOB_PENTEX_SEC_CHIEF "Endron Chief of Security"
+#define JOB_PENTEX_SEC "Endron Security Agent"
+#define JOB_PENTEX_EMPLOYEE "Endron Employee"
 
 //////////////////////////////////////////////////
 

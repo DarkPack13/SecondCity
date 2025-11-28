@@ -13,13 +13,13 @@
 	custom_price = 3
 	food_flags = FOOD_BITE_SPRITE
 
-/obj/item/food/donut/plain
+/obj/item/food/donut/plain // DARKPACK TODO: unique onfloors for variants
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	custom_price = 1
 	food_flags = FOOD_BITE_SPRITE
 
-/obj/item/food/donut/choco
+/obj/item/food/donut/choco // DARKPACK TODO: unique onfloors for variants
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	custom_price = 1
