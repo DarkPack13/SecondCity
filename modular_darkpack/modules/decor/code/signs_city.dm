@@ -161,7 +161,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
 
 /obj/structure/sign/city/skateshop
 	name = "Beralta Skateshop"
-	icon_state = "beralta"
+	icon_state = "beralta1"
 	desc = "Bowell Beralta, apart from having a very unfortunate name, is one of the biggest names in authentic knock-off skateboards."
 
+/obj/structure/sign/city/skateshop/two
+	icon_state = "beralta2"
+
+/obj/structure/sign/city/skateshop/three
+	icon_state = "beralta3"
+
+/obj/structure/sign/city/skateshop/four
+	icon_state = "beralta4"
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/two, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/three, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/four, 32)
