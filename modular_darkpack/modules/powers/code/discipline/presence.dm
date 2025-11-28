@@ -269,10 +269,10 @@
 	target.throw_alert("entrancement", /atom/movable/screen/alert/entrancement)
 	log_combat(owner, target, "Used Presence Entrancement")
 
-	apply_presence_overlay(target, successes * 1 INGAME_HOURS)
+	apply_presence_overlay(target, successes * 30 MINUTES)
 	to_chat(target, span_hypnophrase("You find yourself becoming completely entraced by [owner]. You are now their willing servant."))
 	to_chat(target, span_info("You are now the willing servant of [owner]. You will seek to please them and fulfill their every desire, but this desire will fade soon."))
-	addtimer(CALLBACK(src, PROC_REF(end_entrancement), target), successes * 1 INGAME_HOURS) // might be alot considering 5 successes is 5 ingame hours which is... most of a round.
+	addtimer(CALLBACK(src, PROC_REF(end_entrancement), target), successes * 30 MINUTES) // might be alot considering 5 successes is 5 ingame hours which is... most of a round.
 
 /datum/discipline_power/presence/entrancement/proc/end_entrancement(mob/living/carbon/human/target)
 	to_chat(target, span_hypnophrase("Your desire to fulfill [owner]'s every desire fades."))
@@ -361,7 +361,7 @@
 	multi_activate = TRUE
 	cooldown_length = 12 MINUTES
 	duration_length = 3 MINUTES
-	willpower_cost = 1
+	//willpower_cost = 1
 	var/list/affected_targets = list()
 
 /datum/discipline_power/presence/majesty/pre_activation_checks(mob/living/target)
@@ -423,21 +423,21 @@
 	. = ..()
 	if(presence_succeeded)
 		apply_presence_overlay(target)
-		target.apply_status_effect(STATUS_EFFECT_INLOVE, owner)
+		//target.apply_status_effect(STATUS_EFFECT_INLOVE, owner)
 		to_chat(owner, span_warning("You've enthralled [target] with your presence, and bonded them to you!"))
 	else
 		to_chat(owner, span_warning("[target]'s mind has resisted your attempt to sway!"))
 		to_chat(target, span_warning("An overwhelming aura radiates from [owner], compelling your love… but you steel your heart and turn away from their unnatural allure."))
 
-/mob/living/carbon/proc/walk_to_caster(mob/living/step_to)
-	walk(src, 0)
-	if(!CheckFrenzyMove())
-		set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
-		step_to(src, step_to, 0)
-		face_atom(step_to)
+///mob/living/carbon/proc/walk_to_caster(mob/living/step_to)
+	//walk(src, 0)
+	//if(!CheckFrenzyMove())
+		//set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
+		//step_to(src, step_to, 0)
+		//face_atom(step_to)
 
-/mob/living/carbon/human/proc/step_away_caster(mob/living/step_from)
-	walk(src, 0)
-	if(!CheckFrenzyMove())
-		set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
-		step_away(src, step_from, 99)
+///mob/living/carbon/human/proc/step_away_caster(mob/living/step_from)
+	//walk(src, 0)
+	//if(!CheckFrenzyMove())
+		//set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
+		//step_away(src, step_from, 99)
