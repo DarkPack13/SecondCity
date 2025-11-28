@@ -134,7 +134,7 @@
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
-	if(do_after(owner, target, duration))
+	if(do_after(owner, duration, target))
 		release_target(target)
 		return TRUE
 	release_target(target)
@@ -488,7 +488,7 @@
 
 	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
 
-	if(do_after(owner, target, 20 SECONDS))
+	if(do_after(owner, 20 SECONDS, target))
 		target.conditioned = TRUE
 		target.conditioner = WEAKREF(owner)
 		target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
