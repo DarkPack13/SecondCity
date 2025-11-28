@@ -134,8 +134,10 @@
 
 /obj/effect/turf_decal/darkpack // These open a massive can of worms. Maybe keep their use to when it's needed only?
 	name = "detail"
+	abstract_type = /obj/effect/turf_decal/darkpack
 	icon = 'modular_darkpack/modules/decor/icons/natural_turf_borders.dmi'
-	icon_state = null
+	// To pass checks
+	icon_state = "vampdirt_side"
 
 /obj/effect/turf_decal/darkpack/dirt
 	icon_state = "vampdirt_side"

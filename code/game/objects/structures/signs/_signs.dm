@@ -4,6 +4,7 @@
 	opacity = FALSE
 	density = FALSE
 	layer = SIGN_LAYER
+	dir = NORTH // DARKPACK EDIT CHANGE MOST signs only can really mount to the north wall, lets just default to that for some better behavoir and default types
 	custom_materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
 	max_integrity = 100
 	armor_type = /datum/armor/structure_sign

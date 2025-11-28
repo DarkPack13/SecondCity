@@ -3697,8 +3697,7 @@
 "ams" = (
 /obj/structure/closet/crate/coffin,
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior/theatre)
@@ -4720,8 +4719,7 @@
 /area/vtm/westfield_mall/interior/dojo)
 "apI" = (
 /obj/structure/sign/gym/right{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -4943,8 +4941,7 @@
 /area/vtm/westfield_mall/interior/maintenance)
 "aqk" = (
 /obj/structure/sign/gym{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -5945,8 +5942,7 @@
 /area/vtm/interior/bianchiBank)
 "atu" = (
 /obj/structure/sign/flag/california/rare{
-	pixel_y = 28;
-	dir = 1
+	pixel_y = 28
 	},
 /turf/open/floor/carpet,
 /area/awaymission/errorroom)
@@ -7061,8 +7057,7 @@
 "axh" = (
 /obj/structure/chair/sofa/corp/corner,
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/theatre)
@@ -7794,10 +7789,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/factory,
 /area/vtm/westfield_mall/interior/theatre)
-"azC" = (
-/obj/effect/spawner/random/trash/grime,
-/turf/open/water/vamp_sewer/border,
-/area/vtm/interior/sewer)
 "azD" = (
 /obj/machinery/light/directional/east{
 	pixel_y = 10
@@ -8827,8 +8818,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance)
 "aDh" = (
-/obj/effect/spawner/random/trash/grime,
-/turf/open/water/vamp_sewer,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer)
 "aDi" = (
 /obj/machinery/light/prince/directional/east,
@@ -9744,10 +9735,6 @@
 /obj/machinery/light/small/dim/directional/west,
 /turf/open/floor/city/toilet/large,
 /area/vtm/westfield_mall/interior/hot_ishu)
-"aFY" = (
-/obj/effect/spawner/random/trash/grime,
-/turf/open/floor/plating/canalplating,
-/area/vtm/interior/sewer)
 "aFZ" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -10777,8 +10764,7 @@
 "aJp" = (
 /obj/structure/chair/sofa/left/brown,
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer/nosferatu_town)
@@ -14468,12 +14454,6 @@
 "aVG" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/westfield_mall/interior/foodcourt)
-"aVH" = (
-/obj/structure/sign/city/skateshop{
-	dir = 1
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/westfield_mall/skatepark)
 "aVI" = (
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/chantry)
@@ -16619,8 +16599,7 @@
 /area/vtm/westfield_mall/interior/theatre)
 "iaz" = (
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
@@ -17019,10 +16998,6 @@
 /obj/item/vamp/keys/ventrue,
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
-"ndw" = (
-/obj/effect/spawner/random/maintenance,
-/turf/open/water/vamp_sewer/border,
-/area/vtm/interior/sewer)
 "ngU" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -17647,8 +17622,7 @@
 /area/vtm/interior/sewer)
 "uTV" = (
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
@@ -17923,8 +17897,7 @@
 /area/vtm/westfield_mall/interior/law_office)
 "xRE" = (
 /obj/structure/sign/painting{
-	pixel_y = 32;
-	dir = 1
+	pixel_y = 32
 	},
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
@@ -21802,7 +21775,7 @@ aco
 aco
 aco
 aco
-aFY
+aco
 aco
 aco
 aco
@@ -22068,7 +22041,7 @@ aeW
 azz
 asT
 aco
-ndw
+aPP
 adV
 adV
 adV
@@ -22115,7 +22088,7 @@ adV
 adV
 adV
 adV
-aDh
+adV
 adV
 adV
 adV
@@ -22220,7 +22193,7 @@ aeW
 azz
 asT
 aco
-aco
+aDh
 aco
 aco
 aco
@@ -22694,7 +22667,7 @@ aeW
 azz
 asT
 aco
-azC
+aPP
 adV
 azz
 aeW
@@ -22916,7 +22889,7 @@ acb
 aeA
 axQ
 azE
-aFY
+aco
 aPP
 adV
 azz
@@ -23676,7 +23649,7 @@ aov
 akh
 axQ
 azE
-aFY
+aco
 aPP
 adV
 azz
@@ -26259,7 +26232,7 @@ aeW
 aeW
 aeW
 azz
-aco
+apy
 aPP
 adV
 adV
@@ -26415,7 +26388,7 @@ aco
 aPP
 adV
 adV
-aco
+apy
 azz
 aeW
 aeW
@@ -26565,9 +26538,9 @@ aeW
 azz
 aco
 aPP
-aDh
 adV
-aco
+adV
+apy
 azz
 aeW
 aeW
@@ -26715,11 +26688,11 @@ aeW
 aeW
 aeW
 azz
-aco
+apy
 aPP
 adV
 adV
-aco
+apy
 azz
 aeW
 aeW
@@ -46487,7 +46460,7 @@ aow
 aow
 aow
 amy
-aVH
+aJQ
 aes
 aWT
 aMM
