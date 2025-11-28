@@ -4910,15 +4910,9 @@
 /area/vtm/westfield_mall/interior)
 "aqh" = (
 /obj/structure/table/wood,
-/obj/item/arcane_tome,
-/obj/item/arcane_tome{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/item/arcane_tome{
-	pixel_x = -6;
-	pixel_y = 4
-	},
+/obj/item/ritual_tome/arcane,
+/obj/item/ritual_tome/arcane,
+/obj/item/ritual_tome/arcane,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aqi" = (
