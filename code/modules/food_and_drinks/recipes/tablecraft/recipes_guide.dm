@@ -190,7 +190,7 @@
 
 /datum/crafting_recipe/food/reaction/martian_batter
 	reaction = /datum/chemical_reaction/food/martian_batter
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/reaction/grounding_neutralise
 	reaction = /datum/chemical_reaction/food/grounding_neutralise
@@ -356,7 +356,7 @@
 /datum/crafting_recipe/food/knife/lil_baked_rice
 	reqs = list(/obj/item/food/big_baked_rice = 1)
 	result = /obj/item/food/lil_baked_rice
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/knife/watermelonslice
 	reqs = list(/obj/item/food/grown/watermelon = 1)
@@ -371,12 +371,12 @@
 /datum/crafting_recipe/food/knife/kamaboko_slice
 	reqs = list(/obj/item/food/kamaboko = 1)
 	result = /obj/item/food/kamaboko_slice
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/knife/raw_noodles
 	reqs = list(/obj/item/food/rice_dough = 1)
 	result = /obj/item/food/spaghetti/rawnoodles
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/knife/chapslice
 	reqs = list(/obj/item/food/canned/chap = 1)
@@ -461,12 +461,12 @@
 /datum/crafting_recipe/food/grill/ballpark_pretzel
 	reqs = list(/obj/item/food/raw_ballpark_pretzel = 1)
 	result = /obj/item/food/ballpark_pretzel
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/grill/ballpark_tsukune
 	reqs = list(/obj/item/food/kebab/raw_ballpark_tsukune = 1)
 	result = /obj/item/food/kebab/ballpark_tsukune
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/grill/chapslice
 	reqs = list(/obj/item/food/chapslice = 1)
@@ -786,7 +786,7 @@
 /datum/crafting_recipe/food/oven/big_baked_rice
 	reqs = list(/obj/item/food/raw_baked_rice = 1)
 	result = /obj/item/food/big_baked_rice
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/oven/ratatouille
 	reqs = list(/obj/item/food/raw_ratatouille = 1)
@@ -796,7 +796,7 @@
 /datum/crafting_recipe/food/oven/stuffed_peppers
 	reqs = list(/obj/item/food/raw_stuffed_peppers = 1)
 	result = /obj/item/food/stuffed_peppers
-	category = CAT_MOTH
+	category = CAT_MISCFOOD  // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/oven/roasted_bell_pepper
 	reqs = list(/obj/item/food/grown/bell_pepper = 1)
@@ -816,12 +816,12 @@
 /datum/crafting_recipe/food/oven/reispan
 	reqs = list(/obj/item/food/rice_dough = 1)
 	result = /obj/item/food/bread/reispan
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 /datum/crafting_recipe/food/oven/ballpark_pretzel
 	reqs = list(/obj/item/food/raw_ballpark_pretzel = 1)
 	result = /obj/item/food/ballpark_pretzel
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
 
 // Machinery: Drying rack
 /datum/crafting_recipe/food/drying
@@ -860,4 +860,4 @@
 /datum/crafting_recipe/food/drying/kamaboko
 	reqs = list(/obj/item/food/surimi = 1)
 	result = /obj/item/food/kamaboko
-	category = CAT_MARTIAN
+	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE

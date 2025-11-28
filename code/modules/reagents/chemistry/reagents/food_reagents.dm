@@ -1265,7 +1265,7 @@
 	default_container = /obj/item/reagent_containers/condiment/dashi_concentrate
 
 /datum/reagent/consumable/martian_batter
-	name = "Martian Batter"
+	name = "Dashi Batter" // DARKPACK EDIT CHANGE
 	description = "A thick batter made with dashi and flour, used for making dishes such as okonomiyaki and takoyaki."
 	color = "#D49D26"
 	taste_description = "umami dough"

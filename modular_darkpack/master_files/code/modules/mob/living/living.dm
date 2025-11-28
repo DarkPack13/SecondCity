@@ -1,6 +1,9 @@
 /mob/living
 	COOLDOWN_DECLARE(masquerade_timer)
 	var/possessed = FALSE //dominate 5 body posession
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
 
 /mob/living/Initialize(mapload)
 	. = ..()
