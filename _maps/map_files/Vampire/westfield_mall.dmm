@@ -645,7 +645,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance)
 "acm" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/vet_clinic)
 "acn" = (
 /obj/machinery/light/warm/directional/south,
@@ -2233,7 +2233,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "ahE" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior)
 "ahF" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -2281,7 +2281,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/smokeshop)
 "ahN" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/underground_parking)
 "ahO" = (
 /obj/structure/closet/cardboard,
@@ -3129,7 +3129,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/bianchiBank)
 "akA" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/hot_ishu)
 "akB" = (
 /obj/structure/railing{
@@ -5284,8 +5284,8 @@
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/shop)
 "arz" = (
-/turf/closed/wall/vampwall/painted/low/window/reinforced,
-/area/vtm/interior/shop)
+/turf/closed/wall/vampwall/painted/low/window,
+/area/vtm/westfield_mall/interior/arcade)
 "arA" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood/light,
@@ -8922,7 +8922,7 @@
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/clinic)
 "aDv" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/anarch)
 "aDw" = (
 /obj/structure/table/wood,
@@ -10354,7 +10354,7 @@
 /area/vtm/westfield_mall/interior)
 "aHW" = (
 /obj/structure/curtain/bounty/start_closed,
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/chantry)
 "aHX" = (
 /obj/structure/closet/crate/bin{
@@ -11697,7 +11697,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "aMy" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/techshop)
 "aMz" = (
 /obj/structure/vampdoor/simple{
@@ -12495,7 +12495,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
 "aPe" = (
-/turf/closed/wall/vampwall/market/low/window,
+/turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/smokeshop)
 "aPf" = (
 /obj/structure/table/wood,
@@ -15836,6 +15836,9 @@
 /obj/structure/table/countertop/green,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
+"bgC" = (
+/turf/closed/wall/vampwall/painted/low/window,
+/area/vtm/westfield_mall/interior/chantry)
 "bkw" = (
 /obj/effect/decal/rugs,
 /turf/open/floor/iron/dark,
@@ -52944,31 +52947,31 @@ aBd
 akW
 aSc
 aTw
-aTw
-aTw
+arz
+arz
 qVZ
-aTw
-aTw
-aTw
+arz
+arz
+arz
 aSc
 agN
-agN
-agN
+azv
+azv
 mwU
-agN
-agN
-agN
+azv
+azv
+azv
 avF
 akW
 akW
 avF
-agN
-agN
-agN
+azv
+azv
+azv
 uCH
-agN
-agN
-agN
+azv
+azv
+azv
 avF
 akW
 aXr
@@ -72577,7 +72580,7 @@ asa
 avd
 asa
 asa
-ahZ
+bgC
 asa
 asa
 asa
@@ -72881,7 +72884,7 @@ asa
 aRq
 asa
 asa
-ahZ
+bgC
 aVI
 aFW
 ahf
@@ -73033,7 +73036,7 @@ asa
 aRq
 asa
 asa
-ahZ
+bgC
 aVI
 abO
 abO
@@ -73185,7 +73188,7 @@ asa
 alI
 asa
 asa
-ahZ
+bgC
 aVI
 abO
 abO
@@ -73337,7 +73340,7 @@ asa
 asa
 asa
 asa
-ahZ
+bgC
 aUl
 aQe
 anQ
@@ -74517,32 +74520,32 @@ aWL
 aWL
 aWL
 aWL
-agN
-agN
-agN
+azv
+azv
+azv
 mwU
-agN
-agN
-agN
+azv
+azv
+azv
 avF
 avF
 avF
 avF
-agN
-agN
-agN
+azv
+azv
+azv
 mwU
-agN
-agN
-agN
+azv
+azv
+azv
 avF
-agN
-agN
-agN
+azv
+azv
+azv
 mwU
-agN
-agN
-agN
+azv
+azv
+azv
 avF
 avF
 avF
@@ -75756,8 +75759,8 @@ alJ
 avF
 tUy
 avF
-arz
-arz
+azv
+azv
 avF
 avF
 avF
