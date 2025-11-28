@@ -1514,7 +1514,6 @@
 /area/vtm/interior/police)
 "aff" = (
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/structure/desk_bell,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
@@ -4637,7 +4636,6 @@
 /area/vtm/interior/shop)
 "apr" = (
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/machinery/light/directional/east,
 /obj/item/flashlight{
 	pixel_x = -6;
@@ -5283,7 +5281,6 @@
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/westfield_mall/interior/theatre)
 "arr" = (
-/obj/structure/closet/crate/cardboard,
 /obj/structure/closet/crate/cardboard,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
@@ -16844,7 +16841,6 @@
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/art_store)
 "kpP" = (
-/obj/structure/table/countertop/bubway,
 /obj/structure/table/countertop/bubway,
 /obj/structure/desk_bell{
 	pixel_x = -6;
