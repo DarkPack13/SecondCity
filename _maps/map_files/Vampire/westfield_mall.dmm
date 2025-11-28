@@ -3697,7 +3697,8 @@
 "ams" = (
 /obj/structure/closet/crate/coffin,
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior/theatre)
@@ -4719,7 +4720,8 @@
 /area/vtm/westfield_mall/interior/dojo)
 "apI" = (
 /obj/structure/sign/gym/right{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -4934,7 +4936,8 @@
 /area/vtm/westfield_mall/interior/maintenance)
 "aqk" = (
 /obj/structure/sign/gym{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -7047,7 +7050,8 @@
 "axh" = (
 /obj/structure/chair/sofa/corp/corner,
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/theatre)
@@ -10750,7 +10754,8 @@
 "aJp" = (
 /obj/structure/chair/sofa/left/brown,
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer/nosferatu_town)
@@ -16581,7 +16586,8 @@
 /area/vtm/westfield_mall/interior/theatre)
 "iaz" = (
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
@@ -17600,7 +17606,8 @@
 /area/vtm/interior/sewer)
 "uTV" = (
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
@@ -17875,7 +17882,8 @@
 /area/vtm/westfield_mall/interior/law_office)
 "xRE" = (
 /obj/structure/sign/painting{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
