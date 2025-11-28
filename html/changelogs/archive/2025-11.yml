@@ -157,3 +157,12 @@
   - rscdel: the Axe Gang is dead. Long live the Warehouse.
   lelandkemble:
   - bugfix: Ghosts can no longer try and fail to admire aquariums.
+2025-11-28:
+  Hawk-v3:
+  - rscadd: Reimplements the Fusebox.
+  chazzyjazzy:
+  - code_imp: readds vault doors and keypads
+  dwinters99:
+  - image: decor.dmi is fucking dead
+  - code_imp: repaths job start landmarks to be more sane
+  - code_imp: add missing job defines
