@@ -1890,9 +1890,10 @@
 /turf/open/water/vamp_sewer,
 /area/vtm/interior/sewer)
 "agz" = (
-/obj/machinery/griddle,
+/obj/structure/table/wood,
+/obj/machinery/light/prince/broken/directional/north,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/interior)
+/area/vtm/interior/mansion)
 "agA" = (
 /obj/structure/table/wood,
 /turf/open/floor/city/plating_mono,
@@ -3182,6 +3183,10 @@
 /obj/item/gun/ballistic/automatic/darkpack/uzi,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
+"akJ" = (
+/obj/machinery/oven/range,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior)
 "akK" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -6871,7 +6876,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "aww" = (
-/obj/structure/chair/plastic,
+/obj/structure/chair/plastic/darkpack,
 /turf/open/misc/beach/vamp,
 /area/vtm/westfield_mall/forest)
 "awx" = (
@@ -7673,7 +7678,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "azg" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
 /turf/open/misc/beach/vamp,
@@ -9902,11 +9907,9 @@
 /turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "aGC" = (
-/obj/structure/chair/wood/darkpack{
-	dir = 4
-	},
+/obj/structure/closet/secure_closet/freezer/fridge/all_access,
 /turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
+/area/vtm/interior)
 "aGD" = (
 /obj/effect/spawner/random/trash/mopbucket,
 /obj/structure/vampipe{
@@ -11162,13 +11165,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
-"aKJ" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/fake_platform/grey/double,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
 "aKK" = (
 /turf/open/openspace,
 /area/vtm/westfield_mall/interior/chantry)
@@ -12585,7 +12581,7 @@
 /area/vtm/interior/supply)
 "aPo" = (
 /obj/machinery/light/small/directional/north,
-/obj/structure/closet/secure_closet/freezer/fridge/all_access,
+/obj/machinery/griddle,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "aPp" = (
@@ -13147,6 +13143,7 @@
 /area/vtm/interior/mansion)
 "aRc" = (
 /obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/coggie,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "aRd" = (
@@ -13229,6 +13226,12 @@
 "aRn" = (
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/interior/littleitaly)
+"aRo" = (
+/obj/structure/chair/wood/darkpack{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/mansion)
 "aRp" = (
 /obj/effect/spawner/random/entertainment/arcade{
 	dir = 1
@@ -14370,8 +14373,10 @@
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "aVn" = (
-/obj/structure/table/wood,
-/obj/machinery/light/prince/broken/directional/north,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/fake_platform/grey/double,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aVo" = (
@@ -112488,8 +112493,8 @@ aHn
 aHn
 azg
 aHn
-aHn
 azg
+aHn
 aHn
 aHn
 aHn
@@ -113223,7 +113228,7 @@ asJ
 aDw
 aMa
 aPo
-agz
+asJ
 auF
 aMa
 aMa
@@ -113374,7 +113379,7 @@ aZP
 asJ
 akO
 aMa
-asJ
+akJ
 asJ
 asJ
 anX
@@ -113526,7 +113531,7 @@ axu
 asJ
 asJ
 aMa
-asJ
+aGC
 asJ
 asJ
 asJ
@@ -123087,7 +123092,7 @@ aAU
 aaa
 aaa
 aTp
-aKJ
+aVn
 asK
 aku
 aaa
@@ -123847,7 +123852,7 @@ aKc
 aPu
 aaa
 aTp
-aKJ
+aVn
 aHP
 aaa
 aaa
@@ -123997,12 +124002,12 @@ aMh
 auS
 auS
 aMh
-aGC
+aRo
 aTp
 aCe
 aaa
 afa
-aGC
+aRo
 aMh
 aVo
 aVo
@@ -124149,7 +124154,7 @@ aMh
 aMh
 aMh
 aMh
-aVn
+agz
 aTp
 aCe
 aaa

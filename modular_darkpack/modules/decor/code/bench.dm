@@ -14,6 +14,7 @@ path/left/color_name {\
 /obj/structure/chair/sofa/city_bench
 	name = "bench"
 	has_armrest = FALSE
+	icon_state = null
 	icon = 'modular_darkpack/modules/decor/icons/bench.dmi'
 
 /obj/structure/chair/sofa/city_bench/wood
