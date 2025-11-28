@@ -4867,10 +4867,6 @@
 /obj/structure/closet/crate/dumpster,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance/basement)
-"aqa" = (
-/obj/machinery/light/prince/ghost/directional/north,
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall/forest)
 "aqb" = (
 /obj/machinery/light/prince/directional/west,
 /turf/open/floor/wood/smooth/old,
@@ -6562,6 +6558,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
+"avx" = (
+/obj/machinery/light/prince/ghost/directional/north,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall/forest)
 "avy" = (
 /obj/structure/curtain/bounty/start_closed,
 /turf/open/floor/wood/smooth/old,
@@ -12470,7 +12470,7 @@
 /obj/transfer_point_vamp{
 	id = "pentex_evil_inc"
 	},
-/turf/open/genturf,
+/turf/open/misc/grass/random/bushes,
 /area/vtm/westfield_mall/forest)
 "aOZ" = (
 /obj/structure/rack/food{
@@ -120783,7 +120783,7 @@ aFc
 arI
 arI
 aVw
-aSE
+afm
 aas
 aas
 aas
@@ -122908,7 +122908,7 @@ ayT
 aaa
 aaa
 aMh
-aqa
+avx
 awi
 asv
 aVo
@@ -123516,7 +123516,7 @@ amS
 aaa
 aaa
 aMh
-aqa
+avx
 aqS
 azM
 aVo
