@@ -857,17 +857,6 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
-"adb" = (
-/obj/effect/decal/support,
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
-"adc" = (
-/obj/structure/vampstatue,
-/turf/open/floor/plating/rough,
-/area/vtm/interior/mansion)
 "add" = (
 /obj/structure/fence,
 /turf/open/floor/plating/asphalt,
@@ -1483,7 +1472,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
 "afa" = (
-/obj/item/chair/wood,
+/obj/item/chair/wood/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "afb" = (
@@ -1913,11 +1902,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "agC" = (
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
 /obj/structure/rack,
 /obj/item/flashlight,
+/obj/machinery/light/prince/broken/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "agD" = (
@@ -2104,7 +2091,7 @@
 /area/vtm/westfield_mall/interior/chantry)
 "ahg" = (
 /obj/structure/table/wood,
-/obj/item/chair/wood,
+/obj/item/chair/wood/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "ahh" = (
@@ -3195,13 +3182,6 @@
 /obj/item/gun/ballistic/automatic/darkpack/uzi,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
-"akJ" = (
-/obj/effect/decal/shadow,
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
 "akK" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -3446,9 +3426,7 @@
 /area/vtm/westfield_mall/interior/maintenance/atrium)
 "alu" = (
 /obj/structure/bed,
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
+/obj/machinery/light/prince/broken/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "alv" = (
@@ -3713,8 +3691,9 @@
 /area/vtm/westfield_mall/parking_lot)
 "ams" = (
 /obj/structure/closet/crate/coffin,
-/obj/structure/sign/painting/library{
-	pixel_y = 29
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior/theatre)
@@ -4736,7 +4715,8 @@
 /area/vtm/westfield_mall/interior/dojo)
 "apI" = (
 /obj/structure/sign/gym/right{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -4755,11 +4735,6 @@
 /obj/machinery/hydroponics/simple/plastic,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/westfield_mall/interior/cave)
-"apM" = (
-/obj/effect/decal/wallpaper,
-/obj/structure/sign/painting/library,
-/turf/closed/wall/vampwall/junk/alt,
-/area/vtm/interior/sewer/nosferatu_town)
 "apN" = (
 /obj/structure/table,
 /obj/structure/sink/basin/directional/south{
@@ -4963,7 +4938,8 @@
 /area/vtm/westfield_mall/interior/maintenance)
 "aqk" = (
 /obj/structure/sign/gym{
-	pixel_y = 32
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
@@ -5964,7 +5940,8 @@
 /area/vtm/interior/bianchiBank)
 "atu" = (
 /obj/structure/sign/flag/california/rare{
-	pixel_y = 28
+	pixel_y = 28;
+	dir = 1
 	},
 /turf/open/floor/carpet,
 /area/awaymission/errorroom)
@@ -6158,9 +6135,7 @@
 /turf/closed/wall/vampwall/junk,
 /area/vtm/interior/sewer/nosferatu_town)
 "aud" = (
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
+/obj/machinery/light/prince/broken/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aue" = (
@@ -7080,8 +7055,9 @@
 /area/vtm/westfield_mall/interior/anarch)
 "axh" = (
 /obj/structure/chair/sofa/corp/corner,
-/obj/structure/sign/painting/library{
-	pixel_y = 29
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/theatre)
@@ -8083,16 +8059,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/endron_logging)
-"aAA" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/support,
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
 "aAB" = (
 /obj/structure/vampdoor/old{
 	dir = 8
@@ -8528,7 +8494,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "aCe" = (
-/obj/effect/decal/shadow,
+/obj/fake_platform/grey/double,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aCf" = (
@@ -9675,9 +9641,7 @@
 /area/vtm/westfield_mall/interior/skatepark)
 "aFE" = (
 /obj/structure/table/wood,
-/obj/machinery/light/prince/broken{
-	dir = 8
-	},
+/obj/machinery/light/prince/broken/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aFF" = (
@@ -9726,7 +9690,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/decal/support,
+/obj/fake_platform/grey/double,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aFP" = (
@@ -9938,9 +9902,8 @@
 /turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "aGC" = (
-/obj/structure/chair/wood{
-	dir = 4;
-	pixel_y = 4
+/obj/structure/chair/wood/darkpack{
+	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
@@ -10810,6 +10773,10 @@
 /area/vtm/westfield_mall/interior)
 "aJp" = (
 /obj/structure/chair/sofa/left/brown,
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
+	},
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer/nosferatu_town)
 "aJq" = (
@@ -10838,11 +10805,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/maintenance)
-"aJv" = (
-/obj/structure/sign/painting/library,
-/obj/effect/decal/wallpaper/paper/stripe,
-/turf/closed/wall/vampwall/painted,
-/area/vtm/westfield_mall/interior/games_store)
 "aJw" = (
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/skatepark)
@@ -11204,7 +11166,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/decal/support,
+/obj/fake_platform/grey/double,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aKK" = (
@@ -13178,7 +13140,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "aRb" = (
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -13267,12 +13229,6 @@
 "aRn" = (
 /turf/closed/wall/vampwall/painted/low/window,
 /area/vtm/interior/littleitaly)
-"aRo" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/mansion)
 "aRp" = (
 /obj/effect/spawner/random/entertainment/arcade{
 	dir = 1
@@ -14414,13 +14370,8 @@
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "aVn" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/support,
-/obj/machinery/light/prince/broken{
-	pixel_y = 32
-	},
+/obj/structure/table/wood,
+/obj/machinery/light/prince/broken/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aVo" = (
@@ -15022,7 +14973,7 @@
 /area/vtm/westfield_mall/interior/maintenance)
 "aXi" = (
 /obj/effect/landmark/start/darkpack/forest_wolves/keeper,
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -15865,9 +15816,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/westfield_mall/parking_lot)
 "aZW" = (
-/obj/machinery/light/prince/broken{
-	dir = 1
-	},
+/obj/machinery/light/prince/broken/directional/south,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aZX" = (
@@ -15934,6 +15883,10 @@
 /obj/structure/vampstatue/cloaked,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
+"bAt" = (
+/obj/effect/landmark/observer_start,
+/turf/open/floor/plating/sidewalk/old,
+/area/vtm/westfield_mall)
 "bPq" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -16660,9 +16613,11 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/theatre)
 "iaz" = (
-/obj/structure/sign/painting/library,
-/obj/effect/decal/wallpaper/light,
-/turf/closed/wall/vampwall/painted,
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
 "ifk" = (
 /turf/open/floor/iron/grimy,
@@ -17686,8 +17641,9 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "uTV" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 29
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
@@ -17961,8 +17917,9 @@
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
 "xRE" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 29
+/obj/structure/sign/painting{
+	pixel_y = 32;
+	dir = 1
 	},
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
@@ -23227,7 +23184,7 @@ aeW
 aeW
 aeW
 aeW
-apM
+afy
 aJp
 asR
 aDr
@@ -55018,9 +54975,9 @@ aJM
 akW
 aXr
 aIl
+aWu
+aWu
 aIl
-aXr
-aXr
 aXr
 aXr
 aXr
@@ -55170,9 +55127,9 @@ aab
 avV
 aXr
 aTv
+aWu
+aWu
 aTv
-aXr
-aXr
 aXr
 aXr
 aXr
@@ -55182,7 +55139,7 @@ aoA
 aoA
 aoA
 aoA
-aoA
+bAt
 aoA
 aIo
 aXY
@@ -55322,9 +55279,9 @@ aJM
 akW
 aXr
 aIl
+aWu
+aWu
 aIl
-aXr
-aXr
 aXr
 aXr
 aXr
@@ -60758,8 +60715,8 @@ aXr
 aXr
 aXr
 aXr
+lDl
 iaz
-aIK
 aIK
 aIK
 aIK
@@ -83867,8 +83824,8 @@ aKo
 aKo
 aKo
 aKo
-aJv
-aIK
+ajC
+iaz
 ard
 aMw
 aGE
@@ -121912,7 +121869,7 @@ aaa
 aKc
 aaa
 aMh
-adc
+abm
 adM
 aCe
 auS
@@ -122066,7 +122023,7 @@ abM
 aMh
 aaa
 aTp
-adb
+aCe
 aaa
 aaa
 aaa
@@ -122368,7 +122325,7 @@ aMh
 aMh
 aMh
 aMh
-aaa
+aud
 aTp
 aCe
 awy
@@ -122674,7 +122631,7 @@ aKc
 aPu
 aaa
 aTp
-aAA
+aFO
 aYs
 aaa
 aaa
@@ -122976,7 +122933,7 @@ aaa
 aaa
 aMh
 aMh
-aaa
+aud
 aaa
 ayT
 ayT
@@ -123282,7 +123239,7 @@ aaa
 aaa
 aaa
 aTp
-akJ
+aCe
 auS
 aaa
 aaa
@@ -123584,7 +123541,7 @@ aaa
 aKc
 aMh
 aMh
-aaa
+aud
 aaa
 amS
 amS
@@ -123890,7 +123847,7 @@ aKc
 aPu
 aaa
 aTp
-aVn
+aKJ
 aHP
 aaa
 aaa
@@ -124040,7 +123997,7 @@ aMh
 auS
 auS
 aMh
-aRo
+aGC
 aTp
 aCe
 aaa
@@ -124192,7 +124149,7 @@ aMh
 aMh
 aMh
 aMh
-auS
+aVn
 aTp
 aCe
 aaa
@@ -124498,7 +124455,7 @@ aaa
 aaa
 aaa
 aTp
-adb
+aCe
 aaa
 aaa
 anj
