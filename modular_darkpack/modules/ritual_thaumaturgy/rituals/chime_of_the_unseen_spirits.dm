@@ -1,19 +1,19 @@
 // **************************************************************** CHIME OF UNSEEN SPIRITS *************************************************************
-/obj/ritualrune/chime_of_unseen_spirits
-	name = "Chime of Unseen Spirits"
+/obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits
+	name = "chime of unseen spirits"
 	desc = "Enchant a chime to reveal the presence of nearby spirits."
 	icon_state = "rune6"
 	word = "Sonitus occultorum."
-	thaumlevel = 1
+	level = 1
 
-/obj/ritualrune/chime_of_unseen_spirits/complete()
+/obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits/complete()
     new /obj/item/spirit_chime(loc)
     playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
     qdel(src)
 
 // The spirit chime item itself
 /obj/item/spirit_chime
-	name = "Chime of Unseen Spirits"
+	name = "chime of unseen spirits"
 	desc = "A mystical chime that reacts to nearby spirits."
 	icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
 	icon_state = "bell"
@@ -216,7 +216,7 @@
 /proc/valid_target(atom/movable/target)
 	if(istype(target, /mob/dead/observer))
 		var/mob/dead/observer/ghost = target
-		if((ghost.mind)) //&& !ghost.aghosted) || isavatar(ghost)) // Checks only for ghosts of the dead & Auspex 5 avatars
+		if((ghost.mind) || isavatar(ghost)) // Checks only for ghosts of the dead & Auspex 5 avatars -- need to add an aghosted check
 			return TRUE
 		if(ghost.mind && ghost.orbiting) // Checks for orbiting ghosts
 			return TRUE

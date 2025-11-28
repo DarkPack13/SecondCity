@@ -5,13 +5,29 @@
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/obtenebration
 
+/datum/discipline/obtenebration/post_gain()
+	. = ..()
+	var/datum/action/ritual_drawing/mysticism/mystic = new()
+	mystic.Grant(owner)
+	mystic.level = level
+	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
+
+
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
 	desc = "Obtenebration power description"
 
-	effect_sound = 'sound/magic/voidblink.ogg'
+	effect_sound = 'sound/effects/magic/voidblink.ogg'
 
-//SHADOW PLAY
+/obj/item/ammo_casing/magic/tentacle/lasombra
+	projectile_type = /obj/projectile/tentacle/lasombra
+	icon_state = ""
+
+/obj/projectile/tentacle/lasombra
+	icon = 'icons/effects/beam.dmi'
+	damage_type = BURN
+	icon_state = "curse0"
+
 /datum/discipline_power/obtenebration/shadow_play
 	name = "Shadow Play"
 	desc = "Manipulate shadows to block visibility."
@@ -20,24 +36,45 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
 	target_type = TARGET_TURF | TARGET_MOB | TARGET_OBJ | TARGET_SELF
 	range = 7
+	vitae_cost = 1
 
 	multi_activate = TRUE
-	duration_length = 10 SECONDS
-	cooldown_length = 5 SECONDS
+	duration_length = 1 SCENES
+	cooldown_length = 1 TURNS
 
-	var/atom/movable/shadow
+	var/list/shadows = list() // A list of all active shadows
+	var/datum/action/clear_shadows/cbutton // The button to clear everything
 
 /datum/discipline_power/obtenebration/shadow_play/activate(target)
 	. = ..()
-	shadow = new(target)
-	shadow.set_light(3, -7)
+	var/atom/movable/new_shadow = new(target)
+	new_shadow.set_light(discipline.level+2, -10) // Ideally, the shadows would be a special thing impenetrable by anyone but the user, but this works for now
+	shadows += new_shadow
 
-/datum/discipline_power/obtenebration/shadow_play/deactivate(target)
-	. = ..()
-	if (shadow)
-		QDEL_NULL(shadow)
+	if(!cbutton) // Grant the button if it doesn't exist
+		cbutton = new(src)
+		cbutton.Grant(owner)
 
-//SHROUD OF NIGHT
+	addtimer(CALLBACK(src, .proc/remove_shadow, new_shadow), duration_length) // 3 minute timer per shadow
+
+/datum/discipline_power/obtenebration/shadow_play/proc/remove_shadow(atom/movable/old_shadow)
+	if(old_shadow && (old_shadow in shadows)) // Check if shadow still exists
+		shadows -= old_shadow
+		qdel(old_shadow)
+
+	if(!length(shadows) && cbutton) // Remove the button if there are no shadows left
+		cbutton.Remove(owner)
+		QDEL_NULL(cbutton)
+
+/datum/discipline_power/obtenebration/shadow_play/proc/remove_all_shadows()
+	for(var/atom/movable/all_shadows in shadows)
+		qdel(all_shadows)
+	shadows.Cut()
+
+	if(cbutton)
+		cbutton.Remove(owner)
+		QDEL_NULL(cbutton)
+
 /datum/discipline_power/obtenebration/shroud_of_night
 	name = "Shroud of Night"
 	desc = "Turn the shadows into appendages to pull your enemies."
@@ -52,38 +89,73 @@
 
 	cooldown_length = 5 SECONDS
 
+/datum/discipline_power/obtenebration/shroud_of_night/pre_activation_checks(atom/target)
+	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT), 7, owner))
+		return TRUE
+	return FALSE
+
 /datum/discipline_power/obtenebration/shroud_of_night/activate(mob/living/target)
 	. = ..()
 	target.Stun(1 SECONDS)
 	var/obj/item/ammo_casing/magic/tentacle/lasombra/casing = new (owner.loc)
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 
-//ARMS OF THE ABYSS
 /datum/discipline_power/obtenebration/arms_of_the_abyss
 	name = "Arms of the Abyss"
 	desc = "Use shadows as your arms to harm and grab others from afar."
 
 	level = 3
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
+	target_type = TARGET_TURF
+	range = 7
 
 	violates_masquerade = TRUE
+	cooldown_length = 1 TURNS
 
-	cancelable = TRUE
-	duration_length = 30 SECONDS
-	cooldown_length = 15 SECONDS
+	var/list/active_tentacles = list()
 
-/datum/discipline_power/obtenebration/arms_of_the_abyss/activate()
+/datum/discipline_power/obtenebration/arms_of_the_abyss/activate(var/atom/target)
 	. = ..()
-	owner.drop_all_held_items()
-	owner.put_in_r_hand(new /obj/item/knife/vamp/lasombra_tentacle(owner))
-	owner.put_in_l_hand(new /obj/item/knife/vamp/lasombra_tentacle(owner))
+	var/turf/target_turf = get_turf(target)
+	var/dice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT))
 
-/datum/discipline_power/obtenebration/arms_of_the_abyss/deactivate()
-	. = ..()
-	for(var/obj/item/knife/vamp/lasombra_tentacle/arm in owner.contents)
-		qdel(arm)
+	if(target_turf && target_turf.get_lumcount() <= 0.4)
+		// Remove any existing tentacles first
+		for(var/mob/living/basic/abyss_tentacle/T in active_tentacles)
+			if(T && !QDELETED(T))
+				T.release_grabbed_mob()
+				qdel(T)
+		active_tentacles.Cut()
 
-//BLACK METAMORPHOSIS
+		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
+		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
+
+		if(!has_action)
+			var/datum/action/aggro_mode/A = new()
+			A.Grant(owner)
+
+		// Create tentacles based on successes
+		for(var/i in 1 to roll)
+			var/mob/living/basic/abyss_tentacle/new_tentacle
+			// For the first tentacle, use the target turf
+			if(i == 1 && !target_turf.is_blocked_turf(exclude_mobs = TRUE))
+				new_tentacle = new /mob/living/basic/abyss_tentacle(target_turf, owner)
+			else
+				// For additional tentacles, find nearby valid turfs
+				var/list/open_turfs = list()
+				for(var/turf/T in orange(3, target_turf))
+					if(!T.is_blocked_turf(exclude_mobs = TRUE) && T.get_lumcount() <= 0.4)
+						open_turfs += T
+				if(open_turfs.len)
+					new_tentacle = new /mob/living/basic/abyss_tentacle(pick(open_turfs), owner)
+
+			// if we ended up making a new tentacle add it to our list
+			if(new_tentacle)
+				active_tentacles += new_tentacle
+	else
+		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
+		return FALSE
+
 /datum/discipline_power/obtenebration/black_metamorphosis
 	name = "Black Metamorphosis"
 	desc = "Fuse with your inner darkness, gaining shadowy armor."
@@ -94,111 +166,234 @@
 
 	violates_masquerade = TRUE
 
-	cancelable = TRUE
-	duration_length = 15 SECONDS
-	cooldown_length = 10 SECONDS
+	toggled = TRUE
+	duration_length = 999 SCENES
+
+	var/activating = FALSE
+	var/successful = FALSE
+
+/datum/discipline_power/obtenebration/black_metamorphosis/pre_activation_checks()
+	. = ..()
+	if(activating) // Prevent multi-activation while the do_after is ongoing
+		to_chat(owner, span_warning("You are already attempting to activate Black Metamorphosis!"))
+		return FALSE
+
+	if(owner.generation >= 10)
+		activating = TRUE
+		to_chat(owner, span_warning("Your body starts to meld with the shadows..."))
+		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+			return TRUE
+	else if(owner.generation <= 9)
+		activating = TRUE
+		to_chat(owner, span_warning("Your body starts to rapidly meld with the shadows..."))
+		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+			return TRUE
 
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
-	owner.physiology.damage_resistance += 60
-	animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
+	activating = FALSE
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, owner)
+	switch(roll)
+		if(ROLL_SUCCESS)
+			successful = TRUE
+			owner.physiology.damage_resistance += 60
+			animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
+			to_chat(owner, span_green("You successfully fuse with the shadows!"))
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("You fail to control the shadows!"))
+			deactivate()
+		if(ROLL_BOTCH)
+			owner.apply_damage(60, BRUTE) // 2 levels of lethal damage on a botch
+			to_chat(owner, span_danger("The shadows lash out at you as you fail to fuse with them!"))
+			deactivate()
 
 /datum/discipline_power/obtenebration/black_metamorphosis/deactivate()
 	. = ..()
-	playsound(owner.loc, 'sound/magic/voidblink.ogg', 50, FALSE)
+	if(!successful)
+		return
+	to_chat(owner, span_notice("The shadows fall away from your body."))
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.damage_resistance -= 60
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
-//TENEBROUS FORM
 /datum/discipline_power/obtenebration/tenebrous_form
 	name = "Tenebrous Form"
-	desc = "Become a shadow and move without your physical form."
+	desc = "Become a shadow and resist all but fire, sunlight, and magic!"
 
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
+	vitae_cost = 3
+	duration_length = 999 SCENES
+	toggled = TRUE
 
 	violates_masquerade = TRUE
 
-	cooldown_length = 20 SECONDS
+	cooldown_length = 1 TURNS
+	var/activating = FALSE
+	var/saved_brute_mod = 1
+	var/saved_clone_mod = 1
+	var/saved_stamina_mod = 1
+	var/saved_brain_mod = 1
+	var/saved_density
 
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/tenebrous_form_spell
+/datum/discipline_power/obtenebration/tenebrous_form/pre_activation_checks()
+	. = ..()
+	if(activating) // Prevent multi-activation while the do_after is ongoing
+		to_chat(owner, span_warning("You are already attempting to activate Tenebrous Form!"))
+		return FALSE
+
+	// do_after timer based on generation; gen 9 and below can spend more BP per turn, so it activates faster
+	if(owner.generation >= 10)
+		activating = TRUE
+		to_chat(owner, span_warning("Your body slowly starts to turn into an inky blot of shadow..."))
+		if(do_after(owner, 3 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+			return TRUE
+	else if(owner.generation == 9)
+		activating = TRUE
+		to_chat(owner, span_warning("Your body starts to turn into an inky blot of shadow..."))
+		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+			return TRUE
+	else if(owner.generation <= 8)
+		activating = TRUE
+		to_chat(owner, span_warning("Your body rapidly starts to turn into an inky blot of shadow..."))
+		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+			return TRUE
 
 /datum/discipline_power/obtenebration/tenebrous_form/activate()
 	. = ..()
-	if (!tenebrous_form_spell)
-		tenebrous_form_spell = new
+	activating = FALSE
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
+	saved_brute_mod = owner.physiology.brute_mod
+	owner.physiology.brute_mod = 0
+	//saved_clone_mod = owner.physiology.clone_mod
+	//owner.physiology.clone_mod = 0
+	saved_stamina_mod = owner.physiology.stamina_mod
+	owner.physiology.stamina_mod = 0
+	saved_brain_mod = owner.physiology.brain_mod
+	owner.physiology.brain_mod = 0
+	animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
 
-	tenebrous_form_spell.cast(user = owner)
+	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
+	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
+	owner.pass_flags |= PASSTABLE
 
-/datum/discipline_power/obtenebration/tenebrous_form/post_gain()
+	saved_density = owner.density
+	owner.density = FALSE
+
+/datum/discipline_power/obtenebration/tenebrous_form/deactivate()
 	. = ..()
-	var/datum/action/mysticism/mystic = new()
-	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
-	mystic.Grant(owner)
-	mystic.level = level
+	to_chat(owner, span_notice("You return to your normal form."))
+	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
+	owner.physiology.brute_mod = saved_brute_mod
+	//owner.physiology.clone_mod = saved_clone_mod
+	owner.physiology.stamina_mod = saved_stamina_mod
+	owner.physiology.brain_mod = saved_brain_mod
+	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
 
-/datum/crafting_recipe/mystome
-	name = "Abyss Mysticism Tome"
-	time = 10 SECONDS
-	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 1)
-	result = /obj/item/mystic_tome
-	category = CAT_MISC
+	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
+	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
+	owner.pass_flags &= ~PASSTABLE
 
-/datum/crafting_recipe/mystome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
+	owner.density = saved_density
 
-/datum/action/mysticism
-	name = "Mysticism"
-	desc = "Abyss Mysticism rune drawing."
-	button_icon_state = "thaumaturgy"
-	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	vampiric = TRUE
-	var/drawing = FALSE
-	var/level = 1
+//ACTIONS
 
-/datum/action/mysticism/Trigger()
+// Aggro mode control for Arms of the Abyss
+/datum/action/aggro_mode
+	name = "Tentacle Control"
+	desc = "Switches the aggro mode of your Arms of the Abyss"
+	button_icon = 'icons/hud/screen_glass.dmi'
+	button_icon_state = "harm"
+	var/current_mode = "Aggressive"
+
+/datum/action/aggro_mode/Trigger(trigger_flags)
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(H.bloodpool < 2)
-		to_chat(H, span_warning("You need more <b>BLOOD</b> to do that!"))
-		return
-	if(drawing)
+	if(!.)
 		return
 
-	if(istype(H.get_active_held_item(), /obj/item/mystic_tome))
-		var/list/shit = list()
-		for(var/i in subtypesof(/obj/abyssrune))
-			var/obj/abyssrune/R = new i(owner)
-			if(R.mystlevel <= level)
-				shit += i
-			qdel(R)
-		var/ritual = input(owner, "Choose rune to draw:", "Mysticism") as null|anything in shit
-		if(ritual)
-			drawing = TRUE
-			if(do_after(H, 3 SECONDS * max(1, 5 - H.mentality), H))
-				drawing = FALSE
-				new ritual(H.loc)
-				H.bloodpool = max(H.bloodpool - 2, 0)
-				if(H.CheckEyewitness(H, H, 7, FALSE))
-					H.adjust_masquerade(-1)
-			else
-				drawing = FALSE
-	else
-		var/list/shit = list()
-		for(var/i in subtypesof(/obj/abyssrune))
-			var/obj/abyssrune/R = new i(owner)
-			if(R.mystlevel <= level)
-				shit += i
-			qdel(R)
-		var/ritual = input(owner, "Choose rune to draw (You need a Mystic Tome to reduce random):", "Mysticism") as null|anything in list("???")
-		if(ritual)
-			drawing = TRUE
-			if(do_after(H, 30*max(1, 5-H.mentality), H))
-				drawing = FALSE
-				var/rune = pick(shit)
-				new rune(H.loc)
-				H.bloodpool = max(H.bloodpool - 2, 0)
-				if(H.CheckEyewitness(H, H, 7, FALSE))
-					H.adjust_masquerade(-1)
-			else
-				drawing = FALSE
+	if(!owner || !isliving(owner))
+		return
+
+	var/mob/living/carbon/human/tentacle_owner = owner
+
+	if(!istype(tentacle_owner))
+		return
+
+	var/list/options = list(
+		"Aggressive" = "Aggressive (grab and damage targets)",
+		"Control" = "Control (grab and restrain without damage)",
+		"Passive" = "Passive (don't attack or grab)"
+	)
+
+	var/select = tgui_input_list(tentacle_owner, "Select tentacle behaviour", "Tentacle Mode", options)
+	if(!select || !tentacle_owner)
+		return
+
+	current_mode = select
+	tentacle_owner.tentacle_aggro_mode = select
+
+
+	// need to access the discipline_power so we can grab the list
+	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power
+	var/datum/species/human/species = tentacle_owner.dna?.species
+
+	if(species?.disciplines)
+		for(var/datum/discipline/obtenebration/obt_disc in species.disciplines)
+			for(var/datum/discipline_power/obtenebration/arms_of_the_abyss/power in obt_disc.known_powers)
+				abyss_power = power
+				break
+			if(abyss_power)
+				break
+
+	var/tentacles = 0
+	for(var/mob/living/basic/abyss_tentacle/T in abyss_power.active_tentacles)
+		if(T && !QDELETED(T))
+			var/was_passive = (T.aggro_mode == "Passive")
+			T.aggro_mode = select
+			tentacles++
+
+			if(select == "Passive" && T.grabbed_mob)
+				T.release_grabbed_mob()
+			else if(was_passive && select != "Passive")
+				T.recently_released.Cut()
+
+	if(tentacles)
+		to_chat(tentacle_owner, span_notice("You set your tentacle[tentacles == 1 ? "" : "s"] to [select] mode."))
+		update_button_icon()
+
+/datum/action/aggro_mode/proc/update_button_icon()
+	switch(current_mode)
+		if("Aggressive")
+			button_icon_state = "harm"
+		if("Control")
+			button_icon_state = "grab"
+		if("Passive")
+			button_icon_state = "disarm"
+	build_all_button_icons()
+
+// Shadow removal button for Shadow Play
+/datum/action/clear_shadows
+	name = "Clear Shadows"
+	desc = "Clears all currently active Shadow Play shadows"
+	button_icon = 'icons/mob/effects/genetics.dmi'
+	button_icon_state = "shadow_portal"
+	var/datum/discipline_power/obtenebration/shadow_play/power
+
+/datum/action/clear_shadows/New(Target)
+	. = ..()
+	power = Target
+
+/datum/action/clear_shadows/Trigger(trigger_flags)
+	if(!power)
+		return
+	power.remove_all_shadows()
+	return TRUE
+
