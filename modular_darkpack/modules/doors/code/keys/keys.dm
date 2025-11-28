@@ -116,6 +116,13 @@
 	)
 	color = "#434343"
 
+/obj/item/vamp/keys/anarch_limited
+	name = "Barkeeper keys"
+	accesslocks = list(
+		LOCKACCESS_BAR
+	)
+	color = "#434343"
+
 /obj/item/vamp/keys/giovanni
 	name = "mafia keys"
 	accesslocks = list(
@@ -427,10 +434,7 @@
 	)
 	color = "#fffb8b"
 
-
-/obj/item/vamp/keys/anarch_limited
-	name = "Barkeeper keys"
-	accesslocks = list(
-		LOCKACCESS_BAR
-	)
-	color = "#434343"
+/obj/item/vamp/keys/apartment
+	name = "apartment keys"
+	desc = "The key to someone's home. Hope it's not lost."
+	accesslocks = "apartment"

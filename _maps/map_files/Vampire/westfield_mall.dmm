@@ -2923,9 +2923,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "ajM" = (
-/obj/effect/spawner/random/trash/box,
+/obj/effect/landmark/start/darkpack/law_enforcement/officer,
 /turf/open/floor/city/plating,
-/area/vtm/interior/shop)
+/area/vtm/interior/police)
 "ajN" = (
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/skatepark)
@@ -11036,7 +11036,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
 "aKc" = (
-/mob/living/basic/zombie,
+/mob/living/basic/zombie/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aKd" = (
@@ -11831,7 +11831,7 @@
 /area/vtm/westfield_mall/interior/underground_parking)
 "aMI" = (
 /obj/structure/chair/comfy/brown,
-/mob/living/basic/zombie,
+/mob/living/basic/zombie/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/mansion)
 "aMJ" = (
@@ -16041,13 +16041,6 @@
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
-"cbV" = (
-/obj/structure/chair/office/darkpack/blue{
-	dir = 4
-	},
-/obj/effect/landmark/start/darkpack/camarilla/clerk,
-/turf/open/floor/wood/ornate,
-/area/vtm/westfield_mall/interior/camarilla)
 "cdr" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/basic/pet/cat/darkpack{
@@ -16085,10 +16078,6 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
-"ctP" = (
-/obj/effect/landmark/start/darkpack/hecata/famiglia,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/bianchiBank)
 "cuV" = (
 /obj/structure/chair/sofa/middle/brown{
 	dir = 1
@@ -16105,20 +16094,23 @@
 /obj/item/kirbyplants/darkpack/random,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
-"cIj" = (
-/obj/effect/landmark/start/darkpack/law_enforcement/officer,
-/turf/open/floor/city/plating,
-/area/vtm/interior/police)
+"cID" = (
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/city/plating_stone,
+/area/vtm/interior/bianchiBank)
 "cLl" = (
 /turf/closed/wall/vampwall/market,
 /area/vtm/westfield_mall/interior/bathroom)
 "cLU" = (
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/caves)
-"dhz" = (
-/obj/effect/landmark/start/darkpack/citizen/janitor,
-/turf/open/floor/carpet/darkpack/old,
-/area/vtm/westfield_mall/interior/janitor)
+"dan" = (
+/obj/structure/chair/office/darkpack/blue{
+	dir = 4
+	},
+/obj/effect/landmark/start/darkpack/camarilla/clerk,
+/turf/open/floor/wood/ornate,
+/area/vtm/westfield_mall/interior/camarilla)
 "drk" = (
 /obj/structure/rack/food,
 /obj/item/paint_palette,
@@ -16188,7 +16180,7 @@
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/church)
 "dQG" = (
-/obj/structure/vampdoor/wood,
+/obj/structure/vampdoor/wood/apartment,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "dTh" = (
@@ -16260,10 +16252,10 @@
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
 "esn" = (
-/obj/structure/vampdoor/wood,
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
+/obj/structure/vampdoor/wood/apartment,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "ewS" = (
@@ -16465,12 +16457,6 @@
 "glA" = (
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/candy_store)
-"gor" = (
-/obj/effect/turf_decal/bordur,
-/obj/structure/railing,
-/obj/effect/landmark/start/darkpack/voivode/bogatyr,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "gqS" = (
 /obj/effect/decal/wallpaper/red,
 /obj/effect/decal/wallpaper/paper/darkred,
@@ -16531,10 +16517,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
-"gzj" = (
-/obj/effect/landmark/start/darkpack/hecata/squadra,
-/turf/open/floor/city/plating_stone,
-/area/vtm/interior/bianchiBank)
 "gKJ" = (
 /obj/structure/vampdoor/simple{
 	dir = 4
@@ -16598,11 +16580,6 @@
 /obj/effect/spawner/random/trash/garbage,
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
-"hmI" = (
-/obj/item/kirbyplants/darkpack/random,
-/obj/effect/landmark/start/darkpack/hecata/squadra,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/bianchiBank)
 "hnO" = (
 /obj/structure/filingcabinet{
 	pixel_x = -7
@@ -16719,6 +16696,10 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/interior/caves)
+"iKw" = (
+/obj/effect/landmark/start/darkpack/hecata/famiglia,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "iQd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/concrete,
@@ -16885,10 +16866,6 @@
 /obj/effect/mapping_helpers/door/access/director,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
-"lkL" = (
-/obj/effect/landmark/start/darkpack/hecata/squadra,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/bianchiBank)
 "lpJ" = (
 /obj/structure/table/countertop/red,
 /obj/structure/table/countertop/red,
@@ -16955,10 +16932,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/groundskeeper_garage)
-"lOl" = (
-/obj/effect/landmark/start/darkpack/voivode/zadruga,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "lWC" = (
 /obj/structure/vampdoor/old{
 	dir = 8
@@ -16968,6 +16941,10 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
+"lXz" = (
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "mbi" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
@@ -17135,6 +17112,10 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/games_store)
+"nEn" = (
+/obj/effect/landmark/start/darkpack/voivode/zadruga,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "nEH" = (
 /obj/item/flashlight/lamp/green{
 	pixel_x = -8;
@@ -17146,6 +17127,12 @@
 	},
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
+"nFJ" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/railing,
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "nHO" = (
 /obj/effect/mapping_helpers/door/access/ventrue,
 /obj/effect/mapping_helpers/door/lock,
@@ -17231,10 +17218,10 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/hot_ishu)
-"owM" = (
-/obj/effect/landmark/start/darkpack/hospital/clinic_director,
-/turf/open/floor/wood/smooth,
-/area/vtm/interior/clinic)
+"oGX" = (
+/obj/effect/spawner/random/trash/box,
+/turf/open/floor/city/plating,
+/area/vtm/interior/shop)
 "oQx" = (
 /obj/structure/table/countertop/beige,
 /obj/effect/turf_decal/siding/wood{
@@ -17355,10 +17342,6 @@
 	},
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
-"qdA" = (
-/obj/effect/landmark/start/darkpack/voivode/bogatyr,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "qgO" = (
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/plating/sidewalk/poor,
@@ -17386,10 +17369,6 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/arcade)
-"qYj" = (
-/obj/effect/landmark/start/darkpack/pentex/employee,
-/turf/open/floor/city/plating_mono,
-/area/vtm/westfield_mall/interior)
 "rfA" = (
 /obj/effect/decal/carpet{
 	pixel_x = 10;
@@ -17420,6 +17399,11 @@
 /obj/machinery/light/dim/directional/east,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
+"rDj" = (
+/obj/item/kirbyplants/darkpack/random,
+/obj/effect/landmark/start/darkpack/hecata/squadra,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/bianchiBank)
 "rGI" = (
 /obj/structure/chair/office/darkpack/blue{
 	dir = 8
@@ -17468,6 +17452,10 @@
 /obj/machinery/light/small/dim/directional/north,
 /turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior/bathroom)
+"stb" = (
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "stw" = (
 /obj/effect/decal/rugs,
 /obj/effect/decal/rugs,
@@ -17540,6 +17528,10 @@
 /obj/effect/decal/pallet,
 /turf/open/water/vamp_sewer/border,
 /area/vtm/interior/sewer)
+"tJK" = (
+/obj/effect/landmark/start/darkpack/pentex/employee,
+/turf/open/floor/city/plating_mono,
+/area/vtm/westfield_mall/interior)
 "tMt" = (
 /obj/fake_platform/stone/double,
 /turf/open/misc/dirt,
@@ -17653,7 +17645,7 @@
 /area/vtm/interior/caves)
 "uwo" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/vampdoor/wood,
+/obj/structure/vampdoor/wood/apartment,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "uwH" = (
@@ -17697,6 +17689,10 @@
 	},
 /turf/closed/wall/vampwall/market/low/window,
 /area/vtm/westfield_mall/interior/art_store)
+"uHj" = (
+/obj/effect/landmark/start/darkpack/citizen/janitor,
+/turf/open/floor/carpet/darkpack/old,
+/area/vtm/westfield_mall/interior/janitor)
 "uMr" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -17951,6 +17947,10 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
+"xjy" = (
+/obj/effect/landmark/start/darkpack/hospital/clinic_director,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "xmh" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/grimy,
@@ -31612,11 +31612,11 @@ aeH
 aeH
 aeH
 aLs
-qdA
+stb
 akW
 akW
 akW
-gor
+nFJ
 adx
 aIz
 aIz
@@ -31918,7 +31918,7 @@ aQH
 atq
 akW
 akW
-lOl
+nEn
 aPd
 aQS
 apv
@@ -32224,7 +32224,7 @@ aUi
 aPU
 auU
 aHV
-gor
+nFJ
 agk
 aIz
 aIz
@@ -53178,9 +53178,9 @@ arV
 arV
 arV
 aSc
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
 aws
 aws
 aws
@@ -53485,8 +53485,8 @@ aSc
 aws
 aws
 aws
-ajM
-ajM
+oGX
+oGX
 aws
 aws
 avF
@@ -53790,8 +53790,8 @@ aws
 aws
 aws
 aws
-ajM
-ajM
+oGX
+oGX
 aws
 avF
 aJl
@@ -53938,12 +53938,12 @@ aRp
 aYv
 arV
 aSc
-ajM
-ajM
+oGX
+oGX
 aws
 aws
-ajM
-ajM
+oGX
+oGX
 aws
 avF
 aJl
@@ -54394,10 +54394,10 @@ ajt
 adF
 arV
 aSc
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
+oGX
 aws
 aws
 aws
@@ -54551,8 +54551,8 @@ aws
 aws
 aws
 aws
-ajM
-ajM
+oGX
+oGX
 avF
 aJl
 aJl
@@ -55775,11 +55775,11 @@ auL
 aYl
 akW
 aUk
-qYj
+tJK
 aci
 akW
 aUk
-qYj
+tJK
 aci
 akW
 aIy
@@ -56225,7 +56225,7 @@ aMf
 aft
 aft
 aQy
-qYj
+tJK
 aJH
 aqZ
 aZO
@@ -56348,7 +56348,7 @@ aXr
 akW
 aOh
 aYM
-gzj
+cID
 afE
 afE
 afE
@@ -56509,7 +56509,7 @@ aIq
 aHB
 aoq
 aZB
-gzj
+cID
 aEQ
 afX
 aJl
@@ -56810,7 +56810,7 @@ aae
 apE
 aSq
 aQs
-hmI
+rDj
 aae
 aae
 aGA
@@ -56833,7 +56833,7 @@ avD
 aSY
 aSY
 aQy
-qYj
+tJK
 aJH
 aqZ
 aZO
@@ -57116,7 +57116,7 @@ aGA
 aQs
 aJY
 aae
-ctP
+iKw
 aGA
 aEQ
 aJl
@@ -57417,7 +57417,7 @@ aYK
 aVq
 aQs
 aso
-lkL
+lXz
 aDy
 aae
 aae
@@ -57874,7 +57874,7 @@ afB
 aQs
 azi
 aCw
-lkL
+lXz
 azw
 ajj
 aOf
@@ -57919,7 +57919,7 @@ akW
 aXr
 aUx
 aoE
-cIj
+ajM
 acX
 acX
 aeI
@@ -58073,10 +58073,10 @@ aMR
 aoE
 afx
 acX
-cIj
+ajM
 aoE
 aUe
-cIj
+ajM
 abH
 acX
 acX
@@ -72914,7 +72914,7 @@ aJh
 aJh
 aJh
 aJh
-acz
+aJh
 aJh
 aJh
 aJh
@@ -73065,10 +73065,10 @@ aJh
 aJh
 aJh
 aJh
+acz
 aJh
-acz
-acz
-acz
+aJh
+aJh
 aJh
 aJh
 aWL
@@ -73093,11 +73093,11 @@ aws
 avF
 aws
 aws
-ajM
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
+oGX
+oGX
 aws
 aws
 aws
@@ -73217,10 +73217,10 @@ aJh
 aJh
 aJh
 aJh
-aJh
+acz
+acz
 acz
 aJh
-acz
 aJh
 aJh
 aWL
@@ -73369,14 +73369,14 @@ aJh
 aJh
 aJh
 aJh
+acz
 aJh
-aJh
-aJh
+acz
 aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
 aws
 aws
@@ -73528,13 +73528,13 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
 aws
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
+oGX
 aws
 aws
 aws
@@ -73680,7 +73680,7 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
 aws
 aws
@@ -73691,23 +73691,23 @@ aws
 aws
 aws
 aws
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
+oGX
 aws
 aws
 aws
 avF
 aws
-ajM
+oGX
 aws
-ajM
+oGX
 aws
-ajM
+oGX
 aws
 aws
-ajM
+oGX
 aws
 aAF
 aTh
@@ -73832,35 +73832,35 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
-ajM
+oGX
 aws
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
+oGX
 aws
-ajM
-aws
-aws
+oGX
 aws
 aws
 aws
 aws
-ajM
+aws
+aws
+oGX
 aws
 avF
 aws
-ajM
-ajM
-ajM
+oGX
+oGX
+oGX
 aws
 aws
 aws
 aws
 aws
-ajM
+oGX
 aAF
 age
 auB
@@ -73984,7 +73984,7 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
 aws
 aws
@@ -74004,13 +74004,13 @@ aws
 aws
 avF
 aws
-ajM
+oGX
 aws
 aws
 aws
 aws
 aws
-ajM
+oGX
 aws
 aws
 aAF
@@ -74136,34 +74136,34 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
 aws
-ajM
-ajM
-aws
-aws
-aws
+oGX
+oGX
 aws
 aws
 aws
 aws
 aws
-ajM
-ajM
+aws
+aws
+aws
+oGX
+oGX
 aws
 aws
 aws
 avF
-ajM
+oGX
 aws
 aws
-ajM
+oGX
 aws
-ajM
+oGX
 aws
 aws
-ajM
+oGX
 aws
 aAF
 azX
@@ -74288,26 +74288,26 @@ aJh
 aJh
 aJh
 aWL
-ajM
+oGX
 aws
-ajM
-ajM
-aws
-aws
-ajM
-ajM
-ajM
-ajM
-ajM
+oGX
+oGX
 aws
 aws
+oGX
+oGX
+oGX
+oGX
+oGX
 aws
 aws
-ajM
+aws
+aws
+oGX
 aws
 aws
 avF
-ajM
+oGX
 aws
 aws
 aws
@@ -74315,8 +74315,8 @@ aws
 aws
 aws
 aws
-ajM
-ajM
+oGX
+oGX
 aAF
 azX
 ajI
@@ -74459,7 +74459,7 @@ aws
 aws
 aws
 avF
-ajM
+oGX
 aws
 aws
 aws
@@ -78705,7 +78705,7 @@ agw
 agw
 acD
 aCN
-dhz
+uHj
 arM
 arQ
 amQ
@@ -78873,7 +78873,7 @@ aiP
 aFe
 awC
 aFz
-owM
+xjy
 aQl
 auZ
 aZy
@@ -82050,7 +82050,7 @@ aXr
 aCk
 ari
 axY
-cbV
+dan
 aPV
 aPV
 aPV
