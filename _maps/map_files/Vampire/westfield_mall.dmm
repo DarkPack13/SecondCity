@@ -6415,7 +6415,9 @@
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 8
 	},
-/obj/transfer_point_vamp,
+/obj/transfer_point_vamp{
+	id = "garage4"
+	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "avb" = (
@@ -8404,7 +8406,9 @@
 /turf/open/floor/city/plating_stone,
 /area/vtm/westfield_mall/interior)
 "aBO" = (
-/obj/transfer_point_vamp,
+/obj/transfer_point_vamp{
+	id = "garage2"
+	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "aBP" = (
@@ -13112,7 +13116,9 @@
 /obj/effect/turf_decal/bordur/inverse{
 	dir = 4
 	},
-/obj/transfer_point_vamp,
+/obj/transfer_point_vamp{
+	id = "garage1"
+	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/westfield_mall/parking_lot)
 "aRe" = (
@@ -16683,6 +16689,12 @@
 "jCI" = (
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
+"jFz" = (
+/obj/transfer_point_vamp{
+	id = "garage4"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/interior/underground_parking)
 "jJP" = (
 /obj/structure/closet/crate/large{
 	pixel_x = 1;
@@ -17249,6 +17261,18 @@
 	dir = 8
 	},
 /area/vtm/westfield_mall/interior/law_office)
+"qOC" = (
+/obj/transfer_point_vamp{
+	id = "garage1"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/interior/underground_parking)
+"qUY" = (
+/obj/transfer_point_vamp{
+	id = "garage3"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/interior/underground_parking)
 "qVZ" = (
 /obj/structure/vampdoor/glass{
 	dir = 4
@@ -17395,6 +17419,13 @@
 	},
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
+"toY" = (
+/obj/transfer_point_vamp,
+/obj/transfer_point_vamp{
+	id = "garage3"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/parking_lot)
 "tpN" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -17599,6 +17630,12 @@
 /obj/effect/decal/wallpaper/paper/green,
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/candy_store)
+"uZK" = (
+/obj/transfer_point_vamp{
+	id = "garage2"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall/interior/underground_parking)
 "viX" = (
 /obj/item/food/candy_corn{
 	pixel_x = -2;
@@ -36222,7 +36259,7 @@ aVk
 aVk
 aVk
 aMP
-aVk
+qOC
 apj
 aeW
 aeW
@@ -36374,7 +36411,7 @@ aVk
 aVk
 aVk
 aVk
-aVk
+uZK
 apj
 aeW
 aeW
@@ -36526,7 +36563,7 @@ aVk
 aVk
 aVk
 aVk
-aVk
+qUY
 apj
 aeW
 aeW
@@ -36678,7 +36715,7 @@ aVk
 aVk
 aVk
 atc
-aVk
+jFz
 apj
 aeW
 aeW
@@ -59327,7 +59364,7 @@ ifk
 ifk
 ifk
 kpL
-aBO
+toY
 aGt
 aGt
 aGt
