@@ -31,9 +31,7 @@
 	anchored = TRUE
 	dir = NORTH
 	pass_flags_self = LETPASSTHROW|PASSSTRUCTURE
-	// DARKPACK TODO - Go audit these layers
-	// layer = BELOW_CATWALK_LAYER
-	// plane = WALL_PLANE
+	layer = BELOW_CATWALK_LAYER
 
 	var/climbable = TRUE
 

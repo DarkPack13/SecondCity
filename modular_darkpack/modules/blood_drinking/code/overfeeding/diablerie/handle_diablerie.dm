@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/handle_diablerie(var/mob/living/mob)
+/mob/living/carbon/human/proc/handle_diablerie(mob/living/mob)
 	if(!ishuman(mob))
 		CRASH("Tried to diablerize nonhuman vampire. Add handling for this!")
 

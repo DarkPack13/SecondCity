@@ -155,7 +155,7 @@
 		if(H.bloodpool < 1)
 			to_chat(owner, span_warning("You don't have enough <b>BLOOD</b> to do that!"))
 			return
-		H.bloodpool = max(H.bloodpool - 1, 0)
+		H.adjust_blood_pool(-1)
 		switch(try_trap)
 			if("Brutal")
 				var/obj/mytherceria_trap/trap = new (get_turf(owner))

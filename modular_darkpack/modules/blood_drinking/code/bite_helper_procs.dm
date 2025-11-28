@@ -1,8 +1,10 @@
 //Wrapper function for adjusting a kindred/ghoul's blood pool
-/mob/living/proc/adjustBloodPool(blood_delta, on_spawn = FALSE)
+/mob/living/proc/adjust_blood_pool(amount, updating_health = TRUE, on_spawn)
 	if(on_spawn)
 		bloodpool = 0
-	bloodpool = clamp(bloodpool+blood_delta, 0, maxbloodpool)
+	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
+	if(updating_health)
+		update_blood_hud()
 
 //runs a bite animation for biting people and biting people and biting p
 /mob/living/carbon/human/proc/add_bite_animation()
