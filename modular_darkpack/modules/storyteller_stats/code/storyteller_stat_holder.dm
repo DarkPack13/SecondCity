@@ -13,8 +13,8 @@
 		st_stats[path] = new_trait
 
 /datum/storyteller_stats/Destroy()
-	. = ..()
-	QDEL_LIST(st_stats)
+	st_stats = null
+	return ..()
 
 /// Return the total or pure score of the given stat.
 /datum/storyteller_stats/proc/get_stat(stat_path, include_bonus = TRUE)
