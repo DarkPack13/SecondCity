@@ -17750,7 +17750,7 @@
 "tMt" = (
 /obj/fake_platform/stone/double,
 /turf/open/misc/dirt,
-/area/space)
+/area/vtm/westfield_mall)
 "tPa" = (
 /obj/structure/chair/wood/darkpack/red{
 	dir = 8
