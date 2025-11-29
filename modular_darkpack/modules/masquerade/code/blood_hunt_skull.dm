@@ -50,17 +50,17 @@
 	to_chat(user, span_danger("There is no such name in the city!"))
 
 /obj/item/blood_hunt/proc/start_hunt(mob/user, mob/target, reason)
-	to_chat(user, span_warning("You add [target] to the Hunted list."))
+	to_chat(user, span_warning("You add [target.real_name] to the Hunted list."))
 	RegisterSignals(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_LIVING_GIBBED), PROC_REF(complete_hunt))
-	log_game("[user] started a bloodhunt on [target] for: [reason]")
-	message_admins("[ADMIN_LOOKUPFLW(user)]] started a bloodhunt on [target] for: [reason]")
+	log_game("[user.real_name] started a bloodhunt on [target.real_name] for: [reason]")
+	message_admins("[ADMIN_LOOKUPFLW(user)]] started a bloodhunt on [target.real_name] for: [reason]")
 	target.start_blood_hunt(reason)
 
 /obj/item/blood_hunt/proc/end_hunt(mob/user, mob/target)
-	to_chat(user, span_warning("You remove [target] from the Hunted list."))
+	to_chat(user, span_warning("You remove [target.real_name] from the Hunted list."))
 	UnregisterSignal(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_LIVING_GIBBED))
-	log_game("[user] ended a bloodhunt on [target].")
-	message_admins("[ADMIN_LOOKUPFLW(user)]] ended a bloodhunt on [target].")
+	log_game("[user.real_name] ended a bloodhunt on [target.real_name].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]] ended a bloodhunt on [target.real_name].")
 	target.clear_blood_hunt()
 
 /obj/item/blood_hunt/proc/complete_hunt(mob/target)

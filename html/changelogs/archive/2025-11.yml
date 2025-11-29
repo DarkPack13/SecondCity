@@ -166,3 +166,22 @@
   - image: decor.dmi is fucking dead
   - code_imp: repaths job start landmarks to be more sane
   - code_imp: add missing job defines
+2025-11-29:
+  FalloutFalcon:
+  - rscadd: Bloodpool icon
+  - bugfix: Bloodpool calucations should acctually run and be ttrpg accurate
+  - rscadd: Readds Temporis.
+  FalloutFalcon, Major00:
+  - image: Resprites the TG lobby menu to be more vampyr
+  XeonMations:
+  - server: Defaulted some config changes.
+  chazzyjazzy:
+  - code_imp: readds necromancy & necromancy rituals
+  - code_imp: readds obtenebration & abyss mysticism rituals
+  dwinters99:
+  - code_imp: default ghoul dummy is now Heather Poe from VTMB
+  - bugfix: donut onfloors work
+  - bugfix: mothic and martian food sorted into misc food
+  - bugfix: sheaths have icons
+  - bugfix: lattices let you walk over water
+  - bugfix: fake platforms are on the right plane

@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - bugfix: "Fixed blood hunts using name instead of real name, previously not showing the hunted's name."
