@@ -19,6 +19,8 @@
 	RegisterSignals(parent, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_death))
 
 /datum/component/violation_observer/UnregisterFromParent(force, silent)
+	var/atom/atom_parent = parent
+	LAZYREMOVE(atom_parent.update_on_z, exclamation)
 	QDEL_NULL(area_of_effect)
 	breached_players = null
 	exclamation = null
