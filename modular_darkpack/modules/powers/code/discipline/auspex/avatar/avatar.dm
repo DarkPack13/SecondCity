@@ -42,16 +42,7 @@
 	var/mob/body = loc
 	if(ismob(body))
 		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.ghostname || body.mind.name
-		else
-			name = body.real_name || generate_random_mob_name(gender)
-
-
 		mind = body.mind //we don't transfer the mind but we keep a reference to it.
-
-		if(HAS_TRAIT_FROM_ONLY(body, TRAIT_SUICIDED, REF(body))) // transfer if the body was killed due to suicide
-			ADD_TRAIT(src, TRAIT_SUICIDED, REF(body))
 
 	abstract_move(get_turf(body))
 
