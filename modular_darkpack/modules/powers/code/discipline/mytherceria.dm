@@ -54,12 +54,10 @@
 
 /datum/discipline_power/mytherceria/darkling_trickery/activate(mob/living/target)
 	. = ..()
-	owner.enhanced_strip = TRUE
 	target.show_inv(owner)
 
 /datum/discipline_power/mytherceria/darkling_trickery/deactivate(mob/living/target)
 	. = ..()
-	owner.enhanced_strip = FALSE
 
 //GOBLINISM
 /datum/discipline_power/mytherceria/goblinism
