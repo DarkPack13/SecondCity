@@ -87,7 +87,7 @@
 	for(var/discipline in clan_disciplines)
 		// DARKPACK TODO - reimplement choosing disciplines
 		if(ispath(discipline, /datum/discipline))
-			vampire.give_discipline(new discipline(5))
+			vampire.give_st_power(discipline, 5)
 
 /**
  * Undoes the effects of on_gain to more or less

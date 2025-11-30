@@ -1,6 +1,6 @@
 <!-- This should be copy-pasted into the root of your module folder as readme.md -->
 
-None yet<!--PR Number-->
+https://github.com/DarkPack13/SecondCity/pull/407<!--PR Number-->
 
 ## \<Splats> <!--Title of your addition.-->
 
@@ -41,4 +41,4 @@ E.g:
 
 ### Credits:
 
-<!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code. -->
+@TheCarnalest<!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code. -->

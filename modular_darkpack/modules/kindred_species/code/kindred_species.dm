@@ -74,8 +74,7 @@
 	*/
 
 	//this needs to be adjusted to be more accurate for blood spending rates
-	var/datum/discipline/bloodheal/giving_bloodheal = new(clamp(11 - new_kindred.generation, 1, 10))
-	new_kindred.give_discipline(giving_bloodheal)
+	new_kindred.give_st_power(/datum/discipline/bloodheal, clamp(11 - new_kindred.generation, 1, 10))
 
 	//vampires die instantly upon having their heart removed
 	RegisterSignal(new_kindred, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))

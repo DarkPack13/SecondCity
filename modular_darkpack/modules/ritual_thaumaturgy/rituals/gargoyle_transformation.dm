@@ -133,7 +133,7 @@
 		target_body.name = old_name
 		target_body.update_name()
 
-		target_body.create_disciplines(FALSE, target_body.clan.clan_disciplines)
+		target_body.give_st_powers(target_body.clan.clan_disciplines)
 
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
