@@ -9,7 +9,7 @@
 /proc/has_vitae(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
-	return isvampire(character)
+	return isvampiresplat(character)
 
 /proc/iskindred(mob/character)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
