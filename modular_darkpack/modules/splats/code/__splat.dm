@@ -1,21 +1,44 @@
+/**
+ * # Splat
+ *
+ * A type of supernatural being (like vampires, werewolves, ghouls, etc.) that
+ * players can be. Has traits and actions that are inherent to all members
+ * of the splat, storyteller traits that are available to them, and resources
+ * that can be used to power their abilities.
+ *
+ * Also manages the supernatural powers of this splat that the owner has, but
+ * it's limited until future reworks improve powers.
+ */
 /datum/splat
 	abstract_type = /datum/splat
 
+	/// Name of the splat
 	var/name
+	/// Description of what the splat is and what it does
 	var/desc
+	/// ID for trait sources and whatnot
 	var/id
 
+	/// Traits inherent to this splat
 	var/list/splat_traits
+	/// Storyteller traits members of this splat can take
 	var/list/splat_st_traits
+	/// Actions inherent to this splat
 	var/list/splat_actions
 
+	/// Dictionary of resources to current values
 	var/list/resources
+	/// Dictionary of resources to maximum values
 	var/list/max_resources
 
+	/// Currently unused, supposed to be what type of power this splat uses (like Disciplines)
 	var/power_type
+	/// Splats that cannot co-exist with this splat
 	var/list/incompatible_splats
 
+	/// Supernatural powers of this splat possessed by the owner
 	var/list/datum/discipline/powers
+	/// Mob this splat belongs to
 	var/mob/living/owner
 
 /* GAINING SPLATS */
