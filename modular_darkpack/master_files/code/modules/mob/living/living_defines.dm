@@ -79,3 +79,6 @@
 	//beastmaster
 	var/list/beastmaster_minions = list()
 	var/list/datum/component/obeys_commands/minion_command_components = list()
+
+	/// List of supernatural types that apply to this mob (also referenced in its mind)
+	var/list/datum/splat/splats
