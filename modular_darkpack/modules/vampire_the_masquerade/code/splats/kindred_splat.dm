@@ -1,2 +1,197 @@
 /datum/splat/vampire/kindred
 	name = "Kindred"
+	desc = "Undead predators that have been feeding on humanity since stone was first turned into tools. \
+			They use the powers of their stolen blood to control human societies."
+	id = SPLAT_KINDRED
+
+	splat_traits = list(
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_NOHUNGER,
+		TRAIT_NOBREATH,
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_RADIMMUNE,
+		TRAIT_CAN_ENTER_TORPOR,
+		TRAIT_VTM_MORALITY,
+		TRAIT_VTM_CLANS,
+		TRAIT_UNAGING,
+		TRAIT_DRINKS_BLOOD
+	)
+	splat_actions = list(
+		/datum/action/cooldown/mob_cooldown/give_vitae,
+		/datum/action/cooldown/blood_power
+	)
+	splat_biotypes = MOB_UNDEAD
+	power_type = /datum/discipline
+
+	incompatible_splats = list(
+		/datum/splat/vampire/ghoul
+	)
+
+/datum/splat/vampire/kindred/on_gain()
+	// Is this supposed to only be player Kindred? I'm not quite sure
+	GLOB.kindred_list |= owner
+
+	// DARKPACK TODO - reimplement these vars and the actions
+	/*
+	var/datum/action/vampireinfo/infor = new()
+	infor.host = new_kindred
+	infor.Grant(new_kindred)
+
+	add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
+	*/
+
+	//this needs to be adjusted to be more accurate for blood spending rates
+	owner.give_st_power(/datum/discipline/bloodheal, clamp(11 - owner.generation, 1, 10))
+
+	//vampires die instantly upon having their heart removed
+	RegisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
+
+	//vampires don't die while in crit, they just slip into torpor after 2 minutes of being critted
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(handle_enter_critical_condition))
+
+	//vampires resist vampire bites better than mortals
+	RegisterSignal(owner, COMSIG_MOB_VAMPIRE_SUCKED, PROC_REF(on_vampire_bitten))
+
+	// Apply bashing damage resistance
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS, PROC_REF(damage_resistance))
+
+	RegisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
+
+	// Make all food except raw meat repulsive
+	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
+	tongue?.liked_foodtypes = NONE
+	tongue?.disliked_foodtypes = NONE
+	tongue?.toxic_foodtypes = ~(GORE | MEAT | RAW)
+
+	// Set blood type
+	owner.set_blood_type(BLOOD_TYPE_KINDRED)
+
+	// Apply temperature damage modifiers
+	owner.physiology.heat_mod *= 2
+	owner.physiology.cold_mod *= 0.25
+
+/datum/splat/vampire/kindred/on_lose()
+	GLOB.kindred_list -= owner
+
+	owner.set_clan(null)
+
+	UnregisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
+	UnregisterSignal(owner, COMSIG_MOB_VAMPIRE_SUCKED)
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
+	UnregisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD)
+
+	// Reset tongue
+	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
+	tongue?.liked_foodtypes = initial(tongue.liked_foodtypes)
+	tongue?.disliked_foodtypes = initial(tongue.disliked_foodtypes)
+	tongue?.toxic_foodtypes = initial(tongue.toxic_foodtypes)
+
+	// Reset blood type
+	owner.set_blood_type()
+
+	// Reset temperature damage modifiers
+	owner.physiology.heat_mod *= 0.5
+	owner.physiology.cold_mod *= 4
+
+	// DARKPACK TODO - reimplement vampire actions
+	/*
+	for (var/datum/action/vampireinfo/VI in owner.actions)
+		VI.Remove(owner)
+	*/
+
+/datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
+	SIGNAL_HANDLER
+
+	// Kindred take half "bashing" damage, which is normally blunt damage but includes pointy things like bullets because they're undead
+	if ((damagetype == BRUTE) && (sharpness != SHARP_EDGED))
+		damage_mods += 0.5
+
+/**
+ * Signal handler for lose_organ to near-instantly kill Kindred whose hearts have been removed.
+ *
+ * Arguments:
+ * * source - The Kindred whose organ has been removed.
+ * * organ - The organ which has been removed.
+ */
+/datum/splat/vampire/kindred/proc/handle_lose_organ(mob/living/carbon/human/source, obj/item/organ/organ)
+	SIGNAL_HANDLER
+
+	if (!istype(organ, /obj/item/organ/heart))
+		return
+	// You don't want the character preview going sideways, and they lose organs a lot
+	if (isdummy(source))
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(lose_heart), source, organ), 0.5 SECONDS)
+
+/datum/splat/vampire/kindred/proc/lose_heart(mob/living/carbon/human/source, obj/item/organ/heart/heart)
+	if (source.get_organ_by_type(/obj/item/organ/heart))
+		return
+
+	source.death()
+
+/datum/splat/vampire/kindred/proc/handle_enter_critical_condition(mob/living/carbon/human/source)
+	SIGNAL_HANDLER
+
+	to_chat(source, span_warning("You can feel yourself slipping into Torpor. You can use succumb to immediately sleep..."))
+	addtimer(CALLBACK(source, TYPE_PROC_REF(/mob/living/carbon/human, torpor), "damage"), 2 MINUTES)
+
+/datum/species/human/kindred/proc/slip_into_torpor(mob/living/carbon/human/kindred)
+	if (!kindred || (kindred.stat == DEAD))
+		return
+	if (kindred.stat < SOFT_CRIT)
+		return
+
+	kindred.torpor("damage")
+
+/**
+ * On being bit by a vampire
+ *
+ * This handles vampire bite sleep immunity and any future special interactions.
+ */
+/datum/splat/vampire/kindred/proc/on_vampire_bitten(datum/source, mob/living/carbon/being_bitten)
+	SIGNAL_HANDLER
+
+	return COMPONENT_RESIST_VAMPIRE_KISS
+
+/obj/item/organ/tongue/kindred
+	liked_foodtypes = NONE
+	disliked_foodtypes = NONE
+	// All food except raw meat is disgusting to Kindred
+	toxic_foodtypes = ~(GORE | MEAT | RAW)
+
+/proc/get_vamp_skin_color(value = "albino")
+	switch(value)
+		if("caucasian1")
+			return "vamp1"
+		if("caucasian2")
+			return "vamp2"
+		if("caucasian3")
+			return "vamp3"
+		if("latino")
+			return "vamp4"
+		if("mediterranean")
+			return "vamp5"
+		if("asian1")
+			return "vamp6"
+		if("asian2")
+			return "vamp7"
+		if("arab")
+			return "vamp8"
+		if("indian")
+			return "vamp9"
+		if("african1")
+			return "vamp10"
+		if("african2")
+			return "vamp11"
+		else
+			return value
+
+/datum/splat/vampire/kindred/proc/kindred_blood(mob/living/carbon/human/kindred, seconds_per_tick, times_fired)
+	SIGNAL_HANDLER
+
+	if(kindred.stat == DEAD)
+		return HANDLE_BLOOD_HANDLED
+
+	return HANDLE_BLOOD_NO_NUTRITION_DRAIN|HANDLE_BLOOD_NO_OXYLOSS

@@ -12,6 +12,7 @@
 	remove_splat_traits()
 	remove_actions()
 	clear_powers()
+	remove_biotypes()
 
 	owner.splats -= src
 	owner = null
@@ -41,3 +42,19 @@
 				continue
 
 			action.Remove()
+
+/datum/splat/proc/remove_biotypes()
+	// Make sure we don't remove biotypes they should have without the splat
+	var/skip_biotypes = NONE
+	for (var/datum/splat/splat in (owner.splats - src))
+		skip_biotypes |= splat.splat_biotypes
+	if (ishuman(owner))
+		var/mob/living/carbon/human/human_owner = owner
+		skip_biotypes |= human_owner.dna?.species?.inherent_biotypes
+
+	// Remove the biotypes
+	for (var/biotype in splat_biotypes)
+		if (skip_biotypes & biotype)
+			continue
+
+		owner.mob_biotypes &= ~biotype

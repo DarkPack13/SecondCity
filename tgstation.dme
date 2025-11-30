@@ -441,6 +441,7 @@
 #include "code\__DEFINES\~darkpack\signals_kindred.dm"
 #include "code\__DEFINES\~darkpack\sound.dm"
 #include "code\__DEFINES\~darkpack\status_effects_debuffs.dm"
+#include "code\__DEFINES\~darkpack\splats.dm"
 #include "code\__DEFINES\~darkpack\storyteller_dice.dm"
 #include "code\__DEFINES\~darkpack\storyteller_stats.dm"
 #include "code\__DEFINES\~darkpack\subsystems.dm"

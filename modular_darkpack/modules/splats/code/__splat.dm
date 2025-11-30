@@ -18,19 +18,19 @@
 	/// ID for trait sources and whatnot
 	var/id
 
-	/// Traits inherent to this splat
+	/// Traits possessed by all members of this splat
 	var/list/splat_traits
-	/// Actions inherent to this splat
+	/// Actions possessed by all members of this splat
 	var/list/splat_actions
+	/// Biotypes possessed by all members of this splat
+	var/splat_biotypes
 	/// Base type of the powers that this splat has
 	var/power_type
 
-	/// Splats that this splat replaces when gained
-	var/list/replaces_splats
 	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats
 
 	/// Powers unique to this splat possessed by the owner
 	var/list/datum/action/powers
 	/// Mob this splat belongs to
-	var/mob/living/owner
+	var/mob/living/carbon/human/owner

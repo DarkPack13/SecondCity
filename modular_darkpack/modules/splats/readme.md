@@ -31,6 +31,7 @@ E.g:
 
 ### Defines:
 
+- [code/\_\_DEFINES/~darkpack/splats.dm](/code/__DEFINES/~darkpack/splats.dm)
 - [code/\_\_DEFINES/~darkpack/dcs/splat_signals.dm](/code/__DEFINES/~darkpack/dcs/splat_signals.dm)
 <!-- If you needed to add any defines, mention the files you added those defines in, along with the name of the defines. -->
 
