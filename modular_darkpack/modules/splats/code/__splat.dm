@@ -56,14 +56,14 @@
 
 	replace_splats()
 
-	add_traits()
+	add_splat_traits()
 	add_actions()
 
 	on_gain()
 
 	return src
 
-/datum/splat/proc/add_traits()
+/datum/splat/proc/add_splat_traits()
 	for (var/trait in splat_traits)
 		ADD_TRAIT(owner, trait, id)
 
@@ -76,7 +76,7 @@
 /datum/splat/proc/on_lose()
 	return
 
-/datum/splat/unassign()
+/datum/splat/proc/unassign()
 	if (!owner)
 		return
 
@@ -84,7 +84,7 @@
 
 	on_lose()
 
-	remove_traits()
+	remove_splat_traits()
 	remove_actions()
 	clear_powers()
 
@@ -96,7 +96,7 @@
 
 	. = ..()
 
-/datum/splat/proc/remove_traits()
+/datum/splat/proc/remove_splat_traits()
 	for (var/trait in splat_traits)
 		REMOVE_TRAIT(owner, trait, id)
 
@@ -147,13 +147,13 @@
 
 		return splat
 
-/mob/living/add_splat(splat_type, ...)
+/mob/living/proc/add_splat(splat_type, ...)
 	RETURN_TYPE(/datum/splat)
 
 	var/datum/splat/adding_splat = new splat_type(arglist(args.Copy(2)))
 	return adding_splat.assign(src)
 
-/mob/living/remove_splat(splat_type)
+/mob/living/proc/remove_splat(splat_type)
 	for (var/datum/splat/found_splat in splats)
 		if (!istype(found_splat, splats))
 			continue
@@ -163,7 +163,7 @@
 
 	return FALSE
 
-/mob/living/is_splat_incompatible(splat_type)
+/mob/living/proc/is_splat_incompatible(splat_type)
 	for (var/datum/splat/splat in splats)
 		if (splat_type in splat.incompatible_splats)
 			return TRUE
