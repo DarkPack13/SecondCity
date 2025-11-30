@@ -1014,7 +1014,7 @@
 		bodytemperature = get_body_temp_normal(apply_change = FALSE)
 	if(heal_flags & HEAL_BLOOD)
 		restore_blood()
-		adjust_blood_pool(maxbloodpool) // DARKPACK EDIT ADD
+		adjust_blood_pool(maxbloodpool, updating_health = FALSE) // DARKPACK EDIT ADD
 	if(reagents && (heal_flags & HEAL_ALL_REAGENTS))
 		reagents.clear_reagents()
 
