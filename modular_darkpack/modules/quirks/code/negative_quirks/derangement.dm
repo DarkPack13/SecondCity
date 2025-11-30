@@ -11,8 +11,11 @@
 	hardcore_value = 6
 	quirk_flags = QUIRK_PROCESSES
 	var/process_interval = 3 SECONDS
-	var/list/derangements = list(/datum/hallucination/malk/laugh, /datum/hallucination/malk/object)
+	var/list/derangements
 	COOLDOWN_DECLARE(next_process)
+
+/datum/quirk/derangement/add()
+	derangements = subtypesof(/datum/hallucination/malk)
 
 /datum/quirk/derangement/process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, next_process))
