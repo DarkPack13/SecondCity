@@ -5,8 +5,6 @@
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
-#define iskindred(A) (is_species(A, /datum/species/human/kindred))
-#define isghoul(A) (is_species(A, /datum/species/human/ghoul))
 #define isavatar(A) (FALSE)
 #define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 

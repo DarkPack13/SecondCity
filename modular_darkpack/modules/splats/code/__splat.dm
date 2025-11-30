@@ -3,8 +3,7 @@
  *
  * A type of supernatural being (like vampires, werewolves, ghouls, etc.) that
  * players can be. Has traits and actions that are inherent to all members
- * of the splat, storyteller traits that are available to them, and resources
- * that can be used to power their abilities.
+ * of the splat.
  *
  * Also manages the supernatural powers of this splat that the owner has, but
  * it's limited until future reworks improve powers.
@@ -21,42 +20,48 @@
 
 	/// Traits inherent to this splat
 	var/list/splat_traits
-	/// Storyteller traits members of this splat can take
-	var/list/splat_st_traits
 	/// Actions inherent to this splat
 	var/list/splat_actions
-
-	/// Dictionary of resources to current values
-	var/list/resources
-	/// Dictionary of resources to maximum values
-	var/list/max_resources
-
-	/// Currently unused, supposed to be what type of power this splat uses (like Disciplines)
+	/// Currently unused, will be implemented when powers are refactored
 	var/power_type
-	/// Splats that cannot co-exist with this splat
+
+	/// Splats that this splat replaces when gained
+	var/list/replaces_splats
+	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats
 
-	/// Supernatural powers of this splat possessed by the owner
-	var/list/datum/discipline/powers
+	/// Powers unique to this splat possessed by the owner
+	var/list/datum/action/powers
 	/// Mob this splat belongs to
 	var/mob/living/owner
 
 /* GAINING SPLATS */
-/datum/splat/proc/assign(mob/living/owner)
-	src.owner = owner
-
-	owner.splats += src
-
-	on_gain()
-
 /datum/splat/proc/on_gain()
-	SHOULD_CALL_PARENT(TRUE)
+	return
+
+/datum/splat/proc/replace_splats()
+	// Should be implemented in subclasses for unique replacement behavior
+	// eg. getting Embraced transfers your Disciplines if you were a Ghoul
+	return
+
+/datum/splat/proc/assign(mob/living/owner)
+	// Cannot add this splat, return null and let the calling proc handle it
+	if (owner.is_splat_incompatible(type))
+		return
+
+	src.owner = owner
+	owner.splats += src
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_GAIN_SPLAT, src)
 
-	add_traits()
+	replace_splats()
 
+	add_traits()
 	add_actions()
+
+	on_gain()
+
+	return src
 
 /datum/splat/proc/add_traits()
 	for (var/trait in splat_traits)
@@ -68,25 +73,28 @@
 		new_action.Grant(owner)
 
 /* LOSING SPLATS */
-/datum/splat/proc/unassign(annihilate = TRUE)
-	on_lose()
-
-	owner.splats -= src
-
-	// This clears out every single instantiated datum on this splat, very dangerous
-	if (annihilate)
-		QDEL_LIST(powers)
-
-	qdel(src)
-
 /datum/splat/proc/on_lose()
-	SHOULD_CALL_PARENT(TRUE)
+	return
+
+/datum/splat/unassign()
+	if (!owner)
+		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
 
-	remove_traits()
+	on_lose()
 
+	remove_traits()
 	remove_actions()
+	clear_powers()
+
+	owner.splats -= src
+	owner = null
+
+/datum/splat/Destroy()
+	unassign()
+
+	. = ..()
 
 /datum/splat/proc/remove_traits()
 	for (var/trait in splat_traits)
@@ -110,8 +118,8 @@
 			action.Remove()
 
 /* POWER MANAGEMENT */
-// standardise this all when the power system is made universal
-/datum/splat/proc/create_powers(list/power_types, list/levels)
+// standardize this all when the power system is made universal
+/datum/splat/proc/get_power(power_type)
 	return
 
 /datum/splat/proc/add_power(power_type, level)
@@ -120,37 +128,9 @@
 /datum/splat/proc/remove_power(power_type)
 	return
 
-/* RESOURCE MANAGEMENT */
-/datum/splat/proc/get_resource(resource)
-	return resources[resource]
-
-/datum/splat/proc/add_resource(resource, amount = 1)
-	if (!resource || (amount <= 0))
-		return FALSE
-
-	if (!(resource in resources) || !(resource in max_resources))
-		return FALSE
-
-	if (resources[resource] == max_resources[resource])
-		return FALSE
-
-	resources[resource] = min(resources[resource] + amount, max_resources[resource])
-
-	return TRUE
-
-/datum/splat/proc/remove_resource(resource, amount = 1)
-	if (!resource || (amount <= 0))
-		return FALSE
-
-	if (!(resource in resources) || !(resource in max_resources))
-		return FALSE
-
-	if ((resources[resource] - amount) < 0)
-		return FALSE
-
-	resources[resource] -= amount
-
-	return TRUE
+/datum/splat/proc/clear_powers()
+	for (var/datum/action/power in powers)
+		qdel(power)
 
 /* DIRECT SPLAT INTERACTION */
 /mob/proc/get_splat(splat_type)
@@ -167,8 +147,21 @@
 
 		return splat
 
-/mob/proc/is_splat_incompatible(splat_type)
-	return
+/mob/living/add_splat(splat_type, ...)
+	RETURN_TYPE(/datum/splat)
+
+	var/datum/splat/adding_splat = new splat_type(arglist(args.Copy(2)))
+	return adding_splat.assign(src)
+
+/mob/living/remove_splat(splat_type)
+	for (var/datum/splat/found_splat in splats)
+		if (!istype(found_splat, splats))
+			continue
+
+		qdel(found_splat)
+		return TRUE
+
+	return FALSE
 
 /mob/living/is_splat_incompatible(splat_type)
 	for (var/datum/splat/splat in splats)

@@ -19,7 +19,7 @@
 	//	victim.rollfrenzy()
 	//	return
 
-	if(ishumanbasic(victim) || isghoul(victim))
+	if(ismundane(victim) || isghoul(victim))
 		if(victim.stat == DEAD)
 			if(!embracer)
 				return
