@@ -124,11 +124,23 @@
 		register_sticky_item(my_backup_weapon)
 
 /mob/living/carbon/human/npc/Destroy()
+	QDEL_NULL(socialrole)
+	danger_source = null
+	QDEL_NULL(afraid_of_fire)
+	last_attacker = null
+	last_damager = null
+	walktarget = null
+	tupik_loc = null
+	my_weapon_type = null
+	my_weapon = null
+	my_backup_weapon_type = null
+	my_backup_weapon = null
+	spotted_bodies = null
+	drop_on_death_list = null
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
 	SShumannpcpool.try_repopulate()
-
-	. = ..()
+	return ..()
 
 //====================Sticky Item Handling====================
 /mob/living/carbon/human/npc/proc/register_sticky_item(obj/item/my_item)

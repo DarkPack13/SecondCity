@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Bloodpool icon"
-  - bugfix: "Bloodpool calucations should acctually run and be ttrpg accurate"

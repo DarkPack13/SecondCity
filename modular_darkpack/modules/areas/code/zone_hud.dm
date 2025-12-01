@@ -17,6 +17,5 @@
 				if(!HAS_TRAIT(src, TRAIT_ELYSIUM))
 					ADD_TRAIT(src, TRAIT_ELYSIUM, "elysium")
 			else
-				elysium_checks = 0
 				if(HAS_TRAIT(src, TRAIT_ELYSIUM))
 					REMOVE_TRAIT(src, TRAIT_ELYSIUM, "elysium")

@@ -981,11 +981,6 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
-"tL" = (
-/obj/structure/table/wood,
-/obj/item/vtm_artifact/saulocept,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/sewer)
 "tO" = (
 /obj/effect/gibspawner/human,
 /obj/structure/sign/city/store/gummaguts/directional/north,
@@ -3088,7 +3083,7 @@ GF
 (6,1,1) = {"
 GF
 Ef
-tL
+zM
 RP
 iJ
 lU
