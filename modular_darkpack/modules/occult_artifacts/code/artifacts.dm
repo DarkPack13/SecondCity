@@ -95,19 +95,6 @@
 			owner.adjustBruteLoss(-5)
 			owner.adjustFireLoss(-5)
 
-/obj/item/vtm_artifact/saulocept
-	true_name = "Saulocept"
-	true_desc = "More experience points."
-	icon_state = "saulocept"
-
-/obj/item/vtm_artifact/saulocept/get_powers()
-	. = ..()
-	owner.experience_plus = 10
-
-/obj/item/vtm_artifact/saulocept/remove_powers()
-	. = ..()
-	owner.experience_plus = 0
-
 /obj/item/vtm_artifact/galdjum
 	true_name = "Galdjum"
 	true_desc = "Increases disciplines duration."

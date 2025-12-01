@@ -93,46 +93,8 @@
 	bloodpool = 7
 	maxbloodpool = 7
 
-/mob/living/basic/gangrel
-	name = "Gangrel Form"
-	desc = "The peak of abominations armor. Unbelievably undamagable..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "gangrel_f"
-	icon_living = "gangrel_f"
-	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	mob_size = MOB_SIZE_HUGE
-	speed = -0.4
-	maxHealth = 400
-	health = 400
-	butcher_results = list(/obj/item/stack/human_flesh = 10)
-	melee_damage_lower = 40
-	melee_damage_upper = 40
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
-	attack_sound = 'sound/items/weapons/slash.ogg'
-	combat_mode = TRUE
-	bloodpool = 10
-	maxbloodpool = 10
-	held_items = list(null, null)
-
-/mob/living/basic/gangrel/better
-	maxHealth = 500
-	health = 500
-	melee_damage_lower = 45
-	melee_damage_upper = 45
-	speed = -0.6
-
-/mob/living/basic/gangrel/best
-	icon_state = "gangrel_m"
-	icon_living = "gangrel_m"
-	maxHealth = 600
-	health = 600
-	melee_damage_lower = 55
-	melee_damage_upper = 55
-	speed = -0.8
-
 /mob/living/basic/tzimisce_beast
-	name = "Tzimisce Beast Form"
+	name = "tzimisce beast form"
 	desc = "The peak of abominations armor. Unbelievably undamagable..."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "weretzi"
@@ -155,7 +117,7 @@
 	maxbloodpool = 10
 
 /mob/living/basic/bloodcrawler
-	name = "Tzimisce Blood Form"
+	name = "tzimisce blood form"
 	desc = "The peak of abominations. Unbelievably undamagable..."
 	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
 	icon_state = "liquid"

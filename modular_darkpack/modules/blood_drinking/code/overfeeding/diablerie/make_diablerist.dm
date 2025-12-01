@@ -8,3 +8,4 @@
 	else
 		client.prefs.write_preference(GLOB.preference_entries[/datum/preference/toggle/diablerist], TRUE)
 	ADD_TRAIT(src, TRAIT_DIABLERIE, TRAIT_DIABLERIE)
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_AURA)

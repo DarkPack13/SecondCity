@@ -40,4 +40,4 @@
 /datum/reagent/blood/vitae/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(isghoul(affected_mob) || iskindred(affected_mob))
-		affected_mob.bloodpool = min(affected_mob.maxbloodpool, affected_mob.bloodpool + (100 / seconds_per_tick))
+		affected_mob.adjust_blood_pool(100 / seconds_per_tick)

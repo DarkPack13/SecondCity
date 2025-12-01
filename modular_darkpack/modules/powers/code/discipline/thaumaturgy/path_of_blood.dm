@@ -8,7 +8,7 @@
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
 	owner.faction |= VAMPIRE_CLAN_TREMERE
-	var/datum/action/thaumaturgy/thaumaturgy = new()
+	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
@@ -222,10 +222,6 @@
 	owner.apply_status_effect(/datum/status_effect/blood_of_potency, chosen_generation, set_time * 22 MINUTES)
 	activated = TRUE
 
-/datum/discipline_power/thaumaturgy/blood_of_potency/deactivate()
-	. = ..()
-	owner.remove_status_effect(/datum/status_effect/blood_of_potency)
-
 //------------------------------------------------------------------------------------------------
 
 /datum/discipline_power/thaumaturgy/theft_of_vitae
@@ -257,10 +253,10 @@
 	target.visible_message(span_danger("[target]'s blood streams out in a torrent towards [owner]!"), span_userdanger("Your blood streams out in a torrent towards [owner]!"))
 	if(iskindred(target) || isghoul(target))
 		var/blood_taken = clamp(success_count, 0, target.bloodpool)
-		target.bloodpool = max(target.bloodpool - blood_taken, 0)
+		target.adjust_blood_pool(-blood_taken)
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality-1)
-		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
+		owner.adjust_blood_pool(blood_gained)
 	else
 		var/blood_coefficient = (5 / target.bloodpool)
 		// DARKPACK TODO - reimplement quirks -- potent blood
@@ -272,7 +268,7 @@
 		target.blood_volume = max (0, (target.blood_volume - (blood_taken * (70*blood_coefficient))))
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality - 1)
-		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
+		owner.adjust_blood_pool(blood_gained)
 
 //------------------------------------------------------------------------------------------------
 
@@ -301,7 +297,7 @@
 
 	target.visible_message(span_danger("As [owner] touches [target], their body seems to boil!"), span_userdanger("As [owner] touches you, your body feels like it's boiling in a pool of lava!"))
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
-	target.bloodpool = max(target.bloodpool - success_count, 0)
+	target.adjust_blood_pool(-success_count)
 	if(isnpc(target))
 		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
 	else

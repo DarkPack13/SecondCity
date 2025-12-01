@@ -99,7 +99,7 @@
 	icon_state = "9"
 	base_icon_state = "9"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 
 /obj/item/ammo_casing/vampire/c9mm
 	name = "9mm bullet casing"
@@ -178,7 +178,7 @@
 	caliber = CALIBER_FOAM
 	icon_state = "arrow"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	harmful = TRUE
 
 /*
@@ -215,7 +215,7 @@
 
 /obj/item/ammo_box/darkpack
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	w_class = WEIGHT_CLASS_NORMAL
 
 ///9mm/////////////

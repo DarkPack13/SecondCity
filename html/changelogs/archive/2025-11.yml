@@ -94,3 +94,102 @@
   - rscadd: Raven and crow basic mobs (corax kinfolk)
   chazzyjazzy:
   - code_imp: ticking vip barriers and now they work so
+2025-11-21:
+  Eli-Hodges:
+  - bugfix: runtime from elevator wire cutting
+  dwinters99:
+  - bugfix: NPC name and real_name now match
+  - rscadd: robes in loadout
+  - bugfix: NPCs are no longer catatonic. Just busy.
+2025-11-22:
+  FalloutFalcon:
+  - qol: examing the Sarcophagus lets you roll to auto decipher the cipher
+  KCartridge:
+  - rscadd: Fixed walls that are now good and awesome
+  - image: Removed old evil walls that were replaced yayyy
+  Marshmellow105:
+  - rscadd: adds old chairs back along with some new variants
+  dwinters99:
+  - image: technically unorphaned two phone sprites
+2025-11-23:
+  Eli-Hodges:
+  - spellcheck: Added improper grammar to the city police sign
+  FalloutFalcon, ghoulpen:
+  - image: deer sprites from ghoulpen
+  XeonMations:
+  - map: Updated updatepaths scripts to not miss some stuff.
+  dwinters99 & Major00 (Paynt):
+  - image: new hud by Major00 (Paynt)
+2025-11-24:
+  XeonMations:
+  - bugfix: Fixed phone call records not properly cllearing and dead NPCs not fully
+      restoring your masquerade.
+  - rscdel: Removed player shadow disc
+  dwinters99:
+  - image: old vehicle sprites
+2025-11-25:
+  FalloutFalcon:
+  - rscadd: city gangrel
+  - rscadd: reimplements protean
+  - rscadd: readds beast marks selection conveted to tgui pref
+  - balance: tunes back gangrel form health and damage
+  chazzyjazzy:
+  - image: flowers & trees now sway in the wind
+  dwinters99:
+  - map: fake platforms and low shadows
+2025-11-27:
+  Beautiful TG coders:
+  - code_imp: Monthly TG Pull. Thank you TG.
+  FalloutFalcon:
+  - bugfix: Doors no longer think they are on the tile above them
+  JohnFulpWillard:
+  - bugfix: Headslugs are now small.
+  XeonMations:
+  - rscadd: Added Auspex to the game
+  - balance: You are now more sensitive to noises and bright lights while using Heightened
+      Senses.
+  Y0SH1M4S73R:
+  - sound: Squid tongues have a distinctive effect on your text-to-speech voice.
+  buffyuwu:
+  - bugfix: fixes malkavian hivemind and madness speech features
+  dwinters99:
+  - bugfix: woodglass doors no longer are opaque
+  - rscdel: the Axe Gang is dead. Long live the Warehouse.
+  lelandkemble:
+  - bugfix: Ghosts can no longer try and fail to admire aquariums.
+2025-11-28:
+  Hawk-v3:
+  - rscadd: Reimplements the Fusebox.
+  chazzyjazzy:
+  - code_imp: readds vault doors and keypads
+  dwinters99:
+  - image: decor.dmi is fucking dead
+  - code_imp: repaths job start landmarks to be more sane
+  - code_imp: add missing job defines
+2025-11-29:
+  FalloutFalcon:
+  - rscadd: Bloodpool icon
+  - bugfix: Bloodpool calucations should acctually run and be ttrpg accurate
+  - rscadd: Readds Temporis.
+  FalloutFalcon, Major00:
+  - image: Resprites the TG lobby menu to be more vampyr
+  XeonMations:
+  - server: Defaulted some config changes.
+  chazzyjazzy:
+  - code_imp: readds necromancy & necromancy rituals
+  - code_imp: readds obtenebration & abyss mysticism rituals
+  dwinters99:
+  - code_imp: default ghoul dummy is now Heather Poe from VTMB
+  - bugfix: donut onfloors work
+  - bugfix: mothic and martian food sorted into misc food
+  - bugfix: sheaths have icons
+  - bugfix: lattices let you walk over water
+  - bugfix: fake platforms are on the right plane
+2025-11-30:
+  FalloutFalcon:
+  - bugfix: silver ammo now has onfloors
+  - bugfix: mapping now shows mag sprites properly
+  XeonMations:
+  - bugfix: Fixed the majority of hard deletes that we encountered thus far
+  - bugfix: Fixed blood hunts using name instead of real name, previously not showing
+      the hunted's name.
