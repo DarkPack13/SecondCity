@@ -247,6 +247,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healths = null
 	stamina = null
 	healthdoll = null
+	bloodpool_icon = null // DARKPACK EDIT ADD
 	spacesuit = null
 	hunger = null
 	alien_plasma_display = null

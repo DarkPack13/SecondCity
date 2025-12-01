@@ -1,8 +1,0 @@
-author: "dwinters99"
-delete-after: True
-changes:
-  - code_imp: "default ghoul dummy is now Heather Poe from VTMB"
-  - bugfix: "donut onfloors work"
-  - bugfix: "mothic and martian food sorted into misc food"
-  - bugfix: "sheaths have icons"
-  - bugfix: "lattices let you walk over water"
