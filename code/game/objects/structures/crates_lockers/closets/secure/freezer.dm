@@ -3,12 +3,12 @@
 	base_icon_state = "freezer"
 	icon = 'modular_darkpack/master_files/icons/obj/storage/closet32x32.dmi' // DARKPACK EDIT ADD
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
-	//DARKPACK EDIT ADD
+	//DARKPACK EDIT CHANGE START
 	door_anim_time = 0
 	enable_door_overlay = FALSE
 	has_opened_overlay = FALSE
 	has_closed_overlay = FALSE
-	//DARKPACK EDIT ADD END
+	//DARKPACK EDIT CHANGE END
 	/// If FALSE, we will protect the first person in the freezer from an explosion / nuclear blast.
 	var/jones = FALSE
 	paint_jobs = null
