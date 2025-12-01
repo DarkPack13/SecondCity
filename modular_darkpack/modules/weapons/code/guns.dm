@@ -154,7 +154,7 @@
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "glock21"
-	ammo_type = /obj/item/ammo_casing/vampire/c9mm
+	ammo_type = /obj/item/ammo_casing/vampire/c45acp
 	caliber = CALIBER_45
 	max_ammo = 12
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
