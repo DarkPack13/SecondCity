@@ -40,4 +40,7 @@
 	carbon_owner.adjust_blood_pool(-1)
 	carbon_owner.transfer_blood_to(target_atom, 100, TRUE, TRUE)
 	target_atom.reagents.expose(target_atom, INGEST, 1, FALSE)
+	if(ishuman(target_atom))
+		var/mob/living/carbon/human/human_target = target_atom
+		human_target.adjust_blood_pool(1)
 	return TRUE
