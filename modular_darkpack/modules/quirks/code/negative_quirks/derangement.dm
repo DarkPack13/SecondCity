@@ -42,7 +42,7 @@
 		handle_malk_floor(floor)
 
 /datum/quirk/derangement/proc/handle_malk_floor(turf/open/floor)
-	var/mutable_appearance/fake_floor = image(floor.icon, floor, floor.icon_state, floor.layer + 0.01)
+	var/mutable_appearance/fake_floor = image(floor.icon, floor, floor.icon_state, floor.layer)
 	quirk_holder?.client.images += fake_floor
 	var/offset = pick(-3,-2, -1, 1, 2, 3)
 	var/disappearfirst = rand(1 SECONDS, 3 SECONDS) * abs(offset)
