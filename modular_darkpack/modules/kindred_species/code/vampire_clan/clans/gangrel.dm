@@ -18,6 +18,7 @@
 /datum/vampire_clan/gangrel/city
 	name = "City Gangrel"
 	id = VAMPIRE_CLAN_CITY_GANGREL
+	icon = "city_gangrel"
 	clan_disciplines = list(
 		/datum/discipline/celerity,
 		// /datum/discipline/obfuscate,
