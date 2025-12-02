@@ -7318,6 +7318,7 @@
 #include "modular_darkpack\modules\ritual_necromancy\code\rituals\fireprotection.dm"
 #include "modular_darkpack\modules\ritual_necromancy\code\rituals\insight.dm"
 #include "modular_darkpack\modules\ritual_necromancy\code\rituals\locate.dm"
+#include "modular_darkpack\modules\ritual_necromancy\code\rituals\truth.dm"
 #include "modular_darkpack\modules\ritual_necromancy\code\rituals\zombie.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\arcane_tome.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\thaumaturgy_rune_drawing_action.dm"
