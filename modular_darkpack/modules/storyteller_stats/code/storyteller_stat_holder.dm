@@ -81,6 +81,7 @@
 	var/datum/st_stat/A = get_stat_datum(stat_path)
 	return A.increase_score(amount)
 
+#warn this is currently unused?
 /datum/storyteller_stats/proc/recalculate_stats(stat_path)
 	if(is_willpower_affecting(stat_path))
 		if(stat_path == STAT_PERMANENT_WILLPOWER)
