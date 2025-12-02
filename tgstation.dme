@@ -6976,6 +6976,7 @@
 #include "modular_darkpack\modules\doors\code\vampdoor_glass.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_npc.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_old.dm"
+#include "modular_darkpack\modules\doors\code\vampdoor_oldwood.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_prison.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_reinf.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_simple.dm"
