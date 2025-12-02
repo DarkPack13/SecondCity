@@ -8,7 +8,7 @@
 	//lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	//righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 
 /obj/item/storage/belt/sheath/vamp/sabre
 	desc = "An ornate sheath designed to hold an officer's blade."

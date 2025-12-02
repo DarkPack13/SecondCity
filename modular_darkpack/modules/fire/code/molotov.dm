@@ -3,7 +3,7 @@
 	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
 	icon_state = "molotov"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 	var/active = FALSE
 	var/explode_timer

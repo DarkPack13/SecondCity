@@ -1,9 +1,3 @@
-/mob/living/carbon/human/Destroy()
-	if (clan)
-		clan.on_lose(src)
-
-	return ..()
-
 /mob/living/carbon/human/Topic(href, href_list)
 	// DARKPACK TODO - reimplement in a sane way.
 	if(href_list["masquerade_violation"])

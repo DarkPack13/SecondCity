@@ -3,9 +3,12 @@
 	base_icon_state = "freezer"
 	icon = 'modular_darkpack/master_files/icons/obj/storage/closet32x32.dmi' // DARKPACK EDIT ADD
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
-	door_anim_squish = 0.22
-	door_anim_angle = 123
-	door_anim_time = 4
+	//DARKPACK EDIT CHANGE START
+	door_anim_time = 0
+	enable_door_overlay = FALSE
+	has_opened_overlay = FALSE
+	has_closed_overlay = FALSE
+	//DARKPACK EDIT CHANGE END
 	/// If FALSE, we will protect the first person in the freezer from an explosion / nuclear blast.
 	var/jones = FALSE
 	paint_jobs = null
@@ -15,6 +18,12 @@
 	var/cooling_rate_per_second = 4
 	/// Minimum temperature of the internal air mixture
 	var/minimum_temperature = T0C - 60
+
+//DARKPACK EDIT ADDITION -- handles fridge open/close states since parent type handles it alot differently
+/obj/structure/closet/secure_closet/freezer/update_icon_state()
+	. = ..()
+	icon_state = opened ? "freezeropen" : "freezer"
+//DARKPACK EDIT ADDITION END
 
 /obj/structure/closet/secure_closet/freezer/process_internal_air(seconds_per_tick)
 	if(opened)

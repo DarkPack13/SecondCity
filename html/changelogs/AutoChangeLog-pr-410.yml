@@ -1,4 +1,4 @@
 author: "FalloutFalcon"
 delete-after: True
 changes:
-  - rscadd: "Readds Temporis."
+  - bugfix: "tzimisce night vision eyes work"
