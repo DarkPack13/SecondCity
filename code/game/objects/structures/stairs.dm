@@ -16,6 +16,7 @@
 	var/force_open_above = FALSE // replaces the turf above this stair obj with /turf/open/openspace
 	var/terminator_mode = STAIR_TERMINATOR_AUTOMATIC
 	var/turf/listeningTo
+	max_integrity = 500 //DARKPACK EDIT CHANGE
 
 /obj/structure/stairs/north
 	dir = NORTH
@@ -199,7 +200,7 @@
 
 /obj/structure/stairs_frame/wood
 	name = "wooden stairs frame"
-	desc = "Everything you need to build a staircase, minus the actual stairs, this one is made of wood."
+	desc = "Everything you need to build a staircase, minus the actual stairs. This one is made of wood."
 	frame_stack = /obj/item/stack/sheet/mineral/wood
 
 /obj/structure/stairs_frame/Initialize(mapload)

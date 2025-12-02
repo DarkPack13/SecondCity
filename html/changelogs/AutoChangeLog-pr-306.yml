@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - bugfix: "Fixed phone call records not properly cllearing and dead NPCs not fully restoring your masquerade."

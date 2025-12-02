@@ -82,7 +82,7 @@
 	if(!isnull(broken_flooring))
 		return
 	var/turf/T = get_turf(src)
-	if(T.tiled_dirt && is_tileable)
+	if(T.tiled_turf && is_tileable)
 		icon = 'icons/effects/dirt.dmi'
 		icon_state = "dirt-0"
 		smoothing_flags = SMOOTH_BITMASK
@@ -355,7 +355,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 /obj/effect/decal/cleanable/garbage
 	name = "trash bag" // DARKPACK EDIT CHANGE - ORIGINAL: name = "decomposing garbage"
 	desc = "Holds garbage inside." // DARKPACK EDIT CHANGE - ORIGINAL: desc = "A split open garbage bag, its stinking content seems to be partially liquified. Yuck!"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: icon = 'icons/obj/debris.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: icon = 'icons/obj/debris.dmi'
 	icon_state = "garbage1" // DARKPACK EDIT CHANGE - ORIGINAL: icon_state = "garbage"
 	plane = GAME_PLANE
 	layer = CLEANABLE_OBJECT_LAYER
@@ -384,3 +384,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	flick("rubble_bounce", src)
 	icon_state = "rubble"
 	update_appearance(UPDATE_ICON_STATE)
+
+/obj/effect/decal/cleanable/can_bits
+	name = "shredded can"
+	desc = "This story doesn't hold water anymore."

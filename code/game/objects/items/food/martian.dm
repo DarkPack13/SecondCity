@@ -409,7 +409,7 @@
 // Burgers and Sandwiches
 /obj/item/food/burger/big_blue
 	name = "\improper Big Blue burger"
-	desc = "The original and best Big Blue, straight outta Mars' favourite burger joint. Catch the wave, brother!"
+	desc = "The original and best Big Blue, straight outta Hawaii's favourite burger joint. Catch the wave, brother!" // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "big_blue_burger"
 	food_reagents = list(
@@ -425,7 +425,7 @@
 
 /obj/item/food/burger/chappy
 	name = "\improper Chappy patty"
-	desc = "Originally born of a night of drinking in a Big Blue Burger's kitchen, the Chappy patty has since become a staple of both Big Blue's menu and Hawaiian (or at least, faux-Hawaiian) cuisine galaxy-wide. Given Big Kahuna operates most of its stores on Mars, it's perhaps no wonder this dish is popular there."
+	desc = "Originally born of a night of drinking in a Big Blue Burger's kitchen, the Chappy Patty has since become a staple of both Big Blue's menu and Hawaiian (or at least, faux-Hawaiian) cuisine world-wide. Given Big Kahuna operates most of its stores in Hawaii, it's perhaps no wonder this dish is popular there." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "chappy_patty"
 	food_reagents = list(
@@ -489,7 +489,7 @@
 
 /obj/item/food/croque_martienne
 	name = "croque-martienne"
-	desc = "The quintessential Martian breakfast sandwich. Egg, belly pork, pineapple, cheese. Simple. Classic. Available in every cafe across New Osaka."
+	desc = "The quintessential breakfast sandwich with a fruity twist. Egg, belly pork, pineapple, cheese. Simple. Classic." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "croque_martienne"
 	food_reagents = list(
@@ -587,7 +587,7 @@
 
 /obj/item/food/brat_kimchi
 	name = "brat-kimchi"
-	desc = "Fried kimchi, mixed with sugar and topped with bratwurst. A popular dish at izakayas on Mars."
+	desc = "Fried kimchi, mixed with sugar and topped with bratwurst. A popular dish at non-traditional izakayas." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "brat_kimchi"
 	food_reagents = list(
@@ -650,7 +650,7 @@
 
 /obj/item/food/epok_epok
 	name = "epok-epok"
-	desc = "A fried pastry snack from Malaysia, which migrated via Singapore into the Martian diet. Stuffed with curried chicken and potatoes, alongside a slice of hard boiled egg, it's a popular street food on the Red Planet."
+	desc = "A fried pastry snack from Malaysia. Stuffed with curried chicken and potatoes, alongside a slice of hard boiled egg, it's a popular street food in San Francisco." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "epok_epok"
 	food_reagents = list(
@@ -887,7 +887,7 @@
 
 /obj/item/food/feizhou_ji
 	name = "fēizhōu jī"
-	desc = "Considered a Macanese variant on piri-piri, fēizhōu jī, or galinha à africana, or African chicken (if you're feeling like speaking Common), is a popular dish in the TID, and subsequently also on Mars due to its influx of Macanese settlers."
+	desc = "Considered a Macanese variant on piri-piri, fēizhōu jī, or galinha à africana, or African chicken (if you're feeling like speaking English), is a popular dish in the region, and subsequently also in San Francisco due to its influx of Macanese immigrants." // DARKPACK EDIT CHANGE - not satisfied with this one
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "feizhou_ji"
 	food_reagents = list(
@@ -1166,7 +1166,7 @@
 
 /obj/item/food/popsicle/pineapple_pop
 	name = "frozen pineapple pop"
-	desc = "Few cultures love pineapple as much as the Martians, and this dessert proves that- frozen pineapple, on a stick, with just a little dunk of dark chocolate."
+	desc = "Frozen pineapple, on a stick, with just a little dunk of dark chocolate." // DARKPACK EDIT CHANGE
 	overlay_state = "pineapple_pop"
 	food_reagents = list(
 		/datum/reagent/consumable/pineapplejuice = 4,
@@ -1250,7 +1250,7 @@
 
 /obj/item/food/frickles
 	name = "frickles"
-	desc = "Spicy fried pickle spears? Such a bold combination can surely come only from one place- Martian ballparks? Well, not really, but they are a popular snack there."
+	desc = "Spicy fried pickle spears? Such a bold combination can surely come only from one place- American ballparks? Well, not really, but they are a popular snack there." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "frickles"
 	food_reagents = list(
@@ -1285,7 +1285,7 @@
 
 /obj/item/food/ballpark_pretzel
 	name = "ballpark pretzel"
-	desc = "A classic German bread, transformed by the hand of American imperialism into a game-day snack, and then carried to the Red Planet on the backs of Japanese settlers. How multicultural."
+	desc = "A classic German bread transformed by the hand of American imperialism into a game-day snack." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "ballpark_pretzel"
 	food_reagents = list(
@@ -1317,7 +1317,7 @@
 
 /obj/item/food/kebab/ballpark_tsukune
 	name = "ballpark tsukune"
-	desc = "Skewered chicken meatballs in a sweet-and-savoury yakitori sauce. A common sight at Martian ballparks."
+	desc = "Skewered chicken meatballs in a sweet-and-savoury yakitori sauce. A common sight at Japanese ballparks." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "ballpark_tsukune"
 	food_reagents = list(

@@ -9,10 +9,13 @@
 /obj/structure/flora/tree/vamp/Initialize(mapload)
 	. = ..()
 	icon_state = "tree[rand(1, 11)]"
-	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
-		if(istype(my_area) && my_area.outdoors)
+	var/area/my_area = get_area(src)
+	if(istype(my_area) && my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "[initial(icon_state)][rand(1, 11)]-snow"
+
+		AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 4 SECONDS, pivot_offset = 48)
+
 
 /obj/structure/flora/tree/vamp/get_seethrough_map()
 	return SEE_THROUGH_MAP_DEFAULT
@@ -21,6 +24,7 @@
 	if(!burned)
 		burned = TRUE
 		icon_state = "dead[rand(1, 3)]"
+		animate(src, transform = null, time = 1 SECONDS, loop = 1)
 
 /obj/structure/flora/tree/vamp/pine
 	name = "pine"
@@ -31,12 +35,21 @@
 /obj/structure/flora/tree/vamp/pine/Initialize(mapload)
 	. = ..()
 	icon_state = "pine[rand(1, 4)]"
-	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
-		if(istype(my_area) && my_area.outdoors)
+	var/area/my_area = get_area(src)
+	if(istype(my_area) && my_area.outdoors)
+		if(check_holidays(FESTIVE_SEASON))
 			icon_state = "pine[rand(1, 4)]-snow"
-	if(prob(2))
-		burnshit()
+		if(prob(2))
+			burnshit()
+
+		if(!burned)
+			AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 6 SECONDS, pivot_offset = 128)
+
+/obj/structure/flora/tree/vamp/pine/burnshit()
+	if(!burned)
+		burned = TRUE
+		icon_state = "dead[rand(1, 5)]"
+		animate(src, transform = null, time = 1 SECONDS, loop = 1)
 
 /obj/structure/flora/tree/vamp/pine/get_seethrough_map()
 	return SEE_THROUGH_MAP_THREE_X_THREE

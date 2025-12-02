@@ -2,6 +2,7 @@
 	name = "wooden glass door"
 	icon_state = "glass-1"
 	base_icon_state = "glass"
+	opacity = FALSE
 	open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
 	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'

@@ -251,6 +251,19 @@
 
 				L.forceMove(stepTurf)
 			L.setDir(direct)
+		// DARKPACK EDIT START
+		if(INCORPOREAL_MOVE_AVATAR)
+			var/turf/open/floor/stepTurf = get_step(L, direct)
+			if(stepTurf)
+				if(stepTurf.turf_flags & NOJAUNT)
+					to_chat(L, span_warning("Some strange aura is blocking the way."))
+					return
+				if(locate(/obj/effect/blessing) in stepTurf)
+					to_chat(L, span_warning("Holy energies block your path!"))
+					return
+				L.forceMove(stepTurf)
+			L.setDir(direct)
+		// DARKPACK EDIT END
 	return TRUE
 
 /**
