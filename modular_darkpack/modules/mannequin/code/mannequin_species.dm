@@ -25,7 +25,6 @@
 	C.update_icon()
 	C.dna.real_name = "mannequin"
 	C.real_name = "mannequin"
-	C.true_real_name = "mannequin"
 	C.real_name = "mannequin"
 
 /datum/species/vamp_mannequin/check_roundstart_eligible()

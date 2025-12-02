@@ -185,3 +185,11 @@
   - bugfix: sheaths have icons
   - bugfix: lattices let you walk over water
   - bugfix: fake platforms are on the right plane
+2025-11-30:
+  FalloutFalcon:
+  - bugfix: silver ammo now has onfloors
+  - bugfix: mapping now shows mag sprites properly
+  XeonMations:
+  - bugfix: Fixed the majority of hard deletes that we encountered thus far
+  - bugfix: Fixed blood hunts using name instead of real name, previously not showing
+      the hunted's name.
