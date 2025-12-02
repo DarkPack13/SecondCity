@@ -13,7 +13,7 @@
 	recalculate_all_willpower()
 
 /datum/storyteller_stats/Destroy()
-	QDEL_LIST(st_stats)
+	st_stats = null
 	return ..()
 
 /// Return the total or pure score of the given stat.
