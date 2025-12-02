@@ -31,7 +31,7 @@
 	anchored = TRUE
 	dir = NORTH
 	pass_flags_self = LETPASSTHROW|PASSSTRUCTURE
-	layer = BELOW_CATWALK_LAYER
+	// layer = BELOW_CATWALK_LAYER
 
 	var/climbable = TRUE
 

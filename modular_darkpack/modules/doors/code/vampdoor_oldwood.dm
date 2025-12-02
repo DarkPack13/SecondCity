@@ -3,8 +3,8 @@
 	icon_state = "oldwood-1"
 	base_icon_state = "oldwood"
 	burnable = TRUE
-	open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
-	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
+	// open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
+	// close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
 /obj/structure/vampdoor/oldwood/chantry
