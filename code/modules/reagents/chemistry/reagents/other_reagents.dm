@@ -2,7 +2,7 @@
 	name = "Blood"
 	description  = "Blood cells suspended in plasma, the most abundant of which being the hemoglobin-containing red blood cells."
 	color = "#C80000" // rgb: 200, 0, 0
-	metabolization_rate = 12.5 * REAGENTS_METABOLISM //fast rate so it disappears fast.
+	metabolization_rate = 25 * REAGENTS_METABOLISM //fast rate so it disappears fast. DARKPACK EDIT CHANGE - changed from 12.5 to 25
 	taste_description = "iron"
 	taste_mult = 1.3
 	penetrates_skin = NONE
@@ -46,6 +46,14 @@
 	if(!blood_type)
 		return ..()
 	return list("[blood_type] type blood" = 1)
+
+//DARKPACK EDIT ADD - blood increments bloodpool
+/datum/reagent/blood/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+
+	if(isghoul(affected_mob) || iskindred(affected_mob))
+		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
+//DARKPACK EDIT ADD END
 
 /datum/reagent/consumable/liquidgibs
 	name = "Liquid Gibs"
