@@ -33,7 +33,7 @@
 
 	if (iskindred(src))
 		if (bloodpool > 0)
-			bloodpool -= 1
+			adjust_blood_pool(-1)
 			cure_torpor()
 			to_chat(src, span_notice("You have awoken from your Torpor."))
 		else

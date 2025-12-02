@@ -32,9 +32,9 @@
 	///List of all reagenets the icecream vat will spawn with, if preinstall_reagents is TRUE.
 	var/static/list/icecream_vat_reagents = list(
 		/datum/reagent/consumable/milk = 6,
-		/datum/reagent/consumable/korta_milk = 6,
+//		/datum/reagent/consumable/korta_milk = 6, // DARKPACK EDIT REMOVE
 		/datum/reagent/consumable/flour = 6,
-		/datum/reagent/consumable/korta_flour = 6,
+//		/datum/reagent/consumable/korta_flour = 6, // DARKPACK EDIT REMOVE
 		/datum/reagent/consumable/sugar = 6,
 		/datum/reagent/consumable/ice = 6,
 		/datum/reagent/consumable/coco = 6,

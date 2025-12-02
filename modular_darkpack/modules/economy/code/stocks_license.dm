@@ -15,11 +15,11 @@
 	if(name == "unidentified stocks trading license")
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			var/obj/item/stocks_license/CR = get_fuckin_card_number(H.true_real_name)
+			var/obj/item/stocks_license/CR = get_fuckin_card_number(H.real_name)
 			if(CR)
 				return
-			name = "[H.true_real_name]'s stocks trading license"
-			whose = H.true_real_name
+			name = "[H.real_name]'s stocks trading license"
+			whose = H.real_name
 
 /obj/item/stocks_license/Initialize(mapload)
 	. = ..()

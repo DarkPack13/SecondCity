@@ -16,6 +16,7 @@
 	var/force_open_above = FALSE // replaces the turf above this stair obj with /turf/open/openspace
 	var/terminator_mode = STAIR_TERMINATOR_AUTOMATIC
 	var/turf/listeningTo
+	max_integrity = 500 //DARKPACK EDIT CHANGE
 
 /obj/structure/stairs/north
 	dir = NORTH
