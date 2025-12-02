@@ -41,6 +41,6 @@ path/left/color_name {\
 COLORED_BENCH(/obj/structure/chair/sofa/city_bench/metal, black, COLOR_DARK)
 COLORED_BENCH(/obj/structure/chair/sofa/city_bench/metal, yellow, "#af7d28")
 COLORED_BENCH(/obj/structure/chair/sofa/city_bench/metal, blue, COLOR_TRAM_BLUE)
-COLORED_BENCH(/obj/structure/chair/sofa/city_bench/metal, puce, "#cc8899") // TODO: Puce #94055
+COLORED_BENCH(/obj/structure/chair/sofa/city_bench/metal, puce, COLOR_PUCE)
 
 #undef COLORED_BENCH

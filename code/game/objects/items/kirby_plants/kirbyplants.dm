@@ -98,9 +98,9 @@
 
 //Handles randomizing the icon during initialize()
 /obj/item/kirbyplants/random/proc/randomize_base_icon_state()
-	if(isnull(random_darkpack_states))
-		random_darkpack_states = generate_states()
-	base_icon_state = pick(random_darkpack_states)
+	if(isnull(random_plant_states))
+		random_plant_states = generate_states()
+	base_icon_state = pick(random_plant_states)
 	if(!dead) //no need to update the icon if we're already dead.
 		update_appearance(UPDATE_ICON)
 
@@ -196,9 +196,9 @@
 /obj/item/kirbyplants/darkpack/random
 
 /obj/item/kirbyplants/darkpack/random/proc/randomize_base_icon_state()
-	if(isnull(random_plant_states))
-		random_plant_states = generate_states()
-	base_icon_state = pick(random_plant_states)
+	if(isnull(random_darkpack_states))
+		random_darkpack_states = generate_states()
+	base_icon_state = pick(random_darkpack_states)
 	if(!dead) //no need to update the icon if we're already dead.
 		update_appearance(UPDATE_ICON)
 
