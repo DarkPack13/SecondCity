@@ -152,10 +152,17 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/namepart = speaker.get_message_voice(visible_name)
 
 	//DARKPACK EDIT START
-	var/mob/mob_source = src
-	if(mob_source.mind?.guestbook)
-		var/known_name = mob_source.mind.guestbook.get_known_name(src, speaker, namepart)
-		if(!known_name)
+	var/atom/movable/reliable_narrator = speaker
+	if(istype(reliable_narrator, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/fakespeaker = reliable_narrator
+		reliable_narrator = fakespeaker.source
+	var/mob/mob_source = reliable_narrator
+	var/mob/receiver_mob = src
+	if(receiver_mob.mind?.guestbook)
+		var/known_name = receiver_mob.mind.guestbook.get_known_name(src, mob_source, namepart)
+		if(known_name)
+			namepart = "[known_name]"
+		else
 			var/mob/living/carbon/human/human_narrator = speaker
 			namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = FALSE)]"
 
