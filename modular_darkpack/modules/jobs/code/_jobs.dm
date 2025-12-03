@@ -46,7 +46,7 @@
 	. = ..()
 	if(!(guestbook_flags & GUESTBOOK_FORGETMENOT))
 		for(var/mob/player_mob as anything in GLOB.player_list)
-			if((player_mob == user) || !player_mob.mind?.assigned_role)
+			if((player_mob == spawned) || !player_mob.mind?.assigned_role)
 				continue
 			var/datum/job/player_mob_job = player_mob.mind.assigned_role
 			var/list/common_departments = player_mob_job.departments_list & departments_list //wonky
@@ -54,12 +54,12 @@
 			if(player_mob_job.guestbook_flags & GUESTBOOK_OMNISCIENT || \
 				((player_mob_job.guestbook_flags & GUESTBOOK_JOB) && (player_mob_job.type == src.type)) || \
 				((player_mob_job.guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
-				player_mob.mind.guestbook.add_guest(player_mob, user, user.mind.name, user.mind.name, silent = TRUE)
+				player_mob.mind.guestbook.add_guest(player_mob, spawned, spawned.mind.name, spawned.mind.name, silent = TRUE)
 			//if we satisfy at least one condition, add them to our guestbook
 			if(guestbook_flags & GUESTBOOK_OMNISCIENT || \
 				((guestbook_flags & GUESTBOOK_JOB) && (src.type == player_mob_job.type)) || \
 				((guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
-				user.mind.guestbook.add_guest(user, player_mob, player_mob.mind.name, player_mob.mind.name, silent = TRUE)
+				spawned.mind.guestbook.add_guest(spawned, player_mob, player_mob.mind.name, player_mob.mind.name, silent = TRUE)
 
 /**
  * This type is used to indicate a lack of a job.

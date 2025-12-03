@@ -151,3 +151,14 @@
 			to_chat(user, span_warning("You need to take a closer look at them!"))
 		return FALSE
 	return TRUE
+
+/mob/living/carbon/human/proc/attempt_guestbook_add(datum/source, atom/A)
+	SIGNAL_HANDLER
+
+	if(!ishuman(A) || in_range(A, src))
+		return
+	var/mob/living/carbon/human/targeted_human = A
+	if(!targeted_human.mind?.guestbook)
+		return
+	INVOKE_ASYNC(mind.guestbook, TYPE_PROC_REF(/datum/guestbook, try_add_guest), src, targeted_human, FALSE)
+	return COMSIG_MOB_CANCEL_CLICKON
