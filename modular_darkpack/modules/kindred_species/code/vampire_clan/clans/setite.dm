@@ -14,5 +14,4 @@
 /datum/vampire_clan/setite/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
 	//vampire.add_quirk(/datum/quirk/lightophobia)
-	var/obj/item/organ/eyes/night_vision/NV = new()
-	NV.Insert(vampire, TRUE, DELETE_IF_REPLACED)
+

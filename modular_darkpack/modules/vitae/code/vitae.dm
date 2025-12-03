@@ -19,6 +19,11 @@
 	//	victim.rollfrenzy()
 	//	return
 
+	if(methods & INGEST)
+		if(isghoul(victim) || iskindred(victim))
+			//100u of vitae = 1bp, keeping consistent w/ give vitae action. 200u of normal blood = 1 bp
+			victim.adjust_blood_pool(reac_volume * 0.01)
+
 	if(ishumanbasic(victim) || isghoul(victim))
 		if(victim.stat == DEAD)
 			if(!embracer)
@@ -38,6 +43,6 @@
 
 
 /datum/reagent/blood/vitae/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	. = ..()
 	if(isghoul(affected_mob) || iskindred(affected_mob))
-		affected_mob.adjust_blood_pool(100 / seconds_per_tick)
+		return
+	return ..()
