@@ -151,7 +151,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Speaker name
 	var/namepart = speaker.get_message_voice(visible_name)
 
-	//DARKPACK EDIT START - PHONES
+	//DARKPACK EDIT START
+	var/mob/mob_source = src
+	if(mob_source.mind?.guestbook)
+		var/known_name = mob_source.mind.guestbook.get_known_name(src, speaker, namepart)
+		if(!known_name)
+			var/mob/living/carbon/human/human_narrator = speaker
+			namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = FALSE)]"
+
 	if(radio_freq >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
 		var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
 		freqpart = sheet.icon_tag("phone-phone") + " "
