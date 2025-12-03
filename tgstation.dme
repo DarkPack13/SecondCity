@@ -7393,6 +7393,7 @@
 #include "modular_darkpack\modules\weapons\code\guns.dm"
 #include "modular_darkpack\modules\weapons\code\melee.dm"
 #include "modular_darkpack\modules\weapons\code\sheath.dm"
+#include "modular_darkpack\modules\weapons\code\stake.dm"
 #include "modular_darkpack\modules\weather\code\effects.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\glyphs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\totems.dm"
