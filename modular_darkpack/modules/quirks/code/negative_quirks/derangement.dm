@@ -3,13 +3,16 @@
 
 /datum/quirk/derangement
 	name = "Derangement"
-	desc = "All members of Clan Malkavian suffer from a permanent, incurable derangement."
-	gain_text = span_danger("The important thing is to pull yourself up by your own hair to turn yourself inside out and see the whole world with fresh eyes.")
-	lose_text = span_notice("Malkav's crazed eyes drift away from your grain as it slips through the hourglass of time...")
+	desc = "Suffer from a permanent, incurable derangement that alters your perception."
+	icon = FA_ICON_EYE
+	gain_text = span_hypnophrase("You feel off...")
+	lose_text = span_notice("You start to feel normal again...")
 	medical_record_text = "Patient suffers from a treatment-resistant mental illness."
 	value = -8
 	hardcore_value = 6
 	quirk_flags = QUIRK_PROCESSES
+	mob_trait = TRAIT_SHIFTY_EYES // they're deranged, so give them the trait that tells people around them about their crazy eyes
+	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics) // happy pills! :)
 	var/process_interval = 3 SECONDS
 	var/list/derangements
 	COOLDOWN_DECLARE(next_process)
