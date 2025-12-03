@@ -21,8 +21,6 @@
 		return
 	H.equipOutfit(national_guard_outfit)
 	H.set_species(/datum/species/human)
-	H.set_clan(null)
-	H.generation = 13
 	H.st_set_stat(5, STAT_STAMINA)
 	H.st_set_stat(5, STAT_LARCENY)
 	H.st_set_stat(4, STAT_STRENGTH)

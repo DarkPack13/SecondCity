@@ -18,7 +18,9 @@
 	)
 	splat_actions = list(
 		/datum/action/cooldown/mob_cooldown/give_vitae,
-		/datum/action/cooldown/blood_power
+		/datum/action/cooldown/blood_power,
+		// DARKPACK TODO - reimplement vampire actions
+		// /datum/action/vampireinfo
 	)
 	splat_biotypes = MOB_UNDEAD
 	power_type = /datum/discipline
@@ -27,21 +29,28 @@
 		/datum/splat/vampire/ghoul
 	)
 
+	var/generation
+	var/datum/vampire_clan/clan
+	var/enlightenment
+	var/mob/living/sire
+
+	COOLDOWN_DECLARE(torpor_timer)
+
+/datum/splat/vampire/kindred/New(generation, clan, enlightenment = FALSE, mob/living/sire)
+	src.generation = generation
+	src.clan = clan
+	src.enlightenment = enlightenment
+	src.sire = sire
+
 /datum/splat/vampire/kindred/on_gain()
 	// Is this supposed to only be player Kindred? I'm not quite sure
 	GLOB.kindred_list |= owner
 
-	// DARKPACK TODO - reimplement these vars and the actions
-	/*
-	var/datum/action/vampireinfo/infor = new()
-	infor.host = new_kindred
-	infor.Grant(new_kindred)
-
-	add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
-	*/
+	// DARKPACK TODO - reimplement this action maybe
+	// add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 
 	//this needs to be adjusted to be more accurate for blood spending rates
-	owner.give_st_power(/datum/discipline/bloodheal, clamp(11 - owner.generation, 1, 10))
+	owner.give_st_power(/datum/discipline/bloodheal, clamp(11 - generation, 1, 10))
 
 	//vampires die instantly upon having their heart removed
 	RegisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
@@ -55,6 +64,7 @@
 	// Apply bashing damage resistance
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS, PROC_REF(damage_resistance))
 
+	// Prevent blood loss and regeneration effects
 	RegisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
 
 	// Make all food except raw meat repulsive
@@ -69,6 +79,10 @@
 	// Apply temperature damage modifiers
 	owner.physiology.heat_mod *= 2
 	owner.physiology.cold_mod *= 0.25
+
+	// Initialize previously set Clan and Generation
+	set_generation(generation)
+	owner.set_clan(clan)
 
 /datum/splat/vampire/kindred/on_lose()
 	GLOB.kindred_list -= owner
@@ -94,11 +108,8 @@
 	owner.physiology.heat_mod *= 0.5
 	owner.physiology.cold_mod *= 4
 
-	// DARKPACK TODO - reimplement vampire actions
-	/*
-	for (var/datum/action/vampireinfo/VI in owner.actions)
-		VI.Remove(owner)
-	*/
+	// Reset bloodpool size from Generation
+	owner.maxbloodpool = initial(owner.maxbloodpool)
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
@@ -137,7 +148,7 @@
 	to_chat(source, span_warning("You can feel yourself slipping into Torpor. You can use succumb to immediately sleep..."))
 	addtimer(CALLBACK(source, TYPE_PROC_REF(/mob/living/carbon/human, torpor), "damage"), 2 MINUTES)
 
-/datum/species/human/kindred/proc/slip_into_torpor(mob/living/carbon/human/kindred)
+/datum/splat/vampire/kindred/proc/slip_into_torpor(mob/living/carbon/human/kindred)
 	if (!kindred || (kindred.stat == DEAD))
 		return
 	if (kindred.stat < SOFT_CRIT)
@@ -154,39 +165,6 @@
 	SIGNAL_HANDLER
 
 	return COMPONENT_RESIST_VAMPIRE_KISS
-
-/obj/item/organ/tongue/kindred
-	liked_foodtypes = NONE
-	disliked_foodtypes = NONE
-	// All food except raw meat is disgusting to Kindred
-	toxic_foodtypes = ~(GORE | MEAT | RAW)
-
-/proc/get_vamp_skin_color(value = "albino")
-	switch(value)
-		if("caucasian1")
-			return "vamp1"
-		if("caucasian2")
-			return "vamp2"
-		if("caucasian3")
-			return "vamp3"
-		if("latino")
-			return "vamp4"
-		if("mediterranean")
-			return "vamp5"
-		if("asian1")
-			return "vamp6"
-		if("asian2")
-			return "vamp7"
-		if("arab")
-			return "vamp8"
-		if("indian")
-			return "vamp9"
-		if("african1")
-			return "vamp10"
-		if("african2")
-			return "vamp11"
-		else
-			return value
 
 /datum/splat/vampire/kindred/proc/kindred_blood(mob/living/carbon/human/kindred, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER

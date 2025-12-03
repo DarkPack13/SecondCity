@@ -54,7 +54,6 @@
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
-	var/generation = 13
 	var/humanity = 7
 	var/masquerade_score = 5
 	var/last_nonraid = 0
@@ -80,5 +79,5 @@
 	var/list/beastmaster_minions = list()
 	var/list/datum/component/obeys_commands/minion_command_components = list()
 
-	/// List of supernatural types that apply to this mob (also referenced in its mind)
+	/// List of supernatural types that this mob is part of
 	var/list/datum/splat/splats

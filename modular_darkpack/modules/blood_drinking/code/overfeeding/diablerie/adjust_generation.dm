@@ -1,8 +1,12 @@
 /mob/living/carbon/human/proc/adjust_generation(mob/living/carbon/human/victim)
+	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	var/generation = get_generation()
+	var/victim_generation = victim.get_generation()
+
 	var/new_generation = generation
-	if(victim.generation < generation)
+	if(victim_generation < generation)
 		new_generation = max(generation - 1, 7)
-	generation = new_generation
+	kindred.set_generation(new_generation)
 
 	if(!GLOB.canon_event)
 		to_chat(src, span_warning("Cannot save generation preference; current round is not canon."))

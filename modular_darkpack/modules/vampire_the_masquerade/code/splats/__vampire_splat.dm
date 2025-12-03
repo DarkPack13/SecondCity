@@ -17,7 +17,7 @@
 
 	var/datum/action/discipline/adding_action = new(new power_type(level))
 	adding_action.Grant(owner)
-	powers += adding_action
+	LAZYADD(powers, adding_action)
 	return TRUE
 
 /datum/splat/vampire/remove_power(power_type)
@@ -25,6 +25,7 @@
 	if (!found_action)
 		return FALSE
 
+	LAZYREMOVE(powers, found_action)
 	qdel(found_action)
 	return TRUE
 

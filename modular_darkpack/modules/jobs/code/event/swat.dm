@@ -24,8 +24,6 @@
 		return
 	H.equipOutfit(swat_outfit)
 	H.set_species(/datum/species/human)
-	H.set_clan(null)
-	H.generation = 13
 	H.st_set_stat(5, STAT_LARCENY)
 	H.st_set_stat(4, STAT_STRENGTH)
 	H.ignores_warrant = TRUE

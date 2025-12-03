@@ -7,13 +7,16 @@
 		return
 
 	src.owner = owner
-	owner.splats += src
+	LAZYADD(owner.splats, src)
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_GAIN_SPLAT, src)
 
 	add_splat_traits()
 	add_actions()
 	add_biotypes()
+
+	// Deletes itself if the owner is destroyed
+	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(handle_parent_destroyed))
 
 	on_gain()
 

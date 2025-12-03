@@ -26,7 +26,7 @@
 	qdel(discipline_object_checking)
 
 	//first, check their Clan Disciplines to see if that gives them access
-	if (vampire_checking.clan.clan_disciplines.Find(discipline_checking))
+	if (vampire_checking.get_clan().clan_disciplines.Find(discipline_checking))
 		return TRUE
 
 	//next, go through all Clans to check if they have access to any with the Discipline

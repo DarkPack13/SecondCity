@@ -2,8 +2,6 @@
 	var/chronological_age = 0
 
 	//Shitty VtM vars I'm moving here so they're not strewn around the codebase
-	var/datum/vampire_clan/clan
-
 	var/last_repainted_mark
 
 	///Performs CPR on the target after a delay. //[Lucia] what does this mean?

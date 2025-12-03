@@ -18,5 +18,4 @@
 	if (value != "Enlightenment")
 		return
 
-	var/datum/species/human/kindred/kindred_species = target.dna.species
-	kindred_species.enlightenment = TRUE
+	iskindred(target)?.enlightenment = TRUE

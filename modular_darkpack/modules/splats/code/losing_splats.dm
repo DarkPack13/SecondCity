@@ -9,12 +9,14 @@
 
 	on_lose()
 
+	UnregisterSignal(owner, COMSIG_QDELETING)
+
 	remove_splat_traits()
 	remove_actions()
 	clear_powers()
 	remove_biotypes()
 
-	owner.splats -= src
+	LAZYREMOVE(owner.splats, src)
 	owner = null
 
 /datum/splat/Destroy()
@@ -58,3 +60,8 @@
 			continue
 
 		owner.mob_biotypes &= ~biotype
+
+/datum/splat/proc/handle_parent_destroyed(mob/living/source)
+	SIGNAL_HANDLER
+
+	qdel(src)

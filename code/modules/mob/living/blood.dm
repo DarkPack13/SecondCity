@@ -344,8 +344,8 @@
 
 	// DARKPACK EDIT START - Vitae
 	blood_data["donor"] = WEAKREF(src)
-	blood_data["generation"] = generation
-	blood_data["clan"] = clan?.name
+	blood_data["generation"] = get_generation()
+	blood_data["clan"] = get_clan().name
 	// DARKPACK EDIT END
 
 	return blood_data

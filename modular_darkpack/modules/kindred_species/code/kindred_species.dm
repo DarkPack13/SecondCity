@@ -31,6 +31,16 @@
 /mob/living/carbon/human/species/kindred
 	race = /datum/species/human/kindred
 
+/datum/species/human/kindred/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
+	. = ..()
+
+	human_who_gained_species.make_kindred()
+
+/datum/species/human/kindred/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+
+	human.remove_splat(/datum/splat/vampire/kindred)
+
 /datum/species/human/kindred/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#333333", update = FALSE)
 	human.set_hairstyle("Undercut Left", update = TRUE)
