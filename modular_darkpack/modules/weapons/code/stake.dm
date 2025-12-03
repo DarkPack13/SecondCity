@@ -10,7 +10,7 @@
 	attack_verb_simple = list("pierce", "cut")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	armour_penetration = 50
-	sharpness = SHARP_EDGED
+	sharpness = SHARP_POINTY
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
 
