@@ -4,7 +4,7 @@
 /datum/quirk/derangement
 	name = "Derangement"
 	desc = "Suffer from a permanent, incurable derangement that alters your perception."
-	icon = FA_ICON_FACE_GRIN_SQUINT
+	icon = FA_ICON_HOUSE_MEDICAL_CIRCLE_EXCLAMATION
 	gain_text = span_hypnophrase("You feel off...")
 	lose_text = span_notice("You start to feel normal again...")
 	medical_record_text = "Patient suffers from a treatment-resistant mental illness."
