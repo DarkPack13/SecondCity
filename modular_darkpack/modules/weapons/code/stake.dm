@@ -53,10 +53,10 @@
 
 /datum/embedding/stake/set_owner(mob/living/carbon/victim, obj/item/bodypart/target_limb)
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_STAKED, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_STAKED, STAKE_TRAIT)
 
 /datum/embedding/stake/stop_embedding()
-	REMOVE_TRAIT(owner, TRAIT_STAKED, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_STAKED, STAKE_TRAIT)
 	return ..()
 
 /datum/embedding/stake/can_embed(atom/movable/source, mob/living/carbon/victim, hit_zone, datum/thrownthing/throwingdatum)
