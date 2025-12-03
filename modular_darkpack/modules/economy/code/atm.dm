@@ -75,7 +75,7 @@
 	else
 		data["account_balance"] = 0
 		data["account_holder"] = ""
-		data["account_id"] = ""
+		data["account_id"] = 0
 		data["bank_pin"] = ""
 
 	return data
@@ -99,7 +99,7 @@
 		if("withdraw")
 			var/amount = text2num(params["withdraw_amount"])
 			if(amount != round(amount))
-				to_chat(usr, "<span class='notice'>Withdraw amount must be a round number.")
+				to_chat(usr, span_notice("Withdraw amount must be a round number."))
 			else if(current_card.registered_account.account_balance < amount)
 				to_chat(usr, span_notice("Insufficient funds."))
 			else
@@ -135,7 +135,6 @@
 			target_account.account_balance += amount
 			to_chat(usr, span_notice("You have transferred [amount] dollars to account [target_account.account_holder]."))
 			return TRUE
-
 		if("change_pin")
 			var/new_pin = params["new_pin"]
 			current_card.registered_account.bank_pin = new_pin
@@ -146,7 +145,6 @@
 				to_chat(usr, span_notice("You have deposited [atm_balance] dollars into your card. Your new balance is [current_card.registered_account.account_balance] dollars."))
 				atm_balance = 0
 				return TRUE
-
 			else
 				to_chat(usr, span_notice("The ATM is empty. Nothing to deposit."))
 				return TRUE
