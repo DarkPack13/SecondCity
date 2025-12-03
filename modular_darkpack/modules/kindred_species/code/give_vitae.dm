@@ -38,6 +38,6 @@
 	owner.log_message("poured their vitae into [key_name(target_atom)].", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(carbon_owner)] poured their vitae into [ADMIN_LOOKUPFLW(target_atom)].")
 	carbon_owner.adjust_blood_pool(-1)
-	carbon_owner.transfer_blood_to(target_atom, 100, TRUE, TRUE)
+	target_atom.reagents.add_reagent(/datum/reagent/blood/vitae, 100)
 	target_atom.reagents.expose(target_atom, INGEST, 1, FALSE)
 	return TRUE
