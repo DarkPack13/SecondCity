@@ -43,29 +43,10 @@
 
 /obj/machinery/atm/ui_data(mob/user)
 	var/list/data = list()
-	var/list/accounts = list()
-
-	for(var/account_id in SSeconomy.bank_accounts_by_id)
-		var/datum/bank_account/account = SSeconomy.bank_accounts_by_id[account_id]
-		if(!account)
-			continue
-		if(account && account.account_holder)
-			accounts += list(
-				list("account_holder" = account.account_holder
-				)
-			)
-		else
-			accounts += list(
-				list(
-					"account_holder" = "Unnamed Account"
-				)
-			)
-
 	data["logged_in"] = logged_in
 	data["card"] = logged_account ? TRUE : FALSE
 	data["entered_code"] = entered_code
 	data["atm_balance"] = atm_balance
-	data["bank_account_list"] = json_encode(accounts)
 	if(logged_account)
 		data["account_balance"] = logged_account.account_balance
 		data["account_holder"] = logged_account.account_holder
@@ -84,7 +65,7 @@
 	if(.)
 		return
 	if(!logged_account)
-		to_chat(user, span_notice("You need to swipe your card before interacting with [src]."))
+		to_chat(usr, span_notice("You need to swipe your card before interacting with [src]."))
 		return FALSE
 	switch(action)
 		if("login")
@@ -112,30 +93,6 @@
 					try_put_in_hand(cash, usr)
 					amount -= drop_amount
 					logged_account.account_balance -= drop_amount
-			return TRUE
-		if("transfer")
-			var/amount = text2num(params["transfer_amount"])
-			if(!amount || amount <= 0)
-				to_chat(usr, span_notice("Invalid transfer amount."))
-				return FALSE
-
-			var/target_account_id = params["target_account"]
-			if(!target_account_id)
-				to_chat(usr, span_notice("Invalid target account ID."))
-				return FALSE
-
-			var/datum/bank_account/target_account = SSeconomy.bank_accounts_by_id[target_account_id]
-
-			if(!target_account)
-				to_chat(usr, span_notice("Invalid target account."))
-				return FALSE
-			if(logged_account.account_balance < amount)
-				to_chat(usr, span_notice("Insufficient funds."))
-				return FALSE
-
-			logged_account.account_balance -= amount
-			target_account.account_balance += amount
-			to_chat(usr, span_notice("You have transferred [amount] dollars to account [target_account.account_holder]."))
 			return TRUE
 		if("change_pin")
 			var/new_pin = params["new_pin"]

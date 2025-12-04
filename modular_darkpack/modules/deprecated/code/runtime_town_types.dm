@@ -13,10 +13,6 @@
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 /obj/lombard/blackmarket
 
-/obj/machinery/atm
-	icon = 'modular_darkpack/modules/economy/icons/atm.dmi'
-	icon_state = "atm"
-
 /obj/machinery/computer/order_console/mining/restricted/police
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "merge_conflict_marker"
