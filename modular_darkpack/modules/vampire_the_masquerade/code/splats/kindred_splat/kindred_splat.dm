@@ -23,7 +23,6 @@
 		// /datum/action/vampireinfo
 	)
 	splat_biotypes = MOB_UNDEAD
-	power_type = /datum/discipline
 
 	incompatible_splats = list(
 		/datum/splat/vampire/ghoul
@@ -31,7 +30,7 @@
 
 	/// How many generations away from the first vampire they are, determines how much blood can be stored and used
 	var/generation
-	/// Which vampiric bloodline or Clan they fall into, determines natural Disciplines
+	/// Which vampiric bloodline or Clan they fall into, determines natural Disciplines. Singleton reference, never modify
 	var/datum/vampire_clan/clan
 	/// Which morality they follow, Humanity if false and Enlightenment if true
 	var/enlightenment

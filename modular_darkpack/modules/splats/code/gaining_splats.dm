@@ -27,6 +27,7 @@
 /datum/splat/proc/add_splat_traits()
 	PRIVATE_PROC(TRUE)
 
+	LAZYINITLIST(splat_traits)
 	owner.add_traits(splat_traits, id)
 
 /datum/splat/proc/add_actions()

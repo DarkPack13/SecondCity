@@ -259,7 +259,7 @@
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
 
 		// DARKPACK EDIT ADD START
-		if(iskindred(src) && !(obscured_slots & HIDEFACE))
+		if(get_clan() && !(obscured_slots & HIDEFACE))
 			switch(get_clan().alt_sprite)
 				if("nosferatu")
 					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")

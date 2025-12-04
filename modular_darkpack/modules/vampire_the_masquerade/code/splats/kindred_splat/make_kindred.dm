@@ -1,7 +1,11 @@
 /mob/living/proc/make_kindred(generation = DEFAULT_GENERATION, datum/vampire_clan/clan, enlightenment, mob/living/sire)
+	RETURN_TYPE(/datum/splat/vampire/kindred)
+
 	return add_splat(/datum/splat/vampire/kindred, generation, clan, enlightenment, sire)
 
 /mob/living/proc/make_kindred_from_sire(mob/living/sire, always_same_clan = FALSE)
+	RETURN_TYPE(/datum/splat/vampire/kindred)
+
 	var/datum/splat/vampire/kindred/sire_splat = iskindred(sire)
 
 	var/datum/vampire_clan/childe_clan = sire_splat.clan

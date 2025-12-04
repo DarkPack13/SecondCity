@@ -1,17 +1,3 @@
-/**
- * This is the splat (supernatural type, game line in the World of Darkness) container
- * for all vampire-related code. I think this is stupid and I don't want any of this to
- * be the way it is, but if we're going to work with the code that's been written then
- * my advice is to centralise all stuff directly relating to vampires to here if it isn't
- * already in another organisational structure.
- *
- * The same applies to other splats, like /datum/species/garou or /datum/species/ghoul.
- * Halfsplats like ghouls are going to share some code with their fullsplats (vampires).
- * I dunno what to do about this except a reorganisation to make this stuff actually good.
- * The plan right now is to create a /datum/splat parent type and then have everything branch
- * from there, but that's for the future.
- */
-
 /datum/species/human/kindred
 	name = "Kindred"
 	plural_form = "Kindred"
@@ -24,9 +10,6 @@
 		TRAIT_UNAGING,
 	)
 	changesource_flags = MIRROR_BADMIN
-	var/datum/vampire_clan/clan
-	var/enlightenment
-	COOLDOWN_DECLARE(torpor_timer)
 
 /mob/living/carbon/human/species/kindred
 	race = /datum/species/human/kindred
