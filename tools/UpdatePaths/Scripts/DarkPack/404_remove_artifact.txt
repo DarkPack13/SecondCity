@@ -1,1 +1,0 @@
-/obj/item/vtm_artifact/saulocept : @DELETE
