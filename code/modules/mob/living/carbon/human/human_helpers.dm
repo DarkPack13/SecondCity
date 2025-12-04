@@ -59,7 +59,7 @@
 
 	// We're just some unknown guy
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
-		return get_generic_name(lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return "Unknown"
+		return get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return "Unknown"
 
 	// We have a face and an ID
 	if(face_name && id_name)
@@ -70,14 +70,13 @@
 			return "[face_name] (as [id_name])"
 
 	// DARKPACK EDIT START
-	//if we have no guestbook, we just KNOW okay?
 	var/known_name
 	if(face_name != "Unknown")
 		known_name = examiner?.mind?.guestbook?.get_known_name(examiner, src, real_name)
 	// DARKPACK EDIT END
 
 	// Just go down the list of stuff we recorded
-	return known_name || face_name || id_name || get_generic_name(lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"
+	return known_name || face_name || id_name || get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"
 
 /**
  * Gets what the face of this mob looks like
