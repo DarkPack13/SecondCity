@@ -25,8 +25,7 @@
 	. = ..()
 
 /datum/splat/proc/remove_splat_traits()
-	for (var/trait in splat_traits)
-		REMOVE_TRAIT(owner, trait, id)
+	REMOVE_TRAITS_IN(owner, id)
 
 /datum/splat/proc/remove_actions()
 	// to make sure we don't remove another splat's actions

@@ -23,8 +23,7 @@
 	return src
 
 /datum/splat/proc/add_splat_traits()
-	for (var/trait in splat_traits)
-		ADD_TRAIT(owner, trait, id)
+	owner.add_traits(splat_traits, id)
 
 /datum/splat/proc/add_actions()
 	for (var/adding_action in splat_actions)
