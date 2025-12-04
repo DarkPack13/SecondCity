@@ -3,6 +3,7 @@
  */
 /proc/issupernatural(mob/character)
 	if (!isliving(character))
+		// Zero splats, this does not account for ghosts being supernatural
 		return 0
 
 	var/mob/living/living_character = character

@@ -1,22 +1,24 @@
 /**
- * Standardize this all when the power system is made universal, the weird
- * snowflake code is a result of different powers being completely unrelated datums.
- * SOON, IT CAN BE PERFECT.
+ * Standardize this all when the power system is made universal, the procs
+ * have to be implemented on every subtype because powers are currently
+ * completely unrelated datums.
  */
 
 /datum/splat/proc/get_power(power_type)
-	return
+	CRASH("get_power() not implemented for [type]!")
 
 /datum/splat/proc/add_power(power_type, level)
-	return
+	CRASH("add_power() not implemented for [type]!")
 
 /datum/splat/proc/remove_power(power_type)
-	return
+	CRASH("remove_power() not implemented for [type]!")
 
 /datum/splat/proc/change_power_level(power_type, new_level)
-	return
+	CRASH("change_power_level() not implemented for [type]!")
 
 /datum/splat/proc/clear_powers()
+	PRIVATE_PROC(TRUE)
+
 	for (var/datum/action/power as anything in powers)
 		qdel(power)
 

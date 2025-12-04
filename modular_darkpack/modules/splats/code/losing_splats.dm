@@ -2,6 +2,8 @@
 	return
 
 /datum/splat/proc/unassign()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if (!owner)
 		return
 
@@ -20,14 +22,20 @@
 	owner = null
 
 /datum/splat/Destroy()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	unassign()
 
 	. = ..()
 
 /datum/splat/proc/remove_splat_traits()
+	PRIVATE_PROC(TRUE)
+
 	REMOVE_TRAITS_IN(owner, id)
 
 /datum/splat/proc/remove_actions()
+	PRIVATE_PROC(TRUE)
+
 	// to make sure we don't remove another splat's actions
 	var/list/other_splat_actions = list()
 	for (var/datum/splat/splat in (owner.splats - src))
@@ -45,6 +53,8 @@
 			action.Remove()
 
 /datum/splat/proc/remove_biotypes()
+	PRIVATE_PROC(TRUE)
+
 	// Make sure we don't remove biotypes they should have without the splat
 	var/skip_biotypes = NONE
 	for (var/datum/splat/splat in (owner.splats - src))
@@ -61,6 +71,7 @@
 		owner.mob_biotypes &= ~biotype
 
 /datum/splat/proc/handle_parent_destroyed(mob/living/source)
+	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 
 	qdel(src)

@@ -2,6 +2,8 @@
 	return
 
 /datum/splat/proc/assign(mob/living/owner)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	// Cannot add this splat, return null and let the calling proc handle it
 	if (owner.is_splat_incompatible(type))
 		return
@@ -23,13 +25,19 @@
 	return src
 
 /datum/splat/proc/add_splat_traits()
+	PRIVATE_PROC(TRUE)
+
 	owner.add_traits(splat_traits, id)
 
 /datum/splat/proc/add_actions()
+	PRIVATE_PROC(TRUE)
+
 	for (var/adding_action in splat_actions)
 		var/datum/action/new_action = new adding_action
 		new_action.Grant(owner)
 
 /datum/splat/proc/add_biotypes()
+	PRIVATE_PROC(TRUE)
+
 	for (var/adding_biotype in splat_biotypes)
 		owner.mob_biotypes |= adding_biotype
