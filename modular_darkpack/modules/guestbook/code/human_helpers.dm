@@ -30,7 +30,6 @@
 	var/visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null
 	var/visible_gender = get_gender()
 	var/visible_age = get_age()
-	var/visible_adjective = client?.prefs?.read_preference(/datum/preference/choiced/adjective_preference)
 	var/final_string = "[visible_adjective ? "[visible_adjective] " : null][visible_age ? "[visible_age] " : null][visible_skin][visible_gender]"
 	if(prefixed)
 		final_string = "\A [final_string]"
