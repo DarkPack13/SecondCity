@@ -27,11 +27,7 @@
 			return "Puzzling"
 
 /mob/living/carbon/human/proc/get_generic_name(prefixed = FALSE, lowercase = FALSE)
-	var/visible_skin
-	if(HAS_TRAIT(src, TRAIT_USES_SKINTONES))
-		visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null
-	else
-		visible_skin = "[dna.species.name] "
+	var/visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null
 	var/visible_gender = get_gender()
 	var/visible_age = get_age()
 	var/final_string = "[visible_age ? "[visible_age] " : null][visible_skin][visible_gender]"

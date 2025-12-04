@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 				namepart = "[known_name]"
 			else
 				var/mob/living/carbon/human/human_narrator = reliable_narrator
-				namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = FALSE)]"
+				namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
 
 	if(radio_freq >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
 		var/icon/phone_icon = icon('modular_darkpack/modules/phones/icons/chat_icon.dmi', "phone")
