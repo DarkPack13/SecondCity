@@ -1,18 +1,15 @@
+import { useState } from 'react';
 import { Button, Input, LabeledList, Section } from 'tgui-core/components';
-
 import { useBackend } from '../../backend';
-import { useLocalState } from '../../backend';
 
 import type { ATMData } from './types';
 
 export const AtmLogin = (props) => {
   const { act, data } = useBackend<ATMData>();
-  const [entered_code, setEnteredCode] = useLocalState('login_code', '');
-
-  const { account_holder, code } = data;
+  const [entered_code, setEnteredCode] = useState('');
 
   const handleLogin = () => {
-    act('login', { code: entered_code });
+    act('login', { bank_pin: entered_code });
   };
   return (
     <Section title="Please enter your code">
@@ -21,11 +18,11 @@ export const AtmLogin = (props) => {
           <Input
             value={entered_code}
             placeholder="Enter code here"
-            onInput={(e, value) => setEnteredCode(value)}
+            onChange={setEnteredCode}
           />
         </LabeledList.Item>
         <LabeledList.Item>
-          <Button content="Log In" onClick={handleLogin} />
+          <Button onClick={handleLogin}>Log In</Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>

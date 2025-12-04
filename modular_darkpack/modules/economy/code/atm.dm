@@ -9,34 +9,33 @@
 	var/entered_code
 
 	var/atm_balance = 0
-	var/obj/item/card/credit/current_card = null
+	var/datum/bank_account/logged_account
 	//light_system = STATIC_LIGHT
 	light_color = COLOR_GREEN
 	light_range = 2
 	light_power = 1
 	light_on = TRUE
 
-/obj/machinery/atm/attackby(obj/item/P, mob/user, params)
-	if(is_creditcard(P))
+/obj/machinery/atm/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(is_creditcard(tool))
+		var/obj/item/card/credit/card = tool
 		if(logged_in)
 			to_chat(user, span_notice("Someone is already logged in."))
-			return
-		current_card = P
+			return ITEM_INTERACT_BLOCKING
+		logged_account = card.registered_account
 		to_chat(user, span_notice("Card swiped."))
-		return
-
-	else if(iscash(P))
+		return ITEM_INTERACT_SUCCESS
+	else if(iscash(tool))
 		if(!logged_in)
 			to_chat(user, span_notice("You need to be logged in."))
-			return
-		else
-			atm_balance += P.get_item_credit_value()
-			to_chat(user, span_notice("You have deposited [P.get_item_credit_value()] dollars into the ATM. The ATM now holds [atm_balance] dollars."))
-			qdel(P)
-			return
+			return ITEM_INTERACT_BLOCKING
+		var/value = tool.get_item_credit_value()
+		atm_balance += value
+		to_chat(user, span_notice("You have deposited [value] dollars into [src]. [src] now holds [atm_balance] dollars."))
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atm/ui_interact(mob/user, datum/tgui/ui)
-	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Atm", name)
@@ -63,20 +62,20 @@
 			)
 
 	data["logged_in"] = logged_in
-	data["card"] = current_card ? TRUE : FALSE
+	data["card"] = logged_account ? TRUE : FALSE
 	data["entered_code"] = entered_code
 	data["atm_balance"] = atm_balance
 	data["bank_account_list"] = json_encode(accounts)
-	if(current_card)
-		data["account_balance"] = current_card.registered_account.account_balance
-		data["account_holder"] = current_card.registered_account.account_holder
-		data["account_id"] = current_card.registered_account.account_id
-		data["bank_pin"] = current_card.registered_account.bank_pin
+	if(logged_account)
+		data["account_balance"] = logged_account.account_balance
+		data["account_holder"] = logged_account.account_holder
+		data["account_id"] = logged_account.account_id
+		data["bank_pin"] = logged_account.bank_pin
 	else
-		data["account_balance"] = 0
-		data["account_holder"] = ""
-		data["account_id"] = 0
-		data["bank_pin"] = ""
+		data["account_balance"] = null
+		data["account_holder"] = null
+		data["account_id"] = null
+		data["bank_pin"] = null
 
 	return data
 
@@ -84,9 +83,12 @@
 	. = ..()
 	if(.)
 		return
+	if(!logged_account)
+		to_chat(user, span_notice("You need to swipe your card before interacting with [src]."))
+		return FALSE
 	switch(action)
 		if("login")
-			if(params["bank_pin"] == current_card.registered_account.bank_pin)
+			if(params["bank_pin"] == logged_account.bank_pin)
 				logged_in = TRUE
 				return TRUE
 			else
@@ -94,13 +96,13 @@
 		if("logout")
 			logged_in = FALSE
 			entered_code = ""
-			current_card = null
+			logged_account = null
 			return TRUE
 		if("withdraw")
 			var/amount = text2num(params["withdraw_amount"])
 			if(amount != round(amount))
 				to_chat(usr, span_notice("Withdraw amount must be a round number."))
-			else if(current_card.registered_account.account_balance < amount)
+			else if(logged_account.account_balance < amount)
 				to_chat(usr, span_notice("Insufficient funds."))
 			else
 				while(amount > 0)
@@ -109,7 +111,7 @@
 					to_chat(usr, span_notice("You have withdrawn [drop_amount] dollars."))
 					try_put_in_hand(cash, usr)
 					amount -= drop_amount
-					current_card.registered_account.account_balance -= drop_amount
+					logged_account.account_balance -= drop_amount
 			return TRUE
 		if("transfer")
 			var/amount = text2num(params["transfer_amount"])
@@ -127,22 +129,22 @@
 			if(!target_account)
 				to_chat(usr, span_notice("Invalid target account."))
 				return FALSE
-			if(current_card.registered_account.account_balance < amount)
+			if(logged_account.account_balance < amount)
 				to_chat(usr, span_notice("Insufficient funds."))
 				return FALSE
 
-			current_card.registered_account.account_balance -= amount
+			logged_account.account_balance -= amount
 			target_account.account_balance += amount
 			to_chat(usr, span_notice("You have transferred [amount] dollars to account [target_account.account_holder]."))
 			return TRUE
 		if("change_pin")
 			var/new_pin = params["new_pin"]
-			current_card.registered_account.bank_pin = new_pin
+			logged_account.bank_pin = new_pin
 			return TRUE
 		if("deposit")
 			if(atm_balance > 0)
-				current_card.registered_account.account_balance += atm_balance
-				to_chat(usr, span_notice("You have deposited [atm_balance] dollars into your card. Your new balance is [current_card.registered_account.account_balance] dollars."))
+				logged_account.account_balance += atm_balance
+				to_chat(usr, span_notice("You have deposited [atm_balance] dollars into your card. Your new balance is [logged_account.account_balance] dollars."))
 				atm_balance = 0
 				return TRUE
 			else

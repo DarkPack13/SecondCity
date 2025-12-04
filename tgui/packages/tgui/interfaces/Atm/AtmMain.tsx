@@ -2,7 +2,6 @@ import { Box, Button, Input, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { useLocalState } from '../../backend';
-import { Window } from '../../layouts';
 
 import type { ATMData } from './types';
 
@@ -22,13 +21,8 @@ export const AtmMain = (props) => {
     '',
   );
   const [searchTerm, setSearchTerm] = useLocalState('search_term', '');
-  const buttonStyle = { minWidth: '120px', flex: 3 };
 
-  const {
-    account_holder,
-    atm_balance,
-    bank_account_list = '[]',
-  } = data;
+  const { account_holder, atm_balance, bank_account_list = '[]' } = data;
 
   let accounts = [];
   try {
@@ -82,22 +76,15 @@ export const AtmMain = (props) => {
           {account_holder}
         </LabeledList.Item>
         <LabeledList.Item label="Balance">{atm_balance}</LabeledList.Item>
-        <LabeledList.Item label="Money in ATM">
-          {atm_balance}
-        </LabeledList.Item>
+        <LabeledList.Item label="Money in ATM">{atm_balance}</LabeledList.Item>
       </LabeledList>
       <Box mt={2}>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="stretch"
-          gap={2}
-        >
-          <Box display="flex" alignItems="center" gap={1}>
+        <Box className="Atm__atm-column">
+          <Box className="Atm__atm-row">
             <Button
               content="Withdraw"
               onClick={handleWithdraw}
-              style={{ buttonStyle }}
+              className="Atm__atm-button"
             />
             <Input
               value={withdrawAmount}
@@ -106,10 +93,11 @@ export const AtmMain = (props) => {
               style={{ flex: 3 }}
             />
           </Box>
-          <Box display="flex" alignItems="center" gap={1}>
+
+          <Box className="Atm__atm-row">
             <Button
               onClick={handleChangePin}
-              style={{ buttonStyle }}
+              className="Atm__atm-button"
             >
               Change Pin
             </Button>
@@ -120,27 +108,24 @@ export const AtmMain = (props) => {
               style={{ flex: 3 }}
             />
           </Box>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Button
-              onClick={handleDeposit}
-              style={{ buttonStyle }}
-            >
+
+          <Box className="Atm__atm-row">
+            <Button onClick={handleDeposit} className="Atm__atm-button">
               Deposit
             </Button>
           </Box>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Button
-              onClick={handleLogout}
-              style={{ buttonStyle }}
-            >
+
+          <Box className="Atm__atm-row">
+            <Button onClick={handleLogout} className="Atm__atm-button">
               Log Out
             </Button>
           </Box>
+
           <Box mt={2}>
             <Box mb={1} fontWeight="bold">
               Select Target Account
             </Box>
-            {/* Search Input */}
+
             <Input
               value={searchTerm}
               onInput={(e, value) => setSearchTerm(value)}
@@ -148,35 +133,15 @@ export const AtmMain = (props) => {
               mb={1}
               width="100%"
             />
-            {/* Account List */}
-            <Box
-              className="account-list"
-              border="1px solid #ccc"
-              borderRadius="4px"
-              p={2}
-            >
+
+            <Box className="Atm__account-list">
               {filteredAccounts.length > 0 ? (
                 filteredAccounts.map((account, index) => (
                   <Box
                     key={index}
-                    className={`account-item ${selectedAccount === account.account_holder ? 'selected' : ''}`}
-                    p={1}
-                    mb={1}
-                    cursor="pointer"
-                    borderRadius="4px"
-                    backgroundColor={
-                      selectedAccount === account.account_holder
-                        ? '#007bff'
-                        : '#f8f9fa'
-                    }
-                    color={
-                      selectedAccount === account.account_holder
-                        ? '#fff'
-                        : '#000'
-                    }
-                    onClick={() =>
-                      setSelectedAccount(account.account_holder)
-                    }
+                    className={`account-item ${selectedAccount === account.account_holder ? 'selected' : ''
+                      }`}
+                    onClick={() => setSelectedAccount(account.account_holder)}
                   >
                     {account.account_holder || 'Unnamed Account'}
                   </Box>
@@ -188,11 +153,12 @@ export const AtmMain = (props) => {
               )}
             </Box>
           </Box>
-          <Box display="flex" alignItems="center" gap={1}>
+
+          <Box className="Atm__atm-row">
             <Button
               content="Transfer"
               onClick={handleTransfer}
-              style={{ buttonStyle }}
+              className="Atm__atm-button"
             />
             <Input
               value={transferAmount}

@@ -8,7 +8,7 @@ import type { ATMData } from './types';
 export const Atm = (props) => {
   const { act, data } = useBackend<ATMData>();
   return (
-    <Window width={500} height={500} theme="ntos_lightmode">\
+    <Window width={500} height={500} theme="ntos_lightmode">
       <Window.Content>
         {data.logged_in ? (
           <AtmMain data={data} act={act} />
