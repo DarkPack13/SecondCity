@@ -1,3 +1,4 @@
+
 /datum/discipline/dementation
 	name = "Dementation"
 	desc = "Makes all humans in radius mentally ill for a moment, supressing their defending ability."
@@ -7,7 +8,6 @@
 
 /datum/discipline/dementation/post_gain()
 	. = ..()
-	owner.add_quirk(/datum/quirk/insanity)
 
 /datum/discipline_power/dementation
 	name = "Dementation power name"
@@ -15,7 +15,27 @@
 
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/insanity.ogg'
 
-//PASSION
+/*
+From V20:
+Passion
+The vampire stirs his victim’s emotions, either
+heightening them to a fevered pitch or blunting them
+until the target is completely desensitized. The Cain-
+ite may not choose which emotion is affected; she may
+only amplify or dull emotions already present in the
+target. In this way, a vampire can inflame mild irrita-
+tion into quivering rage or atrophy true love into ca-
+sual interest.
+
+System: The character talks to their victim, and
+the vampire’s player rolls Charisma + Empathy (dif-
+ficulty equals the victim’s Humanity or Path rating).
+The number of successes determines the duration of
+the altered state of feeling. Effects of this power might
+include one- or two-point additions or subtractions
+to difficulties of frenzy rolls, Virtue rolls, rolls to resist
+Presence powers, etc
+*/
 /datum/discipline_power/dementation/passion
 	name = "Passion"
 	desc = "Stir the deepest parts of your target to manipulate their psyche."
@@ -27,14 +47,19 @@
 	range = 7
 
 	multi_activate = TRUE
-	cooldown_length = 10 SECONDS
-	duration_length = 3 SECONDS
+	cooldown_length = 2 TURNS
+	duration_length = 1 TURNS
+	var/dementation_phrase //will be filled when activated via tgui_input_text
 
-/datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/target)
-	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+/datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/carbon/human/target)
+	var/mypower = owner.st_get_stat(STAT_CHARISMA) + target.st_get_stat(STAT_EMPATHY)
+	var/theirpower = target.st_get_stat(STAT_WILLPOWER) //if this was their humanity rating as stated in v20, anyone who maxes charisma or empathy (or both) gaurantees this attack to work
 	if(theirpower >= mypower)
-		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
+		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
+		return FALSE
+	dementation_phrase = tgui_input_text(owner, "What will you say to [target] to stir their emotions?")
+	if(!dementation_phrase)
+		to_chat(owner, span_warning("You must say something to your target to influence their emotions."))
 		return FALSE
 	return TRUE
 
@@ -43,14 +68,14 @@
 	target.remove_overlay(MUTATIONS_LAYER)
 	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
 	dementation_overlay.pixel_z = 1
-	//what the fuck
 	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
 
-	target.Stun(0.5 SECONDS)
-	target.emote("laugh")
-	to_chat(target, span_userdanger("<b>HAHAHAHAHAHAHAHAHAHAHAHA!!</b>"))
-	owner.playsound_local(get_turf(H), pick('sound/items/SitcomLaugh1.ogg', 'sound/items/SitcomLaugh2.ogg', 'sound/items/SitcomLaugh3.ogg'), 100, FALSE)
+	target.Stun(1 TURNS)
+	target.emote(pick("laugh","scream","cry")) //pick a random emotion for them to experience
+	var/attack_text = spooky_font_replace(dementation_phrase) //malk-ify what the attacker said
+	owner.say(attack_text)
+	//owner.playsound_local(get_turf(H), pick('sound/items/SitcomLaugh1.ogg', 'sound/items/SitcomLaugh2.ogg', 'sound/items/SitcomLaugh3.ogg'), 100, FALSE)
 	if(target.body_position == STANDING_UP)
 		target.toggle_resting()
 
@@ -58,6 +83,7 @@
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
 
+/*
 //THE HAUNTING
 /datum/discipline_power/dementation/the_haunting
 	name = "The Haunting"
@@ -218,3 +244,4 @@
 /datum/discipline_power/dementation/total_insanity/deactivate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
+*/

@@ -5,8 +5,8 @@
 	curse = "Insanity."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
-		// /datum/discipline/dementation,
-		// /datum/discipline/obfuscate
+		/datum/discipline/dementation
+		///datum/discipline/obfuscate
 	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
