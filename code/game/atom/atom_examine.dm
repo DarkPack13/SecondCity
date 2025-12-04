@@ -157,12 +157,6 @@
 	var/list/name_override = list(visible_name)
 	if(SEND_SIGNAL(user, COMSIG_LIVING_PERCEIVE_EXAMINE_NAME, src, visible_name, name_override) & COMPONENT_EXAMINE_NAME_OVERRIDEN)
 		return name_override[1]
-	// DARKPACK EDIT START
-	//if we have no guestbook, we just KNOW okay?
-	var/known_name = user.mind?.guestbook ? user.mind.guestbook.get_known_name(user, src, src.real_name) : visible_name
-	if(known_name)
-		return known_name
-	// DARKPACK EDIT END
 	return visible_name
 
 /// Icon displayed in examine

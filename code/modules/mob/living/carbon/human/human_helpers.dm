@@ -69,8 +69,15 @@
 		if(add_id_name)
 			return "[face_name] (as [id_name])"
 
+	// DARKPACK EDIT START
+	//if we have no guestbook, we just KNOW okay?
+	var/known_name
+	if(face_name != "Unknown")
+		known_name = user.mind?.guestbook?.get_known_name(user, src, src.real_name)
+	// DARKPACK EDIT END
+
 	// Just go down the list of stuff we recorded
-	return id_name || get_generic_name(lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"
+	return known_name || face_name || id_name || get_generic_name(lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"
 
 /**
  * Gets what the face of this mob looks like
@@ -80,7 +87,7 @@
 /mob/living/carbon/proc/get_face_name(if_no_face = "Unknown")
 	return real_name
 
-/mob/living/carbon/human/get_face_name(if_no_face = get_generic_name(lowercase = TRUE)) // DARKPACK EDIT, ORIGINAL: /mob/living/carbon/human/get_face_name(if_no_face = "Unknown")
+/mob/living/carbon/human/get_face_name(if_no_face = "Unknown")
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
 		return if_no_face //We're Unknown, no face information for you
 	if(obscured_slots & HIDEFACE)

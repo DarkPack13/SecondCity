@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/get_gender()
-	var/visible_gender = p_they()
+	var/visible_gender = get_visible_gender()
 	switch(visible_gender)
 		if(MALE)
 			visible_gender = "Man"
