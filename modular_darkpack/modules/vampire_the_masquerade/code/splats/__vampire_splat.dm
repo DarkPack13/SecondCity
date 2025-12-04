@@ -3,7 +3,19 @@
 
 	power_type = /datum/discipline
 
+/datum/splat/vampire/proc/get_discipline_power(datum/discipline_power/discipline_power_type)
+	RETURN_TYPE(/datum/discipline_power)
+
+	return get_discipline(initial(discipline_power_type.discipline)).get_power(discipline_power_type)
+
+/datum/splat/vampire/proc/get_discipline(discipline_type)
+	RETURN_TYPE(/datum/discipline)
+
+	return get_power(discipline_type).discipline
+
 /datum/splat/vampire/get_power(power_type)
+	RETURN_TYPE(/datum/action/discipline)
+
 	for (var/datum/action/discipline/found_action as anything in powers)
 		if (!istype(found_action.discipline, power_type))
 			continue

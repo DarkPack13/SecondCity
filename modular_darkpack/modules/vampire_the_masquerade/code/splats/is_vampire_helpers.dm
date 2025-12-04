@@ -6,7 +6,18 @@
 
 	return character.get_splat(/datum/splat/vampire)
 
+/**
+ * If the character has Vitae, readable wrapper for isvampiresplat() for checking Vitae
+ */
 /proc/has_vitae(mob/character)
+	RETURN_TYPE(/datum/splat/vampire)
+
+	return isvampiresplat(character)
+
+/**
+ * If the character can learn and use Disciplines, readable wrapper for isvampiresplat() for Discipline uses
+ */
+/proc/does_use_disciplines(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
 	return isvampiresplat(character)

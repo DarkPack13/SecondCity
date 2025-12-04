@@ -5,6 +5,8 @@
  */
 
 /datum/splat/proc/get_power(power_type)
+	RETURN_TYPE(/datum/action)
+
 	CRASH("get_power() not implemented for [type]!")
 
 /datum/splat/proc/add_power(power_type, level)

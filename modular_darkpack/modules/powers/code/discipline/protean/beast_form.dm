@@ -28,7 +28,7 @@
 	. = ..()
 	if(ishuman(grant_to))
 		var/mob/living/carbon/human/grant_to_human = grant_to
-		if(istype(grant_to_human.clan, /datum/vampire_clan/gangrel))
+		if(istype(grant_to_human.get_clan(), /datum/vampire_clan/gangrel))
 			possible_shapes += list(
 				/mob/living/basic/bear/vampire/protean
 			)

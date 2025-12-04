@@ -47,8 +47,8 @@
 	src.sire = sire
 
 /datum/splat/vampire/kindred/on_gain()
-	// Is this supposed to only be player Kindred? I'm not quite sure
-	GLOB.kindred_list |= owner
+	if (!isdummy(owner))
+		GLOB.kindred_list |= owner
 
 	// DARKPACK TODO - reimplement this action maybe
 	// add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
@@ -89,7 +89,8 @@
 	owner.set_clan(clan)
 
 /datum/splat/vampire/kindred/on_lose()
-	GLOB.kindred_list -= owner
+	if (!isdummy(owner))
+		GLOB.kindred_list -= owner
 
 	owner.set_clan(null)
 
