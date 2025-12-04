@@ -37,6 +37,12 @@
 	if(preferences.storyteller_stats[stat_path] >= public_stat.max_score)
 		return FALSE
 
+	if(stat_path == STAT_COURAGE)
+		preferences.storyteller_stats[STAT_PERMANENT_WILLPOWER] += 1
+		preferences.storyteller_stats[STAT_TEMPORARY_WILLPOWER] += 1
+	if(stat_path == STAT_PERMANENT_WILLPOWER)
+		preferences.storyteller_stats[STAT_TEMPORARY_WILLPOWER] += 1
+
 	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
 		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
 	if(!preferences.storyteller_stat_points[public_stat.abstract_type] && !preferences.storyteller_stat_points[STAT_FREEBIE_POINTS])
@@ -61,6 +67,12 @@
 	if(preferences.storyteller_stats[stat_path] < 0)
 		return FALSE
 	var/datum/st_stat/parent_stat_type = public_stat.abstract_type
+
+	if(stat_path == STAT_COURAGE)
+		preferences.storyteller_stats[STAT_PERMANENT_WILLPOWER] -= 1
+		preferences.storyteller_stats[STAT_TEMPORARY_WILLPOWER] -= 1
+	if(stat_path == STAT_PERMANENT_WILLPOWER)
+		preferences.storyteller_stats[STAT_TEMPORARY_WILLPOWER] -= 1
 
 	preferences.storyteller_stats[stat_path] -= 1
 	if(preferences.storyteller_stats[stat_path] < public_stat.starting_score)
