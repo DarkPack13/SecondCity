@@ -247,6 +247,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healths = null
 	stamina = null
 	healthdoll = null
+	bloodpool_icon = null // DARKPACK EDIT ADD
 	spacesuit = null
 	hunger = null
 	alien_plasma_display = null
@@ -842,4 +843,4 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 /datum/action_group/listed/refresh_actions()
 	. = ..()
-	owner.palette_actions.refresh_actions() // We effect them, so we gotta refresh em
+	owner?.palette_actions.refresh_actions() // We effect them, so we gotta refresh em

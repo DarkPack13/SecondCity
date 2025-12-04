@@ -38,11 +38,7 @@
 	backpack_contents = list(
 		/obj/item/watch=1,
 		/obj/item/flashlight=1,
-		/obj/item/arcane_tome=1,
+		/obj/item/ritual_tome/arcane=1,
 		/obj/item/card/credit=1,
 		/obj/item/scythe/vamp=1,
 	)
-
-/obj/effect/landmark/start/gargoyle
-	name = "Chantry Gargoyle"
-	icon_state = "Archivist"

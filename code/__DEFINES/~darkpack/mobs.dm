@@ -5,7 +5,7 @@
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
-#define isavatar(A) (FALSE)
+#define isavatar(A) (istype(A, /mob/living/basic/avatar))
 #define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
 // DARKPACK TODO - implement other splats
@@ -22,6 +22,4 @@
 
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))
 
-#define SOUL_PRESENT 1
-#define SOUL_ABSENT 2
-#define SOUL_PROJECTING 3
+#define INCORPOREAL_MOVE_AVATAR 4 // Avatar incorporeal movement

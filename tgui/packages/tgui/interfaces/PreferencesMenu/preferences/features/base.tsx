@@ -267,10 +267,6 @@ export const FeatureTextInput = (
 ) => {
   const { serverData, handleSetValue, value } = props;
 
-  if (!serverData) {
-    return <Box>Loading...</Box>;
-  }
-
   return (
     <TextArea
       height="100px"
@@ -283,3 +279,21 @@ export const FeatureTextInput = (
   );
 };
 // DARKPACK EDIT ADDITION END
+
+export const FeatureExternalInput = (props: FeatureValueProps<string, string>,) => {
+  const {featureId, value } = props;
+  const {act} = useBackend<PreferencesMenuData>();
+
+  return (
+    <Button
+      onClick={() => {
+        act('open_external_input_list',
+          {
+            preference: featureId
+          }
+        )
+      }}>
+        {value}
+    </Button>
+  );
+};

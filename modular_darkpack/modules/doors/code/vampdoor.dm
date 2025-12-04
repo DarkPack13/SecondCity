@@ -11,6 +11,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
+	flags_1 = IGNORE_TURF_PIXEL_OFFSET_1
 	pass_flags_self = PASSDOORS
 
 	max_integrity = 350
@@ -197,9 +198,13 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if((human_user.st_get_stat(STAT_STRENGTH) * 2) >= lockpick_difficulty)
-					proc_unlock(50)
-					break_door(human_user)
+				if((human_user.st_get_stat(STAT_STRENGTH)) >= lockpick_difficulty)
+					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
+					if(do_after(human_user, 3 SECONDS, src))
+						proc_unlock(50)
+						break_door(human_user)
+					else
+						to_chat(human_user, span_danger("You must be standing next to the door to break it down."))
 				else
 					pixel_z = pixel_z+rand(-1, 1)
 					pixel_w = pixel_w+rand(-1, 1)

@@ -6,10 +6,12 @@
 	register_init_signals()
 	if(unique_name)
 		set_name()
+	update_blood_status()
+	update_blood_effects()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_atom_to_hud(src)
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_atom_to_hud(src)
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.add_atom_to_hud(src)
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
@@ -1012,11 +1014,14 @@
 		bodytemperature = get_body_temp_normal(apply_change = FALSE)
 	if(heal_flags & HEAL_BLOOD)
 		restore_blood()
+		adjust_blood_pool(maxbloodpool, updating_health = FALSE) // DARKPACK EDIT ADD
 	if(reagents && (heal_flags & HEAL_ALL_REAGENTS))
 		reagents.clear_reagents()
 
 	if(heal_flags & HEAL_ADMIN)
 		REMOVE_TRAIT(src, TRAIT_SUICIDED, REF(src))
+
+	untorpor() // DARKPACK EDIT ADD
 
 	updatehealth()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -1358,7 +1363,7 @@
 	if(onSyndieBase() && !(ROLE_SYNDICATE in user?.faction))
 		return FALSE
 	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
-	if(!GLOB.cameranet.checkCameraVis(src))
+	if(!SScameras.is_visible_by_cameras(src))
 		return FALSE
 	return TRUE
 
@@ -1658,7 +1663,6 @@
 				/mob/living/basic/pet/dog/pug,
 				/mob/living/basic/pet/gondola,
 				/mob/living/basic/pet/fox,
-				/mob/living/basic/pet/penguin,
 				/mob/living/basic/pet/penguin/baby,
 				/mob/living/basic/pet/penguin/baby/permanent,
 				/mob/living/basic/pet/penguin/emperor,
@@ -1995,7 +1999,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	return ..()
 
 /mob/living/proc/mob_pickup(mob/living/user)
-	var/obj/item/mob_holder/holder = new(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
+	var/obj/item/mob_holder/holder = new inhand_holder_type(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
+	SEND_SIGNAL(src, COMSIG_LIVING_SCOOPED_UP, user, holder)
 	user.visible_message(span_warning("[user] scoops up [src]!"))
 	user.put_in_hands(holder)
 
@@ -2789,8 +2794,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Proc called when TARGETED by a lazarus injector
 /mob/living/proc/lazarus_revive(mob/living/reviver, malfunctioning)
 	revive(HEAL_ALL)
-	befriend(reviver)
-	faction = (malfunctioning) ? list("[REF(reviver)]") : list(FACTION_NEUTRAL)
+	faction |= FACTION_NEUTRAL
+	if (!malfunctioning)
+		befriend(reviver)
 	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "The lazarus injector has brought you back to life! You are now friendly to everyone."
 	if (malfunctioning)
 		reviver.log_message("has revived mob [key_name(src)] with a malfunctioning lazarus injector.", LOG_GAME)
