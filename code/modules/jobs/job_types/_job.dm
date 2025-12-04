@@ -207,6 +207,7 @@
 		account_id = bank_account.account_id
 		bank_account.replaceable = FALSE
 		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
+		add_mob_memory(/datum/memory/key/bank_pin, remembered_id = bank_account.bank_pin) // DARKPACK EDIT ADD
 
 	dress_up_as_job(
 		equipping = equipping,
