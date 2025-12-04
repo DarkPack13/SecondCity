@@ -71,12 +71,11 @@
 		return FALSE
 	if(!visibility_checks(user, guest, silent))
 		return FALSE
-	var/face_name = guest.get_face_name("ForgetMeNot")
-	if(LAZYACCESS(known_names, face_name))
-		if(!rename_guest(user, guest, face_name, given_name, silent))
+	if(LAZYACCESS(known_names, guest.real_name))
+		if(!rename_guest(user, guest, guest.real_name, given_name, silent))
 			return FALSE
 	else
-		if(!add_guest(user, guest, face_name, given_name, silent))
+		if(!add_guest(user, guest, guest.real_name, given_name, silent))
 			return FALSE
 	return TRUE
 
@@ -108,7 +107,7 @@
 		return
 	if(!visibility_checks(user, guest, silent))
 		return FALSE
-	var/face_name = guest.get_face_name("ForgetMeNot")
+	var/face_name = guest.get_face_name()
 	if(!remove_guest(user, guest, face_name, silent))
 		return FALSE
 	return TRUE
@@ -140,9 +139,8 @@
 		if(!silent)
 			to_chat(user, span_warning("You can't see them!"))
 		return FALSE
-	var/visible_name = guest.get_visible_name("")
-	var/face_name = guest.get_face_name("")
-	if(!visible_name || !face_name)
+	var/face_name = guest.get_face_name()
+	if((face_name == "Unknown"))
 		if(!silent)
 			to_chat(user, span_warning("You can't see their face very well!"))
 		return FALSE
