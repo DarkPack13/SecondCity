@@ -72,9 +72,10 @@ Presence powers, etc
 	target.apply_overlay(MUTATIONS_LAYER)
 
 	target.Stun(1 TURNS)
-	target.emote(pick("laugh","scream","cry")) //pick a random emotion for them to experience
-	var/attack_text = spooky_font_replace(dementation_phrase) //malk-ify what the attacker said
-	owner.say(attack_text)
+	target.emote(pick("laugh","scream","cry")) // pick a random emotion for them to experience
+	var/attack_text = spooky_font_replace(dementation_phrase) // malk-ify what the attacker said
+	owner.say(attack_text, spans = list("bold", "singing")) // the malk speech uses bold and singing spans
+	// TODO: when the derangement port is merged, update the sound paths here
 	//owner.playsound_local(get_turf(H), pick('sound/items/SitcomLaugh1.ogg', 'sound/items/SitcomLaugh2.ogg', 'sound/items/SitcomLaugh3.ogg'), 100, FALSE)
 	if(target.body_position == STANDING_UP)
 		target.toggle_resting()
