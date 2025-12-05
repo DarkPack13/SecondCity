@@ -7382,6 +7382,7 @@
 #include "modular_darkpack\modules\vitae\code\vitae_blood_type.dm"
 #include "modular_darkpack\modules\walls\code\floors.dm"
 #include "modular_darkpack\modules\walls\code\lattice.dm"
+#include "modular_darkpack\modules\walls\code\low_walls.dm"
 #include "modular_darkpack\modules\walls\code\sewer.dm"
 #include "modular_darkpack\modules\walls\code\wallpaper.dm"
 #include "modular_darkpack\modules\walls\code\walls.dm"
