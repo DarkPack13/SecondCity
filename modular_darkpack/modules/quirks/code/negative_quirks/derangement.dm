@@ -61,19 +61,25 @@
 
 /datum/hallucination/malk
 
-/datum/hallucination/malk/laugh
+/datum/hallucination/malk/ambience
 
-/datum/hallucination/malk/laugh/start()
-	var/static/list/funnies = list(
+/datum/hallucination/malk/ambience/start()
+	var/static/list/ambient_sounds = list(
 		'modular_darkpack/modules/powers/sounds/dementation/comic1.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/comic2.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/comic3.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/comic4.ogg',
+		'modular_darkpack/modules/powers/sounds/dementation/man_cry.ogg',
+		'modular_darkpack/modules/powers/sounds/dementation/woman_cry.ogg',
+		'modular_darkpack/modules/powers/sounds/dementation/child_cry.ogg',
+		'modular_darkpack/modules/powers/sounds/dementation/man_moan.ogg', // zombie like moaning sounds
+		'modular_darkpack/modules/powers/sounds/dementation/woman_moan.ogg',
+		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg'
 	)
-	hallucinator.playsound_local(hallucinator, pick(funnies), vol = 40, vary = FALSE)
+	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = TRUE)
 
 /datum/hallucination/malk/object
-	var/static/list/malklines = world.file2list("modular_darkpack/modules/strings/malk.txt")
+	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 
 /datum/hallucination/malk/object/start()
 	var/list/objects = list()
@@ -93,28 +99,11 @@
 		return
 	objects -= hallucinator.contents
 
-	var/static/list/speech_sounds = list(
-		'modular_darkpack/modules/powers/sounds/dementation/female_talk1.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/female_talk2.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/female_talk3.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/female_talk4.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/female_talk5.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk1.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk2.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk3.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk4.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk5.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/male_talk6.ogg',
-	)
 	var/obj/speaker = pick_weight(objects)
-	var/speech
-	if(prob(1))
-		speech = "[rand(0,9)][rand(0,9)][rand(0,9)][rand(0,9)]"
-	else
-		speech = pick(malklines)
+	var/speech = pick(audible_hallucinations)
 	var/language = hallucinator.get_random_understood_language()
 	var/message = hallucinator.compose_message(speaker, language, speech)
-	hallucinator.playsound_local(hallucinator, pick(speech_sounds), vol = 30, vary = TRUE)
+	hallucinator.playsound_local(hallucinator, audible_hallucinations[speech], vol = 20, vary = TRUE)
 	if(hallucinator.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		hallucinator.create_chat_message(speaker, language, speech, spans = list(hallucinator.speech_span))
 	to_chat(hallucinator, message)
