@@ -1,4 +1,4 @@
-https://github.com/DarkPack13/SecondCity/pull/183
+https://github.com/DarkPack13/SecondCity/pull/421
 
 ## \<Guestbooks>
 
@@ -14,11 +14,13 @@ This module is for guestbooks, our system that allows people to not know everyon
 - `code/modules/mob/living/carbon/human/human_helpers.dm`
 - `code/modules/unit_tests/surgeries.dm`
 - `code/modules/unit_tests/changeling.dm`
+- `code/controllers/subsystem/persistence/_persistence.dm`
 
 ### Modular Overrides:
 
 - `modular_darkpack/master_files/code/datums/mind/_mind.dm`
 - `modular_darkpack/master_files/code/modules/mob/living/carbon/human/init_signals.dm`
+- `modular_darkpack/master_files/code/modules/client/preferences_savefile.dm`
 
 ### Defines:
 
