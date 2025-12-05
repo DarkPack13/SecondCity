@@ -37,6 +37,8 @@
 	if(preferences.storyteller_stats[stat_path] >= public_stat.max_score)
 		return FALSE
 
+	var/old_value = preferences.storyteller_stats[stat_path]
+
 	if(stat_path == STAT_COURAGE)
 		preferences.storyteller_stats[STAT_PERMANENT_WILLPOWER] += 1
 		preferences.storyteller_stats[STAT_TEMPORARY_WILLPOWER] += 1
@@ -57,6 +59,10 @@
 			preferences.storyteller_stats[stat_path] -= 1
 			return TRUE
 		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] -= public_stat.freebie_point_cost
+
+	var/new_value = preferences.storyteller_stats[stat_path]
+	var/log_text = "[key_name(preferences.parent)] increased stat '[public_stat.name]' from [old_value] to [new_value]"
+	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
@@ -67,6 +73,8 @@
 	if(preferences.storyteller_stats[stat_path] < 0)
 		return FALSE
 	var/datum/st_stat/parent_stat_type = public_stat.abstract_type
+
+	var/old_value = preferences.storyteller_stats[stat_path]
 
 	if(stat_path == STAT_COURAGE)
 		preferences.storyteller_stats[STAT_PERMANENT_WILLPOWER] -= 1
@@ -81,9 +89,17 @@
 		preferences.storyteller_stat_points[public_stat.abstract_type] += 1
 	else
 		preferences.storyteller_stat_points[STAT_FREEBIE_POINTS] += public_stat.freebie_point_cost
+	var/new_value = preferences.storyteller_stats[stat_path]
+	var/log_text = "[key_name(preferences.parent)] decreased stat '[public_stat.name]' from [old_value] to [new_value]"
+	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
+	var/log_text = "[key_name(preferences.parent)] reset all stats to default values"
+	log_stats(log_text)
 	preferences.storyteller_stats = SSstats.sanitize_stat_list()
 	preferences.storyteller_stat_points = SSstats.sanitize_points_list()
 	return TRUE
+
+/proc/log_stats(text, list/data)
+	logger.Log(LOG_CATEGORY_STATS, text, data)
