@@ -13,7 +13,7 @@
 		COOLDOWN_START(vampire_species, torpor_timer, 5 MINUTES)
 
 /mob/living/proc/cure_torpor(source, force)
-	if(!HAS_TRAIT(src, TRAIT_TORPOR))
+	if(!HAS_TRAIT_FROM(src, TRAIT_TORPOR, source))
 		return
 
 	// Heal to a tiny bit above crit, with less severe damage types being healed first
