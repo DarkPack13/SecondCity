@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(stats)
 	var/new_list = list()
 	for(var/stat_path in GLOB.public_storyteller_stats)
 		var/datum/st_stat/stat = GLOB.public_storyteller_stats[stat_path]
-		var/score = stat.get_score(FALSE)
+		var/score = stat.starting_score
 		if(stat_path in passed_stats)
 			score = passed_stats[stat_path]
 		new_list[stat_path] = score
