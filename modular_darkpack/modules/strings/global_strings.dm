@@ -2,7 +2,7 @@
 // associative list used by dementation and the derangement quirk
 GLOBAL_LIST_INIT(derangement_phrases,list(
 	"Evil crouches" = 'modular_darkpack/modules/powers/sounds/dementation/speech/crouch.ogg',
-	"Death" = 'modular_darkpack/modules/powers/sounds/dementation/speech/ceath.ogg',
+	"Death" = 'modular_darkpack/modules/powers/sounds/dementation/speech/death.ogg',
 	"DIE!" = 'modular_darkpack/modules/powers/sounds/dementation/speech/die.ogg',
 	"I smell a rancid grave" = 'modular_darkpack/modules/powers/sounds/dementation/speech/grave.ogg',
 	"Rustling robes of the Reaper" = 'modular_darkpack/modules/powers/sounds/dementation/speech/reaper.ogg',
