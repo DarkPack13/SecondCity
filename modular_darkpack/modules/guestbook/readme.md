@@ -12,6 +12,8 @@ This module is for guestbooks, our system that allows people to not know everyon
 
 - `code/game/say.dm`
 - `code/modules/mob/living/carbon/human/human_helpers.dm`
+- `code/modules/unit_tests/surgeries.dm`
+- `code/modules/unit_tests/changeling.dm`
 
 ### Modular Overrides:
 
