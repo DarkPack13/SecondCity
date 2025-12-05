@@ -76,7 +76,7 @@
 		'modular_darkpack/modules/powers/sounds/dementation/woman_moan.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg'
 	)
-	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = TRUE)
+	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = FALSE)
 
 /datum/hallucination/malk/object
 	var/static/list/audible_hallucinations = GLOB.derangement_phrases
