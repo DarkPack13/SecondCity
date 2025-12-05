@@ -4,3 +4,6 @@
   - qol: bloodpool and torpor is fixed on admin heals
   chazzyjazzy:
   - bugfix: fixes a couple issues
+2025-12-05:
+  dwinters99:
+  - refactor: low walls are now objects
