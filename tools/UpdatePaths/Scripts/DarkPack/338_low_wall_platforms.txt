@@ -1,0 +1,38 @@
+/turf/closed/wall/vampwall/low : /obj/structure/platform/lowwall , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/low/@SUBTYPES : /obj/structure/platform/lowwall/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/rich/low : /obj/structure/platform/lowwall/rich , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/rich/low/@SUBTYPES : /obj/structure/platform/lowwall/rich/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/rich/old/low : /obj/structure/platform/lowwall/rich/old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/rich/old/low/@SUBTYPES : /obj/structure/platform/lowwall/rich/old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/brick_old/low : /obj/structure/platform/lowwall/brick_old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/brick_old/low/@SUBTYPES : /obj/structure/platform/lowwall/brick_old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/junk/low : /obj/structure/platform/lowwall/junk , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/junk/low/@SUBTYPES : /obj/structure/platform/lowwall/junk/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/junk/alt/low : /obj/structure/platform/lowwall/junk/alt , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/junk/alt/low/@SUBTYPES : /obj/structure/platform/lowwall/junk/alt/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/market/low : /obj/structure/platform/lowwall/market , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/market/low/@SUBTYPES : /obj/structure/platform/lowwall/market/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/old/low : /obj/structure/platform/lowwall/old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/old/low/@SUBTYPES : /obj/structure/platform/lowwall/old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/painted/low : /obj/structure/platform/lowwall/painted , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/painted/low/@SUBTYPES : /obj/structure/platform/lowwall/painted/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/brick/low : /obj/structure/platform/lowwall/brick , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/brick/low/@SUBTYPES : /obj/structure/platform/lowwall/brick/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/city/low : /obj/structure/platform/lowwall/city , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/city/low/@SUBTYPES : /obj/structure/platform/lowwall/city/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/bar/low : /obj/structure/platform/lowwall/bar , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/bar/low/@SUBTYPES : /obj/structure/platform/lowwall/bar/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/wood/low : /obj/structure/platform/lowwall/wood , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/wood/low/@SUBTYPES : /obj/structure/platform/lowwall/wood/@SUBTYPES , /turf/open/floor/plating/rough
