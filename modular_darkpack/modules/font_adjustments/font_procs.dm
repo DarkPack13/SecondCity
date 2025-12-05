@@ -1,8 +1,8 @@
 //this file holds text and character replacement stuff, like the malk madness speech
 /proc/spooky_font_replace(input) //mostly used for malkavians
 	if(!input)
-		CRASH("spooky_font_replace called without input!")
 		input = " "
+		CRASH("spooky_font_replace called without input!")
 
 	var/list/replacements = list(
 			"a"    = "𝙖",                  "A" = "𝘼",
