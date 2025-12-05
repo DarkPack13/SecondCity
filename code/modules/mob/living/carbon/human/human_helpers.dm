@@ -71,7 +71,7 @@
 
 	// DARKPACK EDIT START
 	var/known_name
-	if(face_name != "Unknown")
+	if(!face_name)
 		known_name = examiner?.mind?.guestbook?.get_known_name(examiner, src, real_name)
 	// DARKPACK EDIT END
 
