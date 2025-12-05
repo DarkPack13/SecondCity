@@ -214,10 +214,25 @@ Methuselah.”
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
 	var/choice_options = list("Secrets", "Age")
+	var/datum/tgui_window/eyes_of_chaos_window
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
 	for(var/i in choice_options)
-		choice_options[i] = icon('icons/effects/effects.dmi', i)
+		choice_options[i] = icon('icons/effects/effects.dmi', "quantum_sparks")
+
+/datum/discipline_power/dementation/eyes_of_chaos/proc/open_chaos_eyes_window(mob/living/carbon/human/target)
+	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
+	if(exploitable_information == EXPLOITABLE_DEFAULT_TEXT) //they havent set exploitable text
+		exploitable_information = "You do not detect any secrets."
+	eyes_of_chaos_window = new(owner.client, "eyes_of_chaos_window")
+	eyes_of_chaos_window.initialize( inline_html = "<div class='background'> \
+        <div><center><p class='whitetext' > [target]'s Mind </p></center></div> \
+        <div><p class='whitetext' >[exploitable_information]</p></div> \
+        <span></span><span></span><span></span><span></span><span></span> \
+        <span></span><span></span><span></span><span></span><span></span> \
+        </div>",
+	inline_css = file("modular_darkpack/modules/html/dementation/css/chaos.css")
+	)
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
 	update_choices()
@@ -227,17 +242,9 @@ Methuselah.”
 	if(!do_after(owner, 2 TURNS))
 		return FALSE
 
-	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
-	var/datum/browser/popup = new(owner, "eyes_of_chaos_menu", "Eyes of Chaos", 600, 400)
-	var/list/dat = list()
-	dat += "<div class='panel redborder'>"
 	switch(chosen_option)
 		if("Secrets")
-			if(exploitable_information == EXPLOITABLE_DEFAULT_TEXT) //they havent set exploitable text
-				exploitable_information = "but you do not detect any secrets." //completes the below to_chat string if they havent set any text
-			dat += "<BR> <center>[target]</center> <BR> [exploitable_information] <BR></div>"
-			popup.set_content(dat.Join())
-			popup.open()
+			open_chaos_eyes_window(target)
 		if("Age")
 			var/total_age = target.chronological_age
 			var/determined_age = "but can't seem to find anything."
