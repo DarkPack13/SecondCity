@@ -331,6 +331,7 @@ frenzy or Rötschreck response is automatic.
 	multi_activate = TRUE
 	cooldown_length = 5 TURNS
 	duration_length = 2 TURNS
+	hostile = TRUE
 	aggravating = TRUE
 	violates_masquerade = TRUE
 	var/dementation_phrase
@@ -355,10 +356,10 @@ frenzy or Rötschreck response is automatic.
 	owner.say(attack_text, spans = list("bold", "singing"))
 	var/mypower = owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY)
 	for(var/mob/living/carbon/human/hearer in (get_hearers_in_view(8, owner) - owner))
-		if(!hearer.can_hear() || hearer.st_get_stat(STAT_WITS) > mypower)
+		if(!hearer.can_hear() || hearer.st_get_stat(STAT_WITS) > mypower || hearer.stat > CONSCIOUS)
 			continue
 		hearer.emote("scream")
-		GLOB.move_manager.move_away(moving = hearer, chasing = owner, max_dist = 10, timeout = 100, delay = hearer.cached_multiplicative_slowdown) // for some reason duration_length * 10 wasnt working for the timeout, so its a magic number
+		GLOB.move_manager.move_away(moving = hearer, chasing = owner, max_dist = 10, timeout = (duration_length * 10), delay = hearer.cached_multiplicative_slowdown) // for some reason duration_length * 10 wasnt working for the timeout, so its a magic number
 
 		hearer.remove_overlay(MUTATIONS_LAYER)
 		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
@@ -371,43 +372,84 @@ frenzy or Rötschreck response is automatic.
 	. = ..()
 
 /*
+From V20:
+Total Insanity
+The vampire coaxes the madness from the deepest
+recesses of their target’s mind, focusing it into an over-
+whelming wave of insanity. This power has driven
+countless victims, vampire and mortal alike, to unfor-
+tunate ends.
+
+System: The Kindred must gain their target’s undi-
+vided attention for at least one full turn to enact this
+power. The player spends a blood point and rolls Ma-
+nipulation + Intimidation (difficulty of their victim’s
+current Willpower points). If the roll is successful, the
+victim is afflicted with five derangements of the Sto-
+ryteller’s choice (see p. 290). The number of successes
+determines the duration.
+*/
 //TOTAL INSANITY
 /datum/discipline_power/dementation/total_insanity
 	name = "Total Insanity"
-	desc = "Bring out the darkest parts of a person's psyche, bringing them to utter insanity."
-
+	desc = "Bring out the darkest parts of a person's psyche, bringing them to utter insanity. Costs 3 blood points per use."
 	level = 5
-
-	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
+	vitae_cost = 3
+	check_flags = DISC_CHECK_CAPABLE
 	target_type = TARGET_HUMAN
 	range = 7
-
 	multi_activate = TRUE
-	cooldown_length = 10 SECONDS
-	duration_length = 3 SECONDS
+	cooldown_length = 5 TURNS
+	duration_length = 3 TURNS
+	aggravating = TRUE
+	hostile = TRUE
+	var/mypower
+	var/theirpower
+	var/mob/living/carbon/human/attack_target
 
-/datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/target)
-	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+/datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/carbon/human/target)
+	theirpower = target.st_get_stat(STAT_WILLPOWER)
+	mypower = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION))
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
 	return TRUE
 
+/datum/discipline_power/dementation/total_insanity/proc/self_attack(iteration)
+	if(attack_target.stat > CONSCIOUS)
+		return
+	if(iteration <= 0)
+		return
+	attack_target.set_combat_mode(TRUE)
+	var/obj/item/held_item = attack_target.get_active_held_item()
+	if(held_item?.force)
+		attack_target.ClickOn(attack_target)
+	else
+		if(held_item)
+			attack_target.drop_all_held_items()
+		attack_target.ClickOn(attack_target)
+	addtimer(CALLBACK(src, .proc/self_attack, iteration - 1), 1 SECONDS)
+
 /datum/discipline_power/dementation/total_insanity/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	attack_target = target
+	attack_target.remove_overlay(MUTATIONS_LAYER)
 	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
 	dementation_overlay.pixel_z = 1
-	//what the fuck
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
+	attack_target.apply_overlay(MUTATIONS_LAYER)
 
-	var/datum/cb = CALLBACK(target, /mob/living/carbon/human/proc/attack_myself_command)
-	for(var/i in 1 to 20)
-		addtimer(cb, (i - 1) * 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/self_attack, max(mypower - theirpower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
+	attack_target.cause_hallucination( \
+			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
+			"total insanity", \
+			duration = duration_length + (mypower SECONDS), \
+			affects_us = FALSE, \
+			affects_others = TRUE, \
+			skip_nearby = FALSE, \
+		)
 
 /datum/discipline_power/dementation/total_insanity/deactivate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
-*/
+
