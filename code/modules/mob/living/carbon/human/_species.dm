@@ -945,7 +945,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 
-	// Knockdown chance system from old harm proc
+	// DARKPACK EDIT ADD - Knockdown chance system from old harm proc
 	if((target.stat != DEAD) && (!target.IsKnockdown()))
 		var/roll = SSroll.storyteller_roll(
 			dice = user.st_get_stat(STAT_STRENGTH),
@@ -959,6 +959,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			to_chat(user, span_danger("You knock [target] down!"))
 			target.apply_effect(2 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			log_combat(user, target, "got a stun punch with their previous punch")
+	// DARKPACK EDIT END
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
