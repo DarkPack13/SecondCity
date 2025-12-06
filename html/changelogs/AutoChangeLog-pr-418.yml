@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - balance: "Stakes now place kindred in torpor until removed."
