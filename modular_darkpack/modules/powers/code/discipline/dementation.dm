@@ -46,6 +46,9 @@ Presence powers, etc
 	multi_activate = TRUE
 	cooldown_length = 2 TURNS
 	duration_length = 1 TURNS
+	vitae_cost = 1
+	aggravating = TRUE
+	hostile = TRUE
 	var/dementation_phrase //will be filled when activated via tgui_input_text
 
 /datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/carbon/human/target)
@@ -120,9 +123,13 @@ pools for a turn or two after the manifestation.
 	target_type = TARGET_HUMAN
 	range = 7
 	multi_activate = TRUE
+	vitae_cost = 1
 	cooldown_length = 3 TURNS
 	duration_length = 2 TURNS //this determines how long the visual affected overlay will be applied to their mob sprite, not the hallucination duration
-	var/mypower = 0 //store this up here for later use so we can use its value to help determine the duration of the hallucination on a successful roll
+	aggravating = TRUE
+	hostile = TRUE
+	var/mypower = 0
+	var/dementation_phrase
 
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/carbon/human/target)
 	mypower = owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE)
@@ -130,7 +137,7 @@ pools for a turn or two after the manifestation.
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
 		return FALSE
-	var/dementation_phrase = tgui_input_text(owner, "What will you say to [target] to haunt them?")
+	dementation_phrase = tgui_input_text(owner, "What will you say to [target] to haunt them?")
 	if(!dementation_phrase)
 		to_chat(owner, span_warning("You must say something to your target to haunt them."))
 		return FALSE
@@ -151,6 +158,8 @@ pools for a turn or two after the manifestation.
 			affects_others = TRUE, \
 			skip_nearby = FALSE, \
 		)
+	var/attack_text = spooky_font_replace(dementation_phrase)
+	owner.say(attack_text, spans = list("bold", "singing"))
 
 /datum/discipline_power/dementation/the_haunting/deactivate(mob/living/carbon/human/target)
 	. = ..()
@@ -204,7 +213,7 @@ Methuselah.”
 */
 /datum/discipline_power/dementation/eyes_of_chaos
 	name = "Eyes of Chaos"
-	desc = "See the hidden patterns in the world and uncover people's true selves."
+	desc = "See the hidden patterns in the world and uncover people's true selves. Costs 5 blood points per use."
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	target_type = TARGET_HUMAN | TARGET_SELF
@@ -213,6 +222,7 @@ Methuselah.”
 	cooldown_length = 5 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
+	vitae_cost = 5
 	var/choice_options = list("Secrets", "Age")
 	var/datum/tgui_window/eyes_of_chaos_window
 
@@ -254,7 +264,7 @@ Methuselah.”
 				determined_age = "[target] is in their second century."
 			else
 				determined_age = "[target] is an elder."
-			to_chat(owner, span_abductor("You search [target]'s mind for information about their age... [determined_age]  DEBUG [total_age]"))
+			to_chat(owner, span_abductor("You search [target]'s mind for information about their age... [determined_age]"))
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
@@ -273,45 +283,94 @@ Methuselah.”
 	. = ..()
 
 /*
-//VOICE OF MADNESS
+From V20:
+Voice of Madness
+By merely addressing their victims aloud, the Kindred
+can drive targets into fits of blind rage or fear, forcing
+them to abandon reason and higher thought. Victims
+are plagued by hallucinations of their subconscious de-
+mons, and try to flee or destroy their hidden shames.
+Tragedy almost always follows in the wake of this pow-
+er’s use, though offending Malkavians often claim that
+they were merely encouraging people to act “according
+to their natures.” Unfortunately for the vampire con-
+cerned, he runs a very real risk of falling prey to their
+own voice’s power.
+
+System: The player spends a blood point and makes
+a Manipulation + Empathy roll (difficulty 7). One tar-
+get is affected per success, although all potential vic-
+tims must be listening to the vampire’s voice.
+Affected victims fly immediately into frenzy or a
+blind fear like Rötschreck. Kindred or other creatures
+capable of frenzy, such as Lupines, may make a frenzy
+check or Rötschreck test (Storyteller’s choice as to how
+they are affected) at +2 difficulty to resist the power.
+Mortals are automatically affected and don’t remember
+their actions while berserk. The frenzy or fear lasts for
+a scene, though vampires and Lupines may test as usual
+to snap out of it.
+
+The vampire using Voice of Madness must also test
+for frenzy or Rötschreck upon invoking this power,
+though his difficulty to resist is one lower than nor-
+mal. If the initial roll to invoke this power is a failure,
+however, the roll to resist the frenzy is one higher than
+normal. If the roll to invoke this power is a botch, the
+frenzy or Rötschreck response is automatic.
+*/
+
 /datum/discipline_power/dementation/voice_of_madness
 	name = "Voice of Madness"
-	desc = "Your voice becomes a source of utter insanity, affecting you and all those around you."
-
+	desc = "Your voice becomes a source of utter insanity, affecting you and all those around you. Costs 3 blood points per use."
 	level = 4
-
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
-	target_type = TARGET_HUMAN
-	range = 7
-
+	target_type = NONE
+	range = 8
+	vitae_cost = 3
 	multi_activate = TRUE
-	cooldown_length = 10 SECONDS
-	duration_length = 3 SECONDS
+	cooldown_length = 5 TURNS
+	duration_length = 2 TURNS
+	aggravating = TRUE
+	violates_masquerade = TRUE
+	var/dementation_phrase
+
+/datum/discipline_power/dementation/voice_of_madness/can_activate_untargeted(alert)
+	. = ..()
+	return .
 
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
-	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
-	if(theirpower >= mypower)
-		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
+	dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
+	if(!dementation_phrase)
+		to_chat(owner, span_warning("You must say something to use this discipline."))
 		return FALSE
 	return TRUE
 
+/datum/discipline_power/dementation/voice_of_madness/proc/remove_dementation_overlay(mob/living/carbon/human/target)
+	target.remove_overlay(MUTATIONS_LAYER)
+
 /datum/discipline_power/dementation/voice_of_madness/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
-	dementation_overlay.pixel_z = 1
-	//what the fuck
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	var/attack_text = spooky_font_replace(dementation_phrase)
+	owner.say(attack_text, spans = list("bold", "singing"))
+	var/mypower = owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY)
+	for(var/mob/living/carbon/human/hearer in (get_hearers_in_view(8, owner) - owner))
+		if(!hearer.can_hear() || hearer.st_get_stat(STAT_WITS) > mypower)
+			continue
+		hearer.emote("scream")
+		GLOB.move_manager.move_away(moving = hearer, chasing = owner, max_dist = 10, timeout = 100, delay = hearer.cached_multiplicative_slowdown) // for some reason duration_length * 10 wasnt working for the timeout, so its a magic number
 
-	//change this to something better than an 8 second instastun
-	new /datum/hallucination/death(target, TRUE)
+		hearer.remove_overlay(MUTATIONS_LAYER)
+		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
+		dementation_overlay.pixel_z = 1
+		hearer.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
+		hearer.apply_overlay(MUTATIONS_LAYER)
+		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), hearer), duration_length)
 
 /datum/discipline_power/dementation/voice_of_madness/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
 
+/*
 //TOTAL INSANITY
 /datum/discipline_power/dementation/total_insanity
 	name = "Total Insanity"
