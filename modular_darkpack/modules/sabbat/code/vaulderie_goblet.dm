@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/silver_goblet
+/obj/item/reagent_containers/cup/silver_goblet
 	name = "silver goblet"
 	desc = "A gleaming goblet used in ancient vampire rites."
 	icon = 'modular_darkpack/modules/sabbat/icons/vaulderie_goblet.dmi'
@@ -14,15 +14,15 @@
 	resistance_flags = FIRE_PROOF
 	var/list/blood_donors = list()
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/is_drainable()
+/obj/item/reagent_containers/cup/silver_goblet/is_drainable()
 	return TRUE
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/New()
+/obj/item/reagent_containers/cup/silver_goblet/New()
 	..()
 	reagents = new /datum/reagents(src.volume)
 	blood_donors = list()
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/update_icon_state()
+/obj/item/reagent_containers/cup/silver_goblet/update_icon_state()
 	. = ..()
 	if(reagents && reagents.has_reagent(/datum/reagent/blood))
 
@@ -31,7 +31,7 @@
 		icon_state = "pewter_cup"
 	return TRUE
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/attack_self(mob/living/carbon/human/user)
+/obj/item/reagent_containers/cup/silver_goblet/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return ..()
 
@@ -73,7 +73,7 @@
 
 
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/attack(mob/living/carbon/M, mob/user)
+/obj/item/reagent_containers/cup/silver_goblet/attack(mob/living/carbon/M, mob/user)
 	if(!reagents.has_reagent(/datum/reagent/blood))
 		return ..()
 
@@ -149,27 +149,28 @@
 					break
 	. = ..()
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/on_reagent_change()
+/obj/item/reagent_containers/cup/silver_goblet/on_reagent_change()
 	..()
 	if(reagents.total_volume == 0)
 		blood_donors.Cut()
+	update_appearance() // Add this to ensure icon updates on any reagent change
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/cup/silver_goblet/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !check_allowed_items(target, 1))
 		return
 
-	if(target.is_refillable() && !istype(target, /obj/item/reagent_containers/food/drinks/silver_goblet))
+	if(target.is_refillable() && !istype(target, /obj/item/reagent_containers/cup/silver_goblet))
 		if(reagents.total_volume > 0 && target.reagents.total_volume < target.reagents.maximum_volume)
 			blood_donors.Cut()
 
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/vaulderie_goblet
+/obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet
 	name = "Vaulderie Goblet"
 	desc = "An obsidian-black goblet used in ancient vampire rites."
 	icon_state = "vaulderie_goblet"
 
-/obj/item/reagent_containers/food/drinks/silver_goblet/vaulderie_goblet/update_icon_state()
+/obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet/update_icon_state()
 	. = ..()
 	if(reagents && reagents.has_reagent(/datum/reagent/blood))
 		icon_state = "vaulderie_goblet_filled"

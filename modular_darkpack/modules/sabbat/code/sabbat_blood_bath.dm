@@ -7,7 +7,7 @@
 	layer = BELOW_MOB_LAYER
 	var/blood_level = 0
 	var/max_blood = 500
-	var/list/blood_donors = list() // List to store blood donors
+	var/list/blood_donors = list()
 
 /obj/structure/bath/sabbatbath/Initialize()
 	. = ..()
@@ -28,8 +28,10 @@
 	. = ..()
 	// Change the sprite when it contains blood
 	if(blood_level > 0)
+		icon = 'modular_darkpack/modules/sabbat/icons/sabbat_blood_bath.dmi'
 		icon_state = "bath_full_blood"
 	else
+		icon = 'modular_darkpack/modules/decor/icons/bathroom.dmi'
 		icon_state = "tub"
 
 /obj/structure/bath/sabbatbath/attackby(obj/item/W, mob/living/carbon/user, params)
@@ -90,8 +92,8 @@
 			to_chat(user, span_warning("You decide not to add your blood to the bathtub..."))
 
 	// Handle vaulderie goblet specifically so that the Priest can use the tub's blood for vaulderie (part of the blood bath rite)
-	if(istype(W, /obj/item/reagent_containers/food/drinks/silver_goblet/vaulderie_goblet))
-		var/obj/item/reagent_containers/food/drinks/silver_goblet/vaulderie_goblet/goblet = W
+	if(istype(W, /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet))
+		var/obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet/goblet = W
 		if(blood_level <= 0)
 			to_chat(user, span_warning("The bath is empty."))
 			return
