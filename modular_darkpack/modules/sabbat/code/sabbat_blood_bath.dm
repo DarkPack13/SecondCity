@@ -42,7 +42,7 @@
 				// First, demote any existing Ductus to regular Sabbat Pack
 				for(var/mob/living/carbon/human/H in GLOB.player_list)
 					if(H.mind && is_sabbat_ductus(H))
-						H.mind.assigned_role = "Sabbat Pack"
+						H.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/sabbatpack))
 						var/datum/antagonist/temp_antag = new()
 						//temp_antag.remove_antag_hud(ANTAG_HUD_REV, H)
 						//temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev", H)
@@ -50,7 +50,7 @@
 
 						to_chat(H, span_cult("You feel your authority as Ductus slipping away... You are now a regular pack member..."))
 				// Then promote the new Ductus
-				buckled_mob.mind.assigned_role = "Sabbat Ductus"
+				buckled_mob.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/sabbatductus))
 				var/datum/antagonist/temp_antag = new()
 				//temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev_head", buckled_mob)
 				qdel(temp_antag)
