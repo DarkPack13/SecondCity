@@ -1,7 +1,7 @@
 /obj/item/sabbat_war_party
 	name = "Sabbat War Party Totem"
 	desc = "A totem made from a Vampire's skull, made to summon all Sabbat packs to the Ductus' lair."
-	icon = 'code/modules/wod13/items.dmi'
+	icon = 'modular_darkpack/modules/sabbat/icons/sabbat_war_party.dmi'
 	icon_state = "sabbat_warparty"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL

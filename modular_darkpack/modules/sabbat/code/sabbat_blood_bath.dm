@@ -42,15 +42,15 @@
 					if(H.mind && is_sabbat_ductus(H))
 						H.mind.assigned_role = "Sabbat Pack"
 						var/datum/antagonist/temp_antag = new()
-						temp_antag.remove_antag_hud(ANTAG_HUD_REV, H)
-						temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev", H)
+						//temp_antag.remove_antag_hud(ANTAG_HUD_REV, H)
+						//temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev", H)
 						qdel(temp_antag)
 
 						to_chat(H, span_cult("You feel your authority as Ductus slipping away... You are now a regular pack member..."))
 				// Then promote the new Ductus
 				buckled_mob.mind.assigned_role = "Sabbat Ductus"
 				var/datum/antagonist/temp_antag = new()
-				temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev_head", buckled_mob)
+				//temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev_head", buckled_mob)
 				qdel(temp_antag)
 				// Notify all Sabbat members of the new Ductus
 				for(var/mob/living/carbon/human/sabbat_member in GLOB.player_list)
@@ -59,8 +59,8 @@
 
 				to_chat(buckled_mob, span_cult("You have been anointed as the new Ductus of the pack!"))
 		return
-	if(istype(W, /obj/item/melee/vampirearms/knife))
-		playsound(loc,'sound/weapons/bladeslice.ogg', 50, FALSE)
+	if(istype(W, /obj/item/knife/vamp))
+		playsound(loc,'sound/items/weapons/bladeslice.ogg', 50, FALSE)
 		if(do_after(user, 100))
 			if(user.bloodpool <= 0)
 				to_chat(user, span_warning("You have no blood to donate!"))
@@ -122,7 +122,7 @@
 /obj/structure/bath/sabbatbath/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	. = ..()
 	if(. && blood_level > 0)
-		playsound(loc, 'code/modules/wod13/sounds/catched.ogg', 50, FALSE)
+		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/catched.ogg', 50, FALSE)
 		if(do_after(user, 100))
 			if(M == user)
 				M.visible_message(span_notice("[user] climbs into the blood-filled bath."), span_notice("You climb into the blood-filled bath."))
