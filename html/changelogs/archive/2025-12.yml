@@ -7,3 +7,10 @@
 2025-12-05:
   dwinters99:
   - refactor: low walls are now objects
+2025-12-07:
+  Odisurin:
+  - rscadd: Two new signs to the game for later down the road establishments
+  XeonMations:
+  - balance: Stakes now place kindred in torpor until removed.
+  chazzyjazzy:
+  - bugfix: ticking a file
