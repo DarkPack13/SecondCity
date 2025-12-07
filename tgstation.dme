@@ -7340,6 +7340,7 @@
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\teleport.dm"
 #include "modular_darkpack\modules\round_status\code\round_globals.dm"
 #include "modular_darkpack\modules\sabbat\code\sabbat_blood_bath.dm"
+#include "modular_darkpack\modules\sabbat\code\sabbat_monomacy_rune.dm"
 #include "modular_darkpack\modules\sabbat\code\sabbat_war_party.dm"
 #include "modular_darkpack\modules\sabbat\code\vaulderie_goblet.dm"
 #include "modular_darkpack\modules\storage\code\firstaidkit.dm"
