@@ -410,3 +410,10 @@
 		"biker_bar"
 	)
 	color = "#434343"
+
+/obj/item/vamp/keys/apartment
+	name = "Apartment keys"
+	desc = "The key to someone's home. Hope it's not lost."
+	accesslocks = list(
+		"apartment"
+	)
