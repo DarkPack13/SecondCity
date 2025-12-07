@@ -7153,6 +7153,7 @@
 #include "modular_darkpack\modules\loadout\code\categories\shoes.dm"
 #include "modular_darkpack\modules\loadout\code\categories\suit.dm"
 #include "modular_darkpack\modules\loadout\code\categories\uniform.dm"
+#include "modular_darkpack\modules\mannequin\code\mannequin_subtypes.dm"
 #include "modular_darkpack\modules\mapping_helpers\code\viewport_helper.dm"
 #include "modular_darkpack\modules\masquerade\code\blood_hunt_skull.dm"
 #include "modular_darkpack\modules\masquerade\code\human.dm"
