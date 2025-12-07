@@ -158,3 +158,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bubway, 32)
 	icon_state = "gummaguts"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
+
+/obj/structure/sign/city/store/reddragon
+	name = "Red Dragon"
+	desc = "Eat yummy-yummy flame fire noodles!"
+	icon_state = "reddragon"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/reddragon, 32)
+
+/obj/structure/sign/city/store/otolleys
+	name = "Otolleys"
+	desc = "O-o-o Oh Toll-ees, Families Welcome!"
+	icon_state = "otolleys"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/otolleys, 32)

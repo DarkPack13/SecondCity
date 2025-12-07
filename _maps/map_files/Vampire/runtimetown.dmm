@@ -24,7 +24,8 @@
 "ba" = (
 /obj/structure/retail/clothing_store,
 /obj/structure/table,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "bh" = (
 /obj/structure/chair/greyscale{
@@ -209,7 +210,8 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "eR" = (
-/turf/closed/wall/vampwall/rich/old/low/window,
+/obj/structure/platform/lowwall/rich/old/window,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
 "eU" = (
 /mob/living/carbon/human/npc/shop,
@@ -432,7 +434,8 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "jp" = (
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/supply)
 "jw" = (
 /obj/effect/decal/cleanable/trash{
@@ -560,7 +563,8 @@
 "mm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/order_console/mining/restricted/police,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "mn" = (
 /obj/structure/barrels/rand,
@@ -638,7 +642,8 @@
 "nw" = (
 /obj/structure/table,
 /obj/lombard,
-/turf/closed/wall/vampwall/rich/old/low,
+/obj/structure/platform/lowwall/rich/old,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
 "nA" = (
 /obj/effect/decal/cleanable/garbage,
@@ -714,7 +719,8 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/turf/closed/wall/vampwall/brick_old/low,
+/obj/structure/platform/lowwall/brick_old,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
 "pz" = (
 /obj/darkpack_car/rand{
@@ -1230,7 +1236,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "zx" = (
-/turf/closed/wall/vampwall/market/low/window,
+/obj/structure/platform/lowwall/market/window,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "zA" = (
 /obj/effect/decal/cleanable/trash{
@@ -1341,7 +1348,8 @@
 /area/vtm/interior/techshop)
 "BX" = (
 /obj/structure/table,
-/turf/closed/wall/vampwall/market/low,
+/obj/structure/platform/lowwall/market,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "BZ" = (
 /obj/structure/railing,
@@ -1493,7 +1501,8 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "EL" = (
-/turf/closed/wall/vampwall/rich/old/low/window,
+/obj/structure/platform/lowwall/rich/old/window,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "EN" = (
 /obj/effect/landmark/error,
@@ -1569,7 +1578,8 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "Gu" = (
-/turf/closed/wall/vampwall/brick/low/window,
+/obj/structure/platform/lowwall/brick/window,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Gw" = (
 /obj/machinery/light/directional/west,
@@ -1580,7 +1590,8 @@
 /area/misc/cordon)
 "GH" = (
 /obj/structure/table/reinforced,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "GJ" = (
 /turf/cordon,
@@ -1744,7 +1755,8 @@
 	dir = 4;
 	pixel_y = 15
 	},
-/turf/closed/wall/vampwall/rich/old/low,
+/obj/structure/platform/lowwall/rich/old,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
 "Jo" = (
 /obj/structure/closet/crate/freezer/blood,
@@ -1922,7 +1934,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "LU" = (
-/turf/closed/wall/vampwall/rich/old/low/window,
+/obj/structure/platform/lowwall/rich/old/window,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/ghetto)
 "LW" = (
 /obj/structure/table,
@@ -1968,7 +1981,8 @@
 /obj/structure/retail/hot_ishu{
 	pixel_y = 10
 	},
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Mz" = (
 /obj/structure/table/wood,
@@ -2167,7 +2181,8 @@
 "Pg" = (
 /obj/structure/retail/gun_store,
 /obj/structure/table,
-/turf/closed/wall/vampwall/market/low,
+/obj/structure/platform/lowwall/market,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Pr" = (
 /obj/structure/roofstuff/vent_end,
@@ -2206,7 +2221,8 @@
 "PP" = (
 /obj/structure/table,
 /obj/lombard/blackmarket,
-/turf/closed/wall/vampwall/rich/old/low,
+/obj/structure/platform/lowwall/rich/old,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
 "PW" = (
 /obj/effect/turf_decal/bordur/corner,
@@ -2306,7 +2322,8 @@
 "Ro" = (
 /obj/structure/table,
 /obj/structure/retail/gummaguts_menu,
-/turf/closed/wall/vampwall/market/low,
+/obj/structure/platform/lowwall/market,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Rx" = (
 /obj/effect/landmark/npcbeacon,
@@ -2470,7 +2487,8 @@
 "Va" = (
 /obj/machinery/computer/order_console/mining/restricted/hospital,
 /obj/structure/table/reinforced,
-/turf/closed/wall/vampwall/brick/low,
+/obj/structure/platform/lowwall/brick,
+/turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "Vg" = (
 /obj/structure/table,

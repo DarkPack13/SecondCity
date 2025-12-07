@@ -1014,11 +1014,14 @@
 		bodytemperature = get_body_temp_normal(apply_change = FALSE)
 	if(heal_flags & HEAL_BLOOD)
 		restore_blood()
+		adjust_blood_pool(maxbloodpool, updating_health = FALSE) // DARKPACK EDIT ADD
 	if(reagents && (heal_flags & HEAL_ALL_REAGENTS))
 		reagents.clear_reagents()
 
 	if(heal_flags & HEAL_ADMIN)
 		REMOVE_TRAIT(src, TRAIT_SUICIDED, REF(src))
+
+	untorpor() // DARKPACK EDIT ADD
 
 	updatehealth()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
