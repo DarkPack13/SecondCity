@@ -369,3 +369,11 @@
 
 		target.dropItemToGround(H)
 		target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
+
+/obj/item/clothing/head/beret/black
+	name = "black beret"
+	desc = "A black beret, perfect for war veterans and dark, brooding, anti-hero mimes."
+	icon_state = "beret"
+	greyscale_config = /datum/greyscale_config/beret
+	greyscale_config_worn = /datum/greyscale_config/beret/worn
+	greyscale_colors = "#3f3c40"
