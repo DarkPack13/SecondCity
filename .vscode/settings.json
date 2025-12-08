@@ -26,8 +26,4 @@
 		"**/node_modules": true
 	},
 	"Lua.diagnostics.enable": false,
-	"CodeGPT.apiKey": "CodeGPT Plus Beta",
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	}
 }
