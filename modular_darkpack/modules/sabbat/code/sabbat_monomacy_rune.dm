@@ -69,3 +69,5 @@
 
 /obj/sabbatrune/proc/reset_cooldown()
 	COOLDOWN_RESET(src, MONOMACY_CHALLENGE_COOLDOWN)
+
+#undef MONOMACY_COOLDOWN_DURATION
