@@ -70,21 +70,16 @@
 
 			user.visible_message(span_notice("[user] cuts [user.p_their()] wrist and lets blood flow into the bath."), span_notice("You cut your wrist and let blood flow into the bath."))
 
-			// Calculate how much blood to transfer
 			var/amount_to_donate = min(user.bloodpool, 3)
 
-			// Subtract blood from user
 			user.bloodpool -= amount_to_donate
 
-			// Add blood to bath
 			blood_level = min(blood_level + amount_to_donate, max_blood)
 			reagents.add_reagent(/datum/reagent/blood, amount_to_donate)
 
-			// Add donor to list if not already there
 			if(!(user in blood_donors))
 				blood_donors += user
 
-			// Update the tub to show blood
 			update_icon()
 
 			return TRUE
@@ -105,15 +100,12 @@
 
 		user.visible_message(span_notice("[user] scoops blood from the bath into [goblet]."), span_notice("You scoop blood from the bath into [goblet]."))
 
-		// Transfer blood
 		reagents.trans_to(goblet, transfer_amount)
 		blood_level -= transfer_amount
 
-		// Transfer donor information
 		if(length(blood_donors) > 0)
 			goblet.blood_donors = blood_donors
 
-		// Update icon if the bath is now empty
 		if(blood_level <= 0)
 			update_icon()
 
