@@ -1,0 +1,4 @@
+/obj/item/clothing/head/pentex/pentex_beret : /obj/item/clothing/head/vampire/pentex_beret
+/obj/item/clothing/head/pentex/pentex_whitehardhat : /obj/item/clothing/head/vampire/pentex_whitehardhat
+/obj/item/clothing/head/pentex/pentex_yellowhardhat : /obj/item/clothing/head/vampire/pentex_yellowhardhat
+/obj/item/clothing/suit/chaplainsuit/studentuni : /obj/item/clothing/suit/chaplainsuit/armor/studentuni
