@@ -5,7 +5,7 @@
 		/obj/item/clothing/shoes/vampire/jackboots/high
 	)
 
-//obj/structure/mannequin/plastic/conquistador
+/obj/structure/mannequin/plastic/conquistador
 	starting_items = list(
 		/obj/item/clothing/head/vampire/helmet/spain,
 		/obj/item/clothing/shoes/vampire/jackboots/work,
