@@ -342,9 +342,6 @@
 	desc = "Used by kidnappers, sadists, and three letter agencies. Easily fits over the head to obscure vision."
 	icon_state = "black_bag"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
-	clothing_flags = NO_HAT_TRICKS|SNUG_FIT
-	dynamic_hair_suffix = ""
-	dynamic_fhair_suffix = ""
 
 	flash_protect = FLASH_PROTECTION_WELDER
 	tint = 3
