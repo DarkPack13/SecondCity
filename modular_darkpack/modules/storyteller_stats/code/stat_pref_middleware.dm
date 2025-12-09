@@ -28,7 +28,7 @@
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
-	var/stat_path = text2path(params["stat"])
+	var/datum/st_stat/stat_path = text2path(params["stat"])
 
 
 
@@ -38,7 +38,7 @@
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
-	var/stat_path = text2path(params["stat"])
+	var/datum/st_stat/stat_path = text2path(params["stat"])
 
 
 

@@ -367,8 +367,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	all_quirks = save_data?["all_quirks"]
 
-	// DARKPACK EDIT ADD - STORYTELLR_STATS
-	var/list/raw_storyteller_stats = save_data?["storyteller_stats"]
+	// DARKPACK EDIT ADD - STORYTELLER_STATS
+	var/list/raw_storyteller_stats = save_data?["preference_storyteller_stats"]
 	if(islist(raw_storyteller_stats))
 		for(var/key in raw_storyteller_stats)
 			var/new_key = text2path(key)
@@ -376,15 +376,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 				storyteller_stats[new_key] = raw_storyteller_stats[key]
 			else
 				stack_trace("Invalid path in storyteller_stats save data: [key]")
-
-	var/list/raw_storyteller_stat_points = save_data?["storyteller_stat_points"]
-	if(islist(raw_storyteller_stat_points))
-		for(var/key in raw_storyteller_stat_points)
-			var/new_key = text2path(key)
-			if(new_key)
-				storyteller_stat_points[new_key] = raw_storyteller_stat_points[key]
-			else
-				stack_trace("Invalid path in storyteller_stat_points save data: [key]")
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary
@@ -405,7 +396,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
-	storyteller_stats = SANITIZE_LIST(storyteller_stats)
+	preference_storyteller_stats = SANITIZE_LIST(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 
 	validate_quirks()
@@ -450,7 +441,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
-	save_data["storyteller_stats"] = storyteller_stats
+	save_data["preference_storyteller_stats"] = preference_storyteller_stats
 	// DARKPACK EDIT END
 
 	return TRUE
