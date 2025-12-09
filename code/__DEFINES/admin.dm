@@ -7,6 +7,9 @@
 #define MUTE_ADMINHELP (1<<3)
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_INTERNET_REQUEST (1<<5)
+// DARKPACK EDIT ADDITION START- LOOC
+#define MUTE_LOOC (1<<6)
+// Skyrat EDIT END
 #define MUTE_ALL ALL
 
 //Some constants for DB_Ban
