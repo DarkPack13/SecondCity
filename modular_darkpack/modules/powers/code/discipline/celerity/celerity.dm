@@ -23,12 +23,6 @@
 
 	return POWER_CANCEL_ACTIVATION
 
-/datum/discipline_power/celerity/proc/apply_passive_dexterity_bonus(bonus)
-	if (owner.st_get_stat_mod(STAT_DEXTERITY, "celerity") >= bonus)
-		return
-
-	owner.st_add_stat_mod(STAT_DEXTERITY, bonus, "celerity")
-
 //CELERITY 1
 /datum/discipline_power/celerity/one
 	name = "Celerity 1"
@@ -50,18 +44,16 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION, PROC_REF(temporis_explode))
-
 	owner.apply_status_effect(/datum/status_effect/celerity/one)
 
 /datum/discipline_power/celerity/one/deactivate()
 	. = ..()
 
 	UnregisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION)
-
 	owner.remove_status_effect(/datum/status_effect/celerity/one)
 
 /datum/discipline_power/celerity/one/post_gain()
-	apply_passive_dexterity_bonus(1)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 1, "Celerity")
 
 //CELERITY 2
 /datum/discipline_power/celerity/two
@@ -84,18 +76,16 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION, PROC_REF(temporis_explode))
-
 	owner.apply_status_effect(/datum/status_effect/celerity/two)
 
 /datum/discipline_power/celerity/two/deactivate()
 	. = ..()
 
 	UnregisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION)
-
 	owner.remove_status_effect(/datum/status_effect/celerity/two)
 
 /datum/discipline_power/celerity/two/post_gain()
-	apply_passive_dexterity_bonus(2)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 2, "Celerity")
 
 //CELERITY 3
 /datum/discipline_power/celerity/three
@@ -118,18 +108,16 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION, PROC_REF(temporis_explode))
-
 	owner.apply_status_effect(/datum/status_effect/celerity/three)
 
 /datum/discipline_power/celerity/three/deactivate()
 	. = ..()
 
 	UnregisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION)
-
 	owner.remove_status_effect(/datum/status_effect/celerity/three)
 
 /datum/discipline_power/celerity/three/post_gain()
-	apply_passive_dexterity_bonus(3)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 3, "Celerity")
 
 //CELERITY 4
 /datum/discipline_power/celerity/four
@@ -152,18 +140,16 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION, PROC_REF(temporis_explode))
-
 	owner.apply_status_effect(/datum/status_effect/celerity/four)
 
 /datum/discipline_power/celerity/four/deactivate()
 	. = ..()
 
 	UnregisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION)
-
 	owner.remove_status_effect(/datum/status_effect/celerity/four)
 
 /datum/discipline_power/celerity/four/post_gain()
-	apply_passive_dexterity_bonus(4)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 4, "Celerity")
 
 //CELERITY 5
 /datum/discipline_power/celerity/five
@@ -186,15 +172,13 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION, PROC_REF(temporis_explode))
-
 	owner.apply_status_effect(/datum/status_effect/celerity/five)
 
 /datum/discipline_power/celerity/five/deactivate()
 	. = ..()
 
 	UnregisterSignal(owner, COMSIG_POWER_PRE_ACTIVATION)
-
 	owner.remove_status_effect(/datum/status_effect/celerity/five)
 
 /datum/discipline_power/celerity/five/post_gain()
-	apply_passive_dexterity_bonus(5)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 5, "Celerity")

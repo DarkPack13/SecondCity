@@ -406,9 +406,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	storyteller_stats = SANITIZE_LIST(storyteller_stats)
-	storyteller_stat_points = SANITIZE_LIST(storyteller_stat_points)
-	storyteller_stats = SSstats.sanitize_stat_list(storyteller_stats)
-	storyteller_stat_points = SSstats.sanitize_points_list(storyteller_stat_points)
 	// DARKPACK EDIT ADD END
 
 	validate_quirks()
@@ -454,7 +451,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
 	save_data["storyteller_stats"] = storyteller_stats
-	save_data["storyteller_stat_points"] = storyteller_stat_points
 	// DARKPACK EDIT END
 
 	return TRUE

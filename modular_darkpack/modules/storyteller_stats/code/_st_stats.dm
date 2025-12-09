@@ -31,8 +31,6 @@
 	var/starting_score = 0
 	/// How many points are in this stat category that the player can use.
 	var/points = 0
-	/// At what score amount further upgrades require freebie point expendature to level up.
-	var/max_level_before_freebie_points = 5
 	/// If the preferences menu should count the bonus score as a normal score, used for things like willpower.
 	var/count_bonus_score = FALSE
 
@@ -43,7 +41,19 @@
 		return score
 
 /datum/st_stat/proc/can_set_score(amount)
-	if((amount < min_score) || (amount > max_score))
+	if((amount <= min_score) || (amount => max_score))
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/can_increase_score(amount)
+	var/new_score = score + amount
+	if(new_score > max_score)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/can_decrease_score(amount)
+	var/new_score = score - amount
+	if(new_score < min_score)
 		return FALSE
 	return TRUE
 
@@ -53,22 +63,10 @@
 	score = clamp(amount, min_score, max_score)
 	return TRUE
 
-/datum/st_stat/proc/can_increase_score(amount)
-	var/new_score = score + amount
-	if(new_score > max_score)
-		return FALSE
-	return TRUE
-
 /datum/st_stat/proc/increase_score(amount)
 	if(!can_increase_score(amount))
 		return FALSE
 	score = clamp(score + amount, min_score, max_score)
-	return TRUE
-
-/datum/st_stat/proc/can_decrease_score(amount)
-	var/new_score = score - amount
-	if(new_score < min_score)
-		return FALSE
 	return TRUE
 
 /datum/st_stat/proc/decrease_score(amount)
@@ -77,19 +75,17 @@
 	score = clamp(score - amount, min_score, max_score)
 	return TRUE
 
+/datum/st_stat/proc/add_stat_mod(amount, source)
+	LAZYSET(modifiers, source, amount)
+	update_modifiers()
+
+/datum/st_stat/proc/remove_stat_mod(source)
+	LAZYREMOVE(modifiers, source)
+	update_modifiers()
+
 /datum/st_stat/proc/update_modifiers()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	bonus_score = initial(bonus_score)
 	for(var/source in modifiers)
 		bonus_score += modifiers[source]
 	bonus_score = clamp(bonus_score, 0, 10)
-
-/datum/st_stat/proc/get_score_multiplier(low_mod = 0.25, high_mod = 2)
-	var/used_score = score + bonus_score
-	// used max_score when it exists
-	var/max_score = 5
-	used_score = clamp(used_score, 0, max_score)
-
-	var/mult = low_mod + ((used_score / max_score) * (high_mod - low_mod))
-
-	return mult
