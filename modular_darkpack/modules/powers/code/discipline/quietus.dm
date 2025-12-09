@@ -41,7 +41,7 @@
 	silenced_mobs.Cut()
 
 /datum/discipline_power/quietus/silence_of_death/proc/silence_loop()
-	if(!active || !owner)
+	if(!active || !owner || owner.stat == DEAD)
 		return
 
 	var/list/mobs_in_range = list()
