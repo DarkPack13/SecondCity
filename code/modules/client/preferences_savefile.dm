@@ -439,8 +439,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD - TTRPG Preferences
 	var/list/stats_list = preference_storyteller_stats
 	var/list/saved_list = list()
-	for(var/datum/st_stat/stat as anything in stats_list)
-		saved_list[stat.type] = stat.get_score(FALSE)
+	for(var/stat_typepath in stats_list)
+		var/datum/st_stat/stat = stats_list[stat_typepath]
+		saved_list[stat_typepath] = stat.get_score(FALSE)
 	save_data["preference_storyteller_stats"] = saved_list
 	// DARKPACK EDIT END
 
