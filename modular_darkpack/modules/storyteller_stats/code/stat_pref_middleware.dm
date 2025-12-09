@@ -12,7 +12,7 @@
 	var/list/data = list()
 	data["static_stats"] = list()
 	for(var/stat_path as anything in GLOB.storyteller_stats)
-		var/datum/st_stat/stat = new(stat_path)
+		var/datum/st_stat/stat = new stat_path()
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -27,7 +27,7 @@
 	var/list/data = list()
 	var/list/stats_list = list()
 	for(var/stat_path as anything in preferences.preference_storyteller_stats)
-		var/datum/st_stat/stat = new(stat_path)
+		var/datum/st_stat/stat = new stat_path()
 		stats_list += stat
 	data["stats"] = stats_list
 	return data
@@ -67,7 +67,7 @@
 
 	var/list/stats_list = list()
 	for(var/stat_path as anything in subtypesof(/datum/st_stat))
-		var/datum/st_stat/stat = new(stat_path)
+		var/datum/st_stat/stat = new stat_path()
 		stat.set_score(stat.starting_score)
 		stats_list[stat_path] = stat
 	preferences.preference_storyteller_stats = stats_list
