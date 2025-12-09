@@ -389,7 +389,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
-	preference_storyteller_stats = SANITIZE_LIST(preference_storyteller_stats)
+	if(!length(preference_storyteller_stats))
+		var/list/stat_list = list()
+		for(var/datum/st_stat/path as anything in valid_subtypesof(/datum/st_stat))
+			stat_list[path] = path.starting_score
+		preference_storyteller_stats = stat_list
 	// DARKPACK EDIT ADD END
 
 	validate_quirks()
