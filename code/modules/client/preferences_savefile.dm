@@ -375,7 +375,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		var/datum/st_stat/stat = new stat_path()
 		if(stats_list[text2path(stat_path)]) // If the stat_path already exists in our savefile, update our datum.
 			stat.set_score(stats_list[stat_path])
-		stats_list[stat_path] = stat
+		stats_list["[stat_path]"] = stat
 	preference_storyteller_stats = stats_list
 	// DARKPACK EDIT END
 
