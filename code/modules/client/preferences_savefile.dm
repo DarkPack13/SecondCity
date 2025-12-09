@@ -441,7 +441,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/list/saved_list = list()
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list[stat_typepath]
-		saved_list[stat_typepath] = stat.get_score(FALSE)
+		saved_list[stat_typepath] = stat.get_score(include_bonus = FALSE)
 	save_data["preference_storyteller_stats"] = saved_list
 	// DARKPACK EDIT END
 
