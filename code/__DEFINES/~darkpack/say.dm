@@ -1,1 +1,0 @@
-#define LOOC_CHANNEL "LOOC"
