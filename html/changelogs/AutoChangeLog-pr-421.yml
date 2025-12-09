@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - rscadd: "Added Guestbooks to the game, you now are required to ctrl shift click a person to set their name for yourself."

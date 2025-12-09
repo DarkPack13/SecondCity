@@ -1,0 +1,19 @@
+2025-12-03:
+  FalloutFalcon:
+  - bugfix: tzimisce night vision eyes work
+  - qol: bloodpool and torpor is fixed on admin heals
+  chazzyjazzy:
+  - bugfix: fixes a couple issues
+2025-12-05:
+  dwinters99:
+  - refactor: low walls are now objects
+2025-12-07:
+  Odisurin:
+  - rscadd: Two new signs to the game for later down the road establishments
+  XeonMations:
+  - balance: Stakes now place kindred in torpor until removed.
+  chazzyjazzy:
+  - bugfix: ticking a file
+2025-12-09:
+  XeonMations:
+  - rscadd: Added 3 mannequin subtypes to the game.

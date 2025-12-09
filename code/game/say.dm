@@ -151,10 +151,26 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Speaker name
 	var/namepart = speaker.get_message_voice(visible_name)
 
-	//DARKPACK EDIT START - PHONES
+	//DARKPACK EDIT START
+	var/atom/movable/reliable_narrator = speaker
+	if(istype(reliable_narrator, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/fakespeaker = reliable_narrator
+		reliable_narrator = fakespeaker.source
+
+	if(ismob(src) && (namepart != "Unknown"))
+		var/mob/receiver_mob = src
+		if(receiver_mob.mind?.guestbook)
+			var/mob/speaker_human = reliable_narrator
+			var/known_name = receiver_mob.mind.guestbook.get_known_name(src, reliable_narrator, speaker_human.real_name)
+			if(known_name)
+				namepart = "[known_name]"
+			else
+				var/mob/living/carbon/human/human_narrator = reliable_narrator
+				namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
+
 	if(radio_freq >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
-		var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
-		freqpart = sheet.icon_tag("phone-phone") + " "
+		var/icon/phone_icon = icon('modular_darkpack/modules/phones/icons/chat_icon.dmi', "phone")
+		freqpart = icon2html(phone_icon, src)
 	//DARKPACK EDIT END
 
 	//End name span.

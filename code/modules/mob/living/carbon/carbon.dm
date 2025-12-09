@@ -514,7 +514,6 @@
 
 	//DARKPACK EDIT ADDITION - Necromancy
 	if(HAS_TRAIT(src, TRAIT_GHOST_VISION))
-		new_sight |= SEE_INVISIBLE_OBSERVER
 		see_invisible = SEE_INVISIBLE_OBSERVER
 	//DARKPACK EDIT END - Necromancy
 
@@ -864,6 +863,11 @@
 	var/brain_status = SEND_SIGNAL(src, COMSIG_CARBON_DEFIB_BRAIN_CHECK) || can_defib_brain(get_organ_by_type(/obj/item/organ/brain))
 	if (brain_status)
 		return brain_status
+
+	// DARKPACK EDIT START
+	if (HAS_TRAIT(src, TRAIT_STAKED))
+		return DEFIB_FAIL_STAKED
+	// DARKPACK EDIT END
 
 	return DEFIB_POSSIBLE
 

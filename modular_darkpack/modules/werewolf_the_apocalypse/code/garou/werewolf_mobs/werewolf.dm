@@ -100,6 +100,7 @@
 /mob/living/carbon/werewolf/create_internal_organs()
 	internal_organs += new /obj/item/organ/brain
 	internal_organs += new /obj/item/organ/tongue
+	// DARKPACK TODO - Base type for night_vison eyes dont work. Make a subtype and fiddle with the values
 	internal_organs += new /obj/item/organ/eyes/night_vision
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach

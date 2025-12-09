@@ -6,5 +6,6 @@
 // used by the obfuscate ability
 #define OBFUSCATE_TRAIT "obfuscate_trait"
 
+#define STAKE_TRAIT "stake"
 
 #define NECROMANCY_TRAIT "necromancy"

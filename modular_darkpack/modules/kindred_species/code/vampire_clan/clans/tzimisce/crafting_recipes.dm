@@ -17,8 +17,13 @@
 	name = "Better Eyes (Nightvision)"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 15, /obj/item/organ/eyes = 1)
-	result = /obj/item/organ/eyes/night_vision
+	result = /obj/item/organ/eyes/night_vision/tzimisce
 	category = CAT_TZIMISCE
+
+/obj/item/organ/eyes/night_vision/tzimisce
+	low_light_cutoff = list(15, 6, 8)
+	medium_light_cutoff = list(35, 20, 25)
+	high_light_cutoff = list(50, 40, 40)
 
 /datum/crafting_recipe/tzi_implant
 	name = "Implanting Flesh Device"
