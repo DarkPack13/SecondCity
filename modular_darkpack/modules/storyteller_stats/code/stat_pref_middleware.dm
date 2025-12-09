@@ -11,7 +11,8 @@
 
 	var/list/data = list()
 	data["static_stats"] = list()
-	for(var/datum/st_stat/stat in GLOB.storyteller_stats)
+	for(var/stat_path as anything in GLOB.storyteller_stats)
+		var/datum/st_stat/stat = new(stat_path)
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -19,12 +20,16 @@
 		stat_data["category"] = stat.category
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
-		data["static_stats"][stat] = stat_data
+		data["static_stats"][stat_path] = stat_data
 	return data
 
 /datum/preference_middleware/stats/get_ui_data(mob/user)
 	var/list/data = list()
-	data["stats"] = preferences.preference_storyteller_stats
+	var/list/stats_list = list()
+	for(var/stat_path as anything in preferences.preference_storyteller_stats)
+		var/datum/st_stat/stat = new(stat_path)
+		stats_list += stat
+	data["stats"] = stats_list
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
@@ -59,8 +64,11 @@
 	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
 	log_stats(log_text)
 	preferences.preference_storyteller_stats = null
-	var/list/stat_list = list()
-	for(var/datum/st_stat/path as anything in valid_subtypesof(/datum/st_stat))
-		stat_list[path] = path.starting_score
-	preferences.preference_storyteller_stats = stat_list
+
+	var/list/stats_list = list()
+	for(var/stat_path as anything in subtypesof(/datum/st_stat))
+		var/datum/st_stat/stat = new(stat_path)
+		stat.set_score(stat.starting_score)
+		stats_list[stat_path] = stat
+	preferences.preference_storyteller_stats = stats_list
 	return TRUE

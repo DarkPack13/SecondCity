@@ -367,8 +367,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	all_quirks = save_data?["all_quirks"]
 
-	// DARKPACK EDIT ADD - STORYTELLER_STATS
-	preference_storyteller_stats = save_data?["preference_storyteller_stats"]
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	var/list/stats_list = save_data?["preference_storyteller_stats"]
+	for(var/stat_path as anything in subtypesof(/datum/st_stat))
+		var/datum/st_stat/stat = new(stat_path)
+		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
+			stat.set_score(stats_list[stat_path])
+		stats_list[stat_path] = stat
+	preference_storyteller_stats = stats_list
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary
@@ -387,14 +393,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences -= j
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
-
-	// DARKPACK EDIT ADD START - STORYTELLER_STATS
-	if(!length(preference_storyteller_stats))
-		var/list/stat_list = list()
-		for(var/datum/st_stat/path as anything in valid_subtypesof(/datum/st_stat))
-			stat_list[path] = path.starting_score
-		preference_storyteller_stats = stat_list
-	// DARKPACK EDIT ADD END
 
 	validate_quirks()
 
@@ -438,7 +436,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
-	save_data["preference_storyteller_stats"] = preference_storyteller_stats
+	var/list/stats_list = preference_storyteller_stats
+	var/list/saved_list = list()
+	for(var/datum/st_stat/stat as anything in stats_list)
+		saved_list[stat.type] = stat.get_score(FALSE)
+	save_data["preference_storyteller_stats"] = saved_list
 	// DARKPACK EDIT END
 
 	return TRUE
