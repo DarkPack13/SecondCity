@@ -5,14 +5,11 @@
 		"reset_stats" = PROC_REF(reset_stats)
 	)
 
-/datum/preference_middleware/stats/get_ui_static_data(mob/user)
-	if (preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
+/datum/preference_middleware/stats/get_ui_data(mob/user)
+	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
-
 	var/list/data = list()
-	data["static_stats"] = list()
-	for(var/stat_path as anything in GLOB.storyteller_stats)
-		var/datum/st_stat/stat = new stat_path()
+	for(var/datum/st_stat/stat as anything in preferences.preference_storyteller_stats)
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -20,16 +17,10 @@
 		stat_data["category"] = stat.category
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
-		data["static_stats"][stat_path] = stat_data
-	return data
-
-/datum/preference_middleware/stats/get_ui_data(mob/user)
-	var/list/data = list()
-	var/list/stats_list = list()
-	for(var/stat_path as anything in preferences.preference_storyteller_stats)
-		var/datum/st_stat/stat = new stat_path()
-		stats_list += stat
-	data["stats"] = stats_list
+		stat_data["score"] = stat.get_score(include_bonus = FALSE)
+		stat_data["points"] = stat.points
+		stat_data["abstract_type"] = stat.abstract_type
+		data["stats"][stat.type] = stat_data
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)

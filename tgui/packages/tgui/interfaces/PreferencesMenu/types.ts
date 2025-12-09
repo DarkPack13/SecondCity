@@ -191,17 +191,18 @@ export type PreferencesMenuData = {
   mood_enabled: BooleanLike;
   species_disallowed_quirks: string[];
   // DARKPACK EDIT ADD START
-  stats: Record<string, number>;
-  points: Record<string, number>;
-  static_stats: Record<
+  stats: Record<
     string,
     {
       name: string;
       desc: string;
+      score: number;
       max_score: number;
       editable: number;
       category: string;
       subcategory: string;
+      points: Record<string, number>;
+      abstract_type: string;
     }
   >;
   // DARKPACK EDIT ADD END

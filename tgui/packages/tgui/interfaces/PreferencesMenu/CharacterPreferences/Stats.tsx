@@ -8,14 +8,13 @@ export function StatsPage() {
   if (!data) return;
 
   const stats = data.stats;
-  const static_stats = data.static_stats;
-  const points = data.points;
 
   if (!stats || Object.keys(stats).length === 0) return null;
 
   // Group by category → subcategory using subtypes() order
   const grouped: Record<string, Record<string, string[]>> = {};
-  Object.entries(static_stats).forEach(([path, statData]) => {
+  Object.entries(stats).forEach(([path, statData]) => {
+    if (path === statData.abstract_type) return;
     const category = statData.category;
     const subcategory = statData.subcategory ?? 'General';
     if (!grouped[category]) grouped[category] = {};
@@ -28,18 +27,6 @@ export function StatsPage() {
       {/* Header row */}
       <Stack.Item className="PreferencesMenu__Stats__header">
         <Stack fill>
-          <Stack.Item grow>
-            <Stack>
-              {points &&
-                Object.entries(points).map(([pointType, count]) => (
-                  <Stack.Item key={pointType}>
-                    <b>
-                      {pointType.split('/').pop()}: {count}
-                    </b>
-                  </Stack.Item>
-                ))}
-            </Stack>
-          </Stack.Item>
           <Stack.Item>
             <Button
               className="reset-button"
@@ -67,8 +54,8 @@ export function StatsPage() {
                 <i>{subcat}</i>
                 <Stack vertical>
                   {paths.map((statPath) => {
-                    const statData = static_stats[statPath];
-                    const score = stats[statPath];
+                    const statData = stats[statPath];
+                    const score = statData.score;
                     const max = statData.max_score;
                     const label = statData.name;
                     const editable = statData.editable;

@@ -370,9 +370,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/stats_list = save_data?["preference_storyteller_stats"]
 	stats_list = SANITIZE_LIST(stats_list)
+
 	for(var/stat_path in subtypesof(/datum/st_stat))
 		var/datum/st_stat/stat = new stat_path()
-		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
+		if(stats_list[text2path(stat_path)]) // If the stat_path already exists in our savefile, update our datum.
 			stat.set_score(stats_list[stat_path])
 		stats_list[stat_path] = stat
 	preference_storyteller_stats = stats_list
@@ -440,7 +441,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/list/stats_list = preference_storyteller_stats
 	var/list/saved_list = list()
 	for(var/stat_typepath in stats_list)
-		var/datum/st_stat/stat = stats_list[stat_typepath]
+		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
 		saved_list[stat_typepath] = stat.get_score(include_bonus = FALSE)
 	save_data["preference_storyteller_stats"] = saved_list
 	// DARKPACK EDIT END
