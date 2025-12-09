@@ -14,6 +14,12 @@ Module ID: LOOC
 - `code/modules/admin/sql_ban_system.dm`
 - `code/modules/tgui_input/say_modal/modal.dm`
 - `code/modules/tgui_input/say_modal/speech.dm`
+- `tgui/packages/tgui-panel/chat/constants.ts`
+- `tgui/packages/tgui-panel/styles/tgchat/chat-dark.scss`
+- `tgui/packages/tgui-panel/styles/tgchat/chat-light.scss`
+- `tgui/packages/tgui-say/styles/colors.scss`
+- `tgui/packages/tgui-say/ChannelIterator.test.ts`
+- `tgui/packages/tgui-say/ChannelIterator.ts`
 
 ### Modular Overrides:
 
@@ -30,7 +36,7 @@ Module ID: LOOC
 
 ### Included files that are not contained in this module:
 
-- N/A
+- `tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/game_preferences/darkpack_looc.tsx`
 
 ### Credits:
 
