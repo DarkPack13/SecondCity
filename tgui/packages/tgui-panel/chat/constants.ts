@@ -54,7 +54,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote',
+    selector: '.say, .emote, .looc', // DARKPACK EDIT, ORIGINAL: selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
@@ -93,7 +93,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
-    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
+    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain, .looc, .rlooc', // DARKPACK EDIT, ORIGINAL: selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
