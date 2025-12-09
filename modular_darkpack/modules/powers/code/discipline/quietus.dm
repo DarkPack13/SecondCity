@@ -9,39 +9,64 @@
 	name = "Quietus power name"
 	desc = "Quietus power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/quietus.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/quietus.ogg'
 
 //SILENCE OF DEATH
 /datum/discipline_power/quietus/silence_of_death
 	name = "Silence of Death"
-	desc = "Create an area of pure silence around you, confusing those within it."
+	desc = "Create an area of pure silence around you, deafening the screams of your targets. This mystical silence radiates from your body, muting all noise within a 7 tile radius."
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
+	vitae_cost = 1
+	cancelable = TRUE
 
-	duration_length = 5 SECONDS
-	cooldown_length = 15 SECONDS
-	duration_override = TRUE
+	duration_length = 1 SCENES
+	cooldown_length = 2 SCENES
+	var/list/silenced_mobs = list()
+	var/silence_loop_timer
 
 /datum/discipline_power/quietus/silence_of_death/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/H in viewers(DEFAULT_SIGHT_DISTANCE, owner))
-		ADD_TRAIT(H, TRAIT_DEAF, "quietus")
-		if(H.get_confusion() < 15)
-			var/diff = 15 - H.get_confusion()
-			H.add_confusion(min(15, diff))
-		addtimer(CALLBACK(src, PROC_REF(deactivate), H), duration_length)
+	silence_loop()
 
-/datum/discipline_power/quietus/silence_of_death/deactivate(mob/living/carbon/human/deafened)
+	silence_loop_timer = addtimer(CALLBACK(src, PROC_REF(silence_loop)), 3 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+
+/datum/discipline_power/quietus/silence_of_death/deactivate(atom/target, direct = FALSE)
 	. = ..()
-	REMOVE_TRAIT(deafened, TRAIT_DEAF, "quietus")
+	deltimer(silence_loop_timer)
+	silence_loop_timer = null
+	for(var/mob/living/carbon/human/H in silenced_mobs)
+		REMOVE_TRAIT(H, TRAIT_MUTE, "quietus")
+	silenced_mobs.Cut()
+
+/datum/discipline_power/quietus/silence_of_death/proc/silence_loop()
+	if(!active || !owner)
+		return
+
+	var/list/mobs_in_range = list()
+
+	for(var/mob/living/carbon/human/H in view(DEFAULT_SIGHT_DISTANCE, owner))
+		mobs_in_range += H
+
+		if(!(H in silenced_mobs))
+			ADD_TRAIT(H, TRAIT_MUTE, "quietus")
+			silenced_mobs += H
+
+			if(H != owner && H.get_confusion() < 15)
+				var/diff = 15 - H.get_confusion()
+				H.add_confusion(min(15, diff))
+
+	for(var/mob/living/carbon/human/H in silenced_mobs)
+		if(!(H in mobs_in_range) || H.stat == DEAD)
+			REMOVE_TRAIT(H, TRAIT_MUTE, "quietus")
+			silenced_mobs -= H
 
 //SCORPION'S TOUCH
 /obj/item/melee/touch_attack/quietus
 	name = "\improper poison touch"
 	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	catchphrase = null
 	on_use_sound = 'sound/magic/disintegrate.ogg'
 	icon_state = "quietus"
 	inhand_icon_state = "mansus"
