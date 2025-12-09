@@ -41,7 +41,7 @@
 		return score
 
 /datum/st_stat/proc/can_set_score(amount)
-	if((amount <= min_score) || (amount => max_score))
+	if((amount <= min_score) || (amount >= max_score))
 		return FALSE
 	return TRUE
 

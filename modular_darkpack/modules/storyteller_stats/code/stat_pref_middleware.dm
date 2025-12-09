@@ -19,41 +19,41 @@
 		stat_data["category"] = stat.category
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
-		data["static_stats"][stat_type] = stat_data
+		data["static_stats"][stat] = stat_data
 	return data
 
 /datum/preference_middleware/stats/get_ui_data(mob/user)
 	var/list/data = list()
-	data["stats"] = preferences.storyteller_stats
+	data["stats"] = preferences.preference_storyteller_stats
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	var/datum/st_stat/stat_path = text2path(params["stat"])
+	var/old_value = stat_path.get_score(FALSE)
 
 
 
-	var/new_value = preferences.storyteller_stats[stat_path]
-	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[public_stat.name]' from [old_value] to [new_value]"
+	var/new_value = preferences.preference_storyteller_stats[stat_path]
+	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	var/datum/st_stat/stat_path = text2path(params["stat"])
+	var/old_value = stat_path.get_score(FALSE)
 
 
-
-	var/new_value = preferences.storyteller_stats[stat_path]
-	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[preferences.st_stats.name]' from [old_value] to [new_value]"
+	var/new_value = preferences.preference_storyteller_stats[stat_path]
+	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
 	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
 	log_stats(log_text)
-
-	storyteller_stats = null
+	preferences.preference_storyteller_stats = null
+	var/list/stat_list = list()
 	for(var/datum/st_stat/path as anything in valid_subtypesof(/datum/st_stat))
-		var/datum/st_stat/new_trait = new path
-		storyteller_stats[path] = new_trait
-	preferences.storyteller_stats = new_stats
+		stat_list[path] = path.starting_score
+	preferences.preference_storyteller_stats = stat_list
 	return TRUE
