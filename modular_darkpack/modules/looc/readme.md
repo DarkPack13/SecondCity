@@ -41,3 +41,11 @@ Module ID: LOOC
 ### Credits:
 
 XeonMations
+Gandalf2k15
+Azarak
+Seris02
+ZephyrTFA
+Zonespace27
+Vishenka0704
+LT3
+KannaLisvern
