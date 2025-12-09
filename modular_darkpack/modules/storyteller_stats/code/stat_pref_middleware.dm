@@ -28,27 +28,34 @@
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
-	var/datum/st_stat/stat_path = text2path(params["stat"])
+	SHOULD_NOT_SLEEP(TRUE)
+
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
 	var/old_value = stat_path.get_score(FALSE)
 
+	stat_path.increase_score(1)
 
-
-	var/new_value = preferences.preference_storyteller_stats[stat_path]
+	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
-	var/datum/st_stat/stat_path = text2path(params["stat"])
+	SHOULD_NOT_SLEEP(TRUE)
+
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
 	var/old_value = stat_path.get_score(FALSE)
 
+	stat_path.decrease_score(1)
 
-	var/new_value = preferences.preference_storyteller_stats[stat_path]
+	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
+	SHOULD_NOT_SLEEP(TRUE)
+
 	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
 	log_stats(log_text)
 	preferences.preference_storyteller_stats = null

@@ -368,14 +368,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = save_data?["all_quirks"]
 
 	// DARKPACK EDIT ADD - STORYTELLER_STATS
-	var/list/raw_storyteller_stats = save_data?["preference_storyteller_stats"]
-	if(islist(raw_storyteller_stats))
-		for(var/key in raw_storyteller_stats)
-			var/new_key = text2path(key)
-			if(new_key)
-				storyteller_stats[new_key] = raw_storyteller_stats[key]
-			else
-				stack_trace("Invalid path in storyteller_stats save data: [key]")
+	preference_storyteller_stats = save_data?["preference_storyteller_stats"]
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary

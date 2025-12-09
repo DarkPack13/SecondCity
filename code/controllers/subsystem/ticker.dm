@@ -546,7 +546,7 @@ SUBSYSTEM_DEF(ticker)
 					SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
 			else // clear any personalities the prefs added since our job clearly does not want them
 				new_player_living.clear_personalities()
-			// DARKPACK EDIT ADD - STORYTELLR_STATS
+			// DARKPACK EDIT ADD - STORYTELLER_STATS
 			new_player_living.apply_stats_from_prefs(new_player_mob.client?.prefs?.preference_storyteller_stats)
 			// DARKPACK EDIT END
 

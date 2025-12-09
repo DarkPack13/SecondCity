@@ -7,7 +7,6 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	storyteller_stats = GLOB.storyteller_stats.Copy()
-	update_stats()
 	AddComponent(/datum/component/aura)
 
 /mob/living/Destroy()
