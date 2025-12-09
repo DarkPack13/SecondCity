@@ -9,7 +9,10 @@
 	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
 	var/list/data = list()
-	for(var/datum/st_stat/stat as anything in preferences.preference_storyteller_stats)
+	for(var/typepath in preferences.preference_storyteller_stats)
+		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
+		if(!stat)
+			continue
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
