@@ -1,11 +1,13 @@
 /datum/st_stat/virtue/conscience
 	name = "Conscience"
 	starting_score = 1 //All vampires by default start out with this.
+	score = 1
 	description = "Remorse and atonement for your path's transgressions. Requires Conviction to be zero."
 
 /datum/st_stat/virtue/self_control
 	name = "Self-Control"
 	starting_score = 1 //All vampires by default start out with this.
+	score = 1
 	description = "Discipline and mastery over the Beast. Requires Instinct to be zero."
 
 /datum/st_stat/virtue/conviction
@@ -20,4 +22,5 @@
 	name = "Courage"
 	description = "Courage is the quality that allows characters to stand in the face of fear or daunting adversity. It is bravery, mettle, and stoicism combined."
 	starting_score = 1 //All vampires by default start out with this.
-	affects_willpower = TRUE
+	score = 1
+	stat_flags = AFFECTS_WILLPOWER

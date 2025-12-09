@@ -1,3 +1,8 @@
+// Stat Flags
+#define AFFECTS_HEALTH (1<<0)
+#define AFFECTS_WILLPOWER (1<<1)
+#define AFFECTS_SPEED (1<<2)
+
 // Physical
 #define STAT_STRENGTH /datum/st_stat/attribute/strength
 #define STAT_DEXTERITY /datum/st_stat/attribute/dexterity

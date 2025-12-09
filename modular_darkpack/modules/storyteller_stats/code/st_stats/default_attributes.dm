@@ -7,12 +7,13 @@
 	name = "Dexterity"
 	description = "Affects your speed and melee weapon accuracy."
 	subcategory = "Physical"
+	stat_flags = AFFECTS_SPEED
 
 /datum/st_stat/attribute/stamina
 	name = "Stamina"
 	description = "Affects your health."
 	subcategory = "Physical"
-	affects_health_pool = TRUE
+	stat_flags = AFFECTS_HEALTH
 
 /datum/st_stat/attribute/charisma
 	name = "Charisma"

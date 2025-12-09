@@ -10,8 +10,6 @@
 		st_stats[path] = new_trait
 		set_stat(path, new_trait.starting_score)
 
-	recalculate_all_willpower()
-
 /datum/storyteller_stats/Destroy()
 	st_stats = null
 	return ..()
@@ -59,20 +57,6 @@
 	for(var/datum/st_stat/ability/A in st_stats)
 		A.set_score(rand(min_score, max_score))
 
-/datum/storyteller_stats/proc/is_health_affecting(stat_path)
-	var/datum/st_stat/A = get_stat_datum(stat_path)
-	return A.affects_health_pool
-
-/datum/storyteller_stats/proc/is_speed_affecting(stat_path)
-	var/datum/st_stat/A = get_stat_datum(stat_path)
-	if(!A)
-		return FALSE
-	return A.affects_speed
-
-/datum/storyteller_stats/proc/is_willpower_affecting(stat_path)
-	var/datum/st_stat/A = get_stat_datum(stat_path)
-	return A.affects_willpower
-
 /datum/storyteller_stats/proc/decrease_score(stat_path, amount)
 	var/datum/st_stat/A = get_stat_datum(stat_path)
 	return A.decrease_score(amount)
@@ -80,17 +64,3 @@
 /datum/storyteller_stats/proc/increase_score(stat_path, amount)
 	var/datum/st_stat/A = get_stat_datum(stat_path)
 	return A.increase_score(amount)
-
-#warn this is currently unused?
-/datum/storyteller_stats/proc/recalculate_stats(stat_path)
-	if(is_willpower_affecting(stat_path))
-		if(stat_path == STAT_PERMANENT_WILLPOWER)
-			recalculate_all_willpower()
-		else
-			recalculate_all_willpower(TRUE)
-
-/datum/storyteller_stats/proc/recalculate_all_willpower(updating_permanent_willpower = FALSE)
-	if(updating_permanent_willpower)
-		remove_stat_mod(STAT_PERMANENT_WILLPOWER, "Courage")
-		add_stat_mod(STAT_PERMANENT_WILLPOWER, clamp(-(get_stat(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, get_stat(STAT_COURAGE)), "COURAGE")
-	set_stat(STAT_TEMPORARY_WILLPOWER, get_stat(STAT_PERMANENT_WILLPOWER))

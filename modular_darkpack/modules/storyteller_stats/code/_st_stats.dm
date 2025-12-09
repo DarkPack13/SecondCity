@@ -20,12 +20,8 @@
 	var/max_score = 5
 	/// The amount of freebie points that are required to increase this stat by 1 point.
 	var/freebie_point_cost = 0
-	/// If a stat affects the hp pool, recalculate the hp of the mob when changed.
-	var/affects_health_pool = FALSE
-	/// if a stat affects the willpower pool.
-	var/affects_willpower = FALSE
-	/// If a stat affects the player's speed, such as dexterity.
-	var/affects_speed = FALSE
+	/// Flags for stats, such as if it affects health.
+	var/stat_flags = NONE
 
 	/// If the user can spend points on that stat.
 	var/editable = TRUE
