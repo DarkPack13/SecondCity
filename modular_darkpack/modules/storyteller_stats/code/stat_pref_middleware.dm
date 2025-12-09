@@ -9,6 +9,7 @@
 	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
 	var/list/data = list()
+	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
 		if(!stat)
@@ -22,14 +23,14 @@
 		stat_data["max_score"] = stat.max_score
 		stat_data["score"] = stat.get_score(include_bonus = FALSE)
 		stat_data["points"] = stat.points
-		stat_data["abstract_type"] = stat.abstract_type
-		data["stats"][stat.type] = stat_data
+		stat_data["abstract_type"] = "[stat.abstract_type]"
+		data["stats"]["[stat.type]"] = stat_data
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/old_value = stat_path.get_score(FALSE)
 
 	stat_path.increase_score(1)
@@ -42,7 +43,7 @@
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/old_value = stat_path.get_score(FALSE)
 
 	stat_path.decrease_score(1)
