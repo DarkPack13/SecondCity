@@ -28,3 +28,22 @@
 		if(I in client.images)
 			client.images -= I
 	obf_icons = null
+
+/mob/living/Login()
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_OBFUSCATED))
+		add_obficon()
+
+/mob/living/Logout()
+	. = ..()
+	remove_obficon()
+
+/mob/living/proc/on_client_set(datum/source)
+	SIGNAL_HANDLER
+	if(HAS_TRAIT(src, TRAIT_OBFUSCATED))
+		add_obficon()
+
+/mob/living/proc/on_client_lost(datum/source)
+	SIGNAL_HANDLER
+	remove_obficon()
+// TFN EDIT END
