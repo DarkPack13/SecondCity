@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A DARKPACK UI FILE
 import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
