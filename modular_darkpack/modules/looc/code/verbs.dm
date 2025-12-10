@@ -42,10 +42,10 @@
 		if(is_banned_from(ckey, BAN_LOOC))
 			to_chat(src, span_warning("You are LOOC banned!"))
 			return
-		if(mob.stat == DEAD && CONFIG_GET(flag/looc_while_dead))
+		if(mob.stat == DEAD && !CONFIG_GET(flag/looc_while_dead))
 			to_chat(src, span_danger("You cannot use LOOC while dead."))
 			return
-		if(isdead(mob) && CONFIG_GET(flag/looc_while_dead))
+		if(isdead(mob) && !CONFIG_GET(flag/looc_while_dead))
 			to_chat(src, span_danger("You cannot use LOOC while ghosting."))
 			return
 
