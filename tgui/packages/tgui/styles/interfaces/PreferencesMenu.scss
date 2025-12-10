@@ -14,6 +14,21 @@ $department_map: (
   'Science': colors.fg(var(--color-purple)),
   'Service': var(--color-green),
   'Silicon': var(--color-pink),
+  // DARKPACK EDIT ADD START
+  'Prince': var(--color-orange),
+  'Camarilla': var(--color-gold),
+  'Anarch': var(--color-bad),
+  'Church': var(--color-gray),
+  'Chantry': var(--color-purple),
+  'Clinic': var(--color-teal),
+  'Warehouse': var(--color-brown),
+  'Strip_Club': var(--color-violet),
+  'Police': var(--color-blue),
+  'Giovanni': var(--color-green),
+  'Manor': var(--color-violet),
+  'Sabbat': var(--color-grey),
+  'Citizen': var(--color-light-grey),
+  'City_Services': var(--color-white), // DARKPACK EDIT ADD END
 );
 
 .ChoicedSelection {
