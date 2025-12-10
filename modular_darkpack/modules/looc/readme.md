@@ -24,6 +24,7 @@ Module ID: LOOC
 ### Modular Overrides:
 
 - `modular_darkpack/master_files/code/_globalvars/configuration.dm`
+- `modular_darkpack/master_files/code/controllers/configuration/entries/general.dm`
 
 ### Defines:
 
@@ -37,6 +38,7 @@ Module ID: LOOC
 ### Included files that are not contained in this module:
 
 - `tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/game_preferences/darkpack_looc.tsx`
+- `config/darkpack_config.txt`
 
 ### Credits:
 
