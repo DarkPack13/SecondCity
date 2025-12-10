@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import { Button, Stack, Tooltip, AnimatedNumber } from 'tgui-core/components';
+import { Button, Stack, Tooltip, AnimatedNumber, Popper, Section } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
 import { type PreferencesMenuData } from '../types';
 
@@ -12,7 +12,7 @@ export function StatsPage() {
   if (!stats || Object.keys(stats).length === 0) return null;
 
   const pointStats = Object.entries(stats)
-    .filter(([path, statData]) => path === statData.abstract_type)
+    .filter(([path, statData]) => path === statData.abstract_type && statData.name)
     .map(([path, statData]) => ({
       path,
       name: statData.name, // Display name for the points stat
@@ -34,7 +34,7 @@ export function StatsPage() {
     <Stack vertical fill className="PreferencesMenu__Stats">
       {/* Header row */}
       <Stack.Item className="PreferencesMenu__Stats__header">
-        <Stack fill>
+        <Stack>
           <Stack.Item>
             <Button
               className="reset-button"
@@ -45,12 +45,16 @@ export function StatsPage() {
               tooltipPosition="top"
             />
           </Stack.Item>
+          <Stack.Item>
           {pointStats.map((pointStat) => (
-            <Stack.Item key={pointStat.path} className="point-stat-display">
-                <b>{pointStat.name}: </b>
+            <Section inline my='10px' mx='5px'>
+              <Stack.Item inline my='10px' mx='5px'>
+              <b>{pointStat.name}: </b>
               <AnimatedNumber value={pointStat.points} />
-            </Stack.Item>
+              </Stack.Item>
+            </Section>
           ))}
+          </Stack.Item>
         </Stack>
       </Stack.Item>
 
