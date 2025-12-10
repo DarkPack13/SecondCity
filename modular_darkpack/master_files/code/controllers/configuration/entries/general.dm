@@ -9,3 +9,6 @@
 
 /datum/config_entry/string/githuburl
 	default = "https://github.com/DarkPack13/SecondCity"
+
+/datum/config_entry/flag/looc_while_dead
+	default = FALSE
