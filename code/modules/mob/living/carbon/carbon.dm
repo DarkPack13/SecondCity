@@ -864,6 +864,11 @@
 	if (brain_status)
 		return brain_status
 
+	// DARKPACK EDIT START
+	if (HAS_TRAIT(src, TRAIT_STAKED))
+		return DEFIB_FAIL_STAKED
+	// DARKPACK EDIT END
+
 	return DEFIB_POSSIBLE
 
 /// Return a defib status based on the heart organ provided

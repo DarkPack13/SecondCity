@@ -256,48 +256,6 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 
-/obj/item/vampire_stake
-	name = "stake"
-	desc = "Paralyzes blank-bodies if aimed straight to the heart."
-	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	icon_state = "stake"
-	force = 10
-//	wound_bonus = -10
-	throwforce = 10
-	attack_verb_continuous = list("pierces", "cuts")
-	attack_verb_simple = list("pierce", "cut")
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	armour_penetration = 50
-	sharpness = SHARP_EDGED
-	w_class = WEIGHT_CLASS_SMALL
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
-
-/obj/item/vampire_stake/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		return
-	// DARKPACK TODO - GAROU
-	/*
-	if(isgarou(target) || iswerewolf(target) || isanimal(target))
-		return
-	*/
-	if(target.IsParalyzed() || target.IsKnockdown() || target.IsStun())
-		return
-	if(!target.IsParalyzed() && iskindred(target) && !target.stakeimmune)
-		if(HAS_TRAIT(target, TRAIT_STAKE_RESISTANT))
-			visible_message(span_warning("[user]'s stake splinters as it touches [target]'s heart!"), span_warning("Your stake splinters as it touches [target]'s heart!"))
-			REMOVE_TRAIT(target, TRAIT_STAKE_RESISTANT, MAGIC_TRAIT)
-			qdel(src)
-		else
-			visible_message(span_warning("[user] aims [src] straight to the [target]'s heart!"), span_warning("You aim [src] straight to the [target]'s heart!"))
-			if(do_after(user, 20, target))
-				user.do_attack_animation(target)
-				visible_message(span_warning("[user] pierces [target]'s torso!"), span_warning("You pierce [target]'s torso!"))
-				target.Paralyze(1200)
-				target.Sleeping(1200)
-				qdel(src)
-
 /obj/item/shovel/vamp
 	name = "shovel"
 	desc = "Great weapon against mortal or immortal."
