@@ -373,7 +373,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/stat_path in subtypesof(/datum/st_stat))
 		var/datum/st_stat/stat = new stat_path()
 		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list[stat_path])
+			stat.set_score(stats_list["[stat_path]"])
 		stats_list["[stat_path]"] = stat
 	preference_storyteller_stats = stats_list
 	// DARKPACK EDIT END
@@ -448,7 +448,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/list/saved_list = list()
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
-		saved_list[stat_typepath] = stat.get_score(include_bonus = FALSE)
+		saved_list["[stat_typepath]"] = stat.get_score(include_bonus = FALSE)
 	save_data["preference_storyteller_stats"] = saved_list
 	// DARKPACK EDIT END
 
