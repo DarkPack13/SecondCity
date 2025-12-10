@@ -1,7 +1,7 @@
 // THIS IS A DARKPACK UI FILE
-import { Button, Stack, Tooltip, AnimatedNumber, Popper, Section } from 'tgui-core/components';
+import { Button, Stack, Tooltip, AnimatedNumber, Section } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
-import { type PreferencesMenuData } from '../types';
+import type {  PreferencesMenuData } from '../types';
 
 export function StatsPage() {
   const { act, data } = useBackend<PreferencesMenuData>();
@@ -47,8 +47,8 @@ export function StatsPage() {
           </Stack.Item>
           <Stack.Item>
           {pointStats.map((pointStat) => (
-            <Section inline my='10px' mx='5px'>
-              <Stack.Item inline my='10px' mx='5px'>
+            <Section inline my='10px' mx='5px' key={pointStat.path}>
+              <Stack.Item inline my='10px' mx='5px' key={pointStat.path}>
               <b>{pointStat.name}: </b>
               <AnimatedNumber value={pointStat.points} />
               </Stack.Item>
