@@ -370,7 +370,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/stats_list = save_data?["preference_storyteller_stats"]
 	stats_list = SANITIZE_LIST(stats_list)
-
 	for(var/stat_path in subtypesof(/datum/st_stat))
 		var/datum/st_stat/stat = new stat_path()
 		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
@@ -439,6 +438,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
 	var/list/stats_list = preference_storyteller_stats
+	if(!length(stats_list))
+		stats_list = "[subtypesof(/datum/st_stat)]"
 	var/list/saved_list = list()
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
