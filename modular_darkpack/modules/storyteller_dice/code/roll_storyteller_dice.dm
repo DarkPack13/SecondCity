@@ -88,6 +88,9 @@ SUBSYSTEM_DEF(roll)
 /datum/controller/subsystem/roll/proc/count_success(list/rolled_dice, difficulty = 6, output_text)
 	var/success_count = 0
 	for(var/roll in rolled_dice)
+		if(roll == 10)
+			output_text += span_bold(span_nicegreen("[get_dice_char(roll)]"))
+			success_count += 2
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
@@ -103,6 +106,8 @@ SUBSYSTEM_DEF(roll)
 /datum/controller/subsystem/roll/proc/count_success_no_output(list/rolled_dice, difficulty = 6)
 	var/success_count = 0
 	for(var/roll in rolled_dice)
+		if(roll == 10)
+			success_count += 2
 		if(roll >= difficulty)
 			success_count++
 		else if(roll == 1)
