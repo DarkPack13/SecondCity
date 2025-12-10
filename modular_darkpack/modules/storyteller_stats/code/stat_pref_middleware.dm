@@ -12,8 +12,6 @@
 	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
-		if((stat.abstract_type == typepath))
-			continue
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -21,16 +19,8 @@
 		stat_data["category"] = stat.category
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
-		stat_data["score"] = stat.get_score(include_bonus = FALSE)
-		data["stats"]["[stat.type]"] = stat_data
-
-	// These are the abstract types and freebie points.
-	for(var/abstract_type in preferences.preference_storyteller_stats)
-		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
-		if((stat.abstract_type != typepath))
-			continue
-		var/list/stat_data = list()
 		stat_data["points"] = stat.get_points()
+		stat_data["score"] = stat.get_score(include_bonus = FALSE)
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
