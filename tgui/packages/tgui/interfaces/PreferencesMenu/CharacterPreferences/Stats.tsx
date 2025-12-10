@@ -11,6 +11,14 @@ export function StatsPage() {
 
   if (!stats || Object.keys(stats).length === 0) return null;
 
+  const pointStats = Object.entries(stats)
+    .filter(([path, statData]) => path === statData.abstract_type)
+    .map(([path, statData]) => ({
+      path,
+      name: statData.name, // Display name for the points stat
+      points: statData.points, // The current point value
+    }));
+
   // Group by category → subcategory using subtypes() order
   const grouped: Record<string, Record<string, string[]>> = {};
   Object.entries(stats).forEach(([path, statData]) => {
@@ -37,9 +45,12 @@ export function StatsPage() {
               tooltipPosition="top"
             />
           </Stack.Item>
-          <Stack.Item>
-            <AnimatedNumber value={2} />
-          </Stack.Item>
+          {pointStats.map((pointStat) => (
+            <Stack.Item key={pointStat.path} className="point-stat-display">
+                <b>{pointStat.name}: </b>
+              <AnimatedNumber value={pointStat.points} />
+            </Stack.Item>
+          ))}
         </Stack>
       </Stack.Item>
 

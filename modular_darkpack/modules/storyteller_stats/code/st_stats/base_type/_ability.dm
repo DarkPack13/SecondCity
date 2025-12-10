@@ -1,4 +1,5 @@
 /datum/st_stat/ability
+	name = "Ability Points"
 	abstract_type = /datum/st_stat/ability
 	category = "Ability"
 	freebie_point_cost = FREEBIE_COST_ABILITY

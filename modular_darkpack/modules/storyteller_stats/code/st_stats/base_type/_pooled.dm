@@ -4,3 +4,4 @@
 	min_score = 1
 	max_score = 10
 	score = 1
+	freebie_point_cost = FREEBIE_COST_WILLPOWER

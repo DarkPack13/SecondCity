@@ -201,7 +201,7 @@ export type PreferencesMenuData = {
       editable: number;
       category: string;
       subcategory: string;
-      points: Record<string, number>;
+      points: number;
       abstract_type: string;
     }
   >;
