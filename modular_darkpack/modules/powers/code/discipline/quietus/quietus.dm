@@ -33,64 +33,13 @@
 	. = ..()
 	QDEL_NULL(silence_field)
 
-//SCORPION'S TOUCH
-/obj/item/melee/touch_attack/quietus
-	name = "\improper poison touch"
-	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
-	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	hitsound = 'sound/effects/magic/disintegrate.ogg'
-	icon_state = "quietus"
-	inhand_icon_state = "mansus"
-	var/poison_potency = 1
-	var/poison_duration = 0
-
-//requires stats preferences
-/obj/item/melee/touch_attack/quietus/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	if(isliving(target))
-		var/mob/living/carbon/human/victim = target
-
-		// victim resists the posion with stamina + fortitude
-		var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, mobs_to_show_output = victim)
-
-		// each resistance success subtracts from the duration
-		var/effective_duration = max(0, poison_duration - resistance)
-
-		if(effective_duration <= 0)
-			to_chat(victim, span_notice("You resist the poison!"))
-			to_chat(user, span_warning("[victim] resists your poison!"))
-			qdel(src)
-			return
-
-		// stamina stat mod reduction goes here
-
-		// Check if victim reaches zero stamina
-		if(victim.st_get_stat(STAT_STAMINA) <= 0)
-			if(iskindred(victim))
-				victim.torpor()
-				to_chat(victim, span_userdanger("Your body shuts down as the poison drains your very essence! You enter torpor!"))
-				to_chat(user, span_boldwarning("[victim] collapses into torpor!"))
-			else
-				// apply non transmittable disease to the mortal victim if they reach zero stamina
-				to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
-
-		victim.adjustFireLoss(10 * poison_potency) // this is nasty
-		//victim.AdjustKnockdown(3 SECONDS) this is from the old code
-
-		to_chat(user, span_warning("Your venomous touch burns [victim]!"))
-		to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
-		qdel(src)
-	return ..()
-
-
-//COMPONENT FOR WEAPON
-
 /datum/discipline_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
 	desc = "Create a powerful venom to apply to your enemies."
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
-
+	vitae_cost = 0
 	violates_masquerade = TRUE
 	cooldown_length = 1 MINUTES
 	var/blood_converted
@@ -123,19 +72,31 @@
 	for(var/i in 1 to min(max_conversion, owner.bloodpool))
 		bp_options += i
 
-	var/choice = tgui_input_list(owner, "How many blood points will you use to create this toxin?", "Scorpion's Touch", bp_options)
-	if(!choice)
+	blood_converted = tgui_input_list(owner, "How many blood points will you use to create this toxin?", "Scorpion's Touch", bp_options)
+	if(!blood_converted)
 		return FALSE
 
-	owner.adjust_blood_pool(-choice)
+	owner.adjust_blood_pool(-blood_converted)
 
 	return TRUE
 
 /datum/discipline_power/quietus/scorpions_touch/activate()
 	. = ..()
-	owner.drop_all_held_items()
-	//this should probably be changed to a normal ranged attack
-	owner.put_in_active_hand(new /obj/item/melee/touch_attack/quietus(owner))
+	var/obj/item/held_weapon = owner.get_active_held_item()
+	if(held_weapon && istype(held_weapon, /obj/item))
+		if(held_weapon.GetComponent(/datum/component/scorpions_touch_poison))
+			to_chat(owner, span_warning("[held_weapon] is already poisoned!"))
+			return
+
+		held_weapon.AddComponent(/datum/component/scorpions_touch_poison, blood_converted, debuff_duration)
+		to_chat(owner, span_notice("You coat [held_weapon] with your venomous blood!"))
+	else
+		owner.drop_all_held_items()
+		//Banu Haqim can 'spit' this venom too - perhaps throw the touch attack item...?
+		var/obj/item/melee/touch_attack/quietus/touch = new(owner)
+		touch.poison_potency = blood_converted
+		touch.poison_duration = debuff_duration
+		owner.put_in_active_hand(touch)
 
 //signals_living_mob_carbon.dm for signals or whatever
 //DAGON'S CALL
@@ -145,23 +106,112 @@
 
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
-
+	vitae_cost = 0
+	//willpower_cost = 1
 	cooldown_length = 5 SECONDS
+
+	var/list/marked_targets = list()
+
+/datum/discipline_power/quietus/dagons_call/post_gain()
+	. = ..()
+	RegisterSignal(owner, COMSIG_HUMAN_PUNCHED, PROC_REF(on_punch))
+	RegisterSignal(owner, COMSIG_HUMAN_GOT_PUNCHED, PROC_REF(on_punch))
+	RegisterSignal(owner, COMSIG_CARBON_HELP_ACT, PROC_REF(on_touch))
+	RegisterSignal(owner, COMSIG_CARBON_HELPED, PROC_REF(on_touch))
+
+/datum/discipline_power/quietus/dagons_call/Destroy()
+	UnregisterSignal(owner, list(COMSIG_HUMAN_PUNCHED, COMSIG_CARBON_HELP_ACT, COMSIG_CARBON_HELPED))
+	marked_targets.Cut()
+	return ..()
+
+/datum/discipline_power/quietus/dagons_call/proc/on_punch(datum/source, mob/living/carbon/human/victim)
+	SIGNAL_HANDLER
+	mark_target(victim)
+
+/datum/discipline_power/quietus/dagons_call/proc/on_touch(datum/source, mob/living/carbon/human/target)
+	SIGNAL_HANDLER
+	mark_target(target)
+
+/datum/discipline_power/quietus/dagons_call/proc/mark_target(mob/living/carbon/human/target)
+	if(!target || !ishuman(target) || target == owner)
+		return
+
+	var/datum/weakref/target_ref = WEAKREF(target)
+	marked_targets[target_ref] = world.time
+
+	to_chat(owner, span_notice("You mark [target] with your touch."))
+
+/datum/discipline_power/quietus/dagons_call/proc/get_valid_targets()
+	var/list/valid = list()
+	var/current_time = world.time
+
+	for(var/datum/weakref/target_ref as anything in marked_targets)
+		var/mark_time = marked_targets[target_ref]
+
+		if(current_time - mark_time > 20 MINUTES)
+			marked_targets -= target_ref
+			continue
+
+		var/mob/living/carbon/human/target = target_ref.resolve()
+		if(!target || QDELETED(target))
+			marked_targets -= target_ref
+			continue
+
+		valid[target] = mark_time
+
+	return valid
+
+/datum/discipline_power/quietus/dagons_call/pre_activation_checks(atom/target)
+	. = ..()
+
+	var/list/valid_targets = get_valid_targets()
+
+	if(!length(valid_targets))
+		to_chat(owner, span_warning("You haven't marked anyone with your touch yet!"))
+		return FALSE
+
+	return TRUE
 
 /datum/discipline_power/quietus/dagons_call/activate()
 	. = ..()
-	if(owner.lastattacked)
-		if(isliving(owner.lastattacked))
-			var/mob/living/L = owner.lastattacked
-			L.adjustStaminaLoss(80)
-			L.adjustFireLoss(10)
-			to_chat(owner, "You send your curse on [L], the last creature you attacked.")
-		else
-			to_chat(owner, "You don't seem to have last attacked soul earlier...")
-			return
-	else
-		to_chat(owner, "You don't seem to have last attacked soul earlier...")
+
+	var/list/valid_targets = get_valid_targets()
+	var/list/target_names = list()
+
+	for(var/mob/living/carbon/human/target as anything in valid_targets)
+		target_names[target.name] = target
+
+	var/chosen_name = tgui_input_list(owner, "Choose your target:", "Dagon's Call", target_names)
+	if(!chosen_name)
 		return
+
+	var/mob/living/carbon/human/victim = target_names[chosen_name]
+	strike_victim(victim)
+
+/datum/discipline_power/quietus/dagons_call/proc/strike_victim(mob/living/carbon/human/victim)
+	var/attacker_stamina = owner.st_get_stat(STAT_STAMINA)
+	var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
+	var/victim_willpower = victim.st_get_stat(STAT_WILLPOWER)
+
+	var/attacker_successes = SSroll.storyteller_roll(attacker_stamina, victim_willpower, numerical = TRUE, mobs_to_show_output = owner)
+
+	var/victim_successes = SSroll.storyteller_roll(victim_stamina, victim_willpower, numerical = TRUE, mobs_to_show_output = victim)
+
+	var/net_successes = attacker_successes - victim_successes
+
+	if(net_successes <= 0)
+		to_chat(owner, span_warning("[victim] resists Dargon's Call."))
+		return
+
+	victim.adjustFireLoss(10 * net_successes)
+
+	to_chat(owner, span_boldwarning("You invoke Dagon's Call on [victim], choking them with their own blood!"))
+	to_chat(victim, span_userdanger("Your blood vessels burst as you drown in your own blood!"))
+
+	if(victim.stat != DEAD)
+		var/continue_call = tgui_alert(owner, "Continue Dagon's Call for 1 additional Willpower?", "Dagon's Call", list("Yes", "No"))
+		if(continue_call == "Yes" /*&& owner.adjust_willpower(-1)*/)
+			strike_victim(victim)
 
 //BAAL'S CARESS
 /datum/discipline_power/quietus/baals_caress

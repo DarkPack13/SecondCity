@@ -7282,6 +7282,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\protean\mist_form.dm"
 #include "modular_darkpack\modules\powers\code\discipline\protean\protean.dm"
 #include "modular_darkpack\modules\powers\code\discipline\quietus\quietus.dm"
+#include "modular_darkpack\modules\powers\code\discipline\quietus\components\scorptions_touch.dm"
 #include "modular_darkpack\modules\powers\code\discipline\quietus\fields\silence_of_death_aoe.dm"
 #include "modular_darkpack\modules\powers\code\discipline\temporis\temporis.dm"
 #include "modular_darkpack\modules\powers\code\discipline\temporis\temporis_effects.dm"

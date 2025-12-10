@@ -1,0 +1,104 @@
+//SCORPION'S TOUCH
+/obj/item/melee/touch_attack/quietus
+	name = "\improper poison touch"
+	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	hitsound = 'sound/effects/magic/disintegrate.ogg'
+	icon_state = "quietus"
+	inhand_icon_state = "mansus"
+	var/poison_potency = 1
+	var/poison_duration = 0
+
+//requires stats preferences
+/obj/item/melee/touch_attack/quietus/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	if(ishuman(target))
+		var/mob/living/carbon/human/victim = target
+
+		// victim resists the posion with stamina + fortitude
+		var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, mobs_to_show_output = victim)
+
+		// each resistance success subtracts from the duration
+		var/effective_duration = max(0, poison_duration - resistance)
+
+		if(effective_duration <= 0)
+			to_chat(victim, span_notice("You resist the poison!"))
+			to_chat(user, span_warning("[victim] resists your poison!"))
+			qdel(src)
+			return
+
+		// stamina stat mod reduction goes here
+
+		// Check if victim reaches zero stamina
+		if(victim.st_get_stat(STAT_STAMINA) <= 0)
+			if(iskindred(victim))
+				victim.torpor()
+				to_chat(victim, span_userdanger("Your body shuts down as the poison drains your very essence! You enter torpor!"))
+				to_chat(user, span_boldwarning("[victim] collapses into torpor!"))
+			else
+				// apply non transmittable disease to the mortal victim if they reach zero stamina
+				to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
+
+		victim.adjustFireLoss(2 * poison_potency) // this is nasty, nerfed from 10 to 2
+		//victim.AdjustKnockdown(3 SECONDS) this is from the old code
+
+		to_chat(user, span_warning("Your venomous touch burns [victim]!"))
+		to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
+		qdel(src)
+	return ..()
+
+
+//COMPONENT FOR WEAPON
+/datum/component/scorpions_touch_poison
+	var/poison_potency = 1
+	var/poison_duration = 0
+
+/datum/component/scorpions_touch_poison/Initialize(potency = 1, duration = 0)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+	poison_potency = potency
+	poison_duration = duration
+
+/datum/component/scorpions_touch_poison/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(apply_poison))
+
+/datum/component/scorpions_touch_poison/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
+
+/datum/component/scorpions_touch_poison/proc/apply_poison(obj/item/source, atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	SIGNAL_HANDLER
+
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/victim = target
+
+	// victim resists the posion with stamina + fortitude
+	var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, mobs_to_show_output = victim)
+
+	// each resistance success subtracts from the duration
+	var/effective_duration = max(0, poison_duration - resistance)
+
+	if(effective_duration <= 0)
+		to_chat(victim, span_notice("You resist the poison!"))
+		to_chat(user, span_warning("[victim] resists your poison!"))
+		qdel(src)
+		return
+
+	// stamina stat mod reduction goes here
+
+	// Check if victim reaches zero stamina
+	if(victim.st_get_stat(STAT_STAMINA) <= 0)
+		if(iskindred(victim))
+			victim.torpor()
+			to_chat(victim, span_userdanger("Your body shuts down as the poison drains your very essence! You enter torpor!"))
+			to_chat(user, span_boldwarning("[victim] collapses into torpor!"))
+		else
+			// apply non transmittable disease to the mortal victim if they reach zero stamina
+			to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
+
+	victim.adjustFireLoss(2 * poison_potency) // this is nasty, nerfed from 10 to 2
+	//victim.AdjustKnockdown(3 SECONDS) this is from the old code
+
+	to_chat(user, span_warning("Your venomous touch burns [victim]!"))
+	to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
+	qdel(src)
