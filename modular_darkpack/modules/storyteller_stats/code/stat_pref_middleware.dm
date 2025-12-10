@@ -36,13 +36,15 @@
 
 	if(!stat_path.can_increase_score(1)) // Have we reached the max_score of the stat?
 		return FALSE // If we have, then return early.
-	if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
-		abstract_stat.decrease_points(1) // Spend a point.
-	else
-		if(freebie_point_stat.can_decrease_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
-			freebie_point_stat.decrease_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
+
+	if((stat_path.get_score(FALSE) + 1) > stat_path.starting_score)
+		if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
+			abstract_stat.decrease_points(1) // Spend a point.
 		else
-			return FALSE // If we can't spend freebie points, then return early.
+			if(freebie_point_stat.can_decrease_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
+				freebie_point_stat.decrease_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
+			else
+				return FALSE // If we can't spend freebie points, then return early.
 
 	stat_path.increase_score(1) // By this point we know we have spend either a point, or the appropriate freebie cost for this stat, and it is not max_score. So increase it by one.
 
@@ -62,13 +64,14 @@
 	if(!stat_path.can_decrease_score(1))
 		return FALSE
 
-	if(freebie_point_stat.can_increase_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
-		freebie_point_stat.increase_points(stat_path.freebie_point_cost) // Regain freebie points.
-	else
-		if(abstract_stat.can_increase_points(1)) // Can we regain points on this stat instead?
-			abstract_stat.increase_points(1) // Regain a score point.
+	if((stat_path.get_score(FALSE) - 1) >= stat_path.starting_score)
+		if(freebie_point_stat.can_increase_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
+			freebie_point_stat.increase_points(stat_path.freebie_point_cost) // Regain freebie points.
 		else
-			return FALSE // If we can't regain any points, then return early.
+			if(abstract_stat.can_increase_points(1)) // Can we regain points on this stat instead?
+				abstract_stat.increase_points(1) // Regain a score point.
+			else
+				return FALSE // If we can't regain any points, then return early.
 
 	stat_path.decrease_score(1) // By this point we know we have regainged either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 
