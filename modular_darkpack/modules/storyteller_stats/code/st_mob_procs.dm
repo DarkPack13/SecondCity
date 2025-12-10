@@ -18,3 +18,11 @@
 
 /mob/living/proc/apply_stats_from_prefs(list/prefs_list)
 	storyteller_stats = client?.prefs?.preference_storyteller_stats.Copy()
+
+/proc/create_new_stat_prefs()
+	var/list/stats_list = list()
+	for(var/stat_path as anything in subtypesof(/datum/st_stat))
+		var/datum/st_stat/stat = new stat_path()
+		stat.set_score(stat.starting_score)
+		stats_list["[stat_path]"] = stat
+	return stats_list

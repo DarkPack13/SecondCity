@@ -1,4 +1,3 @@
-
 /datum/st_stat
 	//determines the base type for this class, so we don't add in empty types
 	abstract_type = /datum/st_stat

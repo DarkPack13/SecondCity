@@ -12,23 +12,23 @@ Not to be confused with TG traits. A stat system based heavily on WoD
 
 ### TG Proc/File Changes:
 
-- [code/modules/mob/living/living.dm](/code/modules/mob/living/living.dm):
-  - `/mob/living/Initialize(mapload)`
+- `modular_darkpack/master_files/code/modules/mob/living/living.dm`
 
 ### Modular Overrides:
 
-- [modular_darkpack/master_files/code/modules/mob/living/living_defines.dm](/modular_darkpack/master_files/code/modules/mob/living/living_defines.dm): `var/datum/storyteller_stats/storyteller_stat_holder`
-- [modular_darkpack/master_files/code/modules/mob/living/living.dm](/modular_darkpack/master_files/code/modules/mob/living/living.dm): `storyteller_stat_holder = new()`
+- `modular_darkpack/master_files/code/modules/mob/living/living_defines.dm`
+- `modular_darkpack/master_files/code/modules/mob/living/living.dm`
 
 ### Defines:
 
-- [code/\_\_DEFINES/~darkpack/storyteller_stats.dm](/code/__DEFINES/~darkpack/storyteller_stats.dm):
-  - `STAT_###` Im not going to list all of them, but one for every trait following this format.
+- `code/__DEFINES/~darkpack/storyteller_stats.dm`
 
 ### Included files that are not contained in this module:
 
-- [code/\_\_DEFINES/~darkpack/storyteller_stats.dm](code/__DEFINES/~darkpack/storyteller_stats.dm)
+- N/A
 
 ### Credits:
 
-FalloutFalcon, XeonMations
+FalloutFalcon
+XeonMations
+chazzyjazzy

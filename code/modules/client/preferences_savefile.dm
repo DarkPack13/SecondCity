@@ -445,12 +445,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD - STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
-		var/list/stats_list = list()
-		for(var/stat_path in subtypesof(/datum/st_stat))
-			var/datum/st_stat/stat = new stat_path()
-			stat.set_score(stat.starting_score)
-			stats_list["[stat_path]"] = stat
-		preference_storyteller_stats = stats_list
+		preference_storyteller_stats = create_new_stat_prefs()
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
 	var/list/new_points_list = list()
