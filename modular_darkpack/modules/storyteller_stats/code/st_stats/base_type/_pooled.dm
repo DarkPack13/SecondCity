@@ -4,4 +4,3 @@
 	min_score = 1
 	max_score = 10
 	score = 1
-	count_bonus_score = TRUE

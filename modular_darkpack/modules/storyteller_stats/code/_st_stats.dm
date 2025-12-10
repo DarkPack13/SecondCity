@@ -31,8 +31,6 @@
 	var/starting_score = 0
 	/// How many points are in this stat category that the player can use.
 	var/points = 0
-	/// If the preferences menu should count the bonus score as a normal score, used for things like willpower.
-	var/count_bonus_score = FALSE
 
 /datum/st_stat/proc/get_score(include_bonus = TRUE)
 	if(include_bonus)
@@ -45,16 +43,22 @@
 		return FALSE
 	return TRUE
 
+// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding increasing the stat.
 /datum/st_stat/proc/can_increase_score(amount)
 	var/new_score = score + amount
 	if(new_score > max_score)
 		return FALSE
+
+
 	return TRUE
 
+// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding decreasing the stat.
 /datum/st_stat/proc/can_decrease_score(amount)
 	var/new_score = score - amount
 	if(new_score < min_score)
 		return FALSE
+
+
 	return TRUE
 
 /datum/st_stat/proc/set_score(amount)
