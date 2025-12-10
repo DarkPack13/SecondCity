@@ -369,19 +369,25 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/stats_list = save_data?["preference_storyteller_stats"]
-	stats_list = SANITIZE_LIST(stats_list)
-	for(var/stat_path in subtypesof(/datum/st_stat))
-		var/datum/st_stat/stat = new stat_path()
-		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list["[stat_path]"])
-		stats_list["[stat_path]"] = stat
-	preference_storyteller_stats = stats_list
+	var/list/points_list = save_data?["preference_storyteller_points"]
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
 	if(SHOULD_UPDATE_DATA(data_validity_integer))
 		update_character(data_validity_integer, save_data)
+
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	stats_list = SANITIZE_LIST(stats_list)
+	points_list = SANITIZE_LIST(points_list)
+	for(var/stat_path in subtypesof(/datum/st_stat))
+		var/datum/st_stat/stat = new stat_path()
+		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
+			stat.set_score(stats_list["[stat_path]"])
+		if(points_list["[stat_path]"])
+			stat.points = points_list["[stat_path]"]
+		preference_storyteller_stats["[stat_path]"] = stat
+	// DARKPACK EDIT END
 
 	//Sanitize
 	randomise = SANITIZE_LIST(randomise)
@@ -436,7 +442,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	save_data["all_quirks"] = all_quirks
-	// DARKPACK EDIT ADD - TTRPG Preferences
+
+	// DARKPACK EDIT ADD - STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
 		var/list/stats_list = list()
 		for(var/stat_path in subtypesof(/datum/st_stat))
@@ -445,11 +452,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			stats_list["[stat_path]"] = stat
 		preference_storyteller_stats = stats_list
 	var/list/stats_list = preference_storyteller_stats
-	var/list/saved_list = list()
+	var/list/new_stats_list = list()
+	var/list/new_points_list = list()
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
-		saved_list["[stat_typepath]"] = stat.get_score(include_bonus = FALSE)
-	save_data["preference_storyteller_stats"] = saved_list
+		new_stats_list["[stat_typepath]"] = stat.get_score(include_bonus = FALSE)
+		new_points_list["[stat_typepath]"] = stat.points
+	save_data["preference_storyteller_stats"] = new_stats_list
+	save_data["preference_storyteller_points"] = new_points_list
 	// DARKPACK EDIT END
 
 	return TRUE
