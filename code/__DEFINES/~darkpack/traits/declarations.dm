@@ -99,6 +99,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PASSDOOR "trait_passdoor" //DARKPACK EDIT ADDITION -- Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
+// Is the mob silenced (by Quietus 1 for example)
+#define TRAIT_SILENCED "silenced"
 
 /// They have warped time at some point in this round
 #define TRAIT_TIMEWARPER "timewarper"
