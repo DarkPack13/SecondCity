@@ -12,7 +12,7 @@
 	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
-		if(!stat)
+		if((stat.abstract_type == typepath))
 			continue
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
@@ -22,8 +22,15 @@
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
 		stat_data["score"] = stat.get_score(include_bonus = FALSE)
-		stat_data["points"] = stat.points
-		stat_data["abstract_type"] = "[stat.abstract_type]"
+		data["stats"]["[stat.type]"] = stat_data
+
+	// These are the abstract types and freebie points.
+	for(var/abstract_type in preferences.preference_storyteller_stats)
+		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
+		if((stat.abstract_type != typepath))
+			continue
+		var/list/stat_data = list()
+		stat_data["points"] = stat.get_points()
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
@@ -31,9 +38,22 @@
 	SHOULD_NOT_SLEEP(TRUE)
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
+	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
+	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
 	var/old_value = stat_path.get_score(FALSE)
 
-	stat_path.increase_score(1)
+
+	if(!stat_path.can_increase_score(1)) // Have we reached the max_score of the stat?
+		return FALSE // If we have, then return early.
+	if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
+		abstract_stat.decrease_points(1) // Spend a point.
+	else
+		if(freebie_point_stat.can_decrease_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
+			freebie_point_stat.decrease_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
+		else
+			return FALSE // If we can't spend freebie points, then return early.
+
+	stat_path.increase_score(1) // By this point we know we have spend either a point, or the appropriate freebie cost for this stat, and it is not max_score. So increase it by one.
 
 	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
@@ -44,9 +64,22 @@
 	SHOULD_NOT_SLEEP(TRUE)
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
+	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
+	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
 	var/old_value = stat_path.get_score(FALSE)
 
-	stat_path.decrease_score(1)
+	if(!stat_path.can_decrease_score(1))
+		return FALSE
+
+	if(freebie_point_stat.can_increase_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
+		freebie_point_stat.increase_points(stat_path.freebie_point_cost) // Regain freebie points.
+	else
+		if(abstract_stat.can_increase_points(1)) // Can we regain points on this stat instead?
+			abstract_stat.increase_points(1) // Regain a score point.
+		else
+			return FALSE // If we can't regain any points, then return early.
+
+	stat_path.decrease_score(1) // By this point we know we have regainged either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 
 	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"

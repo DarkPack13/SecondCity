@@ -29,61 +29,72 @@
 	var/list/modifiers = list()
 	/// What score does this stat start out with at character creation.
 	var/starting_score = 0
-	/// How many points are in this stat category that the player can use.
-	var/points = 0
+	/// How many points are in this stat category that the player can use. Used in abstract classes only.
+	VAR_PROTECTED/points = 0
+	/// How many freebie points were spent on this stat. Used in abstract classes only.
+	var/freebie_cost_spent = 0
+
+// Score
 
 /datum/st_stat/proc/get_score(include_bonus = TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(include_bonus)
 		return score + bonus_score
 	else
 		return score
 
 /datum/st_stat/proc/can_set_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if((amount < min_score) || (amount > max_score))
 		return FALSE
 	return TRUE
 
 // This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding increasing the stat.
 /datum/st_stat/proc/can_increase_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/new_score = score + amount
 	if(new_score > max_score)
 		return FALSE
-
-
 	return TRUE
 
 // This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding decreasing the stat.
 /datum/st_stat/proc/can_decrease_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/new_score = score - amount
 	if(new_score < min_score)
 		return FALSE
-
-
 	return TRUE
 
 /datum/st_stat/proc/set_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_set_score(amount))
 		return FALSE
 	score = clamp(amount, min_score, max_score)
 	return TRUE
 
 /datum/st_stat/proc/increase_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_increase_score(amount))
 		return FALSE
 	score = clamp(score + amount, min_score, max_score)
 	return TRUE
 
 /datum/st_stat/proc/decrease_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_decrease_score(amount))
 		return FALSE
 	score = clamp(score - amount, min_score, max_score)
 	return TRUE
 
+// Modifiers
+
 /datum/st_stat/proc/add_stat_mod(amount, source)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	LAZYSET(modifiers, source, amount)
 	update_modifiers()
 
 /datum/st_stat/proc/remove_stat_mod(source)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	LAZYREMOVE(modifiers, source)
 	update_modifiers()
 
@@ -93,3 +104,44 @@
 	for(var/source in modifiers)
 		bonus_score += modifiers[source]
 	bonus_score = clamp(bonus_score, 0, 10)
+
+// Points
+
+/datum/st_stat/proc/get_points()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return points
+
+/datum/st_stat/proc/set_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	points = max(amount, 0)
+	return TRUE
+
+/datum/st_stat/proc/can_decrease_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_points = points - amount
+	if(new_points < 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/can_increase_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_points = freebie_cost_spent - amount
+	if(new_points < 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/increase_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_increase_points(amount))
+		return FALSE
+	points += amount
+	freebie_cost_spent -= amount
+	return TRUE
+
+/datum/st_stat/proc/decrease_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_decrease_points(amount))
+		return FALSE
+	points -= amount
+	freebie_cost_spent += amount
+	return TRUE

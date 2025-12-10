@@ -4,6 +4,7 @@
 #define AFFECTS_SPEED (1<<2)
 
 
+#define STAT_FREEBIE_POINTS /datum/st_stat/freebie
 
 // Physical
 #define STAT_STRENGTH /datum/st_stat/attribute/strength
@@ -67,7 +68,6 @@
 
 // Parent stats, mainly used for point allocation in preferences.
 
-#define STAT_FREEBIE_POINTS "Freebie Points"
 
 #define STAT_ATTRIBUTE "Attributes"
 #define STAT_CATEGORY_MENTAL "Mental"

@@ -385,7 +385,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
 			stat.set_score(stats_list["[stat_path]"])
 		if(points_list["[stat_path]"])
-			stat.points = points_list["[stat_path]"]
+			stat.set_points(points_list["[stat_path]"])
 		preference_storyteller_stats["[stat_path]"] = stat
 	// DARKPACK EDIT END
 
@@ -457,7 +457,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
 		new_stats_list["[stat_typepath]"] = stat.get_score(include_bonus = FALSE)
-		new_points_list["[stat_typepath]"] = stat.points
+		new_points_list["[stat_typepath]"] = stat.get_points()
 	save_data["preference_storyteller_stats"] = new_stats_list
 	save_data["preference_storyteller_points"] = new_points_list
 	// DARKPACK EDIT END
