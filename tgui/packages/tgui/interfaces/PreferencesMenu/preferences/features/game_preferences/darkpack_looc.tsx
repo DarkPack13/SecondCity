@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A DARKPACK UI FILE
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const looc_admin_pref: FeatureToggle = {

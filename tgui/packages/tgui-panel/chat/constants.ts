@@ -96,14 +96,14 @@ export const MESSAGE_TYPES = [
     description: 'The bluewall of global OOC messages',
     selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
-  // DARKPACK EDIT START
+  // DARKPACK EDIT ADD START
   {
     type: MESSAGE_TYPE_LOOC,
     name: 'LOOC',
     description: 'All local OOC messages',
     selector: '.looc, .rlooc',
   },
-  // DARKPACK EDIT END
+  // DARKPACK EDIT ADD END
   {
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
