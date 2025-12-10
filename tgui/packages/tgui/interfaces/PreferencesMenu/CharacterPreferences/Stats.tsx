@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import { Button, Stack, Tooltip } from 'tgui-core/components';
+import { Button, Stack, Tooltip, AnimatedNumber } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
 import { type PreferencesMenuData } from '../types';
 
@@ -36,6 +36,9 @@ export function StatsPage() {
               tooltip="Reset Stats"
               tooltipPosition="top"
             />
+          </Stack.Item>
+          <Stack.Item>
+            <AnimatedNumber value={2} />
           </Stack.Item>
         </Stack>
       </Stack.Item>
