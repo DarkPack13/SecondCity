@@ -17,3 +17,7 @@
 2025-12-09:
   XeonMations:
   - rscadd: Added 3 mannequin subtypes to the game.
+2025-12-10:
+  XeonMations:
+  - rscadd: Added Guestbooks to the game, you now are required to ctrl shift click
+      a person to set their name for yourself.
