@@ -1,7 +1,8 @@
 // Stat Flags
 #define AFFECTS_HEALTH (1<<0)
-#define AFFECTS_WILLPOWER (1<<1)
-#define AFFECTS_SPEED (1<<2)
+#define AFFECTS_PERMANENT_WILLPOWER (1<<1)
+#define AFFECTS_TEMPORARY_WILLPOWER (1<<2)
+#define AFFECTS_SPEED (1<<3)
 
 
 #define STAT_FREEBIE_POINTS /datum/st_stat/freebie

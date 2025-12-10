@@ -2,7 +2,7 @@
 	name = "Permanent Willpower"
 	description = "A character's inner drive and competence at overcoming unfavorable odds. Used for Rolls."
 	freebie_point_cost = FREEBIE_COST_WILLPOWER
-	stat_flags = AFFECTS_WILLPOWER
+	stat_flags = AFFECTS_TEMPORARY_WILLPOWER
 
 /datum/st_stat/pooled/temporary_willpower
 	name = "Temporary Willpower"
