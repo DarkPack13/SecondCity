@@ -437,9 +437,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	save_data["all_quirks"] = all_quirks
 	// DARKPACK EDIT ADD - TTRPG Preferences
+	if(!length(preference_storyteller_stats))
+		var/list/stats_list = list()
+		for(var/stat_path as anything in subtypesof(/datum/st_stat))
+			var/datum/st_stat/stat = new stat_path()
+			stat.set_score(stat.starting_score)
+			stats_list["[stat_path]"] = stat
+		preference_storyteller_stats = stats_list
 	var/list/stats_list = preference_storyteller_stats
-	if(!length(stats_list))
-		stats_list = "[subtypesof(/datum/st_stat)]"
 	var/list/saved_list = list()
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
