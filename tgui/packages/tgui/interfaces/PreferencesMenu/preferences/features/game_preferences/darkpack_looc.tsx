@@ -1,5 +1,6 @@
 // THIS IS A DARKPACK UI FILE
-import { CheckboxInput, FeatureToggle } from '../base';
+import { CheckboxInput } from '../base'
+import type { FeatureToggle } from '../base';
 
 export const looc_admin_pref: FeatureToggle = {
   name: 'See admin LOOC',
