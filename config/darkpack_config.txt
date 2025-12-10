@@ -7,4 +7,4 @@ JUMP_SLOWDOWN
 #NSFW_CONTENT
 
 ## If dead people and ghosts can LOOC to people who are alive.
-#LOOC_WHILE_DEAD
+DISABLE_GHOST_LOOC
