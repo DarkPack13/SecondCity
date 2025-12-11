@@ -1,9 +1,0 @@
-/obj/structure/vampdoor/oldwood : /obj/structure/vampdoor/old
-/obj/structure/vampdoor/oldwood/church : /obj/structure/vampdoor/old/church
-/obj/structure/vampdoor/oldwood/graveyard : /obj/structure/vampdoor/old/graveyard
-/obj/structure/vampdoor/children_of_gaia : /obj/structure/vampdoor/oldwood/children_of_gaia
-/obj/structure/vampdoor/food_pantry : /obj/structure/vampdoor/simple/food_pantry
-/obj/structure/vampdoor/nps : /obj/structure/vampdoor/wood/nps
-/obj/structure/vampdoor/setite : /obj/structure/vampdoor/simple/setite
-/obj/structure/vampdoor/setite/high_sec : /obj/structure/vampdoor/reinf/setite_high_sec
-/obj/structure/vampdoor/wood/old/salubri : /obj/structure/vampdoor/oldwood/salubri
