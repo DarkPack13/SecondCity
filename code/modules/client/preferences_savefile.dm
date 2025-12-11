@@ -385,6 +385,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
 			stat.set_score(stats_list[stat_path][STAT_SCORE])
 			stat.set_points(stats_list[stat_path][STAT_POINTS])
+			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
 		preference_storyteller_stats[stat_path] = stat
 	// DARKPACK EDIT ADD END
 
@@ -452,6 +453,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		new_stats_list[stat_typepath] = list()
 		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
 		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
+		new_stats_list[stat_typepath][STAT_FREEBIE_COST_SPENT] = stat.freebie_cost_spent
 	save_data["preference_storyteller_stats"] = new_stats_list
 	// DARKPACK EDIT ADD END
 

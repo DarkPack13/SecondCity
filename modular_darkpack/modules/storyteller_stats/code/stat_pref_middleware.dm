@@ -41,8 +41,8 @@
 		if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
 			abstract_stat.decrease_points(1) // Spend a point.
 		else
-			if(freebie_point_stat.can_decrease_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
-				freebie_point_stat.decrease_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
+			if(freebie_point_stat.can_decrease_freebie_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
+				freebie_point_stat.decrease_freebie_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
 			else
 				return FALSE // If we can't spend freebie points, then return early.
 
@@ -65,15 +65,12 @@
 		return FALSE
 
 	if((stat_path.get_score(FALSE) - 1) >= stat_path.starting_score)
-		if(freebie_point_stat.can_increase_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
-			freebie_point_stat.increase_points(stat_path.freebie_point_cost) // Regain freebie points.
+		if(freebie_point_stat.can_increase_freebie_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
+			freebie_point_stat.increase_freebie_points(stat_path.freebie_point_cost) // Regain freebie points.
 		else
-			if(abstract_stat.can_increase_points(1)) // Can we regain points on this stat instead?
-				abstract_stat.increase_points(1) // Regain a score point.
-			else
-				return FALSE // If we can't regain any points, then return early.
+			abstract_stat.increase_points(1) // Regain a score point.
 
-	stat_path.decrease_score(1) // By this point we know we have regainged either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
+	stat_path.decrease_score(1) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 
 	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"

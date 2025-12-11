@@ -86,3 +86,4 @@
 // Defines used for saving of stats.
 #define STAT_SCORE "score"
 #define STAT_POINTS "points"
+#define STAT_FREEBIE_COST_SPENT "freebie_cost_spent"

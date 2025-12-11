@@ -115,6 +115,11 @@
 	points = max(amount, 0)
 	return TRUE
 
+/datum/st_stat/proc/increase_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	points += amount
+	return TRUE
+
 /datum/st_stat/proc/can_decrease_points(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/new_points = points - amount
@@ -122,24 +127,37 @@
 		return FALSE
 	return TRUE
 
-/datum/st_stat/proc/can_increase_points(amount)
+/datum/st_stat/proc/decrease_points(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/new_points = freebie_cost_spent - amount
-	if(new_points < 0)
+	if(!can_decrease_points(amount))
+		return FALSE
+	points -= amount
+	return TRUE
+
+// Freebie Points
+
+/datum/st_stat/proc/can_increase_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(freebie_cost_spent <= 0)
 		return FALSE
 	return TRUE
 
-/datum/st_stat/proc/increase_points(amount)
+/datum/st_stat/proc/increase_freebie_points(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_increase_points(amount))
-		return FALSE
 	points += amount
 	freebie_cost_spent -= amount
 	return TRUE
 
-/datum/st_stat/proc/decrease_points(amount)
+/datum/st_stat/proc/can_decrease_freebie_points(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_decrease_points(amount))
+	var/new_points = points - amount
+	if(new_points < 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/decrease_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_decrease_freebie_points(amount))
 		return FALSE
 	points -= amount
 	freebie_cost_spent += amount
