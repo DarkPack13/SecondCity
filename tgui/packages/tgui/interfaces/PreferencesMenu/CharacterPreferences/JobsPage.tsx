@@ -349,7 +349,7 @@ export function JobsPage() {
         <Stack.Item mt={15}>
           <Stack fill g={1} className="PreferencesMenu__Jobs">
             {
-            // DARKPACK EDIT START
+            // DARKPACK EDIT ADD START
             }
             <Stack.Item>
               <Stack vertical>
@@ -381,7 +381,7 @@ export function JobsPage() {
               </Stack>
             </Stack.Item>
             {
-            // DARKPACK EDIT END
+            // DARKPACK EDIT ADD END
             }
           </Stack>
         </Stack.Item>

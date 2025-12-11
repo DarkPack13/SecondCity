@@ -369,7 +369,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/stats_list = save_data?["preference_storyteller_stats"]
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
@@ -385,7 +385,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			stat.set_score(stats_list[stat_path][STAT_SCORE])
 			stat.set_points(stats_list[stat_path][STAT_POINTS])
 		preference_storyteller_stats[stat_path] = stat
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	//Sanitize
 	randomise = SANITIZE_LIST(randomise)
@@ -441,7 +441,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	save_data["all_quirks"] = all_quirks
 
-	// DARKPACK EDIT ADD - STORYTELLER_STATS
+	// DARKPACK EDIT ADD START- STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
 		preference_storyteller_stats = create_new_stat_prefs()
 	var/list/stats_list = preference_storyteller_stats
@@ -452,7 +452,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
 		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
 	save_data["preference_storyteller_stats"] = new_stats_list
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	return TRUE
 
