@@ -120,7 +120,7 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/silver_goblet/on_reagent_change()
-	..()
+	. = ..()
 	if(reagents.total_volume == 0)
 		blood_donors.Cut()
 	update_appearance()

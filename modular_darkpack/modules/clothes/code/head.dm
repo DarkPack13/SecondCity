@@ -352,7 +352,7 @@
 		user.become_blind("blindfold_[REF(src)]")
 
 /obj/item/clothing/head/vampire/blackbag/dropped(mob/living/carbon/human/user)
-	..()
+	. = ..()
 	user.cure_blind("blindfold_[REF(src)]")
 
 /obj/item/clothing/head/vampire/blackbag/attack(mob/living/target, mob/living/user)
