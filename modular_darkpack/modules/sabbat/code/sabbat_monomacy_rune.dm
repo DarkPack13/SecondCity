@@ -66,8 +66,4 @@
 
 	log_game("[key_name(challenger)] has challenged [key_name(target)] to Monomacy via sabbatrune.")
 
-
-/obj/sabbatrune/proc/reset_cooldown()
-	COOLDOWN_RESET(src, MONOMACY_CHALLENGE_COOLDOWN)
-
 #undef MONOMACY_COOLDOWN_DURATION
