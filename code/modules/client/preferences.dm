@@ -47,9 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
-	// DARKPACK EDIT ADD - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLR_STATS
 	var/list/preference_storyteller_stats = list()
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
