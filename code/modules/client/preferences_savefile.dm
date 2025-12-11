@@ -377,9 +377,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_character(data_validity_integer, save_data)
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
-	stats_list = SANITIZE_LIST(stats_list)
-	if(!length(stats_list))
-		stats_list = create_new_stat_prefs()
 	for(var/stat_path in stats_list)
 		var/proper_stat_path = text2path(stat_path)
 		var/datum/st_stat/stat = new proper_stat_path()
@@ -444,6 +441,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	save_data["all_quirks"] = all_quirks
 
 	// DARKPACK EDIT ADD START- STORYTELLER_STATS
+	if(!length(stats_list))
+		stats_list = create_new_stat_prefs()
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
 	for(var/stat_typepath in stats_list)
