@@ -369,7 +369,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/stats_list = save_data?["preference_storyteller_stats"]
-	var/list/points_list = save_data?["preference_storyteller_points"]
 	// DARKPACK EDIT END
 
 	//try to fix any outdated data if necessary
@@ -379,14 +378,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	stats_list = SANITIZE_LIST(stats_list)
-	points_list = SANITIZE_LIST(points_list)
-	for(var/stat_path in subtypesof(/datum/st_stat))
-		var/datum/st_stat/stat = new stat_path()
-		if(stats_list["[stat_path]"]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list["[stat_path]"])
-		if(points_list["[stat_path]"])
-			stat.set_points(points_list["[stat_path]"])
-		preference_storyteller_stats["[stat_path]"] = stat
+	for(var/stat_path in stats_list)
+		var/datum/st_stat/stat = new text2path(stat_path)()
+		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
+			stat.set_score(stats_list[stat_path][STAT_SCORE])
+			stat.set_points(stats_list[stat_path][STAT_POINTS])
+		preference_storyteller_stats[stat_path] = stat
 	// DARKPACK EDIT END
 
 	//Sanitize
@@ -448,13 +445,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		preference_storyteller_stats = create_new_stat_prefs()
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
-	var/list/new_points_list = list()
 	for(var/stat_typepath in stats_list)
-		var/datum/st_stat/stat = stats_list["[stat_typepath]"]
-		new_stats_list["[stat_typepath]"] = stat.get_score(include_bonus = FALSE)
-		new_points_list["[stat_typepath]"] = stat.get_points()
+		var/datum/st_stat/stat = stats_list[stat_typepath]
+		new_stats_list[stat_typepath] = stat_typepath
+		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
+		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
 	save_data["preference_storyteller_stats"] = new_stats_list
-	save_data["preference_storyteller_points"] = new_points_list
 	// DARKPACK EDIT END
 
 	return TRUE

@@ -83,5 +83,6 @@
 #define STAT_POOLED "Pooled"
 #define STAT_CATEGORY_VIRTUES "Virtues"
 
-
-#define STAT_MORALITY_PATH /datum/st_stat/morality_path
+// Defines used for saving of stats.
+#define STAT_SCORE "score"
+#define STAT_POINTS "points"
