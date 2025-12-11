@@ -11,3 +11,13 @@ JUMP_SLOWDOWN
 
 ## Uncomment to use actual exploding dice
 #EXPLODING_DICE
+
+## Time til day define
+TIME_TILL_DAY 198000
+
+## Time till roundend define
+TIME_TILL_ROUNDEND 216000
+
+## World of Darkness splats, currently coded as species
+ROUNDSTART_RACES kindred
+ROUNDSTART_RACES ghoul
