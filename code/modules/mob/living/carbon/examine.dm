@@ -254,6 +254,20 @@
 		if (iszombie(src) && !(obscured_slots & HIDEFACE)) // for necromancy player-controlled zombies
 			. += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
 
+		switch(living_user.st_get_stat(STAT_APPEARANCE))
+			if(0)
+				. += span_red(span_bold("AHH!!! WHAT THE HELL IS THAT THING!!!"))
+			if(1)
+				. += span_blobannounce("Eugh. [p_they(TRUE)] [p_are()] really ugly.")
+			if(2)
+				. += span_notice("[p_they(TRUE)] [p_are()] not terrible to look at, but still below average.")
+			if(3)
+				. += span_grey("[p_they(TRUE)] [p_are()] average looking.")
+			if(4)
+				. += span_purple("[p_they(TRUE)] [p_are()] quite attractive!")
+			if(5)
+				. += span_rose(span_bold("Oh... My God... [p_they(TRUE)] [p_are()] absolutely stunning! You find yourself blushing just looking at them."))
+
 		// DARKPACK EDIT ADD END
 
 		switch(stat)
