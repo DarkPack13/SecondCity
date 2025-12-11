@@ -441,8 +441,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	save_data["all_quirks"] = all_quirks
 
 	// DARKPACK EDIT ADD START- STORYTELLER_STATS
-	if(!length(stats_list))
-		stats_list = create_new_stat_prefs()
+	if(!length(preference_storyteller_stats))
+		preference_storyteller_stats = create_new_stat_prefs()
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
 	for(var/stat_typepath in stats_list)
