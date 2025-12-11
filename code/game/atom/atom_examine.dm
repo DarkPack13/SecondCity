@@ -153,7 +153,7 @@
 	return "\a [src]"
 
 /mob/living/get_examine_name(mob/user)
-	var/visible_name = get_visible_name()
+	var/visible_name = get_visible_name(examiner = user) // DARKPACK EDIT, ORIGINAL: var/visible_name = get_visible_name()
 	var/list/name_override = list(visible_name)
 	if(SEND_SIGNAL(user, COMSIG_LIVING_PERCEIVE_EXAMINE_NAME, src, visible_name, name_override) & COMPONENT_EXAMINE_NAME_OVERRIDEN)
 		return name_override[1]
@@ -193,5 +193,5 @@
  * * add_id_name - If TRUE, ID information such as honorifics or name (if mismatched) are appended
  * * force_real_name - If TRUE, will always return real_name and add (as face_name/id_name) if it doesn't match their appearance
  */
-/atom/proc/get_visible_name(add_id_name = TRUE, force_real_name = FALSE)
+/atom/proc/get_visible_name(add_id_name = TRUE, force_real_name = FALSE, mob/examiner) // DARKPACK EDIT, ORIGINAL: /atom/proc/get_visible_name(add_id_name = TRUE, force_real_name = FALSE)
 	return name
