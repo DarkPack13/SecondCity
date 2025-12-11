@@ -9,7 +9,6 @@
 	lockpick_difficulty = 10
 
 /obj/structure/vampdoor/old/graveyard
-
 	locked = TRUE
 	lock_id = "graveyard"
 
