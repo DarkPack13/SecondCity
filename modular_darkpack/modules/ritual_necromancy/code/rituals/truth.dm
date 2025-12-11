@@ -28,8 +28,8 @@
 
 	to_chat(usr, span_ghostalert("You sic [victim.name]'s shadow on [victim.p_them()]; [victim.p_they()] cannot lie to you now."))
 
-	playsound(victim,'sound/hallucinations/veryfar_noise.ogg',50,TRUE)
-	playsound(victim,'sound/spookoween/ghost_whisper.ogg',50,TRUE)
+	playsound(victim,'sound/effects/hallucinations/veryfar_noise.ogg',50,TRUE)
+	playsound(victim,'sound/music/antag/bloodcult/ghost_whisper.ogg',50,TRUE)
 
 	victim.emote("scream")
 	victim.AdjustKnockdown(2 SECONDS)
