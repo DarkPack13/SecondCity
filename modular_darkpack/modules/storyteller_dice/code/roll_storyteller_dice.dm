@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(roll)
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
-			if(on_crit_additional_success)
+			if(on_crit_extra_success_enabled)
 				if(roll == 10)
 					success_count++
 		else if(roll == 1)
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(roll)
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			success_count++
-			if(on_crit_additional_success)
+			if(on_crit_extra_success_enabled)
 				if(roll == 10)
 					success_count++
 		else if(roll == 1)
