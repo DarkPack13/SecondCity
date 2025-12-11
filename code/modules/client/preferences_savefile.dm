@@ -377,6 +377,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_character(data_validity_integer, save_data)
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	if(!stats_list)
+		preference_storyteller_stats = create_new_stat_prefs()
 	for(var/stat_path in stats_list)
 		var/proper_stat_path = text2path(stat_path)
 		var/datum/st_stat/stat = new proper_stat_path()
