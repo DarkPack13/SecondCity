@@ -220,7 +220,7 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
-	vitae_cost = 3
+	vitae_cost = 0
 	target_type = TARGET_OBJ
 	range = 1
 
@@ -228,30 +228,42 @@
 
 	cooldown_length = 15 SECONDS
 
-/datum/discipline_power/quietus/baals_caress/can_activate(atom/target, alert = FALSE)
+/datum/discipline_power/quietus/baals_caress/can_activate(atom/target)
 	. = ..()
-
-	if (!istype(target, /obj/item/melee/vamp))
-		if (alert)
-			to_chat(owner, span_warning("[src] can only be used on weapons!"))
-		return FALSE
-	var/obj/item/melee/vamp/weapon = target
-
-	//ensure the target is a weapon with an edge to use the toxin with
-	if (!weapon.sharpness)
-		if (alert)
-			to_chat(owner, span_warning("[src] can only be used on bladed weapons!"))
+	if(!istype(target, /obj/item))
+		to_chat(owner, span_warning("[src] can only be used on weapons!"))
 		return FALSE
 
+	var/obj/item/weapon = target
+
+	if(!weapon.sharpness)
+		to_chat(owner, span_warning("[src] can only be used on bladed weapons!"))
+		return FALSE
+
+	if(weapon.GetComponent(/datum/component/baals_caress))
+		to_chat(owner, span_warning("This weapon is already poisoned!"))
+		return FALSE
 	return .
 
 /datum/discipline_power/quietus/baals_caress/activate(obj/item/melee/vamp/target)
 	. = ..()
-	if(!target.quieted)
-		target.quieted = TRUE
-		target.armour_penetration = min(100, target.armour_penetration+30)
-		target.force += 20
-		target.color = "#72b27c"
+
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/user = owner
+	var/max_layers = user.bloodpool
+
+	if(max_layers <= 0)
+		to_chat(owner, span_warning("You don't have any blood to coat the weapon with!"))
+		return
+
+	var/layers = tgui_input_number(owner, "How many blood points do you want to use?", "Baal's Caress", 1, max_layers, 1)
+	if(!layers)
+		return
+	user.bloodpool -= layers
+	target.AddComponent(/datum/component/baals_caress, owner, layers)
+	to_chat(owner, span_notice("You imbue [target] with [layers] layer\s of your toxic vitae!"))
 
 //TASTE OF DEATH
 /obj/projectile/quietus
