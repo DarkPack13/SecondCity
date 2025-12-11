@@ -51,7 +51,6 @@
 	lockpick_difficulty = 10
 
 /obj/structure/vampdoor/simple/food_pantry
-
 	locked = TRUE
 	lock_id = "coggie"
 	lockpick_difficulty = 4
