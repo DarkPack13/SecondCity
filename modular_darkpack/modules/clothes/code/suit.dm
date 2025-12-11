@@ -287,15 +287,15 @@
 	armor_type = /datum/armor/armored_jackets
 
 /datum/armor/armored_jackets
-	melee=50
-	bullet=50
-	laser=50
-	energy=10
-	bomb=40
-	bio=0
-	fire=40
-	acid=10
-	wound=25
+	melee = 50
+	bullet = 50
+	laser = 50
+	energy = 10
+	bomb = 40
+	bio = 0
+	fire = 40
+	acid = 10
+	wound = 25
 
 /obj/item/clothing/suit/vampire/trench/alt/armored
 	name = "armored trenchcoat"

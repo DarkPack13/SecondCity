@@ -357,10 +357,9 @@
 
 /obj/item/clothing/head/vampire/blackbag/attack(mob/living/target, mob/living/user)
 	var/obj/item/clothing/head/H = target.get_item_by_slot(ITEM_SLOT_HEAD)
-	if(H)
-		if(H.clothing_flags & SNUG_FIT)
-			to_chat(user, span_warning("You can't fit the blackbag over [target.p_their()] headgear!"))
-			return
+	if(H?.clothing_flags & SNUG_FIT)
+		to_chat(user, span_warning("You can't fit the blackbag over [target.p_their()] headgear!"))
+		return
 	if(do_after(user, 0.5 SECONDS, target)) //Mainly to prevent black_bagging mid combat.
 		target.visible_message(span_warning("[user] forces [src] onto [target]'s head!"))
 		to_chat(target, span_bolddanger("[target] forces [src] onto your head!"))
