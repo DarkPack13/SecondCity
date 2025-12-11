@@ -2665,10 +2665,6 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Beachwave"
 	icon_state = "hair_beachwave"
 
-/datum/sprite_accessory/hair/bedhead4
-	name = "Bedhead 4"
-	icon_state = "hair_bedheadv4"
-
 /datum/sprite_accessory/hair/bedheadlonger
 	name = "Longest Bedhead"
 	icon_state = "hair_longer_bedhead"
