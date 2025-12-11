@@ -379,7 +379,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	stats_list = SANITIZE_LIST(stats_list)
 	for(var/stat_path in stats_list)
-		var/datum/st_stat/stat = new text2path(stat_path)()
+		var/proper_stat_path = text2path(stat_path)
+		var/datum/st_stat/stat = new proper_stat_path()
 		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
 			stat.set_score(stats_list[stat_path][STAT_SCORE])
 			stat.set_points(stats_list[stat_path][STAT_POINTS])
