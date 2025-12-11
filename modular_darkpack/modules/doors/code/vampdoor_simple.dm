@@ -45,7 +45,6 @@
 	lockpick_difficulty = 21
 
 /obj/structure/vampdoor/simple/setite
-
 	locked = TRUE
 	lock_id = "setite"
 	lockpick_difficulty = 10
