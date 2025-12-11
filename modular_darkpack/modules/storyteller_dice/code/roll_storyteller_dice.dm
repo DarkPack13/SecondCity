@@ -1,6 +1,13 @@
 SUBSYSTEM_DEF(roll)
 	name = "Dice Rolling"
-	flags = SS_NO_INIT | SS_NO_FIRE
+	flags = SS_NO_FIRE
+	var/exploding_dice_enabled = FALSE
+	var/exploding_dice_extra_success_enabled = FALSE
+
+/datum/controller/subsystem/roll/Initialize()
+	exploding_dice_enabled = CONFIG_GET(flag/exploding_dice)
+	exploding_dice_extra_success_enabled = CONFIG_GET(flag/exploding_dice_extra_success)
+	return SS_INIT_SUCCESS
 
 /**
  * Rolls a number of dice according to Storyteller system rules to find
@@ -91,8 +98,9 @@ SUBSYSTEM_DEF(roll)
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
-			if(roll == 10)
-				success_count ++
+			if(exploding_dice_extra_success_enabled)
+				if(roll == 10)
+					success_count++
 		else if(roll == 1)
 			output_text += span_bold(span_danger("[get_dice_char(roll)]"))
 			success_count--
@@ -107,8 +115,9 @@ SUBSYSTEM_DEF(roll)
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			success_count++
-			if(roll == 10)
-				success_count ++
+			if(exploding_dice_extra_success_enabled)
+				if(roll == 10)
+					success_count++
 		else if(roll == 1)
 			success_count--
 	return success_count
@@ -151,3 +160,8 @@ SUBSYSTEM_DEF(roll)
 			return "❿"
 		else
 			return "⓿"
+
+//Config datums for exploding dice
+/datum/config_entry/flag/exploding_dice_extra_success
+
+/datum/config_entry/flag/exploding_dice
