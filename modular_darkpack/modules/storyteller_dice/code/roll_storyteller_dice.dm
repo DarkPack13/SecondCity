@@ -1,12 +1,12 @@
 SUBSYSTEM_DEF(roll)
 	name = "Dice Rolling"
 	flags = SS_NO_FIRE
-	var/exploding_dice_enabled = FALSE
-	var/exploding_dice_extra_success_enabled = FALSE
+	var/on_crit_extra_die_enabled = FALSE
+	var/on_crit_extra_success_enabled = FALSE
 
 /datum/controller/subsystem/roll/Initialize()
-	exploding_dice_enabled = CONFIG_GET(flag/exploding_dice)
-	exploding_dice_extra_success_enabled = CONFIG_GET(flag/exploding_dice_extra_success)
+	on_crit_extra_die_enabled = CONFIG_GET(flag/on_crit_additional_die)
+	on_crit_extra_success_enabled = CONFIG_GET(flag/on_crit_additional_success)
 	return SS_INIT_SUCCESS
 
 /**
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(roll)
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
-			if(exploding_dice_extra_success_enabled)
+			if(on_crit_additional_success)
 				if(roll == 10)
 					success_count++
 		else if(roll == 1)
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(roll)
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			success_count++
-			if(exploding_dice_extra_success_enabled)
+			if(on_crit_additional_success)
 				if(roll == 10)
 					success_count++
 		else if(roll == 1)
@@ -162,6 +162,6 @@ SUBSYSTEM_DEF(roll)
 			return "⓿"
 
 //Config datums for exploding dice
-/datum/config_entry/flag/exploding_dice_extra_success
+/datum/config_entry/flag/on_crit_additional_success
 
-/datum/config_entry/flag/exploding_dice
+/datum/config_entry/flag/on_crit_additional_die

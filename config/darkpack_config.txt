@@ -7,10 +7,10 @@ JUMP_SLOWDOWN
 #NSFW_CONTENT
 
 ## Uncomment to use extra success exploding dice
-#EXPLODING_DICE_EXTRA_SUCCESS
+#ON_CRIT_ADDITIONAL_SUCCESS
 
 ## Uncomment to use actual exploding dice
-#EXPLODING_DICE
+#ON_CRIT_ADDITIONAL_DIE
 
 ## Time til day define
 TIME_TILL_DAY 198000
