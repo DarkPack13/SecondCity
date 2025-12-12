@@ -22,17 +22,6 @@
 		stat_data["points"] = stat.get_points()
 		stat_data["score"] = stat.get_score(include_bonus = TRUE)
 		stat_data["abstract_type"] = "[stat.abstract_type]"
-
-		// This entire snowflake code is done purely so that we can properly update stats that are based on other stats.
-		if(stat.stat_flags & AFFECTS_STATS)
-			var/datum/st_stat/stat_permenant_willpower = preferences.preference_storyteller_stats[STAT_PERMANENT_WILLPOWER]
-			if(stat.stat_flags & AFFECTS_PERMANENT_WILLPOWER)
-				var/datum/st_stat/stat_courage = preferences.preference_storyteller_stats[STAT_COURAGE]
-				stat_permenant_willpower.add_stat_mod(clamp(-(stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, stat_courage.get_score(include_bonus = TRUE)), "COURAGE")
-			if(stat.stat_flags & AFFECTS_TEMPORARY_WILLPOWER)
-				var/datum/st_stat/stat_temporary_willpower = preferences.preference_storyteller_stats[STAT_TEMPORARY_WILLPOWER]
-				stat_temporary_willpower.set_score(STAT_TEMPORARY_WILLPOWER, stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER))
-
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
@@ -59,6 +48,10 @@
 
 	stat_path.increase_score(1) // By this point we know we have spend either a point, or the appropriate freebie cost for this stat, and it is not max_score. So increase it by one.
 
+	if(stat_path.stat_flags & AFFECTS_STATS)
+		update_stats()
+
+
 	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
@@ -83,10 +76,21 @@
 
 	stat_path.decrease_score(1) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 
+	if(stat_path.stat_flags & AFFECTS_STATS)
+		update_stats()
+
 	var/new_value = stat_path.get_score(FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
+
+// This entire snowflake code is done purely so that we can properly update stats that are based on other stats.
+/datum/preference_middleware/stats/proc/update_stats()
+	var/datum/st_stat/stat_courage = preferences.preference_storyteller_stats["[STAT_COURAGE]"]
+	var/datum/st_stat/stat_permenant_willpower = preferences.preference_storyteller_stats["[STAT_PERMANENT_WILLPOWER]"]
+	stat_permenant_willpower.add_stat_mod(clamp(-(stat_permenant_willpower.get_score(include_bonus = FALSE) - 10), 0, stat_courage.get_score(include_bonus = TRUE)), "COURAGE")
+	var/datum/st_stat/stat_temporary_willpower = preferences.preference_storyteller_stats["[STAT_TEMPORARY_WILLPOWER]"]
+	stat_temporary_willpower.set_score(stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER))
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
