@@ -1,0 +1,17 @@
+/obj/effect/spawner/random/mail
+	loot = list(/obj/item/letter,
+		/obj/item/storage/pill_bottle/estrogen,
+		/obj/item/storage/pill_bottle/unknown,
+		/obj/item/storage/pill_bottle/ephedrine,
+		/obj/item/storage/pill_bottle/potassiodide,
+		/obj/item/stack/dollar/rand,
+		/obj/item/vamp/keys/hack,
+		/obj/item/book/random,
+		/obj/item/paper,
+		/obj/item/paper/crumpled,
+		/obj/item/paper/pamphlet/violent_video_games,
+		/obj/effect/spawner/random/entertainment/toy,
+		/obj/effect/spawner/random/entertainment/deck,
+		/obj/effect/spawner/random/entertainment/wallet_storage,
+		/obj/effect/spawner/random/entertainment/lighter,
+		/obj/effect/spawner/random/entertainment/cigar)
