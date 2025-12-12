@@ -270,7 +270,7 @@
 	name = "acid spit"
 	icon_state = "har4ok"
 	pass_flags = PASSTABLE
-	damage = 80
+	damage = 60
 	damage_type = BURN
 	hitsound = 'sound/items/weapons/effects/searwall.ogg'
 	hitsound_wall = 'sound/items/weapons/effects/searwall.ogg'
@@ -335,7 +335,19 @@
 
 	violates_masquerade = TRUE
 
-	cooldown_length = 5 SECONDS
+	cooldown_length = 8 SECONDS
+
+/datum/discipline_power/quietus/taste_of_death/can_activate()
+	range = 3 + owner.st_get_stat(STAT_STRENGTH)
+	return ..()
+
+/datum/discipline_power/quietus/taste_of_death/pre_activation_checks(atom/target)
+	. = ..()
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_ATHLETICS), 6, owner, numerical = FALSE)
+	if(roll == ROLL_SUCCESS)
+		return TRUE
+	else
+		return FALSE
 
 /datum/discipline_power/quietus/taste_of_death/activate()
 	. = ..()
