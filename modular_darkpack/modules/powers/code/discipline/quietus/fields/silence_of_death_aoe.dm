@@ -1,3 +1,6 @@
+//The AOE proximity monitor for Quietus 1
+//It is designed to apply the trait 'silenced' and 'mute' to all targets in its area
+
 /datum/proximity_monitor/advanced/silence_of_death
 	edge_is_a_field = TRUE
 	var/list/silenced_mobs

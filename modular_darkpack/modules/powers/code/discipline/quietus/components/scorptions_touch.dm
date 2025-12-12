@@ -1,4 +1,9 @@
 //SCORPION'S TOUCH
+//The Scoprion's Touch venom from Quietus 2
+//It is designed to lower the target's stamina by poison_potency for poison_duration.alist
+//If the kindred reaches Stamina 0, they instantly enter torpor.alist
+//The target rolls does a contested roll to lower the poison_duration. if it reaches zero, they resist the poison.
+//It is qdeleted after one strike, pass or fail.
 /obj/item/melee/touch_attack/quietus
 	name = "\improper poison touch"
 	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."

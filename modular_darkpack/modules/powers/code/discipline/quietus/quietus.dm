@@ -33,6 +33,7 @@
 	. = ..()
 	QDEL_NULL(silence_field)
 
+//SCORPIONS TOUCH
 /datum/discipline_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
 	desc = "Create a powerful venom to apply to your enemies."
@@ -98,7 +99,6 @@
 		touch.poison_duration = debuff_duration
 		owner.put_in_active_hand(touch)
 
-//signals_living_mob_carbon.dm for signals or whatever
 //DAGON'S CALL
 /datum/discipline_power/quietus/dagons_call
 	name = "Dagon's Call"
@@ -210,7 +210,7 @@
 
 	if(victim.stat != DEAD)
 		var/continue_call = tgui_alert(owner, "Continue Dagon's Call for 1 additional Willpower?", "Dagon's Call", list("Yes", "No"))
-		if(continue_call == "Yes" /*&& owner.adjust_willpower(-1)*/)
+		if(continue_call == "Yes" /*&& owner.adjust_willpower(-1)*/) //requires stat preferences pr
 			strike_victim(victim)
 
 //BAAL'S CARESS

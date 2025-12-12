@@ -1,3 +1,8 @@
+//The venom applied to a weapon from Quietus 4.
+//It is described as changing the damage from a weapon to aggravated damage for each bloodpoint of vitae applied to the weapon as venom.alist
+//It allows for a weapon to deal aggravated damage for each swing until charges = 0.
+//We've added functionality for only the Banu Haqim whose poisoned the weapon to use it to prevent buffing entire armory's worth of weapons.
+
 /datum/component/baals_caress
 	var/datum/weakref/owner_ref
 	var/original_ap
