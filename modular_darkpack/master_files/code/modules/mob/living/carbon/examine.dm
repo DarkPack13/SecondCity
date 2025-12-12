@@ -25,7 +25,7 @@
 
 	switch(st_get_stat(STAT_APPEARANCE))
 		if(0)
-			. += span_bolddanger("AHH!!! WHAT THE HELL IS THAT THING!!!")
+			. += span_bolddanger("AGHH!!! WHAT THE HELL IS THAT THING!!!")
 		if(1)
 			. += span_danger("Eugh. [p_They()] [p_are()] really ugly.")
 		if(2)
