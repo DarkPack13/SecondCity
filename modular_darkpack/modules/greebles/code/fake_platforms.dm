@@ -1,9 +1,9 @@
-#define FAKE_PLATFORM_HELPER(platform_type, platform_icon, double_icon)	\
+#define FAKE_PLATFORM_HELPER(platform_type)	\
 	/obj/fake_platform/##platform_type {	\
-		icon_state = ##platform_icon; \
+		icon_state = #platform_type; \
 	}	\
 	/obj/fake_platform/##platform_type/double{	\
-		icon_state = ##double_icon;	\
+		icon_state = #platform_type + "_double";	\
 	}	\
 	/obj/fake_platform/##platform_type/easyclimb { \
 		density = FALSE; \
@@ -81,27 +81,27 @@
 	leaving.Bump(src)
 	return COMPONENT_ATOM_BLOCK_EXIT
 
-FAKE_PLATFORM_HELPER(wallpaper, "wallpaper", "wallpaper_double")
-FAKE_PLATFORM_HELPER(grey, "grey", "grey_double")
-FAKE_PLATFORM_HELPER(grey, "grey", "grey_double")
-FAKE_PLATFORM_HELPER(light, "light", "light_double")
-FAKE_PLATFORM_HELPER(asylum, "asylum", "asylum_double")
-FAKE_PLATFORM_HELPER(asylum_clean, "asylum_clean", "asylum_clean_double")
-FAKE_PLATFORM_HELPER(club, "club", "club_double")
-FAKE_PLATFORM_HELPER(cheap, "cheap", "cheap_double")
-FAKE_PLATFORM_HELPER(green, "green", "green_double")
-FAKE_PLATFORM_HELPER(stripe, "stripe", "stripe_double")
-FAKE_PLATFORM_HELPER(rich, "rich", "rich_double")
-FAKE_PLATFORM_HELPER(rich_alt, "rich_alt", "rich_alt_double")
-FAKE_PLATFORM_HELPER(stone, "stone", "stone_double")
-FAKE_PLATFORM_HELPER(stone_dual, "stone_dual", "stone_dual_double")
-FAKE_PLATFORM_HELPER(dgreen, "dgreen", "dgreen_double")
-FAKE_PLATFORM_HELPER(dred, "dred", "dred_double")
-FAKE_PLATFORM_HELPER(gold, "gold", "gold_double")
-FAKE_PLATFORM_HELPER(gold_alt, "gold_alt", "gold_alt_double")
-FAKE_PLATFORM_HELPER(gold_simple, "gold_simple", "gold_simple_double")
-FAKE_PLATFORM_HELPER(necro, "necro", "necro_double")
-FAKE_PLATFORM_HELPER(padded, "padded", "padded_double")
-FAKE_PLATFORM_HELPER(lightpadded, "lightpadded", "lightpadded_double")
+FAKE_PLATFORM_HELPER(wallpaper)
+FAKE_PLATFORM_HELPER(grey)
+FAKE_PLATFORM_HELPER(grey)
+FAKE_PLATFORM_HELPER(light)
+FAKE_PLATFORM_HELPER(asylum)
+FAKE_PLATFORM_HELPER(asylum_clean)
+FAKE_PLATFORM_HELPER(club)
+FAKE_PLATFORM_HELPER(cheap)
+FAKE_PLATFORM_HELPER(green)
+FAKE_PLATFORM_HELPER(stripe)
+FAKE_PLATFORM_HELPER(rich)
+FAKE_PLATFORM_HELPER(rich_alt)
+FAKE_PLATFORM_HELPER(stone)
+FAKE_PLATFORM_HELPER(stone_dual)
+FAKE_PLATFORM_HELPER(dgreen)
+FAKE_PLATFORM_HELPER(dred)
+FAKE_PLATFORM_HELPER(gold)
+FAKE_PLATFORM_HELPER(gold_alt)
+FAKE_PLATFORM_HELPER(gold_simple)
+FAKE_PLATFORM_HELPER(necro)
+FAKE_PLATFORM_HELPER(padded)
+FAKE_PLATFORM_HELPER(lightpadded)
 
 #undef FAKE_PLATFORM_HELPER

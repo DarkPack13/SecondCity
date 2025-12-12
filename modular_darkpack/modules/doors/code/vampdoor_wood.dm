@@ -49,6 +49,11 @@
 	lock_id = LOCKACCESS_DAUGHTERS
 	lockpick_difficulty = 10
 
+/obj/structure/vampdoor/wood/nps
+	locked = TRUE
+	lock_id = "nps"
+	lockpick_difficulty = 12
+
 /obj/structure/vampdoor/wood/apartment
 	locked = TRUE
 	grant_apartment_key = TRUE
@@ -59,3 +64,13 @@
 	. = ..()
 	if(grant_apartment_key && !lock_id)
 		lock_id = "[rand(1,9999999)]" // I know, not foolproof
+
+/obj/structure/vampdoor/wood/millennium_common
+	locked = TRUE
+	lock_id = "milleniumCommon"
+	lockpick_difficulty = 12
+
+/obj/structure/vampdoor/wood/sabbat
+	locked = TRUE
+	lock_id = "sabbat"
+	lockpick_difficulty = 8

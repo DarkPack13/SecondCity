@@ -176,3 +176,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/two, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/three, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/four, 32)
+
+/obj/structure/sign/city/store/reddragon
+	name = "Red Dragon"
+	desc = "Eat yummy-yummy flame fire noodles!"
+	icon_state = "reddragon"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/reddragon, 32)
+
+/obj/structure/sign/city/store/otolleys
+	name = "O\'Tolleys"
+	desc = "O-o-o Oh Toll-ees, Families Welcome!"
+	icon_state = "otolleys"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/otolleys, 32)

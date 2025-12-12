@@ -32,6 +32,11 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
+	/// Whether to grant an apartment_key
+	var/grant_apartment_key = FALSE
+	var/apartment_key_amount = 1
+	/// The type of a key the resident will get
+	var/apartment_key_type
 
 	/// Whether to grant an apartment_key
 	var/grant_apartment_key = FALSE
@@ -196,6 +201,8 @@
 /obj/structure/vampdoor/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
+		return
+	if(try_award_apartment_key(user))
 		return
 	var/mob/living/living_user = user
 	if(door_broken)
@@ -363,6 +370,7 @@
 	pixel_z = initial(pixel_z)
 	pixel_w = initial(pixel_w)
 
+
 /obj/structure/vampdoor/proc/try_award_apartment_key(mob/user)
 	if(!grant_apartment_key)
 		return FALSE
@@ -381,8 +389,6 @@
 	var/spare_key = tgui_alert(user, "Do I have an extra spare key?", "Apartment", list("Yes", "No"))
 	if(!grant_apartment_key)
 		return
-
-	var/apartment_key_amount = 1
 	if(spare_key == "Yes")
 		apartment_key_amount = 2
 	else
