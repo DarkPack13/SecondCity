@@ -99,4 +99,5 @@
 	log_stats(log_text)
 	preferences.preference_storyteller_stats = null
 	preferences.preference_storyteller_stats = create_new_stat_prefs()
+	update_stats()
 	return TRUE

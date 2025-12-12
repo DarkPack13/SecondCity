@@ -21,5 +21,6 @@
 /datum/st_stat/virtue/courage
 	name = "Courage"
 	description = "Courage is the quality that allows characters to stand in the face of fear or daunting adversity. It is bravery, mettle, and stoicism combined."
-	starting_score = 0
+	starting_score = 1
+	min_score = 1
 	stat_flags = AFFECTS_STATS
