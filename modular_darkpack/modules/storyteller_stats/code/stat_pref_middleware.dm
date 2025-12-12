@@ -90,5 +90,5 @@
 	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
 	log_stats(log_text)
 	preferences.preference_storyteller_stats = null
-	create_new_stat_prefs(preferences.preference_storyteller_stats)
+	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
 	return TRUE

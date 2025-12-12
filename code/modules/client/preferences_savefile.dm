@@ -378,7 +378,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	if(!stats_list)
-		create_new_stat_prefs(preference_storyteller_stats)
+		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
 		var/proper_stat_path = text2path(stat_path)
 		var/datum/st_stat/stat = new proper_stat_path()
@@ -445,7 +445,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START- STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
-		create_new_stat_prefs(preference_storyteller_stats)
+		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
 	for(var/stat_typepath in stats_list)

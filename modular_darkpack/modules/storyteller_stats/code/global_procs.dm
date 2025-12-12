@@ -7,7 +7,7 @@
 		stats_list[stat_path] = stat
 	preference_storyteller_stats = stats_list
 	update_middleware_stats(preference_storyteller_stats)
-	return stats_list
+	return preference_storyteller_stats
 
 // This entire snowflake code is done purely so that we can properly update stats that are based on other stats.
 /proc/update_middleware_stats(list/preference_storyteller_stats)
