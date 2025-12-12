@@ -31,13 +31,13 @@
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	var/old_value = stat_path.get_score(FALSE)
+	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
 
 	if(!stat_path.can_increase_score(1)) // Have we reached the max_score of the stat?
 		return FALSE // If we have, then return early.
 
-	if((stat_path.get_score(FALSE) + 1) > stat_path.starting_score)
+	if((stat_path.get_score(include_bonus = FALSE) + 1) > stat_path.starting_score)
 		if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
 			abstract_stat.decrease_points(1) // Spend a point.
 		else
@@ -52,7 +52,7 @@
 		update_stats()
 
 
-	var/new_value = stat_path.get_score(FALSE)
+	var/new_value = stat_path.get_score(include_bonus = FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
@@ -63,12 +63,12 @@
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	var/old_value = stat_path.get_score(FALSE)
+	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
 	if(!stat_path.can_decrease_score(1))
 		return FALSE
 
-	if((stat_path.get_score(FALSE) - 1) >= stat_path.starting_score)
+	if((stat_path.get_score(include_bonus = FALSE) - 1) >= stat_path.starting_score)
 		if(freebie_point_stat.can_increase_freebie_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
 			freebie_point_stat.increase_freebie_points(stat_path.freebie_point_cost) // Regain freebie points.
 		else
@@ -79,7 +79,7 @@
 	if(stat_path.stat_flags & AFFECTS_STATS)
 		update_stats()
 
-	var/new_value = stat_path.get_score(FALSE)
+	var/new_value = stat_path.get_score(include_bonus = FALSE)
 	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
 	log_stats(log_text)
 	return TRUE
