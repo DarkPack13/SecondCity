@@ -180,6 +180,8 @@
 		if(-INFINITY to BLOOD_VOLUME_BAD)
 			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
 
+	display_darkpack_examine_text()// DARKPACK EDIT ADD
+
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		var/list/obj/item/bodypart/grasped_limbs = list()
@@ -231,44 +233,6 @@
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
-
-		// DARKPACK EDIT ADD START
-		if(iskindred(src) && !(obscured_slots & HIDEFACE))
-			switch(clan?.alt_sprite)
-				if("nosferatu")
-					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
-				if("gargoyle")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] to be made out of stone!<br>")
-				if("kiasyd")
-					if (!is_eyes_covered())
-						. += span_boldwarning("[p_they(TRUE)] [p_have()] no whites in [p_their()] eyes!</b><br>")
-				if("rotten1")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] oddly gaunt.<br>")
-				if("rotten2")
-					. += span_warning("[p_they(TRUE)] [p_have()] a corpselike complexion.<br>")
-				if("rotten3")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a decayed corpse!<br>")
-				if("rotten4")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
-
-		if (iszombie(src) && !(obscured_slots & HIDEFACE)) // for necromancy player-controlled zombies
-			. += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
-
-		switch(living_user.st_get_stat(STAT_APPEARANCE))
-			if(0)
-				. += span_red(span_bold("AHH!!! WHAT THE HELL IS THAT THING!!!"))
-			if(1)
-				. += span_blobannounce("Eugh. [p_they(TRUE)] [p_are()] really ugly.")
-			if(2)
-				. += span_notice("[p_they(TRUE)] [p_are()] not terrible to look at, but still below average.")
-			if(3)
-				. += span_grey("[p_they(TRUE)] [p_are()] average looking.")
-			if(4)
-				. += span_purple("[p_they(TRUE)] [p_are()] quite attractive!")
-			if(5)
-				. += span_rose(span_bold("Oh... My God... [p_they(TRUE)] [p_are()] absolutely stunning! You find yourself blushing just looking at them."))
-
-		// DARKPACK EDIT ADD END
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
