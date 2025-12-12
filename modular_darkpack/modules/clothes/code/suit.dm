@@ -282,6 +282,27 @@
 	acid = 10
 	wound = 35
 
+/obj/item/clothing/suit/vampire/jacket/better/armored
+	name = "armored leather jacket"
+	armor_type = /datum/armor/armored_jackets
+
+/datum/armor/armored_jackets
+	melee = 50
+	bullet = 50
+	laser = 50
+	energy = 10
+	bomb = 40
+	bio = 0
+	fire = 40
+	acid = 10
+	wound = 25
+
+/obj/item/clothing/suit/vampire/trench/alt/armored
+	name = "armored trenchcoat"
+	icon_state = "trench2"
+	max_integrity = 1000;
+	armor_type = /datum/armor/armored_jackets
+
 /obj/item/clothing/suit/vampire/trench
 	name = "trenchcoat"
 	desc = "Best noir clothes for night. Provides some kind of protection."
