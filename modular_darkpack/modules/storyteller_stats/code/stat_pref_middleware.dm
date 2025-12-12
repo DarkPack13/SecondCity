@@ -27,7 +27,8 @@
 		if(stat.stat_flags & AFFECTS_STATS)
 			var/datum/st_stat/stat_permenant_willpower = preferences.preference_storyteller_stats[STAT_PERMANENT_WILLPOWER]
 			if(stat.stat_flags & AFFECTS_PERMANENT_WILLPOWER)
-				stat_permenant_willpower.add_stat_mod(clamp(-(stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, stat.get_score(include_bonus = TRUE)), "COURAGE")
+				var/datum/st_stat/stat_courage = preferences.preference_storyteller_stats[STAT_COURAGE]
+				stat_permenant_willpower.add_stat_mod(clamp(-(stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, stat_courage.get_score(include_bonus = TRUE)), "COURAGE")
 			if(stat.stat_flags & AFFECTS_TEMPORARY_WILLPOWER)
 				var/datum/st_stat/stat_temporary_willpower = preferences.preference_storyteller_stats[STAT_TEMPORARY_WILLPOWER]
 				stat_temporary_willpower.set_score(STAT_TEMPORARY_WILLPOWER, stat_permenant_willpower.get_score(STAT_PERMANENT_WILLPOWER))
