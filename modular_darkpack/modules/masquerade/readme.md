@@ -13,7 +13,7 @@ This module handles everything related to the masquerade, veil or whatnot.
 ### Modular Overrides:
 
 - `/mob/living/carbon/human/npc/Hear()`
-- `/obj/item/vamp/phone/handle_hearing()`
+- `/obj/item/smartphone/handle_hearing()`
 - `modular_darkpack/master_files/code/modules/mob/living/var/masquerade_timer`
 
 ### Defines:

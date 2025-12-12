@@ -7,7 +7,7 @@
 	supervisors = "the Anarchs and the Traditions"
 	config_tag = "BARON"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/baron
+	outfit = /datum/outfit/job/vampire/baron
 
 	display_order = JOB_DISPLAY_ORDER_BARON
 	department_for_prefs = /datum/job_department/anarch
@@ -16,12 +16,12 @@
 	)
 
 	known_contacts = list("Bouncer", "Emissary", "Sweeper", "Prince", "Sheriff")
-	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
 	allowed_species = list(SPECIES_KINDRED)
 	description = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
 
-/datum/outfit/job/baron
+/datum/outfit/job/vampire/baron
 	name = "Baron"
 	jobtype = /datum/job/vampire/baron
 
@@ -31,10 +31,6 @@
 	suit = /obj/item/clothing/suit/vampire/jacket/better
 	shoes = /obj/item/clothing/shoes/vampire
 	gloves = /obj/item/clothing/gloves/vampire/work
-	//l_pocket = /obj/item/vamp/phone/baron
+	l_pocket = /obj/item/smartphone/baron
 	r_pocket = /obj/item/vamp/keys/bar
-	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/baron
-	name = "Baron"
-	icon_state = "Baron"
+	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)

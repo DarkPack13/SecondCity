@@ -8,5 +8,5 @@
 
 /obj/item/phone_book/attack_self(mob/user)
 	. = ..()
-	for(var/i in GLOB.phone_numbers_list)
-		to_chat(user, "- [i]")
+	for(var/i as anything in SSphones.assigned_phone_numbers)
+		to_chat(user, "[SSphones.assigned_phone_numbers[i]]")

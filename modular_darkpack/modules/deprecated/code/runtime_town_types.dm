@@ -1,9 +1,5 @@
 // DARKPACK TODO - This file should not exist and is only so we can save runtime town
 
-/obj/item/arcane_tome
-	icon = 'icons/effects/mapping_helpers.dmi'
-	icon_state = "merge_conflict_marker"
-
 /obj/item/molotov
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "merge_conflict_marker"
@@ -34,13 +30,3 @@
 
 /obj/vampire_computer/prince
 	icon_state = "computerprince"
-
-/obj/item/vamp/phone/street
-	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
-	icon_state = "payphone"
-
-
-/obj/item/vamp/phone
-	slot_flags = ITEM_SLOT_POCKETS
-	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
-	icon_state = "payphone"

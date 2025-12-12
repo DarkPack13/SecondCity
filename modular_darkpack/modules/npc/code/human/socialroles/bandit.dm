@@ -84,7 +84,7 @@
 		/obj/item/clothing/head/vampire/beanie/black
 	)
 	pockets = list(
-		/obj/item/stack/dollar/rand,
+		// /obj/item/stack/dollar/rand,
 		/obj/item/vamp/keys/hack
 	)
 

@@ -1,0 +1,101 @@
+#  Anarchs
+/obj/effect/landmark/start/baron : /obj/effect/landmark/start/darkpack/anarch/baron
+/obj/effect/landmark/start/bruiser : /obj/effect/landmark/start/darkpack/anarch/bruiser
+/obj/effect/landmark/start/emissary : /obj/effect/landmark/start/darkpack/anarch/emissary
+/obj/effect/landmark/start/sweeper : /obj/effect/landmark/start/darkpack/anarch/sweeper
+/obj/effect/landmark/start/tapster : /obj/effect/landmark/start/darkpack/anarch/tapster
+
+#  Axe Gang
+/obj/effect/landmark/start/axe_leader : /obj/effect/landmark/start/darkpack/axe/leader
+/obj/effect/landmark/start/axe_gang : /obj/effect/landmark/start/darkpack/axe/gang
+
+# Supply
+/obj/effect/landmark/start/dealer : /obj/effect/landmark/start/darkpack/supply/dealer
+/obj/effect/landmark/start/supply : /obj/effect/landmark/start/darkpack/supply/tech
+
+#  Camarilla
+/obj/effect/landmark/start/prince : /obj/effect/landmark/start/darkpack/camarilla/prince
+/obj/effect/landmark/start/clerk : /obj/effect/landmark/start/darkpack/camarilla/clerk
+/obj/effect/landmark/start/sheriff : /obj/effect/landmark/start/darkpack/camarilla/sheriff
+/obj/effect/landmark/start/hound : /obj/effect/landmark/start/darkpack/camarilla/hound
+/obj/effect/landmark/start/harpy : /obj/effect/landmark/start/darkpack/camarilla/harpy
+/obj/effect/landmark/start/towerwork : /obj/effect/landmark/start/darkpack/camarilla/towerwork
+
+#  Primogen Council
+/obj/effect/landmark/start/citizen{name="Primogen Toreador"} : /obj/effect/landmark/start/darkpack/primogen/toreador
+
+# Banu and Lasombra starts are fixed on TFN but not APOC so these need to be duplicated
+/obj/effect/landmark/start/primogen_banu : /obj/effect/landmark/start/darkpack/primogen/banu
+/obj/effect/landmark/start/citizen{name="Primogen Banu Haqim"} : /obj/effect/landmark/start/darkpack/primogen/banu
+
+/obj/effect/landmark/start/primogen_lasombra : /obj/effect/landmark/start/darkpack/primogen/lasombra
+/obj/effect/landmark/start/citizen{name="Primogen Lasombra"} : /obj/effect/landmark/start/darkpack/primogen/lasombra
+
+/obj/effect/landmark/start/citizen{name="Primogen Malkavian"} : /obj/effect/landmark/start/darkpack/primogen/malkavian
+/obj/effect/landmark/start/citizen{name="Primogen Nosferatu"} : /obj/effect/landmark/start/darkpack/primogen/nosferatu
+/obj/effect/landmark/start/citizen{name="Primogen Ventrue"} : /obj/effect/landmark/start/darkpack/primogen/ventrue
+
+#  Hospital
+/obj/effect/landmark/start/clinic_director : /obj/effect/landmark/start/darkpack/hospital/clinic_director
+/obj/effect/landmark/start/doctor : /obj/effect/landmark/start/darkpack/hospital/doctor
+
+#  Government & Police
+/obj/effect/landmark/start/national_guard : /obj/effect/landmark/start/darkpack/law_enforcement/national_guard
+/obj/effect/landmark/start/swat : /obj/effect/landmark/start/darkpack/law_enforcement/swat
+/obj/effect/landmark/start{name="Police Chief"} : /obj/effect/landmark/start/darkpack/law_enforcement/chief
+/obj/effect/landmark/start{name="Police Sergeant"} : /obj/effect/landmark/start/darkpack/law_enforcement/sergeant
+/obj/effect/landmark/start{name="Police Officer"} : /obj/effect/landmark/start/darkpack/law_enforcement/officer
+/obj/effect/landmark/start{name="Emergency Dispatcher"} : /obj/effect/landmark/start/darkpack/law_enforcement/dispatcher
+/obj/effect/landmark/start{name="Federal Investigator"} : /obj/effect/landmark/start/darkpack/law_enforcement/fbi
+
+#  Giovanni
+/obj/effect/landmark/start/capo : /obj/effect/landmark/start/darkpack/hecata/capo
+/obj/effect/landmark/start/famiglia : /obj/effect/landmark/start/darkpack/hecata/famiglia
+/obj/effect/landmark/start/squadra : /obj/effect/landmark/start/darkpack/hecata/squadra
+/obj/effect/landmark/start/graveyardkeeper : /obj/effect/landmark/start/darkpack/hecata/graveyardkeeper
+
+#  Civilian
+/obj/effect/landmark/start/citizen : /obj/effect/landmark/start/darkpack/citizen/citizen
+/obj/effect/landmark/start/club_woker : /obj/effect/landmark/start/darkpack/citizen/club_woker
+/obj/effect/landmark/start/janitor : /obj/effect/landmark/start/darkpack/citizen/janitor
+/obj/effect/landmark/start/priest : /obj/effect/landmark/start/darkpack/citizen/priest
+/obj/effect/landmark/start/taxi : /obj/effect/landmark/start/darkpack/citizen/taxi
+
+#  Sabbat
+/obj/effect/landmark/start/sabbatductus : /obj/effect/landmark/start/darkpack/sabbat/ductus
+/obj/effect/landmark/start/sabbatpack : /obj/effect/landmark/start/darkpack/sabbat/pack
+/obj/effect/landmark/start/sabbatpriest : /obj/effect/landmark/start/darkpack/sabbat/priest
+/obj/effect/landmark/start/sabbatist : /obj/effect/landmark/start/darkpack/sabbat/sabbatist
+
+#  Chantry
+/obj/effect/landmark/start/regent : /obj/effect/landmark/start/darkpack/chantry/regent
+/obj/effect/landmark/start/archivist : /obj/effect/landmark/start/darkpack/chantry/archivist
+/obj/effect/landmark/start/gargoyle : /obj/effect/landmark/start/darkpack/chantry/gargoyle
+
+#  Forest Wolves
+/obj/effect/landmark/start/garou/glade/council : /obj/effect/landmark/start/darkpack/forest_wolves/council
+/obj/effect/landmark/start/garou/glade/keeper : /obj/effect/landmark/start/darkpack/forest_wolves/keeper
+/obj/effect/landmark/start/garou/glade/catcher : /obj/effect/landmark/start/darkpack/forest_wolves/catcher
+/obj/effect/landmark/start/garou/glade/warder : /obj/effect/landmark/start/darkpack/forest_wolves/warder
+/obj/effect/landmark/start/garou/glade/guardian : /obj/effect/landmark/start/darkpack/forest_wolves/guardian
+
+#  City Wolves
+/obj/effect/landmark/start/garou/painted/council : /obj/effect/landmark/start/darkpack/city_wolves/council
+/obj/effect/landmark/start/garou/painted/keeper : /obj/effect/landmark/start/darkpack/city_wolves/keeper
+/obj/effect/landmark/start/garou/painted/catcher : /obj/effect/landmark/start/darkpack/city_wolves/catcher
+/obj/effect/landmark/start/garou/painted/warder : /obj/effect/landmark/start/darkpack/city_wolves/warder
+/obj/effect/landmark/start/garou/painted/guardian : /obj/effect/landmark/start/darkpack/city_wolves/guardian
+
+#  Pentex
+/obj/effect/landmark/start/first_team : /obj/effect/landmark/start/darkpack/pentex/first_team
+/obj/effect/landmark/start/garou/spiral/lead : /obj/effect/landmark/start/darkpack/pentex/lead
+/obj/effect/landmark/start/garou/spiral/executive : /obj/effect/landmark/start/darkpack/pentex/executive
+/obj/effect/landmark/start/garou/spiral/affairs : /obj/effect/landmark/start/darkpack/pentex/affairs
+/obj/effect/landmark/start/garou/spiral/secchief : /obj/effect/landmark/start/darkpack/pentex/secchief
+/obj/effect/landmark/start/garou/spiral/sec : /obj/effect/landmark/start/darkpack/pentex/sec
+/obj/effect/landmark/start/garou/spiral/employee : /obj/effect/landmark/start/darkpack/pentex/employee
+
+#  Voivodate
+/obj/effect/landmark/start/voivode : /obj/effect/landmark/start/darkpack/voivode/voivode
+/obj/effect/landmark/start/bogatyr : /obj/effect/landmark/start/darkpack/voivode/bogatyr
+/obj/effect/landmark/start/zadruga : /obj/effect/landmark/start/darkpack/voivode/zadruga

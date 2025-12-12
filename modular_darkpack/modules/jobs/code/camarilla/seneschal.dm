@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_CAMARILLA
 	config_tag = "SENESCHAL"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/clerk
+	outfit = /datum/outfit/job/vampire/clerk
 
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	department_for_prefs = /datum/job_department/camarilla
@@ -26,11 +26,11 @@
 	minimal_generation = 12
 	minimal_masquerade = 5
 	allowed_species = list(SPECIES_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD)
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD)
 
 	known_contacts = list("Prince","Sheriff","Tremere Regent","Dealer","Primogens")
 
-/datum/outfit/job/clerk
+/datum/outfit/job/vampire/clerk
 	name = "Seneschal"
 	jobtype = /datum/job/vampire/clerk
 
@@ -38,10 +38,6 @@
 	id = /obj/item/card/clerk
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
-	//l_pocket = /obj/item/vamp/phone/clerk
+	l_pocket = /obj/item/smartphone/seneschal
 	r_pocket = /obj/item/vamp/keys/clerk
-	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
-
-/obj/effect/landmark/start/clerk
-	name = "Seneschal"
-	icon_state = "Clerk"
+	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)

@@ -1,9 +1,3 @@
-//normal duration defines
-///Duration of one "turn", which is 5 seconds according to us
-#define TURNS * 5 SECONDS
-///Duration of one "scene", which is 3 minutes according to us
-#define SCENES * 3 MINUTES
-
 //targeting bitflags, NONE or 0 if targeting self exclusively
 ///Allows for self to also be selected in ranged targeting, SET TO 0 IF NOT TARGETED OR RANGED
 #define TARGET_SELF (1<<0)

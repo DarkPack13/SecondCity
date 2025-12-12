@@ -4,22 +4,21 @@
 	if(stat >= SOFT_CRIT)
 		return ..()
 
-	//if(issabbat(src)) //Because sabbatists are idiots.
-	//	return ..()
-
 	var/treated_message = translate_language(speaker, message_language, raw_message, spans, message_mods)
 	if(lowertext(MASQUERADE_FILTER_CHECK(treated_message)))
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	..()
 
-/* DARKPACK TODO - PHONES
-/obj/item/vamp/phone/handle_hearing(datum/source, list/hearing_args)
-	if(online && talking)
-		if(istype(hearing_args[HEARING_SPEAKER], /obj/phonevoice))
-			return ..()
+/obj/item/smartphone/proc/handle_hearing(datum/source, list/hearing_args)
+	SIGNAL_HANDLER
+
+
+	if(current_state == PHONE_IN_CALL)
+		if(istype(hearing_args[HEARING_SPEAKER], /atom/movable/virtualspeaker))
+			return
+		var/message = compose_message(hearing_args[HEARING_SPEAKER], hearing_args[HEARING_LANGUAGE], hearing_args[HEARING_RAW_MESSAGE], hearing_args[HEARING_RADIO_FREQ], hearing_args[HEARING_RADIO_FREQ_NAME], hearing_args[HEARING_RADIO_FREQ_COLOR], hearing_args[HEARING_SPANS], hearing_args[HEARING_MESSAGE_MODE], FALSE)
+		SSmasquerade.log_phone_message(message, source)
 		if(lowertext(MASQUERADE_FILTER_CHECK(hearing_args[HEARING_RAW_MESSAGE])))
 			SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, hearing_args[HEARING_SPEAKER])
-	..()
-*/
 
 #undef MASQUERADE_FILTER_CHECK

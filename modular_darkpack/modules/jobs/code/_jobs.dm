@@ -12,12 +12,17 @@
 	///List of species that are limited to a certain amount of that species doing this job.
 	var/list/species_slots = list(SPECIES_HUMAN = -1, SPECIES_GHOUL = -1, SPECIES_KINDRED = -1)
 	///List of Clans that are allowed to do this job.
-	var/list/allowed_clans = VAMPIRE_CLAN_ALL
+	var/list/allowed_clans
+	///List of Clans that are disallowed to do this job.
+	var/list/disallowed_clans
 	///If this job requires whitelisting before it can be selected for characters.
 	var/whitelisted = FALSE
 
 	// Only for display in memories
 	var/list/known_contacts = null
+
+	///Guestbook flags, to establish who knowns who etc
+	var/guestbook_flags = NONE
 
 // Default vampire job outfits.
 /datum/outfit/job/vampire
@@ -29,6 +34,32 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = null
 	pda_slot = null
+
+/datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+	. = ..()
+	var/obj/item/smartphone/phone = locate() in user.contents
+	if(phone)
+		phone.owner_weakref = WEAKREF(user)
+		phone.update_initialized_contacts()
+
+/datum/job/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	if(!(guestbook_flags & GUESTBOOK_FORGETMENOT))
+		for(var/mob/player_mob as anything in GLOB.player_list)
+			if((player_mob == spawned) || !player_mob.mind?.assigned_role)
+				continue
+			var/datum/job/player_mob_job = player_mob.mind.assigned_role
+			var/list/common_departments = player_mob_job.departments_list & departments_list //wonky
+			//if we satisfy at least one condition, add us to their guestbook
+			if(player_mob_job.guestbook_flags & GUESTBOOK_OMNISCIENT || \
+				((player_mob_job.guestbook_flags & GUESTBOOK_JOB) && (player_mob_job.type == src.type)) || \
+				((player_mob_job.guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
+				player_mob.mind.guestbook.add_guest(player_mob, spawned, spawned.mind.name, spawned.mind.name, silent = TRUE)
+			//if we satisfy at least one condition, add them to our guestbook
+			if(guestbook_flags & GUESTBOOK_OMNISCIENT || \
+				((guestbook_flags & GUESTBOOK_JOB) && (src.type == player_mob_job.type)) || \
+				((guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
+				spawned.mind.guestbook.add_guest(spawned, player_mob, player_mob.mind.name, player_mob.mind.name, silent = TRUE)
 
 /**
  * This type is used to indicate a lack of a job.

@@ -6,7 +6,7 @@
 	spawn_positions = 2
 	supervisors = " the FBI"
 	config_tag = "FEDERAL_AGENT"
-	outfit = /datum/outfit/job/fbi
+	outfit = /datum/outfit/job/vampire/fbi
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_FBI
 	exp_required_type_department = EXP_TYPE_NATIONAL_SECURITY
@@ -21,7 +21,7 @@
 
 	known_contacts = list("Police Chief")
 
-/datum/outfit/job/fbi
+/datum/outfit/job/vampire/fbi
 	name = "Federal Investigator"
 	jobtype = /datum/job/vampire/fbi
 
@@ -32,12 +32,12 @@
 	//belt = /obj/item/storage/belt/holster/detective/vampire/fbi
 	id = /obj/item/card/police/fbi
 	gloves = /obj/item/clothing/gloves/vampire/investigator
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/radio/cop
 	l_hand = /obj/item/vamp/keys/police
 	r_hand = /obj/item/police_radio
 	backpack_contents = list(/obj/item/card/police/sergeant=1, /obj/item/passport=1, /obj/item/camera/detective=1, /obj/item/camera_film=1, /obj/item/taperecorder=1, /obj/item/tape=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c45acp=1, /obj/item/storage/medkit/darkpack/ifak=1)
 
-/datum/outfit/job/fbi/post_equip(mob/living/carbon/human/agent)
+/datum/outfit/job/vampire/fbi/post_equip(mob/living/carbon/human/agent)
 	..()
 	agent.ignores_warrant = TRUE

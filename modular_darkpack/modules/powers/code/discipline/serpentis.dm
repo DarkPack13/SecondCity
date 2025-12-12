@@ -92,8 +92,8 @@
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/activate(mob/living/target)
 	. = ..()
-	target.bloodpool = max(target.bloodpool - 2, 0)
-	owner.bloodpool = min(owner.bloodpool + 2, owner.maxbloodpool)
+	target.adjust_blood_pool(-2)
+	owner.adjust_blood_pool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 	qdel(casing)
@@ -131,7 +131,7 @@
 	duration_length = 15 SECONDS
 	cooldown_length = 30 SECONDS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/cobra/BC
+	var/datum/action/cooldown/spell/shapeshift/cobra/BC
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/activate()
 	. = ..()
@@ -145,14 +145,14 @@
 	owner.Stun(1.5 SECONDS)
 	owner.do_jitter_animation(3 SECONDS)
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/cobra
+/datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
 	desc = "Take on the shape a beast."
 	charge_max = 15 SECONDS
 	cooldown_min = 15 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/cobra
+	possible_shapes = list(/mob/living/simple_animal/hostile/cobra)
 
 /mob/living/simple_animal/hostile/cobra
 	name = "Cobra Form"
@@ -200,7 +200,7 @@
 			owner.dna.species.inherent_traits |= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_NOSOFTCRIT
-			owner.stakeimmune = TRUE
+			ADD_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
 			urn = new(owner.loc)
 			urn.own = owner
 			var/obj/item/organ/heart/heart = owner.getorganslot(ORGAN_SLOT_HEART)
@@ -210,7 +210,7 @@
 			owner.dna.species.inherent_traits -= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_NOSOFTCRIT
-			owner.stakeimmune = FALSE
+			REMOVE_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
 			for(var/obj/item/organ/heart/heart in urn)
 				heart.forceMove(owner)
 				heart.Insert(owner)

@@ -7,7 +7,7 @@
 	supervisors = SUPERVISOR_BARON
 	config_tag = "EMISSARY"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/emissary
+	outfit = /datum/outfit/job/vampire/emissary
 
 	display_order = JOB_DISPLAY_ORDER_EMISSARY
 	department_for_prefs = /datum/job_department/anarch
@@ -16,12 +16,12 @@
 	)
 
 	known_contacts = list("Baron", "Bouncer", "Emissary", "Sweeper", "Prince", "Sheriff")
-	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_SALUBRI)
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_SALUBRI)
 	allowed_species = list(SPECIES_KINDRED)
 	description = "You are a diplomat for the anarchs. Make deals, keep the peace, all through words, not violence. But the latter may come to pass if the former fails."
 	minimal_masquerade = 2
 
-/datum/outfit/job/emissary
+/datum/outfit/job/vampire/emissary
 	name = "emissary"
 	jobtype = /datum/job/vampire/emissary
 
@@ -30,9 +30,5 @@
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
-	//l_pocket = /obj/item/vamp/phone/anarch
+	l_pocket = /obj/item/smartphone/emissary
 	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit/rich=1)
-
-/obj/effect/landmark/start/emissary
-	name = "Emissary"
-	icon_state = "Bouncer"

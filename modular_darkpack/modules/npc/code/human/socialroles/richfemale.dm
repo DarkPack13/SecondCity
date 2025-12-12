@@ -58,8 +58,8 @@
 	uniforms = list(/obj/item/clothing/under/vampire/business)
 	pockets = list(
 		/obj/item/vamp/keys/npc,
-		/obj/item/stack/dollar/fifty,
-		/obj/item/stack/dollar/hundred
+		// /obj/item/stack/dollar/fifty,
+		// /obj/item/stack/dollar/hundred
 	)
 
 	female_phrases = list(

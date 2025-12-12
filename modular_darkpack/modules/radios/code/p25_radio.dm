@@ -377,7 +377,7 @@
 	var/area/A = get_area(source)
 	var/coords = "[T.x], [T.y]"
 	var/prefix = source.get_prefix()
-	var/emergency_msg = "\[<b>[span_red("[prefix]-[source.callsign]")]</b>\]: [span_robot("<b><span class='red'>11-99 OFFICER NEEDS ASSISTANCE AT: [A.name] ([coords])")]</b></span>"
+	var/emergency_msg = "\[<b>[span_red("[prefix]-[source.callsign]")]</b>\]: [span_robot("<b>[span_red("11-99 OFFICER NEEDS ASSISTANCE AT: [A.name] ([coords])")]</b>")]"
 	var/formatted = "[icon2html(source, world)] [emergency_msg]"
 
 	return broadcast_to_network(formatted, "police", 'sound/effects/radioalert.ogg', 100)

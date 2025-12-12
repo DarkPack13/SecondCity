@@ -1,0 +1,2 @@
+/obj/item/card/id/@SUBTYPES : /obj/item/card/@SUBTYPES
+/obj/item/cockclock : /obj/item/watch

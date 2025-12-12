@@ -31,6 +31,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RUBICON "rubicon"
 #define TRAIT_HUNGRY "hungry"
 #define TRAIT_STAKE_RESISTANT "stake_resistant"
+#define TRAIT_STAKE_IMMUNE "stake_immune"
+#define TRAIT_STAKED "staked"
 #define TRAIT_LAZY "lazy"
 #define TRAIT_HOMOSEXUAL "homosexual"
 #define TRAIT_HUNTED "hunted"
@@ -87,5 +89,18 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 // Does the mob know thaumaturgy?
 #define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
+// Does the mob have ghostsight?
+#define TRAIT_GHOST_VISION "ghost_vision"
+#define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
+#define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
+#define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
+
+// Allows the user to pass through doors
+#define TRAIT_PASSDOOR "trait_passdoor" //DARKPACK EDIT ADDITION -- Obtenebration & Mysticism Rework
+#define TRAIT_IN_FRENZY "in_frenzy"
+
+
+/// They have warped time at some point in this round
+#define TRAIT_TIMEWARPER "timewarper"
 
 // END TRAIT DEFINES

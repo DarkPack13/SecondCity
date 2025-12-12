@@ -1,5 +1,5 @@
-// DARKPACK TODO - Alot of wooden doors that dont acctually use this subtype
-/obj/structure/vampdoor/wood
+/obj/structure/vampdoor/wood // Six paneled plain wooden door
+	name = "wooden door"
 	icon_state = "wood-1"
 	base_icon_state = "wood"
 	burnable = TRUE
@@ -41,4 +41,37 @@
 /obj/structure/vampdoor/wood/jazz_club
 	name = "Jazz Club"
 	lock_id = "milleniumCommon"
+	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/wood/daughters
+	locked = TRUE
+	lock_id = "daughters"
+	lockpick_difficulty = 10
+
+/obj/structure/vampdoor/wood/nps
+	locked = TRUE
+	lock_id = "nps"
+	lockpick_difficulty = 12
+
+/obj/structure/vampdoor/wood/apartment
+	locked = TRUE
+	grant_apartment_key = TRUE
+	apartment_key_type = /obj/item/vamp/keys/apartment
+	lock_id = null //Will be randomized
+	lockpick_difficulty = 8
+
+/obj/structure/vampdoor/wood/apartment/Initialize()
+	. = ..()
+	if(grant_apartment_key && !lock_id)
+		lock_id = "[rand(1,9999999)]" // I know, not foolproof
+
+/obj/structure/vampdoor/wood/millennium_common
+	locked = TRUE
+	lock_id = "milleniumCommon"
+	lockpick_difficulty = 12
+
+/obj/structure/vampdoor/wood/sabbat
+	name = "Wooden Door"
+	locked = TRUE
+	lock_id = "sabbat"
 	lockpick_difficulty = 8

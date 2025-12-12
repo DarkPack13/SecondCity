@@ -318,15 +318,6 @@
 		"police_chief"
 	)
 
-//===========================MISC KEYS===========================
-
-/obj/item/vamp/keys/axes
-	name = "Rusty keys"
-	accesslocks = list(
-		"axes",
-		"laundromat"
-	)
-
 //===========================GAROU KEYS===========================
 
 /obj/item/vamp/keys/nps
@@ -419,3 +410,10 @@
 		"biker_bar"
 	)
 	color = "#434343"
+
+/obj/item/vamp/keys/apartment
+	name = "Apartment keys"
+	desc = "The key to someone's home. Hope it's not lost."
+	accesslocks = list(
+		"apartment"
+	)
