@@ -12,7 +12,6 @@
 /mob/living/LateInitialize()
 	if(client?.prefs?.preference_storyteller_stats)
 		apply_stats_from_prefs()
-	update_visible_name()
 
 /mob/living/Destroy()
 	lastattacked = null
