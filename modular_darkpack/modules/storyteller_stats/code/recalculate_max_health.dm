@@ -3,3 +3,5 @@
 	maxHealth = round(initial(maxHealth) + ((initial(maxHealth)/8) * st_get_stat(STAT_STAMINA)))
 	if(initial)
 		health = maxHealth
+	else if(health > 0)
+		health = max(health + maxHealth - old_max_health, 1)

@@ -18,6 +18,19 @@
 
 /mob/living/proc/apply_stats_from_prefs(list/prefs_list)
 	storyteller_stats = client?.prefs?.preference_storyteller_stats.Copy()
+	update_modifiers_from_stats()
+
+/mob/living/proc/update_modifiers_from_stats()
+	for(var/stat_typepath in storyteller_stats)
+		var/datum/st_stat/stat_datum = storyteller_stats[stat_typepath]
+		if(stat_datum.stat_flags & AFFECTS_HEALTH)
+			recalculate_max_health(initial = TRUE)
+		if(stat_datum.stat_flags & AFFECTS_SPEED)
+			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(st_get_stat(STAT_DEXTERITY) / 20))
+		if(stat_datum.stat_flags & AFFECTS_PERMANENT_WILLPOWER)
+			st_add_stat_mod(STAT_PERMANENT_WILLPOWER, clamp(-(get_stat(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, get_stat(STAT_COURAGE)), "COURAGE")
+		if(stat_datum.stat_flags & AFFECTS_TEMPORARY_WILLPOWER)
+			st_set_stat(STAT_TEMPORARY_WILLPOWER, get_stat(STAT_PERMANENT_WILLPOWER))
 
 /proc/create_new_stat_prefs()
 	var/list/stats_list = list()
