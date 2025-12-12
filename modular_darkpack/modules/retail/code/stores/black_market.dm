@@ -14,7 +14,7 @@
 		new /datum/data/vending_product("stake", /obj/item/vampire_stake,	100),
 		new /datum/data/vending_product("Surgery dufflebag", /obj/item/storage/backpack/duffelbag/sec/surgery, 100),
 		new /datum/data/vending_product("Handcuffs", /obj/item/restraints/handcuffs, 50),
-		//new /datum/data/vending_product("Black bag", /obj/item/clothing/head/vampire/blackbag, 50),
+		new /datum/data/vending_product("Black bag", /obj/item/clothing/head/vampire/blackbag, 50),
 		new /datum/data/vending_product("snub-nose revolver", /obj/item/gun/ballistic/revolver/darkpack/snub,	100),
 		new /datum/data/vending_product("cannabis package", /obj/item/food/grown/cannabis,	700),
 		new /datum/data/vending_product("morphine syringe", /obj/item/reagent_containers/syringe/contraband/morphine,	800),

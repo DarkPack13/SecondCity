@@ -1,0 +1,3 @@
+/mob/living/carbon/human/species/vamp_mannequin/conquestador : /obj/structure/mannequin/plastic/conquistador
+/mob/living/carbon/human/species/vamp_mannequin/cowboy : /obj/structure/mannequin/plastic/cowboy
+/mob/living/carbon/human/species/vamp_mannequin/napoleon : /obj/structure/mannequin/plastic/napoleon

@@ -15,8 +15,6 @@
 
 	var/frenzy_chance_boost = 10
 
-	var/stakeimmune = FALSE
-
 	COOLDOWN_DECLARE(drinkblood_use_cd)
 	COOLDOWN_DECLARE(drinkblood_click_cd)
 
