@@ -23,4 +23,4 @@
 	description = "Courage is the quality that allows characters to stand in the face of fear or daunting adversity. It is bravery, mettle, and stoicism combined."
 	starting_score = 1 //All vampires by default start out with this.
 	score = 1
-	stat_flags = AFFECTS_PERMANENT_WILLPOWER
+	stat_flags = AFFECTS_PERMANENT_WILLPOWER | AFFECTS_STATS

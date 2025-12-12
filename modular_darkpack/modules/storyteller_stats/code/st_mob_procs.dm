@@ -27,6 +27,9 @@
 			recalculate_max_health(initial = TRUE)
 		if(stat_datum.stat_flags & AFFECTS_SPEED)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(st_get_stat(STAT_DEXTERITY) / 20))
+
+		if(!(stat_datum.stat_flags & AFFECTS_STATS))
+			continue
 		if(stat_datum.stat_flags & AFFECTS_PERMANENT_WILLPOWER)
 			st_add_stat_mod(STAT_PERMANENT_WILLPOWER, clamp(-(get_stat(STAT_PERMANENT_WILLPOWER, include_bonus = FALSE) - 10), 0, get_stat(STAT_COURAGE)), "COURAGE")
 		if(stat_datum.stat_flags & AFFECTS_TEMPORARY_WILLPOWER)

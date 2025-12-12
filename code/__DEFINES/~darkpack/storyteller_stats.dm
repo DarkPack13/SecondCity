@@ -3,6 +3,7 @@
 #define AFFECTS_PERMANENT_WILLPOWER (1<<1)
 #define AFFECTS_TEMPORARY_WILLPOWER (1<<2)
 #define AFFECTS_SPEED (1<<3)
+#define AFFECTS_STATS (1<<4) // If the stat affects other stats, like courage or permanent willpower.
 
 
 #define STAT_FREEBIE_POINTS /datum/st_stat/freebie
