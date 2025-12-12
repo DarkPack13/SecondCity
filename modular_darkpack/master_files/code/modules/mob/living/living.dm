@@ -6,7 +6,7 @@
 
 /mob/living/Initialize(mapload)
 	. = ..()
-	storyteller_stats = create_new_stat_prefs()
+	storyteller_stats = create_new_stat_prefs(storyteller_stats)
 	AddComponent(/datum/component/aura)
 
 /mob/living/LateInitialize()

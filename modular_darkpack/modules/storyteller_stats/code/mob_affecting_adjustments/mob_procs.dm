@@ -27,12 +27,3 @@
 			recalculate_max_health(initial = TRUE)
 		if(stat_datum.stat_flags & AFFECTS_SPEED)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(st_get_stat(STAT_DEXTERITY) / 20))
-
-/proc/create_new_stat_prefs()
-	var/list/stats_list = list()
-	for(var/stat_path as anything in subtypesof(/datum/st_stat))
-		var/datum/st_stat/stat = new stat_path()
-		stat_path = "[stat_path]"
-		stat.set_score(stat.starting_score)
-		stats_list[stat_path] = stat
-	return stats_list
