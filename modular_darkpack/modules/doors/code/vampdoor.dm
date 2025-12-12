@@ -38,11 +38,6 @@
 	/// The type of a key the resident will get
 	var/apartment_key_type
 
-	/// Whether to grant an apartment_key
-	var/grant_apartment_key = FALSE
-	/// The type of a key the resident will get
-	var/apartment_key_type
-
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
 
