@@ -547,6 +547,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		preference.apply_to_human(character, read_preference(preference.type))
 
+	// DARKPACK EDIT ADD START - STORYTELLER STATS
+	if(preference_storyteller_stats)
+		apply_stats_from_prefs(character)
+	// DARKPACK EDIT ADD END
+
 	character.dna.real_name = character.real_name
 
 	if(icon_updates)
