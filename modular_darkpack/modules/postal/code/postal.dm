@@ -84,3 +84,4 @@
 		new IT(user.loc)
 		new /obj/item/mark(user.loc)
 		qdel(src)
+
