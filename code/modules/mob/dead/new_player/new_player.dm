@@ -257,9 +257,6 @@
 				SSquirks.AssignQuirks(humanc, humanc.client)
 		else // clear any personalities the prefs added since our job clearly does not want them
 			humanc.clear_personalities()
-		// DARKPACK EDIT ADD START - STORYTELLER_STATS
-		humanc.apply_stats_from_prefs(humanc.client?.prefs?.preference_storyteller_stats)
-		// DARKPACK EDIT ADD END
 
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
 		GLOB.manifest.inject(humanc)

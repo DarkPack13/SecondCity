@@ -546,9 +546,6 @@ SUBSYSTEM_DEF(ticker)
 					SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
 			else // clear any personalities the prefs added since our job clearly does not want them
 				new_player_living.clear_personalities()
-			// DARKPACK EDIT ADD START - STORYTELLER_STATS
-			new_player_living.apply_stats_from_prefs(new_player_mob.client?.prefs?.preference_storyteller_stats)
-			// DARKPACK EDIT ADD END
 
 		if(ishuman(new_player_living))
 			SEND_SIGNAL(new_player_living, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
