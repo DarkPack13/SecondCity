@@ -387,6 +387,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			stat.set_points(stats_list[stat_path][STAT_POINTS])
 			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
 		preference_storyteller_stats[stat_path] = stat
+	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 
 	//Sanitize
