@@ -230,8 +230,6 @@
 	if(!locked)
 		to_chat(user, span_warning("The [src] is already unlocked."))
 		return
-	for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-		P.Aggro(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
@@ -281,8 +279,6 @@
 		if(!driver && !length(passengers) && COOLDOWN_FINISHED(src, beep_cooldown) && locked)
 			COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
-			for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-				P.Aggro(user)
 
 		if(prob(10) && locked)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/open.ogg', 50, TRUE)
@@ -487,10 +483,6 @@
 		speed_in_pixels = 0
 		COOLDOWN_START(src, impact_delay, 2 SECONDS)
 
-	if(driver && istype(bumped_atom, /mob/living/carbon/human/npc))
-		var/mob/living/carbon/human/npc/NPC = bumped_atom
-		NPC.Aggro(driver, TRUE)
-
 	last_pos["x_pix"] = 0
 	last_pos["y_pix"] = 0
 	for(var/mob/living/L in src)
@@ -550,8 +542,6 @@
 		// Here lies the Car Backwards Long Jump - 2021-2025
 		var/turf/check_turf = get_turf_in_angle(true_movement_angle, src.loc, 3)
 
-		handle_npc_dodge(check_turf, true_movement_angle)
-
 		var/turf/hit_turf
 		var/list/in_line = get_line(src, check_turf)
 		for(var/turf/T in in_line)
@@ -599,28 +589,6 @@
 
 	animate(src, pixel_x = last_pos["x_pix"]+moved_x, pixel_y = last_pos["y_pix"]+moved_y, SScarpool.wait, 1)
 	update_last_pos(moved_x, moved_y)
-
-/obj/darkpack_car/proc/handle_npc_dodge(turf/target, angle)
-	for(var/turf/T in get_line(src, target))
-		var/list/unpassable = T.get_blocking_contents(FALSE, src)
-		if(!length(unpassable))
-			continue
-		for(var/mob/living/carbon/human/npc/NPC in unpassable)
-			if(COOLDOWN_FINISHED(NPC, car_dodge) && !HAS_TRAIT(NPC, TRAIT_INCAPACITATED))
-				var/list/dodge_direction = list(
-					SIMPLIFY_DEGREES(angle + 45),
-					SIMPLIFY_DEGREES(angle - 45),
-					SIMPLIFY_DEGREES(angle + 90),
-					SIMPLIFY_DEGREES(angle - 90),
-				)
-				for(var/dir_angle in dodge_direction)
-					if(get_step(NPC, angle2dir(dir_angle)).density)
-						dodge_direction.Remove(dir_angle)
-				if(length(dodge_direction))
-					step(NPC, angle2dir(pick(dodge_direction)), NPC.cached_multiplicative_slowdown)
-					COOLDOWN_START(NPC, car_dodge, 2 SECONDS)
-					if(prob(50))
-						NPC.realistic_say(pick(NPC.socialrole.car_dodged))
 
 /// Moves the client cameras of living inside of the car.
 /obj/darkpack_car/proc/move_car_riders(moved_x, moved_y)

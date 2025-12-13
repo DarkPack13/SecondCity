@@ -6,11 +6,6 @@
 		src.emote("moan")
 		Immobilize(30, TRUE)
 
-	if(isnpc(mob))
-		var/mob/living/carbon/human/npc/NPC = mob
-		NPC.danger_source = null
-		mob.Stun(40) //NPCs don't get to resist
-
 	if(mob.blood_volume <= BLOOD_VOLUME_BAD)
 		to_chat(src, span_warning("Your victim's heart beats only weakly. Death comes for them."))
 
