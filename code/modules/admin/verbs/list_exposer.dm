@@ -36,8 +36,8 @@
 	for(var/entry in GLOB.human_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
-
-	data += "</table>"data += "<tr><td>[subject.real_name]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.get_bloodtype()?.name]</td></tr>" // DARKPACK EDIT, ORIGINAL: data += "<tr><td>[subject]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.get_bloodtype()?.name]</td></tr>"
+			data += "<tr><td>[subject.real_name]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.get_bloodtype()?.name]</td></tr>" // DARKPACK EDIT, ORIGINAL: data += "<tr><td>[subject]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.get_bloodtype()?.name]</td></tr>"
+	data += "</table>"
 
 	var/datum/browser/browser = new(usr, "DNA", "DNA Log", 440, 410)
 	browser.set_content(data)
