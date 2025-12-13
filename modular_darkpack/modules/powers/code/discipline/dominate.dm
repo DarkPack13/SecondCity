@@ -120,7 +120,7 @@
 		return FALSE
 
 	if(owner.generation > target.generation)
-		to_chat(owner, span_warning("Your Dominate attempt slides off of [target]! They must be a lower generation, or otherwise resistant!"))
+		to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
 		return FALSE
 
 	if(numerical)

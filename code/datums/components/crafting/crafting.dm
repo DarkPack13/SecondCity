@@ -238,7 +238,7 @@
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter
-			recipe_time = recipe_time * human_crafter.st_stat_multiplier(STAT_CRAFTS)
+			recipe_time = recipe_time / human_crafter.st_get_stat(STAT_CRAFTS)
 		// DARKPACK EDIT ADD END
 
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))
