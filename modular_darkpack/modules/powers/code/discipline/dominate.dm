@@ -92,7 +92,7 @@
 		to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
 		return FALSE
 
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
 	//automatically succeed against my conditioned servant
@@ -134,13 +134,33 @@
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
+	RegisterSignal(target, list(
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_MOB_ITEM_ATTACK,
+		COMSIG_PROJECTILE_PREHIT
+	), PROC_REF(on_target_attacked))
 	if(do_after(owner, duration, target))
 		release_target(target)
 		return TRUE
+	else
+		release_target(target)
+		return FALSE
+
+
+/datum/discipline_power/dominate/proc/on_target_attacked(datum/source)
+	SIGNAL_HANDLER
+
+	var/mob/living/carbon/human/target = source
 	release_target(target)
-	return FALSE
+	to_chat(owner, span_warning("Your concentration is broken as [target] is attacked!"))
+	to_chat(target, span_warning("The mental hold on you breaks as you're attacked!"))
 
 /datum/discipline_power/dominate/proc/release_target(mob/living/carbon/human/target)
+	UnregisterSignal(target, list(
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_MOB_ITEM_ATTACK,
+		COMSIG_PROJECTILE_PREHIT
+	))
 	to_chat(target, span_danger("You feel your concentration become your own once more, able to look away from the commanding gaze."))
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	REMOVE_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)

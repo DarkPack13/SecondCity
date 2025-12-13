@@ -34,7 +34,7 @@
 		return 0
 
 	//is the difficulty pre-defined? if not, its probably their total willpower.
-	var/theirpower = difficulty || target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = difficulty || target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
@@ -69,12 +69,12 @@
 /datum/discipline_power/presence/proc/sort_targets_by_willpower(list/targets)
 	var/list/sorted = list()
 	for(var/mob/living/carbon/target in targets)
-		var/target_willpower = target.st_get_stat(STAT_WILLPOWER)
+		var/target_willpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 		var/inserted = FALSE
 
 		for(var/i = 1; i <= length(sorted); i++)
 			var/mob/living/carbon/existing = sorted[i]
-			if(target_willpower < existing.st_get_stat(STAT_WILLPOWER))
+			if(target_willpower < existing.st_get_stat(STAT_PERMANENT_WILLPOWER))
 				sorted.Insert(i, target)
 				inserted = TRUE
 				break
@@ -106,14 +106,14 @@
 	if(!ishuman(user))
 		return FALSE
 
-	if(user.st_get_stat(STAT_WILLPOWER) <= 0)
+	if(user.st_get_stat(STAT_PERMANENT_WILLPOWER) <= 0)
 		to_chat(user, span_warning("You don't have any temporary willpower left to resist!"))
 		return FALSE
 
-	user.st_set_stat(STAT_WILLPOWER, max((user.st_get_stat(STAT_WILLPOWER) - 1),0))
+	user.st_set_stat(STAT_PERMANENT_WILLPOWER, max((user.st_get_stat(STAT_PERMANENT_WILLPOWER) - 1),0))
 	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
 
-	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
+	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
 
 	if(roll_success)
 		user.remove_overlay(MUTATIONS_LAYER)
@@ -375,8 +375,8 @@
 			continue
 
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		//note to self -- stat_willpower for now, needs to be changed to courage after the playtest
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_WILLPOWER), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
+		//note to self -- STAT_PERMANENT_WILLPOWER for now, needs to be changed to courage after the playtest
+		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
