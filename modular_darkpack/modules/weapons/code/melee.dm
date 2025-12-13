@@ -340,3 +340,26 @@
 		hitsound = 'sound/items/weapons/genhit1.ogg'
 		//grid_width = 1 GRID_BOXES
 		//grid_height = 1 GRID_BOXES
+
+/obj/item/melee/vamp/spear
+	name = "spear"
+	desc = "A staple of warfare through centuries, the spear is great for poking at things."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	icon_state = "spear"
+	force = 45
+	throwforce = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	block_chance = 20
+	armour_penetration = 60
+	sharpness = SHARP_POINTY
+	attack_verb_continuous = list("stabs", "pokes")
+	attack_verb_simple = list("stab", "poke")
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	wound_bonus = 5
+	resistance_flags = FIRE_PROOF
+	masquerade_violating = FALSE
+
+/obj/item/melee/vampirearms/sabre/Initialize()
+	. = ..()
+	AddComponent(/datum/component/selling, 200, "spear", FALSE)
