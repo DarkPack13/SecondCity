@@ -7,3 +7,8 @@
 	locked = TRUE
 	lock_id = "cleaning"
 	lockpick_difficulty = 4
+
+/obj/structure/vampdoor/reinf/setite_high_sec
+	locked = TRUE
+	lock_id = "setite"
+	lockpick_difficulty = 15
