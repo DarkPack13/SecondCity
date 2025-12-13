@@ -21,3 +21,6 @@
   XeonMations:
   - rscadd: Added Guestbooks to the game, you now are required to ctrl shift click
       a person to set their name for yourself.
+2025-12-12:
+  chazzyjazzy:
+  - code_imp: implemented missing items

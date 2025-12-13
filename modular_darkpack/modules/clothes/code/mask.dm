@@ -86,3 +86,7 @@
 	flags_inv = HIDEFACE
 	flags_cover = NONE
 
+/obj/item/clothing/mask/vampire/fomori_chaser
+	name = "scary mask"
+	desc = "Do you like scary movies?"
+	icon_state = "chaser"
