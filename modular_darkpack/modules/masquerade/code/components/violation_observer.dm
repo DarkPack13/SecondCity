@@ -6,7 +6,6 @@
 	/// Time between us checking for violations
 	COOLDOWN_DECLARE(scan_cooldown)
 	var/list/breached_players
-	var/atom/movable/flick_visual/exclamation
 
 /datum/component/violation_observer/Initialize(add_area_of_effect) //Only add the AOE checker for NPCs and camera objects.
 	if(add_area_of_effect)
@@ -21,7 +20,6 @@
 /datum/component/violation_observer/UnregisterFromParent(force, silent)
 	QDEL_NULL(area_of_effect)
 	breached_players = null
-	exclamation = null
 	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
@@ -38,11 +36,10 @@
 
 	var/mutable_appearance/alert = mutable_appearance('icons/obj/storage/closet.dmi', "cardboard_special")
 	SET_PLANE_EXPLICIT(alert, ABOVE_LIGHTING_PLANE, source)
-	exclamation = source.flick_overlay_view(alert, 1 SECONDS)
+	var/atom/movable/flick_visual/exclamation = source.flick_overlay_view(alert, 1 SECONDS)
 	exclamation.alpha = 0
 	exclamation.pixel_x = -source.pixel_x
 	animate(exclamation, pixel_z = 32, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	LAZYADD(source.update_on_z, exclamation)
 
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
 	breached_players += player_breacher
@@ -54,7 +51,6 @@
 	SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
 	SSmasquerade.masquerade_reinforce(source, player_breacher)
 	source.observe_masquerade_reinforce(player_breacher)
-	LAZYREMOVE(source.update_on_z, exclamation)
 	breached_players -= player_breacher
 
 /datum/component/violation_observer/proc/on_death(atom/source)

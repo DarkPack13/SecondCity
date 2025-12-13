@@ -30,8 +30,8 @@
 		H.add_quirk(/datum/quirk/tower)
 	*/
 
-	var/obj/item/organ/eyes/night_vision/NV = new()
-	NV.Insert(vampire, TRUE, DELETE_IF_REPLACED)
+	var/obj/item/organ/eyes/kiasyd/weird_eyes = new()
+	weird_eyes.Insert(vampire, TRUE, DELETE_IF_REPLACED)
 
 /datum/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
 	. = ..()
@@ -52,3 +52,7 @@
 	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(H.loc)
 	H.equip_to_appropriate_slot(new_glasses, TRUE)
 
+
+/obj/item/organ/eyes/kiasyd
+	// DARKPACK TODO - requires https://github.com/tgstation/tgstation/pull/94242
+	// eye_icon_state = "kiasyd"

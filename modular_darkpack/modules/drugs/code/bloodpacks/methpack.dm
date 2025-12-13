@@ -34,13 +34,12 @@
 		icon_state = "blood0"
 		inhand_icon_state = "blood0"
 		name = "\improper drinkable blood pack (empty)"
-		M.bloodpool = min(M.maxbloodpool, M.bloodpool+amount_of_bloodpoints)
+		M.adjust_blood_pool(amount_of_bloodpoints)
 		M.adjustBruteLoss(-20, TRUE)
 		M.adjustFireLoss(-20, TRUE)
 		M.update_damage_overlays()
 		M.update_health_hud()
 		if(iskindred(M))
-			M.update_blood_hud()
 			H.reagents.trans_to(M, min(10, H.reagents.total_volume), transfered_by = H, methods = INGEST) //calling the earlier variable to transfer to target, M
 		playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 		return

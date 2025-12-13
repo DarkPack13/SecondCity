@@ -92,8 +92,8 @@
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/activate(mob/living/target)
 	. = ..()
-	target.bloodpool = max(target.bloodpool - 2, 0)
-	owner.bloodpool = min(owner.bloodpool + 2, owner.maxbloodpool)
+	target.adjust_blood_pool(-2)
+	owner.adjust_blood_pool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
 	qdel(casing)
@@ -200,7 +200,7 @@
 			owner.dna.species.inherent_traits |= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_NOSOFTCRIT
-			owner.stakeimmune = TRUE
+			ADD_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
 			urn = new(owner.loc)
 			urn.own = owner
 			var/obj/item/organ/heart/heart = owner.getorganslot(ORGAN_SLOT_HEART)
@@ -210,7 +210,7 @@
 			owner.dna.species.inherent_traits -= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_NOSOFTCRIT
-			owner.stakeimmune = FALSE
+			REMOVE_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
 			for(var/obj/item/organ/heart/heart in urn)
 				heart.forceMove(owner)
 				heart.Insert(owner)

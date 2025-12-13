@@ -28,7 +28,7 @@
 			var/their_name = player.name
 			if(ishuman(player))
 				var/mob/living/carbon/human/human_player = player
-				their_name = human_player.true_real_name
+				their_name = human_player.real_name
 			to_chat(owner, "- [their_name]")
 
 //SCRY THE HEARTHSTONE
