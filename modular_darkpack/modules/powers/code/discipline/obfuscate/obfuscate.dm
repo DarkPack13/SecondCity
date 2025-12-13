@@ -14,8 +14,6 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_deactivate.ogg'
 
-	power_group = DISCIPLINE_POWER_GROUP_COMBAT
-
 	//need a signal for talking, being attacked
 	var/static/list/aggressive_signals = list(
 		COMSIG_MOB_ATTACK_HAND,
@@ -25,11 +23,15 @@
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_MOB_ITEM_ATTACK,
 		COMSIG_MOVABLE_SAY_QUOTE,
+		COMSIG_POWER_ACTIVATE
 	)
 
 
-/datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source)
+/datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source, datum/discipline_power/activated_power, atom/target)
 	SIGNAL_HANDLER
+
+	if(istype(activated_power, /datum/discipline_power/obfuscate))
+		return
 
 	to_chat(owner, span_danger("Your Obfuscate falls away as you reveal yourself!"))
 	try_deactivate(direct = TRUE)
@@ -212,7 +214,7 @@
 	if(!original_dna)
 		original_dna = new /datum/dna()
 		owner.dna.copy_dna(original_dna, 0)
-		original_name = owner.real_name
+		original_name = owner.name
 		if(owner.clan?.alt_sprite)
 			original_sprite = owner.clan.alt_sprite
 			original_sprite_greyscale = owner.clan.alt_sprite_greyscale
@@ -220,9 +222,6 @@
 			original_sprite = SPECIES_HUMAN
 			original_sprite_greyscale = TRUE
 
-	owner.name = target.name
-	owner.real_name = target.real_name
-	owner.dna.real_name = target.real_name
 	target.dna.copy_dna(owner.dna, 0)
 
 	if(target.clan?.alt_sprite)
@@ -235,6 +234,7 @@
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
+	owner.name = target.name
 	to_chat(owner, span_notice("You assume the appearance of [target.real_name]."))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
@@ -243,10 +243,8 @@
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
-	owner.name = original_name
-	owner.real_name = original_name
-	owner.dna.real_name = original_name
 	original_dna.copy_dna(owner.dna, 0)
+	owner.name = original_name
 	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
 	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))

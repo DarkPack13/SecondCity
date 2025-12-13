@@ -10,7 +10,6 @@
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_deactivate.ogg'
-	power_group = DISCIPLINE_POWER_GROUP_COMBAT
 
 /datum/discipline_power/fortitude/proc/apply_passive_stamina_bonus(bonus)
 	if (owner.st_get_stat_mod(STAT_STAMINA, "fortitude") >= bonus)
