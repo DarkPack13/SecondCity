@@ -22,13 +22,14 @@ $department_map: (
   'Chantry': var(--color-purple),
   'Clinic': var(--color-teal),
   'Warehouse': var(--color-brown),
-  'Strip_Club': var(--color-violet),
+  'Strip Club': var(--color-violet),
   'Police': var(--color-blue),
   'Giovanni': var(--color-green),
   'Manor': var(--color-violet),
   'Sabbat': var(--color-grey),
   'Citizen': var(--color-light-grey),
-  'City_Services': var(--color-white), // DARKPACK EDIT ADD END
+  'City Services': var(--color-white),
+  'Garou Nation': var(--color-green), // DARKPACK EDIT ADD END
 );
 
 .ChoicedSelection {
