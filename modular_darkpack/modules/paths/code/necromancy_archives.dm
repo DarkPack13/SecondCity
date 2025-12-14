@@ -84,13 +84,13 @@
 		flick(icon_deny, src)
 		return
 
-	if(prize.cost > L.collected_souls)
-		to_chat(usr, span_alert("Error: Insufficient souls for [prize.name]! You need [prize.cost] souls."))
+	if(prize.price > L.collected_souls)
+		to_chat(usr, span_alert("Error: Insufficient souls for [prize.name]! You need [prize.price] souls."))
 		flick(icon_deny, src)
 		return
 
 	// Deduct souls from purchase
-	L.collected_souls -= prize.cost
+	L.collected_souls -= prize.price
 	to_chat(usr, span_notice("The Bone Codex resonates with dark energy as it dispenses [prize.name]!"))
 	new prize.product_path(loc)
 	SSblackbox.record_feedback("nested tally", "necromancy_equipment_bought", 1, list("[type]", "[prize.product_path]"))
