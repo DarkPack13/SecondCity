@@ -89,6 +89,13 @@ SUBSYSTEM_DEF(roll)
 	var/list/rolled_dice = list()
 	for(var/i in 1 to dice)
 		rolled_dice += rand(1, sides)
+	if(on_crit_extra_die_enabled)
+		var/extra_dice = 0
+		for(var/roll in rolled_dice)
+			if(roll == 10)
+				extra_dice++
+		for(var/i in 1 to extra_dice)
+			rolled_dice += rand(1, sides)
 	return rolled_dice
 
 //Count the number of successes.
