@@ -64,12 +64,8 @@
 	var/datum/action/cooldown/blood_power/bloodpower = new()
 	bloodpower.Grant(new_kindred)
 
-	// DARKPACK TODO - reimplement these vars and the actions
+	// DARKPACK TODO - reimplement this actions
 	/*
-	var/datum/action/vampireinfo/infor = new()
-	infor.host = new_kindred
-	infor.Grant(new_kindred)
-
 	add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 	*/
 
@@ -104,12 +100,6 @@
 	UnregisterSignal(human, COMSIG_MOB_VAMPIRE_SUCKED)
 	UnregisterSignal(human, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
 	UnregisterSignal(human, COMSIG_HUMAN_ON_HANDLE_BLOOD)
-
-	// DARKPACK TODO - reimplement vampire actions
-	/*
-	for (var/datum/action/vampireinfo/VI in human.actions)
-		VI.Remove(human)
-	*/
 
 	for (var/datum/action/A in human.actions)
 		if (A.vampiric)

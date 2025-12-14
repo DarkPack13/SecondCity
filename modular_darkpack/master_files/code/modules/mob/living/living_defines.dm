@@ -30,7 +30,7 @@
 	///Aggravated damage caused by supernatural attacks.
 	var/aggloss = 0
 
-	var/datum/storyteller_stats/storyteller_stat_holder
+	var/list/storyteller_stats = list()
 
 	//beastmaster
 	var/list/beastmaster_minions = list()

@@ -17,62 +17,11 @@
 	selectable = TRUE
 	var/glabro = FALSE
 
-/datum/action/garouinfo
-	name = "About Me"
-	desc = "Check assigned role, auspice, generation, humanity, masquerade, known disciplines, known contacts etc."
-	button_icon_state = "masquerade"
-	check_flags = NONE
-	var/mob/living/carbon/human/host
-
-/datum/action/garouinfo/Trigger()
-	if(host)
-		var/dat = {"
-			<style type="text/css">
-
-			body {
-				padding: 5px;
-				background-color: #090909; color: white;
-			}
-
-			</style>
-			"}
-		dat += "<p><center><h2>Memories</h2></center></p>"
-		dat += "<p>[icon2html(getFlatIcon(host), host)]I am "
-		if(host.real_name)
-			dat += "[host.real_name],"
-		if(!host.real_name)
-			dat += "Unknown,"
-		dat += " [host.auspice.tribe] [host.auspice.base_breed]"
-
-		if(host.mind)
-
-			if(host.mind.assigned_role)
-				if(host.mind.special_role)
-					dat += ", carrying the [host.mind.assigned_role] (<font color=red>[host.mind.special_role]</font>) role."
-				else
-					dat += ", carrying the [host.mind.assigned_role] role."
-			if(!host.mind.assigned_role)
-				dat += "."
-			dat += "</p>"
-		if(host.account_id)
-			var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[host.account_id]"]
-			if(account)
-				dat += "<b>My bank pin is: [account.bank_pin]</b><BR>"
-		if(host.mind.special_role)
-			for(var/datum/antagonist/A in host.mind.antag_datums)
-				if(A.objectives)
-					dat += "<p>[printobjectives(A.objectives)]</p>"
-		host << browse(HTML_SKELETON(dat), "window=vampire;size=400x450;border=1;can_resize=1;can_minimize=0")
-		onclose(host, "vampire", src)
-
 /datum/species/garou/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
 //	ADD_TRAIT(C, TRAIT_NOBLEED, HIGHLANDER)
 	C.update_body(0)
 	C.last_experience = world.time+3000
-	var/datum/action/garouinfo/infor = new()
-	infor.host = C
-	infor.Grant(C)
 	var/datum/action/gift/glabro/glabro = new()
 	glabro.Grant(C)
 	var/datum/action/gift/rage_heal/GH = new()
@@ -90,8 +39,6 @@
 	UnregisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED)
 	UnregisterSignal(C.transformator.lupus_form, COMSIG_MOB_VAMPIRE_SUCKED)
 	UnregisterSignal(C.transformator.crinos_form, COMSIG_MOB_VAMPIRE_SUCKED)
-	for(var/datum/action/garouinfo/VI in C.actions)
-		VI.Remove(C)
 	for(var/datum/action/gift/G in C.actions)
 		G.Remove(C)
 
