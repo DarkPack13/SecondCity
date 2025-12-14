@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/modules/economy/icons/atm.dmi'
 	icon_state = "atm"
 	anchored = TRUE
+	// DARKPARK TODO - Make this meanifully interact with destruction mechanics
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/logged_in = FALSE
 	var/entered_code
@@ -88,7 +89,7 @@
 			else
 				while(amount > 0)
 					var/drop_amount = min(amount, 1000)
-					var/obj/item/stack/dollar/cash = new /obj/item/stack/dollar(loc, drop_amount)
+					var/obj/item/stack/dollar/cash = new(loc, drop_amount)
 					to_chat(usr, span_notice("You have withdrawn [drop_amount] dollars."))
 					try_put_in_hand(cash, usr)
 					amount -= drop_amount
