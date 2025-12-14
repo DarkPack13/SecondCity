@@ -66,7 +66,7 @@
 	if(QDELETED(src))
 		return
 	for(var/mob/living/carbon/human/H in target.contents)
-		if(H in silenced_mobs && H != host)
+		if((H in silenced_mobs) && H != host)
 			REMOVE_TRAIT(H, TRAIT_SILENCED, "quietus")
 			REMOVE_TRAIT(H, TRAIT_MUTE, "quietus")
 			silenced_mobs -= H
