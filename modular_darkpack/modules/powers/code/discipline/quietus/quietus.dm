@@ -266,7 +266,7 @@
 //TASTE OF DEATH
 /obj/projectile/quietus
 	name = "acid spit"
-	icon_state = "har4ok"
+	icon_state = "toxin"
 	pass_flags = PASSTABLE
 	damage = 60
 	damage_type = BURN
