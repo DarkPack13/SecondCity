@@ -8382,7 +8382,6 @@
 /area/vtm/westfield_mall/interior/supply)
 "aBH" = (
 /obj/structure/chair/wood/darkpack,
-/obj/effect/landmark/start/darkpack/anarch/tapster,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "aBI" = (
@@ -8570,7 +8569,6 @@
 /obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
-/obj/effect/landmark/start/darkpack/anarch/tapster,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/anarch)
 "aCq" = (
