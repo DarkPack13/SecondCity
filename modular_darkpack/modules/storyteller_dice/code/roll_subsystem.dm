@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(roll)
-	name = "Dice Rolling"
+	name = "Storyteller Rolling"
 	flags = SS_NO_INIT | SS_NO_FIRE
 
 /**

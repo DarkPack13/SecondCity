@@ -296,6 +296,12 @@
 		return ATTACK_FAILED
 
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
+// DARKPACK EDIT ADD START
+	if(isliving(user))
+		var/mob/living/living_user = user
+		var/stat_multiplier = living_user.st_get_stat(STAT_MELEE) * 0.4
+		final_force *= stat_multiplier
+// DARKPACK EDIT ADD END
 	if(final_force <= 0)
 		return 0
 

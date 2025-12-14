@@ -63,6 +63,7 @@
 /obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || !locked
 
+//DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
 /obj/structure/vampdoor/examine(mob/user)
 	. = ..()
@@ -290,6 +291,9 @@
 /obj/structure/vampdoor/proc/try_lockpick(mob/living/user, obj/item/tool)
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to pick here."))
+		return
+	if(user.st_get_stat(STAT_LARCENY) <= 0)
+		to_chat(user, span_warning("How do I do this...?"))
 		return
 	if(locked)
 		proc_unlock(5)

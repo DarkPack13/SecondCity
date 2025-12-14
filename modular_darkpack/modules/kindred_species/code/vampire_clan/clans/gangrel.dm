@@ -2,6 +2,7 @@
 	name = "Gangrel"
 	id = VAMPIRE_CLAN_GANGREL
 	desc = "Often closer to beasts than other vampires, the Gangrel style themselves apex predators. These Ferals prowl the wilds as easily as the urban jungle, and no clan of vampires can match their ability to endure, survive, and thrive in any environment. Often fiercely territorial, their shapeshifting abilities even give the undead pause."
+	icon = "gangrel"
 	curse = "Start with lower humanity."
 	clan_disciplines = list(
 		/datum/discipline/animalism,
@@ -17,6 +18,7 @@
 /datum/vampire_clan/gangrel/city
 	name = "City Gangrel"
 	id = VAMPIRE_CLAN_CITY_GANGREL
+	icon = "city_gangrel"
 	clan_disciplines = list(
 		/datum/discipline/celerity,
 		// /datum/discipline/obfuscate,
