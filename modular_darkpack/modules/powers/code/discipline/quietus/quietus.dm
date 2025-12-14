@@ -94,9 +94,7 @@
 	else
 		owner.drop_all_held_items()
 		//Banu Haqim can 'spit' this venom too - perhaps throw the touch attack item...?
-		var/obj/item/melee/touch_attack/quietus/touch = new(owner)
-		touch.poison_potency = blood_converted
-		touch.poison_duration = debuff_duration
+		var/obj/item/melee/touch_attack/quietus/touch = new(owner.loc, blood_converted, debuff_duration)
 		owner.put_in_active_hand(touch)
 
 //DAGON'S CALL

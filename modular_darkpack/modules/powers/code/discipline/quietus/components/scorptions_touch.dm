@@ -1,7 +1,7 @@
 //SCORPION'S TOUCH
 //The Scoprion's Touch venom from Quietus 2
-//It is designed to lower the target's stamina by poison_potency for poison_duration.alist
-//If the kindred reaches Stamina 0, they instantly enter torpor.alist
+//It is designed to lower the target's stamina by poison_potency for poison_duration
+//If the kindred reaches Stamina 0, they instantly enter torpor
 //The target rolls does a contested roll to lower the poison_duration. if it reaches zero, they resist the poison.
 //It is qdeleted after one strike, pass or fail.
 /obj/item/melee/touch_attack/quietus
@@ -11,49 +11,10 @@
 	hitsound = 'sound/effects/magic/disintegrate.ogg'
 	icon_state = "quietus"
 	inhand_icon_state = "mansus"
-	var/poison_potency = 1
-	var/poison_duration = 0
 
-//requires stats preferences
-/obj/item/melee/touch_attack/quietus/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	if(ishuman(target))
-		var/mob/living/carbon/human/victim = target
-
-		// victim resists the posion with stamina + fortitude
-		var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, mobs_to_show_output = victim)
-
-		// each resistance success subtracts from the duration
-		var/effective_duration = max(0, poison_duration - resistance)
-
-		if(effective_duration <= 0)
-			to_chat(victim, span_notice("You resist the poison!"))
-			to_chat(user, span_warning("[victim] resists your poison!"))
-			qdel(src)
-			return
-
-		// stamina stat mod reduction goes here
-		victim.st_add_stat_mod(STAT_STAMINA, poison_potency, "quietus")
-		addtimer(CALLBACK(src, PROC_REF(remove_poison), victim), poison_duration MINUTES)
-
-
-		// Check if victim reaches zero stamina
-		if(victim.st_get_stat(STAT_STAMINA) <= 0)
-			if(iskindred(victim))
-				victim.torpor()
-				to_chat(victim, span_userdanger("Your body shuts down as the poison drains your very essence! You enter torpor!"))
-				to_chat(user, span_boldwarning("[victim] collapses into torpor!"))
-			else
-				// apply non transmittable disease to the mortal victim if they reach zero stamina
-				to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
-
-		victim.adjustFireLoss(2 * poison_potency) // this is nasty, nerfed from 10 to 2
-		//victim.AdjustKnockdown(3 SECONDS) this is from the old code
-
-		to_chat(user, span_warning("Your venomous touch burns [victim]!"))
-		to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
-		qdel(src)
-	return ..()
-
+/obj/item/melee/touch_attack/quietus/Initialize(mapload, potency = 1, duration = 0)
+	. = ..()
+	AddComponent(/datum/component/scorpions_touch_poison, potency, duration)
 
 //COMPONENT FOR WEAPON
 /datum/component/scorpions_touch_poison
@@ -93,6 +54,8 @@
 		return
 
 	// stamina stat mod reduction goes here
+	victim.st_add_stat_mod(STAT_STAMINA, -poison_potency, "quietus")
+	addtimer(CALLBACK(src, PROC_REF(remove_poison), victim), poison_duration MINUTES)
 
 	// Check if victim reaches zero stamina
 	if(victim.st_get_stat(STAT_STAMINA) <= 0)
@@ -111,7 +74,7 @@
 	to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
 	qdel(src)
 
-/obj/item/melee/touch_attack/quietus/proc/remove_poison(mob/living/carbon/human/victim)
+/datum/component/scorpions_touch_poison/proc/remove_poison(mob/living/carbon/human/victim)
 	if(!victim || QDELETED(victim))
 		return
 
