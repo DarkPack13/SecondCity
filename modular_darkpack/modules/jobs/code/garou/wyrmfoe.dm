@@ -23,7 +23,7 @@
 		/datum/job_department/gaia,
 	)
 
-	allowed_species = list(SPECIES_GAROU)
+//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",
@@ -32,14 +32,14 @@
 		"Guardian"
 	)
 
-/datum/outfit/job/wyrmfoe
+/datum/outfit/job/vampire/wyrmfoe
 	name = "Sept Wyrmfoe"
-	jobtype = /datum/job/vamp/garou/amberglade/keeper
+	jobtype = /datum/job/vampire/wyrmfoe
 
 	id = /obj/item/card/park_ranger/biologist
 	uniform =  /obj/item/clothing/under/vampire/mechanic
 	suit = /obj/item/clothing/suit/vampire/labcoat
 	gloves = /obj/item/clothing/gloves/vampire/work
 	shoes = /obj/item/clothing/shoes/vampire/jackboots/work
-	l_pocket = /obj/item/vamp/phone
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/cockclock=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
+	l_pocket = /obj/item/smartphone
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)

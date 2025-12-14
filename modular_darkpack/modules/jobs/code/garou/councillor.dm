@@ -4,8 +4,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(SUPERVISOR_LITANY)
 	faction = FACTION_GAIA
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = SUPERVISOR_LITANY
 	req_admin_notify = 1
 	minimal_player_age = 25
@@ -23,7 +23,7 @@
 		/datum/job_department/gaia,
 	)
 
-	allowed_species = list(SPECIES_GAROU)
+//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Truthcatcher",

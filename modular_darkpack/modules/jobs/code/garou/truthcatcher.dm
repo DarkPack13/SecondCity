@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_GAIA
 	config_tag = "TRUTHCATCHER"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/vampire/truthcatcher
+	outfit = /datum/outfit/job/vampire/trutchcatcher
 
 	display_order = JOB_DISPLAY_ORDER_TRUTHCATCHER
 	department_for_prefs = /datum/job_department/gaia
@@ -23,7 +23,7 @@
 		/datum/job_department/gaia,
 	)
 
-	allowed_species = list(SPECIES_GAROU)
+//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",
@@ -32,7 +32,7 @@
 		"Guardian"
 	)
 
-/datum/outfit/job/trutchcatcher
+/datum/outfit/job/vampire/trutchcatcher
 	name = "Sept Truthcatcher"
 	jobtype = /datum/job/vampire/truthcatcher
 

@@ -23,7 +23,7 @@
 		/datum/job_department/gaia,
 	)
 
-	allowed_species = list(SPECIES_GAROU)
+//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",
@@ -32,7 +32,7 @@
 		"Guardian"
 	)
 
-/datum/outfit/job/warder
+/datum/outfit/job/vampire/warder
 	name = "Sept Warder"
 	jobtype = /datum/job/vampire/warder
 
@@ -44,5 +44,5 @@
 	belt = /obj/item/storage/belt/sheath/vamp/sabre
 	suit = /obj/item/clothing/suit/vampire/vest/medieval
 	glasses = /obj/item/clothing/glasses/vampire/sun
-	l_pocket = /obj/item/vamp/phone
+	l_pocket = /obj/item/smartphone
 	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/passport=1, /obj/item/veil_contract, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
