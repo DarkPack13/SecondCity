@@ -2,7 +2,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "generation"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_TABLETOP
+	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	relevant_inherent_trait = TRAIT_DRINKS_BLOOD
 	minimum = MAX_PUBLIC_GENERATION
 	maximum = HIGHEST_GENERATION_LIMIT

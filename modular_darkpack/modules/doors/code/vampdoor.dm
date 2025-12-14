@@ -61,6 +61,7 @@
 		if(-INFINITY to LOCKDIFFICULTY_2) //LOCKDIFFICULTY_1 is basically the minimum so we can just do LOCKTIMER_1 from -INFINITY
 			lockpick_timer = LOCKTIMER_1
 
+//DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
 /obj/structure/vampdoor/examine(mob/user)
 	. = ..()
@@ -282,6 +283,9 @@
 /obj/structure/vampdoor/proc/try_lockpick(mob/living/user, obj/item/tool)
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to pick here."))
+		return
+	if(user.st_get_stat(STAT_LARCENY) <= 0)
+		to_chat(user, span_warning("How do I do this...?"))
 		return
 	if(locked)
 		proc_unlock(5)
