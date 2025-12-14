@@ -70,7 +70,7 @@
 	*/
 
 	//this needs to be adjusted to be more accurate for blood spending rates
-	var/datum/discipline/bloodheal/giving_bloodheal = new(clamp(11 - new_kindred.generation, 1, 10))
+	var/datum/discipline/bloodheal/giving_bloodheal = new(clamp(11 - new_kindred.dna.species.generation, 1, 10))
 	new_kindred.give_discipline(giving_bloodheal)
 
 	//vampires die instantly upon having their heart removed

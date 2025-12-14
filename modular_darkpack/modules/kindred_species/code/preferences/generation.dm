@@ -8,4 +8,4 @@
 	maximum = HIGHEST_GENERATION_LIMIT
 
 /datum/preference/numeric/generation/apply_to_human(mob/living/carbon/human/target, value)
-	target.generation = value
+	target.dna.species.generation = value
