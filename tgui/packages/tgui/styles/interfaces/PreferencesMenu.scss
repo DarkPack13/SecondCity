@@ -14,6 +14,21 @@ $department_map: (
   'Science': colors.fg(var(--color-purple)),
   'Service': var(--color-green),
   'Silicon': var(--color-pink),
+  // DARKPACK EDIT ADD START
+  'Prince': var(--color-orange),
+  'Camarilla': var(--color-gold),
+  'Anarch': var(--color-bad),
+  'Church': var(--color-gray),
+  'Chantry': var(--color-purple),
+  'Clinic': var(--color-teal),
+  'Warehouse': var(--color-brown),
+  'Strip_Club': var(--color-violet),
+  'Police': var(--color-blue),
+  'Giovanni': var(--color-green),
+  'Manor': var(--color-violet),
+  'Sabbat': var(--color-grey),
+  'Citizen': var(--color-light-grey),
+  'City_Services': var(--color-white), // DARKPACK EDIT ADD END
 );
 
 .ChoicedSelection {
@@ -237,4 +252,85 @@ $department_map: (
       }
     }
   }
+
+  // DARKPACK EDIT ADD START
+  &__Stats {
+    // background-color: var(--color-base);
+    padding: var(--space-m);
+    overflow-y: auto;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      b {
+        color: var(--color-red);
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .reset-button {
+        background: transparent;
+        border: var(--border-thickness-small) solid var(--color-red);
+        color: var(--color-red);
+        padding: 0.25em 0.5em;
+        border-radius: var(--border-radius-medium);
+        cursor: var(--cursor-pointer);
+        transition: background var(--transition-time-fast) ease-in-out;
+
+        &:hover {
+          background: var(--color-red);
+          color: var(--color-white);
+        }
+      }
+    }
+
+    &__category {
+      margin-top: var(--space-l);
+      padding-top: var(--space-xs);
+      border-top: var(--border-thickness-tiny) solid hsla(0, 0%, 100%, 0.1);
+
+      > b {
+        color: var(--color-red);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      &__subcategory {
+        margin-left: var(--space-m);
+        margin-top: var(--space-xs);
+
+        > i {
+          color: var(--color-grey);
+        }
+        > .Stack {
+          display: grid !important;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+        .stat {
+          align-items: center;
+
+          .stat-label {
+            color: var(--color-white);
+            flex: 1;
+            text-shadow: 0 0 2px hsla(0, 0%, 100%, 0.1);
+          }
+
+          .stat-dots {
+            font-family: monospace;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+
+            .filled {
+              color: var(--color-red);
+            }
+          }
+        }
+      }
+    }
+  }
+  // DARKPACK EDIT ADD END
 }

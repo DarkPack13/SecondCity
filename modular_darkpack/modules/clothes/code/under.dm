@@ -275,6 +275,26 @@
 	desc = "Some sterile clothes."
 	icon_state = "nurse"
 
+/obj/item/clothing/under/vampire/nurse/nurseb
+	name = "black nurse scrubs"
+	desc = "Some sterile clothes."
+	icon_state = "nurseb"
+
+/obj/item/clothing/under/vampire/nurse/nurseg
+	name = "green nurse scrubs"
+	desc = "Some sterile clothes."
+	icon_state = "nurseg"
+
+/obj/item/clothing/under/vampire/nurse/nursep
+	name = "pink nurse scrubs"
+	desc = "Some sterile clothes."
+	icon_state = "nursep"
+
+/obj/item/clothing/under/vampire/nurse/nursec
+	name = "cyan nurse scrubs"
+	desc = "Some sterile clothes."
+	icon_state = "nursec"
+
 /obj/item/clothing/under/vampire/graveyard
 	desc = "There'll be some GRAVE consequences for taking this off!"
 	icon_state = "graveyard"
@@ -377,7 +397,7 @@
 
 /obj/item/clothing/under/vampire/primogen_toreador
 	name = "white suit"
-	desc = "Say good night to the bad guy!."
+	desc = "Say good night to the bad guy!"
 	icon_state = "toreador_male"
 
 /obj/item/clothing/under/vampire/primogen_toreador/female
@@ -458,6 +478,14 @@
 	desc = "A white designer suitskirt with a green dress shirt. This one has an " + EVIL_OIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_executiveskirt"
 
+/obj/item/clothing/under/vampire/pentex_executive_suit
+	name = "Endron executive suit"
+	desc = "A  white designer suit with a green dress shirt. This one has an Endron International tag on it!"
+	icon_state = "pentex_executivesuit"
 
+/obj/item/clothing/under/vampire/pentex_executiveskirt
+	name = "Endron executive suitskirt"
+	desc = "A white designer suitskirt with a green dress shirt. This one has an Endron International tag on it!"
+	icon_state = "pentex_executiveskirt"
 
 

@@ -43,3 +43,13 @@
 	locked = TRUE
 	lock_id = "police_secure"
 	lockpick_difficulty = 21
+
+/obj/structure/vampdoor/simple/setite
+	locked = TRUE
+	lock_id = "setite"
+	lockpick_difficulty = 10
+
+/obj/structure/vampdoor/simple/food_pantry
+	locked = TRUE
+	lock_id = "coggie"
+	lockpick_difficulty = 4

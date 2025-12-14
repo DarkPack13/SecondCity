@@ -1,8 +1,8 @@
 /datum/preference/choiced/vtm_morality
-	savefile_key = "vtm_morality_path"
+	savefile_key = "morality_path"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
+	priority = PREFERENCE_PRIORITY_TABLETOP
 	main_feature_name = "Path"
 	relevant_inherent_trait = TRAIT_VTM_MORALITY
 	must_have_relevant_trait = TRUE

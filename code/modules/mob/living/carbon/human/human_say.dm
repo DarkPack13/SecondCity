@@ -39,7 +39,7 @@
 		return override_voice
 	if(add_id_name && real_name == id_name) // Allows for "Captain John" to have the voice "Captain Join" and not "John"
 		return get_id_name("", honorifics = TRUE)
-	return real_name
+	return name // DARKPACK EDIT, ORIGINAL: return real_name
 
 /mob/living/carbon/human/get_message_voice(visible_name)
 	. = ..()

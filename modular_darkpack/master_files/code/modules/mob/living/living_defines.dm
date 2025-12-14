@@ -15,8 +15,6 @@
 
 	var/frenzy_chance_boost = 10
 
-	var/stakeimmune = FALSE
-
 	COOLDOWN_DECLARE(drinkblood_use_cd)
 	COOLDOWN_DECLARE(drinkblood_click_cd)
 
@@ -31,7 +29,7 @@
 	///Aggravated damage caused by supernatural attacks.
 	var/aggloss = 0
 
-	var/datum/storyteller_stats/storyteller_stat_holder
+	var/list/storyteller_stats = list()
 
 	//beastmaster
 	var/list/beastmaster_minions = list()
