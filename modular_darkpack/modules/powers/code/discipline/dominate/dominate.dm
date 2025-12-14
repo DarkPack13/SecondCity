@@ -9,7 +9,7 @@
 
 /datum/discipline/dominate/post_gain()
 	. = ..()
-	if(level >= 5)
+	if(level >= 4)
 		RegisterSignal(owner, COMSIG_MOB_EMOTE, PROC_REF(on_snap))
 
 /datum/discipline/dominate/proc/on_snap(atom/source, datum/emote/emote_args)
@@ -28,7 +28,6 @@
 		switch(emote_args.key)
 			if("snap")
 				target.SetSleeping(0)
-				//target.silent = 3 wtf is this var anyways
 				target.dir = get_dir(target, owner)
 				target.emote("me", 1, "faces towards <b>[owner]</b> attentively.", TRUE)
 				to_chat(target, span_danger("ATTENTION"))
@@ -84,11 +83,12 @@
 	return TRUE
 
 //dicerolling
-/datum/discipline_power/dominate/proc/dominate_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, tiebreaker = FALSE, numerical = FALSE)
+//all dominate rolls involve rolling some stat against the victim's permanent willpower with many caveats. this proc rolls and considers those caveats
+/datum/discipline_power/dominate/proc/dominate_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, numerical = FALSE)
 	var/datum/discipline/dominate/parent_disc = discipline
 
 	//someone has botched a dominate against this human
-	if(parent_disc && (target in parent_disc.botched_targets))
+	if(target in parent_disc.botched_targets)
 		to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
 		return FALSE
 
@@ -105,7 +105,7 @@
 	if(human_target.clan?.name == VAMPIRE_CLAN_GARGOYLE)
 		theirpower -= 2
 
-	//wearing dark sunglasses makes it harder for dominators to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
+	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
 	if(human_target.glasses && istype(human_target.glasses, /obj/item/clothing/glasses/vampire/sun))
 		theirpower += 1
 
@@ -134,18 +134,13 @@
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
-	RegisterSignals(target, list(
-		COMSIG_ATOM_ATTACKBY,
-		COMSIG_MOB_ITEM_ATTACK,
-		COMSIG_PROJECTILE_PREHIT
-	), PROC_REF(on_target_attacked))
+	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
 	if(do_after(owner, duration, target))
 		release_target(target)
 		return TRUE
 	else
 		release_target(target)
 		return FALSE
-
 
 /datum/discipline_power/dominate/proc/on_target_attacked(datum/source)
 	SIGNAL_HANDLER
@@ -156,15 +151,34 @@
 	to_chat(target, span_warning("The mental hold on you breaks as you're attacked!"))
 
 /datum/discipline_power/dominate/proc/release_target(mob/living/carbon/human/target)
-	UnregisterSignal(target, list(
-		COMSIG_ATOM_ATTACKBY,
-		COMSIG_MOB_ITEM_ATTACK,
-		COMSIG_PROJECTILE_PREHIT
-	))
+	UnregisterSignal(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT))
 	to_chat(target, span_danger("You feel your concentration become your own once more, able to look away from the commanding gaze."))
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	REMOVE_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
 	target.anchored = FALSE
+
+/mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
+	dominate_target?.remove_overlay(MUTATIONS_LAYER)
+
+//deprecated
+/datum/movespeed_modifier/dominate
+	multiplicative_slowdown = 5
+
+//COMMAND
+/datum/discipline_power/dominate/command
+	name = "Command"
+	desc = "Speak one word and force others to obey."
+
+	level = 1
+
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	target_type = TARGET_HUMAN
+
+	cooldown_length = 15 SECONDS
+	duration_length = 3 SECONDS
+	range = 7
+	var/successes
+	var/custom_command = ""
 
 //successes for dominate 1
 /datum/discipline_power/dominate/command/proc/get_success_message(margin, target_name)
@@ -182,37 +196,6 @@
 		else
 			return "immediate and vigorous completion"
 
-//deprecated
-/datum/movespeed_modifier/dominate
-	multiplicative_slowdown = 5
-
-//status effects
-/atom/movable/screen/alert/mesmerize
-	name = "Mesmerized"
-	desc = "A hypnotic suggestion pulses through your mind."
-	icon_state = "hypnosis"
-
-/atom/movable/screen/alert/conditioning
-	name = "Conditioned"
-	desc = "Your mind has been broken and conditioned to obey."
-	icon_state = "hypnosis"
-
-//COMMAND
-/datum/discipline_power/dominate/command
-	name = "Command"
-	desc = "Speak one word and force others to obey."
-
-	level = 1
-
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
-	target_type = TARGET_HUMAN
-
-	cooldown_length = 15 SECONDS
-	duration_length = 3 SECONDS
-	range = 7
-	var/successes
-	var/custom_command = "FORGET ABOUT IT"
-
 /datum/discipline_power/dominate/command/pre_activation_checks(mob/living/carbon/human/target)
 	if(!dominate_hearing_check(owner, target))
 		return FALSE
@@ -222,9 +205,7 @@
 	if(!custom_command)
 		return FALSE
 
-	if(!can_afford())
-		to_chat(owner, span_warning("You do not have enough blood to cast Dominate!"))
-		return FALSE
+	//can afford,,?
 
 	//v20 Dominate 'Command' section
 	if(length(splittext(custom_command, " ")) > 1)
@@ -236,16 +217,14 @@
 		return TRUE
 
 	to_chat(owner, span_warning("[target] has resisted your domination!"))
-	do_cooldown(TRUE)
+	//do_cooldown(TRUE)
 	return FALSE
 
 /datum/discipline_power/dominate/command/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(owner, span_warning("You've successfully dominated [target]'s mind!"))
 	log_combat(owner, target, "Dominated with Command: [custom_command]")
-	owner.say(custom_command, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
-
-
+	owner.say(custom_command)
 	to_chat(target, span_big("[custom_command]"))
 	var/vigor_text = get_success_message(successes, target.name)
 	to_chat(target, span_warning("[owner] has successfully dominated your mind with [successes] successes. You feel compelled to [custom_command] with [vigor_text]."))
@@ -258,7 +237,7 @@
 
 	level = 2
 
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
 	target_type = TARGET_HUMAN
 
 	cooldown_length = 30 SECONDS
@@ -301,16 +280,12 @@
 
 /datum/discipline_power/dominate/mesmerize/activate(mob/living/carbon/human/target)
 	. = ..()
-	//if the target is attacked during the hypnotism, they are set free!
-	RegisterSignal(target, COMSIG_ATOM_ATTACKBY, PROC_REF(release_target))
 	if(!immobilize_target(target, 10 SECONDS))
 		to_chat(owner, span_warning("You have broken concentration with [target] while implanting your hypnosis!"))
 		return
 
 	target.throw_alert("mesmerize", /atom/movable/screen/alert/mesmerize)
 
-	//unregister the signal after the hypnotism is completed
-	UnregisterSignal(target, COMSIG_ATOM_ATTACKBY)
 
 	log_combat(owner, target, "Dominated with Mesmerize: [custom_message]")
 	to_chat(owner, span_warning("You've successfully planted a hypnotic suggestion in [target]'s mind!"))
@@ -402,7 +377,7 @@
 	name = "The Forgetful Mind"
 	desc = "Invade a person's mind and recreate their memories."
 	level = 3
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
 	target_type = TARGET_HUMAN
 	cooldown_length = 1 MINUTES
 	duration_length = 3 SECONDS
@@ -435,12 +410,9 @@
 
 /datum/discipline_power/dominate/the_forgetful_mind/activate(mob/living/carbon/human/target)
 	. = ..()
-
-	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(release_target))
 	if(!immobilize_target(target, 10 SECONDS))
 		to_chat(owner, span_danger("Youve broken concentration with [target] and your Domination fails..."))
 		return
-	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
 
 	log_combat(owner, target, "Dominated with The Forgetful Mind: [custom_memory]")
 	to_chat(owner, span_warning("You've successfully invaded [target]'s mind and altered their memories!"))
@@ -469,7 +441,7 @@
 
 	level = 4
 
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
 	target_type = TARGET_HUMAN
 
 	cooldown_length = 15 SECONDS
@@ -491,14 +463,11 @@
 
 /datum/discipline_power/dominate/conditioning/activate(mob/living/carbon/human/target)
 	. = ..()
-
-	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(release_target))
 	if(!domination_succeeded)
 		if(!immobilize_target(target, 1 SECONDS))
 			return
 		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
 		return
-	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
 
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
@@ -525,7 +494,7 @@
 
 	level = 5
 
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
 	target_type = TARGET_HUMAN
 
 	cooldown_length = 5 MINUTES
@@ -560,7 +529,6 @@
 
 /datum/discipline_power/dominate/possession/activate(mob/living/carbon/human/target)
 	. = ..()
-	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(release_target))
 	if(!domination_succeeded)
 		return
 
@@ -570,10 +538,9 @@
 	to_chat(owner, span_warning("You begin weaving your consciousness into [target]'s mind..."))
 
 	if(!immobilize_target(target, 30 SECONDS))
-		to_chat(owner, span_warning("Your concentration was broken! The possession preparation failed."))
+		to_chat(owner, span_warning("Your concentration was broken!"))
 		to_chat(target, span_notice("The oppressive mental presence suddenly withdraws."))
 		return
-	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
 	active_possession = new /datum/possession_controller(owner, target, src)
 	to_chat(owner, span_warning("You have seized control of [target]'s body!"))
 	to_chat(target, span_danger("Your consciousness is violently displaced as another mind takes control!"))
@@ -621,8 +588,9 @@
 	vampire_original.toggle_resting()
 	vampire_original.visible_message(span_warning("[vampire_original]'s eyes roll back and they collapse into a catatonic state!"))
 	possession_active = TRUE
+	RegisterSignal(mortal_body, COMSIG_LIVING_DEATH, PROC_REF(handle_death_during_possession))
 
-/datum/possession_controller/proc/end_possession(forced = FALSE)
+/datum/possession_controller/proc/end_possession()
 	if(!possession_active || QDELETED(vampire_original) || QDELETED(mortal_body))
 		cleanup()
 		return
@@ -631,14 +599,12 @@
 		handle_death_during_possession()
 		return
 
-	if(!forced)
-		to_chat(vampire_original, span_warning("You withdraw from [mortal_body.real_name]'s mind and return to your own body."))
+	to_chat(vampire_original, span_warning("You withdraw from [mortal_body.real_name]'s mind and return to your own body."))
 
 	//move the vampire back into the body
 	vampire_original.ckey = mortal_body.ckey
 	if(mortal_body.mind)
 		vampire_original.mind = mortal_body.mind
-	vampire_original.SetUnconscious(0)
 
 	//if they still exist lets move them back into their own body
 	if(mortal_observer?.ckey)
@@ -649,8 +615,10 @@
 	log_combat(vampire_original, mortal_body, "Has ended their Possession ")
 	mortal_body.possessed = FALSE
 	cleanup()
+	UnregisterSignal(mortal_body, COMSIG_LIVING_DEATH)
 
 /datum/possession_controller/proc/handle_death_during_possession()
+	SIGNAL_HANDLER
 	to_chat(vampire_original, span_boldwarning("The death of your host body violently ejects you from their mind!"))
 	vampire_original.ckey = mortal_body.ckey
 	if(mortal_body.mind)
@@ -742,8 +710,7 @@
 			ClickOn(src)
 */
 
-/mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
-	dominate_target?.remove_overlay(MUTATIONS_LAYER)
+
 
 //AUTONOMIC MASTERY
 /datum/discipline_power/dominate/autonomic_mastery
@@ -752,7 +719,7 @@
 
 	level = 6
 
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
 	target_type = TARGET_HUMAN
 
 	cooldown_length = 15 SECONDS
