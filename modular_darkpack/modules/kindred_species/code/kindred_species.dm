@@ -37,6 +37,7 @@
 	heatmod = 2
 	mutanttongue = /obj/item/organ/tongue/kindred
 	exotic_bloodtype = BLOOD_TYPE_KINDRED
+	generation = HIGHEST_GENERATION_LIMIT
 	var/datum/vampire_clan/clan
 	var/enlightenment
 	COOLDOWN_DECLARE(torpor_timer)
