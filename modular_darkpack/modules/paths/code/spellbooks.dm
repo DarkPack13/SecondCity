@@ -1,13 +1,13 @@
 /obj/item/path_spellbook
 	name = "Path Spellbook"
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
-	icon = 'modular_tfn/modules/paths/icons/paths.dmi'
+	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	icon_state = "spellbook"
 	var/path_type = null
 	var/path_level = 1
 	var/do_after_time = 300 // 30 seconds
-	var/activate_sound = 'modular_tfn/modules/paths/sounds/open_book.wav'
-	var/deactivate_sound = 'modular_tfn/modules/paths/sounds/close_book.wav'
+	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.wav'
+	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.wav'
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
 
@@ -197,11 +197,11 @@
 /obj/item/occult_book
 	name = "Occult Book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
-	icon = 'modular_tfn/modules/paths/icons/paths.dmi'
+	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	icon_state = "spellbook"
 	var/do_after_time = 300 // 30 seconds
-	var/activate_sound = 'modular_tfn/modules/paths/sounds/open_book.wav'
-	var/deactivate_sound = 'modular_tfn/modules/paths/sounds/close_book.wav'
+	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.wav'
+	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.wav'
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
 

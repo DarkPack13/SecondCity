@@ -34,6 +34,7 @@
 	var/true_desc = "Debug"
 	var/identified = FALSE
 	var/gained_boosts = FALSE
+	var/research_value = 0
 
 /obj/item/vtm_artifact/proc/identify()
 	if(!identified)
@@ -57,6 +58,7 @@
 	true_name = "Weekapaug Thistle"
 	true_desc = "Increases combat defense."
 	icon_state = "w_thistle"
+	research_value = 10
 
 /obj/item/vtm_artifact/weekapaug_thistle/get_powers()
 	. = ..()
@@ -86,6 +88,7 @@
 	true_desc = "Passive health regeneration."
 	icon_state = "m_fetish"
 	var/last_regen = 0
+	research_value = 10
 
 /obj/item/vtm_artifact/mummywrap_fetish/process(delta_time)
 	. = ..()
@@ -99,6 +102,7 @@
 	true_name = "Galdjum"
 	true_desc = "Increases disciplines duration."
 	icon_state = "galdjum"
+	research_value = 10
 
 /obj/item/vtm_artifact/galdjum/get_powers()
 	. = ..()
@@ -115,6 +119,7 @@
 	true_name = "Fae Charm"
 	true_desc = "Dexterity boost."
 	icon_state = "fae_charm"
+	research_value = 35
 
 /obj/item/vtm_artifact/fae_charm/get_powers()
 	. = ..()
@@ -128,6 +133,7 @@
 	true_name = "Heart of Eliza"
 	true_desc = "Melee damage boost."
 	icon_state = "h_eliza"
+	research_value = 30
 
 /obj/item/vtm_artifact/heart_of_eliza/get_powers()
 	. = ..()
@@ -141,6 +147,7 @@
 	true_name = "Bloodstar"
 	true_desc = "Increases Bloodpower duration."
 	icon_state = "bloodstar"
+	research_value = 10
 
 /obj/item/vtm_artifact/bloodstar/get_powers()
 	. = ..()
@@ -154,6 +161,7 @@
 	true_name = "Daimonori"
 	true_desc = "Increases thaumaturgy damage."
 	icon_state = "daimonori"
+	research_value = 20
 
 /obj/item/vtm_artifact/daimonori/get_powers()
 	. = ..()
@@ -167,6 +175,7 @@
 	true_name = "Key of Alamut"
 	true_desc = "Decreases incoming damage."
 	icon_state = "k_alamut"
+	research_value = 30
 
 /obj/item/vtm_artifact/key_of_alamut/get_powers()
 	. = ..()
@@ -189,6 +198,7 @@
 	true_desc = "Stores blood from every attack."
 	icon_state = "o_chalice"
 	var/stored_blood = 0
+	research_value = 30
 
 /obj/item/vtm_artifact/odious_chalice/examine(mob/user)
 	. = ..()
@@ -219,3 +229,31 @@
 	name = "random occult fetish"
 	spawn_loot_chance = 50
 	loot_subtype_path = /obj/item/vtm_artifact
+
+/obj/item/vtm_artifact/bloodstone
+	true_name = "Bloodstone"
+	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
+	icon = 'modular_tfn/modules/paths/icons/bloodstone_artifact.dmi'
+	onflooricon = 'modular_tfn/modules/paths/icons/bloodstone_artifact.dmi'
+	icon_state = "bloodstone"
+	var/mob/living/carbon/human/bound_identifier // Who identified it first
+	var/datum/action/bloodstone_track/tracking_action
+	research_value = 15
+
+
+/obj/item/vtm_artifact/bloodstone/identify()
+	. = ..()
+	if(identified && !bound_identifier)
+		var/mob/living/carbon/human/user = usr
+		if(ishuman(user))
+			bound_identifier = user
+			to_chat(user, span_warning("The bloodstone pulses with dark energy as it bonds to your essence. You will always know its location."))
+
+			tracking_action = new /datum/action/bloodstone_track(user, src)
+			tracking_action.Grant(user)
+
+/obj/item/vtm_artifact/bloodstone/Destroy()
+	if(tracking_action)
+		tracking_action.Remove(bound_identifier)
+		QDEL_NULL(tracking_action)
+	return ..()

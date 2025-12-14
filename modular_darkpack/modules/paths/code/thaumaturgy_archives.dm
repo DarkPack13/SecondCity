@@ -1,7 +1,7 @@
 /obj/structure/retail/occult
 	owner_needed = FALSE
 	desc = "Use your occult research to reap the benefits of safeguarded knowledge and artifacts."
-	dispenses_dollars = FALSE
+	//dispenses_dollars = FALSE
 
 	// Stock tracking - each item starts with 2 in stock
 	var/list/item_stock = list()
@@ -37,15 +37,13 @@
 	// High tier artifacts
 	new /datum/data/vending_product("Odious Chalice", /obj/item/vtm_artifact/odious_chalice, 180),
 
-	// Random artifact - priced as mid-tier since it's random
-	new /datum/data/vending_product("Random Occult Artifact (50% chance of nothing)", /obj/item/vtm_artifact/rand, 60)
 )
 
 /obj/structure/retail/occult/New()
 	. = ..()
 	//each item starts with 2 in stock
 	for(var/datum/data/vending_product/prize in products_list)
-		item_stock[prize.equipment_path] = 2
+		item_stock[prize.product_path] = 2
 
 /*
 /world/New()
@@ -121,7 +119,7 @@
 	else
 		// Check if this item type should be tracked
 		for(var/datum/data/vending_product/prize in products_list)
-			if(prize.equipment_path == item_path)
+			if(prize.product_path == item_path)
 				item_stock[item_path] = 1
 				break
 
@@ -169,11 +167,11 @@
 
 	.["product_records"] = list()
 	for(var/datum/data/vending_product/prize in products_list)
-		var/stock_count = item_stock[prize.equipment_path] || 0
+		var/stock_count = item_stock[prize.product_path] || 0
 		var/list/product_data = list(
-			path = replacetext(replacetext("[prize.equipment_path]", "/obj/item/", ""), "/", "-"),
-			name = prize.equipment_name,
-			cost = prize.cost,
+			path = replacetext(replacetext("[prize.product_path]", "/obj/item/", ""), "/", "-"),
+			name = prize.name,
+			price = prize.price,
 			ref = REF(prize),
 			stock = stock_count,
 			available = (stock_count > 0)
@@ -201,31 +199,31 @@
 		to_chat(usr, span_alert("Error: Invalid choice!"))
 		return
 
-	var/current_stock = item_stock[prize.equipment_path] || 0
+	var/current_stock = item_stock[prize.product_path] || 0
 	if(current_stock <= 0)
-		to_chat(usr, span_alert("Error: [prize.equipment_name] is out of stock!"))
+		to_chat(usr, span_alert("Error: [prize.name] is out of stock!"))
 		return
 
-	if(prize.cost > H.research_points)
-		to_chat(usr, span_alert("Error: Insufficient research points for [prize.equipment_name]! You need [prize.cost] research points."))
+	if(prize.price > H.research_points)
+		to_chat(usr, span_alert("Error: Insufficient research points for [prize.name]! You need [prize.price] research points."))
 		return
 
-	H.research_points -= prize.cost
+	H.research_points -= prize.price
 
 	// Check if user is loyal to the chantry/camarilla - if not, award 30% tribute to leadership
 	var/user_role = H.mind?.assigned_role
 	var/has_privileges = has_purchase_privileges(user_role)
 
 	if(!has_privileges)
-		distribute_research_points(prize.cost, H.name, prize.equipment_name)
+		distribute_research_points(prize.price, H.name, prize.name)
 		to_chat(usr, span_notice("A portion of your research points flow through the Archives to the Chantry leadership as tribute."))
 
 	// Reduce stock
-	item_stock[prize.equipment_path]--
+	item_stock[prize.product_path]--
 
-	to_chat(usr, span_notice("The Archives emanate dark energy as it dispenses [prize.equipment_name]!"))
-	new prize.equipment_path(loc)
-	SSblackbox.record_feedback("nested tally", "vending_product_bought", 1, list("[type]", "[prize.equipment_path]"))
+	to_chat(usr, span_notice("The Archives emanate dark energy as it dispenses [prize.name]!"))
+	new prize.product_path(loc)
+	SSblackbox.record_feedback("nested tally", "vending_product_bought", 1, list("[type]", "[prize.product_path]"))
 	return TRUE
 
 //transfer research points
