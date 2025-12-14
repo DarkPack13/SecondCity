@@ -88,18 +88,11 @@
 #define JOB_SUPPLY_TECH "Dealer"
 
 // Forest Wolves
-#define JOB_GAROU_FOREST_COUNCIL "Amberglade Councillor"
-#define JOB_GAROU_FOREST_KEEPER "Amberglade Keeper"
-#define JOB_GAROU_FOREST_CATCHER "Amberglade Truthcatcher"
-#define JOB_GAROU_FOREST_WARDER "Amberglade Warder"
-#define JOB_GAROU_FOREST_GUARDIAN "Amberglade Guardian"
-
-// City Wolves
-#define JOB_GAROU_CITY_COUNCIL "Painted City Councillor"
-#define JOB_GAROU_CITY_KEEPER "Painted City Keeper"
-#define JOB_GAROU_CITY_CATCHER "Painted City Truthcatcher"
-#define JOB_GAROU_CITY_WARDER "Painted City Warder"
-#define JOB_GAROU_CITY_GUARDIAN "Painted City Guardian"
+#define JOB_GAROU_COUNCIL "Councillor" // Elder, Athro
+#define JOB_GAROU_TRUTHCATCHER "Truthcatcher" // Adren+
+#define JOB_GAROU_WARDER "Warder " // Adren+
+#define JOB_GAROU_WYRMFOE "Wyrmfoe" // Fostern
+#define JOB_GAROU_GUARDIAN "Guardian"
 
 // Pentex
 #define JOB_PENTEX_FIRST "First Team"
@@ -166,6 +159,12 @@
 #define JOB_DISPLAY_ORDER_SABBATPACK 41
 #define JOB_DISPLAY_ORDER_SABBATPRIEST 42
 
+#define JOB_DISPLAY_ORDER_COUNCIL 43
+#define JOB_DISPLAY_ORDER_TRUTHCATCHER 44
+#define JOB_DISPLAY_ORDER_WARDER 45
+#define JOB_DISPLAY_ORDER_WYRMFOE 46
+#define JOB_DISPLAY_ORDER_GUARDIAN 47
+
 //////////////////////////////////////////////////
 
 #define DEPARTMENT_BITFLAG_CITIZEN (1<<0)
@@ -198,10 +197,13 @@
 #define DEPARTMENT_CITY_SERVICES "City_Services"
 #define DEPARTMENT_BITFLAG_ENDRON (1<<14)
 #define DEPARTMENT_ENDRON "Endron"
+#define DEPARTMENT_BITFLAG_GAIA (1<<15)
+#define DEPARTMENT_GAIA "Garou Nation"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
 	"PRINCE" = DEPARTMENT_BITFLAG_PRINCE,
+	"GAIA" = DEPARTMENT_BITFLAG_GAIA,
 	"CAMARILLA" = DEPARTMENT_BITFLAG_CAMARILLA,
 	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
 	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
@@ -221,6 +223,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Variable macros used to declare who is the supervisor for a given job, announced to the player when they join as any given job.
 #define SUPERVISOR_TRADITIONS "the Traditions"
+#define SUPERVISOR_LITANY "the Litany"
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
@@ -236,7 +239,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"
-#define EXP_TYPE_GAROU "Garou"
+#define EXP_TYPE_GAIA "Gaia"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
 #define EXP_TYPE_WAREHOUSE "Supply"
 #define EXP_TYPE_CHANTRY "Chantry"
