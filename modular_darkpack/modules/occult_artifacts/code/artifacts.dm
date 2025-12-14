@@ -233,8 +233,8 @@
 /obj/item/vtm_artifact/bloodstone
 	true_name = "Bloodstone"
 	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
-	icon = 'modular_tfn/modules/paths/icons/bloodstone_artifact.dmi'
-	onflooricon = 'modular_tfn/modules/paths/icons/bloodstone_artifact.dmi'
+	icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
+	onflooricon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
 	icon_state = "bloodstone"
 	var/mob/living/carbon/human/bound_identifier // Who identified it first
 	var/datum/action/bloodstone_track/tracking_action
@@ -256,4 +256,36 @@
 	if(tracking_action)
 		tracking_action.Remove(bound_identifier)
 		QDEL_NULL(tracking_action)
+	return ..()
+
+/datum/action/bloodstone_track
+	name = "Track Bloodstone"
+	desc = "Sense the location of your bound bloodstone."
+	button_icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
+	button_icon_state = "bloodstone_track"
+	check_flags = AB_CHECK_CONSCIOUS
+	var/obj/item/vtm_artifact/bloodstone/tracked_stone
+
+/datum/action/bloodstone_track/New(Target, obj/item/vtm_artifact/bloodstone/stone)
+	..()
+	tracked_stone = stone
+
+/datum/action/bloodstone_track/Trigger(trigger_flags)
+	if(!tracked_stone)
+		to_chat(owner, span_warning("The bloodstone bond has been severed."))
+		Remove(owner)
+		return FALSE
+
+	var/turf/stone_turf = get_turf(tracked_stone)
+	if(!stone_turf)
+		to_chat(owner, span_warning("You cannot sense the bloodstone's location."))
+		return FALSE
+
+	var/area/stone_area = get_area(tracked_stone)
+	to_chat(owner, span_notice("The bloodstone whispers its location: [stone_area.name] ([stone_turf.x], [stone_turf.y])"))
+	return TRUE
+
+/datum/action/bloodstone_track/IsAvailable(feedback = FALSE)
+	if(!tracked_stone)
+		return FALSE
 	return ..()
