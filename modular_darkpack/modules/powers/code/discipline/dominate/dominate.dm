@@ -217,7 +217,7 @@
 		return TRUE
 
 	to_chat(owner, span_warning("[target] has resisted your domination!"))
-	//do_cooldown(TRUE)
+	do_cooldown(TRUE)
 	return FALSE
 
 /datum/discipline_power/dominate/command/activate(mob/living/carbon/human/target)
@@ -286,10 +286,9 @@
 
 	target.throw_alert("mesmerize", /atom/movable/screen/alert/mesmerize)
 
-
 	log_combat(owner, target, "Dominated with Mesmerize: [custom_message]")
 	to_chat(owner, span_warning("You've successfully planted a hypnotic suggestion in [target]'s mind!"))
-	owner.say(custom_message, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
+	owner.say(custom_message)
 
 	to_chat(target, span_info("An urging, subconcious thought has entered your mind. Youre not sure how this happened - but it keeps pulsing, forcing your conscious thought to bend toward it."))
 	to_chat(target, span_hypnophrase(custom_message))
@@ -396,10 +395,6 @@
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if(!can_afford())
-		to_chat(owner, span_warning("You do not have enough blood to cast Dominate!"))
-		return FALSE
-
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_SUBTERFUGE), numerical = TRUE)
 	if(successes > 0)
 		return TRUE
@@ -475,7 +470,7 @@
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("LOOK AT ME"))
 
-	owner.say("Look at me.", forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE) //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
+	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
 
 	if(do_after(owner, 20 SECONDS, target))
 		target.conditioned = TRUE
@@ -506,7 +501,7 @@
 		return FALSE
 
 	//v20 states that posession may not work on other Kindred as 'even the weakest Kindred mind can resist'. Extending this to Garou because players posessing Garous to insta-Crinos I think is griefing.
-	if(iskindred(target) || isgarou(target) || (target.dna.species.name == "mannequin")) // note : removed || iscathayan(target), reimplement KJs
+	if(iskindred(target) || isgarou(target)) // note : removed || iscathayan(target), reimplement KJs
 		to_chat(owner, span_warning("You cannot possess [iskindred(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 
@@ -516,10 +511,6 @@
 
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
-
-	if(!can_afford())
-		to_chat(owner, span_warning("You do not have enough blood to cast Dominate!"))
-		return FALSE
 
 	domination_succeeded = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION))
 	if(!domination_succeeded)
@@ -695,22 +686,6 @@
 		return
 	controller.end_possession()
 	return TRUE
-
-//only in use in dementation 5 now
-/*
-/mob/living/carbon/human/proc/attack_myself_command()
-	if(!CheckFrenzyMove())
-		set_combat_mode(TRUE)
-		var/obj/item/I = get_active_held_item()
-		if(I?.force)
-			ClickOn(src)
-		else
-			if(I)
-				drop_all_held_items()
-			ClickOn(src)
-*/
-
-
 
 //AUTONOMIC MASTERY
 /datum/discipline_power/dominate/autonomic_mastery

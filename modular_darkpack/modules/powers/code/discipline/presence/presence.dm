@@ -27,25 +27,25 @@
 
 /datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/target, owner_stat, difficulty)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_PRESENCE_IMMUNE))
 		to_chat(owner, span_warning("A presence attempt has botched against this person and they may no longer have Presence used on them for the rest of the night."))
-		return 0
+		return FALSE
 
-	//is the difficulty pre-defined? if not, its probably their total willpower.
+	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
 	if((owner.generation - 3) >= target.generation)
-		return 0
+		return FALSE
 
 	//botch
 	if(successes < 0)
 		ADD_TRAIT(target, TRAIT_PRESENCE_IMMUNE, TRAIT_GENERIC)
 		to_chat(owner, span_warning("A presence attempt has botched against this person and they may no longer have Presence used on them for the rest of the night."))
-		return 0
+		return FALSE
 
 	//number of successes is rather critical for the efficacy of the power
 	return successes
@@ -58,11 +58,11 @@
 	target.apply_overlay(MUTATIONS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
-	// Grant the resist action
+	// resist presence button - note to self, in the future, v20 states that the resister must continue to spend willpower if in the presence of the vamp
 	var/datum/action/resist_presence/resist_action = new(target)
 	resist_action.Grant(target)
 
-	// Remove the action after 20 seconds
+	// remove the action after 20 seconds
 	addtimer(CALLBACK(resist_action, TYPE_PROC_REF(/datum/action, Remove), target), resist_timer)
 
 //used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
@@ -82,12 +82,6 @@
 		if(!inserted)
 			sorted += target
 	return sorted
-
-//onscreen alert
-/atom/movable/screen/alert/entrancement
-	name = "Entranced"
-	desc = "You are completely entranced and compelled to serve."
-	icon_state = "hypnosis"
 
 //datum/action to resist presence powers by burning a willpower point and making a difficulty 8 roll
 /datum/action/resist_presence
@@ -269,7 +263,7 @@
 	target.throw_alert("entrancement", /atom/movable/screen/alert/entrancement)
 	log_combat(owner, target, "Used Presence Entrancement")
 
-	apply_presence_overlay(target, successes * 30 MINUTES)
+	apply_presence_overlay(target, successes * 10 MINUTES)
 	to_chat(target, span_hypnophrase("You find yourself becoming completely entraced by [owner]. You are now their willing servant."))
 	to_chat(target, span_info("You are now the willing servant of [owner]. You will seek to please them and fulfill their every desire, but this desire will fade soon."))
 	addtimer(CALLBACK(src, PROC_REF(end_entrancement), target), successes * 30 MINUTES) // might be alot considering 5 successes is 5 ingame hours which is... most of a round.
@@ -375,8 +369,7 @@
 			continue
 
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		//note to self -- STAT_PERMANENT_WILLPOWER for now, needs to be changed to courage after the playtest
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
