@@ -1,6 +1,6 @@
 /datum/discipline/quietus
 	name = "Quietus"
-	desc = "Make a poison out of nowhere and forces all beings in range to mute, poison your touch, poison your weapon, poison your spit and make it acid. Violates Masquerade."
+	desc = "The signature discipline of the Banu Haqim, Quietus allows the user to create poison and assassinate their targets quietly, maipulating their blood. Violates Masquerade."
 	icon_state = "quietus"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/quietus
@@ -36,7 +36,7 @@
 //SCORPIONS TOUCH
 /datum/discipline_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
-	desc = "Create a powerful venom to apply to your enemies."
+	desc = "Create a powerful venom to destroy your target's Stamina."
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
@@ -100,7 +100,7 @@
 //DAGON'S CALL
 /datum/discipline_power/quietus/dagons_call
 	name = "Dagon's Call"
-	desc = "Curse the last person you attacked to drown in their own blood."
+	desc = "Curse anyone you've touched in the last hour to drown in their own blood."
 
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING

@@ -57,7 +57,6 @@
 	victim.st_add_stat_mod(STAT_STAMINA, -poison_potency, "quietus")
 	addtimer(CALLBACK(src, PROC_REF(remove_poison), victim), poison_duration MINUTES)
 
-	// Check if victim reaches zero stamina
 	if(victim.st_get_stat(STAT_STAMINA) <= 0)
 		if(iskindred(victim))
 			victim.torpor()
@@ -67,8 +66,8 @@
 			// apply non transmittable disease to the mortal victim if they reach zero stamina
 			to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
 
-	victim.adjustFireLoss(2 * poison_potency) // this is nasty, nerfed from 10 to 2
-	//victim.AdjustKnockdown(3 SECONDS) this is from the old code
+	victim.adjustFireLoss(2 * poison_potency)
+	//victim.AdjustKnockdown(3 SECONDS) this is from the old code?
 
 	to_chat(user, span_warning("Your venomous touch burns [victim]!"))
 	to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
