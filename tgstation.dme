@@ -6867,7 +6867,6 @@
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\initialize.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\life.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\physiology.dm"
-#include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\species_types\humans.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\simple_animal\hostile\hostile.dm"
 #include "modular_darkpack\master_files\code\modules\paperwork\fax.dm"
