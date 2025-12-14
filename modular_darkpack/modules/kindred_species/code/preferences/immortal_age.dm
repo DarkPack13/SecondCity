@@ -2,7 +2,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "immortal_age"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_TABLETOP
+	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	relevant_inherent_trait = TRAIT_UNAGING
 	must_have_relevant_trait = TRUE
 

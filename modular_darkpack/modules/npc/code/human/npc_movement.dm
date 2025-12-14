@@ -303,8 +303,6 @@
 
 	// Walking around behaviour
 	else if (walktarget && !staying)
-		if (prob(25))
-			toggle_move_intent(src)
 		GLOB.move_manager.move_to(src, walktarget, 0, cached_multiplicative_slowdown)
 
 	if (!has_weapon || danger_source || !spawned_weapon)
