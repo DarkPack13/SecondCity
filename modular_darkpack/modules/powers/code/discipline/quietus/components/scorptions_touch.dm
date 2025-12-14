@@ -32,6 +32,9 @@
 			return
 
 		// stamina stat mod reduction goes here
+		victim.st_add_stat_mod(STAT_STAMINA, poison_potency, "quietus")
+		addtimer(CALLBACK(src, PROC_REF(remove_poison), victim), poison_duration MINUTES)
+
 
 		// Check if victim reaches zero stamina
 		if(victim.st_get_stat(STAT_STAMINA) <= 0)
@@ -107,3 +110,10 @@
 	to_chat(user, span_warning("Your venomous touch burns [victim]!"))
 	to_chat(victim, span_userdanger("You feel a burning poison sap your strength!"))
 	qdel(src)
+
+/obj/item/melee/touch_attack/quietus/proc/remove_poison(mob/living/carbon/human/victim)
+	if(!victim || QDELETED(victim))
+		return
+
+	victim.st_remove_stat_mod(STAT_STAMINA, "quietus")
+	to_chat(victim, span_notice("The poison's effects fade from your body."))
