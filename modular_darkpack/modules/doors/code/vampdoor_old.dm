@@ -7,3 +7,13 @@
 	locked = TRUE
 	lock_id = "chantry"
 	lockpick_difficulty = 10
+
+/obj/structure/vampdoor/old/graveyard
+	locked = TRUE
+	lock_id = "graveyard"
+	lockpick_difficulty = 2
+
+/obj/structure/vampdoor/old/church
+	locked = TRUE
+	lock_id = "church"
+	lockpick_difficulty = 10

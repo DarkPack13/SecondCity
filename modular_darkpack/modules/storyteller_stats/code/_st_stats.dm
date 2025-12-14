@@ -1,27 +1,101 @@
-
 /datum/st_stat
-	var/name = ""
-	var/description = ""
-	var/score = 0
-	var/bonus_score = 0
-
 	//determines the base type for this class, so we don't add in empty types
-	var/base_type = /datum/st_stat
+	abstract_type = /datum/st_stat
+	/// The name of the stat
+	var/name = ""
+	/// The description of the stat, shown when hovering over it in the UI.
+	var/description = ""
+	/// The category this stat belongs to. For example, "Attribute" or "Ability".
+	var/category = ""
+	/// The subcategory this stat belongs to. For example, "Physical" or "Social".
+	var/subcategory = ""
+	/// The current score of this stat.
+	VAR_PROTECTED/score = 0
+	/// Temporary bonus score applied to this stat from various ingame sources.
+	VAR_PROTECTED/bonus_score = 0
+	/// The minimum score this stat can be.
+	var/min_score = 0
+	/// The maximum score this stat can be.
+	var/max_score = 5
+	/// The amount of freebie points that are required to increase this stat by 1 point.
+	var/freebie_point_cost = 0
+	/// Flags for stats, such as if it affects health.
+	var/stat_flags = NONE
 
-	//if a stat affects the hp pool, recalculate the hp of the mob when changed.
-	var/affects_health_pool = FALSE
-
+	/// If the user can spend points on that stat.
+	var/editable = TRUE
 	/// A dictionary of modifiers to this attribute.
 	var/list/modifiers = list()
+	/// What score does this stat start out with at character creation.
+	var/starting_score = 0
+	/// How many points are in this stat category that the player can use. Used in abstract classes only.
+	VAR_PROTECTED/points = 0
+	/// How many freebie points were spent on this stat. Used in abstract classes only.
+	var/freebie_cost_spent = 0
+
+// Score
 
 /datum/st_stat/proc/get_score(include_bonus = TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(include_bonus)
 		return score + bonus_score
 	else
 		return score
 
+/datum/st_stat/proc/can_set_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if((amount < min_score) || (amount > max_score))
+		return FALSE
+	return TRUE
+
+// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding increasing the stat.
+/datum/st_stat/proc/can_increase_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_score = score + amount
+	if(new_score > max_score)
+		return FALSE
+	return TRUE
+
+// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding decreasing the stat.
+/datum/st_stat/proc/can_decrease_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_score = score - amount
+	if(new_score < min_score)
+		return FALSE
+	return TRUE
+
 /datum/st_stat/proc/set_score(amount)
-	score = amount
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_set_score(amount))
+		return FALSE
+	score = clamp(amount, min_score, max_score)
+	return TRUE
+
+/datum/st_stat/proc/increase_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_increase_score(amount))
+		return FALSE
+	score = clamp(score + amount, min_score, max_score)
+	return TRUE
+
+/datum/st_stat/proc/decrease_score(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_decrease_score(amount))
+		return FALSE
+	score = clamp(score - amount, min_score, max_score)
+	return TRUE
+
+// Modifiers
+
+/datum/st_stat/proc/add_stat_mod(amount, source)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	LAZYSET(modifiers, source, amount)
+	update_modifiers()
+
+/datum/st_stat/proc/remove_stat_mod(source)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	LAZYREMOVE(modifiers, source)
+	update_modifiers()
 
 /datum/st_stat/proc/update_modifiers()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -30,12 +104,61 @@
 		bonus_score += modifiers[source]
 	bonus_score = clamp(bonus_score, 0, 10)
 
-/datum/st_stat/proc/get_score_multiplier(low_mod = 0.25, high_mod = 2)
-	var/used_score = score + bonus_score
-	// used max_score when it exists
-	var/max_score = 5
-	used_score = clamp(used_score, 0, max_score)
+// Points
 
-	var/mult = low_mod + ((used_score / max_score) * (high_mod - low_mod))
+/datum/st_stat/proc/get_points()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return points
 
-	return mult
+/datum/st_stat/proc/set_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	points = max(amount, 0)
+	return TRUE
+
+/datum/st_stat/proc/increase_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	points += amount
+	return TRUE
+
+/datum/st_stat/proc/can_decrease_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_points = points - amount
+	if(new_points < 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/decrease_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_decrease_points(amount))
+		return FALSE
+	points -= amount
+	return TRUE
+
+// Freebie Points
+
+/datum/st_stat/proc/can_increase_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(freebie_cost_spent <= 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/increase_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	points += amount
+	freebie_cost_spent -= amount
+	return TRUE
+
+/datum/st_stat/proc/can_decrease_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/new_points = points - amount
+	if(new_points < 0)
+		return FALSE
+	return TRUE
+
+/datum/st_stat/proc/decrease_freebie_points(amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!can_decrease_freebie_points(amount))
+		return FALSE
+	points -= amount
+	freebie_cost_spent += amount
+	return TRUE

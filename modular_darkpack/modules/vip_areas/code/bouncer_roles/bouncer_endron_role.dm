@@ -9,7 +9,7 @@
 	gloves = list(/obj/item/clothing/gloves/vampire/work)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
 	glasses = list(/obj/item/clothing/glasses/vampire/sun)
-	//hats = list(/obj/item/clothing/head/beret/black)
+	hats = list(/obj/item/clothing/head/beret/black)
 	masks = list(/obj/item/clothing/mask/vampire/balaclava)
 
 /datum/socialrole/bouncer/endron/endron_lab
@@ -21,7 +21,7 @@
 	gloves = list(/obj/item/clothing/gloves/vampire/latex)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
 	glasses = list(/obj/item/clothing/glasses/vampire/sun)
-	//hats = list(/obj/item/clothing/head/beret/black)
+	hats = list(/obj/item/clothing/head/beret/black)
 	masks = list(/obj/item/clothing/mask/gas/explorer)
 
 /datum/socialrole/bouncer/endron/endron_lab_2
@@ -33,7 +33,7 @@
 	gloves = list(/obj/item/clothing/gloves/vampire/latex)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
 	glasses = list(/obj/item/clothing/glasses/vampire/sun)
-	//hats = list(/obj/item/clothing/head/beret/black)
+	hats = list(/obj/item/clothing/head/beret/black)
 	masks = list(/obj/item/clothing/mask/gas/explorer)
 
 /datum/socialrole/bouncer/endron/endron_2
@@ -45,5 +45,5 @@
 	gloves = list(/obj/item/clothing/gloves/vampire/work)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
 	glasses = list(/obj/item/clothing/glasses/night)
-	//hats = list(/obj/item/clothing/head/pentex/pentex_beret)
+	hats = list(/obj/item/clothing/head/vampire/pentex_beret)
 	masks = list(/obj/item/clothing/mask/gas/sechailer)
