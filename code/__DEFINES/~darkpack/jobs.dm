@@ -180,7 +180,7 @@
 #define DEPARTMENT_BITFLAG_ANARCH (1<<5)
 #define DEPARTMENT_ANARCH "Anarch"
 #define DEPARTMENT_BITFLAG_STRIP_CLUB (1<<6)
-#define DEPARTMENT_STRIP_CLUB "Strip Club"
+#define DEPARTMENT_STRIP_CLUB "Strip_Club"
 #define DEPARTMENT_BITFLAG_SUPPLY (1<<7)
 #define DEPARTMENT_SUPPLY "Warehouse"
 #define DEPARTMENT_BITFLAG_GIOVANNI (1<<8)
@@ -194,11 +194,11 @@
 #define DEPARTMENT_BITFLAG_MANOR (1<<12)
 #define DEPARTMENT_MANOR "Manor"
 #define DEPARTMENT_BITFLAG_CITY_SERVICES (1<<13)
-#define DEPARTMENT_CITY_SERVICES "City Services"
+#define DEPARTMENT_CITY_SERVICES "City_Services"
 #define DEPARTMENT_BITFLAG_ENDRON (1<<14)
 #define DEPARTMENT_ENDRON "Endron"
 #define DEPARTMENT_BITFLAG_GAIA (1<<15)
-#define DEPARTMENT_GAIA "Garou Nation"
+#define DEPARTMENT_GAIA "Garou_Nation"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -239,7 +239,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"
-#define EXP_TYPE_GAIA "Gaia"
+#define EXP_TYPE_GAIA "Garou Nation"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
 #define EXP_TYPE_WAREHOUSE "Supply"
 #define EXP_TYPE_CHANTRY "Chantry"
