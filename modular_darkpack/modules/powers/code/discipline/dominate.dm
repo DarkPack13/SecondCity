@@ -134,7 +134,7 @@
 	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
-	RegisterSignal(target, list(
+	RegisterSignals(target, list(
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_MOB_ITEM_ATTACK,
 		COMSIG_PROJECTILE_PREHIT
@@ -806,3 +806,5 @@
 				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 	else
 		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
+
+#undef TRAIT_MESMERIZED
