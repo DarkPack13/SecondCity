@@ -2,6 +2,7 @@
 	name = "Daughters of Cacophony"
 	id = VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY
 	desc = "Currently composed mostly of women (due to the associated difficulty in educating someone with the vocal range of most males), the Daughters practice Melpominee, a Discipline which allows the Daughters to invoke strange effects through singing. The Daughters are the choralistes par excellence of the undead, and hosting a gathering of them is worth high prestige for the Toreador."
+	icon = "daughters_of_cacophony"
 	curse = "Hear more than should."
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
