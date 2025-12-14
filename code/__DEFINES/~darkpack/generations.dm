@@ -16,7 +16,7 @@
 #define MAX_PUBLIC_GENERATION 10
 /// Limit for lowest trusted player generation
 #define MAX_TRUSTED_GENERATION 8
-/// The default generation everyone begins at
+/// The default generation every kindred begins at
 #define DEFAULT_GENERATION 13
 // The generation a human is.
 #define HUMAN_GENERATION HIGHEST_GENERATION_LIMIT + 1
