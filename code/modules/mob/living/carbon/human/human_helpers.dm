@@ -69,11 +69,11 @@
 		if(add_id_name)
 			return "[face_name] (as [id_name])"
 
-	// DARKPACK EDIT START
+	// DARKPACK EDIT ADD START
 	var/known_name
 	if(!face_name)
 		known_name = examiner?.mind?.guestbook?.get_known_name(examiner, src, real_name)
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	// Just go down the list of stuff we recorded
 	return known_name || face_name || id_name || get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"

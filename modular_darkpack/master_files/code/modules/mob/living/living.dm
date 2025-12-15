@@ -6,13 +6,13 @@
 
 /mob/living/Initialize(mapload)
 	. = ..()
-	storyteller_stat_holder = new() // STORYTELLER_STATS
+	storyteller_stats = create_new_stat_prefs(storyteller_stats)
 	AddComponent(/datum/component/aura)
 
 /mob/living/Destroy()
 	lastattacked = null
 	drunked_of = null
-	QDEL_NULL(storyteller_stat_holder)
+	storyteller_stats = null
 	beastmaster_minions = null
 	minion_command_components = null
 	grabbed_by_tentacle = null

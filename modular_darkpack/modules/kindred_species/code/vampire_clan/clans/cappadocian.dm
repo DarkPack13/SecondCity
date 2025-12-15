@@ -2,6 +2,7 @@
 	name = "Cappadocian"
 	id = VAMPIRE_CLAN_CAPPADOCIAN
 	desc = "A presumed-to-be-extinct Clan of necromancers, the Cappadocians studied death specifically in the physical world. The Giovanni were Embraced into their line to help further their studies into the underworld. They were rewarded with Diablerie and the destruction of their Clan and founder."
+	icon = "cappadocian"
 	curse = "Extremely corpselike appearance that worsens with age."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
