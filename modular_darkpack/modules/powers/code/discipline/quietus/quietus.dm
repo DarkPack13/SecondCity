@@ -48,7 +48,7 @@
 
 /datum/discipline_power/quietus/scorpions_touch/pre_activation_checks(atom/target)
 	. = ..()
-	var/success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 6, numerical = TRUE, mobs_to_show_output = owner)
+	var/success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 6, mobs_to_show_output = owner, alert_atom = owner, numerical = TRUE)
 
 	if(success_count <= 0)
 		to_chat(owner, span_warning("Your blood fails to transform into poison!"))
