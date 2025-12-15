@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - refactor: "Moved generation variable to species."

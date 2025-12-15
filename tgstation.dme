@@ -6862,6 +6862,7 @@
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\carbon_defines.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\examine.dm"
+#include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\_species.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\human_defines.dm"
 #include "modular_darkpack\master_files\code\modules\mob\living\carbon\human\init_signals.dm"
