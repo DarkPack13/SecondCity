@@ -81,12 +81,12 @@
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
 	if(!prize || !(prize in products_list))
 		to_chat(usr, span_alert("Error: Invalid choice!"))
-		flick(icon_deny, src)
+		//flick(icon_deny, src)
 		return
 
 	if(prize.price > L.collected_souls)
 		to_chat(usr, span_alert("Error: Insufficient souls for [prize.name]! You need [prize.price] souls."))
-		flick(icon_deny, src)
+		//flick(icon_deny, src)
 		return
 
 	// Deduct souls from purchase
@@ -95,10 +95,6 @@
 	new prize.product_path(loc)
 	SSblackbox.record_feedback("nested tally", "necromancy_equipment_bought", 1, list("[type]", "[prize.product_path]"))
 	return TRUE
-
-// Remove the AltClick dollar dispensing
-/obj/structure/retail/necromancy/necromancy/AltClick(mob/user)
-	return
 
 // Future implementation for soul-infused artifacts
 /obj/structure/retail/necromancy/necromancy/attackby(obj/item/W, mob/user, params)

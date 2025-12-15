@@ -40,14 +40,14 @@
 			return
 
 	var/is_knowing = FALSE
-	var/datum/species/kindred/species = user.dna.species
+	var/datum/species/human/kindred/species = user.dna.species
 	var/datum/discipline/existing_path_discipline = null
 
 	if(!path_type)
 		to_chat(user, span_warning("This spellbook appears to be incomplete!"))
 		return
 
-	if(istype(species, /datum/species/kindred))
+	if(istype(species, /datum/species/human/kindred))
 		if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return

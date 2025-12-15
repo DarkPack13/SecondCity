@@ -8,7 +8,7 @@
 	name = "Lure of Flames Power Name"
 	desc = "Lure of Flames Power Description"
 
-	effect_sound = 'modular_tfn/modules/paths/sounds/fireball.ogg'
+	effect_sound = 'modular_darkpack/modules/paths/sounds/fireball.ogg'
 
 //CANDLE - LEVEL 1
 /datum/discipline_power/thaumaturgy/path/flames/one
@@ -111,7 +111,7 @@
 
 /datum/discipline_power/thaumaturgy/path/flames/three/pre_activation_checks(atom/target)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner, force_chat_result = TRUE)
+	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
@@ -137,11 +137,9 @@
 		var/turf/start = get_turf(owner)
 		var/obj/projectile/flames/flamebolt/H = new(start)
 		H.firer = owner
-		H.damage = 20 + owner.thaum_damage_plus + success_count
-		H.preparePixelProjectile(target, start)
+		H.damage = 25 + owner.thaum_damage_plus + success_count
 		H.level = 3
 		H.fire(direct_target = target)
-		H.cruelty_multiplier = 2 // we dont want crits doing fucking 80 burn to vampires
 		to_chat(target, span_danger("A bolt of searing flame flies toward you!"))
 
 //ENGULF - Level 4
@@ -166,7 +164,7 @@
 
 /datum/discipline_power/thaumaturgy/path/flames/four/pre_activation_checks(atom/target)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner, force_chat_result = TRUE)
+	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
@@ -197,7 +195,7 @@
 		target.adjustFireLoss(damage_amount)
 
 		target.adjust_fire_stacks(4 + success_count)
-		target.IgniteMob()
+		target.ignite_mob()
 
 		to_chat(target, span_userdanger("You are engulfed in supernatural flames!"))
 		playsound(get_turf(target), effect_sound, 100, TRUE)
@@ -224,7 +222,7 @@
 
 /datum/discipline_power/thaumaturgy/path/flames/five/pre_activation_checks(atom/target)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner, force_chat_result = TRUE)
+	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
@@ -279,7 +277,7 @@
 			// remove inferno warning and insert the actual fire objects
 			for(var/obj/effect/temp_visual/inferno_warning/W in T)
 				qdel(W)
-			new /obj/effect/fire(T)
+			new /obj/effect/abstract/turf_fire(T)
 
 			// Damage all mobs on each tile
 			for(var/mob/living/L in T)
@@ -291,7 +289,7 @@
 				// Chance to ignite based on successes
 				if(prob(ignite_chance))
 					L.adjust_fire_stacks(fire_stacks_amount)
-					L.IgniteMob()
+					L.ignite_mob()
 
 				to_chat(L, span_userdanger("You are caught in a supernatural firestorm!"))
 
@@ -335,14 +333,14 @@
 // Projectile for Flame Bolt
 /obj/projectile/flames
 	name = "flame"
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "fireball"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
 	damage_type = BURN
-	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
-	flag = LASER
-	light_system = MOVABLE_LIGHT
+	hitsound_wall = 'sound/items/weapons/effects/searwall.ogg'
+	//flag = LASER
+	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_power = 1
 	light_color = COLOR_ORANGE
@@ -361,9 +359,9 @@
 		// Chance to ignite target
 		if(prob(10))
 			L.adjust_fire_stacks(2)
-			L.IgniteMob()
+			L.ignite_mob()
 		if(prob(10))
 			var/target_turf = get_turf(L)
-			new /obj/effect/fire(target_turf)
+			new /obj/effect/abstract/turf_fire(target_turf)
 		L.visible_message(span_danger("[target] is struck by supernatural flames!"), span_userdanger("You are burned by supernatural fire!"))
-		playsound(get_turf(target), 'modular_tfn/modules/paths/sounds/fireball.ogg', 50, TRUE)
+		playsound(get_turf(target), 'modular_darkpack/modules/paths/sounds/fireball.ogg', 50, TRUE)

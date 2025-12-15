@@ -8,7 +8,7 @@
 	name = "Path of the Levinbolt Power Name"
 	desc = "Path of the Levinbolt Power Description"
 
-	effect_sound = 'sound/magic/lightningbolt.ogg'
+	effect_sound = 'sound/effects/magic/lightningbolt.ogg'
 
 
 // levinbolt allows for the user to click on certain electronics, disabling them, like radios while people are still wearing them, warehouse computer, fuseboxes.
@@ -23,6 +23,7 @@
 	if(include_radio_effects && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/disabled_any = FALSE
+		/*
 		for(var/obj/item/I in H.get_all_slots())
 			if(istype(I, /obj/item/p25radio))
 				var/obj/item/p25radio/radio = I
@@ -32,7 +33,7 @@
 						span_warning("[H]'s [I.name] crackles violently and powers down!"),
 						span_warning("Your [I.name] crackles violently and powers down!"),
 					)
-					playsound(H, 'sound/effects/sparks4.ogg', 60, TRUE)
+					playsound(H, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 					disabled_any = TRUE
 				else
 					radio.powered = TRUE
@@ -40,8 +41,9 @@
 						span_warning("Electricity surges into [H]'s [I.name] - turning it on!"),
 						span_warning("Electricity surges into your radio - turning it on!"),
 					)
-					playsound(H, 'sound/effects/sparks4.ogg', 60, TRUE)
+					playsound(H, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 					disabled_any = TRUE
+		*/
 		if(disabled_any)
 			var/datum/effect_system/spark_spread/spark_system = new
 			spark_system.set_up(5, 1, get_turf(H))
@@ -57,7 +59,7 @@
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(3, 1, get_turf(target))
 		spark_system.start()
-		playsound(target, 'sound/effects/sparks4.ogg', 50, TRUE)
+		playsound(target, 'sound/effects/sparks/sparks4.ogg', 50, TRUE)
 
 		owner.visible_message(span_warning("[owner] sends sparks of electricity into [target]!"))
 		return TRUE
@@ -73,7 +75,7 @@
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 1, get_turf(target))
 		spark_system.start()
-		playsound(target, 'sound/effects/sparks2.ogg', 75, TRUE)
+		playsound(target, 'sound/effects/sparks/sparks2.ogg', 75, TRUE)
 
 		owner.visible_message(span_warning("[owner] sends a surge of electricity into [target]!"))
 
@@ -122,7 +124,7 @@
 		owner.add_overlay(electricity)
 
 		// Set up overlay lighting component for electric glow
-		owner.light_system = MOVABLE_LIGHT
+		owner.light_system = OVERLAY_LIGHT
 		owner.AddComponent(/datum/component/overlay_lighting, 2, 1, "#f1fdfd", TRUE)
 		to_chat(owner, span_notice("Small sparks of electricity begin crackling around you! Youn can now disable certain electrical systems with just a touch - and attackers will sometimes feel a slight shock."))
 
@@ -144,7 +146,7 @@
 	SIGNAL_HANDLER
 
 	if(prob(30))
-		attacker.Jitter(2)
+		attacker.adjust_jitter_up_to(4 SECONDS, 15)
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
@@ -223,7 +225,7 @@
 
 		electricity2 = electricity2 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
 		owner.add_overlay(electricity2)
-		owner.light_system = MOVABLE_LIGHT
+		owner.light_system = OVERLAY_LIGHT
 		owner.AddComponent(/datum/component/overlay_lighting, 3, 2, "#e9ffff", TRUE)
 		to_chat(owner, span_notice("Intense electricity surges around your entire body!"))
 
@@ -247,7 +249,7 @@
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
-		attacker.Jitter(2)
+		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
 		attacker.adjustFireLoss(30)
 
@@ -318,7 +320,7 @@
 			owner.visible_message(span_reallybig(span_bolddanger("The air itself SCREAMS as [owner.name] becomes lightning incarnate!")),
 				span_reallybig(span_bolddanger("UNLIMITED POWER courses through your being!")))
 
-	playsound(get_turf(owner), 'sound/magic/lightningbolt.ogg', min(50 + (success_count * 10), 100), TRUE, extrarange = success_count)
+	playsound(get_turf(owner), 'sound/effects/magic/lightningbolt.ogg', min(50 + (success_count * 10), 100), TRUE, extrarange = success_count)
 
 	// bolt of lightning to the first target
 	owner.Beam(primary_target, icon_state="lightning[rand(1,12)]", time = (5 + success_count))
@@ -329,10 +331,10 @@
 // Proced each time a lightning bolt is sent
 /datum/discipline_power/thaumaturgy/path/levinbolt/four/proc/chain_bolt(atom/origin, mob/living/current_target, bolt_energy, bounces_left, list/already_hit)
 	current_target.electrocute_act(bolt_energy, "Zeus' Fury", flags = SHOCK_NOGLOVES)
-	playsound(get_turf(current_target), 'sound/magic/lightningshock.ogg', 60, TRUE)
+	playsound(get_turf(current_target), 'sound/effects/magic/lightningshock.ogg', 60, TRUE)
 
 	// Animation for being struck
-	current_target.Jitter(20 + (success_count * 5))
+	current_target.adjust_jitter_up_to(5 SECONDS, 20 + (success_count * 5))
 	if(ishuman(current_target))
 		var/mob/living/carbon/human/H = current_target
 		H.electrocution_animation(40 + (success_count * 10))
@@ -416,7 +418,7 @@
 	if(!.)
 		electricity3 = electricity3 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
 		owner.add_overlay(electricity3)
-		owner.light_system = MOVABLE_LIGHT
+		owner.light_system = OVERLAY_LIGHT
 		owner.AddComponent(/datum/component/overlay_lighting, 5, 4, "#e9ffff", TRUE)
 
 		//signal for clicking electronics to disable them
@@ -432,7 +434,7 @@
 		lightning_timer = addtimer(CALLBACK(src, PROC_REF(fire_lightning_bolt)), 5 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
 		owner.visible_message(span_danger("[owner] becomes surrounded by crackling electrical energy!"))
 		to_chat(owner, span_notice("You feel incredible electrical power coursing through your body!"))
-		playsound(owner, 'sound/effects/sparks4.ogg', 75, TRUE)
+		playsound(owner, 'sound/effects/sparks/sparks4.ogg', 75, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/create_sparks()
 	if(!owner)
@@ -443,7 +445,7 @@
 	spark_system.start()
 
 	if(prob(50))
-		playsound(owner, pick('sound/effects/sparks1.ogg', 'sound/effects/sparks2.ogg', 'sound/effects/sparks3.ogg', 'sound/effects/sparks4.ogg'), 40, TRUE)
+		playsound(owner, pick('sound/effects/sparks/sparks1.ogg', 'sound/effects/sparks/sparks2.ogg', 'sound/effects/sparks/sparks3.ogg', 'sound/effects/sparks/sparks4.ogg'), 40, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/fire_lightning_bolt()
 	if(!owner)
@@ -462,7 +464,7 @@
 	owner.Beam(target, icon_state="lightning[rand(1,12)]", time = 10)
 
 	target.adjustFireLoss(20)
-	target.Jitter(25)
+	target.adjust_jitter_up_to(3 SECONDS, 15)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.electrocution_animation(50)
@@ -476,13 +478,13 @@
 	spark_system.start()
 
 	owner.visible_message(span_danger("Lightning arcs from [owner] to [target]!"))
-	playsound(target, 'sound/magic/lightningshock.ogg', 75, TRUE)
+	playsound(target, 'sound/effects/magic/lightningshock.ogg', 75, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/storm_counter(mob/source, obj/item/weapon, mob/living/attacker)
 	SIGNAL_HANDLER
 
 	if(prob(60))
-		attacker.Jitter(3)
+		attacker.adjust_jitter_up_to(3 SECONDS, 15)
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(60)
@@ -492,7 +494,7 @@
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 1, get_turf(attacker))
 		spark_system.start()
-		playsound(attacker, 'sound/effects/sparks4.ogg', 60, TRUE)
+		playsound(attacker, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/storm_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
