@@ -1,10 +1,10 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A DARKPACK UI FILE
 import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Section, Stack, Tabs } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { Window } from '../layouts';
 
 type ExamineData = {
@@ -21,7 +21,7 @@ type ExamineData = {
 function formatURLs(text: string) {
   if (!text) return;
   const parts: React.ReactNode[] = [];
-  let regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
+  const regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
   let lastIndex = 0;
 
   text.replace(regex, (url: string, index: number) => {
@@ -63,7 +63,7 @@ export const ExaminePanel = (props) => {
   } = data;
   return (
     <Window
-      title={character_name + "'s Examine Panel"}
+      title={`${character_name}'s·Examine·Panel`}
       width={900}
       height={670}
     >

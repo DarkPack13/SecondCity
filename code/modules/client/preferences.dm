@@ -534,6 +534,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	character.dna.features = list()
 
+	// DARKPACK EDIT ADD START - STORYTELLER STATS
+	if(preference_storyteller_stats)
+		apply_stats_from_prefs(character)
+	// DARKPACK EDIT ADD END
+
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
@@ -546,11 +551,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// DARKPACK EDIT ADD END - TTRPG preferences
 
 		preference.apply_to_human(character, read_preference(preference.type))
-
-	// DARKPACK EDIT ADD START - STORYTELLER STATS
-	if(preference_storyteller_stats)
-		apply_stats_from_prefs(character)
-	// DARKPACK EDIT ADD END
 
 	character.dna.real_name = character.real_name
 
