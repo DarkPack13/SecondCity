@@ -11,7 +11,7 @@
 	var/charges
 
 /datum/component/baals_caress/Initialize(mob/owner, charges)
-	if(!istype(parent, /obj/item))
+	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	var/obj/item/weapon = parent
