@@ -84,7 +84,7 @@
 /datum/discipline_power/quietus/scorpions_touch/activate()
 	. = ..()
 	var/obj/item/held_weapon = owner.get_active_held_item()
-	if(held_weapon && istype(held_weapon, /obj/item))
+	if(held_weapon && isitem(held_weapon))
 		if(held_weapon.GetComponent(/datum/component/scorpions_touch_poison))
 			to_chat(owner, span_warning("[held_weapon] is already poisoned!"))
 			return
