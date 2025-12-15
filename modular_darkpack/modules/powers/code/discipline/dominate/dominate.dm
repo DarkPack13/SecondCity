@@ -629,9 +629,11 @@
 /datum/possession_controller/proc/cleanup()
 	possession_active = FALSE
 	for(var/datum/action/possession/action in vampire_original.actions + mortal_body.actions)
+		action.controller = null
 		action.Remove(action.owner)
 		qdel(action)
 	if(mortal_observer)
+		mortal_observer.controller = null
 		qdel(mortal_observer)
 		mortal_observer = null
 	if(source_power)
