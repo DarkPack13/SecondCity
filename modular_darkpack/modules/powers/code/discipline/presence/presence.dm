@@ -25,7 +25,7 @@
 	to_chat(owner, span_info("[target] hears you clearly."))
 	return TRUE
 
-/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/target, owner_stat, difficulty)
+/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, difficulty)
 	if(!ishuman(target))
 		return FALSE
 
