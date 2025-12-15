@@ -119,7 +119,7 @@
 		to_chat(owner, span_warning("Your Dominate attempt has botched! [target] is now resistant to your Dominate for the rest of the night."))
 		return FALSE
 
-	if(owner.generation > target.generation)
+	if(owner.dna.species.generation > target.dna.species.generation)
 		to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
 		return FALSE
 
