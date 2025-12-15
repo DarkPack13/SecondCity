@@ -116,7 +116,6 @@
 	icon_state = "crate"
 	loot = list(
 		/obj/structure/closet/crate = 20,
-		/obj/structure/closet/crate/cardboard = 5, // DARKPACK EDIT ADD - Backport of https://github.com/tgstation/tgstation/pull/94110
 		/obj/structure/closet/crate/wooden = 1,
 		/obj/structure/closet/crate/internals = 1,
 		/obj/structure/closet/crate/medical = 1,

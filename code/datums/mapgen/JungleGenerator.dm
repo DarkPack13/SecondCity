@@ -31,8 +31,10 @@
 	)
 	///Used to select "zoom" level into the perlin noise, higher numbers result in slower transitions
 	var/perlin_zoom = 65
+	// DARKPACK EDIT ADD START
 	///Biome that is chosen when height is above 0.85
 	var/fallback_biome = /datum/biome/mountain
+	// DARKPACK EDIT ADD END
 
 ///Seeds the rust-g perlin noise with a random number.
 /datum/map_generator/jungle_generator/generate_terrain(list/turfs, area/generate_in)

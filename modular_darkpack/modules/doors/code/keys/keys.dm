@@ -1,5 +1,5 @@
 /obj/item/vamp/keys
-	name = "\improper keys"
+	name = "keys"
 	desc = "Those can open some doors."
 	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
 	icon_state = "keys"
@@ -117,7 +117,7 @@
 	color = "#434343"
 
 /obj/item/vamp/keys/anarch_limited
-	name = "Barkeeper keys"
+	name = "barkeeper keys"
 	accesslocks = list(
 		LOCKACCESS_BAR
 	)
@@ -146,7 +146,7 @@
 	)
 
 /obj/item/vamp/keys/lasombra
-	name = "Dark keys"
+	name = "dark keys"
 	accesslocks = list(
 		LOCKACCESS_LASOMBRA,
 		"kyasid",
@@ -155,7 +155,7 @@
 	color = "#290355"
 
 /obj/item/vamp/keys/lasombra/primogen
-	name = "Really Dark keys"
+	name = "really dark keys"
 	accesslocks = list(
 		LOCKACCESS_LASOMBRA,
 		"kyasid",
@@ -294,14 +294,14 @@
 	color = "#e8ff29"
 
 /obj/item/vamp/keys/cappadocian
-	name = "Eroded keys"
+	name = "eroded keys"
 	accesslocks = list(
 		LOCKACCESS_CAPPADOCIAN
 	)
 	color = "#99620e"
 
 /obj/item/vamp/keys/sabbat
-	name = "Dirty keys"
+	name = "dirty keys"
 	accesslocks = list(
 		"sabbat"
 	)
@@ -353,35 +353,35 @@
 //===========================GAROU KEYS===========================
 
 /obj/item/vamp/keys/nps
-	name = "Park Service keys"
+	name = "\improper Park Service keys"
 	accesslocks = list(
 		LOCKACCESS_PARK_RANGER
 	)
 	color = "#1e7531"
 
 /obj/item/vamp/keys/techstore
-	name = "Tech Store keys"
+	name = "tech store keys"
 	accesslocks = list(
 		LOCKACCESS_WOLFTECH
 	)
 	color = "#466a72"
 
 /obj/item/vamp/keys/pentex
-	name = EVIL_OIL_COMPANY + "  Facility keys"
+	name = "\improper " + EVIL_OIL_COMPANY + " Facility keys"
 	accesslocks = list(
 		LOCKACCESS_PENTEX
 	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/pentex/leader
-	name = EVIL_OIL_COMPANY + " Management keys"
+	name = "\improper " + EVIL_OIL_COMPANY + " Management keys"
 	accesslocks = list(
 		LOCKACCESS_PENTEX,
 		LOCKACCESS_PENTEX_LEADER	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/children_of_gaia
-	name = "Food Pantry keys"
+	name = "food pantry keys"
 	accesslocks = list(
 		LOCKACCESS_COGGIE
 	)
@@ -434,15 +434,8 @@
 	)
 	color = "#fffb8b"
 
-/obj/item/vamp/keys/anarch_limited
-	name = "Barkeeper keys"
-	accesslocks = list(
-		"biker_bar"
-	)
-	color = "#434343"
-
 /obj/item/vamp/keys/apartment
-	name = "Apartment keys"
+	name = "apartment keys"
 	desc = "The key to someone's home. Hope it's not lost."
 	accesslocks = list(
 		"apartment"

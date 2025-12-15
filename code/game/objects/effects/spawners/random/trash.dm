@@ -339,10 +339,7 @@
 	name = "box spawner"
 	icon_state = "box"
 	loot = list(
-		// DARKPACK EDIT CHANGE START - Backport of https://github.com/tgstation/tgstation/pull/94110
-		/obj/structure/closet/cardboard = 5,
-		/obj/structure/closet/crate/cardboard = 4,
-		// DARKPACK EDIT CHANGE END
+		/obj/structure/closet/cardboard = 9,
 		/obj/structure/closet/cardboard/metal = 1,
 	)
 
