@@ -74,10 +74,11 @@ export function StatsPage() {
                   {paths.map((statPath) => {
                     const statData = stats[statPath];
                     const score = statData.score;
+                    const bonus_score = statData.bonus_score
                     const max = statData.max_score;
                     const label = statData.name;
                     const editable = statData.editable;
-                    const filled = '●'.repeat(score);
+                    const filled = '●'.repeat(score + bonus_score);
                     const empty = '○'.repeat(max - score);
 
                     return (

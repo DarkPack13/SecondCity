@@ -42,6 +42,10 @@
 	else
 		return score
 
+/datum/st_stat/proc/get_bonus_score()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return bonus_score
+
 /datum/st_stat/proc/can_set_score(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if((amount < min_score) || (amount > max_score))
