@@ -25,15 +25,16 @@ SUBSYSTEM_DEF(roll)
 	if(!islist(mobs_to_show_output))
 		mobs_to_show_output = list(mobs_to_show_output)
 	var/list/output_text = list()
-	output_text += span_notice("Rolling [length(rolled_dice)] dice against difficulty [difficulty].\n")
+	output_text += span_notice("Rolling [dice] dice against difficulty [difficulty].")
 	var/success_count = count_success(rolled_dice, difficulty, output_text)
-
 	var/output = roll_answer(success_count, numerical, output_text)
+
+	var/output_combined = fieldset_block("[alert_atom.name]", jointext(output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob as anything in mobs_to_show_output)
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
 		if(output_pref == DICE_OUTPUT_CHAT)
-			to_chat(player_mob, jointext(output_text, ""), trailing_newline = FALSE)
+			to_chat(player_mob, output_combined, trailing_newline = FALSE)
 		else if((output_pref == DICE_OUTPUT_BALLOON) && alert_atom)
 			if(success_count > 0)
 				alert_atom.balloon_alert(player_mob, "<span style='color: #14a833;'>[success_count]</span>", TRUE)
@@ -87,16 +88,17 @@ SUBSYSTEM_DEF(roll)
 //Count the number of successes.
 /datum/controller/subsystem/roll/proc/count_success(list/rolled_dice, difficulty = 6, output_text)
 	var/success_count = 0
+	var/dice_text = ""
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
-			output_text += span_nicegreen("[get_dice_char(roll)]")
+			dice_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
 		else if(roll == 1)
-			output_text += span_bold(span_danger("[get_dice_char(roll)]"))
+			dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
 			success_count--
 		else
-			output_text += span_danger("[get_dice_char(roll)]")
-		output_text += " "
+			dice_text += span_danger("[get_dice_char(roll)]")
+	output_text += dice_text
 	return success_count
 
 //Count the number of successes.
@@ -114,13 +116,13 @@ SUBSYSTEM_DEF(roll)
 		return success_count
 	else
 		if(success_count < 0)
-			output_text += span_bold(span_danger(("\n Botch!")))
+			output_text += span_bold(span_danger(("Botch!")))
 			return ROLL_BOTCH
 		else if(success_count == 0)
-			output_text += span_danger("\n Failure!")
+			output_text += span_danger("Failure!")
 			return ROLL_FAILURE
 		else
-			output_text += span_nicegreen("\n Success!")
+			output_text += span_nicegreen("Success!")
 			return ROLL_SUCCESS
 
 /datum/controller/subsystem/roll/proc/get_dice_char(input)
