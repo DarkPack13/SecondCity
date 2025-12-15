@@ -360,6 +360,6 @@
 	resistance_flags = FIRE_PROOF
 	masquerade_violating = FALSE
 
-/obj/item/melee/vampirearms/sabre/Initialize()
+/obj/item/melee/vamp/spear/Initialize()
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "spear", FALSE)
