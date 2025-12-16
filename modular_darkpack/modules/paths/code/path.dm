@@ -27,17 +27,18 @@
 		// Create the path action
 		var/datum/action/discipline/path/path_action = new /datum/action/discipline/path(src)
 
-		// Grant the path action
-		path_action.Grant(owner)
-
 		// Remove the base action
 		base_action.Remove(owner)
 		qdel(base_action)
+
+		// Grant the path action
+		path_action.Grant(owner)
 
 		action_replaced = TRUE
 
 /datum/action/discipline/path
 	check_flags = NONE
+	background_icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	button_icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	background_icon_state = "default"
 	button_icon_state = "default"

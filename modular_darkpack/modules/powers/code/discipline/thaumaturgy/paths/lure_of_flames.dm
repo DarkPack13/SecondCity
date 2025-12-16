@@ -139,7 +139,8 @@
 		H.firer = owner
 		H.damage = 25 + owner.thaum_damage_plus + success_count
 		H.level = 3
-		H.fire(direct_target = target)
+		var/angle = get_angle(owner, target)
+		H.fire(angle, target)
 		to_chat(target, span_danger("A bolt of searing flame flies toward you!"))
 
 //ENGULF - Level 4
