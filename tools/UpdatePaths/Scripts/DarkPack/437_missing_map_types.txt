@@ -2,3 +2,4 @@
 /obj/structure/vampdoor/oldwood/children_of_gaia : /obj/structure/vampdoor/children_of_gaia
 /obj/structure/retail/grocery : /obj/structure/retail/grocery_store
 /obj/item/fake_sarcophagus : /obj/fake_sarcophagus
+/mob/living/carbon/human/npc/sabbat/@SUBTYPES : @DELETE
