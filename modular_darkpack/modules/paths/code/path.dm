@@ -24,16 +24,10 @@
 			break
 
 	if(base_action)
-		// Create the path action
 		var/datum/action/discipline/path/path_action = new /datum/action/discipline/path(src)
-
-		// Remove the base action
 		base_action.Remove(owner)
 		qdel(base_action)
-
-		// Grant the path action
 		path_action.Grant(owner)
-
 		action_replaced = TRUE
 
 /datum/action/discipline/path
@@ -47,7 +41,7 @@
 	. = ..()
 
 /datum/action/discipline/path/apply_button_overlay(atom/movable/screen/movable/action_button/current_button, force = FALSE)
-	. = ..() // Call parent to handle signals
+	. = ..()
 
 	current_button.cut_overlays(TRUE)
 

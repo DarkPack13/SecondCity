@@ -77,7 +77,7 @@
 // find the regent
 /obj/structure/retail/occult/proc/find_regent()
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.mind?.assigned_role == "Chantry Regent")
+		if(H.mind?.assigned_role.title == "Chantry Regent")
 			return H
 	return null
 
@@ -85,7 +85,7 @@
 /obj/structure/retail/occult/proc/find_archivists()
 	var/list/archivists = list()
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.mind?.assigned_role == "Chantry Archivist")
+		if(H.mind?.assigned_role.title == "Chantry Archivist")
 			archivists += H
 	return archivists
 
@@ -112,12 +112,11 @@
 			archivist.research_points += points_to_give
 			to_chat(archivist, span_notice("The Archives distribute [points_to_give] research points to you from [purchaser_name]'s purchase of [item_name]."))
 
-// Proc to increase stock when an item is donated
+
 /obj/structure/retail/occult/proc/increment_stock(item_path)
 	if(item_path in item_stock)
 		item_stock[item_path]++
 	else
-		// Check if this item type should be tracked
 		for(var/datum/data/vending_product/prize in products_list)
 			if(prize.product_path == item_path)
 				item_stock[item_path] = 1
@@ -136,12 +135,12 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		.["user"]["points"] = H.research_points
-		.["user"]["name"] = "[H.name]"
-		.["user"]["job"] = "[H.mind?.assigned_role]"
+		.["user"]["name"] = "[H.real_name]"
+		.["user"]["job"] = "[H.mind?.assigned_role.title]"
 		.["user"]["has_thaumaturgy"] = HAS_TRAIT(H, TRAIT_THAUMATURGY_KNOWLEDGE)
 		.["user"]["has_necromancy"] = HAS_TRAIT(H, TRAIT_NECROMANCY_KNOWLEDGE)
-		.["user"]["is_regent"] = (H.mind?.assigned_role == "Chantry Regent")
-		.["user"]["has_privileges"] = has_purchase_privileges(H.mind?.assigned_role)
+		.["user"]["is_regent"] = (H.mind?.assigned_role.title == "Chantry Regent")
+		.["user"]["has_privileges"] = has_purchase_privileges(H.mind?.assigned_role.title)
 	else
 		.["user"]["points"] = 0
 		.["user"]["name"] = "Unknown"
@@ -155,10 +154,10 @@
 	for(var/mob/living/carbon/human/tremere_member in GLOB.human_list)
 		if(!tremere_member.mind)
 			continue
-		var/role = tremere_member.mind.assigned_role
+		var/role = tremere_member.mind.assigned_role.title
 		if(role in list("Chantry Archivist", "Chantry Gargoyle", "Chantry Regent"))
 			.["tremere_members"] += list(list(
-				"name" = tremere_member.name,
+				"name" = tremere_member.real_name,
 				"role" = role,
 				"points" = tremere_member.research_points,
 				"ref" = "\ref[tremere_member]"
@@ -211,14 +210,13 @@
 	H.research_points -= prize.price
 
 	// Check if user is loyal to the chantry/camarilla - if not, award 30% tribute to leadership
-	var/user_role = H.mind?.assigned_role
+	var/user_role = H.mind?.assigned_role.title
 	var/has_privileges = has_purchase_privileges(user_role)
 
 	if(!has_privileges)
-		distribute_research_points(prize.price, H.name, prize.name)
+		distribute_research_points(prize.price, H.real_name, prize.name)
 		to_chat(usr, span_notice("A portion of your research points flow through the Archives to the Chantry leadership as tribute."))
 
-	// Reduce stock
 	item_stock[prize.product_path]--
 
 	to_chat(usr, span_notice("The Archives emanate dark energy as it dispenses [prize.name]!"))
@@ -248,8 +246,8 @@
 	sender.research_points -= amount
 	target.research_points += amount
 
-	to_chat(sender, span_notice("You transfer [amount] research points to [target.name] through the Archives' dark conduits."))
-	to_chat(target, span_notice("The Archives whisper to you... [sender.name] has sent you [amount] research points."))
+	to_chat(sender, span_notice("You transfer [amount] research points to [target.real_name] through the Archives' dark conduits."))
+	to_chat(target, span_notice("The Archives whisper to you... [sender.real_name] has sent you [amount] research points."))
 
 	return TRUE
 
@@ -260,7 +258,7 @@
 
 	var/mob/living/carbon/human/regent = usr
 
-	if(regent.mind?.assigned_role != "Chantry Regent")
+	if(regent.mind?.assigned_role.title != "Chantry Regent")
 		to_chat(regent, span_alert("Only the Regent may exercise such authority!"))
 		return FALSE
 
@@ -282,8 +280,8 @@
 	target.research_points -= actual_amount
 	regent.research_points += actual_amount
 
-	to_chat(regent, span_notice("By your authority as Regent, you seize [actual_amount] research points from [target.name] through the Archives."))
-	to_chat(target, span_warning("The Archives grow cold... Regent [regent.name] has seized [actual_amount] of your research points by right of authority."))
+	to_chat(regent, span_notice("By your authority as Regent, you seize [actual_amount] research points from [target.real_name] through the Archives."))
+	to_chat(target, span_warning("The Archives grow cold... Regent [regent.real_name] has seized [actual_amount] of your research points by right of authority."))
 
 	return TRUE
 

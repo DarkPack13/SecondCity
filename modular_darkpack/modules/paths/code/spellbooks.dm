@@ -11,7 +11,6 @@
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
 
-	// Identification system
 	var/identified = FALSE
 	var/true_name = ""
 	var/true_desc = ""
@@ -27,7 +26,7 @@
 /obj/item/path_spellbook/examine(mob/user)
 	. = ..()
 	if(!identified)
-		. += span_notice("You could try to <b>clean</b> off the dust to see what lies beneath.")
+		. += span_notice("You could try to clean off the dust to see what lies beneath.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
 
@@ -47,7 +46,7 @@
 		to_chat(user, span_warning("This spellbook appears to be incomplete!"))
 		return
 
-	if(istype(species, /datum/species/human/kindred))
+	if(iskindred(user))
 		if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return
