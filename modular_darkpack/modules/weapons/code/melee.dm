@@ -4,6 +4,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	var/quieted = FALSE
+	custom_price = 1000
 
 
 /obj/item/melee/vamp/Initialize(mapload)
@@ -20,6 +21,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
+	custom_price = 1800
 
 /obj/item/katana/vamp
 	name = "katana"
@@ -104,6 +106,7 @@
 	inhand_icon_state = "machete"
 	pixel_w = -8
 	masquerade_violating = FALSE
+	custom_price = 500
 
 /obj/item/claymore/machete/Initialize(mapload)
 	. = ..()
@@ -150,6 +153,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "baseball"
 	inhand_icon_state = "baseball"
+	custom_price = 50
 
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
 	. = ..()
@@ -187,6 +191,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 85
 
 /obj/item/knife/vamp/lasombra_tentacle
 	name = "shadow tentacle"
@@ -255,6 +260,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 2000
 
 /obj/item/shovel/vamp
 	name = "shovel"
@@ -265,6 +271,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "shovel"
+	custom_price = 150
 
 /obj/item/scythe/vamp
 	name = "scythe"
@@ -359,6 +366,7 @@
 	wound_bonus = 5
 	resistance_flags = FIRE_PROOF
 	masquerade_violating = FALSE
+	custom_price = 1200
 
 /obj/item/melee/vamp/spear/Initialize()
 	. = ..()

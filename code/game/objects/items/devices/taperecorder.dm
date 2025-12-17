@@ -29,6 +29,7 @@
 	var/time_left_warning = 60 SECONDS
 	///Sound loop that plays when recording or playing back.
 	var/datum/looping_sound/tape_recorder_hiss/soundloop
+	custom_price = 50 //DARKPACK EDIT ADD
 
 /obj/item/taperecorder/Initialize(mapload)
 	. = ..()
@@ -396,6 +397,7 @@
 	var/unspooled = FALSE
 	var/list/icons_available = list()
 	var/radial_icon_file = 'icons/hud/radial_tape.dmi'
+	custom_price = 10 //DARKPACK EDIT ADD
 
 /obj/item/tape/Initialize(mapload)
 	. = ..()

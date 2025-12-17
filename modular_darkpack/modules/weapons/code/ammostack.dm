@@ -240,6 +240,7 @@
 	icon_state = "9box"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	max_ammo = 100
+	custom_price = 300
 
 /obj/item/ammo_box/darkpack/c9mm/plus
 	name = "ammo box (9mm, +P)"
@@ -278,6 +279,7 @@
 	icon_state = "556box"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm
 	max_ammo = 60
+	custom_price = 2000
 
 /obj/item/ammo_box/darkpack/c545
 	name = "ammo box (5.45)"
@@ -300,6 +302,7 @@
 	name = "ammo box (12g, 00 buck)"
 	icon_state = "12box_buck"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck
+	custom_price = 400
 
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"

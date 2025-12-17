@@ -36,6 +36,7 @@
 	storage_type = /datum/storage/bag/trash
 	///If true, can be inserted into the janitor cart
 	var/insertable = TRUE
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /obj/item/storage/bag/trash/Initialize(mapload)
 	. = ..()

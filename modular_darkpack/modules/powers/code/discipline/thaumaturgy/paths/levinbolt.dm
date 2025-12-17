@@ -133,12 +133,11 @@
 	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 	owner.cut_overlay(electricity)
-	// Remove the lighting component
+
 	var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
 	if(light_comp)
 		qdel(light_comp)
 
-	// Reset light system
 	owner.light_system = initial(owner.light_system)
 	to_chat(owner, span_notice("The electricity around you fades away."))
 
