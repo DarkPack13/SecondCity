@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_SPIRAL
 	config_tag = "PENTEX_AFFAIRS"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/affairs
+	outfit = /datum/outfit/job/vampire/affairs
 
 	allowed_species = list(SPECIES_GAROU)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)

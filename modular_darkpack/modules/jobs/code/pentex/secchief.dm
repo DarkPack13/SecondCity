@@ -15,7 +15,7 @@
 	exp_granted_type = EXP_TYPE_SPIRAL
 	config_tag = "PENTEX_SECCHIEF"
 	job_flags = CITY_JOB_FLAGS
-	outfit = /datum/outfit/job/secchief
+	outfit = /datum/outfit/job/vampire/secchief
 
 	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
