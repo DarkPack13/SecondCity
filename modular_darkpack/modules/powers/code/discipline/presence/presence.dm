@@ -1,14 +1,14 @@
 #define TRAIT_PRESENCE_IMMUNE "presence_immune"
 
-/datum/discipline/presence
+///datum/discipline/presence
 	name = "Presence"
 	desc = "Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation."
 	icon_state = "presence"
 	power_type = /datum/discipline_power/presence
 
-/datum/discipline/presence/post_gain()
+///datum/discipline/presence/post_gain()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_CHARMER, /datum/discipline/presence)
+	ADD_TRAIT(owner, TRAIT_CHARMER, ///datum/discipline/presence)
 
 /datum/discipline_power/presence
 	name = "Presence power name"
