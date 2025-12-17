@@ -190,7 +190,7 @@
 
 	var/mob/living/carbon/human/H = usr
 
-	if(istype(H.dna.species, /datum/species/human))
+	if(!iskindred(usr))
 		return
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
