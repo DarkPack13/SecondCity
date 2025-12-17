@@ -13,7 +13,7 @@
 	exp_required_type = EXP_TYPE_SPIRAL
 	exp_required_type_department = EXP_TYPE_SPIRAL
 	exp_granted_type = EXP_TYPE_SPIRAL
-	config_tag = "BRANCH_LEAD"
+	config_tag = "PENTEX_BRANCH_LEAD"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/branch_lead
 

@@ -13,7 +13,7 @@
 	exp_required_type = EXP_TYPE_SPIRAL
 	exp_required_type_department = EXP_TYPE_SPIRAL
 	exp_granted_type = EXP_TYPE_SPIRAL
-	config_tag = "EXECUTIVE"
+	config_tag = "PENTEX_EXECUTIVE"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/executive
 
@@ -38,7 +38,7 @@
 
 	liver_traits = list(TRAIT_ROYAL_METABOLISM)
 
-	minimal_masquerade = 5
+	minimal_masquerade = 4
 	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED, SPECIES_HUMAN)
 //	allowed_tribes = list("Black Spiral Dancers", "Ronin")
 	allowed_clans = VAMPIRE_CLAN_ALL

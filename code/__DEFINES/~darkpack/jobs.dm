@@ -169,7 +169,7 @@
 #define JOB_DISPLAY_ORDER_EXECUTIVE 49
 #define JOB_DISPLAY_ORDER_IAA 50
 #define JOB_DISPLAY_ORDER_SECCHIEF 51
-#define JOB_DISPLAY_ORDER_SEC 52
+#define JOB_DISPLAY_ORDER_PENTEX_SEC 52
 #define JOB_DISPLAY_ORDER_EMPLOYEE 53
 
 //////////////////////////////////////////////////
