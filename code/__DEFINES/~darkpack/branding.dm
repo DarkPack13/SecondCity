@@ -219,4 +219,3 @@
 #define BRAND_BAND_4 "Seventh Son" // Led by the Prince of Denver
 #define BRAND_BAND_5 "Ynglinga"
 // We should really port shiptest or tgmc's branding examine text stuff
-
