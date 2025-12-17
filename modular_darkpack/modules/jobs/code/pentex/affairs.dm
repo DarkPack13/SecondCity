@@ -43,9 +43,9 @@
 //	allowed_tribes = list("Black Spiral Dancers", "Ronin")
 	allowed_clans = VAMPIRE_CLAN_ALL
 
-/datum/outfit/job/internal_affairs_agent
+/datum/outfit/job/affairs
 	name = JOB_PENTEX_AFFAIRS
-	jobtype = /datum/outfit/job/affairs
+	jobtype = /datum/job/vampire/affairs
 
 //	ears = /obj/item/p25radio
 	id = /obj/item/card/pentex/affairs
