@@ -37,3 +37,8 @@
   - rscadd: braddock 45, cleaner custom, and auto-sniper weapons
   - rscadd: mac-10 sound effect from TFN
   - rscadd: onfloors, inhands, and icons
+2025-12-16:
+  XeonMations:
+  - refactor: Moved generation variable to species.
+  XeonMations, Gandalf2k15, Azarak, Seris02, ZephyrTFA, Zonespace27, Vishenka0704, LT3, KannaLisvern:
+  - rscadd: Added LOOC
