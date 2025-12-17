@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(economy)
 		var/datum/bank_account/bank_account = cached_processing[cached_processing[i]]
 		if(bank_account?.account_job && !ispath(bank_account.account_job))
 			temporary_total += (bank_account.account_job.paycheck * STARTING_PAYCHECKS)
-		bank_account.payday(1, skippable = TRUE)
+		// bank_account.payday(1, skippable = TRUE) // DARKPACK EDIT REMOVAL
 		station_total += bank_account.account_balance
 		if(MC_TICK_CHECK)
 			cached_processing.Cut(1, i + 1)
