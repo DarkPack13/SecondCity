@@ -1,0 +1,62 @@
+/datum/job/vampire/affairs
+	title = JOB_PENTEX_AFFAIRS
+	description = "You are the internal affairs agent operating in the Endron Oil Refinery. You know the bloody and vile needs commanded of destruction will lead to jeopardy, and your duty is to see excellence on task rewarded and acknowledged, and curb the invariable atrocities that could endanger the greater plans of Pentex."
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
+	department_head = list(MAIN_EVIL_COMPANY)
+	faction = FACTION_CITY
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Board and the Branch Lead"
+	req_admin_notify = 1
+	minimal_player_age = 25
+	exp_requirements = 150
+	exp_required_type = EXP_TYPE_SPIRAL
+	exp_required_type_department = EXP_TYPE_SPIRAL
+	exp_granted_type = EXP_TYPE_SPIRAL
+	config_tag = "PENTEX_AFFAIRS"
+	job_flags = CITY_JOB_FLAGS
+	outfit = /datum/outfit/job/affairs
+
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
+
+	display_order = JOB_DISPLAY_ORDER_affairs
+	department_for_prefs = /datum/job_department/pentex
+	departments_list = list(
+		/datum/job_department/pentex,
+	)
+
+	known_contacts = list(
+		JOB_PENTEX_LEAD,
+		JOB_PENTEX_EXEC,
+		JOB_PENTEX_SEC_CHIEF
+	)
+
+//	minimal_renownrank = 3
+	paycheck = PAYCHECK_COMMAND
+	paycheck_department = ACCOUNT_SEC
+
+	liver_traits = list(TRAIT_ROYAL_METABOLISM)
+
+	minimal_masquerade = 5
+	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED, SPECIES_HUMAN)
+//	allowed_tribes = list("Black Spiral Dancers", "Ronin")
+	allowed_clans = VAMPIRE_CLAN_ALL
+
+/datum/outfit/job/internal_affairs_agent
+	name = JOB_PENTEX_AFFAIRS
+	jobtype = /datum/job/vampire/internal_affairs_agent
+
+//	ears = /obj/item/p25radio
+	id = /obj/item/card/pentex/iaa
+	uniform =  /obj/item/clothing/under/vampire/pentex_suit
+	shoes = /obj/item/clothing/shoes/vampire/businessblack
+	l_pocket = /obj/item/smartphone // /affairsagent - todo subtype
+	r_pocket = /obj/item/vamp/keys/pentex
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/veil_contract, /obj/item/card/credit/rich=1)
+
+/datum/outfit/job/garou/endronaffairs/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(H.gender == FEMALE)
+		uniform = /obj/item/clothing/under/vampire/pentex_suitskirt
+		shoes = /obj/item/clothing/shoes/vampire/heels
