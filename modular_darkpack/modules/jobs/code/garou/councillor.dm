@@ -1,6 +1,6 @@
 /datum/job/vampire/councillor
 	title = JOB_GAROU_COUNCIL
-//	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
+	description = "Veterans of the Garou Nation with the highest esteem, your word within the " + SEPT_NAME + " is law. Make sure the Litany is upheld, and that your caern does not fall prey to the Wyrm."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(SUPERVISOR_LITANY)
 	faction = FACTION_CITY
@@ -17,13 +17,14 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/councillor
 
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_GAIA)
+
 	display_order = JOB_DISPLAY_ORDER_COUNCIL
 	department_for_prefs = /datum/job_department/gaia
 	departments_list = list(
 		/datum/job_department/gaia,
 	)
-
-//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Truthcatcher",

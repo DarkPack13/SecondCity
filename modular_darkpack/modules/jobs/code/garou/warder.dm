@@ -1,6 +1,6 @@
 /datum/job/vampire/warder
 	title = JOB_GAROU_WARDER
-//	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
+	description = "You are the most respected Ahroun within the" + SEPT_NAME + ", granted the honor of coordinating the caern's security. The Wyrmfoe and Guardians answer to you."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
@@ -17,13 +17,15 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/warder
 
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_GAIA)
+//	allowed_auspice = list(AUSPICE_AHROUN)
+
 	display_order = JOB_DISPLAY_ORDER_WARDER
 	department_for_prefs = /datum/job_department/gaia
 	departments_list = list(
 		/datum/job_department/gaia,
 	)
-
-//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",

@@ -1,6 +1,6 @@
 /datum/job/vampire/truthcatcher
 	title = JOB_GAROU_TRUTHCATCHER
-//	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
+	description = "You are the most highly regarded Philodox within the Sept, granted the honor of being the ultimate arbitrator. It is your duty to meditate matters within the Sept. Enact your judgement upon anyone who violates the Litany."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
@@ -17,13 +17,15 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/trutchcatcher
 
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_GAIA)
+//	allowed_auspice = list(AUSPICE_PHILODOX)
+
 	display_order = JOB_DISPLAY_ORDER_TRUTHCATCHER
 	department_for_prefs = /datum/job_department/gaia
 	departments_list = list(
 		/datum/job_department/gaia,
 	)
-
-//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",

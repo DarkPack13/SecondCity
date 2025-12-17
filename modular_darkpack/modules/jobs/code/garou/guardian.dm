@@ -1,6 +1,6 @@
 /datum/job/vampire/guardian
 	title = JOB_GAROU_GUARDIAN
-//	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
+	description = "You are the bottom of the Sept's pecking order, but also the frontline offense and defense, serving directly under the Warder and Wyrmfoe to ensure the caern's safety and well-being."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
@@ -17,13 +17,14 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/guardian
 
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_GAIA)
+
 	display_order = JOB_DISPLAY_ORDER_GUARDIAN
 	department_for_prefs = /datum/job_department/gaia
 	departments_list = list(
 		/datum/job_department/gaia,
 	)
-
-//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",

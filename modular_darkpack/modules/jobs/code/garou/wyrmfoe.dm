@@ -1,6 +1,6 @@
 /datum/job/vampire/wyrmfoe
 	title = JOB_GAROU_WYRMFOE
-//	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
+	description = "You are the Warder's right hand, a promising tactician in your own right, granted the honor of coordinating the Sept's more offensive actions. "
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
@@ -17,13 +17,14 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/wyrmfoe
 
+	allowed_species = list(SPECIES_GAROU)
+//	allowed_tribes = list(TRIBE_GAIA)
+
 	display_order = JOB_DISPLAY_ORDER_WYRMFOE
 	department_for_prefs = /datum/job_department/gaia
 	departments_list = list(
 		/datum/job_department/gaia,
 	)
-
-//	allowed_species = list(SPECIES_GAROU)
 
 	known_contacts = list(
 		"Councillor",

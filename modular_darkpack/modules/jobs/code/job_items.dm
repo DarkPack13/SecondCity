@@ -335,4 +335,31 @@
 	name = "NPS Biologist badge"
 	desc = "You love the outdoors? Good, you are now taking care of a wide outdoors area."
 
+/obj/item/card/pentex
+	name = "Endron Employee Badge"
+	desc = "Congratulations, wagie."
+	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
+	icon_state = "green_id"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = "green_id"
 
+/obj/item/card/pentex/branch_lead
+	name = MAIN_EVIL_COMPANY + " Branch Lead Badge"
+	desc = "How bad can I be?"
+
+/obj/item/card/pentex/executive
+	name = MAIN_EVIL_COMPANY + " Executive card"
+	desc = "All the customers are buying."
+
+/obj/item/card/pentex/iaa
+	name = MAIN_EVIL_COMPANY + " Internal Affairs card"
+	desc = "And the Lawyers are denying."
+
+/obj/item/card/pentex/secchief
+	name = MAIN_EVIL_COMPANY + " Chief of Security badge"
+	desc = "Its not illegal if nobody finds out about it. Now if only" + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
+
+/obj/item/card/pentex/sec
+	name = MAIN_EVIL_COMPANY + " Security Agent badge"
+	desc = "Corporate Security, a step above a mall cop. Better paid than a real cop."
