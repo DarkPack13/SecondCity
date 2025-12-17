@@ -96,12 +96,12 @@
 
 // Pentex
 #define JOB_PENTEX_FIRST "First Team"
-#define JOB_PENTEX_LEAD MAIN_EVIL_COMPANY + " Branch Lead"
-#define JOB_PENTEX_EXEC MAIN_EVIL_COMPANY + " Executive"
-#define JOB_PENTEX_AFFAIRS MAIN_EVIL_COMPANY + " Internal Affairs Agent"
-#define JOB_PENTEX_SEC_CHIEF MAIN_EVIL_COMPANY + " Chief of Security"
-#define JOB_PENTEX_SEC MAIN_EVIL_COMPANY + " Security Agent"
-#define JOB_PENTEX_EMPLOYEE MAIN_EVIL_COMPANY + " Employee"
+#define JOB_PENTEX_LEAD "Branch Lead"
+#define JOB_PENTEX_EXEC "Executive"
+#define JOB_PENTEX_AFFAIRS "Internal Affairs Agent"
+#define JOB_PENTEX_SEC_CHIEF "Chief of Security"
+#define JOB_PENTEX_SEC "Security Agent"
+#define JOB_PENTEX_EMPLOYEE "Employee"
 
 //////////////////////////////////////////////////
 
