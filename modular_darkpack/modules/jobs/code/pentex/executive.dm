@@ -20,7 +20,7 @@
 	allowed_species = list(SPECIES_GAROU)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 
-	display_order = JOB_DISPLAY_ORDER_executive
+	display_order = JOB_DISPLAY_ORDER_EXECUTIVE
 	department_for_prefs = /datum/job_department/pentex
 	departments_list = list(
 		/datum/job_department/pentex,

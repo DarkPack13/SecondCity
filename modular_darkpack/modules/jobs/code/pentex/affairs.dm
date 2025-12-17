@@ -20,7 +20,7 @@
 	allowed_species = list(SPECIES_GAROU)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 
-	display_order = JOB_DISPLAY_ORDER_affairs
+	display_order = JOB_DISPLAY_ORDER_AFFAIRS
 	department_for_prefs = /datum/job_department/pentex
 	departments_list = list(
 		/datum/job_department/pentex,
@@ -45,10 +45,10 @@
 
 /datum/outfit/job/internal_affairs_agent
 	name = JOB_PENTEX_AFFAIRS
-	jobtype = /datum/job/vampire/internal_affairs_agent
+	jobtype = /datum/outfit/job/affairs
 
 //	ears = /obj/item/p25radio
-	id = /obj/item/card/pentex/iaa
+	id = /obj/item/card/pentex/affairs
 	uniform =  /obj/item/clothing/under/vampire/pentex_suit
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	l_pocket = /obj/item/smartphone // /affairsagent - todo subtype
