@@ -1,6 +1,6 @@
 /datum/job/vampire/branch_lead
 	title = JOB_PENTEX_LEAD
-	description = "You are the current branch leader for " + MAIN_EVIL_COMPANY " , operating out of San Francisco. Your job is to fuel production and keep your clowns in line."
+	description = "You are the current branch leader for " + MAIN_EVIL_COMPANY + " , operating out of San Francisco. Your job is to fuel production and keep your clowns in line."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
