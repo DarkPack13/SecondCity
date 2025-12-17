@@ -1,5 +1,5 @@
 /datum/job/vampire/executive
-	title = JOB_PENTEX_LEAD
+	title = JOB_PENTEX_EXEC
 	description = "You are an acting executive for " + MAIN_EVIL_COMPANY + " operating out of San Francisco. With discretion to the Branch Leader, a position you may aim for, your job is to fuel production and expand operations."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(MAIN_EVIL_COMPANY)
