@@ -1,6 +1,6 @@
 /datum/job/vampire/pentex_sec
 	title = JOB_PENTEX_SEC
-	description = "You are an acting chief of security for the Endron Oil Refinery, operating out of San Francisco. With discretion to the Branch Leader, your job is to keep the complex and it's proprietary information with the help of your security team, and to turn over contract violators to internal affairs or the executives."
+	description = "You are an acting security for " + MAIN_EVIL_COMPANY + ", operating out of San Francisco. Under the chief of security's direction, your job is to keep the complex free of nosy meddlers, pick up contract violators, and to assist the chief in tackling threats to corporate assets."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
