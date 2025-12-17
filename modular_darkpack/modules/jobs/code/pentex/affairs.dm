@@ -1,6 +1,6 @@
 /datum/job/vampire/affairs
 	title = JOB_PENTEX_AFFAIRS
-	description = "You are the internal affairs agent operating in the Endron Oil Refinery. You know the bloody and vile needs commanded of destruction will lead to jeopardy, and your duty is to see excellence on task rewarded and acknowledged, and curb the invariable atrocities that could endanger the greater plans of Pentex."
+	description = "You are the internal affairs agent operating for " + MAIN_EVIL_COMPANY + ". You know the bloody and vile needs commanded of destruction will lead to jeopardy, and your duty is to see excellence on task rewarded and acknowledged, and curb the invariable atrocities that could endanger the greater plans of Pentex."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
