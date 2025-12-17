@@ -348,11 +348,15 @@
 		//grid_width = 1 GRID_BOXES
 		//grid_height = 1 GRID_BOXES
 
-/obj/item/melee/vamp/spear
+//this should be a subtype of spear in the future but we lack the sprites
+/obj/item/melee/darkpack/spear
 	name = "spear"
 	desc = "A staple of warfare through centuries, the spear is great for poking at things."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	icon_state = "spear"
+	lefthand_file = 'modular_darkpack/modules/weapons/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/weapons/icons/melee_righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	force = 45
 	throwforce = 10
 	w_class = WEIGHT_CLASS_BULKY
@@ -367,7 +371,8 @@
 	resistance_flags = FIRE_PROOF
 	masquerade_violating = FALSE
 	custom_price = 1200
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi') // DARKPACK EDIT ADD
 
-/obj/item/melee/vamp/spear/Initialize()
+/obj/item/melee/darkpack/spear/Initialize()
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "spear", FALSE)
