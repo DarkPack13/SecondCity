@@ -15,7 +15,7 @@
 #define EVIL_TOY_COMPANY "Avalon Incorporated."
 #define EVIL_CIGARETTE_COMPANY "Circinus Brands"
 #define EVIL_INVESTMENT_COMPANY "Consolidex Worldwide"
-#define MAIN_EVIL_COMPANY "Endron International"
+#define EVIL_OIL_COMPANY "Endron International"
 #define EVIL_NUCLEAR_COMPANY "Atlas International" // Subsidiary of Endron
 #define EVIL_MINING_COMPANY "Harold and Harold Mining, Incorporated"
 #define EVIL_PAPER_COMPANY "Good House International"
