@@ -17,8 +17,10 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/branch_lead
 
-	allowed_species = list(SPECIES_GAROU)
+	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED, SPECIES_HUMAN)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
+	allowed_clans = VAMPIRE_CLAN_ALL
+	minimal_masquerade = 5
 
 	display_order = JOB_DISPLAY_ORDER_BRANCH_LEAD
 	department_for_prefs = /datum/job_department/pentex
@@ -37,11 +39,6 @@
 	paycheck_department = ACCOUNT_SEC
 
 	liver_traits = list(TRAIT_ROYAL_METABOLISM)
-
-	minimal_masquerade = 5
-	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED, SPECIES_HUMAN)
-//	allowed_tribes = list("Black Spiral Dancers", "Ronin")
-	allowed_clans = VAMPIRE_CLAN_ALL
 
 /datum/outfit/job/branch_lead
 	name = MAIN_EVIL_COMPANY + " Branch Lead"
