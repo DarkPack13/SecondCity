@@ -174,7 +174,7 @@
 #define BRAND_DEPARTMENT_STORE_COMPANY "Shanghai Zhonglian Department Stores"
 #define BRAND_TECH_COMPANY_5 "Shinzui Industries" // Basically Weaver Pentex
 #define BRAND_SMOKING_COMPANY "The Smoke Shop"
-#define BRAND_FAST_FOOD_COMPANY "Space Burger"
+#define BRAND_FAST_FOOD_COMPANY_2 "Space Burger"
 #define BRAND_COFFEE_COMPANY_3 "Spooky Brews"
 #define BRAND_TTRPG_COMPANY_7 "Stan Paxton Games"
 #define BRAND_DEPARTMENT_STORE_COMPANY_2 "Star-Mart"
