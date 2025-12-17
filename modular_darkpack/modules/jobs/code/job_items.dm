@@ -352,7 +352,7 @@
 	name = MAIN_EVIL_COMPANY + " Executive card"
 	desc = "All the customers are buying."
 
-/obj/item/card/pentex/iaa
+/obj/item/card/pentex/affairs
 	name = MAIN_EVIL_COMPANY + " Internal Affairs card"
 	desc = "And the Lawyers are denying."
 
