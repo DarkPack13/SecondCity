@@ -39,7 +39,7 @@
 
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
-/datum/outfit/job/employee
+/datum/outfit/job/vampire/employee
 	name = JOB_PENTEX_EMPLOYEE
 	jobtype = /datum/job/vampire/employee
 

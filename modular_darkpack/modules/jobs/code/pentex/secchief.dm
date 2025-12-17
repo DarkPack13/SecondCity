@@ -40,7 +40,7 @@
 
 	liver_traits = list(TRAIT_ROYAL_METABOLISM)
 
-/datum/outfit/job/secchief
+/datum/outfit/job/vampire/secchief
 	name = "Endron Chief of Security"
 	jobtype = /datum/job/vampire/secchief
 

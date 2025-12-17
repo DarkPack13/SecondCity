@@ -40,7 +40,7 @@
 
 	liver_traits = list(TRAIT_ROYAL_METABOLISM)
 
-/datum/outfit/job/executive
+/datum/outfit/job/vampire/executive
 	name = JOB_PENTEX_EXEC
 	jobtype = /datum/job/vampire/executive
 
@@ -52,7 +52,7 @@
 	r_pocket = /obj/item/vamp/keys/pentex
 	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
 
-/datum/outfit/job/executive/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/executive/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.gender == FEMALE)
 		uniform = /obj/item/clothing/under/vampire/pentex_executiveskirt

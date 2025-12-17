@@ -40,7 +40,7 @@
 
 	liver_traits = list(TRAIT_ROYAL_METABOLISM)
 
-/datum/outfit/job/branch_lead
+/datum/outfit/job/vampire/branch_lead
 	name = MAIN_EVIL_COMPANY + " Branch Lead"
 	jobtype = /datum/job/vampire/branch_lead
 
@@ -53,7 +53,7 @@
 	r_pocket = /obj/item/vamp/keys/pentex
 	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/prince=1)
 
-/datum/outfit/job/branch_lead/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/vampire/branch_lead/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.gender == FEMALE)
 		uniform = /obj/item/clothing/under/vampire/pentex_executiveskirt
