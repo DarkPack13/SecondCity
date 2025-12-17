@@ -43,7 +43,6 @@
 //	allowed_tribes = list("Black Spiral Dancers", "Ronin")
 	allowed_clans = VAMPIRE_CLAN_ALL
 
-
 /datum/outfit/job/executive
 	name = JOB_PENTEX_EXEC
 	jobtype = /datum/job/vampire/executive
