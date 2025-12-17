@@ -18,7 +18,7 @@
 	outfit = /datum/outfit/job/branch_lead
 
 	allowed_species = list(SPECIES_GAROU)
-//	allowed_tribes = list(TRIBE_GAIA)
+//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_BRANCH_LEAD
 	department_for_prefs = /datum/job_department/pentex

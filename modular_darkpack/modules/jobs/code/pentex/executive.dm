@@ -18,7 +18,7 @@
 	outfit = /datum/outfit/job/executive
 
 	allowed_species = list(SPECIES_GAROU)
-//	allowed_tribes = list(TRIBE_GAIA)
+//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_executive
 	department_for_prefs = /datum/job_department/pentex
@@ -45,7 +45,7 @@
 
 
 /datum/outfit/job/executive
-	name = MAIN_EVIL_COMPANY + " Executive"
+	name = JOB_PENTEX_EXEC
 	jobtype = /datum/job/vampire/executive
 
 //	ears = /obj/item/p25radio
