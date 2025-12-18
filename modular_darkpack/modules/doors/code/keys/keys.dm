@@ -335,14 +335,14 @@
 	color = "#466a72"
 
 /obj/item/vamp/keys/pentex
-	name = MAIN_EVIL_COMPANY + "  Facility keys"
+	name = "\improper " + MAIN_EVIL_COMPANY + "  facility keys"
 	accesslocks = list(
 		"pentex"
 	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/pentex/leader
-	name = MAIN_EVIL_COMPANY + " Management keys"
+	name = "\improper " + MAIN_EVIL_COMPANY + " management keys"
 	accesslocks = list(
 		"pentex",
 		"pentexleader"
