@@ -75,4 +75,5 @@
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 
+	owner = null
 	qdel(src)
