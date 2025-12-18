@@ -20,7 +20,7 @@
 
 /mob/living/proc/remove_splat(splat_type)
 	for (var/datum/splat/found_splat in splats)
-		if (!istype(found_splat, splats))
+		if (!istype(found_splat, splat_type))
 			continue
 
 		qdel(found_splat)
