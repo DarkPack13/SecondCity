@@ -206,19 +206,15 @@ var/list/memory_messages = list(
 /datum/discipline_power/dominate/command/pre_activation_checks(mob/living/carbon/human/target)
 	if(!dominate_hearing_check(owner, target))
 		return FALSE
-
-	//can afford..?
-
-	//v20 Dominate 'Command' section
-	if(length(splittext(custom_command, " ")) > 1)
-		to_chat(owner, span_warning("Commands must be only ONE word!"))
-		return FALSE
-
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), numerical = TRUE)
 	if(successes > 0)
 		var/command_strength = get_success_message(successes)
 		to_chat(owner, span_notice("You have the power to Command your target with [command_strength]!"))
 		custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
+		//v20 Dominate 'Command' section
+		if(length(splittext(custom_command, " ")) > 1)
+			to_chat(owner, span_warning("Commands must be only ONE word!"))
+			return FALSE
 		if(!custom_command)
 			return FALSE
 		return TRUE
@@ -472,23 +468,23 @@ var/list/memory_messages = list(
 
 /datum/discipline_power/dominate/conditioning/activate(mob/living/carbon/human/target)
 	. = ..()
-	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("LOOK AT ME"))
 
-	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
+	owner.say("Look at me.")
 
-	if(do_after(owner, 20 SECONDS, target))
-		target.conditioner = WEAKREF(owner)
-		target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
-		to_chat(target, span_hypnophrase("Your mind is filled with thoughts surrounding [owner]. Their every word and gesture carries immense weight to you."))
-		SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
+	if(!immobilize_target(target, 20 SECONDS))
+		to_chat(owner, span_warning("Your concentration was broken!"))
+		to_chat(target, span_notice("The oppressive mental presence suddenly withdraws."))
+		return
 
-	release_target(target)
+	target.conditioner = WEAKREF(owner)
+	target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
+	to_chat(target, span_hypnophrase("Your mind is filled with thoughts surrounding [owner]. Their every word and gesture carries immense weight to you."))
+	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 
 // POSSESSION
 /datum/discipline_power/dominate/possession
-	//problem with this that im going to be changing while its up for review -- what happens if a vampire posesses a mortal, then another vampire comes along to posess the same one? need to disallow that
 	name = "Possession"
 	desc = "Take full control of your target's mind and body."
 
@@ -499,14 +495,13 @@ var/list/memory_messages = list(
 
 	cooldown_length = 5 MINUTES
 	range = 7
-	var/datum/possession_controller/active_possession
+	var/datum/weakref/active_possession
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/carbon/human/target)
 	if(!dominate_hearing_check(owner, target))
 		return FALSE
 
-	//v20 states that posession may not work on other Kindred as 'even the weakest Kindred mind can resist'. Extending this to Garou because players posessing Garous to insta-Crinos I think is griefing.
-	if(iskindred(target) || isgarou(target)) // note : removed || iscathayan(target), reimplement KJs
+	if(iskindred(target) || isgarou(target)) //DARKPACK TODO: reimplement Kuei-Jin
 		to_chat(owner, span_warning("You cannot possess [iskindred(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 
@@ -534,162 +529,13 @@ var/list/memory_messages = list(
 		to_chat(owner, span_warning("Your concentration was broken!"))
 		to_chat(target, span_notice("The oppressive mental presence suddenly withdraws."))
 		return
-	active_possession = new /datum/possession_controller(owner, target, src)
+	var/datum/possession_controller/controller = new(owner, target, src)
+	active_possession = WEAKREF(controller)
 	to_chat(owner, span_warning("You have seized control of [target]'s body!"))
 	to_chat(target, span_danger("Your consciousness is violently displaced as another mind takes control!"))
 	target.possessed = TRUE
 	log_combat(owner, target, "Possessed via Dominate Possession")
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
-
-// datum to store variables during the body control
-/datum/possession_controller
-	var/mob/living/carbon/human/vampire_original
-	var/mob/living/carbon/human/mortal_body
-	var/mob/living/possession_observer/mortal_observer
-	var/datum/discipline_power/dominate/possession/source_power
-	var/possession_active = FALSE
-
-/datum/possession_controller/New(mob/living/carbon/human/vampire, mob/living/carbon/human/mortal, datum/discipline_power/dominate/possession/power)
-	vampire_original = vampire
-	mortal_body = mortal
-	source_power = power
-	start_possession()
-
-/datum/possession_controller/proc/start_possession()
-	if(QDELETED(vampire_original) || QDELETED(mortal_body))
-		qdel(src)
-		return
-
-	//move mortal_body into mortal_observer
-	mortal_observer = new(mortal_body, src)
-	mortal_observer.ckey = mortal_body.ckey
-	mortal_observer.name = mortal_body.real_name
-	mortal_observer.real_name = mortal_body.real_name
-	if(mortal_body.mind)
-		mortal_observer.mind = mortal_body.mind
-
-	//move vampire into the mortal body
-	mortal_body.ckey = vampire_original.ckey
-	if(vampire_original.mind)
-		mortal_body.mind = vampire_original.mind
-
-	//vampire can exit the body whenever they like
-	var/datum/action/possession/end_possession/end_action = new(src)
-	end_action.Grant(mortal_body)
-
-	//vampire's body is helpless and vulnerable as they do this - in torpor.
-	vampire_original.toggle_resting()
-	vampire_original.visible_message(span_warning("[vampire_original]'s eyes roll back and they collapse into a catatonic state!"))
-	possession_active = TRUE
-	RegisterSignal(mortal_body, COMSIG_LIVING_DEATH, PROC_REF(handle_death_during_possession))
-
-/datum/possession_controller/proc/end_possession()
-	if(!possession_active || QDELETED(vampire_original) || QDELETED(mortal_body))
-		cleanup()
-		return
-
-	if(mortal_body.stat == DEAD)
-		handle_death_during_possession()
-		return
-
-	to_chat(vampire_original, span_warning("You withdraw from [mortal_body.real_name]'s mind and return to your own body."))
-
-	//move the vampire back into the body
-	vampire_original.ckey = mortal_body.ckey
-	if(mortal_body.mind)
-		vampire_original.mind = mortal_body.mind
-
-	//if they still exist lets move them back into their own body
-	if(mortal_observer?.ckey)
-		mortal_body.ckey = mortal_observer.ckey
-		if(mortal_observer.mind)
-			mortal_body.mind = mortal_observer.mind
-		to_chat(mortal_body, span_notice("Your consciousness returns to your own body as the foreign presence withdraws."))
-	log_combat(vampire_original, mortal_body, "Has ended their Possession ")
-	mortal_body.possessed = FALSE
-	cleanup()
-	UnregisterSignal(mortal_body, COMSIG_LIVING_DEATH)
-
-/datum/possession_controller/proc/handle_death_during_possession()
-	SIGNAL_HANDLER
-	to_chat(vampire_original, span_boldwarning("The death of your host body violently ejects you from their mind!"))
-	vampire_original.ckey = mortal_body.ckey
-	if(mortal_body.mind)
-		vampire_original.mind = mortal_body.mind
-
-	vampire_original.adjustBruteLoss(50)
-	vampire_original.visible_message(span_danger("[vampire_original] suddenly convulses violently and falls into what appears to be a coma!"))
-	to_chat(vampire_original, span_boldwarning("The psychic shock of your host's death sends you into torpor!"))
-	vampire_original.torpor()
-
-	if(mortal_observer)
-		to_chat(mortal_observer, span_boldwarning("Your body has died while you were displaced from it. You fade into oblivion..."))
-		mortal_observer.ghostize()
-
-	cleanup()
-
-/datum/possession_controller/proc/cleanup()
-	possession_active = FALSE
-	for(var/datum/action/possession/action in vampire_original.actions + mortal_body.actions)
-		action.controller = null
-		action.Remove(action.owner)
-		qdel(action)
-	if(mortal_observer)
-		mortal_observer.controller = null
-		qdel(mortal_observer)
-		mortal_observer = null
-	if(source_power)
-		source_power.active_possession = null
-	qdel(src)
-
-//the unfortunate mortal who was possessed
-/mob/living/possession_observer
-	name = "displaced consciousness"
-	real_name = "displaced consciousness"
-	var/mob/living/carbon/possessed_body
-	var/datum/possession_controller/controller
-
-/mob/living/possession_observer/Initialize(mapload, datum/possession_controller/_controller)
-	if(iscarbon(loc))
-		possessed_body = loc
-		controller = _controller
-	return ..()
-
-/mob/living/possession_observer/Login()
-	. = ..()
-	if(!. || !client)
-		return FALSE
-	to_chat(src, span_warning("Your consciousness has been displaced from your body by a supernatural force. You can only observe as another mind controls your physical form."))
-	to_chat(src, span_notice("You are helpless to act, but can still observe and think. Pray that the intruder releases control soon..."))
-
-/mob/living/possession_observer/say(message,bubble_type,list/spans = list(),sanitize = TRUE,datum/language/language,ignore_spam = FALSE,forced,filterproof = FALSE,message_range = 7,datum/saymode/saymode,list/message_mods = list())
-	to_chat(src, span_warning("You have no voice while displaced from your body!"))
-	return FALSE
-
-/mob/living/possession_observer/emote(act, m_type = null, message = null, intentional = FALSE)
-	to_chat(src, span_warning("You cannot express yourself while displaced from your body!"))
-	return FALSE
-
-/datum/action/possession
-	var/datum/possession_controller/controller
-
-/datum/action/possession/New(datum/possession_controller/_controller)
-	controller = _controller
-	..()
-
-/datum/action/possession/end_possession
-	name = "End Possession"
-	desc = "Release control of the possessed body and return to your own."
-	button_icon_state = "possession_end"
-	check_flags = NONE
-
-/datum/action/possession/end_possession/Trigger(trigger_flags)
-	if(!controller)
-		Remove(owner)
-		qdel(src)
-		return
-	controller.end_possession()
-	return TRUE
 
 //AUTONOMIC MASTERY
 /datum/discipline_power/dominate/autonomic_mastery
