@@ -17,11 +17,6 @@
 	name = "Afro Puff (Right)"
 	icon_state = "hair_afropuffright"
 
-//ORIGINAL
-/datum/sprite_accessory/hair/allthefuzz
-	name = "All The Fuzz"
-	icon_state = "hair_allthefuzz"
-
 /datum/sprite_accessory/hair/darkpack/amazon
 	name = "Amazon"
 	icon_state = "hair_amazon"
@@ -133,11 +128,6 @@
 /datum/sprite_accessory/hair/darkpack/combedbob
 	name = "Combed Bob"
 	icon_state = "hair_combedbob"
-
-///ORIGINAL
-/datum/sprite_accessory/hair/chinbob
-	name = "Chinbob"
-	icon_state = "hair_chinbob"
 
 /datum/sprite_accessory/hair/darkpack/cornrowsalt
 	name = "Cornrows Alt"
@@ -343,11 +333,6 @@
 	name = "Nia"
 	icon_state = "hair_nia"
 
-///ORIGINAL
-/datum/sprite_accessory/hair/nitori
-	name = "Nitori"
-	icon_state = "hair_nitori"
-
 /datum/sprite_accessory/hair/darkpack/overearone
 	name = "Over Ear 1"
 	icon_state = "hair_over_ear_1"
@@ -540,11 +525,6 @@
 	name = "Upwards"
 	icon_state = "hair_upwards"
 
-///ORIGINAL
-/datum/sprite_accessory/hair/verybadlycut
-	name = "Very Badly Cut"
-	icon_state = "hair_verybadlycut"
-
 /datum/sprite_accessory/hair/darkpack/longeralt
 	name = "Very Long Hair (Alt)"
 	icon_state = "hair_longeralt"
@@ -573,11 +553,31 @@
 	name = "Wife"
 	icon_state = "hair_wife"
 
+/datum/sprite_accessory/hair/darkpack/zoey
+	name = "Zoey"
+	icon_state = "hair_zoey"
+
 ///ORIGINAL
 /datum/sprite_accessory/hair/ziegler
 	name = "Ziegler"
 	icon_state = "hair_ziegler"
 
-/datum/sprite_accessory/hair/darkpack/zoey
-	name = "Zoey"
-	icon_state = "hair_zoey"
+///ORIGINAL
+/datum/sprite_accessory/hair/verybadlycut
+	name = "Very Badly Cut"
+	icon_state = "hair_verybadlycut"
+
+///ORIGINAL
+/datum/sprite_accessory/hair/nitori
+	name = "Nitori"
+	icon_state = "hair_nitori"
+
+///ORIGINAL
+/datum/sprite_accessory/hair/chinbob
+	name = "Chinbob"
+	icon_state = "hair_chinbob"
+
+///ORIGINAL
+/datum/sprite_accessory/hair/allthefuzz
+	name = "All The Fuzz"
+	icon_state = "hair_allthefuzz"
