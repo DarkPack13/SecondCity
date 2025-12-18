@@ -4,11 +4,38 @@
 	icon_state = "flames"
 	power_type = /datum/discipline_power/thaumaturgy/path/flames
 
+
 /datum/discipline_power/thaumaturgy/path/flames
 	name = "Lure of Flames Power Name"
 	desc = "Lure of Flames Power Description"
 
 	effect_sound = 'modular_darkpack/modules/paths/sounds/fireball.ogg'
+	var/ranged = FALSE
+	var/range_successes
+	var/flames_range
+
+//v20 core rulebook states that lure of flames can only conjure flames so far depending on successes.
+/datum/discipline_power/thaumaturgy/path/flames/pre_activation_checks(atom/target, ranged)
+	. = ..()
+	if(ranged == TRUE)
+		range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
+		switch(range_successes)
+			if(-INFINITY to 0)
+				to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
+				return FALSE
+			if(1)
+				flames_range = 2
+			if(2)
+				flames_range = 3
+			if(3)
+				flames_range = 5
+			if(4 to INFINITY)
+				flames_range = 12
+		to_chat(owner, span_cult("You have rolled [range_successes] successes and can conjure a flame [flames_range] tiles away."))
+
+		if (get_dist(owner, target) > flames_range)
+			to_chat(owner, span_warning("[target] is out of range!"))
+			return FALSE
 
 //CANDLE - LEVEL 1
 /datum/discipline_power/thaumaturgy/path/flames/one
@@ -99,8 +126,7 @@
 	violates_masquerade = TRUE
 	target_type = TARGET_LIVING
 	range = 10
-	var/range_successes
-	var/flames_range
+	ranged = TRUE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/flames/one,
@@ -109,27 +135,9 @@
 		/datum/discipline_power/thaumaturgy/path/flames/five
 	)
 
-/datum/discipline_power/thaumaturgy/path/flames/three/pre_activation_checks(atom/target)
+/datum/discipline_power/thaumaturgy/path/flames/three/pre_activation_checks(atom/target, ranged)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
-	switch(range_successes)
-		if(-INFINITY to 0)
-			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
-			return FALSE
-		if(1)
-			flames_range = 2
-		if(2)
-			flames_range = 3
-		if(3)
-			flames_range = 5
-		if(4 to INFINITY)
-			flames_range = 12
-	to_chat(owner, span_cult("You have rolled [range_successes] successes and can conjure a flame [flames_range] tiles away."))
 
-	if (get_dist(owner, target) > flames_range)
-		to_chat(owner, span_warning("[target] is out of range!"))
-		return FALSE
-	..()
 
 /datum/discipline_power/thaumaturgy/path/flames/three/activate(mob/living/target)
 	. = ..()
@@ -153,8 +161,7 @@
 	violates_masquerade = TRUE
 	target_type = TARGET_LIVING
 	range = 12
-	var/range_successes
-	var/flames_range
+	ranged = TRUE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/flames/one,
@@ -163,28 +170,9 @@
 		/datum/discipline_power/thaumaturgy/path/flames/five
 	)
 
-/datum/discipline_power/thaumaturgy/path/flames/four/pre_activation_checks(atom/target)
+/datum/discipline_power/thaumaturgy/path/flames/four/pre_activation_checks(atom/target, ranged)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
-	switch(range_successes)
-		if(-INFINITY to 0)
-			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
-			do_cooldown()
-			return FALSE
-		if(1)
-			flames_range = 2
-		if(2)
-			flames_range = 3
-		if(3)
-			flames_range = 5
-		if(4 to INFINITY)
-			flames_range = 12
-	to_chat(owner, span_cult("You have rolled [range_successes] successes and can conjure a flame [flames_range] tiles away."))
 
-	if (get_dist(owner, target) > flames_range)
-		to_chat(owner, span_warning("[target] is out of range!"))
-		return FALSE
-	..()
 
 /datum/discipline_power/thaumaturgy/path/flames/four/activate(mob/living/target)
 	. = ..()
@@ -211,8 +199,7 @@
 	violates_masquerade = TRUE
 	target_type = TARGET_TURF | TARGET_LIVING
 	range = 12
-	var/range_successes
-	var/flames_range
+	ranged = TRUE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/flames/one,
@@ -221,27 +208,9 @@
 		/datum/discipline_power/thaumaturgy/path/flames/four
 	)
 
-/datum/discipline_power/thaumaturgy/path/flames/five/pre_activation_checks(atom/target)
+/datum/discipline_power/thaumaturgy/path/flames/five/pre_activation_checks(atom/target, ranged)
 	. = ..()
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
-	switch(range_successes)
-		if(-INFINITY to 0)
-			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")
-			return FALSE
-		if(1)
-			flames_range = 2
-		if(2)
-			flames_range = 3
-		if(3)
-			flames_range = 5
-		if(4 to INFINITY)
-			flames_range = 12
-	to_chat(owner, span_cult("You have rolled [range_successes] successes and can conjure a flame [flames_range] tiles away."))
 
-	if (get_dist(owner, target) > flames_range)
-		to_chat(owner, span_warning("[target] is out of range!"))
-		return FALSE
-	..()
 
 /datum/discipline_power/thaumaturgy/path/flames/five/activate(atom/target)
 	. = ..()

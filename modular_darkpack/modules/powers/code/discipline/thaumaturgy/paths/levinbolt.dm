@@ -123,7 +123,6 @@
 		electricity = electricity || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 		owner.add_overlay(electricity)
 
-		// Set up overlay lighting component for electric glow
 		owner.light_system = OVERLAY_LIGHT
 		owner.AddComponent(/datum/component/overlay_lighting, 2, 1, "#f1fdfd", TRUE)
 		to_chat(owner, span_notice("Small sparks of electricity begin crackling around you! Youn can now disable certain electrical systems with just a touch - and attackers will sometimes feel a slight shock."))
