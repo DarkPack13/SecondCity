@@ -79,7 +79,6 @@
 
 		owner.visible_message(span_warning("[owner] sends a surge of electricity into [target]!"))
 
-		// Small chance to electrocute the user too
 		if(prob(15))
 			owner.electrocute_act(10, target, siemens_coeff = 1, flags = NONE)
 			to_chat(owner, span_warning("Some of the electrical feedback hits you!"))
@@ -273,14 +272,6 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/four/activate(mob/living/target)
 	. = ..()
 	if(!.)
-		if(!target)
-			to_chat(owner, span_warning("You need a target to direct your fury at!"))
-			return
-
-		if(get_dist(owner, target) > range)
-			to_chat(owner, span_warning("[target.p_theyre(TRUE)] is too far away!"))
-			return
-
 		owner.visible_message(span_danger("[owner.name] crackles with building electrical energy!"),
 			span_danger("You begin channeling Zeus' fury, electricity arcing around your body!"))
 
@@ -300,20 +291,6 @@
 
 	var/max_bounces = success_count // Lightning chain dependent upon successes - two successes, two targets hit
 	var/bolt_damage = 20 + (success_count * 4)
-
-	switch(success_count)
-		if(1)
-			owner.visible_message(span_danger("[owner.name] releases a crackling bolt of lightning!"),
-				span_danger("You release a modest arc of electrical energy!"))
-		if(2 to 3)
-			owner.visible_message(span_bolddanger("[owner.name] unleashes a powerful chain of lightning!"),
-				span_bolddanger("You channel Zeus' power, lightning arcing between targets!"))
-		if(4 to 5)
-			owner.visible_message(span_reallybig(span_bolddanger("[owner.name] commands the very storm itself!")),
-				span_reallybig(span_bolddanger("You become a conduit for divine wrath!")))
-		else // 6+ successes
-			owner.visible_message(span_reallybig(span_bolddanger("The air itself SCREAMS as [owner.name] becomes lightning incarnate!")),
-				span_reallybig(span_bolddanger("UNLIMITED POWER courses through your being!")))
 
 	playsound(get_turf(owner), 'sound/effects/magic/lightningbolt.ogg', min(50 + (success_count * 10), 100), TRUE, extrarange = success_count)
 
