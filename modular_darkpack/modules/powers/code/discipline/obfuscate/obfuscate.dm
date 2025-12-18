@@ -206,10 +206,7 @@
 
 	//transforming into someone more attractive than you requires a higher blood investment
 	var/appearance_difference = target.st_get_stat(STAT_APPEARANCE) - owner.st_get_stat(STAT_APPEARANCE)
-	if(appearance_difference > 1)
-		owner.bloodpool = max(owner.bloodpool - appearance_difference, 0)
-	else
-		owner.bloodpool = max(owner.bloodpool - 1, 0)
+	owner.adjust_blood_pool(-max(appearance_difference, 1))
 
 	if(!original_dna)
 		original_dna = new /datum/dna()
