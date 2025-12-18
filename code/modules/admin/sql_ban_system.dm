@@ -399,6 +399,11 @@
 				ROLE_WIZARD,
 				ROLE_VOIDWALKER,
 			),
+			// DARKPACK EDIT ADD START
+			"Darkpack Ban Options" = list(
+				BAN_LOOC,
+			),
+			// DARKPACK EDIT ADD END
 		)
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'>[tgui_fancy ? "<input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>" : ""][department]</label><div class='content'>"

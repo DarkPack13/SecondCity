@@ -20,7 +20,8 @@
 		stat_data["subcategory"] = stat.subcategory
 		stat_data["max_score"] = stat.max_score
 		stat_data["points"] = stat.get_points()
-		stat_data["score"] = stat.get_score(include_bonus = TRUE)
+		stat_data["score"] = stat.get_score(include_bonus = FALSE)
+		stat_data["bonus_score"] = stat.get_bonus_score()
 		stat_data["abstract_type"] = "[stat.abstract_type]"
 		data["stats"]["[stat.type]"] = stat_data
 	return data
