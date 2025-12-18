@@ -19,8 +19,6 @@
 	splat_actions = list(
 		/datum/action/cooldown/mob_cooldown/give_vitae,
 		/datum/action/cooldown/blood_power,
-		// DARKPACK TODO - reimplement vampire actions
-		// /datum/action/vampireinfo
 	)
 	splat_biotypes = MOB_UNDEAD
 

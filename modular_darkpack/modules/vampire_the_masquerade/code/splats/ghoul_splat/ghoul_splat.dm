@@ -7,8 +7,6 @@
 
 	splat_actions = list(
 		/datum/action/cooldown/blood_power,
-		// DARKPACK TODO - reimplement information actions
-		// /datum/action/ghoulinfo
 	)
 
 	/// The Kindred this ghoul is blood bonded to
