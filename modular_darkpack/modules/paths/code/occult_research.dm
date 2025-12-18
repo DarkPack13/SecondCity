@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(occult_research)
 /datum/controller/subsystem/occult_research/proc/process_research_points(mob/living/carbon/human/user)
 	var/research_gain = base_research_rate
 
-	// Check what disciplines the user has
+	//if this thaumaturge has successfully learned the magics of an outsider clan, they gain a research bonus
 	for(var/datum/action/discipline/D in user.actions)
 		if(!D || !D.discipline)
 			continue
@@ -51,7 +51,6 @@ SUBSYSTEM_DEF(occult_research)
 	to_chat(src, span_notice("You currently have [research_points] research points."))
 
 
-// Check if blood sample has been collected and award research points
 /datum/controller/subsystem/occult_research/proc/process_blood_collection(mob/living/carbon/human/caster, datum/reagent/blood/blood_sample)
 	if(!blood_sample || !blood_sample.data)
 		return

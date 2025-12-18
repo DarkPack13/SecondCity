@@ -26,7 +26,7 @@
 	if(!isliving(usr))
 		return ..()
 
-	// for now, there are no items in the prize list, but this is ready for future implementation
+	// for now, there are no items in the list, but this is ready for future implementation
 	to_chat(usr, span_notice("The tome whispers that its pages remain empty, awaiting dark knowledge..."))
 	return TRUE
 
@@ -35,8 +35,6 @@
 	name = "Necromantic Grimoire"
 	desc = "A sinister grimoire that trades necromantic knowledge and artifacts for the souls of the departed."
 	icon_state = "mining"
-	//owner_needed = FALSE
-	//dispenses_dollars = FALSE
 	products_list = list(
 		// Empty for now
 	)
@@ -81,15 +79,12 @@
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
 	if(!prize || !(prize in products_list))
 		to_chat(usr, span_alert("Error: Invalid choice!"))
-		//flick(icon_deny, src)
 		return
 
 	if(prize.price > L.collected_souls)
 		to_chat(usr, span_alert("Error: Insufficient souls for [prize.name]! You need [prize.price] souls."))
-		//flick(icon_deny, src)
 		return
 
-	// Deduct souls from purchase
 	L.collected_souls -= prize.price
 	to_chat(usr, span_notice("The Bone Codex resonates with dark energy as it dispenses [prize.name]!"))
 	new prize.product_path(loc)
@@ -98,6 +93,4 @@
 
 // Future implementation for soul-infused artifacts
 /obj/structure/retail/necromancy/necromancy/attackby(obj/item/W, mob/user, params)
-	// Placeholder for future soul artifact trading system
-	// Could implement trading necromantic artifacts for souls here
 	return ..()
