@@ -85,10 +85,10 @@
 #define COPY_DNA_SPECIES (1<<1)
 ///flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the mutations.
 #define COPY_DNA_MUTATIONS (1<<2)
-///DARKPACK EDIT ADD - Obfuscate Discipline, flag for the transfer_flag argument
+// DARKPACK EDIT ADD START - Obfuscate Discipline, flag for the transfer_flag argument
 //flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the blood type
 #define COPY_DNA_BLOOD_TYPE (1<<4)
-///DARKPACK EDIT END
+// DARKPACK EDIT ADD END
 
 
 //organ slots
