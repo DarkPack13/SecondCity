@@ -11,5 +11,3 @@
 	background_icon_state = "default"
 	button_icon_state = "default"
 	overlay_icon_state = "default"
-
-

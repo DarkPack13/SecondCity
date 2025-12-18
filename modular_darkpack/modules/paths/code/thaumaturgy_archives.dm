@@ -1,7 +1,6 @@
 /obj/structure/retail/occult
 	owner_needed = FALSE
 	desc = "Use your occult research to reap the benefits of safeguarded knowledge and artifacts."
-	//dispenses_dollars = FALSE
 
 	// Stock tracking - each item starts with 2 in stock
 	var/list/item_stock = list()
@@ -45,31 +44,6 @@
 	for(var/datum/data/vending_product/prize in products_list)
 		item_stock[prize.product_path] = 2
 
-/*
-/world/New()
-	. = ..()
-	GLOB.vending_products[/obj/item/path_spellbook/lure_of_flames/level1] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/lure_of_flames/level2] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/lure_of_flames/level3] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/lure_of_flames/level4] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/lure_of_flames/level5] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/levinbolt/level1] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/levinbolt/level2] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/levinbolt/level3] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/levinbolt/level4] = 1
-	GLOB.vending_products[/obj/item/path_spellbook/levinbolt/level5] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/rand] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/odious_chalice] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/key_of_alamut] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/daimonori] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/bloodstar] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/heart_of_eliza] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/fae_charm] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/galdjum] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/mummywrap_fetish] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/weekapaug_thistle] = 1
-	GLOB.vending_products[/obj/item/vtm_artifact/bloodstone] = 1
-*/
 // are they antitribu?
 /obj/structure/retail/occult/proc/has_purchase_privileges(role)
 	return (role in list("Chantry Regent", "Chantry Archivist", "Hound", "Sheriff", "Seneschal", "Prince"))
