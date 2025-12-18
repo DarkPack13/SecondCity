@@ -52,9 +52,3 @@
 	l_pocket = /obj/item/smartphone // /branch_lead - TODO: phone subtype
 	r_pocket = /obj/item/vamp/keys/pentex
 	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/prince=1)
-
-/datum/outfit/job/vampire/branch_lead/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.gender == FEMALE)
-		uniform = /obj/item/clothing/under/vampire/pentex_executiveskirt
-		shoes = /obj/item/clothing/shoes/vampire/heels
