@@ -4,6 +4,8 @@
 /datum/splat/proc/unassign()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
+	clear_powers()
+
 	if (QDELETED(owner))
 		return
 
@@ -15,7 +17,6 @@
 
 	remove_splat_traits()
 	remove_actions()
-	clear_powers()
 	remove_biotypes()
 
 	LAZYREMOVE(owner.splats, src)
