@@ -2,10 +2,11 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "generation"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_TABLETOP
+	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	relevant_inherent_trait = TRAIT_DRINKS_BLOOD
 	minimum = MAX_PUBLIC_GENERATION
 	maximum = HIGHEST_GENERATION_LIMIT
 
 /datum/preference/numeric/generation/apply_to_human(mob/living/carbon/human/target, value)
-	target.generation = value
+	if(HAS_TRAIT(target, TRAIT_DRINKS_BLOOD)) // Have to have this since ghouls and humans have their own generation numbers.
+		target.dna.species.generation = value
