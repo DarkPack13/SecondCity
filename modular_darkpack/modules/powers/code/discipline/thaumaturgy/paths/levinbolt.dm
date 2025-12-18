@@ -23,7 +23,7 @@
 	if(include_radio_effects && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/disabled_any = FALSE
-		/*
+		/* DARKPACK TODO: radios
 		for(var/obj/item/I in H.get_all_slots())
 			if(istype(I, /obj/item/p25radio))
 				var/obj/item/p25radio/radio = I
@@ -257,7 +257,7 @@
 	return levinbolt_target_click(source, target, params, TRUE)
 
 
-//ZEUS' FURY - Level 4 - Enhanced with Chain Lightning
+//ZEUS' FURY - Level 4
 /datum/discipline_power/thaumaturgy/path/levinbolt/four
 	name = "Zeus' Fury"
 	desc = "Build up energy and direct it as arcs of lightning that chain between targets."
@@ -281,15 +281,12 @@
 			to_chat(owner, span_warning("[target.p_theyre(TRUE)] is too far away!"))
 			return
 
-		// Start the charging process
 		owner.visible_message(span_danger("[owner.name] crackles with building electrical energy!"),
 			span_danger("You begin channeling Zeus' fury, electricity arcing around your body!"))
 
-		// Add visual effects during charge
 		electric_halo = electric_halo || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 		owner.add_overlay(electric_halo)
 
-		// Allow movement during charge but require 3 seconds focus
 		if(do_after(owner, 3 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
 			if(get_dist(owner, target) <= range)
 				execute_zeus_fury(target)
@@ -302,7 +299,7 @@
 	owner.cut_overlay(electric_halo)
 
 	var/max_bounces = success_count // Lightning chain dependent upon successes - two successes, two targets hit
-	var/bolt_damage = 20 + (success_count * 4) // Base 20 + 4 per success
+	var/bolt_damage = 20 + (success_count * 4)
 
 	switch(success_count)
 		if(1)
@@ -323,7 +320,6 @@
 	// bolt of lightning to the first target
 	owner.Beam(primary_target, icon_state="lightning[rand(1,12)]", time = (5 + success_count))
 
-	// Starts the chain lightning with bolt_damage as the bolt energy
 	chain_bolt(owner, primary_target, bolt_damage, max_bounces, list(owner))
 
 // Proced each time a lightning bolt is sent
@@ -331,7 +327,7 @@
 	current_target.electrocute_act(bolt_energy, "Zeus' Fury", flags = SHOCK_NOGLOVES)
 	playsound(get_turf(current_target), 'sound/effects/magic/lightningshock.ogg', 60, TRUE)
 
-	// Animation for being struck
+	// Animation
 	current_target.adjust_jitter_up_to(5 SECONDS, 20 + (success_count * 5))
 	if(ishuman(current_target))
 		var/mob/living/carbon/human/H = current_target
@@ -344,14 +340,11 @@
 		current_target.Paralyze(stun_duration)
 		current_target.visible_message(span_warning("[current_target] convulses violently from the electrical shock!"))
 
-	// No duplicating targets
 	already_hit += current_target
 
-	// Count the bounces
 	if(bounces_left <= 0)
 		return
 
-	// Find next target
 	var/list/possible_targets = list()
 	for(var/mob/living/L in view(range, current_target))
 		if(L in already_hit)
@@ -359,11 +352,11 @@
 		possible_targets += L
 
 	if(!possible_targets.len)
-		return // No more valid targets
+		return
 
-	// Pick closest target for more realistic chain lightning
+	// Pick closest target so the chain lightning is realistic
 	var/mob/living/next_target = null
-	var/shortest_distance = INFINITY //compares distance between potential targets relative to infinity, but list is limited by view of the current victim
+	var/shortest_distance = INFINITY //starts at infinity, then looks at each target and says 'is this distance shorter than the last guy'
 	for(var/mob/living/potential in possible_targets)
 		var/distance = get_dist(current_target, potential)
 		if(distance < shortest_distance)
@@ -378,8 +371,8 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/four/proc/continue_chain(atom/origin, mob/living/next_target, bolt_energy, bounces_left, list/already_hit)
 	origin.Beam(next_target, icon_state="lightning[rand(1,12)]", time = (5 + success_count))
 	// With more successes, damage loss per bounce is reduced
-	var/energy_retention = 0.8 + (success_count * 0.05) // 80% base, up to 100% with 5 successes
-	var/reduced_energy = max(bolt_energy * energy_retention, 10) // Minimum 10 damage
+	var/energy_retention = 0.8 + (success_count * 0.05)
+	var/reduced_energy = max(bolt_energy * energy_retention, 10)
 
 	// Continue the chain, applying reduced damage and bounces, while retaining the already_hit list
 	chain_bolt(origin, next_target, reduced_energy, bounces_left - 1, already_hit)
@@ -505,7 +498,6 @@
 
 	UnregisterSignal(owner, list(COMSIG_CLICK, COMSIG_ATOM_ATTACKBY))
 
-	// Stop timers
 	if(spark_timer)
 		deltimer(spark_timer)
 		spark_timer = null
