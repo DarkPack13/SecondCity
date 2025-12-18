@@ -21,8 +21,7 @@
 /datum/splat/proc/clear_powers()
 	PRIVATE_PROC(TRUE)
 
-	for (var/datum/action/power as anything in powers)
-		qdel(power)
+	QDEL_LIST(powers)
 
 /mob/living/carbon/human/proc/give_st_powers(list/power_types, list/levels)
 	for (var/index in 1 to length(power_types))
