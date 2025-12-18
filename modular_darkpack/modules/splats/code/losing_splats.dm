@@ -51,7 +51,7 @@
 			if (!istype(action, removing_action))
 				continue
 
-			action.Remove()
+			action.Remove(owner)
 
 /datum/splat/proc/remove_biotypes()
 	PRIVATE_PROC(TRUE)
