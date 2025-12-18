@@ -1,8 +1,0 @@
-author: "cornercube"
-delete-after: True
-changes:
-  - rscadd: "mac-10 and PSG-1 sprite"
-  - rscadd: "mac-10 super sprite"
-  - rscadd: "braddock 45, cleaner custom, and auto-sniper weapons"
-  - rscadd: "mac-10 sound effect from TFN"
-  - rscadd: "onfloors, inhands, and icons"

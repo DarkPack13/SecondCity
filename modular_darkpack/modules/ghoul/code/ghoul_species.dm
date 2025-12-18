@@ -3,6 +3,7 @@
 	plural_form = "Ghouls"
 	id = SPECIES_GHOUL
 	changesource_flags = MIRROR_BADMIN
+	generation = GHOUL_GENERATION
 
 /mob/living/carbon/human/species/ghoul
 	race = /datum/species/human/ghoul
