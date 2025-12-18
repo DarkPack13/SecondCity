@@ -6,7 +6,7 @@
 
 	clear_powers()
 
-	if (QDELING(owner))
+	if (owner && QDELING(owner))
 		LAZYREMOVE(owner.splats, src)
 		return
 
