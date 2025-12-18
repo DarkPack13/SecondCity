@@ -6,7 +6,11 @@
 
 	clear_powers()
 
-	if (QDELETED(owner))
+	if (QDELING(owner))
+		LAZYREMOVE(owner.splats, src)
+		return
+
+	if (!owner)
 		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
