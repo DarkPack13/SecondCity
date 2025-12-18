@@ -8,6 +8,7 @@
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	lefthand_file = 'modular_darkpack/modules/paths/icons/paths_inhand_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/paths/icons/paths_inhand_righthand.dmi'
+	icon_state = "flame-on"
 
 // Override parent behavior so that they can't be turned off
 /obj/item/lighter/conjured/attack_self(mob/user)
@@ -47,14 +48,14 @@
 /obj/item/lighter/conjured/flame/candle
 	name = "Lure of Flames - Candle"
 	desc = "From your finger sprouts out the small flame of a candle."
-	icon_state = "candle"
+	icon_state = "candle-on"
 	inhand_icon_state = "candle"
 	force = 10
 
 /obj/item/lighter/conjured/flame/palm_of_flame
 	name = "hand of flame"
 	desc = "Your hand burns with supernatural fire."
-	icon_state = "flame"
+	icon_state = "flame-on"
 	inhand_icon_state = "flame"
 	force = 25
 	fancy = FALSE
