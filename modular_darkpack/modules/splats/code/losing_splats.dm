@@ -4,7 +4,7 @@
 /datum/splat/proc/unassign()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	if (!owner)
+	if (QDELETED(owner))
 		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
