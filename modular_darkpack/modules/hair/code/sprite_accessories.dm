@@ -1,4 +1,5 @@
 /datum/sprite_accessory/hair/darkpack
+	abstract_type = /datum/sprite_accessory/hair/darkpack
 	icon = 'modular_darkpack/master_files/icons/mob/human/human_face.dmi'
 
 /datum/sprite_accessory/hair/darkpack/africanpigtails
