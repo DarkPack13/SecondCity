@@ -5,7 +5,7 @@
 	desc = "Suppresses will of your targets and forces them to obey you, if their will is not more powerful than yours."
 	icon_state = "dominate"
 	power_type = /datum/discipline_power/dominate
-	var/list/botched_targets = list()
+	var/list/botched_targets //a lazylist of weakrefs
 
 /datum/discipline/dominate/post_gain()
 	. = ..()
@@ -85,9 +85,15 @@
 	var/datum/discipline/dominate/parent_disc = discipline
 
 	//someone has botched a dominate against this human
-	if(target in parent_disc.botched_targets)
-		to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
-		return FALSE
+	if(LAZYLEN(parent_disc.botched_targets))
+		for(var/datum/weakref/ref in parent_disc.botched_targets)
+			var/mob/living/carbon/human/botched = ref.resolve()
+			if(!botched)
+				LAZYREMOVE(parent_disc.botched_targets, ref)
+				continue
+			if(botched == target)
+				to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
+				return FALSE
 
 	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
@@ -107,12 +113,12 @@
 		theirpower += 1
 
 	//if anyone else tries to dominate my conditioned servant its much harder for them but not for me
-	if(target.conditioned)
+	if(target.conditioner?.resolve())
 		theirpower += 3
 
 	//i've botched so now this person is immune to dominate for the rest of the round
 	if(mypower < 0)
-		parent_disc.botched_targets += target
+		LAZYADD(parent_disc.botched_targets, WEAKREF(target))
 		to_chat(owner, span_warning("Your Dominate attempt has botched! [target] is now resistant to your Dominate for the rest of the night."))
 		return FALSE
 
@@ -152,10 +158,6 @@
 
 /mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
 	dominate_target?.remove_overlay(MUTATIONS_LAYER)
-
-//deprecated
-/datum/movespeed_modifier/dominate
-	multiplicative_slowdown = 5
 
 //COMMAND
 /datum/discipline_power/dominate/command
@@ -477,7 +479,6 @@ var/list/memory_messages = list(
 	owner.say("Look at me.") //v20 doesnt say that this is necessary. keeping it anyways so that people dont spam it on each other during meetings and every becomes each other's mindslave.
 
 	if(do_after(owner, 20 SECONDS, target))
-		target.conditioned = TRUE
 		target.conditioner = WEAKREF(owner)
 		target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
 		to_chat(target, span_hypnophrase("Your mind is filled with thoughts surrounding [owner]. Their every word and gesture carries immense weight to you."))

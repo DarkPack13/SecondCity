@@ -5,7 +5,6 @@
 	var/research_points = 0
 	var/collected_souls = 0
 	var/datum/weakref/conditioner
-	var/conditioned = FALSE
 
 /mob/living/Initialize(mapload)
 	. = ..()
