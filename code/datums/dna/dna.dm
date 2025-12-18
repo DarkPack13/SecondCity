@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.default_mutation_genes = default_mutation_genes
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
-		if (iscarbon(new_dna.holder) && (transfer_flags & COPY_DNA_BLOOD_TYPE)) // DARKPACK EDIT - added & COPY_DNA_BLOOD_TYPE
+		if (iscarbon(new_dna.holder) && (transfer_flags & COPY_DNA_BLOOD_TYPE)) // DARKPACK EDIT CHANGE - added & COPY_DNA_BLOOD_TYPE
 			var/mob/living/carbon/as_carbon = new_dna.holder
 			as_carbon.set_blood_type(blood_type)
 		if(transfer_flags & COPY_DNA_SPECIES)
