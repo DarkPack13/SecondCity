@@ -19,29 +19,15 @@
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/ar15
 
 /datum/antagonist/swat/proc/equip_swat()
-	var/mob/living/carbon/human/H = owner.current
-	if(!ishuman(owner.current))
-		return
-	H.equipOutfit(swat_outfit)
-	H.set_species(/datum/species/human)
-	H.set_clan(null)
-	H.generation = 13
-	H.st_set_stat(5, STAT_LARCENY)
-	H.st_set_stat(4, STAT_STRENGTH)
-	H.ignores_warrant = TRUE
-
-	for(var/datum/action/A in H.actions)
-		if(A.vampiric)
-			A.Remove(H)
-	var/obj/item/organ/eyes/NV = new()
-	NV.Insert(H, TRUE, FALSE)
-
 	var/list/landmarkslist = list()
 	for(var/obj/effect/landmark/start/S in GLOB.start_landmarks_list)
 		if(S.name == name)
 			landmarkslist += S
-	var/obj/effect/landmark/start/D = pick(landmarkslist)
-	H.forceMove(D.loc)
+	var/mob/living/carbon/human/H = new(pick(landmarkslist))
+	H.equipOutfit(swat_outfit)
+	H.st_set_stat(5, STAT_LARCENY)
+	H.st_set_stat(4, STAT_STRENGTH)
+	H.ignores_warrant = TRUE
 
 /datum/antagonist/swat
 	name = "Swat Officer"

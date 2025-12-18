@@ -51,12 +51,12 @@
 
 /datum/discipline_power/dominate/command/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -88,12 +88,12 @@
 
 /datum/discipline_power/dominate/mesmerize/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -127,12 +127,12 @@
 
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -165,12 +165,12 @@
 
 /datum/discipline_power/dominate/conditioning/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -202,12 +202,12 @@
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
