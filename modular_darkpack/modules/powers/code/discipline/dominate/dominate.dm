@@ -52,9 +52,6 @@
 	desc = "Dominate power description"
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/dominate.ogg'
-	var/domination_succeeded = FALSE
-	var/mypower = 0
-	var/theirpower = 0
 
 /datum/discipline_power/dominate/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -131,9 +128,7 @@
 
 //dominate involves capturing the victim's gaze, leaving them completely helpless as you hypnotically invade their mind.
 /datum/discipline_power/dominate/proc/immobilize_target(mob/living/carbon/human/target, duration = 5 SECONDS)
-	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
-	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
 	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
 	if(do_after(owner, duration, target))
 		release_target(target)
@@ -154,8 +149,6 @@
 	UnregisterSignal(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT))
 	to_chat(target, span_danger("You feel your concentration become your own once more, able to look away from the commanding gaze."))
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
-	REMOVE_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
-	target.anchored = FALSE
 
 /mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
 	dominate_target?.remove_overlay(MUTATIONS_LAYER)
@@ -181,8 +174,8 @@
 	var/custom_command = ""
 
 //successes for dominate 1
-/datum/discipline_power/dominate/command/proc/get_success_message(margin, target_name)
-	switch(margin)
+/datum/discipline_power/dominate/command/proc/get_success_message(successes)
+	switch(successes)
 		if(1)
 			return "mild vigor and short duration"
 		if(2)
@@ -196,16 +189,23 @@
 		else
 			return "immediate and vigorous completion"
 
+
+/*
+var/list/memory_messages = list(
+	"A single memory is removed - and in its place is a void, as if you passed out. Echoes of the true memory may bubble up from time to time...",
+	"The words of [owner] are quickly forgotten as they permanently remove entire parts of your memory - never to return.",
+	"[owner] reaches into your mind without your knowing, altering your memories slightly and perhaps even removing them permanently.",
+	"[owner] reaches deep into your mind, able to not only remove memory permanently, but re-writing entire conversations or events.",
+	"Your willpower collapses as [owner] reaches deep into your mind, reconstructing, altering, or perhaps even permanently removing entire periods of your life.",
+	"Your memory state is totally at the mercy of [owner] as your willpower completely collapses."
+)
+*/
+
 /datum/discipline_power/dominate/command/pre_activation_checks(mob/living/carbon/human/target)
 	if(!dominate_hearing_check(owner, target))
 		return FALSE
 
-	custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
-
-	if(!custom_command)
-		return FALSE
-
-	//can afford,,?
+	//can afford..?
 
 	//v20 Dominate 'Command' section
 	if(length(splittext(custom_command, " ")) > 1)
@@ -214,6 +214,11 @@
 
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), numerical = TRUE)
 	if(successes > 0)
+		var/command_strength = get_success_message(successes)
+		to_chat(owner, span_notice("You have the power to Command your target with [command_strength]!"))
+		custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
+		if(!custom_command)
+			return FALSE
 		return TRUE
 
 	to_chat(owner, span_warning("[target] has resisted your domination!"))
@@ -226,8 +231,8 @@
 	log_combat(owner, target, "Dominated with Command: [custom_command]")
 	owner.say(custom_command)
 	to_chat(target, span_big("[custom_command]"))
-	var/vigor_text = get_success_message(successes, target.name)
-	to_chat(target, span_warning("[owner] has successfully dominated your mind with [successes] successes. You feel compelled to [custom_command] with [vigor_text]."))
+	var/command_strength = get_success_message(successes)
+	to_chat(target, span_warning("[owner] has successfully dominated your mind with [successes] successes. You feel compelled to [custom_command] with [command_strength]."))
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 
 // MESMERIZE
@@ -261,16 +266,15 @@
 		to_chat(owner, span_warning("You already have an active mesmerization!"))
 		return FALSE
 
-	custom_message = tgui_input_text(owner, "Hypnotic Suggestion", "What hypnotic message will echo in their mind?", encode = FALSE)
-	if(!custom_message)
-		return FALSE
-
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		pulse_interval = 5
 		return TRUE
 
 	var/successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_LEADERSHIP), numerical = TRUE)
 	if(successes > 0)
+		custom_message = tgui_input_text(owner, "Hypnotic Suggestion", "What hypnotic message will echo in their mind?", encode = FALSE)
+		if(!custom_message)
+			return FALSE
 		pulse_interval = successes
 		return TRUE
 
@@ -384,12 +388,24 @@
 	var/custom_memory = ""
 	var/successes
 
+/datum/discipline_power/dominate/the_forgetful_mind/proc/get_success_message(successes)
+	switch(successes)
+		if(1)
+			return "a single memory is removed, and no alteration takes its place, leaving a void for the true memory to bubble up with the right circumstances"
+		if(2)
+			return "multiple memories may be permanently removed, but not altered, leaving a void for the true memories to potentially re-emerge with intense recollection"
+		if(3)
+			return "multiple memories may be permanently altered or removed, but without careful and precise alteration, the true memories may crawl forth much later"
+		if(4)
+			return "deep and intense alterations or removals may take place in the memory, changing entire events or conversations with great strength"
+		if(5)
+			return "entire periods of life and personality may be removed, altered or otherwise as the subconcious completely collapses"
+		if(6 to INFINITY)
+			return "there is no limit to the extent to which the memories may be affected, forever changing the memory beyond recognition. There is no hope."
+
+
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/carbon/human/target)
 	if(!dominate_hearing_check(owner, target))
-		return FALSE
-
-	custom_memory = tgui_input_text(owner, "Memory Alteration", "What memory will you implant or alter?", encode = FALSE)
-	if(!custom_memory)
 		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
@@ -397,6 +413,11 @@
 
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_SUBTERFUGE), numerical = TRUE)
 	if(successes > 0)
+		var/mindwipe_strength = get_success_message(successes)
+		to_chat(owner, span_notice("Your hypnotic glare captures [target] to the point where [mindwipe_strength]"))
+		custom_memory = tgui_input_text(owner, "Memory Alteration", "What memory will you implant or alter?", encode = FALSE)
+		if(!custom_memory)
+			return FALSE
 		return TRUE
 
 	to_chat(owner, span_warning("[target] has resisted your domination!"))
@@ -416,18 +437,8 @@
 	to_chat(target, span_hypnophrase(custom_memory))
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 	SEND_SIGNAL(target, COMSIG_ALL_MASQUERADE_REINFORCE)
-
-	//find out how many successes for the flavortext memory_messages
-	var/list/memory_messages = list(
-		"A single memory is removed - and in its place is a void, as if you passed out. Echoes of the true memory may bubble up from time to time...",
-		"The words of [owner] are quickly forgotten as they permanently remove entire parts of your memory - never to return.",
-		"[owner] reaches into your mind without your knowing, altering your memories slightly and perhaps even removing them permanently.",
-		"[owner] reaches deep into your mind, able to not only remove memory permanently, but re-writing entire conversations or events.",
-		"Your willpower collapses as [owner] reaches deep into your mind, reconstructing, altering, or perhaps even permanently removing entire periods of your life.",
-		"Your memory state is totally at the mercy of [owner] as your willpower completely collapses."
-	)
-	var/message_index = clamp(successes, 1, 6)
-	to_chat(target, span_warning("[owner] has successfully dominated your mind with [successes] success[successes == 1 ? "" : "es"]. [memory_messages[message_index]]"))
+	var/mindwipe_strength = get_success_message(successes)
+	to_chat(target, span_warning("[owner] has successfully dominated your mind with [successes] success[successes == 1 ? "" : "es"]. Their hypnotism is so strong that [mindwipe_strength]"))
 
 // CONDITIONING
 /datum/discipline_power/dominate/conditioning
@@ -451,22 +462,15 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	domination_succeeded = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_LEADERSHIP))
-	if(!domination_succeeded)
+	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_LEADERSHIP))
+	if(!roll_success)
+		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
 		do_cooldown(cooldown_length)
-	return domination_succeeded
+	return roll_success
 
 /datum/discipline_power/dominate/conditioning/activate(mob/living/carbon/human/target)
 	. = ..()
-	if(!domination_succeeded)
-		if(!immobilize_target(target, 1 SECONDS))
-			return
-		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
-		return
-
-	target.anchored = TRUE
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
-	ADD_TRAIT(target, TRAIT_RESTRAINED, TRAIT_GENERIC)
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("LOOK AT ME"))
 
@@ -512,17 +516,14 @@
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	domination_succeeded = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION))
-	if(!domination_succeeded)
+	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION))
+	if(!roll_success)
 		to_chat(owner, span_warning("[target] has resisted your domination!"))
 		do_cooldown(cooldown_length)
-	return domination_succeeded
+	return roll_success
 
 /datum/discipline_power/dominate/possession/activate(mob/living/carbon/human/target)
 	. = ..()
-	if(!domination_succeeded)
-		return
-
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("Your body freezes as an overwhelming presence invades your mind..."))
 
@@ -710,8 +711,8 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	domination_succeeded = dominate_check(owner, target)
-	if(domination_succeeded)
+	var/roll_success = dominate_check(owner, target)
+	if(roll_success)
 		return TRUE
 	else
 		do_cooldown(cooldown_length)
@@ -719,36 +720,33 @@
 
 /datum/discipline_power/dominate/autonomic_mastery/activate(mob/living/carbon/human/target)
 	. = ..()
-	if(domination_succeeded)
-		to_chat(owner, span_warning("You've successfully dominated [target]'s bodily functions!"))
-		var/list/orders = list("Sleep", "Wake", "Heart Attack", "Revive")
-		var/order = tgui_input_list(owner, "Select a Command","Command Selection", orders)
-		if(!order)
-			return
-		switch(order)
-			if("Sleep")
-				owner.say("Sleep")
-				target.Sleeping(200)
-				to_chat(target, span_danger("You feel suddenly exhausted"))
-				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
-			if("Wake")
-				owner.say("Wake")
-				target.SetSleeping(0)
-				to_chat(target, span_danger("You feel suddenly energetic"))
-				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
-			if("Heart Attack")
-				owner.say("Die")
-				target.adjustStaminaLoss(60, FALSE)
-				target.set_heartattack(TRUE)
-				to_chat(target, span_danger("You feel a terrible pain in your chest!"))
-				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
-			if("Revive")
-				owner.say("Live")
-				target.set_heartattack(FALSE)
-				to_chat(target, span_danger("You feel your heart pound!"))
-				target.revive()
-				SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
-	else
-		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
+	to_chat(owner, span_warning("You've successfully dominated [target]'s bodily functions!"))
+	var/list/orders = list("Sleep", "Wake", "Heart Attack", "Revive")
+	var/order = tgui_input_list(owner, "Select a Command","Command Selection", orders)
+	if(!order)
+		return
+	switch(order)
+		if("Sleep")
+			owner.say("Sleep")
+			target.Sleeping(200)
+			to_chat(target, span_danger("You feel suddenly exhausted"))
+			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
+		if("Wake")
+			owner.say("Wake")
+			target.SetSleeping(0)
+			to_chat(target, span_danger("You feel suddenly energetic"))
+			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
+		if("Heart Attack")
+			owner.say("Die")
+			target.adjustStaminaLoss(60, FALSE)
+			target.set_heartattack(TRUE)
+			to_chat(target, span_danger("You feel a terrible pain in your chest!"))
+			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
+		if("Revive")
+			owner.say("Live")
+			target.set_heartattack(FALSE)
+			to_chat(target, span_danger("You feel your heart pound!"))
+			target.revive()
+			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 
 #undef TRAIT_MESMERIZED
