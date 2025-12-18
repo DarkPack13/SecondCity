@@ -17,7 +17,7 @@
 	PRIVATE_PROC(TRUE)
 
 	// Base human bloodpool + 3 for every Generation below 13
-	owner.maxbloodpool = 10 + ((13 - generation) * 3)
+	owner.maxbloodpool = get_max_bloodpool(generation)
 	owner.bloodpool = clamp(owner.bloodpool, 0, owner.maxbloodpool)
 
 /datum/splat/vampire/kindred/proc/update_vitae_spending_limit()
