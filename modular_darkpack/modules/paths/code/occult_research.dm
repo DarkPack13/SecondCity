@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(occult_research)
 	var/base_research_rate = 0.5 // Base points per tick
 	var/necromancy_bonus = 0.5
 	var/obtenebration_bonus = 0.5
-	var/list/collected_blood = list()
+	var/list/collected_blood //lazylist since i've noticed people haven't been using this feature so much
 	COOLDOWN_DECLARE(research_notification_cooldown)
 
 /datum/controller/subsystem/occult_research/fire(resumed = FALSE)
@@ -66,11 +66,11 @@ SUBSYSTEM_DEF(occult_research)
 	var/blood_identifier = "[blood_name]_[blood_species]"
 
 	// check if the bloods already been collected
-	if(blood_identifier in collected_blood)
+	if(LAZYFIND(collected_blood, blood_identifier))
 		to_chat(caster, span_notice("This blood was already identified."))
 		return
 
-	collected_blood += blood_identifier
+	LAZYADD(collected_blood, blood_identifier)
 
 	var/research_award = 0
 	var/species_name = ""

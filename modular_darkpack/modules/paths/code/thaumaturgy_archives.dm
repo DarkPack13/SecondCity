@@ -2,7 +2,7 @@
 	owner_needed = FALSE
 	desc = "Use your occult research to reap the benefits of safeguarded knowledge and artifacts."
 
-	// Stock tracking - each item starts with 2 in stock
+	// Stock tracking - each item starts with 2 in stock, limited supply to cut down on powergaming
 	var/list/item_stock = list()
 
 	products_list = list(
@@ -168,10 +168,6 @@
 		return
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
-	if(!prize || !(prize in products_list))
-		to_chat(usr, span_alert("Error: Invalid choice!"))
-		return
-
 	var/current_stock = item_stock[prize.product_path] || 0
 	if(current_stock <= 0)
 		to_chat(usr, span_alert("Error: [prize.name] is out of stock!"))
@@ -195,7 +191,6 @@
 
 	to_chat(usr, span_notice("The Archives emanate dark energy as it dispenses [prize.name]!"))
 	new prize.product_path(loc)
-	SSblackbox.record_feedback("nested tally", "vending_product_bought", 1, list("[type]", "[prize.product_path]"))
 	return TRUE
 
 //transfer research points
@@ -265,7 +260,6 @@
 		var/obj/item/vtm_artifact/artifact = W
 
 		if(!ishuman(user))
-			to_chat(user, span_warning("The Archives reject your offering."))
 			return
 
 		var/mob/living/carbon/human/H = user
@@ -305,7 +299,6 @@
 		var/obj/item/path_spellbook/spellbook = W
 
 		if(!ishuman(user))
-			to_chat(user, span_warning("The Archives reject your offering."))
 			return
 
 		var/mob/living/carbon/human/H = user

@@ -42,7 +42,8 @@
 		.["user"]["has_necromancy"] = FALSE
 
 /obj/item/ritual_tome/necromancy/ui_act(action, params)
-
+	if(action != "purchase")
+		return ..()
 	var/mob/living/L = usr
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
