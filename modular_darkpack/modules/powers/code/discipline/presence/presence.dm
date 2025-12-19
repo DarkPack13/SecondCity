@@ -17,13 +17,7 @@
 	deactivate_sound = 'modular_darkpack/modules/powers/sounds/presence_deactivate.ogg'
 
 //lets not have people be able to cast this through walls
-/datum/discipline_power/presence/proc/presence_hearing_check(mob/living/carbon/human/owner, mob/living/target)
-	var/list/hearers = get_hearers_in_view(8, owner)
-	if(!(target in hearers))
-		to_chat(owner, span_warning("[target] cannot hear you — they are too far or behind an obstruction."))
-		return FALSE
-	to_chat(owner, span_info("[target] hears you clearly."))
-	return TRUE
+
 
 /datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, difficulty)
 	if(!ishuman(target))
@@ -188,7 +182,7 @@
 	desc = "Incite fear in others through only your words and gaze."
 	level = 2
 	vitae_cost = 1
-	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK | DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
 	range = 7
 	multi_activate = TRUE
@@ -199,8 +193,6 @@
 
 
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
-	if(!presence_hearing_check(owner, target))
-		return FALSE
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
 	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS))) //+ target.st_get_stat(STAT_COURAGE)))
@@ -235,7 +227,7 @@
 	name = "Entrancement"
 	desc = "Manipulate minds by bending emotions to your will."
 	level = 3
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK
+	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK | DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
 	range = 7
 	multi_activate = TRUE
@@ -245,8 +237,6 @@
 	var/successes = 0
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
-	if(!presence_hearing_check(owner, target))
-		return FALSE
 
 	successes = presence_check(owner, target, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_EMPATHY))
 	if(successes > 0)
@@ -281,7 +271,7 @@
 	name = "Summon"
 	desc = "Call anyone you've ever met to be by your side."
 	level = 4
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = TRUE
 	cooldown_length = 20 MINUTES //i can already see people using this ability to summon and kill upon arrival. this cooldown should help with that.
@@ -350,7 +340,7 @@
 	name = "Majesty"
 	desc = "Become so grand that others find it nearly impossible to disobey or harm you."
 	level = 5
-	check_flags = DISC_CHECK_CAPABLE|DISC_CHECK_SPEAK
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = TRUE
 	cooldown_length = 12 MINUTES
@@ -403,8 +393,6 @@
 	var/presence_succeeded = FALSE
 
 /datum/discipline_power/presence/love/pre_activation_checks(mob/living/target)
-	if(!presence_hearing_check(owner, target))
-		return FALSE
 
 	presence_succeeded = presence_check(owner, target)
 	if(presence_succeeded)
