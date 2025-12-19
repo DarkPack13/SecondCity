@@ -1,7 +1,8 @@
 // Police Radio
 /obj/item/radio/headset/cop
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
-	icon_state = "pp25"
+	icon_state = "p25"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
 	keyslot = /obj/item/encryptionkey/police
 
@@ -13,6 +14,7 @@
 /obj/item/radio/headset/clinic
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
 	keyslot = /obj/item/encryptionkey/clinic
 
@@ -25,6 +27,7 @@
 	name = "military radio"
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
 	keyslot = /obj/item/encryptionkey/military
 
@@ -36,6 +39,7 @@
 /obj/item/radio/headset/camarilla
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
 	keyslot = /obj/item/encryptionkey/camarilla
 
@@ -47,6 +51,7 @@
 /obj/item/radio/headset/anarch
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
 	keyslot = /obj/item/encryptionkey/anarch
 
