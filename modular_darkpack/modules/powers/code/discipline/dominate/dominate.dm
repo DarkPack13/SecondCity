@@ -14,7 +14,6 @@
 
 /datum/discipline/dominate/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
-
 	INVOKE_ASYNC(src, PROC_REF(handle_snap), source, emote_args)
 
 /datum/discipline/dominate/proc/handle_snap(atom/source, datum/emote/emote_args)
@@ -68,15 +67,6 @@
 	to_chat(dominate_target, span_danger("You find yourself completely entranced by the stare of [owner]. You can't bring yourself to look away, call for help, or even attempt resistance. Pray that someone comes to save you by dragging or pushing you away."))
 	owner.face_atom(dominate_target)
 	addtimer(CALLBACK(dominate_target, TYPE_PROC_REF(/mob/living/carbon/human, post_dominate_checks), dominate_target), 2 SECONDS)
-	return TRUE
-
-//disallows casting dominate through walls
-/datum/discipline_power/dominate/proc/dominate_hearing_check(mob/living/carbon/human/owner, mob/living/carbon/human/target)
-	var/list/hearers = get_hearers_in_view(8, owner)
-	if(!(target in hearers))
-		to_chat(owner, span_warning("[target] cannot hear you — they are too far or behind an obstruction."))
-		return FALSE
-	to_chat(owner, span_info("[target] hears you clearly."))
 	return TRUE
 
 //dicerolling
@@ -145,7 +135,6 @@
 
 /datum/discipline_power/dominate/proc/on_target_attacked(datum/source)
 	SIGNAL_HANDLER
-
 	var/mob/living/carbon/human/target = source
 	release_target(target)
 	to_chat(owner, span_warning("Your concentration is broken as [target] is attacked!"))
@@ -163,12 +152,9 @@
 /datum/discipline_power/dominate/command
 	name = "Command"
 	desc = "Speak one word and force others to obey."
-
 	level = 1
-
-	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE|DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
-
 	cooldown_length = 15 SECONDS
 	duration_length = 3 SECONDS
 	range = 7
@@ -191,21 +177,7 @@
 		else
 			return "immediate and vigorous completion"
 
-
-/*
-var/list/memory_messages = list(
-	"A single memory is removed - and in its place is a void, as if you passed out. Echoes of the true memory may bubble up from time to time...",
-	"The words of [owner] are quickly forgotten as they permanently remove entire parts of your memory - never to return.",
-	"[owner] reaches into your mind without your knowing, altering your memories slightly and perhaps even removing them permanently.",
-	"[owner] reaches deep into your mind, able to not only remove memory permanently, but re-writing entire conversations or events.",
-	"Your willpower collapses as [owner] reaches deep into your mind, reconstructing, altering, or perhaps even permanently removing entire periods of your life.",
-	"Your memory state is totally at the mercy of [owner] as your willpower completely collapses."
-)
-*/
-
 /datum/discipline_power/dominate/command/pre_activation_checks(mob/living/carbon/human/target)
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), numerical = TRUE)
 	if(successes > 0)
 		var/command_strength = get_success_message(successes)
@@ -237,12 +209,9 @@ var/list/memory_messages = list(
 /datum/discipline_power/dominate/mesmerize
 	name = "Mesmerize"
 	desc = "Plant a hypnotic suggestion in a target's head that will repeatedly echo in their mind."
-
 	level = 2
-
-	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE|DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
-
 	cooldown_length = 30 SECONDS
 	range = 7
 	var/custom_message = ""
@@ -252,9 +221,6 @@ var/list/memory_messages = list(
 	var/pulse_active = FALSE
 
 /datum/discipline_power/dominate/mesmerize/pre_activation_checks(mob/living/carbon/human/target)
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
-
 	//you can't mesmerize someone already mesmerized
 	if(HAS_TRAIT(target, TRAIT_MESMERIZED))
 		to_chat(owner, span_warning("[target] is already under a hypnotic suggestion!"))
@@ -275,7 +241,6 @@ var/list/memory_messages = list(
 			return FALSE
 		pulse_interval = successes
 		return TRUE
-
 	pulse_interval = 0
 	do_cooldown(cooldown_length)
 	return FALSE
@@ -285,13 +250,10 @@ var/list/memory_messages = list(
 	if(!immobilize_target(target, 10 SECONDS))
 		to_chat(owner, span_warning("You have broken concentration with [target] while implanting your hypnosis!"))
 		return
-
 	target.throw_alert("mesmerize", /atom/movable/screen/alert/mesmerize)
-
 	log_combat(owner, target, "Dominated with Mesmerize: [custom_message]")
 	to_chat(owner, span_warning("You've successfully planted a hypnotic suggestion in [target]'s mind!"))
 	owner.say(custom_message)
-
 	to_chat(target, span_info("An urging, subconcious thought has entered your mind. Youre not sure how this happened - but it keeps pulsing, forcing your conscious thought to bend toward it."))
 	to_chat(target, span_hypnophrase(custom_message))
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
@@ -378,7 +340,7 @@ var/list/memory_messages = list(
 	name = "The Forgetful Mind"
 	desc = "Invade a person's mind and recreate their memories."
 	level = 3
-	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE|DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
 	cooldown_length = 1 MINUTES
 	duration_length = 3 SECONDS
@@ -403,12 +365,8 @@ var/list/memory_messages = list(
 
 
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/carbon/human/target)
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
-
 	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
-
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_SUBTERFUGE), numerical = TRUE)
 	if(successes > 0)
 		var/mindwipe_strength = get_success_message(successes)
@@ -417,7 +375,6 @@ var/list/memory_messages = list(
 		if(!custom_memory)
 			return FALSE
 		return TRUE
-
 	to_chat(owner, span_warning("[target] has resisted your domination!"))
 	do_cooldown(cooldown_length)
 	return FALSE
@@ -427,11 +384,9 @@ var/list/memory_messages = list(
 	if(!immobilize_target(target, 10 SECONDS))
 		to_chat(owner, span_danger("Youve broken concentration with [target] and your Domination fails..."))
 		return
-
 	log_combat(owner, target, "Dominated with The Forgetful Mind: [custom_memory]")
 	to_chat(owner, span_warning("You've successfully invaded [target]'s mind and altered their memories!"))
 	owner.say(custom_memory, forced = FALSE, bubble_type = SPEECH_BUBBLE_TYPE)
-
 	to_chat(target, span_hypnophrase(custom_memory))
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 	SEND_SIGNAL(target, COMSIG_ALL_MASQUERADE_REINFORCE)
@@ -442,21 +397,14 @@ var/list/memory_messages = list(
 /datum/discipline_power/dominate/conditioning
 	name = "Conditioning"
 	desc = "Break a person's mind over time and bend them to your will."
-
 	level = 4
-
-	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE|DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
-
 	cooldown_length = 15 SECONDS
 	duration_length = 6 SECONDS
 	range = 2
 
 /datum/discipline_power/dominate/conditioning/pre_activation_checks(mob/living/carbon/human/target)
-
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
-
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
@@ -470,14 +418,11 @@ var/list/memory_messages = list(
 	. = ..()
 	target.dir = get_dir(target, owner)
 	to_chat(target, span_danger("LOOK AT ME"))
-
 	owner.say("Look at me.")
-
 	if(!immobilize_target(target, 20 SECONDS))
 		to_chat(owner, span_warning("Your concentration was broken!"))
 		to_chat(target, span_notice("The oppressive mental presence suddenly withdraws."))
 		return
-
 	target.conditioner = WEAKREF(owner)
 	target.throw_alert("conditioning", /atom/movable/screen/alert/conditioning)
 	to_chat(target, span_hypnophrase("Your mind is filled with thoughts surrounding [owner]. Their every word and gesture carries immense weight to you."))
@@ -487,19 +432,14 @@ var/list/memory_messages = list(
 /datum/discipline_power/dominate/possession
 	name = "Possession"
 	desc = "Take full control of your target's mind and body."
-
 	level = 5
-
-	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE
+	check_flags = DISC_CHECK_SPEAK|DISC_CHECK_SEE|DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
-
 	cooldown_length = 5 MINUTES
 	range = 7
 	var/datum/weakref/active_possession
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/carbon/human/target)
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
 
 	if(iskindred(target) || isgarou(target)) //DARKPACK TODO: reimplement Kuei-Jin
 		to_chat(owner, span_warning("You cannot possess [iskindred(target) ? "another kindred" : "this creature - the beast within resists"]!"))
@@ -551,9 +491,6 @@ var/list/memory_messages = list(
 	range = 7
 
 /datum/discipline_power/dominate/autonomic_mastery/pre_activation_checks(mob/living/carbon/human/target)
-
-	if(!dominate_hearing_check(owner, target))
-		return FALSE
 
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
