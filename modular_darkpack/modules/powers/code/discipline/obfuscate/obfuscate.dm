@@ -172,12 +172,13 @@
 
 //mask of a thousand faces is supposed to have varying levels of success based on successes rolled
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
-	if(successes > 0)
-		return is_seen_check()
-	else
-		to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
-		return FALSE
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
+	switch(roll)
+		if(ROLL_SUCCESS)
+			return is_seen_check()
+		else
+			to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
+			return FALSE
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
