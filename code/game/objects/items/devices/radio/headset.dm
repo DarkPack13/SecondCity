@@ -56,6 +56,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/examine(mob/user)
 	. = ..()
 
+	/* DARKPACK EDIT REMOVAL START
 	if(!(item_flags & IN_INVENTORY) || loc != user)
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
 		return
@@ -71,15 +72,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/channel_token = GLOB.channel_tokens[channel_name]
 		var/channel_span_class = get_radio_span(GLOB.default_radio_channels[channel_name])
 
-		/* DARKPACK EDIT REMOVAL START
 		if(i == 1)
 			available_channels += "<li><b>[span_class(channel_span_class, MODE_TOKEN_DEPARTMENT)]</b> or <b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
 		else
-		*/ // DARKPACK EDIT REMOVAL END
-		available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>" // DARKPACK EDIT, ORIGINAL: 	available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
-
+			available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
 	. += span_notice("A small screen on the headset displays the following available frequencies:")
 	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")
+	*/ // DARKPACK EDIT REMOVAL END
 
 	if(command)
 		. += span_info("<b>Alt-click</b> to toggle the high-volume mode.")

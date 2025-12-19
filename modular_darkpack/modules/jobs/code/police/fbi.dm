@@ -25,7 +25,7 @@
 	name = "Federal Investigator"
 	jobtype = /datum/job/vampire/fbi
 
-	ears = /obj/item/radio/headset/darkpack/police
+	ears = /obj/item/radio/headset/darkpack
 	uniform = /obj/item/clothing/under/vampire/office
 	shoes = /obj/item/clothing/shoes/vampire
 	suit = /obj/item/clothing/suit/vampire/jacket/fbi

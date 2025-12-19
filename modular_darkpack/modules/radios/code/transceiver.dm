@@ -7,6 +7,7 @@
 	pass_flags = PASSTABLE
 	pass_flags_self = LETPASSTHROW
 	var/radio_network = "Unnamed Network"
+	var/radio_frequency = FREQ_COMMON
 	var/list/connected_radios = list()
 
 /obj/machinery/radio_tranceiver/Initialize(mapload)
@@ -42,6 +43,7 @@
 			connected_radios -= "[radio.radio_id]"
 			radio.radio_id = null
 			radio.radio_network = null
+			radio.set_frequency(FREQ_COMMON)
 			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_notice("You can't link the [radio] to the [radio_network] because it is connected to the [radio.radio_network]!"))
@@ -50,11 +52,12 @@
 		var/input_number = tgui_input_number(user = user, message = "Set Radio ID", title = "Enter a numerical ID to use for this network.", max_value = 999, min_value = 1, round_value = TRUE)
 		if(!input_number)
 			return ITEM_INTERACT_FAILURE
-		if(input_number in connected_radios)
+		if("[input_number]" in connected_radios)
 			to_chat(user, span_warning("A radio with that ID is already connected to this network!"))
 			return ITEM_INTERACT_FAILURE
 		radio.radio_id = input_number
 		radio.radio_network = radio_network
+		radio.set_frequency(radio_frequency)
 		var/datum/weakref/radio_weakref = WEAKREF(radio)
 		connected_radios["[input_number]"] = radio_weakref
 		to_chat(user, span_notice("You link the [radio] to the [radio_network]."))
@@ -69,3 +72,19 @@
 		balloon_alert(user, "[anchored ? "un" : ""]secured")
 		set_anchored(!anchored)
 	return TRUE
+
+/obj/machinery/radio_tranceiver/police
+	radio_network = "Police Network"
+	radio_frequency = FREQ_POLICE
+
+/obj/machinery/radio_tranceiver/clinic
+	radio_network = "Clinic Network"
+	radio_frequency = FREQ_CLINIC
+
+/obj/machinery/radio_tranceiver/camarilla
+	radio_network = "Tower Network"
+	radio_frequency = FREQ_CAMARILLA
+
+/obj/machinery/radio_tranceiver/anarch
+	radio_network = "Bar Network"
+	radio_frequency = FREQ_ANARCH

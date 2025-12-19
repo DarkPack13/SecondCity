@@ -13,22 +13,6 @@
 	. = ..()
 	. += radio_network ? span_notice("Connected to [radio_network] using ID: [radio_id].") : span_warning("Not connected to any network.")
 
-// Police Radio
-/obj/item/radio/headset/darkpack/police
-	keyslot = /obj/item/encryptionkey/police
-
-/obj/item/radio/headset/darkpack/police/Initialize()
-	. = ..()
-	set_frequency(FREQ_POLICE)
-
-// Clinic Radio
-/obj/item/radio/headset/darkpack/clinic
-	keyslot = /obj/item/encryptionkey/clinic
-
-/obj/item/radio/headset/darkpack/clinic/Initialize()
-	. = ..()
-	set_frequency(FREQ_CLINIC)
-
 // Military Radio
 /obj/item/radio/headset/darkpack/military
 	name = "military radio"
@@ -39,19 +23,3 @@
 	. = ..()
 	set_frequency(FREQ_MILITARY)
 	radio_id = rand(1, 999) // Since we wont have a tranceiver for these, we're just auto-assigning a random ID. This isn't foolproof.
-
-// Camarilla Radio
-/obj/item/radio/headset/darkpack/camarilla
-	keyslot = /obj/item/encryptionkey/camarilla
-
-/obj/item/radio/headset/darkpack/camarilla/Initialize()
-	. = ..()
-	set_frequency(FREQ_CAMARILLA)
-
-// Anarchs Radio
-/obj/item/radio/headset/darkpack/anarch
-	keyslot = /obj/item/encryptionkey/anarch
-
-/obj/item/radio/headset/darkpack/anarch/Initialize()
-	. = ..()
-	set_frequency(FREQ_ANARCH)

@@ -36,7 +36,7 @@
 	name = "Harpy"
 	jobtype = /datum/job/vampire/harpy
 
-	ears = /obj/item/radio/headset/darkpack/camarilla
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/clerk/harpy
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
