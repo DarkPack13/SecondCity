@@ -22,7 +22,7 @@
 
 /obj/effect/mapping_helpers/door/access/primogen
 	icon_state = "access_helper_cam"
-	lock_id = LOCKACCESS_PRIOGEN
+	lock_id = LOCKACCESS_PRIMOGEN
 
 
 /obj/effect/mapping_helpers/door/access/banu
@@ -127,12 +127,15 @@
 
 
 /obj/effect/mapping_helpers/door/access/anarch
+	icon_state = "access_helper_bar"
 	lock_id = LOCKACCESS_ANARCH
 
 /obj/effect/mapping_helpers/door/access/bar
+	icon_state = "access_helper_bar"
 	lock_id = LOCKACCESS_BAR
 
 /obj/effect/mapping_helpers/door/access/bar_delivery
+	icon_state = "access_helper_bar"
 	lock_id = LOCKACCESS_BAR_DELIVERY
 
 

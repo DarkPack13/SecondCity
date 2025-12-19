@@ -7109,10 +7109,6 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
-"axr" = (
-/obj/structure/fake_stairs/directional/east,
-/turf/open/floor/plating/concrete,
-/area/vtm/westfield_mall/interior/maintenance/basement)
 "axs" = (
 /obj/structure/chair/sofa/city_bench/metal/right/yellow,
 /turf/open/floor/city/plating,
@@ -7258,7 +7254,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/sewer)
 "axR" = (
-/obj/structure/fake_stairs/directional/west,
+/obj/structure/stairs/west,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "axS" = (
@@ -12909,7 +12905,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall)
 "aQr" = (
-/obj/structure/fake_stairs/directional/east,
+/obj/structure/stairs/east,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "aQs" = (
@@ -16458,7 +16454,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
 "gfJ" = (
-/obj/structure/fake_stairs/directional/south,
+/obj/structure/stairs/south,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior)
 "ggn" = (
@@ -35907,8 +35903,8 @@ aeH
 aeH
 aeH
 ajc
-axr
-axr
+amj
+amj
 ajc
 asz
 aht

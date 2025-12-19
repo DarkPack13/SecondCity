@@ -76,10 +76,6 @@
 	name = "fancy plating"
 	icon_state = "circle_large"
 
-/turf/open/floor/city/circled/large/Initialize(mapload)
-	. = ..()
-	icon_state = "circle_large"
-
 /turf/open/floor/city/church
 	name = "fancy plating"
 	icon_state = "church1"
@@ -119,7 +115,7 @@
 	icon_state = "[base_icon_state][rand(1, 4)]"
 
 /turf/open/floor/iron/stairs/black
-	icon = 'modular_darkpack/modules/walls/icons/floors.dmi' // DARKPACK EDIT CHANGE
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "stairs_black"
 	base_icon_state = "stairs_black"
 	tiled_turf = FALSE

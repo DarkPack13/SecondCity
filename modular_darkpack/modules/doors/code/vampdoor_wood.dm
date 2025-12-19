@@ -51,7 +51,7 @@
 
 /obj/structure/vampdoor/wood/nps
 	locked = TRUE
-	lock_id = "nps"
+	lock_id = OCKACCESS_PARK_RANGER
 	lockpick_difficulty = 12
 
 /obj/structure/vampdoor/wood/apartment
@@ -67,10 +67,10 @@
 
 /obj/structure/vampdoor/wood/millennium_common
 	locked = TRUE
-	lock_id = "milleniumCommon"
+	lock_id = LOCKACCESS_JAZZ_CLUB
 	lockpick_difficulty = 12
 
 /obj/structure/vampdoor/wood/sabbat
 	locked = TRUE
-	lock_id = "sabbat"
+	lock_id = LOCKACCESS_SABBAT
 	lockpick_difficulty = 8

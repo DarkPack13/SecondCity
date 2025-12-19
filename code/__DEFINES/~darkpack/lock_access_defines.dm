@@ -2,7 +2,7 @@
 
 #define LOCKACCESS_CAMARILLA "camarilla"
 #define LOCKACCESS_PRINCE "prince"
-#define LOCKACCESS_PRIOGEN "primogen"
+#define LOCKACCESS_PRIMOGEN "primogen"
 #define LOCKACCESS_BANU "banuhaqim"
 #define LOCKACCESS_STRIP "strip"
 #define LOCKACCESS_CHANTRY "chantry"
@@ -40,7 +40,10 @@
 #define LOCKACCESS_OLD_CLAN_TZI "old_clan_tzimisce"
 #define LOCKACCESS_BAALI "baali"
 
+#define LOCKACCESS_PRIMOGEN_LASOMBRA "primLasombra"
 #define LOCKACCESS_LASOMBRA "lasombra"
+
+#define LOCKACCESS_KYASID "kyasid"
 
 #define LOCKACCESS_SABBAT "sabbat"
 

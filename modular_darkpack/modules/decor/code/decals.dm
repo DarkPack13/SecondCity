@@ -132,7 +132,7 @@
 /*/obj/effect/turf_decal/bordur/end/inverse // DARKPACK TODO: Needs a sprite and a snow sprite
 	icon_state = "border_end_inverse"*/
 
-/obj/effect/turf_decal/darkpack // These open a massive can of worms. Maybe keep their use to when it's needed only?
+/obj/effect/turf_decal/darkpack
 	name = "detail"
 	abstract_type = /obj/effect/turf_decal/darkpack
 	icon = 'modular_darkpack/modules/decor/icons/natural_turf_borders.dmi'

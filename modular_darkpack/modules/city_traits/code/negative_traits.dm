@@ -16,7 +16,7 @@
 	probability = 0
 	target_trait = ZTRAIT_STATION
 	turf_weather_chance = 0.0001
-	turf_thunder_chance = THUNDER_CHANCE_VERY_RARE/10
+	turf_thunder_chance = THUNDER_CHANCE_VERY_RARE
 	weather_flags = parent_type::weather_flags | WEATHER_ENDLESS
 
 /datum/station_trait/foggy_night
