@@ -6,8 +6,6 @@ export type ATMData = {
   entered_code: string | number | null;
   atm_balance: number;
 
-  bank_account_list: string;
-
   // These exist only when a card is inserted:
   account_balance: number;
   account_holder: string;
