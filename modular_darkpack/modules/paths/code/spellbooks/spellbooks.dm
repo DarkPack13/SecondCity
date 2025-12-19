@@ -134,7 +134,7 @@
 	name = "Occult Book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
-	icon_state = "spellbook"
+	icon_state = "spellbook_unfinished"
 	var/do_after_time = 30 SECONDS
 	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.wav'
 	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.wav'
