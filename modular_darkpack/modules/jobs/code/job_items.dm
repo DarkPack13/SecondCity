@@ -336,7 +336,7 @@
 	desc = "You love the outdoors? Good, you are now taking care of a wide outdoors area."
 
 /obj/item/card/pentex
-	name = "\improper " + MAIN_EVIL_COMPANY + " Employee Badge"
+	name = "\improper " + MAIN_EVIL_COMPANY + " employee badge"
 	desc = "Congratulations, wagie."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
 	icon_state = "green_id"
@@ -345,7 +345,7 @@
 	worn_icon_state = "green_id"
 
 /obj/item/card/pentex/branch_lead
-	name = "\improper " + MAIN_EVIL_COMPANY + " Branch Lead Badge"
+	name = "\improper " + MAIN_EVIL_COMPANY + " Branch Lead badge"
 	desc = "How bad can I be?"
 
 /obj/item/card/pentex/executive
@@ -358,7 +358,7 @@
 
 /obj/item/card/pentex/secchief
 	name = "\improper " + MAIN_EVIL_COMPANY + " Chief of Security badge"
-	desc = "Its not illegal if nobody finds out about it. Now if only" + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
+	desc = "Its not illegal if nobody finds out about it. Now if only " + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
 
 /obj/item/card/pentex/sec
 	name = "\improper " + MAIN_EVIL_COMPANY + " Security Agent badge"
