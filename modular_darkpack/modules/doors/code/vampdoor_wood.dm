@@ -51,7 +51,7 @@
 
 /obj/structure/vampdoor/wood/nps
 	locked = TRUE
-	lock_id = OCKACCESS_PARK_RANGER
+	lock_id = LOCKACCESS_PARK_RANGER
 	lockpick_difficulty = 12
 
 /obj/structure/vampdoor/wood/apartment
