@@ -34,7 +34,6 @@
 /obj/structure/retail/necromancy
 	name = "Necromantic Grimoire"
 	desc = "A sinister grimoire that trades necromantic knowledge and artifacts for the souls of the departed."
-	icon_state = "mining"
 	products_list = list(
 		// Empty for now
 	)
