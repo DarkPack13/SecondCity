@@ -1,4 +1,4 @@
-///datum/discipline/presence
+/datum/discipline/presence
 	name = "Presence"
 	desc = "Makes targets in radius more vulnerable to damages."
 	icon_state = "presence"
