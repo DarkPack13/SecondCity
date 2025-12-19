@@ -6,7 +6,7 @@
 	post_init_icon_state = "cypherkey_service"
 	channels = list(RADIO_CHANNEL_POLICE = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_service
-	greyscale_colors = "#820a16#280b1a"
+	greyscale_colors = "#0000ff#970000"
 
 /obj/item/encryptionkey/clinic
 	name = "clinic encryption key"
@@ -16,7 +16,7 @@
 	post_init_icon_state = "cypherkey_medical"
 	channels = list(RADIO_CHANNEL_CLINIC = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_medical
-	greyscale_colors = "#820a16#280b1a"
+	greyscale_colors = "#ebebeb#69abd1"
 
 /obj/item/encryptionkey/military
 	name = "military encryption key"
@@ -26,7 +26,7 @@
 	post_init_icon_state = "cypherkey_syndicate"
 	channels = list(RADIO_CHANNEL_MILITARY = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_syndicate
-	greyscale_colors = "#820a16#280b1a"
+	greyscale_colors = "#008000#280b1a"
 
 /obj/item/encryptionkey/camarilla
 	name = "camarilla encryption key"
@@ -36,7 +36,7 @@
 	post_init_icon_state = "cypherkey_cargo"
 	channels = list(RADIO_CHANNEL_CAMARILLA = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_cargo
-	greyscale_colors = "#820a16#280b1a"
+	greyscale_colors = "#9900cc#280b1a"
 
 /obj/item/encryptionkey/anarch
 	name = "anarch encryption key"
