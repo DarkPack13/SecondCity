@@ -336,7 +336,7 @@
 	desc = "You love the outdoors? Good, you are now taking care of a wide outdoors area."
 
 /obj/item/card/pentex
-	name = "\improper " + MAIN_EVIL_COMPANY + " Employee Badge"
+	name = "\improper " + MAIN_EVIL_COMPANY + " employee badge"
 	desc = "Congratulations, wagie."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
 	icon_state = "green_id"
