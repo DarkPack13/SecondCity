@@ -6,6 +6,10 @@
 	var/radio_network = "Unnamed Network"
 	var/list/connected_radios = list()
 
+/obj/machinery/radio_tranceiver/examine(mob/user)
+	. = ..()
+	. += span_notice("It is currently connected and managing \the [radio_network].")
+
 /obj/machinery/radio_tranceiver/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/radio/headset/darkpack))
 		return ..()
@@ -30,6 +34,6 @@
 			return ITEM_INTERACT_FAILURE
 		radio.radio_id = input_number
 		radio.radio_network = radio_network
-		connected_radios += radio[input_number]
+		connected_radios += input_number
 		to_chat(user, span_notice("You link \the [radio] to the [radio_network]."))
 	return ITEM_INTERACT_SUCCESS
