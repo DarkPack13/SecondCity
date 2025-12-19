@@ -1,4 +1,4 @@
-// Mystically conjured items subclassed as lighters to emit light
+// conjured items subclassed as lighters to emit light
 /obj/item/lighter/conjured
 	lit = TRUE
 	light_system = OVERLAY_LIGHT
@@ -16,25 +16,21 @@
 	to_chat(user, span_notice("The supernatural flame cannot be extinguished by normal means."))
 	return
 
-// Keep the flame always lit
 /obj/item/lighter/conjured/set_lit(new_lit)
 	if(!new_lit)
-		return // Cannot be extinguished
+		return
 	return ..()
 
 /obj/item/lighter/conjured/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
-	attack_speed = CLICK_CD_MELEE
 	set_light_on(TRUE)
 
-// Lure of flames conjured weapons
 /obj/item/lighter/conjured/flame
 	light_range = 3
 	light_power = 1
 	light_color = COLOR_ORANGE
 
-// afterattack for flame items - includes ignition chance
 /obj/item/lighter/conjured/flame/afterattack(atom/target, mob/living/user, proximity_flag, click_parameters)
 	if(proximity_flag && isliving(target))
 		var/mob/living/L = target
