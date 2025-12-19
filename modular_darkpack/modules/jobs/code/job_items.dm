@@ -358,7 +358,7 @@
 
 /obj/item/card/pentex/secchief
 	name = "\improper " + MAIN_EVIL_COMPANY + " Chief of Security badge"
-	desc = "Its not illegal if nobody finds out about it. Now if only" + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
+	desc = "Its not illegal if nobody finds out about it. Now if only " + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
 
 /obj/item/card/pentex/sec
 	name = "\improper " + MAIN_EVIL_COMPANY + " Security Agent badge"
