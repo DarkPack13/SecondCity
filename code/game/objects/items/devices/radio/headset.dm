@@ -13,6 +13,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	MODE_BINARY = MODE_TOKEN_BINARY,
 	RADIO_CHANNEL_AI_PRIVATE = RADIO_TOKEN_AI_PRIVATE,
 	RADIO_CHANNEL_ENTERTAINMENT = RADIO_TOKEN_ENTERTAINMENT,
+	// DARKPACK EDIT ADD START
+	RADIO_CHANNEL_POLICE = RADIO_TOKEN_POLICE,
+	RADIO_CHANNEL_CLINIC = RADIO_TOKEN_CLINIC,
+	RADIO_CHANNEL_MILITARY = RADIO_TOKEN_MILITARY,
+	RADIO_CHANNEL_CAMARILLA = RADIO_TOKEN_CAMARILLA,
+	RADIO_CHANNEL_ANARCH = RADIO_TOKEN_ANARCH
+	// DARKPACK EDIT ADD END
 ))
 
 /obj/item/radio/headset
@@ -55,7 +62,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	// construction of frequency description
 	var/list/available_channels = list()
-	available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>"
+	// available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>" // DARKPACK EDIT REMOVAL
 	if(special_channels & RADIO_SPECIAL_BINARY)
 		available_channels += "<li><b>[span_binarysay(MODE_TOKEN_BINARY)] for [span_binarysay(capitalize(MODE_BINARY))]</b></li>"
 
@@ -64,10 +71,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/channel_token = GLOB.channel_tokens[channel_name]
 		var/channel_span_class = get_radio_span(GLOB.default_radio_channels[channel_name])
 
+		/* DARKPACK EDIT REMOVAL START
 		if(i == 1)
 			available_channels += "<li><b>[span_class(channel_span_class, MODE_TOKEN_DEPARTMENT)]</b> or <b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
 		else
-			available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+		*/ // DARKPACK EDIT REMOVAL END
+		available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>" // DARKPACK EDIT, ORIGINAL: 	available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
 
 	. += span_notice("A small screen on the headset displays the following available frequencies:")
 	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")

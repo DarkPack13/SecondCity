@@ -1,28 +1,55 @@
-/obj/item/radio/cop
-	name = "police radio"
-	subspace_transmission = FALSE
-	subspace_switchable = FALSE
-	keyslot = /obj/item/encryptionkey/headset_sec
+// Police Radio
+/obj/item/radio/headset/cop
+	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
+	icon_state = "pp25"
+	freqlock = RADIO_FREQENCY_LOCKED
+	keyslot = /obj/item/encryptionkey/police
 
-/obj/item/radio/cop/Initialize()
+/obj/item/radio/headset/cop/Initialize()
 	. = ..()
-	set_frequency(FREQ_SECURITY)
+	set_frequency(FREQ_POLICE)
 
-/obj/item/radio/clinic
-	name = "clinic radio"
+// Clinic Radio
+/obj/item/radio/headset/clinic
+	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
+	icon_state = "p25"
+	freqlock = RADIO_FREQENCY_LOCKED
+	keyslot = /obj/item/encryptionkey/clinic
 
-	keyslot = /obj/item/encryptionkey/headset_med
-
-/obj/item/radio/clinic/Initialize()
+/obj/item/radio/headset/clinic/Initialize()
 	. = ..()
-	set_frequency(FREQ_MEDICAL)
+	set_frequency(FREQ_CLINIC)
 
-/obj/item/radio/military
+// Military Radio
+/obj/item/radio/headset/military
 	name = "military radio"
+	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
+	icon_state = "p25"
+	freqlock = RADIO_FREQENCY_LOCKED
+	keyslot = /obj/item/encryptionkey/military
 
-	//syndie = TRUE
-	keyslot = /obj/item/encryptionkey/syndicate
-
-/obj/item/radio/military/Initialize()
+/obj/item/radio/headset/military/Initialize()
 	. = ..()
-	set_frequency(FREQ_SYNDICATE)
+	set_frequency(FREQ_MILITARY)
+
+// Camarilla Radio
+/obj/item/radio/headset/camarilla
+	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
+	icon_state = "p25"
+	freqlock = RADIO_FREQENCY_LOCKED
+	keyslot = /obj/item/encryptionkey/camarilla
+
+/obj/item/radio/headset/camarilla/Initialize()
+	. = ..()
+	set_frequency(FREQ_CAMARILLA)
+
+// Anarchs Radio
+/obj/item/radio/headset/anarch
+	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
+	icon_state = "p25"
+	freqlock = RADIO_FREQENCY_LOCKED
+	keyslot = /obj/item/encryptionkey/anarch
+
+/obj/item/radio/headset/anarch/Initialize()
+	. = ..()
+	set_frequency(FREQ_ANARCH)

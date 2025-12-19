@@ -23,7 +23,7 @@
 	name = "Clinic Director"
 	jobtype = /datum/job/vampire/clinic_director
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/clinic
 	id = /obj/item/card/clinic/director
 	uniform = /obj/item/clothing/under/vampire/nurse
 	shoes = /obj/item/clothing/shoes/vampire/white

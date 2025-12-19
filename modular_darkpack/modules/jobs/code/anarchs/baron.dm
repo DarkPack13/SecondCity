@@ -26,6 +26,7 @@
 	jobtype = /datum/job/vampire/baron
 
 	id = /obj/item/card/baron
+	ears = /obj/item/radio/headset/anarch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/bar
 	suit = /obj/item/clothing/suit/vampire/jacket/better
