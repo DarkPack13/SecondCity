@@ -6,7 +6,7 @@
 /mob/living/get_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
-	for (var/datum/splat/splat in splats)
+	for (var/datum/splat/splat as anything in splats)
 		if (!istype(splat, splat_type))
 			continue
 
@@ -19,14 +19,17 @@
 	return adding_splat.assign(src)
 
 /mob/living/proc/remove_splat(splat_type)
-	for (var/datum/splat/found_splat in splats)
+	for (var/datum/splat/found_splat as anything in splats)
 		if (!istype(found_splat, splat_type))
 			continue
 
 		qdel(found_splat)
+		return TRUE
+
+	return FALSE
 
 /mob/living/proc/is_splat_incompatible(splat_type)
-	for (var/datum/splat/splat in splats)
+	for (var/datum/splat/splat as anything in splats)
 		if (splat_type in splat.incompatible_splats)
 			return TRUE
 		if (splat.type == splat_type)

@@ -6,11 +6,7 @@
 
 	clear_powers()
 
-	if (!owner)
-		return
-
-	if (QDELING(owner))
-		LAZYREMOVE(owner.splats, src)
+	if (QDELETED(owner))
 		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
@@ -75,7 +71,7 @@
 
 		owner.mob_biotypes &= ~biotype
 
-/datum/splat/proc/handle_parent_destroyed(mob/living/source)
+/datum/splat/proc/handle_parent_destroyed()
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 
