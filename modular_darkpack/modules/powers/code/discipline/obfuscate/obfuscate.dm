@@ -23,17 +23,25 @@
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_MOB_ITEM_ATTACK,
 		COMSIG_MOVABLE_SAY_QUOTE,
-		COMSIG_POWER_ACTIVATE
+		COMSIG_LIVING_GRAB
 	)
 
-
-/datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source, datum/discipline_power/activated_power, atom/target)
+/datum/discipline_power/obfuscate/proc/on_discipline_activation(datum/source, datum/discipline_power/activated_power, atom/target)
 	SIGNAL_HANDLER
 
 	if(istype(activated_power, /datum/discipline_power/obfuscate))
 		return
 
-	to_chat(owner, span_danger("Your Obfuscate falls away as you reveal yourself!"))
+	to_chat(owner, span_danger("Your Obfuscation falls away as you focus your blood on another discipline!"))
+	try_deactivate(direct = TRUE)
+
+	deltimer(cooldown_timer)
+	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/datum/discipline_power/obfuscate/proc/on_combat_signal(datum/source)
+	SIGNAL_HANDLER
+
+	to_chat(owner, span_danger("Your Obfuscation falls away as you reveal yourself!"))
 	try_deactivate(direct = TRUE)
 
 	deltimer(cooldown_timer)
@@ -81,6 +89,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
+	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -91,6 +100,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -129,6 +139,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
+	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -140,6 +151,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -169,34 +181,38 @@
 	var/original_name
 	var/original_sprite
 	var/original_sprite_greyscale
+	var/list/cached_targets
 
 //mask of a thousand faces is supposed to have varying levels of success based on successes rolled
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
+	for(var/mob/living/carbon/human/H in range(12, owner))
+		if(H == owner)
+			continue
+		LAZYSET(cached_targets, H.real_name, image(icon = H.icon, icon_state = H.icon_state))
+
+	if(!LAZYLEN(cached_targets))
+		to_chat(owner, span_warning("There isn't anyone nearby to mimic!"))
+		return FALSE
+
+	if(!is_seen_check())
+		cached_targets = null
+		return FALSE
+
 	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
-	switch(roll)
-		if(ROLL_SUCCESS)
-			return is_seen_check()
-		else
-			to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
-			return FALSE
+	if(roll == ROLL_SUCCESS)
+		return TRUE
+
+	cached_targets = null // Clean up since we failed
+	to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
+	return FALSE
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
 
-	//this 'only within 12 tiles' limitation is extremely lazy and should be treated as a placeholder for a more robust system down the line
-	//probably something like examining the target. COMSIG_ATOM_EXAMINE or something.
-	var/list/targets = list()
-	for(var/mob/living/carbon/human/H in range(12, owner))
-		if(H == owner)
-			continue
-		targets[H.real_name] = image(icon = H.icon, icon_state = H.icon_state)
-
-	if(!targets.len)
-		to_chat(owner, span_warning("There isn't anyone nearby to mimic!"))
-		return
-
-	var/chosen_name = show_radial_menu(owner, owner, targets, radius = 40, require_near = TRUE, tooltips = TRUE)
+	var/chosen_name = show_radial_menu(owner, owner, cached_targets, radius = 40, require_near = TRUE, tooltips = TRUE)
 	if(!chosen_name)
+		cached_targets = null
+		try_deactivate(direct = TRUE)
 		return
 
 	var/mob/living/carbon/human/target
@@ -204,6 +220,8 @@
 		if(H.real_name == chosen_name)
 			target = H
 			break
+
+	cached_targets = null // lazylist so lets just return it to null
 
 	//transforming into someone more attractive than you requires a higher blood investment
 	var/appearance_difference = target.st_get_stat(STAT_APPEARANCE) - owner.st_get_stat(STAT_APPEARANCE)
@@ -270,13 +288,15 @@
 	)
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/pre_activation_checks(atom/target)
-	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner))
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner)
+	if(roll == ROLL_SUCCESS)
 		return TRUE
 	return FALSE
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/activate()
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
+	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -289,6 +309,7 @@
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
+	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -313,6 +334,7 @@
 /datum/discipline_power/obfuscate/cloak_the_gathering/activate()
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
+	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -322,6 +344,7 @@
 /datum/discipline_power/obfuscate/cloak_the_gathering/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
+	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
