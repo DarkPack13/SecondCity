@@ -9,20 +9,15 @@
 	var/radio_network
 	var/radio_id
 
-/obj/item/radio/headset/darkpack/click_alt(mob/living/user)
-	if(!radio_id)
-		radio_id = tgui_input_number(user = user, message = "Set Radio ID", title = "Enter a numerical ID to use for this network:", max_value = 999, min_value = 1, round_value = TRUE)
-	return ..()
-
 /obj/item/radio/headset/darkpack/examine(mob/user)
 	. = ..()
 	. += radio_network ? span_notice("Connected to [radio_network] using ID: [radio_id].") : span_warning("Not connected to any network.")
 
 // Police Radio
-/obj/item/radio/headset/darkpack/cop
+/obj/item/radio/headset/darkpack/police
 	keyslot = /obj/item/encryptionkey/police
 
-/obj/item/radio/headset/darkpack/cop/Initialize()
+/obj/item/radio/headset/darkpack/police/Initialize()
 	. = ..()
 	set_frequency(FREQ_POLICE)
 
@@ -38,10 +33,12 @@
 /obj/item/radio/headset/darkpack/military
 	name = "military radio"
 	keyslot = /obj/item/encryptionkey/military
+	radio_network = "Military Network"
 
 /obj/item/radio/headset/darkpack/military/Initialize()
 	. = ..()
 	set_frequency(FREQ_MILITARY)
+	radio_id = rand(1, 999) // Since we wont have a tranceiver for these, we're just auto-assigning a random ID. This isn't foolproof.
 
 // Camarilla Radio
 /obj/item/radio/headset/darkpack/camarilla
