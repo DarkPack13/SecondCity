@@ -1,8 +1,8 @@
-/obj/item/p25radio : 
-/obj/item/p25radio/police : 
-/obj/machinery/p25policeportal : 
-/obj/machinery/p25transceiver/anarch : 
-/obj/machinery/p25transceiver/clinic : 
-/obj/machinery/p25transceiver/endron : 
-/obj/machinery/p25transceiver/police : 
-/obj/machinery/p25transceiver/tower : 
+/obj/item/p25radio : /obj/item/radio
+/obj/item/p25radio/police :  /obj/item/radio/headset/darkpack/cop
+/obj/machinery/p25policeportal :
+/obj/machinery/p25transceiver/anarch :
+/obj/machinery/p25transceiver/clinic :
+/obj/machinery/p25transceiver/endron :
+/obj/machinery/p25transceiver/police :
+/obj/machinery/p25transceiver/tower :

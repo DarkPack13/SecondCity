@@ -1,22 +1,22 @@
 // Base radio type we use for our custom behaviors.
 /obj/item/radio/headset/darkpack
+	name = "P25 radio"
+	desc = "A portable radio headset operating on the P25 digital standard."
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
+	var/radio_network
 	var/radio_id
 
 /obj/item/radio/headset/darkpack/click_alt(mob/living/user)
 	if(!radio_id)
-		radio_id = tgui_input_number(user = user, message = "Set Radio ID", title = "Enter a numeric ID for this radio:", max_value = 999, min_value = 1, round_value = TRUE)
+		radio_id = tgui_input_number(user = user, message = "Set Radio ID", title = "Enter a numerical ID to use for this network:", max_value = 999, min_value = 1, round_value = TRUE)
 	return ..()
 
 /obj/item/radio/headset/darkpack/examine(mob/user)
 	. = ..()
-	if(!radio_id)
-		. += span_notice("It has no ID set.")
-	else
-		. += span_notice("The Radio ID is set to [radio_id].")
+	. += radio_network ? span_notice("Connected to [radio_network] using ID: [radio_id].") : span_warning("Not connected to any network.")
 
 // Police Radio
 /obj/item/radio/headset/darkpack/cop
