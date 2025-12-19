@@ -345,7 +345,7 @@
 	worn_icon_state = "green_id"
 
 /obj/item/card/pentex/branch_lead
-	name = "\improper " + MAIN_EVIL_COMPANY + " Branch Lead Badge"
+	name = "\improper " + MAIN_EVIL_COMPANY + " Branch Lead badge"
 	desc = "How bad can I be?"
 
 /obj/item/card/pentex/executive
