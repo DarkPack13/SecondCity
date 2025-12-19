@@ -24,9 +24,6 @@
 			continue
 
 		qdel(found_splat)
-		return TRUE
-
-	return FALSE
 
 /mob/living/proc/is_splat_incompatible(splat_type)
 	for (var/datum/splat/splat in splats)
