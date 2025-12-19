@@ -2426,7 +2426,6 @@
 /area/vtm/interior/church)
 "aie" = (
 /obj/structure/chair/comfy/darkpack/blue,
-/obj/effect/landmark/start/darkpack/law_enforcement/sergeant,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
 "aif" = (
@@ -13021,6 +13020,7 @@
 "aQO" = (
 /obj/structure/table/countertop/black,
 /obj/machinery/light/small/directional/east,
+/obj/structure/sink/basin/directional/west,
 /turf/open/floor/city/toilet,
 /area/vtm/westfield_mall/interior/bathroom)
 "aQP" = (
@@ -16552,6 +16552,10 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
+"gPN" = (
+/obj/effect/landmark/start/darkpack/law_enforcement/sergeant,
+/turf/open/floor/carpet/darkpack/bluegold,
+/area/vtm/interior/police)
 "gTj" = (
 /obj/effect/spawner/random/bureaucracy/pen{
 	pixel_x = 5
@@ -80786,7 +80790,7 @@ arJ
 axj
 awd
 aUz
-aUz
+gPN
 nph
 aUp
 aUp
@@ -80938,7 +80942,7 @@ aLn
 azo
 arZ
 aUz
-aUz
+gPN
 jfA
 aoE
 aTX
