@@ -11150,12 +11150,6 @@
 	},
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/mapping_helpers/door/access/camarilla,
-/obj/structure/vampdoor/old{
-	dir = 1
-	},
-/obj/structure/vampdoor/old{
-	dir = 1
-	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/maintenance)
 "aKM" = (
