@@ -24,7 +24,7 @@
 	name = "Police Chief"
 	jobtype = /datum/job/vampire/police_chief
 
-	ears = /obj/item/radio/headset/cop
+	ears = /obj/item/radio/headset/darkpack/cop
 	uniform = /obj/item/clothing/under/vampire/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police/chief

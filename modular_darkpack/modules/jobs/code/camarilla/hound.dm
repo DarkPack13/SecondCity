@@ -32,7 +32,7 @@
 	name = "Hound"
 	jobtype = /datum/job/vampire/hound
 
-	ears = /obj/item/radio/headset/camarilla
+	ears = /obj/item/radio/headset/darkpack/camarilla
 	id = /obj/item/card/camarilla
 	uniform = /obj/item/clothing/under/vampire/hound
 	gloves = /obj/item/clothing/gloves/vampire/work

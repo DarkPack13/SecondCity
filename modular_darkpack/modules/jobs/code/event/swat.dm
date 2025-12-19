@@ -1,6 +1,6 @@
 /datum/outfit/job/vampire/swat
 	name = "Swat Officer"
-	ears = /obj/item/radio/headset/cop
+	ears = /obj/item/radio/headset/darkpack/cop
 	uniform = /obj/item/clothing/under/vampire/police/utility
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight

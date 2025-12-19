@@ -26,7 +26,7 @@
 	jobtype = /datum/job/vampire/sweeper
 
 	id = /obj/item/card/sweeper
-	ears = /obj/item/radio/headset/anarch
+	ears = /obj/item/radio/headset/darkpack/anarch
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots

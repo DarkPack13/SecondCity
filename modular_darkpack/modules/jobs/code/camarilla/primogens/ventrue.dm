@@ -35,7 +35,7 @@
 	name = "Primogen Ventrue"
 	jobtype = /datum/job/vampire/primogen_ventrue
 
-	ears = /obj/item/radio/headset/camarilla
+	ears = /obj/item/radio/headset/darkpack/camarilla
 	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
