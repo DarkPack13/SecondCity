@@ -236,17 +236,16 @@
 	icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
 	onflooricon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
 	icon_state = "bloodstone"
-	var/mob/living/carbon/human/bound_identifier // Who identified it first
+	var/datum/weakref/bound_identifier // Who identified it first
 	var/datum/action/bloodstone_track/tracking_action
 	research_value = 15
-
 
 /obj/item/vtm_artifact/bloodstone/identify()
 	. = ..()
 	if(identified && !bound_identifier)
 		var/mob/living/carbon/human/user = usr
 		if(ishuman(user))
-			bound_identifier = user
+			bound_identifier = WEAKREF(user)
 			to_chat(user, span_warning("The bloodstone pulses with dark energy as it bonds to your essence. You will always know its location."))
 
 			tracking_action = new /datum/action/bloodstone_track(user, src)
@@ -254,8 +253,11 @@
 
 /obj/item/vtm_artifact/bloodstone/Destroy()
 	if(tracking_action)
-		tracking_action.Remove(bound_identifier)
+		var/mob/living/carbon/human/user = bound_identifier.resolve()
+		if(user)
+			tracking_action.Remove(user)
 		QDEL_NULL(tracking_action)
+	bound_identifier = null
 	return ..()
 
 /datum/action/bloodstone_track
@@ -264,28 +266,25 @@
 	button_icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
 	button_icon_state = "bloodstone_track"
 	check_flags = AB_CHECK_CONSCIOUS
-	var/obj/item/vtm_artifact/bloodstone/tracked_stone
+	var/datum/weakref/tracked_stone
 
 /datum/action/bloodstone_track/New(Target, obj/item/vtm_artifact/bloodstone/stone)
 	..()
-	tracked_stone = stone
+	tracked_stone = WEAKREF(stone)
 
 /datum/action/bloodstone_track/Trigger(trigger_flags)
-	if(!tracked_stone)
+	var/obj/item/vtm_artifact/bloodstone/bloodstone = tracked_stone.resolve()
+	if(!bloodstone)
 		to_chat(owner, span_warning("The bloodstone bond has been severed."))
 		Remove(owner)
+		qdel(src)
 		return FALSE
 
-	var/turf/stone_turf = get_turf(tracked_stone)
+	var/turf/stone_turf = get_turf(bloodstone)
 	if(!stone_turf)
 		to_chat(owner, span_warning("You cannot sense the bloodstone's location."))
 		return FALSE
 
-	var/area/stone_area = get_area(tracked_stone)
+	var/area/stone_area = get_area(bloodstone)
 	to_chat(owner, span_notice("The bloodstone whispers its location: [stone_area.name] ([stone_turf.x], [stone_turf.y])"))
 	return TRUE
-
-/datum/action/bloodstone_track/IsAvailable(feedback = FALSE)
-	if(!tracked_stone)
-		return FALSE
-	return ..()
