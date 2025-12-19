@@ -2,7 +2,7 @@
 	name = "Path Spellbook"
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
-	icon_state = "spellbook"
+	icon_state = "spellbook_unfinished"
 	var/path_type = null
 	var/path_level = 1
 	var/do_after_time = 300 // 30 seconds

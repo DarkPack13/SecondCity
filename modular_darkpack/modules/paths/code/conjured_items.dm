@@ -9,6 +9,7 @@
 	lefthand_file = 'modular_darkpack/modules/paths/icons/paths_inhand_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/paths/icons/paths_inhand_righthand.dmi'
 	icon_state = "flame-on"
+	inhand_icon_state = "flame"
 
 // Override parent behavior so that they can't be turned off
 /obj/item/lighter/conjured/attack_self(mob/user)
