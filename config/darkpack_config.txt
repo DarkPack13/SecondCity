@@ -6,5 +6,20 @@ JUMP_SLOWDOWN
 ## If the server has NSFW content enabled.
 #NSFW_CONTENT
 
+## Uncomment to use extra success exploding dice
+#ON_CRIT_ADDITIONAL_SUCCESS
+
+## Uncomment to use actual exploding dice
+ON_CRIT_ADDITIONAL_DIE
+
+## Time til day define
+TIME_TILL_DAY 198000
+
+## Time till roundend define
+TIME_TILL_ROUNDEND 216000
+
+## World of Darkness splats, currently coded as species
+ROUNDSTART_RACES kindred
+ROUNDSTART_RACES ghoul
 ## If dead people and ghosts can LOOC to people who are alive.
 DISABLE_GHOST_LOOC
