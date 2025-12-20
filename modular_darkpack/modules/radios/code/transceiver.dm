@@ -78,6 +78,7 @@
 	disconnected_radio.set_frequency(FREQ_COMMON)
 	connected_radios -= "[disconnected_radio.radio_id]"
 	disconnected_radio.radio_id = null
+
 /obj/machinery/radio_tranceiver/police
 	radio_network = "Police Network"
 	radio_frequency = FREQ_POLICE
