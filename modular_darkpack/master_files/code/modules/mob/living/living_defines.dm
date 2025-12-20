@@ -20,7 +20,7 @@
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
-	var/humanity = 7
+	//var/humanity = 7
 	var/masquerade_score = 5
 	var/warrant = FALSE
 	var/ignores_warrant = FALSE

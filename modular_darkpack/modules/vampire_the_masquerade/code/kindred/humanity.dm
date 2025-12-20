@@ -16,8 +16,8 @@
 	var/new_humanity
 	var/humanity_change
 	if (value > 0)
-		new_humanity = clamp(humanity + value, 0, limit)
-		humanity_change = new_humanity - humanity
+		new_humanity = clamp(st_get_stat(STAT_MORALITY) + value, 0, limit)
+		humanity_change = new_humanity - st_get_stat(STAT_MORALITY)
 
 		// Hit the limit for increase, no change
 		if (humanity_change <= 0)
@@ -26,8 +26,8 @@
 		var/loss_modifier = HAS_TRAIT(src, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
 		value *= loss_modifier
 
-		new_humanity = clamp(humanity + value, limit, 10)
-		humanity_change = new_humanity - humanity
+		new_humanity = clamp(st_get_stat(STAT_MORALITY) + value, limit, 10)
+		humanity_change = new_humanity - st_get_stat(STAT_MORALITY)
 
 		// Hit the limit for decrease, no change
 		if (humanity_change >= 0)
@@ -39,14 +39,14 @@
 	if (signal_return & BLOCK_HUMANITY_CHANGE)
 		return
 
-	// Change Humanity according to calculated values
-	humanity += humanity_change
+	// Change st_get_stat(STAT_MORALITY) according to calculated values
+	st_set_stat(STAT_MORALITY, st_get_stat(STAT_MORALITY) + humanity_change)
 	if (humanity_change > 0)
 		SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 75))
 		to_chat(src, span_boldnicegreen("[uppertext(path)] INCREASED!"))
 
 		// Gaining Path flavour text
-		switch (humanity)
+		switch (st_get_stat(STAT_MORALITY))
 			if (10)
 				to_chat(src, span_green("As your [path] reaches its peak, you feel the Beast [is_enlightenment ? "reaching perfect harmony with you" : "falling into a deep slumber, waiting"]."))
 	else if (humanity_change < 0)
@@ -54,7 +54,7 @@
 		to_chat(src, span_userdanger(span_bold("[uppertext(path)] DECREASED!")))
 
 		// Losing Path flavour text
-		switch (humanity)
+		switch (st_get_stat(STAT_MORALITY))
 			if (1)
 				to_chat(src, span_userdanger(span_bold("BLOOD. FEED. HUNGER.")))
 			if (2)

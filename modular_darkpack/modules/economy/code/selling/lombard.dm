@@ -169,7 +169,7 @@
 		sell_one_item(sold, user)
 		return
 
-	// Humanity loss warning for bulk sales
+	// st_get_stat(STAT_MORALITY) loss warning for bulk sales
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/datum/species/human/kindred/vampirism = H.dna.species
@@ -177,13 +177,13 @@
 			var/humanity_loss_modifier = HAS_TRAIT(H, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
 			var/total_humanity_risk = length(items_to_sell) * humanity_loss_modifier * selling_comp.humanity_loss
 
-			if(selling_comp.humanity_loss_limit < H.humanity)
-				if((selling_comp.humanity_loss_limit <= 0) && ((H.humanity + total_humanity_risk) <= 0))
-					to_chat(user, span_warning("Selling all of this will remove all of your Humanity!"))
+			if(selling_comp.humanity_loss_limit < H.st_get_stat(STAT_MORALITY))
+				if((selling_comp.humanity_loss_limit <= 0) && ((H.st_get_stat(STAT_MORALITY) + total_humanity_risk) <= 0))
+					to_chat(user, span_warning("Selling all of this will remove all of your st_get_stat(STAT_MORALITY)!"))
 					return
 
-				var/max_loss = min(H.humanity - selling_comp.humanity_loss_limit, -total_humanity_risk)
-				var/choice = alert(H, "Your HUMANITY is currently at [H.humanity], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
+				var/max_loss = min(H.st_get_stat(STAT_MORALITY) - selling_comp.humanity_loss_limit, -total_humanity_risk)
+				var/choice = alert(H, "Your HUMANITY is currently at [H.st_get_stat(STAT_MORALITY)], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
 				if(choice == "No")
 					return
 
