@@ -1,21 +1,27 @@
 /obj/machinery/atm
-	name = "ATM Machine"
-	desc = "Check your balance or make a transaction"
+	name = "\improper ATM machine"
+	desc = "Check your balance or make a transaction."
 	icon = 'modular_darkpack/modules/economy/icons/atm.dmi'
 	icon_state = "atm"
 	anchored = TRUE
-	// DARKPARK TODO - Make this meanifully interact with destruction mechanics
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/logged_in = FALSE
-	var/entered_code
 
-	var/atm_balance = 0
-	var/datum/bank_account/logged_account
-	//light_system = STATIC_LIGHT
+	max_integrity = 250
+	damage_deflection = 20
+
 	light_color = COLOR_GREEN
 	light_range = 2
-	light_power = 1
-	light_on = TRUE
+
+	circuit = /obj/item/circuitboard/machine/atm
+
+	var/logged_in = FALSE
+	var/atm_balance = 0
+	// Just because there is account selected does not nesicarrly indicate logged_in is true. (you still have to enter your pin)
+	var/datum/bank_account/logged_account
+
+/obj/machinery/atm/examine(mob/user)
+	. = ..()
+	if(logged_account)
+		. += span_notice("The screen is active with an account logged in.")
 
 /obj/machinery/atm/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(is_creditcard(tool))
@@ -46,7 +52,6 @@
 	var/list/data = list()
 	data["logged_in"] = logged_in
 	data["card"] = logged_account ? TRUE : FALSE
-	data["entered_code"] = entered_code
 	data["atm_balance"] = atm_balance
 	if(logged_account)
 		data["account_balance"] = logged_account.account_balance
@@ -77,7 +82,6 @@
 				return FALSE
 		if("logout")
 			logged_in = FALSE
-			entered_code = ""
 			logged_account = null
 			return TRUE
 		if("withdraw")
@@ -108,3 +112,13 @@
 			else
 				to_chat(usr, span_notice("The ATM is empty. Nothing to deposit."))
 				return TRUE
+
+/obj/item/circuitboard/machine/atm
+	name = "\improper ATM machine"
+	greyscale_colors = CIRCUIT_COLOR_GENERIC
+	build_path = /obj/machinery/atm
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/datum/stock_part/servo = 2,
+	)
+
