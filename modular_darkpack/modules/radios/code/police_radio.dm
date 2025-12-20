@@ -53,6 +53,8 @@
 			message = "Murder at [crime_location.name], to the [direction], [location.x]:[location.y]..."
 		if("burglary")
 			message = "Burglary reported by automated security device at [crime_location.name], the [direction], [location.x]:[location.y]..."
+		if("atm_tampering")
+			message = "An atm was broken into or otherwise tampered with at [crime_location.name], to the [direction], [location.x]:[location.y]..."
 
 	say(message)
 
