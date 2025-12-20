@@ -66,14 +66,14 @@
 		set_anchored(!anchored)
 	return TRUE
 
-/obj/machinery/radio_tranceiver/proc/join_network(/obj/item/radio/headset/darkpack/connected_radio, radio_id)
+/obj/machinery/radio_tranceiver/proc/join_network(obj/item/radio/headset/darkpack/connected_radio, radio_id)
 	connected_radio.radio_id = radio_id
 	connected_radio.radio_network = radio_network
 	connected_radio.set_frequency(radio_frequency)
 	var/datum/weakref/radio_weakref = WEAKREF(connected_radio)
 	connected_radios["[radio_id]"] = radio_weakref
 
-/obj/machinery/radio_tranceiver/proc/leave_network(/obj/item/radio/headset/darkpack/disconnected_radio)
+/obj/machinery/radio_tranceiver/proc/leave_network(obj/item/radio/headset/darkpack/disconnected_radio)
 	disconnected_radio.radio_network = null
 	disconnected_radio.set_frequency(FREQ_COMMON)
 	connected_radios -= "[disconnected_radio.radio_id]"
