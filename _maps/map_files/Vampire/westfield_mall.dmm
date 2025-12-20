@@ -14173,8 +14173,7 @@
 "aUJ" = (
 /obj/machinery/shower/directional/west,
 /obj/structure/bath,
-/obj/structure/platform/lowwall/junk,
-/turf/open/floor/plating/rough,
+/turf/open/floor/city/toilet,
 /area/vtm/interior/sewer)
 "aUK" = (
 /obj/structure/railing{
