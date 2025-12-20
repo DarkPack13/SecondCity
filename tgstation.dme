@@ -7167,7 +7167,6 @@
 #include "modular_darkpack\modules\loadout\code\categories\shoes.dm"
 #include "modular_darkpack\modules\loadout\code\categories\suit.dm"
 #include "modular_darkpack\modules\loadout\code\categories\uniform.dm"
-#include "modular_darkpack\modules\looc\code\helper_procs.dm"
 #include "modular_darkpack\modules\looc\code\keybinds.dm"
 #include "modular_darkpack\modules\looc\code\looc_preference.dm"
 #include "modular_darkpack\modules\looc\code\verbs.dm"
