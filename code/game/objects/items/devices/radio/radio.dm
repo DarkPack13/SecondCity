@@ -2,7 +2,7 @@
 
 /obj/item/radio
 	icon = 'icons/obj/devices/voice.dmi'
-	name = "station bounced radio"
+	name = "city bounced radio" // DARKPACK EDIT, ORIGINAL: name = "station bounced radio"
 	icon_state = "walkietalkie"
 	inhand_icon_state = "walkietalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
