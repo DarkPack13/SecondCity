@@ -1,12 +1,5 @@
-// Military Radio Server
-/obj/machinery/telecomms/server/presets/military
-	id = "Military Server"
+/obj/machinery/telecomms/allinone/military
+	name = "military telecommunications mainframe"
+	desc = "A mainframe that allows for the processing of priority military telecommunications."
 	freq_listening = list(FREQ_MILITARY)
-	autolinkers = list("military")
-
-/obj/machinery/telecomms/server/presets/military/New()
-	. = ..()
-	frequency_infos["[FREQ_MILITARY]"] = list(
-		"name" = RADIO_CHANNEL_MILITARY,
-		"color" = RADIO_COLOR_MILITARY
-	)
+	syndicate = TRUE
