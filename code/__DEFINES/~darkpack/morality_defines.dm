@@ -23,6 +23,8 @@
 #define BEARING_MENACE (1<<9)
 #define BEARING_FAITH (1<<10)
 #define BEARING_GUILT (1<<11)
+#define BEARING_TRIBULATION (1<<12)
+#define BEARING_SEDUCTION (1<<13)
 
 // Path hits
 #define PATH_SCORE_DOWN -1
