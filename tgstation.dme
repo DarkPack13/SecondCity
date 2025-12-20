@@ -451,6 +451,7 @@
 #include "code\__DEFINES\~darkpack\storyteller_stats.dm"
 #include "code\__DEFINES\~darkpack\subsystems.dm"
 #include "code\__DEFINES\~darkpack\vampire_clan.dm"
+#include "code\__DEFINES\~darkpack\walls.dm"
 #include "code\__DEFINES\~darkpack\xp_and_freebie.dm"
 #include "code\__DEFINES\~darkpack\dcs\bouncer_signals.dm"
 #include "code\__DEFINES\~darkpack\dcs\fire_signals.dm"
