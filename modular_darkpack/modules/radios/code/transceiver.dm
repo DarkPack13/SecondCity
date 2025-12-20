@@ -40,10 +40,7 @@
 	if(radio.radio_id)
 		if("[radio.radio_id]" in connected_radios)
 			to_chat(user, span_notice("You unlink the [radio] from the [radio_network]."))
-			connected_radios -= "[radio.radio_id]"
-			radio.radio_id = null
-			radio.radio_network = null
-			radio.set_frequency(FREQ_COMMON)
+			leave_network(radio)
 			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_notice("You can't link the [radio] to the [radio_network] because it is connected to the [radio.radio_network]!"))
@@ -55,11 +52,7 @@
 		if("[input_number]" in connected_radios)
 			to_chat(user, span_warning("A radio with that ID is already connected to this network!"))
 			return ITEM_INTERACT_FAILURE
-		radio.radio_id = input_number
-		radio.radio_network = radio_network
-		radio.set_frequency(radio_frequency)
-		var/datum/weakref/radio_weakref = WEAKREF(radio)
-		connected_radios["[input_number]"] = radio_weakref
+		join_network(radio, input_number)
 		to_chat(user, span_notice("You link the [radio] to the [radio_network]."))
 	return ITEM_INTERACT_SUCCESS
 
@@ -73,6 +66,18 @@
 		set_anchored(!anchored)
 	return TRUE
 
+/obj/machinery/radio_tranceiver/proc/join_network(/obj/item/radio/headset/darkpack/connected_radio, radio_id)
+	connected_radio.radio_id = radio_id
+	connected_radio.radio_network = radio_network
+	connected_radio.set_frequency(radio_frequency)
+	var/datum/weakref/radio_weakref = WEAKREF(connected_radio)
+	connected_radios["[radio_id]"] = radio_weakref
+
+/obj/machinery/radio_tranceiver/proc/leave_network(/obj/item/radio/headset/darkpack/disconnected_radio)
+	disconnected_radio.radio_network = null
+	disconnected_radio.set_frequency(FREQ_COMMON)
+	connected_radios -= "[disconnected_radio.radio_id]"
+	disconnected_radio.radio_id = null
 /obj/machinery/radio_tranceiver/police
 	radio_network = "Police Network"
 	radio_frequency = FREQ_POLICE

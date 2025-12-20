@@ -16,7 +16,6 @@
 // Military Radio
 /obj/item/radio/headset/darkpack/military
 	name = "military radio"
-	keyslot = /obj/item/encryptionkey/military
 	radio_network = "Military Network"
 
 /obj/item/radio/headset/darkpack/military/Initialize()
