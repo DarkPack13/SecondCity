@@ -34,7 +34,6 @@
 	return choices[serialize(create_default_value())]
 
 /datum/preference/choiced/vtm_morality/apply_to_human(mob/living/carbon/human/target, value)
-	// Get the morality path stat
 	var/datum/st_stat/morality_path/morality/stat_morality = target.storyteller_stats["[STAT_MORALITY]"]
 	if(!stat_morality)
 		return

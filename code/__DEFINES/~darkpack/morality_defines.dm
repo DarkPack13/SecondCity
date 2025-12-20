@@ -9,7 +9,7 @@
 #define MORALITY_HUMANITY "morality_humanity"
 #define MORALITY_ENLIGHTENMENT "morality_enlightenment"
 
-// Bearings -- (chaz note)these should probably be improved upon instead of being bitflags. all they do is reduce the difficulty on rolls involving certain stats.
+// Bearings
 // example: BEARING_SILENCE reduces the difficulty of all stealth rolls by minus one if the follower of the path is above path score 5.
 #define BEARING_MUNDANE (1<<0)
 #define BEARING_RESOLVE (1<<1)

@@ -2,7 +2,6 @@
 #define AFFECTS_HEALTH (1<<0)
 #define AFFECTS_SPEED (1<<1)
 #define AFFECTS_STATS (1<<2) // If the stat affects other stats, like courage or permanent willpower. Required if increasing this stat affects at least one other stat.
-#define AFFECTS_MORALITY (1<<3) // If the stat affects morality path score, like Conscience, Conviction, Self Control, or Instinct
 
 
 #define STAT_FREEBIE_POINTS /datum/st_stat/freebie
