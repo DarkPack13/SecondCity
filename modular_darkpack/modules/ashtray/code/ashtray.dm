@@ -17,16 +17,13 @@
 	else if(contents.len && (contents.len >= atom_storage.max_slots/2))
 		. += mutable_appearance(icon, "[base_icon_state]_overlay-half", appearance_flags = RESET_COLOR|KEEP_APART)
 
-/obj/item/storage/ashtray/proc/evaluate_ashtray_contents()
-	update_icon(UPDATE_OVERLAYS)
-
 /obj/item/storage/ashtray/Entered()
 	. = ..()
-	evaluate_ashtray_contents()
+	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/storage/ashtray/Exited()
 	. = ..()
-	evaluate_ashtray_contents()
+	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/storage/ashtray/attack_self(mob/user)
 	. = ..()
@@ -40,11 +37,6 @@
 				var/list/skin_hsv = rgb2hsv(input_color)
 				if(skin_hsv[3] < 20)
 					to_chat(user, span_warning("A color that dark on an object like this? Surely not..."))
-					return
-
-				var/color_confirm = tgui_alert(user, "Confirm recolor? This can only be done once!", "[src]", list("Yes", "No"))
-
-				if(color_confirm == "No")
 					return
 
 				color = input_color
@@ -72,10 +64,8 @@
 
 	if(ciggie_butts > 8)
 		new /obj/effect/decal/cleanable/ash/large(get_turf(user))
-		ciggie_butts = 0
 	else if(ciggie_butts)
 		new /obj/effect/decal/cleanable/ash(get_turf(user))
-		ciggie_butts = 0
 
 	emptyStorage()
 	playsound(user, 'sound/items/lighter/cig_snuff.ogg', rand(10,50), TRUE)
@@ -104,3 +94,7 @@
 
 /datum/loadout_item/pocket_items/ashtray
 	item_path = /obj/item/storage/ashtray
+
+/datum/loadout_item/pocket_items/ashtray/get_item_information()
+	. = ..()
+	.[FA_ICON_PALETTE] = "Recolorable"
