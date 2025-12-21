@@ -12,6 +12,7 @@
 # Supply
 /obj/effect/landmark/start/dealer : /obj/effect/landmark/start/darkpack/supply/dealer
 /obj/effect/landmark/start/supply : /obj/effect/landmark/start/darkpack/supply/tech
+/obj/effect/landmark/start/supplytechnician : /obj/effect/landmark/start/darkpack/supply/tech
 
 # Camarilla
 /obj/effect/landmark/start/prince : /obj/effect/landmark/start/darkpack/camarilla/prince
