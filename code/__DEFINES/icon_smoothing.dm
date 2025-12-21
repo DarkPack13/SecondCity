@@ -144,7 +144,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_CITY_WALL S_TURF(63) ///turf/closed/wall/vampwall
 
 #define MAX_S_TURF 63 //Always match this value with the one above it.
-// DARKPACK EDIT CHANGE END - WALLS
+// DARKPACK EDIT CHANGE END
 
 
 #define S_OBJ(num) ("-" + #num + ",")
