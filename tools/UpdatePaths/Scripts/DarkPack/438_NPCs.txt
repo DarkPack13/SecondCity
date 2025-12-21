@@ -1,0 +1,6 @@
+/obj/effect/landmark/npcbeacon/directed : @DELETE
+/obj/effect/landmark/npc_spawn_point : @DELETE
+/obj/effect/landmark/npcwall : @DELETE
+/mob/living/carbon/human/npc/incel : @DELETE
+/mob/living/carbon/human/npc/hobo
+/mob/living/carbon/human/npc/shop

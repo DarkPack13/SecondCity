@@ -7193,6 +7193,7 @@
 #include "modular_darkpack\modules\npc\code\landmarks.dm"
 #include "modular_darkpack\modules\npc\code\human\_npc.dm"
 #include "modular_darkpack\modules\npc\code\human\base_npc_ai_controller.dm"
+#include "modular_darkpack\modules\npc\code\human\clolthing_datums.dm"
 #include "modular_darkpack\modules\npc\code\human\random_movement.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\beastmaster\blood_guard.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\beastmaster\necromancy_zombies.dm"
