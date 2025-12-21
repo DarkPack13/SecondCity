@@ -1,0 +1,38 @@
+/datum/ai_controller/npc/stand_still
+	ai_movement = /datum/ai_movement/jps
+	movement_delay = 0.8 SECONDS
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/escape_captivity, // Resist out of cuffs or whatnot first.
+		/datum/ai_planning_subtree/target_retaliate, // Then handle combat.
+		/datum/ai_planning_subtree/basic_melee_attack_subtree,
+		/datum/ai_planning_subtree/find_nearest_thing_which_attacked_me_to_flee,
+		/datum/ai_planning_subtree/flee_target,	// End handling combat.
+		/datum/ai_planning_subtree/go_home
+	)
+	blackboard = list(
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_TARGET_MINIMUM_STAT = UNCONSCIOUS,
+		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_HOME_VILLAGE = null
+	)
+	can_idle = FALSE
+
+/datum/ai_controller/npc/stand_still/New(atom/new_pawn)
+	set_blackboard_key(BB_HOME_VILLAGE, get_turf(new_pawn))
+
+/datum/ai_planning_subtree/go_home
+	var/travel_behavior = /datum/ai_behavior/travel_towards/stop_on_arrival/npc
+
+/datum/ai_planning_subtree/go_home/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	if(controller.blackboard_key_exists(BB_TRAVEL_DESTINATION))
+		controller.queue_behavior(travel_behavior, BB_TRAVEL_DESTINATION)
+		return
+
+	controller.queue_behavior(/datum/ai_behavior/find_home, BB_TRAVEL_DESTINATION)
+
+/datum/ai_behavior/find_home
+	behavior_flags = AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+
+/datum/ai_behavior/find_home/perform(seconds_per_tick, datum/ai_controller/controller, destination)
+	controller.set_blackboard_key(destination, BB_HOME_VILLAGE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
