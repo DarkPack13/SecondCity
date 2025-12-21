@@ -1,13 +1,15 @@
 <!-- This should be copy-pasted into the root of your module folder as readme.md -->
 
-https://github.com/NovaSector/NovaSector/pull/<!--PR Number-->
+https://github.com/DarkPack13/SecondCity/pull/454
 
 ## \<Ashtray> <!--Title of your addition.-->
 
 Module ID: ASHTRAY <!-- Uppercase, UNDERSCORE_CONNECTED name of your module, that you use to mark files. This is so people can case-sensitive search for your edits, if any. -->
 
 ### Description:
+Port of https://github.com/ApocryphaXIII/ApocryphaXIII/pull/225
 
+Storage objects you can place smokestuffs in.
 <!-- Here, try to describe what your PR does, what features it provides and any other directly useful information. -->
 
 ### TG Proc/File Changes:
