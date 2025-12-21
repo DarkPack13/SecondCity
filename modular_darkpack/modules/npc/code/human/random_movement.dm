@@ -31,11 +31,11 @@
 		possible_destinations += random_destination
 
 	if(!length(possible_destinations))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		return AI_BEHAVIOR_FAILED
 
 	var/obj/effect/landmark/destination_marker = pick(possible_destinations)
 	if(isnull(destination_marker))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		return AI_BEHAVIOR_FAILED
 
 	if(length(past_destinations) >= 5)
 		past_destinations -= past_destinations[1]
