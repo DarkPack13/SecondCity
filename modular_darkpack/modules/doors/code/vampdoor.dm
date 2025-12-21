@@ -384,4 +384,8 @@
 		to_chat(human, span_notice("It's just where I left it..."))
 	return TRUE
 
+// DARKPACK TODO: Look into AI being able to open and close doors. Maybe even unlock doors? or lockpick them for thieves?
+/obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
+	return (!closed || door_broken)
+
 #undef DOAFTER_SOURCE_DOOR
