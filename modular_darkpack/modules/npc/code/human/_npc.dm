@@ -29,4 +29,3 @@
 
 /mob/living/carbon/human/npc/police/standing
 	ai_controller = /datum/ai_controller/npc/stand_still
-	outfit_type = /datum/outfit/npc/police
