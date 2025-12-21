@@ -1,4 +1,7 @@
+# A few of these are pulled out from the #222 update paths to only convert a type once or fix a mistake made in it.
+
 # Anarchs
+/obj/effect/landmark/start/barkeeper : /obj/effect/landmark/start/darkpack/anarch/baron
 /obj/effect/landmark/start/baron : /obj/effect/landmark/start/darkpack/anarch/baron
 /obj/effect/landmark/start/bruiser : /obj/effect/landmark/start/darkpack/anarch/bruiser
 /obj/effect/landmark/start/emissary : /obj/effect/landmark/start/darkpack/anarch/emissary
@@ -37,6 +40,8 @@
 /obj/effect/landmark/start/citizen{name="Primogen Ventrue"} : /obj/effect/landmark/start/darkpack/primogen/ventrue
 
 # Hospital
+/obj/effect/landmark/start/vdirector : /obj/effect/landmark/start/darkpack/hospital/clinic_director
+/obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/darkpack/hospital/doctor
 /obj/effect/landmark/start/clinic_director : /obj/effect/landmark/start/darkpack/hospital/clinic_director
 /obj/effect/landmark/start/doctor : /obj/effect/landmark/start/darkpack/hospital/doctor
 
@@ -50,6 +55,9 @@
 /obj/effect/landmark/start{name="Federal Investigator"} : /obj/effect/landmark/start/darkpack/law_enforcement/fbi
 
 # Giovanni
+/obj/effect/landmark/start/giovannielder : /obj/effect/landmark/start/darkpack/hecata/capo
+/obj/effect/landmark/start/giovanni : /obj/effect/landmark/start/darkpack/hecata/famiglia
+/obj/effect/landmark/start/giovannimafia : /obj/effect/landmark/start/darkpack/hecata/squadra
 /obj/effect/landmark/start/capo : /obj/effect/landmark/start/darkpack/hecata/capo
 /obj/effect/landmark/start/famiglia : /obj/effect/landmark/start/darkpack/hecata/famiglia
 /obj/effect/landmark/start/squadra : /obj/effect/landmark/start/darkpack/hecata/squadra
@@ -57,7 +65,9 @@
 
 # Civilian
 /obj/effect/landmark/start/citizen : /obj/effect/landmark/start/darkpack/citizen/citizen
-/obj/effect/landmark/start/club_woker : /obj/effect/landmark/start/darkpack/citizen/club_woker
+/obj/effect/landmark/start/strip : /obj/effect/landmark/start/darkpack/citizen/club_worker
+/obj/effect/landmark/start/club_worker : /obj/effect/landmark/start/darkpack/citizen/club_worker
+/obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/darkpack/citizen/janitor
 /obj/effect/landmark/start/janitor : /obj/effect/landmark/start/darkpack/citizen/janitor
 /obj/effect/landmark/start/priest : /obj/effect/landmark/start/darkpack/citizen/priest
 /obj/effect/landmark/start/taxi : /obj/effect/landmark/start/darkpack/citizen/taxi
