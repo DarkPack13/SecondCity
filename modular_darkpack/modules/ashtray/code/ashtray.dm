@@ -74,7 +74,7 @@
 /datum/storage/ashtray
 	max_slots = 16
 	max_specific_storage = WEIGHT_CLASS_TINY
-	// grid_width = 1 GRID_BOXES
+	// grid_width = 1 GRID_BOXES // DARKPACK TODO - GRIDVENTORY
 	// grid_height = 1 GRID_BOXES
 	// storage_max_columns = 4
 	// storage_max_rows = 4
