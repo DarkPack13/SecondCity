@@ -6,13 +6,15 @@
 		"receiver",
 		"broadcaster",
 		"police",
+		"clinic",
+		"camarilla",
+		"anarch",
 	)
 
 /obj/machinery/telecomms/receiver/darkpack
 	id = "Communications Receiver"
 	network = "global"
 	autolinkers = list("receiver")
-	freq_listening = list(FREQ_POLICE)
 
 /obj/machinery/telecomms/broadcaster/darkpack
 	id = "Communications Broadcaster"
