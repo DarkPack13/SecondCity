@@ -3,7 +3,7 @@
 		CRASH("Tried to diablerize nonhuman vampire. Add handling for this!")
 
 	var/mob/living/carbon/human/mob_human = mob
-	AdjustHumanity(-1, 0)
+	SEND_SIGNAL(mob_human, COMSIG_PATH_HIT, -1, 0, FALSE)
 
 	if(mob_human.dna.species.generation >= dna.species.generation)
 		message_admins("[ADMIN_LOOKUPFLW(src)] successfully Diablerized [ADMIN_LOOKUPFLW(mob)]")
