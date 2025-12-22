@@ -24,7 +24,17 @@
 
 /obj/item/radio/headset/darkpack/police/examine(mob/user)
 	. = ..()
-	. += span_notice("It has a red button on the side to call for backup.")
+	. += span_info("GPS Location: " + english_list(list(x,y,z), and_text = ", "))
+	. += span_notice("It has a red button on the side to call for backup. It can be activated with [EXAMINE_HINT("Ctrl-Shift-Click")].")
 
-/obj/item/radio/headset/darkpack/police/interact(mob/user)
-	. = ..()
+/obj/item/radio/headset/darkpack/police/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = NONE
+	if(isnull(held_item))
+		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "Activate Emergency Backup Call"
+		return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/radio/headset/darkpack/police/click_ctrl_shift(mob/user)
+	var/confirmation_popup = tgui_alert(user, "Are you sure you want to send an emergency backup call?", "Emergency Backup Call", list("Cancel", "Confirm"))
+	if(confirmation_popup != "Confirm")
+		return
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_EMERGENCY, get_turf(src))

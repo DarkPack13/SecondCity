@@ -92,8 +92,16 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, crime, location)
+/obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, crime, turf/location)
 	SIGNAL_HANDLER
+
+	if(crime == CRIME_EMERGENCY) // Bypasses cooldown because of gameplay reasons.
+		radio.talk_into(radio, span_red("406 - EMERGENCY - BACKUP REQUIRED AT: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]."), FREQ_POLICE, list(SPAN_ROBOT, SPAN_COMMAND))
+		for(var/radio_id in connected_radios)
+			var/datum/weakref/radio_weakref = connected_radios[radio_id]
+			var/obj/item/radio = radio_weakref.resolve()
+			playsound(get_turf(radio), 'sound/vehicles/mecha/justice_warning.ogg', 20, TRUE)
+		return
 
 	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
 		return

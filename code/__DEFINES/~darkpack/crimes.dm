@@ -2,3 +2,4 @@
 #define CRIME_FIREFIGHT "firefight"
 #define CRIME_MURDER "murder"
 #define CRIME_BURGLARY "burglary"
+#define CRIME_EMERGENCY "emergency"
