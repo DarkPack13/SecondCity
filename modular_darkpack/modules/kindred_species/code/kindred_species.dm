@@ -88,6 +88,8 @@
 
 	RegisterSignal(new_kindred, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
 
+	RegisterSignal(new_kindred, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
+
 /datum/species/human/kindred/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 

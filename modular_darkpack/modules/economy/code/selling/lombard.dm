@@ -36,7 +36,7 @@
 	spawn_money(sale_price, loc)
 
 	if(ishuman(user) && selling_comp.humanity_loss)
-		user.AdjustHumanity(selling_comp.humanity_loss, selling_comp.humanity_loss_limit)
+		SEND_SIGNAL(user, COMSIG_PATH_HIT, selling_comp.humanity_loss, selling_comp.humanity_loss_limit, FALSE)
 
 	// feedback
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
@@ -198,7 +198,7 @@
 	// Apply humanity loss for all sold items at once
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/total_humanity_loss = selling_comp.humanity_loss * length(sold_items)
-		user.AdjustHumanity(total_humanity_loss, selling_comp.humanity_loss_limit)
+		SEND_SIGNAL(user, COMSIG_PATH_HIT, total_humanity_loss, selling_comp.humanity_loss_limit, FALSE)
 
 	for(var/obj/item/sold_item in sold_items)
 		qdel(sold_item)
