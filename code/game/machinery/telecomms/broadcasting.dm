@@ -79,7 +79,6 @@
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
-	radio_id, // DARKPACK EDIT ADD
 )
 	src.source = source
 	src.frequency = frequency
@@ -94,7 +93,6 @@
 		"language" = lang_instance.name,
 		"spans" = spans,
 		"mods" = message_mods,
-		"radio_id" = radio_id, // DARKPACK EDIT ADD
 	)
 	levels = SSmapping.get_connected_levels(get_turf(source))
 
@@ -123,7 +121,7 @@
 	var/compression = data["compression"]
 	if(compression > 0)
 		message = Gibberish(message, compression >= COMPRESSION_REPLACE_CHARACTER_THRESHOLD)
-	message = (data["radio_id"] ? "\[[data["radio_id"]]\] " : null) + message // DARKPACK EDIT ADD
+
 	var/list/signal_reaches_every_z_level = levels
 
 	if(0 in levels)
@@ -182,7 +180,7 @@
 			stack_trace("null found in the hearers list returned by the spatial grid. this is bad")
 			continue
 		spans -= blacklisted_spans
-		hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)
+		hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY, source = source) // DARKPACK EDIT, ORIGINAL: hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)
 
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))
@@ -196,7 +194,10 @@
 		spans_part = "[spans_part] ) "
 
 	var/lang_name = data["language"]
-	var/log_text = "\[[get_radio_name(frequency)]\] [spans_part]\"[message]\" (language: [lang_name])"
+	// DARKPACK EDIT ADD START
+	var/obj/item/radio/radio = source
+	var/log_text = "\[[get_radio_name(frequency)]\] [radio.radio_id][spans_part]\"[message]\" (language: [lang_name])"
+	// DARKPACK EDIT ADD END
 
 	var/mob/source_mob = virt.source
 
