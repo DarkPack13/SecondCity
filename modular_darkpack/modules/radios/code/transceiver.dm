@@ -37,6 +37,7 @@
 		if("[radio.radio_id]" in connected_radios)
 			to_chat(user, span_notice("You unlink the [radio] from the [radio_network]."))
 			leave_network(radio)
+			playsound(src, 'modular_darkpack/modules/radios/sounds/radio_off.ogg', 60, TRUE)
 			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_notice("You can't link the [radio] to the [radio_network] because it is connected to the [radio.radio_network]!"))
@@ -49,6 +50,7 @@
 			to_chat(user, span_warning("A radio with that ID is already connected to this network!"))
 			return ITEM_INTERACT_FAILURE
 		join_network(radio, input_number)
+		playsound(src, 'modular_darkpack/modules/radios/sounds/radio_on.ogg', 60, TRUE)
 		to_chat(user, span_notice("You link the [radio] to the [radio_network]."))
 	return ITEM_INTERACT_SUCCESS
 
@@ -76,7 +78,7 @@
 	disconnected_radio.radio_id = null
 
 /obj/machinery/radio_tranceiver/police
-	radio_network = "Police Network"
+	radio_network = NETWORK_POLICE
 	radio_frequency = FREQ_POLICE
 	var/obj/item/radio/headset/darkpack/police/radio
 	COOLDOWN_DECLARE(crime_reporting_cooldown)
@@ -97,10 +99,10 @@
 
 	if(crime == CRIME_EMERGENCY) // Bypasses cooldown because of gameplay reasons.
 		radio.talk_into(radio, span_red("406 - EMERGENCY - BACKUP REQUIRED AT: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]."), FREQ_POLICE, list(SPAN_ROBOT, SPAN_COMMAND))
-		for(var/radio_id in connected_radios)
-			var/datum/weakref/radio_weakref = connected_radios[radio_id]
-			var/obj/item/radio = radio_weakref.resolve()
-			playsound(get_turf(radio), 'sound/vehicles/mecha/justice_warning.ogg', 20, TRUE)
+
+		var/datum/signal/subspace/radio/signal = new(FREQ_POLICE, list())
+		INVOKE_ASYNC(signal, TYPE_PROC_REF(/datum/signal/subspace/radio, send_to_receivers))
+		log_message("Emergency alarm triggered at: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]", LOG_PDA)
 		return
 
 	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
@@ -116,18 +118,40 @@
 		if(CRIME_BURGLARY)
 			radio.talk_into(radio, "A burglary has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 
+/datum/signal/subspace/radio
+
+/datum/signal/subspace/radio/New(frequency, data)  // the frequency the signal is taking place on
+	src.frequency = frequency
+	src.data = data
+
+/datum/signal/subspace/radio/broadcast()
+	set waitfor = FALSE
+
+	var/list/radios = list()
+	// Reaches any radios on the levels
+	var/list/all_radios_of_our_frequency = GLOB.all_radios["[frequency]"]
+	if(LAZYLEN(all_radios_of_our_frequency))
+		radios = all_radios_of_our_frequency.Copy()
+
+	for(var/obj/item/radio/subspace_radio in radios)
+		if(!subspace_radio.can_receive(frequency, RADIO_NO_Z_LEVEL_RESTRICTION))
+			radios -= subspace_radio
+
+	for(var/called_radio as anything in radios)
+		playsound(get_turf(called_radio), 'modular_darkpack/modules/radios/sounds/panic.ogg', 50, TRUE)
+
 /obj/machinery/radio_tranceiver/clinic
-	radio_network = "Clinic Network"
+	radio_network = NETWORK_CLINIC
 	radio_frequency = FREQ_CLINIC
 
 /obj/machinery/radio_tranceiver/camarilla
-	radio_network = "Tower Network"
+	radio_network = NETWORK_CAMARILLA
 	radio_frequency = FREQ_CAMARILLA
 
 /obj/machinery/radio_tranceiver/anarch
-	radio_network = "Bar Network"
+	radio_network = NETWORK_ANARCH
 	radio_frequency = FREQ_ANARCH
 
 /obj/machinery/radio_tranceiver/endron
-	radio_network = "Endron Network"
+	radio_network = NETWORK_ENDRON
 	radio_frequency = FREQ_ENDRON

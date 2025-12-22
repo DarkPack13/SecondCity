@@ -339,6 +339,11 @@
 	if(is_within_radio_jammer_range(src) && !(special_channels & RADIO_SPECIAL_SYNDIE))
 		return
 
+	// DARKPACK EDIT START
+	if(get_area(src) == typesof(/area/vtm/interior/sewer)) // If we're in the sewers, consider the radio JAMMED. https://www.youtube.com/watch?v=FcArnepkhv0
+		return
+	// DARKPACK EDIT END
+
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, talking_movable, src)
 

@@ -10,7 +10,7 @@
 // Military Radio
 /obj/item/radio/headset/darkpack/military
 	name = "military radio"
-	radio_network = "Military Network"
+	radio_network = NETWORK_MILITARY
 
 /obj/item/radio/headset/darkpack/military/Initialize()
 	. = ..()
@@ -21,10 +21,12 @@
 /obj/item/radio/headset/darkpack/police
 	name = "police radio"
 	icon_state = "pp25"
+	COOLDOWN_DECLARE(emergency_cooldown)
 
 /obj/item/radio/headset/darkpack/police/examine(mob/user)
 	. = ..()
-	. += span_info("GPS Location: " + english_list(list(x,y,z), and_text = ", "))
+	var/turf/current_turf = get_turf(src)
+	. += span_info("GPS Location: " + english_list(list(current_turf.x, current_turf.y, current_turf.z), and_text = ", "))
 	. += span_notice("It has a red button on the side to call for backup. It can be activated with [EXAMINE_HINT("Ctrl-Shift-Click")].")
 
 /obj/item/radio/headset/darkpack/police/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -37,4 +39,12 @@
 	var/confirmation_popup = tgui_alert(user, "Are you sure you want to send an emergency backup call?", "Emergency Backup Call", list("Cancel", "Confirm"))
 	if(confirmation_popup != "Confirm")
 		return
+	if(!COOLDOWN_FINISHED(src, emergency_cooldown))
+		balloon_alert(user, "busy!")
+		return
+	if(radio_network != NETWORK_POLICE)
+		balloon_alert(user, "unconnected!")
+		return
+	user.balloon_alert_to_viewers("beep!", "activated!")
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_EMERGENCY, get_turf(src))
+	COOLDOWN_START(src, emergency_cooldown, 30 SECONDS)
