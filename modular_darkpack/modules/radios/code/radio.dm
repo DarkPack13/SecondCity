@@ -16,3 +16,15 @@
 	. = ..()
 	set_frequency(FREQ_MILITARY)
 	radio_id = rand(1, 999) // Since we wont have a tranceiver for these, we're just auto-assigning a random ID. This isn't foolproof.
+
+// Police Radio get a special button to call for backup.
+/obj/item/radio/headset/darkpack/police
+	name = "police radio"
+	icon_state = "pp25"
+
+/obj/item/radio/headset/darkpack/police/examine(mob/user)
+	. = ..()
+	. += span_notice("It has a red button on the side to call for backup.")
+
+/obj/item/radio/headset/darkpack/police/interact(mob/user)
+	. = ..()

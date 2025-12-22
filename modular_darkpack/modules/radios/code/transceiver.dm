@@ -82,6 +82,31 @@
 /obj/machinery/radio_tranceiver/police
 	radio_network = "Police Network"
 	radio_frequency = FREQ_POLICE
+	var/obj/item/radio/headset/darkpack/police/radio
+
+/obj/machinery/radio_tranceiver/police/Initialize(mapload)
+	. = ..()
+	radio = new()
+	join_network(radio, 911)
+	RegisterSignal(SSdcs, COMSIG_GLOB_REPORT_CRIME, PROC_REF(crime_reported))
+
+/obj/machinery/radio_tranceiver/police/Destroy(force)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_REPORT_CRIME)
+	QDEL_NULL(radio)
+	return ..()
+
+/obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, crime, location)
+	SIGNAL_HANDLER
+
+	switch(crime)
+		if(CRIME_GUNSHOTS)
+			radio.talk_into(radio, "Active gunshots have been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+		if(CRIME_FIREFIGHT)
+			radio.talk_into(radio, "An active firefight in progress been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+		if(CRIME_MURDER)
+			radio.talk_into(radio, "A murder has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+		if(CRIME_BURGLARY)
+			radio.talk_into(radio, "A burglary has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 
 /obj/machinery/radio_tranceiver/clinic
 	radio_network = "Clinic Network"

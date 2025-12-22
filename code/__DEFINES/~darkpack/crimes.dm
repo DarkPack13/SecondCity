@@ -1,0 +1,4 @@
+#define CRIME_GUNSHOTS "gunshots"
+#define CRIME_FIREFIGHT "firefight"
+#define CRIME_MURDER "murder"
+#define CRIME_BURGLARY "burglary"

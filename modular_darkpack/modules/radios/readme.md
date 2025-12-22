@@ -48,6 +48,8 @@ Adds our own custom radios that use our guestbooks system for communication.
 ### Defines:
 
 - `code/__DEFINES/radio.dm`
+- `code/__DEFINES/~darkpack/dcs/signals/signals_global.dm`
+- `code/__DEFINES/~darkpack/crimes.dm`
 
 ### Included files that are not contained in this module:
 

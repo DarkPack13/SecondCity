@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/atom/movable/virtualspeaker/fakespeaker = reliable_narrator
 		reliable_narrator = fakespeaker.source
 
-	if(ismob(src) && (namepart != "Unknown"))
+	if(ismob(src) && (namepart != "Unknown") && ismob(reliable_narrator))
 		var/mob/receiver_mob = src
 		if(receiver_mob.mind?.guestbook)
 			var/mob/speaker_human = reliable_narrator
