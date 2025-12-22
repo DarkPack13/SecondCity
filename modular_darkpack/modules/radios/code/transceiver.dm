@@ -15,10 +15,6 @@
 	register_context()
 
 /obj/machinery/radio_tranceiver/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Open Radio Management"
-		return CONTEXTUAL_SCREENTIP_SET
-
 	if(held_item.tool_behaviour == TOOL_WRENCH)
 		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
 		return CONTEXTUAL_SCREENTIP_SET
