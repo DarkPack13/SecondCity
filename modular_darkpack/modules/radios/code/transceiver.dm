@@ -94,3 +94,7 @@
 /obj/machinery/radio_tranceiver/anarch
 	radio_network = "Bar Network"
 	radio_frequency = FREQ_ANARCH
+
+/obj/machinery/radio_tranceiver/anarch
+	radio_network = "Endron Network"
+	radio_frequency = FREQ_ENDRON

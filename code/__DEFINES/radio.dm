@@ -94,6 +94,11 @@
 #define RADIO_TOKEN_ANARCH ":b"
 #define RADIO_COLOR_ANARCH "#d47100"
 
+#define RADIO_CHANNEL_ENDRON "Endron"
+#define RADIO_KEY_ENDRON "d"
+#define RADIO_TOKEN_ENDRON ":d"
+#define RADIO_COLOR_ENDRON "#ff4800"
+
 // DARKPACK EDIT ADD END
 
 #define RADIO_CHANNEL_CTF_RED "Red Team"
@@ -150,6 +155,7 @@
 #define FREQ_MILITARY 1505 // Military comms frequency, dark green
 #define FREQ_CAMARILLA 1507 // Camarilla comms frequency, purple
 #define FREQ_ANARCH 1509 // Anarch comms frequency, dark orange
+#define FREQ_ENDRON 1511 // Endron comms frequency, orange
 // DARKPACK EDIT ADD END
 
 #define MAX_FREE_FREQ 1599 // -------------------------------------------------

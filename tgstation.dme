@@ -7303,6 +7303,7 @@
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\anarch.dm"
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\camarilla.dm"
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\clinic.dm"
+#include "modular_darkpack\modules\radios\code\tcomms_subtypes\endron.dm"
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\global.dm"
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\military.dm"
 #include "modular_darkpack\modules\radios\code\tcomms_subtypes\police.dm"

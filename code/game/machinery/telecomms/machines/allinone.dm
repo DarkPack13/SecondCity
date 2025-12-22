@@ -72,6 +72,10 @@
 		"[FREQ_ANARCH]" = list(
 			"name" = RADIO_CHANNEL_ANARCH,
 			"color" = RADIO_COLOR_ANARCH
+		),
+		"[FREQ_ENDRON]" = list(
+			"name" = RADIO_CHANNEL_ENDRON,
+			"color" = RADIO_COLOR_ENDRON
 		) // DARKPACK EDIT ADD END
 	)
 
