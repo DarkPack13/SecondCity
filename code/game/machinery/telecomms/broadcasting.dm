@@ -79,6 +79,7 @@
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
+	radio_id, // DARKPACK EDIT ADD
 )
 	src.source = source
 	src.frequency = frequency
@@ -93,6 +94,7 @@
 		"language" = lang_instance.name,
 		"spans" = spans,
 		"mods" = message_mods,
+		"radio_id" = radio_id, // DARKPACK EDIT ADD
 	)
 	levels = SSmapping.get_connected_levels(get_turf(source))
 
@@ -121,7 +123,7 @@
 	var/compression = data["compression"]
 	if(compression > 0)
 		message = Gibberish(message, compression >= COMPRESSION_REPLACE_CHARACTER_THRESHOLD)
-
+	message = (data["radio_id"] ? "\[[data["radio_id"]]\] " : null) + message // DARKPACK EDIT ADD
 	var/list/signal_reaches_every_z_level = levels
 
 	if(0 in levels)

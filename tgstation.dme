@@ -6836,6 +6836,7 @@
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\trash.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\weaponry.dm"
+#include "modular_darkpack\master_files\code\game\objects\items\devices\radio\radio.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\food\snack.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\flora.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\ladders.dm"

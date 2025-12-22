@@ -6,12 +6,6 @@
 	icon_state = "p25"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
-	var/radio_network
-	var/radio_id
-
-/obj/item/radio/headset/darkpack/examine(mob/user)
-	. = ..()
-	. += radio_network ? span_notice("Connected to [radio_network] using ID: [radio_id].") : span_warning("Not connected to any network.")
 
 // Military Radio
 /obj/item/radio/headset/darkpack/military
