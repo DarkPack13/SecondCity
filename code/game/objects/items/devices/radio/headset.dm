@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	// construction of frequency description
 	var/list/available_channels = list()
-	// available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>" // DARKPACK EDIT REMOVAL
+	available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>"
 	if(special_channels & RADIO_SPECIAL_BINARY)
 		available_channels += "<li><b>[span_binarysay(MODE_TOKEN_BINARY)] for [span_binarysay(capitalize(MODE_BINARY))]</b></li>"
 
