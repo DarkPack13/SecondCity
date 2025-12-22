@@ -26,7 +26,7 @@
 		hud_used.bloodpool_icon.icon_state = "blood[emm]"
 
 /mob/living/carbon/human/update_blood_hud()
-	maxbloodpool = get_max_bloodpool(generation)
+	maxbloodpool = get_max_bloodpool(dna.species.generation)
 	. = ..()
 
 #undef ui_living_bloodpool

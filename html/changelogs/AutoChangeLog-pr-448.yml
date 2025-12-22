@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "removes duplicates from preferences adjectives list"
