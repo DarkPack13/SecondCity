@@ -79,6 +79,7 @@
 	radio_network = "Police Network"
 	radio_frequency = FREQ_POLICE
 	var/obj/item/radio/headset/darkpack/police/radio
+	COOLDOWN_DECLARE(crime_reporting_cooldown)
 
 /obj/machinery/radio_tranceiver/police/Initialize(mapload)
 	. = ..()
@@ -94,6 +95,9 @@
 /obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, crime, location)
 	SIGNAL_HANDLER
 
+	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
+		return
+	COOLDOWN_START(src, crime_reporting_cooldown, 10 SECONDS)
 	switch(crime)
 		if(CRIME_GUNSHOTS)
 			radio.talk_into(radio, "Active gunshots have been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
