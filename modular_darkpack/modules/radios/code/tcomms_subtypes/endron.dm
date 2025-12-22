@@ -22,12 +22,12 @@
 	network = "endron"
 	autolinkers = list("endron_processor")
 
-/obj/machinery/telecomms/receiver/darkpack
+/obj/machinery/telecomms/receiver/darkpack/endron
 	id = "Endron Communications Receiver"
 	network = "endron"
 	autolinkers = list("endron_receiver")
 
-/obj/machinery/telecomms/broadcaster/darkpack
+/obj/machinery/telecomms/broadcaster/darkpack/endron
 	id = "Endron Communications Broadcaster"
 	network = "endron"
 	autolinkers = list("endron_broadcaster")

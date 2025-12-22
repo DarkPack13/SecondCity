@@ -171,6 +171,8 @@ SUBSYSTEM_DEF(blackbox)
 			record_feedback("tally", "radio_usage", 1, "camarilla")
 		if(FREQ_ANARCH)
 			record_feedback("tally", "radio_usage", 1, "anarch")
+		if(FREQ_ENDRON)
+			record_feedback("tally", "radio_usage", 1, "endron")
 		// DARKPACK EDIT ADD END
 		else
 			record_feedback("tally", "radio_usage", 1, "other")

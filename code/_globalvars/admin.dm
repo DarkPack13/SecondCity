@@ -81,6 +81,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Deadchat" = "deadsay",
 	"Deconversion Message" = "deconversion_message",
 	"Drone Radio" = "drone",
+	"Endron Radio" = "endronradio", // DARKPACK EDIT ADD
 	"Engineering Radio" = "engradio",
 	"Extremely Big" = "extremelybig",
 	"Entertainment Radio" = "enteradio",
