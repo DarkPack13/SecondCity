@@ -131,7 +131,7 @@
 
 
 /obj/item/occult_book
-	name = "Occult Book"
+	name = "occult book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	icon_state = "spellbook_unfinished"
