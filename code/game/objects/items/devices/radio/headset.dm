@@ -76,6 +76,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			available_channels += "<li><b>[span_class(channel_span_class, MODE_TOKEN_DEPARTMENT)]</b> or <b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
 		else
 			available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+
 	. += span_notice("A small screen on the headset displays the following available frequencies:")
 	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")
 	*/ // DARKPACK EDIT REMOVAL END
