@@ -1,4 +1,4 @@
-/datum/species/human/kindred/proc/adjust_morality(mob/living/carbon/human/source, value, limit, forced)
+/datum/species/human/kindred/proc/adjust_morality(mob/living/carbon/human/source, value, limit, forced, difficulty = 6)
 	SIGNAL_HANDLER
 
 	// "Enlightenment" is essentially the Path of Pure Evil. Inverts Humanity changes and limits.
@@ -30,6 +30,17 @@
 			return
 	else
 		return
+
+	//before going any further, roll either conscience or conviction to determine if we actually lose path/humanity
+	if(humanity_change < 0)
+		var/stat_to_roll = is_enlightenment ? STAT_CONVICTION : STAT_CONSCIENCE
+		var/degeneration_roll = SSroll.storyteller_roll(source.st_get_stat(stat_to_roll), 6, source, numerical = FALSE)
+
+		if(degeneration_roll == ROLL_SUCCESS)
+			to_chat(source, span_green("Your [is_enlightenment ? "conviction" : "conscience"] prevents you from losing [path] as you successfully justify your actions!"))
+			return
+		else
+			to_chat(source, span_danger("You fail to justify your actions as the Beast within awakens..."))
 
 	var/signal_return = SEND_SIGNAL(source, COMSIG_LIVING_CHANGING_HUMANITY, humanity_change)
 	if (signal_return & BLOCK_HUMANITY_CHANGE)
