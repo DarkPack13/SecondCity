@@ -32,7 +32,7 @@
 	network = "endron"
 	autolinkers = list("endron_broadcaster")
 
-/obj/machinery/telecomms/relay/darkpack
+/obj/machinery/telecomms/relay/darkpack/endron
 	id = "Endron Communications Relay"
 	network = "endron"
 	autolinkers = list("endron_relay")
