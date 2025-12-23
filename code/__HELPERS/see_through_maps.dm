@@ -15,10 +15,10 @@
 ///Seethrough component for the ratvar wreck, in shape of the ratvar wreck
 #define SEE_THROUGH_MAP_RATVAR_WRECK "ratvar"
 
-// DARKPACK EDIT START
+// DARKPACK EDIT ADD START - WALLS
 ///Seethrough component the EFFECT that darkpack walls use. Creates a wallening like effect
 #define SEE_THROUGH_MAP_WALLS "darkpack_walls"
-// DARKPACK EDIT END
+// DARKPACK EDIT ADD END
 
 /**global statics for the see_through_component coordinate maps
 * For ease of use, include a comment in the shape of the coordinate map, where O is nothing, X is a hidden tile and A is the object
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(see_through_maps, list(
 		list(-1, 1, 0), list(0, 1, 0), list(1, 1, 0)
 	),
 
-	// DARKPACK EDIT START
+	// DARKPACK EDIT ADD START - WALLS
 	// XXX
 	// XXX
 	// XAX
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(see_through_maps, list(
 		list(-1, 1, 0), list(0, 1, 0), list(1, 1, 0),
 		list(-1, 0, 0), list(0, 0, 0), list(1, 0, 0)
 	),
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	// X
 	// X
