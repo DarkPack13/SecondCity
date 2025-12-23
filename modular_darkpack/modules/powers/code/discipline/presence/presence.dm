@@ -32,9 +32,6 @@
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
-	if((owner.dna.species.generation - 3) >= target.dna.species.generation)
-		return FALSE
-
 	//botch
 	if(successes < 0)
 		ADD_TRAIT(target, TRAIT_PRESENCE_IMMUNE, TRAIT_GENERIC)
