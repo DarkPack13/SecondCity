@@ -10,14 +10,15 @@
 		var/new_bloodpool = clamp(bloodpool + amount, 0, maxbloodpool)
 		var/will_be_hungry = (new_bloodpool < hunger_threshold)
 
-		if(!previous_hunger && will_be_hungry)
+		if(!previous_hunger && will_be_hungry) // enter hunger
 			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
 			to_chat(src, span_danger("The Beast awakens as the pangs of hunger set in..."))
 
-		else if(previous_hunger && !will_be_hungry)
+		else if(previous_hunger && !will_be_hungry) // leave hunger
 			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
 			to_chat(src, span_notice("Your hunger is satisfied as the Beast inside retreats."))
 
+		//DARKPACK TODO: roll for frenzy when hungry and seeing, smelling, tasting blood, maybe like the old system where you roll every once in a while
 	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
 	if(updating_health)
 		update_blood_hud()
