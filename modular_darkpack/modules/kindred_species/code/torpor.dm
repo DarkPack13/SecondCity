@@ -10,7 +10,15 @@
 	if(iskindred(src) && !force)
 		var/mob/living/carbon/human/vampire = src
 		var/datum/species/human/kindred/vampire_species = vampire.dna.species
-		COOLDOWN_START(vampire_species, torpor_timer, 5 MINUTES)
+		var/morality_score = vampire.st_get_stat(STAT_MORALITY)
+		var/torpor_time
+		if(vampire_species.enlightenment == TRUE)
+			torpor_time = 10 MINUTES
+		else
+			//humanity 4 = any enlightenment. humanity > 4 = better than enlightenment. below 4 youre better off just being on enlightenment. its at that level when you can
+			//switch to a Path anyway, provided you have a teacher. nice incentive to play a Humanity character, lowered torpor timer
+			torpor_time = (14 - morality_score) MINUTES
+		COOLDOWN_START(vampire_species, torpor_timer, torpor_time)
 
 /mob/living/proc/cure_torpor(source, force)
 	if(!HAS_TRAIT_FROM(src, TRAIT_TORPOR, source))
