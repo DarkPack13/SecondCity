@@ -169,7 +169,7 @@
 		sell_one_item(sold, user)
 		return
 
-	// st_get_stat(STAT_MORALITY) loss warning for bulk sales
+	// Morality loss warning for bulk sales
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/datum/species/human/kindred/vampirism = H.dna.species

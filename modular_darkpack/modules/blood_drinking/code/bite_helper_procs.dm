@@ -7,12 +7,11 @@
 		var/datum/species/human/kindred/kindred_species = kindred.dna.species
 		var/hunger_threshold = 7 - (kindred_species.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(kindred, TRAIT_NEEDS_BLOOD)
-		var/new_bloodpool = clamp(bloodpool + amount, 0, maxbloodpool)
-		var/will_be_hungry = (new_bloodpool < hunger_threshold)
+		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
 
 		if(!previous_hunger && will_be_hungry) // enter hunger
 			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
-			to_chat(src, span_danger("The Beast awakens as the pangs of hunger set in..."))
+			to_chat(src, span_bolddanger("The Beast awakens as the pangs of hunger set in..."))
 
 		else if(previous_hunger && !will_be_hungry) // leave hunger
 			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)

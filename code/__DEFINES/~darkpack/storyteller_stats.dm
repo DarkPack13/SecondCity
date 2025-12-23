@@ -1,7 +1,7 @@
 // Stat Flags
 #define AFFECTS_HEALTH (1<<0)
 #define AFFECTS_SPEED (1<<1)
-#define AFFECTS_STATS (1<<2) // If the stat affects other stats, like courage or permanent willpower. Required if increasing this stat affects at least one other stat.
+#define AFFECTS_STATS (1<<2) // If the stat affects other stats, like courage or permanent willpower.
 
 
 #define STAT_FREEBIE_POINTS /datum/st_stat/freebie
@@ -89,5 +89,3 @@
 #define STAT_SCORE "score"
 #define STAT_POINTS "points"
 #define STAT_FREEBIE_COST_SPENT "freebie_cost_spent"
-
-

@@ -7109,6 +7109,7 @@
 #include "modular_darkpack\modules\kindred_species\code\preferences\generation.dm"
 #include "modular_darkpack\modules\kindred_species\code\preferences\immortal_age.dm"
 #include "modular_darkpack\modules\kindred_species\code\preferences\morality\morality.dm"
+#include "modular_darkpack\modules\kindred_species\code\preferences\morality\paths.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\__vampire_clan.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clan_globals.dm"
 #include "modular_darkpack\modules\kindred_species\code\vampire_clan\clan_helpers.dm"

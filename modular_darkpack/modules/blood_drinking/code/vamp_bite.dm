@@ -59,7 +59,7 @@
 					var/frenzy_check = SSroll.storyteller_roll(st_get_stat(stat_to_roll), 6, src, numerical = FALSE)
 					if(frenzy_check != ROLL_SUCCESS)
 						to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
-						// DARKPACK TODO: frenzy, please put the logic here
+						// DARKPACK TODO: frenzy, please put the call here
 					else
 						to_chat(src, span_green("The taste of fresh blood while hungry almost drives you into frenzy!"))
 
@@ -71,5 +71,4 @@
 				else
 					playsound(src, 'modular_darkpack/modules/blood_drinking/sounds/kiss.ogg', 50, TRUE)
 					LV.visible_message(span_italics(span_bold("[src] kisses [LV]!")), span_userlove(span_bold("[src] kisses you!")))
-
 				drinksomeblood(LV, TRUE)
