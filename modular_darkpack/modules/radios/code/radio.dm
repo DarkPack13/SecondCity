@@ -1,6 +1,6 @@
 // Base radio type we use for our custom behaviors.
 /obj/item/radio/headset/darkpack
-	name = "P25 radio"
+	name = "\improper P25 radio"
 	desc = "A portable radio headset operating on the P25 digital standard."
 	icon = 'modular_darkpack/modules/radios/icons/radio.dmi'
 	icon_state = "p25"
