@@ -231,7 +231,7 @@
 	loot_subtype_path = /obj/item/vtm_artifact
 
 /obj/item/vtm_artifact/bloodstone
-	true_name = "Bloodstone"
+	true_name = "bloodstone"
 	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
 	icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
 	onflooricon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
