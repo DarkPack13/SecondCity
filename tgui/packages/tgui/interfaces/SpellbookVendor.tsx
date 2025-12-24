@@ -146,10 +146,7 @@ export const SpellbookVendor = (props) => {
                   width="100%"
                   placeholder="Enter amount..."
                   value={transferAmount}
-                  onChange={(...args) => {
-                    const value = args[1] !== undefined ? args[1] : args[0];
-                    setTransferAmount(value);
-                  }}
+                  onChange={(value) => setTransferAmount(value)}
                 />
               </Box>
 
