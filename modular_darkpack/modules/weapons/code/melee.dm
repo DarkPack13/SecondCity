@@ -349,7 +349,7 @@
 		//grid_height = 1 GRID_BOXES
 
 //this should be a subtype of spear in the future but we lack the sprites
-/obj/item/melee/darkpack/spear
+/obj/item/darkpack/spear
 	name = "spear"
 	desc = "A staple of warfare through centuries, the spear is great for poking at things."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
@@ -373,6 +373,6 @@
 	custom_price = 1200
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi') // DARKPACK EDIT ADD
 
-/obj/item/melee/darkpack/spear/Initialize()
+/obj/item/darkpack/spear/Initialize()
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "spear", FALSE)

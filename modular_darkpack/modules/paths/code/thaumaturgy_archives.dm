@@ -255,9 +255,10 @@
 	return TRUE
 
 //offer artifacts to the shop for research points AND increment stock
-/obj/structure/retail/occult/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/vtm_artifact))
-		var/obj/item/vtm_artifact/artifact = W
+/obj/structure/retail/occult/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(istype(tool, /obj/item/vtm_artifact))
+		var/obj/item/vtm_artifact/artifact = tool
 
 		if(!ishuman(user))
 			return
@@ -295,8 +296,8 @@
 		qdel(artifact)
 		return TRUE
 
-	if(istype(W, /obj/item/path_spellbook))
-		var/obj/item/path_spellbook/spellbook = W
+	if(istype(tool, /obj/item/path_spellbook))
+		var/obj/item/path_spellbook/spellbook = tool
 
 		if(!ishuman(user))
 			return
