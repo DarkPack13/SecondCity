@@ -4,6 +4,38 @@ import { Box, Button, Section, Table, Dropdown, Input, Collapsible } from 'tgui-
 import { Window } from '../layouts';
 import { useState } from 'react';
 
+type Product = {
+  name: string;
+  path: string;
+  price: number;
+  stock: number;
+  available: boolean;
+  ref: string;
+}
+
+type TremereMember = {
+  name: string;
+  role: string;
+  points: number;
+  ref: string;
+}
+
+type User = {
+  points: number;
+  name: string;
+  job: string;
+  has_thaumaturgy: boolean;
+  has_necromancy: boolean;
+  is_regent: boolean;
+  has_privileges: boolean;
+}
+
+type SpellbookVendorData = {
+  product_records: Product[];
+  tremere_members: TremereMember[];
+  user: User | null;
+}
+
 const STYLE = {
   section: {
     backgroundColor: '#1a0000',
@@ -55,7 +87,7 @@ const ProductRow = (props) => {
 };
 
 export const SpellbookVendor = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<SpellbookVendorData>();
   const [selectedTarget, setSelectedTarget] = useState(null);
   const [transferAmount, setTransferAmount] = useState('');
 
@@ -70,7 +102,7 @@ export const SpellbookVendor = (props) => {
   const canSeize = selectedMember && amount > 0;
 
   return (
-    <Window width={465} height={700} resizable theme="blood_cult">
+    <Window width={465} height={700} theme="blood_cult">
       <Window.Content scrollable>
         <Section title="Practitioner" style={STYLE.section}>
           {user && (

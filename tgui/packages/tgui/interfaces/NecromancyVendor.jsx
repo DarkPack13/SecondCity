@@ -9,7 +9,7 @@ export const NecromancyVendor = (props) => {
   const inventory = data.product_records || [];
 
   const getGreeting = () => {
-    if (data.user && data.user.has_necromancy) {
+    if (data.user?.has_necromancy){
       return "Welcome, master of death and shadow...";
     } else {
       return "The dead whisper of your arrival, mortal...";
@@ -96,7 +96,7 @@ export const NecromancyVendor = (props) => {
                         }
                       }}
                       disabled={!canAfford}
-                      content={product.price + ' souls'}
+                      content={`${product.price} souls`}
                       onClick={() =>
                         act('purchase', {
                           ref: product.ref,
