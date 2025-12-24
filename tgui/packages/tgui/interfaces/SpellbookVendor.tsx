@@ -1,6 +1,6 @@
 import { classes } from 'tgui-core/react';
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table, Dropdown, Input, Collapsible } from 'tgui-core/components';
+import { Box, Button, Section, Table, Dropdown, Collapsible, NumberInput } from 'tgui-core/components';
 import { Window } from '../layouts';
 import { useState } from 'react';
 
@@ -89,7 +89,7 @@ const ProductRow = (props) => {
 export const SpellbookVendor = (props) => {
   const { act, data } = useBackend<SpellbookVendorData>();
   const [selectedTarget, setSelectedTarget] = useState(null);
-  const [transferAmount, setTransferAmount] = useState('');
+  const [transferAmount, setTransferAmount] = useState(0);
 
   const { product_records = [], tremere_members = [], user } = data;
   const greeting = user?.has_thaumaturgy
@@ -97,7 +97,7 @@ export const SpellbookVendor = (props) => {
     : 'Greetings, seeker...';
 
   const selectedMember = tremere_members.find((m) => m.ref === selectedTarget);
-  const amount = parseInt(transferAmount) || 0;
+  const amount = transferAmount || 0;
   const canTransfer = selectedMember && amount > 0 && user && amount <= user.points;
   const canSeize = selectedMember && amount > 0;
 
@@ -174,7 +174,7 @@ export const SpellbookVendor = (props) => {
                 <Box style={{ marginBottom: '5px', color: '#cc3333' }}>
                   <b style={{ color: '#ff4444' }}>Amount:</b>
                 </Box>
-                <Input
+                <NumberInput
                   width="100%"
                   placeholder="Enter amount..."
                   value={transferAmount}
@@ -188,7 +188,7 @@ export const SpellbookVendor = (props) => {
                   disabled={!canTransfer}
                   onClick={() => {
                     act('transfer_points', { target_ref: selectedMember!.ref, amount });
-                    setTransferAmount('');
+                    setTransferAmount(0);
                   }}
                   style={{ flex: '1' }}
                 />
@@ -199,7 +199,7 @@ export const SpellbookVendor = (props) => {
                     disabled={!canSeize}
                     onClick={() => {
                       act('seize_points', { target_ref: selectedMember!.ref, amount });
-                      setTransferAmount('');
+                      setTransferAmount(0);
                     }}
                     style={{ flex: '1' }}
                   />
