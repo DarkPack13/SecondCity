@@ -140,12 +140,11 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_HIEROPHANT S_TURF(61) ///turf/closed/indestructible/riveted/hierophant
 #define SMOOTH_GROUP_PLASTINUM_WALLS S_TURF(62) ///turf/closed/indestructible/riveted/plastinum
 
-// DARKPACK EDIT START
+// DARKPACK EDIT CHANGE START - WALLS
 #define SMOOTH_GROUP_CITY_WALL S_TURF(63) ///turf/closed/wall/vampwall
-#define SMOOTH_GROUP_CITY_LOW_WALL S_TURF(64) ///turf/closed/wall/vampwall/low
 
-#define MAX_S_TURF 64 //Always match this value with the one above it.
-// DARKPACK EDIT END
+#define MAX_S_TURF 63 //Always match this value with the one above it.
+// DARKPACK EDIT CHANGE END
 
 
 #define S_OBJ(num) ("-" + #num + ",")
@@ -239,6 +238,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_COLOR_COUNTERTOP S_OBJ(90) ///obj/structure/table/countertop/(color)
 // DARKPACK EDIT END
+#define SMOOTH_GROUP_CITY_LOW_WALL S_TURF(91) ///obj/structure/platform/lowwall // DARKPACK EDIT ADD - WALLS
 
 /// Performs the work to set smoothing_groups and canSmoothWith.
 /// An inlined function used in both turf/Initialize and atom/Initialize.
