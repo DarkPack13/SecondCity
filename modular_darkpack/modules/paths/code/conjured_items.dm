@@ -43,7 +43,7 @@
 
 // Lure of Flames items
 /obj/item/lighter/conjured/flame/candle
-	name = "lure of flames - candle"
+	name = "conjured candle"
 	desc = "From your finger sprouts out the small flame of a candle."
 	icon_state = "candle-on"
 	inhand_icon_state = "candle"
