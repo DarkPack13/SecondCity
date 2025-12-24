@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(occult_research)
 		COOLDOWN_START(src, research_notification_cooldown, 10 MINUTES)
 		to_chat(user, span_notice("Your occult studies have yielded [research_gain] research points. Total: [user.research_points]"))
 
-/mob/living/carbon/human/verb/check_research_points()
+/mob/living/carbon/human/proc/check_research_points()
 	set name = "Check Research Points"
 	set category = "IC"
 	set desc = "Check your current research point balance."
@@ -77,24 +77,28 @@ SUBSYSTEM_DEF(occult_research)
 	var/research_message = ""
 
 	switch(lowertext(blood_species))
-		if("vampire")
+		if(SPECIES_KINDRED)
 			var/generation = blood_data["generation"]
 			var/clan = blood_data["clan"]
 			research_award = (14 - generation) * 5
 			species_name = "Kindred"
 			research_message = "You gain new insights into the [species_name] from clan [clan]! You gain [research_award] research points."
-		if("garou")
+		/*
+		if(SPECIES_GAROU)
 			research_award = 30
 			species_name = "Garou"
 			research_message = "You gain [research_award] research points."
-		if("ghoul")
+		*/
+		if(SPECIES_GHOUL)
 			research_award = 5
 			species_name = "Ghoul"
 			research_message = "You gain [research_award] research points."
-		if("kuei-jin")
+		/*
+		if(SPECIES_KUEI_JIN)
 			research_award = 15
 			species_name = "Kuei-Jin"
 			research_message = "You gain [research_award] research points."
+		*/
 
 	caster.research_points += research_award
 	to_chat(caster, span_notice("[research_message]"))
