@@ -17,9 +17,6 @@
 	add_actions()
 	add_biotypes()
 
-	// Deletes itself if the owner is destroyed
-	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(handle_parent_destroyed))
-
 	on_gain()
 
 	return src

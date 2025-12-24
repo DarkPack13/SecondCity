@@ -7,6 +7,7 @@
 	clear_powers()
 
 	if (QDELETED(owner))
+		owner = null
 		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
@@ -70,10 +71,3 @@
 			continue
 
 		owner.mob_biotypes &= ~biotype
-
-/datum/splat/proc/handle_parent_destroyed()
-	PRIVATE_PROC(TRUE)
-	SIGNAL_HANDLER
-
-	owner = null
-	qdel(src)

@@ -16,6 +16,7 @@
 	beastmaster_minions = null
 	minion_command_components = null
 	grabbed_by_tentacle = null
+	QDEL_LAZYLIST(splats)
 	return ..()
 
 /mob/living/set_pull_offsets(mob/living/mob_to_set, grab_state = GRAB_PASSIVE, animate = TRUE)
