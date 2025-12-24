@@ -85,22 +85,41 @@
 				to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
 				return FALSE
 
-	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
-
 	//automatically succeed against my conditioned servant
 	var/mob/living/carbon/human/conditioner = target.conditioner?.resolve()
 	if(owner == conditioner)
-		return TRUE
+		if(numerical == TRUE)
+			return 8
+		else
+			return TRUE
+
+	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
+		if(numerical == TRUE)
+			return 8
+		else
+			return TRUE
+
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
+	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	var/mob/living/carbon/human/human_target = target
-	if(human_target.clan?.name == VAMPIRE_CLAN_GARGOYLE)
+	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
 		theirpower -= 2
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
-	if(human_target.glasses && istype(human_target.glasses, /obj/item/clothing/glasses/vampire/sun))
-		theirpower += 1
+	var/total_tint = 0
+	if(istype(human_target.glasses, /obj/item/clothing/glasses/vampire/sun))
+		total_tint = max(total_tint, 1)
+
+	for(var/obj/item/clothing/worn_item in human_target.get_equipped_items(INCLUDE_ABSTRACT))
+		total_tint += worn_item.tint
+
+	if(total_tint > 0)
+		if(total_tint >= 2)
+			theirpower += 2
+		else
+			theirpower += 1
 
 	//if anyone else tries to dominate my conditioned servant its much harder for them but not for me
 	if(target.conditioner?.resolve())
@@ -116,7 +135,7 @@
 		to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
 		return FALSE
 
-	if(numerical)
+	if(numerical == TRUE)
 		return mypower
 
 	//did we succeed or fail the roll
@@ -229,10 +248,6 @@
 	if(pulse_active)
 		to_chat(owner, span_warning("You already have an active mesmerization!"))
 		return FALSE
-
-	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
-		pulse_interval = 5
-		return TRUE
 
 	var/successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_LEADERSHIP), numerical = TRUE)
 	if(successes > 0)
@@ -365,8 +380,7 @@
 
 
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/carbon/human/target)
-	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
-		return TRUE
+
 	successes = dominate_check(owner, target, owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_SUBTERFUGE), numerical = TRUE)
 	if(successes > 0)
 		var/mindwipe_strength = get_success_message(successes)
@@ -405,8 +419,6 @@
 	range = 2
 
 /datum/discipline_power/dominate/conditioning/pre_activation_checks(mob/living/carbon/human/target)
-	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
-		return TRUE
 
 	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_LEADERSHIP))
 	if(!roll_success)
@@ -449,9 +461,6 @@
 		to_chat(owner, span_warning("This mortal is already possessed!"))
 		return FALSE
 
-	if(HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
-		return TRUE
-
 	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION))
 	if(!roll_success)
 		to_chat(owner, span_warning("[target] has resisted your domination!"))
@@ -491,9 +500,6 @@
 	range = 7
 
 /datum/discipline_power/dominate/autonomic_mastery/pre_activation_checks(mob/living/carbon/human/target)
-
-	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
-		return TRUE
 
 	var/roll_success = dominate_check(owner, target)
 	if(roll_success)
