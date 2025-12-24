@@ -43,7 +43,7 @@
 
 // Lure of Flames items
 /obj/item/lighter/conjured/flame/candle
-	name = "Lure of Flames - Candle"
+	name = "lure of flames - candle"
 	desc = "From your finger sprouts out the small flame of a candle."
 	icon_state = "candle-on"
 	inhand_icon_state = "candle"
@@ -59,7 +59,7 @@
 
 // Levinbolt items
 /obj/item/lighter/conjured/levinbolt_arm
-	name = "Illuminate"
+	name = "illuminate"
 	desc = "Your arm surges with electricity!"
 	icon_state = "illuminate"
 	inhand_icon_state = "illuminate"
