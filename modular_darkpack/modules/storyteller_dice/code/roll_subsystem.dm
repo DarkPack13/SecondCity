@@ -1,6 +1,13 @@
 SUBSYSTEM_DEF(roll)
-	name = "Storyteller Rolling"
-	flags = SS_NO_INIT | SS_NO_FIRE
+	name = "Dice Rolling"
+	flags = SS_NO_FIRE
+	var/on_crit_extra_die_enabled = FALSE
+	var/on_crit_extra_success_enabled = FALSE
+
+/datum/controller/subsystem/roll/Initialize()
+	on_crit_extra_die_enabled = CONFIG_GET(flag/on_crit_additional_die)
+	on_crit_extra_success_enabled = CONFIG_GET(flag/on_crit_additional_success)
+	return SS_INIT_SUCCESS
 
 /**
  * Rolls a number of dice according to Storyteller system rules to find
@@ -82,6 +89,13 @@ SUBSYSTEM_DEF(roll)
 	var/list/rolled_dice = list()
 	for(var/i in 1 to dice)
 		rolled_dice += rand(1, sides)
+	if(on_crit_extra_die_enabled)
+		var/extra_dice = 0
+		for(var/roll in rolled_dice)
+			if(roll == 10)
+				extra_dice++
+		for(var/i in 1 to extra_dice)
+			rolled_dice += rand(1, sides)
 	return rolled_dice
 
 //Count the number of successes.
@@ -91,6 +105,9 @@ SUBSYSTEM_DEF(roll)
 		if(roll >= difficulty)
 			output_text += span_nicegreen("[get_dice_char(roll)]")
 			success_count++
+			if(on_crit_extra_success_enabled)
+				if(roll == 10)
+					success_count++
 		else if(roll == 1)
 			output_text += span_bold(span_danger("[get_dice_char(roll)]"))
 			success_count--
@@ -105,6 +122,9 @@ SUBSYSTEM_DEF(roll)
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			success_count++
+			if(on_crit_extra_success_enabled)
+				if(roll == 10)
+					success_count++
 		else if(roll == 1)
 			success_count--
 	return success_count
@@ -147,3 +167,8 @@ SUBSYSTEM_DEF(roll)
 			return "❿"
 		else
 			return "⓿"
+
+//Config datums for exploding dice
+/datum/config_entry/flag/on_crit_additional_success
+
+/datum/config_entry/flag/on_crit_additional_die
