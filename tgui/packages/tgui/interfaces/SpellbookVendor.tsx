@@ -176,6 +176,9 @@ export const SpellbookVendor = (props) => {
                 </Box>
                 <NumberInput
                   width="100%"
+                  minValue={0}
+                  maxValue={0}
+                  step={0}
                   value={transferAmount}
                   onChange={(value) => setTransferAmount(value)}
                 />
