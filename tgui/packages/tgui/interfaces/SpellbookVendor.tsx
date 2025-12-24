@@ -187,7 +187,7 @@ export const SpellbookVendor = (props) => {
                   content="Transfer Points"
                   disabled={!canTransfer}
                   onClick={() => {
-                    act('transfer_points', { target_ref: selectedMember.ref, amount });
+                    act('transfer_points', { target_ref: selectedMember!.ref, amount });
                     setTransferAmount('');
                   }}
                   style={{ flex: '1' }}
@@ -198,7 +198,7 @@ export const SpellbookVendor = (props) => {
                     content="Seize Points"
                     disabled={!canSeize}
                     onClick={() => {
-                      act('seize_points', { target_ref: selectedMember.ref, amount });
+                      act('seize_points', { target_ref: selectedMember!.ref, amount });
                       setTransferAmount('');
                     }}
                     style={{ flex: '1' }}
