@@ -2,10 +2,6 @@
 	name = "NPC Default"
 	uniform = /obj/item/clothing/under/vampire/gangrel
 	shoes = /obj/item/clothing/shoes/vampire
-	backpack_contents = list(
-		/obj/item/vamp/keys/npc = 1,
-		/obj/item/stack/dollar/hundred = 1,
-		)
 
 /datum/outfit/npc/pre_equip(mob/living/carbon/human/user, visuals_only)
 	back = pick(
@@ -123,6 +119,7 @@
 
 /datum/outfit/npc/poor
 	name = "NPC Poor"
+
 /datum/outfit/npc/poor/pre_equip(mob/living/carbon/human/user, visuals_only)
 	uniform = pick(
 		/obj/item/clothing/under/vampire/homeless,
