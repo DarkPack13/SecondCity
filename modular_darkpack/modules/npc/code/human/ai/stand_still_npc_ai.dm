@@ -18,12 +18,15 @@
 	can_idle = FALSE
 
 /datum/ai_controller/npc/stand_still/New(atom/new_pawn)
+	. = ..()
 	set_blackboard_key(BB_HOME_VILLAGE, get_turf(new_pawn))
 
 /datum/ai_planning_subtree/go_home
 	var/travel_behavior = /datum/ai_behavior/travel_towards/stop_on_arrival/npc
 
 /datum/ai_planning_subtree/go_home/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	if(get_turf(controller.pawn) == controller.blackboard[BB_HOME_VILLAGE])
+		return
 	if(controller.blackboard_key_exists(BB_TRAVEL_DESTINATION))
 		controller.queue_behavior(travel_behavior, BB_TRAVEL_DESTINATION)
 		return
@@ -34,5 +37,5 @@
 	behavior_flags = AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
 
 /datum/ai_behavior/find_home/perform(seconds_per_tick, datum/ai_controller/controller, destination)
-	controller.set_blackboard_key(destination, BB_HOME_VILLAGE)
+	controller.set_blackboard_key(destination, controller.blackboard[BB_HOME_VILLAGE])
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
