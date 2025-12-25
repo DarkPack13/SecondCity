@@ -211,13 +211,13 @@
 	desc = "A 12g shell casing."
 	projectile_type = /obj/projectile/bullet/darkpack/rubber
 	icon_state = "12r"
-	base_iconstate = "12r"
+	base_icon_state = "12r"
 
 /obj/item/ammo_casing/vampire/c12g/incap
 	desc = "A 12g shell casing."
 	projectile_type = /obj/projectile/bullet/darkpack/incap
 	icon_state = "12i"
-	base_iconstate = "12i"
+	base_icon_state = "12i"
 
 /obj/item/ammo_casing/caseless/bolt
 	name = "bolt"
