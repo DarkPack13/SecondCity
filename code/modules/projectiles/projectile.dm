@@ -784,6 +784,12 @@
 	if (!log_override && firer && original && !do_not_log)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 			//note: mecha projectile logging is handled in /obj/item/mecha_parts/mecha_equipment/weapon/action(). try to keep these messages roughly the sameish just for consistency's sake.
+	// DARKPACK EDIT ADD START - Storyteller Stats
+	if(firer && ishuman(firer))
+		var/mob/living/carbon/human/human_firer = firer
+		if(prob(human_firer.st_get_stat(STAT_FIREARMS) * 10))
+			damage *= 1.4 //just a constant var in the old code, felt no need to declare it
+	// DARKPACK EDIT ADD END - Storyteller Stats
 	if (direct_target && (get_dist(direct_target, get_turf(src)) <= 1)) // point blank shots
 		impact(direct_target)
 		if (QDELETED(src))

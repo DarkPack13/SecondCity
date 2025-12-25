@@ -71,4 +71,12 @@
 	icon_state = "latex"
 	armor_type = /datum/armor/anti_acid_gloves
 
-
+/obj/item/clothing/gloves/vampire/white
+	name = "white gloves"
+	desc = "A pair of fine, white gloves, a symbol of of cleanliness and quality, and not much else. Getting them dirty shows how unprofessional you are."
+	icon_state = "white_gloves"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE

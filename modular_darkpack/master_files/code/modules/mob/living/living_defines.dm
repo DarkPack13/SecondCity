@@ -20,7 +20,6 @@
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
-	var/generation = 13
 	var/humanity = 7
 	var/masquerade_score = 5
 	var/warrant = FALSE
@@ -30,7 +29,7 @@
 	///Aggravated damage caused by supernatural attacks.
 	var/aggloss = 0
 
-	var/datum/storyteller_stats/storyteller_stat_holder
+	var/list/storyteller_stats = list()
 
 	//beastmaster
 	var/list/beastmaster_minions = list()

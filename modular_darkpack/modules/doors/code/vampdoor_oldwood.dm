@@ -27,3 +27,8 @@
 	lock_id = "old_clan_tzimisce"
 	lockpick_difficulty = 8
 
+/obj/structure/vampdoor/oldwood/children_of_gaia
+	locked = TRUE
+	lock_id = "coggie"
+	lockpick_difficulty = 10
+
