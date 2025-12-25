@@ -4,9 +4,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity, // Resist out of cuffs or whatnot first.
 		/datum/ai_planning_subtree/find_nearest_thing_which_attacked_me_to_flee, // Then handle combat.
-		/datum/ai_planning_subtree/flee_target,
-		/datum/ai_planning_subtree/target_retaliate,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree, // End handling combat.
+		/datum/ai_planning_subtree/flee_target, // End handling combat.
 		/datum/ai_planning_subtree/look_for_walk_target // Random walking behavior.
 	)
 	blackboard = list(

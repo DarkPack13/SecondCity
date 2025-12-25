@@ -4,9 +4,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity, // Resist out of cuffs or whatnot first.
 		/datum/ai_planning_subtree/target_retaliate, // Then handle combat.
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/find_nearest_thing_which_attacked_me_to_flee,
-		/datum/ai_planning_subtree/flee_target,	// End handling combat.
+		/datum/ai_planning_subtree/basic_melee_attack_subtree, // End handling combat.
 		/datum/ai_planning_subtree/go_home
 	)
 	blackboard = list(
@@ -26,6 +24,9 @@
 
 /datum/ai_planning_subtree/go_home/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	if(get_turf(controller.pawn) == controller.blackboard[BB_HOME_VILLAGE])
+		var/mob/living/nearest_mob = get_closest_atom(/mob/living, oviewers(DEFAULT_SIGHT_DISTANCE, controller.pawn), controller.pawn)
+		if(can_see(controller.pawn, nearest_mob, DEFAULT_SIGHT_DISTANCE))
+			controller.pawn.dir = get_dir(controller.pawn, nearest_mob)
 		return
 	if(controller.blackboard_key_exists(BB_TRAVEL_DESTINATION))
 		controller.queue_behavior(travel_behavior, BB_TRAVEL_DESTINATION)
