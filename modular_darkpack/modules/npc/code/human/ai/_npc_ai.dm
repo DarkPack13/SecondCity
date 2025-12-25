@@ -11,6 +11,7 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = UNCONSCIOUS,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_REINFORCEMENTS_EMOTE = "screams for help!",
 	)
 	can_idle = FALSE
 
