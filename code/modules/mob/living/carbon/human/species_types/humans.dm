@@ -123,7 +123,7 @@
 		hypercorporations buy the senate votes they need and establish territory far past the Earth Government's reach. \
 		In hypercorporation territory company policy is law, giving new meaning to \"employee termination\".",
 	)
-
+/* // DARKPACK EDIT REMOVAL START - (We aren't using the AI, so this is currently useless and immersion breaking)
 /datum/species/human/create_pref_unique_perks()
 	var/list/to_add = list()
 
@@ -147,3 +147,4 @@
 		))
 
 	return to_add
+*/ // DARKPACK EDIT REMOVAL END
