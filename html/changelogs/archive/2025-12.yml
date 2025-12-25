@@ -45,3 +45,16 @@
 2025-12-19:
   chazzyjazzy:
   - code_imp: adds the hair, adds the 10 dice two successes
+2025-12-22:
+  chazzyjazzy:
+  - code_imp: removes duplicates from preferences adjectives list
+2025-12-23:
+  FalloutFalcon:
+  - bugfix: Lowwalls now spawn there windows again
+2025-12-24:
+  FalloutFalcon:
+  - rscadd: Real ashtrays you can take in loadout.
+2025-12-25:
+  Icarus-The-Sun:
+  - rscdel: Removes the AI superiority quirk for humans and ghouls.
+  - bugfix: 'fixes #347'
