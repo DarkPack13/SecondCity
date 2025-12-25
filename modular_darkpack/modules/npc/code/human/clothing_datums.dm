@@ -4,6 +4,7 @@
 	shoes = /obj/item/clothing/shoes/vampire
 
 /datum/outfit/npc/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	back = pick(
 		/obj/item/storage/backpack,
 		/obj/item/storage/backpack/satchel,
@@ -13,11 +14,11 @@
 		null,
 		)
 
-
 /datum/outfit/npc/bandit
 	name = "NPC Bandit"
 
 /datum/outfit/npc/bandit/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	shoes = pick(
 		/obj/item/clothing/shoes/vampire/sneakers,
 		/obj/item/clothing/shoes/vampire/sneakers/red,
@@ -57,6 +58,7 @@
 	name = "NPC Rich"
 
 /datum/outfit/npc/bandit/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	uniform = pick(
 		/obj/item/clothing/shoes/vampire/white,
 		/obj/item/clothing/under/vampire/rich,
@@ -89,6 +91,7 @@
 	name = "NPC Average"
 
 /datum/outfit/npc/average/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	uniform = pick(
 		/obj/item/clothing/under/vampire/mechanic,
 		/obj/item/clothing/under/vampire/sport,
@@ -121,6 +124,7 @@
 	name = "NPC Poor"
 
 /datum/outfit/npc/poor/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	uniform = pick(
 		/obj/item/clothing/under/vampire/homeless,
 		/obj/item/clothing/under/vampire/homeless/female,
@@ -150,6 +154,7 @@
 	uniform = /obj/item/clothing/under/vampire/mechanic
 
 /datum/outfit/npc/shop/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
 	shoes = pick(
 		/obj/item/clothing/shoes/vampire/sneakers,
 		/obj/item/clothing/shoes/vampire,
@@ -168,5 +173,12 @@
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	head = /obj/item/clothing/head/vampire/police
 	gloves = /obj/item/clothing/gloves/color/black
-	r_hand = /obj/item/melee/baton
 	l_pocket = /obj/item/stack/dollar/rand
+
+/datum/outfit/npc/police/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
+	r_hand = pick(
+		/obj/item/melee/baton,
+		/obj/item/gun/ballistic/automatic/pistol/darkpack/glock19,
+		null,
+	)
