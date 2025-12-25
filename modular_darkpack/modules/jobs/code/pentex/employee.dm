@@ -4,8 +4,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Board and the Branch Lead"
 	req_admin_notify = 1
 	minimal_player_age = 25
