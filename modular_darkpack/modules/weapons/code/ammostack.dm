@@ -19,7 +19,7 @@
 	name = "45acp hollow point bullet"
 	damage = 25
 	armour_penetration = 0
-	bare_wound_bonus = 5
+	wound_bonus = 5
 	wound_bonus = 5
 
 /obj/projectile/bullet/darkpack/vamp44
