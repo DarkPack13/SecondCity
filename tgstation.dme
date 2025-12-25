@@ -7192,7 +7192,7 @@
 #include "modular_darkpack\modules\mob_spawners\code\citizen.dm"
 #include "modular_darkpack\modules\npc\code\landmarks.dm"
 #include "modular_darkpack\modules\npc\code\human\_npc.dm"
-#include "modular_darkpack\modules\npc\code\human\clolthing_datums.dm"
+#include "modular_darkpack\modules\npc\code\human\clothing_datums.dm"
 #include "modular_darkpack\modules\npc\code\human\ai\_npc_ai.dm"
 #include "modular_darkpack\modules\npc\code\human\ai\stand_still_npc_ai.dm"
 #include "modular_darkpack\modules\npc\code\human\ai\behaviors\random_movement.dm"
