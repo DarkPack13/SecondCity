@@ -57,10 +57,9 @@
 /datum/outfit/npc/rich
 	name = "NPC Rich"
 
-/datum/outfit/npc/bandit/pre_equip(mob/living/carbon/human/user, visuals_only)
+/datum/outfit/npc/rich/pre_equip(mob/living/carbon/human/user, visuals_only)
 	. = ..()
 	uniform = pick(
-		/obj/item/clothing/shoes/vampire/white,
 		/obj/item/clothing/under/vampire/rich,
 		/obj/item/clothing/under/vampire/business,
 		)
