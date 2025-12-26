@@ -52,7 +52,31 @@
 		"[FREQ_SECURITY]" = list(
 			"name" = RADIO_CHANNEL_SECURITY,
 			"color" = RADIO_COLOR_SECURITY
-		)
+		), // DARKPACK EDIT ADD START
+		"[FREQ_POLICE]" = list(
+			"name" = RADIO_CHANNEL_POLICE,
+			"color" = RADIO_COLOR_POLICE
+		),
+		"[FREQ_CLINIC]" = list(
+			"name" = RADIO_CHANNEL_CLINIC,
+			"color" = RADIO_COLOR_CLINIC
+		),
+		"[FREQ_MILITARY]" = list(
+			"name" = RADIO_CHANNEL_MILITARY,
+			"color" = RADIO_COLOR_MILITARY
+		),
+		"[FREQ_CAMARILLA]" = list(
+			"name" = RADIO_CHANNEL_CAMARILLA,
+			"color" = RADIO_COLOR_CAMARILLA
+		),
+		"[FREQ_ANARCH]" = list(
+			"name" = RADIO_CHANNEL_ANARCH,
+			"color" = RADIO_COLOR_ANARCH
+		),
+		"[FREQ_ENDRON]" = list(
+			"name" = RADIO_CHANNEL_ENDRON,
+			"color" = RADIO_COLOR_ENDRON
+		) // DARKPACK EDIT ADD END
 	)
 
 /obj/machinery/telecomms/allinone/nuclear
