@@ -1,45 +1,50 @@
-<!-- This should be copy-pasted into the root of your module folder as readme.md -->
+https://github.com/DarkPack13/SecondCity/pull/407
 
-https://github.com/DarkPack13/SecondCity/pull/407<!--PR Number-->
+## \<Splats>
 
-## \<Splats> <!--Title of your addition.-->
-
-Module ID: SPLATS<!-- Uppercase, UNDERSCORE_CONNECTED name of your module, that you use to mark files. This is so people can case-sensitive search for your edits, if any. -->
+Module ID: SPLATS
 
 ### Description:
 
-<!-- Here, try to describe what your PR does, what features it provides and any other directly useful information. -->
+A framework for supernatural types (splats) to replace the old species-based splat
+code. Splats are the different kinds of supernatural creatures in the World of
+Darkness like vampires, ghouls, werewolves, mages, and so on.
+
+Living mobs can have multiple splat datums, which can all:
+
+- Apply traits to their owners that determine different aspects of the supernatural
+  creature, like being immortal or weak to silver.
+- Give their owners actions to represent innate supernatural abilities, like using
+  vampiric blood to heal or empower themselves.
+- Optionally give their owners biotypes to represent fundamentally supernatural existences,
+  like being undead or a spirit.
+- Manage which powers the owner is able to use and provide a way to easily interact
+  with them in code.
+- Apply unique effects to their owners upon gaining them, which can easily be undone
+  when the splat is removed.
+- Specify which splats can co-exist with them and dynamically approve or reject new
+  splats for unique cross-splat interactions like Abominations.
 
 ### TG Proc/File Changes:
 
 - N/A
-<!-- If you edited any core procs, you should list them here. You should specify the files and procs you changed.
-E.g:
-- `code/modules/mob/living.dm`: `proc/overriden_proc`, `var/overriden_var`
-  -->
 
 ### Modular Overrides:
 
 - [modular_darkpack/master_files/code/modules/mob/living/living_defines.dm](/modular_darkpack/master_files/code/modules/mob/living/living_defines.dm)
   - `var/list/datum/splat/splats`
-
-<!-- If you added a new modular override (file or code-wise) for your module, you should list it here. Code files should specify what procs they changed, in case of multiple modules using the same file.
-E.g:
-- `modular_nova/master_files/sound/my_cool_sound.ogg`
-- `modular_nova/master_files/code/my_modular_override.dm`: `proc/overriden_proc`, `var/overriden_var`
-  -->
+- [modular_darkpack/master_files/code/modules/mob/living/living.dm](/modular_darkpack/master_files/code/modules/mob/living/living.dm)
+  - `/mob/living/Destroy()`
 
 ### Defines:
 
 - [code/\_\_DEFINES/~darkpack/splats.dm](/code/__DEFINES/~darkpack/splats.dm)
 - [code/\_\_DEFINES/~darkpack/dcs/splat_signals.dm](/code/__DEFINES/~darkpack/dcs/splat_signals.dm)
-<!-- If you needed to add any defines, mention the files you added those defines in, along with the name of the defines. -->
 
 ### Included files that are not contained in this module:
 
 - N/A
-<!-- Likewise, be it a non-modular file or a modular one that's not contained within the folder belonging to this specific module, it should be mentioned here. Good examples are icons or sounds that are used between multiple modules, or other such edge-cases. -->
 
 ### Credits:
 
-@TheCarnalest<!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code. -->
+@TheCarnalest
