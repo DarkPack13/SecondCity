@@ -13,6 +13,7 @@
 		FREQ_CTF_YELLOW,
 		FREQ_CTF_GREEN,
 		FREQ_CTF_BLUE,
+		FREQ_MILITARY, // DARKPACK EDIT ADD
 	)
 
 /obj/machinery/telecomms/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
