@@ -58,3 +58,6 @@
   Icarus-The-Sun:
   - rscdel: Removes the AI superiority quirk for humans and ghouls.
   - bugfix: 'fixes #347'
+2025-12-26:
+  Icarus-The-Sun:
+  - rscadd: Added Asthma inhalers and refill canisters for them to pharmacy shops.
