@@ -10,8 +10,7 @@
 	if(time)
 		duration = time
 	stored_generation = owner.get_generation()
-	iskindred(owner).set_generation()
-	owner.update_blood_hud()
+	iskindred(owner).set_generation(generation)
 
 /datum/status_effect/blood_of_potency/on_remove()
 	. = ..()

@@ -183,13 +183,11 @@
 	return HANDLE_BLOOD_NO_NUTRITION_DRAIN|HANDLE_BLOOD_NO_OXYLOSS
 
 /datum/splat/vampire/kindred/vv_edit_var(var_name, var_value)
-	. = ..()
-	if (!.)
-		return
-
 	switch (var_name)
 		if (NAMEOF(src, generation))
 			if (var_value < LOWEST_GENERATION_LIMIT || var_value > HIGHEST_GENERATION_LIMIT)
 				return FALSE
 
 			set_generation(var_value)
+
+	return ..()

@@ -87,6 +87,7 @@ GLOBAL_LIST_INIT(vitae_spending_rate_by_gen, list(
 	// Base human bloodpool + 3 for every Generation below 13
 	owner.maxbloodpool = get_max_bloodpool(generation)
 	owner.bloodpool = clamp(owner.bloodpool, 0, owner.maxbloodpool)
+	owner.update_blood_hud()
 
 /**
  * Internal proc to update vitae spending rate and its related abilities on
