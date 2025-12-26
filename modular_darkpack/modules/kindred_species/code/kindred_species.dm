@@ -5,6 +5,7 @@
 	examine_limb_id = SPECIES_HUMAN
 	// Character creation buttons will not display if these traits aren't here
 	inherent_traits = list(
+		TRAIT_USES_SKINTONES,
 		TRAIT_VTM_MORALITY,
 		TRAIT_VTM_CLANS,
 		TRAIT_UNAGING,
