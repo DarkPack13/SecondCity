@@ -15,7 +15,7 @@
 			if(H == usr)
 				to_chat(usr, span_warning("You may not turn yourself into a Gargoyle!"))
 				return
-			else if(istype(H.get_clan(), /datum/vampire_clan/gargoyle))
+			else if(H.is_clan(/datum/vampire_clan/gargoyle))
 				to_chat(usr, span_warning("You may not use this ritual on a Gargoyle!"))
 				return
 			else if(H.stat > SOFT_CRIT)

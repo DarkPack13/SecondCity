@@ -16,7 +16,7 @@
 		if(HAS_TRAIT(src, TRAIT_DIABLERIE))
 			start_prob = 30
 		if(prob(min(99, start_prob+((generation-victim_generation)*10))))
-			to_chat(src, span_userdanger("<b>[victim]'s SOUL OVERCOMES YOURS AND GAINS CONTROL OF YOUR BODY.</b>"))
+			to_chat(src, span_userdanger(span_bold("[victim]'s soul overcomes yours and gains control of your body!")))
 			message_admins("[ADMIN_LOOKUPFLW(src)] tried to Diablerize [ADMIN_LOOKUPFLW(victim)] and was overtaken.")
 			log_attack("[key_name(src)] tried to Diablerize [key_name(victim)] and was overtaken.")
 			kindred.set_generation(victim_generation)

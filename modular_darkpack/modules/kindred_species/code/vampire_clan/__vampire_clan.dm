@@ -186,3 +186,6 @@
 	RETURN_TYPE(/datum/vampire_clan)
 
 	return iskindred(src)?.clan
+
+/mob/living/proc/is_clan(clan_type)
+	return istype(get_clan(), clan_type)

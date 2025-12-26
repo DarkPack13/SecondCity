@@ -5,7 +5,7 @@
 
 	var/new_generation = generation
 	if(victim_generation < generation)
-		new_generation = max(generation - 1, 7)
+		new_generation = max(generation - 1, MAX_TRUSTED_GENERATION)
 	kindred.set_generation(new_generation)
 
 	if(!GLOB.canon_event)

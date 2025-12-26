@@ -81,10 +81,6 @@
 
 	var/list/drop_on_death_list = null
 
-	// Lower bloodpool than players
-	bloodpool = 5
-	maxbloodpool = 5
-
 /mob/living/carbon/human/npc/Initialize(mapload)
 	. = ..()
 

@@ -52,11 +52,11 @@
 	owner = null
 
 /datum/splat/Destroy()
-	SHOULD_NOT_OVERRIDE(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 
 	unassign()
 
-	. = ..()
+	return ..()
 
 /**
  * Internal proc to remove all of the traits added by this splat on lose.

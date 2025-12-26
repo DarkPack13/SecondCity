@@ -72,9 +72,9 @@
 /datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
 	var/mob/living/carbon/human/malk = clicker
-	var/datum/vampire_clan/malkavian/clan_malkavian = malk.get_clan()
-	if (!istype(clan_malkavian, /datum/vampire_clan/malkavian))
+	if (!malk.is_clan(/datum/vampire_clan/malkavian))
 		return
+	var/datum/vampire_clan/malkavian/clan_malkavian = malk.get_clan()
 	var/new_thought = tgui_input_text(clicker, "Malkavian Hivemind")
 	if(!new_thought)
 		return
