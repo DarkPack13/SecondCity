@@ -6,8 +6,8 @@
 	var/path_type = null
 	var/path_level = 1
 	var/do_after_time = 300 // 30 seconds
-	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.wav'
-	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.wav'
+	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.ogg'
+	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.ogg'
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
 
