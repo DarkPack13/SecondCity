@@ -1,5 +1,4 @@
 GLOBAL_LIST_INIT(bloodpool_by_gen, list(
-	0, // index filler
 	0, // 1st (not normally used)
 	0, // 2nd
 	0, // 3rd

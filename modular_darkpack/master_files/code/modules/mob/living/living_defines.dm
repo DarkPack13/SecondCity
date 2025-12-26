@@ -39,5 +39,10 @@
 	var/escape_attempt = 0
 	var/tentacle_aggro_mode = "Aggressive"
 
+	COOLDOWN_DECLARE(masquerade_timer)
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
+
 	/// List of supernatural types that this mob is part of
 	var/list/datum/splat/splats

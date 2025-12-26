@@ -1,9 +1,3 @@
-/mob/living
-	COOLDOWN_DECLARE(masquerade_timer)
-	//thaumaturgy & necro path stuff
-	var/research_points = 0
-	var/collected_souls = 0
-
 /mob/living/Initialize(mapload)
 	. = ..()
 	storyteller_stats = create_new_stat_prefs(storyteller_stats)
