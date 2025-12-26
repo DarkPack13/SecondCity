@@ -13,6 +13,7 @@
 		BB_TARGET_MINIMUM_STAT = UNCONSCIOUS,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_REINFORCEMENTS_SAY = "HELP!!!",
+		BB_GUNMIMIC_GUN_EMPTY = FALSE,
 	)
 	can_idle = FALSE
 
