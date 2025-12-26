@@ -1,20 +1,48 @@
+/**
+ * Effects on losing the splat normally.
+ *
+ * Overridable proc that handles most splat-specific behavior when the splat is
+ * lost. Called in unassign() before any part of the splat is removed from the
+ * owner. Not called if the owner is being deleted.
+ */
 /datum/splat/proc/on_lose()
 	return
 
+/**
+ * Effects on losing the splat if the owner isn't null.
+ *
+ * Overridable proc that handles splat-specific behavior when the splat is lost.
+ * Called in unassign() before anything else whether or not the owner is being
+ * deleted. Should be used only for cleanup like removing the owner from a
+ * splat-specific global list.
+ */
+/datum/splat/proc/on_lose_or_destroy()
+	return
+
+/**
+ * Remove this splat from its owner.
+ *
+ * Fails if the owner is null, or cleans up the splat if the owner is being
+ * deleted. First applies on_lose() effects then removes all of the splat's
+ * traits, actions, and biotypes that were added in assign() before removing
+ * the splat entirely.
+ */
 /datum/splat/proc/unassign()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	clear_powers()
+	if (owner)
+		on_lose_or_destroy()
 
 	if (QDELETED(owner))
 		owner = null
+		clear_powers()
 		return
 
 	SEND_SIGNAL(owner, COMSIG_LIVING_LOSE_SPLAT, src)
 
 	on_lose()
 
-	UnregisterSignal(owner, COMSIG_QDELETING)
+	clear_powers()
 
 	remove_splat_traits()
 	remove_actions()
@@ -30,11 +58,18 @@
 
 	. = ..()
 
+/**
+ * Internal proc to remove all of the traits added by this splat on lose.
+ */
 /datum/splat/proc/remove_splat_traits()
 	PRIVATE_PROC(TRUE)
 
 	REMOVE_TRAITS_IN(owner, id)
 
+/**
+ * Internal proc to remove all of the actions added by this splat on lose.
+ * Checks for and skips actions that also belong to another splat.
+ */
 /datum/splat/proc/remove_actions()
 	PRIVATE_PROC(TRUE)
 
@@ -54,6 +89,10 @@
 
 			action.Remove(owner)
 
+/**
+ * Internal proc to remove all of the biotypes added by this splat on lose.
+ * Checks for and skips biotypes added by the owner's species or other splats.
+ */
 /datum/splat/proc/remove_biotypes()
 	PRIVATE_PROC(TRUE)
 

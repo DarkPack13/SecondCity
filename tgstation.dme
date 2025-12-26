@@ -6922,7 +6922,6 @@
 #include "modular_darkpack\modules\blood_drinking\code\bite_helper_procs.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_keybinding.dm"
 #include "modular_darkpack\modules\blood_drinking\code\drinksomeblood.dm"
-#include "modular_darkpack\modules\blood_drinking\code\max_bloodpool.dm"
 #include "modular_darkpack\modules\blood_drinking\code\vamp_bite.dm"
 #include "modular_darkpack\modules\blood_drinking\code\kiss_status_effect\status_effect_kiss.dm"
 #include "modular_darkpack\modules\blood_drinking\code\movable_screens\blood_hud.dm"

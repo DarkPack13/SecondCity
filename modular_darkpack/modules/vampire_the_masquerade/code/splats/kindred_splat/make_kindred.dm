@@ -1,8 +1,21 @@
+/**
+ * Makes the mob a Kindred with the given Generation, Clan, morality, and sire.
+ */
 /mob/living/proc/make_kindred(generation = DEFAULT_GENERATION, datum/vampire_clan/clan, enlightenment, mob/living/sire)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
 
 	return add_splat(/datum/splat/vampire/kindred, generation, clan, enlightenment, sire)
 
+/**
+ * Makes the mob a Kindred as if Embraced by another Kindred.
+ *
+ * Inherits Generation and Clan while always starting on Humanity morality.
+ * Small chance for the childe to be a Caitiff independent of the sire's Clan.
+ *
+ * Arguments:
+ * * sire - Kindred creating this Kindred
+ * * always_same_clan - If there should be no chance the childe is a Caitiff
+ */
 /mob/living/proc/make_kindred_from_sire(mob/living/sire, always_same_clan = FALSE)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
 

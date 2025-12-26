@@ -1,3 +1,7 @@
+/**
+ * Returns the instance of the given splat type possessed by the mob, or null
+ * if not found.
+ */
 /mob/proc/get_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
@@ -12,12 +16,20 @@
 
 		return splat
 
+/**
+ * Creates a new splat of the given type with the given arguments and assigns it
+ * to the mob.
+ */
 /mob/living/proc/add_splat(splat_type, ...)
 	RETURN_TYPE(/datum/splat)
 
 	var/datum/splat/adding_splat = new splat_type(arglist(args.Copy(2)))
 	return adding_splat.assign(src)
 
+/**
+ * Deletes the splat of the given type possessed by the mob. Returns TRUE if
+ * found and deleted, or false if not.
+ */
 /mob/living/proc/remove_splat(splat_type)
 	for (var/datum/splat/found_splat as anything in splats)
 		if (!istype(found_splat, splat_type))
@@ -28,11 +40,16 @@
 
 	return FALSE
 
-/mob/living/proc/is_splat_incompatible(splat_type)
+/**
+ * Returns if the given splat type can be added to the mob or not.
+ * Incompatibilities are due to an existing splat clashing with it or the given
+ * splat type already being present.
+ */
+/mob/living/proc/is_splat_compatible(splat_type)
 	for (var/datum/splat/splat as anything in splats)
 		if (splat_type in splat.incompatible_splats)
-			return TRUE
+			return FALSE
 		if (splat.type == splat_type)
-			return TRUE
+			return FALSE
 
-	return FALSE
+	return TRUE

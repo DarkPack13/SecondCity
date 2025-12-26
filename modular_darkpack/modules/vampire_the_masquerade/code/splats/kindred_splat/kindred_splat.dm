@@ -26,9 +26,11 @@
 		/datum/splat/vampire/ghoul
 	)
 
-	/// How many generations away from the first vampire they are, determines how much blood can be stored and used
+	/// How many generations away from the first vampire they are. Determines how much blood can be stored and used
 	var/generation
-	/// Which vampiric bloodline or Clan they fall into, determines natural Disciplines. Singleton reference, never modify
+	/// How quickly they can spend vitae. Depends on Generation and affects abilities like bloodheal
+	var/vitae_spending_rate
+	/// Which vampiric bloodline or Clan they fall into. Determines natural Disciplines. Singleton reference, never modify
 	var/datum/vampire_clan/clan
 	/// Which morality they follow, Humanity if false and Enlightenment if true
 	var/enlightenment
@@ -87,9 +89,6 @@
 	owner.set_clan(clan)
 
 /datum/splat/vampire/kindred/on_lose()
-	if (!isdummy(owner))
-		GLOB.kindred_list -= owner
-
 	owner.set_clan(null)
 
 	UnregisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN)
@@ -114,6 +113,12 @@
 	// Reset bloodpool size from Generation
 	owner.maxbloodpool = initial(owner.maxbloodpool)
 
+/datum/splat/vampire/kindred/on_lose_or_destroy()
+	if (isdummy(owner))
+		return
+
+	GLOB.kindred_list -= owner
+
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
 
@@ -122,7 +127,7 @@
 		damage_mods += 0.5
 
 /**
- * Signal handler for lose_organ to near-instantly kill Kindred whose hearts have been removed.
+ * Signal handler for COMSIG_CARBON_LOSE_ORGAN to near-instantly kill Kindred whose hearts have been removed.
  *
  * Arguments:
  * * source - The Kindred whose organ has been removed.
@@ -149,7 +154,7 @@
 	SIGNAL_HANDLER
 
 	to_chat(source, span_warning("You can feel yourself slipping into Torpor. You can use succumb to immediately sleep..."))
-	addtimer(CALLBACK(source, TYPE_PROC_REF(/mob/living/carbon/human, torpor), "damage"), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(slip_into_torpor), source), 2 MINUTES)
 
 /datum/splat/vampire/kindred/proc/slip_into_torpor(mob/living/carbon/human/kindred)
 	if (!kindred || (kindred.stat == DEAD))
@@ -176,3 +181,15 @@
 		return HANDLE_BLOOD_HANDLED
 
 	return HANDLE_BLOOD_NO_NUTRITION_DRAIN|HANDLE_BLOOD_NO_OXYLOSS
+
+/datum/splat/vampire/kindred/vv_edit_var(var_name, var_value)
+	. = ..()
+	if (!.)
+		return
+
+	switch (var_name)
+		if (NAMEOF(src, generation))
+			if (var_value < LOWEST_GENERATION_LIMIT || var_value > HIGHEST_GENERATION_LIMIT)
+				return FALSE
+
+			set_generation(var_value)

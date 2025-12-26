@@ -18,11 +18,26 @@
 /datum/splat/proc/change_power_level(power_type, new_level)
 	CRASH("change_power_level() not implemented for [type]!")
 
+/**
+ * Internal proc to clean up all power instances owned by this splat. Called by
+ * unassign() on losing the splat.
+ */
 /datum/splat/proc/clear_powers()
 	PRIVATE_PROC(TRUE)
 
-	QDEL_LIST(powers)
+	QDEL_LAZYLIST(powers)
 
+/**
+ * Add a list of powers with certain levels to the mob.
+ *
+ * Defaults to level 1 if no corresponding level is given for a power. Adds the
+ * power to a splat that can support it, fails if no splats compatible with
+ * the power are found.
+ *
+ * Arguments:
+ * * power_types - List of powers to add to the mob.
+ * * levels - List of power levels to apply to the power of the same index.
+ */
 /mob/living/carbon/human/proc/give_st_powers(list/power_types, list/levels)
 	for (var/index in 1 to length(power_types))
 		var/power_type = power_types[index]
@@ -36,13 +51,20 @@
 
 		give_st_power(power_type, level)
 
-/mob/living/carbon/human/proc/give_st_power(power_type, level)
+/**
+ * Add a power with a certain level to the mob. Fails if no splat compatible
+ * with the power is found
+ */
+/mob/living/carbon/human/proc/give_st_power(power_type, level = 1)
 	var/datum/splat/found_splat = get_splat_with_power_type(power_type)
 	if (!found_splat)
 		return FALSE
 
 	return found_splat.add_power(power_type, level)
 
+/**
+ * Remove a power from the mob.
+ */
 /mob/living/carbon/human/proc/remove_st_power(power_type)
 	var/datum/splat/found_splat = get_splat_with_power_type(power_type)
 	if (!found_splat)
@@ -50,6 +72,9 @@
 
 	return found_splat.remove_power(power_type)
 
+/**
+ * Change the level of a power the mob possesses.
+ */
 /mob/living/carbon/human/proc/change_st_power_level(power_type, new_level)
 	var/datum/splat/found_splat = get_splat_with_power_type(power_type)
 	if (!found_splat)
@@ -57,6 +82,10 @@
 
 	return found_splat.change_power_level(power_type, new_level)
 
+/**
+ * Returns a splat the mob possesses that can use the given power type. Null if
+ * none found.
+ */
 /mob/living/proc/get_splat_with_power_type(power_type)
 	RETURN_TYPE(/datum/splat)
 
