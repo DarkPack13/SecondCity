@@ -160,6 +160,20 @@ SUBSYSTEM_DEF(blackbox)
 			record_feedback("tally", "radio_usage", 1, "CTF green team")
 		if(FREQ_CTF_YELLOW)
 			record_feedback("tally", "radio_usage", 1, "CTF yellow team")
+		// DARKPACK EDIT ADD START
+		if(FREQ_POLICE)
+			record_feedback("tally", "radio_usage", 1, "police")
+		if(FREQ_CLINIC)
+			record_feedback("tally", "radio_usage", 1, "clinic")
+		if(FREQ_MILITARY)
+			record_feedback("tally", "radio_usage", 1, "military")
+		if(FREQ_CAMARILLA)
+			record_feedback("tally", "radio_usage", 1, "camarilla")
+		if(FREQ_ANARCH)
+			record_feedback("tally", "radio_usage", 1, "anarch")
+		if(FREQ_ENDRON)
+			record_feedback("tally", "radio_usage", 1, "endron")
+		// DARKPACK EDIT ADD END
 		else
 			record_feedback("tally", "radio_usage", 1, "other")
 
