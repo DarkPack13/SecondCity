@@ -2,17 +2,31 @@
 "a" = (
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
-"g" = (
-/obj/machinery/light/floor,
-/turf/open/floor/iron,
+"d" = (
+/turf/closed/wall/vampwall,
 /area/centcom/central_command_areas/control)
 "h" = (
 /turf/closed/indestructible/riveted,
+/area/centcom/central_command_areas/control)
+"p" = (
+/obj/machinery/light/floor,
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
+"s" = (
+/mob/living/carbon/human/npc/police/standing,
+/turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
 "x" = (
 /obj/effect/landmark/error,
 /obj/effect/landmark/observer_start,
 /obj/effect/landmark/latejoin,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
+"y" = (
+/obj/structure/vampdoor{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
 "A" = (
@@ -21,10 +35,32 @@
 "G" = (
 /turf/closed/indestructible/splashscreen,
 /area/space)
+"H" = (
+/obj/effect/landmark/npcbeacon,
+/obj/machinery/light/floor,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
+"P" = (
+/obj/structure/vampdoor,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
+"Q" = (
+/obj/effect/landmark/ai_avoid_turf,
+/turf/open/floor/carpet,
+/area/centcom/central_command_areas/control)
+"U" = (
+/mob/living/carbon/human/npc,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
 "W" = (
 /obj/effect/landmark/start/new_player,
 /turf/cordon,
 /area/space)
+"Z" = (
+/obj/effect/landmark/ai_avoid_turf,
+/obj/effect/landmark/ai_avoid_turf,
+/turf/open/floor/carpet,
+/area/centcom/central_command_areas/control)
 
 (1,1,1) = {"
 A
@@ -144,9 +180,9 @@ a
 a
 a
 a
+Q
 a
-a
-a
+Q
 a
 a
 a
@@ -173,15 +209,15 @@ A
 h
 a
 a
+H
 a
 a
+Q
+p
+Q
 a
 a
-g
-a
-a
-a
-a
+H
 a
 a
 h
@@ -208,9 +244,9 @@ a
 a
 a
 a
-a
-a
-a
+Q
+Q
+Q
 a
 a
 a
@@ -268,17 +304,17 @@ A
 A
 h
 a
+Q
+Q
+Q
 a
 a
 a
 a
 a
-a
-a
-a
-a
-a
-a
+Q
+Q
+Q
 a
 h
 "}
@@ -301,15 +337,15 @@ A
 h
 a
 a
-g
+p
+Q
+U
 a
-a
-a
-g
+p
 x
 a
-a
-g
+Q
+p
 a
 a
 h
@@ -332,17 +368,17 @@ A
 A
 h
 a
+Q
+Q
+Q
 a
 a
+s
 a
 a
-a
-a
-a
-a
-a
-a
-a
+Z
+Q
+Q
 a
 h
 "}
@@ -363,19 +399,19 @@ A
 A
 A
 h
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+d
+d
+d
+d
+y
+d
+d
+d
+y
+d
+d
+d
+d
 h
 "}
 (12,1,1) = {"
@@ -400,11 +436,11 @@ a
 a
 a
 a
+Q
+Q
+Q
 a
-a
-a
-a
-a
+d
 a
 a
 a
@@ -429,15 +465,15 @@ A
 h
 a
 a
+H
 a
 a
+Q
+p
+Q
 a
-a
-g
-a
-a
-a
-a
+d
+H
 a
 a
 h
@@ -464,11 +500,11 @@ a
 a
 a
 a
+Q
 a
+Q
 a
-a
-a
-a
+d
 a
 a
 a
@@ -500,7 +536,7 @@ a
 a
 a
 a
-a
+P
 a
 a
 a
@@ -532,7 +568,7 @@ a
 a
 a
 a
-a
+d
 a
 a
 a
