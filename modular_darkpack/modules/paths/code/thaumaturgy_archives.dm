@@ -147,13 +147,16 @@
 	.["product_records"] = list()
 	for(var/datum/data/vending_product/prize in products_list)
 		var/stock_count = item_stock[prize.product_path] || 0
+		var/obj/item/product_item = prize.product_path
 		var/list/product_data = list(
 			path = replacetext(replacetext("[prize.product_path]", "/obj/item/", ""), "/", "-"),
 			name = prize.name,
 			price = prize.price,
 			ref = REF(prize),
 			stock = stock_count,
-			available = (stock_count > 0)
+			available = (stock_count > 0),
+			icon = initial(product_item.icon),
+			icon_state = initial(product_item.icon_state)
 		)
 		.["product_records"] += list(product_data)
 

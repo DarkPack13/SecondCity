@@ -1,6 +1,6 @@
-import { classes } from 'tgui-core/react';
+//THIS IS A DARKPACK UI FILE
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table, Dropdown, Collapsible, NumberInput } from 'tgui-core/components';
+import { Box, Button, Section, Table, Dropdown, Collapsible, NumberInput, DmIcon } from 'tgui-core/components';
 import { Window } from '../layouts';
 import { useState } from 'react';
 
@@ -11,6 +11,8 @@ type Product = {
   stock: number;
   available: boolean;
   ref: string;
+  icon: string;
+  icon_state: string;
 }
 
 type TremereMember = {
@@ -59,8 +61,9 @@ const ProductRow = (props) => {
   return (
     <Table.Row style={STYLE.row}>
       <Table.Cell style={{ color: '#cc3333' }}>
-        <span
-          className={classes(['vending32x32', product.path])}
+        <DmIcon
+          icon={product.icon}
+          icon_state={product.icon_state}
           style={{
             verticalAlign: 'middle',
             filter: inStock
