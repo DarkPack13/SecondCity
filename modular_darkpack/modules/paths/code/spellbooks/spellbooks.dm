@@ -5,7 +5,7 @@
 	icon_state = "spellbook_unfinished"
 	var/path_type = null
 	var/path_level = 1
-	var/do_after_time = 300 // 30 seconds
+	var/do_after_time = 30 SECONDS
 	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.ogg'
 	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.ogg'
 	drop_sound = 'sound/items/handling/book_drop.ogg'
@@ -14,6 +14,8 @@
 	var/identified = FALSE
 	var/true_name = ""
 	var/true_desc = ""
+
+	COOLDOWN_DECLARE(identify_failure_cooldown)
 
 /obj/item/path_spellbook/Initialize(mapload)
 	. = ..()
@@ -27,16 +29,31 @@
 	. = ..()
 	if(!identified)
 		. += span_notice("You could try to clean off the dust to see what lies beneath.")
+	if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
+		var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
+		. += span_warning("You need to wait [time_left] seconds before trying again.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
 
 	if(!identified)
-		if(do_after(user, 5 SECONDS))
-			to_chat(user, span_cult("You wipe the dust off the previously irrelevant tome. Did someone misplace it from the Library?"))
-			src.identified = TRUE
-			name = true_name
-			desc = true_desc
+		if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
+			var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
+			to_chat(user, span_warning("You need to wait [time_left] seconds before trying again."))
 			return
+		if(do_after(user, 5 SECONDS))
+			var/roll = SSroll.storyteller_roll(user.st_get_stat(STAT_OCCULT) + user.st_get_stat(STAT_ACADEMICS), path_level + 3, user, numerical = FALSE)
+			switch(roll)
+				if(ROLL_SUCCESS)
+					to_chat(user, span_cult("You wipe the dust off the previously irrelevant tome. Did someone misplace it from the Library?"))
+					src.identified = TRUE
+					name = true_name
+					desc = true_desc
+					return
+				else
+					to_chat(user, span_warning("You fail to figure out the real nature of the book and get distracted by more important matters. Maybe its a cookbook?"))
+					COOLDOWN_START(src, identify_failure_cooldown, 5 MINUTES)
+					return
+		return
 
 	var/is_knowing = FALSE
 	var/datum/species/human/kindred/species = user.dna.species
