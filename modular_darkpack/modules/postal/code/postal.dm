@@ -1,7 +1,7 @@
 /obj/lettermachine
 	name = "letter machine"
 	desc = "Work as letterman! Find a job!"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/postal/icons/letters.dmi'
 	icon_state = "mail"
 	density = TRUE
 	anchored = TRUE
@@ -38,7 +38,7 @@
 /obj/item/letter
 	name = "letter"
 	icon_state = "letter"
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
+	icon = 'modular_darkpack/modules/postal/icons/letters.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/carbon/human/mail_target
@@ -46,7 +46,7 @@
 /obj/item/mark
 	name = "letter mark"
 	icon_state = "mark"
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
+	icon = 'modular_darkpack/modules/postal/icons/letters.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_TINY
 
