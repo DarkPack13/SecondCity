@@ -1,4 +1,3 @@
-
 /area/vtm/planetgeneration
 	name = "planet generation area"
 
