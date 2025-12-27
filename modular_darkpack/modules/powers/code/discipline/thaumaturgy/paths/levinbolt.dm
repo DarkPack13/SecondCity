@@ -498,4 +498,4 @@
 		deltimer(lightning_timer)
 	if(electricity3)
 		QDEL_NULL(electricity3)
-	. = ..()
+	return ..()
