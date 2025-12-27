@@ -51,7 +51,7 @@
 					return
 				else
 					to_chat(user, span_warning("You fail to figure out the real nature of the book and get distracted by more important matters. Maybe its a cookbook?"))
-					COOLDOWN_START(src, identify_failure_cooldown, 5 MINUTES)
+					COOLDOWN_START(src, identify_failure_cooldown, 2 MINUTES)
 					return
 		return
 
@@ -96,7 +96,7 @@
 		else if(path_level == 1 && !is_knowing)
 			user.playsound_local(user, activate_sound, 50, FALSE)
 	else
-		to_chat(user, span_warning("You must be a Kindred to use this spellbook!"))
+		to_chat(user, span_warning("This book is filled with gibberish and nonsense."))
 		return
 
 	var/original_icon_state = icon_state

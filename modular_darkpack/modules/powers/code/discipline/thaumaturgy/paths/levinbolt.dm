@@ -10,6 +10,45 @@
 
 	effect_sound = 'sound/effects/magic/lightningbolt.ogg'
 
+	var/light_range = 0
+	var/light_power = 0
+	var/light_color = null
+	var/electricity_overlay_state = null
+
+/datum/discipline_power/thaumaturgy/path/levinbolt/activate()
+	. = ..()
+	if(.)
+		return
+
+	if(electricity_overlay_state)
+		var/mutable_appearance/electricity = mutable_appearance('icons/effects/effects.dmi', electricity_overlay_state, EFFECTS_LAYER)
+		owner.add_overlay(electricity)
+
+	if(light_range && light_power)
+		owner.light_system = OVERLAY_LIGHT
+		owner.AddComponent(/datum/component/overlay_lighting, light_range, light_power, light_color, TRUE)
+
+/datum/discipline_power/thaumaturgy/path/levinbolt/deactivate()
+	. = ..()
+
+	if(electricity_overlay_state && owner)
+		var/mutable_appearance/electricity = mutable_appearance('icons/effects/effects.dmi', electricity_overlay_state, EFFECTS_LAYER)
+		owner.cut_overlay(electricity)
+
+	if(owner)
+		var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
+		if(light_comp)
+			qdel(light_comp)
+		owner.light_system = initial(owner.light_system)
+
+/datum/discipline_power/thaumaturgy/path/levinbolt/Destroy()
+	if(owner)
+		var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
+		if(light_comp)
+			qdel(light_comp)
+		owner.light_system = initial(owner.light_system)
+	return ..()
+
 
 // levinbolt allows for the user to click on certain electronics, disabling them, like radios while people are still wearing them, warehouse computer, fuseboxes.
 /datum/discipline_power/thaumaturgy/path/levinbolt/proc/levinbolt_target_click(mob/source, atom/target, params, include_radio_effects = FALSE)
@@ -23,7 +62,7 @@
 	if(include_radio_effects && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/disabled_any = FALSE
-		/* DARKPACK TODO: radios
+		/* DARKPACK TODO: disable new radios
 		for(var/obj/item/I in H.get_all_slots())
 			if(istype(I, /obj/item/p25radio))
 				var/obj/item/p25radio/radio = I
@@ -98,16 +137,15 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
+	light_range = 2
+	light_power = 1
+	light_color = "#f1fdfd"
+	electricity_overlay_state = "electricity"
+
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/levinbolt/three,
 		/datum/discipline_power/thaumaturgy/path/levinbolt/five
 	)
-	// storing original light values to control mobs lighting when theyre charged by electricity (dots one, three and five)
-	var/original_light_range = 0
-	var/original_light_power = 0
-	var/original_light_color = null
-	var/original_light_on = FALSE
-	var/static/mutable_appearance/electricity
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/activate()
 	. = ..()
@@ -120,24 +158,12 @@
 	//signal for disabling electronics
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(spark_target_click))
 
-	electricity = electricity || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
-	owner.add_overlay(electricity)
-
-	owner.light_system = OVERLAY_LIGHT
-	owner.AddComponent(/datum/component/overlay_lighting, 2, 1, "#f1fdfd", TRUE)
 	to_chat(owner, span_notice("Small sparks of electricity begin crackling around you! Youn can now disable certain electrical systems with just a touch - and attackers will sometimes feel a slight shock."))
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/deactivate()
 	. = ..()
 	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-	owner.cut_overlay(electricity)
-
-	var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
-	if(light_comp)
-		qdel(light_comp)
-
-	owner.light_system = initial(owner.light_system)
 	to_chat(owner, span_notice("The electricity around you fades away."))
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/proc/spark_counter(mob/source, obj/item/weapon, mob/living/attacker)
@@ -200,17 +226,15 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
+	light_range = 3
+	light_power = 2
+	light_color = "#e9ffff"
+	electricity_overlay_state = "electricity3"
+
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/levinbolt/one,
 		/datum/discipline_power/thaumaturgy/path/levinbolt/five
 	)
-	// storing original light values to control mobs lighting when theyre charged by electricity (dots one, three and five)
-	var/original_light_range = 0
-	var/original_light_power = 0
-	var/original_light_color = null
-	var/original_light_on = FALSE
-	var/static/mutable_appearance/electricity2
-
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/activate()
 	. = ..()
@@ -222,22 +246,13 @@
 	//proc for clicking on objects to disable electronics
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(powerarray_target_click))
 
-	electricity2 = electricity2 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
-	owner.add_overlay(electricity2)
-	owner.light_system = OVERLAY_LIGHT
-	owner.AddComponent(/datum/component/overlay_lighting, 3, 2, "#e9ffff", TRUE)
 	to_chat(owner, span_notice("Intense electricity surges around your entire body!"))
 
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/deactivate()
 	. = ..()
 	UnregisterSignal(owner, COMSIG_ATOM_ATTACKBY)
-	owner.cut_overlay(electricity2)
-	var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
-	if(light_comp)
-		qdel(light_comp)
-
-	owner.light_system = initial(owner.light_system)
+	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 	to_chat(owner, span_notice("The electricity around your body dissipates."))
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/proc/power_array_counter(mob/source, obj/item/weapon, mob/living/attacker)
@@ -268,6 +283,7 @@
 	violates_masquerade = TRUE
 	target_type = TARGET_LIVING
 	range = 7
+	electricity_overlay_state = "lightning"
 
 	var/static/mutable_appearance/electric_halo
 
@@ -376,9 +392,14 @@
 	vitae_cost = 2
 	cooldown_length = 30 SECONDS
 
+	light_range = 5
+	light_power = 4
+	light_color = "#e9ffff"
+	electricity_overlay_state = "electricity3"
+
 	var/lightning_timer
 	var/spark_timer
-	var/static/mutable_appearance/electricity3
+
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/path/levinbolt/one,
 		/datum/discipline_power/thaumaturgy/path/levinbolt/three
@@ -389,11 +410,6 @@
 	. = ..()
 	if(.)
 		return
-
-	electricity3 = electricity3 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
-	owner.add_overlay(electricity3)
-	owner.light_system = OVERLAY_LIGHT
-	owner.AddComponent(/datum/component/overlay_lighting, 5, 4, "#e9ffff", TRUE)
 
 	//signal for clicking electronics to disable them
 	RegisterSignal(owner, COMSIG_CLICK, PROC_REF(storm_target_click))
@@ -457,18 +473,19 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/storm_counter(mob/source, obj/item/weapon, mob/living/attacker)
 	SIGNAL_HANDLER
 
-	if(prob(60))
-		attacker.adjust_jitter_up_to(3 SECONDS, 15)
-		if(ishuman(attacker))
-			var/mob/living/carbon/human/H = attacker
-			H.electrocution_animation(60)
-		addtimer(CALLBACK(attacker, TYPE_PROC_REF(/mob, emote), "scream"), 1)
-		attacker.Stun(4 SECONDS)
-		attacker.electrocute_act(rand(10,20), owner, siemens_coeff = 1, flags = NONE)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 1, get_turf(attacker))
-		spark_system.start()
-		playsound(attacker, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
+	if(prob(40))
+		return
+	attacker.adjust_jitter_up_to(3 SECONDS, 15)
+	if(ishuman(attacker))
+		var/mob/living/carbon/human/H = attacker
+		H.electrocution_animation(60)
+	addtimer(CALLBACK(attacker, TYPE_PROC_REF(/mob, emote), "scream"), 1)
+	attacker.Stun(4 SECONDS)
+	attacker.electrocute_act(rand(10,20), owner, siemens_coeff = 1, flags = NONE)
+	var/datum/effect_system/spark_spread/spark_system = new
+	spark_system.set_up(5, 1, get_turf(attacker))
+	spark_system.start()
+	playsound(attacker, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/storm_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
@@ -490,11 +507,6 @@
 
 	owner.visible_message(span_notice("The electrical energy around [owner] dissipates."))
 	to_chat(owner, span_notice("The storm within you calms."))
-	owner.cut_overlay(electricity3)
-	var/datum/component/overlay_lighting/light_comp = owner.GetComponent(/datum/component/overlay_lighting)
-	if(light_comp)
-		qdel(light_comp)
-	QDEL_NULL(electricity3)
 	. = ..()
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/Destroy()
@@ -502,6 +514,4 @@
 		deltimer(spark_timer)
 	if(lightning_timer)
 		deltimer(lightning_timer)
-	if(electricity3)
-		QDEL_NULL(electricity3)
 	. = ..()

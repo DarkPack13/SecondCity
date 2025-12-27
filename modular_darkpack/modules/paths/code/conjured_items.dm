@@ -45,14 +45,14 @@
 /obj/item/lighter/conjured/flame/candle
 	name = "conjured candle"
 	desc = "From your finger sprouts out the small flame of a candle."
-	icon_state = "candle-on"
+	icon_state = "candle"
 	inhand_icon_state = "candle"
 	force = 10
 
 /obj/item/lighter/conjured/flame/palm_of_flame
 	name = "hand of flame"
 	desc = "Your hand burns with supernatural fire."
-	icon_state = "flame-on"
+	icon_state = "flame"
 	inhand_icon_state = "flame"
 	force = 25
 	fancy = FALSE
