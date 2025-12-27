@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(occult_research)
 	var/blood_species = blood_data["species"]
 	var/blood_name = blood_data["real_name"]
 
-	var/list/allowed_species = list("Vampire", "Garou", "Ghoul", "Kuei-Jin")
+	var/list/allowed_species = list(SPECIES_KINDRED, /*PECIES_GAROU,*/ SPECIES_GHOUL/*, SPECIES_KUEI_JIN*/)
 	if(!(blood_species in allowed_species))
 		return
 
