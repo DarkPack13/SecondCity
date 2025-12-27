@@ -74,7 +74,6 @@
 	if(user == mail_target)
 		playsound(loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 		var/IT = pick(
-			/obj/item/storage/pill_bottle/estrogen,
 			/obj/item/storage/pill_bottle/unknown,
 			/obj/item/storage/pill_bottle/ephedrine,
 			/obj/item/storage/pill_bottle/potassiodide,
