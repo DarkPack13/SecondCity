@@ -186,6 +186,9 @@
 	name = "gross decal spawner"
 	icon_state = "vomit"
 	loot = list(
+		/obj/effect/decal/cleanable/trash = 20, // DARKPACK EDIT ADD START
+		/obj/effect/decal/cleanable/litter = 6,
+		/obj/effect/decal/cleanable/cardboard = 6, // DARKPACK EDIT ADD END
 		/obj/effect/decal/cleanable/dirt = 6,
 		/obj/effect/decal/cleanable/garbage = 3,
 		/obj/effect/decal/cleanable/vomit/old = 3,
