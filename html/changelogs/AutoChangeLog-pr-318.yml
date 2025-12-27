@@ -1,0 +1,11 @@
+author: "dwinters99, Marshmellow105, Drakeven, FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Bottle of wine filled with blood for more discrete blood storage."
+  - rscadd: "Skate park shop retail store."
+  - rscadd: "Ramp subtype of stairs for use in skatepark."
+  - rscadd: "Mapping helpers for setting values of doors, please stop var-editing your doors."
+  - image: "Replaced or added alot of new tiles types, including a whole batch of autosmoothing carpets."
+  - map: "Westfield Mall. A new lowpop map for testing and to tide over new servers."
+  - bugfix: "Lighting objects like candles and paramedic pens should now have onfloors/no error sprites."
+  - code_imp: "Converts most lock ids to defines."

@@ -43,6 +43,13 @@
 	exposed_wound_bonus = 5
 	wound_bonus = -5
 
+/obj/projectile/bullet/darkpack/vamp46mm
+	name = "4.6mm bullet"
+	damage = 19
+	armour_penetration = 30
+	exposed_wound_bonus = 0
+	wound_bonus = 0
+
 /obj/projectile/bullet/shotgun_slug/vamp
 	name = "12g shotgun slug"
 	damage = 70
@@ -153,6 +160,14 @@
 	projectile_type = /obj/projectile/bullet/darkpack/vamp545mm
 	icon_state = "545"
 	base_icon_state = "545"
+
+/obj/item/ammo_casing/vampire/c46pdw
+	name = "4.6mm bullet casing"
+	desc = "A 4.6mm bullet casing."
+	caliber = CALIBER_46
+	projectile_type = /obj/projectile/bullet/darkpack/vamp46mm
+	icon_state = "556" //placeholder sprite
+	base_icon_state = "556"//placeholder sprite
 
 /obj/item/ammo_casing/vampire/c556mm/incendiary
 	projectile_type = /obj/projectile/bullet/darkpack/vamp556mm/incendiary

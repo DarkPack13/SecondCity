@@ -56,7 +56,7 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -93,7 +93,7 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -132,7 +132,7 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -170,7 +170,7 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 
@@ -207,7 +207,7 @@
 	if (HAS_TRAIT(target, TRAIT_CANNOT_RESIST_MIND_CONTROL))
 		return TRUE
 
-	if((theirpower >= mypower) || (owner.generation > target.generation))
+	if((theirpower >= mypower) || (owner.dna.species.generation > target.dna.species.generation))
 		to_chat(owner, span_warning("[target]'s mind is too powerful to dominate!"))
 		return FALSE
 

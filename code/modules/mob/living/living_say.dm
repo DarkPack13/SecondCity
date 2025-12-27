@@ -59,6 +59,21 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	// Misc
 	"щ" = RADIO_CHANNEL_AI_PRIVATE,
 	"з" = RADIO_CHANNEL_ENTERTAINMENT,
+
+	// DARKPACK EDIT ADD START
+	RADIO_KEY_POLICE = RADIO_CHANNEL_POLICE,
+	RADIO_KEY_CLINIC = RADIO_CHANNEL_CLINIC,
+	RADIO_KEY_MILITARY = RADIO_CHANNEL_MILITARY,
+	RADIO_KEY_CAMARILLA = RADIO_CHANNEL_CAMARILLA,
+	RADIO_KEY_ANARCH = RADIO_CHANNEL_ANARCH,
+	RADIO_KEY_ENDRON = RADIO_CHANNEL_ENDRON,
+	"с" = RADIO_CHANNEL_POLICE,
+	"м" = RADIO_CHANNEL_CLINIC,
+	"т" = RADIO_CHANNEL_MILITARY,
+	"ь" = RADIO_CHANNEL_CAMARILLA,
+	"б" = RADIO_CHANNEL_ANARCH,
+	"д" = RADIO_CHANNEL_ENDRON,
+	// DARKPACK EDIT ADD END
 ))
 
 /**
@@ -259,7 +274,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	return TRUE
 
 
-/mob/living/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
+/mob/living/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0, source) // DARKPACK EDIT, ORIGINAL: /mob/living/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
 	if((SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_HEAR, args) & COMSIG_MOVABLE_CANCEL_HEARING) || !GET_CLIENT(src))
 		return FALSE
 
@@ -367,7 +382,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			create_chat_message(speaker, message_language, raw_message, spans)
 
 	// Recompose message for AI hrefs, language incomprehension.
-	message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods)
+	message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods, source = source) // DARKPACK EDIT, ORIGINAL: message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods)
 	var/show_message_success = show_message(message, MSG_AUDIBLE, deaf_message, deaf_type, avoid_highlight)
 	return understood && show_message_success
 
