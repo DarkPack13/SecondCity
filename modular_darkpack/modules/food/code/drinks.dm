@@ -53,7 +53,7 @@
 		M.bloodpool = min(M.maxbloodpool, M.bloodpool + 0.25)
 	if(isghoul(M))
 		M.bloodpool = min(M.maxbloodpool, M.bloodpool + 1)
-	..()
+	return ..()
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
 	. = ..()
