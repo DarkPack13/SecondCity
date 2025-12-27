@@ -226,6 +226,7 @@
 #include "mob_spawn.dm"
 #include "modify_fantasy_variable.dm"
 #include "modsuit.dm"
+#include "modular_darkpack/modules/unit_tests/_darkpack_unit_tests.dm"
 #include "modular_map_loader.dm"
 #include "monkey_business.dm"
 #include "mouse_bite_cable.dm"
@@ -335,7 +336,6 @@
 #include "weird_food.dm"
 #include "wizard_loadout.dm"
 #include "worn_icons.dm"
-#include "modular_darkpack/modules/unit_tests/_darkpack_unit_tests.dm"
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"
