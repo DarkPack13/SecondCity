@@ -111,20 +111,21 @@
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/activate()
 	. = ..()
-	if(!.)
+	if(.)
+		return
 
-		//signal for counterattack
-		RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(spark_counter))
+	//signal for counterattack
+	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(spark_counter))
 
-		//signal for disabling electronics
-		RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(spark_target_click))
+	//signal for disabling electronics
+	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(spark_target_click))
 
-		electricity = electricity || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
-		owner.add_overlay(electricity)
+	electricity = electricity || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
+	owner.add_overlay(electricity)
 
-		owner.light_system = OVERLAY_LIGHT
-		owner.AddComponent(/datum/component/overlay_lighting, 2, 1, "#f1fdfd", TRUE)
-		to_chat(owner, span_notice("Small sparks of electricity begin crackling around you! Youn can now disable certain electrical systems with just a touch - and attackers will sometimes feel a slight shock."))
+	owner.light_system = OVERLAY_LIGHT
+	owner.AddComponent(/datum/component/overlay_lighting, 2, 1, "#f1fdfd", TRUE)
+	to_chat(owner, span_notice("Small sparks of electricity begin crackling around you! Youn can now disable certain electrical systems with just a touch - and attackers will sometimes feel a slight shock."))
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/deactivate()
 	. = ..()
@@ -167,17 +168,18 @@
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/two/activate(mob/living/target)
 	. = ..()
-	if(!.)
-		owner.drop_all_held_items()
+	if(.)
+		return
+	owner.drop_all_held_items()
 
-		var/right_illuminate = new /obj/item/lighter/conjured/levinbolt_arm(owner)
-		var/left_illuminate = new /obj/item/lighter/conjured/levinbolt_arm(owner)
+	var/right_illuminate = new /obj/item/lighter/conjured/levinbolt_arm(owner)
+	var/left_illuminate = new /obj/item/lighter/conjured/levinbolt_arm(owner)
 
-		owner.put_in_r_hand(right_illuminate)
-		owner.put_in_l_hand(left_illuminate)
+	owner.put_in_r_hand(right_illuminate)
+	owner.put_in_l_hand(left_illuminate)
 
-		conjured_illuminates += WEAKREF(right_illuminate)
-		conjured_illuminates += WEAKREF(left_illuminate)
+	conjured_illuminates += WEAKREF(right_illuminate)
+	conjured_illuminates += WEAKREF(left_illuminate)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/two/deactivate()
 	. = ..()
@@ -212,19 +214,19 @@
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/activate()
 	. = ..()
-	if(!.)
+	if(.)
+		return
+	//proc for counterattack
+	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(power_array_counter))
 
-		//proc for counterattack
-		RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(power_array_counter))
+	//proc for clicking on objects to disable electronics
+	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(powerarray_target_click))
 
-		//proc for clicking on objects to disable electronics
-		RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(powerarray_target_click))
-
-		electricity2 = electricity2 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
-		owner.add_overlay(electricity2)
-		owner.light_system = OVERLAY_LIGHT
-		owner.AddComponent(/datum/component/overlay_lighting, 3, 2, "#e9ffff", TRUE)
-		to_chat(owner, span_notice("Intense electricity surges around your entire body!"))
+	electricity2 = electricity2 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
+	owner.add_overlay(electricity2)
+	owner.light_system = OVERLAY_LIGHT
+	owner.AddComponent(/datum/component/overlay_lighting, 3, 2, "#e9ffff", TRUE)
+	to_chat(owner, span_notice("Intense electricity surges around your entire body!"))
 
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/deactivate()
@@ -271,20 +273,22 @@
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/four/activate(mob/living/target)
 	. = ..()
-	if(!.)
-		owner.visible_message(span_danger("[owner.name] crackles with building electrical energy!"),
-			span_danger("You begin channeling Zeus' fury, electricity arcing around your body!"))
+	if(.)
+		return
 
-		electric_halo = electric_halo || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
-		owner.add_overlay(electric_halo)
+	owner.visible_message(span_danger("[owner.name] crackles with building electrical energy!"),
+		span_danger("You begin channeling Zeus' fury, electricity arcing around your body!"))
 
-		if(do_after(owner, 3 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
-			if(get_dist(owner, target) <= range)
-				execute_zeus_fury(target)
-			else
-				cancel_fury("Target moved out of range.")
+	electric_halo = electric_halo || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
+	owner.add_overlay(electric_halo)
+
+	if(do_after(owner, 3 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
+		if(get_dist(owner, target) <= range)
+			execute_zeus_fury(target)
 		else
-			cancel_fury("Channeling interrupted.")
+			cancel_fury("Target moved out of range.")
+	else
+		cancel_fury("Channeling interrupted.")
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/four/proc/execute_zeus_fury(mob/living/primary_target)
 	owner.cut_overlay(electric_halo)
@@ -383,26 +387,28 @@
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/activate(atom/target)
 	. = ..()
-	if(!.)
-		electricity3 = electricity3 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
-		owner.add_overlay(electricity3)
-		owner.light_system = OVERLAY_LIGHT
-		owner.AddComponent(/datum/component/overlay_lighting, 5, 4, "#e9ffff", TRUE)
+	if(.)
+		return
 
-		//signal for clicking electronics to disable them
-		RegisterSignal(owner, COMSIG_CLICK, PROC_REF(storm_target_click))
+	electricity3 = electricity3 || mutable_appearance('icons/effects/effects.dmi', "electricity2", EFFECTS_LAYER)
+	owner.add_overlay(electricity3)
+	owner.light_system = OVERLAY_LIGHT
+	owner.AddComponent(/datum/component/overlay_lighting, 5, 4, "#e9ffff", TRUE)
 
-		//signal for counterattack from being struck
-		RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(storm_counter))
+	//signal for clicking electronics to disable them
+	RegisterSignal(owner, COMSIG_CLICK, PROC_REF(storm_target_click))
 
-		//create sparks every few seconds for coolness
-		spark_timer = addtimer(CALLBACK(src, PROC_REF(create_sparks)), 2 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+	//signal for counterattack from being struck
+	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(storm_counter))
 
-		//fire lightning bolt at a random nearby mob
-		lightning_timer = addtimer(CALLBACK(src, PROC_REF(fire_lightning_bolt)), 5 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
-		owner.visible_message(span_danger("[owner] becomes surrounded by crackling electrical energy!"))
-		to_chat(owner, span_notice("You feel incredible electrical power coursing through your body!"))
-		playsound(owner, 'sound/effects/sparks/sparks4.ogg', 75, TRUE)
+	//create sparks every few seconds for coolness
+	spark_timer = addtimer(CALLBACK(src, PROC_REF(create_sparks)), 2 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+
+	//fire lightning bolt at a random nearby mob
+	lightning_timer = addtimer(CALLBACK(src, PROC_REF(fire_lightning_bolt)), 5 SECONDS, TIMER_STOPPABLE | TIMER_LOOP)
+	owner.visible_message(span_danger("[owner] becomes surrounded by crackling electrical energy!"))
+	to_chat(owner, span_notice("You feel incredible electrical power coursing through your body!"))
+	playsound(owner, 'sound/effects/sparks/sparks4.ogg', 75, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/create_sparks()
 	if(!owner)
