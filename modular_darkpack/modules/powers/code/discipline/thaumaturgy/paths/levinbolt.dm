@@ -60,32 +60,32 @@
 
 	// disable radios, only used in levinbolt 3 and 5
 	if(include_radio_effects && ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/human_target = target
 		var/disabled_any = FALSE
-		/* DARKPACK TODO: disable new radios
-		for(var/obj/item/I in H.get_all_slots())
-			if(istype(I, /obj/item/p25radio))
-				var/obj/item/p25radio/radio = I
-				if(radio.powered)
-					radio.powered = FALSE
-					H.visible_message(
-						span_warning("[H]'s [I.name] crackles violently and powers down!"),
+
+		for(var/obj/item/I in human_target.get_head_slots())
+			if(istype(I, /obj/item/radio/headset/darkpack))
+				var/obj/item/radio/headset/darkpack/radio = I
+				if(radio.is_on())
+					radio.set_on(FALSE)
+					human_target.visible_message(
+						span_warning("[human_target]'s [I.name] crackles violently and powers down!"),
 						span_warning("Your [I.name] crackles violently and powers down!"),
 					)
-					playsound(H, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
+					playsound(human_target, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 					disabled_any = TRUE
 				else
-					radio.powered = TRUE
-					H.visible_message(
-						span_warning("Electricity surges into [H]'s [I.name] - turning it on!"),
+					radio.set_on(TRUE)
+					human_target.visible_message(
+						span_warning("Electricity surges into [human_target]'s [I.name] - turning it on!"),
 						span_warning("Electricity surges into your radio - turning it on!"),
 					)
-					playsound(H, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
+					playsound(human_target, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 					disabled_any = TRUE
-		*/
+
 		if(disabled_any)
 			var/datum/effect_system/spark_spread/spark_system = new
-			spark_system.set_up(5, 1, get_turf(H))
+			spark_system.set_up(5, 1, get_turf(human_target))
 			spark_system.start()
 			return TRUE
 
@@ -150,6 +150,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/activate()
 	. = ..()
 	if(.)
+		try_deactivate()
 		return
 
 	//signal for counterattack
@@ -195,6 +196,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/two/activate(mob/living/target)
 	. = ..()
 	if(.)
+		try_deactivate()
 		return
 	owner.drop_all_held_items()
 
@@ -239,6 +241,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/activate()
 	. = ..()
 	if(.)
+		try_deactivate()
 		return
 	//proc for counterattack
 	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(power_array_counter))
@@ -409,6 +412,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/activate(atom/target)
 	. = ..()
 	if(.)
+		try_deactivate()
 		return
 
 	//signal for clicking electronics to disable them

@@ -103,6 +103,7 @@
 	if(.)
 		try_deactivate()
 		return
+
 	owner.drop_all_held_items()
 
 	var/right_flame = new /obj/item/lighter/conjured/flame/palm_of_flame(owner)
