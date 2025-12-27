@@ -130,10 +130,10 @@
 #ifndef MAP_TEST
 	switch(fitting)
 		if("tube")
-			if(prob(2))
+			if(prob(1)) // DARKPACK EDIT CHANGE
 				break_light_tube(TRUE)
 		if("bulb")
-			if(prob(5))
+			if(prob(2)) // DARKPACK EDIT CHANGE
 				break_light_tube(TRUE)
 #endif
 	update(trigger = FALSE)
