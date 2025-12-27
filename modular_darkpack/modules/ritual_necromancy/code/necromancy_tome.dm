@@ -10,8 +10,11 @@
 	)
 
 /obj/item/ritual_tome/necromancy/attack_self(mob/user)
-	. = ..()
+	if(!HAS_TRAIT(user, TRAIT_NECROMANCY_KNOWLEDGE))
+		to_chat(user, span_cult("A Grimoire that contains etchings of many rituals and procedures. Sadly, you don't understand much of it."))
+		return
 	ui_interact(user)
+	. = ..()
 
 // NecromancyVendor.jsx in tgui/interfaces
 /obj/item/ritual_tome/necromancy/ui_interact(mob/user, datum/tgui/ui)
@@ -44,14 +47,17 @@
 /obj/item/ritual_tome/necromancy/ui_act(action, params)
 	if(action != "purchase")
 		return ..()
-	var/mob/living/L = usr
+
+	if(!HAS_TRAIT(usr, TRAIT_NECROMANCY_KNOWLEDGE))
+		return FALSE
+
+	var/mob/living/user = usr
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
 
-	L.collected_souls -= prize.price
-	to_chat(usr, span_notice("The necromancy tome resonates with dark energy as it dispenses [prize.name]!"))
-	new prize.product_path(get_turf(src))
-	SSblackbox.record_feedback("nested tally", "necromancy_equipment_bought", 1, list("[type]", "[prize.product_path]"))
+	user.collected_souls -= prize.price
+	to_chat(user, span_notice("The necromancy tome resonates with dark energy as it dispenses [prize.name]!"))
+	new prize.product_path(get_turf(user))
 	return TRUE
 
 /datum/crafting_recipe/necrotome
