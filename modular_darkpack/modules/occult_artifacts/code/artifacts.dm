@@ -269,7 +269,7 @@
 	var/datum/weakref/tracked_stone
 
 /datum/action/bloodstone_track/New(Target, obj/item/vtm_artifact/bloodstone/stone)
-	..()
+	. = ..()
 	tracked_stone = WEAKREF(stone)
 
 /datum/action/bloodstone_track/Trigger(trigger_flags)
