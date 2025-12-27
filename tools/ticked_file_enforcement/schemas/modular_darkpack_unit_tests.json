@@ -1,7 +1,0 @@
-{
-	"file": "code/modules/unit_tests/_darkpack_unit_tests.dm",
-	"scannable_directory": "code/modules/unit_tests/darkpack/",
-	"subdirectories": false,
-	"excluded_files": [],
-	"forbidden_includes": []
-}

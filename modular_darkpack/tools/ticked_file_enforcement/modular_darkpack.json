@@ -3,5 +3,5 @@
 	"scannable_directory": "modular_darkpack/",
 	"subdirectories": true,
 	"excluded_files": [],
-	"forbidden_includes": ["code/modules/unit_tests/darkpack/[!_]*.dm"]
+	"forbidden_includes": ["modular_darkpack/modules/unit_tests/[!_]*.dm"]
 }
