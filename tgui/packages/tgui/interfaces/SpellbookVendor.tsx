@@ -177,8 +177,8 @@ export const SpellbookVendor = (props) => {
                 <NumberInput
                   width="100%"
                   minValue={0}
-                  maxValue={0}
-                  step={0}
+                  maxValue={selectedMember?.points || 1000}
+                  step={1}
                   value={transferAmount}
                   onChange={(value) => setTransferAmount(value)}
                 />

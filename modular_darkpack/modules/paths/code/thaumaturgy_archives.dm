@@ -45,13 +45,19 @@
 		item_stock[prize.product_path] = 2
 
 // are they antitribu?
-/obj/structure/retail/occult/proc/has_purchase_privileges(role)
-	return (role in list("Chantry Regent", "Chantry Archivist", "Hound", "Sheriff", "Seneschal", "Prince"))
+/obj/structure/retail/occult/proc/has_purchase_privileges(datum/job/job)
+	return is_type_in_list(job, list(/datum/job/vampire/regent,
+	/datum/job/vampire/archivist,
+	/datum/job/vampire/hound,
+	/datum/job/vampire/sheriff,
+	/datum/job/vampire/clerk,
+	/datum/job/vampire/prince)
+	)
 
 // find the regent
 /obj/structure/retail/occult/proc/find_regent()
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.mind?.assigned_role.title == "Chantry Regent")
+		if(istype(H.mind?.assigned_role, /datum/job/vampire/regent))
 			return H
 	return null
 
@@ -59,7 +65,7 @@
 /obj/structure/retail/occult/proc/find_archivists()
 	var/list/archivists = list()
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.mind?.assigned_role.title == "Chantry Archivist")
+		if(istype(H.mind?.assigned_role, /datum/job/vampire/archivist))
 			archivists += H
 	return archivists
 
@@ -113,8 +119,8 @@
 		.["user"]["job"] = "[H.mind?.assigned_role.title]"
 		.["user"]["has_thaumaturgy"] = HAS_TRAIT(H, TRAIT_THAUMATURGY_KNOWLEDGE)
 		.["user"]["has_necromancy"] = HAS_TRAIT(H, TRAIT_NECROMANCY_KNOWLEDGE)
-		.["user"]["is_regent"] = (H.mind?.assigned_role.title == "Chantry Regent")
-		.["user"]["has_privileges"] = has_purchase_privileges(H.mind?.assigned_role.title)
+		.["user"]["is_regent"] = istype(H.mind?.assigned_role, /datum/job/vampire/regent)
+		.["user"]["has_privileges"] = has_purchase_privileges(H.mind?.assigned_role)
 	else
 		.["user"]["points"] = 0
 		.["user"]["name"] = "Unknown"
@@ -128,11 +134,11 @@
 	for(var/mob/living/carbon/human/tremere_member in GLOB.human_list)
 		if(!tremere_member.mind)
 			continue
-		var/role = tremere_member.mind.assigned_role.title
-		if(role in list("Chantry Archivist", "Chantry Gargoyle", "Chantry Regent"))
+		var/datum/job/role = tremere_member.mind.assigned_role
+		if(is_type_in_list(role, list(/datum/job/vampire/archivist, /datum/job/vampire/gargoyle, /datum/job/vampire/regent)))
 			.["tremere_members"] += list(list(
 				"name" = tremere_member.real_name,
-				"role" = role,
+				"role" = role.title,
 				"points" = tremere_member.research_points,
 				"ref" = "\ref[tremere_member]"
 			))
@@ -180,7 +186,7 @@
 	H.research_points -= prize.price
 
 	// Check if user is loyal to the chantry/camarilla - if not, award 30% tribute to leadership
-	var/user_role = H.mind?.assigned_role.title
+	var/datum/job/user_role = H.mind?.assigned_role
 	var/has_privileges = has_purchase_privileges(user_role)
 
 	if(!has_privileges)
@@ -227,7 +233,7 @@
 
 	var/mob/living/carbon/human/regent = usr
 
-	if(regent.mind?.assigned_role.title != "Chantry Regent")
+	if(!istype(regent.mind?.assigned_role, /datum/job/vampire/regent))
 		to_chat(regent, span_alert("Only the Regent may exercise such authority!"))
 		return FALSE
 
