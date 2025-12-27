@@ -1,9 +1,6 @@
 /mob/living/register_init_signals()
 	. = ..()
-
-	become_area_sensitive("ZONE_HUD")
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(update_zone_hud))
-
 
 /mob/living/proc/update_zone_hud(mob/source, area/new_area)
 	SIGNAL_HANDLER
