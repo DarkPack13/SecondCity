@@ -226,7 +226,6 @@
 #include "mob_spawn.dm"
 #include "modify_fantasy_variable.dm"
 #include "modsuit.dm"
-#include "modular_darkpack/modules/unit_tests/_darkpack_unit_tests.dm"
 #include "modular_map_loader.dm"
 #include "monkey_business.dm"
 #include "mouse_bite_cable.dm"
