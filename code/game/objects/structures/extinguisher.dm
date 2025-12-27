@@ -2,7 +2,7 @@
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'modular_darkpack/master_files/icons/obj/wallmounts32x48.dmi' // DARKPACK EDIT CHANGE
-	icon_state = "extinguisher"
+	MAP_SWITCH(icon_state = "extinguisher", icon_state = "extinguisher_mapswitch") // DARKPACK EDIT CHANGE
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 200
@@ -11,6 +11,12 @@
 	var/opened = FALSE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
+// DARKPACK EDIT ADD START
+/obj/structure/extinguisher_cabinet/directional/east
+	pixel_x = 0
+/obj/structure/extinguisher_cabinet/directional/west
+	pixel_x = 0
+// DARKPACK EDIT ADD END
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload)
 	. = ..()
