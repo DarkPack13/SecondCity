@@ -218,7 +218,7 @@ Methuselah.”
 */
 /datum/discipline_power/dementation/eyes_of_chaos
 	name = "Eyes of Chaos"
-	desc = "See the hidden patterns in the world and uncover people's true selves. Costs 5 blood points per use."
+	desc = "See the hidden patterns in the world and uncover people's true selves."
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	target_type = TARGET_HUMAN | TARGET_SELF
@@ -325,7 +325,7 @@ frenzy or Rötschreck response is automatic.
 
 /datum/discipline_power/dementation/voice_of_madness
 	name = "Voice of Madness"
-	desc = "Your voice becomes a source of utter insanity, affecting you and all those around you. Costs 3 blood points per use."
+	desc = "Your voice becomes a source of utter insanity, affecting you and all those around you."
 	level = 4
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	target_type = NONE
@@ -420,7 +420,6 @@ determines the duration.
 /datum/discipline_power/dementation/total_insanity
 	name = "Total Insanity"
 	desc = "Bring out the darkest parts of a person's psyche, bringing them to utter insanity."
-
 	level = 5
 	vitae_cost = 1
 	check_flags = DISC_CHECK_CAPABLE
@@ -467,7 +466,7 @@ determines the duration.
 	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
 	attack_target.apply_overlay(MUTATIONS_LAYER)
 
-	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower - theirpower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
+	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
 	attack_target.cause_hallucination( \
 			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
 			"total insanity", \
