@@ -180,6 +180,8 @@
 		if(-INFINITY to BLOOD_VOLUME_BAD)
 			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
 
+	. += display_darkpack_examine_text() // DARKPACK EDIT ADD
+
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		var/list/obj/item/bodypart/grasped_limbs = list()
@@ -231,30 +233,6 @@
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
-
-		// DARKPACK EDIT ADD START
-		if(iskindred(src) && !(obscured_slots & HIDEFACE))
-			switch(clan?.alt_sprite)
-				if("nosferatu")
-					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
-				if("gargoyle")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] to be made out of stone!<br>")
-				if("kiasyd")
-					if (!is_eyes_covered())
-						. += span_boldwarning("[p_they(TRUE)] [p_have()] no whites in [p_their()] eyes!</b><br>")
-				if("rotten1")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] oddly gaunt.<br>")
-				if("rotten2")
-					. += span_warning("[p_they(TRUE)] [p_have()] a corpselike complexion.<br>")
-				if("rotten3")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a decayed corpse!<br>")
-				if("rotten4")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
-
-		if (iszombie(src) && !(obscured_slots & HIDEFACE)) // for necromancy player-controlled zombies
-			. += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
-
-		// DARKPACK EDIT ADD END
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)

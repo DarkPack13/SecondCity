@@ -15,6 +15,7 @@
 /obj/item/ammo_box/magazine/vamp9mp5 : /obj/item/ammo_box/magazine/darkpack9mp5 {@OLD}
 /obj/item/ammo_box/magazine/vamp45acp : /obj/item/ammo_box/magazine/darkpack45acp {@OLD}
 /obj/item/ammo_box/magazine/vamp556 : /obj/item/ammo_box/magazine/darkpack556 {@OLD}
+/obj/item/ammo_box/magazine/vamp556/@SUBTYPES : /obj/item/ammo_box/magazine/darkpack556/@SUBTYPES {@OLD}
 /obj/item/ammo_box/magazine/vamp545 : /obj/item/ammo_box/magazine/darkpack545 {@OLD}
 /obj/item/ammo_box/magazine/vampthompson : /obj/item/ammo_box/magazine/darkpackthompson {@OLD}
 /obj/item/ammo_box/magazine/vampaug : /obj/item/ammo_box/magazine/darkpackaug {@OLD}

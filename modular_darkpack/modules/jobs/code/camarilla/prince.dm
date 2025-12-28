@@ -46,7 +46,7 @@
 	name = "Prince"
 	jobtype = /datum/job/vampire/prince
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/prince
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	gloves = /obj/item/clothing/gloves/vampire/latex

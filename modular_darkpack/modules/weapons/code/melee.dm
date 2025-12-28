@@ -118,10 +118,16 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "sabre"
+	var/value = 1000 // DARKPACK TODO: Move this up at some point. I hate the selling component with all my heart.
 
 /obj/item/melee/sabre/vamp/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 1000, "sabre", FALSE)
+	AddComponent(/datum/component/selling, value, "sabre", FALSE)
+
+/obj/item/melee/sabre/vamp/training
+	name = "foam sabre"
+	force = 0
+	value = 3
 
 /obj/item/claymore/longsword
 	name = "longsword"

@@ -3,6 +3,7 @@
 
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_STAKED), PROC_REF(on_staked))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_STAKED), PROC_REF(on_unstaked))
+	RegisterSignal(src, COMSIG_MOB_CTRL_SHIFT_CLICKED, PROC_REF(attempt_guestbook_add))
 
 /// Gaining [TRAIT_STAKED] forces us into torpor if we're kindred, and just murders us if we're not.
 /mob/living/carbon/human/proc/on_staked(datum/source)

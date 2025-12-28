@@ -326,13 +326,8 @@ frenzy or Rötschreck response is automatic.
 	range = 8
 	vitae_cost = 1
 	multi_activate = TRUE
-	cooldown_length = 5 TURNS
-	duration_length = 2 TURNS
-	hostile = TRUE
-	aggravating = TRUE
-	violates_masquerade = TRUE
-	var/dementation_phrase
-	var/successes
+	cooldown_length = 10 SECONDS
+	duration_length = 3 SECONDS
 
 /datum/discipline_power/dementation/voice_of_madness/can_activate_untargeted(alert)
 	. = ..()
@@ -356,6 +351,132 @@ normal. If the roll to invoke this power is a botch, the
 frenzy or Rötschreck response is automatic.
 */
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, numerical = TRUE)
+	if(successes >= 0)
+		dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
+		if(!dementation_phrase)
+			to_chat(owner, span_warning("You must say something to use this discipline."))
+			return FALSE
+		return TRUE
+	if(successes <= 0) // failure or botch, see above comment
+		return FALSE
+
+/datum/discipline_power/dementation/voice_of_madness/proc/remove_dementation_overlay(mob/living/carbon/human/target)
+	target.remove_overlay(MUTATIONS_LAYER)
+
+/datum/discipline_power/dementation/voice_of_madness/activate(mob/living/carbon/human/target)
+	. = ..()
+	var/attack_text = spooky_font_replace(dementation_phrase)
+	owner.say(attack_text, spans = list("bold", "singing"))
+	var/list/potential_targets = list()
+	for(var/mob/living/carbon/human/hearer in (get_hearers_in_view(8, owner) - owner))
+		if(!hearer.can_hear() || hearer.stat > CONSCIOUS)
+			continue
+		potential_targets += hearer
+	var/targets_affected = 0
+	while(targets_affected < successes && length(potential_targets)) //affects one target per success
+		var/mob/living/carbon/human/chosen = pick(potential_targets)
+		potential_targets -= chosen
+		targets_affected++
+		chosen.emote("scream")
+		GLOB.move_manager.move_away(moving = chosen, chasing = owner, max_dist = 10, timeout = (duration_length * 2), delay = chosen.cached_multiplicative_slowdown)
+
+		chosen.remove_overlay(MUTATIONS_LAYER)
+		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
+		dementation_overlay.pixel_z = 1
+		chosen.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
+		chosen.apply_overlay(MUTATIONS_LAYER)
+		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length)
+
+/*
+From V20:
+Total Insanity
+The vampire coaxes the madness from the deepest
+recesses of their target’s mind, focusing it into an over-
+whelming wave of insanity. This power has driven
+countless victims, vampire and mortal alike, to unfor-
+tunate ends.
+
+System: The Kindred must gain their target’s undi-
+vided attention for at least one full turn to enact this
+power. The player spends a blood point and rolls Ma-
+nipulation + Intimidation (difficulty of their victim’s
+current Willpower points). If the roll is successful, the
+victim is afflicted with five derangements of the Sto-
+ryteller’s choice (see p. 290). The number of successes
+determines the duration.
+*/
+//TOTAL INSANITY
+/datum/discipline_power/dementation/total_insanity
+	name = "Total Insanity"
+	desc = "Bring out the darkest parts of a person's psyche, bringing them to utter insanity."
+
+	level = 5
+	vitae_cost = 1
+	check_flags = DISC_CHECK_CAPABLE
+	target_type = TARGET_HUMAN
+	range = 7
+	multi_activate = TRUE
+	cooldown_length = 5 TURNS
+	duration_length = 3 TURNS
+	aggravating = TRUE
+	hostile = TRUE
+	var/mypower
+	var/theirpower
+	var/mob/living/carbon/human/attack_target
+
+/datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/carbon/human/target)
+	theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), theirpower, owner, numerical = TRUE)
+	if(mypower <= 0)
+		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/dementation/total_insanity/proc/self_attack(iteration)
+	if(attack_target.stat > CONSCIOUS)
+		return
+	if(iteration <= 0)
+		return
+	attack_target.set_combat_mode(TRUE)
+	var/obj/item/held_item = attack_target.get_active_held_item()
+	if(held_item?.force)
+		attack_target.ClickOn(attack_target)
+	else
+		if(held_item)
+			attack_target.drop_all_held_items()
+		attack_target.ClickOn(attack_target)
+	addtimer(CALLBACK(src, PROC_REF(self_attack), iteration - 1), 1 SECONDS)
+
+/datum/discipline_power/dementation/total_insanity/activate(mob/living/carbon/human/target)
+	. = ..()
+	attack_target = target
+	attack_target.remove_overlay(MUTATIONS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
+	dementation_overlay.pixel_z = 1
+	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
+	attack_target.apply_overlay(MUTATIONS_LAYER)
+
+	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower - theirpower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
+	attack_target.cause_hallucination( \
+			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
+			"total insanity", \
+			duration = duration_length + (mypower SECONDS), \
+			affects_us = FALSE, \
+			affects_others = TRUE, \
+			skip_nearby = FALSE, \
+		)
+
+
+The vampire using Voice of Madness must also test
+for frenzy or Rötschreck upon invoking this power,
+though his difficulty to resist is one lower than normal. If the initial roll to invoke this power is a failure,
+however, the roll to resist the frenzy is one higher than
+normal. If the roll to invoke this power is a botch, the
+frenzy or Rötschreck response is automatic.
+*/
+/datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
+<<<<<<< HEAD
 	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, numerical = TRUE)
 	if(successes >= 0)
 		dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")

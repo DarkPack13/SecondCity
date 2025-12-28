@@ -1,0 +1,2 @@
+output_name = "redsilvercarpet"
+template = "bitmask/diagonal_32x32.toml"

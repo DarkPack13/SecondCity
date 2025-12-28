@@ -31,15 +31,6 @@
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
 
-/proc/is_sabbatist(mob/living/user)
-	return user?.mind?.assigned_role in list("Sabbat Priest", "Sabbat Ductus", "Sabbat Pack")
-
-/proc/is_sabbat_priest(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Priest"
-
-/proc/is_sabbat_ductus(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Ductus"
-
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"
 	desc = "A tome adorned with the symbol of the Sabbat."
