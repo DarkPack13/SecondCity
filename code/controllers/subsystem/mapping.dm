@@ -455,10 +455,12 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef LOWMEMORYMODE
 
+	/* DARKPACK REMOVAL - TODO - PENUMBRA
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
+	*/
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
