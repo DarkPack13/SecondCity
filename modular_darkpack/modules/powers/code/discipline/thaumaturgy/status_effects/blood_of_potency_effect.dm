@@ -10,13 +10,13 @@
 	if(time)
 		duration = time
 	stored_generation = owner.get_generation()
-	iskindred(owner).set_generation(generation)
+	iskindred(owner)?.set_generation(generation)
 
 /datum/status_effect/blood_of_potency/on_remove()
 	. = ..()
 
 	//Can't do initial() due to it giving bad results.
-	iskindred(owner).set_generation(stored_generation)
+	iskindred(owner)?.set_generation(stored_generation)
 	stored_generation = null
 
 	owner.update_blood_hud()
