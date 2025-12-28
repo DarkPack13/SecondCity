@@ -68,7 +68,7 @@ Presence powers, etc
 	dementation_overlay.pixel_z = 1
 	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
-	target.Stun(1 TURNS)
+	target.Stun(4 SECONDS)
 	target.emote(pick("laugh","scream","cry")) // pick a random emotion for them to experience
 	var/attack_text = spooky_font_replace(dementation_phrase) // malk-ify what the attacker said
 	owner.say(attack_text, spans = list("bold", "singing")) // the malk speech uses bold and singing spans
@@ -474,3 +474,4 @@ determines the duration.
 			affects_others = TRUE, \
 			skip_nearby = FALSE, \
 		)
+	addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length + (mypower SECONDS))
