@@ -130,7 +130,11 @@ pools for a turn or two after the manifestation.
 	var/dementation_phrase
 
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/carbon/human/target)
-	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(target.dna.species.enlightenment ? STAT_CONVICTION : STAT_SELF_CONTROL)
+	var/resistence_stat = target.st_get_stat(STAT_SELF_CONTROL)
+	if(iskindred(target))
+		var/datum/species/human/kindred/target_species = target.dna.species
+		resistence_stat = target.st_get_stat(target_species.enlightenment ? STAT_CONVICTION : STAT_SELF_CONTROL)
+	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + resistence_stat
 	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
 	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
