@@ -11,6 +11,9 @@
 
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/insanity.ogg'
 
+/datum/discipline_power/dementation/proc/remove_dementation_overlay(mob/living/carbon/human/target)
+	target.remove_overlay(MUTATIONS_LAYER)
+
 /*
 From V20:
 Passion
@@ -369,8 +372,7 @@ frenzy or Rötschreck response is automatic.
 	if(successes <= 0) // failure or botch, see above comment
 		return FALSE
 
-/datum/discipline_power/dementation/voice_of_madness/proc/remove_dementation_overlay(mob/living/carbon/human/target)
-	target.remove_overlay(MUTATIONS_LAYER)
+
 
 /datum/discipline_power/dementation/voice_of_madness/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -474,4 +476,4 @@ determines the duration.
 			affects_others = TRUE, \
 			skip_nearby = FALSE, \
 		)
-	addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length + (mypower SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), attack_target), duration_length + (mypower SECONDS))
