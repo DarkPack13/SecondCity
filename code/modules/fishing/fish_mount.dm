@@ -209,3 +209,9 @@
 	persistence_id = "Bar"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fish_mount/bar, /obj/item/wallframe/fish::pixel_shift)
+
+// DARKPACK EDIT ADD START
+/obj/structure/fish_mount/supply
+	persistence_id = "Supply"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fish_mount/supply, /obj/item/wallframe/fish::pixel_shift)
+// DARKPACK EDIT ADD END

@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(wizard_rain_reagents)
 /// 1 / 20,000 chance for a turf to get a thunder strike per tick (rare damage to mobs/equipment in area)
 #define THUNDER_CHANCE_RARE 0.00005
 /// 1 / 50,000 chance for a turf to get a thunder strike per tick (almost no damage to mobs/equipment in area)
-#define THUNDER_CHANCE_VERY_RARE 0.00002
+#define THUNDER_CHANCE_VERY_RARE 0.000002 // DARKPACK EDIT CHANGE
 
 /// admin verb to control thunder via the run_weather command
 GLOBAL_LIST_INIT(thunder_chance_options, list(

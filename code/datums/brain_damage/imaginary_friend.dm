@@ -216,7 +216,7 @@
 	owner.imaginary_group -= src
 	return ..()
 
-/mob/eye/imaginary_friend/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, freq_name, freq_color, list/spans, list/message_mods = list(), message_range)
+/mob/eye/imaginary_friend/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, freq_name, freq_color, list/spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT, ORIGINAL: /mob/eye/imaginary_friend/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, freq_name, freq_color, list/spans, list/message_mods = list(), message_range)
 	if (safe_read_pref(client, /datum/preference/toggle/enable_runechat) && (safe_read_pref(client, /datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans)
 	to_chat(src, compose_message(speaker, message_language, raw_message, radio_freq, freq_name, freq_color, spans, message_mods))

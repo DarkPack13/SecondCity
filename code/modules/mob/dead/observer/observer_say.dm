@@ -58,7 +58,7 @@
 
 	. = say_dead(message)
 
-/mob/dead/observer/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
+/mob/dead/observer/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT, ORIGINAL: /mob/dead/observer/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
 	var/atom/movable/to_follow = speaker
 	if(radio_freq)

@@ -6,42 +6,42 @@
 
 /obj/structure/vampdoor/simple/camarilla
 	locked = TRUE
-	lock_id = "camarilla"
+	lock_id = LOCKACCESS_CAMARILLA
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/simple/anarch
 	locked = TRUE
-	lock_id = "anarch"
+	lock_id = LOCKACCESS_ANARCH
 	lockpick_difficulty = 10
 
 /obj/structure/vampdoor/simple/bar
 	locked = TRUE
-	lock_id = "bar"
+	lock_id = LOCKACCESS_BAR
 	lockpick_difficulty = 10
 
 /obj/structure/vampdoor/simple/supply
 	locked = TRUE
-	lock_id = "supply"
+	lock_id = LOCKACCESS_SUPPLY
 	lockpick_difficulty = 8
 
 /obj/structure/vampdoor/simple/strip
 	locked = TRUE
-	lock_id = "strip"
+	lock_id = LOCKACCESS_STRIP
 	lockpick_difficulty = 4
 
 /obj/structure/vampdoor/simple/dispatch
 	locked = TRUE
-	lock_id = "dispatch"
+	lock_id = LOCKACCESS_DISPATCH
 	lockpick_difficulty = 5
 
 /obj/structure/vampdoor/simple/police
 	locked = TRUE
-	lock_id = "police"
+	lock_id = LOCKACCESS_POLICE
 	lockpick_difficulty = 6
 
 /obj/structure/vampdoor/simple/police/secure
 	locked = TRUE
-	lock_id = "police_secure"
+	lock_id = LOCKACCESS_POLICE_SECURE
 	lockpick_difficulty = 21
 
 /obj/structure/vampdoor/simple/setite

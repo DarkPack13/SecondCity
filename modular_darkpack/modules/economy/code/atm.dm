@@ -26,7 +26,7 @@
 
 /obj/machinery/atm/on_deconstruction(disassembled)
 	dump_cash()
-	SSwanted_level.announce_crime("atm_tampering", get_turf(src))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_ATM_TAMPERING, get_turf(src))
 
 /obj/machinery/atm/examine(mob/user)
 	. = ..()

@@ -25,6 +25,13 @@
 	GLOB.starlight -= target
 	UnregisterSignal(target, COMSIG_TURF_CHANGE)
 
+// Adds around a full minute to load westfield mall on my machine. Not optimal
+/*
+/turf/open/openspace/Initialize(mapload)
+	. = ..()
+	add_moonlight()
+*/
+
 /turf/open/misc/Initialize(mapload)
 	. = ..()
 	add_moonlight()

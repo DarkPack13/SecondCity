@@ -270,7 +270,7 @@
 /obj/structure/vtm/dwelling_alarm/proc/contact_cops() //Contains the actual act of yelling at cops
 	var/randomized_response_time = rand(1 SECONDS, 30 SECONDS)
 	sleep(randomized_response_time)
-	SSwanted_level.announce_crime("burglary", get_turf(src))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_BURGLARY, get_turf(src))
 
 /obj/structure/vtm/dwelling_alarm/proc/alarm_trigger() //Starts the alarm for the house, calls cops
 	area_reference.alarm_trigerred = 1
