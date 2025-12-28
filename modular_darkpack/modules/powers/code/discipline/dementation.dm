@@ -1,13 +1,9 @@
-
 /datum/discipline/dementation
 	name = "Dementation"
 	desc = "Makes all humans in radius mentally ill for a moment, supressing their defending ability."
 	icon_state = "dementation"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/dementation
-
-/datum/discipline/dementation/post_gain()
-	. = ..()
 
 /datum/discipline_power/dementation
 	name = "Dementation power name"
@@ -52,16 +48,18 @@ Presence powers, etc
 	var/dementation_phrase //will be filled when activated via tgui_input_text
 
 /datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/carbon/human/target)
-	var/mypower = owner.st_get_stat(STAT_CHARISMA) + target.st_get_stat(STAT_EMPATHY)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER) //if this was their humanity rating as stated in v20, anyone who maxes charisma or empathy (or both) gaurantees this attack to work
-	if(theirpower >= mypower)
-		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
-		return FALSE
-	dementation_phrase = tgui_input_text(owner, "What will you say to [target] to stir their emotions?")
-	if(!dementation_phrase)
-		to_chat(owner, span_warning("You must say something to your target to influence their emotions."))
-		return FALSE
-	return TRUE
+	var/theirpower = target.st_get_stat(STAT_MORALITY)
+	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + target.st_get_stat(STAT_EMPATHY), theirpower, owner)
+	switch(mypower)
+		if(ROLL_FAILURE, ROLL_BOTCH)
+			to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
+			return FALSE
+		if(ROLL_SUCCESS)
+			dementation_phrase = tgui_input_text(owner, "What will you say to [target] to stir their emotions?")
+			if(!dementation_phrase)
+				to_chat(owner, span_warning("You must say something to your target to influence their emotions."))
+				return FALSE
+			return TRUE
 
 /datum/discipline_power/dementation/passion/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -128,13 +126,13 @@ pools for a turn or two after the manifestation.
 	duration_length = 2 TURNS //this determines how long the visual affected overlay will be applied to their mob sprite, not the hallucination duration
 	aggravating = TRUE
 	hostile = TRUE
-	var/mypower = 0
+	var/mypower
 	var/dementation_phrase
 
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/carbon/human/target)
-	mypower = owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE)
-	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_WITS)
-	if(theirpower >= mypower)
+	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(target.dna.species.enlightenment ? STAT_CONVICTION : STAT_SELF_CONTROL)
+	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
+	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
 		return FALSE
 	dementation_phrase = tgui_input_text(owner, "What will you say to [target] to haunt them?")
@@ -268,19 +266,18 @@ Methuselah.”
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
-	var/mypower = owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_OCCULT)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
-	if(theirpower >= mypower)
-		to_chat(owner, span_warning("[target]'s mind resists you!"))
-		return FALSE
-	return TRUE
+	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_OCCULT), 7, owner, numerical = FALSE)
+	switch(mypower)
+		if(ROLL_SUCCESS)
+			return TRUE
+		if(ROLL_FAILURE, ROLL_BOTCH)
+			if(theirpower >= mypower)
+				to_chat(owner, span_warning("[target]'s mind resists you!"))
+				return FALSE
 
 /datum/discipline_power/dementation/eyes_of_chaos/activate(mob/living/carbon/human/target)
 	. = ..()
 	display_select_menu(target)
-
-/datum/discipline_power/dementation/eyes_of_chaos/deactivate(mob/living/carbon/human/target)
-	. = ..()
 
 /*
 From V20:
@@ -327,7 +324,7 @@ frenzy or Rötschreck response is automatic.
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	target_type = NONE
 	range = 8
-	vitae_cost = 3
+	vitae_cost = 1
 	multi_activate = TRUE
 	cooldown_length = 5 TURNS
 	duration_length = 2 TURNS
@@ -335,17 +332,39 @@ frenzy or Rötschreck response is automatic.
 	aggravating = TRUE
 	violates_masquerade = TRUE
 	var/dementation_phrase
+	var/successes
 
 /datum/discipline_power/dementation/voice_of_madness/can_activate_untargeted(alert)
 	. = ..()
 	return .
 
+//DARKPACK TODO - frenzy. this power requires it
+
+/*
+Affected victims fly immediately into frenzy or a
+blind fear like Rötschreck. Kindred or other creatures
+capable of frenzy, such as Lupines, may make a frenzy
+check or Rötschreck test (Storyteller’s choice as to how
+they are affected) at +2 difficulty to resist the power.
+
+
+The vampire using Voice of Madness must also test
+for frenzy or Rötschreck upon invoking this power,
+though his difficulty to resist is one lower than normal. If the initial roll to invoke this power is a failure,
+however, the roll to resist the frenzy is one higher than
+normal. If the roll to invoke this power is a botch, the
+frenzy or Rötschreck response is automatic.
+*/
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
-	dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
-	if(!dementation_phrase)
-		to_chat(owner, span_warning("You must say something to use this discipline."))
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, numerical = TRUE)
+	if(successes >= 0)
+		dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
+		if(!dementation_phrase)
+			to_chat(owner, span_warning("You must say something to use this discipline."))
+			return FALSE
+		return TRUE
+	if(successes <= 0) // failure or botch, see above comment
 		return FALSE
-	return TRUE
 
 /datum/discipline_power/dementation/voice_of_madness/proc/remove_dementation_overlay(mob/living/carbon/human/target)
 	target.remove_overlay(MUTATIONS_LAYER)
@@ -354,22 +373,25 @@ frenzy or Rötschreck response is automatic.
 	. = ..()
 	var/attack_text = spooky_font_replace(dementation_phrase)
 	owner.say(attack_text, spans = list("bold", "singing"))
-	var/mypower = owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY)
+	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/hearer in (get_hearers_in_view(8, owner) - owner))
-		if(!hearer.can_hear() || hearer.st_get_stat(STAT_WITS) > mypower || hearer.stat > CONSCIOUS)
+		if(!hearer.can_hear() || hearer.stat > CONSCIOUS)
 			continue
-		hearer.emote("scream")
-		GLOB.move_manager.move_away(moving = hearer, chasing = owner, max_dist = 10, timeout = (duration_length * 10), delay = hearer.cached_multiplicative_slowdown) // for some reason duration_length * 10 wasnt working for the timeout, so its a magic number
+		potential_targets += hearer
+	var/targets_affected = 0
+	while(targets_affected < successes && length(potential_targets)) //affects one target per success
+		var/mob/living/carbon/human/chosen = pick(potential_targets)
+		potential_targets -= chosen
+		targets_affected++
+		chosen.emote("scream")
+		GLOB.move_manager.move_away(moving = chosen, chasing = owner, max_dist = 10, timeout = (duration_length * 2), delay = chosen.cached_multiplicative_slowdown)
 
-		hearer.remove_overlay(MUTATIONS_LAYER)
+		chosen.remove_overlay(MUTATIONS_LAYER)
 		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "dementation", -MUTATIONS_LAYER)
 		dementation_overlay.pixel_z = 1
-		hearer.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-		hearer.apply_overlay(MUTATIONS_LAYER)
-		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), hearer), duration_length)
-
-/datum/discipline_power/dementation/voice_of_madness/deactivate(mob/living/carbon/human/target)
-	. = ..()
+		chosen.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
+		chosen.apply_overlay(MUTATIONS_LAYER)
+		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length)
 
 /*
 From V20:
@@ -394,7 +416,7 @@ determines the duration.
 	name = "Total Insanity"
 	desc = "Bring out the darkest parts of a person's psyche, bringing them to utter insanity. Costs 3 blood points per use."
 	level = 5
-	vitae_cost = 3
+	vitae_cost = 1
 	check_flags = DISC_CHECK_CAPABLE
 	target_type = TARGET_HUMAN
 	range = 7
@@ -408,9 +430,9 @@ determines the duration.
 	var/mob/living/carbon/human/attack_target
 
 /datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/carbon/human/target)
-	theirpower = target.st_get_stat(STAT_WILLPOWER)
-	mypower = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION))
-	if(theirpower >= mypower)
+	theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), theirpower, owner, numerical = TRUE)
+	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
 	return TRUE
@@ -428,7 +450,7 @@ determines the duration.
 		if(held_item)
 			attack_target.drop_all_held_items()
 		attack_target.ClickOn(attack_target)
-	addtimer(CALLBACK(src, .proc/self_attack, iteration - 1), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(self_attack), iteration - 1), 1 SECONDS)
 
 /datum/discipline_power/dementation/total_insanity/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -439,7 +461,7 @@ determines the duration.
 	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
 	attack_target.apply_overlay(MUTATIONS_LAYER)
 
-	addtimer(CALLBACK(src, .proc/self_attack, max(mypower - theirpower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
+	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower - theirpower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
 	attack_target.cause_hallucination( \
 			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
 			"total insanity", \
@@ -452,4 +474,3 @@ determines the duration.
 /datum/discipline_power/dementation/total_insanity/deactivate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
-
