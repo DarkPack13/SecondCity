@@ -270,13 +270,13 @@
 		var/obj/item/vtm_artifact/artifact = tool
 
 		if(!ishuman(user))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/H = user
 
 		if(artifact.research_value <= 0)
 			to_chat(user, span_warning("The Archives find no value in this artifact."))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		H.research_points += artifact.research_value
 
@@ -303,13 +303,13 @@
 			to_chat(user, span_notice("The Archives reluctantly accept the minor artifact, granting you [artifact.research_value] research points and filing it away."))
 
 		qdel(artifact)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/path_spellbook))
 		var/obj/item/path_spellbook/spellbook = tool
 
 		if(!ishuman(user))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/H = user
 
@@ -321,6 +321,5 @@
 		to_chat(user, span_notice("The Archives accept your spellbook, granting you [research_reward] research points and adding its knowledge to the collection."))
 
 		qdel(spellbook)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
-	return ..()
