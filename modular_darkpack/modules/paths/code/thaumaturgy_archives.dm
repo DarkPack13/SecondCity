@@ -303,7 +303,7 @@
 			to_chat(user, span_notice("The Archives reluctantly accept the minor artifact, granting you [artifact.research_value] research points and filing it away."))
 
 		qdel(artifact)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/path_spellbook))
 		var/obj/item/path_spellbook/spellbook = tool
