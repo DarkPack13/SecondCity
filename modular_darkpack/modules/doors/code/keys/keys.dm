@@ -1,5 +1,5 @@
 /obj/item/vamp/keys
-	name = "\improper keys"
+	name = "keys"
 	desc = "Those can open some doors."
 	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
 	icon_state = "keys"
@@ -21,163 +21,194 @@
 //===========================VAMPIRE KEYS===========================
 /obj/item/vamp/keys/camarilla
 	name = "\improper Camarilla keys"
-	accesslocks = list("camarilla")
+	accesslocks = list(LOCKACCESS_CAMARILLA)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/prince
 	name = "prince's keys"
 	accesslocks = list(
-		"camarilla",
-		"prince",
-		"clerk",
-		"chantry",
-		"theatre",
-		"milleniumCommon",
-		"primogen",
-		"millenium_delivery",
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_PRINCE,
+		LOCKACCESS_CLERK,
+		LOCKACCESS_CHANTRY,
+		LOCKACCESS_THEATRE,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/sheriff
 	name = "sheriff's keys"
 	accesslocks = list(
-		"camarilla",
-		"prince",
-		"theatre",
-		"milleniumCommon",
-		"primogen",
-		"clerk",
-		"millenium_delivery",
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_PRINCE,
+		LOCKACCESS_THEATRE,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_CLERK,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/clerk
 	name = "clerk's keys"
 	accesslocks = list(
-		"camarilla",
-		"clerk",
-		"theatre",
-		"milleniumCommon",
-		"primogen",
-		"millenium_delivery",
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_CLERK,
+		LOCKACCESS_THEATRE,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/camarilla
 	name = "\improper Millenium Tower keys"
 	accesslocks = list(
-		"milleniumCommon",
-		"clerk",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CLERK,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/camarilla/ghoul
-	name = "Millenium Tower Employee keys"
+	name = "\improper Millenium Tower Employee keys"
 	accesslocks = list(
-		"milleniumCommon",
-		"clerk",
-		"camarilla"
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CLERK,
+		LOCKACCESS_CAMARILLA
 	)
 	color = "#bd3327"
 
 /obj/item/vamp/keys/archive
 	name = "archive keys"
 	accesslocks = list(
-		"chantry"
+		LOCKACCESS_CHANTRY
 	)
 
 /obj/item/vamp/keys/regent
 	name = "very archival keys"
 	accesslocks = list(
-		"chantry",
-		"milleniumCommon",
-		"primogen",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_CHANTRY,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 
 /obj/item/vamp/keys/anarch
 	name = "anarch keys"
 	accesslocks = list(
-		"anarch",
-		"bar_delivery",
+		LOCKACCESS_BAR,
+		LOCKACCESS_ANARCH,
+		LOCKACCESS_BAR_DELIVERY,
 	)
 	color = "#434343"
 
 /obj/item/vamp/keys/bar
 	name = "barkeeper keys"
 	accesslocks = list(
-		"bar",
-		"anarch",
-		"bar_delivery",
+		LOCKACCESS_BAR,
+		LOCKACCESS_ANARCH,
+		LOCKACCESS_BAR_DELIVERY,
+	)
+	color = "#434343"
+
+/obj/item/vamp/keys/anarch_limited
+	name = "barkeeper keys"
+	accesslocks = list(
+		LOCKACCESS_BAR
 	)
 	color = "#434343"
 
 /obj/item/vamp/keys/giovanni
 	name = "mafia keys"
 	accesslocks = list(
-		"giovanni",
-		"bianchiBank"
+		LOCKACCESS_GIOVANNI,
+		LOCKACCESS_BANK
 	)
 
 /obj/item/vamp/keys/capo
 	name = "capo keys"
 	accesslocks = list(
-		"bankboss",
-		"bianchiBank",
-		"giovanni"
+		LOCKACCESS_BANKBOSS,
+		LOCKACCESS_BANK,
+		LOCKACCESS_GIOVANNI
 	)
 
 
 /obj/item/vamp/keys/baali
 	name = "satanic keys"
 	accesslocks = list(
-		"baali"
+		LOCKACCESS_BAALI
 	)
+
+/obj/item/vamp/keys/lasombra
+	name = "dark keys"
+	accesslocks = list(
+		LOCKACCESS_LASOMBRA,
+		LOCKACCESS_KYASID,
+		LOCKACCESS_CHURCH
+	)
+	color = "#290355"
+
+/obj/item/vamp/keys/lasombra/primogen
+	name = "really dark keys"
+	accesslocks = list(
+		LOCKACCESS_LASOMBRA,
+		LOCKACCESS_KYASID,
+		LOCKACCESS_CHURCH,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_PRIMOGEN_LASOMBRA,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_THEATRE,
+		LOCKACCESS_CAMARILLA
+	)
+	color = "#4b039c"
 
 /obj/item/vamp/keys/daughters
 	name = "eclectic keys"
 	accesslocks = list(
-		"daughters"
+		LOCKACCESS_DAUGHTERS
 	)
 
 /obj/item/vamp/keys/salubri
 	name = "conspiracy keys"
 	accesslocks = list(
-		"salubri"
+		LOCKACCESS_SALUBRI
 	)
 
 /obj/item/vamp/keys/old_clan_tzimisce
 	name = "regal keys"
 	accesslocks = list(
-		"old_clan_tzimisce"
+		LOCKACCESS_OLD_CLAN_TZI
 	)
 
 /obj/item/vamp/keys/malkav
 	name = "insane keys"
 	accesslocks = list(
-		"malkav"
+		LOCKACCESS_MALK
 	)
 	color = "#8cc4ff"
 
 /obj/item/vamp/keys/malkav/primogen
 	name = "really insane keys"
 	accesslocks = list(
-		"primMalkav",
-		"malkav",
-		"primogen",
-		"milleniumCommon",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_MALK_PRIMOGEN,
+		LOCKACCESS_MALK,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#2c92ff"
 
 /obj/item/vamp/keys/toreador
 	name = "sexy keys"
 	accesslocks = list(
-		"toreador",
+		LOCKACCESS_TOREADOR,
 		"toreador1",
 		"toreador2",
 		"toreador3",
@@ -188,90 +219,90 @@
 /obj/item/vamp/keys/banuhaqim
 	name = "just keys"
 	accesslocks = list(
-		"banuhaqim"
+		LOCKACCESS_BANU
 	)
 	color = "#06053d"
 
 /obj/item/vamp/keys/toreador/primogen
 	name = "really sexy keys"
 	accesslocks = list(
-		"primToreador",
-		"toreador",
-		"primogen",
-		"milleniumCommon",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_PRIMOGEN_TOREADOR,
+		LOCKACCESS_TOREADOR,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#ff2fc4"
 
 /obj/item/vamp/keys/nosferatu
 	name = "ugly keys"
 	accesslocks = list(
-		"nosferatu"
+		LOCKACCESS_NOSFERATU
 	)
 	color = "#93bc8e"
 
 /obj/item/vamp/keys/nosferatu/primogen
 	name = "really ugly keys"
 	accesslocks = list(
-		"primNosferatu",
-		"nosferatu",
-		"primogen",
-		"milleniumCommon",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_PRIMOGEN_NOSFERATU,
+		LOCKACCESS_NOSFERATU,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#367c31"
 
 /obj/item/vamp/keys/brujah
 	name = "punk keys"
 	accesslocks = list(
-		"brujah"
+		LOCKACCESS_BRUJAH
 	)
 	color = "#ecb586"
 
 /obj/item/vamp/keys/brujah/primogen
 	name = "really punk keys"
 	accesslocks = list(
-		"primBrujah",
-		"brujah",
-		"primogen",
-		"milleniumCommon",
-		"camarilla"
+		LOCKACCESS_PRIMOGEN_BRUJAH,
+		LOCKACCESS_BRUJAH,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_CAMARILLA
 	)
 	color = "#ec8f3e"
 
 /obj/item/vamp/keys/ventrue
 	name = "businessy keys"
 	accesslocks = list(
-		"ventrue",
-		"milleniumCommon"
+		LOCKACCESS_VENTRUE,
+		LOCKACCESS_JAZZ_CLUB
 	)
 	color = "#f6ffa7"
 
 /obj/item/vamp/keys/ventrue/primogen
 	name = "really businessy keys"
 	accesslocks = list(
-		"primVentrue",
-		"ventrue",
-		"milleniumCommon",
-		"primogen",
-		"camarilla",
-		"millenium_delivery",
+		LOCKACCESS_PRIMOGEN_VENTRUE,
+		LOCKACCESS_VENTRUE,
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_PRIMOGEN,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 	color = "#e8ff29"
 
 /obj/item/vamp/keys/cappadocian
-	name = "Eroded keys"
+	name = "eroded keys"
 	accesslocks = list(
-		"cappadocian"
+		LOCKACCESS_CAPPADOCIAN
 	)
 	color = "#99620e"
 
 /obj/item/vamp/keys/sabbat
-	name = "Dirty keys"
+	name = "dirty keys"
 	accesslocks = list(
-		"sabbat"
+		LOCKACCESS_SABBAT
 	)
 	color = "#6a2e1d"
 
@@ -279,80 +310,80 @@
 /obj/item/vamp/keys/clinic
 	name = "clinic keys"
 	accesslocks = list(
-		"clinic"
+		LOCKACCESS_CLINIC
 	)
 
 /obj/item/vamp/keys/clinics_director
 	name = "clinic director keys"
 	accesslocks = list(
-		"clinic",
-		"director"
+		LOCKACCESS_CLINIC,
+		LOCKACCESS_DIRECTOR
 	)
 
 //===========================POLICE KEYS===========================
 /obj/item/vamp/keys/police
 	name = "police keys"
 	accesslocks = list(
-		"police"
+		LOCKACCESS_POLICE
 	)
 
 /obj/item/vamp/keys/dispatch
 	name = "dispatcher keys"
 	accesslocks = list(
-		"dispatch"
+		LOCKACCESS_DISPATCH
 	)
 
 /obj/item/vamp/keys/police/secure
 	name = "sergeant police keys"
 	accesslocks = list(
-		"police",
-		"police_secure"
+		LOCKACCESS_POLICE,
+		LOCKACCESS_POLICE_SECURE
 	)
 
 /obj/item/vamp/keys/police/secure/chief
 	name = "\improper Chief of Police keys"
 	accesslocks = list(
-		"dispatch",
-		"police",
-		"police_secure",
-		"police_chief"
+		LOCKACCESS_DISPATCH,
+		LOCKACCESS_POLICE,
+		LOCKACCESS_POLICE_SECURE,
+		LOCKACCESS_POLICE_CHIEF
 	)
 
 //===========================GAROU KEYS===========================
 
 /obj/item/vamp/keys/nps
-	name = "Park Service keys"
+	name = "\improper Park Service keys"
 	accesslocks = list(
-		"nps"
+		LOCKACCESS_PARK_RANGER
 	)
 	color = "#1e7531"
 
 /obj/item/vamp/keys/techstore
-	name = "Tech Store keys"
+	name = "tech store keys"
 	accesslocks = list(
-		"wolftech"
+		LOCKACCESS_WOLFTECH
 	)
 	color = "#466a72"
 
 /obj/item/vamp/keys/pentex
-	name = EVIL_OIL_COMPANY + "  Facility keys"
+	name = "\improper " + EVIL_OIL_COMPANY + " Facility keys"
 	accesslocks = list(
-		"pentex"
+		LOCKACCESS_PENTEX
 	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/pentex/leader
-	name = EVIL_OIL_COMPANY + " Management keys"
+	name = "\improper " + EVIL_OIL_COMPANY + " Management keys"
 	accesslocks = list(
-		"pentex",
-		"pentexleader"
+		LOCKACCESS_PENTEX,
+		LOCKACCESS_PENTEX_LEADER
 	)
 	color = "#062e03"
 
 /obj/item/vamp/keys/children_of_gaia
-	name = "Food Pantry keys"
+	name = "food pantry keys"
 	accesslocks = list(
-		"coggie"
+		LOCKACCESS_COGGIE
 	)
 	color = "#339933"
 
@@ -361,58 +392,50 @@
 /obj/item/vamp/keys/triads
 	name = "rusty keys"
 	accesslocks = list(
-		"triad",
-		"laundromat"
+		LOCKACCESS_TRAID,
+		LOCKACCESS_LAUNDROMAT
 	)
 
 /obj/item/vamp/keys/graveyard
 	name = "graveyard keys"
 	accesslocks = list(
-		"graveyard"
+		LOCKACCESS_GRAVEYARD
 	)
 
 /obj/item/vamp/keys/cleaning
 	name = "cleaning keys"
 	accesslocks = list(
-		"cleaning"
+		LOCKACCESS_CLEANING
 	)
 
 /obj/item/vamp/keys/church
 	name = "church keys"
 	accesslocks = list(
-		"church"
+		LOCKACCESS_CHURCH
 	)
 
 /obj/item/vamp/keys/supply
 	name = "supply keys"
 	accesslocks = list(
-		"supply"
+		LOCKACCESS_SUPPLY
 	)
 	color = "#434343"
 
 /obj/item/vamp/keys/strip
 	name = "strip keys"
 	accesslocks = list(
-		"strip"
+		LOCKACCESS_STRIP
 	)
 
 /obj/item/vamp/keys/taxi
 	name = "taxi keys"
 	accesslocks = list(
-		"taxi"
+		LOCKACCESS_TAXI
 	)
 	color = "#fffb8b"
 
-
-/obj/item/vamp/keys/anarch_limited
-	name = "Barkeeper keys"
-	accesslocks = list(
-		"biker_bar"
-	)
-	color = "#434343"
-
 /obj/item/vamp/keys/apartment
-	name = "Apartment keys"
+	name = "apartment keys"
 	desc = "The key to someone's home. Hope it's not lost."
 	accesslocks = list(
 		"apartment"

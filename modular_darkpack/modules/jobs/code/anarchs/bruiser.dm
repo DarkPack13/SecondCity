@@ -26,6 +26,7 @@
 	jobtype = /datum/job/vampire/bruiser
 
 	id = /obj/item/card/bruiser
+	ears = /obj/item/radio/headset/darkpack
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots

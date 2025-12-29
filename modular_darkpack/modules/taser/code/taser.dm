@@ -38,7 +38,7 @@
 	pickup_sound = active_pickup_sound
 
 
-/obj/item/melee/baton/security/hand_taser/turn_off()
+/obj/item/melee/baton/security/handtaser/turn_off()
 	active = FALSE
 	set_light_on(FALSE)
 	update_appearance()

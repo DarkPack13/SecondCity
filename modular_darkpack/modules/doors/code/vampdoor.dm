@@ -5,7 +5,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/doors.dmi'
 	icon_state = "door-1"
 	base_icon_state = "door"
-	layer = CLOSED_DOOR_LAYER
+	layer = MAP_SWITCH(CLOSED_DOOR_LAYER, OPEN_DOOR_LAYER)
 	pixel_w = -16
 
 	anchored = TRUE
@@ -25,9 +25,8 @@
 	var/door_broken = FALSE
 	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
-	var/glass = FALSE
 	var/lockpick_timer = LOCKTIMER_1
-	var/lockpick_difficulty = LOCKDIFFICULTY_1
+	var/lockpick_difficulty = 6
 
 	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
@@ -60,6 +59,9 @@
 			lockpick_timer = LOCKTIMER_2
 		if(-INFINITY to LOCKDIFFICULTY_2) //LOCKDIFFICULTY_1 is basically the minimum so we can just do LOCKTIMER_1 from -INFINITY
 			lockpick_timer = LOCKTIMER_1
+
+/obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
+	return !density || !locked
 
 //DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
@@ -139,7 +141,7 @@
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
 	set_density(FALSE)
-	opacity = 0
+	set_opacity(FALSE)
 	layer = OPEN_DOOR_LAYER
 	closed = FALSE
 	locked = FALSE
@@ -151,8 +153,8 @@
 	desc = initial(desc)
 	door_broken = FALSE
 	set_density(TRUE)
-	if(!glass)
-		opacity = 1
+	if(initial(opacity))
+		set_opacity(TRUE)
 	layer = ABOVE_ALL_MOB_LAYER
 	closed = TRUE
 	locked = FALSE
@@ -185,7 +187,7 @@
 	playsound(src, close_sound, 75, TRUE)
 	icon_state = "[base_icon_state]-1"
 	set_density(TRUE)
-	if(!glass)
+	if(initial(opacity))
 		set_opacity(TRUE)
 	layer = ABOVE_ALL_MOB_LAYER
 	to_chat(user, span_notice("You close [src]."))
@@ -226,6 +228,8 @@
 				playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
 				addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 	else
+		if(try_award_apartment_key(user))
+			return
 		if(locked)
 			playsound(src, lock_sound, 75, TRUE)
 			to_chat(user, span_warning("[src] is locked!"))
@@ -253,6 +257,10 @@
 				has_keys = TRUE
 				if(try_keys(user, found_key))
 					return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+	if(lock_id == LOCKACCESS_ALL)
+		if(try_keys(user, need_key = FALSE))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!has_keys)
 		to_chat(user, span_warning("You need a key to lock/unlock this door!"))
@@ -317,13 +325,17 @@
 			playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
 			return TRUE
 
-/obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used)
+/obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used, need_key = TRUE)
 	/*
 	if(key_used != user.get_active_hand())
 		if(!do_after(human_user, 0.5 SECONDS, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			return
 	*/
-	to_chat(user, span_notice("You try [key_used] against [src]"))
+	if(need_key)
+		to_chat(user, span_notice("You try [key_used] against [src]"))
+	else
+		to_chat(user, span_notice("You try to unlock [src]"))
+
 	if(door_broken)
 		to_chat(user,span_warning("There is no door to open/close here."))
 		return
@@ -342,6 +354,16 @@
 					proc_unlock("key")
 					locked = FALSE
 				return TRUE
+	if(!need_key)
+		playsound(src, lock_sound, 75, TRUE)
+		if(!locked)
+			to_chat(user, "[src] is now locked.")
+			locked = TRUE
+		else
+			to_chat(user, "[src] is now unlocked.")
+			proc_unlock("key")
+			locked = FALSE
+		return TRUE
 
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)

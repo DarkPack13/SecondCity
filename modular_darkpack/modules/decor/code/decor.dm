@@ -128,17 +128,13 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-//I should make these slow to move
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = TRUE
+	drag_slowdown = 3
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
@@ -266,10 +262,13 @@
 /obj/structure/roadblock/alt
 	icon_state = "barrier"
 
+// DARKPACK TODO - Does not pass the sniff test of being a decal. Make a structure
 /obj/effect/decal/painting
 	name = "painting"
 	icon = 'modular_darkpack/modules/decor/icons/paintings.dmi'
 	icon_state = "painting1"
+	plane = GAME_PLANE
+	layer = SIGN_LAYER
 
 /obj/effect/decal/painting/second
 	icon_state = "painting2"
@@ -317,6 +316,9 @@
 	name = "pallet"
 	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "under1"
+
+/obj/effect/decal/pallet/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
 
 /obj/effect/decal/pallet/Initialize(mapload)
 	. = ..()
@@ -612,7 +614,7 @@
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/weapon_showcase/Initialize(mapload)
@@ -715,3 +717,8 @@
 /obj/structure/fluff/tv/order/random/Initialize(mapload)
 	. = ..()
 	icon_state = "order[rand(1,4)]"
+
+/obj/structure/projector
+	name = "projector"
+	icon = 'icons/obj/machines/stationary_camera.dmi'
+	icon_state = "camera"

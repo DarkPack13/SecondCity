@@ -1208,7 +1208,7 @@
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
-	desc = "A \"Space Life\" brand [src]."
+	desc = "A \"Black Dog Games Factory\" brand [src]." // DARKPACK EDIT CHANGE
 	AddElement(/datum/element/toy_talk)
 
 /obj/item/toy/figure/attack_self(mob/user as mob)

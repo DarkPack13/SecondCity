@@ -13,6 +13,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	MODE_BINARY = MODE_TOKEN_BINARY,
 	RADIO_CHANNEL_AI_PRIVATE = RADIO_TOKEN_AI_PRIVATE,
 	RADIO_CHANNEL_ENTERTAINMENT = RADIO_TOKEN_ENTERTAINMENT,
+	// DARKPACK EDIT ADD START
+	RADIO_CHANNEL_POLICE = RADIO_TOKEN_POLICE,
+	RADIO_CHANNEL_CLINIC = RADIO_TOKEN_CLINIC,
+	RADIO_CHANNEL_MILITARY = RADIO_TOKEN_MILITARY,
+	RADIO_CHANNEL_CAMARILLA = RADIO_TOKEN_CAMARILLA,
+	RADIO_CHANNEL_ANARCH = RADIO_TOKEN_ANARCH,
+	RDAIO_CHANNEL_ENDRON = RADIO_TOKEN_ENDRON,
+	// DARKPACK EDIT ADD END
 ))
 
 /obj/item/radio/headset
@@ -49,6 +57,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/examine(mob/user)
 	. = ..()
 
+	/* DARKPACK EDIT REMOVAL START
 	if(!(item_flags & IN_INVENTORY) || loc != user)
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
 		return
@@ -71,6 +80,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	. += span_notice("A small screen on the headset displays the following available frequencies:")
 	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")
+	*/ // DARKPACK EDIT REMOVAL END
 
 	if(command)
 		. += span_info("<b>Alt-click</b> to toggle the high-volume mode.")
