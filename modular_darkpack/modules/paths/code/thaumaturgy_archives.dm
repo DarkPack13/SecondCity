@@ -323,4 +323,3 @@
 		qdel(spellbook)
 		return ITEM_INTERACT_SUCCESS
 
-	return ..()
