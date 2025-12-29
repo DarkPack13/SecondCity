@@ -41,7 +41,7 @@
 			to_chat(user, span_warning("You need to wait [time_left] seconds before trying again."))
 			return
 		if(do_after(user, 5 SECONDS))
-			var/roll = SSroll.storyteller_roll(user.st_get_stat(STAT_OCCULT) + user.st_get_stat(STAT_ACADEMICS), path_level + 3, user, numerical = FALSE)
+			var/roll = SSroll.storyteller_roll(user.st_get_stat(STAT_STAT_INTELLIGENCE) + user.st_get_stat(STAT_OCCULT), path_level + 3, user, numerical = FALSE)
 			switch(roll)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_cult("You wipe the dust off the previously irrelevant tome. Did someone misplace it from the Library?"))
