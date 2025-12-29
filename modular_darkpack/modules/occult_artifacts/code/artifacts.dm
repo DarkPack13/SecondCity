@@ -220,16 +220,6 @@
 	playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 	return
 
-/obj/effect/spawner/random/occult
-	name = "occult spawner"
-	icon = 'modular_darkpack/modules/occult_artifacts/icons/artifacts.dmi'
-	icon_state = "art_rand"
-
-/obj/effect/spawner/random/occult/artifact
-	name = "random occult fetish"
-	spawn_loot_chance = 50
-	loot_subtype_path = /obj/item/vtm_artifact
-
 /obj/item/vtm_artifact/bloodstone
 	true_name = "bloodstone"
 	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
@@ -288,3 +278,13 @@
 	var/area/stone_area = get_area(bloodstone)
 	to_chat(owner, span_notice("The bloodstone whispers its location: [stone_area.name] ([stone_turf.x], [stone_turf.y])"))
 	return TRUE
+
+/obj/effect/spawner/random/occult
+	name = "occult spawner"
+	icon = 'modular_darkpack/modules/occult_artifacts/icons/artifacts.dmi'
+	icon_state = "art_rand"
+
+/obj/effect/spawner/random/occult/artifact
+	name = "random occult fetish"
+	spawn_loot_chance = 50
+	loot_subtype_path = /obj/item/vtm_artifact

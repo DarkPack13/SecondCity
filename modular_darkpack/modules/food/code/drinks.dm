@@ -50,9 +50,9 @@
 
 /datum/reagent/consumable/ethanol/beer/typhon/on_mob_life(mob/living/carbon/M)
 	if(iskindred(M))
-		M.bloodpool = min(M.maxbloodpool, M.bloodpool + 0.25)
+		M.adjust_blood_pool(0.25)
 	if(isghoul(M))
-		M.bloodpool = min(M.maxbloodpool, M.bloodpool + 1)
+		M.adjust_blood_pool(1)
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
