@@ -188,7 +188,7 @@
 	for(var/mob/living/carbon/human/H in range(12, owner))
 		if(H == owner)
 			continue
-		LAZYSET(cached_targets, H.real_name, image(icon = H.icon, icon_state = H.icon_state))
+		LAZYSET(cached_targets, H.name, image(icon = H.icon, icon_state = H.icon_state))
 
 	if(!LAZYLEN(cached_targets))
 		to_chat(owner, span_warning("There isn't anyone nearby to mimic!"))

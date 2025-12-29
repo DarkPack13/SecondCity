@@ -1,6 +1,6 @@
 /mob/living
 	COOLDOWN_DECLARE(masquerade_timer)
-	//List for icons created for obfuscated mobs
+	//obfuscate icon, client side
 	var/obf_icons
 	//thaumaturgy & necro path stuff
 	var/research_points = 0
