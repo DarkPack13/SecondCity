@@ -14,7 +14,6 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/deprecated/sounds/obfuscate_deactivate.ogg'
 
-	//need a signal for talking, being attacked
 	var/static/list/aggressive_signals = list(
 		COMSIG_MOB_ATTACK_HAND,
 		COMSIG_MOB_FIRED_GUN,
@@ -54,8 +53,7 @@
 			continue
 
 		//the corpses are not watching you
-		//removed (HAS_TRAIT(viewer, TRAIT_BLIND) || -- this needs to be added
-		if (viewer.stat >= UNCONSCIOUS)
+		if (viewer.is_blind() || (viewer.stat >= UNCONSCIOUS))
 			continue
 
 		to_chat(owner, span_warning("You cannot use [src] while you're being observed!"))
@@ -75,7 +73,6 @@
 	toggled = TRUE
 
 	grouped_powers = list(
-		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
@@ -126,7 +123,6 @@
 
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
-		/datum/discipline_power/obfuscate/unseen_presence,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
@@ -176,6 +172,12 @@
 	vitae_cost = 0 // vitae cost handled in activate()
 
 	toggled = TRUE
+	grouped_powers = list(
+		/datum/discipline_power/obfuscate/cloak_of_shadows,
+		/datum/discipline_power/obfuscate/unseen_presence,
+		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
+		/datum/discipline_power/obfuscate/cloak_the_gathering
+	)
 
 	var/datum/dna/original_dna
 	var/original_name
@@ -184,46 +186,55 @@
 	var/list/cached_targets
 
 //mask of a thousand faces is supposed to have varying levels of success based on successes rolled
+/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/proc/store_target_in_list(mob/examiner, atom/examined)
+	SIGNAL_HANDLER
+	if(!ishuman(examined) || examined == owner)
+		return
+
+	var/mob/living/carbon/human/target = examined
+	var/image/target_image = image(target)
+	to_chat(owner, span_info("You get a good look at your target and memorize their features."))
+	LAZYSET(cached_targets, target.name, list("image" = target_image, "target" = target))
+
+/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
+
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	for(var/mob/living/carbon/human/H in range(12, owner))
-		if(H == owner)
-			continue
-		LAZYSET(cached_targets, H.name, image(icon = H.icon, icon_state = H.icon_state))
 
 	if(!LAZYLEN(cached_targets))
-		to_chat(owner, span_warning("There isn't anyone nearby to mimic!"))
+		to_chat(owner, span_warning("You haven't gotten a good look at anyone - so you can't mimic anyone's face!"))
 		return FALSE
 
 	if(!is_seen_check())
-		cached_targets = null
 		return FALSE
 
 	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 
-	cached_targets = null // Clean up since we failed
 	to_chat(owner, span_warning("You fail to focus your mind on the disguise."))
 	return FALSE
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
 
-	var/chosen_name = show_radial_menu(owner, owner, cached_targets, radius = 40, require_near = TRUE, tooltips = TRUE)
+	var/list/display_targets = list()
+	for(var/target_name in cached_targets)
+		display_targets[target_name] = cached_targets[target_name]["image"]
+
+	var/chosen_name = show_radial_menu(owner, owner, display_targets, radius = 40, require_near = TRUE, tooltips = TRUE)
 	if(!chosen_name)
-		cached_targets = null
 		try_deactivate(direct = TRUE)
 		return
 
-	var/mob/living/carbon/human/target
-	for(var/mob/living/carbon/human/H in range(12, owner))
-		if(H.real_name == chosen_name)
-			target = H
-			break
+	var/mob/living/carbon/human/target = cached_targets[chosen_name]["target"]
 
-	cached_targets = null // lazylist so lets just return it to null
+	if(!target)
+		to_chat(owner, span_warning("You can't recall [chosen_name]'s features clearly enough!"))
+		try_deactivate(direct = TRUE)
+		return
 
-	//transforming into someone more attractive than you requires a higher blood investment
 	var/appearance_difference = target.st_get_stat(STAT_APPEARANCE) - owner.st_get_stat(STAT_APPEARANCE)
 	owner.adjust_blood_pool(-max(appearance_difference, 1))
 
@@ -250,8 +261,7 @@
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
-	owner.name = target.name
-	to_chat(owner, span_notice("You assume the appearance of [target.real_name]."))
+	to_chat(owner, span_notice("You assume the appearance of [target.name]."))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -261,10 +271,12 @@
 	. = ..()
 	original_dna.copy_dna(owner.dna, 0)
 	owner.name = original_name
+
 	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
 	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
+
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
 	owner.updateappearance(mutcolor_update = TRUE)
 	to_chat(owner, span_notice("You assume your original form."))
@@ -283,7 +295,6 @@
 	grouped_powers = list(
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
-		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
 
@@ -328,7 +339,6 @@
 		/datum/discipline_power/obfuscate/cloak_of_shadows,
 		/datum/discipline_power/obfuscate/unseen_presence,
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
 
 /datum/discipline_power/obfuscate/cloak_the_gathering/activate()
