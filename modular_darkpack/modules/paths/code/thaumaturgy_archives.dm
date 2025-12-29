@@ -309,7 +309,7 @@
 		var/obj/item/path_spellbook/spellbook = tool
 
 		if(!ishuman(user))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/H = user
 
