@@ -276,7 +276,7 @@
 
 		if(artifact.research_value <= 0)
 			to_chat(user, span_warning("The Archives find no value in this artifact."))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		H.research_points += artifact.research_value
 
