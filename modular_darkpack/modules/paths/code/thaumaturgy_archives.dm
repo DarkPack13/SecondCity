@@ -270,7 +270,7 @@
 		var/obj/item/vtm_artifact/artifact = tool
 
 		if(!ishuman(user))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/mob/living/carbon/human/H = user
 
