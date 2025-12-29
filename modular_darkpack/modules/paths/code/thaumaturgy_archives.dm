@@ -321,6 +321,6 @@
 		to_chat(user, span_notice("The Archives accept your spellbook, granting you [research_reward] research points and adding its knowledge to the collection."))
 
 		qdel(spellbook)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
 	return ..()
