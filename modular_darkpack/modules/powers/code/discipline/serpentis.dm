@@ -81,6 +81,7 @@
 	violates_masquerade = TRUE
 
 	cooldown_length = 5 SECONDS
+	var/successes
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/can_activate_untargeted(alert)
 	. = ..()
@@ -90,9 +91,18 @@
 		. = FALSE
 	return .
 
+/datum/discipline_power/serpentis/the_tongue_of_the_asp/pre_activation_checks(mob/living/target)
+	. = ..()
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_STRENGTH), 6, owner, numerical = TRUE)
+	if(successes > 0)
+		return TRUE
+	else
+		return FALSE
+
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/activate(mob/living/target)
 	. = ..()
 	target.adjust_blood_pool(-2)
+	target.apply_damage(12 * successes, AGGRAVATED)
 	owner.adjust_blood_pool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
@@ -105,17 +115,47 @@
 
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
+	toggled = TRUE
+	vitae_cost = 0 //handling blood cost in pre_activation because this power asks for one bloodpoint, but can be on forever without consuming more
 
 	violates_masquerade = TRUE
 
 	duration_length = 5 SECONDS
 	cooldown_length = 15 SECONDS
+	var/choice
+
+/datum/discipline_power/serpentis/the_skin_of_the_adder/pre_activation_checks()
+	. = ..()
+	owner.adjust_blood_pool(-1)
 
 /datum/discipline_power/serpentis/the_skin_of_the_adder/activate()
 	. = ..()
-	//this is bad and needs to allow for actual cancelling/deactivation rather than just a timer in the proc
+	//this needs a sprite
+	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
+	if(choice == "Obvious")
+		owner.st_add_stat_mod(STAT_INTIMIDATION, 2, "Serpentis") // 'reduce intimidation difficulties by two' placeholder
+		owner.apply_status_effect(/datum/status_effect/fortitude/three) // 'reduces all soak difficulty to 5' placeholder
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
+	else
+		owner.apply_status_effect(/datum/status_effect/fortitude/one) // permanently on with no downsides according to dav20. its staying at fort one bro
+	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, "Serpentis") //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
+	owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
+	/*
 	owner.Stun(duration_length)
 	owner.petrify(duration_length, "Serpentis")
+	*/
+
+/datum/discipline_power/serpentis/the_skin_of_the_adder/deactivate()
+	. = ..()
+	if(choice == "Obvious")
+		owner.st_remove_stat_mod(STAT_INTIMIDATION, 2, "Serpentis")
+		owner.remove_status_effect(/datum/status_effect/fortitude/three)
+		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
+	else
+		owner.remove_status_effect(/datum/status_effect/fortitude/one)
+	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, "Serpentis")
+	owner.st_remove_stat_mod(STAT_APPEARANCE, "Serpentis")
+
 
 //THE FORM OF THE COBRA
 /datum/discipline_power/serpentis/the_form_of_the_cobra
