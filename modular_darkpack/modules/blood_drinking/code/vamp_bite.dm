@@ -56,7 +56,7 @@
 					var/mob/living/carbon/human/kindred = src
 					var/datum/species/human/kindred/kindred_species = kindred.dna.species
 					var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
-					var/frenzy_check = SSroll.storyteller_roll(st_get_stat(stat_to_roll), 6, src, numerical = FALSE)
+					var/frenzy_check = SSroll.storyteller_roll(st_get_stat(stat_to_roll), 6, src)
 					if(frenzy_check != ROLL_SUCCESS)
 						to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
 						// DARKPACK TODO: frenzy, please put the call here
