@@ -10,18 +10,18 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/obj/transfer_point_vamp/exit
-	var/id = 1
+	var/id
 
 /obj/transfer_point_vamp/Initialize(mapload)
 	. = ..()
 	apply_wibbly_filters(src)
-	if(!exit)
+	if(id && !exit)
 		GLOB.unallocted_transfer_points += src
-		for(var/obj/transfer_point_vamp/T in GLOB.unallocted_transfer_points)
-			if(T.id == id && T != src)
-				exit = T
-				GLOB.unallocted_transfer_points -= T
-				T.exit = src
+		for(var/obj/transfer_point_vamp/other_point in GLOB.unallocted_transfer_points)
+			if(other_point.id == id && other_point != src)
+				exit = other_point
+				GLOB.unallocted_transfer_points -= other_point
+				other_point.exit = src
 				GLOB.unallocted_transfer_points -= src
 				break
 

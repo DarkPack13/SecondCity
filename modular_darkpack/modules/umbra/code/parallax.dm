@@ -30,5 +30,7 @@
 		return
 	SetInvisibility(is_mining_level(posobj.z) ? INVISIBILITY_NONE : INVISIBILITY_ABSTRACT, id=type)
 
+/*
 /atom/movable/screen/parallax_layer/umbra/update_o()
 	return //Shit won't move
+*/

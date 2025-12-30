@@ -154,7 +154,6 @@ Always compile, always use that verb, and always make sure that it works for wha
 ///Z level traits for the umbra
 #define ZTRAITS_UMBRA list(\
 	ZTRAIT_MINING = TRUE, \
-	ZTRAIT_NOPARALLAX = TRUE, \
 	ZTRAIT_BASETURF = /turf/open/umbra)
 // DARKPACK EDIT ADD END
 

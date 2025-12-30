@@ -1280,7 +1280,6 @@
 /area/vtm/interior/penumbra)
 "rL" = (
 /obj/structure/city_map,
-/obj/structure/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
@@ -35241,7 +35240,7 @@ qF
 qF
 qF
 qF
-qF
+cm
 qF
 qF
 CV
