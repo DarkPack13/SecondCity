@@ -11,6 +11,7 @@
 	var/difficulty = 6
 	// By default uses the highest attribute and ability
 	var/list/applicable_stats
+	
 	var/roll_output_type = ROLL_PUBLIC
 
 	// Mutable vars to store the outputs of any given roll
@@ -32,23 +33,6 @@
 
 /datum/storyteller_roll/lockpick
 	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
-
-// Example usecase
-/obj/structure/vampdoor/proc/try_lockpick(mob/living/user, obj/item/tool)
-	var/datum/storyteller_roll/lockpick/our_roll = new()
-	our_roll.difficulty = lockpick_difficulty
-	switch(our_roll.roll(user))
-		if(ROLL_SUCCESS)
-			to_chat(user, span_notice("You pick the lock."))
-			locked = FALSE
-			return TRUE
-		if(ROLL_FAILURE)
-			to_chat(user, span_warning("You failed to pick the lock."))
-		if(ROLL_BOTCH)
-			to_chat(user, span_warning("Your lockpick broke!"))
-			qdel(tool)
-
-
 
 
 /datum/storyteller_roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null, numerical = FALSE)

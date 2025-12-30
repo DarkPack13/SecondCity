@@ -26,7 +26,6 @@
 	var/door_layer = CLOSED_DOOR_LAYER
 	var/lock_id = null
 	var/glass = FALSE
-	var/lockpick_timer = LOCKTIMER_1
 	var/lockpick_difficulty = LOCKDIFFICULTY_1
 
 	var/open_sound = 'modular_darkpack/modules/doors/sounds/door_open.ogg'
@@ -45,21 +44,6 @@
 	register_context()
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
-	switch(lockpick_difficulty) //This is fine because any overlap gets intercepted before
-		if(LOCKDIFFICULTY_7 to INFINITY)
-			lockpick_timer = LOCKTIMER_7
-		if(LOCKDIFFICULTY_6 to LOCKDIFFICULTY_7)
-			lockpick_timer = LOCKTIMER_6
-		if(LOCKDIFFICULTY_5 to LOCKDIFFICULTY_6)
-			lockpick_timer = LOCKTIMER_5
-		if(LOCKDIFFICULTY_4 to LOCKDIFFICULTY_5)
-			lockpick_timer = LOCKTIMER_4
-		if(LOCKDIFFICULTY_3 to LOCKDIFFICULTY_4)
-			lockpick_timer = LOCKTIMER_3
-		if(LOCKDIFFICULTY_2 to LOCKDIFFICULTY_3)
-			lockpick_timer = LOCKTIMER_2
-		if(-INFINITY to LOCKDIFFICULTY_2) //LOCKDIFFICULTY_1 is basically the minimum so we can just do LOCKTIMER_1 from -INFINITY
-			lockpick_timer = LOCKTIMER_1
 
 //DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
@@ -292,12 +276,12 @@
 		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
 		for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			P.Aggro(user)
-		var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
-		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))
+		if(do_after(user, 1 TURNS, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			if(!locked)
 				return
-			var/roll_result = SSroll.storyteller_roll(total_lockpicking + user.st_get_stat(STAT_DEXTERITY), lockpick_difficulty, list(user), user)
-			switch(roll_result)
+			var/datum/storyteller_roll/lockpick/our_roll = new()
+			our_roll.difficulty = lockpick_difficulty
+			switch(our_roll.roll(user))
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
 					locked = FALSE
