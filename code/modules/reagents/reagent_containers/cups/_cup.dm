@@ -330,6 +330,7 @@
 		ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET,\
 		ITEM_SLOT_DEX_STORAGE
 	)
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /obj/item/reagent_containers/cup/bucket/Initialize(mapload)
 	. = ..()

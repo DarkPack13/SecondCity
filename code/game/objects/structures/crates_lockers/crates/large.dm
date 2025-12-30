@@ -71,3 +71,13 @@
 			var/obj/item/clothing/head/lucky_hat = pick(our_contents)
 			lucky_hat.AddComponent(/datum/component/unusual_effect, color = "#FFEA0030", include_particles = TRUE)
 			lucky_hat.name = "unusual [name]"
+
+//DARKPACK EDIT ADD - Paths, finding artifacts in crates
+/obj/structure/closet/crate/large/Destroy()
+	// 10% chance to spawn a random artifact when destroyed (spawner has 50% chance of spawning nothing)
+	if(!length(contents) && prob(16))
+		var/turf/T = get_turf(src)
+		if(T)
+			new /obj/effect/spawner/random/occult/artifact(T)
+	return ..()
+//DARKPACK EDIT ADD END
