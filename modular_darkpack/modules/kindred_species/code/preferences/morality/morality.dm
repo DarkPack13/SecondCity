@@ -23,8 +23,8 @@
 
 /datum/preference/choiced/vtm_morality/serialize(input)
 	if(ispath(input))
-		var/datum/morality/M = input
-		return initial(M.name)
+		var/datum/morality/input_morality = input
+		return input_morality::name
 	return input
 
 /datum/preference/choiced/vtm_morality/deserialize(input, datum/preferences/preferences)
