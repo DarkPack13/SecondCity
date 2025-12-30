@@ -33,25 +33,31 @@
 	var/obj/umbra_portal/exit
 	var/id
 
-/obj/umbra_portal/proc/later_Initialize(mapload)
+/obj/umbra_portal/Initialize(mapload)
+	. = ..()
 	set_light(2, 1, "#a4a0fb")
+	apply_wibbly_filters(src)
+
+	GLOB.umbra_portals += src
+
 	if(id)
-		for(var/obj/umbra_portal/U in GLOB.umbra_portals)
-			if(U.id)
-				if(U.id == id)
-					U.exit = src
-					exit = U
-		GLOB.umbra_portals += src
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/umbra_portal/LateInitialize()
+	for(var/obj/umbra_portal/other_portal in GLOB.umbra_portals)
+		if(other_portal.id == id)
+			link_portal(other_portal)
+			break // Im assuming there is no world where this is 3 portals with the same id as that creates unpreticable behavoir.
+
+/obj/umbra_portal/proc/link_portal(var/obj/umbra_portal/other_portal)
+	other_portal.exit = src
+	exit = other_portal
 
 /obj/umbra_portal/Destroy()
 	. = ..()
-	if(id)
-		for(var/obj/umbra_portal/U in GLOB.umbra_portals)
-			if(U.id)
-				if(U.id == id)
-					U.exit = null
-					exit = null
-		GLOB.umbra_portals -= src
+	if(other_portal)
+		other_portal.exit = null
+	GLOB.umbra_portals -= src
 
 /obj/umbra_portal/Bumped(atom/movable/AM)
 	. = ..()
