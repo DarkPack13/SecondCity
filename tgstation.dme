@@ -7424,6 +7424,7 @@
 #include "modular_darkpack\modules\toys\code\pigs.dm"
 #include "modular_darkpack\modules\toys\code\plushes.dm"
 #include "modular_darkpack\modules\umbra\code\minesweeper.dm"
+#include "modular_darkpack\modules\umbra\code\parallax.dm"
 #include "modular_darkpack\modules\umbra\code\umbra.dm"
 #include "modular_darkpack\modules\umbra\code\umbra_globals.dm"
 #include "modular_darkpack\modules\unit_tests\_darkpack_unit_tests.dm"

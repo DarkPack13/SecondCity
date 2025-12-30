@@ -14,6 +14,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 
 /obj/transfer_point_vamp/Initialize(mapload)
 	. = ..()
+	apply_wibbly_filters(src)
 	if(!exit)
 		GLOB.unallocted_transfer_points += src
 		for(var/obj/transfer_point_vamp/T in GLOB.unallocted_transfer_points)
@@ -25,12 +26,19 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 				break
 
 /obj/transfer_point_vamp/Destroy(force)
-	// Clear the refernce to ourselves to prevent hard del
+	// Clear the ref to ourselves to prevent hard del
 	if(exit)
 		exit.exit = null
 
 	GLOB.unallocted_transfer_points -= src
 	return ..()
+
+/obj/transfer_point_vamp/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, exit))
+		if(istype(var_value, /obj/transfer_point_vamp))
+			var/obj/transfer_point_vamp/new_exit = var_value
+			new_exit.exit = src
 
 /obj/transfer_point_vamp/backrooms
 	id = "backrooms"
@@ -55,10 +63,13 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 /obj/transfer_point_vamp/umbral/Initialize(mapload)
 	. = ..()
 	set_light(2, 1, "#a4a0fb")
+	//apply_wibbly_filters(src)
 
 /obj/transfer_point_vamp/umbral/Bumped(atom/movable/AM)
 	. = ..()
-	playsound(get_turf(AM), 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
+	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
+	if(exit)
+		playsound(exit, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
 
 /obj/transfer_point_vamp/Bumped(atom/movable/AM)
 	. = ..()

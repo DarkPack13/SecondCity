@@ -1,2 +1,2 @@
 /turf
-	var/umbra = FALSE
+	var/umbra = FALSE // UMBRA

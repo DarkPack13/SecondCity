@@ -19,6 +19,7 @@
 	if(M)
 		density = FALSE
 
+// This thing is only used in totem creation. Consider just replacing with transfer points as it does not provide any intresting behavoir.
 /obj/umbra_portal
 	name = "gateway"
 	desc = "Step to the other side."
@@ -49,14 +50,14 @@
 			link_portal(other_portal)
 			break // Im assuming there is no world where this is 3 portals with the same id as that creates unpreticable behavoir.
 
-/obj/umbra_portal/proc/link_portal(var/obj/umbra_portal/other_portal)
+/obj/umbra_portal/proc/link_portal(obj/umbra_portal/other_portal)
 	other_portal.exit = src
 	exit = other_portal
 
 /obj/umbra_portal/Destroy()
 	. = ..()
-	if(other_portal)
-		other_portal.exit = null
+	if(exit)
+		exit.exit = null
 	GLOB.umbra_portals -= src
 
 /obj/umbra_portal/Bumped(atom/movable/AM)

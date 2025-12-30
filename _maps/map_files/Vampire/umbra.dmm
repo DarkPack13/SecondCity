@@ -648,7 +648,7 @@
 /turf/open/umbra,
 /area/vtm/interior/penumbra)
 "ii" = (
-/obj/structure/sign/city/anarch,
+/obj/structure/sign/city/anarch/directional/west,
 /turf/open/umbra,
 /area/vtm/interior/penumbra)
 "ik" = (
@@ -1858,13 +1858,6 @@
 /turf/open/floor/plating/concrete{
 	umbra = 1
 	},
-/area/vtm/interior/penumbra)
-"xV" = (
-/obj/effect/turf_decal/bordur{
-	dir = 1
-	},
-/obj/minespot/playable,
-/turf/open/umbra,
 /area/vtm/interior/penumbra)
 "yc" = (
 /obj/effect/decal/pallet,
@@ -3986,12 +3979,6 @@
 	dir = 1
 	},
 /turf/open/misc/grass,
-/area/vtm/interior/penumbra)
-"ZG" = (
-/obj/effect/turf_decal/bordur{
-	dir = 1
-	},
-/turf/open/umbra,
 /area/vtm/interior/penumbra)
 "ZH" = (
 /turf/closed/wall/vampwall/rich{
@@ -38522,7 +38509,7 @@ Qo
 CV
 Kt
 CV
-ZG
+qF
 qF
 qF
 ik
@@ -40578,7 +40565,7 @@ Qo
 CV
 Kt
 CV
-xV
+Tr
 qF
 qF
 qb
