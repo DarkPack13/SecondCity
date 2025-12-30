@@ -37,4 +37,3 @@
 /mob/living/proc/on_client_lost(datum/source)
 	SIGNAL_HANDLER
 	remove_obficon()
-// TFN EDIT END
