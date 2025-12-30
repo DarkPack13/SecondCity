@@ -25,6 +25,7 @@
 	tool_behaviour = TOOL_WRENCH
 	toolspeed = 1
 	armor_type = /datum/armor/item_wrench
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /datum/armor/item_wrench
 	fire = 50

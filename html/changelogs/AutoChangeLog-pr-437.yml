@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "readds Thaumaturgy Paths, Endron NPCs, and a few missing maptypes"

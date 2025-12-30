@@ -9,6 +9,7 @@
 	var/shell_capacity = SHELL_CAPACITY_SMALL
 	/// Can a mouse play this instrument?
 	var/mouse_playable = TRUE
+	custom_price = 200 //DARKPACK EDIT ADD
 
 /obj/item/instrument/piano_synth/Initialize(mapload)
 	. = ..()

@@ -59,6 +59,7 @@
 	var/picture_size_y_min = 1
 	var/picture_size_x_max = 4
 	var/picture_size_y_max = 4
+	custom_price = 300 //DARKPACK EDIT ADD
 
 /obj/item/camera/Initialize(mapload)
 	. = ..()
