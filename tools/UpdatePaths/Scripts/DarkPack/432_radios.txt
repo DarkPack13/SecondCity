@@ -1,0 +1,9 @@
+/obj/item/p25radio : /obj/item/radio
+/obj/item/p25radio/police :  /obj/item/radio/headset/darkpack/police
+# There should only be really one tranceiver for each faction.
+/obj/machinery/p25policeportal : @DELETE
+/obj/machinery/p25transceiver/anarch : /obj/machinery/radio_tranceiver/anarch
+/obj/machinery/p25transceiver/clinic :  /obj/machinery/radio_tranceiver/clinic
+/obj/machinery/p25transceiver/endron : /obj/machinery/radio_tranceiver/endron
+/obj/machinery/p25transceiver/police : /obj/machinery/radio_tranceiver/police
+/obj/machinery/p25transceiver/tower : /obj/machinery/radio_tranceiver/camarilla

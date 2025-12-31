@@ -34,6 +34,7 @@
 	var/true_desc = "Debug"
 	var/identified = FALSE
 	var/gained_boosts = FALSE
+	var/research_value = 0
 
 /obj/item/vtm_artifact/proc/identify()
 	if(!identified)
@@ -57,6 +58,7 @@
 	true_name = "Weekapaug Thistle"
 	true_desc = "Increases combat defense."
 	icon_state = "w_thistle"
+	research_value = 10
 
 /obj/item/vtm_artifact/weekapaug_thistle/get_powers()
 	. = ..()
@@ -86,6 +88,7 @@
 	true_desc = "Passive health regeneration."
 	icon_state = "m_fetish"
 	var/last_regen = 0
+	research_value = 10
 
 /obj/item/vtm_artifact/mummywrap_fetish/process(delta_time)
 	. = ..()
@@ -99,6 +102,7 @@
 	true_name = "Galdjum"
 	true_desc = "Increases disciplines duration."
 	icon_state = "galdjum"
+	research_value = 10
 
 /obj/item/vtm_artifact/galdjum/get_powers()
 	. = ..()
@@ -115,6 +119,7 @@
 	true_name = "Fae Charm"
 	true_desc = "Dexterity boost."
 	icon_state = "fae_charm"
+	research_value = 35
 
 /obj/item/vtm_artifact/fae_charm/get_powers()
 	. = ..()
@@ -128,6 +133,7 @@
 	true_name = "Heart of Eliza"
 	true_desc = "Melee damage boost."
 	icon_state = "h_eliza"
+	research_value = 30
 
 /obj/item/vtm_artifact/heart_of_eliza/get_powers()
 	. = ..()
@@ -141,6 +147,7 @@
 	true_name = "Bloodstar"
 	true_desc = "Increases Bloodpower duration."
 	icon_state = "bloodstar"
+	research_value = 10
 
 /obj/item/vtm_artifact/bloodstar/get_powers()
 	. = ..()
@@ -154,6 +161,7 @@
 	true_name = "Daimonori"
 	true_desc = "Increases thaumaturgy damage."
 	icon_state = "daimonori"
+	research_value = 20
 
 /obj/item/vtm_artifact/daimonori/get_powers()
 	. = ..()
@@ -167,6 +175,7 @@
 	true_name = "Key of Alamut"
 	true_desc = "Decreases incoming damage."
 	icon_state = "k_alamut"
+	research_value = 30
 
 /obj/item/vtm_artifact/key_of_alamut/get_powers()
 	. = ..()
@@ -189,6 +198,7 @@
 	true_desc = "Stores blood from every attack."
 	icon_state = "o_chalice"
 	var/stored_blood = 0
+	research_value = 30
 
 /obj/item/vtm_artifact/odious_chalice/examine(mob/user)
 	. = ..()
@@ -209,6 +219,65 @@
 	M.update_blood_hud()
 	playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 	return
+
+/obj/item/vtm_artifact/bloodstone
+	true_name = "bloodstone"
+	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
+	icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
+	onflooricon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
+	icon_state = "bloodstone"
+	var/datum/weakref/bound_identifier // Who identified it first
+	var/datum/action/bloodstone_track/tracking_action
+	research_value = 15
+
+/obj/item/vtm_artifact/bloodstone/identify()
+	. = ..()
+	if(identified && !bound_identifier)
+		var/mob/living/carbon/human/user = usr
+		if(ishuman(user))
+			bound_identifier = WEAKREF(user)
+			to_chat(user, span_warning("The bloodstone pulses with dark energy as it bonds to your essence. You will always know its location."))
+
+			tracking_action = new /datum/action/bloodstone_track(user, src)
+			tracking_action.Grant(user)
+
+/obj/item/vtm_artifact/bloodstone/Destroy()
+	if(tracking_action)
+		var/mob/living/carbon/human/user = bound_identifier.resolve()
+		if(user)
+			tracking_action.Remove(user)
+		QDEL_NULL(tracking_action)
+	bound_identifier = null
+	return ..()
+
+/datum/action/bloodstone_track
+	name = "Track Bloodstone"
+	desc = "Sense the location of your bound bloodstone."
+	button_icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
+	button_icon_state = "bloodstone_track"
+	check_flags = AB_CHECK_CONSCIOUS
+	var/datum/weakref/tracked_stone
+
+/datum/action/bloodstone_track/New(Target, obj/item/vtm_artifact/bloodstone/stone)
+	. = ..()
+	tracked_stone = WEAKREF(stone)
+
+/datum/action/bloodstone_track/Trigger(trigger_flags)
+	var/obj/item/vtm_artifact/bloodstone/bloodstone = tracked_stone.resolve()
+	if(!bloodstone)
+		to_chat(owner, span_warning("The bloodstone bond has been severed."))
+		Remove(owner)
+		qdel(src)
+		return FALSE
+
+	var/turf/stone_turf = get_turf(bloodstone)
+	if(!stone_turf)
+		to_chat(owner, span_warning("You cannot sense the bloodstone's location."))
+		return FALSE
+
+	var/area/stone_area = get_area(bloodstone)
+	to_chat(owner, span_notice("The bloodstone whispers its location: [stone_area.name] ([stone_turf.x], [stone_turf.y])"))
+	return TRUE
 
 /obj/effect/spawner/random/occult
 	name = "occult spawner"

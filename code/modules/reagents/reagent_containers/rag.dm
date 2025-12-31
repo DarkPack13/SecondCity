@@ -10,6 +10,7 @@
 	var/blood_level = 0
 	/// How many times has this rag been wrung out since last clean?
 	var/wrings = 0
+	custom_price = 5 //DARKPACK EDIT ADD
 
 /obj/item/rag/Initialize(mapload)
 	. = ..()

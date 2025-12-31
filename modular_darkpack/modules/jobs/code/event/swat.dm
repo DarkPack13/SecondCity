@@ -1,6 +1,6 @@
 /datum/outfit/job/vampire/swat
 	name = "Swat Officer"
-	//ears = /obj/item/p25radio/police/tactical
+	ears = /obj/item/radio/headset/darkpack/police
 	uniform = /obj/item/clothing/under/vampire/police/utility
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
@@ -12,7 +12,6 @@
 	id = /obj/item/card/police
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 4,
-		/obj/item/radio/cop = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/vamp/keys/hack=2
 		)

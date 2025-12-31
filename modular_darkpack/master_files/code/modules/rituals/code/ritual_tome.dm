@@ -23,7 +23,15 @@
 
 /obj/item/ritual_tome/attack_self(mob/user)
 	. = ..()
-	display_rituals(user)
+	if(!isliving(user))
+		return
+	var/mob/living/reader = user
+	if(!iskindred(user) && !isghoul(user))
+		if(reader.st_get_stat(STAT_OCCULT) < 3)
+			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
+			return
+
+	display_rituals(reader)
 
 /obj/item/ritual_tome/proc/display_rituals(mob/user)
 	for(var/obj/ritual_rune/R in rituals)

@@ -21,6 +21,7 @@
 	///If it's a special named plant, set this to true to prevent dead-name overriding.
 	var/custom_plant_name = FALSE
 	var/static/list/random_plant_states
+	var/static/list/random_darkpack_states // DARKPACK EDIT ADD
 
 /obj/item/kirbyplants/Initialize(mapload)
 	. = ..()
@@ -195,9 +196,9 @@
 /obj/item/kirbyplants/darkpack/random
 
 /obj/item/kirbyplants/darkpack/random/proc/randomize_base_icon_state()
-	if(isnull(random_plant_states))
-		random_plant_states = generate_states()
-	base_icon_state = pick(random_plant_states)
+	if(isnull(random_darkpack_states))
+		random_darkpack_states = generate_states()
+	base_icon_state = pick(random_darkpack_states)
 	if(!dead) //no need to update the icon if we're already dead.
 		update_appearance(UPDATE_ICON)
 
