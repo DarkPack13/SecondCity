@@ -109,9 +109,6 @@
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
-	if(istype(human_target.glasses, /obj/item/clothing/glasses/vampire/sun))
-		total_tint = max(total_tint, 1)
-
 	for(var/obj/item/clothing/worn_item in human_target.get_equipped_items(INCLUDE_ABSTRACT))
 		total_tint += worn_item.tint
 
