@@ -228,6 +228,7 @@
 	desc = "A thermoplastic hard helmet used to protect the head from injury."
 	icon_state = "hardhat"
 	armor_type = /datum/armor/construction_helmet
+	custom_price = 50
 
 /datum/armor/construction_helmet
 	melee = 20

@@ -4,6 +4,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	var/quieted = FALSE
+	custom_price = 1000
 
 
 /obj/item/melee/vamp/Initialize(mapload)
@@ -20,6 +21,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
+	custom_price = 1800
 
 /obj/item/katana/vamp
 	name = "katana"
@@ -104,6 +106,7 @@
 	inhand_icon_state = "machete"
 	pixel_w = -8
 	masquerade_violating = FALSE
+	custom_price = 500
 
 /obj/item/claymore/machete/Initialize(mapload)
 	. = ..()
@@ -156,6 +159,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "baseball"
 	inhand_icon_state = "baseball"
+	custom_price = 50
 
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
 	. = ..()
@@ -193,6 +197,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 85
 
 /obj/item/knife/vamp/lasombra_tentacle
 	name = "shadow tentacle"
@@ -261,6 +266,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 2000
 
 /obj/item/shovel/vamp
 	name = "shovel"
@@ -271,6 +277,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "shovel"
+	custom_price = 150
 
 /obj/item/scythe/vamp
 	name = "scythe"
@@ -346,3 +353,32 @@
 		hitsound = 'sound/items/weapons/genhit1.ogg'
 		//grid_width = 1 GRID_BOXES
 		//grid_height = 1 GRID_BOXES
+
+//this should be a subtype of spear in the future but we lack the sprites
+/obj/item/darkpack/spear
+	name = "spear"
+	desc = "A staple of warfare through centuries, the spear is great for poking at things."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	icon_state = "spear"
+	lefthand_file = 'modular_darkpack/modules/weapons/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/weapons/icons/melee_righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	force = 45
+	throwforce = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	block_chance = 20
+	armour_penetration = 60
+	sharpness = SHARP_POINTY
+	attack_verb_continuous = list("stabs", "pokes")
+	attack_verb_simple = list("stab", "poke")
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	wound_bonus = 5
+	resistance_flags = FIRE_PROOF
+	masquerade_violating = FALSE
+	custom_price = 1200
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi') // DARKPACK EDIT ADD
+
+/obj/item/darkpack/spear/Initialize()
+	. = ..()
+	AddComponent(/datum/component/selling, 400, "spear", FALSE)
