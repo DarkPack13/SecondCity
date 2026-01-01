@@ -24,3 +24,17 @@
 			continue
 
 		Aggro(H, FALSE)
+
+/* DARKPACK TODO: create a police npc that just stands there
+/mob/living/carbon/human/npc/police/static
+	fights_anyway = TRUE
+	staying = TRUE
+	max_stat = 4
+	my_backup_weapon_type = /obj/item/melee/classic_baton/vampire
+
+/mob/living/carbon/human/npc/police/Initialize()
+	. = ..()
+	if(prob(66))
+		set_body_model(FAT_BODY_MODEL)
+	AssignSocialRole(/datum/socialrole/police)
+*/

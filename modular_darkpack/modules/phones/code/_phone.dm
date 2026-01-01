@@ -55,6 +55,7 @@
 	/// A list of contact networks to be added in. Order matters, as if members overlap they will only get the first contact.
 	var/list/contact_networks = null
 	var/important_contact_of = null
+	custom_price = 100
 
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
