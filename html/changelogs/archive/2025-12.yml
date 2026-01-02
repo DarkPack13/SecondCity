@@ -79,3 +79,6 @@
   - bugfix: Lighting objects like candles and paramedic pens should now have onfloors/no
       error sprites.
   - code_imp: Converts most lock ids to defines.
+2025-12-30:
+  chazzyjazzy:
+  - code_imp: readds Thaumaturgy Paths, Endron NPCs, and a few missing maptypes
