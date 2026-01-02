@@ -223,17 +223,17 @@
 			ADD_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
 			urn = new(owner.loc)
 			urn.own = owner
-			var/obj/item/organ/heart/heart = owner.get_organ_slot(ORGAN_SLOT_HEART)
-			heart.forceMove(urn)
+			//var/obj/item/organ/heart/heart = owner.get_organ_slot(ORGAN_SLOT_HEART) DARKPACK TODO - Vampire Organs need to be made useless
+			//heart.forceMove(urn)
 	else
 		if(owner.dna?.species)
 			owner.dna.species.inherent_traits -= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_NOSOFTCRIT
 			REMOVE_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
-			for(var/obj/item/organ/heart/heart in urn)
-				heart.forceMove(owner)
-				heart.Insert(owner)
+			//for(var/obj/item/organ/heart/heart in urn)
+				//heart.forceMove(owner)
+				//heart.Insert(owner)
 		urn.own = null
 		qdel(urn)
 		urn = null
