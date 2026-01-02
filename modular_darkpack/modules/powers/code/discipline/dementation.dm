@@ -340,9 +340,6 @@ frenzy or Rötschreck response is automatic.
 	var/dementation_phrase
 	var/successes
 
-/datum/discipline_power/dementation/voice_of_madness/can_activate_untargeted(alert)
-	. = ..()
-	return .
 
 //DARKPACK TODO - frenzy. this power requires it
 
