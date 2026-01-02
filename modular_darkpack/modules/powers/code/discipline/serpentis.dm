@@ -116,7 +116,7 @@
 	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
 	if(choice == "Obvious")
 		owner.st_add_stat_mod(STAT_INTIMIDATION, 2, "Serpentis") // 'reduce intimidation difficulties by two' placeholder
-		owner.apply_status_effect(/datum/status_effect/fortitude/three) // 'reduces all soak difficulty to 5' placeholder
+		owner.apply_status_effect(/datum/status_effect/fortitude/two) // 'reduces all soak difficulty to 5' placeholder
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
 	else
 		owner.apply_status_effect(/datum/status_effect/fortitude/one) // permanently on with no downsides according to dav20. its staying at fort one bro
@@ -131,7 +131,7 @@
 	. = ..()
 	if(choice == "Obvious")
 		owner.st_remove_stat_mod(STAT_INTIMIDATION, 2, "Serpentis")
-		owner.remove_status_effect(/datum/status_effect/fortitude/three)
+		owner.remove_status_effect(/datum/status_effect/fortitude/two)
 		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
 	else
 		owner.remove_status_effect(/datum/status_effect/fortitude/one)
@@ -145,12 +145,19 @@
 	desc = "Become a huge, black cobra and eviscerate your enemies."
 	level = 4
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
-	vitae_cost = 2
+	vitae_cost = 1
 	violates_masquerade = TRUE
 	cancelable = TRUE
 	duration_length = 15 SECONDS
 	cooldown_length = 30 SECONDS
 	var/datum/action/cooldown/spell/shapeshift/cobra/cobra_form
+
+/datum/discipline_power/serpentis/the_form_of_the_cobra/pre_activation_checks()
+	. = ..()
+	if(do_after(owner, 4 SECONDS))
+		return TRUE
+	else
+		return FALSE
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/activate()
 	. = ..()
@@ -174,6 +181,13 @@
 /datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
 	desc = "Take on the shape a beast."
+	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
+	button_icon_state = "setite"
+	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
+	background_icon_state = "bg_discipline"
+	overlay_icon_state = null
+	spell_requirements = NONE
+	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
 	possible_shapes = list(/mob/living/simple_animal/hostile/cobra)
@@ -185,18 +199,14 @@
 	icon_state = "cobra"
 	icon_living = "cobra"
 	mob_biotypes = MOB_ORGANIC | MOB_HUMANOID
-	speak_chance = 0
 	speed = -1
 	maxHealth = 300
 	health = 300
-	harm_intent_damage = 5
-	melee_damage_lower = 50
-	melee_damage_upper = 50
+	melee_damage_lower = 25
+	melee_damage_upper = 25
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
-	bloodpool = 10
-	maxbloodpool = 10
 	pixel_w = -8
 
 //THE HEART OF DARKNESS
