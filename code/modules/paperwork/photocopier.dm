@@ -885,6 +885,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
 	charges = 25
 	max_charges = 25
+	custom_price = 30 //DARKPACK EDIT ADD
 
 /obj/item/toner/extreme
 	name = "extremely large toner cartridge"

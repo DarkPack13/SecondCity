@@ -12,6 +12,7 @@
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
+	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"

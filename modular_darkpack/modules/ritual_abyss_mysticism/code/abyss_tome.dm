@@ -6,6 +6,12 @@
 	onflooricon = 'modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_onfloor.dmi'
 	rune_type = /obj/ritual_rune/abyss
 
+/obj/item/ritual_tome/abyss/attack_self(mob/user)
+	if(!HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE))
+		to_chat(user, span_cult("A very dark book in color whose appearance swallows up your vision. You find it impossible to decipher without proper guidance."))
+		return
+	. = ..()
+
 /datum/crafting_recipe/mystome
 	name = "Abyss Mysticism Tome"
 	time = 10 SECONDS

@@ -1,6 +1,6 @@
 {
 	"file": "tgstation.dme",
-	"scannable_directory": "modular_darkpack/",
+	"scannable_directory": "modular_darkpack/master_files/",
 	"subdirectories": true,
 	"excluded_files": [],
 	"forbidden_includes": []

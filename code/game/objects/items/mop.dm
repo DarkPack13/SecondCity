@@ -24,6 +24,7 @@
 		/obj/item/reagent_containers/cup/bucket,
 		/obj/structure/mop_bucket,
 	))
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /obj/item/mop/apply_fantasy_bonuses(bonus)
 	. = ..()

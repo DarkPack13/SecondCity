@@ -1,8 +1,8 @@
 /obj/item/sim_card
 	name = "\improper SIM card"
 	desc = "A SIM card with a phone number attached to it."
-	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	ONFLOOR_ICON_HELPER(null)
+	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "ssd_micro"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL

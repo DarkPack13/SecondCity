@@ -29,6 +29,3 @@
 
 # Woodglass doors
 /obj/structure/vampdoor/glass/prince : /obj/structure/vampdoor/woodglass/prince{@OLD}
-
-
-
