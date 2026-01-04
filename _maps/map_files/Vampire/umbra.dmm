@@ -1846,7 +1846,6 @@
 /area/vtm/interior/penumbra)
 "xx" = (
 /obj/minespot/playable,
-/obj/minespot/playable,
 /turf/open/umbra,
 /area/vtm/interior/penumbra)
 "xP" = (
@@ -3847,7 +3846,6 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/penumbra)
 "Yu" = (
-/obj/minespot,
 /obj/minespot,
 /turf/open/umbra,
 /area/vtm/interior/penumbra)
