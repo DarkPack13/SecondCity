@@ -41,8 +41,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Round Time: [ROUND_TIME()]",
 			"Local City Time: [SSticker.round_start_timeofday ? "[station_time_timestamp("hh:mm MMM")] [CURRENT_STATION_YEAR]" : "The round hasn't started yet!"]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
-			"---", // DARKPACK EDIT ADDITION
-			"Masquerade: [SSmasquerade.get_description()]", // DARKPACK EDIT ADDITION
+			"---", // DARKPACK EDIT ADD
+			"Masquerade: [SSmasquerade.get_description()]", // DARKPACK EDIT ADD
 		)
 
 		if(SSshuttle.emergency)

@@ -856,11 +856,11 @@
 /obj/structure/flora/bush/flowers_yw
 	icon_state = "ywflowers_1"
 
-//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD START - Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_yw/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
-//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD END
 
 /obj/structure/flora/bush/flowers_yw/style_2
 	icon_state = "ywflowers_2"
@@ -876,11 +876,11 @@
 /obj/structure/flora/bush/flowers_br
 	icon_state = "brflowers_1"
 
-//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD START - Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_br/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
-//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD END
 
 /obj/structure/flora/bush/flowers_br/style_2
 	icon_state = "brflowers_2"
@@ -896,11 +896,11 @@
 /obj/structure/flora/bush/flowers_pp
 	icon_state = "ppflowers_1"
 
-//DARKPACK EDIT ADDITION -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD START - Flowers Sway in the Wind
 /obj/structure/flora/bush/flowers_pp/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
-//DARKPACK EDIT ADDITION END -- Flowers Sway in the Wind
+// DARKPACK EDIT ADD END
 
 /obj/structure/flora/bush/flowers_pp/style_2
 	icon_state = "ppflowers_2"

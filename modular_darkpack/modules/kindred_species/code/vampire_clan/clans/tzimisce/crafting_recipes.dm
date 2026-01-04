@@ -1,4 +1,4 @@
-/* DARKPACK TODO - requires vicissitude material to pass unit tests.
+/* // DARKPACK TODO - requires vicissitude material to pass unit tests.
 /datum/crafting_recipe/tzi_trench
 	name = "Leather-Bone Trenchcoat (Armor)"
 	time = 50
