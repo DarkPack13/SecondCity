@@ -18,23 +18,23 @@
 	female_clothes = /obj/item/clothing/under/vampire/malkavian
 	default_accessory = "gargoyle_full"
 	accessories = list(
-		"gargoyle_oni",
-		"gargoyle_devil",
 		"gargoyle_full",
 		"gargoyle_left",
 		"gargoyle_right",
 		"gargoyle_broken",
 		"gargoyle_round",
+		"gargoyle_oni",
+		"gargoyle_devil",
 		"none"
 	)
 	accessories_layers = list(
-		"gargoyle_oni" = BODY_FRONT_LAYER,
-		"gargoyle_devil" = BODY_FRONT_LAYER,
 		"gargoyle_full" = BODY_FRONT_LAYER,
 		"gargoyle_left" = BODY_FRONT_LAYER,
 		"gargoyle_right" = BODY_FRONT_LAYER,
 		"gargoyle_broken" = BODY_FRONT_LAYER,
 		"gargoyle_round" = BODY_FRONT_LAYER,
+		"gargoyle_oni" = BODY_FRONT_LAYER,
+		"gargoyle_devil" = BODY_FRONT_LAYER,
 		"none" = BODY_FRONT_LAYER
 	)
 	whitelisted = TRUE
