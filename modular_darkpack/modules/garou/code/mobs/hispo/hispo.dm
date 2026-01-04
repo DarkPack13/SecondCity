@@ -1,0 +1,16 @@
+/mob/living/carbon/human/fera/hispo
+	name = "hispo"
+	icon_state = "black"
+	icon = 'modular_darkpack/modules/garou/icons/hispo.dmi'
+	mob_size = MOB_SIZE_LARGE
+	examine_thats = "That's a"
+	SET_BASE_PIXEL(-16, -16)
+
+	melee_damage_lower = 10
+	melee_damage_upper = 10
+	race = /datum/species/human/fera/garou
+
+/mob/living/carbon/human/fera/hispo/Initialize(mapload)
+	. = ..()
+	RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HEAVY)

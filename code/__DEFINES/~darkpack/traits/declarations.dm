@@ -99,8 +99,16 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PASSDOOR "trait_passdoor" //DARKPACK EDIT ADDITION -- Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
-
 /// They have warped time at some point in this round
 #define TRAIT_TIMEWARPER "timewarper"
+
+/// If the species has garou breeds to select.
+#define TRAIT_WTA_GAROU_BREED "ww_garou_breeds"
+// if the species has garou tribes to select.
+#define TRAIT_WTA_GAROU_TRIBE "ww_garou_tribes"
+// If the species has garou auspices to select.
+#define TRAIT_WTA_GAROU_AUSPICE "ww_garou_auspice"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED "wyrm_tainted"
 
 // END TRAIT DEFINES
