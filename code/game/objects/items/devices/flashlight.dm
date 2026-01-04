@@ -8,7 +8,7 @@
 	desc = "A hand-held emergency light."
 	custom_price = PAYCHECK_CREW
 	icon = 'modular_darkpack/master_files/icons/obj/lighting.dmi' // DARKPACK EDIT CHANGE
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') // DARKPACK EDIT ADD
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/lighting_onfoor.dmi') // DARKPACK EDIT ADD
 	dir = WEST
 	icon_state = "flashlight"
 	inhand_icon_state = "flashlight"
@@ -44,6 +44,7 @@
 	var/ignore_base_color = FALSE
 	/// This simply means if the flashlight can be cuffed to your hand (why?)
 	var/has_closed_handle = TRUE
+	custom_price = 10 //DARKPACK EDIT ADD
 
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()
@@ -566,6 +567,7 @@
 	name = "red candle"
 	desc = "In Greek myth, Prometheus stole fire from the Gods and gave it to \
 		humankind. The jewelry he kept for himself."
+	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	inhand_icon_state = "candle"

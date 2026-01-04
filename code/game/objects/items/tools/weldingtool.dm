@@ -48,6 +48,7 @@
 
 	var/activation_sound = 'sound/items/tools/welderactivate.ogg'
 	var/deactivation_sound = 'sound/items/tools/welderdeactivate.ogg'
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /datum/armor/item_weldingtool
 	fire = 100

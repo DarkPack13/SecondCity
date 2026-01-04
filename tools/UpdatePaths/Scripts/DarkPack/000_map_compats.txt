@@ -51,3 +51,9 @@
 /mob/living/simple_animal/deer : /mob/living/basic/deer
 /mob/living/simple_animal/cow : /mob/living/basic/cow
 /mob/living/simple_animal/hostile/cockroach : /mob/living/basic/cockroach/sewer
+
+/obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
+/obj/structure/extinguisher_cabinet{dir = 1} : /obj/structure/extinguisher_cabinet/directional/north
+/obj/structure/extinguisher_cabinet{dir = 2} : /obj/structure/extinguisher_cabinet/directional/south
+/obj/structure/extinguisher_cabinet{dir = 4} : /obj/structure/extinguisher_cabinet/directional/east
+/obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west

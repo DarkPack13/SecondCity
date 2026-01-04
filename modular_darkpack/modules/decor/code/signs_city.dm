@@ -159,6 +159,24 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bubway, 32)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
 
+/obj/structure/sign/city/skateshop
+	name = "Beralta Skateshop"
+	icon_state = "beralta1"
+	desc = "Bowell Beralta, apart from having a very unfortunate name, is one of the biggest names in authentic knock-off skateboards."
+
+/obj/structure/sign/city/skateshop/two
+	icon_state = "beralta2"
+
+/obj/structure/sign/city/skateshop/three
+	icon_state = "beralta3"
+
+/obj/structure/sign/city/skateshop/four
+	icon_state = "beralta4"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/two, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/three, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/skateshop/four, 32)
+
 /obj/structure/sign/city/store/reddragon
 	name = "Red Dragon"
 	desc = "Eat yummy-yummy flame fire noodles!"
@@ -167,7 +185,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/reddragon, 32)
 
 /obj/structure/sign/city/store/otolleys
-	name = "Otolleys"
+	name = "O\'Tolleys"
 	desc = "O-o-o Oh Toll-ees, Families Welcome!"
 	icon_state = "otolleys"
 

@@ -62,3 +62,13 @@
 
 /turf/open/misc/grass/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
+// DARKPACK EDIT ADD START
+/turf/open/misc/grass/nosmooth
+	layer = LOW_FLOOR_LAYER
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+	smooth_broken = null
+	smooth_burnt = null
+// DARKPACK EDIT ADD END

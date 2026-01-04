@@ -1,0 +1,21 @@
+/turf/open/floor/plating/toilet/clinic : /turf/open/floor/city/clinic
+/turf/open/floor/plating/industrial/factory : /turf/open/floor/city/factory
+
+/turf/open/floor/plating/vampplating/stairs/@SUBTYPES : /turf/open/floor/iron/stairs/@SUBTYPES
+
+/turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
+
+/obj/effect/turf_decal/apoc/@SUBTYPES : /obj/effect/turf_decal/darkpack/@SUBTYPES {@OLD}
+
+/obj/structure/chair/green : /obj/structure/chair/darkpack/green {@OLD}
+/obj/structure/chair/red : /obj/structure/chair/darkpack/red {@OLD}
+/obj/structure/chair/blue : /obj/structure/chair/darkpack/blue {@OLD}
+/obj/structure/chair/office/green : /obj/structure/chair/office/darkpack/green {@OLD}
+/obj/structure/chair/office/red : /obj/structure/chair/office/darkpack/red {@OLD}
+/obj/structure/chair/office/blue : /obj/structure/chair/office/darkpack/blue {@OLD}
+/obj/item/chair/green : /obj/item/chair/darkpack/green {@OLD}
+/obj/item/chair/red : /obj/item/chair/darkpack/red {@OLD}
+/obj/item/chair/blue : /obj/item/chair/darkpack/blue {@OLD}
+/obj/item/chair/office/green : /obj/item/chair/office/darkpack/green {@OLD}
+/obj/item/chair/office/red : /obj/item/chair/office/darkpack/red {@OLD}
+/obj/item/chair/office/blue : /obj/item/chair/office/darkpack/blue {@OLD}

@@ -26,6 +26,7 @@
 	throwforce = 2
 	on_stun_sound = 'modular_darkpack/modules/taser/sounds/handtaser_activate.ogg'
 	active_changes_inhand = FALSE // TODO: different sprites for cells?
+	custom_price = 200
 
 
 /obj/item/melee/baton/security/handtaser/turn_on(mob/user)
@@ -38,7 +39,7 @@
 	pickup_sound = active_pickup_sound
 
 
-/obj/item/melee/baton/security/hand_taser/turn_off()
+/obj/item/melee/baton/security/handtaser/turn_off()
 	active = FALSE
 	set_light_on(FALSE)
 	update_appearance()
