@@ -142,7 +142,7 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 1 SCENES
+	duration_length = 999 SCENES
 	cooldown_length = 1 TURNS
 
 	grouped_powers = list(

@@ -148,7 +148,7 @@
 	vitae_cost = 1
 	violates_masquerade = TRUE
 	cancelable = TRUE
-	duration_length = 15 SECONDS
+	duration_length = 999 SCENES
 	cooldown_length = 30 SECONDS
 	var/datum/action/cooldown/spell/shapeshift/cobra/cobra_form
 
@@ -190,7 +190,8 @@
 	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	possible_shapes = list(/mob/living/basic/cobra)
+	possible_shapes = list(/mob/living/basic/cobra,
+	/mob/living/basic/cobra/typhon)
 
 /mob/living/basic/cobra
 	name = "Cobra Form"
@@ -202,12 +203,22 @@
 	speed = -1
 	maxHealth = 300
 	health = 300
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	melee_damage_lower = 30
+	melee_damage_upper = 30
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	pixel_w = -8
+
+/mob/living/basic/cobra/typhon
+	name = "Typhonic Beast"
+	desc = "A massive supernatural jackal with long, spiked ears, a hard, forked tail and a long snout."
+	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
+	icon_state = "protean4"
+	icon_living = "protean4"
+	mob_size = MOB_SIZE_LARGE
+	pixel_w = 0
+	initial_size = 1.4
 
 //THE HEART OF DARKNESS
 /datum/discipline_power/serpentis/the_heart_of_darkness
