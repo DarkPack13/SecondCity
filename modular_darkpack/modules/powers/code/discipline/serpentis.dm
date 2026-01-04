@@ -192,7 +192,7 @@
 	die_with_shapeshifted_form = FALSE
 	possible_shapes = list(/mob/living/simple_animal/hostile/cobra)
 
-/mob/living/simple_animal/hostile/cobra
+/mob/living/basic/cobra
 	name = "Cobra Form"
 	desc = "Hssssss..."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
