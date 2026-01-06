@@ -5,7 +5,11 @@
 
 	var/race = /datum/species/human/shifter //Used for setting the species of the subtype transformation mobs, for example crinos being a garou species.
 
+	//icon state is built as fera_form_color
+	var/fera_icon_state
+	var/form_icon_state
 	var/sprite_color = "black"
+
 	var/sprite_scar = 0
 	var/sprite_hair = 0
 	var/sprite_hair_color = "#000000"

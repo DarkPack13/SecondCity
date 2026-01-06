@@ -28,23 +28,24 @@
 	features[FEATURE_FERA_BREED] = pick(GLOB.garou_breeds)
 	return features
 
-/datum/species/human/get_species_description()
+/datum/species/human/shifter/garou/get_species_description()
 	return "Lorem Ipsum"
 
-/datum/species/human/get_species_lore()
+/datum/species/human/shifter/garou/get_species_lore()
 	return list(
 		"Lorem Ipsum",
 	)
 
-/datum/species/human/create_pref_unique_perks()
+/datum/species/human/shifter/garou/create_pref_unique_perks()
 	var/list/to_add = list()
 
+	/*
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "shield",
 		SPECIES_PERK_NAME = "Garou",
 		SPECIES_PERK_DESC = "Its a Garou.",
 	))
-
+	*/
 
 	return to_add

@@ -52,23 +52,20 @@
 /obj/effect/decal/garou_glyph
 	name = "odd glyph"
 	desc = "An odd collection of symbols drawn in what seems to be charcoal."
-	var/garou_name = "basic glyph"
-	var/garou_desc = "a basic glyph with no meaning." // This is shown to werewolves who examine the glyph in order to determine its true meaning.
 	anchored = TRUE
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/glyphs.dmi'
 	icon_state = "garou"
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	// Very likely not needed
 	// layer = SIGIL_LAYER
+	var/garou_name = "basic glyph"
+	var/garou_desc = "a basic glyph with no meaning." // This is shown to werewolves who examine the glyph in order to determine its true meaning.
 
 /obj/effect/decal/garou_glyph/examine(mob/user)
 	. = ..()
-	// DARKPACK TODO - WEREWOLF
-	/*
-	if(iswerewolfsplat(user) || iswerewolf(user)) // If they're a werewolf, show them the true meaning of the glyph.
-		. += "<b>Name:</b> [garou_name]\n" + \
-		"<b>Description:</b> [garou_desc]\n"
-	*/
+	if(user.has_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE))
+		. += "<b>Name:</b> [garou_name]\n"
+		. += "<b>Description:</b> [garou_desc]\n"
 
 /obj/effect/decal/garou_glyph/wyrm
 	name = "creepy glyph"

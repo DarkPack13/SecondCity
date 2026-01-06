@@ -37,7 +37,7 @@
 
 /datum/language/primal_tongue
 	name = "Primal Tongue"
-	desc =  "A language inherently known to all Garou breeds at birth, able to be spoken only in Lupus, Crinos and Hispo forms."
+	desc = "A language inherently known to all Garou breeds at birth, able to be spoken only in Lupus, Crinos and Hispo forms."
 	key = "p"
 	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	space_chance = 40
