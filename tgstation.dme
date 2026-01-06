@@ -7407,6 +7407,8 @@
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\question_to_the_ancestors.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\self_gib.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\teleport.dm"
+#include "modular_darkpack\modules\round_status\code\admin_verb.dm"
+#include "modular_darkpack\modules\round_status\code\pref_code.dm"
 #include "modular_darkpack\modules\round_status\code\round_globals.dm"
 #include "modular_darkpack\modules\sabbat\code\sabbat_blood_bath.dm"
 #include "modular_darkpack\modules\sabbat\code\sabbat_monomacy_rune.dm"
