@@ -129,6 +129,7 @@
 	desc = "More milk..."
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
+	custom_price = 4 // ECONOMY
 
 /obj/item/reagent_containers/condiment/milk/malk
 	desc = "a carton of fish-brand milk, a subsidary of malk incorporated."
