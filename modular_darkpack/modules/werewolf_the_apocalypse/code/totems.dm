@@ -18,7 +18,7 @@
 	var/turf/teleport_turf
 	var/opening = FALSE
 
-// DARKPACK TODO - GAROU - Fuck this not respecting normal integrity
+// DARKPACK TODO - WEREWOLF - Fuck this not respecting normal integrity
 /*
 /obj/structure/werewolf_totem/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -134,7 +134,7 @@
 	icon_state = "x"
 	var/tribe
 
-// DARKPACK TODO - GAROU
+// DARKPACK TODO - WEREWOLF
 /*
 /obj/structure/werewolf_totem/attack_hand(mob/user)
 	. = ..()

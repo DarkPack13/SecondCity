@@ -1,8 +1,8 @@
 https://github.com/DarkPack13/SecondCity/pull/122
 
-## \<Fera>
+## \<Werewolf>
 
-Module ID: FERA
+Module ID: WEREWOLF
 
 ### Description:
 

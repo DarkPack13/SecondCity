@@ -11,7 +11,7 @@
 
 	default_num_hands = 1
 
-	race = /datum/species/human/fera/garou
+	race = /datum/species/human/shifter/garou
 	transformation_size_width = 0.5
 	transformation_size_height = 0.5
 

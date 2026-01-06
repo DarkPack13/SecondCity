@@ -307,7 +307,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/bolt
 	max_ammo = 30
 
-// DARKPACK TODO - GAROU
+// DARKPACK TODO - WEREWOLF
 /*
 //obj/item/ammo_casing/vampire/c12g/buck/silver
 //	name = "silver 12g shell casing"

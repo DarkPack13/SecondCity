@@ -1,4 +1,4 @@
-/datum/species/human/fera/garou
+/datum/species/human/shifter/garou
 	name = "Garou"
 	plural_form = "Garou"
 	id = SPECIES_GAROU
@@ -15,15 +15,15 @@
 	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human/fera/glabro, /mob/living/carbon/human/fera/hispo)
 
 /mob/living/carbon/human/species/garou
-	race = /datum/species/human/fera/garou
+	race = /datum/species/human/shifter/garou
 
-/datum/species/human/fera/garou/prepare_human_for_preview(mob/living/carbon/human/human)
+/datum/species/human/shifter/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
 	human.set_hairstyle("Long Hair 3", update = TRUE)
 	human.undershirt = "Shirt (Alien)"
 	human.update_body()
 
-/datum/species/human/fera/garou/randomize_features()
+/datum/species/human/shifter/garou/randomize_features()
 	var/list/features = ..()
 	features[FEATURE_FERA_BREED] = pick(GLOB.garou_breeds)
 	return features

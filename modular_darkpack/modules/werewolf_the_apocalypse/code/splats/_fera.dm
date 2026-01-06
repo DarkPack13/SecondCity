@@ -3,7 +3,7 @@
 	rotate_on_lying = FALSE
 	initial_language_holder = /datum/language_holder/primal
 
-	var/race = /datum/species/human/fera //Used for setting the species of the subtype transformation mobs, for example crinos being a garou species.
+	var/race = /datum/species/human/shifter //Used for setting the species of the subtype transformation mobs, for example crinos being a garou species.
 
 	var/sprite_color = "black"
 	var/sprite_scar = 0
