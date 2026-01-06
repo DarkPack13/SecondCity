@@ -36,7 +36,7 @@
 	name = "Primogen Nosferatu"
 	jobtype = /datum/job/vampire/primogen_nosferatu
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/primogen
 	mask = /obj/item/clothing/mask/vampire/shemagh
 	glasses = /obj/item/clothing/glasses/vampire/sun

@@ -114,21 +114,11 @@ JOB_START_HELPER(chantry/gargoyle, JOB_CHANTRY_GARGOYLE)
 /obj/effect/landmark/start/darkpack/forest_wolves
 	name = "generic dog start"
 
-JOB_START_HELPER(forest_wolves/council, JOB_GAROU_FOREST_COUNCIL)
-JOB_START_HELPER(forest_wolves/keeper, JOB_GAROU_FOREST_KEEPER)
-JOB_START_HELPER(forest_wolves/catcher, JOB_GAROU_FOREST_CATCHER)
-JOB_START_HELPER(forest_wolves/warder, JOB_GAROU_FOREST_WARDER)
-JOB_START_HELPER(forest_wolves/guardian, JOB_GAROU_FOREST_GUARDIAN)
-
-/* City Wolves */
-/obj/effect/landmark/start/darkpack/city_wolves
-	name = "generic concrete dog start"
-
-JOB_START_HELPER(city_wolves/council, JOB_GAROU_CITY_COUNCIL)
-JOB_START_HELPER(city_wolves/keeper, JOB_GAROU_CITY_KEEPER)
-JOB_START_HELPER(city_wolves/catcher, JOB_GAROU_CITY_CATCHER)
-JOB_START_HELPER(city_wolves/warder, JOB_GAROU_CITY_WARDER)
-JOB_START_HELPER(city_wolves/guardian, JOB_GAROU_CITY_GUARDIAN)
+JOB_START_HELPER(forest_wolves/council, JOB_GAROU_COUNCIL)
+JOB_START_HELPER(forest_wolves/warder, JOB_GAROU_WARDER)
+JOB_START_HELPER(forest_wolves/catcher, JOB_GAROU_TRUTHCATCHER)
+JOB_START_HELPER(forest_wolves/wyrmfoe, JOB_GAROU_WYRMFOE)
+JOB_START_HELPER(forest_wolves/guardian, JOB_GAROU_GUARDIAN)
 
 /* Pentex */
 /obj/effect/landmark/start/darkpack/pentex

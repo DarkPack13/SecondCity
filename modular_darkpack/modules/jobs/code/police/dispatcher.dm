@@ -26,7 +26,7 @@
 	name = "Dispatcher"
 	jobtype = /datum/job/vampire/dispatcher
 	uniform = /obj/item/clothing/under/vampire/office
-	//ears = /obj/item/p25radio/police/dispatch
+	ears = /obj/item/radio/headset/darkpack
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	gloves = /obj/item/watch
 	id = /obj/item/card/government

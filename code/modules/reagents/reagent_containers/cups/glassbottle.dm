@@ -476,6 +476,13 @@
 	)
 	return "[year] [origin] [type]"
 
+// DARKPACK EDIT ADD START
+/obj/item/reagent_containers/cup/glass/bottle/wine/blood
+	// DARKPACK TODO - I would like this to be a roll without it being dumb.
+	desc = "There is a thin smear of red on the lid of this bottle..."
+	list_reagents = list(/datum/reagent/blood = 100)
+// DARKPACK EDIT ADD END
+
 /obj/item/reagent_containers/cup/glass/bottle/absinthe
 	name = "Extra-strong absinthe"
 	desc = "A strong alcoholic drink brewed and distributed by"

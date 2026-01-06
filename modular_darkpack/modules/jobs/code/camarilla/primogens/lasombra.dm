@@ -36,7 +36,7 @@
 	name = "Primogen Lasombra"
 	jobtype = /datum/job/vampire/primogen_lasombra
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/turtleneck_black
@@ -44,4 +44,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	l_pocket = /obj/item/smartphone/lasombra_primo
 	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1, /obj/item/passport=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	backpack_contents = list(/*/obj/item/vamp/keys/lasombra/primogen=1,*/ /obj/item/passport=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

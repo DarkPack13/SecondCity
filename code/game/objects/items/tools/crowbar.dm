@@ -25,6 +25,7 @@
 	toolspeed = 1
 	armor_type = /datum/armor/item_crowbar
 	var/force_opens = FALSE
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /datum/armor/item_crowbar
 	fire = 50
