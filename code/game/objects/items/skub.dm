@@ -10,6 +10,7 @@
 /obj/item/skub/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/container_item/tank_holder, "holder_skub", FALSE)
+	AddElement(/datum/element/corp_label) // DARKPACK EDIT ADD - company_logos
 
 /obj/item/skub/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] has declared themself as anti-skub! The skub tears them apart!"))
