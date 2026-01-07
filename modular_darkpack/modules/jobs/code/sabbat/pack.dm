@@ -24,7 +24,6 @@
 	name = "Sabbat Pack"
 	jobtype = /datum/job/vampire/sabbatpack
 	l_pocket = /obj/item/smartphone
-	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
 /datum/outfit/job/vampire/sabbatpack/pre_equip(mob/living/carbon/human/H)

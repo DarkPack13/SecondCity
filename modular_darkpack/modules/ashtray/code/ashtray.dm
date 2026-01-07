@@ -93,6 +93,7 @@
 
 
 /datum/loadout_item/pocket_items/ashtray
+	name = "Ashtray"
 	item_path = /obj/item/storage/ashtray
 
 /datum/loadout_item/pocket_items/ashtray/get_item_information()

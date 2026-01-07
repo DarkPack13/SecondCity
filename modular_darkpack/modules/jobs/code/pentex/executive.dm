@@ -49,4 +49,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	l_pocket = /obj/item/smartphone // /pentex_exec - todo: subtype
 	r_pocket = /obj/item/vamp/keys/pentex
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit/seneschal=1)
