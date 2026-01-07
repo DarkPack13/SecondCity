@@ -7,7 +7,7 @@
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
 	. = ..()
-	#warn ask xeon why this is here.
+	#warn gh... runtimes but commenting out is required to acctually ever get the action
 	/*
 	if(pref_load)
 		return
