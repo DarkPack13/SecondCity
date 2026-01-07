@@ -1,6 +1,5 @@
 /datum/job/vampire/clinic_director
 	title = JOB_CLINIC_DIRECTOR
-	department_head = list("The City")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

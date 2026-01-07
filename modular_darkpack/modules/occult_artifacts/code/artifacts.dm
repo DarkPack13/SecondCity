@@ -95,8 +95,8 @@
 	if(identified && owner)
 		if(last_regen+60 < world.time)
 			last_regen = world.time
-			owner.adjustBruteLoss(-5)
-			owner.adjustFireLoss(-5)
+			owner.adjust_brute_loss(-5)
+			owner.adjust_fire_loss(-5)
 
 /obj/item/vtm_artifact/galdjum
 	true_name = "Galdjum"
@@ -212,8 +212,8 @@
 		return
 	if(!identified)
 		return
-	M.adjustBruteLoss(-5*stored_blood, TRUE)
-	M.adjustFireLoss(-5*stored_blood, TRUE)
+	M.adjust_brute_loss(-5*stored_blood, TRUE)
+	M.adjust_fire_loss(-5*stored_blood, TRUE)
 	M.update_damage_overlays()
 	M.update_health_hud()
 	M.update_blood_hud()

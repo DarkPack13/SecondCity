@@ -268,7 +268,7 @@
 			H.electrocution_animation(40)
 		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
-		attacker.adjustFireLoss(30)
+		attacker.adjust_fire_loss(30)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/proc/powerarray_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
@@ -457,7 +457,7 @@
 
 	owner.Beam(target, icon_state="lightning[rand(1,12)]", time = 10)
 
-	target.adjustFireLoss(20)
+	target.adjust_fire_loss(20)
 	target.adjust_jitter_up_to(3 SECONDS, 15)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target

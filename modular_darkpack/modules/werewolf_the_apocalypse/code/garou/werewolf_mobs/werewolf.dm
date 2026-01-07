@@ -158,7 +158,7 @@
 	update_icons()
 
 ///aliens are immune to stamina damage.
-/mob/living/carbon/werewolf/adjustStaminaLoss(amount, updating_health = 1, forced = FALSE)
+/mob/living/carbon/werewolf/adjust_stamina_loss(amount, updating_health = 1, forced = FALSE)
 	return FALSE
 
 ///aliens are immune to stamina damage.
