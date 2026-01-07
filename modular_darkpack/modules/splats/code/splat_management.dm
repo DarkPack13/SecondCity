@@ -10,11 +10,7 @@
 /mob/living/get_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
-	for (var/datum/splat/splat as anything in splats)
-		if (!istype(splat, splat_type))
-			continue
-
-		return splat
+	return locate(splat_type) in splats
 
 /**
  * Creates a new splat of the given type with the given arguments and assigns it
