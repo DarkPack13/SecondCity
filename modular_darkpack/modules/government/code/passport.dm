@@ -7,8 +7,9 @@
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN
 	icon = FA_ICON_PERSON_CIRCLE_QUESTION
 	mob_trait = TRAIT_ILLEGAL_IDENTITY
-	gain_text = "<span class='warning'>You feel legally unprepared.</span>"
-	lose_text = "<span class='notice'>You feel bureaucratically legitimate.</span>"
+	gain_text = span_warning("You feel legally unprepared.")
+	lose_text = span_notice("You feel bureaucratically legitimate.")
+	medical_record_text = "Patient is not checked in with valid identification."
 	// excluded_clans = list(CLAN_RAVNOS) // DARKPACK TODO - RAVNOS - (They are forced to take this)
 
 /datum/quirk/illegal_identity/add()
