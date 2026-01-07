@@ -1,6 +1,5 @@
 /datum/job/vampire/towerwork
 	title = JOB_TOWERWORK
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4

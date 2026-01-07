@@ -1,6 +1,5 @@
 /datum/job/vampire/regent
 	title = JOB_CHANTRY_REGENT
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

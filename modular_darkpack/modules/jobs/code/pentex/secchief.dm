@@ -2,7 +2,6 @@
 	title = JOB_PENTEX_SEC_CHIEF
 	description = "You are an acting chief of security for the Endron Oil Refinery, operating out of San Francisco. With discretion to the Branch Leader, your job is to keep the complex and it's proprietary information with the help of your security team, and to turn over contract violators to internal affairs or the executives."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

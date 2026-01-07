@@ -2,7 +2,6 @@
 	title = JOB_PRIMOGEN_NOSFERATU
 	description = "Offer your infinite knowledge to Prince of the City, and run the warren, your domain watches over the sewers."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

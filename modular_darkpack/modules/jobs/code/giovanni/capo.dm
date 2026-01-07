@@ -1,6 +1,5 @@
 /datum/job/vampire/capo
 	title = JOB_CAPO
-	department_head = list("Uncle Augie")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

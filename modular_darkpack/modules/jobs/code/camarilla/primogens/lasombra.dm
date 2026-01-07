@@ -2,7 +2,6 @@
 	title = JOB_PRIMOGEN_LASOMBRA
 	description = "Offer your infinite knowledge to Prince of the City. Monitor those of your Clan and your lesser cousins, while holding a Court of Blood as need be, for all it takes for the Camarilla to turn on you is one mistake. You and Your Clan were given a domain in the local Church and in the vicinity of a swarm of Lupines, keep matters under control."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

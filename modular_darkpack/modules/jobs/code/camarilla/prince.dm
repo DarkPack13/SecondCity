@@ -2,7 +2,6 @@
 	title = JOB_PRINCE
 	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

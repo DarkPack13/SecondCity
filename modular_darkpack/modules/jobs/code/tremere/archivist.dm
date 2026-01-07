@@ -1,6 +1,5 @@
 /datum/job/vampire/archivist
 	title = JOB_CHANTRY_ARCHIVIST
-	department_head = /datum/job/vampire/regent
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4

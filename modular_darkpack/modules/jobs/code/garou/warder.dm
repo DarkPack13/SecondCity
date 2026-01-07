@@ -2,7 +2,6 @@
 	title = JOB_GAROU_WARDER
 	description = "You are the most respected Ahroun within the" + SEPT_NAME + ", granted the honor of coordinating the caern's security. The Wyrmfoe and Guardians answer to you."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

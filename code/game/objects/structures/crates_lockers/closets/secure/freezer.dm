@@ -9,6 +9,7 @@
 	has_opened_overlay = FALSE
 	has_closed_overlay = FALSE
 	//DARKPACK EDIT CHANGE END
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3.5)
 	/// If FALSE, we will protect the first person in the freezer from an explosion / nuclear blast.
 	var/jones = FALSE
 	paint_jobs = null

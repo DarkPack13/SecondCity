@@ -2,7 +2,6 @@
 	title = JOB_PENTEX_EMPLOYEE
 	description = "You are an employee for " + MAIN_EVIL_COMPANY + ", operating out of San Francisco. Your bosses can be a little strange; give credence to the security team and executives for tasks on the night shift, and avoid getting negative attention from the branch manager or internal affairs."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3

@@ -1,6 +1,5 @@
 /datum/job/vampire/graveyard
 	title = JOB_GRAVEYARD_KEEPER
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 6
 	spawn_positions = 6

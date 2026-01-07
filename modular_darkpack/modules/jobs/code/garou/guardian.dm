@@ -2,7 +2,6 @@
 	title = JOB_GAROU_GUARDIAN
 	description = "You are the bottom of the Sept's pecking order, but also the frontline offense and defense, serving directly under the Warder and Wyrmfoe to ensure the caern's safety and well-being."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3

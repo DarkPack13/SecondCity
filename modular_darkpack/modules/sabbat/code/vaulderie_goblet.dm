@@ -58,7 +58,7 @@
 	user.visible_message(span_notice("[user] cuts their wrist and lets blood drip into the [src]."), span_notice("You cut your wrist and let your blood flow into the [src]."))
 
 	playsound(user, 'sound/items/weapons/bladeslice.ogg', 30, TRUE)
-	user.adjustBruteLoss(5)
+	user.adjust_brute_loss(5)
 
 	reagents.add_reagent(/datum/reagent/blood/vitae, 10)
 	user.bloodpool -= 2

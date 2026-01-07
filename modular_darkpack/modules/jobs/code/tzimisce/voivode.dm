@@ -1,6 +1,5 @@
 /datum/job/vampire/voivode
 	title = JOB_VOIVODE
-	department_head = list("Eldest")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

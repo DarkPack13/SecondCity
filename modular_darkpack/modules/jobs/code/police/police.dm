@@ -1,6 +1,5 @@
 /datum/job/vampire/police_officer
 	title = JOB_POLICE_OFFICER
-	department_head = /datum/job/vampire/police_chief
 	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5

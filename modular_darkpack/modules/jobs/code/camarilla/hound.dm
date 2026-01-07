@@ -2,7 +2,6 @@
 	title = JOB_HOUND
 	description = "You are the Prince's enforcer. You report to the Sheriff and uphold the Traditions."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/sheriff
 	faction = FACTION_CITY
 	total_positions = 7
 	spawn_positions = 7

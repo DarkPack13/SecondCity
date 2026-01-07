@@ -1,6 +1,5 @@
 /datum/job/vampire/police_chief
 	title = JOB_POLICE_CHIEF
-	department_head = list("Police Department")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

@@ -23,7 +23,5 @@
 	healthdoll = new /atom/movable/screen/healthdoll/living(null, src)
 	infodisplay += healthdoll
 
-	// DARKPACK EDIT ADD START
-	bloodpool_icon =  new /atom/movable/screen/bloodpool(null, src)
-	infodisplay += bloodpool_icon
-	// DARKPACK EDIT ADD END
+	stamina = new /atom/movable/screen/stamina(null, src)
+	infodisplay += stamina
