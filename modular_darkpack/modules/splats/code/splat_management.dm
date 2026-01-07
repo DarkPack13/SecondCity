@@ -32,11 +32,9 @@
  * found and deleted, or false if not.
  */
 /mob/living/proc/remove_splat(splat_type)
-	for (var/datum/splat/found_splat as anything in splats)
-		if (!istype(found_splat, splat_type))
-			continue
-
-		qdel(found_splat)
+	var/datum/splat/removing_splat = get_splat(splat_type)
+	if (removing_splat)
+		qdel(removing_splat)
 		return TRUE
 
 	return FALSE
