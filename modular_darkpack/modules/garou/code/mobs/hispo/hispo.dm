@@ -1,6 +1,7 @@
 /mob/living/carbon/human/fera/hispo
 	name = "hispo"
 	icon_state = "black"
+	#warn port spirtal hispo from apoc/paynt + credit that in pr
 	icon = 'modular_darkpack/modules/garou/icons/hispo.dmi'
 	mob_size = MOB_SIZE_LARGE
 	examine_thats = "That's a"
