@@ -378,8 +378,8 @@ export function JobsPage() {
                 <Department department="Manor" />
                 <Department department="Sabbat" />
                 <Department department="Citizen" />
-                <Department department="City_Services" />
-                <Department department="Garou_Nation" />
+                <Department department="City Services" />
+                <Department department="Garou Nation" />
               </Stack>
             </Stack.Item>
             {
