@@ -1,6 +1,5 @@
 /datum/job/vampire/emissary
 	title = JOB_EMISSARY
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

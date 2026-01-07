@@ -1,6 +1,5 @@
 /datum/job/vampire/doctor
 	title = JOB_DOCTOR
-	department_head = /datum/job/vampire/clinic_director
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4

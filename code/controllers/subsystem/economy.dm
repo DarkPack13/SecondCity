@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(economy)
 			if(!moneybags || moneybags.account_balance < current_acc.account_balance)
 				moneybags = current_acc
 		if (moneybags)
-			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] credits saved. "
+			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] [MONEY_NAME] saved. "
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
 	earning_report += "<br>That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE

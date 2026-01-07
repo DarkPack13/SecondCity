@@ -180,7 +180,7 @@
 		return
 
 	var/damage_amount = 25 + owner.thaum_damage_plus + success_count
-	target.adjustFireLoss(damage_amount)
+	target.adjust_fire_loss(damage_amount)
 
 	target.adjust_fire_stacks(4 + success_count)
 	target.ignite_mob()
@@ -250,7 +250,7 @@
 			if(L == owner) // Don't damage self - but caster still gets set on fire
 				continue
 
-			L.adjustFireLoss(base_damage)
+			L.adjust_fire_loss(base_damage)
 
 			// Chance to ignite based on successes
 			if(prob(ignite_chance))
