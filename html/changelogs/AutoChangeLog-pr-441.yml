@@ -1,6 +1,0 @@
-author: "dwinters99"
-delete-after: True
-changes:
-  - rscadd: "Garou Nation jobs: Councillor, Warder, Truthcatcher, Wyrmfoe, Guardian"
-  - rscadd: "Pentex jobs: Branch Lead, Executive, Internal Affairs Agent, Security Chief, Security Agent, Employee"
-  - code_imp: "Defines for all the pentex subsidiaries and a lot of bloodlines ones while i'm there"
