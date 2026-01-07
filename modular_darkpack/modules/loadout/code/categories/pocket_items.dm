@@ -59,7 +59,7 @@
 /datum/loadout_item/pocket_items/pride
 	name = "Pride Pin"
 	item_path = /obj/item/clothing/accessory/pride
-	loadout_flags = LOADOUT_FLAG_ALLOW_RESKIN
+	reskin_datum = /datum/atom_skin/pride_pin
 
 /datum/loadout_item/pocket_items/flashlight
 	name = "Flashlight"

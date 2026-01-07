@@ -111,3 +111,21 @@
 /datum/job_department/city_services
 	department_name = DEPARTMENT_CITY_SERVICES
 	department_bitflags = DEPARTMENT_BITFLAG_CITY_SERVICES
+
+/datum/job_department/gaia
+	department_name = DEPARTMENT_GAIA
+	department_bitflags = DEPARTMENT_BITFLAG_GAIA
+	department_head = /datum/job/vampire/councillor
+	department_experience_type = EXP_TYPE_GAIA
+	display_order = 1
+	label_class = "gaia"
+	ui_color = "#b4bd64"
+
+/datum/job_department/pentex
+	department_name = DEPARTMENT_PENTEX
+	department_bitflags = DEPARTMENT_BITFLAG_PENTEX
+	department_head = /datum/job/vampire/branch_lead
+	department_experience_type = EXP_TYPE_SPIRAL
+	display_order = 1
+	label_class = "pentex"
+	ui_color = COLOR_ENDRON_GREEN

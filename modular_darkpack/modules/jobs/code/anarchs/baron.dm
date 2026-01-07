@@ -1,6 +1,5 @@
 /datum/job/vampire/baron
 	title = JOB_BARON
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

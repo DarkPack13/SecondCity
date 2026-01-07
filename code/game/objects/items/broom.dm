@@ -18,6 +18,7 @@
 	attack_verb_continuous = list("sweeps", "brushes off", "bludgeons", "whacks")
 	attack_verb_simple = list("sweep", "brush off", "bludgeon", "whack")
 	resistance_flags = FLAMMABLE
+	custom_price = 20 //DARKPACK EDIT ADD
 
 /obj/item/pushbroom/Initialize(mapload)
 	. = ..()

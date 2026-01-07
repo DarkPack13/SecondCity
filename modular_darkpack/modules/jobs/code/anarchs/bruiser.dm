@@ -1,6 +1,5 @@
 /datum/job/vampire/bruiser
 	title = JOB_BRUISER
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 7
 	spawn_positions = 7
