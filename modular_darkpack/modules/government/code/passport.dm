@@ -11,9 +11,30 @@
 	lose_text = "<span class='notice'>You feel bureaucratically legitimate.</span>"
 	// excluded_clans = list(CLAN_RAVNOS) // DARKPACK TODO - RAVNOS - (They are forced to take this)
 
+/datum/quirk/illegal_identity/add()
+	. = ..()
+	if(!ishuman(quirk_holder))
+		return
+	var/mob/living/carbon/human/criminal = quirk_holder
+	var/obj/item/passport/passport = locate() in criminal // In pockets
+	if(!passport && criminal.back)
+		passport = locate() in criminal.back // In backpack
+	if(passport && passport.owner == criminal.real_name)
+		passport.link_human(criminal)
+
 /datum/loadout_item/pocket_items/passport
 	name = "Passport"
 	item_path = /obj/item/passport
+
+/* This is redudent since we have init behavoir but also runs too early for it to catch thing like clan or quirk traits.
+/datum/loadout_item/pocket_items/passport/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only)
+	. = ..()
+
+	// This should always be the case but why not.
+	if(istype(equipped_item, /obj/item/passport))
+		var/obj/item/passport/equipped_passport = equipped_item
+		equipped_passport.link_human(equipper)
+*/
 
 /obj/item/passport
 	name = "passport"
@@ -41,9 +62,9 @@
 		user = loc
 	else if(ishuman(loc?.loc)) // In backpack
 		user = loc
-	if(isnull(user))
-		return
-	link_human(user)
+	if(user)
+		// Init and equiping via loadout are both too soon to be able to catch the illegal identity quirk
+		link_human(user)
 
 /obj/item/passport/proc/link_human(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_ILLEGAL_IDENTITY))
