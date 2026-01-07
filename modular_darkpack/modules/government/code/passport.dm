@@ -27,16 +27,6 @@
 	name = "Passport"
 	item_path = /obj/item/passport
 
-/* This is redudent since we have init behavoir but also runs too early for it to catch thing like clan or quirk traits.
-/datum/loadout_item/pocket_items/passport/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only)
-	. = ..()
-
-	// This should always be the case but why not.
-	if(istype(equipped_item, /obj/item/passport))
-		var/obj/item/passport/equipped_passport = equipped_item
-		equipped_passport.link_human(equipper)
-*/
-
 /obj/item/passport
 	name = "passport"
 	desc = "A book with someone's license, photo, and identifying information. Don't lose it!"
