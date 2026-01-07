@@ -1,6 +1,5 @@
 /datum/job/vampire/fbi
 	title = JOB_FEDERAL_INVESTIGATOR
-	department_head = list("Federal Bureau of Investigation")
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2

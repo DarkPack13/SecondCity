@@ -1,6 +1,5 @@
 /datum/job/vampire/sweeper
 	title = JOB_SWEEPER
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3

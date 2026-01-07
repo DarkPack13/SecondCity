@@ -35,8 +35,8 @@
 		inhand_icon_state = "blood0"
 		name = "\improper drinkable blood pack (empty)"
 		M.adjust_blood_pool(amount_of_bloodpoints)
-		M.adjustBruteLoss(-20, TRUE)
-		M.adjustFireLoss(-20, TRUE)
+		M.adjust_brute_loss(-20, TRUE)
+		M.adjust_fire_loss(-20, TRUE)
 		M.update_damage_overlays()
 		M.update_health_hud()
 		if(iskindred(M))

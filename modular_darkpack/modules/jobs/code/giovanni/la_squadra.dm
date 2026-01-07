@@ -1,6 +1,5 @@
 /datum/job/vampire/squadra
 	title = JOB_LA_SQUADRA
-	department_head = /datum/job/vampire/capo
 	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10

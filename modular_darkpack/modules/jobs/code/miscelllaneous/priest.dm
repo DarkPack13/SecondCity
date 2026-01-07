@@ -1,6 +1,5 @@
 /datum/job/vampire/priest
 	title = JOB_PRIEST
-	department_head = list("Bishop")
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2

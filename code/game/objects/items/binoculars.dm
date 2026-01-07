@@ -9,6 +9,7 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	slot_flags = ITEM_SLOT_NECK | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	custom_price = 300 // DARKPACK EDIT ADD
 
 /obj/item/binoculars/Initialize(mapload)
 	. = ..()
