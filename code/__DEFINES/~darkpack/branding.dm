@@ -5,7 +5,7 @@
 
 #define SEPT_NAME "Sept of the Western Eye"
 
-#define EVIL_COMPANY "Pentex"
+#define EVIL_COMPANY "Pentex Group"
 
 #define MAIN_EVIL_COMPANY EVIL_OIL_COMPANY // Only effects Pentex job slots
 
@@ -20,6 +20,7 @@
 #define EVIL_MINING_COMPANY "Harold and Harold Mining, Incorporated"
 #define EVIL_PAPER_COMPANY "Good House International"
 #define EVIL_FISHING_COMPANY "Hallahan Fishing Company"
+#define EVIL_HANDGUN_COMPANY "Herculean Firearms Incorporated"
 #define EVIL_GROCERY_COMPANY "Herrick's"
 #define EVIL_LIQUOR_COMPANY "King Breweries and Distilleries"
 #define EVIL_PHARMA_COMPANY "Magadon, Incorporated"
@@ -82,7 +83,6 @@
 #define EVIL_COSMETICS_COMPANY_3 "Pangloss Cosmetics" // Subsidiary of Siren Cosmetics
 #define EVIL_WEAPON_COMPANY "Full Force Solutions"
 #define EVIL_PR_COMPANY "Gaia Research Company"
-#define EVIL_HANDGUN_COMPANY "Herculean Firearms Incorporated"
 #define EVIL_CONSTRUCTION_COMPANY "Hi-Quality Builders"
 #define EVIL_LAW_COMPANY "Meyers, Feinstein and Hargrett"
 #define EVIL_TECH_COMPANY "NikNak Computing"
