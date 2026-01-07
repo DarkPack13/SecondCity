@@ -28,8 +28,7 @@
 	uniform = /obj/item/clothing/under/vampire/office
 	ears = /obj/item/radio/headset/darkpack
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
-	gloves = /obj/item/watch
 	id = /obj/item/card/government
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/dispatch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/flashlight=1)
+	backpack_contents = list(/obj/item/card/credit=1)

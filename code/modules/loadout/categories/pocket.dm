@@ -5,7 +5,7 @@
 	type_to_generate = /datum/loadout_item/pocket_items
 	tab_order = /datum/loadout_category/head::tab_order + 11
 	/// How many pocket items are allowed
-	VAR_PRIVATE/max_allowed = 3
+	VAR_PRIVATE/max_allowed = 6 // DARKPACK EDIT CHANGE - Bumped up realtivly high as it contains a few soft "required" items for gameplay
 
 /datum/loadout_category/pocket/New()
 	. = ..()
@@ -36,8 +36,6 @@
 		return NONE
 
 	return ..()
-
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
 
 /datum/loadout_item/pocket_items/plush
 	group = "Plushies"
@@ -260,6 +258,7 @@
 	name = "Poster (Pinup)"
 	item_path = /obj/item/poster/random_contraband/pinup
 
+/* // DARKPACK EDIT REMOVAL
 /datum/loadout_item/pocket_items/holodisk
 	name = "Holodisk"
 	item_path = /obj/item/disk/holodisk
@@ -267,11 +266,13 @@
 /datum/loadout_item/pocket_items/mug_nt
 	name = "Nanotrasen Mug"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/nanotrasen
+*/
 
 /datum/loadout_item/pocket_items/britcup
 	name = "British Flag Cup"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/britcup
 
+/* // DARKPACK EDIT REMOVAL
 // The wallet loadout item is special, and puts the player's ID and other small items into it on initialize (fancy!)
 /datum/loadout_item/pocket_items/wallet
 	name = "Wallet"
@@ -315,7 +316,6 @@
 			continue
 		wallet.atom_storage.attempt_insert(thing, override = TRUE, force = STORAGE_FULLY_LOCKED, messages = FALSE)
 
-
 /datum/loadout_item/pocket_items/borg_me_dogtag
 	item_path = /obj/item/clothing/accessory/dogtag/borg_ready
 
@@ -331,8 +331,8 @@
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/datum/record/crew/record = find_record(source.real_name)
 	record?.medical_notes += new /datum/medical_note("Central Command", "Patient is a registered brain donor for Robotics research.", null)
+*/
 
 /datum/loadout_item/pocket_items/candles
 	name = "Box of Candles"
 	item_path = /obj/item/storage/fancy/candle_box
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories

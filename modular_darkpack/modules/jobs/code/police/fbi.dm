@@ -33,7 +33,7 @@
 	gloves = /obj/item/clothing/gloves/vampire/investigator
 	l_pocket = /obj/item/smartphone
 	l_hand = /obj/item/vamp/keys/police
-	backpack_contents = list(/obj/item/card/police/sergeant=1, /obj/item/passport=1, /obj/item/camera/detective=1, /obj/item/camera_film=1, /obj/item/taperecorder=1, /obj/item/tape=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c45acp=1, /obj/item/storage/medkit/darkpack/ifak=1)
+	backpack_contents = list(/obj/item/card/police/sergeant=1, /obj/item/camera/detective=1, /obj/item/camera_film=1, /obj/item/taperecorder=1, /obj/item/tape=1, /obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c45acp=1, /obj/item/storage/medkit/darkpack/ifak=1)
 
 /datum/outfit/job/vampire/fbi/post_equip(mob/living/carbon/human/agent)
 	..()
