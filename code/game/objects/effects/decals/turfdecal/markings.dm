@@ -382,6 +382,28 @@
 /obj/effect/turf_decal/siding/wood/end
 	icon_state = "siding_wood_end"
 
+// DARKPACK EDIT ADD START
+// Matches the floor colors we use alot more then the default
+/obj/effect/turf_decal/siding/wood/dark
+	color = "#4a3925"
+
+/obj/effect/turf_decal/siding/wood/dark/corner
+	icon_state = "siding_wood_corner"
+
+/obj/effect/turf_decal/siding/wood/dark/end
+	icon_state = "siding_wood_end"
+
+/obj/effect/turf_decal/siding/wood/light
+	color = "#9a704a"
+
+/obj/effect/turf_decal/siding/wood/light/corner
+	icon_state = "siding_wood_corner"
+
+/obj/effect/turf_decal/siding/wood/light/end
+	icon_state = "siding_wood_end"
+
+// DARKPACK EDIT ADD END
+
 /obj/effect/turf_decal/siding/thinplating
 	icon_state = "siding_thinplating"
 	color = "#aaaaaa"

@@ -1,6 +1,5 @@
 /datum/job/vampire/doctor
 	title = JOB_DOCTOR
-	department_head = /datum/job/vampire/clinic_director
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
@@ -25,7 +24,7 @@
 	name = "Doctor"
 	jobtype = /datum/job/vampire/doctor
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/clinic
 	uniform = /obj/item/clothing/under/vampire/nurse
 	shoes = /obj/item/clothing/shoes/vampire/white

@@ -2,7 +2,7 @@
 /datum/supply_pack/goody
 	access = NONE
 	group = "Goodies"
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -106,14 +106,14 @@
 	contains = list(/obj/item/gun/energy/laser)
 
 /datum/supply_pack/goody/carbine_single
-	name = "Type 5R Laser Carbine Single_Pack"
+	name = "Type 5/R Laser Carbine Single-Pack"
 	desc = "Contains one laser carbine. Fires a rapid burst of slightly weaker laser projectiles."
 	cost = PAYCHECK_COMMAND * 8
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
 /datum/supply_pack/goody/laser_pistol_single
-	name = "Type 5C Laser Pistol Single-Pack"
+	name = "Type 5/C Laser Pistol Single-Pack"
 	desc = "Contains one Type 5C laser pistol in an energy shoulder holster. Groovy."
 	cost = PAYCHECK_COMMAND * 2
 	access_view = ACCESS_WEAPONS
@@ -128,7 +128,7 @@
 
 /datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single_Pack"
-	desc = "Contains one disabler SMGs, capable of rapidly firing weak disabler beams."
+	desc = "Contains one disabler SMG, capable of rapidly firing weak disabler beams."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/disabler/smg)

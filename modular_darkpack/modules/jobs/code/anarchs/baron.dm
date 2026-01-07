@@ -1,6 +1,5 @@
 /datum/job/vampire/baron
 	title = JOB_BARON
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -26,6 +25,7 @@
 	jobtype = /datum/job/vampire/baron
 
 	id = /obj/item/card/baron
+	ears = /obj/item/radio/headset/darkpack
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/bar
 	suit = /obj/item/clothing/suit/vampire/jacket/better

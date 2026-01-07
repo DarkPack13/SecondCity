@@ -1,6 +1,5 @@
 /datum/job/vampire/police_officer
 	title = JOB_POLICE_OFFICER
-	department_head = /datum/job/vampire/police_chief
 	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5
@@ -27,7 +26,7 @@
 	name = "Police Officer"
 	jobtype = /datum/job/vampire/police_officer
 
-	//ears = /obj/item/p25radio/police
+	ears = /obj/item/radio/headset/darkpack/police
 	uniform = /obj/item/clothing/under/vampire/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police

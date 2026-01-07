@@ -2,7 +2,6 @@
 	title = JOB_SHERIFF
 	description = "Protect the Prince and the Masquerade. You are their sword."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -34,7 +33,7 @@
 	name = "Sheriff"
 	jobtype = /datum/job/vampire/sheriff
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/sheriff
 	uniform = /obj/item/clothing/under/vampire/sheriff
 	belt = /obj/item/storage/belt/sheath/vamp/rapier

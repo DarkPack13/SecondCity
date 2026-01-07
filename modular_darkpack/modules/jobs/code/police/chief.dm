@@ -1,6 +1,5 @@
 /datum/job/vampire/police_chief
 	title = JOB_POLICE_CHIEF
-	department_head = list("Police Department")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -24,11 +23,11 @@
 	name = "Police Chief"
 	jobtype = /datum/job/vampire/police_chief
 
-	//ears = /obj/item/p25radio/police/command
+	ears = /obj/item/radio/headset/darkpack/police
 	uniform = /obj/item/clothing/under/vampire/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police/chief
-	//belt = /obj/item/storage/belt/holster/detective/vampire/officer
+	belt = /obj/item/storage/belt/holster/detective/darkpack/officer
 	gloves = /obj/item/watch
 	id = /obj/item/card/police/chief
 	l_pocket = /obj/item/smartphone

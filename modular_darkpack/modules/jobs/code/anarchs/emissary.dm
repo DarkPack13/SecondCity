@@ -1,6 +1,5 @@
 /datum/job/vampire/emissary
 	title = JOB_EMISSARY
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -26,6 +25,7 @@
 	jobtype = /datum/job/vampire/emissary
 
 	id = /obj/item/card/emissary
+	ears = /obj/item/radio/headset/darkpack
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots

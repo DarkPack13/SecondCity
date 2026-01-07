@@ -1,6 +1,5 @@
 /datum/job/vampire/tapster
 	title = JOB_TAPSTER
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
@@ -25,7 +24,6 @@
 	name = "Tapster"
 	jobtype = /datum/job/vampire/tapster
 
-	//ears = /obj/item/p25radio
 	id = /obj/item/card/tapster
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket

@@ -1,6 +1,5 @@
 /datum/job/vampire/gargoyle
 	title = JOB_CHANTRY_GARGOYLE
-	department_head = /datum/job/vampire/regent
 	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5

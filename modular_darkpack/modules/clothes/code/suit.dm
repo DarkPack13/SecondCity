@@ -524,14 +524,14 @@
 
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
-	name = EVIL_OIL_COMPANY + " abcoat"
-	desc = "A crisp white labcoat. This one has the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
-	name = EVIL_OIL_COMPANY + " labcoat"
-	desc = "A crisp white labcoat. This one has a green trim and the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
 

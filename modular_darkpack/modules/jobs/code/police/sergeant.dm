@@ -1,6 +1,5 @@
 /datum/job/vampire/police_sergeant
 	title = JOB_POLICE_SERGEANT
-	department_head = /datum/job/vampire/police_chief
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
@@ -26,11 +25,11 @@
 	name = "Police Sergeant"
 	jobtype = /datum/job/vampire/police_sergeant
 
-	//ears = /obj/item/p25radio/police/supervisor
+	ears = /obj/item/radio/headset/darkpack/police
 	uniform = /obj/item/clothing/under/vampire/police
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/police/sergeant
-	//belt = /obj/item/storage/belt/holster/detective/vampire/officer
+	belt = /obj/item/storage/belt/holster/detective/darkpack/officer
 	gloves = /obj/item/watch
 	id = /obj/item/card/police/sergeant
 	l_pocket = /obj/item/smartphone

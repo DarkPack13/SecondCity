@@ -180,7 +180,7 @@
 			stack_trace("null found in the hearers list returned by the spatial grid. this is bad")
 			continue
 		spans -= blacklisted_spans
-		hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)
+		hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY, source = source) // DARKPACK EDIT, ORIGINAL: hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)
 
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))
@@ -194,7 +194,10 @@
 		spans_part = "[spans_part] ) "
 
 	var/lang_name = data["language"]
-	var/log_text = "\[[get_radio_name(frequency)]\] [spans_part]\"[message]\" (language: [lang_name])"
+	// DARKPACK EDIT ADD START
+	var/obj/item/radio/radio = source
+	var/log_text = "\[[get_radio_name(frequency)]\] [radio.radio_id][spans_part]\"[message]\" (language: [lang_name])"
+	// DARKPACK EDIT ADD END
 
 	var/mob/source_mob = virt.source
 

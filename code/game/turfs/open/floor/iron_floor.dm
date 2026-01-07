@@ -489,6 +489,7 @@
 	floor_tile = /obj/item/stack/tile/iron/goonplaque
 
 /turf/open/floor/iron/stairs
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stairs"
 	base_icon_state = "stairs"
 	tiled_turf = FALSE
@@ -518,8 +519,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/iron/stairs/old
-	icon_state = "stairs-old"
-	base_icon_state = "stairs-old"
+	icon_state = "stairs" // DARKPACK EDIT CHANGE
+	base_icon_state = "stairs" // DARKPACK EDIT CHANGE
 
 /turf/open/floor/iron/stairs/old/airless
 	initial_gas_mix = AIRLESS_ATMOS

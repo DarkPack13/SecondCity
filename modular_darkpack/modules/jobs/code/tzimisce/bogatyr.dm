@@ -1,7 +1,6 @@
 
 /datum/job/vampire/bogatyr
 	title = JOB_BOGATYR
-	department_head = /datum/job/vampire/voivode
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
