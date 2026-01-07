@@ -14,8 +14,13 @@
 	mutanttongue = /obj/item/organ/tongue/garou
 	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human/fera/glabro, /mob/living/carbon/human/fera/hispo)
 
-/mob/living/carbon/human/species/garou
-	race = /datum/species/human/shifter/garou
+/datum/species/human/shifter/garou/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
+	. = ..()
+	human_who_gained_species.add_splat(/datum/splat/werewolf/shifter/garou)
+
+/datum/species/human/shifter/garou/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+	human.remove_splat(/datum/splat/werewolf/shifter/garou)
 
 /datum/species/human/shifter/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
@@ -49,3 +54,6 @@
 	*/
 
 	return to_add
+
+/mob/living/carbon/human/species/garou
+	race = /datum/species/human/shifter/garou

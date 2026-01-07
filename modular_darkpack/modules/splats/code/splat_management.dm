@@ -23,7 +23,11 @@
 /mob/living/proc/add_splat(splat_type, ...)
 	RETURN_TYPE(/datum/splat)
 
-	var/datum/splat/adding_splat = new splat_type(arglist(args.Copy(2)))
+	var/datum/splat/adding_splat
+	if(args.len > 1)
+		adding_splat = new splat_type(arglist(args.Copy(2)))
+	else
+		adding_splat = new splat_type()
 	return adding_splat.assign(src)
 
 /**

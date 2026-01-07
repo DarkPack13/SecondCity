@@ -6,6 +6,9 @@
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
+	splat_traits = list(
+		TRAIT_FRENETIC_AURA
+	)
 
 /datum/splat/werewolf/shifter/garou
 
