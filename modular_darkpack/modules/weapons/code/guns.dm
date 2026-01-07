@@ -187,6 +187,7 @@
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/glock.ogg'
 	fire_sound_volume = 75
+	custom_price = 1200
 
 /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta/toreador
 	name = "\improper Sword Series S 9mm"
@@ -204,6 +205,7 @@
 	caliber = CALIBER_9MM
 	max_ammo = 18
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	custom_price = 200
 
 /obj/item/ammo_box/magazine/semi9mm/toreador
 	name = "custom pistol magazine (9mm)"
@@ -369,6 +371,7 @@
 	name = "rifle magazine (5.56mm)"
 	icon_state = "hunt556"
 	max_ammo = 20
+	custom_price = 200
 
 /obj/item/gun/ballistic/automatic/darkpack/ar15
 	name = "\improper CAR-15 Carbine"
@@ -408,6 +411,7 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/rifle.ogg'
 	masquerade_violating = FALSE
+	custom_price = 2000
 
 /obj/item/ammo_box/magazine/darkpack545
 	name = "rifle magazine (5.45mm)"
@@ -597,6 +601,7 @@
 	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
+	custom_price = 1000
 
 /obj/item/ammo_box/magazine/darkpackautoshot
 	name = "shotgun magazine (12ga)"

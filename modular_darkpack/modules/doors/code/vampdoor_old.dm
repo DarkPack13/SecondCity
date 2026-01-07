@@ -5,15 +5,15 @@
 
 /obj/structure/vampdoor/old/chantry
 	locked = TRUE
-	lock_id = "chantry"
+	lock_id = LOCKACCESS_CHANTRY
 	lockpick_difficulty = 10
 
 /obj/structure/vampdoor/old/graveyard
 	locked = TRUE
-	lock_id = "graveyard"
+	lock_id = LOCKACCESS_GRAVEYARD
 	lockpick_difficulty = 2
 
 /obj/structure/vampdoor/old/church
 	locked = TRUE
-	lock_id = "church"
+	lock_id = LOCKACCESS_CHURCH
 	lockpick_difficulty = 10

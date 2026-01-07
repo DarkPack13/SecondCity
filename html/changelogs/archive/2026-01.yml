@@ -1,0 +1,12 @@
+2026-01-04:
+  FalloutFalcon:
+  - admin: admin matrixing a mob now has a prompt to confirm
+2026-01-05:
+  FalloutFalcon:
+  - rscadd: Adds Oni and Devil gargoyle horns from TFN
+  dwinters99:
+  - rscadd: 'Garou Nation jobs: Councillor, Warder, Truthcatcher, Wyrmfoe, Guardian'
+  - rscadd: 'Pentex jobs: Branch Lead, Executive, Internal Affairs Agent, Security
+      Chief, Security Agent, Employee'
+  - code_imp: Defines for all the pentex subsidiaries and a lot of bloodlines ones
+      while i'm there

@@ -1,5 +1,5 @@
 /area/vtm/interior/shop
-	name = "Shop"
+	name = "\improper Shop"
 	icon_state = "shop"
 	fire_controled = TRUE
 
@@ -32,7 +32,7 @@
 	fire_controled = TRUE
 
 /area/vtm/interior/police
-	name = "Police Station"
+	name = "\improper Police Station"
 	icon_state = "police"
 	fire_controled = TRUE
 
