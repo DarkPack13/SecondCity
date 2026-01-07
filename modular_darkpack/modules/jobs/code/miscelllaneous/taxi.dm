@@ -1,6 +1,5 @@
 /datum/job/vampire/taxi
 	title = JOB_TAXI_DRIVER
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3

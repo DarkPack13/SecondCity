@@ -2,7 +2,6 @@
 	title = JOB_GAROU_WYRMFOE
 	description = "You are the Warder's right hand, a promising tactician in your own right, granted the honor of coordinating the Sept's more offensive actions. "
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1

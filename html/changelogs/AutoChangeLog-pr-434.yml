@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Bank pin is now found in the memories section similar to bank ID number"
