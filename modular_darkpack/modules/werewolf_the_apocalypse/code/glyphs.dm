@@ -17,9 +17,8 @@
 	// slot_flags = ITEM_SLOT_EARS
 
 /obj/item/charcoal_stick/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	// DARKPACK TODO - WEREWOLF
-	//if(!isgarou(user))
-	//	return
+	if(!user.has_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE))
+		return
 
 	if(!GLOB.glyph_list.len)
 		to_chat(user, span_notice("There are no glyphs available."))
