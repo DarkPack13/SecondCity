@@ -113,7 +113,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.real_name == curse_target)
 			found_target = TRUE
-			H.adjustAggLoss(25)
+			H.adjust_agg_loss(25)
 			playsound(H.loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 			to_chat(H, span_warning("You feel dark energy tearing at your very being!"))
 			H.Stun(2)

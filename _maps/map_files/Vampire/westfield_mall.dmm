@@ -14474,7 +14474,7 @@
 	},
 /obj/item/ammo_box/magazine/darkpack556,
 /obj/item/ammo_box/magazine/darkpack556,
-/obj/machinery/light/warm/directional/east,
+/obj/machinery/light/directional/south,
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "aVN" = (

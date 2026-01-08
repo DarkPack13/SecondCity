@@ -16,10 +16,10 @@
 /obj/werewolf_holder/transformation/proc/transfer_damage(mob/living/carbon/first, mob/living/carbon/second)
 	second.masquerade = first.masquerade
 	var/percentage = (100/first.maxHealth)*second.maxHealth
-	second.adjustBruteLoss(round((first.getBruteLoss()/100)*percentage)-second.getBruteLoss())
-	second.adjustFireLoss(round((first.getFireLoss()/100)*percentage)-second.getFireLoss())
-	second.adjustToxLoss(round((first.getToxLoss()/100)*percentage)-second.getToxLoss())
-	second.adjustAggLoss(round((first.getAggLoss()/100)*percentage)-second.getAggLoss())
+	second.adjust_brute_loss(round((first.get_brute_loss()/100)*percentage)-second.get_brute_loss())
+	second.adjust_fire_loss(round((first.get_fire_loss()/100)*percentage)-second.get_fire_loss())
+	second.adjustToxLoss(round((first.get_tox_loss()/100)*percentage)-second.get_tox_loss())
+	second.adjust_agg_loss(round((first.get_agg_loss()/100)*percentage)-second.get_agg_loss())
 
 /obj/werewolf_holder/transformation/proc/trans_gender(mob/living/carbon/trans, form)
 	if(!given_quirks)

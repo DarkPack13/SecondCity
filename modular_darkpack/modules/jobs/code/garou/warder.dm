@@ -2,7 +2,6 @@
 	title = JOB_GAROU_WARDER
 	description = "You are the most respected Ahroun within the" + SEPT_NAME + ", granted the honor of coordinating the caern's security. The Wyrmfoe and Guardians answer to you."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/councillor
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -47,4 +46,4 @@
 	suit = /obj/item/clothing/suit/vampire/vest/medieval
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	l_pocket = /obj/item/smartphone
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/passport=1, /obj/item/veil_contract, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
+	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/veil_contract, /obj/item/card/credit/rich=1)

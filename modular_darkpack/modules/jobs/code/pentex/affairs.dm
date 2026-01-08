@@ -2,7 +2,6 @@
 	title = JOB_PENTEX_AFFAIRS
 	description = "You are the internal affairs agent operating for " + MAIN_EVIL_COMPANY + ". You know the bloody and vile needs commanded of destruction will lead to jeopardy, and your duty is to see excellence on task rewarded and acknowledged, and curb the invariable atrocities that could endanger the greater plans of Pentex."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -49,4 +48,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	l_pocket = /obj/item/smartphone // /affairsagent - todo subtype
 	r_pocket = /obj/item/vamp/keys/pentex
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/veil_contract, /obj/item/card/credit/rich=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/veil_contract, /obj/item/card/credit/rich=1)
