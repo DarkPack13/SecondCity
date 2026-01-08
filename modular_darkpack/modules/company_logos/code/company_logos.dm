@@ -1,13 +1,29 @@
+GLOBAL_LIST_INIT(all_brands, init_subtypes_w_path_keys(/datum/brand, list()))
+GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
+
+/proc/brand_list_by_name()
+	var/list/brand_list = GLOB.all_brands
+
+	for(var/path in brand_list)
+		var/datum/brand/this_brand = brand_list[path]
+		brand_list[this_brand.manufacturer] = this_brand
+	return brand_list
+
 /datum/element/corp_label
 	var/datum/brand/our_brand = /datum/brand
 
-/datum/element/corp_label/Attach(datum/target, datum/brand/new_brand)
+/datum/element/corp_label/Attach(datum/target)
 	. = ..()
-	if(new_brand)
-		our_brand = new_brand
-
-	if(!length(our_brand.manufacturer))
+	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
+
+	var/atom/product = target
+
+	if(!product.brand)
+		return ELEMENT_INCOMPATIBLE
+
+	our_brand = GLOB.all_brandnames[product.brand]
+
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/element/corp_label/Detach(datum/target)
@@ -17,7 +33,7 @@
 /datum/element/corp_label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	var/logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
-	examine_list += span_info("[logo]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
+	examine_list += span_info("<br>[logo]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
 
 	if(our_brand.slogan)
 		examine_list += span_notice("<I>\"[our_brand.slogan]\"</I>")
@@ -28,6 +44,7 @@
 	var/slogan = "Bad Code Inc.: Telling America's Coders they screwed up since 1970."
 	var/name_span = "hypnophrase"
 	var/logo_icon = 'modular_darkpack/modules/company_logos/icons/corp_logos.dmi'
+	abstract_type = /datum/brand
 
 /datum/brand/pentex
 	manufacturer = "pentex"
