@@ -1,6 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "readds illegal identity"
-  - qol: "passports, flashlights, and watches moved to loadouts"
-  - qol: "you can now take up to 6 pocket items"
