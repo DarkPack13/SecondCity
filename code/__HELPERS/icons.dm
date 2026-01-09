@@ -566,7 +566,8 @@ world
 
 		if(no_anim)
 			//Clean up repeated frames
-			var/icon/cleaned = new /icon()
+			// Done this way otherwise Width() and Height() would always be 0 for this icon
+			var/icon/cleaned = icon('icons/effects/effects.dmi', "nothing")
 			cleaned.Insert(flat, "", SOUTH, 1, 0)
 			return cleaned
 		else

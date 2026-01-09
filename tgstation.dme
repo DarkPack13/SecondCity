@@ -6989,6 +6989,7 @@
 #include "modular_darkpack\modules\clothes\code\under.dm"
 #include "modular_darkpack\modules\company_logos\code\company_fliers.dm"
 #include "modular_darkpack\modules\company_logos\code\company_logos.dm"
+#include "modular_darkpack\modules\company_logos\code\company_snowflake_code.dm"
 #include "modular_darkpack\modules\curtains\code\curtains.dm"
 #include "modular_darkpack\modules\dancing\code\dancing.dm"
 #include "modular_darkpack\modules\decor\code\bench.dm"

@@ -24,6 +24,9 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 	our_brand = GLOB.all_brandnames[product.brand]
 
+	if(isnull(our_brand))
+		our_brand = /datum/brand
+
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/element/corp_label/Detach(datum/target)
@@ -32,7 +35,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
+	var/logo = "[snowflake_icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo", non_standard_size = TRUE)]"
 	examine_list += span_info("<br>[logo]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
 
 	if(our_brand.slogan)
