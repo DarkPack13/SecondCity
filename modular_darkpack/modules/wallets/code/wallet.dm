@@ -5,7 +5,7 @@
 	icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	storage_type = /datum/storage/wallet/darkpack
-	slot_flags = NONE
+	slot_flags = ITEM_SLOT_ID
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/wallets/icons/docsonfloor.dmi')
 
 /obj/item/storage/wallet/darkpack/update_icon_state()
@@ -47,6 +47,6 @@
 	var/list/additional_types = list(
 		/obj/item/stack/dollar,
 		/obj/item/passport,
-		/obj/item/vamp/keys/hack
+		/obj/item/vamp/keys
 	)
 	set_holdable(can_hold_list = can_hold + additional_types)

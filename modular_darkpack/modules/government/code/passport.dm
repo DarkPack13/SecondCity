@@ -1,5 +1,3 @@
-// DARKPACK TODO - We should support selecting something other then a passport, e.g: driver licenses
-
 /datum/quirk/illegal_identity
 	name = "Illegal Identity"
 	desc = "Illegal immigrant? Died legally? Born a wolf? The cops aren't happy."
@@ -40,11 +38,12 @@
 	var/closed = TRUE
 	/// String of who the owner of the passport.
 	var/owner = ""
-
+	/// Country of origin for the passport holder
+	var/country_of_origin = "United States"
 	/// If the ID is a counterfit.
 	var/fake = FALSE
 	/// If the NAME does not belong to the person.
-	var/fake_itentity = FALSE
+	var/fake_identity = FALSE
 
 /obj/item/passport/Initialize(mapload)
 	. = ..()
@@ -60,18 +59,27 @@
 /obj/item/passport/proc/link_human(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_ILLEGAL_IDENTITY))
 		fake = TRUE
-		fake_itentity = TRUE
+		fake_identity = TRUE
 
-	if(fake_itentity)
+	if(fake_identity)
 		owner = user.generate_random_mob_name(TRUE)
 	else
 		owner = user.real_name
+
+	if(user.client?.prefs)
+		var/pref_country = user.client.prefs.read_preference(/datum/preference/choiced/country_of_origin)
+		if(pref_country)
+			country_of_origin = pref_country
+			if(pref_country == "United States")
+				var/pref_state = user.client.prefs.read_preference(/datum/preference/choiced/state_of_origin)
+				if(pref_state)
+					country_of_origin = "[pref_state], United States"
 
 /obj/item/passport/examine(mob/user)
 	. = ..()
 	// DARKPACK TODO - STATS - (Make this a perception+investigation roll when we have retrying check standeridization)
 	if(!closed && owner)
-		. += span_notice("It reads as belonging to [owner].")
+		. += span_notice("It reads as belonging to [owner] from [country_of_origin].")
 		if(fake)
 			. += span_notice("It looks like a crude counterfeit.")
 
