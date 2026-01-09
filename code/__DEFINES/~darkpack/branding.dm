@@ -12,7 +12,7 @@
 // Treated as subsidary of EVIL_COMPANY
 /* MAJOR COMPANIES - Currently or at one time held the Top 21 Company title */
 #define EVIL_TRASH_COMPANY "Ardus Enterprises"
-#define EVIL_TOY_COMPANY "Avalon Incorporated."
+#define EVIL_TOY_COMPANY "Avalon Incorporated"
 #define EVIL_CIGARETTE_COMPANY "Circinus Brands"
 #define EVIL_INVESTMENT_COMPANY "Consolidex Worldwide"
 #define EVIL_OIL_COMPANY "Endron International"
