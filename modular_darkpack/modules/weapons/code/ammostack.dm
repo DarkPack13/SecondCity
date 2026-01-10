@@ -374,7 +374,7 @@
 //				adjust_gnosis(-1, M)
 //		else
 //			M.Stun(10)
-//			M.adjustBruteLoss(50, TRUE)
+//			M.adjust_brute_loss(50, TRUE)
 */
 
 /obj/projectile/bullet/darkpack/vamp556mm/silver

@@ -10,11 +10,7 @@
 /mob/living/get_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
-	for (var/datum/splat/splat as anything in splats)
-		if (!istype(splat, splat_type))
-			continue
-
-		return splat
+	return locate(splat_type) in splats
 
 /**
  * Creates a new splat of the given type with the given arguments and assigns it
@@ -24,10 +20,11 @@
 	RETURN_TYPE(/datum/splat)
 
 	var/datum/splat/adding_splat
-	if(args.len > 1)
+	if (length(args) > 1)
 		adding_splat = new splat_type(arglist(args.Copy(2)))
 	else
 		adding_splat = new splat_type()
+
 	return adding_splat.assign(src)
 
 /**
@@ -35,11 +32,9 @@
  * found and deleted, or false if not.
  */
 /mob/living/proc/remove_splat(splat_type)
-	for (var/datum/splat/found_splat as anything in splats)
-		if (!istype(found_splat, splat_type))
-			continue
-
-		qdel(found_splat)
+	var/datum/splat/removing_splat = get_splat(splat_type)
+	if (removing_splat)
+		qdel(removing_splat)
 		return TRUE
 
 	return FALSE

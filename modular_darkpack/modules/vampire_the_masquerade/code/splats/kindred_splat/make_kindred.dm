@@ -26,4 +26,4 @@
 	if (!always_same_clan && prob(5))
 		childe_clan = GLOB.vampire_clans[/datum/vampire_clan/caitiff]
 
-	return make_kindred(sire_splat.generation - 1, childe_clan, FALSE, sire)
+	return make_kindred(sire_splat.generation + 1, childe_clan, FALSE, sire)

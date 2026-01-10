@@ -43,7 +43,7 @@ Living mobs can have multiple splat datums, which can all:
 
 ### Included files that are not contained in this module:
 
-- N/A
+- [modular_darkpack/modules/unit_tests/apply_all_splats.dm](/modular_darkpack/modules/unit_tests/apply_all_splats.dm)
 
 ### Credits:
 

@@ -6,7 +6,7 @@
 /datum/splat/vampire/proc/get_discipline_power(datum/discipline_power/discipline_power_type)
 	RETURN_TYPE(/datum/discipline_power)
 
-	return get_discipline(discipline_power_type::discipline).get_power(discipline_power_type)
+	return get_discipline(discipline_power_type::discipline)?.get_power(discipline_power_type)
 
 /datum/splat/vampire/proc/get_discipline(discipline_type)
 	RETURN_TYPE(/datum/discipline)

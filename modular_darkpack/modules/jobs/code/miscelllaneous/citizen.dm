@@ -17,5 +17,4 @@
 	name = JOB_CITIZEN
 	jobtype = /datum/job/vampire/citizen
 	l_pocket = /obj/item/smartphone
-	id = /obj/item/watch
-	backpack_contents = list(/obj/item/passport, /obj/item/flashlight, /obj/item/card/credit)
+	backpack_contents = list(/obj/item/card/credit)
