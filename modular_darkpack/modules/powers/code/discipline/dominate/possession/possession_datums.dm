@@ -68,7 +68,7 @@
 	if(mortal.mind)
 		vamp.mind = mortal.mind
 
-	vamp.adjustBruteLoss(50)
+	vamp.adjust_brute_loss(50)
 	vamp.visible_message(span_danger("[vamp] suddenly convulses violently and falls into what appears to be a coma!"))
 	to_chat(vamp, span_boldwarning("The psychic shock of your host's death sends you into torpor!"))
 	vamp.torpor()

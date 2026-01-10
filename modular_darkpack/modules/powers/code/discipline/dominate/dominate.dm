@@ -525,7 +525,7 @@
 			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 		if("Heart Attack")
 			owner.say("Die")
-			target.adjustStaminaLoss(60, FALSE)
+			target.adjust_stamina_loss(60, FALSE)
 			target.set_heartattack(TRUE)
 			to_chat(target, span_danger("You feel a terrible pain in your chest!"))
 			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
