@@ -30,9 +30,9 @@
 	if(stat >= SOFT_CRIT || IsParalyzed() || body_position == LYING_DOWN)
 		laid_down = TRUE
 	var/mutable_appearance/damage_overlay
-	if(isnull(damage_overlay) && (getBruteLoss()))
+	if(isnull(damage_overlay) && (get_brute_loss()))
 		damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
-	switch(getBruteLoss())
+	switch(get_brute_loss())
 		if(25 to 75)
 			damage_overlay = mutable_appearance(icon, "damage1[laid_down ? "_rest" : ""]")
 			add_overlay(damage_overlay)
