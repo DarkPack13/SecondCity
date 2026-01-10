@@ -2,7 +2,6 @@
 	title = JOB_HOUND
 	description = "You are the Prince's enforcer. You report to the Sheriff and uphold the Traditions."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/sheriff
 	faction = FACTION_CITY
 	total_positions = 7
 	spawn_positions = 7
@@ -32,7 +31,7 @@
 	name = "Hound"
 	jobtype = /datum/job/vampire/hound
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/camarilla
 	uniform = /obj/item/clothing/under/vampire/hound
 	gloves = /obj/item/clothing/gloves/vampire/work
@@ -40,4 +39,4 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	r_pocket = /obj/item/vamp/keys/camarilla
 	l_pocket = /obj/item/smartphone/hound
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/vampire_stake=3, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)

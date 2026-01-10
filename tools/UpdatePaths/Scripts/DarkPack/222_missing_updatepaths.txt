@@ -19,21 +19,13 @@
 # Deleted landmarks are for landmarks with no job attached.
 /obj/effect/landmark/start/assamite : @DELETE
 /obj/effect/landmark/start/baali : @DELETE
-/obj/effect/landmark/start/barkeeper : /obj/effect/landmark/start/baron
 /obj/effect/landmark/start/caitiff : @DELETE
-/obj/effect/landmark/start/giovanni : /datum/job/vampire/famiglia
-/obj/effect/landmark/start/giovannielder : /obj/effect/landmark/start/capo
-/obj/effect/landmark/start/giovannimafia : /datum/job/vampire/squadra
 /obj/effect/landmark/start/hunter : @DELETE
 /obj/effect/landmark/start/kiasyd : @DELETE
 /obj/effect/landmark/start/lasombra : @DELETE
 /obj/effect/landmark/start/liaison : @DELETE
 /obj/effect/landmark/start/nagaraja : @DELETE
 /obj/effect/landmark/start/salubri : @DELETE
-/obj/effect/landmark/start/strip : /obj/effect/landmark/start/club_worker
-/obj/effect/landmark/start/vdirector : /obj/effect/landmark/start/clinic_director
-/obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/doctor
-/obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/janitor
 
 # we're removing this mob spawner
 /obj/effect/mob_spawn/human/chunkguard : @DELETE

@@ -2,7 +2,6 @@
 	title = JOB_PRIMOGEN_MALKAVIAN
 	description = "Offer your infinite knowledge to Prince of the City. You likely have a hold over the local hospital, make good use of it and ensure the blood bags remain available."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -36,7 +35,7 @@
 	name = "Primogen Malkavian"
 	jobtype = /datum/job/vampire/primogen_malkavian
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/primogen_malkavian
@@ -44,5 +43,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	head = /obj/item/clothing/head/vampire/malkav
 	l_pocket = /obj/item/smartphone/malkavian_primo
-	r_pocket = /obj/item/watch
-	backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

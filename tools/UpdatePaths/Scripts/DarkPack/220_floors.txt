@@ -8,7 +8,7 @@
 /turf/open/floor/plating/parquetry/old: /turf/open/floor/wood/smooth/old
 /turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate
 
-/turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack
+/turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack/old
 
 /turf/open/floor/plating/vampplating : /turf/open/floor/city/plating
 /turf/open/floor/plating/vampplating/mono : /turf/open/floor/city/plating_mono
@@ -28,4 +28,5 @@
 /turf/open/misc/grass/vamp : /turf/open/misc/grass
 /turf/open/misc/grass/vamp/@SUBTYPES : /turf/open/misc/grass/@SUBTYPES
 
+/turf/open/floor/plating/bloodshit : /turf/open/water/bloodwave
 /turf/open/water/acid/vamp : /turf/open/water/acid

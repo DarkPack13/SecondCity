@@ -1,6 +1,5 @@
 /datum/job/vampire/sweeper
 	title = JOB_SWEEPER
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
@@ -26,9 +25,10 @@
 	jobtype = /datum/job/vampire/sweeper
 
 	id = /obj/item/card/sweeper
+	ears = /obj/item/radio/headset/darkpack
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	r_pocket = /obj/item/vamp/keys/anarch
 	l_pocket = /obj/item/smartphone/sweeper
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)
+	backpack_contents = list(/obj/item/vamp/keys/hack=1, /obj/item/card/credit=1, /obj/item/binoculars = 1)

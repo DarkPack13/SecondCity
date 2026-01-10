@@ -1,6 +1,6 @@
 /datum/outfit/job/vampire/national_guard
 	name = "National Guard Soldier"
-	//ears = /obj/item/p25radio/police/government
+	ears = /obj/item/radio/headset/darkpack/military
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
@@ -11,7 +11,6 @@
 	head = /obj/item/clothing/head/vampire/army
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpackaug = 3,
-		/obj/item/radio = 1,
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1
 		)
 

@@ -64,7 +64,7 @@
 					update_damage_overlays()
 				damage_dealt = actual_hit.get_damage() - delta // Unfortunately bodypart receive_damage doesn't return damage dealt so we do it manually
 			else
-				damage_dealt = -1 * adjustBruteLoss(damage_amount, forced = forced)
+				damage_dealt = -1 * adjust_brute_loss(damage_amount, forced = forced)
 		if(BURN)
 			if(isbodypart(def_zone))
 				var/obj/item/bodypart/actual_hit = def_zone
@@ -83,15 +83,15 @@
 					update_damage_overlays()
 				damage_dealt = actual_hit.get_damage() - delta // See above
 			else
-				damage_dealt = -1 * adjustFireLoss(damage_amount, forced = forced)
+				damage_dealt = -1 * adjust_fire_loss(damage_amount, forced = forced)
 		if(TOX)
-			damage_dealt = -1 * adjustToxLoss(damage_amount, forced = forced)
+			damage_dealt = -1 * adjust_tox_loss(damage_amount, forced = forced)
 		if(OXY)
-			damage_dealt = -1 * adjustOxyLoss(damage_amount, forced = forced)
+			damage_dealt = -1 * adjust_oxy_loss(damage_amount, forced = forced)
 		if(STAMINA)
-			damage_dealt = -1 * adjustStaminaLoss(damage_amount, forced = forced)
+			damage_dealt = -1 * adjust_stamina_loss(damage_amount, forced = forced)
 		if(BRAIN)
-			damage_dealt = -1 * adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
+			damage_dealt = -1 * adjust_organ_loss(ORGAN_SLOT_BRAIN, damage_amount)
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 		if(AGGRAVATED)
 			if(isbodypart(def_zone))
@@ -112,7 +112,7 @@
 					update_damage_overlays()
 				damage_dealt = actual_hit.get_damage() - delta // See above
 			else
-				damage_dealt = -1 * adjustAggLoss(damage_amount, forced = forced)
+				damage_dealt = -1 * adjust_agg_loss(damage_amount, forced = forced)
 		// DARKPACK EDIT ADD END
 
 	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
@@ -149,18 +149,18 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			return adjustBruteLoss(heal_amount)
+			return adjust_brute_loss(heal_amount)
 		if(BURN)
-			return adjustFireLoss(heal_amount)
+			return adjust_fire_loss(heal_amount)
 		if(TOX)
-			return adjustToxLoss(heal_amount)
+			return adjust_tox_loss(heal_amount)
 		if(OXY)
-			return adjustOxyLoss(heal_amount)
+			return adjust_oxy_loss(heal_amount)
 		if(STAMINA)
-			return adjustStaminaLoss(heal_amount)
+			return adjust_stamina_loss(heal_amount)
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 		if(AGGRAVATED)
-			return adjustAggLoss(heal_amount)
+			return adjust_agg_loss(heal_amount)
 		// DARPACK EDIT ADD END
 
 /// return the damage amount for the type given
@@ -171,23 +171,23 @@
 /mob/living/proc/get_current_damage_of_type(damagetype = BRUTE)
 	switch(damagetype)
 		if(BRUTE)
-			return getBruteLoss()
+			return get_brute_loss()
 		if(BURN)
-			return getFireLoss()
+			return get_fire_loss()
 		if(TOX)
-			return getToxLoss()
+			return get_tox_loss()
 		if(OXY)
-			return getOxyLoss()
+			return get_oxy_loss()
 		if(STAMINA)
-			return getStaminaLoss()
+			return get_stamina_loss()
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 		if(AGGRAVATED)
-			return getAggLoss()
+			return get_agg_loss()
 		// DARKPACK EDIT ADD END
 
 /// return the total damage of all types which update your health
 /mob/living/proc/get_total_damage(precision = DAMAGE_PRECISION)
-	return round(getBruteLoss() + getFireLoss() + getToxLoss() + getOxyLoss() + getAggLoss(), precision) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
+	return round(get_brute_loss() + get_fire_loss() + get_tox_loss() + get_oxy_loss() + get_agg_loss(), precision) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 
 /// Applies multiple damages at once via [apply_damage][/mob/living/proc/apply_damage]
 /mob/living/proc/apply_damages(
@@ -301,7 +301,7 @@
 			return HAS_TRAIT(src, TRAIT_TOXIMMUNE) ? 0 : 1
 	return 1
 
-/mob/living/proc/getBruteLoss()
+/mob/living/proc/get_brute_loss()
 	return bruteloss
 
 /mob/living/proc/can_adjust_brute_loss(amount, forced, required_bodytype)
@@ -311,7 +311,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/adjust_brute_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if (!can_adjust_brute_loss(amount, forced, required_bodytype))
 		return 0
 	. = bruteloss
@@ -323,7 +323,7 @@
 		updatehealth()
 
 
-/mob/living/proc/setBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/set_brute_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	. = bruteloss
@@ -335,7 +335,7 @@
 		updatehealth()
 	. -= bruteloss
 
-/mob/living/proc/getOxyLoss()
+/mob/living/proc/get_oxy_loss()
 	return oxyloss
 
 /mob/living/proc/can_adjust_oxy_loss(amount, forced, required_biotype, required_respiration_type)
@@ -354,7 +354,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL, required_respiration_type = ALL)
+/mob/living/proc/adjust_oxy_loss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL, required_respiration_type = ALL)
 	if(!can_adjust_oxy_loss(amount, forced, required_biotype, required_respiration_type))
 		return 0
 	. = oxyloss
@@ -365,7 +365,7 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/proc/setOxyLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL, required_respiration_type = ALL)
+/mob/living/proc/set_oxy_loss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL, required_respiration_type = ALL)
 	if(!forced)
 		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
@@ -385,7 +385,7 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/proc/getToxLoss()
+/mob/living/proc/get_tox_loss()
 	return toxloss
 
 /mob/living/proc/can_adjust_tox_loss(amount, forced, required_biotype = ALL)
@@ -395,7 +395,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL)
+/mob/living/proc/adjust_tox_loss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL)
 	if(!can_adjust_tox_loss(amount, forced, required_biotype))
 		return 0
 
@@ -422,7 +422,7 @@
 		updatehealth()
 
 
-/mob/living/proc/setToxLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL)
+/mob/living/proc/set_tox_loss(amount, updating_health = TRUE, forced = FALSE, required_biotype = ALL)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	if(!forced && !(mob_biotypes & required_biotype))
@@ -435,7 +435,7 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/proc/getFireLoss()
+/mob/living/proc/get_fire_loss()
 	return fireloss
 
 /mob/living/proc/can_adjust_fire_loss(amount, forced, required_bodytype)
@@ -445,7 +445,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/adjust_fire_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if(!can_adjust_fire_loss(amount, forced, required_bodytype))
 		return 0
 	. = fireloss
@@ -456,7 +456,7 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/proc/setFireLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/set_fire_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 	. = fireloss
@@ -467,16 +467,16 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/proc/adjustOrganLoss(slot, amount, maximum, required_organ_flag)
+/mob/living/proc/adjust_organ_loss(slot, amount, maximum, required_organ_flag)
 	return
 
-/mob/living/proc/setOrganLoss(slot, amount, maximum, required_organ_flag)
+/mob/living/proc/set_organ_loss(slot, amount, maximum, required_organ_flag)
 	return
 
 /mob/living/proc/get_organ_loss(slot, required_organ_flag)
 	return
 
-/mob/living/proc/getStaminaLoss()
+/mob/living/proc/get_stamina_loss()
 	return staminaloss
 
 /mob/living/proc/can_adjust_stamina_loss(amount, forced, required_biotype = ALL)
@@ -486,7 +486,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustStaminaLoss(amount, updating_stamina = TRUE, forced = FALSE, required_biotype = ALL)
+/mob/living/proc/adjust_stamina_loss(amount, updating_stamina = TRUE, forced = FALSE, required_biotype = ALL)
 	if(!can_adjust_stamina_loss(amount, forced, required_biotype))
 		return 0
 	var/old_amount = staminaloss
@@ -501,7 +501,7 @@
 		updatehealth()
 	return delta
 
-/mob/living/proc/setStaminaLoss(amount, updating_stamina = TRUE, forced = FALSE, required_biotype = ALL)
+/mob/living/proc/set_stamina_loss(amount, updating_stamina = TRUE, forced = FALSE, required_biotype = ALL)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 	if(!forced && !(mob_biotypes & required_biotype))
@@ -519,12 +519,12 @@
 
 /// The mob has received stamina damage
 ///
-/// - current_level: The mob's current stamina damage amount (to save unnecessary getStaminaLoss() calls)
+/// - current_level: The mob's current stamina damage amount (to save unnecessary get_stamina_loss() calls)
 /// - amount_actual: The amount of stamina damage received, in actuality
 /// For example, if you are taking 50 stamina damage but are at 90, you would actually only receive 30 stamina damage (due to the cap)
 /// - amount: The amount of stamina damage received, raw
 /mob/living/proc/received_stamina_damage(current_level, amount_actual, amount)
-	addtimer(CALLBACK(src, PROC_REF(setStaminaLoss), 0, TRUE, TRUE), stamina_regen_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(set_stamina_loss), 0, TRUE, TRUE), stamina_regen_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /**
  * heal ONE external organ, organ gets randomly selected from damaged ones.
@@ -532,7 +532,7 @@
  * returns the net change in damage
  */
 /mob/living/proc/heal_bodypart_damage(brute = 0, burn = 0, updating_health = TRUE, required_bodytype = NONE, target_zone = null, aggravated = 0) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
-	. = (adjustBruteLoss(-abs(brute), updating_health = FALSE) + adjustFireLoss(-abs(burn), updating_health = FALSE) + adjustAggLoss(-abs(aggravated), updating_health = FALSE)) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
+	. = (adjust_brute_loss(-abs(brute), updating_health = FALSE) + adjust_fire_loss(-abs(burn), updating_health = FALSE) + adjust_agg_loss(-abs(aggravated), updating_health = FALSE)) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 	if(!.) // no change, no need to update
 		return FALSE
 	if(updating_health)
@@ -540,7 +540,7 @@
 
 /// damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, updating_health = TRUE, required_bodytype, check_armor = FALSE, wound_bonus = 0, exposed_wound_bonus = 0, sharpness = NONE, aggravated = 0) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
-	. = (adjustBruteLoss(abs(brute), updating_health = FALSE) + adjustFireLoss(abs(burn), updating_health = FALSE) + adjustAggLoss(abs(aggravated), updating_health = FALSE)) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
+	. = (adjust_brute_loss(abs(brute), updating_health = FALSE) + adjust_fire_loss(abs(burn), updating_health = FALSE) + adjust_agg_loss(abs(aggravated), updating_health = FALSE)) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 	if(!.) // no change, no need to update
 		return FALSE
 	if(updating_health)
@@ -548,10 +548,10 @@
 
 /// heal MANY bodyparts, in random order. note: stamina arg nonfunctional for carbon mobs
 /mob/living/proc/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_bodytype, updating_health = TRUE, forced = FALSE, aggravated = 0) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
-	. = (adjustBruteLoss(-abs(brute), updating_health = FALSE, forced = forced) + \
-			adjustFireLoss(-abs(burn), updating_health = FALSE, forced = forced) + \
-			adjustStaminaLoss(-abs(stamina), updating_stamina = FALSE, forced = forced) + \
-			adjustAggLoss(-abs(aggravated), updating_health = FALSE, forced = forced)) // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
+	. = (adjust_brute_loss(-abs(brute), updating_health = FALSE, forced = forced) + \
+			adjust_fire_loss(-abs(burn), updating_health = FALSE, forced = forced) + \
+			adjust_stamina_loss(-abs(stamina), updating_stamina = FALSE, forced = forced) + \
+			adjust_agg_loss(-abs(aggravated), updating_health = FALSE, forced = forced)) // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
 	if(!.) // no change, no need to update
 		return FALSE
 	if(updating_health)
@@ -559,10 +559,10 @@
 
 /// damage MANY bodyparts, in random order. note: stamina arg nonfunctional for carbon mobs
 /mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, forced = FALSE, required_bodytype, aggravated = 0) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
-	. = (adjustBruteLoss(abs(brute), updating_health = FALSE, forced = forced) + \
-			adjustFireLoss(abs(burn), updating_health = FALSE, forced = forced) + \
-			adjustStaminaLoss(abs(stamina), updating_stamina = FALSE, forced = forced) + \
-			adjustAggLoss(abs(aggravated), updating_health = FALSE, forced = forced))
+	. = (adjust_brute_loss(abs(brute), updating_health = FALSE, forced = forced) + \
+			adjust_fire_loss(abs(burn), updating_health = FALSE, forced = forced) + \
+			adjust_stamina_loss(abs(stamina), updating_stamina = FALSE, forced = forced) + \
+			adjust_agg_loss(abs(aggravated), updating_health = FALSE, forced = forced)) // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
 	if(!.) // no change, no need to update
 		return FALSE
 	if(updating_health)
