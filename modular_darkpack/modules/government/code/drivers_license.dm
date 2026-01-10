@@ -1,4 +1,4 @@
-/obj/item/card/id/drivers_license
+/obj/item/card/drivers_license
 	name = "driver's license"
 	desc = "An identification card allowing its holder to own and operate motor vehicles. Doubles as a valid form of identification."
 	icon = 'modular_darkpack/modules/government/icons/docs.dmi'
@@ -13,7 +13,7 @@
 	/// If the NAME does not belong to the person.
 	var/fake_identity = FALSE
 
-/obj/item/card/id/drivers_license/Initialize(mapload)
+/obj/item/card/drivers_license/Initialize(mapload)
 	. = ..()
 	var/mob/living/carbon/human/user = null
 	if(ishuman(loc)) // In pockets
@@ -23,7 +23,7 @@
 	if(user)
 		link_human(user)
 
-/obj/item/card/id/drivers_license/proc/link_human(mob/living/carbon/human/user)
+/obj/item/card/drivers_license/proc/link_human(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_ILLEGAL_IDENTITY))
 		fake = TRUE
 		fake_identity = TRUE
@@ -39,7 +39,7 @@
 			if(pref_state)
 				issuing_state = pref_state
 
-/obj/item/card/id/drivers_license/examine(mob/user)
+/obj/item/card/drivers_license/examine(mob/user)
 	. = ..()
 	//DARKPACK TODO - STATS - refer to passport.dm, this should be a statcheck to see if its an illegal ID/counterfeit
 	if(owner)

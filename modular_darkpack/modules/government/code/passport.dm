@@ -22,8 +22,18 @@
 		passport.link_human(criminal)
 
 /datum/loadout_item/pocket_items/passport
-	name = "Passport"
+	name = "Identification"
 	item_path = /obj/item/passport
+
+/datum/loadout_item/pocket_items/passport/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
+	if(visuals_only)
+		return ..()
+	var/country = equipper?.client?.prefs?.read_preference(/datum/preference/choiced/country_of_origin)
+	//USA Country of Origin gets drivers license, not passport
+	if(country == "United States")
+		LAZYADD(outfit.backpack_contents, /obj/item/card/drivers_license)
+	else
+		return ..()
 
 /obj/item/passport
 	name = "passport"
