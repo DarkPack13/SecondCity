@@ -33,7 +33,7 @@
 
 	if(isnpc(victim))
 		to_chat(last_activator, span_notice("[victim.name] is a waning, base Drone. There is no greater knowledge to gleam from this one."))
-		to_chat(last_activator, span_notice("<b>Damage taken:<b><br>BRUTE: [victim.getBruteLoss()]<br>OXY: [victim.getOxyLoss()]<br>TOXIN: [victim.getToxLoss()]<br>BURN: [victim.getFireLoss()]<br>CLONE: [victim.getAggLoss()]"))
+		to_chat(last_activator, span_notice("<b>Damage taken:<b><br>BRUTE: [victim.get_brute_loss()]<br>OXY: [victim.get_oxy_loss()]<br>TOXIN: [victim.get_tox_loss()]<br>BURN: [victim.get_fire_loss()]<br>CLONE: [victim.get_agg_loss()]"))
 		to_chat(last_activator, span_notice("Last melee attacker: [victim.lastattacker]"))
 		qdel(src)
 		return
@@ -49,7 +49,7 @@
 		else
 			to_chat(last_activator, span_ghostalert("<i>[deathdesc]</i>"))
 			//discount scanner
-			to_chat(last_activator, span_notice("<b>Damage taken:<b><br>BRUTE: [victim.getBruteLoss()]<br>OXY: [victim.getOxyLoss()]<br>TOXIN: [victim.getToxLoss()]<br>BURN: [victim.getFireLoss()]<br>CLONE: [victim.getAggLoss()]"))
+			to_chat(last_activator, span_notice("<b>Damage taken:<b><br>BRUTE: [victim.get_brute_loss()]<br>OXY: [victim.get_oxy_loss()]<br>TOXIN: [victim.get_tox_loss()]<br>BURN: [victim.get_fire_loss()]<br>CLONE: [victim.get_agg_loss()]"))
 			to_chat(last_activator, span_notice("Last melee attacker: [victim.lastattacker]")) //guns behave weirdly
 			qdel(src)
 
