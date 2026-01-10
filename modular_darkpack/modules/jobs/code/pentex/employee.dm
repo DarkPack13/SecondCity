@@ -49,4 +49,4 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	r_pocket = /obj/item/vamp/keys/pentex
 	l_pocket = /obj/item/smartphone // /employee - todo subtype
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/card/credit=1)
