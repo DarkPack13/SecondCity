@@ -21,7 +21,7 @@
 			else if(H.stat > SOFT_CRIT)
 				valid_bodies += H
 			else
-				H.adjustAggLoss(50)
+				H.adjust_agg_loss(50)
 				playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
@@ -125,7 +125,7 @@
 
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
-		target_body.adjustAggLoss(-100)
+		target_body.adjust_agg_loss(-100)
 		target_body.set_species(/datum/species/human/kindred)
 		target_body.set_clan(/datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)

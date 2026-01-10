@@ -1,6 +1,5 @@
 /datum/job/vampire/gargoyle
 	title = JOB_CHANTRY_GARGOYLE
-	department_head = /datum/job/vampire/regent
 	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5
@@ -36,9 +35,7 @@
 	l_pocket = /obj/item/smartphone/gargoyle
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
-		/obj/item/watch=1,
-		/obj/item/flashlight=1,
-		/obj/item/ritual_tome/arcane=1,
-		/obj/item/card/credit=1,
-		/obj/item/scythe/vamp=1,
+		/obj/item/ritual_tome/arcane = 1,
+		/obj/item/card/credit = 1,
+		/obj/item/scythe/vamp = 1,
 	)

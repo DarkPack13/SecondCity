@@ -95,6 +95,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
 #define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
+#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" //DARKPACK EDIT ADDITION -- Obtenebration & Mysticism Rework

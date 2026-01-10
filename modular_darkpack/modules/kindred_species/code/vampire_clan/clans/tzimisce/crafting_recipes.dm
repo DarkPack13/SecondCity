@@ -1,4 +1,4 @@
-
+/* DARKPACK TODO - requires vicissitude material to pass unit tests.
 /datum/crafting_recipe/tzi_trench
 	name = "Leather-Bone Trenchcoat (Armor)"
 	time = 50
@@ -77,3 +77,4 @@
 	result = /mob/living/basic/tanker
 	category = CAT_TZIMISCE
 	crafting_flags = CRAFT_CHECK_DENSITY
+*/

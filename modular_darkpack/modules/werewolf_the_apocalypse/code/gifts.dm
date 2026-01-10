@@ -65,7 +65,7 @@
 	. = ..()
 	if(inspired)
 		if(stat != DEAD)
-			adjustBruteLoss(-10, TRUE)
+			adjust_brute_loss(-10, TRUE)
 			var/obj/effect/celerity/C = new(get_turf(src))
 			C.appearance = appearance
 			C.dir = dir
@@ -347,11 +347,11 @@
 		var/mob/living/carbon/C = owner
 		if(C.stat != DEAD)
 			SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/rage_heal.ogg', 0, 0, 75))
-			C.adjustBruteLoss(-40*C.auspice.level, TRUE)
-			C.adjustFireLoss(-30*C.auspice.level, TRUE)
-			C.adjustAggLoss(-10*C.auspice.level, TRUE)
+			C.adjust_brute_loss(-40*C.auspice.level, TRUE)
+			C.adjust_fire_loss(-30*C.auspice.level, TRUE)
+			C.adjust_agg_loss(-10*C.auspice.level, TRUE)
 			C.adjustToxLoss(-10*C.auspice.level, TRUE)
-			C.adjustOxyLoss(-20*C.auspice.level, TRUE)
+			C.adjust_oxy_loss(-20*C.auspice.level, TRUE)
 			C.adjust_blood_pool(C.auspice.level)
 			C.blood_volume = min(C.blood_volume + 56 * C.auspice.level, BLOOD_VOLUME_NORMAL)
 			if(ishuman(owner))
