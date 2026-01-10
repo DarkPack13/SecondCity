@@ -1,4 +1,5 @@
 /obj/item/clothing/under/vampire
+	abstract_type = /obj/item/clothing/under/vampire
 	desc = "Some clothes."
 	name = "clothes"
 	has_sensor = NO_SENSORS

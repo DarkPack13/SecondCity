@@ -52,4 +52,4 @@
 	belt = /obj/item/storage/belt/holster/detective/darkpack/endron
 	l_pocket = /obj/item/smartphone // /sec - todo subtype
 	r_pocket = /obj/item/vamp/keys/pentex
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit=1)
