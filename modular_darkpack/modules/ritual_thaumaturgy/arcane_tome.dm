@@ -10,7 +10,7 @@
 	if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
 		to_chat(user, span_cult("A book whose title is inscribed in latin and coated with various sigils and shapes. You'll need a teacher if you want to learn more. For some reason it wont open."))
 		return
-	display_rituals()
+	.=..()
 
 /datum/crafting_recipe/arctome
 	name = "Arcane Tome"
