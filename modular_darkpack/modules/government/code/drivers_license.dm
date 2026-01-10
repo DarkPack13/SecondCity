@@ -3,6 +3,7 @@
 	desc = "An identification card allowing its holder to own and operate motor vehicles. Doubles as a valid form of identification."
 	icon = 'modular_darkpack/modules/government/icons/docs.dmi'
 	icon_state = "drivers"
+	worn_icon_state = ""
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/government/icons/docsonfloor.dmi')
 	/// Issuing state
 	var/issuing_state = "California"

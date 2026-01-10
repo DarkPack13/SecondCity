@@ -3,4 +3,5 @@
 	desc = "A permit allowing it's holder to carry firearms in public - authorized by the local police department."
 	icon = 'modular_darkpack/modules/government/icons/docs.dmi'
 	icon_state = "weapons"
+	worn_icon_state = ""
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/government/icons/docsonfloor.dmi')
