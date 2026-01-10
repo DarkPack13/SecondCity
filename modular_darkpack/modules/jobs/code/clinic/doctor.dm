@@ -1,6 +1,5 @@
 /datum/job/vampire/doctor
 	title = JOB_DOCTOR
-	department_head = /datum/job/vampire/clinic_director
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
@@ -33,6 +32,6 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/clinic
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
+	backpack_contents = list(/obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
 
 	skillchips = list(/obj/item/skillchip/entrails_reader)

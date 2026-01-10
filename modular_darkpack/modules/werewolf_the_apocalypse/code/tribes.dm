@@ -133,7 +133,7 @@
 		owner.visible_message(span_danger("[owner.name] crackles with heat!"), span_danger("You crackle with heat, charging up your Gift!"))
 		if(do_after(owner, 3 SECONDS))
 			for(var/mob/living/L in orange(5, owner))
-				L.adjustFireLoss(40)
+				L.adjust_fire_loss(40)
 			for(var/turf/T in orange(4, get_turf(owner)))
 				var/obj/effect/abstract/turf_fire/F = new(T)
 				spawn(5)

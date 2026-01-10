@@ -16,7 +16,7 @@
 
 	if(isliving(arrived) && activated)
 		var/mob/living/L = arrived
-		L.adjustFireLoss(50 + activator_bonus)
+		L.adjust_fire_loss(50 + activator_bonus)
 		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		qdel(src)
 
