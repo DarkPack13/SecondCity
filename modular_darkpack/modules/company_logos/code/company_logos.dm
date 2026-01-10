@@ -35,20 +35,37 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/logo = "[snowflake_icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo", non_standard_size = TRUE)]"
+	var/logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
 	examine_list += span_info("<br>[logo]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
 
 	if(our_brand.slogan)
 		examine_list += span_notice("<I>\"[our_brand.slogan]\"</I>")
 
 /datum/brand
-	var/manufacturer = "badcode"
-	var/full_name = "Bad Code Inc."
-	var/slogan = "Bad Code Inc.: Telling America's Coders they screwed up since 1970."
-	var/name_span = "hypnophrase"
-	var/logo_icon = 'modular_darkpack/modules/company_logos/icons/corp_logos.dmi'
-	var/company_color = COLOR_ADMIN_PINK
 	abstract_type = /datum/brand
+
+	// Used to index the brand and reference the icon_state
+	var/manufacturer = "badcode"
+	// The full, plain-text name of the company.
+	var/full_name = "Bad Code Inc."
+	// Company slogan. Displayed alongside the logo in most cases.
+	var/slogan = "Bad Code Inc.: Telling America's Coders they screwed up since 1970."
+	// Formatting applied to the name in item descriptions
+	var/name_span = "hypnophrase"
+	// The icon file we're grabbing our icon_state from. Default dimensions in this file are 300x110.
+	var/logo_icon = 'modular_darkpack/modules/company_logos/icons/corp_logos.dmi'
+	// Company color used for coloring certain items that change depending on brand
+	var/company_color = COLOR_ADMIN_PINK
+	// Stuff you could find on their wikipedia page, or by asking around at a finance conference. Public information.
+	var/public_description = "<span class='hypnophrase'>Bad Code Inc.</span> was founded in 1970 after John Code forgot to close a string \
+		while writing entries for brands in modular_darkpack/modules/company_logos/code/company_logos.dm. They've been industry leading in hunting down \
+		coders who make this same mistake and stabbing them 126 times in the chest, groin, and thighs. It is estimated that they profit around 1.6 trillion \
+		dollars per year with this business model."
+	// Stuff that you have to KNOW to know. Things that the Hounds or Truthcatchers would hunt you down for finding out without their permission.
+	var/secret_description = "Unbeknownst to the public, <span class='hypnophrase'>Bad Code Inc.</span> actually spares the lives of 18% of coders \
+		and instead condemns them to a facility located deep under Silicon Valley called the \"Bugfix Beach.\" These poor wretched souls are punished \
+		with a dark brand upon their left buttock, marking them as a \"Maintainer\". Slaves that show extreme aptitude in the mines are \"promoted\" \
+		to a position of abject suffering in the deepest point of the mines. In whispered tones, the wretched \"Maintainers\" call them the \"Head Coder.\""
 
 /datum/brand/pentex
 	manufacturer = "pentex"
@@ -56,6 +73,12 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Pentex: Making All The Really Tough Decisions For You!"
 	name_span = "corp_label_pentex"
 	company_color = COLOR_CORP_PENTEX
+	public_description = "Pentex Group is a multinational megacorporation, one of the largest in the world. Originally an oil and mining company, Pentex \
+		Group is now a holding company with subsidiares covering almost every industry on Earth. The vast majority of people have never heard of \
+		Pentex, but almost everyone knows and/or trusts at least one of their subsidiaries."
+	secret_description = "The average person has no knowledge of Pentex Group's dealings, which allows them to pull the strings like a dark puppetmaster. \
+		The company's main motivation is the spirtual, moral, and environmental corruption and collapse of Earth as we know it. Despite this, many who stalk \
+		the night still ally with them. Why make your own power when you can ride the coat-tails of the most powerful corporation in history?"
 
 /datum/brand/pentex/ardus
 	manufacturer = "ardus"

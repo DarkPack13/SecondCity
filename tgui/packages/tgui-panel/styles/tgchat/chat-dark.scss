@@ -1298,4 +1298,16 @@ $border-width-px: $border-width * 1px;
   color: #b09448;
 }
 
+.boxed_message .icon {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
+  padding: 0;
+
+  &.corplogo {
+    width: 150px !important;
+    height: 55px !important;
+  }
+}
+
 /* DARKPACK EDIT ADD END */
