@@ -2,7 +2,6 @@
 	title = JOB_PRIMOGEN_VENTRUE
 	description = "Offer your infinite knowledge to Prince of the City. Maintain the local Jazz Club, in front of the Tower, and its Elysium."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -42,5 +41,4 @@
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/smartphone/ventrue_primo
-	r_pocket = /obj/item/watch
-	backpack_contents = list(/obj/item/vamp/keys/ventrue/primogen=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	backpack_contents = list(/obj/item/vamp/keys/ventrue/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

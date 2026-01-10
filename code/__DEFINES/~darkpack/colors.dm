@@ -1,0 +1,1 @@
+#define COLOR_ENDRON_GREEN "#015334"

@@ -32,7 +32,7 @@
 			trauma.friend.key = mob_human.key
 
 	make_diablerist()
-	adjustBruteLoss(-50, TRUE)
-	adjustFireLoss(-50, TRUE)
+	adjust_brute_loss(-50, TRUE)
+	adjust_fire_loss(-50, TRUE)
 	mob.death()
 

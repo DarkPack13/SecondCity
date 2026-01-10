@@ -24,5 +24,4 @@
 	jobtype = /datum/job/vampire/citizen
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/strip
-	id = /obj/item/watch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/card/credit=1)
