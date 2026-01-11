@@ -13,7 +13,7 @@
 
 /datum/preference/choiced/garou_auspice/icon_for(value)
 	var/datum/universal_icon/auspice_icon = uni_icon('icons/effects/effects.dmi', "nothing")
-	//auspice_icon.blend_icon(uni_icon('modular_darkpack/modules/garou/icons/auspices.dmi', LOWER_TEXT(value)), ICON_OVERLAY)
+	//auspice_icon.blend_icon(uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/auspices.dmi', LOWER_TEXT(value)), ICON_OVERLAY)
 	return auspice_icon
 
 /datum/preference/choiced/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)

@@ -9,6 +9,18 @@
 	splat_traits = list(
 		TRAIT_FRENETIC_AURA
 	)
+	var/datum/action/cooldown/spell/shapeshift/transformation/fera_transformation
+	var/list/transformation_list = list()
+
+/datum/splat/werewolf/shifter/on_gain()
+	. = ..()
+	fera_transformation = new(owner, transformation_list)
+	fera_transformation.Grant(owner_species)
+
+/datum/splat/werewolf/shifter/on_lose_or_destroy()
+	. = ..()
+	fera_transformation.Remove(owner)
+	QDEL_NULL(fera_transformation)
 
 /datum/splat/werewolf/shifter/garou
 

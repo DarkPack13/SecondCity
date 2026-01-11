@@ -8,7 +8,7 @@
 /datum/action/gift/stoic_pose/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
-		playsound(get_turf(owner), 'modular_darkpack/modules/deprecated/sounds/ice_blocking.ogg', 100, FALSE)
+		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/ice_blocking.ogg', 100, FALSE)
 		var/mob/living/carbon/C = owner
 		if(isgarou(C))
 			var/obj/were_ice/W = new (get_turf(owner))
@@ -31,6 +31,21 @@
 			spawn(12 SECONDS)
 				C.forceMove(get_turf(W))
 				qdel(W)
+
+/obj/were_ice
+	name = "ice block"
+	desc = "Stores some precious organs..."
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_lupus.dmi'
+	icon_state = "ice_man"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+
+/obj/were_ice/lupus
+	icon_state = "ice_wolf"
+
+/obj/were_ice/crinos
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf.dmi'
+	icon_state = "ice"
+	pixel_w = -8
 
 /datum/action/gift/freezing_wind
 	name = "Freezing Wind"

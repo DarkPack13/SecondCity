@@ -1,7 +1,7 @@
 /mob/living/carbon/human/fera/crinos
 	name = "crinos"
 	icon_state = "black"
-	icon = 'modular_darkpack/modules/garou/icons/crinos.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/crinos.dmi'
 	mob_size = MOB_SIZE_HUGE
 	examine_thats = "That's a"
 	SET_BASE_PIXEL(-8, 0)

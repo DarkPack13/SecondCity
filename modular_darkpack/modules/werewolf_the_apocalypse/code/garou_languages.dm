@@ -31,7 +31,7 @@
 		"lu", "lu", "fe", "zi", "mo", "sha", "ru", "te", "vo", "ni",
 		"xa", "jo", "da", "ku", "pe", "su", "yo", "ve", "mi", "ba"
 	)
-	icon = 'modular_darkpack/modules/garou/icons/garou_languages.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_languages.dmi'
 	icon_state = "garou"
 	default_priority = 90
 
@@ -48,7 +48,7 @@
 		"vru", "sna", "yru", "hru", "yla", "fro", "rik", "zru", "skra", "zhu",
 		"kro", "thro", "zyi", "sha", "hza", "mru", "wru", "bruk", "hka", "tza"
 	)
-	icon = 'modular_darkpack/modules/garou/icons/garou_languages.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_languages.dmi'
 	icon_state = "garou"
 	default_priority = 90
 

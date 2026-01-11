@@ -1,7 +1,7 @@
 /mob/living/carbon/human/fera/lupus
 	name = "lupus"
 	icon_state = "black"
-	icon = 'modular_darkpack/modules/garou/icons/lupus.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/lupus.dmi'
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_HUMAN
 	examine_thats = "That's a"

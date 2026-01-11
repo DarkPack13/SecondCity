@@ -27,11 +27,11 @@
 			breed_homid.scale(32, 32)
 			garou_icon.blend_icon(breed_homid, ICON_OVERLAY)
 		if(BREED_LUPUS)
-			var/datum/universal_icon/breed_lupus = uni_icon('modular_darkpack/modules/garou/icons/lupus.dmi', "black")
+			var/datum/universal_icon/breed_lupus = uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/lupus.dmi', "black")
 			breed_lupus.scale(32, 32)
 			garou_icon.blend_icon(breed_lupus, ICON_OVERLAY)
 		if(BREED_CRINOS)
-			var/datum/universal_icon/breed_crinos = uni_icon('modular_darkpack/modules/garou/icons/crinos.dmi', "black")
+			var/datum/universal_icon/breed_crinos = uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/crinos.dmi', "black")
 			breed_crinos.scale(32, 32)
 			garou_icon.blend_icon(breed_crinos, ICON_OVERLAY)
 	return garou_icon
