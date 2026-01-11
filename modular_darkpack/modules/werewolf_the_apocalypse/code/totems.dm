@@ -74,7 +74,7 @@
 							if(last_rage+50 < world.time)
 								last_rage = world.time
 								to_chat(C, span_userdanger("<b>YOUR TOTEM IS BREAKING DOWN</b>"))
-								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/bumps.ogg', 0, 0, 75))
+								SEND_SOUND(C, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/bumps.ogg', 0, 0, 75))
 								adjust_rage(1, C, FALSE)
 	if(amount < 0)
 		totem_health = min(initial(totem_health), totem_health-amount)
@@ -85,7 +85,7 @@
 						if(C.stat != DEAD)
 							if(C.auspice.tribe == tribe)
 								to_chat(C, span_userhelp("<b>YOUR TOTEM IS RESTORED</b>"))
-								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/inspire.ogg', 0, 0, 75))
+								SEND_SOUND(C, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', 0, 0, 75))
 								adjust_gnosis(1, C, FALSE)
 				icon_state = "[initial(icon_state)]"
 				overlays -= totem_light_overlay
@@ -150,7 +150,7 @@
 					if(!opening)
 						opening = TRUE
 						if(do_mob(user, src, 10 SECONDS))
-							playsound(loc, 'modular_darkpack/modules/deprecated/sounds/portal.ogg', 75, FALSE)
+							playsound(loc, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/portal.ogg', 75, FALSE)
 							var/obj/umbra_portal/U = new (get_step(src, SOUTH))
 							U.id = "[tribe][rand(1, 999)]"
 							U.later_initialize()
@@ -164,7 +164,7 @@
 					to_chat(C, span_warning("You need a Theurge to open the Moon Gates!"))
 			else
 				if(C.auspice.name == "Theurge")
-					playsound(loc, 'modular_darkpack/modules/deprecated/sounds/portal.ogg', 75, FALSE)
+					playsound(loc, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/portal.ogg', 75, FALSE)
 					qdel(prev.exit)
 					qdel(prev)
 		else

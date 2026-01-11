@@ -15,7 +15,7 @@
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
 	fera_transformation = new(owner, transformation_list)
-	fera_transformation.Grant(owner_species)
+	fera_transformation.Grant(owner)
 
 /datum/splat/werewolf/shifter/on_lose_or_destroy()
 	. = ..()
@@ -23,5 +23,6 @@
 	QDEL_NULL(fera_transformation)
 
 /datum/splat/werewolf/shifter/garou
+	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human/fera/glabro, /mob/living/carbon/human/fera/hispo)
 
 // /datum/splat/werewolf/shifter/corax // DARKPACK TODO - CORAX

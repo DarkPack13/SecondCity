@@ -1,6 +1,11 @@
 /datum/action/gift
-	icon_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+
+	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+	background_icon_state = "bg_gift"
 	button_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+	//button_icon_state = ""
+	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	var/rage_req = 0
 	var/gnosis_req = 0
@@ -19,12 +24,12 @@
 		if(rage_req)
 			if(H.auspice.rage < rage_req)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
 				allowed_to_proceed = FALSE
 				return
 			if(H.auspice.gnosis < gnosis_req)
 				to_chat(owner, span_warning("You don't have enough <b>GNOSIS</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
 				allowed_to_proceed = FALSE
 				return
 		if(cool_down+150 >= world.time)

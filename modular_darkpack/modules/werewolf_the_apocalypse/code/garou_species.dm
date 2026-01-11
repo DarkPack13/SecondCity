@@ -12,7 +12,6 @@
 	changesource_flags = MIRROR_BADMIN
 	species_language_holder = /datum/language_holder/garou
 	mutanttongue = /obj/item/organ/tongue/garou
-	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human/fera/glabro, /mob/living/carbon/human/fera/hispo)
 
 /datum/species/human/shifter/garou/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons, replace_missing)
 	. = ..()

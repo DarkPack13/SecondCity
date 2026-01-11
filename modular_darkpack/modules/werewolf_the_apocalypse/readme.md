@@ -24,4 +24,4 @@ This module is for the base fera subtype of humans, a generic class of humans th
 
 ### Credits:
 
-XeonMations
+XeonMations, FalloutFalcon
