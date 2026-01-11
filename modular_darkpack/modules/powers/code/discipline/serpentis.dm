@@ -148,7 +148,8 @@
 	vitae_cost = 1
 	violates_masquerade = TRUE
 	cancelable = TRUE
-	duration_length = 999 SCENES
+	toggled = TRUE
+	duration_length = 0
 	cooldown_length = 30 SECONDS
 	var/datum/action/cooldown/spell/shapeshift/cobra/cobra_form
 
