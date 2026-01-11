@@ -102,7 +102,9 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1.2 SECONDS
 	category = CAT_WEAPON_AMMO
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
  */
+
 /datum/crafting_recipe/trashball
 	name = "Trashball"
 	result = /obj/item/stack/cannonball/trashball

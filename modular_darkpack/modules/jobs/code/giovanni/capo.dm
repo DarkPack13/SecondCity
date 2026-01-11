@@ -1,6 +1,5 @@
 /datum/job/vampire/capo
 	title = JOB_CAPO
-	department_head = list("Uncle Augie")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -24,11 +23,10 @@
 	name = "Capo"
 	jobtype = /datum/job/vampire/capo
 
-	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/smartphone/giovanni_capo
 	r_pocket = /obj/item/vamp/keys/capo
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit/giovanniboss=1)
+	backpack_contents = list(/obj/item/card/credit/giovanniboss=1)

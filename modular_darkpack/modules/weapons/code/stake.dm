@@ -13,6 +13,7 @@
 	sharpness = SHARP_POINTY
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
+	custom_price = 100
 
 /obj/item/vampire_stake/attack(mob/living/target, mob/living/user)
 	. = ..()

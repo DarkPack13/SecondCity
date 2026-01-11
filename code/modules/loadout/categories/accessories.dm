@@ -1,5 +1,3 @@
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
-/// Accessory Items (Moves overrided items to backpack)
 /datum/loadout_category/accessories
 	category_name = "Accessory"
 	category_ui_icon = FA_ICON_VEST
@@ -83,5 +81,4 @@
 /datum/loadout_item/accessory/pride
 	name = "Pride Pin"
 	item_path = /obj/item/clothing/accessory/pride
-	loadout_flags = LOADOUT_FLAG_ALLOW_RESKIN
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories
+	reskin_datum = /datum/atom_skin/pride_pin
