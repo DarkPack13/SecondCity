@@ -46,4 +46,4 @@
 	suit = /obj/item/clothing/suit/vampire/vest/medieval
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	l_pocket = /obj/item/smartphone
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/passport=1, /obj/item/veil_contract, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
+	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/veil_contract, /obj/item/card/credit/rich=1)
