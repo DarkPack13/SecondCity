@@ -2,6 +2,11 @@
 /datum/splat/werewolf
 	abstract_type = /datum/splat/werewolf
 
+	// var/start_rage = 1
+	var/rage = 1
+	// var/start_gnosis = 1
+	var/gnosis = 1
+
 /datum/splat/werewolf/kinfolk
 
 /datum/splat/werewolf/shifter
