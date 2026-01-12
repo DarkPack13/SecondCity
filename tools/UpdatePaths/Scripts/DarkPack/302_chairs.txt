@@ -3,7 +3,7 @@
 #/obj/structure/chair : /obj/structure/chair/darkpack {@OLD}
 #/obj/structure/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
 #/obj/structure/chair/stool/bar : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
-#/obj/structure/chair/wood : /obj/structure/chair/wood/darkpack @{@OLD}
+#/obj/structure/chair/wood : /obj/structure/chair/wood/darkpack {@OLD}
 
 #/obj/item/chair : /obj/item/chair/darkpack {@OLD}
 #/obj/item/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}

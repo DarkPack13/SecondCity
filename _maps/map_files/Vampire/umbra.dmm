@@ -609,7 +609,7 @@
 /turf/open/water/beach/vamp/deep,
 /area/vtm/outside/penumbra)
 "iu" = (
-/obj/structure/chair/wood/darkpack @{
+/obj/structure/chair/wood/darkpack{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
@@ -653,7 +653,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/penumbra)
 "jj" = (
-/obj/structure/chair/wood/darkpack @{
+/obj/structure/chair/wood/darkpack{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -1748,7 +1748,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "yx" = (
-/obj/structure/chair/wood/darkpack @{
+/obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
 /turf/open/floor/plating/concrete,
@@ -2100,7 +2100,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Dr" = (
-/obj/structure/chair/wood/darkpack @,
+/obj/structure/chair/wood/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "Ds" = (
@@ -3174,7 +3174,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "TQ" = (
-/obj/structure/chair/wood/darkpack @,
+/obj/structure/chair/wood/darkpack,
 /obj/effect/decal/carpet,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
@@ -3224,7 +3224,7 @@
 /turf/open/floor/city/saint,
 /area/vtm/outside/penumbra)
 "UK" = (
-/obj/structure/chair/wood/darkpack @{
+/obj/structure/chair/wood/darkpack{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
