@@ -71,6 +71,7 @@
 	// Prevent blood loss and regeneration effects
 	RegisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
 
+	// Morality loss
 	RegisterSignal(owner, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
 
 	// Make all food except raw meat repulsive
