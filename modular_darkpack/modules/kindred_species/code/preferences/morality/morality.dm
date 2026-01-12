@@ -41,6 +41,6 @@
 	stat_morality.morality_path = new value(target)
 
 	if(stat_morality.morality_path.alignment == MORALITY_ENLIGHTENMENT)
-		var/datum/species/human/kindred/kindred_species = target.dna.species
-		if(istype(kindred_species))
-			kindred_species.enlightenment = TRUE
+		var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+		if(istype(kindred_splat))
+			kindred_splat.enlightenment = TRUE

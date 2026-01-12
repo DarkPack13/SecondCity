@@ -53,7 +53,7 @@
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
 				if(iskindred(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					var/datum/species/human/kindred/kindred_species = src.dna.species
+					var/datum/splat/vampire/kindred/kindred_species = iskindred(src)
 					var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
 					var/frenzy_check = SSroll.storyteller_roll(st_get_stat(stat_to_roll), 6, src)
 					if(frenzy_check != ROLL_SUCCESS)

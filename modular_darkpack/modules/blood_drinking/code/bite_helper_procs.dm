@@ -4,7 +4,7 @@
 		bloodpool = 0
 	if(iskindred(src))
 		var/mob/living/carbon/human/kindred = src
-		var/datum/species/human/kindred/kindred_species = kindred.dna.species
+		var/datum/splat/vampire/kindred/kindred_species = iskindred(kindred)
 		var/hunger_threshold = 7 - (kindred_species.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(kindred, TRAIT_NEEDS_BLOOD)
 		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
