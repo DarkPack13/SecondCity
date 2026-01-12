@@ -18,8 +18,19 @@ GLOBAL_LIST_EMPTY(snow_list)
 	var/alpha_upper = 21
 
 /obj/effect/realistic_fog/strong
+	name = "dense fog" // Not really visible in game? More for mappers.
 	alpha_lower = 10
 	alpha_upper = 40
+
+/obj/effect/realistic_fog/dense // Doesn't feel thicker vibes-wise but
+	name = "very dense fog"
+	alpha_lower = 20
+	alpha_upper = 80
+
+/obj/effect/realistic_fog/extreme
+	name = "extremely dense fog"
+	alpha_lower = 60
+	alpha_upper = 252 // alpha_lower*4.2
 
 /obj/effect/realistic_fog/Initialize(mapload)
 	. = ..()
