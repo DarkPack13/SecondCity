@@ -4,7 +4,7 @@
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "ac" = (
-/obj/structure/chair/stool,
+/obj/structure/chair/stool/bar/darkpack/red,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "ad" = (
@@ -233,7 +233,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "di" = (
-/obj/structure/chair{
+/obj/structure/chair/darkpack{
 	dir = 4
 	},
 /turf/open/floor/city/plating_mono,
@@ -277,7 +277,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "dJ" = (
-/obj/structure/chair{
+/obj/structure/chair/darkpack{
 	dir = 8
 	},
 /turf/open/floor/city/plating_mono,
@@ -342,7 +342,7 @@
 /area/vtm/outside/penumbra)
 "eD" = (
 /obj/machinery/light/directional/west,
-/obj/structure/chair{
+/obj/structure/chair/darkpack{
 	dir = 4
 	},
 /turf/open/floor/city/plating_mono,
@@ -355,7 +355,7 @@
 /area/vtm/outside/penumbra)
 "eG" = (
 /obj/machinery/light/directional/east,
-/obj/structure/chair{
+/obj/structure/chair/darkpack{
 	dir = 8
 	},
 /turf/open/floor/city/plating_mono,
@@ -492,7 +492,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/item/chair/wood,
+/obj/item/chair/wood/darkpack,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "gQ" = (
@@ -609,7 +609,7 @@
 /turf/open/water/beach/vamp/deep,
 /area/vtm/outside/penumbra)
 "iu" = (
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack @{
 	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
@@ -653,7 +653,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/penumbra)
 "jj" = (
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack @{
 	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
@@ -722,7 +722,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "jO" = (
-/obj/item/chair/stool/bar,
+/obj/structure/chair/stool/bar/darkpack/red,
 /obj/effect/decal/cleanable/garbage,
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
@@ -771,7 +771,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "ks" = (
-/obj/item/chair/stool/bar,
+/obj/structure/chair/stool/bar/darkpack/red,
 /obj/effect/decal/cleanable/garbage,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/outside/penumbra)
@@ -891,7 +891,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "mo" = (
-/obj/item/chair/stool/bar,
+/obj/structure/chair/stool/bar/darkpack/red,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/outside/penumbra)
 "ms" = (
@@ -938,7 +938,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "nu" = (
-/obj/item/chair/stool/bar,
+/obj/structure/chair/stool/bar/darkpack/red,
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "nw" = (
@@ -1194,7 +1194,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "rO" = (
-/obj/structure/chair/stool/bar,
+/obj/structure/chair/stool/bar/darkpack/red,
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "rP" = (
@@ -1748,7 +1748,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "yx" = (
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack @{
 	dir = 1
 	},
 /turf/open/floor/plating/concrete,
@@ -2100,7 +2100,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Dr" = (
-/obj/structure/chair/wood,
+/obj/structure/chair/wood/darkpack @,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "Ds" = (
@@ -2235,7 +2235,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "Fg" = (
-/obj/structure/chair,
+/obj/structure/chair/darkpack,
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "Fh" = (
@@ -2633,7 +2633,7 @@
 /area/vtm/outside/penumbra)
 "Kw" = (
 /obj/effect/turf_decal/bordur,
-/obj/item/chair/wood,
+/obj/item/chair/wood/darkpack,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "KB" = (
@@ -2909,7 +2909,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "Py" = (
-/obj/structure/chair/stool,
+/obj/structure/chair/stool/bar/darkpack/red,
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
@@ -3174,7 +3174,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "TQ" = (
-/obj/structure/chair/wood,
+/obj/structure/chair/wood/darkpack @,
 /obj/effect/decal/carpet,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
@@ -3224,7 +3224,7 @@
 /turf/open/floor/city/saint,
 /area/vtm/outside/penumbra)
 "UK" = (
-/obj/structure/chair/wood{
+/obj/structure/chair/wood/darkpack @{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
@@ -3262,7 +3262,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "Vg" = (
-/obj/item/chair/wood,
+/obj/item/chair/wood/darkpack,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "Vk" = (
