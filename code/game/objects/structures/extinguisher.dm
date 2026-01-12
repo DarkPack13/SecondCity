@@ -13,9 +13,9 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 // DARKPACK EDIT ADD START
 /obj/structure/extinguisher_cabinet/directional/east
-	pixel_x = 0
+	pixel_w = -29
 /obj/structure/extinguisher_cabinet/directional/west
-	pixel_x = 0
+	pixel_w = 29
 // DARKPACK EDIT ADD END
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload)
@@ -24,7 +24,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		opened = TRUE
 	else
 		stored_extinguisher = new /obj/item/extinguisher(src)
-		find_and_hang_on_atom()
+		find_and_mount_on_atom()
 	update_appearance(UPDATE_ICON)
 	register_context()
 

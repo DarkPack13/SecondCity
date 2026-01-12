@@ -1,6 +1,5 @@
 /datum/job/vampire/famiglia
 	title = JOB_LA_FAMIGLIA
-	department_head = /datum/job/vampire/capo
 	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
@@ -23,11 +22,10 @@
 /datum/outfit/job/vampire/famiglia
 	name = "La Famiglia"
 	jobtype = /datum/job/vampire/famiglia
-	id = /obj/item/watch
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/smartphone/giovanni_famiglia
 	r_pocket = /obj/item/vamp/keys/giovanni
-	backpack_contents = list(/obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/card/credit=1)
