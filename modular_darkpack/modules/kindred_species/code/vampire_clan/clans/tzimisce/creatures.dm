@@ -1,4 +1,3 @@
-
 /mob/living/basic/szlachta
 	name = "biter"
 	desc = "A ferocious, fang-bearing creature that resembles a spider."
