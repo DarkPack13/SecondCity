@@ -32,6 +32,12 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	GLOB.unallocted_transfer_points -= src
 	return ..()
 
+// PLEASE PLEASE dont use this if you could just use real stairs instead or map the area sanely.
+/obj/transfer_point_vamp/stairs
+	name = "stairs"
+	icon_state = "stairs"
+	icon = 'modular_darkpack/master_files/icons/obj/stairs.dmi'
+
 /obj/transfer_point_vamp/backrooms
 	id = "backrooms"
 	alpha = 0
