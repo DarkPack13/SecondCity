@@ -27,9 +27,10 @@
 /datum/preference/external_choiced/clan_mark/apply_to_human(mob/living/carbon/human/target, value)
 	if(!value)
 		return
-	if(!length(target.clan?.accessories))
+	var/datum/vampire_clan/clan = target.get_clan()
+	if(!length(clan?.accessories))
 		return
-	target.remove_overlay(target.clan.accessories_layers[value])
-	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/kindred_species/icons/features.dmi', value, -target.clan.accessories_layers[value])
-	target.overlays_standing[target.clan.accessories_layers[value]] = acc_overlay
-	target.apply_overlay(target.clan.accessories_layers[value])
+	target.remove_overlay(clan.accessories_layers[value])
+	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/kindred_species/icons/features.dmi', value, -clan.accessories_layers[value])
+	target.overlays_standing[clan.accessories_layers[value]] = acc_overlay
+	target.apply_overlay(clan.accessories_layers[value])

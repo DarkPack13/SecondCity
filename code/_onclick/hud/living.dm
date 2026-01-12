@@ -25,3 +25,11 @@
 
 	stamina = new /atom/movable/screen/stamina(null, src)
 	infodisplay += stamina
+
+	// DARKPACK EDIT ADD START
+	bloodpool_icon =  new /atom/movable/screen/bloodpool(null, src)
+	infodisplay += bloodpool_icon
+
+	zone_icon = new /atom/movable/screen/zone_hud(null, src)
+	infodisplay += zone_icon
+	// DARKPACK EDIT ADD END

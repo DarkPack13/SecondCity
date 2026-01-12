@@ -9,17 +9,14 @@
 	. = ..()
 	if(time)
 		duration = time
-	var/mob/living/carbon/carbon_owner = owner
-	stored_generation = carbon_owner.dna.species.generation
-	carbon_owner.dna.species.generation = generation
-	carbon_owner.update_blood_hud()
+	stored_generation = owner.get_generation()
+	iskindred(owner)?.set_generation(generation)
 
 /datum/status_effect/blood_of_potency/on_remove()
 	. = ..()
 
 	//Can't do initial() due to it giving bad results.
-	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.dna.species.generation = stored_generation
+	iskindred(owner)?.set_generation(stored_generation)
 	stored_generation = null
 
 	owner.update_blood_hud()
