@@ -178,12 +178,12 @@
 		to_chat(owner, span_warning("You are already attempting to activate Black Metamorphosis!"))
 		return FALSE
 
-	if(owner.dna.species.generation >= 10)
+	if(owner.get_generation() >= 10)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to meld with the shadows..."))
 		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
 			return TRUE
-	else if(owner.dna.species.generation <= 9)
+	else if(owner.get_generation() <= 9)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to rapidly meld with the shadows..."))
 		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
@@ -243,17 +243,17 @@
 		return FALSE
 
 	// do_after timer based on generation; gen 9 and below can spend more BP per turn, so it activates faster
-	if(owner.dna.species.generation >= 10)
+	if(owner.get_generation() >= 10)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body slowly starts to turn into an inky blot of shadow..."))
 		if(do_after(owner, 3 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
 			return TRUE
-	else if(owner.dna.species.generation == 9)
+	else if(owner.get_generation() == 9)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to turn into an inky blot of shadow..."))
 		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
 			return TRUE
-	else if(owner.dna.species.generation <= 8)
+	else if(owner.get_generation() <= 8)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body rapidly starts to turn into an inky blot of shadow..."))
 		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
@@ -340,18 +340,9 @@
 	current_mode = select
 	tentacle_owner.tentacle_aggro_mode = select
 
-
 	// need to access the discipline_power so we can grab the list
-	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power
-	var/datum/species/human/species = tentacle_owner.dna?.species
-
-	if(species?.disciplines)
-		for(var/datum/discipline/obtenebration/obt_disc in species.disciplines)
-			for(var/datum/discipline_power/obtenebration/arms_of_the_abyss/power in obt_disc.known_powers)
-				abyss_power = power
-				break
-			if(abyss_power)
-				break
+	var/datum/splat/vampire/vampire = does_use_disciplines(tentacle_owner)
+	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
 
 	var/tentacles = 0
 	for(var/mob/living/basic/abyss_tentacle/T in abyss_power.active_tentacles)
