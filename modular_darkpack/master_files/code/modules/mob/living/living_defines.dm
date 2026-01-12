@@ -38,6 +38,8 @@
 	var/obj/grabbed_by_tentacle = null
 	var/escape_attempt = 0
 	var/tentacle_aggro_mode = "Aggressive"
+	//obfuscate icon, client side
+	var/obf_icons
 
 	COOLDOWN_DECLARE(masquerade_timer)
 	//thaumaturgy & necro path stuff
