@@ -133,12 +133,10 @@ var/global/list/global_tentacle_grabs = list()
 
 /mob/living/basic/abyss_tentacle/Destroy()
 	if(owner)
-		var/datum/species/human/species = owner.dna?.species
-		if(species?.disciplines)
-			for(var/datum/discipline/obtenebration/obt_disc in species.disciplines)
-				for(var/datum/discipline_power/obtenebration/arms_of_the_abyss/power in obt_disc.known_powers)
-					power.active_tentacles -= src
-					break
+		var/datum/splat/vampire/vampire = does_use_disciplines(owner)
+		var/datum/discipline_power/obtenebration/arms_of_the_abyss/power = vampire.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
+		power.active_tentacles -= src
+
 	. = ..()
 
 /mob/living/basic/abyss_tentacle/proc/grab_mob(mob/living/target)

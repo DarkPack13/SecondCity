@@ -26,6 +26,7 @@
 
 // BEGIN_INCLUDE
 #include "apply_all_clans.dm"
+#include "apply_all_splats.dm"
 // END_INCLUDE
 
 #undef TEST_ASSERT

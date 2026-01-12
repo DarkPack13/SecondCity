@@ -1,6 +1,5 @@
 /mob/living/carbon
 	var/chronological_age = 0
-	var/datum/vampire_clan/clan
 	var/image/suckbar
 	var/atom/suckbar_loc
 
