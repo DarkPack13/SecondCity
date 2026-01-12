@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("skubs")
 	attack_verb_simple = list("skub")
-	brand = "intentionally_wrong_so_that_it_defaults_to_the_badcode_logo" // DARKPACK EDIT ADD - company_logos
+	brand = "badcode" // DARKPACK EDIT ADD - company_logos - Proof of concept. I kinda like it. Leave it?
 
 /obj/item/skub/Initialize(mapload)
 	. = ..()
