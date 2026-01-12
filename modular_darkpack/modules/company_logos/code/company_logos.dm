@@ -11,8 +11,10 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label
 	var/datum/brand/our_brand = /datum/brand
+	element_flags = ELEMENT_BESPOKE
+	argument_hash_start_idx = 1
 
-/datum/element/corp_label/Attach(datum/target)
+/datum/element/corp_label/Attach(datum/target, datum/brand/my_brand)
 	. = ..()
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
@@ -22,12 +24,13 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	if(!product.brand)
 		return ELEMENT_INCOMPATIBLE
 
-	our_brand = GLOB.all_brandnames[product.brand]
+	our_brand = my_brand
 
-	if(isnull(our_brand))
+	if(isnull(my_brand))
 		our_brand = /datum/brand
 
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(target, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 
 /datum/element/corp_label/Detach(datum/target)
 	UnregisterSignal(target, list(COMSIG_ATOM_EXAMINE))
@@ -35,8 +38,15 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
-	examine_list += span_info("<br>[logo]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
+	examine_list += span_notice("<br>This item is branded. [EXAMINE_HINT("Look closer")] for more information.")
+
+/datum/element/corp_label/proc/on_examine_more(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	var/logo
+	if(our_brand.render_logo)
+		logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
+
+	examine_list += span_info("[logo ? "[logo]" : ""]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
 
 	if(our_brand.slogan)
 		examine_list += span_notice("<I>\"[our_brand.slogan]\"</I>")
@@ -54,6 +64,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	var/name_span = "hypnophrase"
 	// The icon file we're grabbing our icon_state from. Default dimensions in this file are 300x110.
 	var/logo_icon = 'modular_darkpack/modules/company_logos/icons/corp_logos.dmi'
+	// If FALSE, skip rendering the logo in examine text.
+	var/render_logo = TRUE
 	// Company color used for coloring certain items that change depending on brand
 	var/company_color = COLOR_ADMIN_PINK
 	// Stuff you could find on their wikipedia page, or by asking around at a finance conference. Public information.
@@ -119,19 +131,20 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "atlas"
 	full_name = EVIL_NUCLEAR_COMPANY
 	slogan = "Atlas: Providers for Our Future."
+	render_logo = FALSE
 
 /datum/brand/pentex/harold_and_harold
 	manufacturer = "harold_and_harold"
 	full_name = EVIL_MINING_COMPANY
 	slogan = "Finding what makes the world work, underground."
-	name_span = "corp_label_harold"
+	name_span = "corp_label_harold_harold"
 	company_color = COLOR_CORP_HAROLD_HAROLD
 
 /datum/brand/pentex/good_house
 	manufacturer = "good_house"
 	full_name = EVIL_PAPER_COMPANY
 	slogan = "Sustainable stationary for a sustainable future."
-	name_span = "corp_label_goodhouse"
+	name_span = "corp_label_good_house"
 	company_color = COLOR_CORP_GOOD_HOUSE
 
 /datum/brand/pentex/hallahan
@@ -173,11 +186,13 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "aesop"
 	full_name = EVIL_COSMETICS_COMPANY
 	slogan = "Humane testing for Human needs."
+	render_logo = FALSE
 
 /datum/brand/pentex/magadon/autumn
 	manufacturer = "autumn"
 	full_name = EVIL_HOSPITAL_COMPANY
 	slogan = "Let our family care for your family."
+	render_logo = FALSE
 
 /datum/brand/pentex/nastrum
 	manufacturer = "nastrum"
@@ -190,7 +205,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "omni"
 	full_name = EVIL_TELEVISION_COMPANY
 	slogan = "Omni: Entertainment at your fingertips."
-	name_span = "corp_label_omni"
+	name_span = "corp_label_omni_tv"
 	company_color = COLOR_CORP_OMNI_TV
 
 /datum/brand/pentex/otolleys
@@ -204,7 +219,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "black_dog"
 	full_name = EVIL_TTRPG_COMPANY
 	slogan = "Bring some Shadow to your table."
-	name_span = "corp_label_blackdog"
+	name_span = "corp_label_black_dog"
 	company_color = COLOR_CORP_BLACK_DOG
 
 /datum/brand/pentex/rainbow
@@ -225,6 +240,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "sunburst"
 	full_name = EVIL_COMPUTER_COMPANY_2
 	slogan = "Computer parts should be sustainable. At Sunburst, they are."
+	render_logo = FALSE
 
 /datum/brand/pentex/vesuvius
 	manufacturer = "vesuvius"
@@ -237,5 +253,5 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	manufacturer = "young_and_smith"
 	full_name = EVIL_FOOD_COMPANY
 	slogan = "Make your grocery trips simpler. Ask for Young and Smith."
-	name_span = "corp_label_young"
+	name_span = "corp_label_young_smith"
 	company_color = COLOR_CORP_YOUNG_SMITH
