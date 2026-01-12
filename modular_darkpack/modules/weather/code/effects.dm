@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(snow_list)
 
 /obj/effect/realistic_fog/dense
 	alpha_lower = 10
-	alpha_upper = 30
+	alpha_upper = 40
 
 /obj/effect/realistic_fog/dense/strong
 	name = "very dense fog"
