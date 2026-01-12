@@ -1,0 +1,2 @@
+/area/vtm/interior/penumbra : /area/vtm/outside/penumbra
+/area/vtm/interior/penumbra/@SUBTYPES : /area/vtm/outside/penumbra/@SUBTYPES

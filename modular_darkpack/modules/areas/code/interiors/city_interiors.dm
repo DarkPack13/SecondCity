@@ -88,17 +88,6 @@
 	music_index = MUSIC_FOREST
 	fire_controled = TRUE
 
-/area/vtm/interior/penumbra
-	name = "Penumbra"
-	icon_state = "church"
-	sound_environment = SOUND_AREA_SPACE
-	ambience_index = AMBIENCE_NATURE
-	zone_type = ZONE_NO_MASQUERADE
-	musictracks = list('modular_darkpack/modules/ambience/sounds/music/penumbra.ogg')
-	fire_controled = FALSE
-#warn dont leave in this state
-	outdoors = TRUE
-
 /area/vtm/interior/backrooms
 	name = "Backrooms"
 	icon_state = "church"

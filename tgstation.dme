@@ -7454,6 +7454,7 @@
 #include "modular_darkpack\modules\taser\code\taser.dm"
 #include "modular_darkpack\modules\toys\code\pigs.dm"
 #include "modular_darkpack\modules\toys\code\plushes.dm"
+#include "modular_darkpack\modules\umbra\code\areas.dm"
 #include "modular_darkpack\modules\umbra\code\minesweeper.dm"
 #include "modular_darkpack\modules\umbra\code\parallax.dm"
 #include "modular_darkpack\modules\umbra\code\umbra.dm"
