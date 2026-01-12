@@ -16,7 +16,7 @@
 */
 
 /mob/living/carbon/human/proc/ghoulificate(mob/living/carbon/human/owner)
-	set_species(/datum/species/human/ghoul)
+	make_ghoul(owner)
 	if(!mind)
 		return
 	send_ghoul_vitae_consumption_message(owner)
