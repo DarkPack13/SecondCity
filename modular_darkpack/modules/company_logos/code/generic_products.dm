@@ -10,6 +10,9 @@
 /obj/item/product/Initialize(mapload)
 
 	var/datum/brand/parent_brand = GLOB.all_brandnames[brand]
+	if(isnull(parent_brand))
+		parent_brand = /datum/brand
+
 	name = "\improper" + parent_brand.full_name + " " + name
 	icon_state = brand
 

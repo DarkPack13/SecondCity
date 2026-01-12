@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("<br>This item is branded. [EXAMINE_HINT("Look closer")] for more information.")
+	examine_list += span_notice("<br>This item is <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>branded.</span>. [EXAMINE_HINT("Look closer")] for more information.")
 
 /datum/element/corp_label/proc/on_examine_more(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	if(our_brand.render_logo)
 		logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
 
-	examine_list += span_info("[logo ? "[logo]" : ""]<br>Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
+	examine_list += span_info("[logo ? "[logo]<br>" : ""]Brought to you by <span class='[our_brand.name_span ? our_brand.name_span : "info"]'>[our_brand.full_name].</span>")
 
 	if(our_brand.slogan)
 		examine_list += span_notice("<I>\"[our_brand.slogan]\"</I>")
