@@ -1,6 +1,5 @@
 /datum/job/vampire/priest
 	title = JOB_PRIEST
-	department_head = list("Bishop")
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
@@ -28,4 +27,4 @@
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/church
 	back = /obj/item/storage/backpack/satchel
-	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/card/credit=1)

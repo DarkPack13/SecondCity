@@ -309,3 +309,57 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
 	worn_icon_state = "ruby_badge"
+
+/obj/item/card/park_ranger
+	name = "Park Ranger badge"
+	desc = "Only you can prevent forest fires."
+	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
+	icon_state = "grey_id"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = "grey_id"
+
+/obj/item/card/park_ranger/oversight
+	name = "NPS Oversight Committee badge"
+	desc = "You have been out in the woods to know that you arent afraid of anything but one specific topic out there. Leadership."
+
+/obj/item/card/park_ranger/leader
+	name = "Lead Park Ranger badge"
+	desc = "These are your woods and your lands. Keep them safe."
+
+/obj/item/card/park_ranger/guide
+	name = "Park Guide badge"
+	desc = "Remember, Dire Wolves arent real, as far as you tell people."
+
+/obj/item/card/park_ranger/biologist
+	name = "NPS Biologist badge"
+	desc = "You love the outdoors? Good, you are now taking care of a wide outdoors area."
+
+/obj/item/card/pentex
+	name = "\improper " + MAIN_EVIL_COMPANY + " employee badge"
+	desc = "Congratulations, wagie."
+	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
+	icon_state = "green_id"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
+	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
+	worn_icon_state = "green_id"
+
+/obj/item/card/pentex/branch_lead
+	name = "\improper " + MAIN_EVIL_COMPANY + " Branch Lead badge"
+	desc = "How bad can I be?"
+
+/obj/item/card/pentex/executive
+	name = "\improper " + MAIN_EVIL_COMPANY + " Executive card"
+	desc = "All the customers are buying."
+
+/obj/item/card/pentex/affairs
+	name = "\improper " + MAIN_EVIL_COMPANY + " Internal Affairs card"
+	desc = "And the Lawyers are denying."
+
+/obj/item/card/pentex/secchief
+	name = "\improper " + MAIN_EVIL_COMPANY + " Chief of Security badge"
+	desc = "Its not illegal if nobody finds out about it. Now if only " + MAIN_EVIL_COMPANY + " would pay for a single tank for you."
+
+/obj/item/card/pentex/sec
+	name = "\improper " + MAIN_EVIL_COMPANY + " Security Agent badge"
+	desc = "Corporate Security, a step above a mall cop. Better paid than a real cop."

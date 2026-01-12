@@ -88,27 +88,20 @@
 #define JOB_SUPPLY_TECH "Dealer"
 
 // Forest Wolves
-#define JOB_GAROU_FOREST_COUNCIL "Amberglade Councillor"
-#define JOB_GAROU_FOREST_KEEPER "Amberglade Keeper"
-#define JOB_GAROU_FOREST_CATCHER "Amberglade Truthcatcher"
-#define JOB_GAROU_FOREST_WARDER "Amberglade Warder"
-#define JOB_GAROU_FOREST_GUARDIAN "Amberglade Guardian"
-
-// City Wolves
-#define JOB_GAROU_CITY_COUNCIL "Painted City Councillor"
-#define JOB_GAROU_CITY_KEEPER "Painted City Keeper"
-#define JOB_GAROU_CITY_CATCHER "Painted City Truthcatcher"
-#define JOB_GAROU_CITY_WARDER "Painted City Warder"
-#define JOB_GAROU_CITY_GUARDIAN "Painted City Guardian"
+#define JOB_GAROU_COUNCIL "Councillor" // Elder, Athro
+#define JOB_GAROU_TRUTHCATCHER "Truthcatcher" // Adren+
+#define JOB_GAROU_WARDER "Warder" // Adren+
+#define JOB_GAROU_WYRMFOE "Wyrmfoe" // Fostern
+#define JOB_GAROU_GUARDIAN "Guardian"
 
 // Pentex
 #define JOB_PENTEX_FIRST "First Team"
-#define JOB_PENTEX_LEAD "Endron Branch Lead"
-#define JOB_PENTEX_EXEC "Endron Executive"
-#define JOB_PENTEX_AFFAIRS "Endron Internal Affairs Agent"
-#define JOB_PENTEX_SEC_CHIEF "Endron Chief of Security"
-#define JOB_PENTEX_SEC "Endron Security Agent"
-#define JOB_PENTEX_EMPLOYEE "Endron Employee"
+#define JOB_PENTEX_LEAD "Branch Lead"
+#define JOB_PENTEX_EXEC "Executive"
+#define JOB_PENTEX_AFFAIRS "Internal Affairs Agent"
+#define JOB_PENTEX_SEC_CHIEF "Chief of Security"
+#define JOB_PENTEX_SEC "Security Agent"
+#define JOB_PENTEX_EMPLOYEE "Employee"
 
 //////////////////////////////////////////////////
 
@@ -166,6 +159,19 @@
 #define JOB_DISPLAY_ORDER_SABBATPACK 41
 #define JOB_DISPLAY_ORDER_SABBATPRIEST 42
 
+#define JOB_DISPLAY_ORDER_COUNCIL 43
+#define JOB_DISPLAY_ORDER_TRUTHCATCHER 44
+#define JOB_DISPLAY_ORDER_WARDER 45
+#define JOB_DISPLAY_ORDER_WYRMFOE 46
+#define JOB_DISPLAY_ORDER_GUARDIAN 47
+
+#define JOB_DISPLAY_ORDER_BRANCH_LEAD 48
+#define JOB_DISPLAY_ORDER_EXECUTIVE 49
+#define JOB_DISPLAY_ORDER_AFFAIRS 50
+#define JOB_DISPLAY_ORDER_SECCHIEF 51
+#define JOB_DISPLAY_ORDER_PENTEX_SEC 52
+#define JOB_DISPLAY_ORDER_EMPLOYEE 53
+
 //////////////////////////////////////////////////
 
 #define DEPARTMENT_BITFLAG_CITIZEN (1<<0)
@@ -196,12 +202,16 @@
 #define DEPARTMENT_MANOR "Manor"
 #define DEPARTMENT_BITFLAG_CITY_SERVICES (1<<13)
 #define DEPARTMENT_CITY_SERVICES "City_Services"
-#define DEPARTMENT_BITFLAG_ENDRON (1<<14)
-#define DEPARTMENT_ENDRON "Endron"
+#define DEPARTMENT_BITFLAG_PENTEX (1<<14)
+#define DEPARTMENT_PENTEX "Pentex"
+#define DEPARTMENT_BITFLAG_GAIA (1<<15)
+#define DEPARTMENT_GAIA "Garou_Nation"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
 	"PRINCE" = DEPARTMENT_BITFLAG_PRINCE,
+	"GAIA" = DEPARTMENT_BITFLAG_GAIA,
+	"PENTEX" = DEPARTMENT_BITFLAG_PENTEX,
 	"CAMARILLA" = DEPARTMENT_BITFLAG_CAMARILLA,
 	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
 	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
@@ -221,6 +231,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Variable macros used to declare who is the supervisor for a given job, announced to the player when they join as any given job.
 #define SUPERVISOR_TRADITIONS "the Traditions"
+#define SUPERVISOR_LITANY "the Litany"
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
@@ -236,7 +247,8 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"
-#define EXP_TYPE_GAROU "Garou"
+#define EXP_TYPE_GAIA "Garou Nation"
+#define EXP_TYPE_SPIRAL "Pentex"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
 #define EXP_TYPE_WAREHOUSE "Supply"
 #define EXP_TYPE_CHANTRY "Chantry"

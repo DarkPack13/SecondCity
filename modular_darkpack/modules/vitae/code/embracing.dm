@@ -19,14 +19,7 @@
 	childe.grab_ghost(force = TRUE)
 	to_chat(childe, span_cult("You rise with a start! You feel a tremendous pulse echoing in your ears. As you focus your mind on it, you discover it to be the last few throbs of your heart beating until it slows to a halt. The warmth from your skin slowly fades until it settles to the ambient temperature around you...- and you are very hungry."))
 
-	childe.set_species(/datum/species/human/kindred)
-	childe.set_clan(clan, FALSE)
-	childe.dna.species.generation = initial(dna.species.generation) + 1
-	if(prob(5))
-		childe.set_clan(/datum/vampire_clan/caitiff)
-
-	childe.skin_tone = get_vamp_skin_color(childe.skin_tone)
-	childe.set_body_sprite()
+	childe.make_kindred_from_sire(src)
 
 	/* DARKPACK TODO - Commenting this out until preferences are properly finished.
 	//Gives the Childe the src's first three Disciplines

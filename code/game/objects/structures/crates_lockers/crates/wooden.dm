@@ -2,6 +2,7 @@
 	name = "wooden crate"
 	desc = "Works just as well as a metal one."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi' // DARKPACK EDIT CHANGE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6)
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
 	icon_state = "wooden"
@@ -12,6 +13,7 @@
 	close_sound_volume = 50
 	paint_jobs = null
 	cutting_tool = /obj/item/crowbar
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6)
 
 /obj/structure/closet/crate/wooden/toy
 	name = "toy box"
