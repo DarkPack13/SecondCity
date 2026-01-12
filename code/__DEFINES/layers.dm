@@ -159,6 +159,9 @@
 // NOTICE: we break from the pattern of increasing in steps of like 0.01 here
 // Because TOPDOWN_LAYER is 10000 and that's enough to floating point our modifications away
 
+/// Used to shift all topdown layer emissives to a the game plane equivalent layers, as otherwise they render above everything else due to being KEEP_APART
+#define TOPDOWN_TO_EMISSIVE_LAYER(layer) LERP(FLOOR_EMISSIVE_START_LAYER, FLOOR_EMISSIVE_END_LAYER, (layer - (TOPDOWN_LAYER + 1)) / TOPDOWN_LAYER_COUNT)
+
 // Must be equal to the offset of the highest topdown layer
 #define TOPDOWN_LAYER_COUNT 18
 
@@ -375,4 +378,4 @@
 /// We expect at most 3 layers of multiz
 /// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
 /// If you modify this, you'll need to modify the tsx file too
-#define MAX_EXPECTED_Z_DEPTH 3
+#define MAX_EXPECTED_Z_DEPTH 5 // DARKPACK EDIT CHANGE - Our max is only 4 but I expect downstreams to need extra

@@ -32,7 +32,7 @@
 			mob.apply_status_effect(/datum/status_effect/kissed)
 		return
 
-	mob.adjustBloodPool(-1)
+	mob.adjust_blood_pool(-1)
 	suckbar.icon_state = "[round(14*(mob.bloodpool/mob.maxbloodpool))]"
 
 	if(ishuman(mob))
@@ -48,7 +48,7 @@
 					H.reagents.trans_to(src, min(10, H.reagents.total_volume), transferred_by = mob, methods = INGEST)
 
 	if(HAS_TRAIT(src, TRAIT_PAINFUL_VAMPIRE_KISS))
-		mob.adjustBruteLoss(20, TRUE)
+		mob.adjust_brute_loss(20, TRUE)
 
 	//Ventrue can suck on normal people, but not homeless people and animals.
 	//BLOOD_QUALITY_LOV - 1, BLOOD_QUALITY_NORMAL - 2, BLOOD_QUALITY_HIGH - 3. Blue blood gives +1 to suction
@@ -63,20 +63,19 @@
 
 	if(iskindred(mob))
 		to_chat(src, span_userdanger("[mob]'s blood tastes HEAVENLY..."))
-		adjustBruteLoss(-25, TRUE)
-		adjustFireLoss(-25, TRUE)
+		adjust_brute_loss(-25, TRUE)
+		adjust_fire_loss(-25, TRUE)
 	else
 		to_chat(src, span_warning("You sip some <b>BLOOD</b> from your victim. It feels good."))
 
 	var/drink_mod = calculate_drink_modifier(mob)
 
 	if(drink_mod)
-		adjustBloodPool(drink_mod*max(1, mob.bloodquality-1))
-		adjustBruteLoss(-10, TRUE)
-		adjustFireLoss(-10, TRUE)
+		adjust_blood_pool(drink_mod*max(1, mob.bloodquality-1))
+		adjust_brute_loss(-10, TRUE)
+		adjust_fire_loss(-10, TRUE)
 		update_damage_overlays()
 		update_health_hud()
-		update_blood_hud()
 
 	if(mob.bloodpool <= 0)
 		handle_drink_dry(mob)

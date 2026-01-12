@@ -1,10 +1,9 @@
 /datum/outfit/job/vampire/sabbatist
-	name = "Sabbatist"
+	name = JOB_SABBAT_SABBATIST
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench
-	id = /obj/item/watch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/scythe/vamp=1, /obj/item/vamp/keys/sabbat=1)
+	backpack_contents = list(/obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/scythe/vamp=1, /obj/item/vamp/keys/sabbat=1)
 
 /datum/outfit/job/vampire/sabbatist/post_equip(mob/living/carbon/human/H)
 	..()
@@ -18,10 +17,6 @@
 			landmarkslist += S
 	var/obj/effect/landmark/start/D = pick(landmarkslist)
 	H.forceMove(D.loc)
-
-/obj/effect/landmark/start/sabbatist
-	name = "Sabbatist"
-	delete_after_roundstart = FALSE
 
 /datum/antagonist/sabbatist
 	name = "Sabbatist"

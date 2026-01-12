@@ -31,9 +31,6 @@
 		/mob/living/simple_animal/hostile/asteroid/elite/pandora,
 		/mob/living/simple_animal/hostile/asteroid/polarbear,
 		/mob/living/simple_animal/hostile/asteroid/polarbear/lesser,
-		/mob/living/simple_animal/hostile/illusion,
-		/mob/living/simple_animal/hostile/illusion/escape,
-		/mob/living/simple_animal/hostile/illusion/mirage,
 		/mob/living/simple_animal/hostile/megafauna,
 		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner,
 		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom,
@@ -43,6 +40,7 @@
 		/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination,
 		/mob/living/simple_animal/hostile/megafauna/clockwork_defender,
 		/mob/living/simple_animal/hostile/megafauna/colossus,
+		/mob/living/simple_animal/hostile/megafauna/colossus/antediluvian, // DARKPACK EDIT ADD - Im sorry
 		/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner,
 		/mob/living/simple_animal/hostile/megafauna/dragon,
 		/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
@@ -54,6 +52,7 @@
 		/mob/living/simple_animal/hostile/megafauna/legion/medium/right,
 		/mob/living/simple_animal/hostile/megafauna/legion/small,
 		/mob/living/simple_animal/hostile/megafauna/wendigo,
+		/mob/living/simple_animal/hostile/megafauna/wendigo/antediluvian, // DARKPACK EDIT ADD - Im sorry
 		/mob/living/simple_animal/hostile/megafauna/wendigo/noportal,
 		/mob/living/simple_animal/hostile/ooze,
 		/mob/living/simple_animal/hostile/ooze/gelatinous,

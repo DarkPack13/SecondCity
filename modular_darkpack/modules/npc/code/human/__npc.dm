@@ -40,7 +40,7 @@
 	var/aggressive = FALSE
 	var/last_antagonised = 0
 	var/mob/living/danger_source
-	var/obj/effect/fire/afraid_of_fire
+	var/obj/effect/abstract/turf_fire/afraid_of_fire
 	var/mob/living/last_attacker
 	var/last_health = 100
 	var/mob/living/last_damager
@@ -124,11 +124,23 @@
 		register_sticky_item(my_backup_weapon)
 
 /mob/living/carbon/human/npc/Destroy()
+	QDEL_NULL(socialrole)
+	danger_source = null
+	QDEL_NULL(afraid_of_fire)
+	last_attacker = null
+	last_damager = null
+	walktarget = null
+	tupik_loc = null
+	my_weapon_type = null
+	my_weapon = null
+	my_backup_weapon_type = null
+	my_backup_weapon = null
+	spotted_bodies = null
+	drop_on_death_list = null
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
 	SShumannpcpool.try_repopulate()
-
-	. = ..()
+	return ..()
 
 //====================Sticky Item Handling====================
 /mob/living/carbon/human/npc/proc/register_sticky_item(obj/item/my_item)
@@ -203,7 +215,7 @@
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
 		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			nearby_npcs.Aggro(attacker)
-		SSwanted_level.announce_crime("victim", get_turf(src), TRUE)
+		SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_FIREFIGHT, get_turf(src))
 	Aggro(attacker, TRUE)
 
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)

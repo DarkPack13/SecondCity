@@ -5,7 +5,6 @@
 	desc = "A patch of dirt."
 	icon = 'modular_darkpack/modules/drugs/icons/tray.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "soil"
-	gender = PLURAL
 	circuit = null
 	density = FALSE
 	use_power = NO_POWER_USE
@@ -14,6 +13,7 @@
 	maxnutri = 15
 	tray_flags = SOIL
 	armor_type = /datum/armor/obj_soil
+	custom_materials = list(/datum/material/sand = SHEET_MATERIAL_AMOUNT * 3)
 	//which type of sack to create when shovled.
 	var/sack_type = /obj/item/soil_sack
 	var/wet_overlay = "soil_wet" // DARKPACK EDIT ADD
@@ -82,6 +82,7 @@
 	desc = "A plant bed made of superabsorbent polymer beads.\n\nThese types of water gel beads can hold onto an incredible amount of water and reduces evaporative losses to almost nothing."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT ADD
 	icon_state = "soil_gel"
+	gender = PLURAL
 	maxwater = 300
 	tray_flags = SOIL | HYDROPONIC | SUPERWATER
 	plant_offset_y = 2
@@ -187,6 +188,11 @@
 	stored_soil.on_place()
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
+
+/obj/item/soil_sack/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+	if(attack_type == OVERWHELMING_ATTACK)
+		return FALSE
+	return ..()
 
 ///Remove slowdown and add block chance when wielded.
 /obj/item/soil_sack/proc/on_wield()

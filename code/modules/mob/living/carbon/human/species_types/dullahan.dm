@@ -9,6 +9,7 @@
 		TRAIT_ADVANCEDTOOLUSER, // Normally applied by brain but we don't have one
 		TRAIT_LITERATE,
 		TRAIT_CAN_STRIP,
+		TRAIT_BRAINLESS_CARBON,
 	)
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,
@@ -42,6 +43,7 @@
 	. = ..()
 	human.lose_hearing_sensitivity(TRAIT_GENERIC)
 	RegisterSignal(human, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_gained_part))
+	RegisterSignal(human, COMSIG_CARBON_DEFIB_BRAIN_CHECK, PROC_REF(defib_check))
 
 	var/obj/item/bodypart/head/head = human.get_bodypart(BODY_ZONE_HEAD)
 	head.speech_span = null
@@ -93,6 +95,10 @@
 	my_head.owner.gib(DROP_ALL_REMAINS)
 	QDEL_NULL(my_head)
 
+/datum/species/dullahan/proc/defib_check(mob/living/carbon/human/human)
+	SIGNAL_HANDLER
+	return human.can_defib_brain(locate(/obj/item/organ/brain) in my_head.loc) || DEFIB_POSSIBLE
+
 /datum/species/dullahan/on_species_loss(mob/living/carbon/human/human)
 	. = ..()
 	if(my_head)
@@ -104,6 +110,7 @@
 			qdel(detached_head)
 
 	UnregisterSignal(human, COMSIG_CARBON_ATTACH_LIMB)
+	UnregisterSignal(human, COMSIG_CARBON_DEFIB_BRAIN_CHECK)
 	human.regenerate_limb(BODY_ZONE_HEAD, FALSE)
 	human.become_hearing_sensitive()
 	prevent_perspective_change = FALSE
@@ -270,7 +277,7 @@
 	detached_head.copy_appearance_from(headless, overwrite_eyes = TRUE)
 	detached_head.update_icon_dropped()
 
-/obj/item/dullahan_relay/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
+/obj/item/dullahan_relay/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT, ORIGINAL: /obj/item/dullahan_relay/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
 	var/dist = get_dist(speaker, src) - message_range
 	if(dist > 0 && dist <= EAVESDROP_EXTRA_RANGE)

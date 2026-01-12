@@ -25,6 +25,7 @@
 #define JOB_HOUND "Hound"
 #define JOB_HARPY "Harpy"
 #define JOB_SENESCHAL "Seneschal"
+#define JOB_TOWERWORK "Tower Employee"
 
 //Primogens
 #define JOB_PRIMOGEN_TOREADOR "Primogen Toreador"
@@ -36,7 +37,7 @@
 
 //Anarch
 #define JOB_BARON "Baron"
-#define JOB_TAPSTER "Bartender"
+#define JOB_TAPSTER "Tapster"
 #define JOB_BRUISER "Bruiser"
 #define JOB_EMISSARY "Emissary"
 #define JOB_SWEEPER "Sweeper"
@@ -57,6 +58,8 @@
 #define JOB_POLICE_OFFICER "Police Officer"
 #define JOB_EMERGENCY_DISPATCHER "Emergency Dispatcher"
 #define JOB_FEDERAL_INVESTIGATOR "Federal Investigator"
+#define JOB_NATIONAL_GUARD "National Guard Soldier"
+#define JOB_POLICE_SWAT "Swat Officer"
 
 //Clinic
 #define JOB_CLINIC_DIRECTOR "Clinic Director"
@@ -74,6 +77,31 @@
 #define JOB_SABBAT_DUCTUS "Sabbat Ductus"
 #define JOB_SABBAT_PRIEST "Sabbat Priest"
 #define JOB_SABBAT_PACK "Sabbat Pack"
+#define JOB_SABBAT_SABBATIST "Sabbatist"
+
+// Axe Gang
+#define JOB_AXE_LEADER "Screentender"
+#define JOB_AXE_GANG "Axe Gang"
+
+// Supply
+#define JOB_DEALER "Dealer"
+#define JOB_SUPPLY_TECH "Dealer"
+
+// Forest Wolves
+#define JOB_GAROU_COUNCIL "Councillor" // Elder, Athro
+#define JOB_GAROU_TRUTHCATCHER "Truthcatcher" // Adren+
+#define JOB_GAROU_WARDER "Warder" // Adren+
+#define JOB_GAROU_WYRMFOE "Wyrmfoe" // Fostern
+#define JOB_GAROU_GUARDIAN "Guardian"
+
+// Pentex
+#define JOB_PENTEX_FIRST "First Team"
+#define JOB_PENTEX_LEAD "Branch Lead"
+#define JOB_PENTEX_EXEC "Executive"
+#define JOB_PENTEX_AFFAIRS "Internal Affairs Agent"
+#define JOB_PENTEX_SEC_CHIEF "Chief of Security"
+#define JOB_PENTEX_SEC "Security Agent"
+#define JOB_PENTEX_EMPLOYEE "Employee"
 
 //////////////////////////////////////////////////
 
@@ -102,8 +130,8 @@
 #define JOB_DISPLAY_ORDER_TAXI 19
 #define JOB_DISPLAY_ORDER_PRIEST 20
 
-#define JOB_DISPLAY_ORDER_AXE_GANGSTER 21
-#define JOB_DISPLAY_ORDER_AXE_LEADER 22
+#define JOB_DISPLAY_ORDER_SUPPLY 21
+#define JOB_DISPLAY_ORDER_DEALER 22
 
 #define JOB_DISPLAY_ORDER_BARON 23
 #define JOB_DISPLAY_ORDER_EMISSARY 24
@@ -131,6 +159,19 @@
 #define JOB_DISPLAY_ORDER_SABBATPACK 41
 #define JOB_DISPLAY_ORDER_SABBATPRIEST 42
 
+#define JOB_DISPLAY_ORDER_COUNCIL 43
+#define JOB_DISPLAY_ORDER_TRUTHCATCHER 44
+#define JOB_DISPLAY_ORDER_WARDER 45
+#define JOB_DISPLAY_ORDER_WYRMFOE 46
+#define JOB_DISPLAY_ORDER_GUARDIAN 47
+
+#define JOB_DISPLAY_ORDER_BRANCH_LEAD 48
+#define JOB_DISPLAY_ORDER_EXECUTIVE 49
+#define JOB_DISPLAY_ORDER_AFFAIRS 50
+#define JOB_DISPLAY_ORDER_SECCHIEF 51
+#define JOB_DISPLAY_ORDER_PENTEX_SEC 52
+#define JOB_DISPLAY_ORDER_EMPLOYEE 53
+
 //////////////////////////////////////////////////
 
 #define DEPARTMENT_BITFLAG_CITIZEN (1<<0)
@@ -146,9 +187,9 @@
 #define DEPARTMENT_BITFLAG_ANARCH (1<<5)
 #define DEPARTMENT_ANARCH "Anarch"
 #define DEPARTMENT_BITFLAG_STRIP_CLUB (1<<6)
-#define DEPARTMENT_STRIP_CLUB "Strip Club"
-#define DEPARTMENT_BITFLAG_AXE_GANG (1<<7)
-#define DEPARTMENT_AXE_GANG "Axe Gang"
+#define DEPARTMENT_STRIP_CLUB "Strip_Club"
+#define DEPARTMENT_BITFLAG_SUPPLY (1<<7)
+#define DEPARTMENT_SUPPLY "Warehouse"
 #define DEPARTMENT_BITFLAG_GIOVANNI (1<<8)
 #define DEPARTMENT_GIOVANNI "Giovanni"
 #define DEPARTMENT_BITFLAG_POLICE (1<<9)
@@ -160,17 +201,23 @@
 #define DEPARTMENT_BITFLAG_MANOR (1<<12)
 #define DEPARTMENT_MANOR "Manor"
 #define DEPARTMENT_BITFLAG_CITY_SERVICES (1<<13)
-#define DEPARTMENT_CITY_SERVICES "City Services"
+#define DEPARTMENT_CITY_SERVICES "City_Services"
+#define DEPARTMENT_BITFLAG_PENTEX (1<<14)
+#define DEPARTMENT_PENTEX "Pentex"
+#define DEPARTMENT_BITFLAG_GAIA (1<<15)
+#define DEPARTMENT_GAIA "Garou_Nation"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
 	"PRINCE" = DEPARTMENT_BITFLAG_PRINCE,
+	"GAIA" = DEPARTMENT_BITFLAG_GAIA,
+	"PENTEX" = DEPARTMENT_BITFLAG_PENTEX,
 	"CAMARILLA" = DEPARTMENT_BITFLAG_CAMARILLA,
 	"CHURCH" = DEPARTMENT_BITFLAG_CHURCH,
 	"CLINIC" = DEPARTMENT_BITFLAG_CLINIC,
 	"ANARCH" = DEPARTMENT_BITFLAG_ANARCH,
 	"STRIP_CLUB" = DEPARTMENT_BITFLAG_STRIP_CLUB,
-	"AXE_GANG" = DEPARTMENT_BITFLAG_AXE_GANG,
+	"SUPPLY" = DEPARTMENT_BITFLAG_SUPPLY,
 	"GIOVANNI" = DEPARTMENT_BITFLAG_GIOVANNI,
 	"POLICE" = DEPARTMENT_BITFLAG_POLICE,
 	"SABBAT" = DEPARTMENT_BITFLAG_SABBAT,
@@ -184,6 +231,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Variable macros used to declare who is the supervisor for a given job, announced to the player when they join as any given job.
 #define SUPERVISOR_TRADITIONS "the Traditions"
+#define SUPERVISOR_LITANY "the Litany"
 #define SUPERVISOR_PRINCE "the Prince"
 #define SUPERVISOR_SHERIFF "the Sheriff"
 #define SUPERVISOR_PRIMOGEN_BANU_HAQIM "the Banu Haqim Primogen"
@@ -199,9 +247,10 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_KINDRED "Kindred"
-#define EXP_TYPE_GAROU "Garou"
+#define EXP_TYPE_GAIA "Garou Nation"
+#define EXP_TYPE_SPIRAL "Pentex"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"
-#define EXP_TYPE_GANG "Gangs"
+#define EXP_TYPE_WAREHOUSE "Supply"
 #define EXP_TYPE_CHANTRY "Chantry"
 #define EXP_TYPE_ANARCH "Anarchs"
 #define EXP_TYPE_SABBAT "Sabbat"

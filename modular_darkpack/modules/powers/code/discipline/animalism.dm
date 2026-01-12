@@ -38,7 +38,7 @@
 
 /datum/discipline_power/animalism/summon_rat/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/mouse/vampire/summoned)
 
 //SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
@@ -77,7 +77,7 @@
 
 /datum/discipline_power/animalism/summon_bat/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/bat/vampire/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/bat/summoned)
 
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
@@ -131,7 +131,7 @@
 		shapeshift_spell.cast(owner)
 		owner.Stun(1.5 SECONDS)
 
-/mob/living/basic/mouse/rat/summoned
+/mob/living/basic/mouse/vampire/summoned
 	name = "rat"
 	desc = "A rat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
@@ -139,7 +139,7 @@
 	melee_damage_upper = 8
 	obj_damage = 10
 
-/mob/living/basic/mouse/rat/summoned/Initialize(mapload)
+/mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
 	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
@@ -183,7 +183,7 @@
 	if(old)
 		qdel(old)
 
-/mob/living/basic/bat/vampire/summoned
+/mob/living/basic/bat/summoned
 	name = "bat"
 	desc = "A bat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
@@ -193,7 +193,7 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 
-/mob/living/basic/bat/vampire/summoned/Initialize(mapload)
+/mob/living/basic/bat/summoned/Initialize(mapload)
 	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)

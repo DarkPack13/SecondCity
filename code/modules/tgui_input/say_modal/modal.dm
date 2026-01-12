@@ -52,7 +52,6 @@
 	sleep(3 SECONDS)
 	window.initialize(
 			strict_mode = TRUE,
-			fancy = TRUE,
 			inline_css = file("tgui/public/tgui-say.bundle.css"),
 			inline_js = file("tgui/public/tgui-say.bundle.js"),
 	);
@@ -89,7 +88,7 @@
 	if(!payload?["channel"])
 		CRASH("No channel provided to an open TGUI-Say")
 	window_open = TRUE
-	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL)
+	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL && payload["channel"] != LOOC_CHANNEL) // DARKPACK EDIT, ORIGINAL: if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL)
 		start_thinking()
 	if(!client.typing_indicators)
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators DISABLED.")

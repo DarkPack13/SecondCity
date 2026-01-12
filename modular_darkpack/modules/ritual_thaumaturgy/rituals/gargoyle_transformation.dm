@@ -1,12 +1,12 @@
-/obj/ritualrune/gargoyle
-	name = "Gargoyle Transformation"
+/obj/ritual_rune/thaumaturgy/gargoyle
+	name = "gargoyle transformation"
 	desc = "Create a Gargoyle from vampire bodies. One body creates a normal Gargoyle, two bodies create a perfect Gargoyle."
 	icon_state = "rune9"
 	word = "FORMA-GARGONEM"
-	thaumlevel = 5
+	level = 5
 	var/duration_length = 60 SECONDS
 
-/obj/ritualrune/gargoyle/complete()
+/obj/ritual_rune/thaumaturgy/gargoyle/complete()
 	// vampire bodies only
 	var/list/valid_bodies = list()
 
@@ -21,7 +21,7 @@
 			else if(H.stat > SOFT_CRIT)
 				valid_bodies += H
 			else
-				H.adjustAggLoss(50)
+				H.adjust_agg_loss(50)
 				playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
@@ -68,7 +68,7 @@
 		for(var/mob/living/carbon/human/H in valid_bodies)
 			H.Stun(5) // Brief stun to recover
 
-/obj/ritualrune/gargoyle/proc/gargoyle_transform(list/bodies, perfect_gargoyle = FALSE)
+/obj/ritual_rune/thaumaturgy/gargoyle/proc/gargoyle_transform(list/bodies, perfect_gargoyle = FALSE)
 	if(!bodies || bodies.len < 1)
 		return
 
@@ -125,7 +125,7 @@
 
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
-		target_body.adjustAggLoss(-100)
+		target_body.adjust_agg_loss(-100)
 		target_body.set_species(/datum/species/human/kindred)
 		target_body.set_clan(/datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)
@@ -159,10 +159,10 @@
 
 	qdel(src)
 
-/obj/ritualrune/gargoyle/proc/perfect_gargoyle_player_controlled(mob/living/basic/gargoyle/perfect/G)
+/obj/ritual_rune/thaumaturgy/gargoyle/proc/perfect_gargoyle_player_controlled(mob/living/basic/gargoyle/perfect/G)
 	message_admins("[key_name_admin(G)] has become a Perfect Gargoyle.")
 
-/obj/ritualrune/gargoyle/proc/perfect_gargoyle_check_ai(mob/living/basic/gargoyle/perfect/G, mob/living/carbon/human/activator)
+/obj/ritual_rune/thaumaturgy/gargoyle/proc/perfect_gargoyle_check_ai(mob/living/basic/gargoyle/perfect/G, mob/living/carbon/human/activator)
 	// Check if someone took control, if not give it AI
 	if(!G || QDELETED(G))
 		return
@@ -171,7 +171,7 @@
 		if(activator)
 			activator.add_beastmaster_minion(G)
 
-/obj/ritualrune/gargoyle/proc/sentient_gargoyle_name_prompt(mob/living/carbon/human/target_body)
+/obj/ritual_rune/thaumaturgy/gargoyle/proc/sentient_gargoyle_name_prompt(mob/living/carbon/human/target_body)
 	message_admins("[key_name_admin(target_body)] has become a Sentient Gargoyle.")
 
 	var/choice = tgui_alert(target_body, "Do you want to pick a new name as a Gargoyle?", "Gargoyle Choose Name", list("Yes", "No"), 10 SECONDS)

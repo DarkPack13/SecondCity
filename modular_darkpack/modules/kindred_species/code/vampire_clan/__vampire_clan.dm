@@ -1,10 +1,13 @@
 /datum/vampire_clan
+	abstract_type = /datum/vampire_clan
 	/// Name of the Clan
 	var/name
 	/// Identifier in sprites for the Clan
 	var/id
 	/// Description of the Clan
 	var/desc
+	/// The icon for this clan. Used in preferences.
+	var/icon
 	/// Description of the Clan's supernatural curse
 	var/curse
 
@@ -44,7 +47,7 @@
 	var/enlightenment
 
 	/// If this Clan needs a whitelist to select and play
-	var/whitelisted
+	var/whitelisted = FALSE
 
 /**
  * Applies Clan-specific effects to the mob

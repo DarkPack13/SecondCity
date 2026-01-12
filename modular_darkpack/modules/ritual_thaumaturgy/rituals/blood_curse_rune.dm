@@ -1,21 +1,21 @@
-/obj/ritualrune/curse
-	name = "Curse Rune"
+/obj/ritual_rune/thaumaturgy/curse
+	name = "blood curse"
 	desc = "Curse your enemies from afar. Place multiple hearts on the rune to increase the curse duration."
 	icon_state = "rune7"
 	word = "MAL'DICTO-SANGUINIS"
-	thaumlevel = 5
+	level = 5
 	sacrifices = list() //checking for number of hearts in the function
 	var/channeling = FALSE
 	var/mob/living/channeler = null
 	var/curse_target = null
 
-/obj/ritualrune/curse/complete()
+/obj/ritual_rune/thaumaturgy/curse/complete()
 	if(!activated)
 		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
 
-/obj/ritualrune/curse/attack_hand(mob/user)
+/obj/ritual_rune/thaumaturgy/curse/attack_hand(mob/user)
 	if(!activated)
 		var/mob/living/L = user
 		if(!HAS_TRAIT(L, TRAIT_THAUMATURGY_KNOWLEDGE))
@@ -44,7 +44,7 @@
 		to_chat(user, span_warning("The curse is already being channeled!"))
 		return
 
-/obj/ritualrune/curse/proc/start_curse(mob/user)
+/obj/ritual_rune/thaumaturgy/curse/proc/start_curse(mob/user)
 	if(!user || !activated || channeling)
 		return
 
@@ -74,7 +74,7 @@
 	channel_curse(hearts)
 	do_after(hearts.len * 5)
 
-/obj/ritualrune/curse/proc/channel_curse(list/hearts)
+/obj/ritual_rune/thaumaturgy/curse/proc/channel_curse(list/hearts)
 	if(!channeling || !channeler || !curse_target)
 		return
 
@@ -113,7 +113,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.real_name == curse_target)
 			found_target = TRUE
-			H.adjustAggLoss(25)
+			H.adjust_agg_loss(25)
 			playsound(H.loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 			to_chat(H, span_warning("You feel dark energy tearing at your very being!"))
 			H.Stun(2)

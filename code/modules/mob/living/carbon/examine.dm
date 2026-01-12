@@ -70,6 +70,11 @@
 		for(var/datum/wound/iter_wound as anything in body_part.wounds)
 			. += span_danger(iter_wound.get_examine_description(user))
 
+		var/surgery_examine = body_part.get_surgery_examine()
+		if(surgery_examine)
+			. += surgery_examine
+
+
 	for(var/obj/item/bodypart/body_part as anything in disabled)
 		var/damage_text
 		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
@@ -113,7 +118,7 @@
 		if(user == src && has_status_effect(/datum/status_effect/grouped/screwy_hud/fake_crit))//fake damage
 			temp = 50
 		else
-			temp = getBruteLoss()
+			temp = get_brute_loss()
 		var/list/damage_desc = get_majority_bodypart_damage_desc()
 		if(temp)
 			if(temp < 25)
@@ -123,7 +128,7 @@
 			else
 				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BRUTE]]!")
 
-		temp = getFireLoss()
+		temp = get_fire_loss()
 		if(temp)
 			if(temp < 25)
 				. += span_danger("[t_He] [t_has] minor [damage_desc[BURN]].")
@@ -133,7 +138,7 @@
 				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BURN]]!")
 
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
-		temp = getAggLoss()
+		temp = get_agg_loss()
 		if(temp)
 			if(temp < 25)
 				. += span_danger("[t_He] [t_has] minor [damage_desc[AGGRAVATED]].")
@@ -161,7 +166,7 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			. += "[t_He] look[p_s()] extremely disgusted."
 
-	var/apparent_blood_volume = blood_volume
+	var/apparent_blood_volume = CAN_HAVE_BLOOD(src) ? get_blood_volume(apply_modifiers = TRUE) : BLOOD_VOLUME_NORMAL
 	if(HAS_TRAIT(src, TRAIT_USES_SKINTONES) && ishuman(src))
 		var/mob/living/carbon/human/husrc = src // gross istypesrc but easier than refactoring even further for now
 		if(husrc.skin_tone == "albino")
@@ -179,6 +184,8 @@
 			. += span_boldwarning("[t_He] look[p_s()] like pale death.")
 		if(-INFINITY to BLOOD_VOLUME_BAD)
 			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
+
+	. += display_darkpack_examine_text() // DARKPACK EDIT ADD
 
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
@@ -222,61 +229,15 @@
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
 		. += span_smallnoticeital("[t_He] [t_is] emitting a gentle blue glow!") // this should be signalized
 
+	var/mob/living/living_user = user
+	SEND_SIGNAL(living_user, COMSIG_CARBON_MID_EXAMINE, src, .) // Adds examine text after clothing and wounds but before death and scars
 	if(just_sleeping)
 		. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
-
 	else if(!appears_dead)
-		var/mob/living/living_user = user
 		if(src != user)
-			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (combat_mode)
-					. += "[t_He] seem[p_s()] to be on guard."
-				if (getOxyLoss() >= 10)
-					. += "[t_He] seem[p_s()] winded."
-				if (getToxLoss() >= 10)
-					. += "[t_He] seem[p_s()] sickly."
-				if(mob_mood.sanity <= SANITY_DISTURBED)
-					. += "[t_He] seem[p_s()] distressed."
-					living_user.add_mood_event("empath", /datum/mood_event/sad_empath, src)
-				if(is_blind())
-					. += "[t_He] appear[p_s()] to be staring off into space."
-				if (HAS_TRAIT(src, TRAIT_DEAF))
-					. += "[t_He] appear[p_s()] to not be responding to noises."
-				if (bodytemperature > dna.species.bodytemp_heat_damage_limit)
-					. += "[t_He] [t_is] flushed and wheezing."
-				if (bodytemperature < dna.species.bodytemp_cold_damage_limit)
-					. += "[t_He] [t_is] shivering."
-				if(HAS_TRAIT(src, TRAIT_EVIL))
-					. += "[t_His] eyes radiate with a unfeeling, cold detachment. There is nothing but darkness within [t_his] soul."
-					if(living_user.mind?.holy_role >= HOLY_ROLE_PRIEST)
-						. += span_warning("PERFECT FOR SMITING!!")
-					else
-						living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
-						living_user.set_jitter_if_lower(15 SECONDS)
-
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
-
-		// DARKPACK EDIT ADD START
-		if(iskindred(src) && !(obscured_slots & HIDEFACE))
-			switch(clan.alt_sprite)
-				if("nosferatu")
-					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
-				if("gargoyle")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] to be made out of stone!<br>")
-				if("kiasyd")
-					if (!is_eyes_covered())
-						. += span_boldwarning("[p_they(TRUE)] [p_have()] no whites in [p_their()] eyes!</b><br>")
-				if("rotten1")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] oddly gaunt.<br>")
-				if("rotten2")
-					. += span_warning("[p_they(TRUE)] [p_have()] a corpselike complexion.<br>")
-				if("rotten3")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a decayed corpse!<br>")
-				if("rotten4")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
-		// DARKPACK EDIT ADD END
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
@@ -291,6 +252,8 @@
 			var/npc_message = ""
 			if(HAS_TRAIT(brain, TRAIT_GHOSTROLE_ON_REVIVE))
 				npc_message = "Soul is pending..."
+			else if(isnpc(src)) // DARKPACK EDIT ADD START
+				npc_message = "[t_He] looks busy. Probably wise not to bother [t_him]." // DARKPACK EDIT ADD END
 			else if(!key)
 				npc_message = "[t_He] [t_is] totally catatonic. The horrors of this place must have been too much for [t_him]. Any recovery is unlikely." // DARKPACK EDIT CHANGE
 			else if(!client)

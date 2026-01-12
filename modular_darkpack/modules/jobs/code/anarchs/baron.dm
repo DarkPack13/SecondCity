@@ -1,6 +1,5 @@
 /datum/job/vampire/baron
 	title = JOB_BARON
-	department_head = list("Justicar")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -16,7 +15,7 @@
 	)
 
 	known_contacts = list("Bouncer", "Emissary", "Sweeper", "Prince", "Sheriff")
-	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
+	allowed_clans = list(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_SETITE)
 	allowed_species = list(SPECIES_KINDRED)
 	description = "You lead the Anarchs in the City. A Camarilla faction that values freedom and individuality. While not a fan of the traditions, you still respect the Masquerade."
 	minimal_masquerade = 3
@@ -26,6 +25,7 @@
 	jobtype = /datum/job/vampire/baron
 
 	id = /obj/item/card/baron
+	ears = /obj/item/radio/headset/darkpack
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/bar
 	suit = /obj/item/clothing/suit/vampire/jacket/better
@@ -33,8 +33,4 @@
 	gloves = /obj/item/clothing/gloves/vampire/work
 	l_pocket = /obj/item/smartphone/baron
 	r_pocket = /obj/item/vamp/keys/bar
-	//backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/baron
-	name = "Baron"
-	icon_state = "Baron"
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit=1)

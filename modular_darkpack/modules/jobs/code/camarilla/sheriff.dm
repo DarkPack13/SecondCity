@@ -2,7 +2,6 @@
 	title = JOB_SHERIFF
 	description = "Protect the Prince and the Masquerade. You are their sword."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -26,7 +25,7 @@
 	minimal_generation = 12
 	minimal_masquerade = 5
 	allowed_species = list(SPECIES_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA)
+	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA)
 
 	known_contacts = list("Prince","Seneschal","Dealer")
 
@@ -34,7 +33,7 @@
 	name = "Sheriff"
 	jobtype = /datum/job/vampire/sheriff
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/sheriff
 	uniform = /obj/item/clothing/under/vampire/sheriff
 	belt = /obj/item/storage/belt/sheath/vamp/rapier
@@ -44,12 +43,8 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	r_pocket = /obj/item/vamp/keys/sheriff
 	l_pocket = /obj/item/smartphone/sheriff
-	//backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/vampire_stake=3, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/card/credit/elder=1)
+	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/vampire_stake=3, /obj/item/masquerade_contract=1, /obj/item/card/credit/elder=1)
 
 /datum/outfit/job/vampire/sheriff/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	H.ignores_warrant = TRUE
-
-/obj/effect/landmark/start/sheriff
-	name = "Sheriff"
-	icon_state = "Sheriff"

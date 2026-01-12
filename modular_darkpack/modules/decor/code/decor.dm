@@ -1,7 +1,7 @@
 /obj/structure/vampfence
 	name = "\improper fence"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/fence.dmi'
 	icon_state = "fence"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -128,17 +128,13 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-//I should make these slow to move
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = TRUE
+	drag_slowdown = 3
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
@@ -168,7 +164,7 @@
 /obj/structure/trashbag
 	name = "trash bags"
 	desc = "Enough trashbags to block your way."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "garbage1"
 	density = TRUE
 	anchored = TRUE
@@ -184,9 +180,8 @@
 /obj/structure/hotelbanner
 	name = "banner"
 	desc = "It says H O T E L."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
 	icon_state = "banner"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
@@ -200,7 +195,7 @@
 /obj/structure/arc
 	name = "chinatown arc"
 	desc = "Cool chinese architecture."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
 	icon_state = "ark1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -218,7 +213,7 @@
 /obj/structure/trad
 	name = "traditional lamp"
 	desc = "Cool chinese lamp."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
 	icon_state = "trad"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -232,7 +227,7 @@
 
 /obj/structure/vamproofwall
 	name = "wall"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/roofwall.dmi'
 	icon_state = "the_wall"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -240,7 +235,7 @@
 /obj/structure/hydrant
 	name = "hydrant"
 	desc = "Used for firefighting."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/hydrant.dmi'
 	icon_state = "hydrant"
 	anchored = TRUE
 
@@ -259,20 +254,21 @@
 /obj/structure/roadblock
 	name = "\improper road block"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/barriers.dmi'
 	icon_state = "roadblock"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/roadblock/alt
 	icon_state = "barrier"
 
+// DARKPACK TODO - Does not pass the sniff test of being a decal. Make a structure
 /obj/effect/decal/painting
 	name = "painting"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/paintings.dmi'
 	icon_state = "painting1"
-	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE
+	layer = SIGN_LAYER
 
 /obj/effect/decal/painting/second
 	icon_state = "painting2"
@@ -310,7 +306,7 @@
 /obj/structure/bricks
 	name = "bricks"
 	desc = "Building material."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "bricks"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -318,8 +314,11 @@
 
 /obj/effect/decal/pallet
 	name = "pallet"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "under1"
+
+/obj/effect/decal/pallet/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
 
 /obj/effect/decal/pallet/Initialize(mapload)
 	. = ..()
@@ -409,7 +408,7 @@
 
 /obj/underplate
 	name = "underplate"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "underplate"
 	layer = TABLE_LAYER
 	anchored = TRUE
@@ -493,8 +492,8 @@
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
-	icon_state = "barrel"
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "firebarrel"
 	anchored = TRUE
 	density = TRUE
 
@@ -601,7 +600,7 @@
 /obj/structure/bath
 	name = "bath"
 	desc = "Not big enough for hiding in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/bathroom.dmi'
 	icon_state = "tub"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -611,11 +610,11 @@
 /obj/weapon_showcase
 	name = "weapon showcase"
 	desc = "Look, a gun."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/showcase.dmi'
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/weapon_showcase/Initialize(mapload)
@@ -647,7 +646,7 @@
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/bury_pit.dmi'
 	icon_state = "pit0"
 	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = TRUE
@@ -692,12 +691,13 @@
 /obj/structure/fluff/tv
 	name = "\improper TV"
 	desc = "A slightly battered looking TV. Various infomercials play on a loop, accompanied by a jaunty tune."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/television.dmi'
 	icon_state = "tv_news"
 
 /obj/structure/fluff/tv/order
 	name = "order screen"
 	desc = "A slightly battered looking TV. It shows a menu to order from."
+	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "order1"
 
 /obj/structure/fluff/tv/order/one
@@ -717,3 +717,8 @@
 /obj/structure/fluff/tv/order/random/Initialize(mapload)
 	. = ..()
 	icon_state = "order[rand(1,4)]"
+
+/obj/structure/projector
+	name = "projector"
+	icon = 'icons/obj/machines/stationary_camera.dmi'
+	icon_state = "camera"

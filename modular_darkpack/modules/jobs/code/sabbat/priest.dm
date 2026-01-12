@@ -16,7 +16,6 @@
 
 	description = "You are the Sabbat Priest. You are charged with the supervision of the ritae of your pack. You also serve as the second-in-command to the Ductus. Consecrate the Vaulderie for new Sabbat, consult your tome for rites to aid your pack, and ensure the Sabbat live on in Caine's favor. NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN."
 	minimal_masquerade = 0
-	allowed_clans = VAMPIRE_CLAN_ALL
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
 
@@ -24,26 +23,12 @@
 	name = "Sabbat Priest"
 	jobtype = /datum/job/vampire/sabbatpriest
 	l_pocket = /obj/item/smartphone
-	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
 
 /datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
-
-/obj/effect/landmark/start/sabbatpriest
-	name = "Sabbat Priest"
-	icon_state = "Assistant"
-
-/proc/is_sabbatist(mob/living/user)
-	return user?.mind?.assigned_role in list("Sabbat Priest", "Sabbat Ductus", "Sabbat Pack")
-
-/proc/is_sabbat_priest(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Priest"
-
-/proc/is_sabbat_ductus(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Ductus"
 
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"

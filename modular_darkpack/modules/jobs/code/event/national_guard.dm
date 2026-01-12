@@ -1,6 +1,6 @@
 /datum/outfit/job/vampire/national_guard
 	name = "National Guard Soldier"
-	//ears = /obj/item/p25radio/police/government
+	ears = /obj/item/radio/headset/darkpack/military
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
 	mask = /obj/item/clothing/mask/vampire/balaclava
 	r_pocket = /obj/item/flashlight
@@ -11,36 +11,20 @@
 	head = /obj/item/clothing/head/vampire/army
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpackaug = 3,
-		/obj/item/radio = 1,
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1
 		)
 
 /datum/antagonist/national_guard/proc/equip_national_guard()
-	var/mob/living/carbon/human/H = owner.current
-	if(!ishuman(owner.current))
-		return
-	H.equipOutfit(national_guard_outfit)
-	H.set_species(/datum/species/human)
-	H.set_clan(null)
-	H.generation = 13
-	H.st_set_stat(5, STAT_STAMINA)
-	H.st_set_stat(5, STAT_LARCENY)
-	H.st_set_stat(4, STAT_STRENGTH)
-	H.recalculate_max_health(TRUE)
-
-	for(var/datum/action/A in H.actions)
-		if(A.vampiric)
-			A.Remove(H)
-	REMOVE_TRAIT(H, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
-	var/obj/item/organ/eyes/NV = new()
-	NV.Insert(H, TRUE, FALSE)
-
 	var/list/landmarkslist = list()
 	for(var/obj/effect/landmark/start/S in GLOB.start_landmarks_list)
 		if(S.name == name)
 			landmarkslist += S
-	var/obj/effect/landmark/start/D = pick(landmarkslist)
-	H.forceMove(D.loc)
+	var/mob/living/carbon/human/H = new(pick(landmarkslist))
+	H.equipOutfit(national_guard_outfit)
+	H.st_set_stat(5, STAT_STAMINA)
+	H.st_set_stat(5, STAT_LARCENY)
+	H.st_set_stat(4, STAT_STRENGTH)
+	H.ignores_warrant = TRUE
 
 /datum/antagonist/national_guard/proc/offer_loadout()
 	var/list/loadouts = list(
@@ -53,7 +37,7 @@
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
 		if("Flamethrower")
-			owner.current.put_in_r_hand(new /obj/item/vampire_flamethrower(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/liquid_flamethrower(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/gas_can/full(owner.current))
 		if("EOD")
 			owner.current.put_in_r_hand(new /obj/item/clothing/suit/vampire/eod(owner.current))
@@ -66,10 +50,6 @@
 		if("Ammo Carrier")
 			owner.current.put_in_r_hand(new /obj/item/ammo_box/darkpack/c556/incendiary(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/darkpack/c556/incendiary(owner.current))
-
-/obj/effect/landmark/start/national_guard
-	name = "National Guard"
-	delete_after_roundstart = FALSE
 
 /datum/antagonist/national_guard
 	name = "National Guard"

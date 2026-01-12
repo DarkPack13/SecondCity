@@ -1,0 +1,6 @@
+/obj/item/arcane_tome : /obj/item/ritual_tome/arcane
+/obj/item/mystic_tome : /obj/item/ritual_tome/abyss
+/obj/item/necromancy_tome : /obj/item/ritual_tome/necromancy
+/obj/necrorune/@SUBTYPES : /obj/ritual_rune/necromancy/@SUBTYPES
+/obj/abyssrune/@SUBTYPES :/obj/ritual_rune/abyss/@SUBTYPES
+/obj/ritualrune/@SUBTYPES : /obj/ritual_rune/thaumaturgy/@SUBTYPES

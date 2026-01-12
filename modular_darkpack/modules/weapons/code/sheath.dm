@@ -1,12 +1,15 @@
 /obj/item/storage/belt/sheath/vamp
+	name = "sheath"
 	icon_state = "longsword_sheathe-full"
+	base_icon_state = "longsword_sheathe"
 	worn_icon_state = "longsword_sheathe"
 	//inhand_icon_state = "longsword_sheathe"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	//lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	//righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 1200
 
 /obj/item/storage/belt/sheath/vamp/sabre
 	desc = "An ornate sheath designed to hold an officer's blade."
@@ -16,6 +19,7 @@
 	//inhand_icon_state = "sabre_sheathe"
 	storage_type = /datum/storage/sabre_belt_vamp
 	stored_blade = /obj/item/melee/sabre/vamp
+	custom_price = 1400
 
 /obj/item/storage/belt/sheath/vamp/rapier
 	desc = "An ornate sheath designed to hold a duelist's blade."
@@ -34,6 +38,7 @@
 	//inhand_icon_state = "longsword_sheathe"
 	storage_type = /datum/storage/sword_belt_vamp
 	stored_blade = /obj/item/claymore/longsword
+	custom_price = 1600
 
 
 /datum/storage/sabre_belt_vamp

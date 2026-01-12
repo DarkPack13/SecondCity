@@ -240,9 +240,6 @@
 
 	fully_replace_character_name(name, real_name)
 
-	storyteller_stat_holder.randomize_attributes(1, max_stat)
-	storyteller_stat_holder.randomize_abilities(0, max_stat)
-
 	maxHealth = round(initial(maxHealth)+(initial(maxHealth)/3)*(st_get_stat(STAT_STAMINA)))
 	health = round(initial(health)+(initial(health)/3)*(st_get_stat(STAT_STAMINA)))
 	last_health = health
@@ -271,6 +268,7 @@
 		var/list/m_names = list()
 		var/list/f_names = list()
 		var/list/s_names = list()
+		var/random_name
 		if(socialrole.male_names)
 			m_names = socialrole.male_names
 		else
@@ -298,11 +296,13 @@
 				set_facial_hairstyle(pick(socialrole.male_facial))
 			else
 				set_facial_hairstyle("Shaved")
-			real_name = "[pick(m_names)] [pick(s_names)]"
+			random_name = "[pick(m_names)] [pick(s_names)]"
+			fully_replace_character_name(newname = random_name)
 		else
 			set_hairstyle(pick(socialrole.female_hair))
 			set_facial_hairstyle("Shaved")
-			real_name = "[pick(f_names)] [pick(s_names)]"
+			random_name = "[pick(f_names)] [pick(s_names)]"
+			fully_replace_character_name(newname = random_name)
 
 		set_eye_color(random_eye_color())
 

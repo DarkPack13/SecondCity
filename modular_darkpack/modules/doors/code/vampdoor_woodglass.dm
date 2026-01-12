@@ -2,11 +2,12 @@
 	name = "wooden glass door"
 	icon_state = "glass-1"
 	base_icon_state = "glass"
-	open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
-	close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
+	opacity = FALSE
+	// open_sound = 'modular_darkpack/modules/doors/sounds/wood_open.ogg'
+	// close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
 /obj/structure/vampdoor/woodglass/prince
 	locked = TRUE
-	lock_id = "prince"
+	lock_id = LOCKACCESS_PRINCE
 	lockpick_difficulty = 12

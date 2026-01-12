@@ -175,6 +175,11 @@
 	if(!istype(location) || !location.air)
 		return FALSE
 
+	// DARKPACK EDIT ADD START - TURF_FIRE
+	if(SEND_SIGNAL(location, COMSIG_TURF_HOTSPOT_EXPOSE) & SUPPRESS_FIRE)
+		return FALSE
+	// DARKPACK EDIT ADD END
+
 	if(location.active_hotspot && location.active_hotspot != src)
 		// If we're attempting to spawn on a turf which *just* had a hotspot spawned on it, abort and kill ourselves
 		if(location.active_hotspot.just_spawned)
@@ -455,11 +460,13 @@
 	var/turf/open/sound_turf = locate(average_x, average_y, average_Z)
 	if(sound)
 		sound.falloff_distance = drop_off_dist
+		sound.extra_range = drop_off_dist
 		if(sound_turf != current_sound_loc)
 			sound.parent = sound_turf
 		return
 	sound = new(sound_turf, TRUE)
 	sound.falloff_distance = drop_off_dist
+	sound.extra_range = drop_off_dist
 	current_sound_loc = sound_turf
 
 #undef MIN_SIZE_SOUND

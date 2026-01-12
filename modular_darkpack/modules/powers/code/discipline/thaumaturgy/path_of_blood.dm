@@ -8,10 +8,11 @@
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
 	owner.faction |= VAMPIRE_CLAN_TREMERE
-	var/datum/action/thaumaturgy/thaumaturgy = new()
+	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
 	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
+	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
@@ -30,7 +31,7 @@
 /datum/discipline_power/thaumaturgy/activate(atom/target)
 	. = ..()
 	//Thaumaturgy powers have different effects based off the amount of successes. I dont want to copy paste the code, so this is being put here.
-	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
+	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
 	if(success_count < 0)
 		thaumaturgy_botch_effect()
 		return TRUE
@@ -53,7 +54,7 @@
 			owner.ignite_mob()
 		if(3)
 			to_chat(owner, span_userdanger("You feel slightly less competent!"))
-			owner.st_add_stat_mod(STAT_WILLPOWER, -1, "thaummaturgy_failure")
+			owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "thaummaturgy_failure")
 
 //------------------------------------------------------------------------------------------------
 
@@ -112,9 +113,9 @@
 		return
 
 	if(success_count > 2)
-		message += span_notice("This blood tastes like that of the [blood_owner.generation]\th generation.")
+		message += span_notice("This blood tastes like that of the [blood_owner.dna.species.generation]\th generation.")
 	else
-		message += span_notice("This blood tastes like that of the [rand(LOWEST_GENERATION_LIMIT, blood_owner.generation)]\th generation.")
+		message += span_notice("This blood tastes like that of the [rand(LOWEST_GENERATION_LIMIT, blood_owner.dna.species.generation)]\th generation.")
 
 	if(success_count > 3)
 		message += span_notice("The owner of the blood has [blood_owner.bloodpool] blood points left.")
@@ -194,7 +195,7 @@
 /datum/discipline_power/thaumaturgy/blood_of_potency/activate()
 	if(..())
 		return
-	if(owner.generation <= 4)
+	if(owner.dna.species.generation <= 4)
 		to_chat(owner, span_warning("You can't make your blood any more powerful!"))
 		return
 	var/points_to_spend = success_count
@@ -203,13 +204,13 @@
 
 	var/list/generation_choices = list()
 	for(var/i in 1 to points_to_spend)
-		generation_choices += clamp((owner.generation - i), 4, HIGHEST_GENERATION_LIMIT) //No becoming an Antediluvian.
+		generation_choices += clamp((owner.dna.species.generation - i), 4, HIGHEST_GENERATION_LIMIT) //No becoming an Antediluvian.
 	chosen_generation = tgui_input_list(owner, "What Generation would you like to lower your blood's potency to?", "Generation", generation_choices, null)
 
 	if(!chosen_generation)
-		chosen_generation = owner.generation - 1
+		chosen_generation = owner.dna.species.generation - 1
 
-	points_to_spend -= (owner.generation - chosen_generation)
+	points_to_spend -= (owner.dna.species.generation - chosen_generation)
 
 	var/list/time_choices = list()
 	for(var/i in 1 to points_to_spend)
@@ -221,10 +222,6 @@
 	chosen_generation = max(BLOOD_POTENCY_GENERATION, chosen_generation) //Lowest im gonna let you go is BLOOD_POTENCY_GENERATION bucko
 	owner.apply_status_effect(/datum/status_effect/blood_of_potency, chosen_generation, set_time * 22 MINUTES)
 	activated = TRUE
-
-/datum/discipline_power/thaumaturgy/blood_of_potency/deactivate()
-	. = ..()
-	owner.remove_status_effect(/datum/status_effect/blood_of_potency)
 
 //------------------------------------------------------------------------------------------------
 
@@ -257,10 +254,10 @@
 	target.visible_message(span_danger("[target]'s blood streams out in a torrent towards [owner]!"), span_userdanger("Your blood streams out in a torrent towards [owner]!"))
 	if(iskindred(target) || isghoul(target))
 		var/blood_taken = clamp(success_count, 0, target.bloodpool)
-		target.bloodpool = max(target.bloodpool - blood_taken, 0)
+		target.adjust_blood_pool(-blood_taken)
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality-1)
-		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
+		owner.adjust_blood_pool(blood_gained)
 	else
 		var/blood_coefficient = (5 / target.bloodpool)
 		// DARKPACK TODO - reimplement quirks -- potent blood
@@ -272,7 +269,7 @@
 		target.blood_volume = max (0, (target.blood_volume - (blood_taken * (70*blood_coefficient))))
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality - 1)
-		owner.bloodpool = min(owner.bloodpool + blood_gained, owner.maxbloodpool)
+		owner.adjust_blood_pool(blood_gained)
 
 //------------------------------------------------------------------------------------------------
 
@@ -301,7 +298,7 @@
 
 	target.visible_message(span_danger("As [owner] touches [target], their body seems to boil!"), span_userdanger("As [owner] touches you, your body feels like it's boiling in a pool of lava!"))
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
-	target.bloodpool = max(target.bloodpool - success_count, 0)
+	target.adjust_blood_pool(-success_count)
 	if(isnpc(target))
 		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
 	else

@@ -1,4 +1,6 @@
 /obj/effect/landmark/npc_spawn_point
+	icon = 'modular_darkpack/modules/deprecated/icons/effects/landmarks_static.dmi'
+	icon_state = "spawn"
 
 /obj/effect/landmark/npc_spawn_point/Initialize(mapload)
 	. = ..()
@@ -60,7 +62,6 @@
 		var/mob/living/simple_animal/hostile/HS = last_attacker
 		if(HS.my_creator)
 			HS.my_creator.AdjustHumanity(-1, 0)
-			HS.my_creator.last_nonraid = world.time
 			HS.my_creator.killed_count += 1
 			if(!HS.my_creator.warrant && !HS.my_creator.ignores_warrant)
 				if(HS.my_creator.killed_count >= 5)
@@ -73,7 +74,6 @@
 	else if (ishuman(last_attacker))
 		var/mob/living/carbon/human/HM = last_attacker
 		HM.AdjustHumanity(-1, 0)
-		HM.last_nonraid = world.time
 		HM.killed_count += 1
 		if(!HM.warrant && !HM.ignores_warrant)
 			if(HM.killed_count >= 5)
@@ -263,15 +263,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// DARKPACK TODO - reimplement fire
-	/*
-	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(DEFAULT_SIGHT_DISTANCE, src))
-		afraid_of_fire = seen_fire
-		seeing_fire = TRUE
-	if (!seeing_fire)
-		afraid_of_fire = null
-	*/
+	afraid_of_fire = locate(/obj/effect/abstract/turf_fire) in view(DEFAULT_SIGHT_DISTANCE, src)
 
 	// Combat behaviour
 	if (danger_source)
@@ -306,18 +298,13 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// DARKPACK TODO - reimplement fire
-	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
 		if (prob(25))
 			emote("scream")
-	*/
 
 	// Walking around behaviour
 	else if (walktarget && !staying)
-		if (prob(25))
-			toggle_move_intent(src)
 		GLOB.move_manager.move_to(src, walktarget, 0, cached_multiplicative_slowdown)
 
 	if (!has_weapon || danger_source || !spawned_weapon)

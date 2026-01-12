@@ -2,7 +2,6 @@
 	title = JOB_HOUND
 	description = "You are the Prince's enforcer. You report to the Sheriff and uphold the Traditions."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/sheriff
 	faction = FACTION_CITY
 	total_positions = 7
 	spawn_positions = 7
@@ -24,7 +23,7 @@
 
 	minimal_masquerade = 3
 	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL)
-	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_TZIMISCE)
+	allowed_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_TZIMISCE)
 
 	known_contacts = list("Prince", "Sheriff")
 
@@ -32,7 +31,7 @@
 	name = "Hound"
 	jobtype = /datum/job/vampire/hound
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/camarilla
 	uniform = /obj/item/clothing/under/vampire/hound
 	gloves = /obj/item/clothing/gloves/vampire/work
@@ -40,8 +39,4 @@
 	shoes = /obj/item/clothing/shoes/vampire
 	r_pocket = /obj/item/vamp/keys/camarilla
 	l_pocket = /obj/item/smartphone/hound
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/vampire_stake=3, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/hound
-	name = "Hound"
-	icon_state = "Hound"
+	backpack_contents = list(/obj/item/vampire_stake=3, /obj/item/masquerade_contract=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)

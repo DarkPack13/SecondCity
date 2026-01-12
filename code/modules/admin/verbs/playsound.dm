@@ -119,17 +119,17 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 				music_extra_data["album"] = "Default"
 			if("Cancel", null)
 				return
-		var/stay_anonimous = tgui_alert(user, "Display who played the song?", "Credit Yourself", list("Yes", "No", "Cancel"))
+		var/credit_yourself = tgui_alert(user, "Display who played the song?", "Credit Yourself", list("Yes", "No", "Cancel"))
 
 		var/list/to_chat_message = list()
 
-		switch(stay_anonimous)
-			if("No")
+		switch(credit_yourself)
+			if("Yes")
 				if(include_song_data == "Yes")
 					to_chat_message += span_notice("[user.ckey] played: [span_linkify(webpage_url)]")
 				else
 					to_chat_message += span_notice("[user.ckey] played a sound.")
-			if("Yes")
+			if("No")
 				if(include_song_data == "Yes")
 					to_chat_message += span_notice("An admin played: [span_linkify(webpage_url)]")
 				else
@@ -165,6 +165,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 				// Stops playing lobby music and admin loaded music automatically.
 				SEND_SOUND(C, sound(null, channel = CHANNEL_LOBBYMUSIC))
 				SEND_SOUND(C, sound(null, channel = CHANNEL_ADMIN))
+				SEND_SOUND(C, sound(null, channel = CHANNEL_MUSIC)) // DARKPACK EDIT ADD - AMBIENCE
 				if(!stop_web_sounds)
 					C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 				else

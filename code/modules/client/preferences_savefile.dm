@@ -13,7 +13,7 @@
 /// You do not need to raise this if you are adding new values that have sane defaults.
 /// Only raise this value when changing the meaning/format/name/layout of an existing value
 /// where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 50
+#define SAVEFILE_VERSION_MAX 51
 
 #define IS_DATA_OBSOLETE(version) (version == SAVE_DATA_OBSOLETE)
 #define SHOULD_UPDATE_DATA(version) (version >= SAVE_DATA_NO_ERROR && version < SAVEFILE_VERSION_MAX)
@@ -162,6 +162,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			quirk_to_migrate = "Spiritual",
 			new_typepath = /datum/personality/spiritual,
 		)
+	if(current_version < 51)
+		migrate_felinid_feature_keys(save_data)
 
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()
@@ -365,10 +367,28 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	all_quirks = save_data?["all_quirks"]
 
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	var/list/stats_list = save_data?["preference_storyteller_stats"]
+	// DARKPACK EDIT ADD END
+
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
 	if(SHOULD_UPDATE_DATA(data_validity_integer))
 		update_character(data_validity_integer, save_data)
+
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	if(!stats_list)
+		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
+	for(var/stat_path in stats_list)
+		var/proper_stat_path = text2path(stat_path)
+		var/datum/st_stat/stat = new proper_stat_path()
+		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
+			stat.set_score(stats_list[stat_path][STAT_SCORE])
+			stat.set_points(stats_list[stat_path][STAT_POINTS])
+			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
+		preference_storyteller_stats[stat_path] = stat
+	update_middleware_stats(preference_storyteller_stats)
+	// DARKPACK EDIT ADD END
 
 	//Sanitize
 	randomise = SANITIZE_LIST(randomise)
@@ -381,6 +401,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences -= j
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
+
 	validate_quirks()
 
 	return TRUE
@@ -422,6 +443,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	save_data["all_quirks"] = all_quirks
+
+	// DARKPACK EDIT ADD START- STORYTELLER_STATS
+	if(!length(preference_storyteller_stats))
+		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
+	var/list/stats_list = preference_storyteller_stats
+	var/list/new_stats_list = list()
+	for(var/stat_typepath in stats_list)
+		var/datum/st_stat/stat = stats_list[stat_typepath]
+		new_stats_list[stat_typepath] = list()
+		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
+		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
+		new_stats_list[stat_typepath][STAT_FREEBIE_COST_SPENT] = stat.freebie_cost_spent
+	save_data["preference_storyteller_stats"] = new_stats_list
+	// DARKPACK EDIT ADD END
 
 	return TRUE
 

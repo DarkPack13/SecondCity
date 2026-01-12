@@ -94,7 +94,7 @@
 /datum/ai_controller/basic_controller/zombie/darkpack
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/zombie_darkpack,
-		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
+		BB_TARGET_MINIMUM_STAT = DEAD,
 		BB_VISION_RANGE = 9,
 	)
 	ai_movement = /datum/ai_movement/basic_avoidance
@@ -116,7 +116,7 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
-	var/spawn_interval = 8 MINUTES
+	var/spawn_interval = 15 MINUTES
 	var/max_zombies_per_grave = 2
 	var/list/spawned_zombies = list()
 
