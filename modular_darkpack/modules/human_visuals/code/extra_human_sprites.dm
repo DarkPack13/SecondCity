@@ -14,6 +14,7 @@
 
 	// If no base sprite is supplied, get a default from either the species or the Clan
 	if (!sprite_name)
+		var/datum/vampire_clan/clan = get_clan()
 		if (clan?.alt_sprite && !ignore_clan)
 			sprite_name = clan.alt_sprite
 			greyscale = clan.alt_sprite_greyscale

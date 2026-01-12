@@ -19,3 +19,7 @@
   - qol: you can now take up to 6 pocket items
   - rscadd: Bank pin is now found in the memories section similar to bank ID number
   - bugfix: You can now tell you killed a raven or crow because it flips on its back
+2026-01-12:
+  XeonMations:
+  - rscadd: Added old mail to the game
+  - code_imp: Ticked a bunch of files.

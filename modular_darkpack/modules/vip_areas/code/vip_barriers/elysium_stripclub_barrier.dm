@@ -6,6 +6,6 @@
 
 
 /obj/effect/vip_barrier/stripclub/check_entry_permission_custom(mob/living/carbon/human/entering_mob)
-	if(!ishumanbasic(entering_mob) || (entering_mob.mind && entering_mob.mind.assigned_role == "Stripper"))
+	if(issupernatural(entering_mob) || (entering_mob.mind && entering_mob.mind.assigned_role == "Stripper"))
 		return TRUE
 	return FALSE
