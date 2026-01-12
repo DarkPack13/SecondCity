@@ -25,7 +25,7 @@
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	if(!source || !player_breacher || ishumanbasic(player_breacher)) //Humans cant break the masquerade. Because reasons.
+	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
 		return
 
 	if(isliving(source))
