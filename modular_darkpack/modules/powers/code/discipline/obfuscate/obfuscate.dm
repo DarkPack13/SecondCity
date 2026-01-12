@@ -178,7 +178,7 @@
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
-
+	var/datum/splat/vampire/kindred/owner_splat
 	var/datum/dna/original_dna
 	var/original_name
 	var/original_sprite
@@ -201,7 +201,7 @@
 	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-
+	owner_splat = iskindred(owner)
 	if(!LAZYLEN(cached_targets))
 		to_chat(owner, span_warning("You haven't gotten a good look at anyone - so you can't mimic anyone's face!"))
 		return FALSE
@@ -242,21 +242,21 @@
 		original_dna = new /datum/dna()
 		owner.dna.copy_dna(original_dna, 0)
 		original_name = owner.name
-		if(owner.clan?.alt_sprite)
-			original_sprite = owner.clan.alt_sprite
-			original_sprite_greyscale = owner.clan.alt_sprite_greyscale
+		if(owner_splat.clan?.alt_sprite)
+			original_sprite = owner_splat.clan.alt_sprite
+			original_sprite_greyscale = owner_splat.clan.alt_sprite_greyscale
 		else
 			original_sprite = SPECIES_HUMAN
 			original_sprite_greyscale = TRUE
 
 	target.dna.copy_dna(owner.dna, 0)
-
-	if(target.clan?.alt_sprite)
-		owner.set_body_sprite(target.clan.alt_sprite, target.clan.alt_sprite_greyscale, TRUE)
+	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
+	if(target_splat?.clan?.alt_sprite)
+		owner.set_body_sprite(target_splat.clan.alt_sprite, target_splat.clan.alt_sprite_greyscale, TRUE)
 	else
-		if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
+		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
 			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
-		if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))
+		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
 			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
@@ -272,9 +272,9 @@
 	original_dna.copy_dna(owner.dna, 0)
 	owner.name = original_name
 
-	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner.clan.clan_traits))
+	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
-	if(owner.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner.clan.clan_traits))
+	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
 
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
