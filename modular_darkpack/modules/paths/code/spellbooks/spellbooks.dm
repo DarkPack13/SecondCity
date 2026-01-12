@@ -3,13 +3,14 @@
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
 	icon_state = "spellbook_unfinished"
+	drop_sound = 'sound/items/handling/book_drop.ogg'
+	pickup_sound = 'sound/items/handling/book_pickup.ogg'
+	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.ogg'
+	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.ogg'
+
 	var/path_type = null
 	var/path_level = 1
 	var/do_after_time = 30 SECONDS
-	var/activate_sound = 'modular_darkpack/modules/paths/sounds/open_book.ogg'
-	var/deactivate_sound = 'modular_darkpack/modules/paths/sounds/close_book.ogg'
-	drop_sound = 'sound/items/handling/book_drop.ogg'
-	pickup_sound = 'sound/items/handling/book_pickup.ogg'
 
 	var/identified = FALSE
 	var/true_name = ""
@@ -55,9 +56,8 @@
 					return
 		return
 
-	var/is_knowing = FALSE
-	var/datum/species/human/kindred/species = user.dna.species
-	var/datum/discipline/existing_path_discipline = null
+	var/datum/splat/vampire/kindred/kindred = iskindred(user)
+	var/datum/discipline/existing_path_discipline = kindred?.get_discipline(path_type)
 
 	if(!path_type)
 		to_chat(user, span_warning("This spellbook appears to be incomplete!"))
@@ -67,33 +67,28 @@
 		if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return
-		for(var/datum/action/discipline/D in user.actions)
-			if(D.discipline)
-				//Checking if the discipline is the same as the path_type
-				if(D.discipline.type == path_type)
-					existing_path_discipline = D.discipline
-					is_knowing = TRUE
-					//Then we check if the level can be learned
-					if(path_level == existing_path_discipline.level)
-						// User already knows this level
-						to_chat(user, span_warning("You already know this book!"))
-						return
-					else if(path_level == existing_path_discipline.level + 1)
-						// The book's level is one higher than the user's current level
-						user.playsound_local(user, activate_sound, 50, FALSE)
-					else if (path_level > existing_path_discipline.level + 1)
-						// The book's level is too high for the user to learn
-						to_chat(user, span_warning("You must learn the previous book(s) first!"))
-						return
-					else if (path_level < existing_path_discipline.level)
-						// The book's level is lower than the user's current level
-						to_chat(user, span_warning("You already know a higher level of this path!"))
-						return
+		if(existing_path_discipline)
+			//Then we check if the level can be learned
+			if(path_level == existing_path_discipline.level)
+				// User already knows this level
+				to_chat(user, span_warning("You already know this book!"))
+				return
+			else if(path_level == existing_path_discipline.level + 1)
+				// The book's level is one higher than the user's current level
+				user.playsound_local(user, activate_sound, 50, FALSE)
+			else if (path_level > existing_path_discipline.level + 1)
+				// The book's level is too high for the user to learn
+				to_chat(user, span_warning("You must learn the previous book(s) first!"))
+				return
+			else if (path_level < existing_path_discipline.level)
+				// The book's level is lower than the user's current level
+				to_chat(user, span_warning("You already know a higher level of this path!"))
+				return
 		// If we reach here, the user does not know this path at all
-		if(path_level > 1 && !is_knowing)
+		if(path_level > 1 && !existing_path_discipline)
 			to_chat(user, span_warning("You must know the first level of this path before you can learn higher levels!"))
 			return
-		else if(path_level == 1 && !is_knowing)
+		else if(path_level == 1 && !existing_path_discipline)
 			user.playsound_local(user, activate_sound, 50, FALSE)
 	else
 		to_chat(user, span_warning("This book is filled with gibberish and nonsense."))
@@ -107,36 +102,15 @@
 
 	if(do_after(user, do_after_time, target = src))
 		// Now checking the level again to assign the correct path level
-		if(!is_knowing)
-			var/datum/discipline/new_discipline = new path_type(path_level)
-			species.disciplines += new_discipline
-			var/datum/action/discipline/path/path_action = new /datum/action/discipline/path(new_discipline)
-			path_action.Grant(user)
+		if(!existing_path_discipline)
+			user.give_st_power(path_type, path_level)
 			to_chat(user, span_notice("The knowledge of [name] flows into your mind!"))
 		else
 			// If the user already knows the path, update the level
 			to_chat(user, span_notice("You have increased your knowledge of [name]!"))
 
-			// Remove the old discipline entirely
-			species.disciplines -= existing_path_discipline
-
-			// create list of old actions associated w/ existing_path_discipline
-			var/list/actions_to_remove = list()
-			for(var/datum/action/discipline/path/action in user.actions)
-				if(action.discipline == existing_path_discipline)
-					actions_to_remove += action
-
-			// remove old actions
-			for(var/datum/action/discipline/path/old_action in actions_to_remove)
-				old_action.Remove(user)
-
-			// create just a completely new discipline at the new path level
-			var/datum/discipline/new_discipline = new path_type(path_level)
-			species.disciplines += new_discipline
-
-			// create a new action associated with the new discipline
-			var/datum/action/discipline/path/new_action = new /datum/action/discipline/path(new_discipline)
-			new_action.Grant(user)
+			user.remove_st_power(path_type)
+			user.give_st_power(path_type, path_level)
 
 		user.playsound_local(user, deactivate_sound, 50, FALSE)
 		qdel(src)
