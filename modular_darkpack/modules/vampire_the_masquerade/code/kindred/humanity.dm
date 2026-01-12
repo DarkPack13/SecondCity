@@ -1,4 +1,4 @@
-/datum/species/human/kindred/proc/adjust_morality(mob/living/carbon/human/source, value, limit, forced, difficulty = 6)
+/datum/splat/vampire/kindred/proc/adjust_morality(mob/living/carbon/human/source, value, limit, forced, difficulty = 6)
 	SIGNAL_HANDLER
 
 	// "Enlightenment" is essentially the Path of Pure Evil. Inverts Humanity changes and limits.

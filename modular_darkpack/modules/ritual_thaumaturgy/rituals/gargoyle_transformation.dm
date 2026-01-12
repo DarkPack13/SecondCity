@@ -11,11 +11,11 @@
 	var/list/valid_bodies = list()
 
 	for(var/mob/living/carbon/human/H in loc)
-		if(H && H.dna && istype(H.dna.species, /datum/species/human/kindred))
+		if(iskindred(H))
 			if(H == usr)
 				to_chat(usr, span_warning("You may not turn yourself into a Gargoyle!"))
 				return
-			else if(H.clan?.name == VAMPIRE_CLAN_GARGOYLE)
+			else if(H.is_clan(/datum/vampire_clan/gargoyle))
 				to_chat(usr, span_warning("You may not use this ritual on a Gargoyle!"))
 				return
 			else if(H.stat > SOFT_CRIT)
@@ -126,14 +126,13 @@
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
 		target_body.adjust_agg_loss(-100)
-		target_body.set_species(/datum/species/human/kindred)
-		target_body.set_clan(/datum/vampire_clan/gargoyle)
+		target_body.make_kindred(clan = /datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name
 		target_body.update_name()
 
-		target_body.create_disciplines(FALSE, target_body.clan.clan_disciplines)
+		target_body.give_st_powers(target_body.get_clan().clan_disciplines)
 
 		if(target_body.loc != original_location)
 			target_body.forceMove(original_location)
