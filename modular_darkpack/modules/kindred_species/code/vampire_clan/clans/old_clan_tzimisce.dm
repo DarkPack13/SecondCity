@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/animalism,
-		// /datum/discipline/dominate
+		/datum/discipline/dominate
 	)
 	male_clothes = /obj/item/clothing/under/vampire/sport
 	female_clothes = /obj/item/clothing/under/vampire/red

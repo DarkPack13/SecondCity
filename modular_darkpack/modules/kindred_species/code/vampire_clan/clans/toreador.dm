@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/celerity,
-		// /datum/discipline/presence
+		///datum/discipline/presence
 	)
 	clan_traits = list(
 		TRAIT_SENSITIVE_HUMANITY

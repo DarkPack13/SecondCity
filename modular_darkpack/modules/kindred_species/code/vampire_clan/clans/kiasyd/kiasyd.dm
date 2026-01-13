@@ -6,7 +6,7 @@
 	curse = "At a glance they look unsettling or perturbing to most, their appearance closely resembles fae from old folklore. Kiasyd are also in some way connected with changelings and they are vulnerable to cold iron."
 
 	clan_disciplines = list(
-		///datum/discipline/dominate,
+		/datum/discipline/dominate,
 		/datum/discipline/obtenebration,
 		///datum/discipline/mytherceria
 	)

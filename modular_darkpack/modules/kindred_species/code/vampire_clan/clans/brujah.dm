@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/celerity,
 		/datum/discipline/potence,
-		// /datum/discipline/presence
+		///datum/discipline/presence
 	)
 	clan_traits = list(
 		TRAIT_LONGER_FRENZY
