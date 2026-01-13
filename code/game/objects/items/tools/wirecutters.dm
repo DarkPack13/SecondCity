@@ -51,7 +51,7 @@
 	var/snap_time_weak_handcuffs = 0 SECONDS
 	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.
 	var/snap_time_strong_handcuffs = null
-	custom_price = 20 // DARKPACK EDIT ADD
+	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
 
 /datum/armor/item_wirecutters
 	fire = 50
