@@ -4247,8 +4247,8 @@
 /turf/closed/wall/vampwall/junk,
 /area/vtm/interior/sewer/nosferatu_town)
 "aok" = (
-/obj/machinery/telecomms/server,
 /obj/effect/decal/rugs,
+/obj/machinery/telecomms/allinone/public,
 /turf/open/floor/plating/rough{
 	icon_state = "carpet_black"
 	},

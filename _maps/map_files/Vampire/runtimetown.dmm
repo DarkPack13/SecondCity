@@ -2410,6 +2410,10 @@
 /obj/structure/city_map,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"SW" = (
+/obj/machinery/telecomms/allinone/public,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
 /obj/vampire_computer/prince,
@@ -3301,7 +3305,7 @@ NR
 LY
 NR
 fc
-NR
+SW
 NR
 NR
 NR
