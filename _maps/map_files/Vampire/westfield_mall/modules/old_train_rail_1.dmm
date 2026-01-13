@@ -15,7 +15,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "g" = (
-/mob/living/basic/gangrel/best,
+/mob/living/basic/gangrel/best/hostile,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "i" = (
@@ -29,7 +29,7 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "l" = (
-/mob/living/basic/gangrel,
+/mob/living/basic/gangrel/hostile,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "m" = (
