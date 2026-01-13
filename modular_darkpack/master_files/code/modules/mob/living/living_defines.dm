@@ -38,6 +38,8 @@
 	var/obj/grabbed_by_tentacle = null
 	var/escape_attempt = 0
 	var/tentacle_aggro_mode = "Aggressive"
+	var/possessed = FALSE //dominate 5 body posession
+	var/datum/weakref/conditioner // dominate 4
 	//obfuscate icon, client side
 	var/obf_icons
 
