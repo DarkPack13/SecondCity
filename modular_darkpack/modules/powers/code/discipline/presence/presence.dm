@@ -315,11 +315,11 @@
 
 	//v20 presence -> 'summon' section for this flavortext
 	var/list/flavor_texts = list(
-		"You feel a faint pull towards [owner], approaching slowly and hesitantly.",
-		"You feel reluctantly compelled to seek out [owner], though obstacles easily deter you.",
-		"You feel a strong urge to go to [owner] with reasonable speed.",
-		"You feel compelled to rush to [owner] with haste, overcoming any obstacles in your way, but not endangering yourself.",
-		"You feel an overwhelming need to rush to [owner], doing anything to get to them."
+		"You feel a faint pull towards [owner.real_name], approaching slowly and hesitantly.",
+		"You feel reluctantly compelled to seek out [owner.real_name], though obstacles easily deter you.",
+		"You feel a strong urge to go to [owner.real_name] with reasonable speed.",
+		"You feel compelled to rush to [owner.real_name] with haste, overcoming any obstacles in your way, but not endangering yourself.",
+		"You feel an overwhelming need to rush to [owner.real_name], doing anything to get to them."
 	)
 
 	var/flavor_index = clamp(successes, 1, 5)
