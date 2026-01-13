@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
+	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	var/list/preference_storyteller_stats = list()
+	// DARKPACK EDIT ADD END
 
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
@@ -256,12 +259,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			var/new_color = input(
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			)
 
 			if (!new_color)
 				return FALSE
@@ -527,12 +530,27 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_character_randomization_prefs(is_antag)
 	apply_prefs_to(character, icon_updates)
 
-/// Applies the given preferences to a human mob.
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+/**
+ * Applies the given preferences to a human mob.
+ *
+ * Arguments:
+ * * character - The human mob to apply the preferences to
+ * * icon_updates - Whether to update the mob's icons after applying preferences.
+ * Is often skipped to save processing when an update will happen later anyway.
+ * * do_not_apply - A list of preference types to skip when applying preferences.
+ */
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, list/do_not_apply)
 	character.dna.features = list()
+
+	// DARKPACK EDIT ADD START - STORYTELLER STATS
+	if(preference_storyteller_stats)
+		apply_stats_from_prefs(character)
+	// DARKPACK EDIT ADD END
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+		if (preference.type in do_not_apply)
 			continue
 		// DARKPACK EDIT ADD START - TTRPG preferences
 		// Preferences with must_have_relevant_trait are skipped for characters who

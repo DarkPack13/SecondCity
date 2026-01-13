@@ -62,8 +62,8 @@
 /obj/ritual_rune/abyss/reflections_of_hollow_revelation/proc/scry_target(mob/living/carbon/human/target, mob/living/user)
 	// If the target has Obtenebration or Auspex, roll to see if they detect the shadows
 	if(iskindred(target))
-		var/datum/species/human/kindred/vampire = target.dna?.species
-		if(vampire && (vampire.get_discipline("Obtenebration") || vampire.get_discipline("Auspex")))
+		var/datum/splat/vampire/vampire = does_use_disciplines(target)
+		if(vampire?.get_discipline(/datum/discipline/obtenebration) || vampire?.get_discipline(/datum/discipline/auspex))
 			var/theirpower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
 			if(SSroll.storyteller_roll(theirpower, 8, target, numerical = FALSE) == ROLL_SUCCESS)
 				to_chat(target, span_warning("You notice the nearby shadows flicker... something is watching you."))

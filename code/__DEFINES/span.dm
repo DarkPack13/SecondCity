@@ -83,6 +83,7 @@
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
 #define span_linkify(str) ("<span class='linkify'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_rlooc(str) ("<span class='rlooc'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_major_announcement_text(str) ("<span class='major_announcement_text'>" + str + "</span>")
 #define span_major_announcement_title(str) ("<span class='major_announcement_title'>" + str + "</span>")
 #define span_medal(str) ("<span class='medal'>" + str + "</span>")
@@ -98,7 +99,7 @@
 #define span_narsie(str) ("<span class='narsie'>" + str + "</span>")
 #define span_narsiesmall(str) ("<span class='narsiesmall'>" + str + "</span>")
 #define span_nicegreen(str) ("<span class='nicegreen'>" + str + "</span>")
-#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK ADD
+#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
 #define span_noticealien(str) ("<span class='noticealien'>" + str + "</span>")
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")

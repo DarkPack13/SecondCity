@@ -6,6 +6,8 @@
 	var/id
 	/// Description of the Clan
 	var/desc
+	/// The icon for this clan. Used in preferences.
+	var/icon
 	/// Description of the Clan's supernatural curse
 	var/curse
 
@@ -45,7 +47,7 @@
 	var/enlightenment
 
 	/// If this Clan needs a whitelist to select and play
-	var/whitelisted
+	var/whitelisted = FALSE
 
 /**
  * Applies Clan-specific effects to the mob
@@ -87,7 +89,7 @@
 	for(var/discipline in clan_disciplines)
 		// DARKPACK TODO - reimplement choosing disciplines
 		if(ispath(discipline, /datum/discipline))
-			vampire.give_discipline(new discipline(5))
+			vampire.give_st_power(discipline, 5)
 
 /**
  * Undoes the effects of on_gain to more or less
@@ -159,7 +161,7 @@
  * * joining_round - If this Clan is being given at roundstart and should call on_join_round
  */
 /mob/living/carbon/human/proc/set_clan(setting_clan, joining_round)
-	var/datum/vampire_clan/previous_clan = clan
+	var/datum/vampire_clan/previous_clan = get_clan()
 
 	// Convert IDs and typepaths to singletons, or just directly assign if already singleton
 	var/datum/vampire_clan/new_clan = get_vampire_clan(setting_clan)
@@ -167,11 +169,23 @@
 	// Handle losing Clan
 	previous_clan?.on_lose(src)
 
-	clan = new_clan
+	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	if (!kindred)
+		return
+
+	kindred.clan = new_clan
 
 	// Clan's been cleared, don't apply effects
 	if (!new_clan)
 		return
 
 	// Gaining Clan effects
-	clan.on_gain(src, joining_round)
+	kindred.clan.on_gain(src, joining_round)
+
+/mob/living/proc/get_clan()
+	RETURN_TYPE(/datum/vampire_clan)
+
+	return iskindred(src)?.clan
+
+/mob/living/proc/is_clan(clan_type)
+	return istype(get_clan(), clan_type)

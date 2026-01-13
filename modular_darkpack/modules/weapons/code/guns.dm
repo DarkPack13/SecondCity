@@ -187,6 +187,7 @@
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/glock.ogg'
 	fire_sound_volume = 75
+	custom_price = 1200
 
 /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta/toreador
 	name = "\improper Sword Series S 9mm"
@@ -204,6 +205,7 @@
 	caliber = CALIBER_9MM
 	max_ammo = 18
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	custom_price = 200
 
 /obj/item/ammo_box/magazine/semi9mm/toreador
 	name = "custom pistol magazine (9mm)"
@@ -247,7 +249,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/mp5
 	name = "\improper HK MP5"
-	desc = "A lightweight, burst-fire submachine gun, for when you really want to do some dirty cool job. Uses 9mm rounds."
+	desc = "A lightweight submachine gun, for when you really want to do some dirty cool job. Uses 9mm rounds."
 	icon_state = "mp5"
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
@@ -255,6 +257,100 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack9mp5
 	burst_size = 4
 	spread = 4
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
+	mag_display = TRUE
+	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/mp5.ogg'
+
+/obj/item/ammo_box/magazine/darkpack45smg
+	name = ".45 SMG magazine"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "mac10" //uzi sprite placeholder
+	ammo_type = /obj/item/ammo_casing/vampire/c45acp
+	caliber = CALIBER_45
+	max_ammo = 30
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/mac10
+	name = "\improper Braddock .45"
+	desc = "A box filled with bullets. The high cyclic rate and low weight means it's only good for spraying and then praying. Uses .45 caliber rounds."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+
+	icon_state = "mac10"
+	inhand_icon_state = "mac10"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack45smg
+	burst_size = 7 //if any other gun has the same fire rate as this gun, increase this gun so its the new fastest
+	spread = 16 //spray and pray
+	burst_delay = 1
+	recoil = 6
+	bolt_type = BOLT_TYPE_OPEN
+	show_bolt_icon = FALSE
+	can_suppress = TRUE
+	mag_display = TRUE
+	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10.ogg' // DARKPACK sound effect
+
+
+/obj/item/ammo_box/magazine/darkpack45custom
+	name = ".45 custom magazine"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "mac10" //uzi sprite placeholder
+	ammo_type = /obj/item/ammo_casing/vampire/c45acp
+	caliber = CALIBER_45
+	max_ammo = 50
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/mac10/super
+	name = "\improper Cleaner Custom"
+	desc = "A .45 submachine gun with a suppressor installed on the tip, which helps balance it out when firing. Dark Blood magic has enabled the wire stock to be used"
+	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "mac10_super"
+	recoil = 4
+	spread = 8 //magic stock
+	suppressed = SUPPRESSED_QUIET
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10suppress.ogg'  //mac-10 recording
+	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/mac10suppress.ogg'
+	suppressed_volume = 70
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack45custom
+	can_unsuppress = FALSE
+
+/obj/item/ammo_box/magazine/darkpack/c46pdw
+	name = "4.6mm MP7 magazine"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "mp7"
+	ammo_type = /obj/item/ammo_casing/vampire/c46pdw
+	caliber = CALIBER_46
+	max_ammo = 20
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/darkpack/c46pdw/ext
+	name = "4.6mm MP7 extended magazine"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "mp7"
+	ammo_type = /obj/item/ammo_casing/vampire/c46pdw
+	caliber = CALIBER_46
+	max_ammo = 40
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/mp7
+	name = "\improper HK MP7"
+	desc = "A Machine Pistol recently adopted by the German Military. Comes loaded with armor-piercing rounds, use responsibly."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+
+	icon_state = "mp7"
+	inhand_icon_state = "mp7"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack/c46pdw
+	burst_size = 3
+	spread = 3
+	recoil = 2
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -275,10 +371,11 @@
 	name = "rifle magazine (5.56mm)"
 	icon_state = "hunt556"
 	max_ammo = 20
+	custom_price = 200
 
 /obj/item/gun/ballistic/automatic/darkpack/ar15
-	name = "\improper AR-15 Carbine"
-	desc = "A two-round burst 5.56 toploading carbine, designated 'AR-15'."
+	name = "\improper CAR-15 Carbine"
+	desc = "The black sexy assault rifle, designated 'CAR-15'."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "rifle"
@@ -314,6 +411,7 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/rifle.ogg'
 	masquerade_violating = FALSE
+	custom_price = 2000
 
 /obj/item/ammo_box/magazine/darkpack545
 	name = "rifle magazine (5.45mm)"
@@ -358,7 +456,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/aug
 	name = "\improper Steyr AUG-77"
-	desc = "A three-round burst 5.56 bullpup design, designated 'Steyr AUG-77'."
+	desc = "An Austrian 5.56 bullpup design, designated 'Steyr AUG-77'."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "aug"
@@ -444,6 +542,37 @@
 	actions_types = list()
 	masquerade_violating = TRUE
 
+
+/obj/item/gun/ballistic/automatic/darkpack/autosniper //just a test, do not spawn
+	name = "auto-sniper rifle"
+	desc = "A semi-automatic marksman rifle. This particular model is very popular in video games as of late."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "psg1"
+	inhand_icon_state = "psg1"
+	worn_icon_state = "sniper"
+	w_class = WEIGHT_CLASS_BULKY
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack556 //placeholder
+	bolt_wording = "bolt"
+	bolt_type = BOLT_TYPE_LOCKING
+	semi_auto = TRUE
+
+	//zoomable = TRUE
+	//zoom_amt = 4 //It's known for having a shitty scope
+	//zoom_out_amt =  1
+
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/sniper.ogg'
+	fire_sound_volume = 90
+	tac_reloads = TRUE
+	burst_size = 1
+	fire_delay = 5
+	spread = 2
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK
+	projectile_damage_multiplier = 1.5
+	actions_types = list()
+	masquerade_violating = TRUE
+
 /obj/item/ammo_box/magazine/internal/vampshotgun
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
@@ -472,6 +601,7 @@
 	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
+	custom_price = 1000
 
 /obj/item/ammo_box/magazine/darkpackautoshot
 	name = "shotgun magazine (12ga)"

@@ -1,4 +1,6 @@
 /obj/effect/landmark/npc_spawn_point
+	icon = 'modular_darkpack/modules/deprecated/icons/effects/landmarks_static.dmi'
+	icon_state = "spawn"
 
 /obj/effect/landmark/npc_spawn_point/Initialize(mapload)
 	. = ..()
@@ -303,8 +305,6 @@
 
 	// Walking around behaviour
 	else if (walktarget && !staying)
-		if (prob(25))
-			toggle_move_intent(src)
 		GLOB.move_manager.move_to(src, walktarget, 0, cached_multiplicative_slowdown)
 
 	if (!has_weapon || danger_source || !spawned_weapon)

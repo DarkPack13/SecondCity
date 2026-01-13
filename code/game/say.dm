@@ -22,6 +22,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_CTF_GREEN]" = "greenteamradio",
 	"[FREQ_CTF_YELLOW]" = "yellowteamradio",
 	"[FREQ_STATUS_DISPLAYS]" = "captaincast",
+	// DARKPACK EDIT START
+	"[FREQ_POLICE]" = "policeradio",
+	"[FREQ_CLINIC]" = "clinicradio",
+	"[FREQ_MILITARY]" = "militaryradio",
+	"[FREQ_CAMARILLA]" = "camarillaradio",
+	"[FREQ_ANARCH]" = "anarchradio",
+	"[FREQ_ENDRON]" = "endronradio",
+	// DARKPACK EDIT END
 ))
 
 /**
@@ -68,7 +76,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /// Called when this movable hears a message from a source.
 /// Returns TRUE if the message was received and understood.
-/atom/movable/proc/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
+/atom/movable/proc/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0, source) // DARKPACK EDIT, ORIGINAL: /atom/movable/proc/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 	return TRUE
 
@@ -139,7 +147,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if (!CONFIG_GET(flag/tts_no_whisper) || (CONFIG_GET(flag/tts_no_whisper) && !message_mods[WHISPER_MODE]))
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range, pitch = pitch)
 
-/atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE)
+/atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE, source) // DARKPACK EDIT, ORIGINAL: /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE)
 	//This proc uses [] because it is faster than continually appending strings. Thanks BYOND.
 	//Basic span
 	var/freq_color = get_radio_color(radio_freq, radio_freq_color)
@@ -151,11 +159,27 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Speaker name
 	var/namepart = speaker.get_message_voice(visible_name)
 
-	//DARKPACK EDIT START - PHONES
+	// DARKPACK EDIT START
+	var/atom/movable/reliable_narrator = speaker
+	if(istype(reliable_narrator, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/fakespeaker = reliable_narrator
+		reliable_narrator = fakespeaker.source
+
+	if(ismob(src) && (namepart != "Unknown") && ismob(reliable_narrator))
+		var/mob/receiver_mob = src
+		if(receiver_mob.mind?.guestbook)
+			var/mob/speaker_human = reliable_narrator
+			var/known_name = receiver_mob.mind.guestbook.get_known_name(src, reliable_narrator, speaker_human.real_name)
+			if(known_name)
+				namepart = "[known_name]"
+			else
+				var/mob/living/carbon/human/human_narrator = reliable_narrator
+				namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
+
 	if(radio_freq >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
-		var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
-		freqpart = sheet.icon_tag("phone-phone") + " "
-	//DARKPACK EDIT END
+		var/icon/phone_icon = icon('modular_darkpack/modules/phones/icons/chat_icon.dmi', "phone")
+		freqpart = icon2html(phone_icon, src)
+	// DARKPACK EDIT END
 
 	//End name span.
 	var/endspanpart = "</span>"
@@ -171,7 +195,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/messagepart = speaker.generate_messagepart(raw_message, spans, message_mods)
 	messagepart = " <span class='message'>[messagepart]</span></span>"
 
-	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
+	var/obj/item/radio/radio = source // DARKPACK EDIT ADD
+	var/radio_id = radio?.radio_id ? "\[[radio?.radio_id]\] " : null // DARKPACK EDIT ADD
+	return "[spanpart1][spanpart2][freqpart][radio_id][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]" // DARKPACK EDIT, ORIGINAL: 	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
 
 /atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	return ""

@@ -543,11 +543,11 @@
 /mob/living/proc/fakedeath(source, silent = FALSE)
 	if(stat != DEAD)
 		if(!silent)
-			emote("deathgasp")
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp")
 		station_timestamp_timeofdeath = station_time_timestamp()
 
 	if(!HAS_TRAIT(src, TRAIT_FAKEDEATH) && !silent)
-		send_death_moodlets(/datum/mood_event/see_death)
+		send_death_moodlets()
 	add_traits(list(TRAIT_FAKEDEATH, TRAIT_DEATHCOMA), source)
 
 ///Unignores all slowdowns that lack the IGNORE_NOSLOW flag.

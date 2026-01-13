@@ -15,6 +15,13 @@
 	damage = 20
 	armour_penetration = 2
 
+/obj/projectile/bullet/darkpack/vamp45acp/HP
+	name = "45acp hollow point bullet"
+	damage = 25
+	armour_penetration = 0
+	wound_bonus = 5
+	wound_bonus = 5
+
 /obj/projectile/bullet/darkpack/vamp44
 	name = ".44 bullet"
 	damage = 35
@@ -43,12 +50,30 @@
 	exposed_wound_bonus = 5
 	wound_bonus = -5
 
+/obj/projectile/bullet/darkpack/vamp46mm
+	name = "4.6mm bullet"
+	damage = 19
+	armour_penetration = 30
+	exposed_wound_bonus = 0
+	wound_bonus = 0
+
 /obj/projectile/bullet/shotgun_slug/vamp
 	name = "12g shotgun slug"
 	damage = 70
 	armour_penetration = 15
 	exposed_wound_bonus = 10
 	wound_bonus = 5
+
+/obj/projectile/bullet/darkpack/rubber
+	name = "12g shotgun rubber shot"
+	damage = 5
+	stamina = 50
+
+/obj/projectile/bullet/darkpack/incap
+	name = "12g shotgun incapacitation shot"
+	damage = 15
+	stamina = 80
+
 
 /obj/projectile/bullet/shotgun_slug/vamp/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -122,6 +147,9 @@
 	icon_state = "45"
 	base_icon_state = "45"
 
+/obj/item/ammo_casing/vampire/c45acp/HP
+	projectile_type = /obj/projectile/bullet/darkpack/vamp45acp/HP
+
 /obj/item/ammo_casing/vampire/c44
 	name = ".44 bullet casing"
 	desc = "A .44 bullet casing."
@@ -154,6 +182,14 @@
 	icon_state = "545"
 	base_icon_state = "545"
 
+/obj/item/ammo_casing/vampire/c46pdw
+	name = "4.6mm bullet casing"
+	desc = "A 4.6mm bullet casing."
+	caliber = CALIBER_46
+	projectile_type = /obj/projectile/bullet/darkpack/vamp46mm
+	icon_state = "556" //placeholder sprite
+	base_icon_state = "556"//placeholder sprite
+
 /obj/item/ammo_casing/vampire/c556mm/incendiary
 	projectile_type = /obj/projectile/bullet/darkpack/vamp556mm/incendiary
 
@@ -170,6 +206,18 @@
 	projectile_type = /obj/projectile/bullet/darkpack/shotpellet
 	pellets = 8
 	variance = 25
+
+/obj/item/ammo_casing/vampire/c12g/rubber
+	desc = "A 12g shell casing."
+	projectile_type = /obj/projectile/bullet/darkpack/rubber
+	icon_state = "12r"
+	base_icon_state = "12r"
+
+/obj/item/ammo_casing/vampire/c12g/incap
+	desc = "A 12g shell casing."
+	projectile_type = /obj/projectile/bullet/darkpack/incap
+	icon_state = "12i"
+	base_icon_state = "12i"
 
 /obj/item/ammo_casing/caseless/bolt
 	name = "bolt"
@@ -225,6 +273,7 @@
 	icon_state = "9box"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
 	max_ammo = 100
+	custom_price = 300
 
 /obj/item/ammo_box/darkpack/c9mm/plus
 	name = "ammo box (9mm, +P)"
@@ -246,6 +295,11 @@
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
 	max_ammo = 100
 
+/obj/item/ammo_box/darkpack/c45acp/HP
+	name = "ammo box (.45 ACP HP)"
+	ammo_type = /obj/item/ammo_casing/vampire/c45acp/HP
+	max_ammo = 100
+
 /obj/item/ammo_box/darkpack/c44
 	name = "ammo box (.44)"
 	icon_state = "44box"
@@ -263,6 +317,7 @@
 	icon_state = "556box"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm
 	max_ammo = 60
+	custom_price = 2000
 
 /obj/item/ammo_box/darkpack/c545
 	name = "ammo box (5.45)"
@@ -285,6 +340,17 @@
 	name = "ammo box (12g, 00 buck)"
 	icon_state = "12box_buck"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck
+	custom_price = 400
+
+/obj/item/ammo_box/darkpack/c12g/rubber
+	name = "ammo box (12g, rubber shot)"
+	icon_state = "12box_rubber"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/rubber
+
+/obj/item/ammo_box/darkpack/c12g/incap
+	name = "ammo box (12g, High Impact Incapacitation Round)"
+	icon_state = "12box_incap"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/incap
 
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
@@ -308,7 +374,7 @@
 //				adjust_gnosis(-1, M)
 //		else
 //			M.Stun(10)
-//			M.adjustBruteLoss(50, TRUE)
+//			M.adjust_brute_loss(50, TRUE)
 */
 
 /obj/projectile/bullet/darkpack/vamp556mm/silver

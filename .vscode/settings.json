@@ -25,6 +25,5 @@
 	"search.exclude": {
 		"**/node_modules": true
 	},
-	"Lua.diagnostics.enable": false,
-	"CodeGPT.apiKey": "CodeGPT Plus Beta"
+	"Lua.diagnostics.enable": false
 }

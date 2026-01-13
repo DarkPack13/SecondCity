@@ -8,18 +8,16 @@
 #define HIGHEST_GENERATION_LIMIT 16
 /// Limit for lowest generation possible
 #define LOWEST_GENERATION_LIMIT 1
-/// Limit for public generation bonus
-#define MAX_GENERATION_BONUS 3
-/// Limit for trusted player generation bonus
-#define MAX_TRUSTED_GENERATION_BONUS 5
 /// Limit for lowest public generation
 #define MAX_PUBLIC_GENERATION 10
 /// Limit for lowest trusted player generation
 #define MAX_TRUSTED_GENERATION 8
-/// The default generation everyone begins at
+/// The default generation every kindred begins at
 #define DEFAULT_GENERATION 13
+// The generation a ghoul is. This is purely so that ghouls can use disciplines on humans only.
+#define GHOUL_GENERATION HIGHEST_GENERATION_LIMIT + 1
 // The generation a human is.
-#define HUMAN_GENERATION HIGHEST_GENERATION_LIMIT + 1
+#define HUMAN_GENERATION GHOUL_GENERATION + 1
 // The lowest generation that anyone using Blood of Potency can go down to.
 #define BLOOD_POTENCY_GENERATION 4
 

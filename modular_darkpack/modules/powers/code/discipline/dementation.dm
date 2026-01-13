@@ -32,7 +32,7 @@
 
 /datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
@@ -75,7 +75,7 @@
 
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
@@ -114,7 +114,7 @@
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
@@ -157,7 +157,7 @@
 
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
@@ -196,7 +196,7 @@
 
 /datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/target)
 	var/mypower = owner.st_get_stat(STAT_CHARISMA)
-	var/theirpower = target.st_get_stat(STAT_WILLPOWER)
+	var/theirpower = target.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(theirpower >= mypower)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE

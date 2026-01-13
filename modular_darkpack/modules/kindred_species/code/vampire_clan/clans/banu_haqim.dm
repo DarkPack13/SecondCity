@@ -2,10 +2,11 @@
 	name = "Banu Haqim"
 	id = VAMPIRE_CLAN_BANU_HAQIM
 	desc = "Banu Haqim, also known as Assamites, are traditionally seen by Western Kindred as dangerous assassins and diablerists, but in truth they are guardians, warriors, and scholars who seek to distance themselves from the Jyhad."
+	icon = "banu_haqim"
 	curse = "Blood Addiction."
 	clan_disciplines = list(
 		/datum/discipline/celerity,
-		// /datum/discipline/obfuscate,
+		/datum/discipline/obfuscate,
 		// /datum/discipline/quietus
 	)
 	clan_traits = list(

@@ -2,7 +2,6 @@
 	title = JOB_SENESCHAL
 	description = "You are the right hand man or woman of the most powerful vampire in the city. The Camarilla trusts you to run the city, even in their stead."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -34,10 +33,10 @@
 	name = "Seneschal"
 	jobtype = /datum/job/vampire/clerk
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/clerk
 	uniform = /obj/item/clothing/under/vampire/clerk
 	shoes = /obj/item/clothing/shoes/vampire/brown
 	l_pocket = /obj/item/smartphone/seneschal
 	r_pocket = /obj/item/vamp/keys/clerk
-	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit/seneschal=1)

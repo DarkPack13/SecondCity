@@ -286,7 +286,7 @@ Dancer
 
 /datum/quirk/consumption/on_process(delta_time)
 	if(prob(5))
-		quirk_holder.adjustBruteLoss(5, TRUE)
+		quirk_holder.adjust_brute_loss(5, TRUE)
 
 /datum/quirk/hunted
 	name = "Sir You Are Being Hunted"

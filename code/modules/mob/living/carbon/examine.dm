@@ -70,6 +70,11 @@
 		for(var/datum/wound/iter_wound as anything in body_part.wounds)
 			. += span_danger(iter_wound.get_examine_description(user))
 
+		var/surgery_examine = body_part.get_surgery_examine()
+		if(surgery_examine)
+			. += surgery_examine
+
+
 	for(var/obj/item/bodypart/body_part as anything in disabled)
 		var/damage_text
 		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
@@ -113,7 +118,7 @@
 		if(user == src && has_status_effect(/datum/status_effect/grouped/screwy_hud/fake_crit))//fake damage
 			temp = 50
 		else
-			temp = getBruteLoss()
+			temp = get_brute_loss()
 		var/list/damage_desc = get_majority_bodypart_damage_desc()
 		if(temp)
 			if(temp < 25)
@@ -123,7 +128,7 @@
 			else
 				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BRUTE]]!")
 
-		temp = getFireLoss()
+		temp = get_fire_loss()
 		if(temp)
 			if(temp < 25)
 				. += span_danger("[t_He] [t_has] minor [damage_desc[BURN]].")
@@ -133,7 +138,7 @@
 				. += span_bolddanger("[t_He] [t_has] severe [damage_desc[BURN]]!")
 
 		// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
-		temp = getAggLoss()
+		temp = get_agg_loss()
 		if(temp)
 			if(temp < 25)
 				. += span_danger("[t_He] [t_has] minor [damage_desc[AGGRAVATED]].")
@@ -179,6 +184,8 @@
 			. += span_boldwarning("[t_He] look[p_s()] like pale death.")
 		if(-INFINITY to BLOOD_VOLUME_BAD)
 			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
+
+	. += display_darkpack_examine_text() // DARKPACK EDIT ADD
 
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
@@ -231,30 +238,6 @@
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
-
-		// DARKPACK EDIT ADD START
-		if(iskindred(src) && !(obscured_slots & HIDEFACE))
-			switch(clan?.alt_sprite)
-				if("nosferatu")
-					. += span_warning("[p_they(TRUE)] look[p_s()] utterly deformed and inhuman!<br>")
-				if("gargoyle")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] to be made out of stone!<br>")
-				if("kiasyd")
-					if (!is_eyes_covered())
-						. += span_boldwarning("[p_they(TRUE)] [p_have()] no whites in [p_their()] eyes!</b><br>")
-				if("rotten1")
-					. += span_warning("[p_they(TRUE)] seem[p_s()] oddly gaunt.<br>")
-				if("rotten2")
-					. += span_warning("[p_they(TRUE)] [p_have()] a corpselike complexion.<br>")
-				if("rotten3")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a decayed corpse!<br>")
-				if("rotten4")
-					. += span_boldwarning("[p_they(TRUE)] [p_are()] a skeletonised corpse!</b><br>")
-
-		if (iszombie(src) && !(obscured_slots & HIDEFACE)) // for necromancy player-controlled zombies
-			. += span_danger("<b>[p_they(TRUE)] [p_are()] a decayed corpse!</b><br>")
-
-		// DARKPACK EDIT ADD END
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
@@ -309,7 +292,7 @@
 		. += compare_fitness(user)
 
 	// DARKPACK EDIT ADD START
-	if(ishumanbasic(user))
+	if(ismundane(user))
 		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
 
 	ADD_NEWLINE_IF_NECESSARY(.)

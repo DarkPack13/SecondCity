@@ -4,6 +4,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	var/quieted = FALSE
+	custom_price = 1000
 
 
 /obj/item/melee/vamp/Initialize(mapload)
@@ -20,6 +21,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
+	custom_price = 1800
 
 /obj/item/katana/vamp
 	name = "katana"
@@ -104,6 +106,7 @@
 	inhand_icon_state = "machete"
 	pixel_w = -8
 	masquerade_violating = FALSE
+	custom_price = 500
 
 /obj/item/claymore/machete/Initialize(mapload)
 	. = ..()
@@ -118,10 +121,16 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "sabre"
+	var/value = 1000 // DARKPACK TODO: Move this up at some point. I hate the selling component with all my heart.
 
 /obj/item/melee/sabre/vamp/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 1000, "sabre", FALSE)
+	AddComponent(/datum/component/selling, value, "sabre", FALSE)
+
+/obj/item/melee/sabre/vamp/training
+	name = "foam sabre"
+	force = 0
+	value = 3
 
 /obj/item/claymore/longsword
 	name = "longsword"
@@ -150,6 +159,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "baseball"
 	inhand_icon_state = "baseball"
+	custom_price = 50
 
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
 	. = ..()
@@ -187,6 +197,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	custom_price = 85
 
 /obj/item/knife/vamp/lasombra_tentacle
 	name = "shadow tentacle"
@@ -241,7 +252,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.AdjustKnockdown(4 SECONDS)
-		L.adjustStaminaLoss(50)
+		L.adjust_stamina_loss(50)
 		L.Immobilize(3 SECONDS)
 		if(L.body_position != LYING_DOWN)
 			L.toggle_resting()
@@ -255,48 +266,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
-
-/obj/item/vampire_stake
-	name = "stake"
-	desc = "Paralyzes blank-bodies if aimed straight to the heart."
-	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	icon_state = "stake"
-	force = 10
-//	wound_bonus = -10
-	throwforce = 10
-	attack_verb_continuous = list("pierces", "cuts")
-	attack_verb_simple = list("pierce", "cut")
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	armour_penetration = 50
-	sharpness = SHARP_EDGED
-	w_class = WEIGHT_CLASS_SMALL
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
-
-/obj/item/vampire_stake/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		return
-	// DARKPACK TODO - GAROU
-	/*
-	if(isgarou(target) || iswerewolf(target) || isanimal(target))
-		return
-	*/
-	if(target.IsParalyzed() || target.IsKnockdown() || target.IsStun())
-		return
-	if(!target.IsParalyzed() && iskindred(target) && !target.stakeimmune)
-		if(HAS_TRAIT(target, TRAIT_STAKE_RESISTANT))
-			visible_message(span_warning("[user]'s stake splinters as it touches [target]'s heart!"), span_warning("Your stake splinters as it touches [target]'s heart!"))
-			REMOVE_TRAIT(target, TRAIT_STAKE_RESISTANT, MAGIC_TRAIT)
-			qdel(src)
-		else
-			visible_message(span_warning("[user] aims [src] straight to the [target]'s heart!"), span_warning("You aim [src] straight to the [target]'s heart!"))
-			if(do_after(user, 20, target))
-				user.do_attack_animation(target)
-				visible_message(span_warning("[user] pierces [target]'s torso!"), span_warning("You pierce [target]'s torso!"))
-				target.Paralyze(1200)
-				target.Sleeping(1200)
-				qdel(src)
+	custom_price = 2000
 
 /obj/item/shovel/vamp
 	name = "shovel"
@@ -307,6 +277,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "shovel"
+	custom_price = 150
 
 /obj/item/scythe/vamp
 	name = "scythe"
@@ -382,3 +353,32 @@
 		hitsound = 'sound/items/weapons/genhit1.ogg'
 		//grid_width = 1 GRID_BOXES
 		//grid_height = 1 GRID_BOXES
+
+//this should be a subtype of spear in the future but we lack the sprites
+/obj/item/darkpack/spear
+	name = "spear"
+	desc = "A staple of warfare through centuries, the spear is great for poking at things."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	icon_state = "spear"
+	lefthand_file = 'modular_darkpack/modules/weapons/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/weapons/icons/melee_righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	force = 45
+	throwforce = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	block_chance = 20
+	armour_penetration = 60
+	sharpness = SHARP_POINTY
+	attack_verb_continuous = list("stabs", "pokes")
+	attack_verb_simple = list("stab", "poke")
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	wound_bonus = 5
+	resistance_flags = FIRE_PROOF
+	masquerade_violating = FALSE
+	custom_price = 1200
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi') // DARKPACK EDIT ADD
+
+/obj/item/darkpack/spear/Initialize()
+	. = ..()
+	AddComponent(/datum/component/selling, 400, "spear", FALSE)

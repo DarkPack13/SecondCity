@@ -15,14 +15,11 @@
 
 	var/frenzy_chance_boost = 10
 
-	var/stakeimmune = FALSE
-
 	COOLDOWN_DECLARE(drinkblood_use_cd)
 	COOLDOWN_DECLARE(drinkblood_click_cd)
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
-	var/generation = 13
 	var/humanity = 7
 	var/masquerade_score = 5
 	var/warrant = FALSE
@@ -32,7 +29,7 @@
 	///Aggravated damage caused by supernatural attacks.
 	var/aggloss = 0
 
-	var/datum/storyteller_stats/storyteller_stat_holder
+	var/list/storyteller_stats = list()
 
 	//beastmaster
 	var/list/beastmaster_minions = list()
@@ -41,3 +38,15 @@
 	var/obj/grabbed_by_tentacle = null
 	var/escape_attempt = 0
 	var/tentacle_aggro_mode = "Aggressive"
+	var/possessed = FALSE //dominate 5 body posession
+	var/datum/weakref/conditioner // dominate 4
+	//obfuscate icon, client side
+	var/obf_icons
+
+	COOLDOWN_DECLARE(masquerade_timer)
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
+
+	/// List of supernatural types that this mob is part of
+	var/list/datum/splat/splats

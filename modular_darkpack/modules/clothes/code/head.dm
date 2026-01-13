@@ -228,6 +228,7 @@
 	desc = "A thermoplastic hard helmet used to protect the head from injury."
 	icon_state = "hardhat"
 	armor_type = /datum/armor/construction_helmet
+	custom_price = 50
 
 /datum/armor/construction_helmet
 	melee = 20
@@ -320,14 +321,14 @@
 	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/vampire/pentex_yellowhardhat
-	name = EVIL_OIL_COMPANY + " hardhat"
-	desc = "A yellow hardhat. This one has an " + EVIL_OIL_COMPANY + " International logo on it!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " hardhat"
+	desc = "A yellow hardhat. This one has an " + MAIN_EVIL_COMPANY + "  logo on it!"
 	icon_state = "pentex_hardhat_yellow"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/vampire/pentex_whitehardhat
-	name = EVIL_OIL_COMPANY + " hardhat"
-	desc = "A white hardhat. This one has an " + EVIL_OIL_COMPANY + " International logo on it!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " hardhat"
+	desc = "A white hardhat. This one has an " + MAIN_EVIL_COMPANY + " logo on it!"
 	icon_state = "pentex_hardhat_white"
 	flags_inv = HIDEHAIR
 
@@ -336,3 +337,43 @@
 	desc = "A black beret with a mysterious golden insigna bearing a spiral."
 	icon_state = "pentex_beret"
 	flags_inv = HIDEHAIR
+
+/obj/item/clothing/head/vampire/blackbag
+	name = "black bag"
+	desc = "Used by kidnappers, sadists, and three letter agencies. Easily fits over the head to obscure vision."
+	icon_state = "black_bag"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+
+	flash_protect = FLASH_PROTECTION_WELDER
+	tint = 3
+
+/obj/item/clothing/head/vampire/blackbag/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_HEAD)
+		user.become_blind("blindfold_[REF(src)]")
+
+/obj/item/clothing/head/vampire/blackbag/dropped(mob/living/carbon/human/user)
+	. = ..()
+	user.cure_blind("blindfold_[REF(src)]")
+
+/obj/item/clothing/head/vampire/blackbag/attack(mob/living/target, mob/living/user)
+	var/obj/item/clothing/head/H = target.get_item_by_slot(ITEM_SLOT_HEAD)
+	if(H?.clothing_flags & SNUG_FIT)
+		to_chat(user, span_warning("You can't fit the blackbag over [target.p_their()] headgear!"))
+		return
+	if(do_after(user, 0.5 SECONDS, target)) //Mainly to prevent black_bagging mid combat.
+		target.visible_message(span_warning("[user] forces [src] onto [target]'s head!"))
+		to_chat(target, span_bolddanger("[target] forces [src] onto your head!"))
+		target.emote("scream")
+		target.Stun(0.5 SECONDS)
+
+		target.dropItemToGround(H)
+		target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
+
+/obj/item/clothing/head/beret/black
+	name = "black beret"
+	desc = "A black beret, perfect for war veterans and dark, brooding, anti-hero mimes."
+	icon_state = "beret"
+	greyscale_config = /datum/greyscale_config/beret
+	greyscale_config_worn = /datum/greyscale_config/beret/worn
+	greyscale_colors = "#3f3c40"

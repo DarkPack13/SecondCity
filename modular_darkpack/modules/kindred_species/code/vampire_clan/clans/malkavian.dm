@@ -2,11 +2,12 @@
 	name = "Malkavian"
 	id = VAMPIRE_CLAN_MALKAVIAN
 	desc = "Derided as Lunatics by other vampires, the Blood of the Malkavians lets them perceive and foretell truths hidden from others. Like the �wise madmen� of poetry their fractured perspective stems from seeing too much of the world at once, from understanding too deeply, and feeling emotions that are just too strong to bear."
+	icon = "malkavian"
 	curse = "Insanity."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		// /datum/discipline/dementation,
-		// /datum/discipline/obfuscate
+		/datum/discipline/obfuscate
 	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
@@ -71,9 +72,9 @@
 /datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
 	var/mob/living/carbon/human/malk = clicker
-	if(!malk.clan || !istype(malk.clan, /datum/vampire_clan/malkavian))
+	if (!malk.is_clan(/datum/vampire_clan/malkavian))
 		return
-	var/datum/vampire_clan/malkavian/clan_malkavian = malk.clan
+	var/datum/vampire_clan/malkavian/clan_malkavian = malk.get_clan()
 	var/new_thought = tgui_input_text(clicker, "Malkavian Hivemind")
 	if(!new_thought)
 		return

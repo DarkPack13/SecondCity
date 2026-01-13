@@ -1,6 +1,5 @@
 /datum/job/vampire/clinic_director
 	title = JOB_CLINIC_DIRECTOR
-	department_head = list("The City")
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -23,7 +22,7 @@
 	name = "Clinic Director"
 	jobtype = /datum/job/vampire/clinic_director
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/clinic/director
 	uniform = /obj/item/clothing/under/vampire/nurse
 	shoes = /obj/item/clothing/shoes/vampire/white
@@ -31,7 +30,7 @@
 	gloves = /obj/item/clothing/gloves/vampire/latex
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/clinics_director
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
+	backpack_contents = list(/obj/item/card/credit=1, /obj/item/storage/medkit/darkpack/doctor=1)
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel

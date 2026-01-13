@@ -26,7 +26,7 @@
 
 /obj/structure/vampdoor/glass/mt_office
 	name = "Millenium Tower delivery garage"
-	lock_id = "millenium_delivery"
+	lock_id = LOCKACCESS_JAZZ_CLUB_DELIVERY
 	lockpick_difficulty = 12
 
 /obj/structure/delivery_board/mt_office
@@ -68,7 +68,7 @@
 
 /obj/structure/vampdoor/glass/bar_office
 	name = "Bar delivery garage"
-	lock_id = "bar_delivery"
+	lock_id = LOCKACCESS_BAR_DELIVERY
 	lockpick_difficulty = 12
 
 /obj/structure/delivery_board/bar_office
