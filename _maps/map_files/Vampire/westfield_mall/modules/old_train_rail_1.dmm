@@ -2,22 +2,47 @@
 "a" = (
 /turf/closed/wall/vampwall/rock,
 /area/vtm/interior/sewer)
+"c" = (
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"d" = (
+/obj/structure/flora/rock/stalagmite,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"h" = (
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"i" = (
+/obj/structure/bonfire/prelit/alt,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"j" = (
+/obj/effect/spawner/random/trash/crushed_can,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"k" = (
+/mob/living/basic/gangrel/best,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
 "l" = (
 /mob/living/basic/gangrel,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
-"n" = (
-/turf/open/floor/plating/stone,
+"m" = (
+/obj/effect/spawner/random/trash/grime,
+/turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "r" = (
-/mob/living/basic/gangrel/best,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/large/style_random,
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"s" = (
+/mob/living/basic/bat,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "t" = (
-/turf/open/floor/plating/rough/cave,
-/area/vtm/interior/sewer)
-"u" = (
-/obj/structure/fire_barrel,
+/obj/structure/headpike/military,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "v" = (
@@ -25,41 +50,67 @@
 /obj/item/spear/military,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
-"x" = (
-/turf/open/water/vamp_sewer,
-/area/vtm/interior/sewer)
-"y" = (
-/obj/structure/headpike/military,
-/turf/open/floor/plating/rough/cave,
+"w" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/plating/stone,
 /area/vtm/interior/sewer)
 "B" = (
+/obj/structure/flora/bush/style_random,
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"F" = (
 /obj/structure/flora/rock/stalagmite,
 /turf/open/floor/plating/stone,
 /area/vtm/interior/sewer)
 "G" = (
-/obj/structure/flora/rock/stalagmite,
-/turf/open/floor/plating/rough/cave,
-/area/vtm/interior/sewer)
-"I" = (
-/turf/open/misc/dirt,
-/area/vtm/interior/sewer)
-"L" = (
-/obj/structure/chair/plastic/darkpack,
-/turf/open/floor/plating/rough/cave,
-/area/vtm/interior/sewer)
-"P" = (
-/obj/structure/table/wood,
-/obj/item/storage/toolbox/fishing,
-/turf/open/floor/plating/rough/cave,
-/area/vtm/interior/sewer)
-"R" = (
 /obj/structure/table/wood,
 /obj/item/storage/cans/sixbeer,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
-"U" = (
+"H" = (
+/obj/effect/spawner/random/trash/cigpack,
+/turf/open/floor/plating/stone,
+/area/vtm/interior/sewer)
+"K" = (
+/obj/effect/spawner/random/trash/crushed_can,
+/turf/open/floor/plating/stone,
+/area/vtm/interior/sewer)
+"N" = (
+/turf/open/water/vamp_sewer,
+/area/vtm/interior/sewer)
+"O" = (
+/obj/structure/flora/bush/large/style_random,
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"P" = (
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"R" = (
+/obj/effect/spawner/random/trash/caution_sign,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"S" = (
+/turf/open/floor/plating/stone,
+/area/vtm/interior/sewer)
+"T" = (
+/obj/structure/flora/bush/sparsegrass/style_random,
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"W" = (
 /obj/modular_map_connector,
 /turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"Y" = (
+/obj/structure/table/wood,
+/obj/item/storage/toolbox/fishing,
+/obj/item/fish/darkpack/shark,
+/obj/item/storage/backpack/duffelbag,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"Z" = (
+/obj/structure/chair/plastic/darkpack,
+/turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 
 (1,1,1) = {"
@@ -82,7 +133,7 @@ a
 a
 a
 a
-U
+W
 "}
 (2,1,1) = {"
 a
@@ -104,7 +155,7 @@ a
 a
 a
 a
-I
+h
 "}
 (3,1,1) = {"
 a
@@ -112,13 +163,13 @@ a
 a
 a
 a
-x
-x
+N
+N
 a
 a
 a
-n
-n
+H
+S
 a
 a
 a
@@ -126,87 +177,84 @@ a
 a
 a
 a
-I
+h
 "}
 (4,1,1) = {"
 a
 a
 a
-n
-x
-x
-x
+S
+N
+N
+N
 a
 a
-t
-n
-n
-n
-a
-a
-a
+P
+S
+S
+S
 a
 a
 a
-I
+a
+a
+a
+h
 "}
 (5,1,1) = {"
 a
 a
-n
-n
-L
-x
+S
+S
+Z
+N
 a
 a
-n
-t
-t
-t
-t
-t
-t
+K
+c
+c
+c
+c
+c
+c
 a
-t
-t
-t
-I
+c
+c
+c
+h
 "}
 (6,1,1) = {"
 a
-B
-n
-t
+F
+S
+c
+Y
+a
+a
 P
-a
-a
-t
-n
-n
-t
+S
+S
+j
 a
 a
 a
-t
-t
-t
+c
+c
+c
 a
 a
-I
+h
 "}
 (7,1,1) = {"
 a
-r
-t
-t
+i
+c
+c
 a
 a
-G
-t
-t
-a
-a
-a
+d
+c
+c
 a
 a
 a
@@ -214,21 +262,20 @@ a
 a
 a
 a
-I
+a
+a
+a
+h
 "}
 (8,1,1) = {"
 a
-u
-t
+k
+c
 a
 a
 a
-t
-n
-a
-a
-a
-a
+c
+w
 a
 a
 a
@@ -236,17 +283,21 @@ a
 a
 a
 a
-I
+a
+a
+a
+a
+h
 "}
 (9,1,1) = {"
 a
+c
+c
+a
+a
+a
 t
-t
-a
-a
-a
-y
-n
+S
 a
 a
 a
@@ -258,101 +309,101 @@ a
 a
 a
 a
-I
+h
 "}
 (10,1,1) = {"
 a
-t
-L
+c
+Z
 v
 a
 a
 a
-t
+R
 a
-t
-t
-t
-n
-a
-a
-a
-a
+c
+c
+c
+S
+O
+B
 a
 a
-I
+a
+a
+h
 "}
 (11,1,1) = {"
 a
-t
-t
-R
+c
+c
+G
 a
 a
-t
-t
-t
-t
+s
+c
+c
+c
 a
-t
-t
-n
+c
+c
+S
+B
+r
 a
 a
 a
-a
-a
-I
+h
 "}
 (12,1,1) = {"
 a
-L
-n
-t
+Z
+S
+c
 a
 a
 a
-n
-t
+S
+c
 a
 a
 a
-t
-t
-t
+m
+c
+c
+T
 a
 a
 a
-a
-I
+h
 "}
 (13,1,1) = {"
 a
 a
-B
-n
+F
+S
 a
 a
 a
-t
-a
-a
-a
-a
-a
-t
-n
+s
 a
 a
 a
 a
-I
+a
+c
+S
+h
+a
+a
+a
+h
 "}
 (14,1,1) = {"
 a
 a
 a
-n
+S
 l
 a
 a
@@ -362,20 +413,20 @@ a
 a
 a
 a
-n
-n
+S
+S
+O
 a
 a
 a
-a
-I
+h
 "}
 (15,1,1) = {"
 a
 a
 a
-t
-t
+c
+c
 a
 a
 a
@@ -383,36 +434,36 @@ a
 a
 a
 a
-t
-t
+c
+c
+T
 a
 a
 a
 a
-a
-I
+h
 "}
 (16,1,1) = {"
 a
 a
 a
 a
-t
-t
+c
+c
 a
 a
 a
 a
 a
-t
-t
+c
+c
+T
+r
 a
 a
 a
 a
-a
-a
-I
+h
 "}
 (17,1,1) = {"
 a
@@ -420,13 +471,13 @@ a
 a
 a
 a
-t
-t
-t
-t
-t
-t
-t
+c
+c
+c
+c
+c
+c
+c
 a
 a
 a
@@ -434,7 +485,7 @@ a
 a
 a
 a
-I
+h
 "}
 (18,1,1) = {"
 a
@@ -443,11 +494,11 @@ a
 a
 a
 a
-G
-t
-n
-n
-n
+d
+c
+S
+S
+S
 a
 a
 a
@@ -456,7 +507,7 @@ a
 a
 a
 a
-I
+h
 "}
 (19,1,1) = {"
 a
@@ -478,7 +529,7 @@ a
 a
 a
 a
-I
+h
 "}
 (20,1,1) = {"
 a
@@ -500,5 +551,5 @@ a
 a
 a
 a
-I
+h
 "}
