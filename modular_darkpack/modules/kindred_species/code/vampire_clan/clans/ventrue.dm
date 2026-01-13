@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/dominate,
 		/datum/discipline/fortitude,
-		///datum/discipline/presence
+		/datum/discipline/presence
 	)
 	clan_traits = list(
 		TRAIT_FEEDING_RESTRICTION
