@@ -5,8 +5,6 @@
 	var/ownership_type = "apartment"
 
 /datum/component/door_ownership/Initialize(grant_keys = FALSE)
-	if(!isatom(parent))
-		return COMPONENT_INCOMPATIBLE
 
 	src.grant_keys = grant_keys
 
