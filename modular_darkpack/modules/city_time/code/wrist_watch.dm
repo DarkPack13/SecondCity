@@ -10,7 +10,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	slot_flags = ITEM_SLOT_GLOVES
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
-	custom_price = 20
+	custom_price = 20 // ECONOMY
 
 /obj/item/watch/examine(mob/user)
 	. = ..()

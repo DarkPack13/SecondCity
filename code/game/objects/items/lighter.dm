@@ -9,7 +9,7 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FIRE_PROOF
-	custom_price = 20 // DARKPACK EDIT CHANGE
+	custom_price = 20 // DARKPACK EDIT CHANGE - ECONOMY
 	light_system = OVERLAY_LIGHT
 	light_range = 2
 	light_power = 1.3

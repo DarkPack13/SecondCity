@@ -119,6 +119,7 @@
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	drink_type = BREAKFAST
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 	/// Is our lid currently removed?
 	var/lid_open = FALSE
