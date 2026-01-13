@@ -170,14 +170,14 @@
 ///ZOMBIE
 /obj/item/bodypart/head/zombie
 	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = TRUE //DARKPACK EDIT -- original : is_dimorphic = FALSE
+	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN
 	can_dismember = TRUE
 
 /obj/item/bodypart/chest/zombie
 	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = TRUE //DARKPACK EDIT -- original : is_dimorphic = FALSE
+	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	wing_types = null
 
