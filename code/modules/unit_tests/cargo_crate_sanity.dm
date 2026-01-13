@@ -16,7 +16,7 @@
 		var/obj/crate_type = allocate(new_crate.crate_type)
 		var/turf/open/floor/testing_floor = get_turf(crate_type)
 		// DARKPACK EDIT ADD START
-		if(!results)
+		if(!crate_type)
 			TEST_FAIL("Cargo crate [new_crate.type] failed to generate a crate somehow despite setting one.")
 		// DARKPACK EDIT ADD END
 		var/datum/export_report/minimum_cost = export_item_and_contents(crate_type, delete_unsold = TRUE, dry_run = TRUE)
