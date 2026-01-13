@@ -54,6 +54,8 @@
 	bloodpool = 10
 	maxbloodpool = 10
 	held_items = list(null, null)
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/basic/gangrel/better
 	maxHealth = 325

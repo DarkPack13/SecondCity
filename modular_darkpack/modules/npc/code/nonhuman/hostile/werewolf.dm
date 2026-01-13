@@ -1,5 +1,5 @@
 /mob/living/basic/crinos_beast
-	name = "Wolf-like Beast"
+	name = "wolf-like Beast"
 	desc = "The peak of abominations damage. Unbelievably deadly..."
 	icon = 'modular_darkpack/modules/npc/icons/werewolf.dmi'
 	icon_state = "beast_crinos"
@@ -25,6 +25,8 @@
 	bloodpool = 10
 	maxbloodpool = 10
 	ai_controller = /datum/ai_controller/basic_controller/crinos_beast
+
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/basic/crinos_beast/Initialize(mapload)
 	. = ..()

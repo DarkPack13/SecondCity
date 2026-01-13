@@ -18,9 +18,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "aN" = (
-/mob/living/carbon/human/npc/bouncer/endron/endron_lab{
-	protected_zone_id = "endron_lab_secret"
-	},
+/mob/living/carbon/human/npc/bouncer/endron/endron_lab,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "bn" = (
@@ -95,12 +93,12 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "oA" = (
-/obj/structure/vampdoor/reinf{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/door/lock_difficulty/five,
-/obj/effect/mapping_helpers/door/access/pentex,
-/obj/effect/mapping_helpers/door/lock,
+/obj/structure/table,
+/obj/item/paperwork,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"oF" = (
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "oH" = (
@@ -113,6 +111,10 @@
 /area/vtm/interior/sewer)
 "pP" = (
 /turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"qe" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "ql" = (
 /obj/effect/spawner/random/vending/snackvend,
@@ -182,6 +184,11 @@
 "xF" = (
 /obj/structure/table,
 /obj/machinery/coffeemaker,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"xJ" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/briefcase,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "xP" = (
@@ -276,6 +283,7 @@
 /area/vtm/interior/sewer)
 "NG" = (
 /obj/structure/table/optable,
+/obj/item/organ/cyberimp/arm/strongarm,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Oh" = (
@@ -306,22 +314,34 @@
 /area/vtm/interior/sewer)
 "RV" = (
 /obj/effect/decal/cleanable/blood/trail,
-/obj/effect/decal/cleanable/blood/hitsplatter{
-	dir = 1
-	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Sg" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
+"Tg" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/pen,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
 "TZ" = (
 /mob/living/carbon/human/npc/endronlabsecurity,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Uc" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/folder,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Ue" = (
 /mob/living/basic/crinos_beast,
 /obj/effect/mob_spawn/corpse/human/doctor,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Ur" = (
+/obj/structure/table,
+/obj/item/paper_bin,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "UT" = (
@@ -370,9 +390,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "ZB" = (
-/obj/effect/vip_barrier/endron/endron_lab{
-	protected_zone_id = "endron_lab_secret"
-	},
+/obj/effect/vip_barrier/endron/endron_lab,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "ZF" = (
@@ -571,7 +589,7 @@ ve
 ve
 IO
 Ig
-pP
+QY
 um
 Ya
 pP
@@ -642,7 +660,7 @@ Yo
 Yo
 Yo
 Ig
-TZ
+pP
 pP
 dM
 Zf
@@ -654,7 +672,7 @@ Fy
 pP
 pP
 dM
-oA
+sS
 dM
 dM
 dM
@@ -662,7 +680,7 @@ dM
 pP
 pP
 Gh
-Gh
+Uc
 dM
 pP
 pP
@@ -703,7 +721,7 @@ pP
 pP
 kF
 dM
-TZ
+pP
 Ue
 pP
 pP
@@ -711,7 +729,7 @@ dM
 dM
 dM
 sT
-Zf
+qe
 of
 "}
 (15,1,1) = {"
@@ -727,9 +745,9 @@ Zb
 dM
 QY
 Oh
-Gh
-Gh
-Gh
+Ur
+Tg
+oA
 dM
 ZY
 ZY
@@ -765,7 +783,7 @@ pP
 Oh
 pP
 uO
-pP
+TZ
 pP
 pP
 ni
@@ -773,7 +791,7 @@ pP
 pP
 pP
 as
-Gh
+xJ
 dM
 ZY
 ZY
@@ -795,7 +813,7 @@ pP
 pP
 pP
 pP
-pP
+oF
 dM
 ZY
 ZY
