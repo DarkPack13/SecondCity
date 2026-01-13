@@ -6,7 +6,7 @@
 	curse = "Decreased moving speed in lighted areas."
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
-		// /datum/discipline/presence,
+		/datum/discipline/presence,
 		// /datum/discipline/serpentis
 	)
 	male_clothes = /obj/item/clothing/under/vampire/slickback
