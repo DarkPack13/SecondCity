@@ -41,7 +41,7 @@
 	. = ..()
 	target.Immobilize(2 SECONDS)
 	target.face_atom(owner)
-	target.visible_message(span_warning("<b>[owner] hypnotizes [target] with [owner.p_their()] eyes!</b>"), span_warning("<b>[owner] hypnotizes you! Their words seem to become more convincing and hypnotic...</b>"))
+	target.visible_message(span_hypnophrase("<b>[owner] hypnotizes [target] with [owner.p_their()] eyes!</b>"), span_warning("<b>[owner] hypnotizes you! Their words seem to become more convincing and hypnotic...</b>"))
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.remove_overlay(MUTATIONS_LAYER)
