@@ -16,7 +16,7 @@
 	icon_grow = "cannabis-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "cannabis-dead" // Same for the dead icon
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	/* DARKPACK EDIT REMOVAL START - DRUGS
+	/* // DARKPACK EDIT REMOVAL START - DRUGS
 	mutatelist = list(
 		/obj/item/seeds/cannabis/anti,
 		/obj/item/seeds/cannabis/death,
@@ -77,7 +77,7 @@
 	product = /obj/item/food/grown/cannabis/ultimate
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/green, /datum/plant_gene/trait/modified_volume/omega_weed)
 	mutatelist = null
-	/* DARKPACK EDIT REMOVAL - DRUGS
+	/* // DARKPACK EDIT REMOVAL - DRUGS
 	reagents_add = list(/datum/reagent/drug/cannabis = 0.3,
 		/datum/reagent/toxin/mindbreaker = 0.3,
 		/datum/reagent/mercury = 0.15,

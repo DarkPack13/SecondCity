@@ -24,7 +24,7 @@
 	C.maxHealth = 300 //tanky
 	C.health = 300
 
-	/* DARKPACK TODO -- kj shit?
+	/* // DARKPACK TODO -- kj shit?
 	C.yang_chi = 0
 	C.max_yang_chi = 0
 	C.yin_chi = 6
