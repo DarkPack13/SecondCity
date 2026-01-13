@@ -159,6 +159,7 @@
 		var/mob/living/carbon/target = potential_targets[i]
 		apply_presence_overlay(target)
 		to_chat(target, span_yellowteamradio("You feel extremely attracted to and persuaded by [owner]'s words, no matter what they're saying!"))
+		target.apply_status_effect(STATUS_EFFECT_AWE)
 		affected_targets += target
 
 	var/affected_count = length(affected_targets)
