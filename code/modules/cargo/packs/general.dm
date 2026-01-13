@@ -66,6 +66,7 @@
 				)
 	crate_type = /obj/structure/closet/crate/wooden
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/misc/commandkeys
 	name = "Command Encryption Key Crate"
 	desc = "A pack of encryption keys that give access to the command radio network. \
@@ -91,6 +92,7 @@
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/fuel_pellet)
 	crate_name = "exodrone fuel crate"
+*/
 
 /datum/supply_pack/misc/paper
 	name = "Bureaucracy Crate"
@@ -150,6 +152,7 @@
 	crate_name = "coffin"
 	crate_type = /obj/structure/closet/crate/coffin
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/misc/empty
 	name = "Empty Supplypod"
 	desc = "Presenting the New Nanotrasen-Brand Bluespace Supplypod! Transport cargo with grace and ease! \
@@ -159,6 +162,7 @@
 	order_flags = ORDER_POD_ONLY
 	crate_type = null
 	special_pod = /obj/structure/closet/supplypod/bluespacepod
+*/
 
 /datum/supply_pack/misc/empty/generate(atom/A, datum/bank_account/paying_account)
 	return

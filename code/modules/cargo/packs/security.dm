@@ -1,4 +1,4 @@
-/* DARKPACK EDIT REMOVAL
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/security
 	group = "Security"
 	access = ACCESS_SECURITY

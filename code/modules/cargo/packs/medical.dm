@@ -146,6 +146,7 @@
 	contains = list(/obj/machinery/iv_drip/saline)
 	crate_type = /obj/structure/closet/crate/large
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/medical/virus
 	name = "Virus Crate"
 	desc = "Contains twelve different bottles of several viral samples for virology \
@@ -194,6 +195,7 @@
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/paperwork = 2)
 	crate_name = "Paperwork implant crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/
 
 /datum/supply_pack/medical/lost_crew
 	name = "Recovered NT Employee corpse"
@@ -202,8 +204,10 @@
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/structure/closet/body_bag/lost_crew/with_body)
 	crate_name = "body freezer"
-	crate_type = /obj/structure/closet/crate/secure/freezer
+	crate_type = /obj/structure/closet/crate/secure/freezera
+	order_flags = ORDER_INVISIBLE // DARKPACK EDIT ADD
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/medical/organ_growing
 	name = "Organ Growing Kit"
 	desc = "All the tools you need to grow organs at home! Besides letting you grow standard organs from tissue samples, \
@@ -218,6 +222,7 @@
 		/obj/item/pestle,
 	)
 	crate_name = "organ growing kit"
+*/
 
 /datum/supply_pack/medical/chiral_inversing_buffer
 	name = "Chiral Inversing Buffer Crate"

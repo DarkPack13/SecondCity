@@ -50,7 +50,7 @@
 	name = "Hydroponics Tray"
 	desc = "Everything you need to start your own hydroponics setup."
 	cost = 1000
-	contains = list(/obj/machinery/hydroponics)
+	contains = list(/obj/machinery/hydroponics/constructable)
 	crate_name = "hydro crate"
 
 /datum/supply_pack/local/weed_tray
@@ -91,6 +91,7 @@
 
 
 /datum/supply_pack/local/weed_supplies
+	name = "Weed Supplies"
 	desc = "Contains a bailer and some seeds. No trays."
 	cost = 100
 	contains = list(
@@ -103,11 +104,13 @@
 	)
 	crate_name = "hydro crate"
 
+/* Does nothing atm
 /datum/supply_pack/local/methlab
 	name = "Lab Equipment"
 	desc = "Contains lab equipment."
 	cost = 4000
 	contains = list(/obj/structure/methlab/movable)
+*/
 
 /datum/supply_pack/local/fixing
 	name = "Fixing kit (wirecutters, lamps)"
@@ -129,34 +132,6 @@
 	desc = "Contains a door repair kit that can be used to replace a broken door."
 	cost = 1000
 	contains = list(/obj/item/door_repair_kit)
-
-/datum/supply_pack/local/bloodpack
-	name = "Blood Pack"
-	desc = "Contains 5 default blood packs."
-	cost = 100
-	contains = list(
-		/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/blood
-	)
-	crate_name = "blood crate"
-
-/*
-/datum/supply_pack/local/bloodpack_elite
-	name = "Elite Blood Pack"
-	desc = "Contains 5 elite blood packs."
-	cost = 300
-	contains = list(
-		/obj/item/reagent_containers/blood/elite,
-		/obj/item/reagent_containers/blood/elite,
-		/obj/item/reagent_containers/blood/elite,
-		/obj/item/reagent_containers/blood/elite,
-		/obj/item/reagent_containers/blood/elite
-	)
-	crate_name = "blood crate"
-*/
 
 /datum/supply_pack/local/camera
 	name = "Camera Kit"
@@ -206,11 +181,9 @@
 	cost = 400
 	contains = list(/obj/item/gas_can/full)
 
-/*
 /datum/supply_pack/local/thermal_drill
 	name = "Thermal Drill"
 	desc = "Contains a thermal drill."
 	cost = 4000
 	contains = list(/obj/structure/drill)
 	crate_name = "drill crate"
-*/

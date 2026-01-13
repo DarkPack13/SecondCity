@@ -2,6 +2,7 @@
 	group = "Engineering"
 	crate_type = /obj/structure/closet/crate/engineering
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/engineering/shieldgen
 	name = "Anti-breach Shield Projector Crate"
 	desc = "Hull breaches again? Say no more with the Nanotrasen Anti-Breach Shield Projector! \
@@ -33,6 +34,7 @@
 				)
 	crate_name= "\improper APLU MK-I kit"
 	crate_type = /obj/structure/closet/crate/science/robo
+*/
 
 /datum/supply_pack/engineering/conveyor
 	name = "Conveyor Assembly Crate"
@@ -96,6 +98,7 @@
 	crate_name = "power cell crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/engineering/shuttle_engine
 	name = "Shuttle Engine Crate"
 	desc = "Through advanced bluespace-shenanigans, our engineers have managed to fit an entire \
@@ -106,6 +109,7 @@
 	contains = list(/obj/machinery/power/shuttle_engine/propulsion/burst)
 	crate_name = "shuttle engine crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
+*/
 
 /datum/supply_pack/engineering/tools
 	name = "Toolbox Crate"
@@ -154,6 +158,7 @@
 	crate_name = "space heater crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/engineering/bsa
 	name = "Bluespace Artillery Parts"
 	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a \
@@ -219,9 +224,11 @@
 	contains = list(/obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck,
 					/obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck/skirt,
 				)
+*/
 
 /// Engine Construction
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/engine
 	group = "Engine Construction"
 	access_view = ACCESS_ENGINEERING
@@ -303,7 +310,9 @@
 	crate_name = "HFR crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 	order_flags = ORDER_DANGEROUS
+*/
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/engineering/rad_protection_modules
 	name = "Radiation Protection Modules"
 	desc = "Contains multiple radiation protections modules for MODsuits."
@@ -334,6 +343,7 @@
 	contains = list(/obj/machinery/power/portagrav = 1)
 	crate_name = "portable gravity unit crate"
 	crate_type = /obj/structure/closet/crate/engineering
+*/
 
 /datum/supply_pack/engineering/golfcart
 	name = "Golf Cart Parts Kit Crate"
