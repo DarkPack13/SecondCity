@@ -16,8 +16,8 @@
 		var/obj/crate_type = allocate(new_crate.crate_type)
 		var/turf/open/floor/testing_floor = get_turf(crate_type)
 		// DARKPACK EDIT ADD START
-		if(!crate_type)
-			TEST_FAIL("???? [crate] exploded")
+		if(!results)
+			TEST_FAIL("Cargo crate [new_crate.type] failed to generate a crate somehow despite setting one.")
 		// DARKPACK EDIT ADD END
 		var/datum/export_report/minimum_cost = export_item_and_contents(crate_type, delete_unsold = TRUE, dry_run = TRUE)
 		var/crate_value = counterlist_sum(minimum_cost.total_value)
@@ -25,7 +25,7 @@
 		var/obj/results = new_crate.generate(testing_floor)
 		// DARKPACK EDIT ADD START
 		if(!results)
-			TEST_FAIL("???? [crate] exploded")
+			TEST_FAIL("Cargo crate [new_crate.type] failed to generate an object to export.")
 		// DARKPACK EDIT ADD END
 		var/datum/export_report/export_log = export_item_and_contents(results, apply_elastic = TRUE, delete_unsold = TRUE, export_markets = list(EXPORT_MARKET_STATION))
 
