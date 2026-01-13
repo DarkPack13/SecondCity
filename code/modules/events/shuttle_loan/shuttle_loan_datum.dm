@@ -60,10 +60,10 @@
 
 /datum/shuttle_loan_situation/department_resupply/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/list/crate_types = list(
-		/datum/supply_pack/emergency/equipment,
-		// /datum/supply_pack/security/supplies, DARKPACK EDIT REMOVAL
+		// /datum/supply_pack/emergency/equipment, // DARKPACK EDIT REMOVAL
+		// /datum/supply_pack/security/supplies, // DARKPACK EDIT REMOVAL
 		/datum/supply_pack/organic/food,
-		/datum/supply_pack/emergency/weedcontrol,
+		// /datum/supply_pack/emergency/weedcontrol, // DARKPACK EDIT REMOVAL
 		/datum/supply_pack/engineering/tools,
 		/datum/supply_pack/engineering/engiequipment,
 		/* // DARKPACK EDIT REMOVAL
