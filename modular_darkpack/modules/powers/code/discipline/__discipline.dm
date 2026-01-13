@@ -10,6 +10,8 @@
 	var/clan_restricted = FALSE
 	///The root type of the powers this Discipline uses.
 	var/power_type = /datum/discipline_power
+	///What action type this Discipline is connected to
+	var/action_type = /datum/action/discipline
 	///If this Discipline can be selected at all, or has special handling.
 	var/selectable = TRUE
 
