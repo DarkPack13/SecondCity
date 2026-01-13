@@ -48,6 +48,7 @@
 	inhand_icon_state = "violin"
 	hitsound = SFX_SWING_HIT
 	allowed_instrument_ids = "violin"
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/violin/golden

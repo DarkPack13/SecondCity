@@ -888,6 +888,9 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	max_charges = 25
 	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 
+/obj/item/toner/large/grind_results()
+	return list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
+
 /obj/item/toner/extreme
 	name = "extremely large toner cartridge"
 	desc = "Why would ANYONE need THIS MUCH TONER?"
