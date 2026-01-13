@@ -26,8 +26,14 @@
 	// Prevent duplicates
 	if (get_power(power_type))
 		return FALSE
+	var/datum/discipline/new_discipline = new power_type(level)
+	var/datum/action/discipline/adding_action
 
-	var/datum/action/discipline/adding_action = new(new power_type(level))
+	if(istype(new_discipline, /datum/discipline/path))
+		var/datum/discipline/path/path_discipline = new_discipline
+		adding_action = new path_discipline.action_type(new_discipline)
+	else
+		adding_action = new /datum/action/discipline(new_discipline)
 	adding_action.Grant(owner)
 	LAZYADD(powers, adding_action)
 	return TRUE
