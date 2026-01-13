@@ -45,7 +45,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/serpentis_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "serpentis", -MUTATIONS_LAYER)
+		var/mutable_appearance/serpentis_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/serpentis.dmi', "serpentis", -MUTATIONS_LAYER)
 		H.overlays_standing[MUTATIONS_LAYER] = serpentis_overlay
 		H.apply_overlay(MUTATIONS_LAYER)
 
@@ -195,7 +195,7 @@
 	/mob/living/basic/cobra/typhon)
 
 /mob/living/basic/cobra
-	name = "Cobra Form"
+	name = "cobra form"
 	desc = "Hssssss..."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
 	icon_state = "cobra"
@@ -212,7 +212,7 @@
 	pixel_w = -8
 
 /mob/living/basic/cobra/typhon
-	name = "Typhonic Beast"
+	name = "Typhonic beast"
 	desc = "A massive supernatural jackal with long, spiked ears, a hard, forked tail and a long snout."
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "protean4"
