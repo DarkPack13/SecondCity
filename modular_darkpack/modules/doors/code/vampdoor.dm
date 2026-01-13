@@ -44,6 +44,9 @@
 	register_context()
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
+	if(grant_apartment_key)
+		AddComponent(/datum/component/door_ownership, \
+			grant_keys = TRUE)
 	switch(lockpick_difficulty) //This is fine because any overlap gets intercepted before
 		if(LOCKDIFFICULTY_7 to INFINITY)
 			lockpick_timer = LOCKTIMER_7
@@ -198,8 +201,6 @@
 	. = ..()
 	if(.)
 		return
-	if(try_award_apartment_key(user))
-		return
 	var/mob/living/living_user = user
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to use here."))
@@ -228,8 +229,6 @@
 				playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
 				addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 	else
-		if(try_award_apartment_key(user))
-			return
 		if(locked)
 			playsound(src, lock_sound, 75, TRUE)
 			to_chat(user, span_warning("[src] is locked!"))
@@ -368,44 +367,5 @@
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)
 	pixel_w = initial(pixel_w)
-
-
-/obj/structure/vampdoor/proc/try_award_apartment_key(mob/user)
-	if(!grant_apartment_key)
-		return FALSE
-	if(!lock_id)
-		return FALSE
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/human = user
-	if(human.received_apartment_key)
-		return FALSE
-	var/alert = tgui_alert(user, "Is this my apartment?", "Apartment", list("Yes", "No"))
-	if(alert != "Yes")
-		return
-	if(!grant_apartment_key)
-		return
-	var/spare_key = tgui_alert(user, "Do I have an extra spare key?", "Apartment", list("Yes", "No"))
-	if(!grant_apartment_key)
-		return
-	if(spare_key == "Yes")
-		apartment_key_amount = 2
-	else
-		apartment_key_amount = 1
-	for(var/i in 1 to apartment_key_amount)
-		var/obj/item/vamp/keys/key
-		if(apartment_key_type)
-			key = new apartment_key_type(get_turf(human))
-		else
-			key = new /obj/item/vamp/keys(get_turf(human))
-		key.accesslocks = list("[lock_id]")
-		human.put_in_hands(key)
-	human.received_apartment_key = TRUE
-	grant_apartment_key = FALSE
-	if(apartment_key_amount > 1)
-		to_chat(human, span_notice("They're just where I left them..."))
-	else
-		to_chat(human, span_notice("It's just where I left it..."))
-	return TRUE
 
 #undef DOAFTER_SOURCE_DOOR
