@@ -63,7 +63,7 @@
 /obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || !locked
 
-//DARKPACK TODO - examinetext on these doors
+// DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
 /obj/structure/vampdoor/examine(mob/user)
 	. = ..()

@@ -55,7 +55,7 @@
 	// Test one breath of Nitrogen on Plasmaman lungs.
 	lungs_test_check_breath("pure Nitrogen", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
 
-/* DARKPACK EDIT REMOVAL - Lavaland (Penumbra) will not have ashwalker breathable  air
+/* // DARKPACK EDIT REMOVAL - Lavaland (Penumbra) will not have ashwalker breathable  air
 /// Tests the lavaland/Ashwalker lungs organ.
 /// Ensures they can breathe from the lavaland air mixture properly, and suffocate on inadequate mixture.
 /datum/unit_test/lungs/lungs_sanity_ashwalker

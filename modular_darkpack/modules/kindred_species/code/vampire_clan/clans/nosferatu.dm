@@ -8,7 +8,7 @@
 	clan_disciplines = list(
 		/datum/discipline/animalism,
 		/datum/discipline/potence,
-		// /datum/discipline/obfuscate
+		/datum/discipline/obfuscate
 	)
 	clan_traits = list(
 		TRAIT_MASQUERADE_VIOLATING_FACE,
