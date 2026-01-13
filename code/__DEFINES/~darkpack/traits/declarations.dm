@@ -97,7 +97,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
 
 // Allows the user to pass through doors
-#define TRAIT_PASSDOOR "trait_passdoor" //DARKPACK EDIT ADDITION -- Obtenebration & Mysticism Rework
+#define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
 

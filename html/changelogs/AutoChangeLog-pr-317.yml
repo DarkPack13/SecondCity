@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "'mask of a thousand faces' now works as intended"
+  - code_imp: "reimplemented obfuscate"
