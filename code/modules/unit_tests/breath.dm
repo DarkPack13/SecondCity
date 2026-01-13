@@ -82,7 +82,7 @@
 	lab_rat.breathe()
 	TEST_ASSERT(lab_rat.failed_last_breath && lab_rat.has_alert(ALERT_NOT_ENOUGH_PLASMA), "Humans should suffocate from pure n2 tanks")
 
-/* DARKPACK EDIT REMOVAL - Lavaland (Penumbra) will not have ashwalker breathable  air
+/* // DARKPACK EDIT REMOVAL - Lavaland (Penumbra) will not have ashwalker breathable  air
 /// Tests to make sure ashwalkers can breathe from the lavaland air.
 /datum/unit_test/breath/breath_sanity_ashwalker
 

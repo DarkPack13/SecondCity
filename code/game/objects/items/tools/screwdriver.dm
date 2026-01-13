@@ -47,7 +47,7 @@
 		COLOR_TOOL_CYAN,
 		COLOR_TOOL_YELLOW,
 	)
-	custom_price = 20 //DARKPACK EDIT ADD
+	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
 
 /datum/armor/item_screwdriver
 	fire = 50

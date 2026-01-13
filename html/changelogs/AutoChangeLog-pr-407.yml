@@ -1,4 +1,0 @@
-author: "TheCarnalest"
-delete-after: True
-changes:
-  - refactor: "A sane framework for splats has been set up, and Kindred and Ghouls have had their code swapped out entirely."

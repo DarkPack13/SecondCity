@@ -6,7 +6,7 @@
 	curse = "Technology refuse."
 	clan_disciplines = list(
 		/datum/discipline/potence,
-		// /datum/discipline/dominate,
+		/datum/discipline/dominate,
 		/datum/discipline/obtenebration
 	)
 	clan_traits = list(

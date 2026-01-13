@@ -78,7 +78,7 @@
 	 * they're already likely to be quite bad
 	 */
 	var/bait_height_mult = 1
-	custom_price = 200 // DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/fishing_rod/Initialize(mapload)
 	. = ..()

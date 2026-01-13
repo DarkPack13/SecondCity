@@ -821,10 +821,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// The presence of TRAIT_STRENGTH increases our upper unarmed damage. This is a damage cap increase.
 	upper_unarmed_damage += HAS_TRAIT(user, TRAIT_STRENGTH) ? 2 : 0
 
-	//DARKPACK EDIT ADD - Storyteller Stats
+	// DARKPACK EDIT ADD - Storyteller Stats
 	var/damage_multiplier = 1 + ((user.st_get_stat(STAT_STRENGTH) - 2) / 5)
 	upper_unarmed_damage *= damage_multiplier
-	//DARKPACK EDIT ADD - Storyteller Stats
+	// DARKPACK EDIT ADD - Storyteller Stats
 
 	// Out athletics skill is used to set our potential base damage roll. It won't increase our potential damage roll, but will make our unarmed attack more consistent.
 	// For a normal human arm, this would cap at 10, and for a normal human leg, this would go up to 14.

@@ -459,7 +459,7 @@
 			set_sight(initial(sight))
 		else
 			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		set_invis_see(SEE_INVISIBLE_OBSERVER)
+		set_invis_see(OBSERVER_SIGHT) // DARKPACK EDIT, Original : set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
 	var/new_sight = initial(sight)
@@ -512,10 +512,10 @@
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
 		new_sight = NONE
 
-	//DARKPACK EDIT ADDITION - Necromancy
+	// DARKPACK EDIT ADD - Necromancy
 	if(HAS_TRAIT(src, TRAIT_GHOST_VISION))
 		see_invisible = SEE_INVISIBLE_OBSERVER
-	//DARKPACK EDIT END - Necromancy
+	// DARKPACK EDIT END - Necromancy
 
 	set_sight(new_sight)
 	return ..()
