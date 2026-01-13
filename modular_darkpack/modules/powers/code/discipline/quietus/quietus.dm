@@ -208,7 +208,7 @@
 
 	if(victim.stat != DEAD)
 		var/continue_call = tgui_alert(owner, "Continue Dagon's Call for 1 additional Willpower?", "Dagon's Call", list("Yes", "No"))
-		if(continue_call == "Yes" /*&& owner.adjust_willpower(-1)*/) //requires stat preferences pr
+		if(continue_call == "Yes" && owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "Dagon's Call")) //requires stat preferences pr
 			strike_victim(victim)
 
 //BAAL'S CARESS
@@ -241,7 +241,6 @@
 	if(weapon.GetComponent(/datum/component/baals_caress))
 		to_chat(owner, span_warning("This weapon is already poisoned!"))
 		return FALSE
-	return .
 
 /datum/discipline_power/quietus/baals_caress/activate(obj/item/melee/vamp/target)
 	. = ..()
