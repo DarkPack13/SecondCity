@@ -2,7 +2,6 @@
 	title = JOB_SHERIFF
 	description = "Protect the Prince and the Masquerade. You are their sword."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -44,7 +43,7 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	r_pocket = /obj/item/vamp/keys/sheriff
 	l_pocket = /obj/item/smartphone/sheriff
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/vampire_stake=3, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/masquerade_contract=1, /obj/item/card/credit/elder=1)
+	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/vampire_stake=3, /obj/item/masquerade_contract=1, /obj/item/card/credit/elder=1)
 
 /datum/outfit/job/vampire/sheriff/pre_equip(mob/living/carbon/human/H)
 	. = ..()

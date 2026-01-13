@@ -51,7 +51,7 @@
 #define LOG_RADIO_EMOTE (1 << 20)
 #define LOG_SPEECH_INDICATORS (1 << 21)
 #define LOG_TRANSPORT (1 << 22)
-#define LOG_STATS (1 << 23) //DARKPACK EDIT ADD - logging stats to prevent abuse
+#define LOG_STATS (1 << 23) // DARKPACK EDIT ADD - logging stats to prevent abuse
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)
@@ -115,7 +115,7 @@
 #define LOG_CATEGORY_TRANSPORT "transport"
 #define LOG_CATEGORY_VIRUS "virus"
 #define LOG_CATEGORY_CAVE_GENERATION "cave-generation"
-#define LOG_CATEGORY_STATS "stats" //DARKPACK EDIT ADD -- logging stats to prevent abuse
+#define LOG_CATEGORY_STATS "stats" // DARKPACK EDIT ADD - logging stats to prevent abuse
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"

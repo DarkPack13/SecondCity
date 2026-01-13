@@ -25,7 +25,7 @@
 
 		Aggro(H, FALSE)
 
-/* DARKPACK TODO: create a police npc that just stands there
+/* // DARKPACK TODO: create a police npc that just stands there
 /mob/living/carbon/human/npc/police/static
 	fights_anyway = TRUE
 	staying = TRUE

@@ -2,7 +2,6 @@
 	title = JOB_PENTEX_EXEC
 	description = "You are an acting executive for " + MAIN_EVIL_COMPANY + " operating out of San Francisco. With discretion to the Branch Leader, a position you may aim for, your job is to fuel production and expand operations."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -50,4 +49,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
 	l_pocket = /obj/item/smartphone // /pentex_exec - todo: subtype
 	r_pocket = /obj/item/vamp/keys/pentex
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit/seneschal=1)

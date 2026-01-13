@@ -112,10 +112,11 @@
 		to_chat(owner, boxed_message(jointext(message, "\n")))
 		return
 
+	var/blood_generation = blood_owner.get_generation()
 	if(success_count > 2)
-		message += span_notice("This blood tastes like that of the [blood_owner.dna.species.generation]\th generation.")
+		message += span_notice("This blood tastes like that of the [blood_generation]\th generation.")
 	else
-		message += span_notice("This blood tastes like that of the [rand(LOWEST_GENERATION_LIMIT, blood_owner.dna.species.generation)]\th generation.")
+		message += span_notice("This blood tastes like that of the [rand(LOWEST_GENERATION_LIMIT, blood_generation)]\th generation.")
 
 	if(success_count > 3)
 		message += span_notice("The owner of the blood has [blood_owner.bloodpool] blood points left.")
@@ -156,9 +157,10 @@
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return
-	var/datum/species/human/kindred/kindred_species = target.dna.species // Get the vampire's species
+	var/datum/splat/vampire/kindred/vampirism = iskindred(target) // Get the vampire's splat
 	for(var/i in 1 to success_count)
-		var/datum/discipline/random_discipline = pick(kindred_species.disciplines) //Choose a random discipline that they have
+		var/datum/action/discipline/random_action = pick(vampirism.powers)
+		var/datum/discipline/random_discipline = random_action.discipline //Choose a random discipline that they have
 		var/datum/discipline_power/random_discipline_power = pick(random_discipline.known_powers) //Choose a random level of that discipline
 		random_discipline_power.activate(target) //Activate it at themselves.
 
@@ -195,7 +197,8 @@
 /datum/discipline_power/thaumaturgy/blood_of_potency/activate()
 	if(..())
 		return
-	if(owner.dna.species.generation <= 4)
+	var/current_generation = owner.get_generation()
+	if(current_generation <= 4)
 		to_chat(owner, span_warning("You can't make your blood any more powerful!"))
 		return
 	var/points_to_spend = success_count
@@ -204,13 +207,13 @@
 
 	var/list/generation_choices = list()
 	for(var/i in 1 to points_to_spend)
-		generation_choices += clamp((owner.dna.species.generation - i), 4, HIGHEST_GENERATION_LIMIT) //No becoming an Antediluvian.
+		generation_choices += clamp((current_generation - i), 4, HIGHEST_GENERATION_LIMIT) //No becoming an Antediluvian.
 	chosen_generation = tgui_input_list(owner, "What Generation would you like to lower your blood's potency to?", "Generation", generation_choices, null)
 
 	if(!chosen_generation)
-		chosen_generation = owner.dna.species.generation - 1
+		chosen_generation = current_generation - 1
 
-	points_to_spend -= (owner.dna.species.generation - chosen_generation)
+	points_to_spend -= (current_generation - chosen_generation)
 
 	var/list/time_choices = list()
 	for(var/i in 1 to points_to_spend)

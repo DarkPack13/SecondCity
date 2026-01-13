@@ -2,7 +2,6 @@
 	title = JOB_PENTEX_SEC
 	description = "You are an acting security for " + MAIN_EVIL_COMPANY + ", operating out of San Francisco. Under the chief of security's direction, your job is to keep the complex free of nosy meddlers, pick up contract violators, and to assist the chief in tackling threats to corporate assets."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(MAIN_EVIL_COMPANY)
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
@@ -53,4 +52,4 @@
 	belt = /obj/item/storage/belt/holster/detective/darkpack/endron
 	l_pocket = /obj/item/smartphone // /sec - todo subtype
 	r_pocket = /obj/item/vamp/keys/pentex
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit=1)

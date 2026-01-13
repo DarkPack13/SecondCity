@@ -8,5 +8,4 @@
 	maximum = HIGHEST_GENERATION_LIMIT
 
 /datum/preference/numeric/generation/apply_to_human(mob/living/carbon/human/target, value)
-	if(HAS_TRAIT(target, TRAIT_DRINKS_BLOOD)) // Have to have this since ghouls and humans have their own generation numbers.
-		target.dna.species.generation = value
+	iskindred(target)?.set_generation(value)
