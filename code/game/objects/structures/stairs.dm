@@ -19,7 +19,7 @@
 	plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 
-	max_integrity = 500 //DARKPACK EDIT CHANGE
+	max_integrity = 500 // DARKPACK EDIT CHANGE
 	/// If TRUE replaces the turf above this stair obj with /turf/open/openspace
 	var/force_open_above = FALSE
 	/// Determines if this stair is the last in a "chain" of stairs, ie next step is upstairs

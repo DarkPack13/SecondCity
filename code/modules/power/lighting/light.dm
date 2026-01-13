@@ -183,7 +183,7 @@
 			icon_state = "[base_state]-broken"
 	return ..()
 
-/* DARKPACK EDIT REMOVAL - Temp removal because flav is a hack and did not do this properly.
+/* // DARKPACK EDIT REMOVAL - Temp removal because flav is a hack and did not do this properly.
 /obj/machinery/light/update_overlays()
 	. = ..()
 	if(!on || status != LIGHT_OK)

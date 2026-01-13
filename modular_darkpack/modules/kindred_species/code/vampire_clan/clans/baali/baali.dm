@@ -6,7 +6,7 @@
 	curse = "Fear of the Religion."
 
 	clan_disciplines = list(
-		///datum/discipline/obfuscate,
+		/datum/discipline/obfuscate,
 		///datum/discipline/presence,
 		///datum/discipline/daimonion
 	)
