@@ -32,12 +32,13 @@
 //TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)
 	all_powers = subtypesof(power_type)
-
 	if (!level)
 		return
 
-	src.level = level
-	for (var/i in 1 to level)
+	var/amount = level // how many levels are we giving them
+	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
+		amount = length(all_powers) // so only give what exists
+	for (var/i in 1 to amount)
 		var/type_to_create = all_powers[i]
 		var/datum/discipline_power/new_power = new type_to_create(src)
 		known_powers += new_power

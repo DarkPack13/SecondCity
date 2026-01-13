@@ -21,7 +21,7 @@
 
 	childe.make_kindred_from_sire(src)
 
-	/* DARKPACK TODO - Commenting this out until preferences are properly finished.
+	/* // DARKPACK TODO - Commenting this out until preferences are properly finished.
 	//Gives the Childe the src's first three Disciplines
 	var/list/disciplines_to_give = list()
 	var/discipline_number = 0
@@ -37,7 +37,7 @@
 
 	//addtimer(CALLBACK(childe, PROC_REF(embrace_persistence_confirmation)), 1 SECONDS)
 
-/* DARKPACK TODO - GAROU
+/* // DARKPACK TODO - GAROU
 /mob/living/carbon/human/proc/attempt_abomination_embrace(mob/living/carbon/human/childe, second_party_embrace)
 	if(!(childe.auspice?.level)) //here be Abominations
 		return
@@ -67,7 +67,7 @@
 				return
 */
 
-/* DARKPACK TODO - PREFERENCES
+/* // DARKPACK TODO - PREFERENCES
 /mob/living/carbon/human/proc/embrace_persistence_confirmation()
 	var/response_v = tgui_input_list(src, "Do you wish to keep being a vampire on your save slot? (Yes will be a permanent choice and you can't go back!)", "Embrace", list("Yes", "No"), "No")
 	//Verify if they accepted to save being a vampire

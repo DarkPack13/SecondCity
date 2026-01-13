@@ -338,7 +338,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	illustration = null
 	foldable_result = null
-	custom_price = 3 // DARKPACK EDIT CHANGE
+	custom_price = 3 // DARKPACK EDIT CHANGE - ECONOMY
 	storage_type = /datum/storage/box/gum
 
 	///Typepath of the type of gum that spawns with this box, this is passed to the wrapper for spawning in.

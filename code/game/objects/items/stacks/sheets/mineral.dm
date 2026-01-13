@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/diamond
 	material_type = /datum/material/diamond
 	walltype = /turf/closed/wall/mineral/diamond
-// DARKPACK CHANGE START
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("diamond tile", /obj/item/stack/tile/mineral/diamond, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),  \
@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	. = ..()
 	. += GLOB.diamond_recipes
  */
-// DARKPACK CHANGE END
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/mineral/diamond/five
 	amount = 5
 
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/uranium
 	material_type = /datum/material/uranium
 	walltype = /turf/closed/wall/mineral/uranium
-// DARKPACK CHANGE START
+// DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \
 	new/datum/stack_recipe("depleted uranium platform", /obj/structure/platform/uranium, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	. = ..()
 	. += GLOB.uranium_recipes
  */
-// DARKPACK CHANGE END
+// DARKPACK EDIT CHANGE END
 /obj/item/stack/sheet/mineral/uranium/five
 	amount = 5
 

@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(ticker)
 	var/roundend_check_paused = FALSE
 
 	var/round_start_time = 0
-	var/round_start_timeofday = 0 // DARKPACK ADDITION
+	var/round_start_timeofday = 0 // DARKPACK EDIT ADD
 	var/list/round_start_events
 	var/list/round_end_events
 	var/mode_result = "undefined"
@@ -215,10 +215,10 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	if(GLOB.revolution_handler?.result == REVOLUTION_VICTORY)
 		return TRUE
-	// DARKPACK ADDITION START - CITY_TIME
+	// DARKPACK EDIT ADD START - CITY_TIME
 	if(SScity_time.roundend_started)
 		return TRUE
-	// DARKPACK ADDITION END
+	// DARKPACK EDIT ADD END
 	return FALSE
 
 /// Gets a list of players with their readied state so we can post it as a log
@@ -281,7 +281,7 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
-	round_start_timeofday = world.timeofday // DARKPACK ADDITION
+	round_start_timeofday = world.timeofday // DARKPACK EDIT ADD
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")

@@ -23,3 +23,7 @@
   XeonMations:
   - rscadd: Added old mail to the game
   - code_imp: Ticked a bunch of files.
+2026-01-13:
+  TheCarnalest:
+  - refactor: A sane framework for splats has been set up, and Kindred and Ghouls
+      have had their code swapped out entirely.

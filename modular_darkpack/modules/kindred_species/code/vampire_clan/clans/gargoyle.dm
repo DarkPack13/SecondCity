@@ -50,3 +50,4 @@
 	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/kindred_species/icons/features.dmi', "gargoyle_legs_n_tails", -BODY_ADJ_LAYER)
 	H.overlays_standing[BODY_ADJ_LAYER] = acc_overlay
 	H.apply_overlay(BODY_ADJ_LAYER)
+	ADD_TRAIT(H, TRAIT_WEAK_TO_DOMINATE, VAMPIRE_CLAN_GARGOYLE)
