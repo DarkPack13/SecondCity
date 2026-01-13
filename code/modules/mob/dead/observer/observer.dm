@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	plane = GHOST_PLANE
 	stat = DEAD
 	density = FALSE
-	see_invisible = SEE_INVISIBLE_OBSERVER
+	see_invisible = OBSERVER_SIGHT //DARKPACK EDIT, Original : see_invisible = SEE_INVISIBLE_OBSERVER
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
@@ -700,7 +700,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!(ghost_hud_flags & GHOST_VISION))
 		set_invis_see(SEE_INVISIBLE_LIVING)
 	else
-		set_invis_see(SEE_INVISIBLE_OBSERVER)
+		set_invis_see(OBSERVER_SIGHT) //DARKPACK EDIT, Original : see_invisible = SEE_INVISIBLE_OBSERVER
 
 
 	updateghostimages()

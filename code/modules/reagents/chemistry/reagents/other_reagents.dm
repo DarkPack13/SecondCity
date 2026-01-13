@@ -145,7 +145,7 @@
 
 	var/cool_temp = cooling_temperature
 
-	/* DARKPACK EDIT REMOVAL - TURF_FIRE
+	/* // DARKPACK EDIT REMOVAL - TURF_FIRE
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
 	if(hotspot && !isspaceturf(exposed_turf)) // the water evaporates in an endothermic reaction
 		if(exposed_turf.air)

@@ -5,7 +5,7 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
-	custom_price = 2
+	custom_price = 2 // ECONOMY
 	food_flags = FOOD_IN_CONTAINER | FOOD_BITE_SPRITE
 	preserved_food = TRUE
 

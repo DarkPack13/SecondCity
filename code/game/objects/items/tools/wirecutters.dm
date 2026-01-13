@@ -9,7 +9,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 
-	/* DARKPACK EDIT REMOVAL START
+	/* // DARKPACK EDIT REMOVAL START
 	flags_1 = IS_PLAYER_COLORABLE_1|NO_NEW_GAGS_PREVIEW_1
 	greyscale_config = /datum/greyscale_config/wirecutters
 	greyscale_config_belt = /datum/greyscale_config/wirecutters_belt_overlay
@@ -51,7 +51,7 @@
 	var/snap_time_weak_handcuffs = 0 SECONDS
 	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.
 	var/snap_time_strong_handcuffs = null
-	custom_price = 20 //DARKPACK EDIT ADD
+	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
 
 /datum/armor/item_wirecutters
 	fire = 50
