@@ -311,7 +311,7 @@
 
 	var/turf/owner_turf = get_turf(owner)
 	var/location_info = "[get_area_name(owner_turf)], X:[owner_turf.x] Y:[owner_turf.y] Z:[owner_turf.z]"
-	to_chat(summon_target, span_yellowteamradio("[owner] is summoning you to their location. [owner] is currently at [location_info]"))
+	to_chat(summon_target, span_yellowteamradio("[owner.real_name] is summoning you to their location. [owner.real_name] is currently at [location_info]"))
 
 	//v20 presence -> 'summon' section for this flavortext
 	var/list/flavor_texts = list(
