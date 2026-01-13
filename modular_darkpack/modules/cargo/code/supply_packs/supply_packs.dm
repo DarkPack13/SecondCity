@@ -46,12 +46,14 @@
 	)
 	crate_name = "flower crate"
 
+/*
 /datum/supply_pack/local/hydro_tray
 	name = "Hydroponics Tray"
 	desc = "Everything you need to start your own hydroponics setup."
 	cost = 1000
 	contains = list(/obj/machinery/hydroponics/constructable)
 	crate_name = "hydro crate"
+*/
 
 /datum/supply_pack/local/weed_tray
 	name = "Plastic Planter Tray"
