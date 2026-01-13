@@ -8,12 +8,14 @@
 	var/gnosis = 1
 
 /datum/splat/werewolf/kinfolk
+	id = SPLAT_KINFOLK
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
 		TRAIT_FRENETIC_AURA
 	)
+	id = SPLAT_FERA
 	var/datum/action/cooldown/spell/shapeshift/transformation/fera_transformation
 	var/list/transformation_list = list()
 
@@ -28,6 +30,7 @@
 	QDEL_NULL(fera_transformation)
 
 /datum/splat/werewolf/shifter/garou
+	id = SPLAT_GAROU
 	transformation_list = list(/mob/living/carbon/human/fera/crinos, /mob/living/carbon/human/fera/lupus, /mob/living/carbon/human/fera/glabro, /mob/living/carbon/human/fera/hispo)
 
 // /datum/splat/werewolf/shifter/corax // DARKPACK TODO - CORAX
