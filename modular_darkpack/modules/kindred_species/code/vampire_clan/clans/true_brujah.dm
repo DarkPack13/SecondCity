@@ -6,7 +6,7 @@
 	curse = "Absence of passion."
 	clan_disciplines = list(
 		/datum/discipline/potence,
-		// /datum/discipline/presence,
+		///datum/discipline/presence,
 		/datum/discipline/temporis
 	)
 	enlightenment = TRUE

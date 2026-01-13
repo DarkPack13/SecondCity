@@ -4,3 +4,5 @@ ADMIN_VERB(report_crime, R_ADMIN, "Report Crime", "Report a crime to be happenin
 		return
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, answer, get_turf(user))
 	to_chat(user, span_adminnotice("Crime reported: [answer]!"))
+
+	BLACKBOX_LOG_ADMIN_VERB("Report Crime")

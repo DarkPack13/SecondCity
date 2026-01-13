@@ -118,9 +118,9 @@
 	if(jumper.combat_mode && get_dist(jumper.loc, target) <= 3 && strength >= 8)
 		addtimer(CALLBACK(src, PROC_REF(jump_boom), jumper),(distance * 0.5))
 		jumper.visible_message(span_danger("[jumper] takes a mighty leap that shatters \the [adjusted_target] where they land!"))
-		jumper.adjustStaminaLoss(20)
+		jumper.adjust_stamina_loss(20)
 	else
-		jumper.adjustStaminaLoss(10)
+		jumper.adjust_stamina_loss(10)
 		jumper.visible_message(span_danger("[jumper] jumps towards [adjusted_target]."))
 
 	var/turf/start_T = get_turf(jumper.loc) //Get the start and target tile for the descriptors

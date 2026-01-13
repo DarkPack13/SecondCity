@@ -21,6 +21,6 @@
 	icon = "city_gangrel"
 	clan_disciplines = list(
 		/datum/discipline/celerity,
-		// /datum/discipline/obfuscate,
+		/datum/discipline/obfuscate,
 		/datum/discipline/protean
 	)

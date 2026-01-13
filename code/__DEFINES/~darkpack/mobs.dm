@@ -1,13 +1,11 @@
 // Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
 #define SPECIES_KINDRED "kindred"
 #define SPECIES_GHOUL "ghoul"
+#define SPECIES_GAROU "garou"
 
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
-#define iskindred(A) (is_species(A, /datum/species/human/kindred))
-#define isghoul(A) (is_species(A, /datum/species/human/ghoul))
-#define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A) || isavatar(A))
 #define isavatar(A) (istype(A, /mob/living/basic/avatar))
 #define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 

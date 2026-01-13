@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	return ..()
 
 ///Copies the variables of a dna datum onto another.
-/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
+/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT CHANGE - added '|COPY_DNA_BLOOD_TYPE', original : /datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
 	new_dna.unique_enzymes = unique_enzymes
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
@@ -94,13 +94,16 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.default_mutation_genes = default_mutation_genes
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
-		if (iscarbon(new_dna.holder))
+		if (iscarbon(new_dna.holder) && (transfer_flags & COPY_DNA_BLOOD_TYPE)) // DARKPACK EDIT CHANGE - added & COPY_DNA_BLOOD_TYPE
 			var/mob/living/carbon/as_carbon = new_dna.holder
 			as_carbon.set_blood_type(blood_type)
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.holder.set_species(species.type, icon_update = FALSE)
 	else
-		new_dna.blood_type = blood_type
+		//DARKPACK EDIT CHANGE START - flag for copying blood type, we don't want to remove vampire blood from vampires using certain abilities
+		if(transfer_flags & COPY_DNA_BLOOD_TYPE)
+			new_dna.blood_type = blood_type
+		//DARKPACK EDIT CHANGE END
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.species = new species.type
 	if(transfer_flags & COPY_DNA_MUTATIONS && holder?.can_mutate())
@@ -722,4 +725,4 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		eyes.Remove(src)
 		qdel(eyes)
 		visible_message(span_notice("[src] looks up and their eyes melt away!"), span_userdanger("I understand now."))
-		addtimer(CALLBACK(src, PROC_REF(adjustOrganLoss), ORGAN_SLOT_BRAIN, 200), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(adjust_organ_loss), ORGAN_SLOT_BRAIN, 200), 2 SECONDS)

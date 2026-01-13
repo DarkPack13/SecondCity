@@ -25,7 +25,7 @@
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	if(!source || !player_breacher || ishumanbasic(player_breacher)) //Humans cant break the masquerade. Because reasons.
+	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
 		return
 
 	if(isliving(source))
@@ -63,7 +63,7 @@
 		breached_players -= player_breacher
 
 /atom/proc/observe_masquerade_violation(player_breacher)
-	/* DARKPACK TODO - GAROU
+	/* // DARKPACK TODO - GAROU
 	if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
 		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/veil_violation.ogg', 0, 0, 75))
@@ -73,7 +73,7 @@
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
 /atom/proc/observe_masquerade_reinforce(player_breacher)
-	/* DARKPACK TODO - GAROU
+	/* // DARKPACK TODO - GAROU
 	if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/humanity_gain.ogg', 0, 0, 75))
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCEED")))

@@ -6,7 +6,7 @@
 	curse = "Technology refuse."
 	clan_disciplines = list(
 		/datum/discipline/potence,
-		// /datum/discipline/dominate,
+		/datum/discipline/dominate,
 		/datum/discipline/obtenebration
 	)
 	clan_traits = list(
@@ -16,6 +16,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/emo
 	female_clothes = /obj/item/clothing/under/vampire/business
 	enlightenment = TRUE
+	clan_keys = /obj/item/vamp/keys/lasombra
 
 /datum/vampire_clan/lasombra/on_gain(mob/living/carbon/human/H)
 	. = ..()

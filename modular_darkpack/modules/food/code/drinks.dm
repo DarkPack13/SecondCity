@@ -35,14 +35,29 @@
 	name = "Typhon's Beer"
 	desc = "A sanguine drink to sate those of vampiric tastes"
 	icon_state = "typhon"
-//	foodtype = SANGUINE
-//	list_reagents = list(/datum/reagent/consumable/ethanol/beer/typhon = 30)
+	//foodtype = SANGUINE
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/typhon = 30)
 
-/*
+/datum/reagent/consumable/ethanol/beer/typhon
+	name = "Typhon's Beer"
+	description = "An alcoholic beverage brewed with a sicekningly addictive sanguine taste"
+	color = "#660000"
+	nutriment_factor = 1 * REAGENTS_METABOLISM
+	boozepwr = 50
+	taste_description = "blood sweet"
+	//glass_name = "glass of sanquine beer"
+	//glass_desc = "A freezing pint of vitae."
+
+/datum/reagent/consumable/ethanol/beer/typhon/on_mob_life(mob/living/carbon/M)
+	if(iskindred(M))
+		M.adjust_blood_pool(0.25)
+	if(isghoul(M))
+		M.adjust_blood_pool(1)
+	return ..()
+
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
 	. = ..()
-	reagents.trans_to(M, gulp_size, transfered_by = user, methods = VAMPIRE)
-*/
+	reagents.trans_to(M, gulp_size, transferred_by = user)
 
 /obj/item/reagent_containers/cup/glass/vampirecola
 	name = "two liter cola bottle"
@@ -54,6 +69,7 @@
 	list_reagents = list(/datum/reagent/consumable/space_cola = 100)
 	volume = 100
 	age_restricted = FALSE
+	custom_price = 2 // ECONOMY
 
 /obj/item/reagent_containers/cup/glass/vampirecola/blue
 	desc = "Pep Cola. Put some pep in your step"
@@ -69,6 +85,7 @@
 	isGlass = FALSE
 	list_reagents = list(/datum/reagent/water = 50)
 	age_restricted = FALSE
+	custom_price = 2 // ECONOMY
 
 /obj/item/reagent_containers/cup/soda_cans/vampirecola
 	name = "cola"
@@ -112,6 +129,7 @@
 	desc = "More milk..."
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
+	custom_price = 4 // ECONOMY
 
 /obj/item/reagent_containers/condiment/milk/malk
 	desc = "a carton of fish-brand milk, a subsidary of malk incorporated."
@@ -123,3 +141,4 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	icon_state = "mixingbowl"
 	custom_materials = list(/datum/material/glass=500)
+	custom_price = 10 // ECONOMY

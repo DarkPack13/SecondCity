@@ -41,10 +41,10 @@
 				to_chat(user, span_revenwarning("Close... but the spirits do not punish you for this one."))
 			if(ROLL_FAILURE)
 				to_chat(user, span_revendanger("Too close... Your mind feels uneasy from that."))
-				user.adjustAggLoss(5)
+				user.adjust_agg_loss(5)
 			if(ROLL_BOTCH)
 				to_chat(user, span_revendanger("THE SPIRITS PUNISH YOU FOR THAT ONE."))
-				user.adjustAggLoss(25)
+				user.adjust_agg_loss(25)
 		return
 	amount_of_bombs = nearby_mines()
 	switch(amount_of_bombs)

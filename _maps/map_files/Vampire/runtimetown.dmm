@@ -1078,12 +1078,6 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
-"vo" = (
-/obj/structure/vampdoor{
-	dir = 8
-	},
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/shop)
 "vs" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner,
@@ -1276,12 +1270,6 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
-"Ao" = (
-/obj/structure/vampdoor{
-	dir = 8
-	},
-/turf/open/floor/plating/rough,
-/area/vtm/interior/techshop)
 "AE" = (
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/plating/concrete,
@@ -1389,6 +1377,10 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
+"CB" = (
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Df" = (
 /obj/structure/closet/crate/freezer/blood{
 	name = "vampire blood freezer"
@@ -1496,6 +1488,12 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
+"Ew" = (
+/obj/structure/vampdoor{
+	dir = 4
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "EE" = (
 /obj/machinery/light/directional/west,
 /turf/open/misc/dirt,
@@ -1750,6 +1748,10 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/vtm/outside/pacificheights)
+"Jh" = (
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Jk" = (
 /obj/structure/vampfence/rich{
 	dir = 4;
@@ -1777,11 +1779,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
-"Jz" = (
-/obj/structure/table/reinforced,
-/obj/item/ritual_tome/arcane,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/sewer)
 "JB" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/smooth/old,
@@ -1801,12 +1798,6 @@
 /obj/structure/vampdoor,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
-"JK" = (
-/obj/structure/vampdoor{
-	dir = 8
-	},
-/turf/open/floor/plating/rough,
-/area/vtm/interior/clinic)
 "JP" = (
 /obj/effect/decal/cleanable/garbage,
 /turf/open/misc/beach/vamp,
@@ -1954,6 +1945,12 @@
 /obj/structure/table/wood,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"Mf" = (
+/obj/structure/vampdoor{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "Mg" = (
 /obj/machinery/light/small/directional/north,
 /obj/effect/turf_decal/bordur{
@@ -2066,6 +2063,12 @@
 /obj/structure/table,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"NQ" = (
+/obj/structure/vampdoor{
+	dir = 4
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "NR" = (
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
@@ -2097,6 +2100,10 @@
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
+"Oq" = (
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "OB" = (
 /obj/darkpack_car/police{
 	locked = 0
@@ -2224,6 +2231,12 @@
 /obj/structure/platform/lowwall/rich/old,
 /turf/open/floor/plating/rough,
 /area/vtm/outside/pacificheights)
+"PR" = (
+/obj/structure/vampdoor{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/shop)
 "PW" = (
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/sidewalk/rich,
@@ -2313,12 +2326,6 @@
 "Rj" = (
 /turf/open/genturf,
 /area/vtm/planetgeneration)
-"Rm" = (
-/obj/structure/vampdoor{
-	dir = 8
-	},
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/shop)
 "Ro" = (
 /obj/structure/table,
 /obj/structure/retail/gummaguts_menu,
@@ -2724,6 +2731,11 @@
 /obj/structure/roadsign/speedlimit,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
+"YY" = (
+/obj/structure/table/reinforced,
+/obj/item/ritual_tome/arcane,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/sewer)
 "Zc" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -3306,7 +3318,7 @@ GF
 GF
 Ef
 WD
-Jz
+YY
 zd
 zd
 OP
@@ -3650,7 +3662,7 @@ pN
 pN
 Df
 SK
-Id
+CB
 Id
 Id
 Id
@@ -4328,12 +4340,12 @@ SK
 SK
 SK
 SK
-JK
+NQ
 SK
 ZU
 ZU
 ZU
-Ao
+Mf
 ZU
 ZU
 ZU
@@ -4743,7 +4755,7 @@ NR
 NR
 NR
 NR
-NR
+Jh
 NR
 NR
 NR
@@ -4801,7 +4813,7 @@ GF
 (31,1,1) = {"
 GF
 kS
-vo
+PR
 kS
 kS
 NR
@@ -4878,7 +4890,7 @@ NR
 NR
 NR
 NR
-NR
+Oq
 NR
 NR
 NR
@@ -5822,7 +5834,7 @@ GF
 GF
 kS
 kS
-Rm
+Ew
 kS
 kS
 kS

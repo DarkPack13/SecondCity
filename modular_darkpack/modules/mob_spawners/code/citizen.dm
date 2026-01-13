@@ -3,7 +3,7 @@
 	name = "civillian"
 	uniform = /obj/item/clothing/under/vampire/sport
 	shoes = /obj/item/clothing/shoes/vampire/sneakers
-	id = /obj/item/watch
+	gloves = /obj/item/watch
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/npc/fix
@@ -13,7 +13,7 @@
 	name = "civillian"
 	uniform = /obj/item/clothing/under/vampire/office
 	shoes = /obj/item/clothing/shoes/vampire
-	id = /obj/item/watch
+	gloves = /obj/item/watch
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/npc/fix
@@ -23,7 +23,7 @@
 	name = "civillian"
 	uniform = /obj/item/clothing/under/vampire/emo
 	shoes = /obj/item/clothing/shoes/vampire
-	id = /obj/item/watch
+	gloves = /obj/item/watch
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/npc/fix
@@ -33,7 +33,7 @@
 	name = "civillian"
 	uniform = /obj/item/clothing/under/vampire/bandit
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
-	id = /obj/item/watch
+	gloves = /obj/item/watch
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	l_hand = /obj/item/vamp/keys/npc/fix
