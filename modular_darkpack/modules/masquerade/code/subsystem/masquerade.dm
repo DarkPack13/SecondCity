@@ -43,8 +43,6 @@ SUBSYSTEM_DEF(masquerade)
  * reason - Optional, the reason for the breach. For example,
  */
 /datum/controller/subsystem/masquerade/proc/masquerade_reinforce(atom/source, mob/living/player_breacher, reason)
-	if(!GLOB.canon_event)
-		return
 	. = FALSE
 	for(var/masquerade_breach as anything in masquerade_breachers)
 		var/breach_sources = masquerade_breach[2]
@@ -73,7 +71,7 @@ SUBSYSTEM_DEF(masquerade)
 		//GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
-	/* DARKPACK TODO - GAROU
+	/* // DARKPACK TODO - GAROU
 	if(isgarou(player_breacher) || iswerewolf(player_breacher))
 		var/random_renown = pick("Honor","Wisdom","Glory")
 		switch(random_renown)
@@ -95,8 +93,6 @@ SUBSYSTEM_DEF(masquerade)
  * reason - The reason for the breach. For example,
  */
 /datum/controller/subsystem/masquerade/proc/masquerade_breach(atom/source, mob/living/player_breacher, reason)
-	if(!GLOB.canon_event)
-		return
 	log_game("[player_breacher] has caused a masquerade breach in front of [source] by [reason]")
 	var/pre_breach_score = player_breacher.masquerade_score
 	if(pre_breach_score == 0)
@@ -123,7 +119,7 @@ SUBSYSTEM_DEF(masquerade)
 /datum/controller/subsystem/masquerade/proc/save_persistent_masquerade(mob/living/player_breacher)
 	var/datum/preferences/preferences = GLOB.preferences_datums[ckey(player_breacher.key)]
 	if(preferences)
-		preferences.write_preference(GLOB.preference_entries[/datum/preference/numeric/masquerade], player_breacher.masquerade_score)
+		preferences.write_preference_midround(GLOB.preference_entries[/datum/preference/numeric/masquerade], player_breacher.masquerade_score)
 		preferences.save_character()
 
 // This is for clearing the round's masquerade because a player matrix'd

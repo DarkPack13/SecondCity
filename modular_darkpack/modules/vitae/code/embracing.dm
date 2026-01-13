@@ -19,16 +19,9 @@
 	childe.grab_ghost(force = TRUE)
 	to_chat(childe, span_cult("You rise with a start! You feel a tremendous pulse echoing in your ears. As you focus your mind on it, you discover it to be the last few throbs of your heart beating until it slows to a halt. The warmth from your skin slowly fades until it settles to the ambient temperature around you...- and you are very hungry."))
 
-	childe.set_species(/datum/species/human/kindred)
-	childe.set_clan(clan, FALSE)
-	childe.dna.species.generation = initial(dna.species.generation) + 1
-	if(prob(5))
-		childe.set_clan(/datum/vampire_clan/caitiff)
+	childe.make_kindred_from_sire(src)
 
-	childe.skin_tone = get_vamp_skin_color(childe.skin_tone)
-	childe.set_body_sprite()
-
-	/* DARKPACK TODO - Commenting this out until preferences are properly finished.
+	/* // DARKPACK TODO - Commenting this out until preferences are properly finished.
 	//Gives the Childe the src's first three Disciplines
 	var/list/disciplines_to_give = list()
 	var/discipline_number = 0
@@ -44,7 +37,7 @@
 
 	//addtimer(CALLBACK(childe, PROC_REF(embrace_persistence_confirmation)), 1 SECONDS)
 
-/* DARKPACK TODO - GAROU
+/* // DARKPACK TODO - GAROU
 /mob/living/carbon/human/proc/attempt_abomination_embrace(mob/living/carbon/human/childe, second_party_embrace)
 	if(!(childe.auspice?.level)) //here be Abominations
 		return
@@ -74,7 +67,7 @@
 				return
 */
 
-/* DARKPACK TODO - PREFERENCES
+/* // DARKPACK TODO - PREFERENCES
 /mob/living/carbon/human/proc/embrace_persistence_confirmation()
 	var/response_v = tgui_input_list(src, "Do you wish to keep being a vampire on your save slot? (Yes will be a permanent choice and you can't go back!)", "Embrace", list("Yes", "No"), "No")
 	//Verify if they accepted to save being a vampire

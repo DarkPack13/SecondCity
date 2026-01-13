@@ -49,9 +49,9 @@
 /obj/item/melee/touch_attack/quietus/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(isliving(target))
 		var/mob/living/L = target
-		L.adjustFireLoss(10)
+		L.adjust_fire_loss(10)
 		L.AdjustKnockdown(3 SECONDS)
-		L.adjustStaminaLoss(50)
+		L.adjust_stamina_loss(50)
 	return ..()
 
 /datum/discipline_power/quietus/scorpions_touch
@@ -86,8 +86,8 @@
 	if(owner.lastattacked)
 		if(isliving(owner.lastattacked))
 			var/mob/living/L = owner.lastattacked
-			L.adjustStaminaLoss(80)
-			L.adjustFireLoss(10)
+			L.adjust_stamina_loss(80)
+			L.adjust_fire_loss(10)
 			to_chat(owner, "You send your curse on [L], the last creature you attacked.")
 		else
 			to_chat(owner, "You don't seem to have last attacked soul earlier...")

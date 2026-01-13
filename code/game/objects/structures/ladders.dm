@@ -7,6 +7,7 @@
 	base_icon_state = "ladder"
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 	///the ladder below this one
 	VAR_FINAL/obj/structure/ladder/down
 	///the ladder above this one
@@ -293,7 +294,7 @@
 	var/turf/target = get_turf(ladder)
 	user.zMove(target = target, z_move_flags = ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED|ZMOVE_INCLUDE_PULLED)
 
-	/* DARKPACK EDIT REMOVAL
+	/* // DARKPACK EDIT REMOVAL
 	if(grant_exp)
 		var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
 		user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //get a little experience for our trouble

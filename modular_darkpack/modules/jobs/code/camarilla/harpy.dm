@@ -2,7 +2,6 @@
 	title = JOB_HARPY
 	description = "You are an expert on the nightlife of Cainite society. Acting as one of the chief advisors on all things related to boons and diplomacy, the Prince defers quite the amount of judgement to you. Don't squander it."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
@@ -42,4 +41,4 @@
 	shoes = /obj/item/clothing/shoes/vampire/brown
 	l_pocket = /obj/item/smartphone/harpy
 	r_pocket = /obj/item/vamp/keys/clerk
-	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/seneschal=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit/seneschal=1)

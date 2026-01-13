@@ -2,5 +2,5 @@
 #define ZONE_MASQUERADE "masquerade"
 /// Safe zone where Masquerade breaches can't occur
 #define ZONE_NO_MASQUERADE "battle"
-// DARKPACK TODO - Someone give this a comment lol
+/// Safe zone where no fighting is supposed to happen.
 #define ZONE_ELYSIUM "elysium"
