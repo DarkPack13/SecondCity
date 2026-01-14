@@ -18,11 +18,8 @@ In any query remember to add a prefix to the table names if you use one.
 
 ---
 
-Version 5.34, 14 January 2026, by XeonMations
-
-TODO: get buffy to help with this turned into a changelog: `category` enum('Any','Fiction','Non-Fiction','Adult','Reference','Religion','Kindred','Lupine','Kuei-Jin') NOT NULL,
+Version 5.34, 14 January 2026, by XeonMations, Buffyuwu
 
 ```sql
-ALTER TABLE `library`
-
+ALTER TABLE `library` MODIFY COLUMN `category` VARCHAR(255);
 ```
