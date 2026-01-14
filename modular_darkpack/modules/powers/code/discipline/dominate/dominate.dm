@@ -42,7 +42,7 @@
 				target.do_jitter_animation(0.1 SECONDS)
 				to_chat(target, span_danger("DROP"))
 			if("whistle")
-				//target.apply_status_effect(STATUS_EFFECT_AWE, owner)
+				target.apply_status_effect(STATUS_EFFECT_AWE, owner)
 				to_chat(target, span_danger("HITHER"))
 
 
