@@ -57,11 +57,12 @@
 	return ..()
 
 /obj/machinery/bitcoin_miner/proc/dump_loot(mob/user)
-	if(money_stored)
-		new /obj/item/stack/dollar(drop_location(), money_stored)
+	if(money_stored > 0)
+		var/money_to_spawn = min(stored_money, /obj/item/stack/dollar::max_amount)
+		new /obj/item/stack/dollar(drop_location(), money_to_spawn)
+		stored_money -= money_to_spawn
 		playsound(src, 'sound/machines/eject.ogg', 30)
-		to_chat(user, span_notice("You withdraw $[money_stored] from \the [src]!"))
-		money_stored = 0
+		to_chat(user, span_notice("You withdraw [MONEY_SYMBOL][money_to_spawn] from \the [src]!"))
 	else
 		to_chat(user, span_notice("The balance is empty!"))
 
