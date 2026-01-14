@@ -62,3 +62,5 @@
 /obj/effect/landmark/start/darkpack/hecata/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
 
 /obj/item/stocks_license : @DELETE
+
+/obj/structure/musician/piano/darkpack/ipiano : /obj/structure/musician/piano{@OLD}

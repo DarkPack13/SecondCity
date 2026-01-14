@@ -131,7 +131,7 @@
 	var/datum/splat/vampire/kindred/owner_splat = iskindred(owner)
 	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
 	if(target_splat)
-		if(owner_splat.generation > target_splat?.generation)
+		if(owner_splat.generation > target_splat.generation)
 			to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
 			return FALSE
 

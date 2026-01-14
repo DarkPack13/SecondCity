@@ -102,14 +102,13 @@
  * this power's vitae cost.
  */
 /datum/discipline_power/proc/can_afford()
-	var/can_afford = TRUE
 	if(vitae_cost)
 		if(!(owner.bloodpool >= /*(HAS_TRAIT(owner, TRAIT_DOUBLE_VITAE_COST) ? vitae_cost*2 :*/ vitae_cost))
-			can_afford = FALSE
+			return FALSE
 	if(willpower_cost)
 		if(!owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) >= willpower_cost)
-			can_afford = FALSE
-	return can_afford
+			return FALSE
+	return TRUE
 
 /**
  * Returns if this power can currently be activated
