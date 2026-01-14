@@ -10,16 +10,6 @@
 /obj/item/clothing/suit/costume/ianshirt : /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian
 /obj/item/clothing/suit/costume/dutch : /obj/item/clothing/suit/vampire/dutch
 
-/obj/item/food/soup/stew : @DELETE
-/obj/item/food/soup/vegetable : @DELETE
-/obj/item/food/soup/bungocurry : @DELETE
-/obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
-
-/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
-/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
-/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv
-
-/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
 /obj/item/melee/vamp/longsword/keeper : /obj/item/claymore/longsword/keeper{@OLD}
 
 /obj/item/police_radio : @DELETE
