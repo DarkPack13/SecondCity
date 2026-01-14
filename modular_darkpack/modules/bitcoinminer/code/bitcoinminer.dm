@@ -14,9 +14,9 @@
 	. = ..()
 	update_appearance()
 
-/obj/machinery/bitcoin_miner/process()
+/obj/machinery/bitcoin_miner/process(seconds_per_tick)
 	if(active)
-		money_stored += rand(money_per_tick_min, money_per_tick_max)
+		money_stored += rand(money_per_tick_min, money_per_tick_max)  * seconds_per_tick
 	else
 		STOP_PROCESSING(SSobj, src)
 
