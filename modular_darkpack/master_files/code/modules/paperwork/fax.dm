@@ -22,6 +22,10 @@
 	fax_name = "Federal Government"
 	fax_id = "policeadmin"
 
+/obj/machinery/fax/admin/fbi
+	fax_name = "FBI National Headquarters"
+	fax_id = "fbi"
+
 /obj/machinery/fax/admin/endron
 	fax_name = EVIL_COMPANY + " Corporate"
 	fax_id = "endronadmin"
