@@ -21,10 +21,6 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
-"cL" = (
-/obj/machinery/light/red/directional/north,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/sewer)
 "dM" = (
 /turf/closed/wall/vampwall/rust,
 /area/vtm/interior/sewer)
@@ -36,13 +32,6 @@
 	pixel_x = 8
 	},
 /turf/open/floor/city/clinic,
-/area/vtm/interior/sewer)
-"ie" = (
-/obj/machinery/porta_turret/pentex/c9mm{
-	pixel_y = 7
-	},
-/obj/structure/platform/lowwall/bar,
-/turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "ii" = (
 /obj/structure/table,
@@ -126,6 +115,12 @@
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
+"rC" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
 "ss" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/cup/bottle/phosphorus{
@@ -181,15 +176,16 @@
 /obj/machinery/light/red/directional/east,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
+"vZ" = (
+/obj/machinery/porta_turret/pentex/c9mm{
+	pixel_y = 7
+	},
+/obj/structure/platform/lowwall/bar,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
 "wn" = (
 /obj/effect/mob_spawn/corpse/human/doctor,
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/sewer)
-"wq" = (
-/obj/effect/turf_decal/trimline/red/warning{
-	dir = 4
-	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "xF" = (
@@ -244,7 +240,7 @@
 /area/vtm/interior/sewer)
 "EX" = (
 /obj/structure/hedge/opaque,
-/obj/machinery/light/cold/directional/east,
+/obj/machinery/light/red/directional/east,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Fy" = (
@@ -262,8 +258,12 @@
 "Ig" = (
 /turf/closed/wall/vampwall/metal/reinforced,
 /area/vtm/interior/sewer)
+"Ii" = (
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
 "IO" = (
-/obj/machinery/light/cold/directional/south,
+/obj/machinery/light/red/directional/south,
 /turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "Kh" = (
@@ -576,7 +576,7 @@ of
 (7,1,1) = {"
 ZY
 dM
-cL
+Ii
 pP
 dM
 Ql
@@ -606,7 +606,7 @@ ve
 ve
 IO
 Ig
-cL
+Ii
 um
 Ya
 pP
@@ -655,7 +655,7 @@ pP
 pP
 pP
 Ig
-cL
+Ii
 pP
 Nk
 Zf
@@ -699,8 +699,8 @@ pP
 Gh
 Uc
 dM
-wq
-wq
+rC
+rC
 dM
 zl
 of
@@ -721,8 +721,8 @@ pP
 as
 pP
 dM
-ie
-ie
+vZ
+vZ
 sT
 Zf
 of
@@ -730,7 +730,7 @@ of
 (14,1,1) = {"
 ZY
 dM
-cL
+Ii
 pP
 dM
 pP
