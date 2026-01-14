@@ -21,6 +21,7 @@
 	var/datum/action/cooldown/malk_speech/malk_font = new(vampire)
 	hivemind.Grant(vampire)
 	malk_font.Grant(vampire)
+	vampire.add_quirk(/datum/quirk/derangement)
 
 	// Madness Network handling
 	LAZYADD(madness_network, vampire)
@@ -107,4 +108,3 @@
 	StartCooldown()
 	mad_speak = spooky_font_replace(mad_speak) // replace some letters to make the font more closely resemble that of vtm: bloodlines' malkavian dialogue
 	clicker.say(mad_speak, spans = list(malkavian_spans))
-
