@@ -167,7 +167,7 @@
 
 /obj/item/claymore/longsword/keeper/afterattack(atom/target, mob/living/carbon/user, proximity)
 	. = ..()
-	/* DARKPACK TODO - Garou (this is a silver longsword)
+	/* DARKPACK TODO - WEREWOLF - (this is a silver longsword)
 	if(iswerewolf(target) || isgarou(target) && proximity)
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
