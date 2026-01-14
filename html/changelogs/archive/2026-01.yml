@@ -27,3 +27,15 @@
   TheCarnalest:
   - refactor: A sane framework for splats has been set up, and Kindred and Ghouls
       have had their code swapped out entirely.
+2026-01-14:
+  FalloutFalcon:
+  - bugfix: No greek syllable names from random gen
+  - rscadd: readds a few items to retail stores
+  - bugfix: fixes some bad retail store prices
+  buffyuwu:
+  - rscadd: adds dementation
+  chazzyjazzy:
+  - code_imp: reimplements dominate
+  - rscadd: '''mask of a thousand faces'' now works as intended'
+  - code_imp: reimplemented obfuscate
+  - code_imp: reimplements presence
