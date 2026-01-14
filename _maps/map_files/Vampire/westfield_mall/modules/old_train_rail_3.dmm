@@ -2,6 +2,14 @@
 "a" = (
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
+"b" = (
+/obj/structure/platform/lowwall/brick_old,
+/obj/item/clothing/head/vampire/skull{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
 "c" = (
 /mob/living/basic/biter/hostile,
 /turf/open/floor/plating/rough/cave,
@@ -10,6 +18,11 @@
 /obj/item/storage/belt/sheath/vamp/sabre{
 	pixel_x = -3
 	},
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"h" = (
+/obj/structure/platform/lowwall/brick_old,
+/obj/item/coin/gold/doubloon,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "j" = (
@@ -43,6 +56,11 @@
 /obj/structure/platform/lowwall/wood,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
+"D" = (
+/obj/structure/platform/lowwall/brick_old,
+/obj/item/coin/silver,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
 "E" = (
 /obj/structure/vampdoor/old{
 	dir = 4
@@ -56,8 +74,8 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "K" = (
-/obj/item/clothing/head/helmet/skull,
 /obj/structure/platform/lowwall/brick_old,
+/obj/item/coin/gold,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "L" = (
@@ -79,6 +97,14 @@
 	},
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"S" = (
+/obj/structure/platform/lowwall/brick_old,
+/obj/item/clothing/head/vampire/skull{
+	pixel_x = 9;
+	pixel_y = 10
+	},
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "U" = (
@@ -142,12 +168,12 @@ y
 t
 t
 y
-O
+h
 t
 t
 H
 y
-K
+O
 t
 t
 p
@@ -167,9 +193,9 @@ y
 p
 t
 t
-O
+K
 y
-O
+S
 t
 t
 O
@@ -194,7 +220,7 @@ y
 O
 t
 t
-O
+b
 y
 y
 y
@@ -233,7 +259,7 @@ y
 C
 t
 t
-O
+D
 y
 m
 t
@@ -260,7 +286,7 @@ y
 O
 t
 t
-K
+O
 y
 y
 y

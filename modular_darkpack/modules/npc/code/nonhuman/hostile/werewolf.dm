@@ -1,5 +1,5 @@
 /mob/living/basic/crinos_beast
-	name = "wolf-like Beast"
+	name = "wolf-like beast"
 	desc = "The peak of abominations damage. Unbelievably deadly..."
 	icon = 'modular_darkpack/modules/npc/icons/werewolf.dmi'
 	icon_state = "beast_crinos"

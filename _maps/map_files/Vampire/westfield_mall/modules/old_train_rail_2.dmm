@@ -1,10 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ak" = (
-/obj/structure/extinguisher_cabinet/directional/north,
-/obj/effect/turf_decal/trimline/red/warning{
-	dir = 1
-	},
-/turf/open/floor/plating/concrete,
+/obj/effect/mob_spawn/corpse/human/doctor,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "as" = (
 /obj/structure/chair/office/darkpack/green{
@@ -17,14 +15,14 @@
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
-"aN" = (
-/mob/living/carbon/human/npc/bouncer/endron/endron_lab,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/sewer)
 "bn" = (
 /obj/structure/chair/sofa/city_bench/metal/left/black{
 	dir = 4
 	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"cL" = (
+/obj/machinery/light/red/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "dM" = (
@@ -37,6 +35,13 @@
 /obj/structure/filingcabinet{
 	pixel_x = 8
 	},
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"ie" = (
+/obj/machinery/porta_turret/pentex/c9mm{
+	pixel_y = 7
+	},
+/obj/structure/platform/lowwall/bar,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "ii" = (
@@ -82,7 +87,7 @@
 /area/vtm/interior/sewer)
 "nE" = (
 /obj/machinery/smartfridge/chemistry/preloaded,
-/turf/open/floor/plating/concrete,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "of" = (
 /turf/open/misc/dirt,
@@ -154,7 +159,6 @@
 /turf/closed/wall/vampwall/rustbad,
 /area/vtm/interior/sewer)
 "ua" = (
-/obj/effect/decal/cleanable/blood/gibs/robot_debris/down,
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4
 	},
@@ -167,19 +171,25 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "uO" = (
-/obj/machinery/light/cold/directional/west,
+/obj/machinery/light/red/directional/west,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "ve" = (
 /turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "vp" = (
-/obj/machinery/light/cold/directional/east,
+/obj/machinery/light/red/directional/east,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "wn" = (
 /obj/effect/mob_spawn/corpse/human/doctor,
 /obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"wq" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "xF" = (
@@ -217,16 +227,15 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "AG" = (
-/obj/machinery/sprinkler,
-/obj/item/reagent_containers/cup/beaker/large{
-	pixel_x = 3;
-	pixel_y = 7
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "CK" = (
 /obj/machinery/chem_master,
-/turf/open/floor/plating/concrete,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "Dg" = (
 /obj/structure/table/countertop/green,
@@ -300,16 +309,13 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Pb" = (
-/obj/machinery/light/cold/directional/south,
 /obj/structure/table,
+/obj/machinery/light/red/directional/south,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "Ql" = (
 /obj/structure/table/countertop/green,
-/obj/item/reagent_containers/cup/beaker/large{
-	pixel_x = 3;
-	pixel_y = 7
-	},
+/obj/machinery/reagentgrinder,
 /turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "QY" = (
@@ -334,8 +340,9 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "TZ" = (
-/mob/living/carbon/human/npc/endronlabsecurity,
-/turf/open/floor/plating/concrete,
+/mob/living/basic/crinos_beast,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "Uc" = (
 /obj/structure/table,
@@ -372,7 +379,7 @@
 "YP" = (
 /obj/structure/table/countertop/green,
 /obj/structure/sink/basin/directional/south,
-/turf/open/floor/plating/concrete,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "Zb" = (
 /obj/structure/rack,
@@ -400,8 +407,8 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "ZB" = (
-/obj/effect/vip_barrier/endron/endron_lab,
-/turf/open/floor/plating/concrete,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
 "ZF" = (
 /obj/structure/rack,
@@ -504,7 +511,7 @@ of
 ZY
 dM
 pP
-AG
+Oh
 pP
 vp
 pP
@@ -569,13 +576,13 @@ of
 (7,1,1) = {"
 ZY
 dM
-QY
+cL
 pP
 dM
 Ql
-ve
-ve
-ve
+TZ
+ak
+ZB
 Ig
 pP
 pP
@@ -599,7 +606,7 @@ ve
 ve
 IO
 Ig
-QY
+cL
 um
 Ya
 pP
@@ -617,8 +624,8 @@ pP
 oH
 dM
 YP
-pP
-pP
+ve
+ve
 CK
 Ig
 wn
@@ -627,7 +634,7 @@ NG
 pP
 Ig
 pP
-aN
+pP
 sT
 Zf
 of
@@ -640,7 +647,7 @@ pP
 yN
 pP
 pP
-pP
+ve
 nE
 Ig
 pP
@@ -648,8 +655,8 @@ pP
 pP
 pP
 Ig
-QY
-ZB
+cL
+pP
 Nk
 Zf
 of
@@ -660,9 +667,9 @@ xF
 pP
 pP
 dM
-ak
 pP
-Oh
+AG
+ve
 fh
 Ig
 ua
@@ -692,8 +699,8 @@ pP
 Gh
 Uc
 dM
-pP
-pP
+wq
+wq
 dM
 zl
 of
@@ -714,8 +721,8 @@ pP
 as
 pP
 dM
-pP
-pP
+ie
+ie
 sT
 Zf
 of
@@ -723,12 +730,12 @@ of
 (14,1,1) = {"
 ZY
 dM
-QY
+cL
 pP
 dM
 pP
 pP
-pP
+Oh
 kF
 dM
 pP
@@ -793,7 +800,7 @@ pP
 Oh
 pP
 uO
-TZ
+pP
 pP
 pP
 ni
@@ -817,7 +824,7 @@ pP
 pP
 pP
 pP
-TZ
+pP
 dM
 pP
 pP

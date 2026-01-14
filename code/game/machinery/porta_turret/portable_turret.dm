@@ -1040,6 +1040,37 @@ DEFINE_BITFIELD(turret_flags, list(
 	else if(team_color == "red" && istype(projectile, /obj/projectile/beam/lasertag/bluetag))
 		set_disabled(10 SECONDS)
 
+
+// DARKPACK EDIT ADD START
+/obj/machinery/porta_turret/pentex
+	installation = null
+	always_up = TRUE
+	use_power = NO_POWER_USE
+	has_cover = FALSE
+	scan_range = 9
+	uses_stored = FALSE
+	mode = TURRET_LETHAL
+	stun_projectile = /obj/projectile/bullet
+	lethal_projectile = /obj/projectile/bullet
+	lethal_projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
+	stun_projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
+	icon_state = "syndie_off"
+	base_icon_state = "syndie"
+	faction = list(EVIL_COMPANY)
+	turret_flags = TURRET_FLAG_SHOOT_CRIMINALS | TURRET_FLAG_SHOOT_ANOMALOUS | TURRET_FLAG_SHOOT_BORGS
+	desc = "A ballistic machine gun auto-turret."
+
+/obj/machinery/porta_turret/pentex/setup()
+	return
+
+/obj/machinery/porta_turret/pentex/assess_perp(mob/living/carbon/human/perp)
+	return 10 //Used in ruin. shoot everything not in their faction
+
+/obj/machinery/porta_turret/pentex/c9mm
+	stun_projectile = /obj/projectile/bullet/darkpack/vamp9mm/silver
+	lethal_projectile = /obj/projectile/bullet/darkpack/vamp9mm/silver
+// DARKPACK EDIT ADD END
+
 #undef TURRET_STUN
 #undef TURRET_LETHAL
 #undef POPUP_ANIM_TIME
