@@ -441,10 +441,3 @@
 	accesslocks = list(
 		"apartment"
 	)
-
-/obj/item/vamp/keys/axes
-	name = "rusty keys"
-	accesslocks = list(
-		"axes",
-		"laundromat"
-	)
