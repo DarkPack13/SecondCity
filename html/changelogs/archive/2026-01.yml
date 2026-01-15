@@ -39,3 +39,14 @@
   - rscadd: '''mask of a thousand faces'' now works as intended'
   - code_imp: reimplemented obfuscate
   - code_imp: reimplements presence
+2026-01-15:
+  FalloutFalcon:
+  - bugfix: keys are now treated as plural items
+  buffyuwu:
+  - rscadd: ports derangement quirk, basic malk hallucinations from bloodlines
+  chazzyjazzy:
+  - bugfix: fixed spellbook logic to match splat rework
+  - code_imp: quietus
+  dwinters99:
+  - code_imp: two additional levels of fog density added to effects.dm
+  - map: lots of updatepath fixes
