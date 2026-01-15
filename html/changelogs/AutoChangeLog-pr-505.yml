@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Platforms/low-walls now layer under tables again"
