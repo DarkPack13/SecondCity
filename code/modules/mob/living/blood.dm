@@ -442,7 +442,7 @@
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 		if(H.dna && H.dna.species)
-			blood_data["species"] = lowertext(H.dna.species.name)
+			blood_data["species"] = LOWER_TEXT(H.dna.species.name)
 	// DARKPACK EDIT ADD END
 
 	return blood_data
