@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "readds a few items to retail stores"
-  - bugfix: "fixes some bad retail store prices"

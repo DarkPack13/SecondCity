@@ -1,0 +1,24 @@
+# Not an apoc type but GRRRRRR xeon
+/mob/living/simple_animal/hostile/biter/lasombra : /mob/living/basic/lasombra
+/mob/living/simple_animal/hostile/biter/lasombra/better : /mob/living/basic/lasombra/better
+
+# Turf decals
+/obj/effect/turf_decal/apoc/vampbeach : /obj/effect/turf_decal/darkpack/sand
+/obj/effect/turf_decal/apoc/vampbeach/corner : /obj/effect/turf_decal/darkpack/sand/corner
+/obj/effect/turf_decal/apoc/vampdirt : /obj/effect/turf_decal/darkpack/dirt
+/obj/effect/turf_decal/apoc/vampdirt/corner : /obj/effect/turf_decal/darkpack/dirt/corner
+/obj/effect/turf_decal/apoc/vampgrass : /obj/effect/turf_decal/darkpack/grass
+/obj/effect/turf_decal/apoc/vampgrass/corner : /obj/effect/turf_decal/darkpack/grass/corner
+/obj/effect/turf_decal/apoc/rough : /obj/effect/turf_decal/darkpack/rough
+/obj/effect/turf_decal/apoc/rough/corner : /obj/effect/turf_decal/darkpack/rough/corner
+/obj/effect/turf_decal/apoc/cave : /obj/effect/turf_decal/darkpack/cave
+/obj/effect/turf_decal/apoc/cave/corner : /obj/effect/turf_decal/darkpack/cave/corner
+
+# kitchen knives
+/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher
+/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic
+
+# misc
+/obj/item/toy/mecha/fireripley : /obj/item/toy/mecha/firefighter
+/obj/item/storage/fancy/hardcase : /obj/item/storage/fancy/hardcase/mag_mp5
+/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
