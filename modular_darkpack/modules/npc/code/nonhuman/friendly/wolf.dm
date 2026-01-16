@@ -1,11 +1,50 @@
+#define COAT_BLACK 1 // wolf1
+#define COAT_GRAY 2 // wolf2
+#define COAT_RED 3 // wolf3
+#define COAT_WHITE 4 // wolf4
+#define COAT_GINGER 5 // wolf5
+#define COAT_BROWN 6 // wolf6
+
+#define TYPE_MUNDANE "wolf"
+#define TYPE_KINFOLK "kinfolk"
+#define TYPE_SPIRAL "spiral"
+
+#define WOLF_COAT_HELPER(wolf_type)	\
+	##wolf_type/black {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_BLACK; \
+	}	\
+	##wolf_type/gray {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_GRAY; \
+	}	\
+	##wolf_type/red {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_RED; \
+	}	\
+	##wolf_type/white {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_WHITE; \
+	}	\
+	##wolf_type/ginger {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_GINGER; \
+	}	\
+	##wolf_type/brown {	\
+		random_wolf_color = FALSE; \
+		coat_color = COAT_BROWN; \
+	}
+
 /mob/living/basic/pet/dog/wolf
 	name = "\improper wolf"
 	real_name = "wolf"
 	icon_state = "wolf1"
-	desc = "That's an big, scary ouppy. Might be best to steer clear."
+	desc = "That's an big, scary wolf. Might be best to steer clear."
 	base_icon_state = "wolf"
 	icon = 'modular_darkpack/modules/npc/icons/wolf.dmi'
 	var/random_wolf_color = TRUE
+	var/coat_color = COAT_BLACK
+	var/wolf_type = TYPE_MUNDANE
 	basic_mob_flags = NONE
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	mob_size = MOB_SIZE_HUMAN // big guy
@@ -37,8 +76,33 @@
 	ai_controller = /datum/ai_controller/basic_controller/wolf
 
 	var/can_tame = TRUE
-	/// Instructions you can give to wolves when tamed
-	var/static/list/wolf_pet_commands = list(
+
+/mob/living/basic/pet/dog/wolf/Initialize(mapload)
+	. = ..()
+	add_verb(src, /mob/living/proc/toggle_resting)
+	var/coat_type
+
+/*	if(user.auspice == AUSPICE_PHILODOX && wolf_type != TYPE_MUNDANE) // uncomment when dogs
+		switch(wolf_type)
+			if(TYPE_KINFOLK)
+				. += span_purple("On closer inspection, they appear to be kin.")
+			if(TYPE_SPIRAL)
+				. += span_warn("They are strongly wyrm-tainted.") // Remove when we have a wyrm-tainted element or something
+				coat_type = TYPE_SPIRAL
+*/
+
+	if(random_wolf_color)
+		coat_color = rand(1, 6)
+
+	icon_state = "[base_icon_state][coat_type][coat_color]"
+	icon_living = "[base_icon_state][coat_type][coat_color]"
+	icon_dead = "[base_icon_state][coat_type][coat_color]_dead"
+
+//	AddElement(/datum/element/ai_retaliate)
+	update_appearance(UPDATE_ICON)
+
+/mob/living/basic/pet/dog/wolf/add_obey_commands()
+	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
 		/datum/pet_command/move,
@@ -51,19 +115,7 @@
 		/datum/pet_command/protect_owner
 	)
 
-/mob/living/basic/pet/dog/wolf/Initialize(mapload)
-	. = ..()
-	add_verb(src, /mob/living/proc/toggle_resting)
-	if(random_wolf_color)
-		var/id = rand(1, 6)
-		icon_state = "[base_icon_state][id]"
-		icon_living = "[base_icon_state][id]"
-		icon_dead = "[base_icon_state][id]_dead"
-	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
-	AddElement(/datum/element/ai_flee_while_injured)
-	AddElement(/datum/element/ai_retaliate)
-	update_appearance(UPDATE_ICON)
-//	AddComponent(/datum/component/obeys_commands, wolf_pet_commands)
+	AddComponent(/datum/component/obeys_commands, pet_commands)
 
 /mob/living/basic/pet/dog/wolf/update_icon_state()
 	. = ..()
@@ -82,7 +134,7 @@
 	eyes_overlay.color = sprite_eye_color
 	. += eyes_overlay
 
-	switch(getFireLoss()+getBruteLoss()+getAggLoss())
+	switch(get_fire_loss()+get_brute_loss()+get_agg_loss())
 		if(40 to 70)
 			var/mutable_appearance/damage_overlay = mutable_appearance(icon, "damage1[laid_down ? "_rest" : ""]")
 			. += damage_overlay
@@ -93,8 +145,33 @@
 			var/mutable_appearance/damage_overlay = mutable_appearance(icon, "damage3[laid_down ? "_rest" : ""]")
 			. += damage_overlay
 
-
-
 /mob/living/basic/pet/dog/wolf/proc/wolfresting()
 	return stat > CONSCIOUS || IsSleeping() || IsParalyzed() || body_position == LYING_DOWN
 
+// WOLF TYPES
+/mob/living/basic/pet/dog/wolf/kinfolk
+	real_name = "kinfolk"
+	wolf_type = TYPE_KINFOLK
+
+/mob/living/basic/pet/dog/wolf/kinfolk/spiral
+	name = "rotten wolf"
+	real_name = "tainted kinfolk"
+	icon_state = "wolfspiral1"
+	base_icon_state = "wolfspiral"
+	wolf_type = TYPE_SPIRAL
+
+// STATIC COLORS
+WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)
+WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk)
+WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk/spiral)
+
+#undef COAT_BLACK
+#undef COAT_GRAY
+#undef COAT_RED
+#undef COAT_WHITE
+#undef COAT_GINGER
+#undef COAT_BROWN
+
+#undef TYPE_MUNDANE
+#undef TYPE_KINFOLK
+#undef TYPE_SPIRAL
