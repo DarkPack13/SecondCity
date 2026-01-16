@@ -7293,6 +7293,7 @@
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\dog.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\rat.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\friendly\spawners.dm"
+#include "modular_darkpack\modules\npc\code\nonhuman\friendly\wolf.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\hostile\abyss_tentacle.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\hostile\baali_guard.dm"
 #include "modular_darkpack\modules\npc\code\nonhuman\hostile\bear.dm"
