@@ -956,6 +956,10 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"sX" = (
+/obj/structure/sign/city/police_department/directional/north,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "sY" = (
 /obj/structure/table/countertop/black,
 /turf/open/floor/plating/rough,
@@ -1097,6 +1101,12 @@
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/shop)
+"vH" = (
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police3"
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "vW" = (
 /obj/structure/table/wood,
 /obj/item/soil_sack,
@@ -1186,6 +1196,11 @@
 "yk" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/interior/supply)
+"yq" = (
+/obj/structure/barrels/rand,
+/obj/structure/sign/city/chinese/alt2/directional/west,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "yr" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/doctor,
@@ -1686,6 +1701,12 @@
 /obj/effect/decal/wallpaper,
 /turf/closed/wall/vampwall/brick,
 /area/vtm/interior/shop)
+"Hu" = (
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police2"
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Hy" = (
 /obj/machinery/atm{
 	dir = 8;
@@ -2258,6 +2279,7 @@
 /area/vtm/outside/pacificheights)
 "Qe" = (
 /obj/effect/spawner/random/stray_animal,
+/obj/structure/sign/city/chinese/alt4/directional/east,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Qi" = (
@@ -2366,6 +2388,12 @@
 /obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
+"Sf" = (
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police4"
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Sj" = (
 /obj/effect/landmark/latejoin_masquerade,
 /turf/open/misc/beach/vamp,
@@ -2689,6 +2717,13 @@
 /obj/item/ammo_box/darkpack/c545,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"XA" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "debughouse"
+	},
+/obj/structure/sign/city/anarch,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "XD" = (
 /obj/machinery/door/airlock/elevator/right{
 	dir = 4;
@@ -3495,7 +3530,7 @@ Id
 Id
 Id
 Id
-Ev
+XA
 lk
 NR
 NR
@@ -4434,7 +4469,7 @@ GF
 (25,1,1) = {"
 GF
 MS
-Bt
+yq
 jw
 XE
 NR
@@ -4994,7 +5029,7 @@ Fg
 mm
 GH
 Fg
-NR
+sX
 NR
 cj
 ik
@@ -5130,7 +5165,7 @@ oW
 oW
 LW
 Fg
-NR
+Hu
 NR
 cj
 ik
@@ -5198,7 +5233,7 @@ kS
 kS
 kS
 Fg
-NR
+vH
 NR
 Dh
 en
@@ -5266,7 +5301,7 @@ Ju
 Gj
 YH
 Fg
-NR
+Sf
 NR
 cj
 ik
