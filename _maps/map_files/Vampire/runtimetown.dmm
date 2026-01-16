@@ -2692,7 +2692,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "debughouse"
 	},
-/obj/structure/sign/city/anarch/directional/east,
+/obj/structure/sign/city/anarch/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "XD" = (
