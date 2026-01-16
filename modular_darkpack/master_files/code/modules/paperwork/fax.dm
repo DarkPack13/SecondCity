@@ -62,6 +62,7 @@
 	fax_name = "FBI"
 	fax_id = "police"
 	special_networks = list(fbiadmin = list(fax_name = "FBI National Headquarters", fax_id = "fbiadmin", color = "blue", emag_needed = TRUE))
+	visible_to_network = FALSE
 
 /obj/machinery/fax/endron
 	fax_name = MAIN_EVIL_COMPANY + " HQ"
