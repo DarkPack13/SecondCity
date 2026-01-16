@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(occult_research)
 		if(SPECIES_KINDRED)
 			var/generation = blood_data["generation"]
 			var/clan = blood_data["clan"]
-			research_award = (14 - generation) * 5
+			research_award = (GHOUL_GENERATION - generation) * 5
 			species_name = "Kindred"
 			research_message = "You gain new insights into the [species_name] from clan [clan]! You gain [research_award] research points."
 		/*
