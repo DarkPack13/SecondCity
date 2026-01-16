@@ -43,7 +43,6 @@
 /obj/item/organ_storage : @DELETE
 #why was this mapped
 /obj/item/mop/cyborg : /obj/item/mop
-/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
 /obj/item/anesthetic_tank : /obj/item/tank/internals/anesthetic {@OLD}
 /obj/item/trash/plate : /obj/item/plate {@OLD}
 /obj/item/toy/prize/@SUBTYPES : /obj/item/toy/mecha/@SUBTYPES {@OLD}
@@ -67,11 +66,14 @@
 /obj/item/food/soup/bungocurry : @DELETE
 /obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
 
+/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
 /obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
 /obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
-/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv
+/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv {@OLD}
 
 /obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
 
+/obj/item/toy/mecha/fireripley : /obj/item/toy/mecha/firefighter
 
-
+# This item doesn't exist on TG anymore.
+/obj/item/melee/rune_knife : @DELETE

@@ -22,3 +22,5 @@
 /obj/structure/vampdoor/setite : /obj/structure/vampdoor/simple/setite
 /obj/structure/vampdoor/setite/high_sec : /obj/structure/vampdoor/reinf/setite_high_sec
 /obj/structure/vampdoor/wood/old/salubri : /obj/structure/vampdoor/oldwood/salubri
+
+/obj/item/reagent_containers/cup/glass/silver_goblet/vaulderie_goblet : /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet{@OLD}
