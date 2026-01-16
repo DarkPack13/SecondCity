@@ -11,4 +11,5 @@
 
 /obj/item/stocks_license : @DELETE
 
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano{@OLD}
 /obj/structure/musician/piano/darkpack/ipiano : /obj/structure/musician/piano{@OLD}
