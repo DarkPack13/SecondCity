@@ -52,8 +52,26 @@
 /mob/living/simple_animal/cow : /mob/living/basic/cow
 /mob/living/simple_animal/hostile/cockroach : /mob/living/basic/cockroach/sewer
 
+# for some reasn our ghosts dont have /retaliate/ and thus arent caught by the ghost conversion txt...
+/mob/living/simple_animal/hostile/ghost : /mob/living/basic/ghost
+/mob/living/simple_animal/hostile/ghost/hostile : /mob/living/basic/ghost
+
 /obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
 /obj/structure/extinguisher_cabinet{dir = 1} : /obj/structure/extinguisher_cabinet/directional/north
 /obj/structure/extinguisher_cabinet{dir = 2} : /obj/structure/extinguisher_cabinet/directional/south
 /obj/structure/extinguisher_cabinet{dir = 4} : /obj/structure/extinguisher_cabinet/directional/east
 /obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west
+
+/obj/item/food/soup/stew : @DELETE
+/obj/item/food/soup/vegetable : @DELETE
+/obj/item/food/soup/bungocurry : @DELETE
+/obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
+
+/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
+/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
+/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv
+
+/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
+
+
+
