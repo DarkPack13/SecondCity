@@ -119,6 +119,7 @@
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	drink_type = BREAKFAST
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 	/// Is our lid currently removed?
 	var/lid_open = FALSE
@@ -128,7 +129,7 @@
 	list_reagents = null
 	lid_open = TRUE
 
-/* DARKPACK EDIT REMOVAL - Our coffee sprites only have one state
+/* // DARKPACK EDIT REMOVAL - Our coffee sprites only have one state
 /obj/item/reagent_containers/cup/glass/coffee/Initialize(mapload)
 	. = ..()
 	register_context()

@@ -15,7 +15,7 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
-	custom_price = 1 // DARKPACK EDIT ADD - FOOD
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/muffin/berry
 	name = "berry muffin"

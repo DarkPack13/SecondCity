@@ -19,3 +19,5 @@
 /obj/machinery/mineral/equipment_vendor/fastfood/illegal : /obj/structure/retail/black_market {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/america : /obj/structure/retail/gun_store {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/@SUBTYPES : /obj/structure/retail/@SUBTYPES {@OLD}
+
+/obj/structure/retail/grocery : /obj/structure/retail/grocery_store

@@ -2,30 +2,30 @@
 
 /// Phobia types that can be pulled randomly for brain traumas.
 /// Also determines what phobias you can choose as your preference with the quirk.
-GLOBAL_LIST_INIT(phobia_types, sort_list(list(
-	"aliens",
-	"anime",
-	"authority",
-	"birds",
-	"blood",
-	"clowns",
-	"doctors",
-	"falling",
-	"fish",
-	"greytide",
-	"guns",
-	"insects",
-	"lizards",
-	"robots",
-	"security",
-	"skeletons",
-	"snakes",
-	"space",
-	"spiders",
-	"strangers",
-	"the supernatural",
-	"religion", // DARKPACK EDIT ADD - Religious phobia
-)))
+GLOBAL_LIST_INIT(phobia_types, list(
+	"aliens" = "Astroxenophobia",
+	"anime" = "Nihongophobia",
+	"authority" = "Authoritophobia",
+	"birds" = "Ornithophobia",
+	"blood" = "Hemophobia",
+	"clowns" = "Coulrophobia",
+	"doctors" = "Iatrophobia",
+	"falling" = "Basiphobia",
+	"fish" = "Ichthyophobia",
+	"greytide" = "Glaucophobia",
+	"guns" = "Ballistophobia",
+	"insects" = "Entomophobia",
+	"lizards" = "Herpetophobia",
+	"robots" = "Automatonophobia",
+	"security" = "Scopophobia",
+	"skeletons" = "Osteophobia",
+	"snakes" = "Ophidiophobia",
+	"space" = "Astrophobia",
+	"spiders" = "Arachnophobia",
+	"strangers" = "Xenophobia",
+	"the supernatural" = "Phasmophobia",
+	"religion" = "Theophobia", // DARKPACK EDIT ADD - Religious phobia
+))
 
 GLOBAL_LIST_INIT(phobia_regexes, list(
 	"aliens" = construct_phobia_regex("aliens"),
@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 	// DARKPACK EDIT ADD START - Religious phobia
 	"religion" = typecacheof(list(
 		/obj/item/book/bible,
-		///obj/item/card/id/hunter
+		/obj/item/card/hunter
 	)),
 	// DARKPACK EDIT ADD END - Religious phobia
 ))

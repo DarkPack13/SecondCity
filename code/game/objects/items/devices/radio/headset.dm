@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/examine(mob/user)
 	. = ..()
 
-	/* DARKPACK EDIT REMOVAL START
+	/* // DARKPACK EDIT REMOVAL START
 	if(!(item_flags & IN_INVENTORY) || loc != user)
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
 		return

@@ -109,7 +109,7 @@
 	plant_offset_y = 4
 	sack_type = /obj/item/soil_sack/worm
 
-/* DARKPACK EDIT REMOVAL
+/* // DARKPACK EDIT REMOVAL
 /obj/machinery/hydroponics/soil/worm/on_place()
 	. = ..()
 	flick("soil_worm_wiggle", src)

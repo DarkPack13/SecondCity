@@ -886,7 +886,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	desc = "A hefty cartridge of Nanotrasen ValueBrand toner. Fits photocopiers and autopainters alike."
 	charges = 25
 	max_charges = 25
-	custom_price = 30 //DARKPACK EDIT ADD
+	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/toner/large/grind_results()
 	return list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
