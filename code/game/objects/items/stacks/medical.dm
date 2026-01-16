@@ -361,7 +361,7 @@
 	other_delay = 2 SECONDS
 	merge_type = /obj/item/stack/medical/bruise_pack
 	apply_verb = "applying to"
-	custom_price = 50 // DARKPACK EDIT ADD
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/stack/medical/bruise_pack/grind_results()
 	return list(/datum/reagent/medicine/c2/libital = 10)
@@ -604,7 +604,7 @@
 	sanitization = 0.25
 	merge_type = /obj/item/stack/medical/ointment
 	apply_verb = "applying to"
-	custom_price = 50 // DARKPACK EDIT ADD
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/stack/medical/ointment/grind_results()
 	return list(/datum/reagent/medicine/c2/lenturi = 10)

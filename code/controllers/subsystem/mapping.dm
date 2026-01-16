@@ -454,7 +454,8 @@ Used by the AI doomsday and the self-destruct nuke.
 		qdel(query_round_map_name)
 
 #ifndef LOWMEMORYMODE
-	// DARKPACK EDIT CHANGE START - UMBRA
+
+	/* // DARKPACK EDIT REMOVAL - TODO - UMBRA
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Umbra", "map_files/Vampire", "umbra.dmm", default_traits = ZTRAITS_UMBRA)
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)

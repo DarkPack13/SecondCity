@@ -1,4 +1,4 @@
-//DARKPACK TODO -  all these endron clothes
+// DARKPACK TODO - all these endron clothes
 
 /datum/socialrole/bouncer/endron
 	bouncer_weapon_type = /obj/item/gun/ballistic/automatic/darkpack/mp5

@@ -292,7 +292,7 @@
 		. += compare_fitness(user)
 
 	// DARKPACK EDIT ADD START
-	if(ishumanbasic(user))
+	if(ismundane(user))
 		. += "Report a Masquerade <a href='byond://?src=[REF(src)];masquerade_violation=1'>violation</a> or <a href='byond://?src=[REF(src)];masquerade_reinforcement=1'>reinforcement</a>"
 
 	ADD_NEWLINE_IF_NECESSARY(.)

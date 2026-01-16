@@ -9,8 +9,8 @@
 	ADD_TRAIT(src, TRAIT_TORPOR, source)
 	if(iskindred(src) && !force)
 		var/mob/living/carbon/human/vampire = src
-		var/datum/species/human/kindred/vampire_species = vampire.dna.species
-		COOLDOWN_START(vampire_species, torpor_timer, 5 MINUTES)
+		var/datum/splat/vampire/kindred/vampirism = iskindred(vampire)
+		COOLDOWN_START(vampirism, torpor_timer, 5 MINUTES)
 
 /mob/living/proc/cure_torpor(source, force)
 	if(!HAS_TRAIT_FROM(src, TRAIT_TORPOR, source))
@@ -59,16 +59,16 @@
 
 	if(iskindred(living_owner))
 		var/mob/living/carbon/human/vampire = living_owner
-		var/datum/species/human/kindred/kindred_species = vampire.dna.species
-		if(!COOLDOWN_STARTED(kindred_species, torpor_timer))
+		var/datum/splat/vampire/kindred/vampirism = iskindred(vampire)
+		if(!COOLDOWN_STARTED(vampirism, torpor_timer))
 			to_chat(owner, span_purple(span_italics("You are in Torpor, the sleep of death that vampires go into when injured, starved, or exhausted.")))
 			to_chat(owner, span_danger(span_italics("You will re-awaken once the stake in your heart is removed by an outside source.")))
 			return
-		if(COOLDOWN_FINISHED(kindred_species, torpor_timer) && (vampire.bloodpool > 0))
+		if(COOLDOWN_FINISHED(vampirism, torpor_timer) && (vampire.bloodpool > 0))
 			vampire.untorpor()
 		else
 			to_chat(owner, span_purple(span_italics("You are in Torpor, the sleep of death that vampires go into when injured, starved, or exhausted.")))
-			if(vampire.bloodpool > 0)
-				to_chat(owner, span_purple(span_italics("You will be able to awaken in <b>[DisplayTimeText(COOLDOWN_TIMELEFT(kindred_species, torpor_timer))]</b>.")))
+			if (vampire.bloodpool > 0)
+				to_chat(owner, span_purple(span_italics("You will be able to awaken in <b>[DisplayTimeText(COOLDOWN_TIMELEFT(vampirism, torpor_timer))]</b>.")))
 			else
 				to_chat(owner, span_danger(span_italics("You will not be able to re-awaken, because you have no blood available to do so.")))

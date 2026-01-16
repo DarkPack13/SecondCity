@@ -95,7 +95,7 @@
 		new /datum/data/vending_product("blue scarf", /obj/item/clothing/neck/vampire/scarf/blue,	10),
 		new /datum/data/vending_product("green scarf", /obj/item/clothing/neck/vampire/scarf/green,	10),
 		new /datum/data/vending_product("white scarf", /obj/item/clothing/neck/vampire/scarf/white,	10),
-		//new /datum/data/vending_product("cross", /obj/item/card/id/hunter,  25),
+		new /datum/data/vending_product("cross", /obj/item/card/hunter, 25),
 		new /datum/data/vending_product("duffelbag", /obj/item/storage/backpack/duffelbag,	100),
 		new /datum/data/vending_product("backpack", /obj/item/storage/backpack, 100),
 		new /datum/data/vending_product("satchel", /obj/item/storage/backpack/satchel, 100),

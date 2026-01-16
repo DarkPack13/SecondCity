@@ -23,6 +23,15 @@
 	var/category_prob = 25
 	/// How many random books to generate.
 	var/books_to_load = 0
+	//DARKPACK EDIT START - bookshelf generation
+	// What books we don't want to generate on not their respective bookshelves
+	var/restricted_categories = list(
+		BOOK_CATEGORY_ADULT,
+		BOOK_CATEGORY_KINDRED,
+		BOOK_CATEGORY_LUPINE,
+		BOOK_CATEGORY_KUEIJIN,
+	)
+	//DARKPACK EDIT END
 
 /datum/armor/structure_bookcase
 	fire = 50
@@ -57,7 +66,7 @@
 	if(load_random_books)
 		var/randomizing_categories = prob(category_prob) || random_category == BOOK_CATEGORY_RANDOM
 		// We only need to run this special logic if we're randomizing a non-adult bookshelf
-		if(randomizing_categories && random_category != BOOK_CATEGORY_ADULT)
+		if(randomizing_categories && !(random_category in restricted_categories)) // DARKPACK EDIT CHANGE - Original : if(randomizing_categories && random_category != BOOK_CATEGORY_ADULT)
 			// Category is manually randomized rather than using BOOK_CATEGORY_RANDOM
 			// So we can exclude adult books in non-adult bookshelves
 			// And also weight the prime category more heavily
@@ -82,6 +91,28 @@
 		update_appearance() //Make sure you look proper
 
 	var/area/our_area = get_area(src)
+
+	//DARKPACK ADDITION START - Paths
+	// Check if we're NOT in a chantry area and roll for occult book spawn. This is so that non-Chantry Thaumaturgists can access the paths feature
+	if(!istype(our_area, /area/vtm/interior/chantry) && prob(15))
+		// 15% chance to spawn in a bookcase thats not the library. May need balance tweaking for maps w/ more or less bookshelves.
+		var/occult_book_type = pick(
+			/obj/item/occult_book/veneficorum_artum_sanguis,
+			/obj/item/occult_book/das_tiefe_geheimnis,
+			/obj/item/path_spellbook/lure_of_flames/level1,
+			/obj/item/path_spellbook/lure_of_flames/level2,
+			/obj/item/path_spellbook/lure_of_flames/level3,
+			/obj/item/path_spellbook/lure_of_flames/level4,
+			/obj/item/path_spellbook/lure_of_flames/level5,
+			/obj/item/path_spellbook/levinbolt/level1,
+			/obj/item/path_spellbook/levinbolt/level2,
+			/obj/item/path_spellbook/levinbolt/level3,
+			/obj/item/path_spellbook/levinbolt/level4,
+			/obj/item/path_spellbook/levinbolt/level5)
+		new occult_book_type(src)
+		update_appearance()
+	//DARKPACK ADDITION END - Paths
+
 	var/area_type = our_area.type //Save me from the dark
 
 	if(!SSlibrary.books_by_area[area_type])

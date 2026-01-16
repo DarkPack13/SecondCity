@@ -3894,6 +3894,7 @@
 /area/vtm/westfield_mall/interior/maintenance/basement)
 "amX" = (
 /obj/structure/table/wood,
+/obj/structure/detectiveboard/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "amY" = (
@@ -4247,8 +4248,8 @@
 /turf/closed/wall/vampwall/junk,
 /area/vtm/interior/sewer/nosferatu_town)
 "aok" = (
-/obj/machinery/telecomms/server,
 /obj/effect/decal/rugs,
+/obj/machinery/telecomms/allinone/public,
 /turf/open/floor/plating/rough{
 	icon_state = "carpet_black"
 	},
@@ -5333,6 +5334,9 @@
 /obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 8
 	},
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police3"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "arK" = (
@@ -5587,6 +5591,10 @@
 /area/vtm/westfield_mall/forest)
 "asw" = (
 /obj/structure/table,
+/obj/machinery/radio_tranceiver/camarilla{
+	pixel_x = -4;
+	pixel_y = 13
+	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "asx" = (
@@ -5610,6 +5618,9 @@
 "asA" = (
 /obj/structure/hedge,
 /obj/effect/turf_decal/siding/wood/dark,
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police2"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "asB" = (
@@ -6664,7 +6675,7 @@
 /obj/item/pen{
 	pixel_y = 7
 	},
-/obj/structure/detectiveboard/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "avR" = (
@@ -11354,7 +11365,9 @@
 /area/vtm/westfield_mall/forest)
 "aLn" = (
 /obj/structure/hedge,
-/obj/machinery/light/directional/north,
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police4"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aLo" = (
@@ -15085,7 +15098,10 @@
 /area/vtm/westfield_mall/interior/chantry)
 "aXG" = (
 /obj/structure/table/wood,
-/obj/item/smartphone/emergency,
+/obj/machinery/radio_tranceiver/police{
+	pixel_x = 4;
+	pixel_y = 4
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aXH" = (
@@ -16829,6 +16845,10 @@
 /obj/effect/mapping_helpers/door/access/police,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/art_store)
+"jeh" = (
+/obj/structure/sign/city/police_department/directional/north,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "jfA" = (
 /obj/structure/table/wood,
 /obj/machinery/light/directional/south,
@@ -18292,6 +18312,15 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
+"wWP" = (
+/obj/structure/table,
+/obj/effect/decal/pallet,
+/obj/machinery/radio_tranceiver/anarch{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/westfield_mall/interior/anarch)
 "xjy" = (
 /obj/effect/landmark/start/darkpack/hospital/clinic_director,
 /turf/open/floor/wood/smooth,
@@ -34550,7 +34579,7 @@ aeH
 aeH
 aeH
 aUG
-aAa
+wWP
 aft
 aft
 aCM
@@ -57079,7 +57108,7 @@ aUp
 aUp
 aUp
 aUp
-aXr
+jeh
 aXr
 aXr
 aWu
