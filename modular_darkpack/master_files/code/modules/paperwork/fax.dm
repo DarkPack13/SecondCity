@@ -60,7 +60,7 @@
 
 /obj/machinery/fax/fbi
 	fax_name = "FBI"
-	fax_id = "police"
+	fax_id = "fbi"
 	special_networks = list(fbiadmin = list(fax_name = "FBI National Headquarters", fax_id = "fbiadmin", color = "blue", emag_needed = TRUE))
 	visible_to_network = FALSE
 
