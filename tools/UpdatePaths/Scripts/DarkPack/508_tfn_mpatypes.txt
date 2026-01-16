@@ -1,66 +1,15 @@
-/mob/living/simple_animal/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack
-/mob/living/basic/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack
-/mob/living/simple_animal/pet/cat/vampiretzi : /mob/living/basic/pet/cat/darkpack/tzi
-/mob/living/basic/pet/cat/vampire/tzi : /mob/living/basic/pet/cat/darkpack/tzi
-/mob/living/basic/pet/cat/vampiretzi : /mob/living/basic/pet/cat/darkpack/tzi
-/mob/living/carbon/human/npc/police/static : @DELETE
-
-/obj/item/clothing/suit/costume/yakuza : /obj/item/clothing/suit/vampire/majima_jacket
-/obj/item/clothing/suit/costume/nerdshirt : /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic
-/obj/item/clothing/suit/costume/ianshirt : /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian
-/obj/item/clothing/suit/costume/dutch : /obj/item/clothing/suit/vampire/dutch
+/obj/item/clothing/suit/costume/yakuza : /obj/item/clothing/suit/vampire/majima_jacket {@OLD}
+/obj/item/clothing/suit/costume/nerdshirt : /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic {@OLD}
+/obj/item/clothing/suit/costume/ianshirt : /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian {@OLD}
+/obj/item/clothing/suit/costume/dutch : /obj/item/clothing/suit/vampire/dutch {@OLD}
 
 /obj/item/melee/vamp/longsword/keeper : /obj/item/claymore/longsword/keeper{@OLD}
 
-/obj/item/police_radio : @DELETE
+/obj/item/police_radio : /obj/item/radio/headset/darkpack/police {@OLD}
 
-/obj/item/reagent_containers/cup/glass/meth : /obj/item/reagent_containers/cup/glass/baggie/meth
-/obj/item/reagent_containers/cup/glass/meth/cocaine : /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine
-/obj/item/reagent_containers/cup/glass/silver_goblet/vaulderie_goblet : /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet{@OLD}
-/obj/item/reagent_containers/cup/glass/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw
-
-/obj/item/storage/pill_bottle/estrogen : @DELETE
-/obj/item/storage/fancy/hardcase/mp5 : /obj/item/storage/fancy/hardcase/mag_mp5
-
-/obj/item/supplypod_beacon_origin : /obj/item/supplypod_beacon
-
-/obj/machinery/vending/cola/@SUBTYPES : /obj/machinery/vending/cola/@SUBTYPES
-/obj/machinery/vending/snack/@SUBTYPES : /obj/machinery/vending/snack/@SUBTYPES
-
-/obj/machinery/computer/order_console/mining/fastfood/snacks : /obj/machinery/vending/snack{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/coffeevendor : /obj/machinery/vending/coffee{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/sodavendor : /obj/machinery/vending/cola{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/sodavendor/blue : /obj/machinery/vending/cola/blue{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/bacotell : /obj/structure/retail/bacotell_menu{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/bubway : /obj/structure/retail/bubway_menu{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/gummaguts : /obj/structure/retail/gummaguts_menu{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/products : /obj/structure/retail/junkfood_menu{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/smoking : /obj/structure/retail/smoke_menu{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/gas : /obj/structure/retail/gas_station{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/costumes : /obj/structure/retail/costume_store{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/clothing : /obj/structure/retail/clothing_store{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/illegal : /obj/structure/retail/black_market{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/antique : /obj/structure/retail/antique{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/camping : /obj/structure/retail/camping{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/deli : /obj/structure/retail/deli{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/general : /obj/structure/retail/general{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/grocery : /obj/structure/retail/grocery_store{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/library : /obj/structure/retail/library{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/music : /obj/structure/retail/music{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/occult : /obj/structure/retail/occult{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/pharmacy : /obj/structure/retail/pharmacy{@OLD}
-/obj/machinery/computer/order_console/mining/fastfood/@SUBTYPES : /obj/structure/retail/@SUBTYPES{@OLD}
-
-/obj/machinery/fax/fbi : /obj/machinery/fax/admin/fbi
-
-/obj/machinery/light/small/pink : @DELETE
-
-/obj/projectile/bullet/reusable/gumball : @DELETE
-
-/obj/effect/landmark/start/darkpack/city_wolves/@SUBTYPES : @DELETE
-/obj/effect/landmark/start/darkpack/forest_wolves/keeper : @DELETE
-/obj/effect/landmark/start/darkpack/hecata/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
+/obj/item/supplypod_beacon_origin : /obj/item/supplypod_beacon {@OLD}
 
 /obj/item/stocks_license : @DELETE
 
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano{@OLD}
 /obj/structure/musician/piano/darkpack/ipiano : /obj/structure/musician/piano{@OLD}
