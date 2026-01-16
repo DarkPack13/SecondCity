@@ -100,6 +100,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
+// Is the mob silenced (by Quietus 1 for example)
+#define TRAIT_SILENCED "silenced"
 // is the vampire weak to Dominate?
 #define TRAIT_WEAK_TO_DOMINATE "dominate_weak"
 

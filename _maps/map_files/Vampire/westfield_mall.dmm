@@ -4247,8 +4247,8 @@
 /turf/closed/wall/vampwall/junk,
 /area/vtm/interior/sewer/nosferatu_town)
 "aok" = (
-/obj/machinery/telecomms/server,
 /obj/effect/decal/rugs,
+/obj/machinery/telecomms/allinone/public,
 /turf/open/floor/plating/rough{
 	icon_state = "carpet_black"
 	},
@@ -5587,6 +5587,10 @@
 /area/vtm/westfield_mall/forest)
 "asw" = (
 /obj/structure/table,
+/obj/machinery/radio_tranceiver/camarilla{
+	pixel_x = -4;
+	pixel_y = 13
+	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "asx" = (
@@ -15085,7 +15089,10 @@
 /area/vtm/westfield_mall/interior/chantry)
 "aXG" = (
 /obj/structure/table/wood,
-/obj/item/smartphone/emergency,
+/obj/machinery/radio_tranceiver/police{
+	pixel_x = 4;
+	pixel_y = 4
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aXH" = (
@@ -18292,6 +18299,15 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
+"wWP" = (
+/obj/structure/table,
+/obj/effect/decal/pallet,
+/obj/machinery/radio_tranceiver/anarch{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/westfield_mall/interior/anarch)
 "xjy" = (
 /obj/effect/landmark/start/darkpack/hospital/clinic_director,
 /turf/open/floor/wood/smooth,
@@ -34550,7 +34566,7 @@ aeH
 aeH
 aeH
 aUG
-aAa
+wWP
 aft
 aft
 aCM

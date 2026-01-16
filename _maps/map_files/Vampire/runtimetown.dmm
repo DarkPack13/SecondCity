@@ -173,6 +173,11 @@
 /obj/item/clothing/head/cone,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"dP" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/anarch,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "dU" = (
 /obj/structure/railing/corner,
 /turf/open/floor/plating/canal,
@@ -415,6 +420,11 @@
 "iZ" = (
 /obj/machinery/hydroponics/simple/plastic,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"jd" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/police,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "je" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -1992,6 +2002,11 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"MF" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/camarilla,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "MJ" = (
 /obj/structure/table,
 /obj/item/blood_hunt,
@@ -2326,6 +2341,11 @@
 "Rj" = (
 /turf/open/genturf,
 /area/vtm/planetgeneration)
+"Rn" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/clinic,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "Ro" = (
 /obj/structure/table,
 /obj/structure/retail/gummaguts_menu,
@@ -2390,6 +2410,10 @@
 /obj/structure/city_map,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"SW" = (
+/obj/machinery/telecomms/allinone/public,
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/pacificheights)
 "SY" = (
 /obj/structure/table,
 /obj/vampire_computer/prince,
@@ -2405,6 +2429,11 @@
 	specific_transport_id = "DebugElevator3"
 	},
 /turf/open/floor/plating/elevatorshaft,
+/area/vtm/outside/pacificheights)
+"Tk" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/endron,
+/turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Tm" = (
 /obj/structure/chair/comfy/darkpack/blue{
@@ -2936,7 +2965,7 @@ Ny
 Ny
 NR
 Vr
-NR
+dP
 NR
 NR
 NR
@@ -3004,7 +3033,7 @@ NR
 gA
 NR
 IZ
-NR
+MF
 NR
 NR
 NR
@@ -3072,7 +3101,7 @@ NR
 Uq
 NR
 Ds
-NR
+Rn
 NR
 NR
 NR
@@ -3140,7 +3169,7 @@ NR
 bK
 NR
 rs
-NR
+Tk
 NR
 NR
 NR
@@ -3208,7 +3237,7 @@ NR
 YB
 NR
 DT
-NR
+jd
 NR
 NR
 NR
@@ -3276,7 +3305,7 @@ NR
 LY
 NR
 fc
-NR
+SW
 NR
 NR
 NR
