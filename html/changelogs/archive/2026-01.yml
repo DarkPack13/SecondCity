@@ -23,3 +23,38 @@
   XeonMations:
   - rscadd: Added old mail to the game
   - code_imp: Ticked a bunch of files.
+2026-01-13:
+  TheCarnalest:
+  - refactor: A sane framework for splats has been set up, and Kindred and Ghouls
+      have had their code swapped out entirely.
+2026-01-14:
+  FalloutFalcon:
+  - bugfix: No greek syllable names from random gen
+  - rscadd: readds a few items to retail stores
+  - bugfix: fixes some bad retail store prices
+  buffyuwu:
+  - rscadd: adds dementation
+  chazzyjazzy:
+  - code_imp: reimplements dominate
+  - rscadd: '''mask of a thousand faces'' now works as intended'
+  - code_imp: reimplemented obfuscate
+  - code_imp: reimplements presence
+2026-01-15:
+  FalloutFalcon:
+  - bugfix: keys are now treated as plural items
+  buffyuwu:
+  - rscadd: ports derangement quirk, basic malk hallucinations from bloodlines
+  chazzyjazzy:
+  - bugfix: fixed spellbook logic to match splat rework
+  - code_imp: quietus
+  dwinters99:
+  - code_imp: two additional levels of fog density added to effects.dm
+  - map: lots of updatepath fixes
+2026-01-16:
+  FalloutFalcon:
+  - map: gave anarchs, cammies, and police, radio tranceivers on Westfield Mall
+  - bugfix: Platforms/low-walls now layer under tables again
+  chazzyjazzy:
+  - bugfix: ' the last tfn updatepaths'
+  dwinters99:
+  - sound: pause menu sounds from bloodlines

@@ -2,13 +2,15 @@
 /obj/structure/sign/city
 	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
 
+/obj/structure/sign/city/get_turfs_to_mount_on()
+	return list(get_step(src, dir))
+
 /obj/structure/sign/city/police_department
 	name = "\improper " + CITY_POLICE_DEPARTMENT + " sign"
 	desc = "Stop right there you criminal scum! Nobody can break the law on my watch!!"
-	icon_state = "police"
-	pixel_z = 40
+	icon_state = "police1"
+	pixel_z = 4
 
-// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/police_department, 32)
 
 /obj/structure/sign/city/order
@@ -34,16 +36,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/hotel, 0)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 /obj/structure/sign/city/millenium
 	name = "sign"
 	desc = "It says M I L L E N I U M."
 	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
-	icon_state = "millenium"
+	icon_state = "millenium1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/millenium, 0)
+	dir = NORTH
+	pixel_y = 32
 
 /obj/structure/sign/city/millenium/Initialize(mapload)
 	. = ..()
@@ -56,8 +57,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/millenium, 0)
 	icon_state = "bar"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/anarch, 0)
+	dir = WEST
 
 /obj/structure/sign/city/anarch/Initialize(mapload)
 	. = ..()
@@ -74,8 +74,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/anarch, 0)
 	icon_state = "chinese1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-
-// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese, 0)
 
 /obj/structure/sign/city/chinese/Initialize(mapload)
@@ -87,15 +85,23 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese, 0)
 
 /obj/structure/sign/city/chinese/alt
 	icon_state = "chinese2"
-
-// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt, 0)
 
 /obj/structure/sign/city/chinese/alt2
 	icon_state = "chinese3"
-
-// DARKPACK TODO - This uses directionals for all of its sprite states for some reason
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt2, 0)
+
+/obj/structure/sign/city/chinese/alt3
+	icon_state = "chinese4"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt3, 0)
+
+/obj/structure/sign/city/chinese/alt4
+	icon_state = "chinese5"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt4, 0)
+
+/obj/structure/sign/city/chinese/alt5
+	icon_state = "chinese6"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt5, 0)
 
 /obj/structure/sign/city/strip_club
 	name = "sign"

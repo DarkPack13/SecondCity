@@ -32,6 +32,18 @@
 	if (!turf_source)
 		return
 
+	//DARKPACK EDIT START - Quietus
+	// Check if the source or its loc is silenced
+	if(HAS_TRAIT(source, TRAIT_SILENCED))
+		return
+	if(isliving(source.loc))
+		var/mob/living/silenced_mob = source.loc
+		if(HAS_TRAIT(silenced_mob, TRAIT_SILENCED))
+			return
+	//if(isturf(source)) because unarmed attacks playsound(turf) rather than playsound(mob) or whatever as others do
+	//what about grenades and bullet impact noises?
+	//DARKPACK EDIT END
+
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || SSsounds.random_available_channel()
 

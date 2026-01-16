@@ -42,7 +42,7 @@
 	armor_type = /datum/armor/masquerade_contract
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-/* DARKPACK TODO - GAROU
+/* // DARKPACK TODO - GAROU
 /obj/item/veil_contract/attack_self(mob/user)
 	. = ..()
 	if(!isgarou(user))

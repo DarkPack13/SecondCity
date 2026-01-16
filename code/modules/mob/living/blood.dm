@@ -431,6 +431,20 @@
 		blood_data["ckey"] = persistent_client.mob.ckey
 
 	blood_data["factions"] = faction
+
+	// DARKPACK EDIT ADD - Store kindred clan and generation in blood data
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(src)
+	if(kindred_splat)
+		blood_data["generation"] = kindred_splat.generation
+		blood_data["clan"] = kindred_splat.clan
+	blood_data["real_name"] = real_name
+
+	if(istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		if(H.dna && H.dna.species)
+			blood_data["species"] = LOWER_TEXT(H.dna.species.name)
+	// DARKPACK EDIT ADD END
+
 	return blood_data
 
 /mob/living/carbon/get_blood_data()

@@ -30,7 +30,7 @@
 	if(!GLOB.uncommon_roundstart_languages.len)
 		generate_selectable_species_and_languages()
 
-	/* DARKPACK EDIT REMOVAL - LANGUAGES
+	/* // DARKPACK EDIT REMOVAL - LANGUAGES
 	values += "Random"
 	//we add uncommon as it's foreigner-only.
 	values += /datum/language/uncommon::name

@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 	// DARKPACK EDIT ADD START - Religious phobia
 	"religion" = typecacheof(list(
 		/obj/item/book/bible,
-		///obj/item/card/id/hunter
+		/obj/item/card/hunter
 	)),
 	// DARKPACK EDIT ADD END - Religious phobia
 ))
