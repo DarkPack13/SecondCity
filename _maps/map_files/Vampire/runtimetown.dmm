@@ -2264,7 +2264,7 @@
 /area/vtm/outside/pacificheights)
 "Qe" = (
 /obj/effect/spawner/random/stray_animal,
-/obj/structure/sign/city/chinese/alt4/directional/west,
+/obj/structure/sign/city/chinese/alt4/directional/east,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "Qi" = (
