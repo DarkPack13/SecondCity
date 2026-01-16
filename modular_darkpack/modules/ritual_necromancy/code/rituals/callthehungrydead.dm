@@ -10,7 +10,7 @@
 	health = 100
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	faction = list("Giovanni")
+	faction = list(VAMPIRE_CLAN_GIOVANNI)
 
 /obj/ritual_rune/necromancy/question/complete()
 	var/text_question = tgui_input_text(last_activator, "Enter your summons to the wraiths:", "Call the Hungry Dead", encode = FALSE)

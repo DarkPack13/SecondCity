@@ -3,6 +3,7 @@
 	desc = "Those can open some doors."
 	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
 	icon_state = "keys"
+	gender = PLURAL
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
 	armor_type = /datum/armor/keys

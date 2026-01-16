@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/celerity,
 		/datum/discipline/obfuscate,
-		// /datum/discipline/quietus
+		/datum/discipline/quietus
 	)
 	clan_traits = list(
 		TRAIT_VITAE_ADDICTION

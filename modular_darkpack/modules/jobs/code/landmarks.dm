@@ -87,7 +87,7 @@ JOB_START_HELPER(hecata/squadra, JOB_LA_FAMIGLIA)
 	name = "generic citizen start"
 
 JOB_START_HELPER(citizen/citizen, JOB_CITIZEN)
-JOB_START_HELPER(citizen/club_woker, JOB_CLUB_WORKER)
+JOB_START_HELPER(citizen/club_worker, JOB_CLUB_WORKER)
 JOB_START_HELPER(citizen/janitor, JOB_STREET_JANITOR)
 JOB_START_HELPER(citizen/priest, JOB_PRIEST)
 JOB_START_HELPER(citizen/taxi, JOB_TAXI_DRIVER)

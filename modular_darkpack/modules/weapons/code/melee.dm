@@ -148,6 +148,35 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 600, "longsword", FALSE)
 
+/obj/item/claymore/longsword/keeper
+	name = "The Brother's Keeper"
+	desc = "The ancient yet classic weapon of times gone, this is a longsword. This exemplar is surprisingly well taken care of, despite its age, to the point that whatever blood or vitae it may have drawn in the past is not visible at all, while still functioning as well as it first did however long ago. Upon the flat side of this blade, a simple well-worn inscription is engraved in Latin. 'In Death, I Rise.'"
+	color = "#C0C0C0"
+	w_class = WEIGHT_CLASS_BULKY
+	force = 50
+	block_chance = 45
+	armour_penetration = 40
+	sharpness = SHARP_EDGED
+	attack_verb_continuous = list("slashes", "cuts")
+	attack_verb_simple = list("slash", "cut")
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	wound_bonus = 5
+	resistance_flags = FIRE_PROOF
+	masquerade_violating = FALSE
+	//is_iron = FALSE DARKPACK TODO - Kiasyd
+
+/obj/item/claymore/longsword/keeper/afterattack(atom/target, mob/living/carbon/user, proximity)
+	. = ..()
+	/* DARKPACK TODO - WEREWOLF - (this is a silver longsword)
+	if(iswerewolf(target) || isgarou(target) && proximity)
+		var/mob/living/carbon/M = target
+		if(M.auspice.gnosis)
+			if(prob(50))
+				adjust_gnosis(-1, M)
+
+		M.apply_damage(25, CLONE)
+		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
+	*/
 
 /obj/item/melee/baseball_bat/vamp
 	name = "baseball bat"
