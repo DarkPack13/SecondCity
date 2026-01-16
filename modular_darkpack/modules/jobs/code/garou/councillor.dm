@@ -2,7 +2,6 @@
 	title = JOB_GAROU_COUNCIL
 	description = "Veterans of the Garou Nation with the highest esteem, your word within the " + SEPT_NAME + " is law. Make sure the Litany is upheld, and that your caern does not fall prey to the Wyrm."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list(SUPERVISOR_LITANY)
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
@@ -42,4 +41,4 @@
 	suit = /obj/item/clothing/suit/vampire/coat/winter/alt
 	shoes = /obj/item/clothing/shoes/vampire/jackboots/work
 	l_pocket = /obj/item/smartphone // DARKPACK TODO - Garou phone network. Glasswalkers only?
-	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/phone_book=1, /obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit/rich=1)
+	backpack_contents = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle=1, /obj/item/phone_book=1, /obj/item/card/credit/rich=1)

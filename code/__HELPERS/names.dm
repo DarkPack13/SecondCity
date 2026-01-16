@@ -114,7 +114,7 @@ GLOBAL_VAR(command_name)
 
 /proc/new_station_name()
 	return "[CITY_NAME] [CURRENT_STATION_YEAR]"
-	/* DARKPACK EDIT REMOVAL - This aint no station
+	/* // DARKPACK EDIT REMOVAL - This aint no station
 	var/random = rand(1,5)
 	var/name = ""
 	var/new_station_name = ""
@@ -399,10 +399,10 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 		return FALSE
 	return TRUE
 
-/// Build a list of strings containing the numbers 1-99 as both arabic and roman numerals
+/// Generates and returns a list of both arabic and roman numerals for 1 through 99
 /proc/generate_number_strings()
-	var/list/L[198]
+	var/list/numbers = list()
 	for(var/i in 1 to 99)
-		L += "[i]"
-		L += "\Roman[i]"
-	return L
+		numbers += "[i]"
+		numbers += "\Roman[i]"
+	return numbers

@@ -6,7 +6,7 @@
 	curse = "Harmful bites."
 	clan_disciplines = list(
 		/datum/discipline/potence,
-		// /datum/discipline/dominate,
+		/datum/discipline/dominate,
 		/datum/discipline/necromancy
 	)
 	clan_traits = list(

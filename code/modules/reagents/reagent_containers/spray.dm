@@ -217,7 +217,7 @@
 	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 50)
 	pickup_sound = 'sound/items/handling/pepper_spray/pepper_spray_pick_up.ogg'
 	drop_sound = 'sound/items/handling/pepper_spray/pepper_spray_drop.ogg'
-	custom_price = 200 // DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -225,12 +225,6 @@
 /obj/item/reagent_containers/spray/pepper/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins huffing \the [src]! It looks like [user.p_theyre()] getting a dirty high!"))
 	return OXYLOSS
-
-// Fix pepperspraying yourself
-/obj/item/reagent_containers/spray/pepper/try_spray(atom/target, mob/user)
-	if (target.loc == user)
-		return FALSE
-	return ..()
 
 //water flower
 /obj/item/reagent_containers/spray/waterflower
@@ -314,11 +308,6 @@
 	stream_range = 7
 	amount_per_transfer_from_this = 10
 	volume = 600
-
-/obj/item/reagent_containers/spray/chemsprayer/try_spray(atom/target, mob/user)
-	if (target.loc == user)
-		return FALSE
-	return ..()
 
 /obj/item/reagent_containers/spray/chemsprayer/spray(atom/A, mob/user)
 	var/direction = get_dir(src, A)
@@ -421,6 +410,23 @@
 	. = ..()
 	icon_state = pick("sprayer_sus_1", "sprayer_sus_2", "sprayer_sus_3", "sprayer_sus_4", "sprayer_sus_5","sprayer_sus_6", "sprayer_sus_7", "sprayer_sus_8")
 
+// Spray bottle skins
+/datum/atom_skin/med_spray
+	abstract_type = /datum/atom_skin/med_spray
+	change_inhand_icon_state = TRUE
+
+/datum/atom_skin/med_spray/red
+	preview_name = "Red"
+	new_icon_state = "sprayer_med_red"
+
+/datum/atom_skin/med_spray/yellow
+	preview_name = "Yellow"
+	new_icon_state = "sprayer_med_yellow"
+
+/datum/atom_skin/med_spray/blue
+	preview_name = "Blue"
+	new_icon_state = "sprayer_med_blue"
+
 /obj/item/reagent_containers/spray/medical
 	name = "medical spray bottle"
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -429,20 +435,10 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	volume = 100
-	unique_reskin = list("Red" = "sprayer_med_red",
-						"Yellow" = "sprayer_med_yellow",
-						"Blue" = "sprayer_med_blue")
 
-/obj/item/reagent_containers/spray/medical/reskin_obj(mob/M)
-	..()
-	switch(icon_state)
-		if("sprayer_med_red")
-			inhand_icon_state = "sprayer_med_red"
-		if("sprayer_med_yellow")
-			inhand_icon_state = "sprayer_med_yellow"
-		if("sprayer_med_blue")
-			inhand_icon_state = "sprayer_med_blue"
-	M.update_held_items()
+/obj/item/reagent_containers/spray/medical/Initialize(mapload, vol)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/med_spray)
 
 /obj/item/reagent_containers/spray/hercuri
 	name = "medical spray (hercuri)"

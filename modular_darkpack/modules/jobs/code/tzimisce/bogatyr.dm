@@ -1,7 +1,6 @@
 
 /datum/job/vampire/bogatyr
 	title = JOB_BOGATYR
-	department_head = /datum/job/vampire/voivode
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
@@ -36,5 +35,4 @@
 	suit = /obj/item/clothing/suit/vampire/bogatyr
 	belt = /obj/item/storage/belt/sheath/vamp/sword
 	l_pocket = /obj/item/smartphone/bogatyr
-	r_pocket = /obj/item/watch
-	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/card/credit=1)

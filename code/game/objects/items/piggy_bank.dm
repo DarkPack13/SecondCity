@@ -176,7 +176,7 @@
 	initial_value = PAYCHECK_CREW //it takes about 66 shifts for it to hit its max value on its own.
 	maximum_savings_per_shift = PAYCHECK_COMMAND * 16 //and 2 if you actively use it.
 
-/* DARKPACK EDIT REMOVAL
+/* // DARKPACK EDIT REMOVAL
 /obj/item/piggy_bank/vault/Initialize(mapload)
 	. = ..()
 	//one piggy bank should exist, preferibly inside the vault's safe.

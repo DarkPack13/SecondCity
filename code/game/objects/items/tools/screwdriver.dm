@@ -47,7 +47,7 @@
 		COLOR_TOOL_CYAN,
 		COLOR_TOOL_YELLOW,
 	)
-	custom_price = 20 //DARKPACK EDIT ADD
+	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
 
 /datum/armor/item_screwdriver
 	fire = 50
@@ -144,7 +144,7 @@
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"] bit."
+	. += "It's fitted with a [tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"] bit."
 
 /obj/item/screwdriver/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
