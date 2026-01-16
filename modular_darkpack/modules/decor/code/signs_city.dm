@@ -41,8 +41,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/hotel, 0)
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	dir = NORTH
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/millenium, 0)
+	pixel_y = 32
 
 /obj/structure/sign/city/millenium/Initialize(mapload)
 	. = ..()
@@ -55,8 +54,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/millenium, 0)
 	icon_state = "bar"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/anarch, 0)
+	dir = WEST
 
 /obj/structure/sign/city/anarch/Initialize(mapload)
 	. = ..()
