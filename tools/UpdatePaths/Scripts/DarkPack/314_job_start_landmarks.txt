@@ -61,7 +61,6 @@
 /obj/effect/landmark/start/capo : /obj/effect/landmark/start/darkpack/hecata/capo
 /obj/effect/landmark/start/famiglia : /obj/effect/landmark/start/darkpack/hecata/famiglia
 /obj/effect/landmark/start/squadra : /obj/effect/landmark/start/darkpack/hecata/squadra
-/obj/effect/landmark/start/graveyardkeeper : /obj/effect/landmark/start/darkpack/hecata/graveyardkeeper
 
 # Civilian
 /obj/effect/landmark/start/citizen : /obj/effect/landmark/start/darkpack/citizen/citizen
@@ -71,6 +70,8 @@
 /obj/effect/landmark/start/janitor : /obj/effect/landmark/start/darkpack/citizen/janitor
 /obj/effect/landmark/start/priest : /obj/effect/landmark/start/darkpack/citizen/priest
 /obj/effect/landmark/start/taxi : /obj/effect/landmark/start/darkpack/citizen/taxi
+/obj/effect/landmark/start/darkpack/hecata/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
+/obj/effect/landmark/start/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
 
 # Sabbat
 /obj/effect/landmark/start/sabbatductus : /obj/effect/landmark/start/darkpack/sabbat/ductus
@@ -86,16 +87,14 @@
 # Forest Wolves
 /obj/effect/landmark/start/garou/glade/council : /obj/effect/landmark/start/darkpack/forest_wolves/council
 /obj/effect/landmark/start/garou/glade/keeper : /obj/effect/landmark/start/darkpack/forest_wolves/keeper
+/obj/effect/landmark/start/darkpack/forest_wolves/keeper : /obj/effect/landmark/start/darkpack/forest_wolves/wyrmfoe
 /obj/effect/landmark/start/garou/glade/catcher : /obj/effect/landmark/start/darkpack/forest_wolves/catcher
 /obj/effect/landmark/start/garou/glade/warder : /obj/effect/landmark/start/darkpack/forest_wolves/warder
 /obj/effect/landmark/start/garou/glade/guardian : /obj/effect/landmark/start/darkpack/forest_wolves/guardian
 
 # City Wolves
-/obj/effect/landmark/start/garou/painted/council : /obj/effect/landmark/start/darkpack/city_wolves/council
-/obj/effect/landmark/start/garou/painted/keeper : /obj/effect/landmark/start/darkpack/city_wolves/keeper
-/obj/effect/landmark/start/garou/painted/catcher : /obj/effect/landmark/start/darkpack/city_wolves/catcher
-/obj/effect/landmark/start/garou/painted/warder : /obj/effect/landmark/start/darkpack/city_wolves/warder
-/obj/effect/landmark/start/garou/painted/guardian : /obj/effect/landmark/start/darkpack/city_wolves/guardian
+/obj/effect/landmark/start/garou/painted/@SUBTYPES : @DELETE
+/obj/effect/landmark/start/darkpack/city_wolves/@SUBTYPES : @DELETE
 
 # Pentex
 /obj/effect/landmark/start/first_team : /obj/effect/landmark/start/darkpack/pentex/first_team
