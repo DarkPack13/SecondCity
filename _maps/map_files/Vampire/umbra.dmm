@@ -596,8 +596,9 @@
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "ii" = (
-/obj/structure/sign/city/anarch/directional/west,
-/turf/open/umbra,
+/obj/structure/platform/lowwall/market/window,
+/obj/structure/sign/city/chinese/alt/directional/west,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/penumbra)
 "ik" = (
 /turf/open/floor/plating/sidewalk,
@@ -1007,10 +1008,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "oY" = (
-/obj/structure/sign/city/chinese/alt{
-	pixel_x = 12
-	},
-/turf/closed/wall/vampwall/market,
+/obj/structure/sign/city/anarch,
+/turf/open/floor/plating/sidewalk,
 /area/vtm/outside/penumbra)
 "pd" = (
 /obj/effect/turf_decal/weather/dirt,
@@ -1348,9 +1347,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "tI" = (
-/obj/structure/sign/city/chinese{
-	dir = 1
-	},
+/obj/structure/sign/city/chinese/directional/east,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/penumbra)
 "tW" = (
@@ -1560,7 +1557,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "vV" = (
-/obj/structure/chair/wood/wings{
+/obj/structure/chair/wood/darkpack/red{
 	dir = 1
 	},
 /turf/open/floor/carpet/darkpack,
@@ -1977,9 +1974,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "BP" = (
-/obj/structure/sign/city/millenium{
-	pixel_y = 32
-	},
+/obj/structure/sign/city/millenium,
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "BT" = (
@@ -1994,8 +1989,7 @@
 /area/vtm/outside/penumbra)
 "Ca" = (
 /obj/structure/sign/city/millenium{
-	dir = 1;
-	pixel_y = 32
+	icon_state = "millenium2"
 	},
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
@@ -2571,9 +2565,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "JU" = (
-/obj/structure/sign/city/chinese/alt{
-	dir = 4
-	},
+/obj/structure/sign/city/chinese/alt/directional/west,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/penumbra)
 "JX" = (
@@ -3107,11 +3099,9 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "SW" = (
-/obj/structure/sign/city/chinese{
-	dir = 1;
-	pixel_x = -12
-	},
-/turf/closed/wall/vampwall/market,
+/obj/structure/platform/lowwall/market/window,
+/obj/structure/sign/city/chinese/directional/east,
+/turf/open/floor/plating/rough,
 /area/vtm/outside/penumbra)
 "Tl" = (
 /obj/effect/decal/cleanable/trash,
@@ -3370,7 +3360,7 @@
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "WP" = (
-/obj/item/gun/ballistic/automatic/pistol/deagle,
+/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle,
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "WV" = (
@@ -29391,9 +29381,9 @@ qF
 qF
 qF
 qF
-ii
+qF
 ik
-ik
+oY
 ik
 ik
 xx
@@ -39988,7 +39978,7 @@ zb
 Ie
 qF
 GP
-oY
+Yv
 et
 aN
 DT
@@ -40245,7 +40235,7 @@ qF
 LK
 oT
 Ck
-DT
+ii
 rO
 Ck
 DT
@@ -41273,7 +41263,7 @@ qF
 Yv
 VA
 Ck
-DT
+SW
 yx
 Ck
 DT
@@ -41530,7 +41520,7 @@ qF
 qF
 VA
 qF
-SW
+Yv
 Ck
 Ck
 DT
