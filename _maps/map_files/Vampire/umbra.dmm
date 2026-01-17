@@ -1756,16 +1756,6 @@
 	},
 /turf/open/water/beach/vamp/deep,
 /area/vtm/outside/penumbra)
-"yY" = (
-/obj/machinery/light/small/directional/north,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/turf/open/misc/grass,
-/area/vtm/outside/penumbra)
 "zb" = (
 /obj/weapon_showcase,
 /obj/item/shard,
@@ -3435,7 +3425,7 @@
 "XK" = (
 /obj/effect/decal/cleanable/trash,
 /obj/structure/closet/crate/large,
-/obj/machinery/light/red/directional/south,
+/obj/machinery/light/red/directional/north,
 /turf/open/floor/plating/rough,
 /area/vtm/outside/penumbra)
 "XL" = (
@@ -23079,7 +23069,7 @@ qF
 qF
 qF
 Ua
-yY
+uY
 vK
 yT
 jC
