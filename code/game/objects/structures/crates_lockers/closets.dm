@@ -606,7 +606,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	take_contents()
 	playsound(loc, close_sound, close_sound_volume, TRUE, -3)
 	opened = FALSE
-	set_density(TRUE)
+	if(dense_when_closed) // DARKPACK EDIT ADD
+		set_density(TRUE) // DARKPACK EDIT CHANGE
 	animate_door(TRUE)
 	update_appearance()
 	after_close(user)
