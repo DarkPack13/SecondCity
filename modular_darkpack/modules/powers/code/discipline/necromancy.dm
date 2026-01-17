@@ -133,7 +133,7 @@
 
 		if(!ghost.soul_taken)
 			to_chat(owner, span_warning("You've slaked your Hunger on a wraith's passion. You gain <b>BLOOD</b> and <b>A SOUL</b>."))
-			owner.bloodpool = min(owner.bloodpool + 1, owner.maxbloodpool)
+			owner.adjust_blood_pool(1)
 			if(isliving(owner))
 				owner.collected_souls += 1
 				to_chat(owner, span_cult("You absorb the soul of the departed into your necromantic grimoire. It's essence can now assist you in your studies from beyond the Shroud..."))
@@ -141,7 +141,7 @@
 			ghost.soul_taken = TRUE
 		else
 			to_chat(owner, span_warning("You've slaked your Hunger on a wraith's passion. You gain <b>BLOOD</b>, but its soul has already slipped away."))
-			owner.bloodpool = min(owner.bloodpool + 1, owner.maxbloodpool)
+			owner.adjust_blood_pool(1)
 		return
 
 	if (isliving(target) && target.stat == DEAD)
@@ -150,7 +150,7 @@
 		dusted.visible_message(span_danger("[target]'s body dissolves into dust before your very eyes!"))
 		to_chat(owner, span_warning("You've absorbed the body's residual lifeforce. You gain <b>BLOOD</b> and <b>A SOUL</b>."))
 		dusted.dust()
-		owner.bloodpool = min(owner.bloodpool + 2, owner.maxbloodpool) // corpses = 2 blood
+		owner.adjust_blood_pool(2) // corpses = 2 blood
 		if(isliving(owner))
 			owner.collected_souls += 1
 			to_chat(owner, span_cult("You absorb the soul of the departed into your necromantic grimoire. It's essence can now assist you in your studies from beyond the Shroud..."))
@@ -301,7 +301,7 @@
 		target.visible_message(span_warning("[target]'s flesh knits together'!"), span_danger("Your rotten flesh reconstitutes!"))
 		var/mob/living/carbon/human/zombie = target
 		zombie.heal_ordered_damage(120, list(BRUTE, TOX, BURN, AGGRAVATED, OXY, BRAIN))
-		zombie.bloodpool = min(zombie.maxbloodpool, zombie.bloodpool+3)
+		zombie.adjust_blood_pool(3)
 		if(length(zombie.all_wounds))
 			var/datum/wound/wound = pick(zombie.all_wounds)
 			wound.remove_wound()
