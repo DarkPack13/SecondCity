@@ -12470,12 +12470,6 @@
 /obj/machinery/photocopier/prebuilt,
 /turf/open/floor/city/industrial,
 /area/vtm/interior/sewer/nosferatu_town)
-"aOY" = (
-/obj/transfer_point_vamp{
-	id = "pentex_evil_inc"
-	},
-/turf/open/misc/grass/random/bushes,
-/area/vtm/westfield_mall/forest)
 "aOZ" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -17775,7 +17769,6 @@
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
 "toY" = (
-/obj/transfer_point_vamp,
 /obj/transfer_point_vamp{
 	id = "garage3"
 	},
@@ -42587,7 +42580,7 @@ uuB
 uuB
 uuB
 ciB
-uuB
+adg
 adg
 adg
 adg
@@ -121119,7 +121112,7 @@ avR
 avR
 aFc
 arI
-aOY
+arI
 aas
 aas
 aas

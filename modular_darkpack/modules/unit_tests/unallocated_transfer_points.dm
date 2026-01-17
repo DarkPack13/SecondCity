@@ -5,4 +5,4 @@
 	for(var/obj/transfer_point_vamp/point in GLOB.unallocted_transfer_points)
 		if(point.unit_test_exempt)
 			continue
-		TEST_FAIL("Transfer point: [point] at [AREACOORD(point)] failed to find a sister to link to.")
+		TEST_FAIL("Transfer point: [point] with an id of: [point.id] at [AREACOORD(point)] failed to find a sister to link to.")
