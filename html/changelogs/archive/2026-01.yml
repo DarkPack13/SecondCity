@@ -58,3 +58,13 @@
   - bugfix: ' the last tfn updatepaths'
   dwinters99:
   - sound: pause menu sounds from bloodlines
+2026-01-17:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - rscadd: Readds estrogen pill bottles. But you will no longer receive them in the
+      mail
+  chazzyjazzy:
+  - code_imp: reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger',
+      reasons to stat into virtues
+  - refactor: moved humanity and morality to storyteller stats system

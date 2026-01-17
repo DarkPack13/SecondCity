@@ -27,6 +27,12 @@
 	icon_state = "pill9"
 	list_reagents = list(/datum/reagent/drug/placebatol = 10)
 
+/obj/item/storage/pill_bottle/estrogen
+	name = "estrogen pill bottle"
+	desc = "There are boobs on the top."
+	spawn_count = 5
+	spawn_type = /obj/item/reagent_containers/applicator/pill/placebatol
+
 /obj/item/storage/pill_bottle/unknown
 	name = "unknown pill bottle"
 	desc = "Its unlabeled and its unclear what they would acctually treat."

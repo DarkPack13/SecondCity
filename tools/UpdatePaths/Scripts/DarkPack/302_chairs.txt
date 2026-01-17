@@ -1,0 +1,26 @@
+
+/obj/structure/chair/green : /obj/structure/chair/darkpack/green {@OLD}
+/obj/structure/chair/red : /obj/structure/chair/darkpack/red {@OLD}
+/obj/structure/chair/blue : /obj/structure/chair/darkpack/blue {@OLD}
+/obj/structure/chair/office/green : /obj/structure/chair/office/darkpack/green {@OLD}
+/obj/structure/chair/office/red : /obj/structure/chair/office/darkpack/red {@OLD}
+/obj/structure/chair/office/blue : /obj/structure/chair/office/darkpack/blue {@OLD}
+
+/obj/item/chair/green : /obj/item/chair/darkpack/green {@OLD}
+/obj/item/chair/red : /obj/item/chair/darkpack/red {@OLD}
+/obj/item/chair/blue : /obj/item/chair/darkpack/blue {@OLD}
+/obj/item/chair/office/green : /obj/item/chair/office/darkpack/green {@OLD}
+/obj/item/chair/office/red : /obj/item/chair/office/darkpack/red {@OLD}
+/obj/item/chair/office/blue : /obj/item/chair/office/darkpack/blue {@OLD}
+
+#commented out because this is a volatile update paths but useful to have here if you want to run it manually or to note.
+
+#/obj/structure/chair : /obj/structure/chair/darkpack {@OLD}
+#/obj/structure/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/structure/chair/stool/bar : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/structure/chair/wood : /obj/structure/chair/wood/darkpack {@OLD}
+
+#/obj/item/chair : /obj/item/chair/darkpack {@OLD}
+#/obj/item/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/item/chair/stool/bar : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/item/chair/wood : /obj/item/chair/wood/darkpack {@OLD}

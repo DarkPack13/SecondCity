@@ -4,3 +4,4 @@
 	category = "Virtue"
 	points = 7
 	freebie_point_cost = FREEBIE_COST_VIRTUE
+	stat_flags = AFFECTS_STATS

@@ -12,10 +12,13 @@
 	if(isliving(usr))
 		var/mob/living/bloodbag = usr
 		bloodbag.update_blood_hud()
-		if(bloodbag.bloodpool > 0)
-			to_chat(bloodbag, span_notice("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points."))
+		if(bloodbag.bloodpool <= 0)
+			to_chat(bloodbag, span_bolddanger("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points."))
+		else if(HAS_TRAIT(bloodbag, TRAIT_NEEDS_BLOOD))
+			to_chat(bloodbag, span_warning("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points and are gripped with hunger!"))
 		else
-			to_chat(bloodbag, span_warning("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points."))
+			to_chat(bloodbag, span_notice("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points."))
+
 	. = ..()
 
 /mob/living/proc/update_blood_hud()
