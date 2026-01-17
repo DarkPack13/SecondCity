@@ -11,7 +11,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "c" = (
-/mob/living/basic/biter/hostile,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "d" = (
@@ -110,6 +110,10 @@
 "U" = (
 /obj/structure/closet/crate/coffin,
 /mob/living/basic/ghost/giovanni,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"V" = (
+/mob/living/basic/szlachta/hostile,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "Z" = (
@@ -236,11 +240,11 @@ t
 y
 k
 t
-t
+c
 k
 y
 k
-t
+c
 t
 k
 y
@@ -296,9 +300,9 @@ a
 "}
 (9,1,1) = {"
 y
+V
 t
-t
-t
+V
 y
 Z
 t
@@ -318,12 +322,12 @@ a
 "}
 (10,1,1) = {"
 y
-c
+t
 d
-c
+t
 y
 k
-t
+c
 t
 k
 y
