@@ -1,9 +1,8 @@
 // THIS IS A DARKPACK UI FILE
-import { useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Icon, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { ScreenContacts } from './ScreenContacts';
 import { ScreenHome } from './ScreenHome';

@@ -1,6 +1,6 @@
 // THIS IS A DARKPACK UI FILE
 import {
-  Feature,
+  type Feature,
   FeatureTextInput,
 } from '../base';
 
