@@ -16,3 +16,15 @@
 	stat_permenant_willpower.add_stat_mod(clamp(-(stat_permenant_willpower.get_score(include_bonus = FALSE) - 10), 0, stat_courage.get_score(include_bonus = TRUE)), "COURAGE")
 	var/datum/st_stat/stat_temporary_willpower = preference_storyteller_stats["[STAT_TEMPORARY_WILLPOWER]"]
 	stat_temporary_willpower.set_score(stat_permenant_willpower.get_score(include_bonus = TRUE))
+
+	var/datum/st_stat/morality_path/morality/stat_morality = preference_storyteller_stats["[STAT_MORALITY]"]
+	if(stat_morality?.morality_path)
+		var/datum/st_stat/stat_conscience = preference_storyteller_stats["[STAT_CONSCIENCE]"]
+		var/datum/st_stat/stat_self_control = preference_storyteller_stats["[STAT_SELF_CONTROL]"]
+		var/datum/st_stat/stat_conviction = preference_storyteller_stats["[STAT_CONVICTION]"]
+		var/datum/st_stat/stat_instinct = preference_storyteller_stats["[STAT_INSTINCT]"]
+
+		if(stat_morality.morality_path.alignment == MORALITY_HUMANITY)
+			stat_morality.set_score(clamp(stat_conscience.get_score(include_bonus = TRUE) + stat_self_control.get_score(include_bonus = TRUE), 0, 10))
+		else if(stat_morality.morality_path.alignment == MORALITY_ENLIGHTENMENT)
+			stat_morality.set_score(clamp(stat_conviction.get_score(include_bonus = TRUE) + stat_instinct.get_score(include_bonus = TRUE), 0, 10))
