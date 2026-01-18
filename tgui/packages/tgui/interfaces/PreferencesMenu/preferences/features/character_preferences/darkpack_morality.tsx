@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import { FeatureChoiced } from '../base';
+import type { FeatureChoiced } from '../base';
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const morality_path: FeatureChoiced = {

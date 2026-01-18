@@ -1,0 +1,11 @@
+author: "dwinters99"
+delete-after: True
+changes:
+  - bugfix: "op console is lorefriendly"
+  - bugfix: "crinos_beast has a death sprite and new clothing variants"
+  - config: "max character slots config"
+  - bugfix: "bullets no longer illuminate darkness"
+  - spellcheck: "crinos_beast name lowercased"
+  - rscadd: "crinos beast clothing variants"
+  - bugfix: "flamethrower onfloor"
+  - bugfix: "gangrel hands rotational work"
