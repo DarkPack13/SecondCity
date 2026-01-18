@@ -8,20 +8,20 @@
 	desc = "Contains a selection of seeds intended for use with the community or personal gardens. Bulk at a cheaper price. No trays."
 	cost = 150
 	contains = list(
-		/obj/item/seeds/cabbage,
-		/obj/item/seeds/carrot,
-		/obj/item/seeds/corn,
-		/obj/item/seeds/onion,
-		/obj/item/seeds/carrot/parsnip,
-		/obj/item/seeds/peas,
-		/obj/item/seeds/potato,
-		/obj/item/seeds/pumpkin,
-		/obj/item/seeds/soya,
-		/obj/item/seeds/tomato,
-		/obj/item/seeds/apple,
-		/obj/item/seeds/wheat/rice,
-		/obj/item/seeds/wheat/oat,
-		/obj/item/seeds/aloe,
+		/obj/item/seeds/cabbage = 2,
+		/obj/item/seeds/carrot = 2,
+		/obj/item/seeds/corn = 2,
+		/obj/item/seeds/onion = 2,
+		/obj/item/seeds/carrot/parsnip = 2,
+		/obj/item/seeds/peas = 2,
+		/obj/item/seeds/potato = 2,
+		/obj/item/seeds/pumpkin = 2,
+		/obj/item/seeds/soya = 2,
+		/obj/item/seeds/tomato = 2,
+		/obj/item/seeds/apple = 2,
+		/obj/item/seeds/wheat/rice = 2,
+		/obj/item/seeds/wheat/oat = 2,
+		/obj/item/seeds/aloe = 2,
 	)
 	crate_name = "veggie crate"
 
@@ -30,21 +30,11 @@
 	desc = "Contains a selection of flower seeds. No trays."
 	cost = 150
 	contains = list(
-		/obj/item/seeds/poppy,
-		/obj/item/seeds/poppy,
-		/obj/item/seeds/poppy,
-		/obj/item/seeds/sunflower,
-		/obj/item/seeds/sunflower,
-		/obj/item/seeds/sunflower,
-		/obj/item/seeds/poppy/geranium,
-		/obj/item/seeds/poppy/geranium,
-		/obj/item/seeds/poppy/geranium,
-		/obj/item/seeds/poppy/lily,
-		/obj/item/seeds/poppy/lily,
-		/obj/item/seeds/poppy/lily,
-		// /obj/item/seeds/forgetmenot,
-		// /obj/item/seeds/forgetmenot,
-		// /obj/item/seeds/forgetmenot,
+		/obj/item/seeds/poppy = 3,
+		/obj/item/seeds/sunflower = 3,
+		/obj/item/seeds/poppy/geranium = 3,
+		/obj/item/seeds/poppy/lily = 3,
+		// /obj/item/seeds/forgetmenot = 3,
 	)
 	crate_name = "flower crate"
 
@@ -128,18 +118,6 @@
 	cost = 1000
 	contains = list(/obj/item/door_repair_kit)
 
-/datum/supply_pack/local/camera
-	name = "Camera Kit"
-	desc = "Contains a single camera and a spare roll of film."
-	cost = 200
-	contains = list(/obj/item/camera, /obj/item/camera_film)
-
-/datum/supply_pack/local/binoculars
-	name = "Binoculars"
-	desc = "Contains a single pair of binoculars."
-	cost = 300
-	contains = list(/obj/item/binoculars)
-
 /datum/supply_pack/local/medicalsupplies
 	name = "Medical Supplies"
 	desc = "Contains some first aid supplies."
@@ -152,7 +130,7 @@
 	)
 
 /datum/supply_pack/local/cuffs
-	name = "Box of Handcuffs"
+	name = "Boxs of Handcuffs"
 	desc = "Contains boxs of handcuffs."
 	cost = 400
 	contains = list(/obj/item/storage/box/handcuffs = 4)
@@ -171,7 +149,7 @@
 	contains = list(/obj/item/storage/pill_bottle/ephedrine = 5)
 
 /datum/supply_pack/local/gas_can
-	name = "Gas Can"
+	name = "Gas Cans"
 	desc = "Contains gas cans."
 	cost = /obj/item/gas_can/full::custom_price * 4
 	contains = list(/obj/item/gas_can/full = 5)
