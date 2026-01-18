@@ -131,8 +131,8 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponshotgun
-	name = "Weapon (pomp shotgun)"
-	desc = "Contains a pomp shotgun."
+	name = "Weapon (pump shotgun)"
+	desc = "Contains a pump shotgun."
 	cost = 800
 	contains = list(/obj/item/gun/ballistic/shotgun/vampire)
 	crate_name = "weapon crate"
