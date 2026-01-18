@@ -7,6 +7,7 @@
 	icon = 'icons/obj/smooth_structures/platform/window_frame_normal.dmi'
 	icon_state = "window_frame_normal-0"
 	base_icon_state = "window_frame_normal"
+	layer = PLATFORM_LAYER // DARKPACK EDIT ADD - (Allows tables to be placed ontop of platforms (but please dont))
 	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
 	smoothing_groups = SMOOTH_GROUP_PLATFORMS
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS
@@ -45,7 +46,7 @@
 
 	register_context()
 	update_appearance(UPDATE_OVERLAYS)
-	AddComponent(/datum/component/climb_walkable)
+	AddElement(/datum/element/climb_walkable)
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/elevation, pixel_shift = 12)
 	AddElement(/datum/element/give_turf_traits, string_list(turf_traits))

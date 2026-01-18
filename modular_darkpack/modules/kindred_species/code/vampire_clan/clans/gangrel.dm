@@ -9,7 +9,6 @@
 		/datum/discipline/fortitude,
 		/datum/discipline/protean
 	)
-	start_humanity = 6
 	male_clothes = /obj/item/clothing/under/vampire/gangrel
 	female_clothes = /obj/item/clothing/under/vampire/gangrel/female
 	accessories = list("beast_legs", "beast_tail", "beast_tail_and_legs", "none")

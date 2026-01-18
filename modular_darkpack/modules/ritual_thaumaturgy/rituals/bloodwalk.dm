@@ -12,8 +12,12 @@
 			if(blood_data)
 				var/generation = blood_data["generation"]
 				var/clan = blood_data["clan"]
-				var/message = generate_message(generation, clan)
+				var/real_name = blood_data["real_name"]
+				var/message = generate_message(generation, clan, real_name)
 				to_chat(user, "[message]")
+				// Process blood collection for research points
+				if(ishuman(user))
+					SSoccult_research.process_blood_collection(user, B)
 
 			else
 				to_chat(user, "The blood speaks not; it is empty of power!")
@@ -22,8 +26,9 @@
 		activated = TRUE
 		qdel(src)
 
-/obj/ritual_rune/thaumaturgy/bloodwalk/proc/generate_message(generation, clan)
+/obj/ritual_rune/thaumaturgy/bloodwalk/proc/generate_message(generation, clan, real_name)
 	var/message = ""
+	message += "The owner of the blood's true name is [real_name].\n"
 	switch(generation)
 		if(4)
 			message += "The blood is incredibly ancient and powerful! It must be from an ancient Methuselah!\n"

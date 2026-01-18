@@ -42,7 +42,7 @@
 				target.do_jitter_animation(0.1 SECONDS)
 				to_chat(target, span_danger("DROP"))
 			if("whistle")
-				//target.apply_status_effect(STATUS_EFFECT_AWE, owner)
+				target.apply_status_effect(STATUS_EFFECT_AWE, owner)
 				to_chat(target, span_danger("HITHER"))
 
 
@@ -130,9 +130,10 @@
 
 	var/datum/splat/vampire/kindred/owner_splat = iskindred(owner)
 	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
-	if(owner_splat.generation > target_splat.generation)
-		to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
-		return FALSE
+	if(target_splat)
+		if(owner_splat.generation > target_splat.generation)
+			to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
+			return FALSE
 
 	if(numerical == TRUE)
 		return mypower
@@ -201,10 +202,12 @@
 		var/command_strength = get_success_message(successes)
 		to_chat(owner, span_notice("You have the power to Command your target with [command_strength]!"))
 		custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
-		//v20 Dominate 'Command' section
-		if(length(splittext(custom_command, " ")) > 1)
-			to_chat(owner, span_warning("Commands must be only ONE word!"))
-			return FALSE
+		var/mob/living/carbon/human/conditioner = target.conditioner?.resolve()
+		if(owner != conditioner)
+			//v20 Dominate 'Command' section
+			if(length(splittext(custom_command, " ")) > 1)
+				to_chat(owner, span_warning("Commands must be only ONE word!"))
+				return FALSE
 		if(!custom_command)
 			return FALSE
 		return TRUE

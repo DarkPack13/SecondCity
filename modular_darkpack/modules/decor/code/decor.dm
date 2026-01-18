@@ -345,7 +345,7 @@
 			if(starter)
 				if(ishuman(starter))
 					var/mob/living/carbon/human/H = starter
-					H.AdjustHumanity(-1, 0)
+					SEND_SIGNAL(H, COMSIG_PATH_HIT, -1, 0, FALSE)
 		L.gib()
 	. = ..()
 

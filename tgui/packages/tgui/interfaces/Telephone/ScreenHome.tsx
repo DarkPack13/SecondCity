@@ -1,9 +1,10 @@
 // THIS IS A DARKPACK UI FILE
-import { PropsWithChildren, ReactNode } from 'react';
-import { Box, Icon, Stack } from 'tgui-core/components';
+import type { PropsWithChildren, ReactNode } from 'react';
 
 import { useBackend } from 'tgui/backend';
-import { NavigableApps, Data } from '.';
+import { Box, Icon, Stack } from 'tgui-core/components';
+
+import { NavigableApps, type Data } from '.';
 
 export const AppIcon = (
   props: PropsWithChildren<{

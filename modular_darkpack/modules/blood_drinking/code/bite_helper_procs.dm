@@ -2,6 +2,23 @@
 /mob/living/proc/adjust_blood_pool(amount, updating_health = TRUE, on_spawn)
 	if(on_spawn)
 		bloodpool = 0
+	if(iskindred(src))
+		var/mob/living/carbon/human/kindred = src
+		var/datum/splat/vampire/kindred/kindred_species = iskindred(kindred)
+		var/hunger_threshold = 7 - (kindred_species.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
+		var/previous_hunger = HAS_TRAIT(kindred, TRAIT_NEEDS_BLOOD)
+		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
+
+		if(!previous_hunger && will_be_hungry) // enter hunger
+			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
+			to_chat(src, span_bolddanger("The Beast awakens as the pangs of hunger set in..."))
+
+		else if(previous_hunger && !will_be_hungry) // leave hunger
+			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
+			to_chat(src, span_notice("Your hunger is satisfied as the Beast inside retreats."))
+
+		//DARKPACK TODO: roll for frenzy when hungry and seeing, smelling, tasting blood, maybe like the old system where you roll every once in a while. the roll is
+		//self control 3 for seeing blood, 4 for smelling it, i think 6 for tasting it, all while hungry?
 	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
 	if(updating_health)
 		update_blood_hud()

@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger', reasons to stat into virtues"
+  - refactor: "moved humanity and morality to storyteller stats system"

@@ -522,6 +522,11 @@
 	desc = "A traditional robe worn by priests of the Orthodox faith."
 	icon_state = "vestments"
 
+/obj/item/clothing/suit/vampire/dutch
+	name = "dutch's jacket"
+	desc = "For those long nights on the beach in Tahiti."
+	icon_state = "DutchJacket"
+
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
