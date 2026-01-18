@@ -159,15 +159,15 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponrifle
-	name = "Weapon (assault rifle)"
-	desc = "Contains an assault rifle."
+	name = "Weapon (AR-15)"
+	desc = "Contains an AR-15 assault rifle."
 	cost = 3000
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/ar15, /obj/item/ammo_box/magazine/darkpack556)
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponcarbine
-	name = "Weapon (assault carbine)"
-	desc = "Contains an assault carbine."
+	name = "Weapon (AUG)"
+	desc = "Contains an AUG assault carbine."
 	cost = 4000
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/aug, /obj/item/ammo_box/magazine/darkpackaug)
 	crate_name = "weapon crate"
@@ -180,9 +180,9 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponsniper
-	name = "Weapon (sniper rifle)"
-	desc = "Contains a sniper rifle."
-	cost = 2000
+	name = "Weapon (.50 cal sniper rifle)"
+	desc = "Contains a .50 cal sniper rifle."
+	cost = 4000
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/sniper)
 	crate_name = "weapon crate"
 
