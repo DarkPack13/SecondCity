@@ -27,6 +27,7 @@
 // BEGIN_INCLUDE
 #include "apply_all_clans.dm"
 #include "apply_all_splats.dm"
+#include "unallocated_transfer_points.dm"
 // END_INCLUDE
 
 #undef TEST_ASSERT

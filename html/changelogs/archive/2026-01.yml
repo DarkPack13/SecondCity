@@ -68,3 +68,9 @@
   - code_imp: reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger',
       reasons to stat into virtues
   - refactor: moved humanity and morality to storyteller stats system
+2026-01-18:
+  Rosychu:
+  - bugfix: Changes the Rubber Pig's description from  "Klim Sanych, zdravstvuite."
+      to "Do not."
+  chazzyjazzy:
+  - rscadd: adds wallets, concealed carry permits, and drivers licenses
