@@ -1,6 +1,6 @@
 /obj/structure/retail/gas_station
 	products_list = list(
-		new /datum/data/vending_product("full gas can", /obj/item/gas_can/full, 250),
+		new /datum/data/vending_product("full gas can", /obj/item/gas_can/full),
 		new /datum/data/vending_product("tire iron", /obj/item/melee/vamp/tire, 50),
 		new /datum/data/vending_product("spray paint", /obj/item/toy/crayon/spraycan, 25),
 		new /datum/data/vending_product("hair spray", /obj/item/dyespray, 10),

@@ -1,3 +1,5 @@
+// For items that exist in stores already, my current plan is a bulk order of 5-10 items with a 20% discount.
+// This means the supply has to peddle off spare goods.
 /datum/supply_pack/local
 	group = "Local stock"
 
@@ -83,11 +85,7 @@
 	desc = "Customized fertilizer mixed for the superior homegrown botanist."
 	cost = 500
 	contains = list(
-		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
-		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
-		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
-		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
-		/obj/item/reagent_containers/cup/bottle/nutrient/rh,
+		/obj/item/reagent_containers/cup/bottle/nutrient/rh = 5,
 		)
 	crate_name = "hydro crate"
 
@@ -98,11 +96,7 @@
 	cost = 100
 	contains = list(
 		/obj/item/reagent_containers/cup/watering_can/metal,
-		/obj/item/seeds/cannabis,
-		/obj/item/seeds/cannabis,
-		/obj/item/seeds/cannabis,
-		/obj/item/seeds/cannabis,
-		/obj/item/seeds/cannabis
+		/obj/item/seeds/cannabis = 5,
 	)
 	crate_name = "hydro crate"
 
@@ -151,36 +145,36 @@
 	desc = "Contains some first aid supplies."
 	cost = 500
 	contains = list(
-		/obj/item/stack/medical/gauze,
-		/obj/item/stack/medical/bruise_pack,
-		/obj/item/stack/medical/suture,
-		/obj/item/stack/medical/ointment
+		/obj/item/stack/medical/gauze = 4,
+		/obj/item/stack/medical/bruise_pack = 4,
+		/obj/item/stack/medical/suture = 4,
+		/obj/item/stack/medical/ointment = 4
 	)
 
 /datum/supply_pack/local/cuffs
 	name = "Box of Handcuffs"
-	desc = "Contains a box of handcuffs."
-	cost = 150
-	contains = list(/obj/item/storage/box/handcuffs)
+	desc = "Contains boxs of handcuffs."
+	cost = 400
+	contains = list(/obj/item/storage/box/handcuffs = 4)
 	crate_name = "handcuff crate"
 
 /datum/supply_pack/local/potassiodide
 	name = "Potassium Iodide"
-	desc = "Contains bottle of potassium iodide."
-	cost = 400
+	desc = "Contains bottles of potassium iodide."
+	cost = /obj/item/storage/pill_bottle/potassiodide::custom_price * 4
 	contains = list(/obj/item/storage/pill_bottle/potassiodide = 5)
 
 /datum/supply_pack/local/ephedrine
 	name = "Ephedrine"
-	desc = "Contains bottle of ephedrine."
-	cost = 400
-	contains = list(/obj/item/storage/pill_bottle/ephedrine)
+	desc = "Contains bottles of ephedrine."
+	cost = /obj/item/storage/pill_bottle/ephedrine::custom_price * 4
+	contains = list(/obj/item/storage/pill_bottle/ephedrine = 5)
 
 /datum/supply_pack/local/gas_can
 	name = "Gas Can"
-	desc = "Contains a gas can."
-	cost = 400
-	contains = list(/obj/item/gas_can/full)
+	desc = "Contains gas cans."
+	cost = /obj/item/gas_can/full::custom_price * 4
+	contains = list(/obj/item/gas_can/full = 5)
 
 /datum/supply_pack/local/thermal_drill
 	name = "Thermal Drill"
