@@ -3894,6 +3894,7 @@
 /area/vtm/westfield_mall/interior/maintenance/basement)
 "amX" = (
 /obj/structure/table/wood,
+/obj/structure/detectiveboard/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "amY" = (
@@ -5333,6 +5334,9 @@
 /obj/effect/turf_decal/siding/wood/dark/corner{
 	dir = 8
 	},
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police3"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "arK" = (
@@ -5614,6 +5618,9 @@
 "asA" = (
 /obj/structure/hedge,
 /obj/effect/turf_decal/siding/wood/dark,
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police2"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "asB" = (
@@ -6668,7 +6675,7 @@
 /obj/item/pen{
 	pixel_y = 7
 	},
-/obj/structure/detectiveboard/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "avR" = (
@@ -11358,7 +11365,9 @@
 /area/vtm/westfield_mall/forest)
 "aLn" = (
 /obj/structure/hedge,
-/obj/machinery/light/directional/north,
+/obj/structure/sign/city/police_department/directional/north{
+	icon_state = "police4"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "aLo" = (
@@ -12461,12 +12470,6 @@
 /obj/machinery/photocopier/prebuilt,
 /turf/open/floor/city/industrial,
 /area/vtm/interior/sewer/nosferatu_town)
-"aOY" = (
-/obj/transfer_point_vamp{
-	id = "pentex_evil_inc"
-	},
-/turf/open/misc/grass/random/bushes,
-/area/vtm/westfield_mall/forest)
 "aOZ" = (
 /obj/structure/rack/food{
 	dir = 8;
@@ -16833,9 +16836,13 @@
 /obj/structure/vampdoor/reinf{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/access/federal,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/art_store)
+"jeh" = (
+/obj/structure/sign/city/police_department/directional/north,
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "jfA" = (
 /obj/structure/table/wood,
 /obj/machinery/light/directional/south,
@@ -17003,7 +17010,7 @@
 /obj/structure/vampdoor{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/door/access/director,
+/obj/effect/mapping_helpers/door/access/federal,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
 "lra" = (
@@ -17762,7 +17769,6 @@
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
 "toY" = (
-/obj/transfer_point_vamp,
 /obj/transfer_point_vamp{
 	id = "garage3"
 	},
@@ -42574,7 +42580,7 @@ uuB
 uuB
 uuB
 ciB
-uuB
+adg
 adg
 adg
 adg
@@ -57095,7 +57101,7 @@ aUp
 aUp
 aUp
 aUp
-aXr
+jeh
 aXr
 aXr
 aWu
@@ -121106,7 +121112,7 @@ avR
 avR
 aFc
 arI
-aOY
+arI
 aas
 aas
 aas
