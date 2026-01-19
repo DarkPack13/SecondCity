@@ -18,7 +18,7 @@
 	var/extra_reagent = null
 	var/decorated_adjective = "sprinkled"
 	crafting_complexity = FOOD_COMPLEXITY_2
-	custom_price = 1 // DARKPACK EDIT ADD - FOOD
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/donut/Initialize(mapload)
 	. = ..()

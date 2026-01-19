@@ -78,7 +78,7 @@
 	 * they're already likely to be quite bad
 	 */
 	var/bait_height_mult = 1
-	custom_price = 200 // DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/fishing_rod/Initialize(mapload)
 	. = ..()
@@ -239,7 +239,7 @@
 	if(isnull(reward))
 		return
 	var/isfish = isfish(reward)
-	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials))
+	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
 		if(prob(get_material_fish_chance(user)))
 			var/obj/item/fish/fish = reward
 			var/datum/material/material = get_master_material()

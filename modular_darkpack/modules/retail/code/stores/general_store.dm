@@ -19,6 +19,6 @@
 		new /datum/data/vending_product("tape recorder", /obj/item/taperecorder),
 		new /datum/data/vending_product("baseball bat", /obj/item/melee/baseball_bat/vamp),
 		new /datum/data/vending_product("prepaid cell phone", /obj/item/smartphone),
-		new /datum/data/vending_product("box of light bulbs", /obj/item/wirecutters, 100), // price is different between hardware and general store
+		new /datum/data/vending_product("box of light bulbs", /obj/item/storage/box/lights/mixed, 100), // price is different between hardware and general store
 		new /datum/data/vending_product("insulated gloves", /obj/item/clothing/gloves/color/yellow),
 	)

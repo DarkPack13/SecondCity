@@ -62,10 +62,10 @@
 	///callback for after a kitten is born
 	var/datum/callback/post_birth_callback
 
-	// DARKPACK ADD START - NPC
+	// DARKPACK EDIT ADD START - NPC
 	bloodpool = 2
 	maxbloodpool = 2
-	// DARKPACK ADD END
+	// DARKPACK EDIT ADD END
 
 
 /datum/emote/cat

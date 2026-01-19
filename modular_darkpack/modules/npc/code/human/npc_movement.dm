@@ -61,7 +61,7 @@
 	if (istype(last_attacker, /mob/living/simple_animal/hostile))
 		var/mob/living/simple_animal/hostile/HS = last_attacker
 		if(HS.my_creator)
-			HS.my_creator.AdjustHumanity(-1, 0)
+			SEND_SIGNAL(HS.my_creator, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 			HS.my_creator.killed_count += 1
 			if(!HS.my_creator.warrant && !HS.my_creator.ignores_warrant)
 				if(HS.my_creator.killed_count >= 5)
@@ -73,7 +73,7 @@
 					to_chat(HS.my_creator, span_userdanger("<b>SUSPICIOUS ACTION (murder)</b>"))
 	else if (ishuman(last_attacker))
 		var/mob/living/carbon/human/HM = last_attacker
-		HM.AdjustHumanity(-1, 0)
+		SEND_SIGNAL(HM, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 		HM.killed_count += 1
 		if(!HM.warrant && !HM.ignores_warrant)
 			if(HM.killed_count >= 5)

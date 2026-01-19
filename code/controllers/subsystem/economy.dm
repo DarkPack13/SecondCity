@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(economy)
  * Updates the the inflation_value, effecting newscaster alerts and the mail system.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
-	/* DARKPACK EDIT REMOVAL
+	/* // DARKPACK EDIT REMOVAL
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		fluff_string = ", but company countermeasures protect <b>YOU</b> from being affected!"

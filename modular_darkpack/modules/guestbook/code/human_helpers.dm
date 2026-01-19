@@ -27,10 +27,10 @@
 			return "Puzzling"
 
 /mob/living/carbon/human/proc/get_generic_name(prefixed = FALSE, lowercase = FALSE)
-	var/visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null
+//	var/visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null // Removed until we think of a way to do this without calling people "ugly brown woman"
 	var/visible_gender = get_gender()
 	var/visible_age = get_age()
-	var/final_string = "[visible_adjective ? "[visible_adjective] " : null][visible_age ? "[visible_age] " : null][visible_skin][visible_gender]"
+	var/final_string = "[visible_adjective ? "[visible_adjective] " : null][visible_age ? "[visible_age] " : null][visible_gender]" // removed [visible_skin]
 	if(prefixed)
 		final_string = "\A [final_string]"
 	return lowercase ? lowertext(final_string) : final_string

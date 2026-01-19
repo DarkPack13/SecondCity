@@ -148,7 +148,7 @@
 /datum/discipline_power/valeren/unburden_the_bestial_soul/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(owner, span_notice("You have healed [target]'s soul slightly."))
-	target.AdjustHumanity(1, 10)
+	SEND_SIGNAL(owner, COMSIG_PATH_HIT, 1, 10, FALSE)
 	points_can_restore--
 
 

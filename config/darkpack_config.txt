@@ -23,3 +23,9 @@ ROUNDSTART_RACES kindred
 ROUNDSTART_RACES ghoul
 ## If dead people and ghosts can LOOC to people who are alive.
 DISABLE_GHOST_LOOC
+
+## Character slots
+## Oldcode default was 20.
+## DOWNSTREAMS! Consider leaving/setting this low to encourage people to support the service that makes this game possible. <3 BYOND <3
+MAX_SAVE_SLOTS 5
+EXTRA_SAVE_SLOTS_BYOND_MEMBER 5
