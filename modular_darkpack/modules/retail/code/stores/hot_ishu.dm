@@ -1,7 +1,7 @@
 /obj/structure/retail/hot_ishu
 	products_list = list(
-		//new /datum/data/vending_product("\"Vase\"", /obj/item/bong, 50),
-		//new /datum/data/vending_product("cross", /obj/item/card/id/hunter,  25),
+		new /datum/data/vending_product("\"Vase\"", /obj/item/bong, 50),
+		new /datum/data/vending_product("cross", /obj/item/card/hunter, 25),
 		new /datum/data/vending_product("backpack", /obj/item/storage/backpack,	100),
 		new /datum/data/vending_product("black grunge outfit", /obj/item/clothing/under/vampire/black,	20),
 		new /datum/data/vending_product("burlesque outfit", /obj/item/clothing/under/vampire/burlesque,	15),

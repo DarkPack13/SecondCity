@@ -268,13 +268,13 @@
 	to_mimic.transfer_fingerprints_to(src)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer
-	name = "Beer" // DARKPACK EDIT CHANGE
+	name = "beer" // DARKPACK EDIT CHANGE
 	desc = "Beer." // DARKPACK EDIT CHANGE
 	icon_state = "beer"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	drink_type = GRAIN | ALCOHOL
-	custom_price = 5 // DARKPACK EDIT CHANGE
+	custom_price = 5 // DARKPACK EDIT CHANGE - ECONOMY
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/almost_empty
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1)

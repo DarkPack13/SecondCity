@@ -1,9 +1,8 @@
 // THIS IS A DARKPACK UI FILE
 import { Box, Icon, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../../backend';
-import { Data } from '.';
+import type { Data } from '.';
 
 const FakeCallingControls = (props) => {
   const { act, data } = useBackend<Data>();

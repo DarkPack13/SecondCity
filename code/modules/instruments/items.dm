@@ -49,7 +49,7 @@
 	hitsound = SFX_SWING_HIT
 	allowed_instrument_ids = "violin"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
@@ -68,7 +68,7 @@
 	attack_verb_simple = list("scruggs-style", "hum-diggity", "shin-dig", "clawhammer")
 	hitsound = 'sound/items/weapons/banjoslap.ogg'
 	allowed_instrument_ids = "banjo"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/guitar
 	name = "guitar"
@@ -79,7 +79,7 @@
 	attack_verb_simple = list("play metal on", "serenade", "crash", "smash")
 	hitsound = 'sound/items/weapons/stringsmash.ogg'
 	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/eguitar
 	name = "electric guitar"
@@ -91,7 +91,7 @@
 	attack_verb_simple = list("play metal on", "shred", "crash", "smash")
 	hitsound = 'sound/items/weapons/stringsmash.ogg'
 	allowed_instrument_ids = "eguitar"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/glockenspiel
 	name = "glockenspiel"
@@ -99,7 +99,7 @@
 	icon_state = "glockenspiel"
 	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 	inhand_icon_state = "glockenspiel"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/accordion
 	name = "accordion"
@@ -107,7 +107,7 @@
 	icon_state = "accordion"
 	allowed_instrument_ids = list("crack", "crtango", "accordion")
 	inhand_icon_state = "accordion"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/trumpet
 	name = "trumpet"
@@ -143,7 +143,7 @@
 	icon_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
 	inhand_icon_state = "saxophone"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/saxophone/spectral
 	name = "spectral saxophone"
@@ -172,7 +172,7 @@
 	icon_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 	inhand_icon_state = "trombone"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/trombone/spectral
 	name = "spectral trombone"
@@ -202,7 +202,7 @@
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 	inhand_icon_state = "recorder"
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
@@ -215,7 +215,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
 	action_slots = ALL
-	custom_price = 200 //DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/harmonica/equipped(mob/user, slot, initial = FALSE)
 	. = ..()

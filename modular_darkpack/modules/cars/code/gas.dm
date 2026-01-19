@@ -1,4 +1,4 @@
-/* DARKPACK TODO - Gas should be handled as a reagent
+/* // DARKPACK TODO - Gas should be handled as a reagent
 /datum/reagent/gasoline
 	name = "Gasoline"
 	color = "#b85614"
