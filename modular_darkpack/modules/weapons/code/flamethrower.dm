@@ -4,7 +4,7 @@
 	desc = "Well fire weapon."
 	icon_state = "flamethrower4"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY

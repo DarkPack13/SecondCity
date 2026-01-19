@@ -81,8 +81,8 @@ export const OperatingComputer = () => {
           </Stack.Item>
           <Stack.Item textAlign="right" color="label" fontSize="0.7em">
             <Section>
-              DefOS 1.0 &copy; Nanotrasen-Deforest Corporation. All rights
-              reserved.
+              MagOS 1.0 &copy; Autumn Health Management Systems. All rights
+              reserved. {/* DARKPACK EDIT CHANGE */}
             </Section>
           </Stack.Item>
         </Stack>
