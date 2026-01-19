@@ -57,7 +57,7 @@
 	density = TRUE
 	resistance_flags = UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	throwforce = 150
-	var/grant_car_keys = FALSE
+
 
 	MAP_SWITCH(pixel_x = 0, pixel_x = -32)
 	MAP_SWITCH(pixel_y = 0, pixel_y = -32)
@@ -103,6 +103,8 @@
 	/// If we provide extra debug information like path indicators
 	var/debug_car = FALSE
 
+	var/grant_car_keys = FALSE
+
 	/// sound loop for the engine
 	var/datum/looping_sound/car_engine/engine_sound_loop
 
@@ -117,7 +119,9 @@
 	create_storage(storage_type = car_storage_type)
 	atom_storage.set_real_location(trunk)
 
-	if(grant_car_keys && access)
+	if(access == "none")
+		grant_car_keys = TRUE
+		access = "[rand(1,9999999)]"
 		AddComponent(/datum/component/door_ownership, \
 			grant_keys = TRUE)
 
@@ -737,14 +741,6 @@
 		return
 	on = FALSE
 	engine_sound_loop.stop()
-
-/obj/darkpack_car/civilian
-	grant_car_keys = TRUE
-
-/obj/darkpack_car/civilian/Initialize(mapload)
-	. = ..()
-	if(grant_car_keys)
-		access = "[rand(1,9999999)]"
 
 #undef DOAFTER_SOURCE_CAR
 #undef CAR_TANK_MAX

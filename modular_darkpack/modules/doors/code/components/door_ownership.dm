@@ -14,10 +14,10 @@
 		ownership_type = "apartment"
 
 /datum/component/door_ownership/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(try_award_key))
+	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(try_award_key))
 
 /datum/component/door_ownership/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND)
+	UnregisterSignal(parent, COMSIG_CLICK_ALT)
 
 /datum/component/door_ownership/proc/try_award_key(atom/source, mob/user)
 	SIGNAL_HANDLER
@@ -45,6 +45,7 @@
 
 	// async proc because signal handler
 	INVOKE_ASYNC(src, PROC_REF(award_key_async), human, lock_id)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/door_ownership/proc/award_key_async(mob/living/carbon/human/human, lock_id)
 
@@ -53,6 +54,9 @@
 
 	switch(ownership_type)
 		if("car")
+			if(human.st_get_stat(STAT_DRIVE) < 1)
+				to_chat(human, span_danger("Shouldnt you learn how to drive before owning a car?"))
+				return
 			ownership_question = "Is this my car?"
 			alert_title = "Vehicle"
 		if("apartment")
@@ -76,4 +80,5 @@
 
 	human.received_ownership_keys += ownership_type
 	grant_keys = FALSE
+	qdel(src)
 
