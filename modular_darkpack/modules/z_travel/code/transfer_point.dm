@@ -22,6 +22,9 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	. = ..()
 	apply_wibbly_filters(src)
 	if(id && !exit)
+		if(isnum(id))
+			// Im considering them bad practice because you cant tell where they lead - Fallcon
+			log_mapping("[src] has a ID of [id]. Numbers are bad practice")
 		GLOB.unallocted_transfer_points += src
 		for(var/obj/transfer_point_vamp/other_point in GLOB.unallocted_transfer_points)
 			if(other_point.id == id && other_point != src)
@@ -32,11 +35,10 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 				break
 
 /obj/transfer_point_vamp/Destroy(force)
-	// Clear the ref to ourselves to prevent hard del
-	if(exit)
-		exit.exit = null
-
 	GLOB.unallocted_transfer_points -= src
+	if(!QDELETED(exit))
+		QDEL_NULL(exit)
+
 	return ..()
 
 /obj/transfer_point_vamp/vv_edit_var(var_name, var_value)
