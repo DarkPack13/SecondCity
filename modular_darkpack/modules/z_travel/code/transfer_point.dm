@@ -52,6 +52,21 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	. = ..()
 	transfer_atom(bumped_atom)
 
+/obj/transfer_point_vamp/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+	if(Adjacent(user))
+		transfer_atom(user)
+
+// Ignore any checks or safties, including one-ways. We dont care about those for ghosts.
+/obj/transfer_point_vamp/attack_ghost(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(exit)
+		user.forceMove(get_turf(exit))
+
 /obj/transfer_point_vamp/proc/transfer_atom(atom/movable/arrived)
 	if(!exit || one_way)
 		return
@@ -60,6 +75,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 		arrived.forceMove(T)
 	else
 		arrived.forceMove(get_turf(exit))
+	return TRUE
 
 // Use inside the umbra. Visable
 /obj/transfer_point_vamp/umbral
@@ -83,8 +99,13 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 		set_light(2, 1, "#a4a0fb")
 		apply_wibbly_filters(src)
 
-/obj/transfer_point_vamp/umbral/Bumped(atom/movable/AM)
+/obj/transfer_point_vamp/umbral/transfer_atom(atom/movable/arrived)
 	. = ..()
+	if(!.)
+		return
+	// dont spam from ghosts or random objects
+	if(!isliving(arrived))
+		return
 	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
 	if(exit)
 		playsound(exit, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
