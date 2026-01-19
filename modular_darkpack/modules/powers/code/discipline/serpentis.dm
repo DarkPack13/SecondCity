@@ -116,11 +116,11 @@
 	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
 	if(choice == "Obvious")
 		owner.st_add_stat_mod(STAT_INTIMIDATION, 2, "Serpentis") // 'reduce intimidation difficulties by two' placeholder
-		owner.apply_status_effect(/datum/status_effect/fortitude/two) // 'reduces all soak difficulty to 5' placeholder
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
+		owner.st_add_stat_mod(STAT_STAMINA, 3, "Serpentis") // 'reduces all soak difficulty to 5' placeholder
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
 	else
-		owner.apply_status_effect(/datum/status_effect/fortitude/one) // permanently on with no downsides according to dav20. its staying at fort one bro
-	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, "Serpentis") //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
+		owner.st_add_stat_mod(STAT_STAMINA, 2, "Serpentis") // permanently on with no downsides according to dav20. its staying at fort one bro
+	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT) //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
 	owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
 	/*
 	owner.Stun(duration_length)
@@ -131,11 +131,11 @@
 	. = ..()
 	if(choice == "Obvious")
 		owner.st_remove_stat_mod(STAT_INTIMIDATION, 2, "Serpentis")
-		owner.remove_status_effect(/datum/status_effect/fortitude/two)
-		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "Serpentis")
+		owner.st_remove_stat_mod(STAT_STAMINA, 3, "Serpentis")
+		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
 	else
-		owner.remove_status_effect(/datum/status_effect/fortitude/one)
-	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, "Serpentis")
+		owner.st_remove_stat_mod(STAT_STAMINA, 2, "Serpentis")
+	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT)
 	owner.st_remove_stat_mod(STAT_APPEARANCE, "Serpentis")
 
 
