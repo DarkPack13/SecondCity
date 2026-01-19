@@ -20,7 +20,6 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 
 /obj/transfer_point_vamp/Initialize(mapload)
 	. = ..()
-	apply_wibbly_filters(src)
 	if(id && !exit)
 		if(isnum(id))
 			// Im considering them bad practice because you cant tell where they lead - Fallcon
