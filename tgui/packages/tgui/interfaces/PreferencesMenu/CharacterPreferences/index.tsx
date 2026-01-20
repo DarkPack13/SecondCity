@@ -10,14 +10,14 @@ import { JobsPage } from './JobsPage';
 import { LoadoutPage } from './loadout';
 import { MainPage } from './MainPage';
 import { QuirkPersonalityPage } from './QuirksPage';
-import { SpeciesPage } from './SpeciesPage';
+import { SplatsPage } from './SplatsPage'; // DARKPACK EDIT CHANGE - SPLATS
 import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
 
 enum Page {
   Antags,
   Main,
   Jobs,
-  Species,
+  Splats, // DARKPACK EDIT CHANGE - SPLATS
   Quirks,
   Loadout,
   Stats, // DARKPACK EDIT ADD
@@ -67,13 +67,13 @@ export function CharacterPreferenceWindow(props) {
       break;
     case Page.Main:
       pageContents = (
-        <MainPage openSpecies={() => setCurrentPage(Page.Species)} />
+        <MainPage openSplats={() => setCurrentPage(Page.Splats)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
-    case Page.Species:
+    case Page.Splats: // DARKPACK EDIT CHANGE - SPLATS
       pageContents = (
-        <SpeciesPage closeSpecies={() => setCurrentPage(Page.Main)} />
+        <SplatsPage closeSplats={() => setCurrentPage(Page.Main)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
@@ -121,7 +121,7 @@ export function CharacterPreferenceWindow(props) {
               currentPage={currentPage}
               page={Page.Main}
               setPage={setCurrentPage}
-              otherActivePages={[Page.Species]}
+              otherActivePages={[Page.Splats]} // DARKPACK EDIT CHANGE - SPLATS
             >
               Character
             </PageButton>

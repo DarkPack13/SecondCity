@@ -44,7 +44,7 @@ export type Name = {
   group: string;
 };
 
-export type Species = {
+export type Splats = { // DARKPACK EDIT CHANGE - SPLATS
   name: string;
   desc: string;
   lore: string[];
@@ -161,7 +161,7 @@ export type PreferencesMenuData = {
     misc: {
       gender: Gender;
       joblessrole: JoblessRole;
-      species: string;
+      splats: string; // DARKPACK EDIT CHANGE - SPLATS
       loadout_list: LoadoutList;
       job_clothes: BooleanLike;
     };
@@ -189,7 +189,7 @@ export type PreferencesMenuData = {
   selected_personalities: typePath[] | null;
   max_personalities: number;
   mood_enabled: BooleanLike;
-  species_disallowed_quirks: string[];
+  splats_disallowed_quirks: string[]; // DARKPACK EDIT CHANGE - SPLATS
   // DARKPACK EDIT ADD START
   stats: Record<
     string,
@@ -237,6 +237,6 @@ export type ServerData = {
   loadout: {
     loadout_tabs: LoadoutCategory[];
   };
-  species: Record<string, Species>;
+  splats: Record<string, Splats>; // DARKPACK EDIT CHANGE - SPLATS
   [otherKey: string]: unknown;
 };

@@ -368,8 +368,8 @@ function QuirkPage() {
         }
       }
     }
-    if (data.species_disallowed_quirks.includes(quirk.name)) {
-      return 'This quirk is incompatible with your selected species.';
+    if (data.splats_disallowed_quirks.includes(quirk.name)) { // DARKPACK EDIT CHANGE - SPLATS
+      return 'This quirk is incompatible with your selected splats.'; // DARKPACK EDIT CHANGE - SPLATS
     }
     return;
   }
