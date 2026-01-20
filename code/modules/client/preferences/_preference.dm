@@ -333,16 +333,25 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Checks the species currently selected by the passed preferences object to see if it has this preference's key as a feature.
 /datum/preference/proc/current_species_has_savekey(datum/preferences/preferences)
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/species_type = /datum/species/human // DARKPACK EDIT CHANGE - SPLATS - (Bandaid)
 	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return (savefile_key in species.get_features())
+
+// DARKPACK EDIT ADD START - SPLATS
+/// Checks the splat currently selected by the passed preferences object to see if it has this preference's key as a feature.
+/datum/preference/proc/current_splat_has_savekey(datum/preferences/preferences)
+	var/splat_type = preferences.read_preference(/datum/preference/choiced/splats)
+	var/datum/splat/splat = GLOB.splat_prototypes[splat_type]
+	if(splat)
+		return (savefile_key in splat.get_features())
+// DARKPACK EDIT ADD END
 
 /// Checks if this preference is relevant and thus visible to the passed preferences object.
 /datum/preference/proc/has_relevant_feature(datum/preferences/preferences)
 	if(isnull(relevant_inherent_trait) && isnull(relevant_organ) && isnull(relevant_head_flag) && isnull(relevant_body_markings))
 		return TRUE
 
-	return current_species_has_savekey(preferences)
+	return current_splat_has_savekey(preferences) || current_species_has_savekey(preferences) // DARKPACK EDIT CHANGE - SPLATS
 
 /// Returns whether or not this preference is accessible.
 /// If FALSE, will not show in the UI and will not be editable (by update_preference).

@@ -1,3 +1,30 @@
+/// Returns a list of strings representing features this spalt has.
+/// Used by the preferences UI to know what buttons to show.
+/datum/splat/proc/get_features()
+	var/cached_features = GLOB.features_by_splats[type]
+	if (!isnull(cached_features))
+		return cached_features
+
+	var/list/features = list()
+	// var/list/mut_organs = get_organs()
+
+	for (var/preference_type in GLOB.preference_entries)
+		var/datum/preference/preference = GLOB.preference_entries[preference_type]
+		/*
+		if ( \
+			(preference.relevant_inherent_trait in inherent_traits) \
+			|| (preference.relevant_organ in mut_organs) \
+			|| (preference.relevant_head_flag && check_head_flags(preference.relevant_head_flag)) \
+			|| (preference.relevant_body_markings in body_markings) \
+		)
+		*/
+		if(preference.relevant_inherent_trait in splat_traits)
+			features += preference.savefile_key
+
+	GLOB.features_by_splats[type] = features
+
+	return features
+
 /// Splats preference
 /datum/preference/choiced/splats
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -32,6 +59,10 @@
 	return values
 
 /datum/preference/choiced/splats/apply_to_human(mob/living/carbon/human/target, value)
+	if(!value)
+		return
+	if(length(target.splats))
+		QDEL_LAZYLIST(target.splats) // Unfortuantly we dont support multiple splats via prefs yet.
 	if(ispath(value))
 		target.add_splat(value)
 		// target.add_splat(value, icon_update = FALSE, pref_load = TRUE)

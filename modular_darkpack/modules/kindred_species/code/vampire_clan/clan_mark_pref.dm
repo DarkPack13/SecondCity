@@ -3,8 +3,12 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	relevant_inherent_trait = TRAIT_VTM_CLANS
 
 /datum/preference/external_choiced/clan_mark/has_relevant_feature(datum/preferences/preferences)
+	. = ..()
+	if(!.) // Make sure we acctually can select clan in the first place
+		return FALSE
 	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
 	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)

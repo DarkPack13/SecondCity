@@ -14,3 +14,6 @@ GLOBAL_LIST_INIT_TYPED(splat_prototypes, /datum/splat, init_splat_prototypes())
 	for(var/splat_type in valid_subtypesof(/datum/splat))
 		splat_list[splat_type] = new splat_type()
 	return splat_list
+
+/// An assoc list of species types to their features (from get_features())
+GLOBAL_LIST_EMPTY(features_by_splats)

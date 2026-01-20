@@ -5,13 +5,22 @@
 
 #warn make stacktrace
 /datum/splat/proc/get_splats_description()
-	return "No species description set, file a bug report!"
+	return "No splat description set, file a bug report!"
 
 /datum/splat/proc/get_splats_lore()
-	return list("No species lore set, file a bug report!")
+	return list("No splat lore set, file a bug report!")
+
 
 /**
- * Generates a list of "perks" related to this species
+ * Used to add any splat specific perks to the perk list.
+ *
+ * Returns null by default. When overriding, return a list of perks.
+ */
+/datum/splat/proc/create_pref_unique_perks()
+	return null
+
+/**
+ * Generates a list of "perks" related to this splat
  * (Postives, neutrals, and negatives)
  * in the format of a list of lists.
  * Used in the preference menu.
@@ -29,23 +38,23 @@
  * The innter list is a list of perks. Can be empty, but won't be null.
  */
 /datum/splat/proc/get_splats_perks()
-	var/list/species_perks = list()
+	var/list/splat_perks = list()
 
 	// Let us get every perk we can conceive of in one big list.
 	// The order these are called (kind of) matters.
 	// Species unique perks first, as they're more important than genetic perks,
 	// and language perk last, as it comes at the end of the perks list
-	// species_perks += create_pref_unique_perks()
-	// species_perks += create_pref_blood_perks()
-	// species_perks += create_pref_damage_perks()
-	// species_perks += create_pref_temperature_perks()
-	// species_perks += create_pref_traits_perks()
-	// species_perks += create_pref_biotypes_perks()
-	// species_perks += create_pref_organs_perks()
-	// species_perks += create_pref_language_perk()
+	splat_perks += create_pref_unique_perks()
+	// splat_perks += create_pref_blood_perks()
+	// splat_perks += create_pref_damage_perks()
+	// splat_perks += create_pref_temperature_perks()
+	// splat_perks += create_pref_traits_perks()
+	// splat_perks += create_pref_biotypes_perks()
+	// splat_perks += create_pref_organs_perks()
+	// splat_perks += create_pref_language_perk()
 
 	// Some overrides may return `null`, prevent those from jamming up the list.
-	list_clear_nulls(species_perks)
+	list_clear_nulls(splat_perks)
 
 	// Now let's sort them out for cleanliness and sanity
 	var/list/perks_to_return = list(
@@ -54,12 +63,12 @@
 		SPECIES_NEGATIVE_PERK = list(),
 	)
 
-	for(var/list/perk as anything in species_perks)
+	for(var/list/perk as anything in splat_perks)
 		var/perk_type = perk[SPECIES_PERK_TYPE]
 		// If we find a perk that isn't postiive, negative, or neutral,
 		// it's a bad entry - don't add it to our list. Throw a stack trace and skip it instead.
 		if(isnull(perks_to_return[perk_type]))
-			stack_trace("Invalid species perk ([perk[SPECIES_PERK_NAME]]) found for species [name]. \
+			stack_trace("Invalid splat perk ([perk[SPECIES_PERK_NAME]]) found for splat [name]. \
 				The type should be positive, negative, or neutral. (Got: [perk_type])")
 			continue
 
