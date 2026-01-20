@@ -28,7 +28,10 @@
 /datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist/priest)
+
+/datum/antagonist/sabbatist/priest
+	antag_hud_name = "ductus_priest"
 
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"
