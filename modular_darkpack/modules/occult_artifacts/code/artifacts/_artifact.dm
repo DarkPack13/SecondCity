@@ -61,7 +61,7 @@
 		return
 
 	var/mob/living/artifact_identifier = user
-	if(artifact_identifier.st_get_stat(STAT_OCCULT) < 3)
+	if(artifact_identifier.st_get_stat(STAT_OCCULT) < 4)
 		to_chat(artifact_identifier, span_warning("What is this thing? Some kind of yard sale item?"))
 		return
 
