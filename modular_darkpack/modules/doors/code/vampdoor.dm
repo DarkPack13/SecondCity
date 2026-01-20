@@ -208,7 +208,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if((human_user.st_get_stat(STAT_STRENGTH, FALSE)) >= lockpick_difficulty)
+				if((human_user.st_get_stat(STAT_STRENGTH) - 3) >= lockpick_difficulty)
 					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
 					if(do_after(human_user, 3 SECONDS, src))
 						proc_unlock(50)
