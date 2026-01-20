@@ -7384,6 +7384,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\dementation.dm"
 #include "modular_darkpack\modules\powers\code\discipline\necromancy.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obtenebration.dm"
+#include "modular_darkpack\modules\powers\code\discipline\serpentis.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\aura_component.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\auspex.dm"
