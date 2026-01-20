@@ -32,11 +32,6 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
-	/// Whether to grant an apartment_key
-	var/grant_apartment_key = FALSE
-	var/apartment_key_amount = 1
-	/// The type of a key the resident will get
-	var/apartment_key_type
 
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
@@ -44,8 +39,6 @@
 	register_context()
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
-	if(grant_apartment_key)
-		AddComponent(/datum/component/door_ownership)
 	switch(lockpick_difficulty) //This is fine because any overlap gets intercepted before
 		if(LOCKDIFFICULTY_7 to INFINITY)
 			lockpick_timer = LOCKTIMER_7

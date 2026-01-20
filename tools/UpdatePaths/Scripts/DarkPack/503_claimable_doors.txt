@@ -1,0 +1,1 @@
+/obj/structure/vampdoor/wood/apartment : /obj/structure/vampdoor/wood

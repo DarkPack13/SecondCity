@@ -204,5 +204,4 @@
 /obj/effect/mapping_helpers/door/access/claimable/payload(obj/structure/vampdoor/payload)
 	if(!payload.lock_id)
 		payload.lock_id = "[rand(1,9999999)]"
-	payload.grant_apartment_key = TRUE
 	payload.AddComponent(/datum/component/door_ownership)
