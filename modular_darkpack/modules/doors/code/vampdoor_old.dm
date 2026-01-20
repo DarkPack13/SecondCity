@@ -2,6 +2,8 @@
 	name = "old door"
 	icon_state = "old-1"
 	base_icon_state = "old"
+	bash_difficulty = 7
+	bash_successes_needed = 2
 
 /obj/structure/vampdoor/old/chantry
 	locked = TRUE

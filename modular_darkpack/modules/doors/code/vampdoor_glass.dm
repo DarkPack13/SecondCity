@@ -3,6 +3,8 @@
 	icon_state = "glass_blue-1"
 	opacity = FALSE
 	base_icon_state = "glass_blue"
+	bash_difficulty = 7
+	bash_successes_needed = 2
 
 /obj/structure/vampdoor/glass/clerk
 	lock_id = LOCKACCESS_CLERK
