@@ -208,7 +208,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if((human_user.st_get_stat(STAT_STRENGTH) - 6) >= lockpick_difficulty)
+				if((human_user.st_get_stat(STAT_STRENGTH, include_bonus == FALSE)) >= lockpick_difficulty)
 					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
 					if(do_after(human_user, 3 SECONDS, src))
 						proc_unlock(50)
@@ -304,7 +304,7 @@
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			if(!locked)
 				return
-			var/roll_result = SSroll.storyteller_roll(total_lockpicking + (user.st_get_stat(STAT_DEXTERITY) / 2), lockpick_difficulty, list(user), user)
+			var/roll_result = SSroll.storyteller_roll(total_lockpicking + (user.st_get_stat(STAT_DEXTERITY, include_bonus == FALSE)), lockpick_difficulty, list(user), user)
 			switch(roll_result)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
