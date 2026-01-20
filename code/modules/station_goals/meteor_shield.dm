@@ -26,7 +26,7 @@
 		"You can order the satellites and control systems at cargo.</blockquote>",
 	).Join("\n")
 
-
+/* // DARKPACK EDIT REMOVAL
 /datum/station_goal/station_shield/on_report()
 	//Unlock
 	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shield_sat]
@@ -34,6 +34,7 @@
 
 	P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shield_sat_control]
 	P.order_flags |= ORDER_SPECIAL_ENABLED
+*/
 
 /datum/station_goal/station_shield/check_completion()
 	if(..())

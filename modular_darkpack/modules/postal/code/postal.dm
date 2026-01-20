@@ -21,6 +21,7 @@
 	else
 		say("Not enough money on [src] balance!")
 
+// DARKPACK TODO - (item_interaction)
 /obj/lettermachine/attackby(obj/item/I, mob/user, params)
 	if(iscash(I))
 		money += I.get_item_credit_value()
