@@ -640,7 +640,7 @@
 	custom_price = 1000
 	COOLDOWN_DECLARE(recoil_skill_check)
 
-/obj/item/gun/ballistic/automatic/darkpack/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+/obj/item/gun/ballistic/shotgun/vampire/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	. = ..()
 
 	if(COOLDOWN_FINISHED(src, recoil_skill_check))
