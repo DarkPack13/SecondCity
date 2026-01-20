@@ -140,9 +140,9 @@
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE
 
 	violates_masquerade = TRUE
-
+	toggled = TRUE
 	cancelable = TRUE
-	duration_length = 1 SCENES
+	duration_length = 0
 	cooldown_length = 1 TURNS
 
 	grouped_powers = list(
