@@ -45,8 +45,7 @@
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
 	if(grant_apartment_key)
-		AddComponent(/datum/component/door_ownership, \
-			grant_keys = TRUE)
+		AddComponent(/datum/component/door_ownership)
 	switch(lockpick_difficulty) //This is fine because any overlap gets intercepted before
 		if(LOCKDIFFICULTY_7 to INFINITY)
 			lockpick_timer = LOCKTIMER_7

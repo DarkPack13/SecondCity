@@ -1,12 +1,8 @@
 /datum/component/door_ownership
-	/// Whether keys are still available to grant
-	var/grant_keys = FALSE
 	/// Type of ownership (apartment, car, etc.)
 	var/ownership_type = "apartment"
 
-/datum/component/door_ownership/Initialize(grant_keys = FALSE)
-
-	src.grant_keys = grant_keys
+/datum/component/door_ownership/Initialize()
 
 	if(istype(parent, /obj/darkpack_car))
 		ownership_type = "car"
@@ -22,8 +18,6 @@
 /datum/component/door_ownership/proc/try_award_key(atom/source, mob/user)
 	SIGNAL_HANDLER
 
-	if(!grant_keys)
-		return
 	if(!ishuman(user))
 		return
 
@@ -79,6 +73,5 @@
 		human.put_in_hands(key)
 
 	human.received_ownership_keys += ownership_type
-	grant_keys = FALSE
 	qdel(src)
 

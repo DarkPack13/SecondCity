@@ -122,8 +122,7 @@
 	if(access == "none")
 		grant_car_keys = TRUE
 		access = "[rand(1,9999999)]"
-		AddComponent(/datum/component/door_ownership, \
-			grant_keys = TRUE)
+		AddComponent(/datum/component/door_ownership)
 
 	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
