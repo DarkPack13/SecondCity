@@ -36,7 +36,7 @@
 /obj/item/stamp/head
 	abstract_type = /obj/item/stamp/head
 
-/* DARKPACK EDIT REMOVAL
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stamp/head/Initialize(mapload)
 	. = ..()
 	// All maps should have at least 1 of each head of staff stamp

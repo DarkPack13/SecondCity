@@ -144,10 +144,10 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 			log_shuttle(log_text, data)
 		if(LOG_SPEECH_INDICATORS)
 			log_speech_indicators(log_text, data)
-		//DARKPACK EDIT ADD START - STORYTELLER_STATS
+		// DARKPACK EDIT ADD START - STORYTELLER_STATS
 		if(LOG_STATS)
 			log_stats(log_text, data)
-		//DARKPACK EDIT ADD END
+		// DARKPACK EDIT ADD END
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text, data)

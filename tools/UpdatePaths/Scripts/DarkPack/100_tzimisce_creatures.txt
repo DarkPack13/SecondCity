@@ -1,4 +1,7 @@
 /mob/living/simple_animal/hostile/beastmaster : @DELETE
-/mob/living/simple_animal/hostile/biter : /mob/living/basic/biter
-/mob/living/simple_animal/hostile/fister : /mob/living/basic/fister
-/mob/living/simple_animal/hostile/tanker : /mob/living/basic/tanker
+/mob/living/simple_animal/hostile/biter : /mob/living/basic/szlachta
+/mob/living/simple_animal/hostile/biter/hostile : /mob/living/basic/szlachta/hostile
+/mob/living/simple_animal/hostile/fister : /mob/living/basic/szlachta/fister
+/mob/living/simple_animal/hostile/fister/hostile : /mob/living/basic/szlachta/fister/hostile
+/mob/living/simple_animal/hostile/tanker : /mob/living/basic/szlachta/tanker
+/mob/living/simple_animal/hostile/tanker/hostile : /mob/living/basic/szlachta/tanker/hostile

@@ -56,7 +56,7 @@
 
 	// If we found a seller and they're on Enlightenment path, no warning
 	if(seller && iskindred(seller))
-		var/datum/species/human/kindred/vampirism = seller.dna.species
+		var/datum/splat/vampire/kindred/vampirism = iskindred(seller)
 		if(vampirism.enlightenment)
 			return span_notice("You've sold [parent]!")
 

@@ -5,6 +5,7 @@
 	icon = 'modular_darkpack/modules/walls/icons/lowwalls.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
+	abstract_type = /obj/structure/platform/lowwall
 	max_integrity = 350
 	smoothing_groups = SMOOTH_GROUP_CITY_LOW_WALL
 	canSmoothWith = SMOOTH_GROUP_CITY_LOW_WALL

@@ -20,7 +20,6 @@
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
-	var/humanity = 7
 	var/masquerade_score = 5
 	var/warrant = FALSE
 	var/ignores_warrant = FALSE
@@ -38,3 +37,15 @@
 	var/obj/grabbed_by_tentacle = null
 	var/escape_attempt = 0
 	var/tentacle_aggro_mode = "Aggressive"
+	var/possessed = FALSE //dominate 5 body posession
+	var/datum/weakref/conditioner // dominate 4
+	//obfuscate icon, client side
+	var/obf_icons
+
+	COOLDOWN_DECLARE(masquerade_timer)
+	//thaumaturgy & necro path stuff
+	var/research_points = 0
+	var/collected_souls = 0
+
+	/// List of supernatural types that this mob is part of
+	var/list/datum/splat/splats

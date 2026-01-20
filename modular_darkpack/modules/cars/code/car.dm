@@ -235,7 +235,7 @@
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 	if(total_lockpicking <= 0)
-		to_chat(span_warning("How do I do this...?"))
+		to_chat(user, span_warning("How do I do this...?"))
 	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		if(!locked)
 			return
@@ -248,7 +248,7 @@
 				if(initial(access) == "none") //Stealing a car with no keys assigned to it is basically robbing a random person and not an organization
 					if(ishuman(user))
 						var/mob/living/carbon/human/H = user
-						H.AdjustHumanity(-1, 6)
+						SEND_SIGNAL(H, COMSIG_PATH_HIT, -1, 6, FALSE)
 				return TRUE
 			if(ROLL_FAILURE)
 				to_chat(user, span_warning("You've failed to open [src]'s lock."))

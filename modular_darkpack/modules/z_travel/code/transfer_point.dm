@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/obj/transfer_point_vamp/exit
 	var/id = 1
+	var/unit_test_exempt = FALSE
 
 /obj/transfer_point_vamp/Initialize(mapload)
 	. = ..()

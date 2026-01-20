@@ -291,7 +291,7 @@
 	can_suppress = TRUE
 	mag_display = TRUE
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
-	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10.ogg' //TFN sound effect
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10.ogg' // DARKPACK sound effect
 
 
 /obj/item/ammo_box/magazine/darkpack45custom

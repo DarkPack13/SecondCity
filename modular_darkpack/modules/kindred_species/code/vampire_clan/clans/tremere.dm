@@ -6,7 +6,7 @@
 	curse = "Blood magic."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
-		// /datum/discipline/dominate,
+		/datum/discipline/dominate,
 		/datum/discipline/thaumaturgy
 	)
 	male_clothes = /obj/item/clothing/under/vampire/tremere

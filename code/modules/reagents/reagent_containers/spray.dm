@@ -217,7 +217,7 @@
 	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 50)
 	pickup_sound = 'sound/items/handling/pepper_spray/pepper_spray_pick_up.ogg'
 	drop_sound = 'sound/items/handling/pepper_spray/pepper_spray_drop.ogg'
-	custom_price = 200 // DARKPACK EDIT ADD
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -436,8 +436,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	volume = 100
 
-/obj/item/reagent_containers/spray/medical/Initialize(mapload, vol)
-	. = ..()
+/obj/item/reagent_containers/spray/medical/setup_reskins()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/med_spray)
 
 /obj/item/reagent_containers/spray/hercuri

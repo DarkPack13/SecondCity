@@ -23,4 +23,3 @@
 	description = "The quality that allows characters to stand in the face of fear or daunting adversity. It is bravery, mettle, and stoicism combined. Raises your Willpower by one."
 	starting_score = 1
 	min_score = 1
-	stat_flags = AFFECTS_STATS
