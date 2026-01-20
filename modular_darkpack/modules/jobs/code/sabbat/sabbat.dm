@@ -25,6 +25,7 @@
 	pref_flag = ROLE_SABBAT
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
+	ui_name = null
 
 /datum/antagonist/sabbatist/on_removal()
 	to_chat(owner.current, span_userdanger("You are no longer the part of Sabbat!"))
@@ -32,4 +33,4 @@
 
 /datum/antagonist/sabbatist/greet()
 	to_chat(owner.current, span_alertsyndie("You are now part of the Sabbat."))
-	owner.announce_objectives()
+	//owner.announce_objectives()
