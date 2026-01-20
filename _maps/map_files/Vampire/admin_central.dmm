@@ -7338,9 +7338,6 @@
 /area/vtm/interior/movie_theatre/screening)
 "FO" = (
 /obj/structure/table/reinforced,
-/obj/item/computer_disk/quartermaster,
-/obj/item/computer_disk/quartermaster,
-/obj/item/computer_disk/quartermaster,
 /obj/item/gps/mining,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -8162,6 +8159,12 @@
 "KH" = (
 /turf/closed/wall/mineral/titanium,
 /area/centcom/central_command_areas/evacuation/ship)
+"KI" = (
+/obj/darkpack_car/retro/debug{
+	dir = 2
+	},
+/turf/open/floor/carpet,
+/area/awaymission/errorroom)
 "KK" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/stripes/line{
@@ -15657,7 +15660,7 @@ LV
 LV
 LV
 LV
-LV
+KI
 LV
 LV
 LV
