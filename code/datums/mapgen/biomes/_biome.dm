@@ -198,11 +198,14 @@
 	)
 	flora_density = 60
 	fauna_types = list(
-		/mob/living/basic/butterfly = 30,
+		/mob/living/basic/butterfly = 20,
 		/mob/living/basic/deer = 10,
+		/mob/living/basic/cockroach = 5,
 		/mob/living/basic/goose = 5,
 		/mob/living/basic/frog = 5,
 		/mob/living/basic/pet/fox = 1,
+		/mob/living/basic/stoat = 1,
+		/mob/living/basic/pet/dog/wolf = 0.5,
 	)
 	fauna_density = 2
 
@@ -217,11 +220,14 @@
 	)
 	flora_density = 30
 	fauna_types = list(
-		/mob/living/basic/butterfly = 30,
+		/mob/living/basic/butterfly = 20,
 		/mob/living/basic/deer = 10,
+		/mob/living/basic/cockroach = 5,
 		/mob/living/basic/goose = 5,
 		/mob/living/basic/frog = 5,
 		/mob/living/basic/pet/fox = 1,
+		/mob/living/basic/stoat = 1,
+		/mob/living/basic/pet/dog/wolf = 0.5,
 	)
 	fauna_density = 1
 
