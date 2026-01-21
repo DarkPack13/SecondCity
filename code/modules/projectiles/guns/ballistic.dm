@@ -601,7 +601,7 @@
 	if(COOLDOWN_FINISHED(src, recoil_skill_check))
 		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
 		recoil = max(initial(recoil) - recoil_reduction, 0)
-		COOLDOWN_START(src, recoil_skill_check, 30 MINUTES)
+		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)
 	//DARKPACK EDIT END
 
 	return ..()
