@@ -77,6 +77,6 @@
 /obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
 /obj/structure/reagent_dispensers/peppertank : /obj/structure/reagent_dispensers/wall/peppertank {@OLD}
 /obj/structure/table/wood/bar : /obj/structure/table/wood/shuttle_bar
-/obj/sturcture/sign/plaques/deempisi : /obj/structure/sign/picture_frame/portrait {@OLD}
+/obj/structure/sign/plaques/deempisi : /obj/structure/sign/picture_frame/portrait {@OLD}
 
 /turf/open/floor/grass/fakebasalt : /turf/open/floor/fakebasalt

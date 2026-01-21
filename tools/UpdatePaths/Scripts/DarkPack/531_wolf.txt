@@ -1,0 +1,3 @@
+#this assumes all old mapped "wolfkin" are infact kinfolk
+/mob/living/basic/pet/dog/wolfkin : /mob/living/basic/pet/dog/wolf/kinfolk {@OLD}
+/mob/living/basic/pet/dog/wolfkin/@SUBTYPES : /mob/living/basic/pet/dog/wolf/kinfolk/@SUBTYPES {@OLD}
