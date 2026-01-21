@@ -12,9 +12,9 @@
 	id = /obj/item/card/swat
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/ar15
 	backpack_contents = list(
-		/obj/item/ammo_box/magazine/darkpack556 = 3,
-		/obj/item/grenade/frag = 3,
-		/obj/item/grenade/flashbang = 2,
+		/obj/item/ammo_box/magazine/darkpack556 = 2,
+		/obj/item/grenade/frag = 1,
+		/obj/item/grenade/flashbang = 1,
 		/obj/item/grenade/smokebomb = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/restraints/handcuffs = 1,
@@ -35,7 +35,7 @@
 	id = /obj/item/card/lieutenant
 	r_hand = /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle/c50
 	backpack_contents = list(
-		/obj/item/ammo_box/magazine/m50 = 4,
+		/obj/item/ammo_box/magazine/m50 = 2,
 		/obj/item/grenade/frag = 1,
 		/obj/item/grenade/flashbang = 1,
 		/obj/item/grenade/smokebomb = 1,
@@ -72,14 +72,13 @@
 	l_pocket = /obj/item/vamp/keys/police
 	suit_store = /obj/item/flashlight/seclite
 	shoes = /obj/item/clothing/shoes/vampire
-	belt = /obj/item/megaphone
 	id = /obj/item/card/swat
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/sniper // for when negotiations go south.
 	backpack_contents = list(
 		/obj/item/clothing/under/vampire/suit/female = 1,
-		/obj/item/clothing/accessory/lawyers_badge = 1,
-		/obj/item/stack/dollar/thousand = 7,
+		/obj/item/stack/dollar/thousand = 1,
 		/obj/item/ammo_box/darkpack/c50 = 1,
-		/obj/item/reagent_containers/cup/glass/coffee/vampire = 5,
-		/obj/item/food/cookie = 5, // cookies but no milk. these are gonna be some hard negotiations.
+		/obj/item/reagent_containers/cup/glass/coffee/vampire = 1,
+		/obj/item/food/cookie = 1, // cookies but no milk. these are gonna be some hard negotiations.
+		/obj/item/megaphone = 1,
 		)
