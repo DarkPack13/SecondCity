@@ -1,4 +1,4 @@
-/// Returns a list of strings representing features this spalt has.
+/// Returns a list of strings representing features this splat has.
 /// Used by the preferences UI to know what buttons to show.
 /datum/splat/proc/get_features()
 	var/cached_features = GLOB.features_by_splats[type]
