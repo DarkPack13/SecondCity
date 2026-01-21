@@ -8,15 +8,6 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	recoil = 5
-	COOLDOWN_DECLARE(recoil_skill_check)
-
-/obj/item/gun/ballistic/automatic/darkpack/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
-	. = ..()
-
-	if(COOLDOWN_FINISHED(src, recoil_skill_check))
-		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
-		recoil = max(initial(recoil) - recoil_reduction, 0)
-		COOLDOWN_START(src, recoil_skill_check, 30 MINUTES)
 
 /*
 /obj/item/ammo_box/magazine/darkpack
@@ -46,15 +37,6 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 85
 	recoil = 4
-	COOLDOWN_DECLARE(recoil_skill_check)
-
-/obj/item/gun/ballistic/revolver/darkpack/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
-	. = ..()
-
-	if(COOLDOWN_FINISHED(src, recoil_skill_check))
-		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
-		recoil = max(initial(recoil) - recoil_reduction, 0)
-		COOLDOWN_START(src, recoil_skill_check, 30 MINUTES)
 
 /obj/item/gun/ballistic/revolver/darkpack/magnum
 	name = "magnum revolver"
@@ -87,15 +69,6 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	recoil = 3
-	COOLDOWN_DECLARE(recoil_skill_check)
-
-/obj/item/gun/ballistic/automatic/pistol/darkpack/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
-	. = ..()
-
-	if(COOLDOWN_FINISHED(src, recoil_skill_check))
-		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
-		recoil = max(initial(recoil) - recoil_reduction, 0)
-		COOLDOWN_START(src, recoil_skill_check, 30 MINUTES)
 
 /obj/item/ammo_box/magazine/m44
 	name = "handgun magazine (.44)"
@@ -638,15 +611,6 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	custom_price = 1000
-	COOLDOWN_DECLARE(recoil_skill_check)
-
-/obj/item/gun/ballistic/shotgun/vampire/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
-	. = ..()
-
-	if(COOLDOWN_FINISHED(src, recoil_skill_check))
-		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
-		recoil = max(initial(recoil) - recoil_reduction, 0)
-		COOLDOWN_START(src, recoil_skill_check, 30 MINUTES)
 
 /obj/item/ammo_box/magazine/darkpackautoshot
 	name = "shotgun magazine (12ga)"
