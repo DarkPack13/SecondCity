@@ -122,6 +122,9 @@
 /obj/effect/mapping_helpers/door/access/lasombra
 	lock_id = LOCKACCESS_LASOMBRA
 
+/obj/effect/mapping_helpers/door/access/setite
+	lock_id = LOCKACCESS_SETITE
+
 /obj/effect/mapping_helpers/door/access/sabbat
 	lock_id = LOCKACCESS_SABBAT
 
