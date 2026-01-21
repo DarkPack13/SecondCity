@@ -47,9 +47,7 @@
 /obj/item/grown/sunflower : /obj/item/food/grown/sunflower {@OLD}
 
 /obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
-/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
-/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
-/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv {@OLD}
+/obj/item/kitchen/knife/@SUBTYPES : /obj/item/knife/@SUBTYPES {@OLD}
 /obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
 /obj/item/melee/rune_knife : @DELETE
 
@@ -71,6 +69,7 @@
 /obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west
 /obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
 
+/obj/structure/closet/crate/grave/lead_researcher : /obj/structure/closet/crate/grave/filled/lead_researcher {@OLD}
 /obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
 /obj/structure/grille/indestructable : /obj/structure/grille/indestructible
 /obj/structure/janitorialcart : /obj/structure/mop_bucket/janitorialcart {@OLD}
