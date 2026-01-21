@@ -31,6 +31,7 @@
 	. += "<b>Gas</b>: [stored_gasoline]/1000"
 
 /obj/item/gas_can/full
+	custom_price = 250 // ECONOMY
 	stored_gasoline = 1000
 
 /obj/item/gas_can/rand
