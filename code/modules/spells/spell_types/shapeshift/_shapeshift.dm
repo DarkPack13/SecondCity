@@ -170,6 +170,8 @@
 		polymorph_bot.bot_cover_flags |= BOT_COVER_EMAGGED
 		polymorph_bot.bot_mode_flags &= ~BOT_MODE_REMOTE_ENABLED
 
+	new_shape.storyteller_stats = caster.storyteller_stats //DARKPACK EDIT ADD
+
 	return new_shape
 
 /// Actually does the un-shapeshift, from the caster. (Caster is a shapeshifted mob.)

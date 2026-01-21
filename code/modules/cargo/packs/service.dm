@@ -63,6 +63,7 @@
 	crate_name = "janitor backpack crate"
 	crate_type = /obj/structure/closet/crate/secure
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/service/mule
 	name = "MULEbot Crate"
 	desc = "Pink-haired Quartermaster not doing her job? Replace her with this tireless worker, today! \
@@ -71,6 +72,7 @@
 	contains = list(/mob/living/simple_animal/bot/mulebot)
 	crate_name = "\improper MULEbot Crate"
 	crate_type = /obj/structure/closet/crate/large
+*/
 
 /datum/supply_pack/service/party
 	name = "Party Equipment"
@@ -152,6 +154,7 @@
 	contains = list(/obj/item/storage/box/lights/mixed = 3)
 	crate_name = "replacement lights"
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/service/minerkit
 	name = "Shaft Miner Starter Kit"
 	desc = "All the miners died too fast? Assistant wants to get a taste of life off-station? \
@@ -173,6 +176,7 @@
 	contains = list(/obj/item/knife/combat/survival = 3)
 	crate_name = "survival knife crate"
 	crate_type = /obj/structure/closet/crate/cargo/mining
+*/
 
 /datum/supply_pack/service/wedding
 	name = "Wedding Crate"
@@ -191,6 +195,7 @@
 				)
 	crate_name = "wedding crate"
 
+/* // DARKPACK EDIT REMOVAL
 /// Box of 7 grey IDs.
 /datum/supply_pack/service/greyidbox
 	name = "Grey ID Card Multipack Crate"
@@ -208,6 +213,7 @@
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/card/id/advanced/silver)
 	crate_name = "silver id card crate"
+*/
 
 /datum/supply_pack/service/emptycrate
 	name = "Empty Crate"
@@ -285,6 +291,7 @@
 	crate_type = /obj/structure/closet/crate/large
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
+/* // DARKPACK EDIT REMOVAL
 /// Spare bar sign wallmount
 /datum/supply_pack/service/bar_sign
 	name = "Bar Sign Replacement Kit"
@@ -293,6 +300,7 @@
 	contains = list(/obj/item/wallframe/barsign/all_access)
 	crate_name = "bar sign crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/
 
 /datum/supply_pack/service/bowmaking
 	name = "Fletching and Bow-Making Starter Kit"

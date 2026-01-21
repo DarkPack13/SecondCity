@@ -9501,6 +9501,9 @@
 /area/vtm/interior/clinic)
 "aFf" = (
 /obj/machinery/camera/autoname/directional/south,
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_tower"
+	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "aFg" = (
@@ -16058,6 +16061,12 @@
 "cLU" = (
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/caves)
+"cTO" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_forest"
+	},
+/turf/open/misc/grass/random,
+/area/vtm/westfield_mall/forest)
 "dan" = (
 /obj/structure/chair/office/darkpack/blue{
 	dir = 4
@@ -16258,6 +16267,12 @@
 	},
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
+"eAj" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_hospital"
+	},
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/clinic)
 "eBu" = (
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
@@ -16353,6 +16368,13 @@
 "fjk" = (
 /turf/open/floor/carpet/darkpack/blacksilver,
 /area/vtm/westfield_mall/interior/skatepark)
+"fkA" = (
+/obj/structure/table/modern,
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_dora"
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "fmw" = (
 /obj/structure/table/glass,
 /turf/open/floor/carpet/darkpack/purplegold,
@@ -16593,6 +16615,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
+"gUB" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_sewers"
+	},
+/turf/open/floor/plating/canalplating,
+/area/vtm/interior/sewer)
 "gWV" = (
 /obj/item/smartphone/payphone{
 	pixel_y = 20
@@ -16611,6 +16639,12 @@
 /obj/effect/decal/wallpaper/padded,
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior/theatre)
+"heG" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_street"
+	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/westfield_mall)
 "hjz" = (
 /obj/effect/decal/wallpaper/red/low,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -17017,6 +17051,12 @@
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"lsP" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_police"
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "lyX" = (
 /obj/structure/table/modern,
 /turf/open/floor/wood/smooth/old,
@@ -17608,6 +17648,12 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
+"rgB" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_theatre"
+	},
+/turf/open/floor/carpet/darkpack/purplegold,
+/area/vtm/westfield_mall/interior/theatre)
 "rne" = (
 /obj/effect/decal/rugs,
 /obj/effect/decal/rugs,
@@ -17635,6 +17681,13 @@
 /obj/machinery/light/dim/directional/east,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
+"rCr" = (
+/obj/effect/decal/cleanable/trash,
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_china"
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/westfield_mall/skatepark)
 "rDj" = (
 /obj/item/kirbyplants/darkpack/random,
 /obj/effect/landmark/start/darkpack/hecata/squadra,
@@ -17658,6 +17711,12 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"rJe" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_church"
+	},
+/turf/open/floor/carpet/darkpack/blackgold,
+/area/vtm/interior/church)
 "rMN" = (
 /obj/effect/turf_decal/bordur{
 	dir = 9
@@ -18239,6 +18298,12 @@
 /obj/machinery/light/warm/directional/south,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/law_office)
+"wtZ" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_bar"
+	},
+/turf/open/floor/city/plating,
+/area/vtm/westfield_mall/interior)
 "wwh" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/concrete,
@@ -18312,6 +18377,12 @@
 /obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/carpet/darkpack/purplegold,
 /area/vtm/westfield_mall/interior/games_store)
+"wSc" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_beach"
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/westfield_mall/forest)
 "wWP" = (
 /obj/structure/table,
 /obj/effect/decal/pallet,
@@ -18362,6 +18433,12 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"xGr" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_supply"
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "xIe" = (
 /obj/structure/platform/lowwall/painted/window,
 /turf/open/floor/plating/rough,
@@ -24975,7 +25052,7 @@ aPP
 adV
 azz
 aco
-aco
+gUB
 abd
 aPP
 adV
@@ -46322,7 +46399,7 @@ adg
 adg
 aqX
 ahL
-agM
+rCr
 ahL
 ahL
 aoR
@@ -55635,7 +55712,7 @@ aXo
 aXo
 aDd
 aYG
-aYG
+heG
 aYG
 aTg
 tMt
@@ -57109,7 +57186,7 @@ aUp
 aUp
 aUp
 jeh
-aXr
+lsP
 aXr
 aWu
 aYl
@@ -61802,7 +61879,7 @@ aAI
 aAI
 aAI
 aAI
-aAI
+rgB
 aAI
 wKZ
 wwh
@@ -73300,7 +73377,7 @@ adL
 ahe
 aXb
 anW
-anW
+xGr
 anW
 adv
 aJh
@@ -75503,7 +75580,7 @@ aVZ
 aVs
 amP
 amc
-aVZ
+fkA
 aVs
 avF
 ahY
@@ -75795,7 +75872,7 @@ awB
 awB
 ayr
 aXr
-aXr
+wtZ
 aol
 adm
 aCX
@@ -79123,7 +79200,7 @@ aQl
 aQl
 auZ
 aYk
-aZy
+rJe
 afT
 atv
 afT
@@ -80337,7 +80414,7 @@ aQl
 aQl
 aQl
 aQl
-aQl
+eAj
 auZ
 afh
 afT
@@ -110197,7 +110274,7 @@ avR
 aFc
 arI
 auM
-auM
+cTO
 auM
 auM
 aBu
@@ -113093,7 +113170,7 @@ aSx
 aSx
 aSx
 aHn
-aHn
+wSc
 aHn
 aHn
 aHn

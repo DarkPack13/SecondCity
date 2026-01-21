@@ -7,7 +7,7 @@
 
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
-		///datum/discipline/presence,
+		/datum/discipline/presence,
 		///datum/discipline/daimonion
 	)
 

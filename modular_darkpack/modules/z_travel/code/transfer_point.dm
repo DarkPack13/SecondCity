@@ -9,37 +9,74 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	/// Sister transfer point
 	var/obj/transfer_point_vamp/exit
+	/// ID used for linking to other transfer points
 	var/id = 1
+	/// Dont allow people to take this transfer point. It can only be used as an exit
+	var/one_way = FALSE
+	/// Skipped by checks for allocated transfer points
 	var/unit_test_exempt = FALSE
 
 /obj/transfer_point_vamp/Initialize(mapload)
 	. = ..()
-	if(!exit)
+	if(id && !exit)
+		if(isnum(id))
+			// Im considering them bad practice because you cant tell where they lead - Fallcon
+			log_mapping("[src] has a ID of [id]. Numbers are bad practice")
 		GLOB.unallocted_transfer_points += src
-		for(var/obj/transfer_point_vamp/T in GLOB.unallocted_transfer_points)
-			if(T.id == id && T != src)
-				exit = T
-				GLOB.unallocted_transfer_points -= T
-				T.exit = src
+		for(var/obj/transfer_point_vamp/other_point in GLOB.unallocted_transfer_points)
+			if(other_point.id == id && other_point != src)
+				exit = other_point
+				GLOB.unallocted_transfer_points -= other_point
+				other_point.exit = src
 				GLOB.unallocted_transfer_points -= src
 				break
 
 /obj/transfer_point_vamp/Destroy(force)
-	// Clear the refernce to ourselves to prevent hard del
-	if(exit)
-		exit.exit = null
-
 	GLOB.unallocted_transfer_points -= src
+	if(!QDELETED(exit))
+		QDEL_NULL(exit)
+
 	return ..()
 
-/obj/transfer_point_vamp/backrooms
-	id = "backrooms"
-	alpha = 0
+/obj/transfer_point_vamp/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, exit))
+		if(istype(var_value, /obj/transfer_point_vamp))
+			var/obj/transfer_point_vamp/new_exit = var_value
+			new_exit.exit = src
 
-/obj/transfer_point_vamp/backrooms/map
-	density = FALSE
+/obj/transfer_point_vamp/Bumped(atom/movable/bumped_atom)
+	. = ..()
+	transfer_atom(bumped_atom)
 
+/obj/transfer_point_vamp/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+	if(Adjacent(user))
+		transfer_atom(user)
+
+// Ignore any checks or safties, including one-ways. We dont care about those for ghosts.
+/obj/transfer_point_vamp/attack_ghost(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(exit)
+		user.forceMove(get_turf(exit))
+
+/obj/transfer_point_vamp/proc/transfer_atom(atom/movable/arrived)
+	if(!exit || one_way)
+		return
+	var/turf/T = get_step(exit, get_dir(arrived, src))
+	if(T && !T.density)
+		arrived.forceMove(T)
+	else
+		arrived.forceMove(get_turf(exit))
+	return TRUE
+
+// Use inside the umbra. Visable
 /obj/transfer_point_vamp/umbral
 	name = "portal"
 	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
@@ -48,27 +85,43 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	//layer = ABOVE_LIGHTING_LAYER
 	pixel_w = -8
 
-/obj/transfer_point_vamp/old_clan_tzimisce
-	name = "old clan transfer point"
-	icon_state = "matrix_go"
-	layer = MID_TURF_LAYER
+// Use in the base map/outside the umbra. Invisable
+/obj/transfer_point_vamp/umbral/exit
+	name = "umbral exit"
+	invisibility = INVISIBILITY_OBSERVER
+	density = FALSE
+	one_way = TRUE
 
 /obj/transfer_point_vamp/umbral/Initialize(mapload)
 	. = ..()
-	set_light(2, 1, "#a4a0fb")
+	if(!one_way)
+		set_light(2, 1, "#a4a0fb")
+		apply_wibbly_filters(src)
 
-/obj/transfer_point_vamp/umbral/Bumped(atom/movable/AM)
+/obj/transfer_point_vamp/umbral/transfer_atom(atom/movable/arrived)
 	. = ..()
-	playsound(get_turf(AM), 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
+	if(!.)
+		return
+	// dont spam from ghosts or random objects
+	if(!isliving(arrived))
+		return
+	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
+	if(exit)
+		playsound(exit, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
 
-/obj/transfer_point_vamp/Bumped(atom/movable/AM)
-	. = ..()
-	var/turf/T = get_step(exit, get_dir(AM, src))
-	AM.forceMove(T)
+/obj/transfer_point_vamp/backrooms
+	id = "backrooms"
+	alpha = 0
+
+/obj/transfer_point_vamp/backrooms/map
+	density = FALSE
+	one_way = TRUE
+
+/obj/transfer_point_vamp/old_clan_tzimisce
+	name = "old clan transfer point"
 
 /obj/transfer_point_vamp/voivodate
 	name = "voivodate transfer point"
-	density = 1
 	id = "estate_1"
 
 /obj/transfer_point_vamp/voivodate/one
