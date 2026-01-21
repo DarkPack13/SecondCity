@@ -8,10 +8,10 @@
 	l_pocket = /obj/item/ammo_box/magazine/darkpackaug
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest
-	//id = /obj/item/card/military/officer
+	id = /obj/item/card/lieutenant
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpackautoshot = 3,
-		/obj/item/ammo_casing/vampire/c12g/buck = 1,
+		/obj/item/ammo_box/darkpack/c12g/buck = 1,
 		/obj/item/ammo_box/magazine/semi9mm = 2,
 		/obj/item/knife/vamp = 1,
 		/obj/item/clothing/accessory/lawyers_badge = 1,
@@ -34,7 +34,7 @@
 	belt = /obj/item/defibrillator/compact/loaded
 	suit = /obj/item/clothing/suit/vampire/labcoat/director
 	head = /obj/item/clothing/head/beret
-	//id = /obj/item/card/military
+	id = /obj/item/card/first_aid
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack9mp5 = 2,
@@ -59,7 +59,7 @@
 	belt = /obj/item/gun/ballistic/automatic/darkpack/aug
 	suit = /obj/item/clothing/suit/vampire/vest/army
 	head = /obj/item/clothing/head/vampire/army
-	//id = /obj/item/card/military
+	id = /obj/item/card/swat
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpackaug = 4,
 		/obj/item/ammo_box/magazine/m9mm = 1,
@@ -79,7 +79,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/eod
 	head = /obj/item/clothing/head/vampire/eod
-	//id = /obj/item/card/military
+	id = /obj/item/card/swat
 	backpack_contents = list(
 		/obj/item/gas_can/full = 2,
 		/obj/item/grenade/frag = 5,
@@ -104,7 +104,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/army
 	head = /obj/item/clothing/head/beret
-	//id = /obj/item/card/military
+	id = /obj/item/card/swat
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 3,
 		/obj/item/ammo_box/magazine/m9mm = 2,

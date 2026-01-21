@@ -9,7 +9,7 @@
 	belt = /obj/item/storage/belt/police/swat/full
 	suit = /obj/item/clothing/suit/vampire/vest
 	head = /obj/item/clothing/head/vampire/helmet
-	id = /obj/item/card/police
+	id = /obj/item/card/swat
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/ar15
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack556 = 3,
@@ -32,7 +32,7 @@
 	belt = /obj/item/storage/belt/police/swat/full
 	suit = /obj/item/clothing/suit/vampire/trench/armored
 	head = /obj/item/clothing/head/hats/hos/beret
-	id = /obj/item/card/police/sergeant
+	id = /obj/item/card/lieutenant
 	r_hand = /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle/c50
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/m50 = 4,
@@ -55,7 +55,7 @@
 	belt = /obj/item/defibrillator/compact/loaded
 	suit = /obj/item/clothing/suit/vampire/labcoat
 	head = /obj/item/clothing/head/vampire/helmet
-	id = /obj/item/card/police
+	id = /obj/item/card/first_aid
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpack9mp5 = 2,
@@ -73,7 +73,7 @@
 	suit_store = /obj/item/flashlight/seclite
 	shoes = /obj/item/clothing/shoes/vampire
 	belt = /obj/item/megaphone
-	id = /obj/item/card/police
+	id = /obj/item/card/swat
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/sniper // for when negotiations go south.
 	backpack_contents = list(
 		/obj/item/clothing/under/vampire/suit/female = 1,
