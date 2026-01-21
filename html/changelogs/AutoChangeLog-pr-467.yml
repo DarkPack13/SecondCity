@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "fixes some issues with umbra background not appearing in the umbra"
+  - qol: "some qol for transfer points including allowing ghosts to use them"
