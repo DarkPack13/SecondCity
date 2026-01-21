@@ -139,7 +139,7 @@
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/storage/backpack/duffelbag/clown/cream_pie)
 	crate_name = "party equipment crate"
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	access = ACCESS_THEATRE
 	access_view = ACCESS_THEATRE
 	crate_type = /obj/structure/closet/crate/secure
@@ -322,6 +322,7 @@
 	crate_name = "grilling fuel kit crate"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/organic/tiziran_supply
 	name = "Tiziran Supply Box"
 	desc = "A packaged box of supplies from the heart of the Lizard Empire. \
@@ -346,6 +347,7 @@
 				)
 	crate_name = "\improper Mothic Supply box"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
+*/
 
 /datum/supply_pack/organic/syrup
 	name = "Coffee Syrups Box"
@@ -360,7 +362,7 @@
 	crate_type = /obj/structure/closet/crate/cardboard
 
 /datum/supply_pack/organic/syrup_contraband
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	name = "Contraband Syrups Box"
 	desc = "A packaged box containing illegal coffee syrups. Possession of these carries a penalty established in the galactic penal code."
 	cost = CARGO_CRATE_VALUE * 6

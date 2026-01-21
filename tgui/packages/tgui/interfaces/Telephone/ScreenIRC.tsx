@@ -2,7 +2,7 @@
 import { Box, Icon, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { Data, NavigableApps } from '.';
+import { type Data, NavigableApps } from '.';
 
 export const ScreenViewingChannel = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;

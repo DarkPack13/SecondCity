@@ -17,7 +17,7 @@
 /datum/supply_pack/critter/butterfly
 	name = "Butterflies Crate"
 	desc = "Not a very dangerous insect, but they do give off a better image than, say, flies or cockroaches."//is that a motherfucking worm reference
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/basic/butterfly)
 	crate_name = "entomology samples crate"
@@ -113,7 +113,7 @@
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/mob/living/basic/crab)
 	crate_name = "look sir free crabs"
-	drop_pod_only = TRUE
+	order_flags = ORDER_POD_ONLY
 
 /datum/supply_pack/critter/crab/generate()
 	. = ..()
@@ -218,7 +218,7 @@
 /datum/supply_pack/critter/garden_gnome
 	name = "Garden Gnome Crate"
 	desc = "Collect them all for your garden. Comes with three!"
-	hidden = TRUE
+	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/mob/living/basic/garden_gnome)
 	crate_name = "garden gnome crate"
@@ -239,6 +239,7 @@
 	contains = list(/obj/item/storage/fish_case/random = 2)
 	crate_name = "aquarium fish crate"
 
+/* // DARKPACK EDIT REMOVAL - FISHING
 /datum/supply_pack/critter/fish/freshwater_fish
 	name = "Freshwater Fish Case"
 	desc = "Aquarium fish that have had most of their mud cleaned off."
@@ -259,6 +260,7 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/fish_case/tiziran = 2)
 	crate_name = "tiziran fish crate"
+*/
 
 /datum/supply_pack/critter/turtle
 	name = "Turtle Crate"

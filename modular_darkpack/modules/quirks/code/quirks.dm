@@ -195,14 +195,6 @@ Dancer
 	else
 		dancesecond(owner)
 
-	if(last_added_humanity+6000 < world.time)
-		for(var/obj/machinery/jukebox/J in range(DEFAULT_SIGHT_DISTANCE, owner))
-			if(J.active)
-				if(ishuman(owner))
-					var/mob/living/carbon/human/human = owner
-					human.AdjustHumanity(1, 8)
-					last_added_humanity = world.time
-
 /datum/quirk/dwarf
 	name = "Dwarf"
 	desc = "You are short."
@@ -286,7 +278,7 @@ Dancer
 
 /datum/quirk/consumption/on_process(delta_time)
 	if(prob(5))
-		quirk_holder.adjustBruteLoss(5, TRUE)
+		quirk_holder.adjust_brute_loss(5, TRUE)
 
 /datum/quirk/hunted
 	name = "Sir You Are Being Hunted"

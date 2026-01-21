@@ -318,6 +318,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IGNORE_INCAPACITATED (1<<3)
 /// Used to prevent important slowdowns from being abused by drugs like kronkaine
 #define IGNORE_SLOWDOWNS (1<<4)
+/// Cancel the action if the user does another action (mainly via clicking)
+#define DO_AFTER_CHECK_NEXT_MOVE (1<<5)
 
 // Spacevine-related flags
 /// Is the spacevine / flower bud heat resistant
@@ -359,7 +361,3 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define EMPATH_SEE_COLD (1<<7)
 /// Can the empath see if living mob has the fundamentally evil trait
 #define EMPATH_SEE_EVIL (1<<8)
-
-// Flags for using your static for a ghost role
-#define GHOSTROLE_ALLOW_SPECIES (1<<0)
-#define GHOSTROLE_ALLOW_OTHER (1<<1)

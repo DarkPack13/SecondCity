@@ -10,7 +10,7 @@
 	var/blood_level = 0
 	/// How many times has this rag been wrung out since last clean?
 	var/wrings = 0
-	custom_price = 5 //DARKPACK EDIT ADD
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/rag/Initialize(mapload)
 	. = ..()
@@ -178,7 +178,7 @@
 	amount_to_remove = how_dirty * 1.2
 	for(var/datum/reagent/other_reagent as anything in reagents.reagent_list)
 		if((other_reagent.chemical_flags & REAGENT_CLEANS) && other_reagent.volume >= amount_to_remove)
-			reagents.remove_reagent(other_reagent, amount_to_remove)
+			reagents.remove_reagent(other_reagent.type, amount_to_remove)
 			return TRUE
 
 	return FALSE

@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(economy)
 		var/datum/bank_account/bank_account = cached_processing[cached_processing[i]]
 		if(bank_account?.account_job && !ispath(bank_account.account_job))
 			temporary_total += (bank_account.account_job.paycheck * STARTING_PAYCHECKS)
-		bank_account.payday(1, skippable = TRUE)
+		// bank_account.payday(1, skippable = TRUE) // DARKPACK EDIT REMOVAL
 		station_total += bank_account.account_balance
 		if(MC_TICK_CHECK)
 			cached_processing.Cut(1, i + 1)
@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(economy)
  * Updates the the inflation_value, effecting newscaster alerts and the mail system.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
-	/* DARKPACK EDIT REMOVAL
+	/* // DARKPACK EDIT REMOVAL
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		fluff_string = ", but company countermeasures protect <b>YOU</b> from being affected!"
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(economy)
 			if(!moneybags || moneybags.account_balance < current_acc.account_balance)
 				moneybags = current_acc
 		if (moneybags)
-			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] credits saved. "
+			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] [MONEY_NAME] saved. "
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
 	earning_report += "<br>That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE

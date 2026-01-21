@@ -1,3 +1,98 @@
 2026-01-04:
   FalloutFalcon:
   - admin: admin matrixing a mob now has a prompt to confirm
+2026-01-05:
+  FalloutFalcon:
+  - rscadd: Adds Oni and Devil gargoyle horns from TFN
+  dwinters99:
+  - rscadd: 'Garou Nation jobs: Councillor, Warder, Truthcatcher, Wyrmfoe, Guardian'
+  - rscadd: 'Pentex jobs: Branch Lead, Executive, Internal Affairs Agent, Security
+      Chief, Security Agent, Employee'
+  - code_imp: Defines for all the pentex subsidiaries and a lot of bloodlines ones
+      while i'm there
+2026-01-08:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - rscadd: readds illegal identity
+  - qol: passports, flashlights, and watches moved to loadouts
+  - qol: you can now take up to 6 pocket items
+  - rscadd: Bank pin is now found in the memories section similar to bank ID number
+  - bugfix: You can now tell you killed a raven or crow because it flips on its back
+2026-01-12:
+  XeonMations:
+  - rscadd: Added old mail to the game
+  - code_imp: Ticked a bunch of files.
+2026-01-13:
+  TheCarnalest:
+  - refactor: A sane framework for splats has been set up, and Kindred and Ghouls
+      have had their code swapped out entirely.
+2026-01-14:
+  FalloutFalcon:
+  - bugfix: No greek syllable names from random gen
+  - rscadd: readds a few items to retail stores
+  - bugfix: fixes some bad retail store prices
+  buffyuwu:
+  - rscadd: adds dementation
+  chazzyjazzy:
+  - code_imp: reimplements dominate
+  - rscadd: '''mask of a thousand faces'' now works as intended'
+  - code_imp: reimplemented obfuscate
+  - code_imp: reimplements presence
+2026-01-15:
+  FalloutFalcon:
+  - bugfix: keys are now treated as plural items
+  buffyuwu:
+  - rscadd: ports derangement quirk, basic malk hallucinations from bloodlines
+  chazzyjazzy:
+  - bugfix: fixed spellbook logic to match splat rework
+  - code_imp: quietus
+  dwinters99:
+  - code_imp: two additional levels of fog density added to effects.dm
+  - map: lots of updatepath fixes
+2026-01-16:
+  FalloutFalcon:
+  - map: gave anarchs, cammies, and police, radio tranceivers on Westfield Mall
+  - bugfix: Platforms/low-walls now layer under tables again
+  chazzyjazzy:
+  - bugfix: ' the last tfn updatepaths'
+  dwinters99:
+  - sound: pause menu sounds from bloodlines
+2026-01-17:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - rscadd: Readds estrogen pill bottles. But you will no longer receive them in the
+      mail
+  chazzyjazzy:
+  - code_imp: reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger',
+      reasons to stat into virtues
+  - refactor: moved humanity and morality to storyteller stats system
+2026-01-18:
+  Rosychu:
+  - bugfix: Changes the Rubber Pig's description from  "Klim Sanych, zdravstvuite."
+      to "Do not."
+  chazzyjazzy:
+  - rscadd: adds wallets, concealed carry permits, and drivers licenses
+2026-01-19:
+  Marshmellow105:
+  - rscadd: adds fbi access and associated keys
+  dwinters99:
+  - bugfix: op console is lorefriendly
+  - bugfix: crinos_beast has a death sprite and new clothing variants
+  - config: max character slots config
+  - bugfix: bullets no longer illuminate darkness
+  - spellcheck: crinos_beast name lowercased
+  - rscadd: crinos beast clothing variants
+  - bugfix: flamethrower onfloor
+  - bugfix: gangrel hands rotational work
+2026-01-21:
+  FalloutFalcon:
+  - rscadd: Readds most VTM supply packs
+  - rscdel: Removes old illfitting TG supplypacks
+  - code_imp: Credits has been swapped to dollars
+  Odisurin:
+  - rscadd: Added three traditional oil paintings and a Shrine sprite to the Chinatown
+      file
+  chazzyjazzy:
+  - code_imp: readds serpentis

@@ -48,8 +48,7 @@
 /datum/discipline_power/valeren/anesthetic_touch/activate(mob/living/target)
 	. = ..()
 	//I'm not a fan of how punishing this is towards human players, but not my job to rework it
-	//refactor this when the species refactoring comes through
-	if (ishumanbasic(target))
+	if (ismundane(target))
 		target.SetSleeping(15 SECONDS)
 	else
 		target.add_confusion(5)
@@ -149,7 +148,7 @@
 /datum/discipline_power/valeren/unburden_the_bestial_soul/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(owner, span_notice("You have healed [target]'s soul slightly."))
-	target.AdjustHumanity(1, 10)
+	SEND_SIGNAL(owner, COMSIG_PATH_HIT, 1, 10, FALSE)
 	points_can_restore--
 
 

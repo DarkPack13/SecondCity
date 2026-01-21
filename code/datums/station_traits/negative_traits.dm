@@ -592,9 +592,10 @@
 /datum/station_trait/nebula/hostile/radiation/on_round_start()
 	. = ..()
 
+	/* // DARKPACK EDIT REMOVAL
 	//Let people order more nebula shielding
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/engineering/rad_nebula_shielding_kit]
-	pack.special_enabled = TRUE
+	pack.order_flags |= ORDER_SPECIAL_ENABLED
 
 	//Give robotics some radiation protection modules for modsuits
 	var/datum/supply_pack/supply_pack_modsuits = new /datum/supply_pack/engineering/rad_protection_modules()
@@ -605,6 +606,7 @@
 	if(!send_supply_pod_to_area(supply_pack_shielding.generate(null), /area/station/engineering/main, /obj/structure/closet/supplypod/centcompod))
 		//if engineering isn't valid, just send it to the bridge
 		send_supply_pod_to_area(supply_pack_shielding.generate(null), /area/station/command/bridge, /obj/structure/closet/supplypod/centcompod)
+	*/
 
 	// Let medical know resistance is futile
 	if (/area/station/medical/virology in GLOB.areas_by_type)
