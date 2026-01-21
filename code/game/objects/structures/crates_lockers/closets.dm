@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	var/allow_objects = FALSE
 	var/allow_dense = FALSE
 	var/dense_when_open = FALSE //if it's dense when open or not
+	var/dense_when_closed = TRUE //if it's dense when closed or not // DARKPACK EDIT ADD
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
