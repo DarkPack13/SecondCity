@@ -86,3 +86,13 @@
   - rscadd: crinos beast clothing variants
   - bugfix: flamethrower onfloor
   - bugfix: gangrel hands rotational work
+2026-01-21:
+  FalloutFalcon:
+  - rscadd: Readds most VTM supply packs
+  - rscdel: Removes old illfitting TG supplypacks
+  - code_imp: Credits has been swapped to dollars
+  Odisurin:
+  - rscadd: Added three traditional oil paintings and a Shrine sprite to the Chinatown
+      file
+  chazzyjazzy:
+  - code_imp: readds serpentis
