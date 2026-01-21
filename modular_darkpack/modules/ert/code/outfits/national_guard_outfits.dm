@@ -1,5 +1,5 @@
-/datum/outfit/job/vampire/ert/national_guard/lieutenant
-	name = "National Guard Lieutenant"
+/datum/outfit/job/vampire/ert/national_guard/sergeant
+	name = "National Guard Sergeant"
 	ears = /obj/item/radio/headset/darkpack/military
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/military_fatigues
@@ -81,12 +81,11 @@
 	head = /obj/item/clothing/head/vampire/eod
 	//id = /obj/item/card/military
 	backpack_contents = list(
-		/obj/item/ammo_box/magazine/darkpack9mm = 2,
 		/obj/item/gas_can/full = 2,
 		/obj/item/grenade/frag = 5,
 		/obj/item/grenade/flashbang = 3,
 		/obj/item/grenade/smokebomb = 2,
-		/obj/item/molotov = 3,
+		/obj/item/molotov = 1,
 		/obj/item/lighter = 1,
 		/obj/item/gun/ballistic/revolver/grenadelauncher = 1,
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1,

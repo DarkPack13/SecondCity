@@ -1,7 +1,7 @@
 /datum/antagonist/ert/darkpack/national_guard/leader
-	name = "National Guard Lieutenant"
-	outfit = /datum/outfit/job/vampire/ert/national_guard/lieutenant
-	role = "National Guard Lieutenant"
+	name = "National Guard Sergeant"
+	outfit = /datum/outfit/job/vampire/ert/national_guard/sergeant
+	role = "National Guard Sergeant"
 
 /datum/antagonist/ert/darkpack/national_guard/medic
 	name = "National Guard Medic"
