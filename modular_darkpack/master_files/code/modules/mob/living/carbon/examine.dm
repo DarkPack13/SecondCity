@@ -39,3 +39,5 @@
 				. += span_purple("[p_They()] [p_are()] very attractive!")
 			if(5 to INFINITY)
 				. += span_rose(span_bold("Oh... My God... [p_They()] [p_are()] absolutely stunning! You find yourself blushing just looking at them!"))
+		if (HAS_TRAIT(src, TRAIT_PERMAFANGS))
+			. += span_warning("[p_they(TRUE)] [p_have()] visible fangs in [p_their()] mouth.")

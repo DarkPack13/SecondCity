@@ -95,7 +95,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
 #define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
-#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
+
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
@@ -112,4 +112,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Is the Vampire currently hungry? Hunger is defined at a bloodpool rating of 7 - self control (if humanity alignment) or instincts (enlightenment alignment)
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
+
+// BELOW ARE ALL MERITS/FLAWS
+#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_PERMAFANGS "permafangs"
 // END TRAIT DEFINES
