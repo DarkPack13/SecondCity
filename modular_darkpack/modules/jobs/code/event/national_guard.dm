@@ -1,3 +1,4 @@
+// should i delete this since summon-ert verb handles alot of this
 /datum/outfit/job/vampire/national_guard
 	name = "National Guard Soldier"
 	ears = /obj/item/radio/headset/darkpack/military
