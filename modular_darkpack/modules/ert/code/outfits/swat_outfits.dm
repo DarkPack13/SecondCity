@@ -70,7 +70,6 @@
 	ears = /obj/item/radio/headset/darkpack/police
 	uniform = /obj/item/clothing/under/vampire/suit
 	l_pocket = /obj/item/vamp/keys/police
-	suit_store = /obj/item/flashlight/seclite
 	shoes = /obj/item/clothing/shoes/vampire
 	id = /obj/item/card/swat
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/sniper // for when negotiations go south.
@@ -81,4 +80,5 @@
 		/obj/item/reagent_containers/cup/glass/coffee/vampire = 1,
 		/obj/item/food/cookie = 1, // cookies but no milk. these are gonna be some hard negotiations.
 		/obj/item/megaphone = 1,
+		/obj/item/flashlight/seclite = 1,
 		)

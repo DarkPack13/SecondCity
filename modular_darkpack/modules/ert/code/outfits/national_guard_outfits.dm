@@ -9,13 +9,13 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest
 	id = /obj/item/card/lieutenant
+	r_hand = /obj/item/gun/ballistic/automatic/darkpack/autoshotgun
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/darkpackautoshot = 1,
 		/obj/item/ammo_box/darkpack/c12g/buck = 1,
 		/obj/item/knife/vamp = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/megaphone = 1,
-		/obj/item/gun/ballistic/automatic/darkpack/autoshotgun = 1,
 	)
 
 /datum/outfit/job/vampire/ert/national_guard/medic
