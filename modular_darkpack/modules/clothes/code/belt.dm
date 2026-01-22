@@ -1,5 +1,5 @@
 /datum/storage/holster/darkpack
-	max_slots = 2 // Pistol + a mag // TODO: Gridventory
+	max_slots = 3 // Pistol + two mags // TODO: Gridventory
 	max_total_storage = 16
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
