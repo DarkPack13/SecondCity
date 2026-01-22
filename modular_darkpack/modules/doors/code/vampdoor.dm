@@ -234,7 +234,7 @@
 					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
 					to_chat(user, span_warning("You aren't strong enough to break it down! You hurt your shoulder by punching the door!"))
-					human_user.adjust_agg_loss(30)
+					human_user.adjust_brute_loss(30)
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 					COOLDOWN_START(src, bash_cooldown, 1 SCENES)
 			else

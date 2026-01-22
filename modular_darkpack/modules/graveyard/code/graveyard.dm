@@ -143,7 +143,9 @@
 /obj/vampgrave/proc/should_spawn()
 	// Check if graveyard keeper is online
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.client && H.mind?.assigned_role == /datum/job/vampire/graveyard)
+		if(!H.mind)
+			continue
+		if(istype(H.mind.assigned_role, /datum/job/vampire/graveyard) && !considered_afk(H.mind))
 			return TRUE
 	return FALSE
 
