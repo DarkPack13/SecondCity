@@ -75,7 +75,7 @@
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
-		ertemplate = new /datum/ert/darkpack/swat // DARKPACK EDIT CHANGE - Original : ertemplate = new /datum/ert/centcom_official
+		ertemplate = new /datum/ert/darkpack/swat // DARKPACK EDIT CHANGE - ORIGINAL: ertemplate = new /datum/ert/centcom_official
 
 	var/human_authority_setting = CONFIG_GET(string/human_authority)
 
