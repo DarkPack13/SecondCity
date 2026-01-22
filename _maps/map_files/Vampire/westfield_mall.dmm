@@ -16154,7 +16154,8 @@
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/church)
 "dQG" = (
-/obj/structure/vampdoor/wood/apartment,
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/claimable,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "dTh" = (
@@ -16243,7 +16244,8 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/vampdoor/wood/apartment,
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/claimable,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "ewS" = (
@@ -17988,7 +17990,8 @@
 /area/vtm/interior/caves)
 "uwo" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/vampdoor/wood/apartment,
+/obj/structure/vampdoor/wood,
+/obj/effect/mapping_helpers/door/access/claimable,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "uwH" = (

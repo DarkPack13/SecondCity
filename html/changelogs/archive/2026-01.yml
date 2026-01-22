@@ -96,3 +96,21 @@
       file
   chazzyjazzy:
   - code_imp: readds serpentis
+2026-01-22:
+  FalloutFalcon:
+  - bugfix: fixes some issues with umbra background not appearing in the umbra
+  - qol: some qol for transfer points including allowing ghosts to use them
+  Pluvifera:
+  - bugfix: fixed black bags showing as error sprites in any other state than worn
+  - image: Added black_bag sprites back into their relevant .dmi's
+  - bugfix: fixed how many slots are allowed in the holster(added 1), so that that
+      detectives can stow all the magazines with which they spawn.
+  Stutternov:
+  - rscadd: Adds new double barrel shotgun w/ sprites
+  - rscadd: Adds new lever action .44 rifle w/ sprites
+  - rscadd: Adds new .75 caliber musket and cartridge's for it w/ sprites
+  - rscadd: Adds all new guns to the
+  - sound: Added new fire sounds for lever action and musket
+  - sound: Added new 'bolt'-sounds for the lever action mechanism.
+  lpeapnni:
+  - code_imp: changed lists into alists for phone contact stuff
