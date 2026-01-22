@@ -18,7 +18,6 @@
 // Interfaces
 @include meta.load-css('./interfaces/Accounting.scss');
 @include meta.load-css('./interfaces/AlertModal.scss');
-@include meta.load-css('./interfaces/Atm.scss'); // DARKPACK EDIT ADD
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/Emojipedia.scss');
@@ -45,7 +44,6 @@
 @include meta.load-css('./interfaces/Trophycase.scss');
 @include meta.load-css('./interfaces/Uplink.scss');
 @include meta.load-css('./interfaces/DetectiveBoard.scss');
-@include meta.load-css('./interfaces/Telephone.scss'); // DARKPACK EDIT ADD
 @include meta.load-css('./interfaces/ColorPicker.scss');
 
 // Layouts
@@ -59,7 +57,7 @@
 
 // NT Theme
 .Layout__content {
-  background-image: url('assets/bg-vtm.svg'); // DARKPACK EDIT CHANGE - VtM theme
+  background-image: url('tgui-core/assets/bg-nanotrasen.svg');
   background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;
