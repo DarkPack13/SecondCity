@@ -87,10 +87,6 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
-
-	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
-		if (NPC.danger_source == owner)
-			NPC.danger_source = null
 	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/cloak_of_shadows/deactivate()
@@ -136,11 +132,6 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
-
-	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
-		if (NPC.danger_source == owner)
-			NPC.danger_source = null
-
 	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/unseen_presence/deactivate()
@@ -263,10 +254,6 @@
 	owner.updateappearance(mutcolor_update = TRUE)
 	to_chat(owner, span_notice("You assume the appearance of [target.name]."))
 
-	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
-		if (NPC.danger_source == owner)
-			NPC.danger_source = null
-
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/deactivate()
 	. = ..()
 	original_dna.copy_dna(owner.dna, 0)
@@ -309,9 +296,6 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 
-	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
-		if (NPC.danger_source == owner)
-			NPC.danger_source = null
 	if(prob(1))
 		SEND_SIGNAL(SSmasquerade, COMSIG_PLAYER_MASQUERADE_REINFORCE, owner)
 
@@ -345,10 +329,6 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
-
-	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
-		if (NPC.danger_source == owner)
-			NPC.danger_source = null
 	ADD_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
 /datum/discipline_power/obfuscate/cloak_the_gathering/deactivate()
