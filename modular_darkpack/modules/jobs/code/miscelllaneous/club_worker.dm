@@ -25,3 +25,4 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/strip
 	backpack_contents = list(/obj/item/card/credit=1)
+	uses_default_clan_clothes = TRUE
