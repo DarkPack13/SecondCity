@@ -597,7 +597,7 @@
 	if (sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
 
-	//DARKPACK EDIT ADD - recoil
+	// DARKPACK EDIT ADD - recoil
 	if(COOLDOWN_FINISHED(src, recoil_skill_check))
 		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
 		recoil = max(initial(recoil) - recoil_reduction, 0)
