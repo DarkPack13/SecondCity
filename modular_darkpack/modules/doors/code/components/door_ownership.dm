@@ -1,13 +1,13 @@
 /datum/component/door_ownership
 	/// Type of ownership (apartment, car, etc.)
-	var/ownership_type = "apartment"
+	var/ownership_type = LOCK_OWNERSHIP_APARTMENT
 
 /datum/component/door_ownership/Initialize()
 
 	if(istype(parent, /obj/darkpack_car))
-		ownership_type = "car"
+		ownership_type = LOCK_OWNERSHIP_CAR
 	else if(istype(parent, /obj/structure/vampdoor))
-		ownership_type = "apartment"
+		ownership_type = LOCK_OWNERSHIP_APARTMENT
 
 /datum/component/door_ownership/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(try_award_key))
@@ -47,13 +47,13 @@
 	var/alert_title
 
 	switch(ownership_type)
-		if("car")
+		if(LOCK_OWNERSHIP_CAR)
 			if(human.st_get_stat(STAT_DRIVE) < 1)
 				to_chat(human, span_danger("Shouldnt you learn how to drive before owning a car?"))
 				return
 			ownership_question = "Is this my car?"
 			alert_title = "Vehicle"
-		if("apartment")
+		if(LOCK_OWNERSHIP_APARTMENT)
 			ownership_question = "Is this my apartment?"
 			alert_title = "Apartment"
 
