@@ -146,7 +146,7 @@
 	var/obj/item/suppressor/suppressor = null
 	/// Sound played when the burst mode is changed
 	var/burst_select_sound = SFX_FIRE_MODE_SWITCH
-	COOLDOWN_DECLARE(recoil_skill_check)
+	COOLDOWN_DECLARE(recoil_skill_check) // DARKPACK EDIT ADD
 
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
