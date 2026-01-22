@@ -11,7 +11,7 @@
 	sound_vary = TRUE
 
 	min_recoil = 0.1
-	recoil = 2 //DARKPACK EDIT ADD
+	recoil = 2 // DARKPACK EDIT ADD
 
 	///sound when inserting magazine
 	var/load_sound = 'sound/items/weapons/gun/general/magazine_insert_full.ogg'
