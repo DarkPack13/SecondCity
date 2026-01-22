@@ -52,6 +52,7 @@
 /obj/structure/vampdoor/wood/madman : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/lock
 /obj/structure/vampdoor/wood/millennium_common : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
 /obj/structure/vampdoor/wood/nps : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/park_ranger, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/npc : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/npc, /obj/effect/mapping_helpers/door/lock
 /obj/structure/vampdoor/wood/pentex : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
 /obj/structure/vampdoor/wood/sabbat : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/sabbat, /obj/effect/mapping_helpers/door/lock
 /obj/structure/vampdoor/wood/strip : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/strip, /obj/effect/mapping_helpers/door/lock
