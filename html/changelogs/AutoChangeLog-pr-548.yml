@@ -1,5 +1,0 @@
-author: "Pluvifera"
-delete-after: True
-changes:
-  - bugfix: "fixed black bags showing as error sprites in any other state than worn"
-  - image: "Added black_bag sprites back into their relevant .dmi's"

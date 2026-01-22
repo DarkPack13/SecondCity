@@ -7078,6 +7078,7 @@
 #include "modular_darkpack\modules\doors\code\vampdoor_vault.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_wood.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_woodglass.dm"
+#include "modular_darkpack\modules\doors\code\components\door_ownership.dm"
 #include "modular_darkpack\modules\doors\code\helpers\door_access.dm"
 #include "modular_darkpack\modules\doors\code\helpers\door_helpers.dm"
 #include "modular_darkpack\modules\doors\code\keys\keys.dm"

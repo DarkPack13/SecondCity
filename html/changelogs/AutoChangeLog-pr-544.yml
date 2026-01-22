@@ -1,4 +1,0 @@
-author: "Pluvifera"
-delete-after: True
-changes:
-  - bugfix: "fixed how many slots are allowed in the holster(added 1), so that that detectives can stow all the magazines with which they spawn."
