@@ -103,6 +103,13 @@
 	fire_colour = "#d400ff"
 
 // DARKPACK EDIT CHANGE START
+
+/obj/machinery/light/small/pink
+	bulb_colour = "#DE6EE2"
+	no_low_power = TRUE
+	nightshift_allowed = FALSE
+	bulb_colour = "#e26ed2"
+
 /obj/machinery/light/prince
 	icon_state = "prince"
 	base_state = "prince"
@@ -214,6 +221,8 @@ LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red/dim)
 
 // ---- Blacklight bulbs
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight)
+
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/pink)
 
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince)
 

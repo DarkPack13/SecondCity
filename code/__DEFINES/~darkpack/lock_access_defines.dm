@@ -64,9 +64,13 @@
 #define LOCKACCESS_DISPATCH "dispatch"
 #define LOCKACCESS_POLICE_SECURE "police_secure"
 #define LOCKACCESS_POLICE_CHIEF "police_chief"
+#define LOCKACCESS_FEDERAL "federal"
 
 #define LOCKACCESS_WOLFTECH "wolftech"
 #define LOCKACCESS_PARK_RANGER "nps"
 #define LOCKACCESS_COGGIE "coggie"
 #define LOCKACCESS_PENTEX "pentex"
 #define LOCKACCESS_PENTEX_LEADER "pentexleader"
+
+#define LOCK_OWNERSHIP_CAR "car"
+#define LOCK_OWNERSHIP_APARTMENT "apartment"

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Box, Icon, Stack, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { Contact, Data, NavigableApps } from '.';
+import { type Contact, type Data, NavigableApps } from '.';
 
 export const ContactElement = (props: {
   contact: Contact;

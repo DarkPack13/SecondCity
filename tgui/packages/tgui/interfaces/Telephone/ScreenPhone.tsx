@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack, Tooltip } from 'tgui-core/components';
 
-import { Data, NavigableApps } from '.';
+import { type Data, NavigableApps } from '.';
 
 export const ScreenPhone = (props: {
   enteredNumber: string;

@@ -328,6 +328,13 @@
 		LOCKACCESS_POLICE
 	)
 
+/obj/item/vamp/keys/police/federal
+	name = "federal agent keys"
+	accesslocks = list(
+		LOCKACCESS_POLICE,
+		LOCKACCESS_FEDERAL
+	)
+
 /obj/item/vamp/keys/dispatch
 	name = "dispatcher keys"
 	accesslocks = list(

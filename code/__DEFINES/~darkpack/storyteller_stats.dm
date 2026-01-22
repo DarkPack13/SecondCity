@@ -66,6 +66,9 @@
 #define STAT_INSTINCT /datum/st_stat/virtue/instinct
 #define STAT_COURAGE /datum/st_stat/virtue/courage
 
+//Morality Path
+#define STAT_MORALITY /datum/st_stat/morality_path/morality
+
 // Parent stats, mainly used for point allocation in preferences.
 
 
