@@ -1,9 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ak" = (
-/obj/effect/mob_spawn/corpse/human/doctor,
-/obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/city/clinic,
-/area/vtm/interior/sewer)
 "as" = (
 /obj/structure/chair/office/darkpack/green{
 	dir = 8
@@ -339,11 +334,6 @@
 /obj/effect/spawner/random/bureaucracy/pen,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
-"TZ" = (
-/mob/living/basic/crinos_beast,
-/obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/floor/city/clinic,
-/area/vtm/interior/sewer)
 "Uc" = (
 /obj/structure/table,
 /obj/effect/spawner/random/bureaucracy/folder,
@@ -407,8 +397,8 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "ZB" = (
-/obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/floor/city/clinic,
+/obj/structure/platform/lowwall/bar,
+/turf/open/floor/plating/concrete,
 /area/vtm/interior/sewer)
 "ZF" = (
 /obj/structure/rack,
@@ -580,9 +570,9 @@ Ii
 pP
 dM
 Ql
-TZ
-ak
-ZB
+ve
+ve
+ve
 Ig
 pP
 pP
@@ -722,7 +712,7 @@ as
 pP
 dM
 vZ
-vZ
+ZB
 sT
 Zf
 of

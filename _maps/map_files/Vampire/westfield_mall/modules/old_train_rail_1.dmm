@@ -86,7 +86,7 @@
 /area/vtm/interior/sewer)
 "K" = (
 /obj/structure/bonfire/prelit/alt,
-/turf/open/floor/plating/rough/cave,
+/turf/open/floor/plating/stone,
 /area/vtm/interior/sewer)
 "L" = (
 /obj/effect/spawner/random/trash/cigbutt,
@@ -200,7 +200,7 @@ E
 (5,1,1) = {"
 a
 a
-q
+K
 q
 F
 i
@@ -212,11 +212,11 @@ j
 j
 j
 j
-j
 a
+q
 j
 j
-j
+q
 E
 "}
 (6,1,1) = {"
@@ -231,19 +231,19 @@ L
 q
 q
 Y
-a
-a
-a
 j
 j
 j
-a
-a
+j
+j
+j
+j
+j
 E
 "}
 (7,1,1) = {"
 a
-K
+g
 j
 j
 a
@@ -251,28 +251,28 @@ a
 c
 j
 j
+j
 a
 a
-a
-a
-a
-a
-a
-a
+j
+j
+j
+q
+q
 a
 a
 E
 "}
 (8,1,1) = {"
 a
-g
 j
-a
+j
+j
 a
 a
 s
 q
-a
+j
 a
 a
 a
@@ -294,7 +294,7 @@ a
 a
 J
 q
-a
+j
 a
 a
 a
@@ -316,7 +316,7 @@ a
 a
 a
 j
-a
+j
 j
 j
 j
@@ -340,7 +340,7 @@ H
 j
 j
 j
-a
+j
 j
 j
 q
@@ -355,13 +355,13 @@ E
 a
 F
 q
-j
+c
 a
 a
 a
 q
 j
-a
+j
 a
 a
 f
@@ -375,8 +375,8 @@ E
 "}
 (13,1,1) = {"
 a
-a
-n
+q
+q
 q
 a
 a
@@ -397,8 +397,8 @@ E
 "}
 (14,1,1) = {"
 a
-a
-a
+q
+j
 q
 l
 a
@@ -408,7 +408,7 @@ a
 a
 a
 a
-a
+j
 q
 q
 m
@@ -420,16 +420,16 @@ E
 (15,1,1) = {"
 a
 a
-a
 j
 j
+j
 a
 a
 a
 a
 a
 a
-a
+j
 j
 j
 d
@@ -443,14 +443,14 @@ E
 a
 a
 a
-a
+j
+j
 j
 j
 a
 a
-a
-a
-a
+j
+j
 j
 j
 d
@@ -465,8 +465,8 @@ E
 a
 a
 a
-a
-a
+j
+j
 j
 j
 j
@@ -488,9 +488,9 @@ a
 a
 a
 a
-a
-a
 c
+j
+j
 j
 q
 q
