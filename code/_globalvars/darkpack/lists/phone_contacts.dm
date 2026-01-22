@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(endron_network)
 #define ENDRON_NETWORK 9
 
 // An indexed list of all the different phone networks that connect the phones that are part of them together.
-GLOBAL_LIST_INIT(contact_networks, list(
+GLOBAL_LIST_INIT(contact_networks, alist(
 		MILLENIUM_TOWER_NETWORK = GLOB.millenium_tower_network,
 		LASOMBRA_NETWORK = GLOB.lasombra_network,
 		TREMERE_NETWORK = GLOB.tremere_network,

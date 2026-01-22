@@ -1,6 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Readds most VTM supply packs"
-  - rscdel: "Removes old illfitting TG supplypacks"
-  - code_imp: "Credits has been swapped to dollars"
