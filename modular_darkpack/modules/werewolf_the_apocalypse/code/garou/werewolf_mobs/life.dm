@@ -58,7 +58,7 @@
 						last_frenzy_check = world.time
 						rollfrenzy()
 
-			if(istype(get_area(src), /area/vtm/interior/penumbra))
+			if(istype(get_area(src), /area/vtm/outside/penumbra))
 				if((last_veil_restore + 40 SECONDS) < world.time)
 					adjust_veil(1, src, TRUE)
 					last_veil_restore = world.time
