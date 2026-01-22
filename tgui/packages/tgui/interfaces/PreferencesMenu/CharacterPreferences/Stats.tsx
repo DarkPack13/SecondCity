@@ -114,8 +114,8 @@ export function StatsPage() {
                               )}
                               <Stack.Item className="stat-dots">
                                 <span className="filled">{filled}</span>
-                                <span className="filled_bonus">{filled_bonus}</span>
                                 <span className="empty">{empty}</span>
+                                <span className="filled_bonus">{filled_bonus}</span>
                               </Stack.Item>
                             </Stack>
                           </Stack.Item>
