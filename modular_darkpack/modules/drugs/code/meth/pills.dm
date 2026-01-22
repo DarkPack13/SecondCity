@@ -3,6 +3,7 @@
 	desc = "There is opium attention sign on the top."
 	spawn_count = 10
 	spawn_type = /obj/item/reagent_containers/applicator/pill/ephedrine
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/applicator/pill/ephedrine
 	name = "ephedrine pill"
@@ -26,6 +27,12 @@
 	desc = "A pill composed of a white, powdery substance. Take as prescribed."
 	icon_state = "pill9"
 	list_reagents = list(/datum/reagent/drug/placebatol = 10)
+
+/obj/item/storage/pill_bottle/estrogen
+	name = "estrogen pill bottle"
+	desc = "There are boobs on the top."
+	spawn_count = 5
+	spawn_type = /obj/item/reagent_containers/applicator/pill/placebatol
 
 /obj/item/storage/pill_bottle/unknown
 	name = "unknown pill bottle"

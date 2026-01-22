@@ -1,4 +1,4 @@
-/* DARKPACK TODO - PREFERENCES
+/* // DARKPACK TODO - PREFERENCES
 /mob/living/carbon/human/proc/prompt_permenant_ghouling()
 	var/response_g = tgui_input_list(src, "Do you wish to keep being a ghoul on your save slot?(Yes will be a permanent choice and you can't go back)", "Ghouling", list("Yes", "No"), "No")
 	if(response_g == "Yes")

@@ -4,22 +4,32 @@ GLOBAL_LIST_EMPTY(snow_list)
 
 /obj/effect/realistic_fog
 	// Smaller sprite so you can use it in mapping without it sucking
-	icon = MAP_SWITCH('modular_darkpack/modules/weather/icons/fog.dmi', 'icons/effects/effects.dmi')
-	icon_state = MAP_SWITCH("fog", "smoke")
+	icon = 'modular_darkpack/modules/weather/icons/fog.dmi'
+	icon_state = MAP_SWITCH("fog", "helper")
 	alpha = 0
 	plane = GAME_PLANE
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	WHEN_COMPILE(pixel_w = -96)
-	WHEN_COMPILE(pixel_z = -96)
+	pixel_w = -112
+	pixel_z = -112
 	var/alpha_lower = 5
 	var/alpha_upper = 21
 
-/obj/effect/realistic_fog/strong
+/obj/effect/realistic_fog/dense
 	alpha_lower = 10
 	alpha_upper = 40
+
+/obj/effect/realistic_fog/dense/strong
+	name = "very dense fog"
+	alpha_lower = 20
+	alpha_upper = 80
+
+/obj/effect/realistic_fog/dense/extreme
+	name = "extremely dense fog"
+	alpha_lower = 60
+	alpha_upper = 252 // alpha_lower*4.2
 
 /obj/effect/realistic_fog/Initialize(mapload)
 	. = ..()

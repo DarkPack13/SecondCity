@@ -45,6 +45,18 @@
 	requestonly = TRUE
 
 /obj/machinery/computer/cargo/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	// DARKPACK EDIT ADD START - CARGO
+	if(iscash(tool))
+		var/datum/bank_account/bank = SSeconomy.get_dep_account(cargo_account)
+		if(!bank)
+			return ITEM_INTERACT_BLOCKING
+		var/dolla = tool.get_item_credit_value()
+		to_chat(user, span_notice("You insert [dolla] dollars into [src]."))
+		bank.adjust_money(dolla, "Supply Console: Deposit")
+		to_chat(usr, span_notice("You have deposited [dolla] dollars into the account. The new balance is [bank.account_balance] dollars."))
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
+	// DARKPACK EDIT ADD END
 	if(!istype(tool, /obj/item/trade_chip))
 		return NONE
 	var/obj/item/trade_chip/contract = tool

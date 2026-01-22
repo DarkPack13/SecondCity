@@ -60,6 +60,7 @@
 	desc = "Contains pills used to reduce radiation damage."
 	spawn_count = 3
 	spawn_type = /obj/item/reagent_containers/applicator/pill/potassiodide
+	custom_price = 100 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/pill_bottle/probital
 	name = "bottle of probital pills"

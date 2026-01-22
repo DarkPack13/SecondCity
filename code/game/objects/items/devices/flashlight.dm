@@ -47,7 +47,7 @@
 	var/ignore_base_color = FALSE
 	/// This simply means if the flashlight can be cuffed to your hand (why?)
 	var/has_closed_handle = TRUE
-	custom_price = 10 //DARKPACK EDIT ADD
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()

@@ -114,7 +114,7 @@ GLOBAL_VAR(command_name)
 
 /proc/new_station_name()
 	return "[CITY_NAME] [CURRENT_STATION_YEAR]"
-	/* DARKPACK EDIT REMOVAL - This aint no station
+	/* // DARKPACK EDIT REMOVAL - This aint no station
 	var/random = rand(1,5)
 	var/name = ""
 	var/new_station_name = ""

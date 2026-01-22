@@ -41,8 +41,6 @@
 	/// Clan accessory that's selected by default
 	var/default_accessory
 
-	/// Morality level that characters of this Clan start with
-	var/start_humanity = 7
 	/// If members of this Clan are on a Path of Enlightenment by default
 	var/enlightenment
 

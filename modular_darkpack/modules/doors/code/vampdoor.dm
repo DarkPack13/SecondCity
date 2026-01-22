@@ -32,11 +32,6 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
-	/// Whether to grant an apartment_key
-	var/grant_apartment_key = FALSE
-	var/apartment_key_amount = 1
-	/// The type of a key the resident will get
-	var/apartment_key_type
 
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
@@ -63,7 +58,7 @@
 /obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || !locked
 
-//DARKPACK TODO - examinetext on these doors
+// DARKPACK TODO - examinetext on these doors
 /* Examine text will need to be reworked but im not sure on the probailites for rolls considering botches as well.
 /obj/structure/vampdoor/examine(mob/user)
 	. = ..()
@@ -198,8 +193,6 @@
 	. = ..()
 	if(.)
 		return
-	if(try_award_apartment_key(user))
-		return
 	var/mob/living/living_user = user
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to use here."))
@@ -228,8 +221,6 @@
 				playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
 				addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 	else
-		if(try_award_apartment_key(user))
-			return
 		if(locked)
 			playsound(src, lock_sound, 75, TRUE)
 			to_chat(user, span_warning("[src] is locked!"))
@@ -366,48 +357,5 @@
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)
 	pixel_w = initial(pixel_w)
-
-
-/obj/structure/vampdoor/proc/try_award_apartment_key(mob/user)
-	if(!grant_apartment_key)
-		return FALSE
-	if(!lock_id)
-		return FALSE
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/human = user
-	if(human.received_apartment_key)
-		return FALSE
-	var/alert = tgui_alert(user, "Is this my apartment?", "Apartment", list("Yes", "No"))
-	if(alert != "Yes")
-		return
-	if(!grant_apartment_key)
-		return
-	var/spare_key = tgui_alert(user, "Do I have an extra spare key?", "Apartment", list("Yes", "No"))
-	if(!grant_apartment_key)
-		return
-	if(spare_key == "Yes")
-		apartment_key_amount = 2
-	else
-		apartment_key_amount = 1
-	for(var/i in 1 to apartment_key_amount)
-		var/obj/item/vamp/keys/key
-		if(apartment_key_type)
-			key = new apartment_key_type(get_turf(human))
-		else
-			key = new /obj/item/vamp/keys(get_turf(human))
-		key.accesslocks = list("[lock_id]")
-		human.put_in_hands(key)
-	human.received_apartment_key = TRUE
-	grant_apartment_key = FALSE
-	if(apartment_key_amount > 1)
-		to_chat(human, span_notice("They're just where I left them..."))
-	else
-		to_chat(human, span_notice("It's just where I left it..."))
-	return TRUE
-
-// DARKPACK TODO - Look into AI being able to open and close doors. Maybe even unlock doors? or lockpick them for thieves?
-/obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
-	return (!closed || door_broken)
 
 #undef DOAFTER_SOURCE_DOOR

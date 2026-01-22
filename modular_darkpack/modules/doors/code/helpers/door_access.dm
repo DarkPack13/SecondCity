@@ -174,6 +174,9 @@
 /obj/effect/mapping_helpers/door/access/police_chief
 	lock_id = LOCKACCESS_POLICE_CHIEF
 
+/obj/effect/mapping_helpers/door/access/federal
+	lock_id = LOCKACCESS_FEDERAL
+
 
 /obj/effect/mapping_helpers/door/access/wolftech
 	lock_id = LOCKACCESS_WOLFTECH
@@ -195,3 +198,10 @@
 
 /obj/effect/mapping_helpers/door/access/npc/payload(obj/structure/vampdoor/payload)
 	payload.lock_id = "npc[rand(1, 20)]"
+
+/obj/effect/mapping_helpers/door/access/claimable
+
+/obj/effect/mapping_helpers/door/access/claimable/payload(obj/structure/vampdoor/payload)
+	if(!payload.lock_id)
+		payload.lock_id = "[rand(1,9999999)]"
+	payload.AddComponent(/datum/component/door_ownership)

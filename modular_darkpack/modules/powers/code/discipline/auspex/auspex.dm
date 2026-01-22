@@ -258,7 +258,7 @@
 	name = "Psychic Projection"
 	desc = "Leave your body behind and fly across the land."
 
-	//willpower_cost = 1
+	willpower_cost = 1
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
