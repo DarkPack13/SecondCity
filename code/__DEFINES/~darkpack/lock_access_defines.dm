@@ -71,3 +71,6 @@
 #define LOCKACCESS_COGGIE "coggie"
 #define LOCKACCESS_PENTEX "pentex"
 #define LOCKACCESS_PENTEX_LEADER "pentexleader"
+
+#define LOCK_OWNERSHIP_CAR "car"
+#define LOCK_OWNERSHIP_APARTMENT "apartment"

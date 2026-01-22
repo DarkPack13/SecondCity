@@ -7,6 +7,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	recoil = 5
 
 /*
 /obj/item/ammo_box/magazine/darkpack
@@ -35,6 +36,7 @@
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/revolver.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 85
+	recoil = 4
 
 /obj/item/gun/ballistic/revolver/darkpack/magnum
 	name = "magnum revolver"
@@ -66,6 +68,7 @@
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	recoil = 3
 
 /obj/item/ammo_box/magazine/m44
 	name = "handgun magazine (.44)"
@@ -257,6 +260,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack9mp5
 	burst_size = 4
 	spread = 4
+	recoil = 3
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -385,6 +389,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack556
 	burst_size = 2
 	fire_delay = 2
+	recoil = 5
 	spread = 4
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
@@ -406,6 +411,7 @@
 	burst_size = 1
 	fire_delay = 1
 	spread = 2
+	recoil = 3
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -467,6 +473,7 @@
 	burst_size = 3
 	fire_delay = 2
 	spread = 3
+	recoil = 5
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -486,14 +493,14 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/thompson
 	name = "\improper Thompson Submachine Gun"
-	desc = "\"Mamma-mia, Mercurio! Yu shot 'im in da head, he can't speek now! Yu guappo, Mercurio, yu naturale guappo!\""
+	desc = "\"Arrivederci, you dumb motherfucker.\"" // a legendary wod13 screenshot
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "thompson"
 	inhand_icon_state = "thompson"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpackthompson
-	recoil = 7
+	recoil = 5
 	burst_size = 5
 	fire_delay = 3
 	spread = 15
@@ -502,6 +509,43 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/thompson.ogg'
 	masquerade_violating = TRUE
+
+/obj/item/ammo_box/magazine/internal/darkpack/lever
+	name = "lever action internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c44
+	caliber = CALIBER_44
+	max_ammo = 13
+
+/obj/item/gun/ballistic/rifle/darkpack/lever
+	name = "lever action rifle"
+	desc = "A .44 caliber lever action rifle, perfect for casual hunters, reenactors, and urban cowboys. Yeehaw!"
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "lever"
+	inhand_icon_state = "lever"
+	worn_icon_state = "lever"
+	w_class = WEIGHT_CLASS_BULKY
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/darkpack/lever
+	bolt_wording = "bolt"
+	need_bolt_lock_to_interact = TRUE
+	bolt_type = BOLT_TYPE_LOCKING
+	semi_auto = FALSE
+	internal_magazine = TRUE
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/lever.ogg'
+	vary_fire_sound = FALSE
+	rack_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_out.ogg'
+	bolt_drop_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_in.ogg'
+	tac_reloads = FALSE
+	recoil = 2
+	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
+	burst_size = 1
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK
+	projectile_damage_multiplier = 1.5 //~52 damage vs 35 base .44 damage. It's ok, on par with 5.56 but lower pen and slower to fire due to bolt action.
+	masquerade_violating = FALSE
 
 /obj/item/ammo_box/magazine/internal/vampire/sniper
 	name = "sniper rifle internal magazine"
@@ -532,6 +576,7 @@
 	bolt_drop_sound = 'sound/items/weapons/gun/rifle/bolt_in.ogg'
 	tac_reloads = FALSE
 	fire_delay = 40
+	recoil = 7
 	burst_size = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	//zoomable = TRUE
@@ -567,6 +612,7 @@
 	burst_size = 1
 	fire_delay = 5
 	spread = 2
+	recoil = 6
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5
@@ -602,6 +648,47 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	custom_price = 1000
+
+/obj/item/ammo_box/magazine/internal/darkpack_dbarrel
+	name = "double barrel internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g
+	caliber = CALIBER_SHOTGUN
+	max_ammo = 2
+	masquerade_violating = FALSE
+
+/obj/item/gun/ballistic/shotgun/vampire/doublebarrel
+	name = "double barrel shotgun"
+	desc = "A old fashioned double barrel shotgun with fine wood furnishing, complete with a double-trigger system."
+	sawn_desc = "A old fashioned double barrel shotgun, complete with a double-trigger system. This one's sawn down well past the legal barrel length.."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	w_class = WEIGHT_CLASS_BULKY
+	semi_auto = TRUE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	icon_state = "dbarrel"
+	inhand_icon_state = "dbarrel"
+	base_icon_state = "dbarrel"
+	worn_icon_state = "pomp"
+	actions_types = list(/datum/action/item_action/toggle_firemode)
+	burst_fire_selection = TRUE
+	burst_size = 2	//So you can fire both barrels at once.
+	burst_delay = 2
+	recoil = 4
+	fire_delay = 3
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
+	can_be_sawn_off	= TRUE
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/pomp.ogg'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	custom_price = 1200
+
+// Allows break-action appearance when shells are ejected.
+/obj/item/gun/ballistic/shotgun/vampire/doublebarrel/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state][!chambered ? "_empty" : ""][sawn_off ? "_sawn" : ""]"
 
 /obj/item/ammo_box/magazine/darkpackautoshot
 	name = "shotgun magazine (12ga)"
@@ -657,3 +744,37 @@
 	ammo_type = /obj/item/ammo_casing/caseless/bolt
 	caliber = CALIBER_BOLT
 	max_ammo = 2
+
+/obj/item/ammo_box/magazine/internal/vampire/musket
+	name = "musket internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c75
+	caliber = CALIBER_MUSKET
+	max_ammo = 1	//It's a fucking musket
+
+/obj/item/gun/ballistic/automatic/darkpack/musket
+	name = "antique musket"
+	desc = "A antique musket, likely from the mid 19th century. Luckily this appears to be a simple cartrige loader; just load it, ram, cock, and fire!"
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "musket"
+	inhand_icon_state = "musket"
+	worn_icon_state = "musket"
+	w_class = WEIGHT_CLASS_BULKY
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampire/musket
+	bolt_type = BOLT_TYPE_NO_BOLT
+	semi_auto = TRUE	//This is so it ejects/destroys the casing on firing.
+	internal_magazine = TRUE
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/musket.ogg'
+	vary_fire_sound = FALSE
+	fire_delay = 50
+	burst_size = 1
+	recoil = 10	//tee hee
+	spread = 14
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	projectile_damage_multiplier = 1.5 //150 damage; it is a single-shot.
+	actions_types = list()
+
+/obj/item/gun/ballistic/automatic/darkpack/musket/process_fire(mob/living/user)
+	..()
+	new /obj/effect/particle_effect/fluid/smoke(get_ranged_target_turf(user, user.dir, 1))

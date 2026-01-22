@@ -96,7 +96,10 @@
 	update_status(SP_LINKED)
 	if (express_console.using_beacon)
 		update_status(SP_READY)
-	to_chat(user, span_notice("[src] linked to [C]."))
+	// DARKPACK EDIT CHANGE START
+	if(user)
+		to_chat(user, span_notice("[src] linked to [C]."))
+	// DARKPACK EDIT CHANGE END
 
 /obj/item/supplypod_beacon/click_alt(mob/user)
 	if(!express_console)

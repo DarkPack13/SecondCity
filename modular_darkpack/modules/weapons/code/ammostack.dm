@@ -36,6 +36,13 @@
 	exposed_wound_bonus = 5
 	wound_bonus = 5
 
+/obj/projectile/bullet/darkpack/vamp75
+	name = ".75 ball"
+	damage = 100
+	armour_penetration = 5
+	exposed_wound_bonus = 5
+	wound_bonus = 5
+
 /obj/projectile/bullet/darkpack/vamp556mm
 	name = "5.56mm bullet"
 	damage = 45
@@ -165,6 +172,18 @@
 	projectile_type = /obj/projectile/bullet/darkpack/vamp50
 	icon_state = "50"
 	base_icon_state = "50"
+
+/obj/item/ammo_casing/vampire/c75
+	name = ".75 cartrige"
+	desc = "A .75 musket cartridge containing a musket ball and powder."
+	caliber = CALIBER_MUSKET
+	projectile_type = /obj/projectile/bullet/darkpack/vamp75
+	icon_state = "cartridge"
+	base_icon_state = "cartridge"
+
+/obj/item/ammo_casing/vampire/c75/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
 
 /obj/item/ammo_casing/vampire/c556mm
 	name = "5.56mm bullet casing"
