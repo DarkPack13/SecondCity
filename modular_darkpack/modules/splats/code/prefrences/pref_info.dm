@@ -4,10 +4,10 @@
 	return
 
 #warn make stacktrace
-/datum/splat/proc/get_splats_description()
+/datum/splat/proc/get_splat_description()
 	return "No splat description set, file a bug report!"
 
-/datum/splat/proc/get_splats_lore()
+/datum/splat/proc/get_splat_lore()
 	return list("No splat lore set, file a bug report!")
 
 
@@ -18,6 +18,25 @@
  */
 /datum/splat/proc/create_pref_unique_perks()
 	return null
+
+/**
+ * Adds adds any perks related to the splat's splat_biotypes flags.
+ *
+ * Returns a list containing perks, or an empty list.
+ */
+/datum/splat/proc/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	if(splat_biotypes & MOB_UNDEAD)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "skull",
+			SPECIES_PERK_NAME = "Undead",
+			SPECIES_PERK_DESC = "Kindred are of the undead! The undead do not have the need to eat or breathe, and \
+				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
+		))
+
+	return to_add
 
 /**
  * Generates a list of "perks" related to this splat
@@ -49,7 +68,7 @@
 	// splat_perks += create_pref_damage_perks()
 	// splat_perks += create_pref_temperature_perks()
 	// splat_perks += create_pref_traits_perks()
-	// splat_perks += create_pref_biotypes_perks()
+	splat_perks += create_pref_biotypes_perks()
 	// splat_perks += create_pref_organs_perks()
 	// splat_perks += create_pref_language_perk()
 

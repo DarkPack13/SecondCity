@@ -10,7 +10,7 @@
 	display_order = JOB_DISPLAY_ORDER_CITIZEN
 	department_for_prefs = /datum/job_department/citizen
 	job_flags = CITY_JOB_FLAGS
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 	minimal_masquerade = 0
 
 /datum/outfit/job/vampire/citizen

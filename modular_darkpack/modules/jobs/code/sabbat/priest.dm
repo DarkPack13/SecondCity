@@ -6,7 +6,7 @@
 	supervisors = "Caine"
 	config_tag = "SABBAT_PRIEST"
 	outfit = /datum/outfit/job/vampire/sabbatpriest
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
 	department_for_prefs = /datum/job_department/sabbat

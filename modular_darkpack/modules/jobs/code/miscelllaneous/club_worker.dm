@@ -14,7 +14,7 @@
 		/datum/job_department/strip_club
 	)
 
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 
 	description = "Offer strip club services. Some of your clientele may be... Unusual, but you are either addicted to vampire bites, or bribed to listen little and say even less."
 	minimal_masquerade = 3

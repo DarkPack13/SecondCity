@@ -11,10 +11,10 @@
 
 // DARKPACK EDIT ADD START
 
-/// Checks for character species.
-#define JOB_UNAVAILABLE_SPECIES 8
-/// Checks if the job has available species slots.
-#define JOB_UNAVAILABLE_SPECIES_SLOTS 9
+/// Checks for character spalt.
+#define JOB_UNAVAILABLE_SPLAT 8
+/// Checks if the job has available splat slots.
+#define JOB_UNAVAILABLE_SPLAT_SLOTS 9
 /// Checks for character whitelist.
 #define JOB_UNAVAILABLE_WHITELIST 10
 /// Checks for character kindred age.

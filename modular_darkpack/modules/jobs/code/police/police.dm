@@ -14,8 +14,8 @@
 		/datum/job_department/police,
 	)
 
-	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
-	species_slots = list(SPECIES_GHOUL = 2)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE)
+	splat_slots = list(SPLAT_GHOUL = 2)
 
 	description = "Enforce the Law."
 	minimal_masquerade = 0

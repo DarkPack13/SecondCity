@@ -7,10 +7,10 @@
 	/// Character must be at least this age (in years) since embrace (chronological_age - age) to join as role.
 	var/minimum_immortal_age = 0
 
-	///List of species that are allowed to do this job.
-	var/list/allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL, SPECIES_KINDRED)
+	///List of splats that are allowed to do this job.
+	var/list/allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINDRED)
 	///List of species that are limited to a certain amount of that species doing this job.
-	var/list/species_slots = list(SPECIES_HUMAN = -1, SPECIES_GHOUL = -1, SPECIES_KINDRED = -1)
+	var/list/splat_slots = list(SPLAT_NONE = -1, SPLAT_GHOUL = -1, SPLAT_KINDRED = -1)
 	///List of Clans that are allowed to do this job.
 	var/list/allowed_clans
 	///List of Clans that are disallowed to do this job.

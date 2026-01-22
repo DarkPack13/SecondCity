@@ -7,7 +7,7 @@
 	config_tag = "SABBAT_PACK"
 	outfit = /datum/outfit/job/vampire/sabbatpack
 	job_flags = CITY_JOB_FLAGS
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 
 	exp_required_type_department = EXP_TYPE_SABBAT
 	department_for_prefs = /datum/job_department/sabbat
