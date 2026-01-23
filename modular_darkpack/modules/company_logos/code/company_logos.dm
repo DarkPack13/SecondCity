@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	public_description = EVIL_COMPANY + "is a multinational megacorporation, one of the largest in the world. Originally an oil and mining company, Pentex \
 		Group is now a holding company with subsidiares covering almost every industry on Earth. The vast majority of people have never heard of \
 		Pentex, but almost everyone knows and/or trusts at least one of their subsidiaries."
-	secret_description = "The average person has no knowledge of Pentex Group's dealings, which allows them to pull the strings like a dark puppetmaster. \
+	secret_description = "The average person has no knowledge of "+ EVIL_COMPANY + "\'s dealings, which allows them to pull the strings like a dark puppetmaster. \
 		The company's main motivation is the spirtual, moral, and environmental corruption and collapse of Earth as we know it. Despite this, many who stalk \
 		the night still ally with them. Why make your own power when you can ride the coat-tails of the most powerful corporation in history?"
 
@@ -111,8 +111,12 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Blast off to Fun!"
 	name_span = "corp_label_avalon"
 	company_color = COLOR_CORP_AVALON
-	public_description = ""
-	secret_description = ""
+	public_description = "A ubiquitous toy company, " + EVIL_TOY_COMPANY + " products are a fixture in almost every family home in America. \
+		From the classic board games \'So What?\' and \'Nuke \'Em\' to the iconic toy lines \'Gooshy Gooze\', \'Cici\', and \'Pocket Beasts\'; There isn't a \
+		department store in the country that you can't find their products in.
+	secret_description = EVIL_TOY_COMPANY + "\'s toys, sometimes obviously and sometimes not, are an attempt to encourage ultra-violence and self-loathing within \
+		the youth of their consumers. The goal is to render the next generation cruel and apathetic to allow other corporations under the same umbrella to thrive in \
+		a world with far less care for the Earth we live in."
 
 /datum/brand/pentex/circinus
 	manufacturer = "circinus"
