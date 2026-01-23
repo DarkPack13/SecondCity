@@ -118,15 +118,6 @@
 	)
 	color = "#434343"
 
-/obj/item/vamp/keys/bar
-	name = "barkeeper keys"
-	accesslocks = list(
-		LOCKACCESS_BAR,
-		LOCKACCESS_ANARCH,
-		LOCKACCESS_BAR_DELIVERY,
-	)
-	color = "#434343"
-
 /obj/item/vamp/keys/anarch_limited
 	name = "barkeeper keys"
 	accesslocks = list(
