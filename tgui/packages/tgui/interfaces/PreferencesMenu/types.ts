@@ -185,7 +185,8 @@ export type PreferencesMenuData = {
     misc: {
       gender: Gender;
       joblessrole: JoblessRole;
-      splats: string; // DARKPACK EDIT CHANGE - SPLATS
+      species: string;
+      splats: string; // DARKPACK EDIT ADD - SPLATS
       loadout_list: LoadoutList;
       job_clothes: BooleanLike;
     };
@@ -261,6 +262,7 @@ export type ServerData = {
   loadout: {
     loadout_tabs: LoadoutCategory[];
   };
-  splats: Record<string, Splats>; // DARKPACK EDIT CHANGE - SPLATS
+  species: Record<string, Species>;
+  splats: Record<string, Splats>; // DARKPACK EDIT ADD - SPLATS
   [otherKey: string]: unknown;
 };
