@@ -167,6 +167,8 @@ export function CharacterPreferenceWindow(props) {
             </PageButton>
           </Stack.Item>
 
+          {
+            /* DARKPACK EDIT REMOVAL - (We dont have antags and this is useless atm)
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
@@ -176,6 +178,8 @@ export function CharacterPreferenceWindow(props) {
               Antagonists
             </PageButton>
           </Stack.Item>
+            */
+          }
 
           {
           // DARKPACK EDIT ADD START - Merits
