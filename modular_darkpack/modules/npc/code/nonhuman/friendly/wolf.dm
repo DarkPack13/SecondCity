@@ -36,7 +36,7 @@
 	}
 
 /mob/living/basic/pet/dog/wolf
-	name = "\improper wolf"
+	name = "wolf"
 	real_name = "wolf"
 	icon_state = "wolf1"
 	desc = "That's an big, scary wolf. Might be best to steer clear."
