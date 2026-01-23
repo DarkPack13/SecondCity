@@ -48,6 +48,8 @@
 
 #define LOCKACCESS_KIASYD "kiasyd"
 
+#define LOCKACCESS_SETITE "setite"
+
 #define LOCKACCESS_SABBAT "sabbat"
 
 #define LOCKACCESS_BARON "baron"

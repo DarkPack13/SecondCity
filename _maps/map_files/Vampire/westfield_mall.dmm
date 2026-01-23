@@ -577,9 +577,11 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "abZ" = (
-/obj/structure/vampdoor/wood/npc{
+/obj/structure/vampdoor/wood{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/old,
 /area/vtm/interior)
 "aca" = (
@@ -1723,7 +1725,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/elevator)
 "afP" = (
-/obj/structure/vampdoor/glass/pentex,
+/obj/structure/vampdoor/glass,
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/endron_logging)
 "afQ" = (
@@ -5169,12 +5173,6 @@
 /obj/structure/stairs/south,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/anarch)
-"arb" = (
-/obj/structure/vampdoor/woodglass{
-	dir = 1
-	},
-/turf/open/floor/carpet/darkpack/hotel,
-/area/vtm/interior/shop)
 "arc" = (
 /obj/structure/table,
 /obj/structure/retail/flower_shop,
@@ -9432,10 +9430,7 @@
 /area/vtm/interior)
 "aEU" = (
 /obj/structure/vampdoor/old{
-	dir = 8;
-	lock_id = "nosferatu";
-	locked = 1;
-	lockpick_difficulty = 20
+	dir = 8
 	},
 /obj/effect/mapping_helpers/door/access/nosferatu,
 /obj/effect/mapping_helpers/door/lock,
@@ -11024,9 +11019,7 @@
 /turf/open/water/vamp_sewer/border,
 /area/vtm/interior/sewer)
 "aKl" = (
-/obj/structure/vampdoor/wood{
-	lock_id = "banuhaqim"
-	},
+/obj/structure/vampdoor/wood,
 /obj/effect/mapping_helpers/door/access/clinic,
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/smooth,
@@ -12620,9 +12613,11 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior)
 "aPB" = (
-/obj/structure/vampdoor/wood/pentex{
+/obj/structure/vampdoor/wood{
 	name = "Endron Tree Planting Outpost"
 	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/city/plating_mono,
 /area/vtm/westfield_mall/interior/endron_logging)
 "aPC" = (
@@ -13992,7 +13987,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "aUc" = (
-/obj/structure/vampdoor/simple/anarch,
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/anarch,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/skatepark)
 "aUd" = (
@@ -77532,7 +77529,7 @@ aAV
 aAV
 aAV
 aAV
-arb
+agK
 aXr
 aPG
 awB
