@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "firearms stat roll to reduce recoil"

@@ -1,10 +1,11 @@
 /mob/living/carbon/human/proc/handle_diablerie(mob/living/victim)
-	AdjustHumanity(-1, 0)
 
 	var/datum/splat/vampire/kindred/kindred = iskindred(src)
 	var/generation = get_generation()
 	var/victim_generation = victim.get_generation()
 
+	if(kindred)
+		SEND_SIGNAL(victim, COMSIG_PATH_HIT, -1, 0, FALSE)
 	if(victim_generation >= generation)
 		message_admins("[ADMIN_LOOKUPFLW(src)] successfully Diablerized [ADMIN_LOOKUPFLW(victim)]")
 		log_attack("[key_name(src)] successfully Diablerized [key_name(victim)].")

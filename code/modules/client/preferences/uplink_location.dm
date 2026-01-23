@@ -1,5 +1,5 @@
 /datum/preference/choiced/uplink_location
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null //DARKPACK EDIT CHANGE - Original: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "uplink_loc"
 	can_randomize = FALSE

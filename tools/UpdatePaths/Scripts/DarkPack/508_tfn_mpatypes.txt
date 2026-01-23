@@ -1,0 +1,15 @@
+/obj/item/clothing/suit/costume/yakuza : /obj/item/clothing/suit/vampire/majima_jacket {@OLD}
+/obj/item/clothing/suit/costume/nerdshirt : /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic {@OLD}
+/obj/item/clothing/suit/costume/ianshirt : /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian {@OLD}
+/obj/item/clothing/suit/costume/dutch : /obj/item/clothing/suit/vampire/dutch {@OLD}
+
+/obj/item/melee/vamp/longsword/keeper : /obj/item/claymore/longsword/keeper{@OLD}
+
+/obj/item/police_radio : /obj/item/radio/headset/darkpack/police {@OLD}
+
+/obj/item/supplypod_beacon_origin : /obj/item/supplypod_beacon {@OLD}
+
+/obj/item/stocks_license : @DELETE
+
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano{@OLD}
+/obj/structure/musician/piano/darkpack/ipiano : /obj/structure/musician/piano{@OLD}
