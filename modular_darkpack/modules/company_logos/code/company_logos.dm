@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 
 /datum/element/corp_label/proc/on_examine_more(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	var/logo
+	var/logo = our_brand.full_name
 	if(our_brand.render_logo)
 		logo = "[icon2html(our_brand.logo_icon, user, our_brand.manufacturer, extra_classes = "corplogo")]"
 
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Pentex: Making All The Really Tough Decisions For You!"
 	name_span = "corp_label_pentex"
 	company_color = COLOR_CORP_PENTEX
-	public_description = "Pentex Group is a multinational megacorporation, one of the largest in the world. Originally an oil and mining company, Pentex \
+	public_description = EVIL_COMPANY + "is a multinational megacorporation, one of the largest in the world. Originally an oil and mining company, Pentex \
 		Group is now a holding company with subsidiares covering almost every industry on Earth. The vast majority of people have never heard of \
 		Pentex, but almost everyone knows and/or trusts at least one of their subsidiaries."
 	secret_description = "The average person has no knowledge of Pentex Group's dealings, which allows them to pull the strings like a dark puppetmaster. \
@@ -98,13 +98,21 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Keeping America's wilderness clean!"
 	name_span = "corp_label_ardus"
 	company_color = COLOR_CORP_ARDUS
+	public_description = EVIL_TRASH_COMPANY + "is a waste management corporation that, while not headquartered in the city, is best known for \
+		reinvigorating the city of Atlanta, Georgia with jobs and infrastructure in the late 1970's. They deal in all kinds of waste and service \
+		most of the United States. They were considered a \'Top 21\' company from 1993 to 1998."
+	secret_description = "A large amount of unsupervised waste dump sites that are polluting the Earth were left there with love by " + EVIL_TRASH_COMPANY + ". \
+		They always go for the cheapest option when it comes to disposal, and regulations are only a word they care about when they think they \
+		might get caught. The company's favorite place to dump toxic waste are watersheds and suburban communities."
 
 /datum/brand/pentex/avalon
 	manufacturer = "avalon"
 	full_name = EVIL_TOY_COMPANY
-	slogan = "Blast off to to Fun!"
+	slogan = "Blast off to Fun!"
 	name_span = "corp_label_avalon"
 	company_color = COLOR_CORP_AVALON
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/circinus
 	manufacturer = "circinus"
@@ -112,6 +120,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "The best taste in the tent."
 	name_span = "corp_label_circinus"
 	company_color = COLOR_CORP_CIRCINUS
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/consolidex
 	manufacturer = "consolidex"
@@ -119,6 +129,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Portfolio simplified."
 	name_span = "corp_label_consolidex"
 	company_color = COLOR_CORP_CONSOLIDEX
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/endron
 	manufacturer = "endron"
@@ -126,12 +138,16 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "For a greener tomorrow!"
 	name_span = "corp_label_endron"
 	company_color = COLOR_CORP_ENDRON
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/endron/atlas
 	manufacturer = "atlas"
 	full_name = EVIL_NUCLEAR_COMPANY
 	slogan = "Atlas: Providers for Our Future."
 	render_logo = FALSE
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/harold_and_harold
 	manufacturer = "harold_and_harold"
@@ -139,6 +155,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Finding what makes the world work, underground."
 	name_span = "corp_label_harold_harold"
 	company_color = COLOR_CORP_HAROLD_HAROLD
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/good_house
 	manufacturer = "good_house"
@@ -146,6 +164,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Sustainable stationary for a sustainable future."
 	name_span = "corp_label_good_house"
 	company_color = COLOR_CORP_GOOD_HOUSE
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/hallahan
 	manufacturer = "hallahan"
@@ -153,6 +173,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Bounty of the sea straight to your plate."
 	name_span = "corp_label_hallahan"
 	company_color = COLOR_CORP_HALLAHAN
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/herculean
 	manufacturer = "herculean"
@@ -160,6 +182,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "No labour too great for a Herculean."
 	name_span = "corp_label_herculean"
 	company_color = COLOR_CORP_HERCULEAN
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/herricks
 	manufacturer = "herricks"
@@ -167,6 +191,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "A full pantry without costing a full wallet."
 	name_span = "corp_label_herricks"
 	company_color = COLOR_CORP_HERRICKS
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/king
 	manufacturer = "king"
@@ -174,6 +200,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Nobody is better at brewing than the King."
 	name_span = "corp_label_king"
 	company_color = COLOR_CORP_KING
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/magadon
 	manufacturer = "magadon"
@@ -181,18 +209,24 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Magadon: building a better you."
 	name_span = "corp_label_magadon"
 	company_color = COLOR_CORP_MAGADON
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/magadon/aesop
 	manufacturer = "aesop"
 	full_name = EVIL_COSMETICS_COMPANY
 	slogan = "Humane testing for Human needs."
 	render_logo = FALSE
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/magadon/autumn
 	manufacturer = "autumn"
 	full_name = EVIL_HOSPITAL_COMPANY
 	slogan = "Let our family care for your family."
 	render_logo = FALSE
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/nastrum
 	manufacturer = "nastrum"
@@ -200,6 +234,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Safety in efficiency."
 	name_span = "corp_label_nastrum"
 	company_color = COLOR_CORP_NASTRUM
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/omni
 	manufacturer = "omni"
@@ -207,6 +243,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Omni: Entertainment at your fingertips."
 	name_span = "corp_label_omni_tv"
 	company_color = COLOR_CORP_OMNI_TV
+	public_description = ""
+	secret_description = ""
 #warn O'TOLLEY'S LOGO NEEDED
 /datum/brand/pentex/otolleys
 	manufacturer = "otolleys"
@@ -214,6 +252,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "The family place."
 	name_span = "corp_label_otolleys"
 	company_color = COLOR_CORP_OTOLLEYS
+	public_description = ""
+	secret_description = ""
 #warn BLACK DOG LOGO NEEDED
 /datum/brand/pentex/black_dog
 	manufacturer = "black_dog"
@@ -221,6 +261,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Bring some Shadow to your table."
 	name_span = "corp_label_black_dog"
 	company_color = COLOR_CORP_BLACK_DOG
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/rainbow
 	manufacturer = "rainbow"
@@ -228,6 +270,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Materials for the whole spectrum of products."
 	name_span = "corp_label_rainbow"
 	company_color = COLOR_CORP_RAINBOW_INC
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/tellus
 	manufacturer = "tellus"
@@ -235,12 +279,16 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Tellus: Virtual worlds you could fall into."
 	name_span = "corp_label_tellus"
 	company_color = COLOR_CORP_TELLUS
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/tellus/sunburst
 	manufacturer = "sunburst"
 	full_name = EVIL_COMPUTER_COMPANY_2
 	slogan = "Computer parts should be sustainable. At Sunburst, they are."
 	render_logo = FALSE
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/vesuvius
 	manufacturer = "vesuvius"
@@ -248,6 +296,8 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Nobody tells a story like Vesuvius."
 	name_span = "corp_label_vesuvius"
 	company_color = COLOR_CORP_VESUVIUS
+	public_description = ""
+	secret_description = ""
 
 /datum/brand/pentex/young_and_smith
 	manufacturer = "young_and_smith"
@@ -255,3 +305,5 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Make your grocery trips simpler. Ask for Young and Smith."
 	name_span = "corp_label_young_smith"
 	company_color = COLOR_CORP_YOUNG_SMITH
+	public_description = ""
+	secret_description = ""
