@@ -1,2 +1,0 @@
-/turf
-	var/umbra = FALSE

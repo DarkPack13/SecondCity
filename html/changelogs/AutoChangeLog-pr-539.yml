@@ -1,0 +1,8 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - qol: "any character with occult 3 or greater can identify occult artifacts and use them"
+  - balance: "makes lockpicking and breaking doors down harder"
+  - balance: "Sabbat faction now has 8 slots instead of 4"
+  - bugfix: "Sabbat characters now spawn with the vinculum icon"
+  - bugfix: "Zombies now check to see if theres a graveyard worker before spawning"

@@ -32,11 +32,14 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
-	/// Whether to grant an apartment_key
-	var/grant_apartment_key = FALSE
-	var/apartment_key_amount = 1
-	/// The type of a key the resident will get
-	var/apartment_key_type
+	/// Cooldown for bashing attempts
+	COOLDOWN_DECLARE(bash_cooldown)
+	/// Cooldown for lockpicking attempts
+	COOLDOWN_DECLARE(lockpick_cooldown)
+	/// Difficulty for bashing this door down
+	var/bash_difficulty = 6
+	/// Number of successes needed to bash down
+	var/bash_successes_needed = 1
 
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
@@ -198,8 +201,6 @@
 	. = ..()
 	if(.)
 		return
-	if(try_award_apartment_key(user))
-		return
 	var/mob/living/living_user = user
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to use here."))
@@ -208,7 +209,12 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if((human_user.st_get_stat(STAT_STRENGTH)) >= lockpick_difficulty)
+				if(!COOLDOWN_FINISHED(src, bash_cooldown))
+					var/time_left = COOLDOWN_TIMELEFT(src, bash_cooldown)
+					to_chat(human_user, span_warning("You must wait [time_left / 10] seconds before attempting to rip the door off it's hinges again."))
+					return
+				var/roll = SSroll.storyteller_roll(human_user.st_get_stat(STAT_STRENGTH), bash_difficulty, human_user, numerical = TRUE)
+				if(roll >= bash_successes_needed)
 					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
 					if(do_after(human_user, 3 SECONDS, src))
 						proc_unlock(50)
@@ -220,16 +226,16 @@
 					pixel_w = pixel_w+rand(-1, 1)
 					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
-					to_chat(user, span_warning("You aren't strong enough to break it down!"))
+					to_chat(user, span_warning("You aren't strong enough to break it down! You hurt your shoulder by punching the door!"))
+					human_user.adjust_brute_loss(30)
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
+					COOLDOWN_START(src, bash_cooldown, 1 SCENES)
 			else
 				pixel_z = pixel_z+rand(-1, 1)
 				pixel_w = pixel_w+rand(-1, 1)
 				playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
 				addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 	else
-		if(try_award_apartment_key(user))
-			return
 		if(locked)
 			playsound(src, lock_sound, 75, TRUE)
 			to_chat(user, span_warning("[src] is locked!"))
@@ -292,8 +298,12 @@
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to pick here."))
 		return
-	if(user.st_get_stat(STAT_LARCENY) <= 0)
+	if(user.st_get_stat(STAT_LARCENY) < 1)
 		to_chat(user, span_warning("How do I do this...?"))
+		return
+	if(!COOLDOWN_FINISHED(src, lockpick_cooldown))
+		var/time_left = COOLDOWN_TIMELEFT(src, lockpick_cooldown)
+		to_chat(user, span_warning("You must wait [time_left / 10] seconds before attempting another lockpick!"))
 		return
 	if(locked)
 		proc_unlock(5)
@@ -304,7 +314,7 @@
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			if(!locked)
 				return
-			var/roll_result = SSroll.storyteller_roll(total_lockpicking + user.st_get_stat(STAT_DEXTERITY), lockpick_difficulty, list(user), user)
+			var/roll_result = SSroll.storyteller_roll(total_lockpicking + (user.st_get_stat(STAT_DEXTERITY, FALSE)), lockpick_difficulty, list(user), user)
 			switch(roll_result)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
@@ -312,8 +322,10 @@
 					return TRUE
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))
+					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 				if(ROLL_BOTCH)
 					to_chat(user, span_warning("Your lockpick broke!"))
+					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 					qdel(tool)
 		else
 			to_chat(user, span_warning("You failed to pick the lock."))
@@ -368,44 +380,5 @@
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)
 	pixel_w = initial(pixel_w)
-
-
-/obj/structure/vampdoor/proc/try_award_apartment_key(mob/user)
-	if(!grant_apartment_key)
-		return FALSE
-	if(!lock_id)
-		return FALSE
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/human = user
-	if(human.received_apartment_key)
-		return FALSE
-	var/alert = tgui_alert(user, "Is this my apartment?", "Apartment", list("Yes", "No"))
-	if(alert != "Yes")
-		return
-	if(!grant_apartment_key)
-		return
-	var/spare_key = tgui_alert(user, "Do I have an extra spare key?", "Apartment", list("Yes", "No"))
-	if(!grant_apartment_key)
-		return
-	if(spare_key == "Yes")
-		apartment_key_amount = 2
-	else
-		apartment_key_amount = 1
-	for(var/i in 1 to apartment_key_amount)
-		var/obj/item/vamp/keys/key
-		if(apartment_key_type)
-			key = new apartment_key_type(get_turf(human))
-		else
-			key = new /obj/item/vamp/keys(get_turf(human))
-		key.accesslocks = list("[lock_id]")
-		human.put_in_hands(key)
-	human.received_apartment_key = TRUE
-	grant_apartment_key = FALSE
-	if(apartment_key_amount > 1)
-		to_chat(human, span_notice("They're just where I left them..."))
-	else
-		to_chat(human, span_notice("It's just where I left it..."))
-	return TRUE
 
 #undef DOAFTER_SOURCE_DOOR

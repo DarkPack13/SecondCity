@@ -16,8 +16,6 @@
 
 /obj/darkpack_car/retro/rand/Initialize(mapload)
 	icon_state = "[pick(1, 3, 5)]"
-	if(access == "none")
-		access = "npc[rand(1, 20)]"
 	. = ..()
 
 /obj/darkpack_car/rand
@@ -26,8 +24,6 @@
 
 /obj/darkpack_car/rand/Initialize(mapload)
 	icon_state = "[pick(2, 4, 6)]"
-	if(access == "none")
-		access = "npc[rand(1, 20)]"
 	. = ..()
 
 /obj/darkpack_car/rand/camarilla
@@ -124,8 +120,6 @@
 	car_storage_type = /datum/storage/car/truck
 
 /obj/darkpack_car/track/Initialize(mapload)
-	if(access == "none")
-		access = "npc[rand(1, 20)]"
 	. = ..()
 
 /obj/darkpack_car/track/volkswagen

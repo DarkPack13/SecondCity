@@ -1,3 +1,4 @@
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/security
 	group = "Security"
 	access = ACCESS_SECURITY
@@ -410,3 +411,4 @@
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/blood_worm_tester = 4)
 	crate_name = "hemoparasite testing crate"
+*/

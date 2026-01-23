@@ -29,6 +29,10 @@
 	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_BANU
 
+/obj/effect/mapping_helpers/door/access/banu_haqim_primogen
+	icon_state = "access_helper_cam"
+	lock_id = LOCKACCESS_BANU_PRIMOGEN
+
 /obj/effect/mapping_helpers/door/access/strip
 	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_STRIP
@@ -122,9 +126,19 @@
 /obj/effect/mapping_helpers/door/access/lasombra
 	lock_id = LOCKACCESS_LASOMBRA
 
+/obj/effect/mapping_helpers/door/access/lasombra_primogen
+	icon_state = "access_helper_cam"
+	lock_id = LOCKACCESS_PRIMOGEN_LASOMBRA
+
+/obj/effect/mapping_helpers/door/access/setite
+	lock_id = LOCKACCESS_SETITE
+
 /obj/effect/mapping_helpers/door/access/sabbat
 	lock_id = LOCKACCESS_SABBAT
 
+/obj/effect/mapping_helpers/door/access/baron
+	icon_state = "access_helper_bar"
+	lock_id = LOCKACCESS_BARON
 
 /obj/effect/mapping_helpers/door/access/anarch
 	icon_state = "access_helper_bar"
@@ -161,9 +175,14 @@
 /obj/effect/mapping_helpers/door/access/laundromat
 	lock_id = LOCKACCESS_LAUNDROMAT
 
+/obj/effect/mapping_helpers/door/access/hunter
+	lock_id = LOCKACCESS_HUNTER
 
 /obj/effect/mapping_helpers/door/access/police
 	lock_id = LOCKACCESS_POLICE
+
+/obj/effect/mapping_helpers/door/access/kiasyd
+	lock_id = LOCKACCESS_KIASYD
 
 /obj/effect/mapping_helpers/door/access/dispatch
 	lock_id = LOCKACCESS_DISPATCH
@@ -198,3 +217,10 @@
 
 /obj/effect/mapping_helpers/door/access/npc/payload(obj/structure/vampdoor/payload)
 	payload.lock_id = "npc[rand(1, 20)]"
+
+/obj/effect/mapping_helpers/door/access/claimable
+
+/obj/effect/mapping_helpers/door/access/claimable/payload(obj/structure/vampdoor/payload)
+	if(!payload.lock_id)
+		payload.lock_id = "[rand(1,9999999)]"
+	payload.AddComponent(/datum/component/door_ownership)

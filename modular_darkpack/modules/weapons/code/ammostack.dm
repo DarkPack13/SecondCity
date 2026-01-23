@@ -36,6 +36,13 @@
 	exposed_wound_bonus = 5
 	wound_bonus = 5
 
+/obj/projectile/bullet/darkpack/vamp75
+	name = ".75 ball"
+	damage = 100
+	armour_penetration = 5
+	exposed_wound_bonus = 5
+	wound_bonus = 5
+
 /obj/projectile/bullet/darkpack/vamp556mm
 	name = "5.56mm bullet"
 	damage = 45
@@ -166,6 +173,18 @@
 	icon_state = "50"
 	base_icon_state = "50"
 
+/obj/item/ammo_casing/vampire/c75
+	name = ".75 cartrige"
+	desc = "A .75 musket cartridge containing a musket ball and powder."
+	caliber = CALIBER_MUSKET
+	projectile_type = /obj/projectile/bullet/darkpack/vamp75
+	icon_state = "cartridge"
+	base_icon_state = "cartridge"
+
+/obj/item/ammo_casing/vampire/c75/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
 /obj/item/ammo_casing/vampire/c556mm
 	name = "5.56mm bullet casing"
 	desc = "A 5.56mm bullet casing."
@@ -219,16 +238,19 @@
 	icon_state = "12i"
 	base_icon_state = "12i"
 
-/obj/item/ammo_casing/caseless/bolt
+/obj/item/ammo_casing/vampire/bolt
 	name = "bolt"
 	desc = "Welcome to the Middle Ages!"
 	projectile_type = /obj/projectile/bullet/crossbow_bolt
-	caliber = CALIBER_FOAM
+	caliber = CALIBER_BOLT
 	icon_state = "arrow"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	harmful = TRUE
 
+/obj/item/ammo_casing/vampire/bolt/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state)
 /*
 /obj/item/storage/ammostack
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
@@ -355,7 +377,7 @@
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
 	icon_state = "arrows"
-	ammo_type = /obj/item/ammo_casing/caseless/bolt
+	ammo_type = /obj/item/ammo_casing/vampire/bolt
 	max_ammo = 30
 
 // DARKPACK TODO - GAROU
