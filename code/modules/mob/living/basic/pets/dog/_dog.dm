@@ -127,7 +127,7 @@
 		if(dog_bed.update_owner(src)) //No muscling in on my turf you fucking parrot
 			break
 
-// DARKPACK EDIT ADD START - npc - snowflake obeys_commands abstraction proc
+// DARKPACK EDIT ADD START - NPC - (snowflake obeys_commands abstraction proc)
 /mob/living/basic/pet/dog/proc/add_obey_commands()
 	var/static/list/pet_commands = list( // DARKPACK EDIT REMOVE START - npc - Moving this into a proc so we can have subtypes with different commands
 	/datum/pet_command/idle,
