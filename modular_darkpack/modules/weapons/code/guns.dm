@@ -741,7 +741,7 @@
 	obj_flags = NONE
 
 /obj/item/ammo_box/magazine/internal/vampcrossbow
-	ammo_type = /obj/item/ammo_casing/vampire/caseless/bolt
+	ammo_type = /obj/item/ammo_casing/vampire/bolt
 	caliber = CALIBER_BOLT
 	max_ammo = 2
 
