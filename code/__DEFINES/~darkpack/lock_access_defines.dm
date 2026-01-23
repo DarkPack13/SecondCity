@@ -45,6 +45,8 @@
 
 #define LOCKACCESS_KYASID "kyasid"
 
+#define LOCKACCESS_SETITE "setite"
+
 #define LOCKACCESS_SABBAT "sabbat"
 
 #define LOCKACCESS_ANARCH "anarch"
