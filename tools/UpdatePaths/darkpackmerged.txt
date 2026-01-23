@@ -1,0 +1,952 @@
+# Not related to any changes of speicifc second city prs. Just to convert old maps pre-rebase to second city
+
+# #66978 never made an updates path
+/obj/structure/flora/ausbushes : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/reedbush : /obj/structure/flora/bush/reed/style_random {@OLD}
+/obj/structure/flora/ausbushes/leafybush : /obj/structure/flora/bush/leavy/style_random {@OLD}
+/obj/structure/flora/ausbushes/palebush : /obj/structure/flora/bush/stalky/style_random {@OLD}
+/obj/structure/flora/ausbushes/stalkybush : /obj/structure/flora/bush/stalky/style_random {@OLD}
+/obj/structure/flora/ausbushes/grassybush : /obj/structure/flora/bush/grassy/style_random {@OLD}
+/obj/structure/flora/ausbushes/fernybush : /obj/structure/flora/bush/ferny/style_random {@OLD}
+/obj/structure/flora/ausbushes/sunnybush : /obj/structure/flora/bush/sunny/style_random {@OLD}
+/obj/structure/flora/ausbushes/genericbush : /obj/structure/flora/bush/generic/style_random {@OLD}
+/obj/structure/flora/ausbushes/pointybush : /obj/structure/flora/bush/pointy/style_random {@OLD}
+/obj/structure/flora/ausbushes/lavendergrass : /obj/structure/flora/bush/lavendergrass/style_random {@OLD}
+/obj/structure/flora/ausbushes/brflowers : /obj/structure/flora/bush/flowers_br/style_random {@OLD}
+/obj/structure/flora/ausbushes/ppflowers : /obj/structure/flora/bush/flowers_pp/style_random {@OLD}
+/obj/structure/flora/ausbushes/ywflowers : /obj/structure/flora/bush/flowers_yw/style_random {@OLD}
+/obj/structure/flora/ausbushes/sparsegrass : /obj/structure/flora/bush/sparsegrass/style_random {@OLD}
+/obj/structure/flora/ausbushes/fullgrass : /obj/structure/flora/bush/fullgrass/style_random {@OLD}
+/obj/structure/flora/stump : /obj/structure/flora/tree/stump
+/obj/structure/flora/ausbushes/shortgrass : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/ausbushes/tallgrass/dry : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/b : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/c : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/junglebush/large : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/rock/jungle : /obj/structure/flora/bush/style_random {@OLD}
+/obj/structure/flora/rock/pile/largejungle : /obj/structure/flora/bush/style_random {@OLD}
+
+/obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
+/obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
+/obj/structure/janitorialcart : /obj/structure/mop_bucket/janitorialcart {@OLD}
+/obj/structure/reagent_dispensers/peppertank : /obj/structure/reagent_dispensers/wall/peppertank {@OLD}
+
+/obj/structure/table/wood/bar : /obj/structure/table/wood/shuttle_bar
+
+/obj/item/grown/sunflower : /obj/item/food/grown/sunflower {@OLD}
+/obj/item/food/cheesewheel : /obj/item/food/cheese/wheel {@OLD}
+/obj/item/food/cheesewedge : /obj/item/food/cheese/wedge {@OLD}
+/obj/item/storage/pill_bottle/dice : /obj/item/storage/dice {@OLD}
+/obj/item/soapstone : @DELETE
+#this was a borg item that should not have been mapped in the first place
+/obj/item/organ_storage : @DELETE
+#why was this mapped
+/obj/item/mop/cyborg : /obj/item/mop
+/obj/item/anesthetic_tank : /obj/item/tank/internals/anesthetic {@OLD}
+/obj/item/trash/plate : /obj/item/plate {@OLD}
+/obj/item/toy/prize/@SUBTYPES : /obj/item/toy/mecha/@SUBTYPES {@OLD}
+
+/mob/living/simple_animal/deer : /mob/living/basic/deer
+/mob/living/simple_animal/cow : /mob/living/basic/cow
+/mob/living/simple_animal/hostile/cockroach : /mob/living/basic/cockroach/sewer
+
+# for some reasn our ghosts dont have /retaliate/ and thus arent caught by the ghost conversion txt...
+/mob/living/simple_animal/hostile/ghost : /mob/living/basic/ghost
+/mob/living/simple_animal/hostile/ghost/hostile : /mob/living/basic/ghost
+
+/obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
+/obj/structure/extinguisher_cabinet{dir = 1} : /obj/structure/extinguisher_cabinet/directional/north
+/obj/structure/extinguisher_cabinet{dir = 2} : /obj/structure/extinguisher_cabinet/directional/south
+/obj/structure/extinguisher_cabinet{dir = 4} : /obj/structure/extinguisher_cabinet/directional/east
+/obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west
+
+/obj/item/food/soup/stew : @DELETE
+/obj/item/food/soup/vegetable : @DELETE
+/obj/item/food/soup/bungocurry : @DELETE
+/obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
+
+/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
+/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
+/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
+/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv {@OLD}
+
+/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
+
+/obj/item/toy/mecha/fireripley : /obj/item/toy/mecha/firefighter
+
+# This item doesn't exist on TG anymore.
+/obj/item/melee/rune_knife : @DELETE
+ 
+# Lights are snowflaked here due to us getting the directionals BACKWARDS. I hate flav.
+# OLD LIGHTS FROM 70277
+
+/obj/machinery/light{dir = @UNSET} : /obj/machinery/light/directional/north
+/obj/machinery/light{dir = 1} : /obj/machinery/light/directional/south
+/obj/machinery/light{dir = 2} : /obj/machinery/light/directional/north
+/obj/machinery/light{dir = 4} : /obj/machinery/light/directional/east
+/obj/machinery/light{dir = 8} : /obj/machinery/light/directional/west
+
+# small lights
+
+/obj/machinery/light/small{dir = @UNSET} : /obj/machinery/light/small/directional/north
+/obj/machinery/light/small{dir = 1} : /obj/machinery/light/small/directional/south
+/obj/machinery/light/small{dir = 2} : /obj/machinery/light/small/directional/north
+/obj/machinery/light/small{dir = 4} : /obj/machinery/light/small/directional/west
+/obj/machinery/light/small{dir = 8} : /obj/machinery/light/small/directional/east
+
+# WOD LIGHTS
+/obj/machinery/light/prince{dir = @UNSET} : /obj/machinery/light/prince/directional/north
+/obj/machinery/light/prince{dir = 1} : /obj/machinery/light/prince/directional/south
+/obj/machinery/light/prince{dir = 2} : /obj/machinery/light/prince/directional/north
+/obj/machinery/light/prince{dir = 4} : /obj/machinery/light/prince/directional/west
+/obj/machinery/light/prince{dir = 8} : /obj/machinery/light/prince/directional/east
+
+/obj/structure/noticeboard : /obj/structure/noticeboard {@OLD;icon_state=@SKIP}
+
+/obj/item/kirbyplants {icon_state="plant0"} : /obj/item/kirbyplants/darkpack {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant1"} : /obj/item/kirbyplants/darkpack/plant1 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant2"} : /obj/item/kirbyplants/darkpack/plant2 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant3"} : /obj/item/kirbyplants/darkpack/plant3 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant4"} : /obj/item/kirbyplants/darkpack/plant4 {@OLD;icon_state=@SKIP}
+/obj/item/kirbyplants {icon_state="plant5"} : /obj/item/kirbyplants/darkpack/plant5 {@OLD;icon_state=@SKIP}
+
+/obj/structure/table/optable/optable2 : /obj/structure/table/optable {@OLD}
+
+/turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit
+/turf/open/floor/circuit/telecomms/normal_temp : /turf/open/floor/circuit
+
+# WOD13 made them real gasmasks in some pr.
+/obj/item/clothing/mask/vampire : /obj/item/clothing/mask/gas/vampire {@OLD}
+
+
+
+# Fixing terrible mapping partices or linting fails
+
+# You are NOT allowed to varedit area subtypes
+/area/@SUBTYPES : /area/@SUBTYPES
+
+/obj/@SUBTYPES : /obj/@SUBTYPES{@OLD;layer=@SKIP}
+/obj/@SUBTYPES : /obj/@SUBTYPES{@OLD;plane=@SKIP}
+
+/obj/structure/window : /obj/structure/window{@OLD;dir=@SKIP}
+/obj/structure/window/@SUBTYPES : /obj/structure/window/@SUBTYPES{@OLD;dir=@SKIP}
+
+# Under no circumstances should you map a projectile.
+/obj/projectile/@SUBTYPES : @DELETE
+ 
+/mob/living/simple_animal/hostile/beastmaster : @DELETE
+/mob/living/simple_animal/hostile/biter : /mob/living/basic/szlachta
+/mob/living/simple_animal/hostile/biter/hostile : /mob/living/basic/szlachta/hostile
+/mob/living/simple_animal/hostile/fister : /mob/living/basic/szlachta/fister
+/mob/living/simple_animal/hostile/fister/hostile : /mob/living/basic/szlachta/fister/hostile
+/mob/living/simple_animal/hostile/tanker : /mob/living/basic/szlachta/tanker
+/mob/living/simple_animal/hostile/tanker/hostile : /mob/living/basic/szlachta/tanker/hostile
+ 
+/obj/item/card/id/@SUBTYPES : /obj/item/card/@SUBTYPES
+/obj/item/cockclock : /obj/item/watch
+ 
+/obj/effect/landmark/start/barkeeper : /obj/effect/landmark/start/baron {@OLD}
+ 
+/mob/living/simple_animal/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack {@OLD}
+/mob/living/basic/pet/cat/vampire : /mob/living/basic/pet/cat/darkpack {@OLD}
+
+/mob/living/simple_animal/pet/cat/vampiretzi : /mob/living/basic/pet/cat/darkpack/tzi {@OLD}
+/mob/living/basic/pet/cat/vampire/tzi : /mob/living/basic/pet/cat/darkpack/tzi {@OLD}
+/mob/living/basic/pet/cat/vampiretzi : /mob/living/basic/pet/cat/darkpack/tzi {@OLD}
+ 
+/obj/item/quran : /obj/item/vampirebook/quran {@OLD}
+ 
+/obj/item/argemia : /obj/item/toy/plush/argemia {@OLD}
+ 
+/obj/item/food/carpmeat : /obj/item/food/fishmeat {@OLD}
+
+/obj/item/food/vampire/burger : /obj/item/food/burger/plain {@OLD}
+/obj/item/food/vampire/donut : /obj/item/food/donut/plain {@OLD}
+/obj/item/food/vampire/pizza : /obj/item/food/pizzaslice/square {@OLD}
+/obj/item/food/vampire/taco : /obj/item/food/taco {@OLD}
+
+/obj/item/reagent_containers/food/condiment/vampiremilk : /obj/item/reagent_containers/condiment/milk {@OLD}
+/obj/item/reagent_containers/food/condiment/vampiremilk/malk : /obj/item/reagent_containers/condiment/milk/malk {@OLD}
+
+/obj/item/food/vampire/bar : /obj/item/food/chocolatebar {@OLD}
+
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw {@OLD}
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola/thaw_club : /obj/item/reagent_containers/cup/soda_cans/thaw_club {@OLD}
+#/obj/item/reagent_containers/cup/glass/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw
+
+/obj/food_cart : /obj/structure/food_cart {@OLD}
+
+/obj/item/reagent_containers/cup/glass/beer/vampire : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire
+/obj/item/reagent_containers/cup/glass/beer/vampire/blue_stripe : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/blue_stripe
+/obj/item/reagent_containers/cup/glass/beer/vampire/typhon : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
+/obj/item/reagent_containers/cup/glass/bottle/vampirewater : /obj/item/reagent_containers/cup/glass/vampirewater
+ 
+/turf/open/floor/plating/umbra : /turf/open/umbra
+ 
+/obj/flag/@SUBTYPES : /obj/structure/sign/flag/@SUBTYPES {@OLD}
+ 
+/obj/structure/sign/poster/vampire/@SUBTYPES : /obj/structure/sign/poster/city_large/@SUBTYPES {@OLD}
+
+/obj/structure/sign/poster/contraband/dmc : /obj/structure/sign/poster/city/dmc
+/obj/structure/sign/poster/contraband/kish : /obj/structure/sign/poster/city/kish
+ 
+/area/vtm/prince_elevator : /area/vtm/interior/prince_elevator
+
+/area/vtm/dwelling : /area/vtm/interior/dwelling
+/area/vtm/dwelling/@SUBTYPES : /area/vtm/interior/dwelling/@SUBTYPES
+
+/area/vtm/anarch : /area/vtm/interior/anarch
+/area/vtm/anarch/@SUBTYPES : /area/vtm/interior/anarch/@SUBTYPES
+ 
+/obj/item/storage/belt/holster/detective/vampire : /obj/item/storage/belt/holster/detective/darkpack {@OLD}
+/obj/item/storage/belt/holster/detective/vampire/@SUBTYPES : /obj/item/storage/belt/holster/detective/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/ammo_box/vampire : /obj/item/ammo_box/darkpack {@OLD}
+/obj/item/ammo_box/vampire/@SUBTYPES : /obj/item/ammo_box/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/gun/energy/taser/twoshot : /obj/item/gun/energy/taser/darkpack {@OLD}
+/obj/item/melee/baton/handtaser : /obj/item/melee/baton/security/handtaser {@OLD}
+ 
+/obj/machinery/vamp/atm : /obj/machinery/atm {@OLD}
+
+/obj/item/vamp/creditcard : /obj/item/card/credit {@OLD}
+/obj/item/vamp/creditcard/@SUBTYPES : /obj/item/card/credit/@SUBTYPES {@OLD}
+ 
+/obj/item/food/fish/@SUBTYPES : /obj/item/fish/darkpack/@SUBTYPES {@OLD}
+/obj/item/fish/darkpack/tune : /obj/item/fish/darkpack/tuna {@OLD}
+ 
+/obj/generator : /obj/warehouse_generator{@OLD}
+ 
+/obj/elevator_door : @DELETE
+/obj/elevator_door/@SUBTYPES : @DELETE
+/obj/elevator_button : /obj/machinery/button {@OLD}
+/obj/elevator_button_down : /obj/machinery/button {@OLD}
+/obj/elevator_button_up : @DELETE
+ 
+/area/vtm/city_elevator : /area/vtm/interior/elevator
+/area/vtm/elevator : /area/vtm/interior/elevator
+/area/vtm/jazzclub : /area/vtm/interior/jazzclub
+/area/vtm/cabaret : /area/vtm/interior/cabaret
+/area/vtm/clinic : /area/vtm/interior/clinic
+/area/vtm/clinic/haven : /area/vtm/interior/clinic/haven
+/area/vtm/supply : /area/vtm/interior/supply
+/area/vtm/hotel : /area/vtm/interior/hotel
+/area/vtm/church : /area/vtm/interior/church
+ 
+/turf/closed/wall/vampwall : /turf/closed/wall/vampwall/brick_old {@OLD}
+/turf/closed/wall/vampwall/low : /turf/closed/wall/vampwall/brick_old/low {@OLD}
+/turf/closed/wall/vampwall/low/window : /turf/closed/wall/vampwall/brick_old/low/window {@OLD}
+/turf/closed/wall/vampwall/low/window/reinforced : /turf/closed/wall/vampwall/brick_old/low/window/reinforced {@OLD}
+ 
+/obj/manholedown : /obj/structure/ladder/manhole/down {@OLD}
+/obj/manholeup : /obj/structure/ladder/manhole/up {@OLD}
+ 
+/obj/structure/rack/bubway : /obj/structure/table/countertop/bubway
+/obj/structure/rack/bubway/@SUBTYPES : /obj/structure/table/countertop/bubway
+
+/obj/structure/rack/tacobell : /obj/structure/table/countertop/bacotell
+/obj/structure/rack/tacobell/@SUBTYPES : /obj/structure/table/countertop/bacotell
+
+/obj/structure/table/bubway : /obj/structure/table/countertop/bubway
+/obj/structure/table/bubway@SUBTYPES : /obj/structure/table/countertop/bubway
+
+/obj/structure/table/bacotell : /obj/structure/table/countertop/bacotell
+/obj/structure/table/bacotell/@SUBTYPES : /obj/structure/table/countertop/bacotell
+ 
+/obj/item/weedseed : /obj/item/seeds/cannabis {@OLD}
+/obj/item/food/vampire/weed : /obj/item/food/grown/cannabis {@OLD}
+/obj/item/weedpack : /obj/item/food/grown/cannabis {@OLD}
+
+/obj/item/bailer : /obj/item/reagent_containers/cup/watering_can/metal {@OLD}
+/obj/structure/weedshit : /obj/machinery/hydroponics/simple/plastic {@OLD}
+ 
+/obj/structure/flora/ausbushes/tallgrass : /obj/structure/flora/grass/tall/style_random
+/obj/structure/flora/ausbushes/tallgrass/dry : /obj/structure/flora/grass/tall/dry/style_random
+/obj/structure/flora/ausbushes/shortgrass : /obj/structure/flora/grass/short/style_random
+/obj/structure/flora/ausbushes/redflower : /obj/structure/flora/bush/redflower/style_random
+
+/turf/open/floor/plating/vampgrass/random : /turf/open/misc/grass/vamp/random
+/turf/open/floor/plating/vampgrass/random/@SUBTYPES : /turf/open/misc/grass/vamp/random/@SUBTYPES
+
+/obj/structure/vamprocks : /obj/structure/flora/rock/darkpack
+/obj/structure/small_vamprocks : /obj/structure/flora/rock/pile/darkpack
+/obj/structure/big_vamprocks : /obj/structure/flora/rock/darkpack_big
+/obj/structure/stalagmite : /obj/structure/flora/rock/stalagmite
+ 
+/turf/open/floor/plating/vampcanal : /turf/open/floor/plating/canal
+/turf/open/floor/plating/vampcanalplating : /turf/open/floor/plating/canalplating
+
+/turf/open/floor/plating/woodrough : /turf/open/floor/wood/rough
+/turf/open/floor/plating/woodfancy : /turf/open/floor/wood/herring
+/turf/open/floor/plating/vampwood : /turf/open/floor/wood/old
+/turf/open/floor/plating/parquetry : /turf/open/floor/wood/smooth
+/turf/open/floor/plating/parquetry/old: /turf/open/floor/wood/smooth/old
+/turf/open/floor/plating/parquetry/rich: /turf/open/floor/wood/ornate
+
+/turf/open/floor/plating/vampcarpet : /turf/open/floor/carpet/darkpack/old
+
+/turf/open/floor/plating/vampplating : /turf/open/floor/city/plating
+/turf/open/floor/plating/vampplating/mono : /turf/open/floor/city/plating_mono
+/turf/open/floor/plating/vampplating/stone : /turf/open/floor/city/plating_stone
+/turf/open/floor/plating/toilet : /turf/open/floor/city/toilet
+/turf/open/floor/plating/industrial : /turf/open/floor/city/industrial
+/turf/open/floor/plating/circled : /turf/open/floor/city/circled
+/turf/open/floor/plating/church : /turf/open/floor/city/church
+/turf/open/floor/plating/saint : /turf/open/floor/city/saint
+/turf/open/floor/plating/bacotell : /turf/open/floor/city/bacotell
+/turf/open/floor/plating/gummaguts : /turf/open/floor/city/gummaguts
+
+/turf/open/floor/plating/vampcrossableocean : /turf/open/water/beach/vamp
+
+/turf/open/misc/dirt/vamp : /turf/open/misc/dirt
+/turf/open/misc/dirt/vamp/@SUBTYPES : /turf/open/misc/dirt/@SUBTYPES
+/turf/open/misc/grass/vamp : /turf/open/misc/grass
+/turf/open/misc/grass/vamp/@SUBTYPES : /turf/open/misc/grass/@SUBTYPES
+
+/turf/open/floor/plating/bloodshit : /turf/open/water/bloodwave
+/turf/open/water/acid/vamp : /turf/open/water/acid
+ 
+/area/vtm/baywalk: /area/vtm/outside/baywalk
+/area/vtm/substation : /area/vtm/inside/substation
+/area/vtm/cabdepot : /area/vtm/interior/cabdepot
+/area/vtm/church/interior : /area/vtm/interior/church
+/area/vtm/church/interior/haven : /area/vtm/interior/church/haven
+/area/vtm/church/interior/staff : /area/vtm/interior/church/staff
+/area/vtm/financialdistrict/library : /area/vtm/interior/library
+/area/vtm/fishermanswharf/ghetto : /area/vtm/outside/fishermanswharf/ghetto
+/area/vtm/fishermanswharf/lower : /area/vtm/outside/fishermanswharf/lower
+/area/vtm/fishermanswharf/industrial : /area/vtm/outside/fishermanswharf/industrial
+/area/vtm/forest/caves : /area/vtm/interior/caves
+/area/vtm/interior/giovanni/outside : /area/vtm/outside/giovanni/courtyard
+/area/vtm/sewer/tzimisce_sanctum : /area/vtm/interior/tzimisce_sanctum
+/area/vtm/sewer/@SUBTYPES : /area/vtm/interior/sewer/@SUBTYPES
+/area/vtm/pacificheights/@SUBTYPES : /area/vtm/outside/pacificheights/@SUBTYPES
+/area/vtm/substation : /area/vtm/interior/substation
+/area/vtm/inside/substation : /area/vtm/interior/substation
+
+# Deleted landmarks are for landmarks with no job attached.
+/obj/effect/landmark/start/assamite : @DELETE
+/obj/effect/landmark/start/baali : @DELETE
+/obj/effect/landmark/start/caitiff : @DELETE
+/obj/effect/landmark/start/hunter : @DELETE
+/obj/effect/landmark/start/kiasyd : @DELETE
+/obj/effect/landmark/start/lasombra : @DELETE
+/obj/effect/landmark/start/liaison : @DELETE
+/obj/effect/landmark/start/nagaraja : @DELETE
+/obj/effect/landmark/start/salubri : @DELETE
+
+# we're removing this mob spawner
+/obj/effect/mob_spawn/human/chunkguard : @DELETE
+
+/obj/effect/mob_spawn/human/corpse/@SUBTYPES : /obj/effect/mob_spawn/corpse/human/@SUBTYPES
+
+/obj/structure/railing/metal/corner : /obj/structure/railing/corner {@OLD}
+/obj/structure/railing/metal : /obj/structure/railing {@OLD}
+
+
+/obj/structure/closet/crate/freezer/surplus_limbs/organs : /obj/structure/closet/crate/freezer/organ
+/obj/structure/closet/crate/freezer/fridge : /obj/structure/closet/secure_closet/freezer/fridge/all_access
+
+/obj/structure/chair/sofa/old : /obj/structure/chair/sofa {@OLD}
+/obj/structure/chair/sofa/old/@SUBTYPES : /obj/structure/chair/sofa/@SUBTYPES {@OLD}
+ 
+/obj/structure/vampmap : /obj/structure/city_map
+ 
+/obj/item/vamp/phone/street : /obj/item/smartphone/payphone
+/obj/item/vamp/phone/clean : /obj/item/smartphone/clean
+/obj/item/vamp/phone/emergency : /obj/item/smartphone/emergency
+
+/obj/item/vamp/phone/@SUBTYPES : /obj/item/smartphone/@SUBTYPES {@OLD}
+/obj/item/vamp/phone : /obj/item/smartphone {@OLD}
+ 
+/obj/item/trash/vampirecrisps : /obj/item/trash/chips {@OLD}
+/obj/item/food/vampire/crisps : /obj/item/food/chips {@OLD}
+ 
+# Simple doors
+/obj/structure/vampdoor/camarilla : /obj/structure/vampdoor/simple/camarilla{@OLD}
+/obj/structure/vampdoor/anarch : /obj/structure/vampdoor/simple/anarch{@OLD}
+/obj/structure/vampdoor/bar : /obj/structure/vampdoor/simple/bar{@OLD}
+/obj/structure/vampdoor/supply : /obj/structure/vampdoor/simple/supply{@OLD}
+/obj/structure/vampdoor/strip : /obj/structure/vampdoor/simple/strip{@OLD}
+/obj/structure/vampdoor/dispatch : /obj/structure/vampdoor/simple/dispatch{@OLD}
+/obj/structure/vampdoor/police : /obj/structure/vampdoor/simple/police{@OLD}
+/obj/structure/vampdoor/police/secure : /obj/structure/vampdoor/simple/police/secure{@OLD}
+
+# Wood doors
+/obj/structure/vampdoor/daughters : /obj/structure/vampdoor/wood/daughters{@OLD}
+/obj/structure/vampdoor/npc : /obj/structure/vampdoor/wood/npc{@OLD}
+
+# Oldwood doors
+/obj/structure/vampdoor/wood/old : /obj/structure/vampdoor/oldwood{@OLD}
+/obj/structure/vampdoor/graveyard : /obj/structure/vampdoor/oldwood/graveyard{@OLD}
+/obj/structure/vampdoor/church : /obj/structure/vampdoor/oldwood/church{@OLD}
+/obj/structure/vampdoor/wood/old/chantry : /obj/structure/vampdoor/oldwood/chantry{@OLD}
+/obj/structure/vampdoor/baali : /obj/structure/vampdoor/oldwood/baali {@OLD}
+/obj/structure/vampdoor/salubri : /obj/structure/vampdoor/wood/old/salubri {@OLD}
+/obj/structure/vampdoor/old_clan_tzimisce : /obj/structure/vampdoor/wood/old/clan_tzimisce {@OLD}
+
+# Reinf doors
+/obj/structure/vampdoor/cleaning : /obj/structure/vampdoor/reinf/cleaning{@OLD}
+
+# Old doors
+/obj/structure/vampdoor/chantry : /obj/structure/vampdoor/old/chantry{@OLD}
+
+# Woodglass doors
+/obj/structure/vampdoor/glass/prince : /obj/structure/vampdoor/woodglass/prince{@OLD}
+ 
+/obj/item/arcane_tome : /obj/item/ritual_tome/arcane
+/obj/item/mystic_tome : /obj/item/ritual_tome/abyss
+/obj/item/necromancy_tome : /obj/item/ritual_tome/necromancy
+/obj/necrorune/@SUBTYPES : /obj/ritual_rune/necromancy/@SUBTYPES
+/obj/abyssrune/@SUBTYPES :/obj/ritual_rune/abyss/@SUBTYPES
+/obj/ritualrune/@SUBTYPES : /obj/ritual_rune/thaumaturgy/@SUBTYPES
+ 
+/obj/item/fake_sarcophagus : /obj/fake_sarcophagus {@OLD}
+ 
+/obj/structure/chair/green : /obj/structure/chair/darkpack/green {@OLD}
+/obj/structure/chair/red : /obj/structure/chair/darkpack/red {@OLD}
+/obj/structure/chair/blue : /obj/structure/chair/darkpack/blue {@OLD}
+/obj/structure/chair/office/green : /obj/structure/chair/office/darkpack/green {@OLD}
+/obj/structure/chair/office/red : /obj/structure/chair/office/darkpack/red {@OLD}
+/obj/structure/chair/office/blue : /obj/structure/chair/office/darkpack/blue {@OLD}
+
+/obj/item/chair/green : /obj/item/chair/darkpack/green {@OLD}
+/obj/item/chair/red : /obj/item/chair/darkpack/red {@OLD}
+/obj/item/chair/blue : /obj/item/chair/darkpack/blue {@OLD}
+/obj/item/chair/office/green : /obj/item/chair/office/darkpack/green {@OLD}
+/obj/item/chair/office/red : /obj/item/chair/office/darkpack/red {@OLD}
+/obj/item/chair/office/blue : /obj/item/chair/office/darkpack/blue {@OLD}
+
+#commented out because this is a volatile update paths but useful to have here if you want to run it manually or to note.
+
+#/obj/structure/chair : /obj/structure/chair/darkpack {@OLD}
+#/obj/structure/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/structure/chair/stool/bar : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/structure/chair/wood : /obj/structure/chair/wood/darkpack {@OLD}
+
+#/obj/item/chair : /obj/item/chair/darkpack {@OLD}
+#/obj/item/chair/stool : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/item/chair/stool/bar : /obj/structure/chair/stool/bar/darkpack/red {@OLD}
+#/obj/item/chair/wood : /obj/item/chair/wood/darkpack {@OLD}
+ 
+# A few of these are pulled out from the #222 update paths to only convert a type once or fix a mistake made in it.
+
+# Anarchs
+/obj/effect/landmark/start/barkeeper : /obj/effect/landmark/start/darkpack/anarch/baron
+/obj/effect/landmark/start/baron : /obj/effect/landmark/start/darkpack/anarch/baron
+/obj/effect/landmark/start/bruiser : /obj/effect/landmark/start/darkpack/anarch/bruiser
+/obj/effect/landmark/start/emissary : /obj/effect/landmark/start/darkpack/anarch/emissary
+/obj/effect/landmark/start/sweeper : /obj/effect/landmark/start/darkpack/anarch/sweeper
+/obj/effect/landmark/start/tapster : /obj/effect/landmark/start/darkpack/anarch/tapster
+
+# Axe Gang
+/obj/effect/landmark/start/axe_leader : /obj/effect/landmark/start/darkpack/axe/leader
+/obj/effect/landmark/start/axe_gang : /obj/effect/landmark/start/darkpack/axe/gang
+
+# Supply
+/obj/effect/landmark/start/dealer : /obj/effect/landmark/start/darkpack/supply/dealer
+/obj/effect/landmark/start/supply : /obj/effect/landmark/start/darkpack/supply/tech
+/obj/effect/landmark/start/supplytechnician : /obj/effect/landmark/start/darkpack/supply/tech
+
+# Camarilla
+/obj/effect/landmark/start/prince : /obj/effect/landmark/start/darkpack/camarilla/prince
+/obj/effect/landmark/start/clerk : /obj/effect/landmark/start/darkpack/camarilla/clerk
+/obj/effect/landmark/start/sheriff : /obj/effect/landmark/start/darkpack/camarilla/sheriff
+/obj/effect/landmark/start/hound : /obj/effect/landmark/start/darkpack/camarilla/hound
+/obj/effect/landmark/start/harpy : /obj/effect/landmark/start/darkpack/camarilla/harpy
+/obj/effect/landmark/start/towerwork : /obj/effect/landmark/start/darkpack/camarilla/towerwork
+
+# Primogen Council
+/obj/effect/landmark/start/citizen{name="Primogen Toreador"} : /obj/effect/landmark/start/darkpack/primogen/toreador
+
+# Banu and Lasombra starts are fixed on TFN but not APOC so these need to be duplicated
+/obj/effect/landmark/start/primogen_banu : /obj/effect/landmark/start/darkpack/primogen/banu
+/obj/effect/landmark/start/citizen{name="Primogen Banu Haqim"} : /obj/effect/landmark/start/darkpack/primogen/banu
+
+/obj/effect/landmark/start/primogen_lasombra : /obj/effect/landmark/start/darkpack/primogen/lasombra
+/obj/effect/landmark/start/citizen{name="Primogen Lasombra"} : /obj/effect/landmark/start/darkpack/primogen/lasombra
+
+/obj/effect/landmark/start/citizen{name="Primogen Malkavian"} : /obj/effect/landmark/start/darkpack/primogen/malkavian
+/obj/effect/landmark/start/citizen{name="Primogen Nosferatu"} : /obj/effect/landmark/start/darkpack/primogen/nosferatu
+/obj/effect/landmark/start/citizen{name="Primogen Ventrue"} : /obj/effect/landmark/start/darkpack/primogen/ventrue
+
+# Hospital
+/obj/effect/landmark/start/vdirector : /obj/effect/landmark/start/darkpack/hospital/clinic_director
+/obj/effect/landmark/start/vdoctor : /obj/effect/landmark/start/darkpack/hospital/doctor
+/obj/effect/landmark/start/clinic_director : /obj/effect/landmark/start/darkpack/hospital/clinic_director
+/obj/effect/landmark/start/doctor : /obj/effect/landmark/start/darkpack/hospital/doctor
+
+# Government & Police
+/obj/effect/landmark/start/national_guard : /obj/effect/landmark/start/darkpack/law_enforcement/national_guard
+/obj/effect/landmark/start/swat : /obj/effect/landmark/start/darkpack/law_enforcement/swat
+/obj/effect/landmark/start{name="Police Chief"} : /obj/effect/landmark/start/darkpack/law_enforcement/chief
+/obj/effect/landmark/start{name="Police Sergeant"} : /obj/effect/landmark/start/darkpack/law_enforcement/sergeant
+/obj/effect/landmark/start{name="Police Officer"} : /obj/effect/landmark/start/darkpack/law_enforcement/officer
+/obj/effect/landmark/start{name="Emergency Dispatcher"} : /obj/effect/landmark/start/darkpack/law_enforcement/dispatcher
+/obj/effect/landmark/start{name="Federal Investigator"} : /obj/effect/landmark/start/darkpack/law_enforcement/fbi
+
+# Giovanni
+/obj/effect/landmark/start/giovannielder : /obj/effect/landmark/start/darkpack/hecata/capo
+/obj/effect/landmark/start/giovanni : /obj/effect/landmark/start/darkpack/hecata/famiglia
+/obj/effect/landmark/start/giovannimafia : /obj/effect/landmark/start/darkpack/hecata/squadra
+/obj/effect/landmark/start/capo : /obj/effect/landmark/start/darkpack/hecata/capo
+/obj/effect/landmark/start/famiglia : /obj/effect/landmark/start/darkpack/hecata/famiglia
+/obj/effect/landmark/start/squadra : /obj/effect/landmark/start/darkpack/hecata/squadra
+
+# Civilian
+/obj/effect/landmark/start/citizen : /obj/effect/landmark/start/darkpack/citizen/citizen
+/obj/effect/landmark/start/strip : /obj/effect/landmark/start/darkpack/citizen/club_worker
+/obj/effect/landmark/start/club_worker : /obj/effect/landmark/start/darkpack/citizen/club_worker
+/obj/effect/landmark/start/vjanitor : /obj/effect/landmark/start/darkpack/citizen/janitor
+/obj/effect/landmark/start/janitor : /obj/effect/landmark/start/darkpack/citizen/janitor
+/obj/effect/landmark/start/priest : /obj/effect/landmark/start/darkpack/citizen/priest
+/obj/effect/landmark/start/taxi : /obj/effect/landmark/start/darkpack/citizen/taxi
+/obj/effect/landmark/start/darkpack/hecata/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
+/obj/effect/landmark/start/graveyardkeeper : /obj/effect/landmark/start/darkpack/citizen/graveyardkeeper
+
+# Sabbat
+/obj/effect/landmark/start/sabbatductus : /obj/effect/landmark/start/darkpack/sabbat/ductus
+/obj/effect/landmark/start/sabbatpack : /obj/effect/landmark/start/darkpack/sabbat/pack
+/obj/effect/landmark/start/sabbatpriest : /obj/effect/landmark/start/darkpack/sabbat/priest
+/obj/effect/landmark/start/sabbatist : /obj/effect/landmark/start/darkpack/sabbat/sabbatist
+
+# Chantry
+/obj/effect/landmark/start/regent : /obj/effect/landmark/start/darkpack/chantry/regent
+/obj/effect/landmark/start/archivist : /obj/effect/landmark/start/darkpack/chantry/archivist
+/obj/effect/landmark/start/gargoyle : /obj/effect/landmark/start/darkpack/chantry/gargoyle
+
+# Forest Wolves
+/obj/effect/landmark/start/garou/glade/council : /obj/effect/landmark/start/darkpack/forest_wolves/council
+/obj/effect/landmark/start/garou/glade/keeper : /obj/effect/landmark/start/darkpack/forest_wolves/keeper
+/obj/effect/landmark/start/darkpack/forest_wolves/keeper : /obj/effect/landmark/start/darkpack/forest_wolves/wyrmfoe
+/obj/effect/landmark/start/garou/glade/catcher : /obj/effect/landmark/start/darkpack/forest_wolves/catcher
+/obj/effect/landmark/start/garou/glade/warder : /obj/effect/landmark/start/darkpack/forest_wolves/warder
+/obj/effect/landmark/start/garou/glade/guardian : /obj/effect/landmark/start/darkpack/forest_wolves/guardian
+
+# City Wolves
+/obj/effect/landmark/start/garou/painted/@SUBTYPES : @DELETE
+/obj/effect/landmark/start/darkpack/city_wolves/@SUBTYPES : @DELETE
+
+# Pentex
+/obj/effect/landmark/start/first_team : /obj/effect/landmark/start/darkpack/pentex/first_team
+/obj/effect/landmark/start/garou/spiral/lead : /obj/effect/landmark/start/darkpack/pentex/lead
+/obj/effect/landmark/start/garou/spiral/executive : /obj/effect/landmark/start/darkpack/pentex/executive
+/obj/effect/landmark/start/garou/spiral/affairs : /obj/effect/landmark/start/darkpack/pentex/affairs
+/obj/effect/landmark/start/garou/spiral/secchief : /obj/effect/landmark/start/darkpack/pentex/secchief
+/obj/effect/landmark/start/garou/spiral/sec : /obj/effect/landmark/start/darkpack/pentex/sec
+/obj/effect/landmark/start/garou/spiral/employee : /obj/effect/landmark/start/darkpack/pentex/employee
+
+# Voivodate
+/obj/effect/landmark/start/voivode : /obj/effect/landmark/start/darkpack/voivode/voivode
+/obj/effect/landmark/start/bogatyr : /obj/effect/landmark/start/darkpack/voivode/bogatyr
+/obj/effect/landmark/start/zadruga : /obj/effect/landmark/start/darkpack/voivode/zadruga
+ 
+/turf/open/floor/plating/toilet/clinic : /turf/open/floor/city/clinic
+/turf/open/floor/plating/industrial/factory : /turf/open/floor/city/factory
+
+/turf/open/floor/plating/vampplating/stairs/middle : /turf/open/floor/iron/stairs/medium {@OLD}
+/turf/open/floor/plating/vampplating/stairs/black/middle : /turf/open/floor/iron/stairs/black/medium @{OLD}
+/turf/open/floor/plating/vampplating/stairs/@SUBTYPES : /turf/open/floor/iron/stairs/@SUBTYPES
+
+/turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
+
+# Turf decals
+/obj/effect/turf_decal/apoc/vampbeach : /obj/effect/turf_decal/darkpack/sand {@OLD}
+/obj/effect/turf_decal/apoc/vampbeach/corner : /obj/effect/turf_decal/darkpack/sand/corner {@OLD}
+/obj/effect/turf_decal/apoc/vampdirt : /obj/effect/turf_decal/darkpack/dirt {@OLD}
+/obj/effect/turf_decal/apoc/vampdirt/corner : /obj/effect/turf_decal/darkpack/dirt/corner {@OLD}
+/obj/effect/turf_decal/apoc/vampgrass : /obj/effect/turf_decal/darkpack/grass {@OLD}
+/obj/effect/turf_decal/apoc/vampgrass/corner : /obj/effect/turf_decal/darkpack/grass/corner {@OLD}
+/obj/effect/turf_decal/apoc/rough : /obj/effect/turf_decal/darkpack/rough {@OLD}
+/obj/effect/turf_decal/apoc/rough/corner : /obj/effect/turf_decal/darkpack/rough/corner {@OLD}
+/obj/effect/turf_decal/apoc/cave : /obj/effect/turf_decal/darkpack/cave {@OLD}
+/obj/effect/turf_decal/apoc/cave/corner : /obj/effect/turf_decal/darkpack/cave/corner {@OLD}
+/obj/effect/turf_decal/apoc/@SUBTYPES : /obj/effect/turf_decal/darkpack/@SUBTYPES {@OLD}
+ 
+/turf/open/floor/plating/vampocean : /turf/open/water/beach/vamp/deep
+/turf/open/floor/plating/vampacid : /turf/open/water/acid/vamp
+/turf/open/floor/plating/shit : /turf/open/water/vamp_sewer
+/turf/open/floor/plating/shit/border : /turf/open/water/vamp_sewer/border
+
+/turf/open/floor/plating/vampbeach : /turf/open/misc/beach/vamp
+/turf/open/floor/plating/vampdirt : /turf/open/misc/dirt/vamp
+/turf/open/floor/plating/vampdirt/rails : /turf/open/misc/dirt/vamp/rails
+/turf/open/floor/plating/vampgrass : /turf/open/misc/grass/vamp
+ 
+/turf/closed/wall/vampwall/low : /obj/structure/platform/lowwall , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/low/@SUBTYPES : /obj/structure/platform/lowwall/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/rich/low : /obj/structure/platform/lowwall/rich , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/rich/low/@SUBTYPES : /obj/structure/platform/lowwall/rich/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/rich/old/low : /obj/structure/platform/lowwall/rich/old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/rich/old/low/@SUBTYPES : /obj/structure/platform/lowwall/rich/old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/brick_old/low : /obj/structure/platform/lowwall/brick_old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/brick_old/low/@SUBTYPES : /obj/structure/platform/lowwall/brick_old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/junk/low : /obj/structure/platform/lowwall/junk , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/junk/low/@SUBTYPES : /obj/structure/platform/lowwall/junk/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/junk/alt/low : /obj/structure/platform/lowwall/junk/alt , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/junk/alt/low/@SUBTYPES : /obj/structure/platform/lowwall/junk/alt/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/market/low : /obj/structure/platform/lowwall/market , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/market/low/@SUBTYPES : /obj/structure/platform/lowwall/market/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/old/low : /obj/structure/platform/lowwall/old , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/old/low/@SUBTYPES : /obj/structure/platform/lowwall/old/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/painted/low : /obj/structure/platform/lowwall/painted , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/painted/low/@SUBTYPES : /obj/structure/platform/lowwall/painted/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/brick/low : /obj/structure/platform/lowwall/brick , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/brick/low/@SUBTYPES : /obj/structure/platform/lowwall/brick/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/city/low : /obj/structure/platform/lowwall/city , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/city/low/@SUBTYPES : /obj/structure/platform/lowwall/city/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/bar/low : /obj/structure/platform/lowwall/bar , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/bar/low/@SUBTYPES : /obj/structure/platform/lowwall/bar/@SUBTYPES , /turf/open/floor/plating/rough
+
+/turf/closed/wall/vampwall/wood/low : /obj/structure/platform/lowwall/wood , /turf/open/floor/plating/rough
+/turf/closed/wall/vampwall/wood/low/@SUBTYPES : /obj/structure/platform/lowwall/wood/@SUBTYPES , /turf/open/floor/plating/rough
+ 
+/obj/structure/table/abductor : /obj/structure/table/modern
+ 
+/obj/item/vtm_artifact/saulocept : @DELETE 
+/mob/living/carbon/human/species/vamp_mannequin : /obj/structure/mannequin/plastic
+/mob/living/carbon/human/species/vamp_mannequin/conquestador : /obj/structure/mannequin/plastic/conquistador
+/mob/living/carbon/human/species/vamp_mannequin/cowboy : /obj/structure/mannequin/plastic/cowboy
+/mob/living/carbon/human/species/vamp_mannequin/napoleon : /obj/structure/mannequin/plastic/napoleon
+ 
+/obj/item/clothing/head/pentex/pentex_beret : /obj/item/clothing/head/vampire/pentex_beret
+/obj/item/clothing/head/pentex/pentex_whitehardhat : /obj/item/clothing/head/vampire/pentex_whitehardhat
+/obj/item/clothing/head/pentex/pentex_yellowhardhat : /obj/item/clothing/head/vampire/pentex_yellowhardhat
+/obj/item/clothing/suit/chaplainsuit/studentuni : /obj/item/clothing/suit/chaplainsuit/armor/studentuni
+/obj/item/clothing/under/pentex/pentex_turtleneck : /obj/item/clothing/under/vampire/pentex_turtleneck
+/obj/item/clothing/under/pentex/pentex_janitor : /obj/item/clothing/under/vampire/pentex_janitor
+/obj/item/clothing/under/pentex/pentex_longleeve : /obj/item/clothing/under/vampire/pentex_longleeve
+/obj/item/clothing/under/pentex/pentex_shortsleeve : /obj/item/clothing/under/vampire/pentex_shortsleeve
+/obj/item/clothing/under/pentex/pentex_suit : /obj/item/clothing/under/vampire/pentex_suit
+/obj/item/clothing/under/pentex/pentex_suit : /obj/item/clothing/under/vampire/pentex_suitskirt
+/obj/item/clothing/under/suit/white_on_white : /obj/item/clothing/under/suit/white
+/obj/item/clothing/suit/pentex/pentex_labcoat : /obj/item/clothing/suit/vampire/pentex_labcoat
+/obj/item/clothing/suit/pentex/pentex_labcoat_alt : /obj/item/clothing/suit/vampire/pentex_labcoat_alt
+/obj/item/reagent_containers/food/drinks/silver_goblet : /obj/item/reagent_containers/cup/silver_goblet
+/obj/item/reagent_containers/food/drinks/silver_goblet/vaulderie_goblet : /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet
+/obj/structure/vampdoor/oldwood : /obj/structure/vampdoor/old
+/obj/structure/vampdoor/oldwood/church : /obj/structure/vampdoor/old/church
+/obj/structure/vampdoor/oldwood/graveyard : /obj/structure/vampdoor/old/graveyard
+/obj/structure/vampdoor/children_of_gaia : /obj/structure/vampdoor/oldwood/children_of_gaia
+/obj/structure/vampdoor/food_pantry : /obj/structure/vampdoor/simple/food_pantry
+/obj/structure/vampdoor/nps : /obj/structure/vampdoor/wood/nps
+/obj/structure/vampdoor/setite : /obj/structure/vampdoor/simple/setite
+/obj/structure/vampdoor/setite/high_sec : /obj/structure/vampdoor/reinf/setite_high_sec
+/obj/structure/vampdoor/wood/old/salubri : /obj/structure/vampdoor/oldwood/salubri
+
+/obj/item/reagent_containers/cup/glass/silver_goblet/vaulderie_goblet : /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet{@OLD}
+ 
+/obj/item/gun/ballistic/vampire/mac10 : /obj/item/gun/ballistic/automatic/darkpack/mac10 {@OLD}
+/obj/item/ammo_box/magazine/vampmac10 : /obj/item/ammo_box/magazine/darkpack45smg {@OLD}
+ 
+/obj/item/p25radio : /obj/item/radio {@OLD}
+/obj/item/p25radio/police : /obj/item/radio/headset/darkpack/police {@OLD}
+# There should only be really one tranceiver for each faction.
+/obj/machinery/p25policeportal : @DELETE
+/obj/machinery/p25transceiver/anarch : /obj/machinery/radio_tranceiver/anarch
+/obj/machinery/p25transceiver/clinic : /obj/machinery/radio_tranceiver/clinic
+/obj/machinery/p25transceiver/endron : /obj/machinery/radio_tranceiver/endron
+/obj/machinery/p25transceiver/police : /obj/machinery/radio_tranceiver/police
+/obj/machinery/p25transceiver/tower : /obj/machinery/radio_tranceiver/camarilla
+ 
+/obj/clinic_machine/pyxis : @DELETE
+
+/mob/living/carbon/human/npc/sabbat/@SUBTYPES : @DELETE
+
+/obj/item/clothing/under/pentex/pentex_executive_suit : /obj/item/clothing/under/vampire/pentex_executive_suit
+/obj/item/clothing/under/pentex/pentex_executiveskirt : /obj/item/clothing/under/vampire/pentex_executiveskirt
+/obj/item/clothing/under/pentex/pentex_suitskirt : /obj/item/clothing/under/vampire/pentex_suitskirt
+ 
+/obj/item/reagent_containers/glass/bowl/mushroom_bowl{name="ashtray"} : /obj/item/storage/ashtray {@OLD;name=@SKIP}
+/obj/item/reagent_containers/glass/bowl/ash_tray : /obj/item/storage/ashtray {@OLD}
+ 
+/obj/item/storage/fancy/hardcase/mp5 : /obj/item/storage/fancy/hardcase/mag_mp5 {@OLD}
+ 
+/obj/structure/vamptree : /obj/structure/flora/tree/vamp {@OLD}
+/obj/structure/vamptree/@SUBTYPES : /obj/structure/flora/tree/vamp/@SUBTYPES {@OLD}
+ 
+/area/vtm/interior/penumbra : /area/vtm/outside/penumbra
+/area/vtm/interior/penumbra/@SUBTYPES : /area/vtm/outside/penumbra/@SUBTYPES
+
+/turf/@SUBTYPES : /turf/@SUBTYPES{@OLD;umbra=@SKIP}
+ 
+/area/vtm/financialdistrict : /area/vtm/outside/financialdistrict
+/area/vtm/ghetto : /area/vtm/outside/ghetto
+/area/vtm/pacificheights : /area/vtm/outside/pacificheights
+/area/vtm/chinatown : /area/vtm/outside/chinatown
+/area/vtm/fishermanswharf : /area/vtm/outside/fishermanswharf
+/area/vtm/northbeach : /area/vtm/outside/northbeach
+/area/vtm/unionsquare : /area/vtm/outside/unionsquare
+/area/vtm/park : /area/vtm/outside/park
+/area/vtm/forest : /area/vtm/outside/forest
+ 
+# Not an apoc type but GRRRRRR xeon
+/mob/living/simple_animal/hostile/biter/lasombra : /mob/living/basic/lasombra
+/mob/living/simple_animal/hostile/biter/lasombra/better : /mob/living/basic/lasombra/better
+
+ 
+/obj/structure/vampdoor/wood/apartment : /obj/structure/vampdoor/wood, /obj/effect/mapping_helpers/door/access/claimable
+ 
+/obj/item/clothing/suit/costume/yakuza : /obj/item/clothing/suit/vampire/majima_jacket {@OLD}
+/obj/item/clothing/suit/costume/nerdshirt : /obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic {@OLD}
+/obj/item/clothing/suit/costume/ianshirt : /obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian {@OLD}
+/obj/item/clothing/suit/costume/dutch : /obj/item/clothing/suit/vampire/dutch {@OLD}
+
+/obj/item/melee/vamp/longsword/keeper : /obj/item/claymore/longsword/keeper{@OLD}
+
+/obj/item/police_radio : /obj/item/radio/headset/darkpack/police {@OLD}
+
+/obj/item/supplypod_beacon_origin : /obj/item/supplypod_beacon {@OLD}
+
+/obj/item/stocks_license : @DELETE
+
+/obj/structure/musician/piano/ipiano : /obj/structure/musician/piano{@OLD}
+/obj/structure/musician/piano/darkpack/ipiano : /obj/structure/musician/piano{@OLD}
+ 
+/obj/item/storage/belt/vampire/sheathe/longsword : /obj/item/storage/belt/sheath/vamp/sword {@OLD}
+/obj/item/storage/belt/vampire/sheathe/rapier : /obj/item/storage/belt/sheath/vamp/rapier {@OLD}
+/obj/item/storage/belt/vampire/sheathe/sabre : /obj/item/storage/belt/sheath/vamp/sabre {@OLD}
+
+/obj/item/melee/vampirearms/fireaxe : /obj/item/fireaxe/vamp {@OLD}
+/obj/item/melee/vampirearms/katana : /obj/item/katana/vamp {@OLD}
+/obj/item/melee/vampirearms/katana/kosa : /obj/item/scythe/vamp {@OLD}
+/obj/item/melee/vampirearms/sabre : /obj/item/melee/sabre/vamp {@OLD}
+/obj/item/melee/vampirearms/rapier : /obj/item/melee/sabre/rapier {@OLD}
+/obj/item/melee/vampirearms/longsword : /obj/item/claymore/longsword {@OLD}
+/obj/item/melee/vampirearms/machete : /obj/item/claymore/machete {@OLD}
+/obj/item/melee/vampirearms/shovel : /obj/item/shovel/vamp {@OLD}
+/obj/item/melee/vampirearms/chainsaw : /obj/item/chainsaw/vamp {@OLD}
+/obj/item/melee/vampirearms/baseball : /obj/item/melee/baseball_bat/vamp {@OLD}
+
+/obj/item/melee/vampirearms/eguitar : /obj/item/instrument/eguitar/vamp {@OLD}
+
+/obj/item/melee/vampirearms/knife/switchblade : /obj/item/switchblade/vamp {@OLD}
+/obj/item/melee/vampirearms/knife : /obj/item/knife/vamp {@OLD}
+/obj/item/melee/vampirearms/knife/@SUBTYPES : /obj/item/knife/vamp/@SUBTYPES {@OLD}
+
+/obj/item/melee/classic_baton/vampire : /obj/item/melee/baton/vamp {@OLD}
+
+/obj/item/melee/vampirearms/@SUBTYPES : /obj/item/melee/vamp/@SUBTYPES {@OLD}
+ 
+/obj/item/wire_cutters : /obj/item/wirecutters{@OLD}
+ 
+/obj/item/gun/ballistic/vampire/revolver : /obj/item/gun/ballistic/revolver/darkpack/magnum {@OLD}
+/obj/item/gun/ballistic/vampire/revolver/@SUBTYPES : /obj/item/gun/ballistic/revolver/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/gun/ballistic/automatic/vampire/deagle : /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/deagle/c50 : /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle/c50 {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/m1911 : /obj/item/gun/ballistic/automatic/pistol/darkpack/m1911 {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/glock19 : /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19 {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/glock21 : /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21 {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/beretta : /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta {@OLD}
+/obj/item/gun/ballistic/automatic/vampire/beretta/toreador : /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta/toreador : {@OLD}
+
+
+/obj/item/gun/ballistic/automatic/vampire/@SUBTYPES : /obj/item/gun/ballistic/automatic/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/ammo_box/magazine/vamp9mm : /obj/item/ammo_box/magazine/darkpack9mm {@OLD}
+/obj/item/ammo_box/magazine/vamp9mp5 : /obj/item/ammo_box/magazine/darkpack9mp5 {@OLD}
+/obj/item/ammo_box/magazine/vamp45acp : /obj/item/ammo_box/magazine/darkpack45acp {@OLD}
+/obj/item/ammo_box/magazine/vamp556 : /obj/item/ammo_box/magazine/darkpack556 {@OLD}
+/obj/item/ammo_box/magazine/vamp556/@SUBTYPES : /obj/item/ammo_box/magazine/darkpack556/@SUBTYPES {@OLD}
+/obj/item/ammo_box/magazine/vamp545 : /obj/item/ammo_box/magazine/darkpack545 {@OLD}
+/obj/item/ammo_box/magazine/vampthompson : /obj/item/ammo_box/magazine/darkpackthompson {@OLD}
+/obj/item/ammo_box/magazine/vampaug : /obj/item/ammo_box/magazine/darkpackaug {@OLD}
+
+/obj/item/ammo_box/magazine/vamp556/hunt : /obj/item/ammo_box/magazine/darkpack556/hunt
+ 
+/obj/item/vtm_artifact/rand : /obj/effect/spawner/random/occult/artifact
+/obj/structure/trashbag : /obj/effect/decal/cleanable/garbage{@OLD}
+
+/obj/structure/trashcan : /obj/structure/closet/crate/dumpster{@OLD}
+ 
+/obj/machinery/vending/cola/@SUBTYPES : /obj/machinery/vending/cola {@OLD}
+/obj/machinery/vending/snack/@SUBTYPES : /obj/machinery/vending/snack {@OLD}
+
+/obj/machinery/mineral/equipment_vendor/fastfood/snacks : /obj/machinery/vending/snack {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/coffeevendor : /obj/machinery/vending/coffee {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/sodavendor : /obj/machinery/vending/cola {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/sodavendor/blue : /obj/machinery/vending/cola/blue {@OLD}
+
+/obj/machinery/mineral/equipment_vendor/fastfood/bacotell : /obj/structure/retail/bacotell_menu {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/bubway : /obj/structure/retail/bubway_menu {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/gummaguts : /obj/structure/retail/gummaguts_menu {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/products : /obj/structure/retail/junkfood_menu {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/smoking : /obj/structure/retail/smoke_menu {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/gas : /obj/structure/retail/gas_station {@OLD}
+
+/obj/machinery/mineral/equipment_vendor/fastfood/costumes : /obj/structure/retail/costume_store {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/clothing : /obj/structure/retail/clothing_store {@OLD}
+
+/obj/machinery/mineral/equipment_vendor/fastfood/illegal : /obj/structure/retail/black_market {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/america : /obj/structure/retail/gun_store {@OLD}
+/obj/machinery/mineral/equipment_vendor/fastfood/@SUBTYPES : /obj/structure/retail/@SUBTYPES {@OLD}
+
+/obj/structure/retail/grocery : /obj/structure/retail/grocery_store
+ 
+/obj/item/vampire_flamethrower : /obj/item/liquid_flamethrower{@OLD}
+ 
+/obj/structure/roofstuff/alt3 : /obj/structure/roofstuff/vent_end {@OLD}
+ 
+/obj/structure/clothingrack : /obj/structure/rack/clothing {@OLD}
+/obj/structure/clothingrack/@SUBTYPES : /obj/structure/rack/clothing/@SUBTYPES {@OLD}
+/obj/structure/clothinghanger : /obj/structure/rack/clothing_hanger {@OLD}
+/obj/structure/clothinghanger/@SUBTYPES : /obj/structure/rack/clothing_hanger/@SUBTYPES {@OLD}
+/obj/structure/foodrack : /obj/structure/rack/food {@OLD}
+/obj/structure/foodrack/@SUBTYPES : /obj/structure/rack/food/@SUBTYPES {@OLD}
+ 
+/obj/item/storage/firstaid : /obj/item/storage/medkit/darkpack {@OLD}
+/obj/item/storage/firstaid/@SUBTYPES : /obj/item/storage/medkit/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/storage/medkit/darkpack/regular : /obj/item/storage/medkit/darkpack/standard {@OLD}
+
+/obj/item/storage/medkit/darkpack/medical : /obj/item/storage/medkit/darkpack/doctor {@OLD}
+
+/obj/item/storage/medkit/darkpack/fire : /obj/item/storage/medkit/darkpack/burn {@OLD}
+
+/obj/item/storage/medkit/darkpack/toxin : /obj/item/storage/medkit/darkpack/tox {@OLD}
+
+/obj/item/storage/medkit/darkpack/o2 : /obj/item/storage/medkit/darkpack/oxy {@OLD}
+
+/obj/item/storage/medkit/darkpack/tactical : /obj/item/storage/medkit/darkpack/combat {@OLD}
+ 
+/obj/matrix : /obj/the_matrix {@OLD}
+ 
+/obj/item/drinkable_bloodpack : /obj/item/reagent_containers/blood{@OLD}
+/obj/item/drinkable_bloodpack/elite : /obj/item/reagent_containers/blood/vitae{@OLD}
+/obj/item/reagent_containers/blood/elite : /obj/item/reagent_containers/blood/vitae{@OLD}
+/obj/item/drinkable_bloodpack/vitae : /obj/item/reagent_containers/blood/vitae{@OLD}
+/obj/structure/bloodextractor : /obj/machinery/iv_drip{@OLD} 
+/obj/structure/vampcar : /obj/darkpack_car {@OLD}
+
+/obj/vampire_car : /obj/darkpack_car {@OLD}
+/obj/vampire_car/@SUBTYPES : /obj/darkpack_car/@SUBTYPES {@OLD}
+ 
+/obj/item/reagent_containers/food/drinks/meth : /obj/item/reagent_containers/cup/glass/baggie/meth {@OLD}
+/obj/item/reagent_containers/food/drinks/meth/cocaine : /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine {@OLD}
+
+#/obj/item/reagent_containers/cup/glass/meth : /obj/item/reagent_containers/cup/glass/baggie/meth
+#/obj/item/reagent_containers/cup/glass/meth/cocaine : /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine
+ 
+/mob/living/simple_animal/hostile/beastmaster/rat/flying : /mob/living/basic/bat{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/shadow_guard : /mob/living/basic/shadow_guard{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/blood_guard : /mob/living/basic/blood_guard{@OLD}
+/mob/living/simple_animal/hostile/beastmaster/fireball : @DELETE
+/mob/living/simple_animal/hostile/baali_guard : /mob/living/basic/baali_guard{@OLD}
+/mob/living/simple_animal/pet/rat : /mob/living/basic/mouse/vampire{@OLD}
+/mob/living/simple_animal/hostile/crinos_beast : /mob/living/basic/crinos_beast{@OLD}
+/mob/living/simple_animal/hostile/bear/wod13 : /mob/living/basic/bear/vampire{@OLD}
+ 
+/obj/structure/vampdoor/glass/banu_haqim : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/banu, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/bianchi_bank : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/bankboss, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clerk : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clerk, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clinic : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clinic, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clinic/high_security : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clinic, /obj/effect/mapping_helpers/door/lock, /obj/effect/mapping_helpers/door/lock_difficulty/eight
+/obj/structure/vampdoor/glass/jazz_club : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/laundromat : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/laundromat, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/nightwolf : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/wolftech, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex/low_security : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex/low_security/unlocked : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex
+/obj/structure/vampdoor/glass/police_chief : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/police_chief, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/primogen_toreador : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/primogen_toreador, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/glass/@SUBTYPES : /obj/structure/vampdoor/glass {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/old/chantry : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/chantry, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/old/church : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/church, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/old/graveyard : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/graveyard, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/old/@SUBTYPES : /obj/structure/vampdoor/old {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/oldwood/baali : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/baali, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/chantry : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/chantry, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/children_of_gaia : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/coggie, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/clan_tzimisce : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/old_clan_tzimisce, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/salubri : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/salubri, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/oldwood/@SUBTYPES : /obj/structure/vampdoor/oldwood {@OLD}, /obj/merge_conflict_marker
+
+#/obj/structure/vampdoor/prison/@SUBTYPES : /obj/structure/vampdoor/prison {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/reinf/cleaning : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/cleaning, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/setite : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/setite_high_sec : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/pentex : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/reinf/@SUBTYPES : /obj/structure/vampdoor/reinf {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/simple/anarch : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/anarch, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/bar : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/bar, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/camarilla : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/camarilla, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/dispatch : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/dispatch, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/food_pantry : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/coggie, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/police : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/police, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/police/secure : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/police, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/setite : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/strip : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/strip, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/supply : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/supply, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/simple/@SUBTYPES : /obj/structure/vampdoor/simple {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/wood/daughters : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/daughters, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/giovanni : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/giovanni, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/giovanni/high_security : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/giovanni, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/jazz_club : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/madman : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/millennium_common : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/nps : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/park_ranger, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/npc : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/npc, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/pentex : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/sabbat : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/sabbat, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/strip : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/strip, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/theatre : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/theatre, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/theatre/unlocked : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/theatre
+#/obj/structure/vampdoor/wood/@SUBTYPES : /obj/structure/vampdoor/wood {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/woodglass/prince : /obj/structure/vampdoor/woodglass {@OLD}, /obj/effect/mapping_helpers/door/access/prince, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/woodglass/@SUBTYPES : /obj/structure/vampdoor/woodglass {@OLD}, /obj/merge_conflict_marker
+ 
+/obj/american_flag : /obj/flag/usa {@OLD}
+
+/obj/effect/decal/trash : /obj/effect/decal/cleanable/trash {@OLD}
+/obj/effect/decal/litter : /obj/effect/decal/cleanable/litter {@OLD}
+/obj/effect/decal/cardboard : /obj/effect/decal/cleanable/cardboard {@OLD}
+
+/obj/bacotell : /obj/structure/sign/city/store/bacotell {@OLD}
+/obj/bubway : /obj/structure/sign/city/store/bubway {@OLD}
+/obj/gummaguts : /obj/structure/sign/city/store/gummaguts {@OLD}
+
+/obj/police_department : /obj/structure/sign/city/police_department {@OLD}
+/obj/order : /obj/structure/sign/city/order {@OLD}
+/obj/structure/hotelsign : /obj/structure/sign/city/hotel {@OLD}
+/obj/structure/anarchsign : /obj/structure/sign/city/anarch {@OLD}
+/obj/structure/chinesesign : /obj/structure/sign/city/chinese {@OLD}
+/obj/structure/chinesesign/alt : /obj/structure/sign/city/chinese/alt {@OLD}
+/obj/structure/chinesesign/alt/alt : /obj/structure/sign/city/chinese/alt2 {@OLD}
+/obj/structure/milleniumsign : /obj/structure/sign/city/millenium {@OLD}
+/obj/structure/strip_club : /obj/structure/sign/city/strip_club {@OLD}
+/obj/structure/cabaret_sign : /obj/structure/sign/city/cabaret_sign {@OLD}
+/obj/structure/cabaret_sign2 : /obj/structure/sign/city/cabaret_sign/two {@OLD}
+
+/obj/structure/showcase/machinery/tv : /obj/structure/fluff/tv {@OLD}
+/obj/order1 : /obj/structure/fluff/tv/order/one {@OLD}
+/obj/order2 : /obj/structure/fluff/tv/order/two {@OLD}
+/obj/order3 : /obj/structure/fluff/tv/order/three {@OLD}
+/obj/order4 : /obj/structure/fluff/tv/order/four {@OLD}
+
+/obj/effect/decal/asphaltline : /obj/effect/turf_decal/asphaltline {@OLD}
+/obj/effect/decal/asphaltline/@SUBTYPES : /obj/effect/turf_decal/asphaltline/@SUBTYPES {@OLD}
+/obj/effect/decal/bordur : /obj/effect/turf_decal/bordur {@OLD}
+/obj/effect/decal/bordur/@SUBTYPES : /obj/effect/turf_decal/bordur/@SUBTYPES {@OLD}
+/obj/effect/decal/asphalt : /obj/effect/turf_decal/asphalt {@OLD}
+/obj/effect/decal/crosswalk : /obj/effect/turf_decal/crosswalk {@OLD}
+/obj/effect/decal/stock : /obj/effect/turf_decal/stock {@OLD}
+ 
