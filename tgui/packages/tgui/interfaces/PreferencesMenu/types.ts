@@ -44,7 +44,7 @@ export type Name = {
   group: string;
 };
 
-export type Splats = { // DARKPACK EDIT CHANGE - SPLATS
+export type Species = {
   name: string;
   desc: string;
   lore: string[];
@@ -66,7 +66,31 @@ export type Splats = { // DARKPACK EDIT CHANGE - SPLATS
     disliked_food: Food[];
     toxic_food: Food[];
   };
-};
+}
+
+export type Splats = { // DARKPACK EDIT ADD START - SPLATS
+  name: string;
+  desc: string;
+  lore: string[];
+  icon: string;
+
+  use_skintones: BooleanLike;
+  sexes: BooleanLike;
+
+  enabled_features: string[];
+
+  perks: {
+    positive: Perk[];
+    negative: Perk[];
+    neutral: Perk[];
+  };
+
+  diet?: {
+    liked_food: Food[];
+    disliked_food: Food[];
+    toxic_food: Food[];
+  };
+}; // DARKPACK EDIT ADD END - SPLATS
 
 export type Perk = {
   ui_icon: string;
