@@ -30,7 +30,9 @@
 
 		SSatoms.prepare_deletion(dummy)
 
-	to_insert[sanitize_css_class_name(SPLAT_NONE)] = icon('icons/hud/radial.dmi', "radial_center")
+	var/icon/dummy_icon = icon('icons/hud/radial.dmi', "radial_center")
+	dummy_icon.Scale(64, 64)
+	to_insert[SPLAT_NONE] = dummy_icon
 
 	for (var/spritesheet_key in to_insert)
 		Insert(spritesheet_key, to_insert[spritesheet_key])

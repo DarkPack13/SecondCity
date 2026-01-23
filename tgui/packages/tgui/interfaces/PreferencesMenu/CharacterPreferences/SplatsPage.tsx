@@ -157,7 +157,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                     }}
                   >
                     <Box
-                      className={classes(['splats64x64', splats.icon])}
+                      className={classes(['splat64x64', splats.icon])}
                       ml={-1}
                     />
                   </Button>
