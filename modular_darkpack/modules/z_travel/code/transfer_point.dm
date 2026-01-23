@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 
 /obj/transfer_point_vamp/backrooms
 	id = "backrooms"
-	alpha = 0
+	invisibility = INVISIBILITY_OBSERVER
 
 /obj/transfer_point_vamp/backrooms/map
 	density = FALSE
