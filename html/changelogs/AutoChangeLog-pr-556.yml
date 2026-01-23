@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "added a few extra lockaccesses including BH and Lasombra Primogen, Hunters and Baron"

@@ -26,14 +26,36 @@
 
 // Default vampire job outfits.
 /datum/outfit/job/vampire
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/vampire/sport
 	id = null
 	ears = null
 	belt = null
 	back = /obj/item/storage/backpack
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	shoes = /obj/item/clothing/shoes/vampire
 	box = null
 	pda_slot = null
+	var/uses_default_clan_clothes = FALSE
+
+/datum/outfit/job/vampire/pre_equip(mob/living/carbon/human/H, visuals_only)
+	. = ..()
+	if(uses_default_clan_clothes == TRUE)
+		var/datum/splat/vampire/kindred/kindred = iskindred(H)
+		if(kindred)
+			if(H.jumpsuit_style == PREF_SUIT)
+				shoes = /obj/item/clothing/shoes/vampire
+				if(kindred.clan.male_clothes)
+					uniform = kindred.clan.male_clothes
+			else
+				shoes = /obj/item/clothing/shoes/vampire/heels
+				if(kindred.clan.female_clothes)
+					uniform = kindred.clan.female_clothes
+		else
+			if(H.jumpsuit_style == PREF_SKIRT)
+				shoes = /obj/item/clothing/shoes/vampire
+				uniform = /obj/item/clothing/under/vampire/sport
+			else
+				shoes = /obj/item/clothing/shoes/vampire/heels
+				uniform = /obj/item/clothing/under/vampire/red
 
 /datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()

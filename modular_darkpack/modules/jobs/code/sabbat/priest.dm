@@ -24,11 +24,17 @@
 	jobtype = /datum/job/vampire/sabbatpriest
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/sabbat
+	suit = /obj/item/clothing/suit/vampire/noddist
+	head = /obj/item/clothing/head/vampire/noddist_mask
+	uses_default_clan_clothes = TRUE
 
 /datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist/priest)
+
+/datum/antagonist/sabbatist/priest
+	antag_hud_name = "ductus_priest"
 
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"

@@ -23,7 +23,7 @@
 /datum/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
 	. = ..()
 
-	H.faction |= VAMPIRE_CLAN_BAALI
+	H.add_faction(VAMPIRE_CLAN_BAALI)
 
 	H.AddElement(/datum/element/holy_weakness)
 

@@ -12,8 +12,6 @@
 	clan_traits = list(
 		TRAIT_LONGER_FRENZY
 	)
-	/*
 	male_clothes = /obj/item/clothing/under/vampire/brujah
 	female_clothes = /obj/item/clothing/under/vampire/brujah/female
 	clan_keys = /obj/item/vamp/keys/brujah
-	*/
