@@ -110,7 +110,7 @@
 	color = "#434343"
 
 /obj/item/vamp/keys/anarch
-	name = "anarch keys"
+	name = "bar keys"
 	accesslocks = list(
 		LOCKACCESS_BAR,
 		LOCKACCESS_ANARCH,
