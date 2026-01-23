@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 		while writing entries for brands in modular_darkpack/modules/company_logos/code/company_logos.dm. They've been industry leading in hunting down \
 		coders who make this same mistake and stabbing them 126 times in the chest, groin, and thighs. It is estimated that they profit around 1.6 trillion \
 		dollars per year with this business model."
-	// Stuff that you have to KNOW to know. Things that the Hounds or Truthcatchers would hunt you down for finding out without their permission.
+	// Stuff that you have to KNOW to know. The seedy underbelly, or maybe just a well-kept secret. Set this to null for mundane brands without big secrets.
 	var/secret_description = "Unbeknownst to the public, <span class='hypnophrase'>Bad Code Inc.</span> actually spares the lives of 18% of coders \
 		and instead condemns them to a facility located deep under Silicon Valley called the \"Bugfix Beach.\" These poor wretched souls are punished \
 		with a dark brand upon their left buttock, marking them as a \"Maintainer\". Slaves that show extreme aptitude in the mines are \"promoted\" \
