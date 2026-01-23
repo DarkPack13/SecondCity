@@ -2,7 +2,7 @@ https://github.com/DarkPack13/SecondCity/pull/100
 
 ## Kindred Species
 
-Module ID: KINDRED_SPECIES
+Module ID: VAMPIRE
 
 ### Description:
 

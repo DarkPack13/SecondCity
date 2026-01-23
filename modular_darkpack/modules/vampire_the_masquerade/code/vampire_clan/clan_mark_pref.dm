@@ -35,6 +35,6 @@
 	if(!length(clan?.accessories))
 		return
 	target.remove_overlay(clan.accessories_layers[value])
-	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/kindred_species/icons/features.dmi', value, -clan.accessories_layers[value])
+	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/vampire_the_masquerade/icons/features.dmi', value, -clan.accessories_layers[value])
 	target.overlays_standing[clan.accessories_layers[value]] = acc_overlay
 	target.apply_overlay(clan.accessories_layers[value])

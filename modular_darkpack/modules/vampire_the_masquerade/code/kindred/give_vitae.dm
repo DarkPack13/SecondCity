@@ -3,7 +3,7 @@
 	desc = "Give your vitae to someone, make the Blood Bond."
 	button_icon_state = "vitae"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
-	button_icon = 'modular_darkpack/modules/kindred_species/icons/vitae.dmi'
+	button_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vitae.dmi'
 	button_icon_state = "vitae"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
