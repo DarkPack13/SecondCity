@@ -21,7 +21,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "book-dead",
+			SPECIES_PERK_ICON = FA_ICON_BOOK_DEAD,
 			SPECIES_PERK_NAME = "Kindred Clans",
 			SPECIES_PERK_DESC = "Kindred belong to many clans, which you are able to choose in the preferences, all with their own special abilities and weaknesses!",
 		),
@@ -50,7 +50,7 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "skull",
+		SPECIES_PERK_ICON = FA_ICON_SKULL,
 		SPECIES_PERK_NAME = "Minor Undead",
 		SPECIES_PERK_DESC = "[name] are minor undead. \
 			Minor undead enjoy some of the perks of being dead, like \

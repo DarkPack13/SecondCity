@@ -49,7 +49,7 @@
 	if(splat_biotypes & MOB_UNDEAD)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "skull",
+			SPECIES_PERK_ICON = FA_ICON_SKULL,
 			SPECIES_PERK_NAME = "Undead",
 			SPECIES_PERK_DESC = "Kindred are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",

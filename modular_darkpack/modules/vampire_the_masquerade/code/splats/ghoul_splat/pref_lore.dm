@@ -20,7 +20,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "book-dead",
+			SPECIES_PERK_ICON = FA_ICON_DROPLET,
 			SPECIES_PERK_NAME = "The Bond",
 			SPECIES_PERK_DESC = "Ghouls are frequently found bound by blood to do the deeds of their master.",
 		),
