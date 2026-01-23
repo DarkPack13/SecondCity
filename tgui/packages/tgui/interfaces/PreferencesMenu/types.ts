@@ -66,7 +66,7 @@ export type Species = {
     disliked_food: Food[];
     toxic_food: Food[];
   };
-}
+};
 
 export type Splats = { // DARKPACK EDIT ADD START - SPLATS
   name: string;
