@@ -1,7 +1,7 @@
 /obj/item/papercutter
 	name = "paper cutter"
 	desc = "Standard office equipment. Precisely cuts paper using a large blade."
-	icon = 'icons/obj/service/bureaucracy.dmi'
+	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "papercutter"
 	force = 5
 	throwforce = 5

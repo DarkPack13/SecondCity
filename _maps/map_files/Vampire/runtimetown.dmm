@@ -1164,6 +1164,9 @@
 /area/vtm/outside/pacificheights)
 "xC" = (
 /obj/effect/decal/cleanable/litter,
+/obj/structure/rack/tall/store_shelf_metal{
+	dir = 8
+	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "xE" = (
@@ -2381,6 +2384,12 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
+"RM" = (
+/obj/structure/rack/tall/store_shelf_metal{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/shop)
 "RP" = (
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash7"
@@ -2495,9 +2504,8 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "TY" = (
-/obj/structure/rack/food{
-	dir = 4;
-	pixel_x = 7
+/obj/structure/rack/tall/store_shelf_metal{
+	dir = 8
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
@@ -2617,6 +2625,9 @@
 /area/vtm/outside/pacificheights)
 "VP" = (
 /obj/machinery/light/directional/north,
+/obj/structure/rack/tall/store_shelf_metal{
+	dir = 4
+	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "VQ" = (
@@ -5225,7 +5236,7 @@ NR
 NR
 Fg
 VP
-oW
+RM
 Fg
 kS
 kS
