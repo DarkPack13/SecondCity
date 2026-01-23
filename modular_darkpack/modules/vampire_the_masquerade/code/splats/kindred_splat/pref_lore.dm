@@ -6,20 +6,13 @@
 	human.update_body()
 	human.equipOutfit(/datum/outfit/job/vampire/prince, TRUE)
 
-/datum/splat/vampire/kindred/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.set_haircolor("#333333", update = FALSE)
-	human.set_hairstyle("Undercut Left", update = TRUE)
-	human.set_eye_color("#ff0000")
-	human.undershirt = "T-Shirt (Red)"
-	human.update_body()
-	human.equipOutfit(/datum/outfit/job/vampire/prince, TRUE)
-
 /datum/splat/vampire/kindred/get_splat_description()
 	return "Blood sucking vampires of the dark realm!"
 
+// Pulled straight from the wiki https://whitewolf.fandom.com/wiki/Vampire_(WOD)
 /datum/splat/vampire/kindred/get_splat_lore()
 	return list(
-		"Insert Kindred Lore Here",
+		"The blood-drinkers who stalk the World of Darkness mostly call themselves Kindred, licks, or Cainites. The term \"vampire\" seems déclassé to the habitués of Elysium and the theorists of Anarch utopia, reminiscent of cheesy Hammer sequels and tourist-friendly reactionary folklore. However, those Embraced in recent decades increasingly use the term among themselves (\"taking the v-word back\"), establishing their claim to this status despite the thinness of their Blood.",
 	)
 
 /datum/splat/vampire/kindred/create_pref_unique_perks()

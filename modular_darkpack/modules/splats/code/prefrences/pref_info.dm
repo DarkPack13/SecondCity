@@ -3,11 +3,30 @@
 /datum/splat/proc/prepare_human_for_preview(mob/living/carbon/human/human)
 	return
 
-#warn make stacktrace
+/**
+ * Gets a short description for the specices. Should be relatively succinct.
+ * Used in the preference menu.
+ *
+ * Returns a string.
+ */
 /datum/splat/proc/get_splat_description()
+	SHOULD_CALL_PARENT(FALSE)
+
+	stack_trace("Splat [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_splat_description.")
 	return "No splat description set, file a bug report!"
 
+/**
+ * Gets the lore behind the type of species. Can be long.
+ * Used in the preference menu.
+ *
+ * Returns a list of strings.
+ * Between each entry in the list, a newline will be inserted, for formatting.
+ */
 /datum/splat/proc/get_splat_lore()
+	SHOULD_CALL_PARENT(FALSE)
+	RETURN_TYPE(/list)
+
+	stack_trace("Splat [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_splat_lore.")
 	return list("No splat lore set, file a bug report!")
 
 

@@ -17,8 +17,13 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	var/datum/splat/player_splat = GLOB.splat_prototypes[player_client.prefs.read_preference(/datum/preference/choiced/splats)]
-	var/player_splat_id = player_splat.id
+	var/splat_pref = player_client.prefs.read_preference(/datum/preference/choiced/splats)
+	var/player_splat_id
+	if(ispath(splat_pref))
+		var/datum/splat/player_splat = GLOB.splat_prototypes[splat_pref]
+		player_splat_id = player_splat.id
+	else
+		player_splat_id = splat_pref
 
 	if(!(player_splat_id in possible_job.allowed_splats))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
