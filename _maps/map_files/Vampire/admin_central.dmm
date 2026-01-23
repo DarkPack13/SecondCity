@@ -443,12 +443,11 @@
 /area/centcom/central_command_areas/courtroom)
 "bQ" = (
 /obj/structure/vampdoor/wood{
-	dir = 4;
-	locked = 1;
-	lockpick_difficulty = 1000;
-	lockpick_timer = 999;
-	lock_id = "milleniumCommon"
+	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/ten,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/movie_theatre/screening)
 "bR" = (
@@ -1294,6 +1293,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/centcom/central_command_areas/evacuation)
+"ft" = (
+/obj/structure/vampdoor/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#4a3925"
+	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/ten,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "fu" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/weldingtool/experimental,
@@ -1431,6 +1442,7 @@
 /obj/structure/vampdoor/wood{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/movie_theatre/screening)
 "gd" = (
@@ -1629,6 +1641,13 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron,
 /area/centcom/tdome/observation)
+"hb" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/trash,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/movie_theatre/screening)
 "hc" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -1694,10 +1713,9 @@
 /turf/open/floor/city/toilet,
 /area/vtm/interior/movie_theatre)
 "hr" = (
-/obj/structure/table/wood,
-/obj/structure/sign/city/order,
-/turf/open/floor/carpet/darkpack/blackgold,
-/area/vtm/interior/movie_theatre)
+/obj/effect/spawner/random/trash/janitor_supplies,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "hv" = (
 /obj/machinery/barsign/all_access/directional/south,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -2389,6 +2407,10 @@
 /obj/machinery/computer,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/prison)
+"jZ" = (
+/obj/effect/spawner/random/trash/mopbucket,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "ka" = (
 /obj/effect/landmark/thunderdome/one,
 /obj/effect/turf_decal/stripes/line{
@@ -3626,6 +3648,19 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/admin)
+"pG" = (
+/obj/structure/table/wood,
+/obj/structure/sign/city/order/directional/north,
+/obj/structure/fluff/tv/order/random{
+	pixel_y = 10;
+	pixel_x = 8
+	},
+/obj/structure/fluff/tv/order/random{
+	pixel_y = 10;
+	pixel_x = -8
+	},
+/turf/open/floor/carpet/darkpack/blackgold,
+/area/vtm/interior/movie_theatre)
 "pH" = (
 /obj/structure/flora/tree/palm{
 	icon_state = "palm2"
@@ -4553,9 +4588,7 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/ferry)
 "tw" = (
-/obj/machinery/vending/hotdog{
-	pixel_y = 14
-	},
+/obj/machinery/vending/hotdog,
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/movie_theatre)
 "ty" = (
@@ -4976,6 +5009,13 @@
 	dir = 8
 	},
 /area/centcom/central_command_areas/evacuation)
+"vj" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/trash,
+/turf/open/floor/carpet/darkpack,
+/area/vtm/interior/movie_theatre/screening)
 "vm" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/directional/south,
@@ -5415,15 +5455,14 @@
 /area/centcom/central_command_areas/evacuation/ship)
 "xa" = (
 /obj/structure/vampdoor/wood{
-	dir = 1;
-	locked = 1;
-	lockpick_difficulty = 1000;
-	lockpick_timer = 999;
-	lock_id = "milleniumCommon"
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#4a3925"
 	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/nine,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/movie_theatre/screening)
 "xc" = (
@@ -6278,6 +6317,10 @@
 "AP" = (
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/movie_theatre/screening)
+"AQ" = (
+/obj/machinery/light/dim/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "AT" = (
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/indestructible/riveted,
@@ -6895,10 +6938,8 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
 "Dw" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/turf/open/floor/wood/smooth/old,
+/obj/effect/decal/cleanable/trash,
+/turf/open/floor/carpet/darkpack,
 /area/vtm/interior/movie_theatre/screening)
 "Dz" = (
 /obj/structure/rack,
@@ -7274,6 +7315,7 @@
 /obj/structure/vampdoor/wood{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/movie_theatre/screening)
 "Fu" = (
@@ -7320,9 +7362,9 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/armory)
 "FC" = (
-/obj/structure/vampdoor/simple/anarch{
-	locked = 0
-	},
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/jazz_club,
+/obj/effect/mapping_helpers/door/lock_difficulty/five,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/movie_theatre)
 "FI" = (
@@ -7794,6 +7836,10 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/prison)
+"Ig" = (
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "Ii" = (
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/floor/city/toilet,
@@ -7895,9 +7941,7 @@
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/movie_theatre/screening)
 "IQ" = (
-/obj/machinery/vending/boozeomat{
-	pixel_y = 14
-	},
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/movie_theatre)
 "IR" = (
@@ -7922,6 +7966,10 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/evacuation)
+"IZ" = (
+/obj/transfer_point_vamp/stairs/admin_theatre_2,
+/turf/open/floor/carpet/darkpack/blackgold,
+/area/vtm/interior/movie_theatre)
 "Ja" = (
 /obj/effect/landmark/error,
 /turf/open/floor/carpet,
@@ -7933,6 +7981,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
+/obj/structure/sign/departments/restroom/directional/north,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/movie_theatre)
 "Jg" = (
@@ -8701,13 +8750,8 @@
 /area/centcom/tdome/observation)
 "MT" = (
 /obj/structure/table/wood,
-/obj/structure/fluff/tv/order/random{
-	pixel_y = 10;
-	pixel_x = -4
-	},
-/obj/structure/fluff/tv/order/random{
-	pixel_y = 10;
-	pixel_x = 11
+/obj/structure/sink/basin/directional/north{
+	pixel_y = -5
 	},
 /turf/open/floor/carpet/darkpack/blackgold,
 /area/vtm/interior/movie_theatre)
@@ -8859,6 +8903,14 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
+"NK" = (
+/obj/structure/vampdoor/wood{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/door/access/jazz_club,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "NL" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -9279,6 +9331,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/supply)
+"Ph" = (
+/obj/transfer_point_vamp/stairs/admin_theatre_1,
+/turf/open/floor/carpet/darkpack/blackgold,
+/area/vtm/interior/movie_theatre)
 "Pk" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/donut_box,
@@ -11327,6 +11383,8 @@
 /obj/item/trash/popcorn,
 /obj/item/trash/popcorn,
 /obj/item/trash/popcorn,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/deluxe_garbage,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/movie_theatre)
 "YG" = (
@@ -11634,6 +11692,13 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
+"ZU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/movie_theatre/screening)
 "ZX" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security"
@@ -12896,8 +12961,8 @@ zi
 vr
 vr
 FM
-AP
-AP
+hr
+jZ
 FM
 XI
 IT
@@ -13149,13 +13214,13 @@ ju
 JG
 NS
 JG
-ju
+hb
 JG
 vr
 FM
 AP
 AP
-FM
+NK
 ZE
 ZE
 ZE
@@ -13410,8 +13475,8 @@ qv
 tm
 vr
 FM
-AP
-AP
+FM
+FM
 FM
 ZE
 ZE
@@ -13420,7 +13485,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+Ph
 Hg
 LW
 aa
@@ -13667,7 +13732,7 @@ LX
 tm
 vr
 Tf
-Dw
+AP
 AP
 FM
 ZE
@@ -13677,7 +13742,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+IZ
 Hg
 LW
 aa
@@ -13924,7 +13989,7 @@ Rt
 JG
 vr
 Tf
-aR
+ZU
 AP
 FM
 ZE
@@ -14171,7 +14236,7 @@ mA
 vr
 Kj
 JG
-Kj
+vj
 JG
 Kj
 tm
@@ -14181,13 +14246,13 @@ Kj
 JG
 vr
 FM
-AP
+Ig
 AP
 FM
 cN
 ZE
-PQ
-PQ
+Hg
+pG
 PQ
 PQ
 Hg
@@ -14438,12 +14503,12 @@ NT
 JG
 vr
 FM
+AQ
 AP
-AP
-xa
+ft
 ZE
 ZE
-hr
+PQ
 ZE
 ZE
 tw
@@ -14682,7 +14747,7 @@ aa
 LW
 FM
 FM
-vr
+Dw
 zi
 vr
 zi
@@ -14696,7 +14761,7 @@ vr
 vr
 FM
 AP
-AP
+aR
 FM
 cN
 ZE
@@ -16494,7 +16559,7 @@ II
 vr
 Kx
 FM
-AP
+AQ
 AP
 AP
 FM
@@ -16751,7 +16816,7 @@ lH
 vr
 vr
 FM
-AP
+Ig
 AP
 AP
 wn
@@ -17008,7 +17073,7 @@ or
 vr
 vr
 Yz
-aR
+ZU
 AP
 AP
 FM
@@ -17265,7 +17330,7 @@ II
 vr
 vr
 Tf
-Dw
+AP
 AP
 AP
 wn
@@ -17522,9 +17587,9 @@ lH
 vr
 vr
 FM
-AP
-AP
-AP
+FM
+FM
+FM
 FM
 Hg
 Hg
@@ -17779,9 +17844,9 @@ or
 vr
 vr
 FM
-AP
-AP
-AP
+LW
+LW
+LW
 wn
 dO
 FC
@@ -18036,9 +18101,9 @@ vr
 vr
 vr
 FM
-AP
-AP
-AP
+LW
+aa
+LW
 FM
 Hg
 Hg
@@ -18293,10 +18358,10 @@ FM
 FM
 FM
 FM
-FM
-FM
-FM
-FM
+LW
+aa
+LW
+LW
 LW
 Hg
 Hg
@@ -18551,9 +18616,9 @@ LW
 LW
 LW
 LW
-LW
-LW
-LW
+aa
+aa
+aa
 LW
 LW
 LW
