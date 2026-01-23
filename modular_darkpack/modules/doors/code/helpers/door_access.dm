@@ -130,6 +130,9 @@
 	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_PRIMOGEN_LASOMBRA
 
+/obj/effect/mapping_helpers/door/access/setite
+	lock_id = LOCKACCESS_SETITE
+
 /obj/effect/mapping_helpers/door/access/sabbat
 	lock_id = LOCKACCESS_SABBAT
 
