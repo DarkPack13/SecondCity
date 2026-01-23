@@ -245,9 +245,11 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "dn" = (
-/obj/structure/vampdoor/wood/npc{
+/obj/structure/vampdoor/wood{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/lock,
 /obj/effect/decal/cleanable/cardboard,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -396,9 +398,8 @@
 /obj/structure/vampdoor/wood{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4;
-	icon_state = "siding_wood_line"
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 4
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
@@ -957,12 +958,6 @@
 "nN" = (
 /turf/open/floor/wood/old,
 /area/vtm/outside/penumbra)
-"nR" = (
-/obj/structure/vampdoor/old/chantry{
-	locked = 0
-	},
-/turf/open/floor/wood/old,
-/area/vtm/outside/penumbra)
 "nU" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -975,7 +970,9 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/penumbra)
 "oj" = (
-/obj/structure/vampdoor/old/chantry,
+/obj/structure/vampdoor/old,
+/obj/effect/mapping_helpers/door/access/chantry,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/old,
 /area/vtm/outside/penumbra)
 "ox" = (
@@ -1741,7 +1738,9 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "yr" = (
-/obj/structure/vampdoor/simple/camarilla,
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/camarilla,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "yx" = (
@@ -1794,11 +1793,10 @@
 /obj/structure/vampdoor/wood{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8;
-	icon_state = "siding_wood_line"
-	},
 /obj/effect/decal/pallet,
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
+	},
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "zr" = (
@@ -2147,10 +2145,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "El" = (
-/obj/structure/vampdoor/simple/police{
-	lock_id = "none";
-	locked = 0
-	},
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/police,
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/penumbra)
@@ -2797,9 +2793,11 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Nn" = (
-/obj/structure/vampdoor/wood/npc{
+/obj/structure/vampdoor/wood{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/access/npc,
+/obj/effect/mapping_helpers/door/lock,
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/penumbra)
@@ -3444,7 +3442,9 @@
 /turf/open/floor/plating/canalplating,
 /area/vtm/outside/penumbra)
 "XZ" = (
-/obj/structure/vampdoor/simple/police,
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "Yk" = (
@@ -3530,9 +3530,9 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Zp" = (
-/obj/structure/vampdoor/prison{
-	lockpick_difficulty = 12
-	},
+/obj/structure/vampdoor/prison,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "Zt" = (
@@ -39662,7 +39662,7 @@ qF
 mS
 nN
 nN
-nR
+oj
 nN
 qO
 sV

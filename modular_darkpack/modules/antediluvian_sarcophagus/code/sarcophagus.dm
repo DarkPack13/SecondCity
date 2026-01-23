@@ -136,13 +136,17 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 #undef OPEN_SOUND
 
 /obj/fake_sarcophagus
-	name = "\improper Voivode-in-Waiting's Sarcophagus"
-	desc = "The Voivode-in-Waiting lies here."
+	name = "unknown sarcophagus"
+	desc = "A shiver runs down your spine just looking at it..."
 	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/sarcophagus.dmi'
 	icon_state = "b_sarcophagus"
 	density = TRUE
 	anchored = TRUE
 	pixel_w = -8
+
+/obj/fake_sarcophagus/voivode
+	name = "\improper Voivode-in-Waiting's Sarcophagus"
+	desc = "The Voivode-in-Waiting lies here."
 
 /obj/item/sarcophagus_key
 	name = "sarcophagus key"

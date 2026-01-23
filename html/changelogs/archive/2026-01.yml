@@ -114,3 +114,10 @@
   - sound: Added new 'bolt'-sounds for the lever action mechanism.
   lpeapnni:
   - code_imp: changed lists into alists for phone contact stuff
+2026-01-23:
+  FalloutFalcon:
+  - map: All mapped doors work off of helpers rather then varedits
+  chazzyjazzy:
+  - rscadd: firearms stat roll to reduce recoil
+  - bugfix: generation on prefs menu added back
+  - rscadd: claimable darkpack cars

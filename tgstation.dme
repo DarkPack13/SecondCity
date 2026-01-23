@@ -7069,7 +7069,6 @@
 #include "modular_darkpack\modules\doors\code\shutters.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_glass.dm"
-#include "modular_darkpack\modules\doors\code\vampdoor_npc.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_old.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_oldwood.dm"
 #include "modular_darkpack\modules\doors\code\vampdoor_prison.dm"
@@ -7609,6 +7608,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\totems.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\werewolf_globals.dm"
 #include "modular_darkpack\modules\westfield_mall\code\mall_areas.dm"
+#include "modular_darkpack\modules\westfield_mall\code\modular_rooms.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
 #include "modular_darkpack\modules\z_travel\code\transfer_point.dm"
 // END_INCLUDE
