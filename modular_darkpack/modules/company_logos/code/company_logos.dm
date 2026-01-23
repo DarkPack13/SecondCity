@@ -207,14 +207,14 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	slogan = "Omni: Entertainment at your fingertips."
 	name_span = "corp_label_omni_tv"
 	company_color = COLOR_CORP_OMNI_TV
-
+#warn O'TOLLEY'S LOGO NEEDED
 /datum/brand/pentex/otolleys
 	manufacturer = "otolleys"
 	full_name = EVIL_FAST_FOOD_COMPANY
 	slogan = "The family place."
 	name_span = "corp_label_otolleys"
 	company_color = COLOR_CORP_OTOLLEYS
-
+#warn BLACK DOG LOGO NEEDED
 /datum/brand/pentex/black_dog
 	manufacturer = "black_dog"
 	full_name = EVIL_TTRPG_COMPANY
