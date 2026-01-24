@@ -29,8 +29,8 @@
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(!isnewplayer(user))
-		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
+	if("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots)
+		to_chat(user, span_warning("You cannot be spawned in as this character to adjust its stats."))
 		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
