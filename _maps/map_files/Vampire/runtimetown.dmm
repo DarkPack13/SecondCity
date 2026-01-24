@@ -1383,11 +1383,8 @@
 /area/vtm/interior/shop)
 "Cj" = (
 /obj/structure/railing,
-/obj/structure/ladder/manhole/up{
-	connect_down = 1;
-	connect_up = 0
-	},
 /obj/structure/lattice/grate,
+/obj/structure/ladder/manhole,
 /turf/open/openspace,
 /area/vtm/outside/pacificheights)
 "Ct" = (

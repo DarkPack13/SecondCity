@@ -81,7 +81,7 @@
 	RegisterSignal(loc, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_ladder_rim))
 	loc.add_filter(SOURCE_LADDER(ladder), 1, alpha_mask_filter(
 		x = ladder.pixel_x + ladder.pixel_w,
-		y = ladder.pixel_y + ladder.pixel_z,
+		y = ladder.pixel_y + ladder.pixel_z + 8, // DARKPACK EDIT CHANGE
 		render_source = "*[SOURCE_LADDER(ladder)]",
 		flags = MASK_INVERSE,
 	))
@@ -137,8 +137,10 @@
 /obj/structure/ladder/proc/make_base_transparent()
 	if(!SSmapping.level_trait(z, ZTRAIT_DOWN)) // Ladders which are actually teleporting you to another z level
 		return
+	/* DARKPACK EDIT REMOVAL
 	base_pixel_z = initial(base_pixel_z) + 12
 	pixel_z = base_pixel_z
+	*/
 	new /obj/effect/abstract/ladder_hole(loc, src)
 
 /// Clears any ladder holes created by this ladder

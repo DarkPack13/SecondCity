@@ -1,4 +1,5 @@
 /obj/structure/ladder
+	icon = 'modular_darkpack/modules/z_travel/icons/ladders.dmi'
 	/// Played after the do_after is finished
 	var/travel_sound
 	// Requires a sister ladder to link up with us else we runtime
