@@ -126,7 +126,7 @@
 		// Revive the specimen and turn them into a gargoyle kindred
 		target_body.revive(TRUE)
 		target_body.adjust_agg_loss(-100)
-		target_body.make_kindred(clan = /datum/vampire_clan/gargoyle)
+		target_body.set_clan(/datum/vampire_clan/gargoyle)
 		target_body.blood_bond(usr)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name

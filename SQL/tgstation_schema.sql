@@ -261,7 +261,7 @@ CREATE TABLE `library` (
   `author` varchar(45) NOT NULL,
   `title` varchar(45) NOT NULL,
   `content` text NOT NULL,
-  `category` enum('Any','Fiction','Non-Fiction','Adult','Reference','Religion') NOT NULL,
+  `category` VARCHAR(255) NOT NULL, /* DARKPACK EDIT, ORIGINAL: `category` enum('Any','Fiction','Non-Fiction','Adult','Reference','Religion') NOT NULL, */
   `ckey` varchar(32) NOT NULL DEFAULT 'LEGACY',
   `datetime` datetime NOT NULL,
   `deleted` tinyint(1) unsigned DEFAULT NULL,
@@ -618,6 +618,14 @@ CREATE TABLE `achievement_metadata` (
 
 DROP TABLE IF EXISTS `fish_progress`;
 CREATE TABLE `fish_progress` (
+  `ckey` VARCHAR(32) NOT NULL,
+  `progress_entry` VARCHAR(32) NOT NULL,
+  `datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ckey`,`progress_entry`)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `pda_themes_progress`;
+CREATE TABLE `pda_themes_progress` (
   `ckey` VARCHAR(32) NOT NULL,
   `progress_entry` VARCHAR(32) NOT NULL,
   `datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

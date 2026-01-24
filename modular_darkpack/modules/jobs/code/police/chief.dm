@@ -14,7 +14,7 @@
 		/datum/job_department/police,
 	)
 
-	allowed_species = list(SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_NONE)
 
 	description = "Underpaid, overworked, and understrength. Do your best to keep the order in " + CITY_NAME + ". Keep the officers in line."
 	minimal_masquerade = 0

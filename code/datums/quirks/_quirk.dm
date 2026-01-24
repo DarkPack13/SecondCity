@@ -17,6 +17,8 @@
 	var/lose_text
 	///This text will appear on medical records for the trait.
 	var/medical_record_text
+	///Appears in medical guides for this quirk, but only if the quirk has QUIRK_TRAUMALIKE flag.
+	var/medical_symptom_text
 	/// if applicable, apply and remove this mob trait
 	var/mob_trait
 	/// Amount of points this trait is worth towards the hardcore character mode.
@@ -202,6 +204,16 @@
 	if(mob_trait in GLOB.species_prototypes[mob_species].inherent_traits)
 		return FALSE
 	return TRUE
+
+// DARKPACK EDIT ADD START - SPLATS
+/// If a quirk is able to be selected for the mob's splat
+/datum/quirk/proc/is_splat_appropriate(datum/splat/mob_splat)
+	if(!ispath(mob_splat))
+		return TRUE
+	if(mob_trait in GLOB.splat_prototypes[mob_splat].splat_traits)
+		return FALSE
+	return TRUE
+// DARKPACK EDIT ADD END
 
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/item_quirk

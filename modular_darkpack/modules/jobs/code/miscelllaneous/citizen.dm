@@ -10,7 +10,7 @@
 	display_order = JOB_DISPLAY_ORDER_CITIZEN
 	department_for_prefs = /datum/job_department/citizen
 	job_flags = CITY_JOB_FLAGS
-	allowed_species = SPECIES_ALL
+	allowed_species = SPLAT_ALL
 	minimal_masquerade = 0
 
 /datum/outfit/job/vampire/citizen
@@ -18,3 +18,4 @@
 	jobtype = /datum/job/vampire/citizen
 	l_pocket = /obj/item/smartphone
 	backpack_contents = list(/obj/item/card/credit)
+	uses_default_clan_clothes = TRUE

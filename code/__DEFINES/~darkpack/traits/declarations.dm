@@ -97,14 +97,24 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
 #define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
+#define TRAIT_SERPENTIS_SKIN "serpent_skin"
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
+// Is the mob silenced (by Quietus 1 for example)
+#define TRAIT_SILENCED "silenced"
+// is the vampire weak to Dominate?
+#define TRAIT_WEAK_TO_DOMINATE "dominate_weak"
+
 /// They have warped time at some point in this round
 #define TRAIT_TIMEWARPER "timewarper"
+
+// Is the Vampire currently hungry? Hunger is defined at a bloodpool rating of 7 - self control (if humanity alignment) or instincts (enlightenment alignment)
+// its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
+#define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
 /// If the species has garou breeds to select.
 #define TRAIT_WTA_GAROU_BREED "ww_garou_breeds"
@@ -114,5 +124,4 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WTA_GAROU_AUSPICE "ww_garou_auspice"
 /// If the fera is wyrm tainted. Affects their sprite.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
-
 // END TRAIT DEFINES

@@ -6,7 +6,6 @@
 	density = FALSE
 	stat = DEAD
 	hud_type = /datum/hud/new_player
-	hud_possible = list()
 
 	/// String Values tied to Defines that state whether the new_player is ready to play or not.
 	/// Do try your best to compare this value directly against the defines for certainty but helper procs do exist in bulkier situations.
@@ -134,10 +133,10 @@
 		if(JOB_UNAVAILABLE_AGE)
 			return "Your character is not old enough for [jobtitle]."
 		// DARKPACK EDIT START
-		if(JOB_UNAVAILABLE_SPECIES)
-			return "You can't play [jobtitle] as this species."
-		if(JOB_UNAVAILABLE_SPECIES_SLOTS)
-			return "[jobtitle] doesn't have any free species slots for you."
+		if(JOB_UNAVAILABLE_SPLAT)
+			return "You can't play [jobtitle] as this splat. (This can include human)"
+		if(JOB_UNAVAILABLE_SPLAT_SLOTS)
+			return "[jobtitle] doesn't have any free splat slots for you. (This can include human)"
 		if(JOB_UNAVAILABLE_WHITELIST)
 			return "You aren't whitelisted for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_AGE)

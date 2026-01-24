@@ -71,6 +71,9 @@
 	// Prevent blood loss and regeneration effects
 	RegisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(kindred_blood))
 
+	// Morality loss
+	RegisterSignal(owner, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
+
 	// Make all food except raw meat repulsive
 	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
 	tongue?.liked_foodtypes = NONE

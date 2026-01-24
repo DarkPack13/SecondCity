@@ -28,6 +28,8 @@
 #define CALIBER_45 ".45"
 /// The caliber used by sniper rifles.
 #define CALIBER_50BMG ".50BMG"
+/// The caliber used by muskets.
+#define CALIBER_MUSKET ".75"
 /// The caliber used by the desert eagle.
 #define CALIBER_50AE ".50AE"
 /// The caliber used by the gyrojet pistol.

@@ -12,5 +12,11 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw {@OLD}
 /obj/item/reagent_containers/food/drinks/bottle/vampirecola/thaw_club : /obj/item/reagent_containers/cup/soda_cans/thaw_club {@OLD}
+#/obj/item/reagent_containers/cup/glass/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw
 
 /obj/food_cart : /obj/structure/food_cart {@OLD}
+
+/obj/item/reagent_containers/cup/glass/beer/vampire : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire
+/obj/item/reagent_containers/cup/glass/beer/vampire/blue_stripe : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/blue_stripe
+/obj/item/reagent_containers/cup/glass/beer/vampire/typhon : /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
+/obj/item/reagent_containers/cup/glass/bottle/vampirewater : /obj/item/reagent_containers/cup/glass/vampirewater

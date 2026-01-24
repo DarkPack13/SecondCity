@@ -54,7 +54,7 @@ Dancer
 	value = 2
 	gain_text = "<span class='notice'>You feel more experienced in love.</span>"
 	lose_text = "<span class='warning'>You feel more clueless in love.</span>"
-	allowed_species = list("Vampire", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Kuei-Jin")
 
 /datum/quirk/tough_flesh
 	name = "Tough Flesh"
@@ -85,7 +85,7 @@ Dancer
 	value = -2
 	gain_text = "<span class='warning'>You feel anxious about the way you feed.</span>"
 	lose_text = "<span class='warning'>You can feed normal again.</span>"
-	allowed_species = list("Vampire", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Kuei-Jin")
 
 /datum/quirk/lazy
 	name = "Lazy"
@@ -120,7 +120,7 @@ Dancer
 	value = -5
 	gain_text = "<span class='warning'>You feel dumb.</span>"
 	lose_text = "<span class='notice'>You don't feel dumb anymore.</span>"
-	allowed_species = list("Vampire", "Human", "Ghoul", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Human", "Ghoul", "Kuei-Jin")
 
 /datum/quirk/coffin_therapy
 	name = "Coffin Therapy"
@@ -129,7 +129,7 @@ Dancer
 	value = -2
 	gain_text = "<span class='warning'>You feel like you need a coffin.</span>"
 	lose_text = "<span class='notice'>You don't need a coffin anymore.</span>"
-	allowed_species = list("Vampire", "Ghoul")
+	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/quirk/rubicon
 	name = "Crossing the Rubicon"
@@ -138,7 +138,7 @@ Dancer
 	value = -1
 	gain_text = "<span class='warning'>You feel afraid of water.</span>"
 	lose_text = "<span class='notice'>You aren't afraid of water anymore.</span>"
-	allowed_species = list("Vampire", "Ghoul")
+	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/quirk/hungry
 	name = "Hungry"
@@ -147,7 +147,7 @@ Dancer
 	value = -3
 	gain_text = "<span class='warning'>You feel extra <b>HUNGRY</b>.</span>"
 	lose_text = "<span class='notice'>You don't feel extra <b>HUNGRY</b> anymore.</span>"
-	allowed_species = list("Vampire", "Ghoul")
+	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/action/fly_upper
 	name = "Fly Up"
@@ -191,14 +191,6 @@ Dancer
 		dancefirst(owner)
 	else
 		dancesecond(owner)
-
-	if(last_added_humanity+6000 < world.time)
-		for(var/obj/machinery/jukebox/J in range(DEFAULT_SIGHT_DISTANCE, owner))
-			if(J.active)
-				if(ishuman(owner))
-					var/mob/living/carbon/human/human = owner
-					human.AdjustHumanity(1, 8)
-					last_added_humanity = world.time
 
 /datum/quirk/dwarf
 	name = "Dwarf"
@@ -277,7 +269,7 @@ Dancer
 	gain_text = "<span class='danger'>You feel injured from inside.</span>"
 	lose_text = "<span class='notice'>You feel healthy again.</span>"
 	medical_record_text = "Patient has aggressive flesh eating bacteria in their boody."
-	allowed_species = list("Vampire", "Ghoul", "Human", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Ghoul", "Human", "Kuei-Jin")
 
 /datum/quirk/consumption/on_process(delta_time)
 	if(prob(5))
@@ -288,7 +280,7 @@ Dancer
 	desc = "You are in the Blood Hunt list from the start and can't leave it. Good luck!"
 	value = -3
 	mob_trait = TRAIT_HUNTED
-	allowed_species = list("Vampire", "Ghoul")
+	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/quirk/hunted/on_spawn()
 	if(isgarou(quirk_holder))
@@ -318,7 +310,7 @@ Dancer
 	desc = "You can't recover your masquerade at all."
 	value = -2
 	mob_trait = TRAIT_VIOLATOR
-	allowed_species = list("Vampire", "Ghoul", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Ghoul", "Kuei-Jin")
 
 /datum/quirk/irongullet
 	name = "Iron Gullet"
@@ -327,7 +319,7 @@ Dancer
 	mob_trait = TRAIT_GULLET
 	gain_text = "<span class='notice'>You feel necroresistant.</span>"
 	lose_text = "<span class='notice'>You don't want necrophilia anymore.</span>"
-	allowed_species = list("Vampire")
+	allowed_splats = list("Vampire")
 
 /datum/quirk/charmer
 	name = "Abnormal Charmer"
@@ -336,7 +328,7 @@ Dancer
 	mob_trait = TRAIT_CHARMER
 	gain_text = "<span class='notice'>You feel charismatic.</span>"
 	lose_text = "<span class='notice'>You don't feel charismatic anymore.</span>"
-	allowed_species = list("Vampire", "Kuei-Jin")
+	allowed_splats = list("Vampire", "Kuei-Jin")
 
 /datum/quirk/tower
 	name = "Tower"

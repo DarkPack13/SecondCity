@@ -100,6 +100,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/New(client/parent)
 	src.parent = parent
 
+	max_save_slots = CONFIG_GET(number/max_save_slots) // DARKPACK EDIT ADD
+
 	for (var/middleware_type in subtypesof(/datum/preference_middleware))
 		middleware += new middleware_type(src)
 
@@ -458,6 +460,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/validate_quirks()
 	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/datum/splat/splat_type = read_preference(/datum/preference/choiced/splats) // DARKPACK EDIT ADD - SPLATS
 	var/list/quirks_removed
 	for(var/quirk_name in all_quirks)
 		var/quirk_path = SSquirks.quirks[quirk_name]
@@ -465,9 +468,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(!quirk_prototype.is_species_appropriate(species_type))
 			all_quirks -= quirk_name
 			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD START - SPLATS
+		if(!quirk_prototype.is_splat_appropriate(splat_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD END
 	var/list/feedback
 	if(LAZYLEN(quirks_removed))
-		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, "The following quirks are incompatible with your species or splat:") // DARKPACK EDIT CHANGE - SPLATS
 		LAZYADD(feedback, quirks_removed)
 	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
 		LAZYADD(feedback, "Your quirks have been reset.")
@@ -620,4 +628,4 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	unlock_content = !!byond_member
 	if(unlock_content)
-		max_save_slots = 8
+		max_save_slots = CONFIG_GET(number/max_save_slots) + CONFIG_GET(number/extra_save_slots_byond_member) // DARKPACK EDIT CHANGE

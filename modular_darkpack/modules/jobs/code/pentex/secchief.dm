@@ -16,7 +16,7 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/secchief
 
-	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	allowed_clans = VAMPIRE_CLAN_ALL
 	minimal_masquerade = 4
