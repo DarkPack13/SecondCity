@@ -5,6 +5,8 @@
 #define SPLAT_GHOUL "splat_ghoul"
 
 #define SPLAT_KINFOLK "splat_kinfolk"
+/// Parent type for shifters. Not player facing
+#define SPLAT_FERA "splat_fera"
 #define SPLAT_GAROU "splat_garou"
 // #define SPLAT_CORAX "splat_corax" // DARKPACK TODO - CORAX
 

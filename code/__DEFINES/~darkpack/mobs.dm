@@ -1,20 +1,30 @@
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
+#define SPECIES_FERA "fera"
+
+#define SPECIES_FERA_HOMID "homid"
+#define SPECIES_FERA_BESTIAL "bestial"
+#define SPECIES_FERA_WAR "war"
+#define SPECIES_FERA_DIRE "dire"
+#define SPECIES_FERA_FERAL "feral"
+
+// #define SPECIES_GAROU "garou"
+
 #define isavatar(A) (istype(A, /mob/living/basic/avatar))
 #define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
-#define isshifted(A) (istype(A, /mob/living/carbon/human/fera))
+// #define isshifted(A) (istype(A, /mob/living/carbon/human/fera))
 //homid
-#define ishomid(A) (istype(A, /mob/living/carbon/human) && (is_species(A, /datum/species/human/shifter/garou)))
-//bestial
-#define isglabro(A) (istype(A, /mob/living/carbon/human/fera/glabro))
-//war
-#define iscrinos(A) (istype(A, /mob/living/carbon/human/fera/crinos))
-//dire
-#define ishispo(A) (istype(A, /mob/living/carbon/human/fera/hispo))
-//feral
-#define islupus(A) (istype(A, /mob/living/carbon/human/fera/lupus))
+#define ishomid(A) (is_species(A, /datum/species/human/shifter/homid))
+//bestial e.g glabro
+#define isglabro(A) (is_species(A, /datum/species/human/shifter/bestial))
+//war e.g crinos
+#define iscrinos(A) (is_species(A, /datum/species/human/shifter/war))
+//dire e.g hispo
+#define ishispo(A) (is_species(A, /datum/species/human/shifter/dire))
+//feral e.g lupus
+#define islupus(A) (is_species(A, /datum/species/human/shifter/feral))
 
 
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))

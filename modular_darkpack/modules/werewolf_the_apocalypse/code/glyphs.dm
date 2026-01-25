@@ -7,25 +7,17 @@
 	sort_list(glyph_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	return glyph_list
 
-/obj/item/charcoal_stick
-	name = "charcoal stick"
-	desc = "A piece of burnt charcoal."
-	icon = 'icons/obj/art/crayons.dmi'
-	icon_state = "crayonblack"
-	w_class = WEIGHT_CLASS_SMALL
-	// TODO: Needs a ear icon state
-	// slot_flags = ITEM_SLOT_EARS
+#warn updatepaths /obj/item/charcoal_stick : /obj/item/pen/charcoal
+/obj/item/pen/charcoal/interact_with_atom(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	if(!isopenturf(target) || isgroundlessturf(target))
+		return NONE
 
-/obj/item/charcoal_stick/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(!user.has_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE))
-		return
+		return NONE
 
 	if(!GLOB.glyph_list.len)
 		to_chat(user, span_notice("There are no glyphs available."))
-		return
-
-	if(!isopenturf(target) || isgroundlessturf(target))
-		return
+		return NONE
 
 	var/list/glyph_names = list()
 
@@ -33,20 +25,23 @@
 		glyph_names += glyph
 
 	var/choice = tgui_input_list(user, "Select a glyph to draw.", "Glyph Selection", glyph_names)
-	if(choice)
-		var/obj/effect/decal/garou_glyph/drawn_glyph = GLOB.glyph_list[choice]
-		if(drawn_glyph)
-			user.visible_message(span_notice("[user] starts to scrape a glyph into the ground..."), \
-			span_notice("You begin to etch the spirals and lines of your chosen glyph..."))
+	if(!choice)
+		return ITEM_INTERACT_BLOCKING
 
-			if(do_after(user, 5 SECONDS, target))
-				new drawn_glyph.type(target)
-				user.visible_message(span_notice("[user] finishes up their rune."), \
-				span_notice("You put the finishing touches on your rune, as it marks the ground before you."))
-			else
-				user.visible_message(span_notice("[user] slips, smduges and ruins their glyph."), \
-				span_notice("You mess it up, the glyph turning into nothing more than a smear upon the ground."))
-	. = ..()
+	var/obj/effect/decal/garou_glyph/drawn_glyph = GLOB.glyph_list[choice]
+	if(drawn_glyph)
+		user.visible_message(span_notice("[user] starts to scrape a glyph into the ground..."), \
+		span_notice("You begin to etch the spirals and lines of your chosen glyph..."))
+
+		if(do_after(user, 5 SECONDS, target))
+			new drawn_glyph.type(target)
+			user.visible_message(span_notice("[user] finishes up their rune."), \
+			span_notice("You put the finishing touches on your rune, as it marks the ground before you."))
+			return ITEM_INTERACT_SUCCESS
+		else
+			user.visible_message(span_notice("[user] slips, smduges and ruins their glyph."), \
+			span_notice("You mess it up, the glyph turning into nothing more than a smear upon the ground."))
+			return ITEM_INTERACT_FAILURE
 
 /obj/effect/decal/garou_glyph
 	name = "odd glyph"

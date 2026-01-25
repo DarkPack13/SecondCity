@@ -41,10 +41,6 @@
 
 /datum/action/cooldown/spell/shapeshift/before_cast(mob/living/cast_on)
 	. = ..()
-	// DARKPACK EDIT START
-	if(type == /datum/action/cooldown/spell/shapeshift/transformation)
-		return
-	// DARKPACK EDIT END
 	if(. & SPELL_CANCEL_CAST)
 		return
 
@@ -92,10 +88,6 @@
 
 /datum/action/cooldown/spell/shapeshift/cast(mob/living/cast_on)
 	. = ..()
-	// DARKPACK EDIT START
-	if(type == /datum/action/cooldown/spell/shapeshift/transformation)
-		return
-	// DARKPACK EDIT END
 	cast_on.buckled?.unbuckle_mob(cast_on, force = TRUE)
 
 	var/currently_ventcrawling = (cast_on.movement_type & VENTCRAWLING)
@@ -209,6 +201,6 @@
 	if (isnull(owner))
 		return
 	if (is_shifted(owner))
-		do_unshapeshift(owner, TRUE, TRUE) // DARKPACK EDIT, ORGIINAL: do_unshapeshift(owner)
+		do_unshapeshift(owner)
 
 #undef is_shifted
