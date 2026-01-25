@@ -7,8 +7,8 @@
 /datum/loadout_item/mask
 	abstract_type = /datum/loadout_item/mask
 
-/datum/loadout_item/mask/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only, loadout_placement_preference)
-	if(loadout_placement_preference != LOADOUT_OVERRIDE_JOB && outfit.mask)
+/datum/loadout_item/mask/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
+	if(outfit.mask)
 		LAZYADD(outfit.backpack_contents, outfit.mask)
 	outfit.mask = item_path
 
