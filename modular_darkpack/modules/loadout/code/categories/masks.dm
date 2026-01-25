@@ -137,7 +137,7 @@
 	name = "Scarecrow Mask"
 	item_path = /obj/item/clothing/mask/scarecrow
 
-/datum/loadout_item/mask/costume/milf
+/datum/loadout_item/mask/costume/mummy
 	name = "Mummy Mask"
 	item_path = /obj/item/clothing/mask/mummy
 
