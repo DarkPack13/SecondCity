@@ -99,17 +99,18 @@
 		LOCKACCESS_JAZZ_CLUB_DELIVERY,
 	)
 
-/obj/item/vamp/keys/anarch
-	name = "anarch keys"
+/obj/item/vamp/keys/baron
+	name = "baron keys"
 	accesslocks = list(
 		LOCKACCESS_BAR,
 		LOCKACCESS_ANARCH,
 		LOCKACCESS_BAR_DELIVERY,
+		LOCKACCESS_BARON,
 	)
 	color = "#434343"
 
-/obj/item/vamp/keys/bar
-	name = "barkeeper keys"
+/obj/item/vamp/keys/anarch
+	name = "bar keys"
 	accesslocks = list(
 		LOCKACCESS_BAR,
 		LOCKACCESS_ANARCH,
@@ -150,7 +151,7 @@
 	name = "dark keys"
 	accesslocks = list(
 		LOCKACCESS_LASOMBRA,
-		LOCKACCESS_KYASID,
+		LOCKACCESS_KIASYD,
 		LOCKACCESS_CHURCH
 	)
 	color = "#290355"
@@ -159,13 +160,14 @@
 	name = "really dark keys"
 	accesslocks = list(
 		LOCKACCESS_LASOMBRA,
-		LOCKACCESS_KYASID,
+		LOCKACCESS_KIASYD,
 		LOCKACCESS_CHURCH,
 		LOCKACCESS_PRIMOGEN,
 		LOCKACCESS_PRIMOGEN_LASOMBRA,
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_THEATRE,
-		LOCKACCESS_CAMARILLA
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_PRIMOGEN_LASOMBRA,
 	)
 	color = "#4b039c"
 
@@ -224,6 +226,15 @@
 	)
 	color = "#06053d"
 
+/obj/item/vamp/keys/banuhaqim/primogen
+	name = "really just keys" // lol
+	accesslocks = list(
+		LOCKACCESS_JAZZ_CLUB,
+		LOCKACCESS_THEATRE,
+		LOCKACCESS_CAMARILLA,
+		LOCKACCESS_BANU,
+		LOCKACCESS_BANU_PRIMOGEN,
+	)
 /obj/item/vamp/keys/toreador/primogen
 	name = "really sexy keys"
 	accesslocks = list(
@@ -420,6 +431,18 @@
 	name = "church keys"
 	accesslocks = list(
 		LOCKACCESS_CHURCH
+	)
+
+/obj/item/vamp/keys/hunter
+	name = "strange keys"
+	accesslocks = list(
+		LOCKACCESS_HUNTER
+	)
+
+/obj/item/vamp/keys/kiasyd
+	name = "museum keys"
+	accesslocks = list(
+		LOCKACCESS_KIASYD
 	)
 
 /obj/item/vamp/keys/supply

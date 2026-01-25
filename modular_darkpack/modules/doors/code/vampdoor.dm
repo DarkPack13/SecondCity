@@ -32,6 +32,14 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
+	/// Cooldown for bashing attempts
+	COOLDOWN_DECLARE(bash_cooldown)
+	/// Cooldown for lockpicking attempts
+	COOLDOWN_DECLARE(lockpick_cooldown)
+	/// Difficulty for bashing this door down
+	var/bash_difficulty = 6
+	/// Number of successes needed to bash down
+	var/bash_successes_needed = 1
 
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
@@ -201,7 +209,12 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if((human_user.st_get_stat(STAT_STRENGTH)) >= lockpick_difficulty)
+				if(!COOLDOWN_FINISHED(src, bash_cooldown))
+					var/time_left = COOLDOWN_TIMELEFT(src, bash_cooldown)
+					to_chat(human_user, span_warning("You must wait [time_left / 10] seconds before attempting to rip the door off it's hinges again."))
+					return
+				var/roll = SSroll.storyteller_roll(human_user.st_get_stat(STAT_STRENGTH), bash_difficulty, human_user, numerical = TRUE)
+				if(roll >= bash_successes_needed)
 					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
 					if(do_after(human_user, 3 SECONDS, src))
 						proc_unlock(50)
@@ -213,8 +226,10 @@
 					pixel_w = pixel_w+rand(-1, 1)
 					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
 					proc_unlock(5)
-					to_chat(user, span_warning("You aren't strong enough to break it down!"))
+					to_chat(user, span_warning("You aren't strong enough to break it down! You hurt your shoulder by punching the door!"))
+					human_user.adjust_brute_loss(30)
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
+					COOLDOWN_START(src, bash_cooldown, 1 SCENES)
 			else
 				pixel_z = pixel_z+rand(-1, 1)
 				pixel_w = pixel_w+rand(-1, 1)
@@ -283,8 +298,12 @@
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to pick here."))
 		return
-	if(user.st_get_stat(STAT_LARCENY) <= 0)
+	if(user.st_get_stat(STAT_LARCENY) < 1)
 		to_chat(user, span_warning("How do I do this...?"))
+		return
+	if(!COOLDOWN_FINISHED(src, lockpick_cooldown))
+		var/time_left = COOLDOWN_TIMELEFT(src, lockpick_cooldown)
+		to_chat(user, span_warning("You must wait [time_left / 10] seconds before attempting another lockpick!"))
 		return
 	if(locked)
 		proc_unlock(5)
@@ -295,7 +314,7 @@
 		if(do_after(user, lockpick_timer, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			if(!locked)
 				return
-			var/roll_result = SSroll.storyteller_roll(total_lockpicking + user.st_get_stat(STAT_DEXTERITY), lockpick_difficulty, list(user), user)
+			var/roll_result = SSroll.storyteller_roll(total_lockpicking + (user.st_get_stat(STAT_DEXTERITY, FALSE)), lockpick_difficulty, list(user), user)
 			switch(roll_result)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
@@ -303,8 +322,10 @@
 					return TRUE
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))
+					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 				if(ROLL_BOTCH)
 					to_chat(user, span_warning("Your lockpick broke!"))
+					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 					qdel(tool)
 		else
 			to_chat(user, span_warning("You failed to pick the lock."))

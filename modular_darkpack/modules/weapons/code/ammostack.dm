@@ -238,16 +238,19 @@
 	icon_state = "12i"
 	base_icon_state = "12i"
 
-/obj/item/ammo_casing/caseless/bolt
+/obj/item/ammo_casing/vampire/bolt
 	name = "bolt"
 	desc = "Welcome to the Middle Ages!"
 	projectile_type = /obj/projectile/bullet/crossbow_bolt
-	caliber = CALIBER_FOAM
+	caliber = CALIBER_BOLT
 	icon_state = "arrow"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	harmful = TRUE
 
+/obj/item/ammo_casing/vampire/bolt/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state)
 /*
 /obj/item/storage/ammostack
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
@@ -374,7 +377,7 @@
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
 	icon_state = "arrows"
-	ammo_type = /obj/item/ammo_casing/caseless/bolt
+	ammo_type = /obj/item/ammo_casing/vampire/bolt
 	max_ammo = 30
 
 // DARKPACK TODO - GAROU

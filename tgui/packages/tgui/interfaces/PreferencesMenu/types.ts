@@ -68,6 +68,30 @@ export type Species = {
   };
 };
 
+export type Splats = { // DARKPACK EDIT ADD START - SPLATS
+  name: string;
+  desc: string;
+  lore: string[];
+  icon: string;
+
+  use_skintones: BooleanLike;
+  sexes: BooleanLike;
+
+  enabled_features: string[];
+
+  perks: {
+    positive: Perk[];
+    negative: Perk[];
+    neutral: Perk[];
+  };
+
+  diet?: {
+    liked_food: Food[];
+    disliked_food: Food[];
+    toxic_food: Food[];
+  };
+}; // DARKPACK EDIT ADD END - SPLATS
+
 export type Perk = {
   ui_icon: string;
   name: string;
@@ -162,6 +186,7 @@ export type PreferencesMenuData = {
       gender: Gender;
       joblessrole: JoblessRole;
       species: string;
+      splats: string; // DARKPACK EDIT ADD - SPLATS
       loadout_list: LoadoutList;
       job_clothes: BooleanLike;
     };
@@ -189,7 +214,7 @@ export type PreferencesMenuData = {
   selected_personalities: typePath[] | null;
   max_personalities: number;
   mood_enabled: BooleanLike;
-  species_disallowed_quirks: string[];
+  splat_disallowed_quirks: string[]; // DARKPACK EDIT CHANGE - SPLATS
   // DARKPACK EDIT ADD START
   stats: Record<
     string,
@@ -238,5 +263,6 @@ export type ServerData = {
     loadout_tabs: LoadoutCategory[];
   };
   species: Record<string, Species>;
+  splats: Record<string, Splats>; // DARKPACK EDIT ADD - SPLATS
   [otherKey: string]: unknown;
 };
