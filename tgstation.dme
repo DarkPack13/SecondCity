@@ -7232,6 +7232,7 @@
 #include "modular_darkpack\modules\loadout\code\categories\glasses.dm"
 #include "modular_darkpack\modules\loadout\code\categories\hands.dm"
 #include "modular_darkpack\modules\loadout\code\categories\heads.dm"
+#include "modular_darkpack\modules\loadout\code\categories\masks.dm"
 #include "modular_darkpack\modules\loadout\code\categories\neck.dm"
 #include "modular_darkpack\modules\loadout\code\categories\pocket_items.dm"
 #include "modular_darkpack\modules\loadout\code\categories\shoes.dm"
