@@ -7,7 +7,6 @@
 	sort_list(glyph_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	return glyph_list
 
-#warn updatepaths /obj/item/charcoal_stick : /obj/item/pen/charcoal
 /obj/item/pen/charcoal/interact_with_atom(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(!isopenturf(target) || isgroundlessturf(target))
 		return NONE
