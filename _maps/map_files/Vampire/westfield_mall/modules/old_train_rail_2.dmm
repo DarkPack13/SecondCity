@@ -1,0 +1,873 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"as" = (
+/obj/structure/chair/office/darkpack/green{
+	dir = 8
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"aK" = (
+/obj/item/kirbyplants/synthetic/plant27,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"bn" = (
+/obj/structure/chair/sofa/city_bench/metal/left/black{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"dM" = (
+/turf/closed/wall/vampwall/rust,
+/area/vtm/interior/sewer)
+"fh" = (
+/obj/structure/filingcabinet{
+	pixel_x = -6
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 8
+	},
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"ii" = (
+/obj/structure/table,
+/obj/effect/spawner/random/trash/janitor_supplies,
+/obj/item/book/manual/wiki/chemistry,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"jG" = (
+/obj/item/kirbyplants/synthetic/plant28,
+/obj/effect/spawner/random/trash/crushed_can,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"kF" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/cup/bottle/iron{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/lithium{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vtm/interior/sewer)
+"my" = (
+/obj/structure/hedge/opaque,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"ni" = (
+/obj/structure/vampdoor/reinf,
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"nE" = (
+/obj/machinery/smartfridge/chemistry/preloaded,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"of" = (
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"ou" = (
+/obj/structure/chair/sofa/city_bench/metal/right/black{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"oA" = (
+/obj/structure/table,
+/obj/item/paperwork,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"oF" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"oH" = (
+/mob/living/basic/cockroach,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"pk" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"pP" = (
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"qe" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"ql" = (
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"rC" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"ss" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/cup/bottle/phosphorus{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/potassium{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/sodium{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/bottle/oxygen{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vtm/interior/sewer)
+"sS" = (
+/obj/structure/vampdoor/reinf{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"sT" = (
+/turf/closed/wall/vampwall/rustbad,
+/area/vtm/interior/sewer)
+"ua" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"um" = (
+/obj/machinery/sprinkler,
+/obj/item/surgery_tray/full,
+/obj/structure/table,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"uO" = (
+/obj/machinery/light/red/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"ve" = (
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"vp" = (
+/obj/machinery/light/red/directional/east,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"vZ" = (
+/obj/machinery/porta_turret/pentex/c9mm{
+	pixel_y = 7
+	},
+/obj/structure/platform/lowwall/bar,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"wn" = (
+/obj/effect/mob_spawn/corpse/human/doctor,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"xF" = (
+/obj/structure/table,
+/obj/machinery/coffeemaker,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"xJ" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/briefcase,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"xP" = (
+/obj/machinery/vending/cola/shamblers,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"yN" = (
+/obj/structure/vampdoor/reinf,
+/obj/effect/mapping_helpers/door/access/pentex,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"zl" = (
+/obj/machinery/light/cold/directional/north,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"zX" = (
+/obj/structure/table/countertop/green,
+/obj/item/reagent_containers/cup/beaker/plastic{
+	pixel_y = 4
+	},
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"Ah" = (
+/obj/modular_map_connector,
+/turf/open/misc/dirt,
+/area/vtm/interior/sewer)
+"AG" = (
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"CK" = (
+/obj/machinery/chem_master,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"Dg" = (
+/obj/structure/table/countertop/green,
+/obj/item/reagent_containers/dropper,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"EX" = (
+/obj/structure/hedge/opaque,
+/obj/machinery/light/red/directional/east,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Fy" = (
+/obj/structure/table,
+/obj/item/kirbyplants/synthetic/plant29{
+	pixel_y = 14;
+	pixel_x = 6
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Gh" = (
+/obj/structure/table,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Ig" = (
+/turf/closed/wall/vampwall/metal/reinforced,
+/area/vtm/interior/sewer)
+"Ii" = (
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"IO" = (
+/obj/machinery/light/red/directional/south,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"Kh" = (
+/obj/effect/spawner/random/trash/cigpack,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"KO" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/cup/bottle/acidic_buffer{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/basic_buffer{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/formaldehyde{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/bottle/mercury{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 8
+	},
+/area/vtm/interior/sewer)
+"Nk" = (
+/obj/structure/vampdoor/reinf,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"NG" = (
+/obj/structure/table/optable,
+/obj/item/organ/cyberimp/arm/strongarm,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Oh" = (
+/obj/machinery/sprinkler,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Pb" = (
+/obj/structure/table,
+/obj/machinery/light/red/directional/south,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Ql" = (
+/obj/structure/table/countertop/green,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"QY" = (
+/obj/machinery/light/cold/directional/north,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Re" = (
+/obj/machinery/chem_mass_spec,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"RV" = (
+/obj/effect/decal/cleanable/blood/trail,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Sg" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"Tg" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/pen,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Uc" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bureaucracy/folder,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Ue" = (
+/mob/living/basic/crinos_beast,
+/obj/effect/mob_spawn/corpse/human/doctor,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Ur" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"UT" = (
+/obj/structure/table/countertop/green,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"XP" = (
+/obj/machinery/chem_heater/withbuffer,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"Ya" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"Yo" = (
+/turf/closed/wall/vampwall/metal/glass,
+/area/vtm/interior/sewer)
+"YP" = (
+/obj/structure/table/countertop/green,
+/obj/structure/sink/basin/directional/south,
+/turf/open/floor/city/clinic,
+/area/vtm/interior/sewer)
+"Zb" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/cup/bottle/epinephrine{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/fluorine{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/iodine{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/bottle/nitrogen{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 1
+	},
+/area/vtm/interior/sewer)
+"Zf" = (
+/turf/open/floor/plating/rough/cave,
+/area/vtm/interior/sewer)
+"ZB" = (
+/obj/structure/platform/lowwall/bar,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"ZF" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/cup/bottle/ethanol{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/carbon{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/chlorine{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/bottle/multiver{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/obj/structure/sign/warning/chem_diamond/directional/north,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vtm/interior/sewer)
+"ZS" = (
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/sewer)
+"ZY" = (
+/turf/closed/wall/vampwall/rock,
+/area/vtm/interior/sewer)
+
+(1,1,1) = {"
+ZY
+ZY
+pk
+Sg
+ZY
+ZY
+ZY
+ZY
+ZY
+dM
+dM
+dM
+dM
+dM
+dM
+ZY
+ZY
+ZY
+ZY
+Ah
+"}
+(2,1,1) = {"
+ZY
+dM
+dM
+sS
+dM
+dM
+dM
+dM
+dM
+dM
+jG
+ou
+bn
+aK
+dM
+dM
+dM
+dM
+ZY
+of
+"}
+(3,1,1) = {"
+ZY
+dM
+oH
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+dM
+ZY
+of
+"}
+(4,1,1) = {"
+ZY
+dM
+pP
+Oh
+pP
+vp
+pP
+pP
+oH
+pP
+pP
+pP
+pP
+pP
+pP
+Oh
+pP
+dM
+ZY
+of
+"}
+(5,1,1) = {"
+ZY
+dM
+pP
+pP
+dM
+dM
+dM
+dM
+dM
+dM
+xP
+EX
+my
+ql
+dM
+pP
+pP
+dM
+Zf
+of
+"}
+(6,1,1) = {"
+ZY
+dM
+pP
+pP
+dM
+Re
+XP
+UT
+zX
+Ig
+Ig
+Ig
+Ig
+Ig
+Ig
+pP
+pP
+sT
+Kh
+of
+"}
+(7,1,1) = {"
+ZY
+dM
+Ii
+pP
+dM
+Ql
+ve
+ve
+ve
+Ig
+pP
+pP
+pP
+pP
+Ig
+pP
+pP
+sT
+Zf
+of
+"}
+(8,1,1) = {"
+dM
+dM
+pP
+pP
+dM
+Dg
+ve
+ve
+IO
+Ig
+Ii
+um
+Ya
+pP
+Ig
+pP
+pP
+dM
+zl
+of
+"}
+(9,1,1) = {"
+dM
+ZS
+pP
+oH
+dM
+YP
+ve
+ve
+CK
+Ig
+wn
+RV
+NG
+pP
+Ig
+pP
+pP
+sT
+Zf
+of
+"}
+(10,1,1) = {"
+dM
+my
+pP
+pP
+yN
+pP
+pP
+ve
+nE
+Ig
+pP
+pP
+pP
+pP
+Ig
+Ii
+pP
+Nk
+Zf
+of
+"}
+(11,1,1) = {"
+dM
+xF
+pP
+pP
+dM
+pP
+AG
+ve
+fh
+Ig
+ua
+Yo
+Yo
+Yo
+Ig
+pP
+pP
+dM
+Zf
+of
+"}
+(12,1,1) = {"
+dM
+Fy
+pP
+pP
+dM
+sS
+dM
+dM
+dM
+dM
+pP
+pP
+Gh
+Uc
+dM
+rC
+rC
+dM
+zl
+of
+"}
+(13,1,1) = {"
+dM
+dM
+pP
+pP
+dM
+pP
+uO
+ss
+KO
+dM
+pP
+pP
+as
+pP
+dM
+vZ
+ZB
+sT
+Zf
+of
+"}
+(14,1,1) = {"
+ZY
+dM
+Ii
+pP
+dM
+pP
+pP
+Oh
+kF
+dM
+pP
+Ue
+pP
+pP
+dM
+dM
+dM
+sT
+qe
+of
+"}
+(15,1,1) = {"
+ZY
+dM
+pP
+pP
+dM
+ii
+dM
+ZF
+Zb
+dM
+QY
+Oh
+Ur
+Tg
+oA
+dM
+ZY
+ZY
+ZY
+of
+"}
+(16,1,1) = {"
+ZY
+dM
+pP
+pP
+dM
+dM
+dM
+dM
+dM
+dM
+pP
+pP
+pP
+pP
+Pb
+dM
+ZY
+ZY
+ZY
+of
+"}
+(17,1,1) = {"
+ZY
+dM
+pP
+Oh
+pP
+uO
+pP
+pP
+pP
+ni
+pP
+pP
+pP
+as
+xJ
+dM
+ZY
+ZY
+ZY
+of
+"}
+(18,1,1) = {"
+ZY
+dM
+pP
+pP
+pP
+pP
+pP
+pP
+pP
+dM
+pP
+pP
+pP
+pP
+oF
+dM
+ZY
+ZY
+ZY
+of
+"}
+(19,1,1) = {"
+ZY
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+dM
+ZY
+ZY
+ZY
+of
+"}
+(20,1,1) = {"
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
+of
+"}

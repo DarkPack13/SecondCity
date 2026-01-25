@@ -18,9 +18,10 @@ TIME_TILL_DAY 198000
 ## Time till roundend define
 TIME_TILL_ROUNDEND 216000
 
-## World of Darkness splats, currently coded as species
-ROUNDSTART_RACES kindred
-ROUNDSTART_RACES ghoul
+## World of Darkness splats
+ROUNDSTART_SPLATS splat_kindred
+ROUNDSTART_SPLATS splat_ghoul
+
 ## If dead people and ghosts can LOOC to people who are alive.
 DISABLE_GHOST_LOOC
 

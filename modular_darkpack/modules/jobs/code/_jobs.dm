@@ -7,10 +7,10 @@
 	/// Character must be at least this age (in years) since embrace (chronological_age - age) to join as role.
 	var/minimum_immortal_age = 0
 
-	///List of species that are allowed to do this job.
-	var/list/allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL, SPECIES_KINDRED)
+	///List of splats that are allowed to do this job.
+	var/list/allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINDRED)
 	///List of species that are limited to a certain amount of that species doing this job.
-	var/list/species_slots = list(SPECIES_HUMAN = -1, SPECIES_GHOUL = -1, SPECIES_KINDRED = -1)
+	var/list/splat_slots = list(SPLAT_NONE = -1, SPLAT_GHOUL = -1, SPLAT_KINDRED = -1)
 	///List of Clans that are allowed to do this job.
 	var/list/allowed_clans
 	///List of Clans that are disallowed to do this job.
@@ -26,14 +26,36 @@
 
 // Default vampire job outfits.
 /datum/outfit/job/vampire
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/vampire/sport
 	id = null
 	ears = null
 	belt = null
 	back = /obj/item/storage/backpack
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	shoes = /obj/item/clothing/shoes/vampire
 	box = null
 	pda_slot = null
+	var/uses_default_clan_clothes = FALSE
+
+/datum/outfit/job/vampire/pre_equip(mob/living/carbon/human/H, visuals_only)
+	. = ..()
+	if(uses_default_clan_clothes == TRUE)
+		var/datum/splat/vampire/kindred/kindred = iskindred(H)
+		if(kindred)
+			if(H.jumpsuit_style == PREF_SUIT)
+				shoes = /obj/item/clothing/shoes/vampire
+				if(kindred.clan.male_clothes)
+					uniform = kindred.clan.male_clothes
+			else
+				shoes = /obj/item/clothing/shoes/vampire/heels
+				if(kindred.clan.female_clothes)
+					uniform = kindred.clan.female_clothes
+		else
+			if(H.jumpsuit_style == PREF_SKIRT)
+				shoes = /obj/item/clothing/shoes/vampire
+				uniform = /obj/item/clothing/under/vampire/sport
+			else
+				shoes = /obj/item/clothing/shoes/vampire/heels
+				uniform = /obj/item/clothing/under/vampire/red
 
 /datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()

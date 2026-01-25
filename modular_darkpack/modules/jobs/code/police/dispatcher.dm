@@ -15,8 +15,8 @@
 		/datum/job_department/clinic,
 	)
 
-	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
-	species_slots = list(SPECIES_GHOUL = 1)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE)
+	splat_slots = list(SPLAT_GHOUL = 1)
 
 	description = "Report emergencies to the correct emergency service."
 	minimal_masquerade = 0

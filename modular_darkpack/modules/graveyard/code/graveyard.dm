@@ -133,20 +133,21 @@
 /obj/vampgrave/proc/try_spawn_zombie()
 
 	clean_zombie_list()
-
+	if(!should_spawn())
+		return
 	if(length(spawned_zombies) >= max_zombies_per_grave)
 		return
 
 	spawn_zombie()
 
-/*
 /obj/vampgrave/proc/should_spawn()
 	// Check if graveyard keeper is online
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.client && H.mind?.assigned_role == /datum/job/graveyard_keeper)
+		if(!H.mind)
+			continue
+		if(istype(H.mind.assigned_role, /datum/job/vampire/graveyard) && !considered_afk(H.mind))
 			return TRUE
 	return FALSE
-*/
 
 /obj/vampgrave/proc/clean_zombie_list()
 	for(var/mob/living/basic/zombie/darkpack/Z in spawned_zombies)
