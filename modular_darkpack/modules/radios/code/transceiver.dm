@@ -28,7 +28,7 @@
 	if(!istype(tool, /obj/item/radio/headset/darkpack))
 		return ..()
 
-	if(user.st_get_stat(STAT_TECHNOLOGY) < 1)
+	if(CONFIG_GET(flag/punishing_zero_dots) && user.st_get_stat(STAT_TECHNOLOGY) < 1)
 		to_chat(user, span_warning("You don't know how to operate this!"))
 		return ITEM_INTERACT_FAILURE
 
