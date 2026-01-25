@@ -50,6 +50,12 @@ ADMIN_VERB_AND_CONTEXT_MENU(matrix_mob_verb, R_ADMIN, "Matrix Mob", "Matrix (des
 	message_admins("[ADMIN_LOOKUP(despawning_mob)] has exited through the matrix.")
 	log_game("[despawning_mob] has exited through the matrix.")
 
+	for(var/datum/record/crew/possible_target_record as anything in GLOB.manifest.general)
+		// Hardly fullproof but dont have a better method to verify as it stores no refs
+		if(possible_target_record.name == despawning_mob.real_name)
+			qdel(possible_target_record)
+			break
+
 	SSjob.FreeRole(despawning_mob)
 
 	GLOB.joined_player_list -= despawning_mob.ckey
