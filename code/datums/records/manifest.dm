@@ -126,8 +126,8 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	person.dna.copy_dna(record_dna)
 
 	// DARKPACK EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
-	// The alt job title, if user picked one, or the default
-	var/chosen_assignment = person_client?.prefs.alt_job_titles[assignment] || assignment
+	// The alt job title is set to the ID's assignment before we inject
+	var/chosen_assignment = id_card?.assignment || assignment
 	// DARKPACK EDIT ADDITION END - ALTERNATIVE_JOB_TITLES
 
 	var/datum/record/locked/lockfile = new(

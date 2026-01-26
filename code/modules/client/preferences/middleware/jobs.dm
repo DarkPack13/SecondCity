@@ -1,6 +1,9 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
+		// DARKPACK EDIT ADDITION ALT JOB TITLES
+		"set_job_title" = PROC_REF(set_job_title),
+		// DARKPACK EDIT END
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -39,8 +42,6 @@
 		return FALSE
 
 	preferences.alt_job_titles[job_title] = new_job_title
-	if(!SSticker.HasRoundStarted())
-		SEND_SIGNAL(user, COMSIG_JOB_PREF_UPDATED)
 
 	return TRUE
 // DARKPACK EDIT ADDITION END
@@ -74,6 +75,7 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
+			"alt_titles" = job.alt_titles, // DARKPACK EDIT: alternative job titles
 		)
 
 	data["departments"] = departments
@@ -84,7 +86,15 @@
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
 
+// DARKPACK EDIT
+	if(isnull(preferences.alt_job_titles))
+		preferences.alt_job_titles = list()
+	// DARKPACK EDIT END
 	data["job_preferences"] = preferences.job_preferences
+
+	// DARKPACK EDIT
+	data["job_alt_titles"] = preferences.alt_job_titles
+	// DARKPACK EDIT END
 
 	return data
 
