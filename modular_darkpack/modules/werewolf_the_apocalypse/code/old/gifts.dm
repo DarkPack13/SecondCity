@@ -400,7 +400,7 @@
 			H.update_icons()
 		else
 			H.remove_overlay(PROTEAN_LAYER)
-			var/mutable_appearance/glabro_overlay = mutable_appearance('modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi', H.transformator.crinos_form?.sprite_color, -PROTEAN_LAYER)
+			var/mutable_appearance/glabro_overlay = mutable_appearance('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/werewolf_abilities.dmi', H.transformator.crinos_form?.sprite_color, -PROTEAN_LAYER)
 			H.overlays_standing[PROTEAN_LAYER] = glabro_overlay
 			H.apply_overlay(PROTEAN_LAYER)
 			G.punchdamagelow += 15
