@@ -11,10 +11,10 @@
 
 /datum/status_effect/question_emotion
 	id = "question_emotion"
-	// Nothing says it needs to be a scene, I just like using our defines to create nice standards of tme
+	// Nothing says it needs to be a scene, I just like using our defines to create nice standards of time.
 	duration = 1 SCENES
 
-	// status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_REPLACE
 
 	alert_type = /atom/movable/screen/alert/status_effect/question_emotion
 
