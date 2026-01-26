@@ -599,6 +599,10 @@ SUBSYSTEM_DEF(job)
 
 //Gives the player the stuff he should have with his rank
 /datum/controller/subsystem/job/proc/equip_rank(mob/living/equipping, datum/job/job, client/player_client)
+	// DARKPACK EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
+	// The alt job title, if user picked one, or the default
+	var/alt_title = player_client?.prefs.alt_job_titles?[job.title] || job.title
+	// DARKPACK EDIT ADDITION END
 	equipping.job = job.title
 
 	SEND_SIGNAL(equipping, COMSIG_JOB_RECEIVED, job)
