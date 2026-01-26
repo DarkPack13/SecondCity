@@ -88,7 +88,7 @@
 
 /datum/job/vampire/tapster
 	alt_titles = list(
-		"Bartender"
+		"Bartender",
 		"Barkeeper",
 		"Tapster",
 		"Server",

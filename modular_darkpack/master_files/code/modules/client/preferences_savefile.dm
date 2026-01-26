@@ -20,3 +20,4 @@
 	var/save_data = savefile.get_entry(tree_key)
 
 	save_data["guestbook_names"] = guestbook_names
+	alt_job_titles = save_data["alt_job_titles"]

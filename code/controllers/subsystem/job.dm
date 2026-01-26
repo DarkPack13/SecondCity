@@ -61,6 +61,26 @@ SUBSYSTEM_DEF(job)
 		// DARKPACK EDIT END
 	)
 
+// DARKPACK EDIT ADDITION START
+/datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
+	var/job_title = params["job"]
+	var/new_job_title = params["new_title"]
+
+	var/datum/job/job = SSjob.get_job(job_title)
+
+	if (isnull(job))
+		return FALSE
+
+	if (!(new_job_title in job.alt_titles))
+		return FALSE
+
+	preferences.alt_job_titles[job_title] = new_job_title
+	if(!SSticker.HasRoundStarted())
+		SEND_SIGNAL(user, COMSIG_JOB_PREF_UPDATED)
+
+	return TRUE
+// DARKPACK EDIT ADDITION END
+
 	/// If TRUE, some player has been assigned Captaincy or Acting Captaincy at some point during the shift and has been given the spare ID safe code.
 	var/assigned_captain = FALSE
 	/// Whether the emergency safe code has been requested via a comms console on shifts with no Captain or Acting Captain.
