@@ -1,5 +1,5 @@
 import { sortBy } from 'es-toolkit';
-import type { PropsWithChildren, ReactNode } from 'react';
+import { act, type PropsWithChildren, type ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Dropdown, Stack, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
@@ -183,7 +183,7 @@ type JobRowProps = {
 };
 
 function JobRow(props: JobRowProps) {
-  const { data } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>();
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
@@ -241,29 +241,32 @@ function JobRow(props: JobRowProps) {
   }
 
   return (
-      <Stack>
-        <Tooltip content={job.description} position="right">
+    <Stack.Item className={className} height="100%" mt={0}>
+      <Stack fill align="center">
+        <Tooltip content={job.description} position="bottom-start">
           <Stack.Item
-            align="center"
             className="job-name"
             width="50%"
             style={{
-              'padding-left': '0.3em',
+              paddingLeft: '0.3em',
             }}
           >
-            {' '}
-            {!job.alt_titles ? (
-              name
-            ) : (
-              <Dropdown
-                width="100%"
-                options={job.alt_titles}
-                displayText={alt_title_selected}
-                onSelected={(value) =>
-                  act('set_job_title', { job: name, new_title: value })
-                }
-              />
-            )}
+            {
+              // DARKPACK EDIT CHANGE START - ORIGINAL: {name}
+              !job.alt_titles ? (
+                name
+              ) : (
+                <Dropdown
+                  width="100%"
+                  options={job.alt_titles}
+                  selected={alt_title_selected}
+                  onSelected={(value) =>
+                    act('set_job_title', { job: name, new_title: value })
+                  }
+                />
+              )
+              // DARKPACK EDIT CHANGE END
+            }
           </Stack.Item>
         </Tooltip>
 
