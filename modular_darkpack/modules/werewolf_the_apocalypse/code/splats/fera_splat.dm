@@ -50,20 +50,13 @@
 		/datum/species/human/shifter/feral
 	)
 
-// /datum/splat/werewolf/shifter/corax // DARKPACK TODO - CORAX
-
-#warn move
-/datum/action/cooldown/fera_transform
-	var/list/possible_shapes = list()
-
-/datum/action/cooldown/fera_transform/New(Target, original = TRUE, list/transformations)
-	. = ..()
-	if(transformations)
-		possible_shapes = transformations
-
-/datum/action/cooldown/fera_transform/Trigger(mob/clicker, trigger_flags, atom/Target)
-	. = ..()
-	if(!.)
-		return
-
-	owner.set_species(pick(possible_shapes))
+/* // DARKPACK TODO - CORAX
+/datum/splat/werewolf/shifter/corax
+	name = "Corax"
+	id = SPLAT_CORAX
+	transformation_list = list(
+		/datum/species/human/shifter/homid,
+		/datum/species/human/shifter/war,
+		/datum/species/human/shifter/feral
+	)
+*/

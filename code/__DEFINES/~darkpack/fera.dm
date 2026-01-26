@@ -16,3 +16,15 @@ GLOBAL_LIST_INIT(garou_breeds, list(
 	BREED_LUPUS = /datum/species/human/shifter/war,
 	BREED_CRINOS = /datum/species/human/shifter/feral,
 ))
+
+#define FEATURE_FUR_COLOR "fera_fur"
+
+// fera will likely have a seperate list of colors but uses the same feature or var as other fera
+GLOBAL_LIST_INIT(garou_fur_colors, list(
+	"black",
+	"gray",
+	"red",
+	"white",
+	"ginger",
+	"brown"
+))
