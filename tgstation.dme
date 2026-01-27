@@ -6978,7 +6978,6 @@
 #include "modular_darkpack\master_files\code\turfs\open\grass.dm"
 #include "modular_darkpack\master_files\code\turfs\open\planet.dm"
 #include "modular_darkpack\modules\aggravated_damage\code\damage_procs.dm"
-#include "modular_darkpack\modules\alternative_job_titles\code\alt_job_titles.dm"
 #include "modular_darkpack\modules\alternative_job_titles\code\job.dm"
 #include "modular_darkpack\modules\ambience\code\music_subsystem.dm"
 #include "modular_darkpack\modules\antediluvian_sarcophagus\code\sarcophagus.dm"

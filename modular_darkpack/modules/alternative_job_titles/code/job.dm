@@ -16,15 +16,5 @@
 
 	var/chosen_title = player_client.prefs.alt_job_titles[job.title] || job.title
 
-	var/obj/item/card/id/card = equipping.wear_id
-	if(istype(card))
-		card.assignment = chosen_title
-		card.update_label()
 
-	// Look for PDA in belt or L pocket
-	var/obj/item/modular_computer/pda/pda = equipping.belt
-	if(!istype(pda))
-		pda = equipping.l_store
-	if(istype(pda))
-		pda.saved_job = chosen_title
-		pda.UpdateDisplay()
+

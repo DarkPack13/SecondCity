@@ -1,5 +1,5 @@
 import { sortBy } from 'es-toolkit';
-import { act, type PropsWithChildren, type ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Dropdown, Stack, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
