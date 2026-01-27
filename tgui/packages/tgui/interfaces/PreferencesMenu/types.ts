@@ -105,7 +105,7 @@ export type Department = {
 export type Job = {
   description: string;
   department: string;
-  //DARKPACK ADDITION ALT TITLES
+  // DARKPACK EDIT ADD - ALTERNATIVE_JOB_TITLES
   alt_titles?: string[];
 };
 
