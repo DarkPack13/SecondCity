@@ -95,8 +95,8 @@
 
 /obj/effect/mine/stick/six
 	icon_state = "stick6"
-	stick_type = 5
+	stick_type = 6
 
 /obj/effect/mine/stick/seven
-	icon_state = "stick8"
-	stick_type = 6
+	icon_state = "stick7"
+	stick_type = 7
