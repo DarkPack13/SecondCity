@@ -165,6 +165,8 @@ WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk)
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk/spiral)
 
+#undef WOLF_COAT_HELPER
+
 #undef COAT_BLACK
 #undef COAT_GRAY
 #undef COAT_RED
