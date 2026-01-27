@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - config: "hardlocking things due to 0 dot abilites moved to config (off by default)"

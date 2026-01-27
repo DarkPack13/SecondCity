@@ -298,7 +298,7 @@
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to pick here."))
 		return
-	if(user.st_get_stat(STAT_LARCENY) < 1)
+	if(CONFIG_GET(flag/punishing_zero_dots) && user.st_get_stat(STAT_LARCENY) < 1)
 		to_chat(user, span_warning("How do I do this...?"))
 		return
 	if(!COOLDOWN_FINISHED(src, lockpick_cooldown))
