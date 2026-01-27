@@ -232,3 +232,10 @@
 		M.apply_damage(20, CLONE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
 */
+
+/obj/projectile/bullet/darkpack/vamp75
+	name = ".75 ball"
+	damage = 100
+	armour_penetration = 5
+	exposed_wound_bonus = 5
+	wound_bonus = 5

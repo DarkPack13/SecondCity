@@ -178,3 +178,15 @@
 	projectile_type = /obj/projectile/bullet/darkpack/vamp762x51mm/silver
 	icon_state = "s762"
 	base_icon_state = "s762"
+
+/obj/item/ammo_casing/vampire/c75
+	name = ".75 cartrige"
+	desc = "A .75 musket cartridge containing a musket ball and powder."
+	caliber = CALIBER_MUSKET
+	projectile_type = /obj/projectile/bullet/darkpack/vamp75
+	icon_state = "cartridge"
+	base_icon_state = "cartridge"
+
+/obj/item/ammo_casing/vampire/c75/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
