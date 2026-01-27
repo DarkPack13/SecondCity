@@ -513,7 +513,7 @@
 /obj/item/ammo_box/magazine/internal/darkpack/lever
 	name = "lever action internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c44
-	caliber = CALIBER_44
+	caliber = CALIBER_44MAG
 	max_ammo = 13
 
 /obj/item/gun/ballistic/rifle/darkpack/lever
@@ -754,14 +754,14 @@
 	obj_flags = NONE
 
 /obj/item/ammo_box/magazine/internal/vampcrossbow
-	ammo_type = /obj/item/ammo_casing/vampire/bolt
+	ammo_type = /obj/item/ammo_casing/caseless/bolt
 	caliber = CALIBER_CROSSBOWBOLT
 	max_ammo = 2
 
 /obj/item/ammo_box/magazine/internal/vampire/musket
 	name = "musket internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c75
-	caliber = CALIBER_MUSKET
+	caliber = CALIBER_75BALL
 	max_ammo = 1	//It's a fucking musket
 
 /obj/item/gun/ballistic/automatic/darkpack/musket

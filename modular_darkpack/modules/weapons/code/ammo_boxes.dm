@@ -131,7 +131,7 @@
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
 	icon_state = "arrows"
-	ammo_type = /obj/item/ammo_casing/vampire/bolt
+	ammo_type = /obj/item/ammo_casing/caseless/bolt
 	max_ammo = 30
 
 // 7.62x51mm NATO
