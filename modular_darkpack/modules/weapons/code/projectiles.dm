@@ -210,7 +210,7 @@
 	damage = 50
 	var/fire_stacks = 3 //This one comes in Semi-automatics
 
-/obj/projectile/bullet/darkpack/vamp762x51mm/incendiary/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/darkpack/vamp762x51mm/incendiary/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
