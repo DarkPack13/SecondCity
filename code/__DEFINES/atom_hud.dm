@@ -73,7 +73,7 @@
 #define DATA_HUD_MALF_APC 10
 #define DATA_HUD_BLOOD 11
 #define DATA_HUD_AUSPEX_AURAS 12 // DARKPACK EDIT ADD
-#define DATA_HUD_FAE_SIGHT 12 // DARKPACK EDIT ADD
+#define DATA_HUD_FAE_SIGHT 13 // DARKPACK EDIT ADD
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20
