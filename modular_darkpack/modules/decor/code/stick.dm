@@ -32,6 +32,8 @@
 /obj/effect/mine/stick/on_entered(datum/source, atom/movable/arrived, atom/old_loc)
 	triggermine(arrived)
 
+/obj/effect/mine/stick/on_exited(datum/source, atom/movable/gone, direction)
+	return
 
 /obj/effect/mine/stick/triggermine(atom/movable/triggerer)
 	if(triggered) //too busy detonating to detonate again
@@ -41,22 +43,22 @@
 		if(isliving(triggerer))
 			var/mob/living/stepper = triggerer
 			if(stepper.mob_size >= MOB_SIZE_HUMAN)
-				mineEffect(triggerer)
+				var/roll = SSroll.storyteller_roll(stepper.st_get_stat(STAT_PERCEPTION) + stepper.st_get_stat(STAT_STEALTH), 6, stepper)
+				if(!roll == ROLL_SUCCESS)
+					mineEffect(triggerer)
 
 	if(isitem(triggerer))
 		var/obj/item/big_rock = triggerer
 		if(big_rock.w_class >= WEIGHT_CLASS_NORMAL)
 			mineEffect(triggerer)
 
-	if(prob(33))
-		triggered = TRUE
-
 	SEND_SIGNAL(src, COMSIG_MINE_TRIGGERED, triggerer)
 
 /obj/effect/mine/stick/mineEffect(atom/movable/victim)
 	if(HAS_TRAIT(victim, TRAIT_LIGHT_STEP))
 		return
-
+	if(prob(33))
+		triggered = TRUE
 	for(var/mob/guy in hearers(7, src))
 		to_chat(guy, "<span class='danger'>*snap*</span>")
 		playsound(src, pick(soundlist), 75, TRUE, 4, frequency = rand(0.8, 1.2))
