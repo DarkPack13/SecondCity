@@ -8,15 +8,7 @@
 	desc = "Contains ten different blood packs for reintroducing blood to patients."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
-		/obj/item/reagent_containers/blood = 2,
-		/obj/item/reagent_containers/blood/a_plus,
-		/obj/item/reagent_containers/blood/a_minus,
-		/obj/item/reagent_containers/blood/b_plus,
-		/obj/item/reagent_containers/blood/b_minus,
-		/obj/item/reagent_containers/blood/o_plus,
-		/obj/item/reagent_containers/blood/o_minus,
-		/obj/item/reagent_containers/blood/lizard,
-		/obj/item/reagent_containers/blood/ethereal,
+		/obj/item/reagent_containers/blood/random = 10,
 		/obj/item/paper/fluff/jobs/medical/blood_types,
 	)
 	crate_name = "blood freezer"
@@ -154,6 +146,7 @@
 	contains = list(/obj/machinery/iv_drip/saline)
 	crate_type = /obj/structure/closet/crate/large
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/medical/virus
 	name = "Virus Crate"
 	desc = "Contains twelve different bottles of several viral samples for virology \
@@ -202,6 +195,7 @@
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/paperwork = 2)
 	crate_name = "Paperwork implant crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/
 
 /datum/supply_pack/medical/lost_crew
 	name = "Recovered NT Employee corpse"
@@ -211,7 +205,9 @@
 	contains = list(/obj/structure/closet/body_bag/lost_crew/with_body)
 	crate_name = "body freezer"
 	crate_type = /obj/structure/closet/crate/secure/freezer
+	order_flags = ORDER_INVISIBLE // DARKPACK EDIT ADD
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/medical/organ_growing
 	name = "Organ Growing Kit"
 	desc = "All the tools you need to grow organs at home! Besides letting you grow standard organs from tissue samples, \
@@ -226,6 +222,7 @@
 		/obj/item/pestle,
 	)
 	crate_name = "organ growing kit"
+*/
 
 /datum/supply_pack/medical/chiral_inversing_buffer
 	name = "Chiral Inversing Buffer Crate"

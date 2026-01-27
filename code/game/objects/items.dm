@@ -884,7 +884,6 @@
 	. = ..()
 
 	if(!isliving(hit_atom)) //Living mobs handle hit sounds differently.
-
 		throw_drop_sound_chain(YEET_SOUND_VOLUME)
 		return
 
@@ -1909,7 +1908,7 @@
 	return null
 
 /obj/item/animate_atom_living(mob/living/owner)
-	new /mob/living/basic/mimic/copy(drop_location(), src, owner)
+	return new /mob/living/basic/mimic/copy(drop_location(), src, owner)
 
 /**
  * Used to update the weight class of the item in a way that other atoms can react to the change.

@@ -6,6 +6,7 @@
  * meant for purchase only through emagging the console.
  */
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/imports
 	group = "Imports"
 	crate_name = "emergency crate"
@@ -364,3 +365,4 @@
 		/obj/item/stack/ore/bluespace_crystal/artificial = 2,
 		/obj/item/stock_parts/subspace/ansible,
 	)
+*/

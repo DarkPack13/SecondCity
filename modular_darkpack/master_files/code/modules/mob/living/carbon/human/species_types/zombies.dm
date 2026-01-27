@@ -3,10 +3,19 @@
 /datum/species/zombie
 	name = "Zombie"
 	id = "zombie"
-	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER, TRAIT_LIMBATTACHMENT, TRAIT_VIRUSIMMUNE, TRAIT_NOBLOOD, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_TOXIMMUNE, TRAIT_NOCRITDAMAGE, TRAIT_FAKEDEATH)
+	inherent_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_VIRUSIMMUNE,
+		TRAIT_NOBLOOD,
+		TRAIT_NOHUNGER,
+		TRAIT_NOBREATH,
+		TRAIT_TOXIMMUNE,
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_FAKEDEATH
+	)
 	//mutantbrain = /obj/item/organ/brain/vampire //to prevent brain transplant surgery
 	//mutanteyes = /obj/item/organ/eyes/night_vision/zombie
-	heatmod = 1
 	mutanttongue = /obj/item/organ/tongue
 
 /datum/species/zombie/check_roundstart_eligible()
@@ -41,9 +50,8 @@
 	if(iszombie(being_bitten))
 		return COMPONENT_RESIST_VAMPIRE_KISS
 
-// wtf is this? it applies the kiss status effect?
-///datum/species/ghoul/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	//. = ..()
-	//UnregisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED)
+/datum/species/zombie/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	UnregisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED)
 
 #undef REGENERATION_DELAY

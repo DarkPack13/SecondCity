@@ -40,7 +40,7 @@ export function CargoStatus(props) {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Shuttle">
+        <LabeledList.Item label="Train"> {/* DARKPACK EDIT CHANGE - CARGO */}
           {!!docked && !requestonly && !!can_send ? (
             <Button
               color={grocery ? 'orange' : 'green'}
@@ -58,7 +58,7 @@ export function CargoStatus(props) {
             String(location)
           )}
         </LabeledList.Item>
-        <LabeledList.Item label="CentCom Message">{message}</LabeledList.Item>
+        <LabeledList.Item label="Yard Message">{message}</LabeledList.Item> {/* DARKPACK EDIT CHANGE - CARGO */}
         {!!loan && !requestonly && (
           <LabeledList.Item label="Loan">
             {!loan_dispatched ? (
