@@ -125,10 +125,10 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	var/datum/dna/stored/record_dna = new()
 	person.dna.copy_dna(record_dna)
 
-	// DARKPACK EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	// The alt job title is set to the ID's assignment before we inject
 	var/chosen_assignment = id_card?.assignment || assignment
-	// DARKPACK EDIT ADDITION END - ALTERNATIVE_JOB_TITLES
+	// DARKPACK EDIT ADD END
 
 	var/datum/record/locked/lockfile = new(
 		age = person.age,
