@@ -50,10 +50,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// DARKPACK EDIT ADD START - STORYTELLR_STATS
 	var/list/preference_storyteller_stats = list()
 	// DARKPACK EDIT ADD END
-	// DARKPACK EDIT ADDITION START ALTERNATIVE JOB TITLES
+	// DARKPACK EDIT ADD START ALTERNATIVE_JOB_TITLES
 	/// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
 	var/list/alt_job_titles = list()
-	// DARKPACK EDIT ADDITION END ALTERNATIVE JOB TITLES
+	// DARKPACK EDIT ADD END
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
