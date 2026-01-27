@@ -11,6 +11,7 @@
 	sound_vary = TRUE
 
 	min_recoil = 0.1
+	recoil = 2 // DARKPACK EDIT ADD
 
 	///sound when inserting magazine
 	var/load_sound = 'sound/items/weapons/gun/general/magazine_insert_full.ogg'
@@ -145,6 +146,7 @@
 	var/obj/item/suppressor/suppressor = null
 	/// Sound played when the burst mode is changed
 	var/burst_select_sound = SFX_FIRE_MODE_SWITCH
+	COOLDOWN_DECLARE(recoil_skill_check) // DARKPACK EDIT ADD
 
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
@@ -594,6 +596,13 @@
 
 	if (sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
+
+	// DARKPACK EDIT ADD - recoil
+	if(COOLDOWN_FINISHED(src, recoil_skill_check))
+		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
+		recoil = max(initial(recoil) - recoil_reduction, 0)
+		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)
+	// DARKPACK EDIT END
 
 	return ..()
 

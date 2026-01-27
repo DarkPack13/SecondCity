@@ -1,4 +1,3 @@
-
 /obj/structure/chair/green : /obj/structure/chair/darkpack/green {@OLD}
 /obj/structure/chair/red : /obj/structure/chair/darkpack/red {@OLD}
 /obj/structure/chair/blue : /obj/structure/chair/darkpack/blue {@OLD}

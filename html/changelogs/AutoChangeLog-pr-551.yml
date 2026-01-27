@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "fixes swapping stats around while spawned in"
+  - bugfix: "prevents swapping character slots to avoid stuff like masquarde being dinged to the wrong character"
+  - qol: "bonus die on character sheet is displayed in white"

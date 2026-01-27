@@ -42,7 +42,7 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 type CharacterControlsProps = {
   handleRotate: () => void;
-  handleOpenSpecies: () => void;
+  handleOpenSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -65,10 +65,10 @@ function CharacterControls(props: CharacterControlsProps) {
 
       <Stack.Item>
         <Button
-          onClick={props.handleOpenSpecies}
+          onClick={props.handleOpenSplats} // DARKPACK EDIT CHANGE - SPLATS
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="Splats" // DARKPACK EDIT CHANGE - SPLATS
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -446,7 +446,7 @@ export function getRandomization(
 }
 
 type MainPageProps = {
-  openSpecies: () => void;
+  openSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
 };
 
 export function MainPage(props: MainPageProps) {
@@ -459,8 +459,8 @@ export function MainPage(props: MainPageProps) {
 
   const serverData = useServerPrefs();
 
-  const currentSpeciesData =
-    serverData?.species[data.character_preferences.misc.species];
+  const currentSplatsData = // DARKPACK EDIT CHANGE - SPLATS
+    serverData?.splats[data.character_preferences.misc.splats]; // DARKPACK EDIT CHANGE - SPLATS
 
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
@@ -485,8 +485,8 @@ export function MainPage(props: MainPageProps) {
   };
 
   if (randomBodyEnabled) {
-    nonContextualPreferences.random_species =
-      data.character_preferences.randomization.species;
+    nonContextualPreferences.random_splats = // DARKPACK EDIT CHANGE - SPLATS
+      data.character_preferences.randomization.splats; // DARKPACK EDIT CHANGE - SPLATS
   } else {
     // We can't use random_name/is_accessible because the
     // server doesn't know whether the random toggle is on.
@@ -525,13 +525,13 @@ export function MainPage(props: MainPageProps) {
             <Stack.Item>
               <CharacterControls
                 gender={data.character_preferences.misc.gender}
-                handleOpenSpecies={props.openSpecies}
+                handleOpenSplats={props.openSplats} // DARKPACK EDIT CHANGE - SPLATS
                 handleRotate={() => {
                   act('rotate');
                 }}
                 setGender={createSetPreference(act, 'gender')}
                 showGender={
-                  currentSpeciesData ? !!currentSpeciesData.sexes : true
+                  currentSplatsData ? !!currentSplatsData.sexes : true // DARKPACK EDIT CHANGE - SPLATS
                 }
                 canDeleteCharacter={
                   Object.values(data.character_profiles).filter(

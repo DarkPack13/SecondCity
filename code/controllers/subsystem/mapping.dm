@@ -444,7 +444,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	// load the station
 	station_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [current_map.map_name]...")
-	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup)
+	LoadGroup(FailedZs, "City", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup) // DARKPACK EDIT CHANGE
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
@@ -455,12 +455,12 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef LOWMEMORYMODE
 
-	/* // DARKPACK EDIT REMOVAL - TODO - PENUMBRA
+	// DARKPACK EDIT CHANGE START - UMBRA
 	if(current_map.minetype == MINETYPE_LAVALAND)
-		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+		LoadGroup(FailedZs, "Umbra", "map_files/Vampire", "umbra.dmm", default_traits = ZTRAITS_UMBRA)
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
-	*/
+	// DARKPACK EDIT CHANGE END
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen

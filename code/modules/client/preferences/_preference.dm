@@ -2,35 +2,38 @@
 /// The default priority level
 #define PREFERENCE_PRIORITY_DEFAULT 1
 
+/// For things that should be applied after the default prio, but before species to apply properly.
+#define PREFERENCE_PRIORITY_PRE_SPECIES 2
+
 /// The priority at which species runs, needed for external organs to apply properly.
-#define PREFERENCE_PRIORITY_SPECIES 2
+#define PREFERENCE_PRIORITY_SPECIES 3
 
 /**
  * Some preferences get applied directly to bodyparts (anything head_flags related right now).
  * These must apply after species, as species gaining might replace the bodyparts of the human.
  */
-#define PREFERENCE_PRIORITY_BODYPARTS 3
+#define PREFERENCE_PRIORITY_BODYPARTS 4
 
 /// The priority at which gender is determined, needed for proper randomization.
-#define PREFERENCE_PRIORITY_GENDER 4
+#define PREFERENCE_PRIORITY_GENDER 5
 
 /// The priority at which body type is decided, applied after gender so we can
 /// support the "use gender" option.
-#define PREFERENCE_PRIORITY_BODY_TYPE 5
+#define PREFERENCE_PRIORITY_BODY_TYPE 6
 
 /// Used for preferences that rely on body setup being finalized.
-#define PREFERENCE_PRORITY_LATE_BODY_TYPE 6
+#define PREFERENCE_PRORITY_LATE_BODY_TYPE 7
 
 /// Equpping items based on preferences.
 /// Should happen after species and body type to make sure it looks right.
 /// Mostly redundant, but a safety net for saving/loading.
-#define PREFERENCE_PRIORITY_LOADOUT 7
+#define PREFERENCE_PRIORITY_LOADOUT 8
 
 /// The priority at which names are decided, needed for proper randomization.
-#define PREFERENCE_PRIORITY_NAMES 8
+#define PREFERENCE_PRIORITY_NAMES 9
 
 /// Preferences that aren't names, but change the name changes set by PREFERENCE_PRIORITY_NAMES.
-#define PREFERENCE_PRIORITY_NAME_MODIFICATIONS 9
+#define PREFERENCE_PRIORITY_NAME_MODIFICATIONS 10
 
 // DARKPACK EDIT ADD START - TTRPG preferences
 /// Preferences that work with TTRPG mechanics but aren't magical
@@ -80,7 +83,8 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	var/list/flattened = list()
 	for (var/index in 1 to MAX_PREFERENCE_PRIORITY)
-		flattened += preferences[index]
+		if(preferences[index])
+			flattened += preferences[index]
 	return flattened
 
 /// Represents an individual preference.
@@ -333,16 +337,25 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Checks the species currently selected by the passed preferences object to see if it has this preference's key as a feature.
 /datum/preference/proc/current_species_has_savekey(datum/preferences/preferences)
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/species_type = /datum/species/human // DARKPACK EDIT CHANGE - SPLATS - (Bandaid)
 	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return (savefile_key in species.get_features())
+
+// DARKPACK EDIT ADD START - SPLATS
+/// Checks the splat currently selected by the passed preferences object to see if it has this preference's key as a feature.
+/datum/preference/proc/current_splat_has_savekey(datum/preferences/preferences)
+	var/splat_type = preferences.read_preference(/datum/preference/choiced/splats)
+	var/datum/splat/splat = GLOB.splat_prototypes[splat_type]
+	if(splat)
+		return (savefile_key in splat.get_features())
+// DARKPACK EDIT ADD END
 
 /// Checks if this preference is relevant and thus visible to the passed preferences object.
 /datum/preference/proc/has_relevant_feature(datum/preferences/preferences)
 	if(isnull(relevant_inherent_trait) && isnull(relevant_organ) && isnull(relevant_head_flag) && isnull(relevant_body_markings))
 		return TRUE
 
-	return current_species_has_savekey(preferences)
+	return current_splat_has_savekey(preferences) || current_species_has_savekey(preferences) // DARKPACK EDIT CHANGE - SPLATS
 
 /// Returns whether or not this preference is accessible.
 /// If FALSE, will not show in the UI and will not be editable (by update_preference).
