@@ -2,15 +2,16 @@
 /mob/living/proc/adjust_blood_pool(amount, updating_health = TRUE, on_spawn)
 	if(on_spawn)
 		bloodpool = 0
-	if(iskindred(src))
-		var/mob/living/carbon/human/kindred = src
-		var/datum/splat/vampire/kindred/kindred_species = iskindred(kindred)
-		var/hunger_threshold = 7 - (kindred_species.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
+
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(src)
+	if(kindred_splat)
+		var/mob/living/carbon/human/kindred = src // This is stupid... Also TECHNICLY you can have a splat without being human now...
+		var/hunger_threshold = 7 - (kindred_splat.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(kindred, TRAIT_NEEDS_BLOOD)
 		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
 
 		if(!previous_hunger && will_be_hungry) // enter hunger
-			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
+			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT) // That is not a species trait.
 			to_chat(src, span_bolddanger("The Beast awakens as the pangs of hunger set in..."))
 
 		else if(previous_hunger && !will_be_hungry) // leave hunger
@@ -43,7 +44,7 @@
 
 //Here is where you handle any circumstantial modifiers to bloodpool gains
 //VTR has a lot of these.
-/mob/living/carbon/human/proc/calculate_drink_modifier(var/mob/living/mob)
+/mob/living/carbon/human/proc/calculate_drink_modifier(mob/living/drunk_from)
 	var/drink_mod = 1
 	if(HAS_TRAIT(src, TRAIT_HUNGRY))
 		drink_mod *= 0.5
