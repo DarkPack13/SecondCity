@@ -22,10 +22,15 @@
 /datum/status_effect/sunlight_burning/on_apply()
 	if(!SScity_time.daytime_started)
 		return FALSE
-	if(!iskindred(owner))
-		return FALSE
 	var/area/my_area = get_area(owner)
 	if(!istype(my_area) || !my_area.outdoors)
+		return FALSE
+
+	var/datum/splat/vampire/kindred/kindred_owner = iskindred(owner)
+	if(!kindred_owner)
+		return FALSE
+	// Humanity 10 vamps are immume to the light. atleast for the amount of time our day lasts.
+	if(!kindred_owner.enlightenment && (owner.st_get_stat(STAT_MORALITY) >= 10))
 		return FALSE
 
 	to_chat(owner, span_danger("THE SUN SEARS YOUR FLESH"))
