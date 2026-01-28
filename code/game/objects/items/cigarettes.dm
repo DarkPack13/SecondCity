@@ -237,7 +237,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	/// Should we smoke all of the chems in the cig before it runs out. Splits each puff to take a portion of the overall chems so by the end you'll always have consumed all of the chems inside.
 	var/smoke_all = FALSE
 	/// How much damage this deals to the lungs per drag.
-	var/lung_harm = 1
+	var/lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: var/lung_harm = 1
 	/// If, when glorf'd, we will choke on this cig forever
 	var/choke_forever = FALSE
 	/// When choking, what is the maximum amount of time we COULD choke for
@@ -719,8 +719,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/cigarette/xeno
 	desc = "A Xeno Filtered brand cigarette."
-	lung_harm = 2
-	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
+	lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: lung_harm = 2
+	list_reagents = list (/datum/reagent/drug/nicotine = 20) // DARKPACK EDIT CHANGE - ORIGINAL: list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 /obj/item/cigarette/flash_powder
 	desc = /obj/item/cigarette/space_cigarette::desc
@@ -847,7 +847,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 65
 	list_reagents = list(/datum/reagent/drug/nicotine = 45)
 	choke_time_max = 40 SECONDS
-	lung_harm = 2
+	lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: lung_harm = 2
 
 /obj/item/cigarette/dart/Initialize(mapload)
 	. = ..()

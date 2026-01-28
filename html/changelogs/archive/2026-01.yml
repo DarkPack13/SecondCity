@@ -311,3 +311,14 @@
       and Baron
   lelandkemble:
   - map: The last full wooden barricades on top of dense objects have been excised
+2026-01-28:
+  FalloutFalcon:
+  - bugfix: some areas should be outdoors again properly (like the upper sections
+      of the map)
+  - bugfix: fixes swapping stats around while spawned in
+  - bugfix: prevents swapping character slots to avoid stuff like masquarde being
+      dinged to the wrong character
+  - qol: bonus die on character sheet is displayed in white
+  - config: hardlocking things due to 0 dot abilites moved to config (off by default)
+  theselfish:
+  - rscadd: Loadout Masks now exist.
