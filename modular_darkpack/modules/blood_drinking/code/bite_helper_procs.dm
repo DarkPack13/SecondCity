@@ -23,6 +23,11 @@
 	if(updating_health)
 		update_blood_hud()
 
+/mob/living/proc/set_blood_pool(amount, updating_health = TRUE, on_spawn)
+	amount = amount - bloodpool
+
+	adjust_blood_pool(amount, updated_health, on_spawn)
+
 //runs a bite animation for biting people and biting people and biting p
 /mob/living/carbon/human/proc/add_bite_animation()
 	remove_overlay(HALO_LAYER)

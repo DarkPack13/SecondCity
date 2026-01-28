@@ -22,7 +22,7 @@
 	owner.update_blood_hud()
 
 	if(owner.bloodpool > owner.maxbloodpool)
-		owner.bloodpool = owner.maxbloodpool
+		owner.set_blood_pool(owner.maxbloodpool)
 
 /atom/movable/screen/alert/status_effect/blood_of_potency
 	name = "Blood of Potency"

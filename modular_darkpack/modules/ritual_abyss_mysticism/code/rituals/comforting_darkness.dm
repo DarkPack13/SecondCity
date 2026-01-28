@@ -43,19 +43,19 @@
 		spent_points = tgui_input_list(invoker, "How many blood points would you like to spend? (60 healing per)", "Blood Points", bpoptions, null)
 		if(!spent_points)
 			return
-		invoker.bloodpool = max(invoker.bloodpool - spent_points, 0)
+		invoker.adjust_blood_pool(-spent_points)
 		invoker.apply_status_effect(/datum/status_effect/blood_debt, 2 * spent_points) // Apply debuff with debt amount
 		for(var/mob/living/carbon/human/target in heal_targets)
 			target.heal_ordered_damage(60 * spent_points, list(BRUTE, TOX, OXY, STAMINA)) // Heals 2 levels of lethal/bashing per point spent
 			target.heal_ordered_damage(30 * spent_points, list(BURN, AGGRAVATED)) // Heals aggravated at half effectiveness, TTRPG-inaccurate implementation but necessary
 
 	else if(roll == 0)
-		invoker.bloodpool = max(invoker.bloodpool - 1, 0)
+		invoker.adjust_blood_pool(-1)
 		qdel(src)
 
 	else if(roll <= -1)
 		to_chat(invoker, span_warning("You lose focus, failing to control the darkness as it burns you!"))
-		invoker.bloodpool = max(invoker.bloodpool - 1, 0)
+		invoker.adjust_blood_pool(-1)
 		invoker.apply_damage(30, AGGRAVATED)
 		qdel(src)
 

@@ -72,7 +72,7 @@
 
 			var/amount_to_donate = min(user.bloodpool, 3)
 
-			user.bloodpool -= amount_to_donate
+			user.adjust_blood_pool(-amount_to_donate)
 
 			blood_level = min(blood_level + amount_to_donate, max_blood)
 			reagents.add_reagent(/datum/reagent/blood, amount_to_donate)
