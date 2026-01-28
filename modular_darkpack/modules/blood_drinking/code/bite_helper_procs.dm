@@ -60,7 +60,7 @@
 	return
 
 //Updates the circular suck bar that displays the amount of blood a victim has left.
-/mob/living/carbon/human/proc/update_drinking_overlay(var/mob/living/mob)
+/mob/living/carbon/human/proc/update_drinking_overlay(mob/living/mob)
 	if(client)
 		client.images -= suckbar
 	qdel(suckbar)

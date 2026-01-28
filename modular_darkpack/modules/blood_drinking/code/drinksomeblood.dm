@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/drinksomeblood(var/mob/living/mob,  first_drink = FALSE)
+/mob/living/carbon/human/proc/drinksomeblood(mob/living/mob, first_drink = FALSE)
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 	update_drinking_overlay(mob)
 
