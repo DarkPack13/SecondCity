@@ -13,18 +13,24 @@
 	id = SPECIES_FERA
 	species_language_holder = /datum/language_holder/garou
 	var/biter = FALSE
+	var/mob_pixel_w = 0
 	var/list/form_bonus_stats = list()
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	if(biter)
 		human_who_gained_species.AddElement(/datum/element/human_biter)
+	human_who_gained_species.pixel_w += mob_pixel_w
+	for(var/key, value in form_bonus_stats)
+		human_who_gained_species.st_add_stat_mod(key, value, type)
 
 /datum/species/human/shifter/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	if(biter)
 		human.RemoveElement(/datum/element/human_biter)
-
+	human.pixel_w -= mob_pixel_w
+	for(var/key, value in form_bonus_stats)
+		human.st_remove_stat_mod(key, type)
 
 /datum/species/human/shifter/homid
 	id = SPECIES_FERA_HOMID
@@ -61,6 +67,10 @@
 
 /datum/species/human/shifter/war
 	id = SPECIES_FERA_WAR
+	inherent_traits = list(
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_BLOOD_OVERLAY,
+	)
 	mutanttongue = /obj/item/organ/tongue/garou
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	form_bonus_stats = list(
@@ -70,6 +80,7 @@
 		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
+	mob_pixel_w = -8
 
 /datum/species/human/shifter/war/handle_body(mob/living/carbon/human/human)
 	human.remove_overlay(BODYPARTS_LAYER)
@@ -83,6 +94,10 @@
 
 /datum/species/human/shifter/dire
 	id = SPECIES_FERA_DIRE
+	inherent_traits = list(
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_BLOOD_OVERLAY,
+	)
 	mutanttongue = /obj/item/organ/tongue/garou
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
@@ -92,6 +107,7 @@
 		STAT_DEXTERITY = 2,
 		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
 	)
+	mob_pixel_w = -16
 
 /datum/species/human/shifter/dire/handle_body(mob/living/carbon/human/human)
 	human.remove_overlay(BODYPARTS_LAYER)
@@ -105,6 +121,10 @@
 
 /datum/species/human/shifter/feral
 	id = SPECIES_FERA_FERAL
+	inherent_traits = list(
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_BLOOD_OVERLAY,
+	)
 	mutanttongue = /obj/item/organ/tongue/garou
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
