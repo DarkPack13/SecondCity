@@ -72,16 +72,16 @@
 
 // This code is for reinforcing a player's masquerade.
 /obj/item/blood_hunt/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(!ishuman(A))
+	if(!ishuman(interacting_with))
 		return NONE
-	if(!iskindred(A))
+	if(!iskindred(interacting_with))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You hold the [src] up to [A]..."))
-	if(!do_after(user, 10 SECONDS, A))
+	to_chat(user, span_notice("You hold the [src] up to [interacting_with]..."))
+	if(!do_after(user, 10 SECONDS, interacting_with))
 		return ITEM_INTERACT_BLOCKING
-	if(SSmasquerade.masquerade_reinforce(src, A, MASQUERADE_REASON_PREFERENCES))
-		to_chat(user, span_notice("You pardon [A]'s masquerade breach!"))
+	if(SSmasquerade.masquerade_reinforce(src, interacting_with, MASQUERADE_REASON_PREFERENCES))
+		to_chat(user, span_notice("You pardon [interacting_with]'s masquerade breach!"))
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice("[A]'s masquerade breach isn't worthy enough to be pardoned!"))
+	to_chat(user, span_notice("[interacting_with]'s masquerade breach isn't worthy enough to be pardoned!"))
 	return ITEM_INTERACT_BLOCKING

@@ -52,8 +52,8 @@
 
 /obj/item/spirit_chime/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	// Handles wall placement
-	if(istype(target, /turf/closed/wall))
-		var/turf/T = target
+	if(istype(interacting_with, /turf/closed/wall))
+		var/turf/T = interacting_with
 		if(!do_after(user, 2 SECONDS))
 			return ITEM_INTERACT_BLOCKING
 
@@ -62,6 +62,7 @@
 		placed_chime.icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
 		placed_chime.icon_state = "chime"
 
+		/* click_paramaters no longer exists
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
 		var/list/params = params2list(click_parameters)
 		if(params["icon-x"] && params["icon-y"])
@@ -69,6 +70,7 @@
 			var/click_y = text2num(params["icon-y"])
 			placed_chime.pixel_x = click_x - 16
 			placed_chime.pixel_y = click_y - 30
+		*/
 
 		user.visible_message(span_notice("[user] hangs the chime on the wall."))
 		placed_chime.isplaced = TRUE
@@ -76,8 +78,8 @@
 		return ITEM_INTERACT_SUCCESS
 
 	// Handles floor placement
-	if(isturf(target))
-		var/turf/T = target
+	if(isturf(interacting_with))
+		var/turf/T = interacting_with
 		if(!do_after(user, 2 SECONDS))
 			return ITEM_INTERACT_BLOCKING
 
@@ -86,6 +88,7 @@
 		placed_chime.icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
 		placed_chime.icon_state = "bell"
 
+		/* click_paramaters no longer exists
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
 		var/list/params = params2list(click_parameters)
 		if(params["icon-x"] && params["icon-y"])
@@ -93,6 +96,7 @@
 			var/click_y = text2num(params["icon-y"])
 			placed_chime.pixel_x = click_x - 16
 			placed_chime.pixel_y = click_y - 16
+		*/
 
 		user.visible_message(span_notice("[user] places the bell on the floor."))
 		placed_chime.isplaced = TRUE
