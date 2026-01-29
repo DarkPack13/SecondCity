@@ -66,7 +66,7 @@
 
 /obj/effect/decal/cleanable/gasoline
 	name = "gasoline"
-	desc = "tool HOPE YOU DIE IN A FIRE!!!"
+	desc = "I HOPE YOU DIE IN A FIRE!!!"
 	icon = 'modular_darkpack/modules/cars/icons/water.dmi'
 	icon_state = "water"
 	base_icon_state = "water"

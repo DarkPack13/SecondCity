@@ -2,6 +2,7 @@
 	name = "ominous skull"
 	desc = "A stylized skull, made out of marble."
 	icon = 'modular_darkpack/modules/masquerade/icons/blood_hunt_skull.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/masquerade/icons/onfloor.dmi')
 	icon_state = "skull"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
