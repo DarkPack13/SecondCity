@@ -45,9 +45,9 @@
 		return NONE
 	if(istype(get_turf(interacting_with), /turf/open/floor))
 		if(locate(/obj/effect/decal/cleanable/gasoline) in get_turf(interacting_with))
-			return ITEM_INTERACT_FAILURE
+			return ITEM_INTERACT_BLOCKING
 		if(stored_gasoline < 50)
-			return ITEM_INTERACT_FAILURE
+			return ITEM_INTERACT_BLOCKING
 		stored_gasoline = max(0, stored_gasoline-50)
 		new /obj/effect/decal/cleanable/gasoline(get_turf(interacting_with))
 		playsound(get_turf(src), 'modular_darkpack/modules/cars/sounds/gas_splat.ogg', 50, TRUE)
@@ -174,5 +174,5 @@
 			to_chat(user, span_notice("You fill [tool]."))
 			say("Gas filled.")
 			return ITEM_INTERACT_SUCCESS
-		return ITEM_INTERACT_FAILURE
+		return ITEM_INTERACT_BLOCKING
 	return NONE

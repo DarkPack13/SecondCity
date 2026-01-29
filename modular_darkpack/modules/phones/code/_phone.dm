@@ -176,7 +176,7 @@
 	if(istype(tool, /obj/item/sim_card))
 		if(sim_card)
 			balloon_alert(user, "[sim_card] already installed!")
-			return ITEM_INTERACT_FAILURE
+			return ITEM_INTERACT_BLOCKING
 		balloon_alert(user, "you insert \the [tool]!")
 		sim_card = tool
 		user.transferItemToLoc(tool, src)

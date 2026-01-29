@@ -58,7 +58,7 @@
 			repairing = TRUE
 			if(!do_after(user, 10 SECONDS, src))
 				repairing = FALSE
-				return ITEM_INTERACT_FAILURE
+				return ITEM_INTERACT_BLOCKING
 
 			damaged = 0
 			update_icon_state()
