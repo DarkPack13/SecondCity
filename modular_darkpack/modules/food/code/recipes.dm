@@ -9,7 +9,7 @@
 	if(!ishuman(user))
 		return FALSE
 
-	var/datum/splat/vampire/vampire = does_use_disciplines(owner)
+	var/datum/splat/vampire/vampire = does_use_disciplines(user)
 	if(vampire?.get_discipline_power(/datum/discipline/serpentis))
 		return TRUE
 

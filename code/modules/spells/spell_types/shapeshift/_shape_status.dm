@@ -178,7 +178,7 @@
 			// Only transfer blood if both mobs are supposed to have a blood volume
 			if (CAN_HAVE_BLOOD(owner) && CAN_HAVE_BLOOD(caster_mob))
 				owner.set_blood_volume(caster_mob.get_blood_volume())
-				owner.max_bloodpool = caster_mob.max_bloodpool // DARKPACK EDIT ADD
+				owner.maxbloodpool = caster_mob.maxbloodpool // DARKPACK EDIT ADD
 				owner.set_blood_pool(caster_mob.bloodpool) // DARKPACK EDIT ADD
 
 	for(var/datum/action/bodybound_action as anything in caster_mob.actions)
