@@ -11,7 +11,7 @@
 
 	guestbook_names = save_data?["guestbook_names"]
 	guestbook_names = SANITIZE_LIST(guestbook_names)
-	alt_job_titles = save_data?["alt_job_titles"]
+	alt_job_titles = save_data?["alt_job_titles"] // ALTERNATIVE_JOB_TITLES
 
 /datum/preferences/save_character()
 	. = ..()
@@ -21,4 +21,4 @@
 	var/save_data = savefile.get_entry(tree_key)
 
 	save_data["guestbook_names"] = guestbook_names
-	save_data["alt_job_titles"] = alt_job_titles
+	save_data["alt_job_titles"] = alt_job_titles // ALTERNATIVE_JOB_TITLES

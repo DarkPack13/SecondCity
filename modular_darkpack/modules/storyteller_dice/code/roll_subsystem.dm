@@ -172,3 +172,6 @@ SUBSYSTEM_DEF(roll)
 /datum/config_entry/flag/on_crit_additional_success
 
 /datum/config_entry/flag/on_crit_additional_die
+
+// If having 0 dot in abilities can hardlock you out of features
+/datum/config_entry/flag/punishing_zero_dots

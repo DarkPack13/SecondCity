@@ -8,7 +8,7 @@
 	var/minimum_immortal_age = 0
 
 	/// The list of alternative job titles people can pick from, null by default.
-	var/list/alt_titles = null
+	var/list/alt_titles = null // ALTERNATIVE_JOB_TITLES
 
 	///List of splats that are allowed to do this job.
 	var/list/allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINDRED)

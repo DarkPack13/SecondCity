@@ -139,7 +139,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		gender = person_gender,
 		initial_rank = assignment,
 		name = person.real_name,
-		rank = chosen_assignment, // DARKPACK EDIT - Alt job titles - ORIGINAL: rank = assignment,
+		rank = chosen_assignment, // DARKPACK EDIT - ALTERNATIVE_JOB_TITLES - ORIGINAL: rank = assignment,
 		species = record_dna.species.name,
 		trim = assignment,
 		// Locked specifics
@@ -156,7 +156,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		gender = person_gender,
 		initial_rank = assignment,
 		name = person.real_name,
-		rank = chosen_assignment, // DARKPACK EDIT - Alt job titles - ORIGINAL: rank = assignment,
+		rank = chosen_assignment, // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: rank = assignment,
 		species = record_dna.species.name,
 		trim = assignment,
 		// Crew specific
