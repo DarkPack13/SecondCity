@@ -1,9 +1,9 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
-		// DARKPACK EDIT ADDITION ALT JOB TITLES
+		// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 		"set_job_title" = PROC_REF(set_job_title),
-		// DARKPACK EDIT END
+		// DARKPACK EDIT ADD END
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -28,7 +28,7 @@
 
 	return TRUE
 
-// DARKPACK EDIT ADDITION START
+// DARKPACK EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
@@ -75,7 +75,7 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
-			"alt_titles" = job.alt_titles, // DARKPACK EDIT: alternative job titles
+			"alt_titles" = job.alt_titles, // DARKPACK EDIT ADD - ALTERNATIVE_JOB_TITLES
 		)
 
 	data["departments"] = departments
@@ -86,15 +86,15 @@
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
 
-// DARKPACK EDIT
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	if(isnull(preferences.alt_job_titles))
 		preferences.alt_job_titles = list()
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 	data["job_preferences"] = preferences.job_preferences
 
-	// DARKPACK EDIT
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	data["job_alt_titles"] = preferences.alt_job_titles
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	return data
 

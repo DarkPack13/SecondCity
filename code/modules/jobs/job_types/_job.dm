@@ -111,10 +111,10 @@
 	/// String. If set to a non-empty one, it will be the key for the policy text value to show this role on spawn.
 	var/policy_index = ""
 
-	// DARKPACK EDIT ADDITION START
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	/// Job title to use for spawning. Allows a job to spawn without needing map edits.
 	var/job_spawn_title
-	// DARKPACK EDIT ADDITION END
+	// DARKPACK EDIT ADD END
 	/// RPG job names, for the memes
 	var/rpg_title
 
@@ -138,10 +138,10 @@
 
 /datum/job/New()
 	. = ..()
-	// DARKPACK EDIT START
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	if(!job_spawn_title)
 		job_spawn_title = title
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 	var/new_spawn_positions = CHECK_MAP_JOB_CHANGE(title, "spawn_positions")
 	if(isnum(new_spawn_positions))
 		spawn_positions = new_spawn_positions
@@ -233,7 +233,7 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only)
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) // DOPPLER EDIT: alternative job titles//tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES 
 	if(human)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = human.job), null, channels, null, TRUE), 1))
@@ -301,7 +301,7 @@
 /// Gets the message that shows up when spawning as this job
 /datum/job/proc/get_spawn_message(alt_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return boxed_message(span_infoplain(jointext(get_spawn_message_information(alt_title), "\n&bull; "))) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLED - ORIGINAL: return boxed_message(span_infoplain(jointext(get_spawn_message_information(), "\n&bull; ")))
+	return boxed_message(span_infoplain(jointext(get_spawn_message_information(alt_title), "\n&bull; "))) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: return boxed_message(span_infoplain(jointext(get_spawn_message_information(), "\n&bull; ")))
 
 
 /// Returns a list of strings that correspond to chat messages sent to this mob when they join the round.
@@ -487,12 +487,10 @@
 				hangover_landmark.used = TRUE
 				break
 			return hangover_spawn_point || get_latejoin_spawn_point()
-	/* if(length(GLOB.jobspawn_overrides[title]))
-		return pick(GLOB.jobspawn_overrides[title]) */ // ORIGINAL CODE
-	// DARKPACK EDIT START - Alt job titles
+	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES 
 	if(length(GLOB.jobspawn_overrides[job_spawn_title]))
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
-	// DARKPACK EDIT END
+	// DARKPACK EDIT CHANGE END
 	var/obj/effect/landmark/start/spawn_point = get_default_roundstart_spawn_point()
 	if(!spawn_point) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
 		return get_latejoin_spawn_point()
