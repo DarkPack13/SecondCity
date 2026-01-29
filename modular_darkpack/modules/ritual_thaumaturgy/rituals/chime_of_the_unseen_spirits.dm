@@ -50,15 +50,12 @@
 		user.visible_message(span_notice("[user] places the bell on the table."))
 		initial_check()
 
-/obj/item/spirit_chime/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return
-
+/obj/item/spirit_chime/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	// Handles wall placement
 	if(istype(target, /turf/closed/wall))
 		var/turf/T = target
 		if(!do_after(user, 2 SECONDS))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
 		placed_chime.anchored = TRUE
@@ -76,13 +73,13 @@
 		user.visible_message(span_notice("[user] hangs the chime on the wall."))
 		placed_chime.isplaced = TRUE
 		qdel(src)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	// Handles floor placement
 	if(isturf(target))
 		var/turf/T = target
 		if(!do_after(user, 2 SECONDS))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
 		placed_chime.anchored = TRUE
@@ -100,7 +97,7 @@
 		user.visible_message(span_notice("[user] places the bell on the floor."))
 		placed_chime.isplaced = TRUE
 		qdel(src)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/spirit_chime/Initialize()
 	. = ..()

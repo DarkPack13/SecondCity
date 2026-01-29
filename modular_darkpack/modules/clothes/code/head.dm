@@ -367,6 +367,7 @@
 		target.emote("scream")
 		target.Stun(0.5 SECONDS)
 
+		H = target.get_item_by_slot(ITEM_SLOT_HEAD) // Refetch it if it changes between do_after
 		target.dropItemToGround(H)
 		target.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD)
 

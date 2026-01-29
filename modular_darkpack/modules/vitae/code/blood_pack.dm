@@ -31,16 +31,18 @@
 	inhand_icon_state = icon_state
 	onflooricon_state = icon_state
 
-/obj/item/reagent_containers/blood/attack(mob/living/M, mob/living/user)
-	. = ..()
-	if(!canconsume(M, user))
-		return
-	if(!do_after(user, 3 SECONDS, M))
-		return
-	reagents.trans_to(M, reagents.total_volume, transferred_by = user, methods = INGEST, show_message = FALSE)
-	playsound(M.loc, 'sound/items/drink.ogg', 50, TRUE)
+/obj/item/reagent_containers/blood/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!ismob(interacting_with))
+		return NONE
+	if(!canconsume(interacting_with, user))
+		return ITEM_INTERACT_BLOCKING
+	if(!do_after(user, 3 SECONDS, interacting_with))
+		return ITEM_INTERACT_BLOCKING
+	reagents.trans_to(interacting_with, reagents.total_volume, transferred_by = user, methods = INGEST, show_message = FALSE)
+	playsound(interacting_with.loc, 'sound/items/drink.ogg', 50, TRUE)
 	update_appearance()
-	//SEND_SIGNAL(M, COMSIG_MASQUERADE_VIOLATION)
+	// SEND_SIGNAL(interacting_with, COMSIG_MASQUERADE_VIOLATION)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/blood/empty
 	blood_type = null

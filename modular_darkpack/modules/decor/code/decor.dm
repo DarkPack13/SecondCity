@@ -683,7 +683,7 @@
 
 		pit_busy = TRUE
 		user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-		if(!do_mob(user, src, 10 SECONDS))
+		if(!do_after(user, 10 SECONDS, src))
 			pit_busy = FALSE
 
 		pit_busy = FALSE
@@ -703,7 +703,7 @@
 		return
 
 	pit_busy = TRUE
-	if(!do_mob(user, src, 30 SECONDS))
+	if(!do_after(user, 30 SECONDS, src))
 		pit_busy = FALSE
 
 	for(var/mob/living/L in src)

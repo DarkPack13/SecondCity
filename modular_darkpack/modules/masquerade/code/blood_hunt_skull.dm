@@ -70,17 +70,17 @@
 	target.clear_blood_hunt()
 
 // This code is for reinforcing a player's masquerade.
-/obj/item/blood_hunt/pre_attack(atom/A, mob/living/user, params)
+/obj/item/blood_hunt/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ishuman(A))
-		return
+		return NONE
 	if(!iskindred(A))
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	to_chat(user, span_notice("You hold the [src] up to [A]..."))
 	if(!do_after(user, 10 SECONDS, A))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
+		return ITEM_INTERACT_BLOCKING
 	if(SSmasquerade.masquerade_reinforce(src, A, MASQUERADE_REASON_PREFERENCES))
 		to_chat(user, span_notice("You pardon [A]'s masquerade breach!"))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
+		return ITEM_INTERACT_SUCCESS
 	to_chat(user, span_notice("[A]'s masquerade breach isn't worthy enough to be pardoned!"))
-	return COMPONENT_CANCEL_ATTACK_CHAIN
+	return ITEM_INTERACT_BLOCKING
