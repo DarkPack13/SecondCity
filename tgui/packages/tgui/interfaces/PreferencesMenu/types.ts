@@ -208,7 +208,7 @@ export type PreferencesMenuData = {
     }
   >;
   job_preferences: Record<string, JobPriority>;
-//DARKPACK EDIT ADDITION ALTERNATIVE JOB TITLES
+// DARKPACK EDIT ADD -  ALTERNATIVE_JOB_TITLES
   job_alt_titles: Record<string, string>;
   keybindings: Record<string, string[]>;
   overflow_role: string;

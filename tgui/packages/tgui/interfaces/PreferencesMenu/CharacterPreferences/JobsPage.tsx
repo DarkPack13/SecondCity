@@ -1,5 +1,5 @@
 import { sortBy } from 'es-toolkit';
-import { type PropsWithChildren, type ReactNode } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Dropdown, Stack, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
@@ -195,11 +195,11 @@ function JobRow(props: JobRowProps) {
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
 
 
-  // DARKPACK EDIT ADDITION
+  // DARKPACK EDIT ADD START -  ALTERNATIVE_JOB_TITLES
   const alt_title_selected = data.job_alt_titles[name]
     ? data.job_alt_titles[name]
     : name;
-  // DARKPACK EDIT END
+  // DARKPACK EDIT ADD END
 
   let rightSide: ReactNode;
 
@@ -252,7 +252,7 @@ function JobRow(props: JobRowProps) {
             }}
           >
             {
-              // DARKPACK EDIT CHANGE START - ORIGINAL: {name}
+              // DARKPACK EDIT CHANGE START -  ALTERNATIVE_JOB_TITLES - ORIGINAL: {name}
               !job.alt_titles ? (
                 name
               ) : (
