@@ -7,9 +7,9 @@
 	level = 1
 
 /obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits/complete()
-    new /obj/item/spirit_chime(loc)
-    playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
-    qdel(src)
+	new /obj/item/spirit_chime(loc)
+	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
+	qdel(src)
 
 // The spirit chime item itself
 /obj/item/spirit_chime
@@ -17,8 +17,6 @@
 	desc = "A mystical chime that reacts to nearby spirits."
 	icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
 	icon_state = "bell"
-	anchored = FALSE
-	var/isplaced = FALSE
 	var/datum/proximity_monitor/advanced/spirit_chime/chime_field
 	var/ringing = FALSE
 	var/detection_range = 10
@@ -32,70 +30,48 @@
 		return
 	user.visible_message(span_notice("[user] retrieves the chime."))
 	anchored = FALSE
+	icon_state = "bell"
 	user.put_in_active_hand(src)
-	isplaced = FALSE
-
-// Handles table placement (a bit awkwardly but wcyd)
-/obj/item/spirit_chime/dropped(mob/user)
-	. = ..()
-	var/obj/structure/table/table = locate(/obj/structure/table) in get_turf(src)
-	if(table && !anchored)
-		if(!do_after(user, 2 SECONDS))
-			return
-
-		anchored = TRUE
-		icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
-		icon_state = "bell"
-		isplaced = TRUE
-		user.visible_message(span_notice("[user] places the bell on the table."))
-		initial_check()
-
 
 /obj/item/spirit_chime/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	// Handles wall placement
-	if(istype(interacting_with, /turf/closed/wall))
-		var/turf/T = interacting_with
-		if(!do_after(user, 2 SECONDS, src))
+	if(iswallturf(interacting_with))
+		if(!do_after(user, 2 SECONDS, interacting_with))
 			return ITEM_INTERACT_BLOCKING
 
-		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
-		placed_chime.anchored = TRUE
-		placed_chime.icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
-		placed_chime.icon_state = "chime"
+		user.transfer_item_to_turf(src, interacting_with)
+		icon_state = "chime"
 
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
 		var/click_x = text2num(LAZYACCESS(modifiers, ICON_X))
 		var/click_y = text2num(LAZYACCESS(modifiers, ICON_Y))
 		if(click_x && click_y)
-			placed_chime.pixel_x = click_x - 16
-			placed_chime.pixel_y = click_y - 30
+			pixel_x = click_x - 16
+			pixel_y = click_y - 30
 
-		user.visible_message(span_notice("[user] hangs the chime on the wall."))
-		placed_chime.isplaced = TRUE
-		qdel(src)
+		user.visible_message(span_notice("[user] hangs the chime on [interacting_with]."))
+		anchored = TRUE
+		initial_check()
 		return ITEM_INTERACT_SUCCESS
 
-	// Handles floor placement
-	if(isturf(interacting_with))
-		var/turf/T = interacting_with
-		if(!do_after(user, 2 SECONDS, src))
+	// Handles floor or table placement
+	if(isturf(interacting_with) || istype(interacting_with, /obj/structure/table))
+		if(!do_after(user, 2 SECONDS, interacting_with))
 			return ITEM_INTERACT_BLOCKING
 
-		var/obj/item/spirit_chime/placed_chime = new /obj/item/spirit_chime(T)
-		placed_chime.anchored = TRUE
-		placed_chime.icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/spirit_chime.dmi'
-		placed_chime.icon_state = "bell"
+		user.transfer_item_to_turf(src, interacting_with)
+		icon_state = "bell"
 
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
 		var/click_x = text2num(LAZYACCESS(modifiers, ICON_X))
 		var/click_y = text2num(LAZYACCESS(modifiers, ICON_Y))
 		if(click_x && click_y)
-			placed_chime.pixel_x = click_x - 16
-			placed_chime.pixel_y = click_y - 16
+			pixel_x = click_x - 16
+			pixel_y = click_y - 16
 
-		user.visible_message(span_notice("[user] places the bell on the floor."))
-		placed_chime.isplaced = TRUE
-		qdel(src)
+		user.visible_message(span_notice("[user] places the bell on [interacting_with]."))
+		anchored = TRUE
+		initial_check()
 		return ITEM_INTERACT_SUCCESS
 
 
@@ -108,14 +84,13 @@
 		initial_check()
 
 /obj/item/spirit_chime/Destroy()
-	ringing = FALSE
 	QDEL_NULL(chime_field)
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/spirit_chime/process(delta_time)
 	var/valid_targets = FALSE
-	if(!ringing || !isplaced || !chime_field)
+	if(!ringing || !anchored || !chime_field)
 		ringing = FALSE
 		STOP_PROCESSING(SSprocessing, src)
 		return
@@ -135,57 +110,8 @@
 		ring()
 		COOLDOWN_START(src, ring_cooldown, 5 SECONDS)
 
-// The proimity monitor that creates the detection field
-/datum/proximity_monitor/advanced/spirit_chime
-	edge_is_a_field = TRUE
-	var/list/tracked_mobs = list()
-	var/obj/item/spirit_chime/chime
-
-/datum/proximity_monitor/advanced/spirit_chime/New(atom/_host, range)
-	. = ..()
-	chime = _host
-
-/datum/proximity_monitor/advanced/spirit_chime/field_turf_crossed(atom/movable/entered, turf/old_location, turf/new_location) // Handles when a mob enters the field
-	. = ..()
-	if(!chime.isplaced)
-		return
-	if(entered.z != chime.z)
-		return
-
-	if(test_target(entered))
-		return
-
-	if(entered.orbiters)
-		for(var/mob/dead/observer/ghost in entered.get_all_orbiters()) // Check for orbiting ghosts in the field
-			test_target(ghost)
-
-/datum/proximity_monitor/advanced/spirit_chime/proc/test_target(atom/movable/target)
-	if(chime.valid_target(target))
-		if(!(target in tracked_mobs))
-			tracked_mobs |= target
-			if(tracked_mobs.len == 1) // Starts ringing on the first target, continues until there are no more targets
-				chime.start_ringing()
-			else if(tracked_mobs.len < 1)
-				chime.stop_ringing()
-
-/datum/proximity_monitor/advanced/spirit_chime/field_turf_uncrossed(atom/movable/gone, turf/old_location, turf/new_location) // Handles when a mob leaves the field
-	. = ..()
-	if(!chime.isplaced)
-		return
-	if(gone in tracked_mobs)
-		tracked_mobs -= gone
-	if(gone.z != chime.z || !chime.valid_target(gone))
-		if(gone in tracked_mobs)
-			tracked_mobs -= gone
-	if(gone.orbiters)
-		for(var/mob/dead/observer/ghost in gone.get_all_orbiters())
-			if(ghost in tracked_mobs)
-				tracked_mobs -= ghost
-
-// Procs
-// DARKPACK TODO - chime get it working please
 /obj/item/spirit_chime/proc/start_ringing()
-	if(ringing || !isplaced || !chime_field)
+	if(ringing || !anchored || !chime_field)
 		return
 	ringing = TRUE
 	START_PROCESSING(SSprocessing, src)
@@ -214,3 +140,52 @@
 		if(isobserver(target_mob) || isavatar(target_mob))
 			return TRUE
 	return FALSE
+
+
+// The proimity monitor that creates the detection field
+/datum/proximity_monitor/advanced/spirit_chime
+	edge_is_a_field = TRUE
+	var/list/tracked_mobs = list()
+	var/obj/item/spirit_chime/chime
+
+/datum/proximity_monitor/advanced/spirit_chime/New(atom/_host, range)
+	. = ..()
+	chime = _host
+
+/datum/proximity_monitor/advanced/spirit_chime/field_turf_crossed(atom/movable/entered, turf/old_location, turf/new_location) // Handles when a mob enters the field
+	. = ..()
+	if(!chime.anchored)
+		return
+	if(entered.z != chime.z)
+		return
+
+	if(test_target(entered))
+		return
+
+	if(entered.orbiters)
+		for(var/mob/dead/observer/ghost in entered.get_all_orbiters()) // Check for orbiting ghosts in the field
+			test_target(ghost)
+
+/datum/proximity_monitor/advanced/spirit_chime/proc/test_target(atom/movable/target)
+	if(chime.valid_target(target))
+		if(!(target in tracked_mobs))
+			tracked_mobs |= target
+			if(tracked_mobs.len == 1) // Starts ringing on the first target, continues until there are no more targets
+				chime.start_ringing()
+			else if(tracked_mobs.len < 1)
+				chime.stop_ringing()
+
+/datum/proximity_monitor/advanced/spirit_chime/field_turf_uncrossed(atom/movable/gone, turf/old_location, turf/new_location) // Handles when a mob leaves the field
+	. = ..()
+	if(!chime.anchored)
+		return
+	if(gone in tracked_mobs)
+		tracked_mobs -= gone
+	if(gone.z != chime.z || !chime.valid_target(gone))
+		if(gone in tracked_mobs)
+			tracked_mobs -= gone
+	if(gone.orbiters)
+		for(var/mob/dead/observer/ghost in gone.get_all_orbiters())
+			if(ghost in tracked_mobs)
+				tracked_mobs -= ghost
+
