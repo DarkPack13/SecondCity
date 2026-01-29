@@ -6,7 +6,7 @@
 	supervisors = "Caine"
 	config_tag = "SABBAT_PRIEST"
 	outfit = /datum/outfit/job/vampire/sabbatpriest
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
 	department_for_prefs = /datum/job_department/sabbat
@@ -24,11 +24,17 @@
 	jobtype = /datum/job/vampire/sabbatpriest
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/sabbat
+	suit = /obj/item/clothing/suit/vampire/noddist
+	head = /obj/item/clothing/head/vampire/noddist_mask
+	uses_default_clan_clothes = TRUE
 
 /datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist/priest)
+
+/datum/antagonist/sabbatist/priest
+	antag_hud_name = "ductus_priest"
 
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"

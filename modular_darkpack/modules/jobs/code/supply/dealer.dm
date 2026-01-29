@@ -16,8 +16,8 @@
 	)
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
-	allowed_species = list(SPECIES_HUMAN)
-	species_slots = list(SPECIES_HUMAN = 1)
+	allowed_splats = list(SPLAT_NONE)
+	splat_slots = list(SPLAT_NONE = 1)
 
 	description = "You provide both legal and illegal supplies to those that get busy during the night. You are your own person yet you know people are out for you. Time to buckle in..."
 	minimal_masquerade = 0

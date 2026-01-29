@@ -149,6 +149,14 @@ Always compile, always use that verb, and always make sure that it works for wha
 	ZTRAIT_LAVA_RUINS = TRUE, \
 	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
 	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
+
+// DARKPACK EDIT ADD START - UMBRA
+///Z level traits for the umbra
+#define ZTRAITS_UMBRA list(\
+	ZTRAIT_MINING = TRUE, \
+	ZTRAIT_BASETURF = /turf/open/umbra)
+// DARKPACK EDIT ADD END
+
 ///Z level traits for Away Missions
 #define ZTRAITS_AWAY list(ZTRAIT_AWAY = TRUE)
 ///Z level traits for Secret Away Missions

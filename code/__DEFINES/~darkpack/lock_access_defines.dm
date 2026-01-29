@@ -3,7 +3,10 @@
 #define LOCKACCESS_CAMARILLA "camarilla"
 #define LOCKACCESS_PRINCE "prince"
 #define LOCKACCESS_PRIMOGEN "primogen"
+
 #define LOCKACCESS_BANU "banuhaqim"
+#define LOCKACCESS_BANU_PRIMOGEN "primBanu"
+
 #define LOCKACCESS_STRIP "strip"
 #define LOCKACCESS_CHANTRY "chantry"
 #define LOCKACCESS_CLERK "clerk"
@@ -43,10 +46,13 @@
 #define LOCKACCESS_PRIMOGEN_LASOMBRA "primLasombra"
 #define LOCKACCESS_LASOMBRA "lasombra"
 
-#define LOCKACCESS_KYASID "kyasid"
+#define LOCKACCESS_KIASYD "kiasyd"
+
+#define LOCKACCESS_SETITE "setite"
 
 #define LOCKACCESS_SABBAT "sabbat"
 
+#define LOCKACCESS_BARON "baron"
 #define LOCKACCESS_ANARCH "anarch"
 #define LOCKACCESS_BAR "biker_bar"
 #define LOCKACCESS_BAR_DELIVERY "bar_delivery"
@@ -60,6 +66,8 @@
 #define LOCKACCESS_CLEANING "cleaning"
 #define LOCKACCESS_LAUNDROMAT "laundromat"
 
+#define LOCKACCESS_HUNTER "hunter"
+
 #define LOCKACCESS_POLICE "police"
 #define LOCKACCESS_DISPATCH "dispatch"
 #define LOCKACCESS_POLICE_SECURE "police_secure"
@@ -71,3 +79,6 @@
 #define LOCKACCESS_COGGIE "coggie"
 #define LOCKACCESS_PENTEX "pentex"
 #define LOCKACCESS_PENTEX_LEADER "pentexleader"
+
+#define LOCK_OWNERSHIP_CAR "car"
+#define LOCK_OWNERSHIP_APARTMENT "apartment"
