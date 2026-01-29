@@ -12,7 +12,7 @@
 	)
 	changesource_flags = MIRROR_BADMIN
 	species_language_holder = /datum/language_holder/garou
-	mutanttongue = /obj/item/organ/tongue/garou
+	mutanttongue = /obj/item/organ/tongue/fera
 
 /mob/living/carbon/human/species/garou
 	race = /datum/species/human/shifter/garou

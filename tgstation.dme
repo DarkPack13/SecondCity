@@ -7629,6 +7629,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\breed.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\fur.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\tribe.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\bite_element.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\garou_organs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\fera_species.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\fera_splat.dm"

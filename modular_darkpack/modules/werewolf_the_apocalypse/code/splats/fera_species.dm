@@ -19,7 +19,7 @@
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	if(biter)
-		human_who_gained_species.AddElement(/datum/element/human_biter)
+		human_who_gained_species.AddElement(/datum/element/force_paw)
 	human_who_gained_species.pixel_w += mob_pixel_w
 	for(var/key, value in form_bonus_stats)
 		human_who_gained_species.st_add_stat_mod(key, value, type)
@@ -27,7 +27,7 @@
 /datum/species/human/shifter/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	if(biter)
-		human.RemoveElement(/datum/element/human_biter)
+		human.RemoveElement(/datum/element/force_paw)
 	human.pixel_w -= mob_pixel_w
 	for(var/key, value in form_bonus_stats)
 		human.st_remove_stat_mod(key, type)
@@ -71,7 +71,7 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
-	mutanttongue = /obj/item/organ/tongue/garou
+	mutanttongue = /obj/item/organ/tongue/fera
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	form_bonus_stats = list(
 		STAT_STRENGTH = 4,
@@ -98,7 +98,8 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
-	mutanttongue = /obj/item/organ/tongue/garou
+	mutantbrain = /obj/item/organ/brain/fera
+	mutanttongue = /obj/item/organ/tongue/fera
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
 	form_bonus_stats = list(
@@ -125,7 +126,8 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
-	mutanttongue = /obj/item/organ/tongue/garou
+	mutantbrain = /obj/item/organ/brain/fera
+	mutanttongue = /obj/item/organ/tongue/fera
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
 	form_bonus_stats = list(
