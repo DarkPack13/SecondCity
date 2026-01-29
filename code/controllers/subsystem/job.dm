@@ -617,7 +617,6 @@ SUBSYSTEM_DEF(job)
 		else
 			handle_auto_deadmin_roles(player_client, job.title)
 
-	setup_alt_job_title(equipping, job, player_client) // DARKPACK EDIT ADD - ALTERNATIVE_JOB_TITLES
 	job.after_spawn(equipping, player_client)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
