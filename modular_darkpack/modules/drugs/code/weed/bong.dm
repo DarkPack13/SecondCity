@@ -37,32 +37,34 @@
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE | NO_REACT)
 
-/obj/item/bong/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	if((istype(attacking_item, /obj/item/food/grown) || istype(attacking_item, /obj/item/food/drug)))
+/obj/item/bong/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if((istype(tool, /obj/item/food/grown) || istype(tool, /obj/item/food/drug)))
 		if(packeditem)
 			to_chat(user, span_warning("It is already packed!"))
-			return
+			return ITEM_INTERACT_BLOCKING
 
-		if(istype(attacking_item, /obj/item/food/grown) && !HAS_TRAIT(attacking_item, TRAIT_DRIED))
+		if(istype(tool, /obj/item/food/grown) && !HAS_TRAIT(tool, TRAIT_DRIED))
 			to_chat(user, span_warning("It has to be dried first!"))
-			return
+			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You stuff [attacking_item] into [src]."))
+		to_chat(user, span_notice("You stuff [tool] into [src]."))
 		bong_hits = max_hits
-		packeditem = attacking_item.name
+		packeditem = tool.name
 		update_name()
-		if(attacking_item.reagents)
-			attacking_item.reagents.trans_to(src, attacking_item.reagents.total_volume, transferred_by = user)
+		if(tool.reagents)
+			tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
 			reagent_transfer_per_use = reagents.total_volume / max_hits
-		qdel(attacking_item)
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
 	else
-		var/lighting_text = attacking_item.ignition_effect(src, user)
+		var/lighting_text = tool.ignition_effect(src, user)
 		if(!lighting_text)
-			return ..()
+			return NONE
 		if(bong_hits <= 0)
 			to_chat(user, span_warning("Nothing to smoke!"))
-			return ..()
+			return ITEM_INTERACT_BLOCKING
 		light(lighting_text)
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/bong/attack_self(mob/user)
 	var/turf/location = get_turf(user)

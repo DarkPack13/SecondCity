@@ -7,9 +7,9 @@
 	level = 1
 
 /obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits/complete()
-    new /obj/item/spirit_chime(loc)
-    playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
-    qdel(src)
+	new /obj/item/spirit_chime(loc)
+	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
+	qdel(src)
 
 // The spirit chime item itself
 /obj/item/spirit_chime
@@ -23,9 +23,6 @@
 	var/ringing = FALSE
 	var/range = 10
 	COOLDOWN_DECLARE(ring_cooldown)
-
-/obj/item/spirit_chime/attackby(obj/item/W, mob/user)
-	return ..()
 
 // Picking the chime back up
 /obj/item/spirit_chime/attack_hand(mob/user)

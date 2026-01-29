@@ -172,7 +172,7 @@
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
-/obj/item/smartphone/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/smartphone/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(attacking_item, /obj/item/sim_card))
 		if(sim_card)
 			balloon_alert(user, "[sim_card] already installed!")
