@@ -1,5 +1,5 @@
 /obj/item/stack/dollar
-	name = "dollars"
+	name = MONEY_NAME // Prob overkill to use the define here.
 	desc = "Wow! With enough of these, you could buy a lot! ...Pssh, yeah right."
 	singular_name = "dollar"
 	icon_state = "money1"

@@ -66,7 +66,7 @@
 
 /obj/effect/decal/cleanable/gasoline
 	name = "gasoline"
-	desc = "I HOPE YOU DIE IN A FIRE!!!"
+	desc = "tool HOPE YOU DIE IN A FIRE!!!"
 	icon = 'modular_darkpack/modules/cars/icons/water.dmi'
 	icon_state = "water"
 	base_icon_state = "water"
@@ -125,11 +125,11 @@
 			continue
 		oil.fire_act()
 
-/obj/effect/decal/cleanable/gasoline/attackby(obj/item/I, mob/living/user)
-	var/attacked_by_hot_thing = I.get_temperature()
+/obj/effect/decal/cleanable/gasoline/attackby(obj/item/tool, mob/living/user)
+	var/attacked_by_hot_thing = tool.get_temperature()
 	if(attacked_by_hot_thing)
-		visible_message(span_warning("[user] tries to ignite [src] with [I]!"), span_warning("You try to ignite [src] with [I]."))
-		log_combat(user, src, (attacked_by_hot_thing < 480) ? "tried to ignite" : "ignited", I)
+		visible_message(span_warning("[user] tries to ignite [src] with [tool]!"), span_warning("You try to ignite [src] with [tool]."))
+		log_combat(user, src, (attacked_by_hot_thing < 480) ? "tried to ignite" : "ignited", tool)
 		fire_act(attacked_by_hot_thing)
 		return
 	return ..()
@@ -154,21 +154,25 @@
 
 /obj/structure/fuelstation/examine(mob/user)
 	. = ..()
-	. += "<b>Balance</b>: [stored_money] dollars"
+	. += "<b>Balance</b>: [stored_money] [MONEY_NAME]"
 
-/obj/structure/fuelstation/attackby(obj/item/I, mob/living/user, params)
-	if(iscash(I))
-		stored_money += I.get_item_credit_value()
-		to_chat(user, span_notice("You insert [I.get_item_credit_value()] dollars into [src]."))
-		qdel(I)
+/obj/structure/fuelstation/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(iscash(tool))
+		stored_money += tool.get_item_credit_value()
+		to_chat(user, span_notice("You insert [tool.get_item_credit_value()] [MONEY_NAME] into [src]."))
+		qdel(tool)
 		say("Payment received.")
-	if(istype(I, /obj/item/gas_can))
-		var/obj/item/gas_can/G = I
+		return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/gas_can))
+		var/obj/item/gas_can/G = tool
 		if(G.stored_gasoline < 1000 && stored_money)
 			var/gas_to_dispense = min(stored_money*20, 1000-G.stored_gasoline)
 			var/money_to_spend = round(gas_to_dispense/20)
 			G.stored_gasoline = min(1000, G.stored_gasoline+gas_to_dispense)
 			stored_money = max(0, stored_money-money_to_spend)
 			playsound(loc, 'modular_darkpack/master_files/sounds/effects/gas_fill.ogg', 50, TRUE)
-			to_chat(user, span_notice("You fill [I]."))
+			to_chat(user, span_notice("You fill [tool]."))
 			say("Gas filled.")
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
+	return NONE
