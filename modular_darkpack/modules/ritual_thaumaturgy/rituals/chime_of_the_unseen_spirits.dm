@@ -59,7 +59,8 @@
 		if(!do_after(user, 2 SECONDS, interacting_with))
 			return ITEM_INTERACT_BLOCKING
 
-		user.transfer_item_to_turf(src, interacting_with)
+		// get_turf to ensure you dont move it into a table. get_turf on turf just returns src so who gives a shit.
+		user.transfer_item_to_turf(src, get_turf(interacting_with))
 		icon_state = "bell"
 
 		// Grabs click parameters for placement. Totally unnecessary, but I thought it was nice.
@@ -156,7 +157,7 @@
 	. = ..()
 	if(!chime.anchored)
 		return
-	if(entered.z != chime.z)
+	if(entered.z != chime.z) // Im fairly certin all of this file's z level checks is redundent. But not 100% so they stay.
 		return
 
 	if(test_target(entered))
