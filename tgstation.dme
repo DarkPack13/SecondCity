@@ -454,7 +454,6 @@
 #include "code\__DEFINES\~darkpack\phones.dm"
 #include "code\__DEFINES\~darkpack\radio_networks.dm"
 #include "code\__DEFINES\~darkpack\sight.dm"
-#include "code\__DEFINES\~darkpack\signals.dm"
 #include "code\__DEFINES\~darkpack\signals_kindred.dm"
 #include "code\__DEFINES\~darkpack\sound.dm"
 #include "code\__DEFINES\~darkpack\splats.dm"
