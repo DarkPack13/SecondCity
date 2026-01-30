@@ -102,7 +102,17 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
+
 	mutanttongue = /obj/item/organ/tongue/fera
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
+	)
+
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	form_bonus_stats = list(
 		STAT_STRENGTH = 4,
@@ -133,8 +143,18 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
+
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
+	)
+
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
 	form_bonus_stats = list(
@@ -165,8 +185,18 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 	)
+
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
+	)
+
 	no_equip_flags = ITEM_SLOT_ON_BODY
 	biter = TRUE
 	form_bonus_stats = list(

@@ -1,6 +1,28 @@
 // Organs and limbs are applied where it makes sense to limited behavoir.
 // e.g only the proper dogs on all 4s get the brain as that is to restrict there use of tools and force biting.
 
+/obj/item/bodypart/head/fera
+	limb_id = SPECIES_FERA
+	head_flags = NONE
+
+/obj/item/bodypart/chest/fera
+	limb_id = SPECIES_FERA
+
+/obj/item/bodypart/arm/left/fera
+	limb_id = SPECIES_FERA
+	appendage_noun = "paw"
+
+/obj/item/bodypart/arm/right/fera
+	limb_id = SPECIES_FERA
+	appendage_noun = "paw"
+
+/obj/item/bodypart/leg/left/fera
+	limb_id = SPECIES_FERA
+
+/obj/item/bodypart/leg/right/fera
+	limb_id = SPECIES_FERA
+
+
 // Specificly to restrict use of tools... because that was moved to the brain..
 /obj/item/organ/brain/fera
 	name = "exotic brain"
