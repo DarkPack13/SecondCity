@@ -67,8 +67,7 @@ SUBSYSTEM_DEF(masquerade)
 				. = TRUE
 				break
 	if(player_breacher.masquerade_score == 5) //Doesn't matter if they weren't in one of these lists.
-		// DARKPACK TODO - WEREWOLF
-		//GLOB.veil_breakers_list -= player_breacher
+		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
 	/* // DARKPACK TODO - WEREWOLF
@@ -99,11 +98,10 @@ SUBSYSTEM_DEF(masquerade)
 		return
 	player_breacher.masquerade_score = max(0, player_breacher.masquerade_score - 1)
 	masquerade_breachers += list(list(player_breacher, source, reason))
-	// DARKPACK TODO - WEREWOLF
-	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-	//	GLOB.veil_breakers_list |= player_breacher
-	//else
-	GLOB.masquerade_breakers_list |= player_breacher
+	if(isvampiresplat(player_breacher))
+		GLOB.masquerade_breakers_list |= player_breacher
+	else if(iswerewolfsplat(player_breacher))
+		GLOB.veil_breakers_list |= player_breacher
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
@@ -128,28 +126,21 @@ SUBSYSTEM_DEF(masquerade)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)
 			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
-	// DARKPACK TODO - WEREWOLF
-	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-	//	GLOB.veil_breakers_list -= player_breacher
-	//else
 	GLOB.masquerade_breakers_list -= player_breacher
+	GLOB.veil_breakers_list -= player_breacher
 	if(update_preferences)
 		save_persistent_masquerade(player_breacher)
 
 // This is for checking if a joined player should be on the breachers list.
 /datum/controller/subsystem/masquerade/proc/masquerade_breacher_check(mob/living/player_breacher)
 	if(player_breacher.masquerade_score < 5)
-		// DARKPACK TODO - WEREWOLF
-		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		//	GLOB.veil_breakers_list |= player_breacher
-		//else
-		GLOB.masquerade_breakers_list |= player_breacher
+		if(isvampiresplat(player_breacher))
+			GLOB.masquerade_breakers_list |= player_breacher
+		else if(iswerewolfsplat(player_breacher))
+			GLOB.veil_breakers_list |= player_breacher
 	else
-		// DARKPACK TODO - WEREWOLF
-		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		//	GLOB.veil_breakers_list -= player_breacher
-		//else
 		GLOB.masquerade_breakers_list -= player_breacher
+		GLOB.veil_breakers_list -= player_breacher
 
 /datum/controller/subsystem/masquerade/proc/player_masquerade_reinforce(datum/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
