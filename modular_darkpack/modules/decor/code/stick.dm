@@ -6,7 +6,7 @@
 	base_icon_state = "stick"
 	var/stick_type = 0
 	var/variants = 7 // Change this if you add new stick variants (lol)
-	var/soundlist = list(
+	var/static/list/soundlist = list(
 		'modular_darkpack/modules/decor/sound/stick_snap1.ogg',
 		'modular_darkpack/modules/decor/sound/stick_snap2.ogg',
 		'modular_darkpack/modules/decor/sound/stick_snap3.ogg',
