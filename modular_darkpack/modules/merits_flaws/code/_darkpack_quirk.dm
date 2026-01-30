@@ -28,3 +28,21 @@
 			return FALSE
 
 	return ..()
+
+/datum/quirk/darkpack/is_splat_appropriate(datum/splat/mob_splat)
+	if(!..())
+		return FALSE
+
+	if(!forbidden_splats && !allowed_splats && !excluded_clans)
+		return TRUE
+
+	var/datum/splat/splat_path = GLOB.splat_prototypes[mob_splat]
+	var/splat_id = splat_path?.id
+
+	if(forbidden_splats && (splat_id in forbidden_splats))
+		return FALSE
+
+	if(allowed_splats && !(splat_id in allowed_splats))
+		return FALSE
+
+	return TRUE
