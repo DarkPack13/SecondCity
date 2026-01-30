@@ -597,7 +597,7 @@
 	inhand_icon_state = "psg1"
 	worn_icon_state = "sniper"
 	w_class = WEIGHT_CLASS_BULKY
-	accepted_magazine_type = /obj/item/ammo_box/magazine/vamp762x51PSG1 //placeholder
+	accepted_magazine_type = /obj/item/ammo_box/magazine/vamp762x51PSG1
 	bolt_wording = "bolt"
 	bolt_type = BOLT_TYPE_LOCKING
 	semi_auto = TRUE
