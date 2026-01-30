@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Spirit chime can now be placed on walls and floors"
+  - bugfix: "Spirit chime now detects auspex avatars again"
+  - bugfix: "Handling for placing spirit chime on table is much less jank"
