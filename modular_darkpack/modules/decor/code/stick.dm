@@ -60,7 +60,7 @@
 	if(prob(33))
 		triggered = TRUE
 	for(var/mob/guy in hearers(7, src))
-		to_chat(guy, "<span class='danger'>*snap*</span>")
+		to_chat(guy, span_danger("*snap*"))
 		playsound(src, pick(soundlist), 75, TRUE, 4, frequency = rand(0.8, 1.2))
 		icon_state = "[base_icon_state][stick_type]-snapped"
 
