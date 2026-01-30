@@ -124,4 +124,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WTA_GAROU_AUSPICE "ww_garou_auspice"
 /// If the fera is wyrm tainted. Affects their sprite.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
+/// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.
+#define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // END TRAIT DEFINES

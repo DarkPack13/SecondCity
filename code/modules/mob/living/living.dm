@@ -754,7 +754,7 @@
 	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED, TRAIT_UNDENSE), LYING_DOWN_TRAIT)
 	if(HAS_TRAIT(src, TRAIT_FLOORED) && !(dir & (NORTH|SOUTH)))
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
-	if(rotate_on_lying)
+	if(rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE))
 		add_offsets(LYING_DOWN_TRAIT, y_add = PIXEL_Y_OFFSET_LYING)
 
 /// Proc to append behavior related to lying down.

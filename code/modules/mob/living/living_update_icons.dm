@@ -8,7 +8,7 @@
 	var/final_dir = dir
 	var/changed = FALSE
 
-	if(lying_angle != lying_prev && rotate_on_lying)
+	if(lying_angle != lying_prev && (rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE)))
 		changed = TRUE
 		if(lying_angle && lying_prev == 0)
 			if(current_translate)
@@ -25,7 +25,7 @@
 
 	if(resize != RESIZE_DEFAULT_SIZE)
 		changed = TRUE
-		var/is_vertical = !lying_angle || !rotate_on_lying
+		var/is_vertical = !lying_angle || !rotate_on_lying || HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE)
 		var/new_translation = get_transform_translation_size(resize * current_size)
 		// scaling also affects translation, so we've to undo the old translate beforehand.
 		if(is_vertical && current_translate)
