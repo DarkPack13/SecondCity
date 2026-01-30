@@ -21,10 +21,10 @@ GLOBAL_LIST_INIT(garou_breeds, list(
 
 // fera will likely have a seperate list of colors but uses the same feature or var as other fera
 GLOBAL_LIST_INIT(garou_fur_colors, list(
-	"black",
-	"gray",
-	"red",
-	"white",
-	"ginger",
-	"brown"
+	"black" = "black",
+	"gray" = "gray",
+	"red" = "red",
+	"white" = "white",
+	"ginger" = "ginger",
+	"brown" = "brown"
 ))

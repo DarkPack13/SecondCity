@@ -15,6 +15,8 @@
 	var/biter = FALSE
 	var/mob_pixel_w = 0
 	var/list/form_bonus_stats = list()
+	/// Fallback dmi to refrence if we fail to get one from our splat
+	var/fallback_icon
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
@@ -32,6 +34,23 @@
 	for(var/key, value in form_bonus_stats)
 		human.st_remove_stat_mod(key, type)
 
+
+/// Fetch the mobs fur color from their features.
+/datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
+	return human.dna.features[FEATURE_FUR_COLOR] ? human.dna.features[FEATURE_FUR_COLOR] : "black"
+
+
+/// Fetch the mob dmi from our splat
+/datum/species/human/shifter/proc/get_mob_icon(mob/living/carbon/human/human)
+	var/datum/splat/werewolf/shifter/shifter_splat = isshifter(human)
+	var/icon_to_use
+	if(shifter_splat)
+		icon_to_use = shifter_splat.mob_icons[id]
+
+	return icon_to_use ? icon_to_use : fallback_icon
+
+
+
 /datum/species/human/shifter/homid
 	id = SPECIES_FERA_HOMID
 
@@ -44,16 +63,28 @@
 		STAT_MANIPULATION = -2,
 		STAT_APPEARANCE = -1
 	)
+	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	human_who_gained_species.update_mob_height()
 	human_who_gained_species.update_transform(1.25)
 
+
+	human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
+
+	var/fur_color = get_fur_color(human_who_gained_species)
+	var/mob_icon = get_mob_icon(human_who_gained_species)
+
+	human_who_gained_species.overlays_standing[BODY_ADJ_LAYER] = list(image(mob_icon, fur_color))
+
+	human_who_gained_species.apply_overlay(BODY_ADJ_LAYER)
+
 /datum/species/human/shifter/bestial/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	human.update_mob_height()
 	human.update_transform()
+	human.remove_overlay(BODY_ADJ_LAYER)
 
 /datum/species/human/shifter/bestial/update_species_heights(mob/living/carbon/human/holder)
 	if(HAS_TRAIT(holder, TRAIT_DWARF))
@@ -81,11 +112,15 @@
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
 	mob_pixel_w = -8
+	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
 
 /datum/species/human/shifter/war/handle_body(mob/living/carbon/human/human)
 	human.remove_overlay(BODYPARTS_LAYER)
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi', "black"))
+	var/fur_color = get_fur_color(human)
+	var/mob_icon = get_mob_icon(human)
+
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, fur_color))
 
 	human.apply_overlay(BODYPARTS_LAYER)
 
@@ -109,11 +144,15 @@
 		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
 	)
 	mob_pixel_w = -16
+	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
 
 /datum/species/human/shifter/dire/handle_body(mob/living/carbon/human/human)
 	human.remove_overlay(BODYPARTS_LAYER)
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi', "black"))
+	var/fur_color = get_fur_color(human)
+	var/mob_icon = get_mob_icon(human)
+
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, fur_color))
 
 	human.apply_overlay(BODYPARTS_LAYER)
 
@@ -136,11 +175,15 @@
 		STAT_DEXTERITY = 2,
 		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
 	)
+	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 
 /datum/species/human/shifter/feral/handle_body(mob/living/carbon/human/human)
 	human.remove_overlay(BODYPARTS_LAYER)
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi', "black"))
+	var/fur_color = get_fur_color(human)
+	var/mob_icon = get_mob_icon(human)
+
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, fur_color))
 
 	human.apply_overlay(BODYPARTS_LAYER)
 

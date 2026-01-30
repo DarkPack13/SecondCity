@@ -1,3 +1,20 @@
+#warn redesign
+/datum/splat/werewolf/kinfolk/prepare_human_for_preview(mob/living/carbon/human/human)
+	human.set_haircolor("#502D15", update = FALSE)
+	human.set_hairstyle("Long Hair 3", update = TRUE)
+	human.undershirt = "Shirt (Alien)"
+	human.update_body()
+
+#warn len lore
+/datum/splat/werewolf/kinfolk/get_splat_description()
+	return "Lorem Ipsum"
+
+#warn len lore
+/datum/splat/werewolf/kinfolk/get_splat_lore()
+	return list(
+		"Lorem Ipsum",
+	)
+
 /datum/splat/werewolf/shifter/garou/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.set_haircolor("#502D15", update = FALSE)
 	human.set_hairstyle("Long Hair 3", update = TRUE)

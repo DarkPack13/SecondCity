@@ -25,6 +25,18 @@
 	id = SPLAT_FERA
 	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
+	/**
+	 * [SPECIES_ID -> dmi path] assoc list
+	 *
+	 * Only required for forms that you can into (corax lack dire and bestial)
+	 * and acctually have custom sprite behavoir (homid are exempt, bestial are fluff added to homid)
+	 */
+	var/list/mob_icons = list(
+		SPECIES_FERA_BESTIAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi',
+		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi',
+		SPECIES_FERA_DIRE = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi',
+		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
+	)
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
@@ -58,5 +70,9 @@
 		/datum/species/human/shifter/homid,
 		/datum/species/human/shifter/war,
 		/datum/species/human/shifter/feral
+	)
+	mob_icons = list(
+		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/crinos.dmi',
+		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
 */

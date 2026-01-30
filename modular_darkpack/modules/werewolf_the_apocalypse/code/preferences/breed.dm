@@ -26,6 +26,7 @@
 			breed_homid.blend_color(skintone2hex("caucasian1"), ICON_MULTIPLY)
 			breed_homid.scale(32, 32)
 			garou_icon.blend_icon(breed_homid, ICON_OVERLAY)
+		#warn why is only this one failing
 		if(BREED_LUPUS)
 			var/datum/universal_icon/breed_lupus = uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi', "black")
 			breed_lupus.scale(32, 32)
