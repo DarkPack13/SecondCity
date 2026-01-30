@@ -31,6 +31,7 @@
 	transform(form_picked)
 	return TRUE
 
+#warn move to splat? also implement revert_to_breed_form
 /datum/action/cooldown/fera_transform/proc/transform(form_to_transform)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!istype(carbon_owner) || carbon_owner?.dna?.species?.type == form_to_transform)

@@ -1,17 +1,56 @@
+#define MAX_RAGE 10
+// gnois max is capped by its starting gnosis
+
 // Represents the system not that they are a werewolf/fera
 /datum/splat/werewolf
 	abstract_type = /datum/splat/werewolf
 
-	// var/start_rage = 1
-	var/rage = 1
-	// var/start_gnosis = 1
-	var/gnosis = 1
+	var/uses_rage = FALSE
+	var/start_rage = 0
+	var/rage = 0
+	// without a merit kinfolk cannot use gnosis
+	var/uses_gnosis = FALSE
+	var/start_gnosis = 0
+	var/gnosis = 0
+
+/datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
+	if(!uses_rage)
+		return
+
+	if(amount > 0)
+		if(rage < MAX_RAGE)
+			if(sound)
+				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
+			to_chat(src, span_userdanger("<b>RAGE INCREASES</b>"))
+			rage = min(MAX_RAGE, rage+amount)
+	if(amount < 0)
+		if(rage > 0)
+			rage = max(0, rage+amount)
+			if(sound)
+				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+			to_chat(src, span_userdanger("<b>RAGE DECREASES</b>"))
+
+/datum/splat/werewolf/proc/adjust_gnosis(amount, sound = TRUE)
+	if(!uses_gnosis)
+		return
+
+	if(amount > 0)
+		if(gnosis < start_gnosis)
+			if(sound)
+				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
+			to_chat(src, span_boldnotice("<b>GNOSIS INCREASES</b>"))
+			gnosis = min(start_gnosis, gnosis + amount)
+	if(amount < 0)
+		if(gnosis > 0)
+			gnosis = max(0, gnosis + amount)
+			if(sound)
+				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+			to_chat(src, span_boldnotice("<b>GNOSIS DECREASES</b>"))
+	// update_rage_hud()
 
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"
-	splat_traits = list(
-		TRAIT_FRENETIC_AURA
-	)
+	splat_traits = list()
 	id = SPLAT_KINFOLK
 
 /datum/splat/werewolf/shifter
@@ -23,6 +62,10 @@
 		TRAIT_FRENETIC_AURA
 	)
 	id = SPLAT_FERA
+	uses_rage = TRUE
+	uses_gnosis = TRUE
+	start_rage = 1
+	start_gnosis = 1
 	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
 	/**
@@ -76,3 +119,5 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
 */
+
+#undef MAX_RAGE
