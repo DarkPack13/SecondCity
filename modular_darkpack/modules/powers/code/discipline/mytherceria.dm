@@ -116,6 +116,8 @@
  *
  * TODO: If we aver add Natures and/or Demeanors, make them temporarily undetectable unless someone beats the first roll.
  * TODO: "The first Kiasyd’s successes subtract from the number of successes scored by anyone trying to read the object thereafter."
+ *
+ * TODO: Came back to this a few days later (1/30/26) to find that our implementation of Spirit's Touch isn't robust enough to make this TTRPG accurate. Fix that.
  */
 /datum/discipline_power/mytherceria/aura_absorption
 	name = "Aura Absorption"
@@ -127,4 +129,114 @@
 	cooldown_length = 1 TURNS
 
 	toggled = TRUE
-#warn MYTHERCERIA 3 UNIMPLEMENTED
+
+/datum/discipline_power/auspex/the_spirits_touch/activate()
+	. = ..()
+
+	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	health_hud.show_to(owner)
+	owner.update_sight()
+
+	RegisterSignal(owner, COMSIG_MOB_EXAMINING, PROC_REF(scan))
+
+/datum/discipline_power/auspex/the_spirits_touch/deactivate()
+	. = ..()
+
+	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	health_hud.hide_from(owner)
+	owner.update_sight()
+
+	UnregisterSignal(owner, COMSIG_MOB_EXAMINING)
+
+/datum/discipline_power/mytherceria/aura_absorption/proc/scan(mob/user, atom/scanned_atom, list/examine_strings) // Copypasta
+	var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_EMPATHY) + owner.st_get_stat(STAT_PERCEPTION), 6, user, scanned_atom, numerical = TRUE)
+	if(isnull(scanned_atom.aura_scanner))
+		scanned_atom.aura_scanner = user
+		scanned_atom.aura_difficulty = our_power
+	else if(!scanned_atom.aura_scanner == user)
+		to_chat(user, span_warning("The energy coming from this object is faint... you begin trying to focus on it."))
+		if(!do_after(user, max((1 TURNS - our_power SECONDS), 1 SECONDS), scanned_atom, max_interact_count = 1))
+			to_chat(user, span_warning("You find it hard to focus on [scanned_atom]."))
+			return
+		if(scanned_atom.aura_difficulty > our_power)
+			to_chat(user, span_warning("You find it hard to focus on [scanned_atom]... like the thoughts are slipping through your mind."))
+			return
+		else
+			to_chat(user, span_nicegreen("[scanned_atom]'s secrets are revealed to you."))
+			scanned_atom.aura_scanner = user
+			scanned_atom.aura_difficulty = our_power
+
+	// Can scan items we hold and store
+	if(!(scanned_atom in user.get_all_contents()))
+		// Can remotely scan objects and mobs.
+		if((get_dist(scanned_atom, user) > 8) || (!(scanned_atom in view(8, user))))
+			return TRUE
+	playsound(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
+
+	// GATHER INFORMATION
+
+	var/datum/detective_scanner_log/log_entry = new
+
+	// Start gathering
+
+	log_entry.scan_target = scanned_atom.name
+
+	var/list/atom_fibers = GET_ATOM_FIBRES(scanned_atom)
+	if(length(atom_fibers))
+		log_entry.add_data_entry(DETSCAN_CATEGORY_FIBER, atom_fibers.Copy())
+
+	var/list/blood = GET_ATOM_BLOOD_DNA(scanned_atom)
+	if(length(blood))
+		log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, blood.Copy())
+
+	if(ishuman(scanned_atom))
+		var/mob/living/carbon/human/scanned_human = scanned_atom
+		if(!scanned_human.gloves)
+			log_entry.add_data_entry(
+				DETSCAN_CATEGORY_FINGERS,
+				rustg_hash_string(RUSTG_HASH_MD5, scanned_human.dna?.unique_identity)
+			)
+
+	else if(!ismob(scanned_atom))
+
+		var/list/atom_fingerprints = GET_ATOM_FINGERPRINTS(scanned_atom)
+		if(length(atom_fingerprints))
+			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, atom_fingerprints.Copy())
+
+		// Only get reagents from non-mobs.
+		for(var/datum/reagent/present_reagent as anything in scanned_atom.reagents?.reagent_list)
+			log_entry.add_data_entry(DETSCAN_CATEGORY_REAGENTS, list(present_reagent.name = present_reagent.volume))
+
+			// Get blood data from the blood reagent.
+			if(!istype(present_reagent, /datum/reagent/blood))
+				continue
+
+			var/blood_DNA = present_reagent.data["blood_DNA"]
+			var/blood_type = present_reagent.data["blood_type"]
+			if(!blood_DNA || !blood_type)
+				continue
+
+			log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, list(blood_DNA = blood_type))
+
+	if(istype(scanned_atom, /obj/item/card/id))
+		var/obj/item/card/id/user_id = scanned_atom
+		for(var/region in DETSCAN_ACCESS_ORDER())
+			var/access_in_region = SSid_access.accesses_by_region[region] & user_id.GetAccess()
+			if(!length(access_in_region))
+				continue
+			var/list/access_names = list()
+			for(var/access_num in access_in_region)
+				access_names += SSid_access.get_access_desc(access_num)
+
+			log_entry.add_data_entry(DETSCAN_CATEGORY_ACCESS, list("[region]" = english_list(access_names)))
+
+	// sends it off to be modified by the items
+	SEND_SIGNAL(scanned_atom, COMSIG_DETECTIVE_SCANNED, user, log_entry)
+
+	// Perform sorting now, because probably this will be never modified
+	log_entry.sort_data_entries()
+	var/list/generated_report_text = log_entry.generate_report_text()
+	var/output_report = generated_report_text.Join()
+
+	examine_strings += boxed_message(output_report)
+	return TRUE

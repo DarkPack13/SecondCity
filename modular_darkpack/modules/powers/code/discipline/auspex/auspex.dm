@@ -148,6 +148,18 @@
 	UnregisterSignal(owner, COMSIG_MOB_EXAMINING)
 
 /datum/discipline_power/auspex/the_spirits_touch/proc/scan(mob/user, atom/scanned_atom, list/examine_strings)
+	if(scanned_atom.aura_scanner != user && !isnull(scanned_atom.aura_scanner))
+		var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_EMPATHY) + owner.st_get_stat(STAT_PERCEPTION), 6, user, scanned_atom, numerical = TRUE)
+		to_chat(user, span_warning("The energy coming from this object is faint... you begin trying to focus on it."))
+		if(!do_after(user, max((2 TURNS - our_power SECONDS), 1 SECONDS), scanned_atom, max_interact_count = 1))
+			to_chat(user, span_warning("You find it hard to focus on [scanned_atom]."))
+			return
+		if(scanned_atom.aura_difficulty > our_power)
+			to_chat(user, span_warning("You find it hard to focus on [scanned_atom]... like the thoughts are slipping through your mind."))
+			return
+		else
+			to_chat(user, span_nicegreen("[scanned_atom]'s secrets are revealed to you."))
+
 	// Can scan items we hold and store
 	if(!(scanned_atom in user.get_all_contents()))
 		// Can remotely scan objects and mobs.

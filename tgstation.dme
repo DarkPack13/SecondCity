@@ -6911,6 +6911,7 @@
 #include "modular_darkpack\master_files\code\datums\mind\_mind.dm"
 #include "modular_darkpack\master_files\code\datums\station_traits\_station_trait.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
+#include "modular_darkpack\master_files\code\game\atom\_atom.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\trash.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\weaponry.dm"
