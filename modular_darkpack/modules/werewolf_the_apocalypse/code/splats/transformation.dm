@@ -32,6 +32,10 @@
 	return TRUE
 
 /datum/action/cooldown/fera_transform/proc/transform(form_to_transform)
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner) || carbon_owner?.dna?.species?.type == form_to_transform)
+		return
+
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg', 50, FALSE)
 
 	var/matrix/ntransform = matrix(owner.transform)
