@@ -588,7 +588,7 @@
 	masquerade_violating = TRUE
 
 
-/obj/item/gun/ballistic/automatic/darkpack/autosniper //just a test, do not spawn // DARKPACK TODO: fix all this placeholder. this got merged??
+/obj/item/gun/ballistic/automatic/darkpack/autosniper
 	name = "auto-sniper rifle"
 	desc = "A semi-automatic marksman rifle. This particular model is very popular in video games as of late."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
