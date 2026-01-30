@@ -17,6 +17,7 @@
 
 
 /datum/species/human/shifter
+	abstract_type = /datum/species/human/shifter
 	name = "Fera"
 	plural_form = "Fera"
 	id = SPECIES_FERA
@@ -25,6 +26,8 @@
 	var/mob_pixel_w
 	var/mob_pixel_z
 	var/list/form_bonus_stats = list()
+	var/custom_body_render = FALSE
+	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
 	var/fallback_icon
 
@@ -63,7 +66,48 @@
 
 	return icon_to_use ? icon_to_use : fallback_icon
 
+/datum/species/human/shifter/update_body_parts(mob/living/carbon/human/human)
+	if(!custom_body_render)
+		return FALSE
 
+	human.remove_overlay(BODYPARTS_LAYER)
+
+	var/fur_color = get_fur_color(human)
+	var/mob_icon = get_mob_icon(human)
+
+	var/main_iconstate = ""
+	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
+		main_iconstate += "spiral"
+	main_iconstate += fur_color
+	if(human.body_position == LYING_DOWN)
+		main_iconstate += "_rest"
+
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
+
+	human.apply_overlay(BODYPARTS_LAYER)
+
+	return TRUE
+
+/datum/species/human/shifter/update_damage_overlays(mob/living/carbon/human/human)
+	if(!custom_damage_render)
+		return FALSE
+
+	human.remove_overlay(DAMAGE_LAYER)
+
+	var/dam_amount
+	switch(human.get_brute_loss() + human.get_fire_loss() + human.get_agg_loss())
+		if(25 to 100)
+			dam_amount = 1
+		if(100 to 250)
+			dam_amount = 2
+		if(250 to INFINITY)
+			dam_amount = 3
+	if(dam_amount)
+		human.overlays_standing[DAMAGE_LAYER] = mutable_appearance(get_mob_icon(human), "damage[dam_amount][human.body_position == LYING_DOWN ? "_rest" : ""]")
+
+	human.apply_overlay(DAMAGE_LAYER)
+
+	return TRUE
 
 /datum/species/human/shifter/homid
 	id = SPECIES_FERA_HOMID
@@ -116,6 +160,7 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
+		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
 
 	mutanttongue = /obj/item/organ/tongue/fera
@@ -137,32 +182,9 @@
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
 	mob_pixel_w = -8
+	custom_body_render = TRUE
+	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
-
-/datum/species/human/shifter/war/update_body_parts(mob/living/carbon/human/human)
-	human.remove_overlay(BODYPARTS_LAYER)
-
-	var/fur_color = get_fur_color(human)
-	var/mob_icon = get_mob_icon(human)
-
-	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
-		main_iconstate += "spiral"
-	main_iconstate += fur_color
-	if(human.body_position == LYING_DOWN)
-		main_iconstate += "rest"
-
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
-	human.apply_overlay(BODYPARTS_LAYER)
-
-	return TRUE
-
-/datum/species/human/shifter/war/update_damage_overlays(mob/living/carbon/human/human)
-	// remove_overlay(DAMAGE_LAYER)
-
-	// overlays_standing[DAMAGE_LAYER] = damage_overlay
-	// apply_overlay(DAMAGE_LAYER)
 
 
 /datum/species/human/shifter/dire
@@ -171,6 +193,7 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
+		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
@@ -194,32 +217,9 @@
 	)
 	mob_pixel_w = -16
 	mob_pixel_z = -8
+	custom_body_render = TRUE
+	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
-
-/datum/species/human/shifter/dire/update_body_parts(mob/living/carbon/human/human)
-	human.remove_overlay(BODYPARTS_LAYER)
-
-	var/fur_color = get_fur_color(human)
-	var/mob_icon = get_mob_icon(human)
-
-	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
-		main_iconstate += "spiral"
-	main_iconstate += fur_color
-	if(human.body_position == LYING_DOWN)
-		main_iconstate += "rest"
-
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
-	human.apply_overlay(BODYPARTS_LAYER)
-
-	return TRUE
-
-/datum/species/human/shifter/dire/update_damage_overlays(mob/living/carbon/human/human)
-	// remove_overlay(DAMAGE_LAYER)
-
-	// overlays_standing[DAMAGE_LAYER] = damage_overlay
-	// apply_overlay(DAMAGE_LAYER)
 
 
 /datum/species/human/shifter/feral
@@ -228,6 +228,7 @@
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
+		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
@@ -249,29 +250,6 @@
 		STAT_DEXTERITY = 2,
 		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
 	)
+	custom_body_render = TRUE
+	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
-
-/datum/species/human/shifter/feral/update_body_parts(mob/living/carbon/human/human)
-	human.remove_overlay(BODYPARTS_LAYER)
-
-	var/fur_color = get_fur_color(human)
-	var/mob_icon = get_mob_icon(human)
-
-	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
-		main_iconstate += "spiral"
-	main_iconstate += fur_color
-	if(human.body_position == LYING_DOWN)
-		main_iconstate += "rest"
-
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
-	human.apply_overlay(BODYPARTS_LAYER)
-
-	return TRUE
-
-/datum/species/human/shifter/feral/update_damage_overlays(mob/living/carbon/human/human)
-	// remove_overlay(DAMAGE_LAYER)
-
-	// overlays_standing[DAMAGE_LAYER] = damage_overlay
-	// apply_overlay(DAMAGE_LAYER)
