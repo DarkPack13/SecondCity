@@ -8,7 +8,7 @@
 	gain_text = span_warning("You feel legally unprepared.")
 	lose_text = span_notice("You feel bureaucratically legitimate.")
 	medical_record_text = "Patient is not checked in with valid identification."
-	//excluded_clans = list(CLAN_RAVNOS) // They are forced to take this
+	//excluded_clans = list(VAMPIRE_CLAN_RAVNOS) // They are forced to take this
 
 /datum/quirk/darkpack/illegal_identity/add()
 	. = ..()
