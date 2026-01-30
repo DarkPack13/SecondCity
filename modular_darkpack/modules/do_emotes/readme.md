@@ -2,7 +2,7 @@ https://github.com/DarkPack13/SecondCity/pull/563
 
 ## \<DO EMOTES>
 
-Module ID: DO EMOTES
+Module ID: DO_EMOTES
 
 ### Description:
 

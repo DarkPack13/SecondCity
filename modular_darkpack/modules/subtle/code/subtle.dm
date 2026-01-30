@@ -11,9 +11,7 @@
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
-/datum/config_entry/flag/play_subtler_sound
-	default = TRUE
-
+// DARKPACK TODO: Replace to be in line with the rest of our talking sound
 /datum/preference/toggle/subtler_sound
 	savefile_key = "subtler_sound"
 	savefile_identifier = PREFERENCE_PLAYER

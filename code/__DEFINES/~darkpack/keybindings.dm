@@ -12,6 +12,6 @@
 // LOOC
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 
-// Do Emotes
+// DO_EMOTES
 #define COMSIG_KB_CLIENT_DO_DOWN "keybinding_client_do_down"
 #define COMSIG_KB_CLIENT_DO_LONGER_DOWN "keybinding_client_do_longer_down"
