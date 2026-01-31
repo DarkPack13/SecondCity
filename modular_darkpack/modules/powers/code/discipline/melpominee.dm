@@ -11,65 +11,64 @@
 
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/melpominee.ogg'
 
-//THE MISSING VOICE
+/**
+ * • The Missing Voice
+ *
+ * The character can “throw” her voice anywhere within her line of sight. This enables the Daughter to carry on surreptitious conversations,
+ * sing duets with herself, or cause any number of distractions. This power can also be combined with other Melpominee powers to
+ * disguise their source (and some Daughters use it to conceal the fact that Melpominee powers do not function through recorded media).
+ *
+ * The Daughter clicks on an object, mob, or turf and sends a message from that location.
+ *
+ */
+/obj/effect/the_missing_voice
+	name = "disembodied voice"
+	desc = "You can see this? What are you, a ghost lip-reader?"
+
 /datum/discipline_power/melpominee/the_missing_voice
 	name = "The Missing Voice"
 	desc = "Throw your voice to any place you can see."
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
-	target_type = TARGET_OBJ | TARGET_LIVING
+	target_type = MOB_LIVING_TARGETING | TARGET_OBJ | TARGET_TURF
 	range = 7
-
-	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/melpominee/the_missing_voice/activate(atom/movable/target)
 	. = ..()
-	var/new_say = input(owner, "What will [target] say?") as null|text
+	var/new_say = input(owner, "What will you say?") as null|text
 	if(!new_say)
 		return
 
 	//prevent forceful emoting and whatnot
 	new_say = trim(copytext_char(sanitize(new_say), 1, MAX_MESSAGE_LEN))
-	if (findtext(new_say, "*"))
-		to_chat(owner, span_danger("You can't force others to perform emotes!"))
+	if(!owner.try_speak(new_say))
 		return
 
-	if (CHAT_FILTER_CHECK(new_say))
-		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[new_say]\"</span>"))
-		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, LOWER_TEXT(config.ic_filter_regex.match))
+	if(findtext(new_say, "*"))
+		to_chat(owner, span_danger("You can't emote with [name]!"))
 		return
 
-	target.say(message = new_say, forced = "melpominee 1")
-
-	if (!isliving(target))
+	var/obj/dummy = new /obj/effect/the_missing_voice(get_turf(target)) // snowflake code but it's more robust than engineering some evil to_chat mechanism
+	if(!(dummy in range(7, owner)))
+		to_chat(owner, span_warning("You need line of sight to the location your voice is coming from."))
 		return
+	dummy.say(message = new_say, forced = "melpominee 1")
+	qdel(dummy)
 
-	//viewers are able to detect if a person's words aren't their own
-	var/base_difficulty = 5
-	var/difficulty_malus = 0
-	var/masked = FALSE
-	if (ishuman(target)) //apply a malus and different text if victim's mouth isn't visible, and a malus if they're already typing
-		var/mob/living/carbon/human/victim = target
-		if (!victim.is_face_visible())
-			masked = TRUE
-			base_difficulty += 2
-		if (victim.overlays_standing[SAY_LAYER]) //ugly way to check for if the victim is currently typing
-			base_difficulty += 2
-
-	for (var/mob/living/hearer in (oviewers(DEFAULT_SIGHT_DISTANCE, target) - owner))
-		if (!hearer.client)
-			continue
-		difficulty_malus = 0
-		if (get_dist(hearer, target) > 3)
-			difficulty_malus += 1
-		if (SSroll.storyteller_roll(hearer.st_get_stat(STAT_PERCEPTION), base_difficulty + difficulty_malus, mobs_to_show_output = hearer) == ROLL_SUCCESS)
-			if (masked)
-				to_chat(hearer, span_warning("[target]'s jaw isn't moving to match [target.p_their()] words."))
-			else
-				to_chat(hearer, span_warning("[target]'s lips aren't moving to match [target.p_their()] words."))
-
-//PHANTOM SPEAKER
+/**
+ * •• Phantom Speaker
+ *
+ * The Daughter can project her voice to any individual she has personally met. Distance is no object,
+ * but it must be night wherever the target presently is. The vampire can sing, talk, or otherwise project her voice in
+ * any way she sees fit (including other uses of Melpominee), but she cannot hear what she is saying,
+ * and therefore suffers a +1 difficulty to any rolls accompanying her utterance. For instance, the vampire could
+ * project her voice to an enemy in an attempt to intimidate him, but would suffer a +1 to the difficulty of the Charisma + Intimidation roll.
+ *
+ * The Daughter selects a mob from their guestbook and sends a message to them, provided she succedes a Wits + Performance roll. The next N messages
+ * do not require a roll and do not expend blood
+ *
+ */
 /datum/discipline_power/melpominee/phantom_speaker
 	name = "Phantom Speaker"
 	desc = "Project your voice to anyone you've met, speaking to them from afar."
@@ -77,32 +76,77 @@
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_SPEAK
 
+	vitae_cost = 1
+
 	cooldown_length = 5 SECONDS
+	// How many messages can be sent without a roll
+	var/message_turns = 0
+	// the guy we last talked to
+	var/last_guy
 
 /datum/discipline_power/melpominee/phantom_speaker/activate()
 	. = ..()
-	var/mob/living/target = input(owner, "Who will you project your voice to?") as null|mob in (GLOB.player_list - owner)
+	if(!owner.mind.guestbook.known_names)
+		to_chat(owner, span_warning("You don't seem to know anyone you can speak to right now..."))
+		return
+	// Guys we add to the input below
+	var/list/targets
+
+	for(var/mob/living/character in GLOB.player_list)
+		if(character == owner)
+			continue
+		if(owner.mind.guestbook.known_names[character.real_name])
+			character += targets
+
+	var/mob/living/target = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
 	if(!target)
 		return
 
-	var/input_message = input(owner, "What message will you project to them?") as null|text
+	var/input_message = tgui_input_text(owner, "What message will you project to them?", title = "Phantom Speaker")
 	if (!input_message)
 		return
 
 	//sanitisation!
 	input_message = trim(copytext_char(sanitize(input_message), 1, MAX_MESSAGE_LEN))
-	if(CHAT_FILTER_CHECK(input_message))
-		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input_message]\"</span>"))
-		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, LOWER_TEXT(config.ic_filter_regex.match))
+	if(!owner.try_speak(input_message))
 		return
 
+	if(findtext(input_message, "*"))
+		to_chat(owner, span_danger("You can't emote with [name]!"))
+		return
+
+	if(target == last_guy && message_turns)
+		adjust_blood_pool(1) // Refund the blood if we have enough successes and we're talking to the same guy
+	else if (target != last_guy)
+		message_turns = 0
+
 	var/language = owner.get_selected_language()
-	var/message = owner.compose_message(owner, language, input_message, , list())
-	to_chat(target, span_purple("<i>You hear someone's voice in your head...</i>"))
-	target.Hear(message, target, language, input_message, , , )
+	var/message = owner.compose_message(owner, language, input_message)
+	if(!message_turns)
+		var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+		if(successes)
+			message_turns = successes
+		else
+			to_chat(owner, span_userdanger("Your voice falters. Your message is not sent."))
+			return
+
+	to_chat(target, span_boldannounce("<i>You hear a voice in your head...</i>"))
+	target.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
 	to_chat(owner, span_notice("You project your voice to [target]'s ears."))
 
-//MADRIGAL
+	message_turns--
+	last_guy = target
+
+/**
+ * ••• Madrigal
+ *
+ * Music has the power to sway the listener, engendering specific emotions through artful lyrics, pounding crescendo,
+ * or haunting melody. The Daughters of Cacophony can tap into music’s power, forcing listeners to feel whatever they wish. The emotion becomes so
+ * powerful that the listener must act, though what a listener does isn’t something the Siren can directly control.
+ *
+ * The Daughter chooses an emotion and anyone who fails a Wits + Awareness check against her roll will begin to feel that emotion
+ *
+ */
 /datum/discipline_power/melpominee/madrigal
 	name = "Madrigal"
 	desc = "Sing a siren song, calling all nearby to you."
@@ -110,30 +154,32 @@
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
 
-	cooldown_length = 5 SECONDS
-	duration_length = 2 SECONDS
-	duration_override = TRUE
+	cooldown_length = 1 SCENE
+	duration_length = 1 SCENE
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
-		listener.create_walk_to(2 SECONDS, owner)
+	var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.aura_list)
+	for(var/mob/living/member in hearers(7, owner))
+		var/their_power = SSroll.storyteller_roll(member.st_get_stat(STAT_WITS) + member.st_get_stat(STAT_AWARENESS), 7, member, numerical = TRUE)
+		if(our_power > their_power)
+			set_emotion(member, emotion)
 
-		listener.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
-		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
-		listener.apply_overlay(MUTATIONS_LAYER)
+/datum/discipline_power/melpominee/madrigal/proc/set_emotion(mob/living/target, emotion)
+	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, "Madrigal")
+	SEND_SIGNAL(src, COMSIG_MOB_EMOTION_CHANGED, emotion)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 2 SECONDS)
-
-/mob/living/carbon/human/proc/create_walk_to(duration, mob/living/walk_to)
-	var/datum/cb = CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, walk_to_caster), walk_to)
-	for(var/i in 1 to duration)
-		addtimer(cb, (i - 1) * cached_multiplicative_slowdown)
+	to_chat(target, span_purple("You are overwhelmed with [emotion_to_quality(emotion)]."))
 
 /datum/discipline_power/melpominee/madrigal/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	if(HAS_TRAIT_FROM(target, TRAIT_FORCED_EMOTION, "Madrigal"))
+		to_chat(target, span_nicegreen("You are no longer overwhelmed with [emotion_to_quality(emotion)]."))
+	else
+		to_chat(target, span_nicegreen("You feel your [emotion_to_quality(emotion)] weakening."))
+
+	REMOVE_TRAITS_IN(target, "Madrigal")
 
 //SIREN'S BECKONING
 /datum/discipline_power/melpominee/sirens_beckoning
