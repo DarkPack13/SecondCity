@@ -9,6 +9,9 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_NOCRITDAMAGE,
+		TRAIT_TOXIMMUNE,
+		TRAIT_NODROWN,
+		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_RADIMMUNE,
 		TRAIT_CAN_ENTER_TORPOR,
 		TRAIT_VTM_MORALITY,
@@ -50,11 +53,14 @@
 	if (!isdummy(owner))
 		GLOB.kindred_list |= owner
 
+	// Initialize previously set Clan and Generation
+	set_generation(generation)
+	owner.set_clan(clan)
+
 	// DARKPACK TODO - reimplement this action maybe
 	// add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 
-	//this needs to be adjusted to be more accurate for blood spending rates
-	owner.give_st_power(/datum/discipline/bloodheal, clamp(11 - generation, 1, 10))
+	owner.give_st_power(/datum/discipline/bloodheal, get_vitae_spending_rate(generation))
 
 	//vampires die instantly upon having their heart removed
 	RegisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
@@ -83,13 +89,9 @@
 	// Set blood type
 	owner.set_blood_type(BLOOD_TYPE_KINDRED)
 
-	// Apply temperature damage modifiers
-	owner.physiology.heat_mod *= 2
-	owner.physiology.cold_mod *= 0.25
-
-	// Initialize previously set Clan and Generation
-	set_generation(generation)
-	owner.set_clan(clan)
+	// Apply damage modifiers
+	owner.physiology.burn_mod *= 2
+	owner.physiology.brute_mod *= 0.5
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
@@ -109,9 +111,9 @@
 	// Reset blood type
 	owner.set_blood_type()
 
-	// Reset temperature damage modifiers
-	owner.physiology.heat_mod *= 0.5
-	owner.physiology.cold_mod *= 4
+	// Reset damage modifiers
+	owner.physiology.burn_mod *= 0.5
+	owner.physiology.brute_mod *= 2
 
 	// Reset bloodpool size from Generation
 	owner.maxbloodpool = initial(owner.maxbloodpool)
