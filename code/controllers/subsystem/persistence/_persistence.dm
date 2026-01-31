@@ -94,8 +94,6 @@ SUBSYSTEM_DEF(persistence)
 		for(var/datum/transport_controller/linear/tram/transport as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 			save_tram_history(transport.specific_transport_id)
 		save_tram_counter()
-	save_guestbooks() // DARKPACK EDIT ADD
-
 
 ///Loads up Poly's speech buffer.
 /datum/controller/subsystem/persistence/proc/load_poly()

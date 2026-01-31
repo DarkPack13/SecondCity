@@ -4,6 +4,7 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_STAKED), PROC_REF(on_staked))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_STAKED), PROC_REF(on_unstaked))
 	RegisterSignal(src, COMSIG_MOB_CTRL_SHIFT_CLICKED, PROC_REF(attempt_guestbook_add))
+	RegisterSignal(src, COMSIG_MOB_REQUESTING_SCREENTIP_NAME_FROM_USER, PROC_REF(name_override))
 
 /// Gaining [TRAIT_STAKED] forces us into torpor if we're kindred, and just murders us if we're not.
 /mob/living/carbon/human/proc/on_staked(datum/source)
@@ -20,3 +21,14 @@
 
 	if(iskindred(src))
 		cure_torpor(STAKE_TRAIT, TRUE)
+
+/// For Guestbooks.
+/mob/living/carbon/human/proc/name_override(datum/source, list/returned_name, obj/item/held_item, mob/living/carbon/human/hovered)
+	SIGNAL_HANDLER
+
+	if(!ishuman(hovered))
+		return NONE
+
+	var/known_name = mind.guestbook.get_known_name(src, hovered, hovered.real_name)
+	returned_name[1] = known_name ? "[known_name]" : "[hovered.name]"
+	return SCREENTIP_NAME_SET

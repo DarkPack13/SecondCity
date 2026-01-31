@@ -79,7 +79,7 @@
 			return FALSE
 	return TRUE
 
-/datum/guestbook/proc/add_guest(mob/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
+/datum/guestbook/proc/add_guest(mob/living/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
 	//Already exists, should be handled by rename_guest()
 	var/existing_name = LAZYACCESS(known_names, real_name)
 	if(existing_name)
@@ -87,6 +87,7 @@
 			to_chat(user, span_warning("You already know them as \"[existing_name]\"."))
 		return FALSE
 	LAZYADDASSOC(known_names, real_name, given_name)
+	user.save_guestbook(known_names)
 	if(!silent)
 		to_chat(user, span_notice("You memorize the face of [guest] as \"[given_name]\"."))
 	return TRUE
@@ -112,7 +113,7 @@
 		return FALSE
 	return TRUE
 
-/datum/guestbook/proc/remove_guest(mob/user, mob/living/carbon/guest, real_name, silent = TRUE)
+/datum/guestbook/proc/remove_guest(mob/living/user, mob/living/carbon/guest, real_name, silent = TRUE)
 	//Already exists, should be handled by rename_guest()
 	var/existing_name = LAZYACCESS(known_names, real_name)
 	if(!existing_name)
@@ -120,6 +121,7 @@
 			to_chat(user, span_warning("You don't know them in the first place."))
 		return FALSE
 	LAZYREMOVE(known_names, real_name)
+	user.save_guestbook(known_names)
 	if(!silent)
 		to_chat(user, span_notice("You forget the face of \"[existing_name]\"."))
 	return TRUE
