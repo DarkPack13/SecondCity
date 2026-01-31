@@ -52,6 +52,7 @@
 	name = "Kinfolk"
 	splat_traits = list()
 	id = SPLAT_KINFOLK
+	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
@@ -62,6 +63,9 @@
 		TRAIT_FRENETIC_AURA
 	)
 	id = SPLAT_FERA
+	incompatible_splats = list(
+		/datum/splat/werewolf
+	) // We dont support being multiple fera or gaining kinfolk as a fera
 	uses_rage = TRUE
 	uses_gnosis = TRUE
 	start_rage = 1
