@@ -127,9 +127,7 @@
 	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/additional_message_flags = get_message_flags(intentional)
 
-	// DARKPACK EDIT ADDITION START
-	var/space = should_have_space_before_emote(html_decode(subtle_emote)[1]) ? " " : ""
-	// DARKPACK EDIT ADDITION END
+	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // DARKPACK EDIT ADDITION
 
 	// DARKPACK EDIT START
 	// Emote doesn't get printed to chat, runechat only
