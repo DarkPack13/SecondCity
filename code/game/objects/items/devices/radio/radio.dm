@@ -179,8 +179,10 @@
 	LAZYNULL(secure_radio_connections)
 	special_channels = NONE
 
+	/* // DARKPACK EDIT REMOVAL START
 	if(!freerange && (frequency > MAX_FREQ || frequency < MIN_FREQ))
 		frequency = FREQ_COMMON
+	*/ // DARKPACK EDIT REMOVAL END
 
 ///goes through all radio channels we should be listening for and readds them to the global list
 /obj/item/radio/proc/readd_listening_radio_channels()
