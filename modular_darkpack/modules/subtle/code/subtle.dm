@@ -18,6 +18,9 @@
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	default_value = TRUE
 
+/proc/log_subtle(text, list/data)
+	logger.Log(LOG_CATEGORY_SUBTLE, text, data)
+
 /datum/emote/living/subtle/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
 		to_chat(user, span_warning("You can't emote at this time."))
@@ -180,13 +183,7 @@
 *	VERB CODE
 */
 
-/mob/living/proc/subtle_keybind()
-	var/message = input(src, "", "subtle") as text|null
-	if(!length(message))
-		return
-	return subtle(message)
-
-/mob/living/verb/subtle()
+/mob/living/verb/subtle_verb()
 	set name = "Subtle"
 	set category = "IC"
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
@@ -194,14 +191,11 @@
 		return
 	usr.emote("subtle")
 
-/proc/log_subtle(text, list/data)
-	logger.Log(LOG_CATEGORY_SUBTLE, text, data)
-
 /*
 *	VERB CODE 2
 */
 
-/mob/living/verb/subtler()
+/mob/living/verb/subtler_verb()
 	set name = "Subtler Anti-Ghost"
 	set category = "IC"
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
