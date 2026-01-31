@@ -67,6 +67,8 @@
 	var/load_all_away_missions = FALSE
 
 	var/max_npcs = 0 // DARKPACK EDIT ADD - NPC
+	var/umbra_map_path // DARKPACK EDIT ADD - UMBRA
+	var/umbra_map_file	 // DARKPACK EDIT ADD - UMBRA
 
 /**
  * Proc that simply loads the default map config, which should always be functional.
@@ -256,6 +258,11 @@
 	// DARKPACK EDIT ADD START - NPC
 	if ("max_npcs" in json)
 		max_npcs = json["max_npcs"]
+	// DARKPACK EDIT ADD END
+
+	// DARKPACK EDIT ADD START - UMBRA
+	umbra_map_path = json["umbra_map_path"]
+	umbra_map_file = json["umbra_map_file"]
 	// DARKPACK EDIT ADD END
 
 #ifdef UNIT_TESTS

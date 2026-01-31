@@ -21,13 +21,17 @@
 		stat_data["max_score"] = stat.max_score
 		stat_data["points"] = stat.get_points()
 		stat_data["score"] = stat.get_score(include_bonus = FALSE)
-		stat_data["bonus_score"] = stat.get_bonus_score()
+		stat_data["bonus_score"] = max(stat.get_bonus_score(), 0) // Dont go below 0 as this is to display bonuses and doesnt have handling for negative bonus score atm
 		stat_data["abstract_type"] = "[stat.abstract_type]"
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
+
+	if("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots)
+		to_chat(user, span_warning("You cannot be spawned in as this character to adjust its stats."))
+		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
@@ -61,6 +65,10 @@
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
+	if(!isnewplayer(user))
+		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
+		return FALSE
+
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
@@ -87,6 +95,10 @@
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
+
+	if(!isnewplayer(user))
+		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
+		return FALSE
 
 	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
 	log_stats(log_text)

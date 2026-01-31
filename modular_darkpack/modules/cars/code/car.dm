@@ -242,7 +242,7 @@
 		P.Aggro(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
-	if(total_lockpicking <= 0)
+	if(CONFIG_GET(flag/punishing_zero_dots) && total_lockpicking < 1)
 		to_chat(user, span_warning("How do I do this...?"))
 	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		if(!locked)

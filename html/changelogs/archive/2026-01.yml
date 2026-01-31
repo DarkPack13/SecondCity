@@ -311,3 +311,23 @@
       and Baron
   lelandkemble:
   - map: The last full wooden barricades on top of dense objects have been excised
+2026-01-28:
+  FalloutFalcon:
+  - bugfix: some areas should be outdoors again properly (like the upper sections
+      of the map)
+  - bugfix: fixes swapping stats around while spawned in
+  - bugfix: prevents swapping character slots to avoid stuff like masquarde being
+      dinged to the wrong character
+  - qol: bonus die on character sheet is displayed in white
+  - config: hardlocking things due to 0 dot abilites moved to config (off by default)
+  theselfish:
+  - rscadd: Loadout Masks now exist.
+2026-01-30:
+  XeonMations:
+  - bugfix: Fixes records showing species.
+  - map: added the ability to have multiple umbra choices based off json map config
+2026-01-31:
+  FalloutFalcon:
+  - bugfix: Spirit chime can now be placed on walls and floors
+  - bugfix: Spirit chime now detects auspex avatars again
+  - bugfix: Handling for placing spirit chime on table is much less jank
