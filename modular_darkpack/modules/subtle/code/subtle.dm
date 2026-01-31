@@ -51,7 +51,7 @@
 
 	subtle_message = span_subtle("<b>[user]</b>[space]<i>[user.apply_message_emphasis(subtle_message)]</i>")
 
-	var/list/viewers = get_hearers_in_view(SUBTLE_ONE_TILE, user)
+	var/list/viewers = get_hearers_in_view(SUBTLE_ONE_TILE, get_turf(user))
 
 	for(var/obj/item/dullahan_relay/dullahan in viewers)
 		viewers -= dullahan
@@ -71,8 +71,7 @@
 		receiver.show_message(subtle_message, alt_msg = subtle_message)
 		// Optional sound notification
 		if(!isobserver(receiver))
-			var/datum/preferences/prefs = receiver.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+			if(receiver.client?.prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/beeps_jingle.ogg', 50)
 
 	return TRUE
@@ -107,7 +106,7 @@
 		if(!subtler_emote)
 			return FALSE
 
-		var/list/in_view = get_hearers_in_view(subtler_range, user)
+		var/list/in_view = get_hearers_in_view(subtler_range, get_turf(user))
 
 		in_view -= GLOB.dead_mob_list
 		in_view.Remove(user)
@@ -153,8 +152,7 @@
 		user.show_message(subtler_message, alt_msg = subtler_message)
 		if((get_dist(user.loc, target_mob.loc) <= subtler_range))
 			target_mob.show_message(subtler_message, alt_msg = subtler_message)
-			var/datum/preferences/prefs = target_mob.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+			if(target_mob.client?.prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 		else
 			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
@@ -162,8 +160,7 @@
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
 			hologram.Impersonation.show_message(subtler_message, alt_msg = subtler_message)
-			var/datum/preferences/prefs = hologram.Impersonation.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+			if(hologram.Impersonation?.client?.prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 	else
 		if(isobj(target))
@@ -175,8 +172,7 @@
 
 		for(var/mob/receiver in ghostless)
 			receiver.show_message(subtler_message, alt_msg = subtler_message)
-			var/datum/preferences/prefs = receiver.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+			if(receiver.client?.prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
 	return TRUE
