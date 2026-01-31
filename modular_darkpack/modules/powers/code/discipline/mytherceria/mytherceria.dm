@@ -27,12 +27,12 @@
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
-	target_type = TARGET_LIVING
+	target_type = TARGET_PLAYER
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
 	range = 7
 
-/datum/discipline_power/auspex/telepathy/activate(mob/living/target)
+/datum/discipline_power/mytherceria/folderol/activate(mob/living/target)
 	. = ..()
 	var/mob/living/L = target
 
@@ -61,7 +61,7 @@
  * Additionally, the player can detect ANY magic that is not undead in nature (including ghosts, wraiths, vampires, etc.)
  * This is functionally Scent of the True Form but it can detect magical items and spells as well.
  *
- * TODO: Crinos beast HUD overlay
+ * TODO: HUD overlays - code/__DEFINES/~darkpack/auras.dm
  *
  *//*
 /datum/discipline_power/mytherceria/fae_sight
@@ -240,3 +240,38 @@
 
 	examine_strings += boxed_message(output_report)
 	return TRUE
+
+/**
+ * •••• Chanjelin Ward
+ *
+ * The vampire inscribes a ward on an object, a location, or a person. That ward disorients and befuddles anyone that sees it,
+ * meaning that even if an intruder can penetrate a Weirdling’s security and steal an object of value, he’s unlikely to be able to find his way to the exit.
+ * Spiteful Kiasyd use these wards as punishment — one story tells of a Weirdling that drew a ward on an enemy’s shirt as dawn approached,
+ * and then watched (from safety) as the unfortunate vampire burned in the sun, unable to remember which way to run.
+ *
+ * When activated, select a target that you can physically touch including an object, a mob, or a turf. The Ward takes 10 seconds if the users
+ * Dexterity + Occult is equal to or greater than 5, and takes a mere 5 seconds when the user's Dexterity + Occult is equal to or greater than 8.
+ * When placed on an object, anyone coming into contact with that object (such as picking it up or otherwise touching it) suffer a severe movement speed penalty
+ * and a short period of randomized controls. When placed on a mob, they also suffer from this penalty. When placed on a turf, it functions as a tripmine.
+ */
+/datum/discipline_power/mytherceria/chanjelin_ward
+	name = "Chanjelin Ward"
+	desc = "Place a ward that confuses and befuddles your foes."
+
+	level = 4
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
+	target_type = TARGET_MOB | TARGET_OBJ | TARGET_TURF | TARGET_SELF
+	vitae_cost = 0
+	cooldown_length = 4 TURNS
+
+/datum/discipline_power/mytherceria/chanjelin_ward/pre_activation_checks(atom/target)
+	. = ..()
+	var/activate_time = max(3 TURNS - (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_OCCULT)), 1 SECONDS)
+	to_chat(owner, span_notice("You begin inscribing a ward on [target]."))
+	if(!do_after(owner, activation_time, target, interaction_key = "chanjelin_ward", max_interact_count = 1))
+		to_chat(owner, span_warning("You decide not to finish the ward and erase your progress."))
+		return FALSE
+
+/datum/discipline_power/mytherceria/chanjelin_ward/activate(atom/target)
+	. = ..()
+	AddElement(/datum/element/chanjelin_ward, user, target)

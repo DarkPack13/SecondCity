@@ -7381,6 +7381,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\dominate\status_effects\mesmerize_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\fortitude\fortitude.dm"
 #include "modular_darkpack\modules\powers\code\discipline\fortitude\fortitude_status_effect.dm"
+#include "modular_darkpack\modules\powers\code\discipline\mytherceria\chanjelin_ward_element.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obfuscate\obfuscate.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obfuscate\obfuscate_helpers.dm"
 #include "modular_darkpack\modules\powers\code\discipline\potence\potence.dm"
