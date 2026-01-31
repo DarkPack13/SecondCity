@@ -5,7 +5,7 @@
 	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	main_feature_name = "Fera Fur Color"
 	#warn placeholder trait choice
-	relevant_inherent_trait = TRAIT_WTA_GAROU_BREED
+	relevant_inherent_trait = TRAIT_FERA_FUR
 	must_have_relevant_trait = TRUE
 
 /datum/preference/choiced/garou_fur_color/init_possible_values()

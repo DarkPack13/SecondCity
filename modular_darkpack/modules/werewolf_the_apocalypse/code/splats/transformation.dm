@@ -28,14 +28,21 @@
 	if(!form_picked)
 		return
 
-	transform(form_picked)
+	var/datum/splat/werewolf/shifter/our_splat = isshifter(target_atom)
+	our_splat.transform(form_picked)
+
 	return TRUE
 
-#warn move to splat? also implement revert_to_breed_form
-/datum/action/cooldown/fera_transform/proc/transform(form_to_transform)
-	var/mob/living/carbon/carbon_owner = owner
-	if(!istype(carbon_owner) || carbon_owner?.dna?.species?.type == form_to_transform)
+/datum/splat/werewolf/shifter/proc/transform(form_to_transform)
+	if(!form_to_transform)
 		return
+	if(!istype(owner))
+		return
+	if(!(form_to_transform in transformation_list))
+		return
+	if(owner?.dna?.species?.type == form_to_transform)
+		return
+
 
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg', 50, FALSE)
 
@@ -45,7 +52,12 @@
 
 	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform), DOGGY_ANIMATION_COOLDOWN * 0.9)
 
-/datum/action/cooldown/fera_transform/proc/transform_finish(form_to_transform)
+/datum/splat/werewolf/shifter/proc/revert_to_breed_form()
+	var/form = GLOB.fera_breeds[owner.dna.features[FEATURE_FERA_BREED]]
+
+	transform(form)
+
+/datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform)
 	animate(owner, transform = null, color = "#FFFFFF", time = DOGGY_ANIMATION_COOLDOWN * 0.1)
 	owner.set_species(form_to_transform)
 

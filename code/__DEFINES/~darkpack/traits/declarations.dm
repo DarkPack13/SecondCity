@@ -117,11 +117,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
 /// If the species has garou breeds to select.
-#define TRAIT_WTA_GAROU_BREED "ww_garou_breeds"
+#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
 // if the species has garou tribes to select.
-#define TRAIT_WTA_GAROU_TRIBE "ww_garou_tribes"
+#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
 // If the species has garou auspices to select.
-#define TRAIT_WTA_GAROU_AUSPICE "ww_garou_auspice"
+#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
+// This mob has fur!
+#define TRAIT_FERA_FUR "fera_fur"
 /// If the fera is wyrm tainted. Affects their sprite.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
 /// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.

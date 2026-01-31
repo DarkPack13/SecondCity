@@ -6,15 +6,15 @@
 
 GLOBAL_LIST_INIT(fera_breeds, list(
 	BREED_HOMID = /datum/species/human/shifter/homid,
-	BREED_LUPUS = /datum/species/human/shifter/war,
-	BREED_CRINOS = /datum/species/human/shifter/feral,
+	BREED_LUPUS = /datum/species/human/shifter/feral,
+	BREED_CRINOS = /datum/species/human/shifter/war,
 ))
 
 // Breeds
 GLOBAL_LIST_INIT(garou_breeds, list(
 	BREED_HOMID = /datum/species/human/shifter/homid,
-	BREED_LUPUS = /datum/species/human/shifter/war,
-	BREED_CRINOS = /datum/species/human/shifter/feral,
+	BREED_LUPUS = /datum/species/human/shifter/feral,
+	BREED_CRINOS = /datum/species/human/shifter/war,
 ))
 
 #define FEATURE_FUR_COLOR "fera_fur"
