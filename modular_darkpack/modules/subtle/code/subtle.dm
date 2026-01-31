@@ -62,7 +62,9 @@
 			viewers |= iterating_hologram.Impersonation
 
 	for(var/mob/ghost as anything in GLOB.dead_mob_list)
-		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers))
+		if(isnull(ghost.client) || isnewplayer(ghost))
+			continue
+		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT))
 			to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [subtle_message]")
 
 	for(var/mob/receiver in viewers)
