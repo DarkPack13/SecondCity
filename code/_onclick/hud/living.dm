@@ -33,6 +33,7 @@
 	zone_icon = new /atom/movable/screen/zone_hud(null, src)
 	infodisplay += zone_icon
 
-	if(iswerewolfsplat(owner))
-		add_werewolf_elements()
+	if(owner.splats)
+		for(var/datum/splat/splat in owner.splats)
+			splat.add_relevent_huds(src)
 	// DARKPACK EDIT ADD END

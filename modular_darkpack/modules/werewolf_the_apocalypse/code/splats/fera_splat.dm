@@ -13,8 +13,8 @@
 	var/start_gnosis = 0
 	var/gnosis = 0
 
-/datum/splat/werewolf/on_gain()
-	owner.hud_used?.add_werewolf_elements()
+/datum/splat/werewolf/add_relevent_huds(datum/hud/hud_used)
+	hud_used.add_werewolf_elements()
 
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
 	if(!uses_rage)
