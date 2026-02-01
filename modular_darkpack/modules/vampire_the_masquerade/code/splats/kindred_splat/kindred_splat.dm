@@ -89,9 +89,9 @@
 	// Set blood type
 	owner.set_blood_type(BLOOD_TYPE_KINDRED)
 
-	// Apply damage modifiers
-	owner.physiology.burn_mod *= 2
-	owner.physiology.brute_mod *= 0.5
+	// Apply temperature damage modifiers
+	owner.physiology.heat_mod *= 2
+	owner.physiology.cold_mod *= 0.25
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
@@ -111,9 +111,9 @@
 	// Reset blood type
 	owner.set_blood_type()
 
-	// Reset damage modifiers
-	owner.physiology.burn_mod *= 0.5
-	owner.physiology.brute_mod *= 2
+	// Reset temperature damage modifiers
+	owner.physiology.heat_mod *= 0.5
+	owner.physiology.cold_mod *= 4
 
 	// Reset bloodpool size from Generation
 	owner.maxbloodpool = initial(owner.maxbloodpool)
