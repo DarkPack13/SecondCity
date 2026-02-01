@@ -27,6 +27,7 @@
 /atom/movable/screen/auspice/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 
+	update_icon()
 	register_context()
 
 /atom/movable/screen/auspice/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -79,16 +80,24 @@
 		icon_state = "[GLOB.moon_state]"
 	return ..()
 
+
+/mob/living/proc/update_werewolf_hud()
+	if(!hud_used)
+		return
+	hud_used.rage_and_gnosis_icon?.update_icon()
+
 /atom/movable/screen/rage_and_gnosis
 	name = "Rage and Gnosis"
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_meters.dmi'
 	icon_state = "rage0"
 	screen_loc = UI_LIVING_RAGE_AND_GNOSIS
 
-/mob/living/proc/update_werewolf_hud()
-	if(!hud_used)
-		return
-	hud_used.rage_and_gnosis_icon?.update_icon()
+/atom/movable/screen/rage_and_gnosis/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+
+	update_icon()
+
+
 
 
 /atom/movable/screen/rage_and_gnosis/update_icon_state()

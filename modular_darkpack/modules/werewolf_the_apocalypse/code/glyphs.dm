@@ -1,7 +1,7 @@
 /// Inits GLOB.glyph_list
 /proc/init_glyphs()
 	var/glyph_list = list()
-	for(var/path in subtypesof(/obj/effect/decal/garou_glyph))
+	for(var/path in valid_subtypesof(/obj/effect/decal/garou_glyph))
 		var/obj/effect/decal/garou_glyph/S = path
 		glyph_list[S.garou_name] = S
 	sort_list(glyph_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
@@ -43,6 +43,7 @@
 			return ITEM_INTERACT_FAILURE
 
 /obj/effect/decal/garou_glyph
+	abstract_type = /obj/effect/decal/garou_glyph
 	name = "odd glyph"
 	desc = "An odd collection of symbols drawn in what seems to be charcoal."
 	anchored = TRUE

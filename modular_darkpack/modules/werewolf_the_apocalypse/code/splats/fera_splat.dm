@@ -5,12 +5,14 @@
 /datum/splat/werewolf
 	abstract_type = /datum/splat/werewolf
 
+	var/datum/auspice/auspice
+
 	var/uses_rage = FALSE
 	var/start_rage = 0
 	var/rage = 0
 	// without a merit kinfolk cannot use gnosis
 	var/uses_gnosis = FALSE
-	var/start_gnosis = 0
+	var/max_gnosis = 0
 	var/gnosis = 0
 
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
@@ -19,10 +21,10 @@
 
 	if(amount > 0)
 		if(rage < MAX_RAGE)
+			rage = min(MAX_RAGE, rage+amount)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
 			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
-			rage = min(MAX_RAGE, rage+amount)
 	if(amount < 0)
 		if(rage > 0)
 			rage = max(0, rage+amount)
@@ -37,14 +39,14 @@
 		return
 
 	if(amount > 0)
-		if(gnosis < start_gnosis)
+		if(gnosis < max_gnosis)
+			gnosis = clamp(gnosis + amount, 0, max_gnosis)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
-			gnosis = min(start_gnosis, gnosis + amount)
 	if(amount < 0)
 		if(gnosis > 0)
-			gnosis = max(0, gnosis + amount)
+			gnosis = clamp(gnosis + amount, 0, max_gnosis)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
@@ -73,7 +75,7 @@
 	uses_rage = TRUE
 	uses_gnosis = TRUE
 	start_rage = 1
-	start_gnosis = 1
+	max_gnosis = 1
 	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
 	/**

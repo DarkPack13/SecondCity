@@ -11,6 +11,7 @@
 /atom/movable/screen/bloodpool/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 
+	update_icon()
 	register_context()
 
 /atom/movable/screen/bloodpool/add_context(atom/source, list/context, obj/item/held_item, mob/user)

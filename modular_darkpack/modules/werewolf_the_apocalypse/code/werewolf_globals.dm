@@ -46,4 +46,7 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 /// List of all Tribe totems
 GLOBAL_LIST_EMPTY(totems)
 
+GLOBAL_LIST_INIT(auspices_list, init_auspices())
+#warn implement tribes
+GLOBAL_LIST_EMPTY(tribes_list)
 GLOBAL_LIST_INIT(glyph_list, init_glyphs())
