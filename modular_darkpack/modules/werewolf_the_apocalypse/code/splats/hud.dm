@@ -54,6 +54,7 @@
 		to_chat(clicker, span_warning("You need to be outside to look at the moon!"))
 		return
 
+	// TTRPG accurate would be you only do this once at the start of the round.
 	if(clicker.last_moon_look != 0 && clicker.last_moon_look + 1 SCENES > world.time)
 		return
 	clicker.last_moon_look = world.time
@@ -64,7 +65,17 @@
 	update_icon()
 
 	var/rage_amount = 1
-	//switch(GLOB.moon_state)
+	switch(GLOB.moon_state)
+		if(MOON_NEW)
+			rage_amount = 1
+		if(MOON_WANING_GIBBOUS, MOON_WANING_CRESCENT)
+			rage_amount = 2
+		if(MOON_WAXING_CRESENT, MOON_FIRST_QUARTER, MOON_WAXING_GIBBOUS, MOON_LAST_QUARTER)
+			rage_amount = 3
+		if(MOON_FULL)
+			rage_amount = 4
+	// TODO: Make it also check moons_born_under from auspice to grant max rage.
+
 	clicker_splat.adjust_rage(rage_amount, TRUE)
 
 /atom/movable/screen/auspice/update_icon_state()

@@ -26,22 +26,22 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 
 /proc/moon_phase_name(phase_day)
 	if(phase_day < 1.84566)
-		return "new moon"
+		return MOON_NEW
 	if(phase_day < 5.53699)
-		return "waxing cresent"
+		return MOON_WAXING_CRESENT
 	if(phase_day < 9.22831)
-		return "first quarter"
+		return MOON_FIRST_QUARTER
 	if(phase_day < 12.91963)
-		return "waxing gibbous"
+		return MOON_WAXING_GIBBOUS
 	if(phase_day < 16.61096)
-		return "full moon"
+		return MOON_FULL
 	if(phase_day < 20.30228)
-		return "waning gibbous"
+		return MOON_WANING_GIBBOUS
 	if(phase_day < 23.99361)
-		return "last quarter"
+		return MOON_LAST_QUARTER
 	if(phase_day < 27.68493)
-		return "waning crescent"
-	return "full moon"
+		return MOON_WANING_CRESCENT
+	return MOON_FULL
 
 /// List of all Tribe totems
 GLOBAL_LIST_EMPTY(totems)
