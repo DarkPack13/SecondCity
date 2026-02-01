@@ -7634,6 +7634,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\garou_organs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\fera_species.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\fera_splat.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\hud.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\is_werewolf_helpers.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\pref_lore.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\transformation.dm"

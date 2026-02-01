@@ -13,6 +13,9 @@
 	var/start_gnosis = 0
 	var/gnosis = 0
 
+/datum/splat/werewolf/on_gain()
+	owner.hud_used?.add_werewolf_elements()
+
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
 	if(!uses_rage)
 		return
@@ -20,15 +23,17 @@
 	if(amount > 0)
 		if(rage < MAX_RAGE)
 			if(sound)
-				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
-			to_chat(src, span_userdanger("<b>RAGE INCREASES</b>"))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
+			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
 			rage = min(MAX_RAGE, rage+amount)
 	if(amount < 0)
 		if(rage > 0)
 			rage = max(0, rage+amount)
 			if(sound)
-				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
-			to_chat(src, span_userdanger("<b>RAGE DECREASES</b>"))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+			to_chat(owner, span_userdanger("<b>RAGE DECREASES</b>"))
+
+	owner.update_werewolf_hud()
 
 /datum/splat/werewolf/proc/adjust_gnosis(amount, sound = TRUE)
 	if(!uses_gnosis)
@@ -37,16 +42,17 @@
 	if(amount > 0)
 		if(gnosis < start_gnosis)
 			if(sound)
-				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
-			to_chat(src, span_boldnotice("<b>GNOSIS INCREASES</b>"))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
+			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
 			gnosis = min(start_gnosis, gnosis + amount)
 	if(amount < 0)
 		if(gnosis > 0)
 			gnosis = max(0, gnosis + amount)
 			if(sound)
-				SEND_SOUND(src, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
-			to_chat(src, span_boldnotice("<b>GNOSIS DECREASES</b>"))
-	// update_rage_hud()
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
+
+	owner.update_werewolf_hud()
 
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"

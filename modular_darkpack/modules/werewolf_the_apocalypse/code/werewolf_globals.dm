@@ -1,5 +1,47 @@
 /// Current phase of the moon, randomly chosen
-GLOBAL_VAR_INIT(moon_state, pick("New", "Crescent", "Half", "Gibbous", "Full"))
+GLOBAL_VAR_INIT(moon_state, get_moon_phase())
+
+#define LUNAR_CYCLE 29.530588
+/proc/get_moon_phase()
+	// First known fullmoon since the BYOND EPOCH.
+	var/ref_year = 2000
+	var/ref_month = 1
+	var/ref_day = 20
+
+	var/year = text2num(station_time_timestamp("YYYY"))
+	var/month = text2num(station_time_timestamp("MM"))
+	var/day = text2num(station_time_timestamp("DD"))
+
+	var/ref_days = ref_year * 365 + ref_month * 30 + ref_day
+	var/current_days = year * 365 + month * 30 + day
+
+	var/days_since_full = current_days - ref_days
+
+	var/phase_day = days_since_full % LUNAR_CYCLE
+	if(phase_day < 0)
+		phase_day += LUNAR_CYCLE
+
+	return moon_phase_name(phase_day)
+#undef LUNAR_CYCLE
+
+/proc/moon_phase_name(phase_day)
+	if(phase_day < 1.84566)
+		return "new moon"
+	if(phase_day < 5.53699)
+		return "waxing cresent"
+	if(phase_day < 9.22831)
+		return "first quarter"
+	if(phase_day < 12.91963)
+		return "waxing gibbous"
+	if(phase_day < 16.61096)
+		return "full moon"
+	if(phase_day < 20.30228)
+		return "waning gibbous"
+	if(phase_day < 23.99361)
+		return "last quarter"
+	if(phase_day < 27.68493)
+		return "waning crescent"
+	return "full moon"
 
 /// List of all Tribe totems
 GLOBAL_LIST_EMPTY(totems)

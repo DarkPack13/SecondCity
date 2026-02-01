@@ -249,6 +249,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healthdoll = null
 	bloodpool_icon = null // DARKPACK EDIT ADD
 	zone_icon = null // DARKPACK EDIT ADD
+	auspice_icon = null // DARKPACK EDIT ADD - WEREWOLF
+	rage_and_gnosis_icon = null // DARKPACK EDIT ADD - WEREWOLF
 	spacesuit = null
 	hunger = null
 	alien_plasma_display = null

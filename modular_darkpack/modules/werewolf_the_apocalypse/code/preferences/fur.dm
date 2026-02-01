@@ -4,7 +4,6 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	main_feature_name = "Fera Fur Color"
-	#warn placeholder trait choice
 	relevant_inherent_trait = TRAIT_FERA_FUR
 	must_have_relevant_trait = TRUE
 

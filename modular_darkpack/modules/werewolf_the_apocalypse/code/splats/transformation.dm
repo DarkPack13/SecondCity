@@ -1,4 +1,4 @@
-#define DOGGY_ANIMATION_COOLDOWN 1 TURNS
+#define DOGGY_ANIMATION_TIME 1 TURNS
 
 /datum/action/cooldown/fera_transform
 	name = "Transform"
@@ -8,7 +8,7 @@
 	button_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	button_icon_state = "hispo"
 	check_flags = AB_CHECK_CONSCIOUS
-	cooldown_time = DOGGY_ANIMATION_COOLDOWN
+	cooldown_time = DOGGY_ANIMATION_TIME
 	var/list/possible_shapes = list()
 
 /datum/action/cooldown/fera_transform/New(Target, original = TRUE, list/transformations)
@@ -46,11 +46,13 @@
 
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg', 50, FALSE)
 
+	owner.Stun(DOGGY_ANIMATION_TIME, ignore_canstun = TRUE)
+
 	var/matrix/ntransform = matrix(owner.transform)
 	ntransform.Scale(1.1, 1.1)
-	animate(owner, transform = ntransform, color = "#000000", time = DOGGY_ANIMATION_COOLDOWN * 0.9)
+	animate(owner, transform = ntransform, color = "#000000", time = DOGGY_ANIMATION_TIME * 0.9)
 
-	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform), DOGGY_ANIMATION_COOLDOWN * 0.9)
+	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform), DOGGY_ANIMATION_TIME * 0.9)
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
 	var/form = GLOB.fera_breeds[owner.dna.features[FEATURE_FERA_BREED]]
@@ -58,7 +60,7 @@
 	transform(form)
 
 /datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform)
-	animate(owner, transform = null, color = "#FFFFFF", time = DOGGY_ANIMATION_COOLDOWN * 0.1)
+	animate(owner, transform = null, color = "#FFFFFF", time = DOGGY_ANIMATION_TIME * 0.1)
 	owner.set_species(form_to_transform)
 
-#undef DOGGY_ANIMATION_COOLDOWN
+#undef DOGGY_ANIMATION_TIME
