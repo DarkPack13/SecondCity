@@ -35,7 +35,7 @@
 	if(iskindred(src))
 		if(bloodpool > 0)
 			adjust_blood_pool(-1)
-			cure_torpor()
+			cure_torpor(DAMAGE_TRAIT)
 			to_chat(src, span_notice("You have awoken from your Torpor."))
 		else
 			to_chat(src, span_warning("You have no blood to re-awaken with..."))
