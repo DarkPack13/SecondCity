@@ -58,7 +58,7 @@
 
 //add this disease if the host does not already have too many
 /datum/disease/proc/try_infect(mob/living/infectee, make_copy = TRUE)
-	infect(infectee, make_copy)
+	// infect(infectee, make_copy) // DARKPACK EDIT REMOVAL
 	return TRUE
 
 //add the disease with no checks
