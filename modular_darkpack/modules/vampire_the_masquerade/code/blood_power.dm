@@ -11,7 +11,7 @@
 
 	/// How much the ability costs to activate per "turn"
 	var/bp_per_turns = 1
-	var/stat_buff_amount = 2
+	var/stat_buff_amount = 1
 	// Activated for two "turns" as 5 seconds is acctually pretty short. Opens to door to let players set how long they are declaring it active for.
 	/// How many "turns" its activated for. Multipes the blood cost.
 	var/turns_activated = 2
@@ -94,9 +94,11 @@
 	if(!kindred_splat)
 		return
 	// Realising this is reimplenting very similar behavior to discs and could possibly just be typed under it.
-	var/stat_buff = tgui_input_number(owner, "Set amount of dice to add for usage. (Max based on your generation)", "Set Buff Bonus", stat_buff_amount, kindred_splat.vitae_spending_rate, 1)
-	if(stat_buff)
-		stat_buff_amount = stat_buff
+	var/max_buff_amount = kindred_splat.vitae_spending_rate
+	stat_buff_amount = clamp(stat_buff_amount, 0, max_buff_amount)
+	var/stat_buff_input = tgui_input_number(owner, "Set amount of dice to add for usage. (Max based on your generation)", "Set Buff Bonus", stat_buff_amount, max_buff_amount, 1)
+	if(stat_buff_input)
+		stat_buff_amount = stat_buff_input
 
 // DARKPACK TODO - (Refactor. Both this and discs should prob just have a subtype for /action_button)
 /atom/movable/screen/movable/action_button/Click(location, control, params)
