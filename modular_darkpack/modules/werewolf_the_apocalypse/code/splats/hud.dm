@@ -17,6 +17,8 @@
 		rage_and_gnosis_icon = new(null, src)
 		infodisplay += rage_and_gnosis_icon
 
+/datum/splat/werewolf/add_relevent_huds(datum/hud/hud_used)
+	hud_used.add_werewolf_elements()
 
 /atom/movable/screen/auspice
 	name = "Auspice"
