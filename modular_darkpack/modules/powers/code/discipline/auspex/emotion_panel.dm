@@ -4,7 +4,7 @@
 	set category = "IC"
 	set desc = "Change your character's emotions."
 
-	if(!HAS_TRAIT(TRAIT_FORCED_EMOTION))
+	if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
 		to_chat(src, span_warning("You cannot change emotions right now."))
 
 	var/new_emotion = tgui_input_list(src, "What are you feeling?", "Feelings", GLOB.aura_list)

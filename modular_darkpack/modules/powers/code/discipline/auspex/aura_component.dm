@@ -32,6 +32,7 @@
 		return
 
 	current_aura = GLOB.aura_list[new_emotion]
+	changed_mob.current_emotion = current_aura
 	update_aura()
 
 /datum/component/aura/proc/update_aura()

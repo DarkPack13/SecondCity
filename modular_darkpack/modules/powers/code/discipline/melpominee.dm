@@ -95,7 +95,7 @@
 	for(var/mob/living/character in GLOB.player_list)
 		if(character == owner)
 			continue
-		if(owner.mind.guestbook.known_names[character.real_name])
+		if(owner.mind.guestbook.known_names[character.real_name] && character.client)
 			character += targets
 
 	var/mob/living/target = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
@@ -154,8 +154,8 @@
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
 
-	cooldown_length = 1 SCENE
-	duration_length = 1 SCENE
+	cooldown_length = 1 SCENES
+	duration_length = 1 SCENES
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
@@ -174,14 +174,24 @@
 
 /datum/discipline_power/melpominee/madrigal/deactivate(mob/living/carbon/human/target)
 	. = ..()
+
 	if(HAS_TRAIT_FROM(target, TRAIT_FORCED_EMOTION, "Madrigal"))
-		to_chat(target, span_nicegreen("You are no longer overwhelmed with [emotion_to_quality(emotion)]."))
+		to_chat(target, span_nicegreen("You are no longer overwhelmed with [emotion_to_quality(target.current_emotion)]."))
 	else
-		to_chat(target, span_nicegreen("You feel your [emotion_to_quality(emotion)] weakening."))
+		to_chat(target, span_nicegreen("You feel your [emotion_to_quality(target.current_emotion)] weakening."))
 
 	REMOVE_TRAITS_IN(target, "Madrigal")
 
-//SIREN'S BECKONING
+/**
+ * •••• Siren's Beckoning
+ *
+ * The Daughters of Cacophony don’t spread madness as surely (or as visibly) as the Malkavians, but their songs are definitely
+ * detrimental to one’s sanity. With this power, the Daughter can drive any listener to madness. Most of the time, the victim is
+ * too fascinated to realize that he should leave the area and block out themusic from his mind.
+ *
+ * The Daughter sings a haunting sound that causes the victim to remain and listen, provided they fail a willpower roll.
+ *
+ */
 /datum/discipline_power/melpominee/sirens_beckoning
 	name = "Siren's Beckoning"
 	desc = "Sing an unearthly song to stun those around you."
@@ -191,8 +201,8 @@
 
 	effect_sound = 'modular_darkpack/modules/deprecated/sounds/killscream.ogg'
 
-	duration_length = 2 SECONDS
-	cooldown_length = 7.5 SECONDS
+	duration_length = 6 TURNS
+	cooldown_length = 1 MINUTES
 	duration_override = TRUE
 
 /datum/discipline_power/melpominee/sirens_beckoning/activate()
