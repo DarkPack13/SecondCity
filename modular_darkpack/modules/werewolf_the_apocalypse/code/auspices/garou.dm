@@ -38,6 +38,6 @@
 
 /datum/auspice/garou/stolen_moon
 	name = AUSPICE_NONE
-	#warn get let to rewrite
+	// DARKPACK TODO - WEREWOLF - (len lore)
 	desc = "Your not a dog are you."
 	// Stolen moon get no gifts

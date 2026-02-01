@@ -5,11 +5,11 @@
 	human.undershirt = "Shirt (Alien)"
 	human.update_body()
 
-#warn len lore
+// DARKPACK TODO - WEREWOLF - (len lore)
 /datum/splat/werewolf/kinfolk/get_splat_description()
 	return "Lorem Ipsum"
 
-#warn len lore
+// DARKPACK TODO - WEREWOLF - (len lore)
 /datum/splat/werewolf/kinfolk/get_splat_lore()
 	return list(
 		"Lorem Ipsum",
@@ -21,11 +21,11 @@
 	human.undershirt = "Shirt (Alien)"
 	human.update_body()
 
-#warn len lore
+// DARKPACK TODO - WEREWOLF - (len lore)
 /datum/splat/werewolf/shifter/garou/get_splat_description()
 	return "Lorem Ipsum"
 
-#warn len lore
+// DARKPACK TODO - WEREWOLF - (len lore)
 /datum/splat/werewolf/shifter/garou/get_splat_lore()
 	return list(
 		"Lorem Ipsum",

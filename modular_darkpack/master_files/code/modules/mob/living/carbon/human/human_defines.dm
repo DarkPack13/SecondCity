@@ -10,3 +10,4 @@
 	// Visible adjectives, used for Guestbooks.
 	var/visible_adjective = ""
 
+	var/last_moon_look = 0 // WEREWOLF

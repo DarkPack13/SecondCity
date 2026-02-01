@@ -1,10 +1,6 @@
 #define UI_LIVING_AUSPICE "EAST-2:16,CENTER:40"
 #define UI_LIVING_RAGE_AND_GNOSIS "EAST-2:20,CENTER-1:40"
 
-/mob/living/carbon/human
-	#warn dont leave here.
-	var/last_moon_look = 0
-
 /datum/hud/proc/add_werewolf_elements()
 	// transform_werewolf = new(null, src)
 	// infodisplay += transform_werewolf
@@ -74,7 +70,7 @@
 			rage_amount = 3
 		if(MOON_FULL)
 			rage_amount = 4
-	// TODO: Make it also check moons_born_under from auspice to grant max rage.
+	// DARKPACK TODO - WEREWOLF - (Make it also check moons_born_under from auspice to grant max rage.)
 
 	clicker_splat.adjust_rage(rage_amount, TRUE)
 

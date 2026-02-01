@@ -1,4 +1,4 @@
-#warn move to a basic mob folder in wta module
+// DARKPACK TODO - CORAX - (Corax kinfolk and thus should be grouped into WTA soon.)
 /mob/living/basic/corvid
 	name = "corvid"
 	desc = "Caw."
