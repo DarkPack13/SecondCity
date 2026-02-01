@@ -95,6 +95,8 @@
 		return
 	// Realising this is reimplenting very similar behavior to discs and could possibly just be typed under it.
 	var/max_buff_amount = kindred_splat.vitae_spending_rate
+	if(max_buff_amount <= 1) // No reason to prompt them if they only have one option
+		return
 	stat_buff_amount = clamp(stat_buff_amount, 0, max_buff_amount)
 	var/stat_buff_input = tgui_input_number(owner, "Set amount of dice to add for usage. (Max based on your generation)", "Set Buff Bonus", stat_buff_amount, max_buff_amount, 1)
 	if(stat_buff_input)
