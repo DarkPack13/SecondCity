@@ -68,7 +68,7 @@
 	var/cost = bp_per_turns * turns_activated * stat_buff_amount
 	if(HAS_TRAIT(human_owner, TRAIT_HUNGRY))
 		cost = round(cost * 1.5)
-	cost = round(cost * human_owner.blood_efficency)
+	cost = round(cost * human_owner.blood_efficiency)
 	return cost
 
 /datum/action/cooldown/blood_power/proc/end_bloodpower()
