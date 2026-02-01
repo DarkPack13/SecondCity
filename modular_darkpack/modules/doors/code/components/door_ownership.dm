@@ -48,7 +48,7 @@
 
 	switch(ownership_type)
 		if(LOCK_OWNERSHIP_CAR)
-			if(human.st_get_stat(STAT_DRIVE) < 1)
+			if(CONFIG_GET(flag/punishing_zero_dots) && human.st_get_stat(STAT_DRIVE) < 1)
 				to_chat(human, span_danger("Shouldnt you learn how to drive before owning a car?"))
 				return
 			ownership_question = "Is this my car?"

@@ -737,11 +737,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	masquerade_violating = TRUE
+	masquerade_violating = FALSE
 	obj_flags = NONE
 
 /obj/item/ammo_box/magazine/internal/vampcrossbow
-	ammo_type = /obj/item/ammo_casing/caseless/bolt
+	ammo_type = /obj/item/ammo_casing/vampire/bolt
 	caliber = CALIBER_BOLT
 	max_ammo = 2
 

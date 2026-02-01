@@ -111,6 +111,10 @@
 	/// String. If set to a non-empty one, it will be the key for the policy text value to show this role on spawn.
 	var/policy_index = ""
 
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	/// Job title to use for spawning. Allows a job to spawn without needing map edits.
+	var/job_spawn_title
+	// DARKPACK EDIT ADD END
 	/// RPG job names, for the memes
 	var/rpg_title
 
@@ -134,6 +138,10 @@
 
 /datum/job/New()
 	. = ..()
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	if(!job_spawn_title)
+		job_spawn_title = title
+	// DARKPACK EDIT ADD END
 	var/new_spawn_positions = CHECK_MAP_JOB_CHANGE(title, "spawn_positions")
 	if(isnum(new_spawn_positions))
 		spawn_positions = new_spawn_positions
@@ -182,9 +190,9 @@
 
 /// Announce that this job as joined the round to all crew members.
 /// Note the joining mob has no client at this point.
-/datum/job/proc/announce_job(mob/living/joining_mob)
+/datum/job/proc/announce_job(mob/living/joining_mob, job_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_job(mob/living/joining_mob)
 	if(head_announce)
-		announce_head(joining_mob, list(head_announce))
+		announce_head(joining_mob, list(head_announce), job_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: announce_head(joining_mob, list(head_announce))
 
 
 //Used for a special check of whether to allow a client to latejoin as this job.
@@ -225,7 +233,7 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only)
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES 
 	if(human)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = human.job), null, channels, null, TRUE), 1))
@@ -291,21 +299,22 @@
 	return TRUE
 
 /// Gets the message that shows up when spawning as this job
-/datum/job/proc/get_spawn_message()
+/datum/job/proc/get_spawn_message(alt_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return boxed_message(span_infoplain(jointext(get_spawn_message_information(), "\n&bull; ")))
+	return boxed_message(span_infoplain(jointext(get_spawn_message_information(alt_title), "\n&bull; "))) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: return boxed_message(span_infoplain(jointext(get_spawn_message_information(), "\n&bull; ")))
+
 
 /// Returns a list of strings that correspond to chat messages sent to this mob when they join the round.
-/datum/job/proc/get_spawn_message_information()
+/datum/job/proc/get_spawn_message_information(alt_title = title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message_information()
 	SHOULD_CALL_PARENT(TRUE)
 	var/list/info = list()
-	info += "<b>You are the [title].</b>\n"
+	info += "<b>You are the [alt_title].</b>\n" // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
 	var/related_policy = get_policy(policy_override || title)
 	var/radio_info = get_radio_information()
 	if(related_policy)
 		info += related_policy
 	if(supervisors)
-		info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
+		info += "As the [alt_title == title ? alt_title : "[alt_title] ([title])"] you answer directly to [supervisors]. Special circumstances may change this." // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
 	if(radio_info)
 		info += radio_info
 	if(req_admin_notify)
@@ -315,7 +324,6 @@
 		info += span_boldnotice("As this station was initially staffed with a \
 			[CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] \
 			have been added to your ID card.")
-
 	return info
 
 /// Returns information pertaining to this job's radio.
@@ -479,8 +487,10 @@
 				hangover_landmark.used = TRUE
 				break
 			return hangover_spawn_point || get_latejoin_spawn_point()
-	if(length(GLOB.jobspawn_overrides[title]))
-		return pick(GLOB.jobspawn_overrides[title])
+	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES 
+	if(length(GLOB.jobspawn_overrides[job_spawn_title]))
+		return pick(GLOB.jobspawn_overrides[job_spawn_title])
+	// DARKPACK EDIT CHANGE END
 	var/obj/effect/landmark/start/spawn_point = get_default_roundstart_spawn_point()
 	if(!spawn_point) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
 		return get_latejoin_spawn_point()

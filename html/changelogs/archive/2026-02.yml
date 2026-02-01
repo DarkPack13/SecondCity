@@ -1,0 +1,7 @@
+2026-02-01:
+  XeonMations:
+  - bugfix: Kindred can now exit torpor once again.
+  theselfish:
+  - rscadd: Alt Job Titles
+  - qol: Something about "records are unassigned by default, but if edited without
+      input becomes unknown" I copy and pasted this shit man.
