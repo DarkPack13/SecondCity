@@ -13,7 +13,7 @@
 	var/bp_per_turns = 1
 	var/stat_buff_amount = 1
 	// Activated for two "turns" as 5 seconds is acctually pretty short. Opens to door to let players set how long they are declaring it active for.
-	/// How many "turns" its activated for. Multipes the blood cost.
+	/// How many "turns" its activated for. Multiplies the blood cost.
 	var/turns_activated = 2
 	var/datum/armor/old_armor
 	var/list/obj/item/bodypart/strengthened_limbs
