@@ -3,7 +3,7 @@
 	desc = "The secrets of Blood Magic..."
 	icon_state = "arcane"
 	icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome.dmi'
-	onflooricon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome_onfloor.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome_onfloor.dmi')
 	rune_type = /obj/ritual_rune/thaumaturgy
 
 /obj/item/ritual_tome/arcane/attack_self(mob/user)

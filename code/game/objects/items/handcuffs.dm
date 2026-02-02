@@ -39,6 +39,7 @@
 	inhand_icon_state = "handcuff"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi') // DARKPACK EDIT ADD
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_HANDCUFFED
 	throwforce = 0
@@ -179,6 +180,8 @@
 */
 /obj/item/restraints/handcuffs/alien
 	icon_state = "handcuffAlien"
+	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
+	icon = 'icons/obj/weapons/restraints.dmi' // DARKPACK EDIT ADD
 
 /**
  *
@@ -393,6 +396,8 @@
 	breakouttime = 45 SECONDS
 	icon_state = "cult_shackles"
 	flags_1 = NONE
+	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
+	icon = 'icons/obj/weapons/restraints.dmi' // DARKPACK EDIT ADD
 
 /obj/item/restraints/handcuffs/cult/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()

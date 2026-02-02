@@ -480,6 +480,8 @@ Return to step 11 of normal process."}
 	icon_state = "cuff" // Needs sprite
 	breakouttime = 45 SECONDS
 	flags_1 = NONE
+	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
+	icon = 'icons/obj/weapons/restraints.dmi' // DARKPACK EDIT ADD
 
 /obj/item/restraints/handcuffs/energy/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()

@@ -16952,6 +16952,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/vtm/westfield_mall/interior/art_store)
+"jPG" = (
+/obj/item/sabbat_war_party,
+/turf/open/floor/iron/grimy,
+/area/vtm/westfield_mall/interior/art_store)
 "jQE" = (
 /obj/structure/railing{
 	dir = 1
@@ -17777,8 +17781,8 @@
 /obj/item/clothing/under/rank/civilian/lawyer/bluesuit/skirt,
 /obj/item/clothing/under/suit/waiter,
 /obj/item/clothing/shoes/vampire/jackboots/work{
-	pixel_x = 9;
-	pixel_y = 10
+	pixel_x = 1;
+	pixel_y = 7
 	},
 /obj/item/clothing/head/beret,
 /turf/open/floor/iron/dark,
@@ -59910,7 +59914,7 @@ oqv
 dTh
 yfx
 ifk
-ifk
+jPG
 ifk
 ifk
 kpL
