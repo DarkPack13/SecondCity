@@ -58,7 +58,8 @@
 
 
 	var/new_value = stat_path.get_score(include_bonus = FALSE)
-	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value] on [real_name]"
 	log_stats(log_text)
 	return TRUE
 
@@ -89,7 +90,8 @@
 		update_middleware_stats(preferences.preference_storyteller_stats)
 
 	var/new_value = stat_path.get_score(include_bonus = FALSE)
-	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value] on [real_name]"
 	log_stats(log_text)
 	return TRUE
 
@@ -100,7 +102,8 @@
 		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
 		return FALSE
 
-	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values on [real_name]"
 	log_stats(log_text)
 	preferences.preference_storyteller_stats = null
 	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
