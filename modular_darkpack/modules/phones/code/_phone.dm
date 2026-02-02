@@ -56,6 +56,9 @@
 	var/list/contact_networks = null
 	var/important_contact_of = null
 	custom_price = 100
+	//texting stuff
+	var/list/conversations = list()
+	var/current_viewed_conversation = null
 
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
@@ -251,6 +254,8 @@
 
 	data["time"] = time_to_twelve_hour(station_time(), format = "hh:mm")
 	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
+	if(current_viewed_conversation)
+		data["current_conversation_messages"] = format_conversation(current_viewed_conversation)
 	return data
 
 /obj/item/smartphone/ui_act(action, params, datum/tgui/ui)
@@ -397,7 +402,68 @@
 
 		if("wiki")
 			wiki_book.display_content(usr)
+
+		if("view_conversation")
+			current_viewed_conversation = params["contact_number"]
+			var/datum/phone_conversation/conversation = get_conversation(current_viewed_conversation)
+			if(!conversation)
+				conversation = new(current_viewed_conversation)
+			return TRUE
+		if("send_message")
+			var/contact_number = params["contact_number"]
+			var/message_text = params["message_text"]
+			if(!contact_number || !message_text)
+				return FALSE
+			send_text_message(contact_number, message_text)
+			return TRUE
 	return FALSE
+
+/obj/item/smartphone/proc/get_conversation(contact_number)
+	for(var/datum/phone_conversation/convo in conversations)
+		if(convo.contact_number == contact_number)
+			return convo
+
+/obj/item/smartphone/proc/send_text_message(contact_number, message_text)
+	if(!contact_number || !message_text)
+		return FALSE
+
+	var/contact_name = get_number_contact_name()
+	var/datum/phone_conversation/conversation = get_conversation(contact_number)
+
+	if(!conversation)
+		conversation = new(contact_name, contact_number)
+		conversations += conversation
+
+	conversation.add_message(message_text, TRUE)
+
+	var/obj/item/smartphone/receiving_phone = SSphones.get_phone_from_number(contact_number)
+	if(receiving_phone)
+		var/recv_contact_name = receiving_phone.get_number_contact_name()
+		var/datum/phone_conversation/recv_conversation = receiving_phone.get_conversation(sim_card.phone_number)
+		if(!recv_conversation)
+			recv_conversation = new(recv_contact_name, sim_card.phone_number)
+			receiving_phone.conversations += recv_conversation
+		recv_conversation.add_message(message_text, FALSE)
+
+	return TRUE
+
+/obj/item/smartphone/proc/format_conversation(contact_number)
+	var/datum/phone_conversation/conversation = get_conversation(contact_number)
+
+	if(!conversation)
+		conversation = new("Unknown", contact_number)
+
+	var/list/formatted_messages = list()
+	for(var/datum/phone_message/msg in conversation.messages)
+		UNTYPED_LIST_ADD(formatted_messages, list(
+			"contact_name" = msg.contact_name,
+			"number" = msg.number,
+			"message_text" = msg.message_text,
+			"time" = msg.time,
+			"is_outgoing" = msg.is_outgoing,
+		))
+
+	return formatted_messages
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
 	if(phone_flags & PHONE_OPEN)

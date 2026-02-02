@@ -7345,6 +7345,7 @@
 #include "modular_darkpack\modules\phones\code\phone_procs.dm"
 #include "modular_darkpack\modules\phones\code\phone_subsystem.dm"
 #include "modular_darkpack\modules\phones\code\phone_subtypes.dm"
+#include "modular_darkpack\modules\phones\code\phone_texting.dm"
 #include "modular_darkpack\modules\phones\code\sim_card.dm"
 #include "modular_darkpack\modules\phones\code\stationary_subtypes.dm"
 #include "modular_darkpack\modules\piano\code\stationary_pianos.dm"
