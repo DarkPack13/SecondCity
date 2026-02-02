@@ -73,9 +73,11 @@ SUBSYSTEM_DEF(masquerade)
 		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
+	/*
 	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
 	if(istype(werewolf_splat))
-		werewolf_splat.adjust_renown(pick("honor", "wisdom", "glory"), -1)
+		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), 1)
+	*/
 
 	save_persistent_masquerade(player_breacher)
 	return .
@@ -101,6 +103,13 @@ SUBSYSTEM_DEF(masquerade)
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
+
+	/*
+	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	if(istype(werewolf_splat))
+		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), -1)
+	*/
+
 	save_persistent_masquerade(player_breacher)
 	check_roundend_condition()
 

@@ -15,6 +15,9 @@
 	var/max_gnosis = 0
 	var/gnosis = 0
 
+	var/list/renown = list()
+	var/renown_rank = RANK_CUB
+
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
 	if(!uses_rage)
 		return
