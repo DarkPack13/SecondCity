@@ -1709,7 +1709,9 @@
 /area/vtm/interior/mansion)
 "afN" = (
 /obj/effect/decal/rugs,
-/obj/structure/closet/mini_fridge,
+/obj/structure/closet/mini_fridge{
+	pixel_y = 1
+	},
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/random,
 /turf/open/floor/plating/rough{
@@ -16452,8 +16454,8 @@
 "fSa" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/item/flashlight/lamp{
-	pixel_x = -2;
-	pixel_y = 10
+	pixel_x = -4;
+	pixel_y = 9
 	},
 /turf/open/floor/iron/dark,
 /area/vtm/westfield_mall/interior/art_store)
@@ -16951,10 +16953,6 @@
 	pixel_y = -2
 	},
 /turf/open/floor/iron/dark,
-/area/vtm/westfield_mall/interior/art_store)
-"jPG" = (
-/obj/item/sabbat_war_party,
-/turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
 "jQE" = (
 /obj/structure/railing{
@@ -59914,7 +59912,7 @@ oqv
 dTh
 yfx
 ifk
-jPG
+ifk
 ifk
 ifk
 kpL
