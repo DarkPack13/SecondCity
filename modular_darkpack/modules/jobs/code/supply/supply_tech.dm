@@ -15,7 +15,7 @@
 		/datum/job_department/supply,
 	)
 
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 
 	description = "You work at the warehouse, moving boxes and selling not-quite legal goods to anyone who has the money."
 	minimal_masquerade = 0

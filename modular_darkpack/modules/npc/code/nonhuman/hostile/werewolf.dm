@@ -29,6 +29,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/crinos_beast
 	var/clothing_type = 0 // Set to -1 for random clothing
 
+	faction = list(FACTION_HOSTILE)
+
 /mob/living/basic/crinos_beast/Initialize(mapload)
 	if(clothing_type == -1)
 		icon_state = "[base_icon_state]-clothing[rand(1,4)]"
