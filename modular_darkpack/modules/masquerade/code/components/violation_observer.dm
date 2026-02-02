@@ -64,7 +64,7 @@
 
 /atom/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
-	if(isgarou(player_breacher))
+	if(iswerewolfsplat(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/veil_violation.ogg', 50, FALSE, -5)
 		return
@@ -72,7 +72,7 @@
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
 /atom/proc/observe_masquerade_reinforce(player_breacher)
-	if(isgarou(player_breacher))
+	if(iswerewolfsplat(player_breacher))
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
 		return

@@ -51,7 +51,7 @@
 #define LOG_RADIO_EMOTE (1 << 20)
 #define LOG_SPEECH_INDICATORS (1 << 21)
 #define LOG_TRANSPORT (1 << 22)
-#define LOG_STATS (1 << 23) // DARKPACK EDIT ADD - STORYTELLR_STATS - (logging stats to prevent abuse)
+#define LOG_STATS (1 << 23) // DARKPACK EDIT ADD - STORYTELLER_STATS - (logging stats to prevent abuse)
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)

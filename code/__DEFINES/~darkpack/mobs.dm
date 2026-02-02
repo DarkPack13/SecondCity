@@ -1,6 +1,9 @@
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
+#define isavatar(A) (istype(A, /mob/living/basic/avatar))
+#define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
+
 #define SPECIES_FERA "fera"
 
 #define SPECIES_FERA_HOMID "homid"
@@ -10,9 +13,6 @@
 #define SPECIES_FERA_FERAL "feral"
 
 // #define SPECIES_GAROU "garou"
-
-#define isavatar(A) (istype(A, /mob/living/basic/avatar))
-#define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
 // #define isshifted(A) (istype(A, /mob/living/carbon/human/fera))
 //homid
