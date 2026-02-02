@@ -564,7 +564,7 @@
 		if(!whispered)
 			to_chat(src, span_notice("You have succumbed to Torpor."))
 		investigate_log("has succumbed to death.", INVESTIGATE_DEATHS)
-		torpor("damage")
+		torpor(DAMAGE_TRAIT)
 	else
 		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
 		adjust_oxy_loss(health - HEALTH_THRESHOLD_DEAD)
