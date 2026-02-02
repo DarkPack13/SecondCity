@@ -5,7 +5,10 @@ SUBSYSTEM_DEF(masquerade)
 	var/masquerade_level = MASQUERADE_MAX_LEVEL
 	var/list/masquerade_breachers
 	var/static/regex/masquerade_breaching_phrase_regex
+
+	// The round is soon to be declared ending. Scarey sounds during this.
 	var/ending = FALSE
+	var/roundend_started = FALSE
 
 /datum/controller/subsystem/masquerade/Initialize()
 	masquerade_breachers = new()
@@ -70,17 +73,10 @@ SUBSYSTEM_DEF(masquerade)
 		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
-	/* // DARKPACK TODO - WEREWOLF
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		var/random_renown = pick("Honor","Wisdom","Glory")
-		switch(random_renown)
-			if("Honor")
-				player_breacher.adjust_renown("honor", -1, vessel = player_breacher)
-			if("Glory")
-				player_breacher.adjust_renown("glory", -1, vessel = player_breacher)
-			if("Wisdom")
-				player_breacher.adjust_renown("wisdom", -1, vessel = player_breacher)
-	*/
+	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	if(istype(werewolf_splat))
+		werewolf_splat.adjust_renown(pick("honor", "wisdom", "glory"), -1)
+
 	save_persistent_masquerade(player_breacher)
 	return .
 
@@ -115,10 +111,10 @@ SUBSYSTEM_DEF(masquerade)
 
 // Save the player's masquerade level to their character sheet.
 /datum/controller/subsystem/masquerade/proc/save_persistent_masquerade(mob/living/player_breacher)
-	var/datum/preferences/preferences = GLOB.preferences_datums[ckey(player_breacher.key)]
-	if(preferences)
-		preferences.write_preference_midround(GLOB.preference_entries[/datum/preference/numeric/masquerade], player_breacher.masquerade_score)
-		preferences.save_character()
+	var/mob/living/carbon/human/human_breacher = player_breacher
+	if(!istype(human_breacher))
+		return
+	human_breacher.write_preference_midround(/datum/preference/numeric/masquerade, player_breacher.masquerade_score)
 
 // This is for clearing the round's masquerade because a player matrix'd
 /datum/controller/subsystem/masquerade/proc/cryo_masquerade_breacher(mob/living/player_breacher, update_preferences)
@@ -175,10 +171,6 @@ SUBSYSTEM_DEF(masquerade)
 		else
 			var/atom/object = masquerade_breach_list[2]
 			SEND_SIGNAL(object, COMSIG_ALL_MASQUERADE_REINFORCE)
-	SSticker.force_ending = 1
-	SSticker.current_state = GAME_STATE_FINISHED
+
 	GLOB.canon_event = FALSE
-	toggle_ooc(TRUE) // Turn it on
-	toggle_dooc(TRUE)
-	SSticker.declare_completion(SSticker.force_ending)
-	Master.SetRunLevel(RUNLEVEL_POSTGAME)
+	roundend_started = TRUE

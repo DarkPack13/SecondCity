@@ -7644,6 +7644,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\fera_splat.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\is_werewolf_helpers.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\pref_lore.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\renown.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\transformation.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\delirium.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\rage_heal.dm"
