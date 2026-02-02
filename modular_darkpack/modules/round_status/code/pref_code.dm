@@ -10,12 +10,12 @@
 	if(!original_human || (original_human != src))
 		return FALSE
 
-	return client.prefs.write_preference_midround(GLOB.preference_entries[preference], preference_value)
+	return client.prefs.write_preference_midround(GLOB.preference_entries[preference], preference_value, src)
 
 /// Wrapper for write_preference to prevent writing for non-canon events like EORG
 /// Returns TRUE for a successful preference application.
 /// Returns FALSE if it is invalid or the round was not canon.
-/datum/preferences/proc/write_preference_midround(datum/preference/preference, preference_value)
+/datum/preferences/proc/write_preference_midround(datum/preference/preference, preference_value, mob/user)
 	var/reason
 	if(!GLOB.canon_event)
 		reason = "current round is not canon."
@@ -24,8 +24,8 @@
 
 	if(reason)
 		to_chat(parent, span_warning("Cannot save preference: [preference.savefile_key]; [reason]"))
-		log_stats("[key_name(parent, TRUE, TRUE)], failed to write pref: [preference.savefile_key] due to; [reason]")
+		user.log_message("failed to write pref: [preference.savefile_key] due to; [reason]", LOG_STATS)
 		return FALSE
 
-	log_stats("[key_name(parent, TRUE, TRUE)], wrote to pref midround: [preference.savefile_key]. Change: [preference_value]")
+	user.log_message("wrote to pref '[preference.savefile_key]' midround. set to '[preference_value]'", LOG_STATS)
 	return write_preference(preference, preference_value)
