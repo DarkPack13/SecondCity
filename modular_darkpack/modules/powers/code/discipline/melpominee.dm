@@ -39,7 +39,7 @@
  */
 /obj/effect/the_missing_voice
 	name = "disembodied voice"
-	desc = "You can see this? What are you, a ghost lip-reader?"
+	desc = "What are you, a ghost lip-reader?"
 
 /datum/discipline_power/melpominee/the_missing_voice
 	name = "The Missing Voice"
@@ -165,7 +165,7 @@
  */
 /datum/discipline_power/melpominee/madrigal
 	name = "Madrigal"
-	desc = "Sing a siren song, calling all nearby to you."
+	desc = "Sing a siren song, swaying the emotions of all around you."
 
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
@@ -208,7 +208,7 @@
  *
  * The Daughters of Cacophony don’t spread madness as surely (or as visibly) as the Malkavians, but their songs are definitely
  * detrimental to one’s sanity. With this power, the Daughter can drive any listener to madness. Most of the time, the victim is
- * too fascinated to realize that he should leave the area and block out themusic from his mind.
+ * too fascinated to realize that he should leave the area and block out the music from his mind.
  *
  * The Daughter sings a haunting sound that causes the victim to remain and listen, provided they fail a willpower roll.
  *
