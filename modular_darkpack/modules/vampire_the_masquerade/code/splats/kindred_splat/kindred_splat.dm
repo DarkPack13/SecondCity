@@ -59,7 +59,7 @@
 	// DARKPACK TODO - reimplement this action maybe
 	// add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 
-	owner.give_st_power(/datum/discipline/bloodheal, get_vitae_spending_rate(generation))
+	owner.give_st_power(/datum/discipline/bloodheal, vitae_spending_rate)
 
 	//vampires die instantly upon having their heart removed
 	RegisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
