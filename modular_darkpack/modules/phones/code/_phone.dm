@@ -254,8 +254,40 @@
 
 	data["time"] = time_to_twelve_hour(station_time(), format = "hh:mm")
 	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
+
+	var/list/conversations_list = list()
+	for(var/datum/phone_conversation/convo in conversations)
+		var/contact_name = convo.contact_number
+
+		for(var/datum/phonecontact/contact in contacts)
+			if(contact.number == convo.contact_number)
+				contact_name = contact.name
+				break
+
+		if(contact_name == convo.contact_number && (convo.contact_number in SSphones.published_phone_numbers))
+			contact_name = SSphones.published_phone_numbers[convo.contact_number]
+
+		var/last_msg = ""
+		var/last_timestamp = 0
+		if(length(convo.messages) > 0)
+			var/datum/phone_message/last_message = convo.messages[length(convo.messages)]
+			last_msg = last_message.message_text // replaces the phone number under the name
+			last_timestamp = last_message.timestamp
+
+		UNTYPED_LIST_ADD(conversations_list, list(
+			"contact_name" = contact_name,
+			"number" = convo.contact_number,
+			"last_message_text" = last_msg,
+			"last_timestamp" = last_timestamp,
+		))
+
+	data["conversations"] = conversations_list
+
 	if(current_viewed_conversation)
 		data["current_conversation_messages"] = format_conversation(current_viewed_conversation)
+	else
+		data["current_conversation_messages"] = list()
+
 	return data
 
 /obj/item/smartphone/ui_act(action, params, datum/tgui/ui)

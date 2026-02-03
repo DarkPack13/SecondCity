@@ -4,6 +4,7 @@
 	var/number = ""
 	var/message_text = ""
 	var/time = ""
+	var/timestamp = 0
 	var/is_outgoing = FALSE
 
 /datum/phone_message/New(contact_name, number, message_text, is_outgoing = FALSE)
@@ -11,7 +12,8 @@
 	src.number = number
 	src.message_text = message_text
 	src.is_outgoing = is_outgoing
-	src.time = station_time_timestamp("hh:mm:ss")
+	src.timestamp = station_time()
+	src.time = time_to_twelve_hour(src.timestamp, format = "hh:mm")
 
 /datum/phone_conversation
 	var/contact_name = ""
