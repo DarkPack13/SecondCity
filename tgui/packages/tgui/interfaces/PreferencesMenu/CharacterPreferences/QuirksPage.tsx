@@ -344,7 +344,7 @@ function QuirkPage() {
     }
   });
 
-  let balance = -data.default_quirk_balance;
+  let balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - Original :   let balance = -data.default_quirk_balance;
   let positiveQuirks = 0;
 
   for (const selectedQuirkName of selectedQuirks) {
@@ -370,6 +370,11 @@ function QuirkPage() {
         return 'You need a negative quirk to balance this out!';
       }
     }
+    //DARKPACK EDIT ADD - Merits/Flaws
+    if (balance + quirk.value < 0) {
+      return 'You need more freebie points to take this quirk!';
+    }
+    //DARKPACK EDIT ADD - Merits/Flaws
 
     const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
       return quirkInfo[quirkKey].name;
@@ -484,17 +489,15 @@ function QuirkPage() {
       <Stack.Item basis="50%">
         <Stack vertical fill align="center">
           <Stack.Item>
-            {pointsEnabled ? (
-              <Box fontSize="1.3em">Quirk Balance</Box>
-            ) : (
-              <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
+            {(
+              // DARKPACK EDIT CHANGE START -- Removed pointsEnabled ? checks
+              <Box fontSize="1.3em">Freebie Points</Box> // DARKPACK EDIT CHANGE -- Changed 'Quirk Balance' to 'Freebie Points'
             )}
           </Stack.Item>
           <Stack.Item>
-            {pointsEnabled ? (
+            {(
               <StatDisplay>{balance}</StatDisplay>
-            ) : (
-              <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
+              // DARKPACK EDIT CHANGE END -- Removed pointsEnabled ? checks
             )}
           </Stack.Item>
           <Stack.Item>
