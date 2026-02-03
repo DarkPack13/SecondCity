@@ -7,6 +7,12 @@
 	if(grab_state == GRAB_PASSIVE)
 		return
 
+	if(!perform_bite_checks())
+		return
+
+	var/mob/living/victim = pulling
+	victim.add_bite_animation()
+
 	if(ishuman(pulling))
 		var/mob/living/carbon/human/PB = pulling
 		if(isghoul(src))
@@ -34,7 +40,6 @@
 			PB.emote("groan")
 		if(isghoul(src))
 			PB.emote("scream")
-		PB.add_bite_animation()
 
 	if(isliving(pulling))
 		if(!iskindred(src))
@@ -75,6 +80,8 @@
 				LV.visible_message(span_italics(span_bold("[src] kisses [LV]!")), span_userlove(span_bold("[src] kisses you!")))
 			drinksomeblood(LV, TRUE)
 
+/mob/living/carbon/human/proc/perform_bite_checks()
+	return TRUE
 
 /mob/living/carbon/human/proc/perform_bite_consequences(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(src, TRAIT_BLOODY_LOVER))

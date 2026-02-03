@@ -24,21 +24,21 @@
 		update_blood_hud()
 
 //runs a bite animation for biting people and biting people and biting p
-/mob/living/carbon/human/proc/add_bite_animation()
+/mob/living/proc/add_bite_animation()
 	remove_overlay(HALO_LAYER)
 	var/mutable_appearance/bite_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "bite", -HALO_LAYER)
 	overlays_standing[HALO_LAYER] = bite_overlay
 	apply_overlay(HALO_LAYER)
 	addtimer(CALLBACK(src, PROC_REF(clear_bite_animation_overlay)), 1.5 SECONDS)
 
-/mob/living/carbon/human/proc/clear_bite_animation_overlay()
+/mob/living/proc/clear_bite_animation_overlay()
 	if(src)
 		remove_overlay(HALO_LAYER)
 
 
 //Here is where you handle any circumstantial modifiers to bloodpool gains
 //VTR has a lot of these.
-/mob/living/carbon/human/proc/calculate_drink_modifier(var/mob/living/mob)
+/mob/living/proc/calculate_drink_modifier(mob/living/drunk_mob)
 	var/drink_mod = 1
 	if(HAS_TRAIT(src, TRAIT_HUNGRY))
 		drink_mod *= 0.5
@@ -46,18 +46,16 @@
 	return drink_mod
 
 //Removes the circular suck bar that displays the amount of blood a victim has left.
-/mob/living/carbon/human/proc/remove_drinking_overlay()
+/mob/living/proc/remove_drinking_overlay()
 	stop_sound_channel(CHANNEL_BLOOD)
 	COOLDOWN_RESET(src, drinkblood_use_cd)
-	if(client)
-		client.images -= suckbar
+	client?.images -= suckbar
 	qdel(suckbar)
 	return
 
 //Updates the circular suck bar that displays the amount of blood a victim has left.
-/mob/living/carbon/human/proc/update_drinking_overlay(var/mob/living/mob)
-	if(client)
-		client.images -= suckbar
+/mob/living/proc/update_drinking_overlay(mob/living/mob)
+	client?.images -= suckbar
 	qdel(suckbar)
 	suckbar_loc = mob
 	suckbar = image('modular_darkpack/modules/blood_drinking/icons/bloodcounter.dmi', suckbar_loc, "[round(14*(mob.bloodpool/mob.maxbloodpool))]", HUD_PLANE)
