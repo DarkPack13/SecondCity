@@ -5,6 +5,9 @@
 /// Cooldown between Veil violations
 // #define VEIL_COOLDOWN 20 SECONDS
 
+#define MAX_RAGE 10
+// gnois max is capped by its starting gnosis
+
 #define FEATURE_FERA_BREED "garou_breed"
 
 #define BREED_HOMID "Homid"

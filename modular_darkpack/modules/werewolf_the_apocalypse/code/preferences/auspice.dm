@@ -17,4 +17,6 @@
 	return auspice_icon
 
 /datum/preference/choiced/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)
+	#warn I dont think dna feats is useful here.
 	target.dna.features[FEATURE_GAROU_AUSPICE] = value
+	target.set_auspice(value, TRUE)

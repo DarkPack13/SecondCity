@@ -71,7 +71,10 @@
 			rage_amount = 3
 		if(MOON_FULL)
 			rage_amount = 4
-	// DARKPACK TODO - WEREWOLF - (Make it also check moons_born_under from auspice to grant max rage.)
+
+	if(clicker_splat?.auspice && (GLOB.moon_state in clicker_splat.auspice.moons_born_under))
+		#warn I dont think its MAX rage. It might be the default rage of the auspice acctually??
+		rage_amount = MAX_RAGE
 
 	clicker_splat.adjust_rage(rage_amount, TRUE)
 

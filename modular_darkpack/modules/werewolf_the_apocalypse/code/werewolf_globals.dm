@@ -48,18 +48,13 @@ GLOBAL_LIST_EMPTY(totems)
 
 
 /// Associative list of auspice names to typepaths
-GLOBAL_LIST_INIT(auspices_list, init_auspices_list())
-
-/proc/init_auspices_list(path = /datum/auspice)
-	var/list/auspice_list = list()
-	for (var/datum/auspice/auspice as anything in valid_subtypesof(path))
-		auspice_list[auspice::name] = auspice
-	auspice_list = sort_list(auspice_list)
-	return auspice_list
-
+GLOBAL_LIST_INIT(auspices_list, init_subsplat_list(/datum/subsplat/auspice))
 /// Associative list of auspice typepaths to singletons
-GLOBAL_LIST_INIT_TYPED(auspices, /datum/auspice, init_subtypes_w_path_keys(/datum/auspice, list()))
+GLOBAL_LIST_INIT_TYPED(auspices, /datum/subsplat/auspice, init_subtypes_w_path_keys(/datum/subsplat/auspice, list()))
 
-#warn implement tribes
-GLOBAL_LIST_EMPTY(tribes_list)
+/// Associative list of auspice names to typepaths
+GLOBAL_LIST_INIT(tribes_list, init_subsplat_list(/datum/subsplat/fera_tribe))
+/// Associative list of auspice typepaths to singletons
+GLOBAL_LIST_INIT_TYPED(fera_tribes, /datum/subsplat/fera_tribe, init_subtypes_w_path_keys(/datum/subsplat/fera_tribe, list()))
+
 GLOBAL_LIST_INIT(glyph_list, init_glyphs())

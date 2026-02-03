@@ -1,13 +1,10 @@
-#define MAX_RAGE 10
-// gnois max is capped by its starting gnosis
-
 // Represents the system not that they are a werewolf/fera
 /datum/splat/werewolf
 	abstract_type = /datum/splat/werewolf
 
 	power_type = /datum/action/cooldown/power/gift
 
-	var/datum/auspice/auspice
+	var/datum/subsplat/auspice/auspice
 
 	var/uses_rage = FALSE
 	var/start_rage = 0
@@ -145,5 +142,3 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
 */
-
-#undef MAX_RAGE
