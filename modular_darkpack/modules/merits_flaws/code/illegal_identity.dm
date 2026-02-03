@@ -9,6 +9,7 @@
 	lose_text = span_notice("You feel bureaucratically legitimate.")
 	medical_record_text = "Patient is not checked in with valid identification."
 	//excluded_clans = list(VAMPIRE_CLAN_RAVNOS) // They are forced to take this
+	failure_message = "Oh, there's my actual ID, looks like I misplaced it..."
 
 /datum/quirk/darkpack/illegal_identity/add()
 	. = ..()

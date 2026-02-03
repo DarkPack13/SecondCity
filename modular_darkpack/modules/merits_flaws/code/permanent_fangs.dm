@@ -7,3 +7,4 @@
 	lose_text = "<span class='notice'>You feel your fangs retract again.</span>"
 	allowed_splats = list(SPLAT_KINDRED)
 	icon = FA_ICON_TEETH
+	failure_message = "You feel your fangs retract."

@@ -357,7 +357,7 @@ function QuirkPage() {
       positiveQuirks += 1;
     }
 
-    balance += selectedQuirk.value;
+    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - Merits/Flaws
   }
 
   function getReasonToNotAdd(quirkName: string) {
