@@ -7193,7 +7193,7 @@
 #include "modular_darkpack\modules\jobs\code\pentex\executive.dm"
 #include "modular_darkpack\modules\jobs\code\pentex\sec.dm"
 #include "modular_darkpack\modules\jobs\code\pentex\secchief.dm"
-#include "modular_darkpack\modules\jobs\code\police\chief.dm"
+#include "modular_darkpack\modules\jobs\code\police\captain.dm"
 #include "modular_darkpack\modules\jobs\code\police\dispatcher.dm"
 #include "modular_darkpack\modules\jobs\code\police\fbi.dm"
 #include "modular_darkpack\modules\jobs\code\police\police.dm"
