@@ -153,7 +153,7 @@
 		/datum/discipline_power/thaumaturgy/cauldron_of_blood
 	)
 
-// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -v20 Core Rulebook
+// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -V20 Core Rulebook
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return

@@ -8,17 +8,13 @@
 	var/healed_dots = 0
 
 	if(heal_aggravated)
-		while(dots_to_heal > 0 && get_agg_loss() > 0)
-			adjust_agg_loss(-1 TTRPG_DAMAGE, FALSE)
-			dots_to_heal--
-			healed_dots++
-		while(dots_to_heal > 0 && get_fire_loss() > 0)
-			adjust_fire_loss(-1 TTRPG_DAMAGE, FALSE)
+		while(dots_to_heal > 0 && get_agg_loss()+get_fire_loss() > 0)
+			heal_ordered_damage(1 TTRPG_DAMAGE, list(BURN, AGGRAVATED))
 			dots_to_heal--
 			healed_dots++
 
-	while(dots_to_heal > 0 && get_brute_loss() > 0)
-		adjust_brute_loss(-1 TTRPG_DAMAGE, FALSE)
+	while(dots_to_heal > 0 && get_brute_loss()+get_tox_loss()+get_oxy_loss(), > 0)
+		heal_ordered_damage(1 TTRPG_DAMAGE, list(BRUTE, TOX, OXY))
 		dots_to_heal--
 		healed_dots++
 
