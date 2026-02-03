@@ -371,7 +371,7 @@ function QuirkPage() {
       }
     }
     //DARKPACK EDIT ADD - Merits/Flaws
-    if (balance + quirk.value < 0) {
+    if (balance - quirk.value < 0) {
       return 'You need more freebie points to take this quirk!';
     }
     //DARKPACK EDIT ADD - Merits/Flaws

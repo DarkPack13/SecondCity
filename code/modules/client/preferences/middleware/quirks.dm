@@ -176,7 +176,7 @@
 	var/total_cost = 0
 	for(var/quirk_name in preferences.all_quirks)
 		var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
-		total_cost += quirk_type.value
+		total_cost -= quirk_type.value
 	return total_cost
 
 //DARKPACK EDIT END - Merits/Flaws
