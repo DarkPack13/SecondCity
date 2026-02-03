@@ -197,19 +197,6 @@
 	button_icon_state = "truth_of_gaia"
 //	rage_req = 1
 
-/datum/action/cooldown/gift/mothers_touch
-	name = "Mother's Touch"
-	desc = "The Garou is able to heal the wounds of any living creature, aggravated or otherwise, simply by laying hands over the afflicted area."
-	button_icon_state = "mothers_touch"
-	rage_req = 2
-	//gnosis_req = 1
-
-/datum/action/cooldown/gift/mothers_touch/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/H = owner
-		H.put_in_active_hand(new /obj/item/melee/touch_attack/mothers_touch(H))
-
 /datum/action/cooldown/gift/sense_wyrm
 	name = "Sense Wyrm"
 	desc = "This Gift allows the werewolf to sense the presence of Wyrm."

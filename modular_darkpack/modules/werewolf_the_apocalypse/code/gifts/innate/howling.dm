@@ -4,6 +4,7 @@
 	button_icon_state = "call_of_the_wyld"
 	rage_req = 1
 	check_flags = null
+	innate_ability = TRUE
 	var/static/list/howls = list(
 		"attack" = list(
 			"menu" = "Attack",

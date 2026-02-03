@@ -77,11 +77,14 @@
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	splat_actions = list(
 		/datum/action/cooldown/gift/howling,
+		/datum/action/cooldown/gift/mothers_touch
 	)
 	uses_rage = TRUE
 	uses_gnosis = TRUE
 	start_rage = 1
+	rage = 1
 	max_gnosis = 1
+	gnosis = 1
 	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
 	/**
@@ -96,6 +99,7 @@
 		SPECIES_FERA_DIRE = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	)
+	COOLDOWN_DECLARE(passive_healing_cd)
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
@@ -109,6 +113,11 @@
 		owner.set_species(/datum/species/human)
 	fera_transformation.Remove(owner)
 	QDEL_NULL(fera_transformation)
+
+/datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
+	if(COOLDOWN_FINISHED(src, passive_healing_cd))
+		owner.heal_storyteller_health(1)
+		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
 /datum/splat/werewolf/shifter/garou
 	name = "Garou"

@@ -10,8 +10,12 @@
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	cooldown_time = 1 TURNS
+	/// The level/rank at which this gift is taken or can be taken at.
+	var/rank = 0
 	var/rage_req = 0
 	var/gnosis_req = 0
+	/// Means that this action is not a gift, but some sort of innate ability we represent as a gift mechnaicly.
+	var/innate_ability = FALSE
 
 /datum/action/cooldown/gift/IsAvailable(feedback)
 	. = ..()
@@ -23,8 +27,8 @@
 
 	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
 
-	if(rage_req)
-		if(casting_splat.rage < rage_req)
+	if(get_rage_cost())
+		if(casting_splat.rage < get_rage_cost())
 			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
@@ -44,8 +48,14 @@
 
 	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
 
-	if(rage_req)
-		casting_splat.adjust_rage(-rage_req, owner, FALSE)
-	if(gnosis_req)
-		casting_splat.adjust_gnosis(-gnosis_req, owner, FALSE)
+	if(get_rage_cost())
+		casting_splat.adjust_rage(-get_rage_cost(), owner, FALSE)
+	if(get_gnosis_cost())
+		casting_splat.adjust_gnosis(-get_gnosis_cost(), owner, FALSE)
 	to_chat(owner, span_notice("You activate the [name]..."))
+
+/datum/action/cooldown/gift/proc/get_rage_cost()
+	return rage_req
+
+/datum/action/cooldown/gift/proc/get_gnosis_cost()
+	return gnosis_req

@@ -1,8 +1,9 @@
 #warn redesign
 /datum/splat/werewolf/kinfolk/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.set_haircolor("#502D15", update = FALSE)
-	human.set_hairstyle("Long Hair 3", update = TRUE)
-	human.undershirt = "Shirt (Alien)"
+	human.set_haircolor("#C3BA88", update = FALSE)
+	human.set_eye_color("B2B2B2", "B2B2B2")
+	human.set_hairstyle("Bangs (Diagonal Alt)", update = TRUE)
+	human.undershirt = "Shirt (Ian)"
 	human.update_body()
 
 // DARKPACK TODO - WEREWOLF - (len lore)
