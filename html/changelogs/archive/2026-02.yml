@@ -5,3 +5,14 @@
   - rscadd: Alt Job Titles
   - qol: Something about "records are unassigned by default, but if edited without
       input becomes unknown" I copy and pasted this shit man.
+2026-02-02:
+  Stutternov:
+  - rscadd: Adds serial numbering to guns from Eris.
+  - rscadd: Serial number tracking to bullet casings
+  XeonMations:
+  - bugfix: Phones no longer work as a group chat.
+  - rscdel: Disabled disease
+  - bugfix: You can now once again select your gender.
+  - rscdel: Disabled Dynamic
+  dwinters99:
+  - rscadd: stick
