@@ -79,22 +79,22 @@
 
 	var/howl_details
 	var/final_message
-	for(var/mob/living/howler in GLOB.player_list - owner)
-		if(iswerewolfsplat(howler))
-			howl_details = get_message(howler, origin_turf)
+	for(var/mob/living/howled_at in GLOB.player_list - owner)
+		if(iswerewolfsplat(howled_at))
+			howl_details = get_message(howled_at, origin_turf)
 			final_message = garou_message + howl_details
-			to_chat(howler, final_message, confidential = TRUE)
+			to_chat(howled_at, span_boldnotice(final_message))
 
 
-/datum/action/gift/howling/proc/get_message(mob/living/howler, turf/origin_turf)
-	var/distance = get_dist(howler, origin_turf)
+/datum/action/gift/howling/proc/get_message(mob/living/howled_at, turf/origin_turf)
+	var/distance = get_dist(howled_at, origin_turf)
 	var/dirtext = " to the "
-	var/direction = get_dir(howler, origin_turf)
+	var/direction = get_dir(howled_at, origin_turf)
 
-	if(dir2tex(direction))
-		dirtext += dir2tex(direction)
+	if(dir2text(direction))
+		dirtext += dir2text(direction)
 	else
-		dirtext = "although I cannot make out an exact direction"
+		dirtext = " although I cannot make out an exact direction"
 
 	var/disttext
 	switch(distance)
