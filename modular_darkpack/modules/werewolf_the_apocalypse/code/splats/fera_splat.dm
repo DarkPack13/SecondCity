@@ -5,6 +5,8 @@
 /datum/splat/werewolf
 	abstract_type = /datum/splat/werewolf
 
+	power_type = /datum/action/cooldown/power/gift
+
 	var/datum/auspice/auspice
 
 	var/uses_rage = FALSE
@@ -58,7 +60,6 @@
 
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"
-	splat_traits = list()
 	id = SPLAT_KINFOLK
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
@@ -75,10 +76,6 @@
 	incompatible_splats = list(
 		/datum/splat/werewolf
 	) // We dont support being multiple fera or gaining kinfolk as a fera
-	splat_actions = list(
-		/datum/action/cooldown/power/gift/howling,
-		/datum/action/cooldown/power/gift/mothers_touch
-	)
 	uses_rage = TRUE
 	uses_gnosis = TRUE
 	start_rage = 1
@@ -106,6 +103,10 @@
 	owner.set_species(/datum/species/human/shifter/homid)
 	fera_transformation = new(owner, transformations = transformation_list)
 	fera_transformation.Grant(owner)
+	add_power(/datum/action/cooldown/power/gift/howling)
+
+	#warn temp for testing
+	add_power(/datum/action/cooldown/power/gift/mothers_touch)
 
 /datum/splat/werewolf/shifter/on_lose_or_destroy()
 	. = ..()
