@@ -7,6 +7,35 @@
 	if(grab_state == GRAB_PASSIVE)
 		return
 
+	if(ishuman(pulling))
+		var/mob/living/carbon/human/PB = pulling
+		if(isghoul(src))
+			if(!iskindred(PB))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
+				return
+		if(!isghoul(src) && !iskindred(src))
+			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+			to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
+			return
+		if(PB.stat == DEAD && !HAS_TRAIT(src, TRAIT_GULLET))
+			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+			to_chat(src, span_warning("Your Beast requires life, not the tepid swill of corpses."))
+			return
+		if(PB.blood_volume <= 50 && (!iskindred(pulling) || !iskindred(src)))
+			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+			to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
+			return
+		if(PB.bloodpool <= 0 && (!iskindred(pulling) || !iskindred(src)))
+			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+			to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
+			return
+		if(iskindred(src))
+			PB.emote("groan")
+		if(isghoul(src))
+			PB.emote("scream")
+		PB.add_bite_animation()
+
 	if(isliving(pulling))
 		if(!iskindred(src))
 			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
@@ -46,35 +75,7 @@
 				LV.visible_message(span_italics(span_bold("[src] kisses [LV]!")), span_userlove(span_bold("[src] kisses you!")))
 			drinksomeblood(LV, TRUE)
 
-	if(ishuman(pulling))
-		var/mob/living/carbon/human/PB = pulling
-		if(isghoul(src))
-			if(!iskindred(PB))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
-				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
-				return
-		if(!isghoul(src) && !iskindred(src))
-			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
-			to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
-			return
-		if(PB.stat == DEAD && !HAS_TRAIT(src, TRAIT_GULLET))
-			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
-			to_chat(src, span_warning("Your Beast requires life, not the tepid swill of corpses."))
-			return
-		if(PB.blood_volume <= 50 && (!iskindred(pulling) || !iskindred(src)))
-			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
-			to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
-			return
-		if(PB.bloodpool <= 0 && (!iskindred(pulling) || !iskindred(src)))
-			SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
-			to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
-			return
-		if(iskindred(src))
-			PB.emote("groan")
-		if(isghoul(src))
-			PB.emote("scream")
-		PB.add_bite_animation()
 
-/mob/living/carbon/human/proc/perform_bite_consequences(var/mob/living/carbon/human/target)
+/mob/living/carbon/human/proc/perform_bite_consequences(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(src, TRAIT_BLOODY_LOVER))
 		SEND_SIGNAL(src, COMSIG_MASQUERADE_VIOLATION)
