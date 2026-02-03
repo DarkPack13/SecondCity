@@ -62,8 +62,6 @@
 	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
 	data["species_disallowed_quirks"] = get_species_compatibility()
 	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	//data["quirk_balance"] = get_quirk_balance()
-	//data["freebie_points"] = get_freebie_points()
 	return data
 
 /datum/preference_middleware/quirks/get_ui_data(mob/user)
@@ -74,7 +72,6 @@
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
 		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	//data["freebie_points"] = get_freebie_points()
 
 	return data
 
@@ -115,23 +112,6 @@
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
 
-/*
-	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	if(freebie_stat)
-		var/base_points = 15
-		var/spent_on_stats = freebie_stat.freebie_cost_spent
-		var/current_quirk_balance = get_quirk_balance()
-
-		var/datum/quirk/new_quirk_type = SSquirks.quirks[quirk_name]
-		var/new_quirk_cost = new_quirk_type.value
-
-		var/new_balance = base_points - spent_on_stats + current_quirk_balance + new_quirk_cost
-
-		if(new_balance < 0)
-			to_chat(user, span_danger("You cannot purchase this quirk as you have no freebie points left!"))
-			return FALSE
-*/
-
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks) != new_quirks)
@@ -144,7 +124,6 @@
 	preferences.all_quirks = new_quirks
 	preferences.character_preview_view?.update_body()
 	preferences.update_static_data(user, always_instant = TRUE)
-	//update_freebie_points()
 
 	return TRUE
 
@@ -165,18 +144,6 @@
 	preferences.all_quirks = new_quirks
 	preferences.character_preview_view?.update_body()
 	preferences.update_static_data(user, always_instant = TRUE)
-	/*
-	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	if(freebie_stat)
-		var/base_points = 15
-		var/spent_on_stats = freebie_stat.freebie_cost_spent
-		var/quirk_balance = get_quirk_balance()
-		if(freebie_stat.set_points(base_points - spent_on_stats + quirk_balance) < 0)
-			to_chat(user, span_danger("You cannot purchase this quirk as you have no freebie points left!"))
-			return FALSE
-		else
-			update_freebie_points()
-	*/
 
 	return TRUE
 
@@ -187,30 +154,3 @@
 		selected_quirks += sanitize_css_class_name(quirk)
 
 	return selected_quirks
-/*
-/datum/preference_middleware/quirks/proc/get_quirk_balance()
-	var/total_cost = 0
-	for(var/quirk_name in preferences.all_quirks)
-		var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
-		total_cost += quirk_type.value
-	return total_cost
-
-/datum/preference_middleware/quirks/proc/update_freebie_points()
-	var/quirk_balance = get_quirk_balance()
-	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	if(freebie_stat)
-		var/base_points = 15
-		var/spent_on_stats = freebie_stat.freebie_cost_spent
-		freebie_stat.set_points(base_points - spent_on_stats + quirk_balance)
-
-/datum/preference_middleware/quirks/proc/get_freebie_points()
-	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
-	if(!freebie_stat)
-		return null
-
-	var/base_points = 15
-	var/spent_on_stats = freebie_stat.freebie_cost_spent
-	var/quirk_balance = get_quirk_balance()
-
-	return base_points - spent_on_stats + quirk_balance
-*/
