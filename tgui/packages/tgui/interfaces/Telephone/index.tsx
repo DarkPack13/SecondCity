@@ -50,6 +50,19 @@ export type NewscasterChannelEntry = {
   ref: string;
 };
 
+export type ConversationMessage = {
+  message_text: string;
+  is_outgoing: BooleanLike;
+  time: string;
+};
+
+export type Conversation = {
+  number: string;
+  contact_name: string;
+  last_timestamp: number;
+  last_message_text: string;
+};
+
 export type Data = {
   phone_calling: BooleanLike;
   phone_in_call: BooleanLike;
@@ -72,6 +85,9 @@ export type Data = {
 
   newscaster_channels: NewscasterChannelEntry[];
   viewing_channel: null | NewscasterChannel;
+
+  conversations: Conversation[];
+  current_conversation_messages: ConversationMessage[];
 };
 
 export enum NavigableApps {
@@ -129,7 +145,13 @@ const PhysicalScreen = (props: {
       );
     }
     case NavigableApps.Messages: {
-      return <ScreenMessages />;
+      return (
+        <ScreenMessages
+          enteredNumber={enteredNumber}
+          setEnteredNumber={setEnteredNumber}
+          setApp={setApp}
+        />
+      );
     }
     case NavigableApps.IRC: {
       return <ScreenIRC />;
