@@ -130,4 +130,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_HOWLER "loud_howler"
 // END TRAIT DEFINES

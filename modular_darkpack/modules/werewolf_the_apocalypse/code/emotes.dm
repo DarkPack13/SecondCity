@@ -29,10 +29,10 @@
 message = "caws!"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
-/datum/emote/living/growl/get_sound(mob/living/carbon/human/user)
+/datum/emote/living/caw/get_sound(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	return user.dna.species.get_laugh_sound(user)
+	return user.dna.species.get_caw_sound(user)
 */
 
 /datum/emote/living/howl
@@ -43,7 +43,7 @@ message = "caws!"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/howl/get_sound(mob/living/user)
-	var/list/howl_sounds = list(
+	var/static/list/howl_sounds = list(
 		'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo1.ogg',
 		'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo2.ogg',
 	)
@@ -56,3 +56,15 @@ message = "caws!"
 	if(user.is_clan(/datum/vampire_clan/gangrel))
 		return pick(howl_sounds)
 
+/datum/emote/living/howl/get_range(mob/living/user)
+	if(HAS_TRAIT(user, TRAIT_LOUD_HOWLER))
+		return 60
+
+	if(isdog(user) || istype(user, /mob/living/basic/mining/wolf))
+		return 7
+
+	if(isgarou(user))
+		return 15
+
+	if(user.is_clan(/datum/vampire_clan/gangrel))
+		return 7
