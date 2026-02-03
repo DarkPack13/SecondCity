@@ -9,7 +9,7 @@ may even heal fresh Battle Scars (see p. 259) in this man-
 ner, if the Gift is applied during the same scene in which
 the scar is received and an extra Gnosis point is spent.
 */
-/datum/action/cooldown/gift/mothers_touch
+/datum/action/cooldown/power/gift/mothers_touch
 	name = "Mother's Touch"
 	desc = "The Garou is able to heal the wounds of any living creature, aggravated or otherwise, simply by laying hands over the afflicted area."
 	button_icon_state = "mothers_touch"
@@ -19,7 +19,7 @@ the scar is received and an extra Gnosis point is spent.
 	gnosis_req = 1
 
 
-/datum/action/cooldown/gift/mothers_touch/Activate(atom/target)
+/datum/action/cooldown/power/gift/mothers_touch/Activate(atom/target)
 	if(!isliving(target))
 		return
 

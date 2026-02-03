@@ -13,7 +13,7 @@
 			dots_to_heal--
 			healed_dots++
 
-	while(dots_to_heal > 0 && get_brute_loss()+get_tox_loss()+get_oxy_loss(), > 0)
+	while(dots_to_heal > 0 && get_brute_loss()+get_tox_loss()+get_oxy_loss() > 0)
 		heal_ordered_damage(1 TTRPG_DAMAGE, list(BRUTE, TOX, OXY))
 		dots_to_heal--
 		healed_dots++

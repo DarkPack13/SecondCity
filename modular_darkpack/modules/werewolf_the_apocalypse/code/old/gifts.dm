@@ -1,17 +1,17 @@
-/datum/action/cooldown/gift/falling_touch
+/datum/action/cooldown/power/gift/falling_touch
 	name = "Falling Touch"
 	desc = "This Gift allows the Garou to send her foe sprawling with but a touch."
 	button_icon_state = "falling_touch"
 	rage_req = 1
 
-/datum/action/cooldown/gift/falling_touch/Activate(atom/target)
+/datum/action/cooldown/power/gift/falling_touch/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/H = owner
 		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/falling_touch.ogg', 75, FALSE)
 		H.put_in_active_hand(new /obj/item/melee/touch_attack/werewolf(H))
 
-/datum/action/cooldown/gift/inspiration
+/datum/action/cooldown/power/gift/inspiration
 	name = "Inspiration"
 	desc = "The Garou with this Gift lends new resolve and righteous anger to his brethren."
 	button_icon_state = "inspiration"
@@ -36,7 +36,7 @@
 		to_chat(src, span_warning("You no longer feel inspired..."))
 		inspired = FALSE
 
-/datum/action/cooldown/gift/inspiration/Activate(atom/target)
+/datum/action/cooldown/power/gift/inspiration/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/H = owner
@@ -47,13 +47,13 @@
 				if(C.auspice.tribe == H.auspice.tribe)
 					C.inspired()
 
-/datum/action/cooldown/gift/razor_claws
+/datum/action/cooldown/power/gift/razor_claws
 	name = "Razor Claws"
 	desc = "By raking his claws over stone, steel, or another hard surface, the Ahroun hones them to razor sharpness."
 	button_icon_state = "razor_claws"
 	rage_req = 1
 
-/datum/action/cooldown/gift/razor_claws/Activate(atom/target)
+/datum/action/cooldown/power/gift/razor_claws/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		if(ishuman(owner))
@@ -87,14 +87,14 @@
 				H.agg_damage_plus = 0
 				to_chat(owner, span_warning("Your claws are not sharp anymore..."))
 
-/datum/action/cooldown/gift/beast_speech
+/datum/action/cooldown/power/gift/beast_speech
 	name = "Beast Speech"
 	desc = "The werewolf with this Gift may communicate with any animals from fish to mammals."
 	button_icon_state = "beast_speech"
 	rage_req = 1
 	//gnosis_req = 1
 
-/datum/action/cooldown/gift/beast_speech/Activate(atom/target)
+/datum/action/cooldown/power/gift/beast_speech/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -112,13 +112,13 @@
 		C.beastmaster |= D
 		D.beastmaster = C
 
-/datum/action/cooldown/gift/call_of_the_wyld
+/datum/action/cooldown/power/gift/call_of_the_wyld
 	name = "Call Of The Wyld"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and imbue it with great emotion, stirring the hearts of fellow Garou and chilling the bones of all others."
 	button_icon_state = "call_of_the_wyld"
 	rage_req = 1
 
-/datum/action/cooldown/gift/call_of_the_wyld/Activate(atom/target)
+/datum/action/cooldown/power/gift/call_of_the_wyld/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -130,13 +130,13 @@
 					adjust_gnosis(1, A, TRUE)
 //	awo1
 
-/datum/action/cooldown/gift/mindspeak
+/datum/action/cooldown/power/gift/mindspeak
 	name = "Mindspeak"
 	desc = "By invoking the power of waking dreams, the Garou can place any chosen characters into silent communion."
 	button_icon_state = "mindspeak"
 //	gnosis_req = 1
 
-/datum/action/cooldown/gift/mindspeak/Activate(atom/target)
+/datum/action/cooldown/power/gift/mindspeak/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/new_thought = input(owner, "What do you want to tell to your Tribe?") as text|null
@@ -148,13 +148,13 @@
 					if(A.auspice.tribe == C.auspice.tribe)
 						to_chat(A, "You hear a message in your head... <b>[sanitize_text(new_thought)]</b>")
 
-/datum/action/cooldown/gift/resist_pain
+/datum/action/cooldown/power/gift/resist_pain
 	name = "Resist Pain"
 	desc = "Through force of will, the Philodox is able to ignore the pain of his wounds and continue acting normally."
 	button_icon_state = "resist_pain"
 	rage_req = 2
 
-/datum/action/cooldown/gift/resist_pain/Activate(atom/target)
+/datum/action/cooldown/power/gift/resist_pain/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		if(ishuman(owner))
@@ -176,14 +176,14 @@
 				H.werewolf_armor = initial(H.werewolf_armor)
 				to_chat(owner, span_warning("Your skin is thin again..."))
 
-/datum/action/cooldown/gift/scent_of_the_true_form
+/datum/action/cooldown/power/gift/scent_of_the_true_form
 	name = "Scent Of The True Form"
 	desc = "This Gift allows the Garou to determine the true nature of a person."
 	button_icon_state = "scent_of_the_true_form"
 	rage_req = 1
 	//gnosis_req = 1
 
-/datum/action/cooldown/gift/scent_of_the_true_form/Activate(atom/target)
+/datum/action/cooldown/power/gift/scent_of_the_true_form/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR]
@@ -191,19 +191,19 @@
 		spawn(200)
 			abductor_hud.remove_hud_from(owner)
 
-/datum/action/cooldown/gift/truth_of_gaia
+/datum/action/cooldown/power/gift/truth_of_gaia
 	name = "Truth Of Gaia"
 	desc = "As judges of the Litany, Philodox have the ability to sense whether others have spoken truth or falsehood."
 	button_icon_state = "truth_of_gaia"
 //	rage_req = 1
 
-/datum/action/cooldown/gift/sense_wyrm
+/datum/action/cooldown/power/gift/sense_wyrm
 	name = "Sense Wyrm"
 	desc = "This Gift allows the werewolf to sense the presence of Wyrm."
 	button_icon_state = "sense_wyrm"
 	rage_req = 1
 
-/datum/action/cooldown/gift/sense_wyrm/Activate(atom/target)
+/datum/action/cooldown/power/gift/sense_wyrm/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -214,13 +214,13 @@
 			C.sight = initial(C.sight)
 			to_chat(owner, span_warning("You no longer sense anything more than normal..."))
 
-/datum/action/cooldown/gift/spirit_speech
+/datum/action/cooldown/power/gift/spirit_speech
 	name = "Spirit Speech"
 	desc = "This Gift allows the Garou to communicate with encountered spirits."
 	button_icon_state = "spirit_speech"
 	//gnosis_req = 1
 
-/datum/action/cooldown/gift/spirit_speech/Activate(atom/target)
+/datum/action/cooldown/power/gift/spirit_speech/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -228,14 +228,14 @@
 		spawn(200)
 			C.see_invisible = initial(C.see_invisible)
 
-/datum/action/cooldown/gift/blur_of_the_milky_eye
+/datum/action/cooldown/power/gift/blur_of_the_milky_eye
 	name = "Blur Of The Milky Eye"
 	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
 	button_icon_state = "blur_of_the_milky_eye"
 	rage_req = 2
 	//gnosis_req = 1
 
-/datum/action/cooldown/gift/blur_of_the_milky_eye/Activate(atom/target)
+/datum/action/cooldown/power/gift/blur_of_the_milky_eye/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -244,13 +244,13 @@
 		spawn(20 SECONDS)
 			C.alpha = 255
 
-/datum/action/cooldown/gift/open_seal
+/datum/action/cooldown/power/gift/open_seal
 	name = "Open Seal"
 	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
 	button_icon_state = "open_seal"
 //	gnosis_req = 1
 
-/datum/action/cooldown/gift/open_seal/Activate(atom/target)
+/datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		for(var/obj/structure/vampdoor/V in range(5, owner))
@@ -258,13 +258,13 @@
 				if(V.lockpick_difficulty < 10)
 					V.open_door(owner, TRUE)
 
-/datum/action/cooldown/gift/infectious_laughter
+/datum/action/cooldown/power/gift/infectious_laughter
 	name = "Infectious Laughter"
 	desc = "When the Ragabash laughs, those around her are compelled to follow along, forgetting their grievances."
 	button_icon_state = "infectious_laughter"
 	rage_req = 1
 
-/datum/action/cooldown/gift/infectious_laughter/Activate(atom/target)
+/datum/action/cooldown/power/gift/infectious_laughter/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -275,14 +275,14 @@
 			L.emote("laugh")
 			L.Stun(20)
 
-/datum/action/cooldown/gift/rage_heal
+/datum/action/cooldown/power/gift/rage_heal
 	name = "Rage Heal"
 	desc = "This Gift allows the Garou to heal severe injuries with rage."
 	button_icon_state = "rage_heal"
 	rage_req = 1
 	check_flags = null
 
-/datum/action/cooldown/gift/rage_heal/Activate(atom/target)
+/datum/action/cooldown/power/gift/rage_heal/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -329,12 +329,12 @@
 		else
 			C.sprite_apparel = min(4, C.sprite_apparel+1)
 
-/datum/action/cooldown/gift/hispo
+/datum/action/cooldown/power/gift/hispo
 	name = "Hispo Form"
 	desc = "Change your Lupus form into Hispo and backwards."
 	button_icon_state = "hispo"
 
-/datum/action/cooldown/gift/hispo/Activate(atom/target)
+/datum/action/cooldown/power/gift/hispo/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/werewolf/lupus/H = owner
@@ -360,12 +360,12 @@
 			H.remove_movespeed_modifier(/datum/movespeed_modifier/lupusform)
 			H.add_movespeed_modifier(/datum/movespeed_modifier/crinosform)
 
-/datum/action/cooldown/gift/glabro
+/datum/action/cooldown/power/gift/glabro
 	name = "Glabro Form"
 	desc = "Change your Homid form into Glabro and backwards."
 	button_icon_state = "glabro"
 
-/datum/action/cooldown/gift/glabro/Activate(atom/target)
+/datum/action/cooldown/power/gift/glabro/Activate(atom/target)
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/human/H = owner

@@ -76,8 +76,8 @@
 		/datum/splat/werewolf
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	splat_actions = list(
-		/datum/action/cooldown/gift/howling,
-		/datum/action/cooldown/gift/mothers_touch
+		/datum/action/cooldown/power/gift/howling,
+		/datum/action/cooldown/power/gift/mothers_touch
 	)
 	uses_rage = TRUE
 	uses_gnosis = TRUE

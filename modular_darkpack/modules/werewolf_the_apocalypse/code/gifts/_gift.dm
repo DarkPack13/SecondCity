@@ -1,6 +1,6 @@
 
 
-/datum/action/cooldown/gift
+/datum/action/cooldown/power/gift
 
 	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	background_icon_state = "bg_gift"
@@ -9,15 +9,12 @@
 	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
-	cooldown_time = 1 TURNS
-	/// The level/rank at which this gift is taken or can be taken at.
-	var/rank = 0
+
+
 	var/rage_req = 0
 	var/gnosis_req = 0
-	/// Means that this action is not a gift, but some sort of innate ability we represent as a gift mechnaicly.
-	var/innate_ability = FALSE
 
-/datum/action/cooldown/gift/IsAvailable(feedback)
+/datum/action/cooldown/power/gift/IsAvailable(feedback)
 	. = ..()
 
 	if(!ishuman(owner))
@@ -41,7 +38,7 @@
 			return FALSE
 
 
-/datum/action/cooldown/gift/Activate(atom/target)
+/datum/action/cooldown/power/gift/Activate(atom/target)
 	. = ..()
 	if(!ishuman(owner))
 		return FALSE
@@ -54,8 +51,8 @@
 		casting_splat.adjust_gnosis(-get_gnosis_cost(), owner, FALSE)
 	to_chat(owner, span_notice("You activate the [name]..."))
 
-/datum/action/cooldown/gift/proc/get_rage_cost()
+/datum/action/cooldown/power/gift/proc/get_rage_cost()
 	return rage_req
 
-/datum/action/cooldown/gift/proc/get_gnosis_cost()
+/datum/action/cooldown/power/gift/proc/get_gnosis_cost()
 	return gnosis_req

@@ -1,3 +1,10 @@
+/// How long it takes for a werewolf's Veil to naturally repair
+// #define UMBRA_VEIL_COOLDOWN 15 MINUTES
+/// How long it takes for a werewolf to regenerate a blood point
+// #define FERA_BP_REGEN 60 SECONDS // I cant find a source to this.
+/// Cooldown between Veil violations
+// #define VEIL_COOLDOWN 20 SECONDS
+
 #define FEATURE_FERA_BREED "garou_breed"
 
 #define BREED_HOMID "Homid"

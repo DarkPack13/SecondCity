@@ -1,11 +1,11 @@
-/datum/action/cooldown/gift/stoic_pose
+/datum/action/cooldown/power/gift/stoic_pose
 	name = "Stoic Pose"
 	desc = "With this gift garou sends theirself into cryo-state, ignoring all incoming damage but also covering themself in a block of ice."
 	button_icon_state = "stoic_pose"
 	rage_req = 2
 	gnosis_req = 1
 
-/datum/action/cooldown/gift/stoic_pose/Trigger()
+/datum/action/cooldown/power/gift/stoic_pose/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/ice_blocking.ogg', 100, FALSE)
@@ -47,14 +47,14 @@
 	icon_state = "ice"
 	pixel_w = -8
 
-/datum/action/cooldown/gift/freezing_wind
+/datum/action/cooldown/power/gift/freezing_wind
 	name = "Freezing Wind"
 	desc = "Garou of Wendigo Tribe can create a stream of cold, freezing wind, and strike her foes with it."
 	button_icon_state = "freezing_wind"
 	rage_req = 1
 	//gnosis_req = 1
 
-/datum/action/cooldown/gift/freezing_wind/Trigger()
+/datum/action/cooldown/power/gift/freezing_wind/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/wind_cast.ogg', 100, FALSE)
@@ -67,14 +67,14 @@
 					qdel(W)
 //	if(allowed_to_proceed)
 
-/datum/action/cooldown/gift/bloody_feast
+/datum/action/cooldown/power/gift/bloody_feast
 	name = "Bloody Feast"
 	desc = "By eating a grabbed corpse, garou can redeem their lost health and heal the injuries."
 	button_icon_state = "bloody_feast"
 	rage_req = 2
 	gnosis_req = 1
 
-/datum/action/cooldown/gift/bloody_feast/Trigger()
+/datum/action/cooldown/power/gift/bloody_feast/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
@@ -86,12 +86,12 @@
 					qdel(L)
 					C.revive(full_heal = TRUE, admin_revive = TRUE)
 
-/datum/action/cooldown/gift/stinky_fur
+/datum/action/cooldown/power/gift/stinky_fur
 	name = "Stinky Fur"
 	desc = "Garou creates an aura of very toxic smell, which disorientates everyone around."
 	button_icon_state = "stinky_fur"
 
-/datum/action/cooldown/gift/stinky_fur/Trigger()
+/datum/action/cooldown/power/gift/stinky_fur/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/necromancy.ogg', 75, FALSE)
@@ -101,13 +101,13 @@
 			C.dizziness += 10
 			C.add_confusion(10)
 
-/datum/action/cooldown/gift/venom_claws
+/datum/action/cooldown/power/gift/venom_claws
 	name = "Venom Claws"
 	desc = "While this ability is active, strikes with claws poison foes of garou."
 	button_icon_state = "venom_claws"
 	rage_req = 1
 
-/datum/action/cooldown/gift/venom_claws/Trigger()
+/datum/action/cooldown/power/gift/venom_claws/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		if(ishuman(owner))
@@ -135,14 +135,14 @@
 				H.melee_damage_upper = initial(H.melee_damage_upper)
 				to_chat(owner, span_warning("Your claws are not poison anymore..."))
 
-/datum/action/cooldown/gift/burning_scars
+/datum/action/cooldown/power/gift/burning_scars
 	name = "Burning Scars"
 	desc = "Garou creates an aura of very hot air, which burns everyone around."
 	button_icon_state = "burning_scars"
 	rage_req = 2
 	gnosis_req = 1
 
-/datum/action/cooldown/gift/burning_scars/Trigger()
+/datum/action/cooldown/power/gift/burning_scars/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		owner.visible_message(span_danger("[owner.name] crackles with heat!"), span_danger("You crackle with heat, charging up your Gift!"))
@@ -154,13 +154,13 @@
 				spawn(5)
 					qdel(F)
 
-/datum/action/cooldown/gift/smooth_move
+/datum/action/cooldown/power/gift/smooth_move
 	name = "Smooth Move"
 	desc = "Garou jumps forward, avoiding every damage for a moment."
 	button_icon_state = "smooth_move"
 	//rage_req = 1   somewhat useless gift with MMB pounce
 
-/datum/action/cooldown/gift/smooth_move/Trigger()
+/datum/action/cooldown/power/gift/smooth_move/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		var/turf/T = get_turf(get_step(get_step(get_step(owner, owner.dir), owner.dir), owner.dir))
@@ -173,14 +173,14 @@
 		spawn(3)
 			owner.throw_at(T, get_dist(owner, T), 1, owner, 0)
 
-/datum/action/cooldown/gift/digital_feelings
+/datum/action/cooldown/power/gift/digital_feelings
 	name = "Digital Feelings"
 	desc = "Every technology creates an electrical strike, which hits garou's enemies."
 	button_icon_state = "digital_feelings"
 	rage_req = 2
 	gnosis_req = 1
 
-/datum/action/cooldown/gift/digital_feelings/Trigger()
+/datum/action/cooldown/power/gift/digital_feelings/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		owner.visible_message(span_danger("[owner.name] crackles with static electricity!"), span_danger("You crackle with static electricity, charging up your Gift!"))
@@ -190,14 +190,14 @@
 			for(var/mob/living/L in orange(6, owner))
 				L.electrocute_act(30, owner, siemens_coeff = 1, flags = NONE)
 
-/datum/action/cooldown/gift/elemental_improvement
+/datum/action/cooldown/power/gift/elemental_improvement
 	name = "Elemental Improvement"
 	desc = "Garou flesh replaces itself with prothesis, making it less vulnerable to brute damage, but more for burn damage."
 	button_icon_state = "elemental_improvement"
 	rage_req = 2
 	gnosis_req = 1
 
-/datum/action/cooldown/gift/elemental_improvement/Trigger()
+/datum/action/cooldown/power/gift/elemental_improvement/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		animate(owner, color = "#6a839a", time = 10)
