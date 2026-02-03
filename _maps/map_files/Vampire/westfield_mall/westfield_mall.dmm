@@ -4476,7 +4476,7 @@
 /area/vtm/westfield_mall/interior/janitor)
 "aoT" = (
 /obj/structure/vampdoor/glass,
-/obj/effect/mapping_helpers/door/access/police_chief,
+/obj/effect/mapping_helpers/door/access/police_captain,
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/mapping_helpers/door/lock_difficulty/seven,
 /turf/open/floor/wood/smooth/old,
