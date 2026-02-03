@@ -200,7 +200,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
               }}
             >
               <Stack fill align="center" justify="center">
-                <Stack.Item>Sym</Stack.Item>
+                <Stack.Item>?123</Stack.Item>
               </Stack>
             </Box>
           </Stack.Item>
@@ -314,7 +314,7 @@ export const ScreenMessages = (props : {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
 }) => {
   const { act, data } = useBackend<Data>();
-  const { my_number, published_numbers, our_contacts, our_blocked_contacts, current_conversation_messages } = data;
+  const { my_number, published_numbers, our_contacts, our_blocked_contacts, current_conversation_messages, conversations, date } = data;
   const { enteredNumber, setEnteredNumber, setApp } = props;
 
   const [selectedContact, setSelectedContact] = useState<string | null>(null);
@@ -366,24 +366,48 @@ export const ScreenMessages = (props : {
             <Stack.Item grow>{getContactName(selectedContact)}</Stack.Item>
           </Stack>
         </Stack.Item>
+
         <Stack.Item grow overflowY="auto">
+          <Box fontSize={0.8} textAlign="center" textColor= '#969696'>{date}</Box>
           {current_conversation_messages?.map((msg, idx) => (
-            // flex-end for outgoing, flex-start for incoming. left and right sides
+            // flex-end for INCOMING, flex-start for OUTGOING. left and right sides
             <Stack key={idx} mb={1} p={1} justify={msg.is_outgoing ? 'flex-end' : 'flex-start'}>
               <Box
-                backgroundColor={msg.is_outgoing ? '#0069ff' : '#e0e0e0'} //TODO maybe make this green
+                backgroundColor={msg.is_outgoing ? '#0069ff' : '#e0e0e0'} //TODO maybe change this to green if we do expensive vs cheap phones
                 textColor={msg.is_outgoing ? '#fff' : '#000'}
                 p={1}
                 style={{ borderRadius: '8px', maxWidth: '70%', wordWrap: 'break-word' }}
               >
                 {msg.message_text}
-                <Box fontSize={0.8} mt={0.5}>{msg.time}</Box>
+                <Box textAlign={msg.is_outgoing ? 'right' : 'left'} fontSize={0.7} mt={0.5} textColor={msg.is_outgoing ? '#ffffff' : '#303030'}>{msg.time}</Box>
               </Box>
             </Stack>
           ))}
         </Stack.Item>
-        <Stack.Item p={1} backgroundColor="#f0f0f0">
-          <Box>{messageText}</Box>
+        <Stack.Item p={1} backgroundColor="#f0f0f0" style={{ borderTop: '1px solid #ddd' }}>
+          <style>{`
+            @keyframes blink {
+              0%, 50% { opacity: 1; }
+              51%, 100% { opacity: 0; }
+            }
+            .cursor {
+              display: inline-block;
+              animation: blink 1s infinite;
+              margin-left: 2px;
+            }
+          `}</style>
+          <Box
+            p={0.5}
+            style={{
+              backgroundColor: '#fff',
+              borderRadius: '4px',
+              border: '1px solid #ccc',
+              minHeight: '2.5em'
+            }}
+          >
+            {messageText}
+            {messageText.length === 0 && selectedContact && <span className="cursor">|</span>}
+          </Box>
         </Stack.Item>
         <Stack.Item mb={6}>
           <Keyboard onClick={handleKeyPress} />
@@ -392,6 +416,25 @@ export const ScreenMessages = (props : {
     );
   }
 
+  const allContacts = Array.isArray(conversations)
+    ? conversations
+        .filter(c => c.number !== my_number)
+        .sort((a, b) => {
+          const aTime = typeof a.last_timestamp === 'number' ? a.last_timestamp : 0;
+          const bTime = typeof b.last_timestamp === 'number' ? b.last_timestamp : 0;
+          return bTime - aTime;
+        }) // most recent first
+        .map(c => ({ name: getContactName(c.number), number: c.number, lastMessage: c.last_message_text }))
+    : [];
+
+  const publishedButNoConversation = Array.isArray(published_numbers)
+    ? published_numbers
+        .filter(p => p.number !== my_number && !allContacts.some(c => c.number === p.number))
+        .map(p => ({ name: p.name, number: p.number, lastMessage: undefined }))
+    : [];
+
+  const combinedContacts = [...allContacts, ...publishedButNoConversation];
+
   return (
     <Stack vertical fill backgroundColor="#fff" textColor="#000">
       <Stack.Item backgroundColor="#0069ff" textColor="#fff" p={1}>
@@ -399,25 +442,15 @@ export const ScreenMessages = (props : {
       </Stack.Item>
       <Stack.Item grow overflowY="auto">
         <Stack vertical>
-          {our_contacts?.filter(c => c.number !== my_number).map((contact) => (
-          <ContactElement
-            contact={contact}
-            key={contact.name + contact.number}
-            onClick={() => handleSelectContact(contact.number)}
-          />
-        ))}
-
-          {published_numbers?.filter(p => p.number !== my_number).map((num) => (
-          <ContactElement
-            contact={num}
-            key={num.name + num.number}
-            onClick={() => handleSelectContact(num.number)}
-          />
-        ))}
+          {combinedContacts?.map((contact) => (
+            <ContactElement
+              contact={contact}
+              key={contact.name + contact.number}
+              onClick={() => handleSelectContact(contact.number)}
+              time={contact.lastMessage || contact.number}
+            />
+          ))}
         </Stack>
-      </Stack.Item>
-      <Stack.Item mb={6}>
-        <Keyboard onClick={handleKeyPress} />
       </Stack.Item>
     </Stack>
   );
