@@ -478,6 +478,7 @@
 #include "code\__DEFINES\~darkpack\dcs\signals\signals_global.dm"
 #include "code\__DEFINES\~darkpack\dcs\signals_mob\signals_mob.dm"
 #include "code\__DEFINES\~darkpack\dcs\signals_mob\signals_mob_living.dm"
+#include "code\__DEFINES\~darkpack\merits_flaws\declarations.dm"
 #include "code\__DEFINES\~darkpack\traits\declarations.dm"
 #include "code\__DEFINES\~darkpack\traits\macros.dm"
 #include "code\__DEFINES\~darkpack\traits\sources.dm"
