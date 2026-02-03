@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - map: "added the ability to have multiple umbra choices based off json map config"

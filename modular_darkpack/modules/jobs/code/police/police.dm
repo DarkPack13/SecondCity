@@ -14,6 +14,12 @@
 		/datum/job_department/police,
 	)
 
+	alt_titles = list(
+		"Police Officer",
+		"Police Cadet",
+		"Senior Police Officer",
+	)
+
 	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE)
 	splat_slots = list(SPLAT_GHOUL = 2)
 

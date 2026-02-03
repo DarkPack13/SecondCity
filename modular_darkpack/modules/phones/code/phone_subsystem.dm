@@ -38,8 +38,9 @@ SUBSYSTEM_DEF(phones)
 // Returns a valid frequency for a phone to use for a phone call.
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
-	while(frequency_to_use in frequencies_in_use)
-		frequency_to_use++
+	for(var/i in length(frequencies_in_use))
+		if(frequency_to_use == (USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE + i))
+			frequency_to_use++
 	frequencies_in_use += frequency_to_use
 	return frequency_to_use
 

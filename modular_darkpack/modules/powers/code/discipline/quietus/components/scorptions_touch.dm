@@ -59,7 +59,7 @@
 
 	if(victim.st_get_stat(STAT_STAMINA) <= 0)
 		if(iskindred(victim))
-			victim.torpor()
+			victim.torpor(DAMAGE_TRAIT)
 			to_chat(victim, span_userdanger("Your body shuts down as the poison drains your very essence! You enter torpor!"))
 			to_chat(user, span_boldwarning("[victim] collapses into torpor!"))
 		else
