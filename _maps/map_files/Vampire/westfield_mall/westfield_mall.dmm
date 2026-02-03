@@ -15579,7 +15579,7 @@
 /obj/structure/chair/office/darkpack/blue{
 	dir = 1
 	},
-/obj/effect/landmark/start/darkpack/law_enforcement/chief,
+/obj/effect/landmark/start/darkpack/law_enforcement/captain,
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
 "aZo" = (
