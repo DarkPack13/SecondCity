@@ -1,9 +1,8 @@
-/datum/action/gift/howling
+/datum/action/cooldown/gift/howling
 	name = "Howl"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and communicate a single word or concept to all other Garou across the city."
 	button_icon_state = "call_of_the_wyld"
 	rage_req = 1
-	cool_down = 5
 	check_flags = null
 	var/static/list/howls = list(
 		"attack" = list(
@@ -43,12 +42,15 @@
 		)
 	)
 
-/datum/action/gift/howling/Trigger(trigger_flags)
+/datum/action/cooldown/gift/howling/IsAvailable(feedback)
 	. = ..()
-
 	if(istype(get_area(owner), /area/vtm/interior/penumbra))
-		to_chat(owner, span_warning("Your howl echoes and dissipates into the Umbra, it's sound blanketed by the spiritual energy of the Velvet Shadow."))
+		if(feedback)
+			to_chat(owner, span_warning("Your howl echoes and dissipates into the Umbra, it's sound blanketed by the spiritual energy of the Velvet Shadow."))
 		return
+
+/datum/action/cooldown/gift/howling/Activate(atom/target)
+	. = ..()
 
 	var/mob/living/living_mob = owner
 	var/datum/splat/werewolf/shifter = isshifter(owner)
@@ -86,7 +88,7 @@
 			to_chat(howled_at, span_boldnotice(final_message))
 
 
-/datum/action/gift/howling/proc/get_message(mob/living/howled_at, turf/origin_turf)
+/datum/action/cooldown/gift/howling/proc/get_message(mob/living/howled_at, turf/origin_turf)
 	var/distance = get_dist(howled_at, origin_turf)
 	var/dirtext = " to the "
 	var/direction = get_dir(howled_at, origin_turf)

@@ -1,4 +1,6 @@
-/datum/action/gift
+
+
+/datum/action/cooldown/gift
 
 	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	background_icon_state = "bg_gift"
@@ -7,39 +9,43 @@
 	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
+	cooldown_time = 1 TURNS
 	var/rage_req = 0
 	var/gnosis_req = 0
-	var/cool_down = 0
 
-	var/allowed_to_proceed = FALSE
-
-/*
-/datum/action/gift/Trigger()
+/datum/action/cooldown/gift/IsAvailable(feedback)
 	. = ..()
-	if(istype(owner, /mob/living/carbon))
-		var/mob/living/carbon/H = owner
-		if(H.stat == DEAD)
-			allowed_to_proceed = FALSE
-			return
-		if(rage_req)
-			if(H.auspice.rage < rage_req)
+
+	if(!ishuman(owner))
+		if(feedback)
+			owner.balloon_alert(owner, "not human!")
+		return FALSE
+
+	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+
+	if(rage_req)
+		if(casting_splat.rage < rage_req)
+			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
-				allowed_to_proceed = FALSE
-				return
-			if(H.auspice.gnosis < gnosis_req)
+			return FALSE
+	if(gnosis_req)
+		if(casting_splat.gnosis < gnosis_req)
+			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>GNOSIS</b> to do that!"))
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
-				allowed_to_proceed = FALSE
-				return
-		if(cool_down+150 >= world.time)
-			allowed_to_proceed = FALSE
-			return
-		cool_down = world.time
-		allowed_to_proceed = TRUE
-		if(rage_req)
-			adjust_rage(-rage_req, owner, FALSE)
-		if(gnosis_req)
-			adjust_gnosis(-gnosis_req, owner, FALSE)
-		to_chat(owner, span_notice("You activate the [name]..."))
-*/
+			return FALSE
+
+
+/datum/action/cooldown/gift/Activate(atom/target)
+	. = ..()
+	if(!ishuman(owner))
+		return FALSE
+
+	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+
+	if(rage_req)
+		casting_splat.adjust_rage(-rage_req, owner, FALSE)
+	if(gnosis_req)
+		casting_splat.adjust_gnosis(-gnosis_req, owner, FALSE)
+	to_chat(owner, span_notice("You activate the [name]..."))
