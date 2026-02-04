@@ -19,7 +19,7 @@
 
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
 	if(!uses_rage)
-		return
+		return FALSE
 
 	if(amount > 0)
 		if(rage < MAX_RAGE)
@@ -27,18 +27,23 @@
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
 			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
+		else
+			return FALSE
 	if(amount < 0)
 		if(rage > 0)
 			rage = max(0, rage+amount)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
 			to_chat(owner, span_userdanger("<b>RAGE DECREASES</b>"))
+		else
+			return FALSE
 
 	owner.update_werewolf_hud()
+	return TRUE
 
 /datum/splat/werewolf/proc/adjust_gnosis(amount, sound = TRUE)
 	if(!uses_gnosis)
-		return
+		return FALSE
 
 	if(amount > 0)
 		if(gnosis < max_gnosis)
@@ -46,14 +51,19 @@
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
+		else
+			return FALSE
 	if(amount < 0)
 		if(gnosis > 0)
 			gnosis = clamp(gnosis + amount, 0, max_gnosis)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
+		else
+			return FALSE
 
 	owner.update_werewolf_hud()
+	return TRUE
 
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"

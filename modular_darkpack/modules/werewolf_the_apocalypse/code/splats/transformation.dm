@@ -33,7 +33,7 @@
 
 	return TRUE
 
-/datum/splat/werewolf/shifter/proc/transform(form_to_transform)
+/datum/splat/werewolf/shifter/proc/transform(datum/species/human/shifter/form_to_transform, costs_rage = TRUE, requires_roll = TRUE)
 	if(!form_to_transform)
 		return
 	if(!istype(owner))
@@ -43,6 +43,24 @@
 	if(owner?.dna?.species?.type == form_to_transform)
 		return
 
+	var/real_breed = GLOB.fera_breeds[owner?.dna?.features[FEATURE_FERA_BREED]]
+
+	if(ispath(real_breed, form_to_transform))
+		requires_roll = FALSE
+	else if(costs_rage)
+		requires_roll = FALSE
+		if(!adjust_rage(-1, TRUE))
+			return
+
+	#define PRIMAL_URGE_PLACEHOLDER 3
+	#warn Needs to pull difficulty from species
+	#warn should accctually require an amount of successes equal to the forms your shifting through
+	switch(SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + PRIMAL_URGE_PLACEHOLDER, form_to_transform::shift_difficulty, list(owner), owner))
+		if(ROLL_SUCCESS)
+			EMPTY_BLOCK_GUARD
+		if(ROLL_FAILURE, ROLL_BOTCH)
+			return
+	#undef PRIMAL_URGE_PLACEHOLDER
 
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg', 50, FALSE)
 

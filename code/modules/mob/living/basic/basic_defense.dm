@@ -21,8 +21,14 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to hurt [src]!"))
 		return TRUE
-	var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
-	var/damage = (basic_mob_flags & IMMUNE_TO_FISTS) ? 0 : rand(active_arm.unarmed_damage_low, active_arm.unarmed_damage_high)
+
+	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
+	// ROLL TO HIT // DARKPACK TODO
+	// var/successes = SSroll.storyteller_roll(user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_BRAWL), 6, list(user), user)
+	// ROLL TO DAMAGE
+	var/damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, list(user), user, TRUE)
+	var/damage = (basic_mob_flags & IMMUNE_TO_FISTS) ? 0 : damage_output TTRPG_DAMAGE // DARKPACK EDIT CHANGE - STORYTELLER_STATS
+	// DARKPACK EDIT CHANGE END
 	if(check_block(user, damage, "[user]'s punch", UNARMED_ATTACK, 0, BRUTE))
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)

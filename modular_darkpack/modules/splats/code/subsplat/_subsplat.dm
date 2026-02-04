@@ -1,7 +1,13 @@
+// DARKPACK TODO - This should include clans.
+
 /**
- * # SubSplat
+ * # Subsplat
  *
- * Represents the "splats" described in splatbooks, e.g clanbooks and tribebooks.
+ * Represents the "splats" described in splatbooks, e.g. clans, tribes, factions and kiths.
+ * These are the "real" splats but we call them subsplats as we used that type path for what WW calls supernaturals
+ * A more official term sometimes used, especially for games in the Chronicles of Darkness, is "character axis".
+ *
+ * These at present are only stored on splats as a var for a given subtype and requires mostly implementing its own handling for everything.
  */
 /datum/subsplat
 	abstract_type = /datum/subsplat
@@ -13,15 +19,8 @@
 	/// ID for trait sources and whatnot
 	var/id
 
-/datum/subsplat/proc/on_gain()
+/datum/subsplat/proc/on_gain(mob/living/carbon/human/gaining, joining_round)
 	return
 
 /datum/subsplat/proc/on_lose()
 	return
-
-/proc/init_subsplat_list(path = /datum/subsplat)
-	var/list/subsplat_list = list()
-	for (var/datum/subsplat/subsplat as anything in valid_subtypesof(path))
-		subsplat_list[subsplat::name] = subsplat
-	subsplat_list = sort_list(subsplat_list)
-	return subsplat_list

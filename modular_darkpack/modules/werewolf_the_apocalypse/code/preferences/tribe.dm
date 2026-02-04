@@ -9,7 +9,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/garou_tribe/init_possible_values()
-	return assoc_to_keys(GLOB.garou_tribes)
+	return assoc_to_keys(GLOB.tribes_list) // This would be inclusive of ALL tribes so many need to be reworked when adding other fera
 
 /datum/preference/choiced/garou_tribe/icon_for(value)
 	var/datum/universal_icon/tribe_icon = uni_icon('icons/effects/effects.dmi', "nothing")
@@ -17,4 +17,4 @@
 	return tribe_icon
 
 /datum/preference/choiced/garou_tribe/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features[FEATURE_GAROU_AUSPICE] = value
+	// target.set_fera_tribe(value, TRUE)

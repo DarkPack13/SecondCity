@@ -9,7 +9,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/garou_auspice/init_possible_values()
-	return assoc_to_keys(GLOB.garou_auspices)
+	return assoc_to_keys(GLOB.auspices_list) // This would be inclusive of ALL auspices so many need to be reworked when adding other fera
 
 /datum/preference/choiced/garou_auspice/icon_for(value)
 	var/datum/universal_icon/auspice_icon = uni_icon('icons/effects/effects.dmi', "nothing")
@@ -17,6 +17,4 @@
 	return auspice_icon
 
 /datum/preference/choiced/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)
-	#warn I dont think dna feats is useful here.
-	target.dna.features[FEATURE_GAROU_AUSPICE] = value
 	target.set_auspice(value, TRUE)

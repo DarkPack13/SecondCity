@@ -26,6 +26,7 @@
 	var/mob_pixel_w
 	var/mob_pixel_z
 	var/list/form_bonus_stats = list()
+	var/shift_difficulty = 6
 	var/custom_body_render = FALSE
 	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
@@ -116,11 +117,12 @@
 /datum/species/human/shifter/bestial
 	id = SPECIES_FERA_BESTIAL
 	form_bonus_stats = list(
-		STAT_STRENGTH = 3,
+		STAT_STRENGTH = 2,
 		STAT_STAMINA = 2,
 		STAT_MANIPULATION = -2,
 		STAT_APPEARANCE = -1
 	)
+	shift_difficulty = 7
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
@@ -178,7 +180,7 @@
 		STAT_STRENGTH = 4,
 		STAT_STAMINA = 3,
 		STAT_DEXTERITY = 1,
-		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
+		STAT_MANIPULATION = -3,
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
 	mob_pixel_w = -8
@@ -213,8 +215,9 @@
 		STAT_STRENGTH = 3,
 		STAT_STAMINA = 3,
 		STAT_DEXTERITY = 2,
-		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
+		STAT_MANIPULATION = -3,
 	)
+	shift_difficulty = 7
 	mob_pixel_w = -16
 	mob_pixel_z = -8
 	custom_body_render = TRUE
@@ -248,7 +251,7 @@
 		STAT_STRENGTH = 1,
 		STAT_STAMINA = 2,
 		STAT_DEXTERITY = 2,
-		// STAT_MANIPULATION = 0, // NOT YET SUPPORTED
+		STAT_MANIPULATION = -3,
 	)
 	custom_body_render = TRUE
 	custom_damage_render = TRUE

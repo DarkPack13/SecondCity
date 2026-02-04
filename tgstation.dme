@@ -7660,6 +7660,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\delirium.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\rage_heal.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\tribes\_tribe.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\tribes\garou.dm"
 #include "modular_darkpack\modules\westfield_mall\code\mall_areas.dm"
 #include "modular_darkpack\modules\westfield_mall\code\modular_rooms.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"

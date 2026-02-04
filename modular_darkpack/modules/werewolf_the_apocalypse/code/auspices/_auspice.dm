@@ -5,6 +5,8 @@
 
 	var/start_rage
 
+	var/gifts = list()
+
 	var/moons_born_under = list()
 
 /datum/subsplat/auspice/on_gain()
