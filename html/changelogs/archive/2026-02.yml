@@ -16,3 +16,10 @@
   - rscdel: Disabled Dynamic
   dwinters99:
   - rscadd: stick
+2026-02-04:
+  FalloutFalcon:
+  - bugfix: alt junk wall no longer has cutting mistakes
+  - rscadd: Status alert to ask for your emotions. Currently applied by aura sight
+  - bugfix: bloodpower no longer gives you blood
+  dwinters99 & Major00:
+  - sound: new localhost start now button sound
