@@ -41,7 +41,7 @@
 	reagents.trans_to(interacting_with, reagents.total_volume, transferred_by = user, methods = INGEST, show_message = FALSE)
 	playsound(interacting_with.loc, 'sound/items/drink.ogg', 50, TRUE)
 	update_appearance()
-	// SEND_SIGNAL(interacting_with, COMSIG_MASQUERADE_VIOLATION)
+	// SEND_SIGNAL(interacting_with, COMSIG_MASQUERADE_VIOLATION) - warning, interacting_with is the person who will be breaching, griefing potential here if a player walks up and feeds someone a bloodbag in public causing them to breach. resolve this prior to uncommenting
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/blood/empty
