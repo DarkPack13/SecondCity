@@ -4,6 +4,7 @@ import { Window } from 'tgui/layouts';
 import { Box, Icon, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
+import { ScreenBackgrounds } from './ScreenBackgrounds';
 import { ScreenContacts } from './ScreenContacts';
 import { ScreenHome } from './ScreenHome';
 import { ScreenCalling, ScreenInCall } from './ScreenInCall';
@@ -61,6 +62,7 @@ export type Conversation = {
   contact_name: string;
   last_timestamp: number;
   last_message_text: string;
+  message_count: number;
 };
 
 export type Data = {
@@ -76,6 +78,7 @@ export type Data = {
   muted: BooleanLike;
   time: string;
   date: string;
+  background_url?: string;
 
   published_numbers: Contact[];
   our_contacts: Contact[];
@@ -97,6 +100,7 @@ export enum NavigableApps {
   Contacts,
   Messages,
   IRC,
+  Backgrounds,
 }
 
 const PhysicalScreen = (props: {
@@ -155,6 +159,9 @@ const PhysicalScreen = (props: {
     }
     case NavigableApps.IRC: {
       return <ScreenIRC />;
+    }
+    case NavigableApps.Backgrounds: {
+      return <ScreenBackgrounds setApp={setApp} />;
     }
     default: {
       return <ScreenHome setApp={setApp} />;
@@ -251,7 +258,7 @@ export const Telephone = (props) => {
   const [app, setApp] = useSharedState<NavigableApps | null>('telephone_state', null);
 
   return (
-    <Window width={285} height={521}>
+    <Window width={285} height={530}>
       <Window.Content fitted>
         <PhysicalScreen app={app} setApp={setApp} />
         <NavigationBar app={app} setApp={setApp} />
