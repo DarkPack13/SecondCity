@@ -357,6 +357,14 @@ export const ScreenMessages = (props : {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const prevMessageCountRef = useRef<number>(0);
 
+  useEffect(() => {
+    if (enteredNumber && !selectedContact) {
+      setSelectedContact(enteredNumber);
+      act('view_conversation', { contact_number: enteredNumber });
+      setEnteredNumber('');
+    }
+  }, [enteredNumber, selectedContact, setEnteredNumber, act]);
+
   // keep scrollin scrollin scrollin scrollin
   useEffect(() => {
     const messageCount = current_conversation_messages?.length || 0;
@@ -396,6 +404,17 @@ export const ScreenMessages = (props : {
     setSelectedContact(contactNumber);
     act('view_conversation', { contact_number: contactNumber });
   };
+
+  useEffect(() => {
+    if (selectedContact) {
+      const conv = conversations.find(c => c.number === selectedContact);
+      if (conv) {
+        const seenConversations = JSON.parse(localStorage.getItem('seen_conversations') || '{}');
+        seenConversations[selectedContact] = conv.last_timestamp;
+        localStorage.setItem('seen_conversations', JSON.stringify(seenConversations)); // updating this removes the unread badge
+      }
+    }
+  }, [selectedContact, conversations]);
 
   const getContactName = (contactNumber: string) => {
     const contact = our_contacts.find(c => c.number === contactNumber);
@@ -484,6 +503,8 @@ export const ScreenMessages = (props : {
     );
   }
 
+  // all of our gott dang convos are here
+  const seenConversations = JSON.parse(localStorage.getItem('seen_conversations') || '{}');
   const allContacts = Array.isArray(conversations)
     ? conversations
         .filter(c => c.number !== my_number)
@@ -491,31 +512,58 @@ export const ScreenMessages = (props : {
           const aTime = typeof a.last_timestamp === 'number' ? a.last_timestamp : 0;
           const bTime = typeof b.last_timestamp === 'number' ? b.last_timestamp : 0;
           return bTime - aTime;
-        }) // most recent first
-        .map(c => ({ name: getContactName(c.number), number: c.number, lastMessage: c.last_message_text }))
+        }) // sort by most recent first
+        .map(c => ({
+          name: getContactName(c.number),
+          number: c.number,
+          lastMessage: c.last_message_text,
+          isUnread: (seenConversations[c.number] || 0) === 0 || (c.last_timestamp && c.last_timestamp > (seenConversations[c.number] || 0))
+        }))
     : [];
+    if(allContacts.length === 0) {
+    return (
+      <Stack vertical fill backgroundColor="#fff" textColor="#000">
+        <Stack.Item backgroundColor="#0069ff" textColor="#fff" p={1}>
+          <Stack align="center">
+            <Icon
+              name="arrow-left"
+              onClick={() => setApp(null)}
+              style={{ cursor: 'pointer' }}
+            />
+            Messages
+          </Stack>
+        </Stack.Item>
+        <Stack.Item grow overflowY="auto">
+          <Box p={1} textAlign="center" textColor="#969696">
+            No conversations yet
+          </Box>
+        </Stack.Item>
+      </Stack>
+    );
 
-  const publishedButNoConversation = Array.isArray(published_numbers)
-    ? published_numbers
-        .filter(p => p.number !== my_number && !allContacts.some(c => c.number === p.number))
-        .map(p => ({ name: p.name, number: p.number, lastMessage: undefined }))
-    : [];
-
-  const combinedContacts = [...allContacts, ...publishedButNoConversation];
+    }
 
   return (
     <Stack vertical fill backgroundColor="#fff" textColor="#000">
       <Stack.Item backgroundColor="#0069ff" textColor="#fff" p={1}>
+        <Stack align="center">
+            <Icon
+              name="arrow-left"
+              onClick={() => setApp(null)}
+              style={{ cursor: 'pointer' }}
+            />
         Messages
+        </Stack>
       </Stack.Item>
       <Stack.Item grow overflowY="auto">
         <Stack vertical>
-          {combinedContacts?.map((contact) => (
+          {allContacts?.map((contact) => (
             <ContactElement
               contact={contact}
               key={contact.name + contact.number}
               onClick={() => handleSelectContact(contact.number)}
               time={contact.lastMessage || contact.number}
+              isUnread={contact.isUnread || false}
             />
           ))}
         </Stack>

@@ -13,19 +13,21 @@ export const ContactElement = (props: {
   historyIcon?: string | null;
   time?: string | null;
   historyTooltip?: string | null;
+  messageIcon?: string | null;
+  onMessage?: () => void;
+  isUnread?: boolean;
 }) => {
-  const { contact, onClick, deleteIcon, onDelete, historyIcon, time, historyTooltip } = props;
+  const { contact, onClick, deleteIcon, onDelete, historyIcon, time, historyTooltip, messageIcon, onMessage, isUnread } = props;
   const { act } = useBackend();
 
   return (
-    <Stack align="center">
+    <Stack align="center"  className="Telephone__ContactsElement">
       <Stack.Item grow>
         <Stack
           align="center"
           pt={1}
           pb={1}
           pl={1}
-          className="Telephone__ContactsElement"
           onClick={onClick}
         >
           <Stack.Item>
@@ -43,7 +45,9 @@ export const ContactElement = (props: {
           </Stack.Item>
           <Stack.Item grow>
             <Box>{contact.name}</Box>
-            <Box textColor="#aaa">{time ? (time) : (contact.number || 'Unknown Number')}</Box>
+            <Box
+            fontWeight={isUnread ? 'bold' : 'normal'}
+            textColor={isUnread ? "#313131" : "#aaa"}>{time ? (time) : (contact.number || 'Unknown Number')}</Box>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -64,6 +68,14 @@ export const ContactElement = (props: {
         pr={1}
         />
         </Tooltip>
+      ) : null}
+      {messageIcon ? (
+        <Stack.Item style={{ cursor: 'pointer' }}
+          mr={1}
+          onClick={onMessage}
+        >
+          <Icon name={messageIcon} size={1.5} />
+        </Stack.Item>
       ) : null}
     </Stack>
   );
@@ -123,28 +135,38 @@ export const ScreenContacts = (props: {
           <Box p={1} backgroundColor="#0003">
             My Contacts
           </Box>
-          {our_contacts.map((contact) => (
+          {our_contacts.filter((contact) => contact.number !== my_number).map((contact) => (
             <ContactElement
               contact={contact}
               key={contact.name + contact.number}
               deleteIcon="trash"
+              messageIcon="comment"
               onClick={() => {
                 setEnteredNumber(contact.number);
                 setApp(NavigableApps.Phone);
               }}
               onDelete={() => act('remove_contact', { name: contact.name })}
+              onMessage={() => {
+                setEnteredNumber(contact.number);
+                setApp(NavigableApps.Messages); // opens a text conversation
+              }}
             />
           ))}
           <Box p={1} backgroundColor="#0003">
             Published Numbers
           </Box>
-          {published_numbers.map((contact) => (
+          {published_numbers.filter((contact) => contact.number !== my_number).map((contact) => (
             <ContactElement
               contact={contact}
               key={contact.name + contact.number}
+              messageIcon="comment"
               onClick={() => {
                 setEnteredNumber(contact.number);
                 setApp(NavigableApps.Phone);
+              }}
+              onMessage={() => {
+                setEnteredNumber(contact.number);
+                setApp(NavigableApps.Messages);
               }}
             />
           ))}
