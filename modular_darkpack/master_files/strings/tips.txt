@@ -33,3 +33,9 @@ As a Hunter, your objectives are to Hunt abnormal beings and night creatures in 
 A "Turn" in game represents 5 seconds.
 A "Scene" in game represents 3 minutes.
 There are 36 turns in a scene.
+You don't need to have your keys in your hand to unlock a door. Just right-click.
+If you have a high enough strength, jumping in combat mode will create a shockwave.
+You can conceal your satchel by Alt + Right-clicking it.
+Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
+Your firearm stat dramatically improves your ability to control recoil.
+Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
