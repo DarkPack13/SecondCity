@@ -283,8 +283,6 @@ Dancer
 	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/quirk/hunted/on_spawn()
-	if(isgarou(quirk_holder))
-		return
 	if(isturf(quirk_holder.loc))
 		SSbloodhunt.announce_hunted(quirk_holder, "Camarilla Wanted List")
 
