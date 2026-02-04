@@ -329,7 +329,7 @@
 	if(selected_tip)
 		message = selected_tip
 	else
-		var/list/randomtips = world.file2list("modular_darkpack/master_files/strings/tips.txt") // DARKPACK EDIT CHANGE // TODO: [Rebase] - Redo all of these closer to rebase completion
+		var/list/randomtips = world.file2list("modular_darkpack/master_files/strings/tips.txt") // DARKPACK EDIT CHANGE
 		var/list/memetips = world.file2list("modular_darkpack/master_files/strings/sillytips.txt") // DARKPACK EDIT CHANGE
 		if(randomtips.len && prob(95))
 			message = pick(randomtips)
