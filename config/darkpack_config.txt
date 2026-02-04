@@ -8,13 +8,13 @@ JUMP_SLOWDOWN
 
 ## Uncomment to use extra success exploding dice
 #ON_CRIT_ADDITIONAL_SUCCESS
-
 ## Uncomment to use actual exploding dice
 ON_CRIT_ADDITIONAL_DIE
+## If having 0 dot in abilities can hardlock you out of features
+#PUNISHING_ZERO_DOTS
 
 ## Time til day define
 TIME_TILL_DAY 198000
-
 ## Time till roundend define
 TIME_TILL_ROUNDEND 216000
 
@@ -30,3 +30,5 @@ DISABLE_GHOST_LOOC
 ## DOWNSTREAMS! Consider leaving/setting this low to encourage people to support the service that makes this game possible. <3 BYOND <3
 MAX_SAVE_SLOTS 5
 EXTRA_SAVE_SLOTS_BYOND_MEMBER 5
+
+

@@ -50,7 +50,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// DARKPACK EDIT ADD START - STORYTELLR_STATS
 	var/list/preference_storyteller_stats = list()
 	// DARKPACK EDIT ADD END
-
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	/// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
+	var/list/alt_job_titles = list()
+	// DARKPACK EDIT ADD END
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
@@ -215,6 +218,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch (action)
 		if ("change_slot")
+			// DARKPACK EDIT ADD START - (patches alot of minor exploits from midround char sheet manipulation)
+			if(!isnewplayer(usr) && ("[usr.client.prefs.default_slot]" in usr.persistent_client.joined_as_slots))
+				if(check_rights(R_ADMIN))
+					to_chat(usr, span_warning("Swapping between character slots midround is unsupported and can lead to false writes to prefrences."))
+				else
+					to_chat(usr, span_warning("You cannot be spawned in as this character to swap character slots. Return to the lobby to change characters."))
+					return FALSE
+			// DARKPACK EDIT ADD END
 			// Save existing character
 			save_character()
 			// SAFETY: `switch_to_slot` performs sanitization on the slot number

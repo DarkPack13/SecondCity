@@ -16,6 +16,13 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/branch_lead
 
+	alt_titles = list(
+		"Endron Branch Lead",
+		"Endron Branch Director",
+		"Endron Regional Director",
+		"Endron Operations Director"
+	)
+
 	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED, SPLAT_NONE)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	allowed_clans = VAMPIRE_CLAN_ALL

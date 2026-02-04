@@ -265,7 +265,7 @@
 	if(alias != name)
 		final_paper_text += "Alias: [alias]<br>"
 
-	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
+	final_paper_text += "Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>" // DARKPACK EDIT, ORIGINAL: 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
 
 	final_paper_text += "<center><B>Security Data</B></center><br><br>"
 
