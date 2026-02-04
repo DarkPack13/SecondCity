@@ -1,7 +1,7 @@
 // Generic helpers to simulate the healing of the TTRPG
 
 /// Returns amount of dots healed
-/mob/living/proc/heal_storyteller_health(dots_to_heal, heal_aggravated = FALSE, heal_scars = FALSE)
+/mob/living/proc/heal_storyteller_health(dots_to_heal, heal_aggravated = FALSE, heal_scars = FALSE, heal_organs = TRUE)
 	if(dots_to_heal <= 0)
 		return 0
 
@@ -20,6 +20,9 @@
 
 	if(heal_scars && dots_to_heal > 0)
 		healed_dots += heal_storyteller_scars(dots_to_heal)
+
+	if(heal_scars && dots_to_heal > 0)
+		healed_dots += heal_storyteller_organs(dots_to_heal)
 
 	if(healed_dots)
 		updatehealth()
@@ -40,3 +43,8 @@
 		healed_dots++
 
 	return healed_dots
+
+/mob/living/proc/heal_storyteller_organs(dots_to_heal)
+	return
+
+/mob/living/carbon/heal_storyteller_organs(dots_to_heal)
