@@ -1,7 +1,6 @@
 You can find a lockpick on certain NPCs and at the black market. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
 Cars use gasoline; you can buy more at a gas station. This can be used in the production of molotovs, as well.
 If you ever find yourself lost, look for a city map. Or just ask for directions.
-Less humane clans and the Sabbat have access to the Paths of Enlightenment. They are various and diverse, each a method to co-exist with your beast.
 Discipline levels can be changed with Right-Click.
 Human players can use the "Report a Masquerade violation" button in people's examine text to report any weird supernatural stuff they shouldn't be seeing, like vampires feeding or punching people across a room.
 You can jump around by pressing MMB. You can even jump over railings while standing next to them.
