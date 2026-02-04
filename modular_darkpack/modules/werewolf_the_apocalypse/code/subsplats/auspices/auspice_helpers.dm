@@ -7,7 +7,7 @@
  * * auspice_identifier - Name, typepath, or singleton of the Auspice being retrieved
  */
 /proc/get_fera_auspice(auspice_identifier)
-	RETURN_TYPE(/datum/subsplat/auspice)
+	RETURN_TYPE(/datum/subsplat/werewolf/auspice)
 
 	if (ispath(auspice_identifier))
 		return GLOB.auspices[auspice_identifier]
@@ -29,10 +29,10 @@
  * * joining_round - If this Auspice is being given at roundstart and should call on_join_round
  */
 /mob/living/carbon/human/proc/set_auspice(setting_auspice, joining_round)
-	var/datum/subsplat/auspice/previous_auspice = get_our_auspice()
+	var/datum/subsplat/werewolf/auspice/previous_auspice = get_our_auspice()
 
 	// Convert IDs and typepaths to singletons, or just directly assign if already singleton
-	var/datum/subsplat/auspice/new_auspice = get_fera_auspice(setting_auspice)
+	var/datum/subsplat/werewolf/auspice/new_auspice = get_fera_auspice(setting_auspice)
 
 	// Handle losing Auspice
 	previous_auspice?.on_lose(src)
@@ -51,7 +51,7 @@
 	shifter.auspice.on_gain(src, joining_round)
 
 /mob/living/proc/get_our_auspice()
-	RETURN_TYPE(/datum/subsplat/auspice)
+	RETURN_TYPE(/datum/subsplat/werewolf/auspice)
 
 	return isshifter(src)?.auspice
 

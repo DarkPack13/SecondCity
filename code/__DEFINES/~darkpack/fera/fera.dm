@@ -6,7 +6,7 @@
 // #define VEIL_COOLDOWN 20 SECONDS
 
 #define MAX_RAGE 10
-// gnois max is capped by its starting gnosis
+#define MAX_GNOSIS 10
 
 #define FEATURE_FERA_BREED "garou_breed"
 

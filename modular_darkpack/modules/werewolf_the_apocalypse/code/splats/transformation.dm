@@ -1,38 +1,5 @@
 #define DOGGY_ANIMATION_TIME 1 TURNS
 
-/datum/action/cooldown/fera_transform
-	name = "Transform"
-	desc = "Take the form of the beast"
-	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
-	background_icon_state = "bg_gift"
-	button_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
-	button_icon_state = "hispo"
-	check_flags = AB_CHECK_CONSCIOUS
-	cooldown_time = DOGGY_ANIMATION_TIME
-	var/list/possible_shapes = list()
-
-/datum/action/cooldown/fera_transform/New(Target, original = TRUE, list/transformations)
-	. = ..()
-	if(transformations)
-		possible_shapes = transformations
-
-/datum/action/cooldown/fera_transform/PreActivate(atom/target)
-	if(!iscarbon(owner))
-		return
-	return ..()
-
-/datum/action/cooldown/fera_transform/Activate(atom/target_atom)
-	var/mob/living/carbon/carbon_owner = owner // Saftey check in preactivate.
-	var/mob_species = carbon_owner?.dna?.species?.type
-	var/form_picked = tgui_input_list(owner, "Select a form", "Form selection", possible_shapes - mob_species)
-	if(!form_picked)
-		return
-
-	var/datum/splat/werewolf/shifter/our_splat = isshifter(target_atom)
-	our_splat.transform_fera(form_picked)
-
-	return TRUE
-
 // Remeber if you remove homid being species that this will break.
 /datum/splat/werewolf/shifter/proc/transform_fera(datum/species/human/shifter/form_to_transform, costs_rage = FALSE, requires_roll = TRUE, force = FALSE)
 	if(!form_to_transform)

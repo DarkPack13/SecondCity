@@ -48,13 +48,18 @@ GLOBAL_LIST_EMPTY(totems)
 
 
 /// Associative list of auspice names to typepaths
-GLOBAL_LIST_INIT(auspices_list, init_subsplat_list(/datum/subsplat/auspice))
+GLOBAL_LIST_INIT(auspices_list, init_subsplat_list(/datum/subsplat/werewolf/auspice))
 /// Associative list of auspice typepaths to singletons
-GLOBAL_LIST_INIT_TYPED(auspices, /datum/subsplat/auspice, init_subtypes_w_path_keys(/datum/subsplat/auspice, list()))
+GLOBAL_LIST_INIT_TYPED(auspices, /datum/subsplat/werewolf/auspice, init_subtypes_w_path_keys(/datum/subsplat/werewolf/auspice, list()))
 
-/// Associative list of auspice names to typepaths
-GLOBAL_LIST_INIT(tribes_list, init_subsplat_list(/datum/subsplat/fera_tribe))
-/// Associative list of auspice typepaths to singletons
-GLOBAL_LIST_INIT_TYPED(fera_tribes, /datum/subsplat/fera_tribe, init_subtypes_w_path_keys(/datum/subsplat/fera_tribe, list()))
+/// Associative list of tribe names to typepaths
+GLOBAL_LIST_INIT(tribes_list, init_subsplat_list(/datum/subsplat/werewolf/tribe))
+/// Associative list of tribe typepaths to singletons
+GLOBAL_LIST_INIT_TYPED(fera_tribes, /datum/subsplat/werewolf/tribe, init_subtypes_w_path_keys(/datum/subsplat/werewolf/tribe, list()))
+
+/// Associative list of breed form names to typepaths
+GLOBAL_LIST_INIT(breed_forms_list, init_subsplat_list(/datum/subsplat/werewolf/breed_form))
+/// Associative list of breed_form typepaths to singletons
+GLOBAL_LIST_INIT_TYPED(fera_breed_forms, /datum/subsplat/werewolf/breed_form, init_subtypes_w_path_keys(/datum/subsplat/werewolf/breed_form, list()))
 
 GLOBAL_LIST_INIT(glyph_list, init_glyphs())

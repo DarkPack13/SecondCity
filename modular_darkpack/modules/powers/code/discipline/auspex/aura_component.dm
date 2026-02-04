@@ -116,23 +116,6 @@
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		holder.opacity = holder.opacity * 0.5
 
-	#warn needs work
-	#warn just make it have less delay between frames or get a new sprite
-	/*
-	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
-		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "old_aura_bright")
-		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "old_aura_bright", ABOVE_MOB_LAYER+3, parent_mob, GAME_PLANE)
-
-		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
-		hsv_color_value[2] = hsv_color_value[2] * 1.3 // Incease saturation for shapeshifter
-
-		var/icon/icon_mask = getIconMask(aura_blotches)
-		var/mutable_appearance/aura_icon = new(aura_appearance)
-		aura_icon.color = hsv2rgb(hsv_color_value)
-		aura_icon.add_filter("alpha_mask", 1, alpha_mask_filter(icon = icon_mask))
-		holder.add_overlay(aura_icon)
-	*/
-
 /datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
 	var/mob/parent_mob = parent
 

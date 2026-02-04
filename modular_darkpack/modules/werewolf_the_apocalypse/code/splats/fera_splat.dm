@@ -4,14 +4,12 @@
 
 	power_type = /datum/action/cooldown/power/gift
 
-	var/datum/subsplat/auspice/auspice
+	var/datum/subsplat/werewolf/auspice/auspice
 
 	var/uses_rage = FALSE
-	var/start_rage = 0
 	var/rage = 0
 	// without a merit kinfolk cannot use gnosis
 	var/uses_gnosis = FALSE
-	var/max_gnosis = 0
 	var/gnosis = 0
 
 	var/list/renown = list()
@@ -46,8 +44,8 @@
 		return FALSE
 
 	if(amount > 0)
-		if(gnosis < max_gnosis)
-			gnosis = clamp(gnosis + amount, 0, max_gnosis)
+		if(gnosis < MAX_GNOSIS)
+			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
@@ -55,7 +53,7 @@
 			return FALSE
 	if(amount < 0)
 		if(gnosis > 0)
-			gnosis = clamp(gnosis + amount, 0, max_gnosis)
+			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
@@ -96,11 +94,6 @@
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	uses_rage = TRUE
 	uses_gnosis = TRUE
-	start_rage = 1
-	rage = 1
-	max_gnosis = 1
-	gnosis = 1
-	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cooldown)
@@ -121,8 +114,6 @@
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
 	owner.set_species(/datum/species/human/shifter/homid)
-	fera_transformation = new(owner, transformations = transformation_list)
-	fera_transformation.Grant(owner)
 	add_power(/datum/action/cooldown/power/gift/howling)
 
 	#warn temp for testing
@@ -134,8 +125,6 @@
 	. = ..()
 	if(!QDELETED(owner))
 		owner.set_species(/datum/species/human)
-	fera_transformation.Remove(owner)
-	QDEL_NULL(fera_transformation)
 
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
