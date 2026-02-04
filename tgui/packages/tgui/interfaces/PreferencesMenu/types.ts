@@ -105,6 +105,8 @@ export type Department = {
 export type Job = {
   description: string;
   department: string;
+  // DARKPACK EDIT ADD - ALTERNATIVE_JOB_TITLES
+  alt_titles?: string[];
 };
 
 export type Quirk = {
@@ -206,7 +208,8 @@ export type PreferencesMenuData = {
     }
   >;
   job_preferences: Record<string, JobPriority>;
-
+// DARKPACK EDIT ADD -  ALTERNATIVE_JOB_TITLES
+  job_alt_titles: Record<string, string>;
   keybindings: Record<string, string[]>;
   overflow_role: string;
   default_quirk_balance: number;

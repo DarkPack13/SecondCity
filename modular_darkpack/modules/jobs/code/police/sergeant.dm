@@ -14,6 +14,13 @@
 		/datum/job_department/police,
 	)
 
+	alt_titles = list(
+		"Police Sergeant",
+		"Police Supervisor",
+		"Training Officer",
+		"Detective",
+	)
+
 	allowed_splats = list(SPLAT_NONE)
 
 	description = "Enforce the law. Keep the officers in line. Follow what the Chief says."
