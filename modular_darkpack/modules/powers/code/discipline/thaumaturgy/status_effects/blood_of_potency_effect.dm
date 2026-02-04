@@ -19,8 +19,6 @@
 	iskindred(owner)?.set_generation(stored_generation)
 	stored_generation = null
 
-	owner.update_blood_hud()
-
 	if(owner.bloodpool > owner.maxbloodpool)
 		owner.set_blood_pool(owner.maxbloodpool)
 

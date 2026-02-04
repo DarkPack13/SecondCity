@@ -5,17 +5,16 @@
 
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(src)
 	if(kindred_splat)
-		var/mob/living/carbon/human/kindred = src // This is stupid... Also TECHNICLY you can have a splat without being human now...
 		var/hunger_threshold = 7 - (kindred_splat.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
-		var/previous_hunger = HAS_TRAIT(kindred, TRAIT_NEEDS_BLOOD)
+		var/previous_hunger = HAS_TRAIT(src, TRAIT_NEEDS_BLOOD)
 		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
 
 		if(!previous_hunger && will_be_hungry) // enter hunger
-			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT) // That is not a species trait.
+			ADD_TRAIT(src, TRAIT_NEEDS_BLOOD, TRAIT_GENERIC)
 			to_chat(src, span_bolddanger("The Beast awakens as the pangs of hunger set in..."))
 
 		else if(previous_hunger && !will_be_hungry) // leave hunger
-			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, SPECIES_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, TRAIT_GENERIC)
 			to_chat(src, span_notice("Your hunger is satisfied as the Beast inside retreats."))
 
 		//DARKPACK TODO: roll for frenzy when hungry and seeing, smelling, tasting blood, maybe like the old system where you roll every once in a while. the roll is
