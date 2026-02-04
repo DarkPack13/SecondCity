@@ -1,13 +1,15 @@
 // THIS IS A DARKPACK UI FILE
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Icon, Stack, Tooltip } from 'tgui-core/components';
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import { type Contact, type Data, NavigableApps } from '.';
 import { ContactElement } from './ScreenContacts';
 
 export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
   const { onClick } = props;
   const [caps, setCaps] = useState(false);
+  const [showSymbols, setShowSymbols] = useState(false);
+  const [keyboardVisible, setKeyboardVisible] = useState(true);
 
   const keyHandler = (key: string) => {
     if (onClick) {
@@ -15,11 +17,39 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
     }
   };
 
+  const numberKeyboard = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  const symbolKeyboard = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'];
+  const activeKeyboard = showSymbols ? symbolKeyboard : numberKeyboard;
+
   return (
     <Stack vertical fill backgroundColor="#aed7ff" pt={1} pb={1}>
       <Stack.Item>
         <Stack align="center" justify="center">
-          {['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].map(
+          <Box
+            width={1.8}
+            height={2}
+            backgroundColor="#beecff"
+            textColor="#000"
+            fontSize={1.2}
+            style={{
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+            onClick={() => setKeyboardVisible(!keyboardVisible)}
+          >
+            <Stack fill align="center" justify="center">
+              <Stack.Item>
+                <Icon name={keyboardVisible ? 'chevron-down' : 'chevron-up'} />
+              </Stack.Item>
+            </Stack>
+          </Box>
+        </Stack>
+      </Stack.Item>
+      {keyboardVisible && (
+        <>
+          <Stack.Item>
+        <Stack align="center" justify="center">
+          {activeKeyboard.map(
             (numberKey) => (
               <Stack.Item
                 key={numberKey}
@@ -187,7 +217,10 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
       </Stack.Item>
       <Stack.Item>
         <Stack fill align="center" justify="center">
-          <Stack.Item>
+          <Stack.Item
+            style={{ cursor: 'pointer' }}
+            onClick={() => setShowSymbols(!showSymbols)}
+          >
             <Box
               inline
               width={3}
@@ -200,7 +233,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
               }}
             >
               <Stack fill align="center" justify="center">
-                <Stack.Item>?123</Stack.Item>
+                <Stack.Item>{showSymbols ? 'ABC' : '?123'}</Stack.Item>
               </Stack>
             </Box>
           </Stack.Item>
@@ -304,6 +337,8 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
+        </>
+      )}
     </Stack>
   );
 };
@@ -319,6 +354,23 @@ export const ScreenMessages = (props : {
 
   const [selectedContact, setSelectedContact] = useState<string | null>(null);
   const [messageText, setMessageText] = useState('');
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const prevMessageCountRef = useRef<number>(0);
+
+  // keep scrollin scrollin scrollin scrollin
+  useEffect(() => {
+    const messageCount = current_conversation_messages?.length || 0;
+    if (messagesContainerRef.current && messageCount > prevMessageCountRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+    prevMessageCountRef.current = messageCount;
+  }, [current_conversation_messages]);
+
+  useEffect(() => {
+    if (selectedContact && messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [selectedContact]);
 
   const handleKeyPress = (key: string) => {
     if (key === 'Backspace') {
@@ -336,7 +388,7 @@ export const ScreenMessages = (props : {
         contact_number: selectedContact,
         message_text: messageText
       });
-      setMessageText(''); //fuck you typescript
+      setMessageText('');
     }
   };
 
@@ -367,9 +419,24 @@ export const ScreenMessages = (props : {
           </Stack>
         </Stack.Item>
 
-        <Stack.Item grow overflowY="auto">
-          <Box fontSize={0.8} textAlign="center" textColor= '#969696'>{date}</Box>
-          {current_conversation_messages?.map((msg, idx) => (
+        <Stack.Item grow style={{ overflow: 'hidden' }}>
+          <div
+            ref={messagesContainerRef}
+            style={{
+              overflowY: 'auto',
+              height: '100%',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+            className="hide-scrollbar"
+          >
+            <style>{`
+              .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            <Box fontSize={0.8} textAlign="center" textColor= '#969696'>{date}</Box>
+            {current_conversation_messages?.map((msg, idx) => (
             // flex-end for INCOMING, flex-start for OUTGOING. left and right sides
             <Stack key={idx} mb={1} p={1} justify={msg.is_outgoing ? 'flex-end' : 'flex-start'}>
               <Box
@@ -381,8 +448,9 @@ export const ScreenMessages = (props : {
                 {msg.message_text}
                 <Box textAlign={msg.is_outgoing ? 'right' : 'left'} fontSize={0.7} mt={0.5} textColor={msg.is_outgoing ? '#ffffff' : '#303030'}>{msg.time}</Box>
               </Box>
-            </Stack>
-          ))}
+              </Stack>
+            ))}
+          </div>
         </Stack.Item>
         <Stack.Item p={1} backgroundColor="#f0f0f0" style={{ borderTop: '1px solid #ddd' }}>
           <style>{`
