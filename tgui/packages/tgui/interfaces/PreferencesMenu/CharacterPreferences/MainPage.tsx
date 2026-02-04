@@ -73,14 +73,14 @@ function CharacterControls(props: CharacterControlsProps) {
         />
       </Stack.Item>
 
-      {props.showGender && (
+      {/* DARKPACK EDIT REMOVAL {props.showGender && ( */}
         <Stack.Item>
           <GenderButton
             gender={props.gender}
             handleSetGender={props.setGender}
           />
         </Stack.Item>
-      )}
+      {/* DARKPACK EDIT REMOVAL )} */}
 
       <Stack.Item>
         <Button
