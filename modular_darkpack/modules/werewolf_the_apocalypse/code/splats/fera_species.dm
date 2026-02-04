@@ -111,10 +111,12 @@
 	return TRUE
 
 /datum/species/human/shifter/homid
+	name = "homid form"
 	id = SPECIES_FERA_HOMID
 
 
 /datum/species/human/shifter/bestial
+	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
 	form_bonus_stats = list(
 		STAT_STRENGTH = 2,
@@ -157,6 +159,7 @@
 
 
 /datum/species/human/shifter/war
+	name = "war form"
 	id = SPECIES_FERA_WAR
 	inherent_traits = list(
 		TRAIT_NO_UNDERWEAR,
@@ -190,6 +193,7 @@
 
 
 /datum/species/human/shifter/dire
+	name = "dire form"
 	id = SPECIES_FERA_DIRE
 	inherent_traits = list(
 		TRAIT_NO_UNDERWEAR,
@@ -226,6 +230,7 @@
 
 
 /datum/species/human/shifter/feral
+	name = "feral form"
 	id = SPECIES_FERA_FERAL
 	inherent_traits = list(
 		TRAIT_NO_UNDERWEAR,

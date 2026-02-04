@@ -10,10 +10,14 @@
 
 /obj/item/bodypart/arm/left/fera
 	limb_id = SPECIES_FERA
+	unarmed_attack_verbs = list("claw")
+	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
 
 /obj/item/bodypart/arm/right/fera
 	limb_id = SPECIES_FERA
+	unarmed_attack_verbs = list("claw")
+	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
 
 /obj/item/bodypart/leg/left/fera

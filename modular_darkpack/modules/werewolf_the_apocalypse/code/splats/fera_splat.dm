@@ -65,6 +65,17 @@
 	owner.update_werewolf_hud()
 	return TRUE
 
+/datum/splat/werewolf/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(!.)
+		return
+	switch(var_name)
+		if(NAMEOF(src, rage))
+			owner.update_werewolf_hud()
+		if(NAMEOF(src, gnosis))
+			owner.update_werewolf_hud()
+
+
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"
 	id = SPLAT_KINFOLK
@@ -91,6 +102,8 @@
 	gnosis = 1
 	var/datum/action/cooldown/fera_transform/fera_transformation
 	var/list/transformation_list = list()
+	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
+	COOLDOWN_DECLARE(transform_cooldown)
 	/**
 	 * [SPECIES_ID -> dmi path] assoc list
 	 *
@@ -115,12 +128,16 @@
 	#warn temp for testing
 	add_power(/datum/action/cooldown/power/gift/mothers_touch)
 
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(revert_to_breed_form))
+
 /datum/splat/werewolf/shifter/on_lose_or_destroy()
 	. = ..()
 	if(!QDELETED(owner))
 		owner.set_species(/datum/species/human)
 	fera_transformation.Remove(owner)
 	QDEL_NULL(fera_transformation)
+
+	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
@@ -151,4 +168,5 @@
 		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/crinos.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
+	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 */
