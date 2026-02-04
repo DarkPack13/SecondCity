@@ -30,3 +30,6 @@ As a Taxi Driver, your objectives are to drive. Real human being.
 As a Primogen, your objectives are to represent your clan in the city, and make sure they are organized and loyal enough to keep you in power.
 As a Sabbat member, you must fight the enemies of the Dark Father - servants of the vile Antediluvians.
 As a Hunter, your objectives are to Hunt abnormal beings and night creatures in City.
+A "Turn" in game represents 5 seconds.
+A "Scene" in game represents 3 minutes.
+There are 36 turns in a scene.
