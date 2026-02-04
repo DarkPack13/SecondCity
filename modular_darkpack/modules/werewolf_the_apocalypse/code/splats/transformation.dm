@@ -14,7 +14,7 @@
 		to_chat(owner, span_warning("Your shifting is on cooldown for one turn."))
 		return
 
-	if(ispath(get_breed_form(), form_to_transform))
+	if(ispath(get_breed_form_species(), form_to_transform))
 		requires_roll = FALSE
 	else if(costs_rage)
 		if(adjust_rage(-1, TRUE))
@@ -28,7 +28,7 @@
 	var/time_to_transform = DOGGY_ANIMATION_TIME
 
 	#define PRIMAL_URGE_PLACEHOLDER 3
-	#warn should accctually require an amount of successes equal to the forms your shifting through
+	// TODO: should accctually require an amount of successes equal to the forms your shifting through
 	if(requires_roll)
 		switch(SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + PRIMAL_URGE_PLACEHOLDER, form_to_transform::shift_difficulty, list(owner), owner))
 			if(ROLL_SUCCESS)
@@ -41,7 +41,7 @@
 	if(requires_roll)
 		playsound(owner, transform_sound, 50, FALSE)
 	else
-		playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/icons/speedtrans.ogg', 50, FALSE)
+		playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/speedtrans.ogg', 50, FALSE)
 		time_to_transform *= 0.1
 
 	// owner.Stun(time_to_transform, ignore_canstun = TRUE)
@@ -53,7 +53,7 @@
 	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform, time_to_transform), time_to_transform * 0.9)
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
-	transform_fera(get_breed_form(), force = TRUE)
+	transform_fera(get_breed_form_species(), force = TRUE)
 
 /datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform, time_taken = DOGGY_ANIMATION_TIME)
 	animate(owner, transform = null, color = "#FFFFFF", time = time_taken * 0.1)
@@ -62,13 +62,16 @@
 /datum/splat/werewolf/shifter/proc/is_breed_form()
 	if(!owner?.dna)
 		return FALSE
-	if(owner.dna.species?.type != get_breed_form())
+	if(owner.dna.species?.type != get_breed_form_species())
 		return FALSE
 	return TRUE
 
-/datum/splat/werewolf/shifter/proc/get_breed_form()
+/datum/splat/werewolf/shifter/proc/get_breed_form_species()
+	return breed_form?.breed_species
+	/*
 	if(!owner?.dna)
 		return
-	return GLOB.fera_breeds[owner.dna.features[FEATURE_FERA_BREED]]
+	return GLOB.breed_forms_list[owner.dna.features[FEATURE_FERA_BREED]]
+	*/
 
 #undef DOGGY_ANIMATION_TIME

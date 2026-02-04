@@ -7656,7 +7656,6 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\rage_heal.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\_subsplat.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\auspices\_auspice.dm"
-#include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\auspices\auspice_helpers.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\auspices\garou.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\breeds\_breed.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\breeds\garou.dm"

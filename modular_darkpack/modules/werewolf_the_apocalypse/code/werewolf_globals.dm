@@ -60,6 +60,6 @@ GLOBAL_LIST_INIT_TYPED(fera_tribes, /datum/subsplat/werewolf/tribe, init_subtype
 /// Associative list of breed form names to typepaths
 GLOBAL_LIST_INIT(breed_forms_list, init_subsplat_list(/datum/subsplat/werewolf/breed_form))
 /// Associative list of breed_form typepaths to singletons
-GLOBAL_LIST_INIT_TYPED(fera_breed_forms, /datum/subsplat/werewolf/breed_form, init_subtypes_w_path_keys(/datum/subsplat/werewolf/breed_form, list()))
+GLOBAL_LIST_INIT_TYPED(breed_forms, /datum/subsplat/werewolf/breed_form, init_subtypes_w_path_keys(/datum/subsplat/werewolf/breed_form, list()))
 
 GLOBAL_LIST_INIT(glyph_list, init_glyphs())

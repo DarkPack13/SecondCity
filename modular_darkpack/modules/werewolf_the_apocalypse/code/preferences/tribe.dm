@@ -17,4 +17,4 @@
 	return tribe_icon
 
 /datum/preference/choiced/garou_tribe/apply_to_human(mob/living/carbon/human/target, value)
-	// target.set_fera_tribe(value, TRUE)
+	target.set_fera_tribe(value, TRUE)

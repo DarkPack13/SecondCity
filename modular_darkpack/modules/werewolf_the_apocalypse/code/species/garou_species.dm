@@ -27,7 +27,7 @@
 
 /datum/species/human/shifter/garou/randomize_features()
 	var/list/features = ..()
-	features[FEATURE_FERA_BREED] = pick(GLOB.garou_breeds)
+	features[FEATURE_FERA_BREED] = pick(GLOB.breed_forms_list)
 	return features
 */
 

@@ -75,6 +75,9 @@
 
 	update_icon()
 
+	if(!clicker_splat.uses_rage)
+		return
+
 	var/rage_amount = 1
 	switch(GLOB.moon_state)
 		if(MOON_NEW)
@@ -87,7 +90,6 @@
 			rage_amount = 4
 
 	if(clicker_splat?.auspice && (GLOB.moon_state in clicker_splat.auspice.moons_born_under))
-		#warn I dont think its MAX rage. It might be the default rage of the auspice acctually??
 		rage_amount = MAX_RAGE
 
 	clicker_splat.adjust_rage(rage_amount, TRUE)
@@ -165,11 +167,11 @@
 
 	if(left_click_transform)
 		context[SCREENTIP_CONTEXT_LMB] = "Shift to [left_click_transform::name]"
-		if(left_click_transform != shifting.get_breed_form())
+		if(left_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Shift using rage"
 	if(right_click_transform)
 		context[SCREENTIP_CONTEXT_RMB] = "Shift to [right_click_transform::name]"
-		if(right_click_transform != shifting.get_breed_form())
+		if(right_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_RMB] = "Shift using rage"
 
 	return CONTEXTUAL_SCREENTIP_SET

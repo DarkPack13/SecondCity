@@ -19,8 +19,10 @@
 	/// ID for trait sources and whatnot
 	var/id
 
-/datum/subsplat/proc/on_gain(mob/living/carbon/human/gaining, joining_round)
+/datum/subsplat/proc/on_gain(datum/splat/gaining, joining_round)
+	SHOULD_CALL_PARENT(TRUE)
 	return
 
 /datum/subsplat/proc/on_lose()
+	SHOULD_CALL_PARENT(TRUE)
 	return

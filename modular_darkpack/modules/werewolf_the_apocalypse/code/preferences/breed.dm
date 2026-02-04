@@ -9,7 +9,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/garou_breed/init_possible_values()
-	return assoc_to_keys(GLOB.garou_breeds)
+	return assoc_to_keys(GLOB.breed_forms_list)
 
 /datum/preference/choiced/garou_breed/icon_for(value)
 	var/datum/universal_icon/garou_icon = uni_icon('icons/effects/effects.dmi', "nothing")
@@ -37,4 +37,4 @@
 	return garou_icon
 
 /datum/preference/choiced/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features[FEATURE_FERA_BREED] = value
+	target.set_breed_form(value, TRUE)

@@ -4,8 +4,6 @@
 
 	power_type = /datum/action/cooldown/power/gift
 
-	var/datum/subsplat/werewolf/auspice/auspice
-
 	var/uses_rage = FALSE
 	var/rage = 0
 	// without a merit kinfolk cannot use gnosis
@@ -14,6 +12,10 @@
 
 	var/list/renown = list()
 	var/renown_rank = RANK_CUB
+
+	var/datum/subsplat/werewolf/breed_form/breed_form
+	var/datum/subsplat/werewolf/auspice/auspice
+	var/datum/subsplat/werewolf/tribe/tribe
 
 /datum/splat/werewolf/proc/adjust_rage(amount, sound = TRUE)
 	if(!uses_rage)
@@ -94,6 +96,7 @@
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	uses_rage = TRUE
 	uses_gnosis = TRUE
+
 	var/list/transformation_list = list()
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cooldown)
@@ -115,9 +118,6 @@
 	. = ..()
 	owner.set_species(/datum/species/human/shifter/homid)
 	add_power(/datum/action/cooldown/power/gift/howling)
-
-	#warn temp for testing
-	add_power(/datum/action/cooldown/power/gift/mothers_touch)
 
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(revert_to_breed_form))
 

@@ -72,8 +72,7 @@
 		aura_image.color = hsv2rgb(hsv_color_value)
 		holder.appearance = aura_image
 
-	#warn needs work
-	#warn just make it have less delay between frames or get a new sprite
+	// DARKPACK TODO - aura still needs real sprites.
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		var/icon/temporary_icon_holder = holder.appearance
 		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "old_aura_bright", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
