@@ -17,9 +17,22 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
     }
   };
 
+  // keyboard rows
+  const letters_row1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+  const letters_row2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+  const letters_row3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+
+  const symbols_row1 = ['[', ']', '{', '}', '#', '%', '^', '*', '+', '='];
+  const symbols_row2 = ['_', '\\', '|', '~', '<', '>', '€', '£', '¥'];
+  const symbols_row3 = ['`', ';', ':', '"', "'", '/', '?'];
+
+  const row1 = showSymbols ? symbols_row1 : letters_row1;
+  const row2 = showSymbols ? symbols_row2 : letters_row2;
+  const row3 = showSymbols ? symbols_row3 : letters_row3;
+
   const numberKeyboard = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const symbolKeyboard = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'];
-  const activeKeyboard = showSymbols ? symbolKeyboard : numberKeyboard;
+  const activeKeyboard = showSymbols ? symbolKeyboard : numberKeyboard; //swap the above keyboard rows
 
   return (
     <Stack vertical fill backgroundColor="#aed7ff" pt={1} pb={1}>
@@ -78,7 +91,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
       </Stack.Item>
       <Stack.Item>
         <Stack fill align="center" justify="center">
-          {['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'].map((key) => {
+          {row1.map((key) => {
             if (!caps) {
               key = key.toLowerCase();
             }
@@ -110,7 +123,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
       </Stack.Item>
       <Stack.Item>
         <Stack fill align="center" justify="center">
-          {['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'].map((key) => {
+          {row2.map((key) => {
             if (!caps) {
               key = key.toLowerCase();
             }
@@ -163,7 +176,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
               </Stack>
             </Box>
           </Stack.Item>
-          {['Z', 'X', 'C', 'V', 'B', 'N', 'M'].map((key) => {
+          {row3.map((key) => {
             if (!caps) {
               key = key.toLowerCase();
             }
@@ -517,7 +530,7 @@ export const ScreenMessages = (props : {
           name: getContactName(c.number),
           number: c.number,
           lastMessage: c.last_message_text,
-          isUnread: (seenConversations[c.number] || 0) === 0 || (c.last_timestamp && c.last_timestamp > (seenConversations[c.number] || 0))
+          isUnread: (seenConversations[c.number] || 0) === 0 || (c.last_timestamp && c.last_timestamp > (seenConversations[c.number] || 0))// fuck
         }))
     : [];
     if(allContacts.length === 0) {
