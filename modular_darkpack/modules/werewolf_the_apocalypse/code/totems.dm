@@ -165,22 +165,22 @@
 	qdel(old_portal)
 
 /obj/structure/werewolf_totem/wendigo
-	name = TRIBE_GALESTALKERS + " Totem"
+	name = "\improper " + TRIBE_GALESTALKERS + " totem"
 	tribes = list(TRIBE_GALESTALKERS)
 	light_color = "#81ff4f"
 
 /obj/structure/werewolf_totem/children_of_gaia
-	name = TRIBE_CHILDREN_OF_GAIA + " Totem"
+	name = "\improper " + TRIBE_CHILDREN_OF_GAIA + " totem"
 	tribes = list(TRIBE_CHILDREN_OF_GAIA)
 	light_color = "#00CEC8"
 
 /obj/structure/werewolf_totem/bone_gnawer
-	name = TRIBE_BONEGNAWERS + " Totem"
+	name = "\improper " + TRIBE_BONEGNAWERS + " totem"
 	light_color = "#FFA500"
 	tribes = list(TRIBE_BONEGNAWERS)
 
 /obj/structure/werewolf_totem/glasswalker
-	name = TRIBE_GLASSWALKERS + " Totem"
+	name = "\improper " + TRIBE_GLASSWALKERS + " totem"
 	icon_state = "glassw"
 	base_icon_state = "glassw"
 	light_color = "#35b0ff"
@@ -222,7 +222,7 @@
 
 // This things type path sucks
 /obj/effect/landmark/teleport_mark
-	name = "Totem Exit Mark"
+	name = "totem Exit Mark"
 	icon_state = "portal_exit"
 	var/tribes = list()
 

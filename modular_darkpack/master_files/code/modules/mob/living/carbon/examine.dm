@@ -1,4 +1,5 @@
-/mob/living/carbon/proc/display_darkpack_examine_text()
+/mob/living/carbon/proc/display_darkpack_examine_text(mob/user)
+	. = list()
 	if(obscured_slots & HIDEFACE)
 		return
 
@@ -39,3 +40,9 @@
 				. += span_purple("[p_They()] [p_are()] very attractive!")
 			if(5 to INFINITY)
 				. += span_rose(span_bold("Oh... My God... [p_They()] [p_are()] absolutely stunning! You find yourself blushing just looking at them!"))
+
+	// WEREWOLF
+	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(user)
+	if(werewolf_splat && !(obscured_slots & HIDEFACE))
+		werewolf_splat.examine_other_human(src, .)
+	// WEREWOLF
