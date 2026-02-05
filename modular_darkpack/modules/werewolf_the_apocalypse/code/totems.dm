@@ -37,7 +37,9 @@
 		if(mapload)
 			log_mapping("[src] failed to find a candidate for an exit point.")
 	else
-		teleport_turf = get_turf(pick(candidates))
+		var/candidate = pick(candidates)
+		teleport_turf = get_turf(candidate)
+		qdel(candidate)
 	GLOB.totems += src
 
 	update_icon(UPDATE_ICON)
