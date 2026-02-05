@@ -60,6 +60,7 @@
 	var/list/conversations = list()
 	var/current_viewed_conversation = null
 	var/phone_background = ""
+	var/custom_background = null // ori's request to add a custom background URL
 
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
@@ -332,6 +333,15 @@
 					return TRUE
 			SSphones.published_phone_numbers[name] = sim_card.phone_number
 			to_chat(usr, span_notice("Your number is now published."))
+			return TRUE
+
+		if("custom_background")
+			to_chat(usr, span_danger("Do NOT use images that can be considered offensive or obscene, or that contain references to something that happened after the year [CURRENT_STATION_YEAR]."))
+			custom_background = tgui_input_text(usr, "Input background image URL", "Custom Background")
+			if(!custom_background)
+				to_chat(usr, span_danger("You must input a URL to set a custom background."))
+				return
+			phone_background = custom_background
 			return TRUE
 
 		if("add_contact")

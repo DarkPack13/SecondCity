@@ -80,6 +80,7 @@ export type Data = {
   time: string;
   date: string;
   background_url?: string;
+  custom_background?: string;
 
   published_numbers: Contact[];
   our_contacts: Contact[];
