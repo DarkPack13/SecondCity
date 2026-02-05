@@ -31,11 +31,14 @@
 	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
 	var/fallback_icon
+	var/speed_mod
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	if(biter)
 		human_who_gained_species.AddElement(/datum/element/force_paw)
+	if(speed_mod)
+		human_who_gained_species.add_movespeed_modifier(speed_mod)
 
 	human_who_gained_species.add_offsets(type, w_add = mob_pixel_w, z_add = mob_pixel_z)
 
@@ -46,6 +49,8 @@
 	. = ..()
 	if(biter)
 		human.RemoveElement(/datum/element/force_paw)
+	if(speed_mod)
+		human.remove_movespeed_modifier(speed_mod)
 
 	human.remove_offsets(type)
 
@@ -190,7 +195,7 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
-
+	speed_mod = /datum/movespeed_modifier/shifter/war
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -229,7 +234,7 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
-
+	speed_mod = /datum/movespeed_modifier/shifter/dire
 
 /datum/species/human/shifter/feral
 	name = "feral form"
@@ -265,3 +270,18 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
+	speed_mod = /datum/movespeed_modifier/shifter/feral
+
+/datum/movespeed_modifier/shifter
+	abstract_type = /datum/movespeed_modifier/shifter
+	movetypes = GROUND
+
+// Verify these nums are ttrpg accurate.
+/datum/movespeed_modifier/shifter/war
+	multiplicative_slowdown = -0.1
+
+/datum/movespeed_modifier/shifter/dire
+	multiplicative_slowdown = -0.3
+
+/datum/movespeed_modifier/shifter/feral
+	multiplicative_slowdown = -0.5
