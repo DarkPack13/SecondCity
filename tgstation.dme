@@ -7640,7 +7640,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\_gift.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ahroun.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\galliard.dm"
-#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\phildox.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\philodox.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ragabash.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\theurge.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\howling.dm"

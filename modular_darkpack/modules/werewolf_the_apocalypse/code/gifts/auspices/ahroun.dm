@@ -24,7 +24,7 @@
 	if(caster.combat_mode)
 		victim.Knockdown(1 TURNS)
 		victim.Immobilize(1 TURNS)
-		playsound(get_turf(caster), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/falling_touch_activate.ogg', 75, FALSE)
+		playsound(get_turf(caster), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/falling_touch_activate.ogg', 75, FALSE) // red-tailed hawk sound mixed with disintegrate.ogg
 		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 		if(holding)
 			victim.attackby(holding, caster)
