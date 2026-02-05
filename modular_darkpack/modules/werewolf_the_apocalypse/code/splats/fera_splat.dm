@@ -126,7 +126,7 @@
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return
-		owner.heal_storyteller_health(1, heal_scars = TRUE)
+		owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
 // Being used to represent meditating in your caern

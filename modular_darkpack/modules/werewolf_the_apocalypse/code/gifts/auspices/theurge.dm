@@ -33,7 +33,7 @@ the scar is received and an extra Gnosis point is spent.
 	var/successes = SSroll.storyteller_roll(living_owner.st_get_stat(STAT_INTELLIGENCE) + living_owner.st_get_stat(STAT_EMPATHY), difficulty, list(owner, target), target, TRUE)
 
 	var/mob/living/living_target = target
-	living_target.heal_storyteller_health(successes, TRUE, TRUE)
+	living_target.heal_storyteller_health(successes, TRUE, TRUE, TRUE)
 
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	StartCooldown()
