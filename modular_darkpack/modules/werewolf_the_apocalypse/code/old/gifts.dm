@@ -87,67 +87,6 @@
 				H.agg_damage_plus = 0
 				to_chat(owner, span_warning("Your claws are not sharp anymore..."))
 
-/datum/action/cooldown/power/gift/beast_speech
-	name = "Beast Speech"
-	desc = "The werewolf with this Gift may communicate with any animals from fish to mammals."
-	button_icon_state = "beast_speech"
-	rage_req = 1
-	//gnosis_req = 1
-
-/datum/action/cooldown/power/gift/beast_speech/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		if(length(C.beastmaster) > 3)
-			var/mob/living/simple_animal/hostile/beastmaster/B = pick(C.beastmaster)
-			qdel(B)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/wolves.ogg', 75, FALSE)
-		if(!length(C.beastmaster))
-			var/datum/action/beastmaster_stay/E1 = new()
-			E1.Grant(C)
-			var/datum/action/beastmaster_deaggro/E2 = new()
-			E2.Grant(C)
-		var/mob/living/simple_animal/hostile/beastmaster/D = new(get_turf(C))
-		D.my_creator = C
-		C.beastmaster |= D
-		D.beastmaster = C
-
-/datum/action/cooldown/power/gift/call_of_the_wyld
-	name = "Call Of The Wyld"
-	desc = "The werewolf may send her howl far beyond the normal range of hearing and imbue it with great emotion, stirring the hearts of fellow Garou and chilling the bones of all others."
-	button_icon_state = "call_of_the_wyld"
-	rage_req = 1
-
-/datum/action/cooldown/power/gift/call_of_the_wyld/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.emote("howl")
-		for(var/mob/living/carbon/A in orange(6, owner))
-			if(isgarou(A) || iswerewolf(A))
-				A.emote("howl")
-				spawn(1 SECONDS)
-					adjust_gnosis(1, A, TRUE)
-//	awo1
-
-/datum/action/cooldown/power/gift/mindspeak
-	name = "Mindspeak"
-	desc = "By invoking the power of waking dreams, the Garou can place any chosen characters into silent communion."
-	button_icon_state = "mindspeak"
-//	gnosis_req = 1
-
-/datum/action/cooldown/power/gift/mindspeak/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/new_thought = input(owner, "What do you want to tell to your Tribe?") as text|null
-		if(new_thought)
-			var/mob/living/carbon/C = owner
-			to_chat(C, "You transfer this message to your tribe members nearby: <b>[sanitize_text(new_thought)]</b>")
-			for(var/mob/living/carbon/A in orange(9, owner))
-				if(isgarou(A) || iswerewolf(A))
-					if(A.auspice.tribe == C.auspice.tribe)
-						to_chat(A, "You hear a message in your head... <b>[sanitize_text(new_thought)]</b>")
-
 /datum/action/cooldown/power/gift/resist_pain
 	name = "Resist Pain"
 	desc = "Through force of will, the Philodox is able to ignore the pain of his wounds and continue acting normally."
@@ -227,53 +166,6 @@
 		C.see_invisible = SEE_INVISIBLE_OBSERVER
 		spawn(200)
 			C.see_invisible = initial(C.see_invisible)
-
-/datum/action/cooldown/power/gift/blur_of_the_milky_eye
-	name = "Blur Of The Milky Eye"
-	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
-	button_icon_state = "blur_of_the_milky_eye"
-	rage_req = 2
-	//gnosis_req = 1
-
-/datum/action/cooldown/power/gift/blur_of_the_milky_eye/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.alpha = 36
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/milky_blur.ogg', 75, FALSE)
-		spawn(20 SECONDS)
-			C.alpha = 255
-
-/datum/action/cooldown/power/gift/open_seal
-	name = "Open Seal"
-	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
-	button_icon_state = "open_seal"
-//	gnosis_req = 1
-
-/datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		for(var/obj/structure/vampdoor/V in range(5, owner))
-			if(V.closed)
-				if(V.lockpick_difficulty < 10)
-					V.open_door(owner, TRUE)
-
-/datum/action/cooldown/power/gift/infectious_laughter
-	name = "Infectious Laughter"
-	desc = "When the Ragabash laughs, those around her are compelled to follow along, forgetting their grievances."
-	button_icon_state = "infectious_laughter"
-	rage_req = 1
-
-/datum/action/cooldown/power/gift/infectious_laughter/Activate(atom/target)
-	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.emote("laugh")
-		C.Stun(10)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/infectious_laughter.ogg', 100, FALSE)
-		for(var/mob/living/L in oviewers(4, owner))
-			L.emote("laugh")
-			L.Stun(20)
 
 /datum/action/cooldown/power/gift/rage_heal
 	name = "Rage Heal"
