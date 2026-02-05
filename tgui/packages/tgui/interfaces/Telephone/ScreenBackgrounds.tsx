@@ -103,7 +103,7 @@ export const ScreenBackgrounds = (props: {
         <Stack align="center">
           <Icon
             name="arrow-left"
-            onClick={() => setApp(null)}
+            onClick={() => setApp(NavigableApps.Settings)}
             style={{ cursor: 'pointer' }}
           />
           <Stack.Item grow ml={1}>Backgrounds</Stack.Item>
