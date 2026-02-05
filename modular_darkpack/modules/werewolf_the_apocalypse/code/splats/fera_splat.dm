@@ -99,7 +99,7 @@
 
 	var/list/transformation_list = list()
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
-	COOLDOWN_DECLARE(transform_cooldown)
+	COOLDOWN_DECLARE(transform_cd)
 	/**
 	 * [SPECIES_ID -> dmi path] assoc list
 	 *
@@ -113,6 +113,7 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	)
 	COOLDOWN_DECLARE(passive_healing_cd)
+	COOLDOWN_DECLARE(gnosis_regain_cd)
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
@@ -129,6 +130,7 @@
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
+	regain_gnosis_process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
 		// Metis heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
 		// their fast healing is represented in day/days in breed-form so we just dont.
@@ -136,6 +138,20 @@
 			return
 		owner.heal_storyteller_health(1, heal_scars = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
+
+// Being used to represent meditating in your caern
+/datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
+	if(!COOLDOWN_FINISHED(src, gnosis_regain_cd))
+		return
+	for(var/obj/structure/werewolf_totem/totem in GLOB.totems)
+		if(totem.totem_health <= 0)
+			continue
+		if(!(tribe.name in totem.tribes))
+			continue
+		if(get_area(totem) != get_area(owner))
+			continue
+		adjust_gnosis(1, TRUE)
+		COOLDOWN_START(src, gnosis_regain_cd, 1 TURNS)
 
 /datum/splat/werewolf/shifter/garou
 	name = "Garou"

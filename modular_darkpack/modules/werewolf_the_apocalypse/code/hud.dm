@@ -37,7 +37,7 @@
 	screen_loc = UI_LIVING_AUSPICE
 	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/looked_at_moon = FALSE
-	COOLDOWN_DECLARE(force_rage_cooldown)
+	COOLDOWN_DECLARE(force_rage_cd)
 
 /atom/movable/screen/auspice/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -49,7 +49,7 @@
 	. = ..()
 
 	context[SCREENTIP_CONTEXT_LMB] = "Check Moon"
-	if(COOLDOWN_FINISHED(src, force_rage_cooldown))
+	if(COOLDOWN_FINISHED(src, force_rage_cd))
 		context[SCREENTIP_CONTEXT_RMB] = "Gain Rage"
 
 	return CONTEXTUAL_SCREENTIP_SET
@@ -65,13 +65,13 @@
 
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK) && clicker_splat.uses_rage)
-		if(!COOLDOWN_FINISHED(src, force_rage_cooldown))
+		if(!COOLDOWN_FINISHED(src, force_rage_cd))
 			return
 
 		clicker_splat.adjust_rage(1)
 		message_admins("[ADMIN_LOOKUPFLW(clicker)] manually gained rage.")
 		clicker.log_message("manually gained rage.", LOG_GAME, color="red")
-		COOLDOWN_START(src, force_rage_cooldown, 1 SCENES)
+		COOLDOWN_START(src, force_rage_cd, 1 SCENES)
 		return TRUE
 
 	var/area/my_area = get_area(clicker)

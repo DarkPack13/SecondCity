@@ -10,7 +10,7 @@
 		return
 	if(owner?.dna?.species?.type == form_to_transform)
 		return
-	if(!force && !COOLDOWN_FINISHED(src, transform_cooldown))
+	if(!force && !COOLDOWN_FINISHED(src, transform_cd))
 		to_chat(owner, span_warning("Your shifting is on cooldown for one turn."))
 		return
 
@@ -24,7 +24,7 @@
 			SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 50))
 			return
 
-	COOLDOWN_START(src, transform_cooldown, 1 TURNS)
+	COOLDOWN_START(src, transform_cd, 1 TURNS)
 	var/time_to_transform = DOGGY_ANIMATION_TIME
 
 	#define PRIMAL_URGE_PLACEHOLDER 3
