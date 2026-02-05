@@ -130,7 +130,11 @@
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
-		owner.heal_storyteller_health(1)
+		// Metis heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
+		// their fast healing is represented in day/days in breed-form so we just dont.
+		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
+			return
+		owner.heal_storyteller_health(1, heal_scars = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
 /datum/splat/werewolf/shifter/garou

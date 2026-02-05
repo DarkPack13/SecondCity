@@ -36,7 +36,8 @@
 	icon_state = "auspice_bar"
 	screen_loc = UI_LIVING_AUSPICE
 	mouse_over_pointer = MOUSE_HAND_POINTER
-	var/used = FALSE
+	var/looked_at_moon = FALSE
+	COOLDOWN_DECLARE(force_rage_cooldown)
 
 /atom/movable/screen/auspice/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -48,6 +49,8 @@
 	. = ..()
 
 	context[SCREENTIP_CONTEXT_LMB] = "Check Moon"
+	if(COOLDOWN_FINISHED(src, force_rage_cooldown))
+		context[SCREENTIP_CONTEXT_RMB] = "Gain Rage"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -60,18 +63,27 @@
 	if(!istype(clicker_splat))
 		return
 
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, RIGHT_CLICK) && clicker_splat.uses_rage)
+		if(!COOLDOWN_FINISHED(src, force_rage_cooldown))
+			return
+
+		clicker_splat.adjust_rage(1)
+		message_admins("[ADMIN_LOOKUPFLW(clicker)] manually gained rage.")
+		clicker.log_message("manually gained rage.", LOG_GAME, color="red")
+		COOLDOWN_START(src, force_rage_cooldown, 1 SCENES)
+		return TRUE
+
 	var/area/my_area = get_area(clicker)
 	if(!my_area || !my_area.outdoors)
 		to_chat(clicker, span_warning("You need to be outside to look at the moon!"))
 		return
 
-	// TTRPG accurate would be you only do this once at the start of the round.
-	if(clicker.last_moon_look != 0 && clicker.last_moon_look + 1 SCENES > world.time)
-		return
-	clicker.last_moon_look = world.time
-	used = TRUE
-
 	to_chat(clicker, span_notice("The phase of the Moon is a [GLOB.moon_state]."))
+
+	if(looked_at_moon)
+		return
+	looked_at_moon = TRUE
 
 	update_icon()
 
@@ -79,6 +91,7 @@
 		return
 
 	var/rage_amount = 1
+	// W20 p. 145
 	switch(GLOB.moon_state)
 		if(MOON_NEW)
 			rage_amount = 1
@@ -93,9 +106,10 @@
 		rage_amount = MAX_RAGE
 
 	clicker_splat.adjust_rage(rage_amount, TRUE)
+	return TRUE
 
 /atom/movable/screen/auspice/update_icon_state()
-	if(used)
+	if(looked_at_moon)
 		icon_state = "[GLOB.moon_state]"
 	return ..()
 

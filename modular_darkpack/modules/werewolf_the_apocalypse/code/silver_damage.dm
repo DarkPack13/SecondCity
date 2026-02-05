@@ -23,5 +23,15 @@
 		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLLET_STACKS)
 
 		if(!shot_pup_splat.is_breed_form())
-			// IDK. This is really TTRPG inaccurate RN because it should acctaully convert ALL the damage to agg not just add some agg to it.
+			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
+			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+
+/obj/item/proc/fera_silver_damage(atom/target, dice = 0, gnosis_damage = 0)
+	var/datum/splat/werewolf/shifter/shot_pup_splat = isshifter(target)
+	if(shot_pup_splat)
+		var/mob/living/carbon/human/shot_pup = target
+		shot_pup_splat.adjust_gnosis(-gnosis_damage, TRUE)
+
+		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
+		if(!shot_pup_splat.is_breed_form())
 			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)

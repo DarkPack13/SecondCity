@@ -1,7 +1,7 @@
 // Generic helpers to simulate the healing of the TTRPG
 
 /// Returns amount of dots healed
-/mob/living/proc/heal_storyteller_health(dots_to_heal, heal_aggravated = FALSE, heal_scars = FALSE, heal_organs = TRUE)
+/mob/living/proc/heal_storyteller_health(dots_to_heal, heal_aggravated = FALSE, heal_scars = FALSE)
 	if(dots_to_heal <= 0)
 		return 0
 
@@ -21,9 +21,6 @@
 	if(heal_scars && dots_to_heal > 0)
 		healed_dots += heal_storyteller_scars(dots_to_heal)
 
-	if(heal_scars && dots_to_heal > 0)
-		healed_dots += heal_storyteller_organs(dots_to_heal)
-
 	if(healed_dots)
 		updatehealth()
 
@@ -42,9 +39,11 @@
 		dots_to_heal--
 		healed_dots++
 
+	// W20 p. 259: describes "battle scars" to be inclusive of stuff like organ damage, brain damage or lost limbs.
+	for(var/obj/item/organ/target_organ as anything in organs)
+		if(target_organ.apply_organ_damage(-dots_to_heal TTRPG_DAMAGE, required_organ_flag = ORGAN_ORGANIC))
+			dots_to_heal--
+			healed_dots++
+
 	return healed_dots
 
-/mob/living/proc/heal_storyteller_organs(dots_to_heal)
-	return
-
-/mob/living/carbon/heal_storyteller_organs(dots_to_heal)
