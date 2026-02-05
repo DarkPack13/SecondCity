@@ -187,10 +187,6 @@
 	var/repairing = FALSE
 	var/gate_broken = FALSE
 
-/obj/structure/vampgate/Initialize(mapload)
-	. = ..()
-	atom_integrity = max_integrity
-
 /obj/structure/vampgate/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	// dont take more damage if its already broken
 	if(gate_broken)

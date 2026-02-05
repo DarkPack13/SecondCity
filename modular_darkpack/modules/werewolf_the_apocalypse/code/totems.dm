@@ -1,20 +1,21 @@
 /obj/structure/werewolf_totem
 	abstract_type = /obj/structure/werewolf_totem
 	name = "tribe totem"
-	desc = "Gives power to all Garou of that tribe and steals it from others."
+	desc = "Gives power to all Garou of that tribe."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/totems.dmi'
 	icon_state = "wendigo"
 	base_icon_state = "wendigo"
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	max_integrity = 500 // Fuck you flav for having this orginally be snowflaked health
 
 	// light_color = "#FFFFFF"
 	light_range = 3
 	light_power = 0.5
 
 	var/tribes = list()
-	var/totem_health = 500 // Fuck you flav.
 
 	COOLDOWN_DECLARE(rage_notify_cd)
 
@@ -24,9 +25,18 @@
 
 /obj/structure/werewolf_totem/Initialize(mapload)
 	. = ..()
+	var/list/candidates = list()
 	for(var/obj/effect/landmark/teleport_mark/T in GLOB.landmarks_list)
-		if(T.tribes == tribes)
-			teleport_turf = get_turf(T)
+		for(var/entry in T.tribes)
+			if(entry in tribes)
+				candidates += T
+				break
+
+	if(!length(candidates))
+		if(mapload)
+			log_mapping("[src] failed to find a candidate for an exit point.")
+	else
+		teleport_turf = get_turf(pick(candidates))
 	GLOB.totems += src
 
 	update_icon(UPDATE_ICON)
@@ -34,7 +44,7 @@
 /obj/structure/werewolf_totem/update_icon_state()
 	. = ..()
 
-	if(totem_health <= 0)
+	if(broken)
 		icon_state = "[base_icon_state]_broken"
 	else
 		icon_state = base_icon_state
@@ -52,54 +62,51 @@
 	. = ..()
 	GLOB.totems -= src
 
-// DARKPACK TODO - WEREWOLF - Fuck this not respecting normal integrity
-
-/obj/structure/werewolf_totem/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
+/obj/structure/werewolf_totem/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(attacking_item.force > 0)
-		adjust_totem_health(attacking_item)
-
-/obj/structure/werewolf_totem/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE, blocked = null)
-	. = ..()
-	adjust_totem_health(hitting_projectile.damage)
-
-/obj/structure/werewolf_totem/proc/adjust_totem_health(amount)
-	if(amount > 0)
-		if(totem_health == 0)
+	if(. && !broken)
+		if(!COOLDOWN_FINISHED(src, rage_notify_cd))
 			return
-		totem_health = max(0, totem_health-amount)
-		if(totem_health <= 0)
-			set_light(0)
-			update_icon(UPDATE_ICON)
-			var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
-			if(prev)
-				qdel(prev.exit)
-				qdel(prev)
-			notify_fera(amount)
-		else
-			if(!COOLDOWN_FINISHED(src, rage_notify_cd))
-				return
-			notify_fera(amount)
-			START_COOLDOWN(src, rage_notify_cd, 5 SECONDS)
+		notify_fera(-damage_amount)
+		COOLDOWN_START(src, rage_notify_cd, 5 SECONDS)
 
-	if(amount < 0)
-		totem_health = min(initial(totem_health), totem_health-amount)
-		if(totem_health > 0)
-			update_icon(UPDATE_ICON)
-			notify_fera(amount)
+/obj/structure/werewolf_totem/atom_break(damage_flag)
+	. = ..()
+	break_totem()
+
+/obj/structure/werewolf_totem/atom_destruction(damage_flag)
+	SHOULD_CALL_PARENT(FALSE)
+	break_totem()
+
+/obj/structure/werewolf_totem/atom_fix()
+	. = ..()
+	set_light(initial(light_range))
+	update_icon(UPDATE_ICON)
+	notify_fera(1)
+
+/obj/structure/werewolf_totem/proc/break_totem()
+	if(broken)
+		return
+	broken = TRUE
+	set_light(0)
+	update_icon(UPDATE_ICON)
+	var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
+	if(prev)
+		collapse_portal(prev)
+	notify_fera(-1)
 
 /obj/structure/werewolf_totem/proc/notify_fera(damage_change)
 	for(var/mob/living/carbon/human/human in GLOB.player_list)
 		var/datum/splat/werewolf/shifter/shifter_splat = isshifter(human)
 		if(!istype(shifter_splat))
 			continue
-		if(shifter_splat.stat <= DEAD)
+		if(human.stat == DEAD)
 			continue
-		if(!(shifter.tribe.name in tribes))
+		if(!(shifter_splat.tribe.name in tribes))
 			continue
 
-		if(amount > 0)
-			if(totem_health <= 0)
+		if(damage_change < 0)
+			if(broken)
 				to_chat(human, span_userdanger("<b>YOUR TOTEM IS DESTROYED</b>"))
 				SEND_SOUND(human, sound('sound/effects/tendril_destroyed.ogg', 0, 0, 50))
 				shifter_splat.adjust_gnosis(-5, FALSE)
@@ -108,64 +115,69 @@
 				SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/bumps.ogg', 0, 0, 50))
 				shifter_splat.adjust_rage(1, FALSE)
 		else
-			to_chat(human, span_userhelp("<b>YOUR TOTEM IS RESTORED</b>"))
+			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
 			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', 0, 0, 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
-// DARKPACK TODO - WEREWOLF
-/*
-/obj/structure/werewolf_totem/attack_hand(mob/user)
+/obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	if(iswerewolf(user) || isgarou(user))
-		var/mob/living/carbon/C = user
-		if(C.a_intent != INTENT_HARM)
-			if(totem_health <= 0)
-				to_chat(C, span_warning("[src] is broken!"))
-				return
-			var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
-			if(!prev)
-				if(C.auspice.name == "Theurge")
-					if(!opening)
-						opening = TRUE
-						if(do_mob(user, src, 10 SECONDS))
-							playsound(loc, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/portal.ogg', 75, FALSE)
-							var/obj/umbra_portal/U = new (get_step(src, SOUTH))
-							// New code doesnt relay on ID for these two's connections buy why not.
-							U.id = "[tribe][rand(1, 999)]"
-							var/obj/umbra_portal/P = new (teleport_turf)
-							P.id = U.id
-							U.link_portal(P)
-							opening = FALSE
-						else
-							opening = FALSE
-				else
-					to_chat(C, span_warning("You need a Theurge to open the Moon Gates!"))
+	if(user.combat_mode)
+		attack_generic(user, rand(user.melee_damage_lower, user.melee_damage_upper))
+	else
+		var/datum/splat/werewolf/shifter/shifter_splat = isshifter(user)
+		if(!istype(shifter_splat))
+			return .
+		if(broken)
+			to_chat(user, span_warning("[src] is broken!"))
+			return
+		var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
+		if(!prev)
+			if(shifter_splat.auspice.name == AUSPICE_THEURGE)
+				if(!opening)
+					opening = TRUE
+					if(do_after(user, 10 SECONDS, src))
+						spawn_portal()
+					opening = FALSE
 			else
-				if(C.auspice.name == "Theurge")
-					playsound(loc, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/portal.ogg', 75, FALSE)
-					qdel(prev.exit)
-					qdel(prev)
+				to_chat(user, span_warning("You need a Theurge to open the Moon Gates!"))
 		else
-			adjust_totem_health(round(C.melee_damage_lower/2))
-*/
+			if(shifter_splat.auspice.name == AUSPICE_THEURGE)
+				collapse_portal(prev)
+
+/obj/structure/werewolf_totem/proc/spawn_portal()
+	var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
+	if(prev)
+		collapse_portal(prev)
+	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal.ogg', 50, FALSE)
+	var/obj/umbra_portal/U = new (get_step(src, SOUTH))
+	// New code doesnt relay on ID for these two's connections buy why not.
+	U.id = "[pick(tribes)][rand(1, 999)]"
+	var/obj/umbra_portal/P = new (teleport_turf)
+	P.id = U.id
+	U.link_portal(P)
+
+/obj/structure/werewolf_totem/proc/collapse_portal(obj/umbra_portal/old_portal)
+	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal.ogg', 50, FALSE)
+	qdel(old_portal.exit)
+	qdel(old_portal)
 
 /obj/structure/werewolf_totem/wendigo
-	name = "Galestalkers Totem"
+	name = TRIBE_GALESTALKERS + " Totem"
 	tribes = list(TRIBE_GALESTALKERS)
 	light_color = "#81ff4f"
 
 /obj/structure/werewolf_totem/children_of_gaia
-	name = "Children of Gaia Totem"
+	name = TRIBE_CHILDREN_OF_GAIA + " Totem"
 	tribes = list(TRIBE_CHILDREN_OF_GAIA)
 	light_color = "#00CEC8"
 
 /obj/structure/werewolf_totem/bone_gnawer
-	name = "Bone Gnawer Totem""
+	name = TRIBE_BONEGNAWERS + " Totem"
 	light_color = "#FFA500"
 	tribes = list(TRIBE_BONEGNAWERS)
 
 /obj/structure/werewolf_totem/glasswalker
-	name = "\improper Glasswalker totem"
+	name = TRIBE_GLASSWALKERS + " Totem"
 	icon_state = "glassw"
 	base_icon_state = "glassw"
 	light_color = "#35b0ff"
@@ -207,7 +219,8 @@
 	tribes = TRIBE_ALL
 
 
+// This things type path sucks
 /obj/effect/landmark/teleport_mark
-	name = "Teleport"
-	icon_state = "x"
-	var/tribes
+	name = "Totem Exit Mark"
+	icon_state = "portal_exit"
+	var/tribes = list()

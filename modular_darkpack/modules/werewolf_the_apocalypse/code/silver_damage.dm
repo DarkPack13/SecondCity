@@ -16,7 +16,9 @@
 		splat.adjust_gnosis(-1, TRUE)
 
 
-/obj/projectile/bullet/proc/fera_silver_damage(atom/target, dice = 0)
+/obj/projectile/bullet/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0)
+	if(!istype(target))
+		return
 	var/datum/splat/werewolf/shifter/shot_pup_splat = isshifter(target)
 	if(shot_pup_splat)
 		var/mob/living/carbon/human/shot_pup = target
@@ -26,7 +28,9 @@
 			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
 			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
 
-/obj/item/proc/fera_silver_damage(atom/target, dice = 0, gnosis_damage = 0)
+/obj/item/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0, gnosis_damage = 0)
+	if(!istype(target))
+		return
 	var/datum/splat/werewolf/shifter/shot_pup_splat = isshifter(target)
 	if(shot_pup_splat)
 		var/mob/living/carbon/human/shot_pup = target

@@ -144,7 +144,7 @@
 	if(!COOLDOWN_FINISHED(src, gnosis_regain_cd))
 		return
 	for(var/obj/structure/werewolf_totem/totem in GLOB.totems)
-		if(totem.totem_health <= 0)
+		if(totem.broken)
 			continue
 		if(!(tribe.name in totem.tribes))
 			continue

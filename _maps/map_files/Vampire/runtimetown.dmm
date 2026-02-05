@@ -287,6 +287,10 @@
 	},
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
+"gv" = (
+/obj/structure/werewolf_totem/glasswalker,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "gA" = (
 /obj/machinery/fax/admin/aasimites,
 /obj/structure/table/wood,
@@ -1534,7 +1538,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
 "EN" = (
-/obj/effect/landmark/error,
+/obj/structure/tzijelly,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
 "EY" = (
@@ -1676,8 +1680,8 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Hg" = (
-/obj/item/paper{
-	default_raw_text = "Error room!!"
+/obj/effect/landmark/teleport_mark{
+	tribes = list("Glasswalkers")
 	},
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/pacificheights)
@@ -7811,7 +7815,7 @@ GJ
 GJ
 MS
 eQ
-eQ
+gv
 eQ
 eQ
 MS
