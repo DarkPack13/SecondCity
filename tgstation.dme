@@ -7638,6 +7638,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\totems.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\werewolf_globals.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\_gift.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ahroun.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\theurge.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\howling.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\auspice.dm"
