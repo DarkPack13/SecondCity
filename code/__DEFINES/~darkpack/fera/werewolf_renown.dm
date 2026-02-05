@@ -2,6 +2,8 @@
 #define RENOWN_GLORY "glory"
 #define RENOWN_WISDOM "wisdom"
 
+#define ALL_RENOWNS list(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM)
+
 #define RANK_CUB 0
 #define RANK_CLIATH 1
 #define RANK_FOSTERN 2

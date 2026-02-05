@@ -13,6 +13,8 @@
 		var/datum/splat/werewolf/werewolf_splat = gaining
 		werewolf_splat.adjust_rage(start_rage)
 
+/datum/subsplat/werewolf/auspice/proc/rank_requirments(list/renown)
+	return 0
 
 /**
  * Gets the singleton of an Auspice

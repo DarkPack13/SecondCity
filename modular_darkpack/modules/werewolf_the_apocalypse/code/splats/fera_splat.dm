@@ -65,16 +65,6 @@
 	owner.update_werewolf_hud()
 	return TRUE
 
-/datum/splat/werewolf/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(!.)
-		return
-	switch(var_name)
-		if(NAMEOF(src, rage))
-			owner.update_werewolf_hud()
-		if(NAMEOF(src, gnosis))
-			owner.update_werewolf_hud()
-
 
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"

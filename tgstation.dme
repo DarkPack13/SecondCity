@@ -7653,6 +7653,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\pref_lore.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\renown.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\transformation.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\varediting.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\splats\werewolf_gift_management.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\delirium.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\status_effects\rage_heal.dm"
