@@ -198,9 +198,7 @@
 	tribes = TRIBE_GAIA
 
 /obj/structure/werewolf_totem/generic/wyld
-	icon_state = "glassw"
-	base_icon_state = "glassw"
-	light_color = "#00CEC8"
+	light_color = "#81ff4f"
 	tribes = TRIBE_WYLD
 
 /obj/structure/werewolf_totem/generic/weaver
