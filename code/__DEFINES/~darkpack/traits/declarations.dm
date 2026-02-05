@@ -132,4 +132,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
 // Massivly boosts the range of your howl emote.
 #define TRAIT_LOUD_HOWLER "loud_howler"
+/// Prevents the mob from picking up items larger then small
+#define TRAIT_SMALL_HANDS "small_hands"
 // END TRAIT DEFINES

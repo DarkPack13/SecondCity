@@ -1372,6 +1372,10 @@
 	return
 
 /mob/living/can_hold_items(obj/item/I)
+	// DARKPACK EDIT ADD START
+	if(I && (I.w_class <= WEIGHT_CLASS_SMALL) && HAS_TRAIT(src, TRAIT_SMALL_HANDS))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	return ..() && HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS) && usable_hands
 
 /mob/living/can_perform_action(atom/target, action_bitflags)

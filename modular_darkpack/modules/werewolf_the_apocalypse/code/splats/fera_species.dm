@@ -200,6 +200,8 @@
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
+		TRAIT_FERAL_BITER,
+		TRAIT_SMALL_HANDS,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
@@ -237,6 +239,8 @@
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
+		TRAIT_FERAL_BITER,
+		TRAIT_SMALL_HANDS,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
