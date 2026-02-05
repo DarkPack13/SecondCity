@@ -31,7 +31,11 @@
 	name = AUSPICE_GALLIARD
 	desc = "Where the Philodox is stoic, the Galliard is a creature of unbridled passion. The Gibbous Moon is a fiery muse, and stirs its children into great heights and depths of emotion. While all Galliards are prone to immense mirth and immense melancholy, those born under a waning moon fall more readily into dark, consuming passions; they are the tragedians of the Garou, mastering tales of doom, ruin, sacrifice and loss. Conversely, their waxing-moon cousins sing of triumph and conquest, of the pounding heart and the love of life. They tend to be the soul of their pack's morale - when the Galliard is willing to go on, so too are all the others."
 	start_rage = 4
-	// gifts_provided= list(/datum/action/cooldown/power/gift/beast_speech, /datum/action/cooldown/power/gift/call_of_the_wyld, /datum/action/cooldown/power/gift/mindspeak)
+	gifts_provided = list(
+		// /datum/action/cooldown/power/gift/beast_speech,
+		// /datum/action/cooldown/power/gift/call_of_the_wyld,
+		/datum/action/cooldown/power/gift/mindspeak
+	)
 	moons_born_under = list(MOON_WAXING_GIBBOUS, MOON_WANING_GIBBOUS)
 
 /datum/subsplat/werewolf/auspice/garou/galliard/rank_requirments(list/renown)
@@ -109,7 +113,11 @@
 	name = AUSPICE_RAGABASH
 	desc = "The Ragabash born under the waxing new moon is usually light-hearted and capricious, while one born under the waning new moon has a slightly more wicked and ruthless streak. It's a rare Ragabash indeed that lacks a keen wit and the capacity to find some humor in any situation, no matter how bleak. Many other werewolves are slow to take the Ragabash seriously, though, as it's difficult to tell the difference between a New Moon's mockery that points out a grievous flaw in a plan and similar mockery that simply amuses him. Sometimes a Ragabash points out that the emperor has no clothes - but sometimes they're the first to cry wolf, so to speak."
 	start_rage = 1
-	// gifts_provided= list(/datum/action/cooldown/power/gift/blur_of_the_milky_eye, /datum/action/cooldown/power/gift/open_seal, /datum/action/cooldown/power/gift/infectious_laughter)
+	gifts_provided= list(
+		// /datum/action/cooldown/power/gift/blur_of_the_milky_eye,
+		/datum/action/cooldown/power/gift/infectious_laughter
+		// /datum/action/cooldown/power/gift/open_seal,
+	)
 	moons_born_under = list(MOON_NEW)
 
 /datum/subsplat/werewolf/auspice/garou/ragabash/rank_requirments(list/renown)
