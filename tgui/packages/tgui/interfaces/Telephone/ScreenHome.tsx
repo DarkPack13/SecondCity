@@ -5,7 +5,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack } from 'tgui-core/components';
 
 import { NavigableApps, type Data } from '.';
-import { backgrounds } from './backgroundImages';
+import { backgrounds } from './backgrounds/backgroundImages';
 
 export const AppIcon = (
   props: PropsWithChildren<{
@@ -213,11 +213,11 @@ export const ScreenHome = (props: {
         <Stack fill align="center" justify="space-around" wrap="wrap">
           <Stack.Item>
             <AppIcon
-              backgroundColor="#005555"
-              text="Themes"
-              iconName="palette"
+              backgroundColor="#505050"
+              text="Settings"
+              iconName="cogs"
               iconColor="white"
-              onClick={() => setApp(NavigableApps.Backgrounds)}
+              onClick={() => setApp(NavigableApps.Settings)}
             />
           </Stack.Item>
           <Stack.Item>

@@ -1,4 +1,5 @@
 // THIS IS A DARKPACK UI FILE
+import React from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Icon, Stack } from 'tgui-core/components';
@@ -12,6 +13,7 @@ import { ScreenIRC, ScreenViewingChannel } from './ScreenIRC';
 import { ScreenMessages } from './ScreenMessages';
 import { ScreenPhone } from './ScreenPhone';
 import { ScreenRecents } from './ScreenRecents';
+import { ScreenSettings } from './ScreenSettings';
 
 export type Contact = {
   name: string;
@@ -62,7 +64,6 @@ export type Conversation = {
   contact_name: string;
   last_timestamp: number;
   last_message_text: string;
-  message_count: number;
 };
 
 export type Data = {
@@ -101,6 +102,7 @@ export enum NavigableApps {
   Messages,
   IRC,
   Backgrounds,
+  Settings,
 }
 
 const PhysicalScreen = (props: {
@@ -162,6 +164,9 @@ const PhysicalScreen = (props: {
     }
     case NavigableApps.Backgrounds: {
       return <ScreenBackgrounds setApp={setApp} />;
+    }
+    case NavigableApps.Settings: {
+      return <ScreenSettings setApp={setApp} />;
     }
     default: {
       return <ScreenHome setApp={setApp} />;

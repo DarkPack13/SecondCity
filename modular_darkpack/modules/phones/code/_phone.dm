@@ -76,7 +76,7 @@
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	AddComponent(/datum/component/violation_observer, FALSE)
-	phone_background = pick("summerforest_b64","forest_b64","beach_b64", "sfcityscape_b64") // pick a random phone background when spawned
+	phone_background = "BG_[rand(1,18)]" // pick a random phone background when spawned
 
 /// Index to a define to point at a runtime-global list at compile-time.
 #define NETWORK_ID 1
