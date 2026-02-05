@@ -182,7 +182,7 @@
 /datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
 	desc = "Take on the shape a beast."
-	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
+	button_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi'
 	button_icon_state = "setite"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"

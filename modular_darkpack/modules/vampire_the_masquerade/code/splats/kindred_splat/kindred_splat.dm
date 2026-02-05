@@ -165,7 +165,7 @@
 	if (kindred.stat < SOFT_CRIT)
 		return
 
-	kindred.torpor("damage")
+	kindred.torpor(DAMAGE_TRAIT)
 
 /**
  * On being bit by a vampire

@@ -2,3 +2,5 @@
 	name = "security door"
 	icon_state = "prison-1"
 	base_icon_state = "prison"
+	bash_difficulty = 8
+	bash_successes_needed = 3

@@ -205,6 +205,16 @@
 		return FALSE
 	return TRUE
 
+// DARKPACK EDIT ADD START - SPLATS
+/// If a quirk is able to be selected for the mob's splat
+/datum/quirk/proc/is_splat_appropriate(datum/splat/mob_splat)
+	if(!ispath(mob_splat))
+		return TRUE
+	if(mob_trait in GLOB.splat_prototypes[mob_splat].splat_traits)
+		return FALSE
+	return TRUE
+// DARKPACK EDIT ADD END
+
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/item_quirk
 	/// Lazylist of strings describing where all the quirk items have been spawned.

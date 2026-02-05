@@ -23,10 +23,6 @@
 	icon_state = "pp25"
 	COOLDOWN_DECLARE(emergency_cooldown)
 
-/obj/item/radio/headset/darkpack/police/Initialize()
-	. = ..()
-	register_context()
-
 /obj/item/radio/headset/darkpack/police/examine(mob/user)
 	. = ..()
 	var/turf/current_turf = get_turf(src)

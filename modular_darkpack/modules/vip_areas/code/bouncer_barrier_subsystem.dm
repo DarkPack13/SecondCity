@@ -14,4 +14,4 @@ SUBSYSTEM_DEF(bouncer_barriers)
 		if(!vip_barrier_perms?[test_barrier.protected_zone_id])
 			vip_barrier_perms[test_barrier.protected_zone_id] = new /datum/vip_barrier_perm(test_barrier.protected_zone_id)
 		qdel(test_barrier)
-	return ..()
+	return SS_INIT_SUCCESS
