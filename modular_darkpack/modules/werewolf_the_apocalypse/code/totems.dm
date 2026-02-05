@@ -14,6 +14,7 @@
 	// light_color = "#FFFFFF"
 	light_range = 3
 	light_power = 0.5
+	damage_deflection = 5
 
 	var/tribes = list()
 
@@ -66,7 +67,7 @@
 	. = ..()
 	if(. && !broken)
 		if(!COOLDOWN_FINISHED(src, rage_notify_cd))
-			return
+			return .
 		notify_fera(-damage_amount)
 		COOLDOWN_START(src, rage_notify_cd, 5 SECONDS)
 
@@ -224,3 +225,18 @@
 	name = "Totem Exit Mark"
 	icon_state = "portal_exit"
 	var/tribes = list()
+
+/obj/effect/landmark/teleport_mark/gaia
+	tribes = TRIBE_GAIA
+
+/obj/effect/landmark/teleport_mark/wyld
+	tribes = TRIBE_WYLD
+
+/obj/effect/landmark/teleport_mark/weaver
+	tribes = TRIBE_WEAVER
+
+/obj/effect/landmark/teleport_mark/wyrm
+	tribes = TRIBE_WYRM
+
+/obj/effect/landmark/teleport_mark/alltribes
+	tribes = TRIBE_ALL

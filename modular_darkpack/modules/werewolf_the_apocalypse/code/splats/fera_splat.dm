@@ -151,7 +151,7 @@
 		if(get_area(totem) != get_area(owner))
 			continue
 		adjust_gnosis(1, TRUE)
-		COOLDOWN_START(src, gnosis_regain_cd, 1 TURNS)
+		COOLDOWN_START(src, gnosis_regain_cd, 1 SCENES)
 
 /datum/splat/werewolf/shifter/garou
 	name = "Garou"
