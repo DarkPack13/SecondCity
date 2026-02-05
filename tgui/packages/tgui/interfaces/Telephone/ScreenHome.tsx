@@ -173,7 +173,7 @@ export const ScreenHome = (props: {
   const { act, data } = useBackend<Data>();
   const { setApp } = props;
   const { time, date, background_url } = data;
-  const homeBackground = backgrounds[background_url || 'sfcityscape_b64'] || background_url;
+  const homeBackground = background_url ? (backgrounds[background_url] || background_url) : backgrounds['BG_1'];
   // check for unread conversations
   let unreadCount = 0;
   const seenConversations = JSON.parse(localStorage.getItem('seen_conversations') || '{}');

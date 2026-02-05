@@ -1,87 +1,91 @@
 // THIS IS A DARKPACK UI FILE
 import { useBackend } from 'tgui/backend';
-import { Box, Icon, Stack } from 'tgui-core/components';
+import { Box, Collapsible, Icon, Stack } from 'tgui-core/components';
 import { type Data, NavigableApps } from '.';
 import { backgrounds } from './backgrounds/backgroundImages';
 
 export const ScreenBackgrounds = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
 }) => {
-  const { act } = useBackend<Data>();
+  const { act, data } = useBackend<Data>();
   const { setApp } = props;
 
   const choices = [
     {
-      name: 'Background 1',
+      name: 'Paint',
       key: 'BG_1',
     },
     {
-      name: 'Background 2',
+      name: 'Squares',
       key: 'BG_2',
     },
     {
-      name: 'Background 3',
+      name: 'Lights',
       key: 'BG_3',
     },
     {
-      name: 'Background 4',
+      name: 'Snowy Mountains',
       key: 'BG_4',
     },
     {
-      name: 'Background 5',
+      name: 'Forest at Night',
       key: 'BG_5',
     },
     {
-      name: 'Background 6',
+      name: 'Foggy Forest',
       key: 'BG_6',
     },
     {
-      name: 'Background 7',
+      name: 'Snowy Forest',
       key: 'BG_7',
     },
     {
-      name: 'Background 8',
+      name: 'City Lights',
       key: 'BG_8',
     },
     {
-      name: 'Background 9',
+      name: 'Snowy Cliffs',
       key: 'BG_9',
     },
     {
-      name: 'Background 10',
+      name: 'Countryside',
       key: 'BG_10',
     },
     {
-      name: 'Background 11',
+      name: 'PD Bikes',
       key: 'BG_11',
     },
     {
-      name: 'Background 12',
+      name: 'Puppy',
       key: 'BG_12',
     },
     {
-      name: 'Background 13',
+      name: 'K9',
       key: 'BG_13',
     },
     {
-      name: 'Background 14',
+      name: 'Corgi',
       key: 'BG_14',
     },
     {
-      name: 'Background 15',
+      name: 'Curious Cat',
       key: 'BG_15',
     },
     {
-      name: 'Background 16',
+      name: 'Cute Kitten',
       key: 'BG_16',
     },
     {
-      name: 'Background 17',
+      name: 'Mr. Meow',
       key: 'BG_17',
     },
     {
-      name: 'Background 18',
+      name: 'Black Cat',
       key: 'BG_18',
+    },
+    {
+      name: 'Custom',
+      key: 'custom_background',
     },
     /*
     // see backgroundImages.ts for adding backgrounds here
@@ -93,8 +97,13 @@ export const ScreenBackgrounds = (props: {
   ];
 
   const setBackground = (key: string) => {
-    act('set_background', { background_url: key });
-    setApp(null);
+    if (key === 'custom_background') {
+      act('custom_background');
+      setApp(null);
+    } else {
+      act('set_background', { background_url: key });
+      setApp(null);
+    }
   };
 
   return (
@@ -111,12 +120,12 @@ export const ScreenBackgrounds = (props: {
       </Stack.Item>
       <Stack.Item grow overflowY="auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <Stack vertical>
-          {choices.map((background, index) => (
+          {choices.slice(0, -1).map((background, index) => (
             <Stack.Item key={index}>
               <Stack
                 align="center"
                 p={1}
-                className="Telephone__ContactsElement" //shameless styling copy paste from screencontacts
+                className="Telephone__ContactsElement"
                 onClick={() => setBackground(background.key)}
                 style={{ cursor: 'pointer' }}
               >
@@ -138,9 +147,28 @@ export const ScreenBackgrounds = (props: {
               </Stack>
             </Stack.Item>
           ))}
+          <Stack.Item>
+            <Stack
+              align="center"
+              p={1}
+              className="Telephone__ContactsElement"
+              onClick={() => setBackground('custom_background')}
+              style={{ cursor: 'pointer' }}
+            >
+              <Stack.Item height={2} grow ml={3} mb={3}>
+                <Box><Icon ml={-0.5} mt={1.5} size={2} name="cog" /><Stack.Item ml={7} mt={-3}> Custom </Stack.Item></Box>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
         </Stack>
+
+        <Stack.Item mb={3} />
+
+      </Stack.Item>
+      <Stack.Item>
         <Stack.Item mb={6} />
       </Stack.Item>
+
     </Stack>
   );
 };
