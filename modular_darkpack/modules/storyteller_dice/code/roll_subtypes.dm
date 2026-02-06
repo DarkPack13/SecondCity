@@ -5,6 +5,9 @@
 /datum/storyteller_roll/scene_cooldown
 	reroll_cooldown = 1 SCENES
 
+/datum/storyteller_roll/spammy
+	spammy_roll = TRUE
+
 // Mostly TTRPG accurate rolls
 
 // Physical Feats

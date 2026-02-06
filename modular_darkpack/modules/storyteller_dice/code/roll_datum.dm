@@ -23,9 +23,8 @@
 	/// This is a roll that can proc multiple times in rapid sucession and thus should be always shown via runechat
 	var/spammy_roll = FALSE
 
-	#warn should be lazy list
-	// A list of times indexed by a weakref to a mob
-	var/list/mobs_last_rolled = list()
+	// A lazy list of times indexed by a weakref to a mob
+	var/list/mobs_last_rolled
 	var/reroll_cooldown
 
 	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
@@ -95,7 +94,7 @@
 			else
 				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
 
-	mobs_last_rolled[WEAKREF(roller)] = list(world.time, output)
+	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
 	return output
 
@@ -188,7 +187,7 @@
 	*/
 
 /datum/storyteller_roll/proc/can_roll(mob/living/roller, feedback = TRUE)
-	if(reroll_cooldown)
+	if(reroll_cooldown && mobs_last_rolled)
 		for(var/datum/weakref/guy_ref, roll_info in mobs_last_rolled)
 			var/mob/living/guy = guy_ref.resolve()
 			if(!guy)

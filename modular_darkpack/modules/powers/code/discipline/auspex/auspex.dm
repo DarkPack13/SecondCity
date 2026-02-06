@@ -270,8 +270,8 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, TRUE)
-	if(roll > 0)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner)
+	if(roll == ROLL_SUCCESS)
 		owner.enter_avatar()
 	else
 		to_chat(owner, span_warning("Your mind fails to leave your body."))
