@@ -14,8 +14,8 @@
 	tribe_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/ghostcouncil
-	name = TRIBE_GHOST_COUNCIL
-	desc = "Seekers of mystery and highly secretive, the Ghost Council is one of the most misunderstood tribes. Their ranks include guides, academics and the religious."
+	name = TRIBE_UKTENA
+	desc = "Seekers of mystery and highly secretive, the Uktena is one of the most misunderstood tribes. Their ranks include guides, academics and the religious."
 	// gifts_provided = list(
 	// 	/datum/action/gift/shroud = 1,
 	// 	/datum/action/gift/coils_of_the_serpent = 2,
