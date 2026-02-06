@@ -151,7 +151,7 @@
 			dice_text += span_nicegreen("[get_dice_char(roll)]")
 			sucess_amount++
 			if(SSroll.on_crit_extra_success_enabled && roll == 10)
-				success_count++
+				sucess_amount++
 		else if(roll == 1)
 			dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
 			sucess_amount--
