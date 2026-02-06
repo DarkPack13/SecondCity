@@ -22,6 +22,7 @@
 	plural_form = "Fera"
 	id = SPECIES_FERA
 	species_language_holder = /datum/language_holder/garou
+	screenshot_ignored = TRUE
 	var/biter = FALSE
 	var/mob_pixel_w
 	var/mob_pixel_z

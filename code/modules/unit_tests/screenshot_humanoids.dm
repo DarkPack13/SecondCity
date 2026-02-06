@@ -2,7 +2,7 @@
 /datum/unit_test/screenshot_humanoids
 
 /datum/unit_test/screenshot_humanoids/Run()
-	var/list/testable_species = subtypesof(/datum/species)
+	var/list/testable_species = valid_subtypesof(/datum/species) // DARKPACK EDIT CHANGE
 
 	// Test lizards as their own thing so we can get more coverage on their features
 	var/mob/living/carbon/human/lizard = allocate(/mob/living/carbon/human/dummy/consistent)
@@ -45,6 +45,10 @@
 
 	// The rest of the species
 	for (var/datum/species/species_type as anything in testable_species)
+		// DARKPACK EDIT ADD START
+		if(species_type::screenshot_ignored)
+			continue
+		// DARKPACK EDIT ADD END
 		test_screenshot("[species_type]", get_flat_icon_for_all_directions(make_dummy(species_type, /datum/outfit/job/assistant/consistent)))
 
 /datum/unit_test/screenshot_humanoids/proc/make_dummy(species, job_outfit)
