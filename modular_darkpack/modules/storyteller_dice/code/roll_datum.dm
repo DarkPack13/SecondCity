@@ -23,7 +23,7 @@
 
 	#warn should be lazy list
 	// A list of times indexed by a weakref to a mob
-	var/mobs_last_rolled = list()
+	var/list/mobs_last_rolled = list()
 	var/reroll_cooldown
 
 	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
@@ -57,9 +57,13 @@
 
 	var/output_combined = fieldset_block("[roller] - [bumper_text]", jointext(last_output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob in get_mobs_to_show(roller))
+		var/roll_important_to_me = FALSE
+		if(!spammy_roll && (player_mob == roller || target))
+			roll_important_to_me = TRUE
+
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
-		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = spammy_roll ? 5 : 20))
+		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
@@ -68,7 +72,7 @@
 			else
 				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
 
-	mobs_last_rolled[WEAKREF(roller)] = world.time
+	mobs_last_rolled[WEAKREF(roller)] = list(world.time, output)
 
 	return output
 
@@ -147,42 +151,31 @@
 				return span_bold(span_danger(("Botch -")))
 
 /datum/storyteller_roll/proc/get_dice_char(input)
-	switch(input)
-		if(1)
-			return "❶"
-		if(2)
-			return "❷"
-		if(3)
-			return "❸"
-		if(4)
-			return "❹"
-		if(5)
-			return "❺"
-		if(6)
-			return "❻"
-		if(7)
-			return "❼"
-		if(8)
-			return "❽"
-		if(9)
-			return "❾"
-		if(10)
-			return "❿"
-		else
-			return "⓿"
+	var/static/list/dice_output = list("❶", "❷", "❸", "❹", "❺", "❻", "❼", "❽", "❾", "❿")
+	return dice_output[input]
+	/* // This would require making it an assoc list and we dont every expect outside our given range.
+	// So if someone faces a runtime because of this just make it an actual assoc and deal with the micro preformace hit
+	if(!dice_output[input])
+		return "⓿"
+	else
+		return dice_output[input]
+	*/
 
 /datum/storyteller_roll/proc/can_roll(mob/living/roller, feedback = TRUE)
 	if(reroll_cooldown)
-		for(var/datum/weakref/guy_ref, when_rolled in mobs_last_rolled)
+		for(var/datum/weakref/guy_ref, roll_info in mobs_last_rolled)
 			var/mob/living/guy = guy_ref.resolve()
 			if(!guy)
-				mobs_last_rolled -= guy_ref
+				mobs_last_rolled.Remove(guy_ref)
 				continue
 			if(guy != roller)
 				continue
-			if(when_rolled + reroll_cooldown > world.time)
+			if(roll_info[1] + reroll_cooldown > world.time)
+				if(roll_info[2] > 0)
+					return TRUE
+					//return roll_info[2] // We really should support directly returning the output..?
 				if(feedback)
-					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((when_rolled + reroll_cooldown - world.time)/10)]s left."))
+					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((roll_info[1] + reroll_cooldown - world.time)/10)]s left."))
 				return FALSE
 
 	return TRUE
@@ -210,4 +203,3 @@
 	numerical = TRUE
 	spammy_roll = TRUE
 
-/datum/storyteller_roll/
