@@ -1,6 +1,6 @@
 /datum/st_stat/morality_path
 	abstract_type = /datum/st_stat/morality_path
-	category = "Morality Path"
+	category = "Morality"
 	starting_score = 2
 	min_score = 0
 	max_score = 10
