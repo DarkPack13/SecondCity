@@ -114,14 +114,28 @@
 
 /datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
 	var/dice_amount = 0
-	for(var/stat_type in applicable_stats)
+	for(var/stat_type in using_stats(roller))
 		dice_amount += roller.st_get_stat(stat_type)
 	return dice_amount + bonus
+
+// Unused rn but can be used for overides of `using_stats()`
+/datum/storyteller_roll/proc/return_higher_stat(mob/living/roller, list/stats)
+	var/stat_to_use
+	var/highest_stat
+	for(var/stat in stats)
+		var/stat_dots = roller.st_get_stat(stat)
+		if(isnull(highest_stat) || stat_dots > highest_stat)
+			stat_to_use = stat
+			highest_stat = stat_dots
+	return highest_stat
+
+/datum/storyteller_roll/proc/using_stats(mob/living/roller)
+	return applicable_stats
 
 /datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
 	var/output = ""
 	var/stuff = list()
-	for(var/datum/st_stat/stat_type as anything in applicable_stats)
+	for(var/datum/st_stat/stat_type as anything in using_stats(roller))
 		stuff += "[LOWER_TEXT(stat_type::name)]:[roller.st_get_stat(stat_type)]"
 	output += jointext(stuff, "+")
 	if(bonus)
