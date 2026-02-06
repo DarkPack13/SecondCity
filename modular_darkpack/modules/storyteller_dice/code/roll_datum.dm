@@ -11,6 +11,8 @@
 	var/bumper_text = "Roll"
 
 	var/difficulty = 6
+	var/successes_needed = 1
+
 	// By default uses the highest attribute and ability
 	var/list/applicable_stats = list()
 	var/numerical = FALSE
@@ -32,7 +34,7 @@
 /**
  * Arguments:
  *
- * Returns: The sucess of the roll, if you need the amount, fetch it from the datum itself
+ * Returns: The sucess of the roll, either a define or the raw amount of sucesses if `numerical = TRUE`
  */
 /datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus = 0)
 	last_sucess_amount = 0
@@ -45,12 +47,15 @@
 
 	var/list/rolled_dice = roll_dice(dice_amount)
 
-	last_output_text += span_notice("[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty].")
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty]."
+	if(successes_needed > 1)
+		first_line += " [successes_needed] successes needed."
+	last_output_text += span_notice(first_line)
+
 	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
 	var/output_combined = fieldset_block("[roller] - [bumper_text]", jointext(last_output_text, "<br>"), "boxed_message")
-	//var/output_combined = boxed_message(jointext(last_output_text, "<br>"))
 	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
@@ -124,7 +129,7 @@
 	else
 		if(sucess_amount < 0)
 			return ROLL_BOTCH
-		else if(sucess_amount == 0)
+		else if(sucess_amount < successes_needed)
 			return ROLL_FAILURE
 		else
 			return ROLL_SUCCESS
@@ -177,7 +182,7 @@
 				continue
 			if(when_rolled + reroll_cooldown > world.time)
 				if(feedback)
-					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet."))
+					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((when_rolled + reroll_cooldown - world.time)/10)]s left."))
 				return FALSE
 
 	return TRUE

@@ -31,8 +31,6 @@
 	var/close_sound = 'modular_darkpack/modules/doors/sounds/door_close.ogg'
 	var/lock_sound = 'modular_darkpack/modules/doors/sounds/door_locked.ogg'
 	var/burnable = FALSE
-	/// Cooldown for bashing attempts
-	COOLDOWN_DECLARE(bash_cooldown)
 	var/datum/storyteller_roll/lockpick/lockpick_roll
 	var/datum/storyteller_roll/bash_door/bash_roll
 	/// Difficulty for bashing this door down
@@ -196,23 +194,24 @@
 				if(!bash_roll)
 					bash_roll = new()
 				bash_roll.difficulty = bash_difficulty
+				bash_roll.successes_needed = bash_successes_needed
 				var/roll = bash_roll.st_roll(user, src)
-				if(roll >= bash_successes_needed)
-					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
-					if(do_after(human_user, 3 SECONDS, src))
-						proc_unlock(50)
-						break_door(human_user)
-					else
-						to_chat(human_user, span_danger("You must be standing next to the door to break it down."))
-				else
-					pixel_z = pixel_z+rand(-1, 1)
-					pixel_w = pixel_w+rand(-1, 1)
-					playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
-					proc_unlock(5)
-					to_chat(user, span_warning("You aren't strong enough to break it down! You hurt your shoulder by punching the door!"))
-					human_user.adjust_brute_loss(30)
-					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
-					COOLDOWN_START(src, bash_cooldown, 1 SCENES)
+				switch(roll)
+					if(ROLL_SUCCESS)
+						to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
+						if(do_after(human_user, 3 SECONDS, src))
+							proc_unlock(50)
+							break_door(human_user)
+						else
+							to_chat(human_user, span_danger("You must be standing next to the door to break it down."))
+					if(ROLL_FAILURE, ROLL_BOTCH)
+						pixel_z = pixel_z+rand(-1, 1)
+						pixel_w = pixel_w+rand(-1, 1)
+						playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 50, TRUE)
+						proc_unlock(5)
+						to_chat(user, span_warning("You aren't strong enough to break it down! You hurt your shoulder by punching the door!"))
+						human_user.adjust_brute_loss(1 LETHAL_TTRPG_DAMAGE)
+						addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
 			else
 				pixel_z = pixel_z+rand(-1, 1)
 				pixel_w = pixel_w+rand(-1, 1)
