@@ -273,7 +273,7 @@
 		return
 	if(locked)
 		proc_unlock(5)
-		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
+		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 50, TRUE)
 		for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			P.Aggro(user)
 		if(do_after(user, 1 TURNS, src, interaction_key = DOAFTER_SOURCE_DOOR))
@@ -281,7 +281,7 @@
 				return
 			var/datum/storyteller_roll/lockpick/our_roll = new()
 			our_roll.difficulty = lockpick_difficulty
-			switch(our_roll.roll(user))
+			switch(our_roll.st_roll(user, src))
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
 					locked = FALSE
@@ -298,7 +298,7 @@
 		if(closed && lock_id) //yes, this is a thing you can extremely easily do in real life... FOR DOORS WITH LOCKS!
 			to_chat(user, span_notice("You re-lock the door with your lockpick."))
 			locked = TRUE
-			playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 100, TRUE)
+			playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 50, TRUE)
 			return TRUE
 
 /obj/structure/vampdoor/proc/try_keys(mob/living/user, obj/item/vamp/keys/key_used)

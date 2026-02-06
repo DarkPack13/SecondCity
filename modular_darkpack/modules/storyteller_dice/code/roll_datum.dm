@@ -11,51 +11,71 @@
 	var/difficulty = 6
 	// By default uses the highest attribute and ability
 	var/list/applicable_stats
+	var/numerical = FALSE
 
 	var/roll_output_type = ROLL_PUBLIC
+	/// This is a roll that can proc multiple times in rapid sucession and thus should be always shown via runechat
+	var/spammy_roll = FALSE
+
 
 	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
 	var/last_sucess_amount
 	var/list/last_output_text = list()
+
 
 /**
  * Arguments:
  *
  * Returns: The sucess of the roll, if you need the amount, fetch it from the datum itself
  */
-/datum/storyteller_roll/proc/roll(mob/living/roller, bonus = 0)
+/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus = 0)
 	last_sucess_amount = 0
 	last_output_text = list()
 
-	var/dice_amount = 0
-	for(var/stat_type in applicable_stats)
-		dice_amount += roller.st_get_stat(stat_type)
+	var/dice_amount = calculate_used_dice(roller, bonus)
+
 	var/list/rolled_dice = roll_dice(dice_amount)
 
-	last_output_text += span_notice("Rolling [dice] dice against difficulty [difficulty].")
+	last_output_text += span_notice("Rolling [dice_amount] dice against difficulty [difficulty].")
 	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
 	var/output = roll_answer(last_sucess_amount, numerical, last_output_text)
 
-	var/output_combined = fieldset_block("[alert_atom.name]", jointext(last_output_text, "<br>"), "boxed_message")
-	for(var/mob/player_mob as anything in mobs_to_show_output)
+	var/output_combined = fieldset_block("[target.name]", jointext(last_output_text, "<br>"), "boxed_message")
+	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
-		if(output_pref == DICE_OUTPUT_CHAT)
+		if(output_pref == DICE_OUTPUT_CHAT && !spammy_roll)
 			to_chat(player_mob, output_combined, trailing_newline = FALSE)
-		else if((output_pref == DICE_OUTPUT_BALLOON) && alert_atom)
+		else if((output_pref == DICE_OUTPUT_BALLOON) && target)
 			if(last_sucess_amount > 0)
-				alert_atom.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
+				target.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
-				alert_atom.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+				target.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
 
 	return output
 
+/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller)
+	switch(roll_output_type)
+		if(ROLL_PUBLIC)
+			return viewers(DEFAULT_MESSAGE_RANGE, roller)
+		if(ROLL_PRIVATE)
+			return roller
+		if(ROLL_GM)
+			EMPTY_BLOCK_GUARD // Should eventually log to a admin viewable place..?
+		if(ROLL_NONE)
+			EMPTY_BLOCK_GUARD // Not even important enough to be admin visable.
+
+/datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
+	var/dice_amount = 0
+	for(var/stat_type in applicable_stats)
+		dice_amount += roller.st_get_stat(stat_type)
+	return dice_amount + bonus
 
 /datum/storyteller_roll/lockpick
 	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
 
-
-/datum/storyteller_roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/alert_atom = null, numerical = FALSE)
+/*
+/datum/storyteller_roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/target = null, numerical = FALSE)
 	var/list/rolled_dice = roll_dice(dice)
 	if(!islist(mobs_to_show_output))
 		mobs_to_show_output = list(mobs_to_show_output)
@@ -64,22 +84,23 @@
 	var/last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
 	var/output = roll_answer(last_sucess_amount, numerical, last_output_text)
 
-	var/output_combined = fieldset_block("[alert_atom.name]", jointext(last_output_text, "<br>"), "boxed_message")
+	var/output_combined = fieldset_block("[target.name]", jointext(last_output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob as anything in mobs_to_show_output)
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
 		if(output_pref == DICE_OUTPUT_CHAT)
 			to_chat(player_mob, output_combined, trailing_newline = FALSE)
-		else if((output_pref == DICE_OUTPUT_BALLOON) && alert_atom)
+		else if((output_pref == DICE_OUTPUT_BALLOON) && target)
 			if(last_sucess_amount > 0)
-				alert_atom.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
+				target.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
-				alert_atom.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+				target.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
 
 	if(numerical)
 		return last_sucess_amount
 
 	return output
+*/
 
 /datum/storyteller_roll/proc/roll_dice(dice, sides = 10)
 	dice = max(dice, 1)
