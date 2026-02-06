@@ -198,6 +198,9 @@
 
 /obj/item/smartphone/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
+	var/datum/asset/background_files = get_asset_datum(/datum/asset/simple/phone_backgrounds)
+	if(user.client)
+		background_files.send(user.client)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Telephone")
@@ -345,11 +348,12 @@
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					SSphones.published_phone_numbers.Remove(contact)
 					sim_card.published = FALSE
+					sim_card.published_name = null
 					to_chat(usr, span_notice("Your number is now unpublished."))
 					return TRUE
 
 		if("custom_background")
-			to_chat(usr, span_danger("Do NOT use images that can be considered offensive or obscene, or that contain references to something that happened after the year [CURRENT_STATION_YEAR]."))
+			to_chat(usr, span_danger("Do NOT use images that can be considered offensive or obscene, or that contain references to something that happened after the year [CURRENT_STATION_YEAR]. Recommended image dimensions: 400x600 "))
 			custom_background = tgui_input_text(usr, "Input background image URL", "Custom Background")
 			if(!custom_background)
 				to_chat(usr, span_danger("You must input a URL to set a custom background."))
