@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(roll)
 /datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, mob/living/roller = null, numerical = FALSE)
 	var/datum/storyteller_roll/dice_roll = new()
 	dice_roll.difficulty = difficulty
+	dice_roll.numerical = numerical
 	return dice_roll.st_roll(roller, roller, dice)
 
 //Config datums for exploding dice

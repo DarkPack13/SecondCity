@@ -149,7 +149,7 @@
 
 
 /mob/living/carbon/human/npc/bouncer/examine(mob/user)
-	.=..()
+	. = ..()
 
 	if(can_be_reasoned_with() && in_range(src, user))
 		var/list/interact_options = list(
