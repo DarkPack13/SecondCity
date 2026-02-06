@@ -243,9 +243,11 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "fo" = (
-/obj/structure/vampdoor/simple/anarch{
+/obj/structure/vampdoor/simple{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/anarch,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "fI" = (
@@ -778,9 +780,11 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/supply)
 "qv" = (
-/obj/structure/vampdoor/simple/camarilla{
+/obj/structure/vampdoor/simple{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/camarilla,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "qz" = (
@@ -1309,7 +1313,9 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "Be" = (
-/obj/structure/vampdoor/simple/supply,
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/supply,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/supply)
 "Bf" = (
@@ -1952,7 +1958,9 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "LP" = (
-/obj/structure/vampdoor/simple/police,
+/obj/structure/vampdoor/simple,
+/obj/effect/mapping_helpers/door/access/police,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "LU" = (

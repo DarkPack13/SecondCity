@@ -17,7 +17,7 @@
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		exit_frenzymod()
 	*/
-	SEND_SOUND(src, sound('modular_darkpack/modules/kindred_species/sounds/final_death.ogg', 0, 0, 50))
+	SEND_SOUND(src, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', 0, 0, 50))
 
 	switch (chronological_age)
 		if(-INFINITY to 10) //normal corpse
@@ -35,5 +35,5 @@
 			rot_body(4) //mummified skeletonised corpse
 			visible_message(span_warning("[src]'s body rapidly skeletonises!"))
 		if(200 to INFINITY) //turn to ash
-			playsound(src, 'modular_darkpack/modules/kindred_species/sounds/burning_death.ogg', 80, TRUE)
+			playsound(src, 'modular_darkpack/modules/vampire_the_masquerade/sounds/burning_death.ogg', 80, TRUE)
 			dust(just_ash = TRUE, drop_items = TRUE, force = TRUE)

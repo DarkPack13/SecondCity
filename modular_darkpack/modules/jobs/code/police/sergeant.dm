@@ -14,7 +14,7 @@
 		/datum/job_department/police,
 	)
 
-	allowed_species = list(SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_NONE)
 
 	description = "Enforce the law. Keep the officers in line. Follow what the Chief says."
 	minimal_masquerade = 0

@@ -36,10 +36,10 @@
 	}
 
 /mob/living/basic/pet/dog/wolf
-	name = "\improper wolf"
+	name = "wolf"
 	real_name = "wolf"
 	icon_state = "wolf1"
-	desc = "That's an big, scary wolf. Might be best to steer clear."
+	desc = "That's a big, scary wolf. Might be best to steer clear."
 	base_icon_state = "wolf"
 	icon = 'modular_darkpack/modules/npc/icons/wolf.dmi'
 	var/random_wolf_color = TRUE
@@ -164,6 +164,8 @@
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk)
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk/spiral)
+
+#undef WOLF_COAT_HELPER
 
 #undef COAT_BLACK
 #undef COAT_GRAY
