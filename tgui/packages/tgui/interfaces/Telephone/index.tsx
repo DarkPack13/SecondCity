@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import React from 'react';
+import type React from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Icon, Stack } from 'tgui-core/components';
@@ -83,6 +83,7 @@ export type Data = {
   custom_background?: string;
 
   published_numbers: Contact[];
+  sim_published: BooleanLike;
   our_contacts: Contact[];
   our_blocked_contacts: Contact[];
 
@@ -215,15 +216,12 @@ const NavigationBar = (props: {
         align="center"
         justify="space-around"
       >
-        <Stack.Item
-          width={8}
-          height="100%"
-        >
-        <Stack align="center" justify="center" fill>
-          <Stack.Item>
-            <Icon name="bars" size={1.5} />
-          </Stack.Item>
-        </Stack>
+        <Stack.Item width={8} height="100%">
+          <Stack align="center" justify="center" fill>
+            <Stack.Item>
+              <Icon name="bars" size={1.5} />
+            </Stack.Item>
+          </Stack>
         </Stack.Item>
         <Stack.Item
           onClick={() => {
@@ -261,7 +259,10 @@ const NavigationBar = (props: {
 };
 
 export const Telephone = (props) => {
-  const [app, setApp] = useSharedState<NavigableApps | null>('telephone_state', null);
+  const [app, setApp] = useSharedState<NavigableApps | null>(
+    'telephone_state',
+    null,
+  );
 
   return (
     <Window width={285} height={530}>

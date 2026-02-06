@@ -183,7 +183,7 @@ export const ScreenHome = (props: {
   const { time, date, background_url } = data;
   const convertTo12Hour = (timeStr: string) => {
     const [hourStr, minute] = timeStr.split(':');
-    const hour = parseInt(hourStr);
+    const hour = parseInt(hourStr, 10);
     const period = hour >= 12 ? 'PM' : 'AM';
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minute} ${period}`;
