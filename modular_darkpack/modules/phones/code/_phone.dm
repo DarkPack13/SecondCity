@@ -223,6 +223,8 @@
 		))
 	published_numbers = sort_list(published_numbers)
 	data["published_numbers"] = published_numbers
+	data["sim_published"] = sim_card.published
+	data["sim_published_name"] = sim_card.published_name
 
 	var/list/our_contacts = list()
 	for(var/datum/phonecontact/contact in contacts)
@@ -255,7 +257,7 @@
 
 	data["calling_user"] = get_number_contact_name()
 
-	data["time"] = time_to_twelve_hour(station_time(), format = "hh:mm")
+	data["time"] = station_time_timestamp("hh:mm")
 	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
 	data["background_url"] = phone_background
 
@@ -319,9 +321,10 @@
 			return TRUE
 
 		if("publish_number")
-			var/name = tgui_input_text(usr, "Input name", "Publish Number")
+			to_chat(usr, span_notice("This text will represent you in the phonebook. example: Jane Doe | Anarchy Rose Manager"))
+			var/name = tgui_input_text(usr, "Phonebook Name", "Publish Number")
 			if(!name)
-				to_chat(usr, span_danger("You must input a name to publish your number."))
+				to_chat(usr, span_danger("You must input text to publish your number."))
 				return
 			if(!sim_card)
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
@@ -333,7 +336,17 @@
 					return TRUE
 			SSphones.published_phone_numbers[name] = sim_card.phone_number
 			to_chat(usr, span_notice("Your number is now published."))
+			sim_card.published = TRUE
+			sim_card.published_name = name
 			return TRUE
+
+		if("unpublish_number")
+			for(var/contact as anything in SSphones.published_phone_numbers)
+				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
+					SSphones.published_phone_numbers.Remove(contact)
+					sim_card.published = FALSE
+					to_chat(usr, span_notice("Your number is now unpublished."))
+					return TRUE
 
 		if("custom_background")
 			to_chat(usr, span_danger("Do NOT use images that can be considered offensive or obscene, or that contain references to something that happened after the year [CURRENT_STATION_YEAR]."))
