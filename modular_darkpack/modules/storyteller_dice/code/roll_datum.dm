@@ -8,9 +8,11 @@
 #define ROLL_NONE "none"
 
 /datum/storyteller_roll
+	var/bumper_text = "Roll"
+
 	var/difficulty = 6
 	// By default uses the highest attribute and ability
-	var/list/applicable_stats
+	var/list/applicable_stats = list()
 	var/numerical = FALSE
 
 	var/roll_output_type = ROLL_PUBLIC
@@ -36,23 +38,26 @@
 
 	var/list/rolled_dice = roll_dice(dice_amount)
 
-	last_output_text += span_notice("Rolling [dice_amount] dice against difficulty [difficulty].")
+	last_output_text += span_notice("[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty].")
 	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
-	var/output = roll_answer(last_sucess_amount, numerical, last_output_text)
+	var/output = roll_result(last_sucess_amount)
 
-	var/output_combined = fieldset_block("[target.name]", jointext(last_output_text, "<br>"), "boxed_message")
+	var/output_combined = fieldset_block("[roller] - [bumper_text]", jointext(last_output_text, "<br>"), "boxed_message")
+	//var/output_combined = boxed_message(jointext(last_output_text, "<br>"))
 	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
-		if(output_pref == DICE_OUTPUT_CHAT && !spammy_roll)
-			to_chat(player_mob, output_combined, trailing_newline = FALSE)
-		else if((output_pref == DICE_OUTPUT_BALLOON) && target)
+		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = 10))
+		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
+			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
+		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
 			if(last_sucess_amount > 0)
-				target.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
+				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
-				target.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
 
 	return output
+
 
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller)
 	switch(roll_output_type)
@@ -71,36 +76,15 @@
 		dice_amount += roller.st_get_stat(stat_type)
 	return dice_amount + bonus
 
-/datum/storyteller_roll/lockpick
-	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
-
-/*
-/datum/storyteller_roll/proc/storyteller_roll(dice = 1, difficulty = 6, list/mobs_to_show_output = list(), atom/target = null, numerical = FALSE)
-	var/list/rolled_dice = roll_dice(dice)
-	if(!islist(mobs_to_show_output))
-		mobs_to_show_output = list(mobs_to_show_output)
-	var/list/last_output_text = list()
-	last_output_text += span_notice("Rolling [dice] dice against difficulty [difficulty].")
-	var/last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
-	var/output = roll_answer(last_sucess_amount, numerical, last_output_text)
-
-	var/output_combined = fieldset_block("[target.name]", jointext(last_output_text, "<br>"), "boxed_message")
-	for(var/mob/player_mob as anything in mobs_to_show_output)
-		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
-
-		if(output_pref == DICE_OUTPUT_CHAT)
-			to_chat(player_mob, output_combined, trailing_newline = FALSE)
-		else if((output_pref == DICE_OUTPUT_BALLOON) && target)
-			if(last_sucess_amount > 0)
-				target.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
-			else
-				target.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
-
-	if(numerical)
-		return last_sucess_amount
-
-	return output
-*/
+/datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
+	var/output = ""
+	var/stuff = list()
+	for(var/datum/st_stat/stat_type as anything in applicable_stats)
+		stuff += "[LOWER_TEXT(stat_type::name)]:[roller.st_get_stat(stat_type)]"
+	output += jointext(stuff, "+")
+	if(bonus)
+		output += "+[bonus]"
+	return "Rolling [output]"
 
 /datum/storyteller_roll/proc/roll_dice(dice, sides = 10)
 	dice = max(dice, 1)
@@ -111,33 +95,42 @@
 
 //Count the number of successes.
 /datum/storyteller_roll/proc/count_success(list/rolled_dice, difficulty = 6, last_output_text)
-	var/last_sucess_amount = 0
+	var/sucess_amount = 0
 	var/dice_text = ""
 	for(var/roll in rolled_dice)
 		if(roll >= difficulty)
 			dice_text += span_nicegreen("[get_dice_char(roll)]")
-			last_sucess_amount++
+			sucess_amount++
 		else if(roll == 1)
 			dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
-			last_sucess_amount--
+			sucess_amount--
 		else
 			dice_text += span_danger("[get_dice_char(roll)]")
-	last_output_text += dice_text
-	return last_sucess_amount
+	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [dice_text]"
+	return sucess_amount
 
-/datum/storyteller_roll/proc/roll_answer(last_sucess_amount, numerical, last_output_text)
+/datum/storyteller_roll/proc/roll_result(sucess_amount)
 	if(numerical)
-		return last_sucess_amount
+		return sucess_amount
 	else
-		if(last_sucess_amount < 0)
-			last_output_text += span_bold(span_danger(("Botch!")))
+		if(sucess_amount < 0)
 			return ROLL_BOTCH
-		else if(last_sucess_amount == 0)
-			last_output_text += span_danger("Failure!")
+		else if(sucess_amount == 0)
 			return ROLL_FAILURE
 		else
-			last_output_text += span_nicegreen("Success!")
 			return ROLL_SUCCESS
+
+/datum/storyteller_roll/proc/roll_result_text(success_result)
+	if(numerical)
+		return "[success_result] successes -"
+	else
+		switch(success_result)
+			if(ROLL_SUCCESS)
+				return span_nicegreen("Success -")
+			if(ROLL_FAILURE)
+				return span_danger("Failure -")
+			if(ROLL_BOTCH)
+				return span_bold(span_danger(("Botch -")))
 
 /datum/storyteller_roll/proc/get_dice_char(input)
 	switch(input)
@@ -163,3 +156,20 @@
 			return "❿"
 		else
 			return "⓿"
+
+
+/datum/storyteller_roll/lockpick
+	bumper_text = "Lockpicking"
+	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
+
+/datum/storyteller_roll/grappling
+	bumper_text = "Grappling"
+	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
+	numerical = TRUE
+	spammy_roll = TRUE
+
+/datum/storyteller_roll/grappled
+	bumper_text = "Resisting"
+	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
+	numerical = TRUE
+	spammy_roll = TRUE

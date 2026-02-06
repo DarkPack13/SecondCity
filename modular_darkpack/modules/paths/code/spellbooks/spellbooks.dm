@@ -1,4 +1,5 @@
 /obj/item/path_spellbook
+	abstract_type = /obj/item/path_spellbook
 	name = "path spellbook"
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
@@ -121,6 +122,7 @@
 
 
 /obj/item/occult_book
+	abstract_type = /obj/item/occult_book
 	name = "occult book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'

@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(roll)
 	var/success_count = count_success(rolled_dice, difficulty, output_text)
 	var/output = roll_answer(success_count, numerical, output_text)
 
-	var/output_combined = fieldset_block("[alert_atom.name]", jointext(output_text, "<br>"), "boxed_message")
+	var/output_combined = fieldset_block("[alert_atom]", jointext(output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob as anything in mobs_to_show_output)
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
@@ -52,38 +52,6 @@ SUBSYSTEM_DEF(roll)
 		return success_count
 
 	return output
-
-/datum/controller/subsystem/roll/proc/opposed_roll(mob/player_a, mob/player_b, dice_a = 1, dice_b = 1, show_player_a=TRUE, show_player_b=TRUE, atom/alert_atom = null, draw_goes_to_b=TRUE, numerical=FALSE)
-	var/list/roll_a = roll_dice(dice_a)
-	var/list/roll_b = roll_dice(dice_b)
-	var/success_count_a = count_success_no_output(roll_a)
-	var/success_count_b = count_success_no_output(roll_b)
-
-	var/player_a_succeeded = FALSE
-	if(success_count_a > success_count_b || (success_count_a == success_count_b && !draw_goes_to_b))
-		player_a_succeeded = TRUE
-
-	if(alert_atom)
-		var/is_zero = ((success_count_a - success_count_b) == 0)
-		if(show_player_a)
-			var/alert_text
-			if(player_a_succeeded)
-				alert_text = "<span style='color: #14a833;'>[is_zero ?"":"+"][success_count_a - success_count_b]</span>"
-			else
-				alert_text = "<span style='color: #ff0000;'>[success_count_a - success_count_b]</span>"
-			alert_atom.balloon_alert(player_a, alert_text, TRUE)
-		if(show_player_b)
-			var/alert_text
-			if(!player_a_succeeded)
-				alert_text = "<span style='color: #14a833;'>[is_zero ?"":"+"][success_count_b - success_count_a]</span>"
-			else
-				alert_text = "<span style='color: #ff0000;'>[success_count_b - success_count_a]</span>"
-			alert_atom.balloon_alert(player_b, alert_text, TRUE)
-
-	if(numerical)
-		return success_count_a - success_count_b
-	else
-		return player_a_succeeded
 
 /datum/controller/subsystem/roll/proc/roll_dice(dice, sides = 10)
 	dice = max(dice, 1)
