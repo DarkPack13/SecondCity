@@ -34,4 +34,4 @@
 		if(NAMEOF(src, gnosis))
 			owner.update_werewolf_hud()
 
-
+#undef VV_HK_EDIT_RENOWN

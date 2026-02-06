@@ -88,7 +88,7 @@
 		var/datum/splat/werewolf/listener_splat = iswerewolfsplat(listener)
 		if(listener == user)
 			to_chat(user, "You transfer this message to your tribe members nearby: <b>[message]</b>", type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE)
-		if(listener_splat?.tribe?.name == our_splat.tribe.name)
+		else if(listener_splat?.tribe?.name == our_splat.tribe.name)
 			to_chat(listener, "You hear a message in your head... <b>[message]</b>", type = MESSAGE_TYPE_RADIO)
 
 	for(var/mob/listener in GLOB.dead_mob_list)
