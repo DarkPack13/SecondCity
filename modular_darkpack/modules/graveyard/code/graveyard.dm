@@ -233,12 +233,11 @@
 	visible_message(span_boldwarning("[src] breaks open!"))
 
 /obj/structure/vampgate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	. = ..()
 	if(istype(tool, /obj/item/melee/vamp/tire))
 		attempt_repair(user)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
-	return ..()
+	return NONE
 
 /obj/structure/vampgate/proc/attempt_repair(mob/living/user)
 	if(repairing)
