@@ -123,6 +123,7 @@
 /obj/vampgrave/Initialize(mapload)
 	. = ..()
 	randomize_appearance()
+	spawn_interval += rand(-10 SECONDS, 10 SECONDS) // Prevent them from all spawning at the same time.
 	addtimer(CALLBACK(src, PROC_REF(try_spawn_zombie)), spawn_interval, TIMER_STOPPABLE | TIMER_LOOP)
 
 //they have the indestructible flag so this should never happen but just in case
