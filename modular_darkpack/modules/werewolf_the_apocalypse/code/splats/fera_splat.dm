@@ -80,7 +80,7 @@
 		TRAIT_FERA_FUR,
 		TRAIT_FRENETIC_AURA
 	)
-	id = SPLAT_FERA
+	// id = SPLAT_FERA
 	incompatible_splats = list(
 		/datum/splat/werewolf
 	) // We dont support being multiple fera or gaining kinfolk as a fera

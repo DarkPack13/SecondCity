@@ -20,8 +20,8 @@
 		"Senior Police Officer",
 	)
 
-	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE)
-	splat_slots = list(SPLAT_GHOUL = 2)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_KINFOLK, SPLAT_NONE)
+	splat_slots = list(SPLAT_GHOUL = 2, SPLAT_KINFOLK = 2)
 
 	description = "Enforce the Law."
 	minimal_masquerade = 0

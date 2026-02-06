@@ -1,7 +1,4 @@
-
-// Tribes
-
-/// No clan.
+/// No Tribe.
 #define TRIBE_RONIN "Ronin"
 
 #define TRIBE_BLACK_FURIES "Black Furies"
