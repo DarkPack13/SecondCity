@@ -818,7 +818,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// ROLL TO HIT // DARKPACK TODO
 	// var/successes = SSroll.storyteller_roll(user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_BRAWL), 6, list(user), user)
 	// ROLL TO DAMAGE
-	var/damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, list(user), user, TRUE)
+	var/damage_output
+	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
+		damage_output = user.st_get_stat(STAT_STRENGTH)
+	else
+		damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, list(user), user, TRUE)
 	// DARKPACK EDIT CHANGE END
 
 	// The actual damage roll. May still be augmented by further factors.

@@ -31,6 +31,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED // DARKPACK TODO - Render this somewhere
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "fera_rank"
 
 	minimum = 0
 	maximum = 5

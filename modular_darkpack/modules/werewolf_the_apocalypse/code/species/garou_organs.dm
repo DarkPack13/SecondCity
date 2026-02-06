@@ -2,15 +2,15 @@
 // e.g only the proper dogs on all 4s get the brain as that is to restrict there use of tools and force biting.
 
 /obj/item/bodypart/head/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 	head_flags = NONE
 	unarmed_attack_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_bite.ogg'
 
 /obj/item/bodypart/chest/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 
 /obj/item/bodypart/arm/left/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
@@ -19,7 +19,7 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/arm/right/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
@@ -28,10 +28,10 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/leg/left/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 
 /obj/item/bodypart/leg/right/fera
-	limb_id = SPECIES_FERA
+	// limb_id = SPECIES_FERA
 
 
 // Specificly to restrict use of tools... because that was moved to the brain..
