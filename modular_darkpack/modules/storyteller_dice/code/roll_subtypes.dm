@@ -45,3 +45,10 @@
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
 	applicable_stats = list(STAT_PERCEPTION, STAT_INVESTIGATION)
+
+
+// Made up shittttt
+/datum/storyteller_roll/identify_occult
+	bumper_text "identify"
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
+	reroll_cooldown = 1 SCENES
