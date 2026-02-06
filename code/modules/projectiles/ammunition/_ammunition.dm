@@ -16,6 +16,8 @@
 	var/caliber = null
 	///The bullet type to create when New() is called
 	var/projectile_type = null
+	///Muzzle flash color based on ammo casing.
+	var/muzzle_flash_color = LIGHT_COLOR_ORANGE
 	///the loaded projectile in this ammo casing
 	var/obj/projectile/loaded_projectile = null
 	///Pellets for spreadshot
@@ -44,6 +46,11 @@
 
 	/// Set when this casing is fired. Only used for checking if it should burn a user's hand when caught from an ejection port.
 	var/shot_timestamp = 0
+
+	// DARKPACK EDIT ADD START - FORENSICS
+	/// This tracks what gun fired what bullet. Every time process_fire triggers on a gun, it'll apply said guns serial number to the bullet.
+	var/serial_type_index = null
+	// DARKPACK EDIT ADD END
 
 /obj/item/ammo_casing/spent
 	name = "spent bullet casing"

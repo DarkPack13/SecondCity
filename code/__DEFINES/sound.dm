@@ -12,8 +12,8 @@
 #define CHANNEL_ELEVATOR 1014
 #define CHANNEL_ESCAPEMENU 1013
 #define CHANNEL_WEATHER 1012
-#define CHANNEL_BLOOD 1011 // DARKPACK ADD
-#define CHANNEL_MUSIC 1010 // DARKPACK ADD - AMBIENCE
+#define CHANNEL_BLOOD 1011 // DARKPACK EDIT ADD
+#define CHANNEL_MUSIC 1010 // DARKPACK EDIT ADD - AMBIENCE
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 #define CHANNEL_HIGHEST_AVAILABLE 1009 // DARKPACK EDIT
@@ -46,7 +46,7 @@
 
 /* Calculates the volume of a sound based on distance
  *
- * https://www.desmos.com/calculator/sqdfl8ipgf
+ * https://www.desmos.com/calculator/shjpmz3ck7
  *
  * Arguments:
  * * volume: The initial volume of the sound being played
@@ -322,6 +322,7 @@ GLOBAL_LIST_EMPTY(sfx_datum_by_key)
 #define SFX_HARD_HAT_PICKUP "hard_hat_pickup"
 #define SFX_HARD_HAT_DROP "hard_hat_drop"
 #define SFX_HARD_HAT_EQUIP "hard_hat_equip"
+#define SFX_ALIEN_SPIT_ACID "alien_split_acid"
 
 // Standard is 44.1khz
 #define MIN_EMOTE_PITCH 40000

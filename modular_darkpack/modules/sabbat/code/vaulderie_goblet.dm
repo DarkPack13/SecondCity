@@ -32,12 +32,7 @@
 	if(!istype(user))
 		return ..()
 
-	var/is_vampire_species = FALSE
-	if(istype(user, /mob/living/carbon/human))
-		if(iskindred(user))
-			is_vampire_species = TRUE
-
-	if(!is_vampire_species)
+	if(!iskindred(user))
 		to_chat(user, span_warning("You have no urge to spill your blood into this cup."))
 		return
 
@@ -58,7 +53,7 @@
 	user.visible_message(span_notice("[user] cuts their wrist and lets blood drip into the [src]."), span_notice("You cut your wrist and let your blood flow into the [src]."))
 
 	playsound(user, 'sound/items/weapons/bladeslice.ogg', 30, TRUE)
-	user.adjustBruteLoss(5)
+	user.adjust_brute_loss(5)
 
 	reagents.add_reagent(/datum/reagent/blood/vitae, 10)
 	user.bloodpool -= 2
@@ -72,13 +67,7 @@
 	if(!reagents.has_reagent(/datum/reagent/blood) && !reagents.has_reagent(/datum/reagent/blood/vitae))
 		return ..()
 
-	var/is_vampire_species = FALSE
-	if(istype(target_mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target_mob
-		if(iskindred(H))
-			is_vampire_species = TRUE
-
-	if(!is_vampire_species)
+	if(!iskindred(target_mob))
 		return ..()
 
 	if(length(blood_donors) >= 2)

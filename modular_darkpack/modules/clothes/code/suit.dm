@@ -405,9 +405,9 @@
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty. This one has sergeant insignia on it."
 
 // They got an Army vest post-PD update. I am just giving them the same, instead coded into their equipment instead of mapped.
-/obj/item/clothing/suit/vampire/vest/police/chief
-	name = "police chief duty vest"
-	icon_state = "chiefvest"
+/obj/item/clothing/suit/vampire/vest/police/captain
+	name = "police captain duty vest"
+	icon_state = "capvest"
 	desc = "Composite bulletproof vest with SFPD markings, tailored for improved protection. This one has captain insignia on it."
 	armor_type = /datum/armor/highly_protective_vest
 
@@ -522,16 +522,21 @@
 	desc = "A traditional robe worn by priests of the Orthodox faith."
 	icon_state = "vestments"
 
+/obj/item/clothing/suit/vampire/dutch
+	name = "dutch's jacket"
+	desc = "For those long nights on the beach in Tahiti."
+	icon_state = "DutchJacket"
+
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
-	name = EVIL_OIL_COMPANY + " abcoat"
-	desc = "A crisp white labcoat. This one has the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
-	name = EVIL_OIL_COMPANY + " labcoat"
-	desc = "A crisp white labcoat. This one has a green trim and the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
 

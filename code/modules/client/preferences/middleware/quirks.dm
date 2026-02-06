@@ -27,7 +27,6 @@
 	if(response != "Yes")
 		return TRUE
 
-
 /datum/preference_middleware/quirks/post_set_preference(mob/user, preference, value)
 	if(preference != "species")
 		return
@@ -42,6 +41,17 @@
 			species_blacklist += quirk_type::name
 	return species_blacklist
 
+// DARKPACK EDIT ADD START - SPLATS
+/datum/preference_middleware/quirks/proc/get_splat_compatibility()
+	var/list/splat_blacklist = list()
+	var/datum/splat/mob_splat = preferences.read_preference(/datum/preference/choiced/splats)
+	for(var/datum/quirk/quirk_type as anything in SSquirks.quirk_prototypes)
+		if(!SSquirks.quirk_prototypes[quirk_type].is_splat_appropriate(mob_splat))
+			splat_blacklist += quirk_type::name
+	return splat_blacklist
+// DARKPACK EDIT ADD END
+
+
 /datum/preference_middleware/quirks/get_ui_static_data(mob/user)
 	if (preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
@@ -51,6 +61,7 @@
 	data["selected_quirks"] = get_selected_quirks()
 	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
 	data["species_disallowed_quirks"] = get_species_compatibility()
+	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
 
 	return data
 
@@ -61,6 +72,7 @@
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
+		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
 
 	return data
 
@@ -107,11 +119,12 @@
 		// If the client is sending an invalid give_quirk, that means that
 		// something went wrong with the client prediction, so we should
 		// catch it back up to speed.
-		preferences.update_static_data(user)
+		preferences.update_static_data(user, always_instant = TRUE)
 		return TRUE
 
 	preferences.all_quirks = new_quirks
 	preferences.character_preview_view?.update_body()
+	preferences.update_static_data(user, always_instant = TRUE)
 
 	return TRUE
 
@@ -126,11 +139,12 @@
 		// If the client is sending an invalid remove_quirk, that means that
 		// something went wrong with the client prediction, so we should
 		// catch it back up to speed.
-		preferences.update_static_data(user)
+		preferences.update_static_data(user, always_instant = TRUE)
 		return TRUE
 
 	preferences.all_quirks = new_quirks
 	preferences.character_preview_view?.update_body()
+	preferences.update_static_data(user, always_instant = TRUE)
 
 	return TRUE
 

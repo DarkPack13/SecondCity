@@ -85,14 +85,22 @@
 #define COPY_DNA_SPECIES (1<<1)
 ///flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the mutations.
 #define COPY_DNA_MUTATIONS (1<<2)
+// DARKPACK EDIT ADD START - Obfuscate Discipline, flag for the transfer_flag argument
+//flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the blood type
+#define COPY_DNA_BLOOD_TYPE (1<<4)
+// DARKPACK EDIT ADD END
 
 
 //organ slots
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
 #define ORGAN_SLOT_APPENDIX "appendix"
 #define ORGAN_SLOT_BRAIN "brain"
-#define ORGAN_SLOT_BRAIN_CEREBELLUM "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_CNS "brain_antistun"
+/// Brain implants that affect the mob's motor control (grabbing, moving, attacking)
+#define ORGAN_SLOT_BRAIN_CEREBELLUM "brain_motorcontrol"
+/// Brain implants that affect the mob's sensory systems (pain, vision, hearing, etc)
+#define ORGAN_SLOT_BRAIN_CNS "brain_cns"
+/// Brain implants that affect the mob's memory and cognition (skills, knowledge, etc)
+#define ORGAN_SLOT_BRAIN_HIPPOCAMPUS "brain_memory"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"

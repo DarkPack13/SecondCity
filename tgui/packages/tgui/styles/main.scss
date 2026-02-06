@@ -44,7 +44,7 @@
 @include meta.load-css('./interfaces/Trophycase.scss');
 @include meta.load-css('./interfaces/Uplink.scss');
 @include meta.load-css('./interfaces/DetectiveBoard.scss');
-@include meta.load-css('./interfaces/Telephone.scss'); // DARKPACK EDIT ADD
+@include meta.load-css('./interfaces/ColorPicker.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
@@ -53,11 +53,11 @@
 @include meta.load-css('./layouts/TitleBar.scss');
 @include meta.load-css('./layouts/Window.scss');
 
-@include meta.load-css('highlight.js/scss/github-dark.scss');
+@include meta.load-css('~highlight.js/scss/a11y-dark.scss');
 
 // NT Theme
 .Layout__content {
-  background-image: url('assets/bg-vtm.svg'); // DARKPACK EDIT CHANGE - VtM theme
+  background-image: url('tgui-core/assets/bg-nanotrasen.svg');
   background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;

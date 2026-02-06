@@ -29,6 +29,7 @@
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	gold_core_spawnable = FRIENDLY_SPAWN
+	basic_mob_flags = FLIP_ON_DEATH
 
 	ai_controller = /datum/ai_controller/basic_controller/corvid
 

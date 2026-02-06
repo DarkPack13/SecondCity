@@ -1,0 +1,21 @@
+/turf/open/floor/plating/toilet/clinic : /turf/open/floor/city/clinic
+/turf/open/floor/plating/industrial/factory : /turf/open/floor/city/factory
+
+/turf/open/floor/plating/vampplating/stairs/middle : /turf/open/floor/iron/stairs/medium {@OLD}
+/turf/open/floor/plating/vampplating/stairs/black/middle : /turf/open/floor/iron/stairs/black/medium @{OLD}
+/turf/open/floor/plating/vampplating/stairs/@SUBTYPES : /turf/open/floor/iron/stairs/@SUBTYPES
+
+/turf/open/floor/carpet/vamp/@SUBTYPES : /turf/open/floor/carpet/darkpack/@SUBTYPES
+
+# Turf decals
+/obj/effect/turf_decal/apoc/vampbeach : /obj/effect/turf_decal/darkpack/sand {@OLD}
+/obj/effect/turf_decal/apoc/vampbeach/corner : /obj/effect/turf_decal/darkpack/sand/corner {@OLD}
+/obj/effect/turf_decal/apoc/vampdirt : /obj/effect/turf_decal/darkpack/dirt {@OLD}
+/obj/effect/turf_decal/apoc/vampdirt/corner : /obj/effect/turf_decal/darkpack/dirt/corner {@OLD}
+/obj/effect/turf_decal/apoc/vampgrass : /obj/effect/turf_decal/darkpack/grass {@OLD}
+/obj/effect/turf_decal/apoc/vampgrass/corner : /obj/effect/turf_decal/darkpack/grass/corner {@OLD}
+/obj/effect/turf_decal/apoc/rough : /obj/effect/turf_decal/darkpack/rough {@OLD}
+/obj/effect/turf_decal/apoc/rough/corner : /obj/effect/turf_decal/darkpack/rough/corner {@OLD}
+/obj/effect/turf_decal/apoc/cave : /obj/effect/turf_decal/darkpack/cave {@OLD}
+/obj/effect/turf_decal/apoc/cave/corner : /obj/effect/turf_decal/darkpack/cave/corner {@OLD}
+/obj/effect/turf_decal/apoc/@SUBTYPES : /obj/effect/turf_decal/darkpack/@SUBTYPES {@OLD}

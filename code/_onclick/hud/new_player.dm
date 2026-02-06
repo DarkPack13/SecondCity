@@ -248,8 +248,6 @@
 	icon = 'icons/hud/lobby/ready.dmi'
 	icon_state = "not_ready"
 	base_icon_state = "not_ready"
-	///Whether we are readied up for the round or not
-	var/ready = FALSE
 
 /atom/movable/screen/lobby/button/ready/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -279,14 +277,16 @@
 	if(!.)
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
-	ready = !ready
-	if(ready)
+
+	// switch based on the user, if they aren't ready then we change them to ready, and vice versa
+	if(new_player.ready == PLAYER_NOT_READY)
 		new_player.auto_deadmin_on_ready_or_latejoin()
 		new_player.ready = PLAYER_READY_TO_PLAY
 		base_icon_state = "ready"
 	else
 		new_player.ready = PLAYER_NOT_READY
 		base_icon_state = "not_ready"
+
 	update_appearance(UPDATE_ICON)
 	SEND_SIGNAL(hud, COMSIG_HUD_PLAYER_READY_TOGGLE)
 
@@ -605,7 +605,7 @@
 	var/blip_icon_state = "ready_blip"
 	if(blip_enabled && hud)
 		var/mob/dead/new_player/new_player = hud.mymob
-		blip_icon_state += "_[new_player.ready ? "" : "not_"]ready"
+		blip_icon_state += "_[new_player.is_ready_to_play() ? "" : "not_"]ready"
 	else
 		blip_icon_state += "_disabled"
 	var/mutable_appearance/ready_blip = mutable_appearance(icon, blip_icon_state)
@@ -677,7 +677,7 @@
 	. = ..()
 	if(!. || !usr.client.is_localhost() || !check_rights_for(usr.client, R_SERVER))
 		return
-	SEND_SOUND(hud.mymob, sound('sound/effects/cartoon_sfx/cartoon_splat.ogg', volume = 50))
+	SEND_SOUND(hud.mymob, sound('modular_darkpack/master_files/sounds/start_now.ogg', volume = 100)) // DARKPACK EDIT CHANGE
 	SSticker.start_immediately = TRUE
 	if(SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))

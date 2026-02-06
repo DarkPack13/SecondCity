@@ -68,6 +68,39 @@
 #define RADIO_TOKEN_UPLINK ":z"
 #define RADIO_COLOR_UPLINK "#8f4a4b"
 
+// DARKPACK EDIT ADD START
+#define RADIO_CHANNEL_POLICE "Police"
+#define RADIO_KEY_POLICE "s"
+#define RADIO_TOKEN_POLICE ":s"
+#define RADIO_COLOR_POLICE "#1700e9"
+
+#define RADIO_CHANNEL_CLINIC "Clinic"
+#define RADIO_KEY_CLINIC "m"
+#define RADIO_TOKEN_CLINIC ":m"
+#define RADIO_COLOR_CLINIC "#05ffea"
+
+#define RADIO_CHANNEL_MILITARY "Military"
+#define RADIO_KEY_MILITARY "a"
+#define RADIO_TOKEN_MILITARY ":a"
+#define RADIO_COLOR_MILITARY "#35962d"
+
+#define RADIO_CHANNEL_CAMARILLA "Tower"
+#define RADIO_KEY_CAMARILLA "t"
+#define RADIO_TOKEN_CAMARILLA ":t"
+#define RADIO_COLOR_CAMARILLA "#8b00cc"
+
+#define RADIO_CHANNEL_ANARCH "Bar"
+#define RADIO_KEY_ANARCH "b"
+#define RADIO_TOKEN_ANARCH ":b"
+#define RADIO_COLOR_ANARCH "#d47100"
+
+#define RADIO_CHANNEL_ENDRON "Endron"
+#define RADIO_KEY_ENDRON "d"
+#define RADIO_TOKEN_ENDRON ":d"
+#define RADIO_COLOR_ENDRON "#ff4800"
+
+// DARKPACK EDIT ADD END
+
 #define RADIO_CHANNEL_CTF_RED "Red Team"
 #define RADIO_COLOR_CTF_RED "#ff0000"
 #define RADIO_CHANNEL_CTF_BLUE "Blue Team"
@@ -115,6 +148,15 @@
 #define MIN_UNUSED_FREQ 1461 // Prevents rolling AI Private or Common
 
 #define MAX_FREQ 1489 // ------------------------------------------------------
+
+// DARKPACK EDIT ADD START
+#define FREQ_POLICE 1501 // Police comms frequency, dark blue
+#define FREQ_CLINIC 1503 // Clinic comms frequency, light blue
+#define FREQ_MILITARY 1505 // Military comms frequency, dark green
+#define FREQ_CAMARILLA 1507 // Camarilla comms frequency, purple
+#define FREQ_ANARCH 1509 // Anarch comms frequency, dark orange
+#define FREQ_ENDRON 1511 // Endron comms frequency, orange
+// DARKPACK EDIT ADD END
 
 #define MAX_FREE_FREQ 1599 // -------------------------------------------------
 

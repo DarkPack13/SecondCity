@@ -128,17 +128,13 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-//I should make these slow to move
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = TRUE
+	drag_slowdown = 3
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
@@ -266,16 +262,40 @@
 /obj/structure/roadblock/alt
 	icon_state = "barrier"
 
+// DARKPACK TODO - Does not pass the sniff test of being a decal. Make a structure
 /obj/effect/decal/painting
 	name = "painting"
 	icon = 'modular_darkpack/modules/decor/icons/paintings.dmi'
 	icon_state = "painting1"
+	plane = GAME_PLANE
+	layer = SIGN_LAYER
 
 /obj/effect/decal/painting/second
 	icon_state = "painting2"
 
 /obj/effect/decal/painting/third
 	icon_state = "painting3"
+
+/obj/structure/painting/trad
+	name = "chinese traditional ink painting"
+	icon_state = "trad-art1"
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
+	desc = "Seems to be ink on a pleasant yellow canvas."
+	layer = SIGN_LAYER
+
+/obj/structure/painting/trad/second
+	icon_state = "trad-art2"
+
+/obj/structure/painting/trad/three
+	icon_state = "trad-art3"
+
+/obj/structure/fluff/shrine
+	name = "altar shrine"
+	desc = "An old rustic buddhist shrine, with a red cermaic roof."
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
+	icon_state = "budshrine"
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/jesuscross
 	name = "Jesus Christ on a cross"
@@ -318,6 +338,9 @@
 	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "under1"
 
+/obj/effect/decal/pallet/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
+
 /obj/effect/decal/pallet/Initialize(mapload)
 	. = ..()
 	icon_state = "under[rand(1, 2)]"
@@ -343,7 +366,7 @@
 			if(starter)
 				if(ishuman(starter))
 					var/mob/living/carbon/human/H = starter
-					H.AdjustHumanity(-1, 0)
+					SEND_SIGNAL(H, COMSIG_PATH_HIT, -1, 0, FALSE)
 		L.gib()
 	. = ..()
 
@@ -517,6 +540,9 @@
 	anchored = TRUE
 	var/large = FALSE
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/graffiti/large
 	pixel_w = -16
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
@@ -612,7 +638,7 @@
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/weapon_showcase/Initialize(mapload)
@@ -647,6 +673,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/bury_pit.dmi'
 	icon_state = "pit0"
 	layer = ABOVE_OPEN_TURF_LAYER
+	plane = FLOOR_PLANE
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -715,3 +742,8 @@
 /obj/structure/fluff/tv/order/random/Initialize(mapload)
 	. = ..()
 	icon_state = "order[rand(1,4)]"
+
+/obj/structure/projector
+	name = "projector"
+	icon = 'icons/obj/machines/stationary_camera.dmi'
+	icon_state = "camera"

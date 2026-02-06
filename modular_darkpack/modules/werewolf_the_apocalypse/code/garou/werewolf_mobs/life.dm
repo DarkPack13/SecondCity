@@ -58,7 +58,7 @@
 						last_frenzy_check = world.time
 						rollfrenzy()
 
-			if(istype(get_area(src), /area/vtm/interior/penumbra))
+			if(istype(get_area(src), /area/vtm/outside/penumbra))
 				if((last_veil_restore + 40 SECONDS) < world.time)
 					adjust_veil(1, src, TRUE)
 					last_veil_restore = world.time
@@ -107,8 +107,6 @@
 	adjust_bodytemperature(BODYTEMP_HEATING_MAX) //If you're on fire, you heat up!
 
 /mob/living/carbon/proc/adjust_veil(var/amount)
-	if(!GLOB.canon_event)
-		return
 	if(last_veil_adjusting+200 >= world.time)
 		return
 	if(amount > 0)

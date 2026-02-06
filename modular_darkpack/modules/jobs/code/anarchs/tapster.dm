@@ -1,6 +1,5 @@
 /datum/job/vampire/tapster
 	title = JOB_TAPSTER
-	department_head = /datum/job/vampire/baron
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
@@ -15,9 +14,19 @@
 		/datum/job_department/anarch,
 	)
 
+	alt_titles = list(
+		"Bartender",
+		"Barkeeper",
+		"Tapster",
+		"Server",
+		"Soda Jerk", //I always loved this as a title and I am mad it isn't in common use anymore.
+		"Waiter",
+		"Waitress"
+	)
+
 	known_contacts = list("Baron", "Bouncer", "Emissary", "Sweeper")
-	allowed_species = list(SPECIES_HUMAN, SPECIES_GHOUL)
-	species_slots = list(SPECIES_HUMAN = 2, SPECIES_GHOUL = 2)
+	allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL)
+	splat_slots = list(SPLAT_NONE = 2, SPLAT_GHOUL = 2)
 	description = "You are a bartender of the local biker hangout. Serve the eclectic clients that pass through, and try not to ask too many questions."
 	minimal_masquerade = 0
 
@@ -25,7 +34,6 @@
 	name = "Tapster"
 	jobtype = /datum/job/vampire/tapster
 
-	//ears = /obj/item/p25radio
 	id = /obj/item/card/tapster
 	uniform = /obj/item/clothing/under/vampire/bouncer
 	suit = /obj/item/clothing/suit/vampire/jacket
@@ -33,4 +41,4 @@
 	r_pocket = /obj/item/vamp/keys/anarch_limited
 	l_pocket = /obj/item/smartphone/tapster
 	r_hand = /obj/item/melee/baseball_bat/vamp
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)
+	backpack_contents = list(/obj/item/vamp/keys/hack=1, /obj/item/card/credit=1)

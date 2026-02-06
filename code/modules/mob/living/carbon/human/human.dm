@@ -64,7 +64,7 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	GLOB.human_list -= src
-	GLOB.kindred_list -= src // DARKPACK EDIT ADDITION
+	GLOB.kindred_list -= src // DARKPACK EDIT ADD
 
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
@@ -184,12 +184,12 @@
 			if(!HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 				return
 			if(href_list["evaluation"])
-				if(!getBruteLoss() && !getFireLoss() && !getOxyLoss() && getToxLoss() < 20 && !getAggLoss()) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
+				if(!get_brute_loss() && !get_fire_loss() && !get_oxy_loss() && get_tox_loss() < 20 && !get_agg_loss()) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 					to_chat(human_user, "[span_notice("No external injuries detected.")]<br>")
 					return
 				var/span = "notice"
 				var/status = ""
-				if(getBruteLoss())
+				if(get_brute_loss())
 					to_chat(human_user, "<b>Physical trauma analysis:</b>")
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
@@ -205,7 +205,7 @@
 							span = "userdanger"
 						if(brutedamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
-				if(getFireLoss())
+				if(get_fire_loss())
 					to_chat(human_user, "<b>Analysis of skin burns:</b>")
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
@@ -222,7 +222,7 @@
 						if(burndamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
 				// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
-				if(getAggLoss())
+				if(get_agg_loss())
 					to_chat(human_user, "<b>Grievous trauma analysis:</b>")
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
@@ -239,9 +239,9 @@
 						if(aggravateddamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
 				// DARKPACK EDIT ADD END
-				if(getOxyLoss())
+				if(get_oxy_loss())
 					to_chat(human_user, span_danger("Patient has signs of suffocation, emergency treatment may be required!"))
-				if(getToxLoss() > 20)
+				if(get_tox_loss() > 20)
 					to_chat(human_user, span_danger("Gathered data is inconsistent with the analysis, possible cause: poisoning."))
 			if(!human_user.wear_id) //You require access from here on out.
 				to_chat(human_user, span_warning("ERROR: Invalid access"))
@@ -356,7 +356,7 @@
 					var/datum/crime/citation/new_citation = new(name = citation_name, author = allowed_access, fine = fine)
 
 					target_record.citations += new_citation
-					new_citation.alert_owner(usr, src, target_record.name, "You have been fined [fine] credits for '[citation_name]'. Fines may be paid at security.")
+					new_citation.alert_owner(usr, src, target_record.name, "You have been fined [fine] [MONEY_NAME] for '[citation_name]'. Fines may be paid at security.")
 					investigate_log("New Citation: <strong>[citation_name]</strong> Fine: [fine] | Added to [target_record.name] by [key_name(human_user)]", INVESTIGATE_RECORDS)
 					SSblackbox.ReportCitation(REF(new_citation), human_user.ckey, human_user.real_name, target_record.name, citation_name, null, fine)
 
@@ -579,7 +579,7 @@
 		else if (!target.get_organ_slot(ORGAN_SLOT_LUNGS))
 			to_chat(target, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		else
-			target.adjustOxyLoss(-min(target.getOxyLoss(), 7))
+			target.adjust_oxy_loss(-min(target.get_oxy_loss(), 7))
 			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
 
 		if (target.health <= target.crit_threshold)
@@ -722,6 +722,7 @@
 	if(heal_flags & HEAL_TEMP)
 		set_coretemperature(get_body_temp_normal(apply_change = FALSE))
 		heat_exposure_stacks = 0
+		seconds_in_low_pressure = 0
 
 	return ..()
 
@@ -758,6 +759,8 @@
 	VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
 	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_SPLAT, "Add Splat") // DARKPACK EDIT ADD - SPLATS
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPLAT, "Remove Splat") // DARKPACK EDIT ADD - SPLATS
 	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
 	VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
 	VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
@@ -824,6 +827,30 @@
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
+
+	// DARKPACK EDIT ADD START - SPLATS
+	if(href_list[VV_HK_ADD_SPLAT])
+		if(!check_rights(R_SPAWN))
+			return
+		var/result = input(usr, "Please choose a new splat to add (Does not remove old one)","Splats") as null|anything in sortTim(GLOB.splat_list, GLOBAL_PROC_REF(cmp_text_asc))
+		if(result)
+			var/newtype = GLOB.splat_list[result]
+			admin_ticket_log("[key_name_admin(usr)] has added splat:[result] to [src]")
+			add_splat(newtype)
+
+	if(href_list[VV_HK_REMOVE_SPLAT])
+		if(!check_rights(R_SPAWN))
+			return
+		var/list/my_splats = list()
+		for(var/datum/splat/splat in splats)
+			my_splats[splat.id] = splat
+
+		var/result = input(usr, "Please choose a new splat to add (Does not remove old one)","Splats") as null|anything in sortTim(my_splats, GLOBAL_PROC_REF(cmp_text_asc))
+		if(result)
+			var/newtype = my_splats[result]
+			admin_ticket_log("[key_name_admin(usr)] has removed splat:[result] from [src]")
+			remove_splat(newtype)
+	// DARKPACK EDIT ADD END
 
 	if(href_list[VV_HK_PURRBATION])
 		if(!check_rights(R_SPAWN))
@@ -1044,6 +1071,7 @@
 	ai_controller = /datum/ai_controller/monkey
 
 /mob/living/carbon/human/species
+	abstract_type = /mob/living/carbon/human/species
 	var/race = null
 	var/use_random_name = TRUE
 

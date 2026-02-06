@@ -15,7 +15,7 @@
 		/datum/job_department/supply,
 	)
 
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 
 	description = "You work at the warehouse, moving boxes and selling not-quite legal goods to anyone who has the money."
 	minimal_masquerade = 0
@@ -28,4 +28,4 @@
 	id = /obj/item/card/supplytech
 	l_pocket = /obj/item/smartphone/supply_tech
 	r_pocket = /obj/item/vamp/keys/supply
-	backpack_contents = list(/obj/item/flashlight=1, /obj/item/passport=1, /obj/item/card/credit=1, /obj/item/clothing/mask/vampire/balaclava =1, /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta=2,/obj/item/ammo_box/magazine/semi9mm=2, /obj/item/knife/vamp)
+	backpack_contents = list(/obj/item/card/credit=1, /obj/item/clothing/mask/vampire/balaclava =1, /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta=2,/obj/item/ammo_box/magazine/semi9mm=2, /obj/item/knife/vamp)

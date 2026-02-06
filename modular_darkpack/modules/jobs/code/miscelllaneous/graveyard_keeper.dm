@@ -1,6 +1,5 @@
 /datum/job/vampire/graveyard
 	title = JOB_GRAVEYARD_KEEPER
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 6
 	spawn_positions = 6
@@ -16,7 +15,7 @@
 	)
 	description = "A vile curse has gripped the dead of this city. You must keep the graveyard clean and the Masquerade intact."
 	minimal_masquerade = 0
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL)
 
 /datum/outfit/job/vampire/graveyard
 	name = "Graveyard Keeper"
@@ -32,7 +31,7 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/graveyard
 	r_hand = /obj/item/shovel/vamp
-	backpack_contents = list(/obj/item/passport=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/card/credit=1, /obj/item/scythe/vamp=1)
+	backpack_contents = list(/obj/item/card/credit=1, /obj/item/scythe/vamp=1)
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel

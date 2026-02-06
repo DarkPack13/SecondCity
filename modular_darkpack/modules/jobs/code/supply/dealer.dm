@@ -16,8 +16,8 @@
 	)
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
-	allowed_species = list(SPECIES_HUMAN)
-	species_slots = list(SPECIES_HUMAN = 1)
+	allowed_splats = list(SPLAT_NONE)
+	splat_slots = list(SPLAT_NONE = 1)
 
 	description = "You provide both legal and illegal supplies to those that get busy during the night. You are your own person yet you know people are out for you. Time to buckle in..."
 	minimal_masquerade = 0
@@ -30,4 +30,4 @@
 	id = /obj/item/card/dealer
 	l_pocket = /obj/item/smartphone/dealer
 	r_pocket = /obj/item/vamp/keys/supply
-	backpack_contents = list(/obj/item/flashlight=1, /obj/item/watch=1, /obj/item/passport=1, /obj/item/card/credit/rich=1, /obj/item/hatchet)
+	backpack_contents = list(/obj/item/card/credit/rich=1, /obj/item/hatchet)

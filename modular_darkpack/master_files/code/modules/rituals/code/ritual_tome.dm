@@ -4,6 +4,7 @@
 	name = "ritual tome"
 	desc = "A mysterious tome. This shouldnt be spawning ingame, if it is, something's wrong."
 	w_class = WEIGHT_CLASS_SMALL
+	custom_materials = list(/datum/material/paper = SHEET_MATERIAL_AMOUNT * 0.75)
 	var/list/rituals = list()
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
 	var/static/list/ritual_cache = list()
@@ -23,7 +24,15 @@
 
 /obj/item/ritual_tome/attack_self(mob/user)
 	. = ..()
-	display_rituals(user)
+	if(!isliving(user))
+		return
+	var/mob/living/reader = user
+	if(!iskindred(user) && !isghoul(user))
+		if(reader.st_get_stat(STAT_OCCULT) < 3)
+			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
+			return
+
+	display_rituals(reader)
 
 /obj/item/ritual_tome/proc/display_rituals(mob/user)
 	for(var/obj/ritual_rune/R in rituals)

@@ -1,6 +1,5 @@
 /datum/job/vampire/regent
 	title = JOB_CHANTRY_REGENT
-	department_head = /datum/job/vampire/prince
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
@@ -17,7 +16,7 @@
 
 	description = "Lead the Chantry. You serve as both the Regent and Tremere Primogen. You report to the Tremere Lord of this region first, Prince second."
 	minimal_masquerade = 4
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_GARGOYLE)
 
 	known_contacts = list("Prince")
@@ -35,5 +34,5 @@
 	r_pocket = /obj/item/vamp/keys/regent
 	l_pocket = /obj/item/smartphone/tremere_regent
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	backpack_contents = list(/obj/item/passport=1, /obj/item/phone_book=1, /obj/item/watch=1, /obj/item/flashlight=1, /obj/item/ritual_tome/arcane=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/ritual_tome/arcane=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
 

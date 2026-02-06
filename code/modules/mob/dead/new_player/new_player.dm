@@ -6,9 +6,10 @@
 	density = FALSE
 	stat = DEAD
 	hud_type = /datum/hud/new_player
-	hud_possible = list()
 
-	var/ready = FALSE
+	/// String Values tied to Defines that state whether the new_player is ready to play or not.
+	/// Do try your best to compare this value directly against the defines for certainty but helper procs do exist in bulkier situations.
+	var/ready = PLAYER_NOT_READY
 	/// Referenced when you want to delete the new_player later on in the code.
 	var/spawning = FALSE
 	/// For instant transfer once the round is set up
@@ -63,6 +64,12 @@
 	if (href_list["votepollref"])
 		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
 		vote_on_poll_handler(poll, href_list)
+
+/// Quickly gets a boolean of whether the new_player is ready to play or not in places where we would like the boolean logic.
+/// The assertion is that readiness must be an opted in TRUE, while all other states (e.g. not ready, broken, etc) are FALSE.
+/// We organize it this way to ensure the system is extensible for other possible ready states.
+/mob/dead/new_player/proc/is_ready_to_play()
+	return ready == PLAYER_READY_TO_PLAY
 
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer()
@@ -126,10 +133,10 @@
 		if(JOB_UNAVAILABLE_AGE)
 			return "Your character is not old enough for [jobtitle]."
 		// DARKPACK EDIT START
-		if(JOB_UNAVAILABLE_SPECIES)
-			return "You can't play [jobtitle] as this species."
-		if(JOB_UNAVAILABLE_SPECIES_SLOTS)
-			return "[jobtitle] doesn't have any free species slots for you."
+		if(JOB_UNAVAILABLE_SPLAT)
+			return "You can't play [jobtitle] as this splat. (This can include human)"
+		if(JOB_UNAVAILABLE_SPLAT_SLOTS)
+			return "[jobtitle] doesn't have any free splat slots for you. (This can include human)"
 		if(JOB_UNAVAILABLE_WHITELIST)
 			return "You aren't whitelisted for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_AGE)
@@ -234,10 +241,11 @@
 		humanc = character //Let's retypecast the var to be human,
 
 	if(humanc) //These procs all expect humans
+		var/chosen_rank = humanc.client?.prefs.alt_job_titles?[rank] || rank // DARKPACK EDIT ADDITION - ALTERNATIVE_JOB_TITLES
 		if(SSshuttle.arrivals)
-			SSshuttle.arrivals.QueueAnnounce(humanc, rank)
+			SSshuttle.arrivals.QueueAnnounce(humanc, chosen_rank) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: SSshuttle.arrivals.QueueAnnounce(humanc, rank)
 		else
-			announce_arrival(humanc, rank)
+			announce_arrival(humanc, chosen_rank) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: announce_arrival(humanc, rank)
 		AddEmploymentContract(humanc)
 
 		humanc.increment_scar_slot()

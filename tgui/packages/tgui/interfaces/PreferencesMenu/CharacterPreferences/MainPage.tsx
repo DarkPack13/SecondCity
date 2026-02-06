@@ -1,7 +1,8 @@
 import { sortBy } from 'es-toolkit';
 import { filter, map } from 'es-toolkit/compat';
 import { type ReactNode, useState } from 'react';
-import { type sendAct, useBackend } from 'tgui/backend';
+import { useBackend } from 'tgui/backend';
+import { sendAct } from 'tgui/events/act';
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
-
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
@@ -21,7 +21,7 @@ import {
   type FeatureChoicedServerData,
   FeatureValueInput,
 } from '../preferences/features/base';
-import { Gender, GENDERS } from '../preferences/gender';
+import { GENDERS, Gender } from '../preferences/gender';
 import {
   createSetPreference,
   type PreferencesMenuData,
@@ -42,7 +42,7 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 type CharacterControlsProps = {
   handleRotate: () => void;
-  handleOpenSpecies: () => void;
+  handleOpenSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -65,22 +65,22 @@ function CharacterControls(props: CharacterControlsProps) {
 
       <Stack.Item>
         <Button
-          onClick={props.handleOpenSpecies}
+          onClick={props.handleOpenSplats} // DARKPACK EDIT CHANGE - SPLATS
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="Splats" // DARKPACK EDIT CHANGE - SPLATS
           tooltipPosition="top"
         />
       </Stack.Item>
 
-      {props.showGender && (
+      {/* DARKPACK EDIT REMOVAL {props.showGender && ( */}
         <Stack.Item>
           <GenderButton
             gender={props.gender}
             handleSetGender={props.setGender}
           />
         </Stack.Item>
-      )}
+      {/* DARKPACK EDIT REMOVAL )} */}
 
       <Stack.Item>
         <Button
@@ -337,8 +337,8 @@ function MainFeature(props: MainFeatureProps) {
 }
 
 const createSetRandomization =
-  (act: typeof sendAct, preference: string) => (newSetting: RandomSetting) => {
-    act('set_random_preference', {
+  (preference: string) => (newSetting: RandomSetting) => {
+    sendAct('set_random_preference', {
       preference,
       value: newSetting,
     });
@@ -396,7 +396,7 @@ export function PreferenceList(props: PreferenceListProps) {
                   {randomSetting && (
                     <Stack.Item>
                       <RandomizationButton
-                        setValue={createSetRandomization(act, featureId)}
+                        setValue={createSetRandomization(featureId)}
                         value={randomSetting}
                       />
                     </Stack.Item>
@@ -426,13 +426,9 @@ export function getRandomization(
   serverData: ServerData | undefined,
   randomBodyEnabled: boolean,
 ): Record<string, RandomSetting> {
-  if (!serverData) {
-    return {};
-  }
-
   const { data } = useBackend<PreferencesMenuData>();
 
-  if (!randomBodyEnabled) {
+  if (!randomBodyEnabled || !serverData) {
     return {};
   }
 
@@ -450,11 +446,12 @@ export function getRandomization(
 }
 
 type MainPageProps = {
-  openSpecies: () => void;
+  openSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
 };
 
 export function MainPage(props: MainPageProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
+
   const [deleteCharacterPopupOpen, setDeleteCharacterPopupOpen] =
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
@@ -462,8 +459,8 @@ export function MainPage(props: MainPageProps) {
 
   const serverData = useServerPrefs();
 
-  const currentSpeciesData =
-    serverData?.species[data.character_preferences.misc.species];
+  const currentSplatsData = // DARKPACK EDIT CHANGE - SPLATS
+    serverData?.splats[data.character_preferences.misc.splats]; // DARKPACK EDIT CHANGE - SPLATS
 
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
@@ -488,8 +485,8 @@ export function MainPage(props: MainPageProps) {
   };
 
   if (randomBodyEnabled) {
-    nonContextualPreferences.random_species =
-      data.character_preferences.randomization.species;
+    nonContextualPreferences.random_splats = // DARKPACK EDIT CHANGE - SPLATS
+      data.character_preferences.randomization.splats; // DARKPACK EDIT CHANGE - SPLATS
   } else {
     // We can't use random_name/is_accessible because the
     // server doesn't know whether the random toggle is on.
@@ -528,13 +525,13 @@ export function MainPage(props: MainPageProps) {
             <Stack.Item>
               <CharacterControls
                 gender={data.character_preferences.misc.gender}
-                handleOpenSpecies={props.openSpecies}
+                handleOpenSplats={props.openSplats} // DARKPACK EDIT CHANGE - SPLATS
                 handleRotate={() => {
                   act('rotate');
                 }}
                 setGender={createSetPreference(act, 'gender')}
                 showGender={
-                  currentSpeciesData ? !!currentSpeciesData.sexes : true
+                  currentSplatsData ? !!currentSplatsData.sexes : true // DARKPACK EDIT CHANGE - SPLATS
                 }
                 canDeleteCharacter={
                   Object.values(data.character_profiles).filter(
@@ -584,10 +581,7 @@ export function MainPage(props: MainPageProps) {
                       currentValue={clothing}
                       handleSelect={createSetPreference(act, clothingKey)}
                       randomization={randomizationOfMainFeatures[clothingKey]}
-                      setRandomization={createSetRandomization(
-                        act,
-                        clothingKey,
-                      )}
+                      setRandomization={createSetRandomization(clothingKey)}
                     />
                   )}
                 </Stack.Item>

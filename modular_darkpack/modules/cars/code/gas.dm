@@ -1,4 +1,4 @@
-/* DARKPACK TODO - Gas should be handled as a reagent
+/* // DARKPACK TODO - Gas should be handled as a reagent
 /datum/reagent/gasoline
 	name = "Gasoline"
 	color = "#b85614"
@@ -31,6 +31,7 @@
 	. += "<b>Gas</b>: [stored_gasoline]/1000"
 
 /obj/item/gas_can/full
+	custom_price = 250 // ECONOMY
 	stored_gasoline = 1000
 
 /obj/item/gas_can/rand
@@ -146,7 +147,7 @@
 /obj/structure/fuelstation/click_alt(mob/user)
 	if(stored_money > 0)
 		say("Money refunded.")
-		var/money_to_spawn = min(stored_money, 1000)
+		var/money_to_spawn = min(stored_money, /obj/item/stack/dollar::max_amount)
 		new /obj/item/stack/dollar(loc, money_to_spawn)
 		stored_money -= money_to_spawn
 		return CLICK_ACTION_SUCCESS

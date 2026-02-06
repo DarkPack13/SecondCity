@@ -40,8 +40,18 @@ export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
 
+type MessageType = {
+  type: string;
+  name: string;
+  description: string;
+} & Partial<{
+  selector: string;
+  important: boolean;
+  admin: boolean;
+}>;
+
 // Metadata for each message type
-export const MESSAGE_TYPES = [
+export const MESSAGE_TYPES: MessageType[] = [
   // Always-on types
   {
     type: MESSAGE_TYPE_SYSTEM,
@@ -62,7 +72,7 @@ export const MESSAGE_TYPES = [
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
+      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling, .policeradio, .clinicradio, .militaryradio, .camarillaradio, .anarchradio, .endronradio', // DARKPACK EDIT, ORIGINAL: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
   },
   {
     type: MESSAGE_TYPE_ENTERTAINMENT,

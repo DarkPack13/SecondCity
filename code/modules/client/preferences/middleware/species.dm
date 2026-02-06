@@ -1,3 +1,4 @@
+/* // DARKPACK EDIT REMOVAL - SPLATS
 /// Handles the assets for species icons
 /datum/preference_middleware/species
 
@@ -31,3 +32,4 @@
 
 	for (var/spritesheet_key in to_insert)
 		Insert(spritesheet_key, to_insert[spritesheet_key])
+*/

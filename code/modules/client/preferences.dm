@@ -50,7 +50,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// DARKPACK EDIT ADD START - STORYTELLR_STATS
 	var/list/preference_storyteller_stats = list()
 	// DARKPACK EDIT ADD END
-
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	/// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
+	var/list/alt_job_titles = list()
+	// DARKPACK EDIT ADD END
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
@@ -99,6 +102,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/New(client/parent)
 	src.parent = parent
+
+	max_save_slots = CONFIG_GET(number/max_save_slots) // DARKPACK EDIT ADD
 
 	for (var/middleware_type in subtypesof(/datum/preference_middleware))
 		middleware += new middleware_type(src)
@@ -213,6 +218,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch (action)
 		if ("change_slot")
+			// DARKPACK EDIT ADD START - (patches alot of minor exploits from midround char sheet manipulation)
+			if(!isnewplayer(usr) && ("[usr.client.prefs.default_slot]" in usr.persistent_client.joined_as_slots))
+				if(check_rights(R_ADMIN))
+					to_chat(usr, span_warning("Swapping between character slots midround is unsupported and can lead to false writes to prefrences."))
+				else
+					to_chat(usr, span_warning("You cannot be spawned in as this character to swap character slots. Return to the lobby to change characters."))
+					return FALSE
+			// DARKPACK EDIT ADD END
 			// Save existing character
 			save_character()
 			// SAFETY: `switch_to_slot` performs sanitization on the slot number
@@ -259,12 +272,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			var/new_color = input(
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			)
 
 			if (!new_color)
 				return FALSE
@@ -458,6 +471,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/validate_quirks()
 	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/datum/splat/splat_type = read_preference(/datum/preference/choiced/splats) // DARKPACK EDIT ADD - SPLATS
 	var/list/quirks_removed
 	for(var/quirk_name in all_quirks)
 		var/quirk_path = SSquirks.quirks[quirk_name]
@@ -465,9 +479,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(!quirk_prototype.is_species_appropriate(species_type))
 			all_quirks -= quirk_name
 			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD START - SPLATS
+		if(!quirk_prototype.is_splat_appropriate(splat_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD END
 	var/list/feedback
 	if(LAZYLEN(quirks_removed))
-		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, "The following quirks are incompatible with your species or splat:") // DARKPACK EDIT CHANGE - SPLATS
 		LAZYADD(feedback, quirks_removed)
 	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
 		LAZYADD(feedback, "Your quirks have been reset.")
@@ -530,8 +549,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_character_randomization_prefs(is_antag)
 	apply_prefs_to(character, icon_updates)
 
-/// Applies the given preferences to a human mob.
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+/**
+ * Applies the given preferences to a human mob.
+ *
+ * Arguments:
+ * * character - The human mob to apply the preferences to
+ * * icon_updates - Whether to update the mob's icons after applying preferences.
+ * Is often skipped to save processing when an update will happen later anyway.
+ * * do_not_apply - A list of preference types to skip when applying preferences.
+ */
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, list/do_not_apply)
 	character.dna.features = list()
 
 	// DARKPACK EDIT ADD START - STORYTELLER STATS
@@ -541,6 +568,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+		if (preference.type in do_not_apply)
 			continue
 		// DARKPACK EDIT ADD START - TTRPG preferences
 		// Preferences with must_have_relevant_trait are skipped for characters who
@@ -610,4 +639,4 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	unlock_content = !!byond_member
 	if(unlock_content)
-		max_save_slots = 8
+		max_save_slots = CONFIG_GET(number/max_save_slots) + CONFIG_GET(number/extra_save_slots_byond_member) // DARKPACK EDIT CHANGE
