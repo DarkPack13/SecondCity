@@ -31,9 +31,6 @@
 	. = ..()
 	if(!identified)
 		. += span_notice("You could try to clean off the dust to see what lies beneath.")
-	if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
-		var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
-		. += span_warning("You need to wait [time_left] seconds before trying again.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
 
