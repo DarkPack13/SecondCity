@@ -1,32 +1,11 @@
-/*
-ADMIN_VERB(roll_storyteller_dice, R_NONE, "Roll storyteller dice", "Roll storyteller dice at yourself.", ADMIN_CATEGORY_FUN)
-	var/dice_count = tgui_input_number(usr, "Input amount of dice to roll:", "Dice", 5, 100, 1)
-	var/difficulty = tgui_input_number(usr, "Input roll difficulty:", "Difficulty", 6, 10, 1)
-
-	SSroll.storyteller_roll(dice_count, difficulty, usr, usr)
-	BLACKBOX_LOG_ADMIN_VERB("Storyteller dice")
-*/
-
 ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dice", mob/living/M in world)
-	M.roll_dice_custom_advanced()
+	M.roll_dice_custom()
 	BLACKBOX_LOG_ADMIN_VERB("Storyteller dice")
 
 /mob/living/verb/roll_dice_custom()
-	set name = "Roll custom dice (basic)"
-	set category = "IC"
-	set desc = "Roll dice!"
-
-	var/dice_count = tgui_input_number(usr, "Input amount of dice to roll:", "Dice", 5, 100, 1)
-	var/difficulty = tgui_input_number(usr, "Input roll difficulty:", "Difficulty", 6, 10, 1)
-
-	var/datum/storyteller_roll/custom_roll/custom_roll = new()
-	custom_roll.difficulty = difficulty
-	return custom_roll.st_roll(src, src, dice_count)
-
-/mob/living/verb/roll_dice_custom_advanced()
 	set name = "Roll custom dice"
 	set category = "IC"
-	set desc = "Roll dice! This one lets you pass in your stats."
+	set desc = "Roll dice!"
 
 	var/list/allowed_stats = list()
 	// Blame Xeon im pretty sure for the mobs storing this as a string.
@@ -38,12 +17,11 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dic
 			continue
 		allowed_stats += stat
 		//allowed_stats[stat] = "[stat::name]: [dots_in]"
-	var/list/stats_to_use = tgui_input_checkboxes(usr, "Select stats to use for the roll.", "Choose Stats", allowed_stats, max_checked = 5)
-	if(!length(stats_to_use))
-		return
+	var/list/stats_to_use = tgui_input_checkboxes(usr, "Select stats to use for the roll.", "Choose Stats", allowed_stats, min_checked = 0, max_checked = 5)
 	var/list/output_stats = list()
-	for(var/list/stat as anything in stats_to_use)
-		output_stats += text2path(stat[1])
+	if(length(stats_to_use))
+		for(var/list/stat as anything in stats_to_use)
+			output_stats += text2path(stat[1])
 
 	var/bonus_dice = tgui_input_number(usr, "Input amount of bonus dice to roll.", "Dice", 0, 20, -20)
 	if(isnull(bonus_dice))

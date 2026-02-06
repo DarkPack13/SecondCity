@@ -58,7 +58,7 @@
 	var/output = roll_result(last_sucess_amount)
 
 	var/title
-	if(roll_output_type == ROLL_PRIVATE_GM || ROLL_GM)
+	if(roll_output_type in list(ROLL_PRIVATE_GM, ROLL_GM))
 		title = "[ADMIN_LOOKUPFLW(roller)]"
 	else
 		title = "[roller]"
