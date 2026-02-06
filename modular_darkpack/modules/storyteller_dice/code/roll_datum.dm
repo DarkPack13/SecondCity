@@ -55,7 +55,7 @@
 	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
-	var/output_combined = fieldset_block("[roller] - [bumper_text]", jointext(last_output_text, "<br>"), "boxed_message")
+	var/output_combined = fieldset_block("[roller] - [bumper_text] [span_tinynoticeital(roll_output_type)]", jointext(last_output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
@@ -155,6 +155,7 @@
 	return dice_output[input]
 	/* // This would require making it an assoc list and we dont every expect outside our given range.
 	// So if someone faces a runtime because of this just make it an actual assoc and deal with the micro preformace hit
+	var/static/alist/dice_output = alist(1 = "❶", 2 = "❷", 3 = "❸" ,4 = "❹", 5 = "❺", 6 = "❻", 7 = "❼", 8 = "❽", 9 = "❾", 10 = "❿")
 	if(!dice_output[input])
 		return "⓿"
 	else
