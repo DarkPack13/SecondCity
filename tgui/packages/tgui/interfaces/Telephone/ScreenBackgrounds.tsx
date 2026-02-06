@@ -1,8 +1,9 @@
 // THIS IS A DARKPACK UI FILE
 import { useBackend } from 'tgui/backend';
+import { resolveAsset } from 'tgui/assets';
 import { Box, Collapsible, Icon, Stack } from 'tgui-core/components';
 import { type Data, NavigableApps } from '.';
-import { backgrounds } from './backgrounds/backgroundImages';
+import { backgrounds } from './backgroundImages';
 
 export const ScreenBackgrounds = (props: {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
@@ -12,75 +13,75 @@ export const ScreenBackgrounds = (props: {
 
   const choices = [
     {
-      name: 'Paint',
+      name: 'Snowy Mountain',
       key: 'BG_1',
     },
     {
-      name: 'Squares',
+      name: 'Dog in Nature',
       key: 'BG_2',
     },
     {
-      name: 'Lights',
+      name: 'Waves',
       key: 'BG_3',
     },
     {
-      name: 'Snowy Mountains',
+      name: 'Relaxing Cat',
       key: 'BG_4',
     },
     {
-      name: 'Forest at Night',
+      name: 'Happy Dog',
       key: 'BG_5',
     },
     {
-      name: 'Foggy Forest',
+      name: 'Natural Landscape',
       key: 'BG_6',
     },
     {
-      name: 'Snowy Forest',
+      name: 'Mr. Mittens',
       key: 'BG_7',
     },
     {
-      name: 'City Lights',
+      name: 'Lazy Cat',
       key: 'BG_8',
     },
     {
-      name: 'Snowy Cliffs',
+      name: 'Dozerine',
       key: 'BG_9',
     },
     {
-      name: 'Countryside',
+      name: 'Golden Gate Bridge',
       key: 'BG_10',
     },
     {
-      name: 'PD Bikes',
+      name: 'Forest of Firs',
       key: 'BG_11',
     },
     {
-      name: 'Puppy',
+      name: 'Police Motorcycles',
       key: 'BG_12',
     },
     {
-      name: 'K9',
+      name: 'Pixel Art',
       key: 'BG_13',
     },
     {
-      name: 'Corgi',
+      name: 'Sleepy Cat',
       key: 'BG_14',
     },
     {
-      name: 'Curious Cat',
+      name: 'Snowy Landscape',
       key: 'BG_15',
     },
     {
-      name: 'Cute Kitten',
+      name: 'Bokeh Lights',
       key: 'BG_16',
     },
     {
-      name: 'Mr. Meow',
+      name: 'Modern Wallpaper',
       key: 'BG_17',
     },
     {
-      name: 'Black Cat',
+      name: 'Tree Canopy',
       key: 'BG_18',
     },
     {
@@ -134,7 +135,7 @@ export const ScreenBackgrounds = (props: {
                     width={4}
                     height={3}
                     style={{
-                      backgroundImage: `url(${backgrounds[background.key]})`,
+                      backgroundImage: `url(${resolveAsset(backgrounds[background.key])})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       borderRadius: '4px',

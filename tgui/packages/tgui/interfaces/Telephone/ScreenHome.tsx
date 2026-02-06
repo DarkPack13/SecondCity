@@ -1,11 +1,11 @@
 // THIS IS A DARKPACK UI FILE
 import type { PropsWithChildren, ReactNode } from 'react';
-
+import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack } from 'tgui-core/components';
 
 import { type Data, NavigableApps } from '.';
-import { backgrounds } from './backgrounds/backgroundImages';
+import { backgrounds } from './backgroundImages';
 
 export const AppIcon = (
   props: PropsWithChildren<{
@@ -192,7 +192,7 @@ export const ScreenHome = (props: {
 
   const homeBackground = background_url
     ? backgrounds[background_url] || background_url
-    : 'BG_1';
+    : 'modular_darkpack/modules/phones/icons/backgrounds/pixel1-background-975028_1280.webp';
 
   // check for unread conversations
   let unreadCount = 0;
