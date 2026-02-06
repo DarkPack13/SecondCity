@@ -133,6 +133,13 @@
 	var/list/rolled_dice = list()
 	for(var/i in 1 to dice)
 		rolled_dice += rand(1, sides)
+	if(SSroll.on_crit_extra_die_enabled)
+		var/extra_dice = 0
+		for(var/roll in rolled_dice)
+			if(roll == 10)
+				extra_dice++
+		for(var/i in 1 to extra_dice)
+			rolled_dice += rand(1, sides)
 	return rolled_dice
 
 //Count the number of successes.
@@ -143,6 +150,8 @@
 		if(roll >= difficulty)
 			dice_text += span_nicegreen("[get_dice_char(roll)]")
 			sucess_amount++
+			if(SSroll.on_crit_extra_success_enabled && roll == 10)
+				success_count++
 		else if(roll == 1)
 			dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
 			sucess_amount--
