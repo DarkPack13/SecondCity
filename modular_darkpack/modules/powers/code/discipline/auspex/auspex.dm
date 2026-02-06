@@ -270,7 +270,7 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, owner, TRUE)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, TRUE)
 	if(roll > 0)
 		owner.enter_avatar()
 	else

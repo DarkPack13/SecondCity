@@ -89,7 +89,7 @@
 		if(SSroll.storyteller_roll(
 			dice = hit_person.st_get_stat(STAT_STRENGTH) + min(hit_person.st_get_stat(STAT_DEXTERITY) + hit_person.st_get_stat(STAT_ATHLETICS)),
 			difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0),
-			mobs_to_show_output = target
+			roller = target
 		) == ROLL_FAILURE)
 			hit_person.Knockdown(20)
 			to_chat(hit_person, span_danger("The force of a projectile sends you sprawling!"))

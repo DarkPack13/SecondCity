@@ -62,7 +62,7 @@
 		var/mob/living/carbon/human/H = user
 		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
 		if(negotiation_dice > 0)
-			negotiation_success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+			negotiation_success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, TRUE)
 
 	for(var/obj/item/sold in items_to_sell)
 		var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
@@ -111,7 +111,7 @@
 		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
 
 		if(negotiation_dice > 0)
-			var/success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+			var/success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, TRUE)
 
 			if(success_count > 0)
 				return round(base_price * stack_multiplier * success_count)

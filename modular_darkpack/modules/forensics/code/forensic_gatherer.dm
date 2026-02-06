@@ -74,7 +74,7 @@
 
 	if(ishuman(scanned_atom))
 		var/mob/living/carbon/human/scanned_human = scanned_atom
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, src, TRUE)
+		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, TRUE)
 		if(!investigation_roll > 0)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, list("Improper fingerprints; try again."))
 		else
@@ -86,7 +86,7 @@
 
 	else if(!ismob(scanned_atom))
 		var/list/atom_fingerprints = GET_ATOM_FINGERPRINTS(scanned_atom)
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 5, H, src, TRUE)
+		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 5, H, TRUE)
 		if(!investigation_roll > 0)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, list("Improper gathering; try again."))
 		else
@@ -109,7 +109,7 @@
 				log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, list(blood_DNA = blood_type))
 
 	if(istype(scanned_atom, /obj/item/ammo_casing))
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 7, H, src, TRUE)
+		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 7, H, TRUE)
 		var/obj/item/ammo_casing/casing = scanned_atom
 		if(!investigation_roll > 0)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_MICROSTAMP, list("[casing.name] has an incomplete microstamp; you can't make it out."))
@@ -121,7 +121,7 @@
 
 	if(istype(scanned_atom, /obj/item/card/id))
 		var/obj/item/card/id/user_id = scanned_atom
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, src, TRUE)
+		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, TRUE)
 		if(!investigation_roll > 0)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_ACCESS, list("Improper gathering; try again."))
 		else

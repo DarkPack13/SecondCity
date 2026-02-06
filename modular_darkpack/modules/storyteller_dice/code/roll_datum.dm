@@ -34,7 +34,21 @@
 
 
 /**
+ * Rolls a number of dice according to Storyteller system rules to find
+ * success or number of successes.
+ *
+ * Rolls a number of 10-sided dice, counting them as a "success" if
+ * they land on a number equal to or greater than the difficulty. Dice
+ * that land on 1 subtract a success from the total, and the minimum
+ * difficulty is 2. The number of successes is returned if numerical
+ * is true, or the roll outcome (botch, failure, success) as a defined
+ * number if false.
+ *
  * Arguments:
+
+ * * roller - the mob who is making the role and owns the dice
+ * * target - who this dice is being rolled against, can be the roller, determines if its considered "important" to the mob to display.
+ * * dice - bonus dice that are added to the roll.
  *
  * Returns: The sucess of the roll, either a define or the raw amount of sucesses if `numerical = TRUE`
  */

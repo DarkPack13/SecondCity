@@ -129,7 +129,7 @@
 	if(used_badge)
 		involved_social_roll -= 1
 
-	if(SSroll.storyteller_roll(user.st_get_stat(STAT_CHARISMA), involved_social_roll, mobs_to_show_output = user) == ROLL_SUCCESS)
+	if(SSroll.storyteller_roll(user.st_get_stat(STAT_CHARISMA), involved_social_roll, roller = user) == ROLL_SUCCESS)
 		to_chat(user, span_notice("You manage to persuade your way past the guards."))
 		linked_perm.allow_list += user.get_face_name()
 		return
