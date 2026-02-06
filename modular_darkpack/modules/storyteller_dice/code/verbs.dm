@@ -7,6 +7,10 @@ ADMIN_VERB(roll_storyteller_dice, R_NONE, "Roll storyteller dice", "Roll storyte
 	BLACKBOX_LOG_ADMIN_VERB("Storyteller dice")
 */
 
+ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dice", mob/living/M in world)
+	M.roll_dice_custom_advanced()
+	BLACKBOX_LOG_ADMIN_VERB("Storyteller dice")
+
 /mob/living/verb/roll_dice_custom()
 	set name = "Roll custom dice (basic)"
 	set category = "IC"
@@ -41,7 +45,7 @@ ADMIN_VERB(roll_storyteller_dice, R_NONE, "Roll storyteller dice", "Roll storyte
 	for(var/list/stat as anything in stats_to_use)
 		output_stats += text2path(stat[1])
 
-	var/bonus_dice = tgui_input_number(usr, "Input amount of bonus dice to roll.", "Dice", 0, 100, -100)
+	var/bonus_dice = tgui_input_number(usr, "Input amount of bonus dice to roll.", "Dice", 0, 20, -20)
 	if(isnull(bonus_dice))
 		return
 
@@ -49,11 +53,11 @@ ADMIN_VERB(roll_storyteller_dice, R_NONE, "Roll storyteller dice", "Roll storyte
 	if(isnull(difficulty))
 		return
 
-	var/successes_needed = tgui_input_number(usr, "Input successes required to pass.", "Successes Needed", 1, 100, 1)
+	var/successes_needed = tgui_input_number(usr, "Input successes required to pass.", "Successes Needed", 1, 20, 1)
 	if(isnull(successes_needed))
 		return
 
-	var/roll_type = tgui_input_list(usr, "Who do you want to roll to.", "Roll Type", list(ROLL_PUBLIC, ROLL_PRIVATE, ROLL_GM), ROLL_PUBLIC)
+	var/roll_type = tgui_input_list(usr, "Who do you want to roll to.", "Roll Type", list(ROLL_PUBLIC, ROLL_PRIVATE, ROLL_PRIVATE_GM, ROLL_GM), ROLL_PUBLIC)
 	if(isnull(roll_type))
 		return
 

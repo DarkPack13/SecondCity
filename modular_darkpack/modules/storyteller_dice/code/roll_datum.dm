@@ -2,6 +2,8 @@
 #define ROLL_PUBLIC "public"
 // Output is only shown to the roller
 #define ROLL_PRIVATE "private"
+// Output of the roll to admins + you
+#define ROLL_PRIVATE_GM "private+gm"
 // Output of the roll to admins only
 #define ROLL_GM "gm"
 // Output is show to no one and is not logged
@@ -55,7 +57,14 @@
 	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
-	var/output_combined = fieldset_block("[roller] - [bumper_text] [span_tinynoticeital(roll_output_type)]", jointext(last_output_text, "<br>"), "boxed_message")
+	var/title
+	if(roll_output_type == ROLL_PRIVATE_GM || ROLL_GM)
+		title = "[ADMIN_LOOKUPFLW(roller)]"
+	else
+		title = "[roller]"
+	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
+
+	var/output_combined = fieldset_block(title, jointext(last_output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
@@ -82,9 +91,11 @@
 		if(ROLL_PUBLIC)
 			return viewers(DEFAULT_MESSAGE_RANGE, roller)
 		if(ROLL_PRIVATE)
-			return roller
+			return list(roller)
+		if(ROLL_PRIVATE_GM)
+			return GLOB.admins + roller
 		if(ROLL_GM)
-			EMPTY_BLOCK_GUARD // Should eventually log to a admin viewable place..?
+			return GLOB.admins
 		if(ROLL_NONE)
 			EMPTY_BLOCK_GUARD // Not even important enough to be admin visable.
 
