@@ -10,12 +10,12 @@
 #define ROLL_NONE "none"
 
 /datum/storyteller_roll
-	var/bumper_text = "Roll"
+	var/bumper_text = "roll"
 
 	var/difficulty = 6
 	var/successes_needed = 1
 
-	// By default uses the highest attribute and ability
+	// By default uses the highest attribute and ability // Not acctually true yet, it just used all of them. But it should be that.
 	var/list/applicable_stats = list()
 	var/numerical = FALSE
 
@@ -205,27 +205,4 @@
 				return FALSE
 
 	return TRUE
-
-/datum/storyteller_roll/lockpick
-	bumper_text = "lockpicking"
-	reroll_cooldown = 1 SCENES
-	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
-
-/datum/storyteller_roll/bash_door
-	bumper_text = "bash door"
-	reroll_cooldown = 1 SCENES
-	applicable_stats = list(STAT_STRENGTH)
-	numerical = TRUE
-
-/datum/storyteller_roll/grappling
-	bumper_text = "grappling"
-	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
-	numerical = TRUE
-	spammy_roll = TRUE
-
-/datum/storyteller_roll/grappled
-	bumper_text = "resisting"
-	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
-	numerical = TRUE
-	spammy_roll = TRUE
 

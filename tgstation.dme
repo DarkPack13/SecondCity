@@ -7501,6 +7501,7 @@
 #include "modular_darkpack\modules\storage\code\firstaidkit.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\roll_datum.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\roll_subsystem.dm"
+#include "modular_darkpack\modules\storyteller_dice\code\roll_subtypes.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\rolling_pref.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\verbs.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\_st_stats.dm"
