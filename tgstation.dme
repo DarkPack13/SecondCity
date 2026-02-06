@@ -445,7 +445,6 @@
 #include "code\__DEFINES\~darkpack\keybinding.dm"
 #include "code\__DEFINES\~darkpack\library.dm"
 #include "code\__DEFINES\~darkpack\lock_access_defines.dm"
-#include "code\__DEFINES\~darkpack\lockpick_difficulty.dm"
 #include "code\__DEFINES\~darkpack\mapswitch.dm"
 #include "code\__DEFINES\~darkpack\masquerade.dm"
 #include "code\__DEFINES\~darkpack\miscellaneous.dm"
