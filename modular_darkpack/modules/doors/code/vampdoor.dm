@@ -33,8 +33,8 @@
 	var/burnable = FALSE
 	/// Cooldown for bashing attempts
 	COOLDOWN_DECLARE(bash_cooldown)
-	/// Cooldown for lockpicking attempts
-	COOLDOWN_DECLARE(lockpick_cooldown)
+	var/datum/storyteller_roll/lockpick/lockpick_roll
+	var/datum/storyteller_roll/bash_door/bash_roll
 	/// Difficulty for bashing this door down
 	var/bash_difficulty = 6
 	/// Number of successes needed to bash down
@@ -193,11 +193,10 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(human_user.st_get_stat(STAT_STRENGTH) > 5)
-				if(!COOLDOWN_FINISHED(src, bash_cooldown))
-					var/time_left = COOLDOWN_TIMELEFT(src, bash_cooldown)
-					to_chat(human_user, span_warning("You must wait [time_left / 10] seconds before attempting to rip the door off it's hinges again."))
-					return
-				var/roll = SSroll.storyteller_roll(human_user.st_get_stat(STAT_STRENGTH), bash_difficulty, human_user, numerical = TRUE)
+				if(!bash_roll)
+					bash_roll = new()
+				bash_roll.difficulty = bash_difficulty
+				var/roll = bash_roll.st_roll(user, src)
 				if(roll >= bash_successes_needed)
 					to_chat(human_user, span_danger("You wind up a big punch to break down the door..."))
 					if(do_after(human_user, 3 SECONDS, src))
@@ -285,10 +284,6 @@
 	if(CONFIG_GET(flag/punishing_zero_dots) && user.st_get_stat(STAT_LARCENY) < 1)
 		to_chat(user, span_warning("How do I do this...?"))
 		return
-	if(!COOLDOWN_FINISHED(src, lockpick_cooldown))
-		var/time_left = COOLDOWN_TIMELEFT(src, lockpick_cooldown)
-		to_chat(user, span_warning("You must wait [time_left / 10] seconds before attempting another lockpick!"))
-		return
 	if(locked)
 		proc_unlock(5)
 		playsound(src, 'modular_darkpack/modules/doors/sounds/hack.ogg', 50, TRUE)
@@ -297,19 +292,18 @@
 		if(do_after(user, 1 TURNS, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			if(!locked)
 				return
-			var/datum/storyteller_roll/lockpick/our_roll = new()
-			our_roll.difficulty = lockpick_difficulty
-			switch(our_roll.st_roll(user, src))
+			if(!lockpick_roll)
+				lockpick_roll = new()
+			lockpick_roll.difficulty = lockpick_difficulty
+			switch(lockpick_roll.st_roll(user, src))
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
 					locked = FALSE
 					return TRUE
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))
-					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 				if(ROLL_BOTCH)
 					to_chat(user, span_warning("Your lockpick broke!"))
-					COOLDOWN_START(src, lockpick_cooldown, 1 SCENES)
 					qdel(tool)
 		else
 			to_chat(user, span_warning("You failed to pick the lock."))

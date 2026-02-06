@@ -19,6 +19,10 @@
 	/// This is a roll that can proc multiple times in rapid sucession and thus should be always shown via runechat
 	var/spammy_roll = FALSE
 
+	#warn should be lazy list
+	// A list of times indexed by a weakref to a mob
+	var/mobs_last_rolled = list()
+	var/reroll_cooldown
 
 	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
 	var/last_sucess_amount
@@ -34,6 +38,9 @@
 	last_sucess_amount = 0
 	last_output_text = list()
 
+	if(!can_roll(roller))
+		return ROLL_FAILURE
+
 	var/dice_amount = calculate_used_dice(roller, bonus)
 
 	var/list/rolled_dice = roll_dice(dice_amount)
@@ -47,7 +54,7 @@
 	for(var/mob/player_mob in get_mobs_to_show(roller))
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
-		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = 10))
+		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = spammy_roll ? 5 : 20))
 		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
@@ -55,6 +62,8 @@
 				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
 				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+
+	mobs_last_rolled[WEAKREF(roller)] = world.time
 
 	return output
 
@@ -157,19 +166,43 @@
 		else
 			return "⓿"
 
+/datum/storyteller_roll/proc/can_roll(mob/living/roller, feedback = TRUE)
+	if(reroll_cooldown)
+		for(var/datum/weakref/guy_ref, when_rolled in mobs_last_rolled)
+			var/mob/living/guy = guy_ref.resolve()
+			if(!guy)
+				mobs_last_rolled -= guy_ref
+				continue
+			if(guy != roller)
+				continue
+			if(when_rolled + reroll_cooldown > world.time)
+				if(feedback)
+					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet."))
+				return FALSE
+
+	return TRUE
 
 /datum/storyteller_roll/lockpick
-	bumper_text = "Lockpicking"
+	bumper_text = "lockpicking"
+	reroll_cooldown = 1 SCENES
 	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
 
+/datum/storyteller_roll/bash_door
+	bumper_text = "bash door"
+	reroll_cooldown = 1 SCENES
+	applicable_stats = list(STAT_STRENGTH)
+	numerical = TRUE
+
 /datum/storyteller_roll/grappling
-	bumper_text = "Grappling"
+	bumper_text = "grappling"
 	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
 	numerical = TRUE
 	spammy_roll = TRUE
 
 /datum/storyteller_roll/grappled
-	bumper_text = "Resisting"
+	bumper_text = "resisting"
 	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
 	numerical = TRUE
 	spammy_roll = TRUE
+
+/datum/storyteller_roll/
