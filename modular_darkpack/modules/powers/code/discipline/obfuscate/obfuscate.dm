@@ -110,7 +110,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -149,6 +149,7 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -160,7 +161,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -321,6 +322,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -333,7 +335,7 @@
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -358,6 +360,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -367,7 +370,7 @@
 /datum/discipline_power/obfuscate/cloak_the_gathering/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
