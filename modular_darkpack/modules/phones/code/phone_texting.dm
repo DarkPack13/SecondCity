@@ -13,7 +13,7 @@
 	src.message_text = message_text
 	src.is_outgoing = is_outgoing
 	src.timestamp = station_time()
-	src.time = time_to_twelve_hour(src.timestamp, format = "hh:mm")
+	src.time = station_time_timestamp("hh:mm")
 
 /datum/phone_conversation
 	var/contact_name = ""
