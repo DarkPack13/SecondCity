@@ -107,6 +107,8 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
+	toggled = TRUE
+
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
