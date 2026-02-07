@@ -2914,9 +2914,9 @@
 /turf/open/floor/wood/old,
 /area/vtm/westfield_mall/interior/chantry)
 "ajK" = (
-/obj/structure/glowshroom/single,
-/turf/open/misc/grass,
-/area/vtm/westfield_mall/forest)
+/obj/item/flashlight/lantern/on,
+/turf/open/floor/plating/rough/cave,
+/area/vtm/westfield_mall/interior/cave)
 "ajL" = (
 /obj/structure/rack/food/rand,
 /turf/open/floor/city/plating,
@@ -3953,8 +3953,12 @@
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/westfield_mall/interior/theatre)
 "ani" = (
-/obj/structure/glowshroom/single,
-/turf/open/floor/plating/rough,
+/obj/structure/platform/lowwall/wood,
+/obj/item/flashlight/lantern/on{
+	pixel_x = 9;
+	pixel_y = 2
+	},
+/turf/open/misc/dirt,
 /area/vtm/westfield_mall/interior/cave)
 "anj" = (
 /obj/item/kirbyplants/random/dead{
@@ -6195,8 +6199,8 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "auj" = (
-/obj/item/flashlight/lantern/on,
-/turf/open/floor/plating/rough/cave,
+/obj/structure/glowshroom/single,
+/turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior/cave)
 "auk" = (
 /obj/structure/railing/wooden_fence{
@@ -6908,6 +6912,12 @@
 /obj/effect/landmark/start/darkpack/hospital/doctor,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/clinic)
+"awD" = (
+/obj/structure/chair/wood/darkpack{
+	dir = 1
+	},
+/turf/open/misc/dirt,
+/area/vtm/westfield_mall/interior/cave)
 "awE" = (
 /obj/structure/guncase,
 /obj/item/gun/ballistic/automatic/darkpack/huntrifle,
@@ -8201,12 +8211,9 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/skatepark)
 "aBa" = (
-/obj/structure/flora/bush/sparsegrass/style_random,
-/obj/effect/turf_decal/bordur{
-	dir = 9
-	},
-/turf/open/floor/plating/sidewalk/old,
-/area/vtm/westfield_mall/forest)
+/obj/structure/platform/lowwall/wood,
+/turf/open/misc/dirt,
+/area/vtm/westfield_mall/interior/cave)
 "aBb" = (
 /obj/structure/vampipe{
 	pixel_y = 32;
@@ -15793,6 +15800,10 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"aZU" = (
+/obj/structure/glowshroom/single,
+/turf/open/misc/grass,
+/area/vtm/westfield_mall/forest)
 "aZV" = (
 /obj/effect/landmark/npcability,
 /turf/open/floor/plating/sidewalk/old,
@@ -17883,6 +17894,7 @@
 /area/vtm/westfield_mall)
 "rIi" = (
 /obj/structure/table/wood,
+/obj/item/flashlight/lantern/on,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/westfield_mall/interior/cave)
 "rJe" = (
@@ -110633,10 +110645,10 @@ aFc
 aFc
 arI
 arI
-ani
+auj
 aTe
-ani
-ani
+auj
+auj
 arI
 arI
 arI
@@ -110945,8 +110957,8 @@ aXX
 aWd
 aWd
 aTe
-ani
-ani
+auj
+auj
 arI
 arI
 aFc
@@ -111078,7 +111090,7 @@ adj
 adj
 aTe
 aWd
-ani
+auj
 adj
 aFc
 avR
@@ -111098,8 +111110,8 @@ aXX
 aWd
 aWd
 aWd
-ani
-ani
+auj
+auj
 arI
 arI
 aFc
@@ -111230,7 +111242,7 @@ aFc
 adj
 aUa
 aWd
-ani
+auj
 adj
 aFc
 avR
@@ -111559,7 +111571,7 @@ aXX
 aXX
 aWd
 aTe
-ani
+auj
 arI
 aFc
 aFc
@@ -111864,7 +111876,7 @@ aTe
 aTe
 aWd
 aTe
-ani
+auj
 arI
 arI
 aFc
@@ -111985,7 +111997,7 @@ aFc
 adj
 adj
 xRi
-ani
+auj
 aTe
 aTe
 aTe
@@ -112017,7 +112029,7 @@ oFh
 aWd
 aTe
 aTe
-ani
+auj
 arI
 aFc
 aFc
@@ -112159,7 +112171,7 @@ aFc
 arI
 arI
 arI
-ani
+auj
 aTe
 aWd
 aWd
@@ -112297,7 +112309,7 @@ aTe
 aTe
 aTe
 aWd
-ani
+auj
 aTe
 aWd
 aUa
@@ -112311,7 +112323,7 @@ aFc
 aFc
 aFc
 arI
-ani
+auj
 aTe
 aTe
 aTe
@@ -112443,17 +112455,17 @@ aTe
 aWd
 aWd
 aTe
-ani
+auj
 aTe
 xRi
 aTe
 aTe
 xRi
-ani
+auj
 aTe
 mgz
 atM
-atM
+aGX
 adj
 adj
 adj
@@ -112478,7 +112490,7 @@ aTe
 aTe
 aTe
 aTe
-ani
+auj
 aRN
 aRN
 aRN
@@ -112606,10 +112618,10 @@ aTe
 aTe
 atM
 atM
-atM
-atM
-atM
-atM
+aBa
+ani
+awD
+aGX
 adj
 adj
 adj
@@ -112742,7 +112754,7 @@ avR
 aFc
 aFc
 adj
-ani
+auj
 aWd
 aWd
 aWd
@@ -112781,7 +112793,7 @@ aTe
 aTe
 aTe
 aTe
-ani
+auj
 aRN
 aRN
 aRN
@@ -113197,7 +113209,7 @@ avR
 avR
 aFc
 adj
-ani
+auj
 aTe
 pfj
 gBa
@@ -113229,7 +113241,7 @@ aWd
 aWd
 amG
 adj
-ani
+auj
 aTe
 arI
 arI
@@ -113810,7 +113822,7 @@ aUa
 aWd
 aWd
 aTe
-aTe
+auj
 qiO
 xRi
 aTe
@@ -114117,7 +114129,7 @@ aWd
 aWd
 aTe
 aTe
-ani
+auj
 aTe
 aTe
 aTe
@@ -114722,7 +114734,7 @@ aFc
 adj
 adj
 aTe
-ani
+auj
 aTe
 aTe
 aTe
@@ -114875,12 +114887,12 @@ aFc
 adj
 adj
 adj
-ani
+auj
 aTe
 gra
 amG
 aWd
-auj
+ajK
 adj
 adj
 adj
@@ -115074,9 +115086,9 @@ aSx
 aSx
 aSx
 aSx
-ajK
-ajK
-ajK
+aZU
+aZU
+aZU
 aSx
 aSx
 aRN
@@ -115225,11 +115237,11 @@ aSx
 aSx
 aSE
 aSx
-ajK
+aZU
 aKB
 aKB
 aKB
-ajK
+aZU
 aSx
 aSx
 aRN
@@ -115376,13 +115388,13 @@ aSx
 aSx
 aSx
 aBu
-ajK
+aZU
 aKB
 aKB
 aKB
 aKB
 aKB
-ajK
+aZU
 aSx
 aRN
 aRN
@@ -115528,13 +115540,13 @@ aSx
 aSx
 aSx
 aSx
-ajK
+aZU
 aKB
 aKB
 akH
 aKB
 aKB
-ajK
+aZU
 aSx
 aRN
 aRN
@@ -115680,13 +115692,13 @@ aMa
 aSx
 aSx
 aSx
-ajK
+aZU
 aKB
 aKB
 aKB
 aKB
 aKB
-ajK
+aZU
 aSx
 aSx
 aSx
@@ -115833,11 +115845,11 @@ aSx
 aSx
 aSx
 aBu
-ajK
+aZU
 aKB
 aKB
 aZd
-ajK
+aZU
 aSx
 aSx
 aSx
@@ -115986,9 +115998,9 @@ aSx
 aSx
 aSE
 aBu
-ajK
-ajK
-ajK
+aZU
+aZU
+aZU
 aSx
 aSx
 aSx
@@ -123720,7 +123732,7 @@ aVo
 aVo
 aVo
 ati
-aBa
+aIc
 aVQ
 aas
 auM
