@@ -1,14 +1,3 @@
-// Output is shown to everyone near you
-#define ROLL_PUBLIC "public"
-// Output is only shown to the roller
-#define ROLL_PRIVATE "private"
-// Output of the roll to admins + you
-#define ROLL_PRIVATE_GM "private+gm"
-// Output of the roll to admins only
-#define ROLL_GM "gm"
-// Output is show to no one and is not logged
-#define ROLL_NONE "none"
-
 /datum/storyteller_roll
 	var/bumper_text = "roll"
 
@@ -23,7 +12,7 @@
 	/// This is a roll that can proc multiple times in rapid sucession and thus should be always shown via runechat
 	var/spammy_roll = FALSE
 
-	// A lazy list of times indexed by a weakref to a mob
+	/// A lazy list of times indexed by a weakref to a mob
 	var/list/mobs_last_rolled
 	var/reroll_cooldown
 
@@ -127,7 +116,7 @@
 		if(isnull(highest_stat) || stat_dots > highest_stat)
 			stat_to_use = stat
 			highest_stat = stat_dots
-	return highest_stat
+	return stat_to_use
 
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
