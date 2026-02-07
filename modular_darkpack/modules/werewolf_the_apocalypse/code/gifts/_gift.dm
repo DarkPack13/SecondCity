@@ -28,13 +28,13 @@
 		if(casting_splat.rage < get_rage_cost())
 			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', volume = 50))
 			return FALSE
 	if(gnosis_req)
 		if(casting_splat.gnosis < gnosis_req)
 			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>GNOSIS</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', volume = 50))
 			return FALSE
 
 

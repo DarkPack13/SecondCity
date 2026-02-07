@@ -21,7 +21,7 @@
 			requires_roll = FALSE
 		else
 			to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
-			SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', 0, 0, 50))
+			SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', volume = 50))
 			return
 
 	COOLDOWN_START(src, transform_cd, 1 TURNS)

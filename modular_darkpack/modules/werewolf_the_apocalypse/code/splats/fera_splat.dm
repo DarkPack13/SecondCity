@@ -25,7 +25,7 @@
 		if(rage < MAX_RAGE)
 			rage = min(MAX_RAGE, rage+amount)
 			if(sound)
-				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', volume = 50))
 			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
 		else
 			return FALSE
@@ -33,7 +33,7 @@
 		if(rage > 0)
 			rage = max(0, rage+amount)
 			if(sound)
-				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
 			to_chat(owner, span_userdanger("<b>RAGE DECREASES</b>"))
 		else
 			return FALSE
@@ -49,7 +49,7 @@
 		if(gnosis < MAX_GNOSIS)
 			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
 			if(sound)
-				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
 		else
 			return FALSE
@@ -57,7 +57,7 @@
 		if(gnosis > 0)
 			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
 			if(sound)
-				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', 0, 0, 50))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
 		else
 			return FALSE

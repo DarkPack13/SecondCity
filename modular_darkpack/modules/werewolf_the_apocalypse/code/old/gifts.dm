@@ -179,7 +179,7 @@
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
 		if(C.stat != DEAD)
-			SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_heal.ogg', 0, 0, 50))
+			SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_heal.ogg', volume = 50))
 			C.adjust_brute_loss(-40*C.auspice.level, TRUE)
 			C.adjust_fire_loss(-30*C.auspice.level, TRUE)
 			C.adjust_agg_loss(-10*C.auspice.level, TRUE)

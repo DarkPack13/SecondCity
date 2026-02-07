@@ -111,15 +111,15 @@
 		if(damage_change < 0)
 			if(broken)
 				to_chat(human, span_userdanger("<b>YOUR TOTEM IS DESTROYED</b>"))
-				SEND_SOUND(human, sound('sound/effects/tendril_destroyed.ogg', 0, 0, 50))
+				SEND_SOUND(human, sound('sound/effects/tendril_destroyed.ogg', volume = 50))
 				shifter_splat.adjust_gnosis(-5, FALSE)
 			else
 				to_chat(human, span_userdanger("<b>YOUR TOTEM IS BREAKING DOWN</b>"))
-				SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/bumps.ogg', 0, 0, 50))
+				SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/bumps.ogg', volume = 50))
 				shifter_splat.adjust_rage(1, FALSE)
 		else
 			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
-			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', 0, 0, 50))
+			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
