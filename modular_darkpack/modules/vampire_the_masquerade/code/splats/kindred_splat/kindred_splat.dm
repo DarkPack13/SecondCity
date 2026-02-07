@@ -9,6 +9,7 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_NOCRITDAMAGE,
+		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_RADIMMUNE,
 		TRAIT_CAN_ENTER_TORPOR,
 		TRAIT_VTM_MORALITY,
@@ -50,11 +51,14 @@
 	if (!isdummy(owner))
 		GLOB.kindred_list |= owner
 
+	// Initialize previously set Clan and Generation
+	set_generation(generation)
+	owner.set_clan(clan)
+
 	// DARKPACK TODO - reimplement this action maybe
 	// add_verb(new_kindred, TYPE_VERB_REF(/mob/living/carbon/human, teach_discipline))
 
-	//this needs to be adjusted to be more accurate for blood spending rates
-	owner.give_st_power(/datum/discipline/bloodheal, clamp(11 - generation, 1, 10))
+	owner.give_st_power(/datum/discipline/bloodheal, vitae_spending_rate)
 
 	//vampires die instantly upon having their heart removed
 	RegisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(handle_lose_organ))
@@ -86,10 +90,6 @@
 	// Apply temperature damage modifiers
 	owner.physiology.heat_mod *= 2
 	owner.physiology.cold_mod *= 0.25
-
-	// Initialize previously set Clan and Generation
-	set_generation(generation)
-	owner.set_clan(clan)
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)

@@ -1,5 +1,0 @@
-author: "Stutternov"
-delete-after: True
-changes:
-  - rscadd: "Adds serial numbering to guns from Eris."
-  - rscadd: "Serial number tracking to bullet casings"

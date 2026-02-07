@@ -20,7 +20,7 @@
 
 	description = "Report emergencies to the correct emergency service."
 	minimal_masquerade = 0
-	known_contacts = list("Police Chief")
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/dispatcher
 	name = "Dispatcher"

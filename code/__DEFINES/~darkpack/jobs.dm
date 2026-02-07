@@ -53,7 +53,7 @@
 #define JOB_ZADRUGA "Zadruga"
 
 //Police
-#define JOB_POLICE_CHIEF "Police Chief"
+#define JOB_POLICE_CAPTAIN "Police Captain"
 #define JOB_POLICE_SERGEANT "Police Sergeant"
 #define JOB_POLICE_OFFICER "Police Officer"
 #define JOB_EMERGENCY_DISPATCHER "Emergency Dispatcher"
@@ -146,7 +146,7 @@
 
 #define JOB_DISPLAY_ORDER_GIOVANNI 32
 
-#define JOB_DISPLAY_ORDER_POLICE_CHIEF 33
+#define JOB_DISPLAY_ORDER_POLICE_CAPTAIN 33
 #define JOB_DISPLAY_ORDER_POLICE_SERGEANT 34
 #define JOB_DISPLAY_ORDER_POLICE 35
 #define JOB_DISPLAY_ORDER_FBI 36
@@ -238,8 +238,8 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_BARON "the Baron"
 #define SUPERVISOR_CLINIC_DIRECTOR "the Clinic Director"
 #define SUPERVISOR_CLUB_DIRECTOR "the Strip Club Owner"
-#define SUPERVISOR_POLICE_CHIEF "the Police Chief"
-#define SUPERVISOR_POLICE_CHIEF_AND_SERGEANT "the Police Chief and Sergeant"
+#define SUPERVISOR_POLICE_CAPTAIN "the Police Captain"
+#define SUPERVISOR_POLICE_CAPTAIN_AND_SERGEANT "the Police Captain and Sergeant"
 #define SUPERVISOR_CAMARILLA "the Camarilla"
 #define SUPERVISOR_REGENT "the Regent"
 #define SUPERVISOR_SENESCHAL_PUBLIC "the COO"
