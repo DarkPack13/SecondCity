@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Section, Stack, Tabs } from 'tgui-core/components';
+import { Section, Stack, Tabs, Box } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { Window } from '../layouts';
 
@@ -78,7 +78,7 @@ export const ExaminePanel = (props) => {
               />
             </Section>
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item grow mb={1}>
             <Tabs fluid>
               <Tabs.Tab
                 selected={tabIndex === 1}
@@ -123,18 +123,18 @@ export const ExaminePanel = (props) => {
               </Tabs.Tab>
               : null}
             </Tabs>
-            <Section
-              style={{
+            <Box
+            style={{
             overflowY: 'scroll',
-            minHeight: '50%',
-            maxHeight: '50%',
             fontSize: '14px',
             lineHeight: 1.7,
             }}
+            height = {200}
             preserveWhitespace
+            inline
             >
-              <Stack.Item>{formatURLs(lowerTabIndex === 1 ? character_notes : ooc_notes)}</Stack.Item>
-            </Section>
+              <Section>{formatURLs(lowerTabIndex === 1 ? character_notes : ooc_notes)}</Section>
+            </Box>
           </Stack.Item>
         </Stack>
       </Window.Content>
