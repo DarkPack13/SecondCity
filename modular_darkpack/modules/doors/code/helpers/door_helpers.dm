@@ -91,6 +91,7 @@
 	lock_difficulty = 5
 
 /obj/effect/mapping_helpers/door/lock_difficulty/six
+	icon_state = "locklevel_easy"
 	lock_difficulty = 6
 
 /obj/effect/mapping_helpers/door/lock_difficulty/seven
@@ -108,3 +109,36 @@
 /obj/effect/mapping_helpers/door/lock_difficulty/ten
 	icon_state = "locklevel_hardest"
 	lock_difficulty = 10
+
+/obj/effect/mapping_helpers/door/bash_difficulty
+	icon_state = "locklevel_easy"
+	icon = 'modular_darkpack/modules/doors/icons/mapping_helpers.dmi'
+	pixel_x = 6
+	var/bash_difficulty
+
+/obj/effect/mapping_helpers/door/bash_difficulty/payload(obj/structure/vampdoor/payload)
+	payload.bash_difficulty = bash_difficulty
+
+/obj/effect/mapping_helpers/door/bash_difficulty/five
+	icon_state = "locklevel_trivial"
+	bash_difficulty = 5
+
+/obj/effect/mapping_helpers/door/bash_difficulty/six
+	icon_state = "locklevel_easy"
+	bash_difficulty = 6
+
+/obj/effect/mapping_helpers/door/bash_difficulty/seven
+	icon_state = "locklevel_medium"
+	bash_difficulty = 7
+
+/obj/effect/mapping_helpers/door/bash_difficulty/eight
+	icon_state = "locklevel_hard"
+	bash_difficulty = 8
+
+/obj/effect/mapping_helpers/door/bash_difficulty/nine
+	icon_state = "locklevel_harder"
+	bash_difficulty = 9
+
+/obj/effect/mapping_helpers/door/bash_difficulty/ten
+	icon_state = "locklevel_hardest"
+	bash_difficulty = 10

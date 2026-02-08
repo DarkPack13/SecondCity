@@ -29,6 +29,10 @@
 	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_BANU
 
+/obj/effect/mapping_helpers/door/access/banu_haqim_primogen
+	icon_state = "access_helper_cam"
+	lock_id = LOCKACCESS_BANU_PRIMOGEN
+
 /obj/effect/mapping_helpers/door/access/strip
 	icon_state = "access_helper_cam"
 	lock_id = LOCKACCESS_STRIP
@@ -122,9 +126,19 @@
 /obj/effect/mapping_helpers/door/access/lasombra
 	lock_id = LOCKACCESS_LASOMBRA
 
+/obj/effect/mapping_helpers/door/access/lasombra_primogen
+	icon_state = "access_helper_cam"
+	lock_id = LOCKACCESS_PRIMOGEN_LASOMBRA
+
+/obj/effect/mapping_helpers/door/access/setite
+	lock_id = LOCKACCESS_SETITE
+
 /obj/effect/mapping_helpers/door/access/sabbat
 	lock_id = LOCKACCESS_SABBAT
 
+/obj/effect/mapping_helpers/door/access/baron
+	icon_state = "access_helper_bar"
+	lock_id = LOCKACCESS_BARON
 
 /obj/effect/mapping_helpers/door/access/anarch
 	icon_state = "access_helper_bar"
@@ -161,9 +175,14 @@
 /obj/effect/mapping_helpers/door/access/laundromat
 	lock_id = LOCKACCESS_LAUNDROMAT
 
+/obj/effect/mapping_helpers/door/access/hunter
+	lock_id = LOCKACCESS_HUNTER
 
 /obj/effect/mapping_helpers/door/access/police
 	lock_id = LOCKACCESS_POLICE
+
+/obj/effect/mapping_helpers/door/access/kiasyd
+	lock_id = LOCKACCESS_KIASYD
 
 /obj/effect/mapping_helpers/door/access/dispatch
 	lock_id = LOCKACCESS_DISPATCH
@@ -171,8 +190,8 @@
 /obj/effect/mapping_helpers/door/access/police_secure
 	lock_id = LOCKACCESS_POLICE_SECURE
 
-/obj/effect/mapping_helpers/door/access/police_chief
-	lock_id = LOCKACCESS_POLICE_CHIEF
+/obj/effect/mapping_helpers/door/access/police_captain
+	lock_id = LOCKACCESS_POLICE_CAPTAIN
 
 /obj/effect/mapping_helpers/door/access/federal
 	lock_id = LOCKACCESS_FEDERAL

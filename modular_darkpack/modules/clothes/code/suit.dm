@@ -405,9 +405,9 @@
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty. This one has sergeant insignia on it."
 
 // They got an Army vest post-PD update. I am just giving them the same, instead coded into their equipment instead of mapped.
-/obj/item/clothing/suit/vampire/vest/police/chief
-	name = "police chief duty vest"
-	icon_state = "chiefvest"
+/obj/item/clothing/suit/vampire/vest/police/captain
+	name = "police captain duty vest"
+	icon_state = "capvest"
 	desc = "Composite bulletproof vest with SFPD markings, tailored for improved protection. This one has captain insignia on it."
 	armor_type = /datum/armor/highly_protective_vest
 

@@ -109,26 +109,24 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	if(exit)
 		playsound(exit, 'modular_darkpack/modules/deprecated/sounds/portal_enter.ogg', 75, FALSE)
 
+// PLEASE PLEASE dont use this if you could just use real stairs instead or map the area sanely.
+/obj/transfer_point_vamp/stairs
+	name = "stairs"
+	icon_state = "stairs"
+	icon = 'modular_darkpack/master_files/icons/obj/stairs.dmi'
+
+// Only subtyped here so admins can easily spawn them in the real map.
+/obj/transfer_point_vamp/stairs/admin_theatre_1
+	id = "admin_theatre_1"
+	unit_test_exempt = TRUE // These are meant to spawn missing their sister
+/obj/transfer_point_vamp/stairs/admin_theatre_2
+	id = "admin_theatre_2"
+	unit_test_exempt = TRUE
+
 /obj/transfer_point_vamp/backrooms
 	id = "backrooms"
-	alpha = 0
+	invisibility = INVISIBILITY_OBSERVER
 
 /obj/transfer_point_vamp/backrooms/map
 	density = FALSE
 	one_way = TRUE
-
-/obj/transfer_point_vamp/old_clan_tzimisce
-	name = "old clan transfer point"
-
-/obj/transfer_point_vamp/voivodate
-	name = "voivodate transfer point"
-	id = "estate_1"
-
-/obj/transfer_point_vamp/voivodate/one
-	id = "estate_2"
-
-/obj/transfer_point_vamp/voivodate/two
-	id = "estate_3"
-
-/obj/transfer_point_vamp/voivodate/three
-	id = "estate_4"

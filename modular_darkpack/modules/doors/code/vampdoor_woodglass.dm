@@ -7,7 +7,3 @@
 	// close_sound = 'modular_darkpack/modules/doors/sounds/wood_close.ogg'
 	lock_sound = 'modular_darkpack/modules/doors/sounds/wood_locked.ogg'
 
-/obj/structure/vampdoor/woodglass/prince
-	locked = TRUE
-	lock_id = LOCKACCESS_PRINCE
-	lockpick_difficulty = 12

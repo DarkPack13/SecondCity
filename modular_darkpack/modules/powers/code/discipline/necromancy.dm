@@ -10,7 +10,7 @@
 /datum/discipline/necromancy/post_gain()
 	. = ..()
 
-	owner.faction |= VAMPIRE_CLAN_GIOVANNI
+	owner.add_faction(VAMPIRE_CLAN_GIOVANNI)
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ADD_TRAIT(owner, TRAIT_NECROMANCY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	ritualist.Grant(owner)
