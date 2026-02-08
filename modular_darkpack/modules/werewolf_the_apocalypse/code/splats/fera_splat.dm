@@ -131,7 +131,7 @@
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
 		if(shifter_species.veil_breaching_form && !shifter_species.causes_delerium)
-			SEND_SIGNAL(src, COMSIG_MASQUERADE_VIOLATION)
+			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
