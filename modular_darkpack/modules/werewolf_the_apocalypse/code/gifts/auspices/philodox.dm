@@ -3,15 +3,18 @@
 	desc = "This Gift allows the Garou to determine the true nature of a person."
 	button_icon_state = "scent_of_the_true_form"
 	click_to_activate = TRUE
-	var/list/wyld_descriptors = list("ozone",
+	var/static/list/wyld_descriptors = list(
+		"ozone",
 		"euphoria",
 		"flowers",
 		"an unseen breeze",
 		"petrichor",
 		"the calm after a thunderstorm",
 		"a primal ocean",
-		"the anticipation of limitless possibility")
-	var/list/weaver_descriptors = list("sound patterns",
+		"the anticipation of limitless possibility"
+	)
+	var/static/list/weaver_descriptors = list(
+		"sound patterns",
 		"cleaning fluid",
 		"hand sanitizer",
 		"a spider\'s web",
@@ -19,15 +22,18 @@
 		"metal",
 		"a sudden drain of energy",
 		"flashing lights",
-		"alarms and sirens")
-	var/list/wyrm_descriptors = list("rot",
+		"alarms and sirens"
+	)
+	var/static/list/wyrm_descriptors = list(
+		"rot",
 		"decay",
 		"fear",
 		"an animal that died in fear",
 		"depression",
 		"hopelessness",
 		"pain",
-		"lengethening shadows")
+		"lengethening shadows"
+	)
 
 /datum/action/cooldown/power/gift/scent_of_the_true_form/set_click_ability(mob/on_who)
 	. = ..()
@@ -46,9 +52,9 @@
 	var/mob/living/caster = owner
 	var/datum/splat/werewolf/target_splat = iswerewolfsplat(victim)
 
-	if(isgarou(victim) || iskinfolk(victim))
+	if(istype(target_splat))
 		var/secondary_descriptor = "[pick(wyld_descriptors)]"
-		switch(target_splat.tribe)
+		switch(target_splat.tribe?.name)
 			if(TRIBE_GLASS_WALKERS)
 				secondary_descriptor = "[pick(weaver_descriptors)]"
 			if(TRIBE_BONE_GNAWERS)
@@ -57,9 +63,7 @@
 				secondary_descriptor = "[pick(wyrm_descriptors)]"
 		to_chat(owner, span_purple("[victim] smells like kin[secondary_descriptor ? "...<br>...and of [secondary_descriptor]." : "."]"))
 	else
-		#define PRIMAL_URGE_PLACEHOLDER 3
-		var/successes = SSroll.storyteller_roll(caster.st_get_stat(STAT_PERCEPTION) + caster.st_get_stat(PRIMAL_URGE_PLACEHOLDER), 6, null, numerical = TRUE)
-		#undef PRIMAL_URGE_PLACEHOLDER
+		var/successes = SSroll.storyteller_roll(caster.st_get_stat(STAT_PERCEPTION) + PRIMAL_URGE_PLACEHOLDER, 6, null, numerical = TRUE)
 		switch(successes)
 			if(0)
 				to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
