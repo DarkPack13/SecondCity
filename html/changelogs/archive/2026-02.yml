@@ -34,3 +34,8 @@
   - balance: Fixed kindred damage modifiers to 2x burn and 0.5x brute
   dwinters99, FalloutFalcon:
   - bugfix: despessed tips
+2026-02-08:
+  Knightscholar:
+  - bugfix: Fixes the reference to the Toreador Beretta
+  XeonMations:
+  - bugfix: Fixed ghouls being able to regenerate BP by drinking normal human blood
