@@ -127,12 +127,12 @@ export const MESSAGE_TYPES: MessageType[] = [
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector: '.danger',
   },
-  { // DARKPACK EDIT ADDITION START
+  { // DARKPACK EDIT ADD START - SUBTLE
     type: MESSAGE_TYPE_SUBTLE,
     name: 'Subtle',
     description: 'Subtle and Subtler actions.',
     selector: '.subtle, .subtler',
-  }, // DARKPACK EDIT ADDITION END
+  }, // DARKPACK EDIT ADD END
   {
     type: MESSAGE_TYPE_UNKNOWN,
     name: 'Unsorted',
