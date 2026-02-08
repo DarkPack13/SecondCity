@@ -78,53 +78,25 @@ export const ExaminePanel = (props) => {
               />
             </Section>
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item>
             <Tabs fluid>
               <Tabs.Tab
                 selected={tabIndex === 1}
                 onClick={() => setTabIndex(1)}
               >
-                <Section fitted title={'Flavor Text'} />
+              Flavor Text
               </Tabs.Tab>
               {nsfw_content ?
               <Tabs.Tab
                 selected={tabIndex === 2}
                 onClick={() => setTabIndex(2)}
               >
-                <Section fitted title={'Flavor Text (NSFW)'} />
+              Flavor Text (NSFW)
               </Tabs.Tab>
               : null}
             </Tabs>
-              <Section
-                style={{
-                overflowY: 'scroll',
-                minHeight: '50%',
-                maxHeight: '50%',
-                fontSize: '14px',
-                lineHeight: 1.7,
-                }}
-                preserveWhitespace
-              >
-                {formatURLs(tabIndex === 1 ? flavor_text : flavor_text_nsfw)}
-              </Section>
-            <Tabs fluid>
-              <Tabs.Tab
-                selected={lowerTabIndex === 1}
-                onClick={() => setLowerTabIndex(1)}
-              >
-                <Section fitted title={'Character Notes'} />
-              </Tabs.Tab>
-              {nsfw_content ?
-              <Tabs.Tab
-                selected={lowerTabIndex === 2}
-                onClick={() => setLowerTabIndex(2)}
-              >
-                <Section fitted title={'OOC Notes (NSFW)'} />
-              </Tabs.Tab>
-              : null}
-            </Tabs>
-              <Section
-                style={{
+            <Section
+              style={{
               overflowY: 'scroll',
               minHeight: '50%',
               maxHeight: '50%',
@@ -132,9 +104,37 @@ export const ExaminePanel = (props) => {
               lineHeight: 1.7,
               }}
               preserveWhitespace
+            >
+              {formatURLs(tabIndex === 1 ? flavor_text : flavor_text_nsfw)}
+            </Section>
+            <Tabs fluid>
+              <Tabs.Tab
+                selected={lowerTabIndex === 1}
+                onClick={() => setLowerTabIndex(1)}
               >
-                <Stack.Item>{formatURLs(lowerTabIndex === 1 ? character_notes : ooc_notes)}</Stack.Item>
-              </Section>
+              Character Notes
+              </Tabs.Tab>
+              {nsfw_content ?
+              <Tabs.Tab
+                selected={lowerTabIndex === 2}
+                onClick={() => setLowerTabIndex(2)}
+              >
+              OOC Notes (NSFW)
+              </Tabs.Tab>
+              : null}
+            </Tabs>
+            <Section
+              style={{
+            overflowY: 'scroll',
+            minHeight: '50%',
+            maxHeight: '50%',
+            fontSize: '14px',
+            lineHeight: 1.7,
+            }}
+            preserveWhitespace
+            >
+              <Stack.Item>{formatURLs(lowerTabIndex === 1 ? character_notes : ooc_notes)}</Stack.Item>
+            </Section>
           </Stack.Item>
         </Stack>
       </Window.Content>
