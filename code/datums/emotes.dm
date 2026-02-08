@@ -127,9 +127,9 @@
 	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/additional_message_flags = get_message_flags(intentional)
 
-	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // DARKPACK EDIT ADDITION
+	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // DARKPACK EDIT ADD
 
-	// DARKPACK EDIT START
+	// DARKPACK EDIT CHANGE START
 	// Emote doesn't get printed to chat, runechat only
 	if(running_emote_type & EMOTE_RUNECHAT)
 		for(var/mob/viewer as anything in viewers(user))
@@ -203,7 +203,7 @@
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
 			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)][space][dchatmsg]"))
-	// DARKPACK EDIT END
+	// DARKPACK EDIT CHANGE END
 
 	return
 
