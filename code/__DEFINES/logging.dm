@@ -52,9 +52,9 @@
 #define LOG_SPEECH_INDICATORS (1 << 21)
 #define LOG_TRANSPORT (1 << 22)
 #define LOG_STATS (1 << 23) // DARKPACK EDIT ADD - logging stats to prevent abuse
-// DARKPACK EDIT START
+// DARKPACK EDIT ADD START - SUBTLE
 #define LOG_SUBTLE (1 << 24)
-// DARKPACK EDIT END
+// DARKPACK EDIT ADD END
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)
