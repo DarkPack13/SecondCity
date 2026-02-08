@@ -83,7 +83,7 @@
 	var/howl_details
 	var/final_message
 	for(var/mob/living/howled_at in GLOB.player_list - owner)
-		if(iswerewolfsplat(howled_at))
+		if(isshifter(howled_at))
 			howl_details = get_message(howled_at, origin_turf)
 			final_message = garou_message + howl_details
 			to_chat(howled_at, span_boldnotice(final_message))
