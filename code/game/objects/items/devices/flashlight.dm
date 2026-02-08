@@ -120,11 +120,13 @@
 
 /obj/item/flashlight/attack_self(mob/user)
 	// DARKPACK EDIT ADD START
+	/* I cant verify the lore accuracy of "rejection past your embrace age" and we dont have a invention date for tech to represent it either
 	if(user && HAS_TRAIT(src, TRAIT_MODERN_TECH) && HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
 		to_chat(user, span_warning("You start interacting with [src]. Confounded machine..."))
 		if(!do_after(user, 1 TURNS, src))
 			to_chat(user, span_warning("Bah! You didn't need the machine anyways."))
 			return
+	*/
 	// DARKPACK EDIT ADD END
 	return toggle_light(user)
 
