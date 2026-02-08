@@ -22,7 +22,6 @@
 	plural_form = "Fera"
 	id = SPECIES_FERA
 	species_language_holder = /datum/language_holder/garou
-	screenshot_ignored = TRUE
 	var/mob_pixel_w
 	var/mob_pixel_z
 	/// Stats added and removed upon gaining the species
