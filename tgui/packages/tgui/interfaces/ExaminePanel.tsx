@@ -63,20 +63,16 @@ export const ExaminePanel = (props) => {
   } = data;
   return (
     <Window
-      title={`${character_name}'s·Examine·Panel`}
+      title={`${character_name}'s Examine Panel`}
       width={900}
       height={670}
     >
       <Window.Content>
         <Stack fill>
-          <Stack.Item width="30%">
-            <Section height="310px" title="Headshot">
+          <Stack.Item>
+            <Section title="Headshot">
               <img
-                src={
-                  tabIndex === 2
-                    ? resolveAsset(headshot)
-                    : resolveAsset(headshot)
-                }
+                src={resolveAsset(headshot)}
                 height="250px"
                 width="250px"
               />
@@ -99,7 +95,6 @@ export const ExaminePanel = (props) => {
               </Tabs.Tab>
               : null}
             </Tabs>
-            {tabIndex === 1 && (
               <Section
                 style={{
                 overflowY: 'scroll',
@@ -107,30 +102,11 @@ export const ExaminePanel = (props) => {
                 maxHeight: '50%',
                 fontSize: '14px',
                 lineHeight: 1.7,
-                textIndent: '3em',
                 }}
-                fitted
                 preserveWhitespace
               >
-                {formatURLs(flavor_text)}
+                {formatURLs(tabIndex === 1 ? flavor_text : flavor_text_nsfw)}
               </Section>
-            )}
-            {tabIndex === 2 && (
-              <Section
-                style={{
-                overflowY: 'scroll',
-                minHeight: '50%',
-                maxHeight: '50%',
-                fontSize: '14px',
-                lineHeight: 1.7,
-                textIndent: '3em',
-                }}
-                fitted
-                preserveWhitespace
-              >
-                {formatURLs(flavor_text_nsfw)}
-              </Section>
-            )}
             <Tabs fluid>
               <Tabs.Tab
                 selected={lowerTabIndex === 1}
@@ -147,38 +123,18 @@ export const ExaminePanel = (props) => {
               </Tabs.Tab>
               : null}
             </Tabs>
-              {lowerTabIndex === 1 && (
-                <Section
-                  style={{
-                overflowY: 'scroll',
-                minHeight: '50%',
-                maxHeight: '50%',
-                fontSize: '14px',
-                lineHeight: 1.7,
-                textIndent: '3em',
-                }}
-                fitted
-                preserveWhitespace
-                >
-                  <Stack.Item>{formatURLs(character_notes)}</Stack.Item>
-                </Section>
-              )}
-              {lowerTabIndex === 2 && (
-                <Section
-                  style={{
-                overflowY: 'scroll',
-                minHeight: '50%',
-                maxHeight: '50%',
-                fontSize: '14px',
-                lineHeight: 1.7,
-                textIndent: '3em',
-                }}
-                fitted
-                preserveWhitespace
-                >
-                  <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
-                </Section>
-              )}
+              <Section
+                style={{
+              overflowY: 'scroll',
+              minHeight: '50%',
+              maxHeight: '50%',
+              fontSize: '14px',
+              lineHeight: 1.7,
+              }}
+              preserveWhitespace
+              >
+                <Stack.Item>{formatURLs(lowerTabIndex === 1 ? character_notes : ooc_notes)}</Stack.Item>
+              </Section>
           </Stack.Item>
         </Stack>
       </Window.Content>
