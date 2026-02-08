@@ -21,6 +21,12 @@
 /proc/log_subtle(text, list/data)
 	logger.Log(LOG_CATEGORY_SUBTLE, text, data)
 
+/datum/log_category/stats
+	category = LOG_CATEGORY_STATS
+
+/datum/log_category/subtle
+	category = LOG_CATEGORY_SUBTLE
+
 /datum/emote/living/subtle/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
 		to_chat(user, span_warning("You can't emote at this time."))
