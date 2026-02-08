@@ -128,7 +128,7 @@
 			return
 		owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
-	var/datum/species/human/shifter/shifter_species = owner.dna.species?.type
+	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
 		if(shifter_species.veil_breaching_form && !shifter_species.causes_delerium)
 			SEND_SIGNAL(src, COMSIG_MASQUERADE_VIOLATION)
