@@ -1,4 +1,4 @@
-/datum/splat/werewolf/proc/examine_other_human(mob/living/carbon/examined, list/examine_list)
+/datum/splat/werewolf/proc/examine_other_human(mob/living/carbon/examined)
 	var/datum/splat/werewolf/wolp_splat = iswerewolfsplat(examined)
 	if(wolp_splat)
 		var/list/honor_flavor = list("claim to good conduct", "claim to honor", "claim to chivalry")
@@ -16,10 +16,10 @@
 		switch(wolp_splat.renown_rank)
 			if(RANK_CUB to RANK_FOSTERN)
 				if(same_tribe)
-					examine_list += "<b>You know [examined.p_them()] as \a [fera_rank_name(wolp_splat.renown_rank)] of the [wolp_splat.tribe.name].</b>"
+					. += "<b>You know [examined.p_them()] as \a [fera_rank_name(wolp_splat.renown_rank)] of the [wolp_splat.tribe.name].</b>"
 					is_known = TRUE
 			if(RANK_ADREN to RANK_LEGEND)
-				examine_list += "<b>You know [examined.p_them()] as \a [fera_rank_name(wolp_splat.renown_rank)] [wolp_splat.auspice.name] of the [wolp_splat.tribe.name].</b>"
+				. += "<b>You know [examined.p_them()] as \a [fera_rank_name(wolp_splat.renown_rank)] [wolp_splat.auspice.name] of the [wolp_splat.tribe.name].</b>"
 				is_known = TRUE
 
 		if(is_known)

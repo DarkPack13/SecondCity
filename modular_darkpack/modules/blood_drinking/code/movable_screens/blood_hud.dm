@@ -38,8 +38,8 @@
 	var/mob/living/owner = hud?.mymob
 	if(!istype(owner))
 		return
-	var/emm = clamp(round((owner.bloodpool/owner.maxbloodpool)*10), 0, 10)
-	icon_state = "blood[emm]"
+	var/bp_amount = clamp(round((owner.bloodpool/owner.maxbloodpool)*10), 0, 10)
+	icon_state = "blood[bp_amount]"
 	return ..()
 
 /mob/living/proc/update_blood_hud()

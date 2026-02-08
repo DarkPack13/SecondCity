@@ -44,5 +44,5 @@
 	// WEREWOLF
 	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(user)
 	if(werewolf_splat && !(obscured_slots & HIDEFACE))
-		werewolf_splat.examine_other_human(src, .)
+		. += werewolf_splat.examine_other_human(src)
 	// WEREWOLF

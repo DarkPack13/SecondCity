@@ -31,16 +31,22 @@
 		"Lorem Ipsum",
 	)
 
-/*
 /datum/splat/werewolf/shifter/garou/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	to_add += list(list(
-		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "shield",
-		SPECIES_PERK_NAME = "Garou",
-		SPECIES_PERK_DESC = "Its a Garou.",
-	))
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_DOG,
+			SPECIES_PERK_NAME = "Shapeshifting",
+			SPECIES_PERK_DESC = "Garou can shift between 5 diffrent forms that grant them bonus.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_BAND_AID,
+			SPECIES_PERK_NAME = "Passive healing",
+			SPECIES_PERK_DESC = "Garou have a strong passive healing while outside of their breed form.",
+		)
+	)
 
 	return to_add
-*/

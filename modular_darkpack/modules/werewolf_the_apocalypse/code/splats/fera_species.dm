@@ -23,21 +23,23 @@
 	id = SPECIES_FERA
 	species_language_holder = /datum/language_holder/garou
 	screenshot_ignored = TRUE
-	var/biter = FALSE
 	var/mob_pixel_w
 	var/mob_pixel_z
+	/// Stats added and removed upon gaining the species
 	var/list/form_bonus_stats = list()
+	/// Dice roll difficulty required to shift into this form
 	var/shift_difficulty = 6
+	/// If update_body_parts is allowed to override the body render
 	var/custom_body_render = FALSE
+	/// If update_damage_parts is allowed to override the damage render
 	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
 	var/fallback_icon
+	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	if(biter)
-		human_who_gained_species.AddElement(/datum/element/force_paw)
 	if(speed_mod)
 		human_who_gained_species.add_movespeed_modifier(speed_mod)
 
@@ -48,8 +50,6 @@
 
 /datum/species/human/shifter/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
-	if(biter)
-		human.RemoveElement(/datum/element/force_paw)
 	if(speed_mod)
 		human.remove_movespeed_modifier(speed_mod)
 
@@ -222,7 +222,6 @@
 	)
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
-	biter = TRUE
 	form_bonus_stats = list(
 		STAT_STRENGTH = 3,
 		STAT_STAMINA = 3,
@@ -261,7 +260,6 @@
 	)
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
-	biter = TRUE
 	form_bonus_stats = list(
 		STAT_STRENGTH = 1,
 		STAT_STAMINA = 2,

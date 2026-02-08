@@ -48,9 +48,8 @@
 	// For special species interactions
 	dna.species.spec_life(src, seconds_per_tick)
 	// DARKPACK EDIT ADD START - SPLATS
-	if(splats)
-		for(var/datum/splat/splat in splats)
-			splat.splat_life(seconds_per_tick)
+	for(var/datum/splat/splat in splats)
+		splat.splat_life(seconds_per_tick)
 	// DARKPACK EDIT ADD END
 	return stat != DEAD
 

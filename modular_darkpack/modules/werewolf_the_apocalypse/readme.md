@@ -1,4 +1,4 @@
-https://github.com/DarkPack13/SecondCity/pull/122
+https://github.com/DarkPack13/SecondCity/pull/489
 
 ## \<Werewolf>
 
@@ -6,7 +6,7 @@ Module ID: WEREWOLF
 
 ### Description:
 
-This module is for the base fera subtype of humans, a generic class of humans that can transform into other things.
+This module contains all content from WTA that is strongly codependent, primarly due to its relation to the splat datum.
 
 ### TG Proc/File Changes:
 
@@ -16,11 +16,11 @@ This module is for the base fera subtype of humans, a generic class of humans th
 
 ### Defines:
 
-- N/A
+- `code/__DEFINES/~darkpack/fera/*`
 
 ### Included files that are not contained in this module:
 
-- N/A
+- `tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/character_preferences/darkpack_fur_color.tsx`
 
 ### Credits:
 

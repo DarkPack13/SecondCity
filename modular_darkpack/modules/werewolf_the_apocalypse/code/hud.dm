@@ -171,7 +171,7 @@
 	var/datum/splat/werewolf/shifter/shifting = isshifter(clicker)
 	var/list/modifiers = params2list(params)
 	// Right click for alt forms like glabro and hispo. Ctrl click to use rage to do it instantly (doesnt matter if its breed form tho)
-	shifting.transform_fera(LAZYACCESS(modifiers, RIGHT_CLICK) ? right_click_transform : left_click_transform, !!LAZYACCESS(modifiers, CTRL_CLICK))
+	shifting.transform_fera(LAZYACCESS(modifiers, RIGHT_CLICK) ? right_click_transform : left_click_transform, LAZYACCESS(modifiers, CTRL_CLICK))
 
 
 /atom/movable/screen/fera_transform/add_context(atom/source, list/context, obj/item/held_item, mob/user)
