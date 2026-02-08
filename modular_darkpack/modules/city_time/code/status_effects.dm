@@ -30,7 +30,7 @@
 	if(!kindred_owner)
 		return FALSE
 	// Humanity 10 vamps are immume to the light. atleast for the amount of time our day lasts.
-	if(!kindred_owner.enlightenment && (owner.st_get_stat(STAT_MORALITY) >= 10))
+	if(CONFIG_GET(flag/humanity_sunlight_resistance) && !kindred_owner.enlightenment && (owner.st_get_stat(STAT_MORALITY) >= 10))
 		return FALSE
 
 	to_chat(owner, span_danger("THE SUN SEARS YOUR FLESH"))
@@ -50,3 +50,5 @@
 	desc = "Get inside!"
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 	icon_state = "fire"
+
+/datum/config_entry/flag/humanity_sunlight_resistance
