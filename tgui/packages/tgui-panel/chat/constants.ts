@@ -39,7 +39,7 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
-export const MESSAGE_TYPE_SUBTLE = 'subtle'; // NOVA EDIT ADDITION
+export const MESSAGE_TYPE_SUBTLE = 'subtle'; // DARKPACK EDIT ADD
 
 type MessageType = {
   type: string;
