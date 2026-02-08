@@ -155,7 +155,9 @@
 	var/appearance_power_state = -1
 	// DARKPACK EDIT ADD START - STORYTELER_STATS
 	/// Stat define/typepath required for use of this device. No check if null
-	var/datum/st_stat/skill_required_for_use = STAT_TECHNOLOGY
+	var/datum/st_stat/skill_required_for_use
+	// 0 minimum means you have to have an active DEBUFF rather then just no dots.
+	// As this would otherwise be insanely frustating to apply to all devices and not representive of the tech skill.
 	/// You need ATLEAST this many dots in a skill to use.
 	var/skill_dots_minimum = 0 // DARKPACK EDIT ADD
 	// DARKPACK EDIT ADD END
