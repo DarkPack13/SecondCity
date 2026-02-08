@@ -48,9 +48,16 @@
 	/// This simply means if the flashlight can be cuffed to your hand (why?)
 	var/has_closed_handle = TRUE
 	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
+	// DARKPACK EDIT ADD START
+	var/technology = TRUE
+	// DARKPACK EDIT ADD END
 
 /obj/item/flashlight/Initialize(mapload)
 	. = ..()
+	// DARKPACK EDIT ADD START
+	if(technology)
+		ADD_TRAIT(src, TRAIT_MODERN_TECH, INNATE_TRAIT)
+	// DARKPACK EDIT ADD END
 	if(has_closed_handle)
 		AddElement(/datum/element/cuffable_item)
 	if(start_on)
@@ -112,6 +119,13 @@
 	return light_on != old_light_on // If the value of light_on didn't change, return false. Otherwise true.
 
 /obj/item/flashlight/attack_self(mob/user)
+	// DARKPACK EDIT ADD START
+	if(user && HAS_TRAIT(src, TRAIT_MODERN_TECH) && HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
+		to_chat(user, span_warning("You start interacting with [src]. Confounded machine..."))
+		if(!do_after(user, 1 TURNS, src))
+			to_chat(user, span_warning("Bah! You didn't need the machine anyways."))
+			return
+	// DARKPACK EDIT ADD END
 	return toggle_light(user)
 
 /obj/item/flashlight/attack_hand_secondary(mob/user, list/modifiers)
@@ -436,6 +450,7 @@
 	icon_state = "bananalamp"
 	inhand_icon_state = null
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
+	technology = FALSE // DARKPACK EDIT ADD
 
 // FLARES
 /obj/item/flashlight/flare
@@ -587,7 +602,7 @@
 	light_range = 2
 	light_power = 1.5
 	light_color = LIGHT_COLOR_FIRE
-	fuel = 35 MINUTES
+	fuel = 1 HOURS // DARKPACK EDIT CHANGE - (QOL for longer candles)
 	randomize_fuel = FALSE
 	trash_type = /obj/item/trash/candle
 	can_be_extinguished = TRUE

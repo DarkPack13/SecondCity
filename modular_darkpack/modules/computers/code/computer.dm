@@ -51,6 +51,11 @@ GLOBAL_LIST_EMPTY(vampire_computers)
 
 /obj/vampire_computer/attack_hand(mob/user)
 	. = ..()
+	if(HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
+		to_chat(user, span_warning("You start interacting with [src]. Confounded machine..."))
+		if(!do_after(user, 1 TURNS, src))
+			to_chat(user, span_warning("Bah! You didn't need the machine anyways."))
+			return
 	ui_interact(user)
 
 /obj/vampire_computer/Destroy()
