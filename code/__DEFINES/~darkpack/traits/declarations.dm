@@ -109,9 +109,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// They have warped time at some point in this round
 #define TRAIT_TIMEWARPER "timewarper"
 
-/// A item that requires knoladge of modern tech to opperate (And thus lasombra find great difficulty in operating)
-#define TRAIT_MODERN_TECH "modern_tech"
-
 // Is the Vampire currently hungry? Hunger is defined at a bloodpool rating of 7 - self control (if humanity alignment) or instincts (enlightenment alignment)
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
