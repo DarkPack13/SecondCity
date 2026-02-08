@@ -294,7 +294,7 @@
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
 
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
@@ -336,7 +336,7 @@
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b>[space][self_message]") // May make more sense as "You do x" // DARKPACK EDIT, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
+		self_message = span_emote("<b>[src]</b>[space][self_message]") // May make more sense as "You do x" // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(visible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
@@ -366,7 +366,7 @@
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
 			continue
@@ -398,7 +398,7 @@
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b>[space][self_message]") // DARKPACK EDIT, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
+		self_message = span_emote("<b>[src]</b>[space][self_message]") // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(audible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
