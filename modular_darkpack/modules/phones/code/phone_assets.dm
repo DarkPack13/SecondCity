@@ -1,5 +1,5 @@
 
-/datum/asset/simple/phone_backgrounds
+/datum/asset/simple/phone_assets
 	legacy = TRUE
 	assets = list(
 		"ahmetyuksek_snowy_mountain_9987520_1280.webp" = 'modular_darkpack/modules/phones/icons/backgrounds/ahmetyuksek_snowy_mountain_9987520_1280.webp',
@@ -20,4 +20,6 @@
 		"stocksnap_bokeh_lights_2592859_1280.webp" = 'modular_darkpack/modules/phones/icons/backgrounds/stocksnap_bokeh_lights_2592859_1280.webp',
 		"tarry_not_phone_wallpaper_7336374_1280.webp" = 'modular_darkpack/modules/phones/icons/backgrounds/tarry_not_phone_wallpaper_7336374_1280.webp',
 		"thewhiteclouds_trees_9124293_1280.webp" = 'modular_darkpack/modules/phones/icons/backgrounds/thewhiteclouds_trees_9124293_1280.webp',
+		//browser assets
+		"endron_logo.webp" = 'modular_darkpack/modules/phones/icons/browser/endron_logo.webp',
 	)

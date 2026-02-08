@@ -283,10 +283,11 @@ export const ScreenHome = (props: {
             </Stack.Item>
             <Stack.Item>
               <AppIcon
-                backgroundColor="#fff"
-                text="Notes"
-                iconName="file-invoice"
-                iconColor="yellow"
+                backgroundColor="#4a90e2"
+                text="EndPost"
+                iconName="bullhorn"
+                iconColor="white"
+                onClick={() => setApp(NavigableApps.Endpost)}
               />
             </Stack.Item>
           </Stack>
@@ -360,7 +361,7 @@ export const ScreenHome = (props: {
                 text="Browser"
                 iconName="globe-americas"
                 iconColor="black"
-                onClick={() => act('wiki')}
+                onClick={() => setApp(NavigableApps.Browser)}
               />
             </Stack.Item>
           </Stack>

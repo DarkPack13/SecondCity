@@ -7,6 +7,7 @@ import { ContactElement } from './ScreenContacts';
 
 export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
   const { onClick } = props;
+  const { act, data } = useBackend<Data>();
   const [caps, setCaps] = useState(false);
   const [showSymbols, setShowSymbols] = useState(false);
   const [keyboardVisible, setKeyboardVisible] = useState(true);
@@ -14,6 +15,7 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
   const keyHandler = (key: string) => {
     if (onClick) {
       onClick(key);
+      act('keyboard_click')
     }
   };
 

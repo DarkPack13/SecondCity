@@ -10,7 +10,6 @@
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-
 	// Who owns this phone on initialization?
 	var/datum/weakref/owner_weakref
 	// There's a radio in my phone that calls me stud muffin.
@@ -61,6 +60,7 @@
 	var/current_viewed_conversation = null
 	var/phone_background = ""
 	var/custom_background = null // ori's request to add a custom background URL
+	var/endpost_username = null //username for the endpost app
 
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
@@ -198,7 +198,7 @@
 
 /obj/item/smartphone/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	var/datum/asset/background_files = get_asset_datum(/datum/asset/simple/phone_backgrounds)
+	var/datum/asset/background_files = get_asset_datum(/datum/asset/simple/phone_assets)
 	if(user.client)
 		background_files.send(user.client)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -206,7 +206,7 @@
 		ui = new(user, src, "Telephone")
 		ui.open()
 
-/obj/item/smartphone/ui_data(mob/user)
+/obj/item/smartphone/ui_data(mob/living/user)
 	var/list/data = list()
 	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
 	data["no_sim_card"] = (phone_flags & PHONE_NO_SIM) ? TRUE : FALSE
@@ -296,6 +296,10 @@
 		data["current_conversation_messages"] = format_conversation(current_viewed_conversation)
 	else
 		data["current_conversation_messages"] = list()
+
+	data["posts"] = SSphones.endpost_posts
+	data["endpost_username"] = endpost_username
+	data["show_endpost_registration"] = !endpost_username || user.st_get_stat(STAT_TECHNOLOGY) >= 3 //only let big brains change their usernames
 
 	return data
 
@@ -475,13 +479,30 @@
 			if(!conversation)
 				conversation = new(current_viewed_conversation)
 			return TRUE
+
+		if("submit_post")
+			submit_post(params["body"])
+			return TRUE
+
+		if("endpost_registration")
+			endpost_registration()
+			return TRUE
+
+		if("keyboard_click")
+			if(ringer)
+				playsound(loc, 'modular_darkpack/modules/phones/sounds/keyboard_click.ogg', 8, TRUE)
+			return TRUE
+
 		if("send_message")
 			var/contact_number = params["contact_number"]
 			var/message_text = params["message_text"]
 			if(!contact_number || !message_text)
 				return FALSE
 			send_text_message(contact_number, message_text)
+			if(ringer)
+				playsound(loc, 'modular_darkpack/modules/phones/sounds/text_send.ogg', 10, TRUE)
 			return TRUE
+
 	return FALSE
 
 /obj/item/smartphone/proc/get_conversation(contact_number)
@@ -510,7 +531,15 @@
 			recv_conversation = new(recv_contact_name, sim_card.phone_number)
 			receiving_phone.conversations += recv_conversation
 		recv_conversation.add_message(message_text, FALSE)
+		addtimer(CALLBACK(receiving_phone, PROC_REF(after_text_received)), rand(2 SECONDS, 6 SECONDS)) //simulate random delay before sending an audible/visible alert
+		receiving_phone.after_text_received()
+	return TRUE
 
+//stuff to do after a text is received
+/obj/item/smartphone/proc/after_text_received()
+	if(ringer) //only play the receive sound if sounds are on
+		playsound(loc, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 10, TRUE)
+		balloon_alert_to_viewers(message = "New Message!", vision_distance = SAMETILE_MESSAGE_RANGE)
 	return TRUE
 
 /obj/item/smartphone/proc/format_conversation(contact_number)
@@ -539,3 +568,26 @@
 	icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
 	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "phone_on" : "phone"
 	update_icon()
+
+/obj/item/smartphone/proc/submit_post(body)
+	if(!body)
+		return FALSE
+
+	if(!endpost_username)
+		return FALSE
+
+	var/new_post = list(
+		"body" = trim(body),
+		"date" = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]",
+		"time" = station_time_timestamp("hh:mm"),
+		"author" = endpost_username
+	)
+
+	UNTYPED_LIST_ADD(SSphones.endpost_posts, new_post)
+
+	return TRUE
+
+/obj/item/smartphone/proc/endpost_registration()
+	var/new_username = tgui_input_text(usr, "Choose your username:", "EndPost Registration", "", 14) //max size of 14 chars or it starts bumping elements around
+	endpost_username = new_username
+	return TRUE

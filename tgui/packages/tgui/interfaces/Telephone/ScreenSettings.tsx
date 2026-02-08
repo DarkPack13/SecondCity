@@ -65,8 +65,8 @@ const batteryHours = Math.floor(Math.random() * 5) + 1;
         name: 'Sound & vibration',
         description: 'Volume, vibration, Do Not Disturb',
         icon: 'volume-up',
-        functional: false,
-        action: () => null,
+        functional: true,
+        action: () => setApp(NavigableApps.SoundSettings),
       },
       {
         name: 'Notifications',
