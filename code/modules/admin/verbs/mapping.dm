@@ -212,10 +212,9 @@ ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "G
 		var/icon/job_icon = get_flat_existing_human_icon(mannequin, list(SOUTH))
 		final.Insert(job_icon, job_datum.title, frame = 1)
 	qdel(mannequin)
-	final.Insert(icon('modular_darkpack/modules/jobs/icons/landmarks_static.dmi', ""), "")
-	//Also add the x
-	for(var/x_number in 1 to 4)
-		final.Insert(icon('icons/hud/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")
+	final.Insert(icon('modular_darkpack/modules/jobs/icons/landmarks_static.dmi', "x"), "x")
+	final.Insert(icon('icons/hud/screen_gen.dmi', "x", ""))
+
 	fcopy(final, "modular_darkpack/modules/jobs/icons/landmarks.dmi")
 // DARKPACK EDIT CHANGE END
 
