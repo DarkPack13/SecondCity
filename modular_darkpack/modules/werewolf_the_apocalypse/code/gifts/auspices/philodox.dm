@@ -49,9 +49,9 @@
 	if(isgarou(victim) || iskinfolk(victim))
 		var/secondary_descriptor = "[pick(wyld_descriptors)]"
 		switch(target_splat.tribe)
-			if(TRIBE_GLASSWALKERS)
+			if(TRIBE_GLASS_WALKERS)
 				secondary_descriptor = "[pick(weaver_descriptors)]"
-			if(TRIBE_BONEGNAWERS)
+			if(TRIBE_BONE_GNAWERS)
 				secondary_descriptor = "[pick(weaver_descriptors)]"
 			if(TRIBE_BLACK_SPIRAL_DANCERS)
 				secondary_descriptor = "[pick(wyrm_descriptors)]"

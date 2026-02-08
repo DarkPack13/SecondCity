@@ -175,16 +175,16 @@
 	light_color = "#00CEC8"
 
 /obj/structure/werewolf_totem/bone_gnawer
-	name = "\improper " + TRIBE_BONEGNAWERS + " totem"
+	name = "\improper " + TRIBE_BONE_GNAWERS + " totem"
 	light_color = "#FFA500"
-	tribes = list(TRIBE_BONEGNAWERS)
+	tribes = list(TRIBE_BONE_GNAWERS)
 
 /obj/structure/werewolf_totem/glasswalker
-	name = "\improper " + TRIBE_GLASSWALKERS + " totem"
+	name = "\improper " + TRIBE_GLASS_WALKERS + " totem"
 	icon_state = "glassw"
 	base_icon_state = "glassw"
 	light_color = "#35b0ff"
-	tribes = list(TRIBE_GLASSWALKERS)
+	tribes = list(TRIBE_GLASS_WALKERS)
 
 /obj/structure/werewolf_totem/spiral
 	name = "spiral totem"

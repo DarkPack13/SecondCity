@@ -34,7 +34,7 @@
 	tribe_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/glasswalkers
-	name = TRIBE_GLASSWALKERS
+	name = TRIBE_GLASS_WALKERS
 	desc = "The closest to the Weaver, they find themselves deeply entrenched in modern human society, religion, technology and cities. Every new invention and every new discovery is one that aids the Glass Walkers, instead of impeding them."
 	// gifts_provided = list(
 	// 	/datum/action/gift/smooth_move = 1,
@@ -44,7 +44,7 @@
 	tribe_keys = /obj/item/vamp/keys/techstore
 
 /datum/subsplat/werewolf/tribe/garou/bonegnawers
-	name = TRIBE_BONEGNAWERS
+	name = TRIBE_BONE_GNAWERS
 	desc = "Survivors and scavengers, often destitute and homeless. The Gnawers are seen as mongrels who live off scraps, but they know better. They're the true survivors, patiently waiting for their moment to strike against overconfident foes."
 	// gifts_provided = list(
 	// 	/datum/action/gift/guise_of_the_hound = 1,
@@ -84,7 +84,7 @@
 	tribe_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/silentstriders
-	name = TRIBE_SILENTSTRIDERS
+	name = TRIBE_SILENT_STRIDERS
 	desc = "Highly spiritual nomads, the Silent Striders have headed deeper and longer into the depths of the Umbra than any other tribe."
 	// gifts_provided = list(
 	// 	/datum/action/gift/stoic_pose = 1,
