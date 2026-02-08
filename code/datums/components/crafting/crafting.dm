@@ -243,6 +243,8 @@
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter
+			if(CONFIG_GET(flag/punishing_zero_dots) && human_crafter.st_get_stat(STAT_CRAFTS) < 1)
+				return ", you dont know how to craft!"
 			recipe_time = recipe_time / human_crafter.st_get_stat(STAT_CRAFTS)
 		// DARKPACK EDIT ADD END
 

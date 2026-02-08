@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - admin: "vv dropdown for adding and removing splats"
-  - code_imp: "replaces species with splats in prefrences"

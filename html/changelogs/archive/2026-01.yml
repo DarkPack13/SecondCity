@@ -51,92 +51,6 @@
   - code_imp: two additional levels of fog density added to effects.dm
   - map: lots of updatepath fixes
 2026-01-16:
-  FalloutFalcon:
-  - map: gave anarchs, cammies, and police, radio tranceivers on Westfield Mall
-  - bugfix: Platforms/low-walls now layer under tables again
-  chazzyjazzy:
-  - bugfix: ' the last tfn updatepaths'
-  dwinters99:
-  - sound: pause menu sounds from bloodlines
-2026-01-17:
-  Beautiful TG coders:
-  - code_imp: TG Pull. Thank you TG.
-  FalloutFalcon:
-  - rscadd: Readds estrogen pill bottles. But you will no longer receive them in the
-      mail
-  chazzyjazzy:
-  - code_imp: reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger',
-      reasons to stat into virtues
-  - refactor: moved humanity and morality to storyteller stats system
-2026-01-18:
-  Rosychu:
-  - bugfix: Changes the Rubber Pig's description from  "Klim Sanych, zdravstvuite."
-      to "Do not."
-  chazzyjazzy:
-  - rscadd: adds wallets, concealed carry permits, and drivers licenses
-2026-01-19:
-  Marshmellow105:
-  - rscadd: adds fbi access and associated keys
-  dwinters99:
-  - bugfix: op console is lorefriendly
-  - bugfix: crinos_beast has a death sprite and new clothing variants
-  - config: max character slots config
-  - bugfix: bullets no longer illuminate darkness
-  - spellcheck: crinos_beast name lowercased
-  - rscadd: crinos beast clothing variants
-  - bugfix: flamethrower onfloor
-  - bugfix: gangrel hands rotational work
-2026-01-21:
-  FalloutFalcon:
-  - rscadd: Readds most VTM supply packs
-  - rscdel: Removes old illfitting TG supplypacks
-  - code_imp: Credits has been swapped to dollars
-  Odisurin:
-  - rscadd: Added three traditional oil paintings and a Shrine sprite to the Chinatown
-      file
-  chazzyjazzy:
-  - code_imp: readds serpentis
-2026-01-22:
-  FalloutFalcon:
-  - bugfix: fixes some issues with umbra background not appearing in the umbra
-  - qol: some qol for transfer points including allowing ghosts to use them
-  Pluvifera:
-  - bugfix: fixed black bags showing as error sprites in any other state than worn
-  - image: Added black_bag sprites back into their relevant .dmi's
-  - bugfix: fixed how many slots are allowed in the holster(added 1), so that that
-      detectives can stow all the magazines with which they spawn.
-  Stutternov:
-  - rscadd: Adds new double barrel shotgun w/ sprites
-  - rscadd: Adds new lever action .44 rifle w/ sprites
-  - rscadd: Adds new .75 caliber musket and cartridge's for it w/ sprites
-  - rscadd: Adds all new guns to the
-  - sound: Added new fire sounds for lever action and musket
-  - sound: Added new 'bolt'-sounds for the lever action mechanism.
-  lpeapnni:
-  - code_imp: changed lists into alists for phone contact stuff
-2026-01-23:
-  FalloutFalcon:
-  - map: All mapped doors work off of helpers rather then varedits
-  chazzyjazzy:
-  - rscadd: firearms stat roll to reduce recoil
-  - bugfix: generation on prefs menu added back
-  - rscadd: claimable darkpack cars
-  ElGitificador:
-  - bugfix: fixed bear suit not hiding hands
-  Hardly:
-  - bugfix: Fixed hair dyes returning a TGUI error when trying to dye a hair.
-  JohnFulpWillard:
-  - bugfix: PDA's ring again.
-  Melbert:
-  - bugfix: Surgical state applied by wounds no longer persist after fix
-  SmArtKar:
-  - bugfix: Fixes digitigrade (and some other unique) limbs not being butcherable
-  - image: Digitigrade limbs now have unique bone sprites when butchered
-  lelandkemble:
-  - qol: Ghost health and chem scanning displays after examine information rather
-      than before
-  - map: AI satellite accesses have been made more consistent across maps.
-2026-01-16:
   ArcaneMusic:
   - bugfix: The Express Cargo Console can no longer buy goodie items.
   - rscadd: The Express Cargo console can bypass the goodie purchasing protection
@@ -219,6 +133,16 @@
   - map: CATWALK - Security expanded
   - map: CATWALK - AI Sat fortified similar to Meta and other maps
   - map: CATWALK - See full change log in PR
+2026-01-17:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - rscadd: Readds estrogen pill bottles. But you will no longer receive them in the
+      mail
+  chazzyjazzy:
+  - code_imp: reintroduces frenzy and morality paths, degeneration rolls, blood 'hunger',
+      reasons to stat into virtues
+  - refactor: moved humanity and morality to storyteller stats system
 2026-01-18:
   Arturlang:
   - bugfix: fixes star touch's cosmic bean making the victim forever unable to teleport
@@ -345,3 +269,65 @@
   - bugfix: Killing yourself in various other ways that gib or dust you will no longer
       delete the items you were wearing, consistent with most of the other ways of
       killing yourself that gib or dust you.
+2026-01-23:
+  ElGitificador:
+  - bugfix: fixed bear suit not hiding hands
+  FalloutFalcon:
+  - map: All mapped doors work off of helpers rather then varedits
+  Hardly:
+  - bugfix: Fixed hair dyes returning a TGUI error when trying to dye a hair.
+  JohnFulpWillard:
+  - bugfix: PDA's ring again.
+  Melbert:
+  - bugfix: Surgical state applied by wounds no longer persist after fix
+  SmArtKar:
+  - bugfix: Fixes digitigrade (and some other unique) limbs not being butcherable
+  - image: Digitigrade limbs now have unique bone sprites when butchered
+  chazzyjazzy:
+  - rscadd: firearms stat roll to reduce recoil
+  - bugfix: generation on prefs menu added back
+  - rscadd: claimable darkpack cars
+  lelandkemble:
+  - qol: Ghost health and chem scanning displays after examine information rather
+      than before
+  - map: AI satellite accesses have been made more consistent across maps.
+2026-01-24:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - admin: vv dropdown for adding and removing splats
+  - code_imp: replaces species with splats in prefrences
+  - map: Adds three modular rooms in the sewers of the mall
+  chazzyjazzy:
+  - bugfix: vampires that play citizen or sabbat now spawn with their clan clothes
+      rather than the greytider jumpsuit
+  - qol: any character with occult 3 or greater can identify occult artifacts and
+      use them
+  - balance: makes lockpicking and breaking doors down harder
+  - balance: Sabbat faction now has 8 slots instead of 4
+  - bugfix: Sabbat characters now spawn with the vinculum icon
+  - bugfix: Zombies now check to see if theres a graveyard worker before spawning
+  - rscadd: added a few extra lockaccesses including BH and Lasombra Primogen, Hunters
+      and Baron
+  lelandkemble:
+  - map: The last full wooden barricades on top of dense objects have been excised
+2026-01-28:
+  FalloutFalcon:
+  - bugfix: some areas should be outdoors again properly (like the upper sections
+      of the map)
+  - bugfix: fixes swapping stats around while spawned in
+  - bugfix: prevents swapping character slots to avoid stuff like masquarde being
+      dinged to the wrong character
+  - qol: bonus die on character sheet is displayed in white
+  - config: hardlocking things due to 0 dot abilites moved to config (off by default)
+  theselfish:
+  - rscadd: Loadout Masks now exist.
+2026-01-30:
+  XeonMations:
+  - bugfix: Fixes records showing species.
+  - map: added the ability to have multiple umbra choices based off json map config
+2026-01-31:
+  FalloutFalcon:
+  - bugfix: Spirit chime can now be placed on walls and floors
+  - bugfix: Spirit chime now detects auspex avatars again
+  - bugfix: Handling for placing spirit chime on table is much less jank

@@ -12,6 +12,21 @@
 	job_flags = CITY_JOB_FLAGS
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 	minimal_masquerade = 0
+	alt_titles = list(
+		"Citizen",
+		"Private Investigator",
+		"Private Security",
+		"Tourist",
+		"Visitor",
+		"Entertainer",
+		"Entrepreneur",
+		"Contractor",
+		"Fixer",
+		"Lawyer",
+		"Attorney",
+		"Paralegal",
+	)
+
 
 /datum/outfit/job/vampire/citizen
 	name = JOB_CITIZEN
