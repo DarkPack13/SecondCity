@@ -50,6 +50,8 @@
 	ntransform.Scale(1.1, 1.1)
 	animate(owner, transform = ntransform, color = "#000000", time = time_to_transform * 0.9)
 
+	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
 	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform, time_to_transform), time_to_transform * 0.9)
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()

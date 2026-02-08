@@ -36,6 +36,10 @@
 	var/fallback_icon
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
+	/// Causes delerium, which if the user is affected by, does not cause breaches
+	var/causes_delerium
+	/// IF this form can be witnessed, causes masqurade breaches
+	var/veil_breaching_form = FALSE
 
 /datum/species/human/shifter/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
@@ -131,6 +135,7 @@
 	)
 	shift_difficulty = 7
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
+	veil_breaching_form = TRUE
 
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
@@ -172,6 +177,8 @@
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
+	causes_delerium = TRUE
+	veil_breaching_form = TRUE
 
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -208,6 +215,7 @@
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
 	)
+	veil_breaching_form = TRUE
 
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
