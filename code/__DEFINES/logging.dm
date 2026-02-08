@@ -121,7 +121,7 @@
 #define LOG_CATEGORY_VIRUS "virus"
 #define LOG_CATEGORY_CAVE_GENERATION "cave-generation"
 #define LOG_CATEGORY_STATS "stats" // DARKPACK EDIT ADD - logging stats to prevent abuse
-#define LOG_CATEGORY_SUBTLE "subtle" // DARKPACK EDIT ADD - subtle emote logging
+#define LOG_CATEGORY_SUBTLE "subtle" // DARKPACK EDIT ADD - SUBTLE
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"
