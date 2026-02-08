@@ -50,8 +50,7 @@
 // DARKPACK EDIT ADD - blood increments bloodpool
 /datum/reagent/blood/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-
-	if(isghoul(affected_mob) || iskindred(affected_mob))
+	if((!istype(src, /datum/reagent/blood/vitae)) && iskindred(affected_mob))
 		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
 // DARKPACK EDIT ADD END
 

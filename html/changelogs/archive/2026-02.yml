@@ -26,3 +26,16 @@
 2026-02-06:
   XeonMations:
   - spellcheck: Renamed Police Chief to Police Captain
+2026-02-07:
+  Marshmellow105:
+  - rscadd: stone halfwall decal for use on stairs to feign depth
+  XeonMations:
+  - bugfix: Fixed kindred having access to infinite bloodheal
+  - balance: Fixed kindred damage modifiers to 2x burn and 0.5x brute
+  dwinters99, FalloutFalcon:
+  - bugfix: despessed tips
+2026-02-08:
+  Knightscholar:
+  - bugfix: Fixes the reference to the Toreador Beretta
+  XeonMations:
+  - bugfix: Fixed ghouls being able to regenerate BP by drinking normal human blood

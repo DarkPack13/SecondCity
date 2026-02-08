@@ -1,5 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - bugfix: "Fixed kindred having access to infinite bloodheal"
-  - balance: "Fixed kindred damage modifiers to 2x burn and 0.5x brute"
