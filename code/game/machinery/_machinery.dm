@@ -753,7 +753,7 @@
 			to_chat(user, span_warning("[src] requires atleast [skill_dots_minimum] dots in [skill_required_for_use::name] for proper use."))
 			bad_at_device = TRUE
 
-		if(HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
+		if(skill_dots_minimum > 0 && HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
 			if(skill_required_for_use in list(STAT_COMPUTER, STAT_TECHNOLOGY))
 				bad_at_device = TRUE
 
