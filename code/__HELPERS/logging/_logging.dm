@@ -147,6 +147,8 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		// DARKPACK EDIT ADD START - STORYTELLER_STATS
 		if(LOG_STATS)
 			log_stats(log_text, data)
+		if(LOG_PHONE)
+			log_phone(log_text, data)
 		// DARKPACK EDIT ADD END
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")

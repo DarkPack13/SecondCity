@@ -138,6 +138,14 @@ export const ScreenContacts = (props: {
                     );
                   }}
                 />
+                <MenuBar.Dropdown.MenuItem
+                  displayText={
+                    'Add Contact'
+                  }
+                  onClick={() => {
+                    act('add_contact');
+                  }}
+                />
               </MenuBar.Dropdown>
             </MenuBar>
             <Stack.Item grow>Contacts</Stack.Item>

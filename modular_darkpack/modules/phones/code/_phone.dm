@@ -164,6 +164,7 @@
 		return CLICK_ACTION_BLOCKING
 	if(do_after(user, 2 SECONDS, src))
 		balloon_alert(user, "you remove \the [sim_card]!")
+		log_phone("[key_name(usr)] removed a SIM card with the number [sim_card.phone_number].")
 		switch(current_state)
 			if(PHONE_CALLING)
 				hang_up_phone_call(dialed_number)
@@ -188,6 +189,7 @@
 		user.transferItemToLoc(attacking_item, src)
 		sim_card.phone_weakref = WEAKREF(src)
 		phone_flags &= ~PHONE_NO_SIM
+		log_phone("[key_name(usr)] inserted a SIM card with the number [sim_card.phone_number].")
 		return TRUE
 	return ..()
 
@@ -310,6 +312,7 @@
 	switch(action)
 		if("call")
 			start_phone_call(usr, params["number"])
+			log_phone("[key_name(usr)] called [params["number"]].")
 			return TRUE
 
 		if("hang")
@@ -321,10 +324,12 @@
 
 		if("accept")
 			accept_phone_call(usr)
+			log_phone("[key_name(usr)] answered a phone call.")
 			return TRUE
 
 		if("decline")
 			decline_phone_call()
+			log_phone("[key_name(usr)] declined a phone call.")
 			return TRUE
 
 		if("publish_number")
@@ -345,11 +350,13 @@
 			to_chat(usr, span_notice("Your number is now published."))
 			sim_card.published = TRUE
 			sim_card.published_name = name
+			log_phone("[key_name(usr)] published their number ([name])/[sim_card.phone_number] to the phonebook.")
 			return TRUE
 
 		if("unpublish_number")
 			for(var/contact as anything in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
+					log_phone("[key_name(usr)] unpublished their number ([contact])/[sim_card.phone_number] from the phonebook.")
 					SSphones.published_phone_numbers.Remove(contact)
 					sim_card.published = FALSE
 					sim_card.published_name = null
@@ -363,24 +370,25 @@
 				to_chat(usr, span_danger("You must input a URL to set a custom background."))
 				return
 			phone_background = custom_background
+			log_phone("[key_name(usr)] set a custom background image on [src]: [custom_background]")
 			return TRUE
 
 		if("add_contact")
-			var/number = params["number"]
+			var/number = tgui_input_text(usr, "Input number", "Add Contact")
 			if(length(number) > 15)
 				to_chat(usr, span_danger("Entered number is too long"))
-				return
+				return FALSE
 			var/stripped_number = replacetext(number, " ", "") // remove spaces
 			var/new_contact_name = tgui_input_text(usr, "Input name", "Add Contact")
-			if(!new_contact_name)
-				to_chat(usr, span_danger("You must input a name to add a contact."))
-				return
+			if(!new_contact_name || !number)
+				to_chat(usr, span_danger("You must provide both a name and a number."))
+				return FALSE
 
 			var/datum/phonecontact/new_contact = new()
 			new_contact.number = "[stripped_number]"
 			new_contact.name = "[new_contact_name]"
 			contacts += new_contact
-
+			log_phone("[key_name(usr)] added a new contact: [new_contact_name] ([stripped_number])")
 			return TRUE
 
 		if("remove_contact")
@@ -388,16 +396,18 @@
 			for(var/datum/phonecontact/contact in contacts)
 				if(contact.name == name)
 					contacts -= contact
+					log_phone("[key_name(usr)] removed a contact: [name]")
 					return TRUE
 			return FALSE
 
 		if("block")
-			var/block_number = params["number"]
+			var/block_number = tgui_input_text(usr, "Input number to block", "Block Contact")
 			if(!block_number)
 				to_chat(usr, span_warning("You must provide a number."))
+				return FALSE
 			if(length(block_number) > 15)
 				to_chat(usr, span_warning("Invalid number."))
-				return
+				return FALSE
 
 			var/datum/phonecontact/blocked_contact = new()
 			block_number = replacetext(block_number, " ", "")
@@ -407,7 +417,10 @@
 			return TRUE
 
 		if("unblock")
-			var/result = params["name"]
+			var/result = tgui_input_text(usr, "Input number to unblock", "Unblock Contact")
+			if(!result)
+				to_chat(usr, span_warning("You must provide a number."))
+				return FALSE
 			for(var/datum/phonecontact/unblocked_contact in blocked_contacts)
 				if(unblocked_contact.name == result)
 					blocked_contacts -= unblocked_contact
@@ -417,7 +430,7 @@
 		if("delete_call_history")
 			if(!length(phone_history_list))
 				to_chat(usr, span_danger("You have no call history to delete."))
-				return
+				return FALSE
 
 			to_chat(usr, "Your total amount of history saved is: [length(phone_history_list)]")
 			var/number_of_deletions = tgui_input_number(usr, "Input the amount that you want to delete", "Deletion Amount", max_value = length(phone_history_list))
@@ -488,6 +501,17 @@
 			endpost_registration()
 			return TRUE
 
+		if("remove_endpost")
+			var/post_index = text2num(params["post_index"])
+			if(!post_index)
+				to_chat(usr, "Invalid post index.")
+				return FALSE
+			var/list/selected_post = SSphones.endpost_posts[post_index]
+			SSphones.endpost_posts.Cut(post_index, post_index + 1)
+			to_chat(usr, "Post [selected_post["body"]] removed.")
+			log_phone("[key_name(usr)] removed an endpost: [selected_post["body"]] by [selected_post["author"]]", list("author" = selected_post["author"], "body" = selected_post["body"]))
+			return TRUE
+
 		if("keyboard_click")
 			if(ringer)
 				playsound(loc, 'modular_darkpack/modules/phones/sounds/keyboard_click.ogg', 8, TRUE)
@@ -533,6 +557,7 @@
 		recv_conversation.add_message(message_text, FALSE)
 		addtimer(CALLBACK(receiving_phone, PROC_REF(after_text_received)), rand(2 SECONDS, 6 SECONDS)) //simulate random delay before sending an audible/visible alert
 		receiving_phone.after_text_received()
+		log_phone("[key_name(usr)] sent a text to [contact_number]: [message_text]", list("sender" = contact_name, "receiver" = recv_contact_name, "message" = message_text))
 	return TRUE
 
 //stuff to do after a text is received
@@ -584,10 +609,15 @@
 	)
 
 	UNTYPED_LIST_ADD(SSphones.endpost_posts, new_post)
+	log_phone("[key_name(usr)] submitted a new endpost: [trim(body)] as [endpost_username]")
 
 	return TRUE
 
 /obj/item/smartphone/proc/endpost_registration()
 	var/new_username = tgui_input_text(usr, "Choose your username:", "EndPost Registration", "", 14) //max size of 14 chars or it starts bumping elements around
+	log_phone("[key_name(usr)] [endpost_username ? "updated" : "registered"] their username as [new_username]")
 	endpost_username = new_username
 	return TRUE
+
+/proc/log_phone(text, list/data)
+	logger.Log("phone", text, data)

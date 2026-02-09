@@ -199,12 +199,12 @@ return (
                                         {post_content.date}<br></br>{convertTo12Hour(post_content.time)}
                                     </Box>
                                     <Button
-                                        onClick={() => act('remove_endpost', { post: post_content })}
+                                        onClick={() => act('remove_endpost', { post_index: posts.length - index })}
                                         color="red"
                                         ml={1}
                                         style={{ fontSize: '0.7em', padding: '0.3em 0.6em' }}
                                     >
-                                        X
+                                        {is_admin ? "X" : ""}
                                     </Button>
                                 </Stack>
                                 <Box style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
