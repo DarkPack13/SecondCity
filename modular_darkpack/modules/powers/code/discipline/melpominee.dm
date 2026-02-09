@@ -28,7 +28,7 @@
 	drift = generator(GEN_VECTOR, list(0, -0.05), list(0, 0.1))
 
 /**
- * • The Missing Voice
+ * • The Missing Voice - p453
  *
  * The character can “throw” her voice anywhere within her line of sight. This enables the Daughter to carry on surreptitious conversations,
  * sing duets with herself, or cause any number of distractions. This power can also be combined with other Melpominee powers to
@@ -75,7 +75,7 @@
 	QDEL_IN(dummy, 2 TURNS)
 
 /**
- * •• Phantom Speaker
+ * •• Phantom Speaker  - p453
  *
  * The Daughter can project her voice to any individual she has personally met. Distance is no object,
  * but it must be night wherever the target presently is. The vampire can sing, talk, or otherwise project her voice in
@@ -112,7 +112,7 @@
 		if(character == owner)
 			continue
 		if(owner.mind.guestbook.known_names[character.real_name] && character.client)
-			character += targets
+			targets += character
 
 	var/mob/living/target = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
 	if(!target)
@@ -154,7 +154,7 @@
 	last_guy = target
 
 /**
- * ••• Madrigal
+ * ••• Madrigal - p453-454
  *
  * Music has the power to sway the listener, engendering specific emotions through artful lyrics, pounding crescendo,
  * or haunting melody. The Daughters of Cacophony can tap into music’s power, forcing listeners to feel whatever they wish. The emotion becomes so
@@ -204,7 +204,7 @@
 	audience = list()
 
 /**
- * •••• Siren's Beckoning
+ * •••• Siren's Beckoning  - p454
  *
  * The Daughters of Cacophony don’t spread madness as surely (or as visibly) as the Malkavians, but their songs are definitely
  * detrimental to one’s sanity. With this power, the Daughter can drive any listener to madness. Most of the time, the victim is
@@ -242,7 +242,7 @@
 	channel(target)
 
 	if(!particle_generator)
-		particle_generator = new(src, /particles/melpominee, PARTICLE_ATTACH_MOB) // TODO: make this work
+		particle_generator = new(owner, /particles/melpominee, PARTICLE_ATTACH_MOB) // TODO: make this work
 
 /datum/discipline_power/melpominee/sirens_beckoning/proc/channel(mob/living/carbon/listener)
 	var/our_power = SSroll.storyteller_roll((owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE)), listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
@@ -274,8 +274,37 @@
 	to_chat(target, span_purple("[owner]'s haunting melody ceases."))
 	uses = 4
 
+
 /**
- * ••••• Death of the Drum
+ * ••••• Shattering Crescendo - p454
+ *
+ * Most of the low-level Melpominee powers can only be used on one target at a time.
+ * When the Daughter reaches this level of mastery in her Discipline, she can "entertain” a
+ * wider audience. Each member of the audience hears the same message.
+ *
+ * The Siren toggles the ability, augmenting the function of •• Phantom Speaker and •••• Siren's Beckoning
+ *
+ */
+/datum/discipline_power/melpominee/virtuosa
+	name = "Virtuosa"
+	desc = "Augment your abilities, allowing some powers to be used on multiple people."
+
+	level = 5
+	toggled = TRUE
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
+
+	vitae_cost = 0
+
+/datum/discipline_power/melpominee/virtuosa/activate()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_VIRTUOSA, "melpominee 5")
+
+/datum/discipline_power/melpominee/virtuosa/deactivate(atom/target, direct)
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_VIRTUOSA, "melpominee 5")
+
+/**
+ * ••••• • Shattering Crescendo - p454
  *
  * The Daughter can sing powerfully enough to rend flesh, split skin, and crack bone. While some Kindred unfortunate enough to witness
  * this power make reference to the fact that even mortal singers can shatter glass at the right frequency, others note that volume and
@@ -283,13 +312,12 @@
  *
  * The Siren selects a target and deals a high amount of damage in brute and to the target's ears.
  *
- * TODO: Change this to Virtuosa from V20 instead of Death of the Drum. Only do it if you can find a really user-friendly way to do so. code/modules/tgui_input/checkboxes.dm?
  */
 /datum/discipline_power/melpominee/death_of_the_drum
-	name = "Death of the Drum"
+	name = "Shattering Crescendo"
 	desc = "Scream at an unnatural pitch, shattering the bodies of your enemies."
 
-	level = 5
+	level = 6
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
 	target_type = TARGET_MOB
 

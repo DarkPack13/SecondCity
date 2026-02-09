@@ -113,6 +113,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
-// Is the character's emotion currently forced? Blocks emotion panel usage
+// Is the character's emotion currently forced? Blocks emotion panel usage - Melpominee
 #define TRAIT_FORCED_EMOTION "forced_emotion"
+// Are we under the effects of Melpominee 5?
+#define TRAIT_VIRTUOSA "virtuosa"
 // END TRAIT DEFINES
