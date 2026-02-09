@@ -9,7 +9,7 @@
 	var/numerical = FALSE
 
 	var/roll_output_type = ROLL_PUBLIC
-	/// This is a roll that can proc multiple times in rapid sucession and thus should be always shown via runechat
+	/// This is a roll that can proc multiple times in rapid sucession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
 	var/spammy_roll = FALSE
 
 	/// A lazy list of times indexed by a weakref to a mob
