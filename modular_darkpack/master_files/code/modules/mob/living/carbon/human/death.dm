@@ -17,7 +17,7 @@
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		exit_frenzymod()
 	*/
-	SEND_SOUND(src, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', 0, 0, 50))
+	SEND_SOUND(src, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', volume = 50))
 
 	switch (chronological_age)
 		if(-INFINITY to 10) //normal corpse

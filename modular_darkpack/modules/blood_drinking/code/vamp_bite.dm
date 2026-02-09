@@ -9,23 +9,23 @@
 			var/mob/living/carbon/human/PB = pulling
 			if(isghoul(src))
 				if(!iskindred(PB))
-					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 					return
 			if(!isghoul(src) && !iskindred(src))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 				return
 			if(PB.stat == DEAD && !HAS_TRAIT(src, TRAIT_GULLET))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("Your Beast requires life, not the tepid swill of corpses."))
 				return
 			if(PB.blood_volume <= 50 && (!iskindred(pulling) || !iskindred(src)))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 				return
 			if(PB.bloodpool <= 0 && (!iskindred(pulling) || !iskindred(src)))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 				return
 			if(iskindred(src))
@@ -35,19 +35,19 @@
 			PB.add_bite_animation()
 		if(isliving(pulling))
 			if(!iskindred(src))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 				return
 			var/mob/living/LV = pulling
 			if(LV.blood_volume <= 50 && (!iskindred(pulling) || !iskindred(src)))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 			if(LV.bloodpool <= 0 && (!iskindred(pulling) || !iskindred(src)))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 				return
 			if(LV.stat == DEAD && !HAS_TRAIT(src, TRAIT_GULLET))
-				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src,span_warning("Your Beast requires life, not the tepid swill of corpses."))
 				return
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
