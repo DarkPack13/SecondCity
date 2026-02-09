@@ -7351,6 +7351,7 @@
 #include "modular_darkpack\modules\phones\code\_phone.dm"
 #include "modular_darkpack\modules\phones\code\phone_book.dm"
 #include "modular_darkpack\modules\phones\code\phone_contact.dm"
+#include "modular_darkpack\modules\phones\code\phone_effects.dm"
 #include "modular_darkpack\modules\phones\code\phone_history.dm"
 #include "modular_darkpack\modules\phones\code\phone_procs.dm"
 #include "modular_darkpack\modules\phones\code\phone_subsystem.dm"
