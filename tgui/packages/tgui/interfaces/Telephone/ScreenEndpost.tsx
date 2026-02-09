@@ -82,7 +82,7 @@ return (
                     style={{ cursor: 'pointer' }}
                 />
                 </Box>
-                <Stack.Item grow>Endpost</Stack.Item>
+                <Stack.Item grow>EndPost</Stack.Item>
             {(data as any).show_endpost_registration && !composing ? (
                 <Button
                     onClick={() => act('endpost_registration')}
@@ -198,14 +198,16 @@ return (
                                     <Box ml="auto" fontSize="0.8em" color="#999" textAlign="right">
                                         {post_content.date}<br></br>{convertTo12Hour(post_content.time)}
                                     </Box>
-                                    <Button
-                                        onClick={() => act('remove_endpost', { post_index: posts.length - index })}
-                                        color="red"
-                                        ml={1}
-                                        style={{ fontSize: '0.7em', padding: '0.3em 0.6em' }}
-                                    >
-                                        {is_admin ? "X" : ""}
-                                    </Button>
+                                    {is_admin && (
+                                        <Button
+                                            onClick={() => act('remove_endpost', { post_index: posts.length - index })}
+                                            color="red"
+                                            ml={1}
+                                            style={{ fontSize: '0.7em', padding: '0.3em 0.6em' }}
+                                        >
+                                            X
+                                        </Button>
+                                    )}
                                 </Stack>
                                 <Box style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
                                     {post_content.body}

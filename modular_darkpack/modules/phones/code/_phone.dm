@@ -302,6 +302,7 @@
 	data["posts"] = SSphones.endpost_posts
 	data["endpost_username"] = endpost_username
 	data["show_endpost_registration"] = !endpost_username || user.st_get_stat(STAT_TECHNOLOGY) >= 3 //only let big brains change their usernames
+	data["is_admin"] = is_admin(user)
 
 	return data
 
@@ -392,11 +393,14 @@
 			return TRUE
 
 		if("remove_contact")
-			var/name = params["name"]
+			var/number = tgui_input_text(usr, "Input number", "Remove Contact")
+				if(length(number) > 15)
+					to_chat(usr, span_danger("Entered number is too long"))
+					return FALSE
 			for(var/datum/phonecontact/contact in contacts)
-				if(contact.name == name)
+				if(contact.number == number)
 					contacts -= contact
-					log_phone("[key_name(usr)] removed a contact: [name]")
+					log_phone("[key_name(usr)] removed a contact with number: [number]")
 					return TRUE
 			return FALSE
 
@@ -508,7 +512,7 @@
 				return FALSE
 			var/list/selected_post = SSphones.endpost_posts[post_index]
 			SSphones.endpost_posts.Cut(post_index, post_index + 1)
-			to_chat(usr, "Post [selected_post["body"]] removed.")
+			to_chat(usr, "Post '[selected_post["body"]]' by [selected_post["author"]] removed.")
 			log_phone("[key_name(usr)] removed an endpost: [selected_post["body"]] by [selected_post["author"]]", list("author" = selected_post["author"], "body" = selected_post["body"]))
 			return TRUE
 

@@ -1,4 +1,39 @@
 export const browserStyles = `
+@keyframes ripple {
+    0% {
+        background-position: 0% 50%;
+        background-size: 100% 100%;
+    }
+    25% {
+        background-position: 50% 50%;
+        background-size: 150% 150%;
+    }
+    50% {
+        background-position: 100% 50%;
+        background-size: 200% 200%;
+    }
+    75% {
+        background-position: 50% 50%;
+        background-size: 150% 150%;
+    }
+    100% {
+        background-position: 0% 50%;
+        background-size: 100% 100%;
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 :root {
     --bg-primary: #ffffff;
     --text-primary: #333333;
@@ -8,14 +43,56 @@ export const browserStyles = `
     --bg-secondary: #f5f5f5;
 }
 
-body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text-primary); }
-    h1 { font-size: 1.8em; margin: 0.5em 0; color: #000; }
-    h2 { font-size: 1.4em; margin: 0.5em 0; color: #000; }
-    h3 { font-size: 1.1em; margin: 0.5em 0; color: #000; }
-p { margin: 0.5em 0; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+    background-color: rgb(0, 166, 172);;}
 
-ul, ol { margin: 0.5em 0; padding-left: 2em; }
-li { margin: 0.3em 0; }
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary)
+    background-color: rgb(0, 166, 172);
+    background: linear-gradient(135deg, #667eea 0%, #6c4b8d 25%, #f093fb 50%, #4facfe 75%, #667eea 100%) !important;
+    background-size: 400% 400% !important;
+    animation: ripple 4s ease-in-out, gradientShift 8s ease infinite !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+}
+    h1 {
+        font-size: 1.8em;
+        margin: 0.5em 0;
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    h2 {
+        font-size: 1.4em;
+        margin: 0.5em 0;
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    h3 {
+        font-size: 1.1em;
+        margin: 0.5em 0;
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+p {
+    margin: 0.5em 0;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+ul, ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+}
+li {
+    margin: 0.3em 0;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 
 table { width: 100%; border-collapse: collapse; margin: 1em 0; }
 th, td { border: 1px solid var(--border-color); padding: 0.5em; text-align: left; }

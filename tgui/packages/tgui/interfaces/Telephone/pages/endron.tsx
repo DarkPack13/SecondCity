@@ -5,6 +5,21 @@ export const browser_endron = () => {
 	const logoUrl = resolveAsset('endron_logo.webp');
 	return `
 <style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+		min-height: 100vh;
+	}
+
+	h1, h2, h3, p, li, span, div, a {
+		text-shadow: none !important;
+	}
+
 	.endron-container {
 		font-family: Arial, sans-serif;
 		line-height: 1.6;
@@ -84,7 +99,7 @@ export const browser_endron = () => {
 		</p>
 
 		<hr />
-		<p class="endron-footer">EndBrowser v1.0.1</p>
+		<p class="endron-footer">© EndBrowser v1.0.1</p>
 	</div>
 </div>
 	`;

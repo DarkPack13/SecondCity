@@ -11,7 +11,6 @@ export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {
   const [caps, setCaps] = useState(false);
   const [showSymbols, setShowSymbols] = useState(false);
   const [keyboardVisible, setKeyboardVisible] = useState(true);
-
   const keyHandler = (key: string) => {
     if (onClick) {
       onClick(key);
@@ -364,6 +363,14 @@ export const ScreenMessages = (props : {
   setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
 }) => {
   const { act, data } = useBackend<Data>();
+  const convertTo12Hour = (timeStr: string) => {
+    if (!timeStr || !timeStr.includes(':')) return timeStr || '';
+    const [hourStr, minute] = timeStr.split(':');
+    const hour = parseInt(hourStr, 10);
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+    return `${displayHour}:${minute} ${period}`;
+  };
   const { my_number, published_numbers, our_contacts, our_blocked_contacts, current_conversation_messages, conversations, date } = data;
   const { enteredNumber, setEnteredNumber, setApp } = props;
 
@@ -480,7 +487,7 @@ export const ScreenMessages = (props : {
                 style={{ borderRadius: '8px', maxWidth: '70%', wordWrap: 'break-word' }}
               >
                 {msg.message_text}
-                <Box textAlign={msg.is_outgoing ? 'right' : 'left'} fontSize={0.7} mt={0.5} textColor={msg.is_outgoing ? '#ffffff' : '#303030'}>{msg.time}</Box>
+                <Box textAlign={msg.is_outgoing ? 'right' : 'left'} fontSize={0.7} mt={0.5} textColor={msg.is_outgoing ? '#ffffff' : '#303030'}>{convertTo12Hour(msg.time)}</Box>
               </Box>
               </Stack>
             ))}
