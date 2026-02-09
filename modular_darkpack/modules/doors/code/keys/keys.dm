@@ -359,13 +359,13 @@
 		LOCKACCESS_POLICE_SECURE
 	)
 
-/obj/item/vamp/keys/police/secure/chief
-	name = "\improper Chief of Police keys"
+/obj/item/vamp/keys/police/secure/captain
+	name = "police captain keys"
 	accesslocks = list(
 		LOCKACCESS_DISPATCH,
 		LOCKACCESS_POLICE,
 		LOCKACCESS_POLICE_SECURE,
-		LOCKACCESS_POLICE_CHIEF
+		LOCKACCESS_POLICE_CAPTAIN
 	)
 
 //===========================GAROU KEYS===========================

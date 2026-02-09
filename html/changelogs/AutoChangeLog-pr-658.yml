@@ -1,0 +1,5 @@
+author: "Knightscholar"
+delete-after: True
+changes:
+  - rscadd: "Hand tazers have cells in them"
+  - balance: "Hand tazers can hit twice per regular cell, instead of once."

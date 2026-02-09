@@ -1,0 +1,41 @@
+You can find a lockpick on certain NPCs and at the black market. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
+Cars use gasoline; you can buy more at a gas station. This can be used in the production of molotovs, as well.
+If you ever find yourself lost, look for a city map. Or just ask for directions.
+Discipline levels can be changed with Right-Click.
+Human players can use the "Report a Masquerade violation" button in people's examine text to report any weird supernatural stuff they shouldn't be seeing, like vampires feeding or punching people across a room.
+You can jump around by pressing MMB. You can even jump over railings while standing next to them.
+You can send announcements as the Prince by using your computer. Other kindred can see it on other computers too.
+The Malkavian hivemind allows you to send any message, except images.
+You can find and publish your phone number on your phone.
+To use Thaumaturgy properly you should get an Arcane Tome. Some of them spawn in Chantry. Lasombra can also learn Abyss Mysticism by crafting a tome after reaching Obtenebration at level 5.
+Followers of Set, also known as Ministry, can avoid diablerie and staking by moving their heart to an urn.
+Diablerie lowers your generation by one, if your victim's is lower than yours. Diablerie is one of the vilest deeds imaginable, and any kindred who learn of this will seek your permanent death.
+Blood quality depends on the power or lifestyle of a creature. Vampire blood satisfies the most, after that lupine blood, then the wealthy, then the poor, then animals, and so on.
+You can bloodbond people as a kindred. To do so - grab them and force them to swallow your vitae with Give Vitae ability. Bloodbonds strengthen the victim's emotions towards you and create an obsession.
+You can make a ghoul by bloodbonding a non-playable character. If there are any ghosts that want to play a ghoul - they will take over the ghouled NPC.
+Ghouls are weaker than kindred, and require vitae instead of mortal blood. But they also are immune to humanity and can learn any clan's disciplines to level 1.
+If you are a mortal and do drugs, kindred can experience the same high by drinking your blood.
+Tzimisce can upgrade your body with flesh and blood. Or they can turn you into a chair. Take this risk at your own judgement.
+Magical artifacts need to be identified in order to be used. The Tremere, Garou, or those with a tremendously high Occult skill can identify them.
+As a Prince, your objectives are to rule Camarilla and the City. Follow all Six Traditions of Kindred and decide how to fight global dangers. Don't forget to call on the Primogens if you need some help.
+As a Sheriff, your objectives are to protect Masquerade in the City. Speak with Camarilla's agents and decide the best technique to liquidate Masquerade breaches and breachers.
+As a Seneschal, your objectives are to help Prince make any business in the City. You are his right hand man, and he expects you to deal with matters beneath him.
+As a Hound, your objectives are to enforce the Traditions and the Camarilla's rule of the city.
+As a Baron, you lead the individualistic kindred of the city. You are still part of the Camarilla, but you have more sway here. San Francisco is an Anarch domain.
+As a Bruiser, you hang out with the Baron and support him in his rebellious troublemaking.
+As a Dealer, you hold a powerful domain. You can make deals with whomever you want - but boons are always worth more than money.
+As a Chantry Regent, your objectives are to lead the Tremere of San Francisco and keep the Chantry secure, as well as hunt down any who would steal your clan's secrets.
+As an Archivist, your objectives are to protect Tremere knowledge and the Chantry.
+As a Taxi Driver, your objectives are to drive. Real human being.
+As a Primogen, your objectives are to represent your clan in the city, and make sure they are organized and loyal enough to keep you in power.
+As a Sabbat member, you must fight the enemies of the Dark Father - servants of the vile Antediluvians.
+As a Hunter, your objectives are to Hunt abnormal beings and night creatures in City.
+A "Turn" in game represents 5 seconds.
+A "Scene" in game represents 3 minutes.
+There are 36 turns in a scene.
+You don't need to have your keys in your hand to unlock a door. Just right-click.
+If you have a high enough strength, jumping in combat mode will create a shockwave.
+You can conceal your satchel by Alt + Right-clicking it.
+Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
+Your firearm stat dramatically improves your ability to control recoil.
+Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
