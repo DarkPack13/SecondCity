@@ -225,6 +225,7 @@
 	desc = "This'll give PETA something to cry about."
 	icon_state = "leopard_coat"
 
+
 /obj/item/clothing/suit/hooded/hoodie
 	name = "hoodie"
 	desc = "A simple hoodie."
@@ -232,10 +233,10 @@
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
-	body_parts_covered = CHEST | GROIN | ARMS
-	cold_protection = CHEST | GROIN | ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	hoodtype = /obj/item/clothing/head/hooded/hood_hood
-	//body_worn = TRUE
 
 /obj/item/clothing/head/hooded/hood_hood
 	name = "hoodie hood"
@@ -246,8 +247,20 @@
 	// You should not expect this to have an onfloor
 	body_parts_covered = HEAD
 	cold_protection = HEAD
-	flags_inv = HIDEHAIR | HIDEEARS
-	//body_worn = TRUE
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	flags_inv = HIDEEARS
+	hair_mask = /datum/hair_mask/winterhood
+
+/obj/item/clothing/suit/hooded/hoodie/hoodie_pim
+	name = "intruder pim hoodie"
+	desc = "A hoodie of your favourite Intruder Pim character, Grr."
+	icon_state = "hoodie_zim"
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood/hood_pim
+
+/obj/item/clothing/head/hooded/hood_hood/hood_pim
+	name = "intruder pim hoodie hood"
+	desc = "A hood resembling your favourite Intruder Pim character, Grr."
+	icon_state = "hoodie_zim_hood"
 
 
 /obj/item/clothing/suit/vampire/slickbackcoat
