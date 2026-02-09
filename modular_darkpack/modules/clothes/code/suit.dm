@@ -220,6 +220,36 @@
 	name = "brown fur coat"
 	icon_state = "winter2"
 
+/obj/item/clothing/suit/vampire/coat/leopard
+	name = "leopard coat"
+	desc = "This'll give PETA something to cry about."
+	icon_state = "leopard_coat"
+
+/obj/item/clothing/suit/hooded/hoodie
+	name = "hoodie"
+	desc = "A simple hoodie."
+	icon_state = "hoodie"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
+	body_parts_covered = CHEST | GROIN | ARMS
+	cold_protection = CHEST | GROIN | ARMS
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood
+	//body_worn = TRUE
+
+/obj/item/clothing/head/hooded/hood_hood
+	name = "hoodie hood"
+	desc = "A hoodies hoodie hood."
+	icon_state = "hoodie_hood"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	// You should not expect this to have an onfloor
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	flags_inv = HIDEHAIR | HIDEEARS
+	//body_worn = TRUE
+
+
 /obj/item/clothing/suit/vampire/slickbackcoat
 	name = "opulent coat"
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
@@ -539,5 +569,3 @@
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
-
-
