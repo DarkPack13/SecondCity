@@ -366,7 +366,7 @@
 	other_delay = 2 SECONDS
 	merge_type = /obj/item/stack/medical/bruise_pack
 	apply_verb = "applying to"
-	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
+	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/stack/medical/bruise_pack/grind_results()
 	return list(/datum/reagent/medicine/c2/libital = 10)
@@ -385,7 +385,7 @@
 	other_delay = 2 SECONDS
 	max_amount = 12
 	amount = 6
-	custom_price = PAYCHECK_CREW * 2
+	custom_price = 25 // DARKPACK EDIT CHANGE - ECONOMY
 	absorption_rate = 0.125
 	absorption_capacity = 5
 	sanitization = 3
@@ -577,6 +577,7 @@
 	heal_begin_sound = SFX_SUTURE_BEGIN
 	heal_continuous_sound = SFX_SUTURE_CONTINUOUS
 	heal_end_sound = SFX_SUTURE_END
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/stack/medical/suture/grind_results()
 	return list(/datum/reagent/medicine/spaceacillin = 2)
@@ -609,7 +610,7 @@
 	sanitization = 0.25
 	merge_type = /obj/item/stack/medical/ointment
 	apply_verb = "applying to"
-	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
+	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/stack/medical/ointment/grind_results()
 	return list(/datum/reagent/medicine/c2/lenturi = 10)
@@ -620,7 +621,7 @@
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
-	desc = "A bacteriostatic mesh used to dress burns."
+	desc = "A bacteriostatic mesh bandage used to dress burns." // DARKPACK EDIT CHANGE
 	gender = PLURAL
 	singular_name = "mesh piece"
 	icon_state = "regen_mesh"
@@ -638,6 +639,7 @@
 	heal_continuous_sound = SFX_REGEN_MESH_CONTINUOUS
 	heal_end_sound = SFX_REGEN_MESH_END
 	merge_type = /obj/item/stack/medical/mesh
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 
 	///This var determines if the sterile packaging of the mesh has been opened.
 	var/is_open = TRUE

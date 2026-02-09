@@ -18,7 +18,7 @@
 			to_chat(src, "I need [span_danger("<b>BLOOD</b>")]. The [span_danger("<b>BEAST</b>")] is calling. Rolling...")
 		else
 			to_chat(src, "I'm too [span_danger("<b>AFRAID</b>")] to continue doing this. Rolling...")
-		SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/bloodneed.ogg', 0, 0, 50))
+		SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/bloodneed.ogg', volume = 50))
 
 		var/check = SSroll.storyteller_roll(max(1, round(humanity/2)), min(frenzy_chance_boost, frenzy_hardness), src)
 
@@ -43,7 +43,7 @@
 	if (in_frenzy)
 		return
 
-	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', 0, 0, 50))
+	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
 	in_frenzy = TRUE
 	add_client_colour(/datum/client_colour/glass_colour/red)
 	demon_chi = 0

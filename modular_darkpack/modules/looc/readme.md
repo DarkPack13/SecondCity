@@ -29,7 +29,7 @@ Module ID: LOOC
 ### Defines:
 
 - `code/__DEFINES/~darkpack/banning.dm`
-- `code/__DEFINES/~darkpack/keybinding.dm`
+- `code/__DEFINES/~darkpack/keybindings.dm`
 - `code/__DEFINES/admin.dm`
 - `code/__DEFINES/chat.dm`
 - `code/__DEFINES/span.dm`
