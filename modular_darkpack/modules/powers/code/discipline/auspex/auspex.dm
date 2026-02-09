@@ -248,19 +248,18 @@
 /datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
 	. = ..()
 	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_INTELLIGENCE) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
-	switch(successes)
-		if(successes > 0)
-			return TRUE
-		if(successes <= 0)
-			return FALSE
-	var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? <br> Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_THOUGHT_IMPLANT, 30 SECONDS)
+	if(successes > 0)
+		return TRUE
+	else if(successes <= 0)
+		return FALSE
+	var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? <br> Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT, 30 SECONDS)
 	switch(telepathy_type)
 		if(TELEPATHY_MIND_READING)
 			var/kindred_splat = iskindred(target)
 			var/garou_splat = isgarou(target)
 			//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
 			if(kindred_splat || garou_splat)
-				owner.st_add_stat_mod(STAT_WILLPOWER, -1, "Telepathy")
+				owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "Telepathy")
 		if(TELEPATHY_IMPLANT_THOUGHT)
 			var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? <br> Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No", 30 SECONDS)
 			switch(disguise_voice_prompt)
@@ -269,6 +268,7 @@
 					switch(disguise_voice_roll)
 						if(ROLL_SUCCESS)
 							disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection", target.name)
+						// if(roll_failure) or botch, to_chat(span_danger("You failed the roll its gonna be your own voice"))
 				if("No")
 					disguised_voice = owner.name
 
