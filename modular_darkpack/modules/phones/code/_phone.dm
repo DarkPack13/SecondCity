@@ -624,4 +624,4 @@
 	return TRUE
 
 /proc/log_phone(text, list/data)
-	logger.Log("phone", text, data)
+	logger.Log(LOG_CATEGORY_PDA, text, data)

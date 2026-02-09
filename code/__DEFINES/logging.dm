@@ -52,7 +52,6 @@
 #define LOG_SPEECH_INDICATORS (1 << 21)
 #define LOG_TRANSPORT (1 << 22)
 #define LOG_STATS (1 << 23) // DARKPACK EDIT ADD - logging stats to prevent abuse
-#define LOG_PHONE (1 << 24) // DARKPACK EDIT ADD - logging for phones
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)
@@ -118,7 +117,6 @@
 #define LOG_CATEGORY_VIRUS "virus"
 #define LOG_CATEGORY_CAVE_GENERATION "cave-generation"
 #define LOG_CATEGORY_STATS "stats" // DARKPACK EDIT ADD - logging stats to prevent abuse
-#define LOG_CATEGORY_PHONE "phone" // DARKPACK EDIT ADD - logging phones
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"
