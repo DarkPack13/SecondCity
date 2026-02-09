@@ -3,6 +3,8 @@
 #define SENSE_SMELL "Smell"
 #define SENSE_TASTE "Taste"
 #define SENSE_TOUCH "Touch"
+#define TELEPATHY_MIND_READING "Mind Reading"
+#define TELEPATHY_IMPLANT_THOUGHT "Implant Thoughts"
 
 /datum/discipline/auspex
 	name = "Auspex"
@@ -238,6 +240,40 @@
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
 	range = 7
+	var/telepathy_types = list(TELEPATHY_MIND_READING, TELEPATHY_IMPLANT_THOUGHT)
+	var/telepathy_type_selected
+	var/successes
+	var/disguised_voice
+
+/datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
+	. = ..()
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_INTELLIGENCE) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
+	switch(successes)
+		if(successes > 0)
+			return TRUE
+		if(successes <= 0)
+			return FALSE
+	var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? <br> Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_THOUGHT_IMPLANT, 30 SECONDS)
+	switch(telepathy_type)
+		if(TELEPATHY_MIND_READING)
+			var/kindred_splat = iskindred(target)
+			var/garou_splat = isgarou(target)
+			//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
+			if(kindred_splat || garou_splat)
+				owner.st_add_stat_mod(STAT_WILLPOWER, -1, "Telepathy")
+		if(TELEPATHY_IMPLANT_THOUGHT)
+			var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? <br> Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No", 30 SECONDS)
+			switch(disguise_voice_prompt)
+				if("Yes")
+					var/disguise_voice_roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS), owner)
+					switch(disguise_voice_roll)
+						if(ROLL_SUCCESS)
+							disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection", target.name)
+				if("No")
+					disguised_voice = owner.name
+
+	telepathy_type_selected = telepathy_type
+
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
 	. = ..()
