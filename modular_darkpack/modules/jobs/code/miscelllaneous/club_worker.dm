@@ -14,6 +14,14 @@
 		/datum/job_department/strip_club
 	)
 
+	alt_titles = list(
+		"Club Worker",
+		"Stripper",
+		"Club Bouncer",
+		"Club Bartender",
+		"Club Attendant"
+	)
+
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 
 	description = "Offer strip club services. Some of your clientele may be... Unusual, but you are either addicted to vampire bites, or bribed to listen little and say even less."

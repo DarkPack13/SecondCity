@@ -16,6 +16,18 @@
 	allowed_splats = list(SPLAT_NONE)
 	description = "Be the shepherd of the flock in " + CITY_NAME + ", lead them to salvation, piety and righteousness."
 
+	alt_titles = list(
+		"Priest",
+		"Nun",
+		"Mother",
+		"Father",
+		"Imam",
+		"Monk",
+		"Reverend",
+		"Preacher",
+		"Rabbi",
+	)
+
 /datum/outfit/job/vampire/priest
 	name = "Priest"
 	jobtype = /datum/job/vampire/priest
