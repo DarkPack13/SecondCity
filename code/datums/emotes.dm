@@ -127,6 +127,9 @@
 	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/additional_message_flags = get_message_flags(intentional)
 
+	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // DARKPACK EDIT ADD
+
+	// DARKPACK EDIT CHANGE START
 	// Emote doesn't get printed to chat, runechat only
 	if(running_emote_type & EMOTE_RUNECHAT)
 		for(var/mob/viewer as anything in viewers(user))
@@ -144,22 +147,22 @@
 					runechat_flags = EMOTE_MESSAGE,
 				)
 			else if(is_important)
-				to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+				to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
 			else if(is_audible && is_visual)
 				viewer.show_message(
-					span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
-					span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
+					span_emote("<b>[user]</b>[space][msg]"), MSG_AUDIBLE,
+					span_emote("You see how <b>[user]</b>[space][msg]"), MSG_VISUAL,
 				)
 			else if(is_audible)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
+				viewer.show_message(span_emote("<b>[user]</b>[space][msg]"), MSG_AUDIBLE)
 			else if(is_visual)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
+				viewer.show_message(span_emote("<b>[user]</b>[space][msg]"), MSG_VISUAL)
 		return // Early exit so no dchat message
 
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+			to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -171,7 +174,7 @@
 	else if(is_visual && is_audible)
 		user.audible_message(
 			message = msg,
-			deaf_message = span_emote("You see how <b>[user]</b> [msg]"),
+			deaf_message = span_emote("You see how <b>[user]</b>[space][msg]"),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 		)
@@ -193,13 +196,14 @@
 		CRASH("Emote [type] has no valid emote type set!")
 
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user]</b> [msg]"
+		var/dchatmsg = "<b>[user]</b>[space][msg]"
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
-			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)] [dchatmsg]"))
+			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)][space][dchatmsg]"))
+	// DARKPACK EDIT CHANGE END
 
 	return
 

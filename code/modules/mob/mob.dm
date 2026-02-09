@@ -290,10 +290,11 @@
 	hearers -= ignored_mobs
 
 	var/raw_msg = message
+	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
 
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
@@ -331,10 +332,11 @@
 	var/raw_self_message = self_message
 	var/self_runechat = FALSE
 	var/block_self_highlight = (visible_message_flags & BLOCK_SELF_HIGHLIGHT_MESSAGE)
+	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b> [self_message]") // May make more sense as "You do x"
+		self_message = span_emote("<b>[src]</b>[space][self_message]") // May make more sense as "You do x" // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(visible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
@@ -360,10 +362,11 @@
 /atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE)
 	var/list/hearers = mob_only_listeners(get_hearers_in_view(hearing_distance, src))
 	var/raw_msg = message
+	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
 			continue
@@ -391,10 +394,11 @@
 	var/raw_self_message = self_message
 	var/self_runechat = FALSE
 	var/block_self_highlight = (audible_message_flags & BLOCK_SELF_HIGHLIGHT_MESSAGE)
+	var/space = should_have_space_before_emote(html_decode(self_message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b> [self_message]")
+		self_message = span_emote("<b>[src]</b>[space][self_message]") // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(audible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
