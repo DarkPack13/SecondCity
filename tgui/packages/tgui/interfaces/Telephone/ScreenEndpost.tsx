@@ -13,6 +13,7 @@ posts?: Array<{
     author: string;
     time: string;
 }>;
+is_admin?: boolean;
 }
 
 export const ScreenEndpost = (props: {
@@ -20,6 +21,7 @@ setApp: React.Dispatch<React.SetStateAction<NavigableApps | null>>;
 }) => {
 const { setApp } = props;
 const { act, data } = useBackend<BackendData>();
+const { is_admin } = data;
 const convertTo12Hour = (timeStr: string) => {
     if (!timeStr || !timeStr.includes(':')) return timeStr || '';
     const [hourStr, minute] = timeStr.split(':');
@@ -180,7 +182,7 @@ return (
                 </Box>
             ) : (
                 <Stack vertical mb={10}>
-                    {[...posts].reverse().map((post: any, index: number) => (
+                    {[...posts].reverse().map((post_content: any, index: number) => (
                         <Stack.Item
                             key={index}
                             p={1.5}
@@ -191,14 +193,22 @@ return (
                             <Stack vertical>
                                 <Stack mb={0.5}>
                                     <Box ml={-1} fontWeight="bold" color="#4a90e2">
-                                        {post.author}
+                                        {post_content.author}
                                     </Box>
                                     <Box ml="auto" fontSize="0.8em" color="#999" textAlign="right">
-                                        {post.date}<br></br>{convertTo12Hour(post.time)}
+                                        {post_content.date}<br></br>{convertTo12Hour(post_content.time)}
                                     </Box>
+                                    <Button
+                                        onClick={() => act('remove_endpost', { post: post_content })}
+                                        color="red"
+                                        ml={1}
+                                        style={{ fontSize: '0.7em', padding: '0.3em 0.6em' }}
+                                    >
+                                        X
+                                    </Button>
                                 </Stack>
                                 <Box style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-                                    {post.body}
+                                    {post_content.body}
                                 </Box>
                             </Stack>
                         </Stack.Item>
