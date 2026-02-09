@@ -11,8 +11,8 @@
 /// Output is only shown to the roller
 #define ROLL_PRIVATE "private"
 /// Output of the roll to admins + you
-#define ROLL_PRIVATE_GM "private+gm"
+#define ROLL_PRIVATE_ADMIN "private+admin"
 /// Output of the roll to admins only
-#define ROLL_GM "gm"
+#define ROLL_ADMIN "admin"
 /// Output is show to no one and is not logged
 #define ROLL_NONE "none"

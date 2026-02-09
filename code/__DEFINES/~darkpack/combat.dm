@@ -5,9 +5,9 @@
 #define SCENES * 3 MINUTES
 
 // To eyeball damage as its calcuated in the ttrpg
-#define TTRPG_DAMAGE * 10
+#define TTRPG_DAMAGE * 5
 // Heavy placeholder to represent that lethal is ... twice as bad as bashing (brute basiclly)
-#define LETHAL_TTRPG_DAMAGE * 20
+#define LETHAL_TTRPG_DAMAGE * 10
 
 // Unused for now
 #define BASHING "bashing"

@@ -60,7 +60,7 @@
 	var/output = roll_result(last_sucess_amount)
 
 	var/title
-	if(roll_output_type in list(ROLL_PRIVATE_GM, ROLL_GM))
+	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN))
 		title = "[ADMIN_LOOKUPFLW(roller)]"
 	else
 		title = "[roller]"
@@ -94,12 +94,12 @@
 			return viewers(DEFAULT_MESSAGE_RANGE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
-		if(ROLL_PRIVATE_GM)
+		if(ROLL_PRIVATE_ADMIN)
 			return GLOB.admins + roller
-		if(ROLL_GM)
+		if(ROLL_ADMIN)
 			return GLOB.admins
 		if(ROLL_NONE)
-			EMPTY_BLOCK_GUARD // Not even important enough to be admin visable.
+			return // Not even important enough to be admin visable.
 
 /datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
 	var/dice_amount = 0
