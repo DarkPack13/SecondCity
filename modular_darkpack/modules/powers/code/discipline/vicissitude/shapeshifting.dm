@@ -5,9 +5,7 @@
 #define CHANGE_EYES "Change Eyes"
 #define CHANGE_RACE "Change Race"
 #define CHANGE_HEIGHT "Change Height"
-#define CHANGE_APPEARANCE "Change Appearance"
-#define SAVE_APPEARANCE "Save Appearance"
-#define CHOICE_OPTIONS list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT, CHANGE_APPEARANCE, SAVE_APPEARANCE)
+#define CHOICE_OPTIONS list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
 
 /datum/action/cooldown/mob_cooldown/shapeshift
 	owner_has_control = FALSE
@@ -45,6 +43,7 @@
 	update_choices()
 
 /datum/action/cooldown/mob_cooldown/shapeshift/Destroy()
+	first_profile = null
 	current_profile = null
 	return ..()
 
@@ -62,11 +61,6 @@
 	if(!chosen_option)
 		return TRUE
 
-	if(chosen_option == SAVE_APPEARANCE)
-		if(target == owner)
-			return TRUE
-		add_profile_save(target)
-
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
 		switch(chosen_option)
 			if(CHANGE_HAIR)
@@ -83,10 +77,6 @@
 				change_race(target)
 			if(CHANGE_HEIGHT)
 				change_height(target)
-			if(CHANGE_APPEARANCE)
-				transform_mob(target)
-			if(SAVE_APPEARANCE)
-				add_new_profile(target)
 	else
 		to_chat(owner, span_danger("You need to have a firm grip on [target]!"))
 		return TRUE
@@ -204,15 +194,14 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/shapeshift/proc/change_name(mob/living/carbon/human/target)
-	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.name, MAX_NAME_LEN))
-	if(!newname || newname == target.name)
+	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN))
+	if(!newname || newname == target.real_name)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
 	if(!do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.real_name = newname
-	target.name = newname
 	if(target.dna)
 		target.dna.real_name = newname
 	if(target.mind)
@@ -268,13 +257,6 @@
 	to_chat(owner, span_notice("You finish altering the height of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/add_profile_save(mob/living/carbon/human/target)
-	if(!IN_GIVEN_RANGE(owner, target, range))
-		return FALSE
-	if(!has_profile_with_dna(target.dna))
-		add_new_profile(target)
-	return TRUE
-
 #undef CHANGE_HAIR
 #undef CHANGE_BEARD
 #undef CHANGE_SEX
@@ -283,5 +265,3 @@
 #undef CHANGE_RACE
 #undef CHANGE_HEIGHT
 #undef CHOICE_OPTIONS
-#undef CHANGE_APPEARANCE
-#undef SAVE_APPEARANCE

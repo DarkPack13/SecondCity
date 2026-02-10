@@ -28,7 +28,6 @@
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
 		shapeshift_ability.Grant(owner)
-		shapeshift_ability.create_initial_profile()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,7 +51,7 @@
 
 /datum/discipline_power/vicissitude/fleshcrafting
 	name = "Fleshcrafting"
-	desc = "Shapeshift others."
+	desc = "Shapeshift yourself or others."
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
