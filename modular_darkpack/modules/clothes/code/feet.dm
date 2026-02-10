@@ -64,7 +64,7 @@
 
 /obj/item/clothing/shoes/vampire/pumped
 	name = "knee-high sneakers"
-	desc = "these are the pumped up kicks you are looking for"
+	desc = "Sneakers from the popular brand Converts"
 	icon_state = "pumped_up_kicks"
 
 /obj/item/clothing/shoes/vampire/heels

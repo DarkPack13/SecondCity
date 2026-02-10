@@ -222,7 +222,7 @@
 
 /obj/item/clothing/suit/vampire/coat/leopard
 	name = "leopard coat"
-	desc = "This'll give PETA something to cry about."
+	desc = "A coat made from synthetic fur."
 	icon_state = "leopard_coat"
 
 
@@ -252,14 +252,14 @@
 	hair_mask = /datum/hair_mask/winterhood
 
 /obj/item/clothing/suit/hooded/hoodie/hoodie_pim
-	name = "intruder pim hoodie"
-	desc = "A hoodie of your favourite Intruder Pim character, Grr."
+	name = "intruder zim hoodie"
+	desc = "A hoodie of a favorite Intruder Zim character, Ger."
 	icon_state = "hoodie_zim"
 	hoodtype = /obj/item/clothing/head/hooded/hood_hood/hood_pim
 
 /obj/item/clothing/head/hooded/hood_hood/hood_pim
-	name = "intruder pim hoodie hood"
-	desc = "A hood resembling your favourite Intruder Pim character, Grr."
+	name = "intruder zim hoodie hood"
+	desc = "A hood resembling a favorite Intruder Zim character, Ger."
 	icon_state = "hoodie_zim_hood"
 
 
