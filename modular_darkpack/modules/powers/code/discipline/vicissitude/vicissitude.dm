@@ -162,13 +162,13 @@
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
 	owner.Stun(2 SECONDS)
-	owner.do_jitter_animation(50)
+	owner.do_jitter_animation(5 SECONDS)
 	zulo_form.Activate(owner)
 
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
 	owner.Stun(2 SECONDS)
-	owner.do_jitter_animation(50)
+	owner.do_jitter_animation(5 SECONDS)
 	zulo_form.unshift_owner()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
