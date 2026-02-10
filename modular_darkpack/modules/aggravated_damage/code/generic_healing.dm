@@ -10,6 +10,9 @@
 	if(heal_blood)
 		adjust_blood_volume(dots_to_heal * 2)
 
+	if(heal_scars && dots_to_heal > 0)
+		healed_dots += heal_storyteller_scars(dots_to_heal)
+
 	if(heal_aggravated)
 		while(dots_to_heal > 0 && get_agg_loss()+get_fire_loss() > 0)
 			heal_ordered_damage(1 TTRPG_DAMAGE, list(BURN, AGGRAVATED))
@@ -20,9 +23,6 @@
 		heal_ordered_damage(1 TTRPG_DAMAGE, list(BRUTE, TOX, OXY))
 		dots_to_heal--
 		healed_dots++
-
-	if(heal_scars && dots_to_heal > 0)
-		healed_dots += heal_storyteller_scars(dots_to_heal)
 
 	if(healed_dots)
 		updatehealth()
