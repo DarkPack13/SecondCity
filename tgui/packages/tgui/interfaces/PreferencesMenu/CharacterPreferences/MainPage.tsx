@@ -684,18 +684,6 @@ export function MainPage(props: MainPageProps) {
             </Stack>
             {prefPageContents}
           </Stack>
-          <Box my={0.5}>
-            <Button
-              color="red"
-              disabled={
-                Object.values(data.character_profiles).filter((name) => name)
-                  .length < 2
-              }
-              onClick={() => setDeleteCharacterPopupOpen(true)}
-            >
-              Delete Character
-            </Button>
-          </Box>
         </Stack.Item>
         {/* DARKPACK EDIT ADDITION END: Swappable pref menus */}
       </Stack>
