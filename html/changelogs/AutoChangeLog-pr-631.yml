@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "tiles next to the graveyard gate are made dense automaticly"
+  - refactor: "Gravekeeper gate should behavior more consistently in line with atom integrity"

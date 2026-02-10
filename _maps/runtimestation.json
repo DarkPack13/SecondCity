@@ -13,5 +13,6 @@
 	],
 	"shuttles": {
 		"cargo": "cargo_delta"
-	}
+	},
+	"bonus_weakpoints": -3
 }
