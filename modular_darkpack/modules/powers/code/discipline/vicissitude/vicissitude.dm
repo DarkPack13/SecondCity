@@ -27,8 +27,8 @@
 /datum/discipline_power/vicissitude/post_gain()
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
-	shapeshift_ability.Grant(owner)
-	shapeshift_ability.create_initial_profile()
+		shapeshift_ability.Grant(owner)
+		shapeshift_ability.create_initial_profile()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -138,7 +138,7 @@
 	if(!ishuman(owner))
 		return
 
-	add_new_profile(owner)
+	add_new_profile(owner, TRUE)
 
 /*
  * Restores the appearance of the changeling to the original DNA.

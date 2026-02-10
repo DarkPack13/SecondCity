@@ -67,7 +67,7 @@
 			return TRUE
 		add_profile_save(target)
 
-	if((target.pulledby == owner && (owner.grab_state != GRAB_AGGRESSIVE)) || (target == owner))
+	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
 		switch(chosen_option)
 			if(CHANGE_HAIR)
 				change_hair(target)
@@ -85,6 +85,8 @@
 				change_height(target)
 			if(CHANGE_APPEARANCE)
 				transform_mob(target)
+			if(SAVE_APPEARANCE)
+				add_new_profile(target)
 	else
 		to_chat(owner, span_danger("You need to have a firm grip on [target]!"))
 		return TRUE
