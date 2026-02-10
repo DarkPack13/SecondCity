@@ -172,18 +172,18 @@
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
-/obj/item/smartphone/attackby(obj/item/attacking_item, mob/user, params)
-	if(istype(attacking_item, /obj/item/sim_card))
+/obj/item/smartphone/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/sim_card))
 		if(sim_card)
 			balloon_alert(user, "[sim_card] already installed!")
-			return FALSE
-		balloon_alert(user, "you insert \the [attacking_item]!")
-		sim_card = attacking_item
-		user.transferItemToLoc(attacking_item, src)
+			return ITEM_INTERACT_BLOCKING
+		balloon_alert(user, "you insert \the [tool]!")
+		sim_card = tool
+		user.transferItemToLoc(tool, src)
 		sim_card.phone_weakref = WEAKREF(src)
 		phone_flags &= ~PHONE_NO_SIM
-		return TRUE
-	return ..()
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/smartphone/ui_status(mob/user, datum/ui_state/state)
 	if(!(phone_flags & PHONE_OPEN))

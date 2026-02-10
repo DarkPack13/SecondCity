@@ -249,7 +249,8 @@
 
 	var/has_keys = FALSE
 	for(var/obj/item/vamp/keys/found_key in user)
-		if(!do_after(user, 1 SECONDS, src, interaction_key = DOAFTER_SOURCE_DOOR))
+		// check if we already set has_keys so the first key you try and no do_after.
+		if(has_keys && !do_after(user, 1 SECONDS, src, interaction_key = DOAFTER_SOURCE_DOOR))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		has_keys = TRUE
 		if(try_keys(user, found_key))
