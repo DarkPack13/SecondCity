@@ -112,6 +112,10 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.show_to(owner)
 
+	var/list/heard = get_hearers_in_range(DEFAULT_MESSAGE_RANGE, owner)
+	for(var/mob/living/hearer in heard)
+		hearer.apply_status_effect(/datum/status_effect/question_emotion)
+
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]

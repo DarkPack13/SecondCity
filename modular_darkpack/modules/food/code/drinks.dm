@@ -30,13 +30,17 @@
 	icon_state = "beer_blue"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 25, /datum/reagent/toxin/amatoxin = 5)
 
-// DARKPACK TODO - Typhon's Beer
+// DARKPACK TODO - (Typhon's Beer needs an audit of its handling. This looks ass.)
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
 	name = "Typhon's Beer"
 	desc = "A sanguine drink to sate those of vampiric tastes"
 	icon_state = "typhon"
 	//foodtype = SANGUINE
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/typhon = 30)
+
+/obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
+	. = ..()
+	reagents.trans_to(M, gulp_size, transferred_by = user)
 
 /datum/reagent/consumable/ethanol/beer/typhon
 	name = "Typhon's Beer"
@@ -54,10 +58,6 @@
 	if(isghoul(M))
 		M.adjust_blood_pool(1)
 	return ..()
-
-/obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
-	. = ..()
-	reagents.trans_to(M, gulp_size, transferred_by = user)
 
 /obj/item/reagent_containers/cup/glass/vampirecola
 	name = "two liter cola bottle"

@@ -48,7 +48,7 @@
 			return ITEM_INTERACT_BLOCKING
 		var/value = tool.get_item_credit_value()
 		inserted_cash += value
-		to_chat(user, span_notice("You have deposited [value] dollars into [src]. [src] now holds [inserted_cash] dollars."))
+		to_chat(user, span_notice("You have deposited [value] [MONEY_NAME] into [src]. [src] now holds [inserted_cash] [MONEY_NAME]."))
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
 
@@ -105,7 +105,7 @@
 		if("deposit")
 			if(inserted_cash > 0)
 				logged_account.adjust_money(inserted_cash, "ATM: Deposit")
-				to_chat(usr, span_notice("You have deposited [inserted_cash] dollars into your card. Your new balance is [logged_account.account_balance] dollars."))
+				to_chat(usr, span_notice("You have deposited [inserted_cash] [MONEY_NAME] into your card. Your new balance is [logged_account.account_balance] [MONEY_NAME]."))
 				total_stored_cash += inserted_cash
 				inserted_cash = 0
 				return TRUE
@@ -124,7 +124,7 @@
 			to_chat(user, span_notice("[src] has maxed out its withdraw limit"))
 			break
 		var/obj/item/stack/dollar/cash = new(loc, drop_amount)
-		to_chat(user, span_notice("You have withdrawn [drop_amount] dollars."))
+		to_chat(user, span_notice("You have withdrawn [drop_amount] [MONEY_NAME]."))
 		try_put_in_hand(cash, user)
 		amount -= drop_amount
 		total_stored_cash -= drop_amount
