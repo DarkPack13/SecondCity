@@ -185,7 +185,7 @@
 
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
-	to_chat(owner, span_notice("Not implemented yet, apologies!"))
+
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
