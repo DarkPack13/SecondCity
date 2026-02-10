@@ -11,12 +11,6 @@
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/examine_panel/ui_close(mob/user)
-	// If this is an examine preview dummy, clean it up.
-	if(istype(holder, /mob/living/carbon/human/dummy))
-		qdel(holder)
-
-
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -77,15 +71,7 @@
 
 	return flavor_text_to_show
 
-/mob/living/carbon/human/dummy/proc/setup_examine_preview(mob/living/carbon/user)
-	examine_panel_tgui.holder = user
-
 /mob/living/carbon/Topic(href, href_list)
 	if(href_list["view_flavortext"])
-		// The examine preview dummy will be cleaned up once the user closes the TGUI window.
-		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy()
-		if(!mannequin.examine_panel_tgui)
-			mannequin.examine_panel_tgui = new()
-		mannequin.setup_examine_preview(src)
-		mannequin.examine_panel_tgui.ui_interact(usr)
-	..()
+		examine_panel_tgui.ui_interact(usr)
+	. = ..()
