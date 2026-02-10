@@ -515,3 +515,7 @@
 	armor_type = /datum/armor/labcoat
 
 
+/obj/item/clothing/suit/vampire/shawl_black
+	name = "black shawl"
+	desc = "A long silk shawl, to be draped over the arms."
+	icon_state = "shawl_black"

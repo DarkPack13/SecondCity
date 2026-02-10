@@ -100,4 +100,5 @@
 		new /datum/data/vending_product("backpack", /obj/item/storage/backpack, 100),
 		new /datum/data/vending_product("satchel", /obj/item/storage/backpack/satchel, 100),
 		new /datum/data/vending_product("leather satchel", /obj/item/storage/backpack/satchel/leather, 150),
+	    new /datum/data/vending_product("black shawl", /obj/item/clothing/suit/vampire/shawl_black, 50)
 	)
