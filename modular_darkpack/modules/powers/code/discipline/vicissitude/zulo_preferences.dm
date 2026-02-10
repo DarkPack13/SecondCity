@@ -9,7 +9,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
-	return assoc_to_keys("fiend", "leviathan", "shrikebush", "impalersteed", "black_fiend", "doctor", "dog", "emily", "dragon", "tendrildragon") // Maybe this being a define would be better.
+	return assoc_to_keys(list("fiend", "leviathan", "shrikebush", "impalersteed", "black_fiend", "doctor", "dog", "emily", "dragon", "tendrildragon")) // Maybe this being a define would be better.
 
 /datum/preference/choiced/zulo_form/create_default_value()
 	return "fiend"
