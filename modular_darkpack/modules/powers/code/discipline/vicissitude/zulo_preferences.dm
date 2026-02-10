@@ -11,6 +11,9 @@
 /datum/preference/choiced/zulo_form/init_possible_values()
 	return assoc_to_keys("fiend", "leviathan", "shrikebush", "impalersteed", "black_fiend", "doctor", "dog", "emily", "dragon", "tendrildragon") // Maybe this being a define would be better.
 
+/datum/preference/choiced/zulo_form/create_default_value()
+	return "fiend"
+
 /datum/preference/choiced/zulo_form/icon_for(value)
 	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', value)
 
