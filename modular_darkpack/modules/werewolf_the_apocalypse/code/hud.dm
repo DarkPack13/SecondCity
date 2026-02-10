@@ -165,8 +165,8 @@
 	var/mob/living/carbon/human/clicker = usr
 	if(!istype(clicker))
 		return
-	// if(clicker.stat >= SOFT_CRIT || clicker.IsSleeping() || clicker.IsUnconscious() || clicker.IsParalyzed() || clicker.IsKnockdown() || clicker.IsStun())
-	// 	return ..()
+	if(clicker.stat >= UNCONSCIOUS)
+		return
 
 	var/datum/splat/werewolf/shifter/shifting = isshifter(clicker)
 	var/list/modifiers = params2list(params)
