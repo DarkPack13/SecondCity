@@ -392,7 +392,7 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
-                tooltipPosition={"right"} // DARKPACK EDIT ADDITION - Swappable pref menus
+                tooltipPosition="right" // DARKPACK EDIT ADDITION - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
