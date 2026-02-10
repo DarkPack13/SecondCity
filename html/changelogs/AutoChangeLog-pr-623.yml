@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - bugfix: "Fixed ghouls being able to regenerate BP by drinking normal human blood"

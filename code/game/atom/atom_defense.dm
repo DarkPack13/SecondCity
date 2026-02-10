@@ -10,6 +10,10 @@
 	var/integrity_failure = 0 //0 if we have no special broken behavior, otherwise is a percentage of at what point the atom breaks. 0.5 being 50%
 	///Damage under this value will be completely ignored
 	var/damage_deflection = 0
+	// DARKPACK EDIT ADD START
+	/// Atom uses integrity but will not be deleted upon reaching 0 through normal means
+	var/prevent_destruction = FALSE 
+	// DARKPACK EDIT ADD END
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
@@ -19,8 +23,12 @@
 		CRASH("[src] had /atom/proc/take_damage() called on it without it being a type that has uses_integrity = TRUE!")
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
-	if(atom_integrity <= 0)
+	// DARKPACK EDIT CHANGE START
+	if(atom_integrity <= 0 && !prevent_destruction)
 		CRASH("[src] taking damage while having <= 0 integrity")
+	else if(atom_integrity < 0)
+		CRASH("[src] taking damage while having < 0 integrity")
+	// DARKPACK EDIT CHANGE END
 	if(sound_effect)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
 	if(resistance_flags & INDESTRUCTIBLE)
