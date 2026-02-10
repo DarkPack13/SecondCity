@@ -36,10 +36,14 @@
 /turf/open/floor/circuit/telecomms/airless : /turf/open/floor/circuit
 /turf/open/floor/circuit/telecomms/normal_temp : /turf/open/floor/circuit
 
+#TFN removed atmos. We have not
+/obj/item/anesthetic_tank : /obj/item/tank/internals/anesthetic {@OLD}
+
 # WOD13 made them real gasmasks in some pr.
 /obj/item/clothing/mask/vampire : /obj/item/clothing/mask/gas/vampire {@OLD}
 
-
+# Apoc subtyped them under masq contracts. We didnt but honestly consider.
+/obj/item/masquerade_contract/veil : /obj/item/veil_contract {@OLD}
 
 # Fixing terrible mapping partices or linting fails
 

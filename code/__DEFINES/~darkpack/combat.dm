@@ -5,7 +5,7 @@
 #define SCENES * 3 MINUTES
 
 // To eyeball damage as its calcuated in the ttrpg
-#define TTRPG_DAMAGE * 5
+#define TTRPG_DAMAGE * 10
 
 // Unused for now
 #define BASHING "bashing"

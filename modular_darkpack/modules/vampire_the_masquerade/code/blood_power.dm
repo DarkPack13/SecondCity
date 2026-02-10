@@ -29,7 +29,7 @@
 	var/cost = HAS_TRAIT(human_owner, TRAIT_HUNGRY) ? 3 : 2
 	if (human_owner.bloodpool < cost)
 		if (feedback)
-			SEND_SOUND(human_owner, sound('modular_darkpack/modules/deprecated/sounds/need_blood.ogg', 0, 0, 75))
+			SEND_SOUND(human_owner, sound('modular_darkpack/modules/deprecated/sounds/need_blood.ogg', volume = 75))
 			owner.balloon_alert(owner, "not enough BLOOD!")
 		return FALSE
 

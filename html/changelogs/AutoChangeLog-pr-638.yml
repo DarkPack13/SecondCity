@@ -1,0 +1,5 @@
+author: "Knightscholar"
+delete-after: True
+changes:
+  - rscadd: "Added the ability to toggle Aura Perception"
+  - rscdel: "Removed Industrial SFX from The Spirit's Touch"

@@ -207,6 +207,10 @@
 ///what happens when the obj's integrity reaches zero.
 /obj/atom_destruction(damage_flag)
 	. = ..()
+	// DARKPACK EDIT ADD START
+	if(prevent_destruction)
+		return
+	// DARKPACK EDIT ADD END
 	if(damage_flag == ACID)
 		acid_melt()
 	else if(damage_flag == FIRE)

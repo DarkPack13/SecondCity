@@ -8,10 +8,9 @@
 /datum/crafting_recipe/typhon_brew/is_recipe_available(mob/user)
 	if(!ishuman(user))
 		return FALSE
-	//var/mob/living/carbon/human/H = user
-	/*for(var/datum/action/A in H.actions) DARKPACK TODO: Serpentis
-		if(istype(A, /datum/action/discipline/serpentis))
-			return TRUE
-	*/
-	return FALSE
 
+	var/datum/splat/vampire/vampire = does_use_disciplines(user)
+	if(vampire?.get_discipline_power(/datum/discipline/serpentis))
+		return TRUE
+
+	return FALSE

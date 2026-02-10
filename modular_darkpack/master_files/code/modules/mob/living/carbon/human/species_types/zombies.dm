@@ -33,13 +33,6 @@
 	C.maxHealth = 300 //tanky
 	C.health = 300
 
-	/* // DARKPACK TODO -- kj shit?
-	C.yang_chi = 0
-	C.max_yang_chi = 0
-	C.yin_chi = 6
-	C.max_yin_chi = 6
-	*/
-
 	//zombies resist vampire bites better than mortals
 	RegisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED, PROC_REF(on_zombie_bitten))
 	ADD_TRAIT(C, TRAIT_MASQUERADE_VIOLATING_FACE, "zombie")
