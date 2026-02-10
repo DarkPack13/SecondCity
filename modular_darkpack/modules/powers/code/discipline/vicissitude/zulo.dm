@@ -7,6 +7,7 @@
 	spell_requirements = NONE
 	convert_damage = FALSE
 	possible_shapes = list(/mob/living/basic/zulo)
+	click_to_activate = FALSE
 	owner_has_control = FALSE
 
 /mob/living/basic/zulo
