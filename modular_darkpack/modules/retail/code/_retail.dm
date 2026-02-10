@@ -5,7 +5,7 @@
 	name = "retail outlet"
 	desc = "A counter for partaking in wretched capitalism. Takes cash or card."
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
-	icon_state = "menu"
+	icon_state = "register"
 	density = FALSE
 	anchored = TRUE
 	var/owner_needed = TRUE //Does an npc need to be here for this
