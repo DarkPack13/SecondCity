@@ -36,7 +36,7 @@ import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT, ORIGINAL: 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -392,6 +392,7 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
+                tooltipPosition={"right"} // DARKPACK EDIT ADDITION - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
