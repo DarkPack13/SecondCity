@@ -667,6 +667,7 @@
 	icon_state = "ice"
 	pixel_w = -8
 
+
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."
@@ -677,41 +678,43 @@
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/burying = FALSE
+	var/pit_busy = FALSE
 
-// DARKPACK TODO - reimplement
-/*
-/obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		if(!burying)
-			burying = TRUE
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				burying = FALSE
-				if(icon_state == "pit0")
-					for(var/mob/living/L in get_turf(src))
-						L.forceMove(src)
-						icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					for(var/mob/living/L in src)
-						L.forceMove(get_turf(src))
-					icon_state = "pit0"
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-			else
-				burying = FALSE
+/obj/structure/bury_pit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.tool_behaviour == TOOL_SHOVEL)
+		if(pit_busy)
+			return ITEM_INTERACT_BLOCKING
 
-/obj/structure/bury_pit/container_resist_act(mob/living/user)
-	if(!burying)
-		burying = TRUE
-		if(do_mob(user, src, 30 SECONDS))
+		pit_busy = TRUE
+		user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
+		if(!do_after(user, 10 SECONDS, src))
+			pit_busy = FALSE
+
+		pit_busy = FALSE
+		if(icon_state == "pit0")
+			for(var/mob/living/L in get_turf(src))
+				L.forceMove(src)
+				icon_state = "pit1"
+				user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+		else
 			for(var/mob/living/L in src)
 				L.forceMove(get_turf(src))
 			icon_state = "pit0"
-			burying = FALSE
-		else
-			burying = FALSE
-*/
+			user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+
+/obj/structure/bury_pit/container_resist_act(mob/living/user)
+	if(pit_busy)
+		return
+
+	pit_busy = TRUE
+	if(!do_after(user, 30 SECONDS, src))
+		pit_busy = FALSE
+
+	for(var/mob/living/L in src)
+		L.forceMove(get_turf(src))
+	icon_state = "pit0"
+	pit_busy = FALSE
+
 
 /obj/structure/fluff/tv
 	name = "\improper TV"

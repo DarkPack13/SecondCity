@@ -19,7 +19,7 @@
 
 	if(blood_gained > 0)
 		var/payment = min(blood_gained, debt_amount)
-		owner.bloodpool -= payment
+		owner.adjust_blood_pool(-payment)
 		debt_amount -= payment
 		initial_bloodpool = owner.bloodpool
 

@@ -27,53 +27,55 @@
 /obj/structure/flora/rock/jungle : /obj/structure/flora/bush/style_random {@OLD}
 /obj/structure/flora/rock/pile/largejungle : /obj/structure/flora/bush/style_random {@OLD}
 
-/obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
-/obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
-/obj/structure/janitorialcart : /obj/structure/mop_bucket/janitorialcart {@OLD}
-/obj/structure/reagent_dispensers/peppertank : /obj/structure/reagent_dispensers/wall/peppertank {@OLD}
 
-/obj/structure/table/wood/bar : /obj/structure/table/wood/shuttle_bar
 
-/obj/item/grown/sunflower : /obj/item/food/grown/sunflower {@OLD}
-/obj/item/food/cheesewheel : /obj/item/food/cheese/wheel {@OLD}
-/obj/item/food/cheesewedge : /obj/item/food/cheese/wedge {@OLD}
-/obj/item/storage/pill_bottle/dice : /obj/item/storage/dice {@OLD}
-/obj/item/soapstone : @DELETE
-#this was a borg item that should not have been mapped in the first place
-/obj/item/organ_storage : @DELETE
-#why was this mapped
-/obj/item/mop/cyborg : /obj/item/mop
-/obj/item/anesthetic_tank : /obj/item/tank/internals/anesthetic {@OLD}
-/obj/item/trash/plate : /obj/item/plate {@OLD}
-/obj/item/toy/prize/@SUBTYPES : /obj/item/toy/mecha/@SUBTYPES {@OLD}
 
-/mob/living/simple_animal/deer : /mob/living/basic/deer
 /mob/living/simple_animal/cow : /mob/living/basic/cow
+/mob/living/simple_animal/deer : /mob/living/basic/deer
 /mob/living/simple_animal/hostile/cockroach : /mob/living/basic/cockroach/sewer
 
-# for some reasn our ghosts dont have /retaliate/ and thus arent caught by the ghost conversion txt...
+# for some reason our ghosts dont have /retaliate/ and thus arent caught by the ghost conversion txt...
 /mob/living/simple_animal/hostile/ghost : /mob/living/basic/ghost
 /mob/living/simple_animal/hostile/ghost/hostile : /mob/living/basic/ghost
 
-/obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
+/obj/item/food/cheesewedge : /obj/item/food/cheese/wedge {@OLD}
+/obj/item/food/cheesewheel : /obj/item/food/cheese/wheel {@OLD}
+/obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
+/obj/item/food/soup/bungocurry : @DELETE
+/obj/item/food/soup/stew : @DELETE
+/obj/item/food/soup/vegetable : @DELETE
+/obj/item/grown/sunflower : /obj/item/food/grown/sunflower {@OLD}
+
+/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
+/obj/item/kitchen/knife/@SUBTYPES : /obj/item/knife/@SUBTYPES {@OLD}
+/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
+/obj/item/melee/rune_knife : @DELETE
+
+#why was this mapped
+/obj/item/mop/cyborg : /obj/item/mop
+#this was a borg item that should not have been mapped in the first place
+/obj/item/organ_storage : @DELETE
+/obj/item/reagent_containers/glass/beaker/sulphuric : /obj/item/reagent_containers/glass/beaker {@OLD;list_reagents = list(/datum/reagent/toxin/acid = 50)}
+/obj/item/soapstone : @DELETE
+/obj/item/stock_parts/cell/high/plus : /obj/item/stock_parts/power_store/cell/high
+/obj/item/storage/pill_bottle/dice : /obj/item/storage/dice {@OLD}
+/obj/item/toy/mecha/fireripley : /obj/item/toy/mecha/firefighter
+/obj/item/toy/prize/@SUBTYPES : /obj/item/toy/mecha/@SUBTYPES {@OLD}
+/obj/item/trash/plate : /obj/item/plate {@OLD}
+
 /obj/structure/extinguisher_cabinet{dir = 1} : /obj/structure/extinguisher_cabinet/directional/north
 /obj/structure/extinguisher_cabinet{dir = 2} : /obj/structure/extinguisher_cabinet/directional/south
 /obj/structure/extinguisher_cabinet{dir = 4} : /obj/structure/extinguisher_cabinet/directional/east
 /obj/structure/extinguisher_cabinet{dir = 8} : /obj/structure/extinguisher_cabinet/directional/west
+/obj/structure/extinguisher_cabinet{dir = @UNSET} : /obj/structure/extinguisher_cabinet/directional/north
 
-/obj/item/food/soup/stew : @DELETE
-/obj/item/food/soup/vegetable : @DELETE
-/obj/item/food/soup/bungocurry : @DELETE
-/obj/item/food/chewable/spiderlollipop : /obj/item/food/spiderlollipop
+/obj/structure/closet/crate/grave/lead_researcher : /obj/structure/closet/crate/grave/filled/lead_researcher {@OLD}
+/obj/structure/fluff/hedge : /obj/structure/hedge {@OLD}
+/obj/structure/grille/indestructable : /obj/structure/grille/indestructible
+/obj/structure/janitorialcart : /obj/structure/mop_bucket/janitorialcart {@OLD}
+/obj/structure/mopbucket : /obj/structure/mop_bucket {@OLD}
+/obj/structure/reagent_dispensers/peppertank : /obj/structure/reagent_dispensers/wall/peppertank {@OLD}
+/obj/structure/table/wood/bar : /obj/structure/table/wood/shuttle_bar
+/obj/structure/sign/plaques/deempisi : /obj/structure/sign/picture_frame/portrait {@OLD}
 
-/obj/item/kitchen/knife : /obj/item/knife/kitchen {@OLD}
-/obj/item/kitchen/knife/butcher : /obj/item/knife/butcher{@OLD}
-/obj/item/kitchen/knife/plastic : /obj/item/knife/plastic{@OLD}
-/obj/item/kitchen/knife/shiv : /obj/item/knife/shiv {@OLD}
-
-/obj/item/melee/classic_baton/telescopic : /obj/item/melee/baton/telescopic
-
-/obj/item/toy/mecha/fireripley : /obj/item/toy/mecha/firefighter
-
-# This item doesn't exist on TG anymore.
-/obj/item/melee/rune_knife : @DELETE
+/turf/open/floor/grass/fakebasalt : /turf/open/floor/fakebasalt

@@ -72,7 +72,7 @@
 
 	if(do_after(user, draw_time, user))
 		new rune_path(user.loc)
-		user.bloodpool = max(user.bloodpool - rune_cost, 0)
+		user.adjust_blood_pool(-rune_cost)
 		SEND_SIGNAL(user, COMSIG_MASQUERADE_VIOLATION)
 
 	drawing = FALSE

@@ -32,4 +32,4 @@
 
 /obj/item/stocks_license/examine(mob/user)
 	. = ..()
-	. += "<b>Balance</b>: [balance] dollars"
+	. += "<b>Balance</b>: [balance] [MONEY_NAME]"

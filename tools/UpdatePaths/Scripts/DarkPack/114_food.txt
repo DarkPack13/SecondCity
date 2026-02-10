@@ -10,9 +10,10 @@
 
 /obj/item/food/vampire/bar : /obj/item/food/chocolatebar {@OLD}
 
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola : /obj/item/reagent_containers/cup/glass/vampirecola {@OLD}
+/obj/item/reagent_containers/food/drinks/bottle/vampirecola/blue : /obj/item/reagent_containers/cup/glass/vampirecola/blue {@OLD}
 /obj/item/reagent_containers/food/drinks/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw {@OLD}
 /obj/item/reagent_containers/food/drinks/bottle/vampirecola/thaw_club : /obj/item/reagent_containers/cup/soda_cans/thaw_club {@OLD}
-#/obj/item/reagent_containers/cup/glass/bottle/vampirecola/summer_thaw : /obj/item/reagent_containers/cup/soda_cans/summer_thaw
 
 /obj/food_cart : /obj/structure/food_cart {@OLD}
 
