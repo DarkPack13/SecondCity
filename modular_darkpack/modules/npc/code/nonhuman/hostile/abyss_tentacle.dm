@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 		if(world.time >= source.escape_attempt)
 			source.escape_attempt = world.time + 1 TURNS
 			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, source)
-			switch(roll)
+			switch(rollcheck)
 				if(ROLL_SUCCESS)
 					to_chat(source, span_notice("You break free from the tentacle's grasp!"))
 					release_mob(source, TRUE)
