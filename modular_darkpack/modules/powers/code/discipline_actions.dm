@@ -135,7 +135,7 @@
 	owner.update_mouse_pointer()
 	owner.click_intercept = null
 
-/datum/action/discipline/proc/InterceptClickOn(mob/user, params, atom/target)
+/datum/action/discipline/proc/handle_click(mob/user, params, atom/target)
 	SIGNAL_HANDLER
 
 	var/list/modifiers = params2list(params)

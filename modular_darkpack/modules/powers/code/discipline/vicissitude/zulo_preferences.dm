@@ -9,10 +9,10 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
-	return assoc_to_keys(GLOB.zulo_form_list)
+	return assoc_to_keys("fiend", "leviathan", "shrikebush", "impalersteed", "black_fiend", "doctor", "dog", "emily", "dragon", "tendrildragon") // Maybe this being a define would be better.
 
 /datum/preference/choiced/zulo_form/icon_for(value)
-	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', get_zulo_form(value).id)
+	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', value)
 
 /datum/preference/choiced/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
 	return
