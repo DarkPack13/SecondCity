@@ -220,6 +220,49 @@
 	name = "brown fur coat"
 	icon_state = "winter2"
 
+/obj/item/clothing/suit/vampire/coat/leopard
+	name = "leopard coat"
+	desc = "A coat made from synthetic fur."
+	icon_state = "leopard_coat"
+
+
+/obj/item/clothing/suit/hooded/hoodie
+	name = "hoodie"
+	desc = "A simple hoodie."
+	icon_state = "hoodie"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood
+
+/obj/item/clothing/head/hooded/hood_hood
+	name = "hoodie hood"
+	desc = "A hoodies hoodie hood."
+	icon_state = "hoodie_hood"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	// You should not expect this to have an onfloor
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	flags_inv = HIDEEARS
+	hair_mask = /datum/hair_mask/winterhood
+
+/obj/item/clothing/suit/hooded/hoodie/hoodie_pim
+	name = "intruder zim hoodie"
+	desc = "A hoodie of a favorite Intruder Zim character, Ger."
+	icon_state = "hoodie_zim"
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood/hood_pim
+
+/obj/item/clothing/head/hooded/hood_hood/hood_pim
+	name = "intruder zim hoodie hood"
+	desc = "A hood resembling a favorite Intruder Zim character, Ger."
+	icon_state = "hoodie_zim_hood"
+
+
 /obj/item/clothing/suit/vampire/slickbackcoat
 	name = "opulent coat"
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
@@ -539,5 +582,3 @@
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
-
-

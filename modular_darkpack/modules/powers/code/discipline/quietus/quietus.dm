@@ -258,7 +258,7 @@
 	var/layers = tgui_input_number(owner, "How many blood points do you want to use?", "Baal's Caress", 1, max_layers, 1)
 	if(!layers)
 		return
-	user.bloodpool -= layers
+	user.adjust_blood_pool(-layers)
 	target.AddComponent(/datum/component/baals_caress, owner, layers)
 	to_chat(owner, span_notice("You imbue [target] with [layers] layer\s of your toxic vitae!"))
 

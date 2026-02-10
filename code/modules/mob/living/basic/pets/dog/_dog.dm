@@ -92,6 +92,7 @@
 // DARKPACK EDIT ADD END
 
 /datum/emote/dog
+	abstract_type = /datum/emote/dog
 	mob_type_allowed_typecache = /mob/living/basic/pet/dog
 	mob_type_blacklist_typecache = list()
 
