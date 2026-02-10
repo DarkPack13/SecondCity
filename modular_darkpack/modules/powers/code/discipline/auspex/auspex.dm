@@ -250,7 +250,8 @@
 	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_INTELLIGENCE) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
 	to_chat(owner, span_notice("You roll [successes] successes."))
 	if(successes > 0)
-		var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform?\nReading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT)
+		// need linebreaks... but \n and <br> arent working...
+		var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT)
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
 				var/kindred_splat = iskindred(target)
@@ -259,14 +260,14 @@
 				if(kindred_splat || garou_splat)
 					owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "Telepathy")
 			if(TELEPATHY_IMPLANT_THOUGHT)
-				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought?\nRequires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
+				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
 				switch(disguise_voice_prompt)
 					if("Yes")
 						var/disguise_voice_roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS), owner)
 						switch(disguise_voice_roll)
 							if(ROLL_SUCCESS)
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
-							if(ROLL_FAILURE || ROLL_BOTCH)
+							if(ROLL_FAILURE, ROLL_BOTCH)
 								to_chat(span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
 								disguised_voice = owner.name
 					if("No")
@@ -295,8 +296,8 @@
 			to_chat(target, span_boldannounce("You hear the voice of [disguised_voice] in your thoughts: \"[input_message]\""))
 
 		if(TELEPATHY_MIND_READING)
-			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing...\n" + get_flavor_text(successes)
-			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information?\nDeeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
+			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing..." + get_flavor_text(successes)
+			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information? Deeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
 			if(mind_reading_search == "Yes")
 				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = MAX_MESSAGE_LEN)
 				if(!specific_search)
@@ -304,9 +305,9 @@
 
 			var/prompt_message = flavor_text_telepathy
 			if(specific_search)
-				prompt_message += "\n\nThe telepath specifically scans your mind for : [specific_search]"
+				prompt_message += "The telepath specifically scans your mind for : [specific_search]"
 			else
-				prompt_message += "\n\nThe telepath searches your recent thoughts and emotions..."
+				prompt_message += "The telepath searches your recent thoughts and emotions..."
 
 			input_message = tgui_input_text(target, prompt_message, "Mind Being Read")
 			if(!input_message)
@@ -362,6 +363,8 @@
 	else
 		to_chat(owner, span_warning("Your mind fails to leave your body."))
 
+#undef TELEPATHY_MIND_READING
+#undef TELEPATHY_IMPLANT_THOUGHT
 #undef SENSE_VISION
 #undef SENSE_HEARING
 #undef SENSE_SMELL
