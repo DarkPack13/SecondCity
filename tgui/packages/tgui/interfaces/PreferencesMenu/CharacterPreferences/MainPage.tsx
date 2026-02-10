@@ -659,8 +659,7 @@ export function MainPage(props: MainPageProps) {
               preferences={nonContextualPreferences}
               maxHeight="auto"
             />
-            */
-              // DARKPACK EDIT REMOVAL END
+            */ // DARKPACK EDIT REMOVAL END
             }
             {/* DARKPACK EDIT ADDITION BEGIN: Swappable pref menus */}
             <Stack>
