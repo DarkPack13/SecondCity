@@ -247,6 +247,7 @@ a:visited {
 .prefix,
 .ooc,
 .looc,
+.do,
 .adminooc,
 .admin,
 .medal,
@@ -1279,6 +1280,13 @@ $border-width-px: $border-width * 1px;
 .rlooc {
   color: #507294;
   font-weight: bold;
+}
+
+.subtle {
+  color: #000099;
+}
+.subtler {
+  color: #4a00b3;
 }
 
 /* DARKPACK EDIT ADD END */

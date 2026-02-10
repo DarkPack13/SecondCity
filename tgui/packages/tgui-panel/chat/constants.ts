@@ -39,6 +39,7 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
+export const MESSAGE_TYPE_SUBTLE = 'subtle'; // DARKPACK EDIT ADD
 
 type MessageType = {
   type: string;
@@ -65,7 +66,7 @@ export const MESSAGE_TYPES: MessageType[] = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .looc', // DARKPACK EDIT, ORIGINAL: selector: '.say, .emote',
+    selector: '.say, .emote, .looc, .do', // DARKPACK EDIT, ORIGINAL: selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
@@ -126,6 +127,12 @@ export const MESSAGE_TYPES: MessageType[] = [
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector: '.danger',
   },
+  { // DARKPACK EDIT ADD START - SUBTLE
+    type: MESSAGE_TYPE_SUBTLE,
+    name: 'Subtle',
+    description: 'Subtle and Subtler actions.',
+    selector: '.subtle, .subtler',
+  }, // DARKPACK EDIT ADD END
   {
     type: MESSAGE_TYPE_UNKNOWN,
     name: 'Unsorted',

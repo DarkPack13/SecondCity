@@ -166,9 +166,9 @@
 	masquerade_violating = FALSE
 	//is_iron = FALSE DARKPACK TODO - Kiasyd
 
+/* DARKPACK TODO - WEREWOLF - (this is a silver longsword)
 /obj/item/claymore/longsword/keeper/afterattack(atom/target, mob/living/carbon/user, proximity)
 	. = ..()
-	/* DARKPACK TODO - WEREWOLF - (this is a silver longsword)
 	if(iswerewolf(target) || isgarou(target) && proximity)
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
@@ -177,7 +177,7 @@
 
 		M.apply_damage(25, CLONE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-	*/
+*/
 
 /obj/item/melee/baseball_bat/vamp
 	name = "baseball bat"

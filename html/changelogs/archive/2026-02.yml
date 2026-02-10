@@ -39,3 +39,6 @@
   - bugfix: Fixes the reference to the Toreador Beretta
   XeonMations:
   - bugfix: Fixed ghouls being able to regenerate BP by drinking normal human blood
+2026-02-09:
+  XeonMations:
+  - bugfix: Typhonic beasts now break the masquerade.
