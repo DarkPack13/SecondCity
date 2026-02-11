@@ -57,6 +57,10 @@
 	name = "Badged Beret (Worn)"
 	json_config = 'code/datums/greyscale/json_configs/beret_badge_worn.json'
 
+/datum/greyscale_config/beret_badge/onfloor
+	name = "Badged Beret (Onfloor)"
+	icon_file = 'modular_darkpack/modules/clothes/icons/head_onfloor.dmi'
+
 /datum/greyscale_config/beanie
 	name = "Beanie"
 	icon_file = 'icons/obj/clothing/head/beanie.dmi'
