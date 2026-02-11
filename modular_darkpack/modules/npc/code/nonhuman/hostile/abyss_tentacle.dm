@@ -1,5 +1,5 @@
-// Global list to track mobs grabbed by any tentacle
-var/global/list/global_tentacle_grabs = list()
+/// Global list to track mobs grabbed by any tentacle
+GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 
 /mob/living/basic/abyss_tentacle
 	name = "abyssal tentacle"
@@ -79,7 +79,7 @@ var/global/list/global_tentacle_grabs = list()
 			continue
 		if(istype(potential_target, /mob/living/basic/abyss_tentacle))
 			continue
-		if(potential_target in global.global_tentacle_grabs)
+		if(potential_target in GLOB.global_tentacle_grabs)
 			continue
 		if(potential_target in tentacle.recently_released)
 			continue
@@ -131,7 +131,7 @@ var/global/list/global_tentacle_grabs = list()
 	if(owner?.tentacle_aggro_mode)
 		aggro_mode = owner.tentacle_aggro_mode
 
-/mob/living/basic/abyss_tentacle/Destroy()
+/mob/living/basic/abyss_tentacle/Destroy(force)
 	if(owner)
 		var/datum/splat/vampire/vampire = does_use_disciplines(owner)
 		var/datum/discipline_power/obtenebration/arms_of_the_abyss/power = vampire.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
@@ -143,7 +143,7 @@ var/global/list/global_tentacle_grabs = list()
 	// More checks
 	if(target == owner || istype(target, /mob/living/basic/abyss_tentacle))
 		return
-	if(target in global.global_tentacle_grabs)
+	if(target in GLOB.global_tentacle_grabs)
 		return
 	if(grabbed_mob)
 		return
@@ -151,7 +151,7 @@ var/global/list/global_tentacle_grabs = list()
 		to_chat(target, span_userdanger("A shadowy tentacle grabs you!"))
 	visible_message(span_danger("[src] grabs hold of [target]!"))
 
-	playsound(/mob/living/basic/abyss_tentacle, 'sound/misc/moist_impact.ogg', 50, FALSE)
+	playsound(src, 'sound/misc/moist_impact.ogg', 50, FALSE)
 	target.Stun(5)
 	target.forceMove(get_turf(src))
 	target.set_tentacle_grab(src)
@@ -162,14 +162,14 @@ var/global/list/global_tentacle_grabs = list()
 		to_chat(target, span_userdanger("The tentacle forces you to the ground!"))
 
 	grabbed_mob = target
-	global.global_tentacle_grabs += target
+	GLOB.global_tentacle_grabs += target
 
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_grabbed_mob_move))
 
 /mob/living/basic/abyss_tentacle/proc/release_mob(mob/living/target, add_cooldown = TRUE)
 	if(target == grabbed_mob)
 		grabbed_mob = null
-		global.global_tentacle_grabs -= target
+		GLOB.global_tentacle_grabs -= target
 		target.Stun(0)
 		target.clear_tentacle_grab()
 
@@ -199,20 +199,20 @@ var/global/list/global_tentacle_grabs = list()
 
 	if(get_dist(source, src) > 0)
 		if(world.time >= source.escape_attempt)
-			source.escape_attempt = world.time + 5 SECONDS
-			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, list(source), numerical = FALSE)
-			if(rollcheck == ROLL_SUCCESS)
-				to_chat(source, span_notice("You break free from the tentacle's grasp!"))
-				release_mob(source, TRUE)
-				return
-
-			else if(rollcheck == ROLL_BOTCH || rollcheck == ROLL_FAILURE)
-				to_chat(source, span_warning("You struggle against the tentacle but can't break free!"))
+			source.escape_attempt = world.time + 1 TURNS
+			var/roll = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, list(source), numerical = FALSE)
+			switch(roll)
+				if(ROLL_SUCCESS)
+					to_chat(source, span_notice("You break free from the tentacle's grasp!"))
+					release_mob(source, TRUE)
+					return
+				if(ROLL_FAILURE, ROLL_BOTCH)
+					to_chat(source, span_warning("You struggle against the tentacle but can't break free!"))
 
 		source.visible_message(span_danger("The tentacle pulls [source] back!"))
 		source.forceMove(get_turf(src))
 
-/mob/living/basic/abyss_tentacle/death()
+/mob/living/basic/abyss_tentacle/death(gibbed)
 	visible_message(span_danger("[src] retracts back into the shadows!"))
 	release_grabbed_mob()
 	. = ..()

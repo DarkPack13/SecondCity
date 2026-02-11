@@ -89,7 +89,7 @@
 	target_bouncer.speak_seldom(pick(target_bouncer.block_phrases), target_mob)
 
 /datum/vip_barrier_perm/proc/notify_barrier_social_bypass(mob/user, mob/bouncer, used_badge)
-	if(!linked_barriers.len)
+	if(!length(linked_barriers) || !isliving(user))
 		return
 	var/obj/effect/vip_barrier/target_barrier = linked_barriers[1]
 	target_barrier.handle_social_bypass(user, bouncer, used_badge)
