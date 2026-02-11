@@ -195,7 +195,10 @@
 #include "hydroponics_harvest.dm"
 #include "hydroponics_self_mutations.dm"
 #include "hydroponics_validate_genes.dm"
-#include "inhands.dm"
+#include "icon_state.dm"
+#include "icon_state_inhand.dm"
+#include "icon_state_worn.dm"
+#include "icons_missing.dm"
 #include "interaction_door.dm"
 #include "interaction_silicon.dm"
 #include "interaction_structures.dm"
@@ -225,7 +228,6 @@
 #include "merge_type.dm"
 #include "metabolizing.dm"
 #include "mindbound_actions.dm"
-#include "missing_icons.dm"
 #include "mob_chains.dm"
 #include "mob_damage.dm"
 #include "mob_faction.dm"
@@ -342,7 +344,6 @@
 #include "washing.dm"
 #include "weird_food.dm"
 #include "wizard_loadout.dm"
-#include "worn_icons.dm"
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"
