@@ -12,20 +12,24 @@
 	activate_sound = 'modular_darkpack/modules/powers/sounds/melpominee/melpominee.ogg'
 
 	vitae_cost = 1 // All Melpominee powers below 5 dots cost blood
+	var/obj/effect/abstract/particle_holder/particle_generator
+
+/datum/discipline_power/melpominee/proc/setup_particles()
+	if(!particle_generator)
+		particle_generator = new(owner, /particles/melpominee, PARTICLE_ATTACH_MOB)
 
 /particles/melpominee
-	icon = 'icons/effects/particles/generic.dmi'
+	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = list("note" = 1)
 	width = 32
-	height = 100
-	count = 2
-	spawning = 0.1
-	lifespan = 2 SECONDS
+	height = 48
+	count = 5
+	spawning = 0.5
+	lifespan = 5 SECONDS
 	fade = 1.5 SECONDS
-	position = generator(GEN_BOX, list(-9,12,0), list(9,16,0), NORMAL_RAND)
-	scale = generator(GEN_VECTOR, list(0.9,0.9), list(1.1,1.1), NORMAL_RAND)
-	gravity = list(0, -0.05)
-	drift = generator(GEN_VECTOR, list(0, -0.05), list(0, 0.1))
+	gravity = list(0, 0.1)
+	position = generator(GEN_SPHERE, 0, 16, NORMAL_RAND)
+	spin = generator(GEN_NUM, -1, 1, NORMAL_RAND)
 
 /**
  * • The Missing Voice - p453
@@ -70,7 +74,7 @@
 		to_chat(owner, span_warning("You need line of sight to the location your voice is coming from."))
 		return
 
-	dummy.name = owner.get_generic_name(TRUE, TRUE)
+	dummy.name = owner.get_generic_name(TRUE, TRUE) + "'s voice"
 	dummy.say(message = new_say, forced = "melpominee 1")
 	QDEL_IN(dummy, 2 TURNS)
 
@@ -95,10 +99,8 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_SPEAK
 
 	cooldown_length = 5 SECONDS
-	// How many messages can be sent without a roll
-	var/message_turns = 0
-	// the guy we last talked to
-	var/last_guy
+	// the guys we last talked to
+	var/list/free_speakers
 
 /datum/discipline_power/melpominee/phantom_speaker/activate()
 	. = ..()
@@ -114,8 +116,18 @@
 		if(owner.mind.guestbook.known_names[character.real_name] && character.client)
 			targets += character
 
-	var/mob/living/target = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
-	if(!target)
+	var/list/mob/living/listener_list
+	var/mob/living/listener
+
+	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, "melpominee 5"))
+		listener = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		if(!listener)
+			return
+		listener_list[WEAKREF(listener)] = 0
+	else
+		listener_list = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+
+	if(!length(listener_list))
 		return
 
 	var/input_message = tgui_input_text(owner, "What message will you project to them?", title = "Phantom Speaker")
@@ -131,27 +143,34 @@
 		to_chat(owner, span_danger("You can't emote with [name]!"))
 		return
 
-	if(target == last_guy && message_turns)
-		owner.adjust_blood_pool(1) // Refund the blood if we have enough successes and we're talking to the same guy
-	else if (target != last_guy)
-		message_turns = 0
-
 	var/language = owner.get_selected_language()
 	var/message = owner.compose_message(owner, language, input_message)
-	if(!message_turns)
-		var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
-		if(successes)
-			message_turns = successes
-		else
-			to_chat(owner, span_userdanger("Your voice falters. Your message is not sent."))
-			return
 
-	to_chat(target, span_boldannounce("<i>You hear a voice in your head...</i>"))
-	target.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
-	to_chat(owner, span_notice("You project your voice to [target]'s ears."))
+	var/successes
 
-	message_turns--
-	last_guy = target
+	if(listener_list ~= free_speakers)
+		owner.adjust_blood_pool(1)
+	else
+		var/list/unspoken_to = list()
+		for(var/mob/living/guy in listener_list)
+			if(!(guy in free_speakers))
+				unspoken_to += guy
+		successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+		for(var/mob/living/new_guy in unspoken_to)
+			if(successes)
+				listener_list[new_guy] = successes
+			else
+				listener_list[new_guy] = null
+				to_chat(owner, span_warning("[new_guy]'s ears are not reached by your song."))
+
+		var/bp_used = max(1, length(unspoken_to-6))
+		owner.adjust_blood_pool(bp_used)
+
+	var/those_who_hear = "[jointext(listener_list, ", ", 1, length(listener_list))], and [listener_list[length(listener_list)]]."
+	for(var/mob/living/final_listeners in listener_list)
+		to_chat(final_listeners, span_boldannounce("<i>You hear a voice in your head...</i>"))
+		final_listeners.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
+		to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
 
 /**
  * ••• Madrigal - p453-454
@@ -186,20 +205,21 @@
 			set_emotion(member, emotion)
 
 /datum/discipline_power/melpominee/madrigal/proc/set_emotion(mob/living/target, emotion)
-	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, "Madrigal")
+	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, "melpominee 3")
 	SEND_SIGNAL(src, COMSIG_MOB_EMOTION_CHANGED, emotion)
 
 	to_chat(target, span_purple("You are overwhelmed with [emotion_to_quality(emotion)]."))
+	target.apply_status_effect(/datum/status_effect/forced_emotion)
 
 /datum/discipline_power/melpominee/madrigal/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/member in audience)
-		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, "Madrigal"))
+		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, "melpominee 3"))
 			to_chat(member, span_nicegreen("You are no longer overwhelmed with [emotion_to_quality(member.current_emotion)]."))
 		else
 			to_chat(member, span_nicegreen("You feel your [emotion_to_quality(member.current_emotion)] weakening."))
 
-		REMOVE_TRAITS_IN(member, "Madrigal")
+		REMOVE_TRAITS_IN(member, "melpominee 3")
 
 	audience = list()
 
@@ -225,55 +245,101 @@
 	range = 7
 	duration_length = 4 TURNS
 	cooldown_length = 1 MINUTES
-	duration_override = FALSE
-	target_type = TARGET_MOB
-
-	var/uses = 4
+	duration_override = TRUE
+	target_type = TARGET_LIVING
+	var/list/listener_list = list()
+	var/list/listeners_failed = list()
 	var/channeling = FALSE
-	var/particles/particle_generator
+	var/list/cumulative_list = list()
+	var/list/cumulative_our_power = list()
+	var/ticks = 4
 
-/datum/discipline_power/melpominee/sirens_beckoning/activate(mob/living/target)
+/datum/discipline_power/melpominee/sirens_beckoning/can_activate(atom/target)
+	if(HAS_TRAIT(owner, TRAIT_VIRTUOSA))
+		target_type = NONE
+	else
+		target_type = TARGET_LIVING
+
 	. = ..()
+
+/datum/discipline_power/melpominee/sirens_beckoning/activate(mob/living/target) // TODO: sliding difficulty for willpower
+	. = ..()
+	setup_particles()
 	to_chat(owner, span_purple("You begin to sing a haunting melody."))
 
 	owner.Stun(1 TURNS)
 	channeling = TRUE
 
-	channel(target)
-
-	if(!particle_generator)
-		particle_generator = new(owner, /particles/melpominee, PARTICLE_ATTACH_MOB) // TODO: make this work
-
-/datum/discipline_power/melpominee/sirens_beckoning/proc/channel(mob/living/carbon/listener)
-	var/our_power = SSroll.storyteller_roll((owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE)), listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
-	var/their_power = SSroll.storyteller_roll(listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), (owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)), listener, numerical = TRUE)
-	playsound(owner, 'modular_darkpack/modules/powers/sounds/melpominee/banshee.ogg', 75)
-	uses--
-	if((our_power > their_power) && channeling && uses)
-		listener.Stun(1 TURNS)
-		listener.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
-		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
-		listener.apply_overlay(MUTATIONS_LAYER)
-		addtimer(CALLBACK(src, PROC_REF(channel), listener), 1 TURNS)
-		to_chat(listener, span_purple("[owner]'s haunting melody continues."))
+	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
+		listener_list += target
 	else
-		deactivate(listener)
+		listener_list = ohearers(owner, 7)
+
+	if(!length(listener_list))
 		return
 
+	run_effect(target)
+
+/datum/discipline_power/melpominee/sirens_beckoning/proc/run_effect(mob/living/carbon/target)
+	if(ticks > 0)
+		ticks--
+		to_chat(world, "[ticks]")
+	else
+		return to_chat(world, "[ticks]")
+
+	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
+		listener_list += target
+	else
+		listener_list = ohearers(owner, 7)
+
+	for(var/mob/living/carbon/listener in listener_list) // TODO: mark these as spammy rolls
+		var/our_power = SSroll.storyteller_roll((owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE)), listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
+		cumulative_our_power[WEAKREF(listener)] += our_power
+		var/their_power = SSroll.storyteller_roll(listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), (owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)), listener, numerical = TRUE)
+		cumulative_list[WEAKREF(listener)] += their_power
+		if(our_power > their_power && should_run_effect())
+			effect(listener)
+		else
+			listener_list -= listener
+			listener.remove_overlay(MUTATIONS_LAYER)
+			cumulative_our_power[WEAKREF(listener)] = null
+			cumulative_list[WEAKREF(listener)] = null
+
+	if(channeling && length(listener_list))
+		addtimer(CALLBACK(src, PROC_REF(run_effect), target), 1 TURNS)
+	else
+		deactivate(target, TRUE)
+
+/datum/discipline_power/melpominee/sirens_beckoning/proc/should_run_effect()
 	if(!do_after(owner, 1 TURNS, timed_action_flags = IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS) || !owner.can_speak())
-		deactivate(listener)
+		channeling = FALSE
 		return
+
+/datum/discipline_power/melpominee/sirens_beckoning/proc/effect(mob/living/carbon/listener)
+	listener.Stun(1 TURNS)
+	listener.remove_overlay(MUTATIONS_LAYER)
+	var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
+	listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
+	listener.apply_overlay(MUTATIONS_LAYER)
+	if(cumulative_our_power[WEAKREF(listener)] >= 20)
+		listener.add_quirk(/datum/quirk/derangement)
+
+	if(cumulative_list[WEAKREF(listener)] <= cumulative_our_power[listener]-6)
+		if(listener.add_quirk(/datum/quirk/derangement))
+			addtimer(CALLBACK(src, PROC_REF(remove_derangement), listener), 1 SCENES)
+
+/datum/discipline_power/melpominee/sirens_beckoning/proc/remove_derangement(mob/living/carbon/listener)
+	listener.remove_quirk(/datum/quirk/derangement)
 
 /datum/discipline_power/melpominee/sirens_beckoning/deactivate(mob/living/carbon/target)
 	. = ..()
-	to_chat(owner, span_purple("You stop singing."))
-	channeling = FALSE
-	target.remove_overlay(MUTATIONS_LAYER)
-	QDEL_NULL(particle_generator)
-	to_chat(target, span_purple("[owner]'s haunting melody ceases."))
-	uses = 4
+	for(var/mob/living/carbon/listener in listener_list)
+		listener.remove_overlay(MUTATIONS_LAYER)
 
+	owner.visible_message(span_purple("[owner]'s haunting melody ceases."), span_purple("You stop singing."))
+	channeling = FALSE
+	QDEL_NULL(particle_generator)
+	ticks = 4
 
 /**
  * ••••• Shattering Crescendo - p454
