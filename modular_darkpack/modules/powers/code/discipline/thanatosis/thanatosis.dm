@@ -27,7 +27,8 @@
 /datum/discipline_power/thanatosis/hag_wrinkles/pre_activation_checks()
 	. = ..()
 	var/dice = owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_SUBTERFUGE)
-	if(SSroll.storyteller_roll(dice, 8, FALSE, owner))
+	var/roll = SSroll.storyteller_roll(dice, 8, owner)
+	if(roll == ROLL_SUCCESS)
 		return TRUE
 	else
 		return FALSE
@@ -77,7 +78,7 @@
 
 	totaldice = (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_MEDICINE))
 	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, difficulty = totaldiff, mobs_to_show_output = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
 
 	if(successes > 0)
 		return TRUE
@@ -185,7 +186,7 @@
 
 	totaldice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_MEDICINE))
 	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, difficulty = totaldiff, mobs_to_show_output = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
 
 	if(successes > 0)
 		return TRUE
@@ -255,7 +256,7 @@
 
 	totaldice = (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_MEDICINE))
 	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, difficulty = totaldiff, mobs_to_show_output = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
 
 	if(successes > 0)
 		return TRUE
