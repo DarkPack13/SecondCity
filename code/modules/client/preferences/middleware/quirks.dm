@@ -115,7 +115,11 @@
 
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-
+	// DARKPACK EDIT ADD - Merits/Flaws
+	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+	freebie_points.decrease_points(quirk_type.value)
+	// DARKPACK EDIT END - Merits/Flaws
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks) != new_quirks)
@@ -133,7 +137,11 @@
 
 /datum/preference_middleware/quirks/proc/remove_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-
+	// DARKPACK EDIT ADD - Merits/Flaws
+	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+	freebie_points.increase_points(quirk_type.value)
+	// DARKPACK EDIT END - Merits/Flaws
 	var/list/new_quirks = preferences.all_quirks - quirk_name
 	if ( \
 		!(quirk_name in preferences.all_quirks) \
