@@ -203,5 +203,55 @@
 		/obj/structure/flora/bush/lavendergrass/style_random = 1,
 		/obj/structure/flora/bush/flowers_yw/style_random = 1,
 		/obj/structure/flora/bush/flowers_br/style_random = 1,
-		/obj/structure/flora/bush/flowers_pp/style_random = 1
+		/obj/structure/flora/bush/flowers_pp/style_random = 1,
+		/obj/effect/spawner/random/flora/flowers/unique = 1,
 	)
+
+/obj/effect/spawner/random/flora/flowers/unique
+	loot = list(
+		/obj/structure/flora/darkpack_flower/marigold,
+		/obj/structure/flora/darkpack_flower/flax,
+		/obj/structure/flora/darkpack_flower/bluestar,
+		/obj/structure/flora/darkpack_flower/primrose,
+		/obj/structure/flora/darkpack_flower/turtleback,
+		/obj/structure/flora/darkpack_flower/yerba,
+		/obj/structure/flora/darkpack_flower/paintbrush
+	)
+
+/obj/structure/flora/darkpack_flower
+	icon = 'modular_darkpack/modules/decor/icons/flowers.dmi'
+	desc = "A common wildflower."
+	abstract_type = /obj/structure/flora/darkpack_flower
+	flora_flags = FLORA_HERBAL
+
+/obj/structure/flora/darkpack_flower/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/swaying, sway_angle = 4, sway_time = 2 SECONDS)
+
+/obj/structure/flora/darkpack_flower/marigold
+	name = "marigold"
+	icon_state = "marigold"
+
+/obj/structure/flora/darkpack_flower/flax
+	name = "prairie flax"
+	icon_state = "prairie_flax"
+
+/obj/structure/flora/darkpack_flower/bluestar
+	name = "wooly bluestar"
+	icon_state = "wooly_bluestar"
+
+/obj/structure/flora/darkpack_flower/primrose
+	name = "evening primrose"
+	icon_state = "evening_primrose"
+
+/obj/structure/flora/darkpack_flower/turtleback
+	name = "velvet turtleback"
+	icon_state = "velvet_turtleback"
+
+/obj/structure/flora/darkpack_flower/yerba
+	name = "yerba mansa"
+	icon_state = "yerba_mansa"
+
+/obj/structure/flora/darkpack_flower/paintbrush
+	name = "indian paintbrush"
+	icon_state = "indian_paintbrush"

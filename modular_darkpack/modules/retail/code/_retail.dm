@@ -8,6 +8,7 @@
 	icon_state = "register"
 	density = FALSE
 	anchored = TRUE
+	anchored_tabletop_offset = 6
 	var/owner_needed = TRUE //Does an npc need to be here for this
 	var/mob/living/carbon/human/npc/my_owner //tracks existence of owner
 	var/is_gun_store = FALSE

@@ -6,7 +6,7 @@
 	var/list/possible_biomes = list(
 	BIOME_LOW_HEAT = list(
 		BIOME_LOW_HUMIDITY = /datum/biome/plains,
-		BIOME_LOWMEDIUM_HUMIDITY = /datum/biome/mudlands,
+		BIOME_LOWMEDIUM_HUMIDITY = /datum/biome/plains,
 		BIOME_HIGHMEDIUM_HUMIDITY = /datum/biome/mudlands,
 		BIOME_HIGH_HUMIDITY = /datum/biome/water
 		),
