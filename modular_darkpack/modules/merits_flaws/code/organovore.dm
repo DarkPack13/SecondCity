@@ -1,6 +1,6 @@
 /datum/quirk/darkpack/organovore
 	name = "Organovore"
-	value = -1
+	value = -5
 	mob_trait = TRAIT_ORGANOVORE
 	gain_text = span_notice("You feel an insatiable taste for flesh.")
 	lose_text = span_notice("You feel that you can once again feed normally.")

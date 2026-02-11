@@ -105,8 +105,14 @@
 	attack_verb_continuous = "splashes"
 	attack_verb_simple = "splash"
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/bloodcrawler/dust
-	shapeshift_type = /mob/living/basic/samedi_ash_pile
+/datum/action/cooldown/spell/shapeshift/samedi_ash
+	name = "Ashes to Ashes"
+	desc = "Turn into ash to hide."
+	button_icon_state = "ash"
+
+	possible_shapes = list(/mob/living/basic/samedi_ash_pile)
+	convert_damage = TRUE
+	convert_damage_type = BRUTE
 
 /datum/discipline_power/thanatosis/ashes_to_ashes
 	name = "Ashes to Ashes"
@@ -119,22 +125,28 @@
 	activate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy3.ogg'
 
 	violates_masquerade = TRUE
-
-	duration_length = 30 SECONDS
+	toggled = TRUE
+	cancelable = TRUE
+	duration_length = 0
 	cooldown_length = 1 TURNS
 
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bloodcrawler/dust/dust_transformation
+	var/datum/action/cooldown/spell/shapeshift/samedi_ash/dust_transformation
 
-/datum/discipline_power/thanatosis/ashes_to_ashes/activate(mob/target)
+/datum/discipline_power/thanatosis/ashes_to_ashes/activate()
 	. = ..()
-	if (!dust_transformation)
-		dust_transformation = new(owner)
+	if(dust_transformation)
+		CRASH("[src] somehow already has a spell?")
 	owner.drop_all_held_items()
-	dust_transformation.Shapeshift(owner)
+	dust_transformation = new(owner.mind)
+	dust_transformation.Grant(owner)
+	dust_transformation.Activate(owner)
+	RegisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT, PROC_REF(deactivate))
 
 /datum/discipline_power/thanatosis/ashes_to_ashes/deactivate()
+	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
 	. = ..()
-	dust_transformation.Restore(dust_transformation.myshape)
+	dust_transformation.Remove(owner)
+	QDEL_NULL(dust_transformation)
 	owner.Stun(1.5 SECONDS)
 	owner.do_jitter_animation(30)
 
@@ -202,11 +214,11 @@
 				else
 					target.visible_message(span_danger("[target]'s [target_part.name] withers into nothingness!"), span_userdanger("YOUR <b>[target_part.name]</b> WITHERS INTO NOTHING!"))
 					target_part.dismember(BURN)
-			if(iscoraxcrinos(target) || iscrinos(target) || islupus(target) || iscorax(target))
-				target.adjust_brute_loss(30 * successes)
-			else
-				var/datum/wound/blunt/critical/crit_wound = new
-				crit_wound.apply_wound(target_part)
+			//if(iscoraxcrinos(target) || iscrinos(target) || islupus(target) || iscorax(target))
+				//target.adjust_brute_loss(30 * successes)
+			//else
+				//var/datum/wound/blunt/critical/crit_wound = new
+				//crit_wound.apply_wound(target_part)
 		else
 			target.adjust_brute_loss(200)
 
@@ -268,26 +280,26 @@
 			if(iscarbon(target))
 				for(var/i in target.bodyparts)
 					var/obj/item/bodypart/bodypart = i
-					var/datum/wound/burn/moderate/burnt = new
+					var/datum/wound/burn/flesh/moderate/burnt = new
 					burnt.apply_wound(bodypart)
 		if(4)
 			target.apply_status_effect(STATUS_EFFECT_PUTREFACTIONTWO, owner)
 			if(iscarbon(target))
 				for(var/i in target.bodyparts)
 					var/obj/item/bodypart/bodypart = i
-					var/datum/wound/burn/severe/burnt = new
+					var/datum/wound/burn/flesh/severe/burnt = new
 					burnt.apply_wound(bodypart)
 		if(5)
 			target.apply_status_effect(STATUS_EFFECT_PUTREFACTIONTHREE, owner)
 			if(iscarbon(target))
 				for(var/i in target.bodyparts)
 					var/obj/item/bodypart/bodypart = i
-					var/datum/wound/burn/critical/burnt = new
+					var/datum/wound/burn/flesh/critical/burnt = new
 					burnt.apply_wound(bodypart)
 		else
 			target.apply_status_effect(STATUS_EFFECT_PUTREFACTIONFOUR, owner)
 			if(iscarbon(target))
 				for(var/i in target.bodyparts)
 					var/obj/item/bodypart/bodypart = i
-					var/datum/wound/burn/critical/burnt = new
+					var/datum/wound/burn/flesh/critical/burnt = new
 					burnt.apply_wound(bodypart)
