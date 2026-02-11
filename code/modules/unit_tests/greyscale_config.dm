@@ -27,9 +27,9 @@
 
 		// DARKPACK EDIT ADD START - ONFLOOR_ICONS
 		var/datum/greyscale_config/onfloor = SSgreyscale.configurations["[initial(item_path.greyscale_config_onfloor)]"]
-		var/onflooricon_state = initial(item_path.onflooricon_state) || initial(item_path.icon_state) || initial(item_path.post_init_icon_state)
+		var/onflooricon_state = item_path::onflooricon_state || item_path::icon_state
 		if(onfloor && !onfloor.icon_states[onflooricon_state])
-			TEST_FAIL("[onfloor.DebugName()] is missing a sprite for the worn overlay for [item_path]. Expected icon state: '[onflooricon_state]'")
+			TEST_FAIL("[onfloor.DebugName()] is missing a sprite for the onfloor icon for [item_path]. Expected icon state: '[onflooricon_state]'")
 		// DARKPACK EDIT ADD END
 
 /// Makes sure objects using greyscale configs have, if any, the correct number of colors
