@@ -38,3 +38,18 @@
 	attached_effect.owner.emotion_panel()
 	// Regardless if they acctually end up setting anything, clear the status effect
 	qdel(attached_effect)
+
+/datum/status_effect/forced_emotion
+	id = "question_emotion"
+	// Nothing says it needs to be a scene, I just like using our defines to create nice standards of time.
+	duration = 1 SCENES
+
+	status_type = STATUS_EFFECT_REPLACE
+
+	alert_type = /atom/movable/screen/alert/status_effect/forced_emotion
+
+/atom/movable/screen/alert/status_effect/forced_emotion
+	name = "Forced emotion"
+	desc = "Something is forcing your mind into a particular emotion."
+	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
+	icon_state = "in_love"
