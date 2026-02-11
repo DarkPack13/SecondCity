@@ -23,12 +23,12 @@
 		if(rage_req)
 			if(H.auspice.rage < rage_req)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', volume = 75))
 				allowed_to_proceed = FALSE
 				return
 			if(H.auspice.gnosis < gnosis_req)
 				to_chat(owner, span_warning("You don't have enough <b>GNOSIS</b> to do that!"))
-				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', 0, 0, 75))
+				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/werewolf_cast_failed.ogg', volume = 75))
 				allowed_to_proceed = FALSE
 				return
 		if(cool_down+150 >= world.time)
@@ -346,7 +346,7 @@
 	if(allowed_to_proceed)
 		var/mob/living/carbon/C = owner
 		if(C.stat != DEAD)
-			SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/rage_heal.ogg', 0, 0, 75))
+			SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/rage_heal.ogg', volume = 75))
 			C.adjust_brute_loss(-40*C.auspice.level, TRUE)
 			C.adjust_fire_loss(-30*C.auspice.level, TRUE)
 			C.adjust_agg_loss(-10*C.auspice.level, TRUE)

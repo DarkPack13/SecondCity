@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Pharmacy has sutures, gauze, and mesh"
+  - balance: "bruise packs and ointment is cheaper"

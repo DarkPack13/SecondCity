@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = SUPERVISOR_POLICE_CHIEF_AND_SERGEANT
+	supervisors = SUPERVISOR_POLICE_CAPTAIN_AND_SERGEANT
 	config_tag = "POLICE_OFFICER"
 	outfit = /datum/outfit/job/vampire/police_officer
 	job_flags = CITY_JOB_FLAGS
@@ -26,7 +26,7 @@
 	description = "Enforce the Law."
 	minimal_masquerade = 0
 
-	known_contacts = list("Police Chief")
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/police_officer
 	name = "Police Officer"
