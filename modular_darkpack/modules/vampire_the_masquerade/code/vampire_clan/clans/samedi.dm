@@ -1,5 +1,5 @@
 /datum/vampire_clan/samedi
-	name = CLAN_SAMEDI
+	name = VAMPIRE_CLAN_SAMEDI
 	desc = "A rare bloodline of Corpse Walkers based from their enigmatic founder simply called the Baron Samedi."
 	curse = "Extremely rotten dead form. Akin to a walking zombie."
 	clan_disciplines = list(

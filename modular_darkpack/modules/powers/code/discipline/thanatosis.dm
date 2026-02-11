@@ -1,1 +1,0 @@
-/datum/discipline/thanatosis
