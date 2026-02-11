@@ -62,6 +62,8 @@
 	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
 	data["species_disallowed_quirks"] = get_species_compatibility()
 	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
+	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - Merits/Flaws
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - Merits/Flaws
 
 	return data
 
@@ -73,6 +75,7 @@
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
 		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - Merits/Flaws
 
 	return data
 
@@ -155,3 +158,25 @@
 		selected_quirks += sanitize_css_class_name(quirk)
 
 	return selected_quirks
+
+//DARKPACK EDIT ADD - Merits/Flaws
+
+/datum/preference_middleware/quirks/proc/get_freebie_points()
+	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	if(!freebie_stat)
+		return null
+
+	var/base_points = 15
+	var/spent_on_stats = freebie_stat.freebie_cost_spent
+	var/quirk_balance = get_quirk_balance()
+
+	return base_points - spent_on_stats + quirk_balance
+
+/datum/preference_middleware/quirks/proc/get_quirk_balance()
+	var/total_cost = 0
+	for(var/quirk_name in preferences.all_quirks)
+		var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+		total_cost -= quirk_type.value
+	return total_cost
+
+//DARKPACK EDIT END - Merits/Flaws
