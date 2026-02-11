@@ -44,10 +44,6 @@
 	name = "Beret (Worn)"
 	json_config = 'code/datums/greyscale/json_configs/beret_worn.json'
 
-/datum/greyscale_config/beret/onfloor
-	name = "Badged (Onfloor)"
-	icon_file = 'modular_darkpack/modules/clothes/icons/head_onfloor.dmi'
-
 /datum/greyscale_config/beret_badge
 	name = "Badged Beret"
 	icon_file = 'icons/obj/clothing/head/beret.dmi'
@@ -56,10 +52,6 @@
 /datum/greyscale_config/beret_badge/worn
 	name = "Badged Beret (Worn)"
 	json_config = 'code/datums/greyscale/json_configs/beret_badge_worn.json'
-
-/datum/greyscale_config/beret_badge/onfloor
-	name = "Badged Beret (Onfloor)"
-	icon_file = 'modular_darkpack/modules/clothes/icons/head_onfloor.dmi'
 
 /datum/greyscale_config/beanie
 	name = "Beanie"
