@@ -19,6 +19,7 @@
 	id = VAMPIRE_CLAN_HARBINGER
 	desc = "A bloodline of the Clan Cappadocian, and largely composed of victims of the Giovanni purge against their clan and the Feast of Folly, these Sabbat Cappadocian vampires, masters of Necromancy, brought their power over the dead with them to the underworld, where they became powerful Wraiths, biding their time and waiting for a chance to cross the Shroud to enact vengeance for their Clan."
 	curse = "Extremely corpselike appearance that worsens with age, with the oldest being walking skeletal forms or ghostly, reminiscent of their time across the Shroud."
+	icon = "cappadocian"
 
 /datum/vampire_clan/cappadocian/harbinger/on_gain(mob/living/carbon/human/H)
 	. = ..()

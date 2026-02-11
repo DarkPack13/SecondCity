@@ -1,7 +1,9 @@
 /datum/vampire_clan/samedi
-	name = VAMPIRE_CLAN_SAMEDI
+	name = "Samedi"
+	id = VAMPIRE_CLAN_SAMEDI
 	desc = "A rare bloodline of Corpse Walkers based from their enigmatic founder simply called the Baron Samedi."
 	curse = "Extremely rotten dead form. Akin to a walking zombie."
+	icon = "cappadocian"
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
 		/datum/discipline/fortitude,
