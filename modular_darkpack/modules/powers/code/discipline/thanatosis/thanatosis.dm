@@ -68,9 +68,9 @@
 	var/totaldice
 	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
-	if(iskindred(vampire))
-		var/datum/species/kindred/clan = vampire.dna.species
-		var/datum/discipline/fortitude/fortitude_check = clan.get_discipline(/datum/discipline/fortitude)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	if(kindred_splat)
+		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
 			fortitudelevel = fortitude_check.level
 
@@ -94,7 +94,7 @@
 /mob/living/basic/samedi_ash_pile
 	name = "ash"
 	desc = "Ashes to ashes, dust to dust, and into space."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/debris.dmi'
 	icon_state = "ash"
 	icon_living = "ash"
 	speed = 2 //'the character cannot move'
@@ -165,20 +165,20 @@
 	var/totaldice
 	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
-	if(iskindred(vampire))
-		var/datum/species/kindred/clan = vampire.dna.species
-		var/datum/discipline/fortitude/fortitude_check = clan.get_discipline(/datum/discipline/fortitude)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	if(kindred_splat)
+		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
 			fortitudelevel = fortitude_check.level
-
 
 	totaldice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_MEDICINE))
 	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
 	successes = SSroll.storyteller_roll(totaldice, difficulty = totaldiff, mobs_to_show_output = owner, numerical = TRUE)
+
 	if(successes > 0)
 		return TRUE
 	else
-		to_chat(owner, span_warning("Withering has failed to affect [target]"))
+		to_chat(owner, span_warning("Withering has failed to affect [target]!"))
 		return FALSE
 
 /datum/discipline_power/thanatosis/withering/activate(mob/living/target)
@@ -235,9 +235,9 @@
 	var/totaldice
 	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
-	if(iskindred(vampire))
-		var/datum/species/kindred/clan = vampire.dna.species
-		var/datum/discipline/fortitude/fortitude_check = clan.get_discipline(/datum/discipline/fortitude)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	if(kindred_splat)
+		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
 			fortitudelevel = fortitude_check.level
 
@@ -248,6 +248,7 @@
 	if(successes > 0)
 		return TRUE
 	else
+		to_chat(owner, span_warning("Necrosis has failed to affect [target]!"))
 		return FALSE
 
 /datum/discipline_power/thanatosis/necrosis/activate(mob/living/carbon/human/target)
