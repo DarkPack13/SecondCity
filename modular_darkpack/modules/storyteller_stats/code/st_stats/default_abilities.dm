@@ -115,6 +115,12 @@
 	*/
 	description = "Affects your ability to use and interact with computerized devices."
 
+// This kinda sucks dick to do for every stat.
+/datum/st_stat/ability/computer/New()
+	. = ..()
+	if(CONFIG_GET(flag/punishing_zero_dots))
+		description += " At 0 points, you won't be able to use a computer."
+
 /datum/st_stat/ability/finance
 	subcategory = "Knowledges"
 	name = "Finance"
