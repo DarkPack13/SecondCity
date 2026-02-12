@@ -23,7 +23,8 @@
 	return assoc_to_keys(GLOB.zulo_forms)
 
 /datum/preference/choiced/zulo_form/icon_for(value)
-	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', GLOB.zulo_forms[value])
+	var/icon_state = GLOB.zulo_forms[value]
+	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
 
 /datum/preference/choiced/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
 	return
