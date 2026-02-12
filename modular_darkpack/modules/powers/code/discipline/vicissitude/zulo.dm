@@ -1,14 +1,14 @@
 GLOBAL_LIST_INIT(zulo_forms, list(
-	"Fiend" = /datum/zulo_form,
-	"Leviathan" = /datum/zulo_form/leviathan,
-	"Shrikebush" = /datum/zulo_form/shrikebush,
-	"Impaler Steed" = /datum/zulo_form/impalersteed,
-	"Black Fiend" = /datum/zulo_form/black_fiend,
-	"Doctor" = /datum/zulo_form/doctor,
-	"Dog" = /datum/zulo_form/dog,
-	"Emily" = /datum/zulo_form/emily,
-	"Dragon" = /datum/zulo_form/dragon,
-	"Tendril Dragon" = /datum/zulo_form/tendrildragon,
+	"Fiend" = /datum/zulo_form::icon_state,
+	"Leviathan" = /datum/zulo_form/leviathan::icon_state,
+	"Shrikebush" = /datum/zulo_form/shrikebush::icon_state,
+	"Impaler Steed" = /datum/zulo_form/impalersteed::icon_state,
+	"Black Fiend" = /datum/zulo_form/black_fiend::icon_state,
+	"Doctor" = /datum/zulo_form/doctor::icon_state,
+	"Dog" = /datum/zulo_form/dog::icon_state,
+	"Emily" = /datum/zulo_form/emily::icon_state,
+	"Dragon" = /datum/zulo_form/dragon::icon_state,
+	"Tendril Dragon" = /datum/zulo_form/tendrildragon::icon_state,
 ))
 
 /datum/zulo_form
