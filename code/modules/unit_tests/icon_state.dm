@@ -5,12 +5,13 @@
 /datum/unit_test/missing_icons/icon_state/compile_icon_state_locations()
 	. = ..()
 	generate_possible_icon_states_list("icons/effects/")
+	generate_possible_icon_states_list("modular_darkpack/master_files/icons/obj/") // DARKPACK EDIT ADD
+	generate_possible_icon_states_list("modular_darkpack/master_files/icons/effects/") // DARKPACK EDIT ADD
+	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
 
 /datum/unit_test/missing_icons/icon_state/Run()
 	compile_icon_state_locations()
 
-	//Add EVEN MORE paths if needed here!
-	//generate_possible_icon_states_list("your/folder/path/")
 	var/list/bad_list = list()
 	for(var/obj/obj_path as anything in subtypesof(/obj))
 		if(ispath(obj_path, /obj/item))

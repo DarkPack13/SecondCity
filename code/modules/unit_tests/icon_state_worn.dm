@@ -2,10 +2,16 @@
 /datum/unit_test/missing_icons/worn_icons
 	default_location = "icons/mob/clothing/"
 
+// DARKPACK EDIT ADD START
+/datum/unit_test/missing_icons/worn_icons/compile_icon_state_locations()
+	. = ..()
+	generate_possible_icon_states_list("modular_darkpack/master_files/icons/mob/clothing/") // DARKPACK EDIT ADD
+	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
+// DARKPACK EDIT ADD END
+
 /datum/unit_test/missing_icons/worn_icons/Run()
 	compile_icon_state_locations()
 
-	generate_possible_icon_states_list("modular_darkpack/") // DARKPACK EDIT ADD
 	var/list/already_warned_icons = list()
 
 	for(var/obj/item/item_path as anything in (valid_subtypesof(/obj/item) - typesof(/obj/item/mod))) // DARKPACK EDIT CHANGE

@@ -4,6 +4,13 @@
 	var/fallback_log_message
 	var/unset_inhand_var_message
 
+// DARKPACK EDIT ADD START
+/datum/unit_test/missing_icons/inhand_icon_state/compile_icon_state_locations()
+	. = ..()
+	generate_possible_icon_states_list("modular_darkpack/master_files/icons/mob/inhands/") // DARKPACK EDIT ADD
+	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
+// DARKPACK EDIT ADD END
+
 /datum/unit_test/missing_icons/inhand_icon_state/Run()
 	compile_icon_state_locations()
 

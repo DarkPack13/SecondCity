@@ -1,30 +1,17 @@
 /// Makes sure objects actually have icons that exist!
-/datum/unit_test/missing_onfloor_icons
-	var/static/list/possible_icon_states = list()
-	/// additional_icon_location is for downstream modularity support.
-	/// Make sure this location is also present in tools/deploy.sh
-	/// If you need additional paths ontop of this second one, you can add another generate_possible_icon_states_list("your/folder/path/") below the if(additional_icon_location) block in Run(), and make sure to add that path to tools/deploy.sh as well.
-	var/additional_icon_location = null
+/datum/unit_test/missing_icons/onfloor
+	default_location = "icons/obj/"
 
-/datum/unit_test/missing_onfloor_icons/proc/generate_possible_icon_states_list(directory_path)
-	if(!directory_path)
-		directory_path = "icons/obj/"
-	for(var/file_path in flist(directory_path))
-		if(findtext(file_path, ".dmi"))
-			for(var/sprite_icon in icon_states("[directory_path][file_path]", 1)) //2nd arg = 1 enables 64x64+ icon support, otherwise you'll end up with "sword0_1" instead of "sword"
-				possible_icon_states[sprite_icon] += list("[directory_path][file_path]")
-		else
-			possible_icon_states += generate_possible_icon_states_list("[directory_path][file_path]")
+// DARKPACK EDIT ADD START
+/datum/unit_test/missing_icons/onfloor/compile_icon_state_locations()
+	. = ..()
+	generate_possible_icon_states_list("modular_darkpack/master_files/icons/obj/") // DARKPACK EDIT ADD
+	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
+// DARKPACK EDIT ADD END
 
-/datum/unit_test/missing_onfloor_icons/Run()
-	generate_possible_icon_states_list()
-	generate_possible_icon_states_list("icons/effects/")
-	if(additional_icon_location)
-		generate_possible_icon_states_list(additional_icon_location)
+/datum/unit_test/missing_icons/onfloor/Run()
+	compile_icon_state_locations()
 
-
-	//Add EVEN MORE paths if needed here!
-	generate_possible_icon_states_list("modular_darkpack/")
 	var/list/bad_list = list()
 	for(var/obj/item/item_path as anything in valid_subtypesof(/obj/item))
 		if(item_path::item_flags & ABSTRACT)
