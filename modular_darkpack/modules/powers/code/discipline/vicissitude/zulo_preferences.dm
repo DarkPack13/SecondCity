@@ -4,9 +4,20 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
 	main_feature_name = "Zulo Form"
-	relevant_inherent_trait = TRAIT_VICISSITUDE_KNOWLEDGE
-	must_have_relevant_trait = TRUE
 	should_generate_icons = TRUE
+
+/datum/preference/choiced/zulo_form/has_relevant_feature(datum/preferences/preferences)
+	. = ..()
+	if(!.) // Make sure we acctually can select clan in the first place
+		return FALSE
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	if(!clan)
+		return FALSE
+	for(var/discipline in clan.clan_disciplines) // DARKPACK TODO - reimplement choosing disciplines
+		if(ispath(discipline, /datum/discipline/vicissitude))
+			return TRUE
+	return FALSE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
 	return assoc_to_keys(typesof(/datum/zulo_form))
