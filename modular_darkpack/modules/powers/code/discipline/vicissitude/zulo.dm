@@ -10,6 +10,36 @@
 	click_to_activate = FALSE
 	owner_has_control = FALSE
 
+/datum/zulo_form
+	var/icon_state = "fiend"
+
+/datum/zulo_form/leviathan
+	icon_state = "leviathan"
+
+/datum/zulo_form/shrikebush
+	icon_state = "shrikebush"
+
+/datum/zulo_form/impalersteed
+	icon_state = "impalersteed"
+
+/datum/zulo_form/black_fiend
+	icon_state = "black_fiend"
+
+/datum/zulo_form/doctor
+	icon_state = "doctor"
+
+/datum/zulo_form/dog
+	icon_state = "dog"
+
+/datum/zulo_form/emily
+	icon_state = "emily"
+
+/datum/zulo_form/dragon
+	icon_state = "dragon"
+
+/datum/zulo_form/tendrildragon
+	icon_state = "tendrildragon"
+
 /mob/living/basic/zulo
 	name = "unknown creature"
 	desc = "What the hell is that thing!?"
