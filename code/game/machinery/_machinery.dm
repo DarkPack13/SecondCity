@@ -751,9 +751,12 @@
 		var/mob/living/living_user = user
 		var/bad_at_device = FALSE
 
-		if(living_user.st_get_stat(skill_required_for_use) < skill_dots_minimum)
+		var/dots = living_user.st_get_stat(skill_required_for_use)
+		if(dots < skill_dots_minimum)
 			to_chat(user, span_warning("[src] requires atleast [skill_dots_minimum] dots in [skill_required_for_use::name] for proper use."))
 			bad_at_device = TRUE
+			if(CONFIG_GET(flag/punishing_zero_dots) && dots <= 0)
+				return
 
 		/* I cant verify the lore accuracy of "rejection past your embrace age" and we dont have a invention date for tech to represent it either
 		if(skill_dots_minimum > 0 && HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY))
@@ -761,10 +764,11 @@
 				bad_at_device = TRUE
 		*/
 
-		to_chat(user, span_warning("You start interacting with [src]. Confounded device..."))
-		if(bad_at_device && !do_after(user, 1 TURNS, src))
-			to_chat(user, span_warning("Bah! You didn't need [src] anyways."))
-			return TRUE
+		if(bad_at_device)
+			to_chat(user, span_warning("You start interacting with [src]. Confounded device..."))
+			if(!do_after(user, 1 TURNS, src))
+				to_chat(user, span_warning("Bah! You didn't need [src] anyways."))
+				return TRUE
 	// DARKPACK EDIT ADD END
 
 	update_last_used(user)
