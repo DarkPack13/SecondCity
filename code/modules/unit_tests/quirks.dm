@@ -82,7 +82,7 @@
 /datum/unit_test/quirk_validity
 
 /datum/unit_test/quirk_validity/Run()
-	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - quirk exclusion based on clans/splats makes this not useful since mock roundstart/latejoin characters won't be able to recieve certain quirks causing this to always fail
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - quirk exclusion based on clans/splats makes this not useful since mock roundstart/latejoin characters won't be able to receive certain quirks causing this to always fail
 	// Required for language quirks to function properly
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
