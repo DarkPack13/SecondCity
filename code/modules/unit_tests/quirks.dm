@@ -23,7 +23,7 @@
 /datum/unit_test/quirk_initial_medical_records/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human/consistent)
 
-	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) //DARKPACK EDIT CHANGE - MERITS/FLAWS - Original : for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		if(!isnull(quirk_type.medical_record_text))
 			continue
 
@@ -47,6 +47,7 @@
 	)
 
 /datum/unit_test/blood_deficiency_mail/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we are not using /tg/ quirks
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	dummy.add_quirk(/datum/quirk/blooddeficiency)
 	var/datum/quirk/blooddeficiency/quirk = dummy.get_quirk(/datum/quirk/blooddeficiency)
@@ -73,6 +74,7 @@
 		if(!isnull(species_to_test[last_species]))
 			TEST_ASSERT(!(species_to_test[last_species] in quirk.mail_goodies), \
 				"Blood deficiency quirk did not update correctly for [species_type]! ([last_species] did not get its blood bag removed)")
+	*/
 
 /// Ensures that all quirks correctly initialized when added
 /datum/unit_test/quirk_validity
@@ -82,7 +84,7 @@
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
-	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) // DARKPACK EDIT CHANGE - MERITS/FLAWS - Original: for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
 		abstract_player.mock_client = roundstart_mock_client
