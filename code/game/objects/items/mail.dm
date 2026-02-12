@@ -158,12 +158,12 @@
 		. += span_notice("<i>You notice the postmarking on the front of the mail...</i>")
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient)
-		. += span_info("[postmarked ? "Certified NT" : "Uncertfieid"] mail for [recipient].")
+		. += span_info("[postmarked ? "Certified [CITY_NAME]" : "Uncertfieid"] mail for [recipient].") // DARKPACK EDIT CHANGE
 	else if(postmarked)
 		. += span_info("Certified mail for [GLOB.station_name].")
 	else
 		. += span_info("This is a dead letter mail with no recipient.")
-	. += span_info("Distribute by hand or via destination tagger using the certified NT disposal system.")
+	. += span_info("Distribute by hand or via destination tagger using the certified [CITY_NAME] disposal system.") // DARKPACK EDIT CHANGE
 
 /// Accepts a mind to initialize goodies for a piece of mail.
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)

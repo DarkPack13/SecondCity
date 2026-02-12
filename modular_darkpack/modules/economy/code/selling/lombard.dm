@@ -11,16 +11,17 @@
 	anchored = TRUE
 	var/black_market = FALSE
 
-/obj/lombard/attackby(obj/item/W, mob/living/carbon/human/user, params)
-	var/datum/component/selling/selling_comp = W.GetComponent(/datum/component/selling)
+/obj/lombard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/datum/component/selling/selling_comp = tool.GetComponent(/datum/component/selling)
 	if(!selling_comp)
-		return ..()
+		return NONE
 
 	if(selling_comp.illegal != black_market)
 		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	sell_one_item(W, user)
+	sell_one_item(tool, user)
+	return ITEM_INTERACT_SUCCESS
 
 /// Sell a single item
 /obj/lombard/proc/sell_one_item(obj/item/sold, mob/living/user)
