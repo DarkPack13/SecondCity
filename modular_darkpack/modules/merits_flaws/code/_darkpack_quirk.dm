@@ -56,3 +56,16 @@
 		return FALSE
 
 	return TRUE
+
+/datum/quirk/darkpack/proc/is_clan_appropriate(datum/vampire_clan/clan)
+	if(!excluded_clans)
+		return TRUE
+
+	if(!clan)
+		return TRUE
+
+	if(clan.id in excluded_clans)
+		return FALSE
+
+	return TRUE
+

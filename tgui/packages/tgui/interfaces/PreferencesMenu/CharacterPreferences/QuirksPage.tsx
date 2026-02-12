@@ -394,6 +394,9 @@ function QuirkPage() {
         }
       }
     }
+    if (data.clan_disallowed_quirks.includes(quirk.name)) {    // DARKPACK EDIT ADD - MERITS/FLAWS
+      return 'This quirk is incompatible with your selected clan.';    // DARKPACK EDIT END - MERITS/FLAWS
+    }
     if (data.splat_disallowed_quirks.includes(quirk.name)) { // DARKPACK EDIT CHANGE - SPLATS
       return 'This quirk is incompatible with your selected splats.'; // DARKPACK EDIT CHANGE - SPLATS
     }
