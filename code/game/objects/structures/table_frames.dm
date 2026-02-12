@@ -12,7 +12,7 @@
 /obj/structure/table_frame
 	name = "table frame"
 	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/structures.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "table_frame"
 	density = FALSE
 	anchored = FALSE

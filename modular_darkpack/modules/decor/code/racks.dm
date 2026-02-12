@@ -25,6 +25,11 @@
 	. = ..()
 	icon_state = "hanger[rand(1, 4)]"
 
+/obj/structure/rack/fruit_stand
+	name = "frust stand"
+	icon = 'modular_darkpack/modules/decor/icons/rack.dmi'
+	icon_state = "fruit_stand"
+
 
 // Soft deprecated.
 /obj/structure/rack/food

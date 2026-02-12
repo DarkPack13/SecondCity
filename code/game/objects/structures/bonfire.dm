@@ -10,7 +10,7 @@
 /obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
-	icon = 'modular_darkpack/master_files/icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT CHANGE
+	icon = 'modular_darkpack/modules/decor/icons/fires.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "bonfire"
 	base_icon_state = "bonfire" // DARKPACK EDIT ADD
 	light_color = LIGHT_COLOR_FIRE
@@ -207,8 +207,26 @@
 	base_icon_state = "campfire"
 
 /obj/structure/bonfire/prelit/alt
-	icon_state = "campfire"
+	icon_state = "campfire_on_fire"
 	base_icon_state = "campfire"
+
+/obj/structure/bonfire/alt2
+	icon_state = "campfire_alt"
+	base_icon_state = "campfire_alt"
+
+/obj/structure/bonfire/prelit/alt2
+	icon_state = "campfire_alt_on_fire"
+	base_icon_state = "campfire_alt"
+
+/obj/structure/bonfire/fire_barrel
+	icon_state = "fire_barrel"
+	base_icon_state = "fire_barrel"
+	density = TRUE
+
+/obj/structure/bonfire/prelit/fire_barrel
+	icon_state = "fire_barrel_on_fire"
+	base_icon_state = "fire_barrel"
+	density = TRUE
 // DARKPACK EDIT ADD END
 
 #undef BONFIRE_FIRE_STACK_STRENGTH

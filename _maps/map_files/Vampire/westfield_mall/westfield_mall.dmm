@@ -3312,8 +3312,8 @@
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "alc" = (
-/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/plant_produce,
+/obj/structure/rack/fruit_stand,
 /turf/open/floor/city/circled,
 /area/vtm/interior/shop)
 "ald" = (
@@ -4392,9 +4392,9 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/hot_ishu)
 "aoG" = (
-/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/plant_produce,
 /obj/effect/turf_decal/siding/white,
+/obj/structure/rack/fruit_stand,
 /turf/open/floor/city/circled,
 /area/vtm/interior/shop)
 "aoH" = (
@@ -6613,7 +6613,9 @@
 /area/vtm/westfield_mall/interior/smokeshop)
 "avD" = (
 /obj/structure/table/modern,
-/obj/structure/retail/smoke_menu,
+/obj/structure/retail/smoke_menu{
+	dir = 8
+	},
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/anarch)
 "avE" = (
@@ -17076,6 +17078,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/federal,
+/obj/effect/mapping_helpers/door/autoname,
 /turf/open/floor/iron/grimy,
 /area/vtm/westfield_mall/interior/art_store)
 "lra" = (
