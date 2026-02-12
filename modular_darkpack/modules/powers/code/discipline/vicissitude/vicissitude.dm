@@ -27,7 +27,7 @@
 /datum/discipline_power/vicissitude/post_gain()
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
-		shapeshift_ability.Grant(owner)
+	shapeshift_ability.Grant(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -157,7 +157,7 @@
 /datum/discipline_power/vicissitude/horrid_form/post_gain()
 	if(!zulo_form)
 		zulo_form = new(owner)
-		zulo_form.Grant(owner)
+	zulo_form.Grant(owner)
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
