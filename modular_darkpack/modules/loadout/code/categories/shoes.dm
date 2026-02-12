@@ -53,3 +53,12 @@
 /datum/loadout_item/shoes/metal_tipped_shoes
 	name = "Shoes (Metal Tipped)"
 	item_path = /obj/item/clothing/shoes/vampire/businesstip
+
+/datum/loadout_item/shoes/blackfur
+	item_path = /obj/item/clothing/shoes/vampire/blackfur
+
+/datum/loadout_item/shoes/brownfur
+	item_path = /obj/item/clothing/shoes/vampire/brownfur
+
+/datum/loadout_item/shoes/pumped
+	item_path = /obj/item/clothing/shoes/vampire/pumped

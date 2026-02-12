@@ -17,16 +17,21 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	var/datum/species/player_species = GLOB.species_prototypes[player_client.prefs.read_preference(/datum/preference/choiced/species)]
-	var/player_species_id = player_species.id
+	var/splat_pref = player_client.prefs.read_preference(/datum/preference/choiced/splats)
+	var/player_splat_id
+	if(ispath(splat_pref))
+		var/datum/splat/player_splat = GLOB.splat_prototypes[splat_pref]
+		player_splat_id = player_splat.id
+	else
+		player_splat_id = splat_pref
 
-	if(!(player_species_id in possible_job.allowed_species))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_SPECIES
+	if(!(player_splat_id in possible_job.allowed_splats))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_SPLAT
 
-	if(possible_job.species_slots[player_species_id] == 0)
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_SPECIES_SLOTS
+	if(possible_job.splat_slots[player_splat_id] == 0)
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_SPLAT_SLOTS
 
 	/*
 	if(possible_job.whitelisted)
@@ -34,9 +39,9 @@
 		return JOB_UNAVAILABLE_WHITELIST
 	*/
 
-	if(player_species_id != SPECIES_KINDRED)
+	if(player_splat_id != SPLAT_KINDRED)
 		return JOB_AVAILABLE
-	// Beyond this point, we know our species is a kindred.
+	// Beyond this point, we know our splat is a kindred.
 
 	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_immortal_age))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")

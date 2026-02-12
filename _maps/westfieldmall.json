@@ -1,7 +1,7 @@
 {
 	"version": 1,
 	"map_name": "Westfield Mall",
-	"map_path": "map_files/Vampire",
+	"map_path": "map_files/Vampire/westfield_mall",
 	"map_file": "westfield_mall.dmm",
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
@@ -86,5 +86,7 @@
 			"total_positions": 1
 		}
 	},
-	"max_npcs": 60
+	"max_npcs": 60,
+	"umbra_map_path": "map_files/Vampire/westfield_mall",
+	"umbra_map_file": "westfield_umbra.dmm"
 }

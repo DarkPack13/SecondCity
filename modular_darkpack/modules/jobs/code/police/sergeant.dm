@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = SUPERVISOR_POLICE_CHIEF
+	supervisors = SUPERVISOR_POLICE_CAPTAIN
 	config_tag = "POLICE_SERGEANT"
 	outfit = /datum/outfit/job/vampire/police_sergeant
 	job_flags = CITY_JOB_FLAGS
@@ -14,12 +14,19 @@
 		/datum/job_department/police,
 	)
 
-	allowed_species = list(SPECIES_HUMAN)
+	alt_titles = list(
+		"Police Sergeant",
+		"Police Supervisor",
+		"Training Officer",
+		"Detective",
+	)
 
-	description = "Enforce the law. Keep the officers in line. Follow what the Chief says."
+	allowed_splats = list(SPLAT_NONE)
+
+	description = "Enforce the law. Keep the officers in line. Follow what the Captain says."
 	minimal_masquerade = 0
 
-	known_contacts = list("Police Chief")
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/police_sergeant
 	name = "Police Sergeant"

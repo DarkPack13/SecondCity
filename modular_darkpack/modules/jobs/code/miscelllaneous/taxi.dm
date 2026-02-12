@@ -13,7 +13,7 @@
 	departments_list = list(
 		/datum/job_department/city_services,
 	)
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
 
 	description = "Drive people in the city."
 	minimal_masquerade = 0

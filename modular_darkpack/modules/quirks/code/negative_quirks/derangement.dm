@@ -85,7 +85,7 @@
 	var/list/objects = list()
 
 	for(var/obj/object in view(hallucinator))
-		if((object.invisibility > hallucinator.see_invisible) || !object.loc || !object.name)
+		if((object.invisibility > hallucinator.see_invisible) || !object.loc || !object.name || (object in hallucinator.contents))
 			continue
 		var/weight = 1
 		if(isitem(object))
@@ -95,9 +95,8 @@
 		else if(ismachinery(object))
 			weight = 2
 		objects[object] = weight
-	if(!objects.len)
+	if(!length(objects))
 		return
-	objects -= hallucinator.contents
 
 	var/obj/speaker = pick_weight(objects)
 	var/speech = pick(audible_hallucinations)
@@ -106,7 +105,7 @@
 	hallucinator.playsound_local(hallucinator, audible_hallucinations[speech], vol = 20, vary = TRUE)
 	if(hallucinator.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		hallucinator.create_chat_message(speaker, language, speech, spans = list(hallucinator.speech_span))
-	to_chat(hallucinator, message)
+	to_chat(target = hallucinator, text = message)
 
 	return TRUE
 

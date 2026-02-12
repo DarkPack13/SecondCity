@@ -1,0 +1,44 @@
+2026-02-01:
+  XeonMations:
+  - bugfix: Kindred can now exit torpor once again.
+  theselfish:
+  - rscadd: Alt Job Titles
+  - qol: Something about "records are unassigned by default, but if edited without
+      input becomes unknown" I copy and pasted this shit man.
+2026-02-02:
+  Stutternov:
+  - rscadd: Adds serial numbering to guns from Eris.
+  - rscadd: Serial number tracking to bullet casings
+  XeonMations:
+  - bugfix: Phones no longer work as a group chat.
+  - rscdel: Disabled disease
+  - bugfix: You can now once again select your gender.
+  - rscdel: Disabled Dynamic
+  dwinters99:
+  - rscadd: stick
+2026-02-04:
+  FalloutFalcon:
+  - bugfix: alt junk wall no longer has cutting mistakes
+  - rscadd: Status alert to ask for your emotions. Currently applied by aura sight
+  - bugfix: bloodpower no longer gives you blood
+  dwinters99 & Major00:
+  - sound: new localhost start now button sound
+2026-02-06:
+  XeonMations:
+  - spellcheck: Renamed Police Chief to Police Captain
+2026-02-07:
+  Marshmellow105:
+  - rscadd: stone halfwall decal for use on stairs to feign depth
+  XeonMations:
+  - bugfix: Fixed kindred having access to infinite bloodheal
+  - balance: Fixed kindred damage modifiers to 2x burn and 0.5x brute
+  dwinters99, FalloutFalcon:
+  - bugfix: despessed tips
+2026-02-08:
+  Knightscholar:
+  - bugfix: Fixes the reference to the Toreador Beretta
+  XeonMations:
+  - bugfix: Fixed ghouls being able to regenerate BP by drinking normal human blood
+2026-02-09:
+  XeonMations:
+  - bugfix: Typhonic beasts now break the masquerade.
