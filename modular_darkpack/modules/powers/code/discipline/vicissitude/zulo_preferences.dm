@@ -20,12 +20,11 @@
 	return FALSE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
-	return assoc_to_keys(GLOB.zulo_forms)
+	return assoc_to_values(GLOB.zulo_forms)
 
 /datum/preference/choiced/zulo_form/icon_for(value)
-	var/icon_state = GLOB.zulo_forms[value]
-	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
-	zulo_icon.scale(32, 32)
+	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', value)
+	zulo_icon.scale(48, 48)
 	return zulo_icon
 
 /datum/preference/choiced/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
