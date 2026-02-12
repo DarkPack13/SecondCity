@@ -20,9 +20,9 @@
 	return FALSE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
-	return assoc_to_keys(typesof(/datum/zulo_form))
+	return assoc_to_keys(GLOB.zulo_forms)
 
-/datum/preference/choiced/zulo_form/icon_for(value)
+/datum/preference/choiced/zulo_form/icon_for(datum/zulo_form/value)
 	value = new()
 	var/new_icon_state = value.icon_state
 	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', new_icon_state)

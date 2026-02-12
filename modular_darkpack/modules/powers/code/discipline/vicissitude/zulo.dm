@@ -1,14 +1,15 @@
-/datum/action/cooldown/spell/shapeshift/zulo
-	name = "Zulo Form"
-	desc = "Take on the shape a beast."
-	cooldown_time = 1 TURNS
-	revert_on_death = TRUE
-	die_with_shapeshifted_form = FALSE
-	spell_requirements = NONE
-	convert_damage = FALSE
-	possible_shapes = list(/mob/living/basic/zulo)
-	click_to_activate = FALSE
-	owner_has_control = FALSE
+GLOBAL_LIST_INIT(zulo_forms, list(
+	"Fiend" = /datum/zulo_form,
+	"Leviathan" = /datum/zulo_form/leviathan,
+	"Shrikebush" = /datum/zulo_form/shrikebush,
+	"Impaler Steed" = /datum/zulo_form/impalersteed,
+	"Black Fiend" = /datum/zulo_form/black_fiend,
+	"Doctor" = /datum/zulo_form/doctor,
+	"Dog" = /datum/zulo_form/dog,
+	"Emily" = /datum/zulo_form/emily,
+	"Dragon" = /datum/zulo_form/dragon,
+	"Tendril Dragon" = /datum/zulo_form/tendrildragon,
+))
 
 /datum/zulo_form
 	var/icon_state = "fiend"
@@ -40,11 +41,23 @@
 /datum/zulo_form/tendrildragon
 	icon_state = "tendrildragon"
 
+/datum/action/cooldown/spell/shapeshift/zulo
+	name = "Zulo Form"
+	desc = "Take on the shape a beast."
+	cooldown_time = 1 TURNS
+	revert_on_death = TRUE
+	die_with_shapeshifted_form = FALSE
+	spell_requirements = NONE
+	convert_damage = FALSE
+	possible_shapes = list(/mob/living/basic/zulo)
+	click_to_activate = FALSE
+	owner_has_control = FALSE
+
 /mob/living/basic/zulo
 	name = "unknown creature"
 	desc = "What the hell is that thing!?"
 	icon = 'modular_darkpack/modules/powers/icons/zulo_forms.dmi'
-	icon_state = "fiend"
+	icon_state = "fiend" // Default icon_state, changed by character preference
 	pixel_w = -16
 	mob_biotypes = MOB_ORGANIC
 	mob_size = MOB_SIZE_HUGE
