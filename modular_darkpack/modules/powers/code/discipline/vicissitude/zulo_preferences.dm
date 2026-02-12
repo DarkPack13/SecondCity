@@ -24,7 +24,8 @@
 
 /datum/preference/choiced/zulo_form/icon_for(value)
 	var/icon_state = GLOB.zulo_forms[value]
-	return uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
+	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
+	return zulo_icon
 
 /datum/preference/choiced/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
 	return
