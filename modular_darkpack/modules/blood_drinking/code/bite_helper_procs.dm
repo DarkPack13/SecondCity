@@ -56,14 +56,14 @@
 	COOLDOWN_RESET(src, drinkblood_use_cd)
 	if(client)
 		client.images -= suckbar
-	qdel(suckbar)
+	QDEL_NULL(suckbar)
 	return
 
 //Updates the circular suck bar that displays the amount of blood a victim has left.
 /mob/living/carbon/human/proc/update_drinking_overlay(mob/living/drunk_from)
 	if(client)
 		client.images -= suckbar
-	qdel(suckbar)
+	QDEL_NULL(suckbar)
 	suckbar_loc = drunk_from
 	suckbar = image('modular_darkpack/modules/blood_drinking/icons/bloodcounter.dmi', suckbar_loc, "[round(14*(drunk_from.bloodpool/drunk_from.maxbloodpool))]", HUD_PLANE)
 	suckbar.pixel_z = 40

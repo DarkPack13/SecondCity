@@ -20,6 +20,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT // Should really be suit storage
 	pixel_w = -8
 	custom_price = 1800
 
@@ -32,6 +33,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
+	custom_price = 1300
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()
@@ -188,6 +190,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "baseball"
 	inhand_icon_state = "baseball"
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT // Should really be suit storage
 	custom_price = 50
 
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
@@ -328,6 +331,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	icon_state = "rock0"
 	inhand_icon_state = "rock0"
 
