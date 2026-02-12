@@ -62,8 +62,9 @@
 	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
 	data["species_disallowed_quirks"] = get_species_compatibility()
 	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - Merits/Flaws
-	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - Merits/Flaws
+	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - MERITS/FLAWS
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS/FLAWS
+	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS/FLAWS
 
 	return data
 
@@ -75,7 +76,8 @@
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
 		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - Merits/Flaws
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS/FLAWS
+	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS/FLAWS
 
 	return data
 
@@ -115,11 +117,11 @@
 
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-	// DARKPACK EDIT ADD - Merits/Flaws
+	// DARKPACK EDIT ADD - MERITS/FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.decrease_points(quirk_type.value)
-	// DARKPACK EDIT END - Merits/Flaws
+	// DARKPACK EDIT END - MERITS/FLAWS
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks) != new_quirks)
@@ -137,11 +139,11 @@
 
 /datum/preference_middleware/quirks/proc/remove_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-	// DARKPACK EDIT ADD - Merits/Flaws
+	// DARKPACK EDIT ADD - MERITS/FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.increase_points(quirk_type.value)
-	// DARKPACK EDIT END - Merits/Flaws
+	// DARKPACK EDIT END - MERITS/FLAWS
 	var/list/new_quirks = preferences.all_quirks - quirk_name
 	if ( \
 		!(quirk_name in preferences.all_quirks) \
@@ -167,7 +169,7 @@
 
 	return selected_quirks
 
-//DARKPACK EDIT ADD - Merits/Flaws
+//DARKPACK EDIT ADD - MERITS/FLAWS
 
 /datum/preference_middleware/quirks/proc/get_freebie_points()
 	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
@@ -187,4 +189,26 @@
 		total_cost -= quirk_type.value
 	return total_cost
 
-//DARKPACK EDIT END - Merits/Flaws
+/datum/preference_middleware/quirks/proc/get_clan_compatibility()
+	var/list/clan_blacklist = list()
+	var/clan_name = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+
+	if(!clan_name)
+		return clan_blacklist
+
+	//clan_name is clan.name which is "Brujah" vampire clan list is "name" ("Brujah") = typepath, vampire_clans is typepath = datum. we need the datum for the id, which is... just a lowercase name...
+	var/datum/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
+	for(var/quirk_path in SSquirks.quirk_prototypes)
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+
+		// clan exclusion is only going to reasonably appear on darkpack quirks
+		if(!istype(quirk_prototype, /datum/quirk/darkpack))
+			continue
+
+		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
+		if(!darkpack_quirk.is_clan_appropriate(clan))
+			clan_blacklist += quirk_prototype.name
+
+	return clan_blacklist
+
+//DARKPACK EDIT END - MERITS/FLAWS
