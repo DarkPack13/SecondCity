@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "Doubles the define for TTRPG damage to represent 10 instead of 5 force"

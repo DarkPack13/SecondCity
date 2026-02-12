@@ -42,6 +42,9 @@
 	name = "Coat (Red)"
 	item_path = /obj/item/clothing/suit/vampire/coat/winter/alt
 
+/datum/loadout_item/suit/coat/leopardcoat
+	item_path = /obj/item/clothing/suit/vampire/coat/leopard
+
 // Jackets
 /datum/loadout_item/suit/jacket
 	abstract_type = /datum/loadout_item/suit/jacket
@@ -85,6 +88,13 @@
 /datum/loadout_item/suit/trenchcoat/burgundy
 	name = "Trenchcoat (Burgundy)"
 	item_path = /obj/item/clothing/suit/vampire/trench/archive
+
+// Hoodies
+/datum/loadout_item/suit/hoodie
+	item_path = /obj/item/clothing/suit/hooded/hoodie
+
+/datum/loadout_item/suit/hoodiezim
+	item_path = /obj/item/clothing/suit/hooded/hoodie/hoodie_pim
 
 // Misc
 /datum/loadout_item/suit/kasaya

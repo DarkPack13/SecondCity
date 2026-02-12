@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "mobs are now cleared from the manifest upon matrixing"
+  - bugfix: "matrixing clears a breacher from the masq"
