@@ -194,7 +194,7 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/shapeshift/proc/change_name(mob/living/carbon/human/target)
-	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN))
+	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.name, MAX_NAME_LEN))
 	if(!newname || newname == target.real_name)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
