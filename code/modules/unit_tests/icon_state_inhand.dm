@@ -1,15 +1,14 @@
 /// Makes sure items with defined inhand_icon_states... actually have icons that exist!
 /datum/unit_test/missing_icons/inhand_icon_state
 	default_location = "icons/mob/inhands/"
+	// DARKPACK EDIT ADD END
+	additional_icon_locations = list(
+		"modular_darkpack/master_files/icons/mob/inhands/",
+		"modular_darkpack/modules/",
+	)
+	// DARKPACK EDIT ADD END
 	var/fallback_log_message
 	var/unset_inhand_var_message
-
-// DARKPACK EDIT ADD START
-/datum/unit_test/missing_icons/inhand_icon_state/compile_icon_state_locations()
-	. = ..()
-	generate_possible_icon_states_list("modular_darkpack/master_files/icons/mob/inhands/") // DARKPACK EDIT ADD
-	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
-// DARKPACK EDIT ADD END
 
 /datum/unit_test/missing_icons/inhand_icon_state/Run()
 	compile_icon_state_locations()

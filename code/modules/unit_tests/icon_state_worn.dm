@@ -1,13 +1,12 @@
 /// Makes sure suit slot items aren't using CS:S fallbacks.
 /datum/unit_test/missing_icons/worn_icons
 	default_location = "icons/mob/clothing/"
-
-// DARKPACK EDIT ADD START
-/datum/unit_test/missing_icons/worn_icons/compile_icon_state_locations()
-	. = ..()
-	generate_possible_icon_states_list("modular_darkpack/master_files/icons/mob/clothing/") // DARKPACK EDIT ADD
-	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
-// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START
+	additional_icon_locations = list(
+		"modular_darkpack/master_files/icons/mob/clothing/",
+		"modular_darkpack/modules/",
+	)
+	// DARKPACK EDIT ADD END
 
 /datum/unit_test/missing_icons/worn_icons/Run()
 	compile_icon_state_locations()

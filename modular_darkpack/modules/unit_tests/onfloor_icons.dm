@@ -1,13 +1,10 @@
 /// Makes sure objects actually have icons that exist!
 /datum/unit_test/missing_icons/onfloor
 	default_location = "icons/obj/"
-
-// DARKPACK EDIT ADD START
-/datum/unit_test/missing_icons/onfloor/compile_icon_state_locations()
-	. = ..()
-	generate_possible_icon_states_list("modular_darkpack/master_files/icons/obj/") // DARKPACK EDIT ADD
-	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
-// DARKPACK EDIT ADD END
+	additional_icon_locations = list(
+		"modular_darkpack/master_files/icons/obj/",
+		"modular_darkpack/modules/"
+	)
 
 /datum/unit_test/missing_icons/onfloor/Run()
 	compile_icon_state_locations()

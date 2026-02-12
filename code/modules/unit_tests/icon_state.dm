@@ -1,13 +1,17 @@
 /// Makes sure objects actually have icons that exist!
 /datum/unit_test/missing_icons/icon_state
 	default_location = "icons/obj/"
+	// DARKPACK EDIT ADD START
+	additional_icon_locations = list(
+		"modular_darkpack/master_files/icons/obj/",
+		"modular_darkpack/master_files/icons/effects/",
+		"modular_darkpack/modules/",
+	)
+	// DARKPACK EDIT ADD END
 
 /datum/unit_test/missing_icons/icon_state/compile_icon_state_locations()
 	. = ..()
 	generate_possible_icon_states_list("icons/effects/")
-	generate_possible_icon_states_list("modular_darkpack/master_files/icons/obj/") // DARKPACK EDIT ADD
-	generate_possible_icon_states_list("modular_darkpack/master_files/icons/effects/") // DARKPACK EDIT ADD
-	generate_possible_icon_states_list("modular_darkpack/modules/") // DARKPACK EDIT ADD
 
 /datum/unit_test/missing_icons/icon_state/Run()
 	compile_icon_state_locations()
