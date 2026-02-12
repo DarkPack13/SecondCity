@@ -9,13 +9,13 @@
 		/datum/discipline/dominate,
 		/datum/discipline/necromancy
 	)
+	clan_traits = TRAIT_ORGANOVORE
 	male_clothes = /obj/item/clothing/under/vampire/emo
 	female_clothes = /obj/item/clothing/under/vampire/emo
 	whitelisted = FALSE
 
 /datum/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/H)
 	. = ..()
-	H.add_quirk(/datum/quirk/darkpack/organovore)
 
 	var/obj/item/ritual_tome/necromancy/necrotome = new()
 	var/list/slots = list(
