@@ -58,9 +58,9 @@
 	name = "chemical hood"
 	desc = "A hood attached to a cchemical costume."
 	icon_state = "heisenberg_helm"
+	ONFLOOR_ICON_HELPER(null)
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -84,9 +84,9 @@
 	name = "white hood"
 	desc = "The hood of some angelic-looking robes."
 	icon_state = "robes_hood"
+	ONFLOOR_ICON_HELPER(null)
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	flags_inv = HIDEHAIR | HIDEEARS
