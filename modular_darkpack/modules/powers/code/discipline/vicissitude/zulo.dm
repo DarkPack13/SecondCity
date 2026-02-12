@@ -76,5 +76,5 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 	sharpness = SHARP_POINTY
 	attacked_sound = SFX_DESECRATION
 
-	bloodpool = 10
-	maxbloodpool = 10
+	bloodpool = 2
+	maxbloodpool = 2
