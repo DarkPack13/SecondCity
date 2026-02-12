@@ -93,7 +93,7 @@
 
 //ASHES TO ASHES
 /mob/living/basic/samedi_ash_pile
-	name = "ash"
+	name = "ash pile"
 	desc = "Ashes to ashes, dust to dust, and into space."
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ash"
@@ -109,8 +109,15 @@
 /datum/action/cooldown/spell/shapeshift/samedi_ash
 	name = "Ashes to Ashes"
 	desc = "Turn into ash to hide."
-	button_icon_state = "ash"
-
+	button_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi'
+	button_icon_state = "thanatosis"
+	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
+	background_icon_state = "bg_discipline"
+	spell_requirements = NONE
+	cooldown_time = 5 SECONDS
+	revert_on_death = TRUE
+	die_with_shapeshifted_form = FALSE
+	shapeshift_type = /mob/living/basic/samedi_ash_pile  // ADD THIS - same as the single item in possible_shapes
 	possible_shapes = list(/mob/living/basic/samedi_ash_pile)
 	convert_damage = TRUE
 	convert_damage_type = BRUTE

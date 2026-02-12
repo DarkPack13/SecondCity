@@ -18,13 +18,3 @@
 /datum/vampire_clan/samedi/on_gain(mob/living/carbon/human/H)
 	. = ..()
 	H.rot_body(4)
-
-/datum/vampire_clan/samedi/on_join_round(mob/living/carbon/human/H)
-	. = ..()
-
-	// Samedi Automatically Get the stuff to help them disguise themselves
-	var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(H.loc)
-	H.equip_to_appropriate_slot(new_robe, FALSE)
-
-	var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(H.loc)
-	H.equip_to_appropriate_slot(new_mask, FALSE)
