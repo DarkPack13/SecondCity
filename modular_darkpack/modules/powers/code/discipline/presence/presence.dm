@@ -41,7 +41,7 @@
 	//number of successes is rather critical for the efficacy of the power
 	return successes
 
-/datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target, resist_timer = 30 SECONDS)
+/datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target/*, resist_timer = 30 SECONDS*/)
 	target.remove_overlay(MUTATIONS_LAYER)
 	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
 	presence_overlay.pixel_z = 1
@@ -49,12 +49,14 @@
 	target.apply_overlay(MUTATIONS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
+	/*
 	// resist presence button - note to self, in the future, v20 states that the resister must continue to spend willpower if in the presence of the vamp
 	var/datum/action/resist_presence/resist_action = new(target)
 	resist_action.Grant(target)
 
 	// remove the action after 20 seconds
 	addtimer(CALLBACK(resist_action, TYPE_PROC_REF(/datum/action, Remove), target), resist_timer)
+	*/
 
 //used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
 /datum/discipline_power/presence/proc/sort_targets_by_willpower(list/targets)
@@ -74,6 +76,7 @@
 			sorted += target
 	return sorted
 
+/*
 //datum/action to resist presence powers by burning a willpower point and making a difficulty 8 roll
 /datum/action/resist_presence
 	name = "Resist Presence"
@@ -109,7 +112,7 @@
 	else
 		to_chat(user, span_warning("Despite your efforts, the supernatural influence remains too strong!"))
 		return FALSE
-
+*/
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
