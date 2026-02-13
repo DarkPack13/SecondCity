@@ -26,7 +26,7 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/police/utility
 	gloves = /obj/item/clothing/gloves/fingerless
-	l_pocket = /obj/item/vamp/keys/police/secure/chief
+	l_pocket = /obj/item/vamp/keys/police/secure/captain
 	suit_store = /obj/item/flashlight/seclite
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	belt = /obj/item/storage/belt/police/swat/full
