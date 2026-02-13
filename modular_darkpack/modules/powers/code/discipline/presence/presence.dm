@@ -369,7 +369,10 @@
 			to_chat(hearer, span_info("Despite the overwhelming presence, your will allows you to make [hearer_successes] contradictory action\s until youre allowed to leave [owner]'s company."))
 
 	var/total_affected = length(affected_targets)
-	to_chat(owner, span_warning(total_affected > 0 ? "Your Majesty overwhelms [total_affected] individual[total_affected == 1 ? "" : "s"] in your presence!" : "No one is present to witness your Majesty."))
+	if(total_affected > 0)
+		to_chat(owner, span_warning("Your Majesty overwhelms [total_affected] individual[total_affected == 1 ? "" : "s"] in your presence!"))
+	else
+		to_chat(owner, span_warning("No one is present to witness your Majesty."))
 
 /datum/discipline_power/presence/majesty/deactivate(mob/living/carbon/human/target)
 	. = ..()

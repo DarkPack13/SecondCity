@@ -114,7 +114,7 @@
 
 /datum/subsplat/werewolf/tribe/garou/silverfangs
 	name = TRIBE_SILVER_FANGS
-	desc = "Commonly known as the 'Alphas' of the Garou Nation, their ranks consist of traditional rulers and wartime leaders. Known for being honorable and courage, odd mental quirks have begun plaguing their young members, the tribe beginning to suffer from diseases of the spirit and mind."
+	desc = "Commonly known as the 'Alphas' of the Garou Nation, their ranks consist of traditional rulers and wartime leaders. Known for being honorable and having courage, odd mental quirks have begun plaguing their young members, and the tribe is beginning to suffer from diseases of the spirit and mind."
 	// gifts_provided = list(
 	// 	/datum/action/gift/stoic_pose = 1,
 	// 	/datum/action/gift/freezing_wind = 2,
