@@ -1,3 +1,4 @@
+#define HORRID_FORM_SOURCE "Horrid Form"
 // Level 1: Shapeshift Self
 // Level 2: Shapeshift Other
 // Level 3: Damage others and self.
@@ -107,7 +108,7 @@
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
-
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
 	cooldown_length = 1 TURNS
 
 /datum/discipline_power/vicissitude/bonecrafting/activate(mob/living/target)
@@ -141,35 +142,73 @@
 
 /datum/discipline_power/vicissitude/horrid_form
 	name = "Horrid Form"
-	desc = "Force a body to become something truly monstrous."
+	desc = "Force yourself to become something truly monstrous."
 
 	level = 4
 	violates_masquerade = TRUE
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
-	target_type = TARGET_SELF
+	target_type = NONE
 	vitae_cost = 2
-	toggled = FALSE
+	toggled = TRUE
 	aggravating = TRUE
 	cooldown_length = 1 TURNS
-	duration_length = 1 SCENES
-	var/datum/action/cooldown/spell/shapeshift/zulo/zulo_form
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
+	var/list/obj/item/bodypart/strengthened_limbs
 
-/datum/discipline_power/vicissitude/horrid_form/post_gain()
-	if(!zulo_form)
-		zulo_form = new(owner)
-	zulo_form.Grant(owner)
+/datum/discipline_power/vicissitude/horrid_form/pre_activation_checks()
+	. = ..()
+	owner.Stun(1 TURNS)
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
-	owner.Stun(2 SECONDS)
-	owner.do_jitter_animation(5 SECONDS)
-	zulo_form.Activate(owner)
+	// All Physical Attributes increase by three
+	owner.st_add_stat_mod(STAT_STRENGTH, 3, HORRID_FORM_SOURCE)
+	owner.st_add_stat_mod(STAT_DEXTERITY, 3, HORRID_FORM_SOURCE)
+	owner.st_add_stat_mod(STAT_STAMINA, 3, HORRID_FORM_SOURCE)
+
+	// but all Social Attributes drop to zero
+	owner.st_add_stat_mod(STAT_CHARISMA, -owner.st_get_stat(STAT_CHARISMA), HORRID_FORM_SOURCE)
+	owner.st_add_stat_mod(STAT_MANIPULATION, -owner.st_get_stat(STAT_MANIPULATION), HORRID_FORM_SOURCE)
+	owner.st_add_stat_mod(STAT_APPEARANCE, -owner.st_get_stat(STAT_APPEARANCE), HORRID_FORM_SOURCE)
+
+	for(var/obj/item/bodypart/limb in owner.bodyparts)
+		limb.unarmed_damage_low += 5
+		limb.unarmed_damage_high += 5
+		LAZYADD(strengthened_limbs, limb)
+
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA), PROC_REF(deactivate))
+
+/datum/discipline_power/vicissitude/horrid_form/pre_deactivation_checks()
+	. = ..()
+	owner.Stun(1 TURNS)
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
 	owner.Stun(2 SECONDS)
 	owner.do_jitter_animation(5 SECONDS)
-	zulo_form.unshift_owner()
+
+	owner.st_remove_stat_mod(STAT_STRENGTH, HORRID_FORM_SOURCE)
+	owner.st_remove_stat_mod(STAT_DEXTERITY, HORRID_FORM_SOURCE)
+	owner.st_remove_stat_mod(STAT_STAMINA, HORRID_FORM_SOURCE)
+
+	owner.st_remove_stat_mod(STAT_CHARISMA, HORRID_FORM_SOURCE)
+	owner.st_remove_stat_mod(STAT_MANIPULATION, HORRID_FORM_SOURCE)
+	owner.st_remove_stat_mod(STAT_APPEARANCE, HORRID_FORM_SOURCE)
+
+	for(var/obj/item/bodypart/limb in strengthened_limbs)
+		limb.unarmed_damage_low -= 5
+		limb.unarmed_damage_high -= 5
+	strengthened_limbs = null
+
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA))
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -179,9 +218,10 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
-	target_type = TARGET_SELF
+	target_type = NONE
 	violates_masquerade = TRUE
 	cooldown_length = 1 TURNS
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
 
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()

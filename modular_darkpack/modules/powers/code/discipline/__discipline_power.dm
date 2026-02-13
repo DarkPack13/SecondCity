@@ -557,6 +557,23 @@
 	return TRUE
 
 /**
+ * An overridable proc that allows for custom can_deactivate() behaviour.
+ *
+ * This is meant to be overridden by powers to allow for extra checks
+ * on deactivation (eg. Social vs. Mentality for mental disciplines), to
+ * delay deactivation with a do_after() (eg. Valeren 5 taking 10 seconds),
+ * or possibly to hijack the can_deactivate() proc by returning FALSE and
+ * using its own logic instead (like activating on several targets in an
+ * AoE rather than on one). Don't be fooled by the name, this is not just
+ * for checks.
+ *
+ * Arguments:
+ * * target - what the targeted Discipline (null otherwise) is being used on.
+ */
+/datum/discipline_power/proc/pre_deactivation_checks(atom/target)
+	return TRUE
+
+/**
  * Overridable proc mirroring can_activate(), making sure
  * that deactivation won't result in a runtime in case of
  * the target not existing anymore while also checking
@@ -577,6 +594,9 @@
 		return FALSE
 
 	if(!can_deactivate_untargeted())
+		return FALSE
+
+	if(!pre_deactivation_checks(target))
 		return FALSE
 
 	if(target_type != NONE)
