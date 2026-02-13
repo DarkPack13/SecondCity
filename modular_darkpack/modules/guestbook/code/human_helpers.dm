@@ -7,8 +7,8 @@
 			visible_gender = "Woman"
 		else
 			visible_gender = "Person"
-	if(dna?.species.visable_gender_override)
-		visible_gender = dna.species.visable_gender_override
+	if(dna?.species.visible_gender_override)
+		visible_gender = dna.species.visible_gender_override
 
 	return visible_gender
 

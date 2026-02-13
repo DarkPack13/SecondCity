@@ -192,7 +192,7 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visable_gender_override = "beast"
+	visible_gender_override = "beast"
 
 	form_bonus_stats = list(
 		STAT_STRENGTH = 4,
@@ -233,7 +233,7 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visable_gender_override = "beast"
+	visible_gender_override = "beast"
 
 	form_bonus_stats = list(
 		STAT_STRENGTH = 3,
@@ -274,7 +274,7 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visable_gender_override = "wolf"
+	visible_gender_override = "wolf"
 
 	form_bonus_stats = list(
 		STAT_STRENGTH = 1,

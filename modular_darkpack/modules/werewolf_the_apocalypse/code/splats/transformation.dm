@@ -68,10 +68,5 @@
 
 /datum/splat/werewolf/shifter/proc/get_breed_form_species()
 	return breed_form?.breed_species
-	/*
-	if(!owner?.dna)
-		return
-	return GLOB.breed_forms_list[owner.dna.features[FEATURE_FERA_BREED]]
-	*/
 
 #undef DOGGY_ANIMATION_TIME
