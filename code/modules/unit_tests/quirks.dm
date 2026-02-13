@@ -21,6 +21,7 @@
 /datum/unit_test/quirk_initial_medical_records
 
 /datum/unit_test/quirk_initial_medical_records/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we don't need this and darkpack quirk splat/clan exclusion makes it impossible to add to a random test character with no splats
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human/consistent)
 
 	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
@@ -35,6 +36,7 @@
 		TEST_ASSERT_NOTNULL(quirk.medical_record_text,"[quirk_type] has no medical record description!")
 
 		patient.remove_quirk(quirk_type)
+	*/
 
 /// Ensures the blood deficiency quirk updates its mail goodies correctly
 /datum/unit_test/blood_deficiency_mail
@@ -47,6 +49,7 @@
 	)
 
 /datum/unit_test/blood_deficiency_mail/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we are not using /tg/ quirks
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	dummy.add_quirk(/datum/quirk/blooddeficiency)
 	var/datum/quirk/blooddeficiency/quirk = dummy.get_quirk(/datum/quirk/blooddeficiency)
@@ -73,11 +76,13 @@
 		if(!isnull(species_to_test[last_species]))
 			TEST_ASSERT(!(species_to_test[last_species] in quirk.mail_goodies), \
 				"Blood deficiency quirk did not update correctly for [species_type]! ([last_species] did not get its blood bag removed)")
+	*/
 
 /// Ensures that all quirks correctly initialized when added
 /datum/unit_test/quirk_validity
 
 /datum/unit_test/quirk_validity/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - quirk exclusion based on clans/splats makes this not useful since mock roundstart/latejoin characters won't be able to receive certain quirks causing this to always fail
 	// Required for language quirks to function properly
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
@@ -103,3 +108,4 @@
 
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()
+	*/
