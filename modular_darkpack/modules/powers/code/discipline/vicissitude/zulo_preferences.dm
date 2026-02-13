@@ -20,12 +20,14 @@
 	return FALSE
 
 /datum/preference/choiced/zulo_form/init_possible_values()
-	return assoc_to_keys(GLOB.zulo_forms)
+	var/list/values = list()
+	for(var/name in GLOB.zulo_forms)
+		values[name] = GLOB.zulo_forms[name]
+	return values
 
 /datum/preference/choiced/zulo_form/icon_for(value)
-	var/typepath = GLOB.zulo_forms[value]
-	var/datum/zulo_form/form = new typepath()
-	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', form.icon_state)
+	var/icon_state = GLOB.zulo_forms[value]
+	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
 	zulo_icon.scale(32, 32)
 	return zulo_icon
 
