@@ -1,7 +1,7 @@
 #define SOLID_BALL "Solid Ball"
 #define STRIPED_BALL "Striped Ball"
-//Cant have the number as the first character in a define
 #define EIGHT_BALL "8-Ball"
+#define ZERO_BALL "0-Ball"
 
 /obj/item/pool_cue
 	name = "pool cue"
@@ -78,7 +78,7 @@
 		STRIPED_BALL = rand(0,7),
 		EIGHT_BALL = rand(0,1)
 	)
-	update_appearance()
+	// update_appearance()
 
 	var/turf/my_turf = get_turf(src)
 	if(start_with_balls)
@@ -95,6 +95,7 @@
 			new_cue.pixel_x += rand(-8,8)
 			new_cue.pixel_y += rand(-8,8)
 
+/*
 /obj/structure/table/wood/billiard/update_icon_state()
 	. = ..()
 	var/balls_left = total_balls()
@@ -104,6 +105,7 @@
 		icon_state = "billiard2"
 	else
 		icon_state = "billiard3"
+*/
 
 /obj/structure/table/wood/billiard/examine(mob/user)
 	. = ..()
@@ -135,7 +137,7 @@
 		var/desired_modifer = 10 // user.get_total_dexterity() * 2 //SSroll.storyteller_roll(user.get_total_dexterity(), 4, FALSE, list(user))
 
 		var/attempts = 0
-		while(total_balls() && (attempts <= 10))
+		while(length(get_balls_on_table()) && (attempts <= 10))
 			attempts++
 			sink_ball(user, choice, desired_modifer)
 			if(prob(25))
@@ -176,20 +178,34 @@
 		ball_chances[desired_ball] = ball_chances[desired_ball] * desired_modifer
 	return pick_weight(ball_chances)
 
-/obj/structure/table/wood/billiard/proc/total_balls()
-	var/total_balls = 0
-	for(var/ball_type in balls_left)
-		total_balls += balls_left[ball_type]
-
-	return total_balls
-
 /obj/structure/table/wood/billiard/proc/reset_table()
-	balls_left = list(
-		SOLID_BALL = 7,
-		STRIPED_BALL = 7,
-		EIGHT_BALL = 1
-	)
+	var/turf/my_turf = get_turf(src)
+	for(var/obj/item/pool_ball/ball in contents)
+		ball.forceMove(my_turf)
+
+/obj/structure/table/wood/billiard/proc/get_balls_on_table(var/looking_for = list(SOLID_BALL, STRIPPED_BALL, EIGHT_BALL))
+	var/turf/my_turf = get_turf(src)
+
+	var/list/all_balls = list()
+	for(var/obj/item/pool_ball/ball in my_turf)
+		switch(ball.ball_number)
+			if(1 to 7)
+				if(!(SOLID_BALL in looking_for))
+					continue
+			if(9 to 15)
+				if(!(STRIPPED_BALL in looking_for))
+					continue
+			if(8)
+				if(!(EIGHT_BALL in looking_for))
+					continue
+			if(0)
+				if(!(ZERO_BALL in looking_for))
+					continue
+		all_balls += ball
+
+	return all_balls
 
 #undef SOLID_BALL
 #undef STRIPED_BALL
 #undef EIGHT_BALL
+#undef ZERO_BALL
