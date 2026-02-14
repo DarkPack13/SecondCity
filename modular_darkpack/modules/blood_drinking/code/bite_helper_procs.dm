@@ -29,14 +29,14 @@
 	adjust_blood_pool(amount, updating_health, on_spawn)
 
 //runs a bite animation for biting people and biting people and biting p
-/mob/living/proc/add_bite_animation()
+/mob/living/carbon/human/proc/add_bite_animation()
 	remove_overlay(HALO_LAYER)
 	var/mutable_appearance/bite_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "bite", -HALO_LAYER)
 	overlays_standing[HALO_LAYER] = bite_overlay
 	apply_overlay(HALO_LAYER)
 	addtimer(CALLBACK(src, PROC_REF(clear_bite_animation_overlay)), 1.5 SECONDS)
 
-/mob/living/proc/clear_bite_animation_overlay()
+/mob/living/carbon/human/proc/clear_bite_animation_overlay()
 	if(src)
 		remove_overlay(HALO_LAYER)
 
@@ -51,7 +51,7 @@
 	return drink_mod
 
 //Removes the circular suck bar that displays the amount of blood a victim has left.
-/mob/living/proc/remove_drinking_overlay()
+/mob/living/carbon/human/proc/remove_drinking_overlay()
 	stop_sound_channel(CHANNEL_BLOOD)
 	COOLDOWN_RESET(src, drinkblood_use_cd)
 	if(client)
