@@ -34,9 +34,12 @@
 	//before going any further, roll either conscience or conviction to determine if we actually lose path/humanity
 	if(humanity_change < 0)
 		var/stat_to_roll = is_enlightenment ? STAT_CONVICTION : STAT_CONSCIENCE
-		var/degeneration_roll = SSroll.storyteller_roll(owner.st_get_stat(stat_to_roll), difficulty, owner, numerical = FALSE)
+		var/datum/storyteller_roll/degeneration_roll = new()
+		degeneration_roll.applicable_stats = list(stat_to_roll)
+		degeneration_roll.difficulty = difficulty
+		var/roll_result = degeneration_roll.st_roll(owner)
 
-		if(degeneration_roll == ROLL_SUCCESS)
+		if(roll_result == ROLL_SUCCESS)
 			to_chat(owner, span_green("Your [is_enlightenment ? "conviction" : "conscience"] prevents you from losing [path] as you successfully justify your actions!"))
 			return
 		else

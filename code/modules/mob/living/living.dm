@@ -1232,19 +1232,15 @@
 	//We only resist our grab state if we are currently in a grab equal to or greater than GRAB_AGGRESSIVE (1). Otherwise, break out immediately!
 	if(effective_grab_state >= GRAB_AGGRESSIVE)
 		// Grabber is the "action taker" so he is the "owner"
-		var/success = ROLL_SUCCESS
-		if(pulledby && isliving(pulledby))
-			var/mob/living/living_puller = pulledby
-			success = SSroll.opposed_roll(
-				player_a = living_puller,
-				player_b = src,
-				dice_a = living_puller.st_get_stat(STAT_STRENGTH)+living_puller.st_get_stat(STAT_BRAWL),
-				dice_b = st_get_stat(STAT_DEXTERITY)+st_get_stat(STAT_BRAWL),
-				show_player_a = TRUE,
-				show_player_b = TRUE,
-				alert_atom = src,
-				draw_goes_to_b = TRUE
-			)
+		var/success = ROLL_FAILURE
+		if(isliving(pulledby))
+			var/datum/storyteller_roll/grappling/pulled_roll = new()
+			var/puller_result = pulled_roll.st_roll(pulledby, src)
+			var/datum/storyteller_roll/grappled/our_roll = new()
+			var/our_result = our_roll.st_roll(src, pulledby)
+
+			if(puller_result > our_result)
+				success = ROLL_SUCCESS
 
 		if(!success)
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
@@ -1259,7 +1255,7 @@
 							span_warning("You struggle as you fail to break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_danger("[src] struggles as they fail to break free of your grip!"))
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 4 SECONDS
+			client.move_delay = world.time + 1 TURNS
 	else
 		pulledby.stop_pulling()
 		return FALSE

@@ -1,4 +1,5 @@
 /obj/item/path_spellbook
+	abstract_type = /obj/item/path_spellbook
 	name = "path spellbook"
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
@@ -16,7 +17,7 @@
 	var/true_name = ""
 	var/true_desc = ""
 
-	COOLDOWN_DECLARE(identify_failure_cooldown)
+	var/datum/storyteller_roll/identify_occult/identify_roll
 
 /obj/item/path_spellbook/Initialize(mapload)
 	. = ..()
@@ -30,19 +31,15 @@
 	. = ..()
 	if(!identified)
 		. += span_notice("You could try to clean off the dust to see what lies beneath.")
-	if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
-		var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
-		. += span_warning("You need to wait [time_left] seconds before trying again.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
 
 	if(!identified)
-		if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
-			var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
-			to_chat(user, span_warning("You need to wait [time_left] seconds before trying again."))
-			return
-		if(do_after(user, 5 SECONDS))
-			var/roll = SSroll.storyteller_roll(user.st_get_stat(STAT_INTELLIGENCE) + user.st_get_stat(STAT_OCCULT), path_level + 3, user, numerical = FALSE)
+		if(do_after(user, 1 TURNS))
+			if(!identify_roll)
+				identify_roll = new()
+				identify_roll.difficulty = path_level + 3
+			var/roll = identify_roll.st_roll(user, src)
 			switch(roll)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_cult("You wipe the dust off the previously irrelevant tome. Did someone misplace it from the Library?"))
@@ -52,7 +49,6 @@
 					return
 				else
 					to_chat(user, span_warning("You fail to figure out the real nature of the book and get distracted by more important matters. Maybe its a cookbook?"))
-					COOLDOWN_START(src, identify_failure_cooldown, 2 MINUTES)
 					return
 		return
 
@@ -121,6 +117,7 @@
 
 
 /obj/item/occult_book
+	abstract_type = /obj/item/occult_book
 	name = "occult book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
