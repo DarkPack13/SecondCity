@@ -54,8 +54,8 @@
 	smoothing_flags = NONE
 	smoothing_groups = null
 	canSmoothWith = null
-	pixel_z = -16
-	// pixel_y = -16
+	//pixel_z = -16
+	pixel_y = -16
 
 	can_flip = FALSE
 
@@ -65,20 +65,8 @@
 
 	var/start_with_balls = TRUE
 
-	var/list/balls_left = list(
-		SOLID_BALL = 7,
-		STRIPED_BALL = 7,
-		EIGHT_BALL = 1
-	)
-
 /obj/structure/table/wood/billiard/Initialize()
 	. = ..()
-	balls_left = list(
-		SOLID_BALL = rand(0,7),
-		STRIPED_BALL = rand(0,7),
-		EIGHT_BALL = rand(0,1)
-	)
-	// update_appearance()
 
 	var/turf/my_turf = get_turf(src)
 	if(start_with_balls)
@@ -95,24 +83,11 @@
 			new_cue.pixel_x += rand(-8,8)
 			new_cue.pixel_y += rand(-8,8)
 
-/*
-/obj/structure/table/wood/billiard/update_icon_state()
-	. = ..()
-	var/balls_left = total_balls()
-	if(balls_left <= 0)
-		icon_state = "billiard1"
-	else if(balls_left >= 15)
-		icon_state = "billiard2"
-	else
-		icon_state = "billiard3"
-*/
-
 /obj/structure/table/wood/billiard/examine(mob/user)
 	. = ..()
-	. += "There are [balls_left[SOLID_BALL]] solid and [balls_left[STRIPED_BALL]] striped balls left."
-	if(!balls_left[EIGHT_BALL])
+	. += "There are [length(get_balls_on_table(SOLID_BALL))] solid and [length(get_balls_on_table(STRIPED_BALL))] striped balls left."
+	if(!length(get_balls_on_table(EIGHT_BALL)))
 		. += span_warning("The 8-Ball has been sunk.")
-	. += span_notice("The game can be reset with <b>Alt-Click</b>")
 
 /obj/structure/table/wood/billiard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pool_cue))
@@ -149,13 +124,15 @@
 			*/
 		return ITEM_INTERACT_SUCCESS
 
-/obj/structure/table/wood/billiard/click_alt(mob/user)
+/obj/structure/table/wood/billiard/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	to_chat(user, "You begin reseting the table to play another game of 8-Ball.")
 	if(do_after(user, 1 TURNS, src))
 		reset_table()
 		user.visible_message(span_notice("[user] resets the table for another game of 8-Ball"), span_notice("You finish reseting the table. Ready for another game?"))
 		update_appearance()
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/table/wood/billiard/proc/sink_ball(mob/living/user, target_ball, desired_modifer, sunk_ball)
 	if(!sunk_ball)
@@ -172,19 +149,26 @@
 	update_appearance()
 
 /obj/structure/table/wood/billiard/proc/random_ball(desired_ball, desired_modifer = 2)
+	pick(get_balls_on_table())
+	/*
 	var/list/ball_chances = balls_left.Copy()
 	if(balls_left[desired_ball] > 0)
 		//Higher chance to sink the ball type your aiming for.
 		ball_chances[desired_ball] = ball_chances[desired_ball] * desired_modifer
 	return pick_weight(ball_chances)
+	*/
 
 /obj/structure/table/wood/billiard/proc/reset_table()
 	var/turf/my_turf = get_turf(src)
 	for(var/obj/item/pool_ball/ball in contents)
 		ball.forceMove(my_turf)
 
-/obj/structure/table/wood/billiard/proc/get_balls_on_table(var/looking_for = list(SOLID_BALL, STRIPPED_BALL, EIGHT_BALL))
+/obj/structure/table/wood/billiard/proc/get_balls_on_table(list/looking_for = list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL))
 	var/turf/my_turf = get_turf(src)
+
+	// Lets us pass a single item and turn it into a list
+	if(looking_for && !islist(looking_for))
+		looking_for = list(looking_for)
 
 	var/list/all_balls = list()
 	for(var/obj/item/pool_ball/ball in my_turf)
@@ -193,7 +177,7 @@
 				if(!(SOLID_BALL in looking_for))
 					continue
 			if(9 to 15)
-				if(!(STRIPPED_BALL in looking_for))
+				if(!(STRIPED_BALL in looking_for))
 					continue
 			if(8)
 				if(!(EIGHT_BALL in looking_for))
