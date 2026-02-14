@@ -24,13 +24,13 @@
 
 	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
 	// ROLL TO HIT // DARKPACK TODO
-	// var/successes = SSroll.storyteller_roll(user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_BRAWL), 6, list(user), user)
+	// var/successes = SSroll.storyteller_roll(user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_BRAWL), 6, user)
 	// ROLL TO DAMAGE
 	var/damage_output
 	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
 		damage_output = user.st_get_stat(STAT_STRENGTH)
 	else
-		damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, list(user), user, TRUE)
+		damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, user, TRUE)
 	var/damage = (basic_mob_flags & IMMUNE_TO_FISTS) ? 0 : damage_output TTRPG_DAMAGE // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	// DARKPACK EDIT CHANGE END
 	if(check_block(user, damage, "[user]'s punch", UNARMED_ATTACK, 0, BRUTE))

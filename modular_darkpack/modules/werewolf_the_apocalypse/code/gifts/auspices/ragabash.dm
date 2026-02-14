@@ -66,7 +66,7 @@
 		if(!rage_haver)
 			continue
 		highest_diff = max(highest_diff, rage_haver.rage)
-	var/roll = SSroll.storyteller_roll(human_owner.st_get_stat(STAT_MANIPULATION) + human_owner.st_get_stat(STAT_EMPATHY), highest_diff, hearers + owner, owner)
+	var/roll = SSroll.storyteller_roll(human_owner.st_get_stat(STAT_MANIPULATION) + human_owner.st_get_stat(STAT_EMPATHY), highest_diff, owner)
 	if(roll == ROLL_SUCCESS)
 		for(var/mob/living/hearer in hearers)
 			to_chat(hearer, span_hypnophrase("The message bounces around in your head, \"[last_spoken_message]\". You struggle to recall why you might have been mad."))

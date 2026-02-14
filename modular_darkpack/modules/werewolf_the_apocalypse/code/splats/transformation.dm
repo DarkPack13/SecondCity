@@ -29,7 +29,7 @@
 
 	// TODO: should accctually require an amount of successes equal to the forms your shifting through
 	if(requires_roll)
-		switch(SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + PRIMAL_URGE_PLACEHOLDER, form_to_transform::shift_difficulty, list(owner), owner))
+		switch(SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + PRIMAL_URGE_PLACEHOLDER, form_to_transform::shift_difficulty, owner))
 			if(ROLL_SUCCESS)
 				EMPTY_BLOCK_GUARD
 			if(ROLL_FAILURE, ROLL_BOTCH)
