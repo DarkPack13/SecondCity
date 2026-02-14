@@ -70,8 +70,8 @@
 			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
 			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
 
-			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, numerical = TRUE)
-			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, mobs_to_show_output = list(victim), alert_atom = victim, numerical = TRUE)
+			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, roller = thrower, numerical = TRUE)
+			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, roller = victim, numerical = TRUE)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE
@@ -1360,3 +1360,18 @@
 	if(!CAN_HAVE_BLOOD(src))
 		return
 	return dna?.blood_type
+
+/mob/living/carbon/update_nutrition()
+	. = ..()
+	// Force a weight update in case we're stasis'd and don't tick
+	if (HAS_TRAIT_FROM(src, TRAIT_FAT, OBESITY))
+		if (overeatduration >= 200 SECONDS)
+			return
+
+		to_chat(src, span_notice("You feel fit again!"))
+		remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
+		return
+
+	if (overeatduration >= 200 SECONDS)
+		to_chat(src, span_danger("You suddenly feel blubbery!"))
+		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)

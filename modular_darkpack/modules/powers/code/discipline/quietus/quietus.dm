@@ -48,7 +48,7 @@
 
 /datum/discipline_power/quietus/scorpions_touch/pre_activation_checks(atom/target)
 	. = ..()
-	var/success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 6, mobs_to_show_output = owner, alert_atom = owner, numerical = TRUE)
+	var/success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 6, roller = owner, numerical = TRUE)
 
 	if(success_count <= 0)
 		to_chat(owner, span_warning("Your blood fails to transform into poison!"))
@@ -191,9 +191,9 @@
 	var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
 	var/victim_willpower = victim.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
-	var/attacker_successes = SSroll.storyteller_roll(attacker_stamina, victim_willpower, numerical = TRUE, mobs_to_show_output = owner)
+	var/attacker_successes = SSroll.storyteller_roll(attacker_stamina, victim_willpower, numerical = TRUE, roller = owner)
 
-	var/victim_successes = SSroll.storyteller_roll(victim_stamina, victim_willpower, numerical = TRUE, mobs_to_show_output = victim)
+	var/victim_successes = SSroll.storyteller_roll(victim_stamina, victim_willpower, numerical = TRUE, roller = victim)
 
 	var/net_successes = attacker_successes - victim_successes
 
@@ -258,7 +258,7 @@
 	var/layers = tgui_input_number(owner, "How many blood points do you want to use?", "Baal's Caress", 1, max_layers, 1)
 	if(!layers)
 		return
-	user.bloodpool -= layers
+	user.adjust_blood_pool(-layers)
 	target.AddComponent(/datum/component/baals_caress, owner, layers)
 	to_chat(owner, span_notice("You imbue [target] with [layers] layer\s of your toxic vitae!"))
 

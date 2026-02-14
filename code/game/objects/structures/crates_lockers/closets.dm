@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	var/allow_objects = FALSE
 	var/allow_dense = FALSE
 	var/dense_when_open = FALSE //if it's dense when open or not
+	var/dense_when_closed = TRUE //if it's dense when closed or not // DARKPACK EDIT ADD
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
@@ -618,7 +619,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	take_contents()
 	playsound(loc, close_sound, close_sound_volume, TRUE, -3)
 	opened = FALSE
-	set_density(TRUE)
+	if(dense_when_closed) // DARKPACK EDIT ADD
+		set_density(TRUE) // DARKPACK EDIT CHANGE
 	animate_door(TRUE)
 	update_appearance()
 	after_close(user)
@@ -1133,7 +1135,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 /obj/structure/closet/proc/togglelock(mob/living/user, silent)
 	if(!secure || broken)
-		return
+		return FALSE
 
 	if(locked) //only apply checks while unlocking else allow anyone to lock it
 		var/error_msg = ""
@@ -1145,8 +1147,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 				id_card = null
 				req_access = list()
 				req_one_access = null
-				togglelock(user, silent)
-				return
+				return togglelock(user, silent)
 			if(!can_unlock(user, user.get_idcard(), registered_id))
 				error_msg = "not your locker!"
 		else if(!can_unlock(user, user.get_idcard()))
@@ -1154,7 +1155,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(error_msg)
 			if(!silent)
 				balloon_alert(user, error_msg)
-			return
+			return TRUE
 
 	if(iscarbon(user))
 		add_fingerprint(user)
@@ -1165,6 +1166,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		span_notice("You [locked ? "locked" : "unlocked"] [src]."),
 	)
 	update_appearance()
+	return TRUE
 
 /// toggles the lock state of a closet
 /obj/structure/closet/proc/lock()

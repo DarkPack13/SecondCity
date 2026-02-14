@@ -51,9 +51,9 @@
 		if(!bank)
 			return ITEM_INTERACT_BLOCKING
 		var/dolla = tool.get_item_credit_value()
-		to_chat(user, span_notice("You insert [dolla] dollars into [src]."))
+		to_chat(user, span_notice("You insert [dolla] [MONEY_NAME] into [src]."))
 		bank.adjust_money(dolla, "Supply Console: Deposit")
-		to_chat(usr, span_notice("You have deposited [dolla] dollars into the account. The new balance is [bank.account_balance] dollars."))
+		to_chat(usr, span_notice("You have deposited [dolla] [MONEY_NAME] into the account. The new balance is [bank.account_balance] [MONEY_NAME]."))
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
 	// DARKPACK EDIT ADD END

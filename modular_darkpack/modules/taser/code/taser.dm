@@ -25,6 +25,8 @@
 	armor_type = /datum/armor/none
 	throwforce = 2
 	on_stun_sound = 'modular_darkpack/modules/taser/sounds/handtaser_activate.ogg'
+	preload_cell_type = /obj/item/stock_parts/power_store/cell
+	cell_hit_cost = STANDARD_CELL_CHARGE * 0.5
 	active_changes_inhand = FALSE // TODO: different sprites for cells?
 	custom_price = 200
 
