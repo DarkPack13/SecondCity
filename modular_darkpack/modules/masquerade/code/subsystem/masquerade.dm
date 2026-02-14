@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(masquerade)
 	human_breacher.write_preference_midround(/datum/preference/numeric/masquerade, player_breacher.masquerade_score)
 
 // This is for clearing the round's masquerade because a player matrix'd
-/datum/controller/subsystem/masquerade/proc/cryo_masquerade_breacher(mob/living/player_breacher, update_preferences)
+/datum/controller/subsystem/masquerade/proc/matrix_masquerade_breacher(mob/living/player_breacher, update_preferences)
 	for(var/masquerade_breach as anything in masquerade_breachers)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)

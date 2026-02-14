@@ -244,11 +244,12 @@
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 	if(CONFIG_GET(flag/punishing_zero_dots) && total_lockpicking < 1)
 		to_chat(user, span_warning("How do I do this...?"))
-	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
+	if(do_after(user, 1 TURNS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		if(!locked)
 			return
-		var/roll_result = SSroll.storyteller_roll(total_lockpicking + user.st_get_stat(STAT_DEXTERITY), lockpick_difficulty, list(user), user)
-		switch(roll_result)
+		var/datum/storyteller_roll/lockpick/our_roll = new()
+		our_roll.difficulty = lockpick_difficulty
+		switch(our_roll.st_roll(user, src))
 			if(ROLL_SUCCESS)
 				to_chat(user, span_notice("You've managed to open [src]'s lock."))
 				playsound(src, 'modular_darkpack/modules/cars/sounds/open.ogg', 50, TRUE)

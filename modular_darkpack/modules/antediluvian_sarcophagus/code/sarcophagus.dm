@@ -80,6 +80,11 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 		return final_message
 
 
+/datum/storyteller_roll/sarcophagus_cipher
+	bumper_text = "examine"
+	difficulty = 10
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
+	reroll_cooldown = 1 SCENES
 
 /obj/sarcophagus
 	name = "unknown sarcophagus"
@@ -90,9 +95,9 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 	density = TRUE
 	anchored = TRUE
 	pixel_w = -8
-	COOLDOWN_DECLARE(roll_cooldown)
 	var/password = "Brongus"
 	var/passkey = 5
+	var/datum/storyteller_roll/sarcophagus_cipher/cipher_roll
 
 /obj/sarcophagus/Initialize(mapload)
 	. = ..()
@@ -102,15 +107,16 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 	else
 		passkey = rand(-15, -5)
 	//to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS POSITION HAS BEEN LEAKED</b>"))
-	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+	if(!mapload)
+		SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 
 /obj/sarcophagus/examine(mob/user)
 	. = ..()
 	var/message = "You see an engraved text on it: <b>[encipher(password, passkey)]</b>."
-	if(isliving(user) && COOLDOWN_FINISHED(src, roll_cooldown))
-		COOLDOWN_START(src, roll_cooldown, 1 SCENES)
-		var/mob/living/living_user = user
-		var/roll_result = SSroll.storyteller_roll(living_user.st_get_stat(STAT_INTELLIGENCE) + living_user.st_get_stat(STAT_OCCULT), 10, list(user), user)
+	if(isliving(user))
+		if(!cipher_roll)
+			cipher_roll = new()
+		var/roll_result = cipher_roll.st_roll(user, src)
 		if(roll_result == ROLL_SUCCESS)
 			message += " It's an ancient cipher. You shift letters in your head till you end up with [uppertext(password)]."
 		else

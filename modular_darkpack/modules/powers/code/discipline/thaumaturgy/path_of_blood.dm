@@ -31,7 +31,7 @@
 /datum/discipline_power/thaumaturgy/activate(atom/target)
 	. = ..()
 	//Thaumaturgy powers have different effects based off the amount of successes. I dont want to copy paste the code, so this is being put here.
-	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
+	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
 	if(success_count < 0)
 		thaumaturgy_botch_effect()
 		return TRUE
