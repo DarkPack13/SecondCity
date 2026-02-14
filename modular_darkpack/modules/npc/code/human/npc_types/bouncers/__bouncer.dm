@@ -149,11 +149,13 @@
 
 
 /mob/living/carbon/human/npc/bouncer/examine(mob/user)
-	.=..()
+	. = ..()
 
 	if(can_be_reasoned_with() && in_range(src, user))
 		var/list/interact_options = list(
-			"Persuade for Entry" = image(icon = 'icons/obj/toys/dice.dmi', icon_state = "d10"))
+			"Persuade for Entry" = image(icon = 'icons/obj/toys/dice.dmi', icon_state = "d10"),
+			"Intimidate for Entry" = image(icon = 'icons/obj/toys/dice.dmi', icon_state = "d10")
+		)
 
 		var/obj/item/held_item = user.get_active_held_item()
 		if(held_item && istype(held_item, /obj/item/card/police))
@@ -162,7 +164,10 @@
 		switch(picked_option)
 			if("Persuade for Entry")
 				to_chat(user, span_notice("You try to talk your way through."))
-				linked_perm.notify_barrier_social_bypass(user, src)
+				linked_perm.notify_barrier_social_bypass(user, src, FALSE, STAT_EMPATHY)
+			if("Intimidate for Entry")
+				to_chat(user, span_notice("You try to talk your way through."))
+				linked_perm.notify_barrier_social_bypass(user, src, FALSE, STAT_INTIMIDATION)
 			if("Show Badge")
 				to_chat(user, span_notice("You flash your [held_item] as you try to talk your way through."))
 				linked_perm.notify_barrier_social_bypass(user, src, TRUE)
