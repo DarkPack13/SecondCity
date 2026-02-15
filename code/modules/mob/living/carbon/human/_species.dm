@@ -835,9 +835,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/pummel_bonus = attacking_bodypart.unarmed_pummeling_bonus
 		attack_bonus_dice += round(1 * pummel_bonus)
 
-	//Get our puncher's combined brute and burn damage.
-	var/puncher_brute_and_burn = (user.get_fire_loss() + user.get_brute_loss())
-
 	//Get our targets combined brute and burn damage.
 	var/target_brute_and_burn = (target.get_fire_loss() + target.get_brute_loss())
 
