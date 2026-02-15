@@ -823,7 +823,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		damage_output = user.st_get_stat(STAT_STRENGTH)
 	else
 		var/datum/storyteller_roll/damage/damage_roll = new()
-		damage_output = damage_roll.st_roll(user)
+		damage_output = damage_roll.st_roll(user, target)
 	// DARKPACK EDIT CHANGE END
 
 	// The actual damage roll. May still be augmented by further factors.
