@@ -1,3 +1,6 @@
+/datum/storyteller_roll/mindsweeper
+	applicable_stats = list(STAT_PERCEPTION, STAT_OCCULT)
+
 /obj/minespot
 	name = "safe umbral tether"
 	desc = "Connects the parts of Penumbra together."
@@ -35,7 +38,8 @@
 		icon_state = "boom"
 		if(!dangerous)
 			return
-		var/roll_result = SSroll.storyteller_roll(user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT), 6, list(user), user)
+		var/datum/storyteller_roll/mindsweeper/perc_roll = new()
+		var/roll_result = perc_roll.st_roll(user, src)
 		switch(roll_result)
 			if(ROLL_SUCCESS)
 				to_chat(user, span_revenwarning("Close... but the spirits do not punish you for this one."))

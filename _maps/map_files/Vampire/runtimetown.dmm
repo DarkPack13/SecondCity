@@ -909,6 +909,12 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"rI" = (
+/obj/effect/vip_barrier/endron/endron_lab{
+	dir = 8
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "rK" = (
 /obj/item/storage/pill_bottle/ephedrine,
 /obj/item/storage/pill_bottle/ephedrine,
@@ -2094,6 +2100,12 @@
 /obj/item/vtm_artifact/daimonori,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
+"LN" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "LP" = (
 /obj/structure/vampdoor/simple,
 /obj/effect/mapping_helpers/door/access/police,
@@ -2411,6 +2423,10 @@
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
+"PA" = (
+/mob/living/carbon/human/npc/bouncer/endron/endron_lab,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "PC" = (
 /obj/structure/roofstuff/vent,
 /turf/open/misc/grass,
@@ -4380,7 +4396,7 @@ Tb
 pN
 pN
 pN
-pN
+PA
 Id
 sw
 Id
@@ -4449,7 +4465,7 @@ SG
 pN
 pN
 SK
-ZU
+rI
 ZU
 rN
 Id
@@ -4517,7 +4533,7 @@ Tb
 pN
 pN
 SK
-Id
+LN
 ZU
 rN
 Id
