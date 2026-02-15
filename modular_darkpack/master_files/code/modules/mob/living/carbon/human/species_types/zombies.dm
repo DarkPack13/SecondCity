@@ -28,7 +28,7 @@
 	C.update_body_parts()
 	C.update_body(0)
 
-	C.set_body_sprite("rotten2")
+	C.set_body_sprite("rotten2", greyscale = TRUE)
 
 	C.maxHealth = 300 //tanky
 	C.health = 300
