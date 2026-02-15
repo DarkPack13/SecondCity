@@ -781,10 +781,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(user, target) || brain?.get_attacking_limb(target) || user.get_active_hand()
 
-
-	var/attack_roll_type = /datum/storyteller_roll/attack/punch
-	var/damage_roll_type = /datum/storyteller_roll/damage/punch
-
 	var/atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
 	var/atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
 	var/atk_verb_continuous = "[atk_verb]s"
@@ -792,6 +788,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
 
 	var/atk_effect = attacking_bodypart.unarmed_attack_effect
+
+	var/attack_roll_type = /datum/storyteller_roll/attack/punch
+	var/damage_roll_type = /datum/storyteller_roll/damage/punch
+
+	var/attack_difficulty_bonus = 0
+	var/attack_bonus_dice = 0
+	var/damage_difficulty_bonus = 0
+	var/damage_bonus_dice = 0
 
 	if(atk_effect == ATTACK_EFFECT_BITE)
 		if(!user.is_mouth_covered(ITEM_SLOT_MASK))
@@ -821,11 +825,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//Someone in a grapple is much more vulnerable to being harmed by punches.
 	var/grappled = (target.pulledby && target.pulledby.grab_state >= GRAB_AGGRESSIVE)
-
-	var/attack_difficulty_bonus = 0
-	var/attack_bonus_dice = 0
-	var/damage_difficulty_bonus = 0
-	var/damage_bonus_dice = 0
 
 	// Limb accuracy is used to determine miss probabilities (higher the value, the less likely you are to miss), armor penetration (if entitled) and the possible result from a stagger combo hit.
 	var/limb_accuracy = attacking_bodypart.unarmed_effectiveness
@@ -885,11 +884,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/damage = 0
 	if(attack_landed)
 		if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
-			damage_output = user.st_get_stat(STAT_STRENGTH) TTRPG_DAMAGE
+			damage = user.st_get_stat(STAT_STRENGTH) TTRPG_DAMAGE
 		else
 			var/datum/storyteller_roll/damage/damage_roll = new damage_roll_type()
 			damage_roll.difficulty += damage_difficulty_bonus
-			damage_output = damage_roll.st_roll(user, target, damage_bonus_dice) TTRPG_DAMAGE
+			damage = damage_roll.st_roll(user, target, damage_bonus_dice) TTRPG_DAMAGE
 
 	if(damage <= 0 || !affecting || !attack_landed)
 		playsound(target.loc, attacking_bodypart.unarmed_miss_sound, 25, TRUE, -1)
@@ -939,8 +938,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(damage >= 1 TTRPG_DAMAGE)
 		target.force_say()
 	target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
-	if((atk_effect == ATTACK_EFFECT_KICK) || grappled)
-		log_combat(user, target, grappled ? "grapple punched" : "kicked")
+	if(grappled)
+		log_combat(user, target, "grapple punched")
+	else if(atk_effect == ATTACK_EFFECT_KICK)
+		log_combat(user, target, "kicked")
+	else if(atk_effect == ATTACK_EFFECT_BITE)
+		log_combat(user, target, "bit")
 	else
 		log_combat(user, target, "punched")
 
@@ -949,8 +952,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
 		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
 
-	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
-	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
+	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, armor_block, (atk_effect == ATTACK_EFFECT_KICK), limb_sharpness)
+	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, armor_block, (atk_effect == ATTACK_EFFECT_KICK), limb_sharpness)
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
