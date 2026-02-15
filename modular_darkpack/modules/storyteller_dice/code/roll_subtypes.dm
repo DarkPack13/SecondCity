@@ -44,6 +44,15 @@
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
 
+/datum/storyteller_roll/punch
+	bumper_text = "punch"
+	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
+
+/datum/storyteller_roll/damage
+	bumper_text = "damage"
+	applicable_stats = list(STAT_STRENGTH)
+	numerical = TRUE
+
 // Mental Feats
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"

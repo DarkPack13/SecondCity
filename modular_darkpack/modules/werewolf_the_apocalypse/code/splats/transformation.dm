@@ -1,5 +1,10 @@
 #define DOGGY_ANIMATION_TIME 1 TURNS
 
+/datum/storyteller_roll/fera_trans
+	bumper_text = "transformation"
+	applicable_stats = list(STAT_STAMINA)
+
+
 // Remeber if you remove homid being species that this will break.
 /datum/splat/werewolf/shifter/proc/transform_fera(datum/species/human/shifter/form_to_transform, costs_rage = FALSE, requires_roll = TRUE, force = FALSE)
 	if(!form_to_transform)
@@ -29,7 +34,9 @@
 
 	// TODO: should accctually require an amount of successes equal to the forms your shifting through
 	if(requires_roll)
-		switch(SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + PRIMAL_URGE_PLACEHOLDER, form_to_transform::shift_difficulty, owner))
+		var/datum/storyteller_roll/fera_trans/transform_roll = new()
+		transform_roll.difficulty = form_to_transform::shift_difficulty
+		switch(transform_roll.st_roll(owner, owner, PRIMAL_URGE_PLACEHOLDER))
 			if(ROLL_SUCCESS)
 				EMPTY_BLOCK_GUARD
 			if(ROLL_FAILURE, ROLL_BOTCH)

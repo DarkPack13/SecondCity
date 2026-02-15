@@ -822,7 +822,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
 		damage_output = user.st_get_stat(STAT_STRENGTH)
 	else
-		damage_output = SSroll.storyteller_roll(user.st_get_stat(STAT_STRENGTH), 6, list(user), user, TRUE)
+		var/datum/storyteller_roll/damage/damage_roll = new()
+		damage_output = damage_roll.st_roll(user)
 	// DARKPACK EDIT CHANGE END
 
 	// The actual damage roll. May still be augmented by further factors.
@@ -940,7 +941,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 
-	// DARKPACK EDIT ADD - Knockdown chance system from old harm proc
+	// DARKPACK EDIT ADD START - (Knockdown chance system from old harm proc)
 	if((target.stat != DEAD) && (!target.IsKnockdown()))
 		var/roll = SSroll.storyteller_roll(
 			dice = user.st_get_stat(STAT_STRENGTH),
@@ -954,7 +955,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			to_chat(user, span_danger("You knock [target] down!"))
 			target.apply_effect(2 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			log_combat(user, target, "got a stun punch with their previous punch")
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
