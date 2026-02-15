@@ -9,7 +9,7 @@
 /obj/ritual_rune/abyss/heart_that_beats_in_silence/complete()
 	var/mob/living/carbon/human/H = last_activator
 
-	var/roll = SSroll.storyteller_roll(last_activator.st_get_stat(STAT_INTELLIGENCE) + last_activator.st_get_stat(STAT_OCCULT), 6, last_activator, numerical = FALSE)
+	var/roll = SSroll.storyteller_roll(last_activator.st_get_stat(STAT_INTELLIGENCE) + last_activator.st_get_stat(STAT_OCCULT), 6, last_activator)
 	last_activator.apply_damage(30, AGGRAVATED)
 
 	switch(roll)
