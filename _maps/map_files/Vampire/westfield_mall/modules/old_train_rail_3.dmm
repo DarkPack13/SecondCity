@@ -112,9 +112,7 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "N" = (
-/obj/structure/ladder/manhole/up{
-	requires_friend = 0
-	},
+/obj/structure/ladder/manhole/up,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "O" = (
