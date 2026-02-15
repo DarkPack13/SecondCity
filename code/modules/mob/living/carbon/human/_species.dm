@@ -877,7 +877,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(attack_roll.st_roll(user, target, attack_bonus_dice) == ROLL_SUCCESS)
 			attack_landed = TRUE
 
-	// The actual damage roll. May still be augmented by further factors.
 	var/damage = 0
 	if(attack_landed)
 		if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
