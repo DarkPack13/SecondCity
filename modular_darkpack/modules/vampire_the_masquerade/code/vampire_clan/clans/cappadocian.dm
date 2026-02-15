@@ -14,6 +14,21 @@
 
 	whitelisted = TRUE
 
+/datum/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H, joining_round)
+	. = ..()
+	//harbingers use their own rot logic, rotten4 is samedi/very old wraithly harbinger
+	if(istype(src, /datum/vampire_clan/cappadocian/harbinger))
+		return
+
+	var/years_undead = H.chronological_age - H.age
+	switch(years_undead)
+		if (-INFINITY to 100)
+			H.rot_body(1)
+		if (100 to 500)
+			H.rot_body(2)
+		if (500 to INFINITY)
+			H.rot_body(3)
+
 /datum/vampire_clan/cappadocian/harbinger
 	name = "Harbinger of Skulls"
 	id = VAMPIRE_CLAN_HARBINGER

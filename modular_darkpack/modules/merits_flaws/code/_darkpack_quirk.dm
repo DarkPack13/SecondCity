@@ -8,7 +8,7 @@
 	var/list/excluded_clans
 	/// Minimum Generation
 	var/minimum_generation
-	/// Unique failure message on joining the round (should probably just mix the clan and generation blocking into the tgui...)
+	/// Unique failure message on joining the round (in case someone joins with an incompatible quirk on their savefile for some reason)
 	var/failure_message = "One of the quirks you've selected hasn't applied - your character is ineligible to use it!"
 
 /datum/quirk/darkpack/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)

@@ -118,5 +118,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"
 #define TRAIT_ORGANOVORE "organovore"
+#define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 
 // END TRAIT DEFINES
