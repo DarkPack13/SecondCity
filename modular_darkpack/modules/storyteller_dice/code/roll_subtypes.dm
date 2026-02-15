@@ -23,6 +23,10 @@
 	bumper_text = "attack (bite)"
 	difficulty = 5
 
+/datum/storyteller_roll/attack/kick
+	bumper_text = "attack (kick)"
+	difficulty = 7
+
 /datum/storyteller_roll/attack/claw
 	bumper_text = "attack (claw)"
 
@@ -42,6 +46,10 @@
 
 /datum/storyteller_roll/damage/bite
 	bumper_text = "damage (bite)"
+	// + 1
+
+/datum/storyteller_roll/damage/kick
+	bumper_text = "damage (kick)"
 	// + 1
 
 /datum/storyteller_roll/damage/claw

@@ -771,7 +771,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	user.do_cpr(target)
 
-// DARKPACK EDIT CHANGE START - STORYTELLER_DICE -(This proc required a MAJOR rewrite to be more ttrpg accurate and use dice)
+// DARKPACK EDIT CHANGE START - STORYTELLER_DICE - (This proc required a MAJOR rewrite to be more ttrpg accurate and use dice)
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && !attacker_style?.pacifist_style)
@@ -781,8 +781,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(user, target) || brain?.get_attacking_limb(target) || user.get_active_hand()
 
-	// Whether or not we get some protein for a successful attack. Nom.
-	var/biting = FALSE
+
+	var/attack_roll_type = /datum/storyteller_roll/attack/punch
+	var/damage_roll_type = /datum/storyteller_roll/damage/punch
 
 	var/atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
 	var/atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
@@ -794,7 +795,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(atk_effect == ATTACK_EFFECT_BITE)
 		if(!user.is_mouth_covered(ITEM_SLOT_MASK))
-			biting = TRUE
+			attack_roll_type = /datum/storyteller_roll/attack/bite
+			damage_roll_type = /datum/storyteller_roll/damage/bite
+			damage_bonus_dice++
 		else if(user.get_active_hand()) //In the event we can't bite, emergency swap to see if we can attack with a hand.
 			attacking_bodypart = user.get_active_hand()
 			atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
@@ -806,6 +809,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else //Nothing? Okay. Fail.
 			user.balloon_alert(user, "can't attack!")
 			return FALSE
+	if(atk_effect == ATTACK_EFFECT_KICK)
+		attack_roll_type = /datum/storyteller_roll/attack/kick
+		damage_roll_type = /datum/storyteller_roll/damage/kick
+		damage_bonus_dice++
 
 	user.do_attack_animation(target, atk_effect)
 
@@ -866,10 +873,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		attack_bonus_dice++
 
 	var/attack_landed = FALSE
-	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
+	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || grappled)
 		attack_landed = TRUE
 	else
-		var/datum/storyteller_roll/attack/punch/attack_roll = new()
+		var/datum/storyteller_roll/attack/attack_roll = new attack_roll_type()
 		attack_roll.difficulty += attack_difficulty_bonus
 		if(attack_roll.st_roll(user, target, attack_bonus_dice) == ROLL_SUCCESS)
 			attack_landed = TRUE
@@ -880,7 +887,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
 			damage_output = user.st_get_stat(STAT_STRENGTH) TTRPG_DAMAGE
 		else
-			var/datum/storyteller_roll/damage/punch/damage_roll = new()
+			var/datum/storyteller_roll/damage/damage_roll = new damage_roll_type()
 			damage_roll.difficulty += damage_difficulty_bonus
 			damage_output = damage_roll.st_roll(user, target, damage_bonus_dice) TTRPG_DAMAGE
 
@@ -928,21 +935,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
-	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
-	var/final_armor_block = armor_block
-	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
-		if(damage >= 1 TTRPG_DAMAGE)
-			target.force_say()
+
+	if(damage >= 1 TTRPG_DAMAGE)
+		target.force_say()
+	target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
+	if((atk_effect == ATTACK_EFFECT_KICK) || grappled)
 		log_combat(user, target, grappled ? "grapple punched" : "kicked")
-		final_armor_block -= limb_accuracy
-		target.apply_damage(damage, attack_type, affecting, final_armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
-	else // Normal attacks do not gain the benefit of armor penetration.
-		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
-		if(damage >= 1 TTRPG_DAMAGE)
-			target.force_say()
+	else
 		log_combat(user, target, "punched")
 
-	if(user != target && biting && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
+	if(user != target && (atk_effect == ATTACK_EFFECT_BITE) && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
 		var/datum/reagents/tasty_meal = new()
 		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
 		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
