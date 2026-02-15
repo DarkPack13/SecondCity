@@ -27,6 +27,10 @@
 		force_wielded = 15, \
 	)
 
+/obj/item/pool_cue/update_icon_state()
+	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	return ..()
+
 /obj/item/pool_ball
 	name = "pool ball"
 	desc = "Used for playing a game of 8 ball."
