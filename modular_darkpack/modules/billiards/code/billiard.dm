@@ -226,3 +226,5 @@
 #undef STRIPED_BALL
 #undef EIGHT_BALL
 #undef ZERO_BALL
+
+#undef TABLE_BOUNDS
