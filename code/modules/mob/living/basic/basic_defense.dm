@@ -25,8 +25,10 @@
 	if(check_block(user, 0, "[user]'s punch", UNARMED_ATTACK))
 		return
 
-	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
-	var/obj/item/bodypart/attacking_bodypart = brain?.get_attacking_limb(src) || user.get_active_hand()
+	var/obj/item/bodypart/attacking_bodypart = user.get_attacking_limb(src)
+	if(!attacking_bodypart)
+		user.balloon_alert(user, "can't attack!")
+		return FALSE
 
 	var/atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
 	var/atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
@@ -45,22 +47,10 @@
 	var/damage_bonus_dice = 0
 
 	if(atk_effect == ATTACK_EFFECT_BITE)
-		if(!user.is_mouth_covered(ITEM_SLOT_MASK))
-			attack_roll_type = /datum/storyteller_roll/attack/bite
-			damage_roll_type = /datum/storyteller_roll/damage/bite
-			damage_bonus_dice++
-		else if(user.get_active_hand()) //In the event we can't bite, emergency swap to see if we can attack with a hand.
-			attacking_bodypart = user.get_active_hand()
-			atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
-			atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
-			atk_verb_continuous = "[atk_verb]s"
-			if (length(attacking_bodypart.unarmed_attack_verbs_continuous) >= atk_verb_index) // Just in case
-				atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
-			atk_effect = attacking_bodypart.unarmed_attack_effect
-		else //Nothing? Okay. Fail.
-			user.balloon_alert(user, "can't attack!")
-			return FALSE
-	if(atk_effect == ATTACK_EFFECT_KICK)
+		attack_roll_type = /datum/storyteller_roll/attack/bite
+		damage_roll_type = /datum/storyteller_roll/damage/bite
+		damage_bonus_dice++
+	else if(atk_effect == ATTACK_EFFECT_KICK)
 		attack_roll_type = /datum/storyteller_roll/attack/kick
 		damage_roll_type = /datum/storyteller_roll/damage/kick
 		damage_bonus_dice++
