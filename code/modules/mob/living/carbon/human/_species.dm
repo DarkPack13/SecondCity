@@ -934,26 +934,28 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
+	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
+	var/biting = (atk_effect == ATTACK_EFFECT_BITE)
 
 	if(damage >= 1 TTRPG_DAMAGE)
 		target.force_say()
 	target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
 	if(grappled)
 		log_combat(user, target, "grapple punched")
-	else if(atk_effect == ATTACK_EFFECT_KICK)
+	else if(kicking)
 		log_combat(user, target, "kicked")
-	else if(atk_effect == ATTACK_EFFECT_BITE)
+	else if(biting)
 		log_combat(user, target, "bit")
 	else
 		log_combat(user, target, "punched")
 
-	if(user != target && (atk_effect == ATTACK_EFFECT_BITE) && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
+	if(user != target && biting && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
 		var/datum/reagents/tasty_meal = new()
 		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
 		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
 
-	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, armor_block, (atk_effect == ATTACK_EFFECT_KICK), limb_sharpness)
-	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, armor_block, (atk_effect == ATTACK_EFFECT_KICK), limb_sharpness)
+	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, armor_block, kicking, limb_sharpness)
+	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, armor_block, kicking, limb_sharpness)
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
