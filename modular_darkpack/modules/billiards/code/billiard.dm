@@ -3,6 +3,8 @@
 #define EIGHT_BALL "8-Ball"
 #define ZERO_BALL "0-Ball"
 
+#define TABLE_BOUNDS 11
+
 /obj/item/pool_cue
 	name = "pool cue"
 	desc = "Used for playing a game of 8 ball."
@@ -35,7 +37,10 @@
 
 /obj/item/pool_ball/update_name(updates)
 	. = ..()
-	name = "[ball_number] ball"
+	if(ball_number == 0)
+		name = "cue ball"
+	else
+		name = "\improper [ball_number]-ball"
 
 /obj/item/pool_ball/update_icon_state()
 	. = ..()
@@ -48,13 +53,12 @@
 
 /obj/structure/table/wood/billiard
 	name = "billiard table"
-	desc = "Come here, play some BALLS. tool know you want it so much..."
+	desc = "Come here, play some BALLS. I know you want it so much..."
 	icon = 'modular_darkpack/modules/billiards/icons/32x48.dmi'
 	icon_state = "billiard1"
 	smoothing_flags = NONE
 	smoothing_groups = null
 	canSmoothWith = null
-	//pixel_z = -16
 	pixel_y = -16
 
 	can_flip = FALSE
@@ -74,24 +78,36 @@
 			var/obj/item/pool_ball/new_ball = new(my_turf)
 			new_ball.ball_number = ball_num
 			new_ball.update_appearance()
-			new_ball.pixel_x += rand(-8,8)
-			new_ball.pixel_y += rand(-8,8)
+			new_ball.pixel_x += rand(-TABLE_BOUNDS,TABLE_BOUNDS)
+			new_ball.pixel_y += rand(-TABLE_BOUNDS-6,TABLE_BOUNDS)
 
 	if(start_with_cues)
 		for(var/i in 1 to rand(start_min_cues, start_max_cues))
 			var/obj/item/pool_cue/new_cue = new(my_turf)
-			new_cue.pixel_x += rand(-8,8)
-			new_cue.pixel_y += rand(-8,8)
+			new_cue.pixel_x += rand(-TABLE_BOUNDS,TABLE_BOUNDS)
+			new_cue.pixel_y += rand(-TABLE_BOUNDS,TABLE_BOUNDS)
 
 /obj/structure/table/wood/billiard/examine(mob/user)
 	. = ..()
-	. += "There are [length(get_balls_on_table(SOLID_BALL))] solid and [length(get_balls_on_table(STRIPED_BALL))] striped balls left."
+	. += span_notice("There are [length(get_balls_on_table(SOLID_BALL))] solid and [length(get_balls_on_table(STRIPED_BALL))] striped balls left.")
 	if(!length(get_balls_on_table(EIGHT_BALL)))
 		. += span_warning("The 8-Ball has been sunk.")
 
+/obj/structure/table/wood/billiard/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	. = ..()
+
+	if(istype(held_item, /obj/item/pool_cue))
+		context[SCREENTIP_CONTEXT_LMB] = "Strike ball"
+		. = CONTEXTUAL_SCREENTIP_SET
+	else if(!held_item)
+		context[SCREENTIP_CONTEXT_RMB] = "Reset Table"
+		. = CONTEXTUAL_SCREENTIP_SET
+
+	return . || NONE
+
 /obj/structure/table/wood/billiard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pool_cue))
-		var/cue_options = list(
+		var/static/list/cue_options = list(
 			SOLID_BALL = image(icon = 'modular_darkpack/modules/billiards/icons/billiard.dmi', icon_state = "1ball"),
 			STRIPED_BALL = image(icon = 'modular_darkpack/modules/billiards/icons/billiard.dmi', icon_state = "15ball"),
 			EIGHT_BALL = image(icon = 'modular_darkpack/modules/billiards/icons/billiard.dmi', icon_state = "8ball"),
@@ -99,7 +115,7 @@
 		var/choice = show_radial_menu(user, src, cue_options, require_near = TRUE)
 		if(!choice)
 			return ITEM_INTERACT_BLOCKING
-		if(balls_left[choice] <= 0)
+		if(!length(get_balls_on_table(choice)))
 			to_chat(user, span_warning("You cant aim for a [lowertext(choice)] because they are all sunk!"))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(span_notice("[user] begins lining up a shot to hit a [lowertext(choice)]."), span_notice("You begin lining up a shot to hit a [lowertext(choice)]."))
@@ -108,25 +124,33 @@
 		user.visible_message(span_notice("[user] strikes a [lowertext(choice)]!"), span_notice("You strike your target!"))
 		playsound(src, 'modular_darkpack/modules/billiards/sounds/poolball_strike.ogg', 75)
 
-		#warn todo
-		var/desired_modifer = 10 // user.get_total_dexterity() * 2 //SSroll.storyteller_roll(user.get_total_dexterity(), 4, FALSE, list(user))
-
-		var/attempts = 0
-		while(length(get_balls_on_table()) && (attempts <= 10))
-			attempts++
-			sink_ball(user, choice, desired_modifer)
-			if(prob(25))
+		var/datum/storyteller_roll/pool_aiming/accuracy_roll = new()
+		var/accuracy_result = accuracy_roll.st_roll(user, src) * 2
+		var/datum/storyteller_roll/pool_hits/amount_to_hit_roll = new()
+		var/amount_to_hit_result = amount_to_hit_roll.st_roll(user, src)
+		for(var/i in 1 to amount_to_hit_result)
+			if(!length(get_balls_on_table()))
 				break
-			#warn do
-			/*
-			if(prob(100 - (user.get_total_physique() * 10)))
-				break
-			*/
+			sink_ball(user, choice, accuracy_result, amount_to_hit_result)
 		return ITEM_INTERACT_SUCCESS
+
+/datum/storyteller_roll/pool_aiming
+	bumper_text = "billiard aiming"
+	applicable_stats = list(STAT_DEXTERITY)
+	numerical = TRUE
+	// spammy_roll = TRUE
+	difficulty = 4
+
+/datum/storyteller_roll/pool_hits
+	bumper_text = "billiard hit"
+	applicable_stats = list(STAT_PERCEPTION, STAT_STREETWISE)
+	numerical = TRUE
+	// spammy_roll = TRUE
+	difficulty = 4
 
 /obj/structure/table/wood/billiard/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	to_chat(user, "You begin reseting the table to play another game of 8-Ball.")
+	to_chat(user, span_notice("You begin reseting the table to play another game of 8-Ball."))
 	if(do_after(user, 1 TURNS, src))
 		reset_table()
 		user.visible_message(span_notice("[user] resets the table for another game of 8-Ball"), span_notice("You finish reseting the table. Ready for another game?"))
@@ -134,36 +158,43 @@
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
-/obj/structure/table/wood/billiard/proc/sink_ball(mob/living/user, target_ball, desired_modifer, sunk_ball)
+/obj/structure/table/wood/billiard/proc/sink_ball(mob/living/user, target_ball_type, accuracy_result, amount_to_hit_result, obj/item/pool_ball/sunk_ball)
 	if(!sunk_ball)
-		sunk_ball = random_ball(target_ball, desired_modifer)
+		sunk_ball = random_ball(target_ball_type, accuracy_result)
 
-	if(!balls_left[sunk_ball] || balls_left[sunk_ball] <= 0)
+	if(!sunk_ball)
 		//user.visible_message(span_warning("[user] MISSED"), span_warning("You missed"))
 		return
-	if(sunk_ball == EIGHT_BALL)
-		user.visible_message(span_warning("[user] sunk the 8-Ball.. Damn.."), span_warning("Shit.. You sunk the 8-Ball"))
+	if(num_to_ball_type(sunk_ball.ball_number) == EIGHT_BALL)
+		user.visible_message(span_warning("[user] [pick("Pitted", "Sank", "Sunk")] the 8-Ball.. Damn.."), span_warning("[pick("Fuck", "Shit", "Piss")].. You [pick("Pitted", "Sank", "Sunk")] the 8-Ball"))
 	else
-		user.visible_message(span_notice("[user] sinks a [lowertext(sunk_ball)]. [balls_left[sunk_ball]] left."), span_notice("You sink a [sunk_ball]!"))
-	balls_left[sunk_ball] = max(0, --balls_left[sunk_ball])
-	update_appearance()
+		user.visible_message(span_notice("[user] sinks [sunk_ball]. [length(get_balls_on_table(num_to_ball_type(sunk_ball.ball_number)))] left."), span_notice("You sink [sunk_ball]!"))
+	sunk_ball.forceMove(src)
 
-/obj/structure/table/wood/billiard/proc/random_ball(desired_ball, desired_modifer = 2)
-	pick(get_balls_on_table())
-	/*
-	var/list/ball_chances = balls_left.Copy()
-	if(balls_left[desired_ball] > 0)
-		//Higher chance to sink the ball type your aiming for.
-		ball_chances[desired_ball] = ball_chances[desired_ball] * desired_modifer
-	return pick_weight(ball_chances)
-	*/
+	for(var/obj/item/pool_ball/ball in get_balls_on_table(list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL, ZERO_BALL)))
+		if(prob(50 + amount_to_hit_result * 10))
+			animate(ball, time = rand(0.5 SECONDS, 3 SECONDS) , pixel_x = rand(-TABLE_BOUNDS, TABLE_BOUNDS), pixel_y = rand(-TABLE_BOUNDS-6, TABLE_BOUNDS), easing = CUBIC_EASING|EASE_OUT)
+
+/obj/structure/table/wood/billiard/proc/random_ball(desired_ball_type, accuracy_result = 2)
+	var/list/obj/item/pool_ball/sorted_balls = get_balls_on_table()
+	var/list/obj/item/pool_ball/weighted_balls = list()
+	for(var/obj/item/pool_ball/entry in sorted_balls)
+		if(desired_ball_type == num_to_ball_type(entry.ball_number))
+			weighted_balls[entry] = accuracy_result
+		else
+			weighted_balls[entry] = 1
+	return pick_weight(weighted_balls)
 
 /obj/structure/table/wood/billiard/proc/reset_table()
 	var/turf/my_turf = get_turf(src)
 	for(var/obj/item/pool_ball/ball in contents)
 		ball.forceMove(my_turf)
+		ball.pixel_x = rand(-TABLE_BOUNDS,TABLE_BOUNDS)
+		ball.pixel_y = rand(-TABLE_BOUNDS-6,TABLE_BOUNDS)
 
-/obj/structure/table/wood/billiard/proc/get_balls_on_table(list/looking_for = list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL))
+/obj/structure/table/wood/billiard/proc/get_balls_on_table(list/looking_for = list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL), sorted = FALSE)
+	RETURN_TYPE(/list/obj/item/pool_ball)
+
 	var/turf/my_turf = get_turf(src)
 
 	// Lets us pass a single item and turn it into a list
@@ -172,22 +203,24 @@
 
 	var/list/all_balls = list()
 	for(var/obj/item/pool_ball/ball in my_turf)
-		switch(ball.ball_number)
-			if(1 to 7)
-				if(!(SOLID_BALL in looking_for))
-					continue
-			if(9 to 15)
-				if(!(STRIPED_BALL in looking_for))
-					continue
-			if(8)
-				if(!(EIGHT_BALL in looking_for))
-					continue
-			if(0)
-				if(!(ZERO_BALL in looking_for))
-					continue
+		if(!(num_to_ball_type(ball.ball_number) in looking_for))
+			continue
 		all_balls += ball
 
+	if(sorted)
+		all_balls = sort_list(all_balls, GLOBAL_PROC_REF(cmp_num_string_asc))
 	return all_balls
+
+/obj/structure/table/wood/billiard/proc/num_to_ball_type(number)
+	switch(number)
+		if(1 to 7)
+			return SOLID_BALL
+		if(9 to 15)
+			return STRIPED_BALL
+		if(8)
+			return EIGHT_BALL
+		if(0)
+			return ZERO_BALL
 
 #undef SOLID_BALL
 #undef STRIPED_BALL
