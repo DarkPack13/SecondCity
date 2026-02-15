@@ -168,11 +168,10 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/hit_person = target
-		if(SSroll.storyteller_roll(
-			dice = hit_person.st_get_stat(STAT_STRENGTH) + min(hit_person.st_get_stat(STAT_DEXTERITY) + hit_person.st_get_stat(STAT_ATHLETICS)),
-			difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0),
-			mobs_to_show_output = target
-		) == ROLL_FAILURE)
+		var/datum/storyteller_roll/knockdown_roll = new()
+		knockdown_roll.applicable_stats = list(STAT_STRENGTH, STAT_DEXTERITY, STAT_ATHLETICS)
+		knockdown_roll.difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0)
+		if(knockdown_roll.st_roll(target, firer ? firer : src) == ROLL_FAILURE)
 			hit_person.Knockdown(20)
 			to_chat(hit_person, span_danger("The force of a projectile sends you sprawling!"))
 

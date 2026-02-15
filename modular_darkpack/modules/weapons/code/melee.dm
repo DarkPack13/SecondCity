@@ -33,6 +33,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
+	custom_price = 1300
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()

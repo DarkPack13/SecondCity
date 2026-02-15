@@ -107,15 +107,17 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
+	toggled = TRUE
+
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.show_to(owner)
 
-	if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
-		var/list/heard = get_hearers_in_range(DEFAULT_MESSAGE_RANGE, owner)
-		for(var/mob/living/hearer in heard)
-			hearer.apply_status_effect(/datum/status_effect/question_emotion)
+	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
+	for(var/mob/living/hearer in heard)
+    if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
+		  hearer.apply_status_effect(/datum/status_effect/question_emotion)
 
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()
@@ -158,7 +160,6 @@
 		// Can remotely scan objects and mobs.
 		if((get_dist(scanned_atom, user) > 8) || (!(scanned_atom in view(8, user))))
 			return TRUE
-	playsound(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
 	// GATHER INFORMATION
 
@@ -271,8 +272,8 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, owner, TRUE)
-	if(roll > 0)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner)
+	if(roll == ROLL_SUCCESS)
 		owner.enter_avatar()
 	else
 		to_chat(owner, span_warning("Your mind fails to leave your body."))
