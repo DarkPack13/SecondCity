@@ -282,9 +282,9 @@
 /datum/discipline_power/melpominee/sirens_beckoning/proc/run_effect(mob/living/carbon/target)
 	if(turns_left > 0)
 		turns_left--
-		to_chat(world, "[turns_left]")
 	else
-		return to_chat(world, "[turns_left]")
+		deactivate(target, TRUE)
+		return FALSE
 
 	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
 		listener_list = list(target)
