@@ -246,12 +246,19 @@
 	var/successes
 	var/disguised_voice
 	var/datum/storyteller_roll/telepathy_success/telepathy_roll
+	var/datum/storyteller_roll/disguise_voice_roll/disguise_roll
 
 /datum/storyteller_roll/telepathy_success
 	bumper_text = "mind reading"
 	difficulty = 6
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_SUBTERFUGE)
 	numerical = TRUE
+
+/datum/storyteller_roll/disguise_voice_roll
+	bumper_text = "disguise voice"
+	difficulty = 6
+	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
+	numerical = FALSE
 
 /datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -274,8 +281,10 @@
 				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
 				switch(disguise_voice_prompt)
 					if("Yes")
-						var/disguise_voice_roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS), owner)
-						switch(disguise_voice_roll)
+						if(!disguise_roll)
+							disguise_roll = new()
+						disguise_roll.difficulty = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS)
+						switch(disguise_roll.st_roll(owner, target))
 							if(ROLL_SUCCESS)
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
 							if(ROLL_FAILURE, ROLL_BOTCH)
