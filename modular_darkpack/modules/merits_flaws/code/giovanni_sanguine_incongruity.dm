@@ -6,7 +6,7 @@
 	gain_text = span_notice("The Curse of Lamia leaves your body allowing you to feed normally, but your skin pales and becomes more corpselike.")
 	lose_text = span_notice("Somehow the Giovanni's Curse of Lamia returns, and your bite becomes far more painful. At least now your skin is more flush with life.")
 	allowed_splats = list(SPLAT_KINDRED)
-	excluded_clans = list(VAMPIRE_CLAN_BAALI, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_CAITIFF, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_NAGARAJA, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_OLD_CLAN_TZIMISCE, VAMPIRE_CLAN_SALUBRI, VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_TRUE_BRUJAH, VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_VENTRUE)
+	included_clans = list(VAMPIRE_CLAN_GIOVANNI)
 	icon = FA_ICON_SKULL_CROSSBONES
 	failure_message = "Somehow the Giovanni's Curse of Lamia returns, and your bite becomes far more painful. At least now your skin is more flush with life."
 

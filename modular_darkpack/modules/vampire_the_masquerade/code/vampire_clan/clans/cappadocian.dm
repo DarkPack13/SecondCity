@@ -22,12 +22,10 @@
 
 	var/years_undead = H.chronological_age - H.age
 	switch(years_undead)
-		if (-INFINITY to 100)
+		if (-INFINITY to 500)
 			H.rot_body(1)
-		if (100 to 500)
-			H.rot_body(2)
 		if (500 to INFINITY)
-			H.rot_body(3)
+			H.rot_body(2)
 
 /datum/vampire_clan/cappadocian/harbinger
 	name = "Harbinger of Skulls"
