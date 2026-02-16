@@ -245,10 +245,20 @@
 	var/telepathy_type_selected
 	var/successes
 	var/disguised_voice
+	var/datum/storyteller_roll/telepathy_success/telepathy_roll
+
+/datum/storyteller_roll/telepathy_success
+	bumper_text = "mind reading"
+	difficulty = 6
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_SUBTERFUGE)
+	numerical = TRUE
 
 /datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_INTELLIGENCE) + owner.st_get_stat(STAT_SUBTERFUGE), target.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
+	if(!telepathy_roll)
+		telepathy_roll = new()
+	telepathy_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	successes = telepathy_roll.st_roll(owner, target)
 	to_chat(owner, span_notice("You roll [successes] successes."))
 	if(successes > 0)
 		// need linebreaks... but \n and <br> arent working...
