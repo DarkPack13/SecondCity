@@ -344,11 +344,11 @@
 
 /datum/discipline_power/presence/majesty/deactivate(mob/living/carbon/human/target)
 	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 	for(var/mob/living/carbon/human/affected_target in affected_targets)
 		if(affected_target)
 			affected_target.remove_overlay(MUTATIONS_LAYER)
 			to_chat(affected_target, span_hypnophrase("The overwhelming presence of [owner] fades, and your will returns to normal."))
-			REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 			REMOVE_TRAIT(affected_target, TRAIT_PACIFISM, "Majesty")
 	affected_targets.Cut()
 
