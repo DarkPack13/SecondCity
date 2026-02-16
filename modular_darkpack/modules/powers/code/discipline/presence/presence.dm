@@ -30,7 +30,7 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
+	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -98,7 +98,7 @@
 	user.st_set_stat(STAT_TEMPORARY_WILLPOWER, max((user.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1),0))
 	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
 
-	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
+	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, roller = user)
 
 	if(roll_success)
 		user.remove_overlay(MUTATIONS_LAYER)
@@ -129,7 +129,7 @@
 	.=..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, mobs_to_show_output = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
 	if(successes > 0)
 		return TRUE
 
@@ -193,7 +193,7 @@
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS))) //+ target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -357,7 +357,7 @@
 			continue
 
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), roller = hearer, numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
