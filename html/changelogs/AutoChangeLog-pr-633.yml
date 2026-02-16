@@ -1,8 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Custom dice rolling verbs for scenes and filling the gaps in unimplemented content/rolls."
-  - rscadd: "Most rolls now play a dice roll sound effect"
-  - qol: "Massively prettified the roll to_chat and fills it with useful information for rolls"
-  - refactor: "Some dice rolls now use a new datumized system of rolling, most use it with a wrapper through the old system so they dont gain as much new behavoir"
-  - balance: "Identifying artifacts only requires 3 occult but now has a roll on a scene length cooldown"
