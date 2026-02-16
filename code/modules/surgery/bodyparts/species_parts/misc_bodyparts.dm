@@ -205,12 +205,12 @@
 
 /obj/item/bodypart/leg/left/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	speed_modifier = 0.8 //braaaaains
 
 /obj/item/bodypart/leg/right/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	speed_modifier = 0.8 //braaaaains
 
 ///PODPEOPLE
