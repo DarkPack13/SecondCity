@@ -1,7 +1,6 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	storyteller_stats = create_new_stat_prefs(storyteller_stats)
-	AddComponent(/datum/component/aura)
 	become_area_sensitive("zone_hud")
 	update_zone_hud(src, get_area(src))
 

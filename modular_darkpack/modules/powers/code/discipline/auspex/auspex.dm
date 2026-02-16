@@ -116,8 +116,8 @@
 
 	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
 	for(var/mob/living/hearer in heard)
-    if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
-		  hearer.apply_status_effect(/datum/status_effect/question_emotion)
+		if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
+			hearer.apply_status_effect(/datum/status_effect/question_emotion)
 
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()

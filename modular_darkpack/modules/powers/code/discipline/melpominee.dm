@@ -119,7 +119,7 @@
 	var/list/mob/living/listener_list
 	var/mob/living/listener
 
-	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, "melpominee 5"))
+	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, type))
 		listener = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
 		if(!listener)
 			return
@@ -196,7 +196,7 @@
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
 	var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
-	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.aura_list)
+	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
 		audience += member
@@ -205,21 +205,21 @@
 			set_emotion(member, emotion)
 
 /datum/discipline_power/melpominee/madrigal/proc/set_emotion(mob/living/target, emotion)
-	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, "melpominee 3")
-	SEND_SIGNAL(src, COMSIG_MOB_EMOTION_CHANGED, emotion)
+	target.set_emotion(emotion)
+	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, type)
 
-	to_chat(target, span_purple("You are overwhelmed with [emotion_to_quality(emotion)]."))
+	to_chat(target, span_purple("You are overwhelmed with [GLOB.emotion_to_quality[emotion]]."))
 	target.apply_status_effect(/datum/status_effect/forced_emotion)
 
 /datum/discipline_power/melpominee/madrigal/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/member in audience)
-		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, "melpominee 3"))
-			to_chat(member, span_nicegreen("You are no longer overwhelmed with [emotion_to_quality(member.current_emotion)]."))
+		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, type))
+			to_chat(member, span_nicegreen("You are no longer overwhelmed with [GLOB.emotion_to_quality[member.current_emotion]]."))
 		else
-			to_chat(member, span_nicegreen("You feel your [emotion_to_quality(member.current_emotion)] weakening."))
+			to_chat(member, span_nicegreen("You feel your [GLOB.emotion_to_quality[member.current_emotion]] weakening."))
 
-		REMOVE_TRAITS_IN(member, "melpominee 3")
+		REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
 
 	audience = list()
 
@@ -363,11 +363,11 @@
 
 /datum/discipline_power/melpominee/virtuosa/activate()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_VIRTUOSA, "melpominee 5")
+	ADD_TRAIT(owner, TRAIT_VIRTUOSA, type)
 
 /datum/discipline_power/melpominee/virtuosa/deactivate(atom/target, direct)
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_VIRTUOSA, "melpominee 5")
+	REMOVE_TRAIT(owner, TRAIT_VIRTUOSA, type)
 
 /**
  * ••••• • Shattering Crescendo - p454

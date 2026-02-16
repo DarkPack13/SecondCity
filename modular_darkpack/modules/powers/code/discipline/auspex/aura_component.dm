@@ -11,7 +11,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.add_atom_to_hud(parent_mob)
 
-	add_verb(parent_mob, /mob/verb/emotion_panel)
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
 	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
 	update_aura()
@@ -21,7 +20,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 
-	remove_verb(parent_mob, /mob/verb/emotion_panel)
 	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA))
 	return ..()
 
@@ -32,7 +30,6 @@
 		return
 
 	current_aura = GLOB.aura_list[new_emotion]
-	changed_mob.current_emotion = current_aura
 	update_aura()
 
 /datum/component/aura/proc/update_aura()

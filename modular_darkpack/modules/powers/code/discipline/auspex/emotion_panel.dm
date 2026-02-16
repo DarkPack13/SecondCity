@@ -4,13 +4,21 @@
 	set category = "IC"
 	set desc = "Change your character's emotions."
 
-	if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
+	if(HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
 		to_chat(src, span_warning("You cannot change emotions right now."))
 		return FALSE
 
+	// This really shouldnt be using aura here. it needs to be detached and made unrelenient on aura/auspex. - Fallcon
 	var/new_emotion = tgui_input_list(src, "What are you feeling?", "Feelings", GLOB.aura_list)
 	if(isnull(new_emotion))
 		return FALSE
+	set_emotion(new_emotion)
+
+/mob/proc/set_emotion(new_emotion)
+	if(current_emotion == new_emotion)
+		return
+
+	current_emotion = new_emotion
 	SEND_SIGNAL(src, COMSIG_MOB_EMOTION_CHANGED, new_emotion)
 
 /datum/status_effect/question_emotion
