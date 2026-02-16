@@ -12,6 +12,9 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/billiards/icons/billiard_onfloor.dmi')
 	icon_state = "cue"
 	base_icon_state = "cue"
+	worn_icon = 'modular_darkpack/modules/billiards/icons/back.dmi'
+	lefthand_file = 'modular_darkpack/modules/billiards/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/billiards/icons/righthand.dmi'
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
