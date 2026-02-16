@@ -103,7 +103,7 @@
 	var/language = hallucinator.get_random_understood_language()
 	var/message = hallucinator.compose_message(speaker, language, speech)
 	hallucinator.playsound_local(hallucinator, audible_hallucinations[speech], vol = 20, vary = TRUE)
-	if(hallucinator.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
+	if(hallucinatorclient.prefs?.read_preference(/datum/preference/toggle/see_rc_emotes))
 		hallucinator.create_chat_message(speaker, language, speech, spans = list(hallucinator.speech_span))
 	to_chat(target = hallucinator, text = message)
 

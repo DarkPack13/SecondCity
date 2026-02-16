@@ -252,7 +252,7 @@
 	var/channeling = FALSE
 	var/list/cumulative_list = list()
 	var/list/cumulative_our_power = list()
-	var/ticks = 4
+	var/turns_left = 4
 
 /datum/discipline_power/melpominee/sirens_beckoning/can_activate(atom/target)
 	if(HAS_TRAIT(owner, TRAIT_VIRTUOSA))
@@ -271,49 +271,48 @@
 	channeling = TRUE
 
 	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
-		listener_list += target
+		if(!target)
+			return
 	else
-		listener_list = ohearers(owner, 7)
-
-	if(!length(listener_list))
-		return
+		if(!length(ohearers(owner, 7)))
+			return
 
 	run_effect(target)
 
 /datum/discipline_power/melpominee/sirens_beckoning/proc/run_effect(mob/living/carbon/target)
-	if(ticks > 0)
-		ticks--
-		to_chat(world, "[ticks]")
+	if(turns_left > 0)
+		turns_left--
+		to_chat(world, "[turns_left]")
 	else
-		return to_chat(world, "[ticks]")
+		return to_chat(world, "[turns_left]")
 
 	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
-		listener_list += target
+		listener_list = list(target)
 	else
 		listener_list = ohearers(owner, 7)
 
 	for(var/mob/living/carbon/listener in listener_list) // TODO: mark these as spammy rolls
 		var/our_power = SSroll.storyteller_roll((owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE)), listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
-		cumulative_our_power[WEAKREF(listener)] += our_power
+		cumulative_our_power[listener] += our_power
 		var/their_power = SSroll.storyteller_roll(listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), (owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)), listener, numerical = TRUE)
-		cumulative_list[WEAKREF(listener)] += their_power
-		if(our_power > their_power && should_run_effect())
+		cumulative_list[listener] += their_power
+		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
 		else
 			listener_list -= listener
 			listener.remove_overlay(MUTATIONS_LAYER)
-			cumulative_our_power[WEAKREF(listener)] = null
-			cumulative_list[WEAKREF(listener)] = null
+			cumulative_our_power[listener] = null
+			cumulative_list[listener] = null
 
-	if(channeling && length(listener_list))
-		addtimer(CALLBACK(src, PROC_REF(run_effect), target), 1 TURNS)
+	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS) && channeling && length(listener_list))
+		run_effect(target)
 	else
 		deactivate(target, TRUE)
 
-/datum/discipline_power/melpominee/sirens_beckoning/proc/should_run_effect()
-	if(!do_after(owner, 1 TURNS, timed_action_flags = IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS) || !owner.can_speak())
-		channeling = FALSE
-		return
+/datum/discipline_power/melpominee/sirens_beckoning/proc/should_run_effect(mob/living/listener)
+	if(!owner.can_speak())
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/melpominee/sirens_beckoning/proc/effect(mob/living/carbon/listener)
 	listener.Stun(1 TURNS)
@@ -321,10 +320,10 @@
 	var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
 	listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 	listener.apply_overlay(MUTATIONS_LAYER)
-	if(cumulative_our_power[WEAKREF(listener)] >= 20)
+	if(cumulative_our_power[listener] >= 20)
 		listener.add_quirk(/datum/quirk/derangement)
 
-	if(cumulative_list[WEAKREF(listener)] <= cumulative_our_power[listener]-6)
+	if(cumulative_list[listener] <= cumulative_our_power[listener]-6)
 		if(listener.add_quirk(/datum/quirk/derangement))
 			addtimer(CALLBACK(src, PROC_REF(remove_derangement), listener), 1 SCENES)
 
@@ -339,7 +338,14 @@
 	owner.visible_message(span_purple("[owner]'s haunting melody ceases."), span_purple("You stop singing."))
 	channeling = FALSE
 	QDEL_NULL(particle_generator)
-	ticks = 4
+	turns_left = 4
+
+	// These can still be a source of hardels if they happen mid ability.
+	// But it would need a bigger refactor so we only have to handle 1 weakref/1 list per guy to avoid nightmare code.
+	listener_list = list()
+	listeners_failed = list()
+	cumulative_list = list()
+	cumulative_our_power = list()
 
 /**
  * ••••• Shattering Crescendo - p454

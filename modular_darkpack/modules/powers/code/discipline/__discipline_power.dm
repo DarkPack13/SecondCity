@@ -717,6 +717,9 @@
  * duration_timer expire without calling the relevant proc.
  */
 /datum/discipline_power/proc/clear_duration_timer(to_clear = 1)
+	if(duration_override)
+		return
+	
 	if (toggled && (duration_length == 0))
 		return
 
