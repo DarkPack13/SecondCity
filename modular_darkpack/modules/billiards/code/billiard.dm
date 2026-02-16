@@ -94,6 +94,17 @@
 			new_cue.pixel_x += rand(-TABLE_BOUNDS,TABLE_BOUNDS)
 			new_cue.pixel_y += rand(-TABLE_BOUNDS,TABLE_BOUNDS)
 
+/obj/structure/table/wood/billiard/atom_deconstruct(disassembled)
+	. = ..()
+	dump_contents()
+
+/obj/structure/table/wood/billiard/dump_contents()
+	var/turf/my_turf = get_turf(src)
+	for(var/obj/item/ball in contents)
+		ball.forceMove(my_turf)
+		ball.pixel_x = rand(-TABLE_BOUNDS,TABLE_BOUNDS)
+		ball.pixel_y = rand(-TABLE_BOUNDS,TABLE_BOUNDS)
+
 /obj/structure/table/wood/billiard/examine(mob/user)
 	. = ..()
 	. += span_notice("There are [length(get_balls_on_table(SOLID_BALL))] solid and [length(get_balls_on_table(STRIPED_BALL))] striped balls left.")
@@ -170,7 +181,6 @@
 		sunk_ball = random_ball(target_ball_type, accuracy_result)
 
 	if(!sunk_ball)
-		//user.visible_message(span_warning("[user] MISSED"), span_warning("You missed"))
 		return
 	if(num_to_ball_type(sunk_ball.ball_number) == EIGHT_BALL)
 		user.visible_message(span_warning("[user] [pick("Pitted", "Sank", "Sunk")] the 8-Ball.. Damn.."), span_warning("[pick("Fuck", "Shit", "Piss")].. You [pick("Pitted", "Sank", "Sunk")] the 8-Ball"))
