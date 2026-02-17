@@ -2,6 +2,7 @@
 #define SANITIZED_PATH(path)(replacetext(replacetext("[path]", "/obj/item/", ""), "/", "-"))
 
 /obj/structure/retail
+	abstract_type = /obj/structure/retail
 	name = "retail outlet"
 	desc = "A counter for partaking in wretched capitalism. Takes cash or card."
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
@@ -13,23 +14,9 @@
 	var/is_gun_store = FALSE
 	var/payment_department = ACCOUNT_SRV
 
-	var/list/products_list = list(
-		new /datum/data/vending_product("Plain Donut", /obj/item/food/donut/plain),
-		new /datum/data/vending_product("Plain Jelly Donut", /obj/item/food/donut/jelly/plain),
-		new /datum/data/vending_product("Berry Donut", /obj/item/food/donut/berry),
-		new /datum/data/vending_product("Frosted Jelly Donut", /obj/item/food/donut/jelly/berry),
-		new /datum/data/vending_product("Purple Donut", /obj/item/food/donut/trumpet),
-		new /datum/data/vending_product("Frosted Purple-Jelly Donut", /obj/item/food/donut/jelly/trumpet),
-		new /datum/data/vending_product("Apple Donut", /obj/item/food/donut/apple),
-		new /datum/data/vending_product("Apple Jelly Donut", /obj/item/food/donut/jelly/apple),
-		new /datum/data/vending_product("Caramel Donut", /obj/item/food/donut/caramel),
-		new /datum/data/vending_product("Caramel Jelly Donut", /obj/item/food/donut/jelly/caramel),
-		new /datum/data/vending_product("Chocolate Donut", /obj/item/food/donut/choco),
-		new /datum/data/vending_product("Chocolate Custard Donut", /obj/item/food/donut/jelly/choco),
-		new /datum/data/vending_product("Matcha Donut", /obj/item/food/donut/matcha),
-		new /datum/data/vending_product("Matcha Jelly Donut", /obj/item/food/donut/jelly/matcha),
-		new /datum/data/vending_product("Blueberry Muffin", /obj/item/food/muffin/berry),
-	)
+	var/list/datum/data/vending_product/products_list = list()
+	// Equivlenet to products list if you dont need to pass args. Will likely phase out the evil news in our type path definitions
+	var/list/product_types = list()
 
 /obj/structure/retail/Initialize()
 	. = ..()
@@ -60,6 +47,8 @@
 		ui_interact(user)
 
 /obj/structure/retail/proc/build_inventory()
+	for(var/product_path in product_types)
+		products_list += new /datum/data/vending_product(path = product_path)
 	for(var/datum/data/vending_product/product in products_list)
 		if(!product)
 			CRASH("Null retail product loaded in initialization of [src]. This should not happen!")

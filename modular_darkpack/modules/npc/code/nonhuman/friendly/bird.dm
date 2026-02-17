@@ -44,6 +44,7 @@
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/pet_bonus, "caw")
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
+	update_appearance(UPDATE_ICON)
 
 /mob/living/basic/corvid/update_icon_state()
 	. = ..()

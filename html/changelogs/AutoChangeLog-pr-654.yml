@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Readds old interactions of Lasombra's tech bane"
+  - balance: "Computers require at-least 1 dot in computer to not have a do_after"
+  - qol: "Candles last a full hour"

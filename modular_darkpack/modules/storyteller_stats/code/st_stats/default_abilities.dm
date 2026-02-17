@@ -109,7 +109,17 @@
 /datum/st_stat/ability/computer
 	subcategory = "Knowledges"
 	name = "Computer"
-	description = "Affects your ability to use and interact with computerized devices. At 0 points, you won't be able to use a phone. At 1 point, you can use a phone, but not a computer."
+	/* V20 p. 108
+	This Knowledge represents the ability to operate and program computers, including mobile devices.
+	Most Computer use also imparts a degree of Internet awareness (if not savvy).
+	*/
+	description = "Affects your ability to use and interact with computerized devices."
+
+// This kinda sucks dick to do for every stat.
+/datum/st_stat/ability/computer/New()
+	. = ..()
+	if(CONFIG_GET(flag/punishing_zero_dots))
+		description += " At 0 points, you won't be able to use a computer."
 
 /datum/st_stat/ability/finance
 	subcategory = "Knowledges"
@@ -149,4 +159,10 @@
 /datum/st_stat/ability/technology
 	subcategory = "Knowledges"
 	name = "Technology"
+	/* V20 p. 110
+	The Technology Knowledge represents a broad acumen with electronics, computer hardware, and devices more elaborate than “machines,” which fall under the Crafts Skill.
+	If it has a processor, a transistor, or an integrated circuit — if it’s electronic rather than electrical manipulating it uses the Technology Knowledge.
+	This is the wide-ranging Ability used to build one’s own computer, install (or subvert) a security system, repair a mobile phone, or kitbash a shortwave radio.
+	You must always choose a specialization in Technology, even though you possess some skill in multiple fields.
+	*/
 	description = "Affects your character's familiarity with machines, devices, and electrical systems."

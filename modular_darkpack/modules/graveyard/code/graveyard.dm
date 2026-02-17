@@ -84,7 +84,7 @@
 
 	// is there a nearby vampgate?
 	for(var/obj/structure/vampgate/gate in oview(scan_range, zombie))
-		if(!gate.gate_broken)
+		if(!gate.broken)
 			// theres one, kill it
 			controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, gate)
 			controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
@@ -123,6 +123,7 @@
 /obj/vampgrave/Initialize(mapload)
 	. = ..()
 	randomize_appearance()
+	spawn_interval += rand(-10 SECONDS, 10 SECONDS) // Prevent them from all spawning at the same time.
 	addtimer(CALLBACK(src, PROC_REF(try_spawn_zombie)), spawn_interval, TIMER_STOPPABLE | TIMER_LOOP)
 
 //they have the indestructible flag so this should never happen but just in case
@@ -167,48 +168,51 @@
 		icon_state += "-snow"
 
 /obj/vampgrave/proc/is_outdoors()
-	if(!istype(get_area(src), /area/vtm))
-		return FALSE
-	var/area/vtm/V = get_area(src)
-	return V.outdoors
+	var/area/my_area = get_area(src)
+	return my_area.outdoors
+
+// Adminbus or testing
+/obj/vampgrave/rapid
+	name = "upturned grave"
+	spawn_interval = 30 SECONDS
+	max_zombies_per_grave = 1
 
 /obj/structure/vampgate
-	name = "Graveyard Gate"
+	name = "graveyard gate"
 	desc = "It opens and closes."
 	icon = 'modular_darkpack/modules/graveyard/icons/gate.dmi'
 	icon_state = "gate"
-	pixel_w = -32
+	pixel_x = -32
+	base_pixel_x = -32
 	anchored = TRUE
 	density = TRUE
-	opacity = FALSE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF | INDESTRUCTIBLE
 	max_integrity = 500
+	prevent_destruction = TRUE
 
 	var/repairing = FALSE
-	var/gate_broken = FALSE
 
 /obj/structure/vampgate/Initialize(mapload)
 	. = ..()
-	atom_integrity = max_integrity
+	var/turf/right_turf = get_step(src, EAST)
+	var/turf/left_turf = get_step(src, WEST)
+	if(right_turf)
+		right_turf.set_density(TRUE)
+	if(left_turf)
+		left_turf.set_density(TRUE)
 
 /obj/structure/vampgate/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
-	// dont take more damage if its already broken
-	if(gate_broken)
-		return
+	. = ..()
+	if(!broken)
+		if(sound_effect)
+			playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 
-	// manually reduce integrity, if we dont do this and rely only on parent functions, it will qdel at < 0 integrity
-	atom_integrity = max(0, atom_integrity - damage_amount)
+		shake_gate()
 
-	if(sound_effect)
-		playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
-
-	shake_gate()
-
-	if(atom_integrity <= 0)
-		break_open()
+		if(atom_integrity <= 0)
+			break_open()
 
 /obj/structure/vampgate/atom_destruction(damage_flag)
-	.=..()
+	. = ..()
 	break_open()
 
 /obj/structure/vampgate/proc/shake_gate()
@@ -221,41 +225,20 @@
 	pixel_w = initial(pixel_w)
 
 /obj/structure/vampgate/proc/break_open()
-	if(gate_broken)
+	if(broken)
 		return
 
-	gate_broken = TRUE
+	broken = TRUE
 	density = FALSE
 	icon_state = "gate-open"
-	atom_integrity = 0
 	visible_message(span_boldwarning("[src] breaks open!"))
 
-/obj/structure/vampgate/examine(mob/user)
-	. = ..()
-
-	if(gate_broken)
-		. += span_boldwarning("The gate is broken open!")
-		return
-
-	var/health_percent = round(get_integrity_percentage() * 100)
-
-	switch(health_percent)
-		if(0 to 25)
-			. += span_boldwarning("Integrity: [atom_integrity]/[max_integrity] - Critically damaged!")
-		if(26 to 50)
-			. += span_warning("Integrity: [atom_integrity]/[max_integrity] - Heavily damaged")
-		if(51 to 75)
-			. += span_notice("Integrity: [atom_integrity]/[max_integrity] - Moderately damaged")
-		if(76 to INFINITY)
-			. += span_notice("Integrity: [atom_integrity]/[max_integrity] - Good condition")
-
 /obj/structure/vampgate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	. = ..()
 	if(istype(tool, /obj/item/melee/vamp/tire))
 		attempt_repair(user)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
-	return ..()
+	return NONE
 
 /obj/structure/vampgate/proc/attempt_repair(mob/living/user)
 	if(repairing)
@@ -271,8 +254,8 @@
 	if(do_after(user, 5 SECONDS, src))
 		repair_damage(50)
 
-		if(atom_integrity > 0 && gate_broken)
-			gate_broken = FALSE
+		if(atom_integrity > 0 && broken)
+			broken = FALSE
 			density = TRUE
 			icon_state = "gate"
 			visible_message(span_notice("[src] is repaired and closed!"))
