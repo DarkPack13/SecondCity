@@ -26,6 +26,6 @@
 			return
 		message_admins("[ADMIN_LOOKUPFLW(reporter)] repaired [ADMIN_LOOKUPFLW(src)]'s Masquerade violation.")
 		log_game("[ADMIN_LOOKUPFLW(reporter)] repaired [ADMIN_LOOKUPFLW(src)]'s Masquerade violation.")
-		SEND_SIGNAL(reporter, COMSIG_MASQUERADE_REINFORCE, src)
+		SEND_SIGNAL(reporter, COMSIG_ALL_MASQUERADE_REINFORCE, src)
 
 	. = ..()
