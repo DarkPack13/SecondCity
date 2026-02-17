@@ -42,12 +42,12 @@
 				if(iskindred(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
 					var/datum/splat/vampire/kindred/kindred_species = iskindred(src)
 					var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
-					var/datum/storyteller_roll/frezy_roll = new()
-					frezy_roll.applicable_stats = list(stat_to_roll)
-					var/frenzy_result = frezy_roll.st_roll(src, bit_living)
+					var/datum/storyteller_roll/frenzy_roll = new()
+					frenzy_roll.applicable_stats = list(stat_to_roll)
+					var/frenzy_result = frenzy_roll.st_roll(src, bit_living)
 					if(frenzy_result != ROLL_SUCCESS)
 						to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
-						enter_frenzy_mode()
+						enter_frenzy_mode(bit_living)
 					else
 						to_chat(src, span_green("The taste of fresh blood while hungry almost drives you into frenzy!"))
 

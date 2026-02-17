@@ -1,8 +1,5 @@
 // V20 p.298 + W20 p.261
 
-/datum/client_colour/frenzy
-	priority = CLIENT_COLOR_IMPORTANT_PRIORITY
-	color = "#bb5555"
 
 /*
 /client/Click(object,location,control,params)
@@ -17,7 +14,7 @@
 
 /*
 /datum/storyteller_roll/frenzy
-/mob/living/carbon/human/proc/rollfrenzy()
+/mob/living/carbon/proc/rollfrenzy()
 	if(!client && !isnpc(src)) // I guess this is to make sure afk players dont have there characters frenzy while they arent here?
 		return
 
@@ -51,28 +48,51 @@
 			frenzy_hardness = min(10, frenzy_hardness + 1)
 */
 
-/mob/living/carbon/human/proc/enter_frenzy_mode()
+/mob/living/carbon/proc/enter_frenzy_mode(atom/target, fleeing = FALSE)
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	ADD_TRAIT(src, TRAIT_IN_FRENZY, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_IN_FRENZY, FRENZY_TRAIT)
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy")
-	log_message("has entered frenzy.", LOG_GAME)
+	log_message("entered frenzy.", LOG_GAME)
+
+	if(fleeing)
+		to_chat(src, span_danger("FLEE."))
+	else
+		to_chat(src, span_bolddanger("FRENZY."))
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
-	add_client_colour(/datum/client_colour/frenzy)
+
+	apply_status_effect(/datum/status_effect/frenzy, target)
 
 	// This is assuming no other interaction happens to remove it before this.
-	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
+	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 3 TURNS)
 
-/mob/living/carbon/human/proc/exit_frenzy_mode()
+/mob/living/carbon/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	REMOVE_TRAIT(src, TRAIT_IN_FRENZY, INNATE_TRAIT)
-	log_message("has exited frenzy.", LOG_GAME)
+	REMOVE_TRAIT(src, TRAIT_IN_FRENZY, FRENZY_TRAIT)
+	log_message("exited frenzy.", LOG_GAME)
 
-	remove_client_colour(/datum/client_colour/frenzy)
+	remove_status_effect(/datum/status_effect/frenzy)
 
-/mob/living/carbon/human/proc/can_frenzy_move()
+/datum/storyteller_roll/rotschreck
+	applicable_stats = list(STAT_COURAGE)
+	numerical = TRUE
+
+/mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6)
+	var/datum/storyteller_roll/rotschreck/frenzy_roll = new()
+	frenzy_roll.difficulty = difficulty
+	var/frenzy_result = frenzy_roll.st_roll(src, fire)
+	if(frenzy_result >= 5)
+		return
+	// Mabye change some logic to signals as well.
+	if(iskindred(src))
+		enter_frenzy_mode(fire, TRUE)
+
+// Unimplemented
+
+
+/mob/living/carbon/proc/can_frenzy_move()
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
@@ -80,7 +100,7 @@
 
 	return TRUE
 
-/mob/living/carbon/human/proc/frenzystep()
+/mob/living/carbon/proc/frenzystep()
 	if(!isturf(loc) || can_frenzy_move())
 		return
 	if(move_intent == MOVE_INTENT_WALK)
@@ -133,7 +153,7 @@
 	*/
 
 /*
-/mob/living/carbon/human/proc/get_frenzy_targets()
+/mob/living/carbon/proc/get_frenzy_targets()
 	var/list/targets = list()
 	if(iskindred(src))
 		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
@@ -154,7 +174,7 @@
 */
 
 /*
-/mob/living/carbon/human/proc/handle_automated_frenzy()
+/mob/living/carbon/proc/handle_automated_frenzy()
 	for(var/mob/living/carbon/human/npc/NPC in viewers(5, src))
 		NPC.Aggro(src)
 	if(isturf(loc))
@@ -171,3 +191,14 @@
 					face_atom(T)
 					Move(T)
 */
+
+#warn placeholder
+/mob/living/carbon/verb/manual_frenzy(atom/movable/AM as mob|obj in oview(7))
+	set name = "Frenzy"
+	set category = "Object"
+
+	if(!issupernatural(src))
+		return
+
+	if(istype(AM))
+		enter_frenzy_mode(AM)
