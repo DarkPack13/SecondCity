@@ -269,10 +269,8 @@
 		var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT)
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
-				var/kindred_splat = iskindred(target)
-				var/garou_splat = isgarou(target)
 				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
-				if(kindred_splat || garou_splat)
+				if(iskindred(target) || isgarou(target))
 					owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "Telepathy")
 			if(TELEPATHY_IMPLANT_THOUGHT)
 				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
