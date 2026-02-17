@@ -54,6 +54,7 @@
 	var/fake = FALSE
 	/// If the NAME does not belong to the person.
 	var/fake_identity = FALSE
+	var/datum/storyteller_roll/investigation/examine_roll
 
 /obj/item/passport/Initialize(mapload)
 	. = ..()
@@ -87,10 +88,13 @@
 
 /obj/item/passport/examine(mob/user)
 	. = ..()
-	// DARKPACK TODO - STATS - (Make this a perception+investigation roll when we have retrying check standeridization)
+	if(!examine_roll)
+		examine_roll = new()
+		examine_roll.reroll_cooldown = 1 SCENES
+	var/roll_result = examine_roll.st_roll(user, src)
 	if(!closed && owner)
 		. += span_notice("It reads as belonging to [owner] from [country_of_origin].")
-		if(fake)
+		if(fake && (roll_result == ROLL_SUCCESS))
 			. += span_notice("It looks like a crude counterfeit.")
 
 /obj/item/passport/attack_self(mob/user)

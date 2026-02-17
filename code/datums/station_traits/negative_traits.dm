@@ -592,6 +592,7 @@
 /datum/station_trait/nebula/hostile/radiation/on_round_start()
 	. = ..()
 
+	/* // DARKPACK EDIT REMOVAL
 	//Let people order more nebula shielding
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/engineering/rad_nebula_shielding_kit]
 	pack.order_flags |= ORDER_SPECIAL_ENABLED
@@ -605,6 +606,7 @@
 	if(!send_supply_pod_to_area(supply_pack_shielding.generate(null), /area/station/engineering/main, /obj/structure/closet/supplypod/centcompod))
 		//if engineering isn't valid, just send it to the bridge
 		send_supply_pod_to_area(supply_pack_shielding.generate(null), /area/station/command/bridge, /obj/structure/closet/supplypod/centcompod)
+	*/
 
 	// Let medical know resistance is futile
 	if (/area/station/medical/virology in GLOB.areas_by_type)
@@ -753,5 +755,13 @@
 	show_in_report = TRUE
 	report_message = "Due to a mishap at the Robust Softdrinks Megafactory, some drinks may contain traces of ethanol or psychoactive chemicals."
 	trait_to_give = STATION_TRAIT_SPIKED_DRINKS
+
+/datum/station_trait/structural_weakness
+	name = "Structural Weaknesses"
+	trait_type = STATION_TRAIT_NEGATIVE
+	weight = 5
+	show_in_report = TRUE
+	report_message = "Our station subdivision informed us that this station may have been built with a number of structural weaknesses due to defective construction materials. Be on the lookout for them and try not to let anything explode."
+	trait_to_give = STATION_TRAIT_SPAWN_WEAKPOINTS
 
 #undef GLOW_NEBULA

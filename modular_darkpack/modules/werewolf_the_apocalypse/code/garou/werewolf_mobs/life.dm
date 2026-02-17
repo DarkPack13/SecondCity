@@ -58,7 +58,7 @@
 						last_frenzy_check = world.time
 						rollfrenzy()
 
-			if(istype(get_area(src), /area/vtm/interior/penumbra))
+			if(istype(get_area(src), /area/vtm/outside/penumbra))
 				if((last_veil_restore + 40 SECONDS) < world.time)
 					adjust_veil(1, src, TRUE)
 					last_veil_restore = world.time
@@ -121,11 +121,11 @@
 	if(!is_special_character(src))
 		if(amount < 0)
 			if(masquerade > 0)
-				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/veil_violation.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/veil_violation.ogg', volume = 75))
 				to_chat(src, span_boldnotice("<b>VEIL VIOLATION</b>"))
 				masquerade = max(0, masquerade+amount)
 		if(amount > 0)
 			if(masquerade < 5)
-				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 75))
+				SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 75))
 				to_chat(src, span_boldnotice("<b>VEIL REINFORCEMENT</b>"))
 				masquerade = min(5, masquerade+amount)

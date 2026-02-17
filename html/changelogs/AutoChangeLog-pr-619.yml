@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "you can set how many turns blood power is active for with right click"
+  - balance: "bonus to damage from bloodpower is based entirely on the stat buffs it grants"
+  - balance: "allows you to set buff granted by blood power according to your gen spending limit"

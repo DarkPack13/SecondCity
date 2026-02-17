@@ -181,6 +181,6 @@
 		return
 	used = TRUE
 	user.antifrenzy = TRUE
-	SEND_SOUND(owner, sound('sound/magic/curse.ogg', 0, 0, 50))
+	SEND_SOUND(owner, sound('sound/magic/curse.ogg', volume = 50))
 	to_chat(owner, span_warning("You feel control over your Beast, but at what cost..."))
 	qdel(src)

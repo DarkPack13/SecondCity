@@ -587,7 +587,7 @@
 	light_range = 2
 	light_power = 1.5
 	light_color = LIGHT_COLOR_FIRE
-	fuel = 35 MINUTES
+	fuel = 1 HOURS // DARKPACK EDIT CHANGE - (QOL for longer candles)
 	randomize_fuel = FALSE
 	trash_type = /obj/item/trash/candle
 	can_be_extinguished = TRUE
@@ -1201,8 +1201,8 @@
 		return FALSE
 	var/datum/gas_mixture/environment = loc?.return_air()
 	var/affected_pressure = environment.return_pressure()
-	if(!light_on && (affected_pressure < ONE_ATMOSPHERE))
-		user.balloon_alert(user, "no pressure!")
+	if(!light_on && (affected_pressure < ONE_ATMOSPHERE - 1))
+		user.balloon_alert(user, "[affected_pressure < HAZARD_LOW_PRESSURE? "no" : "low"] pressure!")
 		return FALSE
 	. = ..()
 	if(light_on)

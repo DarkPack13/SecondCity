@@ -41,6 +41,17 @@
 			species_blacklist += quirk_type::name
 	return species_blacklist
 
+// DARKPACK EDIT ADD START - SPLATS
+/datum/preference_middleware/quirks/proc/get_splat_compatibility()
+	var/list/splat_blacklist = list()
+	var/datum/splat/mob_splat = preferences.read_preference(/datum/preference/choiced/splats)
+	for(var/datum/quirk/quirk_type as anything in SSquirks.quirk_prototypes)
+		if(!SSquirks.quirk_prototypes[quirk_type].is_splat_appropriate(mob_splat))
+			splat_blacklist += quirk_type::name
+	return splat_blacklist
+// DARKPACK EDIT ADD END
+
+
 /datum/preference_middleware/quirks/get_ui_static_data(mob/user)
 	if (preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
@@ -50,6 +61,7 @@
 	data["selected_quirks"] = get_selected_quirks()
 	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
 	data["species_disallowed_quirks"] = get_species_compatibility()
+	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
 
 	return data
 
@@ -60,6 +72,7 @@
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
+		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
 
 	return data
 

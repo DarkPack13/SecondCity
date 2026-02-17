@@ -184,6 +184,7 @@
 		/obj/structure/flora/rock/pile/darkpack = 2,
 		/obj/structure/flora/rock/darkpack = 1,
 		/obj/structure/flora/rock/darkpack_big = 1,
+		/obj/effect/mine/stick = 1,
 	)
 	flora_density = 3
 
@@ -195,14 +196,18 @@
 		/obj/structure/flora/tree/vamp/pine = 1,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
+		/obj/effect/mine/stick = 2,
 	)
 	flora_density = 60
 	fauna_types = list(
-		/mob/living/basic/butterfly = 30,
-		/mob/living/basic/deer = 10,
-		/mob/living/basic/goose = 5,
-		/mob/living/basic/frog = 5,
-		/mob/living/basic/pet/fox = 1,
+		/mob/living/basic/butterfly = 40,
+		/mob/living/basic/deer = 20,
+		/mob/living/basic/cockroach = 10,
+		/mob/living/basic/goose = 10,
+		/mob/living/basic/frog = 10,
+		/mob/living/basic/pet/fox = 2,
+		/mob/living/basic/stoat = 2,
+		/mob/living/basic/pet/dog/wolf = 1,
 	)
 	fauna_density = 2
 
@@ -214,14 +219,18 @@
 		/obj/structure/flora/tree/vamp/pine = 3,
 		/obj/structure/flora/rock/pile/darkpack = 1,
 		/obj/structure/flora/rock/darkpack = 1,
+		/obj/effect/mine/stick = 3,
 	)
 	flora_density = 30
 	fauna_types = list(
-		/mob/living/basic/butterfly = 30,
-		/mob/living/basic/deer = 10,
-		/mob/living/basic/goose = 5,
-		/mob/living/basic/frog = 5,
-		/mob/living/basic/pet/fox = 1,
+		/mob/living/basic/butterfly = 40,
+		/mob/living/basic/deer = 20,
+		/mob/living/basic/cockroach = 10,
+		/mob/living/basic/goose = 10,
+		/mob/living/basic/frog = 10,
+		/mob/living/basic/pet/fox = 2,
+		/mob/living/basic/stoat = 2,
+		/mob/living/basic/pet/dog/wolf = 1,
 	)
 	fauna_density = 1
 
@@ -234,6 +243,7 @@
 		/obj/structure/flora/rock/pile/darkpack = 10,
 		/obj/structure/flora/rock/darkpack = 2,
 		/obj/structure/flora/rock/darkpack_big = 1,
+		/obj/effect/mine/stick = 1,
 	)
 	flora_density = 5
 

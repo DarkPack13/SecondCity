@@ -78,7 +78,8 @@ export function StatsPage() {
                     const max = statData.max_score;
                     const label = statData.name;
                     const editable = statData.editable;
-                    const filled = '●'.repeat(score + bonus_score);
+                    const filled = '●'.repeat(score);
+                    const filled_bonus = '●'.repeat(bonus_score);
                     const empty = '○'.repeat(max - score);
 
                     return (
@@ -114,6 +115,7 @@ export function StatsPage() {
                               <Stack.Item className="stat-dots">
                                 <span className="filled">{filled}</span>
                                 <span className="empty">{empty}</span>
+                                <span className="filled_bonus">{filled_bonus}</span>
                               </Stack.Item>
                             </Stack>
                           </Stack.Item>

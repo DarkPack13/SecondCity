@@ -17,15 +17,22 @@
 	set_frequency(FREQ_MILITARY)
 	radio_id = rand(1, 999) // Since we wont have a tranceiver for these, we're just auto-assigning a random ID. This isn't foolproof.
 
+/obj/item/radio/headset/darkpack/pmc
+	name = "military radio"
+	radio_network = NETWORK_ENDRON
+
+/obj/item/radio/headset/darkpack/pmc/Initialize()
+	. = ..()
+	set_frequency(FREQ_ENDRON)
+	AddElement(/datum/element/earhealing)
+	AddComponent(/datum/component/wearertargeting/earprotection) //Allows for explosive fuckups to not fuck up communication
+	radio_id = rand(1, 999) // Since we wont have a tranceiver for these, we're just auto-assigning a random ID. This isn't foolproof.
+
 // Police Radio get a special button to call for backup.
 /obj/item/radio/headset/darkpack/police
 	name = "police radio"
 	icon_state = "pp25"
 	COOLDOWN_DECLARE(emergency_cooldown)
-
-/obj/item/radio/headset/darkpack/police/Initialize()
-	. = ..()
-	register_context()
 
 /obj/item/radio/headset/darkpack/police/examine(mob/user)
 	. = ..()

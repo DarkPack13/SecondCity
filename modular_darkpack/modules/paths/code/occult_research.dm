@@ -59,8 +59,8 @@ SUBSYSTEM_DEF(occult_research)
 	var/blood_species = blood_data["species"]
 	var/blood_name = blood_data["real_name"]
 
-	var/list/allowed_species = list(SPECIES_KINDRED, /*PECIES_GAROU,*/ SPECIES_GHOUL/*, SPECIES_KUEI_JIN*/)
-	if(!(blood_species in allowed_species))
+	var/list/allowed_splats = list(SPLAT_KINDRED, /*PECIES_GAROU,*/ SPLAT_GHOUL/*, SPLAT_KUEI_JIN*/)
+	if(!(blood_species in allowed_splats))
 		return
 
 	var/blood_identifier = "[blood_name]_[blood_species]"
@@ -77,24 +77,24 @@ SUBSYSTEM_DEF(occult_research)
 	var/research_message = ""
 
 	switch(lowertext(blood_species))
-		if(SPECIES_KINDRED)
+		if(SPLAT_KINDRED)
 			var/generation = blood_data["generation"]
 			var/clan = blood_data["clan"]
 			research_award = (GHOUL_GENERATION - generation) * 5
 			species_name = "Kindred"
 			research_message = "You gain new insights into the [species_name] from clan [clan]! You gain [research_award] research points."
 		/*
-		if(SPECIES_GAROU)
+		if(SPLAT_GAROU)
 			research_award = 30
 			species_name = "Garou"
 			research_message = "You gain [research_award] research points."
 		*/
-		if(SPECIES_GHOUL)
+		if(SPLAT_GHOUL)
 			research_award = 5
 			species_name = "Ghoul"
 			research_message = "You gain [research_award] research points."
 		/*
-		if(SPECIES_KUEI_JIN)
+		if(SPLAT_KUEI_JIN)
 			research_award = 15
 			species_name = "Kuei-Jin"
 			research_message = "You gain [research_award] research points."

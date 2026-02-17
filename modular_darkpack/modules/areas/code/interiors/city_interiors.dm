@@ -88,14 +88,6 @@
 	music_index = MUSIC_FOREST
 	fire_controled = TRUE
 
-/area/vtm/interior/penumbra
-	name = "Penumbra"
-	icon_state = "church"
-	ambience_index = AMBIENCE_NATURE
-	zone_type = ZONE_NO_MASQUERADE
-	musictracks = list('modular_darkpack/modules/ambience/sounds/music/penumbra.ogg')
-	fire_controled = FALSE
-
 /area/vtm/interior/backrooms
 	name = "Backrooms"
 	icon_state = "church"
@@ -164,13 +156,6 @@
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
 
-/area/vtm/interior/substation
-	name = "Grid Substation"
-	icon_state = "hotel"
-	music_index = MUSIC_CITY
-	ambience_index = AMBIENCE_OFFICE
-	fire_controled = TRUE
-
 /area/vtm/interior/church
 	name = "Church"
 	icon_state = "church"
@@ -180,18 +165,13 @@
 
 /area/vtm/interior/church/staff
 	name = "Church - Backrooms"
-	icon_state = "church"
 	zone_type = ZONE_ELYSIUM
 	music_index = MUSIC_CITY
-	ambience_index = AMBIENCE_OFFICE
-	fire_controled = TRUE
 
 /area/vtm/interior/church/haven
 	name = "Church - Restricted Floor"
 	icon_state = "old_clan_tzimisce"
 	music_index = MUSIC_CITY
-	ambience_index = AMBIENCE_OFFICE
-	fire_controled = TRUE
 	zone_type = ZONE_ELYSIUM
 
 /area/vtm/interior/elevator
@@ -310,4 +290,7 @@
 /area/vtm/interior/substation
 	name = "Grid Substation"
 	icon_state = "hotel"
+	fire_controled = TRUE
+	music_index = MUSIC_CITY
+	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
