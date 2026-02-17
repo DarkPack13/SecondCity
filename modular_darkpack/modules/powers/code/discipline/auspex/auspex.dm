@@ -255,7 +255,6 @@
 
 /datum/storyteller_roll/disguise_voice_roll
 	bumper_text = "disguise voice"
-	difficulty = 6
 	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
 	numerical = FALSE
 
