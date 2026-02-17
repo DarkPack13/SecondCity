@@ -43,6 +43,8 @@
 	var/ringer = TRUE
 	// If the phone shows balloon alerts when ringing.
 	var/vibration = TRUE
+	// Passive particle effect generation for when on call
+	var/obj/effect/abstract/particle_holder/particle_generator
 	// If the phone's microphone is muted.
 	var/muted = FALSE
 	// ID of the timer that the phone uses for ringing. Deleted once the user denies a phone call or misses it.
@@ -114,6 +116,9 @@
 		for(var/datum/contact/our_contact in contact_network.contacts)
 			if(our_contact.number == sim_card.phone_number)
 				contact_network.contacts -= our_contact
+
+	if(particle_generator)
+		QDEL_NULL(particle_generator)
 
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
