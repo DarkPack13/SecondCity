@@ -28,5 +28,5 @@
 	icon_state = "in_love" //would be good to give this it's own icon eventually
 
 /datum/client_colour/brightened
-	priority = CLIENT_COLOR_HELMET_PRIORITY
+	priority = CLIENT_COLOR_IMPORTANT_PRIORITY
 	color = list(1.15,0,0,0,1.15,0,0,0,1.15,0,0,0)

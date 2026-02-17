@@ -47,7 +47,7 @@
 					var/frenzy_result = frezy_roll.st_roll(src, bit_living)
 					if(frenzy_result != ROLL_SUCCESS)
 						to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
-						// DARKPACK TODO: frenzy, please put the call here
+						enter_frenzy_mode()
 					else
 						to_chat(src, span_green("The taste of fresh blood while hungry almost drives you into frenzy!"))
 
