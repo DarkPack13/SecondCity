@@ -250,7 +250,6 @@
 
 /datum/storyteller_roll/telepathy_success
 	bumper_text = "mind reading"
-	difficulty = 6
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_SUBTERFUGE)
 	numerical = TRUE
 
