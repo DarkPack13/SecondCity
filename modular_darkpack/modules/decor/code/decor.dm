@@ -437,18 +437,6 @@
 /obj/underplate/stuff
 	icon_state = "stuff"
 
-/obj/structure/billiard_table
-	name = "billiard table"
-	desc = "Come here, play some BALLS. I know you want it so much..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "billiard1"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/billiard_table/Initialize(mapload)
-	. = ..()
-	icon_state = "billiard[rand(1, 3)]"
-
 /obj/structure/pole
 	name = "stripper pole"
 	desc = "A pole fastened to the ceiling and floor, used to show of ones goods to company."

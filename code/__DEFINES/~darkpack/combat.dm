@@ -5,6 +5,7 @@
 // Scenes have 0 hard defined rules for length.
 ///Duration of one "scene", which is 3 minutes according to us
 #define SCENES * 3 MINUTES
+#define TURNS_PER_SCENE ((1 SCENES) / (1 TURNS))
 
 // To eyeball damage as its calcuated in the ttrpg
 #define TTRPG_DAMAGE * 10

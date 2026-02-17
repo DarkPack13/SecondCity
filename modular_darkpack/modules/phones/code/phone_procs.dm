@@ -57,10 +57,14 @@
 		incoming_phone_number = null
 	if(current_state == PHONE_RINGING)
 		START_PROCESSING(SSprocessing, src)
+		if(ringer)
+			setup_particles()
 
 	if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
 		if(phone_ringing_timer)
 			deltimer(phone_ringing_timer)
+		if(particle_generator)
+			QDEL_NULL(particle_generator)
 		STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
