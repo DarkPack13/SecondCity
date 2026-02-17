@@ -68,8 +68,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_REPELLED_BY_HOLINESS "repelled_by_holiness"
 /// Any changes in this Kindred's Humanity will be doubled
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
-/// Duration of frenzy is doubled
-#define TRAIT_LONGER_FRENZY "longer_frenzy"
+/// Difficultie rolls to resist or guide frenzy are two higher. They can also never spend willpower to avoid frenzy
+#define TRAIT_DIFFICULT_FRENZY "difficult_frenzy"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
 /// If eyes are uncovered, they will be obviously supernatural to everyone nearby
 #define TRAIT_MASQUERADE_VIOLATING_EYES "masquerade_violating_eyes"

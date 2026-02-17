@@ -31,7 +31,7 @@
 	var/check = SSroll.storyteller_roll(max(1, round(humanity/2)), min(frenzy_chance_boost, frenzy_hardness), src)
 
 	// Modifier for frenzy duration
-	var/length_modifier = HAS_TRAIT(src, TRAIT_LONGER_FRENZY) ? 2 : 1
+	var/length_modifier = HAS_TRAIT(src, TRAIT_DIFFICULT_FRENZY) ? 2 : 1
 
 	switch(check)
 		if (DICE_CRIT_FAILURE)
@@ -75,12 +75,24 @@
 
 	remove_status_effect(/datum/status_effect/frenzy)
 
-/datum/storyteller_roll/rotschreck
-	applicable_stats = list(STAT_COURAGE)
+/datum/storyteller_roll/frenzy
+	abstract_type = /datum/storyteller_roll/frenzy
+	bumper_text = "frenzy"
 	numerical = TRUE
 
+/datum/storyteller_roll/frenzy/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	// V20 p.51
+	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
+		. += 2
+
+/datum/storyteller_roll/frenzy/rotschreck
+	applicable_stats = list(STAT_COURAGE)
+
+/datum/storyteller_roll/frenzy/kindred
+
 /mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6)
-	var/datum/storyteller_roll/rotschreck/frenzy_roll = new()
+	var/datum/storyteller_roll/frenzy/rotschreck/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
 	if(frenzy_result >= 5)
@@ -88,6 +100,19 @@
 	// Mabye change some logic to signals as well.
 	if(iskindred(src))
 		enter_frenzy_mode(fire, TRUE)
+
+/mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, flavor_text = "Something")
+	var/datum/splat/vampire/kindred/kindred_species = iskindred(src)
+	var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
+	var/datum/storyteller_roll/frenzy/kindred/frenzy_roll = new()
+	frenzy_roll.applicable_stats = list(stat_to_roll)
+	frenzy_roll.difficulty = difficulty
+	var/frenzy_result = frenzy_roll.st_roll(src, target)
+	if(frenzy_result >= 5)
+		to_chat(src, span_green("[flavor_text] almost drives you into frenzy!"))
+		return
+	to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
+	enter_frenzy_mode(target)
 
 // Unimplemented
 
@@ -197,8 +222,12 @@
 	set name = "Frenzy"
 	set category = "Object"
 
+	if(!istype(AM))
+		return
 	if(!issupernatural(src))
 		return
 
-	if(istype(AM))
+	if(iskindred(src))
+		trigger_kindred_frenzy(AM)
+	else
 		enter_frenzy_mode(AM)
