@@ -266,7 +266,6 @@
 		telepathy_roll = new()
 	telepathy_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 	successes = telepathy_roll.st_roll(owner, target)
-	to_chat(owner, span_notice("You roll [successes] successes."))
 	if(successes > 0)
 		// need linebreaks... but \n and <br> arent working...
 		var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT)
