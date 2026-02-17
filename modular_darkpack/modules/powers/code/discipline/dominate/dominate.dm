@@ -100,7 +100,7 @@
 			return TRUE
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
+	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	var/mob/living/carbon/human/human_target = target

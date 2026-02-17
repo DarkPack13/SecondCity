@@ -437,18 +437,6 @@
 /obj/underplate/stuff
 	icon_state = "stuff"
 
-/obj/structure/billiard_table
-	name = "billiard table"
-	desc = "Come here, play some BALLS. I know you want it so much..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "billiard1"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/billiard_table/Initialize(mapload)
-	. = ..()
-	icon_state = "billiard[rand(1, 3)]"
-
 /obj/structure/pole
 	name = "stripper pole"
 	desc = "A pole fastened to the ceiling and floor, used to show of ones goods to company."
@@ -539,6 +527,9 @@
 	pixel_z = 32
 	anchored = TRUE
 	var/large = FALSE
+
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
 
 /obj/effect/decal/graffiti/large
 	pixel_w = -16
@@ -664,50 +655,54 @@
 	icon_state = "ice"
 	pixel_w = -8
 
+
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."
 	icon = 'modular_darkpack/modules/decor/icons/bury_pit.dmi'
 	icon_state = "pit0"
 	layer = ABOVE_OPEN_TURF_LAYER
+	plane = FLOOR_PLANE
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/burying = FALSE
+	var/pit_busy = FALSE
 
-// DARKPACK TODO - reimplement
-/*
-/obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		if(!burying)
-			burying = TRUE
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				burying = FALSE
-				if(icon_state == "pit0")
-					for(var/mob/living/L in get_turf(src))
-						L.forceMove(src)
-						icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					for(var/mob/living/L in src)
-						L.forceMove(get_turf(src))
-					icon_state = "pit0"
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-			else
-				burying = FALSE
+/obj/structure/bury_pit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.tool_behaviour == TOOL_SHOVEL)
+		if(pit_busy)
+			return ITEM_INTERACT_BLOCKING
 
-/obj/structure/bury_pit/container_resist_act(mob/living/user)
-	if(!burying)
-		burying = TRUE
-		if(do_mob(user, src, 30 SECONDS))
+		pit_busy = TRUE
+		user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
+		if(!do_after(user, 10 SECONDS, src))
+			pit_busy = FALSE
+
+		pit_busy = FALSE
+		if(icon_state == "pit0")
+			for(var/mob/living/L in get_turf(src))
+				L.forceMove(src)
+				icon_state = "pit1"
+				user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+		else
 			for(var/mob/living/L in src)
 				L.forceMove(get_turf(src))
 			icon_state = "pit0"
-			burying = FALSE
-		else
-			burying = FALSE
-*/
+			user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+
+/obj/structure/bury_pit/container_resist_act(mob/living/user)
+	if(pit_busy)
+		return
+
+	pit_busy = TRUE
+	if(!do_after(user, 30 SECONDS, src))
+		pit_busy = FALSE
+
+	for(var/mob/living/L in src)
+		L.forceMove(get_turf(src))
+	icon_state = "pit0"
+	pit_busy = FALSE
+
 
 /obj/structure/fluff/tv
 	name = "\improper TV"

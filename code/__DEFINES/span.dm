@@ -157,6 +157,8 @@
 #define span_notice_ml(text) "<span class='notice ml-1'>[text]</span>"
 #define span_danger_ml(text) "<span class='danger ml-1'>[text]</span>"
 #define span_info_ml(text) "<span class='info ml-1'>[text]</span>"
+#define span_subtle(str) ("<span class='subtle'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
+#define span_subtler(str) ("<span class='subtler'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically

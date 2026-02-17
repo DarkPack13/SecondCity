@@ -60,7 +60,7 @@
 						if(C.auspice.tribe == tribe)
 							set_light(0)
 							to_chat(C, span_userdanger("<b>YOUR TOTEM IS DESTROYED</b>"))
-							SEND_SOUND(C, sound('sound/effects/tendril_destroyed.ogg', 0, 0, 75))
+							SEND_SOUND(C, sound('sound/effects/tendril_destroyed.ogg', volume = 75))
 							adjust_gnosis(-5, C, FALSE)
 							var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
 							if(prev)
@@ -74,7 +74,7 @@
 							if(last_rage+50 < world.time)
 								last_rage = world.time
 								to_chat(C, span_userdanger("<b>YOUR TOTEM IS BREAKING DOWN</b>"))
-								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/bumps.ogg', 0, 0, 75))
+								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/bumps.ogg', volume = 75))
 								adjust_rage(1, C, FALSE)
 	if(amount < 0)
 		totem_health = min(initial(totem_health), totem_health-amount)
@@ -85,7 +85,7 @@
 						if(C.stat != DEAD)
 							if(C.auspice.tribe == tribe)
 								to_chat(C, span_userhelp("<b>YOUR TOTEM IS RESTORED</b>"))
-								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/inspire.ogg', 0, 0, 75))
+								SEND_SOUND(C, sound('modular_darkpack/modules/deprecated/sounds/inspire.ogg', volume = 75))
 								adjust_gnosis(1, C, FALSE)
 				icon_state = "[initial(icon_state)]"
 				overlays -= totem_light_overlay

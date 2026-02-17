@@ -9,6 +9,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
 	processing_flags = NONE
+	// DARKPACK EDIT ADD START - STORYTELER_STATS
+	skill_required_for_use = STAT_SCIENCE
+	skill_dots_minimum = 1
+	// DARKPACK EDIT ADD END
 
 	/// The cell used to dispense reagents
 	var/obj/item/stock_parts/power_store/cell
@@ -375,7 +379,7 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN)
+			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN, encode = FALSE)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("Yes", "No")) == "No")
@@ -632,6 +636,8 @@
 		/datum/reagent/toxin/staminatoxin
 	)
 	base_reagent_purity = 0.5
+
+	skill_required_for_use = null // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /obj/machinery/chem_dispenser/drinks/Initialize(mapload)
 	if(dispensable_reagents != null && !dispensable_reagents.len)

@@ -14,6 +14,16 @@
 		/datum/job_department/anarch,
 	)
 
+	alt_titles = list(
+		"Bartender",
+		"Barkeeper",
+		"Tapster",
+		"Server",
+		"Soda Jerk", //I always loved this as a title and I am mad it isn't in common use anymore.
+		"Waiter",
+		"Waitress"
+	)
+
 	known_contacts = list("Baron", "Bouncer", "Emissary", "Sweeper")
 	allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL)
 	splat_slots = list(SPLAT_NONE = 2, SPLAT_GHOUL = 2)

@@ -950,7 +950,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/roll = SSroll.storyteller_roll(
 			dice = user.st_get_stat(STAT_STRENGTH),
 			difficulty = target.st_get_stat(STAT_DEXTERITY),
-			mobs_to_show_output = list(target, user))
+			roller = user)
 
 		if(roll == ROLL_SUCCESS)
 			target.visible_message(span_danger("[user] knocks [target] down!"), \
