@@ -5,6 +5,9 @@
 	// Visible adjectives, used for Guestbooks.
 	var/visible_adjective = ""
 
+
+	var/list/voted_for = list()
+
 	// Humans have a default bloodpool of 10
 	maxbloodpool = 10
 	bloodpool = 10
