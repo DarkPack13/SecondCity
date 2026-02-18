@@ -87,9 +87,11 @@
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
 	for (var/datum/quirk/darkpack/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) // DARKPACK EDIT CHANGE - Original: for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+		// DARKPACK EDIT ADD - MERITS/FLAWS
 		var/list/forbidden_splats_test = quirk_type.forbidden_splats
 		var/list/allowed_splats_test = quirk_type.allowed_splats
 		var/list/excluded_clans_test = quirk_type.excluded_clans
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
 		abstract_player.mock_client = roundstart_mock_client
@@ -98,6 +100,7 @@
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
 
+		// DARKPACK EDIT ADD - MERITS/FLAWS
 		// if allowed splats, add the allowed splat, then test, failure if its not added
 		if(allowed_splats_test)
 			for(var/datum/splat/allowed_splat in allowed_splats_test)
@@ -118,6 +121,7 @@
 		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
 			if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 
 		var/mob/living/carbon/human/latejoin_character = allocate(/mob/living/carbon/human/consistent)
 		var/datum/client_interface/latejoin_mock_client = new()
@@ -125,6 +129,7 @@
 		latejoin_character.mock_client = latejoin_mock_client
 		latejoin_character.mind_initialize()
 
+		// DARKPACK EDIT ADD - MERITS/FLAWS
 		// if allowed splats, add the allowed splat, then test, failure if its not added
 		if(allowed_splats_test)
 			for(var/datum/splat/allowed_splat in allowed_splats_test)
@@ -145,6 +150,7 @@
 		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
 			if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()
