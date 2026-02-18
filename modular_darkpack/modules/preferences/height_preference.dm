@@ -12,3 +12,13 @@
 /datum/preference/numeric/height/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_mob_height(value)
 
+/datum/preference/numeric/height/compile_constant_data()
+	var/list/data = ..()
+	var/list/height_labels = list()
+	for(var/i in minimum to maximum)
+		var/total_inches = 58 + ((i - 6) * 2) // 58 inches = 4'10" at value 6
+		var/feet = round(total_inches / 12)
+		var/inches = total_inches % 12
+		height_labels["[i]"] = "[feet]'[inches]\""
+	data["labels"] = height_labels
+	return data

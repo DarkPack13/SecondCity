@@ -1,8 +1,26 @@
 // THIS IS A DARKPACK UI FILE
-import { FeatureNumberInput, type FeatureNumeric } from '../base';
+import { FeatureNumeric, FeatureValueProps, FeatureNumericData, FeatureNumberInput } from '../base';
+import { Stack, Box } from 'tgui-core/components';
+
+type HeightServerData = FeatureNumericData & {
+  labels: Record<string, string>;
+};
+
+function HeightInput(props: FeatureValueProps<number, number, HeightServerData>) {
+  return (
+    <Stack align="center">
+      <Stack.Item>
+        <FeatureNumberInput {...props} />
+      </Stack.Item>
+      <Stack.Item>
+        <Box>{props.serverData?.labels[props.value]}</Box>
+      </Stack.Item>
+    </Stack>
+  );
+}
 
 export const height: FeatureNumeric = {
   name: 'Height',
   description: 'The height of your character.',
-  component: FeatureNumberInput,
+  component: HeightInput,
 };
