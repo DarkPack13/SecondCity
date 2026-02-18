@@ -3,7 +3,7 @@ import { FeatureNumeric, FeatureValueProps, FeatureNumericData, FeatureNumberInp
 import { Stack, Box } from 'tgui-core/components';
 
 type HeightServerData = FeatureNumericData & {
-  labels: Record<string, string>;
+  height_labels: Record<string, string>;
 };
 
 function HeightInput(props: FeatureValueProps<number, number, HeightServerData>) {
@@ -13,7 +13,7 @@ function HeightInput(props: FeatureValueProps<number, number, HeightServerData>)
         <FeatureNumberInput {...props} />
       </Stack.Item>
       <Stack.Item>
-        <Box>{props.serverData?.labels[props.value]}</Box>
+        <Box>{props.serverData?.height_labels[props.value]}</Box>
       </Stack.Item>
     </Stack>
   );

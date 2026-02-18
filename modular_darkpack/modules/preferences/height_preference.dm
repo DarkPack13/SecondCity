@@ -16,9 +16,9 @@
 	var/list/data = ..()
 	var/list/height_labels = list()
 	for(var/i in minimum to maximum)
-		var/total_inches = 58 + ((i - 6) * 2) // 58 inches = 4'10" at value 6
+		var/total_inches = 58 + ((i - 6) * 2) // min is 58 inches (4'10) and each step is 2 inches so each step should increase by 2, 7 for example is 60
 		var/feet = round(total_inches / 12)
 		var/inches = total_inches % 12
 		height_labels["[i]"] = "[feet]'[inches]\""
-	data["labels"] = height_labels
+	data["height_labels"] = height_labels
 	return data
