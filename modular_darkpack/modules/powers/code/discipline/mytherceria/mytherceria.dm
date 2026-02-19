@@ -11,7 +11,7 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/kiasyd.ogg'
 
 /**
- * • Folderol
+ * • Folderol - p.455
  *
  * The Kiasyd can cleave truth from lies. The exact effect varies from vampire to vampire.
  * Some Kiasyd experience bleeding from the eyes or ears when they hear
@@ -51,7 +51,7 @@
 	return
 
 /**
- * •• Fae Sight
+ * •• Fae Sight - p.455
  *
  * The Kiasyd’s knowledge of magic isn’t just theoretical. Their strangely-colored eyes are capable of
  * detecting the arcane energies of the fae, as well as magic from other, more esoteric sources.
@@ -104,7 +104,7 @@
 	target_hud.hide_from(owner)*/
 	#warn MYTHERCERIA 2 COMMENTED OUT
 /**
- * ••• Aura Absorption
+ * ••• Aura Absorption - p.455-456
  *
  * The Kiasyd is capable of seeing images of events and emotions past by touching an object or an area.
  * However, unlike the Auspex Power The Spirit’s Touch, this power absorbs the images, making them harder for
@@ -242,7 +242,7 @@
 	return TRUE
 
 /**
- * •••• Chanjelin Ward
+ * •••• Chanjelin Ward - p.455
  *
  * The vampire inscribes a ward on an object, a location, or a person. That ward disorients and befuddles anyone that sees it,
  * meaning that even if an intruder can penetrate a Weirdling’s security and steal an object of value, he’s unlikely to be able to find his way to the exit.
@@ -265,13 +265,47 @@
 	cooldown_length = 4 TURNS
 
 /datum/discipline_power/mytherceria/chanjelin_ward/pre_activation_checks(atom/target)
-	. = ..()
 	var/activate_time = max(3 TURNS - (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_OCCULT)), 1 SECONDS)
 	to_chat(owner, span_notice("You begin inscribing a ward on [target]."))
 	if(!do_after(owner, activation_time, target, interaction_key = "chanjelin_ward", max_interact_count = 1))
 		to_chat(owner, span_warning("You decide not to finish the ward and erase your progress."))
 		return FALSE
-
+	. = ..()
+/*
 /datum/discipline_power/mytherceria/chanjelin_ward/activate(atom/target)
 	. = ..()
 	AddElement(/datum/element/chanjelin_ward, user, target)
+*/
+
+/**
+ * ••••• The Riddle Phantastique - p.456
+ *
+ * The Kiasyd whispers a riddle to an opponent, and the riddle consumes his mind.
+ * The target can do nothing until he solves the riddle, and no one can help him — answers provided by others,
+ * even correct answers, fail to counteract this affliction.
+ *
+ * When possessed, add an action button to open the riddle manager. Create a new riddle with up to 5 answers.
+ * Select a riddle as "active" and when clicking on a target that can hear the Weirdling ask them that riddle aloud.
+ * They roll Wits + Occult (difficulty 8) once per turn until they accumulate 3x the successes of the riddler, who rolls Manipulation + Occult..
+ * The riddle wears off after 6 turns. If the victim botches a roll, take a large amount of brute damage (30?) and lose all accumulated successes.
+ * This damage cannot be healed until the riddle is solved. If a non-victim says the correct answer aloud, the victim is rendered unconcious and
+ * is dealt a tremendous amount of brute damage. The riddle can be ended early if the Riddler says the correct answer aloud.
+ */
+/datum/discipline_power/mytherceria/the_riddle_phantastique
+	name = "The Riddle Phantastique"
+	desc = "Ensorcel your foe with a riddle that one can do nothing but ponder."
+
+	level = 4
+	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE | DISC_CHECK_SPEAK
+	target_type = TARGET_MOB
+	vitae_cost = 0
+	cooldown_length = 4 TURNS
+	range = 3
+
+/datum/discipline_power/mytherceria/the_riddle_phantastique/pre_activation_checks(atom/target)
+	if(ismob(target))
+		var/mob/guy = target
+		if(guy.can_hear())
+			return TRUE
+
+	return FALSE
