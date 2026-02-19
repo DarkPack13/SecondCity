@@ -23,7 +23,6 @@
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
 
-
 // perception + empathy at diff 7
 // 1 success = splat
 // 2 success = splat + vitals
@@ -48,8 +47,8 @@
 		return render_list
 
 	// One Success.
-	var/sensed_splat = sense_splat(target)
-	render_list += span_notice("You identify them to be a [sensed_splat ? sensed_splat : "Human"].\n")
+	var/datum/splat/sensed_splat = LAZYACCESS(target.splats, 1)
+	render_list += span_notice("You identify them to be a [sensed_splat ? sensed_splat.name : "Human"].\n")
 
 	if(roll_result < 2)
 		return render_list
@@ -64,30 +63,27 @@
 	render_list += span_notice("You sense they have [bloodpool ? bloodpool : "no"] Vitae remaining.\n")
 	return render_list
 
-/datum/discipline_power/obeah/sense_vitality/proc/sense_splat(mob/living/target)
-	for(var/datum/splat/splat in target.splats)
-		return splat.name
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
+
 //ANESTHETIC TOUCH
 /datum/discipline_power/obeah/anesthetic_touch
 	name = "Anesthetic Touch"
 	desc = "Soothe your patient's pain, or put them to peaceful sleep."
 
 	level = 2
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
 	target_type = TARGET_LIVING
 	range = 1
+	cooldown_length = 1 TURNS
 
-	aggravating = TRUE
-	hostile = TRUE
-
-	cooldown_length = 20 SECONDS
-
+// LMB: Block someone's pain
+// RMB: Put mortal to sleep.
 /datum/discipline_power/obeah/anesthetic_touch/activate(mob/living/target)
 	. = ..()
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
 //CORPORE SANO
 /datum/discipline_power/obeah/corpore_sano
 	name = "Corpore Sano"
