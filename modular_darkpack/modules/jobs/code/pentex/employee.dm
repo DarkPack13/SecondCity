@@ -24,7 +24,7 @@
 		"Endron Labourer"
 	)
 
-	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED, SPLAT_NONE)
+	allowed_splats = SPLAT_ALL
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	allowed_clans = VAMPIRE_CLAN_ALL
 	minimal_masquerade = 3

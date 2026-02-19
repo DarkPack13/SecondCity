@@ -371,7 +371,7 @@
 	user = user || loc
 	if (!isliving(user) || !user.mind || !user.is_holding(src))
 		return
-	. += round(user.st_get_stat(STAT_STRENGTH) * 0.3) // DARKPACK EDIT CHANGE - STORYTELLR_STATS
+	. += round(user.st_get_stat(STAT_STRENGTH) * 0.3) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	return max(., 1)
 
 /obj/item/fishing_rod/dropped(mob/user, silent)

@@ -40,6 +40,7 @@
 		icon_dead = "[base_icon_state]_dead-clothing[clothing_type]"
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
+	ADD_TRAIT(src, TRAIT_FRENETIC_AURA, INNATE_TRAIT)
 
 ///nothing unique, just retaliation.
 /datum/ai_controller/basic_controller/crinos_beast

@@ -27,9 +27,13 @@
 	infodisplay += stamina
 
 	// DARKPACK EDIT ADD START
-	bloodpool_icon =  new /atom/movable/screen/bloodpool(null, src)
+	bloodpool_icon = new /atom/movable/screen/bloodpool(null, src)
 	infodisplay += bloodpool_icon
 
 	zone_icon = new /atom/movable/screen/zone_hud(null, src)
 	infodisplay += zone_icon
+
+	if(owner.splats)
+		for(var/datum/splat/splat in owner.splats)
+			splat.add_relevent_huds(src)
 	// DARKPACK EDIT ADD END

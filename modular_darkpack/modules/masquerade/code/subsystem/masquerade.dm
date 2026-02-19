@@ -5,7 +5,10 @@ SUBSYSTEM_DEF(masquerade)
 	var/masquerade_level = MASQUERADE_MAX_LEVEL
 	var/list/masquerade_breachers
 	var/static/regex/masquerade_breaching_phrase_regex
+
+	// The round is soon to be declared ending. Scarey sounds during this.
 	var/ending = FALSE
+	var/roundend_started = FALSE
 
 /datum/controller/subsystem/masquerade/Initialize()
 	masquerade_breachers = new()
@@ -67,21 +70,15 @@ SUBSYSTEM_DEF(masquerade)
 				. = TRUE
 				break
 	if(player_breacher.masquerade_score == 5) //Doesn't matter if they weren't in one of these lists.
-		// DARKPACK TODO - GAROU
-		//GLOB.veil_breakers_list -= player_breacher
+		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
 
-	/* // DARKPACK TODO - GAROU
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		var/random_renown = pick("Honor","Wisdom","Glory")
-		switch(random_renown)
-			if("Honor")
-				player_breacher.adjust_renown("honor", -1, vessel = player_breacher)
-			if("Glory")
-				player_breacher.adjust_renown("glory", -1, vessel = player_breacher)
-			if("Wisdom")
-				player_breacher.adjust_renown("wisdom", -1, vessel = player_breacher)
+	/*
+	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	if(istype(werewolf_splat))
+		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), 1)
 	*/
+
 	save_persistent_masquerade(player_breacher)
 	return .
 
@@ -99,14 +96,20 @@ SUBSYSTEM_DEF(masquerade)
 		return
 	player_breacher.masquerade_score = max(0, player_breacher.masquerade_score - 1)
 	masquerade_breachers += list(list(player_breacher, source, reason))
-	// DARKPACK TODO - GAROU
-	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-	//	GLOB.veil_breakers_list |= player_breacher
-	//else
-	GLOB.masquerade_breakers_list |= player_breacher
+	if(isvampiresplat(player_breacher))
+		GLOB.masquerade_breakers_list |= player_breacher
+	else if(iswerewolfsplat(player_breacher))
+		GLOB.veil_breakers_list |= player_breacher
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
+
+	/*
+	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	if(istype(werewolf_splat))
+		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), -1)
+	*/
+
 	save_persistent_masquerade(player_breacher)
 	check_roundend_condition()
 
@@ -117,10 +120,10 @@ SUBSYSTEM_DEF(masquerade)
 
 // Save the player's masquerade level to their character sheet.
 /datum/controller/subsystem/masquerade/proc/save_persistent_masquerade(mob/living/player_breacher)
-	var/datum/preferences/preferences = GLOB.preferences_datums[ckey(player_breacher.key)]
-	if(preferences)
-		preferences.write_preference_midround(GLOB.preference_entries[/datum/preference/numeric/masquerade], player_breacher.masquerade_score)
-		preferences.save_character()
+	var/mob/living/carbon/human/human_breacher = player_breacher
+	if(!istype(human_breacher))
+		return
+	human_breacher.write_preference_midround(/datum/preference/numeric/masquerade, player_breacher.masquerade_score)
 
 // This is for clearing the round's masquerade because a player matrix'd
 /datum/controller/subsystem/masquerade/proc/matrix_masquerade_breacher(mob/living/player_breacher, update_preferences)
@@ -128,28 +131,21 @@ SUBSYSTEM_DEF(masquerade)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)
 			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
-	// DARKPACK TODO - GAROU
-	//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-	//	GLOB.veil_breakers_list -= player_breacher
-	//else
 	GLOB.masquerade_breakers_list -= player_breacher
+	GLOB.veil_breakers_list -= player_breacher
 	if(update_preferences)
 		save_persistent_masquerade(player_breacher)
 
 // This is for checking if a joined player should be on the breachers list.
 /datum/controller/subsystem/masquerade/proc/masquerade_breacher_check(mob/living/player_breacher)
 	if(player_breacher.masquerade_score < 5)
-		// DARKPACK TODO - GAROU
-		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		//	GLOB.veil_breakers_list |= player_breacher
-		//else
-		GLOB.masquerade_breakers_list |= player_breacher
+		if(isvampiresplat(player_breacher))
+			GLOB.masquerade_breakers_list |= player_breacher
+		else if(iswerewolfsplat(player_breacher))
+			GLOB.veil_breakers_list |= player_breacher
 	else
-		// DARKPACK TODO - GAROU
-		//if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		//	GLOB.veil_breakers_list -= player_breacher
-		//else
 		GLOB.masquerade_breakers_list -= player_breacher
+		GLOB.veil_breakers_list -= player_breacher
 
 /datum/controller/subsystem/masquerade/proc/player_masquerade_reinforce(datum/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
@@ -184,10 +180,6 @@ SUBSYSTEM_DEF(masquerade)
 		else
 			var/atom/object = masquerade_breach_list[2]
 			SEND_SIGNAL(object, COMSIG_ALL_MASQUERADE_REINFORCE)
-	SSticker.force_ending = 1
-	SSticker.current_state = GAME_STATE_FINISHED
+
 	GLOB.canon_event = FALSE
-	toggle_ooc(TRUE) // Turn it on
-	toggle_dooc(TRUE)
-	SSticker.declare_completion(SSticker.force_ending)
-	Master.SetRunLevel(RUNLEVEL_POSTGAME)
+	roundend_started = TRUE
