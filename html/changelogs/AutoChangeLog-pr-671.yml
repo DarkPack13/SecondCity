@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - image: "Adds onfloors for berets"
+  - code_imp: "Onfloor sprites now support GAGS"
