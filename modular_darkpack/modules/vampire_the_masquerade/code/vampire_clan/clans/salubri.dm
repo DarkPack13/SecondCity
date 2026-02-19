@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
-		// /datum/discipline/valeren
+		/datum/discipline/obeah
 	)
 	clan_traits = list(
 		TRAIT_CONSENSUAL_FEEDING_ONLY,

@@ -1,0 +1,127 @@
+/datum/discipline/obeah
+	name = "Obeah"
+	desc = "Use your third eye in healing or protecting needs."
+	icon_state = "obeah"
+	clan_restricted = TRUE
+	power_type = /datum/discipline_power/obeah
+
+/datum/discipline_power/obeah
+	name = "Valeren power name"
+	desc = "Valeren power description"
+
+	activate_sound = 'modular_darkpack/modules/powers/sounds/obeah.ogg'
+
+//SENSE VITALITY
+/datum/discipline_power/obeah/sense_vitality
+	name = "Sense Vitality"
+	desc = "Discipline power description"
+
+	level = 1
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
+	target_type = TARGET_MOB | TARGET_SELF
+	range = 1
+	vitae_cost = 0
+	cooldown_length = 1 TURNS
+
+
+// perception + empathy at diff 7
+// 1 success = splat
+// 2 success = splat + vitals
+// 3 success = splat + vital + current bloodpool
+/datum/discipline_power/obeah/sense_vitality/activate(mob/living/target)
+	. = ..()
+	var/datum/storyteller_roll/sense_vitality_roll = new()
+	sense_vitality_roll.applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
+	sense_vitality_roll.difficulty = 7
+	sense_vitality_roll.numerical = TRUE
+	sense_vitality_roll.roll_output_type = ROLL_PRIVATE_ADMIN
+	var/roll_result = sense_vitality_roll.st_roll(owner)
+
+	var/list/render_list = list()
+	render_list = do_roll_results(target, roll_result)
+	to_chat(owner, custom_boxed_message("blue_box", jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+
+/datum/discipline_power/obeah/sense_vitality/proc/do_roll_results(mob/living/target, roll_result)
+	var/list/render_list = list()
+	if(roll_result < 1)
+		render_list += span_danger("You fail to sense anything.\n")
+		return render_list
+
+	// One Success.
+	var/sensed_splat = sense_splat(target)
+	render_list += span_notice("You identify them to be a [sensed_splat ? sensed_splat : "Human"].\n")
+
+	if(roll_result < 2)
+		return render_list
+	// Two Successes.
+	render_list += custom_boxed_message("blue_box", healthscan(user = owner, target = target, mode = SCANNER_VERBOSE, advanced = TRUE, tochat = FALSE))
+
+	if(roll_result < 3)
+		return render_list
+	// Three Successes.
+	var/mob/living/carbon/human/target_human = target
+	var/bloodpool = target_human?.bloodpool
+	render_list += span_notice("You sense they have [bloodpool ? bloodpool : "no"] Vitae remaining.\n")
+	return render_list
+
+/datum/discipline_power/obeah/sense_vitality/proc/sense_splat(mob/living/target)
+	for(var/datum/splat/splat in target.splats)
+		return splat.name
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+//ANESTHETIC TOUCH
+/datum/discipline_power/obeah/anesthetic_touch
+	name = "Anesthetic Touch"
+	desc = "Soothe your patient's pain, or put them to peaceful sleep."
+
+	level = 2
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
+	target_type = TARGET_LIVING
+	range = 1
+
+	aggravating = TRUE
+	hostile = TRUE
+
+	cooldown_length = 20 SECONDS
+
+/datum/discipline_power/obeah/anesthetic_touch/activate(mob/living/target)
+	. = ..()
+
+//CORPORE SANO
+/datum/discipline_power/obeah/corpore_sano
+	name = "Corpore Sano"
+	desc = "Lay hands on your patient and heal their wounds."
+
+	level = 3
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = TARGET_LIVING
+	range = 1
+
+	violates_masquerade = TRUE
+
+	cooldown_length = 5 SECONDS
+
+
+//SHEPHERD'S WATCH
+/datum/discipline_power/obeah/shepherds_watch
+	name = "Shepherd's Watch"
+	desc = "Create a supernatural barrier to protect yourself from harm."
+
+	level = 4
+
+	cooldown_length = 40 SECONDS
+
+//UNBURDEN THE BESTIAL SOUL
+/datum/discipline_power/obeah/unburden_the_bestial_soul
+	name = "Unburden The Bestial Soul"
+	desc = "Draw out a Kindred's soul and heal it of impurities."
+
+	level = 5
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
+	target_type = TARGET_LIVING
+	range = 1
+
+	cooldown_length = 5 SECONDS
+
+*/
