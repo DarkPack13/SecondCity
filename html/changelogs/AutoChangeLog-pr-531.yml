@@ -1,7 +1,0 @@
-author: "dwinters99, KCartridge, Major00"
-delete-after: True
-changes:
-  - rscadd: "DP Wolves"
-  - rscadd: "PSG1 magazine and ammo"
-  - code_imp: "gun code organization"
-  - rscadd: "undense bin"

@@ -21,6 +21,7 @@
 /datum/unit_test/quirk_initial_medical_records
 
 /datum/unit_test/quirk_initial_medical_records/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we don't need this and darkpack quirk splat/clan exclusion makes it impossible to add to a random test character with no splats
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human/consistent)
 
 	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
@@ -35,6 +36,7 @@
 		TEST_ASSERT_NOTNULL(quirk.medical_record_text,"[quirk_type] has no medical record description!")
 
 		patient.remove_quirk(quirk_type)
+	*/
 
 /// Ensures the blood deficiency quirk updates its mail goodies correctly
 /datum/unit_test/blood_deficiency_mail
@@ -47,6 +49,7 @@
 	)
 
 /datum/unit_test/blood_deficiency_mail/Run()
+	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we are not using /tg/ quirks
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	dummy.add_quirk(/datum/quirk/blooddeficiency)
 	var/datum/quirk/blooddeficiency/quirk = dummy.get_quirk(/datum/quirk/blooddeficiency)
@@ -73,6 +76,7 @@
 		if(!isnull(species_to_test[last_species]))
 			TEST_ASSERT(!(species_to_test[last_species] in quirk.mail_goodies), \
 				"Blood deficiency quirk did not update correctly for [species_type]! ([last_species] did not get its blood bag removed)")
+	*/
 
 /// Ensures that all quirks correctly initialized when added
 /datum/unit_test/quirk_validity
@@ -82,7 +86,12 @@
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
-	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+	for (var/datum/quirk/darkpack/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) // DARKPACK EDIT CHANGE - Original: for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+		// DARKPACK EDIT ADD START - MERITS/FLAWS
+		var/list/forbidden_splats_test = quirk_type.forbidden_splats
+		var/list/allowed_splats_test = quirk_type.allowed_splats
+		var/list/excluded_clans_test = quirk_type.excluded_clans
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
 		abstract_player.mock_client = roundstart_mock_client
@@ -90,16 +99,58 @@
 		var/mob/living/carbon/human/new_character = allocate(/mob/living/carbon/human/consistent)
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
-		if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
-			TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
+
+		// DARKPACK EDIT ADD START - MERITS/FLAWS
+		// if allowed splats, add the allowed splat, then test, failure if its not added
+		if(allowed_splats_test)
+			for(var/datum/splat/allowed_splat in allowed_splats_test)
+				new_character.add_splat(allowed_splat)
+				if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
+					TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character with allowed splat [allowed_splat]!")
+				new_character.clear_splats() //clear after for the next test
+
+		// if forbidden splats, add the disallowed splat, then test, failure if its added
+		if(forbidden_splats_test)
+			for(var/datum/splat/forbidden_splat in forbidden_splats_test)
+				new_character.add_splat(forbidden_splat)
+				if (new_character.add_quirk(quirk_type, roundstart_mock_client))
+					TEST_FAIL("Successfully initialized quirk [quirk_type] on a roundstart character that had a forbidden splat [forbidden_splat]!")
+				new_character.clear_splats()
+
+		// if all are null, then its an allowed quirk for all, failure if cannot add
+		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
+			if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
+				TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 
 		var/mob/living/carbon/human/latejoin_character = allocate(/mob/living/carbon/human/consistent)
 		var/datum/client_interface/latejoin_mock_client = new()
 		latejoin_mock_client.prefs = new(latejoin_mock_client)
 		latejoin_character.mock_client = latejoin_mock_client
 		latejoin_character.mind_initialize()
-		if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
-			TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
+
+		// DARKPACK EDIT ADD - MERITS/FLAWS
+		// if allowed splats, add the allowed splat, then test, failure if its not added
+		if(allowed_splats_test)
+			for(var/datum/splat/allowed_splat in allowed_splats_test)
+				latejoin_character.add_splat(allowed_splat)
+				if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
+					TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character with allowed splat [allowed_splat]!")
+				latejoin_character.clear_splats()
+
+		// if forbidden splats, add the allowed splat, then test, failure if its added
+		if(forbidden_splats_test)
+			for(var/datum/splat/forbidden_splat in forbidden_splats_test)
+				latejoin_character.add_splat(forbidden_splat)
+				if (latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
+					TEST_FAIL("Successfully initialized quirk [quirk_type] on a latejoin character that had a forbidden splat [forbidden_splat]!")
+				latejoin_character.clear_splats()
+
+		// if all are null, then its an allowed quirk for all, failure if cannot add
+		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
+			if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
+				TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
+		// DARKPACK EDIT ADD END - MERITS/FLAWS
 
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()

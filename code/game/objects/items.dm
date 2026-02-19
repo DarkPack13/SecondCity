@@ -47,6 +47,9 @@
 	var/greyscale_config_inhand_right
 	///The config type to use for greyscaled belt overlays. Both this and greyscale_colors must be assigned to work.
 	var/greyscale_config_belt
+	// DARKPACK EDIT ADD START - ONFLOOR_ICONS
+	var/greyscale_config_onfloor
+	// DARKPACK EDIT ADD END
 
 	/* !!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!!
 
@@ -250,7 +253,7 @@
 	if(sharpness && force > 5) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, speed = 8 SECONDS * toolspeed)
 
-	if(!greyscale_config && greyscale_colors && (greyscale_config_worn || greyscale_config_belt || greyscale_config_inhand_right || greyscale_config_inhand_left))
+	if(!greyscale_config && greyscale_colors && (greyscale_config_worn || greyscale_config_belt || greyscale_config_inhand_right || greyscale_config_inhand_left || greyscale_config_onfloor)) // DARKPACK EDIT CHANE START - ONFLOOR_ICONS
 		update_greyscale()
 
 	. = ..()
@@ -378,13 +381,17 @@
 /obj/item/proc/suicide_act(mob/living/user)
 	return
 
-/obj/item/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
+/obj/item/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right, new_onfloor_config) // DARKPACK EDIT CHANGE - ONFLOOR_ICONS
 	if(new_worn_config)
 		greyscale_config_worn = new_worn_config
 	if(new_inhand_left)
 		greyscale_config_inhand_left = new_inhand_left
 	if(new_inhand_right)
 		greyscale_config_inhand_right = new_inhand_right
+	// DARKPACK EDIT ADD START - ONFLOOR_ICONS
+	if(new_onfloor_config)
+		greyscale_config_onfloor = new_onfloor_config
+	// DARKPACK EDIT ADD END
 	return ..()
 
 /// Checks if this atom uses the GAGS system and if so updates the worn and inhand icons
@@ -398,6 +405,10 @@
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
 	if(greyscale_config_inhand_right)
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
+	// DARKPACK EDIT ADD START - ONFLOOR_ICONS
+	if(greyscale_config_onfloor)
+		onflooricon = SSgreyscale.GetColoredIconByType(greyscale_config_onfloor, greyscale_colors)
+	// DARKPACK EDIT ADD END
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"

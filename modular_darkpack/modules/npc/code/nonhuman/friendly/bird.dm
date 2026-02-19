@@ -1,3 +1,4 @@
+// DARKPACK TODO - CORAX - (Corax kinfolk and thus should be grouped into WTA soon.)
 /mob/living/basic/corvid
 	name = "corvid"
 	desc = "Caw."
@@ -6,7 +7,7 @@
 	icon_state = "black"
 	icon_living = "black"
 	icon_dead = "black"
-	icon = 'modular_darkpack/modules/npc/icons/corvid.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	density = FALSE
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
 	response_help_continuous = "pets"
@@ -103,6 +104,7 @@
 	message = "caws!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
+	// DARKPACK TODO - CORAX - (Move to wta folder)
 	sound = 'modular_darkpack/modules/npc/sound/caw.ogg'
 
 /mob/living/basic/corvid/crow

@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Pool tables has balls and cue's that creates a little 8-Ball mini-game."
