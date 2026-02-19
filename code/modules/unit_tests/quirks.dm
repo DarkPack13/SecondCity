@@ -156,4 +156,3 @@
 
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()
-	*/
