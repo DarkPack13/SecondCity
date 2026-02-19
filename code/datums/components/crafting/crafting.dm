@@ -239,7 +239,7 @@
 			for(var/behavior in recipe.tool_behaviors)
 				recipe_time += dynamic_recipe_time * found_behaviors[behavior]
 
-		// DARKPACK EDIT ADD START - STORYTELLR_STATS
+		// DARKPACK EDIT ADD START - STORYTELLER_STATS
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter

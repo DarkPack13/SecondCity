@@ -51,6 +51,7 @@
 	var/stat_allowed = CONSCIOUS
 	/// Sound to play when emote is called.
 	var/sound
+	var/extra_range = 0 // DARKPACK EDIT ADD
 	/// Does this emote vary in pitch?
 	var/vary = FALSE
 	/// If this emote's sound is affected by TTS pitch
@@ -120,7 +121,7 @@
 			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * SIGN(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
 		else if(vary)
 			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH)
-		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
+		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, extrarange = get_range(user), ignore_walls = sound_wall_ignore, frequency = frequency) // DARKPACK EDIT CHANGE - (Added extrarange getter)
 
 
 	var/is_important = running_emote_type & EMOTE_IMPORTANT
@@ -247,6 +248,11 @@
  */
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
+
+// DARKPACK EDIT ADD START
+/datum/emote/proc/get_range()
+	return extra_range
+// DARKPACK EDIT ADD END
 
 /**
  * To get the flags visible/audible messages for ran by the emote.

@@ -814,24 +814,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Someone in a grapple is much more vulnerable to being harmed by punches.
 	var/grappled = (target.pulledby && target.pulledby.grab_state >= GRAB_AGGRESSIVE)
 
-	// Our lower and upper unarmed damage values. Damage is rolled between these two values.
-	var/lower_unarmed_damage = attacking_bodypart.unarmed_damage_low
-	var/upper_unarmed_damage = attacking_bodypart.unarmed_damage_high
-
-	// The presence of TRAIT_STRENGTH increases our upper unarmed damage. This is a damage cap increase.
-	upper_unarmed_damage += HAS_TRAIT(user, TRAIT_STRENGTH) ? 2 : 0
-
-	// DARKPACK EDIT ADD - Storyteller Stats
-	var/damage_multiplier = 1 + ((user.st_get_stat(STAT_STRENGTH) - 2) / 5)
-	upper_unarmed_damage *= damage_multiplier
-	// DARKPACK EDIT ADD - Storyteller Stats
-
-	// Out athletics skill is used to set our potential base damage roll. It won't increase our potential damage roll, but will make our unarmed attack more consistent.
-	// For a normal human arm, this would cap at 10, and for a normal human leg, this would go up to 14.
-	lower_unarmed_damage = min(lower_unarmed_damage + user.st_get_stat(STAT_BRAWL), upper_unarmed_damage) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
+	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
+	// ROLL TO HIT // DARKPACK TODO
+	// var/successes = SSroll.storyteller_roll(user.st_get_stat(STAT_DEXTERITY) + user.st_get_stat(STAT_BRAWL), 6, list(user), user)
+	// ROLL TO DAMAGE
+	var/damage_output
+	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
+		damage_output = user.st_get_stat(STAT_STRENGTH)
+	else
+		var/datum/storyteller_roll/damage/damage_roll = new()
+		damage_output = damage_roll.st_roll(user, target)
+	// DARKPACK EDIT CHANGE END
 
 	// The actual damage roll. May still be augmented by further factors.
-	var/damage = rand(lower_unarmed_damage, upper_unarmed_damage)
+	var/damage = damage_output TTRPG_DAMAGE // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	// Limb accuracy is used to determine miss probabilities (higher the value, the less likely you are to miss), armor penetration (if entitled) and the possible result from a stagger combo hit.
 	var/limb_accuracy = attacking_bodypart.unarmed_effectiveness
 	// Limb sharpness determines the type of wounds this unarmed strike could possibly roll. By default, most limbs are blunt and have no sharpness.
@@ -873,7 +869,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/bodypart/affecting = target.get_bodypart(hit_zone)
 
 	var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
-	if(lower_unarmed_damage)
+	if(damage) // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 		if((target.body_position == LYING_DOWN) || HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || staggered || user_drunkenness && HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) //kicks and attacks against staggered targets never miss (provided your species deals more than 0 damage). Drunken brawlers while drunk also don't miss
 			miss_chance = 0
 		else
@@ -945,7 +941,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 
-	// DARKPACK EDIT ADD - Knockdown chance system from old harm proc
+	// DARKPACK EDIT ADD START - (Knockdown chance system from old harm proc)
 	if((target.stat != DEAD) && (!target.IsKnockdown()))
 		var/roll = SSroll.storyteller_roll(
 			dice = user.st_get_stat(STAT_STRENGTH),
@@ -959,7 +955,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			to_chat(user, span_danger("You knock [target] down!"))
 			target.apply_effect(2 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			log_combat(user, target, "got a stun punch with their previous punch")
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.

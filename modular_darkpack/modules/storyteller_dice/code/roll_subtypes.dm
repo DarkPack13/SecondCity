@@ -44,6 +44,18 @@
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
 
+// DARKPACK TODO - (Attacks need a rework on how they calcuate landing a hit.)
+/datum/storyteller_roll/punch
+	bumper_text = "punch"
+	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
+	spammy_roll = TRUE
+
+/datum/storyteller_roll/damage
+	bumper_text = "damage"
+	applicable_stats = list(STAT_STRENGTH)
+	numerical = TRUE
+	spammy_roll = TRUE
+
 // Mental Feats
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
