@@ -109,7 +109,7 @@
 					TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character with allowed splat [allowed_splat]!")
 				new_character.clear_splats() //clear after for the next test
 
-		// if forbidden splats, add the allowed splat, then test, failure if its added
+		// if forbidden splats, add the disallowed splat, then test, failure if its added
 		if(forbidden_splats_test)
 			for(var/datum/splat/forbidden_splat in forbidden_splats_test)
 				new_character.add_splat(forbidden_splat)
