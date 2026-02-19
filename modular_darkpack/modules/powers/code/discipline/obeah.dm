@@ -78,8 +78,18 @@
 
 // LMB: Block someone's pain
 // RMB: Put mortal to sleep.
-/datum/discipline_power/obeah/anesthetic_touch/activate(mob/living/target)
+/datum/discipline_power/obeah/anesthetic_touch/activate(atom/target)
 	. = ..()
+	var/chosen_option = show_radial_menu(target, list("Soothe Pain", "Put To Sleep"), "Anesthetic Touch", 10 SECONDS)
+	switch(chosen_option)
+		if("Soothe Pain")
+			return TRUE
+		if("Put To Sleep")
+			if(iskindred(target))
+				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
+				return TRUE
+			return TRUE
+	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
