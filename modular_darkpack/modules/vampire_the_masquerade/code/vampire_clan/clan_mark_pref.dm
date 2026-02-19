@@ -9,7 +9,7 @@
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
@@ -19,7 +19,7 @@
 /datum/preference/external_choiced/clan_mark/get_choices(datum/preferences/preferences)
 	if(!preferences)
 		return list("none")
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan || !clan.accessories)
 		return list("none")

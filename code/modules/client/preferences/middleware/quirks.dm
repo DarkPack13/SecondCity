@@ -191,7 +191,7 @@
 
 /datum/preference_middleware/quirks/proc/get_clan_compatibility()
 	var/list/clan_blacklist = list()
-	var/clan_name = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+	var/clan_name = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 
 	if(!clan_name)
 		return clan_blacklist

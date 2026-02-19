@@ -7532,6 +7532,7 @@
 #include "modular_darkpack\modules\splats\code\prefrences\splat_middleware.dm"
 #include "modular_darkpack\modules\splats\code\prefrences\splat_pref.dm"
 #include "modular_darkpack\modules\splats\code\subsplat\_subsplat.dm"
+#include "modular_darkpack\modules\splats\code\subsplat\pref.dm"
 #include "modular_darkpack\modules\stock_market\code\stockexchange.dm"
 #include "modular_darkpack\modules\storage\code\firstaidkit.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\roll_datum.dm"
