@@ -7,7 +7,7 @@
  * * clan_identifier - Name, typepath, or singleton of the Clan being retrieved
  */
 /proc/get_vampire_clan(clan_identifier)
-	RETURN_TYPE(/datum/vampire_clan)
+	RETURN_TYPE(/datum/subsplat/vampire_clan)
 
 	if (ispath(clan_identifier))
 		return GLOB.vampire_clans[clan_identifier]

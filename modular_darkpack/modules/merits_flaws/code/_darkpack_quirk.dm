@@ -57,7 +57,7 @@
 
 	return TRUE
 
-/datum/quirk/darkpack/proc/is_clan_appropriate(datum/vampire_clan/clan)
+/datum/quirk/darkpack/proc/is_clan_appropriate(datum/subsplat/vampire_clan/clan)
 	if(!excluded_clans)
 		return TRUE
 

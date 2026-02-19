@@ -197,7 +197,7 @@
 		return clan_blacklist
 
 	//clan_name is clan.name which is "Brujah" vampire clan list is "name" ("Brujah") = typepath, vampire_clans is typepath = datum. we need the datum for the id, which is... just a lowercase name...
-	var/datum/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
+	var/datum/subsplat/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
 	for(var/quirk_path in SSquirks.quirk_prototypes)
 		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
 

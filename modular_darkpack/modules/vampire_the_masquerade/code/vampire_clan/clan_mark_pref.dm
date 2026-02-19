@@ -10,7 +10,7 @@
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
 	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
 	if(clan.accessories)
@@ -20,7 +20,7 @@
 	if(!preferences)
 		return list("none")
 	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan || !clan.accessories)
 		return list("none")
 	return clan.accessories
@@ -31,7 +31,7 @@
 /datum/preference/external_choiced/clan_mark/apply_to_human(mob/living/carbon/human/target, value)
 	if(!value)
 		return
-	var/datum/vampire_clan/clan = target.get_clan()
+	var/datum/subsplat/vampire_clan/clan = target.get_clan()
 	if(!length(clan?.accessories))
 		return
 	target.remove_overlay(clan.accessories_layers[value])

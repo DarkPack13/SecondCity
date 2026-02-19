@@ -53,7 +53,7 @@ message = "caws!"
 	if(isgarou(user))
 		return pick(howl_sounds)
 
-	if(user.is_clan(/datum/vampire_clan/gangrel))
+	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))
 		return pick(howl_sounds)
 
 /datum/emote/living/howl/get_range(mob/living/user)
@@ -66,5 +66,5 @@ message = "caws!"
 	if(isgarou(user))
 		return 15
 
-	if(user.is_clan(/datum/vampire_clan/gangrel))
+	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))
 		return 7
