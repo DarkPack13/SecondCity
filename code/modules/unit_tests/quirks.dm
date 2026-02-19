@@ -87,7 +87,7 @@
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
 	for (var/datum/quirk/darkpack/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) // DARKPACK EDIT CHANGE - Original: for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
-		// DARKPACK EDIT ADD - MERITS/FLAWS
+		// DARKPACK EDIT ADD START - MERITS/FLAWS
 		var/list/forbidden_splats_test = quirk_type.forbidden_splats
 		var/list/allowed_splats_test = quirk_type.allowed_splats
 		var/list/excluded_clans_test = quirk_type.excluded_clans
