@@ -23,11 +23,18 @@
 
 	cancelable = TRUE
 	duration_length = 1 HOURS
+	var/datum/storyteller_roll/hags_wrinkles/hags_wrinkles_roll
+
+/datum/storyteller_roll/hags_wrinkles
+	bumper_text = "hag's wrinkles"
+	applicable_stats = list(STAT_STAMINA, STAT_SUBTERFUGE)
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/thanatosis/hag_wrinkles/pre_activation_checks()
 	. = ..()
-	var/dice = owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_SUBTERFUGE)
-	var/roll = SSroll.storyteller_roll(dice, 8, owner)
+	if(!hags_wrinkles_roll)
+		hags_wrinkles_roll = new()
+	var/roll = hags_wrinkles_roll.st_roll(owner, owner)
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	else
@@ -35,7 +42,6 @@
 
 /datum/discipline_power/thanatosis/hag_wrinkles/activate()
 	. = ..()
-
 	var/obj/item/implant/storage/imp = new()
 	imp.implant(owner, owner)
 
@@ -62,12 +68,19 @@
 	range = 1
 	cooldown_length = 5 SECONDS
 	var/successes
+	var/datum/storyteller_roll/putrefaction/putrefaction_roll
+
+/datum/storyteller_roll/putrefaction/putrefaction_roll
+	bumper_text = "putrefaction"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/thanatosis/putrefaction/pre_activation_checks(mob/living/target)
 	. = ..()
+	if(!putrefaction_roll)
+		putrefaction_roll = new()
 	var/fortitudelevel
-	var/totaldice
-	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
 	if(kindred_splat)
@@ -76,9 +89,8 @@
 			fortitudelevel = fortitude_check.level
 
 
-	totaldice = (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_MEDICINE))
-	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
+	putrefaction_roll.difficulty = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
+	successes = putrefaction_roll.st_roll(owner, target)
 
 	if(successes > 0)
 		return TRUE
@@ -178,12 +190,19 @@
 
 	cooldown_length = 1 TURNS
 	var/successes
+	var/datum/storyteller_roll/withering/withering_roll
+
+/datum/storyteller_roll/withering
+	bumper_text = "withering"
+	applicable_stats = list(STAT_MANIPULATION, STAT_MEDICINE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/thanatosis/withering/pre_activation_checks(mob/living/target)
 	. = ..()
+	if(!withering_roll)
+		withering_roll = new()
 	var/fortitudelevel
-	var/totaldice
-	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
 	if(kindred_splat)
@@ -191,9 +210,8 @@
 		if(fortitude_check)
 			fortitudelevel = fortitude_check.level
 
-	totaldice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_MEDICINE))
-	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
+	withering_roll.difficulty = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
+	successes = withering_roll.st_roll(owner, target)
 
 	if(successes > 0)
 		return TRUE
@@ -248,12 +266,19 @@
 
 	cooldown_length = 5 SECONDS
 	var/successes
+	var/datum/storyteller_roll/necrosis/necrosis_roll
+
+/datum/storyteller_roll/necrosis
+	bumper_text = "necrosis"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/thanatosis/necrosis/pre_activation_checks(mob/living/carbon/human/target)
 	. = ..()
+	if(!necrosis_roll)
+		necrosis_roll = new()
 	var/fortitudelevel
-	var/totaldice
-	var/totaldiff
 	var/mob/living/carbon/human/vampire = target
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
 	if(kindred_splat)
@@ -261,9 +286,8 @@
 		if(fortitude_check)
 			fortitudelevel = fortitude_check.level
 
-	totaldice = (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_MEDICINE))
-	totaldiff = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
-	successes = SSroll.storyteller_roll(totaldice, totaldiff, owner, numerical = TRUE)
+	necrosis_roll.difficulty = (target.st_get_stat(STAT_STAMINA) + fortitudelevel)
+	successes = necrosis_roll.st_roll(owner, target)
 
 	if(successes > 0)
 		return TRUE
