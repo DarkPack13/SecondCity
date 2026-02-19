@@ -98,7 +98,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
 #define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
-#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
+
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
@@ -134,4 +134,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LOUD_HOWLER "loud_howler"
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
+
+// BELOW ARE ALL MERITS/FLAWS
+#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_PERMAFANGS "permafangs"
+
+
 // END TRAIT DEFINES
