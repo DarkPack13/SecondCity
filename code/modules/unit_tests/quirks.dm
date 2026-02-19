@@ -120,7 +120,7 @@
 				new_character.clear_splats()
 
 		// if all are null, then its an allowed quirk for all, failure if cannot add
-		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
+		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test && !included_clans_test)
 			if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
 		// DARKPACK EDIT ADD END - MERITS/FLAWS
@@ -149,7 +149,7 @@
 				latejoin_character.clear_splats()
 
 		// if all are null, then its an allowed quirk for all, failure if cannot add
-		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test)
+		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test && !included_clans_test)
 			if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
 		// DARKPACK EDIT ADD END - MERITS/FLAWS
