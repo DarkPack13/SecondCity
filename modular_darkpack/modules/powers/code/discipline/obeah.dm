@@ -14,7 +14,7 @@
 //SENSE VITALITY
 /datum/discipline_power/obeah/sense_vitality
 	name = "Sense Vitality"
-	desc = "Discipline power description"
+	desc = "Focus your senses to read the vitality of a target."
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
@@ -80,7 +80,7 @@
 // RMB: Put mortal to sleep.
 /datum/discipline_power/obeah/anesthetic_touch/activate(atom/target)
 	. = ..()
-	var/chosen_option = show_radial_menu(target, list("Soothe Pain", "Put To Sleep"), "Anesthetic Touch", 10 SECONDS)
+	var/chosen_option = show_radial_menu(owner, target, list("Soothe Pain", "Put To Sleep"), radius = 38, require_near = TRUE)
 	switch(chosen_option)
 		if("Soothe Pain")
 			return TRUE
