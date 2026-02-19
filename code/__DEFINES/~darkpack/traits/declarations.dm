@@ -40,9 +40,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DIABLERIE "diablerie"
 #define TRAIT_GULLET "gullet"
 #define TRAIT_CHARMER "charmer"
+
+// Mutates the apperance of auras
 #define TRAIT_COLD_AURA "cold_aura"
 #define TRAIT_WARM_AURA "warm_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
+
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
 /// The mob will automatically breach the Masquerade when seen by others, with no exceptions
 #define TRAIT_UNMASQUERADE "unmasquerade"
@@ -113,6 +116,24 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
+/// If the species has garou breeds to select.
+#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
+// if the species has garou tribes to select.
+#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
+// If the species has garou auspices to select.
+#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
+// This mob has fur!
+#define TRAIT_FERA_FUR "fera_fur"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED "wyrm_tainted"
+/// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.
+#define TRAIT_NO_LYING_ANGLE "no_lying_angle"
+// Expensive but allows us to ensure there resting gets updated.
+#define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_HOWLER "loud_howler"
+/// Prevents the mob from picking up items larger then small
+#define TRAIT_SMALL_HANDS "small_hands"
 
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT

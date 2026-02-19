@@ -66,7 +66,6 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	GLOB.human_list -= src
-	GLOB.kindred_list -= src // DARKPACK EDIT ADD
 
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
