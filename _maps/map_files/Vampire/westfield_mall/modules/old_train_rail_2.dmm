@@ -321,10 +321,6 @@
 /obj/machinery/chem_mass_spec,
 /turf/open/floor/city/clinic,
 /area/vtm/interior/sewer)
-"RV" = (
-/obj/effect/decal/cleanable/blood/trail,
-/turf/open/floor/plating/concrete,
-/area/vtm/interior/sewer)
 "Sg" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/rough/cave,
@@ -619,7 +615,7 @@ ve
 CK
 Ig
 wn
-RV
+pP
 NG
 pP
 Ig

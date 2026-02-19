@@ -107,6 +107,7 @@
 	post_init_icon_state = "beret_flat"
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#8F7654"
 	inhand_icon_state = null
 
