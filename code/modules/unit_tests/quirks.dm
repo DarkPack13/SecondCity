@@ -100,7 +100,7 @@
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
 
-		// DARKPACK EDIT ADD - MERITS/FLAWS
+		// DARKPACK EDIT ADD START - MERITS/FLAWS
 		// if allowed splats, add the allowed splat, then test, failure if its not added
 		if(allowed_splats_test)
 			for(var/datum/splat/allowed_splat in allowed_splats_test)
