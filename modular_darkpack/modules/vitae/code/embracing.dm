@@ -37,7 +37,7 @@
 
 	//addtimer(CALLBACK(childe, PROC_REF(embrace_persistence_confirmation)), 1 SECONDS)
 
-/* // DARKPACK TODO - GAROU
+/* // DARKPACK TODO - WEREWOLF
 /mob/living/carbon/human/proc/attempt_abomination_embrace(mob/living/carbon/human/childe, second_party_embrace)
 	if(!(childe.auspice?.level)) //here be Abominations
 		return

@@ -6,6 +6,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	inhand_icon_state = null
 	greyscale_colors = "#397F3F#FFCE5B"
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
