@@ -1,7 +1,7 @@
 /*
 A warm thank you to all of the artists who upload royalty free images!
 
-The base64 hashes in this directory decode to the original works of the following pixabay.com users who graciously made them royalty-free:
+The images in this directory decode to the original works of the following pixabay.com users who graciously made them royalty-free:
 
 Ahmetyuksek
 AndreH
