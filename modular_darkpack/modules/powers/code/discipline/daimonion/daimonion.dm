@@ -9,8 +9,8 @@
 	name = "Daimonion power name"
 	desc = "Daimonion power description"
 
-	activate_sound = 'code/modules/wod13/sounds/protean_activate.ogg'
-	deactivate_sound = 'code/modules/wod13/sounds/protean_deactivate.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/protean_activate.ogg'
+	deactivate_sound = 'modular_darkpack/modules/powers/sounds/protean_deactivate.ogg'
 
 //SENSE THE SIN
 /datum/discipline_power/daimonion/sense_the_sin
@@ -38,7 +38,7 @@
 		to_chat(owner, span_notice("Victim's body is weak and feeble."))
 	if(target.st_get_stat(STAT_DEXTERITY) <= 2)
 		to_chat(owner, span_notice("Victim's lacks coordination."))
-	if(isgarou(target))
+	if(iswerewolf(target))
 		to_chat(owner, span_notice("Victim's natural banishment is silver..."))
 	if(iskindred(target))
 		baali_get_moral_failings(target, owner)
