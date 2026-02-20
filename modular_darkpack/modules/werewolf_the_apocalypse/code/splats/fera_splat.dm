@@ -184,5 +184,3 @@
 
 /mob/living/carbon/human/splat/garou
 	auto_splats = list(/datum/splat/werewolf/shifter/garou)
-
-

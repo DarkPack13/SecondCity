@@ -49,11 +49,25 @@ the scar is received and an extra Gnosis point is spent.
 	. = ..()
 	cut_navigation()
 
+	var/lowest_difficulty = 0
 	var/list/wyrm_targets_in_range = list()
 	for(var/mob/living/target_guy in orange(owner, 30))
 		var/difficulty = get_sense_difficulty(target_guy)
 		if(difficulty)
+			if(!lowest_difficulty || (difficulty < lowest_difficulty))
+				lowest_difficulty = difficulty
 			wyrm_targets_in_range[target_guy] = difficulty
+
+	if(!lowest_difficulty)
+		return
+
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.applicable_stats = list(STAT_PERCEPTION, STAT_OCCULT)
+	roll_datum.difficulty = lowest_difficulty
+	var/roll_result = roll_datum.st_roll(owner)
+
+	if(roll_result != ROLL_SUCCESS)
+		return
 
 	for(var/mob/living/target_guy, difficulty in wyrm_targets_in_range)
 		var/list/path = get_path_to(owner, target_guy, 50, access = owner.get_access(), skip_first = FALSE)
