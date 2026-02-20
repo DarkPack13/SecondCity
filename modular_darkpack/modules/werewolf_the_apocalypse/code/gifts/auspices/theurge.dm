@@ -14,6 +14,7 @@ the scar is received and an extra Gnosis point is spent.
 	desc = "The Garou is able to heal the wounds of any living creature, aggravated or otherwise, simply by laying hands over the afflicted area."
 	button_icon_state = "mothers_touch"
 	click_to_activate = TRUE
+	rank = 1
 
 	//rage_req = 1
 	gnosis_req = 1

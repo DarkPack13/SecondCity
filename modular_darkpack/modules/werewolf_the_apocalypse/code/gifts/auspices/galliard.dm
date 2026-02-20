@@ -3,6 +3,7 @@
 	name = "Beast Speech"
 	desc = "The werewolf with this Gift may communicate with any animals from fish to mammals."
 	button_icon_state = "beast_speech"
+	rank = 1
 	rage_req = 1
 	//gnosis_req = 1
 
@@ -31,6 +32,7 @@
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and imbue it with great emotion, stirring the hearts of fellow Garou and chilling the bones of all others."
 	button_icon_state = "call_of_the_wyld"
 	rage_req = 1
+	rank = 1
 
 /datum/action/cooldown/power/gift/call_of_the_wyld/Activate(atom/target)
 	. = ..()
@@ -54,6 +56,7 @@
 	name = "Mindspeak"
 	desc = "By invoking the power of waking dreams, the Garou can place any chosen characters into silent communion."
 	button_icon_state = "mindspeak"
+	rank = 1
 //	gnosis_req = 1
 
 

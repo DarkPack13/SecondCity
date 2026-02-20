@@ -20,6 +20,10 @@
 		return FALSE
 
 	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	if(!casting_splat)
+		if(feedback)
+			owner.balloon_alert(owner, "not a gift user!")
+		return FALSE
 
 	if(get_rage_cost())
 		if(casting_splat.rage < get_rage_cost())
@@ -37,15 +41,13 @@
 
 /datum/action/cooldown/power/gift/Activate(atom/target)
 	. = ..()
-	if(!ishuman(owner))
-		return FALSE
 
 	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
-
 	if(get_rage_cost())
 		casting_splat.adjust_rage(-get_rage_cost(), owner, FALSE)
 	if(get_gnosis_cost())
 		casting_splat.adjust_gnosis(-get_gnosis_cost(), owner, FALSE)
+
 	to_chat(owner, span_notice("You activate the [name]..."))
 
 /datum/action/cooldown/power/gift/proc/get_rage_cost()

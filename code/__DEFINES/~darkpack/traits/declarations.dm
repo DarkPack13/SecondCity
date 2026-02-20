@@ -130,10 +130,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
-// Massivly boosts the range of your howl emote.
-#define TRAIT_LOUD_HOWLER "loud_howler"
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
+// Traits granted via gifts
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_HOWLER "loud_howler"
+#define TRAIT_RAZOR_CLAWS "razor_claws"
 
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT

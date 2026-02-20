@@ -20,6 +20,7 @@
 	name = "Infectious Laughter"
 	desc = "When the Ragabash laughs, those around her are compelled to follow along, forgetting their grievances. Uses the last message you spoke for the ability"
 	button_icon_state = "infectious_laughter"
+	rank = 1
 	// I dont acctually see anything in the book that is causes rage.
 	// rage_req = 1
 	var/last_spoken_message
@@ -83,6 +84,7 @@
 	name = "Open Seal"
 	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
 	button_icon_state = "open_seal"
+	rank = 1
 //	gnosis_req = 1
 
 /datum/action/cooldown/power/gift/open_seal/Activate(atom/target)

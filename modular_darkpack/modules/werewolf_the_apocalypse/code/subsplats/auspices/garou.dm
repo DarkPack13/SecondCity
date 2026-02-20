@@ -7,7 +7,11 @@
 	name = AUSPICE_AHROUN
 	desc = "The Ahroun is the archetype of the werewolf as murderous beast, though they range from unapologetic berserkers to hardened veterans tempering their Rage with discipline. Their high levels of Rage put them on the edge at all times - the Full Moon's blessing is a hair trigger, among other things. Those closer to the waxing moon tend to exult in the glory of the war, while those closer to the waning moon are more viciously pragmatic, ruthless in their bloodthirst. Every Ahroun is a dangerous individual to be around, but when the forces of the Wyrm attack, their packmates are glad to have a Full Moon warrior at the front of the charge."
 	start_rage = 5
-	gifts_provided= list(/datum/action/cooldown/power/gift/falling_touch)//, /datum/action/cooldown/power/gift/inspiration, /datum/action/cooldown/power/gift/razor_claws)
+	gifts_provided= list(
+		/datum/action/cooldown/power/gift/falling_touch,
+		/datum/action/cooldown/power/gift/inspiration,
+		/datum/action/cooldown/power/gift/razor_claws,
+	)
 	moons_born_under = list(MOON_FULL)
 
 /datum/subsplat/werewolf/auspice/garou/ahroun/rank_requirments(list/renown)

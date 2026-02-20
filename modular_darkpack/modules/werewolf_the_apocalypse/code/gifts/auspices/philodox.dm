@@ -3,6 +3,7 @@
 	desc = "This Gift allows the Garou to determine the true nature of a person."
 	button_icon_state = "scent_of_the_true_form"
 	click_to_activate = TRUE
+	rank = 1
 	var/static/list/wyld_descriptors = list(
 		"ozone",
 		"euphoria",
