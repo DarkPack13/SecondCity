@@ -7,6 +7,7 @@
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
+	var/default_activate_message = TRUE
 
 	var/rage_req = 0
 	var/gnosis_req = 0
@@ -48,7 +49,8 @@
 	if(get_gnosis_cost())
 		casting_splat.adjust_gnosis(-get_gnosis_cost(), owner, FALSE)
 
-	to_chat(owner, span_notice("You activate the [name]..."))
+	if(default_activate_message)
+		to_chat(owner, span_notice("You activate the [name]..."))
 
 /datum/action/cooldown/power/gift/proc/get_rage_cost()
 	return rage_req

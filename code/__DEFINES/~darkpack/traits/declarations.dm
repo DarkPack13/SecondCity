@@ -139,6 +139,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
 
+/// Sixth sense restricted to view range
+#define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
+
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"

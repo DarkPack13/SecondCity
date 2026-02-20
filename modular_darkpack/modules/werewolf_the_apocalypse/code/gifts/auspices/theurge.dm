@@ -107,18 +107,25 @@ the scar is received and an extra Gnosis point is spent.
 		else if(target.st_get_stat(STAT_MORALITY) <= 7)
 			. = 6
 
-/*
 /datum/action/cooldown/power/gift/spirit_speech
 	name = "Spirit Speech"
 	desc = "This Gift allows the Garou to communicate with encountered spirits."
 	button_icon_state = "spirit_speech"
-	//gnosis_req = 1
+
+/datum/action/cooldown/power/gift/spirit_speech/Grant(mob/granted_to)
+	. = ..()
+	ADD_TRAIT(granted_to, TRAIT_LOCAL_SIXTHSENSE, GIFT_TRAIT)
 
 /datum/action/cooldown/power/gift/spirit_speech/Activate(atom/target)
 	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.see_invisible = SEE_INVISIBLE_OBSERVER
-		spawn(200)
-			C.see_invisible = initial(C.see_invisible)
-*/
+
+	if(HAS_TRAIT_FROM(owner, TRAIT_LOCAL_SIXTHSENSE, GIFT_TRAIT))
+		REMOVE_TRAIT(owner, TRAIT_LOCAL_SIXTHSENSE, GIFT_TRAIT)
+		to_chat(owner, span_notice("You deactivate [name]."))
+	else
+		ADD_TRAIT(owner, TRAIT_LOCAL_SIXTHSENSE, GIFT_TRAIT)
+		to_chat(owner, span_notice("You activate [name]."))
+
+/datum/action/cooldown/power/gift/spirit_speech/Remove(mob/removed_from)
+	. = ..()
+	REMOVE_TRAIT(removed_from, TRAIT_LOCAL_SIXTHSENSE, GIFT_TRAIT)
