@@ -1,3 +1,34 @@
+/*
+/datum/action/cooldown/power/gift/resist_pain
+	name = "Resist Pain"
+	desc = "Through force of will, the Philodox is able to ignore the pain of his wounds and continue acting normally."
+	button_icon_state = "resist_pain"
+	rage_req = 2
+
+/datum/action/cooldown/power/gift/resist_pain/Activate(atom/target)
+	. = ..()
+	if(allowed_to_proceed)
+		if(ishuman(owner))
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/resist_pain.ogg', 75, FALSE)
+			var/mob/living/carbon/human/H = owner
+			H.physiology.armor.melee = 40
+			H.physiology.armor.bullet = 25
+			to_chat(owner, span_notice("You feel your skin thickering..."))
+			spawn(15 SECONDS)
+				H.physiology.armor.melee = initial(H.physiology.armor.melee)
+				H.physiology.armor.bullet = initial(H.physiology.armor.bullet)
+				to_chat(owner, span_warning("Your skin is thin again..."))
+		else
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/resist_pain.ogg', 75, FALSE)
+			var/mob/living/carbon/werewolf/H = owner
+			H.werewolf_armor = 40
+			to_chat(owner, span_notice("You feel your skin thickering..."))
+			spawn(15 SECONDS)
+				H.werewolf_armor = initial(H.werewolf_armor)
+				to_chat(owner, span_warning("Your skin is thin again..."))
+*/
+
+
 /datum/action/cooldown/power/gift/scent_of_the_true_form
 	name = "Scent Of The True Form"
 	desc = "This Gift allows the Garou to determine the true nature of a person."
@@ -105,3 +136,11 @@
 
 	StartCooldown()
 	return TRUE
+
+/*
+/datum/action/cooldown/power/gift/truth_of_gaia
+	name = "Truth Of Gaia"
+	desc = "As judges of the Litany, Philodox have the ability to sense whether others have spoken truth or falsehood."
+	button_icon_state = "truth_of_gaia"
+//	rage_req = 1
+*/

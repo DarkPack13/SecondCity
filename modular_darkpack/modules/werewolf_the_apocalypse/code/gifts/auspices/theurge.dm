@@ -38,3 +38,36 @@ the scar is received and an extra Gnosis point is spent.
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	StartCooldown()
 	return TRUE
+
+/*
+/datum/action/cooldown/power/gift/sense_wyrm
+	name = "Sense Wyrm"
+	desc = "This Gift allows the werewolf to sense the presence of Wyrm."
+	button_icon_state = "sense_wyrm"
+	rage_req = 1
+
+/datum/action/cooldown/power/gift/sense_wyrm/Activate(atom/target)
+	. = ..()
+	if(allowed_to_proceed)
+		var/mob/living/carbon/C = owner
+		C.sight = SEE_MOBS|SEE_OBJS
+		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/sense_wyrm.ogg', 75, FALSE)
+		to_chat(owner, span_notice("You feel your sense sharpening..."))
+		spawn(200)
+			C.sight = initial(C.sight)
+			to_chat(owner, span_warning("You no longer sense anything more than normal..."))
+
+/datum/action/cooldown/power/gift/spirit_speech
+	name = "Spirit Speech"
+	desc = "This Gift allows the Garou to communicate with encountered spirits."
+	button_icon_state = "spirit_speech"
+	//gnosis_req = 1
+
+/datum/action/cooldown/power/gift/spirit_speech/Activate(atom/target)
+	. = ..()
+	if(allowed_to_proceed)
+		var/mob/living/carbon/C = owner
+		C.see_invisible = SEE_INVISIBLE_OBSERVER
+		spawn(200)
+			C.see_invisible = initial(C.see_invisible)
+*/
