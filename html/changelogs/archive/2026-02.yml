@@ -42,3 +42,60 @@
 2026-02-09:
   XeonMations:
   - bugfix: Typhonic beasts now break the masquerade.
+2026-02-16:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - bugfix: tiles next to the graveyard gate are made dense automaticly
+  - refactor: Gravekeeper gate should behavior more consistently in line with atom
+      integrity
+  - rscadd: Custom dice rolling verbs for scenes and filling the gaps in unimplemented
+      content/rolls.
+  - rscadd: Most rolls now play a dice roll sound effect
+  - qol: Massively prettified the roll to_chat and fills it with useful information
+      for rolls
+  - refactor: Some dice rolls now use a new datumized system of rolling, most use
+      it with a wrapper through the old system so they dont gain as much new behavoir
+  - balance: Identifying artifacts only requires 3 occult but now has a roll on a
+      scene length cooldown
+  - rscadd: Pharmacy has sutures, gauze, and mesh
+  - balance: bruise packs and ointment is cheaper
+  - sound: Makes thunder quieter
+  - qol: first key checked on a door has no delay
+  - bugfix: abyss tentacles should be able to acctually make a sound as intended
+  - bugfix: fixed tranforming BP dupe
+  - bugfix: typhon brew is craftable
+  - bugfix: humanity 10 vamps wont burn in the sun (IF ENABLED VIA CONFIG)
+  - image: blood hunt skull uses its onfloor
+  - code_imp: more non-combat item interactions are no longer in attack-by
+  - code_imp: all changes in BP should update your hud
+  - bugfix: mobs are now cleared from the manifest upon matrixing
+  - bugfix: matrixing clears a breacher from the masq
+  - sound: the canon round sound effect is 1/4 the default volume as the code intended
+  - sound: other sounds are now the intended volume
+  - balance: Doubles the define for TTRPG damage to represent 10 instead of 5 force
+  FalloutFalcon, dwinters99:
+  - balance: More melee can be stored on the belt
+  FalloutFalcon, tzui5020, EnchantedCrocolisk:
+  - rscadd: New outfits have been added to the loadout and Hot Ishu inspired by the
+      scene girl era.
+  - rscadd: Three new shoes.
+  - rscadd: Two new hoodies.
+  Knightscholar:
+  - rscadd: Hand tazers have cells in them
+  - balance: Hand tazers can hit twice per regular cell, instead of once.
+  - rscadd: Added the ability to toggle Aura Perception
+  - rscdel: Removed Industrial SFX from The Spirit's Touch
+  SELFHELL:
+  - rscadd: Pentex FIRST Team ERT
+  XeonMations:
+  - qol: Made our character preferences nicer to look at.
+  - code_imp: Fixed some hard deletes
+  XeonMations, yooriss, RatFromTheJungle, OrbisAnimal, FlufflesTheDog, sunnyaries:
+  - rscadd: Added Do emotes
+  - rscadd: Added subtle and subtler emotes
+  dwinters99, KCartridge, Major00:
+  - rscadd: DP Wolves
+  - rscadd: PSG1 magazine and ammo
+  - code_imp: gun code organization
+  - rscadd: undense bin

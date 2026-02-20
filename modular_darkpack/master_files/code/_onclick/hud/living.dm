@@ -1,5 +1,6 @@
 /datum/hud/living/New(mob/living/owner)
 	..()
 
-	bloodpool_icon =  new /atom/movable/screen/bloodpool(null, src)
+	bloodpool_icon = new(null, src)
 	infodisplay += bloodpool_icon
+

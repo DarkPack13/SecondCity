@@ -185,7 +185,7 @@
 		if(-INFINITY to BLOOD_VOLUME_BAD)
 			. += span_deadsay("<b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b>")
 
-	. += display_darkpack_examine_text() // DARKPACK EDIT ADD
+	. += display_darkpack_examine_text(user) // DARKPACK EDIT ADD
 
 	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()

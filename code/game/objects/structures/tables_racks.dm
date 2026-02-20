@@ -393,8 +393,8 @@
 	// Items are centered by default, but we move them if click ICON_X and ICON_Y are available
 	if(LAZYACCESS(modifiers, ICON_X) && LAZYACCESS(modifiers, ICON_Y))
 		// Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-		x_offset = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X*0.5), ICON_SIZE_X*0.5)
-		y_offset = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y*0.5), ICON_SIZE_Y*0.5)
+		x_offset = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) + pixel_x - 16, -(ICON_SIZE_X*0.5), ICON_SIZE_X*0.5) // DARKPACK EDIT CHANGE
+		y_offset = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) + pixel_y - 16, -(ICON_SIZE_Y*0.5), ICON_SIZE_Y*0.5) // DARKPACK EDIT CHANGE
 
 	if(!user.transfer_item_to_turf(tool, get_turf(src), x_offset, y_offset, silent = FALSE))
 		return ITEM_INTERACT_BLOCKING

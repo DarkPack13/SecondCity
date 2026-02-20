@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
-	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/preference_storyteller_stats = list()
 	// DARKPACK EDIT ADD END
 	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
