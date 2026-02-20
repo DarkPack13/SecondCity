@@ -1,7 +1,7 @@
 // THIS IS A DARKPACK UI FILE
 import { useState, useEffect, useMemo, useRef, memo } from 'react';
 import { Box, Icon, Stack } from 'tgui-core/components';
-import { NavigableApps } from '.';
+import type { NavigableApps } from '.';
 
 // web pages. just html in a `` block in a typescript file. sue me.
 import { browser_home } from './pages/home';
@@ -121,7 +121,7 @@ return (
         <Icon
             name="arrow-left"
             onClick={() => {
-                if (currentSite == 'Enter a URL') {
+                if (currentSite === 'Enter a URL') {
                     setApp(null);
                 } else {
                     setCurrentSite('Enter a URL');

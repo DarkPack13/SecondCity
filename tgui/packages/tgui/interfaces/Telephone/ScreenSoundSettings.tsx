@@ -1,6 +1,6 @@
 // THIS IS A DARKPACK UI FILE
 import { useState } from 'react';
-import { Box, Icon, Stack } from 'tgui-core/components';
+import { Icon, Stack } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
 import { NavigableApps } from '.';
 import type { Data } from '.';

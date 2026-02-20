@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Stack, Icon } from 'tgui-core/components';
-import { NavigableApps } from '.';
+import type { NavigableApps } from '.';
 
 interface BackendData {
 endpost_username?: string;
@@ -196,7 +196,7 @@ return (
                                         {post_content.author}
                                     </Box>
                                     <Box ml="auto" fontSize="0.8em" color="#999" textAlign="right">
-                                        {post_content.date}<br></br>{convertTo12Hour(post_content.time)}
+                                        {post_content.date}<br />{convertTo12Hour(post_content.time)}
                                     </Box>
                                     {is_admin && (
                                         <Button

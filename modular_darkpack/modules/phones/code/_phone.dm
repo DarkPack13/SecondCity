@@ -399,9 +399,9 @@
 
 		if("remove_contact")
 			var/number = tgui_input_text(usr, "Input number", "Remove Contact")
-				if(length(number) > 15)
-					to_chat(usr, span_danger("Entered number is too long"))
-					return FALSE
+			if(length(number) > 15)
+				to_chat(usr, span_danger("Entered number is too long"))
+				return FALSE
 			for(var/datum/phonecontact/contact in contacts)
 				if(contact.number == number)
 					contacts -= contact
@@ -629,4 +629,4 @@
 	return TRUE
 
 /proc/log_phone(text, list/data)
-	logger.Log(LOG_CATEGORY_PDA, text, data)
+	logger.Log(LOG_CATEGORY_PDA_CHAT, text, data)
