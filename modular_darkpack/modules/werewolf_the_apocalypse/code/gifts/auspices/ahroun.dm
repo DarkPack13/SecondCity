@@ -64,7 +64,7 @@
 	id = "inspiration"
 	duration = 1 SCENES
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /atom/movable/screen/alert/status_effect/inspiration
+	alert_type = /atom/movable/screen/alert/status_effect/gift/inspiration
 
 /datum/status_effect/inspiration/on_apply()
 	. = ..()
@@ -79,10 +79,9 @@
 		living_owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -1)
 	return ..()
 
-/atom/movable/screen/alert/status_effect/inspiration
+/atom/movable/screen/alert/status_effect/gift/inspiration
 	name = "Inspiration"
 	desc = "You have an extra temporary willpower for one scene!"
-	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	icon_state = "inspiration"
 
 
@@ -98,16 +97,16 @@
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/razor_claws.ogg', 75, FALSE)
 	if(!do_after(owner, 1 TURNS))
 		return
+	. = ..()
 	var/mob/living/living_owner = astype(owner)
 	living_owner?.apply_status_effect(/datum/status_effect/razor_claws)
-	. = ..()
 
 // DARKPACK TODO - Requires https://github.com/DarkPack13/SecondCity/pull/680 for its stat handling.
 /datum/status_effect/razor_claws
-	id = "razor claws"
+	id = "razor_claws"
 	duration = 1 SCENES
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /atom/movable/screen/alert/status_effect/razor_claws
+	alert_type = /atom/movable/screen/alert/status_effect/gift/razor_claws
 
 /datum/status_effect/razor_claws/on_apply()
 	. = ..()
@@ -119,8 +118,7 @@
 	to_chat(owner, span_warning("Your claws are not sharp anymore..."))
 	return ..()
 
-/atom/movable/screen/alert/status_effect/razor_claws
+/atom/movable/screen/alert/status_effect/gift/razor_claws
 	name = "Razor Claws"
 	desc = "Your claws do extra damage."
-	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	icon_state = "razor_claws"

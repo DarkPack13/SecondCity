@@ -55,3 +55,9 @@
 
 /datum/action/cooldown/power/gift/proc/get_gnosis_cost()
 	return gnosis_req
+
+
+/atom/movable/screen/alert/status_effect/gift
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+	overlay_state = "bg_gift"
+	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'

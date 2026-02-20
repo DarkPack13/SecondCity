@@ -119,8 +119,8 @@
 	start_rage = 1
 	gifts_provided= list(
 		// /datum/action/cooldown/power/gift/blur_of_the_milky_eye,
-		/datum/action/cooldown/power/gift/infectious_laughter
-		// /datum/action/cooldown/power/gift/open_seal,
+		/datum/action/cooldown/power/gift/infectious_laughter,
+		/datum/action/cooldown/power/gift/open_seal,
 	)
 	moons_born_under = list(MOON_NEW)
 

@@ -1,4 +1,4 @@
-/*
+// W20 p. 161
 /datum/action/cooldown/power/gift/blur_of_the_milky_eye
 	name = "Blur Of The Milky Eye"
 	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
@@ -8,13 +8,29 @@
 
 /datum/action/cooldown/power/gift/blur_of_the_milky_eye/Activate(atom/target)
 	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.alpha = 36
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/milky_blur.ogg', 75, FALSE)
-		spawn(20 SECONDS)
-			C.alpha = 255
-*/
+	var/mob/living/living_owner = astype(owner)
+	living_owner?.apply_status_effect(/datum/status_effect/blur_of_the_milky_eye)
+
+/datum/status_effect/blur_of_the_milky_eye
+	id = "blur_of_the_milky_eye"
+	duration = 1 SCENES
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /atom/movable/screen/alert/status_effect/gift/blur_of_the_milky_eye
+
+/datum/status_effect/blur_of_the_milky_eye/on_apply()
+	. = ..()
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/milky_blur.ogg', 75, FALSE)
+	owner.alpha = 30
+
+/datum/status_effect/blur_of_the_milky_eye/on_remove()
+	owner.alpha = initial(owner.alpha)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/gift/blur_of_the_milky_eye
+	name = "Blur Of The Milky Eye"
+	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
+	icon_state = "blur_of_the_milky_eye"
+
 
 /datum/action/cooldown/power/gift/infectious_laughter
 	name = "Infectious Laughter"
@@ -59,7 +75,7 @@
 	var/mob/living/carbon/human/human_owner = owner
 
 	owner.emote("laugh")
-	playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/infectious_laughter.ogg', 50, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/infectious_laughter.ogg', 50, FALSE)
 	var/list/hearers = oviewers(DEFAULT_MESSAGE_RANGE, owner)
 	var/highest_diff = 0
 	for(var/mob/living/dice_guy in hearers)
@@ -76,22 +92,27 @@
 	last_spoken_message = null
 	when_spoken = 0
 
-
 	// laughers.emote("laugh")
 
-/*
+
 /datum/action/cooldown/power/gift/open_seal
 	name = "Open Seal"
 	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
 	button_icon_state = "open_seal"
+	click_to_activate = TRUE
 	rank = 1
-//	gnosis_req = 1
+	gnosis_req = 1
 
 /datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
 	. = ..()
-	if(allowed_to_proceed)
-		for(var/obj/structure/vampdoor/V in range(5, owner))
-			if(V.closed)
-				if(V.lockpick_difficulty < 10)
-					V.open_door(owner, TRUE)
-*/
+
+	var/datum/splat/werewolf/our_splat = iswerewolfsplat(owner)
+
+	var/roll_result = SSroll.storyteller_roll(our_splat.permanent_gnosis, target.get_gauntlet_rating(), owner)
+	if(roll_result == ROLL_SUCCESS)
+		var/turf/target_turf = get_turf(target)
+		SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, owner)
+		playsound(owner, 'sound/effects/magic/knock.ogg', 50, FALSE)
+
+	StartCooldown()
+	return TRUE
