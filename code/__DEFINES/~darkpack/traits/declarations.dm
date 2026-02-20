@@ -124,8 +124,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
-/// If the fera is wyrm tainted. Affects their sprite.
+/// If the fera is wyrm tainted.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED_SPRITE "wyrm_tainted_sprite"
 /// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.

@@ -177,3 +177,12 @@
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 */
+
+
+/mob/living/carbon/human/splat/kinfolk
+	auto_splats = list(/datum/splat/werewolf/kinfolk)
+
+/mob/living/carbon/human/splat/garou
+	auto_splats = list(/datum/splat/werewolf/shifter/garou)
+
+

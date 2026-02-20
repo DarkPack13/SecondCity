@@ -7521,6 +7521,7 @@
 #include "modular_darkpack\modules\splats\code\__splat.dm"
 #include "modular_darkpack\modules\splats\code\gaining_splats.dm"
 #include "modular_darkpack\modules\splats\code\hud_managment.dm"
+#include "modular_darkpack\modules\splats\code\human_dummies.dm"
 #include "modular_darkpack\modules\splats\code\is_splat_helpers.dm"
 #include "modular_darkpack\modules\splats\code\losing_splats.dm"
 #include "modular_darkpack\modules\splats\code\splat_configs.dm"

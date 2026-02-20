@@ -86,7 +86,7 @@
 	var/mob_icon = get_mob_icon(human)
 
 	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
+	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
 		main_iconstate += "spiral"
 	main_iconstate += fur_color
 	if(human.body_position == LYING_DOWN)

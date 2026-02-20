@@ -90,7 +90,7 @@
 	start_rage = 2
 	gifts_provided = list(
 		/datum/action/cooldown/power/gift/mothers_touch,
-		// /datum/action/cooldown/power/gift/sense_wyrm,
+		/datum/action/cooldown/power/gift/sense_wyrm,
 		// /datum/action/cooldown/power/gift/spirit_speech
 	)
 	moons_born_under = list(MOON_WANING_CRESCENT, MOON_WAXING_CRESENT)
