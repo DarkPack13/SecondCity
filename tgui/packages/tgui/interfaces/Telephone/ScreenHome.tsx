@@ -1,6 +1,5 @@
 // THIS IS A DARKPACK UI FILE
 import type { PropsWithChildren, ReactNode } from 'react';
-import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack } from 'tgui-core/components';
 

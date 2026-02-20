@@ -1,8 +1,8 @@
 // THIS IS A DARKPACK UI FILE
 import { useEffect, useRef, useState } from 'react';
-import { Box, Icon, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Icon, Stack } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
-import { type Contact, type Data, NavigableApps } from '.';
+import type { Data, NavigableApps } from '.';
 import { ContactElement } from './ScreenContacts';
 
 export const Keyboard = (props: { onClick?: (keyPressed: string) => void }) => {

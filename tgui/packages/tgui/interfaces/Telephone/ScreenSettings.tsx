@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import { Box, Icon, Stack } from 'tgui-core/components';
+import { Icon, Stack } from 'tgui-core/components';
 import { NavigableApps } from '.';
 
 // fake phone info generated when the phone is spawned. random for now, maybe implemented later. maybe never.

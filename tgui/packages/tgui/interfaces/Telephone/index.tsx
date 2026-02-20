@@ -1,7 +1,7 @@
 // THIS IS A DARKPACK UI FILE
 import type React from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
-import { useMemo, memo, useCallback } from 'react';
+import { useMemo, memo } from 'react';
 import { Window } from 'tgui/layouts';
 import { Box, Icon, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';

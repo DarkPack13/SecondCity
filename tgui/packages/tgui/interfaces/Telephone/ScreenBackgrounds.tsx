@@ -1,7 +1,7 @@
 // THIS IS A DARKPACK UI FILE
 import { useBackend } from 'tgui/backend';
 import { resolveAsset } from 'tgui/assets';
-import { Box, Collapsible, Icon, Stack } from 'tgui-core/components';
+import { Box, Icon, Stack } from 'tgui-core/components';
 import { type Data, NavigableApps } from '.';
 import { backgrounds } from './backgroundImages';
 
