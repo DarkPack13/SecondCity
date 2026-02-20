@@ -5,6 +5,7 @@
 	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	minimum = HUMAN_HEIGHT_DWARF    // 6 would be like. 4'10
 	maximum = HUMAN_HEIGHT_TALLEST  // 18 would be like... 6'8 or 6'10?
+	step = 2
 
 /datum/preference/numeric/height/create_default_value()
 	return HUMAN_HEIGHT_MEDIUM  // 12 or 5'10 or 5'11 idk
