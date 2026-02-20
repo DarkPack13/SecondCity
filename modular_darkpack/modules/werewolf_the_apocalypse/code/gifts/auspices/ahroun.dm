@@ -80,9 +80,9 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/gift/inspiration
-	name = "Inspiration"
+	name = /datum/action/cooldown/power/gift/inspiration::name
 	desc = "You have an extra temporary willpower for one scene!"
-	icon_state = "inspiration"
+	overlay_state = /datum/action/cooldown/power/gift/inspiration::button_icon_state
 
 
 /datum/action/cooldown/power/gift/razor_claws
@@ -119,6 +119,6 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/gift/razor_claws
-	name = "Razor Claws"
+	name = /datum/action/cooldown/power/gift/razor_claws::name
 	desc = "Your claws do extra damage."
-	icon_state = "razor_claws"
+	overlay_state = /datum/action/cooldown/power/gift/razor_claws::button_icon_state

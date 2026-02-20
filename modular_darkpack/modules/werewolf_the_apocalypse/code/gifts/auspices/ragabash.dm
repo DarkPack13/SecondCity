@@ -3,13 +3,21 @@
 	name = "Blur Of The Milky Eye"
 	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
 	button_icon_state = "blur_of_the_milky_eye"
-	rage_req = 2
-	//gnosis_req = 1
+	cooldown_time = 1 SCENES
+	rank = 1
 
 /datum/action/cooldown/power/gift/blur_of_the_milky_eye/Activate(atom/target)
 	. = ..()
 	var/mob/living/living_owner = astype(owner)
-	living_owner?.apply_status_effect(/datum/status_effect/blur_of_the_milky_eye)
+
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.applicable_stats = list(STAT_MANIPULATION, STAT_STEALTH)
+	roll_datum.numerical = TRUE
+	roll_datum.difficulty = 8
+	var/roll_result = roll_datum.st_roll(owner)
+
+	if(roll_result > 0)
+		living_owner?.apply_status_effect(/datum/status_effect/blur_of_the_milky_eye)
 
 /datum/status_effect/blur_of_the_milky_eye
 	id = "blur_of_the_milky_eye"
@@ -20,7 +28,7 @@
 /datum/status_effect/blur_of_the_milky_eye/on_apply()
 	. = ..()
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/milky_blur.ogg', 75, FALSE)
-	owner.alpha = 30
+	owner.alpha = 50
 	apply_wibbly_filters(owner)
 
 /datum/status_effect/blur_of_the_milky_eye/on_remove()
@@ -29,9 +37,9 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/gift/blur_of_the_milky_eye
-	name = "Blur Of The Milky Eye"
-	desc = "The Garou's form becomes a shimmering blur, allowing him to pass unnoticed among others."
-	icon_state = "blur_of_the_milky_eye"
+	name = /datum/action/cooldown/power/gift/blur_of_the_milky_eye::name
+	desc = /datum/action/cooldown/power/gift/blur_of_the_milky_eye::desc
+	overlay_state = /datum/action/cooldown/power/gift/blur_of_the_milky_eye::button_icon_state
 
 
 /datum/action/cooldown/power/gift/infectious_laughter
@@ -59,6 +67,7 @@
 
 	last_spoken_message = speech_args[SPEECH_MESSAGE]
 	when_spoken = world.time
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/cooldown/power/gift/infectious_laughter/IsAvailable(feedback)
 	. = ..()
@@ -70,11 +79,8 @@
 /datum/action/cooldown/power/gift/infectious_laughter/Activate(atom/target)
 	. = ..()
 
-	if(!ishuman(owner))
-		return
 	if(!last_spoken_message || (when_spoken + 3 TURNS < world.time))
 		return
-	var/mob/living/carbon/human/human_owner = owner
 
 	owner.emote("laugh")
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/infectious_laughter.ogg', 50, FALSE)
@@ -85,7 +91,10 @@
 		if(!rage_haver)
 			continue
 		highest_diff = max(highest_diff, rage_haver.rage)
-	var/roll = SSroll.storyteller_roll(human_owner.st_get_stat(STAT_MANIPULATION) + human_owner.st_get_stat(STAT_EMPATHY), highest_diff, owner)
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.applicable_stats = list(STAT_MANIPULATION, STAT_EMPATHY)
+	roll_datum.difficulty = highest_diff
+	var/roll = roll_datum.st_roll(owner)
 	if(roll == ROLL_SUCCESS)
 		for(var/mob/living/hearer in hearers)
 			to_chat(hearer, span_hypnophrase("The message bounces around in your head, \"[last_spoken_message]\". You struggle to recall why you might have been mad."))

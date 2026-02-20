@@ -19,7 +19,6 @@ the scar is received and an extra Gnosis point is spent.
 	//rage_req = 1
 	gnosis_req = 1
 
-
 /datum/action/cooldown/power/gift/mothers_touch/Activate(atom/target)
 	if(!isliving(target))
 		return

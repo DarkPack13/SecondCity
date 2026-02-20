@@ -118,7 +118,7 @@
 	desc = "The Ragabash born under the waxing new moon is usually light-hearted and capricious, while one born under the waning new moon has a slightly more wicked and ruthless streak. It's a rare Ragabash indeed that lacks a keen wit and the capacity to find some humor in any situation, no matter how bleak. Many other werewolves are slow to take the Ragabash seriously, though, as it's difficult to tell the difference between a New Moon's mockery that points out a grievous flaw in a plan and similar mockery that simply amuses him. Sometimes a Ragabash points out that the emperor has no clothes - but sometimes they're the first to cry wolf, so to speak."
 	start_rage = 1
 	gifts_provided= list(
-		// /datum/action/cooldown/power/gift/blur_of_the_milky_eye,
+		/datum/action/cooldown/power/gift/blur_of_the_milky_eye,
 		/datum/action/cooldown/power/gift/infectious_laughter,
 		/datum/action/cooldown/power/gift/open_seal,
 	)

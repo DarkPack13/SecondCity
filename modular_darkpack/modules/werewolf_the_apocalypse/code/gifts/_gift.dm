@@ -59,5 +59,5 @@
 
 /atom/movable/screen/alert/status_effect/gift
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
-	overlay_state = "bg_gift"
+	icon_state = "bg_gift"
 	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
