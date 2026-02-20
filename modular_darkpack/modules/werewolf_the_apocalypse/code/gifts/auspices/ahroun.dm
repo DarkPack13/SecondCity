@@ -119,8 +119,8 @@
 	to_chat(owner, span_warning("Your claws are not sharp anymore..."))
 	return ..()
 
-/atom/movable/screen/alert/razor_claws/inspiration
+/atom/movable/screen/alert/status_effect/razor_claws
 	name = "Razor Claws"
-	// desc = "You have an extra temporary willpower for one scene!"
+	desc = "Your claws do extra damage."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	icon_state = "razor_claws"
