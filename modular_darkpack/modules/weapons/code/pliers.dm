@@ -11,7 +11,7 @@
 	/// If pulling fangs lasts for the entire ROUND or not.
 	var/permanent = TRUE
 
-/* DARKPACK TODO - Merits/Flaws related to feeding
+/* DARKPACK TODO - MERITS/FLAWS related to feeding
 /obj/item/wirecutters/pliers/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))

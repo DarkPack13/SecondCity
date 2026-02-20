@@ -640,22 +640,6 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	icon_state = "kover"
 
-/obj/were_ice
-	name = "ice block"
-	desc = "Stores some precious organs..."
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf_lupus.dmi'
-	icon_state = "ice_man"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-
-/obj/were_ice/lupus
-	icon_state = "ice_wolf"
-
-/obj/were_ice/crinos
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf.dmi'
-	icon_state = "ice"
-	pixel_w = -8
-
-
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."

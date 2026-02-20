@@ -8,7 +8,7 @@
 	var/final_dir = dir
 	var/changed = FALSE
 
-	if(lying_angle != lying_prev && rotate_on_lying)
+	if(lying_angle != lying_prev && (rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE))) // DARKPACK EDIT CHANGE - WEREWOLF
 		changed = TRUE
 		if(lying_angle && lying_prev == 0)
 			if(current_translate)
@@ -25,7 +25,7 @@
 
 	if(resize != RESIZE_DEFAULT_SIZE)
 		changed = TRUE
-		var/is_vertical = !lying_angle || !rotate_on_lying
+		var/is_vertical = !lying_angle || !rotate_on_lying || HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE) // DARKPACK EDIT CHANGE - WEREWOLF
 		var/new_translation = get_transform_translation_size(resize * current_size)
 		// scaling also affects translation, so we've to undo the old translate beforehand.
 		if(is_vertical && current_translate)
@@ -40,6 +40,14 @@
 		// and update the new translation
 		if(is_vertical && new_translation)
 			ntransform.Translate(0, new_translation)
+
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(src, TRAIT_TRANSFORM_UPDATES_ICON))
+		update_body()
+		update_damage_overlays()
+		// regenerate_icons, as much as it should be what is called, happens to call this, creating a infinite loop.
+		// regenerate_icons()
+	// DARKPACK EDIT ADD END
 
 	if(!changed) //Nothing has been changed, nothing has to be done.
 		return FALSE
