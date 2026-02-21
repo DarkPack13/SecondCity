@@ -41,6 +41,6 @@
 	stat_morality.morality_path = new value(target)
 
 	if(stat_morality.morality_path.alignment == MORALITY_ENLIGHTENMENT)
-		var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+		var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 		if(istype(kindred_splat))
 			kindred_splat.enlightenment = TRUE

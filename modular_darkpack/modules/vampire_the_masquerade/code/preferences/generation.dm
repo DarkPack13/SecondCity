@@ -8,4 +8,4 @@
 	maximum = HIGHEST_GENERATION_LIMIT
 
 /datum/preference/numeric/generation/apply_to_human(mob/living/carbon/human/target, value)
-	iskindred(target)?.set_generation(value)
+	get_kindred_splat(target)?.set_generation(value)

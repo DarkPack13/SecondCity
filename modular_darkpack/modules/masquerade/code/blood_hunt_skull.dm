@@ -25,7 +25,7 @@
 
 /obj/item/blood_hunt/examine(mob/user)
 	. = ..()
-	if(iskindred(user))
+	if(get_kindred_splat(user))
 		. += span_notice("This thaumaturgically-created artifact allows you to announce a Blood Hunt to the city.")
 		. += span_notice("It also allows you to pardon a kindred's masquerade violation by <b>interacting</b> with the kindred while holding the skull.")
 
@@ -74,7 +74,7 @@
 /obj/item/blood_hunt/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ishuman(interacting_with))
 		return NONE
-	if(!iskindred(interacting_with))
+	if(!get_kindred_splat(interacting_with))
 		return ITEM_INTERACT_BLOCKING
 
 	to_chat(user, span_notice("You hold the [src] up to [interacting_with]..."))

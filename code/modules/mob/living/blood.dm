@@ -477,7 +477,7 @@
 	blood_data["factions"] = faction
 
 	// DARKPACK EDIT ADD - Store kindred clan and generation in blood data
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
 	if(kindred_splat)
 		blood_data["generation"] = kindred_splat.generation
 		blood_data["clan"] = kindred_splat.clan

@@ -39,7 +39,7 @@
 		var/mob/living/carbon/human/H = drunk_from
 		drunked_of |= "[H.dna.real_name]"
 
-		if(!iskindred(drunk_from))
+		if(!get_kindred_splat(drunk_from))
 			H.blood_volume = max(H.blood_volume-50, 150)
 
 		if(H.reagents)
@@ -61,7 +61,7 @@
 		remove_drinking_overlay(drunk_from)
 		return
 
-	if(iskindred(drunk_from))
+	if(get_kindred_splat(drunk_from))
 		to_chat(src, span_userdanger("[drunk_from]'s blood tastes HEAVENLY..."))
 		adjust_brute_loss(-25, TRUE)
 		adjust_fire_loss(-25, TRUE)

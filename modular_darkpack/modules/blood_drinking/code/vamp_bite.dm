@@ -6,13 +6,13 @@
 	if(grab_state > GRAB_PASSIVE)
 		if(isliving(pulling))
 			var/mob/living/bit_living = pulling
-			if(!isvampiresplat(src))
+			if(!get_vampire_splat(src))
 				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 				return
 			// Allow ghouls to steal viate?
-			if(isghoul(src))
-				if(!iskindred(bit_living))
+			if(get_ghoul_splat(src))
+				if(!get_kindred_splat(bit_living))
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 					return
@@ -22,15 +22,15 @@
 				to_chat(src,span_warning("Your Beast requires life, not the tepid swill of corpses."))
 				return
 			// Allow for diablor?
-			if(!iskindred(bit_living) || !iskindred(src))
+			if(!get_kindred_splat(bit_living) || !get_kindred_splat(src))
 				if(!CAN_HAVE_BLOOD(bit_living) || (bit_living.blood_volume <= 50) || (bit_living.bloodpool <= 0))
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 					return
 
-			if(iskindred(src))
+			if(get_kindred_splat(src))
 				bit_living.emote("groan")
-			else if(isghoul(src))
+			else if(get_ghoul_splat(src))
 				bit_living.emote("scream")
 
 			if(ishuman(bit_living))
@@ -39,8 +39,8 @@
 
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
-				if(iskindred(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					var/datum/splat/vampire/kindred/kindred_species = iskindred(src)
+				if(get_kindred_splat(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
+					var/datum/splat/vampire/kindred/kindred_species = get_kindred_splat(src)
 					var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
 					var/datum/storyteller_roll/frezy_roll = new()
 					frezy_roll.applicable_stats = list(stat_to_roll)

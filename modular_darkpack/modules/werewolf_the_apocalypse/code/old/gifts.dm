@@ -43,7 +43,7 @@
 		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspiration.ogg', 75, FALSE)
 		H.emote("scream")
 		for(var/mob/living/carbon/C in range(5, owner))
-			if(iswerewolf(C) || isgarou(C))
+			if(iswerewolf(C) || get_garou_splat(C))
 				if(C.auspice.tribe == H.auspice.tribe)
 					C.inspired()
 

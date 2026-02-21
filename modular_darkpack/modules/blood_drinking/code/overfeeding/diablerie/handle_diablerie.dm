@@ -1,6 +1,6 @@
 /mob/living/carbon/human/proc/handle_diablerie(mob/living/victim)
 
-	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(src)
 	var/generation = get_generation()
 	var/victim_generation = victim.get_generation()
 

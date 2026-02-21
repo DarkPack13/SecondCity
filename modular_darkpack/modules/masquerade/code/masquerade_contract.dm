@@ -15,7 +15,7 @@
 
 /obj/item/masquerade_contract/attack_self(mob/user, modifiers)
 	. = ..()
-	if(!isvampiresplat(user))
+	if(!get_vampire_splat(user))
 		return
 	var/turf/current_location = get_turf(user)
 	to_chat(user, "[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]")
@@ -44,7 +44,7 @@
 
 /obj/item/veil_contract/attack_self(mob/user, modifiers)
 	. = ..()
-	if(!iswerewolfsplat(user))
+	if(!get_werewolf_splat(user))
 		return
 	var/turf/current_location = get_turf(user)
 	to_chat(user, "[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]")

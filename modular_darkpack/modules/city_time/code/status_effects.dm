@@ -12,7 +12,7 @@
 	. = ..()
 	var/area/my_area = get_area(user)
 	. += span_notice("You are currently [my_area.outdoors ? "outdoors" : "indoors"]")
-	if(iskindred(user))
+	if(get_kindred_splat(user))
 		. += span_warning("The sun will sear your flesh and bring final death.")
 
 /datum/status_effect/sunlight_burning
@@ -26,7 +26,7 @@
 	if(!istype(my_area) || !my_area.outdoors)
 		return FALSE
 
-	var/datum/splat/vampire/kindred/kindred_owner = iskindred(owner)
+	var/datum/splat/vampire/kindred/kindred_owner = get_kindred_splat(owner)
 	if(!kindred_owner)
 		return FALSE
 	// Humanity 10 vamps are immume to the light. atleast for the amount of time our day lasts.
@@ -40,7 +40,7 @@
 	. = ..()
 	if(SScity_time.daytime_started)
 		var/area/my_area = get_area(owner)
-		if(istype(my_area) && my_area.outdoors && iskindred(owner))
+		if(istype(my_area) && my_area.outdoors && get_kindred_splat(owner))
 			owner.apply_damage(10, BURN)
 			return TRUE
 	qdel(src)

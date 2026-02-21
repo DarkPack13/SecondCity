@@ -138,7 +138,7 @@
 	icon_state = "s12"
 /obj/item/ammo_casing/vampire/c12g/buck/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(iswerewolf(target) || get_garou_splat(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(40))

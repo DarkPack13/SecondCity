@@ -44,7 +44,7 @@
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
 
 	// WEREWOLF
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(user)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
 	if(werewolf_splat && !(obscured_slots & HIDEFACE))
 		. += werewolf_splat.examine_other_human(src)
 	// WEREWOLF

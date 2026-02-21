@@ -59,7 +59,7 @@
 	var/mob/living/carbon/human/clicker = usr
 	if(!istype(clicker))
 		return
-	var/datum/splat/werewolf/clicker_splat = iswerewolfsplat(clicker)
+	var/datum/splat/werewolf/clicker_splat = get_werewolf_splat(clicker)
 	if(!istype(clicker_splat))
 		return
 
@@ -135,13 +135,13 @@
 	if(!istype(owner))
 		return
 
-	var/datum/splat/werewolf/our_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
 	if(!istype(our_splat))
 		return
 
 	icon_state = "rage[our_splat.rage]"
 
-	// Should really be in update_overlays but i wanted to keep it to one iswerewolfsplat fetch
+	// Should really be in update_overlays but i wanted to keep it to one get_werewolf_splat fetch
 	cut_overlays()
 	add_overlay("gnosis[our_splat.gnosis]")
 
@@ -168,7 +168,7 @@
 	if(clicker.stat >= UNCONSCIOUS)
 		return
 
-	var/datum/splat/werewolf/shifter/shifting = isshifter(clicker)
+	var/datum/splat/werewolf/shifter/shifting = get_shifter_splat(clicker)
 	var/list/modifiers = params2list(params)
 	// Right click for alt forms like glabro and hispo. Ctrl click to use rage to do it instantly (doesnt matter if its breed form tho)
 	shifting.transform_fera(LAZYACCESS(modifiers, RIGHT_CLICK) ? right_click_transform : left_click_transform, LAZYACCESS(modifiers, CTRL_CLICK))
@@ -177,7 +177,7 @@
 /atom/movable/screen/fera_transform/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
-	var/datum/splat/werewolf/shifter/shifting = isshifter(user)
+	var/datum/splat/werewolf/shifter/shifting = get_shifter_splat(user)
 
 	if(left_click_transform)
 		context[SCREENTIP_CONTEXT_LMB] = "Shift to [left_click_transform::name]"

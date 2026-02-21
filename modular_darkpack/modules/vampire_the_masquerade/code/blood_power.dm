@@ -90,7 +90,7 @@
 	var/turns = tgui_input_number(owner, "Set turns ([1 TURNS / 10] seconds per turn) to use blood for.", "Set Bloodpower Turns", turns_activated, TURNS_PER_SCENE, 1)
 	if(turns)
 		turns_activated = turns
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(owner)
 	if(!kindred_splat)
 		return
 	// Realising this is reimplenting very similar behavior to discs and could possibly just be typed under it.

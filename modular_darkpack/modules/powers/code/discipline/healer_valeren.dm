@@ -123,7 +123,7 @@
 /datum/discipline_power/valeren/unburden_the_bestial_soul/can_activate(mob/living/target, alert)
 	. = ..()
 
-	if (!iskindred(target))
+	if (!get_kindred_splat(target))
 		if (alert)
 			to_chat(owner, span_warning("[src] can only be used on Kindred."))
 		return FALSE

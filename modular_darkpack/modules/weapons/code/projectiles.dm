@@ -97,7 +97,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp556mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(iswerewolf(target) || get_garou_splat(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))
@@ -198,7 +198,7 @@
 /*
 /obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
+	if(iswerewolf(target) || get_garou_splat(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))

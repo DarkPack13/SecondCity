@@ -11,7 +11,7 @@
 	return 1
 
 /datum/preference/numeric/renown/apply_to_human(mob/living/carbon/human/target, value)
-	var/datum/splat/werewolf/splat = iswerewolfsplat(target)
+	var/datum/splat/werewolf/splat = get_werewolf_splat(target)
 	if(!splat)
 		return
 
@@ -40,7 +40,7 @@
 	return 0
 
 /datum/preference/numeric/fera_rank/apply_to_human(mob/living/carbon/human/target, value)
-	var/datum/splat/werewolf/splat = iswerewolfsplat(target)
+	var/datum/splat/werewolf/splat = get_werewolf_splat(target)
 	if(!splat)
 		return
 

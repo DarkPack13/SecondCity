@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(masquerade)
 		GLOB.masquerade_breakers_list -= player_breacher
 
 	/*
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(player_breacher)
 	if(istype(werewolf_splat))
 		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), 1)
 	*/
@@ -96,16 +96,16 @@ SUBSYSTEM_DEF(masquerade)
 		return
 	player_breacher.masquerade_score = max(0, player_breacher.masquerade_score - 1)
 	masquerade_breachers += list(list(player_breacher, source, reason))
-	if(isvampiresplat(player_breacher))
+	if(get_vampire_splat(player_breacher))
 		GLOB.masquerade_breakers_list |= player_breacher
-	else if(iswerewolfsplat(player_breacher))
+	else if(get_werewolf_splat(player_breacher))
 		GLOB.veil_breakers_list |= player_breacher
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
 
 	/*
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(player_breacher)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(player_breacher)
 	if(istype(werewolf_splat))
 		werewolf_splat.adjust_renown(pick(RENOWN_HONOR, RENOWN_GLORY, RENOWN_WISDOM), -1)
 	*/
@@ -139,9 +139,9 @@ SUBSYSTEM_DEF(masquerade)
 // This is for checking if a joined player should be on the breachers list.
 /datum/controller/subsystem/masquerade/proc/masquerade_breacher_check(mob/living/player_breacher)
 	if(player_breacher.masquerade_score < 5)
-		if(isvampiresplat(player_breacher))
+		if(get_vampire_splat(player_breacher))
 			GLOB.masquerade_breakers_list |= player_breacher
-		else if(iswerewolfsplat(player_breacher))
+		else if(get_werewolf_splat(player_breacher))
 			GLOB.veil_breakers_list |= player_breacher
 	else
 		GLOB.masquerade_breakers_list -= player_breacher

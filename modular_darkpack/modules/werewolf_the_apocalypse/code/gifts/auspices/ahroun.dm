@@ -19,7 +19,7 @@
 
 	var/mob/living/victim = target
 	var/mob/living/caster = owner
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 	var/holding = caster.get_active_held_item()
 	if(caster.combat_mode)
 		victim.Knockdown(1 TURNS)

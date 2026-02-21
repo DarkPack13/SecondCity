@@ -55,7 +55,7 @@
 	// Handle losing Auspice
 	previous_auspice?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = isshifter(src)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
 	if (!shifter)
 		return
 
@@ -71,7 +71,7 @@
 /mob/living/proc/get_our_auspice()
 	RETURN_TYPE(/datum/subsplat/werewolf/auspice)
 
-	return isshifter(src)?.auspice
+	return get_shifter_splat(src)?.auspice
 
 /mob/living/proc/is_auspice(auspice_type)
 	return istype(get_our_auspice(), auspice_type)

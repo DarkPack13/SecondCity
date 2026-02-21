@@ -301,7 +301,7 @@
 				to_chat(owner, span_warning("You can only cast [src] on other players!"))
 			return FALSE
 
-		if ((target_type & TARGET_VAMPIRE) && !iskindred(target))
+		if ((target_type & TARGET_VAMPIRE) && !get_kindred_splat(target))
 			if (alert)
 				to_chat(owner, span_warning("You can only cast [src] on Kindred!"))
 			return FALSE

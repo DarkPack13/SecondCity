@@ -62,7 +62,7 @@
 	var/list/hearers = oviewers(DEFAULT_MESSAGE_RANGE, owner)
 	var/highest_diff = 0
 	for(var/mob/living/dice_guy in hearers)
-		var/datum/splat/werewolf/rage_haver = iswerewolfsplat(dice_guy)
+		var/datum/splat/werewolf/rage_haver = get_werewolf_splat(dice_guy)
 		if(!rage_haver)
 			continue
 		highest_diff = max(highest_diff, rage_haver.rage)

@@ -20,7 +20,7 @@
 		return
 
 	for(var/mob/living/carbon/human/target in rune_location)
-		if(iskindred(target))
+		if(get_kindred_splat(target))
 			heal_targets |= target
 
 	heal_targets |= invoker

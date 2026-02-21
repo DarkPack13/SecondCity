@@ -28,7 +28,7 @@ the scar is received and an extra Gnosis point is spent.
 	. = ..()
 
 	var/mob/living/living_owner = owner
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(owner)
 	var/difficulty = werewolf_splat.uses_rage ? werewolf_splat.rage : 5
 	var/successes = SSroll.storyteller_roll(living_owner.st_get_stat(STAT_INTELLIGENCE) + living_owner.st_get_stat(STAT_EMPATHY), difficulty, owner, TRUE)
 

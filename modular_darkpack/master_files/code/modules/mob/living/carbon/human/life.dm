@@ -1,5 +1,5 @@
 /mob/living/carbon/human/Life()
-	if(!iskindred(src))
+	if(!get_kindred_splat(src))
 		if(prob(5))
 			adjust_agg_loss(-5, TRUE)
 	. = ..()

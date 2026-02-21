@@ -7,9 +7,9 @@
 	to_chat(src, span_danger("You have fallen into Torpor. Use the button in the top right to learn more, or attempt to wake up."))
 	throw_alert(ALERT_UNTORPOR, /atom/movable/screen/alert/untorpor)
 	ADD_TRAIT(src, TRAIT_TORPOR, source)
-	if(iskindred(src) && !force)
+	if(get_kindred_splat(src) && !force)
 		var/mob/living/carbon/human/vampire = src
-		var/datum/splat/vampire/kindred/vampirism = iskindred(vampire)
+		var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(vampire)
 		var/morality_score = st_get_stat(STAT_MORALITY)
 		var/torpor_time = (14 - morality_score) MINUTES
 		COOLDOWN_START(vampirism, torpor_timer, torpor_time)
@@ -33,7 +33,7 @@
 	if(!HAS_TRAIT(src, TRAIT_TORPOR))
 		return
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		if(bloodpool > 0)
 			adjust_blood_pool(-1)
 			cure_torpor(DAMAGE_TRAIT)
@@ -60,9 +60,9 @@
 		to_chat(living_owner, span_warning("You have suffered Final Death. You will not wake up."))
 		return
 
-	if(iskindred(living_owner))
+	if(get_kindred_splat(living_owner))
 		var/mob/living/carbon/human/vampire = living_owner
-		var/datum/splat/vampire/kindred/vampirism = iskindred(vampire)
+		var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(vampire)
 		if(!COOLDOWN_STARTED(vampirism, torpor_timer))
 			to_chat(owner, span_purple(span_italics("You are in Torpor, the sleep of death that vampires go into when injured, starved, or exhausted.")))
 			to_chat(owner, span_danger(span_italics("You will re-awaken once the stake in your heart is removed by an outside source.")))

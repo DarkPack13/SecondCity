@@ -11,9 +11,9 @@
  * * discipline_checking - The Discipline type that access to is being checked.
  */
 /proc/can_access_discipline(mob/living/carbon/human/vampire_checking, discipline_checking)
-	if (isghoul(vampire_checking))
+	if (get_ghoul_splat(vampire_checking))
 		return TRUE
-	if (!iskindred(vampire_checking))
+	if (!get_kindred_splat(vampire_checking))
 		return FALSE
 	if (!vampire_checking.client)
 		return FALSE

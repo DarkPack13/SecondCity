@@ -19,7 +19,7 @@
 			owner.balloon_alert(owner, "not human!")
 		return FALSE
 
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 
 	if(get_rage_cost())
 		if(casting_splat.rage < get_rage_cost())
@@ -40,7 +40,7 @@
 	if(!ishuman(owner))
 		return FALSE
 
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 
 	if(get_rage_cost())
 		casting_splat.adjust_rage(-get_rage_cost(), owner, FALSE)

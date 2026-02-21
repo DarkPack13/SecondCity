@@ -62,7 +62,7 @@
 	holder.appearance = aura_appearance
 
 	var/mob/parent_mob = parent
-	if(iskindred(parent_mob))
+	if(get_kindred_splat(parent_mob))
 		var/icon/temporary_icon_holder = holder.appearance
 		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
 
@@ -99,7 +99,7 @@
 		static_image.appearance_flags |= RESET_COLOR
 		holder.add_overlay(static_image)
 
-	if(isghoul(parent_mob))
+	if(get_ghoul_splat(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
 		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", ABOVE_MOB_LAYER+3, parent_mob, GAME_PLANE)
 
