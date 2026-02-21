@@ -14,7 +14,6 @@
 	playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
 	human_owner?.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
 
-/*
 /datum/action/cooldown/power/gift/call_of_the_wyld
 	name = "Call Of The Wyld"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and imbue it with great emotion, stirring the hearts of fellow Garou and chilling the bones of all others."
@@ -25,19 +24,13 @@
 /datum/action/cooldown/power/gift/call_of_the_wyld/Activate(atom/target)
 	. = ..()
 
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/human_owner = owner
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.emote("howl")
-		for(var/mob/living/carbon/A in orange(6, owner))
-			if(isgarou(A) || iswerewolf(A))
-				A.emote("howl")
-				spawn(1 SECONDS)
-					adjust_gnosis(1, A, TRUE)
+	owner.emote("howl")
+	for(var/mob/living/carbon/humna/guy in orange(7, owner))
+		var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(guy)
+		if(werewolf_splat)
+			guy.emote("howl")
+			werewolf_splat.adjust_gnosis(1)
 //	awo1
-*/
 
 // Very inaccurate right now
 /datum/action/cooldown/power/gift/mindspeak

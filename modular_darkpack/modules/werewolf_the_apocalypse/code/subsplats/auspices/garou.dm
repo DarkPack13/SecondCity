@@ -36,8 +36,8 @@
 	desc = "Where the Philodox is stoic, the Galliard is a creature of unbridled passion. The Gibbous Moon is a fiery muse, and stirs its children into great heights and depths of emotion. While all Galliards are prone to immense mirth and immense melancholy, those born under a waning moon fall more readily into dark, consuming passions; they are the tragedians of the Garou, mastering tales of doom, ruin, sacrifice and loss. Conversely, their waxing-moon cousins sing of triumph and conquest, of the pounding heart and the love of life. They tend to be the soul of their pack's morale - when the Galliard is willing to go on, so too are all the others."
 	start_rage = 4
 	gifts_provided = list(
-		// /datum/action/cooldown/power/gift/beast_speech,
-		// /datum/action/cooldown/power/gift/call_of_the_wyld,
+		/datum/action/cooldown/power/gift/beast_speech,
+		/datum/action/cooldown/power/gift/call_of_the_wyld,
 		/datum/action/cooldown/power/gift/mindspeak
 	)
 	moons_born_under = list(MOON_WAXING_GIBBOUS, MOON_WANING_GIBBOUS)
