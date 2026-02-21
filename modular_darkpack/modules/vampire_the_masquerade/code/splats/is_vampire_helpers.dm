@@ -9,7 +9,7 @@
 /**
  * If the character has Vitae, readable wrapper for get_vampire_splat() for checking Vitae
  */
-/proc/has_vitae(mob/character)
+/proc/get_splat_with_vitae(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
 	return get_vampire_splat(character)
@@ -17,7 +17,7 @@
 /**
  * If the character can learn and use Disciplines, readable wrapper for get_vampire_splat() for Discipline uses
  */
-/proc/does_use_disciplines(mob/character)
+/proc/get_splat_with_discipline(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
 	return get_vampire_splat(character)
