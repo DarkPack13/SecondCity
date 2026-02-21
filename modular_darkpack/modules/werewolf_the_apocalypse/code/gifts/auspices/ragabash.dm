@@ -48,7 +48,7 @@
 	button_icon_state = "infectious_laughter"
 	rank = 1
 	// I dont acctually see anything in the book that is causes rage.
-	// rage_req = 1
+	// rage_cost = 1
 	var/last_spoken_message
 	var/when_spoken = 0
 
@@ -112,7 +112,7 @@
 	button_icon_state = "open_seal"
 	click_to_activate = TRUE
 	rank = 1
-	gnosis_req = 1
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
 	. = ..()

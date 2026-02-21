@@ -49,7 +49,7 @@
 	name = "Inspiration"
 	desc = "The Garou with this Gift lends new resolve and righteous anger to his brethren."
 	button_icon_state = "inspiration"
-	gnosis_req = 1
+	gnosis_cost = 1
 	rank = 1
 
 /datum/action/cooldown/power/gift/inspiration/Activate(atom/target)
@@ -89,7 +89,7 @@
 	desc = "By raking his claws over stone, steel, or another hard surface, the Ahroun hones them to razor sharpness."
 	button_icon_state = "razor_claws"
 	rank = 1
-	rage_req = 1
+	rage_cost = 1
 
 /datum/action/cooldown/power/gift/razor_claws/Activate(atom/target)
 	to_chat(owner, span_notice("You feel your claws sharpening..."))

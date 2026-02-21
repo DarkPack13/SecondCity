@@ -4,7 +4,7 @@
 	desc = "Through force of will, the Philodox is able to ignore the pain of his wounds and continue acting normally."
 	button_icon_state = "resist_pain"
 	rank = 1
-	willpower_req = 1
+	willpower_cost = 1
 
 /datum/action/cooldown/power/gift/resist_pain/Activate(atom/target)
 	. = ..()

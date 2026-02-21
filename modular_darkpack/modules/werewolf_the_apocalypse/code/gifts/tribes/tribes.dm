@@ -2,8 +2,8 @@
 	name = "Stoic Pose"
 	desc = "With this gift garou sends theirself into cryo-state, ignoring all incoming damage but also covering themself in a block of ice."
 	button_icon_state = "stoic_pose"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/stoic_pose/Trigger()
 	. = ..()
@@ -51,8 +51,8 @@
 	name = "Freezing Wind"
 	desc = "Garou of Wendigo Tribe can create a stream of cold, freezing wind, and strike her foes with it."
 	button_icon_state = "freezing_wind"
-	rage_req = 1
-	//gnosis_req = 1
+	rage_cost = 1
+	//gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/freezing_wind/Trigger()
 	. = ..()
@@ -71,8 +71,8 @@
 	name = "Bloody Feast"
 	desc = "By eating a grabbed corpse, garou can redeem their lost health and heal the injuries."
 	button_icon_state = "bloody_feast"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/bloody_feast/Trigger()
 	. = ..()
@@ -105,7 +105,7 @@
 	name = "Venom Claws"
 	desc = "While this ability is active, strikes with claws poison foes of garou."
 	button_icon_state = "venom_claws"
-	rage_req = 1
+	rage_cost = 1
 
 /datum/action/cooldown/power/gift/venom_claws/Trigger()
 	. = ..()
@@ -139,8 +139,8 @@
 	name = "Burning Scars"
 	desc = "Garou creates an aura of very hot air, which burns everyone around."
 	button_icon_state = "burning_scars"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/burning_scars/Trigger()
 	. = ..()
@@ -158,7 +158,7 @@
 	name = "Smooth Move"
 	desc = "Garou jumps forward, avoiding every damage for a moment."
 	button_icon_state = "smooth_move"
-	//rage_req = 1   somewhat useless gift with MMB pounce
+	//rage_cost = 1   somewhat useless gift with MMB pounce
 
 /datum/action/cooldown/power/gift/smooth_move/Trigger()
 	. = ..()
@@ -177,8 +177,8 @@
 	name = "Digital Feelings"
 	desc = "Every technology creates an electrical strike, which hits garou's enemies."
 	button_icon_state = "digital_feelings"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/digital_feelings/Trigger()
 	. = ..()
@@ -194,8 +194,8 @@
 	name = "Elemental Improvement"
 	desc = "Garou flesh replaces itself with prothesis, making it less vulnerable to brute damage, but more for burn damage."
 	button_icon_state = "elemental_improvement"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/elemental_improvement/Trigger()
 	. = ..()

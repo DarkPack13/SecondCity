@@ -2,7 +2,7 @@
 	name = "Rage Heal"
 	desc = "This Gift allows the Garou to heal severe injuries with rage."
 	button_icon_state = "rage_heal"
-	rage_req = 1
+	rage_cost = 1
 	check_flags = null
 
 /datum/action/cooldown/power/gift/rage_heal/Activate(atom/target)

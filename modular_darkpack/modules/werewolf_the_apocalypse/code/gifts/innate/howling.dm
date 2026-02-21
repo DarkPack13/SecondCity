@@ -2,7 +2,7 @@
 	name = "Howl"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and communicate a single word or concept to all other Garou across the city."
 	button_icon_state = "call_of_the_wyld"
-	rage_req = 1
+	rage_cost = 1
 	check_flags = null
 	innate_ability = TRUE
 	var/static/list/howls = list(
