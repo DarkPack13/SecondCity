@@ -6,6 +6,8 @@
 			them ideal servants to their domitors."
 	id = SPLAT_GHOUL
 
+	half_splat = TRUE
+
 	splat_actions = list(
 		/datum/action/cooldown/blood_power,
 	)

@@ -18,6 +18,10 @@
 	/// ID for trait sources and whatnot
 	var/id
 
+	/// The priority a splat has in being returned when checked for, and for overriding behavoirs if something contests
+	var/splat_priority = SPLAT_PRIO_SPLAT
+	var/half_splat = FALSE
+
 	/// Traits possessed by all members of this splat
 	var/list/splat_traits
 	/// Actions possessed by all members of this splat
