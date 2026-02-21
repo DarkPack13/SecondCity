@@ -11,8 +11,9 @@
 	. = ..()
 
 	var/mob/living/carbon/human/human_owner = astype(owner)
-	playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
 	human_owner?.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+
 
 /datum/action/cooldown/power/gift/call_of_the_wyld
 	name = "Call Of The Wyld"
@@ -25,12 +26,13 @@
 	. = ..()
 
 	owner.emote("howl")
-	for(var/mob/living/carbon/humna/guy in orange(7, owner))
+	for(var/mob/living/carbon/human/guy in orange(7, owner))
 		var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(guy)
 		if(werewolf_splat)
 			guy.emote("howl")
 			werewolf_splat.adjust_gnosis(1)
 //	awo1
+
 
 // Very inaccurate right now
 /datum/action/cooldown/power/gift/mindspeak
