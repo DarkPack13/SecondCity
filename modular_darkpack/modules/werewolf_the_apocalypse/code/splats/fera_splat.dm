@@ -70,6 +70,7 @@
 	name = "Kinfolk"
 	id = SPLAT_KINFOLK
 
+	splat_priority = SPLAT_PRIO_HALFSPLAT
 	half_splat = TRUE
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
