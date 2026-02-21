@@ -38,8 +38,8 @@ SUBSYSTEM_DEF(ticker)
 	var/timeLeft //pregame timer
 	var/start_at
 
-	var/gametime_offset = 21 HOURS //Deciseconds to add to world.time for station time. // DARKPACK EDIT CHANGE, ORIGINAL: var/gametime_offset = 432000
-	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time. // DARKPACK EDIT CHANGE, ORIGINAL: var/station_time_rate_multiplier = 12
+	var/gametime_offset = 21 HOURS //Deciseconds to add to world.time for station time. // DARKPACK EDIT CHANGE - ORIGINAL: var/gametime_offset = 432000
+	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time. // DARKPACK EDIT CHANGE - ORIGINAL: var/station_time_rate_multiplier = 12
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
@@ -200,6 +200,7 @@ SUBSYSTEM_DEF(ticker)
 
 			if(!roundend_check_paused && (check_finished() || force_ending))
 				current_state = GAME_STATE_FINISHED
+				GLOB.canon_event = FALSE // We generally consider all events in postgame to be non-canon due to most servers having EORG // DARKPACK EDIT ADD
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
@@ -217,6 +218,10 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	// DARKPACK EDIT ADD START - CITY_TIME
 	if(SScity_time.roundend_started)
+		return TRUE
+	// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START - MASQUERADE
+	if(SSmasquerade.roundend_started)
 		return TRUE
 	// DARKPACK EDIT ADD END
 	return FALSE
@@ -330,7 +335,7 @@ SUBSYSTEM_DEF(ticker)
 		var/arguments = list()
 		if(GLOB.revdata.originmastercommit)
 			to_set += "commit_hash = :commit_hash"
-			arguments["commit_hash"] = GLOB.revdata.originmastercommit
+			arguments["commit_hash"] = GLOB.revdata.GetDatabaseCommitSha()
 		if(to_set.len)
 			arguments["round_id"] = GLOB.round_id
 			var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery(

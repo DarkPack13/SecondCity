@@ -30,7 +30,7 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
+	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -49,14 +49,14 @@
 	target.apply_overlay(MUTATIONS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
-	// resist presence button - note to self, in the future, v20 states that the resister must continue to spend willpower if in the presence of the vamp
+	// resist presence button - note to self, in the future, V20 states that the resister must continue to spend willpower if in the presence of the vamp
 	var/datum/action/resist_presence/resist_action = new(target)
 	resist_action.Grant(target)
 
 	// remove the action after 20 seconds
 	addtimer(CALLBACK(resist_action, TYPE_PROC_REF(/datum/action, Remove), target), resist_timer)
 
-//used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
+//used in awe - V20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
 /datum/discipline_power/presence/proc/sort_targets_by_willpower(list/targets)
 	var/list/sorted = list()
 	for(var/mob/living/carbon/target in targets)
@@ -98,7 +98,7 @@
 	user.st_set_stat(STAT_TEMPORARY_WILLPOWER, max((user.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1),0))
 	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
 
-	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, mobs_to_show_output = user)
+	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, roller = user)
 
 	if(roll_success)
 		user.remove_overlay(MUTATIONS_LAYER)
@@ -129,7 +129,7 @@
 	.=..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, mobs_to_show_output = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
 	if(successes > 0)
 		return TRUE
 
@@ -149,7 +149,7 @@
 		to_chat(owner, span_warning("There is no one around to be awed by your presence."))
 		return
 
-	var/list/target_counts = list(1, 2, 6, 20, length(potential_targets)) //v20 core rulebook presence -> awe
+	var/list/target_counts = list(1, 2, 6, 20, length(potential_targets)) //V20 core rulebook presence -> awe
 	var/targets_to_affect = target_counts[clamp(successes, 1, 5)]
 
 	potential_targets = sort_targets_by_willpower(potential_targets)
@@ -186,14 +186,14 @@
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 	duration_length = 10 SECONDS
-	vitae_cost = 1 //no mention of literally any cost for using this in v20
+	vitae_cost = 1 //no mention of literally any cost for using this in V20
 	var/successes = 0
 
 
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS))) //+ target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -211,7 +211,7 @@
 		to_chat(target, span_userdanger("Overwhelming dread fills you! You must get away from [owner]!"))
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
-		//v20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
+		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
 		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
 		//for(var/i in 1 to 30)
 			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
@@ -314,7 +314,7 @@
 	var/location_info = "[get_area_name(owner_turf)], X:[owner_turf.x] Y:[owner_turf.y] Z:[owner_turf.z]"
 	to_chat(summon_target, span_yellowteamradio("[owner.real_name] is summoning you to their location. [owner.real_name] is currently at [location_info]"))
 
-	//v20 presence -> 'summon' section for this flavortext
+	//V20 presence -> 'summon' section for this flavortext
 	var/list/flavor_texts = list(
 		"You feel a faint pull towards [owner.real_name], approaching slowly and hesitantly.",
 		"You feel reluctantly compelled to seek out [owner.real_name], though obstacles easily deter you.",
@@ -357,7 +357,7 @@
 			continue
 
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), mobs_to_show_output = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), roller = hearer, numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
@@ -369,7 +369,10 @@
 			to_chat(hearer, span_info("Despite the overwhelming presence, your will allows you to make [hearer_successes] contradictory action\s until youre allowed to leave [owner]'s company."))
 
 	var/total_affected = length(affected_targets)
-	to_chat(owner, span_warning(total_affected > 0 ? "Your Majesty overwhelms [total_affected] individual[total_affected == 1 ? "" : "s"] in your presence!" : "No one is present to witness your Majesty."))
+	if(total_affected > 0)
+		to_chat(owner, span_warning("Your Majesty overwhelms [total_affected] individual[total_affected == 1 ? "" : "s"] in your presence!"))
+	else
+		to_chat(owner, span_warning("No one is present to witness your Majesty."))
 
 /datum/discipline_power/presence/majesty/deactivate(mob/living/carbon/human/target)
 	. = ..()

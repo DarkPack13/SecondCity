@@ -37,6 +37,8 @@
 	var/research_value = 0
 	var/can_be_identified_without_ritual = TRUE
 
+	var/datum/storyteller_roll/identify_occult/identify_roll
+
 /obj/item/vtm_artifact/proc/identify()
 	if(!identified)
 		name = true_name
@@ -61,20 +63,25 @@
 		return
 
 	var/mob/living/artifact_identifier = user
-	if(artifact_identifier.st_get_stat(STAT_OCCULT) < 4)
+	if(artifact_identifier.st_get_stat(STAT_OCCULT) < 3)
 		to_chat(artifact_identifier, span_warning("What is this thing? Some kind of yard sale item?"))
 		return
 
 	if(can_be_identified_without_ritual == FALSE)
-		to_chat(artifact_identifier, span_warning("You've seen countless occult artifacts, trinkets, and powerful relics, but this, you've either never seen it before, or it's power can only be awakened by few..."))
+		to_chat(artifact_identifier, span_warning("You've seen some occult artifacts, trinkets, and powerful relics, but this, you've either never seen it before, or it's power can only be awakened by few..."))
 		return
 
-	to_chat(artifact_identifier, span_cult("You've seen this before in an occult text. You start identifying it..."))
-	if(do_after(artifact_identifier, 10 SECONDS, src))
-		identify()
-		to_chat(artifact_identifier, span_cult("You successfully identify [src]!"))
-	else
-		to_chat(artifact_identifier, span_warning("You stop examining [src]."))
+	to_chat(artifact_identifier, span_cult("You might have seen this before in an occult text. You start identifying it..."))
+	if(do_after(artifact_identifier, 1 TURNS, src))
+		if(!identify_roll)
+			identify_roll = new()
+			identify_roll.difficulty = 8
+		var/roll = identify_roll.st_roll(user, src)
+		if(roll == ROLL_SUCCESS)
+			identify()
+			to_chat(artifact_identifier, span_cult("You successfully identify [src]!"))
+		else
+			to_chat(artifact_identifier, span_warning("You stop examining [src]."))
 
 /obj/effect/spawner/random/occult
 	name = "occult spawner"
