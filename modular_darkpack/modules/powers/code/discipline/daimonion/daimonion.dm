@@ -405,17 +405,17 @@
 	if(target.has_status_effect(/datum/status_effect/condemnation))
 		to_chat(owner, span_warning("They are already damned!"))
 		return
-
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
 	if(!available_curses)
-		for(var/curse in subtypesof(/datum/status_effect/condemnation))
-			if(owner.generation <= initial(curse.genrequired))
-				available_curses[initial(curse.name)] = curse
+		for(var/datum/status_effect/condemnation/curse in subtypesof(/datum/status_effect/condemnation))
+			if(kindred_splat.generation <= curse.genrequired)
+				available_curses[curse.name] = curse
 
 	var/chosen_curse_name = tgui_input_list(owner, "What curse shall befall the damned?", "Curse Selection", available_curses)
 	if(!chosen_curse_name)
 		return
 
-	var/chosen_curse_datum = available_curses[chosen_curse_name]
+	var/datum/status_effect/condemnation/chosen_curse_datum = available_curses[chosen_curse_name]
 	if(!condemnation_roll)
 		condemnation_roll = new()
 	condemnation_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
@@ -425,7 +425,7 @@
 		//not sure if target should get a to_chat?
 		return
 	target.apply_status_effect(chosen_curse_datum)
-	owner.maxbloodpool -= initial(chosen_curse_datum.bloodcost)
+	owner.maxbloodpool -= chosen_curse_datum.bloodcost
 	if(owner.bloodpool > owner.maxbloodpool)
 		owner.bloodpool = owner.maxbloodpool
 

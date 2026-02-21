@@ -18,8 +18,10 @@
 
 /datum/status_effect/condemnation/lying_weakness/on_apply()
 	. = ..()
-	target.gain_trauma(/datum/brain_trauma/mild/mind_echo, TRAUMA_RESILIENCE_ABSOLUTE)
-	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_owner = owner
+		human_owner.gain_trauma(/datum/brain_trauma/mild/mind_echo, TRAUMA_RESILIENCE_ABSOLUTE)
+	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/physical_weakness
 	id = STATUS_EFFECT_PHYSICAL_WEAKNESS
@@ -29,11 +31,11 @@
 
 /datum/status_effect/condemnation/physical_weakness/on_apply()
 	. = ..()
-	target.st_add_stat_mod(STAT_STRENGTH, -1, "physical_weakness")
-	var/mob/living/carbon/human/vampire = target
+	owner.st_add_stat_mod(STAT_STRENGTH, -1, "physical_weakness")
+	var/mob/living/carbon/human/vampire = owner
 	for (var/datum/action/cooldown/blood_power/blood_power in vampire.actions)
 		blood_power.Remove(vampire)
-	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
+	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/mental_weakness
 	id = STATUS_EFFECT_MENTAL_WEAKNESS
@@ -43,9 +45,9 @@
 
 /datum/status_effect/condemnation/mental_weakness/on_apply()
 	. = ..()
-	target.st_add_stat_mod(STAT_CHARISMA, -1, "mental_weakness")
-	target.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "mental_weakness")
-	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
+	owner.st_add_stat_mod(STAT_CHARISMA, -1, "mental_weakness")
+	owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "mental_weakness")
+	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/offspring_weakness
 	id = STATUS_EFFECT_OFFSPRING_WEAKNESS
@@ -55,10 +57,10 @@
 
 /datum/status_effect/condemnation/offspring_weakness/on_apply()
 	. = ..()
-	var/mob/living/carbon/human/vampire = target
+	var/mob/living/carbon/human/vampire = owner
 	for (var/datum/action/cooldown/mob_cooldown/give_vitae/give_vitae in vampire.actions)
 		give_vitae.Remove(vampire)
-	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
+	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/success_weakness
 	id = STATUS_EFFECT_SUCCESS_WEAKNESS
@@ -68,11 +70,11 @@
 
 /datum/status_effect/condemnation/success_weakness/on_apply()
 	. = ..()
-	target.add_movespeed_modifier(/datum/movespeed_modifier/daimonion_curse)
-	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/daimonion_curse)
+	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /atom/movable/screen/alert/status_effect/daimonion_condemnation
 
 	name = "Condemnation"
 	desc = "You've been cursed by infernal magic - permanently weakening your body."
-	icon_state = 'crucible'
+	icon_state = "crucible"
