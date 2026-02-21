@@ -1,4 +1,5 @@
 /datum/curse/daimonion
+	var/name = "daimonion curse"
 	var/genrequired
 	//Amount of blood to permanently tithe
 	var/bloodcurse = 1

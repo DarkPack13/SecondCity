@@ -147,10 +147,9 @@
 	if(.)
 		return
 	var/turf/start = get_turf(owner)
-	var/obj/projectile/flames/flamebolt/H = new(start)
+	var/obj/projectile/flames/H = new(start)
 	H.firer = owner
 	H.damage = 25 + owner.thaum_damage_plus + success_count
-	H.level = 3
 	var/angle = get_angle(owner, target)
 	H.fire(angle, target)
 	to_chat(target, span_danger("A bolt of searing flame flies toward you!"))
@@ -312,13 +311,8 @@
 	light_color = COLOR_ORANGE
 	ricochets_max = 0
 	ricochet_chance = 0
-	var/level = 1
 
-/obj/projectile/flames/flamebolt
-	name = "flame bolt"
-	damage = 20
-
-/obj/projectile/flames/flamebolt/on_hit(atom/target, blocked = FALSE, pierce_hit)
+/obj/projectile/flames/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(!isliving(target))
 		return

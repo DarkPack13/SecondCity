@@ -7411,6 +7411,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\celerity\celerity_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\daimonion\daimonion.dm"
 #include "modular_darkpack\modules\powers\code\discipline\daimonion\daimonion_curses.dm"
+#include "modular_darkpack\modules\powers\code\discipline\daimonion\daimonion_hallucination.dm"
 #include "modular_darkpack\modules\powers\code\discipline\dominate\dominate.dm"
 #include "modular_darkpack\modules\powers\code\discipline\dominate\possession\possession_datums.dm"
 #include "modular_darkpack\modules\powers\code\discipline\dominate\status_effects\conditioning_status_effect.dm"
