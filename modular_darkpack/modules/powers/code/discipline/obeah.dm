@@ -78,18 +78,23 @@
 
 // LMB: Block someone's pain
 // RMB: Put mortal to sleep.
-/datum/discipline_power/obeah/anesthetic_touch/activate(atom/target)
+/datum/discipline_power/obeah/anesthetic_touch/activate(mob/living/target)
 	. = ..()
 	var/chosen_option = show_radial_menu(owner, target, list("Soothe Pain", "Put To Sleep"), radius = 38, require_near = TRUE)
 	switch(chosen_option)
 		if("Soothe Pain")
-			return TRUE
+			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT(type))
+			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), 1 SCENES)
 		if("Put To Sleep")
 			if(iskindred(target))
 				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
 				return TRUE
-			return TRUE
+			target.SetSleeping(10 SCENES) // 30 minutes if left alone
+			target.adjust_blood_pool(1) // Mortal regains a blood point.
 	return TRUE
+
+/datum/discipline_power/obeah/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
+	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT(type))
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
