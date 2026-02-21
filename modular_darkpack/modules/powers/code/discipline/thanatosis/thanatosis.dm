@@ -225,28 +225,30 @@
 	if((successes >= 1) && (successes < 3))
 		target.adjust_stamina_loss(60)
 	else if(successes >= 3)
+		//this ability used to call dismember on chest and head bodyparts. this was an instant round removal, so i changed it so that it just takes away limbs if targeting head or chest
 		if(iscarbon(target))
 			var/mob/living/carbon/deady = target
 			var/obj/item/bodypart/target_part = deady.get_bodypart(check_zone(owner.zone_selected))
-			if(ismundane(target))
-				if(target_part.name == "head")
-					target.visible_message(span_danger("[target]'s head withers into a nub and falls off!"), span_userdanger("Your last thoughts was that your head was getting smaller"))
-					var/obj/item/bodypart/head/head = target.get_bodypart(BODY_ZONE_HEAD)
-					head.dismember()
-				if(target_part.name == "chest")
-					target.visible_message(span_danger("[target]'s left arm withers into nothingness!"), span_userdanger("YOUR LEFT ARM WITHERS INTO NOTHING!"))
-					var/obj/item/bodypart/overflow = target.get_bodypart(BODY_ZONE_L_ARM)
-					overflow.dismember(BURN)
-				else
-					target.visible_message(span_danger("[target]'s [target_part.name] withers into nothingness!"), span_userdanger("YOUR <b>[target_part.name]</b> WITHERS INTO NOTHING!"))
-					target_part.dismember(BURN)
-			//if(iscoraxcrinos(target) || iscrinos(target) || islupus(target) || iscorax(target))
-				//target.adjust_brute_loss(30 * successes)
-			//else
-				//var/datum/wound/blunt/critical/crit_wound = new
-				//crit_wound.apply_wound(target_part)
+			var/list/limb_priority = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+			var/obj/item/bodypart/chosen_part
+			//if they have a limb selected that isnt chest or head
+			if(target_part && !istype(target_part, /obj/item/bodypart/chest) && !istype(target_part, /obj/item/bodypart/head))
+				chosen_part = target_part
+			//then pick from limb_priority
+			else
+				for(var/zone in limb_priority)
+					var/obj/item/bodypart/limb = deady.get_bodypart(zone)
+					if(limb)
+						chosen_part = limb
+						break
+			if(chosen_part)
+				target.visible_message(span_danger("[target]'s [chosen_part.name] withers into nothingness!"), span_userdanger("YOUR <b>[chosen_part.name]</b> WITHERS INTO NOTHING!"))
+				chosen_part.dismember(BURN)
+			else
+				target.visible_message(span_danger("[target]'s body withers under the curse!"), span_userdanger("YOUR BODY WITHERS UNDER THE CURSE!"))
+				target.adjust_brute_loss(150)
 		else
-			target.adjust_brute_loss(200)
+			target.adjust_brute_loss(150)
 
 //NECROSIS
 /datum/discipline_power/thanatosis/necrosis
