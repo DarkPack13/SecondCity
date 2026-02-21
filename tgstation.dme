@@ -7440,6 +7440,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\thaumaturgy\status_effects\blood_rage_status.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\fleshwalls.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\human_flesh.dm"
+#include "modular_darkpack\modules\preferences\height_preference.dm"
 #include "modular_darkpack\modules\quirks\code\negative_quirks\derangement.dm"
 #include "modular_darkpack\modules\radios\code\admin_verb.dm"
 #include "modular_darkpack\modules\radios\code\radio.dm"
