@@ -399,6 +399,8 @@
 
 /datum/discipline_power/daimonion/condemnation/activate(mob/living/target)
 	. = ..()
+
+/*
 	if(LAZYLEN(GLOB.cursed_characters) == 0 || LAZYLEN(GLOB.cursed_characters) > 0 && !(GLOB.cursed_characters.Find(target)))
 		if(!initialized_curses)
 			for(var/i in subtypesof(/datum/curse/daimonion))
@@ -425,3 +427,5 @@
 				GLOB.cursed_characters += target
 	else
 		to_chat(owner, span_warning("This one is already cursed!"))
+
+*/
