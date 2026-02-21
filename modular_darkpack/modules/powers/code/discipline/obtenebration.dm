@@ -10,7 +10,7 @@
 	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
 	mystic.level = level
-	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT(type))
 
 
 /datum/discipline_power/obtenebration

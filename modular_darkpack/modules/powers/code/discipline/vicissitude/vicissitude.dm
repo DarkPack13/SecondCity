@@ -8,7 +8,7 @@
 /datum/discipline/vicissitude/post_gain()
 	. = ..()
 	owner.faction |= VAMPIRE_CLAN_TZIMISCE
-	ADD_TRAIT(owner, TRAIT_VICISSITUDE_KNOWLEDGE, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_VICISSITUDE_KNOWLEDGE, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/vicissitude
 	name = "Vicissitude power name"

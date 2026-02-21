@@ -60,7 +60,7 @@
 
 	human_owner.adjust_blood_pool(-current_bp_cost(human_owner))
 
-	ADD_TRAIT(human_owner, TRAIT_IGNORESLOWDOWN, MAGIC_TRAIT)
+	ADD_TRAIT(human_owner, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT(type))
 
 	addtimer(CALLBACK(src, PROC_REF(end_bloodpower)), cooldown_time)
 
@@ -84,7 +84,7 @@
 	human_owner.st_remove_stat_mod(STAT_DEXTERITY, "blood_power")
 	human_owner.st_remove_stat_mod(STAT_STAMINA, "blood_power")
 
-	REMOVE_TRAIT(human_owner, TRAIT_IGNORESLOWDOWN, MAGIC_TRAIT)
+	REMOVE_TRAIT(human_owner, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT(type))
 
 /datum/action/cooldown/blood_power/proc/set_usage()
 	var/turns = tgui_input_number(owner, "Set turns ([1 TURNS / 10] seconds per turn) to use blood for.", "Set Bloodpower Turns", turns_activated, TURNS_PER_SCENE, 1)
