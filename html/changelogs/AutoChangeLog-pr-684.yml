@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "re-adds reporting masquerade violations and reinforcements"
