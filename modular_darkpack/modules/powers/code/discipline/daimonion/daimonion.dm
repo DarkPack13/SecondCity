@@ -392,13 +392,43 @@
 	target_type = TARGET_LIVING
 	range = 7
 	violates_masquerade = TRUE
+	var/datum/storyteller_roll/condemnation/condemnation_roll
+	var/list/available_curses = list()
 
-	var/initialized_curses = FALSE //can't do this in new since it wouldn't have assigned owner yet. this will do.
-	var/list/curse_names = list()
-	var/list/curses = list()
+/datum/storyteller_roll/condemnation
+	bumper_text = "condemnation"
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/daimonion/condemnation/activate(mob/living/target)
 	. = ..()
+	if(target.has_status_effect(/datum/status_effect/condemnation))
+		to_chat(owner, span_warning("They are already damned!"))
+		return
+
+	if(!available_curses)
+		for(var/curse in subtypesof(/datum/status_effect/condemnation))
+			if(owner.generation <= initial(curse.genrequired))
+				available_curses[initial(curse.name)] = curse
+
+	var/chosen_curse_name = tgui_input_list(owner, "What curse shall befall the damned?", "Curse Selection", available_curses)
+	if(!chosen_curse_name)
+		return
+
+	var/chosen_curse_datum = available_curses[chosen_curse_name]
+	if(!condemnation_roll)
+		condemnation_roll = new()
+	condemnation_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	var/roll = condemnation_roll.st_roll(owner, target)
+	if(roll != ROLL_SUCCESS)
+		to_chat(owner, span_warning("You fail to pierce their mind and the target remains free of your curse."))
+		//not sure if target should get a to_chat?
+		return
+	target.apply_status_effect(chosen_curse_datum)
+	owner.maxbloodpool -= initial(chosen_curse_datum.bloodcost)
+	if(owner.bloodpool > owner.maxbloodpool)
+		owner.bloodpool = owner.maxbloodpool
+
 
 /*
 	if(LAZYLEN(GLOB.cursed_characters) == 0 || LAZYLEN(GLOB.cursed_characters) > 0 && !(GLOB.cursed_characters.Find(target)))
