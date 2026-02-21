@@ -43,6 +43,7 @@ the scar is received and an extra Gnosis point is spent.
 	name = "Sense Wyrm"
 	desc = "This Gift allows the werewolf to trace the location of all wyrm-tainted entities within the area."
 	button_icon_state = "sense_wyrm"
+	rank = 1
 	var/list/navigation_images = list()
 
 /datum/action/cooldown/power/gift/sense_wyrm/Activate(atom/target)
@@ -111,6 +112,7 @@ the scar is received and an extra Gnosis point is spent.
 	name = "Spirit Speech"
 	desc = "This Gift allows the Garou to communicate with encountered spirits."
 	button_icon_state = "spirit_speech"
+	rank = 1
 
 /datum/action/cooldown/power/gift/spirit_speech/Grant(mob/granted_to)
 	. = ..()

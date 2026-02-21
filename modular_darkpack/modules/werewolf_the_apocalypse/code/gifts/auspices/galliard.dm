@@ -14,7 +14,7 @@
 		if(length(C.beastmaster) > 3)
 			var/mob/living/simple_animal/hostile/beastmaster/B = pick(C.beastmaster)
 			qdel(B)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/wolves.ogg', 75, FALSE)
+		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
 		if(!length(C.beastmaster))
 			var/datum/action/beastmaster_stay/E1 = new()
 			E1.Grant(C)

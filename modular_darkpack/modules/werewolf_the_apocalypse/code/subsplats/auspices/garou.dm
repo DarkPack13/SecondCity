@@ -63,7 +63,11 @@
 	name = AUSPICE_PHILODOX
 	desc = "Buried so heavily in his role as impartial judge and jury, the Philodox may seem aloof, even surprisingly cold-blooded for a werewolf. Those born under the waxing Half Moon may seem unusually serene and disaffected, their emotions only emerging when their Rage comes to a boil. The waning-moon Philodox is more incisive and judgmental, his all-seeing eye always carefully watching his packmates and colleagues for any departure from the expected. The Half Moons' opinions are somewhat feared, yet highly respected - a word of praise or condemnation means much coming from those born to see both sides of every struggle."
 	start_rage = 3
-	gifts_provided= list(/datum/action/cooldown/power/gift/scent_of_the_true_form)//,/datum/action/cooldown/power/gift/resist_pain, /datum/action/cooldown/power/gift/truth_of_gaia)
+	gifts_provided= list(
+		/datum/action/cooldown/power/gift/resist_pain,
+		/datum/action/cooldown/power/gift/scent_of_the_true_form,
+		/datum/action/cooldown/power/gift/truth_of_gaia,
+	)
 	moons_born_under = list(MOON_FIRST_QUARTER, MOON_LAST_QUARTER)
 
 /datum/subsplat/werewolf/auspice/garou/philodox/rank_requirments(list/renown)

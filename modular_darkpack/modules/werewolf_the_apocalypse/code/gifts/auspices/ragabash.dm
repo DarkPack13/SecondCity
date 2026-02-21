@@ -27,7 +27,7 @@
 
 /datum/status_effect/blur_of_the_milky_eye/on_apply()
 	. = ..()
-	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/milky_blur.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/milky_blur.ogg', 75, FALSE)
 	owner.alpha = 50
 	apply_wibbly_filters(owner)
 

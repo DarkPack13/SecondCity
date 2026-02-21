@@ -3,14 +3,38 @@
 	name = "Resist Pain"
 	desc = "Through force of will, the Philodox is able to ignore the pain of his wounds and continue acting normally."
 	button_icon_state = "resist_pain"
-	rage_req = 2
+	rank = 1
+	willpower_req = 1
 
 /datum/action/cooldown/power/gift/resist_pain/Activate(atom/target)
 	. = ..()
-	to_chat(owner, span_notice("You feel your skin thickering..."))
-	playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/resist_pain.ogg', 75, FALSE)
+	var/mob/living/living_owner = astype(owner)
 
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/resist_pain.ogg', 75, FALSE)
+	living_owner.apply_status_effect(/datum/status_effect/resist_pain)
+
+/datum/status_effect/resist_pain
+	id = "resist_pain"
+	duration = 1 SCENES
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /atom/movable/screen/alert/status_effect/gift/resist_pain
+
+/datum/status_effect/resist_pain/on_apply()
+	. = ..()
+
+	to_chat(owner, span_notice("You feel your skin thickening..."))
+	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), GIFT_TRAIT)
+
+/datum/status_effect/resist_pain/on_remove()
+	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), GIFT_TRAIT)
 	to_chat(owner, span_warning("Your skin is thin again..."))
+
+	return ..()
+
+/atom/movable/screen/alert/status_effect/gift/resist_pain
+	name = /datum/action/cooldown/power/gift/resist_pain::name
+	desc = /datum/action/cooldown/power/gift/resist_pain::desc
+	overlay_state = /datum/action/cooldown/power/gift/resist_pain::button_icon_state
 
 
 /datum/action/cooldown/power/gift/scent_of_the_true_form
@@ -121,10 +145,39 @@
 	StartCooldown()
 	return TRUE
 
-/*
+
 /datum/action/cooldown/power/gift/truth_of_gaia
 	name = "Truth Of Gaia"
 	desc = "As judges of the Litany, Philodox have the ability to sense whether others have spoken truth or falsehood."
 	button_icon_state = "truth_of_gaia"
-//	rage_req = 1
-*/
+	click_to_activate = TRUE
+	rank = 1
+
+/datum/action/cooldown/power/gift/truth_of_gaia/Activate(atom/target)
+	var/mob/living/living_target = astype(target)
+	if(!living_target)
+		return FALSE
+
+	. = ..()
+
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
+	roll_datum.difficulty = living_target.st_get_stat(STAT_MANIPULATION) + living_target.st_get_stat(STAT_SUBTERFUGE)
+	var/roll_result = roll_datum.st_roll(owner)
+
+	if(roll_result != ROLL_SUCCESS)
+		return
+
+	SEND_SOUND(target, sound('sound/effects/magic/clockwork/invoke_general.ogg', volume = 50)) // LOOK OUT! A WEREWOLF IS SMELLING YOU!
+	var/response_w = tgui_input_list(target, "Does your character believe your last statement is the truth?", name, list("Yes", "No", "Not sure"))
+
+	switch(response_w)
+		if("Yes")
+			to_chat(owner, span_notice("[target]'s scent bares the aroma of truthfulness."))
+		if("No") // Lying!
+			to_chat(owner, span_notice("[target]'s scent bares the aroma of deceit."))
+		else // Dunno
+			to_chat(owner, span_notice("[target]'s scent is uncertain. You can't determine the truth one way or the other."))
+
+	StartCooldown()
+	return TRUE
