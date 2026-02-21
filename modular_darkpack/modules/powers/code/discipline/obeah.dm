@@ -76,6 +76,7 @@
 	range = 1
 	cooldown_length = 1 TURNS
 
+// TO DO, make this use two mouse buttons instead of radial menu.
 // LMB: Block someone's pain
 // RMB: Put mortal to sleep.
 /datum/discipline_power/obeah/anesthetic_touch/activate(mob/living/target)
