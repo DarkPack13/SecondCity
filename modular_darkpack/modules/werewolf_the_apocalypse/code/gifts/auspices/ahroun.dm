@@ -54,7 +54,7 @@
 
 /datum/action/cooldown/power/gift/inspiration/Activate(atom/target)
 	. = ..()
-	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspiration.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspiration.ogg', 75, FALSE)
 	owner.emote("scream")
 	for(var/mob/living/nearby_guy in oviewers(7, owner))
 		nearby_guy.apply_status_effect(/datum/status_effect/inspiration)
@@ -93,7 +93,7 @@
 
 /datum/action/cooldown/power/gift/razor_claws/Activate(atom/target)
 	to_chat(owner, span_notice("You feel your claws sharpening..."))
-	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/razor_claws.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/razor_claws.ogg', 75, FALSE)
 	if(!do_after(owner, 1 TURNS))
 		return
 	. = ..()
@@ -109,7 +109,7 @@
 
 /datum/status_effect/razor_claws/on_apply()
 	. = ..()
-	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/razor_claws.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/razor_claws.ogg', 75, FALSE)
 	ADD_TRAIT(owner, TRAIT_RAZOR_CLAWS, GIFT_TRAIT)
 
 /datum/status_effect/razor_claws/on_remove()
