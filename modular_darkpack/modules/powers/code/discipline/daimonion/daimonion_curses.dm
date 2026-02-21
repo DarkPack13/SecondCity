@@ -40,7 +40,7 @@
 	. = ..()
 	target.st_add_stat_mod(STAT_STRENGTH, -1, "physical_weakness")
 	var/mob/living/carbon/human/vampire = target
-	for (var/datum/action/blood_power/blood_power in vampire.actions)
+	for (var/datum/action/cooldown/blood_power/blood_power in vampire.actions)
 		blood_power.Remove(vampire)
 	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
@@ -53,7 +53,7 @@
 /datum/curse/daimonion/offspring_weakness/activate(mob/living/target)
 	. = ..()
 	var/mob/living/carbon/human/vampire = target
-	for (var/datum/action/give_vitae/give_vitae in vampire.actions)
+	for (var/datum/action/cooldown/mob_cooldown/give_vitae/give_vitae in vampire.actions)
 		give_vitae.Remove(vampire)
 	to_chat(target, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 

@@ -284,25 +284,26 @@
 
 /datum/discipline_power/daimonion/psychomachia/activate(mob/living/target)
 	. = ..()
-	if(isgarou(target))
-		switch(target.auspice.tribe.name)
-			if ("Black Spiral Dancers")
+	var/datum/splat/werewolf/shifter/garou_splat = isgarou(target)
+	if(garou_splat)
+		switch(garou_splat.tribe.name)
+			if (TRIBE_BLACK_SPIRAL_DANCERS)
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
 				target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"),)
 				target.Paralyze(5 SECONDS)
 			else
-				if (target.auspice.rage > 4)
+				if (garou_splat.rage > 4)
 					target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh1.ogg", 50, FALSE)
 					to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
 					new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
-					target.rollfrenzy()
+					//target.rollfrenzy() DARKPACK TODO: Frenzy
 				else
 					to_chat(target, span_cult("I can feel a overwhelming presence.. I NEED TO RUN!!"))
-					new /datum/hallucination/baali(target,TRUE,"wyrm")
+					new /obj/effect/client_image_holder/baali_demon/wyrm(get_turf(target), list(target))
 					target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh2.ogg", 50, FALSE)
-	if(iskindred(target))
-		var/mob/living/carbon/human/vampire = target
-		switch(clan.name)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	if(kindred_splat)
+		switch(kindred_splat.clan.name)
 			if(VAMPIRE_CLAN_TOREADOR)
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh2.ogg", 50, FALSE)
 				new /datum/hallucination/fire(target, TRUE)
@@ -312,14 +313,14 @@
 			if(VAMPIRE_CLAN_LASOMBRA)
 				to_chat(target, span_cult("THE SHADOWS BETRAY ME, SEEKING MY LIFE"))
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
-				target.blind_eyes(6 SECONDS)
+				//target.blind_eyes(6 SECONDS) ok how do i make something blind
 				target.Paralyze(6 SECONDS)
 				return
 			if(VAMPIRE_CLAN_BRUJAH)
 				to_chat(target, span_warning("You see visions of an underground stone monument weeping blood."))
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
 				to_chat(target, span_cult("THE BEAST RAGES AGAINST THIS VISION!!"))
-				target.rollfrenzy()
+				//target.rollfrenzy() DARKPACK TODO : Frenzy
 			if(VAMPIRE_CLAN_TZIMISCE)
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
 				to_chat(target, span_cult("I SEE VISIONS OF FLAME ENGULFING MY DOMAIN"))
@@ -334,7 +335,7 @@
 				return
 			if(VAMPIRE_CLAN_TREMERE)
 				to_chat(target, span_cult("Blood pours out from my body, manifesting into a grotesque form"))
-				new /datum/hallucination/baali(target,TRUE,"tremere")
+				new /obj/effect/client_image_holder/baali_demon/tremere(get_turf(target), list(target))
 				return
 			if(VAMPIRE_CLAN_BAALI)
 				to_chat(target, span_notice("The sacred icons appearing before you lack the true substance of faith"))
@@ -343,7 +344,7 @@
 				return
 			if(VAMPIRE_CLAN_BANU_HAQIM)
 				to_chat(target, span_cult("An overwhelming presence manifests around me.."))
-				new /datum/hallucination/baali(target,TRUE,"banu")
+				new /obj/effect/client_image_holder/baali_demon/banu(get_turf(target), list(target))
 				return
 			if(VAMPIRE_CLAN_SALUBRI)
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh1.ogg", 50, FALSE)
@@ -362,28 +363,26 @@
 			if(VAMPIRE_CLAN_GIOVANNI)
 				to_chat(target, span_cult("A sense of profound dread enters you as soundless words enter your mind"))
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
-				new /datum/hallucination/baali(target,TRUE,"spectre")
+				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
 				return
 			if(VAMPIRE_CLAN_CAPPADOCIAN)
 				to_chat(target, span_cult("Freshly manifest despair enters your decaying flesh as you feel a hauntingly empty presence."))
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
-				new /datum/hallucination/baali(target,TRUE,"spectre")
+				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
 				return
 			else
 				to_chat(target, span_cult("THE BEAST SCREAMS IN MY MIND TO RUN"))
-				new /datum/hallucination/baali(target,TRUE,"demon")
+				new /obj/effect/client_image_holder/baali_demon(get_turf(target), list(target))
 				return
 	if(isghoul(target))
 		to_chat(target, span_cult("SOMETHING IS COMING, WHAT IS IT?!!"))
-		new /datum/hallucination/baali(target,TRUE,"demon")
+		new /obj/effect/client_image_holder/baali_demon(get_turf(target), list(target))
 	if(!iskindred(target) && !isghoul(target) && !isgarou(target))
 		to_chat(target, span_cult("MY WORST NIGHTMARES FLASH BEFORE MY EYES"))
 		target.Paralyze(7 SECONDS)
 
 
 //CONDEMNATION
-
-
 /datum/discipline_power/daimonion/condemnation
 	name = "Condemnation"
 	desc = "Condemn a soul to suffering."
