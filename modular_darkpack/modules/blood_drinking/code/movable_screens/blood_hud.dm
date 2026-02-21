@@ -1,14 +1,27 @@
-#define ui_living_bloodpool "EAST-1:28,CENTER-4:14"
+#define UI_LIVING_BLOODPOOL "EAST-1:28,CENTER-4:14"
 /atom/movable/screen/bloodpool
 	name = "bloodpool"
 	//icon = 'modular_darkpack/modules/blood_drinking/icons/bloodpool.dmi'
 	//32x32 version
 	icon = 'modular_darkpack/modules/blood_drinking/icons/old_bloodpool.dmi'
 	icon_state = "blood0"
-	screen_loc = ui_living_bloodpool
+	screen_loc = UI_LIVING_BLOODPOOL
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/atom/movable/screen/bloodpool/Click()
+/atom/movable/screen/bloodpool/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+
+	update_icon()
+	register_context()
+
+/atom/movable/screen/bloodpool/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+
+	context[SCREENTIP_CONTEXT_LMB] = "Check blood points"
+
+	return CONTEXTUAL_SCREENTIP_SET
+
+/atom/movable/screen/bloodpool/Click(location, control, params)
 	if(isliving(usr))
 		var/mob/living/bloodbag = usr
 		bloodbag.update_blood_hud()
@@ -19,13 +32,19 @@
 		else
 			to_chat(bloodbag, span_notice("You've got [bloodbag.bloodpool]/[bloodbag.maxbloodpool] blood points."))
 
-	. = ..()
+	return ..()
+
+/atom/movable/screen/bloodpool/update_icon_state()
+	var/mob/living/owner = hud?.mymob
+	if(!istype(owner))
+		return
+	var/bp_amount = clamp(round((owner.bloodpool/owner.maxbloodpool)*10), 0, 10)
+	icon_state = "blood[bp_amount]"
+	return ..()
 
 /mob/living/proc/update_blood_hud()
-	if(!client || !hud_used)
+	if(!hud_used)
 		return
-	if(hud_used.bloodpool_icon)
-		var/emm = clamp(round((bloodpool/maxbloodpool)*10), 0, 10)
-		hud_used.bloodpool_icon.icon_state = "blood[emm]"
+	hud_used.bloodpool_icon?.update_icon()
 
-#undef ui_living_bloodpool
+#undef UI_LIVING_BLOODPOOL
