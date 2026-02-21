@@ -228,7 +228,7 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/deady = target
 			var/obj/item/bodypart/target_part = deady.get_bodypart(check_zone(owner.zone_selected))
-			if(ismudane(target))
+			if(ismundane(target))
 				if(target_part.name == "head")
 					target.visible_message(span_danger("[target]'s head withers into a nub and falls off!"), span_userdanger("Your last thoughts was that your head was getting smaller"))
 					var/obj/item/bodypart/head/head = target.get_bodypart(BODY_ZONE_HEAD)
