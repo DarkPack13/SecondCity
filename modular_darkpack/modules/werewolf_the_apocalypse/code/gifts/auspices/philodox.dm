@@ -103,7 +103,7 @@
 				secondary_descriptor = "[pick(wyrm_descriptors)]"
 		to_chat(owner, span_purple("[victim] smells like kin[secondary_descriptor ? "...<br>...and of [secondary_descriptor]." : "."]"))
 	else
-		var/successes = SSroll.storyteller_roll(caster.st_get_stat(STAT_PERCEPTION) + PRIMAL_URGE_PLACEHOLDER, 6, owner, numerical = TRUE)
+		var/successes = SSroll.storyteller_roll_stats(list(STAT_PERCEPTION), PRIMAL_URGE_PLACEHOLDER, 6, owner, numerical = TRUE)
 		switch(successes)
 			if(0)
 				to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
@@ -122,6 +122,8 @@
 //					to_chat(owner, span_purple("[victim] smells of brimstone."))
 //				if(ismummy(victim))
 //					to_chat(owner, span_purple("[victim] smells of [pick(wyld_descriptors)]"))
+				else
+					to_chat(owner, span_purple("[victim] smells mundane."))
 			if(4)
 				if(iskindred(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
@@ -139,6 +141,8 @@
 //					to_chat(owner, span_purple("[victim] smells of [pick(wyld_descriptors)]"))
 //				if(ismage(victim))
 //					to_chat(owner, span_purple("[victim] smells of pure energy."))
+				else
+					to_chat(owner, span_purple("[victim] smells mundane."))
 
 	caster.emote("sniff")
 
@@ -169,15 +173,16 @@
 		return
 
 	SEND_SOUND(target, sound('sound/effects/magic/clockwork/invoke_general.ogg', volume = 50)) // LOOK OUT! A WEREWOLF IS SMELLING YOU!
-	var/response_w = tgui_input_list(target, "Does your character believe your last statement is the truth?", name, list("Yes", "No", "Not sure"))
 
-	switch(response_w)
-		if("Yes")
-			to_chat(owner, span_notice("[target]'s scent bares the aroma of truthfulness."))
-		if("No") // Lying!
-			to_chat(owner, span_notice("[target]'s scent bares the aroma of deceit."))
-		else // Dunno
-			to_chat(owner, span_notice("[target]'s scent is uncertain. You can't determine the truth one way or the other."))
+	ASYNC
+		var/response_w = tgui_input_list(target, "Does your character believe your last statement is the truth?", name, list("Yes", "No", "Not sure"))
+		switch(response_w)
+			if("Yes")
+				to_chat(owner, span_notice("[target]'s scent bares the aroma of truthfulness."))
+			if("No") // Lying!
+				to_chat(owner, span_notice("[target]'s scent bares the aroma of deceit."))
+			else // Dunno
+				to_chat(owner, span_notice("[target]'s scent is uncertain. You can't determine the truth one way or the other."))
 
 	StartCooldown()
 	return TRUE

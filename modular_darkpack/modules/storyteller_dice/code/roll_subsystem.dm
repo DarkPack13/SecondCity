@@ -32,6 +32,13 @@ SUBSYSTEM_DEF(roll)
 	dice_roll.numerical = numerical
 	return dice_roll.st_roll(roller, roller, dice)
 
+/datum/controller/subsystem/roll/proc/storyteller_roll_stats(applic_stats = list(), bonus = 0, difficulty = 6, mob/living/roller = null, numerical = FALSE)
+	var/datum/storyteller_roll/dice_roll = new()
+	dice_roll.applicable_stats = applic_stats
+	dice_roll.difficulty = difficulty
+	dice_roll.numerical = numerical
+	return dice_roll.st_roll(roller, roller, bonus)
+
 //Config datums for exploding dice
 /datum/config_entry/flag/on_crit_additional_success
 
