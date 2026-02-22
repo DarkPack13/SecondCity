@@ -1,6 +1,8 @@
 import {
   type FeatureChoiced,
   type FeatureValueProps,
+  type FeatureToggle,
+  CheckboxInput,
   FeatureExternalInput,
 } from '../base';
 
@@ -13,11 +15,7 @@ export const clan_mark: FeatureChoiced = {
   },
 };
 
-export const gargoyle_legs_and_tail: FeatureChoiced = {
+export const gargoyle_legs_and_tail: FeatureToggle = {
   name: 'Gargoyle Legs and Tail',
-  component: (
-    props: FeatureValueProps<string, string>,
-  ) => {
-    return <FeatureExternalInput {...props} />;
-  },
+  component: CheckboxInput,
 };

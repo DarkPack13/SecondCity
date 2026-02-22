@@ -40,14 +40,14 @@
 	target.apply_overlay(clan.accessories_layers[value])
 
 //gargoyle legs and tail
-/datum/preference/external_choiced/gargoyle_legs_and_tail
+/datum/preference/toggle/gargoyle_legs_and_tail
 	savefile_key = "gargoyle_legs_and_tail"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_inherent_trait = TRAIT_VTM_CLANS
 
-/datum/preference/external_choiced/gargoyle_legs_and_tail/has_relevant_feature(datum/preferences/preferences)
+/datum/preference/toggle/gargoyle_legs_and_tail/has_relevant_feature(datum/preferences/preferences)
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
@@ -58,14 +58,8 @@
 	if(istype(clan, /datum/vampire_clan/gargoyle))
 		return TRUE
 
-/datum/preference/external_choiced/gargoyle_legs_and_tail/get_choices(datum/preferences/preferences)
-	return list("Enabled", "Disabled")
-
-/datum/preference/external_choiced/gargoyle_legs_and_tail/create_informed_default_value(datum/preferences/preferences)
-	return pick(get_choices(preferences))
-
-/datum/preference/external_choiced/gargoyle_legs_and_tail/apply_to_human(mob/living/carbon/human/target, value)
-	if(value == "Enabled")
+/datum/preference/toggle/gargoyle_legs_and_tail/apply_to_human(mob/living/carbon/human/target, value)
+	if(value)
 		var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/vampire_the_masquerade/icons/features.dmi', "gargoyle_legs_n_tails", -BODY_ADJ_LAYER)
 		target.overlays_standing[BODY_ADJ_LAYER] = acc_overlay
 		target.apply_overlay(BODY_ADJ_LAYER)
