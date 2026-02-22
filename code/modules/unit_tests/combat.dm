@@ -2,6 +2,7 @@
 	var/mob/living/carbon/human/puncher = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 
+	puncher.st_set_stat(STAT_STRENGTH, 1) // DARKPACK EDIT ADD
 	// Avoid all randomness in tests
 	ADD_TRAIT(puncher, TRAIT_PERFECT_ATTACKER, INNATE_TRAIT)
 

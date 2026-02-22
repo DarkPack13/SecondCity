@@ -1,0 +1,13 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Readds garou"
+  - rscadd: "Moon phase is calculated mostly accurately based on in-game day"
+  - rscadd: "Rage gained from looking at the moon is now based on phase"
+  - rscadd: "Howl emote that can be used by dogs, dogs (garou), or dogs (gangrel)"
+  - rscadd: "Re-implements 1 gift for each auspice"
+  - bugfix: "Blood-pool icon is properly updated when its added to you"
+  - admin: "Adjustments to stats and important prefs can be properly viewed in the log viewers"
+  - balance: "Makes generic helpers to represent \"Heal this amount of \"dots\" of damage\". Gives this to garou at 1 dot every \"turn\" (5 seconds at the time of writing)"
+  - balance: "Punching basic mobs and humans now calculate damage based on strength"
+  - balance: "W20 silver bullet handling. No agg damage in breed form. 5 bullets are a guaranteed loss of gnosis."

@@ -1,7 +1,7 @@
 /datum/preference/external_choiced/clan_mark
 	savefile_key = "clan_mark"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
+	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_inherent_trait = TRAIT_VTM_CLANS
 

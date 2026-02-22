@@ -7,7 +7,7 @@
 	config_tag = "JANITOR"
 	outfit = /datum/outfit/job/vampire/janitor
 	job_flags = CITY_JOB_FLAGS
-	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
+	allowed_splats = SPLAT_ALL
 	department_for_prefs = /datum/job_department/city_services
 	departments_list = list(
 		/datum/job_department/city_services,

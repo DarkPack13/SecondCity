@@ -672,6 +672,8 @@
 		return
 	if(user.IsUnconscious() || HAS_TRAIT(user, TRAIT_INCAPACITATED) || HAS_TRAIT(user, TRAIT_RESTRAINED))
 		return
+	if(!ISADVANCEDTOOLUSER(user))
+		return
 	var/turn_speed = min(abs(speed_in_pixels) / 10, 3)
 	switch(direction)
 		if(NORTH)
