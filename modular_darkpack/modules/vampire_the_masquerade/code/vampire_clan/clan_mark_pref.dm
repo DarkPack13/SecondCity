@@ -55,7 +55,7 @@
 	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
-	if(istype(clan, /datum/subsplat/vampire_clan/gargoyle))
+	if(istype(clan, /datum/vampire_clan/gargoyle))
 		return TRUE
 
 /datum/preference/external_choiced/gargoyle_legs_and_tail/get_choices(datum/preferences/preferences)
