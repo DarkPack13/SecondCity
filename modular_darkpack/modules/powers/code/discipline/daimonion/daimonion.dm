@@ -428,32 +428,3 @@
 		owner.bloodpool = owner.maxbloodpool
 
 
-/*
-	if(LAZYLEN(GLOB.cursed_characters) == 0 || LAZYLEN(GLOB.cursed_characters) > 0 && !(GLOB.cursed_characters.Find(target)))
-		if(!initialized_curses)
-			for(var/i in subtypesof(/datum/curse/daimonion))
-				var/datum/curse/daimonion/daimonion_curse = new i
-				curses += daimonion_curse
-				if(owner.generation <= daimonion_curse.genrequired)
-					curse_names += initial(daimonion_curse.name)
-				initialized_curses = TRUE
-
-		to_chat(owner, span_userdanger("The greatest of curses come with the greatest of costs. Are you willing to take the risk of total damnation?"))
-		var/chosencurse = tgui_input_list(owner, "Pick a curse to bestow:", "Daimonion", curse_names)
-		if(!chosencurse)
-			return
-		for(var/datum/curse/daimonion/C in curses)
-			if(C.name == chosencurse)
-				if(SSroll.storyteller_roll((owner.st_get_stat(STAT_INTELLIGENCE) + owner.st_get_stat(STAT_OCCULT)), target.st_get_stat(STAT_PERMANENT_WILLPOWER), mobs_to_show_output = owner) == !ROLL_SUCCESS)
-					to_chat(owner, span_warning("You fail to pierce their mind!"))
-					to_chat(target, span_warning("You resist something that tried to pierce your mind."))
-					return
-				C.activate(target)
-				owner.maxbloodpool -= C.bloodcurse
-				if(owner.bloodpool > owner.maxbloodpool)
-					owner.bloodpool = owner.maxbloodpool
-				GLOB.cursed_characters += target
-	else
-		to_chat(owner, span_warning("This one is already cursed!"))
-
-*/
