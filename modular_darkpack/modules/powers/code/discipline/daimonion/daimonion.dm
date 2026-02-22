@@ -54,14 +54,15 @@
 	if(iskindred(target))
 		baali_get_moral_failings(target, owner)
 		baali_get_stolen_disciplines(target, owner)
+	/* DARKPACK TODO - bloodbonds
 	if(isghoul(target))
 		var/mob/living/carbon/human/ghoul = target
-		/* DARKPACK TODO - bloodbonds
+
 		if(ghoul.mind.enslaved_to)
 			to_chat(owner, span_notice("Victim is addicted to vampiric vitae and its true master is [ghoul.mind.enslaved_to]"))
 		else
 			to_chat(owner, span_notice("Victim is addicted to vampiric vitae, but is independent and free."))
-		*/
+	*/
 	/* DARKPACK TODO : Kuei-Jin
 	if(iscathayan(target))
 		if(target.mind.dharma?.Po == "Legalist")
