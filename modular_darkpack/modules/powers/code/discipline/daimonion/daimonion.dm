@@ -285,47 +285,47 @@
 	if(garou_splat)
 		switch(garou_splat.tribe.name)
 			if(TRIBE_BLACK_SPIRAL_DANCERS)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
 				target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"),)
 				target.Paralyze(5 SECONDS)
 			else
 				if(garou_splat.rage > 4)
-					target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh1.ogg", 50, FALSE)
+					target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 					to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
 					new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
 					//target.rollfrenzy() DARKPACK TODO: Frenzy
 				else
 					to_chat(target, span_cult("I can feel a overwhelming presence.. I NEED TO RUN!!"))
 					new /obj/effect/client_image_holder/baali_demon/wyrm(get_turf(target), list(target))
-					target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh2.ogg", 50, FALSE)
+					target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
 	if(kindred_splat)
 		switch(kindred_splat.clan.name)
 			if(VAMPIRE_CLAN_TOREADOR)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh2.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
 				new /datum/hallucination/fire(target, TRUE)
 				to_chat(target, span_cult("FLAMES ENGULF MY BEAUTY"))
 				target.Paralyze(5 SECONDS)
 				return
 			if(VAMPIRE_CLAN_LASOMBRA)
 				to_chat(target, span_cult("THE SHADOWS BETRAY ME, SEEKING MY LIFE"))
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
 				//target.blind_eyes(6 SECONDS) ok how do i make something blind
 				target.Paralyze(6 SECONDS)
 				return
 			if(VAMPIRE_CLAN_BRUJAH)
 				to_chat(target, span_warning("You see visions of an underground stone monument weeping blood."))
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
 				to_chat(target, span_cult("THE BEAST RAGES AGAINST THIS VISION!!"))
 				//target.rollfrenzy() DARKPACK TODO : Frenzy
 			if(VAMPIRE_CLAN_TZIMISCE)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
 				to_chat(target, span_cult("I SEE VISIONS OF FLAME ENGULFING MY DOMAIN"))
 				new /datum/hallucination/fire(target, TRUE)
 				target.Paralyze(6 SECONDS)
 				return
 			if(VAMPIRE_CLAN_MALKAVIAN)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/malklaugh.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
 				target.Paralyze(6 SECONDS)
 				target.visible_message(span_warning("[target] repeatedly bashes their head against the ground"), span_cult("THE WHISPERS ARE OVERTAKING ME"),)
 				target.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
@@ -344,7 +344,7 @@
 				new /obj/effect/client_image_holder/baali_demon/banu(get_turf(target), list(target))
 				return
 			if(VAMPIRE_CLAN_SALUBRI)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh1.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 				to_chat(target, span_warning("My third eye begins to reflexively open.."))
 				target.visible_message(span_warning("[target] tightly grasps their forehead, trying to conceal something"), span_cult("I MUST HIDE MY NATURE"),)
 				target.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
@@ -352,19 +352,19 @@
 				return
 			/* DARKPACK TODO: Warrior Salubri / Salubri Warrior
 			if(VAMPIRE_CLAN_SALUBRI_WARRIOR)
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh2.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
 				to_chat(target, span_cult("BRIMSTONE AND FLAME AWAIT ME BEFORE MY REVENGE'S END"))
 				target.rollfrenzy()
 				return
 			*/
 			if(VAMPIRE_CLAN_GIOVANNI)
 				to_chat(target, span_cult("A sense of profound dread enters you as soundless words enter your mind"))
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
 				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
 				return
 			if(VAMPIRE_CLAN_CAPPADOCIAN)
 				to_chat(target, span_cult("Freshly manifest despair enters your decaying flesh as you feel a hauntingly empty presence."))
-				target.playsound_local(target, "modular_tfn/modules/daim/audio/eldritchlaugh.ogg", 50, FALSE)
+				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
 				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
 				return
 			else
