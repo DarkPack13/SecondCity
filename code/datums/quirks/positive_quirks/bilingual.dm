@@ -1,8 +1,8 @@
 /datum/quirk/bilingual
-	name = "Language" // DARKPACK EDIT CHANGE
+	name = "Language" // DARKPACK EDIT CHANGE - MERITS/FLAWS
 	desc = "Over the years you've picked up an extra language!"
 	icon = FA_ICON_GLOBE
-	value = 4
+	value = 1 // DARKPACK EDIT CHANGE - MERITS/FLAWS
 	gain_text = span_notice("Some of the words of the people around you certainly aren't common. Good thing you studied for this.")
 	lose_text = span_notice("You seem to have forgotten your second language.")
 	medical_record_text = "Patient speaks multiple languages."
