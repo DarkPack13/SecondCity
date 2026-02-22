@@ -246,9 +246,9 @@
 	var/angle = get_angle(owner, target)
 	created_fireball.fire(angle, target)
 
-//PSYCHOMACHIA
-/datum/discipline_power/daimonion/psychomachia
-	name = "Psychomachia"
+//PSYCHOMANIA
+/datum/discipline_power/daimonion/psychomania
+	name = "Psychomania"
 	desc = "Bring forth the target's greatest fear."
 
 	level = 4
@@ -261,8 +261,9 @@
 
 /datum/storyteller_roll/psychomania
 	bumper_text = "psychomania"
+	roll_output_type = ROLL_PRIVATE
 
-/datum/discipline_power/daimonion/psychomachia/pre_activation_checks(mob/living/target)
+/datum/discipline_power/daimonion/psychomania/pre_activation_checks(mob/living/target)
 	if(!psychomania_roll)
 		psychomania_roll = new()
 	//forces the subject's player to roll her lowest Virtue
@@ -279,7 +280,7 @@
 	to_chat(owner, span_warning("[target] is too pure to manifest their fears!"))
 	return FALSE
 
-/datum/discipline_power/daimonion/psychomachia/activate(mob/living/target)
+/datum/discipline_power/daimonion/psychomania/activate(mob/living/target)
 	. = ..()
 	var/datum/splat/werewolf/shifter/garou_splat = isgarou(target)
 	if(garou_splat)
@@ -296,11 +297,12 @@
 					//target.rollfrenzy() DARKPACK TODO: Frenzy
 				else
 					to_chat(target, span_cult("I can feel a overwhelming presence.. I NEED TO RUN!!"))
-					new /obj/effect/client_image_holder/baali_demon/wyrm(get_turf(target), list(target))
+					var/obj/effect/client_image_holder/baali_demon/wyrm/demon = new(get_turf(target), list(target))
+					RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 					target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
 	if(kindred_splat)
-		switch(kindred_splat.clan.name)
+		switch(kindred_splat.clan.id)
 			if(VAMPIRE_CLAN_TOREADOR)
 				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
 				new /datum/hallucination/fire(target, TRUE)
@@ -332,7 +334,8 @@
 				return
 			if(VAMPIRE_CLAN_TREMERE)
 				to_chat(target, span_cult("Blood pours out from my body, manifesting into a grotesque form"))
-				new /obj/effect/client_image_holder/baali_demon/tremere(get_turf(target), list(target))
+				var/obj/effect/client_image_holder/baali_demon/tremere/demon = new(get_turf(target), list(target))
+				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
 			if(VAMPIRE_CLAN_BAALI)
 				to_chat(target, span_notice("The sacred icons appearing before you lack the true substance of faith"))
@@ -341,7 +344,8 @@
 				return
 			if(VAMPIRE_CLAN_BANU_HAQIM)
 				to_chat(target, span_cult("An overwhelming presence manifests around me.."))
-				new /obj/effect/client_image_holder/baali_demon/banu(get_turf(target), list(target))
+				var/obj/effect/client_image_holder/baali_demon/banu/demon = new(get_turf(target), list(target))
+				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
 			if(VAMPIRE_CLAN_SALUBRI)
 				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
@@ -360,24 +364,54 @@
 			if(VAMPIRE_CLAN_GIOVANNI)
 				to_chat(target, span_cult("A sense of profound dread enters you as soundless words enter your mind"))
 				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
-				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
+				var/obj/effect/client_image_holder/baali_demon/spectre/demon = new(get_turf(target), list(target))
+				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
 			if(VAMPIRE_CLAN_CAPPADOCIAN)
 				to_chat(target, span_cult("Freshly manifest despair enters your decaying flesh as you feel a hauntingly empty presence."))
 				target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
-				new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))
+				var/obj/effect/client_image_holder/baali_demon/spectre/demon = new(get_turf(target), list(target))
+				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
 			else
 				to_chat(target, span_cult("THE BEAST SCREAMS IN MY MIND TO RUN"))
-				new /obj/effect/client_image_holder/baali_demon(get_turf(target), list(target))
+				var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
+				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
 	if(isghoul(target))
 		to_chat(target, span_cult("SOMETHING IS COMING, WHAT IS IT?!!"))
-		new /obj/effect/client_image_holder/baali_demon(get_turf(target), list(target))
+		var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
+		RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 	if(!iskindred(target) && !isghoul(target) && !isgarou(target))
 		to_chat(target, span_cult("MY WORST NIGHTMARES FLASH BEFORE MY EYES"))
 		target.Paralyze(7 SECONDS)
 
+/datum/discipline_power/daimonion/psychomania/proc/on_demon_contact(obj/effect/client_image_holder/baali_demon/source, mob/living/victim)
+	SIGNAL_HANDLER
+	switch(source.type)
+		if(/obj/effect/client_image_holder/baali_demon/spectre)
+			victim.visible_message(span_warning("[victim] collapses onto the ground"), span_warning("[source.name] touches you with an outstretched hand"))
+			victim.Paralyze(7 SECONDS)
+			victim.adjust_stamina_loss(200)
+			to_chat(victim, span_cult("THE SPIRIT HAS TAKEN SOMETHING FROM ME"))
+		if(/obj/effect/client_image_holder/baali_demon/wyrm)
+			victim.visible_message(span_warning("[victim] whines in animalistic fear"), span_cult("THE WYRM HAS NOTICED ME"))
+			victim.Paralyze(5 SECONDS)
+			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
+		if(/obj/effect/client_image_holder/baali_demon/banu)
+			victim.visible_message(span_warning("[victim] grasps their chest, feeling for a hole"), span_cult("THE [source.name] PLUCKS OUT YOUR HEART"))
+			victim.Paralyze(7 SECONDS)
+		if(/obj/effect/client_image_holder/baali_demon/tremere)
+			victim.visible_message(span_warning("[victim] collapses onto the ground, convulsing"), span_cult("THE [source.name] TAKES YOUR VITAE"))
+			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
+			victim.Paralyze(7 SECONDS)
+		else
+			victim.visible_message(span_warning("[victim] falls on their knees"), span_warning("[source.name] grasps your head with its hands"))
+			victim.Paralyze(7 SECONDS)
+			victim.adjust_stamina_loss(200)
+			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
+			to_chat(victim, span_cult("HELL IS REAL, IT HAS TOUCHED ME"))
+	step_away(victim, get_turf(source))
 
 //CONDEMNATION
 /datum/discipline_power/daimonion/condemnation

@@ -10,8 +10,8 @@
 	for(var/mob/living/possible_target as anything in mobs_which_see_us)
 		target = possible_target
 		break // daimonion only has a demon chasing after one target at a time but parent init asks for a list.
-	var/turf/closed/wall/wall
-	for(var/turf/closed/wall/W in range(7, target))
+	var/turf/closed/wall
+	for(var/turf/closed/W in range(7, target))
 		wall = W
 		break
 	if(!wall)
