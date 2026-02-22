@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "Readds character height customization as a numerical preference slider"
