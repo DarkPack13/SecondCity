@@ -46,7 +46,7 @@
 				var/datum/storyteller_roll/step_roll = new()
 				step_roll.applicable_stats = list(STAT_PERCEPTION, STAT_STEALTH)
 				var/roll_result = step_roll.st_roll(triggerer, src)
-				if(!roll_result == ROLL_SUCCESS)
+				if(roll_result != ROLL_SUCCESS)
 					mineEffect(triggerer)
 
 	if(isitem(triggerer))
