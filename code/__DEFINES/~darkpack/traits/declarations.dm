@@ -138,6 +138,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"
+#define TRAIT_TIME_SENSE "time_sense"
 
 
 // END TRAIT DEFINES
