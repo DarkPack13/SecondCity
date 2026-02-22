@@ -12,3 +12,12 @@ export const clan_mark: FeatureChoiced = {
     return <FeatureExternalInput {...props} />;
   },
 };
+
+export const gargoyle_legs_and_tail: FeatureChoiced = {
+  name: 'Gargoyle Legs and Tail',
+  component: (
+    props: FeatureValueProps<string, string>,
+  ) => {
+    return <FeatureExternalInput {...props} />;
+  },
+};
