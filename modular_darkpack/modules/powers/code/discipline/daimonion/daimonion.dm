@@ -237,9 +237,6 @@
 	damage = 25
 	damage_type = AGGRAVATED
 
-/obj/projectile/flames/baali/on_hit(target)
-	. = ..()
-	//fire color = black?
 
 /datum/discipline_power/daimonion/conflagration/activate(mob/living/target)
 	. = ..()
@@ -270,10 +267,10 @@
 		psychomania_roll = new()
 	//forces the subject's player to roll her lowest Virtue
 	var/datum/st_stat/virtue/lowest_virtue
-	for(var/datum/st_stat/virtue/virtue as anything in subtypesof(/datum/st_stat/virtue))
-		var/datum/st_stat/virtue/target_stat = target.st_get_stat(virtue)
-		if(!lowest_virtue || target_stat < lowest_virtue.get_score(include_bonus = TRUE))
-			lowest_virtue = virtue
+	for(var/virtue_type in subtypesof(/datum/st_stat/virtue))
+		var/datum/st_stat/virtue/target_stat = target.storyteller_stats["[virtue_type]"]
+		if(!lowest_virtue || target_stat.get_score() < lowest_virtue.get_score())
+			lowest_virtue = target_stat
 	psychomania_roll.applicable_stats = list(lowest_virtue)
 	var/roll = psychomania_roll.st_roll(target, owner)
 	if(roll != ROLL_SUCCESS)
@@ -287,12 +284,12 @@
 	var/datum/splat/werewolf/shifter/garou_splat = isgarou(target)
 	if(garou_splat)
 		switch(garou_splat.tribe.name)
-			if (TRIBE_BLACK_SPIRAL_DANCERS)
+			if(TRIBE_BLACK_SPIRAL_DANCERS)
 				target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh3.ogg", 50, FALSE)
 				target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"),)
 				target.Paralyze(5 SECONDS)
 			else
-				if (garou_splat.rage > 4)
+				if(garou_splat.rage > 4)
 					target.playsound_local(target, "modular_tfn/modules/daim/audio/demonlaugh1.ogg", 50, FALSE)
 					to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
 					new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
@@ -393,7 +390,7 @@
 	range = 7
 	violates_masquerade = TRUE
 	var/datum/storyteller_roll/condemnation/condemnation_roll
-	var/list/available_curses = list()
+	var/list/available_curses
 
 /datum/storyteller_roll/condemnation
 	bumper_text = "condemnation"
@@ -407,9 +404,10 @@
 		return
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
 	if(!available_curses)
-		for(var/datum/status_effect/condemnation/curse in subtypesof(/datum/status_effect/condemnation))
+		for(var/curse_type in subtypesof(/datum/status_effect/condemnation))
+			var/datum/status_effect/condemnation/curse = curse_type
 			if(kindred_splat.generation <= curse.genrequired)
-				available_curses[curse.name] = curse
+				LAZYSET(available_curses, curse.name, curse_type)
 
 	var/chosen_curse_name = tgui_input_list(owner, "What curse shall befall the damned?", "Curse Selection", available_curses)
 	if(!chosen_curse_name)
