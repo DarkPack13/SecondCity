@@ -6920,6 +6920,7 @@
 #include "modular_darkpack\master_files\code\datums\components\dejavu.dm"
 #include "modular_darkpack\master_files\code\datums\mapgen\woods_generator.dm"
 #include "modular_darkpack\master_files\code\datums\mind\_mind.dm"
+#include "modular_darkpack\master_files\code\datums\quirks\_quirk.dm"
 #include "modular_darkpack\master_files\code\datums\station_traits\_station_trait.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"

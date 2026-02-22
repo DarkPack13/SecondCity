@@ -1,5 +1,6 @@
 /datum/quirk/darkpack
 	abstract_type = /datum/quirk/darkpack
+	darkpack_allowed = TRUE
 	/// List of splats (vampire clans/types) this quirk is allowed for. Null = all allowed
 	var/list/allowed_splats
 	/// List of splats this quirk is explicitly forbidden for
