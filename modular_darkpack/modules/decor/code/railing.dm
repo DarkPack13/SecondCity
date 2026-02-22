@@ -1,6 +1,7 @@
 /obj/structure/railing/darkpack
-	abstract_type = /obj/structure/railing/darkpack
+	icon_state = null
 	icon = 'modular_darkpack/modules/decor/icons/railings.dmi'
+	abstract_type = /obj/structure/railing/darkpack
 
 /obj/structure/railing/darkpack/metal
 	name = "guard rail"
