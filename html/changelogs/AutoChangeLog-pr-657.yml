@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - sound: "the canon round sound effect is 1/4 the default volume as the code intended"
-  - sound: "other sounds are now the intended volume"

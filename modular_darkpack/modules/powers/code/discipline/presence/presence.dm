@@ -106,7 +106,7 @@
 		to_chat(owner, span_warning("There is no one around to be awed by your presence."))
 		return
 
-	var/list/target_counts = list(1, 2, 6, 20, length(potential_targets)) //v20 core rulebook presence -> awe
+	var/list/target_counts = list(1, 2, 6, 20, length(potential_targets)) //V20 core rulebook presence -> awe
 	var/targets_to_affect = target_counts[clamp(successes, 1, 5)]
 
 	potential_targets = sort_targets_by_willpower(potential_targets)
@@ -143,7 +143,7 @@
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 	duration_length = 10 SECONDS
-	vitae_cost = 1 //no mention of literally any cost for using this in v20
+	vitae_cost = 1 //no mention of literally any cost for using this in V20
 	var/successes = 0
 
 
@@ -168,7 +168,7 @@
 		to_chat(target, span_userdanger("Overwhelming dread fills you! You must get away from [owner]!"))
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
-		//v20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
+		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
 		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
 		//for(var/i in 1 to 30)
 			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
@@ -271,7 +271,7 @@
 	var/location_info = "[get_area_name(owner_turf)], X:[owner_turf.x] Y:[owner_turf.y] Z:[owner_turf.z]"
 	to_chat(summon_target, span_yellowteamradio("[owner.real_name] is summoning you to their location. [owner.real_name] is currently at [location_info]"))
 
-	//v20 presence -> 'summon' section for this flavortext
+	//V20 presence -> 'summon' section for this flavortext
 	var/list/flavor_texts = list(
 		"You feel a faint pull towards [owner.real_name], approaching slowly and hesitantly.",
 		"You feel reluctantly compelled to seek out [owner.real_name], though obstacles easily deter you.",
