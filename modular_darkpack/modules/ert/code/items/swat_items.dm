@@ -41,3 +41,25 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/badges_onfloor.dmi')
 	worn_icon = 'modular_darkpack/modules/jobs/icons/id_worn.dmi'
 	worn_icon_state = "grey_id"
+
+/obj/item/clothing/suit/vampire/darkpack_ert/swat_armor
+	name = "\improper SWAT vest"
+	desc = "Highly protective vest marked for SWAT usage. Make sure to throw the flashbang BEFORE you breach the room."
+	icon_state = "swatvest"
+	inhand_icon_state = null
+	w_class = WEIGHT_CLASS_BULKY
+	armor_type = /datum/armor/highly_protective_vest
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
+
+/obj/item/clothing/head/vampire/darkpack_ert/swat_helmet
+	name = "\improper SWAT Helmet"
+	desc = "Modified SFPD helmet with improved performance. Isnt it great to be on the good side of police militarization?"
+	icon_state = "swathelmet"
+	armor_type = /datum/armor/army_helmet
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
+	visor_flags_inv = HIDEFACE|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
