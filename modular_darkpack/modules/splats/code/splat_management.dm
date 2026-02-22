@@ -63,11 +63,16 @@
 	return TRUE
 
 /// Returns the splat with the highest priority, with a prefrence for ones first assigned.
-/mob/living/proc/get_primary_splat(splat_type)
+/mob/living/proc/get_primary_splat(splat_type, count_splat = TRUE, count_halfsplat = TRUE)
 	RETURN_TYPE(/datum/splat)
 
 	var/datum/splat/returning_splat
 	for(var/datum/splat/our_splat in splats)
+		if(!count_halfsplat && our_splat::half_splat)
+			continue
+		if(!count_splat && !our_splat::half_splat)
+			continue
+
 		if(!returning_splat || our_splat.splat_priority > returning_splat.splat_priority)
 			returning_splat = our_splat
 	return returning_splat
@@ -76,14 +81,10 @@
 /mob/living/proc/get_full_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
-	for(var/datum/splat/our_splat in splats)
-		if(!our_splat.half_splat)
-			return our_splat
+	return get_primary_splat(splat_type, count_halfsplat = FALSE)
 
 /// Returns the first splat in our list that is a half splat, which also SOMETIMES still means they are considered human if no other splats.
 /mob/living/proc/get_half_splat(splat_type)
 	RETURN_TYPE(/datum/splat)
 
-	for(var/datum/splat/our_splat in splats)
-		if(our_splat.half_splat)
-			return our_splat
+	return get_primary_splat(splat_type, count_splat = FALSE)
