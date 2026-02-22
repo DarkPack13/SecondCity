@@ -203,7 +203,7 @@
 
 		// clan exclusion is only going to reasonably appear on darkpack quirks
 		if(!istype(quirk_prototype, /datum/quirk/darkpack))
-			return list()
+			continue
 
 		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
 		if(!darkpack_quirk.is_clan_appropriate(clan))
