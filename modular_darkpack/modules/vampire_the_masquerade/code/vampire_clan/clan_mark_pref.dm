@@ -43,7 +43,7 @@
 /datum/preference/external_choiced/gargoyle_legs_and_tail
 	savefile_key = "gargoyle_legs_and_tail"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
+	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_inherent_trait = TRAIT_VTM_CLANS
 
@@ -55,7 +55,7 @@
 	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
-	if(istype(clan, /datum/vampire_clan/gargoyle))
+	if(istype(clan, /datum/subsplat/vampire_clan/gargoyle))
 		return TRUE
 
 /datum/preference/external_choiced/gargoyle_legs_and_tail/get_choices(datum/preferences/preferences)
