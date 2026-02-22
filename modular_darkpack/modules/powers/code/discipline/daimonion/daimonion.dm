@@ -215,7 +215,7 @@
 /datum/discipline_power/daimonion/fear_of_the_void_below/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(target, span_warning("Your mind is enveloped by your greatest fear!"))
-	if(prob(50)) // REPLACE THIS - people hate hardstuns
+	if(prob(50)) // REPLACE THIS - the people hate hardstuns
 		target.Paralyze(6 SECONDS)
 	else
 		target.Sleeping(6 SECONDS)
