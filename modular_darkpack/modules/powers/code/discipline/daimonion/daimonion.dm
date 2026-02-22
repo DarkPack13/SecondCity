@@ -56,10 +56,12 @@
 		baali_get_stolen_disciplines(target, owner)
 	if(isghoul(target))
 		var/mob/living/carbon/human/ghoul = target
+		/* DARKPACK TODO - bloodbonds
 		if(ghoul.mind.enslaved_to)
 			to_chat(owner, span_notice("Victim is addicted to vampiric vitae and its true master is [ghoul.mind.enslaved_to]"))
 		else
 			to_chat(owner, span_notice("Victim is addicted to vampiric vitae, but is independent and free."))
+		*/
 	/* DARKPACK TODO : Kuei-Jin
 	if(iscathayan(target))
 		if(target.mind.dharma?.Po == "Legalist")
@@ -73,7 +75,7 @@
 		if(target.mind.dharma?.Po == "Fool")
 			to_chat(owner, span_notice("[target] doesn't like to be pointed at!"))
 	*/
-	if(!iskindred(target) && !isghoul(target) && !isgarou(target) /*&& !iscathayan(target)*/)
+	if(!iskindred(target) && !isghoul(target) && !isshifter(target) /*&& !iscathayan(target)*/)
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_moral_failings(target, owner)
@@ -81,7 +83,7 @@
 		return
 	var/datum/splat/vampire/kindred/vampire = iskindred(target)
 	if(vampire)
-		switch(vampire.clan.name)
+		switch(vampire.clan.id)
 			if(VAMPIRE_CLAN_TOREADOR)
 				to_chat(owner, span_notice("[target] is obsessive to a fault."))
 				return
@@ -145,7 +147,6 @@
 			if(VAMPIRE_CLAN_SETITE)
 				to_chat(owner, span_notice("[target] believes every stain of sin is a virtue."))
 				return
-
 			else
 				to_chat(owner, span_notice("[target] has been abandoned by the cold ocean of the night with nobody to keep them afloat."))
 
@@ -156,29 +157,29 @@
 	var/datum/splat/vampire/kindred/vampire = iskindred(target)
 	if(vampire)
 		var/datum/vampire_clan/clan = vampire.clan
-		if(vampire.get_discipline("Quietus") && clan.name != VAMPIRE_CLAN_BANU_HAQIM)
+		if(vampire.get_discipline("Quietus") && clan.id != VAMPIRE_CLAN_BANU_HAQIM)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Banu Haqim's Quietus will be known."))
-		if(vampire.get_discipline("Protean") && clan.name != VAMPIRE_CLAN_GANGREL)
+		if(vampire.get_discipline("Protean") && clan.id != VAMPIRE_CLAN_GANGREL)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Gangrel's Protean will be known."))
-		if(vampire.get_discipline("Serpentis") && clan.name != VAMPIRE_CLAN_SETITE)
+		if(vampire.get_discipline("Serpentis") && clan.id != VAMPIRE_CLAN_SETITE)
 			to_chat(owner, span_notice("[target] fears that the fact they stole the Setite's Serpentis will be known."))
-		if(vampire.get_discipline("Necromancy") && clan.name != VAMPIRE_CLAN_GIOVANNI || vampire.get_discipline("Necromancy") && clan.name != VAMPIRE_CLAN_CAPPADOCIAN)
+		if(vampire.get_discipline("Necromancy") && clan.id != VAMPIRE_CLAN_GIOVANNI || vampire.get_discipline("Necromancy") && clan.id != VAMPIRE_CLAN_CAPPADOCIAN)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Giovanni's Necromancy will be known."))
-		if(vampire.get_discipline("Obtenebration") && clan.name != VAMPIRE_CLAN_LASOMBRA)
+		if(vampire.get_discipline("Obtenebration") && clan.id != VAMPIRE_CLAN_LASOMBRA)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Lasombra's Obtenebration will be known."))
-		if(vampire.get_discipline("Dementation") && clan.name != VAMPIRE_CLAN_MALKAVIAN)
+		if(vampire.get_discipline("Dementation") && clan.id != VAMPIRE_CLAN_MALKAVIAN)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Malkavian's Dementation will be known."))
-		if(vampire.get_discipline("Vicissitude") && clan.name != VAMPIRE_CLAN_TZIMISCE)
+		if(vampire.get_discipline("Vicissitude") && clan.id != VAMPIRE_CLAN_TZIMISCE)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Tzimisce's Vicissitude will be known."))
-		if(vampire.get_discipline("Melpominee") && clan.name != VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
+		if(vampire.get_discipline("Melpominee") && clan.id != VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Daughters of Cacophony's Melpominee will be known."))
-		if(vampire.get_discipline("Daimonion") && clan.name != VAMPIRE_CLAN_BAALI)
+		if(vampire.get_discipline("Daimonion") && clan.id != VAMPIRE_CLAN_BAALI)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Baali's Daimonion will be known."))
-		if(vampire.get_discipline("Temporis") && clan.name != VAMPIRE_CLAN_TRUE_BRUJAH)
+		if(vampire.get_discipline("Temporis") && clan.id != VAMPIRE_CLAN_TRUE_BRUJAH)
 			to_chat(owner, span_notice("[target] fears that the fact they stole True Brujah's Temporis will be known."))
-		if(vampire.get_discipline("Valeren") && clan.name != VAMPIRE_CLAN_SALUBRI)
+		if(vampire.get_discipline("Valeren") && clan.id != VAMPIRE_CLAN_SALUBRI)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Salubri's Valeren will be known."))
-		if(vampire.get_discipline("Mytherceria") && clan.name != VAMPIRE_CLAN_KIASYD)
+		if(vampire.get_discipline("Mytherceria") && clan.id != VAMPIRE_CLAN_KIASYD)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Kiasyd's Mytherceria will be known."))
 
 //FEAR OF THE VOID BELOW
@@ -213,7 +214,7 @@
 /datum/discipline_power/daimonion/fear_of_the_void_below/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(target, span_warning("Your mind is enveloped by your greatest fear!"))
-	if(prob(50)) // Stuns/Sleeps target
+	if(prob(50)) // REPLACE THIS - people hate hardstuns
 		target.Paralyze(6 SECONDS)
 	else
 		target.Sleeping(6 SECONDS)
@@ -236,7 +237,6 @@
 	color = "#1c1f1d"
 	damage = 25
 	damage_type = AGGRAVATED
-
 
 /datum/discipline_power/daimonion/conflagration/activate(mob/living/target)
 	. = ..()
@@ -266,22 +266,27 @@
 /datum/discipline_power/daimonion/psychomania/pre_activation_checks(mob/living/target)
 	if(!psychomania_roll)
 		psychomania_roll = new()
+
 	//forces the subject's player to roll her lowest Virtue
 	var/datum/st_stat/virtue/lowest_virtue
 	for(var/virtue_type in subtypesof(/datum/st_stat/virtue))
 		var/datum/st_stat/virtue/target_stat = target.storyteller_stats["[virtue_type]"]
 		if(!lowest_virtue || target_stat.get_score() < lowest_virtue.get_score())
 			lowest_virtue = target_stat
+
 	psychomania_roll.applicable_stats = list(lowest_virtue)
 	var/roll = psychomania_roll.st_roll(target, owner)
+
 	if(roll != ROLL_SUCCESS)
 		to_chat(owner, span_cult("[target] will suffer greatly."))
 		return TRUE
+
 	to_chat(owner, span_warning("[target] is too pure to manifest their fears!"))
 	return FALSE
 
 /datum/discipline_power/daimonion/psychomania/activate(mob/living/target)
 	. = ..()
+
 	var/datum/splat/werewolf/shifter/garou_splat = isgarou(target)
 	if(garou_splat)
 		switch(garou_splat.tribe.name)
@@ -300,6 +305,7 @@
 					var/obj/effect/client_image_holder/baali_demon/wyrm/demon = new(get_turf(target), list(target))
 					RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 					target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)
+
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
 	if(kindred_splat)
 		switch(kindred_splat.clan.id)
@@ -378,10 +384,12 @@
 				var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
 				RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
 				return
+
 	if(isghoul(target))
 		to_chat(target, span_cult("SOMETHING IS COMING, WHAT IS IT?!!"))
 		var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
 		RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
+
 	if(!iskindred(target) && !isghoul(target) && !isgarou(target))
 		to_chat(target, span_cult("MY WORST NIGHTMARES FLASH BEFORE MY EYES"))
 		target.Paralyze(7 SECONDS)
@@ -394,23 +402,28 @@
 			victim.Paralyze(7 SECONDS)
 			victim.adjust_stamina_loss(200)
 			to_chat(victim, span_cult("THE SPIRIT HAS TAKEN SOMETHING FROM ME"))
+
 		if(/obj/effect/client_image_holder/baali_demon/wyrm)
 			victim.visible_message(span_warning("[victim] whines in animalistic fear"), span_cult("THE WYRM HAS NOTICED ME"))
 			victim.Paralyze(5 SECONDS)
 			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
+
 		if(/obj/effect/client_image_holder/baali_demon/banu)
 			victim.visible_message(span_warning("[victim] grasps their chest, feeling for a hole"), span_cult("THE [source.name] PLUCKS OUT YOUR HEART"))
 			victim.Paralyze(7 SECONDS)
+
 		if(/obj/effect/client_image_holder/baali_demon/tremere)
 			victim.visible_message(span_warning("[victim] collapses onto the ground, convulsing"), span_cult("THE [source.name] TAKES YOUR VITAE"))
 			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
 			victim.Paralyze(7 SECONDS)
+
 		else
 			victim.visible_message(span_warning("[victim] falls on their knees"), span_warning("[source.name] grasps your head with its hands"))
 			victim.Paralyze(7 SECONDS)
 			victim.adjust_stamina_loss(200)
 			victim.playsound_local(victim, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 			to_chat(victim, span_cult("HELL IS REAL, IT HAS TOUCHED ME"))
+
 	step_away(victim, get_turf(source))
 
 //CONDEMNATION
@@ -433,9 +446,11 @@
 
 /datum/discipline_power/daimonion/condemnation/activate(mob/living/target)
 	. = ..()
+
 	if(target.has_status_effect(/datum/status_effect/condemnation))
 		to_chat(owner, span_warning("They are already damned!"))
 		return
+
 	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
 	if(!available_curses)
 		for(var/curse_type in subtypesof(/datum/status_effect/condemnation))
@@ -448,14 +463,17 @@
 		return
 
 	var/datum/status_effect/condemnation/chosen_curse_datum = available_curses[chosen_curse_name]
+
 	if(!condemnation_roll)
 		condemnation_roll = new()
+
 	condemnation_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 	var/roll = condemnation_roll.st_roll(owner, target)
 	if(roll != ROLL_SUCCESS)
 		to_chat(owner, span_warning("You fail to pierce their mind and the target remains free of your curse."))
 		//not sure if target should get a to_chat?
 		return
+
 	target.apply_status_effect(chosen_curse_datum)
 	owner.maxbloodpool -= chosen_curse_datum.bloodcost
 	if(owner.bloodpool > owner.maxbloodpool)
