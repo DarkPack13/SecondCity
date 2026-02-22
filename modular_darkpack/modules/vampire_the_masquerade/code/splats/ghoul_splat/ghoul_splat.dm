@@ -6,7 +6,7 @@
 			them ideal servants to their domitors."
 	id = SPLAT_GHOUL
 
-	splat_priority = SPLAT_PRIO_HALFSPLAT
+	splat_priority = 70 + SPLAT_PRIO_HALFSPLAT
 	half_splat = TRUE
 
 	splat_actions = list(

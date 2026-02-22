@@ -27,6 +27,8 @@
 		/datum/splat/vampire/ghoul
 	)
 
+	splat_priority = 60 + SPLAT_PRIO_SPLAT
+
 	/// How many generations away from the first vampire they are. Determines how much blood can be stored and used
 	var/generation
 	/// How quickly they can spend vitae. Depends on Generation and affects abilities like bloodheal
