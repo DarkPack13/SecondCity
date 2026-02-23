@@ -344,7 +344,7 @@ function QuirkPage() {
     }
   });
 
-  let balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - Original :   let balance = -data.default_quirk_balance;
+  const balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - Original :   let balance = -data.default_quirk_balance;
   let positiveQuirks = 0;
 
   for (const selectedQuirkName of selectedQuirks) {

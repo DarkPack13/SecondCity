@@ -1,4 +1,4 @@
-/datum/vampire_clan/gargoyle
+/datum/subsplat/vampire_clan/gargoyle
 	name = "Gargoyle"
 	id = VAMPIRE_CLAN_GARGOYLE
 	desc = "The Gargoyles are a vampiric bloodline created by the Tremere as their servitors. Although technically not a Tremere bloodline, the bloodline is largely under their control. In the Final Nights, Gargoyle populations seem to be booming; this is largely because older, free Gargoyles are coming out of hiding to join the Camarilla, because more indentured Gargoyles break free from the clutches of the Tremere, and because the free Gargoyles have also begun to Embrace more mortals on their own."
@@ -39,7 +39,7 @@
 	)
 	whitelisted = TRUE
 
-/datum/vampire_clan/gargoyle/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/gargoyle/on_gain(mob/living/carbon/human/H)
 	. = ..()
 
 	//H.dna.species.wings_icon = "Gargoyle"

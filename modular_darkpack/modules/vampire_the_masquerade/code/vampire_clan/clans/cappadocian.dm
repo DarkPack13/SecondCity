@@ -1,4 +1,4 @@
-/datum/vampire_clan/cappadocian
+/datum/subsplat/vampire_clan/cappadocian
 	name = "Cappadocian"
 	id = VAMPIRE_CLAN_CAPPADOCIAN
 	desc = "A presumed-to-be-extinct Clan of necromancers, the Cappadocians studied death specifically in the physical world. The Giovanni were Embraced into their line to help further their studies into the underworld. They were rewarded with Diablerie and the destruction of their Clan and founder."
@@ -14,7 +14,7 @@
 
 	whitelisted = TRUE
 
-/datum/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H)
 	. = ..()
 
 	var/years_undead = H.chronological_age - H.age
@@ -28,7 +28,7 @@
 		if (500 to INFINITY)
 			H.rot_body(4)
 
-/datum/vampire_clan/cappadocian/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/cappadocian/on_join_round(mob/living/carbon/human/H)
 	. = ..()
 
 	// Only old, skeletonised Cappadocians need the robes and mask

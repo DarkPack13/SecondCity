@@ -1,17 +1,12 @@
-/datum/preference/choiced/garou_breed
+/datum/preference/choiced/subsplat/garou_breed
 	savefile_key = "garou_breed"
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
-	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
 	main_feature_name = "Breed"
 	relevant_inherent_trait = TRAIT_WTA_GAROU_BREED
-	must_have_relevant_trait = TRUE
-	should_generate_icons = TRUE
 
-/datum/preference/choiced/garou_breed/init_possible_values()
+/datum/preference/choiced/subsplat/garou_breed/init_possible_values()
 	return assoc_to_keys(GLOB.breed_forms_list)
 
-/datum/preference/choiced/garou_breed/icon_for(value)
+/datum/preference/choiced/subsplat/garou_breed/icon_for(value)
 	var/datum/universal_icon/garou_icon = uni_icon('icons/effects/effects.dmi', "nothing")
 	switch(value)
 		if(BREED_HOMID)
@@ -36,5 +31,5 @@
 			garou_icon.blend_icon(breed_crinos, ICON_OVERLAY)
 	return garou_icon
 
-/datum/preference/choiced/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/subsplat/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_breed_form(value, TRUE)
