@@ -128,7 +128,6 @@
 	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	shapeshift_type = /mob/living/basic/samedi_ash_pile
 	possible_shapes = list(/mob/living/basic/samedi_ash_pile)
 	convert_damage = TRUE
 	convert_damage_type = BRUTE
