@@ -14,18 +14,18 @@
 
 	whitelisted = TRUE
 
-/datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H, joining_round)
 	. = ..()
 	apply_rot_curse(H, H.chronological_age)
 
-/datum/vampire_clan/cappadocian/proc/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
+/datum/subsplat/vampire_clan/cappadocian/proc/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
 	switch(chronological_age)
 		if (-INFINITY to 500)
 			H.rot_body(1)
 		if (500 to INFINITY)
 			H.rot_body(2)
 
-/datum/vampire_clan/cappadocian/harbinger
+/datum/subsplat/vampire_clan/cappadocian/harbinger
 	name = "Harbinger of Skulls"
 	id = VAMPIRE_CLAN_HARBINGER
 	desc = "A bloodline of the Clan Cappadocian, and largely composed of victims of the Giovanni purge against their clan and the Feast of Folly, these Sabbat Cappadocian vampires, masters of Necromancy, brought their power over the dead with them to the underworld, where they became powerful Wraiths, biding their time and waiting for a chance to cross the Shroud to enact vengeance for their Clan."
