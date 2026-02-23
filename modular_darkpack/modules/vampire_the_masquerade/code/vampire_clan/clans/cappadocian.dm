@@ -32,7 +32,7 @@
 	curse = "Extremely corpselike appearance that worsens with age, with the oldest being walking skeletal forms or ghostly, reminiscent of their time across the Shroud."
 	icon = "harbinger_of_skulls"
 
-/datum/vampire_clan/cappadocian/harbinger/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
+/datum/subsplat/vampire_clan/cappadocian/harbinger/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
 	switch(chronological_age)
 		if (-INFINITY to 100)
 			H.rot_body(1)
