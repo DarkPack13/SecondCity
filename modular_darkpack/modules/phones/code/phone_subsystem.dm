@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(phones)
 	var/list/frequencies_in_use = list()
 	// Published phone numbers, with the key being what the user named the number.
 	var/list/published_phone_numbers = list()
+	// Posts for the endpost feed
+	var/list/endpost_posts = list()
 
 // Generates a random phone number from the available ranges, ten digits, starts with a 415 or 628.
 /datum/controller/subsystem/phones/proc/random_number()

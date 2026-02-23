@@ -41,7 +41,7 @@
 	//number of successes is rather critical for the efficacy of the power
 	return successes
 
-/datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target, resist_timer = 30 SECONDS)
+/datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target)
 	target.remove_overlay(MUTATIONS_LAYER)
 	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
 	presence_overlay.pixel_z = 1
@@ -49,14 +49,7 @@
 	target.apply_overlay(MUTATIONS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
-	// resist presence button - note to self, in the future, V20 states that the resister must continue to spend willpower if in the presence of the vamp
-	var/datum/action/resist_presence/resist_action = new(target)
-	resist_action.Grant(target)
-
-	// remove the action after 20 seconds
-	addtimer(CALLBACK(resist_action, TYPE_PROC_REF(/datum/action, Remove), target), resist_timer)
-
-//used in awe - V20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
+//used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
 /datum/discipline_power/presence/proc/sort_targets_by_willpower(list/targets)
 	var/list/sorted = list()
 	for(var/mob/living/carbon/target in targets)
@@ -73,42 +66,6 @@
 		if(!inserted)
 			sorted += target
 	return sorted
-
-//datum/action to resist presence powers by burning a willpower point and making a difficulty 8 roll
-/datum/action/resist_presence
-	name = "Resist Presence"
-	desc = "Burn a point of your temporary willpower to resist the effects of Presence."
-	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
-	button_icon_state = "presence"
-	check_flags = AB_CHECK_CONSCIOUS
-
-/datum/action/resist_presence/Trigger(trigger_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	var/mob/living/carbon/human/user = owner
-	if(!ishuman(user))
-		return FALSE
-
-	if(user.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 0)
-		to_chat(user, span_warning("You don't have any temporary willpower left to resist!"))
-		return FALSE
-
-	user.st_set_stat(STAT_TEMPORARY_WILLPOWER, max((user.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1),0))
-	to_chat(user, span_warning("You burn a point of willpower to resist the supernatural influence..."))
-
-	var/roll_success = SSroll.storyteller_roll(user.st_get_stat(STAT_TEMPORARY_WILLPOWER), difficulty = 8, roller = user)
-
-	if(roll_success)
-		user.remove_overlay(MUTATIONS_LAYER)
-		user.clear_alert("entrancement")
-		to_chat(user, span_notice("You have succeeded in resisting the effects of Presence."))
-		Remove(user)
-		return TRUE
-	else
-		to_chat(user, span_warning("Despite your efforts, the supernatural influence remains too strong!"))
-		return FALSE
 
 // AWE
 /datum/discipline_power/presence/awe
@@ -251,10 +208,10 @@
 	target.throw_alert("entrancement", /atom/movable/screen/alert/entrancement)
 	log_combat(owner, target, "Used Presence Entrancement")
 
-	apply_presence_overlay(target, successes * 10 MINUTES)
+	apply_presence_overlay(target, successes * 1 MINUTES)
 	to_chat(target, span_hypnophrase("You find yourself becoming completely entraced by [owner]. You are now their willing servant."))
 	to_chat(target, span_info("You are now the willing servant of [owner]. You will seek to please them and fulfill their every desire, but this desire will fade soon."))
-	addtimer(CALLBACK(src, PROC_REF(end_entrancement), target), successes * 30 MINUTES) // might be alot considering 5 successes is 5 ingame hours which is... most of a round.
+	addtimer(CALLBACK(src, PROC_REF(end_entrancement), target), successes * 10 MINUTES)
 
 /datum/discipline_power/presence/entrancement/proc/end_entrancement(mob/living/carbon/human/target)
 	to_chat(target, span_hypnophrase("Your desire to fulfill [owner]'s every desire fades."))
@@ -272,7 +229,7 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 20 MINUTES //i can already see people using this ability to summon and kill upon arrival. this cooldown should help with that.
+	cooldown_length = 10 MINUTES
 	duration_length = 5 SECONDS
 	vitae_cost = 1
 	var/successes = 0
@@ -341,9 +298,10 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 12 MINUTES
-	duration_length = 3 MINUTES
-	//willpower_cost = 1
+	cooldown_length = 3 MINUTES
+	duration_length = 2 MINUTES
+	willpower_cost = 1
+	violates_masquerade = TRUE
 	var/list/affected_targets = list()
 
 /datum/discipline_power/presence/majesty/pre_activation_checks(mob/living/target)
@@ -363,7 +321,17 @@
 		apply_presence_overlay(hearer, 3 MINUTES)
 		affected_targets[hearer] = hearer_successes
 
-		to_chat(hearer, span_hypnophrase("You find yourself completely submitting to the Majesty of [owner]. Their every word is your utmost priority, every frown of displeasure crushing your soul. You find yourself humbling yourself entirely in their overwhelming presence."))
+		to_chat(hearer, span_hypnophrase("You find yourself completely submitting to the Majesty of [owner]. Their every word is your utmost priority, every frown of displeasure crushing your soul. You find yourself humbled entirely in their overwhelming presence."))
+
+		// this ability is often used to end combat scenes but it often ignored.
+		var/pacifism_delay = hearer_successes * 10 SECONDS
+		if(hearer_successes > 0)
+			to_chat(hearer, span_info("Despite the overwhelming presence, your will allows you to resist for [pacifism_delay / 10] seconds before you're forced into pacifism."))
+			addtimer(CALLBACK(src, PROC_REF(apply_pacifism), hearer), pacifism_delay)
+		else
+			ADD_TRAIT(hearer, TRAIT_PACIFISM, "Majesty")
+			to_chat(hearer, span_info("You are completely unable to act against [owner]."))
+		ADD_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 
 		if(hearer_successes > 0)
 			to_chat(hearer, span_info("Despite the overwhelming presence, your will allows you to make [hearer_successes] contradictory action\s until youre allowed to leave [owner]'s company."))
@@ -376,11 +344,18 @@
 
 /datum/discipline_power/presence/majesty/deactivate(mob/living/carbon/human/target)
 	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 	for(var/mob/living/carbon/human/affected_target in affected_targets)
 		if(affected_target)
 			affected_target.remove_overlay(MUTATIONS_LAYER)
 			to_chat(affected_target, span_hypnophrase("The overwhelming presence of [owner] fades, and your will returns to normal."))
+			REMOVE_TRAIT(affected_target, TRAIT_PACIFISM, "Majesty")
 	affected_targets.Cut()
+
+/datum/discipline_power/presence/majesty/proc/apply_pacifism(mob/living/carbon/human/hearer)
+	if(hearer && (hearer in affected_targets))
+		ADD_TRAIT(hearer, TRAIT_PACIFISM, "Majesty")
+		to_chat(hearer, span_warning("Your resistance crumbles - you can no longer bring yourself to act against [owner]!"))
 
 // LOVE
 /datum/discipline_power/presence/love
