@@ -9,7 +9,7 @@
 	hardcore_value = 2
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	mail_goodies = list(/obj/item/reagent_containers/cup/glass/bottle/rum, /obj/item/clothing/mask/bandana/red)
-	// darkpack_allowed = TRUE // DARKPACK EDIT ADD - MERITS/FLAWS
+	darkpack_allowed = TRUE // DARKPACK EDIT ADD - MERITS/FLAWS
 
 /datum/quirk_constant_data/eye_scarring
 	associated_typepath = /datum/quirk/item_quirk/scarred_eye

@@ -150,12 +150,10 @@
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
 
-/datum/species/human/shifter/bestial/add_buffs(mob/living/carbon/human/human)
-	for(var/datum/st_stat/key, value in form_bonus_stats)
-		// Fair glabro does not suffer social penelties.
-		if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO) && (key::subcategory == "Social") && (value < 0))
-			continue
-		human.st_add_stat_mod(key, value, type)
+/datum/species/human/shifter/bestial/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
+	. = ..()
+	if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO) && (buff_type::subcategory == "Social") && (amount < 0))
+		return FALSE
 
 /datum/species/human/shifter/bestial/is_veil_breaching_form(mob/living/carbon/human/human)
 	if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO))
