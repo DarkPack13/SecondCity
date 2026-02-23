@@ -7,7 +7,6 @@
 	config_tag = "SABBAT_DUCTUS"
 	outfit = /datum/outfit/job/vampire/sabbatductus
 	allowed_splats = list(SPLAT_KINDRED)
-	allowed_clans = VAMPIRE_CLAN_ALL
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
 	department_for_prefs = /datum/job_department/sabbat
