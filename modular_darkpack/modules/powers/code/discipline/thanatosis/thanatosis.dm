@@ -12,7 +12,7 @@
 //HAG'S WRINKLES
 /datum/discipline_power/thanatosis/hag_wrinkles
 	name = "Hag's Wrinkles"
-	desc = "Morph your face to become unknowing."
+	desc = "Morph your flesh to allow you to store items inside your skin."
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
@@ -54,7 +54,7 @@
 //PUTREFACTION
 /datum/discipline_power/thanatosis/putrefaction
 	name = "Putrefaction"
-	desc = "Rot and Decay at a Touch."
+	desc = "Use your power over rot and decay to deal damage and cause muscle and bone decay inside your target."
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
@@ -172,7 +172,7 @@
 //WITHERING
 /datum/discipline_power/thanatosis/withering
 	name = "Withering"
-	desc = "Wither Bodies into Decay"
+	desc = "Instantly wither an opponent's body with a mere touch, causing a limb to wither to pieces."
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
@@ -250,7 +250,7 @@
 //NECROSIS
 /datum/discipline_power/thanatosis/necrosis
 	name = "Necrosis"
-	desc = "A more horrific version of Putrefaction"
+	desc = "Cause advanced decay in your victim - similar to Putrefaction, but with much stronger decay."
 
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
