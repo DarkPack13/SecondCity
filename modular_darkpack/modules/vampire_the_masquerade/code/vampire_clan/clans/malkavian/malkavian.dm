@@ -21,7 +21,7 @@
 	var/datum/action/cooldown/malk_speech/malk_font = new(vampire)
 	hivemind.Grant(vampire)
 	malk_font.Grant(vampire)
-	vampire.add_quirk(/datum/quirk/derangement)
+	vampire.add_quirk(/datum/quirk/darkpack/derangement)
 
 	// Madness Network handling
 	LAZYADD(madness_network, vampire)
