@@ -100,7 +100,7 @@
 			forbidden_splats_test = darkpack_quirk.forbidden_splats
 			allowed_splats_test = darkpack_quirk.allowed_splats
 			excluded_clans_test = darkpack_quirk.excluded_clans
-			included_clans_test = quirk_type.included_clans
+			included_clans_test = datkpack_quirk.included_clans
 		// DARKPACK EDIT ADD END
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
