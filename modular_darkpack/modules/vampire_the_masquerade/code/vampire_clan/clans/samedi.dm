@@ -1,4 +1,4 @@
-/datum/vampire_clan/samedi
+/datum/subsplat/vampire_clan/samedi
 	name = "Samedi"
 	id = VAMPIRE_CLAN_SAMEDI
 	desc = "A rare bloodline of Corpse Walkers based from their enigmatic founder simply called the Baron Samedi."
@@ -15,6 +15,6 @@
 	)
 	whitelisted = TRUE
 
-/datum/vampire_clan/samedi/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/samedi/on_gain(mob/living/carbon/human/H)
 	. = ..()
 	H.rot_body(4)

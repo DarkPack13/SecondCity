@@ -18,7 +18,7 @@
 	var/mob/living/carbon/human/human_holder = new_holder
 	var/datum/splat/vampire/kindred/kindred = iskindred(human_holder)
 	if(kindred)
-		if(istype(kindred.clan, /datum/vampire_clan/giovanni))
+		if(istype(kindred.clan, /datum/subsplat/vampire_clan/giovanni))
 			REMOVE_TRAIT(human_holder, TRAIT_PAINFUL_VAMPIRE_KISS, CLAN_TRAIT)
 
 			if(human_holder.chronological_age >= 300)

@@ -1,4 +1,4 @@
-/datum/vampire_clan/nagaraja
+/datum/subsplat/vampire_clan/nagaraja
 	name = "Nagaraja"
 	id = VAMPIRE_CLAN_NAGARAJA
 	desc = "The Nagaraja are a mysterious bloodline, created through a ritual rather than having any Antediluvian to call their own. They are feared and reviled for both their expertise in the arts of necromancy, and their hunger for flesh."
@@ -14,7 +14,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/emo
 	whitelisted = FALSE
 
-/datum/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/H)
 	. = ..()
 	var/obj/item/ritual_tome/necromancy/necrotome = new()
 	var/list/slots = list(
