@@ -16,12 +16,10 @@
 
 /datum/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H, joining_round)
 	. = ..()
-	//harbingers use their own rot logic, rotten4 is samedi/very old wraithly harbinger
-	if(istype(src, /datum/vampire_clan/cappadocian/harbinger))
-		return
+	apply_rot_curse(H, H.chronological_age)
 
-	var/years_undead = H.chronological_age - H.age
-	switch(years_undead)
+/datum/vampire_clan/cappadocian/proc/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
+	switch(chronological_age)
 		if (-INFINITY to 500)
 			H.rot_body(1)
 		if (500 to INFINITY)
@@ -34,11 +32,8 @@
 	curse = "Extremely corpselike appearance that worsens with age, with the oldest being walking skeletal forms or ghostly, reminiscent of their time across the Shroud."
 	icon = "harbinger_of_skulls"
 
-/datum/vampire_clan/cappadocian/harbinger/on_gain(mob/living/carbon/human/H)
-	. = ..()
-
-	var/years_undead = H.chronological_age - H.age
-	switch(years_undead)
+/datum/vampire_clan/cappadocian/harbinger/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
+	switch(chronological_age)
 		if (-INFINITY to 100)
 			H.rot_body(1)
 		if (100 to 300)

@@ -81,8 +81,7 @@
 	if(!putrefaction_roll)
 		putrefaction_roll = new()
 	var/fortitudelevel
-	var/mob/living/carbon/human/vampire = target
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
 	if(kindred_splat)
 		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
@@ -203,8 +202,7 @@
 	if(!withering_roll)
 		withering_roll = new()
 	var/fortitudelevel
-	var/mob/living/carbon/human/vampire = target
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
 	if(kindred_splat)
 		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
@@ -299,7 +297,7 @@
 
 /datum/discipline_power/thanatosis/necrosis/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.adjust_brute_loss(30 * successes)
+	target.adjust_brute_loss(3 TTRPG_DAMAGE)
 
 	if(successes <= 1)
 		to_chat(owner, span_warning("Necrosis has failed to affect [target]!"))
