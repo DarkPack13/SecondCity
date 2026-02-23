@@ -132,8 +132,12 @@
 	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
 	if(target_splat)
 		if(owner_splat.generation > target_splat.generation)
-			to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
+			to_chat(owner, span_warning("You fail to dominate [target], as their blood is more potent than yours!"))
 			return FALSE
+
+	if(HAS_TRAIT(target, TRAIT_MERIT_UNTAMABLE))
+		to_chat(owner, span_warning("You fail to dominate [target], they are an untamable beast!"))
+		return FALSE
 
 	if(numerical == TRUE)
 		return mypower
