@@ -132,6 +132,23 @@
 		return dna.species.bodypart_overrides.Copy()
 	return ..()
 
+// DARKPACK EDIT ADD START
+/mob/proc/get_attacking_limb(atom/target, datum/martial_art/attacker_style)
+	RETURN_TYPE(/obj/item/bodypart)
+	return FALSE
+
+/mob/living/carbon/get_attacking_limb(atom/target, datum/martial_art/attacker_style)
+	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
+
+	if(attacking_bodypart.unarmed_attack_effect == ATTACK_EFFECT_BITE)
+		if(is_mouth_covered(ITEM_SLOT_MASK))
+			attacking_bodypart = get_active_hand()
+
+	return attacking_bodypart
+
+// DARKPACK EDIT ADD END
+
 ///Returns a list of all missing limbs this mob should have on them, but don't.
 /mob/living/carbon/proc/get_missing_limbs() as /list
 	RETURN_TYPE(/list)

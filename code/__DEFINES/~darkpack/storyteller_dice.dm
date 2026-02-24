@@ -10,6 +10,8 @@
 #define ROLL_PUBLIC "public"
 /// Output is only shown to the roller
 #define ROLL_PRIVATE "private"
+/// Output is shown to both the roller and the target
+#define ROLL_PRIVATE_AND_TARGET "roller+target"
 /// Output of the roll to admins + you
 #define ROLL_PRIVATE_ADMIN "private+admin"
 /// Output of the roll to admins only
