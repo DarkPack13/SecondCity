@@ -63,11 +63,13 @@
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))
-		// First valid use of timeout discovered (we dont want to be able to hold it out)
-		var/choice = tgui_input_list(owner, "Revert to your choosen form", "Metamorph", get_breed_form_species(), transformation_list, 1 TURNS)
-		if(choice in transformation_list)
-			transform_fera(choice, force = TRUE)
-			return
+		var/datum/storyteller_roll/metamorph/roll_datum = new()
+		if(roll_datum.st_roll(owner, bonus = PRIMAL_URGE_PLACEHOLDER) == ROLL_SUCCESS)
+			// First valid use of timeout discovered (we dont want to be able to hold it out)
+			var/choice = tgui_input_list(owner, "Revert to your choosen form", "Metamorph", transformation_list, get_breed_form_species(), 1 TURNS)
+			if(choice in transformation_list)
+				transform_fera(choice, force = TRUE)
+				return
 
 	transform_fera(get_breed_form_species(), force = TRUE)
 
