@@ -13,7 +13,7 @@
 
 /datum/action/cooldown/power/gift/breath_of_the_wyld
 	name = "Breath of the Wyld"
-	desc = "The Fury instills a target with a rush of lucidity. Taught by a servant of Pegasus."
+	desc = "The Fury instills a target with a rush of lucidity."
 	button_icon_state = null // TODO: icon
 	click_to_activate = TRUE
 	rank = 1
