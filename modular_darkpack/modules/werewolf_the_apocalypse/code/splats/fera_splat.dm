@@ -158,10 +158,16 @@
 		/datum/species/human/shifter/feral
 	)
 
-/* // DARKPACK TODO - CORAX
 /datum/splat/werewolf/shifter/corax
 	name = "Corax"
 	id = SPLAT_CORAX
+	splat_traits = list(
+		TRAIT_WTA_GAROU_BREED,
+		TRAIT_WTA_GAROU_AUSPICE,
+		TRAIT_WTA_GAROU_TRIBE,
+		TRAIT_FERA_FUR,
+		TRAIT_FRENETIC_AURA
+	)
 	transformation_list = list(
 		/datum/species/human/shifter/homid,
 		/datum/species/human/shifter/war,
@@ -172,4 +178,3 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
-*/

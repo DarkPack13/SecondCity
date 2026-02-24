@@ -13,6 +13,8 @@
 #define BREED_LUPUS "Lupus"
 #define BREED_CRINOS "Metis" //Its called metis because anything player facing should only show "Metis" instead of "Crinos", despite it being a crinos form. Blame gadabout.
 
+#define BREED_CORVID "Corvid"
+
 #define FEATURE_FUR_COLOR "fera_fur"
 
 // fera will likely have a seperate list of colors but uses the same feature or var as other fera

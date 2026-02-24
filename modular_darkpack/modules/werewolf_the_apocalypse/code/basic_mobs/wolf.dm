@@ -92,11 +92,11 @@
 /mob/living/basic/pet/dog/wolf/examine(mob/user)
 	. = ..()
 	var/datum/splat/werewolf/wolp_splat = iswerewolfsplat(user)
-	if(istype(wolp_splat?.auspice, /datum/subsplat/werewolf/auspice/garou/philodox)) // uncomment when dogs
+	if(istype(wolp_splat?.auspice, /datum/subsplat/werewolf/auspice/garou/philodox))
 		if(wolf_type == TYPE_KINFOLK)
 			. += span_purple("On closer inspection, they appear to be kin.")
 		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
-			. += span_warn("They are strongly wyrm-tainted.") // Remove when we have a wyrm-tainted element or something
+			. += span_warning("They are strongly wyrm-tainted.")
 
 
 /mob/living/basic/pet/dog/wolf/add_obey_commands()
@@ -159,7 +159,7 @@
 
 /mob/living/basic/pet/dog/wolf/kinfolk/spiral/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_WYRMTAINTED)
+	ADD_TRAIT(src, TRAIT_WYRMTAINTED, INNATE_TRAIT)
 
 // STATIC COLORS
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)
