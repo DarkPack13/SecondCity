@@ -26,9 +26,9 @@
 	ritual_name = name
 	name = "[name] rune"
 
-/obj/ritual_rune/proc/click_alt(mob/user)
-	. = ..()
+/obj/ritual_rune/click_alt(mob/user)
 	qdel(src)
+	return CLICK_ACTION_SUCCESS
 
 /obj/ritual_rune/proc/complete()
 	return
