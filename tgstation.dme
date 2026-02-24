@@ -7292,6 +7292,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\animal_musk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\derangement.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_fangs.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\pierced_veil.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\weak_willed.dm"
 #include "modular_darkpack\modules\merits_flaws\code\neutral_quirks\illegal_identity.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\beserk.dm"
