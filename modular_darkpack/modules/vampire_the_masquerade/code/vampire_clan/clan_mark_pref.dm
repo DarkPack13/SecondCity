@@ -51,11 +51,11 @@
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
-	if(istype(clan, /datum/vampire_clan/gargoyle))
+	if(istype(clan, /datum/subsplat/vampire_clan/gargoyle))
 		return TRUE
 
 /datum/preference/toggle/gargoyle_legs_and_tail/apply_to_human(mob/living/carbon/human/target, value)
