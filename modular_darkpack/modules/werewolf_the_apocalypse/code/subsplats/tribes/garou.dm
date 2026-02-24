@@ -76,11 +76,11 @@
 /datum/subsplat/werewolf/tribe/garou/blackfuries
 	name = TRIBE_BLACK_FURIES
 	desc = "An all-female tribe, and the matriarchs of the Garou. The Black Furies are known fondly for their honor, wisdom, pride and impressive prowess in battle."
-	// gifts_provided = list(
-	// 	/datum/action/gift/stoic_pose = 1,
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/breath_of_the_wyld = 1,
 	// 	/datum/action/gift/freezing_wind = 2,
 	// 	/datum/action/gift/bloody_feast = 3
-	// )
+	)
 	tribe_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/silentstriders
