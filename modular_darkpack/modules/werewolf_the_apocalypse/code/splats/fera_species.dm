@@ -152,6 +152,7 @@
 
 /datum/species/human/shifter/bestial/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	. = ..()
+	// Raw string check instead of a define or type path is pretty bleak
 	if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO) && (buff_type::subcategory == "Social") && (amount < 0))
 		return FALSE
 

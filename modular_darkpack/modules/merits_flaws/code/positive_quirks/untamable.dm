@@ -1,3 +1,4 @@
+// W20 p. 476
 /datum/quirk/darkpack/untamable
 	name = "Untamable"
 	desc = {"You are a wild soul who has never bent to the leash.

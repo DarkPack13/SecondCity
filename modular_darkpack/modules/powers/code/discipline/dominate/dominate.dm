@@ -103,12 +103,15 @@
 	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
-	var/mob/living/carbon/human/human_target = target
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
+		theirpower -= 2
+
+	if(HAS_TRAIT(target, TRAIT_WEAK_WILLED))
 		theirpower -= 2
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
+	var/mob/living/carbon/human/human_target = target
 	for(var/obj/item/clothing/worn_item in human_target.get_equipped_items(INCLUDE_ABSTRACT))
 		total_tint += worn_item.tint
 

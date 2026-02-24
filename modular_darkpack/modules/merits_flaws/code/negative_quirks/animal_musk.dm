@@ -1,3 +1,4 @@
+// W20 p. 473
 /datum/quirk/darkpack/animal_musk
 	name = "Animal Musk"
 	// A little unsure who to do the logic on the social roll rn.

@@ -1,3 +1,4 @@
+// W20 p. 475
 /datum/quirk/darkpack/time_sense
 	name = "Time Sense"
 	desc = {"You have an innate sense of time and are able to estimate the passage of time accurately without using a watch or other mechanical device,

@@ -908,7 +908,7 @@
 	// DARKPACK EDIT CHANGE START - MERITS/FLAWS - (Time sense)
 	. = list()
 	. += get_time_status()
-	. = "" //we want to offset unique stuff from standard stuff
+	. += "" //we want to offset unique stuff from standard stuff
 	// DARKPACK EDIT CHANGE END
 	SEND_SIGNAL(src, COMSIG_MOB_GET_STATUS_TAB_ITEMS, .)
 	return .
