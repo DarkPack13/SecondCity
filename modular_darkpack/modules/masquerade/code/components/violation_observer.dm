@@ -45,13 +45,18 @@
 	breached_players += player_breacher
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
 
+	return TRUE
+
 /datum/component/violation_observer/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
-	SSmasquerade.masquerade_reinforce(source, player_breacher)
-	source.observe_masquerade_reinforce(player_breacher)
-	breached_players -= player_breacher
+	if(player_breacher in breached_players)
+		SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
+		SSmasquerade.masquerade_reinforce(source, player_breacher)
+		source.observe_masquerade_reinforce(player_breacher)
+		breached_players -= player_breacher
+
+		return TRUE
 
 /datum/component/violation_observer/proc/on_death(atom/source)
 	SIGNAL_HANDLER
