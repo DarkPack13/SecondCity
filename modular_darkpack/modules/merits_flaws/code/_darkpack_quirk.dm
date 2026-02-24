@@ -24,7 +24,7 @@
 			if(splat.id in allowed_splats)
 				has_allowed_splat = TRUE
 				break
-		if(!new_holder.splats && SPLAT_NONE in allowed_splats)
+		if(!new_holder.splats && (SPLAT_NONE in allowed_splats))
 			has_allowed_splat = TRUE
 		if(!has_allowed_splat)
 			return FALSE
