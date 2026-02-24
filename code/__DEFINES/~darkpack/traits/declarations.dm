@@ -92,7 +92,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 // Does the mob have ghostsight?
 #define TRAIT_GHOST_VISION "ghost_vision"
-#define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 
 
