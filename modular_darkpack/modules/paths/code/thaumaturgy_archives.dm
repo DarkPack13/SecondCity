@@ -56,17 +56,17 @@
 
 // find the regent
 /obj/structure/retail/occult/proc/find_regent()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(istype(H.mind?.assigned_role, /datum/job/vampire/regent))
-			return H
+	for(var/mob/living/carbon/human/human_user in GLOB.human_list)
+		if(istype(human_user.mind?.assigned_role, /datum/job/vampire/regent))
+			return human_user
 	return null
 
 // find all archivists
 /obj/structure/retail/occult/proc/find_archivists()
 	var/list/archivists = list()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(istype(H.mind?.assigned_role, /datum/job/vampire/archivist))
-			archivists += H
+	for(var/mob/living/carbon/human/human_user in GLOB.human_list)
+		if(istype(human_user.mind?.assigned_role, /datum/job/vampire/archivist))
+			archivists += human_user
 	return archivists
 
 // Non-Chantry non-Camarilla Tremeres, when spending their research points, give 30% of their purchase to the Regent, or distributed among all archivists
@@ -113,14 +113,14 @@
 	. = list()
 	.["user"] = list()
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		.["user"]["points"] = H.research_points
-		.["user"]["name"] = "[H.real_name]"
-		.["user"]["job"] = "[H.mind?.assigned_role.title]"
-		.["user"]["has_thaumaturgy"] = HAS_TRAIT(H, TRAIT_THAUMATURGY_KNOWLEDGE)
-		.["user"]["has_necromancy"] = HAS_TRAIT(H, TRAIT_NECROMANCY_KNOWLEDGE)
-		.["user"]["is_regent"] = istype(H.mind?.assigned_role, /datum/job/vampire/regent)
-		.["user"]["has_privileges"] = has_purchase_privileges(H.mind?.assigned_role)
+		var/mob/living/carbon/human/human_user = user
+		.["user"]["points"] = human_user.research_points
+		.["user"]["name"] = "[human_user.real_name]"
+		.["user"]["job"] = "[human_user.mind?.assigned_role.title]"
+		.["user"]["has_thaumaturgy"] = !!human_user.get_discipline(/datum/discipline/thaumaturgy)
+		.["user"]["has_necromancy"] = !!human_user.get_discipline(/datum/discipline/necromancy)
+		.["user"]["is_regent"] = istype(human_user.mind?.assigned_role, /datum/job/vampire/regent)
+		.["user"]["has_privileges"] = has_purchase_privileges(human_user.mind?.assigned_role)
 	else
 		.["user"]["points"] = 0
 		.["user"]["name"] = "Unknown"
@@ -171,7 +171,7 @@
 	if(!ishuman(usr))
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/carbon/human/human_user = usr
 
 	if(!iskindred(usr))
 		return
@@ -182,18 +182,18 @@
 		to_chat(usr, span_alert("Error: [prize.name] is out of stock!"))
 		return
 
-	if(prize.price > H.research_points)
+	if(prize.price > human_user.research_points)
 		to_chat(usr, span_alert("Error: Insufficient research points for [prize.name]! You need [prize.price] research points."))
 		return
 
-	H.research_points -= prize.price
+	human_user.research_points -= prize.price
 
 	// Check if user is loyal to the chantry/camarilla - if not, award 30% tribute to leadership
-	var/datum/job/user_role = H.mind?.assigned_role
+	var/datum/job/user_role = human_user.mind?.assigned_role
 	var/has_privileges = has_purchase_privileges(user_role)
 
 	if(!has_privileges)
-		distribute_research_points(prize.price, H.real_name, prize.name)
+		distribute_research_points(prize.price, human_user.real_name, prize.name)
 		to_chat(usr, span_notice("A portion of your research points flow through the Archives to the Chantry leadership as tribute."))
 
 	item_stock[prize.product_path]--
@@ -272,13 +272,13 @@
 		if(!ishuman(user))
 			return ITEM_INTERACT_BLOCKING
 
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/human_user = user
 
 		if(artifact.research_value <= 0)
 			to_chat(user, span_warning("The Archives find no value in this artifact."))
 			return ITEM_INTERACT_BLOCKING
 
-		H.research_points += artifact.research_value
+		human_user.research_points += artifact.research_value
 
 		increment_stock(artifact.type)
 
@@ -311,10 +311,10 @@
 		if(!ishuman(user))
 			return ITEM_INTERACT_BLOCKING
 
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/human_user = user
 
 		var/research_reward = 5 // base reward modified by spellbook
-		H.research_points += research_reward
+		human_user.research_points += research_reward
 
 		increment_stock(spellbook.type)
 
