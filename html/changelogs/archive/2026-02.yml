@@ -99,3 +99,47 @@
   - rscadd: PSG1 magazine and ammo
   - code_imp: gun code organization
   - rscadd: undense bin
+2026-02-23:
+  FalloutFalcon:
+  - bugfix: Fixes final death sprite issue
+  - rscadd: Readds the funny cardboard box waddle and sound effect
+  - rscadd: Readds old interactions of Lasombra's tech bane
+  - balance: Computers require at-least 1 dot in computer to not have a do_after
+  - qol: Candles last a full hour
+  - rscadd: Pool tables has balls and cue's that creates a little 8-Ball mini-game.
+  - rscadd: re-adds reporting masquerade violations and reinforcements
+  - qol: you can set how many turns blood power is active for with right click
+  - balance: bonus to damage from bloodpower is based entirely on the stat buffs it
+      grants
+  - balance: allows you to set buff granted by blood power according to your gen spending
+      limit
+  - image: Swaps backpacks to the old vtm sprites
+  - bugfix: Snapping sticks trigger on botch
+  - rscadd: Particle effect when phones are ringing
+  - image: Tweaks smartphone onworld
+  - bugfix: Pixel shifting is no longer fucked
+  - rscadd: Readds garou
+  - rscadd: Moon phase is calculated mostly accurately based on in-game day
+  - rscadd: Rage gained from looking at the moon is now based on phase
+  - rscadd: Howl emote that can be used by dogs, dogs (garou), or dogs (gangrel)
+  - rscadd: Re-implements 1 gift for each auspice
+  - bugfix: Blood-pool icon is properly updated when its added to you
+  - admin: Adjustments to stats and important prefs can be properly viewed in the
+      log viewers
+  - balance: Makes generic helpers to represent "Heal this amount of "dots" of damage".
+      Gives this to garou at 1 dot every "turn" (5 seconds at the time of writing)
+  - balance: Punching basic mobs and humans now calculate damage based on strength
+  - balance: W20 silver bullet handling. No agg damage in breed form. 5 bullets are
+      a guaranteed loss of gnosis.
+  - bugfix: fixed infinite crafting recursion
+  - image: Adds onfloors for berets
+  - code_imp: Onfloor sprites now support GAGS
+  - balance: whispering does not break obfuscate
+  SELFHELL:
+  - bugfix: Necromancy tomes will properly spawn for Capo/La Squadra Roles
+  - rscadd: Unique SWAT Helmets + Armor
+  chazzyjazzy:
+  - rscadd: Readds character height customization as a numerical preference slider
+  - code_imp: makes the basic structure for merits and flaws
+  chazzyjazzy, INFARED_BARON:
+  - rscadd: reimplements SWAT and NG ERTs with new roles

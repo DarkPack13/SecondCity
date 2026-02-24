@@ -21,7 +21,6 @@
 		COMSIG_PROJECTILE_PREHIT,
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_MOB_ITEM_ATTACK,
-		COMSIG_MOVABLE_SAY_QUOTE,
 		COMSIG_LIVING_GRAB
 	)
 
@@ -32,6 +31,19 @@
 		return
 
 	to_chat(owner, span_danger("Your Obfuscation falls away as you focus your blood on another discipline!"))
+	try_deactivate(direct = TRUE)
+
+	deltimer(cooldown_timer)
+	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/datum/discipline_power/obfuscate/proc/on_talk(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
+	// This is a soft reveal as only as you would only be revealed to the person next to you. (which we are missing implementation of rn)
+	if(speech_args[SPEECH_MODS][WHISPER_MODE] == MODE_WHISPER)
+		return
+
+	to_chat(owner, span_danger("Your Obfuscation falls away as you reveal yourself!"))
 	try_deactivate(direct = TRUE)
 
 	deltimer(cooldown_timer)
@@ -87,6 +99,7 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -97,7 +110,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -136,6 +149,7 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -147,7 +161,7 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -308,6 +322,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -320,7 +335,7 @@
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -345,6 +360,7 @@
 	. = ..()
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -354,7 +370,7 @@
 /datum/discipline_power/obfuscate/cloak_the_gathering/deactivate()
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
-	UnregisterSignal(owner, COMSIG_POWER_ACTIVATE)
+	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
