@@ -86,12 +86,19 @@
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
-	for (var/datum/quirk/darkpack/quirk_type as anything in valid_subtypesof(/datum/quirk/darkpack)) // DARKPACK EDIT CHANGE - Original: for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
+	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		// DARKPACK EDIT ADD START - MERITS/FLAWS
-		var/list/forbidden_splats_test = quirk_type.forbidden_splats
-		var/list/allowed_splats_test = quirk_type.allowed_splats
-		var/list/excluded_clans_test = quirk_type.excluded_clans
-		// DARKPACK EDIT ADD END - MERITS/FLAWS
+		if(!quirk_type::darkpack_allowed)
+			continue
+		var/list/forbidden_splats_test
+		var/list/allowed_splats_test
+		var/list/excluded_clans_test
+		if(ispath(quirk_type, /datum/quirk/darkpack))
+			var/datum/quirk/darkpack/darkpack_quirk = quirk_type
+			forbidden_splats_test = darkpack_quirk.forbidden_splats
+			allowed_splats_test = darkpack_quirk.allowed_splats
+			excluded_clans_test = darkpack_quirk.excluded_clans
+		// DARKPACK EDIT ADD END
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
 		abstract_player.mock_client = roundstart_mock_client

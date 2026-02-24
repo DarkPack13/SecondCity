@@ -1,4 +1,0 @@
-author: "chazzyjazzy, INFARED_BARON"
-delete-after: True
-changes:
-  - rscadd: "reimplements SWAT and NG ERTs with new roles"
