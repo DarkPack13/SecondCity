@@ -27,11 +27,12 @@
 /datum/subsplat/werewolf/tribe/garou/hartwardens
 	name = TRIBE_FIANNA
 	desc = "Growing, creating, cultivating and maintaining the most natural of Gaia's creations, the Wardens are some of the closest to nature. Wherever they are, they coax Gaia's blessing out of whatever they can."
-	// gifts_provided = list(
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/faerie_light,
 	// 	/datum/action/cooldown/power/gift/stoic_pose,
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
-	// )
+	)
 	tribe_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/glasswalkers
