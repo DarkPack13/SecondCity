@@ -60,7 +60,7 @@
 	clear_buffs(human)
 
 /datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
-	for(var/datum/st_stat/key, value in form_bonus_stats)
+	for(var/key, value in form_bonus_stats)
 		if(!should_add_buff(human, key, value))
 			continue
 		human.st_add_stat_mod(key, value, type)
@@ -69,7 +69,7 @@
 	return TRUE
 
 /datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
-	for(var/datum/st_stat/key, value in form_bonus_stats)
+	for(var/key, value in form_bonus_stats)
 		human.st_remove_stat_mod(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
