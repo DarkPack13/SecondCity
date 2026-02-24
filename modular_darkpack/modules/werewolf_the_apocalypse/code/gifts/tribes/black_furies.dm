@@ -8,7 +8,7 @@
  * Success grants the recipient an additional die to all mental rolls for the rest of the scene.
  * Also adds 1 to the difficulty of rage rolls made in this time.
  *
- * TODO: Rage check difficulty.
+ * TODO: Rage check difficulty and audio. Use a horse sound.
 */
 
 /datum/action/cooldown/power/gift/breath_of_the_wyld

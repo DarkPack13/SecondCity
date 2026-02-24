@@ -41,12 +41,14 @@
  *
  * The werewolf calls on desperate reserves for a sudden surge of strength. A badger-spirit teaches this Gift.
  *
- * TBD
+ * Select a number 1-5 on a radial menu and add that much strength to the next strength roll. Take 10 brute damage per level of strength.
  *
+ * TODO: audio. Include a badger sound.
 */
 /datum/action/cooldown/power/gift/desperate_strength
 	name = "Desperate Strength"
 	desc = "Call on desperate reserves for a sudden surge of strength."
+	button_icon_state = null // TODO: icon
 	rank = 1
 
 /datum/action/cooldown/power/gift/desperate_strength/IsAvailable(feedback)
