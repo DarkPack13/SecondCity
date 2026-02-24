@@ -24,7 +24,7 @@
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
 
-//SHROUDSIGHT V20 p.
+//SHROUDSIGHT V20 p. 163
 /datum/storyteller_roll/shroudsight
 	bumper_text = "shroudsight"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
