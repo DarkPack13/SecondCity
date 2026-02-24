@@ -46,11 +46,12 @@
 /datum/subsplat/werewolf/tribe/garou/bonegnawers
 	name = TRIBE_BONE_GNAWERS
 	desc = "Survivors and scavengers, often destitute and homeless. The Gnawers are seen as mongrels who live off scraps, but they know better. They're the true survivors, patiently waiting for their moment to strike against overconfident foes."
-	// gifts_provided = list(
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/desperate_strength = 1,
 	// 	/datum/action/gift/guise_of_the_hound = 1,
 	// 	/datum/action/gift/infest = 2,
 	// 	/datum/action/gift/gift_of_the_termite = 3
-	// )
+	)
 	tribe_keys = /obj/item/vamp/keys/children_of_gaia
 
 /datum/subsplat/werewolf/tribe/garou/childrenofgaia

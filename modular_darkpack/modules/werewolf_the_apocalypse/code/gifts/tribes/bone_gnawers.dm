@@ -1,0 +1,123 @@
+/* • Cooking - W20 p.174
+ *
+ * The werewolf calls on desperate reserves for a sudden surge of strength. A badger-spirit teaches this Gift.
+ *
+ * TBD
+ *
+*/
+/* TODO: this
+/datum/action/cooldown/power/gift/cooking
+	name = "Cooking"
+	desc = ""
+	button_icon_state = null // TODO: icon
+	click_to_activate = FALSE
+	rank = 1
+
+/datum/action/cooldown/power/gift/cooking/Activate(atom/target)
+	if(!isitem(target))
+		return
+	if(!(target in range(1, owner)))
+		return
+
+	. = ..()
+
+	var/mob/living/victim = target
+	var/mob/living/caster = owner
+	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(caster)
+
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.applicable_stats = list(STAT_WITS, STAT_SURVIVAL)
+	roll_datum.numerical = TRUE
+	roll_datum.difficulty = 6
+	var/roll_result = roll_datum.st_roll(owner)
+
+	if(roll_result > 0)
+
+
+	StartCooldown()
+	return TRUE
+*/
+/* • Desperate Strength - W20 p.174
+ *
+ * The werewolf calls on desperate reserves for a sudden surge of strength. A badger-spirit teaches this Gift.
+ *
+ * TBD
+ *
+*/
+/datum/action/cooldown/power/gift/desperate_strength
+	name = "Desperate Strength"
+	desc = "Call on desperate reserves for a sudden surge of strength."
+	rank = 1
+
+/datum/action/cooldown/power/gift/desperate_strength/IsAvailable(feedback)
+	. = ..()
+	if(owner.has_status_effect(/datum/status_effect/desperate_strength))
+		if(feedback)
+			to_chat(owner, span_warning("[name] cannot be used again right now."))
+		return FALSE
+
+/datum/action/cooldown/power/gift/desperate_strength/Activate(atom/target)
+	var/mob/living/caster = owner
+	var/list/radial_menu_options = list(
+			"One" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_one"),
+			"Two" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_two"),
+			"Three" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_three"),
+			"Four" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_four"),
+			"Five" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_five"),
+		)
+
+	var/pick = show_radial_menu(owner, owner, radial_menu_options)
+	var/value
+
+	switch(pick)
+		if("One")
+			value = 1
+		if("Two")
+			value = 2
+		if("Three")
+			value = 3
+		if("Four")
+			value = 4
+		if("Five")
+			value = 5
+
+	if(!isnull(value))
+		caster.apply_status_effect(/datum/status_effect/desperate_strength, value)
+
+/datum/status_effect/desperate_strength
+	id = "desperate_strength"
+	duration = STATUS_EFFECT_PERMANENT
+
+	status_type = STATUS_EFFECT_UNIQUE
+
+	alert_type = /atom/movable/screen/alert/status_effect/desperate_strength
+	/// Passed in by the gift's activate
+	var/value
+
+/datum/status_effect/desperate_strength/on_creation(mob/living/owner, value)
+	src.value = value
+	return ..()
+
+/datum/status_effect/desperate_strength/on_apply()
+	owner.st_add_stat_mod(STAT_STRENGTH, value, type)
+	to_chat(owner, span_userdanger("You feel stronger... at a cost."))
+	RegisterSignal(owner, COMSIG_LIVING_DICE_ROLLED, PROC_REF(on_dice_rolled))
+	return TRUE
+
+/datum/status_effect/desperate_strength/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
+	SIGNAL_HANDLER
+
+	if(STAT_STRENGTH in roll_datum.applicable_stats)
+		qdel(src)
+
+/datum/status_effect/desperate_strength/on_remove()
+	owner.adjust_brute_loss(value TTRPG_DAMAGE)
+	owner.st_remove_stat_mod(STAT_STRENGTH, type)
+	to_chat(owner, span_warning("Your strength subsides, the pain of your wounds creeping back in..."))
+	UnregisterSignal(owner, COMSIG_LIVING_DICE_ROLLED)
+
+/atom/movable/screen/alert/status_effect/desperate_strength
+	name = "Desperate Strength"
+	desc = "Your next roll will be made with bonus strength, at the penalty of bashing damage!"
+	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
+	icon_state = "riddle" // TODO: get an icon for this
