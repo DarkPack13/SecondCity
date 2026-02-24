@@ -30,6 +30,10 @@
 	applicable_stats = list(STAT_STAMINA, STAT_SUBTERFUGE)
 	roll_output_type = ROLL_PRIVATE
 
+/obj/item/implant/storage/thanatosis
+	name = "hag's wrinkles"
+	desc = "Your skin has numerous folds, convenient pockets for items you may want to conceal"
+
 /datum/discipline_power/thanatosis/hag_wrinkles/pre_activation_checks()
 	. = ..()
 	if(!hags_wrinkles_roll)
@@ -42,14 +46,14 @@
 
 /datum/discipline_power/thanatosis/hag_wrinkles/activate()
 	. = ..()
-	var/obj/item/implant/storage/imp = new()
+	var/obj/item/implant/storage/thanatosis/imp = new()
 	imp.implant(owner, owner)
 
 
 /datum/discipline_power/thanatosis/hag_wrinkles/deactivate()
 	. = ..()
-	for(var/obj/item/implant/storage/i in owner.implants)
-		i.removed(owner)
+	for(var/obj/item/implant/storage/thanatosis/imp in owner.implants)
+		imp.removed(owner)
 
 //PUTREFACTION
 /datum/discipline_power/thanatosis/putrefaction
