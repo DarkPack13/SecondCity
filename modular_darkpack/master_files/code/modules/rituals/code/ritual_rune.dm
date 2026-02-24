@@ -27,8 +27,8 @@
 	name = "[name] rune"
 	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
 
-/obj/ritual_rune/proc/on_alt_click(datum/source, mob/user)
-	SIGNAL_HANDLER
+/obj/ritual_rune/proc/click_alt(mob/user)
+	. = ..()
 	qdel(src)
 
 /obj/ritual_rune/proc/complete()
@@ -52,6 +52,7 @@
 			return
 
 	complete()
+	return TRUE
 
 /obj/ritual_rune/proc/check_and_consume_sacrifices(mob/user)
 	var/list/found_items = list()
