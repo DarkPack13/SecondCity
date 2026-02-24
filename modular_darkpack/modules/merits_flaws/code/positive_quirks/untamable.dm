@@ -8,4 +8,4 @@
 	value = 5
 	mob_trait = TRAIT_MERIT_UNTAMABLE
 	icon = FA_ICON_SHIELD_DOG
-	allowed_splats = list(SPLAT_GAROU)
+	allowed_splats = SPLAT_SHIFTERS

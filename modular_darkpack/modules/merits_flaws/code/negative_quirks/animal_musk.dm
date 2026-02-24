@@ -9,4 +9,4 @@
 	value = -1
 	mob_trait = TRAIT_ANIMAL_MUSK
 	icon = FA_ICON_SPRAY_CAN_SPARKLES // icon = FA_ICON_BUGS
-	allowed_splats = list(SPLAT_GAROU)
+	allowed_splats = SPLAT_SHIFTERS
