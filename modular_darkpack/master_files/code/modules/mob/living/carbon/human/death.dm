@@ -13,10 +13,8 @@
 	if(brain)
 		brain.organ_flags |= ORGAN_FAILING
 
-	/*
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
-		exit_frenzymod()
-	*/
+		exit_frenzy_mode()
 	SEND_SOUND(src, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', volume = 50))
 
 	switch (chronological_age)

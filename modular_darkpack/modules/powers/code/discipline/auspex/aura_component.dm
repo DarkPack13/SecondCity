@@ -13,7 +13,7 @@
 
 	add_verb(parent_mob, /mob/verb/emotion_panel)
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
-	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
+	RegisterSignals(parent_mob, list(COMSIG_MOB_UPDATE_AURA, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)), PROC_REF(update_aura))
 	update_aura()
 
 /datum/component/aura/UnregisterFromParent()
@@ -22,7 +22,7 @@
 	target_hud.remove_atom_from_hud(parent_mob)
 
 	remove_verb(parent_mob, /mob/verb/emotion_panel)
-	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA))
+	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)))
 	return ..()
 
 /datum/component/aura/proc/update_emotions(mob/changed_mob, new_emotion)
