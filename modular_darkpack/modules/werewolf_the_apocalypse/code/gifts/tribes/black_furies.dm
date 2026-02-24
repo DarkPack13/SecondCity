@@ -14,7 +14,7 @@
 /datum/action/cooldown/power/gift/breath_of_the_wyld
 	name = "Breath of the Wyld"
 	desc = "The Fury instills a target with a rush of lucidity. Taught by a servant of Pegasus."
-	button_icon_state = null
+	button_icon_state = null // TODO: icon
 	click_to_activate = TRUE
 	rank = 1
 
@@ -37,9 +37,7 @@
 
 	if(roll_result != ROLL_SUCCESS)
 		return
-	STAT_PERCEPTION
-	STAT_INTELLIGENCE
-	STAT_WITS
+
 	victim.apply_status_effect(/datum/status_effect/breath_of_the_wyld)
 
 	StartCooldown()
