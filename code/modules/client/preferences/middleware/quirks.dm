@@ -191,13 +191,13 @@
 
 /datum/preference_middleware/quirks/proc/get_clan_compatibility()
 	var/list/clan_blacklist = list()
-	var/clan_name = preferences.read_preference(/datum/preference/choiced/vampire_clan)
+	var/clan_name = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 
 	if(!clan_name)
 		return clan_blacklist
 
 	//clan_name is clan.name which is "Brujah" vampire clan list is "name" ("Brujah") = typepath, vampire_clans is typepath = datum. we need the datum for the id, which is... just a lowercase name...
-	var/datum/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
+	var/datum/subsplat/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
 	for(var/quirk_path in SSquirks.quirk_prototypes)
 		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
 

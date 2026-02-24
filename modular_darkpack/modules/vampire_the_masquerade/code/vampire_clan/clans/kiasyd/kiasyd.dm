@@ -1,4 +1,4 @@
-/datum/vampire_clan/kiasyd
+/datum/subsplat/vampire_clan/kiasyd
 	name = "Kiasyd"
 	id = VAMPIRE_CLAN_KIASYD
 	desc = "The Kiasyd are a bloodline of the Lasombra founded after a mysterious \"accident\" involving the Lasombra Marconius of Strasbourg. The \"accident\", involving faeries and the blood of \"Zeernebooch, a god of the Underworld\", resulted in Marconius gaining several feet in height, turning chalky white and developing large, elongated black eyes."
@@ -21,7 +21,7 @@
 	accessories = list("fae_ears", "none")
 	accessories_layers = list("fae_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
 
-/datum/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/vampire, joining_round)
+/datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
 	/*
 	// Kiasyd are made taller and thinner
@@ -34,7 +34,7 @@
 	var/obj/item/organ/eyes/kiasyd/weird_eyes = new()
 	weird_eyes.Insert(vampire, TRUE, DELETE_IF_REPLACED)
 
-/datum/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
 	. = ..()
 
 	/*
@@ -46,7 +46,7 @@
 
 	vampire.update_body()
 
-/datum/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/H)
 	. = ..()
 
 	//give them sunglasses to hide their freakish eyes
