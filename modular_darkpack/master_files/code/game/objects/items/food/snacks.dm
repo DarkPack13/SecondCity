@@ -10,7 +10,7 @@
 	preserved_food = TRUE
 
 /obj/item/food/chips/proc/open_crisps(mob/user)
-	to_chat(user, span_notice("You pull back the wrapper of \the [src]."))
+	to_chat(user, span_notice("You pull back the wrapper of [src]."))
 	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 	icon_state = "crisps1"
 	reagents.flags |= OPENCONTAINER
@@ -39,9 +39,29 @@
 	tastes = list("chocolate" = 1)
 	food_flags = FOOD_FINGER_FOOD|FOOD_BITE_SPRITE
 	preserved_food = TRUE
+	var/static/list/choco_brand_names = list(
+		BRAND_CHOCOLATE_BAR,
+		BRAND_CHOCOLATE_BAR_2,
+		BRAND_CHOCOLATE_BAR_3,
+		BRAND_CHOCOLATE_BAR_4,
+		BRAND_CHOCOLATE_BAR_5,
+		BRAND_CHOCOLATE_BAR_6,
+		BRAND_CHOCOLATE_BAR_7,
+		BRAND_CHOCOLATE_BAR_8,
+		BRAND_CHOCOLATE_BAR_9,
+		BRAND_CHOCOLATE_BAR_10,
+		BRAND_CHOCOLATE_BAR_11,
+		BRAND_CHOCOLATE_BAR_12,
+		BRAND_CHOCOLATE_BAR_13,
+		BRAND_CHOCOLATE_BAR_14,
+	)
+
+/obj/item/food/chocolatebar/Initialize(mapload)
+	. = ..()
+	name = "\improper \"[pick(choco_brand_names)]\" chocolate bar"
 
 /obj/item/food/chocolatebar/proc/open_bar(mob/user)
-	to_chat(user, span_notice("You pull back the wrapper of \the [src]."))
+	to_chat(user, span_notice("You pull back the wrapper of [src]."))
 	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 	icon_state = "bar1"
 	reagents.flags |= OPENCONTAINER
