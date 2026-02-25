@@ -27,7 +27,7 @@
 	/// Upstairs turf. Is observed for changes if force_open_above is TRUE (to re-open if necessary)
 	VAR_FINAL/turf/directly_above
 	/// If TRUE, we have left/middle/right sprites.
-	var/has_merged_sprites = TRUE
+	var/has_merged_sprites = FALSE // DARKPACK EDIT CHANGE
 	/// Lazyassoc list of weakef to mob viewing stair indicators to their images
 	VAR_PRIVATE/list/mob_to_image
 
