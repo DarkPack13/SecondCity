@@ -1,3 +1,6 @@
+// Presently a dummy placeholder, might want to do stuff like flavor the ui, change the dice roll, make gifts private by default or the like
+/datum/storyteller_roll/gift
+
 /datum/action/cooldown/power/gift
 	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	background_icon_state = "bg_gift"

@@ -1,3 +1,7 @@
+/datum/storyteller_roll/gift/mothers_touch
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
+	numerical = TRUE
+
 /*
 From W20 p. 164
 Mother's Touch
@@ -29,7 +33,7 @@ the scar is received and an extra Gnosis point is spent.
 
 	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(owner)
 	var/difficulty = werewolf_splat.uses_rage ? werewolf_splat.rage : 5
-	var/successes = SSroll.storyteller_roll_stats(list(STAT_INTELLIGENCE, STAT_EMPATHY), 0, difficulty, owner, TRUE)
+	var/successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/mothers_touch, difficulty = difficulty)
 
 	var/mob/living/living_target = target
 	living_target.heal_storyteller_health(successes, TRUE, TRUE, TRUE)
