@@ -16,9 +16,9 @@
 	)
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
-	allowed_splats = list(SPLAT_NONE)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU, SPLAT_NONE)
 	splat_slots = list(SPLAT_NONE = 1)
-
+	allowed_clans = VAMPIRE_CLAN_ALL
 	description = "You provide both legal and illegal supplies to those that get busy during the night. You are your own person yet you know people are out for you. Time to buckle in..."
 	minimal_masquerade = 0
 
