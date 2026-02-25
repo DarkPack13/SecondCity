@@ -4,7 +4,7 @@
 
 	possible_shapes = list(
 		/mob/living/basic/bat/protean,
-		/mob/living/basic/pet/dog/wolf/protean, // DARKPACK TODO - WOLF
+		/mob/living/basic/pet/dog/wolf/protean,
 	)
 
 // FIGHT FORMS
