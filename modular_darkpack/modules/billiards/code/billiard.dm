@@ -115,7 +115,7 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/pool_cue))
-		context[SCREENTIP_CONTEXT_LMB] = "Strike ball"
+		context[SCREENTIP_CONTEXT_RMB] = "Strike ball"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(!held_item)
 		context[SCREENTIP_CONTEXT_RMB] = "Reset Table"
@@ -123,7 +123,8 @@
 
 	return . || NONE
 
-/obj/structure/table/wood/billiard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/structure/table/wood/billiard/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
 	if(istype(tool, /obj/item/pool_cue))
 		var/static/list/cue_options = list(
 			SOLID_BALL = image(icon = 'modular_darkpack/modules/billiards/icons/billiard.dmi', icon_state = "1ball"),
@@ -150,7 +151,8 @@
 		for(var/i in 1 to amount_to_hit_result)
 			if(!length(get_balls_on_table()))
 				break
-			sink_ball(user, choice, accuracy_result, amount_to_hit_result, balls_sunk = balls_sunk)
+			if(!sink_ball(user, choice, accuracy_result, amount_to_hit_result, balls_sunk = balls_sunk))
+				break
 		if(length(balls_sunk))
 			user.visible_message(span_notice("[user] sinks [jointext(balls_sunk, ", ")]. [length(get_balls_on_table())] left."), span_notice("You sink [jointext(balls_sunk, ", ")]!"))
 		return ITEM_INTERACT_SUCCESS
@@ -193,6 +195,7 @@
 	for(var/obj/item/pool_ball/ball in get_balls_on_table(list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL, ZERO_BALL)))
 		if(prob(50 + amount_to_hit_result * 10))
 			animate(ball, time = rand(0.5 SECONDS, 3 SECONDS) , pixel_x = rand(-TABLE_BOUNDS, TABLE_BOUNDS), pixel_y = rand(-TABLE_BOUNDS-6, TABLE_BOUNDS), easing = CUBIC_EASING|EASE_OUT)
+	return TRUE
 
 /obj/structure/table/wood/billiard/proc/random_ball(desired_ball_type, accuracy_result = ROLL_SUCCESS)
 	var/balls_to_get
