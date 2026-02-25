@@ -501,14 +501,13 @@
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
-	icon_state = "firebarrel"
+	icon = 'modular_darkpack/modules/decor/icons/fires.dmi'
+	icon_state = "fire_barrel_on_fire"
 	anchored = TRUE
 	density = TRUE
-
-/obj/structure/fire_barrel/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#ffa800")
+	light_range = 3
+	light_power = 2
+	light_color = "#ffa800"
 
 /obj/structure/fountain
 	name = "fountain"
@@ -547,7 +546,7 @@
 	name = "hide carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kopatich"
 
 /obj/effect/decal/baalirune
@@ -637,7 +636,7 @@
 	name = "carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kover"
 
 /obj/structure/bury_pit

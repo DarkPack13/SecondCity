@@ -3,7 +3,7 @@
 	desc = "An old tome bound in peculiar leather."
 	icon_state = "necronomicon"
 	icon = 'modular_darkpack/modules/ritual_necromancy/icons/necromancy_tome.dmi'
-	onflooricon = 'modular_darkpack/modules/ritual_necromancy/icons/necromancy_tome_onfloor.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_necromancy/icons/necromancy_tome_onfloor.dmi')
 	rune_type = /obj/ritual_rune/necromancy
 	var/list/products_list = list(
 		// placeholder, idea is that its similar to thaumaturgy archives
