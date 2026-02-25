@@ -32,7 +32,7 @@
 /datum/discipline_power/daimonion/sense_the_sin/pre_activation_checks(mob/living/target)
 	if(!sense_the_sin_roll)
 		sense_the_sin_roll = new()
-	sense_the_sin_roll.difficulty =  (max(target.st_get_stat(STAT_SELF_CONTROL), target.st_get_stat(STAT_INSTINCT)) + 4)
+	sense_the_sin_roll.difficulty = max(target.st_get_stat(STAT_SELF_CONTROL), target.st_get_stat(STAT_INSTINCT)) + 4
 	var/roll = sense_the_sin_roll.st_roll(owner, target)
 	if(roll != ROLL_SUCCESS)
 		return FALSE
