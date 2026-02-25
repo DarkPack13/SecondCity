@@ -55,7 +55,7 @@ const STYLE = {
 
 const ProductRow = (props) => {
   const { product, user, onPurchase } = props;
-  const inStock = product.available && product.stock > 0;
+  const inStock = product.stock > 0;
   const canAfford = user && product.price <= user.points;
 
   return (
@@ -80,7 +80,7 @@ const ProductRow = (props) => {
       <Table.Cell>
         <Button
           disabled={!canAfford || !inStock}
-          content={inStock ? `${product.price || 0} research points` : 'Out of Stock!'}
+          children={inStock ? `${product.price || 0} research points` : 'Out of Stock!'}
           onClick={() => onPurchase(product.ref)}
           style={{ minWidth: '105px', textAlign: 'center' }}
         />
@@ -189,7 +189,7 @@ export const SpellbookVendor = (props) => {
 
               <Box style={{ display: 'flex', gap: '10px' }}>
                 <Button
-                  content="Transfer Points"
+                  children="Transfer Points"
                   disabled={!canTransfer}
                   onClick={() => {
                     act('transfer_points', { target_ref: selectedMember!.ref, amount });
@@ -200,7 +200,7 @@ export const SpellbookVendor = (props) => {
 
                 {user?.is_regent && (
                   <Button
-                    content="Seize Points"
+                    children="Seize Points"
                     disabled={!canSeize}
                     onClick={() => {
                       act('seize_points', { target_ref: selectedMember!.ref, amount });

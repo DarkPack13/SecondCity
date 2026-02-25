@@ -2,9 +2,6 @@
 	owner_needed = FALSE
 	desc = "Use your occult research to reap the benefits of safeguarded knowledge and artifacts."
 
-	// Stock tracking - each item starts with 2 in stock, limited supply to cut down on powergaming
-	var/list/item_stock = list()
-
 	products_list = list(
 	// SPELLBOOKS
 	new /datum/data/vending_product("Lure of Flames Spellbook (Level I)",	/obj/item/path_spellbook/lure_of_flames/level1,	130),
@@ -42,7 +39,8 @@
 	. = ..()
 	//each item starts with 2 in stock
 	for(var/datum/data/vending_product/prize in products_list)
-		item_stock[prize.product_path] = 2
+		prize.amount = 2
+		prize.max_amount = 10
 
 // are they antitribu?
 /obj/structure/retail/occult/proc/has_purchase_privileges(datum/job/job)
@@ -92,15 +90,11 @@
 			archivist.research_points += points_to_give
 			to_chat(archivist, span_notice("The Archives distribute [points_to_give] research points to you from [purchaser_name]'s purchase of [item_name]."))
 
-
 /obj/structure/retail/occult/proc/increment_stock(item_path)
-	if(item_path in item_stock)
-		item_stock[item_path]++
-	else
-		for(var/datum/data/vending_product/prize in products_list)
-			if(prize.product_path == item_path)
-				item_stock[item_path] = 1
-				break
+	for(var/datum/data/vending_product/prize in products_list)
+		if(prize.product_path == item_path)
+			prize.amount = min(prize.amount + 1, prize.max_amount)
+			return
 
 // SpellbookVendor.jsx in tgui/interfaces
 /obj/structure/retail/occult/ui_interact(mob/user, datum/tgui/ui)
@@ -146,7 +140,7 @@
 
 	.["product_records"] = list()
 	for(var/datum/data/vending_product/prize in products_list)
-		var/stock_count = item_stock[prize.product_path] || 0
+		var/stock_count = prize.amount
 		var/obj/item/product_item = prize.product_path
 		var/list/product_data = list(
 			path = replacetext(replacetext("[prize.product_path]", "/obj/item/", ""), "/", "-"),
@@ -177,7 +171,7 @@
 		return
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
-	var/current_stock = item_stock[prize.product_path] || 0
+	var/current_stock = prize.amount
 	if(current_stock <= 0)
 		to_chat(usr, span_alert("Error: [prize.name] is out of stock!"))
 		return
@@ -196,7 +190,7 @@
 		distribute_research_points(prize.price, H.real_name, prize.name)
 		to_chat(usr, span_notice("A portion of your research points flow through the Archives to the Chantry leadership as tribute."))
 
-	item_stock[prize.product_path]--
+	prize.amount -= 1
 
 	to_chat(usr, span_notice("The Archives emanate dark energy as it dispenses [prize.name]!"))
 	new prize.product_path(loc)
