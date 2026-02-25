@@ -83,6 +83,9 @@
 		if(ispath(discipline, /datum/discipline))
 			vampire.give_st_power(discipline, 5)
 
+	// Mostly for summons to not kill you.
+	vampire.add_faction(id)
+
 /**
  * Undoes the effects of on_gain to more or less
  * remove the effects of gaining the Clan. By default,
@@ -110,6 +113,8 @@
 		var/equipped_accessory = accessories_layers[vampire.client.prefs.clan_accessory]
 		vampire.remove_overlay(equipped_accessory)
 	*/
+
+	vampire.remove_faction(id)
 
 /**
  * Applies Clan-specific effects when the

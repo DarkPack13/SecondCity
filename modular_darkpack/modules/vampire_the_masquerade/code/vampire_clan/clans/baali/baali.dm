@@ -22,9 +22,6 @@
 
 /datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
 	. = ..()
-
-	H.add_faction(VAMPIRE_CLAN_BAALI)
-
 	H.AddElement(/datum/element/holy_weakness)
 
 	H.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)
