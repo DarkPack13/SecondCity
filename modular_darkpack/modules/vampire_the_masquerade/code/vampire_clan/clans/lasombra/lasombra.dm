@@ -18,12 +18,6 @@
 	enlightenment = TRUE
 	clan_keys = /obj/item/vamp/keys/lasombra
 
-/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/H)
-	. = ..()
-
-	//... Im like pretty sure this is depricated by TRAIT_NO_MIRROR_REFLECTION and causes them to not show up looking down at other z levels. Strongly consider removing this.
-	H.vis_flags |= VIS_HIDE
-
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)
 	var/static/list/zalgo_letters = list(
