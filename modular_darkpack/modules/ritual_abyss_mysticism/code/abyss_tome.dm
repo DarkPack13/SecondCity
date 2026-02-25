@@ -3,7 +3,7 @@
 	desc = "The secrets of Abyss Mysticism..."
 	icon_state = "mystic"
 	icon = 'modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_tome.dmi'
-	onflooricon = 'modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_onfloor.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_onfloor.dmi')
 	rune_type = /obj/ritual_rune/abyss
 
 /obj/item/ritual_tome/abyss/attack_self(mob/user)

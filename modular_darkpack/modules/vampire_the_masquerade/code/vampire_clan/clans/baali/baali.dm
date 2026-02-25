@@ -1,4 +1,4 @@
-/datum/vampire_clan/baali
+/datum/subsplat/vampire_clan/baali
 	name = "Baali"
 	id = VAMPIRE_CLAN_BAALI
 	desc = "The Baali are a bloodline of vampires associated with demon worship. Because of their affinity with the unholy, the Baali are particularly vulnerable to holy iconography, holy ground and holy water. They are highly vulnerable to True Faith."
@@ -20,7 +20,7 @@
 	whitelisted = TRUE
 	clan_keys = /obj/item/vamp/keys/baali
 
-/datum/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
 	. = ..()
 
 	H.add_faction(VAMPIRE_CLAN_BAALI)
