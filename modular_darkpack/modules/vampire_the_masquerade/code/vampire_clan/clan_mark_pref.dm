@@ -54,8 +54,6 @@
 		return FALSE
 	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
-	if(!clan)
-		return FALSE
 	if(istype(clan, /datum/subsplat/vampire_clan/gargoyle))
 		return TRUE
 	return FALSE
