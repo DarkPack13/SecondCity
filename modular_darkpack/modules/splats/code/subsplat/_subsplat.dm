@@ -30,7 +30,7 @@
 		RegisterSignal(gaining_mob, COMSIG_MOB_LOGIN, PROC_REF(on_join_round))
 
 /**
- * Undoes the effects of on_gain to more or less
+ * Undoes the effects of on_gain more or less
  * remove the effects of gaining the subsplat.
  *
  * Arguments:
@@ -45,7 +45,7 @@
  * Applies subsplat-specific effects when the
  * mob that has the subsplat logs into their mob
  * at roundstart. Anything that's not innate
- * to the suisplat and more part of its social
+ * to the subsplat and more part of its social
  * structure or whatnot should go in here.
  * Will teleport Masquerade-breaching Clans to
  * safe areas and give them their subsplat keys by
