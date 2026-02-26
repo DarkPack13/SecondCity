@@ -27,7 +27,7 @@
 		/datum/splat/vampire/ghoul
 	)
 
-	splat_priority = 60 + SPLAT_PRIO_SPLAT
+	splat_priority = SPLAT_PRIO_KINDRED
 
 	/// How many generations away from the first vampire they are. Determines how much blood can be stored and used
 	var/generation

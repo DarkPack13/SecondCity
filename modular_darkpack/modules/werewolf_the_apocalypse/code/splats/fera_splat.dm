@@ -70,7 +70,7 @@
 	name = "Kinfolk"
 	id = SPLAT_KINFOLK
 
-	splat_priority = 40 + SPLAT_PRIO_HALFSPLAT
+	splat_priority = SPLAT_PRIO_KINFOLK
 	half_splat = TRUE
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
@@ -91,7 +91,7 @@
 	uses_rage = TRUE
 	uses_gnosis = TRUE
 
-	splat_priority = 40 + SPLAT_PRIO_SPLAT
+	splat_priority = SPLAT_PRIO_SHIFTER
 
 	var/list/transformation_list = list()
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
