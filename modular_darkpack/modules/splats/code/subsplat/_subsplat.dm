@@ -22,7 +22,7 @@
 	/// Keys for this subsplats's exclusive hideout
 	var/subsplat_keys
 
-/datum/subsplat/proc/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/proc/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	SHOULD_CALL_PARENT(TRUE)
 
 	// Applies on_join_round effects when a client logs into this mob
@@ -52,7 +52,7 @@
 
 	SHOULD_CALL_PARENT(TRUE)
 
-	if (subsplat_keys)
+	if(subsplat_keys)
 		joining.put_in_r_hand(new subsplat_keys(joining))
 
 	UnregisterSignal(joining, COMSIG_MOB_LOGIN)

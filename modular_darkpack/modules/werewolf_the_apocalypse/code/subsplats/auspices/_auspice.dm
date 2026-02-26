@@ -7,7 +7,7 @@
 
 	var/moons_born_under = list()
 
-/datum/subsplat/werewolf/auspice/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/werewolf/auspice/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	if(istype(gaining, /datum/splat/werewolf))
 		var/datum/splat/werewolf/werewolf_splat = gaining

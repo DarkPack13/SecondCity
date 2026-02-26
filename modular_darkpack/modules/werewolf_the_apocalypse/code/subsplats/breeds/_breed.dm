@@ -6,7 +6,7 @@
 
 	var/breed_species
 
-/datum/subsplat/werewolf/breed_form/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/werewolf/breed_form/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	if(istype(gaining, /datum/splat/werewolf))
 		var/datum/splat/werewolf/werewolf_splat = gaining
