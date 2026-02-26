@@ -54,7 +54,7 @@
 	. = ..()
 
 	var/mob/living/living_mob = owner
-	var/datum/splat/werewolf/shifter = isshifter(owner)
+	var/datum/splat/werewolf/shifter/shifter = isshifter(owner)
 	var/list/menu_options = list()
 	for(var/howl_key in howls)
 		menu_options += howls[howl_key]["menu"]
@@ -77,7 +77,7 @@
 	*/
 	var/origin_turf = get_turf(living_mob)
 	ADD_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
-	living_mob.emote("howl")
+	living_mob.emote(shifter.warcry_emote)
 	REMOVE_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
 
 	var/howl_details

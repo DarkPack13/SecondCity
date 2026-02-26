@@ -105,6 +105,9 @@
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
 
+	/// Emote uses for activations of gifts and other things
+	var/warcry_emote = "howl"
+
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
 	owner.set_species(/datum/species/human/shifter/homid)
@@ -179,3 +182,4 @@
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 
+	warcry_emote = "caw"

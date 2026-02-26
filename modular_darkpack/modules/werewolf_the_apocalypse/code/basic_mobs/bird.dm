@@ -103,7 +103,7 @@
 	message = "caws!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/caw.ogg'
+	sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg'
 
 /mob/living/basic/corvid/crow
 	name = "crow"
