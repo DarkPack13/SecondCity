@@ -11,7 +11,7 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
-	clan_keys = /obj/item/vamp/keys/malkav
+	subsplat_keys = /obj/item/vamp/keys/malkav
 	var/list/mob/living/madness_network
 
 /datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/vampire)

@@ -18,7 +18,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/baali/female
 	enlightenment = TRUE
 	whitelisted = TRUE
-	clan_keys = /obj/item/vamp/keys/baali
+	subsplat_keys = /obj/item/vamp/keys/baali
 
 /datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
 	. = ..()

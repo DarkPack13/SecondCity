@@ -46,12 +46,12 @@
 
 	vampire.update_body()
 
-/datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
 	//give them sunglasses to hide their freakish eyes
-	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(H.loc)
-	H.equip_to_appropriate_slot(new_glasses, TRUE)
+	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(joining.loc)
+	joining.equip_to_appropriate_slot(new_glasses, TRUE)
 
 
 /obj/item/organ/eyes/kiasyd

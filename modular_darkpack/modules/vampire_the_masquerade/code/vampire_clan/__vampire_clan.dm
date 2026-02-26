@@ -25,8 +25,6 @@
 	var/male_clothes
 	/// Default clothing for female members of this Clan
 	var/female_clothes
-	/// Keys for this Clan's exclusive hideout
-	var/clan_keys
 
 	/// List of unnatural features that members of this Clan can choose
 	var/list/accessories
@@ -74,10 +72,6 @@
 	for (var/trait in clan_traits)
 		ADD_TRAIT(vampire, trait, CLAN_TRAIT)
 
-	// Applies on_join_round effects when a client logs into this mob
-	if (joining_round)
-		RegisterSignal(vampire, COMSIG_MOB_LOGIN, PROC_REF(on_join_round), override = TRUE)
-
 	for(var/discipline in clan_disciplines)
 		// DARKPACK TODO - reimplement choosing disciplines
 		if(ispath(discipline, /datum/discipline))
@@ -111,40 +105,20 @@
 		vampire.remove_overlay(equipped_accessory)
 	*/
 
-/**
- * Applies Clan-specific effects when the
- * mob that has the Clan logs into their mob
- * at roundstart. Anything that's not innate
- * to the Clan and more part of its social
- * structure or whatnot should go in here.
- * Will teleport Masquerade-breaching Clans to
- * safe areas and give them their Clan keys by
- * default.
- *
- * Arguments:
- * * vampire - Human with this Clan joining the round.
- */
-/datum/subsplat/vampire_clan/proc/on_join_round(mob/living/carbon/human/vampire)
-	SIGNAL_HANDLER
+/datum/subsplat/vampire_clan/on_join_round(mob/living/carbon/human/joining)
+	. = ..()
 
-	SHOULD_CALL_PARENT(TRUE)
-
-	if (HAS_TRAIT(vampire, TRAIT_MASQUERADE_VIOLATING_FACE))
+	if (HAS_TRAIT(joining, TRAIT_MASQUERADE_VIOLATING_FACE))
 		if (length(GLOB.masquerade_latejoin))
 			var/obj/effect/landmark/latejoin_masquerade/LM = pick(GLOB.masquerade_latejoin)
 			if (LM)
-				vampire.forceMove(get_turf(LM))
+				joining.forceMove(get_turf(LM))
 		// if they spawn with the masquerade violating face trait, give them the things to cover up so they aren't stuck in the sewer.
-		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(vampire.loc)
-		vampire.equip_to_appropriate_slot(new_robe, FALSE)
+		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(joining.loc)
+		joining.equip_to_appropriate_slot(new_robe, FALSE)
 
-		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(vampire.loc)
-		vampire.equip_to_appropriate_slot(new_mask, FALSE)
-
-	if (clan_keys)
-		vampire.put_in_r_hand(new clan_keys(vampire))
-
-	UnregisterSignal(vampire, COMSIG_MOB_LOGIN)
+		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(joining.loc)
+		joining.equip_to_appropriate_slot(new_mask, FALSE)
 
 /**
  * Gives the human a vampiric Clan, applying
