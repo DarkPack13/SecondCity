@@ -177,40 +177,40 @@
 /obj/item/bodypart/head/zombie
 	limb_id = SPECIES_ZOMBIE
 	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN
 	can_dismember = TRUE
 
 /obj/item/bodypart/chest/zombie
 	limb_id = SPECIES_ZOMBIE
 	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	wing_types = null
 
 /obj/item/bodypart/arm/left/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 
 /obj/item/bodypart/arm/right/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/left/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/right/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/left/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	speed_modifier = 0.8 //braaaaains
 
 /obj/item/bodypart/leg/right/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
 	speed_modifier = 0.8 //braaaaains
 
 ///PODPEOPLE

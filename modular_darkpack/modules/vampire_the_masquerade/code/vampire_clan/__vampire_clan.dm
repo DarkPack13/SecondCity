@@ -134,6 +134,12 @@
 			var/obj/effect/landmark/latejoin_masquerade/LM = pick(GLOB.masquerade_latejoin)
 			if (LM)
 				vampire.forceMove(get_turf(LM))
+		// if they spawn with the masquerade violating face trait, give them the things to cover up so they aren't stuck in the sewer.
+		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(vampire.loc)
+		vampire.equip_to_appropriate_slot(new_robe, FALSE)
+
+		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(vampire.loc)
+		vampire.equip_to_appropriate_slot(new_mask, FALSE)
 
 	if (clan_keys)
 		vampire.put_in_r_hand(new clan_keys(vampire))

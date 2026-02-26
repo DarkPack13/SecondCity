@@ -4,13 +4,16 @@
 
 	possible_shapes = list(
 		/mob/living/basic/bat/protean,
-		/mob/living/basic/pet/dog/darkpack/protean, // DARKPACK TODO - WOLF
+		/mob/living/basic/pet/dog/wolf/protean,
 	)
 
-/mob/living/basic/bat/protean
+// FIGHT FORMS
+/mob/living/basic/pet/dog/wolf/protean
 	maxHealth = 300
 	health = 300
-	mob_size = MOB_SIZE_SMALL
+	melee_damage_lower = 20
+	melee_damage_upper = 20
+	random_wolf_color = FALSE
 
 /mob/living/basic/pet/dog/darkpack/protean
 	maxHealth = 300
@@ -24,13 +27,25 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 
+// FLIGHT FORMS
+/mob/living/basic/bat/protean
+	maxHealth = 300
+	health = 300
+	mob_size = MOB_SIZE_SMALL
+
+/mob/living/basic/corvid/protean
+	maxHealth = 300
+	health = 300
+
 /datum/action/cooldown/spell/shapeshift/gangrel/beast_form/Grant(mob/grant_to)
 	. = ..()
 	if(ishuman(grant_to))
 		var/mob/living/carbon/human/grant_to_human = grant_to
 		if(grant_to_human.is_clan(/datum/subsplat/vampire_clan/gangrel))
 			possible_shapes += list(
-				/mob/living/basic/bear/vampire/protean
+				/mob/living/basic/bear/vampire/protean,
+				/mob/living/basic/pet/dog/darkpack/protean,
+				/mob/living/basic/corvid/protean,
 			)
 
 /mob/living/basic/gangrel
