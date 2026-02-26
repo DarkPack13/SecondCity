@@ -27,7 +27,7 @@
 
 	// Applies on_join_round effects when a client logs into this mob
 	if(joining_round)
-		RegisterSignal(gaining, COMSIG_MOB_LOGIN, PROC_REF(on_join_round))
+		RegisterSignal(gaining_mob, COMSIG_MOB_LOGIN, PROC_REF(on_join_round))
 
 /datum/subsplat/proc/on_lose()
 	SHOULD_CALL_PARENT(TRUE)

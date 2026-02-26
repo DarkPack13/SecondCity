@@ -18,11 +18,11 @@
 	enlightenment = TRUE
 	subsplat_keys = /obj/item/vamp/keys/lasombra
 
-/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
-	H.vis_flags |= VIS_HIDE
-	H.add_faction(VAMPIRE_CLAN_LASOMBRA)
+	gaining_mob.vis_flags |= VIS_HIDE
+	gaining_mob.add_faction(VAMPIRE_CLAN_LASOMBRA)
 
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)

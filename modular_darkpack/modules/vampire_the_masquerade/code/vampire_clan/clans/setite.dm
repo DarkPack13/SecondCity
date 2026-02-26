@@ -12,7 +12,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/slickback
 	female_clothes = /obj/item/clothing/under/vampire/burlesque
 
-/datum/subsplat/vampire_clan/setite/on_gain(mob/living/carbon/human/vampire, joining_round)
+/datum/subsplat/vampire_clan/setite/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	//vampire.add_quirk(/datum/quirk/lightophobia)
+	//gaining_mob.add_quirk(/datum/quirk/lightophobia)
 

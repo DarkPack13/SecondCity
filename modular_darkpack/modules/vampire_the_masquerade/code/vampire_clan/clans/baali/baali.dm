@@ -20,11 +20,11 @@
 	whitelisted = TRUE
 	subsplat_keys = /obj/item/vamp/keys/baali
 
-/datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
-	H.add_faction(VAMPIRE_CLAN_BAALI)
+	gaining_mob.add_faction(VAMPIRE_CLAN_BAALI)
 
-	H.AddElement(/datum/element/holy_weakness)
+	gaining_mob.AddElement(/datum/element/holy_weakness)
 
-	H.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)
+	gaining_mob.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)

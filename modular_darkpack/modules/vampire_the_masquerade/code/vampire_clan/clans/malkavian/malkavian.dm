@@ -14,19 +14,19 @@
 	subsplat_keys = /obj/item/vamp/keys/malkav
 	var/list/mob/living/madness_network
 
-/datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
-	var/datum/action/cooldown/malk_hivemind/hivemind = new(vampire)
-	var/datum/action/cooldown/malk_speech/malk_font = new(vampire)
-	hivemind.Grant(vampire)
-	malk_font.Grant(vampire)
-	vampire.add_quirk(/datum/quirk/derangement)
+	var/datum/action/cooldown/malk_hivemind/hivemind = new(gaining_mob)
+	var/datum/action/cooldown/malk_speech/malk_font = new(gaining_mob)
+	hivemind.Grant(gaining_mob)
+	malk_font.Grant(gaining_mob)
+	gaining_mob.add_quirk(/datum/quirk/derangement)
 
 	// Madness Network handling
-	LAZYADD(madness_network, vampire)
-	RegisterSignal(vampire, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
-	RegisterSignal(vampire, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
+	LAZYADD(madness_network, gaining_mob)
+	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
+	RegisterSignal(gaining_mob, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
 
 /datum/subsplat/vampire_clan/malkavian/on_lose(mob/living/carbon/human/vampire)
 	. = ..()

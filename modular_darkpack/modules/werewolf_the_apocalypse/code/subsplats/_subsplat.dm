@@ -13,4 +13,4 @@
 	. = ..()
 	// Placeholder!
 	for(var/gift in gifts_provided)
-		gaining.add_power(gift)
+		gaining_splat.add_power(gift)

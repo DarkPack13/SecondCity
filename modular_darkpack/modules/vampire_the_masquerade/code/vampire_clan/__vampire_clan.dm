@@ -53,29 +53,29 @@
  * * vampire - Human being given the Clan
  * * joining_round - If this Clan is being applied as the mob joins the round
  */
-/datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/vampire, joining_round)
+/datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
 	// Apply alternative sprites
 	if (alt_sprite)
-		vampire.set_body_sprite(alt_sprite, alt_sprite_greyscale)
+		gaining_mob.set_body_sprite(alt_sprite, alt_sprite_greyscale)
 
 	// Remove hair if the Clan demands it
 	if (no_hair)
-		vampire.set_hairstyle("Bald", update = FALSE)
+		gaining_mob.set_hairstyle("Bald", update = FALSE)
 
 	// Remove facial hair if the Clan demands it
 	if (no_facial)
-		vampire.set_facial_hairstyle("Shaved", update = FALSE)
+		gaining_mob.set_facial_hairstyle("Shaved", update = FALSE)
 
 	// Add unique Clan features as traits
 	for (var/trait in clan_traits)
-		ADD_TRAIT(vampire, trait, CLAN_TRAIT)
+		ADD_TRAIT(gaining_mob, trait, CLAN_TRAIT)
 
 	for(var/discipline in clan_disciplines)
 		// DARKPACK TODO - reimplement choosing disciplines
 		if(ispath(discipline, /datum/discipline))
-			vampire.give_st_power(discipline, 5)
+			gaining_mob.give_st_power(discipline, 5)
 
 /**
  * Undoes the effects of on_gain to more or less
@@ -152,7 +152,7 @@
 		return
 
 	// Gaining Clan effects
-	kindred.clan.on_gain(src, joining_round)
+	kindred.clan.on_gain(src, kindred, joining_round)
 
 /mob/living/proc/get_clan()
 	RETURN_TYPE(/datum/subsplat/vampire_clan)
