@@ -1,4 +1,3 @@
-// DARKPACK TODO - CORAX - (Corax kinfolk and thus should be grouped into WTA soon.)
 /mob/living/basic/corvid
 	name = "corvid"
 	desc = "Caw."
@@ -104,8 +103,7 @@
 	message = "caws!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
-	// DARKPACK TODO - CORAX - (Move to wta folder)
-	sound = 'modular_darkpack/modules/npc/sound/caw.ogg'
+	sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/caw.ogg'
 
 /mob/living/basic/corvid/crow
 	name = "crow"

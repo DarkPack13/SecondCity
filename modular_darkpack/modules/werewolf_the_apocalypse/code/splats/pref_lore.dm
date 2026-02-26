@@ -39,7 +39,7 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_DOG,
 			SPECIES_PERK_NAME = "Shapeshifting",
-			SPECIES_PERK_DESC = "Garou can shift between 5 diffrent forms that grant them bonus.",
+			SPECIES_PERK_DESC = "Garou can shift between 5 diffrent forms that grant them bonuses.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -58,7 +58,7 @@
 	human.update_body()
 
 /datum/splat/werewolf/shifter/corax/get_splat_description()
-	return "Lorem Ipsum"
+	return "Messengers of Gaia, children of Raven, and scions of Helios; the wereravens travel accross the globe, guided by their innate curiosity and insatiable thirst for gossip. \nThey are renowned for their ability to gather useful intelligence, and the difficulty of making them stop talking."
 
 /datum/splat/werewolf/shifter/corax/get_splat_lore()
 	return list(
@@ -73,7 +73,7 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_DOG,
 			SPECIES_PERK_NAME = "Shapeshifting",
-			SPECIES_PERK_DESC = "Corax can shift between 3 diffrent forms that grant them bonus.",
+			SPECIES_PERK_DESC = "Corax can shift between 3 diffrent forms that grant them bonuses.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
