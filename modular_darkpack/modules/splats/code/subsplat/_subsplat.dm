@@ -29,7 +29,14 @@
 	if(joining_round)
 		RegisterSignal(gaining_mob, COMSIG_MOB_LOGIN, PROC_REF(on_join_round))
 
-/datum/subsplat/proc/on_lose()
+/**
+ * Undoes the effects of on_gain to more or less
+ * remove the effects of gaining the subsplat.
+ *
+ * Arguments:
+ * * losing_mob - Human losing the subsplat.
+ */
+/datum/subsplat/proc/on_lose(mob/living/carbon/human/losing_mob)
 	SHOULD_CALL_PARENT(TRUE)
 	return
 

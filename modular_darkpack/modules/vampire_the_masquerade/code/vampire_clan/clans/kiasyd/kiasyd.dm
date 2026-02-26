@@ -34,17 +34,17 @@
 	var/obj/item/organ/eyes/kiasyd/weird_eyes = new()
 	weird_eyes.Insert(gaining_mob, TRUE, DELETE_IF_REPLACED)
 
-/datum/subsplat/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
 	/*
-	if (vampire.has_quirk(/datum/quirk/tower))
-		vampire.remove_quirk(/datum/quirk/tower)
+	if (losing_mob.has_quirk(/datum/quirk/tower))
+		losing_mob.remove_quirk(/datum/quirk/tower)
 	else
-		vampire.add_quirk(/datum/quirk/dwarf)
+		losing_mob.add_quirk(/datum/quirk/dwarf)
 	*/
 
-	vampire.update_body()
+	losing_mob.update_body()
 
 /datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/joining)
 	. = ..()

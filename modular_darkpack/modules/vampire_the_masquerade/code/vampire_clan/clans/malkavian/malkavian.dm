@@ -28,18 +28,18 @@
 	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
 	RegisterSignal(gaining_mob, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
 
-/datum/subsplat/vampire_clan/malkavian/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/malkavian/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
-	for (var/datum/action/cooldown/malkavian_action in vampire.actions)
+	for (var/datum/action/cooldown/malkavian_action in losing_mob.actions)
 		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
-		malkavian_action.Remove(vampire)
+		malkavian_action.Remove(losing_mob)
 
 	// Remove Madness Network
-	LAZYREMOVE(madness_network, vampire)
-	UnregisterSignal(vampire, COMSIG_MOB_SAY)
-	UnregisterSignal(vampire, COMSIG_MOVABLE_HEAR)
+	LAZYREMOVE(madness_network, losing_mob)
+	UnregisterSignal(losing_mob, COMSIG_MOB_SAY)
+	UnregisterSignal(losing_mob, COMSIG_MOVABLE_HEAR)
 
 /datum/subsplat/vampire_clan/malkavian/proc/handle_say(mob/living/source, list/speech_args)
 	SIGNAL_HANDLER

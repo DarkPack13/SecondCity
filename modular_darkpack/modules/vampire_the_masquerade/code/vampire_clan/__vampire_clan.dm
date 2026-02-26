@@ -77,32 +77,23 @@
 		if(ispath(discipline, /datum/discipline))
 			gaining_mob.give_st_power(discipline, 5)
 
-/**
- * Undoes the effects of on_gain to more or less
- * remove the effects of gaining the Clan. By default,
- * this proc only removes unique traits and resets
- * the mob's alternative sprite.
- *
- * Arguments:
- * * vampire - Human losing the Clan.
- */
-/datum/subsplat/vampire_clan/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
 	// Remove unique Clan feature traits
 	for (var/trait in clan_traits)
-		REMOVE_TRAIT(vampire, trait, CLAN_TRAIT)
+		REMOVE_TRAIT(losing_mob, trait, CLAN_TRAIT)
 
-	// Sets the vampire back to their default body sprite
+	// Sets the losing_mob back to their default body sprite
 	if (alt_sprite)
-		vampire.set_body_sprite(ignore_clan = TRUE)
+		losing_mob.set_body_sprite(ignore_clan = TRUE)
 
 	// DARKPACK TODO - reimplement clan accessories
 	/*
 	// Remove Clan accessories
-	if (vampire.client?.prefs?.clan_accessory)
-		var/equipped_accessory = accessories_layers[vampire.client.prefs.clan_accessory]
-		vampire.remove_overlay(equipped_accessory)
+	if (losing_mob.client?.prefs?.clan_accessory)
+		var/equipped_accessory = accessories_layers[losing_mob.client.prefs.clan_accessory]
+		losing_mob.remove_overlay(equipped_accessory)
 	*/
 
 /datum/subsplat/vampire_clan/on_join_round(mob/living/carbon/human/joining)
