@@ -132,7 +132,7 @@
 /datum/splat/vampire/kindred/splat_life(seconds_per_tick)
 	. = ..()
 	// Tried doing with proximity_monitor but only triggers when THEY walk
-	if(!tutorial_shown && (owner.maxbloodpool != owner.bloodpool) && (locate(/mob/living/carbon/human/npc) in orange(2, owner)))
+	if(!tutorial_shown && owner.client && (owner.maxbloodpool != owner.bloodpool) && (locate(/mob/living/carbon/human/npc) in orange(2, owner)))
 		SStutorials.suggest_tutorial(owner, /datum/tutorial/bite_prey)
 		tutorial_shown = TRUE
 
