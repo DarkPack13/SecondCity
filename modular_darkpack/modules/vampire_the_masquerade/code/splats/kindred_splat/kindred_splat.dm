@@ -41,6 +41,8 @@
 	/// Timer tracking how long before the Kindred can wake up from torpor
 	COOLDOWN_DECLARE(torpor_timer)
 
+	var/tutorial_shown = FALSE
+
 /datum/splat/vampire/kindred/New(generation, clan, enlightenment = FALSE, mob/living/sire)
 	src.generation = generation
 	src.clan = clan
@@ -127,6 +129,13 @@
 
 	GLOB.kindred_list -= owner
 
+/datum/splat/vampire/kindred/splat_life(seconds_per_tick)
+	. = ..()
+	// Tried doing with proximity_monitor but only triggers when THEY walk
+	if(!tutorial_shown && (owner.maxbloodpool != owner.bloodpool) && (locate(/mob/living/carbon/human/npc) in orange(2, owner)))
+		SStutorials.suggest_tutorial(owner, /datum/tutorial/bite_prey)
+		tutorial_shown = TRUE
+
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
 
@@ -177,7 +186,7 @@
  *
  * This handles vampire bite sleep immunity and any future special interactions.
  */
-/datum/splat/vampire/kindred/proc/on_vampire_bitten(datum/source, mob/living/carbon/being_bitten)
+/datum/splat/vampire/kindred/proc/on_vampire_bitten(mob/drunk_from, mob/living/carbon/human/drinker)
 	SIGNAL_HANDLER
 
 	return COMPONENT_RESIST_VAMPIRE_KISS

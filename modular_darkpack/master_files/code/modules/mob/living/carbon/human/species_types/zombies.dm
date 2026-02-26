@@ -37,10 +37,10 @@
 	RegisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED, PROC_REF(on_zombie_bitten))
 	ADD_TRAIT(C, TRAIT_MASQUERADE_VIOLATING_FACE, "zombie")
 
-/datum/species/zombie/proc/on_zombie_bitten(datum/source, mob/living/carbon/being_bitten)
+/datum/species/zombie/proc/on_zombie_bitten(mob/drunk_from, mob/living/carbon/human/drinker)
 	SIGNAL_HANDLER
 
-	if(iszombie(being_bitten))
+	if(iszombie(drunk_from))
 		return COMPONENT_RESIST_VAMPIRE_KISS
 
 /datum/species/zombie/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)

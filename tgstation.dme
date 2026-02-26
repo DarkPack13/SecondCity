@@ -7020,6 +7020,7 @@
 #include "modular_darkpack\modules\bitcoinminer\code\bitcoinminer.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_helper_procs.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_keybinding.dm"
+#include "modular_darkpack\modules\blood_drinking\code\bite_tutorial.dm"
 #include "modular_darkpack\modules\blood_drinking\code\drinksomeblood.dm"
 #include "modular_darkpack\modules\blood_drinking\code\vamp_bite.dm"
 #include "modular_darkpack\modules\blood_drinking\code\kiss_status_effect\status_effect_kiss.dm"
