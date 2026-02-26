@@ -79,7 +79,7 @@
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, "statue_form")
 	ADD_TRAIT(owner, TRAIT_MUTE, "statue_form")
 	REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, CLAN_TRAIT)
-	owner.name = "Statue of [owner.name]"
+	owner.name = "Statue of a Gargoyle"
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	owner.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
