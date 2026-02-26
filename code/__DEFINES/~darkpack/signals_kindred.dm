@@ -7,4 +7,4 @@
 	#define COMPONENT_RESIST_VAMPIRE_KISS (1<<0)
 
 ///called in bloodsucking.dm at the end of /mob/living/carbon/human/proc/drinksomeblood: (mob/living/carbon/human/drinker, mob/drunk_from)
-#define COMSIG_MOB_VAMPIRE_SUCKING "mob_vampire_sucked"
+#define COMSIG_MOB_VAMPIRE_SUCKING "mob_vampire_sucking"
