@@ -27,7 +27,7 @@
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/warcry/get_range(mob/living/user)
-	if(HAS_TRAIT(user, TRAIT_LOUD_HOWLER))
+	if(HAS_TRAIT(user, TRAIT_LOUD_WARCRY))
 		return 60
 
 /datum/emote/living/warcry/howl
@@ -77,7 +77,9 @@
 	return
 
 /datum/species/human/shifter/get_caw_sound(mob/living/carbon/human/human)
-	return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg'
+	if(get_corax_splat(human))
+		return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg'
 
 /datum/species/human/shifter/war/get_caw_sound(mob/living/carbon/human/human)
-	return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/cawcrinos.ogg'
+	if(get_corax_splat(human))
+		return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/cawcrinos.ogg'

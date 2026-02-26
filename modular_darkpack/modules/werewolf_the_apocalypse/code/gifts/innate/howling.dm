@@ -76,9 +76,9 @@
 		garou_message = replacetext(garou_message, "tribe", tribe)
 	*/
 	var/origin_turf = get_turf(living_mob)
-	ADD_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
+	ADD_TRAIT(living_mob, TRAIT_LOUD_WARCRY, type)
 	living_mob.emote(shifter.warcry_emote)
-	REMOVE_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
+	REMOVE_TRAIT(living_mob, TRAIT_LOUD_WARCRY, type)
 
 	var/howl_details
 	var/final_message
