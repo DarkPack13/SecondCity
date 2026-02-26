@@ -268,7 +268,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	inhand_icon_state = "mp5"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack9mp5
-	burst_size = 4
+	burst_size = 1
 	spread = 4
 	recoil = 3
 	bolt_type = BOLT_TYPE_LOCKING
@@ -277,6 +277,12 @@
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/mp5.ogg'
 	serial_type = "H&K"
+	var/rof = 0.15 SECONDS
+
+/obj/item/gun/ballistic/automatic/darkpack/mp5/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
+
 
 /obj/item/ammo_box/magazine/darkpack45smg
 	name = ".45 SMG magazine"
@@ -296,7 +302,7 @@
 	icon_state = "mac10"
 	inhand_icon_state = "mac10"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack45smg
-	burst_size = 7 //if any other gun has the same fire rate as this gun, increase this gun so its the new fastest
+	burst_size = 1
 	spread = 16 //spray and pray
 	burst_delay = 1
 	recoil = 6
@@ -307,6 +313,11 @@
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10.ogg' // DARKPACK sound effect
 	serial_type = "GBI"
+	var/rof = 0.055 SECONDS //1090 RPM, if any other gun has the same fire rate as this gun, increase this gun so its the new fastest
+
+/obj/item/gun/ballistic/automatic/darkpack/mac10/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
 
 /obj/item/ammo_box/magazine/darkpack45custom
 	name = ".45 custom magazine"
@@ -361,7 +372,7 @@
 	icon_state = "mp7"
 	inhand_icon_state = "mp7"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack/c46pdw
-	burst_size = 3
+	burst_size = 1
 	spread = 3
 	recoil = 2
 	bolt_type = BOLT_TYPE_LOCKING
@@ -370,6 +381,11 @@
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/mp5.ogg'
 	serial_type = "H&K"
+	var/rof = 0.1 SECONDS //600 RPM,
+
+/obj/item/gun/ballistic/automatic/darkpack/mp7/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
 
 /obj/item/ammo_box/magazine/darkpack556
 	name = "carbine magazine (5.56mm)"
@@ -453,8 +469,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack545
 	recoil = 5
-	burst_size = 3
-	fire_delay = 3
+	burst_size = 1
 	spread = 8
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
@@ -462,6 +477,11 @@
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/ak.ogg'
 	masquerade_violating = TRUE
 	serial_type = "KA"
+	var/rof = 0.2 SECONDS //300 RPM
+
+/obj/item/gun/ballistic/automatic/darkpack/ak74/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
 
 /obj/item/ammo_box/magazine/darkpackaug
 	name = "AUG magazine (5.56mm)"
@@ -515,8 +535,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpackthompson
 	recoil = 5
-	burst_size = 5
-	fire_delay = 3
+	burst_size = 1
 	spread = 15
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
@@ -524,6 +543,11 @@
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/thompson.ogg'
 	masquerade_violating = TRUE
 	serial_type = "AO"
+	var/rof = 0.15 SECONDS //400 RPM
+
+/obj/item/gun/ballistic/automatic/darkpack/thompson/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
 
 /obj/item/ammo_box/magazine/internal/darkpack/lever
 	name = "lever action internal magazine"

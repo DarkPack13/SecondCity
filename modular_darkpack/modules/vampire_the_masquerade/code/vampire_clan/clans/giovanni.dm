@@ -1,4 +1,4 @@
-/datum/vampire_clan/giovanni
+/datum/subsplat/vampire_clan/giovanni
 	name = "Giovanni"
 	id = VAMPIRE_CLAN_GIOVANNI
 	desc = "The Giovanni are the usurpers of Clan Cappadocian and one of the youngest clans. The Giovanni has historically been both a clan and a family. They Embrace almost exclusively within their family, and are heavily focused on the goals of money and necromantic power."
@@ -15,7 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/suit
 	female_clothes = /obj/item/clothing/under/vampire/suit/female
 
-/datum/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/H)
 	. = ..()
 
 	//H.grant_language(/datum/language/italian) // DARKPACK TODO - LANGUAGES

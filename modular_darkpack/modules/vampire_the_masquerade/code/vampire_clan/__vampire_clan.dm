@@ -1,11 +1,5 @@
-/datum/vampire_clan
-	abstract_type = /datum/vampire_clan
-	/// Name of the Clan
-	var/name
-	/// Identifier in sprites for the Clan
-	var/id
-	/// Description of the Clan
-	var/desc
+/datum/subsplat/vampire_clan
+	abstract_type = /datum/subsplat/vampire_clan
 	/// The icon for this clan. Used in preferences.
 	var/icon
 	/// Description of the Clan's supernatural curse
@@ -61,8 +55,8 @@
  * * vampire - Human being given the Clan
  * * joining_round - If this Clan is being applied as the mob joins the round
  */
-/datum/vampire_clan/proc/on_gain(mob/living/carbon/human/vampire, joining_round)
-	SHOULD_CALL_PARENT(TRUE)
+/datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/vampire, joining_round)
+	. = ..()
 
 	// Apply alternative sprites
 	if (alt_sprite)
@@ -98,8 +92,8 @@
  * Arguments:
  * * vampire - Human losing the Clan.
  */
-/datum/vampire_clan/proc/on_lose(mob/living/carbon/human/vampire)
-	SHOULD_CALL_PARENT(TRUE)
+/datum/subsplat/vampire_clan/on_lose(mob/living/carbon/human/vampire)
+	. = ..()
 
 	// Remove unique Clan feature traits
 	for (var/trait in clan_traits)
@@ -130,7 +124,7 @@
  * Arguments:
  * * vampire - Human with this Clan joining the round.
  */
-/datum/vampire_clan/proc/on_join_round(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/proc/on_join_round(mob/living/carbon/human/vampire)
 	SIGNAL_HANDLER
 
 	SHOULD_CALL_PARENT(TRUE)
@@ -140,6 +134,12 @@
 			var/obj/effect/landmark/latejoin_masquerade/LM = pick(GLOB.masquerade_latejoin)
 			if (LM)
 				vampire.forceMove(get_turf(LM))
+		// if they spawn with the masquerade violating face trait, give them the things to cover up so they aren't stuck in the sewer.
+		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(vampire.loc)
+		vampire.equip_to_appropriate_slot(new_robe, FALSE)
+
+		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(vampire.loc)
+		vampire.equip_to_appropriate_slot(new_mask, FALSE)
 
 	if (clan_keys)
 		vampire.put_in_r_hand(new clan_keys(vampire))
@@ -159,10 +159,10 @@
  * * joining_round - If this Clan is being given at roundstart and should call on_join_round
  */
 /mob/living/carbon/human/proc/set_clan(setting_clan, joining_round)
-	var/datum/vampire_clan/previous_clan = get_clan()
+	var/datum/subsplat/vampire_clan/previous_clan = get_clan()
 
 	// Convert IDs and typepaths to singletons, or just directly assign if already singleton
-	var/datum/vampire_clan/new_clan = get_vampire_clan(setting_clan)
+	var/datum/subsplat/vampire_clan/new_clan = get_vampire_clan(setting_clan)
 
 	// Handle losing Clan
 	previous_clan?.on_lose(src)
@@ -181,7 +181,7 @@
 	kindred.clan.on_gain(src, joining_round)
 
 /mob/living/proc/get_clan()
-	RETURN_TYPE(/datum/vampire_clan)
+	RETURN_TYPE(/datum/subsplat/vampire_clan)
 
 	return get_kindred_splat(src)?.clan
 

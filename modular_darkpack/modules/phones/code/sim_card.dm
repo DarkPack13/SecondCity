@@ -7,6 +7,8 @@
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	var/published = FALSE
+	var/published_name = "" //the published number listing for this sim
 
 	var/phone_number = ""
 	var/datum/weakref/phone_weakref = null

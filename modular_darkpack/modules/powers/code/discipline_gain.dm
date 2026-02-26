@@ -30,8 +30,8 @@
 		return TRUE
 
 	//next, go through all Clans to check if they have access to any with the Discipline
-	for (var/clan_type in subtypesof(/datum/vampire_clan))
-		var/datum/vampire_clan/clan_checking = new clan_type
+	for (var/clan_type in subtypesof(/datum/subsplat/vampire_clan))
+		var/datum/subsplat/vampire_clan/clan_checking = new clan_type
 
 		//skip this if they can't access it due to whitelists
 		// DARKPACK TODO - reimplement whitelisting

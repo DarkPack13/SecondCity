@@ -10,7 +10,7 @@
 		return FALSE
 
 	var/datum/splat/vampire/vampire = get_splat_with_discipline(user)
-	if(vampire?.get_discipline_power(/datum/discipline/serpentis))
+	if(vampire?.get_discipline(/datum/discipline/serpentis))
 		return TRUE
 
 	return FALSE
