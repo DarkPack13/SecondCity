@@ -155,8 +155,9 @@
 
 /datum/discipline_power/vicissitude/horrid_form/pre_activation_checks()
 	. = ..()
-	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
 	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
@@ -164,18 +165,19 @@
 	if(!zulo_form)
 		zulo_form = new(owner)
 		zulo_form.Grant(owner)
-	zulo_form.Activate()
+	zulo_form.Activate(owner)
 
 /datum/discipline_power/vicissitude/horrid_form/pre_deactivation_checks()
 	. = ..()
 	owner.do_jitter_animation(1 TURNS)
-	owner.Stun(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
 	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
 	if(zulo_form && is_type_in_list(owner, zulo_form.possible_shapes))
-		zulo_form.cast(owner)
+		zulo_form.Activate(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
