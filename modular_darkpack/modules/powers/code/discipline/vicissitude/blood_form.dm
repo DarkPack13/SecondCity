@@ -119,6 +119,7 @@
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
 	is_dimorphic = FALSE
+	species_color = "#e70000"
 
 /obj/item/bodypart/chest/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -126,6 +127,7 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = TRUE
+	species_color = "#e70000"
 
 /obj/item/bodypart/chest/blood_form/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
@@ -136,6 +138,7 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
+	species_color = "#e70000"
 
 /obj/item/bodypart/arm/right/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -143,6 +146,7 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
+	species_color = "#e70000"
 
 /obj/item/bodypart/leg/left/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -150,6 +154,7 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
+	species_color = "#e70000"
 
 /obj/item/bodypart/leg/right/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -157,5 +162,6 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
+	species_color = "#e70000"
 
 #undef SPECIES_BLOODFORM
