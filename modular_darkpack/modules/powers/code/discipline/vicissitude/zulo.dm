@@ -22,6 +22,11 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 	possible_shapes = list(/mob/living/basic/zulo)
 	click_to_activate = FALSE
 
+/datum/action/cooldown/spell/shapeshift/zulo/do_unshapeshift(mob/living/caster)
+	. = ..()
+	owner.do_jitter_animation(1 TURNS)
+	Remove(caster)
+
 /mob/living/basic/zulo
 	name = "unknown creature"
 	desc = "What the hell is that thing!?"
@@ -38,7 +43,7 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 	maxHealth = 600
 	health = 600
-	speed = 1
+	speed = 0.5
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	obj_damage = 30
