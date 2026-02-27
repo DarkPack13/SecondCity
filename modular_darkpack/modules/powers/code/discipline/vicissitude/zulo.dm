@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 	pixel_w = -16
 	mob_biotypes = MOB_ORGANIC
 	mob_size = MOB_SIZE_HUGE
-
+	basic_mob_flags = PRECISE_ATTACK_ZONES | FLAMMABLE_MOB
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
@@ -39,8 +39,10 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 	maxHealth = 600
 	health = 600
-	speed = 2
-	obj_damage = 20
+	speed = 3
+	melee_damage_lower = 30
+	melee_damage_upper = 30
+	obj_damage = 30
 	armour_penetration = 5
 	wound_bonus = 0
 	sharpness = SHARP_POINTY
@@ -52,5 +54,8 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 /mob/living/basic/zulo/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_UNMASQUERADE, type)
+
+/mob/living/basic/zulo/mind_initialize()
+	. = ..()
 	var/preffered_form = client?.prefs.read_preference(/datum/preference/choiced/subsplat/zulo_form)
 	icon_state = preffered_form ? preffered_form : "fiend"
