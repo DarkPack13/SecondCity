@@ -32,21 +32,16 @@
 	childe.create_disciplines(FALSE, disciplines_to_give)
 	*/
 
-	/* // DARKPACK TODO - FIX MORALITY PATHS
 	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
 	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats["[STAT_MORALITY]"]
 
-	if(stat_morality?.morality_path)
-		if(!stat_morality_childe)
-			return
-
+	if(stat_morality?.morality_path && stat_morality_childe)
 		stat_morality_childe.morality_path = new stat_morality.morality_path.type(childe)
 
 		if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT)
 			var/datum/splat/vampire/kindred/kindred_splat = iskindred(childe)
 			if(istype(kindred_splat))
 				kindred_splat.enlightenment = TRUE
-	*/
 
 	addtimer(CALLBACK(childe, PROC_REF(prompt_permanent_embrace)), 1 SECONDS)
 
@@ -90,12 +85,10 @@
 	write_preference_midround(/datum/preference/choiced/splats, SPLAT_KINDRED)
 	write_preference_midround(/datum/preference/choiced/subsplat/vampire_clan, get_clan()?.name) // clan should already be changed by the embracing itself...
 
-	/* // DARKPACK TODO - FIX MORALITY PATHS
 	// ...same with your morality path. unfortunately, this is a bit of a clusterfuck to get
 	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
 	if(stat_morality?.morality_path)
-		write_preference_midround(/datum/preference/choiced/vtm_morality, stat_morality.morality_path.type)
-	*/
+		write_preference_midround(/datum/preference/choiced/vtm_morality, stat_morality.morality_path.name)
 
 	/* // DARKPACK TODO - PREFERENCES
 	var/datum/preferences/childe_prefs_v = client.prefs
