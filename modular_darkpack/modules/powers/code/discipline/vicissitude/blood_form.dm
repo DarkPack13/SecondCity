@@ -22,7 +22,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/blood_form,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/blood_form,
 	)
-	fixed_mut_color = "#e6000099"
+	fixed_mut_color = "#e60000d3"
 	hair_color_mode = USE_FIXED_MUTANT_COLOR
 	hair_alpha = 150
 	facial_hair_alpha = 150
