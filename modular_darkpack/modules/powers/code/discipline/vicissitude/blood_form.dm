@@ -10,6 +10,7 @@
 	inherent_traits = list(
 		TRAIT_MUTE,
 		TRAIT_NO_EYE_CONTACT,
+		TRAIT_MUTANT_COLORS,
 	)
 	exotic_bloodtype = BLOOD_TYPE_KINDRED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
@@ -21,6 +22,10 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/blood_form,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/blood_form,
 	)
+	fixed_mut_color = "#e6000099"
+	hair_color_mode = USE_FIXED_MUTANT_COLOR
+	hair_alpha = 150
+	facial_hair_alpha = 150
 	var/datum/action/innate/regenerate_blood_limbs/regenerate_limbs
 
 /datum/species/tzimisce_blood_form/on_species_gain(mob/living/carbon/new_jellyperson, datum/species/old_species, pref_load, regenerate_icons)
@@ -119,7 +124,6 @@
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
 	is_dimorphic = FALSE
-	species_color = "#e70000"
 
 /obj/item/bodypart/chest/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -127,7 +131,6 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = TRUE
-	species_color = "#e70000"
 
 /obj/item/bodypart/chest/blood_form/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
@@ -138,7 +141,6 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
-	species_color = "#e70000"
 
 /obj/item/bodypart/arm/right/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -146,7 +148,6 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
-	species_color = "#e70000"
 
 /obj/item/bodypart/leg/left/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -154,7 +155,6 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
-	species_color = "#e70000"
 
 /obj/item/bodypart/leg/right/blood_form
 	biological_state = (BIO_INORGANIC)
@@ -162,6 +162,5 @@
 	dmg_overlay_type = null
 	butcher_replacement = null
 	is_dimorphic = FALSE
-	species_color = "#e70000"
 
 #undef SPECIES_BLOODFORM

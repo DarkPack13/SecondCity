@@ -62,7 +62,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 20)
+	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 30)
 
 /obj/item/ground_heir
 	name = "bag of ground"
