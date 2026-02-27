@@ -16,7 +16,7 @@
 	singular_name = "human flesh"
 	icon = 'modular_darkpack/modules/deprecated/icons/obj/stack_objects.dmi'
 	icon_state = "human"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	mats_per_unit = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/human_flesh
 	max_amount = 50
@@ -66,7 +66,7 @@
 	desc = "Heroic strength is forged here..."
 	icon_state = "dirt"
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 
 // Why is this NOT a floor type.
@@ -97,7 +97,7 @@
 	desc = "Just blood and guts..."
 	icon_state = "guts"
 	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/spine
@@ -105,5 +105,5 @@
 	desc = "If only I had control..."
 	icon_state = "spine"
 	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
