@@ -3,7 +3,7 @@
 	desc = "What remains of a person, when you really get down to it."
 	color = "#d8965b"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
-	sheet_type = /obj/item/stack/sheet/meat
+	sheet_type = /obj/item/stack/sheet/human_flesh
 	value_per_unit = 0.05
 	beauty_modifier = -0.3
 	strength_modifier = 0.7
@@ -134,7 +134,6 @@
 	desc = "This organ will secrete a potent cocktail of stimulants when stunned, reducing downtime. Installs to the head."
 	icon_state = "tongueayylmao"
 	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 25)
-
 
 /obj/item/organ/eyes/night_vision/tzimisce
 	low_light_cutoff = list(15, 6, 8)

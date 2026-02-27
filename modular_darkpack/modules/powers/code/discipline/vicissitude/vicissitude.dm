@@ -177,9 +177,23 @@
 	toggled = TRUE
 	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
 
+/datum/discipline_power/vicissitude/bloodform/pre_activation_checks()
+	. = ..()
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
+
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
 	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
+
+/datum/discipline_power/vicissitude/bloodform/pre_deactivation_checks(atom/target)
+	. = ..()
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
