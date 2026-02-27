@@ -148,66 +148,34 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
 	target_type = NONE
 	vitae_cost = 2
-	toggled = TRUE
 	aggravating = TRUE
 	cooldown_length = 1 TURNS
 	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
-	var/list/obj/item/bodypart/strengthened_limbs
+	var/datum/action/cooldown/spell/shapeshift/zulo/zulo_form
 
 /datum/discipline_power/vicissitude/horrid_form/pre_activation_checks()
 	. = ..()
 	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(1 TURNS)
-	if(!do_after(owner, 1 TURNS, owner))
-		return FALSE
 	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
-	// All Physical Attributes increase by three
-	owner.st_add_stat_mod(STAT_STRENGTH, 3, HORRID_FORM_SOURCE)
-	owner.st_add_stat_mod(STAT_DEXTERITY, 3, HORRID_FORM_SOURCE)
-	owner.st_add_stat_mod(STAT_STAMINA, 3, HORRID_FORM_SOURCE)
-
-	// but all Social Attributes drop to zero
-	owner.st_add_stat_mod(STAT_CHARISMA, -owner.st_get_stat(STAT_CHARISMA), HORRID_FORM_SOURCE)
-	owner.st_add_stat_mod(STAT_MANIPULATION, -owner.st_get_stat(STAT_MANIPULATION), HORRID_FORM_SOURCE)
-	owner.st_add_stat_mod(STAT_APPEARANCE, -owner.st_get_stat(STAT_APPEARANCE), HORRID_FORM_SOURCE)
-
-	for(var/obj/item/bodypart/limb in owner.bodyparts)
-		limb.unarmed_damage_low += 5
-		limb.unarmed_damage_high += 5
-		LAZYADD(strengthened_limbs, limb)
-
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA), PROC_REF(deactivate))
+	if(!zulo_form)
+		zulo_form = new(owner)
+		zulo_form.Grant(owner)
+	zulo_form.Activate()
 
 /datum/discipline_power/vicissitude/horrid_form/pre_deactivation_checks()
 	. = ..()
-	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(1 TURNS)
-	if(!do_after(owner, 1 TURNS, owner))
-		return FALSE
+	owner.Stun(1 TURNS)
 	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
-	owner.Stun(2 SECONDS)
-	owner.do_jitter_animation(5 SECONDS)
-
-	owner.st_remove_stat_mod(STAT_STRENGTH, HORRID_FORM_SOURCE)
-	owner.st_remove_stat_mod(STAT_DEXTERITY, HORRID_FORM_SOURCE)
-	owner.st_remove_stat_mod(STAT_STAMINA, HORRID_FORM_SOURCE)
-
-	owner.st_remove_stat_mod(STAT_CHARISMA, HORRID_FORM_SOURCE)
-	owner.st_remove_stat_mod(STAT_MANIPULATION, HORRID_FORM_SOURCE)
-	owner.st_remove_stat_mod(STAT_APPEARANCE, HORRID_FORM_SOURCE)
-
-	for(var/obj/item/bodypart/limb in strengthened_limbs)
-		limb.unarmed_damage_low -= 5
-		limb.unarmed_damage_high -= 5
-	strengthened_limbs = null
-
-	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA))
+	if(zulo_form && is_type_in_list(owner, zulo_form.possible_shapes))
+		zulo_form.cast(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

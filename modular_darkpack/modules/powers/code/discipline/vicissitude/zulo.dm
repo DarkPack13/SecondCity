@@ -48,3 +48,8 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 	bloodpool = 2
 	maxbloodpool = 2
+
+/mob/living/basic/zulo/Initialize(mapload)
+	. = ..()
+	var/preffered_form = client?.prefs.read_preference(/datum/preference/choiced/subsplat/zulo_form)
+	icon_state = preffered_form ? preffered_form : "fiend"
