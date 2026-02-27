@@ -15,18 +15,10 @@
 /obj/projectile/bullet/darkpack/vamp9mm/silver
 	name = "9mm silver bullet"
 
-/*
 /obj/projectile/bullet/darkpack/vamp9mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
+	fera_silver_damage(target, 2)
 
-		M.apply_damage(10, AGGRAVATED)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
 // .45 ACP
 /obj/projectile/bullet/darkpack/vamp45acp
 	name = ".45 ACP bullet"
@@ -43,18 +35,10 @@
 /obj/projectile/bullet/darkpack/vamp45acp/silver
 	name = ".45 ACP silver bullet"
 
-/*
 /obj/projectile/bullet/darkpack/vamp45acp/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
+	fera_silver_damage(target, 3)
 
-		M.apply_damage(15, AGGRAVATED)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
 // .44 Magnum
 /obj/projectile/bullet/darkpack/vamp44
 	name = ".44 bullet"
@@ -67,18 +51,10 @@
 	name = ".44 silver bullet"
 	//icon_state = "s44"
 
-/*
 /obj/projectile/bullet/darkpack/vamp44/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || isgarou(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
+	fera_silver_damage(target, 4)
 
-		M.apply_damage(20, AGGRAVATED)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
 // .50 BMG/AE
 /obj/projectile/bullet/darkpack/vamp50
 	name = ".50 BMG bullet"
@@ -168,11 +144,10 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/hit_person = target
-		if(SSroll.storyteller_roll(
-			dice = hit_person.st_get_stat(STAT_STRENGTH) + min(hit_person.st_get_stat(STAT_DEXTERITY) + hit_person.st_get_stat(STAT_ATHLETICS)),
-			difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0),
-			mobs_to_show_output = target
-		) == ROLL_FAILURE)
+		var/datum/storyteller_roll/knockdown_roll = new()
+		knockdown_roll.applicable_stats = list(STAT_STRENGTH, STAT_DEXTERITY, STAT_ATHLETICS)
+		knockdown_roll.difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0)
+		if(knockdown_roll.st_roll(target, firer ? firer : src) == ROLL_FAILURE)
 			hit_person.Knockdown(20)
 			to_chat(hit_person, span_danger("The force of a projectile sends you sprawling!"))
 

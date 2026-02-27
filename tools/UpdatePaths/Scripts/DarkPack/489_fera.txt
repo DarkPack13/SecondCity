@@ -1,0 +1,1 @@
+/obj/item/charcoal_stick : /obj/item/pen/charcoal {@OLD}

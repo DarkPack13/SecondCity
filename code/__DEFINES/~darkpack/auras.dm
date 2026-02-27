@@ -35,7 +35,7 @@
 #define AURA_VAMPIRE (FALSE) // Aura colors are pale
 #define AURA_GHOUL (FALSE) // Pale blotches in the aura
 #define AURA_MAGIC_USE (FALSE) // Myriad sparkles in aura -- Not implemented. Mages.
-#define AURA_WEREBEAST (FALSE) // Bright, vibrant aura -- DARKPACK TODO - GAROU
+#define AURA_WEREBEAST (FALSE) // Bright, vibrant aura // WEREWOLF
 #define AURA_GHOST (FALSE) // Weak, intermittent aura
 #define AURA_FAERIE (FALSE) // Rainbow highlights in aura -- Not implemented. Changelings.
 

@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "added safety checks for gargoyle tail and legs and beastmarks"

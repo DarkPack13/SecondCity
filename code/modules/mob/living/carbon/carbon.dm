@@ -70,8 +70,8 @@
 			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
 			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
 
-			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, numerical = TRUE)
-			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, mobs_to_show_output = list(victim), alert_atom = victim, numerical = TRUE)
+			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, roller = thrower, numerical = TRUE)
+			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, roller = victim, numerical = TRUE)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE

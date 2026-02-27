@@ -10,8 +10,6 @@
 	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
 	mystic.level = level
-	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
-
 
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
@@ -192,7 +190,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION)/* + owner.st_get_stat(STAT_COURAGE)*/, 7, owner)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_COURAGE), 7, owner)
 	switch(roll)
 		if(ROLL_SUCCESS)
 			successful = TRUE

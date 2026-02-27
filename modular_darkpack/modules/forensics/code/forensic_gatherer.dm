@@ -65,7 +65,7 @@
 
 	// Skill-check for scans
 	var/mob/living/carbon/human/H = user
-	var/investigation_dice = H.st_get_stat(STAT_PERCEPTION) + H.st_get_stat(STAT_INVESTIGATION)
+	var/datum/storyteller_roll/investigation/investigate_roll = new()
 
 	//Minium skill requirement to even use the thing
 	if(H.st_get_stat(STAT_INVESTIGATION) <= 0)
@@ -74,8 +74,9 @@
 
 	if(ishuman(scanned_atom))
 		var/mob/living/carbon/human/scanned_human = scanned_atom
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, src, TRUE)
-		if(!investigation_roll > 0)
+		investigate_roll.difficulty = 3
+		var/investigation_roll = investigate_roll.st_roll(user, scanned_human)
+		if(investigation_roll != ROLL_SUCCESS)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, list("Improper fingerprints; try again."))
 		else
 			if(!scanned_human.gloves)
@@ -86,8 +87,9 @@
 
 	else if(!ismob(scanned_atom))
 		var/list/atom_fingerprints = GET_ATOM_FINGERPRINTS(scanned_atom)
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 5, H, src, TRUE)
-		if(!investigation_roll > 0)
+		investigate_roll.difficulty = 5
+		var/investigation_roll = investigate_roll.st_roll(user, scanned_atom)
+		if(investigation_roll != ROLL_SUCCESS)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_FINGERS, list("Improper gathering; try again."))
 		else
 			if(length(atom_fingerprints))
@@ -109,9 +111,10 @@
 				log_entry.add_data_entry(DETSCAN_CATEGORY_BLOOD, list(blood_DNA = blood_type))
 
 	if(istype(scanned_atom, /obj/item/ammo_casing))
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 7, H, src, TRUE)
+		investigate_roll.difficulty = 7
+		var/investigation_roll = investigate_roll.st_roll(user, scanned_atom)
 		var/obj/item/ammo_casing/casing = scanned_atom
-		if(!investigation_roll > 0)
+		if(investigation_roll != ROLL_SUCCESS)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_MICROSTAMP, list("[casing.name] has an incomplete microstamp; you can't make it out."))
 		else
 			if(casing.serial_type_index)
@@ -121,8 +124,9 @@
 
 	if(istype(scanned_atom, /obj/item/card/id))
 		var/obj/item/card/id/user_id = scanned_atom
-		var/investigation_roll = SSroll.storyteller_roll(investigation_dice, 3, H, src, TRUE)
-		if(!investigation_roll > 0)
+		investigate_roll.difficulty = 3
+		var/investigation_roll = investigate_roll.st_roll(user, scanned_atom)
+		if(investigation_roll != ROLL_SUCCESS)
 			log_entry.add_data_entry(DETSCAN_CATEGORY_ACCESS, list("Improper gathering; try again."))
 		else
 			for(var/region in DETSCAN_ACCESS_ORDER())

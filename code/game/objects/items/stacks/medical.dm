@@ -248,7 +248,7 @@
 /// Checks a bunch of stuff to see if we can heal the patient, including can_heal
 /// Gives a feedback if we can't ultimatly heal the patient (unless silent is TRUE)
 /obj/item/stack/medical/proc/try_heal_checks(mob/living/patient, mob/living/user, healed_zone, silent = FALSE)
-	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	if(CONFIG_GET(flag/punishing_zero_dots) && user.st_get_stat(STAT_MEDICINE) < 1)
 		to_chat(user, span_warning("How do I do this...?"))
 		return FALSE

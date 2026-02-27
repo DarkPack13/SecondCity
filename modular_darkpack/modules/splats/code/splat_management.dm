@@ -40,6 +40,15 @@
 	return FALSE
 
 /**
+ * Clears all the splats from the mob/living
+ * Mostly used in unit tests
+ */
+/mob/living/proc/clear_splats()
+	if(splats)
+		for(var/datum/splat/splat_in_list in splats)
+			remove_splat(splat_in_list)
+
+/**
  * Returns if the given splat type can be added to the mob or not.
  * Incompatibilities are due to an existing splat clashing with it or the given
  * splat type already being present.

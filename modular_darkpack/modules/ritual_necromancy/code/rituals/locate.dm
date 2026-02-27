@@ -37,7 +37,7 @@
 
 			if(livetarget.stat > SOFT_CRIT)
 				to_chat(usr, span_ghostalert("Their connection to this is realm weak, and fading. Death waits for them."))
-			if(HAS_TRAIT(livetarget, TRAIT_NECROMANCY_KNOWLEDGE)) //other necromancers catch onto it if targeted
+			if(livetarget.get_discipline(/datum/discipline/necromancy)) //other necromancers catch onto it if targeted
 				var/area/userarea = get_area(usr)
 				to_chat(livetarget, span_notice("A chill and a whisper. A fellow necromancer has sought out your soul - their own calling out from <b>[userarea.name]</b>."))
 			qdel(src)

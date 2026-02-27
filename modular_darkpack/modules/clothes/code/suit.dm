@@ -341,9 +341,14 @@
 	wound = 25
 
 /obj/item/clothing/suit/vampire/trench/alt/armored
-	name = "armored trenchcoat"
+	name = "armored brown trenchcoat"
 	icon_state = "trench2"
-	max_integrity = 1000;
+	max_integrity = 400
+	armor_type = /datum/armor/armored_jackets
+
+/obj/item/clothing/suit/vampire/trench/armored
+	name = "armored black trenchcoat"
+	max_integrity = 400
 	armor_type = /datum/armor/armored_jackets
 
 /obj/item/clothing/suit/vampire/trench

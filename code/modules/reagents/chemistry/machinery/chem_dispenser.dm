@@ -9,6 +9,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
 	processing_flags = NONE
+	// DARKPACK EDIT ADD START - STORYTELER_STATS
+	skill_required_for_use = STAT_SCIENCE
+	skill_dots_minimum = 1
+	// DARKPACK EDIT ADD END
 
 	/// The cell used to dispense reagents
 	var/obj/item/stock_parts/power_store/cell
@@ -632,6 +636,8 @@
 		/datum/reagent/toxin/staminatoxin
 	)
 	base_reagent_purity = 0.5
+
+	skill_required_for_use = null // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /obj/machinery/chem_dispenser/drinks/Initialize(mapload)
 	if(dispensable_reagents != null && !dispensable_reagents.len)

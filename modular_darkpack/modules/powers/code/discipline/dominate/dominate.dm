@@ -100,14 +100,14 @@
 			return TRUE
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, mobs_to_show_output = owner, numerical = TRUE)
+	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	var/mob/living/carbon/human/human_target = target
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
 		theirpower -= 2
 
-	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- v20 'Dominate' section titled 'Eye Contact'
+	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
 	for(var/obj/item/clothing/worn_item in human_target.get_equipped_items(INCLUDE_ABSTRACT))
 		total_tint += worn_item.tint
@@ -204,7 +204,7 @@
 		custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
 		var/mob/living/carbon/human/conditioner = target.conditioner?.resolve()
 		if(owner != conditioner)
-			//v20 Dominate 'Command' section
+			//V20 Dominate 'Command' section
 			if(length(splittext(custom_command, " ")) > 1)
 				to_chat(owner, span_warning("Commands must be only ONE word!"))
 				return FALSE

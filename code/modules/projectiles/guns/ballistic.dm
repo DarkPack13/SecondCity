@@ -146,8 +146,10 @@
 	var/obj/item/suppressor/suppressor = null
 	/// Sound played when the burst mode is changed
 	var/burst_select_sound = SFX_FIRE_MODE_SWITCH
-	COOLDOWN_DECLARE(recoil_skill_check) // DARKPACK EDIT ADD
-
+	// DARKPACK EDIT ADD START - STORYTELLER_DICE
+	COOLDOWN_DECLARE(recoil_skill_check)
+	var/datum/storyteller_roll/shooting/recoil_roll
+	// DARKPACK EDIT ADD END
 	// DARKPACK EDIT ADD START - FORENSICS
 	/// Base serial number prefix, whatever's here will come before the numbers. Blank means no number/obliterated number.
 	var/serial_type = ""
@@ -606,11 +608,15 @@
 	if(sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
 
-	// DARKPACK EDIT ADD - recoil
+	// DARKPACK EDIT ADD START - STORYTELLER_DICE
+	if(!recoil_roll)
+		recoil_roll = new()
+
 	if(COOLDOWN_FINISHED(src, recoil_skill_check))
-		var/recoil_reduction = SSroll.storyteller_roll(user.st_get_stat(STAT_FIREARMS), initial(recoil), user, numerical = TRUE)
+		var/recoil_reduction = recoil_roll.st_roll(user, src)
 		recoil = max(initial(recoil) - recoil_reduction, 0)
 		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)
+	// DARKPACK EDIT ADD END
 
 	// DARKPACK EDIT ADD START - FORENSICS
 	if(serial_type && serial_shown)

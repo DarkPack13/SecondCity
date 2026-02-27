@@ -15,7 +15,6 @@
 /datum/discipline/vicissitude/post_gain()
 	. = ..()
 	owner.add_faction(VAMPIRE_CLAN_TZIMISCE)
-	ADD_TRAIT(owner, TRAIT_VICISSITUDE_KNOWLEDGE, DISCIPLINE_TRAIT)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "Auspex Telepathy now offers the user to pick between mind reading and implanting thoughts"
+  - rscadd: "Adds rolls to Telepathy, reducing the free loophole to having to whisper"
