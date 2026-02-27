@@ -122,7 +122,7 @@
 		l_arm?.drop_limb()
 		r_leg?.drop_limb()
 		l_leg?.drop_limb()
-		new /obj/item/stack/human_flesh/twenty(target.loc)
+		new /obj/item/stack/sheet/human_flesh/twenty(target.loc)
 		new /obj/item/guts(target.loc)
 		new /obj/item/spine(target.loc)
 		qdel(target)

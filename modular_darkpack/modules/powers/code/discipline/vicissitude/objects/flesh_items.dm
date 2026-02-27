@@ -10,7 +10,7 @@
 	item_sound_override = 'sound/effects/meatslap.ogg'
 	turf_sound_override = FOOTSTEP_MEAT
 
-/obj/item/stack/human_flesh
+/obj/item/stack/sheet/human_flesh
 	name = "human flesh"
 	desc = "What the fuck..."
 	singular_name = "human flesh"
@@ -18,19 +18,19 @@
 	icon_state = "human"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	mats_per_unit = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT)
-	merge_type = /obj/item/stack/human_flesh
+	merge_type = /obj/item/stack/sheet/human_flesh
 	max_amount = 50
 
-/obj/item/stack/human_flesh/fifty
+/obj/item/stack/sheet/human_flesh/fifty
 	amount = 50
 
-/obj/item/stack/human_flesh/twenty
+/obj/item/stack/sheet/human_flesh/twenty
 	amount = 20
 
-/obj/item/stack/human_flesh/ten
+/obj/item/stack/sheet/human_flesh/ten
 	amount = 10
 
-/obj/item/stack/human_flesh/five
+/obj/item/stack/sheet/human_flesh/five
 	amount = 5
 
 /obj/item/autosurgeon/vicissitude
@@ -62,6 +62,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
+	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 20)
 
 /obj/item/ground_heir
 	name = "bag of ground"
