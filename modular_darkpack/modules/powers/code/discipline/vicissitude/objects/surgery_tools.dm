@@ -2,6 +2,7 @@
 	icon_state = "toolkit_implant_vic"
 	icon = 'modular_darkpack/modules/powers/icons/fleshcrafting_surgery_tools.dmi'
 	organ_flags = ORGAN_ORGANIC
+	aug_overlay = ""
 	items_to_create = list(
 		/obj/item/retractor/augment/vicissitude,
 		/obj/item/hemostat/augment/vicissitude,
