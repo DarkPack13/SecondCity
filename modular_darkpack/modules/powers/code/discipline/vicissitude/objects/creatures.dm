@@ -26,6 +26,7 @@
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
 	maxbloodpool = 2
+	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 2)
 
 /mob/living/basic/szlachta/fister
 	name = "fister"
@@ -45,6 +46,7 @@
 	status_flags = CANPUSH
 	bloodpool = 5
 	maxbloodpool = 5
+	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 5)
 
 /mob/living/basic/szlachta/tanker
 	name = "tanker"
@@ -63,6 +65,7 @@
 	combat_mode = TRUE
 	bloodpool = 7
 	maxbloodpool = 7
+	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 10)
 
 /mob/living/basic/szlachta/hostile
 	faction = list(FACTION_HOSTILE)

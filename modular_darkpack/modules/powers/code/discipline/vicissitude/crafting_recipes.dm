@@ -9,7 +9,7 @@
 	name = "Second Heart (Antistun)"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 25, /obj/item/organ/heart = 1)
-	result = /obj/item/organ/cyberimp/brain/anti_stun
+	result = /obj/item/organ/cyberimp/brain/anti_stun/tzi
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_eyes
@@ -19,16 +19,18 @@
 	result = /obj/item/organ/eyes/night_vision/tzimisce
 	category = CAT_TZIMISCE
 
-/obj/item/organ/eyes/night_vision/tzimisce
-	low_light_cutoff = list(15, 6, 8)
-	medium_light_cutoff = list(35, 20, 25)
-	high_light_cutoff = list(50, 40, 40)
-
 /datum/crafting_recipe/tzi_implant
 	name = "Implanting Flesh Device"
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/knife/vamp = 1, /obj/item/reagent_containers/blood = 1)
 	result = /obj/item/autosurgeon/vicissitude
+	category = CAT_TZIMISCE
+
+/datum/crafting_recipe/tzicreature
+	name = "Wretched Creature"
+	time = 50
+	reqs = list(/obj/item/stack/human_flesh = 10, /obj/item/organ/brain = 1)
+	result = /obj/item/toy/plush/tzi
 	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_floor
@@ -44,6 +46,14 @@
 	time = 50
 	reqs = list(/obj/item/stack/human_flesh = 2)
 	result = /obj/structure/fleshwall
+	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_CHECK_DENSITY
+
+/datum/crafting_recipe/tzijelly
+	name = "Living Meat Node"
+	time = 50
+	reqs = list(/obj/item/stack/human_flesh = 20, /obj/item/guts = 1, /obj/item/toy/plush/tzi = 1)
+	result = /obj/structure/tzijelly
 	category = CAT_TZIMISCE
 	crafting_flags = CRAFT_CHECK_DENSITY
 
