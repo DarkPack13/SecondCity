@@ -21,7 +21,7 @@
 
 	childe.make_kindred_from_sire(src)
 
-	/* // DARKPACK TODO - Commenting this out until preferences are properly finished.
+	/* // DARKPACK TODO - DISCIPLINE PREFERENCES
 	//Gives the Childe the src's first three Disciplines
 	var/list/disciplines_to_give = list()
 	var/discipline_number = 0
@@ -30,12 +30,25 @@
 	for (var/i in 1 to discipline_number)
 		disciplines_to_give += client?.prefs.discipline_types[i]
 	childe.create_disciplines(FALSE, disciplines_to_give)
-	childe.calculate_max_bloodpool()
-	childe.morality_path = morality_path
-	childe.clan.is_enlightened = clan.is_enlightened
 	*/
 
-	//addtimer(CALLBACK(childe, PROC_REF(embrace_persistence_confirmation)), 1 SECONDS)
+	/* // DARKPACK TODO - FIX MORALITY PATHS
+	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
+	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats["[STAT_MORALITY]"]
+
+	if(stat_morality?.morality_path)
+		if(!stat_morality_childe)
+			return
+
+		stat_morality_childe.morality_path = new stat_morality.morality_path.type(childe)
+
+		if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT)
+			var/datum/splat/vampire/kindred/kindred_splat = iskindred(childe)
+			if(istype(kindred_splat))
+				kindred_splat.enlightenment = TRUE
+	*/
+
+	addtimer(CALLBACK(childe, PROC_REF(prompt_permanent_embrace)), 1 SECONDS)
 
 /* // DARKPACK TODO - WEREWOLF
 /mob/living/carbon/human/proc/attempt_abomination_embrace(mob/living/carbon/human/childe, second_party_embrace)
@@ -67,20 +80,25 @@
 				return
 */
 
-/* // DARKPACK TODO - PREFERENCES
-/mob/living/carbon/human/proc/embrace_persistence_confirmation()
-	var/response_v = tgui_input_list(src, "Do you wish to keep being a vampire on your save slot? (Yes will be a permanent choice and you can't go back!)", "Embrace", list("Yes", "No"), "No")
+
+/mob/living/carbon/human/proc/prompt_permanent_embrace()
+	var/response = tgui_alert(src, "Do you wish to keep being a vampire on your save slot? This is a permanent choice, and you can't go back!", "Embrace", list("Yes", "No"))
 	//Verify if they accepted to save being a vampire
-	if(response_v != "Yes" || !client)
+	if(response != "Yes" || !client)
 		return
+
+	write_preference_midround(/datum/preference/choiced/splats, SPLAT_KINDRED)
+	write_preference_midround(/datum/preference/choiced/subsplat/vampire_clan, get_clan()?.name) // clan should already be changed by the embracing itself...
+
+	/* // DARKPACK TODO - FIX MORALITY PATHS
+	// ...same with your morality path. unfortunately, this is a bit of a clusterfuck to get
+	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
+	if(stat_morality?.morality_path)
+		write_preference_midround(/datum/preference/choiced/vtm_morality, stat_morality.morality_path.type)
+	*/
+
+	/* // DARKPACK TODO - PREFERENCES
 	var/datum/preferences/childe_prefs_v = client.prefs
-
-	childe_prefs_v.pref_species.id = "kindred"
-	childe_prefs_v.pref_species.name = "Vampire"
-	childe_prefs_v.clan = clan
-
-	childe_prefs_v.skin_tone = get_vamp_skin_color(skin_tone)
-	childe_prefs_v.clan.is_enlightened = clan.is_enlightened
 
 	//Rarely the new mid round vampires get the 3 brujah skil(it is default)
 	//This will remove if it happens
@@ -97,6 +115,7 @@
 		for (var/i in 1 to 3)
 			childe_prefs_v.discipline_types += childe_prefs_v.clan.clan_disciplines[i]
 			childe_prefs_v.discipline_levels += 1
+	*/
 
-	childe_prefs_v.save_character()
-*/
+	to_chat(src, span_danger("You have chosen to permanently become a vampire! No regrets, kindred..."))
+
