@@ -2,7 +2,7 @@
 	savefile_key = "zulo_form"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
-	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
+	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	main_feature_name = "Zulo Form"
 	should_generate_icons = TRUE
 
@@ -10,8 +10,8 @@
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
 	for(var/discipline in clan.clan_disciplines) // DARKPACK TODO - reimplement choosing disciplines
