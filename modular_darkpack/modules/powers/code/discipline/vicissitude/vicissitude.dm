@@ -1,8 +1,4 @@
-#define HORRID_FORM_SOURCE "Horrid Form"
-// Level 1: Shapeshift Self
-// Level 2: Shapeshift Other
-// Level 3: Damage others and self.
-// Level 4: Shapeshift into a Horrid Form
+
 // Level 5: Slimegirl tzimisce
 
 /datum/discipline/vicissitude
