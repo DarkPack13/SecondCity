@@ -174,6 +174,7 @@
 	target_type = NONE
 	violates_masquerade = TRUE
 	cooldown_length = 1 TURNS
+	toggled = TRUE
 	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
 
 /datum/discipline_power/vicissitude/bloodform/activate()
