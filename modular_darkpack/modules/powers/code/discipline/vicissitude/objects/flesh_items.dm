@@ -63,7 +63,7 @@
 
 /obj/item/ground_heir
 	name = "bag of ground"
-	desc = "Boghatyrskaya sila taitsa zdies'..."
+	desc = "Heroic strength is forged here..."
 	icon_state = "dirt"
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')

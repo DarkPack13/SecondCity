@@ -132,7 +132,7 @@
 		qdel(target)
 	else
 		target.emote("scream")
-		target.apply_damage(roll * 30, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(roll LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_CHEST)
 		if(roll >= 5)
 			target.visible_message(span_danger("[target]'s rib cage curves inwards grotesquely!"), span_danger("Your feel your ribcages curve inwards and pierce your heart!"))
 			target.adjust_blood_pool(-(round(target.bloodpool * 0.5))) // A vampire who scores five or more successes on the roll (...) cause the affected vampire to lose half his blood points.
