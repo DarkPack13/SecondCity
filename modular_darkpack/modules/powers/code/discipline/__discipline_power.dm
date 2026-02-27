@@ -273,6 +273,12 @@
 			to_chat(owner, span_warning("[target] resists your Disciplines!"))
 		return FALSE
 
+	//check if distance is in range
+	if(!IN_GIVEN_RANGE(owner, target, range))
+		if(alert)
+			to_chat(owner, span_warning("[target] is out of range!"))
+		return FALSE
+
 	//make sure our LIVING target isn't DEAD
 	var/mob/living/living_target = target
 	if((target_type & TARGET_LIVING) && (living_target?.stat == DEAD))
@@ -295,21 +301,14 @@
 			to_chat(owner, span_warning("You can only cast [src] on humans!"))
 		return FALSE
 
-	if((target_type & TARGET_OBJ) && istype(target, /obj))
-		return TRUE
-
-	if((target_type & TARGET_GHOST) && istype(target, /mob/dead))
-		return TRUE
-
-	if((target_type & TARGET_TURF) && istype(target, /turf))
-		return TRUE
-
-	//check if distance is in range
-	if(!IN_GIVEN_RANGE(owner, target, range))
-		if(alert)
-			to_chat(owner, span_warning("[target] is out of range!"))
+	if((target_type & TARGET_OBJ) && !istype(target, /obj))
 		return FALSE
 
+	if((target_type & TARGET_GHOST) && !istype(target, /mob/dead))
+		return FALSE
+
+	if((target_type & TARGET_TURF) && !istype(target, /turf))
+		return FALSE
 	return TRUE
 
 /**
