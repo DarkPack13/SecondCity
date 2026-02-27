@@ -14,7 +14,7 @@
 	name = "human flesh"
 	desc = "What the fuck..."
 	singular_name = "human flesh"
-	icon = 'modular_darkpack/modules/deprecated/icons/obj/stack_objects.dmi'
+	icon = 'modular_darkpack/modules/powers/icons/flesh_stack.dmi'
 	icon_state = "human"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	mats_per_unit = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT)
@@ -42,7 +42,7 @@
 /obj/structure/fleshwall
 	name = "flesh wall"
 	desc = "Wall from FLESH."
-	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
+	icon = 'modular_darkpack/modules/powers/icons/flesh_objects.dmi'
 	icon_state = "fleshwall"
 	plane = GAME_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -53,7 +53,7 @@
 /obj/structure/tzijelly
 	name = "jelly thing"
 	desc = "an important part of the meat matrix."
-	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
+	icon = 'modular_darkpack/modules/powers/icons/flesh_objects.dmi'
 	icon_state = "tzijelly"
 	plane = GAME_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -65,7 +65,7 @@
 	name = "bag of ground"
 	desc = "Heroic strength is forged here..."
 	icon_state = "dirt"
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
+	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -89,7 +89,7 @@
 		T.slowdown = initial(T.slowdown)
 
 /obj/structure/chair/old/tzimisce
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
+	icon = 'modular_darkpack/modules/powers/icons/flesh_objects.dmi'
 	icon_state = "tzimisce_stool"
 
 /obj/item/guts
