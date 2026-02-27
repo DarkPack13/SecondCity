@@ -134,10 +134,8 @@
 	owner.update_mouse_pointer()
 	owner.click_intercept = null
 
-/datum/action/discipline/proc/handle_click(mob/user, params, atom/target)
+/datum/action/discipline/proc/handle_click(mob/user, atom/target, list/modifiers)
 	SIGNAL_HANDLER
-
-	var/list/modifiers = params2list(params)
 
 	//ensure we actually need a target, or cancel on right click
 	if(!targeting || modifiers[RIGHT_CLICK])
