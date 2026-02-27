@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 	maxHealth = 600
 	health = 600
-	speed = 3
+	speed = 1
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	obj_damage = 30
@@ -58,4 +58,5 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 /mob/living/basic/zulo/mind_initialize()
 	. = ..()
 	var/preffered_form = client?.prefs.read_preference(/datum/preference/choiced/subsplat/zulo_form)
-	icon_state = preffered_form ? preffered_form : "fiend"
+	var/new_icon_state = GLOB.zulo_forms[preffered_form]
+	icon_state = new_icon_state ? new_icon_state : "fiend"
