@@ -90,13 +90,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOOD_DRINKER "blood_drinker"
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
-// Does the mob know thaumaturgy?
-#define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
 // Does the mob have ghostsight?
 #define TRAIT_GHOST_VISION "ghost_vision"
-#define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
-#define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
-#define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 
 
