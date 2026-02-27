@@ -173,7 +173,7 @@
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
 	if(zulo_form && is_type_in_list(owner, zulo_form.possible_shapes))
-		zulo_form.Activate(owner)
+		zulo_form.Remove(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -190,7 +190,8 @@
 
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
-
+	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
+	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)

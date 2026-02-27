@@ -113,50 +113,49 @@
 /// Bodyparts
 /obj/item/bodypart/head/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
-	is_dimorphic = TRUE
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier = 1
+	teeth_count = 0
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
+	is_dimorphic = FALSE
 
 /obj/item/bodypart/chest/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
-	is_dimorphic = TRUE
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier =1
 	butcher_replacement = null
+	is_dimorphic = TRUE
 
 /obj/item/bodypart/chest/blood_form/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
 
 /obj/item/bodypart/arm/left/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier = 1
 	butcher_replacement = null
+	is_dimorphic = FALSE
 
 /obj/item/bodypart/arm/right/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier = 1
 	butcher_replacement = null
+	is_dimorphic = FALSE
 
 /obj/item/bodypart/leg/left/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier = 1
 	butcher_replacement = null
+	is_dimorphic = FALSE
 
 /obj/item/bodypart/leg/right/blood_form
 	biological_state = (BIO_INORGANIC)
-	limb_id = SPECIES_BLOODFORM
+	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
-	burn_modifier = 1
 	butcher_replacement = null
+	is_dimorphic = FALSE
 
 #undef SPECIES_BLOODFORM
