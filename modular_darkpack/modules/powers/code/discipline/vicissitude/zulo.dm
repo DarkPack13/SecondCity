@@ -24,7 +24,6 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 /datum/action/cooldown/spell/shapeshift/zulo/do_unshapeshift(mob/living/caster)
 	. = ..()
-	caster.do_jitter_animation(1 TURNS)
 	Remove(caster)
 
 /mob/living/basic/zulo
