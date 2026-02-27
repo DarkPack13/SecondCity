@@ -130,7 +130,7 @@
 	limb_id = SPECIES_SLIMEPERSON
 	dmg_overlay_type = null
 	butcher_replacement = null
-	is_dimorphic = TRUE
+	is_dimorphic = FALSE
 
 /obj/item/bodypart/chest/blood_form/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
