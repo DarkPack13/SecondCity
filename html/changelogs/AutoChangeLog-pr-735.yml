@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Gio get italian again"
+  - rscadd: "Fera get tribe keys again"

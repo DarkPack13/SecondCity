@@ -64,7 +64,7 @@
 
 /datum/discipline_power/animalism/summon_wolf/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/wolf/summoned)
 
 //SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
@@ -160,7 +160,7 @@
 	if(old)
 		qdel(old)
 
-/mob/living/basic/pet/dog/darkpack/summoned
+/mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
 	desc = "A wolf bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
@@ -175,9 +175,9 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
-	random_dog_color = FALSE
+	random_wolf_color = FALSE
 
-/mob/living/basic/pet/dog/darkpack/summoned/Initialize(mapload)
+/mob/living/basic/pet/dog/wolf/summoned/Initialize(mapload)
 	. = ..()
 	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
 	if(old)
