@@ -21,22 +21,25 @@
 	else
 		say("Not enough money on [src] balance!")
 
-// DARKPACK TODO - (item_interaction)
-/obj/lettermachine/attackby(obj/item/I, mob/user, params)
-	if(iscash(I))
-		money += I.get_item_credit_value()
-		to_chat(user, span_notice("You insert [I.get_item_credit_value()] dollars into [src]."))
-		say("[I] inserted.")
-		qdel(I)
-	if(istype(I, /obj/item/mark))
+/obj/lettermachine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(iscash(tool))
+		money += tool.get_item_credit_value()
+		to_chat(user, span_notice("You insert [tool.get_item_credit_value()] [MONEY_NAME] into [src]."))
+		say("[tool] inserted.")
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/mark))
 		new /obj/item/stack/dollar(loc, 30)
-		say("[I] delivered!")
-		qdel(I)
-	return ..()
+		say("[tool] delivered!")
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/lettermachine/examine(mob/user)
 	. = ..()
-	. += span_info("It contains [money] dollars.")
+	. += span_info("It contains [money] [MONEY_NAME].")
 
 /obj/item/letter
 	name = "letter"

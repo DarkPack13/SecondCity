@@ -9,6 +9,9 @@
 	. = ..()
 	icon_state = "trash[rand(1, 30)]"
 
+/obj/effect/decal/cleanable/trash/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/cleanable/litter
 	name = "litter"
 	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
@@ -18,6 +21,9 @@
 /obj/effect/decal/cleanable/litter/Initialize(mapload)
 	. = ..()
 	icon_state = "paper[rand(1, 6)]"
+
+/obj/effect/decal/cleanable/litter/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
 
 /obj/effect/decal/cleanable/cardboard
 	name = "cardboard"
@@ -31,3 +37,6 @@
 	var/matrix/M = matrix()
 	M.Turn(rand(0, 360))
 	transform = M
+
+/obj/effect/decal/cleanable/cardboard/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)

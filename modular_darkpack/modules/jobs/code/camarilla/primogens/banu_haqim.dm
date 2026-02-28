@@ -25,7 +25,7 @@
 	minimal_generation = 12
 	minimum_immortal_age = 50
 	minimal_masquerade = 5
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_BANU_HAQIM)
 
 	known_contacts = list("Prince")

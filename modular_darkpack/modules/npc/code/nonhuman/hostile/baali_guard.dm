@@ -1,5 +1,5 @@
 /mob/living/basic/baali_guard
-	name = "Infernal Creature"
+	name = "infernal creature"
 	desc = "The peak of abominations armor. Unbelievably undamagable..."
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "baali"

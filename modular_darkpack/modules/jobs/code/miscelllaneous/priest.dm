@@ -13,8 +13,20 @@
 	departments_list = list(
 		/datum/job_department/church,
 	)
-	allowed_species = list(SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_NONE)
 	description = "Be the shepherd of the flock in " + CITY_NAME + ", lead them to salvation, piety and righteousness."
+
+	alt_titles = list(
+		"Priest",
+		"Nun",
+		"Mother",
+		"Father",
+		"Imam",
+		"Monk",
+		"Reverend",
+		"Preacher",
+		"Rabbi",
+	)
 
 /datum/outfit/job/vampire/priest
 	name = "Priest"

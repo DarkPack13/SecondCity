@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(dynamic)
 	name = "Dynamic"
-	flags = SS_NO_INIT
+	// flags = SS_NO_INIT // DARKPACK EDIT REMOVAL
 	wait = 5 MINUTES
 
 	// These vars just exist for admins interfacing with dynamic
@@ -57,7 +57,13 @@ SUBSYSTEM_DEF(dynamic)
 	/// Rulesets in this list will be excluded from the roundend report
 	var/list/datum/dynamic_ruleset/unreported_rulesets = list()
 	/// Whether random events that spawn antagonists or modify dynamic are enabled
-	var/antag_events_enabled = TRUE
+	var/antag_events_enabled = FALSE // DARKPACK EDIT, ORIGINAL: var/antag_events_enabled = TRUE
+
+// DARKPACK EDIT ADDITION START
+/datum/controller/subsystem/dynamic/Initialize()
+	admin_disabled_rulesets |= subtypesof(/datum/dynamic_ruleset)
+	return SS_INIT_SUCCESS
+// DARKPACK EDIT ADDITION END
 
 /datum/controller/subsystem/dynamic/fire(resumed)
 	if(!COOLDOWN_FINISHED(src, midround_cooldown) || EMERGENCY_PAST_POINT_OF_NO_RETURN)
@@ -140,8 +146,8 @@ SUBSYSTEM_DEF(dynamic)
 	// put rulesets in the queue (if admins didn't)
 	// this will even handle the case in which the tier wants 0 roundstart rulesets
 	if(!length(queued_rulesets))
-		for(var/ruleset_typepath in pick_roundstart_rulesets(antag_candidates))
-			queue_ruleset(ruleset_typepath)
+		for(var/ruleset in pick_roundstart_rulesets(antag_candidates))
+			queue_ruleset(ruleset)
 	// we got what we needed, reset so we can do real job selection later
 	// reset only happens AFTER roundstart selection so we can verify stuff like "can we get 3 heads of staff for revs?"
 	SSjob.reset_occupations()
@@ -295,8 +301,8 @@ SUBSYSTEM_DEF(dynamic)
 
 		rulesets_weighted[picked_ruleset] -= picked_ruleset.repeatable_weight_decrease
 		total_weight -= picked_ruleset.repeatable_weight_decrease
-		// Rulesets are not singletons. We need to to make a new one
-		picked_rulesets += new picked_ruleset.type(dynamic_config)
+		picked_rulesets += picked_ruleset.type
+		// Rulesets are not singletons. Queue_ruleset() will make them one.
 
 	// clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)

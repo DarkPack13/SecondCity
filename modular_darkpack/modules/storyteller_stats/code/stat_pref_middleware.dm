@@ -21,13 +21,17 @@
 		stat_data["max_score"] = stat.max_score
 		stat_data["points"] = stat.get_points()
 		stat_data["score"] = stat.get_score(include_bonus = FALSE)
-		stat_data["bonus_score"] = stat.get_bonus_score()
+		stat_data["bonus_score"] = max(stat.get_bonus_score(), 0) // Dont go below 0 as this is to display bonuses and doesnt have handling for negative bonus score atm
 		stat_data["abstract_type"] = "[stat.abstract_type]"
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
+
+	if("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots)
+		to_chat(user, span_warning("You cannot be spawned in as this character to adjust its stats."))
+		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
@@ -54,12 +58,16 @@
 
 
 	var/new_value = stat_path.get_score(include_bonus = FALSE)
-	var/log_text = "[key_name(user, TRUE, TRUE)] increased stat '[stat_path.name]' from [old_value] to [new_value]"
-	log_stats(log_text)
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	user.log_message("increased stat '[stat_path.name]' from [old_value] to [new_value] on [real_name]", LOG_STATS)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/decrease_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
+
+	if(!isnewplayer(user))
+		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
+		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
 	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
@@ -81,15 +89,20 @@
 		update_middleware_stats(preferences.preference_storyteller_stats)
 
 	var/new_value = stat_path.get_score(include_bonus = FALSE)
-	var/log_text = "[key_name(user, TRUE, TRUE)] decreased stat '[stat_path.name]' from [old_value] to [new_value]"
-	log_stats(log_text)
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	user.log_message("decreased stat '[stat_path.name]' from [old_value] to [new_value] on '[real_name]'", LOG_STATS)
 	return TRUE
 
 /datum/preference_middleware/stats/proc/reset_stats(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	var/log_text = "[key_name(user, TRUE, TRUE)] reset all stats to default values"
-	log_stats(log_text)
+	if(!isnewplayer(user))
+		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
+		return FALSE
+
+	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
+	user.log_message("reset all stats to default values on '[real_name]'", LOG_STATS)
+
 	preferences.preference_storyteller_stats = null
 	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
 	return TRUE

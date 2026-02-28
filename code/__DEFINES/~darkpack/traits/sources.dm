@@ -5,6 +5,7 @@
 #define DISCIPLINE_TRAIT "discipline"
 
 #define STAKE_TRAIT "stake"
+#define DAMAGE_TRAIT "damage"
 
 #define NECROMANCY_TRAIT "necromancy"
 

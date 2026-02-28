@@ -55,6 +55,8 @@
 /mob/living/carbon/human/proc/setup_organless_effects()
 	// All start without eyes, and get them via set species
 	become_blind(NO_EYES)
+	// And no ears, and get them via set species
+	ADD_TRAIT(src, TRAIT_DEAF, NO_EARS)
 	// Mobs cannot taste anything without a tongue; the tongue organ removes this on Insert
 	ADD_TRAIT(src, TRAIT_AGEUSIA, NO_TONGUE_TRAIT)
 
@@ -64,7 +66,6 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	GLOB.human_list -= src
-	GLOB.kindred_list -= src // DARKPACK EDIT ADD
 
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
@@ -722,6 +723,7 @@
 	if(heal_flags & HEAL_TEMP)
 		set_coretemperature(get_body_temp_normal(apply_change = FALSE))
 		heat_exposure_stacks = 0
+		seconds_in_low_pressure = 0
 
 	return ..()
 
@@ -758,6 +760,8 @@
 	VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
 	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_SPLAT, "Add Splat") // DARKPACK EDIT ADD - SPLATS
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPLAT, "Remove Splat") // DARKPACK EDIT ADD - SPLATS
 	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
 	VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
 	VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
@@ -798,10 +802,8 @@
 		if(!check_rights(R_SPAWN))
 			return
 		var/list/options = list("Clear"="Clear")
-		for(var/type in subtypesof(/datum/quirk))
+		for(var/type in valid_subtypesof(/datum/quirk))
 			var/datum/quirk/quirk_type = type
-			if(initial(quirk_type.abstract_parent_type) == type)
-				continue
 			var/qname = initial(quirk_type.name)
 			options[has_quirk(quirk_type) ? "[qname] (Remove)" : "[qname] (Add)"] = quirk_type
 		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in sort_list(options)
@@ -824,6 +826,30 @@
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
+
+	// DARKPACK EDIT ADD START - SPLATS
+	if(href_list[VV_HK_ADD_SPLAT])
+		if(!check_rights(R_SPAWN))
+			return
+		var/result = input(usr, "Please choose a new splat to add (Does not remove old one)","Splats") as null|anything in sortTim(GLOB.splat_list, GLOBAL_PROC_REF(cmp_text_asc))
+		if(result)
+			var/newtype = GLOB.splat_list[result]
+			admin_ticket_log("[key_name_admin(usr)] has added splat:[result] to [src]")
+			add_splat(newtype)
+
+	if(href_list[VV_HK_REMOVE_SPLAT])
+		if(!check_rights(R_SPAWN))
+			return
+		var/list/my_splats = list()
+		for(var/datum/splat/splat in splats)
+			my_splats[splat.id] = splat
+
+		var/result = input(usr, "Please choose a new splat to add (Does not remove old one)","Splats") as null|anything in sortTim(my_splats, GLOBAL_PROC_REF(cmp_text_asc))
+		if(result)
+			var/newtype = my_splats[result]
+			admin_ticket_log("[key_name_admin(usr)] has removed splat:[result] from [src]")
+			remove_splat(newtype)
+	// DARKPACK EDIT ADD END
 
 	if(href_list[VV_HK_PURRBATION])
 		if(!check_rights(R_SPAWN))

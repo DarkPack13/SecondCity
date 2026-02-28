@@ -10,9 +10,8 @@
 /datum/discipline/necromancy/post_gain()
 	. = ..()
 
-	owner.faction |= VAMPIRE_CLAN_GIOVANNI
+	owner.add_faction(VAMPIRE_CLAN_GIOVANNI)
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
-	ADD_TRAIT(owner, TRAIT_NECROMANCY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	ritualist.Grant(owner)
 	ritualist.level = level
 
@@ -24,7 +23,13 @@
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
 
-//SHROUDSIGHT
+//SHROUDSIGHT V20 p. 163
+/datum/storyteller_roll/shroudsight
+	bumper_text = "shroudsight"
+	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
+	difficulty = 7
+	reroll_cooldown = 1 SCENES
+
 /datum/discipline_power/necromancy/shroudsight
 	name = "Shroudsight"
 	desc = "See in darkness clearly and see ghosts present."
@@ -36,15 +41,22 @@
 	activate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1on.ogg'
 	deactivate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1off.ogg'
 
-	toggled = TRUE
+	cooldown_length = 1 SCENES
+	duration_length = 1 SCENES
 
+	var/datum/storyteller_roll/shroudsight/roll_datum
 
 /datum/discipline_power/necromancy/shroudsight/activate()
 	. = ..()
+	if(!roll_datum)
+		roll_datum = new()
 
-	ADD_TRAIT(owner, TRAIT_NIGHT_VISION, NECROMANCY_TRAIT)
+	var/roll_result = roll_datum.st_roll(owner)
+
+	if(roll_result != ROLL_SUCCESS)
+		return
+
 	ADD_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
-
 	owner.update_sight()
 
 	to_chat(owner, span_notice("You peek beyond the Shroud."))
@@ -52,9 +64,7 @@
 /datum/discipline_power/necromancy/shroudsight/deactivate()
 	. = ..()
 
-	REMOVE_TRAIT(owner, TRAIT_NIGHT_VISION, NECROMANCY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
-
 	owner.update_sight()
 
 	to_chat(owner, span_warning("Your vision returns to the mortal realm."))

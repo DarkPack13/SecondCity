@@ -108,13 +108,15 @@ export const MedicalRecordView = (props) => {
                 value={age}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Species">
+            {/* DARKPACK EDIT REMOVAL START */}
+            {/* <LabeledList.Item label="Species">
               <EditableText
                 field="species"
                 target_ref={crew_ref}
                 text={species}
               />
-            </LabeledList.Item>
+            </LabeledList.Item> */}
+            {/* DARKPACK EDIT REMOVAL END */}
             <LabeledList.Item label="Gender">
               <EditableText
                 field="gender"

@@ -212,7 +212,7 @@
 
 /datum/action/cooldown/spell/shapeshift/gangrel
 	abstract_type = /datum/action/cooldown/spell/shapeshift/gangrel
-	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
+	button_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi'
 	button_icon_state = "gangrel"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"

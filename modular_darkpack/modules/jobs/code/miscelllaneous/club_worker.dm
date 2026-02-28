@@ -14,7 +14,15 @@
 		/datum/job_department/strip_club
 	)
 
-	allowed_species = list(SPECIES_KINDRED, SPECIES_GHOUL, SPECIES_HUMAN)
+	alt_titles = list(
+		"Club Worker",
+		"Stripper",
+		"Club Bouncer",
+		"Club Bartender",
+		"Club Attendant"
+	)
+
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_KINFOLK, SPLAT_NONE)
 
 	description = "Offer strip club services. Some of your clientele may be... Unusual, but you are either addicted to vampire bites, or bribed to listen little and say even less."
 	minimal_masquerade = 3
@@ -25,3 +33,4 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/strip
 	backpack_contents = list(/obj/item/card/credit=1)
+	uses_default_clan_clothes = TRUE

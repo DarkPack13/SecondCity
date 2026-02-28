@@ -105,3 +105,6 @@
 /datum/loadout_item/head/prayer_veil
 	name = "Prayer Veil"
 	item_path = /obj/item/clothing/head/vampire/prayer_veil
+
+/datum/loadout_item/head/beret
+	item_path = /obj/item/clothing/head/beret

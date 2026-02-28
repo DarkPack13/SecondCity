@@ -1,5 +1,5 @@
 /datum/preference/choiced/adjective_preference
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	priority = PREFERENCE_PRIORITY_TABLETOP
 	savefile_key = "adjective_preference"
 	savefile_identifier = PREFERENCE_CHARACTER

@@ -7,8 +7,7 @@
 	config_tag = "SABBAT_PACK"
 	outfit = /datum/outfit/job/vampire/sabbatpack
 	job_flags = CITY_JOB_FLAGS
-	allowed_species = list(SPECIES_KINDRED)
-
+	allowed_splats = list(SPLAT_KINDRED)
 	exp_required_type_department = EXP_TYPE_SABBAT
 	department_for_prefs = /datum/job_department/sabbat
 	departments_list = list(
@@ -25,6 +24,7 @@
 	jobtype = /datum/job/vampire/sabbatpack
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/sabbat
+	uses_default_clan_clothes = TRUE
 
 /datum/outfit/job/vampire/sabbatpack/pre_equip(mob/living/carbon/human/H)
 	. = ..()

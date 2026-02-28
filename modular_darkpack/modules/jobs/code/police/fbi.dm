@@ -14,11 +14,11 @@
 		/datum/job_department/police,
 	)
 
-	allowed_species = list(SPECIES_HUMAN)
+	allowed_splats = list(SPLAT_NONE)
 	description = "Enforce the Law."
 	minimal_masquerade = 0
 
-	known_contacts = list("Police Chief")
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/fbi
 	name = "Federal Investigator"

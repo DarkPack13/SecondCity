@@ -1,6 +1,7 @@
 //every quirk in this folder should be coded around being applied on spawn
 //these are NOT "mob quirks" like GOTTAGOFAST, but exist as a medium to apply them and other different effects
 /datum/quirk
+	abstract_type = /datum/quirk
 	/// The name of the quirk
 	var/name = "Test Quirk"
 	/// The description of the quirk
@@ -26,8 +27,6 @@
 	/// This is used to pick the quirks assigned to a hardcore character.
 	//// 0 means its not available to hardcore draws.
 	var/hardcore_value = 0
-	/// When making an abstract quirk (in OOP terms), don't forget to set this var to the type path for that abstract quirk.
-	var/abstract_parent_type = /datum/quirk
 	/// The icon to show in the preferences menu.
 	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
 	var/icon
@@ -205,13 +204,23 @@
 		return FALSE
 	return TRUE
 
+// DARKPACK EDIT ADD START - SPLATS
+/// If a quirk is able to be selected for the mob's splat
+/datum/quirk/proc/is_splat_appropriate(datum/splat/mob_splat)
+	if(!ispath(mob_splat))
+		return TRUE
+	if(mob_trait in GLOB.splat_prototypes[mob_splat].splat_traits)
+		return FALSE
+	return TRUE
+// DARKPACK EDIT ADD END
+
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/item_quirk
 	/// Lazylist of strings describing where all the quirk items have been spawned.
 	var/list/where_items_spawned
 	/// If true, the backpack automatically opens on post_add(). Usually set to TRUE when an item is equipped inside the player's backpack.
 	var/open_backpack = FALSE
-	abstract_parent_type = /datum/quirk/item_quirk
+	abstract_type = /datum/quirk/item_quirk
 
 /**
  * Handles inserting an item in any of the valid slots provided, then allows for post_add notification.

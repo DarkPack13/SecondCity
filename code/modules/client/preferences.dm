@@ -47,10 +47,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
-	// DARKPACK EDIT ADD START - STORYTELLR_STATS
+	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	var/list/preference_storyteller_stats = list()
 	// DARKPACK EDIT ADD END
-
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	/// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
+	var/list/alt_job_titles = list()
+	// DARKPACK EDIT ADD END
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
@@ -215,6 +218,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch (action)
 		if ("change_slot")
+			// DARKPACK EDIT ADD START - (patches alot of minor exploits from midround char sheet manipulation)
+			if(!isnewplayer(usr) && ("[usr.client.prefs.default_slot]" in usr.persistent_client.joined_as_slots))
+				if(check_rights(R_ADMIN))
+					to_chat(usr, span_warning("Swapping between character slots midround is unsupported and can lead to false writes to prefrences."))
+				else
+					to_chat(usr, span_warning("You cannot be spawned in as this character to swap character slots. Return to the lobby to change characters."))
+					return FALSE
+			// DARKPACK EDIT ADD END
 			// Save existing character
 			save_character()
 			// SAFETY: `switch_to_slot` performs sanitization on the slot number
@@ -460,6 +471,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/validate_quirks()
 	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/datum/splat/splat_type = read_preference(/datum/preference/choiced/splats) // DARKPACK EDIT ADD - SPLATS
 	var/list/quirks_removed
 	for(var/quirk_name in all_quirks)
 		var/quirk_path = SSquirks.quirks[quirk_name]
@@ -467,9 +479,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(!quirk_prototype.is_species_appropriate(species_type))
 			all_quirks -= quirk_name
 			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD START - SPLATS
+		if(!quirk_prototype.is_splat_appropriate(splat_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD END
 	var/list/feedback
 	if(LAZYLEN(quirks_removed))
-		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, "The following quirks are incompatible with your species or splat:") // DARKPACK EDIT CHANGE - SPLATS
 		LAZYADD(feedback, quirks_removed)
 	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
 		LAZYADD(feedback, "Your quirks have been reset.")

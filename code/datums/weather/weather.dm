@@ -525,7 +525,7 @@
 		// a bolt of lightning can reach temperatures of 30,000 Kelvin which is 5x hotter than the sun
 		hit_ore.fire_act(30000)
 
-	playsound(weather_turf, 'modular_darkpack/master_files/sounds/lightning.ogg', 100, extrarange = 50, falloff_distance = 50) // DARKPACK EDIT CHANGE
+	playsound(weather_turf, 'modular_darkpack/master_files/sounds/lightning.ogg', 50, extrarange = 50, falloff_distance = 10) // DARKPACK EDIT CHANGE
 	weather_turf.visible_message(span_danger("A thunderbolt strikes [weather_turf]!"))
 	new /obj/effect/hotspot(weather_turf)
 

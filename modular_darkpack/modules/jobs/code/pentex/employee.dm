@@ -16,7 +16,15 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/employee
 
-	allowed_species = list(SPECIES_GAROU, SPECIES_KINDRED, SPECIES_HUMAN)
+	alt_titles = list(
+		"Endron Employee",
+		"Endron Janitor",
+		"Endron Secretary",
+		"Endron Researcher",
+		"Endron Labourer"
+	)
+
+	allowed_splats = SPLAT_ALL
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	allowed_clans = VAMPIRE_CLAN_ALL
 	minimal_masquerade = 3

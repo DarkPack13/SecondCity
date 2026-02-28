@@ -1,4 +1,5 @@
 /obj/item/path_spellbook
+	abstract_type = /obj/item/path_spellbook
 	name = "path spellbook"
 	desc = "A default path spellbook. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
@@ -16,7 +17,7 @@
 	var/true_name = ""
 	var/true_desc = ""
 
-	COOLDOWN_DECLARE(identify_failure_cooldown)
+	var/datum/storyteller_roll/identify_occult/identify_roll
 
 /obj/item/path_spellbook/Initialize(mapload)
 	. = ..()
@@ -30,19 +31,17 @@
 	. = ..()
 	if(!identified)
 		. += span_notice("You could try to clean off the dust to see what lies beneath.")
-	if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
-		var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
-		. += span_warning("You need to wait [time_left] seconds before trying again.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return FALSE
 
 	if(!identified)
-		if(!COOLDOWN_FINISHED(src, identify_failure_cooldown))
-			var/time_left = COOLDOWN_TIMELEFT(src, identify_failure_cooldown) / 10
-			to_chat(user, span_warning("You need to wait [time_left] seconds before trying again."))
-			return
-		if(do_after(user, 5 SECONDS))
-			var/roll = SSroll.storyteller_roll(user.st_get_stat(STAT_INTELLIGENCE) + user.st_get_stat(STAT_OCCULT), path_level + 3, user, numerical = FALSE)
+		if(do_after(user, 1 TURNS))
+			if(!identify_roll)
+				identify_roll = new()
+				identify_roll.difficulty = path_level + 3
+			var/roll = identify_roll.st_roll(user, src)
 			switch(roll)
 				if(ROLL_SUCCESS)
 					to_chat(user, span_cult("You wipe the dust off the previously irrelevant tome. Did someone misplace it from the Library?"))
@@ -52,7 +51,6 @@
 					return
 				else
 					to_chat(user, span_warning("You fail to figure out the real nature of the book and get distracted by more important matters. Maybe its a cookbook?"))
-					COOLDOWN_START(src, identify_failure_cooldown, 2 MINUTES)
 					return
 		return
 
@@ -64,7 +62,7 @@
 		return
 
 	if(iskindred(user))
-		if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
+		if(!user.get_discipline(/datum/discipline/thaumaturgy))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return
 		if(existing_path_discipline)
@@ -121,6 +119,7 @@
 
 
 /obj/item/occult_book
+	abstract_type = /obj/item/occult_book
 	name = "occult book"
 	desc = "A default occult book. if you're seeing this ingame, please report to coders"
 	icon = 'modular_darkpack/modules/paths/icons/paths.dmi'
@@ -135,7 +134,7 @@
 	var/research_value = 10
 	var/study_cooldown = 30 MINUTES
 	var/study_research_value = 50
-	var/required_trait = TRAIT_THAUMATURGY_KNOWLEDGE
+	var/required_discipline = /datum/discipline/thaumaturgy
 	var/no_trait_message = "The text is incomprehensible to you without the proper knowledge."
 	var/cooldown_message = "You have recently studied this tome extensively. You need %TIME% more minutes before you can gain further insight from it."
 	var/study_start_message = "You begin studying the occult text..."
@@ -160,7 +159,7 @@
 	return ..()
 
 /obj/item/occult_book/proc/can_study(mob/living/carbon/human/user)
-	if(!HAS_TRAIT(user, required_trait))
+	if(required_discipline && !user.get_discipline(required_discipline))
 		to_chat(user, span_warning(no_trait_message))
 		return FALSE
 	return TRUE

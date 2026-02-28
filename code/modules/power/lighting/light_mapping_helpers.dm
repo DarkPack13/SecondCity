@@ -126,8 +126,7 @@
 	if(ishuman(arrived))
 		var/mob/living/L = arrived
 		if(L.client)
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(5, 1, get_turf(src))
+			var/datum/effect_system/basic/spark_spread/s = new(get_turf(src), 5, 1)
 			s.start()
 			playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
 			qdel(src)

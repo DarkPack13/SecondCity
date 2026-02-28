@@ -362,6 +362,11 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	beauty = -150
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
+// DARKPACK EDIT ADDITION START
+/obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+// DARKPACK EDIT ADDITION END
+
 /obj/effect/decal/cleanable/garbage/Initialize(mapload)
 	. = ..()
 	icon_state = "garbage[rand(1, 6)]" // DARKPACK EDIT ADD

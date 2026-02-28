@@ -34,7 +34,8 @@
 	victim.fakediablerist = TRUE
 	//removing iscathayan from line 38 -- DAKPACK TODO -- readd KJs (iscathayan(victim))
 	if(iskindred(victim) || iszombie(victim)) //made this a deduction rather than a flat set because of an artifact that independently changes damage mods
-		victim.dna.species.heatmod = max(0.5, victim.dna.species.heatmod-1)
+		// Im not even certin this does anything for kindred waying heatmod only affects the breath you take and kindred shouldnt be breathing really.
+		victim.dna.species.heatmod = max(0.5, victim.dna.species.heatmod-1) // This sucks why are we touching species for this.
 	else
 		victim.dna.species.heatmod = max(0.5, victim.dna.species.heatmod-0.5)
 	qdel(src)

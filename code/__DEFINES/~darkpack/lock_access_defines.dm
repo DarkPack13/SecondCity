@@ -71,7 +71,7 @@
 #define LOCKACCESS_POLICE "police"
 #define LOCKACCESS_DISPATCH "dispatch"
 #define LOCKACCESS_POLICE_SECURE "police_secure"
-#define LOCKACCESS_POLICE_CHIEF "police_chief"
+#define LOCKACCESS_POLICE_CAPTAIN "police_captain"
 #define LOCKACCESS_FEDERAL "federal"
 
 #define LOCKACCESS_WOLFTECH "wolftech"

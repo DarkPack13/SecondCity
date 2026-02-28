@@ -16,7 +16,7 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/warder
 
-	allowed_species = list(SPECIES_GAROU)
+	allowed_splats = list(SPLAT_GAROU)
 //	allowed_tribes = list(TRIBE_GAIA)
 //	allowed_auspice = list(AUSPICE_AHROUN)
 

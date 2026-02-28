@@ -16,7 +16,7 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/wyrmfoe
 
-	allowed_species = list(SPECIES_GAROU)
+	allowed_splats = list(SPLAT_GAROU)
 //	allowed_tribes = list(TRIBE_GAIA)
 
 	display_order = JOB_DISPLAY_ORDER_WYRMFOE

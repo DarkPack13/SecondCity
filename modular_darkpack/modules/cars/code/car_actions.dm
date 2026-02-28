@@ -83,10 +83,13 @@
 	if(!.)
 		return FALSE
 	if(isliving(owner))
-		var/mob/living/driver =  owner
-		if(driver.st_get_stat(STAT_DRIVE) < 1)
+		var/mob/living/driver = owner
+		if(CONFIG_GET(flag/punishing_zero_dots) && driver.st_get_stat(STAT_DRIVE) < 1)
 			to_chat(owner, span_danger("You don't know what you're doing!"))
 			return FALSE
+
+	if(!ISADVANCEDTOOLUSER(clicker))
+		return
 
 	var/obj/darkpack_car/owned_car = owner.loc
 	if(!owned_car.on)

@@ -182,7 +182,7 @@
 /datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
 	desc = "Take on the shape a beast."
-	button_icon = 'modular_darkpack/modules/kindred_species/icons/vampire_clans.dmi'
+	button_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi'
 	button_icon_state = "setite"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
@@ -220,6 +220,10 @@
 	mob_size = MOB_SIZE_LARGE
 	pixel_w = 0
 	initial_size = 1.4
+
+/mob/living/basic/cobra/typhon/Life(seconds_per_tick)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MASQUERADE_VIOLATION)
 
 //THE HEART OF DARKNESS
 /datum/discipline_power/serpentis/the_heart_of_darkness

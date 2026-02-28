@@ -12,7 +12,7 @@
 	medhud.add_atom_to_hud(src)
 	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
 	diag_hud.add_atom_to_hud(src)
-	faction += "[REF(src)]"
+	add_ally(src)
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
@@ -564,7 +564,7 @@
 		if(!whispered)
 			to_chat(src, span_notice("You have succumbed to Torpor."))
 		investigate_log("has succumbed to death.", INVESTIGATE_DEATHS)
-		torpor("damage")
+		torpor(DAMAGE_TRAIT)
 	else
 		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
 		adjust_oxy_loss(health - HEALTH_THRESHOLD_DEAD)
@@ -651,11 +651,9 @@
 /**
  * Returns the access list for this mob
  */
-/mob/living/proc/get_access() as /list
+/mob/living/get_access()
 	var/list/access_list = list()
-	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_SIMPLE_ACCESS, access_list)
-	var/obj/item/card/id/id = get_idcard()
-	access_list += id?.GetAccess()
+	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_ACCESS, access_list)
 	return access_list
 
 /mob/living/proc/get_id_in_hand()
@@ -756,7 +754,7 @@
 	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED, TRAIT_UNDENSE), LYING_DOWN_TRAIT)
 	if(HAS_TRAIT(src, TRAIT_FLOORED) && !(dir & (NORTH|SOUTH)))
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
-	if(rotate_on_lying)
+	if(rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE)) // DARKPACK EDIT CHANGE - WEREWOLF
 		add_offsets(LYING_DOWN_TRAIT, y_add = PIXEL_Y_OFFSET_LYING)
 
 /// Proc to append behavior related to lying down.
@@ -1092,6 +1090,10 @@
 
 ///Called by mob Move() when the lying_angle is different than zero, to better visually simulate crawling.
 /mob/living/proc/lying_angle_on_movement(direct)
+	if(buckled && buckled.buckle_lying != NO_BUCKLE_LYING)
+		set_lying_angle(buckled.buckle_lying)
+		return
+
 	if(direct & EAST)
 		set_lying_angle(LYING_ANGLE_EAST)
 	else if(direct & WEST)
@@ -1230,19 +1232,15 @@
 	//We only resist our grab state if we are currently in a grab equal to or greater than GRAB_AGGRESSIVE (1). Otherwise, break out immediately!
 	if(effective_grab_state >= GRAB_AGGRESSIVE)
 		// Grabber is the "action taker" so he is the "owner"
-		var/success = ROLL_SUCCESS
-		if(pulledby && isliving(pulledby))
-			var/mob/living/living_puller = pulledby
-			success = SSroll.opposed_roll(
-				player_a = living_puller,
-				player_b = src,
-				dice_a = living_puller.st_get_stat(STAT_STRENGTH)+living_puller.st_get_stat(STAT_BRAWL),
-				dice_b = st_get_stat(STAT_DEXTERITY)+st_get_stat(STAT_BRAWL),
-				show_player_a = TRUE,
-				show_player_b = TRUE,
-				alert_atom = src,
-				draw_goes_to_b = TRUE
-			)
+		var/success = ROLL_FAILURE
+		if(isliving(pulledby))
+			var/datum/storyteller_roll/grappling/pulled_roll = new()
+			var/puller_result = pulled_roll.st_roll(pulledby, src)
+			var/datum/storyteller_roll/grappled/our_roll = new()
+			var/our_result = our_roll.st_roll(src, pulledby)
+
+			if(puller_result > our_result)
+				success = ROLL_SUCCESS
 
 		if(!success)
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
@@ -1257,7 +1255,7 @@
 							span_warning("You struggle as you fail to break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_danger("[src] struggles as they fail to break free of your grip!"))
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 4 SECONDS
+			client.move_delay = world.time + 1 TURNS
 	else
 		pulledby.stop_pulling()
 		return FALSE
@@ -1370,6 +1368,10 @@
 	return
 
 /mob/living/can_hold_items(obj/item/I)
+	// DARKPACK EDIT ADD START
+	if(I && (I.w_class <= WEIGHT_CLASS_SMALL) && HAS_TRAIT(src, TRAIT_SMALL_HANDS))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	return ..() && HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS) && usable_hands
 
 /mob/living/can_perform_action(atom/target, action_bitflags)
@@ -2450,7 +2452,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(HARD_CRIT)
 			if(stat != UNCONSCIOUS)
 				cure_blind(UNCONSCIOUS_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_dead_mob_list()
 			add_to_alive_mob_list()
 	switch(stat) //Current stat.
@@ -2478,17 +2482,14 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			if(. != UNCONSCIOUS)
 				become_blind(UNCONSCIOUS_TRAIT)
 			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			log_combat(src, src, "entered hard crit")
 		if(DEAD)
 			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_alive_mob_list()
 			add_to_dead_mob_list()
 			log_combat(src, src, "died")
-	if(!can_hear())
-		stop_sound_channel(CHANNEL_AMBIENCE)
-	refresh_looping_ambience()
-
-
 
 ///Reports the event of the change in value of the buckled variable.
 /mob/living/proc/set_buckled(new_buckled)
@@ -2828,7 +2829,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Proc called when TARGETED by a lazarus injector
 /mob/living/proc/lazarus_revive(mob/living/reviver, malfunctioning)
 	revive(HEAL_ALL)
-	faction |= FACTION_NEUTRAL
+	add_faction(FACTION_NEUTRAL)
 	if (!malfunctioning)
 		befriend(reviver)
 	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "The lazarus injector has brought you back to life! You are now friendly to everyone."
@@ -2847,9 +2848,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(QDELETED(new_friend))
 		return
 	var/friend_ref = REF(new_friend)
-	if (faction.Find(friend_ref))
+	if (has_ally(friend_ref))
 		return FALSE
-	faction |= friend_ref
+	add_ally(friend_ref)
 	ai_controller?.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, new_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_BEFRIENDED, new_friend)
@@ -2859,9 +2860,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/unfriend(mob/living/old_friend)
 	SHOULD_CALL_PARENT(TRUE)
 	var/friend_ref = REF(old_friend)
-	if (!faction.Find(friend_ref))
+	if (!has_ally(friend_ref))
 		return FALSE
-	faction -= friend_ref
+	remove_ally(friend_ref)
 	ai_controller?.remove_thing_from_blackboard_key(BB_FRIENDS_LIST, old_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_UNFRIENDED, old_friend)

@@ -140,6 +140,10 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		allowed_configs += "[initial(item_path.greyscale_config_inhand_left)]"
 	if(initial(item_path.greyscale_config_inhand_right))
 		allowed_configs += "[initial(item_path.greyscale_config_inhand_right)]"
+	// DARKPACK EDIT ADD START - ONFLOOR_ICONS
+	if(initial(item_path.greyscale_config_onfloor))
+		allowed_configs += "[initial(item_path.greyscale_config_onfloor)]"
+	// DARKPACK EDIT ADD END
 
 	var/datum/greyscale_modify_menu/menu = new(
 		manager,

@@ -75,7 +75,7 @@
 /datum/job_department/police
 	department_name = DEPARTMENT_POLICE
 	department_bitflags = DEPARTMENT_BITFLAG_POLICE
-	department_head = /datum/job/vampire/police_chief
+	department_head = /datum/job/vampire/police_captain
 	department_experience_type = EXP_TYPE_POLICE
 	display_order = 1
 	label_class = "police"
