@@ -468,7 +468,11 @@
 		return FALSE
 	// DARKPACK EDIT ADD - START
 	if (recipe.category == CAT_TZIMISCE) // TODO: [Disciplines] Uncomment when viscissitude is a thing.
-		return HAS_TRAIT(user, TRAIT_VICISSITUDE_KNOWLEDGE)
+		return FALSE
+		/* DARKPACK TODO: Vicissitude
+		var/mob/living/living_user = astype(user)
+		return living_user?.get_discipline(/datum/discipline/vicissitude)
+		*/
 	// DARKPACK EDIT ADD - END
 	return recipe.is_recipe_available(user) // DARKPACK EDIT CHANGE
 

@@ -1,5 +1,5 @@
 /mob/living/basic/pet/dog/darkpack
-	name = "\improper dog"
+	name = "dog"
 	real_name = "dog"
 	icon_state = "dog1"
 	desc = "That's an ouppy."

@@ -10,7 +10,8 @@
 	)
 
 /obj/item/ritual_tome/necromancy/attack_self(mob/user)
-	if(!HAS_TRAIT(user, TRAIT_NECROMANCY_KNOWLEDGE))
+	var/mob/living/living_user = astype(user)
+	if(!living_user || !living_user.get_discipline(/datum/discipline/necromancy))
 		to_chat(user, span_cult("A Grimoire that contains etchings of many rituals and procedures. Sadly, you don't understand much of it."))
 		return
 	ui_interact(user)
@@ -31,7 +32,7 @@
 		.["user"]["souls"] = H.collected_souls
 		.["user"]["name"] = "[H.name]"
 		.["user"]["job"] = "[H.mind?.assigned_role?.title]"
-		.["user"]["has_necromancy"] = HAS_TRAIT(H, TRAIT_NECROMANCY_KNOWLEDGE)
+		.["user"]["has_necromancy"] = !!H.get_discipline(/datum/discipline/necromancy)
 	else if(isliving(user))
 		var/mob/living/L = user
 		.["user"]["souls"] = L.collected_souls
@@ -48,10 +49,9 @@
 	if(action != "purchase")
 		return ..()
 
-	if(!HAS_TRAIT(usr, TRAIT_NECROMANCY_KNOWLEDGE))
+	var/mob/living/user = astype(usr)
+	if(!user || !user.get_discipline(/datum/discipline/necromancy))
 		return FALSE
-
-	var/mob/living/user = usr
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
 
@@ -68,4 +68,8 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/necrotome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_NECROMANCY_KNOWLEDGE)
+	var/mob/living/living_user = astype(user)
+	if(living_user?.get_discipline(/datum/discipline/necromancy))
+		return TRUE
+
+	return FALSE

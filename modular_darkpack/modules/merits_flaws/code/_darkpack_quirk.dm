@@ -5,11 +5,13 @@
 	var/list/allowed_splats
 	/// List of splats this quirk is explicitly forbidden for
 	var/list/forbidden_splats
-	/// Excluded clans from this quirk (exclusive to vampire)
+	/// Excluded clans from this quirk (exclusive to vampire). E.g "Cappadocians cannot take this flaw"
 	var/list/excluded_clans
+	/// Included clans for this quirk (exclusive to vampire). E.g "Only Cappadocians can take this flaw"
+	var/list/included_clans
 	/// Minimum Generation
 	var/minimum_generation
-	/// Unique failure message on joining the round (should probably just mix the clan and generation blocking into the tgui...)
+	/// Unique failure message on joining the round (in case someone joins with an incompatible quirk on their savefile for some reason)
 	var/failure_message = "One of the quirks you've selected hasn't applied - your character is ineligible to use it!"
 
 /datum/quirk/darkpack/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
@@ -59,13 +61,16 @@
 	return TRUE
 
 /datum/quirk/darkpack/proc/is_clan_appropriate(datum/subsplat/vampire_clan/clan)
-	if(!excluded_clans)
+	if(!excluded_clans && !included_clans)
 		return TRUE
 
 	if(!clan)
 		return TRUE
 
-	if(clan.id in excluded_clans)
+	if(excluded_clans && (clan.id in excluded_clans))
+		return FALSE
+
+	if(included_clans && !(clan.id in included_clans))
 		return FALSE
 
 	return TRUE

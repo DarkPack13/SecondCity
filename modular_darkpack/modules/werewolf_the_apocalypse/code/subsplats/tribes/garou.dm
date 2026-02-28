@@ -11,7 +11,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/ghostcouncil
 	name = TRIBE_UKTENA
@@ -22,7 +22,7 @@
 	// 	/datum/action/cooldown/power/gift/coils_of_the_serpent,
 	// 	/datum/action/cooldown/power/gift/banish_totem
 	)
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/hartwardens
 	name = TRIBE_FIANNA
@@ -33,7 +33,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/glasswalkers
 	name = TRIBE_GLASS_WALKERS
@@ -43,7 +43,7 @@
 	// 	/datum/action/cooldown/power/gift/digital_feelings,
 	// 	/datum/action/cooldown/power/gift/elemental_improvement
 	// )
-	tribe_keys = /obj/item/vamp/keys/techstore
+	subsplat_keys = /obj/item/vamp/keys/techstore
 
 /datum/subsplat/werewolf/tribe/garou/bonegnawers
 	name = TRIBE_BONE_GNAWERS
@@ -54,7 +54,7 @@
 	// 	/datum/action/cooldown/power/gift/infest,
 	// 	/datum/action/cooldown/power/gift/gift_of_the_termite
 	)
-	tribe_keys = /obj/item/vamp/keys/children_of_gaia
+	subsplat_keys = /obj/item/vamp/keys/children_of_gaia
 
 /datum/subsplat/werewolf/tribe/garou/childrenofgaia
 	name = TRIBE_CHILDREN_OF_GAIA
@@ -66,7 +66,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
-	tribe_keys = /obj/item/vamp/keys/children_of_gaia
+	subsplat_keys = /obj/item/vamp/keys/children_of_gaia
 
 /datum/subsplat/werewolf/tribe/garou/getoffenris
 	name = TRIBE_GET_OF_FENRIS
@@ -76,7 +76,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/blackfuries
 	name = TRIBE_BLACK_FURIES
@@ -86,7 +86,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/silentstriders
 	name = TRIBE_SILENT_STRIDERS
@@ -96,7 +96,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/shadowlords
 	name = TRIBE_SHADOW_LORDS
@@ -106,7 +106,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/techstore
+	subsplat_keys = /obj/item/vamp/keys/techstore
 
 /datum/subsplat/werewolf/tribe/garou/redtalons
 	name = TRIBE_RED_TALONS
@@ -125,7 +125,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/stargazers
 	name = TRIBE_STARGAZERS
@@ -135,7 +135,7 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	// )
-	tribe_keys = /obj/item/vamp/keys/nps
+	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/blackspiraldancers
 	name = TRIBE_BLACK_SPIRAL_DANCERS
