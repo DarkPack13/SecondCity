@@ -47,6 +47,10 @@
 	handle_liver(seconds_per_tick)
 	// For special species interactions
 	dna.species.spec_life(src, seconds_per_tick)
+	// DARKPACK EDIT ADD START - SPLATS
+	for(var/datum/splat/splat in splats)
+		splat.splat_life(seconds_per_tick)
+	// DARKPACK EDIT ADD END
 	return stat != DEAD
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)

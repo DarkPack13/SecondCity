@@ -14,7 +14,7 @@
 	var/datum/weakref/embracer_weakref = data["donor"]
 	var/mob/living/carbon/human/embracer = embracer_weakref?.resolve()
 
-	//if(isgarou(victim)) //Are we a garou species? DARKPACK TODO - GAROU
+	//if(isgarou(victim)) //Are we a garou species? DARKPACK TODO - WEREWOLF
 	//	attempt_abomination_embrace(childe)
 	//	victim.rollfrenzy()
 	//	return

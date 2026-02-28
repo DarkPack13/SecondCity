@@ -1,26 +1,3 @@
-/datum/quirk/illegal_identity
-	name = "Illegal Identity"
-	desc = "Illegal immigrant? Died legally? Born a wolf? The cops aren't happy."
-	value = 0
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN
-	icon = FA_ICON_PERSON_CIRCLE_QUESTION
-	mob_trait = TRAIT_ILLEGAL_IDENTITY
-	gain_text = span_warning("You feel legally unprepared.")
-	lose_text = span_notice("You feel bureaucratically legitimate.")
-	medical_record_text = "Patient is not checked in with valid identification."
-	// excluded_clans = list(CLAN_RAVNOS) // DARKPACK TODO - RAVNOS - (They are forced to take this)
-
-/datum/quirk/illegal_identity/add()
-	. = ..()
-	if(!ishuman(quirk_holder))
-		return
-	var/mob/living/carbon/human/criminal = quirk_holder
-	var/obj/item/passport/passport = locate() in criminal // In pockets
-	if(!passport && criminal.back)
-		passport = locate() in criminal.back // In backpack
-	if(passport && passport.owner == criminal.real_name)
-		passport.link_human(criminal)
-
 /datum/loadout_item/pocket_items/passport
 	name = "Identification"
 	item_path = /obj/item/passport

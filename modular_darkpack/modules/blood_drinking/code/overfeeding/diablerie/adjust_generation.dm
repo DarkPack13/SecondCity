@@ -8,4 +8,4 @@
 		new_generation = max(generation - 1, MAX_TRUSTED_GENERATION)
 	kindred.set_generation(new_generation)
 
-	client.prefs.write_preference_midround(GLOB.preference_entries[/datum/preference/numeric/generation], new_generation)
+	write_preference_midround(/datum/preference/numeric/generation, new_generation)

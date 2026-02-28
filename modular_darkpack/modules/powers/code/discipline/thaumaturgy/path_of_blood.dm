@@ -11,7 +11,6 @@
 	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
-	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT)
 	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline_power/thaumaturgy
@@ -153,7 +152,7 @@
 		/datum/discipline_power/thaumaturgy/cauldron_of_blood
 	)
 
-// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -v20 Core Rulebook
+// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -V20 Core Rulebook
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return

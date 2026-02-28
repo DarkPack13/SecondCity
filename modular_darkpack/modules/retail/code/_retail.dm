@@ -6,9 +6,10 @@
 	name = "retail outlet"
 	desc = "A counter for partaking in wretched capitalism. Takes cash or card."
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
-	icon_state = "menu"
+	icon_state = "register"
 	density = FALSE
 	anchored = TRUE
+	anchored_tabletop_offset = 6
 	var/owner_needed = TRUE //Does an npc need to be here for this
 	var/mob/living/carbon/human/npc/my_owner //tracks existence of owner
 	var/is_gun_store = FALSE

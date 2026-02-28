@@ -115,7 +115,7 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/pool_cue))
-		context[SCREENTIP_CONTEXT_LMB] = "Strike ball"
+		context[SCREENTIP_CONTEXT_RMB] = "Strike ball"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(!held_item)
 		context[SCREENTIP_CONTEXT_RMB] = "Reset Table"
@@ -123,7 +123,8 @@
 
 	return . || NONE
 
-/obj/structure/table/wood/billiard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/structure/table/wood/billiard/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
 	if(istype(tool, /obj/item/pool_cue))
 		var/static/list/cue_options = list(
 			SOLID_BALL = image(icon = 'modular_darkpack/modules/billiards/icons/billiard.dmi', icon_state = "1ball"),
@@ -143,19 +144,22 @@
 		playsound(src, 'modular_darkpack/modules/billiards/sounds/poolball_strike.ogg', 75)
 
 		var/datum/storyteller_roll/pool_aiming/accuracy_roll = new()
-		var/accuracy_result = accuracy_roll.st_roll(user, src) * 2
+		var/accuracy_result = accuracy_roll.st_roll(user, src)
 		var/datum/storyteller_roll/pool_hits/amount_to_hit_roll = new()
 		var/amount_to_hit_result = amount_to_hit_roll.st_roll(user, src)
+		var/list/balls_sunk = list()
 		for(var/i in 1 to amount_to_hit_result)
 			if(!length(get_balls_on_table()))
 				break
-			sink_ball(user, choice, accuracy_result, amount_to_hit_result)
+			if(!sink_ball(user, choice, accuracy_result, amount_to_hit_result, balls_sunk = balls_sunk))
+				break
+		if(length(balls_sunk))
+			user.visible_message(span_notice("[user] sinks [jointext(balls_sunk, ", ")]. [length(get_balls_on_table())] left."), span_notice("You sink [jointext(balls_sunk, ", ")]!"))
 		return ITEM_INTERACT_SUCCESS
 
 /datum/storyteller_roll/pool_aiming
 	bumper_text = "billiard aiming"
 	applicable_stats = list(STAT_DEXTERITY)
-	numerical = TRUE
 	// spammy_roll = TRUE
 	difficulty = 4
 
@@ -176,7 +180,7 @@
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
-/obj/structure/table/wood/billiard/proc/sink_ball(mob/living/user, target_ball_type, accuracy_result, amount_to_hit_result, obj/item/pool_ball/sunk_ball)
+/obj/structure/table/wood/billiard/proc/sink_ball(mob/living/user, target_ball_type, accuracy_result, amount_to_hit_result, obj/item/pool_ball/sunk_ball, list/balls_sunk)
 	if(!sunk_ball)
 		sunk_ball = random_ball(target_ball_type, accuracy_result)
 
@@ -185,14 +189,29 @@
 	if(num_to_ball_type(sunk_ball.ball_number) == EIGHT_BALL)
 		user.visible_message(span_warning("[user] [pick("Pitted", "Sank", "Sunk")] the 8-Ball.. Damn.."), span_warning("[pick("Fuck", "Shit", "Piss")].. You [pick("Pitted", "Sank", "Sunk")] the 8-Ball"))
 	else
-		user.visible_message(span_notice("[user] sinks [sunk_ball]. [length(get_balls_on_table(num_to_ball_type(sunk_ball.ball_number)))] left."), span_notice("You sink [sunk_ball]!"))
+		balls_sunk += sunk_ball
 	sunk_ball.forceMove(src)
 
 	for(var/obj/item/pool_ball/ball in get_balls_on_table(list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL, ZERO_BALL)))
 		if(prob(50 + amount_to_hit_result * 10))
 			animate(ball, time = rand(0.5 SECONDS, 3 SECONDS) , pixel_x = rand(-TABLE_BOUNDS, TABLE_BOUNDS), pixel_y = rand(-TABLE_BOUNDS-6, TABLE_BOUNDS), easing = CUBIC_EASING|EASE_OUT)
+	return TRUE
 
-/obj/structure/table/wood/billiard/proc/random_ball(desired_ball_type, accuracy_result = 2)
+/obj/structure/table/wood/billiard/proc/random_ball(desired_ball_type, accuracy_result = ROLL_SUCCESS)
+	var/balls_to_get
+	switch(accuracy_result)
+		if(ROLL_SUCCESS)
+			balls_to_get = desired_ball_type
+		if(ROLL_FAILURE)
+			balls_to_get = list(SOLID_BALL, STRIPED_BALL, EIGHT_BALL) - desired_ball_type
+		if(ROLL_BOTCH)
+			balls_to_get = EIGHT_BALL
+
+	var/list/balls_sunk = get_balls_on_table(balls_to_get)
+	if(length(balls_sunk))
+		return pick(balls_sunk)
+
+/* I really like the weighting but it leads to sinking too many balls u dont want if u roll to many hits.
 	var/list/obj/item/pool_ball/sorted_balls = get_balls_on_table()
 	var/list/obj/item/pool_ball/weighted_balls = list()
 	for(var/obj/item/pool_ball/entry in sorted_balls)
@@ -201,6 +220,7 @@
 		else
 			weighted_balls[entry] = 1
 	return pick_weight(weighted_balls)
+*/
 
 /obj/structure/table/wood/billiard/proc/reset_table()
 	var/turf/my_turf = get_turf(src)

@@ -40,6 +40,9 @@
 
 	on_gain()
 
+	if(owner.hud_used)
+		add_relevent_huds(owner.hud_used)
+
 	return src
 
 /**

@@ -17,13 +17,13 @@
 
 /obj/ritual_rune/thaumaturgy/curse/attack_hand(mob/user)
 	if(!activated)
-		var/mob/living/L = user
-		if(!HAS_TRAIT(L, TRAIT_THAUMATURGY_KNOWLEDGE))
+		var/mob/living/living_user = astype(user)
+		if(!living_user || !living_user.get_discipline(/datum/discipline/thaumaturgy))
 			return
-		L.say(word)
-		L.Immobilize(30)
+		living_user.say(word)
+		living_user.Immobilize(30)
 		last_activator = user
-		activator_bonus = L.thaum_damage_plus
+		activator_bonus = living_user.thaum_damage_plus
 		animate(src, color = rgb(255, 64, 64), time = 10)
 		complete()
 		addtimer(CALLBACK(src, PROC_REF(start_curse), user), 1 SECONDS)

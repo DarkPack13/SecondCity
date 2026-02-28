@@ -72,6 +72,17 @@
 		aura_image.color = hsv2rgb(hsv_color_value)
 		holder.appearance = aura_image
 
+	// DARKPACK TODO - aura still needs real sprites.
+	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
+		var/icon/temporary_icon_holder = holder.appearance
+		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "old_aura_bright", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+
+		var/list/hsv_color_value = rgb2hsv(holder.color)
+		hsv_color_value[2] = hsv_color_value[2] * 1.5 // Way brighter for shapeshifters
+
+		aura_image.color = hsv2rgb(hsv_color_value)
+		holder.appearance = aura_image
+
 
 /datum/component/aura/proc/update_aura_overlays(mutable_appearance/aura_appearance, image/holder)
 	holder.cut_overlays()

@@ -239,13 +239,13 @@
 			for(var/behavior in recipe.tool_behaviors)
 				recipe_time += dynamic_recipe_time * found_behaviors[behavior]
 
-		// DARKPACK EDIT ADD START - STORYTELLR_STATS
+		// DARKPACK EDIT ADD START - STORYTELLER_STATS
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter
 			if(CONFIG_GET(flag/punishing_zero_dots) && human_crafter.st_get_stat(STAT_CRAFTS) < 1)
 				return ", you dont know how to craft!"
-			recipe_time = recipe_time / human_crafter.st_get_stat(STAT_CRAFTS)
+			recipe_time = recipe_time / max(human_crafter.st_get_stat(STAT_CRAFTS), 1)
 		// DARKPACK EDIT ADD END
 
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))
@@ -468,7 +468,11 @@
 		return FALSE
 	// DARKPACK EDIT ADD - START
 	if (recipe.category == CAT_TZIMISCE) // TODO: [Disciplines] Uncomment when viscissitude is a thing.
-		return HAS_TRAIT(user, TRAIT_VICISSITUDE_KNOWLEDGE)
+		return FALSE
+		/* DARKPACK TODO: Vicissitude
+		var/mob/living/living_user = astype(user)
+		return living_user?.get_discipline(/datum/discipline/vicissitude)
+		*/
 	// DARKPACK EDIT ADD - END
 	return recipe.is_recipe_available(user) // DARKPACK EDIT CHANGE
 
