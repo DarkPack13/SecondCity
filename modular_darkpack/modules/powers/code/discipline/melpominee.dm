@@ -11,7 +11,7 @@
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/melpominee/melpominee.ogg'
 
-	vitae_cost = 1 // All Melpominee powers below 5 dots cost blood
+	vitae_cost = 1 // All Melpominee powers below 5 dots cost blood except for Missing Voice
 	var/obj/effect/abstract/particle_holder/particle_generator
 
 /datum/discipline_power/melpominee/proc/setup_particles()
@@ -53,6 +53,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	target_type = TARGET_MOB | TARGET_OBJ | TARGET_TURF
 	range = 7
+	vitae_cost = 0
 
 /datum/discipline_power/melpominee/the_missing_voice/activate(atom/movable/target)
 	. = ..()
@@ -232,7 +233,6 @@
  *
  * The Daughter sings a haunting sound that causes the victim to remain and listen, provided they fail a willpower roll.
  *
- * TODO: When we add derangements, add the weird cumulative success effect this power has
  */
 /datum/discipline_power/melpominee/sirens_beckoning
 	name = "Siren's Beckoning"
@@ -285,6 +285,7 @@
 	else
 		deactivate(target, TRUE)
 		return FALSE
+	playsound(owner, 'modular_darkpack/modules/powers/sounds/melpominee/melpominee.ogg', 50)
 
 	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
 		listener_list = list(target)
@@ -393,7 +394,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
 	target_type = TARGET_MOB
 
-	effect_sound = 'modular_darkpack/modules/powers/sounds/melpominee/banshee.ogg'
+	effect_sound = null // Sound handled by activate
 
 	range = 7
 	duration_length = 1 TURNS
@@ -401,6 +402,7 @@
 
 /datum/discipline_power/melpominee/death_of_the_drum/activate()
 	. = ..()
+	playsound(owner, 'modular_darkpack/modules/powers/sounds/melpominee/melpominee.ogg', 50)
 	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
 		listener.Stun(1 TURNS)
 		switch(listener.get_ear_protection(TRUE))
