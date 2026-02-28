@@ -9,7 +9,24 @@
 	name = "Visceratika power name"
 	desc = "Visceratika power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/visceratika.ogg'
+	activate_sound = 'modular_darkpack/modules/powers/sounds/visceratika.ogg'
+
+/datum/discipline/visceratika/post_gain()
+	. = ..()
+	// it is rumored that, if a non-gargoyle kindred were to learn Visceratika, their skin would turn stony
+	owner.skin_tone = "albino"
+	owner.set_body_sprite("gargoyle")
+	owner.update_body_parts()
+	owner.update_body()
+	// since dot 4 is always active and requires no roll
+	if(level >= 4)
+		owner.physiology.brute_mod *= 0.8
+		owner.physiology.heat_mod *= 0.5
+		//owner.physiology.clone_mod *= 0.9
+		//ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
+		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAIT_GENERIC)
+		if(!(owner.is_clan(/datum/subsplat/vampire_clan/gargoyle)))
+			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
 
 //WHISPERS OF THE CHAMBER
 /datum/discipline_power/visceratika/whispers_of_the_chamber
@@ -18,8 +35,8 @@
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
-
-	cooldown_length = 5 SECONDS
+	cooldown_length = 1 SECONDS
+	vitae_cost = 1
 
 /datum/discipline_power/visceratika/whispers_of_the_chamber/activate()
 	. = ..()
@@ -35,21 +52,33 @@
 /datum/discipline_power/visceratika/scry_the_hearthstone
 	name = "Scry the Hearthstone"
 	desc = "Sense the exact locations of individuals around you."
+	willpower_cost = 1
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SEE
-
-	cancelable = TRUE
-	duration_length = 15 SECONDS
-	cooldown_length = 10 SECONDS
+	toggled = TRUE
+	var/area/starting_area
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/activate()
 	. = ..()
+	starting_area = get_area(owner)
 	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, "Visceratika Scry the Hearthstone")
+	owner.update_sight()
+	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
+	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/deactivate()
 	. = ..()
+	starting_area = null
 	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, "Visceratika Scry the Hearthstone")
+	owner.update_sight()
+	UnregisterSignal(owner, COMSIG_EXIT_AREA)
+
+/datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_exited(atom/movable/source, area/old_area)
+	SIGNAL_HANDLER
+
+	to_chat(owner, span_warning("You lose your connection to the hearthstone as you leave the area."))
+	try_deactivate()
 
 //BOND WITH THE MOUNTAIN
 /datum/discipline_power/visceratika/bond_with_the_mountain
@@ -58,68 +87,35 @@
 
 	level = 3
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
-
+	vitae_cost = 2
 	cancelable = TRUE
 	duration_length = 15 SECONDS
 	cooldown_length = 10 SECONDS
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/activate()
 	. = ..()
-	owner.alpha = 10
+	owner.alpha = 40
+	apply_wibbly_filters(owner)
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/deactivate()
 	. = ..()
 	owner.alpha = 255
+	remove_wibbly_filters(owner)
 
 //ARMOR OF TERRA
 /datum/discipline_power/visceratika/armor_of_terra
 	name = "Armor of Terra"
-	desc = "Solidify into stone and become invulnerable."
+	desc = "This power requires no roll and is always active. Your stony skin has hardened to the point where nearly all damage against you is lessened."
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 
-	violates_masquerade = TRUE
-
-	toggled = TRUE
-	cooldown_length = 1 MINUTES
-	duration_length = 1 MINUTES
+	vitae_cost = 0
 
 /datum/discipline_power/visceratika/armor_of_terra/activate()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(try_deactivate), null, TRUE), duration_length * 2) //failsafe (no, you can't stay in statue mode forever, 2 mins is enough)
-	to_chat(owner, span_warning("You harden your skin far more than you're able to take for long!"))
-	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
-	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
-	ADD_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
-	ADD_TRAIT(owner, TRAIT_MUTE, STATUE_MUTE)
-	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, MAGIC_TRAIT)
-	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, MAGIC_TRAIT)
+	to_chat(owner, span_danger("This is a passive ability. The Effects are already active"))
 
-	owner.name_override = "Statue of [owner.real_name]"
-	owner.status_flags |= GODMODE
-	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
-	owner.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-
-	for(var/obj/stuff in owner.contents) //no stealing
-		ADD_TRAIT(stuff, TRAIT_NODROP, MAGIC)
-
-/datum/discipline_power/visceratika/armor_of_terra/deactivate()
-	. = ..()
-	to_chat(owner, span_warning("You soften your skin, to your normal hardness."))
-	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
-	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
-	REMOVE_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_MUTE, STATUE_MUTE)
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, MAGIC_TRAIT)
-
-	owner.name_override = null
-	owner.status_flags &= GODMODE
-	owner.remove_atom_colour(FIXED_COLOUR_PRIORITY)
-
-	for(var/obj/item/stuff in owner.contents)
-		REMOVE_TRAIT(stuff, TRAIT_NODROP, MAGIC)
 
 //FLOW WITHIN THE MOUNTAIN
 /datum/discipline_power/visceratika/flow_within_the_mountain
@@ -128,7 +124,7 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
-
+	vitae_cost = 2
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
@@ -138,12 +134,14 @@
 /datum/discipline_power/visceratika/flow_within_the_mountain/activate()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, "Visceratika Flow Within the Mountain")
-	owner.alpha = 10
+	owner.alpha = 40
+	apply_wibbly_filters(owner)
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/deactivate()
 	. = ..()
 	owner.alpha = 255
 	REMOVE_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, "Visceratika Flow Within the Mountain")
+	remove_wibbly_filters(owner)
 
 /turf/closed/Enter(atom/movable/mover, atom/oldloc)
 	if(isliving(mover))
@@ -152,3 +150,39 @@
 			return TRUE
 	return ..()
 
+/*
+//ROCKHEART
+/datum/discipline_power/visceratika/rockheart
+	name = "Rockheart"
+	desc = "Solidify your innermost organs to prevent damage"
+
+	level = 6
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+
+	violates_masquerade = FALSE
+
+	toggled = TRUE
+	cooldown_length = 1 MINUTES
+
+/datum/discipline_power/visceratika/rockheart/activate()
+	. = ..()
+	to_chat(owner, span_warning("You harden your internal organs, protecting you against many forms of damage and stakes!"))
+	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
+	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
+	ADD_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NEVER_WOUNDED, MAGIC_TRAIT)
+
+	owner.stakeimmune = TRUE
+
+/datum/discipline_power/visceratika/rockheart/deactivate()
+	. = ..()
+	to_chat(owner, span_warning("You soften your internal organs, to their normal durability."))
+	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, MAGIC)
+	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC)
+	REMOVE_TRAIT(owner, TRAIT_NOBLEED, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NEVER_WOUNDED, MAGIC_TRAIT)
+
+	owner.stakeimmune = FALSE
+*/
