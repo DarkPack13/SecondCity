@@ -21,7 +21,7 @@
 	derangements = subtypesof(/datum/hallucination/malk)
 
 /datum/quirk/derangement/process(seconds_per_tick)
-	if(!client)
+	if(!quirk_holder.client)
 		return
 	if(!COOLDOWN_FINISHED(src, next_process))
 		return
