@@ -67,8 +67,10 @@
 	return attack_target.attack_paw(src, modifiers)
 
 /mob/living/carbon/human/resolve_unarmed_attack(atom/attack_target, list/modifiers)
+	/* // DARKPACK EDIT REMOVAL - Dont assume we are a chimp because we cant use tools.
 	if(!ISADVANCEDTOOLUSER(src))
 		return ..()
+	*/
 
 	return attack_target.attack_hand(src, modifiers)
 

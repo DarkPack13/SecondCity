@@ -12,7 +12,7 @@
 	var/damage_deflection = 0
 	// DARKPACK EDIT ADD START
 	/// Atom uses integrity but will not be deleted upon reaching 0 through normal means
-	var/prevent_destruction = FALSE 
+	var/prevent_destruction = FALSE
 	// DARKPACK EDIT ADD END
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF

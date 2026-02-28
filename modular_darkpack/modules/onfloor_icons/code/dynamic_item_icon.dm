@@ -44,10 +44,10 @@
 		item.item_flags &= ~ACTIVE_WORLD_ICON
 
 	item.update_icon()
+	item.update_greyscale()
 
 /datum/element/dynamic_item_icon/proc/apply_onfloor_icon(obj/item/item)
 	item.icon = item.onflooricon
-	item.worn_icon = initial(item.worn_icon)
 	item.pixel_w = 0
 	item.cut_overlays()
 	if (item.onflooricon_state)
@@ -57,3 +57,4 @@
 		item.item_flags |= ACTIVE_WORLD_ICON
 
 	item.update_icon()
+	//item.update_greyscale()

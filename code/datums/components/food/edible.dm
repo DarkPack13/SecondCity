@@ -702,6 +702,13 @@ Behavior that's still missing from this component that original food items had t
 	SEND_SIGNAL(parent, COMSIG_FOOD_CONSUMED, eater, feeder)
 	SEND_SIGNAL(eater, COMSIG_LIVING_FINISH_EAT, parent, feeder)
 
+	// DARKPACK EDIT ADD START - MERITS/FLAWS - (Organovore)
+	if(HAS_TRAIT(eater, TRAIT_ORGANOVORE) && (foodtypes & GORE))
+		if(iskindred(eater))
+			eater.adjust_blood_pool(1, FALSE)
+			to_chat(eater, span_notice("You feel vitae flowing through the fresh meat."))
+	// DARKPACK EDIT ADD END
+
 	on_consume?.Invoke(eater, feeder)
 	if (QDELETED(parent)) // might be destroyed by the callback
 		return

@@ -1,4 +1,4 @@
-/datum/vampire_clan/lasombra
+/datum/subsplat/vampire_clan/lasombra
 	name = "Lasombra"
 	id = VAMPIRE_CLAN_LASOMBRA
 	desc = "The Lasombra exist for their own success, fighting for personal victories rather than solely for a crown to wear or a throne to sit upon. They believe that might makes right, and are willing to sacrifice anything to achieve their goals. A clan that uses spirituality as a tool rather than seeking honest enlightenment, their fickle loyalties are currently highlighted by half their clan's defection from the Sabbat."
@@ -16,13 +16,13 @@
 	male_clothes = /obj/item/clothing/under/vampire/emo
 	female_clothes = /obj/item/clothing/under/vampire/business
 	enlightenment = TRUE
-	clan_keys = /obj/item/vamp/keys/lasombra
+	subsplat_keys = /obj/item/vamp/keys/lasombra
 
-/datum/vampire_clan/lasombra/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
-	H.vis_flags |= VIS_HIDE
-	H.add_faction(VAMPIRE_CLAN_LASOMBRA)
+	gaining_mob.vis_flags |= VIS_HIDE
+	gaining_mob.add_faction(VAMPIRE_CLAN_LASOMBRA)
 
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)

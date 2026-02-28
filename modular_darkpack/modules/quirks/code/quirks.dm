@@ -24,18 +24,17 @@ Dancer
 	lose_text = "<span class='warning'>You don't feel rich anymore.</span>"
 
 /datum/quirk/broker/on_spawn()
-	if(!iswerewolf(quirk_holder))
-		var/mob/living/carbon/human/H = quirk_holder
-		var/obj/item/stocks_license/pills = new()
-		pills.whose = H.real_name
-		pills.name = "[H.real_name]'s stocks trading license"
-		var/list/slots = list(
-			LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-			LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-			LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
-			LOCATION_HANDS = ITEM_SLOT_HANDS
-		)
-		H.equip_in_one_of_slots(pills, slots, FALSE)
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/stocks_license/pills = new()
+	pills.whose = H.real_name
+	pills.name = "[H.real_name]'s stocks trading license"
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	H.equip_in_one_of_slots(pills, slots, FALSE)
 
 /datum/quirk/annonymus
 	name = "Anonymous"
@@ -45,9 +44,8 @@ Dancer
 	lose_text = "<span class='warning'>You don't feel anonymous anymore.</span>"
 
 /datum/quirk/annonymus/on_spawn()
-	if(!iswerewolf(quirk_holder))
-		var/mob/living/carbon/human/H = quirk_holder
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/vampire/balaclava(H), ITEM_SLOT_MASK)
+	var/mob/living/carbon/human/H = quirk_holder
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/vampire/balaclava(H), ITEM_SLOT_MASK)
 
 /datum/quirk/bloody_lover
 	name = "Bloody Lover"
@@ -105,16 +103,15 @@ Dancer
 	lose_text = "<span class='notice'>You feel both of your arms again.</span>"
 
 /datum/quirk/one_hand/on_spawn()
-	if(!iswerewolf(quirk_holder))
-		var/mob/living/carbon/human/H = quirk_holder
-		var/obj/item/bodypart/B1 = H.get_bodypart(BODY_ZONE_R_ARM)
-		var/obj/item/bodypart/B2 = H.get_bodypart(BODY_ZONE_L_ARM)
-		if(prob(50))
-			B1.drop_limb()
-			qdel(B1)
-		else
-			B2.drop_limb()
-			qdel(B2)
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/bodypart/B1 = H.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/B2 = H.get_bodypart(BODY_ZONE_L_ARM)
+	if(prob(50))
+		B1.drop_limb()
+		qdel(B1)
+	else
+		B2.drop_limb()
+		qdel(B2)
 
 /datum/quirk/non_int
 	name = "Non Intellectual"
@@ -203,8 +200,6 @@ Dancer
 	lose_text = "<span class='notice'>You don't feel short anymore.</span>"
 
 /datum/quirk/dwarf/add()
-	if(iswerewolf(quirk_holder))
-		return
 	quirk_holder.AddElement(/datum/element/dwarfism, COMSIG_PARENT_PREQDELETED, src)
 
 /datum/quirk/dwarf/remove()
@@ -288,8 +283,6 @@ Dancer
 	allowed_splats = list("Vampire", "Ghoul")
 
 /datum/quirk/hunted/on_spawn()
-	if(iswerewolf(quirk_holder) || isgarou(quirk_holder))
-		return
 	if(isturf(quirk_holder.loc))
 		SSbloodhunt.announce_hunted(quirk_holder, "Camarilla Wanted List")
 
@@ -305,8 +298,6 @@ Dancer
 	quirk_holder.become_nearsighted(ROUNDSTART_TRAIT)
 
 /datum/quirk/badvision/on_spawn()
-	if(iswerewolf(quirk_holder))
-		return
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/vampire/perception/glasses = new(get_turf(H))
 	if(!H.equip_to_slot_if_possible(glasses, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE))
@@ -345,8 +336,6 @@ Dancer
 	lose_text = "<span class='notice'>You don't feel tall anymore.</span>"
 
 /datum/quirk/tower/add()
-	if(iswerewolf(quirk_holder))
-		return
 	quirk_holder.AddElement(/datum/element/giantism, COMSIG_PARENT_PREQDELETED, src)
 
 /datum/quirk/tower/remove()

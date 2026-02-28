@@ -7,6 +7,9 @@
 			visible_gender = "Woman"
 		else
 			visible_gender = "Person"
+	if(dna?.species.visible_gender_override)
+		visible_gender = dna.species.visible_gender_override
+
 	return visible_gender
 
 /mob/living/carbon/human/proc/get_age()
