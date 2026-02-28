@@ -12,11 +12,10 @@
 
 	var/datum/storyteller_roll/roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_MANIPULATION, STAT_STEALTH)
-	roll_datum.numerical = TRUE
 	roll_datum.difficulty = 8
 	var/roll_result = roll_datum.st_roll(owner)
 
-	if(roll_result > 0)
+	if(roll_result == ROLL_SUCCESS)
 		living_owner?.apply_status_effect(/datum/status_effect/blur_of_the_milky_eye)
 
 /datum/status_effect/blur_of_the_milky_eye
@@ -106,6 +105,8 @@
 	// laughers.emote("laugh")
 
 
+/datum/storyteller_roll/gift/open_seal
+
 /datum/action/cooldown/power/gift/open_seal
 	name = "Open Seal"
 	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
@@ -119,7 +120,7 @@
 
 	var/datum/splat/werewolf/our_splat = iswerewolfsplat(owner)
 
-	var/roll_result = SSroll.storyteller_roll(our_splat.permanent_gnosis, target.get_gauntlet_rating(), owner)
+	var/roll_result = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/open_seal, bonus = our_splat.permanent_gnosis, difficulty = target.get_gauntlet_rating())
 	if(roll_result == ROLL_SUCCESS)
 		var/turf/target_turf = get_turf(target)
 		SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, owner)
