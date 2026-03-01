@@ -221,6 +221,7 @@
 			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
 		else if(HAS_TRAIT(member, TRAIT_FORCED_EMOTION))
 			to_chat(member, span_nicegreen("You feel your [GLOB.emotion_to_quality[member.current_emotion]] weakening."))
+			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
 
 	audience = list()
 
