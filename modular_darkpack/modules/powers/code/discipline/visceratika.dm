@@ -24,29 +24,40 @@
 		owner.physiology.heat_mod *= 0.5
 		//owner.physiology.clone_mod *= 0.9
 		//ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
-		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAIT_GENERIC)
+		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT)
 		if(!(owner.is_clan(/datum/subsplat/vampire_clan/gargoyle)))
 			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
 
-//WHISPERS OF THE CHAMBER
-/datum/discipline_power/visceratika/whispers_of_the_chamber
-	name = "Whispers of the Chamber"
-	desc = "Sense everyone in the same area as you."
-
+//SKIN OF THE CHAMELEON
+/datum/discipline_power/visceratika/skin_of_the_chameleon
+	name = "Skin of the Chameleon"
+	desc = "Change your skin to become a reasonable fascimile of whatever your surroundings are, allowing you increased stealth."
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
-	cooldown_length = 1 SECONDS
+	cooldown_length = 2 SCENES
+	duration_length = 1 SCENES
+	cancelable = TRUE
 	vitae_cost = 1
 
-/datum/discipline_power/visceratika/whispers_of_the_chamber/activate()
+/datum/discipline_power/visceratika/skin_of_the_chameleon/activate()
 	. = ..()
-	for(var/mob/living/player in GLOB.player_list)
-		if(get_area(player) == get_area(owner))
-			var/their_name = player.name
-			if(ishuman(player))
-				var/mob/living/carbon/human/human_player = player
-				their_name = human_player.real_name
-			to_chat(owner, "- [their_name]")
+	skin_chameleon_run()
+	RegisterSignal(owner, COMSIG_MOVE_INTENT_TOGGLED, PROC_REF(skin_chameleon_run))
+
+/datum/discipline_power/visceratika/skin_of_the_chameleon/deactivate(atom/target, direct)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOVE_INTENT_TOGGLED)
+	owner.alpha = 255
+	remove_wibbly_filters(owner)
+
+/datum/discipline_power/visceratika/skin_of_the_chameleon/proc/skin_chameleon_run()
+	SIGNAL_HANDLER
+	if(owner.move_intent == MOVE_INTENT_RUN)
+		owner.alpha = 40
+		apply_wibbly_filters(owner)
+	else
+		owner.alpha = 10
+		remove_wibbly_filters(owner)
 
 //SCRY THE HEARTHSTONE
 /datum/discipline_power/visceratika/scry_the_hearthstone
@@ -58,11 +69,33 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SEE
 	toggled = TRUE
 	var/area/starting_area
+	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
+
+/datum/storyteller_roll/scry_the_hearthstone
+	bumper_text = "scry the hearthstone"
+	difficulty = 6
+	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
+
+/datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
+	. = ..()
+	if(!scry_roll)
+		scry_roll = new()
+	if(scry_roll.st_roll(owner, owner) == ROLL_SUCCESS)
+		return TRUE
+	else
+		return FALSE
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/activate()
 	. = ..()
+	for(var/mob/living/player in GLOB.player_list)
+		if(get_area(player) == get_area(owner))
+			var/their_name = player.name
+			if(ishuman(player))
+				var/mob/living/carbon/human/human_player = player
+				their_name = human_player.real_name
+			to_chat(owner, "- [their_name]")
 	starting_area = get_area(owner)
-	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, "Visceratika Scry the Hearthstone")
+	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
 	owner.update_sight()
 	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
 	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
@@ -70,7 +103,7 @@
 /datum/discipline_power/visceratika/scry_the_hearthstone/deactivate()
 	. = ..()
 	starting_area = null
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, "Visceratika Scry the Hearthstone")
+	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
 	owner.update_sight()
 	UnregisterSignal(owner, COMSIG_EXIT_AREA)
 
@@ -94,13 +127,15 @@
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/activate()
 	. = ..()
-	owner.alpha = 40
-	apply_wibbly_filters(owner)
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
+	owner.density = FALSE
+	owner.damage_deflection = 3 TTRPG_DAMAGE
+	owner.alpha = 10
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/deactivate()
 	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
 	owner.alpha = 255
-	remove_wibbly_filters(owner)
 
 //ARMOR OF TERRA
 /datum/discipline_power/visceratika/armor_of_terra
@@ -133,14 +168,14 @@
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/activate()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, "Visceratika Flow Within the Mountain")
+	ADD_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
 	owner.alpha = 40
 	apply_wibbly_filters(owner)
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/deactivate()
 	. = ..()
 	owner.alpha = 255
-	REMOVE_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, "Visceratika Flow Within the Mountain")
+	REMOVE_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
 	remove_wibbly_filters(owner)
 
 /turf/closed/Enter(atom/movable/mover, atom/oldloc)
