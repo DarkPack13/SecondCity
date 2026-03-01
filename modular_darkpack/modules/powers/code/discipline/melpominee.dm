@@ -210,8 +210,8 @@
 	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, type)
 
 	to_chat(target, span_purple("You are overwhelmed with [GLOB.emotion_to_quality[emotion]]."))
-	var/datum/status_effect/forced_emotion/emote = target.apply_status_effect(/datum/status_effect/forced_emotion)
-	emote.desc = "Something in you is making you dwell on a sense of [GLOB.emotion_to_quality[emotion]]."
+	var/datum/status_effect/forced_emotion/emoji = target.apply_status_effect(/datum/status_effect/forced_emotion)
+	emoji.linked_alert.desc = "Something in you is making you dwell on a sense of [GLOB.emotion_to_quality[emotion]]."
 
 /datum/discipline_power/melpominee/madrigal/deactivate()
 	. = ..()
