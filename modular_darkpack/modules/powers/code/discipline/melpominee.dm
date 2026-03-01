@@ -210,17 +210,17 @@
 	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, type)
 
 	to_chat(target, span_purple("You are overwhelmed with [GLOB.emotion_to_quality[emotion]]."))
-	target.apply_status_effect(/datum/status_effect/forced_emotion)
+	var/datum/status_effect/forced_emotion/emote = target.apply_status_effect(/datum/status_effect/forced_emotion)
+	emote.desc = "Something in you is making you dwell on a sense of [GLOB.emotion_to_quality[emotion]]."
 
 /datum/discipline_power/melpominee/madrigal/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/member in audience)
 		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, type))
 			to_chat(member, span_nicegreen("You are no longer overwhelmed with [GLOB.emotion_to_quality[member.current_emotion]]."))
-		else
+			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
+		else if(HAS_TRAIT(member, TRAIT_FORCED_EMOTION))
 			to_chat(member, span_nicegreen("You feel your [GLOB.emotion_to_quality[member.current_emotion]] weakening."))
-
-		REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
 
 	audience = list()
 
