@@ -146,21 +146,23 @@
 		to_chat(owner, span_warning("Your bond with the mountain is interrupted!"))
 		exit_turf = null
 		return FALSE
-
 	owner.forceMove(stone_turf)
 	owner.alpha = 30
+	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
 	owner.density = FALSE
 	owner.damage_deflection = 3 TTRPG_DAMAGE
 
-/datum/discipline_power/visceratika/bond_with_the_mountain/deactivate()
+/datum/discipline_power/visceratika/bond_with_the_mountain/deactivate(forced = TRUE)
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	owner.density = TRUE
 	owner.damage_deflection = 0
-	if(exit_turf)
-		owner.forceMove(exit_turf)
-	owner.alpha = 255
+	if(forced) //only false when using visceratika 5. we inherit the alpha from this ability and when visceratika 5 deactivates, return to 255
+		if(exit_turf)
+			owner.forceMove(exit_turf)
+		owner.alpha = 255
 	exit_turf = null
 	stone_turf = null
 
@@ -185,18 +187,26 @@
 	desc = "Merge with solid stone, and move through it without disturbing it."
 
 	level = 5
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	vitae_cost = 2
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 15 SECONDS
+	duration_length = 1 SCENES // might be too long...
 	cooldown_length = 10 SECONDS
+
+/datum/discipline_power/visceratika/flow_within_the_mountain/try_activate()
+	// placed in try_activate instead of pre_activation_checks so as to not consume blood while running this check
+	if(!HAS_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN))
+		to_chat(owner, span_notice("You must cast Bond with the Mountain first before using Flow within the Mountain"))
+		return FALSE
+	..()
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/activate()
 	. = ..()
+	var/datum/discipline_power/visceratika/bond_with_the_mountain/bond = discipline.get_power(/datum/discipline_power/visceratika/bond_with_the_mountain)
+	bond.deactivate(forced = FALSE)
 	ADD_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
-	owner.alpha = 40
 	apply_wibbly_filters(owner)
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/deactivate()
@@ -205,10 +215,11 @@
 	REMOVE_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
 	remove_wibbly_filters(owner)
 
+// there has to be a better way to do this
 /turf/closed/Enter(atom/movable/mover, atom/oldloc)
 	if(isliving(mover))
 		var/mob/living/moving_mob = mover
-		if(HAS_TRAIT(moving_mob, TRAIT_PASS_THROUGH_WALLS) && (get_area(moving_mob) == get_area(src)))
+		if(HAS_TRAIT(moving_mob, TRAIT_PASS_THROUGH_WALLS)/* && (get_area(moving_mob) == get_area(src))*/)
 			return TRUE
 	return ..()
 
