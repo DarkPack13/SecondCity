@@ -103,7 +103,7 @@
 /datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_exited(atom/movable/source, area/old_area)
 	SIGNAL_HANDLER
 
-	to_chat(owner, span_warning("You lose your connection to the hearthstone as you leave the area."))
+	to_chat(owner, span_warning("You lose your connection to the stone as you leave the area."))
 	starting_area = null
 	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
 	owner.update_sight()
@@ -143,7 +143,7 @@
 	to_chat(owner, span_purple("You begin to sink into the stone..."))
 
 	if(!do_after(owner, 2 TURNS))
-		to_chat(owner, span_warning("Your bond with the mountain is interrupted!"))
+		to_chat(owner, span_warning("Your bond with the nearby stone is interrupted!"))
 		exit_turf = null
 		return FALSE
 	owner.forceMove(stone_turf)
@@ -178,7 +178,7 @@
 
 /datum/discipline_power/visceratika/armor_of_terra/activate()
 	. = ..()
-	to_chat(owner, span_danger("This is a passive ability. The Effects are already active"))
+	to_chat(owner, span_danger("This is a passive ability. The effects are already active!"))
 
 
 //FLOW WITHIN THE MOUNTAIN
