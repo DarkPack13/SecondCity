@@ -116,23 +116,53 @@
 	desc = "Merge with your surroundings and become difficult to see."
 
 	level = 3
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	vitae_cost = 2
 	cancelable = TRUE
-	duration_length = 15 SECONDS
+	toggled = TRUE
+	duration_length = 0
 	cooldown_length = 10 SECONDS
+	var/turf/exit_turf
+	var/turf/stone_turf
+
+/datum/discipline_power/visceratika/bond_with_the_mountain/pre_activation_checks()
+	. = ..()
+	for(var/turf/closed/adjacent in orange(1, owner))
+		stone_turf = adjacent
+		break
+
+	if(!stone_turf)
+		to_chat(owner, span_warning("You must be adjacent to a stone surface to bond with the mountain."))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/activate()
 	. = ..()
+
+	exit_turf = get_turf(owner)
+	to_chat(owner, span_purple("You begin to sink into the stone..."))
+
+	if(!do_after(owner, 2 TURNS))
+		to_chat(owner, span_warning("Your bond with the mountain is interrupted!"))
+		exit_turf = null
+		return FALSE
+
+	owner.forceMove(stone_turf)
+	owner.alpha = 30
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
 	owner.density = FALSE
 	owner.damage_deflection = 3 TTRPG_DAMAGE
-	owner.alpha = 10
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/deactivate()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
+	owner.density = TRUE
+	owner.damage_deflection = 0
+	if(exit_turf)
+		owner.forceMove(exit_turf)
 	owner.alpha = 255
+	exit_turf = null
+	stone_turf = null
 
 //ARMOR OF TERRA
 /datum/discipline_power/visceratika/armor_of_terra
