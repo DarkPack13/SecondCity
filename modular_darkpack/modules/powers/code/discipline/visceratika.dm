@@ -100,17 +100,14 @@
 	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
 	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
 
-/datum/discipline_power/visceratika/scry_the_hearthstone/deactivate()
-	. = ..()
-	starting_area = null
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
-	owner.update_sight()
-	UnregisterSignal(owner, COMSIG_EXIT_AREA)
-
 /datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_exited(atom/movable/source, area/old_area)
 	SIGNAL_HANDLER
 
 	to_chat(owner, span_warning("You lose your connection to the hearthstone as you leave the area."))
+	starting_area = null
+	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
+	owner.update_sight()
+	UnregisterSignal(owner, COMSIG_EXIT_AREA)
 	try_deactivate()
 
 //BOND WITH THE MOUNTAIN
