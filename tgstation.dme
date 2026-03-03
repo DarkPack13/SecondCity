@@ -7105,7 +7105,6 @@
 #include "modular_darkpack\modules\doors\code\keys\keys.dm"
 #include "modular_darkpack\modules\doors\code\keys\keys_npc.dm"
 #include "modular_darkpack\modules\doors\code\keys\lockpick.dm"
-#include "modular_darkpack\modules\drugs\code\drugs_globals.dm"
 #include "modular_darkpack\modules\drugs\code\meth\baggie.dm"
 #include "modular_darkpack\modules\drugs\code\meth\methlab.dm"
 #include "modular_darkpack\modules\drugs\code\meth\pills.dm"
