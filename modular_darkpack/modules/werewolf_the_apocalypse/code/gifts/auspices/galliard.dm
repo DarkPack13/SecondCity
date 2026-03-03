@@ -12,7 +12,7 @@
 
 	var/mob/living/carbon/human/human_owner = astype(owner)
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
-	human_owner?.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+	human_owner?.add_beastmaster_minion(/mob/living/basic/pet/dog/wolf/summoned)
 
 
 /datum/action/cooldown/power/gift/call_of_the_wyld
