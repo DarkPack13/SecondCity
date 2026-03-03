@@ -1,0 +1,61 @@
+2026-03-02:
+  FalloutFalcon:
+  - admin: darkpack traits can properly be added to mobs as an admin
+  - rscadd: Gio get italian again
+  - rscadd: Fera get tribe keys again
+  - bugfix: Default protean fight form swapped from dog to wolf
+  - bugfix: Animalism summon is a true wolf instead of renamed dog.
+  - rscadd: Gangrel protean has dog and corvid
+  - rscadd: Readds Language quirk
+  - qol: Balls hit in billiards are now purely based on success rather success being
+      a modifier.
+  - qol: Hit balls are all displayed on a single line to avoid spam.
+  - qol: Moved striking ball to right click to allow you to place the cue back onto
+      the table
+  - balance: punching things is mostly ttrpg accurate
+  - balance: punching basic mobs has mostly the same behavior as humans
+  - code_imp: adds a dice result output for you and the target.
+  - balance: Removed shroudsights night vision
+  - balance: Shroud sight requires a perception + awareness roll
+  - bugfix: Typhon's Brew actually shows up if you have Serpentis
+  - refactor: Reworks DISCIPLINE_KNOWLEDGE traits into checks for the disc
+  - code_imp: Some type casts on `attack_self`s mostly have type safety to prevent
+      run-times if you use it while not a human
+  - bugfix: Acid turfs wont hurt if under a catwalk
+  - bugfix: Fixes iconstate of button managment button
+  - rscadd: Chocolate bars now have random brand name.
+  - bugfix: Doors still break if you get more then then 1 success.
+  - refactor: Subtypes vampire clans under the same type as werewolf tribes, auspices,
+      and breeds.
+  FalloutFalcon, INFARED_BARON, Other spriters im presently finding hard to track down:
+  - image: Ports alot of sprites from mojave sun, mostly fluff props
+  SELFHELL:
+  - rscadd: Most Automatic Guns have gotten Full-Auto Capacity, please make an issue
+      report for extremely unfair TTKs
+  buffyuwu:
+  - refactor: redesigned the phone, added texting, a settings app, etc.
+  chazzyjazzy:
+  - rscadd: Auspex Telepathy now offers the user to pick between mind reading and
+      implanting thoughts
+  - rscadd: Adds rolls to Telepathy, reducing the free loophole to having to whisper
+  - rscadd: Gargoyles can toggle the legs and tail
+  - rscadd: adds Nagaraja
+  - rscadd: adds Samedi and their discipline Thanatosis
+  - rscadd: adds Giovanni atavism quirk, the Cappadocian accelerated corpse decay
+      quirk, and the 'Monstrous' appearance 0 masquerade breaching face quirk
+  - rscadd: adds Harbinger of Skulls
+  - rscadd: Cappadocian weakness is now limited to rotten1 and rotten2, with a quirk
+      designed to accelerate the corpse decay
+  - bugfix: removes Giovanni from Camarilla roles besides Tower Employee
+  - bugfix: removes Cappadocian from Giovanni Capo
+  - bugfix: vampires, ghouls, and garou can now play dealer
+  - code_imp: included_clans for darkpack quirks so we don't have a massive excluded_clans
+      list for quirks that are available for all clans minus one
+  - rscadd: Presence 5 (Majesty) now grants the pacifism trait to all those affected
+      after a timeframe based on a roll as people often use this ability to end fights
+  - balance: lowered cooldowns and duration lengths across a few Presence abilities
+      including Summon and Majesty
+  - rscdel: Removed the 'Resist Presence' willpower roll button to nullify any use
+      of Presence
+  - bugfix: added safety checks for gargoyle tail and legs and beastmarks
+  - bugfix: thaumaturgy archive now correctly handles stock

@@ -16,7 +16,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/emo
 	female_clothes = /obj/item/clothing/under/vampire/business
 	enlightenment = TRUE
-	clan_keys = /obj/item/vamp/keys/lasombra
+	subsplat_keys = /obj/item/vamp/keys/lasombra
 
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)

@@ -15,6 +15,6 @@
 	)
 	whitelisted = TRUE
 
-/datum/subsplat/vampire_clan/samedi/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/samedi/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	H.rot_body(4)
+	gaining_mob.rot_body(4)

@@ -6,11 +6,10 @@
 
 	var/breed_species
 
-/datum/subsplat/werewolf/breed_form/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/werewolf/breed_form/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	if(istype(gaining, /datum/splat/werewolf))
-		var/datum/splat/werewolf/werewolf_splat = gaining
-		werewolf_splat.adjust_gnosis(start_gnosis)
+	var/datum/splat/werewolf/werewolf_splat = astype(gaining_splat)
+	werewolf_splat?.adjust_gnosis(start_gnosis)
 
 /**
  * Gets the singleton of an breed_form
@@ -62,7 +61,7 @@
 		return
 
 	// Gaining breed_form effects
-	new_breed_form.on_gain(shifter, joining_round)
+	new_breed_form.on_gain(src, shifter, joining_round)
 
 /mob/living/proc/get_our_breed_form()
 	RETURN_TYPE(/datum/subsplat/werewolf/breed_form)

@@ -14,4 +14,4 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/bandit
 	female_clothes = /obj/item/clothing/under/vampire/bandit
-	clan_keys = /obj/item/vamp/keys/banuhaqim
+	subsplat_keys = /obj/item/vamp/keys/banuhaqim
