@@ -14,4 +14,4 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/toreador
 	female_clothes = /obj/item/clothing/under/vampire/toreador/female
-	clan_keys = /obj/item/vamp/keys/toreador
+	subsplat_keys = /obj/item/vamp/keys/toreador

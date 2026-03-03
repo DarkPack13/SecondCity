@@ -1,7 +1,6 @@
 /datum/subsplat/werewolf/tribe
 	abstract_type = /datum/subsplat/werewolf/tribe
 
-	var/tribe_keys
 	//var/tribe_trait
 
 /**
@@ -54,7 +53,7 @@
 		return
 
 	// Gaining tribe effects
-	new_tribe.on_gain(shifter, joining_round)
+	new_tribe.on_gain(src, shifter, joining_round)
 
 /mob/living/proc/get_our_tribe()
 	RETURN_TYPE(/datum/subsplat/werewolf/tribe)

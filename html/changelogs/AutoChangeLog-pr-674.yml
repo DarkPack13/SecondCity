@@ -1,6 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "Presence 5 (Majesty) now grants the pacifism trait to all those affected after a timeframe based on a roll as people often use this ability to end fights"
-  - balance: "lowered cooldowns and duration lengths across a few Presence abilities including Summon and Majesty"
-  - rscdel: "Removed the 'Resist Presence' willpower roll button to nullify any use of Presence"

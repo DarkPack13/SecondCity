@@ -33,6 +33,8 @@
 		. += span_notice("You could try to clean off the dust to see what lies beneath.")
 
 /obj/item/path_spellbook/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return FALSE
 
 	if(!identified)
 		if(do_after(user, 1 TURNS))
@@ -60,7 +62,7 @@
 		return
 
 	if(iskindred(user))
-		if(!HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE))
+		if(!user.get_discipline(/datum/discipline/thaumaturgy))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return
 		if(existing_path_discipline)
@@ -132,7 +134,7 @@
 	var/research_value = 10
 	var/study_cooldown = 30 MINUTES
 	var/study_research_value = 50
-	var/required_trait = TRAIT_THAUMATURGY_KNOWLEDGE
+	var/required_discipline = /datum/discipline/thaumaturgy
 	var/no_trait_message = "The text is incomprehensible to you without the proper knowledge."
 	var/cooldown_message = "You have recently studied this tome extensively. You need %TIME% more minutes before you can gain further insight from it."
 	var/study_start_message = "You begin studying the occult text..."
@@ -157,7 +159,7 @@
 	return ..()
 
 /obj/item/occult_book/proc/can_study(mob/living/carbon/human/user)
-	if(!HAS_TRAIT(user, required_trait))
+	if(required_discipline && !user.get_discipline(required_discipline))
 		to_chat(user, span_warning(no_trait_message))
 		return FALSE
 	return TRUE

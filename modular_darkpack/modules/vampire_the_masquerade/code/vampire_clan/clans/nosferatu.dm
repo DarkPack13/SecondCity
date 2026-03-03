@@ -19,5 +19,5 @@
 	accessories = list("nosferatu_ears", "none")
 	accessories_layers = list("nosferatu_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
 	default_accessory = "nosferatu_ears"
-	clan_keys = /obj/item/vamp/keys/nosferatu
+	subsplat_keys = /obj/item/vamp/keys/nosferatu
 
