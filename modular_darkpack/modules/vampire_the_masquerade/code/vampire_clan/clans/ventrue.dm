@@ -14,4 +14,4 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/ventrue
 	female_clothes = /obj/item/clothing/under/vampire/ventrue/female
-	clan_keys = /obj/item/vamp/keys/ventrue
+	subsplat_keys = /obj/item/vamp/keys/ventrue

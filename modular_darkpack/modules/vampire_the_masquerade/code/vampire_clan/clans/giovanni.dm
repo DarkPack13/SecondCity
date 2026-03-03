@@ -15,7 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/suit
 	female_clothes = /obj/item/clothing/under/vampire/suit/female
 
-/datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
-	//H.grant_language(/datum/language/italian) // DARKPACK TODO - LANGUAGES
+	joining.grant_language(/datum/language/italian)
