@@ -50,8 +50,8 @@
  * client logs into the mob.
  *
  * Arguments:
- * * vampire - Human being given the Clan
- * * joining_round - If this Clan is being applied as the mob joins the round
+ * * gaining_mob - Human being given the splat
+ * * joining_round - If this splat is being applied as the mob joins the round
  */
 /datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
@@ -78,7 +78,7 @@
 			gaining_mob.give_st_power(discipline, 5)
 
 	// Mostly for summons to not kill you.
-	vampire.add_faction(id)
+	gaining_mob.add_faction(id)
 
 /datum/subsplat/vampire_clan/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
@@ -99,7 +99,7 @@
 		losing_mob.remove_overlay(equipped_accessory)
 	*/
 
-	vampire.remove_faction(id)
+	losing_mob.remove_faction(id)
 
 /datum/subsplat/vampire_clan/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
