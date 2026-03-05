@@ -21,37 +21,37 @@
 	accessories = list("fae_ears", "none")
 	accessories_layers = list("fae_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
 
-/datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/vampire, joining_round)
+/datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	/*
 	// Kiasyd are made taller and thinner
-	if (H.has_quirk(/datum/quirk/dwarf))
-		H.remove_quirk(/datum/quirk/dwarf)
-	else if (!H.has_quirk(/datum/quirk/tower))
-		H.add_quirk(/datum/quirk/tower)
+	if (gaining_mob.has_quirk(/datum/quirk/dwarf))
+		gaining_mob.remove_quirk(/datum/quirk/dwarf)
+	else if (!gaining_mob.has_quirk(/datum/quirk/tower))
+		gaining_mob.add_quirk(/datum/quirk/tower)
 	*/
 
 	var/obj/item/organ/eyes/kiasyd/weird_eyes = new()
-	weird_eyes.Insert(vampire, TRUE, DELETE_IF_REPLACED)
+	weird_eyes.Insert(gaining_mob, TRUE, DELETE_IF_REPLACED)
 
-/datum/subsplat/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/kiasyd/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
 	/*
-	if (vampire.has_quirk(/datum/quirk/tower))
-		vampire.remove_quirk(/datum/quirk/tower)
+	if (losing_mob.has_quirk(/datum/quirk/tower))
+		losing_mob.remove_quirk(/datum/quirk/tower)
 	else
-		vampire.add_quirk(/datum/quirk/dwarf)
+		losing_mob.add_quirk(/datum/quirk/dwarf)
 	*/
 
-	vampire.update_body()
+	losing_mob.update_body()
 
-/datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
 	//give them sunglasses to hide their freakish eyes
-	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(H.loc)
-	H.equip_to_appropriate_slot(new_glasses, TRUE)
+	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(joining.loc)
+	joining.equip_to_appropriate_slot(new_glasses, TRUE)
 
 
 /obj/item/organ/eyes/kiasyd
