@@ -381,13 +381,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!stats_list)
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
-		var/proper_stat_path = text2path(stat_path)
+		var/proper_stat_path
+		if(ispath(stat_path, /datum/st_stat))
+			// I thought when its saved it becomes a string but that seems to not always be the case?
+			// I belive its because the json handling is held in byond after the first fetch?
+			proper_stat_path = stat_path
+		else
+			proper_stat_path = text2path(stat_path)
 		if(!proper_stat_path)
 			continue
 		var/datum/st_stat/stat = new proper_stat_path()
-		stat.set_score(stats_list[proper_stat_path][STAT_SCORE])
-		stat.set_points(stats_list[proper_stat_path][STAT_POINTS])
-		stat.freebie_cost_spent = stats_list[proper_stat_path][STAT_FREEBIE_COST_SPENT]
+		stat.set_score(stats_list[stat_path][STAT_SCORE])
+		stat.set_points(stats_list[stat_path][STAT_POINTS])
+		stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
 		preference_storyteller_stats[proper_stat_path] = stat
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
