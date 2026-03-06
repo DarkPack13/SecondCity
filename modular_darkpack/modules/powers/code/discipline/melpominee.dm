@@ -352,7 +352,7 @@
 		listener_list = ohearers(owner, 7)
 
 	for(var/mob/living/carbon/listener in listener_list)
-		var/our_power = SSroll.storyteller_roll_datum(owner, target, roll_datum = /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
+		var/our_power = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
 		cumulative_our_power[listener] += our_power
 		var/their_power = SSroll.storyteller_roll_datum(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE))
 		cumulative_list[listener] += their_power
