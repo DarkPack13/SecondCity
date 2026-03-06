@@ -381,12 +381,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
 		var/proper_stat_path = text2path(stat_path)
+		if(!proper_stat_path)
+			continue
 		var/datum/st_stat/stat = new proper_stat_path()
-		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list[stat_path][STAT_SCORE])
-			stat.set_points(stats_list[stat_path][STAT_POINTS])
-			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
-		preference_storyteller_stats[stat_path] = stat
+		if(stats_list[proper_stat_path]) // If the stat_path already exists in our savefile, update our datum.
+			stat.set_score(stats_list[proper_stat_path][STAT_SCORE])
+			stat.set_points(stats_list[proper_stat_path][STAT_POINTS])
+			stat.freebie_cost_spent = stats_list[proper_stat_path][STAT_FREEBIE_COST_SPENT]
+		preference_storyteller_stats[proper_stat_path] = stat
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 
