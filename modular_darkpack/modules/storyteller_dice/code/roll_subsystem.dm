@@ -32,6 +32,17 @@ SUBSYSTEM_DEF(roll)
 	dice_roll.numerical = numerical
 	return dice_roll.st_roll(roller, roller, dice)
 
+/// Alternative syntax for if you dont need to set a ton and also dont store your datum.
+/datum/controller/subsystem/roll/proc/storyteller_roll_datum(mob/living/roller, atom/target, roll_datum = /datum/storyteller_roll, bonus = 0, difficulty, applic_stats, numerical)
+	var/datum/storyteller_roll/dice_roll = new roll_datum()
+	if(!isnull(difficulty))
+		dice_roll.difficulty = difficulty
+	if(!isnull(applic_stats))
+		dice_roll.applicable_stats = applic_stats
+	if(!isnull(numerical))
+		dice_roll.numerical = numerical
+	return dice_roll.st_roll(roller, target, bonus)
+
 //Config datums for exploding dice
 /datum/config_entry/flag/on_crit_additional_success
 

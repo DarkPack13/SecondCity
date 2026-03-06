@@ -14,7 +14,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/emo
 	whitelisted = FALSE
 
-/datum/subsplat/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	var/obj/item/ritual_tome/necromancy/necrotome = new()
 	var/list/slots = list(
@@ -23,4 +23,4 @@
 		LOCATION_BACKPACK = ITEM_SLOT_BACK,
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
-	H.equip_in_one_of_slots(necrotome, slots, FALSE)
+	gaining_mob.equip_in_one_of_slots(necrotome, slots, FALSE)
