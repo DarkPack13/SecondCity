@@ -71,7 +71,7 @@
 		return
 
 	var/obj/dummy = new /obj/effect/the_missing_voice(get_turf(target)) // snowflake code but it's more robust than engineering some evil to_chat mechanism
-	if(!(dummy in range(7, owner)))
+	if(!(dummy in view(world.view, owner)))
 		to_chat(owner, span_warning("You need line of sight to the location your voice is coming from."))
 		return
 
@@ -92,6 +92,15 @@
  * do not require a roll and do not expend blood
  *
  */
+/datum/storyteller_roll/phantom_speaker
+	bumper_text = "Phantom Speaker"
+	difficulty = 7
+	successes_needed = 1
+	applicable_stats = list(STAT_WITS, STAT_PERFORMANCE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
+	spammy_roll = TRUE
+
 /datum/discipline_power/melpominee/phantom_speaker
 	name = "Phantom Speaker"
 	desc = "Project your voice to anyone you've met, speaking to them from afar."
@@ -105,16 +114,16 @@
 
 /datum/discipline_power/melpominee/phantom_speaker/activate()
 	. = ..()
-	if(!owner.mind.guestbook.known_names)
-		to_chat(owner, span_warning("You don't seem to know anyone you can speak to right now..."))
+	if(!owner.mind.guestbook.known_names) // Who do we know
+		to_chat(owner, span_warning("You don't seem to know anyone you can speak to right now...")) // You have no friends.
 		return
 	// Guys we add to the input below
 	var/list/targets
 
 	for(var/mob/living/character in GLOB.player_list)
-		if(character == owner)
+		if(character == owner) // Skip ourselves
 			continue
-		if(owner.mind.guestbook.known_names[character.real_name] && character.client)
+		if(owner.mind.guestbook.known_names[character.real_name] && character.client) // Everyone we know who has a client
 			targets += character
 
 	var/list/mob/living/listener_list
@@ -125,10 +134,10 @@
 		if(!listener)
 			return
 		listener_list[WEAKREF(listener)] = 0
-	else
+	else // We can talk to mulitple people (Melpominee 5)
 		listener_list = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
 
-	if(!length(listener_list))
+	if(!length(listener_list)) // We didn't pick anyone
 		return
 
 	var/input_message = tgui_input_text(owner, "What message will you project to them?", title = "Phantom Speaker")
@@ -146,8 +155,53 @@
 
 	var/language = owner.get_selected_language()
 	var/message = owner.compose_message(owner, language, input_message)
+	// Composed message of all the people in listener_list
+	var/those_who_hear = "[jointext(listener_list, ", ", 1, length(listener_list))], and [listener_list[length(listener_list)]]."
 
-	var/successes
+	// The roll itself; wits+perception against diff 7
+	var/mob/living/caster = owner
+
+	var/datum/storyteller_roll/phantom_speaker/roll_datum = new()
+	var/roll_result = roll_datum.st_roll(caster)
+
+	if(roll_result < ROLL_SUCCESS)
+		to_chat(owner, span_notice("Your voice fails to reach the ears of [those_who_hear]"))
+		return
+
+	for(var/mob/living/guy in listener_list)
+		if(guy in free_speakers)
+			if(free_speakers[guy] > 0)
+				free_speakers[guy] = free_speakers[guy]-1
+			else
+				free_speakers -= guy
+		else
+			free_speakers += guy
+			free_speakers[guy] = roll_result
+
+	if(!(listener_list ~= free_speakers)) // if we're talking to anybody new
+		var/bp_to_use = (length(listener_list)-length(free_speakers))-6 // (The amount of people we're talking to - people we can talk to for free) - 6
+		var/bp_used = max(1, bp_to_use) // How much BP we're actually using
+		owner.adjust_blood_pool(bp_used)
+
+	for(var/mob/living/final_listeners in listener_list)
+		to_chat(final_listeners, span_boldannounce("<i>You hear a voice in your head...</i>"))
+		final_listeners.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
+
+	to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
+
+
+//	to_chat(owner, span_warning("[new_guy]'s ears are not reached by your song."))
+/*	var/mob/living/victim = target
+	var/mob/living/caster = owner
+	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(caster)
+	var/roll_difficulty = iswerewolfsplat(target) ? 5 : 6
+
+	var/datum/storyteller_roll/roll_datum = new()
+	roll_datum.difficulty = roll_difficulty
+	var/roll_result = roll_datum.st_roll(caster, target, casting_splat.gnosis)
+
+	if(roll_result != ROLL_SUCCESS)
+		return
 
 	if(listener_list ~= free_speakers)
 		owner.adjust_blood_pool(1)
@@ -165,14 +219,7 @@
 				to_chat(owner, span_warning("[new_guy]'s ears are not reached by your song."))
 
 		var/bp_used = max(1, length(unspoken_to-6))
-		owner.adjust_blood_pool(bp_used)
-
-	var/those_who_hear = "[jointext(listener_list, ", ", 1, length(listener_list))], and [listener_list[length(listener_list)]]."
-	for(var/mob/living/final_listeners in listener_list)
-		to_chat(final_listeners, span_boldannounce("<i>You hear a voice in your head...</i>"))
-		final_listeners.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
-		to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
-
+		owner.adjust_blood_pool(bp_used)*/
 /**
  * ••• Madrigal - p453-454
  *
