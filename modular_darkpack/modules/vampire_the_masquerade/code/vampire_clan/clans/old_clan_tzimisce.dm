@@ -15,15 +15,15 @@
 	//restricted_disciplines = list(/datum/discipline/vicissitude)
 	whitelisted = FALSE
 
-/datum/subsplat/vampire_clan/old_clan_tzimisce/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/old_clan_tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
-	var/obj/item/ground_heir/heirloom = new(get_turf(H))
+	var/obj/item/ground_heir/heirloom = new(get_turf(joining))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
 		LOCATION_BACKPACK = ITEM_SLOT_BACK,
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
-	H.equip_in_one_of_slots(heirloom, slots, FALSE)
-	H.AddComponent(/datum/component/needs_home_soil, heirloom)
+	joining.equip_in_one_of_slots(heirloom, slots, FALSE)
+	joining.AddComponent(/datum/component/needs_home_soil, heirloom)
