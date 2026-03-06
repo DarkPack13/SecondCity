@@ -377,6 +377,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_character(data_validity_integer, save_data)
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	preference_storyteller_stats = list() // Ensure we dont have our stats from our old char slot.
 	if(!stats_list)
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
@@ -384,10 +385,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!proper_stat_path)
 			continue
 		var/datum/st_stat/stat = new proper_stat_path()
-		if(stats_list[proper_stat_path]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list[proper_stat_path][STAT_SCORE])
-			stat.set_points(stats_list[proper_stat_path][STAT_POINTS])
-			stat.freebie_cost_spent = stats_list[proper_stat_path][STAT_FREEBIE_COST_SPENT]
+		stat.set_score(stats_list[proper_stat_path][STAT_SCORE])
+		stat.set_points(stats_list[proper_stat_path][STAT_POINTS])
+		stat.freebie_cost_spent = stats_list[proper_stat_path][STAT_FREEBIE_COST_SPENT]
 		preference_storyteller_stats[proper_stat_path] = stat
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
@@ -449,9 +449,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD START- STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
+	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
-	for(var/stat_typepath in preference_storyteller_stats)
-		var/datum/st_stat/stat = preference_storyteller_stats[stat_typepath]
+	for(var/stat_typepath in stats_list)
+		var/datum/st_stat/stat = stats_list[stat_typepath]
 		new_stats_list[stat_typepath] = list()
 		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
 		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()

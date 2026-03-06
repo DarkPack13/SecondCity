@@ -103,6 +103,6 @@
 	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
 	user.log_message("reset all stats to default values on '[real_name]'", LOG_STATS)
 
-	preferences.preference_storyteller_stats = null
+	preferences.preference_storyteller_stats = list()
 	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
 	return TRUE

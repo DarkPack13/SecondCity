@@ -8,7 +8,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dic
 	set desc = "Roll dice!"
 
 	var/list/allowed_stats = list()
-	// Blame Xeon im pretty sure for the mobs storing this as a string.
 	for(var/stat_path, dots_in in storyteller_stats)
 		var/datum/st_stat/stat = stat_path
 		if(!ispath(stat))
