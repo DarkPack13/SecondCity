@@ -282,6 +282,17 @@
  * The Daughter sings a haunting sound that causes the victim to remain and listen, provided they fail a willpower roll.
  *
  */
+/datum/storyteller_roll/sirens_beckoning // Difficulty is the victim's willpower
+	bumper_text = "Siren's Beckoning"
+	applicable_stats = list(STAT_WITS, STAT_PERFORMANCE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	spammy_roll = TRUE
+
+/datum/storyteller_roll/sirens_beckoning/victim // Difficulty is the siren's Appearance + Performance
+	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	roll_output_type = ROLL_PRIVATE
+
 /datum/discipline_power/melpominee/sirens_beckoning
 	name = "Siren's Beckoning"
 	desc = "Sing an unearthly song to stun those around you."
@@ -340,10 +351,10 @@
 	else
 		listener_list = ohearers(owner, 7)
 
-	for(var/mob/living/carbon/listener in listener_list) // TODO: mark these as spammy rolls
-		var/our_power = SSroll.storyteller_roll((owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE)), listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), owner, numerical = TRUE)
+	for(var/mob/living/carbon/listener in listener_list)
+		var/our_power = SSroll.storyteller_roll_datum(owner, target, roll_datum = /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
 		cumulative_our_power[listener] += our_power
-		var/their_power = SSroll.storyteller_roll(listener.st_get_stat(STAT_TEMPORARY_WILLPOWER), (owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)), listener, numerical = TRUE)
+		var/their_power = SSroll.storyteller_roll_datum(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE))
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
