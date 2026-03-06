@@ -1,4 +1,4 @@
-/datum/vampire_clan/malkavian
+/datum/subsplat/vampire_clan/malkavian
 	name = "Malkavian"
 	id = VAMPIRE_CLAN_MALKAVIAN
 	desc = "Derided as Lunatics by other vampires, the Blood of the Malkavians lets them perceive and foretell truths hidden from others. Like the �wise madmen� of poetry their fractured perspective stems from seeing too much of the world at once, from understanding too deeply, and feeling emotions that are just too strong to bear."
@@ -11,37 +11,37 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
-	clan_keys = /obj/item/vamp/keys/malkav
+	subsplat_keys = /obj/item/vamp/keys/malkav
 	var/list/mob/living/madness_network
 
-/datum/vampire_clan/malkavian/on_gain(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
-	var/datum/action/cooldown/malk_hivemind/hivemind = new(vampire)
-	var/datum/action/cooldown/malk_speech/malk_font = new(vampire)
-	hivemind.Grant(vampire)
-	malk_font.Grant(vampire)
-	vampire.add_quirk(/datum/quirk/derangement)
+	var/datum/action/cooldown/malk_hivemind/hivemind = new(gaining_mob)
+	var/datum/action/cooldown/malk_speech/malk_font = new(gaining_mob)
+	hivemind.Grant(gaining_mob)
+	malk_font.Grant(gaining_mob)
+	gaining_mob.add_quirk(/datum/quirk/derangement)
 
 	// Madness Network handling
-	LAZYADD(madness_network, vampire)
-	RegisterSignal(vampire, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
-	RegisterSignal(vampire, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
+	LAZYADD(madness_network, gaining_mob)
+	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
+	RegisterSignal(gaining_mob, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
 
-/datum/vampire_clan/malkavian/on_lose(mob/living/carbon/human/vampire)
+/datum/subsplat/vampire_clan/malkavian/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
-	for (var/datum/action/cooldown/malkavian_action in vampire.actions)
+	for (var/datum/action/cooldown/malkavian_action in losing_mob.actions)
 		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
-		malkavian_action.Remove(vampire)
+		malkavian_action.Remove(losing_mob)
 
 	// Remove Madness Network
-	LAZYREMOVE(madness_network, vampire)
-	UnregisterSignal(vampire, COMSIG_MOB_SAY)
-	UnregisterSignal(vampire, COMSIG_MOVABLE_HEAR)
+	LAZYREMOVE(madness_network, losing_mob)
+	UnregisterSignal(losing_mob, COMSIG_MOB_SAY)
+	UnregisterSignal(losing_mob, COMSIG_MOVABLE_HEAR)
 
-/datum/vampire_clan/malkavian/proc/handle_say(mob/living/source, list/speech_args)
+/datum/subsplat/vampire_clan/malkavian/proc/handle_say(mob/living/source, list/speech_args)
 	SIGNAL_HANDLER
 
 	if (!prob(20))
@@ -49,7 +49,7 @@
 
 	say_in_madness_network(speech_args[SPEECH_MESSAGE])
 
-/datum/vampire_clan/malkavian/proc/handle_hear(mob/living/source, list/hearing_args)
+/datum/subsplat/vampire_clan/malkavian/proc/handle_hear(mob/living/source, list/hearing_args)
 	SIGNAL_HANDLER
 
 	if(!prob(3))
@@ -57,7 +57,7 @@
 
 	say_in_madness_network(hearing_args[HEARING_RAW_MESSAGE])
 
-/datum/vampire_clan/malkavian/proc/say_in_madness_network(message)
+/datum/subsplat/vampire_clan/malkavian/proc/say_in_madness_network(message)
 	for (var/mob/living/malkavian in madness_network)
 		to_chat(malkavian, span_ghostalert(message))
 
@@ -73,9 +73,9 @@
 /datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
 	var/mob/living/carbon/human/malk = clicker
-	if (!malk.is_clan(/datum/vampire_clan/malkavian))
+	if (!malk.is_clan(/datum/subsplat/vampire_clan/malkavian))
 		return
-	var/datum/vampire_clan/malkavian/clan_malkavian = malk.get_clan()
+	var/datum/subsplat/vampire_clan/malkavian/clan_malkavian = malk.get_clan()
 	var/new_thought = tgui_input_text(clicker, "Malkavian Hivemind")
 	if(!new_thought)
 		return

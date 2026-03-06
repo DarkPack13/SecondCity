@@ -1461,7 +1461,16 @@
 	building = TRUE
 	to_chat(user, span_notice("You start constructing a rack..."))
 	// DARKPACK EDIT ADD START
-	var/obj/structure/rack/rack_choice = tgui_input_list(user, "Choose rack type", "Rack Choice", list(/obj/structure/rack, /obj/structure/rack/clothing, /obj/structure/rack/clothing_hanger, /obj/structure/rack/food))
+	var/obj/structure/rack/rack_choice = tgui_input_list(user, "Choose rack type", "Rack Choice", list(
+		/obj/structure/rack,
+		/obj/structure/rack/clothing,
+		/obj/structure/rack/clothing_hanger,
+		/obj/structure/rack/tall/wood_shelf,
+		/obj/structure/rack/tall/wood_shelf/alt,
+		/obj/structure/rack/tall/metal_shelf,
+		/obj/structure/rack/tall/store_shelf,
+		/obj/structure/rack/tall/store_shelf_metal,
+	))
 	if(!rack_choice)
 		return
 	// DARKPACK EDIT ADD END

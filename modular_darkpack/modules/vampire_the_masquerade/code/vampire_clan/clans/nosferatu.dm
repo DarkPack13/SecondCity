@@ -1,4 +1,4 @@
-/datum/vampire_clan/nosferatu
+/datum/subsplat/vampire_clan/nosferatu
 	name = "Nosferatu"
 	id = VAMPIRE_CLAN_NOSFERATU
 	desc = "The Nosferatu wear their curse on the outside. Their bodies horribly twisted and deformed through the Embrace, they lurk on the fringes of most cities, acting as spies and brokers of information. Using animals and their own supernatural capacity to hide, nothing escapes the eyes of the so-called Sewer Rats."
@@ -19,5 +19,5 @@
 	accessories = list("nosferatu_ears", "none")
 	accessories_layers = list("nosferatu_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
 	default_accessory = "nosferatu_ears"
-	clan_keys = /obj/item/vamp/keys/nosferatu
+	subsplat_keys = /obj/item/vamp/keys/nosferatu
 

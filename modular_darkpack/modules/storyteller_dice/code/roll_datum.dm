@@ -67,7 +67,7 @@
 	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
 
 	var/output_combined = fieldset_block(title, jointext(last_output_text, "<br>"), "boxed_message")
-	for(var/mob/player_mob in get_mobs_to_show(roller))
+	for(var/mob/player_mob in get_mobs_to_show(roller, target))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
@@ -88,12 +88,17 @@
 	return output
 
 
-/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller)
+/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
 		if(ROLL_PUBLIC)
 			return viewers(DEFAULT_MESSAGE_RANGE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
+		if(ROLL_PRIVATE_AND_TARGET)
+			if(roller == target || !isliving(target))
+				return list(roller)
+			else
+				return list(roller, target)
 		if(ROLL_PRIVATE_ADMIN)
 			return GLOB.admins + roller
 		if(ROLL_ADMIN)
