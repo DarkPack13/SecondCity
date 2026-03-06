@@ -83,6 +83,11 @@
 	bumper_text = "climbing"
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
+/*
+// TRAIT_CITY_RUNNING
+/datum/storyteller_roll/climbing
+*/
+
 /datum/storyteller_roll/shooting
 	bumper_text = "shooting"
 	applicable_stats = list(STAT_DEXTERITY, STAT_FIREARMS)

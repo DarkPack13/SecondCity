@@ -4,11 +4,17 @@
 
 /datum/subsplat/werewolf/breed_form/garou/homid
 	name = BREED_HOMID
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/city_running,
+	)
 	start_gnosis = 1
 	breed_species = /datum/species/human/shifter/homid
 
 /datum/subsplat/werewolf/breed_form/garou/metis
 	name = BREED_CRINOS
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/sense_wyrm,
+	)
 	start_gnosis = 3
 	breed_species = /datum/species/human/shifter/war
 
