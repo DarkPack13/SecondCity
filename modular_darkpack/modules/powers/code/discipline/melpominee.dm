@@ -189,37 +189,6 @@
 
 	to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
 
-
-//	to_chat(owner, span_warning("[new_guy]'s ears are not reached by your song."))
-/*	var/mob/living/victim = target
-	var/mob/living/caster = owner
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(caster)
-	var/roll_difficulty = iswerewolfsplat(target) ? 5 : 6
-
-	var/datum/storyteller_roll/roll_datum = new()
-	roll_datum.difficulty = roll_difficulty
-	var/roll_result = roll_datum.st_roll(caster, target, casting_splat.gnosis)
-
-	if(roll_result != ROLL_SUCCESS)
-		return
-
-	if(listener_list ~= free_speakers)
-		owner.adjust_blood_pool(1)
-	else
-		var/list/unspoken_to = list()
-		for(var/mob/living/guy in listener_list)
-			if(!(guy in free_speakers))
-				unspoken_to += guy
-		successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
-		for(var/mob/living/new_guy in unspoken_to)
-			if(successes)
-				listener_list[new_guy] = successes
-			else
-				listener_list[new_guy] = null
-				to_chat(owner, span_warning("[new_guy]'s ears are not reached by your song."))
-
-		var/bp_used = max(1, length(unspoken_to-6))
-		owner.adjust_blood_pool(bp_used)*/
 /**
  * ••• Madrigal - p453-454
  *
