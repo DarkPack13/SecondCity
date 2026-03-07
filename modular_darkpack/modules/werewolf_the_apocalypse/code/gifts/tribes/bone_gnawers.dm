@@ -104,6 +104,7 @@
 	owner.st_add_stat_mod(STAT_STRENGTH, value, type)
 	to_chat(owner, span_userdanger("You feel stronger... at a cost."))
 	RegisterSignal(owner, COMSIG_LIVING_DICE_ROLLED, PROC_REF(on_dice_rolled))
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/desperate_strength_activate.ogg', 75, FALSE)
 	return TRUE
 
 /datum/status_effect/desperate_strength/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
@@ -115,6 +116,7 @@
 /datum/status_effect/desperate_strength/on_remove()
 	owner.adjust_brute_loss(value TTRPG_DAMAGE)
 	owner.st_remove_stat_mod(STAT_STRENGTH, type)
+	playsound(owner, 'sound/effects/magic/disintegrate.ogg', 50, FALSE)
 	to_chat(owner, span_warning("Your strength subsides, the pain of your wounds creeping back in..."))
 	UnregisterSignal(owner, COMSIG_LIVING_DICE_ROLLED)
 

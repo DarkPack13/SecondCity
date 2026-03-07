@@ -8,7 +8,6 @@
  * the light orbits the mob. When clicked on by the summoner, it orbits or de-orbits them. When clicked on by another, the light is dispelled.
  * Lasts for 1 scene.
  *
- * TODO: Audio. Include marsh sounds or something. Crickets?
 */
 
 /obj/effect/faerie_light // TODO: add an animate or something to make this gently bob up and down
@@ -25,22 +24,44 @@
 	plane = ABOVE_GAME_PLANE
 	var/mob/living/summoner
 
+/obj/effect/faerie_light/Initialize(mapload)
+	. = ..()
+	register_context()
+
+/obj/effect/faerie_light/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	. = ..()
+	if(user == summoner)
+		context[SCREENTIP_CONTEXT_LMB] =  "[orbit_target ? "Dismiss" : "Beckon"]"
+	else
+		context[SCREENTIP_CONTEXT_LMB] =  "Dispel"
+
+	context[SCREENTIP_CONTEXT_RMB] =  "Dispel"
+
+	return CONTEXTUAL_SCREENTIP_SET
+
 /obj/effect/faerie_light/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(user != summoner)
-		to_chat(user, span_purple("You wave your hand at [src], causing it to float away and disappear."))
+		to_chat(user, span_purple("You [ishuman(user) ? "wave your hand at" : "paw at"] [src], causing it to float away and disappear."))
 		animate(src, 1 SECONDS, alpha = 0)
 		QDEL_IN(src, 1.1 SECONDS)
 		return TRUE
 	else if(orbit_target)
-		to_chat(user, span_purple("You wave your hand at [src], causing it to float away and remain still."))
+		to_chat(user, span_purple("You [ishuman(user) ? "wave your hand at" : "paw at"] [src], causing it to float away and remain still."))
 		orbit_target.orbiters.end_orbit(src)
 		animate(src, flags = ANIMATION_END_NOW)
 		return TRUE
 	else
-		to_chat(user, span_purple("You wave your hand at [src], causing it to float over to you happily."))
+		to_chat(user, span_purple("You [ishuman(user) ? "wave your hand at" : "paw at"] [src], causing it to float over to you happily."))
 		orbit(user, 20)
 		return TRUE
+
+/obj/effect/faerie_light/attack_hand_secondary(mob/living/user, list/modifiers)
+	. = ..()
+	to_chat(user, span_purple("You [ishuman(user) ? "wave your hand at" : "paw at"] [src], causing it to float away and disappear.")) // Don't have paws? Too bad.
+	animate(src, 1 SECONDS, alpha = 0)
+	QDEL_IN(src, 1.1 SECONDS)
+	return TRUE
 
 /obj/effect/faerie_light/proc/timeout(time)
 	QDEL_IN(src, time)
@@ -55,6 +76,7 @@
 	desc = "Create a bobbing mote of light to light your way or attract targets for an ambush."
 	button_icon_state = null // TODO: icon
 	click_to_activate = TRUE
+
 	rank = 1
 	cooldown_time = 1 TURNS
 
@@ -78,6 +100,8 @@
 		cool_guy.orbit(target, 20)
 
 	cool_guy.timeout(1 SCENES)
+
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/faerie_light_activate.ogg', 75, FALSE)
 
 	StartCooldown()
 	return TRUE
