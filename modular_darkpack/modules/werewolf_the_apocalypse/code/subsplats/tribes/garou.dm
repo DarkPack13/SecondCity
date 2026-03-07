@@ -71,11 +71,12 @@
 /datum/subsplat/werewolf/tribe/garou/getoffenris
 	name = TRIBE_GET_OF_FENRIS
 	desc = "Warriors, compassionate and fierce. They view themselves are Gaia's strongest heroes, but the rest of the tribes view them with caution, their violence more famous than their courage."
-	// gifts_provided = list(
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/visage_of_fenris,
 	// 	/datum/action/cooldown/power/gift/stoic_pose,
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
-	// )
+	)
 	subsplat_keys = /obj/item/vamp/keys/nps
 
 /datum/subsplat/werewolf/tribe/garou/blackfuries

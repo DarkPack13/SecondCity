@@ -7699,6 +7699,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\black_spiral_dancer.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\bone_gnawers.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\fianna.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\get_of_fenris.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\auspice.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\breed.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\fur.dm"
