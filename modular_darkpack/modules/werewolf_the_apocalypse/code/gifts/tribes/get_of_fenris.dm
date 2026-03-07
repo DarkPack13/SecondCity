@@ -7,6 +7,7 @@
  *
  * TODO: distinguish between friend and foe for the -1 social check thing
  *
+ * TODO: less placeholder sound
 */
 
 /datum/storyteller_roll/visage_of_fenris
