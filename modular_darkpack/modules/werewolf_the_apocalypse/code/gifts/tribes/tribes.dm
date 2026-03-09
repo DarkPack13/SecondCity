@@ -2,13 +2,13 @@
 	name = "Stoic Pose"
 	desc = "With this gift garou sends theirself into cryo-state, ignoring all incoming damage but also covering themself in a block of ice."
 	button_icon_state = "stoic_pose"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/stoic_pose/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/ice_blocking.ogg', 100, FALSE)
+		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/ice_blocking.ogg', 100, FALSE)
 		var/mob/living/carbon/C = owner
 		if(isgarou(C))
 			var/obj/were_ice/W = new (get_turf(owner))
@@ -51,13 +51,13 @@
 	name = "Freezing Wind"
 	desc = "Garou of Wendigo Tribe can create a stream of cold, freezing wind, and strike her foes with it."
 	button_icon_state = "freezing_wind"
-	rage_req = 1
-	//gnosis_req = 1
+	rage_cost = 1
+	//gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/freezing_wind/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/wind_cast.ogg', 100, FALSE)
+		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wind_cast.ogg', 100, FALSE)
 		for(var/turf/T in range(3, get_step(get_step(owner, owner.dir), owner.dir)))
 			if(owner.loc != T)
 				var/obj/effect/wind/W = new(T)
@@ -71,8 +71,8 @@
 	name = "Bloody Feast"
 	desc = "By eating a grabbed corpse, garou can redeem their lost health and heal the injuries."
 	button_icon_state = "bloody_feast"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/bloody_feast/Trigger()
 	. = ..()
@@ -82,7 +82,7 @@
 			if(isliving(C.pulling))
 				var/mob/living/L = C.pulling
 				if(L.stat == DEAD)
-					playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/bloody_feast.ogg', 50, FALSE)
+					playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/bloody_feast.ogg', 50, FALSE)
 					qdel(L)
 					C.revive(full_heal = TRUE, admin_revive = TRUE)
 
@@ -94,7 +94,7 @@
 /datum/action/cooldown/power/gift/stinky_fur/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/necromancy.ogg', 75, FALSE)
+		playsound(get_turf(owner), 'modular_darkpack/modules/powers/sounds/necromancy.ogg', 75, FALSE)
 		for(var/mob/living/carbon/C in orange(5, owner))
 			if(prob(25))
 				C.vomit()
@@ -105,13 +105,13 @@
 	name = "Venom Claws"
 	desc = "While this ability is active, strikes with claws poison foes of garou."
 	button_icon_state = "venom_claws"
-	rage_req = 1
+	rage_cost = 1
 
 /datum/action/cooldown/power/gift/venom_claws/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		if(ishuman(owner))
-			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/venom_claws.ogg', 75, FALSE)
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/venom_claws.ogg', 75, FALSE)
 			var/mob/living/carbon/human/H = owner
 			H.melee_damage_lower = initial(H.melee_damage_lower)+15
 			H.melee_damage_upper = initial(H.melee_damage_upper)+15
@@ -123,7 +123,7 @@
 				H.melee_damage_upper = initial(H.melee_damage_upper)
 				to_chat(owner, span_warning("Your claws are not poison anymore..."))
 		else
-			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/venom_claws.ogg', 75, FALSE)
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/venom_claws.ogg', 75, FALSE)
 			var/mob/living/carbon/H = owner
 			H.melee_damage_lower = initial(H.melee_damage_lower)+10
 			H.melee_damage_upper = initial(H.melee_damage_upper)+10
@@ -139,8 +139,8 @@
 	name = "Burning Scars"
 	desc = "Garou creates an aura of very hot air, which burns everyone around."
 	button_icon_state = "burning_scars"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/burning_scars/Trigger()
 	. = ..()
@@ -158,7 +158,7 @@
 	name = "Smooth Move"
 	desc = "Garou jumps forward, avoiding every damage for a moment."
 	button_icon_state = "smooth_move"
-	//rage_req = 1   somewhat useless gift with MMB pounce
+	//rage_cost = 1   somewhat useless gift with MMB pounce
 
 /datum/action/cooldown/power/gift/smooth_move/Trigger()
 	. = ..()
@@ -177,8 +177,8 @@
 	name = "Digital Feelings"
 	desc = "Every technology creates an electrical strike, which hits garou's enemies."
 	button_icon_state = "digital_feelings"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/digital_feelings/Trigger()
 	. = ..()
@@ -194,15 +194,15 @@
 	name = "Elemental Improvement"
 	desc = "Garou flesh replaces itself with prothesis, making it less vulnerable to brute damage, but more for burn damage."
 	button_icon_state = "elemental_improvement"
-	rage_req = 2
-	gnosis_req = 1
+	rage_cost = 2
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/elemental_improvement/Trigger()
 	. = ..()
 	if(allowed_to_proceed)
 		animate(owner, color = "#6a839a", time = 10)
 		if(ishuman(owner))
-			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/electro_cast.ogg', 75, FALSE)
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/electro_cast.ogg', 75, FALSE)
 			var/mob/living/carbon/human/H = owner
 			H.physiology.armor.melee = 25
 			H.physiology.armor.bullet = 45
@@ -213,7 +213,7 @@
 				to_chat(owner, span_warning("Your skin is natural again..."))
 				owner.color = "#FFFFFF"
 		else
-			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/electro_cast.ogg', 75, FALSE)
+			playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/electro_cast.ogg', 75, FALSE)
 			var/mob/living/carbon/werewolf/H = owner
 			H.werewolf_armor = 45
 			to_chat(owner, span_notice("You feel your skin replaced with the machine..."))
