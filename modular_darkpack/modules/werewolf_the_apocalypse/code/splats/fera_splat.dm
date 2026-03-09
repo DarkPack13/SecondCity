@@ -126,7 +126,7 @@
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
 	regain_gnosis_process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
-		// Metis heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
+		// Crinos heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return
