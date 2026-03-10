@@ -252,7 +252,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			return FALSE
 
 	var/data_validity_integer = check_savedata_version(savefile.get_entry())
-	var/data_validity_integer_darkpack = check_savedata_version_darkpack(savefile.get_entry())
+	var/data_validity_integer_darkpack = check_savedata_version_darkpack(savefile.get_entry()) // DARKPACK EDIT ADD
 	if(load_and_save && (IS_DATA_OBSOLETE(data_validity_integer) || IS_DATA_OBSOLETE(data_validity_integer_darkpack))) //fatal, can't load any data // DARKPACK EDIT CHANGE
 		var/bacpath = PREFS_BACKUP_PATH(path) //todo: if the savefile version is higher then the server, check the backup, and give the player a prompt to load the backup
 		if (fexists(bacpath))
