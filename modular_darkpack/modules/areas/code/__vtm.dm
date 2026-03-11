@@ -7,6 +7,10 @@
 	outdoors = TRUE
 	var/zone_type = ZONE_MASQUERADE
 
+	// 7 is an average city street.
+	/// The rating of the gauntlet, the Gauntlet is strongest near certain types of environments
+	var/gauntlet_rating = 7 // WEREWOLF
+
 /area/vtm/powered(chan)
 	if (!requires_power)
 		return TRUE

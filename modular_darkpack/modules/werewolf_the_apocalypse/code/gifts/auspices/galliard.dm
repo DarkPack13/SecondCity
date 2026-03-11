@@ -1,60 +1,46 @@
-/*
 /datum/action/cooldown/power/gift/beast_speech
 	name = "Beast Speech"
 	desc = "The werewolf with this Gift may communicate with any animals from fish to mammals."
 	button_icon_state = "beast_speech"
-	rage_req = 1
-	//gnosis_req = 1
+	rank = 1
+	rage_cost = 1
+	//gnosis_cost = 1
 
+// Extreamly TTRPG innacurate.
 /datum/action/cooldown/power/gift/beast_speech/Activate(atom/target)
 	. = ..()
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		if(length(C.beastmaster) > 3)
-			var/mob/living/simple_animal/hostile/beastmaster/B = pick(C.beastmaster)
-			qdel(B)
-		playsound(get_turf(owner), 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/wolves.ogg', 75, FALSE)
-		if(!length(C.beastmaster))
-			var/datum/action/beastmaster_stay/E1 = new()
-			E1.Grant(C)
-			var/datum/action/beastmaster_deaggro/E2 = new()
-			E2.Grant(C)
-		var/mob/living/simple_animal/hostile/beastmaster/D = new(get_turf(C))
-		D.my_creator = C
-		C.beastmaster |= D
-		D.beastmaster = C
-*/
 
-/*
+	var/mob/living/carbon/human/human_owner = astype(owner)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg', 75, FALSE)
+	human_owner?.add_beastmaster_minion(/mob/living/basic/pet/dog/wolf/summoned)
+
+
 /datum/action/cooldown/power/gift/call_of_the_wyld
 	name = "Call Of The Wyld"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and imbue it with great emotion, stirring the hearts of fellow Garou and chilling the bones of all others."
 	button_icon_state = "call_of_the_wyld"
-	rage_req = 1
+	rage_cost = 1
+	rank = 1
 
 /datum/action/cooldown/power/gift/call_of_the_wyld/Activate(atom/target)
 	. = ..()
 
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/human_owner = owner
-	if(allowed_to_proceed)
-		var/mob/living/carbon/C = owner
-		C.emote("howl")
-		for(var/mob/living/carbon/A in orange(6, owner))
-			if(isgarou(A) || iswerewolf(A))
-				A.emote("howl")
-				spawn(1 SECONDS)
-					adjust_gnosis(1, A, TRUE)
+	owner.emote("howl")
+	for(var/mob/living/carbon/human/guy in orange(7, owner))
+		var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(guy)
+		if(werewolf_splat)
+			guy.emote("howl")
+			werewolf_splat.adjust_gnosis(1)
 //	awo1
-*/
+
 
 // Very inaccurate right now
 /datum/action/cooldown/power/gift/mindspeak
 	name = "Mindspeak"
 	desc = "By invoking the power of waking dreams, the Garou can place any chosen characters into silent communion."
 	button_icon_state = "mindspeak"
-//	gnosis_req = 1
+	rank = 1
+//	gnosis_cost = 1
 
 
 /datum/action/cooldown/power/gift/mindspeak/Activate(atom/target)

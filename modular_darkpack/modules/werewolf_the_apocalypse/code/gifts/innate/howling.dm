@@ -2,7 +2,7 @@
 	name = "Howl"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and communicate a single word or concept to all other Garou across the city."
 	button_icon_state = "call_of_the_wyld"
-	rage_req = 1
+	rage_cost = 1
 	check_flags = null
 	innate_ability = TRUE
 	var/static/list/howls = list(
@@ -48,7 +48,7 @@
 	if(istype(get_area(owner), /area/vtm/interior/penumbra))
 		if(feedback)
 			to_chat(owner, span_warning("Your howl echoes and dissipates into the Umbra, it's sound blanketed by the spiritual energy of the Velvet Shadow."))
-		return
+		return FALSE
 
 /datum/action/cooldown/power/gift/howling/Activate(atom/target)
 	. = ..()
@@ -76,9 +76,9 @@
 		garou_message = replacetext(garou_message, "tribe", tribe)
 	*/
 	var/origin_turf = get_turf(living_mob)
-	ADD_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
+	ADD_TRAIT(living_mob, TRAIT_LOUD_HOWLER, GIFT_TRAIT)
 	living_mob.emote("howl")
-	REMOVE_TRAIT(living_mob, TRAIT_LOUD_HOWLER, type)
+	REMOVE_TRAIT(living_mob, TRAIT_LOUD_HOWLER, GIFT_TRAIT)
 
 	var/howl_details
 	var/final_message
