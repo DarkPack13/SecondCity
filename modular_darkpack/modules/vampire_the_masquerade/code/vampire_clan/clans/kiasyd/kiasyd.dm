@@ -62,7 +62,7 @@
 
 
 /obj/item/organ/eyes/kiasyd
-	eye_icon = 'modular_darkpack/master_files/icons/mob/human/human_eyes.dmi'
+	eye_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/human_eyes.dmi'
 	eye_icon_state = "kiasyd"
 	eye_color_left = "#FFFFFF"
 	eye_color_right = "#FFFFFF"

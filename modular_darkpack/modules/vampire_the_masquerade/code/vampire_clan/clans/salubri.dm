@@ -35,7 +35,7 @@
 	new_eyes.Insert(losing_mob, TRUE, DELETE_IF_REPLACED)
 
 /obj/item/organ/eyes/salubri
-	eye_icon = 'modular_darkpack/master_files/icons/mob/human/human_eyes.dmi'
+	eye_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/human_eyes.dmi'
 	eye_icon_state = "salubri"
 
 	blink_animation = FALSE
