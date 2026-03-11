@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - bugfix: "thaumaturgy archive now correctly handles stock"
