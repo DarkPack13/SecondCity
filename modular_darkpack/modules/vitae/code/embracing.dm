@@ -32,16 +32,26 @@
 	childe.create_disciplines(FALSE, disciplines_to_give)
 	*/
 
-	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
 	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats["[STAT_MORALITY]"]
 
-	if(stat_morality?.morality_path && stat_morality_childe)
-		stat_morality_childe.morality_path = new stat_morality.morality_path.type(childe)
+	if(stat_morality_childe)
+		stat_morality_childe.morality_path = new /datum/morality/humanity(childe) // set morality to path of humanity
 
-		if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT)
-			var/datum/splat/vampire/kindred/kindred_splat = iskindred(childe)
-			if(istype(kindred_splat))
+		var/datum/splat/vampire/kindred/kindred_splat = iskindred(childe) // if this is null something has gone seriously wrong
+
+		// update morality score and the splat enlightenment
+		if(istype(kindred_splat))
+			var/datum/st_stat/stat_conscience = childe.storyteller_stats["[STAT_CONSCIENCE]"]
+			var/datum/st_stat/stat_self_control = childe.storyteller_stats["[STAT_SELF_CONTROL]"]
+			var/datum/st_stat/stat_conviction = childe.storyteller_stats["[STAT_CONVICTION]"]
+			var/datum/st_stat/stat_instinct = childe.storyteller_stats["[STAT_INSTINCT]"]
+
+			if(stat_morality_childe.morality_path.alignment == MORALITY_HUMANITY)
+				kindred_splat.enlightenment = FALSE
+				stat_morality_childe.set_score(clamp(stat_conscience.get_score(include_bonus = TRUE) + stat_self_control.get_score(include_bonus = TRUE), 0, 10))
+			else if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT) // just in case
 				kindred_splat.enlightenment = TRUE
+				stat_morality_childe.set_score(clamp(stat_conviction.get_score(include_bonus = TRUE) + stat_instinct.get_score(include_bonus = TRUE), 0, 10))
 
 	addtimer(CALLBACK(childe, PROC_REF(prompt_permanent_embrace)), 1 SECONDS)
 
@@ -89,6 +99,8 @@
 	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
 	if(stat_morality?.morality_path)
 		write_preference_midround(/datum/preference/choiced/vtm_morality, stat_morality.morality_path.name)
+		// the actual stat isnt editable, so i *shouldnt* need to worry about setting the stat in preferences,
+		// it should just take care of itself
 
 	/* // DARKPACK TODO - PREFERENCES
 	var/datum/preferences/childe_prefs_v = client.prefs
