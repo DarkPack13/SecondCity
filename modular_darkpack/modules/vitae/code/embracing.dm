@@ -21,16 +21,10 @@
 
 	childe.make_kindred_from_sire(src)
 
-	/* // DARKPACK TODO - DISCIPLINE PREFERENCES
-	//Gives the Childe the src's first three Disciplines
-	var/list/disciplines_to_give = list()
-	var/discipline_number = 0
-	if(client)
-		discipline_number = min(3, client?.prefs.discipline_types.len)
-	for (var/i in 1 to discipline_number)
-		disciplines_to_give += client?.prefs.discipline_types[i]
-	childe.create_disciplines(FALSE, disciplines_to_give)
-	*/
+	//Gives the Childe the sire's first three Disciplines
+	var/clan_disciplines = get_clan().clan_disciplines
+	for(var/i in 1 to 3)
+		childe.give_st_power(clan_disciplines[i])
 
 	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats["[STAT_MORALITY]"]
 
