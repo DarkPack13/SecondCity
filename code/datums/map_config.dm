@@ -66,6 +66,9 @@
 	/// Boolean that tells SSmapping to load all away missions in the codebase.
 	var/load_all_away_missions = FALSE
 
+	/// Number of additional weakpoints to spawn for SSminor_mapping
+	var/bonus_weakpoints = 0
+
 	var/max_npcs = 0 // DARKPACK EDIT ADD - NPC
 	var/umbra_map_path // DARKPACK EDIT ADD - UMBRA
 	var/umbra_map_file	 // DARKPACK EDIT ADD - UMBRA
@@ -221,6 +224,10 @@
 
 	if ("give_players_hooks" in json)
 		give_players_hooks = json["give_players_hooks"]
+
+	if ("bonus_weakpoints" in json)
+		bonus_weakpoints = json["bonus_weakpoints"]
+
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 

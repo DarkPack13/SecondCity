@@ -15,12 +15,12 @@
 		/datum/job_department/clinic,
 	)
 
-	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE)
-	splat_slots = list(SPLAT_GHOUL = 1)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_KINFOLK, SPLAT_NONE)
+	splat_slots = list(SPLAT_GHOUL = 1, SPLAT_KINFOLK = 1)
 
 	description = "Report emergencies to the correct emergency service."
 	minimal_masquerade = 0
-	known_contacts = list("Police Chief")
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/dispatcher
 	name = "Dispatcher"

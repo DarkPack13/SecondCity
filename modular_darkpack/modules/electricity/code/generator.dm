@@ -57,8 +57,7 @@
 		SEND_SOUND(M, 'modular_darkpack/modules/electricity/sounds/generator_shutdown.ogg')
 	A.requires_power = TRUE
 	A.fire_controled = FALSE
-	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(5, 1, get_turf(src))
+	var/datum/effect_system/basic/spark_spread/s = new(get_turf(src), 5, 1)
 	s.start()
 	for(var/obj/machinery/light/L in A)
 		L.on = FALSE

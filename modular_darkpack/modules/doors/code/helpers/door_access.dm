@@ -190,8 +190,8 @@
 /obj/effect/mapping_helpers/door/access/police_secure
 	lock_id = LOCKACCESS_POLICE_SECURE
 
-/obj/effect/mapping_helpers/door/access/police_chief
-	lock_id = LOCKACCESS_POLICE_CHIEF
+/obj/effect/mapping_helpers/door/access/police_captain
+	lock_id = LOCKACCESS_POLICE_CAPTAIN
 
 /obj/effect/mapping_helpers/door/access/federal
 	lock_id = LOCKACCESS_FEDERAL

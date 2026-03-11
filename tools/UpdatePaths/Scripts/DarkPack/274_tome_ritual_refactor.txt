@@ -4,3 +4,5 @@
 /obj/necrorune/@SUBTYPES : /obj/ritual_rune/necromancy/@SUBTYPES
 /obj/abyssrune/@SUBTYPES :/obj/ritual_rune/abyss/@SUBTYPES
 /obj/ritualrune/@SUBTYPES : /obj/ritual_rune/thaumaturgy/@SUBTYPES
+
+/obj/ritual_rune/abyss/silent_heart : /obj/ritual_rune/abyss/heart_that_beats_in_silence

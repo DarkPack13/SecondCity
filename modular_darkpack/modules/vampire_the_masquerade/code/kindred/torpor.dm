@@ -14,6 +14,7 @@
 		var/torpor_time = (14 - morality_score) MINUTES
 		COOLDOWN_START(vampirism, torpor_timer, torpor_time)
 //	RegisterSignal(new_kindred, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
+
 /mob/living/proc/cure_torpor(source, force)
 	if(!HAS_TRAIT_FROM(src, TRAIT_TORPOR, source))
 		return
@@ -35,7 +36,7 @@
 	if(iskindred(src))
 		if(bloodpool > 0)
 			adjust_blood_pool(-1)
-			cure_torpor()
+			cure_torpor(DAMAGE_TRAIT)
 			to_chat(src, span_notice("You have awoken from your Torpor."))
 		else
 			to_chat(src, span_warning("You have no blood to re-awaken with..."))

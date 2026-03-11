@@ -1,13 +1,13 @@
 /obj/item/vtm_artifact/bloodstar
 	true_name = "Bloodstar"
-	true_desc = "Increases Bloodpower duration."
+	true_desc = "Increases Bloodpower efficiency."
 	icon_state = "bloodstar"
 	research_value = 10
 
 /obj/item/vtm_artifact/bloodstar/get_powers()
 	. = ..()
-	owner.bloodpower_time_plus = 50
+	owner.blood_efficiency = 0.8
 
 /obj/item/vtm_artifact/bloodstar/remove_powers()
 	. = ..()
-	owner.bloodpower_time_plus = 0
+	owner.blood_efficiency = 1

@@ -1,5 +1,5 @@
 /datum/preference/numeric/immortal_age
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_key = "immortal_age"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_TABLETOP

@@ -7,7 +7,7 @@
 	button_icon_state = "vitae"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
-	ranged_mousepointer = 'icons/effects/mouse_pointers/discipline.dmi'
+	ranged_mousepointer = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
 	cooldown_time = 10 SECONDS
 	vampiric = TRUE
 

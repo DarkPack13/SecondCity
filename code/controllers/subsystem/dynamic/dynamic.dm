@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(dynamic)
 	name = "Dynamic"
-	flags = SS_NO_INIT
+	// flags = SS_NO_INIT // DARKPACK EDIT REMOVAL
 	wait = 5 MINUTES
 
 	// These vars just exist for admins interfacing with dynamic
@@ -57,7 +57,13 @@ SUBSYSTEM_DEF(dynamic)
 	/// Rulesets in this list will be excluded from the roundend report
 	var/list/datum/dynamic_ruleset/unreported_rulesets = list()
 	/// Whether random events that spawn antagonists or modify dynamic are enabled
-	var/antag_events_enabled = TRUE
+	var/antag_events_enabled = FALSE // DARKPACK EDIT, ORIGINAL: var/antag_events_enabled = TRUE
+
+// DARKPACK EDIT ADDITION START
+/datum/controller/subsystem/dynamic/Initialize()
+	admin_disabled_rulesets |= subtypesof(/datum/dynamic_ruleset)
+	return SS_INIT_SUCCESS
+// DARKPACK EDIT ADDITION END
 
 /datum/controller/subsystem/dynamic/fire(resumed)
 	if(!COOLDOWN_FINISHED(src, midround_cooldown) || EMERGENCY_PAST_POINT_OF_NO_RETURN)

@@ -76,18 +76,18 @@
 	if(user.body_position != STANDING_UP)
 		return
 	if(above_turf && istype(above_turf, /turf/open/openspace))
-		var/total_dexterity = user.st_get_stat(STAT_DEXTERITY)
-		var/total_athletics = user.st_get_stat(STAT_ATHLETICS)
 		to_chat(user, span_notice("You start climbing up..."))
 		add_fingerprint(user)
 
-		var/result = do_after(user, (11 - total_dexterity - total_athletics) SECONDS, src)
+		var/result = do_after(user, 1 TURNS, src)
 		if(!result || HAS_TRAIT(user, LEANING_TRAIT))
 			to_chat(user, span_notice("You were interrupted and failed to climb up."))
 			return
 
 		//(Botch, slip and take damage), (Fail, fail to climb), (Success, climb up successfully)
-		var/roll = SSroll.storyteller_roll(total_dexterity+total_athletics, 6, user)
+
+		var/datum/storyteller_roll/climbing/climb_roll = new()
+		var/roll = climb_roll.st_roll(user, src)
 		switch(roll)
 			if(ROLL_BOTCH)
 				user.ZImpactDamage(loc, 1)

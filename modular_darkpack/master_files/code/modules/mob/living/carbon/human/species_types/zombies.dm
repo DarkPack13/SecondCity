@@ -28,17 +28,10 @@
 	C.update_body_parts()
 	C.update_body(0)
 
-	C.set_body_sprite("rotten2")
+	C.rot_body(2)
 
 	C.maxHealth = 300 //tanky
 	C.health = 300
-
-	/* // DARKPACK TODO -- kj shit?
-	C.yang_chi = 0
-	C.max_yang_chi = 0
-	C.yin_chi = 6
-	C.max_yin_chi = 6
-	*/
 
 	//zombies resist vampire bites better than mortals
 	RegisterSignal(C, COMSIG_MOB_VAMPIRE_SUCKED, PROC_REF(on_zombie_bitten))

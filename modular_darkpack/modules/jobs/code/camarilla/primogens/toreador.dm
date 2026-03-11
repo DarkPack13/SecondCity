@@ -42,4 +42,4 @@
 	suit = /obj/item/clothing/suit/vampire/trench/alt
 	shoes = /obj/item/clothing/shoes/vampire
 	l_pocket = /obj/item/smartphone/toreador_primo
-	backpack_contents = list(/obj/item/vamp/keys/toreador/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon, /*/obj/item/gun/ballistic/automatic/vampire/beretta/toreador=1,*/ /obj/item/ammo_box/magazine/semi9mm/toreador=1)
+	backpack_contents = list(/obj/item/vamp/keys/toreador/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon, /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta/toreador=1, /obj/item/ammo_box/magazine/semi9mm/toreador=1)

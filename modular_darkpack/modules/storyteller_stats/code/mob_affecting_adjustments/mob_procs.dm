@@ -1,12 +1,29 @@
-// Get a specific mob's stat from its stats list.
+/// Get a specific mob's stat from its stats list.
 /mob/living/proc/st_get_stat(stat_path, include_bonus)
 	var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]
 	return given_stat?.get_score(include_bonus)
 
-// Set a specific mob's stat from its stats list.
+/// Wrapper for st_get_stat to reduce copypaste. Get a specific mob's stat from its stats list.
+/mob/living/proc/st_get_stats(list/stat_list, include_bonus)
+	var/total_score = 0
+	for(var/stat_path in stat_list)
+		var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]
+		total_score += given_stat?.get_score(include_bonus)
+	return total_score
+
+/// Set a specific mob's stat from its stats list.
 /mob/living/proc/st_set_stat(stat_path, amount)
 	var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]
 	return given_stat?.set_score(amount)
+
+/// Changes a specific mob's stat from its stats list by the given amount.
+/mob/living/proc/st_change_stat(stat_path, amount)
+	var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]
+	if(amount > 0)
+		return given_stat?.increase_score(amount)
+	else
+		return given_stat?.decrease_score(amount)
+
 
 /mob/living/proc/st_add_stat_mod(stat_path, amount, source)
 	var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]

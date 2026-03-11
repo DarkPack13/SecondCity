@@ -3,6 +3,8 @@
 #define SENSE_SMELL "Smell"
 #define SENSE_TASTE "Taste"
 #define SENSE_TOUCH "Touch"
+#define TELEPATHY_MIND_READING "Mind Reading"
+#define TELEPATHY_IMPLANT_THOUGHT "Implant Thoughts"
 
 /datum/discipline/auspex
 	name = "Auspex"
@@ -107,10 +109,16 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
+	toggled = TRUE
+
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.show_to(owner)
+
+	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
+	for(var/mob/living/hearer in heard)
+		hearer.apply_status_effect(/datum/status_effect/question_emotion)
 
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()
@@ -153,7 +161,6 @@
 		// Can remotely scan objects and mobs.
 		if((get_dist(scanned_atom, user) > 8) || (!(scanned_atom in view(8, user))))
 			return TRUE
-	playsound(owner, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 
 	// GATHER INFORMATION
 
@@ -234,24 +241,124 @@
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
 	range = 7
+	var/telepathy_types = list(TELEPATHY_MIND_READING, TELEPATHY_IMPLANT_THOUGHT)
+	var/telepathy_type_selected
+	var/successes
+	var/disguised_voice
+	var/datum/storyteller_roll/telepathy_success/telepathy_roll
+	var/datum/storyteller_roll/disguise_voice_roll/disguise_roll
+
+/datum/storyteller_roll/telepathy_success
+	bumper_text = "mind reading"
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_SUBTERFUGE)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
+
+/datum/storyteller_roll/disguise_voice_roll
+	bumper_text = "disguise voice"
+	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
+	numerical = FALSE
+	roll_output_type = ROLL_PRIVATE
+
+/datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
+	. = ..()
+	if(!telepathy_roll)
+		telepathy_roll = new()
+	telepathy_roll.difficulty = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+	successes = telepathy_roll.st_roll(owner, target)
+	if(successes > 0)
+		// need linebreaks... but \n and <br> arent working...
+		var/telepathy_type = tgui_input_list(owner, "What kind of Telepathy would you like to perform? Reading the minds of supernaturals requires expending one temporary willpower point.", "Telepathy Type Selection", telepathy_types, TELEPATHY_IMPLANT_THOUGHT)
+		switch(telepathy_type)
+			if(TELEPATHY_MIND_READING)
+				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
+				if(iskindred(target) || isshifter(target))
+					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
+			if(TELEPATHY_IMPLANT_THOUGHT)
+				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
+				switch(disguise_voice_prompt)
+					if("Yes")
+						if(!disguise_roll)
+							disguise_roll = new()
+						disguise_roll.difficulty = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS)
+						switch(disguise_roll.st_roll(owner, target))
+							if(ROLL_SUCCESS)
+								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
+							if(ROLL_FAILURE, ROLL_BOTCH)
+								to_chat(span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
+								disguised_voice = owner.name
+					if("No")
+						disguised_voice = owner.name
+		telepathy_type_selected = telepathy_type
+		return TRUE
+	return FALSE
+
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
 	. = ..()
-	var/input_message = tgui_input_text(owner, "What message will you project to them?", max_length = MAX_MESSAGE_LEN, encode = FALSE)
-	if (!input_message)
-		return
+	var/input_message
+	var/specific_search
+	switch(telepathy_type_selected)
+		if(TELEPATHY_IMPLANT_THOUGHT)
+			input_message = tgui_input_text(owner, "What message will you project to them?", "Telepathic Message")
+			if(!input_message)
+				return
 
+			if(!sanitize_input_message(input_message))
+				return
+
+			log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
+			to_chat(owner, span_notice("You project your thoughts into [target]'s mind: \"[input_message]\""))
+			to_chat(target, span_boldannounce("You hear the voice of [disguised_voice] in your thoughts: \"[input_message]\""))
+
+		if(TELEPATHY_MIND_READING)
+			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing..." + get_flavor_text(successes)
+			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information? Deeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
+			if(mind_reading_search == "Yes")
+				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = MAX_MESSAGE_LEN)
+				if(!specific_search)
+					specific_search = "something specific"
+
+			var/prompt_message = flavor_text_telepathy
+			if(specific_search)
+				prompt_message += "The telepath specifically scans your mind for : [specific_search]"
+			else
+				prompt_message += "The telepath searches your recent thoughts and emotions..."
+
+			input_message = tgui_input_text(target, prompt_message, "Mind Being Read")
+			if(!input_message)
+				input_message = "Fragmented, unclear thoughts and impressions."
+
+			if(!sanitize_input_message(input_message))
+				return
+
+			log_directed_talk(target, owner, input_message, LOG_SAY, "Telepathy (Mind Reading)")
+			to_chat(owner, span_notice("You read [target]'s thoughts with [successes] successes: [input_message]"))
+
+/datum/discipline_power/auspex/telepathy/proc/get_flavor_text(successes)
+	var/message = "As your mind is read with [successes] successes, "
+	switch(successes)
+		if(1)
+			message += "the most surface-level thoughts or unspoken comments are easily read, but if your character was expecting their mind to be read, they can make an effort to obfuscate their true thoughts..."
+		if(2)
+			message += "the person reading your mind begins to probe deeper into your subconcious, revealing deeper, or clearer, thoughts..."
+		if(3)
+			message += "your mind begins to be probed at a deep level, revealing verbatim thoughts, details, secrets and recent memories..."
+		if(4)
+			message += "your mind is being deeply invaded. Hidden thoughts, suppressed emotions, and secrets you've tried to bury begin to surface. The attacker can access memories and feelings you may have forgotten without you ever knowing..."
+		if(5 to INFINITY)
+			message += "your deepest secrets and most buried memories are laid bare. The telepath can access traumatic experiences, long-forgotten events, and the darkest corners of your psyche. Nothing is hidden..."
+	return message
+
+/datum/discipline_power/auspex/telepathy/proc/sanitize_input_message(input_message)
 	//sanitisation!
 	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, MAX_MESSAGE_LEN) : input_message
 	var/list/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ooc_filtered(input_message)
 	if(filter_result)
 		REPORT_CHAT_FILTER_TO_USER(owner, filter_result)
 		log_filter("OOC", input_message, filter_result)
-		return
-
-	log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
-	to_chat(owner, span_notice("You project your thoughts into [target]'s mind: [input_message]"))
-	to_chat(target, span_boldannounce("You hear a voice in your head: [input_message]"))
+		return FALSE
+	return TRUE
 
 //PSYCHIC PROJECTION
 /datum/discipline_power/auspex/psychic_projection
@@ -266,12 +373,14 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner, owner, TRUE)
-	if(roll > 0)
+	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner)
+	if(roll == ROLL_SUCCESS)
 		owner.enter_avatar()
 	else
 		to_chat(owner, span_warning("Your mind fails to leave your body."))
 
+#undef TELEPATHY_MIND_READING
+#undef TELEPATHY_IMPLANT_THOUGHT
 #undef SENSE_VISION
 #undef SENSE_HEARING
 #undef SENSE_SMELL

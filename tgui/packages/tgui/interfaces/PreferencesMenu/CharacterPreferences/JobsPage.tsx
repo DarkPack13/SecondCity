@@ -183,7 +183,7 @@ type JobRowProps = {
 };
 
 function JobRow(props: JobRowProps) {
-  const { data } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>();
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
@@ -193,6 +193,13 @@ function JobRow(props: JobRowProps) {
 
   const experienceNeeded = data.job_required_experience?.[name];
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
+
+
+  // DARKPACK EDIT ADD START -  ALTERNATIVE_JOB_TITLES
+  const alt_title_selected = data.job_alt_titles[name]
+    ? data.job_alt_titles[name]
+    : name;
+  // DARKPACK EDIT ADD END
 
   let rightSide: ReactNode;
 
@@ -244,7 +251,22 @@ function JobRow(props: JobRowProps) {
               paddingLeft: '0.3em',
             }}
           >
-            {name}
+            {
+              // DARKPACK EDIT CHANGE START -  ALTERNATIVE_JOB_TITLES - ORIGINAL: {name}
+              !job.alt_titles ? (
+                name
+              ) : (
+                <Dropdown
+                  width="100%"
+                  options={job.alt_titles}
+                  selected={alt_title_selected}
+                  onSelected={(value) =>
+                    act('set_job_title', { job: name, new_title: value })
+                  }
+                />
+              )
+              // DARKPACK EDIT CHANGE END
+            }
           </Stack.Item>
         </Tooltip>
 

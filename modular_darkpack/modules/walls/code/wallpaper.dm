@@ -87,6 +87,9 @@
 /obj/effect/decal/wallpaper/stone/low
 	icon_state = "wallpaper-stone_low"
 
+/obj/effect/decal/wallpaper/stone/low/tilt
+	icon_state = "wallpaper-stone_low_tilt"
+
 /obj/effect/decal/wallpaper/gold
 	icon_state = "wallpaper-gold"
 

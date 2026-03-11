@@ -1,6 +1,6 @@
 ADMIN_VERB(toggle_canon, R_ADMIN, "Toggle Canon", "Toggle the canon of the round.", ADMIN_CATEGORY_EVENTS)
 	GLOB.canon_event = !GLOB.canon_event
-	SEND_SOUND(world, sound('modular_darkpack/modules/round_status/sounds/canon.ogg', FALSE, FALSE, 25))
+	SEND_SOUND(world, sound('modular_darkpack/modules/round_status/sounds/canon.ogg', volume = 25))
 	if(GLOB.canon_event)
 		to_chat(world, "<b>THE ROUND IS NOW CANON. DATA WILL SAVE.</b>")
 	else

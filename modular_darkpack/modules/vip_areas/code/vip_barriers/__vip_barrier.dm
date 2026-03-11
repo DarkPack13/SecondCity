@@ -3,11 +3,13 @@
 	desc = "Not a real checkpoint."
 	icon = 'modular_darkpack/modules/vip_areas/icons/barrier.dmi'
 	icon_state = "camarilla_blocking"
+
+	anchored = TRUE
+
 	var/block_sound = "modular_darkpack/modules/deprecated/sounds/bouncer_blocked.ogg"
 
 	//Social bypass numbers
 	var/social_bypass_allowed = TRUE
-	var/social_bypass_time = 20 SECONDS
 	var/can_use_badge = TRUE
 	var/mean_to_cops = TRUE
 	var/social_roll_difficulty = 7
@@ -15,9 +17,7 @@
 	//Display settings
 	var/always_invisible = FALSE
 
-	density = FALSE
-	anchored = TRUE
-
+	var/datum/storyteller_roll/scene_cooldown/bypass_roll
 
 
 	//Assigns an ID to NPCs that guard certain doors, must match a barrier's ID
@@ -101,7 +101,7 @@
 /obj/effect/vip_barrier/proc/check_entry_permission_custom(mob/living/carbon/human/entering_mob)
 	return TRUE
 
-/obj/effect/vip_barrier/proc/handle_social_bypass(mob/living/carbon/human/user, mob/bouncer, used_badge = FALSE)
+/obj/effect/vip_barrier/proc/handle_social_bypass(mob/living/carbon/human/user, mob/bouncer, used_badge = FALSE, used_stat = STAT_EMPATHY)
 
 	if(user.get_face_name() == "Unknown")
 		to_chat(user, span_notice("They won't talk to someone they can't look in the eye."))
@@ -119,18 +119,29 @@
 			linked_perm.notify_guard_blocked_denial(user)
 		return
 
-
-	if(!do_after(user, max(5 SECONDS, social_bypass_time - (user.st_get_stat(STAT_CHARISMA) * 2 SECONDS)), bouncer))
+	if(!do_after(user, 1 TURNS, bouncer))
 		return
-
-
 
 	var/involved_social_roll = social_roll_difficulty
 	if(used_badge)
 		involved_social_roll -= 1
 
-	if(SSroll.storyteller_roll(user.st_get_stat(STAT_CHARISMA), involved_social_roll, mobs_to_show_output = user) == ROLL_SUCCESS)
-		to_chat(user, span_notice("You manage to persuade your way past the guards."))
+	if(!bypass_roll)
+		bypass_roll = new()
+		bypass_roll.bumper_text = "persuade guard"
+
+	var/verbage
+	bypass_roll.difficulty = involved_social_roll
+	bypass_roll.applicable_stats = list(STAT_CHARISMA)
+	if(used_stat == STAT_INTIMIDATION)
+		verbage = "intimidate"
+		bypass_roll.applicable_stats += used_stat
+	else
+		verbage = "persuade"
+		bypass_roll.applicable_stats += used_stat
+
+	if(bypass_roll.st_roll(user, src) == ROLL_SUCCESS)
+		to_chat(user, span_notice("You manage to [verbage] your way past the guards."))
 		linked_perm.allow_list += user.get_face_name()
 		return
 

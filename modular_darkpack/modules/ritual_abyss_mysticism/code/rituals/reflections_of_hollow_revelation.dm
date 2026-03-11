@@ -65,7 +65,7 @@
 		var/datum/splat/vampire/vampire = does_use_disciplines(target)
 		if(vampire?.get_discipline(/datum/discipline/obtenebration) || vampire?.get_discipline(/datum/discipline/auspex))
 			var/theirpower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
-			if(SSroll.storyteller_roll(theirpower, 8, target, numerical = FALSE) == ROLL_SUCCESS)
+			if(SSroll.storyteller_roll(theirpower, 8, target) == ROLL_SUCCESS)
 				to_chat(target, span_warning("You notice the nearby shadows flicker... something is watching you."))
 
 	shadowview(target, user)

@@ -403,6 +403,10 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
 			override = TRUE
+		// DARKPACK EDIT ADD START
+		if(HAS_TRAIT(M, TRAIT_LOCAL_SIXTHSENSE) && (message_type == DEADCHAT_REGULAR) && (source in orange(DEFAULT_MESSAGE_RANGE, M)))
+			override = TRUE
+		// DARKPACK EDIT ADD END
 		if(SSticker.current_state == GAME_STATE_FINISHED)
 			override = TRUE
 		if(isnewplayer(M) && !override)

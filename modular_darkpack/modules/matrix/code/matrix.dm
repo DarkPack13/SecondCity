@@ -50,11 +50,14 @@ ADMIN_VERB_AND_CONTEXT_MENU(matrix_mob_verb, R_ADMIN, "Matrix Mob", "Matrix (des
 	message_admins("[ADMIN_LOOKUP(despawning_mob)] has exited through the matrix.")
 	log_game("[despawning_mob] has exited through the matrix.")
 
+	GLOB.manifest.remove(despawning_mob.real_name)
+
 	SSjob.FreeRole(despawning_mob)
 
 	GLOB.joined_player_list -= despawning_mob.ckey
 
 	//handle_objectives()
+	SSmasquerade.matrix_masquerade_breacher(despawning_mob, TRUE)
 	despawning_mob.ghostize(FALSE)
 	QDEL_NULL(despawning_mob)
 

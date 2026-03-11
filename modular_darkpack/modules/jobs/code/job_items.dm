@@ -206,7 +206,7 @@
 // POLICE
 /obj/item/card/police
 	name = "police officer badge"
-	desc = "Sponsored by the Government."
+	desc = "A silver star made of smooth polished metal, indicating the wearer to be a police officer of the San Francisco Police Department."
 	icon = 'modular_darkpack/modules/jobs/icons/id_items.dmi'
 	icon_state = "police_badge"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/jobs/icons/id_onfloors.dmi')
@@ -224,16 +224,15 @@
 
 /obj/item/card/police/sergeant
 	name = "police sergeant badge"
-	desc = "Sponsored by the Government. This one seems slightly more worn down than all the others."
+	desc = "A silver star with intricate silver engravings, indicating the wearer to be a sergeant of the San Francisco Police Department."
 
-/obj/item/card/police/chief
-	name = "police chief badge"
-	desc = "Sponsored by the Government. This one has a chrome plated finish."
+/obj/item/card/police/captain
+	name = "police captain badge"
+	desc = "A gold star with intricate 10k gold-filled engravings, indicating the wearer to be a captain of the San Francisco Police Department."
 
 /obj/item/card/police/fbi
 	name = "fbi special agent badge"
-	desc = "Sponsored by the Government. This one has all the bells and whistles."
-
+	desc = "A rather ornate badge made of polished gold-like metal. It has the words \"Federal Bureau of Investigation\" engraved on it."
 
 // CULTISTS
 /obj/item/card/bahari

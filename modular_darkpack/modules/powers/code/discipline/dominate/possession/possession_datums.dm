@@ -71,7 +71,7 @@
 	vamp.adjust_brute_loss(50)
 	vamp.visible_message(span_danger("[vamp] suddenly convulses violently and falls into what appears to be a coma!"))
 	to_chat(vamp, span_boldwarning("The psychic shock of your host's death sends you into torpor!"))
-	vamp.torpor()
+	vamp.torpor(DAMAGE_TRAIT)
 
 	if(observer)
 		to_chat(observer, span_boldwarning("Your body has died while you were displaced from it. You fade into oblivion..."))

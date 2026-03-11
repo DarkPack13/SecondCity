@@ -31,7 +31,7 @@
 	var/list/symptoms = list() // The symptoms of the disease.
 	var/id = ""
 	var/processing = FALSE
-	var/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
+	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT, ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
 
 /*
 
@@ -66,7 +66,7 @@
 					competition.cure(FALSE)
 				else
 					return FALSE //we are not strong enough to bully our way in
-	infect(infectee, make_copy)
+	// infect(infectee, make_copy) // DARKPACK EDIT REMOVAL
 	return TRUE
 
 /datum/disease/advance/get_recovery_failure_chance()

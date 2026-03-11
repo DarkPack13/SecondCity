@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(phones)
 	var/list/frequencies_in_use = list()
 	// Published phone numbers, with the key being what the user named the number.
 	var/list/published_phone_numbers = list()
+	// Posts for the endpost feed
+	var/list/endpost_posts = list()
 
 // Generates a random phone number from the available ranges, ten digits, starts with a 415 or 628.
 /datum/controller/subsystem/phones/proc/random_number()
@@ -38,8 +40,9 @@ SUBSYSTEM_DEF(phones)
 // Returns a valid frequency for a phone to use for a phone call.
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
-	while(frequency_to_use in frequencies_in_use)
-		frequency_to_use++
+	for(var/i in length(frequencies_in_use))
+		if(frequency_to_use == (USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE + i))
+			frequency_to_use++
 	frequencies_in_use += frequency_to_use
 	return frequency_to_use
 

@@ -34,9 +34,12 @@
 	//before going any further, roll either conscience or conviction to determine if we actually lose path/humanity
 	if(humanity_change < 0)
 		var/stat_to_roll = is_enlightenment ? STAT_CONVICTION : STAT_CONSCIENCE
-		var/degeneration_roll = SSroll.storyteller_roll(owner.st_get_stat(stat_to_roll), difficulty, owner, numerical = FALSE)
+		var/datum/storyteller_roll/degeneration_roll = new()
+		degeneration_roll.applicable_stats = list(stat_to_roll)
+		degeneration_roll.difficulty = difficulty
+		var/roll_result = degeneration_roll.st_roll(owner)
 
-		if(degeneration_roll == ROLL_SUCCESS)
+		if(roll_result == ROLL_SUCCESS)
 			to_chat(owner, span_green("Your [is_enlightenment ? "conviction" : "conscience"] prevents you from losing [path] as you successfully justify your actions!"))
 			return
 		else
@@ -49,7 +52,7 @@
 	// Change morality according to calculated values
 	owner.st_set_stat(STAT_MORALITY, owner.st_get_stat(STAT_MORALITY) + humanity_change)
 	if (humanity_change > 0)
-		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', 0, 0, 75))
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 75))
 		to_chat(owner, span_boldnicegreen("[uppertext(path)] INCREASED!"))
 
 		// Gaining Path flavour text
@@ -57,7 +60,7 @@
 			if (10)
 				to_chat(owner, span_green("As your [path] reaches its peak, you feel the Beast [is_enlightenment ? "reaching perfect harmony with you" : "falling into a deep slumber, waiting"]."))
 	else if (humanity_change < 0)
-		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_loss.ogg', 0, 0, 75))
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_loss.ogg', volume = 75))
 		to_chat(owner, span_userdanger(span_bold("[uppertext(path)] DECREASED!")))
 
 		// Losing Path flavour text

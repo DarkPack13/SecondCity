@@ -10,8 +10,23 @@
 	display_order = JOB_DISPLAY_ORDER_CITIZEN
 	department_for_prefs = /datum/job_department/citizen
 	job_flags = CITY_JOB_FLAGS
-	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
+	allowed_splats = SPLAT_ALL
 	minimal_masquerade = 0
+	alt_titles = list(
+		"Citizen",
+		"Private Investigator",
+		"Private Security",
+		"Tourist",
+		"Visitor",
+		"Entertainer",
+		"Entrepreneur",
+		"Contractor",
+		"Fixer",
+		"Lawyer",
+		"Attorney",
+		"Paralegal",
+	)
+
 
 /datum/outfit/job/vampire/citizen
 	name = JOB_CITIZEN

@@ -68,7 +68,7 @@ JOB_START_HELPER(hospital/doctor, JOB_DOCTOR)
 
 JOB_START_HELPER(law_enforcement/national_guard, JOB_NATIONAL_GUARD)
 JOB_START_HELPER(law_enforcement/swat, JOB_POLICE_SWAT)
-JOB_START_HELPER(law_enforcement/chief, JOB_POLICE_CHIEF)
+JOB_START_HELPER(law_enforcement/captain, JOB_POLICE_CAPTAIN)
 JOB_START_HELPER(law_enforcement/sergeant, JOB_POLICE_SERGEANT)
 JOB_START_HELPER(law_enforcement/officer, JOB_POLICE_OFFICER)
 JOB_START_HELPER(law_enforcement/dispatcher, JOB_EMERGENCY_DISPATCHER)

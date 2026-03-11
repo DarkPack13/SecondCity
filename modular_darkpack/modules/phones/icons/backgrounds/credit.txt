@@ -1,0 +1,25 @@
+/*
+A warm thank you to all of the artists who upload royalty free images!
+
+The images in this directory decode to the original works of the following pixabay.com users who graciously made them royalty-free:
+
+Ahmetyuksek
+AndreH
+CameraMan
+Daga_Roszko
+Duerken
+Flo222
+IlonaBursch
+Irenna
+Lucioliu
+Moremilu
+Pexels
+Pintari
+Pixel1
+rwgusev
+sonyuser
+stocksnap
+tarry_not
+thewhiteclouds
+TomHill
+*/

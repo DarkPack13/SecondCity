@@ -21,6 +21,5 @@
 	M.adjust_fire_loss(-5*stored_blood, TRUE)
 	M.update_damage_overlays()
 	M.update_health_hud()
-	M.update_blood_hud()
 	playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 	return
