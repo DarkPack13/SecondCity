@@ -116,5 +116,5 @@
 			childe_prefs_v.discipline_levels += 1
 	*/
 
-	to_chat(src, span_danger("You have chosen to permanently become a vampire! No regrets, kindred..."))
+	to_chat(src, span_danger("You have chosen to permanently become a vampire!"))
 
