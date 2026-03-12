@@ -1,0 +1,4 @@
+/obj/effect/landmark/start/darkpack/chantry/archivist : /obj/effect/landmark/start/darkpack/chantry/apprentice
+/obj/effect/landmark/start/darkpack/hecata/famiglia : /obj/effect/landmark/start/darkpack/hecata/soldato
+/obj/effect/landmark/start/darkpack/hecata/squadra : /obj/effect/landmark/start/darkpack/hecata/socio
+/obj/effect/landmark/start/darkpack/sabbat/pack : /obj/effect/landmark/start/darkpack/sabbat/true_sabbat
