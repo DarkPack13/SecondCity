@@ -4,7 +4,7 @@
 
 /datum/preferences/load_character(slot)
 	. = ..()
-	var/tree_key = "character[slot]"
+	var/tree_key = "character[default_slot]"
 	var/list/save_data = savefile.get_entry(tree_key)
 
 	// We don't really need to do any validation since that's all done in the parent proc.
