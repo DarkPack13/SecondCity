@@ -114,9 +114,7 @@
 			if(VAMPIRE_CLAN_BANU_HAQIM)
 				to_chat(owner, span_notice("[target] sees themselves as absolute judgement."))
 				return
-			if(VAMPIRE_CLAN_TRUE_BRUJAH)
-				to_chat(owner, span_notice("[target] cant express emotions."))
-				return
+
 			/* DARKPACK TODO: Warrior Salubri / Salubri Warrior
 			if(VAMPIRE_CLAN_SALUBRI_WARRIOR)
 				to_chat(owner, span_notice("[target] pursues an endless revenge."))

@@ -14,3 +14,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/business
 	restricted_disciplines = list(/datum/discipline/celerity)
 	whitelisted = TRUE
+
+/datum/subsplat/vampire_clan/true_brujah/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[target] cant express emotions."
