@@ -7,7 +7,6 @@
 
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
-	owner.add_faction(VAMPIRE_CLAN_TREMERE)
 	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level

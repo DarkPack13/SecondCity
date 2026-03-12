@@ -22,9 +22,6 @@
 
 /datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-
-	gaining_mob.add_faction(VAMPIRE_CLAN_BAALI)
-
 	gaining_mob.AddElement(/datum/element/holy_weakness)
 
 	gaining_mob.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)
