@@ -125,9 +125,7 @@
 				to_chat(owner, span_notice("[target] pursues an endless revenge."))
 				return
 			*/
-			if(VAMPIRE_CLAN_NAGARAJA)
-				to_chat(owner, span_notice("[target] hungers for flesh"))
-				return
+
 
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_stolen_disciplines(target, owner)

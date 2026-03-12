@@ -16,6 +16,7 @@
 
 /datum/subsplat/vampire_clan/nagaraja/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] hungers for flesh"
 	var/obj/item/ritual_tome/necromancy/necrotome = new()
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
