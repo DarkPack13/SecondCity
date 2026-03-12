@@ -23,6 +23,7 @@
 
 /datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
+	sense_the_sin_text = "[vampire.name] is afraid of cold iron."
 	/*
 	// Kiasyd are made taller and thinner
 	if (H.has_quirk(/datum/quirk/dwarf))

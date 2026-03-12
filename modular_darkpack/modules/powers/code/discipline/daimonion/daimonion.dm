@@ -128,21 +128,6 @@
 			if(VAMPIRE_CLAN_NAGARAJA)
 				to_chat(owner, span_notice("[target] hungers for flesh"))
 				return
-			if(VAMPIRE_CLAN_GIOVANNI)
-				to_chat(owner, span_notice("[target] never considers any action too great for their family."))
-				return
-			if(VAMPIRE_CLAN_CAPPADOCIAN)
-				to_chat(owner, span_notice("[target] will never escape the appearance of a corpse."))
-				return
-			if(VAMPIRE_CLAN_KIASYD)
-				to_chat(owner, span_notice("[target] is afraid of cold iron."))
-				return
-			if(VAMPIRE_CLAN_GARGOYLE)
-				to_chat(owner, span_notice("[target]'s mind is a fortress with gates open and unbarred."))
-				return
-			if(VAMPIRE_CLAN_SETITE)
-				to_chat(owner, span_notice("[target] believes every stain of sin is a virtue."))
-				return
 
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_stolen_disciplines(target, owner)

@@ -16,7 +16,7 @@
 
 /datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H)
 	. = ..()
-
+	sense_the_sin_text = "[H.name] will never escape the appearance of a rotting corpse."
 	var/years_undead = H.chronological_age - H.age
 	switch(years_undead)
 		if (-INFINITY to 100)

@@ -39,12 +39,12 @@
 	)
 	whitelisted = TRUE
 
-/datum/subsplat/vampire_clan/gargoyle/on_gain(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/gargoyle/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
-
+	sense_the_sin_text = "[vampire.name]'s mind is a fortress with gates open and unbarred. "
 	//H.dna.species.wings_icon = "Gargoyle"
 	//H.dna.species.GiveSpeciesFlight(H)
-	H.physiology.brute_mod = 0.8
+	vampire.physiology.brute_mod = 0.8
 
 	//H.remove_overlay(BODY_ADJ_LAYER)
-	ADD_TRAIT(H, TRAIT_WEAK_TO_DOMINATE, VAMPIRE_CLAN_GARGOYLE)
+	ADD_TRAIT(vampire, TRAIT_WEAK_TO_DOMINATE, VAMPIRE_CLAN_GARGOYLE)

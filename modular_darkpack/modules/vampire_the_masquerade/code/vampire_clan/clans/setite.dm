@@ -14,5 +14,6 @@
 
 /datum/subsplat/vampire_clan/setite/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
+	sense_the_sin_text = "[vampire.name] believes every stain of sin is a virtue."
 	//vampire.add_quirk(/datum/quirk/lightophobia)
 
