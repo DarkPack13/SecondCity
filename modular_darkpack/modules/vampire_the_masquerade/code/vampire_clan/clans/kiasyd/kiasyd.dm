@@ -23,7 +23,7 @@
 
 /datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	sense_the_sin_text = "[vampire.name] is afraid of cold iron."
+	sense_the_sin_text = "[gaining_mob.name] is afraid of cold iron."
 	/*
 	// Kiasyd are made taller and thinner
 	if (gaining_mob.has_quirk(/datum/quirk/dwarf))
