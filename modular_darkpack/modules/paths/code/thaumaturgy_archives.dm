@@ -45,7 +45,7 @@
 // are they antitribu?
 /obj/structure/retail/occult/proc/has_purchase_privileges(datum/job/job)
 	return is_type_in_list(job, list(/datum/job/vampire/regent,
-	/datum/job/vampire/archivist,
+	/datum/job/vampire/apprentice,
 	/datum/job/vampire/hound,
 	/datum/job/vampire/sheriff,
 	/datum/job/vampire/clerk,
@@ -59,15 +59,15 @@
 			return human_user
 	return null
 
-// find all archivists
-/obj/structure/retail/occult/proc/find_archivists()
-	var/list/archivists = list()
+// find all apprentices
+/obj/structure/retail/occult/proc/find_apprentices()
+	var/list/apprentices = list()
 	for(var/mob/living/carbon/human/human_user in GLOB.human_list)
-		if(istype(human_user.mind?.assigned_role, /datum/job/vampire/archivist))
-			archivists += human_user
-	return archivists
+		if(istype(human_user.mind?.assigned_role, /datum/job/vampire/apprentice))
+			apprentices += human_user
+	return apprentices
 
-// Non-Chantry non-Camarilla Tremeres, when spending their research points, give 30% of their purchase to the Regent, or distributed among all archivists
+// Non-Chantry non-Camarilla Tremeres, when spending their research points, give 30% of their purchase to the Regent, or distributed among all apprentices
 /obj/structure/retail/occult/proc/distribute_research_points(amount, purchaser_name, item_name)
 	var/tribute_amount = round(amount * 0.3)
 	var/mob/living/carbon/human/regent = find_regent()
@@ -77,18 +77,18 @@
 		to_chat(regent, span_notice("The Archives channel [tribute_amount] research points to you from [purchaser_name]'s purchase of [item_name]."))
 		return
 
-	var/list/archivists = find_archivists()
-	if(archivists.len > 0)
-		var/points_per_archivist = round(tribute_amount / archivists.len)
-		var/remaining_points = tribute_amount - (points_per_archivist * archivists.len)
+	var/list/apprentices = find_apprentices()
+	if(apprentices.len > 0)
+		var/points_per_apprentice = round(tribute_amount / apprentices.len)
+		var/remaining_points = tribute_amount - (points_per_apprentice * apprentices.len)
 
-		for(var/mob/living/carbon/human/archivist in archivists)
-			var/points_to_give = points_per_archivist
+		for(var/mob/living/carbon/human/apprentice in apprentices)
+			var/points_to_give = points_per_apprentice
 			if(remaining_points > 0)
 				points_to_give++
 				remaining_points--
-			archivist.research_points += points_to_give
-			to_chat(archivist, span_notice("The Archives distribute [points_to_give] research points to you from [purchaser_name]'s purchase of [item_name]."))
+			apprentice.research_points += points_to_give
+			to_chat(apprentice, span_notice("The Archives distribute [points_to_give] research points to you from [purchaser_name]'s purchase of [item_name]."))
 
 /obj/structure/retail/occult/proc/increment_stock(item_path)
 	for(var/datum/data/vending_product/prize in products_list)
@@ -129,7 +129,7 @@
 		if(!tremere_member.mind)
 			continue
 		var/datum/job/role = tremere_member.mind.assigned_role
-		if(is_type_in_list(role, list(/datum/job/vampire/archivist, /datum/job/vampire/gargoyle, /datum/job/vampire/regent)))
+		if(is_type_in_list(role, list(/datum/job/vampire/apprentice, /datum/job/vampire/gargoyle, /datum/job/vampire/regent)))
 			.["tremere_members"] += list(list(
 				"name" = tremere_member.real_name,
 				"role" = role.title,

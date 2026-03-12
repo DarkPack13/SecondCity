@@ -1,11 +1,11 @@
-/datum/job/vampire/squadra
-	title = JOB_LA_SQUADRA
+/datum/job/vampire/soldato
+	title = JOB_SOLDATO
 	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"
-	config_tag = "LA_SQUADRA"
-	outfit = /datum/outfit/job/vampire/squadra
+	config_tag = "SOLDATO"
+	outfit = /datum/outfit/job/vampire/soldato
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_GIOVANNI
 	exp_required_type_department = EXP_TYPE_GIOVANNI
@@ -19,14 +19,18 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 
-/datum/outfit/job/vampire/squadra
-	name = "La Squadra"
-	jobtype = /datum/job/vampire/squadra
+	alt_titles = list(
+		"Soldata"
+	)
+
+/datum/outfit/job/vampire/soldato
+	name = "Soldato"
+	jobtype = /datum/job/vampire/soldato
 
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/suit
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire
-	l_pocket = /obj/item/smartphone/giovanni_squadra
+	l_pocket = /obj/item/smartphone/giovanni_soldato
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/card/credit/rich=1, /obj/item/ritual_tome/necromancy=1)

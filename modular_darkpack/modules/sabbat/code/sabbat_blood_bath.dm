@@ -39,10 +39,10 @@
 		if(user.mind && is_sabbat_priest(user) && has_buckled_mobs())
 			var/mob/living/buckled_mob = buckled_mobs[1]
 			if(buckled_mob.mind)
-				// First, demote any existing Ductus to regular Sabbat Pack
+				// First, demote any existing Ductus to regular True Sabbat
 				for(var/mob/living/carbon/human/H in GLOB.player_list)
 					if(H.mind && is_sabbat_ductus(H))
-						H.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/sabbatpack))
+						H.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/true_sabbat))
 						var/datum/antagonist/temp_antag = new()
 						//temp_antag.remove_antag_hud(ANTAG_HUD_REV, H)
 						//temp_antag.add_antag_hud(ANTAG_HUD_REV, "rev", H)

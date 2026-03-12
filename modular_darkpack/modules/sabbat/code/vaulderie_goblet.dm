@@ -87,7 +87,7 @@
 	if(length(blood_donors) > 1)
 		if(!is_sabbatist(target_mob))
 			to_chat(target_mob, span_cult("You feel your previous blood bonds vanishing as you take part in the Vaulderie and join the Sabbat..."))
-			target_mob.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/sabbatpack))
+			target_mob.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/true_sabbat))
 			//var/datum/antagonist/temp_antag = new()
 			//qdel(temp_antag)
 	else
@@ -97,7 +97,7 @@
 			if(donor.mind && is_sabbatist(donor))
 				if(target_mob.mind && !is_sabbatist(target_mob))
 					to_chat(target_mob, span_warning("You feel a strange connection to [donor] as you drink their blood..."))
-					target_mob.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/sabbatpack))
+					target_mob.mind.set_assigned_role(SSjob.get_job_type(/datum/job/vampire/true_sabbat))
 					//var/datum/antagonist/temp_antag = new()
 					//qdel(temp_antag)
 					antag_transferred = TRUE

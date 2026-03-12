@@ -19,6 +19,10 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 
+	alt_titles = list(
+		"Capa"
+	)
+
 /datum/outfit/job/vampire/capo
 	name = "Capo"
 	jobtype = /datum/job/vampire/capo

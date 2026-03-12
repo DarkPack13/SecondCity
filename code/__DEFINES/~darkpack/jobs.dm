@@ -43,7 +43,7 @@
 #define JOB_SWEEPER "Sweeper"
 
 //Tremere
-#define JOB_CHANTRY_ARCHIVIST "Chantry Archivist"
+#define JOB_CHANTRY_APPRENTICE "Chantry Apprentice"
 #define JOB_CHANTRY_REGENT "Chantry Regent"
 #define JOB_CHANTRY_GARGOYLE "Chantry Gargoyle"
 
@@ -70,13 +70,13 @@
 
 //Giovanni
 #define JOB_CAPO "Capo"
-#define JOB_LA_SQUADRA "La Squadra"
-#define JOB_LA_FAMIGLIA "La Famiglia"
+#define JOB_SOLDATO "Soldato"
+#define JOB_SOCIO "Socio"
 
 //Sabbat
 #define JOB_SABBAT_DUCTUS "Sabbat Ductus"
 #define JOB_SABBAT_PRIEST "Sabbat Priest"
-#define JOB_SABBAT_PACK "Sabbat Pack"
+#define JOB_TRUE_SABBAT "True Sabbat"
 #define JOB_SABBAT_SABBATIST "Sabbatist"
 
 // Axe Gang
@@ -141,7 +141,7 @@
 #define JOB_DISPLAY_ORDER_TAPSTER 28
 
 #define JOB_DISPLAY_ORDER_REGENT 29
-#define JOB_DISPLAY_ORDER_ARCHIVIST 30
+#define JOB_DISPLAY_ORDER_APPRENTICE 30
 #define JOB_DISPLAY_ORDER_GARGOYLE 31
 
 #define JOB_DISPLAY_ORDER_GIOVANNI 32
@@ -156,7 +156,7 @@
 #define JOB_DISPLAY_ORDER_ZADRUGA 39
 
 #define JOB_DISPLAY_ORDER_SABBATDUCTUS 40
-#define JOB_DISPLAY_ORDER_SABBATPACK 41
+#define JOB_DISPLAY_ORDER_TRUE_SABBAT 41
 #define JOB_DISPLAY_ORDER_SABBATPRIEST 42
 
 #define JOB_DISPLAY_ORDER_COUNCIL 43

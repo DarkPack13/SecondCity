@@ -79,8 +79,8 @@ JOB_START_HELPER(law_enforcement/fbi, JOB_FEDERAL_INVESTIGATOR)
 	name = "generic hecata start"
 
 JOB_START_HELPER(hecata/capo, JOB_CAPO)
-JOB_START_HELPER(hecata/famiglia, JOB_LA_SQUADRA)
-JOB_START_HELPER(hecata/squadra, JOB_LA_FAMIGLIA)
+JOB_START_HELPER(hecata/soldato, JOB_SOLDATO)
+JOB_START_HELPER(hecata/socio, JOB_SOCIO)
 
 /* Civilian */
 /obj/effect/landmark/start/darkpack/citizen
@@ -98,7 +98,7 @@ JOB_START_HELPER(citizen/graveyardkeeper, JOB_GRAVEYARD_KEEPER)
 	name = "generic sabbat start"
 
 JOB_START_HELPER(sabbat/ductus, JOB_SABBAT_DUCTUS)
-JOB_START_HELPER(sabbat/pack, JOB_SABBAT_PACK)
+JOB_START_HELPER(sabbat/true_sabbat, JOB_TRUE_SABBAT)
 JOB_START_HELPER(sabbat/priest, JOB_SABBAT_PRIEST)
 JOB_START_HELPER(sabbat/sabbatist, JOB_SABBAT_SABBATIST)
 
@@ -107,7 +107,7 @@ JOB_START_HELPER(sabbat/sabbatist, JOB_SABBAT_SABBATIST)
 	name = "generic chantry start"
 
 JOB_START_HELPER(chantry/regent, JOB_CHANTRY_REGENT)
-JOB_START_HELPER(chantry/archivist, JOB_CHANTRY_ARCHIVIST)
+JOB_START_HELPER(chantry/apprentice, JOB_CHANTRY_APPRENTICE)
 JOB_START_HELPER(chantry/gargoyle, JOB_CHANTRY_GARGOYLE)
 
 /* Forest Wolves */

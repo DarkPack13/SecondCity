@@ -102,7 +102,7 @@
 		, alist(NETWORK_ID = VAMPIRE_LEADER_NETWORK, OUR_ROLE = "Library Manager", USE_JOB_TITLE = FALSE)
 		)
 
-/obj/item/smartphone/archivist
+/obj/item/smartphone/tremere_apprentice
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = TREMERE_NETWORK, OUR_ROLE = "Library Archivist", USE_JOB_TITLE = FALSE)
 		)
@@ -121,12 +121,12 @@
 		, alist(NETWORK_ID = VAMPIRE_LEADER_NETWORK, OUR_ROLE = "Bank Manager", USE_JOB_TITLE = FALSE)
 		)
 
-/obj/item/smartphone/giovanni_squadra
+/obj/item/smartphone/giovanni_soldato
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = GIOVANNI_NETWORK, OUR_ROLE = "Bank Security", USE_JOB_TITLE = FALSE)
 		)
 
-/obj/item/smartphone/giovanni_famiglia
+/obj/item/smartphone/giovanni_socio
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = GIOVANNI_NETWORK, OUR_ROLE = "Bank Employee", USE_JOB_TITLE = FALSE)
 		)

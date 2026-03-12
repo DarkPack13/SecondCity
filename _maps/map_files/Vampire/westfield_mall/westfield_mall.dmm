@@ -2075,7 +2075,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/chantry)
 "ahg" = (
@@ -2407,7 +2407,7 @@
 /area/vtm/interior/police)
 "aif" = (
 /obj/structure/chair/office,
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aig" = (
@@ -2857,7 +2857,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior)
 "ajB" = (
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /obj/structure/chair/wood/darkpack/red,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
@@ -4694,7 +4694,7 @@
 /obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
-/obj/effect/landmark/start/darkpack/hecata/famiglia,
+/obj/effect/landmark/start/darkpack/hecata/soldato,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "apF" = (
@@ -7444,7 +7444,7 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "ayp" = (
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /obj/structure/chair/office/darkpack/red{
 	dir = 8
 	},
@@ -8580,7 +8580,7 @@
 /area/vtm/westfield_mall/interior/theatre)
 "aCw" = (
 /obj/effect/turf_decal/siding/wood/dark,
-/obj/effect/landmark/start/darkpack/hecata/famiglia,
+/obj/effect/landmark/start/darkpack/hecata/soldato,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/bianchiBank)
 "aCx" = (
@@ -12782,7 +12782,7 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/westfield_mall/interior/chantry)
 "aQf" = (
@@ -14463,7 +14463,7 @@
 /area/vtm/interior/police)
 "aVO" = (
 /obj/structure/chair/sofa/corp/right,
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
 "aVP" = (
@@ -14585,7 +14585,7 @@
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sewer)
 "aWl" = (
-/obj/effect/landmark/start/darkpack/chantry/archivist,
+/obj/effect/landmark/start/darkpack/chantry/apprentice,
 /obj/structure/chair/wood/darkpack/red{
 	dir = 1
 	},
@@ -16052,7 +16052,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "cID" = (
-/obj/effect/landmark/start/darkpack/hecata/squadra,
+/obj/effect/landmark/start/darkpack/hecata/socio,
 /turf/open/floor/city/plating_stone,
 /area/vtm/interior/bianchiBank)
 "cLl" = (
@@ -16901,7 +16901,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/shop)
 "iKw" = (
-/obj/effect/landmark/start/darkpack/hecata/famiglia,
+/obj/effect/landmark/start/darkpack/hecata/soldato,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "iRP" = (
@@ -17243,7 +17243,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/janitor)
 "lXz" = (
-/obj/effect/landmark/start/darkpack/hecata/squadra,
+/obj/effect/landmark/start/darkpack/hecata/socio,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "mbi" = (
@@ -17875,7 +17875,7 @@
 /area/vtm/westfield_mall/skatepark)
 "rDj" = (
 /obj/item/kirbyplants/darkpack/random,
-/obj/effect/landmark/start/darkpack/hecata/squadra,
+/obj/effect/landmark/start/darkpack/hecata/socio,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/bianchiBank)
 "rGI" = (
