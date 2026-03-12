@@ -14,9 +14,10 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/toreador
 	female_clothes = /obj/item/clothing/under/vampire/toreador/female
-	clan_keys = /obj/item/vamp/keys/toreador
+	subsplat_keys = /obj/item/vamp/keys/toreador
 
 
 /datum/subsplat/vampire_clan/toreador/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
 	sense_the_sin_text = "[vampire.name] is obsessive to a fault."
+

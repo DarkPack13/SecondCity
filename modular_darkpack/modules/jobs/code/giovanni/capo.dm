@@ -17,7 +17,7 @@
 	description = "Pure blood runs through your veins and, with it, old power. Throughout your long life you have learnt to hold onto two things and never let go: money, and family."
 	minimal_masquerade = 0
 	allowed_splats = list(SPLAT_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
+	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 
 /datum/outfit/job/vampire/capo
 	name = "Capo"

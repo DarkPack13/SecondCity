@@ -10,8 +10,6 @@
 	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
 	mystic.level = level
-	ADD_TRAIT(owner, TRAIT_MYSTICISM_KNOWLEDGE, DISCIPLINE_TRAIT)
-
 
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
@@ -114,7 +112,7 @@
 
 	var/list/active_tentacles = list()
 
-/datum/discipline_power/obtenebration/arms_of_the_abyss/activate(var/atom/target)
+/datum/discipline_power/obtenebration/arms_of_the_abyss/activate(atom/target)
 	. = ..()
 	var/turf/target_turf = get_turf(target)
 	var/dice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT))
@@ -345,7 +343,7 @@
 	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
 
 	var/tentacles = 0
-	for(var/mob/living/basic/abyss_tentacle/T in abyss_power.active_tentacles)
+	for(var/mob/living/basic/abyss_tentacle/T in abyss_power?.active_tentacles)
 		if(T && !QDELETED(T))
 			var/was_passive = (T.aggro_mode == "Passive")
 			T.aggro_mode = select

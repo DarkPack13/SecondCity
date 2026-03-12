@@ -4,10 +4,14 @@
 
 	power_type = /datum/action/cooldown/power/gift
 
+	// Perm is for rolls
+	// Non-perm/ or temp is for expenditure
 	var/uses_rage = FALSE
+	var/permanent_rage = 10
 	var/rage = 0
 	// without a merit kinfolk cannot use gnosis
 	var/uses_gnosis = FALSE
+	var/permanent_gnosis = 10
 	var/gnosis = 0
 
 	var/list/renown = list()
@@ -22,8 +26,8 @@
 		return FALSE
 
 	if(amount > 0)
-		if(rage < MAX_RAGE)
-			rage = min(MAX_RAGE, rage+amount)
+		if(rage < permanent_rage)
+			rage = min(permanent_rage, rage+amount)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', volume = 50))
 			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
@@ -46,8 +50,8 @@
 		return FALSE
 
 	if(amount > 0)
-		if(gnosis < MAX_GNOSIS)
-			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
+		if(gnosis < permanent_gnosis)
+			gnosis = clamp(gnosis + amount, 0, permanent_gnosis)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
@@ -55,7 +59,7 @@
 			return FALSE
 	if(amount < 0)
 		if(gnosis > 0)
-			gnosis = clamp(gnosis + amount, 0, MAX_GNOSIS)
+			gnosis = clamp(gnosis + amount, 0, permanent_gnosis)
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
@@ -173,3 +177,10 @@
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 */
+
+
+/mob/living/carbon/human/splat/kinfolk
+	auto_splats = list(/datum/splat/werewolf/kinfolk)
+
+/mob/living/carbon/human/splat/garou
+	auto_splats = list(/datum/splat/werewolf/shifter/garou)

@@ -15,7 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/suit
 	female_clothes = /obj/item/clothing/under/vampire/suit/female
 
-/datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/vampire, joining_round)
+/datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
-	sense_the_sin_text = "[vampire.name] never considers any action too great for their family."
-	//H.grant_language(/datum/language/italian) // DARKPACK TODO - LANGUAGES
+	sense_the_sin_text = "[joining.name] never considers any action too great for their family."
+	joining.grant_language(/datum/language/italian)

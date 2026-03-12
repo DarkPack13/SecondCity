@@ -13,7 +13,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/toreador/female
 	enlightenment = FALSE
 	whitelisted = TRUE
-	clan_keys = /obj/item/vamp/keys/daughters
+	subsplat_keys = /obj/item/vamp/keys/daughters
 
 /datum/subsplat/vampire_clan/daughters_of_cacophony/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()

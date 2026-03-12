@@ -7,7 +7,10 @@
 	rune_type = /obj/ritual_rune/abyss
 
 /obj/item/ritual_tome/abyss/attack_self(mob/user)
-	if(!HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE))
+	var/mob/living/living_user = astype(user)
+	if(!living_user)
+		return
+	if(!living_user.get_discipline(/datum/discipline/obtenebration))
 		to_chat(user, span_cult("A very dark book in color whose appearance swallows up your vision. You find it impossible to decipher without proper guidance."))
 		return
 	. = ..()
@@ -20,4 +23,9 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/mystome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_MYSTICISM_KNOWLEDGE)
+	var/mob/living/living_user = astype(user)
+	if(living_user?.get_discipline(/datum/discipline/obtenebration))
+		return TRUE
+
+	return FALSE
+
