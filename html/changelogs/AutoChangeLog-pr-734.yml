@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "Fixes iconstate of button managment button"
