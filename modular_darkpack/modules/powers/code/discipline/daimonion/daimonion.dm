@@ -102,18 +102,10 @@
 				return
 			if(VAMPIRE_CLAN_BRUJAH)
 				to_chat(owner, span_notice("[target] is cursed to anger for their shame at carthage.."))
-			if(VAMPIRE_CLAN_NOSFERATU)
-				to_chat(owner, span_notice("[target] is entranced by that which is unknown."))
-				return
-			if(VAMPIRE_CLAN_TREMERE)
-				to_chat(owner, span_notice("[target] has a sense of perfectionism by their own actions."))
-				return
-			if(VAMPIRE_CLAN_BAALI)
-				to_chat(owner, span_notice("[target] is scared of the lord's presence."))
-				return
-			if(VAMPIRE_CLAN_BANU_HAQIM)
-				to_chat(owner, span_notice("[target] sees themselves as absolute judgement."))
-				return
+
+
+
+
 
 			/* DARKPACK TODO: Warrior Salubri / Salubri Warrior
 			if(VAMPIRE_CLAN_SALUBRI_WARRIOR)

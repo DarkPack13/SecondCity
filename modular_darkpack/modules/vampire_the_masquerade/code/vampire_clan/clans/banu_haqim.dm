@@ -15,3 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/bandit
 	female_clothes = /obj/item/clothing/under/vampire/bandit
 	subsplat_keys = /obj/item/vamp/keys/banuhaqim
+
+/datum/subsplat/vampire_clan/banu_haqim/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] sees themselves as absolute judgement."

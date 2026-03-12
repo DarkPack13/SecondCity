@@ -21,3 +21,6 @@
 	default_accessory = "nosferatu_ears"
 	subsplat_keys = /obj/item/vamp/keys/nosferatu
 
+/datum/subsplat/vampire_clan/nosferatu/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] is entranced by that which is unknown."

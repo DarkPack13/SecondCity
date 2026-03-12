@@ -11,3 +11,7 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/tremere
 	female_clothes = /obj/item/clothing/under/vampire/tremere/female
+
+/datum/subsplat/vampire_clan/tremere/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] has a sense of perfectionism by their own actions."

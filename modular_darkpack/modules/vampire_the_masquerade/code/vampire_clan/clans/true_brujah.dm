@@ -17,4 +17,4 @@
 
 /datum/subsplat/vampire_clan/true_brujah/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	sense_the_sin_text = "[target] cant express emotions."
+	sense_the_sin_text = "[gaining_mob.name] cant express emotions."
