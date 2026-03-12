@@ -17,3 +17,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/salubri/female
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
+
+/datum/subsplat/vampire_clan/salubri/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] is ruled by consent."
