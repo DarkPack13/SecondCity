@@ -12,6 +12,7 @@ import { MainPage } from './MainPage';
 import { QuirkPersonalityPage } from './QuirksPage';
 import { SplatsPage } from './SplatsPage'; // DARKPACK EDIT CHANGE - SPLATS
 import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
+import { DisciplinesPage } from './DisciplinesPage'; // DARKPACK EDIT ADD
 
 enum Page {
   Antags,
@@ -21,6 +22,7 @@ enum Page {
   Quirks,
   Loadout,
   Stats, // DARKPACK EDIT ADD
+  Disciplines, // DARKPACK EDIT ADD
 }
 
 type ProfileProps = {
@@ -55,6 +57,12 @@ export function CharacterPreferenceWindow(props) {
   const { act, data } = useBackend<PreferencesMenuData>();
 
   const [currentPage, setCurrentPage] = useState(Page.Main);
+
+  // DARKPACK EDIT START
+  if (currentPage === Page.Disciplines) {
+    return <DisciplinesPage goBack={() => setCurrentPage(Page.Main)} />;
+  }
+  // DARKPACK EDIT END
 
   let pageContents;
 
@@ -128,7 +136,7 @@ export function CharacterPreferenceWindow(props) {
           </Stack.Item>
 
           {
-          // DARKPACK EDIT ADD START - STATS
+          // DARKPACK EDIT ADD START - stats / disciplines
           }
           <Stack.Item grow>
             <PageButton
@@ -139,8 +147,17 @@ export function CharacterPreferenceWindow(props) {
               Stats
             </PageButton>
           </Stack.Item>
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Disciplines}
+              setPage={setCurrentPage}
+            >
+              Disciplines
+            </PageButton>
+          </Stack.Item>
           {
-          // DARKPACK EDIT ADD END
+          // DARKPACK EDIT END
           }
 
           <Stack.Item grow>
