@@ -74,7 +74,6 @@
 	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /atom/movable/screen/alert/status_effect/daimonion_condemnation
-
 	name = "Condemnation"
 	desc = "You've been cursed by infernal magic - permanently weakening your body."
 	icon_state = "crucible"

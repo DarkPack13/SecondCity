@@ -18,7 +18,7 @@
 	desc = "Sense the sins and cruelties of your victim."
 
 	target_type = TARGET_HUMAN
-	range = 12
+	range = 7
 	level = 1
 
 	cancelable = TRUE
@@ -157,7 +157,7 @@
 		return
 	var/datum/splat/vampire/kindred/vampire = iskindred(target)
 	if(vampire)
-		var/datum/vampire_clan/clan = vampire.clan
+		var/datum/subsplat/vampire_clan/clan = vampire.clan
 		if(vampire.get_discipline("Quietus") && clan.id != VAMPIRE_CLAN_BANU_HAQIM)
 			to_chat(owner, span_notice("[target] fears that the fact they stole Banu Haqim's Quietus will be known."))
 		if(vampire.get_discipline("Protean") && clan.id != VAMPIRE_CLAN_GANGREL)
@@ -288,7 +288,7 @@
 /datum/discipline_power/daimonion/psychomania/activate(mob/living/target)
 	. = ..()
 
-	var/datum/splat/werewolf/shifter/garou_splat = isgarou(target)
+	var/datum/splat/werewolf/shifter/garou_splat = isshifter(target)
 	if(garou_splat)
 		switch(garou_splat.tribe.name)
 			if(TRIBE_BLACK_SPIRAL_DANCERS)
