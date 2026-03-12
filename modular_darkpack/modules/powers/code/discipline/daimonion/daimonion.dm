@@ -42,15 +42,15 @@
 /datum/discipline_power/daimonion/sense_the_sin/activate(mob/living/carbon/human/target)
 	. = ..()
 	if(target.st_get_stat(STAT_CHARISMA) <= 2)
-		to_chat(owner, span_notice("Victim is not social or influencing."))
+		to_chat(owner, span_notice("they are not social or influencing."))
 	if(target.st_get_stat(STAT_PERMANENT_WILLPOWER) <= 2)
-		to_chat(owner, span_notice("Victim lacks appropiate willpower."))
+		to_chat(owner, span_notice("they lack appropiate willpower."))
 	if(target.st_get_stat(STAT_STRENGTH) <= 2)
-		to_chat(owner, span_notice("Victim's body is weak and feeble."))
+		to_chat(owner, span_notice("their body is weak and feeble."))
 	if(target.st_get_stat(STAT_DEXTERITY) <= 2)
-		to_chat(owner, span_notice("Victim's lacks coordination."))
+		to_chat(owner, span_notice("they lack coordination."))
 	if(isgarou(target))
-		to_chat(owner, span_notice("Victim's natural banishment is silver..."))
+		to_chat(owner, span_notice("their natural banishment is silver..."))
 	if(iskindred(target))
 		baali_get_moral_failings(target, owner)
 		baali_get_stolen_disciplines(target, owner)
@@ -85,11 +85,6 @@
 	var/datum/splat/vampire/kindred/vampire = iskindred(target)
 	if(vampire)
 		switch(vampire.clan.id)
-			if(VAMPIRE_CLAN_TOREADOR)
-				to_chat(owner, span_notice("[target] is obsessive to a fault."))
-				return
-			if(VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
-				to_chat(owner, span_notice("[target]'s mind is envelopped by nonstopping music."))
 			if(VAMPIRE_CLAN_VENTRUE)
 				to_chat(owner, span_notice("[target] finds no pleasure in poor's blood."))
 				return
@@ -148,8 +143,6 @@
 			if(VAMPIRE_CLAN_SETITE)
 				to_chat(owner, span_notice("[target] believes every stain of sin is a virtue."))
 				return
-			else
-				to_chat(owner, span_notice("[target] has been abandoned by the cold ocean of the night with nobody to keep them afloat."))
 
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_stolen_disciplines(target, owner)

@@ -41,6 +41,9 @@
 	/// If this Clan needs a whitelist to select and play
 	var/whitelisted = FALSE
 
+	/// daimonion 1 text
+	var/sense_the_sin_text
+
 /**
  * Applies Clan-specific effects to the mob
  * gaining this Clan. Will alter the mob's
@@ -57,6 +60,8 @@
  */
 /datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
+
+	sense_the_sin_text = "[vampire.name] has been abandoned by the cold ocean of the night with nobody to keep them afloat."
 
 	// Apply alternative sprites
 	if (alt_sprite)

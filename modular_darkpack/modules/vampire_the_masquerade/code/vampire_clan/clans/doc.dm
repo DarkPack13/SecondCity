@@ -14,3 +14,7 @@
 	enlightenment = FALSE
 	whitelisted = TRUE
 	clan_keys = /obj/item/vamp/keys/daughters
+
+/datum/subsplat/vampire_clan/daughters_of_cacophony/on_gain(mob/living/carbon/human/vampire, joining_round)
+	. = ..()
+	sense_the_sin_text = "[vampire.name]'s mind is envelopped by nonstopping music."
