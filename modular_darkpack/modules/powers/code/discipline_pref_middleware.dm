@@ -163,10 +163,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	if(new_total > point_budget)
 		return FALSE
 
-	if(new_level == 0)
-		preferences.discipline_levels -= discipline
-	else
-		preferences.discipline_levels[discipline] = new_level
+	preferences.discipline_levels[discipline] = new_level
 
 	preferences.save_character()
 	return TRUE
@@ -188,7 +185,13 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	if(!vampire_splat)
 		return
 
-	if(!length(discipline_levels))
+	var/has_any = FALSE // does this hoe even HAVE ANY
+	for(var/disc_path in discipline_levels)
+		if(discipline_levels[disc_path])
+			has_any = TRUE
+			break
+
+	if(!has_any)
 		for(var/datum/action/discipline/disc_action as anything in vampire_splat.powers)
 			var/datum/discipline/disc = disc_action.discipline
 			if(!disc?.selectable)
@@ -204,6 +207,8 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 			if(!discipline)
 				continue
 			var/level = discipline_levels[disc_path]
+			if(!level)
+				continue // prevent removing the disc by stopping here if they put 0 in it
 			var/result = character.change_st_power_level(discipline, level)
 			if(!result)
 				character.give_st_power(discipline, level) // load em up
