@@ -36,6 +36,7 @@
 	data["character_age"] = null
 	data["immortal_age"] = null
 	data["clan_name"] = null
+	data["splat_name"] = null
 	data["flavor_text"] = null
 	data["headshot"] = null
 
@@ -69,6 +70,13 @@
 			data["immortal_age"] = target_prefs.read_preference(/datum/preference/numeric/immortal_age)
 			data["flavor_text"] = target_prefs.read_preference(/datum/preference/text/flavor_text)
 			data["headshot"] = target_prefs.read_preference(/datum/preference/text/headshot)
+
+			var/splat_path = target_prefs.read_preference(/datum/preference/choiced/splats)
+			if(ispath(splat_path, /datum/splat))
+				var/datum/splat/splat_proto = GLOB.splat_prototypes[splat_path]
+				data["splat_name"] = splat_proto?.name
+			else
+				data["splat_name"] = "Human"
 
 			var/list/clan_discs = list()
 			for(var/disc_path in target_prefs.discipline_levels)

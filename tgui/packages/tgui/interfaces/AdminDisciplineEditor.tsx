@@ -38,6 +38,7 @@ type Data = {
   character_age: number | null;
   immortal_age: number | null;
   clan_name: string | null;
+  splat_name: string | null;
   flavor_text: string | null;
   headshot: string | null;
 };
@@ -158,6 +159,7 @@ export function AdminDisciplineEditor() {
     character_age,
     immortal_age,
     clan_name,
+    splat_name,
     flavor_text,
     headshot,
   } = data;
@@ -325,6 +327,16 @@ export function AdminDisciplineEditor() {
                           </Box>
                         </Stack.Item>
                       )}
+                      {splat_name && (
+                        <Stack.Item ml={2}>
+                          <Box color="label" inline>
+                            Splat:
+                          </Box>
+                          <Box inline bold ml={0.5}>
+                            {splat_name}
+                          </Box>
+                        </Stack.Item>
+                      )}
                       {clan_name && (
                         <Stack.Item ml={2}>
                           <Box color="label" inline>
@@ -415,7 +427,12 @@ export function AdminDisciplineEditor() {
               </Section>
             )}
 
-            {selected_slot > 0 && (
+            {selected_slot > 0 && splat_name === 'Human' && (
+              <Box color="label" textAlign="center" mt={2}>
+                This character cannot be assigned disciplines or gifts.
+              </Box>
+            )}
+            {selected_slot > 0 && splat_name !== 'Human' && (
               <Box
                 style={{
                   display: 'flex',

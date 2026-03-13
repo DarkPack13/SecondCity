@@ -83,7 +83,8 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 
 /datum/preference_middleware/disciplines
 	action_delegations = list(
-		"set_discipline_level" = PROC_REF(set_discipline_level)
+		"set_discipline_level" = PROC_REF(set_discipline_level),
+		"clear_discipline_levels" = PROC_REF(clear_discipline_levels)
 	)
 
 /datum/preference_middleware/disciplines/get_ui_data(mob/user)
@@ -98,6 +99,8 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		data["discipline_levels"]["[discipline]"] = level
 		points_spent += level
 
+	var/is_ghoul = ispath(preferences.read_preference(/datum/preference/choiced/splats), /datum/splat/vampire/ghoul)
+	data["is_ghoul"] = is_ghoul
 	data["clan_disciplines"] = list()
 	data["clan_name"] = null
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
@@ -109,8 +112,22 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 				if(ispath(disc_type, /datum/discipline))
 					data["clan_disciplines"] += "[disc_type]"
 
+	var/discipline_count = 0
+	var/list/counted_discs = list()
+	for(var/disc in preferences.discipline_levels)
+		if(preferences.discipline_levels[disc] > 0)
+			discipline_count++
+			counted_discs[disc] = TRUE
+
+	if(is_ghoul && clan_value)
+		var/datum/subsplat/vampire_clan/ghoul_clan_datum = get_vampire_clan(clan_value)
+		if(ghoul_clan_datum)
+			for(var/disc_type in ghoul_clan_datum.clan_disciplines)
+				if(ispath(disc_type, /datum/discipline) && !("[disc_type]" in counted_discs))
+					discipline_count++
+
 	var/immortal_age = preferences.read_preference(/datum/preference/numeric/immortal_age)
-	var/list/budget_info = get_discipline_point_budget(immortal_age)
+	var/list/budget_info = is_ghoul ? get_ghoul_discipline_budget(discipline_count) : get_discipline_point_budget(immortal_age)
 	data["discipline_points_available"] = budget_info["points"]
 	data["discipline_points_spent"] = points_spent
 	data["discipline_tier"] = budget_info["tier"]
@@ -137,6 +154,12 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	return list("points" = 18,
 			"tier" = "Elder",
 			"details" = "As an Elder of your clan, you are a walking history book. You have learned to keep quiet about your true age and origins, and have likely made a coterie of enemies, some alive some dead. Walking through time as the winding centipede, crawling into centuries unfamiliar as you learn and adapt to each new shifting culture. You may have emerged from torpor after a battle you may or may not remember years prior, thrust into a world you don't recognize. You likely possess a reputation for good or for bad, for something you may or may not have done hundreds of years ago. Some may take solace in your company as a familiar face, some may want to turn you to ash for a petty grievance from lifetimes prior. If your true age is discovered, the Camarilla will likely try to employ you as an enforcer due to your strength... or an aspiring lick might come along to diablerize you and take your power for themselves. To have survived this long, you're cautious, old, and cunning. Your routines are important, and you stay out of the petty squables of younger Kindred if you can help it.")
+
+/datum/preference_middleware/disciplines/proc/get_ghoul_discipline_budget(discipline_count = 0)
+	return list(
+		"points" = max(3, discipline_count), // pool expands for each additional discipline they've been taught, but they can never assign more than 1 per
+		"tier" = "Ghoul",
+		"details" = "As a Ghoul, you are the working class of Kindred society. Not quite Kine, not quite Kindred. An outsider in both worlds. You might have a Domitor, or maybe an 'employer', a Kindred who supplies you regular donations of Kindred blood that sustains your long, ageless life and supernatural abilities. Or, more rarely, you might be a freelancing ghoul that takes Kindred blood where you can find it, a practice heavily frowned upon and could get you killed if the Camarilla ever found out. You keep your head down for the most part and do what you're told, because one wrong look and the only price a Kindred might have to pay for ending your life is a small favor to the Kindred that holds your leash. You're able to run errands for your Domitor during the day time, and use basic forms of the supernatural abilities drawn from the blood you drink.. but for as long as you continue to drink, you will continue to inherit their clan curse, too.")
 
 /datum/preference_middleware/disciplines/get_constant_data()
 	var/list/data = list()
@@ -184,6 +207,14 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	if(new_level < 0 || new_level > 5)
 		return FALSE
 
+	if(ispath(preferences.read_preference(/datum/preference/choiced/splats), /datum/splat/vampire/ghoul) && new_level > 1)
+		var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+		var/datum/subsplat/vampire_clan/clan_datum = clan_value ? get_vampire_clan(clan_value) : null
+		if(clan_datum)
+			for(var/disc_type in clan_datum.clan_disciplines)
+				if("[disc_type]" == discipline)
+					return FALSE
+
 	var/immortal_age = preferences.read_preference(/datum/preference/numeric/immortal_age)
 	var/list/budget_info = get_discipline_point_budget(immortal_age)
 	var/point_budget = budget_info["points"]
@@ -199,6 +230,17 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 
 	preferences.discipline_levels[discipline] = new_level
 
+	preferences.save_character()
+	return TRUE
+
+/datum/preference_middleware/disciplines/proc/clear_discipline_levels(list/params, mob/user)
+	SHOULD_NOT_SLEEP(TRUE)
+
+	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
+		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round."))
+		return FALSE
+
+	preferences.discipline_levels = list()
 	preferences.save_character()
 	return TRUE
 

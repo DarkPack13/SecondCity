@@ -233,6 +233,7 @@ export type PreferencesMenuData = {
   discipline_levels: Record<string, number>;
   clan_disciplines: string[];
   clan_name: string | null;
+  is_ghoul: BooleanLike;
   discipline_points_available: number;
   discipline_points_spent: number;
   discipline_tier: string;

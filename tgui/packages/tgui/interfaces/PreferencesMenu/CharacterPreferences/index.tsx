@@ -58,12 +58,6 @@ export function CharacterPreferenceWindow(props) {
 
   const [currentPage, setCurrentPage] = useState(Page.Main);
 
-  // DARKPACK EDIT START
-  if (currentPage === Page.Disciplines) {
-    return <DisciplinesPage goBack={() => setCurrentPage(Page.Main)} />;
-  }
-  // DARKPACK EDIT END
-
   let pageContents;
 
   switch (currentPage) {
@@ -93,9 +87,13 @@ export function CharacterPreferenceWindow(props) {
       pageContents = <LoadoutPage />;
       break;
 
-    // DARKPACK EDIT ADD START - Stats
+    // DARKPACK EDIT ADD START - Stats / Disciplines
     case Page.Stats:
       pageContents = <StatsPage />;
+      break;
+
+    case Page.Disciplines:
+      pageContents = <DisciplinesPage />;
       break;
     // DARKPACK EDIT ADD END
 
