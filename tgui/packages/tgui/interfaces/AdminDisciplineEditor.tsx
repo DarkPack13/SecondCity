@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Icon, Input, Section, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Button, DmIcon, Icon, Input, Section, Stack, Tooltip } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type DisciplineInfo = {
@@ -9,7 +9,8 @@ type DisciplineInfo = {
   desc: string;
   max_level: number;
   rarity: 'rare' | 'common';
-  icon_b64?: string;
+  icon?: string;
+  icon_state?: string;
 };
 
 type DisciplineValidation = {
@@ -31,6 +32,14 @@ type Data = {
   disciplines: Record<string, DisciplineInfo>;
   discipline_validation: DisciplineValidation | null;
   connected_ckeys: string[];
+  invalid_ckeys: string[];
+  trusted_ckeys: string[];
+  character_name: string | null;
+  character_age: number | null;
+  immortal_age: number | null;
+  clan_name: string | null;
+  flavor_text: string | null;
+  headshot: string | null;
 };
 
 type DisciplineCardProps = {
@@ -57,11 +66,13 @@ function DisciplineCard(props: DisciplineCardProps) {
     >
       <Section style={{ height: '100%' }}>
         <Stack vertical align="center">
-          {discipline.icon_b64 && (
+          {discipline.icon && discipline.icon_state && (
             <Stack.Item>
-              <img
-                src={`data:image/png;base64,${discipline.icon_b64}`}
-                style={{ width: '96px', height: '96px', imageRendering: 'pixelated' }}
+              <DmIcon
+                icon={discipline.icon}
+                icon_state={discipline.icon_state}
+                height="96px"
+                width="96px"
               />
             </Stack.Item>
           )}
@@ -140,6 +151,14 @@ export function AdminDisciplineEditor() {
     disciplines,
     discipline_validation,
     connected_ckeys,
+    invalid_ckeys,
+    trusted_ckeys,
+    character_name,
+    character_age,
+    immortal_age,
+    clan_name,
+    flavor_text,
+    headshot,
   } = data;
 
   const [ckeyInput, setCkeyInput] = useState('');
@@ -147,9 +166,11 @@ export function AdminDisciplineEditor() {
   const allDisciplines = disciplines || {};
   const levels = discipline_levels || {};
   const connected = connected_ckeys || [];
+  const invalidSet = new Set(invalid_ckeys || []);
+  const trustedSet = new Set(trusted_ckeys || []);
 
   const handleDotClick = (path: string, position: number, currentLevel: number) => {
-    const newLevel = position <= currentLevel ? position - 1 : position;
+    const newLevel = position <= currentLevel ? (position === 1 ? 0 : position) : position;
     act('set_discipline_level', { discipline: path, level: newLevel });
   };
 
@@ -187,6 +208,12 @@ export function AdminDisciplineEditor() {
                     onClick={() => act('search_ckey', { ckey })}
                     style={{ textAlign: 'left' }}
                   >
+                    {trustedSet.has(ckey) && (
+                      <Icon name="shield-halved" color="green" mr={0.5} />
+                    )}
+                    {invalidSet.has(ckey) && (
+                      <Icon name="triangle-exclamation" color="red" mr={0.5} />
+                    )}
                     {ckey}
                   </Button>
                 </Box>
@@ -256,6 +283,76 @@ export function AdminDisciplineEditor() {
                       </Button>
                     </Stack.Item>
                   ))}
+                </Stack>
+              </Section>
+            )}
+            {selected_slot > 0 && character_name && (
+              <Section>
+                <Stack align="flex-start">
+                  <Stack.Item grow>
+                    <Box bold fontSize={1.2} mb={0.5}>
+                      {character_name}
+                    </Box>
+                    <Stack wrap>
+                      {character_age !== null && (
+                        <Stack.Item>
+                          <Box color="label" inline>
+                            Age:
+                          </Box>
+                          <Box inline bold ml={0.5}>
+                            {character_age}
+                          </Box>
+                        </Stack.Item>
+                      )}
+                      {immortal_age !== null && (
+                        <Stack.Item ml={2}>
+                          <Box color="label" inline>
+                            Immortal Age:
+                          </Box>
+                          <Box inline bold ml={0.5}>
+                            {immortal_age}
+                          </Box>
+                        </Stack.Item>
+                      )}
+                      {clan_name && (
+                        <Stack.Item ml={2}>
+                          <Box color="label" inline>
+                            Clan:
+                          </Box>
+                          <Box inline bold ml={0.5} color="gold">
+                            {clan_name}
+                          </Box>
+                        </Stack.Item>
+                      )}
+                    </Stack>
+                    {flavor_text && (
+                      <Box color="label" mt={0.5} italic>
+                        {flavor_text}
+                      </Box>
+                    )}
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Box
+                      style={{
+                        width: '80px',
+                        height: '80px',
+                        flexShrink: 0,
+                        backgroundColor: 'rgba(0,0,0,0.3)',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {headshot && (
+                        <img
+                          src={headshot}
+                          style={{
+                            width: '80px',
+                            height: '80px',
+                            objectFit: 'cover',
+                          }}
+                        />
+                      )}
+                    </Box>
+                  </Stack.Item>
                 </Stack>
               </Section>
             )}

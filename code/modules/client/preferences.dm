@@ -53,6 +53,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/discipline_levels = list()
 	// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
 	var/list/alt_job_titles = list()
+	/// Whether this player is whitelisted to bypass discipline sheet validation limits
+	var/discipline_trusted = FALSE
 	// DARKPACK EDIT ADD END
 	// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES

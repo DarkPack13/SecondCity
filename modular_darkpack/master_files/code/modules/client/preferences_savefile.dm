@@ -2,6 +2,14 @@
 	// List of known guestbook names we have saved
 	var/list/guestbook_names = list()
 
+/datum/preferences/load_preferences()
+	. = ..()
+	discipline_trusted = savefile.get_entry("discipline_trusted", FALSE) // this could probably be done in load_character but it would be less performant
+
+/datum/preferences/save_preferences()
+	. = ..()
+	savefile.set_entry("discipline_trusted", discipline_trusted) // since existing load/save is per character, save and load it from a level above that
+
 /datum/preferences/load_character(slot)
 	. = ..()
 	var/tree_key = "character[default_slot]"

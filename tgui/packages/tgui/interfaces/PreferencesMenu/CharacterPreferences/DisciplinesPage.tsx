@@ -1,6 +1,6 @@
 // THIS IS A DARKPACK UI FILE
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Collapsible, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Button, Collapsible, DmIcon, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
 
 import { LoadingScreen } from '../../common/LoadingScreen';
 import type { DisciplineInfo, PreferencesMenuData } from '../types';
@@ -13,6 +13,8 @@ type DisciplinesPageProps = {
 
 type DisciplineCardProps = {
   discipline: DisciplineInfo;
+  isClanDiscipline: boolean;
+  clanName: string | null;
   level: number;
   pointsAvailable: number;
   pointsSpent: number;
@@ -20,8 +22,9 @@ type DisciplineCardProps = {
 };
 
 function DisciplineCard(props: DisciplineCardProps) {
-  const { discipline, level, pointsAvailable, pointsSpent, onDotClick } = props;
+  const { discipline, isClanDiscipline, clanName, level, pointsAvailable, pointsSpent, onDotClick } = props;
   const pointsRemaining = pointsAvailable - pointsSpent;
+  const isRare = discipline.rarity === 'rare';
 
   return (
     <Box
@@ -34,27 +37,53 @@ function DisciplineCard(props: DisciplineCardProps) {
     >
       <Section>
         <Stack vertical align="center">
-          {discipline.icon_b64 && (
+          {discipline.icon && discipline.icon_state && (
             <Stack.Item>
-              <Box
-                style={{
-                  display: 'inline-block',
-                  lineHeight: '0',
-                }}
-              >
-                <img
-                  src={`data:image/png;base64,${discipline.icon_b64}`}
-                  style={{ width: '96px', height: '96px', imageRendering: 'pixelated' }}
-                />
-              </Box>
+              <DmIcon
+                icon={discipline.icon}
+                icon_state={discipline.icon_state}
+                height="96px"
+                width="96px"
+              />
             </Stack.Item>
           )}
           <Stack.Item>
-            <Tooltip content={discipline.desc}>
+            <Tooltip
+              content={
+                <>
+                  {isClanDiscipline && clanName && (
+                    <Box color="gold" textAlign="center">
+                      ({clanName} Clan Discipline)
+                    </Box>
+                  )}
+                  <Box color={isRare ? 'red' : 'label'} textAlign="center">
+                    {isRare ? 'Rare Discipline' : 'Common Discipline'}
+                  </Box>
+                  {discipline.desc}
+                </>
+              }
+            >
               <Box bold textAlign="center">
                 {discipline.name}
+                {isClanDiscipline && (
+                  <Box inline color="gold" ml={0.5}>
+                    <Icon name="users-rectangle" />
+                  </Box>
+                )}
               </Box>
             </Tooltip>
+          </Stack.Item>
+          <Stack.Item>
+            <Box textAlign="center" fontSize="0.9em">
+              {isClanDiscipline && (
+                <Box inline color="gold" mr={0.5}>
+                  Clan
+                </Box>
+              )}
+              <Box inline color={isRare ? 'red' : 'label'}>
+                {isRare ? 'Rare' : 'Common'}
+              </Box>
+            </Box>
           </Stack.Item>
           <Stack.Item>
             <Stack justify="center">
@@ -97,6 +126,7 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const disciplineLevels = data.discipline_levels || {};
   const clanDisciplines = new Set(data.clan_disciplines || []);
+  const clanName = data.clan_name ?? null;
   const pointsAvailable = data.discipline_points_available ?? 12;
   const pointsSpent = data.discipline_points_spent ?? 0;
   const tier = data.discipline_tier ?? 'Fledgling';
@@ -105,7 +135,7 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
   const overBudget = pointsSpent > pointsAvailable;
 
   const handleDotClick = (path: string, position: number, currentLevel: number) => {
-    const newLevel = position <= currentLevel ? position - 1 : position;
+    const newLevel = position <= currentLevel ? (position === 1 ? 0 : position) : position;
     act('set_discipline_level', { discipline: path, level: newLevel });
   };
   const disciplineEntries = Object.entries(disciplines).filter(
@@ -190,6 +220,8 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
               <DisciplineCard
                 key={path}
                 discipline={discipline}
+                isClanDiscipline={clanDisciplines.has(path)}
+                clanName={clanName}
                 level={level}
                 pointsAvailable={pointsAvailable}
                 pointsSpent={pointsSpent}

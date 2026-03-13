@@ -73,7 +73,9 @@ export type DisciplineInfo = {
   name: string;
   desc: string;
   max_level: number;
-  icon_b64?: string;
+  rarity: 'rare' | 'common';
+  icon?: string;
+  icon_state?: string;
 };
 // DARKPACK EDIT END - DISCIPLINES
 
@@ -230,6 +232,7 @@ export type PreferencesMenuData = {
   // DARKPACK EDIT ADD START - DISCIPLINES
   discipline_levels: Record<string, number>;
   clan_disciplines: string[];
+  clan_name: string | null;
   discipline_points_available: number;
   discipline_points_spent: number;
   discipline_tier: string;

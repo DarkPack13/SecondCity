@@ -36,11 +36,11 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		if(total > 5)
 			violations += "Total disciplines ([total]) exceeds the limit of 5."
 		if(additional_rare > 2)
-			violations += "Has [additional_rare] rare additional disciplines — maximum for non-trusted players is 2."
+			violations += "Has [additional_rare] rare additional disciplines! The maximum for non-trusted players is 2.\n"
 		else if(additional_rare == 1 && additional > 2)
-			violations += "With 1 rare additional discipline, only 1 common additional is permitted ([additional - 1] common found)."
+			violations += "With 1 rare additional discipline, only 1 common additional is permitted ([additional - 1] common found).\n"
 		else if(additional_rare == 0 && additional > 2)
-			violations += "Has [additional] additional common disciplines — maximum of 2 without a rare."
+			violations += "Has [additional] additional common disciplines! The maximum for non-trusted players is 2 without a rare."
 
 	result["total"] = total
 	result["additional"] = additional
@@ -48,6 +48,38 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	result["valid"] = !length(violations)
 	result["violations"] = violations
 	return result
+
+// for validating a mob's sheet before teaching them a new one
+// validated against the above criteria
+/proc/validate_mob_sheet(mob/living/carbon/human/human, discipline_type_to_add = null)
+	var/datum/splat/vampire/vamp_splat = does_use_disciplines(human)
+	if(!vamp_splat)
+		return null
+
+	var/list/discipline_levels = list()
+	for(var/datum/action/discipline/disc_action as anything in vamp_splat.powers)
+		var/datum/discipline/disc = disc_action.discipline
+		if(!disc?.selectable)
+			continue
+		if(ispath(disc.type, /datum/discipline/path))
+			continue
+		discipline_levels["[disc.type]"] = disc.level
+
+	if(discipline_type_to_add)
+		var/disc_key = "[discipline_type_to_add]"
+		if(!discipline_levels[disc_key])
+			discipline_levels[disc_key] = 1
+
+	var/list/clan_disciplines = list()
+	var/datum/subsplat/vampire_clan/clan = human.get_clan()
+	if(clan)
+		for(var/disc_type in clan.clan_disciplines)
+			if(ispath(disc_type, /datum/discipline))
+				clan_disciplines += "[disc_type]"
+
+	var/is_trusted = human.client?.prefs?.discipline_trusted || FALSE
+
+	return validate_discipline_sheet(discipline_levels, clan_disciplines, is_trusted)
 
 /datum/preference_middleware/disciplines
 	action_delegations = list(
@@ -67,10 +99,12 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		points_spent += level
 
 	data["clan_disciplines"] = list()
+	data["clan_name"] = null
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	if(clan_value)
 		var/datum/subsplat/vampire_clan/clan_datum = get_vampire_clan(clan_value)
 		if(clan_datum)
+			data["clan_name"] = clan_datum.name
 			for(var/disc_type in clan_datum.clan_disciplines)
 				if(ispath(disc_type, /datum/discipline))
 					data["clan_disciplines"] += "[disc_type]"
@@ -122,9 +156,9 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		disc_data["name"] = discipline.name
 		disc_data["desc"] = discipline.desc
 		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
-		var/icon/disc_icon = icon('modular_darkpack/modules/deprecated/icons/ui/actions.dmi', discipline.icon_state)
-		if(disc_icon)
-			disc_data["icon_b64"] = icon2base64(disc_icon)
+		disc_data["icon"] = initial(discipline.icon)
+		disc_data["icon_state"] = discipline.icon_state
+		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
 		data["[discipline_type]"] = disc_data
 		qdel(discipline)
 

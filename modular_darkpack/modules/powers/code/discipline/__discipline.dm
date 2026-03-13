@@ -4,7 +4,9 @@
 	var/name = "Discipline name"
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
-	///Icon for this Discipline as in disciplines.dmi
+	///Icon file for this Discipline
+	var/icon = 'modular_darkpack/modules/deprecated/icons/UI/actions.dmi'
+	///Icon state for this Discipline
 	var/icon_state
 	///If this Discipline is unique to a certain Clan.
 	var/clan_restricted = FALSE
