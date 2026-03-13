@@ -117,6 +117,15 @@
 	if(discipline_type)
 		var/datum/splat/vampire/student_splat = student ? does_use_disciplines(student) : null
 		if(student_splat && !student_splat.get_power(discipline_type))
+			var/list/validation = validate_mob_sheet(student, discipline_type)
+			if(validation && !validation["valid"])
+				owner.balloon_alert(owner, "unable to teach them anything!")
+				var/violations = ""
+				for(var/violation in validation["violations"])
+					violations += violation
+				to_chat(owner, span_warning("[student] is unable to learn [chosen]."))
+				message_admins("[ADMIN_LOOKUPFLW(owner)] tried to teach [chosen] to [ADMIN_LOOKUPFLW(student)], but doing so would've made [key_name(student)]'s sheet invalid due to the following: [violations]")
+				return FALSE
 			student.give_st_power(discipline_type, 1)
 
 	owner.log_message("taught [chosen] to [key_name(student)].", LOG_STATS)
