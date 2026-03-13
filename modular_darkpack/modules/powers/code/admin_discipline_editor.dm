@@ -114,6 +114,7 @@
 				return FALSE
 			search = ckey(search)
 			not_found = !load_target(search)
+			log_admin_private("[key_name_admin(ui.user)] searched for [search] in the discipline UI.")
 			return TRUE
 
 		if("select_slot")
@@ -143,6 +144,8 @@
 			else
 				target_prefs.discipline_levels[disc_path] = new_level
 			target_prefs.save_character()
+			message_admins("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [selected_slot]).")
+			log_admin("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [selected_slot]).")
 			return TRUE
 
 		if("toggle_trusted")
@@ -156,7 +159,7 @@
 				trusted |= target_ckey
 				is_trusted = TRUE
 			save_trusted_list(trusted)
-			message_admins("[ui.user] [is_trusted ? "granted" : "revoked"] trusted discipline whitelist for [target_ckey].")
+			message_admins("[ui.user] [is_trusted ? "granted" : "revoked"] trusted discipline whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
 			return TRUE
 
 /datum/admin_discipline_editor/proc/load_target(search_ckey)

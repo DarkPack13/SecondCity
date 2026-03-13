@@ -137,7 +137,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	SHOULD_NOT_SLEEP(TRUE)
 
 	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
-		to_chat(user, span_warning("Please return to the character setup screen to continue.")) // just in-case
+		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round.")) // so people dont mess up their saves
 		return FALSE
 
 	var/discipline = params["discipline"]
