@@ -327,7 +327,7 @@ export function AdminDisciplineEditor() {
                       level={level}
                       isClanDiscipline={clanSet.has(path)}
                       isAdditional={!clanSet.has(path)}
-                      onDotClick={(position) => handleDotClick(position, level)}
+                      onDotClick={(position) => handleDotClick(path, position, level)}
                     />
                   );
                 })}
