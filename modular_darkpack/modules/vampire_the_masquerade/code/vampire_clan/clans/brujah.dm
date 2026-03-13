@@ -15,3 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/brujah
 	female_clothes = /obj/item/clothing/under/vampire/brujah/female
 	subsplat_keys = /obj/item/vamp/keys/brujah
+
+/datum/subsplat/vampire_clan/brujah/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] is cursed to anger for their shame at carthage.."

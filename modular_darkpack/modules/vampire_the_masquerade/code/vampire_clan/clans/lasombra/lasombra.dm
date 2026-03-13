@@ -41,3 +41,7 @@
 		else
 			gibberish_message += pick(zalgo_letters) // Replace with random gibberish letters
 	return gibberish_message
+
+/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] fears change itself evermore."

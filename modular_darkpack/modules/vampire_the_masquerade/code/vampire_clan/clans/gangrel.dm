@@ -14,6 +14,10 @@
 	accessories = list("beast_legs", "beast_tail", "beast_tail_and_legs", "none")
 	accessories_layers = list("beast_legs" = BODY_ADJ_LAYER, "beast_tail" = BODY_ADJ_LAYER, "beast_tail_and_legs" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 
+/datum/subsplat/vampire_clan/gangrel/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] is unable to control their impulses."
+
 /datum/subsplat/vampire_clan/gangrel/city
 	name = "City Gangrel"
 	id = VAMPIRE_CLAN_CITY_GANGREL

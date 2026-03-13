@@ -15,3 +15,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/ventrue
 	female_clothes = /obj/item/clothing/under/vampire/ventrue/female
 	subsplat_keys = /obj/item/vamp/keys/ventrue
+
+/datum/subsplat/vampire_clan/ventrue/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	sense_the_sin_text = "[gaining_mob.name] finds no pleasure in poor's blood."

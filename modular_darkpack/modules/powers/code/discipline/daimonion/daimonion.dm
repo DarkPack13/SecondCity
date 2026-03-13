@@ -52,7 +52,6 @@
 	if(isgarou(target))
 		to_chat(owner, span_notice("their natural banishment is silver..."))
 	if(iskindred(target))
-		baali_get_moral_failings(target, owner)
 		baali_get_stolen_disciplines(target, owner)
 	/* DARKPACK TODO - bloodbonds
 	if(isghoul(target))
@@ -78,33 +77,6 @@
 	*/
 	if(!iskindred(target) && !isghoul(target) && !isshifter(target) /*&& !iscathayan(target)*/)
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
-
-/datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_moral_failings(target, owner)
-	if(!owner || !target)
-		return
-	var/datum/splat/vampire/kindred/vampire = iskindred(target)
-	if(vampire)
-		switch(vampire.clan.id)
-			if(VAMPIRE_CLAN_VENTRUE)
-				to_chat(owner, span_notice("[target] finds no pleasure in poor's blood."))
-				return
-			if(VAMPIRE_CLAN_LASOMBRA)
-				to_chat(owner, span_notice("[target] fears change itself evermore."))
-				return
-			if(VAMPIRE_CLAN_TZIMISCE)
-				to_chat(owner, span_notice("[target] is consumed by a singular desire."))
-				return
-			if(VAMPIRE_CLAN_GANGREL)
-				to_chat(owner, span_notice("[target] is unable to control their impulses."))
-				return
-			if(VAMPIRE_CLAN_MALKAVIAN)
-				to_chat(owner, span_notice("[target] frightens people near them."))
-				return
-			if(VAMPIRE_CLAN_BRUJAH)
-				to_chat(owner, span_notice("[target] is cursed to anger for their shame at carthage.."))
-
-
-
 
 
 			/* DARKPACK TODO: Warrior Salubri / Salubri Warrior

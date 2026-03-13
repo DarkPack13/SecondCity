@@ -36,7 +36,7 @@
 
 /datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
-
+	sense_the_sin_text = "[joining.name] is consumed by a singular desire."
 	var/obj/item/ground_heir/heirloom = new(get_turf(joining))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
