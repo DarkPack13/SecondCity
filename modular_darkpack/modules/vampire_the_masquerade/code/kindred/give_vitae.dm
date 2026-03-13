@@ -127,6 +127,9 @@
 				message_admins("[ADMIN_LOOKUPFLW(owner)] tried to teach [chosen] to [ADMIN_LOOKUPFLW(student)], but doing so would've made [key_name(student)]'s sheet invalid due to the following: [violations]")
 				return FALSE
 			student.give_st_power(discipline_type, 1)
+			if(student.client?.prefs)
+				student.client.prefs.discipline_levels["[discipline_type]"] = 1
+				student.client.prefs.save_character()
 
 	owner.log_message("taught [chosen] to [key_name(student)].", LOG_STATS)
 	message_admins("[ADMIN_LOOKUPFLW(owner)] taught [chosen] to [ADMIN_LOOKUPFLW(student)].")
