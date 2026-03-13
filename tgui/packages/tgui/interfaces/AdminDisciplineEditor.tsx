@@ -26,7 +26,7 @@ type Data = {
   selected_slot: number;
   not_found: boolean;
   is_trusted: boolean;
-  character_slots: string[];
+  character_slots: { slot: number; name: string }[];
   discipline_levels: Record<string, number>;
   clan_disciplines: string[];
   disciplines: Record<string, DisciplineInfo>;
@@ -47,12 +47,13 @@ type DisciplineCardProps = {
   discipline: DisciplineInfo;
   level: number;
   isClanDiscipline: boolean;
+  clanName: string | null;
   isAdditional: boolean;
   onDotClick: (position: number) => void;
 };
 
 function DisciplineCard(props: DisciplineCardProps) {
-  const { discipline, level, isClanDiscipline, isAdditional, onDotClick } = props;
+  const { discipline, level, isClanDiscipline, clanName, isAdditional, onDotClick } = props;
   const isRare = discipline.rarity === 'rare';
 
   return (
@@ -80,9 +81,9 @@ function DisciplineCard(props: DisciplineCardProps) {
             <Tooltip
               content={
                 <>
-                  {isClanDiscipline && (
+                  {isClanDiscipline && clanName && (
                     <Box color="gold" textAlign="center">
-                      (Clan Discipline)
+                      ({clanName} Clan Discipline)
                     </Box>
                   )}
                   <Box color={isRare ? 'red' : 'label'} textAlign="center">
@@ -273,13 +274,13 @@ export function AdminDisciplineEditor() {
                 }
               >
                 <Stack>
-                  {character_slots.map((name, i) => (
-                    <Stack.Item key={i}>
+                  {character_slots.map(({ slot, name }) => (
+                    <Stack.Item key={slot}>
                       <Button
-                        selected={selected_slot === i + 1}
-                        onClick={() => act('select_slot', { slot: i + 1 })}
+                        selected={selected_slot === slot}
+                        onClick={() => act('select_slot', { slot })}
                       >
-                        {name || `Slot ${i + 1}`}
+                        {name}
                       </Button>
                     </Stack.Item>
                   ))}
@@ -297,7 +298,7 @@ export function AdminDisciplineEditor() {
                       {character_age !== null && (
                         <Stack.Item>
                           <Box color="label" inline>
-                            Age:
+                            Living Age:
                           </Box>
                           <Box inline bold ml={0.5}>
                             {character_age}
@@ -314,6 +315,16 @@ export function AdminDisciplineEditor() {
                           </Box>
                         </Stack.Item>
                       )}
+                      {character_age !== null && immortal_age !== null && (
+                        <Stack.Item ml={2}>
+                          <Box color="label" inline>
+                            Chronological Age:
+                          </Box>
+                          <Box inline bold ml={0.5}>
+                            {character_age + immortal_age}
+                          </Box>
+                        </Stack.Item>
+                      )}
                       {clan_name && (
                         <Stack.Item ml={2}>
                           <Box color="label" inline>
@@ -326,7 +337,7 @@ export function AdminDisciplineEditor() {
                       )}
                     </Stack>
                     {flavor_text && (
-                      <Box color="label" mt={0.5} italic>
+                      <Box color="label" mt={3} italic>
                         {flavor_text}
                       </Box>
                     )}
@@ -369,13 +380,13 @@ export function AdminDisciplineEditor() {
                   </Stack.Item>
                   <Stack.Item ml={2}>
                     <Box color="label" inline>
-                      Non-Clan Rares:
+                      Non-Clan Rares in Use:
                     </Box>
                     <Box
                       inline
                       bold
                       ml={0.5}
-                      color={discipline_validation.additional_rare > 2 ? 'red' : 'pink'}
+                      color={discipline_validation.additional_rare >= 2 ? 'red' : 'white'}
                     >
                       {discipline_validation.additional_rare}
                     </Box>
@@ -423,6 +434,7 @@ export function AdminDisciplineEditor() {
                       discipline={discipline}
                       level={level}
                       isClanDiscipline={clanSet.has(path)}
+                      clanName={clan_name}
                       isAdditional={!clanSet.has(path)}
                       onDotClick={(position) => handleDotClick(path, position, level)}
                     />
