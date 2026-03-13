@@ -14,6 +14,8 @@
 	var/action_type = /datum/action/discipline
 	///If this Discipline can be selected at all, or has special handling.
 	var/selectable = TRUE
+	///Override for the number of selectable levels shown in UI. 0 = derive from all_powers length. this exists because of Thaumaturgy.
+	var/max_selectable_level = 0
 
 	/* BACKEND */
 	///What rank, or how many dots the caster has in this Discipline.

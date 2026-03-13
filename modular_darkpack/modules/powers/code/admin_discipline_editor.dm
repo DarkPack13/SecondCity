@@ -36,6 +36,14 @@
 	data["disciplines"] = build_discipline_cache()
 	data["discipline_validation"] = null
 
+	var/list/connected = list()
+	for(var/ckey in GLOB.directory)
+		var/client/C = GLOB.directory[ckey]
+		if(!C || !C.mob)
+			continue
+		connected += ckey
+	data["connected_ckeys"] = connected
+
 	if(target_prefs)
 		var/list/profiles = target_prefs.create_character_profiles()
 		for(var/i in 1 to target_prefs.max_save_slots)
@@ -76,7 +84,7 @@
 		var/list/disc_data = list()
 		disc_data["name"] = discipline.name
 		disc_data["desc"] = discipline.desc
-		disc_data["max_level"] = length(discipline.all_powers)
+		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
 		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
 		var/icon/disc_icon = icon('modular_darkpack/modules/deprecated/icons/ui/actions.dmi', discipline.icon_state)
 		if(disc_icon)
