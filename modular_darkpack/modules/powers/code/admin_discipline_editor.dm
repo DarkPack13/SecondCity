@@ -60,7 +60,8 @@
 	if(target_prefs)
 		var/list/profiles = target_prefs.create_character_profiles()
 		for(var/i in 1 to target_prefs.max_save_slots)
-			data["character_slots"] += profiles[i] || "Slot [i]"
+			if(profiles[i])
+				data["character_slots"] += list(list("slot" = i, "name" = profiles[i]))
 
 		if(selected_slot > 0)
 			data["character_name"] = target_prefs.read_preference(/datum/preference/name/real_name)
@@ -155,8 +156,9 @@
 			else
 				target_prefs.discipline_levels[disc_path] = new_level
 			target_prefs.save_character()
-			message_admins("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [selected_slot]).")
-			log_admin("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [selected_slot]).")
+			var/character_name = target_prefs.read_preference(/datum/preference/name/real_name)
+			message_admins("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [character_name]).")
+			log_admin("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [character_name]).")
 			return TRUE
 
 		if("toggle_trusted")
