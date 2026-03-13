@@ -121,7 +121,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		var/list/disc_data = list()
 		disc_data["name"] = discipline.name
 		disc_data["desc"] = discipline.desc
-		disc_data["max_level"] = length(discipline.all_powers)
+		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
 		var/icon/disc_icon = icon('modular_darkpack/modules/deprecated/icons/ui/actions.dmi', discipline.icon_state)
 		if(disc_icon)
 			disc_data["icon_b64"] = icon2base64(disc_icon)
@@ -160,7 +160,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		current_total += preferences.discipline_levels[disc]
 	var/new_total = current_total - old_level + new_level
 
-	if(new_total > point_budget)
+	if(new_level > old_level && new_total > point_budget) // you can go down, but not up, if you're overbudget. for when adminbus gives you more than you can chew
 		return FALSE
 
 	preferences.discipline_levels[discipline] = new_level
