@@ -1,5 +1,3 @@
-#define TRUSTED_DISC_PATH "data/discipline_trusted.json"
-
 /datum/admin_discipline_editor
 	var/target_ckey = ""
 	var/selected_slot = 0
@@ -7,7 +5,6 @@
 	var/loaded_offline = FALSE
 	var/not_found = FALSE
 	var/list/discipline_cache = null
-	var/is_trusted = FALSE
 
 /datum/admin_discipline_editor/Destroy()
 	if(loaded_offline)
@@ -29,20 +26,36 @@
 	data["target_ckey"] = target_ckey
 	data["selected_slot"] = selected_slot
 	data["not_found"] = not_found
-	data["is_trusted"] = is_trusted
+	data["is_trusted"] = target_prefs?.discipline_trusted || FALSE
 	data["character_slots"] = list()
 	data["discipline_levels"] = list()
 	data["clan_disciplines"] = list()
 	data["disciplines"] = build_discipline_cache()
 	data["discipline_validation"] = null
+	data["character_name"] = null
+	data["character_age"] = null
+	data["immortal_age"] = null
+	data["clan_name"] = null
+	data["flavor_text"] = null
+	data["headshot"] = null
 
 	var/list/connected = list()
+	var/list/invalid_ckeys = list()
+	var/list/trusted_ckeys = list()
 	for(var/ckey in GLOB.directory)
 		var/client/C = GLOB.directory[ckey]
 		if(!C || !C.mob)
 			continue
 		connected += ckey
+		if(C.prefs?.discipline_trusted)
+			trusted_ckeys += ckey
+		if(ishuman(C.mob))
+			var/list/validation = validate_mob_sheet(C.mob)
+			if(validation && !validation["valid"])
+				invalid_ckeys += ckey
 	data["connected_ckeys"] = connected
+	data["invalid_ckeys"] = invalid_ckeys
+	data["trusted_ckeys"] = trusted_ckeys
 
 	if(target_prefs)
 		var/list/profiles = target_prefs.create_character_profiles()
@@ -50,6 +63,12 @@
 			data["character_slots"] += profiles[i] || "Slot [i]"
 
 		if(selected_slot > 0)
+			data["character_name"] = target_prefs.read_preference(/datum/preference/name/real_name)
+			data["character_age"] = target_prefs.read_preference(/datum/preference/numeric/age)
+			data["immortal_age"] = target_prefs.read_preference(/datum/preference/numeric/immortal_age)
+			data["flavor_text"] = target_prefs.read_preference(/datum/preference/text/flavor_text)
+			data["headshot"] = target_prefs.read_preference(/datum/preference/text/headshot)
+
 			var/list/clan_discs = list()
 			for(var/disc_path in target_prefs.discipline_levels)
 				data["discipline_levels"]["[disc_path]"] = target_prefs.discipline_levels[disc_path]
@@ -58,13 +77,14 @@
 			if(clan_value)
 				var/datum/subsplat/vampire_clan/clan_datum = get_vampire_clan(clan_value)
 				if(clan_datum)
+					data["clan_name"] = clan_datum.name
 					for(var/disc_type in clan_datum.clan_disciplines)
 						if(ispath(disc_type, /datum/discipline))
 							var/disc_str = "[disc_type]"
 							data["clan_disciplines"] += disc_str
 							clan_discs += disc_str
 
-			data["discipline_validation"] = validate_discipline_sheet(target_prefs.discipline_levels, clan_discs, is_trusted)
+			data["discipline_validation"] = validate_discipline_sheet(target_prefs.discipline_levels, clan_discs, target_prefs.discipline_trusted)
 
 	return data
 
@@ -86,21 +106,12 @@
 		disc_data["desc"] = discipline.desc
 		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
 		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
-		var/icon/disc_icon = icon('modular_darkpack/modules/deprecated/icons/ui/actions.dmi', discipline.icon_state)
-		if(disc_icon)
-			disc_data["icon_b64"] = icon2base64(disc_icon)
+		disc_data["icon"] = initial(discipline.icon)
+		disc_data["icon_state"] = discipline.icon_state
 		discipline_cache["[discipline_type]"] = disc_data
 		qdel(discipline)
 
 	return discipline_cache
-
-/datum/admin_discipline_editor/proc/load_trusted_list()
-	if(!fexists(TRUSTED_DISC_PATH))
-		return list()
-	return json_decode(file2text(TRUSTED_DISC_PATH)) || list()
-
-/datum/admin_discipline_editor/proc/save_trusted_list(list/trusted)
-	rustg_file_write(json_encode(trusted), TRUSTED_DISC_PATH)
 
 /datum/admin_discipline_editor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -149,17 +160,11 @@
 			return TRUE
 
 		if("toggle_trusted")
-			if(!target_ckey)
+			if(!target_prefs)
 				return FALSE
-			var/list/trusted = load_trusted_list()
-			if(is_trusted)
-				trusted -= target_ckey
-				is_trusted = FALSE
-			else
-				trusted |= target_ckey
-				is_trusted = TRUE
-			save_trusted_list(trusted)
-			message_admins("[ui.user] [is_trusted ? "granted" : "revoked"] trusted discipline whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
+			target_prefs.discipline_trusted = !target_prefs.discipline_trusted
+			target_prefs.save_preferences()
+			message_admins("[ui.user] [target_prefs.discipline_trusted ? "granted" : "revoked"] trusted discipline whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
 			return TRUE
 
 /datum/admin_discipline_editor/proc/load_target(search_ckey)
@@ -170,9 +175,6 @@
 
 	target_ckey = search_ckey
 	selected_slot = 0
-
-	var/list/trusted = load_trusted_list()
-	is_trusted = (search_ckey in trusted)
 
 	var/client/found_client = GLOB.directory[search_ckey]
 	if(found_client?.prefs)
@@ -194,7 +196,7 @@
 	selected_slot = 1
 	return TRUE
 
-ADMIN_VERB(teach_discipline, R_ADMIN, "Discipline Menu", "Edit a player's disciplines.", ADMIN_CATEGORY_SECOND_CITY)
+ADMIN_VERB(discipline_menu, R_ADMIN, "Discipline Menu", "Edit a player's disciplines.", ADMIN_CATEGORY_SECOND_CITY)
 	var/datum/admin_discipline_editor/editor = new
 	editor.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Discipline Menu")
