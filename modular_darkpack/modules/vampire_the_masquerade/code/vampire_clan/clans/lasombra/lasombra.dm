@@ -16,13 +16,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/emo
 	female_clothes = /obj/item/clothing/under/vampire/business
 	enlightenment = TRUE
-	clan_keys = /obj/item/vamp/keys/lasombra
-
-/datum/subsplat/vampire_clan/lasombra/on_gain(mob/living/carbon/human/H)
-	. = ..()
-
-	H.vis_flags |= VIS_HIDE
-	H.add_faction(VAMPIRE_CLAN_LASOMBRA)
+	subsplat_keys = /obj/item/vamp/keys/lasombra
 
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)

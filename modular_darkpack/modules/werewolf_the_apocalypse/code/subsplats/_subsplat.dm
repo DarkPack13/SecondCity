@@ -9,8 +9,8 @@
 	/// All gifts avalible via this subsplat.
 	var/list/gifts_provided = list()
 
-/datum/subsplat/werewolf/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/werewolf/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	// Placeholder!
 	for(var/gift in gifts_provided)
-		gaining.add_power(gift)
+		gaining_splat.add_power(gift)

@@ -7,7 +7,7 @@
 	button_icon_state = "vitae"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
-	ranged_mousepointer = 'icons/effects/mouse_pointers/discipline.dmi'
+	ranged_mousepointer = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
 	cooldown_time = 10 SECONDS
 	vampiric = TRUE
 
@@ -26,7 +26,7 @@
 	StartCooldown()
 	unset_click_ability(owner, refund_cooldown = FALSE)
 	owner.visible_message(span_danger("[owner] starts pouring blood into \the [target_atom][ismob(target_atom) ? "'s mouth" : null]!"), span_info("You start pouring blood into \the [target_atom][ismob(target_atom) ? "'s mouth" : null]."))
-	if(!do_after(owner, delay = charge_duration, target = target_atom))
+	if(!do_after(owner, delay = charge_duration, target = target_atom, icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/vitae.dmi', iconstate = "vitae"))
 		return FALSE
 
 	var/mob/living/carbon/carbon_owner = owner
@@ -38,6 +38,6 @@
 	owner.log_message("poured their vitae into [key_name(target_atom)].", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(carbon_owner)] poured their vitae into [ADMIN_LOOKUPFLW(target_atom)].")
 	carbon_owner.adjust_blood_pool(-1)
-	target_atom.reagents.add_reagent(/datum/reagent/blood/vitae, 100)
+	target_atom.reagents.add_reagent(/datum/reagent/blood/vitae, 100, list("donor" = WEAKREF(owner)))
 	target_atom.reagents.expose(target_atom, INGEST, 1, FALSE)
 	return TRUE

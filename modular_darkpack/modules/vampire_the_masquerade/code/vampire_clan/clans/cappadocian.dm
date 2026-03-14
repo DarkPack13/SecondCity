@@ -14,9 +14,9 @@
 
 	whitelisted = TRUE
 
-/datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/H, joining_round)
+/datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	apply_rot_curse(H, H.chronological_age)
+	apply_rot_curse(gaining_mob, gaining_mob.chronological_age)
 
 /datum/subsplat/vampire_clan/cappadocian/proc/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
 	switch(chronological_age)

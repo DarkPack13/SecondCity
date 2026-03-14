@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - balance: "Removed shroudsights night vision"
-  - balance: "Shroud sight requires a perception + awareness roll"

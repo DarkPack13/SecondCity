@@ -26,6 +26,7 @@
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
 	maxbloodpool = 2
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 2)
 
 /mob/living/basic/szlachta/fister
