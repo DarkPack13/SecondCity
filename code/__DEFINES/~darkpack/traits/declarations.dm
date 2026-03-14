@@ -139,7 +139,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
-
+/// If the mob can't have surgery done on it. See: Blood form Tzimisce
+#define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"

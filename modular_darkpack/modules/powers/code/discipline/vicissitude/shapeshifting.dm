@@ -13,39 +13,10 @@
 	var/list/choices = CHOICE_OPTIONS
 	/// The range of this action.
 	var/range = 1
-	/// list of datum/changeling_profile
-	var/list/stored_profiles = list()
-	/// The original profile of this vicissitude holder.
-	var/datum/changeling_profile/first_profile = null
-	///	Keeps track of the currently selected profile.
-	var/datum/changeling_profile/current_profile
-	/// Satic list of what each slot associated with (in regard to changeling flesh items).
-	var/static/list/slot2type = list(
-		"head" = /obj/item/clothing/head/changeling,
-		"wear_mask" = /obj/item/clothing/mask/changeling,
-		"wear_neck" = /obj/item/changeling,
-		"back" = /obj/item/changeling,
-		"wear_suit" = /obj/item/clothing/suit/changeling,
-		"w_uniform" = /obj/item/clothing/under/changeling,
-		"shoes" = /obj/item/clothing/shoes/changeling,
-		"belt" = /obj/item/changeling,
-		"gloves" = /obj/item/clothing/gloves/changeling,
-		"glasses" = /obj/item/clothing/glasses/changeling,
-		"ears" = /obj/item/changeling,
-		"wear_id" = /obj/item/changeling/id,
-		"s_store" = /obj/item/changeling,
-	)
-	/// How many different appearances we can choose from.
-	var/max_appearances = 6
 
 /datum/action/cooldown/mob_cooldown/shapeshift/New(Target, original)
 	. = ..()
 	update_choices()
-
-/datum/action/cooldown/mob_cooldown/shapeshift/Destroy()
-	first_profile = null
-	current_profile = null
-	return ..()
 
 /datum/action/cooldown/mob_cooldown/shapeshift/proc/update_choices()
 	for(var/i in choices)
@@ -194,7 +165,7 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/shapeshift/proc/change_name(mob/living/carbon/human/target)
-	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.name, MAX_NAME_LEN))
+	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN))
 	if(!newname || newname == target.real_name)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))

@@ -15,7 +15,7 @@
 	accessories = list("spines", "spines_slim", "animal_skull", "none")
 	accessories_layers = list("spines" = BODY_ADJ_LAYER, "spines_slim" = BODY_ADJ_LAYER, "animal_skull" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 
-/datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
 	var/obj/item/ground_heir/heirloom = new(get_turf(joining))

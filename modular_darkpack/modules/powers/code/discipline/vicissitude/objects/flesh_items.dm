@@ -1,44 +1,9 @@
-/datum/material/vicissitude_flesh
-	name = "flesh"
-	desc = "What remains of a person, when you really get down to it."
-	color = "#d8965b"
-	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
-	sheet_type = /obj/item/stack/sheet/human_flesh
-	value_per_unit = 0.05
-	beauty_modifier = -0.3
-	strength_modifier = 0.7
-	item_sound_override = 'sound/effects/meatslap.ogg'
-	turf_sound_override = FOOTSTEP_MEAT
-
-/obj/item/stack/sheet/human_flesh
-	name = "human flesh"
-	desc = "What the fuck..."
-	singular_name = "human flesh"
-	icon = 'modular_darkpack/modules/powers/icons/flesh_stack.dmi'
-	icon_state = "human"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/powers/icons/flesh_onfloor.dmi')
-	mats_per_unit = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT)
-	merge_type = /obj/item/stack/sheet/human_flesh
-	max_amount = 50
-
-/obj/item/stack/sheet/human_flesh/fifty
-	amount = 50
-
-/obj/item/stack/sheet/human_flesh/twenty
-	amount = 20
-
-/obj/item/stack/sheet/human_flesh/ten
-	amount = 10
-
-/obj/item/stack/sheet/human_flesh/five
-	amount = 5
-
 /obj/item/autosurgeon/vicissitude
 	name = "little brother"
 	desc = "A talented fleshcrafted creature that can insert an implant or organ into its master without the hassle of extensive surgery. \
 		Its mouth is eagerly awaiting implants or organs. However, it's quite greedy, so a screwdriver must be used to pry away accidentally added items."
 	icon = 'modular_darkpack/modules/powers/icons/flesh_items.dmi'
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 10, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 6)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 6)
 
 /obj/structure/fleshwall
 	name = "flesh wall"
@@ -50,7 +15,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 2)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/tzijelly
 	name = "jelly thing"
@@ -62,7 +27,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 30)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 30)
 
 /obj/item/ground_heir
 	name = "bag of ground"
@@ -77,7 +42,7 @@
 	name = "gut floor"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "tzimisce_floor"
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT)
 
 /obj/effect/decal/gut_floor/Initialize(mapload)
 	. = ..()
@@ -95,7 +60,7 @@
 /obj/structure/chair/old/tzimisce
 	icon = 'modular_darkpack/modules/powers/icons/flesh_objects.dmi'
 	icon_state = "tzimisce_stool"
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 5)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/guts
 	name = "guts"
@@ -117,7 +82,7 @@
 	name = "fleshcoat"
 	desc = "HUMAN LEATHER JACKET."
 	icon_state = "trench_tzi"
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 50)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 50)
 	armor_type = /datum/armor/fleshcoat
 	clothing_traits = list(TRAIT_UNMASQUERADE)
 
@@ -134,10 +99,10 @@
 	name = "secondary adrenal gland"
 	desc = "This organ will secrete a potent cocktail of stimulants when stunned, reducing downtime. Installs to the head."
 	icon_state = "tongueayylmao"
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 25)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 25)
 
 /obj/item/organ/eyes/night_vision/tzimisce
 	low_light_cutoff = list(15, 6, 8)
 	medium_light_cutoff = list(35, 20, 25)
 	high_light_cutoff = list(50, 40, 40)
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 15)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 15)

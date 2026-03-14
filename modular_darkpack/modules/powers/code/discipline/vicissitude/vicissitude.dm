@@ -116,7 +116,7 @@
 		l_arm?.drop_limb()
 		r_leg?.drop_limb()
 		l_leg?.drop_limb()
-		new /obj/item/stack/sheet/human_flesh/twenty(target.loc)
+		new /obj/item/stack/sheet/meat/twenty(target.loc)
 		new /obj/item/guts(target.loc)
 		new /obj/item/spine(target.loc)
 		qdel(target)
@@ -182,13 +182,10 @@
 	. = ..()
 	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 
-/datum/discipline_power/vicissitude/bloodform/pre_deactivation_checks(atom/target)
+/datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
 	owner.do_jitter_animation(1 TURNS)
 	if(!do_after(owner, 1 TURNS, owner))
 		return FALSE
-	return TRUE
-
-/datum/discipline_power/vicissitude/bloodform/deactivate()
-	. = ..()
 	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
+	return TRUE

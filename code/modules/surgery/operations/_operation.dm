@@ -492,6 +492,11 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	if(!(operation_flags & OPERATION_SELF_OPERABLE) && patient == surgeon && !HAS_TRAIT(surgeon, TRAIT_SELF_SURGERY))
 		return FALSE
 
+	// DARKPACK EDIT START
+	if(HAS_TRAIT(patient, TRAIT_SURGERY_INAPPLICABLE))
+		return FALSE
+	// DARKPACK EDIT END
+
 	return snowflake_check_availability(operating_on, surgeon, tool, operated_zone)
 
 /**

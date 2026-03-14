@@ -6,7 +6,7 @@
 	icon_living = "biter"
 	icon_dead = "biter_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	butcher_results = list(/obj/item/stack/sheet/human_flesh = 1)
+	butcher_results = list(/obj/item/stack/sheet/meat = 1)
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
 	response_disarm_continuous = "gently pushes aside"
@@ -27,7 +27,7 @@
 	bloodpool = 2
 	maxbloodpool = 2
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 2)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 
 /mob/living/basic/szlachta/fister
 	name = "fister"
@@ -37,7 +37,7 @@
 	icon_dead = "fister_dead"
 	maxHealth = 125
 	health = 125
-	butcher_results = list(/obj/item/stack/sheet/human_flesh = 2)
+	butcher_results = list(/obj/item/stack/sheet/meat = 2)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "punches"
@@ -47,7 +47,7 @@
 	status_flags = CANPUSH
 	bloodpool = 5
 	maxbloodpool = 5
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 5)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 5)
 
 /mob/living/basic/szlachta/tanker
 	name = "tanker"
@@ -57,7 +57,7 @@
 	icon_dead = "tanker_dead"
 	maxHealth = 350
 	health = 350
-	butcher_results = list(/obj/item/stack/sheet/human_flesh = 4)
+	butcher_results = list(/obj/item/stack/sheet/meat = 4)
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	attack_verb_continuous = "slashes"
@@ -66,7 +66,7 @@
 	combat_mode = TRUE
 	bloodpool = 7
 	maxbloodpool = 7
-	custom_materials = list(/datum/material/vicissitude_flesh = SHEET_MATERIAL_AMOUNT * 10)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)
 
 /mob/living/basic/szlachta/hostile
 	faction = list(FACTION_HOSTILE)
