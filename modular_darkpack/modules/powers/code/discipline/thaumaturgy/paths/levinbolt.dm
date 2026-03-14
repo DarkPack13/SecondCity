@@ -177,7 +177,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/one/proc/spark_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
 
-	return levinbolt_target_click(source, target, params, FALSE)
+	INVOKE_ASYNC(src, PROC_REF(levinbolt_target_click), source, target, params, FALSE)
 
 //ILLUMINATE - Level 2
 /datum/discipline_power/thaumaturgy/path/levinbolt/two
@@ -270,8 +270,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/proc/powerarray_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
 
-	return levinbolt_target_click(source, target, params, TRUE)
-
+	INVOKE_ASYNC(src, PROC_REF(levinbolt_target_click), source, target, params, TRUE)
 
 //ZEUS' FURY - Level 4
 /datum/discipline_power/thaumaturgy/path/levinbolt/four
@@ -488,7 +487,7 @@
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/proc/storm_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
 
-	return levinbolt_target_click(source, target, params, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(levinbolt_target_click), source, target, params, TRUE)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/five/deactivate()
 	if(!owner)
