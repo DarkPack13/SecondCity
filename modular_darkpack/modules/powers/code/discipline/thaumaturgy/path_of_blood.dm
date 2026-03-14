@@ -7,7 +7,6 @@
 
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
-	owner.add_faction(VAMPIRE_CLAN_TREMERE)
 	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
@@ -287,6 +286,8 @@
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
+	var/success_multiplier_npc = 200 // a single success kills an NPC
+	var/success_multiplier_player = 20
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -302,6 +303,6 @@
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
 	target.adjust_blood_pool(-success_count)
 	if(isnpc(target))
-		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
+		target.apply_damage(success_count * success_multiplier_npc + owner.thaum_damage_plus, AGGRAVATED)
 	else
-		target.apply_damage(success_count * 40 + owner.thaum_damage_plus, AGGRAVATED) //8 successes = 320 aggravated damage, however this is diffulty 8 so more than 2 successes is rare.
+		target.apply_damage(success_count * success_multiplier_player + owner.thaum_damage_plus, AGGRAVATED)
