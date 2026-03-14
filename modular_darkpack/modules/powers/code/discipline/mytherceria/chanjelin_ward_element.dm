@@ -4,7 +4,7 @@
 	// The guy who placed the ward
 	var/mob/warder
 
-/datum/element/chanjelin_ward/Attach(mob/placed_by, datum/target)
+/*/datum/element/chanjelin_ward/Attach(mob/placed_by, datum/target)
 	. = ..()
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
@@ -20,4 +20,4 @@
 	if(isturf(target))
 		UnregisterSignal(target, list(COMSIG_ATOM_ENTERED))
 
-	return ..()
+	return ..()*/
