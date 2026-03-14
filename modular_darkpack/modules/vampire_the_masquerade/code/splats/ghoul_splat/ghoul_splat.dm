@@ -18,3 +18,7 @@
 
 /datum/splat/vampire/ghoul/on_gain()
 	owner.give_st_power(/datum/discipline/bloodheal, 1)
+	var/list/clan_disciplines = domitor?.get_clan()?.clan_disciplines
+	if(length(clan_disciplines))
+		for(var/i in 1 to 3)
+			owner.give_st_power(clan_disciplines[i], 1)
