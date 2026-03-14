@@ -70,7 +70,6 @@
 	toggled = TRUE
 	var/area/starting_area
 	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
-
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
