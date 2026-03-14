@@ -45,7 +45,7 @@
 		return FALSE
 	patient.skin_tone = new_s_tone
 	patient.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
-	patient.update_body()
+	patient.update_body(is_creating = TRUE)
 	patient.update_mutations_overlay()
 	SEND_SIGNAL(surgeon, COMSIG_MASQUERADE_VIOLATION)
 	playsound(patient, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)

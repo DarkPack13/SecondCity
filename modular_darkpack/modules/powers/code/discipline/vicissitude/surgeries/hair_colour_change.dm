@@ -51,7 +51,7 @@
 	)
 	display_pain(patient, "The pain fades!")
 
-	var/new_hair_color = input(surgeon, "Choose a hair color", "Hair Color", patient.hair_color) as color|null
+	var/new_hair_color = tgui_color_picker(surgeon, "Choose a hair color", "Hair Color", patient.hair_color)
 	if(!new_hair_color)
 		return FALSE
 	if(!IN_GIVEN_RANGE(surgeon, patient, 1))
