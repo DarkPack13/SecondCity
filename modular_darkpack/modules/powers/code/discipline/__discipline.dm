@@ -4,7 +4,9 @@
 	var/name = "Discipline name"
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
-	///Icon for this Discipline as in disciplines.dmi
+	///Icon file for this Discipline
+	var/icon = 'modular_darkpack/modules/deprecated/icons/UI/actions.dmi'
+	///Icon state for this Discipline
 	var/icon_state
 	///If this Discipline is unique to a certain Clan.
 	var/clan_restricted = FALSE
@@ -14,6 +16,8 @@
 	var/action_type = /datum/action/discipline
 	///If this Discipline can be selected at all, or has special handling.
 	var/selectable = TRUE
+	///Override for the number of selectable levels shown in UI. 0 = derive from all_powers length. this exists because of Thaumaturgy.
+	var/max_selectable_level = 0
 
 	/* BACKEND */
 	///What rank, or how many dots the caster has in this Discipline.

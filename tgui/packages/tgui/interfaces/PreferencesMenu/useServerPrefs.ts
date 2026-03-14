@@ -27,7 +27,10 @@ export const ServerPrefs = createContext<ServerData | undefined>({
     loadout_tabs: [],
   },
   species: {},
-  splats: {}, // DARKPACK EDIT ADD - SPLATS
+   // DARKPACK EDIT START
+  splats: {},
+  disciplines: {},
+  // DARKPACK EDIT END
 });
 
 export function useServerPrefs() {
