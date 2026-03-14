@@ -79,6 +79,7 @@
 		tzimisce_operations += typesof(/datum/surgery_operation/organ/lobotomy)
 		tzimisce_operations += typesof(/datum/surgery_operation/organ/pacify)
 		tzimisce_operations += /datum/surgery_operation/organ/eye_color_surgery
+		tzimisce_operations += /datum/surgery_operation/limb/sex_change
 
 	possible_operations |= tzimisce_operations
 
