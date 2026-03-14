@@ -91,7 +91,7 @@
 			var/their_name = player.name
 			if(ishuman(player))
 				var/mob/living/carbon/human/human_player = player
-				their_name = human_player.real_name
+				their_name = human_player.name
 			to_chat(owner, "- [their_name]")
 	starting_area = get_area(owner)
 	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
@@ -149,14 +149,12 @@
 	owner.alpha = 30
 	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
-	owner.density = FALSE
 	owner.damage_deflection = 3 TTRPG_DAMAGE
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/deactivate(forced = TRUE)
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
-	owner.density = TRUE
 	owner.damage_deflection = 0
 	if(forced) //only false when using visceratika 5. we inherit the alpha from this ability and when visceratika 5 deactivates, return to 255
 		if(exit_turf)
