@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Assignment of a faction ID was moved to the clan rather then discipline"
+  - bugfix: "Fixes a few NPCS not having AI controllers"
+  - bugfix: "Lasombra aren't hidden in ALL vis contents (like virtual z)"

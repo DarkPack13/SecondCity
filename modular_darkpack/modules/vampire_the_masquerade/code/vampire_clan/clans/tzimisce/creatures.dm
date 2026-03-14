@@ -26,6 +26,7 @@
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
 	maxbloodpool = 2
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 
 /mob/living/basic/szlachta/fister
 	name = "fister"
