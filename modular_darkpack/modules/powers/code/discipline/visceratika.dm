@@ -139,7 +139,7 @@
 	. = ..()
 
 	exit_turf = get_turf(owner)
-	to_chat(owner, span_purple("You begin to sink into the stone..."))
+	to_chat(owner, span_notice("You begin to sink into the stone..."))
 
 	if(!do_after(owner, 2 TURNS))
 		to_chat(owner, span_warning("Your bond with the nearby stone is interrupted!"))
