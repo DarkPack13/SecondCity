@@ -7458,7 +7458,6 @@
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\objects\creatures.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\objects\flesh_items.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\objects\surgery_tools.dm"
-#include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\eye_colour_change.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\hair_colour_change.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\height_change.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\operation_eye_color.dm"
