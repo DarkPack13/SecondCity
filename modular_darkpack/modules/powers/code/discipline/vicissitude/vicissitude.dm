@@ -81,6 +81,8 @@
 		tzimisce_operations += /datum/surgery_operation/organ/eye_color_surgery
 		tzimisce_operations += /datum/surgery_operation/limb/sex_change
 		tzimisce_operations += /datum/surgery_operation/limb/height_change
+		tzimisce_operations += /datum/surgery_operation/limb/modify_hair
+		tzimisce_operations += /datum/surgery_operation/limb/modify_skin
 
 	possible_operations |= tzimisce_operations
 
