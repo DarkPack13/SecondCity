@@ -128,8 +128,6 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
   const pointsSpent = data.discipline_points_spent ?? 0;
   const tier = data.discipline_tier ?? 'Fledgling';
   const tierDetails = data.discipline_tier_details ?? '';
-  const pointsRemaining = pointsAvailable - pointsSpent;
-  const overBudget = pointsSpent > pointsAvailable;
 
   const handleDotClick = (path: string, position: number, currentLevel: number) => {
     const newLevel = position <= currentLevel ? (position === 1 ? 0 : position) : position;
@@ -141,6 +139,8 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
   const pointsAvailable = isGhoul
     ? Math.max(3, disciplineEntries.length)
     : data.discipline_points_available ?? 12;
+  const pointsRemaining = pointsAvailable - pointsSpent;
+  const overBudget = pointsSpent > pointsAvailable;
 
   return (
     <Stack vertical fill>
