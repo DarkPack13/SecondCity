@@ -45,6 +45,21 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return save_version
 	return SAVE_DATA_EMPTY
 
+// DARKPACK EDIT ADD START
+/datum/preferences/proc/check_savedata_version_darkpack(list/save_data)
+	if(!save_data)
+		return SAVE_DATA_EMPTY
+	var/save_version = save_data["version_darkpack"]
+	if(isnull(save_version)) // Sanity for sheets before this was added.
+		save_version = 0
+
+	if(save_version < SAVEFILE_DARKPACK_VERSION_MIN)
+		return SAVE_DATA_OBSOLETE
+	if(save_version < SAVEFILE_DARKPACK_VERSION_MAX)
+		return save_version
+	return SAVE_DATA_EMPTY
+// DARKPACK EDIT ADD END
+
 //should these procs get fairly long
 //just increase SAVEFILE_VERSION_MIN so it's not as far behind
 //SAVEFILE_VERSION_MAX and then delete any obsolete if clauses
@@ -165,6 +180,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 51)
 		migrate_felinid_feature_keys(save_data)
 
+// DARKPACK EDIT ADD START
+/datum/preferences/proc/update_preferences_darkpack(current_version, datum/json_savefile/S)
+
+/datum/preferences/proc/update_character_darkpack(current_version, list/save_data)
+	/*
+	if (current_version < 2)
+		if(read_preference(/datum/preference/choiced/subsplat/garou_breed) == "Metis")
+			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/garou_breed], BREED_CRINOS)
+	*/
+// DARKPACK EDIT ADD END
+
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()
 	if(!parent)
@@ -226,7 +252,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			return FALSE
 
 	var/data_validity_integer = check_savedata_version(savefile.get_entry())
-	if(load_and_save && IS_DATA_OBSOLETE(data_validity_integer)) //fatal, can't load any data
+	var/data_validity_integer_darkpack = check_savedata_version_darkpack(savefile.get_entry()) // DARKPACK EDIT ADD
+	if(load_and_save && (IS_DATA_OBSOLETE(data_validity_integer) || IS_DATA_OBSOLETE(data_validity_integer_darkpack))) //fatal, can't load any data // DARKPACK EDIT CHANGE
 		var/bacpath = PREFS_BACKUP_PATH(path) //todo: if the savefile version is higher then the server, check the backup, and give the player a prompt to load the backup
 		if (fexists(bacpath))
 			fdel(bacpath) //only keep 1 version of backup
@@ -261,12 +288,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	key_bindings = savefile.get_entry("key_bindings", key_bindings)
 
 	//try to fix any outdated data if necessary
-	if(SHOULD_UPDATE_DATA(data_validity_integer))
+	if(SHOULD_UPDATE_DATA(data_validity_integer) || SHOULD_UPDATE_DATA_DARKPACK(data_validity_integer_darkpack)) // DARKPACK EDIT CHANGE
 		var/bacpath = PREFS_BACKUP_PATH(path) //todo: if the savefile version is higher then the server, check the backup, and give the player a prompt to load the backup
 		if (fexists(bacpath))
 			fdel(bacpath) //only keep 1 version of backup
 		fcopy(savefile.path, bacpath) //byond helpfully lets you use a savefile for the first arg.
 		update_preferences(data_validity_integer, savefile)
+		update_preferences_darkpack(data_validity_integer_darkpack, savefile) // DARKPACK EDIT ADD
 
 	check_keybindings() // this apparently fails every time and overwrites any unloaded prefs with the default values, so don't load anything after this line or it won't actually save
 
@@ -280,7 +308,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 
-	if(SHOULD_UPDATE_DATA(data_validity_integer)) //save the updated version
+	if(SHOULD_UPDATE_DATA(data_validity_integer) || SHOULD_UPDATE_DATA_DARKPACK(data_validity_integer_darkpack)) //save the updated version // DARKPACK EDIT CHANGE
 		var/old_default_slot = default_slot
 		var/old_max_save_slots = max_save_slots
 
@@ -308,6 +336,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return TRUE
 
 	savefile.set_entry("version", SAVEFILE_VERSION_MAX) //updates (or failing that the sanity checks) will ensure data is not invalid at load. Assume up-to-date
+	savefile.set_entry("version_darkpack", SAVEFILE_DARKPACK_VERSION_MAX) // DARKPACK EDIT ADD
 
 	for (var/preference_type in GLOB.preference_entries)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
@@ -346,7 +375,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/tree_key = "character[slot]"
 	var/list/save_data = savefile.get_entry(tree_key)
 	var/data_validity_integer = check_savedata_version(save_data)
-	if(IS_DATA_OBSOLETE(data_validity_integer)) //fatal, can't load any data
+	var/data_validity_integer_darkpack = check_savedata_version_darkpack(save_data) // DARKPACK EDIT ADD
+	if(IS_DATA_OBSOLETE(data_validity_integer) || IS_DATA_OBSOLETE(data_validity_integer_darkpack)) //fatal, can't load any data // DARKPACK EDIT CHANGE
 		return FALSE
 
 	// Read everything into cache
@@ -375,6 +405,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//preference updating will handle saving the updated data for us.
 	if(SHOULD_UPDATE_DATA(data_validity_integer))
 		update_character(data_validity_integer, save_data)
+
+	// DARKPACK EDIT ADD START
+	if(SHOULD_UPDATE_DATA_DARKPACK(data_validity_integer_darkpack))
+		update_character_darkpack(data_validity_integer_darkpack, save_data)
+	// DARKPACK EDIT ADD END
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	if(!stats_list)
@@ -428,6 +463,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			write_preference(preference, preference.serialize(value_cache[preference.type]))
 
 	save_data["version"] = SAVEFILE_VERSION_MAX //load_character will sanitize any bad data, so assume up-to-date.
+	save_data["version_darkpack"] = SAVEFILE_DARKPACK_VERSION_MAX // DARKPACK EDIT ADD
 
 	// This is the version when the random security department was removed.
 	// When the minimum is higher than that version, it's impossible for someone to have the "Random" department.
