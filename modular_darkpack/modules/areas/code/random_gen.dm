@@ -3,6 +3,7 @@
 	icon_state = "park"
 	outdoors = TRUE
 	map_generator = /datum/map_generator/jungle_generator
+	gauntlet_rating = 6
 
 
 /area/vtm/planetgeneration/woodland
@@ -10,3 +11,4 @@
 	icon_state = "cog_caern"
 	outdoors = TRUE
 	map_generator = /datum/map_generator/jungle_generator/woodland
+	gauntlet_rating = 6
