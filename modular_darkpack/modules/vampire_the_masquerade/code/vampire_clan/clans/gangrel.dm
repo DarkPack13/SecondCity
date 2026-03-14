@@ -4,6 +4,7 @@
 	desc = "Often closer to beasts than other vampires, the Gangrel style themselves apex predators. These Ferals prowl the wilds as easily as the urban jungle, and no clan of vampires can match their ability to endure, survive, and thrive in any environment. Often fiercely territorial, their shapeshifting abilities even give the undead pause."
 	icon = "gangrel"
 	curse = "Start with lower humanity."
+	sense_the_sin_text = "is unable to control their impulses."
 	clan_disciplines = list(
 		/datum/discipline/animalism,
 		/datum/discipline/fortitude,
@@ -13,10 +14,6 @@
 	female_clothes = /obj/item/clothing/under/vampire/gangrel/female
 	accessories = list("beast_legs", "beast_tail", "beast_tail_and_legs", "none")
 	accessories_layers = list("beast_legs" = BODY_ADJ_LAYER, "beast_tail" = BODY_ADJ_LAYER, "beast_tail_and_legs" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
-
-/datum/subsplat/vampire_clan/gangrel/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	. = ..()
-	sense_the_sin_text = "[gaining_mob.name] is unable to control their impulses."
 
 /datum/subsplat/vampire_clan/gangrel/city
 	name = "City Gangrel"

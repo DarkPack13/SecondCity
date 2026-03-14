@@ -4,6 +4,7 @@
 	desc = "Currently composed mostly of women (due to the associated difficulty in educating someone with the vocal range of most males), the Daughters practice Melpominee, a Discipline which allows the Daughters to invoke strange effects through singing. The Daughters are the choralistes par excellence of the undead, and hosting a gathering of them is worth high prestige for the Toreador."
 	icon = "daughters_of_cacophony"
 	curse = "Hear more than should."
+	sense_the_sin_text = "has a mind that is envelopped by nonstopping music."
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
 		// /datum/discipline/melpominee,
@@ -17,4 +18,4 @@
 
 /datum/subsplat/vampire_clan/daughters_of_cacophony/on_gain(mob/living/carbon/human/vampire, joining_round)
 	. = ..()
-	sense_the_sin_text = "[vampire.name]'s mind is envelopped by nonstopping music."
+

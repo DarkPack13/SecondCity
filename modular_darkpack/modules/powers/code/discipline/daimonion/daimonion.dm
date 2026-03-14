@@ -52,7 +52,10 @@
 	if(isgarou(target))
 		to_chat(owner, span_notice("their natural banishment is silver..."))
 	if(iskindred(target))
+		var/datum/subsplat/vampire_clan/target_clan = target.get_clan()
+		var/target_sense_the_sin_weakness = target_clan.sense_the_sin_text
 		baali_get_stolen_disciplines(target, owner)
+		to_chat(target, span_notice("[target.name] [target_sense_the_sin_weakness]"))
 	/* DARKPACK TODO - bloodbonds
 	if(isghoul(target))
 		var/mob/living/carbon/human/ghoul = target

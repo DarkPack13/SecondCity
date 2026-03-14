@@ -4,6 +4,7 @@
 	desc = "Derided as Lunatics by other vampires, the Blood of the Malkavians lets them perceive and foretell truths hidden from others. Like the �wise madmen� of poetry their fractured perspective stems from seeing too much of the world at once, from understanding too deeply, and feeling emotions that are just too strong to bear."
 	icon = "malkavian"
 	curse = "Insanity."
+	sense_the_sin_text = "frightens people near them."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dementation,
@@ -22,7 +23,6 @@
 	hivemind.Grant(gaining_mob)
 	malk_font.Grant(gaining_mob)
 	gaining_mob.add_quirk(/datum/quirk/derangement)
-	sense_the_sin_text = "[gaining_mob.name] frightens people near them."
 	// Madness Network handling
 	LAZYADD(madness_network, gaining_mob)
 	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)

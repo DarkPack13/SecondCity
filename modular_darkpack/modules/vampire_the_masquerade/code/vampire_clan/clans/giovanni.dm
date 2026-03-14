@@ -4,6 +4,7 @@
 	desc = "The Giovanni are the usurpers of Clan Cappadocian and one of the youngest clans. The Giovanni has historically been both a clan and a family. They Embrace almost exclusively within their family, and are heavily focused on the goals of money and necromantic power."
 	icon = "giovanni"
 	curse = "Harmful bites."
+	sense_the_sin_text = "never considers any action too great for their family."
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		/datum/discipline/dominate,
@@ -17,5 +18,4 @@
 
 /datum/subsplat/vampire_clan/giovanni/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
-	sense_the_sin_text = "[joining.name] never considers any action too great for their family."
 	joining.grant_language(/datum/language/italian)

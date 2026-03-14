@@ -40,7 +40,7 @@
 	var/whitelisted = FALSE
 
 	/// daimonion 1 text
-	var/sense_the_sin_text
+	var/sense_the_sin_text = "has been abandoned by the cold ocean of the night with nobody to keep them afloat."
 
 /**
  * Applies Clan-specific effects to the mob
@@ -58,8 +58,6 @@
  */
 /datum/subsplat/vampire_clan/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-
-	sense_the_sin_text = "[gaining_mob.name] has been abandoned by the cold ocean of the night with nobody to keep them afloat."
 
 	// Apply alternative sprites
 	if (alt_sprite)

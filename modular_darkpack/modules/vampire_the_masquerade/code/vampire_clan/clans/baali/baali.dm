@@ -4,7 +4,7 @@
 	desc = "The Baali are a bloodline of vampires associated with demon worship. Because of their affinity with the unholy, the Baali are particularly vulnerable to holy iconography, holy ground and holy water. They are highly vulnerable to True Faith."
 	icon = "baali"
 	curse = "Fear of the Religion."
-
+	sense_the_sin_text = "is scared of the lord's presence."
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
 		/datum/discipline/presence,
@@ -23,5 +23,4 @@
 /datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	gaining_mob.AddElement(/datum/element/holy_weakness)
-	sense_the_sin_text = "[gaining_mob.name] is scared of the lord's presence."
 	gaining_mob.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)

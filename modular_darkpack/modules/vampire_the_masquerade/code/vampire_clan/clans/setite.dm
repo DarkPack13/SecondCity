@@ -4,6 +4,7 @@
 	desc = "The Followers of Set, also called the Ministry of Set, Ministry, or Setites, are a clan of vampires who believe their founder was the Egyptian god Set."
 	icon = "followers_of_set"
 	curse = "Decreased moving speed in lighted areas."
+	sense_the_sin_text = "believes every stain of sin is a virtue."
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
 		/datum/discipline/presence,
@@ -14,6 +15,5 @@
 
 /datum/subsplat/vampire_clan/setite/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	sense_the_sin_text = "[gaining_mob.name] believes every stain of sin is a virtue."
 	//gaining_mob.add_quirk(/datum/quirk/lightophobia)
 

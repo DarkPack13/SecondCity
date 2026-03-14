@@ -4,6 +4,7 @@
 	desc = "A presumed-to-be-extinct Clan of necromancers, the Cappadocians studied death specifically in the physical world. The Giovanni were Embraced into their line to help further their studies into the underworld. They were rewarded with Diablerie and the destruction of their Clan and founder."
 	icon = "cappadocian"
 	curse = "Pale and gaunt complexion that cannot be made to look more human by expending blood."
+	sense_the_sin_text = "will never escape the appearance of a rotting corpse."
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
@@ -16,7 +17,7 @@
 
 /datum/subsplat/vampire_clan/cappadocian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	sense_the_sin_text = "[gaining_mob.name] will never escape the appearance of a rotting corpse."
+
 	apply_rot_curse(gaining_mob, gaining_mob.chronological_age)
 
 /datum/subsplat/vampire_clan/cappadocian/proc/apply_rot_curse(mob/living/carbon/human/H, chronological_age)
