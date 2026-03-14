@@ -5,6 +5,7 @@
 	icon = "salubri"
 	curse = "Hunted and consensual feeding."
 	sense_the_sin_text = "is ruled by consent."
+	//signature_discipline = /datum/discipline/valeren
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
@@ -19,6 +20,10 @@
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
 
-/datum/subsplat/vampire_clan/salubri/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	. = ..()
+/datum/subsplat/vampire_clan/salubri/psychomania_effect(mob/living/target, mob/living/owner)
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
+	to_chat(target, span_warning("My third eye begins to reflexively open.."))
+	target.visible_message(span_warning("[target] tightly grasps their forehead, trying to conceal something"), span_cult("I MUST HIDE MY NATURE"))
+	target.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
+	target.Paralyze(6 SECONDS)
 

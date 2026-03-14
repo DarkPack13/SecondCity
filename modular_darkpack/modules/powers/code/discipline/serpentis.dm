@@ -4,6 +4,7 @@
 	icon_state = "serpentis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/serpentis
+	signature_clan = VAMPIRE_CLAN_SETITE
 
 /datum/discipline_power/serpentis
 	name = "Serpentis power name"

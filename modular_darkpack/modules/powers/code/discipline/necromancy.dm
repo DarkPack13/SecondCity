@@ -6,6 +6,7 @@
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
+	signature_clan = VAMPIRE_CLAN_GIOVANNI
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()

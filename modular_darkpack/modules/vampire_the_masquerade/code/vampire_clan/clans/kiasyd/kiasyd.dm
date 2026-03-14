@@ -5,6 +5,7 @@
 	icon = "kiasyd"
 	curse = "At a glance they look unsettling or perturbing to most, their appearance closely resembles fae from old folklore. Kiasyd are also in some way connected with changelings and they are vulnerable to cold iron."
 	sense_the_sin_text = "is afraid of cold iron."
+	//signature_discipline = /datum/discipline/mytherceria
 	clan_disciplines = list(
 		/datum/discipline/dominate,
 		/datum/discipline/obtenebration,

@@ -4,6 +4,7 @@
 	icon_state = "quietus"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/quietus
+	signature_clan = VAMPIRE_CLAN_BANU_HAQIM
 
 /datum/discipline_power/quietus
 	name = "Quietus power name"

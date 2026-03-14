@@ -5,6 +5,7 @@
 	icon = "gangrel"
 	curse = "Start with lower humanity."
 	sense_the_sin_text = "is unable to control their impulses."
+	signature_discipline = /datum/discipline/protean
 	clan_disciplines = list(
 		/datum/discipline/animalism,
 		/datum/discipline/fortitude,

@@ -5,6 +5,7 @@
 	icon = "lasombra"
 	curse = "Technology refuse."
 	sense_the_sin_text = "fears change itself evermore."
+	signature_discipline = /datum/discipline/obtenebration
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		/datum/discipline/dominate,
@@ -18,6 +19,12 @@
 	female_clothes = /obj/item/clothing/under/vampire/business
 	enlightenment = TRUE
 	subsplat_keys = /obj/item/vamp/keys/lasombra
+
+
+/datum/subsplat/vampire_clan/lasombra/psychomania_effect(mob/living/target, mob/living/owner)
+	to_chat(target, span_cult("THE SHADOWS BETRAY ME, SEEKING MY LIFE"))
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
+	target.Paralyze(6 SECONDS)
 
 // Not TTRPG accurate and is pending a rework to use real rolls after #633
 /proc/scramble_lasombra_message(message, mob/living/lasombra)

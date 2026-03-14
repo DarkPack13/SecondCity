@@ -5,6 +5,7 @@
 	icon = "malkavian"
 	curse = "Insanity."
 	sense_the_sin_text = "frightens people near them."
+	signature_discipline = /datum/discipline/dementation
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dementation,
@@ -108,3 +109,9 @@
 	StartCooldown()
 	mad_speak = spooky_font_replace(mad_speak) // replace some letters to make the font more closely resemble that of vtm: bloodlines' malkavian dialogue
 	clicker.say(mad_speak, spans = list(malkavian_spans))
+
+/datum/subsplat/vampire_clan/malkavian/psychomania_effect(mob/living/target, mob/living/owner)
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/malklaugh.ogg", 50, FALSE)
+	target.Paralyze(6 SECONDS)
+	target.visible_message(span_warning("[target] repeatedly bashes their head against the ground"), span_cult("THE WHISPERS ARE OVERTAKING ME"))
+	target.apply_damage(50, BRUTE, BODY_ZONE_HEAD)

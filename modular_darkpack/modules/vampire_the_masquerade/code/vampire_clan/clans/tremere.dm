@@ -13,3 +13,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/tremere
 	female_clothes = /obj/item/clothing/under/vampire/tremere/female
 
+/datum/subsplat/vampire_clan/tremere/psychomania_effect(mob/living/target, mob/living/owner)
+	to_chat(target, span_cult("Blood pours out from my body, manifesting into a grotesque form"))
+	var/obj/effect/client_image_holder/baali_demon/tremere/demon = new(get_turf(target), list(target))
+	RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))

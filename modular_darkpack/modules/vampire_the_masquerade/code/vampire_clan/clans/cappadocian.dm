@@ -5,6 +5,7 @@
 	icon = "cappadocian"
 	curse = "Pale and gaunt complexion that cannot be made to look more human by expending blood."
 	sense_the_sin_text = "will never escape the appearance of a rotting corpse."
+	signature_discipline = /datum/discipline/necromancy
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/fortitude,
@@ -44,3 +45,9 @@
 			H.rot_body(3)
 		if (500 to INFINITY)
 			H.rot_body(4)
+
+/datum/subsplat/vampire_clan/cappadocian/psychomania_effect(mob/living/target, mob/living/owner)
+	to_chat(target, span_cult("Freshly manifest despair enters your decaying flesh as you feel a hauntingly empty presence."))
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
+	var/obj/effect/client_image_holder/baali_demon/spectre/demon = new(get_turf(target), list(target))
+	RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))

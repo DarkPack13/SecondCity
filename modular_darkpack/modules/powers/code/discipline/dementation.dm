@@ -4,6 +4,7 @@
 	icon_state = "dementation"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/dementation
+	signature_clan = VAMPIRE_CLAN_MALKAVIAN
 
 /datum/discipline_power/dementation
 	name = "Dementation power name"

@@ -30,6 +30,8 @@
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
 	var/post_gain_applied
+	///signature clan
+	var/datum/subsplat/vampire_clan/signature_clan
 
 //TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)

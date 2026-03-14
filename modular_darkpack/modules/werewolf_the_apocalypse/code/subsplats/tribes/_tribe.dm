@@ -62,3 +62,17 @@
 
 /mob/living/proc/is_tribe(tribe_type)
 	return istype(get_our_tribe(), tribe_type)
+
+
+/datum/subsplat/werewolf/tribe/proc/psychomania_effect(mob/living/target, mob/living/owner)
+	var/datum/splat/werewolf/shifter/garou_splat = isshifter(target)
+	if(garou_splat?.rage > 4)
+		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
+		to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
+		new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
+		//target.rollfrenzy() DARKPACK TODO: Frenzy
+	else
+		to_chat(target, span_cult("I can feel a overwhelming presence.. I NEED TO RUN!!"))
+		var/obj/effect/client_image_holder/baali_demon/wyrm/demon = new(get_turf(target), list(target))
+		RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))
+		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh2.ogg", 50, FALSE)

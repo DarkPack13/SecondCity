@@ -4,6 +4,7 @@
 	icon_state = "obtenebration"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/obtenebration
+	signature_clan = VAMPIRE_CLAN_LASOMBRA
 
 /datum/discipline/obtenebration/post_gain()
 	. = ..()

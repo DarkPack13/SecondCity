@@ -4,6 +4,7 @@
 	icon_state = "temporis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/temporis
+	signature_clan = VAMPIRE_CLAN_TRUE_BRUJAH
 
 /datum/discipline_power/temporis
 	name = "Temporis power name"
