@@ -17,3 +17,25 @@
 	female_clothes = /obj/item/clothing/under/vampire/salubri/female
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
+
+/datum/subsplat/vampire_clan/salubri/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+
+	var/obj/item/organ/eyes/salubri/three_eyes = new()
+	three_eyes.Insert(gaining_mob, TRUE, DELETE_IF_REPLACED)
+
+/datum/subsplat/vampire_clan/salubri/on_lose(mob/living/carbon/human/losing_mob)
+	. = ..()
+
+	// replace eyes
+	var/eye_type = /obj/item/organ/eyes
+	if(losing_mob.dna.species && losing_mob.dna.species.mutanteyes)
+		eye_type = losing_mob.dna.species.mutanteyes
+	var/obj/item/organ/eyes/new_eyes = new eye_type()
+	new_eyes.Insert(losing_mob, TRUE, DELETE_IF_REPLACED)
+
+/obj/item/organ/eyes/salubri
+	eye_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/human_eyes.dmi'
+	eye_icon_state = "salubri"
+
+	blink_animation = FALSE
