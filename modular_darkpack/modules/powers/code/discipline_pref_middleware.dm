@@ -100,7 +100,6 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		points_spent += level
 
 	var/is_ghoul = ispath(preferences.read_preference(/datum/preference/choiced/splats), /datum/splat/vampire/ghoul)
-	data["is_ghoul"] = is_ghoul
 	data["clan_disciplines"] = list()
 	data["clan_name"] = null
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)

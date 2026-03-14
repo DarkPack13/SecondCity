@@ -145,15 +145,19 @@ export function CharacterPreferenceWindow(props) {
               Stats
             </PageButton>
           </Stack.Item>
-          <Stack.Item grow>
-            <PageButton
-              currentPage={currentPage}
-              page={Page.Disciplines}
-              setPage={setCurrentPage}
-            >
-              Disciplines
-            </PageButton>
-          </Stack.Item>
+          {['splat_kindred', 'splat_ghoul'].includes(
+            data.character_preferences.misc.splats,
+          ) && (
+            <Stack.Item grow>
+              <PageButton
+                currentPage={currentPage}
+                page={Page.Disciplines}
+                setPage={setCurrentPage}
+              >
+                Disciplines
+              </PageButton>
+            </Stack.Item>
+          )}
           {
           // DARKPACK EDIT END
           }

@@ -124,7 +124,7 @@ function DisciplinesInner(props: DisciplinesInnerProps) {
   const disciplineLevels = data.discipline_levels || {};
   const clanDisciplines = new Set(data.clan_disciplines || []);
   const clanName = data.clan_name ?? null;
-  const isGhoul = !!data.is_ghoul;
+  const isGhoul = data.character_preferences.misc.splats === 'splat_ghoul';
   const pointsSpent = data.discipline_points_spent ?? 0;
   const tier = data.discipline_tier ?? 'Fledgling';
   const tierDetails = data.discipline_tier_details ?? '';
