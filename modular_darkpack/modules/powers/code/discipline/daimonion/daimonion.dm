@@ -285,7 +285,6 @@
 
 	target.apply_status_effect(chosen_curse_datum)
 	owner.maxbloodpool -= chosen_curse_datum.bloodcost
-	if(owner.bloodpool > owner.maxbloodpool)
-		owner.bloodpool = owner.maxbloodpool
+	owner.bloodpool = clamp(owner.bloodpool, 0, owner.maxbloodpool)
 
 
