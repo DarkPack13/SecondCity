@@ -29,7 +29,7 @@
 
 	switch(stage)
 		if(STAGE_GRAB_VICTIM)
-			show_instruction("Pull then grab the NPC to regain BP.")
+			show_instruction("Pull the NPC twice to initiate an aggressive grab.")
 		if(STAGE_PRESS_BITE)
 			show_instruction(keybinding_message(
 				/datum/keybinding/human/bite,
