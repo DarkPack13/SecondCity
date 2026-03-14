@@ -37,7 +37,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
 	animate(D, alpha = 0, color = COLOR_RED, transform = matrix()*2, time = 3)
 
-	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/crinos_growl.ogg', 75, FALSE)
+	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/visage_of_fenris.ogg', 75, FALSE)
 
 	for(var/mob/living/guy in viewers(world.view, owner))
 		if(guy == owner)
