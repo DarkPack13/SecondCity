@@ -7488,6 +7488,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\operation_eye_color.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\sex_change.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\surgeries\skin_colour_change.dm"
+#include "modular_darkpack\modules\preferences\height_preference.dm"
 #include "modular_darkpack\modules\quirks\code\negative_quirks\derangement.dm"
 #include "modular_darkpack\modules\radios\code\admin_verb.dm"
 #include "modular_darkpack\modules\radios\code\radio.dm"
