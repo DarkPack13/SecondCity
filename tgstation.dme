@@ -7395,6 +7395,7 @@
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_component.dm"
 #include "modular_darkpack\modules\pixel_shift\code\pixel_shift_keybind.dm"
 #include "modular_darkpack\modules\postal\code\postal.dm"
+#include "modular_darkpack\modules\powers\code\admin_discipline_editor.dm"
 #include "modular_darkpack\modules\powers\code\discipline_actions.dm"
 #include "modular_darkpack\modules\powers\code\discipline_gain.dm"
 #include "modular_darkpack\modules\powers\code\discipline_pref_middleware.dm"
