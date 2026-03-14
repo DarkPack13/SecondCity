@@ -73,7 +73,6 @@
 
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
-	difficulty = 6
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
