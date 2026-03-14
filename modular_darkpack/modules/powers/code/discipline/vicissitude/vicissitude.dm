@@ -5,10 +5,6 @@
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/vicissitude
 
-/datum/discipline/vicissitude/post_gain()
-	. = ..()
-	owner.faction |= VAMPIRE_CLAN_TZIMISCE
-
 /datum/discipline_power/vicissitude
 	name = "Vicissitude power name"
 	desc = "Vicissitude power description"

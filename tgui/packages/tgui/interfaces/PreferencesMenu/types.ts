@@ -68,6 +68,17 @@ export type Species = {
   };
 };
 
+// DARKPACK EDIT START - DISCIPLINES
+export type DisciplineInfo = {
+  name: string;
+  desc: string;
+  max_level: number;
+  rarity: 'rare' | 'common';
+  icon?: string;
+  icon_state?: string;
+};
+// DARKPACK EDIT END - DISCIPLINES
+
 export type Splats = { // DARKPACK EDIT ADD START - SPLATS
   name: string;
   desc: string;
@@ -218,6 +229,16 @@ export type PreferencesMenuData = {
   max_personalities: number;
   mood_enabled: BooleanLike;
   splat_disallowed_quirks: string[]; // DARKPACK EDIT CHANGE - SPLATS
+  // DARKPACK EDIT ADD START - DISCIPLINES
+  discipline_levels: Record<string, number>;
+  clan_disciplines: string[];
+  clan_name: string | null;
+  discipline_points_available: number;
+  discipline_points_spent: number;
+  discipline_tier: string;
+  discipline_tier_details: string;
+  // DARKPACK EDIT ADD END - DISCIPLINES
+
   // DARKPACK EDIT ADD START
   stats: Record<
     string,
@@ -266,6 +287,9 @@ export type ServerData = {
     loadout_tabs: LoadoutCategory[];
   };
   species: Record<string, Species>;
-  splats: Record<string, Splats>; // DARKPACK EDIT ADD - SPLATS
+  // DARKPACK EDIT START
+  splats: Record<string, Splats>;
+  disciplines: Record<string, DisciplineInfo>;
+  // DARKPACK EDIT END
   [otherKey: string]: unknown;
 };

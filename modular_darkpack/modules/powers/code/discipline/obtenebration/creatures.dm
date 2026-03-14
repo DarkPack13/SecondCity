@@ -1,3 +1,4 @@
+// Dubiously deprecated as i think we replaced them with /mob/living/basic/shadow_guard
 /mob/living/basic/lasombra
 	name = "shadow abomination"
 	desc = "A ferocious, fang-bearing creature that resembles a spider."
@@ -23,6 +24,7 @@
 	bloodpool = 0
 	maxbloodpool = 0
 	bloodquality = BLOOD_QUALITY_LOW
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile
 
 /mob/living/basic/lasombra/better
 	icon_state = "shadow2"
