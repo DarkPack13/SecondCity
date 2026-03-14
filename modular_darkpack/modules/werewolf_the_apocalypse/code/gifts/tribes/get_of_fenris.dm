@@ -3,7 +3,7 @@
  * The Get appears larger and more fearsome, commanding respect from peers
  * and cowing his foes. A wolf or toad spirit teaches this Gift.
  *
- * Presence 2 but for dogs and AoE
+ * Simple slowdown AOE.
  *
  * TODO: distinguish between friend and foe for the -1 social check thing
  *
@@ -22,7 +22,7 @@
 /datum/action/cooldown/power/gift/visage_of_fenris
 	name = "Visage of Fenris"
 	desc = "Appear larger and more fearsome to your foes, rooting them to the spot in awe."
-
+	button_icon_state = "visage_of_fenris"
 	rank = 1
 	cooldown_time = 1 SCENES
 	var/list/affected = list()
@@ -56,7 +56,7 @@
 
 /datum/status_effect/visage_of_fenris
 	id = "visage_of_fenris"
-	duration = 1 SCENES
+	duration = 6 TURNS // Nonstandard amount of time but 3 minutes of slowdown sucks.
 
 	status_type = STATUS_EFFECT_REPLACE
 
@@ -80,4 +80,4 @@
 	name = "Visage of Fenris"
 	desc = "You are consumed with terror, rooting you to the spot!"
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
-	icon_state = "riddle" // TODO: get an icon for this
+	icon_state = "fear" // TODO: get an icon for this

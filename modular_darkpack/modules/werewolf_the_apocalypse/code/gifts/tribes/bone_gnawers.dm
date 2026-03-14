@@ -48,7 +48,7 @@
 /datum/action/cooldown/power/gift/desperate_strength
 	name = "Desperate Strength"
 	desc = "Call on desperate reserves for a sudden surge of strength."
-	button_icon_state = null // TODO: icon
+	button_icon_state = "desperate_strength"
 	rank = 1
 
 /datum/action/cooldown/power/gift/desperate_strength/IsAvailable(feedback)
