@@ -21,8 +21,19 @@
 	// The 'owner' of this riddle. If they say the correct answer, the curse is broken.
 	var/mob/living/carbon/riddler
 	// The amount of successes the riddler got when rolling. The victim must triple this number to break the curse without answering.
-	var/riddle_successes = 1
+	var/riddler_successes = 1
 	// The victim of the riddle. If they say anything other than the correct answer they take damage.
 	var/mob/living/carbon/victim
 	// The amount of successes the victim currently has. They must triple var/riddle_successes to break the curse without answering. Reset to 0 on botch.
-	var/riddle_successes = 0
+	var/riddled_successes = 0
+
+/datum/riddle/proc/delete_riddle()
+
+/datum/riddle/proc/create_riddle(new_question, list/new_answers, list/new_correct_answers, successes)
+
+/datum/riddle/proc/edit_riddle(new_question, list/new_answers, list/new_correct_answers)
+
+/datum/riddle/proc/break_curse(target)
+
+/datum/riddle/proc/punishment(target)
+
