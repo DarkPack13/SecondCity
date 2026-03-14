@@ -33,7 +33,7 @@
 		if(STAGE_PRESS_BITE)
 			show_instruction(keybinding_message(
 				/datum/keybinding/human/bite,
-				"Press '%KEY%' to bite",
+				"While grabbing, take the NPC somewhere private and press '%KEY%' to bite the NPC. This will start restoring your blood pool.",
 				"Set a key to bite",
 			))
 		if(STAGE_RELEASE_VICTIM)
