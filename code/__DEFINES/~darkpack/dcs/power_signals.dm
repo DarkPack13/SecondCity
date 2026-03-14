@@ -1,6 +1,14 @@
 /* Signals for the World of Darkness power system */
 //Normal signals sent to the power and caster, _ON signals are sent to target
 
+//can_activate() signals
+///from datum/discipline_power/can_activate(): (datum/discipline_power/power, atom/target)
+#define COMSIG_POWER_TRY_ACTIVATE "power_try_activate"
+///from datum/discipline_power/can_activate(): (datum/discipline_power/power)
+#define COMSIG_POWER_TRY_ACTIVATE_ON "power_try_activate_on"
+	///Makes can_activate return false and prevent activation
+	#define POWER_PREVENT_ACTIVATE (1<<0)
+
 //pre_activation() signals
 ///from datum/discipline_power/pre_activation(): (datum/discipline_power/power, atom/target)
 #define COMSIG_POWER_PRE_ACTIVATION "power_pre_activation"
