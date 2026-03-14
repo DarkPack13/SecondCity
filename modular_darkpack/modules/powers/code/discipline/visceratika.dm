@@ -70,7 +70,6 @@
 	toggled = TRUE
 	var/area/starting_area
 	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
-
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
@@ -139,7 +138,7 @@
 	. = ..()
 
 	exit_turf = get_turf(owner)
-	to_chat(owner, span_purple("You begin to sink into the stone..."))
+	to_chat(owner, span_notice("You begin to sink into the stone..."))
 
 	if(!do_after(owner, 2 TURNS))
 		to_chat(owner, span_warning("Your bond with the nearby stone is interrupted!"))
