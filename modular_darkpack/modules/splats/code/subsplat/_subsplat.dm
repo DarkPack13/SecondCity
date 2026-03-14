@@ -38,7 +38,7 @@
  */
 /datum/subsplat/proc/on_lose(mob/living/carbon/human/losing_mob)
 	SHOULD_CALL_PARENT(TRUE)
-	UnregisterSignal(losing_mob, COMSIG_MOB_LOGIN, PROC_REF(on_join_round))
+	UnregisterSignal(losing_mob, COMSIG_MOB_LOGIN)
 	return
 
 
