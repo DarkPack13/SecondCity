@@ -88,7 +88,7 @@
 #define EVIL_TECH_COMPANY "NikNak Computing"
 #define EVIL_GAMING_COMPANY "Deep Dive Games" // Subsidiary of NikNak
 #define EVIL_NEWS_COMPANY "RED Network"
-#define EVIL_CONTSTRUCTION_COMPANY_2 "Safe Haven Construction"
+#define EVIL_CONSTRUCTION_COMPANY_2 "Safe Haven Construction"
 #define EVIL_INTEL_COMPANY "Shade, Inc."
 #define EVIL_HORROR_COMPANY "Slaughterhouse Video"
 #define EVIL_CONSULTING_COMPANY "Southeastern Tech Management"
