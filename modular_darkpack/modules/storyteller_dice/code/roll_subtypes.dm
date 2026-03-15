@@ -30,6 +30,12 @@
 /datum/storyteller_roll/attack/claw
 	bumper_text = "attack (claw)"
 
+// Cant tell wether this is meant to be to land or for damage dice.
+/datum/storyteller_roll/attack/claw/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
+		. -= 1
+
 /datum/storyteller_roll/attack/sweep
 	bumper_text = "attack (sweep)"
 	difficulty = 8
@@ -46,15 +52,21 @@
 
 /datum/storyteller_roll/damage/bite
 	bumper_text = "damage (bite)"
-	// + 1
+	bonus = 1
 
 /datum/storyteller_roll/damage/kick
 	bumper_text = "damage (kick)"
-	// + 1
+	bonus = 1
 
 /datum/storyteller_roll/damage/claw
 	bumper_text = "damage (claw)"
-	// + 2
+	bonus = 2
+
+/datum/storyteller_roll/damage/claw/using_bonus(mob/living/roller, atom/target, bonus_added)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
+		. += 2
+
 
 // Physical Feats
 /datum/storyteller_roll/lockpick
@@ -83,10 +95,10 @@
 	bumper_text = "climbing"
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
-/*
-// TRAIT_CITY_RUNNING
-/datum/storyteller_roll/climbing
-*/
+/datum/storyteller_roll/climbing/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_CITY_RUNNING)) // In theory could check for if its the city...
+		. -= 2
 
 /datum/storyteller_roll/shooting
 	bumper_text = "shooting"

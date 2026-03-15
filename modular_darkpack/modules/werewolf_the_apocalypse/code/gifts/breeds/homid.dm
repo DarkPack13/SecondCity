@@ -8,7 +8,8 @@
 	rank = 1
 	rage_cost = 1
 
-/datum/action/cooldown/power/gift/city_running
+/datum/action/cooldown/power/gift/city_running/Activate(atom/target)
+	. = ..()
 	var/mob/living/living_owner = astype(owner)
 	living_owner?.apply_status_effect(/datum/status_effect/city_running)
 

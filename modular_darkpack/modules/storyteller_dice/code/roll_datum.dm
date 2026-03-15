@@ -2,6 +2,8 @@
 	var/bumper_text = "roll"
 
 	var/difficulty = 6
+	var/bonus = 0
+
 	var/successes_needed = 1
 
 	// By default uses the highest attribute and ability // Not acctually true yet, it just used all of them. But it should be that.
@@ -40,23 +42,28 @@
  *
  * Returns: The sucess of the roll, either a define or the raw amount of sucesses if `numerical = TRUE`
  */
-/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus = 0)
+/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus_added = 0)
 	last_sucess_amount = 0
 	last_output_text = list()
 
 	if(!can_roll(roller))
 		return ROLL_FAILURE
 
-	var/dice_amount = calculate_used_dice(roller, bonus)
 
+	var/bonus = using_bonus(roller, target, bonus_added)
+
+	var/dice_amount = using_dice(roller, target, bonus)
 	var/list/rolled_dice = roll_dice(dice_amount)
 
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty]."
+	var/used_difficulty = using_difficulty(roller, target)
+
+
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [used_difficulty]."
 	if(successes_needed > 1)
 		first_line += " [successes_needed] successes needed."
 	last_output_text += span_notice(first_line)
 
-	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
+	last_sucess_amount = count_success(rolled_dice, used_difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
 	var/title
@@ -106,7 +113,7 @@
 		if(ROLL_NONE)
 			return // Not even important enough to be admin visable.
 
-/datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
+/datum/storyteller_roll/proc/using_dice(mob/living/roller, atom/target, bonus = 0)
 	var/dice_amount = 0
 	for(var/stat_type in using_stats(roller))
 		dice_amount += roller.st_get_stat(stat_type)
@@ -122,6 +129,12 @@
 			stat_to_use = stat
 			highest_stat = stat_dots
 	return stat_to_use
+
+/datum/storyteller_roll/proc/using_bonus(mob/living/roller, atom/target, bonus_added)
+	return bonus + bonus_added
+
+/datum/storyteller_roll/proc/using_difficulty(mob/living/roller, atom/target)
+	return difficulty
 
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
