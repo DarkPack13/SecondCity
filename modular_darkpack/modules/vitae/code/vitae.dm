@@ -34,7 +34,7 @@
 			victim.send_ghoul_vitae_consumption_message(embracer)
 		else
 			victim.ghoulificate(embracer)
-			//victim.prompt_permenant_ghouling()
+			victim.prompt_permanent_ghouling()
 			return
 
 	if(iskindred(victim)) //Are we a kindred species?
