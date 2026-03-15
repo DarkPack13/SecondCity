@@ -45,7 +45,7 @@
 
 /datum/emote/living/carbon/sweatdrop/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	var/image/emote_animation = image('modular_darkpack/modules/emotes/icons/emote_visuals.dmi', user, "sweatdrop")
+	var/image/emote_animation = image('modular_darkpack/modules/emotes/icons/emote_visuals.dmi', user, "sweatdrop", ABOVE_MOB_LAYER, 0, 10, 10)
 	flick_overlay_global(emote_animation, GLOB.clients, 3.0 SECONDS)
 
 /datum/emote/living/carbon/sweatdrop/get_sound(mob/living/user)
@@ -64,5 +64,5 @@
 
 /datum/emote/living/carbon/annoyed/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	var/image/emote_animation = image('modular_darkpack/modules/emotes/icons/emote_visuals.dmi', user, "annoyed")
+	var/image/emote_animation = image('modular_darkpack/modules/emotes/icons/emote_visuals.dmi', user, "annoyed", ABOVE_MOB_LAYER, 0, 10, 10)
 	flick_overlay_global(emote_animation, GLOB.clients, 5.0 SECONDS)
