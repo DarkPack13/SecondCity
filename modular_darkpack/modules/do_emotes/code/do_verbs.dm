@@ -4,7 +4,7 @@
 	if(GLOB.say_disabled) // This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	usr.emote("do_emote")
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "do_emote"))
 
 /datum/emote/living/do_emote
 	key = "do_emote"
