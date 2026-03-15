@@ -9,8 +9,6 @@
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
-
-	owner.add_faction(VAMPIRE_CLAN_GIOVANNI)
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
 	ritualist.level = level

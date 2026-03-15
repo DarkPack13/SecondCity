@@ -111,6 +111,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
+// If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
+#define TRAIT_NO_EYE_CONTACT "no_eye_contact"
+
 /// If the species has garou breeds to select.
 #define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
 // if the species has garou tribes to select.
@@ -119,17 +122,25 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
-/// If the fera is wyrm tainted. Affects their sprite.
+/// If the fera is wyrm tainted.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED_SPRITE "wyrm_tainted_sprite"
 /// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
-// Massivly boosts the range of your howl emote.
-#define TRAIT_LOUD_HOWLER "loud_howler"
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
+// Traits granted via gifts
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_HOWLER "loud_howler"
+#define TRAIT_RAZOR_CLAWS "razor_claws"
 
+/// Sixth sense restricted to view range
+#define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
+/// If the mob can't have surgery done on it. See: Blood form Tzimisce
+#define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"

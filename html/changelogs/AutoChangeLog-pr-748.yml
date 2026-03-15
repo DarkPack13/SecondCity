@@ -1,0 +1,4 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - qol: "dice results now output to chat by default instead of balloon alerts"

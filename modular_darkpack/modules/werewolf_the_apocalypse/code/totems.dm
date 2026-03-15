@@ -119,7 +119,7 @@
 				shifter_splat.adjust_rage(1, FALSE)
 		else
 			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
-			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', volume = 50))
+			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)

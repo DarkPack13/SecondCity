@@ -45,6 +45,11 @@
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || !locked
 
@@ -161,6 +166,13 @@
 	to_chat(user, span_notice("You open [src]."))
 	closed = FALSE
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN)
+
+/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
+/obj/structure/vampdoor/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, atom/caster)
+	SIGNAL_HANDLER
+
+	locked = FALSE
+	INVOKE_ASYNC(src, PROC_REF(open_door))
 
 /obj/structure/vampdoor/proc/close_door(mob/user, force)
 	if(!force)

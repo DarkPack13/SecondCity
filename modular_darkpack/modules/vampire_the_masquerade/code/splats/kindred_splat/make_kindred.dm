@@ -27,3 +27,6 @@
 		childe_clan = GLOB.vampire_clans[/datum/subsplat/vampire_clan/caitiff]
 
 	return make_kindred(sire_splat.generation + 1, childe_clan, FALSE, sire)
+
+/mob/living/carbon/human/splat/kindred
+	auto_splats = list(/datum/splat/vampire/kindred)
