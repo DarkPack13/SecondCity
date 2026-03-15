@@ -18,7 +18,7 @@
 
 /// Changes a specific mob's stat from its stats list by the given amount.
 /mob/living/proc/st_change_stat(stat_path, amount)
-	var/datum/st_stat/given_stat = storyteller_stats["[stat_path]"]
+	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	if(amount > 0)
 		return given_stat?.increase_score(amount)
 	else
