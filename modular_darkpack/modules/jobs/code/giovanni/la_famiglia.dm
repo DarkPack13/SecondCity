@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 10
 	spawn_positions = 10
-	supervisors = "the Family or your Spouse"
+	supervisors = "the Family"
 	config_tag = "LA_FAMIGLIA"
 	outfit = /datum/outfit/job/vampire/famiglia
 	job_flags = CITY_JOB_FLAGS
@@ -15,7 +15,7 @@
 	)
 
 	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE, SPLAT_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_BRUJAH, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_LASOMBRA)
+	allowed_clans = list(VAMPIRE_CLAN_CAITIFF)
 	description = "Your family is a strange one. Maybe you are strange too, because sitting next to your great uncles as an equal is something you are greatly interested in."
 	minimal_masquerade = 0
 

@@ -111,6 +111,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
 
+// If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
+#define TRAIT_NO_EYE_CONTACT "no_eye_contact"
+
 /// If the species has garou breeds to select.
 #define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
 // if the species has garou tribes to select.
@@ -136,7 +139,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
-
+/// If the mob can't have surgery done on it. See: Blood form Tzimisce
+#define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"

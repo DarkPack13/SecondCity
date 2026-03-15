@@ -4,6 +4,7 @@
 	icon_state = "thaumaturgy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/thaumaturgy
+	max_selectable_level = 5
 
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
