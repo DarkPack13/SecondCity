@@ -1,3 +1,6 @@
+
+// Level 5: Slimegirl tzimisce
+
 /datum/discipline/vicissitude
 	name = "Vicissitude"
 	desc = "It is widely known as Tzimisce art of flesh and bone shaping. Violates Masquerade."
@@ -9,414 +12,184 @@
 	name = "Vicissitude power name"
 	desc = "Vicissitude power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg'
+	var/datum/action/cooldown/mob_cooldown/shapeshift/shapeshift_ability
 
-//MALLEABLE VISAGE
+/datum/discipline_power/vicissitude/post_gain()
+	if(!shapeshift_ability)
+		shapeshift_ability = new(owner)
+	shapeshift_ability.Grant(owner)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /datum/discipline_power/vicissitude/malleable_visage
 	name = "Malleable Visage"
-	desc = "Change your features to mimic those of a victim."
+	desc = "Shapeshift yourself."
 
 	level = 1
-	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND | DISC_CHECK_SEE | DISC_CHECK_LYING
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
+	target_type = NONE
+	cooldown_length = 1 TURNS
+	vitae_cost = 1
+	toggled = FALSE
 
-	violates_masquerade = TRUE
-
-	cooldown_length = 10 SECONDS
-
-	//why is this necessary why isn't transfer_identity working please fix this
-	var/datum/dna/original_dna
-	var/original_name
-	var/original_skintone
-	var/original_hairstyle
-	var/original_facialhair
-	var/original_haircolor
-	var/original_facialhaircolor
-	var/original_eyecolor
-	var/original_body_mod
-	var/original_body_sprite
-
-	var/datum/dna/impersonating_dna
-	var/impersonating_name
-	var/impersonating_skintone
-	var/impersonating_hairstyle
-	var/impersonating_facialhair
-	var/impersonating_haircolor
-	var/impersonating_facialhaircolor
-	var/impersonating_eyecolor
-	var/impersonating_body_mod
-	var/impersonating_body_sprite
-
-	var/is_shapeshifted = FALSE
-
-/datum/discipline_power/vicissitude/malleable_visage/activate()
+/datum/discipline_power/vicissitude/malleable_visage/activate(atom/target)
 	. = ..()
+	shapeshift_ability.Activate(owner)
+	return TRUE
 
-	if (is_shapeshifted)
-		var/choice = alert(owner, "What form do you wish to take?", name, "Yours", "Someone Else's")
-		if (choice == "Yours")
-			deactivate()
-			return
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	choose_impersonating()
-	shapeshift()
-
-/datum/discipline_power/vicissitude/malleable_visage/deactivate()
-	. = ..()
-	shapeshift(to_original = TRUE)
-
-/datum/discipline_power/vicissitude/malleable_visage/proc/choose_impersonating()
-	initialize_original()
-
-	var/list/mob/living/carbon/human/potential_victims = list()
-	for (var/mob/living/carbon/human/adding_victim in oviewers(3, owner))
-		potential_victims += adding_victim
-	if (!length(potential_victims))
-		to_chat(owner, span_warning("No one is close enough for you to examine..."))
-		return
-	var/mob/living/carbon/human/victim = input(owner, "Who do you wish to impersonate?", name) as null|mob in potential_victims
-	if (!victim)
-		return
-
-	impersonating_dna = new
-	victim.dna.copy_dna(impersonating_dna)
-	impersonating_name = victim.real_name
-	impersonating_skintone = victim.skin_tone
-	impersonating_hairstyle = victim.hairstyle
-	impersonating_facialhair = victim.facial_hairstyle
-	impersonating_haircolor = victim.hair_color
-	impersonating_facialhaircolor = victim.facial_hair_color
-	impersonating_eyecolor = victim.eye_color
-	impersonating_body_mod = victim.base_body_mod
-	impersonating_body_sprite = GET_BODY_SPRITE(victim)
-
-/datum/discipline_power/vicissitude/malleable_visage/proc/initialize_original()
-	if (is_shapeshifted)
-		return
-	if (original_dna)
-		return
-
-	original_dna = new
-	owner.dna.copy_dna(original_dna)
-	original_name = owner.real_name
-	original_skintone = owner.skin_tone
-	original_hairstyle = owner.hairstyle
-	original_facialhair = owner.facial_hairstyle
-	original_haircolor = owner.hair_color
-	original_facialhaircolor = owner.facial_hair_color
-	original_eyecolor = owner.eye_color
-	original_body_mod = owner.base_body_mod
-	original_body_sprite = GET_BODY_SPRITE(owner)
-
-/datum/discipline_power/vicissitude/malleable_visage/proc/shapeshift(to_original = FALSE, instant = FALSE)
-	if (!impersonating_dna)
-		return
-	if (!instant)
-		var/time_delay = 10 SECONDS
-		if (original_body_mod != impersonating_body_mod)
-			time_delay += 5 SECONDS
-		if (original_body_sprite != impersonating_body_sprite)
-			time_delay += 10 SECONDS
-		to_chat(owner, span_notice("You begin molding your appearance... This will take [DisplayTimeText(time_delay)]."))
-		if (!do_after(owner, time_delay))
-			return
-
-	owner.Stun(1 SECONDS)
-	owner.do_jitter_animation(10)
-	playsound(get_turf(owner), 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 100, TRUE, -6)
-
-	if (to_original)
-		original_dna.transfer_identity(destination = owner, transfer_SE = TRUE, superficial = TRUE)
-		owner.real_name = original_name
-		owner.skin_tone = original_skintone
-		owner.set_hairstyle(original_hairstyle)
-		owner.set_facial_hairstyle(original_facialhair)
-		owner.set_haircolor(original_haircolor)
-		owner.set_facial_haircolor(original_facialhaircolor)
-		owner.set_eye_color(original_eyecolor)
-		owner.set_body_sprite(original_body_sprite)
-		is_shapeshifted = FALSE
-		QDEL_NULL(impersonating_dna)
-	else
-		//Nosferatu, Cappadocians, Gargoyles, Kiasyd, etc. will revert instead of being indefinitely without their curse
-		if (!NORMAL_BODY_SPRITE(owner))
-			addtimer(CALLBACK(src, PROC_REF(revert_to_cursed_form)), 1 SCENES)
-		impersonating_dna.transfer_identity(destination = owner, superficial = TRUE)
-		owner.real_name = impersonating_name
-		owner.skin_tone = impersonating_skintone
-		owner.set_hairstyle(impersonating_hairstyle)
-		owner.set_facial_hairstyle(impersonating_facialhair)
-		owner.set_haircolor(impersonating_haircolor)
-		owner.set_facial_haircolor(impersonating_facialhaircolor)
-		owner.set_eye_color(impersonating_eyecolor)
-		owner.set_body_sprite(impersonating_body_sprite)
-		is_shapeshifted = TRUE
-
-	owner.update_body()
-
-/datum/discipline_power/vicissitude/malleable_visage/proc/revert_to_cursed_form()
-	if (!is_shapeshifted)
-		return
-
-	owner.set_body_sprite(original_body_sprite)
-
-	to_chat(owner, span_warning("Your cursed appearance reasserts itself!"))
-
-//FLESHCRAFTING
 /datum/discipline_power/vicissitude/fleshcrafting
 	name = "Fleshcrafting"
-	desc = "Mold your victim's flesh and soft tissue to your desire."
+	desc = "Shapeshift yourself or others."
 
 	level = 2
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
-	target_type = TARGET_MOB
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = TARGET_SELF | TARGET_HUMAN
+	vitae_cost = 1
 	range = 1
+	toggled = FALSE
+	cooldown_length = 1 TURNS
 
-	effect_sound = 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg'
-	aggravating = TRUE
-	hostile = TRUE
-	violates_masquerade = TRUE
-
-	cooldown_length = 5 SECONDS
-	grouped_powers = list(/datum/discipline_power/vicissitude/bonecrafting)
-
-/datum/discipline_power/vicissitude/fleshcrafting/activate(mob/living/target)
+/datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)
 	. = ..()
-	if(target.stat >= HARD_CRIT)
-		if(target.stat != DEAD)
-			target.death()
-		new /obj/item/stack/human_flesh/ten(target.loc)
-		new /obj/item/guts(target.loc)
-		qdel(target)
-	else
-		target.emote("scream")
-		target.apply_damage(30, BRUTE, BODY_ZONE_CHEST)
+	shapeshift_ability.Activate(target)
+	return TRUE
 
 /datum/discipline_power/vicissitude/fleshcrafting/post_gain()
 	. = ..()
-	var/obj/item/organ/cyberimp/arm/surgery/surgery_implant = new()
+	var/obj/item/organ/cyberimp/arm/toolkit/surgery/vicissitude/surgery_implant = new()
 	surgery_implant.Insert(owner)
+	RegisterSignal(owner, COMSIG_LIVING_OPERATING_ON, PROC_REF(add_surgery))
 
-	if (!owner.mind)
-		return
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_wall)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_stool)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_floor)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_eyes)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_implant)
+/datum/discipline_power/vicissitude/fleshcrafting/Destroy(force)
+	UnregisterSignal(owner, COMSIG_LIVING_OPERATING_ON)
+	return ..()
 
-//BONECRAFTING
+/datum/discipline_power/vicissitude/fleshcrafting/proc/add_surgery(datum/source, atom/movable/operating_on, list/possible_operations)
+	SIGNAL_HANDLER
+
+	var/static/list/tzimisce_operations
+	if(!length(tzimisce_operations))
+		tzimisce_operations = list()
+		tzimisce_operations += /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
+		tzimisce_operations += /datum/surgery_operation/limb/add_plastic
+		tzimisce_operations += typesof(/datum/surgery_operation/limb/bioware)
+		tzimisce_operations += typesof(/datum/surgery_operation/organ/brainwash)
+		tzimisce_operations += typesof(/datum/surgery_operation/organ/lobotomy)
+		tzimisce_operations += typesof(/datum/surgery_operation/organ/pacify)
+		tzimisce_operations += /datum/surgery_operation/organ/eye_color_surgery
+		tzimisce_operations += /datum/surgery_operation/limb/sex_change
+		tzimisce_operations += /datum/surgery_operation/limb/height_change
+		tzimisce_operations += /datum/surgery_operation/limb/modify_hair
+		tzimisce_operations += /datum/surgery_operation/limb/modify_skin
+
+	possible_operations |= tzimisce_operations
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /datum/discipline_power/vicissitude/bonecrafting
 	name = "Bonecrafting"
-	desc = "Mold your victim's flesh and soft tissue to your desire."
+	desc = "Forcefully injure a body."
 
 	level = 3
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
 	target_type = TARGET_MOB
+	vitae_cost = 1
 	range = 1
-
-	effect_sound = 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg'
+	toggled = FALSE
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
-
-	cooldown_length = 5 SECONDS
-	grouped_powers = list(/datum/discipline_power/vicissitude/fleshcrafting)
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
+	cooldown_length = 1 TURNS
 
 /datum/discipline_power/vicissitude/bonecrafting/activate(mob/living/target)
 	. = ..()
-	if (target.stat >= HARD_CRIT)
+
+	var/roll = SSroll.storyteller_roll((owner.st_get_stat(STAT_STRENGTH) + owner.st_get_stat(STAT_MEDICINE)), 7, owner, target, TRUE)
+
+	if(target.stat >= HARD_CRIT)
 		if(target.stat != DEAD)
 			target.death()
-		var/obj/item/bodypart/r_arm/r_arm = target.get_bodypart(BODY_ZONE_R_ARM)
-		var/obj/item/bodypart/l_arm/l_arm = target.get_bodypart(BODY_ZONE_L_ARM)
-		var/obj/item/bodypart/r_leg/r_leg = target.get_bodypart(BODY_ZONE_R_LEG)
-		var/obj/item/bodypart/l_leg/l_leg = target.get_bodypart(BODY_ZONE_L_LEG)
-		if(r_arm)
-			r_arm.drop_limb()
-		if(l_arm)
-			l_arm.drop_limb()
-		if(r_leg)
-			r_leg.drop_limb()
-		if(l_leg)
-			l_leg.drop_limb()
-		new /obj/item/stack/human_flesh/ten(target.loc)
+		var/obj/item/bodypart/arm/right/r_arm = target.get_bodypart(BODY_ZONE_R_ARM)
+		var/obj/item/bodypart/arm/left/l_arm = target.get_bodypart(BODY_ZONE_L_ARM)
+		var/obj/item/bodypart/leg/right/r_leg = target.get_bodypart(BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/leg/left/l_leg = target.get_bodypart(BODY_ZONE_L_LEG)
+		r_arm?.drop_limb()
+		l_arm?.drop_limb()
+		r_leg?.drop_limb()
+		l_leg?.drop_limb()
+		new /obj/item/stack/sheet/meat/twenty(target.loc)
 		new /obj/item/guts(target.loc)
 		new /obj/item/spine(target.loc)
 		qdel(target)
 	else
 		target.emote("scream")
-		target.apply_damage(60, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(roll LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_CHEST)
+		if(roll >= 5)
+			target.visible_message(span_danger("[target]'s rib cage curves inwards grotesquely!"), span_danger("Your feel your ribcages curve inwards and pierce your heart!"))
+			target.adjust_blood_pool(-(round(target.bloodpool * 0.5))) // A vampire who scores five or more successes on the roll (...) cause the affected vampire to lose half his blood points.
 
-/datum/discipline_power/vicissitude/bonecrafting/post_gain()
-	. = ..()
-	var/datum/action/basic_vicissitude/vicissitude_upgrade = new()
-	vicissitude_upgrade.Grant(owner)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	if (!owner.mind)
-		return
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_trench)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_biter)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_fister)
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_tanker)
-
-/datum/action/basic_vicissitude
-	name = "Vicissitude Upgrade"
-	desc = "Upgrade your body..."
-	button_icon_state = "basic"
-	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	vampiric = TRUE
-	var/selected_upgrade
-	var/mutable_appearance/upgrade_overlay
-	var/original_skin_tone
-	var/original_hairstyle
-	var/original_body_mod
-
-/datum/action/basic_vicissitude/Trigger()
-	. = ..()
-	if (selected_upgrade)
-		remove_upgrade()
-	else
-		give_upgrade()
-
-	owner.update_body()
-
-/datum/action/basic_vicissitude/proc/give_upgrade()
-	var/mob/living/carbon/human/user = owner
-	var/upgrade = input(owner, "Choose basic upgrade:", "Vicissitude Upgrades") as null|anything in list("Skin armor", "Centipede legs", "Second pair of arms", "Leather wings")
-	if(!upgrade)
-		return
-	to_chat(user, span_notice("You begin molding your flesh and bone into a stronger form..."))
-	if (!do_after(user, 10 SECONDS))
-		return
-	if(selected_upgrade)
-		return
-	selected_upgrade = upgrade
-	ADD_TRAIT(user, TRAIT_UNMASQUERADE, TRAUMA_TRAIT)
-	switch (upgrade)
-		if ("Skin armor")
-			user.set_body_sprite("tziarmor")
-			original_skin_tone = user.skin_tone
-			user.skin_tone = "albino"
-			original_hairstyle = user.hairstyle
-			user.set_hairstyle("Bald")
-			original_body_mod = user.base_body_mod
-			user.physiology.armor.melee += 20
-			user.physiology.armor.bullet += 20
-		if ("Centipede legs")
-			user.remove_overlay(PROTEAN_LAYER)
-			upgrade_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/64x64.dmi', "centipede", -PROTEAN_LAYER)
-			upgrade_overlay.pixel_z = -16
-			upgrade_overlay.pixel_w = -16
-			user.overlays_standing[PROTEAN_LAYER] = upgrade_overlay
-			user.apply_overlay(PROTEAN_LAYER)
-			user.add_movespeed_modifier(/datum/movespeed_modifier/centipede)
-		if ("Second pair of arms")
-			var/limbs = user.held_items.len
-			user.change_number_of_hands(limbs + 2)
-			user.remove_overlay(PROTEAN_LAYER)
-			upgrade_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "2hands", -PROTEAN_LAYER)
-			upgrade_overlay.color = "#[skintone2hex(user.skin_tone)]"
-			user.overlays_standing[PROTEAN_LAYER] = upgrade_overlay
-			user.apply_overlay(PROTEAN_LAYER)
-		if ("Leather wings")
-			user.dna.species.GiveSpeciesFlight(user)
-
-	user.do_jitter_animation(10)
-	playsound(get_turf(user), 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 100, TRUE, -6)
-
-/datum/action/basic_vicissitude/proc/remove_upgrade()
-	var/mob/living/carbon/human/user = owner
-	if (!selected_upgrade)
-		return
-	to_chat(user, span_notice("You begin surgically removing your enhancements..."))
-	if (!do_after(user, 10 SECONDS))
-		return
-	REMOVE_TRAIT(user, TRAIT_UNMASQUERADE, TRAUMA_TRAIT)
-	switch (selected_upgrade)
-		if ("Skin armor")
-			user.set_body_sprite()
-			user.skin_tone = original_skin_tone
-			user.set_hairstyle(original_hairstyle)
-			user.physiology.armor.melee -= 20
-			user.physiology.armor.bullet -= 20
-		if ("Centipede legs")
-			user.remove_overlay(PROTEAN_LAYER)
-			QDEL_NULL(upgrade_overlay)
-			user.remove_movespeed_modifier(/datum/movespeed_modifier/centipede)
-		if ("Second pair of arms")
-			var/limbs = user.held_items.len
-			user.change_number_of_hands(limbs - 2)
-			user.remove_overlay(PROTEAN_LAYER)
-			QDEL_NULL(upgrade_overlay)
-		if ("Leather wings")
-			user.dna.species.RemoveSpeciesFlight(user)
-
-	user.do_jitter_animation(10)
-	playsound(get_turf(user), 'modular_darkpack/modules/deprecated/sounds/vicissitude.ogg', 100, TRUE, -6)
-
-	selected_upgrade = null
-
-//HORRID FORM
 /datum/discipline_power/vicissitude/horrid_form
 	name = "Horrid Form"
-	desc = "Shift your flesh and bone into that of a hideous monster."
+	desc = "Force yourself to become something truly monstrous."
 
 	level = 4
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
-	vitae_cost = 2
-
 	violates_masquerade = TRUE
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	target_type = NONE
+	vitae_cost = 2
+	aggravating = TRUE
+	cooldown_length = 1 TURNS
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
+	var/datum/action/cooldown/spell/shapeshift/zulo/zulo_form
 
-	duration_length = 20 SECONDS
-	cooldown_length = 20 SECONDS
-
-	var/datum/action/cooldown/spell/shapeshift/tzimisce/horrid_form_shapeshift
+/datum/discipline_power/vicissitude/horrid_form/pre_activation_checks()
+	. = ..()
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/vicissitude/horrid_form/activate()
 	. = ..()
-	if (!horrid_form_shapeshift)
-		horrid_form_shapeshift = new(owner)
+	if(!zulo_form)
+		zulo_form = new(owner)
+		zulo_form.Grant(owner)
+	zulo_form.Activate(owner)
 
-	horrid_form_shapeshift.Shapeshift(owner)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/discipline_power/vicissitude/horrid_form/deactivate()
-	. = ..()
-	horrid_form_shapeshift.Restore(horrid_form_shapeshift.myshape)
-	owner.Stun(2 SECONDS)
-	owner.do_jitter_animation(50)
-
-/datum/discipline_power/vicissitude/horrid_form/post_gain()
-	. = ..()
-	if (!owner.mind)
-		return
-	owner.mind.teach_crafting_recipe(/datum/crafting_recipe/tzi_heart)
-
-//BLOODFORM
 /datum/discipline_power/vicissitude/bloodform
 	name = "Bloodform"
-	desc = "Liquefy into a shifting mass of sentient Vitae."
+	desc = "Liquify into a shifting mass of sentient Vitae."
 
 	level = 5
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
-
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
+	target_type = NONE
 	violates_masquerade = TRUE
+	cooldown_length = 1 TURNS
+	toggled = TRUE
+	activate_sound = 'modular_darkpack/modules/powers/sounds/vicissitude.ogg'
 
-	duration_length = 20 SECONDS
-	cooldown_length = 20 SECONDS
-
-	var/datum/action/cooldown/spell/shapeshift/bloodcrawler/bloodform_shapeshift
+/datum/discipline_power/vicissitude/bloodform/pre_activation_checks()
+	. = ..()
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
-	if (!bloodform_shapeshift)
-		bloodform_shapeshift = new(owner)
-
-	bloodform_shapeshift.Shapeshift(owner)
+	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
-	var/mob/living/simple_animal/hostile/bloodcrawler/bloodform = bloodform_shapeshift.myshape
-	owner.bloodpool = min(owner.bloodpool + round(bloodform.collected_blood / 2), owner.maxbloodpool)
-	bloodform_shapeshift.Restore(bloodform_shapeshift.myshape)
-	owner.Stun(1.5 SECONDS)
-	owner.do_jitter_animation(30)
+	owner.do_jitter_animation(1 TURNS)
+	if(!do_after(owner, 1 TURNS, owner))
+		return FALSE
+	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
+	return TRUE

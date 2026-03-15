@@ -301,7 +301,7 @@
 	firing_effect_type = null
 	item_flags = DROPDEL
 
-/obj/item/gun/magic/quietus/process_fire()
+/obj/item/gun/magic/quietus/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	. = ..()
 	if(charges == 0)
 		qdel(src)
