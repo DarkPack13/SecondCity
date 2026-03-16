@@ -200,6 +200,7 @@ SUBSYSTEM_DEF(ticker)
 
 			if(!roundend_check_paused && (check_finished() || force_ending))
 				current_state = GAME_STATE_FINISHED
+				GLOB.canon_event = FALSE // We generally consider all events in postgame to be non-canon due to most servers having EORG // DARKPACK EDIT ADD
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
@@ -217,6 +218,10 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	// DARKPACK EDIT ADD START - CITY_TIME
 	if(SScity_time.roundend_started)
+		return TRUE
+	// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START - MASQUERADE
+	if(SSmasquerade.roundend_started)
 		return TRUE
 	// DARKPACK EDIT ADD END
 	return FALSE
@@ -330,7 +335,7 @@ SUBSYSTEM_DEF(ticker)
 		var/arguments = list()
 		if(GLOB.revdata.originmastercommit)
 			to_set += "commit_hash = :commit_hash"
-			arguments["commit_hash"] = GLOB.revdata.originmastercommit
+			arguments["commit_hash"] = GLOB.revdata.GetDatabaseCommitSha()
 		if(to_set.len)
 			arguments["round_id"] = GLOB.round_id
 			var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery(

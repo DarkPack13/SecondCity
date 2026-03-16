@@ -1,5 +1,5 @@
 /datum/preference/toggle/persistent_scars
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES // DARKPACK EDIT, ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_key = "persistent_scars"
 	savefile_identifier = PREFERENCE_CHARACTER
 

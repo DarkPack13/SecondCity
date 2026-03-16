@@ -437,18 +437,6 @@
 /obj/underplate/stuff
 	icon_state = "stuff"
 
-/obj/structure/billiard_table
-	name = "billiard table"
-	desc = "Come here, play some BALLS. I know you want it so much..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "billiard1"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/billiard_table/Initialize(mapload)
-	. = ..()
-	icon_state = "billiard[rand(1, 3)]"
-
 /obj/structure/pole
 	name = "stripper pole"
 	desc = "A pole fastened to the ceiling and floor, used to show of ones goods to company."
@@ -513,14 +501,13 @@
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
-	icon_state = "firebarrel"
+	icon = 'modular_darkpack/modules/decor/icons/fires.dmi'
+	icon_state = "fire_barrel_on_fire"
 	anchored = TRUE
 	density = TRUE
-
-/obj/structure/fire_barrel/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#ffa800")
+	light_range = 3
+	light_power = 2
+	light_color = "#ffa800"
 
 /obj/structure/fountain
 	name = "fountain"
@@ -559,7 +546,7 @@
 	name = "hide carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kopatich"
 
 /obj/effect/decal/baalirune
@@ -649,23 +636,8 @@
 	name = "carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kover"
-
-/obj/were_ice
-	name = "ice block"
-	desc = "Stores some precious organs..."
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf_lupus.dmi'
-	icon_state = "ice_man"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-
-/obj/were_ice/lupus
-	icon_state = "ice_wolf"
-
-/obj/were_ice/crinos
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf.dmi'
-	icon_state = "ice"
-	pixel_w = -8
 
 /obj/structure/bury_pit
 	name = "bury pit"
@@ -677,41 +649,43 @@
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/burying = FALSE
+	var/pit_busy = FALSE
 
-// DARKPACK TODO - reimplement
-/*
-/obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		if(!burying)
-			burying = TRUE
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				burying = FALSE
-				if(icon_state == "pit0")
-					for(var/mob/living/L in get_turf(src))
-						L.forceMove(src)
-						icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					for(var/mob/living/L in src)
-						L.forceMove(get_turf(src))
-					icon_state = "pit0"
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-			else
-				burying = FALSE
+/obj/structure/bury_pit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.tool_behaviour == TOOL_SHOVEL)
+		if(pit_busy)
+			return ITEM_INTERACT_BLOCKING
 
-/obj/structure/bury_pit/container_resist_act(mob/living/user)
-	if(!burying)
-		burying = TRUE
-		if(do_mob(user, src, 30 SECONDS))
+		pit_busy = TRUE
+		user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
+		if(!do_after(user, 10 SECONDS, src))
+			pit_busy = FALSE
+
+		pit_busy = FALSE
+		if(icon_state == "pit0")
+			for(var/mob/living/L in get_turf(src))
+				L.forceMove(src)
+				icon_state = "pit1"
+				user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+		else
 			for(var/mob/living/L in src)
 				L.forceMove(get_turf(src))
 			icon_state = "pit0"
-			burying = FALSE
-		else
-			burying = FALSE
-*/
+			user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+
+/obj/structure/bury_pit/container_resist_act(mob/living/user)
+	if(pit_busy)
+		return
+
+	pit_busy = TRUE
+	if(!do_after(user, 30 SECONDS, src))
+		pit_busy = FALSE
+
+	for(var/mob/living/L in src)
+		L.forceMove(get_turf(src))
+	icon_state = "pit0"
+	pit_busy = FALSE
+
 
 /obj/structure/fluff/tv
 	name = "\improper TV"

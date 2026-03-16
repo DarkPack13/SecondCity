@@ -14,12 +14,12 @@
 	var/range_successes
 	var/flames_range
 
-//v20 core rulebook states that lure of flames can only conjure flames so far depending on successes.
+//V20 core rulebook states that lure of flames can only conjure flames so far depending on successes.
 /datum/discipline_power/thaumaturgy/path/flames/pre_activation_checks(atom/target, ranged)
 	. = ..()
 	if(src.ranged == FALSE)
 		return TRUE
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, mobs_to_show_output = owner)
+	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")

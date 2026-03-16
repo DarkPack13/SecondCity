@@ -51,7 +51,12 @@
 		if(LOOC_CHANNEL)
 			client.looc(entry)
 			return TRUE
-		// DARKPACK EDIT END
+// DARKPACK EDIT END
+// DARKPACK EDIT ADD START - DO_EMOTES
+		if(DO_CHANNEL)
+			client.mob.do_verb(entry)
+			return TRUE
+// DARKPACK EDIT ADD END
 	return FALSE
 
 /**

@@ -1,7 +1,12 @@
 /obj/structure/retail/pharmacy
+	product_types = list(
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/ointment,
+		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/suture,
+		/obj/item/stack/medical/mesh,
+	)
 	products_list = list(
-		new /datum/data/vending_product("bruise pack", /obj/item/stack/medical/bruise_pack),
-		new /datum/data/vending_product("burn ointment", /obj/item/stack/medical/ointment),
 		new /datum/data/vending_product("potassium iodide pill bottle", /obj/item/storage/pill_bottle/potassiodide),
 		new /datum/data/vending_product("latex gloves", /obj/item/clothing/gloves/vampire/latex, 150),
 		new /datum/data/vending_product("iron pill bottle", /obj/item/storage/pill_bottle/iron, 150),

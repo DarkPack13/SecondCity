@@ -1,4 +1,4 @@
-export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'LOOC'; // DARKPACK EDIT, ORIGINAL: export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin';
+export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'LOOC' | 'Do'; // DARKPACK EDIT, ORIGINAL: export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin';
 
 /**
  * ### ChannelIterator
@@ -8,7 +8,7 @@ export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'LOOC'; // DARK
  */
 export class ChannelIterator {
   private index: number = 0;
-  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'LOOC', 'OOC', 'Admin']; // DARKPACK EDIT, ORIGINAL: private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'OOC', 'Admin'];
+  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'Do', 'LOOC', 'OOC', 'Admin']; // DARKPACK EDIT, ORIGINAL: private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'OOC', 'Admin'];
   private readonly blacklist: Channel[] = ['Admin'];
   private readonly quiet: Channel[] = ['OOC', 'LOOC', 'Admin']; // DARKPACK EDIT, ORIGINAL: private readonly quiet: Channel[] = ['OOC', 'Admin'];
 

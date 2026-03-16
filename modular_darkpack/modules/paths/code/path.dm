@@ -1,4 +1,5 @@
 /datum/discipline/path
+	abstract_type = /datum/discipline/path
 	action_type = /datum/action/discipline/path
 	var/action_replaced = FALSE
 	selectable = FALSE //cant buy it as a ghoul

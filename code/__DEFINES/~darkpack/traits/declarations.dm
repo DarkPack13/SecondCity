@@ -40,9 +40,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DIABLERIE "diablerie"
 #define TRAIT_GULLET "gullet"
 #define TRAIT_CHARMER "charmer"
+
+// Mutates the apperance of auras
 #define TRAIT_COLD_AURA "cold_aura"
 #define TRAIT_WARM_AURA "warm_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
+
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
 /// The mob will automatically breach the Masquerade when seen by others, with no exceptions
 #define TRAIT_UNMASQUERADE "unmasquerade"
@@ -87,15 +90,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOOD_DRINKER "blood_drinker"
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
-// Does the mob know thaumaturgy?
-#define TRAIT_THAUMATURGY_KNOWLEDGE "thaumaturgy_knowledge"
 // Does the mob have ghostsight?
 #define TRAIT_GHOST_VISION "ghost_vision"
-#define TRAIT_VICISSITUDE_KNOWLEDGE "vicissitude_knowledge"
-#define TRAIT_MYSTICISM_KNOWLEDGE "mysticism_knowledge"
-#define TRAIT_NECROMANCY_KNOWLEDGE "necromancy_knowledge"
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
-#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERMENT
+
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
@@ -112,4 +110,40 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Is the Vampire currently hungry? Hunger is defined at a bloodpool rating of 7 - self control (if humanity alignment) or instincts (enlightenment alignment)
 // its called this because theres apparently already a defined quirk called 'hungry' which appears to lower your blood drawn from biting by half.
 #define TRAIT_NEEDS_BLOOD "vampire_hungry"
+
+/// If the species has garou breeds to select.
+#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
+// if the species has garou tribes to select.
+#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
+// If the species has garou auspices to select.
+#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
+// This mob has fur!
+#define TRAIT_FERA_FUR "fera_fur"
+/// If the fera is wyrm tainted.
+#define TRAIT_WYRMTAINTED "wyrm_tainted"
+/// If the fera is wyrm tainted. Affects their sprite.
+#define TRAIT_WYRMTAINTED_SPRITE "wyrm_tainted_sprite"
+/// For living mobs to prevent adjustments to their lying angle. Used primarly for fera.
+#define TRAIT_NO_LYING_ANGLE "no_lying_angle"
+// Expensive but allows us to ensure there resting gets updated.
+#define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+/// Prevents the mob from picking up items larger then small
+#define TRAIT_SMALL_HANDS "small_hands"
+// Traits granted via gifts
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_HOWLER "loud_howler"
+#define TRAIT_RAZOR_CLAWS "razor_claws"
+
+/// Sixth sense restricted to view range
+#define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
+
+// BELOW ARE ALL MERITS/FLAWS
+#define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_PERMAFANGS "permafangs"
+#define TRAIT_ORGANOVORE "organovore"
+#define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
+#define TRAIT_MONSTROUS "monstrous"
+#define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
+
+
 // END TRAIT DEFINES

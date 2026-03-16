@@ -14,6 +14,7 @@
 		var/torpor_time = (14 - morality_score) MINUTES
 		COOLDOWN_START(vampirism, torpor_timer, torpor_time)
 //	RegisterSignal(new_kindred, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
+
 /mob/living/proc/cure_torpor(source, force)
 	if(!HAS_TRAIT_FROM(src, TRAIT_TORPOR, source))
 		return

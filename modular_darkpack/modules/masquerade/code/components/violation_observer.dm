@@ -45,13 +45,18 @@
 	breached_players += player_breacher
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
 
+	return TRUE
+
 /datum/component/violation_observer/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
-	SSmasquerade.masquerade_reinforce(source, player_breacher)
-	source.observe_masquerade_reinforce(player_breacher)
-	breached_players -= player_breacher
+	if(player_breacher in breached_players)
+		SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
+		SSmasquerade.masquerade_reinforce(source, player_breacher)
+		source.observe_masquerade_reinforce(player_breacher)
+		breached_players -= player_breacher
+
+		return TRUE
 
 /datum/component/violation_observer/proc/on_death(atom/source)
 	SIGNAL_HANDLER
@@ -63,21 +68,18 @@
 		breached_players -= player_breacher
 
 /atom/proc/observe_masquerade_violation(player_breacher)
-	/* // DARKPACK TODO - GAROU
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
+	do_alert_animation()
+	if(iswerewolfsplat(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
-		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/veil_violation.ogg', 0, 0, 75))
+		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/veil_violation.ogg', 50, FALSE, -5)
 		return
-	*/
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
 /atom/proc/observe_masquerade_reinforce(player_breacher)
-	/* // DARKPACK TODO - GAROU
-	if(isgarou(player_breacher) || iswerewolf(player_breacher))
-		SEND_SOUND(player_breacher, sound('code/modules/wod13/sounds/humanity_gain.ogg', 0, 0, 75))
-		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCEED")))
+	if(iswerewolfsplat(player_breacher))
+		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
+		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
 		return
-	*/
 	to_chat(player_breacher, span_big(span_boldnicegreen("MASQUERADE REINFORCED")))
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_reinforce.ogg', 50, FALSE, -5)

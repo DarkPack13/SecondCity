@@ -34,8 +34,8 @@
 		icon = 'modular_darkpack/modules/decor/icons/bathroom.dmi'
 		icon_state = "tub"
 
-/obj/structure/bath/sabbatbath/attackby(obj/item/W, mob/living/carbon/user, params)
-	if(istype(W, /obj/item/sabbat_priest_tome))
+/obj/structure/bath/sabbatbath/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/sabbat_priest_tome))
 		if(user.mind && is_sabbat_priest(user) && has_buckled_mobs())
 			var/mob/living/buckled_mob = buckled_mobs[1]
 			if(buckled_mob.mind)
@@ -60,19 +60,19 @@
 						to_chat(sabbat_member, span_cult("[buckled_mob] has been anointed as the new Ductus of the pack!"))
 
 				to_chat(buckled_mob, span_cult("You have been anointed as the new Ductus of the pack!"))
-		return
-	if(istype(W, /obj/item/knife/vamp))
+		return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/knife/vamp))
 		playsound(loc,'sound/items/weapons/bladeslice.ogg', 50, FALSE)
 		if(do_after(user, 100))
 			if(user.bloodpool <= 0)
 				to_chat(user, span_warning("You have no blood to donate!"))
-				return
+				return ITEM_INTERACT_BLOCKING
 
 			user.visible_message(span_notice("[user] cuts [user.p_their()] wrist and lets blood flow into the bath."), span_notice("You cut your wrist and let blood flow into the bath."))
 
 			var/amount_to_donate = min(user.bloodpool, 3)
 
-			user.bloodpool -= amount_to_donate
+			user.adjust_blood_pool(-amount_to_donate)
 
 			blood_level = min(blood_level + amount_to_donate, max_blood)
 			reagents.add_reagent(/datum/reagent/blood, amount_to_donate)
@@ -82,21 +82,22 @@
 
 			update_icon()
 
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_warning("You decide not to add your blood to the bathtub..."))
+			return ITEM_INTERACT_BLOCKING
 
 	// Handle vaulderie goblet specifically so that the Priest can use the tub's blood for vaulderie (part of the blood bath rite)
-	if(istype(W, /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet))
-		var/obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet/goblet = W
+	if(istype(tool, /obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet))
+		var/obj/item/reagent_containers/cup/silver_goblet/vaulderie_goblet/goblet = tool
 		if(blood_level <= 0)
 			to_chat(user, span_warning("The bath is empty."))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		var/transfer_amount = min(goblet.volume - goblet.reagents.total_volume, blood_level)
 		if(transfer_amount <= 0)
 			to_chat(user, span_warning("The goblet is already full."))
-			return
+			return ITEM_INTERACT_BLOCKING
 
 		user.visible_message(span_notice("[user] scoops blood from the bath into [goblet]."), span_notice("You scoop blood from the bath into [goblet]."))
 
@@ -109,9 +110,7 @@
 		if(blood_level <= 0)
 			update_icon()
 
-		return TRUE
-
-	return ..()
+		return  ITEM_INTERACT_SUCCESS
 
 /obj/structure/bath/sabbatbath/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	. = ..()

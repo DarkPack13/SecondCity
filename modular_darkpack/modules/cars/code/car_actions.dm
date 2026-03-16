@@ -88,6 +88,9 @@
 			to_chat(owner, span_danger("You don't know what you're doing!"))
 			return FALSE
 
+	if(!ISADVANCEDTOOLUSER(clicker))
+		return
+
 	var/obj/darkpack_car/owned_car = owner.loc
 	if(!owned_car.on)
 		if((owned_car.get_integrity() == owned_car.max_integrity) || (prob(100*(owned_car.get_integrity()/owned_car.max_integrity))))

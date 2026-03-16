@@ -13,7 +13,7 @@
 	departments_list = list(
 		/datum/job_department/city_services,
 	)
-	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_NONE)
+	allowed_splats = SPLAT_ALL
 
 	description = "Drive people in the city."
 	minimal_masquerade = 0

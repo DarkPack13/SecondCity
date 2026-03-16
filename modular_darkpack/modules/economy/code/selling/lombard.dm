@@ -2,6 +2,12 @@
 #define SALE_DIFFICULTY 6
 #define BOTCH_FAILURE_PENALTY 0.5
 
+/datum/storyteller_roll/fencing
+	bumper_text = "fencing"
+	applicable_stats = list(STAT_CHARISMA, STAT_FINANCE)
+	difficulty = SALE_DIFFICULTY
+	numerical = TRUE
+
 /obj/lombard
 	name = "pawnshop"
 	desc = "Sell your stuff."
@@ -10,17 +16,19 @@
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 	anchored = TRUE
 	var/black_market = FALSE
+	var/datum/storyteller_roll/fencing/sell_roll
 
-/obj/lombard/attackby(obj/item/W, mob/living/carbon/human/user, params)
-	var/datum/component/selling/selling_comp = W.GetComponent(/datum/component/selling)
+/obj/lombard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/datum/component/selling/selling_comp = tool.GetComponent(/datum/component/selling)
 	if(!selling_comp)
-		return ..()
+		return NONE
 
 	if(selling_comp.illegal != black_market)
 		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	sell_one_item(W, user)
+	sell_one_item(tool, user)
+	return ITEM_INTERACT_SUCCESS
 
 /// Sell a single item
 /obj/lombard/proc/sell_one_item(obj/item/sold, mob/living/user)
@@ -56,13 +64,10 @@
 	var/list/sold_items = list()
 	var/total_sale_price = 0
 
+	if(!sell_roll)
+		sell_roll = new()
 	// Make a single roll to sell all your items in bulk
-	var/negotiation_success_count = 0
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
-		if(negotiation_dice > 0)
-			negotiation_success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+	var/negotiation_success_count = sell_roll.st_roll(user, src)
 
 	for(var/obj/item/sold in items_to_sell)
 		var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
@@ -105,20 +110,16 @@
 			return round(base_price * stack_multiplier * negotiation_success_count)
 		return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
 
+
 	// otherwise, roll for negotiation in a single item sale
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
+	if(!sell_roll)
+		sell_roll = new()
+	// Make a single roll to sell all your items in bulk
+	var/success_count = sell_roll.st_roll(user, src)
 
-		if(negotiation_dice > 0)
-			var/success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
-
-			if(success_count > 0)
-				return round(base_price * stack_multiplier * success_count)
-			return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
-
-	// No negotiation dice (which should rarely happen) = ZERO! Completely scammed at 0 finance 0 charisma
-	return 0
+	if(success_count > 0)
+		return round(base_price * stack_multiplier * success_count)
+	return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
 
 /obj/lombard/proc/spawn_money(amount, atom/spawn_location)
 	if(amount <= 0)

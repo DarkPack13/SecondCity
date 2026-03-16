@@ -4,5 +4,7 @@ GLOBAL_LIST_EMPTY(logging_machines)
 GLOBAL_LIST_EMPTY(blood_hunt_announcers)
 /// List of people who have created unresolved major Masquerade breaches
 GLOBAL_LIST_EMPTY(masquerade_breakers_list)
+/// List of people who have created unresolved major Veil breaches (Masquerade but for werewolves/fera)
+GLOBAL_LIST_EMPTY(veil_breakers_list)
 /// Areas that people will be transported to if they latejoin with a Masquerade-violating appearance
 GLOBAL_LIST_EMPTY(masquerade_latejoin)

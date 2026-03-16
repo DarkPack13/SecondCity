@@ -12,9 +12,11 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 import { CharacterPreview } from '../../common/CharacterPreview';
+import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADDITION
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
@@ -34,7 +36,7 @@ import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT, ORIGINAL: 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -74,12 +76,9 @@ function CharacterControls(props: CharacterControlsProps) {
       </Stack.Item>
 
       {/* DARKPACK EDIT REMOVAL {props.showGender && ( */}
-        <Stack.Item>
-          <GenderButton
-            gender={props.gender}
-            handleSetGender={props.setGender}
-          />
-        </Stack.Item>
+      <Stack.Item>
+        <GenderButton gender={props.gender} handleSetGender={props.setGender} />
+      </Stack.Item>
       {/* DARKPACK EDIT REMOVAL )} */}
 
       <Stack.Item>
@@ -390,6 +389,7 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
+                tooltipPosition="right" // DARKPACK EDIT ADDITION - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
@@ -456,6 +456,7 @@ export function MainPage(props: MainPageProps) {
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
   const [randomToggleEnabled] = useRandomToggleState();
+  const [pendingClanValue, setPendingClanValue] = useState<string | null>(null);
 
   const serverData = useServerPrefs();
 
@@ -493,6 +494,47 @@ export function MainPage(props: MainPageProps) {
     delete nonContextualPreferences.random_name;
   }
 
+  // DARKPACK EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
+  enum PrefPage {
+    Visual, // The visual parts
+    Profile, // Flavor Text, Age, Records, PDA ringtone, etc
+  }
+
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+
+  let prefPageContents;
+  switch (currentPrefPage) {
+    case PrefPage.Visual:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            contextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={contextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Profile:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            nonContextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={nonContextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    default:
+      exhaustiveCheck(currentPrefPage);
+  }
+  // DARKPACK EDIT ADDITION END
+
   return (
     <>
       {multiNameInputOpen && (
@@ -518,6 +560,65 @@ export function MainPage(props: MainPageProps) {
           close={() => setDeleteCharacterPopupOpen(false)}
         />
       )}
+      {/* DARKPACK EDIT START - Clan Change Disciplines reset popup*/}
+      {pendingClanValue !== null && (
+        <Box
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.75)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box
+            style={{
+              background: '#1b1b1b',
+              border: '1px solid #555',
+              padding: '20px',
+              maxWidth: '380px',
+              width: '90%',
+            }}
+          >
+            <Box bold textAlign="center" fontSize={1.1} mb={1} mt={-1}>
+              Change Clan?
+            </Box>
+            <Box color="label" mb={2}>
+              Changing your clan will wipe ALL of your existing disciplines.
+              This cannot be undone. Are you sure?
+            </Box>
+            <Stack textAlign="center" justify="center">
+              <Stack.Item>
+                <Button
+                  textAlign="center"
+                  onClick={() => setPendingClanValue(null)}
+                >
+                  Cancel
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  textAlign="center"
+                  color="bad"
+                  onClick={() => {
+                    createSetPreference(act, 'vampire_clan')(pendingClanValue);
+                    act('clear_discipline_levels');
+                    setPendingClanValue(null);
+                  }}
+                >
+                  Proceed
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Box>
+        </Box>
+      )}
+      {/* DARKPACK EDIT END*/}
 
       <Stack height={`${CLOTHING_SIDEBAR_ROWS * CLOTHING_CELL_SIZE}px`}>
         <Stack.Item>
@@ -569,6 +670,21 @@ export function MainPage(props: MainPageProps) {
               ] as FeatureChoicedServerData & {
                 name: string;
               };
+              // DARKPACK EDIT START - Refactor Selections to support the clan reset popup
+              // this exists because with the way the default selections work, it would call the createsetpref directly and make us unable to call say, a fancy reset confirmation dialogue for clan changes
+              // while this works fine, if you can come up with a better solution that i cant see, plz do
+              const baseSelect = createSetPreference(act, clothingKey);
+              const handleSelect =
+                clothingKey === 'vampire_clan'
+                  ? (newValue: string) => {
+                      if (newValue !== clothing) {
+                        setPendingClanValue(newValue);
+                      } else {
+                        baseSelect(newValue);
+                      }
+                    }
+                  : baseSelect;
+              // DARKPACK EDIT END
 
               return (
                 <Stack.Item key={clothingKey}>
@@ -579,7 +695,7 @@ export function MainPage(props: MainPageProps) {
                     <MainFeature
                       catalog={catalog}
                       currentValue={clothing}
-                      handleSelect={createSetPreference(act, clothingKey)}
+                      handleSelect={handleSelect}
                       randomization={randomizationOfMainFeatures[clothingKey]}
                       setRandomization={createSetRandomization(clothingKey)}
                     />
@@ -590,8 +706,12 @@ export function MainPage(props: MainPageProps) {
           </Stack>
         </Stack.Item>
 
-        <Stack.Item grow basis={0}>
+        {/* DARKPACK EDIT CHANGE: Swappable pref menus */}
+        {/* ORIGINAL: <Stack.Item grow basis={0}> */}
+        <Stack.Item grow basis={0} ml="4px">
           <Stack vertical fill>
+            {
+              /* DARKPACK EDIT REMOVAL START
             <PreferenceList
               randomizations={getRandomization(
                 contextualPreferences,
@@ -611,8 +731,34 @@ export function MainPage(props: MainPageProps) {
               preferences={nonContextualPreferences}
               maxHeight="auto"
             />
+            */
+              // DARKPACK EDIT REMOVAL END
+            }
+            {/* DARKPACK EDIT ADDITION BEGIN: Swappable pref menus */}
+            <Stack>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Visual}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Visuals
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Profile}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Lore
+                </PageButton>
+              </Stack.Item>
+            </Stack>
+            {prefPageContents}
           </Stack>
         </Stack.Item>
+        {/* DARKPACK EDIT ADDITION END: Swappable pref menus */}
       </Stack>
     </>
   );

@@ -42,11 +42,11 @@
 /// Preferences relating to World of Darkness TTRPG elements
 #define PREFERENCE_PRIORITY_WORLD_OF_DARKNESS 11
 
-#define PREFERENCE_PRIORITY_REQUIRES_CLAN 12
+#define PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT 12
 // DARKPACK EDIT ADD END - TTRPG preferences
 
 /// The maximum preference priority, keep this updated, but don't use it for `priority`.
-#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_REQUIRES_CLAN // DARKPACK EDIT CHANGE - TTRPG Preferences
+#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT // DARKPACK EDIT CHANGE - TTRPG Preferences
 
 /// For choiced preferences, this key will be used to set display names in constant data.
 #define CHOICED_PREFERENCE_DISPLAY_NAMES "display_names"

@@ -42,7 +42,7 @@
 	var/mob/living/carbon/human/victim = target
 
 	// victim resists the posion with stamina + fortitude
-	var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, mobs_to_show_output = victim)
+	var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, roller = victim)
 
 	// each resistance success subtracts from the duration
 	var/effective_duration = max(0, poison_duration - resistance)

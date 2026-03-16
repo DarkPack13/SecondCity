@@ -360,7 +360,7 @@
 			SStgui.update_uis(src)
 			return
 		//we couldn't heal ourselves or steal MP, we'll just attack instead.
-	var/skill_level = user.st_get_stat(STAT_TECHNOLOGY) || 1 // DARKPACK EDIT CHANGE - STORYTELLR_STATS
+	var/skill_level = user.st_get_stat(STAT_TECHNOLOGY) || 1 // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 	var/chance_at_counterattack = 40 + (skill_level * 5) //at level 1 this is 45, at legendary this is 75
 	var/damage_dealt = (defending_flags & BATTLE_ATTACK_FLAG_DEFEND) ? rand(5, 10) : rand(15, 20)
 	if((defending_flags & BATTLE_ATTACK_FLAG_COUNTERATTACK) && prob(chance_at_counterattack))

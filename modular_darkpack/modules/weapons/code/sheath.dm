@@ -8,7 +8,6 @@
 	//lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	//righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	custom_price = 1200
 
 /obj/item/storage/belt/sheath/vamp/sabre

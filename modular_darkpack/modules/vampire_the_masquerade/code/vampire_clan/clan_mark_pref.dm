@@ -1,7 +1,7 @@
 /datum/preference/external_choiced/clan_mark
 	savefile_key = "clan_mark"
 	savefile_identifier = PREFERENCE_CHARACTER
-	priority = PREFERENCE_PRIORITY_REQUIRES_CLAN
+	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_inherent_trait = TRAIT_VTM_CLANS
 
@@ -9,18 +9,19 @@
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
 	if(clan.accessories)
 		return TRUE
+	return FALSE
 
 /datum/preference/external_choiced/clan_mark/get_choices(datum/preferences/preferences)
 	if(!preferences)
 		return list("none")
-	var/clan_type = preferences.read_preference(/datum/preference/choiced/vampire_clan)
-	var/datum/vampire_clan/clan = get_vampire_clan(clan_type)
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan || !clan.accessories)
 		return list("none")
 	return clan.accessories
@@ -31,10 +32,37 @@
 /datum/preference/external_choiced/clan_mark/apply_to_human(mob/living/carbon/human/target, value)
 	if(!value)
 		return
-	var/datum/vampire_clan/clan = target.get_clan()
+	var/datum/subsplat/vampire_clan/clan = target.get_clan()
 	if(!length(clan?.accessories))
 		return
 	target.remove_overlay(clan.accessories_layers[value])
 	var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/vampire_the_masquerade/icons/features.dmi', value, -clan.accessories_layers[value])
 	target.overlays_standing[clan.accessories_layers[value]] = acc_overlay
 	target.apply_overlay(clan.accessories_layers[value])
+
+//gargoyle legs and tail
+/datum/preference/toggle/gargoyle_legs_and_tail
+	savefile_key = "gargoyle_legs_and_tail"
+	savefile_identifier = PREFERENCE_CHARACTER
+	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	relevant_inherent_trait = TRAIT_VTM_CLANS
+
+/datum/preference/toggle/gargoyle_legs_and_tail/has_relevant_feature(datum/preferences/preferences)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/clan_type = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
+	if(istype(clan, /datum/subsplat/vampire_clan/gargoyle))
+		return TRUE
+	return FALSE
+
+/datum/preference/toggle/gargoyle_legs_and_tail/apply_to_human(mob/living/carbon/human/target, value)
+	var/datum/subsplat/vampire_clan/clan = target.get_clan()
+	if(!istype(clan, /datum/subsplat/vampire_clan/gargoyle))
+		return
+	if(value)
+		var/mutable_appearance/acc_overlay = mutable_appearance('modular_darkpack/modules/vampire_the_masquerade/icons/features.dmi', "gargoyle_legs_n_tails", -BODY_ADJ_LAYER)
+		target.overlays_standing[BODY_ADJ_LAYER] = acc_overlay
+		target.apply_overlay(BODY_ADJ_LAYER)

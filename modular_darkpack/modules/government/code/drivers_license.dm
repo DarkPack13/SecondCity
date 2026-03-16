@@ -14,6 +14,7 @@
 	var/fake = FALSE
 	/// If the NAME does not belong to the person.
 	var/fake_identity = FALSE
+	var/datum/storyteller_roll/investigation/examine_roll
 
 /obj/item/card/drivers_license/Initialize(mapload)
 	. = ..()
@@ -43,8 +44,11 @@
 
 /obj/item/card/drivers_license/examine(mob/user)
 	. = ..()
-	//DARKPACK TODO - STATS - refer to passport.dm, this should be a statcheck to see if its an illegal ID/counterfeit
+	if(!examine_roll)
+		examine_roll = new()
+		examine_roll.reroll_cooldown = 1 SCENES
+	var/roll_result = examine_roll.st_roll(user, src)
 	if(owner)
 		. += span_notice("It reads as belonging to [owner], issued by the state of [issuing_state].")
-		if(fake)
+		if(fake && (roll_result == ROLL_SUCCESS))
 			. += span_notice("It looks like a crude counterfeit.")
