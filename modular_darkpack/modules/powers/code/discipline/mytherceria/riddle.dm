@@ -1,8 +1,5 @@
 /datum/riddle
-	name = "riddle"
-	desc = "A riddle created with The Riddle Phantastique, Mytherceria 5."
-
-	// The question to ask as a string. Seperate from name so we can modify it more freely.
+	// The question to ask as a string.
 	var/question = "Who made the mistake of letting this error get on to the live server?"
 	// The answers indexed in the order they will appear to the victim
 	var/list/answers = list(
