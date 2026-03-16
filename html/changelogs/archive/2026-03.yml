@@ -11,8 +11,6 @@
   Absolucy:
   - code_imp: Minor code optimizations for APC processing.
   - bugfix: Healium crystals now properly update turf atmos.
-  TealSeer:
-  - image: the HFR glows in the dark now
   FalloutFalcon:
   - admin: darkpack traits can properly be added to mobs as an admin
   - rscadd: Gio get italian again
@@ -46,6 +44,8 @@
   SELFHELL:
   - rscadd: Most Automatic Guns have gotten Full-Auto Capacity, please make an issue
       report for extremely unfair TTKs
+  TealSeer:
+  - image: the HFR glows in the dark now
   buffyuwu:
   - refactor: redesigned the phone, added texting, a settings app, etc.
   chazzyjazzy:
@@ -179,13 +179,13 @@
   ArcaneMusic:
   - qol: After discovering a strange object's behavior, you can now rename it using
       a pen.
+  FalloutFalcon:
+  - rscadd: Readds rank 1/old code auspice gifts
   oranges:
   - rscadd: suicide act for shrink ray
   stylemistake:
   - rscadd: Get your freespins TODAY at your local slot machine, with new impressive
       physics-based spinning action!
-  FalloutFalcon:
-  - rscadd: Readds rank 1/old code auspice gifts
 2026-03-10:
   Majkl-J:
   - bugfix: Parallax layers no longer snap to and from the center of the screen abrubtly
@@ -265,3 +265,26 @@
   - bugfix: Fixes beebox and traitor bees not obeying the reagent blacklist
   - balance: Maintenance pills (the achievement variety that only spawns in maint)
       can now generate with xenomorph microbes and cyborg nanites
+2026-03-16:
+  FalloutFalcon:
+  - bugfix: Assignment of a faction ID was moved to the clan rather then discipline
+  - bugfix: Fixes a few NPCS not having AI controllers
+  - bugfix: Lasombra aren't hidden in ALL vis contents (like virtual z)
+  - code_imp: Darkpack versioning for preference save files
+  LucifersCoils:
+  - rscadd: Caitiff may now access the La Famiglia role
+  - rscdel: Removed all clans' access to La Famiglia
+  buffyuwu:
+  - qol: dice results now output to chat by default instead of balloon alerts
+  - rscadd: Added the Disciplines UI in character setup
+  - rscadd: Implements ghouling, embracing, and discipline teaching where disciplines
+      are concerned
+  - admin: Added an admin ui for discipline management
+  chazzyjazzy:
+  - rscadd: readds height
+  lpeapnni:
+  - bugfix: fixes eyes for both kiasyd and salubri
+  - code_imp: removes todo comments for gridventory stuff
+  - code_imp: Reimplemented permanent ghouling and embracing
+  minzeyes, XeonMations:
+  - rscadd: Reimplements Vicissitude
