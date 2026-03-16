@@ -3,6 +3,7 @@
 	desc = "We fall into a false death state, allowing us to feign death."
 	icon_state = "quietus"
 	power_type = /datum/discipline_power/torpor
+	selectable = FALSE // so it doesn't show up in the admin UI as selectable
 
 /datum/discipline_power/torpor
 	name = "Torpor"
