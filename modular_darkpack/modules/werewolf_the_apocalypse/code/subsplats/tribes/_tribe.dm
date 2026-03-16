@@ -42,7 +42,7 @@
 	// Handle losing tribe
 	previous_tribe?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = isshifter(src)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
 	if (!shifter)
 		return
 
@@ -58,7 +58,7 @@
 /mob/living/proc/get_our_tribe()
 	RETURN_TYPE(/datum/subsplat/werewolf/tribe)
 
-	return isshifter(src)?.tribe
+	return get_shifter_splat(src)?.tribe
 
 /mob/living/proc/is_tribe(tribe_type)
 	return istype(get_our_tribe(), tribe_type)

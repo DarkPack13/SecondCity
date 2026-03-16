@@ -65,7 +65,8 @@ GLOBAL_LIST_INIT(aura_list, sort_list(list(
 "Anxious" = AURA_ANXIOUS,
 "Confused" = AURA_CONFUSED,
 "Daydreaming" = AURA_DAYDREAMING,
-"Psychotic" = AURA_PSYCHOTIC)))
+"Psychotic" = AURA_PSYCHOTIC
+)))
 
 // MYTHERCERIA AURAS START HERE // DARKPACK TODO: replace everything commented "placeholder" with real icons. Some will be base_icon_states (i.e. crinos, mage, fae)
 #define FAESIGHT_GENERIC "generic" // everything not below

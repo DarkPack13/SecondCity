@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/adjust_generation(mob/living/carbon/human/victim)
-	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(src)
 	var/generation = get_generation()
 	var/victim_generation = victim.get_generation()
 
