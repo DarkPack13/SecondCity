@@ -72,11 +72,6 @@
 	for (var/trait in clan_traits)
 		ADD_TRAIT(gaining_mob, trait, CLAN_TRAIT)
 
-	for(var/discipline in clan_disciplines)
-		// DARKPACK TODO - reimplement choosing disciplines
-		if(ispath(discipline, /datum/discipline))
-			gaining_mob.give_st_power(discipline, 5)
-
 	// Mostly for summons to not kill you.
 	gaining_mob.add_faction(id)
 

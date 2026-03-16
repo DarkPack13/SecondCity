@@ -74,6 +74,10 @@
 /datum/discipline_power/dominate/proc/dominate_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, numerical = FALSE)
 	var/datum/discipline/dominate/parent_disc = discipline
 
+	if(HAS_TRAIT(owner, TRAIT_NO_EYE_CONTACT))
+		to_chat(owner, span_warning("You are unable to make eye contact!"))
+		return FALSE
+
 	//someone has botched a dominate against this human
 	if(LAZYLEN(parent_disc.botched_targets))
 		for(var/datum/weakref/ref in parent_disc.botched_targets)
