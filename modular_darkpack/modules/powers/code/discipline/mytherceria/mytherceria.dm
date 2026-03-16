@@ -41,11 +41,11 @@
 	var/response_w = input(L, "Does your character believe your last statement to be the truth?") in list("Yes", "No")
 
 	if(response_w == "Yes") // Telling the truth!
-		to_chat(user, "<span class='notice'>[L] is not intentionally lying.</span>")
+		to_chat(owner, "<span class='notice'>[L] is not intentionally lying.</span>")
 	else if(response_w == "No") // Lying!
-		to_chat(user, "<span class='notice'>[L] is LYING!</span>")
+		to_chat(owner, "<span class='notice'>[L] is LYING!</span>")
 	else // Dunno
-		to_chat(user, "<span class='notice'>[L]'s truthfulness is difficult to determine.</span>")
+		to_chat(owner, "<span class='notice'>[L]'s truthfulness is difficult to determine.</span>")
 
 	log_directed_talk(owner, target, "[owner] used Folderol on [target]. Response: [response_w]", LOG_SAY, "Folderol")
 	return
@@ -114,7 +114,7 @@
  *
  * Perception + Empathy roll. Functionally spirits touch but erases whatever's discovered.
  *
- * TODO: If we aver add Natures and/or Demeanors, make them temporarily undetectable unless someone beats the first roll.
+ * TODO: If we ever add Natures and/or Demeanors, make them temporarily undetectable unless someone beats the first roll.
  * TODO: "The first Kiasyd’s successes subtract from the number of successes scored by anyone trying to read the object thereafter."
  *
  * TODO: Came back to this a few days later (1/30/26) to find that our implementation of Spirit's Touch isn't robust enough to make this TTRPG accurate. Fix that.
@@ -254,6 +254,15 @@
  * When placed on an object, anyone coming into contact with that object (such as picking it up or otherwise touching it) suffer a severe movement speed penalty
  * and a short period of randomized controls. When placed on a mob, they also suffer from this penalty. When placed on a turf, it functions as a tripmine.
  */
+/datum/storyteller_roll/chanjelin_ward // For resisting it
+	bumper_text = "resist (Chanjelin Ward)"
+	applicable_stats = list(STAT_WITS, STAT_INVESTIGATION)
+	roll_output_type = ROLL_NONE // don't dox the kiasyd if the lemming doesn't notice
+	difficulty = 8
+
+/datum/status_effect/confusion/chanjelin_ward/on_creation(mob/living/new_owner, duration = INFINITY)
+	return ..()
+
 /datum/discipline_power/mytherceria/chanjelin_ward
 	name = "Chanjelin Ward"
 	desc = "Place a ward that confuses and befuddles your foes."
@@ -265,9 +274,9 @@
 	cooldown_length = 4 TURNS
 
 /datum/discipline_power/mytherceria/chanjelin_ward/pre_activation_checks(atom/target)
-	var/activate_time = max(3 TURNS - (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_OCCULT)), 1 SECONDS)
+	var/activate_time = max(3 TURNS - (owner.st_get_stat(STAT_DEXTERITY) + owner.st_get_stat(STAT_OCCULT)), 1 SECONDS) // realtime gameplay concession
 	to_chat(owner, span_notice("You begin inscribing a ward on [target]."))
-	if(!do_after(owner, activation_time, target, interaction_key = "chanjelin_ward", max_interact_count = 1))
+	if(!do_after(owner, activate_time, target, interaction_key = "chanjelin_ward", max_interact_count = 1))
 		to_chat(owner, span_warning("You decide not to finish the ward and erase your progress."))
 		return FALSE
 	. = ..()
@@ -302,10 +311,10 @@
 	cooldown_length = 4 TURNS
 	range = 3
 
-/datum/discipline_power/mytherceria/the_riddle_phantastique/pre_activation_checks(atom/target)
+/*/datum/discipline_power/mytherceria/the_riddle_phantastique/pre_activation_checks(atom/target)
 	if(ismob(target))
-		var/mob/guy = target
-		if(guy.can_hear())
+		var/mob/living/guy = target
+//		if(guy.can_hear()) // could've sworn this was a real proc... replace with real method
 			return TRUE
 
-	return FALSE
+	return FALSE*/
