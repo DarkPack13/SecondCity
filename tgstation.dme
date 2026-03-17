@@ -427,6 +427,7 @@
 #include "code\__DEFINES\~darkpack\aggravated_damage.dm"
 #include "code\__DEFINES\~darkpack\alerts.dm"
 #include "code\__DEFINES\~darkpack\areas.dm"
+#include "code\__DEFINES\~darkpack\artifacts.dm"
 #include "code\__DEFINES\~darkpack\auras.dm"
 #include "code\__DEFINES\~darkpack\banning.dm"
 #include "code\__DEFINES\~darkpack\beastmaster.dm"

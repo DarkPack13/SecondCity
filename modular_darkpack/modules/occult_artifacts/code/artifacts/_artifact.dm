@@ -90,5 +90,5 @@
 
 /obj/effect/spawner/random/occult/artifact
 	name = "random occult fetish"
-	spawn_loot_chance = 50
+	spawn_loot_chance = ARTIFACT_RANDOM_PROBABILITY
 	loot_subtype_path = /obj/item/vtm_artifact

@@ -75,7 +75,7 @@
 // DARKPACK EDIT ADD - Paths, finding artifacts in crates
 /obj/structure/closet/crate/large/Destroy()
 	// 10% chance to spawn a random artifact when destroyed (spawner has 50% chance of spawning nothing)
-	if(!length(contents) && prob(21))
+	if(!length(contents) && prob(ARTIFACT_CRATE_PROBABILITY))
 		var/turf/T = get_turf(src)
 		if(T)
 			new /obj/effect/spawner/random/occult/artifact(T)
