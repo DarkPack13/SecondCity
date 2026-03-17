@@ -11,16 +11,25 @@
 
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(target, COMSIG_ATOM_BUMPED, PROC_REF(on_bumped))
+	RegisterSignal(target, COMSIG_MOB_ATTACK_HAND, PROC_REF(on_attack_hand))
+	RegisterSignal(target, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attack_hand))
 
-//	if(isturf(target))
-//		RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
+	if(ismob(target))
+		RegisterSignal(target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(on_attacked))
+
+	if(isturf(target))
+		RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
 
 /datum/element/chanjelin_ward/Detach(datum/target)
 	UnregisterSignal(target, list(COMSIG_ATOM_EXAMINE))
 	UnregisterSignal(target, list(COMSIG_ATOM_BUMPED))
-#warn uncomment when .proc/on_entered is written
-//	if(isturf(target))
-//		UnregisterSignal(target, list(COMSIG_ATOM_ENTERED))
+	UnregisterSignal(target, list(COMSIG_MOB_ATTACK_HAND))
+	UnregisterSignal(target, list(COMSIG_MOB_ATTACKBY))
+
+	if(ismob(target))
+		UnregisterSignal(target, list(COMSIG_MOB_ITEM_ATTACK))
+	if(isturf(target))
+		UnregisterSignal(target, list(COMSIG_ATOM_ENTERED))
 
 	return ..()
 
@@ -75,4 +84,28 @@
 
 	to_chat(guy, do_confused(guy))
 
+/datum/element/chanjelin_ward/proc/on_entered(atom/movable/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+
+	if(roll_check(user))
+		return
+
+	if(isliving(arrived))
+		var/mob/living/guy = arrived
+		do_confused(guy)
+	else
+		return
+
+/datum/element/chanjelin_ward/proc/on_attack_hand(atom/movable/source, mob/user)
+	SIGNAL_HANDLER
+
+	if(roll_check(user))
+		return
+
+	do_confused(user)
+
+/datum/element/chanjelin_ward/proc/on_attacked(atom/movable/source, mob/attacked, mob/attacker)
+
+	if(roll_check(user))
+		return
 #warn chanjelin_ward_element.dm: this is horribly unfinished!
