@@ -8,7 +8,7 @@
 	//signature_discipline =  /datum/discipline/melpominee
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
-		// /datum/discipline/melpominee,
+		/datum/discipline/melpominee,
 		/datum/discipline/presence
 	)
 	male_clothes = /obj/item/clothing/under/vampire/sexy

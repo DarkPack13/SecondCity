@@ -11,7 +11,7 @@
 
 /obj/item/vtm_artifact/odious_chalice/attack(mob/living/M, mob/living/user)
 	. = ..()
-	if(!iskindred(M))
+	if(!get_kindred_splat(M))
 		return
 	if(!stored_blood)
 		return

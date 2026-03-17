@@ -7,7 +7,8 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/animalism,
-		// /datum/discipline/vicissitude
+		/datum/discipline/vicissitude
+
 	)
 	male_clothes = /obj/item/clothing/under/vampire/sport
 	female_clothes = /obj/item/clothing/under/vampire/red
@@ -20,26 +21,6 @@
 	to_chat(target, span_cult("I SEE VISIONS OF FLAME ENGULFING MY DOMAIN"))
 	new /datum/hallucination/fire(target, TRUE)
 	target.Paralyze(6 SECONDS)
-
-/datum/action/cooldown/spell/shapeshift/tzimisce
-	name = "Tzimisce Form"
-	desc = "Take on the shape a beast."
-	cooldown_time = 10 SECONDS
-	revert_on_death = TRUE
-	die_with_shapeshifted_form = FALSE
-	spell_requirements = NONE
-	convert_damage = FALSE
-	possible_shapes = list(/mob/living/basic/tzimisce_beast)
-
-/datum/action/cooldown/spell/shapeshift/bloodcrawler
-	name = "Blood Crawler"
-	desc = "Take on the shape a beast."
-	cooldown_time = 5 SECONDS
-	revert_on_death = TRUE
-	convert_damage = FALSE
-	spell_requirements = NONE
-	die_with_shapeshifted_form = FALSE
-	possible_shapes = list(/mob/living/basic/bloodcrawler)
 
 /datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()

@@ -1,4 +1,6 @@
 /mob/living
+	has_emotion = TRUE
+
 	var/mob/living/lastattacked
 
 	var/bloodquality = 1
