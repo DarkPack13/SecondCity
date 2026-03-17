@@ -215,7 +215,7 @@
 	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
-	owner_splat = iskindred(owner)
+	owner_splat = get_kindred_splat(owner)
 	if(!LAZYLEN(cached_targets))
 		to_chat(owner, span_warning("You haven't gotten a good look at anyone - so you can't mimic anyone's face!"))
 		return FALSE
@@ -264,7 +264,7 @@
 			original_sprite_greyscale = TRUE
 
 	target.dna.copy_dna(owner.dna, 0)
-	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/target_splat = get_kindred_splat(target)
 	if(target_splat?.clan?.alt_sprite)
 		owner.set_body_sprite(target_splat.clan.alt_sprite, target_splat.clan.alt_sprite_greyscale, TRUE)
 	else

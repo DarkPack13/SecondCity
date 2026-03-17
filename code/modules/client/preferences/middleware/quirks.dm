@@ -118,7 +118,7 @@
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
 	// DARKPACK EDIT ADD - MERITS/FLAWS
-	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.decrease_points(quirk_type.value)
 	// DARKPACK EDIT END - MERITS/FLAWS
@@ -140,7 +140,7 @@
 /datum/preference_middleware/quirks/proc/remove_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
 	// DARKPACK EDIT ADD - MERITS/FLAWS
-	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.increase_points(quirk_type.value)
 	// DARKPACK EDIT END - MERITS/FLAWS
@@ -172,7 +172,7 @@
 //DARKPACK EDIT ADD - MERITS/FLAWS
 
 /datum/preference_middleware/quirks/proc/get_freebie_points()
-	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	if(!freebie_stat)
 		return null
 

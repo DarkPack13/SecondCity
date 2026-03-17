@@ -86,7 +86,7 @@
 	var/list/hearers = oviewers(DEFAULT_MESSAGE_RANGE, owner)
 	var/highest_diff = 0
 	for(var/mob/living/dice_guy in hearers)
-		var/datum/splat/werewolf/rage_haver = iswerewolfsplat(dice_guy)
+		var/datum/splat/werewolf/rage_haver = get_werewolf_splat(dice_guy)
 		if(!rage_haver)
 			continue
 		highest_diff = max(highest_diff, rage_haver.rage)
@@ -118,7 +118,7 @@
 /datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
 	. = ..()
 
-	var/datum/splat/werewolf/our_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
 
 	var/roll_result = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/open_seal, bonus = our_splat.permanent_gnosis, difficulty = target.get_gauntlet_rating())
 	if(roll_result == ROLL_SUCCESS)

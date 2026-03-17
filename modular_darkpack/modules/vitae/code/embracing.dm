@@ -26,19 +26,19 @@
 	for(var/i in 1 to 3)
 		childe.give_st_power(clan_disciplines[i])
 
-	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats["[STAT_MORALITY]"]
+	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats[STAT_MORALITY]
 
 	if(stat_morality_childe)
 		stat_morality_childe.morality_path = new /datum/morality/humanity(childe) // set morality to path of humanity
 
-		var/datum/splat/vampire/kindred/kindred_splat = iskindred(childe) // if this is null something has gone seriously wrong
+		var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(childe) // if this is null something has gone seriously wrong
 
 		// update morality score and the splat enlightenment
 		if(istype(kindred_splat))
-			var/datum/st_stat/stat_conscience = childe.storyteller_stats["[STAT_CONSCIENCE]"]
-			var/datum/st_stat/stat_self_control = childe.storyteller_stats["[STAT_SELF_CONTROL]"]
-			var/datum/st_stat/stat_conviction = childe.storyteller_stats["[STAT_CONVICTION]"]
-			var/datum/st_stat/stat_instinct = childe.storyteller_stats["[STAT_INSTINCT]"]
+			var/datum/st_stat/stat_conscience = childe.storyteller_stats[STAT_CONSCIENCE]
+			var/datum/st_stat/stat_self_control = childe.storyteller_stats[STAT_SELF_CONTROL]
+			var/datum/st_stat/stat_conviction = childe.storyteller_stats[STAT_CONVICTION]
+			var/datum/st_stat/stat_instinct = childe.storyteller_stats[STAT_INSTINCT]
 
 			if(stat_morality_childe.morality_path.alignment == MORALITY_HUMANITY)
 				kindred_splat.enlightenment = FALSE
@@ -90,7 +90,7 @@
 	write_preference_midround(/datum/preference/choiced/subsplat/vampire_clan, get_clan()?.name) // clan should already be changed by the embracing itself...
 
 	// ...same with your morality path. unfortunately, this is a bit of a clusterfuck to get
-	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats["[STAT_MORALITY]"]
+	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
 	if(stat_morality?.morality_path)
 		write_preference_midround(/datum/preference/choiced/vtm_morality, stat_morality.morality_path.name)
 		// the actual stat isnt editable, so i *shouldnt* need to worry about setting the stat in preferences,

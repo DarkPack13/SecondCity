@@ -69,7 +69,7 @@
 
 /// Fetch the mob dmi from our splat
 /datum/species/human/shifter/proc/get_mob_icon(mob/living/carbon/human/human)
-	var/datum/splat/werewolf/shifter/shifter_splat = isshifter(human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
 	var/icon_to_use
 	if(shifter_splat)
 		icon_to_use = shifter_splat.mob_icons[id]

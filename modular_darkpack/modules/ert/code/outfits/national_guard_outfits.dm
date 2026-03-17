@@ -76,10 +76,10 @@
 		/obj/item/grenade/flashbang = 1,
 		/obj/item/grenade/smokebomb = 1,
 		/obj/item/molotov = 1,
-		/obj/item/gun/ballistic/revolver/grenadelauncher = 1,
 		/obj/item/gun/ballistic/automatic/darkpack/uzi = 1,
 		/obj/item/liquid_flamethrower = 1,
 	)
+	r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher
 
 /datum/outfit/job/vampire/ert/national_guard/marksman
 	name = "National Guard Marksman"

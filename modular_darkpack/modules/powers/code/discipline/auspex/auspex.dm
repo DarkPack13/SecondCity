@@ -118,7 +118,8 @@
 
 	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
 	for(var/mob/living/hearer in heard)
-		hearer.apply_status_effect(/datum/status_effect/question_emotion)
+		if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
+			hearer.apply_status_effect(/datum/status_effect/question_emotion)
 
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()
@@ -272,7 +273,7 @@
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
 				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
-				if(iskindred(target) || isshifter(target))
+				if(get_kindred_splat(target) || get_shifter_splat(target))
 					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
 			if(TELEPATHY_IMPLANT_THOUGHT)
 				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")

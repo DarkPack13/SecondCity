@@ -29,3 +29,4 @@
 	attack_verb_continuous = list("tortures", "scourges")
 	attack_verb_simple = list("torture", "scourge")
 	squeak_override = list('modular_darkpack/modules/toys/sounds/femurbreaker.ogg'=1)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)

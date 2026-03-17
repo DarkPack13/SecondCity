@@ -6,6 +6,9 @@
 			them ideal servants to their domitors."
 	id = SPLAT_GHOUL
 
+	splat_priority = SPLAT_PRIO_GHOUL
+	half_splat = TRUE
+
 	splat_traits = list(
 		TRAIT_VTM_CLANS,
 	)

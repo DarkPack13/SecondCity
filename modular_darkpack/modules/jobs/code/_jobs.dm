@@ -42,7 +42,7 @@
 /datum/outfit/job/vampire/pre_equip(mob/living/carbon/human/H, visuals_only)
 	. = ..()
 	if(uses_default_clan_clothes == TRUE)
-		var/datum/splat/vampire/kindred/kindred = iskindred(H)
+		var/datum/splat/vampire/kindred/kindred = get_kindred_splat(H)
 		if(kindred)
 			if(H.jumpsuit_style == PREF_SUIT)
 				shoes = /obj/item/clothing/shoes/vampire

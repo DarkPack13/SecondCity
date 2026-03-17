@@ -94,7 +94,7 @@
 
 	var/mob/living/victim = target
 	var/mob/living/caster = owner
-	var/datum/splat/werewolf/target_splat = iswerewolfsplat(victim)
+	var/datum/splat/werewolf/target_splat = get_werewolf_splat(victim)
 
 	if(istype(target_splat))
 		var/secondary_descriptor = "[pick(wyld_descriptors)]"
@@ -114,9 +114,9 @@
 			if(1)
 				to_chat(owner, span_purple("[victim] smells mundane."))
 			if(2 to 3)
-				if(iskindred(victim))
+				if(get_kindred_splat(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
-				if(isshifter(victim) && !isgarou(victim))
+				if(get_shifter_splat(victim) && !get_garou_splat(victim))
 					to_chat(owner, span_purple("They smell of kin, but not Garou."))
 //				if(ishungrydead(victim))
 //					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
@@ -129,11 +129,11 @@
 				else
 					to_chat(owner, span_purple("[victim] smells mundane."))
 			if(4)
-				if(iskindred(victim))
+				if(get_kindred_splat(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
-				if(isghoul(victim))
+				if(get_ghoul_splat(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
-				if(isshifter(victim) && !isgarou(victim))
+				if(get_shifter_splat(victim) && !get_garou_splat(victim))
 					to_chat(owner, span_purple("They smell of kin, but not Garou."))
 //				if(isfomor(victim))
 //					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
