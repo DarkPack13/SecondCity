@@ -1,5 +1,0 @@
-author: "lpeapnni"
-delete-after: True
-changes:
-  - bugfix: "fixes eyes for both kiasyd and salubri"
-  - code_imp: "removes todo comments for gridventory stuff"

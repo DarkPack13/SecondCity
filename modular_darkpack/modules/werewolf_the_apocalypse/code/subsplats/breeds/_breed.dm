@@ -50,7 +50,7 @@
 	// Handle losing breed_form
 	previous_breed_form?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = isshifter(src)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
 	if (!shifter)
 		return
 
@@ -66,7 +66,7 @@
 /mob/living/proc/get_our_breed_form()
 	RETURN_TYPE(/datum/subsplat/werewolf/breed_form)
 
-	return isshifter(src)?.breed_form
+	return get_shifter_splat(src)?.breed_form
 
 /mob/living/proc/is_breed_form(breed_form_type)
 	return istype(get_our_breed_form(), breed_form_type)

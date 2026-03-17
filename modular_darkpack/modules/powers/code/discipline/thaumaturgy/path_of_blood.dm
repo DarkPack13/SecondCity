@@ -95,19 +95,19 @@
 		return
 
 	var/list/message = list()
-	var/is_kindred = TRUE //For if we show the blood points part.
+	var/get_kindred_splat = TRUE //For if we show the blood points part.
 
 	if(success_count > 1)
-		if(iskindred(blood_owner))
+		if(get_kindred_splat(blood_owner))
 			message += span_notice("The blood tastes like a kindred's blood.")
 		else
 			message += span_danger("The blood doesn't taste like that of a kindred's.")
-			is_kindred = FALSE
+			get_kindred_splat = FALSE
 	else
 		message += span_danger("The blood doesn't taste like that of a kindred's.")
-		is_kindred = FALSE
+		get_kindred_splat = FALSE
 
-	if(!is_kindred)
+	if(!get_kindred_splat)
 		to_chat(owner, boxed_message(jointext(message, "\n")))
 		return
 
@@ -156,7 +156,7 @@
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return
-	var/datum/splat/vampire/kindred/vampirism = iskindred(target) // Get the vampire's splat
+	var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(target) // Get the vampire's splat
 	for(var/i in 1 to success_count)
 		var/datum/action/discipline/random_action = pick(vampirism.powers)
 		var/datum/discipline/random_discipline = random_action.discipline //Choose a random discipline that they have
@@ -254,7 +254,7 @@
 
 	owner.Beam(BeamTarget = target, icon_state = "drainbeam", time = 1 SECONDS)
 	target.visible_message(span_danger("[target]'s blood streams out in a torrent towards [owner]!"), span_userdanger("Your blood streams out in a torrent towards [owner]!"))
-	if(iskindred(target) || isghoul(target))
+	if(get_kindred_splat(target) || get_ghoul_splat(target))
 		var/blood_taken = clamp(success_count, 0, target.bloodpool)
 		target.adjust_blood_pool(-blood_taken)
 
