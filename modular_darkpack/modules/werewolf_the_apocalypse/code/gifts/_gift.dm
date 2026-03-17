@@ -18,7 +18,7 @@
 /datum/action/cooldown/power/gift/IsAvailable(feedback)
 	. = ..()
 
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 	if(!casting_splat)
 		if(feedback)
 			owner.balloon_alert(owner, "not a gift user!")
@@ -32,7 +32,7 @@
 
 /datum/action/cooldown/power/gift/can_afford(feedback)
 	. = ..()
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 
 	if(get_rage_cost())
 		if(!casting_splat)
@@ -53,7 +53,7 @@
 
 /datum/action/cooldown/power/gift/spend_resources()
 	. = ..()
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
 	if(get_rage_cost())
 		casting_splat?.adjust_rage(-get_rage_cost(), owner, FALSE)
 	if(get_gnosis_cost())

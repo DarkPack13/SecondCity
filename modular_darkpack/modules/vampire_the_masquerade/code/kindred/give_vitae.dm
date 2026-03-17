@@ -59,7 +59,7 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/give_vitae/proc/teach_discipline(mob/living/carbon/human/student)
-	var/datum/splat/vampire/sire = does_use_disciplines(owner)
+	var/datum/splat/vampire/sire = get_splat_with_discipline(owner)
 	if(!sire)
 		return FALSE
 
@@ -115,7 +115,7 @@
 
 	var/discipline_type = disc_type[chosen]
 	if(discipline_type)
-		var/datum/splat/vampire/student_splat = student ? does_use_disciplines(student) : null
+		var/datum/splat/vampire/student_splat = student ? get_splat_with_discipline(student) : null
 		if(student_splat && !student_splat.get_power(discipline_type))
 			var/list/validation = validate_mob_sheet(student, discipline_type)
 			if(validation && !validation["valid"])
