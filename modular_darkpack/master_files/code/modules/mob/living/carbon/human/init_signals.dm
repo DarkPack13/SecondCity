@@ -9,14 +9,14 @@
 /mob/living/carbon/human/proc/on_staked(datum/source)
 	SIGNAL_HANDLER
 
-	if(iskindred(src))
-		torpor(STAKE_TRAIT, TRUE)
+	if(get_kindred_splat(src))
+		INVOKE_ASYNC(src, PROC_REF(torpor), STAKE_TRAIT, TRUE)
 	else
-		death()
+		INVOKE_ASYNC(src, PROC_REF(death))
 
 /// Losing [TRAIT_STAKED] forces us out of torpor if we're kindred.
 /mob/living/carbon/human/proc/on_unstaked(datum/source)
 	SIGNAL_HANDLER
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		cure_torpor(STAKE_TRAIT, TRUE)

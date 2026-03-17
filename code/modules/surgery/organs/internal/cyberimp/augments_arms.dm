@@ -214,6 +214,11 @@
 		to_chat(owner, span_warning("The implant doesn't respond. It seems to be broken..."))
 		return
 
+	// DARKPACK EDIT START
+	var/datum/component/two_handed/two_handed = GetComponent(/datum/component/two_handed)
+	if(two_handed)
+		return
+	// DARKPACK EDIT END
 	if(!active_item || (active_item in src))
 		active_item = null
 		if(contents.len == 1)

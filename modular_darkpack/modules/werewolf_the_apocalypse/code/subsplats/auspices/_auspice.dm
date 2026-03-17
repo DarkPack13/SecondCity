@@ -7,11 +7,10 @@
 
 	var/moons_born_under = list()
 
-/datum/subsplat/werewolf/auspice/on_gain(datum/splat/gaining, joining_round)
+/datum/subsplat/werewolf/auspice/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-	if(istype(gaining, /datum/splat/werewolf))
-		var/datum/splat/werewolf/werewolf_splat = gaining
-		werewolf_splat.adjust_rage(start_rage)
+	var/datum/splat/werewolf/werewolf_splat = astype(gaining_splat)
+	werewolf_splat.adjust_rage(start_rage)
 
 /datum/subsplat/werewolf/auspice/proc/rank_requirments(list/renown)
 	return 0
@@ -55,7 +54,7 @@
 	// Handle losing Auspice
 	previous_auspice?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = isshifter(src)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
 	if (!shifter)
 		return
 
@@ -66,12 +65,12 @@
 		return
 
 	// Gaining Auspice effects
-	new_auspice.on_gain(shifter, joining_round)
+	new_auspice.on_gain(src, shifter, joining_round)
 
 /mob/living/proc/get_our_auspice()
 	RETURN_TYPE(/datum/subsplat/werewolf/auspice)
 
-	return isshifter(src)?.auspice
+	return get_shifter_splat(src)?.auspice
 
 /mob/living/proc/is_auspice(auspice_type)
 	return istype(get_our_auspice(), auspice_type)

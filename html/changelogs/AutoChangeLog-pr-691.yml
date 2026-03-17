@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - refactor: "Cleans up some syntax on splat helpers"

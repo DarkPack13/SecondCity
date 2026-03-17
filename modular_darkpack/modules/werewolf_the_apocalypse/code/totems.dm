@@ -100,7 +100,7 @@
 
 /obj/structure/werewolf_totem/proc/notify_fera(damage_change)
 	for(var/mob/living/carbon/human/human in GLOB.player_list)
-		var/datum/splat/werewolf/shifter/shifter_splat = isshifter(human)
+		var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
 		if(!istype(shifter_splat))
 			continue
 		if(human.stat == DEAD)
@@ -119,7 +119,7 @@
 				shifter_splat.adjust_rage(1, FALSE)
 		else
 			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
-			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/inspire.ogg', volume = 50))
+			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
@@ -127,7 +127,7 @@
 	if(user.combat_mode)
 		attack_generic(user, rand(user.melee_damage_lower, user.melee_damage_upper))
 	else
-		var/datum/splat/werewolf/shifter/shifter_splat = isshifter(user)
+		var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(user)
 		if(!istype(shifter_splat))
 			return .
 		if(broken)

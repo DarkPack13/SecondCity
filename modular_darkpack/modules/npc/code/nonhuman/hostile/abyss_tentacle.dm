@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 
 /mob/living/basic/abyss_tentacle/Destroy(force)
 	if(owner)
-		var/datum/splat/vampire/vampire = does_use_disciplines(owner)
+		var/datum/splat/vampire/vampire = get_splat_with_discipline(owner)
 		var/datum/discipline_power/obtenebration/arms_of_the_abyss/power = vampire.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
 		power.active_tentacles -= src
 

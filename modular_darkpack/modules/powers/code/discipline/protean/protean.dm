@@ -66,7 +66,6 @@
 
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
-	sleep(1 TURNS)
 	owner.drop_all_held_items()
 	owner.put_in_r_hand(new /obj/item/gangrel_claws(owner))
 	owner.put_in_l_hand(new /obj/item/gangrel_claws(owner))

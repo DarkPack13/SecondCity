@@ -40,11 +40,11 @@
 				. += span_purple("[p_They()] [p_are()] very attractive!<br>")
 			if(5 to INFINITY)
 				. += span_rose(span_bold("Oh... My God... [p_They()] [p_are()] absolutely stunning! You find yourself blushing just looking at them!<br>"))
-		if (HAS_TRAIT(src, TRAIT_PERMAFANGS))
+		if(HAS_TRAIT(src, TRAIT_PERMAFANGS))
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
 
 	// WEREWOLF
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(user)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
 	if(werewolf_splat && !(obscured_slots & HIDEFACE))
 		. += werewolf_splat.examine_other_human(src)
 	// WEREWOLF

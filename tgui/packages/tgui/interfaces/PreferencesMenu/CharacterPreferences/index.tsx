@@ -12,6 +12,7 @@ import { MainPage } from './MainPage';
 import { QuirkPersonalityPage } from './QuirksPage';
 import { SplatsPage } from './SplatsPage'; // DARKPACK EDIT CHANGE - SPLATS
 import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
+import { DisciplinesPage } from './DisciplinesPage'; // DARKPACK EDIT ADD
 
 enum Page {
   Antags,
@@ -21,6 +22,7 @@ enum Page {
   Quirks,
   Loadout,
   Stats, // DARKPACK EDIT ADD
+  Disciplines, // DARKPACK EDIT ADD
 }
 
 type ProfileProps = {
@@ -85,9 +87,13 @@ export function CharacterPreferenceWindow(props) {
       pageContents = <LoadoutPage />;
       break;
 
-    // DARKPACK EDIT ADD START - Stats
+    // DARKPACK EDIT ADD START - Stats / Disciplines
     case Page.Stats:
       pageContents = <StatsPage />;
+      break;
+
+    case Page.Disciplines:
+      pageContents = <DisciplinesPage />;
       break;
     // DARKPACK EDIT ADD END
 
@@ -128,7 +134,7 @@ export function CharacterPreferenceWindow(props) {
           </Stack.Item>
 
           {
-          // DARKPACK EDIT ADD START - STATS
+          // DARKPACK EDIT ADD START - stats / disciplines
           }
           <Stack.Item grow>
             <PageButton
@@ -139,8 +145,21 @@ export function CharacterPreferenceWindow(props) {
               Stats
             </PageButton>
           </Stack.Item>
+          {['splat_kindred', 'splat_ghoul'].includes(
+            data.character_preferences.misc.splats,
+          ) && (
+            <Stack.Item grow>
+              <PageButton
+                currentPage={currentPage}
+                page={Page.Disciplines}
+                setPage={setCurrentPage}
+              >
+                Disciplines
+              </PageButton>
+            </Stack.Item>
+          )}
           {
-          // DARKPACK EDIT ADD END
+          // DARKPACK EDIT END
           }
 
           <Stack.Item grow>

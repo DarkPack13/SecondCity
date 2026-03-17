@@ -19,7 +19,7 @@
 /mob/living/proc/make_kindred_from_sire(mob/living/sire, always_same_clan = FALSE)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
 
-	var/datum/splat/vampire/kindred/sire_splat = iskindred(sire)
+	var/datum/splat/vampire/kindred/sire_splat = get_kindred_splat(sire)
 
 	var/datum/subsplat/vampire_clan/childe_clan = sire_splat.clan
 	// 5% chance of childer being Caitiff instead of their sire's Clan
@@ -27,3 +27,6 @@
 		childe_clan = GLOB.vampire_clans[/datum/subsplat/vampire_clan/caitiff]
 
 	return make_kindred(sire_splat.generation + 1, childe_clan, FALSE, sire)
+
+/mob/living/carbon/human/splat/kindred
+	auto_splats = list(/datum/splat/vampire/kindred)

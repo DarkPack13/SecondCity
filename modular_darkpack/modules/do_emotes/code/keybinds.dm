@@ -8,5 +8,5 @@
 	. = ..()
 	if(.)
 		return
-	user.mob.emote("do_emote")
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(user.mob, TYPE_PROC_REF(/mob, emote), "do_emote"))
 	return TRUE

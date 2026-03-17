@@ -5,3 +5,6 @@
 
 /datum/preference/choiced/dice_output/init_possible_values()
 	return list(DICE_OUTPUT_BALLOON, DICE_OUTPUT_CHAT)
+
+/datum/preference/choiced/dice_output/create_default_value()
+	return DICE_OUTPUT_CHAT

@@ -1,7 +1,6 @@
 /datum/subsplat/werewolf/tribe
 	abstract_type = /datum/subsplat/werewolf/tribe
 
-	var/tribe_keys
 	//var/tribe_trait
 
 /**
@@ -43,7 +42,7 @@
 	// Handle losing tribe
 	previous_tribe?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = isshifter(src)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
 	if (!shifter)
 		return
 
@@ -54,12 +53,12 @@
 		return
 
 	// Gaining tribe effects
-	new_tribe.on_gain(shifter, joining_round)
+	new_tribe.on_gain(src, shifter, joining_round)
 
 /mob/living/proc/get_our_tribe()
 	RETURN_TYPE(/datum/subsplat/werewolf/tribe)
 
-	return isshifter(src)?.tribe
+	return get_shifter_splat(src)?.tribe
 
 /mob/living/proc/is_tribe(tribe_type)
 	return istype(get_our_tribe(), tribe_type)

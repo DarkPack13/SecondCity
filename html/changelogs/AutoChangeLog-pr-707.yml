@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - admin: "darkpack traits can properly be added to mobs as an admin"

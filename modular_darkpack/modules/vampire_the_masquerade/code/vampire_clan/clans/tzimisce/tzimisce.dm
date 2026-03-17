@@ -6,7 +6,8 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/animalism,
-		// /datum/discipline/vicissitude
+		/datum/discipline/vicissitude
+
 	)
 	male_clothes = /obj/item/clothing/under/vampire/sport
 	female_clothes = /obj/item/clothing/under/vampire/red
@@ -14,38 +15,18 @@
 	accessories = list("spines", "spines_slim", "animal_skull", "none")
 	accessories_layers = list("spines" = BODY_ADJ_LAYER, "spines_slim" = BODY_ADJ_LAYER, "animal_skull" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 
-/datum/action/cooldown/spell/shapeshift/tzimisce
-	name = "Tzimisce Form"
-	desc = "Take on the shape a beast."
-	cooldown_time = 10 SECONDS
-	revert_on_death = TRUE
-	die_with_shapeshifted_form = FALSE
-	spell_requirements = NONE
-	convert_damage = FALSE
-	possible_shapes = list(/mob/living/basic/tzimisce_beast)
-
-/datum/action/cooldown/spell/shapeshift/bloodcrawler
-	name = "Blood Crawler"
-	desc = "Take on the shape a beast."
-	cooldown_time = 5 SECONDS
-	revert_on_death = TRUE
-	convert_damage = FALSE
-	spell_requirements = NONE
-	die_with_shapeshifted_form = FALSE
-	possible_shapes = list(/mob/living/basic/bloodcrawler)
-
-/datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/H)
+/datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
 
-	var/obj/item/ground_heir/heirloom = new(get_turf(H))
+	var/obj/item/ground_heir/heirloom = new(get_turf(joining))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
 		LOCATION_BACKPACK = ITEM_SLOT_BACK,
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
-	H.equip_in_one_of_slots(heirloom, slots, FALSE)
-	H.AddComponent(/datum/component/needs_home_soil, heirloom)
+	joining.equip_in_one_of_slots(heirloom, slots, FALSE)
+	joining.AddComponent(/datum/component/needs_home_soil, heirloom)
 
 /datum/movespeed_modifier/centipede
 	multiplicative_slowdown = -0.6
