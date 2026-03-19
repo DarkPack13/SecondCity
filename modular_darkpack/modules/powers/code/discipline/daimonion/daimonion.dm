@@ -50,9 +50,9 @@
 		to_chat(owner, span_notice("Their body is weak and feeble."))
 	if(target.st_get_stat(STAT_DEXTERITY) <= 2)
 		to_chat(owner, span_notice("They lack coordination."))
-	if(isgarou(target))
+	if(get_garou_splat(target))
 		to_chat(owner, span_notice("Their natural banishment is silver..."))
-	if(iskindred(target))
+	if(get_kindred_splat(target))
 		var/datum/subsplat/vampire_clan/target_clan = target.get_clan()
 		if(!target_clan)
 			return
@@ -82,7 +82,7 @@
 		if(target.mind.dharma?.Po == "Fool")
 			to_chat(owner, span_notice("[target] doesn't like to be pointed at!"))
 	*/
-	if(!iskindred(target) && !isghoul(target) && !isshifter(target) /*&& !iscathayan(target)*/)
+	if(!get_kindred_splat(target) && !get_ghoul_splat(target) && !get_shifter_splat(target) /*&& !iscathayan(target)*/)
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
 
 
@@ -92,14 +92,17 @@
 				return
 			*/
 
-/datum/discipline_power/daimoinon/sense_the_sin/proc/baali_get_stolen_disciplines(target, owner)
+/datum/discipline_power/daimoinon/sense_the_sin/proc/baali_get_stolen_disciplines(mob/living/target, mob/living/owner)
 	if(!owner || !target)
 		return
-	var/datum/splat/vampire/kindred/vampire = iskindred(target)
+	var/datum/splat/vampire/kindred/vampire = get_kindred_splat(target)
 	if(!vampire)
 		return
 	var/datum/subsplat/vampire_clan/target_clan = vampire.clan
-	for(var/datum/discipline/discipline in vampire.powers)
+	for(var/datum/action/discipline/disc_action as anything in vampire.powers)
+		var/datum/discipline/discipline = disc_action.discipline
+		if(!discipline?.selectable)
+			continue
 		var/signature_clan = discipline.signature_clan
 		if(!signature_clan)
 			continue
@@ -211,17 +214,18 @@
 /datum/discipline_power/daimoinon/psychomania/activate(mob/living/target)
 	. = ..()
 
-	var/datum/splat/werewolf/shifter/garou_splat = isshifter(target)
+	var/datum/splat/werewolf/shifter/garou_splat = get_shifter_splat(target)
 	if(garou_splat)
 		garou_splat.tribe.psychomania_effect(target, owner)
 		return
 
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
 		kindred_splat.clan.psychomania_effect(target, owner)
 		return
 
-	if(isghoul(target))
+	var/ghoul_splat = get_ghoul_splat(target)
+	if(ghoul_splat)
 		to_chat(target, span_cult("SOMETHING IS COMING, WHAT IS IT?!!"))
 		var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
 		RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_demon_contact))
@@ -260,7 +264,7 @@
 		to_chat(owner, span_warning("They are already damned!"))
 		return
 
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(owner)
 	if(!available_curses)
 		for(var/curse_type in subtypesof(/datum/status_effect/condemnation))
 			var/datum/status_effect/condemnation/curse = curse_type

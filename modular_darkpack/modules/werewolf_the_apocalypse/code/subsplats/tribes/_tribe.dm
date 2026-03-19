@@ -65,7 +65,7 @@
 
 
 /datum/subsplat/werewolf/tribe/proc/psychomania_effect(mob/living/target, mob/living/owner)
-	var/datum/splat/werewolf/shifter/garou_splat = isshifter(target)
+	var/datum/splat/werewolf/shifter/garou_splat = get_shifter_splat(target)
 	if(garou_splat?.rage > 4)
 		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 		to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
