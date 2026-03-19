@@ -527,13 +527,13 @@
 	anchored = TRUE
 	var/large = FALSE
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/graffiti/large
 	pixel_w = -16
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	large = TRUE
-
-/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
-	return isclosedturf(here_turf)
 
 /obj/effect/decal/graffiti/Initialize(mapload)
 	. = ..()
