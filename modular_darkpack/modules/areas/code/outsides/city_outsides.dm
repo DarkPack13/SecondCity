@@ -19,16 +19,6 @@
 /area/vtm/outside/pacificheights/forest
 	name = "Pacific Heights Forest Outskirts"
 
-/area/vtm/outside/pacificheights/old
-	name = "Pacific Heights - Old District"
-
-/area/vtm/outside/pacificheights/community
-	name = "Pacific Heights - Community Road"
-
-/area/vtm/outside/pacificheights/community/tunnel
-	name = "Pacific Heights - Community Road Tunnel"
-	outdoors = FALSE
-
 /area/vtm/outside/pacificheights/industrial
 	name = "Pacific Heights - Industrial District"
 
@@ -89,9 +79,3 @@
 /area/vtm/outside/supply
 	name = "Supply"
 	icon_state = "supply"
-
-/area/vtm/outside/giovanni/courtyard
-	name = "Giovanni Mansion - Courtyard"
-	icon_state = "giovanni"
-	zone_type = ZONE_ELYSIUM
-	fire_controled = FALSE
