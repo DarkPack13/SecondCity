@@ -57,10 +57,6 @@ endmap
 
 map westfieldmall
     votable
-endmap
-
-map sanfrancisco
-    votable
     default
 endmap
 
