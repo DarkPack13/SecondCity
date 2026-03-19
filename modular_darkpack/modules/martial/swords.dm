@@ -1,50 +1,8 @@
 #define ATTACK_STRIKE "Hilt Strike"
 #define ATTACK_SLICE "Wide Slice"
-#define ATTACK_DASH "Dash Attack"
 #define ATTACK_CUT "Tendon Cut"
-#define ATTACK_CLOAK "Dark Cloak"
-#define ATTACK_SHATTER "Shatter"
 
-/obj/item/organ/cyberimp/arm/toolkit/shard
-	name = "dark spoon shard"
-	desc = "An eerie metal shard surrounded by dark energies...of soup drinking. You probably don't think you should have been able to find this."
-	icon = 'icons/obj/mining_zones/artefacts.dmi'
-	icon_state = "cursed_katana_organ"
-	organ_flags = ORGAN_ORGANIC | ORGAN_FROZEN | ORGAN_UNREMOVABLE
-	items_to_create = list(/obj/item/kitchen/spoon)
-	extend_sound = 'sound/items/unsheath.ogg'
-	retract_sound = 'sound/items/sheath.ogg'
-
-/obj/item/organ/cyberimp/arm/toolkit/shard/attack_self(mob/user, modifiers)
-	. = ..()
-	to_chat(user, span_userdanger("The mass goes up your arm and goes inside it!"))
-	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-	var/index = user.get_held_index_of_item(src)
-	swap_zone(IS_LEFT_INDEX(index) ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM)
-	user.temporarilyRemoveItemFromInventory(src, TRUE)
-	Insert(user)
-
-/obj/item/organ/cyberimp/arm/toolkit/shard/screwdriver_act(mob/living/user, obj/item/screwtool)
-	return
-
-/obj/item/organ/cyberimp/arm/toolkit/shard/katana
-	name = "dark shard"
-	desc = "An eerie metal shard surrounded by dark energies."
-	items_to_create = list(/obj/item/cursed_katana)
-
-/obj/item/organ/cyberimp/arm/toolkit/shard/katana/Retract()
-	var/obj/item/cursed_katana/katana = active_item
-	if(!katana || katana.shattered)
-		return FALSE
-	if(!katana.drew_blood)
-		to_chat(owner, span_userdanger("[katana] lashes out at you in hunger!"))
-		playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
-		owner.apply_damage(25, BRUTE, hand, wound_bonus = 10, sharpness = SHARP_EDGED)
-	katana.drew_blood = FALSE
-	katana.wash(CLEAN_TYPE_BLOOD)
-	return ..()
-
-/obj/item/cursed_katana
+/obj/item/testing_katana
 	name = "testing katana"
 	desc = "It's a regular Katana.. like one of those japanese animes."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
@@ -62,8 +20,6 @@
 	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | FREEZE_PROOF
-	var/datum/storyteller_roll/melee_dexterity/dex_roll
-	var/datum/storyteller_roll/melee_strength/strength_roll
 	var/static/list/combo_list = list(
 		ATTACK_STRIKE = list(COMBO_STEPS = list(LEFT_ATTACK, LEFT_ATTACK, RIGHT_ATTACK), COMBO_PROC = PROC_REF(strike)),
 		ATTACK_SLICE = list(COMBO_STEPS = list(RIGHT_ATTACK, LEFT_ATTACK, LEFT_ATTACK), COMBO_PROC = PROC_REF(slice)),
@@ -72,7 +28,7 @@
 	var/list/alt_continuous = list("stabs", "pierces", "impales")
 	var/list/alt_simple = list("stab", "pierce", "impale")
 
-/obj/item/cursed_katana/Initialize(mapload)
+/obj/item/testing_katana/Initialize(mapload)
 	. = ..()
 	alt_continuous = string_list(alt_continuous)
 	alt_simple = string_list(alt_simple)
@@ -86,20 +42,16 @@
 		can_attack_callback = CALLBACK(src, PROC_REF(can_combo_attack)) \
 	)
 
-/obj/item/cursed_katana/examine(mob/user)
-	. = ..()
-	. += drew_blood ? span_nicegreen("It's sated... for now.") : span_danger("It will not be sated until it tastes blood.")
-
-/obj/item/cursed_katana/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/testing_katana/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	var/datum/storyteller_roll/melee_block/parry_roll = new()
-	var/puller_result = pulled_roll.st_roll(user, src)
-	final_block_chance = puller_result * 10 //I dont see what can go wrong with allowing a theoretical 100% parry chance for an individual hit
+	var/puller_result = parry_roll.st_roll(owner, src)
+	final_block_chance = puller_result * 5 //I dont see what can go wrong with allowing a theoretical 100% parry chance for an individual hit. There was infact something wrong
 	return ..()
 
-/obj/item/cursed_katana/proc/can_combo_attack(mob/user, mob/living/target) //prevents the unworthy from properly using blades
+/obj/item/testing_katana/proc/can_combo_attack(mob/living/carbon/user, mob/living/target) //prevents the unworthy from properly using blades
 	return target.stat != DEAD && target != user && (user.st_get_stat(STAT_MELEE) >= 4)
 
-/obj/item/cursed_katana/proc/strike(mob/living/target, mob/user)
+/obj/item/testing_katana/proc/strike(mob/living/target, mob/user)
 	user.visible_message(span_warning("[user] strikes [target] with [src]'s hilt!"),
 		span_notice("You hilt strike [target]!"))
 	to_chat(target, span_userdanger("You've been struck by [user]!"))
@@ -111,7 +63,7 @@
 	to_chat(target, span_userdanger("You've been struck by [user]!"))
 	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
-/obj/item/cursed_katana/proc/strike_throw_impact(mob/living/source, atom/hit_atom, datum/thrownthing/thrownthing)
+/obj/item/testing_katana/proc/strike_throw_impact(mob/living/source, atom/hit_atom, datum/thrownthing/thrownthing)
 	SIGNAL_HANDLER
 
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
@@ -125,15 +77,15 @@
 			target.set_confusion_if_lower(8 SECONDS)
 	return NONE
 
-/obj/item/cursed_katana/proc/slice(mob/living/target, mob/user)
+/obj/item/testing_katana/proc/slice(mob/living/target, mob/user)
 	user.visible_message(span_warning("[user] does a wide slice!"),
 		span_notice("You do a wide slice!"))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE)
 	user.do_item_attack_animation(target, used_item = src, animation_type = ATTACK_ANIMATION_SLASH)
 	var/turf/user_turf = get_turf(user)
 	var/dir_to_target = get_dir(user_turf, get_turf(target))
-	var/static/list/cursed_katana_slice_angles = list(0, -45, 45, -90, 90) //so that the animation animates towards the target clicked and not towards a side target
-	for(var/iteration in cursed_katana_slice_angles)
+	var/static/list/testing_katana_slice_angles = list(0, -45, 45, -90, 90) //so that the animation animates towards the target clicked and not towards a side target
+	for(var/iteration in testing_katana_slice_angles)
 		var/turf/turf = get_step(user_turf, turn(dir_to_target, iteration))
 		user.do_attack_animation(turf, ATTACK_EFFECT_SLASH)
 		for(var/mob/living/additional_target in turf)
@@ -142,7 +94,7 @@
 				to_chat(additional_target, span_userdanger("You've been sliced by [user]!"))
 	target.apply_damage(damage = 5, sharpness = SHARP_EDGED, wound_bonus = 10)
 
-/obj/item/cursed_katana/proc/cut(mob/living/target, mob/user)
+/obj/item/testing_katana/proc/cut(mob/living/target, mob/user)
 	user.visible_message(span_warning("[user] cuts [target]'s tendons!"),
 		span_notice("You tendon cut [target]!"))
 	to_chat(target, span_userdanger("Your tendons have been cut by [user]!"))
@@ -159,7 +111,4 @@
 
 #undef ATTACK_STRIKE
 #undef ATTACK_SLICE
-#undef ATTACK_DASH
 #undef ATTACK_CUT
-#undef ATTACK_CLOAK
-#undef ATTACK_SHATTER

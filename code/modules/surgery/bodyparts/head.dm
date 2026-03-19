@@ -96,7 +96,7 @@
 		show_eyeless = FALSE
 
 		/// Can this head be dismembered normally?
-		can_dismember = FALSE
+		can_dismember = TRUE //DARKPACK EDIT- For QOL it's much easier to leave it enabled by default, undismemberable heads are silly TGcode stuff
 
 /obj/item/bodypart/head/Initialize(mapload)
 	. = ..()
@@ -164,7 +164,7 @@
 	if (!can_dismember)
 		return FALSE
 
-	if(!HAS_TRAIT(owner, TRAIT_CURSED) && owner.stat < HARD_CRIT)
+	if (owner.stat < HARD_CRIT)
 		return FALSE
 
 	return ..()

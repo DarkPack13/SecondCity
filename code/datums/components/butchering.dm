@@ -54,7 +54,7 @@
 	if (!source.get_sharpness() && !can_be_blunt)
 		return
 
-	if (!user.combat_mode)
+	if (user.combat_mode) //DARKPACK EDIT CHANGE- quality of life for melee weapons, doesnt make sense you couldnt do combos in combat mode
 		return
 
 	// Can we butcher it?

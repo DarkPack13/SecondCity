@@ -56,7 +56,7 @@
 
 /datum/storyteller_roll/melee_strength
 	bumper_text = "slashing"
-	applicable_stats = list(STAT_STAT_STRENGTH, STAT_MELEE)
+	applicable_stats = list(STAT_STRENGTH, STAT_MELEE)
 
 /datum/storyteller_roll/brawl_block
 	bumper_text = "blocking"
