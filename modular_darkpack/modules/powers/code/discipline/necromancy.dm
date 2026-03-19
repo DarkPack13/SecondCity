@@ -9,8 +9,6 @@
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
-
-	owner.add_faction(VAMPIRE_CLAN_GIOVANNI)
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
 	ritualist.level = level
@@ -208,7 +206,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/human/corpsebuff = target
 		// removed iscathayan(target) || from line 183 DARKPACK TODO - readd KJs Kuei-Jin
-		if(iskindred(target) || iszombie(target)) //undead become spongier, but move slightly slower
+		if(get_kindred_splat(target) || iszombie(target)) //undead become spongier, but move slightly slower
 			corpsebuff.visible_message(span_danger("[target]'s body seizes with rigor mortis."), span_danger("Your senses dull to pain and everything else."))
 
 			for(var/obj/item/bodypart/part as anything in corpsebuff.bodyparts)
@@ -242,7 +240,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/human/corpsebuff = target
 		// || iscathayan(target) removed that from line 211 DARKPACK TODO -- readd KJS Kuei-Jin
-		if(iskindred(target))
+		if(get_kindred_splat(target))
 			corpsebuff.visible_message(span_notice("[target]'s body regains its luster."), span_notice("Feeling comes flooding back into your body."))
 			for(var/obj/item/bodypart/part as anything in corpsebuff.bodyparts)
 				part.brute_modifier = initial(part.brute_modifier)

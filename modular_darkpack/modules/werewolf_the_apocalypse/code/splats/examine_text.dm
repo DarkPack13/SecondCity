@@ -1,5 +1,5 @@
 /datum/splat/werewolf/proc/examine_other_human(mob/living/carbon/examined)
-	var/datum/splat/werewolf/wolp_splat = iswerewolfsplat(examined)
+	var/datum/splat/werewolf/wolp_splat = get_werewolf_splat(examined)
 	if(wolp_splat)
 		var/list/honor_flavor = list("claim to good conduct", "claim to honor", "claim to chivalry")
 		var/list/wisdom_flavor = list("claim to insight", "claim to wisdom", "claim to sagacity")

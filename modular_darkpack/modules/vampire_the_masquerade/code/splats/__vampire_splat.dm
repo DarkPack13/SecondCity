@@ -16,7 +16,7 @@
 /mob/living/proc/get_discipline(discipline_type)
 	RETURN_TYPE(/datum/discipline)
 
-	var/datum/splat/vampire/vampire = does_use_disciplines(src)
+	var/datum/splat/vampire/vampire = get_splat_with_discipline(src)
 	return vampire?.get_discipline(discipline_type)
 
 /datum/splat/vampire/get_power(power_type)

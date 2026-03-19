@@ -34,3 +34,23 @@
 		var/remove_success = dummy.remove_splat(splat_type)
 		TEST_ASSERT(remove_success, "Failed to remove splat [splat_type] from mock [dummy_type].")
 
+
+
+/datum/unit_test/splat_prio_validation
+
+// Might want to acctually add EVERY splat that exists on the same index rather then just taking the first but it felt pretty overkill.
+/datum/unit_test/splat_prio_validation/Run()
+	var/list/all_splat_types = valid_subtypesof(/datum/splat)
+
+	var/alist/splat_prio_list = alist()
+	for(var/datum/splat/splat_type as anything in all_splat_types)
+		var/splat_prio = splat_type::splat_priority
+		if(!splat_prio_list["[splat_prio]"])
+			splat_prio_list["[splat_prio]"] = splat_type
+		else
+			var/datum/splat/checking_type = splat_prio_list["[splat_prio]"]
+			var/datum/splat/real_splat = GLOB.splat_prototypes[checking_type::id]
+			if(splat_type in real_splat.incompatible_splats)
+				continue
+			TEST_FAIL("[splat_type] has the same splat priority as [splat_prio_list["[splat_prio]"]] yet is somehow compatible. priority is [splat_prio].")
+

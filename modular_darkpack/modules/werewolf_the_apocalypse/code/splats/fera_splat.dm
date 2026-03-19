@@ -73,6 +73,10 @@
 /datum/splat/werewolf/kinfolk
 	name = "Kinfolk"
 	id = SPLAT_KINFOLK
+
+	splat_priority = SPLAT_PRIO_KINFOLK
+	half_splat = TRUE
+
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
 /datum/splat/werewolf/shifter
@@ -90,6 +94,8 @@
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	uses_rage = TRUE
 	uses_gnosis = TRUE
+
+	splat_priority = SPLAT_PRIO_SHIFTER
 
 	var/list/transformation_list = list()
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
@@ -126,7 +132,7 @@
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
 	regain_gnosis_process(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
-		// Metis heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
+		// Crinos heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return

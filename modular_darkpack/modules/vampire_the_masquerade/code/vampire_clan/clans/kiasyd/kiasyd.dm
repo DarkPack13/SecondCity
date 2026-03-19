@@ -44,6 +44,13 @@
 		losing_mob.add_quirk(/datum/quirk/dwarf)
 	*/
 
+	// replace eyes
+	var/eye_type = /obj/item/organ/eyes
+	if(losing_mob.dna.species && losing_mob.dna.species.mutanteyes)
+		eye_type = losing_mob.dna.species.mutanteyes
+	var/obj/item/organ/eyes/new_eyes = new eye_type()
+	new_eyes.Insert(losing_mob, TRUE, DELETE_IF_REPLACED)
+
 	losing_mob.update_body()
 
 /datum/subsplat/vampire_clan/kiasyd/on_join_round(mob/living/carbon/human/joining)
@@ -55,5 +62,10 @@
 
 
 /obj/item/organ/eyes/kiasyd
-	// DARKPACK TODO - requires https://github.com/tgstation/tgstation/pull/94242
-	// eye_icon_state = "kiasyd"
+	eye_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/human_eyes.dmi'
+	eye_icon_state = "kiasyd"
+	eye_color_left = "#FFFFFF"
+	eye_color_right = "#FFFFFF"
+
+	iris_overlay = null
+	blink_animation = FALSE

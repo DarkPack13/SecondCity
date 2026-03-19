@@ -13,7 +13,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.add_atom_to_hud(parent_mob)
 
-	add_verb(parent_mob, /mob/verb/emotion_panel)
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
 	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
 	update_aura()
@@ -23,7 +22,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 
-	remove_verb(parent_mob, /mob/verb/emotion_panel)
 	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA))
 	return ..()
 
@@ -101,7 +99,7 @@
 		static_image.appearance_flags |= RESET_COLOR
 		holder.add_overlay(static_image)
 
-	if(!HAS_TRAIT(parent, TRAIT_PALE_AURA) && isghoul(parent_mob))
+	if(!HAS_TRAIT(parent, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
 		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", AUSPEX_LAYER+0.02, parent_mob, GAME_PLANE)
 
