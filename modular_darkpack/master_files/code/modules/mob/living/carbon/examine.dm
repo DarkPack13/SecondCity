@@ -2,9 +2,9 @@
 /mob/proc/p_handsome_gorgeous(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	var/list/male_descriptors = list("handsome", "attractive", "conventionally attractive")
-	var/list/female_descriptors = list("stunning", "gorgeous", "hot", "beautiful", "pretty")
-	var/list/other_descriptors = list("attractive, but you struggle to make out their gender.", "hot... or, handsome? Attractive.", "absolutely stunning.", "confoundingly gorgeous.", "beautiful")
+	var/list/male_descriptors = list("handsome.", "attractive.", "conventionally attractive.")
+	var/list/female_descriptors = list("stunning.", "gorgeous.", "hot.", "beautiful.", "pretty.")
+	var/list/other_descriptors = list("attractive, but you struggle to make out their gender.", "hot... or, handsome? Attractive.", "absolutely stunning.", "confoundingly gorgeous.", "beautiful.")
 	if(temp_gender == MALE)
 		return pick(male_descriptors)
 	if(temp_gender == FEMALE)
