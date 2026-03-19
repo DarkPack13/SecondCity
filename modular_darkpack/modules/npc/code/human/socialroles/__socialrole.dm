@@ -306,7 +306,7 @@
 			fully_replace_character_name(newname = random_name)
 
 		set_eye_color(random_eye_color())
-		name = update_visible_name()
+		update_visible_name()
 		underwear = random_underwear(gender)
 		if (prob(50))
 			underwear_color = eye_color_left
