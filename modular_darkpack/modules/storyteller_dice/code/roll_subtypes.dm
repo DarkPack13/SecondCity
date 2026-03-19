@@ -44,6 +44,33 @@
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
 
+//Combat Feats
+/datum/storyteller_roll/melee_block
+	bumper_text = "parrying"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MELEE)
+	numerical = TRUE
+
+/datum/storyteller_roll/melee_dexterity
+	bumper_text = "piercing"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MELEE)
+
+/datum/storyteller_roll/melee_strength
+	bumper_text = "slashing"
+	applicable_stats = list(STAT_STAT_STRENGTH, STAT_MELEE)
+
+/datum/storyteller_roll/brawl_block
+	bumper_text = "blocking"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MELEE)
+	numerical = TRUE
+
+/datum/storyteller_roll/brawl_dexterity
+	bumper_text = "striking"
+	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
+
+/datum/storyteller_roll/brawl_strength
+	bumper_text = "smashing"
+	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
+
 // Mental Feats
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
