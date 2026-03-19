@@ -41,7 +41,7 @@
 	layer = SPACEVINE_LAYER // Cant even with flav bro - Fallcon
 	pixel_w = -32
 	anchored = TRUE
-	density = FALSE
+	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/number_of_lamps
 	var/list/my_lights = list()
@@ -526,9 +526,6 @@
 	pixel_z = 32
 	anchored = TRUE
 	var/large = FALSE
-
-/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
-	return isclosedturf(here_turf)
 
 /obj/effect/decal/graffiti/large
 	pixel_w = -16
