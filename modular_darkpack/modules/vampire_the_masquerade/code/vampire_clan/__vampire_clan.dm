@@ -120,8 +120,7 @@
 /// effect from daimonion psychomania
 /datum/subsplat/vampire_clan/proc/psychomania_effect(mob/living/target, mob/living/owner)
 	to_chat(target, span_cult("THE BEAST SCREAMS IN MY MIND TO RUN"))
-	var/obj/effect/client_image_holder/baali_demon/demon = new(get_turf(target), list(target))
-	RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))
+	new /obj/effect/client_image_holder/baali_demon(get_turf(target), list(target))
 
 
 /**

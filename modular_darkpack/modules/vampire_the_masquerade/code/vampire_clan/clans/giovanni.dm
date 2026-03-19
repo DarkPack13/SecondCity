@@ -24,5 +24,4 @@
 /datum/subsplat/vampire_clan/giovanni/psychomania_effect(mob/living/target, mob/living/owner)
 	to_chat(target, span_cult("A sense of profound dread enters you as soundless words enter your mind"))
 	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg", 50, FALSE)
-	var/obj/effect/client_image_holder/baali_demon/spectre/demon = new(get_turf(target), list(target))
-	RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))
+	new /obj/effect/client_image_holder/baali_demon/spectre(get_turf(target), list(target))

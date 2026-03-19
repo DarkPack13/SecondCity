@@ -20,5 +20,4 @@
 
 /datum/subsplat/vampire_clan/banu_haqim/psychomania_effect(mob/living/target, mob/living/owner)
 	to_chat(target, span_cult("An overwhelming presence manifests around me.."))
-	var/obj/effect/client_image_holder/baali_demon/banu/demon = new(get_turf(target), list(target))
-	RegisterSignal(demon, COMSIG_BAALI_DEMON_REACHED_TARGET, CALLBACK(owner, TYPE_PROC_REF(/datum/discipline_power/daimoinon/psychomania, on_demon_contact)))
+	new /obj/effect/client_image_holder/baali_demon/banu(get_turf(target), list(target))

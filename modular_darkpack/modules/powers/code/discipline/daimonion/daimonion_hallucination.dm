@@ -15,6 +15,7 @@
 		return INITIALIZE_HINT_QDEL
 	forceMove(wall)
 	target.playsound_local(wall, 'sound/effects/meteorimpact.ogg', 150, TRUE)
+	RegisterSignal(src, COMSIG_BAALI_DEMON_REACHED_TARGET, PROC_REF(on_reached_target))
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/effect/client_image_holder/baali_demon/Destroy()
@@ -35,6 +36,11 @@
 		SEND_SIGNAL(src, COMSIG_BAALI_DEMON_REACHED_TARGET, target)
 		qdel(src)
 	COOLDOWN_START(src, move_cooldown, 0.4 SECONDS)
+
+/obj/effect/client_image_holder/baali_demon/proc/on_reached_target(datum/source, mob/living/victim)
+	SIGNAL_HANDLER
+	on_contact(victim)
+	step_away(victim, get_turf(src))
 
 /obj/effect/client_image_holder/baali_demon/spectre
 	name = "specter"
