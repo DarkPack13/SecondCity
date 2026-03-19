@@ -532,15 +532,15 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
 	large = TRUE
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/graffiti/Initialize(mapload)
 	. = ..()
 	if(!large)
 		icon_state = "graffiti[rand(1, 15)]"
 	else
 		icon_state = "graffiti[rand(1, 3)]"
-
-/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
-	return isclosedturf(here_turf)
 
 /obj/effect/decal/kopatich
 	name = "hide carpet"
