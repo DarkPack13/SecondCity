@@ -199,7 +199,6 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	name_span = "corp_label_otolleys"
 	company_color = COLOR_CORP_OTOLLEYS
 
-#warn BLACK DOG LOGO NEEDED
 /datum/brand/pentex/black_dog
 	manufacturer = "black_dog"
 	full_name = EVIL_TTRPG_COMPANY
