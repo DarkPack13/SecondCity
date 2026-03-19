@@ -239,6 +239,7 @@
 	socialrole = new S()
 
 	fully_replace_character_name(name, real_name)
+	name = update_visible_name()
 
 	maxHealth = round(initial(maxHealth)+(initial(maxHealth)/3)*(st_get_stat(STAT_STAMINA)))
 	health = round(initial(health)+(initial(health)/3)*(st_get_stat(STAT_STAMINA)))
