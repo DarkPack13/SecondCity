@@ -57,6 +57,7 @@ endmap
 
 map westfieldmall
     votable
+    default
 endmap
 
 # Debug-only maps.
