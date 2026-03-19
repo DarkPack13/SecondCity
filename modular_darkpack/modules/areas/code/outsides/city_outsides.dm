@@ -25,6 +25,10 @@
 /area/vtm/outside/pacificheights/community
 	name = "Pacific Heights - Community Road"
 
+/area/vtm/outside/pacificheights/community/tunnel
+	name = "Pacific Heights - Community Road Tunnel"
+	outdoors = FALSE
+
 /area/vtm/outside/pacificheights/industrial
 	name = "Pacific Heights - Industrial District"
 
@@ -74,6 +78,12 @@
 	name = "Park"
 	icon_state = "park"
 	ambience_index = AMBIENCE_NATURE
+	music_index = MUSIC_CITY
+
+/area/vtm/outside/culture
+	name = "Cultural District"
+	icon_state = "unionsquare"
+	ambience_index = AMBIENCE_CITY
 	music_index = MUSIC_CITY
 
 /area/vtm/outside/supply

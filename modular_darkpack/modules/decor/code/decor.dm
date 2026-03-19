@@ -41,7 +41,7 @@
 	layer = SPACEVINE_LAYER // Cant even with flav bro - Fallcon
 	pixel_w = -32
 	anchored = TRUE
-	density = TRUE
+	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/number_of_lamps
 	var/list/my_lights = list()
@@ -541,6 +541,9 @@
 		icon_state = "graffiti[rand(1, 15)]"
 	else
 		icon_state = "graffiti[rand(1, 3)]"
+
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
 
 /obj/effect/decal/kopatich
 	name = "hide carpet"

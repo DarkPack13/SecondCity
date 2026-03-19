@@ -28,7 +28,10 @@
 
 	if(!ishuman(hovered))
 		return NONE
+	if(source == hovered)
+		returned_name[1] = real_name
+		return SCREENTIP_NAME_SET
 
-	var/known_name = mind.guestbook.get_known_name(src, hovered, hovered.real_name)
+	var/known_name = GET_GUESTBOOK_NAME(src, hovered)
 	returned_name[1] = known_name ? "[known_name]" : "[hovered.name]"
 	return SCREENTIP_NAME_SET

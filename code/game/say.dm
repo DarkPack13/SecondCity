@@ -168,8 +168,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(ismob(src) && ishuman(reliable_narrator) && (namepart != "Unknown"))
 		var/mob/receiver_mob = src
 		if(receiver_mob.mind?.guestbook)
-			var/mob/living/carbon/human/speaker_human = reliable_narrator
-			var/known_name = receiver_mob.mind.guestbook.get_known_name(src, reliable_narrator, speaker_human.real_name)
+			var/known_name = GET_GUESTBOOK_NAME(receiver_mob, reliable_narrator)
 			if(known_name)
 				namepart = "[known_name]"
 			else

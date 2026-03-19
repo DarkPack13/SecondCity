@@ -14,7 +14,7 @@
 #define UTC_YEAR time2text(world.realtime,"YYYY",NO_TIMEZONE)
 
 /// In-universe, SS13 is set 540 years in the future from the real-world day, hence this number for determining the year-offset for the in-game year.
-#define STATION_YEAR_OFFSET -17 // DARKPACK EDIT
+#define STATION_YEAR_OFFSET -10 // TFN EDIT // DARKPACK EDIT
 
 #define JANUARY 1
 #define FEBRUARY 2
