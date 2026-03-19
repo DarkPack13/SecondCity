@@ -339,7 +339,7 @@
 	tentacle_owner.tentacle_aggro_mode = select
 
 	// need to access the discipline_power so we can grab the list
-	var/datum/splat/vampire/vampire = does_use_disciplines(tentacle_owner)
+	var/datum/splat/vampire/vampire = get_splat_with_discipline(tentacle_owner)
 	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
 
 	var/tentacles = 0

@@ -12,9 +12,9 @@
 
 /mob/living/carbon/proc/rollfrenzy()
 	if(client)
-		if(isgarou(src))
+		if(get_garou_splat(src))
 			to_chat(src, "I'm full of [span_danger("<b>ANGER</b>")], and I'm about to flare up in [span_danger("<b>RAGE</b>")]. Rolling...")
-		else if(iskindred(src))
+		else if(get_kindred_splat(src))
 			to_chat(src, "I need [span_danger("<b>BLOOD</b>")]. The [span_danger("<b>BEAST</b>")] is calling. Rolling...")
 		else
 			to_chat(src, "I'm too [span_danger("<b>AFRAID</b>")] to continue doing this. Rolling...")
@@ -85,7 +85,7 @@
 //	if(!fear && !frenzy_target)
 //		return
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		if(fear)
 			step_away(src,fear,99)
 			if(prob(25))
@@ -125,9 +125,9 @@
 
 /mob/living/carbon/proc/get_frenzy_targets()
 	var/list/targets = list()
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-			if(!iskindred(L) && L.bloodpool && L.stat != DEAD)
+			if(!get_kindred_splat(L) && L.bloodpool && L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)
 					return L

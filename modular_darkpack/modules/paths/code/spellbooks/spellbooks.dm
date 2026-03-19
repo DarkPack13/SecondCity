@@ -54,14 +54,14 @@
 					return
 		return
 
-	var/datum/splat/vampire/kindred/kindred = iskindred(user)
+	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(user)
 	var/datum/discipline/existing_path_discipline = kindred?.get_discipline(path_type)
 
 	if(!path_type)
 		to_chat(user, span_warning("This spellbook appears to be incomplete!"))
 		return
 
-	if(iskindred(user))
+	if(get_kindred_splat(user))
 		if(!user.get_discipline(/datum/discipline/thaumaturgy))
 			to_chat(user, span_warning("You must have knowledge of Thaumaturgy to use this book!"))
 			return

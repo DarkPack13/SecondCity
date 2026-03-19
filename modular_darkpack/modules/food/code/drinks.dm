@@ -53,9 +53,9 @@
 	//glass_desc = "A freezing pint of vitae."
 
 /datum/reagent/consumable/ethanol/beer/typhon/on_mob_life(mob/living/carbon/M)
-	if(iskindred(M))
+	if(get_kindred_splat(M))
 		M.adjust_blood_pool(0.25)
-	if(isghoul(M))
+	if(get_ghoul_splat(M))
 		M.adjust_blood_pool(1)
 	return ..()
 

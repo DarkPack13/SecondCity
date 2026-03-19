@@ -9,7 +9,7 @@
 /mob/living/carbon/human/proc/on_staked(datum/source)
 	SIGNAL_HANDLER
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		INVOKE_ASYNC(src, PROC_REF(torpor), STAKE_TRAIT, TRUE)
 	else
 		INVOKE_ASYNC(src, PROC_REF(death))
@@ -18,5 +18,5 @@
 /mob/living/carbon/human/proc/on_unstaked(datum/source)
 	SIGNAL_HANDLER
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		cure_torpor(STAKE_TRAIT, TRUE)
