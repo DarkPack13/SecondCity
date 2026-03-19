@@ -27,7 +27,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/reader = user
-	if(!iskindred(user) && !isghoul(user))
+	if(!get_kindred_splat(user) && !get_ghoul_splat(user))
 		if(reader.st_get_stat(STAT_OCCULT) < 3)
 			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
 			return

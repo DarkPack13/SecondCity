@@ -704,7 +704,7 @@ Behavior that's still missing from this component that original food items had t
 
 	// DARKPACK EDIT ADD START - MERITS/FLAWS - (Organovore)
 	if(HAS_TRAIT(eater, TRAIT_ORGANOVORE) && (foodtypes & GORE))
-		if(iskindred(eater))
+		if(get_kindred_splat(eater))
 			eater.adjust_blood_pool(1, FALSE)
 			to_chat(eater, span_notice("You feel vitae flowing through the fresh meat."))
 	// DARKPACK EDIT ADD END

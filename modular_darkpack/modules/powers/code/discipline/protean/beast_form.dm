@@ -59,7 +59,7 @@
 	speed = -0.4
 	maxHealth = 275
 	health = 275
-	butcher_results = list(/obj/item/stack/human_flesh = 10)
+	butcher_results = list(/obj/item/stack/sheet/meat = 10)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "slashes"

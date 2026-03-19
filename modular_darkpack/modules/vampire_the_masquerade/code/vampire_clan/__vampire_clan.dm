@@ -72,11 +72,6 @@
 	for (var/trait in clan_traits)
 		ADD_TRAIT(gaining_mob, trait, CLAN_TRAIT)
 
-	for(var/discipline in clan_disciplines)
-		// DARKPACK TODO - reimplement choosing disciplines
-		if(ispath(discipline, /datum/discipline))
-			gaining_mob.give_st_power(discipline, 5)
-
 	// Mostly for summons to not kill you.
 	gaining_mob.add_faction(id)
 
@@ -137,7 +132,7 @@
 	// Handle losing Clan
 	previous_clan?.on_lose(src)
 
-	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(src)
 	if (!kindred)
 		return
 
@@ -153,7 +148,7 @@
 /mob/living/proc/get_clan()
 	RETURN_TYPE(/datum/subsplat/vampire_clan)
 
-	return iskindred(src)?.clan
+	return get_kindred_splat(src)?.clan
 
 /mob/living/proc/is_clan(clan_type)
 	return istype(get_clan(), clan_type)
