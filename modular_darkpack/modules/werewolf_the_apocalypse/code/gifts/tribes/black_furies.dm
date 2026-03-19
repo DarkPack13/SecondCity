@@ -28,8 +28,8 @@
 
 	var/mob/living/victim = target
 	var/mob/living/caster = owner
-	var/datum/splat/werewolf/casting_splat = iswerewolfsplat(caster)
-	var/roll_difficulty = iswerewolfsplat(target) ? 5 : 6
+	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(caster)
+	var/roll_difficulty = get_werewolf_splat(target) ? 5 : 6
 
 	var/datum/storyteller_roll/roll_datum = new()
 	roll_datum.difficulty = roll_difficulty
