@@ -85,7 +85,7 @@
 	if(!putrefaction_roll)
 		putrefaction_roll = new()
 	var/fortitudelevel
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
 		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
@@ -205,7 +205,7 @@
 	if(!withering_roll)
 		withering_roll = new()
 	var/fortitudelevel
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
 		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)
@@ -283,7 +283,7 @@
 		necrosis_roll = new()
 	var/fortitudelevel
 	var/mob/living/carbon/human/vampire = target
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(vampire)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(vampire)
 	if(kindred_splat)
 		var/datum/discipline/fortitude/fortitude_check = kindred_splat.get_discipline(/datum/discipline/fortitude)
 		if(fortitude_check)

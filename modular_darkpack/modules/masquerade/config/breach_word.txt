@@ -60,7 +60,7 @@ ragabash
 umbra
 homid
 homids
-metis
+crinos
 wyrmspawn
 moon bridge
 first change

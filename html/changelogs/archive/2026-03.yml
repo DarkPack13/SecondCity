@@ -280,6 +280,8 @@
   - rscadd: Implements ghouling, embracing, and discipline teaching where disciplines
       are concerned
   - admin: Added an admin ui for discipline management
+  chazzyjazzy:
+  - rscadd: readds height
   lpeapnni:
   - bugfix: fixes eyes for both kiasyd and salubri
   - code_imp: removes todo comments for gridventory stuff

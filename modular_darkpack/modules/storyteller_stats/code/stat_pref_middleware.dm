@@ -33,9 +33,9 @@
 		to_chat(user, span_warning("You cannot be spawned in as this character to adjust its stats."))
 		return FALSE
 
-	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
-	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
-	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
+	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats[stat_path.abstract_type]
+	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
 
@@ -69,9 +69,9 @@
 		to_chat(user, span_warning("You have to be in the main menu to adjust your stats."))
 		return FALSE
 
-	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[params["stat"]]
-	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats["[stat_path.abstract_type]"]
-	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats["[STAT_FREEBIE_POINTS]"]
+	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
+	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats[stat_path.abstract_type]
+	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
 	if(!stat_path.can_decrease_score(1))
@@ -103,6 +103,6 @@
 	var/real_name = user.client.prefs.read_preference(/datum/preference/name/real_name)
 	user.log_message("reset all stats to default values on '[real_name]'", LOG_STATS)
 
-	preferences.preference_storyteller_stats = null
+	preferences.preference_storyteller_stats = list()
 	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
 	return TRUE

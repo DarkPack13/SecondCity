@@ -1,33 +1,33 @@
 /**
  * If the character is any kind of vampiric creature, named after the game line
  */
-/proc/isvampiresplat(mob/character)
+/proc/get_vampire_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
 	return character.get_splat(/datum/splat/vampire)
 
 /**
- * If the character has Vitae, readable wrapper for isvampiresplat() for checking Vitae
+ * If the character has Vitae, readable wrapper for get_vampire_splat() for checking Vitae
  */
-/proc/has_vitae(mob/character)
+/proc/get_splat_with_vitae(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
-	return isvampiresplat(character)
+	return get_vampire_splat(character)
 
 /**
- * If the character can learn and use Disciplines, readable wrapper for isvampiresplat() for Discipline uses
+ * If the character can learn and use Disciplines, readable wrapper for get_vampire_splat() for Discipline uses
  */
-/proc/does_use_disciplines(mob/character)
+/proc/get_splat_with_discipline(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
-	return isvampiresplat(character)
+	return get_vampire_splat(character)
 
-/proc/iskindred(mob/character)
+/proc/get_kindred_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
 
 	return character.get_splat(/datum/splat/vampire/kindred)
 
-/proc/isghoul(mob/character)
+/proc/get_ghoul_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire/ghoul)
 
 	return character.get_splat(/datum/splat/vampire/ghoul)
