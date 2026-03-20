@@ -9,7 +9,7 @@ import {
   Floating,
   Input,
   LabeledList,
-  NumberInput,
+  NumberInput, // DARKPACK EDIT
   Section,
   Stack,
 } from 'tgui-core/components';
