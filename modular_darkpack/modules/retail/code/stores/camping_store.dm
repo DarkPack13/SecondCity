@@ -24,7 +24,7 @@
 	product_types = list(
 		/obj/item/fishing_rod,
 		/obj/item/bait_can/worm,
-		/obj/item/bait_can/super_baits
+		/obj/item/bait_can/super_baits,
 		/obj/item/storage/toolbox/fishing,
 		/obj/item/storage/box/fishing_lures,
 		/obj/item/fishing_line/auto_reel
