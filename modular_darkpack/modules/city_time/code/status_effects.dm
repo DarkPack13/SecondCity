@@ -10,8 +10,7 @@
 
 /atom/movable/screen/alert/status_effect/day_time_notif/examine(mob/user)
 	. = ..()
-	var/outside = user.visable_to_sky()
-	. += span_notice("You are currently [outside ? "visable" : "not visable"] to the sun.")
+	. += span_notice("You are currently [user.visable_to_sky() ? "visable" : "not visable"] to the sun.")
 	if(get_kindred_splat(user))
 		. += span_warning("The sun will sear your flesh and bring final death.")
 
