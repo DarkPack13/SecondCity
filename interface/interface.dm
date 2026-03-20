@@ -79,7 +79,7 @@
 		to_chat(src, span_danger("The Github URL is not set in the server configuration."))
 		return
 
-	var/githuburl = tgui_input_list(src, "Choose a codebase to report the issue to.", "Choose codebase", all_options, main_url)
+	var/githuburl = tgui_input_list(src, "Choose a codebase to report the issue to", "Choose Codebase", all_options, main_url)
 	if(!githuburl)
 		return
 	// DARKPACK EDIT CHANGE END
