@@ -14,7 +14,7 @@
 /mob/living/carbon/proc/display_darkpack_examine_text(mob/user)
 	. = list()
 	// WEREWOLF
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(user)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
 	if(werewolf_splat && !(obscured_slots & HIDEFACE))
 		. += werewolf_splat.examine_other_human(src)
 	// WEREWOLF
