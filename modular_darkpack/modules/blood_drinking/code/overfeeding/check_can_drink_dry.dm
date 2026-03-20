@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/check_can_drink_dry(var/mob/living/mob)
-	if(!iskindred(mob) || !iskindred(src))
+	if(!get_kindred_splat(mob) || !get_kindred_splat(src))
 		return TRUE
 
 	if(!mob.client)

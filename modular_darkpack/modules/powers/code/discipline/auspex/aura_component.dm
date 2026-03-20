@@ -1,3 +1,5 @@
+#define AUSPEX_LAYER BELOW_MOB_LAYER
+
 /datum/atom_hud/data/auspex_aura
 	hud_icons = list(AUSPEX_AURA_HUD)
 
@@ -11,7 +13,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.add_atom_to_hud(parent_mob)
 
-	add_verb(parent_mob, /mob/verb/emotion_panel)
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
 	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
 	update_aura()
@@ -21,7 +22,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 
-	remove_verb(parent_mob, /mob/verb/emotion_panel)
 	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA))
 	return ..()
 
@@ -41,7 +41,7 @@
 	var/image/holder = parent_mob.hud_list[AUSPEX_AURA_HUD]
 	if(!holder)
 		holder = new
-	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", AUSPEX_LAYER, parent_mob, GAME_PLANE)
 	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
 	update_aura_filters(aura_appearance, holder)
@@ -62,9 +62,9 @@
 	holder.appearance = aura_appearance
 
 	var/mob/parent_mob = parent
-	if(iskindred(parent_mob))
+	if(get_kindred_splat(parent_mob))
 		var/icon/temporary_icon_holder = holder.appearance
-		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", AUSPEX_LAYER, parent_mob, GAME_PLANE)
 
 		var/list/hsv_color_value = rgb2hsv(holder.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
@@ -75,7 +75,7 @@
 	// DARKPACK TODO - aura still needs real sprites.
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		var/icon/temporary_icon_holder = holder.appearance
-		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "old_aura_bright", ABOVE_MOB_LAYER, parent_mob, GAME_PLANE)
+		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "old_aura_bright", AUSPEX_LAYER, parent_mob, GAME_PLANE)
 
 		var/list/hsv_color_value = rgb2hsv(holder.color)
 		hsv_color_value[2] = hsv_color_value[2] * 1.5 // Way brighter for shapeshifters
@@ -95,13 +95,13 @@
 	if(current_aura == AURA_ANXIOUS)
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aura")
 		var/icon/static_icon = getStaticIcon(temporary_icon_holder)
-		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", ABOVE_MOB_LAYER+2, parent_mob, GAME_PLANE)
+		var/mutable_appearance/static_image = mutable_appearance(static_icon, "aura", AUSPEX_LAYER+0.01, parent_mob, GAME_PLANE)
 		static_image.appearance_flags |= RESET_COLOR
 		holder.add_overlay(static_image)
 
-	if(isghoul(parent_mob))
+	if(get_ghoul_splat(parent_mob))
 		var/icon/temporary_icon_holder = icon('modular_darkpack/modules/powers/icons/auras.dmi', "aurablotch")
-		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", ABOVE_MOB_LAYER+3, parent_mob, GAME_PLANE)
+		var/mutable_appearance/aura_blotches = mutable_appearance(temporary_icon_holder, "aurablotch", AUSPEX_LAYER+0.02, parent_mob, GAME_PLANE)
 
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
@@ -122,3 +122,4 @@
 	if(HAS_TRAIT(parent_mob, TRAIT_IN_FRENZY))
 		apply_wibbly_filters(holder)
 
+#undef AUSPEX_LAYER

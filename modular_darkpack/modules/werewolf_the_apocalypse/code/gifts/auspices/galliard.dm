@@ -27,7 +27,7 @@
 
 	owner.emote("howl")
 	for(var/mob/living/carbon/human/guy in orange(7, owner))
-		var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(guy)
+		var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(guy)
 		if(werewolf_splat)
 			guy.emote("howl")
 			werewolf_splat.adjust_gnosis(1)
@@ -67,11 +67,11 @@
 		return
 
 	my_message = "<b>[findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]"
-	var/datum/splat/werewolf/our_splat = iswerewolfsplat(user)
+	var/datum/splat/werewolf/our_splat = get_werewolf_splat(user)
 	if(!our_splat?.tribe)
 		return
 	for(var/mob/living/listener in viewers(9, owner))
-		var/datum/splat/werewolf/listener_splat = iswerewolfsplat(listener)
+		var/datum/splat/werewolf/listener_splat = get_werewolf_splat(listener)
 		if(listener == user)
 			to_chat(user, "You transfer this message to your tribe members nearby: <b>[message]</b>", type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE)
 		else if(listener_splat?.tribe?.name == our_splat.tribe.name)

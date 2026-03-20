@@ -293,14 +293,21 @@
 	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
+	/* // DARKPACK EDIT REMOVAL START
 	if(visible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b> [message]")
+	*/ // DARKPACK EDIT REMOVAL END
 
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
 			continue
 		if(self_message && hearing_mob == src)
 			continue
+
+		// DARKPACK EDIT ADDITION START
+		if(visible_message_flags & EMOTE_MESSAGE)
+			message = span_emote("<b>[GET_GUESTBOOK_NAME(hearing_mob, src)]</b>[space][message]")
+		// DARKPACK EDIT ADDITION END
 
 		//This entire if/else chain could be in two lines but isn't for readibilties sake.
 		var/msg = message
@@ -336,7 +343,7 @@
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b>[space][self_message]") // May make more sense as "You do x" // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
+		self_message = span_emote("<b>[real_name]</b>[space][self_message]") // May make more sense as "You do x" // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(visible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
@@ -365,13 +372,19 @@
 	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
+	/* // DARKPACK EDIT REMOVAL START
 	if(audible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[space][message]") // DARKPACK EDIT CHANGE, ORIGINAL: message = span_emote("<b>[src]</b> [message]")
+		message = span_emote("<b>[src]</b> [message]")
+	*/ // DARKPACK EDIT REMOVAL END
 	for(var/mob/hearing_mob as anything in hearers)
 		if(!hearing_mob?.client)
 			continue
 		if(self_message && hearing_mob == src)
 			continue
+		// DARKPACK EDIT ADDITION START
+		if(audible_message_flags & EMOTE_MESSAGE)
+			message = span_emote("<b>[GET_GUESTBOOK_NAME(hearing_mob, src)]</b>[space][message]")
+		// DARKPACK EDIT ADDITION END
 		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(hearing_mob, audible_message_flags) && !HAS_TRAIT(hearing_mob, TRAIT_DEAF))
 			hearing_mob.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		hearing_mob.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
@@ -398,7 +411,7 @@
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		self_message = apply_message_emphasis(self_message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		self_message = span_emote("<b>[src]</b>[space][self_message]") // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
+		self_message = span_emote("<b>[GET_GUESTBOOK_NAME(src, src)]</b>[space][self_message]") // DARKPACK EDIT CHANGE, ORIGINAL: self_message = span_emote("<b>[src]</b> [self_message]")
 
 	if(audible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
 		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
@@ -441,6 +454,12 @@
 		return FALSE
 	return TRUE
 
+/mob/dead/observer/runechat_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!..())
+		return FALSE
+	if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat_ghosts))
+		return FALSE
+	return TRUE
 
 ///Get the item on the mob in the storage slot identified by the id passed in
 /mob/proc/get_item_by_slot(slot_id) as /obj/item
@@ -909,33 +928,6 @@
 	SEND_SIGNAL(src, COMSIG_MOB_GET_STATUS_TAB_ITEMS, .)
 	return .
 
-/**
- * Convert a list of spells into a displyable list for the statpanel
- *
- * Shows charge and other important info
- */
-/mob/proc/get_actions_for_statpanel()
-	var/list/data = list()
-	for(var/datum/action/cooldown/action in actions)
-		var/list/action_data = action.set_statpanel_format()
-		if(!length(action_data))
-			return
-
-		data += list(list(
-			// the panel the action gets displayed to
-			// in the future, this could probably be replaced with subtabs (a la admin tabs)
-			action_data[PANEL_DISPLAY_PANEL],
-			// the status of the action, - cooldown, charges, whatever
-			action_data[PANEL_DISPLAY_STATUS],
-			// the name of the action
-			action_data[PANEL_DISPLAY_NAME],
-			// a ref to the action button of this action for this mob
-			// it's a ref to the button specifically, instead of the action itself,
-			// because statpanel href calls click(), which the action button (not the action itself) handles
-			REF(action.viewers[hud_used]),
-		))
-
-	return data
 
 /mob/proc/swap_hand(held_index, silent = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE) // Override perform_hand_swap instead
@@ -1622,6 +1614,18 @@
 	set name = "Memories"
 	set category = "IC"
 	set desc = "View your character's memories."
+	if(!mind)
+		var/fail_message = "You have no mind!"
+		if(isobserver(src))
+			fail_message += " You have to be in the current round at some point to have one."
+		to_chat(src, span_warning(fail_message))
+		return
+	if(!mind.memory_panel)
+		mind.memory_panel = new(usr, mind)
+	mind.memory_panel.ui_interact(usr)
+
+///Shows a tgui window with memories
+/mob/proc/open_memory_panel()
 	if(!mind)
 		var/fail_message = "You have no mind!"
 		if(isobserver(src))

@@ -10,7 +10,7 @@
 	start_gnosis = 1
 	breed_species = /datum/species/human/shifter/homid
 
-/datum/subsplat/werewolf/breed_form/garou/metis
+/datum/subsplat/werewolf/breed_form/garou/crinos
 	name = BREED_CRINOS
 	gifts_provided = list(
 		/datum/action/cooldown/power/gift/sense_wyrm,

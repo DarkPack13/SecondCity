@@ -834,6 +834,6 @@
 	serial_shown = FALSE	//No serial, it's a musket.
 	actions_types = list()
 
-/obj/item/gun/ballistic/automatic/darkpack/musket/process_fire(mob/living/user)
+/obj/item/gun/ballistic/automatic/darkpack/musket/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	..()
 	new /obj/effect/particle_effect/fluid/smoke(get_ranged_target_turf(user, user.dir, 1))

@@ -150,7 +150,7 @@
 
 /obj/projectile/bullet/darkpack/vamp556mm/bale/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iskindred(target) || isghoul(target))
+	if(get_kindred_splat(target) || get_ghoul_splat(target))
 		var/mob/living/carbon/human/H = target
 		if(H.bloodpool == 0)
 			to_chat(H, span_warning("Only ash remains in my veins!"))
@@ -161,7 +161,7 @@
 		to_chat(H, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
 // DARKPACK TODO - GAROU
 /*
-	if(iswerewolf(target) || isgarou(target))
+	if(iswerewolf(target) || get_garou_splat(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))

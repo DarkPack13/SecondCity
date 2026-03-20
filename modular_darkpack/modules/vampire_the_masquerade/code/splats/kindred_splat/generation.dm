@@ -61,9 +61,9 @@ GLOBAL_LIST_INIT(vitae_spending_rate_by_gen, list(
  * if they're a Ghoul or some other splat.
  */
 /mob/living/proc/get_generation()
-	var/datum/splat/vampire/kindred/kindred = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(src)
 	if (!kindred)
-		return isghoul(src) ? GHOUL_GENERATION : HUMAN_GENERATION
+		return get_ghoul_splat(src) ? GHOUL_GENERATION : HUMAN_GENERATION
 
 	return kindred.generation
 
