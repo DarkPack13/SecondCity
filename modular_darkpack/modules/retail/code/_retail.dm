@@ -149,7 +149,7 @@
 				to_chat(usr, span_alert("Error: Product is out of stock!"))
 				return
 
-			if(oroduct.price > 0)
+			if(product.price > 0)
 				//get the money
 				if(is_creditcard(held_item))
 					var/obj/item/card/credit/creditcard = held_item
