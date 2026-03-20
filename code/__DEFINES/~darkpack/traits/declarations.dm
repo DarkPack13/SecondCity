@@ -73,6 +73,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
 /// Duration of frenzy is doubled
 #define TRAIT_LONGER_FRENZY "longer_frenzy"
+//DARKPACK TODO - Should also lose one die from actions in 'bright lights' but delineating a well-lit Bubway from a police spotlight seems hard.
+// Setite weakness, sunlight is particularly bad bad.
+#define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
 /// If eyes are uncovered, they will be obviously supernatural to everyone nearby
 #define TRAIT_MASQUERADE_VIOLATING_EYES "masquerade_violating_eyes"

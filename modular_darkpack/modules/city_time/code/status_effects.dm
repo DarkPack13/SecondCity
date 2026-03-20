@@ -41,7 +41,9 @@
 	if(SScity_time.daytime_started)
 		var/area/my_area = get_area(owner)
 		if(istype(my_area) && my_area.outdoors && get_kindred_splat(owner))
-			owner.apply_damage(10, BURN)
+			owner.apply_damage(1 TTRPG_DAMAGE, BURN)
+			if(HAS_TRAIT(owner, TRAIT_LIGHT_WEAKNESS))
+				owner.apply_damage(2 TTRPG_DAMAGE, BURN)
 			return TRUE
 	qdel(src)
 
