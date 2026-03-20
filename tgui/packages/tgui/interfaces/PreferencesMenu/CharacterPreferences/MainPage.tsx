@@ -536,7 +536,7 @@ export function MainPage(props: MainPageProps) {
           )}
           preferences={nonContextualPreferences}
           maxHeight="auto"
-          // DARKPACK EDIT START
+          // DARKPACK EDIT ADD START
           overrides={{
             immortal_age: immortalAgeValue !== undefined ? (
               <NumberInput
@@ -551,7 +551,7 @@ export function MainPage(props: MainPageProps) {
               />
             ) : undefined,
           }}
-          // DARKPACK EDIT END
+          // DARKPACK EDIT ADD END
         />
       );
       break;
