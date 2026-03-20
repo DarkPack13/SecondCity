@@ -29,8 +29,8 @@
 	volume = 15
 	custom_materials = list(/datum/material/glass=70)
 
-/obj/item/reagent_containers/cup/glass/drinkingglass/shot_glass
-	name = "shot glass"
+/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot
+	name = "whiskey shot"
 	icon_state = "whiskey_shot"
 	icon = 'modular_darkpack/modules/food/icons/drinking_glass.dmi'
 	fill_icon_state = "whiskeyshot"
