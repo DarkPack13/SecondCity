@@ -748,7 +748,7 @@
 	min_val = 0
 
 /datum/config_entry/number/upload_limit_admin
-	default = 9242880
+	default = 5242880
 	min_val = 0
 
 /// The minimum number of tallies a map vote entry can have.
