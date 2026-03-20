@@ -120,13 +120,13 @@
 	toggled = TRUE
 	duration_length = 0
 	cooldown_length = 10 SECONDS
-	var/turf/exit_turf
-	var/turf/stone_turf
+	var/datum/weakref/exit_turf
+	var/datum/weakref/stone_turf
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/pre_activation_checks()
 	. = ..()
 	for(var/turf/closed/adjacent in orange(1, owner))
-		stone_turf = adjacent
+		stone_turf = WEAKREF(adjacent)
 		break
 
 	if(!stone_turf)
@@ -137,14 +137,17 @@
 /datum/discipline_power/visceratika/bond_with_the_mountain/activate()
 	. = ..()
 
-	exit_turf = get_turf(owner)
+	exit_turf = WEAKREF(get_turf(owner))
 	to_chat(owner, span_notice("You begin to sink into the stone..."))
 
 	if(!do_after(owner, 2 TURNS))
 		to_chat(owner, span_warning("Your bond with the nearby stone is interrupted!"))
 		exit_turf = null
 		return FALSE
-	owner.forceMove(stone_turf)
+
+	var/turf/resolved_stone = stone_turf?.resolve()
+
+	owner.forceMove(resolved_stone)
 	owner.alpha = 30
 	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
@@ -156,8 +159,9 @@
 	REMOVE_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	owner.damage_deflection = 0
 	if(forced) //only false when using visceratika 5. we inherit the alpha from this ability and when visceratika 5 deactivates, return to 255
-		if(exit_turf)
-			owner.forceMove(exit_turf)
+		var/turf/resolved_exit = exit_turf?.resolve()
+		if(resolved_exit)
+			owner.forceMove(resolved_exit)
 		owner.alpha = 255
 	exit_turf = null
 	stone_turf = null
@@ -202,22 +206,23 @@
 	. = ..()
 	var/datum/discipline_power/visceratika/bond_with_the_mountain/bond = discipline.get_power(/datum/discipline_power/visceratika/bond_with_the_mountain)
 	bond.deactivate(forced = FALSE)
-	ADD_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
+	owner.generic_canpass = FALSE
+	RegisterSignal(owner, COMSIG_MOVABLE_CAN_PASS_THROUGH, PROC_REF(can_pass_through_walls))
 	apply_wibbly_filters(owner)
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/deactivate()
 	. = ..()
+	owner.generic_canpass = TRUE
+	UnregisterSignal(owner, COMSIG_MOVABLE_CAN_PASS_THROUGH)
 	owner.alpha = 255
-	REMOVE_TRAIT(owner, TRAIT_PASS_THROUGH_WALLS, DISCIPLINE_TRAIT)
 	remove_wibbly_filters(owner)
 
-// there has to be a better way to do this
-/turf/closed/Enter(atom/movable/mover, atom/oldloc)
-	if(isliving(mover))
-		var/mob/living/moving_mob = mover
-		if(HAS_TRAIT(moving_mob, TRAIT_PASS_THROUGH_WALLS)/* && (get_area(moving_mob) == get_area(src))*/)
-			return TRUE
-	return ..()
+/datum/discipline_power/visceratika/flow_within_the_mountain/proc/can_pass_through_walls(datum/source, atom/blocker, movement_dir)
+	SIGNAL_HANDLER
+	if(!istype(blocker, /turf/closed))
+		return
+	if(get_area(owner) == get_area(blocker))
+		return COMSIG_COMPONENT_PERMIT_PASSAGE
 
 /*
 //ROCKHEART
