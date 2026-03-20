@@ -308,11 +308,6 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 			if(!result)
 				character.give_st_power(discipline, level) // load em up
 
-	// if they possess dementate, they get derangement. even if they have 0 dots in it. if an admin removes dementate for say, dominate, they will no longer have derangement
-	// dom malks get to be Not Crazy:tm:
-	if(vampire_splat.get_power(/datum/discipline/dementation))
-		character.add_quirk(/datum/quirk/derangement)
-
 	SSticker.OnRoundend(CALLBACK(src, PROC_REF(save_disciplines), character))
 
 /datum/preferences/proc/save_disciplines(mob/living/carbon/human/character)
