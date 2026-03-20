@@ -489,10 +489,10 @@ export function MainPage(props: MainPageProps) {
   const nonContextualPreferences = {
     ...data.character_preferences.non_contextual,
   };
-  // DARKPACK EDIT START - tracking age changes
+  // DARKPACK EDIT ADD START - tracking age changes
   const immortalAgeValue = nonContextualPreferences.immortal_age as number | undefined;
   const immortalAgeServerData = serverData?.immortal_age as { minimum: number; maximum: number; step: number } | undefined;
-  // DARKPACK EDIT END
+  // DARKPACK EDIT ADD END
 
   if (randomBodyEnabled) {
     nonContextualPreferences.random_splats = // DARKPACK EDIT CHANGE - SPLATS
