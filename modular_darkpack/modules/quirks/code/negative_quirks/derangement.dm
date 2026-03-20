@@ -120,7 +120,7 @@
 
 /datum/hallucination/your_mother/malk/start()
 	var/mob/living/carbon/human/malk = hallucinator
-	var/age = malk.client?.prefs?.read_preference(/datum/preference/numeric/immortal_age)
+	var/age = malk.chronological_age
 	if(!malk.client || malk.stat >= UNCONSCIOUS)
 		return FALSE
 
