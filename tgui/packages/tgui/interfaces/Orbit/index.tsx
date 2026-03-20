@@ -16,7 +16,7 @@ import type { ViewMode } from './types';
 export function Orbit(props) {
   const [autoObserve, setAutoObserve] = useState(false);
   const [bladeOpen, setBladeOpen] = useState(false);
-  const [realNameDisplay, setRealNameDisplay] = useState(false);
+  const [realNameDisplay, setRealNameDisplay] = useState(true); // DARKPACK EDIT, ORIGINAL: const [realNameDisplay, setRealNameDisplay] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>(VIEWMODE.Health);
 

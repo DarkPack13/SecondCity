@@ -3,6 +3,7 @@
 	savefile_key = "language"
 	savefile_identifier = PREFERENCE_CHARACTER
 	should_generate_icons = TRUE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/language/create_default_value()
 	return /datum/language/spanish::name // DARKPACK EDIT CHANGE - LANGUAGES
@@ -52,6 +53,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = TRUE
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/language_speakable/is_accessible(datum/preferences/preferences)
 	if(!..())
@@ -67,6 +69,7 @@
 	savefile_key = "language_skill"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/language_skill/create_default_value()
 	return "100%"
@@ -90,6 +93,7 @@
 	savefile_key = "csl_strength"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/csl_strength/create_default_value()
 	return "90%"
