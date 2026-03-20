@@ -66,7 +66,7 @@
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
 				// DARKPACK EDIT START
-				/obj/item/reagent_containers/cup/glass/drinkingglass/shot_glass = 12,
+				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 12,
 				/*
 				/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass = 12,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/collins_glass = 15,
