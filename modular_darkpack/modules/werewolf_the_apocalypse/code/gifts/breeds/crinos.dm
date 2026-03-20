@@ -63,7 +63,7 @@
 	if(HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE))
 		. = 5
 
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
 		if(!kindred_splat.enlightenment)
 			. = 6
