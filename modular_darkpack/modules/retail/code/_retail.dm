@@ -113,7 +113,7 @@
 			.["user"]["is_card"] = 1
 			.["user"]["payment_item"] = REF(held_item)
 			break
-		if(istype(held_item, /obj/item/stack/dollar))
+		else if(istype(held_item, /obj/item/stack/dollar))
 			var/obj/item/money = held_item
 			.["user"]["money"] = money.get_item_credit_value()
 			.["user"]["payment_item"] = REF(held_item)
