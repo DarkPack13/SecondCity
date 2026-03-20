@@ -289,8 +289,6 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 			for(var/disc_type in clan.clan_disciplines)
 				if(!ispath(disc_type, /datum/discipline))
 					continue
-				if(disc_type in RARE_DISCIPLINE_TYPES) // to avoid giving a dominate malkavian their 'clan default' of dementation
-					continue
 				discipline_levels["[disc_type]"] = 1
 				var/result = character.change_st_power_level(disc_type, 1)
 				if(!result)
