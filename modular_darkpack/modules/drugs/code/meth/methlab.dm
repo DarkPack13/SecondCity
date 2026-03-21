@@ -27,7 +27,6 @@
 	else if(health > 10)
 		. += span_warning("[src] has sustained some damage.")
 	else if(health > 6)
-
 		. += span_warning("[src] is close to breaking!")
 	else
 		. += span_warning("[src] is about to fall apart!")
