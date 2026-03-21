@@ -164,7 +164,7 @@ blood pool.
 
 	// on three successes, detect their bloodpool, if any exists
 	if(successes >= 3)
-		msg_blood = "[blood_read(target)] Blood pool of [round(target.bloodpool / target.maxbloodpool * 100)]%"
+		msg_blood = "[blood_read(target)] [round(target.bloodpool / target.maxbloodpool * 100)]% of Blood Pool remaining"
 
 	// on four, display any diseases they might have
 	if(successes >= 4)
@@ -230,13 +230,14 @@ death.
 	target_type = TARGET_LIVING
 	range = 1
 	cooldown_length = 1 TURNS
-	var/sleep_duration_length = 10 SCENES
+	var/sleep_duration_length = 10 TURNS
 	var/soothe_duration_length = 1 SCENES
+	var/successes = 0
 
 /datum/discipline_power/valeren/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
-	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), (target.combat_mode ? 8 : 6), owner, TRUE)
-	if(successes > 1)
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), (target.combat_mode ? 8 : 6), owner, TRUE)
+	if(successes >= 1)
 		return TRUE
 	else
 		return FALSE
@@ -247,12 +248,12 @@ death.
 	switch(chosen_option)
 		if("Soothe Pain")
 			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
-			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), soothe_duration_length)
+			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), (successes TURNS) + soothe_duration_length)
 		if("Put To Sleep")
 			if(get_kindred_splat(target))
 				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
 				return TRUE
-			target.SetSleeping(sleep_duration_length) // 30 minutes if left alone
+			target.SetSleeping(sleep_duration_length + (successes TURNS)) // 50 seconds + successes in turns
 			target.adjust_blood_pool(1) // Mortal regains a blood point.
 	return TRUE
 
