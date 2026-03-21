@@ -168,6 +168,16 @@
 
 	violates_masquerade = TRUE
 
+//BLOODHEAL 5
+/datum/discipline_power/bloodheal/five
+	name = "Greater Bloodheal"
+	desc = "Regrow entire bodyparts without breaking a sweat."
+
+	level = 5
+	vitae_cost = 5
+
+	violates_masquerade = TRUE
+
 //BLOODHEAL 6
 /datum/discipline_power/bloodheal/six
 	name = "Grand Bloodheal"
@@ -178,6 +188,16 @@
 
 	violates_masquerade = TRUE
 
+//BLOODHEAL 7
+/datum/discipline_power/bloodheal/seven
+	name = "Grand Bloodheal"
+	desc = "Reconstitute your body from near nothing."
+
+	level = 7
+	vitae_cost = 7
+
+	violates_masquerade = TRUE
+
 //BLOODHEAL 8
 /datum/discipline_power/bloodheal/eight
 	name = "Godlike Bloodheal"
@@ -185,6 +205,16 @@
 
 	level = 8
 	vitae_cost = 8
+
+	violates_masquerade = TRUE
+
+//BLOODHEAL 9
+/datum/discipline_power/bloodheal/nine
+	name = "Surpassing Bloodheal"
+	desc = "Even as a titanic beast, you could restore your physical form in short order."
+
+	level = 9
+	vitae_cost = 9
 
 	violates_masquerade = TRUE
 
