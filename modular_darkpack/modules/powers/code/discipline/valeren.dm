@@ -235,7 +235,7 @@ death.
 
 /datum/discipline_power/warrior_valeren/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), ((target.combat_mode || !iskindred(target)) ? 8 : 6), owner, TRUE)
+	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), ((target.combat_mode || !iskindred(target)) ? 8 : 6), owner, TRUE)
 	if(successes > 1)
 		return TRUE
 	else
