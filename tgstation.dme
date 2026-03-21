@@ -7432,6 +7432,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\obeah.dm"
 #include "modular_darkpack\modules\powers\code\discipline\serpentis.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
+#include "modular_darkpack\modules\powers\code\discipline\valeren.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\aura_component.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\auspex.dm"
 #include "modular_darkpack\modules\powers\code\discipline\auspex\emotion_panel.dm"
