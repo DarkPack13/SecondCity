@@ -63,6 +63,9 @@
 	if (level == src.level)
 		return
 
+	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
+		level = length(all_powers) // so only give what exists
+
 	var/list/datum/discipline_power/new_known_powers = list()
 	for (var/i in 1 to level)
 		if (length(known_powers) >= level)

@@ -8,6 +8,12 @@
 	power_type = /datum/discipline_power/bloodheal
 	selectable = FALSE
 
+/datum/storyteller_roll/bloodheal
+	bumper_text = "Bloodheal"
+	difficulty = 8
+	applicable_stats = list(STAT_STAMINA, STAT_SURVIVAL)
+	roll_output_type = ROLL_PRIVATE
+
 /datum/discipline_power/bloodheal
 	name = "Bloodheal power name"
 	desc = "Bloodheal power description"
@@ -27,13 +33,32 @@
 		/datum/discipline_power/bloodheal/two,
 		/datum/discipline_power/bloodheal/three,
 		/datum/discipline_power/bloodheal/four,
-		/datum/discipline_power/bloodheal/five,
 		/datum/discipline_power/bloodheal/six,
-		/datum/discipline_power/bloodheal/seven,
 		/datum/discipline_power/bloodheal/eight,
-		/datum/discipline_power/bloodheal/nine,
 		/datum/discipline_power/bloodheal/ten
 	)
+
+	var/datum/storyteller_roll/bloodheal/bloodheal_roll
+
+/datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE))
+		return TRUE
+	if(!bloodheal_roll)
+		bloodheal_roll = new()
+	var/roll_result = bloodheal_roll.st_roll(owner, src)
+	to_chat(owner, span_warning("You break your concentration..."))
+	switch(roll_result)
+		if(ROLL_SUCCESS)
+			to_chat(owner, span_notice("But you succeed in mending your wounds."))
+			return TRUE
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("And fail to harness your blood."))
+			return FALSE
+		if(ROLL_BOTCH)
+			to_chat(owner, span_danger("And waste more of your vitae."))
+			owner.adjust_blood_pool(-1)
+			return FALSE
 
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
@@ -143,16 +168,6 @@
 
 	violates_masquerade = TRUE
 
-//BLOODHEAL 5
-/datum/discipline_power/bloodheal/five
-	name = "Greater Bloodheal"
-	desc = "Regrow entire bodyparts without breaking a sweat."
-
-	level = 5
-	vitae_cost = 5
-
-	violates_masquerade = TRUE
-
 //BLOODHEAL 6
 /datum/discipline_power/bloodheal/six
 	name = "Grand Bloodheal"
@@ -163,16 +178,6 @@
 
 	violates_masquerade = TRUE
 
-//BLOODHEAL 7
-/datum/discipline_power/bloodheal/seven
-	name = "Grand Bloodheal"
-	desc = "Reconstitute your body from near nothing."
-
-	level = 7
-	vitae_cost = 7
-
-	violates_masquerade = TRUE
-
 //BLOODHEAL 8
 /datum/discipline_power/bloodheal/eight
 	name = "Godlike Bloodheal"
@@ -180,16 +185,6 @@
 
 	level = 8
 	vitae_cost = 8
-
-	violates_masquerade = TRUE
-
-//BLOODHEAL 9
-/datum/discipline_power/bloodheal/nine
-	name = "Surpassing Bloodheal"
-	desc = "Even as a titanic beast, you could restore your physical form in short order."
-
-	level = 9
-	vitae_cost = 9
 
 	violates_masquerade = TRUE
 
