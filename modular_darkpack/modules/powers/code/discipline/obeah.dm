@@ -22,6 +22,7 @@
 	range = 1
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
+	violates_masquerade = TRUE
 
 // perception + empathy at diff 7
 // 1 success = splat
@@ -75,6 +76,7 @@
 	target_type = TARGET_LIVING
 	range = 1
 	cooldown_length = 1 TURNS
+	violates_masquerade = TRUE
 
 // TO DO, make this use two mouse buttons instead of radial menu.
 // LMB: Block someone's pain
@@ -99,7 +101,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
 //CORPORE SANO
 /datum/discipline_power/obeah/corpore_sano
 	name = "Corpore Sano"
@@ -112,7 +113,11 @@
 
 	violates_masquerade = TRUE
 
-	cooldown_length = 5 SECONDS
+	cooldown_length = 1 TURNS
+
+/datum/discipline_power/obeah/corpore_sano/activate(atom/target)
+	. = ..()
+
 
 
 //SHEPHERD'S WATCH
@@ -136,4 +141,4 @@
 
 	cooldown_length = 5 SECONDS
 
-*/
+

@@ -1,6 +1,6 @@
 /datum/subsplat/vampire_clan/salubri
-	name = "Salubri"
-	id = VAMPIRE_CLAN_SALUBRI
+	name = "Healer Salubri"
+	id = VAMPIRE_CLAN_HEALER_SALUBRI
 	desc = "The Salubri are one of the original 13 clans of the vampiric descendants of Caine. Salubri believe that vampiric existence is torment from which Golconda or death is the only escape. Consequently, the modern Salubri would Embrace, teach a childe the basics of the route, leave clues for the childe to follow to achieve Golconda, and then have their childe diablerize them."
 	icon = "salubri"
 	curse = "Hunted and consensual feeding."
@@ -18,24 +18,43 @@
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
 
+/datum/subsplat/vampire_clan/salubri
+	name = "Warrior Salubri"
+	id = VAMPIRE_CLAN_WARRIOR_SALUBRI
+	icon = "salubri"
+	clan_disciplines = list(
+		/datum/discipline/auspex,
+		/datum/discipline/fortitude,
+		/datum/discipline/valeren
+	)
+
 /datum/subsplat/vampire_clan/salubri/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
+	/*
 	var/obj/item/organ/eyes/salubri/three_eyes = new()
 	three_eyes.Insert(gaining_mob, TRUE, DELETE_IF_REPLACED)
+	*/
 
 /datum/subsplat/vampire_clan/salubri/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
+	/*
 	// replace eyes
 	var/eye_type = /obj/item/organ/eyes
 	if(losing_mob.dna.species && losing_mob.dna.species.mutanteyes)
 		eye_type = losing_mob.dna.species.mutanteyes
 	var/obj/item/organ/eyes/new_eyes = new eye_type()
 	new_eyes.Insert(losing_mob, TRUE, DELETE_IF_REPLACED)
+	*/
 
+/* DARKPACK TODO: Implement salubri third eye visuals.
 /obj/item/organ/eyes/salubri
 	eye_icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/human_eyes.dmi'
 	eye_icon_state = "salubri"
 
 	blink_animation = FALSE
+*/
+
+// DARKPACK TODO: Auspex using salubri also open the third eye, causing a breach if it isn't hidden.
+// If covered, it offers a penalty of -1 to all auspex, obeah or valeren roles.
