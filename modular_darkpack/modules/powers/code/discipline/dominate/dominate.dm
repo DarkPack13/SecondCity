@@ -132,8 +132,8 @@
 		to_chat(owner, span_warning("Your Dominate attempt has botched! [target] is now resistant to your Dominate for the rest of the night."))
 		return FALSE
 
-	var/datum/splat/vampire/kindred/owner_splat = iskindred(owner)
-	var/datum/splat/vampire/kindred/target_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/owner_splat = get_kindred_splat(owner)
+	var/datum/splat/vampire/kindred/target_splat = get_kindred_splat(target)
 	if(target_splat)
 		if(owner_splat.generation > target_splat.generation)
 			to_chat(owner, span_warning("Your fail to dominate [target], as their blood is more potent than yours!"))
@@ -459,8 +459,8 @@
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/carbon/human/target)
 
-	if(iskindred(target) || isgarou(target)) //DARKPACK TODO: reimplement Kuei-Jin
-		to_chat(owner, span_warning("You cannot possess [iskindred(target) ? "another kindred" : "this creature - the beast within resists"]!"))
+	if(get_kindred_splat(target) || get_garou_splat(target)) //DARKPACK TODO: reimplement Kuei-Jin
+		to_chat(owner, span_warning("You cannot possess [get_kindred_splat(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 
 	if(target.possessed)

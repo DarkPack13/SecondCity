@@ -186,11 +186,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 /datum/preferences/proc/update_preferences_darkpack(current_version, datum/json_savefile/S)
 
 /datum/preferences/proc/update_character_darkpack(current_version, list/save_data)
-	/*
 	if (current_version < 2)
 		if(read_preference(/datum/preference/choiced/subsplat/garou_breed) == "Metis")
 			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/garou_breed], BREED_CRINOS)
-	*/
 // DARKPACK EDIT ADD END
 
 /// checks through keybindings for outdated unbound keys and updates them
@@ -414,16 +412,24 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD END
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	preference_storyteller_stats = list() // Ensure we dont have our stats from our old char slot.
 	if(!stats_list)
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
-		var/proper_stat_path = text2path(stat_path)
+		var/proper_stat_path
+		if(ispath(stat_path, /datum/st_stat))
+			// I thought when its saved it becomes a string but that seems to not always be the case?
+			// I belive its because the json handling is held in byond after the first fetch?
+			proper_stat_path = stat_path
+		else
+			proper_stat_path = text2path(stat_path)
+		if(!proper_stat_path)
+			continue
 		var/datum/st_stat/stat = new proper_stat_path()
-		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list[stat_path][STAT_SCORE])
-			stat.set_points(stats_list[stat_path][STAT_POINTS])
-			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
-		preference_storyteller_stats[stat_path] = stat
+		stat.set_score(stats_list[stat_path][STAT_SCORE])
+		stat.set_points(stats_list[stat_path][STAT_POINTS])
+		stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
+		preference_storyteller_stats[proper_stat_path] = stat
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 

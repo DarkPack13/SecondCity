@@ -52,7 +52,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 // for validating a mob's sheet before teaching them a new one
 // validated against the above criteria
 /proc/validate_mob_sheet(mob/living/carbon/human/human, discipline_type_to_add = null)
-	var/datum/splat/vampire/vamp_splat = does_use_disciplines(human)
+	var/datum/splat/vampire/vamp_splat = get_splat_with_discipline(human)
 	if(!vamp_splat)
 		return null
 
@@ -255,7 +255,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	if(isdummy(character))
 		return
 
-	var/datum/splat/vampire/vampire_splat = does_use_disciplines(character)
+	var/datum/splat/vampire/vampire_splat = get_splat_with_discipline(character)
 
 	if(!vampire_splat)
 		return
@@ -294,7 +294,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 	if(QDELETED(character))
 		return
 
-	var/datum/splat/vampire/vampire_splat = does_use_disciplines(character)
+	var/datum/splat/vampire/vampire_splat = get_splat_with_discipline(character)
 	if(!vampire_splat)
 		return
 

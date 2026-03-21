@@ -167,7 +167,7 @@
 
 	var/mob/living/carbon/human/human_user = usr
 
-	if(!iskindred(usr))
+	if(!get_kindred_splat(usr))
 		return
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list
