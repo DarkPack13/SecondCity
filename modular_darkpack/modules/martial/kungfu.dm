@@ -24,8 +24,9 @@
 
 			LAZYADD(affected_bodyparts, limb)
 
-			limb.unarmed_damage_low += 5
-			limb.unarmed_damage_high += 5
+			//limb.unarmed_damage_low += 5 Unsure on this one
+			//limb.unarmed_damage_high += 5
+			limb.unarmed_attack_effect = null
 			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/mainpunch2.ogg'
 
 /datum/martial_art/kungfu/deactivate_style(mob/living/remove_from)
@@ -121,6 +122,36 @@
 	return MARTIAL_ATTACK_INVALID // normal grab
 
 /datum/martial_art/kungfu/harm_act(mob/living/attacker, mob/living/defender)
+	if(attacker.grab_state == GRAB_KILL \
+		&& attacker.zone_selected == BODY_ZONE_HEAD \
+		&& attacker.pulling == defender \
+		&& defender.stat != DEAD \
+	)
+		var/obj/item/bodypart/head = defender.get_bodypart(BODY_ZONE_HEAD)
+		if(!isnull(head))
+			if(!do_after(attacker, (20 - (attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_MEDICINE))) , defender))
+				defender.balloon_alert(attacker, "failed to necksnap!")
+				to_chat(attacker, span_warning("You fail to grip [defender]'s neck!"))
+			var/snappower = clamp((1 + attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 0, 10)
+			if(snappower == 0)
+				defender.balloon_alert(attacker, "not strong enough to necksnap!")
+				defender.visible_message(
+					span_notice("[attacker] fails to snap the neck of [defender]."),
+					span_userdanger("[attacker]'s weak hands were unable to snap your neck'."),
+				)
+				return MARTIAL_ATTACK_FAIL
+			playsound(defender, 'sound/effects/wounds/crack1.ogg', 100)
+			defender.visible_message(
+				span_danger("[attacker] snaps the neck of [defender]!"),
+				span_userdanger("Your neck is snapped by [attacker]!"),
+				span_hear("You hear a sickening snap!"),
+				ignored_mobs = attacker
+			)
+			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"))
+			log_combat(attacker, defender, "snapped neck") //I would call kill() for normal humans but necksnapping a NPC with Str 5 already does it
+			defender.apply_damage(snappower LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
+			return MARTIAL_ATTACK_SUCCESS
+
 	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
