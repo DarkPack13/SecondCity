@@ -112,13 +112,16 @@
 	range = 1
 
 	violates_masquerade = TRUE
-
 	cooldown_length = 1 TURNS
 
 /datum/discipline_power/obeah/corpore_sano/activate(atom/target)
 	. = ..()
-
-
+	var/mob/living/living_target = target
+	if(living_target.get_agg_loss() && (owner.bloodpool >= 1))
+		owner.adjust_blood_pool(-1)
+		living_target.heal_storyteller_health(dots_to_heal = 1, heal_aggravated = TRUE, heal_scars = TRUE, heal_blood = TRUE)
+	else
+		living_target.heal_storyteller_health(dots_to_heal = 1, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE)
 
 //SHEPHERD'S WATCH
 /datum/discipline_power/obeah/shepherds_watch
