@@ -18,7 +18,7 @@
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
 
-/datum/subsplat/vampire_clan/salubri
+/datum/subsplat/vampire_clan/salubri/warrior
 	name = "Warrior Salubri"
 	id = VAMPIRE_CLAN_WARRIOR_SALUBRI
 	icon = "salubri"
