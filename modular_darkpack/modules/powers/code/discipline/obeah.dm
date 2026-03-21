@@ -87,7 +87,7 @@
 			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT(type))
 			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), 1 SCENES)
 		if("Put To Sleep")
-			if(iskindred(target))
+			if(get_kindred_splat(target))
 				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
 				return TRUE
 			target.SetSleeping(10 SCENES) // 30 minutes if left alone
