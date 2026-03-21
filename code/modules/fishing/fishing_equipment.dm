@@ -95,6 +95,7 @@
 	wiki_desc = "Automatically starts the minigame and helps guide the bait a little. It also spin fishing lures for you without need of an input. \
 		It can also be used to snag in objects from a distance and throw them in your direction.<br>\
 		<b>It requires the Advanced Fishing Technology Node to be researched to be printed.</b>"
+	custom_price = 60
 
 /obj/item/fishing_line/auto_reel/Initialize(mapload)
 	. = ..()
