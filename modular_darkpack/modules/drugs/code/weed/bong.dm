@@ -38,7 +38,7 @@
 	create_reagents(chem_volume, INJECTABLE | NO_REACT)
 
 /obj/item/bong/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if((istype(tool, /obj/item/food/grown) || istype(tool, /obj/item/reagent_containers/cup/glass/baggie)))
+	if((istype(tool, /obj/item/food/grown) || istype(tool, /obj/item/food/drug) || istype(tool, /obj/item/reagent_containers/cup/glass/baggie)))
 		if(packeditem)
 			to_chat(user, span_warning("It is already packed!"))
 			return ITEM_INTERACT_BLOCKING
