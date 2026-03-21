@@ -30,12 +30,12 @@ a subject is a vampire as well as the contents of his
 blood pool.
 */
 
-/datum/discipline/warrior_valeren
+/datum/discipline/valeren
 	name = "Valeren"
 	desc = "The warrior's path of Valeren, used by the Salubri antitribu to read and exploit weakness in their enemies."
 	icon_state = "valeren"
 	clan_restricted = TRUE
-	power_type = /datum/discipline_power/warrior_valeren
+	power_type = /datum/discipline_power/valeren
 
 // Assets for the UI
 /datum/asset/simple/valeren_assets
@@ -44,22 +44,22 @@ blood pool.
 		"da_vinci_vitruve_luc_viatour.webp" = 'modular_darkpack/modules/powers/icons/images/da_vinci_vitruve_luc_viatour.webp',
 	)
 
-/datum/discipline_power/warrior_valeren
+/datum/discipline_power/valeren
 	name = "Valeren power name"
 	desc = "Valeren power description"
 
-/datum/discipline_power/warrior_valeren/sense_vitality
+/datum/discipline_power/valeren/sense_vitality
 	name = "Sense Vitality"
 	desc = "Allows you to determine the vitality of a target."
 	level = 1
 	check_flags = DISC_CHECK_CAPABLE
 	target_type = TARGET_HUMAN | TARGET_SELF
 	range = 1
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/valeren.ogg'
 	cooldown_length = 1 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null
 	vitae_cost = 0
+	var/successes = 0
 
 	var/msg_creature = "" // what kinda phreak they is
 	var/msg_damage = ""
@@ -67,7 +67,7 @@ blood pool.
 	var/msg_disease = ""
 	var/msg_mental = ""
 
-/datum/discipline_power/warrior_valeren/sense_vitality/pre_activation_checks(mob/living/target)
+/datum/discipline_power/valeren/sense_vitality/pre_activation_checks(mob/living/target)
 	. = ..()
 	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, TRUE)
 	if(successes > 1)
@@ -75,7 +75,7 @@ blood pool.
 	else
 		return FALSE
 
-/datum/discipline_power/warrior_valeren/sense_vitality/proc/blood_read(mob/living/carbon/human/target)
+/datum/discipline_power/valeren/sense_vitality/proc/blood_read(mob/living/carbon/human/target)
 	var/blood_volume = target.get_blood_volume(apply_modifiers = TRUE)
 	switch(blood_volume)
 		if(BLOOD_VOLUME_EXCESS to INFINITY)
@@ -95,19 +95,19 @@ blood pool.
 		else
 			return "They are completely exsanguinated."
 
-/datum/discipline_power/warrior_valeren/sense_vitality/proc/damage_severity(damage)
+/datum/discipline_power/valeren/sense_vitality/proc/damage_severity(damage)
 	if(damage < 30)
 		return "some"
 	if(damage < 50)
 		return "moderate"
 	return "heavy"
 
-/datum/discipline_power/warrior_valeren/sense_vitality/ui_state(mob/user)
+/datum/discipline_power/valeren/sense_vitality/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/discipline_power/warrior_valeren/sense_vitality/ui_interact(mob/user, datum/tgui/ui)
+/datum/discipline_power/valeren/sense_vitality/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	var/datum/asset/valeren_files = get_asset_datum(/datum/asset/simple/discipline_assets)
+	var/datum/asset/valeren_files = get_asset_datum(/datum/asset/simple/valeren_assets)
 	if(user.client)
 		valeren_files.send(user.client)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -115,7 +115,7 @@ blood pool.
 		ui = new /datum/tgui(user, src, "Valeren")
 		ui.open()
 
-/datum/discipline_power/warrior_valeren/sense_vitality/ui_data(mob/living/user)
+/datum/discipline_power/valeren/sense_vitality/ui_data(mob/living/user)
 	var/list/data = list()
 	data["creature"] = msg_creature
 	data["damage"] = msg_damage
@@ -124,7 +124,7 @@ blood pool.
 	data["mental"] = msg_mental
 	return data
 
-/datum/discipline_power/warrior_valeren/sense_vitality/activate(mob/living/target)
+/datum/discipline_power/valeren/sense_vitality/activate(mob/living/target)
 	. = ..()
 	msg_creature = ""
 	msg_damage = ""
@@ -134,9 +134,9 @@ blood pool.
 
 	// on one success, identify their splat
 	var/creature_type = "a mortal"
-	if(iskindred(target))
+	if(get_kindred_splat(target))
 		creature_type = "kindred"
-	else if(isghoul(target))
+	else if(get_ghoul_splat(target))
 		creature_type = "a ghoul"
 	else if(isavatar(target) || isobserver(target)) // because salubri spend all their time in the clinic anyway. they'll use this on ghosts
 		creature_type = "a wraith"
@@ -186,7 +186,7 @@ blood pool.
 
 	ui_interact(owner)
 
-/datum/discipline_power/warrior_valeren/sense_vitality/deactivate()
+/datum/discipline_power/valeren/sense_vitality/deactivate()
 	. = ..()
 
 //ANESTHETIC TOUCH
@@ -222,7 +222,7 @@ Kindred, including the Salubri herself, are unaffected
 by this power — their corpselike bodies are too tied to
 death.
 */
-/datum/discipline_power/warrior_valeren/anesthetic_touch
+/datum/discipline_power/valeren/anesthetic_touch
 	name = "Anesthetic Touch"
 	desc = "Soothe your patient's pain, or place a mortal into peaceful slumber."
 	level = 2
@@ -233,28 +233,28 @@ death.
 	var/sleep_duration_length = 10 SCENES
 	var/soothe_duration_length = 1 SCENES
 
-/datum/discipline_power/warrior_valeren/anesthetic_touch/pre_activation_checks(mob/living/target)
+/datum/discipline_power/valeren/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
-	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), ((target.combat_mode || !iskindred(target)) ? 8 : 6), owner, TRUE)
+	var/successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), (target.combat_mode ? 8 : 6), owner, TRUE)
 	if(successes > 1)
 		return TRUE
 	else
 		return FALSE
 
-/datum/discipline_power/warrior_valeren/anesthetic_touch/activate(mob/living/target)
+/datum/discipline_power/valeren/anesthetic_touch/activate(mob/living/target)
 	. = ..()
 	var/chosen_option = show_radial_menu(owner, target, list("Soothe Pain", "Put To Sleep"), radius = 38, require_near = TRUE)
 	switch(chosen_option)
 		if("Soothe Pain")
-			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT)
+			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
 			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), soothe_duration_length)
 		if("Put To Sleep")
-			if(iskindred(target))
+			if(get_kindred_splat(target))
 				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
 				return TRUE
 			target.SetSleeping(sleep_duration_length) // 30 minutes if left alone
 			target.adjust_blood_pool(1) // Mortal regains a blood point.
 	return TRUE
 
-/datum/discipline_power/warrior_valeren/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
-	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, DISCIPLINE_TRAIT)
+/datum/discipline_power/valeren/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
+	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
