@@ -350,3 +350,8 @@
 #undef RESTRAIN_COMBO
 #undef PRESSURE_COMBO
 #undef CONSECUTIVE_COMBO
+
+//	animate(carp_user, alpha = 0, time = 0.1 SECONDS)
+//	new /obj/effect/temporis/weskar(carp_user.loc, carp_user)
+//	sleep(0.1 SECONDS)
+//	animate(carp_user, alpha = 225, time = 0.1 SECONDS)

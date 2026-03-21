@@ -262,10 +262,6 @@
 		span_userdanger("You deflect [hitting_projectile]!"),
 	)
 	playsound(carp_user, SFX_BULLET_MISS, 75, TRUE)
-	animate(carp_user, alpha = 0, time = 0.1 SECONDS)
-	new /obj/effect/temporis/weskar(carp_user.loc, carp_user)
-	sleep(0.1 SECONDS)
-	animate(carp_user, alpha = 225, time = 0.1 SECONDS)
 	hitting_projectile.firer = carp_user
 	hitting_projectile.set_angle(rand(0, 360))//SHING
 	return COMPONENT_BULLET_PIERCED
