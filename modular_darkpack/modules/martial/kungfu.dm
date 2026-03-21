@@ -15,6 +15,18 @@
 	//RegisterSignal(new_holder, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(new_holder, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(hit_by_projectile))
 	RegisterSignal(new_holder, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(check_dodge))
+	if (iscarbon(new_holder))
+		var/list/obj/item/bodypart/affected_bodyparts
+		var/mob/living/carbon/human/carbon_owner = new_holder
+		for (var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
+			if (!istype(limb, /obj/item/bodypart/arm) && !istype(limb, /obj/item/bodypart/leg))
+				continue
+
+			LAZYADD(affected_bodyparts, limb)
+
+			limb.unarmed_damage_low += 5
+			limb.unarmed_damage_high += 5
+			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/frontalkick2.ogg'
 
 /datum/martial_art/kungfu/deactivate_style(mob/living/remove_from)
 	UnregisterSignal(remove_from, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_PRE_BULLET_ACT, COMSIG_LIVING_CHECK_BLOCK))
@@ -46,7 +58,7 @@
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/frontalkick.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	var/throw_distance = max(1, (attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA))) //If the defenders fortitude is greater than the attackers strength, it defaults to 1
 	defender.throw_at(throw_target, throw_distance, 4, attacker)
@@ -57,7 +69,7 @@
 /// Roundhouse Kick: Disarm Disarm combo, knocks people down and deals substantial stamina damage, and also discombobulates them. Knocks objects out of their hands if they're already on the ground.
 /datum/martial_art/kungfu/proc/drop_kick(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/roundhousekick.ogg', 50, TRUE, -1)
 	if(defender.body_position == STANDING_UP)
 		defender.Knockdown(4 SECONDS)
 		defender.visible_message(span_warning("[attacker] kicks [defender] in the head, sending them face first into the floor!"), \
@@ -74,7 +86,7 @@
 /// Flying Knee: Grab Harm combo, causes them to be silenced and briefly stunned, as well as doing a moderate amount of stamina damage.
 /datum/martial_art/kungfu/proc/knee_stomach(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/kneeing.ogg', 50, TRUE, -1)
 	defender.visible_message(
 		span_warning("[attacker] violently slams [attacker.p_their()] knee into [defender]!"),
 		span_userdanger("You slam your knee straight into [defender]!"),
@@ -100,7 +112,7 @@
 
 	var/grab_log_description = "grabbed"
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
-	playsound(defender, 'sound/items/weapons/punch1.ogg', 25, TRUE, -1)
+	playsound(defender, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 25, TRUE, -1)
 	defender.apply_damage(20, STAMINA)
 	log_combat(attacker, defender, "[grab_log_description] (Sleeping Carp)")
 	return MARTIAL_ATTACK_INVALID // normal grab
@@ -144,16 +156,12 @@
 		return FALSE
 	return TRUE
 
-/datum/martial_art/kungfu/proc/DodgeAnimation(mob/living/user)
-	//set waitfor = FALSE
-	if(user.is_clan(/datum/vampire_clan/true_brujah))
-		animate(user, alpha = 0, time = 0.1 SECONDS)
-		new /obj/effect/temporis/weskar(user.loc, user)
+/datum/martial_art/kungfu/proc/reset_animation(mob/living/user, fadein)
+	if(fadein)
 		animate(user, alpha = 225, time = 0.1 SECONDS)
+		return
 	else
-		animate(user, pixel_x = rand(-16,16), pixel_y = rand(-16,16), time = 0.2 SECONDS)
-		animate(user, pixel_x = 0, pixel_y = 0, time = 1, loop = 0)
-
+		animate(user, pixel_x = 0, pixel_y = 0, time = 0.1 SECONDS)
 
 /datum/martial_art/kungfu/proc/hit_by_projectile(mob/living/user, obj/projectile/hitting_projectile, def_zone)
 	SIGNAL_HANDLER
@@ -176,11 +184,18 @@
 
 	user.visible_message(
 		span_danger("[user] effortlessly dodges the [hitting_projectile]! [user.p_They()] is unnaturally fast!"),
-		span_userdanger("You deflect [hitting_projectile]!"),
+		span_userdanger("You dodge [hitting_projectile]!"),
 	)
-	DodgeAnimation()
 	playsound(user, SFX_BULLET_MISS, 75, TRUE)
 	hitting_projectile.firer = user
+	var/mob/living/carbon/human/dodger = user
+	if(dodger.is_clan(/datum/vampire_clan/true_brujah))
+		animate(user, alpha = 0, time = 0.2 SECONDS)
+		new /obj/effect/temporis/weskar(user.loc, user)
+		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, TRUE), 0.1 SECONDS)
+	else
+		animate(user, pixel_x = rand(-16,16), pixel_y = rand(-16,16), time = 0.2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, FALSE), 0.1 SECONDS)
 	//hitting_projectile.set_angle(rand(0, 360)) theoretically it should go straight through if you avoided
 	return COMPONENT_BULLET_PIERCED
 
@@ -207,7 +222,16 @@
 		span_userdanger("You dodge [attack_text]"),
 	)
 	playsound(user.loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-	DodgeAnimation()
+	var/mob/living/carbon/human/dodger = user
+	if(dodger.is_clan(/datum/vampire_clan/true_brujah))
+		animate(user, alpha = 0, time = 0.3 SECONDS)
+		new /obj/effect/temporis/weskar(user.loc, user)
+		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, TRUE), 0.1 SECONDS)
+	else
+		animate(user, pixel_x = rand(-16,16), pixel_y = rand(-16,16), time = 0.1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, FALSE), 0.1 SECONDS)
+
+
 
 	return SUCCESSFUL_BLOCK
 

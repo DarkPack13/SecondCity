@@ -36,7 +36,7 @@
 	AddComponent( \
 		/datum/component/combo_attacks, \
 		combos = combo_list, \
-		max_combo_length = 4, \
+		max_combo_length = 3, \
 		examine_message = span_notice("<i>This seems to be a skilled weapon... perhaps I could use my experience?</i>"), \
 		reset_message = "you return to neutral stance", \
 		can_attack_callback = CALLBACK(src, PROC_REF(can_combo_attack)) \
