@@ -90,13 +90,11 @@
 	)
 	crate_name = "hydro crate"
 
-/* Does nothing atm
 /datum/supply_pack/local/methlab
 	name = "Lab Equipment"
 	desc = "Contains lab equipment."
 	cost = 4000
 	contains = list(/obj/structure/methlab/movable)
-*/
 
 /datum/supply_pack/local/fixing
 	name = "Fixing kit (wirecutters, lights)"
