@@ -26,7 +26,7 @@
 
 			limb.unarmed_damage_low += 5
 			limb.unarmed_damage_high += 5
-			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/frontalkick2.ogg'
+			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/mainpunch2.ogg'
 
 /datum/martial_art/kungfu/deactivate_style(mob/living/remove_from)
 	UnregisterSignal(remove_from, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_PRE_BULLET_ACT, COMSIG_LIVING_CHECK_BLOCK))
@@ -60,7 +60,7 @@
 	)
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/frontalkick.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
-	var/throw_distance = max(1, (attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA))) //If the defenders fortitude is greater than the attackers strength, it defaults to 1
+	var/throw_distance = clamp((attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 1, 3)
 	defender.throw_at(throw_target, throw_distance, 4, attacker)
 	defender.apply_damage(15, attacker.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	log_combat(attacker, defender, "Frontal Kicked (Kungfu)")
@@ -86,7 +86,7 @@
 /// Flying Knee: Grab Harm combo, causes them to be silenced and briefly stunned, as well as doing a moderate amount of stamina damage.
 /datum/martial_art/kungfu/proc/knee_stomach(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/kneeing.ogg', 50, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 50, TRUE, -1)
 	defender.visible_message(
 		span_warning("[attacker] violently slams [attacker.p_their()] knee into [defender]!"),
 		span_userdanger("You slam your knee straight into [defender]!"),
@@ -94,7 +94,10 @@
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	defender.apply_damage(20, STAMINA)
+	var/roll_success = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 8, roller = attacker)
+	if(roll_success)
+		defender.Knockdown(3 SECONDS)
+	defender.apply_damage(40, STAMINA)
 	defender.adjust_silence_up_to(5 SECONDS, 5 SECONDS)
 	log_combat(attacker, defender, "kneed in the stomach (Kung-Fu)")
 	return TRUE
@@ -112,7 +115,7 @@
 
 	var/grab_log_description = "grabbed"
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
-	playsound(defender, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 25, TRUE, -1)
+	playsound(defender, 'modular_darkpack/modules/martial/sounds/frontalkick2.ogg', 25, TRUE, -1)
 	defender.apply_damage(20, STAMINA)
 	log_combat(attacker, defender, "[grab_log_description] (Sleeping Carp)")
 	return MARTIAL_ATTACK_INVALID // normal grab
@@ -168,10 +171,7 @@
 
 	var/determine_avoidance = 100
 
-	determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)) * 10)
-
-	if(istype(hitting_projectile, /obj/projectile/bullet/harpoon)) // WHITE WHALE HOLY GRAIL
-		return NONE
+	determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)) * 3)
 
 	if(!user.is_clan(/datum/vampire_clan/true_brujah))
 		return NONE //No, you cant dodge bullets normally, bum.
@@ -203,7 +203,7 @@
 /datum/martial_art/kungfu/proc/check_dodge(mob/living/user, atom/movable/hitby, damage, attack_text, attack_type, ...)
 	SIGNAL_HANDLER
 
-	var/determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)) * 2)
+	var/determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)))
 
 	if(!can_deflect(user))
 		return
