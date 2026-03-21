@@ -59,8 +59,9 @@
 			to_chat(owner, span_warning("And fail to harness your blood."))
 			return FALSE
 		if(ROLL_BOTCH)
-			to_chat(owner, span_danger("And waste more of your vitae."))
+			to_chat(owner, span_danger("And worsen your wounds."))
 			owner.adjust_blood_pool(-1)
+			owner.apply_damage(1 TTRPG_DAMAGE, BRUTE)
 			return FALSE
 
 /datum/discipline_power/bloodheal/activate()
