@@ -94,5 +94,5 @@
 	loot_subtype_path = /obj/item/vtm_artifact
 
 /obj/effect/spawner/random/occult/artifact/Initialize(mapload)
-    . = ..()
     spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
+	. = ..()
