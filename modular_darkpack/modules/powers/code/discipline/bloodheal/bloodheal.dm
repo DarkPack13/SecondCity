@@ -33,8 +33,11 @@
 		/datum/discipline_power/bloodheal/two,
 		/datum/discipline_power/bloodheal/three,
 		/datum/discipline_power/bloodheal/four,
+		/datum/discipline_power/bloodheal/five,
 		/datum/discipline_power/bloodheal/six,
+		/datum/discipline_power/bloodheal/seven,
 		/datum/discipline_power/bloodheal/eight,
+		/datum/discipline_power/bloodheal/nine,
 		/datum/discipline_power/bloodheal/ten
 	)
 
