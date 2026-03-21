@@ -4,14 +4,13 @@
 	icon_state = "thaumaturgy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/thaumaturgy
+	max_selectable_level = 5
 
 /datum/discipline/thaumaturgy/post_gain()
 	. = ..()
-	owner.add_faction(VAMPIRE_CLAN_TREMERE)
 	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
 	thaumaturgy.level = level
-	ADD_TRAIT(owner, TRAIT_THAUMATURGY_KNOWLEDGE, DISCIPLINE_TRAIT(type))
 	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline_power/thaumaturgy
@@ -96,19 +95,19 @@
 		return
 
 	var/list/message = list()
-	var/is_kindred = TRUE //For if we show the blood points part.
+	var/get_kindred_splat = TRUE //For if we show the blood points part.
 
 	if(success_count > 1)
-		if(iskindred(blood_owner))
+		if(get_kindred_splat(blood_owner))
 			message += span_notice("The blood tastes like a kindred's blood.")
 		else
 			message += span_danger("The blood doesn't taste like that of a kindred's.")
-			is_kindred = FALSE
+			get_kindred_splat = FALSE
 	else
 		message += span_danger("The blood doesn't taste like that of a kindred's.")
-		is_kindred = FALSE
+		get_kindred_splat = FALSE
 
-	if(!is_kindred)
+	if(!get_kindred_splat)
 		to_chat(owner, boxed_message(jointext(message, "\n")))
 		return
 
@@ -153,11 +152,11 @@
 		/datum/discipline_power/thaumaturgy/cauldron_of_blood
 	)
 
-// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -v20 Core Rulebook
+// "Each success forces the subject to spend one blood point immediately in the way the caster desires" -V20 Core Rulebook
 /datum/discipline_power/thaumaturgy/blood_rage/activate(mob/living/carbon/human/target)
 	if(..())
 		return
-	var/datum/splat/vampire/kindred/vampirism = iskindred(target) // Get the vampire's splat
+	var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(target) // Get the vampire's splat
 	for(var/i in 1 to success_count)
 		var/datum/action/discipline/random_action = pick(vampirism.powers)
 		var/datum/discipline/random_discipline = random_action.discipline //Choose a random discipline that they have
@@ -255,7 +254,7 @@
 
 	owner.Beam(BeamTarget = target, icon_state = "drainbeam", time = 1 SECONDS)
 	target.visible_message(span_danger("[target]'s blood streams out in a torrent towards [owner]!"), span_userdanger("Your blood streams out in a torrent towards [owner]!"))
-	if(iskindred(target) || isghoul(target))
+	if(get_kindred_splat(target) || get_ghoul_splat(target))
 		var/blood_taken = clamp(success_count, 0, target.bloodpool)
 		target.adjust_blood_pool(-blood_taken)
 
@@ -288,6 +287,8 @@
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
+	var/success_multiplier_npc = 200 // a single success kills an NPC
+	var/success_multiplier_player = 20
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -303,6 +304,6 @@
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
 	target.adjust_blood_pool(-success_count)
 	if(isnpc(target))
-		target.apply_damage(success_count * 200 + owner.thaum_damage_plus, AGGRAVATED) //A single success kills any mortal
+		target.apply_damage(success_count * success_multiplier_npc + owner.thaum_damage_plus, AGGRAVATED)
 	else
-		target.apply_damage(success_count * 40 + owner.thaum_damage_plus, AGGRAVATED) //8 successes = 320 aggravated damage, however this is diffulty 8 so more than 2 successes is rare.
+		target.apply_damage(success_count * success_multiplier_player + owner.thaum_damage_plus, AGGRAVATED)

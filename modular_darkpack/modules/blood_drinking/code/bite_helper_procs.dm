@@ -3,7 +3,7 @@
 	if(on_spawn)
 		bloodpool = 0
 
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(src)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
 	if(kindred_splat)
 		var/hunger_threshold = 7 - (kindred_splat.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(src, TRAIT_NEEDS_BLOOD)

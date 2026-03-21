@@ -1995,9 +1995,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/penumbra)
 "Cp" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Black Spiral Dancers"
-	},
+/obj/effect/landmark/teleport_mark/wyrm,
 /turf/open/indestructible/necropolis/air,
 /area/vtm/outside/penumbra)
 "Cq" = (
@@ -2593,9 +2591,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Kn" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Bone Gnawers"
-	},
+/obj/effect/landmark/teleport_mark/weaver,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/penumbra)
 "Ks" = (
@@ -2657,9 +2653,7 @@
 /turf/open/floor/plating/granite,
 /area/vtm/outside/penumbra)
 "Lv" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Glass Walkers"
-	},
+/obj/effect/landmark/teleport_mark/weaver,
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "Ly" = (
@@ -3230,9 +3224,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "UX" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Children of Gaia"
-	},
+/obj/effect/landmark/teleport_mark/gaia,
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "Vb" = (
@@ -3291,9 +3283,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "VD" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Wendigo"
-	},
+/obj/effect/landmark/teleport_mark/wyld,
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "VE" = (

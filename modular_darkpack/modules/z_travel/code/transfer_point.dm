@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 		arrived.forceMove(get_turf(exit))
 	return TRUE
 
-// Use inside the umbra. Visable
+// Use inside the umbra. visible
 /obj/transfer_point_vamp/umbral
 	name = "portal"
 	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	//layer = ABOVE_LIGHTING_LAYER
 	pixel_w = -8
 
-// Use in the base map/outside the umbra. Invisable
+// Use in the base map/outside the umbra. Invisible
 /obj/transfer_point_vamp/umbral/exit
 	name = "umbral exit"
 	invisibility = INVISIBILITY_OBSERVER

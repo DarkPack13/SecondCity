@@ -10,7 +10,7 @@
 	maxHealth = 1500
 	health = 1500
 
-	guaranteed_butcher_results = list(/obj/item/stack/human_flesh = 20)
+	guaranteed_butcher_results = list(/obj/item/stack/sheet/meat = 20)
 
 	combat_mode = TRUE
 	melee_damage_type = AGGRAVATED

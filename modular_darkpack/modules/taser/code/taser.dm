@@ -2,8 +2,9 @@
 	name = "V26 taser"
 	desc = "A less-than-lethal stun gun. Fires an electrode pair that will impale and electrocute noncompliant suspects."
 	icon = 'modular_darkpack/modules/taser/icons/taser.dmi'
-	icon_state = "taser_wod"
+	icon_state = "taser"
 	inhand_icon_state = null // TODO: Make inhands for these
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/taser/icons/taser_onfloor.dmi')
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/darkpack)
 	charge_sections = 2
 
@@ -21,6 +22,7 @@
 	base_icon_state = "handtaser"
 	inhand_icon_state = null // TODO: Make inhands for these
 //	worn_icon_state = "baton" // TODO: make an onmob for this
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/taser/icons/taser_onfloor.dmi')
 	force = 4
 	armor_type = /datum/armor/none
 	throwforce = 2

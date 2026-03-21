@@ -6,7 +6,11 @@
 		new /datum/data/vending_product("respirator", /obj/item/clothing/mask/gas/vampire),
 		new /datum/data/vending_product("baseball bat", /obj/item/melee/baseball_bat/vamp, 200),
 		new /datum/data/vending_product("knife", /obj/item/knife/vamp, 100),
-		new /datum/data/vending_product("fishing rod", /obj/item/fishing_rod, 200),
 		new /datum/data/vending_product("stake", /obj/item/vampire_stake, 100),
 		new /datum/data/vending_product("box of light bulbs", /obj/item/storage/box/lights/mixed, 80),
+	)
+	product_types = list(
+		/obj/item/fishing_rod,
+		/obj/item/storage/toolbox/fishing,
+		/obj/item/storage/box/fishing_lures
 	)
