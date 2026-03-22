@@ -46,7 +46,7 @@
 	for(var/stat_typepath in storyteller_stats)
 		var/datum/st_stat/stat_datum = storyteller_stats[stat_typepath]
 		if(stat_datum.stat_flags & AFFECTS_HEALTH)
-			recalculate_max_health(initial = TRUE)
+			recalculate_max_health(initial)
 		if(stat_datum.stat_flags & AFFECTS_SPEED)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(st_get_stat(STAT_DEXTERITY) / 20))
 
