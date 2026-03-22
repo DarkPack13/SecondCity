@@ -287,6 +287,7 @@ power works for one scene.
 	duration_length = 1 SCENES
 	vitae_cost = 1
 	var/successes = 0
+	violates_masquerade = TRUE
 
 /datum/discipline_power/valeren/armor_of_caines_fury/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -327,6 +328,7 @@ power works for one scene.
 		var/mob/living/carbon/human/H = owner
 		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = successes * CAINES_FURY_PROTECTION))
 		H.AddElement(/datum/element/armor_of_caines_fury_halo, initial_delay = 0 SECONDS)
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 /datum/status_effect/armor_of_caines_fury/on_remove()
 	. = ..()
@@ -335,6 +337,7 @@ power works for one scene.
 		var/mob/living/carbon/human/H = owner
 		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = -(successes * CAINES_FURY_PROTECTION)))
 		H.RemoveElement(/datum/element/armor_of_caines_fury_halo)
+		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 #undef CAINES_FURY_PROTECTION
 
