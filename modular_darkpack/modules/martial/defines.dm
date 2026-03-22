@@ -1,1 +1,0 @@
-#define MARTIALART_DARKPACK_KUNGFU "kungfu"

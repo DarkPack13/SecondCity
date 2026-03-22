@@ -2,7 +2,7 @@
 #define DROP_KICK_COMBO "DD"
 #define KNEE_STOMACH_COMBO "GH"
 
-/datum/martial_art/kungfu
+/datum/martial_art/darkpack_kungfu
 	name = "Kung Fu"
 	id = MARTIALART_DARKPACK_KUNGFU
 	help_verb = /mob/living/proc/kungfu_help
@@ -10,7 +10,7 @@
 	grab_state_modifier = 1
 
 
-/datum/martial_art/kungfu/activate_style(mob/living/new_holder)
+/datum/martial_art/darkpack_kungfu/activate_style(mob/living/new_holder)
 	. = ..()
 	//RegisterSignal(new_holder, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 	RegisterSignal(new_holder, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(hit_by_projectile))
@@ -27,13 +27,13 @@
 			//limb.unarmed_damage_low += 5 Unsure on this one
 			//limb.unarmed_damage_high += 5
 			limb.unarmed_attack_effect = null
-			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/mainpunch2.ogg'
+			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/harmboxing.ogg'
 
-/datum/martial_art/kungfu/deactivate_style(mob/living/remove_from)
+/datum/martial_art/darkpack_kungfu/deactivate_style(mob/living/remove_from)
 	UnregisterSignal(remove_from, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_PRE_BULLET_ACT, COMSIG_LIVING_CHECK_BLOCK))
 	return ..()
 
-/datum/martial_art/kungfu/proc/check_streak(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/proc/check_streak(mob/living/attacker, mob/living/defender)
 
 	if(findtext(streak,LAUNCH_KICK_COMBO))
 		reset_streak()
@@ -50,7 +50,7 @@
 	return FALSE
 
 /// Frontal Kick: Harm Disarm combo, knocks back relative to Attacker Str - Defender Fort
-/datum/martial_art/kungfu/proc/launch_kick(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/proc/launch_kick(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	defender.visible_message(
 		span_warning("[attacker] kicks [defender] square in the chest, sending them flying!"),
@@ -68,26 +68,28 @@
 	return TRUE
 
 /// Roundhouse Kick: Disarm Disarm combo, knocks people down and deals substantial stamina damage, and also discombobulates them. Knocks objects out of their hands if they're already on the ground.
-/datum/martial_art/kungfu/proc/drop_kick(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/proc/drop_kick(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/roundhousekick.ogg', 50, TRUE, -1)
-	if(defender.body_position == STANDING_UP)
-		defender.Knockdown(4 SECONDS)
+	var/kickpower = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 7, numerical = TRUE, roller = attacker)
+	if(defender.body_position == STANDING_UP && (kickpower >= 0))
+		defender.Knockdown(kickpower SECONDS)
 		defender.visible_message(span_warning("[attacker] kicks [defender] in the head, sending them face first into the floor!"), \
 					span_userdanger("You are kicked in the head by [attacker], sending you crashing to the floor!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
 	else
 		defender.drop_all_held_items()
 		defender.visible_message(span_warning("[attacker] kicks [defender] in the head!"), \
 					span_userdanger("You are kicked in the head by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
+	defender.apply_damage(10, attacker.get_attack_type())
 	defender.apply_damage(40, STAMINA)
 	defender.adjust_dizzy_up_to(10 SECONDS, 10 SECONDS)
 	log_combat(attacker, defender, "Roundhoused (KungFu)")
 	return TRUE
 
 /// Flying Knee: Grab Harm combo, causes them to be silenced and briefly stunned, as well as doing a moderate amount of stamina damage.
-/datum/martial_art/kungfu/proc/knee_stomach(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/proc/knee_stomach(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 50, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 70, TRUE, -1)
 	defender.visible_message(
 		span_warning("[attacker] violently slams [attacker.p_their()] knee into [defender]!"),
 		span_userdanger("You slam your knee straight into [defender]!"),
@@ -103,7 +105,7 @@
 	log_combat(attacker, defender, "kneed in the stomach (Kung-Fu)")
 	return TRUE
 
-/datum/martial_art/kungfu/grab_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/grab_act(mob/living/attacker, mob/living/defender)
 	if(!can_deflect(attacker)) //allows for deniability
 		return MARTIAL_ATTACK_INVALID
 
@@ -121,37 +123,7 @@
 	log_combat(attacker, defender, "[grab_log_description] (Sleeping Carp)")
 	return MARTIAL_ATTACK_INVALID // normal grab
 
-/datum/martial_art/kungfu/harm_act(mob/living/attacker, mob/living/defender)
-	if(attacker.grab_state == GRAB_KILL \
-		&& attacker.zone_selected == BODY_ZONE_HEAD \
-		&& attacker.pulling == defender \
-		&& defender.stat != DEAD \
-	)
-		var/obj/item/bodypart/head = defender.get_bodypart(BODY_ZONE_HEAD)
-		if(!isnull(head))
-			if(!do_after(attacker, (20 - (attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_MEDICINE))) , defender))
-				defender.balloon_alert(attacker, "failed to necksnap!")
-				to_chat(attacker, span_warning("You fail to grip [defender]'s neck!"))
-			var/snappower = clamp((1 + attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 0, 10)
-			if(snappower == 0)
-				defender.balloon_alert(attacker, "not strong enough to necksnap!")
-				defender.visible_message(
-					span_notice("[attacker] fails to snap the neck of [defender]."),
-					span_userdanger("[attacker]'s weak hands were unable to snap your neck'."),
-				)
-				return MARTIAL_ATTACK_FAIL
-			playsound(defender, 'sound/effects/wounds/crack1.ogg', 100)
-			defender.visible_message(
-				span_danger("[attacker] snaps the neck of [defender]!"),
-				span_userdanger("Your neck is snapped by [attacker]!"),
-				span_hear("You hear a sickening snap!"),
-				ignored_mobs = attacker
-			)
-			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"))
-			log_combat(attacker, defender, "snapped neck") //I would call kill() for normal humans but necksnapping a NPC with Str 5 already does it
-			defender.apply_damage(snappower LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
-			return MARTIAL_ATTACK_SUCCESS
-
+/datum/martial_art/darkpack_kungfu/harm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
@@ -161,7 +133,7 @@
 
 	return MARTIAL_ATTACK_INVALID // normal punch
 
-/datum/martial_art/kungfu/disarm_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_kungfu/disarm_act(mob/living/attacker, mob/living/defender)
 	if(!can_deflect(attacker)) //allows for deniability
 		return MARTIAL_ATTACK_INVALID
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
@@ -177,7 +149,7 @@
 	log_combat(attacker, defender, "disarmed (Sleeping Carp)")
 	return MARTIAL_ATTACK_INVALID // normal disarm
 
-/datum/martial_art/kungfu/proc/can_deflect(mob/living/user)
+/datum/martial_art/darkpack_kungfu/proc/can_deflect(mob/living/user)
 	if(!can_use(user) || !user.combat_mode)
 		return FALSE
 	if(INCAPACITATED_IGNORING(user, INCAPABLE_GRAB)) //NO STUN
@@ -190,22 +162,20 @@
 		return FALSE
 	return TRUE
 
-/datum/martial_art/kungfu/proc/reset_animation(mob/living/user, fadein)
+/datum/martial_art/darkpack_kungfu/proc/reset_animation(mob/living/user, fadein)
 	if(fadein)
 		animate(user, alpha = 225, time = 0.1 SECONDS)
 		return
 	else
 		animate(user, pixel_x = 0, pixel_y = 0, time = 0.1 SECONDS)
 
-/datum/martial_art/kungfu/proc/hit_by_projectile(mob/living/user, obj/projectile/hitting_projectile, def_zone)
+/datum/martial_art/darkpack_kungfu/proc/hit_by_projectile(mob/living/user, obj/projectile/hitting_projectile, def_zone)
 	SIGNAL_HANDLER
-
-	var/determine_avoidance = 100
-
-	determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)) * 3)
 
 	if(!user.is_clan(/datum/vampire_clan/true_brujah))
 		return NONE //No, you cant dodge bullets normally, bum.
+
+	var/determine_avoidance = ((user.st_get_stat(STAT_ATHLETICS) + user.st_get_stat(STAT_DEXTERITY)) * 7)
 
 	if(!can_deflect(user))
 		return NONE
@@ -231,10 +201,10 @@
 	return COMPONENT_BULLET_PIERCED
 
 /// If our user has committed to being as martial arty as they can be, they may be able to avoid incoming attacks.
-/datum/martial_art/kungfu/proc/check_dodge(mob/living/user, atom/movable/hitby, damage, attack_text, attack_type, ...)
+/datum/martial_art/darkpack_kungfu/proc/check_dodge(mob/living/user, atom/movable/hitby, damage, attack_text, attack_type, ...)
 	SIGNAL_HANDLER
 
-	var/determine_avoidance = ((user.st_get_stat(STAT_BRAWL) + user.st_get_stat(STAT_DEXTERITY)))
+	var/determine_avoidance = ((user.st_get_stat(STAT_ATHLETICS) + user.st_get_stat(STAT_DEXTERITY)))
 
 	if(!can_deflect(user))
 		return
@@ -295,4 +265,4 @@
 
 /obj/item/clothing/gloves/kungfu_gloves/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/kungfu)
+	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/darkpack_kungfu)

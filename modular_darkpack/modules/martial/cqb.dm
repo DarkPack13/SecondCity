@@ -2,44 +2,42 @@
 #define KICK_COMBO "HH"
 #define RESTRAIN_COMBO "GG"
 #define PRESSURE_COMBO "DG"
-#define CONSECUTIVE_COMBO "DDH"
 
-/datum/martial_art/darkpack/cqb
+/datum/martial_art/darkpack_cqb
 	name = "CQC"
-	id = MARTIALART_CQB
+	id = MARTIALART_DARKPACK_CQB
 	help_verb = /mob/living/proc/CQC_help
 	smashes_tables = TRUE
 	display_combos = TRUE
 	/// Weakref to a mob we're currently restraining (with grab-grab combo)
 	VAR_PRIVATE/datum/weakref/restraining_mob
 
-/datum/martial_art/cqc/activate_style(mob/living/new_holder)
+/datum/martial_art/darkpack_cqb/activate_style(mob/living/new_holder)
 	. = ..()
-	RegisterSignal(new_holder, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
-	RegisterSignal(new_holder, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(check_block))
-	if (iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
+	if (iscarbon(new_holder))
+		var/list/obj/item/bodypart/affected_bodyparts
+		var/mob/living/carbon/human/carbon_owner = new_holder
 		for (var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
 			if (!istype(limb, /obj/item/bodypart/arm) && !istype(limb, /obj/item/bodypart/leg))
 				continue
 
 			LAZYADD(affected_bodyparts, limb)
 
-			limb.unarmed_damage_low += 5
-			limb.unarmed_damage_high += 5
+			//limb.unarmed_damage_low += 5 Unsure on this one
+			//limb.unarmed_damage_high += 5
+			limb.unarmed_attack_effect = null
 			limb.unarmed_attack_sound = 'sound/items/weapons/cqchit1.ogg'
 
-/datum/martial_art/cqc/deactivate_style(mob/living/remove_from)
-	UnregisterSignal(remove_from, list(COMSIG_ATOM_ATTACKBY, COMSIG_LIVING_CHECK_BLOCK))
+/datum/martial_art/darkpack_cqb/deactivate_style(mob/living/remove_from)
 	return ..()
 
 
-/datum/martial_art/cqc/reset_streak(mob/living/new_target)
+/datum/martial_art/darkpack_cqb/reset_streak(mob/living/new_target)
 	if(!IS_WEAKREF_OF(new_target, restraining_mob))
 		restraining_mob = null
 	return ..()
 
-/datum/martial_art/cqc/proc/check_streak(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/proc/check_streak(mob/living/attacker, mob/living/defender)
 	if(findtext(streak, SLAM_COMBO))
 		reset_streak()
 		return Slam(attacker, defender)
@@ -52,16 +50,13 @@
 	if(findtext(streak, PRESSURE_COMBO))
 		reset_streak()
 		return Pressure(attacker, defender)
-	if(findtext(streak, CONSECUTIVE_COMBO))
-		reset_streak()
-		return Consecutive(attacker, defender)
 	return FALSE
 
-/datum/martial_art/cqc/proc/Slam(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/proc/Slam(mob/living/attacker, mob/living/defender)
 	if(defender.body_position != STANDING_UP)
 		return FALSE
 
-	attacker.do_attack_animation(defender)
+	attacker.do_attack_animation(defender) //Potentially change the flow of this combo to describe a failed slam if the Stam vs Str difference is high for optimal brick wall gameplay. Potentially 6 Str??
 	defender.visible_message(
 		span_danger("[attacker] slams [defender] into the ground!"),
 		span_userdanger("You're slammed into the ground by [attacker]!"),
@@ -72,16 +67,20 @@
 	to_chat(attacker, span_danger("You slam [defender] into the ground!"))
 	playsound(attacker, 'sound/items/weapons/slam.ogg', 50, TRUE, -1)
 	defender.apply_damage(10, BRUTE)
-	defender.Paralyze(12 SECONDS)
-	log_combat(attacker, defender, "slammed (CQC)")
+	defender.Knockdown(3 SECONDS)
+	var/stun_time = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 6, numerical = TRUE, roller = attacker) //In THEORY this should be attacker weighted, with high stamima users shrugging it off.
+	var/defended_time = SSroll.storyteller_roll(defender.st_get_stat(STAT_STAMINA) * 2, difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), numerical = TRUE, roller = defender)
+	stun_time = clamp((stun_time-defended_time), 0, 10)
+	defender.Paralyze(stun_time SECONDS)
+	log_combat(attacker, defender, "slammed (CQB)")
 	return TRUE
 
-/datum/martial_art/cqc/proc/Kick(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/proc/Kick(mob/living/attacker, mob/living/defender)
 	if(defender.stat != CONSCIOUS)
 		return FALSE
 
 	attacker.do_attack_animation(defender)
-	if(defender.body_position == LYING_DOWN && !defender.IsUnconscious() && defender.get_stamina_loss() >= 100)
+	if(defender.body_position == LYING_DOWN && !defender.IsUnconscious() && !iskindred(defender) && defender.get_stamina_loss() >= 0) //This is EXTREMELY conditional to make sure it's not abused to shit
 		log_combat(attacker, defender, "knocked out (Head kick)(CQC)")
 		defender.visible_message(
 			span_danger("[attacker] kicks [defender]'s head, knocking [defender.p_them()] out!"),
@@ -93,10 +92,10 @@
 		to_chat(attacker, span_danger("You kick [defender]'s head, knocking [defender.p_them()] out!"))
 		playsound(attacker, 'sound/items/weapons/genhit1.ogg', 50, TRUE, -1)
 
-		var/helmet_protection = defender.run_armor_check(BODY_ZONE_HEAD, MELEE)
+		var/helmet_protection = (defender.run_armor_check(BODY_ZONE_HEAD, MELEE) + (defender.st_get_stat(STAT_STAMINA) * 5))
 		defender.apply_effect(20 SECONDS, EFFECT_KNOCKDOWN, helmet_protection)
 		defender.apply_effect(10 SECONDS, EFFECT_UNCONSCIOUS, helmet_protection)
-		defender.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15, 150)
+		//defender.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15, 150) brain damage is the WORST
 
 	else
 		defender.visible_message(
@@ -117,7 +116,7 @@
 
 	return TRUE
 
-/datum/martial_art/cqc/proc/Pressure(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/proc/Pressure(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender)
 	log_combat(attacker, defender, "pressured (CQC)")
 	defender.visible_message(
@@ -128,17 +127,32 @@
 		attacker,
 	)
 	to_chat(attacker, span_danger("You punch [defender]'s neck!"))
-	defender.adjust_stamina_loss(60)
+	defender.adjust_dizzy_up_to((10-defender.st_get_stat(STAT_STAMINA)) SECONDS, 10 SECONDS)
+	defender.adjust_stamina_loss(50)
 	playsound(attacker, 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 
-/datum/martial_art/cqc/proc/Restrain(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/proc/Restrain(mob/living/attacker, mob/living/defender)
 	if(restraining_mob?.resolve())
 		return FALSE
 	if(defender.stat != CONSCIOUS)
 		return FALSE
-
-	log_combat(attacker, defender, "restrained (CQC)")
+	var/stun_time = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 6, numerical = TRUE, roller = attacker) //In THEORY this should be attacker weighted, with high stamima users shrugging it off.
+	var/defended_time = SSroll.storyteller_roll(defender.st_get_stat(STAT_STAMINA) + defender.st_get_stat(STAT_ATHLETICS), difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), numerical = TRUE, roller = defender)
+	var/total_time = stun_time - defended_time
+	if(total_time <= 0)
+		log_combat(attacker, defender, "failed restrained (CQB)")
+		defender.visible_message(
+			span_warning("[attacker] failes to get [defender] into a restraining hold!"),
+			span_userdanger("You've managed to resist a restraining hold by [attacker]!"),
+			span_hear("You hear shuffling and a muffled groan!"),
+			null,
+			attacker,
+		)
+		to_chat(attacker, span_danger("You fail to lock [defender] into a restraining position!"))
+		defender.adjust_stamina_loss(20)
+		return TRUE
+	log_combat(attacker, defender, "restrained (CQB)")
 	defender.visible_message(
 		span_warning("[attacker] locks [defender] into a restraining position!"),
 		span_userdanger("You're locked into a restraining position by [attacker]!"),
@@ -148,34 +162,12 @@
 	)
 	to_chat(attacker, span_danger("You lock [defender] into a restraining position!"))
 	defender.adjust_stamina_loss(20)
-	defender.Stun(10 SECONDS)
+	defender.Stun(total_time SECONDS)
 	restraining_mob = WEAKREF(defender)
 	addtimer(VARSET_CALLBACK(src, restraining_mob, null), 5 SECONDS, TIMER_UNIQUE)
 	return TRUE
 
-/datum/martial_art/cqc/proc/Consecutive(mob/living/attacker, mob/living/defender)
-	if(defender.stat != CONSCIOUS)
-		return FALSE
-
-	attacker.do_attack_animation(defender)
-	log_combat(attacker, defender, "consecutive CQC'd (CQC)")
-	defender.visible_message(
-		span_danger("[attacker] strikes [defender]'s abdomen, neck and back consecutively"), \
-		span_userdanger("Your abdomen, neck and back are struck consecutively by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
-		COMBAT_MESSAGE_RANGE,
-		attacker,
-	)
-	to_chat(attacker, span_danger("You strike [defender]'s abdomen, neck and back consecutively!"))
-	playsound(defender, 'sound/items/weapons/cqchit2.ogg', 50, TRUE, -1)
-	var/obj/item/held_item = defender.get_active_held_item()
-	if(held_item && defender.temporarilyRemoveItemFromInventory(held_item))
-		attacker.put_in_hands(held_item)
-	defender.adjust_stamina_loss(50)
-	defender.apply_damage(25, attacker.get_attack_type())
-	return TRUE
-
-/datum/martial_art/cqc/grab_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/grab_act(mob/living/attacker, mob/living/defender)
 	if(attacker == defender)
 		return MARTIAL_ATTACK_INVALID
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
@@ -203,7 +195,7 @@
 		to_chat(attacker, span_danger("You violently grab [defender]!"))
 	return MARTIAL_ATTACK_SUCCESS
 
-/datum/martial_art/cqc/harm_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/harm_act(mob/living/attacker, mob/living/defender)
 	if(attacker.grab_state == GRAB_KILL \
 		&& attacker.zone_selected == BODY_ZONE_HEAD \
 		&& attacker.pulling == defender \
@@ -211,6 +203,18 @@
 	)
 		var/obj/item/bodypart/head = defender.get_bodypart(BODY_ZONE_HEAD)
 		if(!isnull(head))
+			if(!do_after(attacker, (20 - (attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_MEDICINE))) , defender))
+				defender.balloon_alert(attacker, "failed to necksnap!")
+				to_chat(attacker, span_warning("Your hands slip off [defender]'s neck!"))
+				return MARTIAL_ATTACK_FAIL
+			var/snappower = clamp((1 + attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 0, 10)
+			if(snappower == 0)
+				defender.balloon_alert(attacker, "not strong enough to necksnap!")
+				defender.visible_message(
+					span_notice("[attacker] fails to snap the neck of [defender]."),
+					span_userdanger("[attacker]'s weak hands were unable to snap your neck'."),
+				)
+				return MARTIAL_ATTACK_FAIL
 			playsound(defender, 'sound/effects/wounds/crack1.ogg', 100)
 			defender.visible_message(
 				span_danger("[attacker] snaps the neck of [defender]!"),
@@ -219,17 +223,14 @@
 				ignored_mobs = attacker
 			)
 			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"))
-			log_combat(attacker, defender, "snapped neck")
-			defender.apply_damage(100, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
-			if(!HAS_TRAIT(defender, TRAIT_NODEATH))
-				defender.death()
-				defender.investigate_log("has had [defender.p_their()] neck snapped by [attacker].", INVESTIGATE_DEATHS)
+			log_combat(attacker, defender, "snapped neck") //I would call kill() for normal humans but necksnapping a NPC with Str 5 already does it
+			defender.apply_damage(snappower LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
 			return MARTIAL_ATTACK_SUCCESS
 
-	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
+	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK)) //it's impossible to miss the neck of someone you're already strangling to death
 		return MARTIAL_ATTACK_FAIL
 
-	if(attacker.resting && defender.stat != DEAD && defender.body_position == STANDING_UP)
+	if(attacker.resting && defender.stat != DEAD && defender.body_position == STANDING_UP) //This probably needs to go, unsure currently
 		defender.visible_message(
 			span_danger("[attacker] leg sweeps [defender]!"),
 			span_userdanger("Your legs are sweeped by [attacker]!"),
@@ -249,28 +250,27 @@
 	add_to_streak("H", defender)
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
-	attacker.do_attack_animation(defender)
-	var/picked_hit_type = pick("CQC", "Big Boss")
-	var/bonus_damage = 13
 	if(defender.body_position == LYING_DOWN)
-		bonus_damage += 5
-		picked_hit_type = pick("kick", "stomp")
-	defender.apply_damage(bonus_damage, BRUTE)
+		var/obj/item/bodypart/arm/active_arm = attacker.get_active_hand()
+		var/stomp_force = ((active_arm.unarmed_damage_high + attacker.st_get_stat(STAT_STRENGTH))*(1 + ((attacker.st_get_stat(STAT_STRENGTH) - 2) / 5))) //I would prefer to move the different stomp effects into the attack chain properly, but that's a jankier solution then doing this
+		var/picked_hit_type = pick("kick", "stomp")
+		defender.apply_damage(stomp_force, BRUTE)
+		playsound(defender, (picked_hit_type == "kick" || picked_hit_type == "stomp") ? 'sound/items/weapons/cqchit2.ogg' : 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 
-	playsound(defender, (picked_hit_type == "kick" || picked_hit_type == "stomp") ? 'sound/items/weapons/cqchit2.ogg' : 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
+		defender.visible_message(
+			span_danger("[attacker] [picked_hit_type]ed [defender]!"),
+			span_userdanger("You're [picked_hit_type]ed by [attacker]!"),
+			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			COMBAT_MESSAGE_RANGE,
+			attacker,
+		)
+		to_chat(attacker, span_danger("You [picked_hit_type] [defender]!"))
+		log_combat(attacker, defender, "attacked ([picked_hit_type]'d)(CQC)")
+		return MARTIAL_ATTACK_SUCCESS
 
-	defender.visible_message(
-		span_danger("[attacker] [picked_hit_type]ed [defender]!"),
-		span_userdanger("You're [picked_hit_type]ed by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
-		COMBAT_MESSAGE_RANGE,
-		attacker,
-	)
-	to_chat(attacker, span_danger("You [picked_hit_type] [defender]!"))
-	log_combat(attacker, defender, "attacked ([picked_hit_type]'d)(CQC)")
-	return MARTIAL_ATTACK_SUCCESS
+	return MARTIAL_ATTACK_INVALID //Outside these two exceptions, punching logic operates normally
 
-/datum/martial_art/cqc/disarm_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/darkpack_cqb/disarm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
@@ -288,6 +288,7 @@
 			attacker,
 		)
 		to_chat(attacker, span_danger("You put [defender] into a chokehold!"))
+		//this is gonna be a tricky one to figure out
 		defender.SetSleeping(40 SECONDS)
 		restraining_mob = null
 		if(attacker.grab_state < GRAB_NECK && !HAS_TRAIT(attacker, TRAIT_PACIFISM))
@@ -329,17 +330,16 @@
 	return MARTIAL_ATTACK_FAIL
 
 
-/mob/living/proc/CQC_help()
+/mob/living/proc/CQB_help()
 	set name = "Remember The Basics"
-	set desc = "You try to remember some of the basics of CQC."
-	set category = "CQC"
-	to_chat(usr, "<b><i>You try to remember some of the basics of CQC.</i></b>")
+	set desc = "You try to remember some of the basics of CQB."
+	set category = "Martial Art"
+	to_chat(usr, "<b><i>You try to remember some of the basics of CQB.</i></b>")
 
 	to_chat(usr, "[span_notice("Slam")]: Grab Punch. Slam opponent into the ground, knocking them down.")
-	to_chat(usr, "[span_notice("CQC Kick")]: Punch Punch. Knocks opponent away. Knocks out stunned opponents and does stamina damage.")
+	to_chat(usr, "[span_notice("CQB Kick")]: Punch Punch. Knocks opponent away. Knocks out stunned opponents and does stamina damage.")
 	to_chat(usr, "[span_notice("Restrain")]: Grab Grab. Locks opponents into a restraining position, disarm to knock them out with a chokehold.")
 	to_chat(usr, "[span_notice("Pressure")]: Shove Grab. Decent stamina damage.")
-	to_chat(usr, "[span_notice("Consecutive CQC")]: Shove Shove Punch. Mainly offensive move, huge damage and decent stamina damage.")
 
 	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
 
@@ -349,9 +349,18 @@
 #undef KICK_COMBO
 #undef RESTRAIN_COMBO
 #undef PRESSURE_COMBO
-#undef CONSECUTIVE_COMBO
 
-//	animate(carp_user, alpha = 0, time = 0.1 SECONDS)
-//	new /obj/effect/temporis/weskar(carp_user.loc, carp_user)
-//	sleep(0.1 SECONDS)
-//	animate(carp_user, alpha = 225, time = 0.1 SECONDS)
+/obj/item/clothing/gloves/cqb_gloves
+	name = "Debugging Gloves"
+	desc = "Delete at some point"
+	icon_state = "black"
+	greyscale_colors = COLOR_BLACK
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+
+/obj/item/clothing/gloves/cqb_gloves/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/darkpack_cqb)

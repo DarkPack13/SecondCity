@@ -1,3 +1,4 @@
+/*
 #define ATTACK_STRIKE "Hilt Strike"
 #define ATTACK_SLICE "Wide Slice"
 #define ATTACK_CUT "Tendon Cut"
@@ -108,7 +109,7 @@
 	else
 		status.add_stacks(6)
 
-
 #undef ATTACK_STRIKE
 #undef ATTACK_SLICE
 #undef ATTACK_CUT
+*/
