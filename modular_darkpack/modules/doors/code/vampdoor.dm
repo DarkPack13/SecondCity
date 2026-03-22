@@ -95,8 +95,8 @@
 	if(isnull(held_item) && isliving(user))
 		var/mob/living/living_user = user
 		if(living_user?.combat_mode)
-			context[SCREENTIP_CONTEXT_LMB] = "Bash"
-			context[SCREENTIP_CONTEXT_RMB] = "Knock"
+			context[SCREENTIP_CONTEXT_LMB] = "Knock"
+			context[SCREENTIP_CONTEXT_RMB] = "Bash"
 		else
 			context[SCREENTIP_CONTEXT_LMB] = closed ? "Open" : "Close"
 			context[SCREENTIP_CONTEXT_RMB] = locked ? "Unlock" : "Lock"
@@ -199,6 +199,23 @@
 		to_chat(user, span_warning("There is no door to use here."))
 		return
 	if(living_user.combat_mode)
+		pixel_z = pixel_z+rand(-1, 1)
+		pixel_w = pixel_w+rand(-1, 1)
+		playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
+		addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
+	else
+		if(locked)
+			playsound(src, lock_sound, 75, TRUE)
+			to_chat(user, span_warning("[src] is locked!"))
+		else
+			toggle_door(user)
+
+/obj/structure/vampdoor/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	var/mob/living/living_user = user
+	if(living_user.combat_mode)
 		if(ishuman(user))
 			var/mob/living/carbon/human/human_user = user
 			if(!bash_roll)
@@ -229,24 +246,6 @@
 					to_chat(user, span_danger("You hurt your shoulder by punching the door!"))
 					human_user.adjust_brute_loss(1 LETHAL_TTRPG_DAMAGE, user.get_active_hand())
 					addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
-	else
-		if(locked)
-			playsound(src, lock_sound, 75, TRUE)
-			to_chat(user, span_warning("[src] is locked!"))
-		else
-			toggle_door(user)
-
-/obj/structure/vampdoor/attack_hand_secondary(mob/user, list/modifiers)
-	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-	var/mob/living/living_user = user
-	if(living_user.combat_mode)
-		pixel_z = pixel_z+rand(-1, 1)
-		pixel_w = pixel_w+rand(-1, 1)
-		playsound(src, 'modular_darkpack/modules/doors/sounds/knock.ogg', 75, TRUE)
-		addtimer(CALLBACK(src, PROC_REF(reset_transform)), 2)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		var/has_keys = FALSE
 		for(var/obj/item/vamp/keys/found_key in user)

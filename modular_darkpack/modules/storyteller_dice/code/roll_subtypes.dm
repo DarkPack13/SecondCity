@@ -59,12 +59,12 @@
 // Physical Feats
 /datum/storyteller_roll/lockpick
 	bumper_text = "lockpicking"
-	reroll_cooldown = 1 TURNS
+	reroll_cooldown = 1 SCENES
 	applicable_stats = list(STAT_DEXTERITY, STAT_LARCENY)
 
 /datum/storyteller_roll/bash_door
 	bumper_text = "bash door"
-	reroll_cooldown = 1 TURNS
+	reroll_cooldown = 1 SCENES
 	applicable_stats = list(STAT_STRENGTH)
 
 /datum/storyteller_roll/grappling
