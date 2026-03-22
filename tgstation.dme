@@ -7609,7 +7609,6 @@
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_attribute.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_freebie.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_morality.dm"
-#include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_path.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_pooled.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_virtue.dm"
 #include "modular_darkpack\modules\strings\global_strings.dm"

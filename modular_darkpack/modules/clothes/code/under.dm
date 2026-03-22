@@ -12,7 +12,7 @@
 
 /obj/item/clothing/under/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 75, "undersuit", FALSE)
+	AddComponent(/datum/component/selling, 10, "undersuit", FALSE)
 
 /obj/item/clothing/under/vampire/brujah
 	name = "punk attire"

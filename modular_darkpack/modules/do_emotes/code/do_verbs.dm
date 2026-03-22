@@ -39,10 +39,14 @@
 	var/list/viewers = get_hearers_in_view(DEFAULT_MESSAGE_RANGE, user)
 
 	for(var/mob/ghost as anything in GLOB.dead_mob_list)
+		name_stub = " (<b>[GET_GUESTBOOK_NAME(ghost, user)]</b>)"
+		message_with_name = message + name_stub
 		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers))
 			to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [span_emote(message_with_name)]")
 
 	for(var/mob/reciever in viewers)
+		name_stub = " (<b>[GET_GUESTBOOK_NAME(reciever, user)]</b>)"
+		message_with_name = message + name_stub
 		reciever.show_message(span_emote(message_with_name), alt_msg = span_emote(message_with_name))
 		if (reciever.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			reciever.create_chat_message(user, null, message, null, EMOTE_MESSAGE)
