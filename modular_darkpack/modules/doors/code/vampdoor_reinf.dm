@@ -3,4 +3,5 @@
 	icon_state = "reinf-1"
 	base_icon_state = "reinf"
 	bash_difficulty = 8
-	bash_successes_needed = 3
+	bash_successes_needed = 5
+	lockpick_difficulty = 8
