@@ -55,7 +55,7 @@ blood pool.
 	check_flags = DISC_CHECK_CAPABLE
 	target_type = TARGET_HUMAN | TARGET_SELF
 	range = 1
-	cooldown_length = 1 TURNS
+	cooldown_length = 3 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null
 	vitae_cost = 0
@@ -229,7 +229,7 @@ death.
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
 	target_type = TARGET_LIVING
 	range = 1
-	cooldown_length = 1 TURNS
+	cooldown_length = 3 TURNS
 	var/sleep_duration_length = 10 TURNS
 	var/soothe_duration_length = 1 SCENES
 	var/successes = 0
@@ -259,3 +259,111 @@ death.
 
 /datum/discipline_power/valeren/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
+
+// Armor of Caine’s Fury
+/*
+The Salubri antitribu is surrounded by a shining,
+crimson halo. This phantom armor protects the vampire
+against most physical injury, as well as against Rötschreck.
+
+System: The player spends one blood point and rolls
+Stamina + Melee (difficulty 7). For each success, the
+character gains one point of armor protection against
+bashing and lethal damage, to a maximum of five points
+of protection.
+
+Additionally, for every two successes rolled,
+she gains an additional die to resist Rötschreck
+from the effects of battle (but not fire or sunlight). This
+power works for one scene.
+*/
+/datum/discipline_power/valeren/armor_of_caines_fury
+	name = "Armor of Caine's Fury"
+	desc = "The Salubri antitribu is surrounded by a shining, crimson halo. This phantom armor protects the vampire against most physical injury, as well as against Rötschreck."
+	level = 3
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
+	cooldown_length = 1 SCENES
+	toggled = TRUE
+	duration_length = 1 SCENES
+	vitae_cost = 1
+	var/successes = 0
+
+/datum/discipline_power/valeren/armor_of_caines_fury/pre_activation_checks(mob/living/target)
+	. = ..()
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_MELEE), 7, owner, TRUE)
+	if(successes >= 1)
+		return TRUE
+	else
+		return FALSE
+
+/datum/discipline_power/valeren/armor_of_caines_fury/activate(mob/living/target)
+	. = ..()
+	// TODO: once frenzy is in, add a status effect to reduce frenzy difficulty as per the book's 'resist Rötschreck'
+	owner.apply_status_effect(/datum/status_effect/armor_of_caines_fury, clamp(successes, 1, 5))
+	return TRUE
+
+/datum/discipline_power/valeren/armor_of_caines_fury/deactivate()
+	. = ..()
+	owner.remove_status_effect(/datum/status_effect/armor_of_caines_fury)
+
+#define CAINES_FURY_PROTECTION 15
+
+/datum/status_effect/armor_of_caines_fury
+	id = "armor_of_caines_fury"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	var/successes = 1
+
+/datum/status_effect/armor_of_caines_fury/on_creation(mob/living/new_owner, successes_count = 1)
+	successes = successes_count
+	. = ..()
+
+/datum/status_effect/armor_of_caines_fury/on_apply()
+	. = ..()
+	if (!.)
+		return
+
+	if (ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = successes * CAINES_FURY_PROTECTION))
+		H.AddElement(/datum/element/armor_of_caines_fury_halo, initial_delay = 0 SECONDS)
+
+/datum/status_effect/armor_of_caines_fury/on_remove()
+	. = ..()
+
+	if (ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = -(successes * CAINES_FURY_PROTECTION)))
+		H.RemoveElement(/datum/element/armor_of_caines_fury_halo)
+
+#undef CAINES_FURY_PROTECTION
+
+// Halo stuff for Armor of Caine's Fury
+/datum/element/armor_of_caines_fury_halo
+
+/datum/element/armor_of_caines_fury_halo/Attach(datum/target, initial_delay = 20 SECONDS)
+	. = ..()
+	if (!isliving(target))
+		return ELEMENT_INCOMPATIBLE
+
+	addtimer(CALLBACK(src, PROC_REF(set_halo), target), initial_delay)
+
+/datum/element/armor_of_caines_fury_halo/proc/set_halo(mob/living/target)
+	SIGNAL_HANDLER
+	var/mutable_appearance/new_halo_overlay = mutable_appearance('icons/mob/effects/halo.dmi', "halo[rand(1, 6)]", -HALO_LAYER)
+	if (ishuman(target))
+		var/mob/living/carbon/human/human_parent = target
+		new /obj/effect/temp_visual/cult/sparks(get_turf(human_parent), human_parent.dir)
+		human_parent.overlays_standing[HALO_LAYER] = new_halo_overlay
+		human_parent.apply_overlay(HALO_LAYER)
+	else
+		target.add_overlay(new_halo_overlay)
+
+/datum/element/armor_of_caines_fury_halo/Detach(mob/living/target, ...)
+	if (ishuman(target))
+		var/mob/living/carbon/human/human_parent = target
+		human_parent.remove_overlay(HALO_LAYER)
+		human_parent.update_body()
+	else
+		target.cut_overlay(HALO_LAYER)
+	return ..()
