@@ -135,8 +135,7 @@ pools for a turn or two after the manifestation.
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/carbon/human/target)
 	var/resistence_stat = target.st_get_stat(STAT_SELF_CONTROL)
 	if(get_kindred_splat(target))
-		var/datum/splat/vampire/kindred/target_species = get_kindred_splat(target)
-		resistence_stat = target.st_get_stat(target_species.enlightenment ? STAT_CONVICTION : STAT_SELF_CONTROL)
+		resistence_stat = target.st_get_stat(owner.is_enlightenment() ? STAT_CONVICTION : STAT_SELF_CONTROL)
 	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + resistence_stat
 	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
 	if(mypower <= 0)
