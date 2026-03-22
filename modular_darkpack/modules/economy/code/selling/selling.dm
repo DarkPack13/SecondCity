@@ -56,7 +56,8 @@
 
 	// If we found a seller and they're on Enlightenment path, no warning
 	if(seller && get_kindred_splat(seller))
-		if(seller.is_enlightenment())
+		var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(seller)
+		if(vampirism.enlightenment)
 			return span_notice("You've sold [parent]!")
 
 	// Default warning for Humanity path or non-vampires
