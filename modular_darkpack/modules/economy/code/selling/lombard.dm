@@ -173,8 +173,7 @@
 	// Morality loss warning for bulk sales
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/datum/splat/vampire/kindred/vampirism = iskindred(H)
-		if(!iskindred(H) || !vampirism.enlightenment)
+		if(!get_kindred_splat(H) || !H.is_enlightenment())
 			var/humanity_loss_modifier = HAS_TRAIT(H, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
 			var/total_humanity_risk = length(items_to_sell) * humanity_loss_modifier * selling_comp.humanity_loss
 

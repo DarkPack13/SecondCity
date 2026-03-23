@@ -287,13 +287,12 @@
 			for(var/obj/item/thing in result)
 				qdel(thing)
 	result.setDir(crafter.dir)
+	if(recipe.crafting_flags & CRAFT_CLEARS_REAGENTS)
+		result.reagents?.clear_reagents()
 	var/datum/reagents/holder = locate() in stuff_to_use
 	if(holder) //transfer reagents from ingredients to result
-		if(!ispath(recipe.result, /obj/item/reagent_containers) && result.reagents)
-			if(recipe.crafting_flags & CRAFT_CLEARS_REAGENTS)
-				result.reagents.clear_reagents()
-			if(recipe.crafting_flags & CRAFT_TRANSFERS_REAGENTS)
-				holder.trans_to(result.reagents, holder.total_volume, no_react = TRUE)
+		if(result.reagents && (recipe.crafting_flags & CRAFT_TRANSFERS_REAGENT_COMPONENTS))
+			holder.trans_to(result.reagents, holder.total_volume, no_react = TRUE)
 		stuff_to_use -= holder //This is the only non-movable in our list, we need to remove it.
 		qdel(holder)
 	result.on_craft_completion(stuff_to_use, recipe, crafter)
@@ -467,12 +466,9 @@
 	if (recipe.category == CAT_CULT && !IS_CULTIST(user)) // Skip blood cult recipes if not cultist
 		return FALSE
 	// DARKPACK EDIT ADD - START
-	if (recipe.category == CAT_TZIMISCE) // TODO: [Disciplines] Uncomment when viscissitude is a thing.
-		return FALSE
-		/* DARKPACK TODO: Vicissitude
+	if (recipe.category == CAT_TZIMISCE)
 		var/mob/living/living_user = astype(user)
 		return living_user?.get_discipline(/datum/discipline/vicissitude)
-		*/
 	// DARKPACK EDIT ADD - END
 	return recipe.is_recipe_available(user) // DARKPACK EDIT CHANGE
 

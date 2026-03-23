@@ -32,7 +32,7 @@
 	if(!istype(user))
 		return ..()
 
-	if(!iskindred(user))
+	if(!get_kindred_splat(user))
 		to_chat(user, span_warning("You have no urge to spill your blood into this cup."))
 		return
 
@@ -67,7 +67,7 @@
 	if(!reagents.has_reagent(/datum/reagent/blood) && !reagents.has_reagent(/datum/reagent/blood/vitae))
 		return ..()
 
-	if(!iskindred(target_mob))
+	if(!get_kindred_splat(target_mob))
 		return ..()
 
 	if(length(blood_donors) >= 2)

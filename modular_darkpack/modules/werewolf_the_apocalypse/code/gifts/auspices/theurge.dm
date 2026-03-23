@@ -31,7 +31,7 @@ the scar is received and an extra Gnosis point is spent.
 
 	. = ..()
 
-	var/datum/splat/werewolf/werewolf_splat = iswerewolfsplat(owner)
+	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(owner)
 	var/difficulty = werewolf_splat.uses_rage ? werewolf_splat.rage : 5
 	var/successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/mothers_touch, difficulty = difficulty)
 
@@ -104,9 +104,9 @@ the scar is received and an extra Gnosis point is spent.
 	if(HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE))
 		. = 5
 
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
-		if(!kindred_splat.enlightenment)
+		if(!target.is_enlightenment())
 			. = 6
 		else if(target.st_get_stat(STAT_MORALITY) <= 7)
 			. = 6

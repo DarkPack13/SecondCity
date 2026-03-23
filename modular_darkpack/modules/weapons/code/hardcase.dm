@@ -18,8 +18,6 @@
 
 /datum/storage/hardcase
 	max_slots = 4
-	// screen_max_columns = 4 // DARKPACK TODO - GRIDVENTORY
-	// screen_max_rows = 4 // DARKPACK TODO - GRIDVENTORY
 
 /datum/storage/hardcase/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
 	. = ..()

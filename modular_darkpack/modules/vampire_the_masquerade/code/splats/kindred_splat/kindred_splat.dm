@@ -27,14 +27,14 @@
 		/datum/splat/vampire/ghoul
 	)
 
+	splat_priority = SPLAT_PRIO_KINDRED
+
 	/// How many generations away from the first vampire they are. Determines how much blood can be stored and used
 	var/generation
 	/// How quickly they can spend vitae. Depends on Generation and affects abilities like bloodheal
 	var/vitae_spending_rate
 	/// Which vampiric bloodline or Clan they fall into. Determines natural Disciplines. Singleton reference, never modify
 	var/datum/subsplat/vampire_clan/clan
-	/// Which morality they follow, Humanity if false and Enlightenment if true
-	var/enlightenment
 	/// The Kindred who created this Kindred, null unless Embraced in-round
 	var/mob/living/sire
 
@@ -43,10 +43,9 @@
 
 	var/tutorial_shown = FALSE
 
-/datum/splat/vampire/kindred/New(generation, clan, enlightenment = FALSE, mob/living/sire)
+/datum/splat/vampire/kindred/New(generation, clan, mob/living/sire)
 	src.generation = generation
 	src.clan = clan
-	src.enlightenment = enlightenment
 	src.sire = sire
 
 /datum/splat/vampire/kindred/on_gain()
