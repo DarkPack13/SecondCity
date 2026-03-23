@@ -254,7 +254,7 @@ death.
 				to_chat(owner, span_warning("You can't put a Kindred to sleep with this power!"))
 				return TRUE
 			target.SetSleeping(sleep_duration_length + (successes TURNS)) // 50 seconds + successes in turns
-			target.adjust_blood_pool(1) // Mortal regains a blood point.
+			target.adjust_blood_pool(1) // restores a BP to the target, but if this gets abused, maybe make this depend on successes
 	return TRUE
 
 /datum/discipline_power/valeren/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
@@ -307,7 +307,7 @@ power works for one scene.
 	. = ..()
 	owner.remove_status_effect(/datum/status_effect/armor_of_caines_fury)
 
-#define CAINES_FURY_PROTECTION 15
+#define CAINES_FURY_PROTECTION 15 // borrowed from fortitude
 
 /datum/status_effect/armor_of_caines_fury
 	id = "armor_of_caines_fury"
@@ -326,7 +326,7 @@ power works for one scene.
 
 	if (ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = successes * CAINES_FURY_PROTECTION))
+		RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS, PROC_REF(reduce_damage))
 		H.AddElement(/datum/element/armor_of_caines_fury_halo, initial_delay = 0 SECONDS)
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
@@ -335,9 +335,17 @@ power works for one scene.
 
 	if (ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.armor = H.physiology.armor.generate_new_with_modifiers(list(ARMOR_ALL = -(successes * CAINES_FURY_PROTECTION)))
+		UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
 		H.RemoveElement(/datum/element/armor_of_caines_fury_halo)
 		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
+
+/datum/status_effect/armor_of_caines_fury/proc/reduce_damage(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
+	SIGNAL_HANDLER
+	if (damagetype != BRUTE)
+		return
+
+	var/protection = clamp(successes * CAINES_FURY_PROTECTION, 0, 90)
+	damage_mods += (100 - protection) / 100
 
 #undef CAINES_FURY_PROTECTION
 
