@@ -62,7 +62,7 @@
 	holder.appearance = aura_appearance
 
 	var/mob/parent_mob = parent
-	if(HAS_TRAIT(parent, TRAIT_PALE_AURA))
+	if(HAS_TRAIT(parent, TRAIT_PALE_AURA) && !HAS_TRAIT(parent, TRAIT_DECEPTIVE_AURA))
 		var/icon/temporary_icon_holder = holder.appearance
 		var/mutable_appearance/aura_image = mutable_appearance(temporary_icon_holder, "aura", AUSPEX_LAYER, parent_mob, GAME_PLANE)
 

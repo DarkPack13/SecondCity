@@ -185,12 +185,6 @@
 		if(husrc.skin_tone == "albino")
 			apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25) // knocks you down a few pegs
 	// DARKPACK EDIT ADD START
-	if(HAS_TRAIT(user, TRAIT_PALE_AURA))
-		apparent_blood_volume -= (BLOOD_VOLUME_NORMAL * 0.25)
-	/* I need a citation on if this thing is real, i got nothing.
-	if(HAS_TRAIT(user, TRAIT_WARM_AURA))
-		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.25)
-	*/
 	if(HAS_TRAIT(user, TRAIT_BLUSH_OF_HEALTH))
 		apparent_blood_volume += (BLOOD_VOLUME_NORMAL * 0.50)
 	// DAKRPACK EDIT ADD END

@@ -43,7 +43,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 // Mutates the apperance of auras
 #define TRAIT_PALE_AURA "pale_aura"
-#define TRAIT_WARM_AURA "warm_aura"
+#define TRAIT_DECEPTIVE_AURA "deceptive_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
 
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
