@@ -40,8 +40,7 @@
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
 				if(get_kindred_splat(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					var/datum/splat/vampire/kindred/kindred_species = get_kindred_splat(src)
-					var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
+					var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
 					var/datum/storyteller_roll/frezy_roll = new()
 					frezy_roll.applicable_stats = list(stat_to_roll)
 					var/frenzy_result = frezy_roll.st_roll(src, bit_living)

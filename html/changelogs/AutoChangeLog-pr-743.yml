@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - code_imp: "List index for stats was made its type instead of a type as a string"
