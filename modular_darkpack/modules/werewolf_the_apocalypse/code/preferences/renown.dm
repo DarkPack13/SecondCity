@@ -1,6 +1,6 @@
 /datum/preference/numeric/renown
 	abstract_type = /datum/preference/numeric/renown
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	savefile_identifier = PREFERENCE_CHARACTER
 
