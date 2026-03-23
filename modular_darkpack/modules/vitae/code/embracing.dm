@@ -41,10 +41,8 @@
 			var/datum/st_stat/stat_instinct = childe.storyteller_stats[STAT_INSTINCT]
 
 			if(stat_morality_childe.morality_path.alignment == MORALITY_HUMANITY)
-				kindred_splat.enlightenment = FALSE
 				stat_morality_childe.set_score(clamp(stat_conscience.get_score(include_bonus = TRUE) + stat_self_control.get_score(include_bonus = TRUE), 0, 10))
-			else if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT) // just in case
-				kindred_splat.enlightenment = TRUE
+			else if(stat_morality_childe.morality_path.alignment == MORALITY_ENLIGHTENMENT) // just in case, but should be unreachable rn.
 				stat_morality_childe.set_score(clamp(stat_conviction.get_score(include_bonus = TRUE) + stat_instinct.get_score(include_bonus = TRUE), 0, 10))
 
 	addtimer(CALLBACK(childe, PROC_REF(prompt_permanent_embrace)), 1 SECONDS)
