@@ -35,18 +35,15 @@
 	var/vitae_spending_rate
 	/// Which vampiric bloodline or Clan they fall into. Determines natural Disciplines. Singleton reference, never modify
 	var/datum/subsplat/vampire_clan/clan
-	/// Which morality they follow, Humanity if false and Enlightenment if true
-	var/enlightenment
 	/// The Kindred who created this Kindred, null unless Embraced in-round
 	var/mob/living/sire
 
 	/// Timer tracking how long before the Kindred can wake up from torpor
 	COOLDOWN_DECLARE(torpor_timer)
 
-/datum/splat/vampire/kindred/New(generation, clan, enlightenment = FALSE, mob/living/sire)
+/datum/splat/vampire/kindred/New(generation, clan, mob/living/sire)
 	src.generation = generation
 	src.clan = clan
-	src.enlightenment = enlightenment
 	src.sire = sire
 
 /datum/splat/vampire/kindred/on_gain()
