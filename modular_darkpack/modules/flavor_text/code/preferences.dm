@@ -10,7 +10,7 @@
 	///Handles the informational chat message timer.
 	COOLDOWN_DECLARE(headshot_cooldown)
 	///Assoc list of ckeys and their links, used to cut down on chat spam
-	var/list/stored_links = list()
+	var/static/list/stored_links = list()
 	var/static/link_regex = regex("files.catbox.moe|images2.imgbox.com|i.gyazo.com")
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
