@@ -346,7 +346,7 @@
 			break
 
 	if (!found_spot)
-		to_chat(user, span_warning("You need to butcher [victim] on a table/chair!")) //DARKPACK EDIT BUTCHERING ORIGINAL: "You need a better spot to butcher [victim]!"
+		to_chat(user, span_warning("You need to butcher [victim] on a table/chair!")) //DARKPACK EDIT BUTCHERING ORIGINAL: to_chat(user, span_warning("You need a better spot to butcher [victim]!"))
 		return
 
 	var/obj/item/bodypart/limb = victim.get_bodypart(deprecise_zone(user.zone_selected))
