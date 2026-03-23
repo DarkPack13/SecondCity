@@ -1,6 +1,6 @@
 #define UPPERCUT_COMBO "HDH"
 #define JAB_COMBO "GHH"
-#define CROSS_COMBO "DH"
+#define CROSS_COMBO "DHH"
 #define DIRTY_COMBO "GD"
 
 /datum/martial_art/darkpack_boxing
@@ -26,8 +26,7 @@
 
 			//limb.unarmed_damage_low += 5 Unsure on this one
 			//limb.unarmed_damage_high += 5
-			limb.unarmed_attack_effect = null
-			limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/mainpunch2.ogg'
+			//limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/harmboxing.ogg'
 
 /datum/martial_art/darkpack_boxing/deactivate_style(mob/living/remove_from)
 	UnregisterSignal(remove_from, list(COMSIG_LIVING_CHECK_BLOCK))
@@ -55,42 +54,38 @@
 
 /// Frontal Kick: Harm Disarm combo, knocks back relative to Attacker Str - Defender Fort
 /datum/martial_art/darkpack_boxing/proc/uppercut(mob/living/attacker, mob/living/defender)
-	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
+	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
+	uppercut_animation(attacker)
+	addtimer(CALLBACK(src, PROC_REF(reset_animation), attacker, FALSE), 0.1 SECONDS)
 	defender.visible_message(
-		span_warning("[attacker] kicks [defender] square in the chest, sending them flying!"),
-		span_userdanger("You are kicked square in the chest by [attacker], sending you flying!"),
+		span_warning("[attacker] uppercuts [defender] square in the jaw, sending you flying"),
+		span_userdanger("You are uppercut in the jaw by [attacker], sending you flying!"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/frontalkick.ogg', 50, TRUE, -1)
+
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/uppercut.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	var/throw_distance = clamp((attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 1, 3)
 	defender.throw_at(throw_target, throw_distance, 4, attacker)
-	defender.apply_damage(15, attacker.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	defender.apply_damage(6 * attacker.st_get_stat(STAT_STRENGTH), attacker.get_attack_type(), BODY_ZONE_HEAD)
 	log_combat(attacker, defender, "Frontal Kicked (Kungfu)")
 	return TRUE
 
-/// Roundhouse Kick: Disarm Disarm combo, knocks people down and deals substantial stamina damage, and also discombobulates them. Knocks objects out of their hands if they're already on the ground.
+/// Jab Combo: Hit the other guy twice in quick succession
 /datum/martial_art/darkpack_boxing/proc/jab_combo(mob/living/attacker, mob/living/defender)
-	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/roundhousekick.ogg', 50, TRUE, -1)
-	var/kickpower = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 7, numerical = TRUE, roller = attacker)
-	if(defender.body_position == STANDING_UP && (kickpower >= 0))
-		defender.Knockdown(kickpower SECONDS)
-		defender.visible_message(span_warning("[attacker] kicks [defender] in the head, sending them face first into the floor!"), \
-					span_userdanger("You are kicked in the head by [attacker], sending you crashing to the floor!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
-	else
-		defender.drop_all_held_items()
-		defender.visible_message(span_warning("[attacker] kicks [defender] in the head!"), \
-					span_userdanger("You are kicked in the head by [attacker]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
-	defender.apply_damage(10, attacker.get_attack_type())
-	defender.apply_damage(40, STAMINA)
+	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/jabcombo.ogg', 50, TRUE, -1)
+	defender.visible_message(span_warning("[attacker] rapidly jabs [defender]'s head!"), \
+				span_userdanger("You are jabbed in the head by [attacker], leaving you disoriented!"), span_hear("You hear a sickening sound of knuckles hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
+	defender.adjust_stamina_loss(45)
+	defender.apply_damage(20, attacker.get_attack_type(), BODY_ZONE_HEAD)
 	defender.adjust_dizzy_up_to(10 SECONDS, 10 SECONDS)
-	log_combat(attacker, defender, "Roundhoused (KungFu)")
+	log_combat(attacker, defender, "Jab Combo'd (Boxing)")
 	return TRUE
 
-/// Flying Knee: Grab Harm combo, causes them to be silenced and briefly stunned, as well as doing a moderate amount of stamina damage.
+/// Cross Punch: Figure out
 /datum/martial_art/darkpack_boxing/proc/cross_punch(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 70, TRUE, -1)
@@ -109,7 +104,7 @@
 	log_combat(attacker, defender, "kneed in the stomach (Kung-Fu)")
 	return TRUE
 
-/// Flying Knee: Grab Harm combo, causes them to be silenced and briefly stunned, as well as doing a moderate amount of stamina damage.
+/// Dirty Move: Liver Punch or something
 /datum/martial_art/darkpack_boxing/proc/dirty_hit(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 70, TRUE, -1)
@@ -158,7 +153,7 @@
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
 
-	playsound(defender, 'modular_darkpack/modules/martial/sounds/swipe.ogg', 25, TRUE, -1)
+	//playsound(defender, 'modular_darkpack/modules/martial/sounds/swipe.ogg', 25, TRUE, -1)
 	defender.apply_damage(20, STAMINA)
 	return MARTIAL_ATTACK_INVALID //Essentially taking a swipe at their face
 
@@ -185,19 +180,37 @@
 /datum/martial_art/darkpack_boxing/proc/dodge_animation(mob/living/user)
 	var/new_pixel_x
 	var/new_pixel_y
-	switch(user.dir)
-  	if(EAST)
-    	new_pixel_x = rand(-16, -8)
-    	new_pixel_y = rand(-24, 24)
-	if(WEST)
-    	new_pixel_x = rand(8, 16)
-    	new_pixel_y = rand(-24, 24)
-	if(NORTH)
-    	new_pixel_x = rand(-16,16)
-    	new_pixel_y = rand(-16, -8)
-	if(SOUTH)
-		new_pixel_x = rand(-16,16)
-    	new_pixel_y = rand(8, 16)
+	var/userdir = user.dir
+	switch(userdir)
+		if(EAST)
+			new_pixel_x = rand(-16, -8)
+			new_pixel_y = rand(-24, 24)
+		if(WEST)
+			new_pixel_x = rand(8, 16)
+			new_pixel_y = rand(-24, 24)
+		if(NORTH)
+			new_pixel_x = rand(-16,16)
+			new_pixel_y = rand(-16, -8)
+		if(SOUTH)
+			new_pixel_x = rand(-16,16)
+			new_pixel_y = rand(8, 16)
+	animate(user, alpha = 200, pixel_x = new_pixel_x, pixel_y = new_pixel_y, time = 0.2 SECONDS)
+
+/datum/martial_art/darkpack_boxing/proc/uppercut_animation(mob/living/user)
+	var/new_pixel_x
+	var/new_pixel_y
+	var/userdir = user.dir
+	switch(userdir)
+		if(EAST)
+			new_pixel_x = rand(0, 4)
+			new_pixel_y = rand(0, 12)
+		if(WEST)
+			new_pixel_x = rand(-4, 0)
+			new_pixel_y = rand(0, 12)
+		if(NORTH)
+			new_pixel_y = rand(0, 12)
+		if(SOUTH)
+			new_pixel_y = rand(0, 12)
 	animate(user, alpha = 200, pixel_x = new_pixel_x, pixel_y = new_pixel_y, time = 0.2 SECONDS)
 
 /// Like the hit game "Punch Out!!"" (1984) you can dodge incoming punches at you.. melee weapons and projectiles? not so lucky

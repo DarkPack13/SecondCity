@@ -59,11 +59,12 @@
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
+	to_chat(attacker, span_danger("You kick [defender] square in the chest, sending them flying!"))
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/frontalkick.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	var/throw_distance = clamp((attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 1, 3)
 	defender.throw_at(throw_target, throw_distance, 4, attacker)
-	defender.apply_damage(15, attacker.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	defender.apply_damage(15, attacker.get_attack_type(), BODY_ZONE_CHEST)
 	log_combat(attacker, defender, "Frontal Kicked (Kungfu)")
 	return TRUE
 
