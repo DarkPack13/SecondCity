@@ -10,7 +10,7 @@
 
 /atom/movable/screen/alert/status_effect/day_time_notif/examine(mob/user)
 	. = ..()
-	. += span_notice("You are currently [user.visable_to_sky() ? "visable" : "not visable"] to the sun.")
+	. += span_notice("You are currently [user.visible_to_sky() ? "visible" : "not visible"] to the sun.")
 	if(get_kindred_splat(user))
 		. += span_warning("The sun will sear your flesh and bring final death.")
 
@@ -21,7 +21,7 @@
 /datum/status_effect/sunlight_burning/on_apply()
 	if(!SScity_time.daytime_started)
 		return FALSE
-	if(!owner.visable_to_sky())
+	if(!owner.visible_to_sky())
 		return FALSE
 
 	var/datum/splat/vampire/kindred/kindred_owner = get_kindred_splat(owner)
@@ -37,30 +37,30 @@
 /datum/status_effect/sunlight_burning/tick(seconds_per_tick)
 	. = ..()
 	if(SScity_time.daytime_started)
-		if(owner.visable_to_sky() && get_kindred_splat(owner))
+		if(owner.visible_to_sky() && get_kindred_splat(owner))
 			owner.apply_damage(10, BURN)
 			return TRUE
 	qdel(src)
 
 
 /// A recersive search up our locs till something returns or we hit turf and return outdoors from its loc.
-/atom/proc/visable_to_sky()
+/atom/proc/visible_to_sky()
 	// Anything that is not a turf should have its loc be an atom. Shits already fucked otherwise. Still have ?. saftey anyway.
 	var/atom/my_loc = astype(loc)
-	return my_loc?.contents_visable_to_sky()
+	return my_loc?.contents_visible_to_sky()
 
-/turf/visable_to_sky()
+/turf/visible_to_sky()
 	var/area/my_area = astype(loc)
 	return my_area?.outdoors
 
 // This is a bold assumption, that every object you can be inside would obscure you.
 // But imo its better to NOT grief a player when they assume something will protect them.
 // Rather then having some weird things protect you from the sun.
-/atom/proc/contents_visable_to_sky()
+/atom/proc/contents_visible_to_sky()
 	return FALSE
 
-/turf/contents_visable_to_sky()
-	return visable_to_sky()
+/turf/contents_visible_to_sky()
+	return visible_to_sky()
 
 
 /atom/movable/screen/alert/status_effect/sunlight_burning

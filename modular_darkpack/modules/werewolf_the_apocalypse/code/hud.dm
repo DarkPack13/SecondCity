@@ -74,7 +74,7 @@
 		COOLDOWN_START(src, force_rage_cd, 1 SCENES)
 		return TRUE
 
-	if(!clicker.visable_to_sky())
+	if(!clicker.visible_to_sky())
 		to_chat(clicker, span_warning("You need to be outside to look at the moon!"))
 		return
 
