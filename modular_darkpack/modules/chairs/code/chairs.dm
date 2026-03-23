@@ -79,6 +79,18 @@
 	icon_state = "bar_red"
 	item_chair = /obj/item/chair/stool/bar/darkpack/red
 
+/obj/structure/chair/stool/bar/darkpack/green
+	icon_state = "bar_green"
+	item_chair = /obj/item/chair/stool/bar/darkpack/green
+
+/obj/structure/chair/stool/bar/darkpack/blue
+	icon_state = "bar_blue"
+	item_chair = /obj/item/chair/stool/bar/darkpack/blue
+
+/obj/structure/chair/stool/bar/darkpack/black
+	icon_state = "bar_black"
+	item_chair = /obj/item/chair/stool/bar/darkpack/black
+
 // BARSTOOLS / ITEMS
 
 /obj/item/chair/stool/bar/darkpack
@@ -89,6 +101,18 @@
 /obj/item/chair/stool/bar/darkpack/red
 	icon_state = "bar_red_toppled"
 	origin_type = /obj/structure/chair/stool/bar/darkpack/red
+
+/obj/item/chair/stool/bar/darkpack/green
+	icon_state = "bar_green_toppled"
+	origin_type = /obj/structure/chair/stool/bar/darkpack/green
+
+/obj/item/chair/stool/bar/darkpack/blue
+	icon_state = "bar_blue_toppled"
+	origin_type = /obj/structure/chair/stool/bar/darkpack/blue
+
+/obj/item/chair/stool/bar/darkpack/black
+	icon_state = "bar_black_toppled"
+	origin_type = /obj/structure/chair/stool/bar/darkpack/black
 
 // WOODEN CHAIRS / OBJECTS
 

@@ -27,24 +27,23 @@
 		/datum/splat/vampire/ghoul
 	)
 
+	splat_priority = SPLAT_PRIO_KINDRED
+
 	/// How many generations away from the first vampire they are. Determines how much blood can be stored and used
 	var/generation
 	/// How quickly they can spend vitae. Depends on Generation and affects abilities like bloodheal
 	var/vitae_spending_rate
 	/// Which vampiric bloodline or Clan they fall into. Determines natural Disciplines. Singleton reference, never modify
-	var/datum/vampire_clan/clan
-	/// Which morality they follow, Humanity if false and Enlightenment if true
-	var/enlightenment
+	var/datum/subsplat/vampire_clan/clan
 	/// The Kindred who created this Kindred, null unless Embraced in-round
 	var/mob/living/sire
 
 	/// Timer tracking how long before the Kindred can wake up from torpor
 	COOLDOWN_DECLARE(torpor_timer)
 
-/datum/splat/vampire/kindred/New(generation, clan, enlightenment = FALSE, mob/living/sire)
+/datum/splat/vampire/kindred/New(generation, clan, mob/living/sire)
 	src.generation = generation
 	src.clan = clan
-	src.enlightenment = enlightenment
 	src.sire = sire
 
 /datum/splat/vampire/kindred/on_gain()
@@ -78,6 +77,8 @@
 	// Morality loss
 	RegisterSignal(owner, COMSIG_PATH_HIT, PROC_REF(adjust_morality))
 
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_kindred_death))
+
 	// Make all food except raw meat repulsive
 	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
 	tongue?.liked_foodtypes = NONE
@@ -94,11 +95,14 @@
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
 
-	UnregisterSignal(owner, COMSIG_CARBON_LOSE_ORGAN)
-	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
-	UnregisterSignal(owner, COMSIG_MOB_VAMPIRE_SUCKED)
-	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS)
-	UnregisterSignal(owner, COMSIG_HUMAN_ON_HANDLE_BLOOD)
+	UnregisterSignal(owner, list(
+		COMSIG_CARBON_LOSE_ORGAN,
+		SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION),
+		COMSIG_MOB_VAMPIRE_SUCKED,
+		COMSIG_MOB_APPLY_DAMAGE_MODIFIERS,
+		COMSIG_HUMAN_ON_HANDLE_BLOOD,
+		COMSIG_LIVING_DEATH
+	))
 
 	// Reset tongue
 	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
@@ -184,6 +188,40 @@
 		return HANDLE_BLOOD_HANDLED
 
 	return HANDLE_BLOOD_NO_NUTRITION_DRAIN|HANDLE_BLOOD_NO_OXYLOSS
+
+/datum/splat/vampire/kindred/proc/on_kindred_death(mob/living/carbon/human/kindred, gibbed)
+	if(gibbed)
+		return
+
+	kindred.can_be_embraced = FALSE
+	var/obj/item/organ/brain/brain = kindred.get_organ_slot(ORGAN_SLOT_BRAIN) //NO REVIVAL EVER
+	if(brain)
+		brain.organ_flags |= ORGAN_FAILING
+
+	/*
+	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
+		exit_frenzymod()
+	*/
+	SEND_SOUND(kindred, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', volume = 50))
+
+	switch(kindred.chronological_age)
+		if(-INFINITY to 10) //normal corpse
+			return
+		if(10 to 50)
+			kindred.rot_body(1) //skin takes on a weird colouration
+			kindred.visible_message(span_notice("[kindred]'s skin loses some of its colour."))
+		if(50 to 100)
+			kindred.rot_body(2) //looks slightly decayed
+			kindred.visible_message(span_notice("[kindred]'s skin rapidly decays."))
+		if(100 to 150)
+			kindred.rot_body(3) //looks very decayed
+			kindred.visible_message(span_warning("[kindred]'s body rapidly decomposes!"))
+		if(150 to 200)
+			kindred.rot_body(4) //mummified skeletonised corpse
+			kindred.visible_message(span_warning("[kindred]'s body rapidly skeletonises!"))
+		if(200 to INFINITY) //turn to ash
+			playsound(kindred, 'modular_darkpack/modules/vampire_the_masquerade/sounds/burning_death.ogg', 80, TRUE)
+			kindred.dust(just_ash = TRUE, drop_items = TRUE, force = TRUE)
 
 /datum/splat/vampire/kindred/vv_edit_var(var_name, var_value)
 	switch (var_name)

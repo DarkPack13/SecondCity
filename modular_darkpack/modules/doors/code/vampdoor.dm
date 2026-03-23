@@ -45,6 +45,11 @@
 
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Try lock")
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/vampdoor/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || !locked
 
@@ -162,6 +167,13 @@
 	closed = FALSE
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN)
 
+/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
+/obj/structure/vampdoor/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, atom/caster)
+	SIGNAL_HANDLER
+
+	locked = FALSE
+	INVOKE_ASYNC(src, PROC_REF(open_door))
+
 /obj/structure/vampdoor/proc/close_door(mob/user, force)
 	if(!force)
 		for(var/mob/living/L in src.loc)
@@ -266,7 +278,7 @@
 
 /obj/structure/vampdoor/proc/try_repair(mob/living/user, obj/item/tool)
 	if(!door_broken)
-		to_chat(user,span_warning("This door does not seem to be broken."))
+		to_chat(user, span_warning("This door does not seem to be broken."))
 		return FALSE
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50)
 	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_DOOR))
@@ -327,7 +339,7 @@
 		to_chat(user, span_notice("You try to unlock [src]"))
 
 	if(door_broken)
-		to_chat(user,span_warning("There is no door to open/close here."))
+		to_chat(user, span_warning("There is no door to open/close here."))
 		return
 	if(key_used.roundstart_fix)
 		lock_id = pick(key_used.accesslocks)
@@ -335,25 +347,20 @@
 	if(key_used.accesslocks)
 		for(var/i in key_used.accesslocks)
 			if(i == lock_id)
-				playsound(src, lock_sound, 75, TRUE)
-				if(!locked)
-					to_chat(user, "[src] is now locked.")
-					locked = TRUE
-				else
-					to_chat(user, "[src] is now unlocked.")
-					proc_unlock("key")
-					locked = FALSE
-				return TRUE
+				return toggle_lock(user)
 	if(!need_key)
-		playsound(src, lock_sound, 75, TRUE)
-		if(!locked)
-			to_chat(user, "[src] is now locked.")
-			locked = TRUE
-		else
-			to_chat(user, "[src] is now unlocked.")
-			proc_unlock("key")
-			locked = FALSE
-		return TRUE
+		return toggle_lock(user)
+
+/obj/structure/vampdoor/proc/toggle_lock(mob/living/user)
+	playsound(src, lock_sound, 75, TRUE)
+	if(!locked)
+		to_chat(user, span_notice("[src] is now locked."))
+		locked = TRUE
+	else
+		to_chat(user, span_notice("[src] is now unlocked."))
+		proc_unlock("key")
+		locked = FALSE
+	return TRUE
 
 /obj/structure/vampdoor/proc/reset_transform()
 	pixel_z = initial(pixel_z)

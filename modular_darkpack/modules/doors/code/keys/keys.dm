@@ -368,7 +368,7 @@
 		LOCKACCESS_POLICE_CAPTAIN
 	)
 
-//===========================GAROU KEYS===========================
+//===========================FERA KEYS===========================
 
 /obj/item/vamp/keys/nps
 	name = "\improper Park Service keys"

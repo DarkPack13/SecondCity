@@ -587,7 +587,7 @@
 	light_range = 2
 	light_power = 1.5
 	light_color = LIGHT_COLOR_FIRE
-	fuel = 35 MINUTES
+	fuel = 1 HOURS // DARKPACK EDIT CHANGE - (QOL for longer candles)
 	randomize_fuel = FALSE
 	trash_type = /obj/item/trash/candle
 	can_be_extinguished = TRUE

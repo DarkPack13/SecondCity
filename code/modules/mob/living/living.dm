@@ -754,7 +754,7 @@
 	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED, TRAIT_UNDENSE), LYING_DOWN_TRAIT)
 	if(HAS_TRAIT(src, TRAIT_FLOORED) && !(dir & (NORTH|SOUTH)))
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
-	if(rotate_on_lying)
+	if(rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE)) // DARKPACK EDIT CHANGE - WEREWOLF
 		add_offsets(LYING_DOWN_TRAIT, y_add = PIXEL_Y_OFFSET_LYING)
 
 /// Proc to append behavior related to lying down.
@@ -1368,6 +1368,10 @@
 	return
 
 /mob/living/can_hold_items(obj/item/I)
+	// DARKPACK EDIT ADD START
+	if(I && (I.w_class <= WEIGHT_CLASS_SMALL) && HAS_TRAIT(src, TRAIT_SMALL_HANDS))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	return ..() && HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS) && usable_hands
 
 /mob/living/can_perform_action(atom/target, action_bitflags)
@@ -1404,10 +1408,6 @@
 		if(!can_hold_items(isitem(target) ? target : null)) // almost redundant if it weren't for mobs
 			to_chat(src, span_warning("You don't have the hands for this action!"))
 			return FALSE
-
-	if(!(action_bitflags & ALLOW_PAI) && ispAI(src))
-		to_chat(src, span_warning("Your holochasis does not allow you to do this!"))
-		return FALSE
 
 	if(!(action_bitflags & BYPASS_ADJACENCY) && ((action_bitflags & NOT_INSIDE_TARGET) || !recursive_loc_check(src, target)) && !target.IsReachableBy(src))
 		if(HAS_SILICON_ACCESS(src) && !ispAI(src))
@@ -1928,6 +1928,26 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/get_fire_overlay(stacks, on_fire)
 	RETURN_TYPE(/mutable_appearance)
 	return null
+
+/// Create a fire overlay using the generic fire sprites
+/mob/living/proc/make_generic_fire_overlay()
+	var/fire_key = "[base_pixel_x]_[base_pixel_y]_fire"
+	if(!GLOB.fire_appearances[fire_key])
+		var/mutable_appearance/fire = mutable_appearance(
+			'icons/mob/effects/onfire.dmi',
+			"generic_fire",
+			ABOVE_ALL_MOB_LAYER,
+			appearance_flags = RESET_COLOR|KEEP_APART,
+		)
+		fire.pixel_x = -1 * base_pixel_x
+		fire.pixel_y = -1 * base_pixel_y
+		GLOB.fire_appearances[fire_key] = fire
+
+	return GLOB.fire_appearances[fire_key]
+
+/// Takes a fire overlay and generates an emissive appearance for it
+/mob/living/proc/make_fire_emissive(mutable_appearance/fire_overlay)
+	return emissive_appearance(fire_overlay.icon, fire_overlay.icon_state, src, fire_overlay.layer)
 
 /**
  * Handles effects happening when mob is on normal fire

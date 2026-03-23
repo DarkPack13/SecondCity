@@ -79,7 +79,7 @@
 			return FALSE
 	return TRUE
 
-/datum/guestbook/proc/add_guest(mob/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
+/datum/guestbook/proc/add_guest(mob/living/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
 	//Already exists, should be handled by rename_guest()
 	var/existing_name = LAZYACCESS(known_names, real_name)
 	if(existing_name)
@@ -87,15 +87,17 @@
 			to_chat(user, span_warning("You already know them as \"[existing_name]\"."))
 		return FALSE
 	LAZYADDASSOC(known_names, real_name, given_name)
+	user.save_guestbook(known_names)
 	if(!silent)
 		to_chat(user, span_notice("You memorize the face of [guest] as \"[given_name]\"."))
 	return TRUE
 
-/datum/guestbook/proc/rename_guest(mob/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
+/datum/guestbook/proc/rename_guest(mob/living/user, mob/living/carbon/guest, real_name, given_name, silent = TRUE)
 	var/old_name = LAZYACCESS(known_names, real_name)
 	if(!old_name)
 		return FALSE
-	known_names[real_name] = given_name
+	LAZYSET(known_names, real_name, given_name)
+	user.save_guestbook(known_names)
 	if(!silent)
 		to_chat(user, span_notice("You re-memorize the face of \"[old_name]\" as \"[given_name]\"."))
 	return TRUE
@@ -112,7 +114,7 @@
 		return FALSE
 	return TRUE
 
-/datum/guestbook/proc/remove_guest(mob/user, mob/living/carbon/guest, real_name, silent = TRUE)
+/datum/guestbook/proc/remove_guest(mob/living/user, mob/living/carbon/guest, real_name, silent = TRUE)
 	//Already exists, should be handled by rename_guest()
 	var/existing_name = LAZYACCESS(known_names, real_name)
 	if(!existing_name)
@@ -120,14 +122,23 @@
 			to_chat(user, span_warning("You don't know them in the first place."))
 		return FALSE
 	LAZYREMOVE(known_names, real_name)
+	user.save_guestbook(known_names)
 	if(!silent)
 		to_chat(user, span_notice("You forget the face of \"[existing_name]\"."))
 	return TRUE
 
-/datum/guestbook/proc/get_known_name(mob/user, mob/living/carbon/guest, real_name)
-	if(user == guest)
-		return real_name
-	return LAZYACCESS(known_names, real_name)
+/* Gets the requested name in reference to user.
+ * user - The user reference from who we are checking the name from
+ * guest - Optional arg, if set, uses the target reference to get a real_name for checking in reference to user.
+ * checked_name - Optional arg, if guest is unset, checks the direct real_name against user's known_names list.
+ */
+/datum/guestbook/proc/get_known_name(mob/user, mob/living/carbon/guest, checked_name)
+	if(guest)
+		if(user == guest)
+			return guest.real_name
+		else
+			checked_name = guest.real_name
+	return LAZYACCESS(known_names, checked_name)
 
 /datum/guestbook/proc/visibility_checks(mob/user, mob/living/carbon/human/guest, silent = FALSE)
 	if(QDELETED(guest))

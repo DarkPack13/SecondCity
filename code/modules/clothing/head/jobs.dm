@@ -132,6 +132,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#0070B7#FFCE5B"
 	hair_mask = /datum/hair_mask/standard_hat_middle
 
@@ -393,6 +394,7 @@
 	post_init_icon_state = "beret"
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#972A2A"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	hair_mask = /datum/hair_mask/standard_hat_middle
@@ -454,6 +456,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#39393f#f0cc8f"
 	hair_mask = /datum/hair_mask/standard_hat_middle
 
@@ -571,6 +574,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#a52f29#F2F2F2"
 	armor_type = /datum/armor/cosmetic_sec
 	strip_delay = 6 SECONDS
@@ -613,6 +617,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#7e1980#c9cbcb"
 
 //Medical
@@ -797,6 +802,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#C5D4F3#ECF1F8"
 	armor_type = /datum/armor/beret_durathread
 
@@ -826,6 +832,7 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#46b946#f2c42e"
 	armor_type = /datum/armor/beret_centcom_formal
 	strip_delay = 10 SECONDS
@@ -855,5 +862,6 @@
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_config_onfloor = /datum/greyscale_config/beret_badge/onfloor // DARKPACK EDIT ADD - ONFLOOR_ICONS
 	greyscale_colors = "#43523d#a2abb0"
 	armor_type = /datum/armor/cosmetic_sec

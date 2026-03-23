@@ -1,4 +1,6 @@
 /mob/living
+	has_emotion = TRUE
+
 	var/mob/living/lastattacked
 
 	var/bloodquality = 1
@@ -6,7 +8,7 @@
 	var/list/drunked_of = list()
 
 	var/discipline_time_plus = 0
-	var/bloodpower_time_plus = 0
+	var/blood_efficiency = 1
 	var/thaum_damage_plus = 0
 
 	var/resistant_to_disciplines = FALSE

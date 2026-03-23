@@ -301,7 +301,7 @@
 				to_chat(owner, span_warning("You can only cast [src] on other players!"))
 			return FALSE
 
-		if ((target_type & TARGET_VAMPIRE) && !iskindred(target))
+		if ((target_type & TARGET_VAMPIRE) && !get_kindred_splat(target))
 			if (alert)
 				to_chat(owner, span_warning("You can only cast [src] on Kindred!"))
 			return FALSE
@@ -507,7 +507,7 @@
 	if (toggled && (duration_length == 0))
 		return
 
-	//REFACTOR ME
+	// DARKPACK TODO - (REFACTOR ME)
 	var/full_duration_length = duration_length + owner.discipline_time_plus
 	duration_timers.Add(addtimer(CALLBACK(src, PROC_REF(duration_expire), target), full_duration_length, TIMER_STOPPABLE | TIMER_DELETE_ME))
 
@@ -717,6 +717,9 @@
  * duration_timer expire without calling the relevant proc.
  */
 /datum/discipline_power/proc/clear_duration_timer(to_clear = 1)
+	if(duration_override)
+		return
+	
 	if (toggled && (duration_length == 0))
 		return
 

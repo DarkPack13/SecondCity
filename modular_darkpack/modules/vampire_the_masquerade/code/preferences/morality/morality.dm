@@ -34,13 +34,17 @@
 	return choices[serialize(create_default_value())]
 
 /datum/preference/choiced/vtm_morality/apply_to_human(mob/living/carbon/human/target, value)
-	var/datum/st_stat/morality_path/morality/stat_morality = target.storyteller_stats["[STAT_MORALITY]"]
+	var/datum/st_stat/morality_path/morality/stat_morality = target.storyteller_stats[STAT_MORALITY]
 	if(!stat_morality)
 		return
 
 	stat_morality.morality_path = new value(target)
 
+/mob/living/proc/is_enlightenment()
+	var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
+	if(!stat_morality?.morality_path)
+		return FALSE
+
 	if(stat_morality.morality_path.alignment == MORALITY_ENLIGHTENMENT)
-		var/datum/splat/vampire/kindred/kindred_splat = iskindred(target)
-		if(istype(kindred_splat))
-			kindred_splat.enlightenment = TRUE
+		return TRUE
+	return FALSE

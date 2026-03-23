@@ -28,7 +28,7 @@
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 75, "suit", FALSE)
+	AddComponent(/datum/component/selling, 10, "suit", FALSE)
 
 /obj/item/clothing/suit/vampire/trench/malkav
 	icon_state = "malkav_coat"
@@ -341,9 +341,14 @@
 	wound = 25
 
 /obj/item/clothing/suit/vampire/trench/alt/armored
-	name = "armored trenchcoat"
+	name = "armored brown trenchcoat"
 	icon_state = "trench2"
-	max_integrity = 1000;
+	max_integrity = 400
+	armor_type = /datum/armor/armored_jackets
+
+/obj/item/clothing/suit/vampire/trench/armored
+	name = "armored black trenchcoat"
+	max_integrity = 400
 	armor_type = /datum/armor/armored_jackets
 
 /obj/item/clothing/suit/vampire/trench
@@ -365,22 +370,6 @@
 	name = "red trenchcoat"
 	desc = "True power lies not in wealth, but in the things it affords you."
 	icon_state = "strauss_coat"
-
-/obj/item/clothing/suit/vampire/trench/tzi
-	name = "fleshcoat"
-	desc = "HUMAN LEATHER JACKET."
-	icon_state = "trench_tzi"
-	armor_type = /datum/armor/fleshcoat
-	clothing_traits = list(TRAIT_UNMASQUERADE)
-
-/datum/armor/fleshcoat
-	melee = 50
-	bullet = 50
-	laser = 10
-	energy = 10
-	bomb = 25
-	acid = 10
-	wound = 50
 
 /obj/item/clothing/suit/vampire/trench/voivode
 	name = "regal coat"

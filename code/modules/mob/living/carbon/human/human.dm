@@ -66,7 +66,6 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	GLOB.human_list -= src
-	GLOB.kindred_list -= src // DARKPACK EDIT ADD
 
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
@@ -108,7 +107,7 @@
 		if(!same_id || (text2num(href_list["examine_time"]) + viable_time) < world.time)
 			to_chat(viewer, span_notice("You don't have that good of a memory. Examine [p_them()] again."))
 			return
-		if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
+		if(!isobserver(viewer) && HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
 			to_chat(viewer, span_notice("You can't make out that ID anymore."))
 			return
 		if(!isobserver(viewer) && get_dist(viewer, src) > ID_EXAMINE_DISTANCE + 1) // leeway, ignored if the viewer is a ghost
