@@ -344,7 +344,7 @@ power works for one scene.
 	if (damagetype != BRUTE)
 		return
 
-	var/protection = clamp(successes * CAINES_FURY_PROTECTION, 0, 90)
+	var/protection = clamp(successes * CAINES_FURY_PROTECTION, 0, 90) // we don't yet have a comparison for what 1 point of armor means in v20 vs ingame, so this is just a percent reduction for now
 	damage_mods += (100 - protection) / 100
 
 #undef CAINES_FURY_PROTECTION
