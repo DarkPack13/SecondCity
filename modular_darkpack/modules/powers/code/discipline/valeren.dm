@@ -284,7 +284,7 @@ power works for one scene.
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	cooldown_length = 1 SCENES
 	toggled = TRUE
-	duration_length = 1 SCENES
+	duration_length = 2 TURNS
 	vitae_cost = 1
 	var/successes = 0
 	violates_masquerade = TRUE
