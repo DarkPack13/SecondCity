@@ -5,7 +5,6 @@
 		new /datum/data/vending_product("hunting knife", /obj/item/knife/vamp),
 		new /datum/data/vending_product("tent stake", /obj/item/vampire_stake),
 		new /datum/data/vending_product("shovel", /obj/item/shovel/vamp),
-		new /datum/data/vending_product("fishing rod", /obj/item/fishing_rod),
 		new /datum/data/vending_product("hunting rifle magazine, 5.56",/obj/item/ammo_box/magazine/darkpack556/hunt),
 		new /datum/data/vending_product("pepperspray", /obj/item/reagent_containers/spray/pepper),
 		new /datum/data/vending_product("SNEKTEK Handheld Taser", /obj/item/melee/baton/security/handtaser),
@@ -21,4 +20,12 @@
 		new /datum/data/vending_product("chainsaw", /obj/item/chainsaw/vamp),
 		new /datum/data/vending_product("hunting rifle", /obj/item/gun/ballistic/automatic/darkpack/huntrifle),
 		new /datum/data/vending_product("5.56 ammo", /obj/item/ammo_box/darkpack/c556),
+	)
+	product_types = list(
+		/obj/item/fishing_rod,
+		/obj/item/bait_can/worm,
+		/obj/item/bait_can/super_baits,
+		/obj/item/storage/toolbox/fishing,
+		/obj/item/storage/box/fishing_lures,
+		/obj/item/fishing_line/auto_reel
 	)

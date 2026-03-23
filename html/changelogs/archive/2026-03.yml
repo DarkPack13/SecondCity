@@ -288,3 +288,28 @@
   - code_imp: Reimplemented permanent ghouling and embracing
   minzeyes, XeonMations:
   - rscadd: Reimplements Vicissitude
+2026-03-23:
+  FalloutFalcon:
+  - rscadd: Fishing supplies can now be found in camping and hardware stores
+  - qol: You can now choose to report a bug upstream when making an issue report
+  - admin: All Second City verbs sorted into their own catagory
+  - admin: Setting starlight is R_ADMIN instead of R_FUN
+  - qol: Auras now layer underneath the mob
+  - code_imp: Fetches enlightenment directly from Path.
+  - bugfix: lock/unlock of doors displays as a notice (blue)
+  - refactor: Cleans up some syntax on splat helpers
+  - code_imp: List index for stats was made its type instead of a type as a string
+  LucifersCoils:
+  - spellcheck: Renamed Metis to Crinos
+  Marshmellow105:
+  - bugfix: endron bouncers now wear the correct uniforms, camarilla bouncers now
+      wear red turtlenecks and armoured vests
+  - rscadd: black, blue, and green variants of barstools
+  XeonMations:
+  - bugfix: Fixed some guestbook related bugs
+  chazzyjazzy:
+  - balance: finance rolls for selling clothes are now much more fair
+  dwinters99:
+  - rscadd: Melpominee
+  - code_imp: Moves Emotion to /mob
+  - code_imp: Proc to convert Emotion to a quality (i.e. Afraid -> fear)
