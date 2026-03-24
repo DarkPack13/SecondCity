@@ -123,14 +123,39 @@
 	else
 		living_target.heal_storyteller_health(dots_to_heal = 1, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE)
 
-//SHEPHERD'S WATCH
+#define SHEPHERDS_WATCH_RADIUS 3
 /datum/discipline_power/obeah/shepherds_watch
 	name = "Shepherd's Watch"
 	desc = "Create a supernatural barrier to protect yourself from harm."
 
 	level = 4
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
+	violates_masquerade = TRUE
+	cooldown_length = 1 TURNS
+	duration_length = 1 TURNS
+	willpower_cost = 2
+	cancelable = TRUE
+	var/datum/proximity_monitor/advanced/shepherds_watch/area_of_effect
 
-	cooldown_length = 40 SECONDS
+/datum/discipline_power/obeah/shepherds_watch/activate(atom/target)
+	. = ..()
+	area_of_effect = new(owner, SHEPHERDS_WATCH_RADIUS)
+	for(var/mob/living/mob_living in range(SHEPHERDS_WATCH_RADIUS, owner))
+		area_of_effect.ignored_mobs |= mob_living
+
+/datum/discipline_power/duration_expire(atom/target)
+	clear_duration_timer()
+	if(!check_discipline_flags())
+		deactivate(owner, TRUE)
+	to_chat(owner, span_notice("You concentrate on keeping [src] active."))
+	owner.update_action_buttons()
+	do_duration(target)
+
+/datum/discipline_power/obeah/shepherds_watch/deactivate(atom/target, direct)
+	. = ..()
+	QDEL_NULL(area_of_effect)
+
+#undef SHEPHERDS_WATCH_RADIUS
 
 //UNBURDEN THE BESTIAL SOUL
 /datum/discipline_power/obeah/unburden_the_bestial_soul
