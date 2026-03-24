@@ -15,9 +15,6 @@
 	var/datum/storyteller_roll/salubri_roll_type = /datum/storyteller_roll/shepherds_watch
 	var/datum/storyteller_roll/contested_roll_type = /datum/storyteller_roll/shepherds_watch/contested
 
-	var/set_fieldturf_color = "#aaffff"
-	var/set_edgeturf_color = "#ffaaff"
-
 /datum/proximity_monitor/advanced/shepherds_watch/New(atom/_host, range, _ignore_if_not_on_turf = TRUE)
 	. = ..()
 	ignored_mobs = new()
@@ -85,21 +82,3 @@
 	var/salubri_successes = salubri_roll.st_roll(salubri, opponent)
 	var/opponent_successes = contested_roll.st_roll(opponent, salubri)
 	return (opponent_successes - salubri_successes)
-
-//// DEBUG
-
-/datum/proximity_monitor/advanced/shepherds_watch/setup_edge_turf(turf/target)
-	. = ..()
-	target.color = set_edgeturf_color
-
-/datum/proximity_monitor/advanced/shepherds_watch/cleanup_edge_turf(turf/target)
-	. = ..()
-	target.color = initial(target.color)
-
-/datum/proximity_monitor/advanced/shepherds_watch/setup_field_turf(turf/target)
-	. = ..()
-	target.color = set_fieldturf_color
-
-/datum/proximity_monitor/advanced/shepherds_watch/cleanup_field_turf(turf/target)
-	. = ..()
-	target.color = initial(target.color)
