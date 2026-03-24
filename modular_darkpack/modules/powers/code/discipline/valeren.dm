@@ -164,7 +164,7 @@ blood pool.
 
 	// on three successes, detect their bloodpool, if any exists
 	if(successes >= 3)
-		msg_blood = "[blood_read(target)] [round(target.bloodpool / target.maxbloodpool * 100)]% of Blood Pool remaining"
+		msg_blood = "[blood_read(target)] [round(target.bloodpool / target.maxbloodpool * 100)]% of Blood Pool remaining."
 
 	// on four, display any diseases they might have
 	if(successes >= 4)
@@ -185,6 +185,7 @@ blood pool.
 			msg_mental = "[english_list(mental_conditions)] clouds their mind."
 
 	ui_interact(owner)
+	to_chat(owner, span_notice("[msg_creature] \n[msg_damage] \n[msg_blood] \n[msg_disease] \n[msg_mental]"))
 
 /datum/discipline_power/valeren/sense_vitality/deactivate()
 	. = ..()
@@ -244,7 +245,11 @@ death.
 
 /datum/discipline_power/valeren/anesthetic_touch/activate(mob/living/target)
 	. = ..()
-	var/chosen_option = show_radial_menu(owner, target, list("Soothe Pain", "Put To Sleep"), radius = 38, require_near = TRUE)
+	var/list/choices = list(
+		"Soothe Pain" = icon('icons/mob/actions/actions_spells.dmi', "statue"),
+		"Put To Sleep" = icon('icons/mob/actions/actions_spells.dmi', "blind"),
+	)
+	var/chosen_option = show_radial_menu(owner, target, choices, radius = 38, require_near = TRUE)
 	switch(chosen_option)
 		if("Soothe Pain")
 			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
@@ -259,6 +264,99 @@ death.
 
 /datum/discipline_power/valeren/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
+
+//BURNING TOUCH
+/*
+Burning Touch
+The character’s hands bring searing pain, as though
+the target is being burnt with red-hot metal. Although
+the power does not inflict actual damage, prolonged
+or repeated exposure can be enough to traumatize a
+victim. This power works extremely well as a torture
+method.
+
+System: The vampire must touch his subject for this
+power to take effect, and the effects diminish rapidly
+after he removes his hand. The player spends at least
+one blood point to activate this power, and each blood
+point spent reduces the victim’s dice pools by two while
+the Fury is in contact with the victim. This power is
+often used for interrogation or torture, wearing down
+the subject’s resistance and rendering him much more
+tractable.
+*/
+/datum/discipline_power/valeren/burning_touch
+	name = "Burning Touch"
+	desc = "Channel supernatural fire through your hands, inflicting searing pain on anyone you grab, lasting 30 seconds. The burning does not cause damage but overwhelms the senses, disrupts concentration, and makes using Disciplines extremely difficult."
+	level = 3
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
+	target_type = TARGET_LIVING
+	range = 1
+	vitae_cost = 1
+	hostile = TRUE
+	violates_masquerade = FALSE
+
+/datum/discipline_power/valeren/burning_touch/activate(mob/living/target)
+	. = ..()
+	target.apply_status_effect(/datum/status_effect/burning_touch)
+	if(owner.grab_state <= GRAB_AGGRESSIVE)
+		target.grabbedby(owner)
+		target.grippedby(owner, instant = TRUE)
+		owner.do_attack_animation(target, ATTACK_EFFECT_MECHFIRE)
+
+/datum/status_effect/burning_touch
+	id = "burning_touch"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 6 TURNS // 30 second debuff duration, so it will still affect them for a few seconds even if they escape their captors grip, as per v20
+	alert_type = /atom/movable/screen/alert/status_effect/burning_touch
+	tick_interval = 2 TURNS // how frequently the pain messages will tick
+	var/list/pain_messages = list(
+		"It burns!",
+		"It hurts!",
+		"Dear god, make it stop!",
+		"FIRE! FIRE!",
+		"Stop, please, STOP!",
+		"My skin is on fire!",
+		"I can't think! It hurts so much!",
+		"Let go, let GO!",
+		"It's in my bones!",
+		"I can't breathe through the pain!",
+		"Why won't it stop?!",
+	)
+
+/datum/status_effect/burning_touch/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.st_add_stat_mod(STAT_DEXTERITY, -2, "burning_touch") // you're in searing pain, so you're a little less dextrous
+	owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -2, "burning_touch")
+	var/resist_scream = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), 6, owner, FALSE)
+	if(!resist_scream)
+		owner.emote("scream")
+	RegisterSignal(owner, COMSIG_POWER_TRY_ACTIVATE, PROC_REF(on_discipline_activate))
+
+/datum/status_effect/burning_touch/on_remove()
+	. = ..()
+	owner.st_remove_stat_mod(STAT_DEXTERITY, "burning_touch")
+	owner.st_remove_stat_mod(STAT_TEMPORARY_WILLPOWER, "burning_touch")
+	UnregisterSignal(owner, COMSIG_POWER_TRY_ACTIVATE)
+
+// crispy victims must roll willpower at difficulty 6 to focus through the burning pain
+/datum/status_effect/burning_touch/proc/on_discipline_activate(mob/living/source, datum/discipline_power/power, atom/target)
+	SIGNAL_HANDLER
+	var/success = SSroll.storyteller_roll(source.st_get_stat(STAT_TEMPORARY_WILLPOWER), 6, source, FALSE)
+	if(!success)
+		to_chat(source, span_userdanger("Burning agony overwhelms your concentration. You cannot focus enough to use your Disciplines!"))
+		return POWER_PREVENT_ACTIVATE
+
+/datum/status_effect/burning_touch/tick(seconds_between_ticks)
+	to_chat(owner, span_userdanger(pick(pain_messages)))
+	playsound(get_turf(owner), SFX_SIZZLE, 80, TRUE)
+
+/atom/movable/screen/alert/status_effect/burning_touch
+	name = "Burning Touch"
+	desc = "Your body burns with supernatural fire! Using Disciplines requires a Willpower roll at difficulty 6 to focus through the pain."
+	icon_state = "fire"
 
 // Armor of Caine’s Fury
 /*
@@ -280,7 +378,7 @@ power works for one scene.
 /datum/discipline_power/valeren/armor_of_caines_fury
 	name = "Armor of Caine's Fury"
 	desc = "The Salubri antitribu is surrounded by a shining, crimson halo. This phantom armor protects the vampire against most physical injury, as well as against Rötschreck."
-	level = 3
+	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	cooldown_length = 1 SCENES
 	toggled = TRUE
@@ -378,3 +476,99 @@ power works for one scene.
 	else
 		target.cut_overlay(HALO_LAYER)
 	return ..()
+
+//VENGEANCE OF SAMIEL
+/*
+The Salubri antitribu strikes his foe with superhu-
+man accuracy and strength, as his third eye opens and
+changes to a furious, icy blue. Some Furies invoke the
+names of ancient Salubri warriors, while others sim-
+ply close their normal eyes and let Samiel guide their
+hands.
+
+System: This power costs three blood points. Any
+single attack made by the vampire automatically hits
+the target as mystic forces guide the blow. Attacks
+made in this manner may not be dodged, though they
+may be blocked, parried, and soaked as normal. The
+blow strikes as if the Salubri antitribu had succeeded
+with all of his Dexterity + Melee or Brawling dice pool
+(which makes for significant damage).
+
+This power maybe used only once per turn, and only then the Salubri
+antitribu’s sole action is the attack. Additionally, this
+power does not work for ranged weapons; only bare
+hands or melee weapons.
+*/
+// this is basically just potence 5 with stat bonuses, used potence as a baseline because of the 'makes for significant damage' wording in v20 above
+/datum/discipline_power/valeren/vengeance_of_samiel
+	name = "Vengeance of Samiel"
+	desc = "The Salubri antitribu strikes his foe with superhu-man accuracy and strength, as his third eye opens and changes to a furious, icy blue. Some Furies invoke the names of ancient Salubri warriors, while others simply close their normal eyes and let Samiel guide their hands."
+	level = 5
+	check_flags = DISC_CHECK_CAPABLE
+	toggled = TRUE
+	duration_length = 1 TURNS
+
+/datum/discipline_power/valeren/vengeance_of_samiel/activate()
+	. = ..()
+	owner.apply_status_effect(/datum/status_effect/vengeance_of_samiel)
+
+/datum/discipline_power/valeren/vengeance_of_samiel/deactivate()
+	. = ..()
+	owner.remove_status_effect(/datum/status_effect/vengeance_of_samiel)
+
+/datum/status_effect/vengeance_of_samiel
+	id = "vengeance_of_samiel"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+
+	var/bonus = 5
+	var/datum/component/tackler/tackler
+	var/list/obj/item/bodypart/affected_bodyparts
+
+/datum/status_effect/vengeance_of_samiel/on_apply()
+	. = ..()
+	if (!.)
+		return
+	owner.st_add_stat_mod(STAT_DEXTERITY, bonus, "vengeance_of_samiel")
+	owner.st_add_stat_mod(STAT_MELEE, bonus, "vengeance_of_samiel")
+	owner.st_add_stat_mod(STAT_BRAWL, bonus, "vengeance_of_samiel")
+	if (iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		for (var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
+			if (!istype(limb, /obj/item/bodypart/arm) && !istype(limb, /obj/item/bodypart/leg))
+				continue
+			LAZYADD(affected_bodyparts, limb)
+			limb.unarmed_damage_low += 8 * bonus
+			limb.unarmed_damage_high += 8 * bonus
+			limb.unarmed_attack_sound = pick(list('sound/items/weapons/cqchit2.ogg', 'sound/items/weapons/cqchit1.ogg')) // i know kung fu
+	else if (isbasicmob(owner))
+		var/mob/living/basic/basic_owner = owner
+		basic_owner.melee_damage_lower += 8 * bonus
+		basic_owner.melee_damage_upper += 8 * bonus
+		basic_owner.attack_sound = pick(list('sound/items/weapons/cqchit2.ogg', 'sound/items/weapons/cqchit1.ogg'))
+	RegisterSignal(owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(apply_melee_modifier))
+	tackler = owner.AddComponent(/datum/component/tackler, stamina_cost=0, base_knockdown = 1 SECONDS, range = 2 + bonus, speed = 1, skill_mod = 0, min_distance = 0)
+
+/datum/status_effect/vengeance_of_samiel/on_remove()
+	. = ..()
+	owner.st_remove_stat_mod(STAT_DEXTERITY, bonus, "vengeance_of_samiel")
+	owner.st_remove_stat_mod(STAT_MELEE, bonus, "vengeance_of_samiel")
+	owner.st_remove_stat_mod(STAT_BRAWL, bonus, "vengeance_of_samiel")
+	if (iscarbon(owner))
+		for (var/obj/item/bodypart/limb in affected_bodyparts)
+			limb.unarmed_damage_low -= 8 * bonus
+			limb.unarmed_damage_high -= 8 * bonus
+			limb.unarmed_attack_sound = initial(limb.unarmed_attack_sound)
+	else if (isbasicmob(owner))
+		var/mob/living/basic/basic_owner = owner
+		basic_owner.melee_damage_lower -= 8 * bonus
+		basic_owner.melee_damage_upper -= 8 * bonus
+		basic_owner.attack_sound = initial(basic_owner.attack_sound)
+	LAZYCLEARLIST(affected_bodyparts)
+	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
+	qdel(tackler)
+
+/datum/status_effect/vengeance_of_samiel/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
+	SIGNAL_HANDLER
+	attack_modifiers[FORCE_MULTIPLIER] += 0.4 * bonus
