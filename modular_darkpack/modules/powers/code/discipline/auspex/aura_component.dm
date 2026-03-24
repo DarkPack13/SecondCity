@@ -71,7 +71,7 @@
 
 /datum/component/aura/proc/on_combat_mode_toggled(datum/source)
 	SIGNAL_HANDLER
-	var/mob/living/parent_mob = parent
+	var/mob/living/carbon/human/npc/parent_mob = parent
 	if(parent_mob.combat_mode)
 		SEND_SIGNAL(parent_mob, COMSIG_MOB_EMOTION_CHANGED, "Angry")
 	if(current_aura == AURA_ANGRY && !parent_mob.combat_mode)
@@ -150,9 +150,9 @@
 		examine_message += "Black veins pulse through [parent_mob.p_their()] aura."
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		examine_message += "[parent_mob.p_Their()] aura appears especially energetic."
-	if(isghoul(parent_mob))
+	if(get_ghoul_splat(parent_mob))
 		examine_message += "Pale blotches mark [parent_mob.p_their()] aura."
-	if(iskindred(parent_mob))
+	if(get_kindred_splat(parent_mob))
 		var/mob/living/carbon/human/lick = parent_mob
 		var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats["[STAT_MORALITY]"]
 		if(!stat_morality.morality_path.alignment == MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
@@ -200,7 +200,7 @@
 	holder.color = null
 
 	var/mob/parent_mob = parent
-	if(iskindred(parent_mob) && output_color)
+	if(get_kindred_splat(parent_mob) && output_color)
 		var/mob/living/carbon/human/lick = parent_mob
 		var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats["[STAT_MORALITY]"]
 		if(!stat_morality.morality_path.alignment == MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
@@ -278,7 +278,7 @@
 		static_image.alpha = 150
 		holder.vis_contents += static_image
 
-	if(isghoul(parent_mob))
+	if(get_ghoul_splat(parent_mob))
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
 		aura_smoke_image.color = hsv2rgb(hsv_color_value)
