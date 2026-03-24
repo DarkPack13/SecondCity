@@ -144,7 +144,7 @@
 	for(var/mob/living/mob_living in range(SHEPHERDS_WATCH_RADIUS, owner))
 		area_of_effect.ignored_mobs |= mob_living
 
-/datum/discipline_power/duration_expire(atom/target)
+/datum/discipline_power/obeah/shepherds_watch/duration_expire(atom/target)
 	clear_duration_timer()
 	if(!check_discipline_flags())
 		deactivate(owner, TRUE)
