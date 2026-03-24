@@ -123,6 +123,7 @@
 	else
 		living_target.heal_storyteller_health(dots_to_heal = 1, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE)
 
+// Radius - the length of the line you draw from the central point of a circle towards any point of the outer boundary, which in geometry is called the circumference.
 #define SHEPHERDS_WATCH_RADIUS 3
 /datum/discipline_power/obeah/shepherds_watch
 	name = "Shepherd's Watch"
