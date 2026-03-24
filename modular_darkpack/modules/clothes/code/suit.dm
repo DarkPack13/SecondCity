@@ -28,7 +28,7 @@
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 75, "suit", FALSE)
+	AddComponent(/datum/component/selling, 10, "suit", FALSE)
 
 /obj/item/clothing/suit/vampire/trench/malkav
 	icon_state = "malkav_coat"

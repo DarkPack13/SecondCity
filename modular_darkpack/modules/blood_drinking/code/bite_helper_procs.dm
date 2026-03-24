@@ -5,7 +5,7 @@
 
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
 	if(kindred_splat)
-		var/hunger_threshold = 7 - (kindred_splat.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
+		var/hunger_threshold = 7 - (is_enlightenment() ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(src, TRAIT_NEEDS_BLOOD)
 		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
 
