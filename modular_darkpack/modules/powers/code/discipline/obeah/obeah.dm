@@ -149,7 +149,7 @@
 		deactivate(owner, TRUE)
 	to_chat(owner, span_notice("You concentrate on keeping [src] active."))
 	owner.update_action_buttons()
-	do_duration(target)
+	do_duration(owner)
 
 /datum/discipline_power/obeah/shepherds_watch/deactivate(atom/target, direct)
 	. = ..()
