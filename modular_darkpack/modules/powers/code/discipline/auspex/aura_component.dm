@@ -37,7 +37,6 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.add_atom_to_hud(parent_mob)
 
-	add_verb(parent_mob, /mob/verb/emotion_panel)
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
 	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
 	RegisterSignal(parent_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
