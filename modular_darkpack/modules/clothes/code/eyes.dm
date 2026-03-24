@@ -11,7 +11,7 @@
 
 /obj/item/clothing/glasses/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 25, "glasses", FALSE)
+	AddComponent(/datum/component/selling, 10, "glasses", FALSE)
 
 /obj/item/clothing/glasses/vampire/yellow
 	name = "yellow aviators"

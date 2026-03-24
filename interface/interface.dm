@@ -69,10 +69,20 @@
 	set name = "report-issue"
 	set desc = "Report an issue"
 
-	var/githuburl = CONFIG_GET(string/githuburl)
-	if(!githuburl)
+	// DARKPACK EDIT CHANGE START
+	// "our" url, all other ones should be upstreams
+	var/main_url = CONFIG_GET(string/githuburl)
+	var/all_options = CONFIG_GET(str_list/extra_issue_urls)
+	all_options |= main_url
+
+	if(!all_options || !length(all_options))
 		to_chat(src, span_danger("The Github URL is not set in the server configuration."))
 		return
+
+	var/githuburl = tgui_input_list(src, "Choose a codebase to report the issue to", "Choose Codebase", all_options, main_url)
+	if(!githuburl)
+		return
+	// DARKPACK EDIT CHANGE END
 
 	var/testmerge_data = GLOB.revdata.testmerge
 	var/has_testmerge_data = (length(testmerge_data) != 0)
@@ -93,16 +103,32 @@
 	var/client_version = "[byond_version].[byond_build]"
 	concatable += ("&reporting-version=" + client_version)
 
+	// DARKPACK EDIT CHANGE START
+	var/server_name = CONFIG_GET(string/servername)
+	var/server_link
+	if(server_name)
+		server_link = "\[[server_name]\]([main_url])"
+	else
+		server_link = main_url // Someone forgot to set a config or your in a dev enviro
+
 	// the way it works is that we use the ID's that are baked into the template YML and replace them with values that we can collect in game.
-	if(GLOB.round_id)
-		concatable += ("&round-id=" + GLOB.round_id)
+	if(githuburl == main_url) // Why would we report the url when its the same server lol
+		if(GLOB.round_id)
+			concatable += ("&round-id=" + GLOB.round_id)
+	else
+		if(GLOB.round_id)
+			concatable += ("&round-id=[server_link] [GLOB.round_id]")
+		else
+			// Likely a dev enviroment or db is down, still worth noting.
+			concatable += ("&round-id=[server_link]")
+	// DARKPACK EDIT CHANGE END
 
 	// Insert testmerges
 	if(has_testmerge_data)
 		var/list/all_tms = list()
 		for(var/entry in testmerge_data)
 			var/datum/tgs_revision_information/test_merge/tm = entry
-			all_tms += "- \[[tm.title]\]([githuburl]/pull/[tm.number])"
+			all_tms += "- \[[tm.title]\]([main_url]/pull/[tm.number])" // DARKPACK EDIT CHANGE
 		var/all_tms_joined = jointext(all_tms, "\n")
 
 		concatable += ("&test-merges=" + url_encode(all_tms_joined))

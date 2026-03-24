@@ -1,4 +1,4 @@
-ADMIN_VERB(toggle_canon, R_ADMIN, "Toggle Canon", "Toggle the canon of the round.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(toggle_canon, R_ADMIN, "Toggle Canon", "Toggle the canon of the round.", ADMIN_CATEGORY_SECOND_CITY)
 	GLOB.canon_event = !GLOB.canon_event
 	SEND_SOUND(world, sound('modular_darkpack/modules/round_status/sounds/canon.ogg', volume = 25))
 	if(GLOB.canon_event)
