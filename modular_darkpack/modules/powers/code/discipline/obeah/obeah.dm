@@ -239,9 +239,10 @@
 
 /datum/discipline_power/obeah/shepherds_watch/duration_expire(atom/target)
 	clear_duration_timer()
-	if(!check_discipline_flags())
-		deactivate(owner, TRUE)
 	owner.update_action_buttons()
+	if(!check_discipline_flags())
+		deactivate(owner, FALSE)
+		return
 	do_duration(owner)
 
 /datum/discipline_power/obeah/shepherds_watch/deactivate(atom/target, direct)
