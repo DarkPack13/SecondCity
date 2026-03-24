@@ -153,39 +153,6 @@
 /datum/discipline_power/obeah/sense_vitality/deactivate()
 	. = ..()
 
-//ANESTHETIC TOUCH
-//
-/*
-The vampire can ease a target’s pain or place him
-into a deep, soothing sleep with nothing but a touch.
-This power is intended to heal the pain or succor the
-mind of willing targets, but the character can, with
-some effort, employ the power against someone who
-does not wish it.
-
-System: If the subject is willing to undergo this
-process, the player spends a blood point and makes a
-Willpower roll (difficulty 6) to block the subject’s pain.
-This allows the subject to ignore all wound penalties
-for one turn per success. A second application of this
-power may be made once the first one has expired, at
-the cost of another blood point and another Willpow
-er roll. If the subject is unwilling for some reason, the
-player must make a contested Willpower roll against
-the subject (difficulty 8).
-
-To put a mortal to sleep, the same system applies.
-The mortal sleeps for five to 10 hours — whatever his
-normal sleep cycle is — and regains one temporary
-Willpower point upon awakening. He sleeps peace
-fully and does not suffer nightmares or the effects of
-any derangements while asleep. He may be awakened
-normally (or violently).
-
-Kindred, including the Salubri herself, are unaffected
-by this power — their corpselike bodies are too tied to
-death.
-*/
 /datum/discipline_power/obeah/anesthetic_touch
 	name = "Anesthetic Touch"
 	desc = "Soothe your patient's pain, or place a mortal into peaceful slumber."
@@ -228,7 +195,6 @@ death.
 /datum/discipline_power/obeah/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
 
-//CORPORE SANO
 /datum/discipline_power/obeah/corpore_sano
 	name = "Corpore Sano"
 	desc = "Lay hands on your patient and heal their wounds."
@@ -275,7 +241,6 @@ death.
 	clear_duration_timer()
 	if(!check_discipline_flags())
 		deactivate(owner, TRUE)
-	to_chat(owner, span_notice("You concentrate on keeping [src] active."))
 	owner.update_action_buttons()
 	do_duration(owner)
 
@@ -285,7 +250,6 @@ death.
 
 #undef SHEPHERDS_WATCH_RADIUS
 
-//UNBURDEN THE BESTIAL SOUL
 /datum/discipline_power/obeah/unburden_the_bestial_soul
 	name = "Unburden The Bestial Soul"
 	desc = "Draw out a Kindred's soul and heal it of impurities."
