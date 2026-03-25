@@ -7,7 +7,7 @@
 	start_gnosis = 1
 	breed_species = /datum/species/human/shifter/homid
 
-/datum/subsplat/werewolf/breed_form/garou/metis
+/datum/subsplat/werewolf/breed_form/garou/crinos
 	name = BREED_CRINOS
 	start_gnosis = 3
 	breed_species = /datum/species/human/shifter/war

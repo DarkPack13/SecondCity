@@ -13,7 +13,7 @@
 /// You do not need to raise this if you are adding new values that have sane defaults.
 /// Only raise this value when changing the meaning/format/name/layout of an existing value
 /// where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 51
+#define SAVEFILE_VERSION_MAX 52
 
 #define IS_DATA_OBSOLETE(version) (version == SAVE_DATA_OBSOLETE)
 #define SHOULD_UPDATE_DATA(version) (version >= SAVE_DATA_NO_ERROR && version < SAVEFILE_VERSION_MAX)
@@ -179,16 +179,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		)
 	if(current_version < 51)
 		migrate_felinid_feature_keys(save_data)
+	if(current_version < 52)
+		migrate_gendered_nonbinary_physique(save_data)
 
 // DARKPACK EDIT ADD START
 /datum/preferences/proc/update_preferences_darkpack(current_version, datum/json_savefile/S)
 
 /datum/preferences/proc/update_character_darkpack(current_version, list/save_data)
-	/*
 	if (current_version < 2)
 		if(read_preference(/datum/preference/choiced/subsplat/garou_breed) == "Metis")
 			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/garou_breed], BREED_CRINOS)
-	*/
 // DARKPACK EDIT ADD END
 
 /// checks through keybindings for outdated unbound keys and updates them
@@ -207,14 +207,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 		if(parent.hotkeys)
 			for(var/hotkeytobind in kb.hotkey_keys)
-				if(hotkeytobind == "Unbound")
+				if(hotkeytobind == UNBOUND_KEY)
 					addedbind = TRUE
 				else if(!length(binds_by_key[hotkeytobind])) //Only bind to the key if nothing else is bound
 					key_bindings[kb.name] |= hotkeytobind
 					addedbind = TRUE
 		else
 			for(var/classickeytobind in kb.classic_keys)
-				if(classickeytobind == "Unbound")
+				if(classickeytobind == UNBOUND_KEY)
 					addedbind = TRUE
 				else if(!length(binds_by_key[classickeytobind])) //Only bind to the key if nothing else is bound
 					key_bindings[kb.name] |= classickeytobind
@@ -222,7 +222,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 		if(!addedbind)
 			notadded += kb
-	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
+	save_preferences() //Save the players pref so that new keys that were set to UNBOUND_KEY as default are permanently stored
 	if(length(notadded))
 		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
@@ -412,16 +412,24 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// DARKPACK EDIT ADD END
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
+	preference_storyteller_stats = list() // Ensure we dont have our stats from our old char slot.
 	if(!stats_list)
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
 	for(var/stat_path in stats_list)
-		var/proper_stat_path = text2path(stat_path)
+		var/proper_stat_path
+		if(ispath(stat_path, /datum/st_stat))
+			// I thought when its saved it becomes a string but that seems to not always be the case?
+			// I belive its because the json handling is held in byond after the first fetch?
+			proper_stat_path = stat_path
+		else
+			proper_stat_path = text2path(stat_path)
+		if(!proper_stat_path)
+			continue
 		var/datum/st_stat/stat = new proper_stat_path()
-		if(stats_list[stat_path]) // If the stat_path already exists in our savefile, update our datum.
-			stat.set_score(stats_list[stat_path][STAT_SCORE])
-			stat.set_points(stats_list[stat_path][STAT_POINTS])
-			stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
-		preference_storyteller_stats[stat_path] = stat
+		stat.set_score(stats_list[stat_path][STAT_SCORE])
+		stat.set_points(stats_list[stat_path][STAT_POINTS])
+		stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
+		preference_storyteller_stats[proper_stat_path] = stat
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 

@@ -29,14 +29,14 @@
 		if(!has_allowed_splat)
 			return FALSE
 
-	if(excluded_clans && iskindred(new_holder))
-		var/datum/splat/vampire/kindred/kindred_splat = iskindred(new_holder)
+	if(excluded_clans && get_kindred_splat(new_holder))
+		var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(new_holder)
 		if(kindred_splat.clan && (kindred_splat.clan.id in excluded_clans))
 			to_chat(new_holder, span_warning("[failure_message]"))
 			return FALSE
 
 	if(minimum_generation)
-		var/datum/splat/vampire/kindred/kindred_splat = iskindred(new_holder)
+		var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(new_holder)
 		if(kindred_splat.generation < minimum_generation)
 			to_chat(new_holder, span_warning("[failure_message]"))
 			return FALSE
