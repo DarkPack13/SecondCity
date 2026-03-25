@@ -6,13 +6,13 @@
 	if(grab_state > GRAB_PASSIVE)
 		if(isliving(pulling))
 			var/mob/living/bit_living = pulling
-			if(!isvampiresplat(src))
+			if(!get_vampire_splat(src))
 				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 				return
 			// Allow ghouls to steal viate?
-			if(isghoul(src))
-				if(!iskindred(bit_living))
+			if(get_ghoul_splat(src))
+				if(!get_kindred_splat(bit_living))
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("You're not desperate enough to try <i>that</i>."))
 					return
@@ -22,15 +22,15 @@
 				to_chat(src,span_warning("Your Beast requires life, not the tepid swill of corpses."))
 				return
 			// Allow for diablor?
-			if(!iskindred(bit_living) || !iskindred(src))
+			if(!get_kindred_splat(bit_living) || !get_kindred_splat(src))
 				if(!CAN_HAVE_BLOOD(bit_living) || (bit_living.blood_volume <= 50) || (bit_living.bloodpool <= 0))
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 					return
 
-			if(iskindred(src))
+			if(get_kindred_splat(src))
 				bit_living.emote("groan")
-			else if(isghoul(src))
+			else if(get_ghoul_splat(src))
 				bit_living.emote("scream")
 
 			if(ishuman(bit_living))
@@ -39,8 +39,17 @@
 
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
-				if(iskindred(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					trigger_kindred_frenzy(bit_living, 6, "The taste of blood while hungry")
+				if(get_kindred_splat(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
+					var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
+					var/datum/storyteller_roll/frezy_roll = new()
+					frezy_roll.applicable_stats = list(stat_to_roll)
+					var/frenzy_result = frezy_roll.st_roll(src, bit_living)
+					if(frenzy_result != ROLL_SUCCESS)
+						// to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
+						trigger_kindred_frenzy(bit_living, 6, "The taste of blood while hungry")
+					else
+						to_chat(src, span_green("The taste of fresh blood while hungry almost drives you into frenzy!"))
+
 				if(!HAS_TRAIT(src, TRAIT_BLOODY_LOVER))
 					playsound(src, 'modular_darkpack/modules/blood_drinking/sounds/drinkblood1.ogg', 50, TRUE)
 					bit_living.visible_message(span_warning(span_bold("[src] bites [bit_living]'s neck!")), span_warning(span_bold("[src] bites your neck!")))

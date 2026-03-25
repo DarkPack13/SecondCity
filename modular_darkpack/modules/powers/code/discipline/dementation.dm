@@ -5,6 +5,10 @@
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/dementation
 
+/datum/discipline/dementation/post_gain()
+	. = ..()
+	owner.add_quirk(/datum/quirk/derangement)
+
 /datum/discipline_power/dementation
 	name = "Dementation power name"
 	desc = "Dementation power description"
@@ -71,7 +75,7 @@ Presence powers, etc
 	dementation_overlay.pixel_z = 1
 	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
-	target.Stun(2 SECONDS)
+	target.Stun(duration_length)
 	target.emote(pick("laugh","scream","cry")) // pick a random emotion for them to experience
 	var/attack_text = spooky_font_replace(dementation_phrase) // malk-ify what the attacker said
 	owner.say(attack_text, spans = list("bold", "singing")) // the malk speech uses bold and singing spans
@@ -134,9 +138,8 @@ pools for a turn or two after the manifestation.
 
 /datum/discipline_power/dementation/the_haunting/pre_activation_checks(mob/living/carbon/human/target)
 	var/resistence_stat = target.st_get_stat(STAT_SELF_CONTROL)
-	if(iskindred(target))
-		var/datum/splat/vampire/kindred/target_species = iskindred(target)
-		resistence_stat = target.st_get_stat(target_species.enlightenment ? STAT_CONVICTION : STAT_SELF_CONTROL)
+	if(get_kindred_splat(target))
+		resistence_stat = target.st_get_stat(owner.is_enlightenment() ? STAT_CONVICTION : STAT_SELF_CONTROL)
 	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + resistence_stat
 	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
 	if(mypower <= 0)
@@ -238,16 +241,9 @@ Methuselah.”
 /datum/discipline_power/dementation/eyes_of_chaos/proc/open_chaos_eyes_window(mob/living/carbon/human/target)
 	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
 	if(exploitable_information == EXPLOITABLE_DEFAULT_TEXT) //they havent set exploitable text
-		exploitable_information = "You do not detect any secrets."
-	eyes_of_chaos_window = new(owner.client, "eyes_of_chaos_window")
-	eyes_of_chaos_window.initialize( inline_html = "<div class='background'> \
-        <div><center><p class='whitetext' > [target]'s Mind </p></center></div> \
-        <div><p class='whitetext' >[exploitable_information]</p></div> \
-        <span></span><span></span><span></span><span></span><span></span> \
-        <span></span><span></span><span></span><span></span><span></span> \
-        </div>",
-	inline_css = file("modular_darkpack/modules/html/dementation/css/chaos.css")
-	)
+		exploitable_information = "You do not manage to uncover any secrets."
+	to_chat(owner, span_notice("You search [target]'s mind... [exploitable_information]"))
+
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
 	update_choices()

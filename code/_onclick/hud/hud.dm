@@ -249,6 +249,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healthdoll = null
 	bloodpool_icon = null // DARKPACK EDIT ADD
 	zone_icon = null // DARKPACK EDIT ADD
+	// DARKPACK EDIT ADD START - WEREWOLF
+	auspice_icon = null
+	rage_and_gnosis_icon = null
+	homid_trans_icon = null
+	war_trans_icon = null
+	feral_trans_icon = null
+	// DARKPACK EDIT ADD END
 	spacesuit = null
 	hunger = null
 	alien_plasma_display = null
@@ -352,9 +359,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				list_clear_nulls(open_containers)
 				screenmob.client.screen += open_containers
 			screenmob.client.screen += toggle_palette
-
-			if(action_intent)
-				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
 
 		if(HUD_STYLE_REDUCED) //Reduced HUD
 			hud_shown = FALSE //Governs behavior of other procs

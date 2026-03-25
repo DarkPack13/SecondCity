@@ -437,18 +437,6 @@
 /obj/underplate/stuff
 	icon_state = "stuff"
 
-/obj/structure/billiard_table
-	name = "billiard table"
-	desc = "Come here, play some BALLS. I know you want it so much..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "billiard1"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/billiard_table/Initialize(mapload)
-	. = ..()
-	icon_state = "billiard[rand(1, 3)]"
-
 /obj/structure/pole
 	name = "stripper pole"
 	desc = "A pole fastened to the ceiling and floor, used to show of ones goods to company."
@@ -513,14 +501,13 @@
 /obj/structure/fire_barrel
 	name = "barrel"
 	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
-	icon_state = "firebarrel"
+	icon = 'modular_darkpack/modules/decor/icons/fires.dmi'
+	icon_state = "fire_barrel_on_fire"
 	anchored = TRUE
 	density = TRUE
-
-/obj/structure/fire_barrel/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#ffa800")
+	light_range = 3
+	light_power = 2
+	light_color = "#ffa800"
 
 /obj/structure/fountain
 	name = "fountain"
@@ -555,11 +542,14 @@
 	else
 		icon_state = "graffiti[rand(1, 3)]"
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/kopatich
 	name = "hide carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kopatich"
 
 /obj/effect/decal/baalirune
@@ -649,24 +639,8 @@
 	name = "carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kover"
-
-/obj/were_ice
-	name = "ice block"
-	desc = "Stores some precious organs..."
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf_lupus.dmi'
-	icon_state = "ice_man"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-
-/obj/were_ice/lupus
-	icon_state = "ice_wolf"
-
-/obj/were_ice/crinos
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf.dmi'
-	icon_state = "ice"
-	pixel_w = -8
-
 
 /obj/structure/bury_pit
 	name = "bury pit"

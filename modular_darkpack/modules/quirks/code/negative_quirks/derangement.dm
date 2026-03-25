@@ -11,6 +11,7 @@
 	value = -8
 	hardcore_value = 6
 	quirk_flags = QUIRK_PROCESSES
+	darkpack_allowed = TRUE
 	mob_trait = TRAIT_SHIFTY_EYES // they're deranged, so give them the trait that tells people around them about their crazy eyes
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics) // happy pills! :)
 	var/process_interval = 3 SECONDS
@@ -21,6 +22,8 @@
 	derangements = subtypesof(/datum/hallucination/malk)
 
 /datum/quirk/derangement/process(seconds_per_tick)
+	if(!quirk_holder.client)
+		return
 	if(!COOLDOWN_FINISHED(src, next_process))
 		return
 	if(SPT_PROB(2, seconds_per_tick))
@@ -60,6 +63,7 @@
 	malk.client?.images -= fake_floor
 
 /datum/hallucination/malk
+	random_hallucination_weight = 0 // so it doesn't show up for kine that drink absinthe or something
 
 /datum/hallucination/malk/ambience
 
@@ -99,15 +103,97 @@
 		return
 
 	var/obj/speaker = pick_weight(objects)
-	var/speech = pick(audible_hallucinations)
+	var/speech = spooky_font_replace(pick(audible_hallucinations))
 	var/language = hallucinator.get_random_understood_language()
 	var/message = hallucinator.compose_message(speaker, language, speech)
 	hallucinator.playsound_local(hallucinator, audible_hallucinations[speech], vol = 20, vary = TRUE)
 	if(hallucinator.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
-		hallucinator.create_chat_message(speaker, language, speech, spans = list(hallucinator.speech_span))
-	to_chat(target = hallucinator, text = message)
+		hallucinator.create_chat_message(speaker, language, speech, spans = list("italics"))
+	to_chat(hallucinator, span_cult_italic(message))
 
 	return TRUE
 
+// override for the your_mother hallucination for malkavians
+/datum/hallucination/your_mother/malk
+	var/malk_file = "~darkpack/malk_mother_hallucination.json" //malkavian specific file
+	mother = /obj/effect/client_image_holder/hallucination/your_mother/malk
+
+/datum/hallucination/your_mother/malk/start()
+	var/mob/living/carbon/human/malk = hallucinator
+	var/age = malk.chronological_age
+	if(!malk.client || malk.stat >= UNCONSCIOUS)
+		return FALSE
+
+	var/list/spawn_locs = list()
+	for(var/turf/open/floor in view(malk, 4))
+		if(floor.is_blocked_turf(exclude_mobs = TRUE))
+			continue
+		spawn_locs += floor
+
+	if(!length(spawn_locs))
+		return FALSE
+	var/turf/spawn_loc = pick(spawn_locs)
+	mother = new /obj/effect/client_image_holder/hallucination/your_mother/malk(spawn_loc, malk, src)
+	mother.AddComponent(/datum/component/leash, owner = malk, distance = get_dist(malk, mother)) //basically makes mother follow them
+	point_at(malk)
+	talk("[capitalize(malk.real_name)]!!") // Your mother won't be fooled by paltry disguises
+	var/list/scold_lines = list(
+		pick_list_replacements(malk_file, "do_something"),
+		pick_list_replacements(malk_file, "be_upset"),
+		pick_list_replacements(malk_file, "get_reprimanded"),
+	)
+
+	if(age >= 50)
+		scold_lines = list(
+			pick_list_replacements(malk_file, "do_something_old"),
+			pick_list_replacements(malk_file, "be_upset"),
+			pick_list_replacements(malk_file, "get_reprimanded_old"),
+		)
+	var/delay = 4 SECONDS
+	for(var/line in scold_lines)
+		addtimer(CALLBACK(src, PROC_REF(talk), line), delay)
+		delay += 5 SECONDS
+	addtimer(CALLBACK(src, PROC_REF(exit)), delay + 10 SECONDS)
+	return TRUE
+
+
+/obj/effect/client_image_holder/hallucination/your_mother/malk
+	gender = FEMALE
+	image_icon = 'icons/mob/simple/simple_human.dmi'
+	name = "your mother"
+	desc = "... but, that can't be her, can it?"
+	image_state = ""
+
+/obj/effect/client_image_holder/hallucination/your_mother/malk/Initialize(mapload, list/mobs_which_see_us, datum/hallucination/parent)
+	var/mob/living/carbon/human/hallucinator = parent.hallucinator
+	var/outfits = subtypesof(/datum/outfit/mafia)
+	if (ishuman(hallucinator))
+		var/mob/living/carbon/dna_haver = hallucinator
+		image_icon = image(get_dynamic_human_appearance(pick(outfits), dna_haver.dna.species.type))
+		return ..()
+
+	image_icon = hallucinator.icon
+	image_state = hallucinator.icon_state
+	image_pixel_x = hallucinator.pixel_x
+	image_pixel_y = hallucinator.pixel_y
+	return ..()
+
+// the random hallucination type will store overrides and extensions of basegame hallucinations, as well as untouched basegame hallucinations like eyes_in_the_dark
+/datum/hallucination/malk/random
+	var/list/hallucinations = list(/datum/hallucination/eyes_in_dark, /datum/hallucination/your_mother/malk, /datum/hallucination/blood_flow/malk)
+
+/datum/hallucination/malk/random/start()
+	hallucinator.cause_hallucination(pick(hallucinations), "malkavian derangement")
+	return TRUE
+
+// 'Blood Flow'
+/datum/hallucination/blood_flow/malk
+	random_hallucination_weight = 0
+
+/datum/hallucination/blood_flow/malk/by_god()
+	if(QDELETED(src) || QDELETED(hallucinator) || QDELETED(bleeding_bodypart))
+		return
+
+	to_chat(hallucinator, span_warning("The blood doesn't stop flowing from my injury, yet it doesn't seem to hurt..."))
 
 #undef FLOOR_DISAPPEAR

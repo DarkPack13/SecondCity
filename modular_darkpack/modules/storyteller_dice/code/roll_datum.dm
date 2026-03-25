@@ -68,16 +68,16 @@
 	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
 
 	var/output_combined = fieldset_block(title, jointext(last_output_text, "<br>"), "boxed_message")
-	for(var/mob/player_mob in get_mobs_to_show(roller))
+	for(var/mob/player_mob in get_mobs_to_show(roller, target))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
 		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
 
-		SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
+			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
 			if(last_sucess_amount > 0)
 				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
@@ -89,18 +89,23 @@
 	return output
 
 
-/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller)
+/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
 		if(ROLL_PUBLIC)
 			return viewers(DEFAULT_MESSAGE_RANGE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
+		if(ROLL_PRIVATE_AND_TARGET)
+			if(roller == target || !isliving(target))
+				return list(roller)
+			else
+				return list(roller, target)
 		if(ROLL_PRIVATE_ADMIN)
 			return GLOB.admins + roller
 		if(ROLL_ADMIN)
 			return GLOB.admins
 		if(ROLL_NONE)
-			return // Not even important enough to be admin visable.
+			return // Not even important enough to be admin visible.
 
 /datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
 	var/dice_amount = 0

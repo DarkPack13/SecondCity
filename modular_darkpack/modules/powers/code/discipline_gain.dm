@@ -11,9 +11,9 @@
  * * discipline_checking - The Discipline type that access to is being checked.
  */
 /proc/can_access_discipline(mob/living/carbon/human/vampire_checking, discipline_checking)
-	if (isghoul(vampire_checking))
+	if (get_ghoul_splat(vampire_checking))
 		return TRUE
-	if (!iskindred(vampire_checking))
+	if (!get_kindred_splat(vampire_checking))
 		return FALSE
 	if (!vampire_checking.client)
 		return FALSE
@@ -30,8 +30,8 @@
 		return TRUE
 
 	//next, go through all Clans to check if they have access to any with the Discipline
-	for (var/clan_type in subtypesof(/datum/vampire_clan))
-		var/datum/vampire_clan/clan_checking = new clan_type
+	for (var/clan_type in subtypesof(/datum/subsplat/vampire_clan))
+		var/datum/subsplat/vampire_clan/clan_checking = new clan_type
 
 		//skip this if they can't access it due to whitelists
 		// DARKPACK TODO - reimplement whitelisting

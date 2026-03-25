@@ -4,3 +4,4 @@
 	base_icon_state = "old"
 	bash_difficulty = 7
 	bash_successes_needed = 2
+	lockpick_difficulty = 6

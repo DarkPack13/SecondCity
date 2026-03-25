@@ -138,7 +138,7 @@
 		return
 
 	/*
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		if(fear)
 			step_away(src,fear,99)
 			if(prob(25))
@@ -180,9 +180,9 @@
 /*
 /mob/living/carbon/proc/get_frenzy_targets()
 	var/list/targets = list()
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-			if(!iskindred(L) && L.bloodpool && L.stat != DEAD)
+			if(!get_kindred_splat(L) && L.bloodpool && L.stat != DEAD)
 				targets += L
 				if(L == frenzy_target)
 					return L

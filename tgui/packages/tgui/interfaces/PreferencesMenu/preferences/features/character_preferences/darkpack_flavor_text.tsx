@@ -11,7 +11,7 @@ export const flavor_text: Feature<string> = {
 };
 
 export const nsfw_flavor_text: Feature<string> = {
-  name: 'NSFW Flavor Text',
+  name: 'Flavor Text (NSFW)',
   description: "Appears when your character is examined (but only if they're identifiable - try a gas mask).",
   component: FeatureTextInput,
 };
@@ -24,7 +24,7 @@ export const character_notes: Feature<string> = {
 };
 
 export const ooc_notes: Feature<string> = {
-  name: 'OOC Notes (NSFW))',
+  name: 'OOC Notes (NSFW)',
   description: 'Anything you want other players to know about you goes here, such as antag information, OOC triggers, etc.',
   component: FeatureTextInput,
 };
@@ -32,19 +32,19 @@ export const ooc_notes: Feature<string> = {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const criminal_record: Feature<string> = {
-  name: 'Criminal Records',
+  name: 'Records (Criminal)',
   description: 'Viewable with security access. For criminal records, arrest history, things like that.',
   component: FeatureTextInput,
 };
 
 export const medical_record: Feature<string> = {
-  name: 'Medical Records',
+  name: 'Records (Medical)',
   description: 'Viewable with medical access. For things like medical history, prescriptions, DNR orders, etc.',
   component: FeatureTextInput,
 };
 
 export const exploitable_info: Feature<string> = {
-  name: 'Exploitable Records',
+  name: 'Records (Exploitable)',
   description:
     'Can be IC or OOC. Viewable by certain antagonists, as well as ghosts. Generally contains \
   things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
@@ -53,7 +53,7 @@ export const exploitable_info: Feature<string> = {
 };
 
 export const background_info: Feature<string> = {
-  name: 'Background Records',
+  name: 'Records (Background)',
   description: 'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
   component: FeatureTextInput,
 };

@@ -71,6 +71,11 @@
 	using.screen_loc = ui_human_area
 	static_inventory += using
 
+	using = new /atom/movable/screen/memories(null, src)
+	using.icon = ui_style
+	using.screen_loc = ui_human_memories_area
+	static_inventory += using
+
 	action_intent = new /atom/movable/screen/combattoggle/flashy(null, src)
 	action_intent.icon = ui_style
 	action_intent.screen_loc = ui_combat_toggle
@@ -273,11 +278,15 @@
 	infodisplay += healthdoll
 
 	// DARKPACK EDIT ADD START
-	bloodpool_icon =  new /atom/movable/screen/bloodpool(null, src)
+	bloodpool_icon = new /atom/movable/screen/bloodpool(null, src)
 	infodisplay += bloodpool_icon
 
 	zone_icon = new /atom/movable/screen/zone_hud(null, src)
 	infodisplay += zone_icon
+
+	if(owner.splats)
+		for(var/datum/splat/splat in owner.splats)
+			splat.add_relevent_huds(src)
 	// DARKPACK EDIT ADD END
 
 	stamina = new /atom/movable/screen/stamina(null, src)
