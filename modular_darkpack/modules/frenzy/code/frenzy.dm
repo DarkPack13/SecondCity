@@ -48,6 +48,7 @@
 			frenzy_hardness = min(10, frenzy_hardness + 1)
 */
 
+// Fleeing is used for either fox frenzies, or rotschreck
 /mob/living/carbon/proc/enter_frenzy_mode(atom/target, fleeing = FALSE)
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
@@ -65,7 +66,7 @@
 	apply_status_effect(/datum/status_effect/frenzy, target)
 
 	// This is assuming no other interaction happens to remove it before this.
-	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 3 TURNS)
+	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
 
 /mob/living/carbon/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
