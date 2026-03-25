@@ -53,6 +53,8 @@
 	for(var/mob/living/potential_target as anything in shitlist)
 		if(!targeting_strategy.can_attack(living_mob, potential_target, vision_range))
 			continue
+		if(potential_target == living_mob)
+			continue
 		enemies_list += potential_target
 
 	if(!length(enemies_list))
