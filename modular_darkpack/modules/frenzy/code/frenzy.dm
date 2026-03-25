@@ -18,7 +18,7 @@
 	if(!client && !isnpc(src)) // I guess this is to make sure afk players dont have there characters frenzy while they arent here?
 		return
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		to_chat(src, "I need [span_danger("<b>BLOOD</b>")]. The [span_danger("<b>BEAST</b>")] is calling. Rolling...")
 	/* // DARKPACK TODO - WEREWOLF
 	else if(isshifter(src))
@@ -98,12 +98,12 @@
 	if(frenzy_result >= 5)
 		return
 	// Mabye change some logic to signals as well.
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		enter_frenzy_mode(fire, TRUE)
 
 /mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, flavor_text = "Something")
-	var/datum/splat/vampire/kindred/kindred_species = iskindred(src)
-	var/stat_to_roll = kindred_species.enlightenment ? STAT_INSTINCT : STAT_SELF_CONTROL
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
+	var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
 	var/datum/storyteller_roll/frenzy/kindred/frenzy_roll = new()
 	frenzy_roll.applicable_stats = list(stat_to_roll)
 	frenzy_roll.difficulty = difficulty
@@ -217,7 +217,7 @@
 					Move(T)
 */
 
-#warn placeholder
+#warn placeholder, mostly for easy debugging atm
 /mob/living/carbon/verb/manual_frenzy(atom/movable/AM as mob|obj in oview(7))
 	set name = "Frenzy"
 	set category = "Object"
@@ -227,7 +227,7 @@
 	if(!issupernatural(src))
 		return
 
-	if(iskindred(src))
+	if(get_kindred_splat(src))
 		trigger_kindred_frenzy(AM)
 	else
 		enter_frenzy_mode(AM)
