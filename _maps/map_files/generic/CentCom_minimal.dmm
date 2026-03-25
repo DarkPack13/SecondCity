@@ -40,6 +40,10 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
+"J" = (
+/obj/effect/vip_barrier/elysium,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/control)
 "P" = (
 /obj/structure/vampdoor,
 /turf/open/floor/iron,
@@ -535,7 +539,7 @@ a
 a
 a
 a
-a
+J
 P
 a
 a
@@ -567,7 +571,7 @@ a
 a
 a
 a
-a
+s
 d
 a
 a

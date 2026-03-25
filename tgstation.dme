@@ -7328,6 +7328,7 @@
 #include "modular_darkpack\modules\movie_theatre\code\areas.dm"
 #include "modular_darkpack\modules\movie_theatre\code\fluff.dm"
 #include "modular_darkpack\modules\movie_theatre\code\popcorn_maker.dm"
+#include "modular_darkpack\modules\npc\code\barriers.dm"
 #include "modular_darkpack\modules\npc\code\landmarks.dm"
 #include "modular_darkpack\modules\npc\code\human\_npc.dm"
 #include "modular_darkpack\modules\npc\code\human\clothing_datums.dm"
