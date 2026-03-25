@@ -10,9 +10,22 @@
 	icon = 'modular_darkpack/master_files/icons/hud/lobby/ready.dmi'
 	screen_loc = "TOP:-175,CENTER:-4"
 
+/atom/movable/screen/lobby/button/ready/Click(location, control, params)
+	var/mob/dead/new_player/new_player = hud.mymob
+	if(new_player?.ready == PLAYER_NOT_READY)
+		if(!new_player.check_discipline_warning())
+			return
+	return ..()
+
 /atom/movable/screen/lobby/button/join
 	icon = 'modular_darkpack/master_files/icons/hud/lobby/join.dmi'
 	screen_loc = "TOP:-175,CENTER:-4"
+
+/atom/movable/screen/lobby/button/join/Click(location, control, params)
+	var/mob/dead/new_player/new_player = hud.mymob
+	if(!new_player?.check_discipline_warning())
+		return
+	return ..()
 
 /atom/movable/screen/lobby/button/observe
 	icon = 'modular_darkpack/master_files/icons/hud/lobby/observe.dmi'

@@ -7,7 +7,7 @@
 
 /obj/item/storage/backpack/satchel/proc/conceal(mob/user)
 	icon_hidden = !icon_hidden
-	worn_icon_state = icon_hidden ? "nothing" : initial(worn_icon_state)
+	worn_icon_state = icon_hidden ? "empty" : initial(worn_icon_state)
 
 	to_chat(user, span_notice("You [icon_hidden ? "conceal" : "reveal"] [src].</span>"))
 
