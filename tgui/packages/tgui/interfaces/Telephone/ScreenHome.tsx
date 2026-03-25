@@ -179,6 +179,10 @@ export const ScreenHome = (props: {
 }) => {
   const { act, data } = useBackend<Data>();
   const { setApp } = props;
+  const navigateTo = (app: NavigableApps) => {
+    act('keyboard_click');
+    setApp(app);
+  };
   const { time, date, background_url } = data;
   const convertTo12Hour = (timeStr: string) => {
     const [hourStr, minute] = timeStr.split(':');
@@ -261,7 +265,7 @@ export const ScreenHome = (props: {
                 text="Settings"
                 iconName="cogs"
                 iconColor="white"
-                onClick={() => setApp(NavigableApps.Settings)}
+                onClick={() => navigateTo(NavigableApps.Settings)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -286,7 +290,7 @@ export const ScreenHome = (props: {
                 text="EndPost"
                 iconName="bullhorn"
                 iconColor="white"
-                onClick={() => setApp(NavigableApps.Endpost)}
+                onClick={() => navigateTo(NavigableApps.Endpost)}
               />
             </Stack.Item>
           </Stack>
@@ -326,9 +330,7 @@ export const ScreenHome = (props: {
                 iconColor="white"
                 iconName="phone"
                 text="Phone"
-                onClick={() => {
-                  setApp(NavigableApps.Phone);
-                }}
+                onClick={() => navigateTo(NavigableApps.Phone)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -337,9 +339,7 @@ export const ScreenHome = (props: {
                 iconColor="white"
                 iconName="user"
                 text="Contacts"
-                onClick={() => {
-                  setApp(NavigableApps.Contacts);
-                }}
+                onClick={() => navigateTo(NavigableApps.Contacts)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -349,9 +349,7 @@ export const ScreenHome = (props: {
                 iconName="comments"
                 text="Message+"
                 notification={unreadCount}
-                onClick={() => {
-                  setApp(NavigableApps.Messages);
-                }}
+                onClick={() => navigateTo(NavigableApps.Messages)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -360,7 +358,7 @@ export const ScreenHome = (props: {
                 text="Browser"
                 iconName="globe-americas"
                 iconColor="black"
-                onClick={() => setApp(NavigableApps.Browser)}
+                onClick={() => navigateTo(NavigableApps.Browser)}
               />
             </Stack.Item>
           </Stack>
