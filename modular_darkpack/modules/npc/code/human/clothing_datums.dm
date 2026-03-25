@@ -181,3 +181,22 @@
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/glock19,
 		null,
 	)
+
+/datum/outfit/npc/endron
+	name = "NPC Endron Guard"
+	uniform = /obj/item/clothing/under/vampire/pentex_janitor
+	shoes = /obj/item/clothing/shoes/vampire/jackboots
+	suit = /obj/item/clothing/suit/vampire/vest
+	head = /obj/item/clothing/head/beret/black
+	gloves = /obj/item/clothing/gloves/vampire/latex
+	glasses = /obj/item/clothing/glasses/vampire/sun
+	mask = /obj/item/clothing/mask/gas/explorer
+	l_pocket = /obj/item/stack/dollar/rand
+
+/datum/outfit/npc/endron/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
+	r_hand = pick(
+		/obj/item/melee/baton,
+		/obj/item/gun/ballistic/automatic/darkpack/mp5,
+		null,
+	)

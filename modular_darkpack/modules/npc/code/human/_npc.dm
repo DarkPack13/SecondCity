@@ -67,3 +67,10 @@
 
 /mob/living/carbon/human/npc/police/standing
 	ai_controller = /datum/ai_controller/npc/stand_still
+
+/mob/living/carbon/human/npc/endron
+	ai_controller = /datum/ai_controller/npc/police
+	outfit_type = /datum/outfit/npc/endron
+
+/mob/living/carbon/human/npc/endron/standing
+	ai_controller = /datum/ai_controller/npc/stand_still

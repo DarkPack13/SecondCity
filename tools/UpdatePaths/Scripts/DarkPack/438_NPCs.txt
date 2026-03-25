@@ -3,3 +3,6 @@
 /obj/effect/landmark/npcwall : /obj/effect/landmark/ai_avoid_turf
 /mob/living/carbon/human/npc/incel : /mob/living/carbon/human/npc
 /mob/living/carbon/human/npc/hobo : /mob/living/carbon/human/npc/poor
+/mob/living/carbon/human/npc/endronexecsecurity :  /mob/living/carbon/human/npc/endron/standing
+/mob/living/carbon/human/npc/endronlabsecurity : /mob/living/carbon/human/npc/endron/standing
+/mob/living/carbon/human/npc/endronsecurity : /mob/living/carbon/human/npc/endron/standing
