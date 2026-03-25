@@ -1,53 +1,5 @@
 // V20 p.298 + W20 p.261
 
-
-/*
-/client/Click(object,location,control,params)
-	if(isatom(object))
-		if(ishuman(mob))
-			var/mob/living/carbon/human/H = mob
-			if(H.in_frenzy)
-				return
-	..()
-*/
-
-
-/*
-/datum/storyteller_roll/frenzy
-/mob/living/carbon/proc/rollfrenzy()
-	if(!client && !isnpc(src)) // I guess this is to make sure afk players dont have there characters frenzy while they arent here?
-		return
-
-	if(get_kindred_splat(src))
-		to_chat(src, "I need [span_danger("<b>BLOOD</b>")]. The [span_danger("<b>BEAST</b>")] is calling. Rolling...")
-	/* // DARKPACK TODO - WEREWOLF
-	else if(isshifter(src))
-		to_chat(src, "I'm full of [span_danger("<b>ANGER</b>")], and I'm about to flare up in [span_danger("<b>RAGE</b>")]. Rolling...")
-	*/
-	else
-		to_chat(src, "I'm too [span_danger("<b>AFRAID</b>")] to continue doing this. Rolling...")
-	SEND_SOUND(src, sound('modular_darkpack/modules/deprecated/sounds/bloodneed.ogg', volume = 50))
-
-	var/check = SSroll.storyteller_roll(max(1, round(humanity/2)), min(frenzy_chance_boost, frenzy_hardness), src)
-
-	// Modifier for frenzy duration
-	var/length_modifier = HAS_TRAIT(src, TRAIT_DIFFICULT_FRENZY) ? 2 : 1
-
-	switch(check)
-		if (DICE_CRIT_FAILURE)
-			enter_frenzy_mode()
-			addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 3 TURNS * length_modifier)
-			frenzy_hardness = 1
-		if (DICE_FAILURE)
-			enter_frenzy_mode()
-			addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 TURNS * length_modifier)
-			frenzy_hardness = 1
-		if (DICE_CRIT_WIN)
-			frenzy_hardness = max(1, frenzy_hardness - 1)
-		else
-			frenzy_hardness = min(10, frenzy_hardness + 1)
-*/
-
 // Fleeing is used for either fox frenzies, or rotschreck
 /mob/living/carbon/proc/enter_frenzy_mode(atom/target, fleeing = FALSE)
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
@@ -96,14 +48,13 @@
 	var/datum/storyteller_roll/frenzy/rotschreck/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
-	if(frenzy_result >= 5)
+	if(frenzy_result >= 5) // five is to COMPLTELY ignore it. anything lower.... delays it?
 		return
 	// Mabye change some logic to signals as well.
 	if(get_kindred_splat(src))
 		enter_frenzy_mode(fire, TRUE)
 
 /mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, flavor_text = "Something")
-	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
 	var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
 	var/datum/storyteller_roll/frenzy/kindred/frenzy_roll = new()
 	frenzy_roll.applicable_stats = list(stat_to_roll)
