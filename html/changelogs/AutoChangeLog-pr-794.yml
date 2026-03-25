@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Garou now properly get a small health boost according to the stam bonus the forms provide"
+  - code_imp: "Updating a stat properly updates all modifers for stats"

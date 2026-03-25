@@ -1,0 +1,4 @@
+author: "LucifersCoils"
+delete-after: True
+changes:
+  - balance: "Anyone can now bash doors, but bashing a reinforced door is extra difficult."

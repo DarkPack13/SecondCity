@@ -20,7 +20,7 @@
 
 /obj/item/clothing/head/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 10, "headwear", FALSE)
+	AddComponent(/datum/component/selling, 5, "headwear", FALSE)
 
 /obj/item/clothing/head/vampire/malkav
 	name = "weirdo hat"
