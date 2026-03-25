@@ -25,7 +25,15 @@
 
 /datum/splat/vampire/ghoul/on_gain()
 	owner.give_st_power(/datum/discipline/bloodheal, 1)
+
+	// the below only runs if they have just been ghouled and domitor isnt null
+	// ghouls who join from the menu have their discs handled by the disc pref middleware
 	var/list/clan_disciplines = domitor?.get_clan()?.clan_disciplines
 	if(length(clan_disciplines))
 		for(var/i in 1 to 3)
-			owner.give_st_power(clan_disciplines[i], 1)
+			var/discipline = clan_disciplines[i]
+			if(!discipline)
+				continue
+			owner.give_st_power(discipline, 1)
+			if(ispath(discipline, /datum/discipline/dementation))
+				owner.add_quirk(/datum/quirk/derangement)

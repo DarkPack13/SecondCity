@@ -13,6 +13,12 @@ ON_CRIT_ADDITIONAL_DIE
 ## If having 0 dot in abilities can hardlock you out of features
 #PUNISHING_ZERO_DOTS
 
+##Artifact spawn chance from crates - note, crates usually drop random artifact subtype, so this probability is typically multiplied by the random probability
+ARTIFACT_CRATE_PROBABILITY 20
+
+##Artifact spawn chance from mapped in random spots
+ARTIFACT_RANDOM_PROBABILITY 50
+
 ## Time til day define
 TIME_TILL_DAY 198000
 ## Time till roundend define
@@ -37,3 +43,5 @@ EXTRA_SAVE_SLOTS_BYOND_MEMBER 5
 LOG_STATS
 
 #HUMANITY_SUNLIGHT_RESISTANCE
+
+#EXTRA_ISSUE_URLS https://github.com/DarkPack13/SecondCity
