@@ -74,8 +74,7 @@
 		COOLDOWN_START(src, force_rage_cd, 1 SCENES)
 		return TRUE
 
-	var/area/my_area = get_area(clicker)
-	if(!my_area || !my_area.outdoors)
+	if(!clicker.visible_to_sky())
 		to_chat(clicker, span_warning("You need to be outside to look at the moon!"))
 		return
 

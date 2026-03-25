@@ -24,6 +24,7 @@
 	hivemind.Grant(gaining_mob)
 	malk_font.Grant(gaining_mob)
 	gaining_mob.add_quirk(/datum/quirk/derangement)
+
 	// Madness Network handling
 	LAZYADD(madness_network, gaining_mob)
 	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)

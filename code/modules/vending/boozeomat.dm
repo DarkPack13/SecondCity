@@ -65,13 +65,19 @@
 			"icon" = "wine-glass",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
+				// DARKPACK EDIT START
+				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 12,
+				/*
 				/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass = 12,
-				/obj/item/reagent_containers/cup/glass/drinkingglass/collins_glass = 15, // DARKPACK EDIT ADD START
+				/obj/item/reagent_containers/cup/glass/drinkingglass/collins_glass = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/martini_glass = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/pint = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/vodka_shot = 12,
-				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 15, // DARKPACK EDIT ADD END
+				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 15,
+				*/
+				// DARKPACK EDIT ADD END
+				/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass = 15,
 				/obj/item/reagent_containers/cup/glass/flask = 3,
 				/obj/item/reagent_containers/cup/glass/bottle = 15,
 				/obj/item/reagent_containers/cup/glass/bottle/small = 15,

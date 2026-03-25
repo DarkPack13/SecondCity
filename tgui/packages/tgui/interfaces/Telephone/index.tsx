@@ -224,7 +224,7 @@ const NavigationBar = memo((props: {
   }
 
   return (
-    <Box position="fixed" bottom={0} left={0} right={0} height={3}>
+    <Box position="fixed" bottom={0} left={0} right={0} height={3} style={{ zIndex: 100 }}>
       <Stack
         fill
         textColor={textColor}
