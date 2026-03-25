@@ -542,6 +542,9 @@
 	else
 		icon_state = "graffiti[rand(1, 3)]"
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/kopatich
 	name = "hide carpet"
 	pixel_w = -16
