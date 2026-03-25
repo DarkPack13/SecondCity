@@ -5,7 +5,6 @@
 	icon = "baali"
 	curse = "Fear of the Religion."
 	sense_the_sin_text = "is scared of the lord's presence."
-	signature_discipline = /datum/discipline/daimoinon
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
 		/datum/discipline/presence,

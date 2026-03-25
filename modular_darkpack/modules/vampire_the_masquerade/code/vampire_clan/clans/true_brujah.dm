@@ -5,7 +5,6 @@
 	icon = "true_brujah"
 	curse = "Absence of passion."
 	sense_the_sin_text = "cant express emotions."
-	signature_discipline = /datum/discipline/temporis
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		/datum/discipline/presence,

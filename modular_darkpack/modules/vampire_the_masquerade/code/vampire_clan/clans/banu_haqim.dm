@@ -5,7 +5,6 @@
 	icon = "banu_haqim"
 	curse = "Blood Addiction."
 	sense_the_sin_text = "sees themselves as absolute judgement."
-	signature_discipline = /datum/discipline/quietus
 	clan_disciplines = list(
 		/datum/discipline/celerity,
 		/datum/discipline/obfuscate,

@@ -5,7 +5,6 @@
 	icon = "malkavian"
 	curse = "Insanity."
 	sense_the_sin_text = "frightens people near them."
-	signature_discipline = /datum/discipline/dementation
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dementation,

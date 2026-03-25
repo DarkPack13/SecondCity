@@ -5,7 +5,6 @@
 	icon = "daughters_of_cacophony"
 	curse = "Hear more than should."
 	sense_the_sin_text = "has a mind that is envelopped by nonstopping music."
-	//signature_discipline =  /datum/discipline/melpominee
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
 		/datum/discipline/melpominee,

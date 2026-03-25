@@ -5,7 +5,6 @@
 	icon = "lasombra"
 	curse = "Technology refuse."
 	sense_the_sin_text = "fears change itself evermore."
-	signature_discipline = /datum/discipline/obtenebration
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		/datum/discipline/dominate,

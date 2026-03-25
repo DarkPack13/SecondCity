@@ -5,7 +5,6 @@
 	icon = "giovanni"
 	curse = "Harmful bites."
 	sense_the_sin_text = "never considers any action too great for their family."
-	signature_discipline = /datum/discipline/necromancy
 	clan_disciplines = list(
 		/datum/discipline/potence,
 		/datum/discipline/dominate,

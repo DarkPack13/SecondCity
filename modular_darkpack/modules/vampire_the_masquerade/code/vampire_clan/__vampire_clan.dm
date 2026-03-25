@@ -42,9 +42,6 @@
 	/// daimoinon 1 text
 	var/sense_the_sin_text = "has been abandoned by the cold ocean of the night with nobody to keep them afloat."
 
-	/// signature rare discipline normally exclusive among to the clan (or select clans)
-	var/signature_discipline
-
 /**
  * Applies Clan-specific effects to the mob
  * gaining this Clan. Will alter the mob's

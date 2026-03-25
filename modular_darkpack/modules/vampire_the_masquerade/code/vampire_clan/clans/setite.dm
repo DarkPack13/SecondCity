@@ -5,7 +5,6 @@
 	icon = "followers_of_set"
 	curse = "Decreased moving speed in lighted areas."
 	sense_the_sin_text = "believes every stain of sin is a virtue."
-	signature_discipline = /datum/discipline/serpentis
 	clan_disciplines = list(
 		/datum/discipline/obfuscate,
 		/datum/discipline/presence,

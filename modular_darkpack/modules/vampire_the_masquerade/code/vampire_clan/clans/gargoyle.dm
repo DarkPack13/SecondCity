@@ -5,7 +5,6 @@
 	icon = "gargoyle"
 	curse = "All Gargoyles, much like the Nosferatu, are hideous to look at, a byproduct of their occult origins (and the varied Kindred stock from which they originate). This means that Gargoyles, just like the Nosferatu, have to hide their existence from common mortals, as their mere appearance is a breach of the Masquerade. In addition, the nature of the bloodline's origin manifests itself in the fact that Gargoyles are highly susceptible to mind control of any source. This weakness is intentional; a flaw placed into all Gargoyles by the Tremere in the hope that it would make them easier to control (and less likely to rebel)."
 	sense_the_sin_text = "has a mind like a fortress with gates open and unbarred. "
-	//signature_discipline = /datum/discipline/visceratika
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
 		/datum/discipline/potence,
