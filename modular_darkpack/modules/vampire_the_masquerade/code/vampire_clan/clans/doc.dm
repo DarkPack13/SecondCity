@@ -16,7 +16,3 @@
 	enlightenment = FALSE
 	whitelisted = TRUE
 	subsplat_keys = /obj/item/vamp/keys/daughters
-
-/datum/subsplat/vampire_clan/daughters_of_cacophony/on_gain(mob/living/carbon/human/vampire, joining_round)
-	. = ..()
-

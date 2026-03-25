@@ -11,7 +11,7 @@
 	var/bloodcost = 1
 
 /datum/status_effect/condemnation/lying_weakness
-	id = STATUS_EFFECT_LYING_WEAKNESS
+	id = "lying_weakness"
 	name = "No Lying Tongue"
 	genrequired = 13
 	bloodcost = 1
@@ -24,7 +24,7 @@
 	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/physical_weakness
-	id = STATUS_EFFECT_PHYSICAL_WEAKNESS
+	id = "physical_weakness"
 	name = "Baby Strength"
 	genrequired = 12
 	bloodcost = 2
@@ -38,7 +38,7 @@
 	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/mental_weakness
-	id = STATUS_EFFECT_MENTAL_WEAKNESS
+	id = "mental_weakness"
 	name = "Reap Mentality"
 	genrequired = 11
 	bloodcost = 3
@@ -50,7 +50,7 @@
 	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/offspring_weakness
-	id = STATUS_EFFECT_OFFSPRING_WEAKNESS
+	id = "offspring_weakness"
 	name = "Sterile Vitae"
 	genrequired = 10
 	bloodcost = 4
@@ -63,7 +63,7 @@
 	to_chat(owner, span_userdanger(span_bold("You feel like a great curse was placed on you!")))
 
 /datum/status_effect/condemnation/success_weakness
-	id = STATUS_EFFECT_SUCCESS_WEAKNESS
+	id = "success_weakness"
 	name = "The Mark Of Doom"
 	genrequired = 10
 	bloodcost = 5

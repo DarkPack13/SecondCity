@@ -17,8 +17,6 @@
 	female_clothes = /obj/item/clothing/under/vampire/brujah/female
 	subsplat_keys = /obj/item/vamp/keys/brujah
 
-/datum/subsplat/vampire_clan/brujah/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	. = ..()
 
 /datum/subsplat/vampire_clan/brujah/psychomania_effect(mob/living/target, mob/living/owner)
 	to_chat(target, span_warning("You see visions of an underground stone monument weeping blood."))
