@@ -221,6 +221,8 @@
 	SIGNAL_HANDLER
 	if(!istype(blocker, /turf/closed))
 		return
+	if(!istype(blocker, /turf/cordon))
+		return
 	if(get_area(owner) == get_area(blocker))
 		return COMSIG_COMPONENT_PERMIT_PASSAGE
 
