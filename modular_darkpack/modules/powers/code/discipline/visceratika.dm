@@ -147,7 +147,8 @@
 
 	var/turf/resolved_stone = stone_turf?.resolve()
 
-	owner.forceMove(resolved_stone)
+	if(resolved_stone)
+		owner.forceMove(resolved_stone)
 	owner.alpha = 30
 	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
