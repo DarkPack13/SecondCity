@@ -372,6 +372,11 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	icon_state = "garbage[rand(1, 6)]" // DARKPACK EDIT ADD
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 15)
 
+// DARKPACK EDIT ADDITION START
+/obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+// DARKPACK EDIT ADDITION END
+
 /obj/effect/decal/cleanable/rubble
 	name = "rubble"
 	desc = "A pile of rubble."

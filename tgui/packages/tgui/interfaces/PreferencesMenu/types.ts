@@ -239,6 +239,10 @@ export type PreferencesMenuData = {
   discipline_points_spent: number;
   discipline_tier: string;
   discipline_tier_details: string;
+  is_trusted: BooleanLike;
+  max_trusted_generation: number;
+  max_public_generation: number;
+  highest_generation_limit: number;
   // DARKPACK EDIT ADD END - DISCIPLINES
 
   // DARKPACK EDIT ADD START

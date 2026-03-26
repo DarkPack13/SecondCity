@@ -73,6 +73,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
 /// Duration of frenzy is doubled
 #define TRAIT_LONGER_FRENZY "longer_frenzy"
+// Setite weakness, sunlight is particularly bad bad.
+#define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
 /// If eyes are uncovered, they will be obviously supernatural to everyone nearby
 #define TRAIT_MASQUERADE_VIOLATING_EYES "masquerade_violating_eyes"
@@ -155,6 +157,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
-
+#define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
 
 // END TRAIT DEFINES
