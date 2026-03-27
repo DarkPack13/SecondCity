@@ -23,6 +23,7 @@
 /datum/component/aura
 	// A list of currently selected emotions by the player
 	var/current_aura = AURA_INNOCENT
+	var/current_emotion_name = "Innocent"
 	var/obj/effect/abstract/shared_particle_holder/aura_smoke
 	var/examine_message = ""
 	var/obj/effect/aura_overlay/aura_glow_image
@@ -67,6 +68,7 @@
 	if(current_aura == new_emotion)
 		return
 
+	current_emotion_name = new_emotion
 	current_aura = GLOB.aura_list[new_emotion]
 	update_aura()
 
@@ -146,6 +148,9 @@
 			examine_message = "[parent_mob.p_Their()] aura swirls with hypnotic, fast colors."
 		else
 			examine_message = ""
+	var/quality = GLOB.emotion_to_quality[current_emotion_name]
+	if(examine_message && quality)
+		examine_message += " You sense [quality]."
 	examine_message += "\n \n" // makes the below stand out more
 	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
 		examine_message += "Black veins pulse through [parent_mob.p_their()] aura."
