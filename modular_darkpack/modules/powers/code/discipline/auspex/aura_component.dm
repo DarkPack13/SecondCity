@@ -40,7 +40,8 @@
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
 	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
 	RegisterSignal(parent_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(parent_mob, COMSIG_COMBAT_MODE_TOGGLED, PROC_REF(on_combat_mode_toggled))
+	if(isnpc(parent_mob))
+		RegisterSignal(parent_mob, COMSIG_COMBAT_MODE_TOGGLED, PROC_REF(on_combat_mode_toggled))
 
 	update_aura()
 
@@ -50,6 +51,8 @@
 	target_hud.remove_atom_from_hud(parent_mob)
 	examine_message = ""
 	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_ATOM_EXAMINE, COMSIG_COMBAT_MODE_TOGGLED))
+	if(isnpc(parent_mob))
+		UnregisterSignal(parent_mob, list(COMSIG_COMBAT_MODE_TOGGLED))
 	QDEL_NULL(aura_smoke)
 	QDEL_NULL(aura_glow_image)
 	QDEL_NULL(aura_base_image)
