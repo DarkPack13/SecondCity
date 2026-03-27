@@ -38,7 +38,9 @@
 	. = ..()
 	if(SScity_time.daytime_started)
 		if(owner.visible_to_sky() && get_kindred_splat(owner))
-			owner.apply_damage(10, BURN)
+			owner.apply_damage(1 TTRPG_DAMAGE, BURN)
+			if(HAS_TRAIT(owner, TRAIT_LIGHT_WEAKNESS))
+				owner.apply_damage(2 TTRPG_DAMAGE, BURN)
 			return TRUE
 	qdel(src)
 
