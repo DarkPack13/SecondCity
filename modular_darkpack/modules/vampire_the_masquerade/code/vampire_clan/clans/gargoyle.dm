@@ -7,7 +7,7 @@
 	clan_disciplines = list(
 		/datum/discipline/fortitude,
 		/datum/discipline/potence,
-		// /datum/discipline/visceratika
+		/datum/discipline/visceratika
 	)
 	clan_traits = list(
 		TRAIT_CANNOT_RESIST_MIND_CONTROL,

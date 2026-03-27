@@ -26,7 +26,8 @@
 	if(old_rank != renown_rank)
 		to_chat(owner, span_boldnotice("You are now a [fera_rank_name(renown_rank)]."))
 
-	owner.write_preference_midround(/datum/preference/numeric/fera_rank, renown_rank)
+	// Not acctually used ANYWHERE rn. Its super easy to just calculate it from our renown anyway.
+	// owner.write_preference_midround(/datum/preference/numeric/fera_rank, renown_rank)
 
 
 /datum/splat/werewolf/proc/get_negative_emotion(attribute)
