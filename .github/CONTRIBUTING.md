@@ -1,18 +1,30 @@
 # CONTRIBUTING
 
-1. [Reporting Issues](#reporting-issues)
-2. [Introduction](#introduction)
-3. [Getting Started](#getting-started)
-4. [Meet the Team](#meet-the-team)
+1. [Lore Team Approval](#lore-team-approval)
+2. [Reporting Issues](#reporting-issues)
+3. [Introduction](#introduction)
+4. [Getting Started](#getting-started)
+5. [Meet the Team](#meet-the-team)
    1. [Headcoder](#headcoder)
    2. [Maintainers](#maintainers)
    3. [Issue Managers](#issue-managers)
-5. [Development Guides](#development-guides)
-6. [Pull Request Process](#pull-request-process)
-7. [Good Boy Points](#good-boy-points)
-8. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
-9. [Banned content](#banned-content)
-10. [A word on Git](#a-word-on-git)
+   4. [Lore Team](#lore-team)
+6. [Development Guides](#development-guides)
+7. [Pull Request Process](#pull-request-process)
+8. [Good Boy Points](#good-boy-points)
+9. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
+10. [Banned content](#banned-content)
+11. [A word on Git](#a-word-on-git)
+
+## Lore Team Approval
+
+You should always make sure there's a Vampire: The Masquerade 20th edition reference (with a page number, ideally!) to what you plan to submit. 
+
+We may occasionally deviate from the book, but such things are carefully planned and documented.
+
+You should always ping the lore team in one of the lore channels on the Discord before starting any work. That way, you avoid putting hours of effort in if they deem your concept isn't compatible with the overall theme.
+
+All pull requests that pertain to lore changes/implementations require lore team approval, and a tag will be applied to your pull request upon review if it's found to be needing lore team approval. Once approval is given, the tag will be removed/switched to 'lore team approved'.
 
 ## Reporting Issues
 
@@ -94,9 +106,15 @@ For more information reference the [Issue Manager Guide](/.github/guides/ISSUE_M
 
 </details>
 
+### Lore Team
+
+The folks that make sure everything regarding code and lore matches the tabletop (and when it doesn't, that the homebrew we cook up isn't too crazy).
+
+You should always run your ideas past them before starting any work. They love to chat, so reach out in one of the public channels! :)
+
 ---
 
-Our team is entirely voluntary, as such we extend our thanks to maintainers, issue managers, and contributors alike for helping keep the project alive.
+Our team is entirely voluntary, as such we extend our thanks to maintainers, issue managers, the lore team staff, admins, mentors, and contributors alike for helping keep the project alive.
 
 ## Development Guides
 

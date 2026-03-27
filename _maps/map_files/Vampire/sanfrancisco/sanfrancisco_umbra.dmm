@@ -1163,9 +1163,7 @@
 /area/vtm/outside/penumbra)
 "ma" = (
 /obj/structure/stone_tile/surrounding/cracked,
-/obj/effect/landmark/teleport_mark{
-	tribe = "Bone Gnawers"
-	},
+/obj/effect/landmark/teleport_mark/alltribes,
 /turf/open/floor/plating/rough/cave{
 	icon_state = "stone8"
 	},
@@ -2243,9 +2241,7 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/penumbra)
 "wV" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Children of Gaia"
-	},
+/obj/effect/landmark/teleport_mark/gaia,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/outside/penumbra)
 "xd" = (
@@ -3148,9 +3144,7 @@
 /area/vtm/outside/penumbra)
 "Ij" = (
 /obj/structure/stone_tile/surrounding,
-/obj/effect/landmark/teleport_mark{
-	tribe = "Galestalkers"
-	},
+/obj/effect/landmark/teleport_mark/wyld,
 /turf/open/floor/plating/stone,
 /area/vtm/outside/penumbra)
 "Iv" = (
@@ -4206,9 +4200,7 @@
 /turf/open/floor/city/toilet/large,
 /area/vtm/outside/penumbra)
 "Up" = (
-/obj/effect/landmark/teleport_mark{
-	tribe = "Glass Walkers"
-	},
+/obj/effect/landmark/teleport_mark/weaver,
 /turf/open/floor/circuit,
 /area/vtm/outside/penumbra)
 "Ur" = (
@@ -4351,9 +4343,7 @@
 	pixel_x = -34;
 	pixel_y = 14
 	},
-/obj/effect/landmark/teleport_mark{
-	tribe = "Black Spiral Dancers"
-	},
+/obj/effect/landmark/teleport_mark/wyrm,
 /turf/open/indestructible/necropolis/air,
 /area/vtm/outside/penumbra)
 "VS" = (

@@ -1,5 +1,6 @@
 2026-02-01:
   XeonMations:
+  - map: Added San Francisco
   - bugfix: Kindred can now exit torpor once again.
   theselfish:
   - rscadd: Alt Job Titles
@@ -23,6 +24,9 @@
   - bugfix: bloodpower no longer gives you blood
   dwinters99 & Major00:
   - sound: new localhost start now button sound
+2026-02-05:
+  Marshmellow105:
+  - bugfix: fixed sf not being pickable
 2026-02-06:
   XeonMations:
   - spellcheck: Renamed Police Chief to Police Captain
@@ -54,6 +58,8 @@
   - map: Catwalks vault is now restricted access
   vinylspiders:
   - code_imp: sinks can be mounted to floors
+  Marshmellow105:
+  - map: fixed some old mapping sins
 2026-02-10:
   Melbert:
   - qol: You are always notified if your paycheck amount changes
