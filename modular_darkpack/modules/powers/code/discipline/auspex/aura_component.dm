@@ -50,7 +50,7 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 	examine_message = ""
-	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_ATOM_EXAMINE, COMSIG_COMBAT_MODE_TOGGLED))
+	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_ATOM_EXAMINE))
 	if(isnpc(parent_mob))
 		UnregisterSignal(parent_mob, list(COMSIG_COMBAT_MODE_TOGGLED))
 	QDEL_NULL(aura_smoke)
