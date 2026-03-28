@@ -94,7 +94,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 // Does the mob have ghostsight?
 #define TRAIT_GHOST_VISION "ghost_vision"
+// Does the mob have hardened skin via Serpentis?
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
+// Is the mob melted into a wall via Visceratika?
+#define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 
 
 // Allows the user to pass through doors
