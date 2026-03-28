@@ -273,6 +273,8 @@
 /datum/discipline_power/obeah/unburden_the_bestial_soul/activate(atom/target)
 	. = ..()
 	var/mob/living/carbon/carbon_target = target
+	if(!carbon_target)
+		return
 	var/obj/item/organ/brain/target_brain = carbon_target.get_organ_by_type(/obj/item/organ/brain)
 	var/list/gotten_traumas = target_brain.traumas
 	if(carbon_target.has_quirk(/datum/quirk/derangement))
