@@ -48,6 +48,12 @@ blood pool.
 	name = "Valeren power name"
 	desc = "Valeren power description"
 
+/datum/storyteller_roll/sense_vitality
+	bumper_text = "sense vitality"
+	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
+	difficulty = 7
+	numerical = TRUE
+
 /datum/discipline_power/valeren/sense_vitality
 	name = "Sense Vitality"
 	desc = "Allows you to determine the vitality of a target."
@@ -60,16 +66,19 @@ blood pool.
 	activate_sound = null
 	vitae_cost = 0
 	var/successes = 0
-
 	var/msg_creature = "" // what kinda phreak they is
 	var/msg_damage = ""
 	var/msg_blood = ""
 	var/msg_disease = ""
 	var/msg_mental = ""
 
+	var/datum/storyteller_roll/sense_vitality/vitality_roll
+
 /datum/discipline_power/valeren/sense_vitality/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, TRUE)
+	if(!vitality_roll)
+		vitality_roll = new()
+	successes = vitality_roll.st_roll(owner, target)
 	if(successes >= 1)
 		return TRUE
 	else
@@ -223,6 +232,15 @@ Kindred, including the Salubri herself, are unaffected
 by this power — their corpselike bodies are too tied to
 death.
 */
+/datum/storyteller_roll/anesthetic_touch
+	bumper_text = "anesthetic touch"
+	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	numerical = TRUE
+
+/datum/storyteller_roll/anesthetic_touch/unwilling
+	bumper_text = "anesthetic touch (unwilling)"
+	difficulty = 8
+
 /datum/discipline_power/valeren/anesthetic_touch
 	name = "Anesthetic Touch"
 	desc = "Soothe your patient's pain, or place a mortal into peaceful slumber."
@@ -234,10 +252,21 @@ death.
 	var/sleep_duration_length = 10 TURNS
 	var/soothe_duration_length = 1 SCENES
 	var/successes = 0
+	var/datum/storyteller_roll/anesthetic_touch/touch_roll
+	var/datum/storyteller_roll/anesthetic_touch/unwilling/touch_roll_unwilling
 
 /datum/discipline_power/valeren/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), (target.combat_mode ? 8 : 6), owner, TRUE)
+	var/datum/storyteller_roll/anesthetic_touch/roll_to_use
+	if(target.combat_mode)
+		if(!touch_roll_unwilling)
+			touch_roll_unwilling = new()
+		roll_to_use = touch_roll_unwilling
+	else
+		if(!touch_roll)
+			touch_roll = new()
+		roll_to_use = touch_roll
+	successes = roll_to_use.st_roll(owner, target)
 	if(successes >= 1)
 		return TRUE
 	else
@@ -307,12 +336,10 @@ tractable.
 /datum/storyteller_roll/burning_touch_resist
 	bumper_text = "resist burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
-	difficulty = 6
 
 /datum/storyteller_roll/burning_touch_focus
 	bumper_text = "focus through burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
-	difficulty = 6
 	spammy_roll = TRUE
 
 /datum/status_effect/burning_touch
@@ -392,6 +419,12 @@ she gains an additional die to resist Rötschreck
 from the effects of battle (but not fire or sunlight). This
 power works for one scene.
 */
+/datum/storyteller_roll/armor_of_caines_fury
+	bumper_text = "armor of caine's fury"
+	applicable_stats = list(STAT_STAMINA, STAT_MELEE)
+	difficulty = 7
+	numerical = TRUE
+
 /datum/discipline_power/valeren/armor_of_caines_fury
 	name = "Armor of Caine's Fury"
 	desc = "The Salubri antitribu is surrounded by a shining, crimson halo. This phantom armor protects the vampire against most physical injury, as well as against Rötschreck."
@@ -403,10 +436,13 @@ power works for one scene.
 	vitae_cost = 1
 	var/successes = 0
 	violates_masquerade = TRUE
+	var/datum/storyteller_roll/armor_of_caines_fury/armor_roll
 
 /datum/discipline_power/valeren/armor_of_caines_fury/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_MELEE), 7, owner, TRUE)
+	if(!armor_roll)
+		armor_roll = new()
+	successes = armor_roll.st_roll(owner, target)
 	if(successes >= 1)
 		return TRUE
 	else
