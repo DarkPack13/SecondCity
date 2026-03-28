@@ -48,5 +48,5 @@
 
 	//gaining_mob.remove_overlay(BODY_ADJ_LAYER)
 	ADD_TRAIT(gaining_mob, TRAIT_WEAK_TO_DOMINATE, VAMPIRE_CLAN_GARGOYLE)
-	var/obj/item/organ/wings/gargoyle/wings = new()
+	var/obj/item/organ/wings/functional/gargoyle/wings = new()
 	wings.Insert(gaining_mob)
