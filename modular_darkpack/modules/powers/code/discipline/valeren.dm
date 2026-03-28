@@ -304,12 +304,25 @@ tractable.
 		target.grippedby(owner, instant = TRUE)
 		owner.do_attack_animation(target, ATTACK_EFFECT_MECHFIRE)
 
+/datum/storyteller_roll/burning_touch_resist
+	bumper_text = "resist burning pain"
+	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	difficulty = 6
+
+/datum/storyteller_roll/burning_touch_focus
+	bumper_text = "focus through burning pain"
+	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	difficulty = 6
+	spammy_roll = TRUE
+
 /datum/status_effect/burning_touch
 	id = "burning_touch"
 	status_type = STATUS_EFFECT_REFRESH
 	duration = 6 TURNS // 30 second debuff duration, so it will still affect them for a few seconds even if they escape their captors grip, as per v20
 	alert_type = /atom/movable/screen/alert/status_effect/burning_touch
 	tick_interval = 2 TURNS // how frequently the pain messages will tick
+	var/datum/storyteller_roll/burning_touch_resist/resist_roll
+	var/datum/storyteller_roll/burning_touch_focus/focus_roll
 	var/list/pain_messages = list(
 		"It burns!",
 		"It hurts!",
@@ -328,9 +341,11 @@ tractable.
 	. = ..()
 	if(!.)
 		return
+	resist_roll = new()
+	focus_roll = new()
 	owner.st_add_stat_mod(STAT_DEXTERITY, -2, "burning_touch") // you're in searing pain, so you're a little less dextrous
 	owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -2, "burning_touch")
-	var/resist_scream = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), 6, owner, FALSE)
+	var/resist_scream = resist_roll.st_roll(owner, owner)
 	if(!resist_scream)
 		owner.emote("scream")
 	RegisterSignal(owner, COMSIG_POWER_TRY_ACTIVATE, PROC_REF(on_discipline_activate))
@@ -340,11 +355,13 @@ tractable.
 	owner.st_remove_stat_mod(STAT_DEXTERITY, "burning_touch")
 	owner.st_remove_stat_mod(STAT_TEMPORARY_WILLPOWER, "burning_touch")
 	UnregisterSignal(owner, COMSIG_POWER_TRY_ACTIVATE)
+	resist_roll = null
+	focus_roll = null
 
 // crispy victims must roll willpower at difficulty 6 to focus through the burning pain
 /datum/status_effect/burning_touch/proc/on_discipline_activate(mob/living/source, datum/discipline_power/power, atom/target)
 	SIGNAL_HANDLER
-	var/success = SSroll.storyteller_roll(source.st_get_stat(STAT_TEMPORARY_WILLPOWER), 6, source, FALSE)
+	var/success = focus_roll.st_roll(source, source)
 	if(!success)
 		to_chat(source, span_userdanger("Burning agony overwhelms your concentration. You cannot focus enough to use your Disciplines!"))
 		return POWER_PREVENT_ACTIVATE
