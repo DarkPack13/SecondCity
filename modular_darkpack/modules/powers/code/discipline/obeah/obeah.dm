@@ -33,7 +33,7 @@
 /datum/discipline_power/obeah/sense_vitality/pre_activation_checks(mob/living/target)
 	. = ..()
 	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, TRUE)
-	if(successes > 1)
+	if(successes >= 1)
 		return TRUE
 	else
 		return FALSE
