@@ -556,7 +556,7 @@ hands or melee weapons.
 // this is basically just potence 5 with stat bonuses, used potence as a baseline because of the 'makes for significant damage' wording in v20 above
 /datum/discipline_power/valeren/vengeance_of_samiel
 	name = "Vengeance of Samiel"
-	desc = "The Salubri antitribu strikes his foe with superhu-man accuracy and strength, as his third eye opens and changes to a furious, icy blue. Some Furies invoke the names of ancient Salubri warriors, while others simply close their normal eyes and let Samiel guide their hands."
+	desc = "The Salubri antitribu strikes their foe with super-human accuracy and strength, as their third eye opens and changes to a furious, icy blue. Some Furies invoke the names of ancient Salubri warriors, while others simply close their normal eyes and let Samiel guide their hands."
 	level = 5
 	check_flags = DISC_CHECK_CAPABLE
 	toggled = TRUE
