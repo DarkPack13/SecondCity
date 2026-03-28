@@ -7,7 +7,7 @@
 	difficulty = 1 // This changes for both.
 
 /datum/storyteller_roll/shepherds_watch/contested
-	bumper_text = "willpower"
+	bumper_text = "shepherds watch"
 
 /datum/proximity_monitor/advanced/shepherds_watch
 	edge_is_a_field = TRUE
