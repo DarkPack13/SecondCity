@@ -29,10 +29,13 @@
 	var/msg_blood = ""
 	var/msg_disease = ""
 	var/msg_mental = ""
+	var/datum/storyteller_roll/sense_vitality/vitality_roll // defined in valeren.dm
 
 /datum/discipline_power/obeah/sense_vitality/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, TRUE)
+	if(!vitality_roll)
+		vitality_roll = new()
+	successes = vitality_roll.st_roll(owner, target)
 	if(successes >= 1)
 		return TRUE
 	else
@@ -164,10 +167,21 @@
 	var/sleep_duration_length = 10 TURNS
 	var/soothe_duration_length = 1 SCENES
 	var/successes = 0
+	var/datum/storyteller_roll/anesthetic_touch/touch_roll // these are defined in valeren.dm
+	var/datum/storyteller_roll/anesthetic_touch/unwilling/touch_roll_unwilling
 
 /datum/discipline_power/obeah/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER), (target.combat_mode ? 8 : 6), owner, TRUE)
+	var/datum/storyteller_roll/anesthetic_touch/roll_to_use
+	if(target.combat_mode)
+		if(!touch_roll_unwilling)
+			touch_roll_unwilling = new()
+		roll_to_use = touch_roll_unwilling
+	else
+		if(!touch_roll)
+			touch_roll = new()
+		roll_to_use = touch_roll
+	successes = roll_to_use.st_roll(owner, target)
 	if(successes >= 1)
 		return TRUE
 	else
