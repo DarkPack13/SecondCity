@@ -1,0 +1,4 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - bugfix: "fixed an issue where some guns had the base ss13 ammo type. now all guns correctly have their darkpack ammo type counterparts"

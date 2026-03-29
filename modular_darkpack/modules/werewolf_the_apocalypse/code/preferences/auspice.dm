@@ -12,4 +12,5 @@
 	return auspice_icon
 
 /datum/preference/choiced/subsplat/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)
-	target.set_auspice(value, TRUE)
+	var/joining_round = !isdummy(target)
+	target.set_auspice(value, joining_round)
