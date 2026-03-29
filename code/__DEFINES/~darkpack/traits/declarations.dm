@@ -158,5 +158,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
-
+#define TRAIT_PREY_EXCLUSION "prey_exclusion"
 // END TRAIT DEFINES

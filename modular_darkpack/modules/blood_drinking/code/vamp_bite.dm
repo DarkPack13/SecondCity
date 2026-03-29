@@ -27,6 +27,15 @@
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 					return
+			// Prey exclusion for Ventrue and anyone with the Flaw. Note that this is different than drinksomeblood.dm and TRAIT_FEEDING_RESTRICTION which disallows ventrue from drinking blood of poor npcs.
+			for(var/quirk as anything in src.quirks)
+				if(istype(quirk, /datum/quirk/darkpack/prey_exclusion))
+					var/datum/quirk/darkpack/prey_exclusion/prey_exclusion_datum = quirk
+					if(prey_exclusion_datum.prey_exclusion && istype(bit_living, prey_exclusion_datum.prey_exclusion))
+						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+						to_chat(src, span_warning("You despise this kind of prey."))
+						// DARKPACK TODO - FRENZY - tgui_input, yes or no to continue feeding in spite of the prey being excluded, if so, frenzy and path/humanity hit
+						return
 
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")
