@@ -17,7 +17,7 @@
 		return
 
 	var/charges = ritual_roll_datum.last_sucess_amount
-	scythe.AddComponent(/datum/component/burning_blade, last_activator, charges)
+	scythe.AddComponent(/datum/component/burning_blade, charges)
 	to_chat(last_activator, span_notice("The scythe ignites with an unholy flame for [charges] swings!"))
 	qdel(src)
 
@@ -27,7 +27,7 @@
 	var/original_icon_state
 	var/charges
 
-/datum/component/burning_blade/Initialize(mob/owner, charges)
+/datum/component/burning_blade/Initialize(charges)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
