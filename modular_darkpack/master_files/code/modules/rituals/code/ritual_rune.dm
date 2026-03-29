@@ -14,7 +14,7 @@
 	var/level = 1
 	var/list/sacrifices = list()
 	var/activation_color
-	var/cost = 0 // this needs to be set in subtypes
+	var/cost = 1 // this needs to be set in subtypes
 	var/ritual_name
 
 	/// What discipline is required (if any) to use this rune.
