@@ -18,9 +18,9 @@
 			//BG.melee_damage_lower = BG.melee_damage_lower+activator_bonus
 			//BG.melee_damage_upper = BG.melee_damage_upper+activator_bonus
 			playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
-			//if(length(H.beastmaster) > H.st_get_stat(STAT_OCCULT))
-				//var/mob/living/simple_animal/hostile/beastmaster/B = pick(H.beastmaster)
-				//B.death()
+			if(length(H.beastmaster_minions) > H.st_get_stat(STAT_OCCULT))
+				var/mob/living/beastmaster_minion = pick(H.beastmaster_minions)
+				beastmaster_minion.death()
 			qdel(src)
 		if(ROLL_FAILURE)
 			qdel(src)
