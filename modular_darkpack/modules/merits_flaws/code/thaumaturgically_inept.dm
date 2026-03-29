@@ -6,11 +6,12 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_TREMERE)
 
-/datum/quirk/darkpack/thaumaturgically_inept/add(client/client_source)
-	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(quirk_holder)
+/datum/quirk/darkpack/thaumaturgically_inept/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+	. = ..()
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(new_holder)
 	if(!kindred_splat)
 		return
 	kindred_splat.remove_power(/datum/discipline/thaumaturgy)
-	for(var/datum/action/action as anything in quirk_holder.actions)
+	for(var/datum/action/action as anything in new_holder.actions)
 		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
 			qdel(action)
