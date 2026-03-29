@@ -36,6 +36,23 @@
 						to_chat(src, span_warning("You despise this kind of prey."))
 						// DARKPACK TODO - FRENZY - tgui_input, yes or no to continue feeding in spite of the prey being excluded, if so, frenzy and path/humanity hit
 						return
+			if(HAS_TRAIT(src, TRAIT_VICTIM_OF_THE_MASQUERADE))
+				var/datum/quirk/darkpack/victim_of_the_masquerade/VOTM
+				for(var/datum/quirk/darkpack/victim_of_the_masquerade/Q in src.quirks)
+					VOTM = Q
+					break
+				if(VOTM)
+					if(!VOTM.victim_of_the_masquerade_roll)
+						VOTM.victim_of_the_masquerade_roll = new()
+					var/result = VOTM.victim_of_the_masquerade_roll.st_roll(src, bit_living)
+					if(result != ROLL_SUCCESS)
+						to_chat(src, span_warning("What the hell am I doing? I'm not a vampire... oh god... I feel lightheaded..."))
+						src.Unconscious(1 TURNS)
+						SEND_SIGNAL(src, COMSIG_PATH_HIT, -1, 0, FALSE)
+						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+						return
+					else
+						to_chat(src, span_notice("Your teeth... or are they fangs... sink deep. It feels warm and good... oh god... this is wrong..."))
 
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")

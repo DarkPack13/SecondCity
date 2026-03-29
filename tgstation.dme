@@ -7327,6 +7327,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\prey_exclusion.dm"
 #include "modular_darkpack\modules\merits_flaws\code\stillness_of_death.dm"
 #include "modular_darkpack\modules\merits_flaws\code\vengeful.dm"
+#include "modular_darkpack\modules\merits_flaws\code\victim_of_the_masquerade.dm"
 #include "modular_darkpack\modules\mob_spawners\code\citizen.dm"
 #include "modular_darkpack\modules\movie_theatre\code\areas.dm"
 #include "modular_darkpack\modules\movie_theatre\code\fluff.dm"
