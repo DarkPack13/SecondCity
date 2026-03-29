@@ -1,0 +1,4 @@
+author: "LucifersCoils"
+delete-after: True
+changes:
+  - rscadd: "Setites now take two extra stacks of damage from sunlight."
