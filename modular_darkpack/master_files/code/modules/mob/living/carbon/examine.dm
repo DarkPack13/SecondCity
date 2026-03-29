@@ -22,6 +22,8 @@
 /mob/living/carbon/human/display_darkpack_examine_text(mob/user)
 	. = ..()
 
+	var/mob/living/living_user = isliving(user)
+
 	var/list/zero = list("Startlingly ugly. [p_are()] [p_they()] doing some awful cosplay...?", "JESUS, [p_they()] look like [p_they()] [p_are()] straight out of a horror movie!", "GOODNESS [p_they()] [p_are()] ugly.", "So ugly you could almost cry.")
 	var/list/one = list("Yikes. [p_They()] [p_are()] not easy on the eyes.", "You wince slightly just looking at [p_them()].", "Someone clearly didn't win the genetic lottery.", "Definitely not winning any beauty contests.")
 	var/list/two = list("Pretty average looking. Nothing to write home about.", "Neither here nor there in the looks department.", "Completely ordinary in appearance.", "The very definition of 'plain'.", "Not attractive, but not unattractive, either.")
@@ -70,3 +72,6 @@
 				. += span_rose(span_bold("[pick(five)]<br>"))
 		if(HAS_TRAIT(src, TRAIT_PERMAFANGS))
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
+		if(HAS_TRAIT(src, TRAIT_BETRAYERS_MARK))
+			if(living_user?.is_clan(/datum/subsplat/vampire_clan/tremere))
+				. += span_bolddanger("[p_They()] [p_have()] a glowing 'T' upon [p_their()] forehead - the Mark of a traitor to Clan Tremere!<br>")

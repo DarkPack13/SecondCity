@@ -7317,6 +7317,7 @@
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
 #include "modular_darkpack\modules\merits_flaws\code\_darkpack_quirk.dm"
+#include "modular_darkpack\modules\merits_flaws\code\betrayers_mark.dm"
 #include "modular_darkpack\modules\merits_flaws\code\giovanni_sanguine_incongruity.dm"
 #include "modular_darkpack\modules\merits_flaws\code\horrific_appearance_quirk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\illegal_identity.dm"
