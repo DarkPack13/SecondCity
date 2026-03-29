@@ -37,14 +37,14 @@
 						// DARKPACK TODO - FRENZY - tgui_input, yes or no to continue feeding in spite of the prey being excluded, if so, frenzy and path/humanity hit
 						return
 			if(HAS_TRAIT(src, TRAIT_VICTIM_OF_THE_MASQUERADE))
-				var/datum/quirk/darkpack/victim_of_the_masquerade/VOTM
+				var/datum/quirk/darkpack/victim_of_the_masquerade/votm
 				for(var/datum/quirk/darkpack/victim_of_the_masquerade/Q in src.quirks)
-					VOTM = Q
+					votm = Q
 					break
-				if(VOTM)
-					if(!VOTM.victim_of_the_masquerade_roll)
-						VOTM.victim_of_the_masquerade_roll = new()
-					var/result = VOTM.victim_of_the_masquerade_roll.st_roll(src, bit_living)
+				if(votm)
+					if(!votm.victim_of_the_masquerade_roll)
+						votm.victim_of_the_masquerade_roll = new()
+					var/result = votm.victim_of_the_masquerade_roll.st_roll(src, bit_living)
 					if(result != ROLL_SUCCESS)
 						to_chat(src, span_warning("What the hell am I doing? I'm not a vampire... oh god... I feel lightheaded..."))
 						src.Unconscious(1 TURNS)
@@ -52,7 +52,22 @@
 						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 						return
 					else
-						to_chat(src, span_notice("Your teeth... or are they fangs... sink deep. It feels warm and good... oh god... this is wrong..."))
+						to_chat(src, span_notice("Your teeth... or are they fangs... sink deep. It feels warm and good... oh god... this is wrong...!"))
+
+			if(HAS_TRAIT(src, TRAIT_VAMPIRE_TERRITORIAL))
+				var/datum/quirk/darkpack/territorial/terr = null
+
+				for(var/datum/quirk/darkpack/territorial/Q in src.quirks)
+					terr = Q
+					break
+
+				if(terr && terr.territory)
+					var/area/current_area = get_area(bit_living)
+
+					if(current_area.type != terr.territory)
+						to_chat(src, span_warning("This isn't your territory. You don't want to feed here."))
+						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+						return
 
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")
