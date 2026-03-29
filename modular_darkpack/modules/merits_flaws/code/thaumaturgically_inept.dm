@@ -11,4 +11,6 @@
 	if(!kindred_splat)
 		return
 	kindred_splat.remove_power(/datum/discipline/thaumaturgy)
-	//for(var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy as anything in )
+	for(var/datum/action/action as anything in quirk_holder.actions)
+		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
+			qdel(action)
