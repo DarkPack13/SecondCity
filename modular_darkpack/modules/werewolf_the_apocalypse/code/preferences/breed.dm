@@ -32,4 +32,5 @@
 	return garou_icon
 
 /datum/preference/choiced/subsplat/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
-	target.set_breed_form(value, TRUE)
+	var/joining_round = !isdummy(target)
+	target.set_breed_form(value, joining_round)
