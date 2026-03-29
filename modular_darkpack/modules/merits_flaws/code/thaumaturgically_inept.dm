@@ -7,7 +7,8 @@
 	included_clans = list(VAMPIRE_CLAN_TREMERE)
 
 /datum/quirk/darkpack/thaumaturgically_inept/add(client/client_source)
-	var/datum/splat/vampire/kindred/vampire = get_splat_with_discipline(quirk_holder)
-	if(!vampire)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(quirk_holder)
+	if(!kindred_splat)
 		return
-	vampire.remove_power(/datum/discipline/thaumaturgy)
+	kindred_splat.remove_power(/datum/discipline/thaumaturgy)
+	//for(var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy as anything in )
