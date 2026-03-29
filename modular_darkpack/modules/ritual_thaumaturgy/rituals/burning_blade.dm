@@ -45,7 +45,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(on_hit_living))
 
 /datum/component/burning_blade/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_PICKUP))
+	UnregisterSignal(parent, list(COMSIG_ITEM_ATTACK))
 
 	var/obj/item/weapon = parent
 	weapon.damtype = original_damtype
