@@ -27,20 +27,17 @@
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					to_chat(src, span_warning("This vessel is empty. You'll have to find another."))
 					return
-			// Prey exclusion for Ventrue and anyone with the Flaw. Note that this is different than drinksomeblood.dm and TRAIT_FEEDING_RESTRICTION which disallows ventrue from drinking blood of poor npcs.
-			for(var/quirk as anything in src.quirks)
-				if(istype(quirk, /datum/quirk/darkpack/prey_exclusion))
-					var/datum/quirk/darkpack/prey_exclusion/prey_exclusion_datum = quirk
-					if(prey_exclusion_datum.prey_exclusion && istype(bit_living, prey_exclusion_datum.prey_exclusion))
-						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
-						to_chat(src, span_warning("You despise this kind of prey."))
-						// DARKPACK TODO - FRENZY - tgui_input, yes or no to continue feeding in spite of the prey being excluded, if so, frenzy and path/humanity hit
-						return
+			// Prey exclusion for anyone with the Flaw. Note that this is different than drinksomeblood.dm and TRAIT_FEEDING_RESTRICTION which disallows ventrue from drinking blood of poor npcs.
+			var/datum/quirk/darkpack/prey_exclusion/prey_exclusion_datum = src.get_quirk(/datum/quirk/darkpack/prey_exclusion)
+			if(prey_exclusion_datum && prey_exclusion_datum.prey_exclusion && istype(bit_living, prey_exclusion_datum.prey_exclusion))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+				to_chat(src, span_warning("You despise this kind of prey."))
+				// DARKPACK TODO - FRENZY - tgui_input, yes or no to continue feeding in spite of the prey being excluded, if so, frenzy and path/humanity hit
+				return
+
+			// victim of the masquerade flaw
 			if(HAS_TRAIT(src, TRAIT_VICTIM_OF_THE_MASQUERADE))
-				var/datum/quirk/darkpack/victim_of_the_masquerade/votm
-				for(var/datum/quirk/darkpack/victim_of_the_masquerade/Q in src.quirks)
-					votm = Q
-					break
+				var/datum/quirk/darkpack/victim_of_the_masquerade/votm = src.get_quirk(/datum/quirk/darkpack/victim_of_the_masquerade)
 				if(votm)
 					if(!votm.victim_of_the_masquerade_roll)
 						votm.victim_of_the_masquerade_roll = new()
@@ -54,16 +51,11 @@
 					else
 						to_chat(src, span_notice("Your teeth... or are they fangs... sink deep. It feels warm and good... oh god... this is wrong...!"))
 
+			// territorial flaw
 			if(HAS_TRAIT(src, TRAIT_VAMPIRE_TERRITORIAL))
-				var/datum/quirk/darkpack/territorial/terr = null
-
-				for(var/datum/quirk/darkpack/territorial/Q in src.quirks)
-					terr = Q
-					break
-
+				var/datum/quirk/darkpack/territorial/terr = src.get_quirk(/datum/quirk/darkpack/territorial)
 				if(terr && terr.territory)
 					var/area/current_area = get_area(bit_living)
-
 					if(current_area.type != terr.territory)
 						to_chat(src, span_warning("This isn't your territory. You don't want to feed here."))
 						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
