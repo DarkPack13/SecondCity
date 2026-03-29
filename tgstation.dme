@@ -7563,6 +7563,7 @@
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\blood_trap.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\blood_wall.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\bloodwalk.dm"
+#include "modular_darkpack\modules\ritual_thaumaturgy\rituals\burning_blade.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\chime_of_the_unseen_spirits.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\deflection_wooden_doom.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\gargoyle_transformation.dm"
