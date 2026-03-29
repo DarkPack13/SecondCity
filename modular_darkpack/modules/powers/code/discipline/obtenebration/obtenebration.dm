@@ -9,7 +9,7 @@
 	. = ..()
 	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
-	mystic.level = level
+	mystic.level = src.level
 
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"

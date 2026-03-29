@@ -25,7 +25,6 @@
 /datum/storyteller_roll/ritual_roll
 	bumper_text = "ritual"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
-	difficulty = 3 + level
 
 /obj/ritual_rune/Initialize(mapload)
 	. = ..()
@@ -58,6 +57,7 @@
 
 	if(!ritual_roll_datum)
 		ritual_roll_datum = new()
+		ritual_roll_datum.difficulty = 3 + level
 
 	if(ritual_roll_datum.st_roll(last_activator, last_activator) != ROLL_SUCCESS)
 		return FALSE

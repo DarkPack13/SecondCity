@@ -10,7 +10,7 @@
 	. = ..()
 	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
 	thaumaturgy.Grant(owner)
-	thaumaturgy.level = level
+	thaumaturgy.level = src.level
 	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline_power/thaumaturgy

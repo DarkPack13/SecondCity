@@ -11,7 +11,7 @@
 	. = ..()
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
-	ritualist.level = level
+	ritualist.level = src.level
 
 /datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
 	. = ..()
