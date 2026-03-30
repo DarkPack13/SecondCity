@@ -38,6 +38,8 @@
 	add_actions()
 	add_biotypes()
 
+	owner.fae_sight_aura = fae_sight_aura // If our splat has a fae_sight_aura, we apply it here
+
 	on_gain()
 
 	if(owner.hud_used)

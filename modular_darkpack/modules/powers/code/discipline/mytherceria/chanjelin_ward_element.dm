@@ -1,4 +1,4 @@
-/datum/element/chanjelin_ward
+/*/datum/element/chanjelin_ward
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 1
 	// The guy who placed the ward
@@ -108,4 +108,4 @@
 
 	if(roll_check(user))
 		return
-#warn chanjelin_ward_element.dm: this is horribly unfinished!
+#warn chanjelin_ward_element.dm: this is horribly unfinished!*/

@@ -98,63 +98,64 @@ GLOBAL_LIST_INIT(emotion_to_quality, sort_list(list(
 )))
 
 // MYTHERCERIA AURAS START HERE // DARKPACK TODO: replace everything commented "placeholder" with real icons. Some will be base_icon_states (i.e. crinos, mage, fae)
-#define FAESIGHT_GENERIC "generic" // everything not below
+#define FAE_SIGHT_GENERIC "generic" // everything not below
 // Splat detectors
 // <fera>
-#define FAESIGHT_GAROU "brown" // Werewolves // Replace this and other fera with grabbing the mob's breed form (or crinos if in breed form) sprite
-#define FAESIGHT_CORAX "black" // Corax // Placeholder - modular_darkpack/modules/npc/icons/corvid.dmi
-#define FAESIGHT_KITSUNE "fox" // Kitsune // Placeholder - icons/mob/simple/pets.dmi
-#define FAESIGHT_BASTET "cat" // Bastet // Placeholder - icons/mob/simple/pets.dmi
-#define FAESIGHT_NUWISHA "bullterrier" // Coyotes // Placeholder - icons/mob/simple/pets.dmi
-#define FAESIGHT_GURAHL "bear" // Bears // Placeholder - modular_darkpack/modules/npc/icons/bear.dmi
-#define FAESIGHT_MOKOLE "raptor" // Lizards of ALMOST all kinds // Placeholder - icons/mob/simple/lavaland/raptor_big.dmi
-#define FAESIGHT_ROKEA "blahaj" // Sharks // Placeholder - icons/obj/toys/plushes.dmi
-#define FAESIGHT_ANANASI "tank" // Spoder // Placeholder - icons/mob/simple/arachnoid.dmi
-#define FAESIGHT_CAMAZOTZ "bat" // Bats // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_LEPIX "rabbit_white" // Rabbits. Joke fera. // Placeholder - icons/mob/simple/rabbit.dmi
-#define FAESIGHT_NAGAH "snake" // Super secret snakes // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_AJABA "pug" // Hyenas // Placeholder - icons/mob/simple/pets.dmi
-#define FAESIGHT_RATKIN "regalrat" // Terrorism rats // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_APIS "cow" // Hyper-extinct cows. Useful for spirits maybe. // Placeholder - icons/mob/simple/cows.dmi
-#define FAESIGHT_GRONDR "pig" // Hyper-extinct pigs // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_ANURANA "frog" // Mockery frogs // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_KERASI "unicorn" // Mockery rhinos // Placeholder - icons/obj/toys/plushes.dmi
-#define FAESIGHT_SAMSA "cockroach" // Mockery roaches <3 <3 <3 // Placeholder - icons/mob/simple/animal.dmi
-#define FAESIGHT_WARWOLVES "beast_crinos" // Mockery Garou, like the crinos_beast basic mob - modular_darkpack/modules/npc/icons/werewolf.dmi
-#define FAESIGHT_YEREN "monkey" // Mockery apes // Placeholder - icons/mob/human/human.dmi
+#define FAE_SIGHT_GAROU "garou" // Werewolves // Replace this and other fera with grabbing the mob's breed form (or crinos if in breed form) sprite
+#define FAE_SIGHT_CORAX "corax" // Corax // Placeholder - black - modular_darkpack/modules/npc/icons/corvid.dmi
+#define FAE_SIGHT_KITSUNE "kitsune" // Kitsune // Placeholder - fox - icons/mob/simple/pets.dmi
+#define FAE_SIGHT_BASTET "bastet" // Bastet // Placeholder - cat - icons/mob/simple/pets.dmi
+#define FAE_SIGHT_NUWISHA "nuwisha" // Coyotes // Placeholder - bullterrier - icons/mob/simple/pets.dmi
+#define FAE_SIGHT_GURAHL "gurahl" // Bears // Placeholder - bear - modular_darkpack/modules/npc/icons/bear.dmi
+#define FAE_SIGHT_MOKOLE "mokole" // Lizards of ALMOST all kinds // Placeholder - young_green - icons/mob/simple/lavaland/raptor_big.dmi
+#define FAE_SIGHT_ROKEA "rokea" // Sharks // Placeholder - blahaj - icons/obj/toys/plushes.dmi
+#define FAE_SIGHT_ANANASI "ananasi" // Spoder // Placeholder - tank - icons/mob/simple/arachnoid.dmi
+#define FAE_SIGHT_CAMAZOTZ "camazotz" // Bats // Placeholder - bat - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_LEPIX "lepix" // Rabbits. Joke fera. // Placeholder - rabbit_white - icons/mob/simple/rabbit.dmi
+#define FAE_SIGHT_NAGAH "nagah" // Super secret snakes // Placeholder - snake - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_AJABA "ajaba" // Hyenas // Placeholder - pug - icons/mob/simple/pets.dmi
+#define FAE_SIGHT_RATKIN "ratkin" // Terrorism rats // Placeholder - regalrat - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_APIS "apis" // Hyper-extinct cows. Useful for spirits maybe. // Placeholder - cow - icons/mob/simple/cows.dmi
+#define FAE_SIGHT_GRONDR "grondr" // Hyper-extinct pigs // Placeholder - pig - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_ANURANA "anurana" // Mockery frogs // Placeholder - frog - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_KERASI "kerasi" // Mockery rhinos // Placeholder - unicorn - icons/obj/toys/plushes.dmi
+#define FAE_SIGHT_SAMSA "samsa" // Mockery roaches <3 <3 <3 // Placeholder - cockroach - icons/mob/simple/animal.dmi
+#define FAE_SIGHT_WARWOLF "warwolf" // Mockery Garou, like the crinos_beast basic mob // Placeholder - beast_crinos - modular_darkpack/modules/npc/icons/werewolf.dmi
+#define FAE_SIGHT_YEREN "yeren" // Mockery apes // Placeholder - monkey - icons/mob/human/human.dmi
 // </fera>
 
-#define FAESIGHT_MAGE "nim" // mages and some sorcerers - if we ever get mages, replace this with their chosen Avatar // Placeholder - icons/mob/simple/mob.dmi
-#define FAESIGHT_FAE "god" // all things fairy (not inculding ourselves) // Placeholder - icons/mob/simple/mob.dmi
-#define FAESIGHT_DEMON "slaughter_demon" // DEMON!!! // Placeholder - icons/mob/simple/demon.dmi
-#define FAESIGHT_TRUEFAITH "god" // may not need to exist. but whatever. // Placeholder - icons/mob/simple/mob.dmi
-#define FAESIGHT_UMBRA "ghost1" // spirits, banes, etc. Replace with actual spirit sprites one day // Placeholder - icons/mob/simple/mob.dmi
+#define FAE_SIGHT_MAGE "mage" // mages and some sorcerers - if we ever get mages, replace this with their chosen Avatar // Placeholder - nim - icons/mob/simple/mob.dmi
+#define FAE_SIGHT_FAE "fae" // all things fairy (not inculding ourselves) // Placeholder - god - icons/mob/simple/mob.dmi
+#define FAE_SIGHT_DEMON "demon" // DEMON!!! // Placeholder - slaughter_demon - icons/mob/simple/demon.dmi
+#define FAE_SIGHT_TRUEFAITH "truefaith" // may not need to exist. but whatever. // Placeholder - ghostking - icons/mob/simple/mob.dmi
+#define FAE_SIGHT_UMBRA "umbra" // spirits, banes, etc. Replace with actual spirit sprites one day // Placeholder - ghost1 - icons/mob/simple/mob.dmi
 
 GLOBAL_LIST_INIT(fae_sight_auras, sort_list(list(
-"Lupine" = FAESIGHT_GAROU,
-"Avian" = FAESIGHT_CORAX,
-"Vulpine" = FAESIGHT_KITSUNE,
-"Feline" = FAESIGHT_BASTET,
-"Latran" = FAESIGHT_NUWISHA,
-"Ursine" = FAESIGHT_GURAHL,
-"Reptilian" = FAESIGHT_MOKOLE,
-"Selachian" = FAESIGHT_ROKEA,
-"Arachnid" = FAESIGHT_ANANASI,
-"Chiropteran" = FAESIGHT_CAMAZOTZ,
-"Lagomorph" = FAESIGHT_LEPIX,
-"Serpent" = FAESIGHT_NAGAH,
-"Hyena" = FAESIGHT_AJABA,
-"Rodent" = FAESIGHT_RATKIN,
-"Bovine" = FAESIGHT_APIS,
-"Porcine" = FAESIGHT_GRONDR,
-"Ranine" = FAESIGHT_ANURANA,
-"Rhino" = FAESIGHT_KERASI,
-"Roach" = FAESIGHT_SAMSA,
-"Feral Lupine" = FAESIGHT_WARWOLVES,
-"Monkey" = FAESIGHT_YEREN,
-"Mage" = FAESIGHT_MAGE,
-"Fae" = FAESIGHT_FAE,
-"Believer" = FAESIGHT_TRUEFAITH,
-"Spiritual" = FAESIGHT_UMBRA,
-"Magic" = FAESIGHT_GENERIC,
+"Lupine" = FAE_SIGHT_GAROU,
+"Avian" = FAE_SIGHT_CORAX,
+"Vulpine" = FAE_SIGHT_KITSUNE,
+"Feline" = FAE_SIGHT_BASTET,
+"Latran" = FAE_SIGHT_NUWISHA,
+"Ursine" = FAE_SIGHT_GURAHL,
+"Reptilian" = FAE_SIGHT_MOKOLE,
+"Selachian" = FAE_SIGHT_ROKEA,
+"Arachnid" = FAE_SIGHT_ANANASI,
+"Chiropteran" = FAE_SIGHT_CAMAZOTZ,
+"Lagomorph" = FAE_SIGHT_LEPIX,
+"Serpent" = FAE_SIGHT_NAGAH,
+"Hyena" = FAE_SIGHT_AJABA,
+"Rodent" = FAE_SIGHT_RATKIN,
+"Bovine" = FAE_SIGHT_APIS,
+"Porcine" = FAE_SIGHT_GRONDR,
+"Ranine" = FAE_SIGHT_ANURANA,
+"Rhino" = FAE_SIGHT_KERASI,
+"Roach" = FAE_SIGHT_SAMSA,
+"Feral Lupine" = FAE_SIGHT_WARWOLF,
+"Monkey" = FAE_SIGHT_YEREN,
+"Mage" = FAE_SIGHT_MAGE,
+"Fae" = FAE_SIGHT_FAE,
+"Demonic" = FAE_SIGHT_DEMON,
+"Believer" = FAE_SIGHT_TRUEFAITH,
+"Spiritual" = FAE_SIGHT_UMBRA,
+"Magic" = FAE_SIGHT_GENERIC,
 )))

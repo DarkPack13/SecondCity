@@ -1,8 +1,8 @@
 /datum/discipline/mytherceria
 	name = "Mytherceria"
 	desc = "Command fae-like powers to beguile and ensorcell your foes."
-	icon_state = "obfuscate"
-	power_type = /datum/discipline_power/obfuscate
+	icon_state = "mytherceria"
+	power_type = /datum/discipline_power/mytherceria
 
 /datum/discipline_power/mytherceria
 	name = "Mytherceria power name"
@@ -63,20 +63,21 @@
  *
  * TODO: HUD overlays - code/__DEFINES/~darkpack/auras.dm
  *
- *//*
+ */
 /datum/discipline_power/mytherceria/fae_sight
 	name = "Fae Sight"
 	desc = "Sense magical residue and see magical beings for what they really are."
 
-	level = 1
+	level = 2
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
-	target_type = TARGET_MOB
 	range = 7
 	duration_length = 1 SCENES
 	cooldown_length = 1 SCENES
 
-/datum/discipline_power/mytherceria/fey_sight/activate(mob/living/target)
+	toggled = TRUE
+
+/*/datum/discipline_power/mytherceria/fey_sight/activate(mob/living/target)
 	. = ..()
 	var/list/total_list = list()
 	for(var/obj/item/item in target.contents)
@@ -91,18 +92,18 @@
 			else if(item.is_iron)
 				to_chat(owner, "- <span class='danger'>[item.name]</span>")
 			else
-				to_chat(owner, "- [item.name]")
+				to_chat(owner, "- [item.name]")*/
 
-/datum/discipline_power/auspex/aura_perception/activate()
+/datum/discipline_power/mytherceria/fae_sight/activate()
 	. = ..()
-	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_FAE_SIGHT]
+	var/datum/atom_hud/data/fae_sight_aura/target_hud = GLOB.huds[DATA_HUD_FAE_SIGHT]
 	target_hud.show_to(owner)
 
-/datum/discipline_power/auspex/aura_perception/deactivate()
+/datum/discipline_power/mytherceria/fae_sight/deactivate()
 	. = ..()
-	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_FAE_SIGHT]
-	target_hud.hide_from(owner)*/
-	#warn MYTHERCERIA 2 COMMENTED OUT
+	var/datum/atom_hud/data/fae_sight_aura/target_hud = GLOB.huds[DATA_HUD_FAE_SIGHT]
+	target_hud.hide_from(owner)
+	#warn MYTHERCERIA 2 WIP
 /**
  * ••• Aura Absorption - p.455-456
  *

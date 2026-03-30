@@ -53,6 +53,8 @@
 // DARKPACK EDIT START
 /// Auspex aura HUD
 #define AUSPEX_AURA_HUD "25"
+// Faesight detector HUD - Mytherceria
+#define FAE_SIGHT_AURA_HUD "26"
 // DARKPACK EDIT END
 
 //by default everything in the hud_list of an atom is an image
@@ -73,7 +75,7 @@
 #define DATA_HUD_MALF_APC 10
 #define DATA_HUD_BLOOD 11
 #define DATA_HUD_AUSPEX_AURAS 12 // DARKPACK EDIT ADD
-#define DATA_HUD_FAE_SIGHT 13 // DARKPACK EDIT ADD
+#define DATA_HUD_FAE_SIGHT 13 // DARKPACK EDIT ADD - Powers - [Mytherceria]
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20
