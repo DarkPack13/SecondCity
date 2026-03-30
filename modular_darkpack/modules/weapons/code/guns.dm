@@ -581,7 +581,6 @@
 	recoil = 2
 	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
 	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5 //~52 damage vs 35 base .44 damage. It's ok, on par with 5.56 but lower pen and slower to fire due to bolt action.
 	masquerade_violating = FALSE
@@ -618,7 +617,6 @@
 	fire_delay = 40
 	recoil = 7
 	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
 	//zoomable = TRUE
 	//zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	//zoom_out_amt = 5
@@ -653,7 +651,6 @@
 	fire_delay = 5
 	spread = 2
 	recoil = 6
-	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5
 	actions_types = list()
