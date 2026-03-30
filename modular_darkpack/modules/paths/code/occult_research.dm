@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(occult_research)
 	name = "Occult Research"
-	flags = SS_BACKGROUND|SS_NO_INIT
+	ss_flags = SS_BACKGROUND|SS_NO_INIT
 	wait = 60 SECONDS // How often to process research points
 	var/base_research_rate = 0.5 // Base points per tick
 	var/necromancy_bonus = 0.5
