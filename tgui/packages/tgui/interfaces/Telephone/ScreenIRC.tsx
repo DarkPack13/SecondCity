@@ -40,8 +40,7 @@ export const ScreenViewingChannel = (props: {
       </Stack.Item>
       <Stack.Item grow mb={6} mt={0} style={{ overflowY: 'scroll' }}>
         {viewing_channel ? (
-          <>
-            {viewing_channel.messages.map((message) => (
+            viewing_channel.messages.map((message) => (
               <Box key={message.time_stamp} backgroundColor="#0004">
                 <Box color="maroon">
                   Story by {message.author} - [{message.time_stamp}]
@@ -53,8 +52,7 @@ export const ScreenViewingChannel = (props: {
                   </Box>
                 ) : null}
               </Box>
-            ))}
-          </>
+            ))
         ) : (
           'ERROR: Channel invalid.'
         )}
