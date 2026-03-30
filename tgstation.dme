@@ -8131,4 +8131,6 @@
 #include "modular_darkpack\modules\z_travel\code\helpers.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
 #include "modular_darkpack\modules\z_travel\code\transfer_point.dm"
+#include "modular_tfn\modules\powers\code\admin_discipline_editor.dm"
+#include "modular_tfn\modules\vampire_the_masquerade\code\vampire_clan\trusted_whitelist.dm"
 // END_INCLUDE
