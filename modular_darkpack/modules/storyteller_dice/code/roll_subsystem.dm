@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(roll)
 	name = "Dice Rolling"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	var/on_crit_extra_die_enabled = FALSE
 	var/on_crit_extra_success_enabled = FALSE
 
