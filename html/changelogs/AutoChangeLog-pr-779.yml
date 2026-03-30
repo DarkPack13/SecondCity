@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - admin: "All Second City verbs sorted into their own catagory"
-  - admin: "Setting starlight is R_ADMIN instead of R_FUN"
