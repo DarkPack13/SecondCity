@@ -4,6 +4,7 @@
 	icon_state = "temporis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/temporis
+	signature_clan = VAMPIRE_CLAN_TRUE_BRUJAH
 
 /datum/discipline_power/temporis
 	name = "Temporis power name"
@@ -13,7 +14,7 @@
 
 /datum/discipline_power/temporis/activate()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_TIMEWARPER, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_TIMEWARPER, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/temporis/proc/celerity_explode(datum/source, datum/discipline_power/power, atom/target)
 	SIGNAL_HANDLER

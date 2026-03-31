@@ -2,6 +2,8 @@
 	abstract_type = /datum/preference/numeric/renown
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
+	relevant_inherent_trait = TRAIT_FERA_RENOWN
+	must_have_relevant_trait = TRUE
 	savefile_identifier = PREFERENCE_CHARACTER
 
 	minimum = 1

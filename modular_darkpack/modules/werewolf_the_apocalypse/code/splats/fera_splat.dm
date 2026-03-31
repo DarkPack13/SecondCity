@@ -77,6 +77,10 @@
 	splat_priority = SPLAT_PRIO_KINFOLK
 	half_splat = TRUE
 
+	splat_traits = list(
+		TRAIT_FERA_RENOWN,
+	)
+
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
 /datum/splat/werewolf/shifter
@@ -86,7 +90,8 @@
 		TRAIT_WTA_GAROU_AUSPICE,
 		TRAIT_WTA_GAROU_TRIBE,
 		TRAIT_FERA_FUR,
-		TRAIT_FRENETIC_AURA
+		TRAIT_FRENETIC_AURA,
+		TRAIT_FERA_RENOWN,
 	)
 	// id = SPLAT_FERA
 	incompatible_splats = list(

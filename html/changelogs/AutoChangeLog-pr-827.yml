@@ -1,0 +1,4 @@
+author: "XeonMations"
+delete-after: True
+changes:
+  - bugfix: "Fixes fera options appearing on non-fera splats"
