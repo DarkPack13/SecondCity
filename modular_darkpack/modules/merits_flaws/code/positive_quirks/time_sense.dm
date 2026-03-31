@@ -7,6 +7,8 @@
 	mob_trait = TRAIT_TIME_SENSE
 	icon = FA_ICON_STOPWATCH
 
+	excluded_clans = list(VAMPIRE_CLAN_TRUE_BRUJAH)
+
 /mob/proc/get_time_status()
 	. = list()
 	. += "Local City Time: [SSticker.round_start_timeofday ? "[station_time_timestamp("hh:mm MMM")] [CURRENT_STATION_YEAR]" : "The round hasn't started yet!"]"
