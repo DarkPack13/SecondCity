@@ -12,4 +12,5 @@
 	return tribe_icon
 
 /datum/preference/choiced/subsplat/garou_tribe/apply_to_human(mob/living/carbon/human/target, value)
-	target.set_fera_tribe(value, TRUE)
+	var/joining_round = !isdummy(target)
+	target.set_fera_tribe(value, joining_round)
