@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/blood_guardian
-	name = "sanguine assistant"
+	name = "blood imp"
 	desc = "thaumaturgists sometimes have need of a laboratory assistant or two to help them in their work or defenses of the Chantry. This ritual animates a humanoid made from the blood of the creator."
 	icon_state = "rune1"
 	word = "UR'JOLA"
