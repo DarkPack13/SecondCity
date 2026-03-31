@@ -141,6 +141,11 @@
 	// 	/datum/action/gift/burning_scars = 3
 	// )
 
+/datum/subsplat/werewolf/tribe/garou/blackspiraldancers/psychomania_effect(mob/living/target, mob/living/owner)
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
+	target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"))
+	target.Paralyze(5 SECONDS)
+
 /datum/subsplat/werewolf/tribe/garou/ronin
 	name = TRIBE_RONIN
 	desc = "Garou who, for one reason or another, find themselves as outcasts of the Nation."

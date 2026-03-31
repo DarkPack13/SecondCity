@@ -4,7 +4,7 @@
  */
 SUBSYSTEM_DEF(phones)
 	name = "Phones"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	ss_flags = SS_NO_FIRE|SS_NO_INIT
 
 	// Seven digits, always start with 5
 	var/list/assigned_phone_numbers = list()
