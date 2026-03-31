@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - code_imp: "Fixes runtime from kinfolk not having an auspice to check when deciding rank. They default to a cub."
