@@ -8,7 +8,7 @@
 	return assoc_to_keys(GLOB.vampire_clan_list)
 
 /datum/preference/choiced/subsplat/vampire_clan/icon_for(value)
-	return uni_icon('modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi', get_vampire_clan(value).id)
+	return uni_icon('modular_darkpack/modules/vampire_the_masquerade/icons/vampire_clans.dmi', get_vampire_clan(value).icon)
 
 /datum/preference/choiced/subsplat/vampire_clan/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)

@@ -24,9 +24,9 @@
 		owner.physiology.heat_mod *= 0.5
 		//owner.physiology.clone_mod *= 0.9
 		//ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
-		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 		if(!(owner.is_clan(/datum/subsplat/vampire_clan/gargoyle)))
-			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
+			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 //SKIN OF THE CHAMELEON
 /datum/discipline_power/visceratika/skin_of_the_chameleon
@@ -93,7 +93,7 @@
 				their_name = human_player.name
 			to_chat(owner, "- [their_name]")
 	starting_area = get_area(owner)
-	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
 	owner.update_sight()
 	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
 	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
@@ -103,7 +103,7 @@
 
 	to_chat(owner, span_warning("You lose your connection to the stone as you leave the area."))
 	starting_area = null
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
 	owner.update_sight()
 	UnregisterSignal(owner, COMSIG_EXIT_AREA)
 	try_deactivate()
@@ -150,14 +150,14 @@
 	if(resolved_stone)
 		owner.forceMove(resolved_stone)
 	owner.alpha = 30
-	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
-	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT(type))
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 	owner.damage_deflection = 3 TTRPG_DAMAGE
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/deactivate(forced = TRUE)
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+	REMOVE_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN, DISCIPLINE_TRAIT(type))
 	owner.damage_deflection = 0
 	if(forced) //only false when using visceratika 5. we inherit the alpha from this ability and when visceratika 5 deactivates, return to 255
 		var/turf/resolved_exit = exit_turf?.resolve()
