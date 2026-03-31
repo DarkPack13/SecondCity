@@ -7,9 +7,10 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	/datum/discipline/obtenebration,
 	/datum/discipline/thaumaturgy,
 	/datum/discipline/necromancy,
-	/datum/discipline/daimoinon,
 	/datum/discipline/valeren,
-	// melpominee not yet implemented but will go here
+	/datum/discipline/obeah,
+	/datum/discipline/daimoinon,
+	/datum/discipline/melpominee,
 ))
 
 // warns a player if they have no discipline dots assigned before joining

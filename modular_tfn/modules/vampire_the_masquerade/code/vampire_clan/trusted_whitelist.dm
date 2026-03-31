@@ -1,11 +1,11 @@
-var/global/list/TRUSTED_ONLY_CLANS = list(
+GLOBAL_LIST_INIT(trusted_only_clans, list(
 	VAMPIRE_CLAN_BAALI,
 	VAMPIRE_CLAN_HEALER_SALUBRI,
 	VAMPIRE_CLAN_WARRIOR_SALUBRI,
 	VAMPIRE_CLAN_TRUE_BRUJAH,
 	VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY,
 	VAMPIRE_CLAN_SAMEDI,
-)
+))
 
 // remember kids, you should always obtain enthusiastic informed values before proceeding
 /datum/preference/choiced/subsplat/vampire_clan/create_informed_default_value(datum/preferences/preferences)
@@ -13,7 +13,7 @@ var/global/list/TRUSTED_ONLY_CLANS = list(
 		var/list/safe_choices = list()
 		for(var/choice in get_choices())
 			var/datum/subsplat/vampire_clan/clan = get_vampire_clan(choice)
-			if(!clan || !(clan.id in TRUSTED_ONLY_CLANS))
+			if(!clan || !(clan.id in GLOB.trusted_only_clans))
 				safe_choices += choice
 		if(length(safe_choices))
 			return pick(safe_choices)
@@ -22,7 +22,7 @@ var/global/list/TRUSTED_ONLY_CLANS = list(
 /datum/preference/choiced/subsplat/vampire_clan/is_valid(value, datum/preferences/preferences)
 	if(preferences && !preferences.discipline_trusted)
 		var/datum/subsplat/vampire_clan/clan = get_vampire_clan(value)
-		if(clan?.id in TRUSTED_ONLY_CLANS)
+		if(clan?.id in GLOB.trusted_only_clans)
 			to_chat(preferences.parent, span_warning("The [clan.name] clan requires a special whitelisting process. Feel free to apply for it on Discord!"))
 			return FALSE
 	return ..()
@@ -38,7 +38,7 @@ var/global/list/TRUSTED_ONLY_CLANS = list(
 		return null
 	var/selected = C.prefs.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(selected)
-	if(clan?.id in TRUSTED_ONLY_CLANS)
+	if(clan?.id in GLOB.trusted_only_clans)
 		return clan
 	return null
 
