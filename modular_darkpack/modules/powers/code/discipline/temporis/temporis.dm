@@ -14,7 +14,7 @@
 
 /datum/discipline_power/temporis/activate()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_TIMEWARPER, DISCIPLINE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_TIMEWARPER, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/temporis/proc/celerity_explode(datum/source, datum/discipline_power/power, atom/target)
 	SIGNAL_HANDLER

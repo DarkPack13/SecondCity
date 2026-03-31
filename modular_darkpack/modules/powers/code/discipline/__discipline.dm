@@ -5,7 +5,7 @@
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
 	///Icon file for this Discipline
-	var/icon = 'modular_darkpack/modules/deprecated/icons/UI/actions.dmi'
+	var/icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	///Icon state for this Discipline
 	var/icon_state
 	///If this Discipline is unique to a certain Clan.
