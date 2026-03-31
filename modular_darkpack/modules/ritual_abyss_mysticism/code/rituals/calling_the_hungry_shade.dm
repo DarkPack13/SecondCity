@@ -23,7 +23,7 @@
 			var/mob/living/basic/shadow_guard/hungry_shade/shade = new(get_turf(src))
 			shade.ai_controller = new /datum/ai_controller/basic_controller/simple/simple_hostile(shade)
 			shade.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, H)
-			shade.faction = null
+			shade.remove_faction(VAMPIRE_CLAN_LASOMBRA)
 			to_chat(H, span_warning("The ritual slips from your grasp - something answers the call regardless!"))
 			playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 			qdel(src)
@@ -31,7 +31,7 @@
 			var/mob/living/basic/shadow_guard/hungry_shade/shade = new(get_turf(src))
 			shade.ai_controller = new /datum/ai_controller/basic_controller/simple/simple_hostile(shade)
 			shade.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, H)
-			shade.faction = null
+			shade.remove_faction(VAMPIRE_CLAN_LASOMBRA)
 			to_chat(H, span_warning("You lose control over the ritual!"))
 			H.apply_damage(30, AGGRAVATED)
 			playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
