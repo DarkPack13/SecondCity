@@ -29,6 +29,7 @@
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/Initialize(mapload, vol)
 	. = ..()
+// DARKPACK EDIT START - glass sprites
 	if(custom_reagent_sprites)
 		AddComponent( \
 			/datum/component/takes_reagent_appearance, \
@@ -36,6 +37,7 @@
 			CALLBACK(src, PROC_REF(on_cup_reset)), \
 			base_container_type = base_container_type, \
 		)
+// DARKPACK EDIT END
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_cleaned))
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/on_reagent_change(datum/reagents/holder, ...)
