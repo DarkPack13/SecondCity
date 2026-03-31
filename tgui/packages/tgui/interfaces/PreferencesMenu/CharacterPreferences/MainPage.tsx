@@ -17,6 +17,7 @@ import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 import { CharacterPreview } from '../../common/CharacterPreview';
+import { ConfirmModal } from '../components/ConfirmModal'; // TFN EDIT ADD
 import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADD
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
@@ -463,7 +464,7 @@ export function MainPage(props: MainPageProps) {
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
   const [vocalsInputOpen, setVocalsInputOpen] = useState(false); // DARKPACK EDIT ADDITION
   const [randomToggleEnabled] = useRandomToggleState();
-  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // DARKPACK EDIT ADD - for popups
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // TFN EDIT ADD - for popups
 
   const serverData = useServerPrefs();
 
@@ -595,64 +596,17 @@ export function MainPage(props: MainPageProps) {
           close={() => setDeleteCharacterPopupOpen(false)}
         />
       )}
-      {/* DARKPACK EDIT START - popup for clan, age, etc. changes */}
+      {/* TFN EDIT START - popup for clan, age, etc. changes */}
       {pendingConfirm !== null && (
-        <Box
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0,0,0,0.75)',
-            zIndex: 9999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+        <ConfirmModal
+          onConfirm={() => {
+            pendingConfirm?.();
+            setPendingConfirm(null);
           }}
-        >
-          <Box
-            style={{
-              background: '#1b1b1b',
-              border: '1px solid #555',
-              padding: '20px',
-              maxWidth: '380px',
-              width: '90%',
-            }}
-          >
-            <Box bold textAlign="center" fontSize={1.1} mb={1} mt={-1}>
-              Change Character Details?
-            </Box>
-            <Box color="label" mb={2}>
-              Changing significant character details (Clan, age, etc.) will wipe ALL of your existing disciplines.
-              This cannot be undone. Are you sure?
-            </Box>
-            <Stack textAlign="center" justify="center">
-              <Stack.Item>
-                <Button
-                  textAlign="center"
-                  onClick={() => setPendingConfirm(null)}
-                >
-                  Cancel
-                </Button>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  textAlign="center"
-                  color="bad"
-                  onClick={() => {
-                    pendingConfirm?.();
-                    setPendingConfirm(null);
-                  }}
-                >
-                  Proceed
-                </Button>
-              </Stack.Item>
-            </Stack>
-          </Box>
-        </Box>
+          onCancel={() => setPendingConfirm(null)}
+        />
       )}
-      {/* DARKPACK EDIT END*/}
+      {/* TFN EDIT END*/}
 
       <Stack height={`${CLOTHING_SIDEBAR_ROWS * CLOTHING_CELL_SIZE}px`}>
         <Stack.Item>

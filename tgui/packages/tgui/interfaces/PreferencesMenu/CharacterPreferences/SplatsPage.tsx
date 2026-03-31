@@ -1,6 +1,8 @@
 // THIS IS A DARKPACK UI FILE
 
+import { useState } from 'react'; // TFN EDIT ADD
 import { useBackend } from 'tgui/backend';
+import { ConfirmModal } from '../components/ConfirmModal'; // TFN EDIT ADD
 import {
   BlockQuote,
   Box,
@@ -112,6 +114,7 @@ type SplatsPageInnerProps = {
 function SplatsPageInner(props: SplatsPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSplats = createSetPreference(act, 'splats');
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // TFN EDIT ADD - confirm dialog for splat changes
 
   const splats: [string, Splats][] = Object.entries(props.splats).map(
     ([splats, data]) => {
@@ -145,7 +148,16 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                 return (
                   <Button
                     key={splatsKey}
-                    onClick={() => setSplats(splatsKey)}
+                    // TFN EDIT START - warn + clear disciplines when switching splats
+                    onClick={() => {
+                      if (splatsKey !== data.character_preferences.misc.splats) {
+                        setPendingConfirm(() => () => {
+                          act('clear_discipline_levels');
+                          setSplats(splatsKey);
+                        });
+                      }
+                    }}
+                    // TFN EDIT END
                     selected={
                       data.character_preferences.misc.splats === splatsKey
                     }
@@ -214,6 +226,17 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           </Stack.Item>
         </Stack>
       </Stack.Item>
+      {/* TFN EDIT START - confirm dialog for splat changes */}
+      {pendingConfirm !== null && (
+        <ConfirmModal
+          onConfirm={() => {
+            pendingConfirm?.();
+            setPendingConfirm(null);
+          }}
+          onCancel={() => setPendingConfirm(null)}
+        />
+      )}
+      {/* TFN EDIT END */}
     </Stack>
   );
 }
