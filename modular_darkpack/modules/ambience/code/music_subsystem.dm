@@ -21,7 +21,7 @@
 /// The subsystem used to play music to users every now and then, makes them real excited. copy-pasta from SSambience
 SUBSYSTEM_DEF(music)
 	name = "Music"
-	flags = SS_BACKGROUND|SS_NO_INIT
+	ss_flags = SS_BACKGROUND|SS_NO_INIT
 	priority = FIRE_PRIORITY_AMBIENCE
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 1 SECONDS

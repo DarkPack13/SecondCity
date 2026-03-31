@@ -33,6 +33,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY // DARKPACK ADDITION - Linters
 
 /datum/crafting_recipe/radio_containing
 	abstract_type = /datum/crafting_recipe/radio_containing
