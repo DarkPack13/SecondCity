@@ -1,7 +1,7 @@
 // THIS IS A DARKPACK UI FILE
 // TFN EDIT START
 import { useState } from 'react';
-import { Box, Button, Slider, Stack } from 'tgui-core/components';
+import { Button, Slider, Stack } from 'tgui-core/components';
 import { type FeatureNumeric, type FeatureValueProps, type FeatureNumericData } from '../base';
 // TFN EDIT END
 type HeightServerData = FeatureNumericData & {
