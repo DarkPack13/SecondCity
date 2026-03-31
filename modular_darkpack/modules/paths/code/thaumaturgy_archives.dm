@@ -44,12 +44,13 @@
 
 // are they antitribu?
 /obj/structure/retail/occult/proc/has_purchase_privileges(datum/job/job)
-	return is_type_in_list(job, list(/datum/job/vampire/regent,
-	/datum/job/vampire/archivist,
-	/datum/job/vampire/hound,
-	/datum/job/vampire/sheriff,
-	/datum/job/vampire/clerk,
-	/datum/job/vampire/prince)
+	return is_type_in_list(job, list(
+		/datum/job/vampire/regent,
+		/datum/job/vampire/archivist,
+		/datum/job/vampire/hound,
+		/datum/job/vampire/sheriff,
+		/datum/job/vampire/clerk,
+		/datum/job/vampire/prince)
 	)
 
 // find the regent

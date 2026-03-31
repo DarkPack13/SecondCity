@@ -1,4 +1,4 @@
 author: "chazzyjazzy"
 delete-after: True
 changes:
-  - rscadd: "readds Gargoyle Statue Form"
+  - rscdel: "Removes firing pin authorization"
