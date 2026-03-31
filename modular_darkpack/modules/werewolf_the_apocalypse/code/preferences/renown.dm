@@ -2,7 +2,7 @@
 	abstract_type = /datum/preference/numeric/renown
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
-	relevant_inherent_trait = TRAIT_WTA_WEREWOLF
+	relevant_inherent_trait = TRAIT_FERA_RENOWN
 	savefile_identifier = PREFERENCE_CHARACTER
 
 	minimum = 1
