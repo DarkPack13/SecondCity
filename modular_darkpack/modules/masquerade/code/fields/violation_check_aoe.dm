@@ -35,6 +35,8 @@
 			SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
 		else if(HAS_TRAIT(entered_mob, TRAIT_MASQUERADE_VIOLATING_EYES) && !entered_mob.is_eyes_covered())
 			SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
+		else if(HAS_TRAIT(entered_mob, TRAIT_FORKED_TONGUE) && !entered_mob.is_mouth_covered())
+			SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/proximity_monitor/advanced/violation_check_aoe/on_uncrossed(turf/source, atom/movable/gone, direction)
 	. = ..()
