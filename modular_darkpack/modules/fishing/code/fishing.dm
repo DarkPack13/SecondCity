@@ -1,8 +1,13 @@
 /obj/item/fish/darkpack
 	abstract_type = /obj/item/fish/darkpack
 	desc = "marine life"
+	// TFN REMOVAL START
+	/*
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
+	*/
+	// TFN REMOVAL END
+
 	w_class = WEIGHT_CLASS_SMALL
 	//eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
 
