@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "rebase hotfix for bloodbags not restoring blood, sunglasses not protecting masquerade_violating_eyes, and setite clan keys"
