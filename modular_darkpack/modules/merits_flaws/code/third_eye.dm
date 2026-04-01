@@ -1,7 +1,7 @@
 /datum/quirk/darkpack/permanent_third_eye
 	name = "Permanent Third Eye"
 	desc = "Tremere's most infamous crime is visible on your head. Like the Salubri, you suffer from a third eye."
-	value = 2
+	value = -2
 	mob_trait = TRAIT_THIRD_EYE
 	gain_text = span_notice("Saulot curses you for your forefather's crime. Your third eye opens to never close again.")
 	lose_text = span_notice("The Dragon sleeps again. Your third eye seals shut.")
