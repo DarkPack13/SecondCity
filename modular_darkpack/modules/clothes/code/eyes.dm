@@ -8,6 +8,7 @@
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
+	flags_cover = GLASSESCOVERSEYES // TFN EDIT ADD
 
 /obj/item/clothing/glasses/vampire/Initialize(mapload)
 	. = ..()

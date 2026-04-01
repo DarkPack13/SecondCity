@@ -48,10 +48,15 @@
 	return list("[blood_type] type blood" = 1)
 
 // DARKPACK EDIT ADD - blood increments bloodpool
-/datum/reagent/blood/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+/datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
 	. = ..()
-	if((!istype(src, /datum/reagent/blood/vitae)) && get_kindred_splat(affected_mob))
-		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
+// TFN EDIT START
+	if((!istype(src, /datum/reagent/blood/vitae)) && get_kindred_splat(exposed_mob))
+		if(methods & INGEST)
+			if(get_splat_with_vitae(exposed_mob))
+				//100u of vitae = 1bp, keeping consistent w/ give vitae action. 200u of normal blood = 1 bp
+				exposed_mob.adjust_blood_pool(reac_volume * 0.005)
+// TFN EDIT END
 // DARKPACK EDIT ADD END
 
 /datum/reagent/consumable/liquidgibs

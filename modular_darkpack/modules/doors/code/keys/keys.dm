@@ -61,6 +61,7 @@
 		LOCKACCESS_JAZZ_CLUB,
 		LOCKACCESS_PRIMOGEN,
 		LOCKACCESS_JAZZ_CLUB_DELIVERY,
+		LOCKACCESS_PRINCE, // TFN ADIT ADD
 	)
 	color = "#bd3327"
 
@@ -318,6 +319,13 @@
 	)
 	color = "#6a2e1d"
 
+// TFN EDIT START
+/obj/item/vamp/keys/setite
+	name = "setite keys"
+	accesslocks = list(
+		LOCKACCESS_SETITE
+	)
+// TFN EDIT END
 //===========================CLINIC KEYS===========================
 /obj/item/vamp/keys/clinic
 	name = "clinic keys"
