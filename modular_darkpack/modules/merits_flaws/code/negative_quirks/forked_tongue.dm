@@ -7,7 +7,7 @@
 	lose_text = span_notice("Your tongue feels normal in your mouth once more.")
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_SETITE)
-	icon = FA_ICON_GRIN_TONGUE_WINK
+	icon = FA_ICON_FACE_GRIN_TONGUE_WINK
 	failure_message = "Your tongue feels normal in your mouth once more."
 
 /datum/quirk/item_quirk/forked_tongue/add_unique(client/client_source)
