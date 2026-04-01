@@ -44,7 +44,7 @@
 /datum/component/baals_caress/proc/on_hit_living()
 	SIGNAL_HANDLER
 	charges--
-	if(charges < 0)
+	if(charges <= 0)
 		qdel(src)
 
 
