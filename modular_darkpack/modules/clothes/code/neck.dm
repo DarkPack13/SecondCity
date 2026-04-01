@@ -94,13 +94,13 @@
 	desc = "A leather choker with a steel ring pendant."
 	icon_state = "leathercollar"
 
-/obj/item/clothing/neck/vampire/choker/collar/steel
+/obj/item/clothing/neck/vampire/choker/steel
 	name = "silver chain choker"
 	desc = "A chain choker in tarnish-resistant, hypoallergenic silver. Hardcore."
 	icon_state = "steelcollar"
 
 
-/obj/item/clothing/neck/vampire/choker/collar/leatherg
+/obj/item/clothing/neck/vampire/choker/leatherg
 	name = "fancy choker"
 	desc = "A black choker with a gold ring pendant. A little classier than the alternatives."
 	icon_state = "leathercollar_g"

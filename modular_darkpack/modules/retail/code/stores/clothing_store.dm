@@ -104,7 +104,7 @@
 		new /datum/data/vending_product("yellow tie", /obj/item/clothing/neck/vampire/tie/yellow,	10),
 		new /datum/data/vending_product("navy tie", /obj/item/clothing/neck/vampire/tie/navy,	10),
 		new /datum/data/vending_product("white tie", /obj/item/clothing/neck/vampire/tie/white,	10),
-		new /datum/data/vending_product("dark green tie", /obj/item/clothing/neck/vampire/tie/dgreen,	10),
+		new /datum/data/vending_product("dark green tie", /obj/item/clothing/neck/vampire/tie/darkgreen,	10),
 		new /datum/data/vending_product("black tie", /obj/item/clothing/neck/vampire/tie/black,	10),
 		new /datum/data/vending_product("choker", /obj/item/clothing/neck/vampire/choker,	20),
 		new /datum/data/vending_product("metallic choker", /obj/item/clothing/neck/vampire/choker/silver,	20),

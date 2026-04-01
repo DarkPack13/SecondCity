@@ -50,7 +50,7 @@
 
 /datum/loadout_item/neck/dgreen
 	name = "Dark Green Tie"
-	item_path = /obj/item/clothing/neck/vampire/tie/dgreen
+	item_path = /obj/item/clothing/neck/vampire/tie/darkgreen
 
 /datum/loadout_item/neck/black
 	name = "Black Tie"

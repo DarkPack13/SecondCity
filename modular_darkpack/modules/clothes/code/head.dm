@@ -382,8 +382,7 @@
 	icon_state = "picture"
 	flags_cover = HEADCOVERSEYES
 
-/obj/item/clothing/head/vampire/picture_red
+/obj/item/clothing/head/vampire/picture_hat/red
 	name = "picture hat, red"
 	desc = "An old-fashioned red hat with a low enough brim to cover your eyes."
 	icon_state = "picture_red"
-	flags_cover = HEADCOVERSEYES
