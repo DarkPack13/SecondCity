@@ -39,7 +39,7 @@
 		// Deployables
 		/obj/item/cardboard_cutout,
 		// Storage
-		/obj/item/storage/bag/money/darkpack,
+		/obj/item/storage/bag/money,
 		// Skub
 		/obj/item/skub,
 		// Fish
