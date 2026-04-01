@@ -113,6 +113,6 @@
 	name = "Picture Hat"
 	item_path = /obj/item/clothing/head/vampire/picture_hat
 
-/datum/loadout_item/head/picture_red
+/datum/loadout_item/head/picture_hat/red
 	name = "Red Picture Hat"
-	item_path = /obj/item/clothing/head/vampire/picture_red
+	item_path = /obj/item/clothing/head/vampire/picture_hat/red

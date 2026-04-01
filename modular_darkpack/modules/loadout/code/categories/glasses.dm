@@ -14,10 +14,10 @@
 	name = "Reading Glasses"
 	item_path = /obj/item/clothing/glasses/vampire/perception
 
-/datum/loadout_item/glasses/white_veil
+/datum/loadout_item/glasses/veil
 	name = "White Veil"
-	item_path = /obj/item/clothing/glasses/vampire/white_veil
+	item_path = /obj/item/clothing/glasses/vampire/veil
 
-/datum/loadout_item/glasses/black_veil
+/datum/loadout_item/glasses/veil/black
 	name = "Black Veil"
-	item_path = /obj/item/clothing/glasses/vampire/black_veil
+	item_path = /obj/item/clothing/glasses/vampire/veil/black
