@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/blood_trap
-	name = "blood trap"
+	name = "ward"
 	desc = "Creates the Blood Trap to protect tremere or his domain."
 	icon_state = "rune2"
 	word = "DUH'K-A'U"
