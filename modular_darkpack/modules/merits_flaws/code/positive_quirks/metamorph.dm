@@ -13,6 +13,6 @@
 
 /datum/storyteller_roll/metamorph
 	bumper_text = "metamorph"
-	applicable_stats = (STAT_WITS) // + PRIMAL_URGE
+	applicable_stats = list(STAT_WITS) // + PRIMAL_URGE
 	difficulty = 8
 	roll_output_type = ROLL_PRIVATE
