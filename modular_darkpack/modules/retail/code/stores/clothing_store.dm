@@ -90,6 +90,8 @@
 		new /datum/data/vending_product("beanie", /obj/item/clothing/head/vampire/beanie,	10),
 		new /datum/data/vending_product("black beanie", /obj/item/clothing/head/vampire/beanie/black,	10),
 		new /datum/data/vending_product("rough beanie", /obj/item/clothing/head/vampire/beanie/homeless,	10),
+		new /datum/data/vending_product("picture hat", /obj/item/clothing/head/vampire/picture_hat, 30),
+		new /datum/data/vending_product("red picture hat", /obj/item/clothing/head/vampire/picture_red, 30),
 		new /datum/data/vending_product("scarf", /obj/item/clothing/neck/vampire/scarf,	10),
 		new /datum/data/vending_product("red scarf", /obj/item/clothing/neck/vampire/scarf/red,	10),
 		new /datum/data/vending_product("blue scarf", /obj/item/clothing/neck/vampire/scarf/blue,	10),

@@ -39,3 +39,13 @@
 	icon_state = "perception"
 	inhand_icon_state = "glasses"
 	clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
+
+/obj/item/clothing/glasses/vampire/white_veil
+	name = "white veil"
+	desc = "A white lace veil that covers the eyes."
+	icon_state = "white_veil"
+
+/obj/item/clothing/glasses/vampire/black_veil
+	name = "black veil"
+	desc = "A dark veil that obscures the wearer's face."
+	icon_state = "black_veil"

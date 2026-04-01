@@ -375,3 +375,15 @@
 	name = "black beret"
 	desc = "A black beret, perfect for war veterans and dark, brooding, anti-hero mimes."
 	greyscale_colors = "#3f3c40"
+
+/obj/item/clothing/head/vampire/picture_hat
+	name = "picture hat"
+	desc = "An old-fashioned black hat with a low enough brim to cover your eyes."
+	icon_state = "picture"
+	flags_cover = HEADCOVERSEYES
+
+/obj/item/clothing/head/vampire/picture_red
+	name = "picture hat, red"
+	desc = "An old-fashioned red hat with a low enough brim to cover your eyes."
+	icon_state = "picture_red"
+	flags_cover = HEADCOVERSEYES

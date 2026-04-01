@@ -108,3 +108,11 @@
 
 /datum/loadout_item/head/beret
 	item_path = /obj/item/clothing/head/beret
+
+/datum/loadout_item/head/picture_hat
+	name = "Picture Hat"
+	item_path = /obj/item/clothing/head/vampire/picture_hat
+
+/datum/loadout_item/head/picture_red
+	name = "Red Picture Hat"
+	item_path = /obj/item/clothing/head/vampire/picture_red
