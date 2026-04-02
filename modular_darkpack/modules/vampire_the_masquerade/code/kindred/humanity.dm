@@ -2,7 +2,7 @@
 	SIGNAL_HANDLER
 
 	// "Enlightenment" is essentially the Path of Pure Evil. Inverts Humanity changes and limits.
-	var/is_enlightenment = enlightenment
+	var/is_enlightenment = owner.is_enlightenment()
 	var/path = is_enlightenment ? "Enlightenment" : "Humanity"
 	if (is_enlightenment && !forced)
 		value = -value

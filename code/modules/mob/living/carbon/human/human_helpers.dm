@@ -70,9 +70,7 @@
 			return "[face_name] (as [id_name])"
 
 	// DARKPACK EDIT ADD START
-	var/known_name
-	if(!face_name)
-		known_name = examiner?.mind?.guestbook?.get_known_name(examiner, src, real_name)
+	var/known_name = face_name ? null : (examiner ? GET_GUESTBOOK_NAME(examiner, src) : null)
 	// DARKPACK EDIT ADD END
 
 	// Just go down the list of stuff we recorded

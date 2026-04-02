@@ -149,22 +149,22 @@
 					runechat_flags = EMOTE_MESSAGE,
 				)
 			else if(is_important)
-				to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
+				to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT, ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
 			else if(is_audible && is_visual)
 				viewer.show_message(
-					span_emote("<b>[user]</b>[space][msg]"), MSG_AUDIBLE,
-					span_emote("You see how <b>[user]</b>[space][msg]"), MSG_VISUAL,
+					span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE, // DARKPACK EDIT, ORIGINAL: span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
+					span_emote("You see how <b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL, // DARKPACK EDIT, ORIGINAL: span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
 				)
 			else if(is_audible)
-				viewer.show_message(span_emote("<b>[user]</b>[space][msg]"), MSG_AUDIBLE)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE) // DARKPACK EDIT, ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
 			else if(is_visual)
-				viewer.show_message(span_emote("<b>[user]</b>[space][msg]"), MSG_VISUAL)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL) // DARKPACK EDIT, ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
 		return // Early exit so no dchat message
 
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
+			to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT, ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -198,12 +198,13 @@
 		CRASH("Emote [type] has no valid emote type set!")
 
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user]</b>[space][msg]"
+		// var/dchatmsg = "<b>[user]</b>[space][msg]" // DARKPACK EDIT REMOVAL
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
+			var/dchatmsg = "<b>[GET_GUESTBOOK_NAME(ghost, user)]</b>[space][msg]" // DARKPACK EDIT ADDITION
 			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)][space][dchatmsg]"))
 	// DARKPACK EDIT CHANGE END
 

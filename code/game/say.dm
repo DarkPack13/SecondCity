@@ -168,13 +168,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(ismob(src) && ishuman(reliable_narrator) && (namepart != "Unknown"))
 		var/mob/receiver_mob = src
 		if(receiver_mob.mind?.guestbook)
-			var/mob/living/carbon/human/speaker_human = reliable_narrator
-			var/known_name = receiver_mob.mind.guestbook.get_known_name(src, reliable_narrator, speaker_human.real_name)
+			var/known_name = GET_GUESTBOOK_NAME(receiver_mob, reliable_narrator)
 			if(known_name)
 				namepart = "[known_name]"
 			else
-				var/mob/living/carbon/human/human_narrator = reliable_narrator
-				namepart = "[human_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
+				var/mob/living/living_narrator = reliable_narrator
+				namepart = "[living_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
 
 	if(text2num(radio_freq) >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
 		var/icon/phone_icon = icon('modular_darkpack/modules/phones/icons/chat_icon.dmi', "phone")

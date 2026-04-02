@@ -1,6 +1,6 @@
 /obj/item/storage/belt/sheath/vamp
 	name = "sheath"
-	icon_state = "longsword_sheathe-full"
+	icon_state = "longsword_sheathe"
 	base_icon_state = "longsword_sheathe"
 	worn_icon_state = "longsword_sheathe"
 	//inhand_icon_state = "longsword_sheathe"
@@ -12,7 +12,7 @@
 
 /obj/item/storage/belt/sheath/vamp/sabre
 	desc = "An ornate sheath designed to hold an officer's blade."
-	icon_state = "sabre_sheathe-full"
+	icon_state = "sabre_sheathe"
 	base_icon_state = "sabre_sheathe"
 	worn_icon_state = "sabre_sheathe"
 	//inhand_icon_state = "sabre_sheathe"
@@ -22,7 +22,7 @@
 
 /obj/item/storage/belt/sheath/vamp/rapier
 	desc = "An ornate sheath designed to hold a duelist's blade."
-	icon_state = "rapier_sheathe-full"
+	icon_state = "rapier_sheathe"
 	base_icon_state = "rapier_sheathe"
 	worn_icon_state = "rapier_sheathe"
 	//inhand_icon_state = "rapier_sheathe"
@@ -31,7 +31,7 @@
 
 /obj/item/storage/belt/sheath/vamp/sword
 	desc = "An ornate sheath designed to hold a knight's blade."
-	icon_state = "longsword_sheathe-full"
+	icon_state = "longsword_sheathe"
 	base_icon_state = "longsword_sheathe"
 	worn_icon_state = "longsword_sheathe"
 	//inhand_icon_state = "longsword_sheathe"

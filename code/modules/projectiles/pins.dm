@@ -73,7 +73,7 @@
 	return
 
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
-	var/result = SEND_SIGNAL(user, COMSIG_LIVING_FIRING_PIN_CHECK, src)
+	var/result = ALLOW_FIRE // DARKPACK EDIT ADD - Removes firing pin authorization - Original : 	var/result = SEND_SIGNAL(user, COMSIG_LIVING_FIRING_PIN_CHECK, src)
 	if(result & ALLOW_FIRE)
 		return TRUE
 	if(result & BLOCK_FIRE)
@@ -120,11 +120,14 @@
 	var/obj/item/implant/req_implant = null
 
 /obj/item/firing_pin/implant/pin_auth(mob/living/user)
+	return TRUE
+	/* DARKPACK EDIT REMOVAL - Removes firing pin authorization
 	if(user)
 		for(var/obj/item/implant/I in user.implants)
 			if(req_implant && I.type == req_implant)
 				return TRUE
 	return FALSE
+	*/ // DARKPACK EDIT REMOVAL END - Removes firitng pin authorization
 
 /obj/item/firing_pin/implant/mindshield
 	name = "mindshield firing pin"
@@ -208,10 +211,13 @@
 	return ..()
 
 /obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
+	return TRUE
+	/* DARKPACK EDIT REMOVAL - Removes firing pin authorization
 	if(user && user.dna && user.dna.unique_enzymes)
 		if(user.dna.unique_enzymes == unique_enzymes)
 			return TRUE
 	return FALSE
+	*/ // DARKPACK EDIT REMOVAL END - Removes firing pin authorization
 
 /obj/item/firing_pin/dna/auth_fail(mob/living/carbon/user)
 	if(!unique_enzymes)
