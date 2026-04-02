@@ -69,6 +69,16 @@
 	src.discipline = discipline
 	src.owner = discipline.owner
 
+/datum/discipline_power/Destroy(force)
+	for(var/i in 0 to length(duration_timers))
+		deltimer(duration_timers[i])
+		duration_timers.Cut(i, i + 1)
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+	QDEL_NULL(grouped_powers)
+	owner = null
+	return ..()
+
 /**
  * Returns the time left the cooldown timer, or
  * 0 if there is none. Returning 0 means not on

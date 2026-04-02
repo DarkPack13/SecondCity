@@ -34,7 +34,7 @@
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
 	var/post_gain_applied
-	/// Signature clan that "owns" the discipline. 
+	/// Signature clan that "owns" the discipline.
 	var/signature_clan
 
 //TODO: rework this and set_level to use proper loadouts instead of a default set every time
@@ -52,6 +52,13 @@
 		var/datum/discipline_power/new_power = new type_to_create(src)
 		known_powers += new_power
 	current_power = known_powers[1]
+
+/datum/discipline/Destroy(force)
+	QDEL_NULL(current_power)
+	QDEL_NULL(known_powers)
+	QDEL_NULL(all_powers)
+	owner = null
+	return ..()
 
 /**
  * Modifies a Discipline's level, updating its available powers
