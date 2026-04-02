@@ -113,7 +113,7 @@
 			to_chat(owner, span_warning("[power] is already active!"))
 	else //activate
 		if (power.target_type == NONE) //self activation
-			power.try_activate()
+			power.try_activate(owner)
 		else //ranged targeted activation
 			begin_targeting()
 
