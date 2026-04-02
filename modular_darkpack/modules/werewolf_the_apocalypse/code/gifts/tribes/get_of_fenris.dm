@@ -30,7 +30,7 @@
 /datum/action/cooldown/power/gift/visage_of_fenris/Activate(atom/target)
 	. = ..()
 	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
-	var/datum/splat/werewolf/guy_splat
+
 	var/datum/storyteller_roll/visage_of_fenris/roll_datum = new()
 	var/successes = roll_datum.st_roll(owner)
 
@@ -45,7 +45,7 @@
 
 		var/difference = 0
 		if(get_werewolf_splat(guy))
-			guy_splat = get_werewolf_splat(guy)
+			var/guy_splat = get_werewolf_splat(guy)
 			if(guy_splat && (our_splat.renown_rank < guy_splat.renown_rank))
 				difference = guy_splat.renown_rank-our_splat.renown_rank
 		if(successes && (successes >= difference*2))
