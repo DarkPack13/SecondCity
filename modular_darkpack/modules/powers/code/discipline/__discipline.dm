@@ -37,7 +37,6 @@
 	/// Signature clan that "owns" the discipline.
 	var/signature_clan
 
-//TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)
 	all_powers = subtypesof(power_type)
 	if (!level)
@@ -107,7 +106,6 @@
 	if (!post_gain_applied)
 		post_gain()
 	post_gain_applied = TRUE
-
 
 /**
  * Returns a known Discipline power in this Discipline

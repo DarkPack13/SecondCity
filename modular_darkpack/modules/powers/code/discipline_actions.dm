@@ -20,6 +20,12 @@
 	button_icon_state = discipline.icon_state
 	overlay_icon_state = "1"
 
+/datum/action/discipline/Grant(mob/M)
+	. = ..()
+	discipline.assign(M)
+
+	register_to_availability_signals()
+
 /datum/action/discipline/Remove(mob/owner)
 	end_targeting()
 	if(owner)
