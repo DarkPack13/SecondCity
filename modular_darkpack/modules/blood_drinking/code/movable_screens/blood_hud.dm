@@ -1,9 +1,9 @@
-#define UI_LIVING_BLOODPOOL "EAST-1:28,CENTER-4:14"
+#define UI_LIVING_BLOODPOOL "EAST-2:28,CENTER-4:14"
 /atom/movable/screen/bloodpool
 	name = "bloodpool"
 	//icon = 'modular_darkpack/modules/blood_drinking/icons/bloodpool.dmi'
 	//32x32 version
-	icon = 'modular_darkpack/modules/blood_drinking/icons/old_bloodpool.dmi'
+	icon = 'modular_darkpack/modules/blood_drinking/icons/bloodpool.dmi'
 	icon_state = "blood0"
 	screen_loc = UI_LIVING_BLOODPOOL
 	mouse_over_pointer = MOUSE_HAND_POINTER

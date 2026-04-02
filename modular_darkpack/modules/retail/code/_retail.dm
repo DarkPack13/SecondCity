@@ -113,7 +113,7 @@
 			.["user"]["is_card"] = 1
 			.["user"]["payment_item"] = REF(held_item)
 			break
-		if(iscash(held_item))
+		else if(istype(held_item, /obj/item/stack/dollar))
 			var/obj/item/money = held_item
 			.["user"]["money"] = money.get_item_credit_value()
 			.["user"]["payment_item"] = REF(held_item)
@@ -149,23 +149,27 @@
 				to_chat(usr, span_alert("Error: Product is out of stock!"))
 				return
 
-			//get the money
-			if(is_creditcard(held_item))
-				var/obj/item/card/credit/creditcard = held_item
-				var/datum/bank_account/used_account = creditcard.registered_account
-				if(!used_account)
-					to_chat(user, span_alert("The [creditcard] has no linked account."))
-					return
-				if(!used_account.check_pin(user, product.price, creditcard))
-					return
-				if(!used_account.adjust_money(-1 * product.price))
-					to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
-					return
-				//used_account.process_credit_fraud(user, product.price)
+			if(product.price > 0)
+				//get the money
+				if(is_creditcard(held_item))
+					var/obj/item/card/credit/creditcard = held_item
+					var/datum/bank_account/used_account = creditcard.registered_account
+					if(!used_account)
+						to_chat(user, span_alert("The [creditcard] has no linked account."))
+						return
+					if(!used_account.check_pin(user, product.price, creditcard))
+						return
+					if(!used_account.adjust_money(-1 * product.price))
+						to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
+						return
+					//used_account.process_credit_fraud(user, product.price)
+				else if(istype(held_item, /obj/item/stack/dollar))
+					if(!held_item.use(product.price))
+						to_chat(user, span_alert("You don't have enough money in your hand."))
+						return
+				else
+					return // We have nothing we can pay with.
 
-			else if(istype(held_item, /obj/item/stack/dollar) && !held_item.use(product.price))
-				to_chat(user, span_alert("You don't have enough money in your hand."))
-				return
 			playsound(get_turf(src), 'sound/effects/cashregister.ogg', 50, TRUE)
 			new product.product_path(loc)
 			if(product.amount > 0)

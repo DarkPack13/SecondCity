@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/gargoyle
-	name = "gargoyle transformation"
+	name = "at our command it breathes"
 	desc = "Create a Gargoyle from vampire bodies. One body creates a normal Gargoyle, two bodies create a perfect Gargoyle."
 	icon_state = "rune9"
 	word = "FORMA-GARGONEM"

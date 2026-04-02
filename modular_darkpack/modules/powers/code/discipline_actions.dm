@@ -1,7 +1,7 @@
 /datum/action/discipline
 	check_flags = NONE
 	background_icon_state = "bg_discipline"
-	button_icon = 'modular_darkpack/modules/deprecated/icons/ui/actions.dmi'
+	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	button_icon_state = "bloodheal"
 	overlay_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 
