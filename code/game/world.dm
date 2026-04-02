@@ -408,7 +408,12 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
-			new_status += "<b>[server_name]</b> "
+		// TFN EDIT START
+			new_status += "<a href=\"https://discord.gg/invite/hQHAK67Drd\"><b>[server_name] \[18+\] &#8212; Apply on Discord!</b></a>"
+
+		new_status += "<br>Persistent 18+ Heavy-RP immersive roleplay set in the World of Darkness, now on modern /tg/ code! <br>Hosted by <b>The Regime</b>"
+		status = new_status
+		// TFN EDIT END
 		if(CONFIG_GET(flag/allow_respawn))
 			features += "respawn" // show "respawn" regardless of "respawn as char" or "free respawn"
 		if(!CONFIG_GET(flag/allow_ai))
