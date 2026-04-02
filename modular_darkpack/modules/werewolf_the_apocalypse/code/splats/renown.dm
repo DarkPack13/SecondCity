@@ -26,7 +26,8 @@
 	if(old_rank != renown_rank)
 		to_chat(owner, span_boldnotice("You are now a [fera_rank_name(renown_rank)]."))
 
-	owner.write_preference_midround(/datum/preference/numeric/fera_rank, renown_rank)
+	// Not acctually used ANYWHERE rn. Its super easy to just calculate it from our renown anyway.
+	// owner.write_preference_midround(/datum/preference/numeric/fera_rank, renown_rank)
 
 
 /datum/splat/werewolf/proc/get_negative_emotion(attribute)
@@ -58,6 +59,8 @@
 
 
 /datum/splat/werewolf/proc/auspice_rank_check()
+	if(!auspice)
+		return RANK_CUB
 	return auspice.rank_requirments(renown)
 
 // Pretty iffy on this. This could likely just be moved onto the splat itself so corax and other breeds can override it.

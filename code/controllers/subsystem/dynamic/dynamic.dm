@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(dynamic)
 	name = "Dynamic"
-	// flags = SS_NO_INIT // DARKPACK EDIT REMOVAL
+	// ss_flags = SS_NO_INIT // DARKPACK EDIT REMOVAL
 	wait = 5 MINUTES
 
 	// These vars just exist for admins interfacing with dynamic

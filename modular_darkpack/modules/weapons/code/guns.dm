@@ -60,7 +60,7 @@
 /obj/item/ammo_box/magazine/internal/cylinder/rev9mm
 	name = "revolver cylinder"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
-	caliber = CALIBER_9MM
+	caliber = CALIBER_9MMPARA
 	max_ammo = 6
 
 //PISTOLS
@@ -119,7 +119,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "m1911"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 8
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -140,7 +140,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "glock19"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
-	caliber = CALIBER_9MM
+	caliber = CALIBER_9MMPARA
 	max_ammo = 15
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -165,7 +165,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "glock21"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 12
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -290,7 +290,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "mac10" //uzi sprite placeholder
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -521,7 +521,7 @@
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 50
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -676,7 +676,7 @@
 /obj/item/ammo_box/magazine/internal/vampshotgun
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	//multiload = FALSE
 	max_ammo = 6
 	masquerade_violating = FALSE
@@ -707,7 +707,7 @@
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	max_ammo = 2
 	masquerade_violating = FALSE
 
@@ -752,7 +752,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "spas15"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 

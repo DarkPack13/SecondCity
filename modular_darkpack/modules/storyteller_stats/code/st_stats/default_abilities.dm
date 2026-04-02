@@ -144,7 +144,7 @@
 /datum/st_stat/ability/occult
 	subcategory = "Knowledges"
 	name = "Occult"
-	description = "Affects your character's knowledge of esoteric and occult knowledge and concepts. Used in magic disciplines and affects your magical rituals."
+	description = "Affects your character's knowledge of esoteric and occult knowledge and concepts. Used in magic disciplines and affects your magical rituals. At occult 3 or higher, you can identify magical artifacts."
 
 /datum/st_stat/ability/politics
 	subcategory = "Knowledges"
