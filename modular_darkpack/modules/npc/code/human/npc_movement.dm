@@ -228,6 +228,8 @@
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_IMMOBILIZED))
+		return FALSE
 	if(is_talking)
 		return FALSE
 	if(pulledby)
