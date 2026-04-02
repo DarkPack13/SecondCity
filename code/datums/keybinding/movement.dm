@@ -3,28 +3,28 @@
 	weight = WEIGHT_HIGHEST
 
 /datum/keybinding/movement/north
-	hotkey_keys = list("W", "North")
+	hotkey_keys = list("W") // TFN EDIT
 	name = "North"
 	full_name = "Move North"
 	description = "Moves your character north"
 	keybind_signal = COMSIG_KB_MOVEMENT_NORTH_DOWN
 
 /datum/keybinding/movement/south
-	hotkey_keys = list("S", "South")
+	hotkey_keys = list("S") // TFN EDIT
 	name = "South"
 	full_name = "Move South"
 	description = "Moves your character south"
 	keybind_signal = COMSIG_KB_MOVEMENT_SOUTH_DOWN
 
 /datum/keybinding/movement/west
-	hotkey_keys = list("A", "West")
+	hotkey_keys = list("A") // TFN EDIT
 	name = "West"
 	full_name = "Move West"
 	description = "Moves your character left"
 	keybind_signal = COMSIG_KB_MOVEMENT_WEST_DOWN
 
 /datum/keybinding/movement/east
-	hotkey_keys = list("D", "East")
+	hotkey_keys = list("D") // TFN EDIT
 	name = "East"
 	full_name = "Move East"
 	description = "Moves your character east"

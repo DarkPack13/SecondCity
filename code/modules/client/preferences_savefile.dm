@@ -199,8 +199,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/list/notadded = list()
 	for (var/name in GLOB.keybindings_by_name)
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
-		if(kb.name in key_bindings)
-			continue // key is unbound and or bound to something
+		// TFN EDIT START
+		if(kb.name in key_bindings && LAZYLEN(key_bindings[kb.name])) // lazylen incase its null
+			continue
+		// TFN EDIT END
 
 		var/addedbind = FALSE
 		key_bindings[kb.name] = list()
