@@ -72,12 +72,11 @@
 /datum/discipline_power/Destroy(force)
 	for(var/i in length(duration_timers))
 		deltimer(duration_timers[i])
-		duration_timers.Cut(i, i + 1)
-		duration_timers = null
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
 		cooldown_timer = null
-	QDEL_NULL(grouped_powers)
+	QDEL_LIST(duration_timers)
+	QDEL_LIST(grouped_powers)
 	discipline = null
 	owner = null
 	return ..()
