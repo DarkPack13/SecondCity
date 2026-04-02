@@ -39,7 +39,7 @@
 		if(STAGE_RELEASE_VICTIM)
 			show_instruction(keybinding_message(
 				/datum/keybinding/mob/stop_pulling,
-				"Press '%KEY%' to release your victim and stop feeding.",
+				"Press '%KEY%' to release to stop feeding!.",
 				"Click '<b>Pull</b>' to stop feeding!.",
 			))
 
