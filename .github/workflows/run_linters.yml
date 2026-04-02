@@ -66,6 +66,7 @@ jobs:
         run: |
           bash tools/ci/check_grep.sh
           bash modular_darkpack/tools/darkpack_check_grep.sh # DARKPACK EDIT ADDITION - checking modular_darkpack code
+          bash modular_zapoc/tools/apoc_check_grep.sh # APOC EDIT ADD
       - name: Ticked File Enforcement
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |

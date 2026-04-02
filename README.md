@@ -1,14 +1,14 @@
-## The Second City codebase
+## The Apocrypha codebase
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-| Website                 | Link                                     |
-| ----------------------- | -----------------------------------------|
-| Code                    | https://github.com/DarkPack13/SecondCity |
-| The Second City Discord | https://discord.gg/rmAbJcuChD            |
-| Coderbus Discord        | https://discord.gg/Vh8TJp9               |
+| Website                 | Link                                         |
+| ----------------------- | -------------------------------------------- |
+| Code                    | https://github.com/ApocryphaXIII/Apocrypha13 |
+| The Second City Discord | https://discord.gg/rmAbJcuChD                |
+| Coderbus Discord        | https://discord.gg/Vh8TJp9                   |
 
-This is the codebase for the Darkpack13 Project, a fork of TGstation 2025 for the purposes of being an upstream for The Final Nights, Apocrypha, Requiem and World of Darkness 13.
+This is the codebase for Apocrypha13, a downstream/fork for the Darkpack13 Project, a fork of TGstation 2025
 
 We are based on the Paradox Interactive World of Darkness(c) gamelines, with administrative oversight determining what we add to our game.
 
