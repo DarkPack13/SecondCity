@@ -29,7 +29,7 @@
 	///All Discipline powers under this Discipline that the owner knows. Derived from all_powers.
 	var/list/datum/discipline_power/known_powers = list()
 	///The typepaths of possible powers for every rank in this Discipline.
-	var/all_powers = list()
+	var/list/all_powers = list()
 	///The mob that owns and is using this Discipline.
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
@@ -55,8 +55,8 @@
 
 /datum/discipline/Destroy(force)
 	QDEL_NULL(current_power)
-	QDEL_NULL(known_powers)
-	QDEL_NULL(all_powers)
+	QDEL_LIST(known_powers)
+	QDEL_LIST(all_powers)
 	owner = null
 	return ..()
 
