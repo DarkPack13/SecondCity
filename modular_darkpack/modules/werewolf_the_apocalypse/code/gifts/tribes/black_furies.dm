@@ -17,6 +17,7 @@
 	button_icon_state = "breath_of_the_wyld"
 	click_to_activate = TRUE
 	rank = 1
+	var/datum/storyteller_roll/roll_datum
 
 /datum/action/cooldown/power/gift/breath_of_the_wyld/Activate(atom/target)
 	if(!isliving(target))
@@ -30,8 +31,8 @@
 	var/mob/living/caster = owner
 	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(caster)
 	var/roll_difficulty = get_werewolf_splat(target) ? 5 : 6
-
-	var/datum/storyteller_roll/roll_datum = new()
+	if(!roll_datum)
+		roll_datum = new()
 	roll_datum.difficulty = roll_difficulty
 	var/roll_result = roll_datum.st_roll(caster, target, casting_splat.gnosis)
 

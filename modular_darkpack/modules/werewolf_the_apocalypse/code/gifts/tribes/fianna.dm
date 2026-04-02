@@ -80,15 +80,17 @@
 	rank = 1
 	cooldown_time = 1 TURNS
 
+	var/datum/storyteller_roll/roll_datum
+
 /datum/action/cooldown/power/gift/faerie_light/Activate(atom/target)
 	. = ..()
-
-	var/datum/storyteller_roll/roll_datum = new()
+	if(!roll_datum)
+		roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_WITS, STAT_OCCULT)
 	roll_datum.difficulty = 6
 	var/roll_result = roll_datum.st_roll(owner)
 
-	if(roll_result <= 0)
+	if(roll_result <= ROLL_FAILURE)
 		return FALSE
 
 	var/obj/effect/faerie_light/cool_guy = new /obj/effect/faerie_light(get_turf(target))
