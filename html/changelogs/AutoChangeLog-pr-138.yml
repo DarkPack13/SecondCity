@@ -1,0 +1,5 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - rscadd: "ports loadout from oldcode"
+  - bugfix: "fixes not being able to apply loadout after spawning"
