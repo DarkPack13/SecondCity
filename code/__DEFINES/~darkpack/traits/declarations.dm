@@ -73,6 +73,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
 /// Duration of frenzy is doubled
 #define TRAIT_LONGER_FRENZY "longer_frenzy"
+// Setite weakness, sunlight is particularly bad bad.
+#define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
 /// If eyes are uncovered, they will be obviously supernatural to everyone nearby
 #define TRAIT_MASQUERADE_VIOLATING_EYES "masquerade_violating_eyes"
@@ -92,7 +94,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNAGING "unaging"
 // Does the mob have ghostsight?
 #define TRAIT_GHOST_VISION "ghost_vision"
+// Does the mob have hardened skin via Serpentis?
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
+// Is the mob melted into a wall via Visceratika?
+#define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 
 
 // Allows the user to pass through doors
@@ -118,6 +123,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
 #define TRAIT_NO_EYE_CONTACT "no_eye_contact"
 
+// If the splat uses the WTA renown system described in W20 p. 245
+#define TRAIT_FERA_RENOWN "wta_fera_renown"
 /// If the species has garou breeds to select.
 #define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
 // if the species has garou tribes to select.
@@ -152,6 +159,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
-
+#define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
 
 // END TRAIT DEFINES

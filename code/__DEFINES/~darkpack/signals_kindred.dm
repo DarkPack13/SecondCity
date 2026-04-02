@@ -8,3 +8,6 @@
 
 ///called in bloodsucking.dm at the end of /mob/living/carbon/human/proc/drinksomeblood: (mob/living/carbon/human/drinker, mob/drunk_from)
 #define COMSIG_MOB_VAMPIRE_SUCKING "mob_vampire_sucking"
+
+///baali demons have touched the target, time to apply the effect from daimonion 4
+#define COMSIG_BAALI_DEMON_REACHED_TARGET "baali_demon_reached_target"
