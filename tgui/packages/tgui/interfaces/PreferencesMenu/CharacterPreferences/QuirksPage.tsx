@@ -550,7 +550,7 @@ function QuirkPage() {
 }
 
 export function QuirkPersonalityPage() {
-  const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
+  const [contentPage, setContentPage] = useState<'quirks'>( // TFN EDIT, ORIGINAL: const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
     'quirks',
   );
 
@@ -569,6 +569,7 @@ export function QuirkPersonalityPage() {
               Quirks
             </Button>
           </Stack.Item>
+          { /* // TFN EDIT REMOVAL START
           <Stack.Item grow>
             <Button
               selected={contentPage === 'personality'}
@@ -580,11 +581,17 @@ export function QuirkPersonalityPage() {
               Personality
             </Button>
           </Stack.Item>
+          // TFN EDIT REMOVAL END */}
         </Stack>
       </Stack.Item>
+      { /* // TFN EDIT REMOVAL START
       <Stack.Item grow>
         {contentPage === 'personality' ? <PersonalityPage /> : <QuirkPage />}
       </Stack.Item>
+      // TFN EDIT REMOVAL END */}
+      {/* TFN EDIT ADDITION START */}
+      <QuirkPage />
+      {/* TFN EDIT ADDITION END */}
     </Stack>
   );
 }
