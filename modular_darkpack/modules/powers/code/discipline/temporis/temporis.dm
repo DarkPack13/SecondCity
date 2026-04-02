@@ -70,6 +70,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
 	target_type = TARGET_LIVING
 	range = 7
+	vitae_cost = 0 //You *can* spend a BP to boost this, but it'd extend time to hours or a day.
 
 	hostile = TRUE
 
