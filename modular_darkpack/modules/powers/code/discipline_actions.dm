@@ -47,6 +47,12 @@
 			SIGNAL_ADDTRAIT(TRAIT_PACIFISM),
 			SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 		))
+	// TFN EDIT ADD - Harddels
+	if(discipline)
+		discipline.owner = null
+		for(var/datum/discipline_power/power in discipline.known_powers)
+			power.owner = null
+	// TFN EDIT ADD END - Harddels
 	discipline = null
 	return ..()
 
