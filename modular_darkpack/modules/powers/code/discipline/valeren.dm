@@ -21,7 +21,7 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
 	difficulty = 7
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_PRIVATE_ADMIN
 
 /datum/discipline_power/valeren/sense_vitality
 	name = "Sense Vitality"
