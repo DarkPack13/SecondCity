@@ -1,0 +1,28 @@
+2026-04-02:
+  LucifersCoils:
+  - rscadd: Lasombra no longer appear on cameras
+  - rscdel: Lasombra no longer are cursed to struggle with technology
+  Marshmellow105:
+  - rscdel: Re-Removes radios from everyone but the SFPD
+  - map: Replaced the courthouse with the pacific apartments and a gumma-guts
+  XeonMations:
+  - rscadd: Added coffin supply pods!
+  - bugfix: fixed a zulo form appearing when it shouldnt
+  buffyuwu:
+  - rscadd: Added skillcheck system
+  - refactor: Overrides fishing to use skillchecks instead of the /tg/ minigame
+  - bugfix: light tubes now have icons again
+  - bugfix: derangement now properly applies
+  - rscadd: Adds trusted whitelist for clans
+  - admin: Added a check to warn admins before they mess up peoples sheets in the
+      disc menu
+  - refactor: refactored play-internet-sound to use a web server php endpoint instead
+      of the built in web_sound stuff that scarcely worked
+  - bugfix: fixed an issue where you could, in some instances, swap between splats
+      and keep disciplines
+  - refactor: redesigned the height modal
+  - rscadd: ports loadout from oldcode
+  - bugfix: fixes not being able to apply loadout after spawning
+  chazzyjazzy:
+  - bugfix: rebase hotfix for bloodbags not restoring blood, sunglasses not protecting
+      masquerade_violating_eyes, and setite clan keys
