@@ -6,6 +6,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	pass_flags_self = PASSDOORS
 
 /obj/structure/vampfence/corner
 	icon_state = "fence_corner"
@@ -43,6 +44,7 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	pass_flags_self = PASSMACHINE
 	var/number_of_lamps
 	var/list/my_lights = list()
 
@@ -135,6 +137,7 @@
 	icon_state = "garbage"
 	base_icon_state = "garbage"
 	drag_slowdown = 3
+	pass_flags_self = PASSMACHINE
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
@@ -316,6 +319,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	pass_flags_self = PASSMACHINE
 
 /obj/structure/barrels/rand
 	icon_state = "barrel2"
