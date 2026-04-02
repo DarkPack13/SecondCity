@@ -29,7 +29,7 @@
 			lobbyscreen.RegisterSignal(src, COMSIG_HUD_LOBBY_COLLAPSED, TYPE_PROC_REF(/atom/movable/screen/lobby, collapse_button))
 			lobbyscreen.RegisterSignal(src, COMSIG_HUD_LOBBY_EXPANDED, TYPE_PROC_REF(/atom/movable/screen/lobby, expand_button))
 
-	if (!owner.client.is_localhost())
+	if (!owner?.client?.is_localhost()) // TFN EDIT, ORIGINAL: if (!owner.client.is_localhost())
 		return
 
 	var/atom/movable/screen/lobby/button/start_now/start_button = new(our_hud = src)
