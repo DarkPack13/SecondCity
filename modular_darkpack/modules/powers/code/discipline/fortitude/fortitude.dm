@@ -7,6 +7,7 @@
 /datum/discipline_power/fortitude
 	name = "Fortitude power name"
 	desc = "Fortitude power description"
+	vitae_cost = 0 //Fortitude's extra soak dice are free in RAW, but you can activate it for automatic successes. Maybe have it give a free lower level DR boost and increase it when active?
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_deactivate.ogg'
