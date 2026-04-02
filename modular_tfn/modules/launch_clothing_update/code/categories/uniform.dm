@@ -381,7 +381,7 @@
     item_path = /obj/item/clothing/under/vampire/dress/strawberrylolita
 
 /datum/loadout_item/uniform/novella
-    name = "luxury silk dress shirt"
+    name = "Silk Dress Shirt"
     item_path = /obj/item/clothing/under/vampire/dress/novella
 
 /datum/loadout_item/uniform/laceblack

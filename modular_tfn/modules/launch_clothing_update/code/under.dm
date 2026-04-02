@@ -650,8 +650,8 @@
 	LCU_UNDER_ICONS
 
 /obj/item/clothing/under/vampire/dress/novella
-	name = "novella dress"
-	desc = "An elegant novella-style dress."
+	name = "luxury silk dress shirt"
+	desc = "An elegant silk dress shirt."
 	icon_state = "novella"
 	LCU_UNDER_ICONS
 
