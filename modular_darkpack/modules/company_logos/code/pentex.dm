@@ -121,7 +121,7 @@
 	slogan = "Omni: Entertainment at your fingertips."
 	name_span = "corp_label_omni_tv"
 	company_color = COLOR_CORP_OMNI_TV
-#warn O'TOLLEY'S LOGO NEEDED
+
 /datum/brand/pentex/otolleys
 	manufacturer = "otolleys"
 	full_name = EVIL_FAST_FOOD_COMPANY
