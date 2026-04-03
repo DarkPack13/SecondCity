@@ -1,4 +1,4 @@
-/datum/quirk/darkpack/giovanni_sanguine_incongruity
+/datum/quirk/item_quirk/forked_tongue
 	name = "Forked Tongue"
 	desc = "Your tongue is forked, flickering, and inhumanly reptilian. To not cover your mouth is a breach of the masquerade as your tongue flickers about."
 	value = -2
