@@ -391,7 +391,7 @@
 	if(update)
 		update_damage_overlays()
 // DARKPACK EDIT ADD START - SOAK ROLLS
-/mob/living/carbon/soak_roll(
+/mob/living/carbon/proc/soak_roll(
 	damage = 0,
 	damagetype = BRUTE,
 	def_zone = null,
@@ -401,32 +401,31 @@
 	var/roll_used = soak_dice_bashing
 	switch(damagetype)
 		if(BRUTE)
-			switch(attacking_item)
-				if(isprojectile())	
-					if(iskindred(src) && !def_zone = HEAD)
-						roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
-					else 
-						roll_used = soak_dice_lethal //Otherwise it's lethal damage.
-				if(get_sharpness())	
-					roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
-				else
-					roll_used = soak_dice_bashing //Everything else should take Bashing.
+			if(isprojectile(attacking_item))	
+				if(get_kindred_splat(src) && !def_zone == HEAD)
+					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
+				else 
+					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
+			if(!sharpness == NONE)	
+				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
+			else
+				roll_used = soak_dice_bashing //Everything else should take Bashing.
 		if(BURN)
 			roll_used = soak_dice_aggravated //Burning is always Agg.
 		if(TOX)
 			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
 		if(OXY)
-			roll_used = unsoakable //Oxygen damage is applied automatically and cannot be soaked.
+			roll_used = null //Oxygen damage is applied automatically and cannot be soaked.
 		if(STAMINA)
-			roll_used = soak_dice_bashing /Stamina damage is a little weird, but as per exhaustion rules for rituals and the like, you can soak it like Bashing. Not too sure about it though.
+			roll_used = soak_dice_bashing //Stamina damage is a little weird, but as per exhaustion rules for rituals and the like, you can soak it like Bashing. Not too sure about it though.
 		if(BRAIN)
 			roll_used = soak_dice_lethal //Not many situations where you'd take direct brain damage really, but it'd be lethal in this case.
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
 
-	successes = SSroll.storyteller_roll(roll_used, difficulty = 6, roller = src, numerical = TRUE)
+	var/successes = SSroll.storyteller_roll(roll_used, difficulty = 6, roller = src, numerical = TRUE)
 
 	if(successes > 0)
 		damage = (max(0, damage - (successes * 10)))
-		to_chat(owner, span_warning("You stand firm and are able to absorb some of the damage!")
+		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
 		// DARKPACK EDIT ADD END
