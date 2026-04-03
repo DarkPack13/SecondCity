@@ -444,6 +444,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//we don't allow it to update during species transition, so update it now
 	human_who_gained_species.hud_used?.healthdoll.update_appearance()
+///DARKPACK EDIT START
+	human_who_gained_species.update_soak() //Updates Soak values.
+///DARKPACK EDIT END
+
 
 /**
  * Proc called when a carbon is no longer this species.
