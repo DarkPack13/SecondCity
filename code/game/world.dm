@@ -405,13 +405,14 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 
 	var/new_status = ""
 	var/hostedby
+	var/tfn_status = "" // TFN EDIT
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 		// TFN EDIT START
-			new_status += "<a href=\"https://discord.gg/invite/hQHAK67Drd\"><b>[server_name] \[18+\] &#8212; Apply on Discord!</b></a>"
+			tfn_status += "<a href=\"https://TheFinalNights.com\"><b>[server_name] \[18+\] &#8212; Apply on Discord!</b></a>"
 
-		new_status += "<br>Persistent 18+ Heavy-RP immersive roleplay set in the World of Darkness, now on modern /tg/ code! <br>Hosted by <b>The Regime</b>"
+		tfn_status += "<br>Persistent 18+ Heavy-RP immersive roleplay set in the World of Darkness, now on modern /tg/ code! <br>Hosted by <b>The Regime</b>"
 		status = new_status
 		// TFN EDIT END
 		if(CONFIG_GET(flag/allow_respawn))
@@ -451,7 +452,7 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 	if(SSmap_vote.next_map_config)
 		new_status += "[SSmapping.current_map ? " | " : "<br>"]Next: <b>[SSmap_vote.next_map_config.map_path == CUSTOM_MAP_PATH ? "Uncharted Territory" : SSmap_vote.next_map_config.map_name]</b>"
 
-	status = new_status
+	status = tfn_status // TFN EDIT
 
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)
