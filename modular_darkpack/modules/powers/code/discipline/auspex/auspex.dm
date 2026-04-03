@@ -109,7 +109,7 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
-	toggled = TRUE
+	cancelable = TRUE
 
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
