@@ -235,7 +235,7 @@
 	if(pulledby)
 		if (HAS_TRAIT(pulledby, TRAIT_CHARMER))
 			return FALSE
-		if (prob(30))
+		if (prob(10)) // TFN EDIT - NPCs should resist out of grabs less often
 			execute_resist()
 		return FALSE
 

@@ -194,14 +194,14 @@
 	if(source)
 		addtimer(CALLBACK(src, PROC_REF(face_atom), source), rand(0.3 SECONDS, 0.7 SECONDS))
 
-	var/phrase
+	var/phrase = "Wow." // TFN EDIT - found an edgecase where an npc might not have a socialrole, so this shouldnt be null
 	if (prob(50))
-		phrase = pick(socialrole.neutral_phrases)
+		phrase = pick(socialrole?.neutral_phrases) // TFN EDIT
 	else
 		if (gender == MALE)
-			phrase = pick(socialrole.male_phrases)
+			phrase = pick(socialrole?.male_phrases) // TFN EDIT
 		else
-			phrase = pick(socialrole.female_phrases)
+			phrase = pick(socialrole?.female_phrases) // TFN EDIT
 	realistic_say(phrase)
 
 /mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
@@ -215,7 +215,7 @@
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)
 	SIGNAL_HANDLER
 
-	if (bumping.can_mobswap_with(source))
+	if (bumping.can_mobswap_with(source) && prob(25)) // TFN EDIT - npcs should stop and react more often
 		return
 
 	source.Annoy(bumping)

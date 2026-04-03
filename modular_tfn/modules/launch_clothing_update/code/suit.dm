@@ -256,33 +256,33 @@
 	AddComponent(/datum/component/toggle_icon)
 
 /obj/item/clothing/suit/vampire/dep_jacket/engi
-	name = "engineering jacket"
-	desc = "An engineering jacket."
+	name = "yellow jacket"
+	desc = "A yellow jacket."
 	icon_state = "engi_dep_jacket"
 
 /obj/item/clothing/suit/vampire/dep_jacket/sec
-	name = "security guard jacket"
-	desc = "A security guard jacket."
+	name = "red jacket"
+	desc = "A red jacket."
 	icon_state = "sec_dep_jacket"
 
 /obj/item/clothing/suit/vampire/dep_jacket/med
-	name = "medical jacket"
-	desc = "A medical jacket."
+	name = "soft jacket"
+	desc = "A soft jacket."
 	icon_state = "med_dep_jacket"
 
 /obj/item/clothing/suit/vampire/dep_jacket/supply
-	name = "supply department jacket"
-	desc = "A supply department jacket."
+	name = "cartheart jacket"
+	desc = "A jacket for working people."
 	icon_state = "supply_dep_jacket"
 
 /obj/item/clothing/suit/vampire/dep_jacket/grey
-	name = "grey department jacket"
-	desc = "A grey department jacket."
+	name = "grey cartheart jacket"
+	desc = "A grey department store jacket."
 	icon_state = "grey_dep_jacket"
 
 /obj/item/clothing/suit/vampire/dep_jacket/blue
-	name = "blue department jacket"
-	desc = "A blue department jacket."
+	name = "blue jacket"
+	desc = "A blue jacket."
 	icon_state = "blue_dep_jacket"
 
 // Park Jackets
