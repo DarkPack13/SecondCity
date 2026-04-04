@@ -292,7 +292,7 @@
 	var/raw_msg = message
 	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
-		raw_msg = apply_message_emphasis(message) // TFN EDIT, ORIGINAL: message = apply_message_emphasis(message)
+		raw_msg = apply_message_emphasis(message) // DARKPACK EDIT, ORIGINAL: message = apply_message_emphasis(message)
 	/* // DARKPACK EDIT REMOVAL START
 	if(visible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b> [message]")
@@ -371,7 +371,7 @@
 	var/raw_msg = message
 	var/space = should_have_space_before_emote(html_decode(message)[1]) ? " " : "" // DARKPACK EDIT ADD
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
-		raw_msg = apply_message_emphasis(message) // TFN EDIT, ORIGINAL: message = apply_message_emphasis(message)
+		raw_msg = apply_message_emphasis(message) // DARKPACK EDIT, ORIGINAL: message = apply_message_emphasis(message)
 	/* // DARKPACK EDIT REMOVAL START
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b> [message]")
