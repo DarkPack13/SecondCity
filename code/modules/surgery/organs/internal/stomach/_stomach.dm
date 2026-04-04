@@ -35,7 +35,7 @@
 	var/metabolism_efficiency = 0.05 // the lowest we should go is 0.025
 
 	/// Multiplier for hunger rate
-	var/hunger_modifier = 0.5
+	var/hunger_modifier = 1
 	/// Whether the stomach's been repaired with surgery and can be fixed again or not
 	var/operated = FALSE
 	/// List of all atoms within the stomach
@@ -140,12 +140,12 @@
 	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
 		if(human.overeatduration < (200 SECONDS))
 			to_chat(human, span_notice("You feel fit again!"))
-			human.remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY,TRAIT_FAT_IGNORE_SLOWDOWN,)
+			human.remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	else
 		if(human.overeatduration >= (200 SECONDS))
 			to_chat(human, span_danger("You suddenly feel blubbery!"))
-			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY, TRAIT_FAT_IGNORE_SLOWDOWN,)
+			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	// nutrition decrease and satiety
 	if (human.nutrition > 0 && human.stat != DEAD)
@@ -193,6 +193,17 @@
 			to_chat(human, span_notice("You no longer feel vigorous."))
 		human.metabolism_efficiency = 1
 
+	//Hunger slowdown for if mood isn't enabled
+	if(CONFIG_GET(flag/disable_human_mood))
+		handle_hunger_slowdown(human)
+
+///for when mood is disabled and hunger should handle slowdowns
+/obj/item/organ/stomach/proc/handle_hunger_slowdown(mob/living/carbon/human/human)
+	var/hungry = (500 - human.nutrition) / 5 //So overeat would be 100 and default level would be 80
+	if(hungry >= 70)
+		human.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 50))
+	else
+		human.remove_movespeed_modifier(/datum/movespeed_modifier/hunger)
 
 /obj/item/organ/stomach/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantstomach
