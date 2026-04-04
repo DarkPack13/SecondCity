@@ -5,7 +5,7 @@
 	mob_trait = TRAIT_MONSTROUS
 	gain_text = span_notice("The Beast rages inside you and corrupts your physical form!")
 	lose_text = span_notice("The Beast subsides and your appearance begins to look similar to how Kindred usually appear.")
-	allowed_splats = list(SPLAT_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GAROU)
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_HARBINGER)
 	icon = FA_ICON_FACE_ANGRY
 	failure_message = "The Beast subsides and your appearance begins to look similar to how Kindred usually appear."

@@ -8,7 +8,7 @@
 	gain_text = span_hypnophrase("You feel off...")
 	lose_text = span_notice("You start to feel normal again...")
 	medical_record_text = "Patient suffers from a treatment-resistant mental illness."
-	value = -8
+	value = -3
 	hardcore_value = 6
 	quirk_flags = QUIRK_PROCESSES
 	darkpack_allowed = TRUE
