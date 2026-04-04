@@ -53,7 +53,6 @@
 		for(var/datum/discipline_power/power in discipline.known_powers)
 			power.owner = null
 	// TFN EDIT ADD END - Harddels
-	QDEL_NULL(discipline)
 	return ..()
 
 /datum/action/discipline/proc/register_to_availability_signals()
