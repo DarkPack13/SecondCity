@@ -12,4 +12,3 @@
 		/datum/blood_type/human/ab_plus,
 	)
 
-/datum/blood_type/kindred/set_up_blood(obj/effect/decal/cleanable/blood/blood, new_splat = FALSE)
