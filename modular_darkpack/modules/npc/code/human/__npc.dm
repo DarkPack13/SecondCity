@@ -215,7 +215,7 @@
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)
 	SIGNAL_HANDLER
 
-	if (bumping.can_mobswap_with(source) && prob(25))  - npcs should stop and react more often
+	if (bumping.can_mobswap_with(source) && prob(25))
 		return
 
 	source.Annoy(bumping)
