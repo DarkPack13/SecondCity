@@ -13,6 +13,7 @@
 	quirk_flags = QUIRK_PROCESSES
 	mob_trait = TRAIT_SHIFTY_EYES // they're deranged, so give them the trait that tells people around them about their crazy eyes
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics) // happy pills! :)
+	excluded_clans = list(VAMPIRE_CLAN_MALKAVIAN)
 	var/process_interval = 3 SECONDS
 	var/list/derangements
 	COOLDOWN_DECLARE(next_process)
