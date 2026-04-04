@@ -1,5 +1,5 @@
 /datum/reagent/blood/vitae
-	name = "Blood"
+	name = "Thick blood"
 	self_consuming = TRUE
 	metabolization_rate = 100 * REAGENTS_METABOLISM // Vitae is supposed to instantly be consumed by the organism.
 
