@@ -9,7 +9,7 @@
 	var/datum/discipline/discipline
 	var/targeting = FALSE
 
-/datum/action/discipline/New(datum/discipline/discipline)
+/datum/action/discipline/New(Target, datum/discipline/discipline)
 	. = ..()
 
 	src.discipline = discipline
@@ -47,12 +47,7 @@
 			SIGNAL_ADDTRAIT(TRAIT_PACIFISM),
 			SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 		))
-	// TFN EDIT ADD - Harddels
-	if(discipline)
-		discipline.owner = null
-		for(var/datum/discipline_power/power in discipline.known_powers)
-			power.owner = null
-	// TFN EDIT ADD END - Harddels
+	QDEL_NULL(discipline)
 	return ..()
 
 /datum/action/discipline/proc/register_to_availability_signals()
