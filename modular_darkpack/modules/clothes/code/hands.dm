@@ -12,7 +12,7 @@
 
 /obj/item/clothing/gloves/vampire/Initialize(mapload)
 	.=..()
-	AddComponent(/datum/component/selling, 30, "gloves", FALSE)
+	AddComponent(/datum/component/selling, 4, "gloves", FALSE)
 
 /obj/item/clothing/gloves/vampire/leather
 	name = "leather gloves"

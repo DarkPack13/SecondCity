@@ -46,7 +46,7 @@
 	icon_state = "plasticbox"
 	foldable_result = null
 	illustration = "fish"
-	custom_price = PAYCHECK_CREW * 9
+	custom_price = 120 // DARKPACK EDIT CHANGE - ECONOMY
 	storage_type = /datum/storage/box/fishing_lures
 
 /obj/item/storage/box/fishing_lures/PopulateContents()

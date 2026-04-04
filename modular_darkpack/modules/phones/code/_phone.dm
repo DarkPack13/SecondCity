@@ -523,7 +523,7 @@
 
 		if("keyboard_click")
 			if(ringer)
-				playsound(loc, 'modular_darkpack/modules/phones/sounds/keyboard_click.ogg', 8, TRUE)
+				playsound(loc, 'modular_darkpack/modules/phones/sounds/keyboard_click.ogg', 75, TRUE)
 			return TRUE
 
 		if("send_message")
@@ -533,7 +533,7 @@
 				return FALSE
 			send_text_message(contact_number, message_text)
 			if(ringer)
-				playsound(loc, 'modular_darkpack/modules/phones/sounds/text_send.ogg', 10, TRUE)
+				playsound(loc, 'modular_darkpack/modules/phones/sounds/text_send.ogg', 50, TRUE)
 			return TRUE
 
 	return FALSE
@@ -565,14 +565,13 @@
 			receiving_phone.conversations += recv_conversation
 		recv_conversation.add_message(message_text, FALSE)
 		addtimer(CALLBACK(receiving_phone, PROC_REF(after_text_received)), rand(2 SECONDS, 6 SECONDS)) //simulate random delay before sending an audible/visible alert
-		receiving_phone.after_text_received()
 		log_phone("[key_name(usr)] sent a text to [contact_number]: [message_text]", list("sender" = contact_name, "receiver" = recv_contact_name, "message" = message_text))
 	return TRUE
 
 //stuff to do after a text is received
 /obj/item/smartphone/proc/after_text_received()
 	if(ringer) //only play the receive sound if sounds are on
-		playsound(loc, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 10, TRUE)
+		playsound(loc, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE)
 		balloon_alert_to_viewers(message = "New Message!", vision_distance = SAMETILE_MESSAGE_RANGE)
 	return TRUE
 
