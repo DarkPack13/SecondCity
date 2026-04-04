@@ -115,3 +115,12 @@
 	target.Paralyze(6 SECONDS)
 	target.visible_message(span_warning("[target] repeatedly bashes their head against the ground"), span_cult("THE WHISPERS ARE OVERTAKING ME"))
 	target.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
+
+/datum/subsplat/vampire_clan/malkavian/dominate_malkavian
+	name = "Dominate Malkavian"
+	desc = "Protected from the 'Great Prank' which caused the clan to re-acquire Dementation as it's signature discipline, Dominate Malkavians are very similar to the mainline Malkavian bloodline, except their curse manifests more often as sociopathy, obsessive-compulsive disorder, and other tendencies toward minor hallucinations."
+	clan_disciplines = list(
+		/datum/discipline/auspex,
+		/datum/discipline/dominate,
+		/datum/discipline/obfuscate
+	)
