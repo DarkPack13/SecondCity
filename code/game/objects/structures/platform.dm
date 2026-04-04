@@ -7,7 +7,7 @@
 	icon = 'icons/obj/smooth_structures/platform/window_frame_normal.dmi'
 	icon_state = "window_frame_normal-0"
 	base_icon_state = "window_frame_normal"
-	layer = CLOSED_TURF_LAYER // DARKPACK EDIT, ORIGINAL: layer = PLATFORM_LAYER // DARKPACK EDIT ADD - (Allows tables to be placed ontop of platforms (but please dont))
+	layer = CLOSED_TURF_LAYER // DARKPACK EDIT ADD - (Allows tables to be placed ontop of platforms (but please dont))
 	plane = WALL_PLANE // DARKPACK EDIT ADDITION
 	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
 	smoothing_groups = SMOOTH_GROUP_PLATFORMS
