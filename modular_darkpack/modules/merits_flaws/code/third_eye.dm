@@ -1,35 +1,27 @@
 /datum/quirk/darkpack/permanent_third_eye
 	name = "Permanent Third Eye"
-	desc = "Tremere's most infamous crime is visible on your head. Like the Salubri, you suffer from a third eye."
+	desc = "While most third eyes can be closed and appear on the forehead as if it were a scar of some sort, your third eye is almost always wide-open on your forehead. For Salubri, this is a dangerous proposition, exposing you to Kindred who believe the Tremere's stories of your clan being rife with infernal diablerists. For Tremere, this flaw manifests as a miraculous inheritance of the Diablerie of Saulot, almost certainly dooming your standing in Clan Tremere to be mistrusted at best, and immediately killed at worse. Your permanent third eye can be covered with a hat. This flaw is only available to Tremere and Salubri."
 	value = -2
 	mob_trait = TRAIT_THIRD_EYE
 	gain_text = span_notice("Saulot curses you for your forefather's crime. Your third eye opens to never close again.")
 	lose_text = span_notice("The Dragon sleeps again. Your third eye seals shut.")
 	allowed_splats = list(SPLAT_KINDRED)
-	included_clans = list(VAMPIRE_CLAN_TREMERE)
+	included_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_HEALER_SALUBRI, VAMPIRE_CLAN_WARRIOR_SALUBRI)
 	icon = FA_ICON_EYE
 	failure_message = "Your blood resists the urge to open the third eye."
 
 /datum/quirk/darkpack/permanent_third_eye/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	if(!ishuman(new_holder))
-		return
+	. = ..()
+	if(iscarbon(new_holder))
+		var/mob/living/carbon/carbon_holder = new_holder
+		var/obj/item/organ/eyes/salubri/three_eyes = new()
+		three_eyes.Insert(carbon_holder, TRUE, DELETE_IF_REPLACED)
 
-	var/mob/living/carbon/human/human_holder = new_holder
-	var/datum/splat/vampire/kindred/kindred = iskindred(human_holder)
-	if(kindred)
-		if(istype(kindred.clan, /datum/subsplat/vampire_clan/tremere))
-
-
-/datum/quirk/darkpack/permanent_third_eye/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	var/obj/item/organ/eyes/salubri/three_eyes = new()
-	three_eyes.Insert(gaining_mob, TRUE, DELETE_IF_REPLACED)
-
-/datum/quirk/darkpack/permanent_third_eye/on_lose(mob/living/carbon/human/losing_mob)
+/datum/quirk/darkpack/permanent_third_eye/remove_from_current_holder(quirk_transfer)
+	. = ..()
 	// replace eyes
 	var/eye_type = /obj/item/organ/eyes
-	if(losing_mob.dna.species && losing_mob.dna.species.mutanteyes)
-		eye_type = losing_mob.dna.species.mutanteyes
 	var/obj/item/organ/eyes/new_eyes = new eye_type()
-	new_eyes.Insert(losing_mob, TRUE, DELETE_IF_REPLACED)
+	new_eyes.Insert(quirk_holder, TRUE, DELETE_IF_REPLACED)
 
 
