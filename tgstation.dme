@@ -7542,6 +7542,7 @@
 #include "modular_darkpack\modules\retail\code\stores\pharmacy.dm"
 #include "modular_darkpack\modules\retail\code\stores\skate_shop.dm"
 #include "modular_darkpack\modules\retail\code\stores\smoke_menu.dm"
+#include "modular_darkpack\modules\retail\code\stores\restaurant\bacotell_menu.dm"
 #include "modular_darkpack\modules\retail\code\stores\restaurant\bubway_menu.dm"
 #include "modular_darkpack\modules\retail\code\stores\restaurant\coffee_shop.dm"
 #include "modular_darkpack\modules\retail\code\stores\restaurant\gummaguts_menu.dm"
