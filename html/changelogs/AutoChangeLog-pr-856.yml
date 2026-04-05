@@ -1,0 +1,4 @@
+author: "LucifersCoils"
+delete-after: True
+changes:
+  - balance: "Gangrel claws no longer have armor penetration or block chance"
