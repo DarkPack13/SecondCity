@@ -4,7 +4,7 @@
 	value = -2
 	mob_trait = TRAIT_THIRD_EYE
 	gain_text = span_notice("Saulot curses you for your forefather's crime. Your third eye opens to never close again.")
-	lose_text = span_notice("The Dragon sleeps again. Your third eye seals shut.")
+	lose_text = span_notice("Your third eye shuts once again.")
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_HEALER_SALUBRI, VAMPIRE_CLAN_WARRIOR_SALUBRI)
 	icon = FA_ICON_EYE
