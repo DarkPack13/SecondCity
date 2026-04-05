@@ -11,7 +11,7 @@
 	var/list/alt_titles = null // ALTERNATIVE_JOB_TITLES
 
 	///List of splats that are allowed to do this job.
-	var/list/allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINDRED)
+	var/list/allowed_splats
 	///List of species that are limited to a certain amount of that species doing this job.
 	var/list/splat_slots = list(SPLAT_NONE = -1, SPLAT_GHOUL = -1, SPLAT_KINDRED = -1)
 	///List of Clans that are allowed to do this job.
