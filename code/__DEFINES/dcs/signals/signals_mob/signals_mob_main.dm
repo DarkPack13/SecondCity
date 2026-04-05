@@ -265,6 +265,10 @@
 /// from /mob/proc/slip(): (knockdown_amonut, obj/slipped_on, lube_flags [mobs.dm], paralyze, force_drop)
 #define COMSIG_MOB_SLIPPED "mob_slipped"
 
+/// DARKPACK EDIT - Discipline Checks (Obfuscate)
+/// from stepping on objects that break; applied on the object but tracked on the mob
+#define COMSIG_MOB_LOUD_STEP "mob_loud_step"
+
 /// From the base of /datum/component/callouts/proc/callout_picker(mob/user, atom/clicked_atom): (datum/callout_option/callout, atom/target)
 #define COMSIG_MOB_CREATED_CALLOUT "mob_created_callout"
 

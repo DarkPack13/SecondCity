@@ -125,6 +125,7 @@
 		playsound(src, 'sound/effects/footstep/glass_step.ogg', HAS_TRAIT(moving_mob, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 		if(status == LIGHT_BURNED || status == LIGHT_OK)
 			shatter(moving_mob)
+		SEND_SIGNAL(moving_mob, COMSIG_MOB_LOUD_STEP)	//DARKPACK EDIT - Discipline Checks (Obfuscate)
 
 /obj/item/light/attack(mob/living/M, mob/living/user, def_zone)
 	..()

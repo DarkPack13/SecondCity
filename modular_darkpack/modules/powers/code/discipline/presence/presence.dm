@@ -67,6 +67,14 @@
 			sorted += target
 	return sorted
 
+//used for awe & entrance - v20 book states you can spent a WP point to resist awe, ST may allow a re-roll to resist entrance then burn a WP if success.
+/datum/discipline_power/presence/proc/resist_action(mob/living/carbon/target, resist_timer = 30 SECONDS)
+	var/datum/action/resist_presence/resist_action = new(target)
+	resist_action.Grant(target)
+
+	// Remove the action after 20 seconds
+	addtimer(CALLBACK(resist_action, TYPE_PROC_REF(/datum/action, Remove), target), resist_timer)
+
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
@@ -115,6 +123,8 @@
 	for(var/i = 1; i <= min(targets_to_affect, length(potential_targets)); i++)
 		var/mob/living/carbon/target = potential_targets[i]
 		apply_presence_overlay(target)
+		// Grant the resist action
+		resist_action(target)
 		to_chat(target, span_yellowteamradio("You feel extremely attracted to and persuaded by [owner]'s words, no matter what they're saying!"))
 		target.apply_status_effect(STATUS_EFFECT_AWE)
 		affected_targets += target
@@ -161,6 +171,23 @@
 	. = ..()
 	apply_presence_overlay(target)
 
+	if(successes >= (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))	//We check if you just flat out have more successes than their dice pool total.
+		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? Requires more Charisma + Intimidation than your target's Wits + Courage to stun and apply a debuff to them.", "Disguise Voice", list("Yes", "No"), "No")
+		switch(extended_action_prompt)
+			if("Yes")
+				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				if(do_after(owner, 3 SECONDS))
+					to_chat(owner, span_warning("You force [target] to cower to your mere presence!"))
+					target.Stun(1 TURNS)	//~5 seconds
+					target.emote("tremble")	//Shaking emote for visibility
+					target.emote(pick("scream","cry"))	//Audible emote
+					target.apply_status_effect(/datum/status_effect/dread_gaze)	//Debuffs for set time
+				else	//Failsafe if you somehow got the prompt but not the successes needed
+					do_cooldown(cooldown_length)
+					return FALSE
+				REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				return TRUE
+
 	if(successes <= 3) // already checked for above 0 in pre_activation
 		to_chat(target, span_userdanger("You are consumed with terror toward [owner]!"))
 		to_chat(owner, span_warning("You've struck terror into [target]'s heart with your dreadful gaze!"))
@@ -169,13 +196,19 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
-		//for(var/i in 1 to 30)
-			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
+		var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
+		for(var/i in 1 to 30)
+			addtimer(cb, (i - 1) * target.get_movespeed_modifiers())
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
+
+/mob/living/carbon/human/proc/step_away_caster(mob/living/step_from)
+	walk(src, 0)
+	// Frenzy check should be here - Frenzy not implimented yet.
+	set_glide_size(DELAY_TO_GLIDE_SIZE(1.25))
+	step_away(src, step_from, 99)
 
 // ENTRANCEMENT
 /datum/discipline_power/presence/entrancement
@@ -207,6 +240,9 @@
 		return
 	target.throw_alert("entrancement", /atom/movable/screen/alert/entrancement)
 	log_combat(owner, target, "Used Presence Entrancement")
+
+	// Grant the resist action
+	resist_action(target)
 
 	apply_presence_overlay(target, successes * 1 MINUTES)
 	to_chat(target, span_hypnophrase("You find yourself becoming completely entraced by [owner]. You are now their willing servant."))

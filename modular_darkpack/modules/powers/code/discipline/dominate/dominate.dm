@@ -372,18 +372,15 @@
 /datum/discipline_power/dominate/the_forgetful_mind/proc/get_success_message(successes)
 	switch(successes)
 		if(1)
-			return "a single memory is removed, and no alteration takes its place, leaving a void for the true memory to bubble up with the right circumstances"
+			return "a single memory is permanently removed, and no alteration takes its place, leaving a void for the true memory to bubble up with the right circumstances"
 		if(2)
 			return "multiple memories may be permanently removed, but not altered, leaving a void for the true memories to potentially re-emerge with intense recollection"
 		if(3)
 			return "multiple memories may be permanently altered or removed, but without careful and precise alteration, the true memories may crawl forth much later"
 		if(4)
 			return "deep and intense alterations or removals may take place in the memory, changing entire events or conversations with great strength"
-		if(5)
-			return "entire periods of life and personality may be removed, altered or otherwise as the subconcious completely collapses"
-		if(6 to INFINITY)
-			return "there is no limit to the extent to which the memories may be affected, forever changing the memory beyond recognition. There is no hope."
-
+		if(5 to INFINITY)
+			return "entire periods of life may be completely restructured or otherwise as the subconcious completely collapses"
 
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/carbon/human/target)
 

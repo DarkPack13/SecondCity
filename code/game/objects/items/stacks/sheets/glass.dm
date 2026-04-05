@@ -404,6 +404,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		var/mob/living/L = AM
 		if(!(L.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) || L.buckled)
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
+	SEND_SIGNAL(AM, COMSIG_MOB_LOUD_STEP)	//DARKPACK EDIT - Discipline Checks (Obfuscate)
 
 /obj/item/shard/plasma
 	name = "purple shard"

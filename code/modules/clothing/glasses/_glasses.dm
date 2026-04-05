@@ -330,6 +330,7 @@
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', 30, TRUE)
 			visible_message(span_warning("[crusher] steps on [src], damaging it!"))
 			take_damage(100, sound_effect = FALSE)
+			SEND_SIGNAL(crusher, COMSIG_MOB_LOUD_STEP)	//DARKPACK EDIT - Discipline Checks (Obfuscate)
 
 /obj/item/clothing/glasses/regular/atom_destruction(damage_flag)
 	. = ..()
