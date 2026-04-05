@@ -1,6 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "Default protean fight form swapped from dog to wolf"
-  - bugfix: "Animalism summon is a true wolf instead of renamed dog."
-  - rscadd: "Gangrel protean has dog and corvid"

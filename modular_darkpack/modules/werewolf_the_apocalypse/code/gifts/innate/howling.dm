@@ -2,7 +2,7 @@
 	name = "Howl"
 	desc = "The werewolf may send her howl far beyond the normal range of hearing and communicate a single word or concept to all other Garou across the city."
 	button_icon_state = "call_of_the_wyld"
-	rage_req = 1
+	rage_cost = 1
 	check_flags = null
 	innate_ability = TRUE
 	var/static/list/howls = list(
@@ -48,13 +48,13 @@
 	if(istype(get_area(owner), /area/vtm/interior/penumbra))
 		if(feedback)
 			to_chat(owner, span_warning("Your howl echoes and dissipates into the Umbra, it's sound blanketed by the spiritual energy of the Velvet Shadow."))
-		return
+		return FALSE
 
 /datum/action/cooldown/power/gift/howling/Activate(atom/target)
 	. = ..()
 
 	var/mob/living/living_mob = owner
-	var/datum/splat/werewolf/shifter/shifter = isshifter(owner)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(owner)
 	var/list/menu_options = list()
 	for(var/howl_key in howls)
 		menu_options += howls[howl_key]["menu"]
@@ -76,14 +76,14 @@
 		garou_message = replacetext(garou_message, "tribe", tribe)
 	*/
 	var/origin_turf = get_turf(living_mob)
-	ADD_TRAIT(living_mob, TRAIT_LOUD_WARCRY, type)
+	ADD_TRAIT(living_mob, TRAIT_LOUD_WARCRY, GIFT_TRAIT)
 	living_mob.emote(shifter.warcry_emote)
-	REMOVE_TRAIT(living_mob, TRAIT_LOUD_WARCRY, type)
+	REMOVE_TRAIT(living_mob, TRAIT_LOUD_WARCRY, GIFT_TRAIT)
 
 	var/howl_details
 	var/final_message
 	for(var/mob/living/howled_at in GLOB.player_list - owner)
-		if(isshifter(howled_at))
+		if(get_shifter_splat(howled_at))
 			howl_details = get_message(howled_at, origin_turf)
 			final_message = garou_message + howl_details
 			to_chat(howled_at, span_boldnotice(final_message))

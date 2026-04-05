@@ -193,7 +193,7 @@
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	usr.emote("subtle")
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "subtle"))
 
 /*
 *	VERB CODE 2
@@ -205,7 +205,7 @@
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	usr.emote("subtler")
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "subtler"))
 
 #undef SUBTLE_DEFAULT_DISTANCE
 #undef SUBTLE_ONE_TILE

@@ -5,8 +5,8 @@
 /datum/action/innate/flight
 	name = "Toggle Flight"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE|AB_CHECK_INCAPACITATED
-	button_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "flight"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi' // DARKPACK EDIT CHANGE - Original : button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "fly" // DARKPACK EDIT CHANGE - Original : button_icon_state = "flight"
 
 /datum/action/innate/flight/Activate()
 	var/mob/living/carbon/human/human = owner

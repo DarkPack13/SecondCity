@@ -4,6 +4,7 @@
 	icon_state = "protean"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/protean
+	signature_clan = VAMPIRE_CLAN_GANGREL
 
 /datum/discipline_power/protean
 	name = "Protean power name"
@@ -66,7 +67,6 @@
 
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
-	sleep(1 TURNS)
 	owner.drop_all_held_items()
 	owner.put_in_r_hand(new /obj/item/gangrel_claws(owner))
 	owner.put_in_l_hand(new /obj/item/gangrel_claws(owner))

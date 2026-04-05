@@ -1,7 +1,7 @@
 /datum/action/cooldown/blood_power
 	name = "Blood Power"
 	desc = "Use vitae to gain supernatural abilities."
-	button_icon = 'modular_darkpack/modules/deprecated/icons/ui/actions.dmi'
+	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	button_icon_state = "bloodpower"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
@@ -90,7 +90,7 @@
 	var/turns = tgui_input_number(owner, "Set turns ([1 TURNS / 10] seconds per turn) to use blood for.", "Set Bloodpower Turns", turns_activated, TURNS_PER_SCENE, 1)
 	if(turns)
 		turns_activated = turns
-	var/datum/splat/vampire/kindred/kindred_splat = iskindred(owner)
+	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(owner)
 	if(!kindred_splat)
 		return
 	// Realising this is reimplenting very similar behavior to discs and could possibly just be typed under it.

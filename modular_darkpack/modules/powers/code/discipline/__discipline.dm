@@ -4,7 +4,9 @@
 	var/name = "Discipline name"
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
-	///Icon for this Discipline as in disciplines.dmi
+	///Icon file for this Discipline
+	var/icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
+	///Icon state for this Discipline
 	var/icon_state
 	///If this Discipline is unique to a certain Clan.
 	var/clan_restricted = FALSE
@@ -14,6 +16,8 @@
 	var/action_type = /datum/action/discipline
 	///If this Discipline can be selected at all, or has special handling.
 	var/selectable = TRUE
+	///Override for the number of selectable levels shown in UI. 0 = derive from all_powers length. this exists because of Thaumaturgy.
+	var/max_selectable_level = 0
 
 	/* BACKEND */
 	///What rank, or how many dots the caster has in this Discipline.
@@ -30,6 +34,8 @@
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
 	var/post_gain_applied
+	/// Signature clan that "owns" the discipline. 
+	var/signature_clan
 
 //TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)
@@ -37,6 +43,7 @@
 	if (!level)
 		return
 
+	src.level = level
 	var/amount = level // how many levels are we giving them
 	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
 		amount = length(all_powers) // so only give what exists

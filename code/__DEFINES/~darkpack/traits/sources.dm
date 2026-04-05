@@ -2,7 +2,8 @@
 
 /// Trait given by a vampire's Clan
 #define CLAN_TRAIT "clan"
-#define DISCIPLINE_TRAIT "discipline"
+
+#define GIFT_TRAIT "gift"
 
 #define STAKE_TRAIT "stake"
 #define DAMAGE_TRAIT "damage"

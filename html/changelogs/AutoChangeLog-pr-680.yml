@@ -1,6 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - balance: "punching things is mostly ttrpg accurate"
-  - balance: "punching basic mobs has mostly the same behavior as humans"
-  - code_imp: "adds a dice result output for you and the target."

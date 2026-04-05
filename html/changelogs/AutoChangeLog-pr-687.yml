@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - refactor: "Subtypes vampire clans under the same type as werewolf tribes, auspices, and breeds."

@@ -69,7 +69,7 @@
 
 /// Fetch the mob dmi from our splat
 /datum/species/human/shifter/proc/get_mob_icon(mob/living/carbon/human/human)
-	var/datum/splat/werewolf/shifter/shifter_splat = isshifter(human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
 	var/icon_to_use
 	if(shifter_splat)
 		icon_to_use = shifter_splat.mob_icons[id]
@@ -86,7 +86,7 @@
 	var/mob_icon = get_mob_icon(human)
 
 	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED))
+	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
 		main_iconstate += "spiral"
 	main_iconstate += fur_color
 	if(human.body_position == LYING_DOWN)

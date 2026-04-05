@@ -44,12 +44,13 @@
 
 // are they antitribu?
 /obj/structure/retail/occult/proc/has_purchase_privileges(datum/job/job)
-	return is_type_in_list(job, list(/datum/job/vampire/regent,
-	/datum/job/vampire/archivist,
-	/datum/job/vampire/hound,
-	/datum/job/vampire/sheriff,
-	/datum/job/vampire/clerk,
-	/datum/job/vampire/prince)
+	return is_type_in_list(job, list(
+		/datum/job/vampire/regent,
+		/datum/job/vampire/archivist,
+		/datum/job/vampire/hound,
+		/datum/job/vampire/sheriff,
+		/datum/job/vampire/clerk,
+		/datum/job/vampire/prince)
 	)
 
 // find the regent
@@ -167,7 +168,7 @@
 
 	var/mob/living/carbon/human/human_user = usr
 
-	if(!iskindred(usr))
+	if(!get_kindred_splat(usr))
 		return
 
 	var/datum/data/vending_product/prize = locate(params["ref"]) in products_list

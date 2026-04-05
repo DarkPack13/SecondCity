@@ -177,6 +177,11 @@
 			to_chat(owner, span_warning("[src] is still on cooldown for [DisplayTimeText(get_cooldown())]!"))
 		return FALSE
 
+	if(!check_discipline_flags(alert))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/proc/check_discipline_flags(alert = FALSE)
 	//status checks
 	if ((check_flags & DISC_CHECK_TORPORED) && HAS_TRAIT(owner, TRAIT_TORPOR))
 		if (alert)
@@ -301,7 +306,7 @@
 				to_chat(owner, span_warning("You can only cast [src] on other players!"))
 			return FALSE
 
-		if ((target_type & TARGET_VAMPIRE) && !iskindred(target))
+		if ((target_type & TARGET_VAMPIRE) && !get_kindred_splat(target))
 			if (alert)
 				to_chat(owner, span_warning("You can only cast [src] on Kindred!"))
 			return FALSE
@@ -717,6 +722,9 @@
  * duration_timer expire without calling the relevant proc.
  */
 /datum/discipline_power/proc/clear_duration_timer(to_clear = 1)
+	if(duration_override)
+		return
+
 	if (toggled && (duration_length == 0))
 		return
 

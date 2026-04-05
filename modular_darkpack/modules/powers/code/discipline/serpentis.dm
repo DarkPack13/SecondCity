@@ -4,6 +4,7 @@
 	icon_state = "serpentis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/serpentis
+	signature_clan = VAMPIRE_CLAN_SETITE
 
 /datum/discipline_power/serpentis
 	name = "Serpentis power name"
@@ -117,10 +118,10 @@
 	if(choice == "Obvious")
 		owner.st_add_stat_mod(STAT_INTIMIDATION, 2, "Serpentis") // 'reduce intimidation difficulties by two' placeholder
 		owner.st_add_stat_mod(STAT_STAMINA, 3, "Serpentis") // 'reduces all soak difficulty to 5' placeholder
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 	else
 		owner.st_add_stat_mod(STAT_STAMINA, 2, "Serpentis") // permanently on with no downsides according to dav20. its staying at fort one bro
-	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT) //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
+	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type)) //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
 	owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
 	/*
 	owner.Stun(duration_length)
@@ -132,10 +133,10 @@
 	if(choice == "Obvious")
 		owner.st_remove_stat_mod(STAT_INTIMIDATION, 2, "Serpentis")
 		owner.st_remove_stat_mod(STAT_STAMINA, 3, "Serpentis")
-		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT)
+		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 	else
 		owner.st_remove_stat_mod(STAT_STAMINA, 2, "Serpentis")
-	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type))
 	owner.st_remove_stat_mod(STAT_APPEARANCE, "Serpentis")
 
 
@@ -246,7 +247,7 @@
 			owner.dna.species.inherent_traits |= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits |= TRAIT_NOSOFTCRIT
-			ADD_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
+			ADD_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT(type))
 			urn = new(owner.loc)
 			urn.own = owner
 			//var/obj/item/organ/heart/heart = owner.get_organ_slot(ORGAN_SLOT_HEART) DARKPACK TODO - Vampire Organs need to be made useless
@@ -256,7 +257,7 @@
 			owner.dna.species.inherent_traits -= TRAIT_STUNIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_SLEEPIMMUNE
 			owner.dna.species.inherent_traits -= TRAIT_NOSOFTCRIT
-			REMOVE_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT)
+			REMOVE_TRAIT(owner, TRAIT_STAKE_IMMUNE, DISCIPLINE_TRAIT(type))
 			//for(var/obj/item/organ/heart/heart in urn)
 				//heart.forceMove(owner)
 				//heart.Insert(owner)

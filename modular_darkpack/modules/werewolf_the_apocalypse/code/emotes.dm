@@ -44,7 +44,7 @@
 	if(isdog(user) || istype(user, /mob/living/basic/mining/wolf))
 		return pick(howl_sounds)
 
-	if(isgarou(user))
+	if(get_garou_splat(user))
 		return pick(howl_sounds)
 
 	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))
@@ -56,7 +56,7 @@
 	if(isdog(user) || istype(user, /mob/living/basic/mining/wolf))
 		return 7
 
-	if(isgarou(user))
+	if(get_garou_splat(user))
 		return 15
 
 	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))

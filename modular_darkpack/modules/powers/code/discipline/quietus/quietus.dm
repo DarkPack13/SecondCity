@@ -4,6 +4,7 @@
 	icon_state = "quietus"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/quietus
+	signature_clan = VAMPIRE_CLAN_BANU_HAQIM
 
 /datum/discipline_power/quietus
 	name = "Quietus power name"
@@ -301,7 +302,7 @@
 	firing_effect_type = null
 	item_flags = DROPDEL
 
-/obj/item/gun/magic/quietus/process_fire()
+/obj/item/gun/magic/quietus/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	. = ..()
 	if(charges == 0)
 		qdel(src)

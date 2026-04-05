@@ -4,6 +4,7 @@
 	desc = "The Ventrue are not called the Clan of Kings for nothing. Carefully choosing their progeny from mortals familiar with power, wealth, and influence, the Ventrue style themselves the aristocrats of the vampire world. Their members are expected to assume command wherever possible, and they’re willing to endure storms for the sake of leading from the front."
 	icon = "ventrue"
 	curse = "Low-rank and animal blood is disgusting."
+	sense_the_sin_text = "finds no pleasure in poor's blood."
 	clan_disciplines = list(
 		/datum/discipline/dominate,
 		/datum/discipline/fortitude,
@@ -14,4 +15,5 @@
 	)
 	male_clothes = /obj/item/clothing/under/vampire/ventrue
 	female_clothes = /obj/item/clothing/under/vampire/ventrue/female
-	clan_keys = /obj/item/vamp/keys/ventrue
+	subsplat_keys = /obj/item/vamp/keys/ventrue
+

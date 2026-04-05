@@ -7,7 +7,7 @@
 /datum/discipline_power/animalism
 	name = "Animalism power name"
 	desc = "Animalism power description"
-	effect_sound = 'modular_darkpack/modules/deprecated/sounds/wolves.ogg'
+	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
 
 /datum/discipline_power/animalism/activate()
 	. = ..()

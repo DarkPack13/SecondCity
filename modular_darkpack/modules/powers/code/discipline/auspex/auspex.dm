@@ -50,18 +50,18 @@
 
 	if(SENSE_VISION in output_senses)
 		owner.client?.view_size?.setTo(2) // This increases the view size of the player by 2 tiles in each direction. I dont know why it's called Set if it Adds.
-		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
 			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
 	if(SENSE_HEARING in output_senses)
-		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 		kindred_ears.damage_multiplier = kindred_ears.damage_multiplier + 1
 	if(SENSE_SMELL in output_senses)
-		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
+		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT(type))
 	if(SENSE_TASTE in output_senses)
-		ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT(type))
 	if(SENSE_TOUCH in output_senses)
 		RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
 		owner.AddComponent(/datum/component/heartbeat_sensing, color_path = /datum/client_colour/psyker)
@@ -75,17 +75,17 @@
 	if(mutation)
 		owner.dna?.remove_mutation(mutation, mutation.sources)
 	// Hearing
-	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 	kindred_ears.damage_multiplier = initial(kindred_ears.damage_multiplier)
 	// Vision
 	owner.client?.view_size?.resetToDefault()
-	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
 	// Taste
-	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT(type))
 	// Touch
 	UnregisterSignal(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL))
 	qdel(owner.GetComponent(/datum/component/heartbeat_sensing))
@@ -118,7 +118,8 @@
 
 	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
 	for(var/mob/living/hearer in heard)
-		hearer.apply_status_effect(/datum/status_effect/question_emotion)
+		if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
+			hearer.apply_status_effect(/datum/status_effect/question_emotion)
 
 /datum/discipline_power/auspex/aura_perception/deactivate()
 	. = ..()
@@ -272,7 +273,7 @@
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
 				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
-				if(iskindred(target) || isshifter(target))
+				if(get_kindred_splat(target) || get_shifter_splat(target))
 					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
 			if(TELEPATHY_IMPLANT_THOUGHT)
 				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")

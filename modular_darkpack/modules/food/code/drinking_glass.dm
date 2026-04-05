@@ -5,6 +5,8 @@
 	icon = 'modular_darkpack/modules/food/icons/drinking_glass.dmi'
 	fill_icon_state = "collinsglass"
 	fill_icon = 'modular_darkpack/modules/food/icons/reagentfillings.dmi'
+	fill_icon_thresholds = list(5, 15, 30, 40, 50)
+	custom_reagent_sprites = FALSE
 
 // kinda equivlent to /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass
 /obj/item/reagent_containers/cup/glass/drinkingglass/vodka_shot
@@ -17,6 +19,7 @@
 	amount_per_transfer_from_this = 15
 	volume = 15
 	custom_materials = list(/datum/material/glass=70)
+	custom_reagent_sprites = FALSE
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/martini_glass
 	name = "martini glass"
@@ -28,6 +31,7 @@
 	amount_per_transfer_from_this = 15
 	volume = 15
 	custom_materials = list(/datum/material/glass=70)
+	custom_reagent_sprites = FALSE
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot
 	name = "whiskey shot"
@@ -38,6 +42,7 @@
 	fill_icon_thresholds = list(10, 20, 30)
 	volume = 30
 	custom_materials = list(/datum/material/glass=100)
+	custom_reagent_sprites = FALSE
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass
 	name = "wine glass"
@@ -48,6 +53,7 @@
 	fill_icon_thresholds = list(5, 15, 30, 40, 50)
 	volume = 50
 	custom_materials = list(/datum/material/glass=500)
+	custom_reagent_sprites =  FALSE
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/pint
 	name = "pint glass"
@@ -59,3 +65,4 @@
 
 	volume = 90
 	custom_materials = list(/datum/material/glass=1000)
+	custom_reagent_sprites = FALSE
