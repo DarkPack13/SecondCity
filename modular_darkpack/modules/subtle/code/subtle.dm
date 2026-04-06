@@ -108,7 +108,7 @@
 		to_chat(user, span_warning("You cannot send IC messages (muted)."))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , max_length = 10000, multiline = TRUE)
 		if(!subtler_emote)
 			return FALSE
 
