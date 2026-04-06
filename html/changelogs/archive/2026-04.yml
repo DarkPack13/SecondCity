@@ -1,0 +1,9 @@
+2026-04-06:
+  FalloutFalcon:
+  - image: Stakes now have onfloors
+  - map: mapped glowshrooms no longer spread around
+  LucifersCoils:
+  - bugfix: You can now bloodheal without rolling while incapacitated.
+  - balance: Gangrel claws no longer have armor penetration or block chance
+  lobotomypilled:
+  - qol: Playing mortals shouldnt require constant mechanical upkeep.

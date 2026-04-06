@@ -43,6 +43,7 @@
 	if (!level)
 		return
 
+	src.level = level
 	var/amount = level // how many levels are we giving them
 	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
 		amount = length(all_powers) // so only give what exists
