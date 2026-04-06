@@ -104,7 +104,7 @@
 	)
 	result = /obj/item/food/enchiladas
 	category = CAT_MEXICAN
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/stuffedlegion
 	name = "Stuffed legion"
 	time = 4 SECONDS

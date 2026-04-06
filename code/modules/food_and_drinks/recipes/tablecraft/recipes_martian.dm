@@ -995,7 +995,7 @@
 /datum/crafting_recipe/food/reaction/soup/budae_jjigae
 	reaction = /datum/chemical_reaction/food/soup/budae_jjigae
 	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/volt_fish
 	reaction = /datum/chemical_reaction/food/soup/volt_fish
 	category = CAT_MISCFOOD // DARKPACK EDIT CHANGE

@@ -28,7 +28,7 @@
 
 	return TRUE
 
-// DARKPACK EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
+// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
@@ -44,7 +44,7 @@
 	preferences.alt_job_titles[job_title] = new_job_title
 
 	return TRUE
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()

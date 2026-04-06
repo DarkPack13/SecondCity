@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/food/tiziran_sausage // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/food/tiziran_sausage // DARKPACK EDIT REMOVAL
 	name = "Raw Tiziran blood sausage"
 	reqs = list(
 		/obj/item/food/meat/rawcutlet = 1,

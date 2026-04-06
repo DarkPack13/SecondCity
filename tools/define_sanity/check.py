@@ -36,8 +36,8 @@ excluded_files = [
     "code/_globalvars/*.dm",
     # TGS files come from another repository so lets not worry about them.
     "code/modules/tgs/**/*.dm",
-    "tools/**/*.dm", ## DARKPACK EDIT ADDITION
-    "DMCompiler_linux-x64/**/*.dm" ## DARKPACK EDIT ADDITION
+    "tools/**/*.dm", ## DARKPACK EDIT ADD
+    "DMCompiler_linux-x64/**/*.dm" ## DARKPACK EDIT ADD
 ]
 
 define_regex = re.compile(r"(\s+)?#define\s?([A-Z0-9_]+)\(?(.+)\)?")

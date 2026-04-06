@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/food/herby_cheese // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/food/herby_cheese // DARKPACK EDIT REMOVAL
 	name = "Herby cheese"
 	reqs = list(
 		/obj/item/food/cheese/curd_cheese = 1,

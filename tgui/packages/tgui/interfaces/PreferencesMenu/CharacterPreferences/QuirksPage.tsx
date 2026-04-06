@@ -357,7 +357,7 @@ function QuirkPage() {
       positiveQuirks += 1;
     }
 
-    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - Merits/Flaws
+    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - MERITS/FLAWS
   }
 
   function getReasonToNotAdd(quirkName: string) {
@@ -370,11 +370,11 @@ function QuirkPage() {
         return 'You need a negative quirk to balance this out!';
       }
     }
-    //DARKPACK EDIT ADD - Merits/Flaws
+    // DARKPACK EDIT ADD - MERITS/FLAWS
     if (balance - quirk.value < 0) {
       return 'You need more freebie points to take this quirk!';
     }
-    //DARKPACK EDIT ADD - Merits/Flaws
+    // DARKPACK EDIT ADD - MERITS/FLAWS
 
     const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
       return quirkInfo[quirkKey].name;
@@ -493,14 +493,14 @@ function QuirkPage() {
         <Stack vertical fill align="center">
           <Stack.Item>
             {(
-              // DARKPACK EDIT CHANGE START -- Removed pointsEnabled ? checks
-              <Box fontSize="1.3em">Freebie Points</Box> // DARKPACK EDIT CHANGE -- Changed 'Quirk Balance' to 'Freebie Points'
+              // DARKPACK EDIT CHANGE START - (Removed pointsEnabled ? checks)
+              <Box fontSize="1.3em">Freebie Points</Box> // DARKPACK EDIT CHANGE - (Changed 'Quirk Balance' to 'Freebie Points')
             )}
           </Stack.Item>
           <Stack.Item>
             {(
               <StatDisplay>{balance}</StatDisplay>
-              // DARKPACK EDIT CHANGE END -- Removed pointsEnabled ? checks
+              // DARKPACK EDIT CHANGE END
             )}
           </Stack.Item>
           <Stack.Item>

@@ -169,7 +169,7 @@
 
 	return selected_quirks
 
-//DARKPACK EDIT ADD - MERITS/FLAWS
+// DARKPACK EDIT ADD - MERITS/FLAWS
 
 /datum/preference_middleware/quirks/proc/get_freebie_points()
 	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
@@ -211,4 +211,4 @@
 
 	return clan_blacklist
 
-//DARKPACK EDIT END - MERITS/FLAWS
+// DARKPACK EDIT END - MERITS/FLAWS

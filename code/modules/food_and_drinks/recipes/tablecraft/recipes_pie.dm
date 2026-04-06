@@ -33,7 +33,7 @@
 	)
 	result = /obj/item/food/pie/tofupie
 	category = CAT_PIE
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/xenopie
 	name = "Xeno pie"
 	reqs = list(
@@ -248,7 +248,7 @@
 	)
 	result = /obj/item/food/pie/shepherds_pie
 	category = CAT_PIE
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/asdfpie
 	name = "Pie-flavored pie"
 	reqs = list(

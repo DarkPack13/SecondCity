@@ -98,7 +98,7 @@
 	)
 	result = /obj/item/food/pizzaslice/ants
 	added_foodtypes = BUGS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/pizza/energy
 	reqs = list(
 		/obj/item/food/flatdough = 1,

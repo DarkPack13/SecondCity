@@ -12,7 +12,7 @@
 	)
 	result = /obj/item/food/bread/meat
 	category = CAT_BREAD
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/xenomeatbread
 	name = "Xenomeat bread"
 	reqs = list(
@@ -74,7 +74,7 @@
 	)
 	result = /obj/item/food/bread/creamcheese
 	category = CAT_BREAD
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/mimanabread
 	name = "Mimana bread"
 	reqs = list(
@@ -154,7 +154,7 @@
 	result = /obj/item/food/croissant/throwing
 	category = CAT_BREAD
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/breaddog
 	name = "Living dog/bread hybrid"
 	reqs = list(
@@ -223,7 +223,7 @@
 	removed_foodtypes = VEGETABLES|GRAIN
 	added_foodtypes = GROSS
 	category = CAT_BREAD
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/breadcat
 	name = "Bread cat/bread hybrid"
 	reqs = list(

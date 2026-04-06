@@ -28,7 +28,7 @@
 	)
 	result = /obj/item/food/kebab/tofu
 	category = CAT_MEAT
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/tailkebab
 	name = "Lizard tail kebab"
 	reqs = list(
@@ -51,7 +51,7 @@
 	category = CAT_MEAT
 
 ////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/spidereggsham
 	name = "Spider eggs ham"
 	reqs = list(
@@ -272,7 +272,7 @@
 	result = /obj/item/food/beef_wellington
 	removed_foodtypes = BREAKFAST
 	category = CAT_MEAT
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/korta_wellington
 	name = "Korta Wellington"
 	reqs = list(
@@ -307,7 +307,7 @@
 	result = /obj/item/food/roast_dinner
 	added_foodtypes = GRAIN
 	category = CAT_MEAT
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/full_roast_lizzy
 	name = "Grain-Free Roast Chicken Dinner"
 	reqs = list(

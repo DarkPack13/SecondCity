@@ -11,7 +11,7 @@
 	)
 	result = /obj/item/food/spaghetti/pastatomato
 	category = CAT_SPAGHETTI
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/copypasta
 	name = "Copypasta"
 	reqs = list(

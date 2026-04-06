@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(disease)
 /datum/controller/subsystem/disease/PreInit()
 	if(!diseases)
 		diseases = subtypesof(/datum/disease)
-	diseases = list() // DARKPACK EDIT ADDITION
+	diseases = list() // DARKPACK EDIT ADD
 
 /datum/controller/subsystem/disease/Initialize()
 	var/list/all_common_diseases = diseases - typesof(/datum/disease/advance)
