@@ -1,6 +1,6 @@
 /datum/action/resist_presence
 	name = "Resist Presence"
-	desc = "Burn a point of your temporary willpower to resist the effects of Awe; re-roll and spent temporary willpower to resist the effects of Entrancement."
+	desc = "Burn a point of your temporary willpower to resist the effects of Awe; re-roll and spend temporary willpower to resist the effects of Entrancement."
 	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	button_icon_state = "presence"
 	check_flags = AB_CHECK_CONSCIOUS
