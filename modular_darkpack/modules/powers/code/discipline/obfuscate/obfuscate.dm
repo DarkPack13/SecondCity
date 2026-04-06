@@ -139,7 +139,8 @@
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
-	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED, COMSIG_MOB_LOUD_STEP))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -193,7 +194,8 @@
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
-	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED, COMSIG_MOB_LOUD_STEP))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -370,7 +372,8 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
-	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED, COMSIG_MOB_LOUD_STEP))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -408,7 +411,8 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
-	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED, COMSIG_MOB_LOUD_STEP))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
