@@ -12,6 +12,7 @@
 #define VAMPIRE_CLAN_KIASYD "kiasyd"
 #define VAMPIRE_CLAN_LASOMBRA "lasombra"
 #define VAMPIRE_CLAN_MALKAVIAN "malkavian"
+#define VAMPIRE_CLAN_DOMINATE_MALKAVIAN "dominate_malkavian"
 #define VAMPIRE_CLAN_NAGARAJA "nagaraja"
 #define VAMPIRE_CLAN_NOSFERATU "nosferatu"
 #define VAMPIRE_CLAN_OLD_CLAN_TZIMISCE "old_clan_tzimisce"

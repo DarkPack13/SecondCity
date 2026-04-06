@@ -119,6 +119,7 @@
 /datum/subsplat/vampire_clan/malkavian/dominate_malkavian
 	name = "Dominate Malkavian"
 	desc = "Protected from the 'Great Prank' which caused the clan to re-acquire Dementation as it's signature discipline, Dominate Malkavians are very similar to the mainline Malkavian bloodline, except their curse manifests more often as sociopathy, obsessive-compulsive disorder, and other tendencies toward minor hallucinations."
+	id = VAMPIRE_CLAN_DOMINATE_MALKAVIAN
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dominate,
