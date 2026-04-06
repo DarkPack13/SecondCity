@@ -7,7 +7,7 @@
 #define VAMPIRE_CLAN_CAPPADOCIAN "cappadocian"
 #define VAMPIRE_CLAN_CITY_GANGREL "city_gangrel"
 #define VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY "daughters_of_cacophony"
-#define VAMPIRE_CLAN_DOMINATE_MALKAVIAN "daughters_of_cacophony"
+#define VAMPIRE_CLAN_DOMINATE_MALKAVIAN "dominate_malkavian"
 #define VAMPIRE_CLAN_GANGREL "gangrel"
 #define VAMPIRE_CLAN_GARGOYLE "gargoyle"
 #define VAMPIRE_CLAN_GIOVANNI "giovanni"

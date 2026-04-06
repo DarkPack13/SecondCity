@@ -4,10 +4,7 @@
 	icon_state = "protean"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/protean
-	signature_clan = list(
-		VAMPIRE_CLAN_GANGREL,
-		VAMPIRE_CLAN_TLACIQUE
-	)
+	signature_clan = VAMPIRE_CLAN_GANGREL
 
 /datum/discipline_power/protean
 	name = "Protean power name"
