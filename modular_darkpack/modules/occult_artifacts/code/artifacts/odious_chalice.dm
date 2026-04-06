@@ -36,7 +36,7 @@
 	. = ..()
 	if(!get_vampire_splat(M))
 		return
-	if(!stored_blood)
+	if(stored_blood <= 0)
 		return
 	if(!identified)
 		return
