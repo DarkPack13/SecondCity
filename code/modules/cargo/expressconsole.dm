@@ -72,6 +72,19 @@
 		to_chat(user, span_alert("[src] is already linked to [beacon]."))
 		return ITEM_INTERACT_FAILURE
 
+	// DARKPACK EDIT ADD START - Putting cash into the cargo console
+	if(istype(tool, /obj/item/stack/dollar))
+		var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
+		if(isnull(account))
+			return ITEM_INTERACT_FAILURE
+		var/obj/item/stack/dollar/cash = tool
+		var/amount = cash.amount
+		account.adjust_money(amount)
+		to_chat(user, span_notice("You deposit [amount] dollar\s into the cargo account."))
+		qdel(cash)
+		return ITEM_INTERACT_SUCCESS
+	// DARKPACK EDIT ADD END - Putting cash into the cargo console
+
 	return NONE
 
 /obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
