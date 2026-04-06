@@ -1,4 +1,4 @@
-/datum/quirk/item_quirk/nearsighted/darkpack_bad_sight
+/datum/quirk/item_quirk/nearsighted
 	name = "Bad Sight"
 	desc = "Your sight is defective, but can be corrected with glasses or contacts."
 	value = -1
