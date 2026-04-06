@@ -32,7 +32,3 @@
 		/datum/discipline/quietus
 	)
 	clan_traits =  list()
-
-/datum/subsplat/vampire_clan/banu_haqim/psychomania_effect(mob/living/target, mob/living/owner)
-	to_chat(target, span_cult("An overwhelming presence manifests around me.."))
-	new /obj/effect/client_image_holder/baali_demon/banu(get_turf(target), list(target))

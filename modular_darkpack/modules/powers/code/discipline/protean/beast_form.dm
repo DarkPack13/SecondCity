@@ -41,7 +41,7 @@
 	. = ..()
 	if(ishuman(grant_to))
 		var/mob/living/carbon/human/grant_to_human = grant_to
-		if(grant_to_human.is_clan(/datum/subsplat/vampire_clan/gangrel)||grant_to_human.is_clan(/datum/subsplat/vampire_clan/setite/tlacique))
+		if(grant_to_human.is_clan(/datum/subsplat/vampire_clan/gangrel))
 			possible_shapes += list(
 				/mob/living/basic/bear/vampire/protean,
 				/mob/living/basic/pet/dog/darkpack/protean,
