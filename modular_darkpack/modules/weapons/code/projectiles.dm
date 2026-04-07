@@ -94,18 +94,10 @@
 	name = "5.56mm silver bullet"
 	armour_penetration = 20
 
-/*
 /obj/projectile/bullet/darkpack/vamp556mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iswerewolf(target) || get_garou_splat(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
+	fera_silver_damage(target, 4)
 
-		M.apply_damage(20, AGGRAVATED)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
 // 5.45x39mm
 /obj/projectile/bullet/darkpack/vamp545mm
 	name = "5.45mm bullet"
@@ -195,18 +187,10 @@
 
 /obj/projectile/bullet/darkpack/vamp762x51mm/silver
 	name = "7.62x51mm silver bullet"
-/*
+
 /obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iswerewolf(target) || get_garou_splat(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
-
-		M.apply_damage(20, CLONE)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
+	fera_silver_damage(target, 4)
 
 /obj/projectile/bullet/darkpack/vamp75
 	name = ".75 ball"

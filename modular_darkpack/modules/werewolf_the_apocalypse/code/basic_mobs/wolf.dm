@@ -91,7 +91,7 @@
 
 /mob/living/basic/pet/dog/wolf/examine(mob/user)
 	. = ..()
-	var/datum/splat/werewolf/wolp_splat = iswerewolfsplat(user)
+	var/datum/splat/werewolf/wolp_splat = get_werewolf_splat(user)
 	if(istype(wolp_splat?.auspice, /datum/subsplat/werewolf/auspice/garou/philodox))
 		if(wolf_type == TYPE_KINFOLK)
 			. += span_purple("On closer inspection, they appear to be kin.")
