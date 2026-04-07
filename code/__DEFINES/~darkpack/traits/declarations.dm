@@ -146,8 +146,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
 // Traits granted via gifts
-// Massivly boosts the range of your howl emote.
-#define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
 
 /// Sixth sense restricted to view range
