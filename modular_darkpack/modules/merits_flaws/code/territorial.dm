@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(territorial_choice, list(
 	customization_options = list(/datum/preference/choiced/territorial)
 
 /datum/quirk/darkpack/territorial/add(client/client_source)
-	var/list/territory_choices = list(
+	var/static/list/territory_choices = list(
 		/area/vtm/outside/financialdistrict::name = /area/vtm/outside/financialdistrict,
 		/area/vtm/outside/ghetto::name = /area/vtm/outside/ghetto,
 		/area/vtm/outside/pacificheights::name = /area/vtm/outside/pacificheights,
