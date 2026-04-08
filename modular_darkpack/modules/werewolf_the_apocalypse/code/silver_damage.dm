@@ -22,7 +22,7 @@
 	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
 	if(shot_pup_splat)
 		var/mob/living/carbon/human/shot_pup = target
-		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLLET_STACKS)
+		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
 
 		if(!shot_pup_splat.is_breed_form())
 			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
