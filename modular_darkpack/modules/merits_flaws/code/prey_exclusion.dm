@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	if (!.)
 		return FALSE
 
-	return "Prey Exclusion" in preferences.all_quirks
+	return /datum/quirk/darkpack/territorial::name in preferences.all_quirks
 
 /datum/preference/choiced/prey_exclusion/apply_to_human(mob/living/carbon/human/target, value)
 	return
