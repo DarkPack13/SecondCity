@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - balance: "artifact spawn rate is now handled by a config entry"

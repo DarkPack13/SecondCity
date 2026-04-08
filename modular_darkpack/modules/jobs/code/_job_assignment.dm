@@ -25,11 +25,11 @@
 	else
 		player_splat_id = splat_pref
 
-	if(!(player_splat_id in possible_job.allowed_splats))
+	if(possible_job.allowed_splats && !(player_splat_id in possible_job.allowed_splats))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPLAT
 
-	if(possible_job.splat_slots[player_splat_id] == 0)
+	if(possible_job.splat_slots && (possible_job.splat_slots[player_splat_id] == 0))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPLAT_SLOTS
 

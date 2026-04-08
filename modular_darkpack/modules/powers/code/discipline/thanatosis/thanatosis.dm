@@ -183,6 +183,7 @@
 	target_type = TARGET_LIVING
 	range = 1
 	willpower_cost = 1
+	vitae_cost = 0
 
 	effect_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy4.ogg'
 

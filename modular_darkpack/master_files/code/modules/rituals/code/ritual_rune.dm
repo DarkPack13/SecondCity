@@ -14,12 +14,17 @@
 	var/level = 1
 	var/list/sacrifices = list()
 	var/activation_color
-	var/cost = 2
+	var/cost = 1 // this needs to be set in subtypes
 	var/ritual_name
 
 	/// What discipline is required (if any) to use this rune.
 	var/required_discipline
 
+	var/datum/storyteller_roll/ritual_roll/ritual_roll_datum
+
+/datum/storyteller_roll/ritual_roll
+	bumper_text = "ritual"
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
 
 /obj/ritual_rune/Initialize(mapload)
 	. = ..()
@@ -49,6 +54,13 @@
 	if(length(sacrifices))
 		if(!check_and_consume_sacrifices(user))
 			return
+
+	if(!ritual_roll_datum)
+		ritual_roll_datum = new()
+		ritual_roll_datum.difficulty = 3 + level
+
+	if(ritual_roll_datum.st_roll(last_activator, last_activator) != ROLL_SUCCESS)
+		return FALSE
 
 	complete()
 	return TRUE

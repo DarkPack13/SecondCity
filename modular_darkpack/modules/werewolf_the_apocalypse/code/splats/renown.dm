@@ -59,6 +59,8 @@
 
 
 /datum/splat/werewolf/proc/auspice_rank_check()
+	if(!auspice)
+		return RANK_CUB
 	return auspice.rank_requirments(renown)
 
 // Pretty iffy on this. This could likely just be moved onto the splat itself so corax and other breeds can override it.
