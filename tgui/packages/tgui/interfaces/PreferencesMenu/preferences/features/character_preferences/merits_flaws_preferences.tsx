@@ -7,3 +7,9 @@ export const territorial: FeatureChoiced = {
   description: 'The Hunting Territory of this character.',
   component: FeatureDropdownInput,
 };
+
+export const prey_exclusion: FeatureChoiced = {
+  name: 'Prey Exclusion',
+  description: 'The Prey Exclusion of this character.',
+  component: FeatureDropdownInput
+}
