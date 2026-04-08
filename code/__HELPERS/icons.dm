@@ -566,8 +566,8 @@ world
 
 		if(no_anim)
 			//Clean up repeated frames
-			// Done this way otherwise Width() and Height() would always be 0 for this icon
-			var/icon/cleaned = icon('icons/effects/effects.dmi', "nothing")
+			// Done this way otherwise Width() and Height() would always be 0 for this icon // DARKPACK EDIT ADD START - Company Logos
+			var/icon/cleaned = icon('icons/effects/effects.dmi', "nothing") // DARKPACK EDIT ADD END
 			cleaned.Insert(flat, "", SOUTH, 1, 0)
 			return cleaned
 		else
