@@ -86,6 +86,7 @@
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, output)
 	return output
 
 

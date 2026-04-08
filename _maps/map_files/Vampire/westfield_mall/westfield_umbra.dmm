@@ -1031,7 +1031,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "pA" = (
-/obj/structure/chair/greyscale,
+/obj/structure/chair/darkpack,
 /turf/open/floor/plating/rough,
 /area/vtm/outside/penumbra)
 "pC" = (
@@ -2222,7 +2222,7 @@
 /area/vtm/outside/penumbra)
 "Fj" = (
 /obj/effect/decal/cleanable/trash,
-/obj/structure/chair/greyscale,
+/obj/structure/chair/darkpack,
 /turf/open/floor/plating/rough,
 /area/vtm/outside/penumbra)
 "Fo" = (
@@ -2235,7 +2235,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/outside/penumbra)
 "Fw" = (
-/obj/structure/chair/greyscale{
+/obj/structure/chair/darkpack{
 	dir = 1
 	},
 /obj/structure/cable/layer1,
@@ -2264,7 +2264,7 @@
 /obj/effect/decal/carpet{
 	pixel_x = -14
 	},
-/obj/structure/chair/greyscale{
+/obj/structure/chair/darkpack{
 	dir = 1
 	},
 /turf/open/floor/plating/concrete,
@@ -2576,7 +2576,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Kb" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
 /turf/open/misc/beach/vamp,
@@ -2902,7 +2902,7 @@
 /area/vtm/outside/penumbra)
 "PE" = (
 /obj/effect/decal/cleanable/cardboard,
-/obj/structure/chair/greyscale{
+/obj/structure/chair/darkpack{
 	dir = 4
 	},
 /obj/structure/cable/layer1,
@@ -3051,7 +3051,7 @@
 /area/vtm/outside/penumbra)
 "Sm" = (
 /obj/effect/decal/cleanable/litter,
-/obj/structure/chair/greyscale{
+/obj/structure/chair/darkpack{
 	dir = 1
 	},
 /turf/open/floor/plating/rough,

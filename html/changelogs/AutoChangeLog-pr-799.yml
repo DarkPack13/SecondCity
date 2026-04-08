@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "You can change your fera renown (and therfore rank) in prefrences"
-  - qol: "Some of the prefs are better sorted"
