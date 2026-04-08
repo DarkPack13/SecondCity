@@ -9,8 +9,6 @@
 	force = 1 TTRPG_DAMAGE
 	damtype = AGGRAVATED // Based on V20
 	sharpness = SHARP_POINTY
-	armour_penetration = 40
-	block_chance = 20
 	item_flags = DROPDEL
 	masquerade_violating = TRUE
 	obj_flags = NONE

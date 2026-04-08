@@ -1,14 +1,6 @@
 GLOBAL_LIST_INIT(zulo_forms, list(
-	"Fiend" = "fiend",
-	"Leviathan" = "leviathan",
-	"Shrikebush" = "shrikebush",
-	"Impaler Steed" = "impalersteed",
-	"Black Fiend" = "black_fiend",
-	"Doctor" = "doctor",
-	"Dog" = "dog",
-	"Emily" = "emily",
-	"Dragon" = "dragon",
-	"Tendril Dragon" = "tendrildragon",
+	"Beast" = "weretzi",
+	"Brust" = "4armstzi",
 ))
 
 /datum/action/cooldown/spell/shapeshift/zulo
