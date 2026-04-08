@@ -10,25 +10,44 @@
 	failure_message = "Who cares where anyone feeds, anyways?"
 	var/area/vtm/territory
 
-/datum/quirk/darkpack/territorial/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
+/datum/quirk_constant_data/territorial
+	associated_typepath = /datum/quirk/darkpack/territorial
+	customization_options = list(/datum/preference/choiced/territorial)
+
+/datum/quirk/darkpack/territorial/add(client/client_source)
 	var/list/territory_choices = list(
-		"Financial District" = /area/vtm/outside/financialdistrict,
-		"Ghetto" = /area/vtm/outside/ghetto,
-		"Pacific Heights" = /area/vtm/outside/pacificheights,
-		"Chinatown" = /area/vtm/outside/chinatown,
-		"Fisherman's Wharf" = /area/vtm/outside/fishermanswharf,
-		"North Beach" = /area/vtm/outside/northbeach,
-		"Union Square" = /area/vtm/outside/unionsquare,
-		"Park" = /area/vtm/outside/park,
-		"Forest" = /area/vtm/outside/forest,
+		/area/vtm/outside/financialdistrict::name = /area/vtm/outside/financialdistrict,
+		/area/vtm/outside/ghetto::name = /area/vtm/outside/ghetto,
+		/area/vtm/outside/pacificheights::name = /area/vtm/outside/pacificheights,
+		/area/vtm/outside/chinatown::name = /area/vtm/outside/chinatown,
+		/area/vtm/outside/fishermanswharf::name = /area/vtm/outside/fishermanswharf,
+		/area/vtm/outside/northbeach::name = /area/vtm/outside/northbeach,
+		/area/vtm/outside/baywalk::name = /area/vtm/outside/baywalk,
+		/area/vtm/outside/unionsquare::name = /area/vtm/outside/unionsquare,
+		/area/vtm/outside/park::name = /area/vtm/outside/park,
+		/area/vtm/outside/forest::name = /area/vtm/outside/forest,
+		/area/vtm/outside/supply::name = /area/vtm/outside/supply,
+		/area/vtm/interior/anarch::name = /area/vtm/interior/anarch,
+		/area/vtm/interior/sewer::name = /area/vtm/interior/sewer,
+		/area/vtm/interior/sewer/nosferatu_town::name = /area/vtm/interior/sewer/nosferatu_town,
+		/area/vtm/interior/library::name = /area/vtm/interior/library,
+		/area/vtm/interior/chantry::name = /area/vtm/interior/chantry/basement,
+		/area/vtm/interior/caves::name = /area/vtm/interior/caves,
+		/area/vtm/interior/giovanni::name = /area/vtm/interior/giovanni,
+		/area/vtm/interior/giovanni::name = /area/vtm/interior/giovanni,
+		/area/vtm/interior/millennium_tower::name = /area/vtm/interior/millennium_tower,
+		/area/vtm/interior/strip::name = /area/vtm/interior/strip,
+		/area/vtm/interior/jazzclub::name = /area/vtm/interior/jazzclub,
+		/area/vtm/interior/clinic::name = /area/vtm/interior/clinic,
+		/area/vtm/interior/apartment::name = /area/vtm/interior/apartment,
+		/area/vtm/interior/bianchiBank::name = /area/vtm/interior/bianchiBank,
+		/area/vtm/interior/museum::name = /area/vtm/interior/museum,
+		/area/vtm/interior/apartment::name = /area/vtm/interior/apartment,
+		/area/vtm/interior/bianchiBank::name = /area/vtm/interior/bianchiBank,
+		"Sabbat Lair" = /area/vtm/interior/sabbat_lair, // it's called 'interior' on name, people would use bloodhunt skull and see 'sabbat lair' and run straight there.
+		/area/vtm/interior/littleitaly::name = /area/vtm/interior/littleitaly,
+		/area/vtm/interior/police::name = /area/vtm/interior/police,
 	)
 
-	var/choice = tgui_input_list(
-		new_holder,
-		"Select your territory. This is the only place you may feed.",
-		"Territorial Boundry",
-		territory_choices
-	)
-
-	territory = territory_choices[choice]
+	var/chosen_name = client_source?.prefs.read_preference(/datum/preference/choiced/territorial) || /area/vtm/outside/financialdistrict::name
+	territory = territory_choices[chosen_name]

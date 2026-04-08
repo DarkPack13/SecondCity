@@ -56,7 +56,7 @@
 				var/datum/quirk/darkpack/territorial/terr = src.get_quirk(/datum/quirk/darkpack/territorial)
 				if(terr && terr.territory)
 					var/area/current_area = get_area(bit_living)
-					if(current_area.type != terr.territory)
+					if(!istype(current_area, terr.territory))
 						to_chat(src, span_warning("This isn't your territory. You don't want to feed here."))
 						SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 						return
