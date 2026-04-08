@@ -4,6 +4,8 @@
 /mob/living/carbon/proc/enter_frenzy_mode(atom/target, fleeing = FALSE)
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
 	ADD_TRAIT(src, TRAIT_IN_FRENZY, FRENZY_TRAIT)
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy")
 	log_message("entered frenzy.", LOG_GAME)
@@ -45,6 +47,9 @@
 /datum/storyteller_roll/frenzy/kindred
 
 /mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6)
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+
 	var/datum/storyteller_roll/frenzy/rotschreck/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
@@ -55,6 +60,9 @@
 		enter_frenzy_mode(fire, TRUE)
 
 /mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, flavor_text = "Something")
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+
 	var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
 	var/datum/storyteller_roll/frenzy/kindred/frenzy_roll = new()
 	frenzy_roll.applicable_stats = list(stat_to_roll)
