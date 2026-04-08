@@ -188,7 +188,7 @@
 /obj/projectile/bullet/darkpack/vamp762x51mm/silver
 	name = "7.62x51mm silver bullet"
 
-/obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	fera_silver_damage(target, 4)
 
