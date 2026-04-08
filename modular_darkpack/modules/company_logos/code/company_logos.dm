@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
 
-	var/atom/product = target
+	var/obj/product = target
 
 	if(!product.brand)
 		return ELEMENT_INCOMPATIBLE
