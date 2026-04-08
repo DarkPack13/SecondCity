@@ -7659,6 +7659,7 @@
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\ghoul_splat\ghoul_splat.dm"
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\ghoul_splat\make_ghoul.dm"
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\ghoul_splat\pref_lore.dm"
+#include "modular_darkpack\modules\vampire_the_masquerade\code\splats\kindred_splat\frenzy_helpers.dm"
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\kindred_splat\generation.dm"
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\kindred_splat\kindred_splat.dm"
 #include "modular_darkpack\modules\vampire_the_masquerade\code\splats\kindred_splat\make_kindred.dm"
