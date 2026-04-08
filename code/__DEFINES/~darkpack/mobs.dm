@@ -30,3 +30,7 @@
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))
 
 #define INCORPOREAL_MOVE_AVATAR 4 // Avatar incorporeal movement
+
+//Bodytype defines for surgery, and other misc things.
+// Species / Non-Human Bodyparts
+#define BODYPART_ID_PROS "prosthetic"

@@ -152,6 +152,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce
 #define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
+
+// Traits granted to the bodypart itself
+// Prosthetic trait given to prosthetic limbs; disallows item attacks w/ limb.
+#define TRAIT_PROSTHETIC_LIMB "prosthetic_limb"
+
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_PERMAFANGS "permafangs"

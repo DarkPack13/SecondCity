@@ -27,6 +27,13 @@
 	if(source_atom != src) //if we are someone else then call that attack chain else we can proceed with the usual stuff
 		return source_atom.melee_attack_chain(user, target, modifiers, attack_modifiers)
 
+	//DARKPACK EDIT START - PROSTHETICS
+	var/mob/living/carbon/human/L = user
+	if(L.check_prosthetics(TRUE)) //Checks your holding hand. If it's not true, aka prosthetic limb, no hitting.
+		to_chat(user, span_warning("I can't attack with my prosthetic limb!"))
+		return
+	//DARKPACK EDIT END - PROSTHETICS
+
 	var/is_right_clicking = LAZYACCESS(modifiers, RIGHT_CLICK)
 
 	var/item_interact_result = target.base_item_interaction(user, src, modifiers)
