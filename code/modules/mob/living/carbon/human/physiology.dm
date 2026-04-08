@@ -41,7 +41,7 @@
 
 	var/datum/armor/armor // internal armor datum
 
-	var/hunger_mod = 1 //% of hunger rate taken per tick.
+	var/hunger_mod = 0.2 //% of hunger rate taken per tick. //DARKPACK EDIT CHANGE - Original : var/hunger_mod = 1
 
 /datum/physiology/New()
 	armor = new
