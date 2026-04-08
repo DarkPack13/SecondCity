@@ -7,3 +7,5 @@
 //from base of living/CanAllowThrough(): (atom/movable/mover, border_dir)
 #define COMSIG_LIVING_CAN_ALLOW_THROUGH "living_can_allow_through"
 	#define COMPONENT_LIVING_PASSABLE (1<<0)
+//from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, output)
+#define COMSIG_LIVING_DICE_ROLLED "living_dice_rolled"
