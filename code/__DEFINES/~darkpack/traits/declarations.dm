@@ -163,6 +163,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PREY_EXCLUSION "prey_exclusion"
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"
+#define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
+#define TRAIT_GRIP_OF_THE_DAMNED "grip_of_the_damned"
+#define TRAIT_THE_LARGEST_MAW "the_largest_maw"
 
 #define TRAIT_PIERCED_VEIL "pierced_veil"
 #define TRAIT_WEAK_WILLED "weak_willed"
