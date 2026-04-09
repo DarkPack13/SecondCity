@@ -31,8 +31,6 @@
 		/obj/item/melee/baseball_bat/vamp,
 		/obj/item/shovel/vamp,
 		/obj/item/instrument/eguitar/vamp,
-		//Darkpack Battering Ram - Weird exemption, but they aren't that big, just heavy
-		/obj/item/battering_ram,
 		// Darkpack Armor - National guard and EOD armor; they're big
 		/obj/item/clothing/suit/vampire/vest/army,
 		/obj/item/clothing/suit/vampire/eod,
