@@ -26,7 +26,7 @@
 /mob/living/proc/get_frenzy_victims(range = DEFAULT_SIGHT_DISTANCE)
 	var/list/victims = list()
 
-	for(var/mob/living/carbon/human/victim in view(range, src))
+	for(var/mob/living/carbon/human/victim in oview(range, src))
 		if(victim.stat == DEAD)
 			continue
 		victims += victim
