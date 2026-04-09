@@ -11,7 +11,7 @@
 			if(result != ROLL_SUCCESS)
 				to_chat(src, span_warning("No... this isn't real. I can't be doing this...!"))
 				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
-				src.Unconscious(5 SECONDS)
+				Unconscious(5 SECONDS)
 				SEND_SIGNAL(src, COMSIG_PATH_HIT, -1, 0, FALSE)
 				remove_drinking_overlay(drunk_from)
 				return
