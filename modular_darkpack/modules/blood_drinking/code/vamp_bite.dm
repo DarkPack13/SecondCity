@@ -40,7 +40,7 @@
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
 				if(get_kindred_splat(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					trigger_kindred_frenzy(bit_living, 6, "The taste of blood while hungry")
+					trigger_kindred_frenzy(bit_living, 6, 0, "The taste of blood while hungry")
 
 				if(!HAS_TRAIT(src, TRAIT_BLOODY_LOVER))
 					playsound(src, 'modular_darkpack/modules/blood_drinking/sounds/drinkblood1.ogg', 50, TRUE)

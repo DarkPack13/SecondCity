@@ -35,32 +35,42 @@
 	bumper_text = "frenzy"
 	numerical = TRUE
 
-/datum/storyteller_roll/frenzy/calculate_used_difficulty(mob/living/roller)
-	. = ..()
-	// V20 p.51
-	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
-		. += 2
-
 /datum/storyteller_roll/frenzy/rotschreck
 	applicable_stats = list(STAT_COURAGE)
 
 /datum/storyteller_roll/frenzy/kindred
 
-/mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6)
+// Specificly kindred as I dont really think brujah are meant to rotschreck easier.
+/datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	// V20 p.51
+	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
+		. += 2
+
+
+/mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+	if(!get_kindred_splat(src))
 		return
 
 	var/datum/storyteller_roll/frenzy/rotschreck/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
-	if(frenzy_result >= 5) // five is to COMPLTELY ignore it. anything lower.... delays it?
-		return
-	// Mabye change some logic to signals as well.
-	if(get_kindred_splat(src))
+	if(frenzy_result <= 0)
 		enter_frenzy_mode(fire, TRUE)
+		return
+	successes += frenzy_result
+	if(successes >= 5)
+		return
 
-/mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, flavor_text = "Something")
+	addtimer(CALLBACK(src, PROC_REF(trigger_rotschreck), fire, difficulty, successes), 1 TURNS)
+
+
+/mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, successes = 0, flavor_text = "Something")
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+	if(!get_kindred_splat(src))
 		return
 
 	var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
@@ -68,11 +78,15 @@
 	frenzy_roll.applicable_stats = list(stat_to_roll)
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, target)
-	if(frenzy_result >= 5)
-		to_chat(src, span_green("[flavor_text] almost drives you into frenzy!"))
+	if(frenzy_result <= 0)
+		to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
+		enter_frenzy_mode(target)
+	successes += frenzy_result
+	if(successes >= 5)
+		to_chat(src, span_green("[flavor_text] almost drives you into frenzy but you steel your nerves and it subsides!"))
 		return
-	to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
-	enter_frenzy_mode(target)
+
+	addtimer(CALLBACK(src, PROC_REF(trigger_kindred_frenzy), target, difficulty, successes, flavor_text), 1 TURNS)
 
 // Unimplemented
 

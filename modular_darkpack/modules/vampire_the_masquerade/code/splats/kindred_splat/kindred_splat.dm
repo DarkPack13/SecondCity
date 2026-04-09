@@ -143,7 +143,7 @@
 		else if(HAS_TRAIT(owner, TRAIT_NEEDS_BLOOD))
 			var/atom/nearby_blood = get_closest_atom(/atom, get_blood_frenzy_targets(), owner)
 			if(nearby_blood)
-				owner.trigger_kindred_frenzy(nearby_blood, 4, "The hunger")
+				owner.trigger_kindred_frenzy(nearby_blood, 4, 0, "The hunger")
 				COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
