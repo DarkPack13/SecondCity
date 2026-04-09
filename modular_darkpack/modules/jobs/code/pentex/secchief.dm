@@ -18,7 +18,6 @@
 
 	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED)
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
-	allowed_clans = VAMPIRE_CLAN_ALL
 	minimal_masquerade = 4
 
 	display_order = JOB_DISPLAY_ORDER_SECCHIEF
