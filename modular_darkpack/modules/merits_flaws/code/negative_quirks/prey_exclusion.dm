@@ -5,9 +5,7 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	"High income",
 	//"Strippers",
 	"Homeless"
-
 ))
-
 
 /datum/quirk/darkpack/prey_exclusion
 	name = "Prey Exclusion"
