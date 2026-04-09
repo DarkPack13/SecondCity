@@ -1,10 +1,11 @@
+// alot of these npcs, like 'bacotell' 'bubway' and 'endronsecurity_2' should probably not be available to be taken since they're so specialized.
 GLOBAL_LIST_INIT(prey_exclusion_choice, list(
-	"Middle-income",
-	"Police Officers",
-	"Criminals",
-	"High income",
-	//"Strippers",
-	"Homeless"
+	"Middle-income" = /mob/living/carbon/human/npc/incel,
+	"Police Officers" = /mob/living/carbon/human/npc/police,
+	"Criminals" = /mob/living/carbon/human/npc/bandit,
+	"High income" = /mob/living/carbon/human/npc/business,
+	//"Strippers" = /mob/living/carbon/human/npc/stripper, i feel like strippers would be the most powergamed option, keeping it here but commented.
+	"Homeless" = /mob/living/carbon/human/npc/hobo,
 ))
 
 /datum/quirk/darkpack/prey_exclusion
@@ -21,23 +22,12 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	/// which type of prey the user selected
 	var/prey_exclusion
 
+/datum/quirk/darkpack/prey_exclusion/add(client/client_source)
+	prey_exclusion = GLOB.prey_exclusion_choice[client_source?.prefs.read_preference(/datum/preference/choiced/prey_exclusion)] || /mob/living/carbon/human/npc/hobo
+
 /datum/quirk_constant_data/prey_exclusion
 	associated_typepath = /datum/quirk/darkpack/prey_exclusion
 	customization_options = list(/datum/preference/choiced/prey_exclusion)
-
-/datum/quirk/darkpack/prey_exclusion/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	// alot of these npcs, like 'bacotell' 'bubway' and 'endronsecurity_2' should probably not be available to be taken since they're so specialized.
-	var/list/list_of_available_npcs = list(
-		"Middle-income" = /mob/living/carbon/human/npc/incel, // the social role assigned is 'usual male'...
-		"Police Officers" = /mob/living/carbon/human/npc/police,
-		"Criminals" = /mob/living/carbon/human/npc/bandit,
-		"High income" = /mob/living/carbon/human/npc/business,
-		//"Strippers" = /mob/living/carbon/human/npc/stripper, i feel like this would be the most powergamed option. keeping it here but commented.
-		"Homeless" = /mob/living/carbon/human/npc/hobo)
-	var/prey_exclusion_choice = tgui_input_list(new_holder, "Which type of prey are you disgusted by?", "Prey Exclusion", list_of_available_npcs)
-	prey_exclusion = list_of_available_npcs[prey_exclusion_choice]
-
 
 /datum/preference/choiced/prey_exclusion
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -55,7 +45,10 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	if (!.)
 		return FALSE
 
-	return /datum/quirk/darkpack/territorial::name in preferences.all_quirks
+	return /datum/quirk/darkpack/prey_exclusion::name in preferences.all_quirks
 
 /datum/preference/choiced/prey_exclusion/apply_to_human(mob/living/carbon/human/target, value)
-	return
+	var/datum/quirk/darkpack/prey_exclusion/quirk = target.get_quirk(/datum/quirk/darkpack/prey_exclusion)
+	if(!quirk)
+		return
+	quirk.prey_exclusion = GLOB.prey_exclusion_choice[value] || /mob/living/carbon/human/npc/hobo
