@@ -2,9 +2,11 @@ GLOBAL_LIST_INIT(territorial_type_choices, init_territorial_type_choices())
 
 /proc/init_territorial_type_choices()
 	var/list/choices = list()
-	for(var/area/vtm/area_type as anything in typesof(/area/vtm))
-		if((area_type.domain) && !type2parent(area_type).domain)
-			choices[area_type.name] = area_type
+	for(var/area/vtm/area_type as anything in subtypesof(/area/vtm))
+		var/area/vtm/typed = area_type
+		var/area/vtm/parent = type2parent(area_type)
+		if(initial(typed.domain) && !initial(parent.domain))
+			choices[initial(typed.name)] = area_type
 	return choices
 
 /datum/preference/choiced/territorial
