@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(territorial_choice, list(
 	if (!.)
 		return FALSE
 
-	return "Territorial" in preferences.all_quirks
+	return /datum/quirk/darkpack/territorial::name in preferences.all_quirks
 
 /datum/preference/choiced/territorial/apply_to_human(mob/living/carbon/human/target, value)
 	return
