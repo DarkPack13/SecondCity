@@ -4,11 +4,12 @@
 #define DIRTY_COMBO "GD"
 
 /datum/martial_art/darkpack_boxing
-	name = "Kung Fu"
+	name = "Street Boxing"
 	id = MARTIALART_DARKPACK_BOXING
 	help_verb = /mob/living/proc/streetboxing_help
 	display_combos = TRUE
-	grab_state_modifier = 1
+	var/datum/storyteller_roll/brawl_dex/dex_attack
+	var/datum/storyteller_roll/brawl_strength/str_attack
 
 
 /datum/martial_art/darkpack_boxing/activate_style(mob/living/new_holder)
@@ -24,9 +25,8 @@
 
 			LAZYADD(affected_bodyparts, limb)
 
-			//limb.unarmed_damage_low += 5 Unsure on this one
-			//limb.unarmed_damage_high += 5
-			//limb.unarmed_attack_sound = 'modular_darkpack/modules/martial/sounds/harmboxing.ogg'
+			limb.unarmed_damage_low += 5 //Boxers can have nice things, they deserve it
+			limb.unarmed_damage_high += 5
 
 /datum/martial_art/darkpack_boxing/deactivate_style(mob/living/remove_from)
 	UnregisterSignal(remove_from, list(COMSIG_LIVING_CHECK_BLOCK))
@@ -70,7 +70,9 @@
 	var/throw_distance = clamp((attacker.st_get_stat(STAT_STRENGTH) - defender.st_get_stat(STAT_STAMINA)), 1, 3)
 	defender.throw_at(throw_target, throw_distance, 4, attacker)
 	defender.apply_damage(6 * attacker.st_get_stat(STAT_STRENGTH), attacker.get_attack_type(), BODY_ZONE_HEAD)
-	log_combat(attacker, defender, "Frontal Kicked (Kungfu)")
+	if(defender.is_clan(/datum/subsplat/vampire_clan/malkavian) || attacker.is_clan(/datum/subsplat/vampire_clan/malkavian))
+		playsound(attacker, 'modular_darkpack/modules/martial/sounds/bell.ogg', 50, TRUE, -1)
+	log_combat(attacker, defender, "Uppercut (Boxing)")
 	return TRUE
 
 /// Jab Combo: Hit the other guy twice in quick succession
@@ -80,46 +82,51 @@
 	defender.visible_message(span_warning("[attacker] rapidly jabs [defender]'s head!"), \
 				span_userdanger("You are jabbed in the head by [attacker], leaving you disoriented!"), span_hear("You hear a sickening sound of knuckles hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
 	defender.adjust_stamina_loss(45)
-	defender.apply_damage(20, attacker.get_attack_type(), BODY_ZONE_HEAD)
+	dex_attack.difficulty = 5
+	var/roll_success = dex_attack.st_roll(attacker, defender)
+	defender.apply_damage(7 * roll_success, attacker.get_attack_type(), BODY_ZONE_HEAD) //Hopefully shouldnt be too much of a problem, needs testing
 	defender.adjust_dizzy_up_to(10 SECONDS, 10 SECONDS)
-	log_combat(attacker, defender, "Jab Combo'd (Boxing)")
+	log_combat(attacker, defender, "Jab Comboed (Boxing)")
 	return TRUE
 
 /// Cross Punch: Figure out
 /datum/martial_art/darkpack_boxing/proc/cross_punch(mob/living/attacker, mob/living/defender)
-	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 70, TRUE, -1)
+	attacker.do_attack_animation(defender, ATTACK_EFFECT_SMASH)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/cross.ogg', 70, TRUE, -1)
 	defender.visible_message(
-		span_warning("[attacker] violently slams [attacker.p_their()] knee into [defender]!"),
-		span_userdanger("You slam your knee straight into [defender]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_warning("[attacker] rapidly throws [attacker.p_their()] fist at [defender]'s head!"),
+		span_userdanger("You throw a heavy punch at [defender]!"),
+		span_hear("You hear a sickening sound of bone hitting bone!"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	var/roll_success = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 8, roller = attacker)
-	if(roll_success)
-		defender.Knockdown(3 SECONDS)
-	defender.apply_damage(40, STAMINA)
-	defender.adjust_silence_up_to(5 SECONDS, 5 SECONDS)
-	log_combat(attacker, defender, "kneed in the stomach (Kung-Fu)")
+	defender.apply_damage(7 * attacker.st_get_stat(STAT_STRENGTH), attacker.get_attack_type(), BODY_ZONE_CHEST)
+	log_combat(attacker, defender, "Cross Punched (Kung-Fu)")
 	return TRUE
 
 /// Dirty Move: Liver Punch or something
 /datum/martial_art/darkpack_boxing/proc/dirty_hit(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	playsound(attacker, 'modular_darkpack/modules/martial/sounds/grabbed.ogg', 70, TRUE, -1)
+	playsound(attacker, 'modular_darkpack/modules/martial/sounds/hook.ogg', 70, TRUE, -1)
 	defender.visible_message(
-		span_warning("[attacker] violently slams [attacker.p_their()] knee into [defender]!"),
-		span_userdanger("You slam your knee straight into [defender]!"),
+		span_warning("[attacker] strikes [defender] directly in the stomach!"),
+		span_userdanger("You hit [defender]'s lower abdomen!"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	var/roll_success = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 8, roller = attacker)
+	dex_attack.difficulty = 6
+	var/roll_success = dex_attack.st_roll(attacker, defender)
 	if(roll_success)
 		defender.Knockdown(3 SECONDS)
+	if(ishuman(defender))
+		var/mob/living/carbon/human/human_owner = defender
+		if(get_kindred_splat(human_owner))
+			human_owner.vomit(VOMIT_CATEGORY_BLOOD, distance = rand(1,2)) //Did you know that kindred use blood in place of bodily fluids?
+		else
+			human_owner.vomit(VOMIT_CATEGORY_DEFAULT)
 	defender.apply_damage(40, STAMINA)
-	defender.adjust_silence_up_to(5 SECONDS, 5 SECONDS)
+	defender.apply_damage(30, attacker.get_attack_type(), BODY_ZONE_CHEST)
 	log_combat(attacker, defender, "kneed in the stomach (Kung-Fu)")
 	return TRUE
 
@@ -131,7 +138,7 @@
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
 	defender.apply_damage(15, STAMINA)
-	return MARTIAL_ATTACK_INVALID //Boxing is not known for holds at all
+	return MARTIAL_ATTACK_INVALID //Boxing is not known for holds
 
 /datum/martial_art/darkpack_boxing/harm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
@@ -152,8 +159,7 @@
 	add_to_streak("D", defender)
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
-
-	//playsound(defender, 'modular_darkpack/modules/martial/sounds/swipe.ogg', 25, TRUE, -1)
+	//playsound(defender, 'modular_darkpack/modules/martial/sounds/swipe.ogg', 25, TRUE, -1) SFX didnt feel good using it
 	defender.apply_damage(20, STAMINA)
 	return MARTIAL_ATTACK_INVALID //Essentially taking a swipe at their face
 
@@ -162,7 +168,7 @@
 		return FALSE
 	if(INCAPACITATED_IGNORING(user, INCAPABLE_GRAB)) //NO STUN
 		return FALSE
-	if(!(user.mobility_flags & MOBILITY_USE)) //NO UNABLE TO USE
+	if(!(user.mobility_flags & MOBILITY_USE)) //IF YOU CANT MOVE, YOU CANT DODGE
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_HULK)) //NO HULK
 		return FALSE
@@ -213,7 +219,7 @@
 			new_pixel_y = rand(0, 12)
 	animate(user, alpha = 200, pixel_x = new_pixel_x, pixel_y = new_pixel_y, time = 0.2 SECONDS)
 
-/// Like the hit game "Punch Out!!"" (1984) you can dodge incoming punches at you.. melee weapons and projectiles? not so lucky
+/// Like the hit game "Punch Out!!" (1984) you can dodge incoming punches thrown at you. Melee weapons and projectiles? not so lucky
 /datum/martial_art/darkpack_boxing/proc/check_dodge(mob/living/user, atom/movable/hitby, damage, attack_text, attack_type, ...)
 	SIGNAL_HANDLER
 
@@ -223,7 +229,7 @@
 		return
 
 	if(user.throw_mode) //Theoretical max of 80% with Cel 5
-		determine_avoidance *= 2
+		determine_avoidance *= 2 //Note, this is ~2.7 times higher then Kung-Fu because of the extremely narrow use-case
 
 	if(attack_type != UNARMED_ATTACK)
 		return NONE
@@ -247,14 +253,15 @@
 
 /mob/living/proc/streetboxing_help()
 	set name = "Recall Teachings"
-	set desc = "Remember the martial techniques of the Kung-Fu"
+	set desc = "Remember your training in Boxing"
 	set category = "Martial Arts"
 
-	to_chat(usr, span_info("<b><i>You retreat inward and recall your past training</i></b>"))
-	to_chat(usr, "[span_notice("Frontal Kick")]: Punch Shove. Launch your opponent away from you with incredible force!")
-	to_chat(usr, "[span_notice("Roundhouse Kick")]: Shove Shove. Nonlethally kick an opponent to the floor, knocking them down, discombobulating them and dealing substantial stamina damage. If they're already prone, disarm them as well.")
-	to_chat(usr, "[span_notice("Flying Knee")]: Grab Punch. Deliver a knee jab into the opponent, dealing high stamina damage, as well as briefly stunning them, winding them and making it difficult for them to speak.")
-	to_chat(usr, "[span_notice("Grabs and Shoves")]: While in combat mode, your typical grab and shove do decent stamina damage, and your grabs harder to break. If you grab someone who has substantial amounts of stamina damage, you knock them out!")
+	to_chat(usr, span_info("<b><i>You reminisce over the words of your Coach.</i></b>"))
+	to_chat(usr, "[span_notice("Uppercut")]: Punch Shove Punch. Jump up and hit an opponent directly in the jaw, dealing significant damage and launching weaker foes away!")
+	to_chat(usr, "[span_notice("Jab Combo")]: Grab Punch Punch. Release a flurry of jabs into your opponent's head, disorienting and tiring them, along with dealing decent amounts of brute damage.")
+	to_chat(usr, "[span_notice("Cross Punch")]: Shove Punch Punch. Throw a single, heavy punch directly at your opponents skull")
+	to_chat(usr, "[span_notice("Dirty Hit")]: Grab Shove. Disregard the rules of the ring and punch the liver of your opponent, making them puke and keel over.")
+	to_chat(usr, "[span_notice("Dodging")]: Like any trained boxer, you are able to avoid punches thrown at you while in Combat Mode. Throw mode greatly increases the avoidance chance")
 
 #undef UPPERCUT_COMBO
 #undef JAB_COMBO

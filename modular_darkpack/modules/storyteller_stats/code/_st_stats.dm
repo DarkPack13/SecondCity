@@ -21,6 +21,10 @@
 	var/freebie_point_cost = 0
 	/// Flags for stats, such as if it affects health.
 	var/stat_flags = NONE
+	// Mininum dots required to get the associated mastern trait
+	var/mastery_score
+	//Actual trait applied upon having the associated mastery score, currently only for implemented for Brawl preference selection
+	var/mastery_trait
 
 	/// If the user can spend points on that stat.
 	var/editable = TRUE

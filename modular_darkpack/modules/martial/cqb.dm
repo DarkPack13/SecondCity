@@ -4,13 +4,16 @@
 #define PRESSURE_COMBO "DG"
 
 /datum/martial_art/darkpack_cqb
-	name = "CQC"
+	name = "CQB"
 	id = MARTIALART_DARKPACK_CQB
 	help_verb = /mob/living/proc/CQC_help
 	smashes_tables = TRUE
 	display_combos = TRUE
 	/// Weakref to a mob we're currently restraining (with grab-grab combo)
 	VAR_PRIVATE/datum/weakref/restraining_mob
+	var/datum/storyteller_roll/brawl_strength/str_attack
+	var/datum/storyteller_roll/brawl_defend/stam_defend
+	var/datum/storyteller_roll/brawl_defend/athletics/ath_defend
 
 /datum/martial_art/darkpack_cqb/activate_style(mob/living/new_holder)
 	. = ..()
@@ -68,8 +71,9 @@
 	playsound(attacker, 'sound/items/weapons/slam.ogg', 50, TRUE, -1)
 	defender.apply_damage(10, BRUTE)
 	defender.Knockdown(3 SECONDS)
-	var/stun_time = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 6, numerical = TRUE, roller = attacker) //In THEORY this should be attacker weighted, with high stamima users shrugging it off.
-	var/defended_time = SSroll.storyteller_roll(defender.st_get_stat(STAT_STAMINA) * 2, difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), numerical = TRUE, roller = defender)
+	stam_defend.difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL))
+	var/stun_time = str_attack.st_roll(attacker, defender)
+	var/defended_time = stam_defend.st_roll(defender, attacker)
 	stun_time = clamp((stun_time-defended_time), 0, 10)
 	defender.Paralyze(stun_time SECONDS)
 	log_combat(attacker, defender, "slammed (CQB)")
@@ -80,7 +84,7 @@
 		return FALSE
 
 	attacker.do_attack_animation(defender)
-	if(defender.body_position == LYING_DOWN && !defender.IsUnconscious() && !iskindred(defender) && defender.get_stamina_loss() >= 0) //This is EXTREMELY conditional to make sure it's not abused to shit
+	if(defender.body_position == LYING_DOWN && !defender.IsUnconscious() && !get_kindred_splat(defender) && defender.get_stamina_loss() >= 0) //This is EXTREMELY conditional to make sure it's not abused to shit
 		log_combat(attacker, defender, "knocked out (Head kick)(CQC)")
 		defender.visible_message(
 			span_danger("[attacker] kicks [defender]'s head, knocking [defender.p_them()] out!"),
@@ -137,8 +141,9 @@
 		return FALSE
 	if(defender.stat != CONSCIOUS)
 		return FALSE
-	var/stun_time = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 6, numerical = TRUE, roller = attacker) //In THEORY this should be attacker weighted, with high stamima users shrugging it off.
-	var/defended_time = SSroll.storyteller_roll(defender.st_get_stat(STAT_STAMINA) + defender.st_get_stat(STAT_ATHLETICS), difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), numerical = TRUE, roller = defender)
+	ath_defend.difficulty = (attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL))
+	var/stun_time = str_attack.st_roll(attacker, defender) //In THEORY this should be attacker weighted, with high stamima users shrugging it off.
+	var/defended_time = ath_defend.st_roll(defender, attacker)
 	var/total_time = stun_time - defended_time
 	if(total_time <= 0)
 		log_combat(attacker, defender, "failed restrained (CQB)")
@@ -289,7 +294,9 @@
 		)
 		to_chat(attacker, span_danger("You put [defender] into a chokehold!"))
 		//this is gonna be a tricky one to figure out
-		defender.SetSleeping(40 SECONDS)
+		if(!get_kindred_splat(defender))
+			defender.SetSleeping(3 SECONDS)
+		defender.adjust_oxy_loss(50)
 		restraining_mob = null
 		if(attacker.grab_state < GRAB_NECK && !HAS_TRAIT(attacker, TRAIT_PACIFISM))
 			attacker.setGrabState(GRAB_NECK)
@@ -340,10 +347,7 @@
 	to_chat(usr, "[span_notice("CQB Kick")]: Punch Punch. Knocks opponent away. Knocks out stunned opponents and does stamina damage.")
 	to_chat(usr, "[span_notice("Restrain")]: Grab Grab. Locks opponents into a restraining position, disarm to knock them out with a chokehold.")
 	to_chat(usr, "[span_notice("Pressure")]: Shove Grab. Decent stamina damage.")
-
-	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
-
-
+	to_chat(usr, "[span_notice("Combat Training")]: Your past training has imparted various additional techniques. Getting someone in a strangehold will allow for you to snap their neck with a Punch. Certain techniques have unique interactions with knocked-down opponents.")
 
 #undef SLAM_COMBO
 #undef KICK_COMBO

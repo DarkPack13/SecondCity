@@ -8,7 +8,7 @@
 	help_verb = /mob/living/proc/kungfu_help
 	display_combos = TRUE
 	grab_state_modifier = 1
-
+	var/datum/storyteller_roll/brawl_strength/str_attack
 
 /datum/martial_art/darkpack_kungfu/activate_style(mob/living/new_holder)
 	. = ..()
@@ -72,7 +72,8 @@
 /datum/martial_art/darkpack_kungfu/proc/drop_kick(mob/living/attacker, mob/living/defender)
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(attacker, 'modular_darkpack/modules/martial/sounds/roundhousekick.ogg', 50, TRUE, -1)
-	var/kickpower = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 7, numerical = TRUE, roller = attacker)
+	str_attack.difficulty = 7
+	var/kickpower = str_attack.st_roll(attacker, defender)
 	if(defender.body_position == STANDING_UP && (kickpower >= 0))
 		defender.Knockdown(kickpower SECONDS)
 		defender.visible_message(span_warning("[attacker] kicks [defender] in the head, sending them face first into the floor!"), \
@@ -98,7 +99,8 @@
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	var/roll_success = SSroll.storyteller_roll((attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)), difficulty = 8, roller = attacker)
+	str_attack.difficulty = 8
+	var/roll_success = str_attack.st_roll(attacker, defender)
 	if(roll_success)
 		defender.Knockdown(3 SECONDS)
 	defender.apply_damage(40, STAMINA)
@@ -173,8 +175,8 @@
 /datum/martial_art/darkpack_kungfu/proc/hit_by_projectile(mob/living/user, obj/projectile/hitting_projectile, def_zone)
 	SIGNAL_HANDLER
 
-	if(!user.is_clan(/datum/vampire_clan/true_brujah))
-		return NONE //No, you cant dodge bullets normally, bum.
+	if(!user.is_clan(/datum/subsplat/vampire_clan/true_brujah))
+		return NONE //No, you cant dodge bullets normally, bum
 
 	var/determine_avoidance = ((user.st_get_stat(STAT_ATHLETICS) + user.st_get_stat(STAT_DEXTERITY)) * 7)
 
@@ -191,17 +193,17 @@
 	playsound(user, SFX_BULLET_MISS, 75, TRUE)
 	hitting_projectile.firer = user
 	var/mob/living/carbon/human/dodger = user
-	if(dodger.is_clan(/datum/vampire_clan/true_brujah))
+	if(dodger.is_clan(/datum/subsplat/vampire_clan/true_brujah))
 		animate(user, alpha = 0, time = 0.2 SECONDS)
 		new /obj/effect/temporis/weskar(user.loc, user)
 		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, TRUE), 0.1 SECONDS)
 	else
 		animate(user, pixel_x = rand(-16,16), pixel_y = rand(-16,16), time = 0.2 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, FALSE), 0.1 SECONDS)
-	//hitting_projectile.set_angle(rand(0, 360)) theoretically it should go straight through if you avoided
+	//The bullet goes straight past, as the user was never in it's path to begin
 	return COMPONENT_BULLET_PIERCED
 
-/// If our user has committed to being as martial arty as they can be, they may be able to avoid incoming attacks.
+/// Trained Kung-Fu practitioners can avoid melee attacks to varying levels of success, anything buffing this value above ~30% fully invested should be closed
 /datum/martial_art/darkpack_kungfu/proc/check_dodge(mob/living/user, atom/movable/hitby, damage, attack_text, attack_type, ...)
 	SIGNAL_HANDLER
 
@@ -225,15 +227,13 @@
 	)
 	playsound(user.loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
 	var/mob/living/carbon/human/dodger = user
-	if(dodger.is_clan(/datum/vampire_clan/true_brujah))
+	if(dodger.is_clan(/datum/subsplat/vampire_clan/true_brujah)) //More special snowflake Trujah Powers, TODO: Move the melee dodge after-image to be decided by celerity/temp investment
 		animate(user, alpha = 0, time = 0.3 SECONDS)
 		new /obj/effect/temporis/weskar(user.loc, user)
 		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, TRUE), 0.1 SECONDS)
 	else
 		animate(user, pixel_x = rand(-16,16), pixel_y = rand(-16,16), time = 0.1 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(reset_animation), user, FALSE), 0.1 SECONDS)
-
-
 
 	return SUCCESSFUL_BLOCK
 
@@ -242,11 +242,12 @@
 	set desc = "Remember the martial techniques of the Kung-Fu"
 	set category = "Martial Arts"
 
-	to_chat(usr, span_info("<b><i>You retreat inward and recall your past training</i></b>"))
+	to_chat(usr, span_info("<b><i>You retreat inward and recall past teachings</i></b>"))
 	to_chat(usr, "[span_notice("Frontal Kick")]: Punch Shove. Launch your opponent away from you with incredible force!")
 	to_chat(usr, "[span_notice("Roundhouse Kick")]: Shove Shove. Nonlethally kick an opponent to the floor, knocking them down, discombobulating them and dealing substantial stamina damage. If they're already prone, disarm them as well.")
 	to_chat(usr, "[span_notice("Flying Knee")]: Grab Punch. Deliver a knee jab into the opponent, dealing high stamina damage, as well as briefly stunning them, winding them and making it difficult for them to speak.")
 	to_chat(usr, "[span_notice("Grabs and Shoves")]: While in combat mode, your typical grab and shove do decent stamina damage, and your grabs harder to break. If you grab someone who has substantial amounts of stamina damage, you knock them out!")
+	to_chat(usr, "[span_notice("Evasion")]: Training through the years has taught you how to dodge melee attacks while in Combat Mode. Seeking inner-scerenity within Throw Mode shall greatly increase the chance. Projectiles however are beyond the reaction speed of anyone short of [span_purple("stopping time")]...")
 
 
 #undef LAUNCH_KICK_COMBO

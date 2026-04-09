@@ -97,6 +97,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Is the mob melted into a wall via Visceratika?
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 
+//is the mob eligable to select a martial art in the perf menu
+#define TRAIT_TRAINED_BRAWLER "trained_brawler"
 
 // Allows the user to pass through doors
 #define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework

@@ -18,6 +18,8 @@
 	subcategory = "Talents"
 	name = "Brawl"
 	description = "Affects your character's fist-fighting ability and the 'floor' of your unarmed damage."
+	mastery_score = 4 //How many dots in the ability it takes for the mastery trait
+	mastery_trait = TRAIT_TRAINED_BRAWLER //What trait is given for mastery
 
 /datum/st_stat/ability/empathy
 	subcategory = "Talents"
