@@ -80,7 +80,10 @@
 	var/frenzy_result = frenzy_roll.st_roll(src, target)
 	if(frenzy_result <= 0)
 		to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
-		enter_frenzy_mode(target)
+		var/victim = get_closest_atom(/atom, get_frenzy_victims(), src)
+		enter_frenzy_mode(victim)
+		return
+
 	successes += frenzy_result
 	if(successes >= 5)
 		to_chat(src, span_green("[flavor_text] almost drives you into frenzy but you steel your nerves and it subsides!"))
@@ -105,7 +108,7 @@
 	if(move_intent == MOVE_INTENT_WALK)
 		toggle_move_intent(src)
 
-	var/atom/fear = get_closest_atom(/obj/effect/abstract/turf_fire, view(7, src), src)
+	var/atom/fear = get_closest_atom(/obj/effect/abstract/turf_fire, view(DEFAULT_SIGHT_DISTANCE, src), src)
 
 	var/frenzy_target
 	if(!fear && !frenzy_target)
@@ -151,33 +154,13 @@
 			face_atom(frenzy_target)
 	*/
 
-/*
-/mob/living/carbon/proc/get_frenzy_targets()
-	var/list/targets = list()
-	if(get_kindred_splat(src))
-		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-			if(!get_kindred_splat(L) && L.bloodpool && L.stat != DEAD)
-				targets += L
-				if(L == frenzy_target)
-					return L
-	else
-		for(var/mob/living/L in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-			if(L.stat != DEAD)
-				targets += L
-				if(L == frenzy_target)
-					return L
-	if(length(targets) > 0)
-		return pick(targets)
-	else
-		return null
-*/
 
 /*
 /mob/living/carbon/proc/handle_automated_frenzy()
 	for(var/mob/living/carbon/human/npc/NPC in viewers(5, src))
 		NPC.Aggro(src)
 	if(isturf(loc))
-		frenzy_target = get_frenzy_targets()
+		frenzy_target = get_closest_atom(/atom, get_frenzy_victims(), src)
 		if(frenzy_target)
 			var/datum/cb = CALLBACK(src, PROC_REF(frenzystep))
 			var/reqsteps = SSfrenzypool.wait/cached_multiplicative_slowdown
@@ -192,7 +175,7 @@
 */
 
 #warn placeholder, mostly for easy debugging atm
-/mob/living/carbon/verb/manual_frenzy(atom/movable/AM as mob|obj in oview(7))
+/mob/living/carbon/verb/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Frenzy"
 	set category = "Object"
 

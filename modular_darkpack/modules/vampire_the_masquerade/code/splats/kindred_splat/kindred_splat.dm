@@ -135,13 +135,13 @@
 	. = ..()
 
 	if(COOLDOWN_FINISHED(src, frenzy_roll_cooldown) && COOLDOWN_FINISHED(src, frenzy_target_check_cooldown))
-		var/atom/nearby_fire = get_closest_atom(/atom, get_fire_frenzy_targets(), owner)
+		var/atom/nearby_fire = get_closest_atom(/atom, owner.get_fire_frenzy_targets(), owner)
 		if(nearby_fire)
 			owner.trigger_rotschreck(nearby_fire)
 			COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
 
 		else if(HAS_TRAIT(owner, TRAIT_NEEDS_BLOOD))
-			var/atom/nearby_blood = get_closest_atom(/atom, get_blood_frenzy_targets(), owner)
+			var/atom/nearby_blood = get_closest_atom(/atom, owner.get_blood_frenzy_targets(), owner)
 			if(nearby_blood)
 				owner.trigger_kindred_frenzy(nearby_blood, 4, 0, "The hunger")
 				COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)

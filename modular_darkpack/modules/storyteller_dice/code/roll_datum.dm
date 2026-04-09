@@ -93,7 +93,7 @@
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
 		if(ROLL_PUBLIC)
-			return viewers(DEFAULT_MESSAGE_RANGE, roller)
+			return viewers(DEFAULT_SIGHT_DISTANCE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
 		if(ROLL_PRIVATE_AND_TARGET)

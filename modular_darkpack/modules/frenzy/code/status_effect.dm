@@ -1,6 +1,6 @@
 /datum/client_colour/frenzy
 	priority = CLIENT_COLOR_IMPORTANT_PRIORITY
-	color = COLOR_RED
+	color = COLOR_LIGHT_GRAYISH_RED
 
 /datum/status_effect/frenzy
 	id = "frenzy"
@@ -41,10 +41,10 @@
 	. = ..()
 
 	// If left alone for an extended time, frenzies can end on their own
-	if(locate(/mob/living/carbon/human) in oview(world.view, owner))
+	if(locate(/mob/living/carbon/human) in oview(DEFAULT_SIGHT_DISTANCE, owner))
 		seconds_alone = 0
 	// If our target is nearby, keep frenzying (a human or even a fire)
-	else if(frenzy_target_ref?.resolve() in view(world.view, owner))
+	else if(frenzy_target_ref?.resolve() in view(DEFAULT_SIGHT_DISTANCE, owner))
 		seconds_alone = 0
 	else
 		seconds_alone += seconds_between_ticks
