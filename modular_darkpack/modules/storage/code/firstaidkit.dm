@@ -110,10 +110,10 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/applicator/patch/aiuri = 3,
-		/obj/item/reagent_containers/spray/hercuri = 1,
-		/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
+		/obj/item/reagent_containers/syringe/convermol = 3,
+		/obj/item/reagent_containers/hypospray/medipen/salbutamol = 1,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/storage/pill_bottle/iron = 1,
 	)
 	generate_items_inside(items_inside,src)
 
