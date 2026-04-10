@@ -58,6 +58,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(matrix_mob_verb, R_ADMIN, "Matrix Mob", "Matrix (des
 
 	//handle_objectives()
 	SSmasquerade.matrix_masquerade_breacher(despawning_mob, TRUE)
+	despawning_mob.client?.prefs?.save_character() // TFN EDIT ADD
 	despawning_mob.ghostize(FALSE)
 	QDEL_NULL(despawning_mob)
 

@@ -1,4 +1,4 @@
-import { type FeatureChoiced, type FeatureValueProps } from '../base';
+import type { FeatureChoiced, FeatureValueProps } from '../base';
 import { FeatureIconnedDropdownInput } from '../dropdowns';
 import { useBackend } from 'tgui/backend';
 import type { PreferencesMenuData } from '../../../types';

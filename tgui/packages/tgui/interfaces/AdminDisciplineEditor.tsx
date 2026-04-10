@@ -34,7 +34,6 @@ type Data = {
   connected_ckeys: string[];
   invalid_ckeys: string[];
   trusted_ckeys: string[];
-  is_editing_character: boolean; // TFN EDIT - prevent admins editing a slot a players actively editing, too
   character_name: string | null;
   character_age: number | null;
   immortal_age: number | null;
@@ -156,7 +155,6 @@ export function AdminDisciplineEditor() {
     connected_ckeys,
     invalid_ckeys,
     trusted_ckeys,
-    is_editing_character, // TFN EDIT
     character_name,
     character_age,
     immortal_age,
@@ -276,20 +274,12 @@ export function AdminDisciplineEditor() {
                     </Stack.Item>
                   </Stack>
                 }
-              // TFN EDIT START
               >
-                {is_editing_character && (
-                  <Box color="red" mb={1}>
-                    <Icon name="triangle-exclamation" mr={0.5} />
-                    HEY, LISTEN! They are currently editing their character! DO NOT MAKE ANY CHANGES WHATSOEVER UNTIL THEY HAVE CLOSED THE SETUP WINDOW OR YOU WILL MESS UP THEIR SLOT!!
-                  </Box>
-                )}
                 <Stack>
                   {character_slots.map(({ slot, name }) => (
                     <Stack.Item key={slot}>
                       <Button
                         selected={selected_slot === slot}
-                        disabled={is_editing_character}
                         onClick={() => act('select_slot', { slot })}
                       >
                         {name}
@@ -298,7 +288,6 @@ export function AdminDisciplineEditor() {
                   ))}
                 </Stack>
               </Section>
-              // TFN EDIT END
             )}
             {selected_slot > 0 && character_name && (
               <Section>
