@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(bouncer_barriers)
 	name = "Bouncer Barrier"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_order = INIT_ORDER_BARRIER
 	var/barriers_enabled = TRUE
 
