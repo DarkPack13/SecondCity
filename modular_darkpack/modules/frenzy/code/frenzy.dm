@@ -174,8 +174,7 @@
 					Move(T)
 */
 
-#warn placeholder, mostly for easy debugging atm
-/mob/living/carbon/verb/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+/mob/living/carbon/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Frenzy"
 	set category = "Object"
 
@@ -184,7 +183,4 @@
 	if(!issupernatural(src))
 		return
 
-	if(get_kindred_splat(src))
-		trigger_kindred_frenzy(AM)
-	else
-		enter_frenzy_mode(AM)
+	enter_frenzy_mode(AM)
