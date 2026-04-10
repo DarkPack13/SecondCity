@@ -89,6 +89,7 @@
 	gloves = /obj/item/clothing/gloves/vampire/work
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/ammo_box/magazine/m9mm
+	r_hand = /obj/item/gun/ballistic/automatic/darkpack/autosniper
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/army
 	head = /obj/item/clothing/head/beret
@@ -98,7 +99,6 @@
 		/obj/item/ammo_box/magazine/m9mm = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/binoculars = 1,
-		/obj/item/gun/ballistic/automatic/darkpack/autosniper = 1,
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/beretta = 1,
 	)
 
