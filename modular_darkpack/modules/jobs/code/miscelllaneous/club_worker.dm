@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = /datum/job/vampire/primogen_toreador
+	supervisors = "Rosebud Night Club Owner"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/club_worker
 	config_tag = "CLUB_WORKER"
