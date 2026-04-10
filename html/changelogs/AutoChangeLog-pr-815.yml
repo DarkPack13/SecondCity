@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "finance affects roundstart cash"

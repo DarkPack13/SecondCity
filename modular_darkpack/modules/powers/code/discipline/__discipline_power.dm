@@ -177,6 +177,11 @@
 			to_chat(owner, span_warning("[src] is still on cooldown for [DisplayTimeText(get_cooldown())]!"))
 		return FALSE
 
+	if(!check_discipline_flags(alert))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/proc/check_discipline_flags(alert = FALSE)
 	//status checks
 	if ((check_flags & DISC_CHECK_TORPORED) && HAS_TRAIT(owner, TRAIT_TORPOR))
 		if (alert)
@@ -719,7 +724,7 @@
 /datum/discipline_power/proc/clear_duration_timer(to_clear = 1)
 	if(duration_override)
 		return
-	
+
 	if (toggled && (duration_length == 0))
 		return
 

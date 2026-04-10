@@ -27,7 +27,7 @@ export const ScreenPhone = (props: {
     }
     act('terminal_sound');
     if (digit === '_') {
-      setEnteredNumber(enteredNumber + ' ');
+      setEnteredNumber(`${enteredNumber} `);
     } else {
       setEnteredNumber(enteredNumber + digit);
     }

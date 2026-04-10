@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(masquerade)
 	name = "Masquerade"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 
 	var/masquerade_level = MASQUERADE_MAX_LEVEL
 	var/list/masquerade_breachers

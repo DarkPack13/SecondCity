@@ -1,1 +1,1 @@
-/obj/structure/vampdoor/wood/apartment : /obj/structure/vampdoor/wood, /obj/effect/mapping_helpers/door/access/claimable
+/obj/structure/vampdoor/wood/apartment : /obj/effect/mapping_helpers/door/access/claimable, /obj/structure/vampdoor/wood {@OLD}
