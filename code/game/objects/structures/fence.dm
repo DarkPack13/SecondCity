@@ -16,8 +16,6 @@
 	density = TRUE
 	anchored = TRUE
 
-	pass_flags_self = PASSDOORS // DARKPACK EDIT ADD - Powers - Obtenebration
-
 	icon = 'icons/obj/fence.dmi'
 	icon_state = "straight"
 

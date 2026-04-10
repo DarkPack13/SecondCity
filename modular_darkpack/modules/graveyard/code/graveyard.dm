@@ -188,7 +188,6 @@
 	density = TRUE
 	max_integrity = 500
 	prevent_destruction = TRUE
-	pass_flags_self = PASSDOORS
 
 	var/repairing = FALSE
 
