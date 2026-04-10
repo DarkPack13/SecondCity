@@ -1,7 +1,7 @@
 #define SPECIES_BLOODFORM "bloodform"
 
 /datum/species/tzimisce_blood_form
-	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
+	// A living puddle of Vitae, immune to Bashing and Lethal damage. 
 	name = "\improper Bloodform"
 	plural_form = "Bloodforms"
 	id = SPECIES_BLOODFORM
@@ -11,7 +11,15 @@
 		TRAIT_MUTE,
 		TRAIT_NO_EYE_CONTACT,
 		TRAIT_MUTANT_COLORS,
-	)
+		TRAIT_NEVER_WOUNDED,
+		TRAIT_STAKE_IMMUNE,
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_NOBREATH,
+		TRAIT_PACIFISM,
+		TRAIT_PUSHIMMUNE,
+		TRAIT_MARTIAL_ARTS_IMMUNE,
+
+	) //Made of blood and can't be staked or wounded, but also has no actual ability to attack, per-se. 
 	exotic_bloodtype = BLOOD_TYPE_KINDRED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	bodypart_overrides = list(
@@ -29,7 +37,9 @@
 	hair_color_mode = USE_FIXED_MUTANT_COLOR
 	hair_alpha = 70
 	facial_hair_alpha = 70
+	pass_flags = PASSTABLE | PASSMOB | PASSDOORS //A moving pool of blood, it can slip through and around most things.
 	var/datum/action/innate/regenerate_blood_limbs/regenerate_limbs
+	brute_mod = 0 //Immune to non-burning, magical, or blood drinking damage.
 
 /datum/species/tzimisce_blood_form/on_species_gain(mob/living/carbon/new_jellyperson, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
