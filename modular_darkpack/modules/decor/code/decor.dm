@@ -135,7 +135,6 @@
 	icon_state = "garbage"
 	base_icon_state = "garbage"
 	drag_slowdown = 3
-	pass_flags_self = PASSMACHINE
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
