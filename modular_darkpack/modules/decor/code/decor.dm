@@ -6,7 +6,6 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
-	pass_flags_self = PASSDOORS
 
 /obj/structure/vampfence/corner
 	icon_state = "fence_corner"
