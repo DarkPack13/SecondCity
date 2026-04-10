@@ -18,6 +18,7 @@
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
 	shapeshift_ability.Grant(owner)
+	ADD_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Allows people with Vicissitude to perform operations on themselves.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
