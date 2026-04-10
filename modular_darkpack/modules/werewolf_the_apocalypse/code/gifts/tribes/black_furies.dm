@@ -67,6 +67,7 @@
 
 /atom/movable/screen/alert/status_effect/breath_of_the_wyld
 	name = "Breath of the Wyld"
+	#warn do?
 	desc = "Gain an additional die to all mental checks, but suffer a penalty to rage check difficulty." // TODO: rage difficulty code
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 	icon_state = "riddle" // TODO: get an icon for this

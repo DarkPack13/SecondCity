@@ -6,8 +6,8 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 		return
-	ADD_TRAIT(src, TRAIT_IN_FRENZY, FRENZY_TRAIT)
-	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy")
+	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(src)]": ""]")
 	log_message("entered frenzy.", LOG_GAME)
 
 	if(fleeing)
@@ -25,7 +25,7 @@
 /mob/living/carbon/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	REMOVE_TRAIT(src, TRAIT_IN_FRENZY, FRENZY_TRAIT)
+	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_GAME)
 
 	remove_status_effect(/datum/status_effect/frenzy)
@@ -175,7 +175,7 @@
 */
 
 /mob/living/carbon/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Frenzy"
+	set name = "Manual Frenzy"
 	set category = "Object"
 
 	if(!istype(AM))
