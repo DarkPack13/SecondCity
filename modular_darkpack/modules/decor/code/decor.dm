@@ -316,7 +316,6 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
-	pass_flags_self = PASSMACHINE
 
 /obj/structure/barrels/rand
 	icon_state = "barrel2"
