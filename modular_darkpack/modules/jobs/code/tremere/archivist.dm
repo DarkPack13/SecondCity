@@ -17,7 +17,7 @@
 	description = "Keep a census of events and provide information to neonates. Listen to the Regent Carefully. Study blood magic and protect the chantry."
 	minimal_masquerade = 3
 	allowed_splats = list(SPLAT_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_TREMERE)
+	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_BAALI)
 	known_contacts = list("Tremere Regent")
 
 /datum/outfit/job/vampire/archivist
