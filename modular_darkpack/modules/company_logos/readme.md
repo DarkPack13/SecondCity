@@ -1,6 +1,6 @@
 https://github.com/DarkPack13/SecondCity/pull/491
 
-## \<DO EMOTES>
+## \<COMPANY LOGOS>
 
 Module ID: COMPANY_LOGOS
 
