@@ -1210,7 +1210,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "vO" = (
-/obj/structure/chair/greyscale{
+/obj/structure/chair/darkpack{
 	dir = 8
 	},
 /turf/open/floor/plating/rough/cave,
@@ -2999,7 +2999,7 @@
 /turf/open/openspace,
 /area/vtm/outside/pacificheights)
 "Yz" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk/poor,

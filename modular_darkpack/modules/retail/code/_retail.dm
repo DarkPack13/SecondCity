@@ -95,6 +95,7 @@
 		)
 			product_data["icon"] = initial(printed.icon)
 			product_data["icon_state"] = initial(printed.icon_state)
+	.["money_symbol"] = MONEY_SYMBOL
 
 /obj/structure/retail/ui_data(mob/user)
 	. = list()
