@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(all_brandnames, brand_list_by_name())
 	// Formatting applied to the name in item descriptions
 	var/name_span = "hypnophrase"
 	// The icon file we're grabbing our icon_state from. Default dimensions in this file are 300x110.
-	var/logo_icon = 'modular_darkpack/modules/company_logos/icons/corp_logos.dmi'
+	var/logo_icon = 'modular_darkpack/modules/COMPANY_LOGOS/icons/corp_logos.dmi'
 	// If FALSE, skip rendering the logo in examine text.
 	var/render_logo = TRUE
 	// Company color used for coloring certain items that change depending on brand
