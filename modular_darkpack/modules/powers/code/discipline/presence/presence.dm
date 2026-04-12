@@ -136,7 +136,7 @@
 	name = "Dread Gaze"
 	desc = "Incite fear in others through only your words and gaze."
 	level = 2
-	vitae_cost = 1
+	vitae_cost = 0
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK | DISC_CHECK_DIRECT_SEE
 	target_type = TARGET_HUMAN
 	range = 7
@@ -300,6 +300,7 @@
 	multi_activate = TRUE
 	cooldown_length = 3 MINUTES
 	duration_length = 2 MINUTES
+	vitae_cost = 0
 	willpower_cost = 1
 	violates_masquerade = TRUE
 	var/list/affected_targets = list()
