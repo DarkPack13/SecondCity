@@ -302,7 +302,7 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CAPABLE
-	vitae_cost = 2
+	vitae_cost = 0 //No Vitae cost
 
 	toggled = TRUE
 

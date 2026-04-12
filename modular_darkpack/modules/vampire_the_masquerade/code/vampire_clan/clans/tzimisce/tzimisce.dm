@@ -16,9 +16,15 @@
 	accessories = list("spines", "spines_slim", "animal_skull", "none")
 	accessories_layers = list("spines" = BODY_ADJ_LAYER, "spines_slim" = BODY_ADJ_LAYER, "animal_skull" = BODY_ADJ_LAYER, "none" = BODY_ADJ_LAYER)
 
+/datum/subsplat/vampire_clan/tzimisce/psychomania_effect(mob/living/target, mob/living/owner)
+	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
+	to_chat(target, span_cult("I SEE VISIONS OF FLAME ENGULFING MY DOMAIN"))
+	new /datum/hallucination/fire(target, TRUE)
+	target.Paralyze(6 SECONDS)
+
 /datum/subsplat/vampire_clan/tzimisce/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
-
+	sense_the_sin_text = "[joining.name] is consumed by a singular desire."
 	var/obj/item/ground_heir/heirloom = new(get_turf(joining))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,

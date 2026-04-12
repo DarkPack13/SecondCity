@@ -75,7 +75,7 @@ export const RetailVendor = (props) => {
                             data.user.is_card === 0) ||
                           product.stock === 0
                         }
-                        content={`${product.price}$`}
+                        content={`${data.money_symbol}${product.price}`}
                         onClick={() =>
                           act('purchase', {
                             ref: product.ref,

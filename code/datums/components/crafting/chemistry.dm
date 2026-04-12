@@ -158,4 +158,3 @@
 		/datum/reagent/consumable/ice = 10,
 	)
 	category = CAT_CHEMISTRY
-	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY // TFN ADDITION - Linters
