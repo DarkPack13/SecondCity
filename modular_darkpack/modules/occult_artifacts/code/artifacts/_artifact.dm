@@ -39,11 +39,14 @@
 
 	var/datum/storyteller_roll/identify_occult/identify_roll
 
-/obj/item/vtm_artifact/proc/identify()
+/obj/item/vtm_artifact/proc/identify(mob/living/artifact_identifier)
 	if(!identified)
 		name = true_name
 		desc = true_desc
 		identified = TRUE
+		owner = artifact_identifier
+		if(src in artifact_identifier.get_all_contents())
+			pickup(artifact_identifier)
 
 /obj/item/vtm_artifact/proc/get_powers()
 	if(!identified)
@@ -78,7 +81,7 @@
 			identify_roll.difficulty = 8
 		var/roll = identify_roll.st_roll(user, src)
 		if(roll == ROLL_SUCCESS)
-			identify()
+			identify(artifact_identifier)
 			to_chat(artifact_identifier, span_cult("You successfully identify [src]!"))
 		else
 			to_chat(artifact_identifier, span_warning("You stop examining [src]."))

@@ -9,7 +9,7 @@
 	var/datum/action/bloodstone_track/tracking_action
 	research_value = 15
 
-/obj/item/vtm_artifact/bloodstone/identify()
+/obj/item/vtm_artifact/bloodstone/identify(mob/living/artifact_identifier)
 	. = ..()
 	if(identified && !bound_identifier)
 		var/mob/living/carbon/human/user = usr

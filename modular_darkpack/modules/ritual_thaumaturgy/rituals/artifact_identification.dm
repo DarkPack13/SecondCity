@@ -10,7 +10,7 @@
 		if(VA.identified)
 			to_chat(identifier, span_warning("You have already identified this artifact."))
 			return
-		VA.identify()
+		VA.identify(last_activator)
 		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		qdel(src)
 		return

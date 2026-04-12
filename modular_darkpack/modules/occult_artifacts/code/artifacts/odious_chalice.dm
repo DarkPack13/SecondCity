@@ -10,9 +10,10 @@
 	. = ..()
 	. += "[src] contains [stored_blood] blood points..."
 
-/obj/item/vtm_artifact/odious_chalice/identify()
+/obj/item/vtm_artifact/odious_chalice/identify(mob/living/artifact_identifier)
 	. = ..()
-	RegisterSignal(usr, COMSIG_MOB_ITEM_ATTACK, PROC_REF(on_attack))
+	to_chat(owner, span_cult("The Chalice awaits for blood. As long as it remains in your bag, it will draw the blood of your target into it!"))
+	RegisterSignal(owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(on_attack))
 
 /obj/item/vtm_artifact/odious_chalice/proc/on_attack(mob/living/source, mob/living/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!identified)

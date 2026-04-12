@@ -10,4 +10,4 @@
 
 /obj/item/vtm_artifact/heart_of_eliza/remove_powers()
 	. = ..()
-	owner.st_remove_stat_mod(STAT_STRENGTH, 1, type)
+	owner.st_remove_stat_mod(STAT_STRENGTH, type)
