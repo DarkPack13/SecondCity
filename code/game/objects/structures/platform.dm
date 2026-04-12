@@ -8,7 +8,7 @@
 	icon_state = "window_frame_normal-0"
 	base_icon_state = "window_frame_normal"
 	layer = CLOSED_TURF_LAYER // DARKPACK EDIT ADD - (Allows tables to be placed ontop of platforms (but please dont))
-	plane = WALL_PLANE // DARKPACK EDIT ADDITION
+	plane = WALL_PLANE // DARKPACK EDIT ADD
 	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
 	smoothing_groups = SMOOTH_GROUP_PLATFORMS
 	canSmoothWith = SMOOTH_GROUP_PLATFORMS
