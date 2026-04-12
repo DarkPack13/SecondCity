@@ -6,6 +6,7 @@
 	level = 2
 
 /obj/ritual_rune/thaumaturgy/blood_wall/complete()
+	.=..()
 	new /obj/structure/bloodwall(loc)
 	qdel(src)
 

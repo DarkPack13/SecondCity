@@ -10,7 +10,7 @@
 /obj/ritual_rune/abyss/calling_the_hungry_shade/complete()
 	.=..()
 	if(ishuman(last_activator))
-		var/mob/living/carbon/human/human_activator
+		var/mob/living/carbon/human/human_activator = last_activator
 		human_activator.add_beastmaster_minion(/mob/living/basic/shadow_guard/hungry_shade)
 		if(length(human_activator.beastmaster_minions) > human_activator.st_get_stat(STAT_OCCULT))
 			var/mob/living/beastmaster_minion = pick(human_activator.beastmaster_minions)

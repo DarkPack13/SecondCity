@@ -10,6 +10,7 @@
 	var/curse_target = null
 
 /obj/ritual_rune/thaumaturgy/curse/complete()
+	.=..()
 	if(!activated)
 		color = rgb(255,0,0)
 		activated = TRUE
