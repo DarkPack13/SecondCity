@@ -286,7 +286,7 @@
 		skin_tone = pick(socialrole.s_tones)
 
 		if (age >= 55)
-			set_haircolor("a2a2a2")
+			set_haircolor("#a2a2a2")
 			set_facial_haircolor(hair_color)
 		else
 			set_haircolor(pick(socialrole.hair_colors))

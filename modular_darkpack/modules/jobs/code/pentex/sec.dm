@@ -16,9 +16,7 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/pentex_sec
 
-	allowed_splats = SPLAT_ALL
 //	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
-	allowed_clans = VAMPIRE_CLAN_ALL
 	minimal_masquerade = 3
 
 	display_order = JOB_DISPLAY_ORDER_PENTEX_SEC

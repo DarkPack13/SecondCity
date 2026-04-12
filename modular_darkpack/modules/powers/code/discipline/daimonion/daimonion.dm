@@ -21,6 +21,7 @@
 	target_type = TARGET_HUMAN
 	range = 7
 	level = 1
+	vitae_cost = 0
 
 	cancelable = TRUE
 	var/datum/storyteller_roll/sense_the_sin/sense_the_sin_roll
@@ -119,6 +120,7 @@
 
 	target_type = TARGET_HUMAN
 	range = 7
+	vitae_cost = 0
 
 	duration_length = 3 SECONDS
 	var/datum/storyteller_roll/fear_of_the_void_below/fear_of_the_void_below_roll
@@ -182,6 +184,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	target_type = TARGET_LIVING
 	range = 7
+	vitae_cost = 0
 
 	violates_masquerade = FALSE
 	var/datum/storyteller_roll/psychomania/psychomania_roll
@@ -249,6 +252,7 @@
 	target_type = TARGET_LIVING
 	range = 7
 	violates_masquerade = TRUE
+	vitae_cost = 0
 	var/datum/storyteller_roll/condemnation/condemnation_roll
 	var/list/available_curses
 

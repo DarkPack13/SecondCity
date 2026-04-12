@@ -32,7 +32,7 @@
 		"#ffeace",	//Albino
 		"#650b0b",	//Punk Red
 		"#14350e",	//Punk Green
-		"#080918"    //Punk Blue
+		"#080918"	//Punk Blue
 	)
 	male_hair = list(
 		"Balding Hair",

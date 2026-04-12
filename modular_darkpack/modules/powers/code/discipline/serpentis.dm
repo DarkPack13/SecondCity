@@ -21,6 +21,7 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SEE
 	target_type = TARGET_LIVING
 	range = 3
+	vitae_cost = 0
 
 	aggravating = FALSE
 	hostile = FALSE
@@ -69,6 +70,7 @@
 	hostile = TRUE
 	violates_masquerade = TRUE
 	cooldown_length = 5 SECONDS
+	vitae_cost = 0
 	var/successes
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/can_activate_untargeted(alert)
@@ -233,6 +235,7 @@
 
 	level = 5
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING | DISC_CHECK_FREE_HAND
+	vitae_cost = 0
 
 	violates_masquerade = TRUE
 

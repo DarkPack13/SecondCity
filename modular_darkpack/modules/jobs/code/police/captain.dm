@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = " the SFPD Chief"
+	supervisors = "the SFPD Chief"
 	config_tag = "POLICE_CAPTAIN"
 	outfit = /datum/outfit/job/vampire/police_captain
 	job_flags = CITY_JOB_FLAGS
