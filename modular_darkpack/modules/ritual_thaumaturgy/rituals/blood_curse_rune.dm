@@ -11,7 +11,6 @@
 
 /obj/ritual_rune/thaumaturgy/curse/complete()
 	if(!activated)
-		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		color = rgb(255,0,0)
 		activated = TRUE
 
