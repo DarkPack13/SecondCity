@@ -125,7 +125,7 @@
  */
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
-	result = /obj/item/chainsaw
+	result = /obj/item/chainsaw/vamp // DARKPACK EDIT CHANGE
 	reqs = list(
 		/obj/item/circular_saw = 1,
 		/obj/item/stack/cable_coil = 3,
@@ -134,7 +134,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
-	skill_dots_minimum = 3 // DARKPACK EDIT ADD - STORYTELER_STATS
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/spear
 	name = "Spear"
