@@ -46,7 +46,7 @@
 
 /datum/storyteller_roll/damage/punch/calculate_used_dice(mob/living/roller, bonus)
 	. = ..()
-	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS)) // Your still using claws.
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS)) // Your still using claws. A bit homebrew tho.
 		. += 1
 
 /datum/storyteller_roll/damage/bite
