@@ -54,6 +54,9 @@
 	if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN) && !(HIDEJUMPSUIT)) // 'hidden by modest clothing'
 		. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
 
+	if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
+		. += span_warning("[p_they(TRUE)] smell[p_s()] weirdly animal like...<br>")
+
 	if(!(obscured_slots & HIDEFACE))
 		switch(st_get_stat(STAT_APPEARANCE))
 			if(0)
@@ -73,3 +76,8 @@
 	if(!src.head)
 		if(HAS_TRAIT(src, TRAIT_THIRD_EYE))
 			. += span_bolddanger("[p_They()] [p_have()] a third eye on [p_their()] forehead!<br>")
+		if(HAS_TRAIT(src, TRAIT_BETRAYERS_MARK))
+			if(isliving(user))
+				var/mob/living/living_user = user
+				if(living_user.is_clan(/datum/subsplat/vampire_clan/tremere))
+					. += span_bolddanger("[p_They()] [p_have()] a glowing 'T' on [p_their()] forehead - the Mark of a traitor to Clan Tremere!<br>")

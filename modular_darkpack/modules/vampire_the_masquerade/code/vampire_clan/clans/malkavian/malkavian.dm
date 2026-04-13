@@ -15,6 +15,16 @@
 	subsplat_keys = /obj/item/vamp/keys/malkav
 	var/list/mob/living/madness_network
 
+/datum/subsplat/vampire_clan/malkavian/dominate
+	name = "Dominate Malkavian"
+	id = VAMPIRE_CLAN_DOMINATE_MALKAVIAN
+	icon = "dominate_malkavian"
+	clan_disciplines = list(
+		/datum/discipline/auspex,
+		/datum/discipline/dominate,
+		/datum/discipline/obfuscate
+	)
+
 /datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 
@@ -22,7 +32,7 @@
 	var/datum/action/cooldown/malk_speech/malk_font = new(gaining_mob)
 	hivemind.Grant(gaining_mob)
 	malk_font.Grant(gaining_mob)
-	gaining_mob.add_quirk(/datum/quirk/derangement)
+	gaining_mob.add_quirk(/datum/quirk/darkpack/derangement)
 
 	// Madness Network handling
 	LAZYADD(madness_network, gaining_mob)
