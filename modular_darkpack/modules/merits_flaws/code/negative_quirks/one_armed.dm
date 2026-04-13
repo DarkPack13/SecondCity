@@ -1,5 +1,5 @@
 /datum/quirk/darkpack/one_armed
-	name = "One Armed"
+	name = "One Arm"
 	desc = "You're missing your an arm. That just ain't right."
 	icon = FA_ICON_HAND
 	value = -3
