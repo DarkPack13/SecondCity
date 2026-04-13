@@ -31,7 +31,7 @@
 	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/immobilize_target(mob/living/carbon/human/target, duration = 5 SECONDS)
-	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
+	ADD_TRAIT(target, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
 	if(do_after(owner, duration, target))
 		release_target(target)
@@ -50,7 +50,7 @@
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/release_target(mob/living/carbon/human/target)
 	UnregisterSignal(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT))
 	to_chat(target, span_danger("You feel your concentration become your own once more, able to look away from the commanding gaze."))
-	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
+	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/can_activate_untargeted(alert)
 	. = ..()
