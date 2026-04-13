@@ -1,11 +1,11 @@
-/obj/item/vtm_artifact/pickup(mob/user)
+/obj/item/occult_artifact/pickup(mob/user)
 	. = ..()
 	if(identified)
 		owner = user
 		START_PROCESSING(SSobj, src)
 		bind()
 
-/obj/item/vtm_artifact/dropped(mob/user)
+/obj/item/occult_artifact/dropped(mob/user)
 	. = ..()
 	if(identified)
 		if(isturf(loc))
@@ -14,7 +14,7 @@
 				/unbind(mob/user)
 				owner = null
 
-/obj/item/vtm_artifact/process(delta_time)
+/obj/item/occult_artifact/process(delta_time)
 	if(owner != loc && owner != loc.loc)
 		forceMove(get_turf(src))
 		STOP_PROCESSING(SSobj, src)
@@ -22,7 +22,7 @@
 			/unbind(mob/user)
 			owner = null
 
-/obj/item/vtm_artifact
+/obj/item/occult_artifact
 	name = "unidentified occult fetish"
 	desc = "Who knows what secrets it could contain..."
 	icon_state = "arcane"
@@ -39,21 +39,21 @@
 
 	var/datum/storyteller_roll/identify_occult/identify_roll
 
-/obj/item/vtm_artifact/proc/identify()
+/obj/item/occult_artifact/proc/identify()
 	if(!identified)
 		name = true_name
 		desc = true_desc
 		identified = TRUE
 
-/obj/item/vtm_artifact/proc/bind(mob/user)
+/obj/item/occult_artifact/proc/bind(mob/user)
 	if(!identified)
 		return
 
-/obj/item/vtm_artifact/proc/unbind(mob/user)
+/obj/item/occult_artifact/proc/unbind(mob/user)
 	if(!identified)
 		return
 
-/obj/item/vtm_artifact/attack_self(mob/user, modifiers)
+/obj/item/occult_artifact/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!isliving(user))
 		return
@@ -89,9 +89,8 @@
 	icon_state = "art_rand"
 
 /obj/effect/spawner/random/occult/artifact
-	name = "random occult fetish"
-	//spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
-	loot_subtype_path = /obj/item/vtm_artifact
+	name = "random occult artifact"
+	loot_subtype_path = /obj/item/occult_artifact
 
 /obj/effect/spawner/random/occult/artifact/Initialize(mapload)
 	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
@@ -99,10 +98,9 @@
 
 /obj/effect/spawner/random/occult/fetish
 	name = "random garou fetish"
-	//spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
 	loot = list(
-		/obj/item/vtm_artifact/nyxs_bangle,
-		/obj/item/vtm_artifact/dagger_of_retribution
+		/obj/item/occult_artifact/werewolf/nyxs_bangle,
+		/obj/item/occult_artifact/werewolf/dagger_of_retribution
 	)
 
 /obj/effect/spawner/random/occult/fetish/Initialize(mapload)

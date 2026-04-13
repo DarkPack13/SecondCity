@@ -1,4 +1,4 @@
-/obj/item/vtm_artifact/dagger_of_retribution
+/obj/item/occult_artifact/werewolf/dagger_of_retribution
 	name = "iron knife"
 	desc = "A crude knife wrought from iron."
 	true_name = "dagger of retribution"
@@ -35,17 +35,17 @@
 	var/spinning
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/Initialize(mapload)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/Initialize(mapload)
 	. = ..()
 	spirit_type = SPIRIT_VENGEANCE
 	spirit_name = generate_spirit_name(spirit_type)
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/identificate()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/identificate()
 	. = ..()
 	say("I am [spirit_name]... That which is lost will be found...")
 
-/obj/item/vtm_artifact/dagger_of_retribution/examine(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/examine(mob/user)
 	. = ..()
 	if(identified)
 		. += span_nicegreen("Concentrate on a lost item while holding the dagger; the weapon will gently tug in the direction of the item until you reclaim it.")
@@ -63,19 +63,19 @@
 					. += span_notice("It's tugging you to the [angle2text(angle_between_points(get_turf(src), get_turf(bound_item)))]")
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/pickup(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/pickup(mob/user)
 	. = ..()
 	if(bound_item)
 		start_live_tracking(user)
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/dropped(mob/M)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/dropped(mob/M)
 	. = ..()
 	if(bound_item)
 		stop_live_tracking(M)
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/pre_attack(atom/target, mob/living/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/pre_attack(atom/target, mob/living/user)
 	. = ..()
 	if(user.a_intent == INTENT_HARM) // If we're attacking something, skip all of this stuff.
 		return FALSE
@@ -104,7 +104,7 @@
 		start_live_tracking(user)
 		return TRUE
 
-/obj/item/vtm_artifact/dagger_of_retribution/attackby(obj/item/I, mob/living/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/attackby(obj/item/I, mob/living/user)
 	if(!bound_item)
 		bound_item = I
 		start_live_tracking()
@@ -114,13 +114,13 @@
 
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/Destroy()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/Destroy()
 	stop_live_tracking()
 	bound_item = null
 	return ..()
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/proc/start_live_tracking(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/start_live_tracking(mob/user)
 	RegisterSignal(bound_item, COMSIG_QDELETING, PROC_REF(stop_live_tracking))
 
 	if(bound_item && user)
@@ -129,7 +129,7 @@
 		START_PROCESSING(SSfastprocess, src)
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/proc/stop_live_tracking(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/stop_live_tracking(mob/user)
 	UnregisterSignal(bound_item, COMSIG_QDELETING)
 
 	if(QDELING(bound_item))
@@ -144,7 +144,7 @@
 	STOP_PROCESSING(SSfastprocess, src)
 
 
-/obj/item/vtm_artifact/dagger_of_retribution/process()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/process()
 	var/turf/T = get_turf(src)
 	var/turf/bound_item_turf = get_turf(bound_item)
 
@@ -155,7 +155,7 @@
 		SpinAnimation(5, -1)
 		spinning = 1
 
-/obj/item/vtm_artifact/dagger_of_retribution/proc/point_to_target()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/point_to_target()
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 
@@ -170,7 +170,7 @@
 			else
 				stop_live_tracking(C)
 
-/obj/item/vtm_artifact/dagger_of_retribution/click_alt(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/click_alt(mob/user)
 	. = ..()
 	if(bound_item)
 		to_chat(user, span_warning("You start to unbind [bound_item] from [src]."))

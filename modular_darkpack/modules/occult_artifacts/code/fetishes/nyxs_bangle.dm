@@ -1,5 +1,5 @@
 /* Nyx's Bangle */
-/obj/item/vtm_artifact/nyxs_bangle
+/obj/item/occult_artifact/werewolf/nyxs_bangle
 	name = "silver bracelet"
 	desc = "A chain bracelet made of silver."
 	true_name = "Nyx's Bangle"
@@ -16,19 +16,19 @@
 	var/spirit_name = "Glitchimus"
 	var/spirit_type = "ahelp"
 
-/obj/item/vtm_artifact/nyxs_bangle/identificate()
+/obj/item/occult_artifact/werewolf/nyxs_bangle/identificate()
 	. = ..()
 	say("I am [spirit_name]... Hide now, in shadow.")
 
 
-/obj/item/vtm_artifact/nyxs_bangle/unbind(mob/user)
+/obj/item/occult_artifact/werewolf/nyxs_bangle/unbind(mob/user)
 	..()
 	var/mob/living/carbon/human/H = owner
 	playsound(owner, 'sound/hallucinations/growl1.ogg', 5)
 	H.alpha = 255
 
 
-/obj/item/vtm_artifact/nyxs_bangle/process(delta_time)
+/obj/item/occult_artifact/werewolf/nyxs_bangle/process(delta_time)
 	. = ..()
 	if(identified && iscarbon(owner))
 		var/mob/living/carbon/C = owner
@@ -44,13 +44,13 @@
 			C.alpha = min (C.alpha+25.5, 255)
 
 
-/obj/item/vtm_artifact/nyxs_bangle/Initialize(mapload)
+/obj/item/occult_artifact/werewolf/nyxs_bangle/Initialize(mapload)
 	. = ..()
 	spirit_type = pick(SPIRIT_NIGHT, SPIRIT_DARKNESS)
 	spirit_name = generate_spirit_name(spirit_type)
 
 
-/obj/item/vtm_artifact/nyxs_bangle/examine(mob/user)
+/obj/item/occult_artifact/werewolf/nyxs_bangle/examine(mob/user)
 	. = ..()
 	if(identified)
 		. += span_nicegreen("Hide everything but your bestial eyes in shadow.")

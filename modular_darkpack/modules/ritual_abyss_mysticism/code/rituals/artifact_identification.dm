@@ -6,7 +6,7 @@
 	cost = 1
 
 /obj/ritual_rune/abyss/identification/complete()
-	for(var/obj/item/vtm_artifact/VA in loc)
+	for(var/obj/item/occult_artifact/VA in loc)
 		VA.identify()
 		playsound(loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 		qdel(src)
