@@ -21,7 +21,7 @@
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
 	var/obj/bound_item
-	var/spinning
+	var/spinning = FALSE
 
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/Initialize(mapload)
@@ -48,8 +48,11 @@
 				var/obj/item/mainhand = C.get_active_held_item()
 				var/obj/item/offhand = C.get_inactive_held_item()
 
+				var/datum/point/point_a = RETURN_PRECISE_POINT(get_turf(src))
+				var/datum/point/point_b = RETURN_PRECISE_POINT(get_turf(bound_item))
+
 				if(mainhand == src || offhand == src)
-					. += span_notice("It's tugging you to the [angle2text(angle_between_points(get_turf(src), get_turf(bound_item)))]")
+					. += span_notice("It's tugging you to the [angle2text(angle_between_points(point_a, point_b))]")
 
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/pickup(mob/user)
@@ -106,18 +109,20 @@
 	var/matrix/M = matrix(0, MATRIX_ROTATE)
 	animate(src, transform = M, time = 5, loop = 0)
 
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/process()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/process(seconds_per_tick)
 	. = ..()
+	if(!bound_item)
+		return
 
-	var/turf/T = get_turf(src)
+	var/turf/our_turf = get_turf(src)
 	var/turf/bound_item_turf = get_turf(bound_item)
 
-	if(T.z == bound_item_turf.z)
+	if(our_turf.z == bound_item_turf.z)
 		point_to_target()
-		spinning = 0
+		spinning = FALSE
 	else if(!spinning)
 		SpinAnimation(5, -1)
-		spinning = 1
+		spinning = TRUE
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/point_to_target()
 	if(iscarbon(loc))
@@ -126,8 +131,11 @@
 		var/obj/item/mainhand = C.get_active_held_item()
 		var/obj/item/offhand = C.get_inactive_held_item()
 
+		var/datum/point/point_a = RETURN_PRECISE_POINT(get_turf(src))
+		var/datum/point/point_b = RETURN_PRECISE_POINT(get_turf(bound_item))
+
 		if(mainhand == src || offhand == src)
-			var/bound_dir = angle_between_points(get_turf(src), get_turf(bound_item))-135
+			var/bound_dir = angle_between_points(point_a, point_b)-135
 			if(bound_item)
 				var/matrix/M = matrix(bound_dir, MATRIX_ROTATE)
 				animate(src, transform = M, time = 5, loop = 0)

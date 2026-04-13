@@ -48,11 +48,16 @@
 	if(!identified)
 		return
 	owner = user
-	START_PROCESSING(subsystem_type, src)
+
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	START_PROCESSING(subsystem, src)
+
 	grant_powers()
 
 /obj/item/occult_artifact/proc/unbind(mob/user)
-	STOP_PROCESSING(subsystem_type, src)
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	STOP_PROCESSING(subsystem, src)
+
 	if(owner)
 		ungrant_powers()
 		owner = null
