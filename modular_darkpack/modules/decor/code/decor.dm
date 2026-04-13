@@ -358,7 +358,9 @@
 
 /obj/cargotrain/Initialize(mapload)
 	. = ..()
-	icon_state = "[rand(2, 5)]"
+	if(prob(80))
+		icon_state = "[rand(2, 5)]"
+		AddComponent(/datum/component/seethrough, SEE_THROUGH_CARGO_CRATE)
 
 /obj/cargotrain/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	for(var/mob/living/L in get_step(src, movement_dir))
