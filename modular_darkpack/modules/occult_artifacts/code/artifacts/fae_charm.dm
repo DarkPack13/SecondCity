@@ -11,6 +11,3 @@
 /obj/item/occult_artifact/vampire/fae_charm/ungrant_powers()
 	. = ..()
 	owner.st_remove_stat_mod(STAT_DEXTERITY, 1, type)
-
-/datum/movespeed_modifier/fae_charm
-	multiplicative_slowdown = -0.20
