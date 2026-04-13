@@ -183,7 +183,7 @@
 			using_beacon = FALSE
 			if (beacon)
 				beacon.update_status(SP_UNREADY) //ready light on beacon will turn off
-		/* DARKPACK EDIT REMOVAL
+		/* // DARKPACK EDIT REMOVAL
 		if("LZBeacon")
 			using_beacon = TRUE
 			if (beacon)
@@ -291,7 +291,7 @@
 				return
 
 			TIMER_COOLDOWN_START(src, COOLDOWN_EXPRESSPOD_CONSOLE, 5 SECONDS)
-			/* DARKPACK EDIT REMOVAL
+			/* // DARKPACK EDIT REMOVAL
 			if(pack.special_pod)
 				new /obj/effect/pod_landingzone(landing_turf, pack.special_pod, order)
 			else
