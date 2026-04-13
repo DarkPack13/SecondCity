@@ -4,7 +4,7 @@
 	true_name = "dagger of retribution"
 	true_desc = "An ugly iron dagger imbued with a vengeance-spirit."
 	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
-	worn_icon = 'code/modules/wod13/worn.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	worn_icon_state = "knife"
 	lefthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_righthand.dmi'

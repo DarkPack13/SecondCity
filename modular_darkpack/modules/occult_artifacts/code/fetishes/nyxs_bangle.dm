@@ -33,13 +33,22 @@
 		var/light_amount = T.get_lumcount()
 
 		if(light_amount <= 0.2)
-			if(src == C.gloves || src == C.wear_id || src == C.get_active_held_item() || src == C.get_inactive_held_item())
+			if(src == C.gloves || src == C.get_active_held_item() || src == C.get_inactive_held_item())
 				C.alpha = max(C.alpha-12.75, 25.5)
 			else
 				C.alpha = min (C.alpha+25.5, 255)
 		else
 			C.alpha = min (C.alpha+25.5, 255)
 
+/obj/item/occult_artifact/werewolf/nyxs_bangle/proc/get_held_mob()
+	if(isnull(loc))
+		return null
+	if(isliving(loc))
+		return loc
+	var/nested_loc = loc.loc
+	if (isliving(nested_loc))
+		return nested_loc
+	return null
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/Initialize(mapload)
 	. = ..()
