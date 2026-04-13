@@ -354,7 +354,6 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
-*/
 
 /datum/crafting_recipe/large_ballista
 	name = "Improvised Ballista"
@@ -368,6 +367,7 @@
 	time = 8 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+*/
 
 /datum/crafting_recipe/trash_cannon
 	name = "Trash Cannon"

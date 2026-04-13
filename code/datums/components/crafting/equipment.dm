@@ -24,6 +24,7 @@
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/moonflowershield
 	name = "Moonflower Shield"
 	result = /obj/item/shield/buckler/moonflower
@@ -33,6 +34,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
+*/
 
 /datum/crafting_recipe/radio_containing
 	abstract_type = /datum/crafting_recipe/radio_containing

@@ -30,6 +30,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/oar
 	name = "Goliath Bone Oar"
 	result = /obj/item/oar
@@ -43,6 +44,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	time = 5 SECONDS
 	category = CAT_TOOLS
+*/
 
 /obj/vehicle/ridden/lavaboat/plasma
 	name = "plasma boat"
@@ -52,10 +54,12 @@
 	resistance_flags = FREEZE_PROOF
 	can_buckle = TRUE
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/boat/plasma
 	name = "Polar Bear Hide Boat"
 	result = /obj/vehicle/ridden/lavaboat/plasma
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 3)
+*/
 
 //Dragon Boat
 

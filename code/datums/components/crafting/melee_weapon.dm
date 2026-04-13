@@ -254,7 +254,6 @@
 	)
 	time = 120 SECONDS
 	category = CAT_WEAPON_MELEE
- */
 
 /datum/crafting_recipe/dragonator_spear_untreated
 	name = "Untreated Giant-Killer Spear"
@@ -266,4 +265,4 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
-
+*/
