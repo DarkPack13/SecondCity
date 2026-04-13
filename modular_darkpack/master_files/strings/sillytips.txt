@@ -56,3 +56,4 @@ What the hell is Sanguinus?
 What the hell is Ogham?
 Ravens and crows will chase shiny objects around. Make sure to start corvid turf wars.
 Deer will freeze when they see a vehicle. This includes scooters.
+The mannequins no longer get a little quirky at night.
