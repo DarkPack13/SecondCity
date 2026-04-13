@@ -64,3 +64,8 @@ The resist button will allow you to resist out of handcuffs, being buckled to a 
 When in doubt about technical issues, clear your cache (byond launcher > cogwheel > preferences > game prefs), update your BYOND, and relog.
 You can use :L / .L or :R / .R to speak through an item being held in your left or right hand respectively. This allows you to talk into a city-bounced radio without manually turning on its microphone!
 You can right click someone with wire cutters, jaws of life, and box cutters to instantly snap cablecuffs or zipties. The jaws can even instantly break handcuffs!
+You can board up windows by left-clicking a window with planks in hand.
+Boots can store items like knives or lighters.
+To destroy any firearm's serial number, right-click it with a screwdriver in hand.
+You can board up windows by left-clicking a window with planks in hand.
+Boots can store items like knives or lighters.
