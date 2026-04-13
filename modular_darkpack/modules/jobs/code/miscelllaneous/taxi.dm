@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = SUPERVISOR_TRADITIONS
+	supervisors = "your cab service"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/taxi
 	config_tag = "TAXI_DRIVER"

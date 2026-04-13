@@ -23,10 +23,10 @@
 	is_criminal = TRUE
 
 	hair_colors = list(
-		"040404",	//Black
-		"120b05",	//Dark Brown
-		"342414",	//Brown
-		"554433"	//Light Brown
+		"#040404",	//Black
+		"#120b05",	//Dark Brown
+		"#342414",	//Brown
+		"#554433"	//Light Brown
 	)
 	male_hair = list(
 		"Balding Hair",
