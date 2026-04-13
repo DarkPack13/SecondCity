@@ -1,0 +1,4 @@
+author: "Stutternov"
+delete-after: True
+changes:
+  - balance: "Added in accurate weapon weight for all darkpack guns. (SMGs and AR's = medium, snipers/autoshotty = heavy)"
