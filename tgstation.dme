@@ -7418,6 +7418,7 @@
 #include "modular_darkpack\modules\npc\code\nonhuman\hostile\werewolf.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\_artifact.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\_artifact_config.dm"
+#include "modular_darkpack\modules\occult_artifacts\code\_vampire.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\_werewolf.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\bloodstar.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\bloodstone.dm"

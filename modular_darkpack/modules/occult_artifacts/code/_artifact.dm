@@ -11,7 +11,7 @@
 
 
 /obj/item/occult_artifact/process(seconds_per_tick)
-	if(owner && !(src in owner.get_all_contents()))
+	if(owner && !in_contents_of(owner))
 		unbind(owner)
 
 /obj/item/occult_artifact
@@ -20,6 +20,7 @@
 	icon_state = "arcane"
 	icon = 'modular_darkpack/modules/occult_artifacts/icons/artifacts.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/artifacts_onfloor.dmi')
+	abstract_type = /obj/item/occult_artifact
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/owner
 	var/true_name = "artifact"
@@ -46,6 +47,8 @@
 
 /obj/item/occult_artifact/proc/bind(mob/user)
 	if(!identified)
+		return
+	if(owner) // Dont bind twice
 		return
 	owner = user
 
@@ -114,16 +117,16 @@
 
 /obj/effect/spawner/random/occult/artifact
 	name = "random occult artifact"
-	loot_subtype_path = /obj/item/occult_artifact/vampire
+	loot_subtype_path = /obj/item/occult_artifact
 
 /obj/effect/spawner/random/occult/artifact/Initialize(mapload)
 	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
 	. = ..()
 
-/obj/effect/spawner/random/occult/fetish
+/obj/effect/spawner/random/occult/artifact/vampire_only
+	name = "random vampire artifact"
+	loot_subtype_path = /obj/item/occult_artifact/vampire
+
+/obj/effect/spawner/random/occult/artifact/werewolf_only
 	name = "random garou fetish"
 	loot_subtype_path = /obj/item/occult_artifact/werewolf
-
-/obj/effect/spawner/random/occult/fetish/Initialize(mapload)
-	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
-	. = ..()

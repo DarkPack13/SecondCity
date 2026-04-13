@@ -38,7 +38,6 @@
 	. = ..()
 	if(identified)
 		. += span_nicegreen("Concentrate on a lost item while holding the dagger; the weapon will gently tug in the direction of the item until you reclaim it.")
-		. += span_notice("Bind an item by <b>CLICK</b>ing on it with [src] while on <b><span color='yellow'>GRAB</span></b> intent.")
 		. += span_purple("Imbued with [spirit_name].")
 		if(bound_item)
 			. += span_purple("Bound to [bound_item].")
@@ -48,11 +47,11 @@
 				var/obj/item/mainhand = C.get_active_held_item()
 				var/obj/item/offhand = C.get_inactive_held_item()
 
-				var/datum/point/point_a = RETURN_PRECISE_POINT(get_turf(src))
-				var/datum/point/point_b = RETURN_PRECISE_POINT(get_turf(bound_item))
-
 				if(mainhand == src || offhand == src)
-					. += span_notice("It's tugging you to the [angle2text(angle_between_points(point_a, point_b))]")
+					. += span_notice("It's tugging you to the [angle2text(targets_angle())]")
+
+		. += span_notice("<br/>Bind an item by <b>CLICK</b>ing on it with [src]. Unbind [src] by right clicking it.")
+
 
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/pickup(mob/user)
@@ -72,10 +71,14 @@
 	if(!identified)
 		return NONE
 
+	if(user.combat_mode)
+		return NONE
+
 	if(!istype(interacting_with, /obj)) // is it an object?
 		if(!istype(interacting_with, /turf))
 			to_chat(user, span_warning("[src] refuses to be bound to [interacting_with]!"))
-		return ITEM_INTERACT_BLOCKING
+			return ITEM_INTERACT_BLOCKING
+		return NONE
 
 	if(bound_item) // do we have an item bound to us already?
 		to_chat(user, span_warning("[src] is already bound to [bound_item]!"))
@@ -131,18 +134,21 @@
 		var/obj/item/mainhand = C.get_active_held_item()
 		var/obj/item/offhand = C.get_inactive_held_item()
 
-		var/datum/point/point_a = RETURN_PRECISE_POINT(get_turf(src))
-		var/datum/point/point_b = RETURN_PRECISE_POINT(get_turf(bound_item))
-
 		if(mainhand == src || offhand == src)
-			var/bound_dir = angle_between_points(point_a, point_b)-135
+			var/bound_dir = targets_angle()-135
 			if(bound_item)
 				var/matrix/M = matrix(bound_dir, MATRIX_ROTATE)
 				animate(src, transform = M, time = 5, loop = 0)
 			else
 				stop_live_tracking(C)
 
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/click_alt(mob/user)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/targets_angle()
+	var/datum/point/point_a = RETURN_PRECISE_POINT(get_turf(src))
+	var/datum/point/point_b = RETURN_PRECISE_POINT(get_turf(bound_item))
+
+	return angle_between_points(point_a, point_b)
+
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/attack_self_secondary(mob/user, modifiers)
 	. = ..()
 	if(bound_item)
 		to_chat(user, span_warning("You start to unbind [bound_item] from [src]."))
