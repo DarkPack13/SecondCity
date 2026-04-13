@@ -158,12 +158,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
-
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
+#define TRAIT_BETRAYERS_MARK "betrayers_mark"
 #define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
 #define TRAIT_GRIP_OF_THE_DAMNED "grip_of_the_damned"
 #define TRAIT_THE_LARGEST_MAW "the_largest_maw"
-
 #define TRAIT_PIERCED_VEIL "pierced_veil"
 #define TRAIT_WEAK_WILLED "weak_willed"
 #define TRAIT_TIME_SENSE "time_sense"
