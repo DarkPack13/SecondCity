@@ -19,9 +19,3 @@
 	var/mob/living/carbon/human/H = owner
 	H.physiology.armor = H.physiology.armor.subtract_other_armor(/datum/armor/weekapaug_thistle)
 	owner.frenzy_chance_boost = 10
-
-/obj/item/occult_artifact/vampire/tarulfang
-	true_name = "Tarulfang"
-	true_desc = "Decreases chance of frenzy."
-	icon_state = "tarulfang"
-

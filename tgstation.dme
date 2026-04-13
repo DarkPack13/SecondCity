@@ -7429,6 +7429,7 @@
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\key_of_alamut.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\mummywrap_fetish.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\odious_chalice.dm"
+#include "modular_darkpack\modules\occult_artifacts\code\artifacts\tarulfang.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\artifacts\weekapaug_thistle.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\fetishes\dagger_of_retribution.dm"
 #include "modular_darkpack\modules\occult_artifacts\code\fetishes\nyxs_bangle.dm"
