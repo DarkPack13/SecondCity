@@ -11,12 +11,8 @@
 
 
 /obj/item/occult_artifact/process(seconds_per_tick)
-	if(owner != loc && owner != loc.loc)
-		forceMove(get_turf(src))
-		STOP_PROCESSING(SSobj, src)
-		if(owner)
-			ungrant_powers()
-			owner = null
+	if(owner && !(src in owner.get_all_contents()))
+		unbind(owner)
 
 /obj/item/occult_artifact
 	name = "unidentified occult fetish"
