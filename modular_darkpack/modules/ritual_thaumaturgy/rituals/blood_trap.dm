@@ -5,7 +5,7 @@
 	word = "DUH'K-A'U"
 
 /obj/ritual_rune/thaumaturgy/blood_trap/complete()
-	.=..()
+	. = ..()
 	if(!activated)
 		activated = TRUE
 		alpha = 28

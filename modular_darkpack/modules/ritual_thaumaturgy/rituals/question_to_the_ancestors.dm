@@ -17,7 +17,7 @@
 	icon_living = "ghost_animated"
 
 /obj/ritual_rune/thaumaturgy/question/complete()
-	.=..()
+	. = ..()
 	var/text_question = tgui_input_text(usr, "Enter your question to the Ancestors:", "Question to Ancestors")
 	if(!text_question)
 		return

@@ -7,7 +7,7 @@
 	level = 1
 
 /obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits/complete()
-	.=..()
+	. = ..()
 	new /obj/item/spirit_chime(loc)
 	qdel(src)
 

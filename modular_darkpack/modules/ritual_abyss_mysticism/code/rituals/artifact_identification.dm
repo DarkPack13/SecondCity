@@ -6,7 +6,7 @@
 	cost = 1
 
 /obj/ritual_rune/abyss/identification/complete()
-	.=..()
+	. = ..()
 	for(var/obj/item/vtm_artifact/VA in loc)
 		VA.identify()
 		qdel(src)

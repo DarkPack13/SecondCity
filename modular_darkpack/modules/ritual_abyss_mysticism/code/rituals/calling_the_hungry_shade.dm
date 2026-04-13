@@ -8,7 +8,7 @@
 	difficulty = 9
 
 /obj/ritual_rune/abyss/calling_the_hungry_shade/complete()
-	.=..()
+	. = ..()
 	if(ishuman(last_activator))
 		var/mob/living/carbon/human/human_activator = last_activator
 		human_activator.add_beastmaster_minion(/mob/living/basic/shadow_guard/hungry_shade)
@@ -18,7 +18,7 @@
 	qdel(src)
 
 /obj/ritual_rune/abyss/calling_the_hungry_shade/ritual_failure()
-	.=..()
+	. = ..()
 	var/mob/living/basic/shadow_guard/hungry_shade/shade = new(get_turf(src))
 	shade.ai_controller = new /datum/ai_controller/basic_controller/simple/simple_hostile(shade)
 	shade.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, last_activator)
@@ -27,7 +27,7 @@
 	qdel(src)
 
 /obj/ritual_rune/abyss/calling_the_hungry_shade/ritual_botch()
-	.=..()
+	. = ..()
 	var/mob/living/basic/shadow_guard/hungry_shade/shade = new(get_turf(src))
 	shade.ai_controller = new /datum/ai_controller/basic_controller/simple/simple_hostile(shade)
 	shade.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, last_activator)

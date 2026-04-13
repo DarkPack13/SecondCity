@@ -7,7 +7,7 @@
 	level = 1
 
 /obj/ritual_rune/abyss/pierce_the_veil/complete()
-	.=..()
+	. = ..()
 	var/mob/living/carbon/human/H = last_activator
 	ADD_TRAIT(H, TRAIT_NIGHT_VISION, "pierce_the_veil")
 	ADD_TRAIT(H, TRAIT_MASQUERADE_VIOLATING_EYES, "pierce_the_veil")

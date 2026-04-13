@@ -7,7 +7,7 @@
 	cost = 1
 
 /obj/ritual_rune/abyss/heart_that_beats_in_silence/complete()
-	.=..()
+	. = ..()
 	var/mob/living/carbon/human/H = last_activator
 	last_activator.apply_damage(30, AGGRAVATED)
 	H.add_beastmaster_minion(/mob/living/basic/shadow_guard)
