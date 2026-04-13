@@ -88,7 +88,7 @@
 
 	return NONE
 
-// DARKPACK EDIT ADD START - Putting cash into the cargo console
+// DARKPACK EDIT ADD START - (Putting cash into the cargo console)
 /obj/machinery/computer/cargo/express/proc/withdraw_money(mob/living/user)
 	var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
 	if(isnull(account))
@@ -104,7 +104,7 @@
 		new /obj/item/stack/dollar(T, stack_amount)
 		amount -= stack_amount
 	to_chat(user, span_notice("You withdraw [account.account_balance] dollar\s from the cargo account."))
-// DRAKPACK EDIT ADD END - Putting cash into the cargo console
+// DRAKPACK EDIT ADD END
 
 /obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -243,7 +243,7 @@
 			var/list/prefered_turfs = list() // DARKPACK EDIT ADD
 			if (!istype(beacon) || !using_beacon || (obj_flags & EMAGGED))
 				empty_turfs = list()
-				for(var/turf/open/floor/open_turf in landingzone.get_turfs_from_all_zlevels())
+				for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels()) // DARKPACK EDIT CHANGE - (removes floor so it can include DIRT)
 					if(!open_turf.is_blocked_turf())
 						empty_turfs += open_turf
 						// DARKPACK EDIT ADD START
