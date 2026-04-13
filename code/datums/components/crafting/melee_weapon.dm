@@ -38,7 +38,7 @@
 	name = "\improper NT-20 'Excalibur' Stunsword"
 	result = /obj/item/melee/baton/security/stunsword
 	reqs = list(
-		/obj/item/claymore = 1
+		/obj/item/claymore = 1,
 		/obj/item/melee/baton/security = 1
 	)
 	blacklist = list(
