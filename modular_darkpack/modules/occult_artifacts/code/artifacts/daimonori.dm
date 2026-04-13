@@ -4,10 +4,10 @@
 	icon_state = "daimonori"
 	research_value = 20
 
-/obj/item/vtm_artifact/daimonori/get_powers()
+/obj/item/vtm_artifact/daimonori/bind(mob/user)
 	. = ..()
 	owner.thaum_damage_plus = 20
 
-/obj/item/vtm_artifact/daimonori/remove_powers()
+/obj/item/vtm_artifact/daimonori/unbind(mob/user)
 	. = ..()
 	owner.thaum_damage_plus = 0

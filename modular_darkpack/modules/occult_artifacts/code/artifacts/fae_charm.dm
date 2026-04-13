@@ -4,11 +4,11 @@
 	icon_state = "fae_charm"
 	research_value = 35
 
-/obj/item/vtm_artifact/fae_charm/get_powers()
+/obj/item/vtm_artifact/fae_charm/bind(mob/user)
 	. = ..()
 	owner.st_add_stat_mod(STAT_DEXTERITY, 1, type)
 
-/obj/item/vtm_artifact/fae_charm/remove_powers()
+/obj/item/vtm_artifact/fae_charm/unbind(mob/user)
 	. = ..()
 	owner.st_remove_stat_mod(STAT_DEXTERITY, 1, type)
 

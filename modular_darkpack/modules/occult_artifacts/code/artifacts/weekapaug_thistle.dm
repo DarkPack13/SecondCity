@@ -8,12 +8,12 @@
 	icon_state = "w_thistle"
 	research_value = 10
 
-/obj/item/vtm_artifact/weekapaug_thistle/get_powers()
+/obj/item/vtm_artifact/weekapaug_thistle/bind(mob/user)
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.physiology.armor = H.physiology.armor.add_other_armor(/datum/armor/weekapaug_thistle)
 
-/obj/item/vtm_artifact/weekapaug_thistle/remove_powers()
+/obj/item/vtm_artifact/weekapaug_thistle/unbind(mob/user)
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.physiology.armor = H.physiology.armor.subtract_other_armor(/datum/armor/weekapaug_thistle)
@@ -23,10 +23,10 @@
 	true_desc = "Decreases chance of frenzy."
 	icon_state = "tarulfang"
 
-/obj/item/vtm_artifact/weekapaug_thistle/get_powers()
+/obj/item/vtm_artifact/weekapaug_thistle/bind(mob/user)
 	. = ..()
 	owner.frenzy_chance_boost = 5
 
-/obj/item/vtm_artifact/weekapaug_thistle/remove_powers()
+/obj/item/vtm_artifact/weekapaug_thistle/unbind(mob/user)
 	. = ..()
 	owner.frenzy_chance_boost = 10

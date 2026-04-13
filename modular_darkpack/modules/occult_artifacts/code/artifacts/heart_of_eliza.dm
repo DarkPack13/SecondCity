@@ -4,10 +4,10 @@
 	icon_state = "h_eliza"
 	research_value = 30
 
-/obj/item/vtm_artifact/heart_of_eliza/get_powers()
+/obj/item/vtm_artifact/heart_of_eliza/bind(mob/user)
 	. = ..()
 	owner.st_add_stat_mod(STAT_STRENGTH, 1, type)
 
-/obj/item/vtm_artifact/heart_of_eliza/remove_powers()
+/obj/item/vtm_artifact/heart_of_eliza/unbind(mob/user)
 	. = ..()
 	owner.st_remove_stat_mod(STAT_STRENGTH, 1, type)
