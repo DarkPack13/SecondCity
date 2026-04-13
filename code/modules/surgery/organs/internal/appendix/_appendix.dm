@@ -43,10 +43,10 @@
 		become_inflamed()
 
 /obj/item/organ/appendix/proc/become_inflamed()
-	// DARKPACK EDIT ADD START - Removes Appendicitis for Kindred
+	// DARKPACK EDIT ADD START - (Removes Appendicitis for Kindred)
 	if(get_kindred_splat(owner))
 		return
-	// DARKPACK EDIT ADD END - Removes Appendicitis for Kindred
+	// DARKPACK EDIT ADD END
 	inflamation_stage = 1
 	update_appearance()
 	if(isnull(owner))
