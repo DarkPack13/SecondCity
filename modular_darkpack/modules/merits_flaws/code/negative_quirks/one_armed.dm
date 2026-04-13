@@ -12,7 +12,8 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
 	// add runs before add_unqiue so we rely on it to decide
-	arm_missing = client_source?.prefs.read_preference(/datum/preference/choiced/missing_arm)
+	if(!arm_missing)
+		arm_missing = client_source?.prefs.read_preference(/datum/preference/choiced/missing_arm)
 
 	if(arm_missing == "right")
 		human_holder.gain_trauma(/datum/brain_trauma/severe/paralysis/right_arm, TRAUMA_RESILIENCE_ABSOLUTE)
