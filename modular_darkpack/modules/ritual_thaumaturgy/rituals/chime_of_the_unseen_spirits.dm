@@ -89,7 +89,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/item/spirit_chime/process(delta_time)
+/obj/item/spirit_chime/process(seconds_per_tick)
 	var/valid_targets = FALSE
 	if(!ringing || !anchored || !chime_field)
 		ringing = FALSE

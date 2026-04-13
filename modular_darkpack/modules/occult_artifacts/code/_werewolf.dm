@@ -1,0 +1,26 @@
+/obj/item/occult_artifact/werewolf
+	var/spirit_name = "Glitchimus"
+	var/spirit_type = "ahelp"
+
+/proc/generate_spirit_name(spirit_type) // TODO: make this better. there are 50+ spirits in WoD, and that's not condusive to this format.
+	var/spirit_name
+	var/spirit_table
+	var/spirit_desc
+
+	switch(spirit_type)
+		if(SPIRIT_NIGHT)
+			spirit_table = GLOB.night_spirits
+		if(SPIRIT_DARKNESS)
+			spirit_table = GLOB.darkness_spirits
+		if(SPIRIT_VENGEANCE)
+			spirit_table = GLOB.vengeance_spirits
+
+	spirit_name = pick(spirit_table)
+	spirit_desc = "[spirit_name], a spirit of [spirit_type]"
+
+	return spirit_desc
+
+
+GLOBAL_LIST_INIT(night_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/night_spirits.txt"))
+GLOBAL_LIST_INIT(darkness_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/darkness_spirits.txt"))
+GLOBAL_LIST_INIT(vengeance_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/vengeance_spirits.txt"))

@@ -37,7 +37,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	var/datum/weakref/tracked_stone
 
-/datum/action/bloodstone_track/New(Target, obj/item/occult_artifact/bloodstone/stone)
+/datum/action/bloodstone_track/New(Target, obj/item/occult_artifact/vampire/bloodstone/stone)
 	. = ..()
 	tracked_stone = WEAKREF(stone)
 

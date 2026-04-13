@@ -1,25 +1,20 @@
 /obj/item/occult_artifact/pickup(mob/user)
 	. = ..()
 	if(identified)
-		owner = user
-		START_PROCESSING(SSobj, src)
-		bind()
+
 
 /obj/item/occult_artifact/dropped(mob/user)
 	. = ..()
 	if(identified)
 		if(isturf(loc))
-			STOP_PROCESSING(SSobj, src)
-			if(owner)
-				/unbind(mob/user)
-				owner = null
 
-/obj/item/occult_artifact/process(delta_time)
+
+/obj/item/occult_artifact/process(seconds_per_tick)
 	if(owner != loc && owner != loc.loc)
 		forceMove(get_turf(src))
 		STOP_PROCESSING(SSobj, src)
 		if(owner)
-			/unbind(mob/user)
+			ungrant_powers()
 			owner = null
 
 /obj/item/occult_artifact
@@ -37,6 +32,8 @@
 	var/research_value = 0
 	var/can_be_identified_without_ritual = TRUE
 
+	var/datum/controller/subsystem/processing/subsystem_type = /datum/controller/subsystem/processing/obj
+
 	var/datum/storyteller_roll/identify_occult/identify_roll
 
 /obj/item/occult_artifact/proc/identify()
@@ -48,10 +45,22 @@
 /obj/item/occult_artifact/proc/bind(mob/user)
 	if(!identified)
 		return
+	owner = user
+	START_PROCESSING(subsystem_type, src)
+	grant_powers()
 
 /obj/item/occult_artifact/proc/unbind(mob/user)
-	if(!identified)
-		return
+	STOP_PROCESSING(subsystem_type, src)
+	if(owner)
+		ungrant_powers()
+		owner = null
+
+/obj/item/occult_artifact/proc/grant_powers()
+	return
+
+/obj/item/occult_artifact/proc/ungrant_powers()
+	return
+
 
 /obj/item/occult_artifact/attack_self(mob/user, modifiers)
 	. = ..()
@@ -90,7 +99,7 @@
 
 /obj/effect/spawner/random/occult/artifact
 	name = "random occult artifact"
-	loot_subtype_path = /obj/item/occult_artifact
+	loot_subtype_path = /obj/item/occult_artifact/vampire
 
 /obj/effect/spawner/random/occult/artifact/Initialize(mapload)
 	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
@@ -98,10 +107,7 @@
 
 /obj/effect/spawner/random/occult/fetish
 	name = "random garou fetish"
-	loot = list(
-		/obj/item/occult_artifact/werewolf/nyxs_bangle,
-		/obj/item/occult_artifact/werewolf/dagger_of_retribution
-	)
+	loot_subtype_path = /obj/item/occult_artifact/werewolf
 
 /obj/effect/spawner/random/occult/fetish/Initialize(mapload)
 	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)

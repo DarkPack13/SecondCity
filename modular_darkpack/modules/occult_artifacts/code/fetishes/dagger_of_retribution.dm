@@ -3,16 +3,15 @@
 	desc = "A crude knife wrought from iron."
 	true_name = "dagger of retribution"
 	true_desc = "An ugly iron dagger imbued with a vengeance-spirit."
-	icon = 'modular_zapoc/modules/apoc_items/icons/fetishes.dmi'
+	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
 	worn_icon = 'code/modules/wod13/worn.dmi'
 	worn_icon_state = "knife"
-	lefthand_file = 'modular_zapoc/modules/apoc_items/icons/fetishes_lefthand.dmi'
-	righthand_file = 'modular_zapoc/modules/apoc_items/icons/fetishes_righthand.dmi'
-	ONFLOOR_ICON_HELPER('modular_zapoc/modules/apoc_items/icons/fetishes_onfloor.dmi')
+	lefthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/fetishes_onfloor.dmi')
 	icon_state = "dagger"
 	force = 30
 	wound_bonus = -5
-	bare_wound_bonus = 5
 	throwforce = 15
 	attack_verb_continuous = list("slashes", "cuts")
 	attack_verb_simple = list("slash", "cut")
@@ -23,15 +22,9 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FIRE_PROOF
-	is_iron = TRUE
-	is_wood = TRUE
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
-	var/spirit_name = "Glitchimus"
-	var/spirit_type = "ahelp"
-
 	var/obj/bound_item
-
 	var/spinning
 
 
@@ -41,7 +34,7 @@
 	spirit_name = generate_spirit_name(spirit_type)
 
 
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/identificate()
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/identify()
 	. = ..()
 	say("I am [spirit_name]... That which is lost will be found...")
 
@@ -75,9 +68,10 @@
 		stop_live_tracking(M)
 
 
+/*
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/pre_attack(atom/target, mob/living/user)
 	. = ..()
-	if(user.a_intent == INTENT_HARM) // If we're attacking something, skip all of this stuff.
+	if(user.combat_mode) // If we're attacking something, skip all of this stuff.
 		return FALSE
 
 	if(!identified)
@@ -103,6 +97,7 @@
 		bound_item = target
 		start_live_tracking(user)
 		return TRUE
+*/
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/attackby(obj/item/I, mob/living/user)
 	if(!bound_item)
@@ -126,9 +121,6 @@
 	if(bound_item && user)
 		to_chat(user, span_notice("[src] starts tugging you towards [bound_item]."))
 
-		START_PROCESSING(SSfastprocess, src)
-
-
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/stop_live_tracking(mob/user)
 	UnregisterSignal(bound_item, COMSIG_QDELETING)
 
@@ -140,9 +132,6 @@
 
 	var/matrix/M = matrix(0, MATRIX_ROTATE)
 	animate(src, transform = M, time = 5, loop = 0)
-
-	STOP_PROCESSING(SSfastprocess, src)
-
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/process()
 	var/turf/T = get_turf(src)

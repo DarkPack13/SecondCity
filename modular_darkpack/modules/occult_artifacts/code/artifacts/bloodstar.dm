@@ -4,10 +4,10 @@
 	icon_state = "bloodstar"
 	research_value = 10
 
-/obj/item/occult_artifact/vampire/bloodstar/bind(mob/user)
+/obj/item/occult_artifact/vampire/bloodstar/grant_powers()
 	. = ..()
 	owner.blood_efficiency = 0.8
 
-/obj/item/occult_artifact/vampire/bloodstar/unbind(mob/user)
+/obj/item/occult_artifact/vampire/bloodstar/ungrant_powers()
 	. = ..()
 	owner.blood_efficiency = 1
