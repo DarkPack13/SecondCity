@@ -7193,7 +7193,6 @@
 #include "modular_darkpack\modules\food\code\drinking_glass.dm"
 #include "modular_darkpack\modules\food\code\drinks.dm"
 #include "modular_darkpack\modules\food\code\food.dm"
-#include "modular_darkpack\modules\food\code\ingredients.dm"
 #include "modular_darkpack\modules\food\code\recipes.dm"
 #include "modular_darkpack\modules\food\code\structure.dm"
 #include "modular_darkpack\modules\forensics\code\forensic_gatherer.dm"
