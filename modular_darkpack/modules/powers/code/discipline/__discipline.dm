@@ -145,3 +145,13 @@
 
 	for (var/datum/discipline_power/power in known_powers)
 		power.post_gain()
+
+
+/**
+* Removes effects from it's owner upon loss.
+*/
+/datum/discipline/proc/post_loss()
+	SHOULD_CALL_PARENT(TRUE)
+
+	for (var/datum/discipline_power/power in known_powers)
+		power.post_loss()

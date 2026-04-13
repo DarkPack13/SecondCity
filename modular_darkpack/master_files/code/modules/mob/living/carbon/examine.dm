@@ -73,3 +73,8 @@
 				. += span_rose(span_bold("[pick(five)]<br>"))
 		if(HAS_TRAIT(src, TRAIT_PERMAFANGS))
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
+		if(HAS_TRAIT(src, TRAIT_BETRAYERS_MARK))
+			if(isliving(user))
+				var/mob/living/living_user = user
+				if(living_user.is_clan(/datum/subsplat/vampire_clan/tremere))
+					. += span_bolddanger("[p_They()] [p_have()] a glowing 'T' on [p_their()] forehead - the Mark of a traitor to Clan Tremere!<br>")
