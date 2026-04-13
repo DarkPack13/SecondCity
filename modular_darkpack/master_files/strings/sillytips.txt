@@ -41,7 +41,9 @@ Diablerize your Sire NOW!!!
 What if heartsblood tastes like a fruit gusher?
 There's a Nosferatu standing behind you watching you roleplay.
 The get_step() ziggurat cannot hurt you.
+The get_step() spaceship cannot hurt you.
 There are two wolves inside you. They are both in nullspace.
+There are two wolves..... and two birds.... inside of you. All four are in nullspace...
 Just level appearance.
 Maybe the real Beckoning is the Kindred we met along the way.
 Does anyone else think what Tremere did was really screwed up?
@@ -57,3 +59,4 @@ What the hell is Ogham?
 Ravens and crows will chase shiny objects around. Make sure to start corvid turf wars.
 Deer will freeze when they see a vehicle. This includes scooters.
 The mannequins no longer get a little quirky at night.
+Do not feed your Ghoul after midnight~.
