@@ -12,6 +12,12 @@
 	mystic.Grant(owner)
 	mystic.level = level
 
+/datum/discipline/obtenebration/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/mysticism))
+			qdel(action)
+
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
 	desc = "Obtenebration power description"
