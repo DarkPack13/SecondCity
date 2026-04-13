@@ -10,31 +10,33 @@
 
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
+	ungrant_sound = 'sound/effects/hallucinations/growl1.ogg'
+
 /obj/item/occult_artifact/werewolf/nyxs_bangle/identify()
 	. = ..()
 	say("I am [spirit_name]... Hide now, in shadow.")
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/ungrant_powers()
-	..()
-	var/mob/living/carbon/human/H = owner
-	playsound(owner, 'sound/effects/hallucinations/growl1.ogg', 5)
-	H.alpha = 255
+	. = ..()
+
+	owner.alpha = 255
 
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/process(seconds_per_tick)
 	. = ..()
-	if(identified && iscarbon(owner))
-		var/mob/living/carbon/C = owner
-		var/turf/T = get_turf(owner)
-		var/light_amount = T.get_lumcount()
+
+	var/mob/living/carbon/carbon_owner = astype(owner)
+	if(identified && carbon_owner)
+		var/turf/owner_turf = get_turf(owner)
+		var/light_amount = owner_turf.get_lumcount()
 
 		if(light_amount <= 0.2)
-			if(src == C.gloves || src == C.get_active_held_item() || src == C.get_inactive_held_item())
-				C.alpha = max(C.alpha-12.75, 25.5)
+			if(src == carbon_owner.gloves || src == carbon_owner.get_active_held_item() || src == carbon_owner.get_inactive_held_item())
+				carbon_owner.alpha = max(carbon_owner.alpha-12.75, 25.5)
 			else
-				C.alpha = min (C.alpha+25.5, 255)
+				carbon_owner.alpha = min (carbon_owner.alpha+25.5, 255)
 		else
-			C.alpha = min (C.alpha+25.5, 255)
+			carbon_owner.alpha = min (carbon_owner.alpha+25.5, 255)
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/proc/get_held_mob()
 	if(isnull(loc))

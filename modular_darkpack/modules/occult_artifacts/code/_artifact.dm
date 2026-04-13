@@ -28,6 +28,10 @@
 	var/research_value = 0
 	var/can_be_identified_without_ritual = TRUE
 
+	#warn temp sounds plzzzzzzzz
+	var/grant_sound = 'sound/effects/magic/swap.ogg'
+	var/ungrant_sound = 'sound/effects/magic/teleport_diss.ogg'
+
 	var/datum/controller/subsystem/processing/subsystem_type = /datum/controller/subsystem/processing/obj
 
 	var/datum/storyteller_roll/identify_occult/identify_roll
@@ -54,9 +58,17 @@
 		owner = null
 
 /obj/item/occult_artifact/proc/grant_powers()
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(grant_sound)
+		playsound(owner, grant_sound, 5)
 	return
 
 /obj/item/occult_artifact/proc/ungrant_powers()
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(ungrant_sound)
+		playsound(owner, ungrant_sound, 5)
 	return
 
 

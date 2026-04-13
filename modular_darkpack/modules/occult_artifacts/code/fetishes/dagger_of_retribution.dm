@@ -64,52 +64,29 @@
 		stop_live_tracking(M)
 
 
-/*
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/pre_attack(atom/target, mob/living/user)
-	. = ..()
-	if(user.combat_mode) // If we're attacking something, skip all of this stuff.
-		return FALSE
 
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!identified)
-		return FALSE
-	else
-		if(istype(target, /obj/item/storage) && !user.a_intent == INTENT_GRAB) // We're trying to store it.
-			return FALSE
+		return NONE
 
-		if(!istype(target, /obj)) // is it an object?
-			if(!istype(target, /turf))
-				to_chat(user, span_warning("[src] refuses to be bound to [target]!"))
-			return TRUE
+	if(!istype(interacting_with, /obj)) // is it an object?
+		if(!istype(interacting_with, /turf))
+			to_chat(user, span_warning("[src] refuses to be bound to [interacting_with]!"))
+		return ITEM_INTERACT_BLOCKING
 
-		if(!user.a_intent == INTENT_GRAB) // are we on grab intent?
-			to_chat(user, span_warning("You need to <b>GRAB</b> [src] tighter if you want to bind it to [target]."))
-			return FALSE
+	if(bound_item) // do we have an item bound to us already?
+		to_chat(user, span_warning("[src] is already bound to [bound_item]!"))
+		return ITEM_INTERACT_BLOCKING
 
-		if(bound_item) // do we have an item bound to us already?
-			to_chat(user, span_warning("[src] is already bound to [bound_item]!"))
-			return TRUE
-
-		// We are clicking on an object, we're on the right intent, and we're not bound.
-		bound_item = target
-		start_live_tracking(user)
-		return TRUE
-*/
-
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/attackby(obj/item/I, mob/living/user)
-	if(!bound_item)
-		bound_item = I
-		start_live_tracking()
-		return
-	else
-		. = ..()
-
-
+	// We are clicking on an object, we're on the right intent, and we're not bound.
+	bound_item = interacting_with
+	start_live_tracking(user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/Destroy()
 	stop_live_tracking()
-	bound_item = null
-	return ..()
 
+	return ..()
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/start_live_tracking(mob/user)
 	RegisterSignal(bound_item, COMSIG_QDELETING, PROC_REF(stop_live_tracking))
@@ -130,6 +107,8 @@
 	animate(src, transform = M, time = 5, loop = 0)
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/process()
+	. = ..()
+
 	var/turf/T = get_turf(src)
 	var/turf/bound_item_turf = get_turf(bound_item)
 
