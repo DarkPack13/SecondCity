@@ -1,12 +1,13 @@
 /obj/item/occult_artifact/pickup(mob/user)
 	. = ..()
 	if(identified)
-
+		bind(user)
 
 /obj/item/occult_artifact/dropped(mob/user)
 	. = ..()
 	if(identified)
 		if(isturf(loc))
+			unbind(user)
 
 
 /obj/item/occult_artifact/process(seconds_per_tick)

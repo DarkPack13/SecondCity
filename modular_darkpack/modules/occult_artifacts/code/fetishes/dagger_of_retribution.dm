@@ -3,19 +3,15 @@
 	desc = "A crude knife wrought from iron."
 	true_name = "dagger of retribution"
 	true_desc = "An ugly iron dagger imbued with a vengeance-spirit."
-	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	worn_icon_state = "knife"
-	lefthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_righthand.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/fetishes_onfloor.dmi')
 	icon_state = "dagger"
 	force = 30
 	wound_bonus = -5
 	throwforce = 15
 	attack_verb_continuous = list("slashes", "cuts")
 	attack_verb_simple = list("slash", "cut")
-	hitsound = 'sound/weapons/slash.ogg'
+	hitsound = 'sound/items/weapons/slash.ogg'
 	armour_penetration = 35
 	block_chance = 5
 	sharpness = SHARP_EDGED

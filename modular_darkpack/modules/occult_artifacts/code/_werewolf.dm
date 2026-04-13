@@ -1,4 +1,9 @@
 /obj/item/occult_artifact/werewolf
+	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
+	worn_icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_worn.dmi'
+	lefthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/fetishes_onfloor.dmi')
 	var/spirit_name = "Glitchimus"
 	var/spirit_type = "ahelp"
 

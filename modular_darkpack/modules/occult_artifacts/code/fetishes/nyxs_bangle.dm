@@ -4,14 +4,10 @@
 	desc = "A chain bracelet made of silver."
 	true_name = "Nyx's Bangle"
 	true_desc = "A silver bracelet with numerous glyphs."
-	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
-	worn_icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_worn.dmi'
-	lefthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_righthand.dmi'
 	icon_state = "bangle"
 	worn_icon_state = "bangle"
 	slot_flags = ITEM_SLOT_GLOVES | ITEM_SLOT_ID
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/occult_artifacts/icons/fetishes_onfloor.dmi')
+
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/identify()
@@ -21,7 +17,7 @@
 /obj/item/occult_artifact/werewolf/nyxs_bangle/ungrant_powers()
 	..()
 	var/mob/living/carbon/human/H = owner
-	playsound(owner, 'sound/hallucinations/growl1.ogg', 5)
+	playsound(owner, 'sound/effects/hallucinations/growl1.ogg', 5)
 	H.alpha = 255
 
 
