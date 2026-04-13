@@ -26,6 +26,12 @@
 
 	register_to_availability_signals()
 
+/datum/action/discipline/Remove(mob/remove_from)
+	if(discipline)
+		discipline.post_loss()
+
+	. = ..()
+
 /datum/action/discipline/proc/register_to_availability_signals()
 	//this should only go through if it's the first Discipline gained by the mob
 	for (var/datum/action/action in owner.actions)
