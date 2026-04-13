@@ -186,6 +186,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
+*/
 
 /datum/crafting_recipe/pipegun
 	name = "Pipegun"
@@ -200,6 +201,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol"
@@ -216,7 +218,9 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
+/*
 /datum/crafting_recipe/rebarxbow
 	name = "Heated Rebar Crossbow"
 	result = /obj/item/gun/ballistic/rifle/rebarxbow
@@ -354,6 +358,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+*/
 
 /datum/crafting_recipe/large_ballista
 	name = "Improvised Ballista"
@@ -367,7 +372,7 @@
 	time = 8 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
-*/
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/trash_cannon
 	name = "Trash Cannon"

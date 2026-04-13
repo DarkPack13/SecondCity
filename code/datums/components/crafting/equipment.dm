@@ -90,6 +90,7 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 20 SECONDS
 	category = CAT_EQUIPMENT
+	skill_dots_minimum = 3 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/secured_freezer_cabinet
 	name = "Secure Freezer Cabinet"

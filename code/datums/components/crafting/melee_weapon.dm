@@ -8,6 +8,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 /* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
@@ -37,7 +38,7 @@
 	name = "\improper NT-20 'Excalibur' Stunsword"
 	result = /obj/item/melee/baton/security/stunsword
 	reqs = list(
-		/obj/item/claymore = 1,
+		/obj/item/claymore = 1
 		/obj/item/melee/baton/security = 1
 	)
 	blacklist = list(
@@ -133,6 +134,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 3 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/spear
 	name = "Spear"
@@ -144,6 +146,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
 /* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
@@ -161,6 +164,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/bonespear
 	name = "Bone Spear"
@@ -171,6 +175,7 @@
 		/obj/item/stack/sheet/sinew = 1,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/boneaxe
 	name = "Bone Axe"
@@ -181,6 +186,7 @@
 		/obj/item/stack/sheet/sinew = 3,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/house_edge
 	name = "House Edge"
@@ -242,6 +248,8 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
+
 /* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/sm_sword
 	name = "Supermatter Sword"

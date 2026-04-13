@@ -78,6 +78,12 @@
 		/obj/item/wirecutters/cyborg,
 		/obj/item/wrench/cyborg,
 	))
+	// DARKPACK EDIT ADD START - STORYTELER_STATS
+	/// Stat define/typepath required for this recipe. No check if null
+	var/datum/st_stat/skill_required_for_use = STAT_CRAFTS
+	/// You need ATLEAST this many dots in a skill to craft.
+	var/skill_dots_minimum = 0
+	// DARKPACK EDIT ADD END
 
 /datum/crafting_recipe/New()
 	if(!name && result)
