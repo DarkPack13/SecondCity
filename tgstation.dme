@@ -7348,6 +7348,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\territorial.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\thaumaturgically_inept.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\the_largest_maw.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\third_eye.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\vengeful.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\victim_of_the_masquerade.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\weak_willed.dm"
