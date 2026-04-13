@@ -1,3 +1,4 @@
+// DARKPACK TODO - FRENZY - (This never did FUCK anything.)
 /obj/item/occult_artifact/vampire/tarulfang
 	true_name = "Tarulfang"
 	true_desc = "Decreases chance of frenzy."

@@ -15,6 +15,7 @@
 
 	var/dancing = FALSE
 
+	// DARKPACK TODO - FRENZY - (This never did FUCK anything.)
 	var/frenzy_chance_boost = 10
 
 	COOLDOWN_DECLARE(drinkblood_use_cd)
