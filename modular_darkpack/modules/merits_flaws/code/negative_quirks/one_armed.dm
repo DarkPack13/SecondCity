@@ -1,3 +1,4 @@
+// W20 p. 474
 /datum/quirk/darkpack/one_armed
 	name = "One Arm"
 	desc = "You're missing your an arm. That just ain't right."
