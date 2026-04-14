@@ -40,7 +40,7 @@ You can conceal your satchel by Alt + Right-clicking it.
 Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
 Your firearm stat dramatically improves your ability to control recoil.
 Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
-You can set off a sprinkler by attacking it with any item that would light a cigarette,
+You can set off a sprinkler by attacking it with any item that would light a cigarette.
 ATM machines can be smashed with a high force weapon for whatever cash is inside of them.
 Duffle bags can hold two large whitelisted items that bypass there normal item weight restriction.
 Pool tables can be interacted with and let you play a mock game of billiards.
