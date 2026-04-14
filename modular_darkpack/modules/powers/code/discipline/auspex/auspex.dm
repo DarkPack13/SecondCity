@@ -51,7 +51,6 @@
 	if(SENSE_VISION in output_senses)
 		owner.client?.view_size?.setTo(2) // This increases the view size of the player by 2 tiles in each direction. I dont know why it's called Set if it Adds.
 		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
-		ADD_TRAIT(owner, TRAIT_MINOR_NIGHT_VISION, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
 			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
@@ -82,7 +81,6 @@
 	// Vision
 	owner.client?.view_size?.resetToDefault()
 	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
-	REMOVE_TRAIT(owner, TRAIT_MINOR_NIGHT_VISION, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
