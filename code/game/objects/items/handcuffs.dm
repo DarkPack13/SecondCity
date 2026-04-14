@@ -101,6 +101,10 @@
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
 
+	if(HAS_TRAIT(victim, TRAIT_NO_CUFF))
+		victim.balloon_alert(user, "You can't seem to get the handcuffs onto [victim]!")
+		return
+
 	victim.visible_message(
 		span_danger("[user] is trying to put [src] on [victim]!"),
 		span_userdanger("[user] is trying to put [src] on you!"),
