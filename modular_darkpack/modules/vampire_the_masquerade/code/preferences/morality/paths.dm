@@ -133,7 +133,7 @@
 	bearing = BEARING_TRIBULATION // add this
 
 /datum/morality/lilith/seed
-	name = "Path of the Serepent's Seed"
+	name = "Path of the Serpent's Seed"
 	desc = "A variant of Bahari beliefs, adherents of this prefer a much softer touch; to defeat Caine, they have no intent of destruction, they would much prefer to subvert the Noddists and bury his legacy."
 
 /datum/morality/lilith/midwives
