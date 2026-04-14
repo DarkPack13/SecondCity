@@ -17,3 +17,12 @@
 	female_clothes = /obj/item/clothing/under/vampire/ventrue/female
 	subsplat_keys = /obj/item/vamp/keys/ventrue
 
+/datum/subsplat/vampire_clan/ventrue/antitribu
+	name = "Ventrue antitribu"
+	id = VAMPIRE_CLAN_VENTRUE_ANTITRIBU
+	icon = "ventrue_antitribu"
+	clan_disciplines = list(
+		/datum/discipline/dominate,
+		/datum/discipline/fortitude,
+		/datum/discipline/auspex
+	)
