@@ -189,6 +189,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 2)
 		if(read_preference(/datum/preference/choiced/subsplat/garou_breed) == "Metis")
 			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/garou_breed], BREED_CRINOS)
+	if (current_version < 3)
+		if(read_preference(/datum/preference/text/exploitable) == "This is where you put flaws that can be exploited in any way. This will be viewable by certain discplines if you modify this string, but only if there's anything at all in this box.")
+			write_preference(GLOB.preference_entries[/datum/preference/text/exploitable], EXPLOITABLE_DEFAULT_TEXT)
 // DARKPACK EDIT ADD END
 
 /// checks through keybindings for outdated unbound keys and updates them
