@@ -51,6 +51,7 @@
 	if(SENSE_VISION in output_senses)
 		owner.client?.view_size?.setTo(2) // This increases the view size of the player by 2 tiles in each direction. I dont know why it's called Set if it Adds.
 		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
+		ADD_TRAIT(owner, TRAIT_MINOR_NIGHT_VISION, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
 			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
@@ -81,6 +82,7 @@
 	// Vision
 	owner.client?.view_size?.resetToDefault()
 	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
+	REMOVE_TRAIT(owner, TRAIT_MINOR_NIGHT_VISION, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
@@ -98,6 +100,13 @@
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "shiver", forced = TRUE)
 	owner.Stun(0.5 SECONDS)
 
+
+/datum/storyteller_roll/aura_perception
+	difficulty = 8
+	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
+	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
+
 //AURA PERCEPTION
 /datum/discipline_power/auspex/aura_perception
 	name = "Aura Perception"
@@ -110,6 +119,18 @@
 	vitae_cost = 0
 
 	toggled = TRUE
+	var/datum/storyteller_roll/aura_perception/aura_roll
+
+/datum/discipline_power/auspex/aura_perception/pre_activation_checks(mob/living/target)
+	. = ..()
+	if(!aura_roll)
+		aura_roll = new()
+	switch(aura_roll.st_roll(owner, target))
+		if(ROLL_SUCCESS)
+			return TRUE
+		else
+			to_chat(span_danger("You fail to read into anything at all..."))
+			return FALSE
 
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
