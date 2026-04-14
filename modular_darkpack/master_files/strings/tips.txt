@@ -42,7 +42,7 @@ Your firearm stat dramatically improves your ability to control recoil.
 Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
 You can set off a sprinkler by attacking it with any item that would light a cigarette.
 ATM machines can be smashed with a high force weapon for whatever cash is inside of them.
-Duffle bags can hold two large whitelisted items that bypass there normal item weight restriction.
+Duffle bags can hold two large whitelisted items that bypass their normal item weight restriction.
 Pool tables can be interacted with and let you play a mock game of billiards.
 Gun casings leave forensic evidence that can trace back to your firearm unless preventative measures are taken.
 Hovering over a dice roll with reveal what stats were used for rolls.
