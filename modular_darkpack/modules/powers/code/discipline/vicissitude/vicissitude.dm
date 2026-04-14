@@ -186,6 +186,7 @@
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
 	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
+	owner.uncuff() //Avoids any issues with existing cuffs, and you can't handcuff a selectively solid pool of blood.
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
