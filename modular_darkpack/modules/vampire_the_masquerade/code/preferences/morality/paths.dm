@@ -188,4 +188,4 @@
 	name = "Path of Asakku"
 	desc = "Not truly a Path, Asakku represents a Kindred who has fallen to Vicissitude's pollution. This journey can begin either consciously or unconsciously, but the result is to be irrevocably altered - one cannot abandon this Path once it has been taken. Less a belief system and more a state of being, the Corrupted seek to spread Vicissitude as widely as possible; either by teaching it, crafting others with it, or destroying those who refuse it."
 	alignment = MORALITY_ENLIGHTENMENT
-	bearing = BEARING_cORRUPTION
+	bearing = BEARING_CORRUPTION
