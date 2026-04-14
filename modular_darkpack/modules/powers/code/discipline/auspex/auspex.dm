@@ -102,6 +102,7 @@
 
 
 /datum/storyteller_roll/aura_perception
+	bumper_text = "aura reading"
 	difficulty = 8
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
 	numerical = TRUE
