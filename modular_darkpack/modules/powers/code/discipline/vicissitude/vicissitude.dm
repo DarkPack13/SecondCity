@@ -169,7 +169,7 @@
 	desc = "Liquify into a shifting mass of sentient Vitae."
 
 	level = 5
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	target_type = NONE
 	violates_masquerade = TRUE
 	cooldown_length = 1 TURNS
