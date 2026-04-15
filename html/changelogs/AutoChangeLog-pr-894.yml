@@ -1,0 +1,6 @@
+author: "Stutternov"
+delete-after: True
+changes:
+  - rscadd: "Added failure messages to target and caster (if not present already) when failing a dominate roll."
+  - rscdel: "Removed Dom 3's 6 success roll."
+  - spellcheck: "Not much of an actual spellcheck - reworded description of Dom 1 and 5 to be accurate to V20."
