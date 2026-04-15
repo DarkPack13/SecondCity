@@ -69,17 +69,17 @@
 
 /datum/controller/subsystem/job/proc/check_garou_prefs(client/player_client, mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/datum/subsplat/werewolf/auspice/auspice = get_fera_auspice(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/garou_auspice))
-	if(possible_job.allowed_auspice && !(auspice.id in possible_job.allowed_auspice))
+	if(possible_job.allowed_auspice && !(auspice.name in possible_job.allowed_auspice))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_AUSPICE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_FERA_AUSPICE
-	if(possible_job.disallowed_auspice && (auspice.id in possible_job.disallowed_auspice))
+	if(possible_job.disallowed_auspice && (auspice.name in possible_job.disallowed_auspice))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_AUSPICE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_FERA_AUSPICE
 
 	var/datum/subsplat/werewolf/tribe/tribe = get_fera_tribe(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/garou_tribe))
-	if(possible_job.allowed_tribes && !(tribe.id in possible_job.allowed_tribes))
+	if(possible_job.allowed_tribes && !(tribe.name in possible_job.allowed_tribes))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_TRIBE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_FERA_TRIBE
-	if(possible_job.disallowed_tribes && (tribe.id in possible_job.disallowed_tribes))
+	if(possible_job.disallowed_tribes && (tribe.name in possible_job.disallowed_tribes))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_TRIBE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_FERA_TRIBE
