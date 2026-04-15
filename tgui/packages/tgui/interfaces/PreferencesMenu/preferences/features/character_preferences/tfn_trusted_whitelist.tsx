@@ -1,10 +1,18 @@
-import type { FeatureChoiced, FeatureValueProps } from '../base';
-import { FeatureIconnedDropdownInput } from '../dropdowns';
 import { useBackend } from 'tgui/backend';
 import type { PreferencesMenuData } from '../../../types';
+import type { FeatureChoiced, FeatureValueProps } from '../base';
+import { FeatureIconnedDropdownInput } from '../dropdowns';
 
 // the string names of the clans in trusted_whitelist.dm
-const TRUSTED_ONLY_CLAN_NAMES = ['Baali', 'Salubri', 'Healer Salubri', 'Warrior Salubri', 'True Brujah', 'Daughters of Cacophony', 'Samedi'];
+const TRUSTED_ONLY_CLAN_NAMES = [
+  'Baali',
+  'Salubri',
+  'Healer Salubri',
+  'Warrior Salubri',
+  'True Brujah',
+  'Cappadocian',
+  'Harbinger of Skulls',
+];
 
 type ClanServerData = {
   choices: string[];
@@ -37,6 +45,8 @@ export const vampire_clan: FeatureChoiced = {
       icons: filteredIcons,
     };
 
-    return <FeatureIconnedDropdownInput {...props} serverData={filteredServerData} />;
+    return (
+      <FeatureIconnedDropdownInput {...props} serverData={filteredServerData} />
+    );
   },
 };

@@ -3,8 +3,8 @@ GLOBAL_LIST_INIT(trusted_only_clans, list(
 	VAMPIRE_CLAN_HEALER_SALUBRI,
 	VAMPIRE_CLAN_WARRIOR_SALUBRI,
 	VAMPIRE_CLAN_TRUE_BRUJAH,
-	VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY,
-	VAMPIRE_CLAN_SAMEDI,
+	VAMPIRE_CLAN_CAPPADOCIAN,
+	VAMPIRE_CLAN_HARBINGER
 ))
 
 // remember kids, you should always obtain enthusiastic informed values before proceeding
