@@ -9,8 +9,11 @@
 	toolspeed = 2 //isn't meant for cutting wires
 	var/permanent = FALSE // If pulling fangs lasts for the entire ROUND or not.
 
-/obj/item/wirecutters/pliers/attack(mob/living/target, mob/living/user)
+/obj/item/wirecutters/pliers/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
+	if(!istype(interacting_with, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/target = interacting_with
 	if (target.is_mouth_covered())
 		user.visible_message(user, span_warning("[user] can't pull out [target]'s canines because their mouth is covered!"))
 		return
@@ -26,8 +29,8 @@
 		user.visible_message(span_warning("[user] rips out [target]'s canines!"), span_warning("You rip out [target]'s canines!"))
 		target.emote("scream")
 		if (get_kindred_splat(target)) // Only check for kindred quirks and apply dull fangs if they're actually kindred.
-			if(target.has_quirk(/datum/quirk/darkpack/permafangs))
-				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, ROUNDSTART_TRAIT) // Take away their permafangs until they regrow.
+			if(HAS_TRAIT(target, TRAIT_PERMAFANGS) && !HAS_TRAIT(target, TRAIT_DULLFANGS))
+				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, QUIRK_TRAIT) // Take away their permafangs until they regrow.
 			if(permanent)
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS_PERMANENT)
 				visible_message(span_warning("[user] stuff's in Bone putty into [target] to stop their canines from regrowing!"))
@@ -43,3 +46,4 @@
 	icon_state = "ripper"
 	inhand_icon_state = "ripper"
 	toolspeed = 1.2 //is an actual tool but can't actually cut
+	permanent = TRUE

@@ -1,0 +1,1 @@
+/obj/item/wirecutters/pliers/bad : /obj/item/wirecutters/pliers/bad_pliers {@OLD}
