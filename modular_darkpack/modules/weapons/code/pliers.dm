@@ -33,7 +33,7 @@
 				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, QUIRK_TRAIT) // Take away their permafangs until they regrow.
 			if(permanent)
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS_PERMANENT)
-				visible_message(span_warning("[user] stuff's in Bone putty into [target] to stop their canines from regrowing!"))
+				visible_message(span_warning("[user] rips out [target]'s canines! It doesn't look like they'll be growing back anytime soon..."))
 			else
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS)
 		else

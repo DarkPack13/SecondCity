@@ -38,4 +38,5 @@
 	id = "dulled_fangs_permanent"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1 // Lasts all round.
+	remove_on_fullheal = FALSE // Doesn't remove on fullheal.
 	alert_type = /atom/movable/screen/alert/status_effect/dull_fangs

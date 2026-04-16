@@ -2,11 +2,6 @@
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 	update_drinking_overlay(drunk_from)
 
-	if(HAS_TRAIT(src, TRAIT_DULLFANGS))
-		to_chat(src, span_warning("Your fangs are too dull to pierce flesh!"))
-		remove_drinking_overlay(drunk_from)
-		return
-
 	if(HAS_TRAIT(src, TRAIT_VICTIM_OF_THE_MASQUERADE))
 		var/datum/quirk/darkpack/victim_of_the_masquerade/votm = src.get_quirk(/datum/quirk/darkpack/victim_of_the_masquerade)
 		if(votm)
