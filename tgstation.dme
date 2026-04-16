@@ -7341,6 +7341,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\mage_blood.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\monstrous_quirk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\mute.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\one_armed.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\organovore.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_fangs.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\pierced_veil.dm"
