@@ -20,7 +20,7 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
 	if(HAS_TRAIT(target, TRAIT_DULLFANGS))
-		user.visible_message(user, span_warning("[user] can't pull out the canines of [target] because they're already deformed!"))
+		user.visible_message(span_warning("[user] can't pull out the canines of [target] because they're already deformed!"))
 	else
 		user.visible_message(span_warning("[user] takes [src] straight to the [target]'s canines!"), span_warning("You take [src] straight to the [target]'s canines!"))
 		if(!do_after(user, 3 SECONDS, target))
