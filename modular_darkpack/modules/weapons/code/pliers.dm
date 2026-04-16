@@ -21,24 +21,25 @@
 		return
 	if(HAS_TRAIT(target, TRAIT_DULLFANGS))
 		user.visible_message(span_warning("[user] can't pull out the canines of [target] because they're already deformed!"))
+		return
 	else
-		user.visible_message(span_warning("[user] takes [src] straight to the [target]'s canines!"), span_warning("You take [src] straight to the [target]'s canines!"))
+		user.visible_message(span_warning("[user] takes [src] straight to the [target]'s teeth!"), span_warning("You take [src] straight to the [target]'s teeth!"))
 		if(!do_after(user, 3 SECONDS, target))
 			return
 		user.do_attack_animation(target)
-		user.visible_message(span_warning("[user] rips out [target]'s canines!"), span_warning("You rip out [target]'s canines!"))
 		target.emote("scream")
-		if (get_kindred_splat(target)) // Only check for kindred quirks and apply dull fangs if they're actually kindred.
-			if(HAS_TRAIT(target, TRAIT_PERMAFANGS) && !HAS_TRAIT(target, TRAIT_DULLFANGS))
-				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, QUIRK_TRAIT) // Take away their permafangs until they regrow.
-			if(permanent)
+		if (get_kindred_splat(target)) // If the target is kindred, yank their fangs out and apply a status effect.
+			if(HAS_TRAIT(target, TRAIT_PERMAFANGS) && !HAS_TRAIT(target, TRAIT_DULLFANGS)) // Take away permafangs if they have them.
+				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, QUIRK_TRAIT)
+			if(permanent) // If the pliers are permanent, apply the permanent dull fangs status effect. Otherwise, just apply the regular one.
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS_PERMANENT)
 				visible_message(span_warning("[user] rips out [target]'s canines! It doesn't look like they'll be growing back anytime soon..."))
 			else
+				user.visible_message(span_warning("[user] rips out [target]'s canines!"), span_warning("You rip out [target]'s canines!"))
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS)
-		else
-			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD) // If they aren't kindred, just do some brute.
-			return
+		else // If they aren't kindred, do brute and give an alternate message.
+			user.visible_message(span_warning("[user] rips out one of [target]'s teeth!"), span_warning("You rip out one of [target]'s teeth!"))
+			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD)
 
 /obj/item/wirecutters/pliers/bad
 	name = "pliers"
