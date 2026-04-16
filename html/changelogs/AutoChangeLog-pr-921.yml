@@ -1,0 +1,5 @@
+author: "Biplume"
+delete-after: True
+changes:
+  - balance: "Aura Perception now rolls for success. Perception and Empathy against difficulty 8."
+  - bugfix: "Pale Aura now properly disguises Ghouls as Kindred."

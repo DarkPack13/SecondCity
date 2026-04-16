@@ -1,4 +1,4 @@
 author: "FalloutFalcon"
 delete-after: True
 changes:
-  - bugfix: "Stairs now layer properly"
+  - rscadd: "Adds \"One Arm\" flaw"

@@ -27,6 +27,8 @@
 	register_to_availability_signals()
 
 /datum/action/discipline/Remove(mob/owner)
+	if(discipline)
+		discipline.post_loss()
 	end_targeting()
 	if(owner)
 		UnregisterSignal(owner, list(
