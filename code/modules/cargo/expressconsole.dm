@@ -304,7 +304,7 @@
 			else if(order.pack.order_flags & ORDER_GOODY) //Goody orders lack a crate_type and need special handling
 				crate = order.generateCombo(landing_turf, order.orderer, order.pack.contains, order.pack.cost)
 
-			to_chat(user, span_notice("[crate] is definitly lying around [landingzone] somewhere in the stock."))
+			to_chat(user, span_notice("[crate] is definitely lying around [landingzone] somewhere in the stock."))
 			// DARKPACK EDIT ADD END
 
 			update_appearance()
