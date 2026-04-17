@@ -210,7 +210,7 @@
 		var/witness_to_report = 0
 		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			nearby_npcs.Aggro(attacker)
-			if(nearby_npcs && nearby_npcs.stat != DEAD)
+			if(nearby_npcs.stat != DEAD)
 				witness_to_report++
 		if(P && witness_to_report >= 1)
 			SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_FIREFIGHT, get_turf(src))
