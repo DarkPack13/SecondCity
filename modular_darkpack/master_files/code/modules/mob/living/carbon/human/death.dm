@@ -6,7 +6,7 @@
 	GLOB.masquerade_breakers_list -= src
 	GLOB.sabbatites -= src
 	var/witness_to_report = 0
-	for(var/mob/living/carbon/human/npc/witness in viewers(7, usr))	//Sends report if there is a witness to the murder.
+	for(var/mob/living/carbon/human/npc/witness in oviewers(DEFAULT_SIGHT_DISTANCE, usr)) //Sends report if there is a witness to the murder.
 		if(witness && witness.stat != DEAD)
 			witness_to_report++
 		if(witness_to_report >= 1)	//Wait to send, only one caller
