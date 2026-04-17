@@ -1059,6 +1059,7 @@
 	icon_state = "cream"
 	list_reagents = list(/datum/reagent/consumable/cream = 100)
 	drink_type = DAIRY
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/eggnog
 	name = "eggnog"

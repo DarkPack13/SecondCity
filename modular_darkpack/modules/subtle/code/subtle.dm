@@ -1,4 +1,5 @@
 #define SUBTLE_DEFAULT_DISTANCE world.view
+#define SUBTLE_MESSAGE_LEN MAX_MESSAGE_LEN * 2 // 4000 at the time of writing
 #define SUBTLE_ONE_TILE 1
 #define SUBTLE_SAME_TILE_DISTANCE 0
 
@@ -40,7 +41,7 @@
 		to_chat(user, "You cannot send IC messages (muted).")
 		return FALSE
 	else if(!params)
-		subtle_emote = tgui_input_text(user, "Choose an emote to display.", "Subtle", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		subtle_emote = tgui_input_text(user, "Choose an emote to display.", "Subtle", null, max_length = SUBTLE_MESSAGE_LEN, multiline = TRUE)
 		if(!subtle_emote)
 			return FALSE
 		subtle_message = subtle_emote
@@ -108,7 +109,7 @@
 		to_chat(user, span_warning("You cannot send IC messages (muted)."))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , max_length = SUBTLE_MESSAGE_LEN, multiline = TRUE)
 		if(!subtler_emote)
 			return FALSE
 
@@ -208,6 +209,7 @@
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "subtler"))
 
 #undef SUBTLE_DEFAULT_DISTANCE
+#undef SUBTLE_MESSAGE_LEN
 #undef SUBTLE_ONE_TILE
 #undef SUBTLE_SAME_TILE_DISTANCE
 
