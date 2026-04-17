@@ -1,5 +1,6 @@
 #define CRIME_GUNSHOTS "Gunshots"
 #define CRIME_FIREFIGHT "Firefight"
+#define CRIME_ASSAULT "Assault"
 #define CRIME_MURDER "Murder"
 #define CRIME_BURGLARY "Burglary"
 #define CRIME_EMERGENCY "Emergency Alarm"

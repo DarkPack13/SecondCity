@@ -204,12 +204,18 @@
 			phrase = pick(socialrole.female_phrases)
 	realistic_say(phrase)
 
-/mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
+/mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags, obj/projectile/P)
 	// Only aggro nearby npcs if its lethal.
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
+		var/witness_to_report = 0
 		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 			nearby_npcs.Aggro(attacker)
-		SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_FIREFIGHT, get_turf(src))
+			if(nearby_npcs && nearby_npcs.stat != DEAD)
+				witness_to_report++
+		if(P && witness_to_report >= 1)
+			SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_FIREFIGHT, get_turf(src))
+		else if(witness_to_report >= 1)
+			SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_ASSAULT, get_turf(src))
 	Aggro(attacker, TRUE)
 
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)

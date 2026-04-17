@@ -86,7 +86,15 @@
 		firing_dir = get_dir(fired_from, target)
 	if(!loaded_projectile.suppressed && firing_effect_type && !tk_firing(user, fired_from))
 		new firing_effect_type(user || get_turf(src), firing_dir)
-		SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_GUNSHOTS, get_turf(src))
+		for(var/area/A as anything in list(/area/vtm/outside))
+			SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_GUNSHOTS, get_turf(src))
+		var/witness_to_report = 0
+		for(var/mob/living/carbon/human/npc/witness in viewers(7, usr))
+			if(witness && witness.stat != DEAD)
+				witness_to_report++
+			if(witness_to_report >= 1)
+				SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_GUNSHOTS, get_turf(src))
+				break
 
 	var/direct_target
 	if(target && curloc.Adjacent(targloc, target=targloc, mover=src)) //if the target is right on our location or adjacent (including diagonally if reachable) we'll skip the travelling code in the proj's fire()
