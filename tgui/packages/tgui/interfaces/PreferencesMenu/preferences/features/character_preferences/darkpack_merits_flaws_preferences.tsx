@@ -13,3 +13,8 @@ export const prey_exclusion: FeatureChoiced = {
   description: 'The Prey Exclusion of this character.',
   component: FeatureDropdownInput
 }
+
+export const missing_arm: FeatureChoiced = {
+  name: 'Missing Arm',
+  component: FeatureDropdownInput,
+};
