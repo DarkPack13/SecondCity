@@ -89,7 +89,7 @@
 		for(var/area/A as anything in list(/area/vtm/outside))
 			SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_GUNSHOTS, get_turf(src))
 		var/witness_to_report = 0
-		for(var/mob/living/carbon/human/npc/witness in viewers(7, usr))
+		for(var/mob/living/carbon/human/npc/witness in oviewers(DEFAULT_SIGHT_DISTANCE, usr))
 			if(witness && witness.stat != DEAD)
 				witness_to_report++
 			if(witness_to_report >= 1)
