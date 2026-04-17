@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "Messages and inputs can contain more text (even moreso for subtle)"
