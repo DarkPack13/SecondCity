@@ -15,5 +15,5 @@
 
 	//Sends report of murder if in designated area that would, normally, have a camera in it & not super-natural run.
 	for(var/area/A as anything in list(/area/vtm/interior/shop, /area/vtm/interior/police, /area/vtm/interior/police/upstairs, /area/vtm/interior/police/court))
-		//do_after(3 SECONDS)	//Delayed send, security cameras will take a moment
+		//Should probably add a delay here.
 		SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_MURDER, get_turf(src))
