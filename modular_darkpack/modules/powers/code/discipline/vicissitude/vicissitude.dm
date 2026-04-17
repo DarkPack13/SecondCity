@@ -8,6 +8,14 @@
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/vicissitude
 
+/datum/discipline/vicissitude/post_gain()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Allows people with Vicissitude to perform operations on themselves.
+
+/datum/discipline/vicissitude/post_loss()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Removes the trait if you lose Vicissitude.
+
 /datum/discipline_power/vicissitude
 	name = "Vicissitude power name"
 	desc = "Vicissitude power description"
@@ -18,7 +26,7 @@
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
 	shapeshift_ability.Grant(owner)
-	ADD_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Allows people with Vicissitude to perform operations on themselves.
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
