@@ -18,6 +18,7 @@
 		user.visible_message(user, span_warning("[user] can't pull out [target]'s teeth because their mouth is covered!"))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, span_warning("You can't bring yourself to pull out [target]'s teeth! You don't want to harm anyone."))
 		return ITEM_INTERACT_BLOCKING
 	else
 		user.visible_message(span_warning("[user] takes [src] straight to the [target]'s teeth!"), span_warning("You take [src] straight to the [target]'s teeth!"))
