@@ -598,7 +598,7 @@
 /area/vtm/outside/supply)
 "lU" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/key_of_alamut,
+/obj/item/occult_artifact/vampire/key_of_alamut,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "lX" = (
@@ -872,7 +872,7 @@
 /area/vtm/outside/pacificheights)
 "qY" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/bloodstar,
+/obj/item/occult_artifact/vampire/bloodstar,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "ri" = (
@@ -1155,7 +1155,7 @@
 /area/vtm/graveyard)
 "va" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/fae_charm,
+/obj/item/occult_artifact/vampire/fae_charm,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "vi" = (
@@ -1234,7 +1234,7 @@
 /area/vtm/outside/supply)
 "wr" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/odious_chalice,
+/obj/item/occult_artifact/vampire/odious_chalice,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "wO" = (
@@ -1394,7 +1394,7 @@
 /area/vtm/outside/pacificheights)
 "zF" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/weekapaug_thistle,
+/obj/item/occult_artifact/vampire/weekapaug_thistle,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
@@ -2081,7 +2081,7 @@
 /area/vtm/outside/supply)
 "Kz" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/heart_of_eliza,
+/obj/item/occult_artifact/vampire/heart_of_eliza,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "KB" = (
@@ -2159,7 +2159,7 @@
 /area/vtm/outside/pacificheights)
 "LG" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/daimonori,
+/obj/item/occult_artifact/vampire/daimonori,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "LL" = (
@@ -2282,7 +2282,7 @@
 /area/vtm/outside/pacificheights)
 "Nb" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/tarulfang,
+/obj/item/occult_artifact/vampire/tarulfang,
 /mob/living/basic/pet/cat/darkpack/cain,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
@@ -2797,7 +2797,7 @@
 /area/vtm/outside/pacificheights)
 "VH" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/galdjum,
+/obj/item/occult_artifact/vampire/galdjum,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "VJ" = (
@@ -2869,7 +2869,7 @@
 /area/vtm/interior/clinic)
 "WB" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/mummywrap_fetish,
+/obj/item/occult_artifact/vampire/mummywrap_fetish,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "WD" = (
