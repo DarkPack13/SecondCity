@@ -31,8 +31,6 @@
 /datum/status_effect/dull_fangs/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_DULLFANGS, MAGIC_TRAIT)
-	if(owner.has_quirk(/datum/quirk/darkpack/permafangs))
-		ADD_TRAIT(owner, TRAIT_PERMAFANGS, QUIRK_TRAIT) // Give them their permafangs back.
 
 /datum/status_effect/dull_fangs/permanent // Applied when pliers are used on vampires without the dulled bite quirk.
 	id = "dulled_fangs_permanent"

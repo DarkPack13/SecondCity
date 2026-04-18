@@ -27,8 +27,6 @@
 		target.emote("scream")
 		target.apply_damage(15, BRUTE, BODY_ZONE_HEAD) // Deal brute because we're ripping teeth out right now.
 		if (get_kindred_splat(target) && !HAS_TRAIT(target, TRAIT_DULLFANGS)) // If the target is kindred, yank their fangs out and apply a status effect. If they have dull fangs, treat them like a human.
-			if(HAS_TRAIT(target, TRAIT_PERMAFANGS)) // Take away permafangs if they have them.
-				REMOVE_TRAIT(target, TRAIT_PERMAFANGS, QUIRK_TRAIT)
 			if(permanent) // If the pliers are permanent, apply the permanent dull fangs status effect. Otherwise, just apply the regular one.
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS_PERMANENT)
 				visible_message(span_warning("[user] rips out [target]'s canines! It doesn't look like they'll be growing back anytime soon..."))
