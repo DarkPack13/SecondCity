@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Cargo deliveries now appear \"already in stock\" somewhere in supply, with a strong preference for appearing on-top of a pallet"
+  - qol: "Supply yard cargo trains are see-through when behind"
