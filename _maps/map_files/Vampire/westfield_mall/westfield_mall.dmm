@@ -14060,10 +14060,6 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
-"aUv" = (
-/obj/transfer_point_vamp/backrooms/map,
-/turf/open/openspace,
-/area/vtm/westfield_mall)
 "aUw" = (
 /obj/item/instrument/eguitar/vamp{
 	pixel_y = -10;
@@ -101556,7 +101552,7 @@ ahY
 ahY
 ahY
 ahY
-aUv
+ahY
 ahY
 ahY
 ahY
