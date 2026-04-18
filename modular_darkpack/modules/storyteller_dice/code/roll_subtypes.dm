@@ -112,3 +112,4 @@
 	bumper_text = "identify"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
 	reroll_cooldown = 1 SCENES
+	difficulty = 8

@@ -94,21 +94,23 @@
 		to_chat(artifact_identifier, span_warning("What is this thing? Some kind of yard sale item?"))
 		return
 
-	if(can_be_identified_without_ritual == FALSE)
+	if(!can_be_identified_without_ritual)
 		to_chat(artifact_identifier, span_warning("You've seen some occult artifacts, trinkets, and powerful relics, but this, you've either never seen it before, or it's power can only be awakened by few..."))
 		return
 
 	to_chat(artifact_identifier, span_cult("You might have seen this before in an occult text. You start identifying it..."))
-	if(do_after(artifact_identifier, 1 TURNS, src))
-		if(!identify_roll)
-			identify_roll = new()
-			identify_roll.difficulty = 8
-		var/roll = identify_roll.st_roll(user, src)
-		if(roll == ROLL_SUCCESS)
-			identify(artifact_identifier)
-			to_chat(artifact_identifier, span_cult("You successfully identify [src]!"))
-		else
-			to_chat(artifact_identifier, span_warning("You stop examining [src]."))
+	if(!do_after(artifact_identifier, 1 TURNS, src))
+		return
+
+	if(!identify_roll)
+		identify_roll = new()
+		identify_roll.difficulty = 8
+	var/roll = identify_roll.st_roll(user, src)
+	if(roll == ROLL_SUCCESS)
+		identify(artifact_identifier)
+		to_chat(artifact_identifier, span_cult("You successfully identify [src]!"))
+	else
+		to_chat(artifact_identifier, span_warning("You stop examining [src]."))
 
 /obj/effect/spawner/random/occult
 	name = "occult spawner"
