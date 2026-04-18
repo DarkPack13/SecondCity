@@ -17,7 +17,7 @@
 	outfit = /datum/outfit/job/vampire/trutchcatcher
 
 	allowed_splats = list(SPLAT_GAROU)
-	allowed_tribes = TRIBE_GAIA
+	allowed_tribes = TRIBE_LIST_GAIA
 	allowed_auspice = list(AUSPICE_PHILODOX)
 
 	display_order = JOB_DISPLAY_ORDER_TRUTHCATCHER
