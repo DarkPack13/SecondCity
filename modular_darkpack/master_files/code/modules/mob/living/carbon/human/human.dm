@@ -35,7 +35,7 @@
 	. = ..()
 
 
-/mob/living/carbon/human/update_soak() //Fairly complex list here. Kindred get double soak dice vs bashing, and can soak lethal with Stamina, and Agg with Fortitude. Garou can soak everything in every form except their breed form, in which they can only soak Lethal and Bashing.
+/mob/living/carbon/human/update_soak() //Fairly complex list here. Kindred can soak lethal with Stamina, and Agg with Fortitude. Garou can soak everything in every form except their breed form, in which they can only soak Lethal and Bashing.
 	. = ..()
 	if(get_kindred_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA) //Stamina already has the Fortitude bonus added for Bashing and Lethal.
