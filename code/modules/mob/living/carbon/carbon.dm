@@ -5,6 +5,7 @@
 	living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
 
 	register_context()
+	update_soak() // DARKPACK EDIT ADDITION
 
 	GLOB.carbon_list += src
 	ADD_TRAIT(src, TRAIT_CAN_HOLD_ITEMS, INNATE_TRAIT) // Carbons are assumed to be innately capable of having arms, we check their arms count instead
