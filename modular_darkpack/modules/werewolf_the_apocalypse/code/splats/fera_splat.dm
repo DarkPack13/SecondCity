@@ -141,11 +141,12 @@
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return
-		owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
+		// 2 to represent leathal***
+		owner.heal_storyteller_health(2, heal_scars = TRUE, heal_blood = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
-		if(shifter_species.veil_breaching_form && !shifter_species.causes_delerium)
+		if(shifter_species.is_veil_breaching_form(owner) && (!shifter_species.causes_delerium || HAS_TRAIT(owner, TRAIT_PIERCED_VEIL)))
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 // Being used to represent meditating in your caern
