@@ -112,3 +112,11 @@
 	bumper_text = "identify"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
 	reroll_cooldown = 1 SCENES
+
+// Soak
+/datum/storyteller_roll/soak
+	bumper_text = "soak"
+	roll_output_type = ROLL_PUBLIC
+	numerical = TRUE
+	spammy_roll = TRUE
+	difficulty = 6
