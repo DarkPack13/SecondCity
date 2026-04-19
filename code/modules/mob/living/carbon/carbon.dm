@@ -1411,5 +1411,7 @@
 		to_chat(src, span_danger("You suddenly feel blubbery!"))
 		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
+// DARKPACK EDIT START
 /mob/living/carbon/proc/update_soak() //Pretty basic calculation for the average person/being, soak is Bashing only using Stamina.
 	soak_dice_bashing = st_get_stat(STAT_STAMINA)
+// DARKPACK EDIT END
