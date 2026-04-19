@@ -56,6 +56,7 @@
 	var/matrix/ntransform = matrix(owner.transform)
 	ntransform.Scale(1.1, 1.1)
 	animate(owner, transform = ntransform, color = "#000000", time = time_to_transform * 0.9)
+	owner.update_soak()
 
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
