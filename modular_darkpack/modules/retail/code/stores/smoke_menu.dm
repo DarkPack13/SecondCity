@@ -12,5 +12,6 @@
 		new /datum/data/vending_product("\"Vase\"", /obj/item/bong, 50),
 		new /datum/data/vending_product("zippo lighter", /obj/item/lighter, 20),
 		new /datum/data/vending_product("lighter", /obj/item/lighter/greyscale, 10),
+		new /datum/data/vending_product("matchbox",/obj/item/storage/box/matches),
 		new /datum/data/vending_product("ashtray",/obj/item/storage/ashtray),
 	)
