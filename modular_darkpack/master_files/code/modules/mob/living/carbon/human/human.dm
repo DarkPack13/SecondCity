@@ -34,7 +34,7 @@
 
 	. = ..()
 
-
+// DARKPACK EDIT START
 /mob/living/carbon/human/update_soak() //Fairly complex list here. Kindred can soak lethal with Stamina, and Agg with Fortitude. Garou can soak everything in every form except their breed form, in which they can only soak Lethal and Bashing.
 	. = ..()
 	if(get_kindred_splat(src))
@@ -51,3 +51,4 @@
 			return
 		else
 			soak_dice_aggravated = st_get_stat(STAT_STAMINA)
+// DARKPACK EDIT END
