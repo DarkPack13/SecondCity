@@ -398,6 +398,7 @@
 	sharpness = NONE,
 	attacking_item)
 
+	var/datum/storyteller_roll/soak/soak_roll
 	var/roll_used = soak_dice_bashing
 	switch(damagetype)
 		if(BRUTE)
@@ -415,7 +416,7 @@
 		if(TOX)
 			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
 		if(OXY)
-			roll_used = null //Oxygen damage is applied automatically and cannot be soaked.
+			roll_used = 0 //Oxygen damage is applied automatically and cannot be soaked.
 		if(STAMINA)
 			roll_used = soak_dice_bashing //Stamina damage is a little weird, but as per exhaustion rules for rituals and the like, you can soak it like Bashing. Not too sure about it though.
 		if(BRAIN)
@@ -423,7 +424,13 @@
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
 
-	var/successes = SSroll.storyteller_roll(roll_used, difficulty = 6, roller = src, numerical = TRUE)
+	if(roll_used == 0)
+		return damage //Skip the roll if it can't be soaked.
+
+	if(!soak_roll)
+		soak_roll = new()
+
+	var/successes = soak_roll.st_roll(src, src, roll_used)
 
 	if(successes > 0)
 		damage = (max(0, damage - (successes * 10)))
