@@ -43,7 +43,7 @@
 
 /obj/item/organ/wings/functional/gargoyle/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	if(!toggle || QDELETED(toggle))
+	if(!toggle)
 		toggle = new
 	toggle.Grant(organ_owner)
 
