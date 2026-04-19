@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "auspex 2 no longer requires exactly 1 success to fire"
+  - bugfix: "auspex 2 failure to_chat actually prints"
