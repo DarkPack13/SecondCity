@@ -6,6 +6,7 @@
  * actions, and biotypes were added.
  */
 /datum/splat/proc/on_gain()
+	owner.update_soak() //Updates Soak on species gain.
 	return
 
 /**
