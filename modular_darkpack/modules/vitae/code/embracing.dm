@@ -26,6 +26,8 @@
 	for(var/i in 1 to 3)
 		childe.give_st_power(clan_disciplines[i])
 
+	childe.update_soak() //Updates soak rolls to reflect that they're now a Kindred.
+
 	var/datum/st_stat/morality_path/morality/stat_morality_childe = childe.storyteller_stats[STAT_MORALITY]
 
 	if(stat_morality_childe)
