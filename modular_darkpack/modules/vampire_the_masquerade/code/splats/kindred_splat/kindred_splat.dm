@@ -121,11 +121,14 @@
 	// Reset bloodpool size from Generation
 	owner.maxbloodpool = initial(owner.maxbloodpool)
 
+	owner.update_soak() //Updates Soak on species gain.
+
 /datum/splat/vampire/kindred/on_lose_or_destroy()
 	if (isdummy(owner))
 		return
 
 	GLOB.kindred_list -= owner
+	owner.update_soak() //Updates Soak on species loss.
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
