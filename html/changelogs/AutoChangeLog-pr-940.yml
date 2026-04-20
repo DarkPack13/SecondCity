@@ -1,4 +1,4 @@
 author: "Icarus-The-Sun"
 delete-after: True
 changes:
-  - bugfix: "fixes disappearing fridges"
+  - bugfix: "Mixing Bowls can now be used."

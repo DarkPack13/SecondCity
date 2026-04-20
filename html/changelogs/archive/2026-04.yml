@@ -69,3 +69,45 @@
   lpeapnni:
   - bugfix: fixed certain jobs not properly applying loadout clothing
   - bugfix: fixed NPC hair colors being always white
+2026-04-20:
+  Biplume:
+  - balance: Aura Perception now rolls for success. Perception and Empathy against
+      difficulty 8.
+  - bugfix: Pale Aura now properly disguises Ghouls as Kindred.
+  - rscadd: Added the Paths of Death and the Soul, Ecstasy, variants of Lilith, Night,
+      Paradox, Self-Focus and the Warrior.
+  FalloutFalcon:
+  - balance: Werewolf passive healing heals two "dots"
+  - bugfix: Cargo deliveries now appear "already in stock" somewhere in supply, with
+      a strong preference for appearing on-top of a pallet
+  - qol: Supply yard cargo trains are see-through when behind
+  - balance: Tweaks a bunch of stores to have more intresting products
+  - balance: appendicitis is 40x rarer
+  - rscadd: Adds "One Arm" flaw
+  - balance: Messages and inputs can contain more text (even moreso for subtle)
+  Icarus-The-Sun:
+  - image: adds an onfloor for the fbi duty vest and havana cigar
+  - image: makes switchblades and the forensics kit use the correct icons
+  - rscadd: Adds food/condiments to the grocery store
+  - image: adds an onfloor sprite for the labcoat
+  - bugfix: fixes disappearing fridges
+  Stutternov:
+  - rscadd: Added failure messages to target and caster (if not present already) when
+      failing a dominate roll.
+  - rscdel: Removed Dom 3's 6 success roll.
+  - spellcheck: Not much of an actual spellcheck - reworded description of Dom 1 and
+      5 to be accurate to V20.
+  - balance: Added in accurate weapon weight for all darkpack guns. (SMGs and AR's
+      = medium, snipers/autoshotty = heavy)
+  - rscadd: Adds new prompt 'yes/no' prompt to diablerie.
+  - bugfix: Fixes check on diablerie on the drink dry proc, diablerie now able to
+      be done + no more FDing kindred just for hitting 0 BP
+  chazzyjazzy:
+  - bugfix: '''Blood To water'' -> ''Blood to water'''
+  - bugfix: vampires no longer get appendicitis
+  - rscadd: Adds Prey Exclusion, Amnesia, Vengeful, Victim of the Masquerade, and
+      Territorial flaws
+  - bugfix: auspex 2 no longer requires exactly 1 success to fire
+  - bugfix: auspex 2 failure to_chat actually prints
+  - rscadd: Adds Betrayer's Mark, Thaumaturgically Inept, and Mage Blood as Tremere-specific
+      flaws
