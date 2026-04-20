@@ -83,14 +83,6 @@
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
-/datum/splat/werewolf/kinfolk/on_gain()
-	. = ..()
-	owner.update_soak() //Updates Soak on species gain.
-
-/datum/splat/werewolf/kinfolk/on_lose_or_destroy()
-	. = ..()
-	owner.update_soak() //Updates Soak on species loss.
-
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
@@ -133,7 +125,6 @@
 	owner.set_species(/datum/species/human/shifter/homid)
 	add_power(/datum/action/cooldown/power/gift/howling)
 
-	owner.update_soak() //Updates Soak on species gain.
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(revert_to_breed_form))
 
 /datum/splat/werewolf/shifter/on_lose_or_destroy()
@@ -141,7 +132,6 @@
 	if(!QDELETED(owner))
 		owner.set_species(/datum/species/human)
 
-	owner.update_soak() //Updates Soak on species loss.
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
