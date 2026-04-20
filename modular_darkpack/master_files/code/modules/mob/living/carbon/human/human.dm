@@ -48,10 +48,12 @@
 	if(get_garou_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA)
 		soak_dice_lethal = st_get_stat(STAT_STAMINA)
-		if(is_breed_form(src))
+		var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
+		if(shifter_splat.is_breed_form() && (shifter_splat.get_breed_form_species() != /datum/species/human/shifter/war)) //Garou don't soak Agg in breed form except for
+			soak_dice_aggravated = 0
 			return
-		else
-			soak_dice_aggravated = st_get_stat(STAT_STAMINA)
+		soak_dice_aggravated = st_get_stat(STAT_STAMINA)
+
 	if(get_ghoul_splat(src))
 		var/datum/discipline/soak_fortitude = src.get_discipline(/datum/discipline/fortitude)
 		if(!soak_fortitude)
