@@ -426,8 +426,8 @@
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
 
-	if(roll_used == 0)
-		return damage //Skip the roll if it can't be soaked.
+	if(roll_used < 1)
+		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
 
 	if(!soak_roll)
 		soak_roll = new()
@@ -437,4 +437,6 @@
 	if(successes > 0)
 		damage = (max(0, damage - (successes * 10)))
 		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
-		// DARKPACK EDIT ADD END
+
+	return damage 
+// DARKPACK EDIT ADD END
