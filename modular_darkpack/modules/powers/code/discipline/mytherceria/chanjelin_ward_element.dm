@@ -1,4 +1,4 @@
-/*/datum/element/chanjelin_ward
+/datum/element/chanjelin_ward
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 1
 	// The guy who placed the ward
@@ -24,7 +24,7 @@
 	UnregisterSignal(target, list(COMSIG_ATOM_EXAMINE))
 	UnregisterSignal(target, list(COMSIG_ATOM_BUMPED))
 	UnregisterSignal(target, list(COMSIG_MOB_ATTACK_HAND))
-	UnregisterSignal(target, list(COMSIG_MOB_ATTACKBY))
+	UnregisterSignal(target, list(COMSIG_ATOM_ATTACKBY))
 
 	if(ismob(target))
 		UnregisterSignal(target, list(COMSIG_MOB_ITEM_ATTACK))
@@ -87,7 +87,7 @@
 /datum/element/chanjelin_ward/proc/on_entered(atom/movable/source, atom/movable/arrived)
 	SIGNAL_HANDLER
 
-	if(roll_check(user))
+	if(roll_check(arrived))
 		return
 
 	if(isliving(arrived))
@@ -106,6 +106,6 @@
 
 /datum/element/chanjelin_ward/proc/on_attacked(atom/movable/source, mob/attacked, mob/attacker)
 
-	if(roll_check(user))
+	if(roll_check(attacker))
 		return
-#warn chanjelin_ward_element.dm: this is horribly unfinished!*/
+#warn chanjelin_ward_element.dm: this is horribly unfinished!
