@@ -392,7 +392,7 @@
 		updatehealth()
 	if(update)
 		update_damage_overlays()
-// DARKPACK EDIT ADD START - SOAK ROLLS
+// DARKPACK EDIT ADD START - (soak)
 /mob/living/carbon/proc/soak_roll(
 	damage = 0,
 	damagetype = BRUTE,
