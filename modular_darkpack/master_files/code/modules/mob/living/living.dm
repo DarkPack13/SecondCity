@@ -5,8 +5,6 @@
 	update_zone_hud(src, get_area(src))
 
 /mob/living/Destroy()
-	lastattacked = null
-	drunked_of = null
 	storyteller_stats = null
 	beastmaster_minions = null
 	minion_command_components = null

@@ -1,13 +1,8 @@
 /mob/living
 	has_emotion = TRUE
 
-	var/mob/living/lastattacked
-
-	var/bloodquality = 1
-
-	var/list/drunked_of = list()
-
 	var/discipline_time_plus = 0
+	/// Multiplier for how efficently bloodpool is spent for BLOODPOWER SPECIFICLY
 	var/blood_efficiency = 1
 	var/thaum_damage_plus = 0
 
@@ -22,6 +17,10 @@
 
 	var/bloodpool = 5
 	var/maxbloodpool = 5
+
+	/// The quality of the mobs blood when drank from. Decides how much BP a vampire will regain.
+	var/bloodquality = BLOOD_QUALITY_LOW
+
 	var/masquerade_score = 5
 	var/warrant = FALSE
 	var/ignores_warrant = FALSE
@@ -30,7 +29,7 @@
 	///Aggravated damage caused by supernatural attacks.
 	var/aggloss = 0
 
-	var/list/storyteller_stats = list()
+	var/list/storyteller_stats = list() // STORYTELLER_STATS
 
 	//beastmaster
 	var/list/beastmaster_minions = list()
@@ -50,4 +49,4 @@
 	var/collected_souls = 0
 
 	/// List of supernatural types that this mob is part of
-	var/list/datum/splat/splats
+	var/list/datum/splat/splats // SPLATS

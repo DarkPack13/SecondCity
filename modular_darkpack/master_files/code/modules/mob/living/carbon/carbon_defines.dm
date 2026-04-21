@@ -6,4 +6,5 @@
 	var/killed_count = 0
 	var/fakediablerist = FALSE
 	var/can_be_embraced = TRUE
-	bloodquality = 2
+
+	bloodquality = BLOOD_QUALITY_NORMAL
