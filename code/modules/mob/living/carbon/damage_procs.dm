@@ -429,8 +429,7 @@
 	if(roll_used < 1)
 		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
 
-	if(!soak_roll)
-		soak_roll = new()
+	var/datum/storyteller_roll/soak/soak_roll = new()
 
 	var/successes = soak_roll.st_roll(src, src, roll_used)
 
