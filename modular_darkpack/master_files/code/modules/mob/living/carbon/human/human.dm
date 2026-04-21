@@ -40,7 +40,7 @@
 	if(get_kindred_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA) //Stamina already has the Fortitude bonus added for Bashing and Lethal.
 		soak_dice_lethal = st_get_stat(STAT_STAMINA)
-		var/datum/discipline/soak_fortitude = src.get_discipline(/datum/discipline/fortitude)
+		var/datum/discipline/soak_fortitude = get_discipline(/datum/discipline/fortitude)
 		if(!soak_fortitude)
 			return
 		soak_dice_aggravated = soak_fortitude.level
