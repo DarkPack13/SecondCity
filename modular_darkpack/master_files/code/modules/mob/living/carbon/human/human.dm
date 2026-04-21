@@ -60,4 +60,4 @@
 			return
 		soak_dice_lethal = soak_fortitude.level //Ghouls can soak lethal and agg via fortitude.
 		soak_dice_aggravated = soak_fortitude.level
-// DARKPACK EDIT END
+// DARKPACK EDIT ADD END
