@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Camarilla or the Anarchs"
+	supervisors = "the Hospital Administrator"
 	exp_required_type_department = EXP_TYPE_CLINIC
 	config_tag = "CLINIC_DIRECTOR"
 	outfit = /datum/outfit/job/vampire/clinic_director

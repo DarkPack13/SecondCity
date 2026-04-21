@@ -346,6 +346,7 @@
 	icon_state = "robustg"
 	base_icon_state = "robustg"
 	spawn_type = /obj/item/cigarette/robustgold
+	custom_price = 80 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold/empty
 	spawn_count = 0
@@ -516,6 +517,7 @@
 	spawn_count = 5
 	spawn_coupon = FALSE
 	display_cigs = FALSE
+	custom_price = 100 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/fancy/cigarettes/cigars/update_icon_state()
 	. = ..()
@@ -596,6 +598,7 @@
 	spawn_type = /obj/item/food/nugget
 	spawn_count = 6
 	storage_type = /datum/storage/nugget_box
+	custom_price = 2 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/fancy/nugget_box/Initialize(mapload)
 	. = ..()

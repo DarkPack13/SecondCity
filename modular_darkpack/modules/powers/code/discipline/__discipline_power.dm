@@ -679,6 +679,13 @@
 	return
 
 /**
+* Overridable proc that allows for code to affect the power's owner
+* when it is lost / deleted. Triggered by parent /datum/discipline/post_loss().
+*/
+/datum/discipline_power/proc/post_loss()
+	return
+
+/**
  * Handles refreshing toggled powers on a loop, spending necessary
  * resources and restarting the duration timer if it can proceed. If
  * it can't proceed, it directly deactivates the power.

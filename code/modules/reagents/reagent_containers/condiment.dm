@@ -121,6 +121,7 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/sugar = 50)
 	fill_icon_thresholds = null
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/sugar/examine(mob/user)
 	. = ..()
@@ -250,6 +251,7 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/cornmeal = 30)
 	fill_icon_thresholds = null
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/bbqsauce
 	name = "bbq sauce"
@@ -277,6 +279,7 @@
 	icon_state = "vinegar"
 	list_reagents = list(/datum/reagent/consumable/vinegar = 50)
 	fill_icon_thresholds = null
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/vegetable_oil
 	name = "cooking oil"
@@ -284,6 +287,7 @@
 	icon_state = "cooking_oil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 50)
 	fill_icon_thresholds = null
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/olive_oil
 	name = "quality oil"
@@ -291,6 +295,7 @@
 	icon_state = "oliveoil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 50)
 	fill_icon_thresholds = null
+	custom_price = 25 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/yoghurt
 	name = "yoghurt carton"
@@ -298,6 +303,7 @@
 	icon_state = "yoghurt"
 	list_reagents = list(/datum/reagent/consumable/yoghurt = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/peanut_butter
 	name = "peanut butter"
@@ -305,6 +311,7 @@
 	icon_state = "peanutbutter"
 	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/cherryjelly
 	name = "cherry jelly"
@@ -312,6 +319,7 @@
 	icon_state = "cherryjelly"
 	list_reagents = list(/datum/reagent/consumable/cherryjelly = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/honey
 	name = "honey"
@@ -319,6 +327,7 @@
 	icon_state = "honey"
 	list_reagents = list(/datum/reagent/consumable/honey = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/ketchup
 	name = "ketchup"
