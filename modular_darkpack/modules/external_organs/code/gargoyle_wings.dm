@@ -36,7 +36,7 @@
 	flap_sound_loop()
 
 /obj/item/organ/wings/functional/gargoyle/proc/flap_sound_loop()
-	if(!wings_open || QDELETED(src)) // a little weird here but since garg wings can be tucked/untucked/flapping we're using parent type's wings_open and wings_closed for flapping and 'hidden' for tucked/untucked...
+	if(!wings_open) // a little weird here but since garg wings can be tucked/untucked/flapping we're using parent type's wings_open and wings_closed for flapping and 'hidden' for tucked/untucked...
 		return
 	playsound(owner, 'modular_darkpack/modules/external_organs/sounds/wing_flap_flying.ogg', 50, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(flap_sound_loop)), 2 SECONDS)
