@@ -161,7 +161,8 @@
 	if(get_kindred_splat(parent_mob))
 		var/mob/living/carbon/human/lick = parent_mob
 		var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats[STAT_MORALITY]
-		if(!stat_morality.morality_path.alignment == MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
+		var/alignment = stat_morality?.morality_path?.alignment
+		if(alignment != MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
 			examine_message += "[parent_mob.p_Their()] aura colors appear pale."
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		examine_message += "[parent_mob.p_Their()] aura is weak and intermittent, fading in and out."
