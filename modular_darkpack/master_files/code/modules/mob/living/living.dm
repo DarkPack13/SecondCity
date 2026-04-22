@@ -2,7 +2,7 @@
 	. = ..()
 	storyteller_stats = create_new_stat_prefs(storyteller_stats)
 	become_area_sensitive(ZONE_TRAIT)
-	update_zone_hud(src, get_area(src))
+	update_zone_hud(src, get_area(src)) // AREAS - (Zone hud)
 
 /mob/living/Destroy(force)
 	storyteller_stats = null
