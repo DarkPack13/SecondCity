@@ -460,6 +460,9 @@
 		to_chat(user, "It's already in use - wait a bit.")
 		return
 
+	if(user.dancing)
+		return
+
 	pole_in_use = TRUE
 	user.setDir(SOUTH)
 	user.Stun(100)
