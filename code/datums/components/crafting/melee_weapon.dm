@@ -147,6 +147,17 @@
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
+
+/datum/crafting_recipe/wireprod
+	name = "Wireprod assembly"
+	result = /obj/item/wireprod
+	reqs = list(
+		/obj/item/restraints/handcuffs/cable = 1,
+		/obj/item/stack/rods = 1,
+	)
+	time = 2 SECONDS
+	category = CAT_WEAPON_MELEE
+
 /* // DARKPACK EDIT REMOVE
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
