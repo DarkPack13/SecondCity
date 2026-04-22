@@ -39,7 +39,7 @@
 	target_hud.add_atom_to_hud(parent_mob)
 
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
-	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
+	RegisterSignals(parent_mob, list(COMSIG_MOB_UPDATE_AURA, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)), PROC_REF(update_aura))
 	RegisterSignal(parent_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	if(isnpc(parent_mob))
 		RegisterSignal(parent_mob, COMSIG_COMBAT_MODE_TOGGLED, PROC_REF(on_combat_mode_toggled))
@@ -51,7 +51,7 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 	examine_message = ""
-	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_ATOM_EXAMINE))
+	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)), COMSIG_ATOM_EXAMINE)
 	if(isnpc(parent_mob))
 		UnregisterSignal(parent_mob, list(COMSIG_COMBAT_MODE_TOGGLED))
 	QDEL_NULL(aura_smoke)
