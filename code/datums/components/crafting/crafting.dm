@@ -255,7 +255,7 @@
 			var/datum/st_stat/recipe_skill = recipe.skill_required_for_use
 			var/level_required = recipe.skill_dots_minimum
 			if(recipe_skill)
-				if(human_crafter.st_get_stat(recipe_skill) < level_required)
+				if(!isnull(level_required) && human_crafter.st_get_stat(recipe_skill) < level_required)
 					return ", you dont know how to craft! You need at least [level_required] in [recipe_skill::name]!"
 				recipe_time = recipe_time / max(human_crafter.st_get_stat(recipe_skill), 1)
 		// DARKPACK EDIT ADD END
