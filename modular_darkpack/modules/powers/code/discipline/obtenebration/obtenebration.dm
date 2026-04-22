@@ -328,7 +328,7 @@
 	abyss_power = Target
 	current_mode = abyss_power.aggro_mode
 
-/datum/action/aggro_mode/Trigger(trigger_flags)
+/datum/action/aggro_mode/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -393,8 +393,11 @@
 	. = ..()
 	power = Target
 
-/datum/action/clear_shadows/Trigger(trigger_flags)
-	if(!power)
+/datum/action/clear_shadows/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
 		return
+	if(!power)
+		return FALSE
 	power.remove_all_shadows()
-	return TRUE
+
