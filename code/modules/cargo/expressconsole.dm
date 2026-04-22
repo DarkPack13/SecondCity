@@ -36,6 +36,7 @@
 	if (isnull(landingzone))
 		WARNING("[src] couldnt find a Quartermaster/Storage (aka cargobay) area on the station, and as such it has set the supplypod landingzone to the area it resides in.")
 		landingzone = get_area(src)
+	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(withdraw_money)) // DARKPACK EDIT ADD - Putting cash into the Cargo console
 
 /obj/machinery/computer/cargo/express/on_construction(mob/user)
 	. = ..()
@@ -72,7 +73,38 @@
 		to_chat(user, span_alert("[src] is already linked to [beacon]."))
 		return ITEM_INTERACT_FAILURE
 
+	// DARKPACK EDIT ADD START - Putting cash into the cargo console
+	if(istype(tool, /obj/item/stack/dollar))
+		var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
+		if(isnull(account))
+			return ITEM_INTERACT_FAILURE
+		var/obj/item/stack/dollar/cash = tool
+		var/amount = cash.amount
+		account.adjust_money(amount)
+		to_chat(user, span_notice("You deposit [amount] dollar\s into the cargo account."))
+		qdel(cash)
+		return ITEM_INTERACT_SUCCESS
+	// DARKPACK EDIT ADD END - Putting cash into the cargo console
+
 	return NONE
+
+// DARKPACK EDIT ADD START - (Putting cash into the cargo console)
+/obj/machinery/computer/cargo/express/proc/withdraw_money(mob/living/user)
+	var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
+	if(isnull(account))
+		return
+	var/amount = account.account_balance
+	if(amount <= 0)
+		balloon_alert(user, "no funds to withdraw!")
+		return
+	account.adjust_money(-amount)
+	var/turf/T = get_turf(src)
+	while(amount > 0)
+		var/stack_amount = min(amount, 1000)
+		new /obj/item/stack/dollar(T, stack_amount)
+		amount -= stack_amount
+	to_chat(user, span_notice("You withdraw [account.account_balance] dollar\s from the cargo account."))
+// DRAKPACK EDIT ADD END
 
 /obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -151,6 +183,7 @@
 			using_beacon = FALSE
 			if (beacon)
 				beacon.update_status(SP_UNREADY) //ready light on beacon will turn off
+		/* // DARKPACK EDIT REMOVAL
 		if("LZBeacon")
 			using_beacon = TRUE
 			if (beacon)
@@ -166,11 +199,14 @@
 			new_beacon.link_console(src, user) //rather than in beacon's Initialize(), we can assign the computer to the beacon by reusing this proc)
 			printed_beacons++ //printed_beacons starts at 0, so the first one out will be called beacon # 1
 			beacon.name = "Supply Pod Beacon #[printed_beacons]"
+		*/
 
 		if("add")//Generate Supply Order first
+			/* // DARKPACK EDIT REMOVAL - (Not needed when its not a fucking projectile)
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_EXPRESSPOD_CONSOLE))
 				say("Railgun recalibrating. Stand by.")
 				return
+			*/
 			var/id = params["id"]
 			id = text2path(id) || id
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
@@ -204,11 +240,17 @@
 
 
 			var/list/empty_turfs
+			var/list/prefered_turfs = list() // DARKPACK EDIT ADD
 			if (!istype(beacon) || !using_beacon || (obj_flags & EMAGGED))
 				empty_turfs = list()
-				for(var/turf/open/floor/open_turf in landingzone.get_turfs_from_all_zlevels())
+				for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels()) // DARKPACK EDIT CHANGE - (removes floor so it can include DIRT)
 					if(!open_turf.is_blocked_turf())
 						empty_turfs += open_turf
+						// DARKPACK EDIT ADD START
+						var/obj/effect/decal/pallet/cool_spot = locate() in open_turf
+						if(cool_spot)
+							prefered_turfs += open_turf
+						// DARKPACK EDIT ADD END
 
 				if (!length(empty_turfs))
 					return
@@ -238,16 +280,32 @@
 				landing_turf = get_turf(beacon)
 				beacon.update_status(SP_LAUNCH)
 			else
-				landing_turf = pick(empty_turfs)
+				// DARKPACK EDIT CHANGE START
+				if(length(prefered_turfs))
+					landing_turf = pick(prefered_turfs)
+				else
+					landing_turf = pick(empty_turfs)
+				// DARKPACK EDIT CHANGE END
 
 			if (!account.adjust_money(-order.pack.get_cost() * get_discount()))
 				return
 
 			TIMER_COOLDOWN_START(src, COOLDOWN_EXPRESSPOD_CONSOLE, 5 SECONDS)
+			/* // DARKPACK EDIT REMOVAL
 			if(pack.special_pod)
 				new /obj/effect/pod_landingzone(landing_turf, pack.special_pod, order)
 			else
 				new /obj/effect/pod_landingzone(landing_turf, pod_type, order)
+			*/
+			// DARKPACK EDIT ADD START
+			var/crate
+			if(order.pack.crate_type)
+				crate = order.generate(landing_turf)
+			else if(order.pack.order_flags & ORDER_GOODY) //Goody orders lack a crate_type and need special handling
+				crate = order.generateCombo(landing_turf, order.orderer, order.pack.contains, order.pack.cost)
+
+			to_chat(user, span_notice("[crate] is definitely lying around [landingzone] somewhere in the stock."))
+			// DARKPACK EDIT ADD END
 
 			update_appearance()
 			return TRUE

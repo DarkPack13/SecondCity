@@ -4,12 +4,19 @@
 	icon_state = "obtenebration"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/obtenebration
+	signature_clan = VAMPIRE_CLAN_LASOMBRA
 
 /datum/discipline/obtenebration/post_gain()
 	. = ..()
 	var/datum/action/ritual_drawing/mysticism/mystic = new()
 	mystic.Grant(owner)
 	mystic.level = level
+
+/datum/discipline/obtenebration/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/mysticism))
+			qdel(action)
 
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
@@ -81,6 +88,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING | DISC_CHECK_IMMOBILE
 	target_type = TARGET_MOB
 	range = 7
+	vitae_cost = 0
 
 	aggravating = TRUE
 	violates_masquerade = TRUE
@@ -312,7 +320,7 @@
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
 
-/datum/action/aggro_mode/Trigger(trigger_flags)
+/datum/action/aggro_mode/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -380,8 +388,11 @@
 	. = ..()
 	power = Target
 
-/datum/action/clear_shadows/Trigger(trigger_flags)
-	if(!power)
+/datum/action/clear_shadows/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
 		return
+	if(!power)
+		return FALSE
 	power.remove_all_shadows()
-	return TRUE
+

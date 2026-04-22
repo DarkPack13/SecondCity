@@ -37,7 +37,7 @@
 
 /datum/st_stat/attribute/intelligence
 	name = "Intelligence"
-	description = "A character's grasp of facts and knowledge. It also governs a character's ability to reason, solve problems, and evaluate situations. Used in magic disciplines."
+	description = "A character's grasp of facts and knowledge. It also governs a character's ability to reason, solve problems, and evaluate situations. Used in magic disciplines and rituals."
 	subcategory = "Mental"
 
 /datum/st_stat/attribute/wits
