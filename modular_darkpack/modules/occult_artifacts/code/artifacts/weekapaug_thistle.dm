@@ -10,10 +10,14 @@
 
 /obj/item/occult_artifact/vampire/weekapaug_thistle/grant_powers()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.armor = H.physiology.armor.add_other_armor(/datum/armor/weekapaug_thistle)
+	var/mob/living/carbon/human/human_owner = astype(owner)
+	if(!human_owner)
+		return
+	human_owner.physiology.armor = human_owner.physiology.armor.add_other_armor(/datum/armor/weekapaug_thistle)
 
 /obj/item/occult_artifact/vampire/weekapaug_thistle/ungrant_powers()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.armor = H.physiology.armor.subtract_other_armor(/datum/armor/weekapaug_thistle)
+	var/mob/living/carbon/human/human_owner = astype(owner)
+	if(!human_owner)
+		return
+	human_owner.physiology.armor = human_owner.physiology.armor.subtract_other_armor(/datum/armor/weekapaug_thistle)
