@@ -12,6 +12,12 @@
 	mystic.Grant(owner)
 	mystic.level = level
 
+/datum/discipline/obtenebration/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/mysticism))
+			qdel(action)
+
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
 	desc = "Obtenebration power description"
@@ -314,7 +320,7 @@
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
 
-/datum/action/aggro_mode/Trigger(trigger_flags)
+/datum/action/aggro_mode/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -382,8 +388,11 @@
 	. = ..()
 	power = Target
 
-/datum/action/clear_shadows/Trigger(trigger_flags)
-	if(!power)
+/datum/action/clear_shadows/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
 		return
+	if(!power)
+		return FALSE
 	power.remove_all_shadows()
-	return TRUE
+
