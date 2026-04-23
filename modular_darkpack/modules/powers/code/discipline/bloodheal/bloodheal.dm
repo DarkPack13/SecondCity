@@ -68,7 +68,10 @@
 	. = ..()
 
 	//normal bashing/lethal damage
-	owner.heal_ordered_damage(HEAL_BASHING_LETHAL_DAMAGE * vitae_cost, list(BRUTE, TOX, OXY, STAMINA))
+	if(HAS_TRAIT(owner, TRAIT_SLOW_HEALING))
+		owner.heal_ordered_damage((HEAL_BASHING_LETHAL_DAMAGE/2) * vitae_cost, list(BRUTE, TOX, OXY, STAMINA))
+	else
+		owner.heal_ordered_damage(HEAL_BASHING_LETHAL_DAMAGE * vitae_cost, list(BRUTE, TOX, OXY, STAMINA))
 
 	if(length(owner.all_wounds))
 		for (var/i in 1 to min(vitae_cost, length(owner.all_wounds)))

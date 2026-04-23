@@ -175,5 +175,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_GRAVE_SMELL "grave_smell"
 #define TRAIT_LAME "lame"
+#define TRAIT_SLOW_HEALING "slow_healing"
 
 // END TRAIT DEFINES

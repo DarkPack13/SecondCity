@@ -1,4 +1,4 @@
-// V20 p. 482
+// V20 p. 481
 /datum/quirk/darkpack/smell_of_the_grave
 	name = "Smell Of The Grave"
 	desc = {"You exude an odor of dampness and newly turned earth, which no amount of scents or perfumes will cover.
