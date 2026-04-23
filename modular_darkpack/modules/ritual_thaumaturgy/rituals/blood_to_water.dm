@@ -1,5 +1,5 @@
 /obj/ritual_rune/thaumaturgy/blood_to_water
-	name = "blood To water"
+	name = "blood to water"
 	desc = "Purges all blood in range into the water."
 	icon_state = "rune8"
 	word = "CL-ENE"
