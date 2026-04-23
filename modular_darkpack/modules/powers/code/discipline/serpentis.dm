@@ -30,7 +30,7 @@
 	duration_length = 5 SECONDS
 	cooldown_length = 5 SECONDS
 
-/datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/immobilize_target(mob/living/carbon/human/target, duration = 5 SECONDS)
+/datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/immobilize_target(mob/living/target, duration = 5 SECONDS)
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
 	if(do_after(owner, duration, target))
@@ -42,12 +42,12 @@
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/on_target_attacked(datum/source)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/target = source
+	var/mob/living/target = source
 	release_target(target)
 	to_chat(owner, span_warning("Your concentration is broken as [target] is attacked!"))
 	to_chat(target, span_warning("The mental hold on you breaks as you're attacked!"))
 
-/datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/release_target(mob/living/carbon/human/target)
+/datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/release_target(mob/living/target)
 	UnregisterSignal(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT))
 	to_chat(target, span_danger("You feel your concentration become your own once more, able to look away from the commanding gaze."))
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
