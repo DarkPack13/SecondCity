@@ -114,6 +114,9 @@
 	if(HAS_TRAIT(target, TRAIT_WEAK_WILLED))
 		theirpower -= 2
 
+	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
+		theirpower += 2
+
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
 	var/mob/living/carbon/human/human_target = target

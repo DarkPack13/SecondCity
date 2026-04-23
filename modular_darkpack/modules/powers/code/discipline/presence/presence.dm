@@ -32,6 +32,9 @@
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
+	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
+		theirpower += 2
+
 	//botch
 	if(successes < 0)
 		ADD_TRAIT(target, TRAIT_PRESENCE_IMMUNE, TRAIT_GENERIC)
