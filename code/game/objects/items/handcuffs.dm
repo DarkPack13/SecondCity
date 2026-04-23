@@ -101,9 +101,11 @@
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
 
+// DARKPACK EDIT ADDITION START
 	if(HAS_TRAIT(victim, TRAIT_NO_CUFF))
 		victim.balloon_alert(user, "you can't handcuff [victim]!")
 		return
+// DARKPACK EDIT ADDITION END
 
 	victim.visible_message(
 		span_danger("[user] is trying to put [src] on [victim]!"),
