@@ -12,10 +12,8 @@
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.physiology.armor = H.physiology.armor.add_other_armor(/datum/armor/weekapaug_thistle)
-	owner.frenzy_chance_boost = 5
 
 /obj/item/occult_artifact/vampire/weekapaug_thistle/ungrant_powers()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.physiology.armor = H.physiology.armor.subtract_other_armor(/datum/armor/weekapaug_thistle)
-	owner.frenzy_chance_boost = 10
