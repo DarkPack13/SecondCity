@@ -27,6 +27,7 @@
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
 #define MESSAGE_TYPE_SUBTLE "subtle" // DARKPACK EDIT ADD - SUBTLE
+#define MESSAGE_TYPE_MENTOR "mentor" // DARKPACK EDIT ADD - Mentors
 
 /// Max length of chat message in characters
 #define CHAT_MESSAGE_MAX_LENGTH 110

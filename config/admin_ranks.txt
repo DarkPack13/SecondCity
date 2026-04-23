@@ -83,3 +83,10 @@ Name = Coder
 Include = DEBUG VAREDIT SERVER SPAWN POLL
 Exclude = AUTOADMIN
 Edit =
+
+// TFN EDIT ADD START - Mentors
+Name = Mentor
+Include =
+Exclude = AUTOADMIN
+Edit =
+// TFN EDIT ADD END - Mentors

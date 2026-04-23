@@ -1,0 +1,7 @@
+## Defines whether or not mentors can see ckeys alongside mobnames.
+## uncomment to hide ckeys from mentors
+#MENTORS_MOBNAME_ONLY
+
+## Defines whether the server uses the legacy mentor system with mentors.txt or the SQL system.
+## uncomment to use mentors.txt instead of SQL
+#MENTOR_LEGACY_SYSTEM

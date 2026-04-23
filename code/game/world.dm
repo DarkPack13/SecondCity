@@ -164,7 +164,7 @@ GLOBAL_VAR(restart_counter)
 	SetupLogs()
 
 	load_admins(initial = TRUE)
-
+	load_mentors(initial = TRUE) // TFN EDIT ADD - Mentors
 	load_poll_data()
 
 	// Initialize RETA system - code/modules/reta/reta_system.dm
