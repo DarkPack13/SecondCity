@@ -15,7 +15,7 @@
 /datum/action/cooldown/power/fomori_power/body_barbs
 	name = "Body Barbs"
 	desc = "Use the grotesque spikes on your body to amplify your brawling ability."
-	button_icon_state = "bodybarbs"
+	button_icon_state = "body_barbs"
 	rank = 1 // of 10
 	var/extra_dice = 1 // How many extra dice the fomor gets to brawling
 

@@ -7185,7 +7185,7 @@
 #include "modular_darkpack\modules\flavor_text\code\preferences\masked_flavor_text_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\nsfw_content_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\record_preferences.dm"
-#include "modular_darkpack\modules\fomori\code\powers\_fomor_power.dm"
+#include "modular_darkpack\modules\fomori\code\powers\_fomori_power.dm"
 #include "modular_darkpack\modules\fomori\code\powers\body_barbs.dm"
 #include "modular_darkpack\modules\fomori\code\splats\fomori_splat.dm"
 #include "modular_darkpack\modules\font_adjustments\font_procs.dm"
