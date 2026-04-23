@@ -55,7 +55,10 @@
 		. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
 
 	if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
-		. += span_warning("[p_they(TRUE)] smell[p_s()] weirdly animal like...<br>")
+		. += span_warning("[p_They(TRUE)] smell[p_s()] weirdly animal like...<br>")
+
+	if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
+		. += span_warning("[p_They] smell[p_s()] like moist soil.<br>")
 
 	if(!(obscured_slots & HIDEFACE))
 		switch(st_get_stat(STAT_APPEARANCE))

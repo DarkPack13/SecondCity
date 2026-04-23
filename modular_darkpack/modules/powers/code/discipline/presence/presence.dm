@@ -35,6 +35,9 @@
 	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
 		theirpower += 2
 
+	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
+		theirpower += 1
+
 	//botch
 	if(successes < 0)
 		ADD_TRAIT(target, TRAIT_PRESENCE_IMMUNE, TRAIT_GENERIC)
