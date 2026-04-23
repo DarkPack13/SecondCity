@@ -13,7 +13,6 @@
 			return
 		VA.identify()
 		identifier.research_points += VA.research_value
-		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 		qdel(src)
 		return
 
