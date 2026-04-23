@@ -60,7 +60,7 @@
 /obj/item/ammo_box/magazine/internal/cylinder/rev9mm
 	name = "revolver cylinder"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
-	caliber = CALIBER_9MM
+	caliber = CALIBER_9MMPARA
 	max_ammo = 6
 
 //PISTOLS
@@ -112,6 +112,7 @@
 	inhand_icon_state = "deagle"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m50
 	fire_sound_volume = 125 //MY EARS
+	weapon_weight = WEAPON_MEDIUM	//Firing .50 at 70 dam, think this is fair.
 
 /obj/item/ammo_box/magazine/darkpack45acp
 	name = "pistol magazine (.45 ACP)"
@@ -119,7 +120,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "m1911"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 8
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -140,7 +141,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "glock19"
 	ammo_type = /obj/item/ammo_casing/vampire/c9mm
-	caliber = CALIBER_9MM
+	caliber = CALIBER_9MMPARA
 	max_ammo = 15
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -165,9 +166,12 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "glock21"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 12
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/glock45acp/hp
+	ammo_type = /obj/item/ammo_casing/vampire/c45acp/HP
 
 /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21
 	name = "\improper Brokk 21"
@@ -243,6 +247,7 @@
 	burst_size = 5
 	spread = 11
 	recoil = 5
+	weapon_weight = WEAPON_MEDIUM
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -271,6 +276,7 @@
 	burst_size = 1
 	spread = 4
 	recoil = 3
+	weapon_weight = WEAPON_MEDIUM
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -290,7 +296,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "mac10" //uzi sprite placeholder
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -306,6 +312,7 @@
 	spread = 16 //spray and pray
 	burst_delay = 1
 	recoil = 6
+	weapon_weight = WEAPON_MEDIUM
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
 	can_suppress = TRUE
@@ -375,6 +382,7 @@
 	burst_size = 1
 	spread = 3
 	recoil = 2
+	weapon_weight = WEAPON_MEDIUM
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -412,6 +420,7 @@
 	inhand_icon_state = "rifle"
 	worn_icon_state = "rifle"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack556
 	burst_size = 2
 	fire_delay = 2
@@ -434,6 +443,7 @@
 	inhand_icon_state = "huntrifle"
 	worn_icon_state = "sks"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack556/hunt
 	burst_size = 1
 	fire_delay = 1
@@ -467,6 +477,7 @@
 	inhand_icon_state = "ak74"
 	worn_icon_state = "sks"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack545
 	recoil = 5
 	burst_size = 1
@@ -502,6 +513,7 @@
 	inhand_icon_state = "aug"
 	worn_icon_state = "aug"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpackaug
 	burst_size = 3
 	fire_delay = 2
@@ -521,7 +533,7 @@
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp
-	caliber = CALIBER_45
+	caliber = CALIBER_45ACP
 	max_ammo = 50
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -533,6 +545,7 @@
 	icon_state = "thompson"
 	inhand_icon_state = "thompson"
 	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpackthompson
 	recoil = 5
 	burst_size = 1
@@ -567,6 +580,7 @@
 	inhand_icon_state = "lever"
 	worn_icon_state = "lever"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/darkpack/lever
 	bolt_wording = "bolt"
 	need_bolt_lock_to_interact = TRUE
@@ -581,7 +595,6 @@
 	recoil = 2
 	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
 	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5 //~52 damage vs 35 base .44 damage. It's ok, on par with 5.56 but lower pen and slower to fire due to bolt action.
 	masquerade_violating = FALSE
@@ -604,6 +617,7 @@
 	inhand_icon_state = "sniper"
 	worn_icon_state = "sniper"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampire/sniper
 	bolt_wording = "bolt"
 	bolt_type = BOLT_TYPE_STANDARD
@@ -618,7 +632,6 @@
 	fire_delay = 40
 	recoil = 7
 	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
 	//zoomable = TRUE
 	//zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	//zoom_out_amt = 5
@@ -636,6 +649,7 @@
 	icon_state = "psg1"
 	inhand_icon_state = "psg1"
 	worn_icon_state = "sniper"
+	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/vamp762x51PSG1
 	bolt_wording = "bolt"
@@ -653,7 +667,6 @@
 	fire_delay = 5
 	spread = 2
 	recoil = 6
-	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5
 	actions_types = list()
@@ -676,7 +689,7 @@
 /obj/item/ammo_box/magazine/internal/vampshotgun
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	//multiload = FALSE
 	max_ammo = 6
 	masquerade_violating = FALSE
@@ -707,7 +720,7 @@
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	max_ammo = 2
 	masquerade_violating = FALSE
 
@@ -746,13 +759,18 @@
 	. = ..()
 	icon_state = "[base_icon_state][!chambered ? "_empty" : ""][sawn_off ? "_sawn" : ""]"
 
+//Unique sawn-off checks
+/obj/item/gun/ballistic/shotgun/vampire/doublebarrel/sawoff(mob/user, obj/item/saw, handle_modifications = TRUE)
+	. = ..()
+	weapon_weight = WEAPON_MEDIUM	//Lets you one-hand it on sawing.
+
 /obj/item/ammo_box/magazine/darkpackautoshot
 	name = "shotgun magazine (12ga)"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "spas15"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck
-	caliber = CALIBER_SHOTGUN
+	caliber = CALIBER_12G
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -765,6 +783,7 @@
 	inhand_icon_state = "spas15"
 	worn_icon_state = "rifle"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpackautoshot
 	burst_size = 1
 	fire_delay = 2
@@ -818,6 +837,7 @@
 	inhand_icon_state = "musket"
 	worn_icon_state = "musket"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampire/musket
 	bolt_type = BOLT_TYPE_NO_BOLT
 	semi_auto = TRUE	//This is so it ejects/destroys the casing on firing.

@@ -189,6 +189,10 @@
 /obj/item/storage/backpack/duffelbag/sec/surgery
 	name = "surgical duffel bag"
 	desc = "A large duffel bag for holding extra supplies - this one has a material inlay with space for various sharp-looking tools."
+//DARKPACK EDIT START - Duffelbags & Gun Bulk (We want these to give med bag icon)
+	icon_state = "duffel-medical"
+	inhand_icon_state = "duffel-med"
+//DARKPACK EDIT END
 
 /obj/item/storage/backpack/duffelbag/sec/surgery/PopulateContents()
 	new /obj/item/scalpel(src)

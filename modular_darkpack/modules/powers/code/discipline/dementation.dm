@@ -4,10 +4,11 @@
 	icon_state = "dementation"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/dementation
+	signature_clan = VAMPIRE_CLAN_MALKAVIAN
 
 /datum/discipline/dementation/post_gain()
 	. = ..()
-	owner.add_quirk(/datum/quirk/derangement)
+	owner.add_quirk(/datum/quirk/darkpack/derangement)
 
 /datum/discipline_power/dementation
 	name = "Dementation power name"

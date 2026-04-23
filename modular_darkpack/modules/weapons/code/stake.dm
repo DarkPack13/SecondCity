@@ -3,6 +3,7 @@
 	desc = "Paralyzes blank-bodies if aimed straight to the heart."
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "stake"
 	force = 10
 	throwforce = 10
