@@ -3,7 +3,7 @@
 	if(identified)
 		bind(user)
 
-/obj/item/occult_artifact/dropped(mob/user)
+/obj/item/occult_artifact/dropped(mob/user, silent = FALSE)
 	. = ..()
 	if(identified)
 		if(isturf(loc))
