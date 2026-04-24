@@ -63,7 +63,7 @@
 		start_live_tracking(user)
 
 
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/(mob/user, silent = FALSE)
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/dropped(mob/user, silent = FALSE)
 	. = ..()
 	stop_live_tracking(user)
 
