@@ -130,6 +130,13 @@
 		bypass_roll = new()
 		bypass_roll.bumper_text = "persuade guard"
 
+	if(HAS_TRAIT(user, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(bouncer)))// Kindred check just in case
+		involved_social_roll += 1 // All social rolls are harder for us.
+
+	if(STAT_INTIMIDATION in bypass_roll.applicable_stats)
+		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES) && (!get_kindred_splat(bouncer)))// Kindred check just in case
+			involved_social_roll -= 1 // Easier intimidation against mortals.
+
 	var/verbage
 	bypass_roll.difficulty = involved_social_roll
 	bypass_roll.applicable_stats = list(STAT_CHARISMA)

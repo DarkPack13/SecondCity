@@ -45,6 +45,8 @@
 /obj/item/card/drivers_license/examine(mob/user)
 	. = ..()
 	if(!examine_roll)
+		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES))
+			examine_roll.difficulty += 1
 		examine_roll = new()
 		examine_roll.reroll_cooldown = 1 SCENES
 	var/roll_result = examine_roll.st_roll(user, src)

@@ -146,6 +146,10 @@
 		var/datum/storyteller_roll/pool_aiming/accuracy_roll = new()
 		var/accuracy_result = accuracy_roll.st_roll(user, src)
 		var/datum/storyteller_roll/pool_hits/amount_to_hit_roll = new()
+
+		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES))
+			amount_to_hit_roll.difficulty += 1
+
 		var/amount_to_hit_result = amount_to_hit_roll.st_roll(user, src)
 		var/list/balls_sunk = list()
 		for(var/i in 1 to amount_to_hit_result)

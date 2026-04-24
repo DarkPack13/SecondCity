@@ -60,6 +60,10 @@
 	if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
 		. += span_warning("[p_They()] smell[p_s()] like moist soil.<br>")
 
+	if(HAS_TRAIT(src, TRAIT_GLOWING_EYES))
+		if (!is_eyes_covered())
+			. += span_warning("[p_Their()] eyes glow unnaturally bright!<br>")
+
 	if(!(obscured_slots & HIDEFACE))
 		switch(st_get_stat(STAT_APPEARANCE))
 			if(0)

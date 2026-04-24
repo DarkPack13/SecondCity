@@ -120,6 +120,10 @@
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
 		theirpower += 1
 
+	if(STAT_INTIMIDATION in owner_stat)
+		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
+			theirpower += 1
+
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
 	var/mob/living/carbon/human/human_target = target
