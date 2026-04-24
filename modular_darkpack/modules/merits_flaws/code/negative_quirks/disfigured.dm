@@ -17,10 +17,14 @@
 	var/mob/living/carbon/human/human_holder = new_holder
 	appearance_to_subtract = human_holder.st_get_stat(STAT_APPEARANCE)-2 //5-2=3 dots removed, ect
 	if(human_holder.st_get_stat(STAT_APPEARANCE) > 2)
-		human_holder.st_set_stat(STAT_APPEARANCE, human_holder.st_get_stat(STAT_APPEARANCE) - appearance_to_subtract)// I'd use add_stat_mod if it worked here.
+		human_holder.st_add_stat_mod(STAT_APPEARANCE, human_holder.st_get_stat(STAT_APPEARANCE) - appearance_to_subtract, "Disfigured")// I'd use add_stat_mod if it worked here.
 
 /datum/quirk/darkpack/disfigured/post_add()
 	. = ..()
-	to_chat(quirk_holder, span_warning ("Your disfigurement takes a toll. Your appearance can't be raised above 2 dots!"))// Tell them why the dots are removed.
 	if(appearance_to_subtract > 0)
-		to_chat(quirk_holder, span_warning("Removed [appearance_to_subtract] appearance."))// Tell them how many dots we removed.
+		to_chat(quirk_holder, span_warning ("Your disfigurement takes a toll. Your appearance can't be raised above 2 dots!"))// Tell them why the dots are removed.
+		to_chat(quirk_holder, span_warning("Removed [appearance_to_subtract] appearance. Consider reallocating your stats!"))// Tell them how many dots we removed.
+
+/datum/quirk/darkpack/disfigured/remove_from_current_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+	. = ..()
+	new_holder.st_remove_stat_mod(STAT_APPEARANCE, "Disfigured")

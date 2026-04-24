@@ -7383,6 +7383,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\grip_of_the_damned.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\horrific_appearance_quirk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\illiterate.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\infectious_bite.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\lame.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\mage_blood.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\monstrous_quirk.dm"

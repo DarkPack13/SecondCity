@@ -87,3 +87,8 @@
 					playsound(src, 'modular_darkpack/modules/blood_drinking/sounds/kiss.ogg', 50, TRUE)
 					bit_living.visible_message(span_italics(span_bold("[src] kisses [bit_living]!")), span_userlove(span_bold("[src] kisses you!")))
 				drinksomeblood(bit_living, TRUE)
+				if(HAS_TRAIT(src, TRAIT_INFECTIOUS_BITE) && (!get_kindred_splat(bit_living)))// Don't look at vampires for this.
+					if(prob(20))// The one in five chance to make a mortal seriously ill.
+						bit_living.reagents.add_reagent(/datum/reagent/toxin, 10) // Consider other chemicals if they seem more fitting.
+						bit_living.reagents.add_reagent(/datum/reagent/toxin/histamine, 10)
+					bit_living.adjust_brute_loss(5, TRUE)// Neglible, but it should fit for the 'can't automatically close bite wounds' bit of this quirk.
