@@ -9,6 +9,8 @@ However, you MUST constantly disguise your condition; the glow impairs your visi
 	lose_text = span_notice("The light in your eyes fades.")
 	failure_message = span_notice("The light in your eyes fades.")
 	mob_trait = TRAIT_GLOWING_EYES
+	allowed_splats = list(SPLAT_KINDRED)
+	excluded_clans = list(VAMPIRE_CLAN_KIASYD)// They already have masq violating eyes!
 
 /*You have the stereotypical glowing eyes of vampire
 legend, which gives you a -1 difficulty on Intimidation

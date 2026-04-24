@@ -7392,6 +7392,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\one_armed.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\organovore.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_fangs.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_wound.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\pierced_veil.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\prey_exclusion.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\slow_healing.dm"

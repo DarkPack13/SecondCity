@@ -4,7 +4,7 @@
 	desc = {"One or both of your legs are damaged, which prevents you from running or walking easily.
 You are forced to walk with a crutch or possibly leg braces, and you have a pronounced limp to your stride.
 You have severe difficulties walking."} // A cane won't actually help, but crutches will.
-	icon = FA_ICON_SHOE_PRINTS
+	icon = FA_ICON_CRUTCH
 	value = -3
 	gain_text = span_notice("Your legs ache!")
 	lose_text = span_notice("Your legs no longer hurt.")
