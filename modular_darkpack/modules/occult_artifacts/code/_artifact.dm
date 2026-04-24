@@ -29,9 +29,8 @@
 	var/research_value = 0
 	var/can_be_identified_without_ritual = TRUE
 
-	#warn temp sounds plzzzzzzzz
-	var/grant_sound = 'sound/effects/magic/swap.ogg'
-	var/ungrant_sound = 'sound/effects/magic/teleport_diss.ogg'
+	var/grant_sound // = 'sound/effects/magic/swap.ogg'
+	var/ungrant_sound // = 'sound/effects/magic/teleport_diss.ogg'
 
 	var/datum/controller/subsystem/processing/subsystem_type = /datum/controller/subsystem/processing/obj
 
