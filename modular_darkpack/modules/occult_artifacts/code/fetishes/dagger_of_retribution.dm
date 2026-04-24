@@ -29,6 +29,9 @@
 	spirit_type = SPIRIT_VENGEANCE
 	spirit_name = generate_spirit_name(spirit_type)
 
+/obj/item/occult_artifact/werewolf/dagger_of_retribution/Destroy(force)
+	stop_live_tracking()
+	. = ..()
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/identify()
 	. = ..()
@@ -89,10 +92,6 @@
 	start_live_tracking(user)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/occult_artifact/werewolf/dagger_of_retribution/Destroy()
-	stop_live_tracking()
-
-	return ..()
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/start_live_tracking(mob/user)
 	RegisterSignal(bound_item, COMSIG_QDELETING, PROC_REF(stop_live_tracking))
@@ -101,6 +100,9 @@
 		to_chat(user, span_notice("[src] starts tugging you towards [bound_item]."))
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/proc/stop_live_tracking(mob/user)
+	if(!bound_item)
+		return
+
 	UnregisterSignal(bound_item, COMSIG_QDELETING)
 
 	if(QDELING(bound_item))
