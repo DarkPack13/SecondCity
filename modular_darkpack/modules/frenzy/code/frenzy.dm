@@ -1,13 +1,13 @@
 // V20 p.298 + W20 p.261
 
 // Fleeing is used for either fox frenzies, or rotschreck
-/mob/living/carbon/proc/enter_frenzy_mode(atom/target, fleeing = FALSE)
+/mob/living/proc/enter_frenzy_mode(atom/target, fleeing = FALSE, source = "Unknown cause")
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 		return
 	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
-	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(src)]": ""]")
+	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(src)]": ""]. ([source])")
 	log_message("entered frenzy.", LOG_GAME)
 
 	if(fleeing)
@@ -22,7 +22,7 @@
 	// This is assuming no other interaction happens to remove it before this.
 	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
 
-/mob/living/carbon/proc/exit_frenzy_mode()
+/mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
 	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
@@ -55,7 +55,7 @@
 		. += 1
 
 
-/mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
+/mob/living/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 		return
 	if(!get_kindred_splat(src))
@@ -65,7 +65,7 @@
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
 	if(frenzy_result <= 0)
-		enter_frenzy_mode(fire, TRUE)
+		enter_frenzy_mode(fire, TRUE, "Rotshreck")
 		return
 	successes += frenzy_result
 	if(successes >= 5)
@@ -74,7 +74,7 @@
 	addtimer(CALLBACK(src, PROC_REF(trigger_rotschreck), fire, difficulty, successes), 1 TURNS)
 
 
-/mob/living/carbon/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, successes = 0, flavor_text = "Something")
+/mob/living/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, successes = 0, flavor_text = "Something")
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 		return
 	if(!get_kindred_splat(src))
@@ -88,7 +88,7 @@
 	if(frenzy_result <= 0)
 		to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
 		var/victim = get_closest_atom(/atom, get_frenzy_victims(), src)
-		enter_frenzy_mode(victim)
+		enter_frenzy_mode(victim, source = "Kindred")
 		return
 
 	successes += frenzy_result
@@ -99,11 +99,24 @@
 	addtimer(CALLBACK(src, PROC_REF(trigger_kindred_frenzy), target, difficulty, successes, flavor_text), 1 TURNS)
 
 
-/mob/living/carbon/proc/trigger_rage_frenzy(atom/target, difficulty = 6, successes = 0)
+/mob/living/proc/trigger_rage_frenzy(atom/target, difficulty = 6, successes = 0)
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
+	if(!shifter_splat)
+		return
+
+	var/datum/storyteller_roll/frenzy/rage/frenzy_roll = new()
+	frenzy_roll.difficulty = difficulty
+	var/frenzy_result = frenzy_roll.st_roll(src, target, shifter_splat.rage)
+	if(frenzy_result >= 5)
+		enter_frenzy_mode(target, TRUE, "Rage")
+	return frenzy_result
 
 
-/mob/living/carbon/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Manual Frenzy"
+/mob/living/carbon/human/verb/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+	set name = "Manual Frenzy Roll"
+	set desc = "Trigger a roll for a frenzy"
 	set category = "Object"
 
 	if(!istype(AM))
@@ -111,4 +124,20 @@
 	if(!issupernatural(src))
 		return
 
-	enter_frenzy_mode(AM)
+	if(get_shifter_splat(src))
+		trigger_rage_frenzy(AM)
+	else if(get_vampire_splat(src))
+		trigger_kindred_frenzy(AM)
+
+// Used by the berserker merit. or possibly even for that one vampire thing of riding the frenzy in future?
+/mob/living/carbon/human/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+	set name = "Manual Frenzy"
+	set desc = "Enter a frenzy at will"
+	set category = "Object"
+
+	if(!istype(AM))
+		return
+	if(!issupernatural(src))
+		return
+
+	enter_frenzy_mode(AM, source = "Manual")

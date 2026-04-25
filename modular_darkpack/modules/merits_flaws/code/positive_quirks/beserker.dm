@@ -11,8 +11,8 @@
 
 /datum/quirk/darkpack/beserker/add(client/client_source)
 	. = ..()
-	add_verb(quirk_holder, /mob/living/carbon/proc/manual_frenzy)
+	add_verb(quirk_holder, /mob/living/carbon/human/proc/manual_frenzy)
 
 /datum/quirk/darkpack/beserker/remove()
 	. = ..()
-	remove_verb(quirk_holder, /mob/living/carbon/proc/manual_frenzy)
+	remove_verb(quirk_holder, /mob/living/carbon/human/proc/manual_frenzy)
