@@ -35,6 +35,8 @@
 				/obj/item/reagent_containers/cup/glass/bottle/coconut_rum = 5,
 				/obj/item/reagent_containers/cup/glass/bottle/yuyake = 5,
 				/obj/item/reagent_containers/cup/glass/bottle/shochu = 5,
+				/obj/item/reagent_containers/cup/glass/bottle/aperitivo = 5,
+				/obj/item/reagent_containers/cup/glass/bottle/maraschino = 5,
 				/obj/item/reagent_containers/cup/soda_cans/beer = 10,
 				/obj/item/reagent_containers/cup/soda_cans/beer/rice = 10,
 			),
@@ -67,7 +69,6 @@
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
 				// DARKPACK EDIT START
 				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 12,
-				/*
 				/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass = 12,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/collins_glass = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/martini_glass = 15,
@@ -75,9 +76,7 @@
 				/obj/item/reagent_containers/cup/glass/drinkingglass/pint = 15,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/vodka_shot = 12,
 				/obj/item/reagent_containers/cup/glass/drinkingglass/whiskey_shot = 15,
-				*/
 				// DARKPACK EDIT ADD END
-				/obj/item/reagent_containers/cup/glass/drinkingglass/wine_glass = 15,
 				/obj/item/reagent_containers/cup/glass/flask = 3,
 				/obj/item/reagent_containers/cup/glass/bottle = 15,
 				/obj/item/reagent_containers/cup/glass/bottle/small = 15,
@@ -88,12 +87,14 @@
 	contraband = list(
 		/obj/item/reagent_containers/cup/glass/mug/tea = 12,
 		/obj/item/reagent_containers/cup/glass/bottle/fernet = 5,
+		/obj/item/reagent_containers/cup/glass/bottle/herbal_liqueur = 2,
 	)
 	premium = list(
 		/obj/item/reagent_containers/cup/bottle/ethanol = 4,
 		/obj/item/reagent_containers/cup/glass/bottle/champagne = 5,
 		/obj/item/reagent_containers/cup/glass/bottle/trappist = 5,
 		/obj/item/reagent_containers/cup/glass/bottle/bitters = 5,
+		/obj/item/reagent_containers/cup/glass/bottle/herbal_liqueur = 2,
 	)
 
 	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
