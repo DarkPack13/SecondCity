@@ -18,6 +18,30 @@
 	name = "no pedestrian sign"
 	icon_state = "nopedestrian"
 
+
+/obj/structure/roadsign/street
+	name = "street sign"
+	icon_state = "street"
+
+/obj/structure/roadsign/street/Initialize(mapload)
+	. = ..()
+	update_appearance()
+
+/obj/structure/roadsign/street/update_name(updates)
+	. = ..()
+	var/area/my_area = get_area()
+	if(!my_area)
+		return
+	name = "street sign ([my_area])"
+
+/obj/structure/roadsign/street/update_desc(updates)
+	. = ..()
+	var/area/my_area = get_area()
+	if(!my_area)
+		return
+	desc = "A street sign declaring you are at \"[my_area]\""
+
+
 /obj/structure/roadsign/busstop
 	name = "bus stop sign"
 	icon_state = "busstop"
