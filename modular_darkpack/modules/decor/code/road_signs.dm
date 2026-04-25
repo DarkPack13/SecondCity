@@ -29,14 +29,14 @@
 
 /obj/structure/roadsign/street/update_name(updates)
 	. = ..()
-	var/area/my_area = get_area()
+	var/area/my_area = get_area(src)
 	if(!my_area)
 		return
 	name = "street sign ([my_area])"
 
 /obj/structure/roadsign/street/update_desc(updates)
 	. = ..()
-	var/area/my_area = get_area()
+	var/area/my_area = get_area(src)
 	if(!my_area)
 		return
 	desc = "A street sign declaring you are at \"[my_area]\""
