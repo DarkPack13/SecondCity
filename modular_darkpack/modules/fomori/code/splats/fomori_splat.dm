@@ -11,7 +11,10 @@
 	auto_splats = list(/datum/splat/fomori)
 
 /datum/splat/fomori/on_gain()
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/body_barbs, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
 
 /datum/splat/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)
