@@ -47,6 +47,13 @@
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
 		. += 2
 
+/datum/storyteller_roll/frenzy/rage
+
+/datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_RAGE))
+		. += 1
+
 
 /mob/living/carbon/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
 	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
@@ -90,6 +97,9 @@
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(trigger_kindred_frenzy), target, difficulty, successes, flavor_text), 1 TURNS)
+
+
+/mob/living/carbon/proc/trigger_rage_frenzy(atom/target, difficulty = 6, successes = 0)
 
 // Unimplemented
 

@@ -71,8 +71,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_REPELLED_BY_HOLINESS "repelled_by_holiness"
 /// Any changes in this Kindred's Humanity will be doubled
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
-/// Difficultie rolls to resist or guide frenzy are two higher. They can also never spend willpower to avoid frenzy
+/// Difficulty rolls to resist or guide frenzy are two higher. They can also never spend willpower to avoid frenzy
 #define TRAIT_DIFFICULT_FRENZY "difficult_frenzy"
+/// Difficulty rolls to rage roles are one higher.
+#define TRAIT_DIFFICULT_RAGE "difficult_rage"
 // Setite weakness, sunlight is particularly bad bad.
 #define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
