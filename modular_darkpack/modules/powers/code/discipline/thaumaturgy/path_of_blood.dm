@@ -13,6 +13,12 @@
 	thaumaturgy.level = level
 	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
+/datum/discipline/thaumaturgy/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
+			qdel(action)
+
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
