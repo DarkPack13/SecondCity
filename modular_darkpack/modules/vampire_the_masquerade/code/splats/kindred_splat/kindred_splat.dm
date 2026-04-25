@@ -96,7 +96,6 @@
 	owner.physiology.heat_mod *= 2
 	owner.physiology.cold_mod *= 0.25
 
-	SEND_SIGNAL(owner, COMSIG_MOB_UPDATE_AURA)
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
