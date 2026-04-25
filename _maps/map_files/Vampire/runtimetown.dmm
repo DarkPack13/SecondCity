@@ -3051,6 +3051,11 @@
 "Zz" = (
 /turf/open/misc/grass/random/grass,
 /area/vtm/outside/pacificheights)
+"ZC" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/roadsign/street,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/pacificheights)
 "ZF" = (
 /obj/structure/railing,
 /turf/open/floor/plating/canal,
@@ -4730,7 +4735,7 @@ UJ
 NR
 Hy
 NR
-cj
+ZC
 ik
 VQ
 ik
