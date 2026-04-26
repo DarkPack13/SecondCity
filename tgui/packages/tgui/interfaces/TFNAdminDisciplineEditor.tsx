@@ -184,7 +184,7 @@ function WhitelistSection(props: {
 
   return (
     <Section title="Whitelists">
-      <Stack vertical spacing={1}>
+      <Stack vertical>
         {categories.map((category) => {
           const entries = Object.entries(whitelistDefinitions).filter(
             ([, wl]) => wl.category === category,
@@ -195,7 +195,7 @@ function WhitelistSection(props: {
               <Box color="label" bold mb={0.5}>
                 {WHITELIST_CATEGORY_LABELS[category]}
               </Box>
-              <Stack wrap spacing={0.5}>
+              <Stack wrap>
                 {entries.map(([id, wl]) => {
                   const has = whitelistSet.has(id);
                   return (
