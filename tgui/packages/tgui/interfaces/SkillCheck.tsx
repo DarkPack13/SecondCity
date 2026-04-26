@@ -1,4 +1,4 @@
-// THIS IS A TFN UI FILE
+// THIS IS A DARKPACK UI FILE
 // largely based on https://github.com/trekkspace/dbd-skillcheck-simulator/tree/master
 import { useEffect, useRef } from 'react';
 import { resolveAsset } from '../assets';

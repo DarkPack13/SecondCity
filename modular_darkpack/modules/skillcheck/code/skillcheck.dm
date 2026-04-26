@@ -17,7 +17,7 @@
 	var/datum/callback/on_complete
 
 /datum/skillcheck/proc/start(mob/living/target, diff = 3, datum/callback/callback)
-	target.playsound_local(target, 'modular_tfn/modules/fishing/sound/src_audio_advertise2.ogg', 30, FALSE)
+	target.playsound_local(target, 'modular_darkpack/modules/fishing/sound/src_audio_advertise2.ogg', 30, FALSE)
 	difficulty = diff
 	on_complete = callback
 	var/datum/tgui/ui = SStgui.try_update_ui(target, src, null)
@@ -46,7 +46,7 @@
 
 /datum/asset/simple/skillcheck_sounds
 	assets = list(
-		"skillcheck_good.ogg" = 'modular_tfn/modules/fishing/sound/src_audio_good.ogg',
+		"skillcheck_good.ogg" = 'modular_darkpack/modules/fishing/sound/src_audio_good.ogg',
 	)
 
 /datum/skillcheck/ui_assets(mob/user)
