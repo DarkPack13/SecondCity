@@ -21,8 +21,9 @@
 		if(SPIRIT_VENGEANCE)
 			spirit_table = GLOB.vengeance_spirits
 
-	spirit_name = pick(spirit_table)
-	spirit_desc = "[spirit_name], a spirit of [spirit_type]"
+	if(spirit_table)
+		spirit_name = pick(spirit_table)
+		spirit_desc = "[spirit_name], a spirit of [spirit_type]"
 
 	return spirit_desc
 
