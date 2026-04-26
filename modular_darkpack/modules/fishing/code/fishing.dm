@@ -10,6 +10,7 @@
 
 	w_class = WEIGHT_CLASS_SMALL
 	//eatsound = 'modular_darkpack/modules/food/sounds/eat.ogg'
+	var/fish_price = 1
 
 /obj/item/fish/darkpack/shark
 	name = "leopard shark"
@@ -238,9 +239,6 @@
 	contains = list(/obj/item/cooler_kit)
 
 // fish definitions
-/obj/item/fish/darkpack
-	var/fish_price = 1
-
 
 
 /obj/item/fish/darkpack/shark
