@@ -21,7 +21,7 @@ Adds a mentor system, allowing for players to send a-help like messages to mento
 
 ### Included files that are not contained in this module:
 
-- N/A
+- `tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/game_preferences/darkpack_auto_dementor.tsx`
 
 ### Credits:
 
