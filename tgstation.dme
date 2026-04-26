@@ -7160,6 +7160,7 @@
 #include "modular_darkpack\modules\decor\code\swaying.dm"
 #include "modular_darkpack\modules\decor\code\tables.dm"
 #include "modular_darkpack\modules\decor\code\trash.dm"
+#include "modular_darkpack\modules\decor\code\trash_source.dm"
 #include "modular_darkpack\modules\decor\code\vents.dm"
 #include "modular_darkpack\modules\deprecated\code\runtime_town_types.dm"
 #include "modular_darkpack\modules\do_emotes\code\do_verbs.dm"

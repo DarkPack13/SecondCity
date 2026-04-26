@@ -22,6 +22,7 @@
 		COMSIG_TURF_RECEIVE_SWEEPED_ITEMS = PROC_REF(ready_for_trash),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	AddComponent(/datum/component/trash_source) // DARKPACK EDIT ADD - DECOR
 
 /* // DARKPACK EDIT REMOVAL - No sprites for this yet.
 /obj/structure/closet/crate/bin/update_overlays()

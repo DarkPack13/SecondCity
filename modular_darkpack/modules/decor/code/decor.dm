@@ -148,6 +148,8 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[base_icon_state]-snow"
 
+	AddComponent(/datum/component/trash_source)
+
 /obj/structure/closet/crate/dumpster/PopulateContents()
 	if(prob(internal_trash_chance))
 		if(prob(95))
