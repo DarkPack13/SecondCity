@@ -30,3 +30,31 @@
 	l_pocket = /obj/item/smartphone/giovanni_capo
 	r_pocket = /obj/item/vamp/keys/capo
 	backpack_contents = list(/obj/item/card/credit/giovanniboss=1, /obj/item/ritual_tome/necromancy=1)
+
+/datum/memory/key/bank_vault_code
+	var/remembered_code
+
+/datum/memory/key/bank_vault_code/New(
+	datum/mind/memorizer_mind,
+	atom/protagonist,
+	atom/deuteragonist,
+	atom/antagonist,
+	remembered_code,
+)
+	src.remembered_code = remembered_code
+	return ..()
+
+/datum/memory/key/bank_vault_code/get_names()
+	return list("The bank vault code is [remembered_code].")
+
+/datum/memory/key/bank_vault_code/get_starts()
+	return list(
+		"[protagonist_name] blurts out [remembered_code], then looks nervous. Were they supposed to say that...?"
+	)
+
+/datum/job/vampire/capo/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	var/obj/structure/vaultdoor/pincode/bank/vault = find_door_pin(/obj/structure/vaultdoor/pincode/bank)
+	if(!vault)
+		return
+	spawned.mind.add_memory(/datum/memory/key/bank_vault_code, remembered_code = vault.pincode)
