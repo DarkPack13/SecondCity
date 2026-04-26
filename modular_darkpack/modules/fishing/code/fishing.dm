@@ -276,8 +276,6 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+20
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 
-
-
 /obj/item/fish/darkpack/greenchromis
 	name = "green chromis"
 	icon_state = "greenchromis"
@@ -292,8 +290,6 @@
 	sprite_height = 3
 	required_temperature_min = MIN_AQUARIUM_TEMP+23
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
-
-
 
 /obj/item/fish/darkpack/cardinalfish
 	name = "cardinal fish"
@@ -311,8 +307,6 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+22
 	required_temperature_max = MIN_AQUARIUM_TEMP+30
 
-
-
 /obj/item/fish/darkpack/plastetra
 	name = "plastetra"
 	icon_state = "plastetra"
@@ -328,8 +322,6 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 	aquarium_vc_color = "#4287f5"
 
-
-
 /obj/item/fish/darkpack/angelfish
 	name = "angelfish"
 	icon_state = "angelfish"
@@ -342,8 +334,6 @@
 	aquarium_vc_color = "#c8a832"
 	sprite_width = 4
 	sprite_height = 7
-
-
 
 /obj/item/fish/darkpack/clownfish
 	name = "clownfish"
@@ -358,8 +348,6 @@
 	sprite_width = 7
 	sprite_height = 4
 
-
-
 /obj/item/fish/darkpack/holo_clownfish // the one that actually looks like a clownfish. the other one has a clown wig and mask on
 	name = "holographic clownfish"
 	icon_state = "holo_clownfish"
@@ -372,8 +360,6 @@
 	aquarium_vc_color = "#7bd4f0"
 	sprite_width = 7
 	sprite_height = 4
-
-
 
 /obj/item/fish/darkpack/lanternfish
 	name = "lanternfish"
@@ -388,8 +374,6 @@
 	sprite_width = 6
 	sprite_height = 5
 
-
-
 /obj/item/fish/darkpack/goldfish
 	name = "goldfish"
 	icon_state = "goldfish"
@@ -402,8 +386,6 @@
 	aquarium_vc_color = "#f5a623"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/dwarf_moonfish
 	name = "dwarf moonfish"
@@ -418,8 +400,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/tizira_moonfish
 	name = "tiziran moonfish"
 	icon_state = "tizira_moonfish"
@@ -432,8 +412,6 @@
 	aquarium_vc_color = "#9060e8"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/needlefish
 	name = "needlefish"
@@ -448,8 +426,6 @@
 	sprite_width = 8
 	sprite_height = 2
 
-
-
 /obj/item/fish/darkpack/armorfish
 	name = "armorfish"
 	icon_state = "armorfish"
@@ -462,8 +438,6 @@
 	aquarium_vc_color = "#607080"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/pufferfish
 	name = "pufferfish"
@@ -478,8 +452,6 @@
 	sprite_width = 8
 	sprite_height = 6
 
-
-
 /obj/item/fish/darkpack/emulsijack
 	name = "emulsijack"
 	icon_state = "emulsijack"
@@ -493,8 +465,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/donkfish
 	name = "donkfish"
 	icon_state = "donkfish"
@@ -507,8 +477,6 @@
 	aquarium_vc_color = "#8a6840"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/ratfish
 	name = "rat"
@@ -524,8 +492,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/chrab
 	name = "chrab"
 	icon_state = "chrab"
@@ -539,8 +505,6 @@
 	aquarium_vc_color = "#c85030"
 	sprite_width = 6
 	sprite_height = 5
-
-
 
 /obj/item/fish/darkpack/arctic_chrab
 	name = "arctic chrab"
@@ -556,8 +520,6 @@
 	sprite_width = 6
 	sprite_height = 5
 
-
-
 /obj/item/fish/darkpack/half_fish
 	name = "half fish"
 	icon_state = "half_fish"
@@ -570,8 +532,6 @@
 	aquarium_vc_color = "#c8c8c8"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/bonemass
 	name = "bonemass"
@@ -587,8 +547,6 @@
 	sprite_width = 5
 	sprite_height = 5
 
-
-
 /obj/item/fish/darkpack/sludgefish
 	name = "sludgefish"
 	icon_state = "sludgefish"
@@ -601,8 +559,6 @@
 	aquarium_vc_color = "#507840"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/sludgefish_purple
 	name = "purple sludgefish"
@@ -617,8 +573,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/starfish
 	name = "starfish"
 	icon_state = "starfish"
@@ -632,8 +586,6 @@
 	sprite_width = 5
 	sprite_height = 5
 
-
-
 /obj/item/fish/darkpack/zipzap
 	name = "zipzap"
 	icon_state = "zipzap"
@@ -646,8 +598,6 @@
 	aquarium_vc_color = "#f0e840"
 	sprite_width = 6
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/jumpercable
 	name = "jumpercablefish"
@@ -663,8 +613,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/arctic_char
 	name = "arctic char"
 	icon_state = "arctic_char"
@@ -677,8 +625,6 @@
 	aquarium_vc_color = "#ff8c69"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/stingray
 	name = "stingray"
@@ -693,8 +639,6 @@
 	sprite_width = 8
 	sprite_height = 7
 
-
-
 /obj/item/fish/darkpack/sockeye
 	name = "sockeye salmon"
 	icon_state = "sockeye"
@@ -707,8 +651,6 @@
 	aquarium_vc_color = "#c44020"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/swordfish
 	name = "swordfish"
@@ -723,8 +665,6 @@
 	sprite_width = 13
 	sprite_height = 6
 
-
-
 /obj/item/fish/darkpack/bumpy
 	name = "bumpy fish"
 	icon_state = "bumpy"
@@ -737,8 +677,6 @@
 	aquarium_vc_color = "#a08060"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/sand_surfer
 	name = "sand surfer"
@@ -753,8 +691,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/three_eyes
 	name = "three-eyed fish"
 	icon_state = "three_eyes"
@@ -767,8 +703,6 @@
 	aquarium_vc_color = "#50a060"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/tadpole
 	name = "tadpole"
@@ -783,8 +717,6 @@
 	sprite_width = 3
 	sprite_height = 1
 
-
-
 /obj/item/fish/darkpack/squid
 	name = "squid"
 	icon_state = "squid"
@@ -797,8 +729,6 @@
 	aquarium_vc_color = "#c84870"
 	sprite_width = 4
 	sprite_height = 5
-
-
 
 /obj/item/fish/darkpack/perch
 	name = "perch"
@@ -813,8 +743,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/plaice
 	name = "plaice"
 	icon_state = "plaice"
@@ -827,8 +755,6 @@
 	aquarium_vc_color = "#a89060"
 	sprite_width = 6
 	sprite_height = 7
-
-
 
 /obj/item/fish/darkpack/monkfish
 	name = "monkfish"
@@ -843,8 +769,6 @@
 	sprite_width = 7
 	sprite_height = 7
 
-
-
 /obj/item/fish/darkpack/pike
 	name = "pike"
 	icon_state = "pike_small"
@@ -857,8 +781,6 @@
 	aquarium_vc_color = "#4a7a3a"
 	sprite_width = 7
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/armored_pike
 	name = "armored pike"
@@ -873,8 +795,6 @@
 	sprite_width = 7
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/sacabambaspis
 	name = "sacabambaspis"
 	icon_state = "sacabambaspis"
@@ -887,8 +807,6 @@
 	aquarium_vc_color = "#a0c890"
 	sprite_width = 5
 	sprite_height = 3
-
-
 
 /obj/item/fish/darkpack/baby_carp
 	name = "baby carp"
@@ -903,8 +821,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-
-
 /obj/item/fish/darkpack/fryish
 	name = "fryish"
 	icon_state = "fryish"
@@ -917,8 +833,6 @@
 	sprite_height = 3
 	dedicated_in_aquarium_icon_state = "fryish_small"
 	aquarium_vc_color = "#c8882c"
-
-
 
 /obj/item/fish/darkpack/fritterish
 	name = "fritterish"
@@ -933,8 +847,6 @@
 	dedicated_in_aquarium_icon_state = "fritterish_small"
 	aquarium_vc_color = "#c8a050"
 
-
-
 /obj/item/fish/darkpack/nessiefish
 	name = "nessiefish"
 	icon_state = "nessiefish_small"
@@ -948,8 +860,6 @@
 	dedicated_in_aquarium_icon_state = "nessiefish_small"
 	aquarium_vc_color = "#487848"
 
-
-
 /obj/item/fish/darkpack/mastodon
 	name = "mastodon fish"
 	icon_state = "mastodon_small"
@@ -962,5 +872,3 @@
 	sprite_height = 7
 	dedicated_in_aquarium_icon_state = "mastodon_small"
 	aquarium_vc_color = "#787060"
-
-
