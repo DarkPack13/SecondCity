@@ -1,4 +1,4 @@
-// THIS IS A TFN UI FILE
+// THIS IS A DARKPACK UI FILE
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const auto_dementor_pref: FeatureToggle = {
