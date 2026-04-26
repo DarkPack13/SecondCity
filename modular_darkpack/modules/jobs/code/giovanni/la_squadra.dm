@@ -34,7 +34,7 @@
 
 /datum/job/vampire/squadra/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
-	for(var/obj/structure/vaultdoor/door in GLOB.pincodes)
-		if(istype(door, /obj/structure/vaultdoor/pincode/bank))
-			spawned.mind.add_memory(/datum/memory/key/bank_vault_code, remembered_code = GLOB.pincodes[door])
-			return
+	var/obj/structure/vaultdoor/pincode/bank/door = locate() in GLOB.pincodes
+	if(door)
+		spawned.mind.add_memory(/datum/memory/key/bank_vault_code, remembered_code = GLOB.pincodes[door])
+
