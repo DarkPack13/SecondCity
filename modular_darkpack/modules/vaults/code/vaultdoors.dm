@@ -36,14 +36,14 @@
 	desc = "A massive reinforced vault door protecting the bank's reserves."
 	lock_id = "bank_vault"
 
-/obj/structure/vaultdoor/New()
-	..()
+/obj/structure/vaultdoor/Initialize(mapload)
+	. = ..()
 	pincode = create_unique_pincode()
-	GLOB.pincodes[src] = pincode
+	GLOB.vault_doors += src
 	is_locked = TRUE
 
 /obj/structure/vaultdoor/Destroy()
-	GLOB.pincodes -= src
+	GLOB.vault_doors -= src
 	return ..()
 
 /obj/structure/vaultdoor/attack_hand(mob/user)

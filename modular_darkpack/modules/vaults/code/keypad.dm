@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(pincodes)
+GLOBAL_LIST_EMPTY(vault_doors)
 
 /proc/create_unique_pincode()
 	var/pincode = ""
