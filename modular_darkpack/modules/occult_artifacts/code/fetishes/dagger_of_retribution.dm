@@ -20,13 +20,14 @@
 	resistance_flags = FIRE_PROOF
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
+	spirit_type = SPIRIT_VENGEANCE
+
 	var/obj/bound_item
 	var/spinning = FALSE
 
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/Initialize(mapload)
 	. = ..()
-	spirit_type = SPIRIT_VENGEANCE
 	spirit_name = generate_spirit_name(spirit_type)
 
 /obj/item/occult_artifact/werewolf/dagger_of_retribution/Destroy(force)
