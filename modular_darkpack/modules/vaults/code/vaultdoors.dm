@@ -42,6 +42,10 @@
 	GLOB.pincodes[src] = pincode
 	is_locked = TRUE
 
+/obj/structure/vaultdoor/Destroy()
+	GLOB.pincodes -= src
+	return ..()
+
 /obj/structure/vaultdoor/attack_hand(mob/user)
 	. = ..()
 	if(is_broken)
