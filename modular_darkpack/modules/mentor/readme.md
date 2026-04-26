@@ -25,5 +25,7 @@ Adds a mentor system, allowing for players to send a-help like messages to mento
 
 ### Credits:
 
+chazzyjazzy - porting to Darkpack
+
 Azarak - Porting, tweaks
 Poojawa - Implementation
