@@ -7405,6 +7405,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\victim_of_the_masquerade.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\weak_willed.dm"
 #include "modular_darkpack\modules\merits_flaws\code\neutral_quirks\illegal_identity.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\acute_sense.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\beserk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\deceptive_aura.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\efficient_digestion.dm"
