@@ -38,6 +38,7 @@
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	icon_state = "fish"
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
@@ -56,6 +57,7 @@
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
@@ -73,6 +75,7 @@
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	icon_state = "crab"
 	fillet_type = /obj/item/food/meat/slab/rawcrab
 	fish_id = "darkpack_crab"
@@ -257,62 +260,6 @@
 	aquarium_vc_color = "#33302e"
 	sprite_width = 5
 	sprite_height = 3
-
-
-/obj/item/fish/darkpack/tuna
-	name = "bluefin tuna"
-	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
-	icon_state = "fish"
-	fish_id = "darkpack_tuna"
-	required_fluid_type = AQUARIUM_FLUID_SALTWATER
-	num_fillets = 2
-
-	stable_population = 9
-	average_size = 50
-	average_weight = 600
-
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#33302e"
-	sprite_width = 5
-	sprite_height = 3
-
-
-
-/obj/item/fish/darkpack/catfish
-	name = "channel catfish"
-	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
-	icon_state = "catfish"
-	fish_id = "darkpack_catfish"
-	required_fluid_type = AQUARIUM_FLUID_SALTWATER
-
-	stable_population = 9
-	average_size = 55
-	average_weight = 800
-
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#33302e"
-	sprite_width = 5
-	sprite_height = 3
-
-
-
-/obj/item/fish/darkpack/crab
-	name = "dungeness crab"
-	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
-	icon_state = "crab"
-	fillet_type = /obj/item/food/meat/slab/rawcrab
-	fish_id = "darkpack_crab"
-	required_fluid_type = AQUARIUM_FLUID_SALTWATER
-
-	stable_population = 8
-	average_size = 50
-	average_weight = 600
-
-	dedicated_in_aquarium_icon_state = "crab_small"
-	sprite_height = 6
-	sprite_width = 10
-
-
 
 /obj/item/fish/darkpack/guppy
 	name = "guppy"
