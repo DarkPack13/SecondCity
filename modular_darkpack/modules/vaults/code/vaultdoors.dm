@@ -39,6 +39,7 @@
 /obj/structure/vaultdoor/New()
 	..()
 	pincode = create_unique_pincode()
+	GLOB.pincodes[src] = pincode
 	is_locked = TRUE
 
 /obj/structure/vaultdoor/attack_hand(mob/user)
@@ -135,8 +136,3 @@
 			playsound(src, 'sound/machines/terminal/terminal_error.ogg', 50, TRUE)
 		. = TRUE
 
-/proc/find_door_pin(door_type)
-	for(var/obj/structure/vaultdoor/vdoor in world)
-		if(istype(vdoor, door_type))
-			return vdoor
-	return null

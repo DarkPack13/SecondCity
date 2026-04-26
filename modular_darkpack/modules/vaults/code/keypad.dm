@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(pincodes)
+
 /proc/create_unique_pincode()
 	var/pincode = ""
 	for(var/i in 1 to 5)
