@@ -112,7 +112,7 @@ type ChoicedSelectionProps = {
 };
 
 function ChoicedSelection(props: ChoicedSelectionProps) {
-  const { catalog, supplementalFeature, supplementalValue, isLocked } = props;
+  const { catalog, supplementalFeature, supplementalValue, isLocked } = props; // TFN EDIT CHANGE - ORIGINAL: const { catalog, supplementalFeature, supplementalValue } = props;
   const [searchText, setSearchText] = useState('');
 
   if (!catalog.icons) {
@@ -186,6 +186,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                           opacity: locked ? 0.4 : 1, // TFN EDIT ADD
                         }}
                       />
+{/* TFN EDIT START */}
                       {locked && (
                         <Box
                           style={{
@@ -200,6 +201,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                           <Icon name="lock" color="label" />
                         </Box>
                       )}
+{/* TFN EDIT END */}
                     </Button>
                   );
                 },
