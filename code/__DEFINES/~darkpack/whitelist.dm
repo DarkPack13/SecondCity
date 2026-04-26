@@ -6,8 +6,6 @@
 #define WHITELIST_GAROU    "garou"
 #define WHITELIST_TRUSTED  "trusted"
 
-// prefix for per-clan whitelists. for example, "clan_baali" unlocks baali without requiring trusted whitelist
-#define WHITELIST_CLAN_PREFIX "clan_"
 
 GLOBAL_LIST_INIT(default_player_whitelists, list(
 	WHITELIST_HUMAN,
