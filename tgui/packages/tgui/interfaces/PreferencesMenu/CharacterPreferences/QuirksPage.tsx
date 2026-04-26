@@ -588,9 +588,9 @@ export function QuirkPersonalityPage() {
         {contentPage === 'personality' ? <PersonalityPage /> : <QuirkPage />}
       </Stack.Item>
       // DARKPACK EDIT REMOVAL END */}
-      {/* DARKPACK EDIT ADDITION START */}
+      {/* DARKPACK EDIT ADD START */}
       <QuirkPage />
-      {/* DARKPACK EDIT ADDITION END */}
+      {/* DARKPACK EDIT ADD END */}
     </Stack>
   );
 }

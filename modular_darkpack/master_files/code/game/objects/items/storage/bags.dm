@@ -1,4 +1,4 @@
-///DARKPACK - Money bag subtype; covers Darkpack money types
+/// DARKPACK - Money bag subtype; covers Darkpack money types
 /obj/item/storage/bag/money
 	storage_type = /datum/storage/bag/money/darkpack
 
