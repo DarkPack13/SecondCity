@@ -30,9 +30,10 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/shark/Initialize(mapload)
+/obj/item/fish/darkpack/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 100, "fish", FALSE)
+	fish_price = round(average_weight / 50) + rand(1, 50) // mostly determined by average weight, with an RNG component. still multiplies with charisma at point of sale
+	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
@@ -50,9 +51,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/tuna/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, 40, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
@@ -69,9 +68,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/catfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, 20, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
@@ -88,9 +85,7 @@
 	sprite_height = 6
 	sprite_width = 10
 
-/obj/item/fish/darkpack/crab/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, 70, "fish", FALSE)
+
 
 /*
 /obj/item/fishing_rod
@@ -246,9 +241,7 @@
 /obj/item/fish/darkpack
 	var/fish_price = 1
 
-/obj/item/fish/darkpack/Initialize(mapload)
-	. = ..()
-	fish_price = round(average_weight / 50) + rand(1, 50) // mostly determined by average weight, with an RNG component. still multiplies with charisma at point of sale
+
 
 /obj/item/fish/darkpack/shark
 	name = "leopard shark"
@@ -267,9 +260,6 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/shark/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
@@ -288,9 +278,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/tuna/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
@@ -308,9 +296,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/catfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
@@ -328,9 +314,7 @@
 	sprite_height = 6
 	sprite_width = 10
 
-/obj/item/fish/darkpack/crab/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/guppy
 	name = "guppy"
@@ -347,9 +331,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+20
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 
-/obj/item/fish/darkpack/guppy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/greenchromis
 	name = "green chromis"
@@ -366,9 +348,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+23
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 
-/obj/item/fish/darkpack/greenchromis/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/cardinalfish
 	name = "cardinal fish"
@@ -386,9 +366,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP+22
 	required_temperature_max = MIN_AQUARIUM_TEMP+30
 
-/obj/item/fish/darkpack/cardinalfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/plastetra
 	name = "plastetra"
@@ -405,9 +383,7 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 	aquarium_vc_color = "#4287f5"
 
-/obj/item/fish/darkpack/plastetra/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/angelfish
 	name = "angelfish"
@@ -422,9 +398,7 @@
 	sprite_width = 4
 	sprite_height = 7
 
-/obj/item/fish/darkpack/angelfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/clownfish
 	name = "clownfish"
@@ -439,9 +413,7 @@
 	sprite_width = 7
 	sprite_height = 4
 
-/obj/item/fish/darkpack/clownfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/holo_clownfish // the one that actually looks like a clownfish. the other one has a clown wig and mask on
 	name = "holographic clownfish"
@@ -456,9 +428,7 @@
 	sprite_width = 7
 	sprite_height = 4
 
-/obj/item/fish/darkpack/holo_clownfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/lanternfish
 	name = "lanternfish"
@@ -473,9 +443,7 @@
 	sprite_width = 6
 	sprite_height = 5
 
-/obj/item/fish/darkpack/lanternfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/goldfish
 	name = "goldfish"
@@ -490,9 +458,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/goldfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/dwarf_moonfish
 	name = "dwarf moonfish"
@@ -507,9 +473,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/dwarf_moonfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/tizira_moonfish
 	name = "tiziran moonfish"
@@ -524,9 +488,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/tizira_moonfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/needlefish
 	name = "needlefish"
@@ -541,9 +503,7 @@
 	sprite_width = 8
 	sprite_height = 2
 
-/obj/item/fish/darkpack/needlefish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/armorfish
 	name = "armorfish"
@@ -558,9 +518,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/armorfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/pufferfish
 	name = "pufferfish"
@@ -575,9 +533,7 @@
 	sprite_width = 8
 	sprite_height = 6
 
-/obj/item/fish/darkpack/pufferfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/emulsijack
 	name = "emulsijack"
@@ -592,9 +548,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/emulsijack/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/donkfish
 	name = "donkfish"
@@ -609,9 +563,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/donkfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/ratfish
 	name = "rat"
@@ -627,9 +579,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/ratfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/chrab
 	name = "chrab"
@@ -645,9 +595,7 @@
 	sprite_width = 6
 	sprite_height = 5
 
-/obj/item/fish/darkpack/chrab/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/arctic_chrab
 	name = "arctic chrab"
@@ -663,9 +611,7 @@
 	sprite_width = 6
 	sprite_height = 5
 
-/obj/item/fish/darkpack/arctic_chrab/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/half_fish
 	name = "half fish"
@@ -680,9 +626,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/half_fish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/bonemass
 	name = "bonemass"
@@ -698,9 +642,7 @@
 	sprite_width = 5
 	sprite_height = 5
 
-/obj/item/fish/darkpack/bonemass/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/sludgefish
 	name = "sludgefish"
@@ -715,9 +657,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/sludgefish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/sludgefish_purple
 	name = "purple sludgefish"
@@ -732,9 +672,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/sludgefish_purple/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/starfish
 	name = "starfish"
@@ -749,9 +687,7 @@
 	sprite_width = 5
 	sprite_height = 5
 
-/obj/item/fish/darkpack/starfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/zipzap
 	name = "zipzap"
@@ -766,9 +702,7 @@
 	sprite_width = 6
 	sprite_height = 3
 
-/obj/item/fish/darkpack/zipzap/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/jumpercable
 	name = "jumpercablefish"
@@ -784,9 +718,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/jumpercable/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/arctic_char
 	name = "arctic char"
@@ -801,9 +733,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/arctic_char/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/stingray
 	name = "stingray"
@@ -818,9 +748,7 @@
 	sprite_width = 8
 	sprite_height = 7
 
-/obj/item/fish/darkpack/stingray/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/sockeye
 	name = "sockeye salmon"
@@ -835,9 +763,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/sockeye/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/swordfish
 	name = "swordfish"
@@ -852,9 +778,7 @@
 	sprite_width = 13
 	sprite_height = 6
 
-/obj/item/fish/darkpack/swordfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/bumpy
 	name = "bumpy fish"
@@ -869,9 +793,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/bumpy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/sand_surfer
 	name = "sand surfer"
@@ -886,9 +808,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/sand_surfer/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/three_eyes
 	name = "three-eyed fish"
@@ -903,9 +823,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/three_eyes/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/tadpole
 	name = "tadpole"
@@ -920,9 +838,7 @@
 	sprite_width = 3
 	sprite_height = 1
 
-/obj/item/fish/darkpack/tadpole/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/squid
 	name = "squid"
@@ -937,9 +853,7 @@
 	sprite_width = 4
 	sprite_height = 5
 
-/obj/item/fish/darkpack/squid/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/perch
 	name = "perch"
@@ -954,9 +868,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/perch/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/plaice
 	name = "plaice"
@@ -971,9 +883,7 @@
 	sprite_width = 6
 	sprite_height = 7
 
-/obj/item/fish/darkpack/plaice/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/monkfish
 	name = "monkfish"
@@ -988,9 +898,7 @@
 	sprite_width = 7
 	sprite_height = 7
 
-/obj/item/fish/darkpack/monkfish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/pike
 	name = "pike"
@@ -1005,9 +913,7 @@
 	sprite_width = 7
 	sprite_height = 3
 
-/obj/item/fish/darkpack/pike/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/armored_pike
 	name = "armored pike"
@@ -1022,9 +928,7 @@
 	sprite_width = 7
 	sprite_height = 3
 
-/obj/item/fish/darkpack/armored_pike/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/sacabambaspis
 	name = "sacabambaspis"
@@ -1039,9 +943,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/sacabambaspis/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/baby_carp
 	name = "baby carp"
@@ -1056,9 +958,7 @@
 	sprite_width = 5
 	sprite_height = 3
 
-/obj/item/fish/darkpack/baby_carp/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/fryish
 	name = "fryish"
@@ -1073,9 +973,7 @@
 	dedicated_in_aquarium_icon_state = "fryish_small"
 	aquarium_vc_color = "#c8882c"
 
-/obj/item/fish/darkpack/fryish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/fritterish
 	name = "fritterish"
@@ -1090,9 +988,7 @@
 	dedicated_in_aquarium_icon_state = "fritterish_small"
 	aquarium_vc_color = "#c8a050"
 
-/obj/item/fish/darkpack/fritterish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/nessiefish
 	name = "nessiefish"
@@ -1107,9 +1003,7 @@
 	dedicated_in_aquarium_icon_state = "nessiefish_small"
 	aquarium_vc_color = "#487848"
 
-/obj/item/fish/darkpack/nessiefish/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
 
 /obj/item/fish/darkpack/mastodon
 	name = "mastodon fish"
@@ -1124,6 +1018,4 @@
 	dedicated_in_aquarium_icon_state = "mastodon_small"
 	aquarium_vc_color = "#787060"
 
-/obj/item/fish/darkpack/mastodon/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, fish_price, "fish", FALSE)
+
