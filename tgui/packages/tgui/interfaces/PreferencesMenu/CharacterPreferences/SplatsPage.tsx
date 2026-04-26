@@ -111,10 +111,23 @@ type SplatsPageInnerProps = {
   splats: ServerData['splats'];
 };
 
+// TFN EDIT START
+const SPLAT_WHITELIST_REQUIREMENTS: Record<string, string> = {
+  none: 'human',
+  splat_kindred: 'vampire',
+  splat_ghoul: 'ghoul',
+  splat_garou: 'garou',
+  splat_kinfolk: 'kinfolk',
+};
+// TFN EDIT END
+
 function SplatsPageInner(props: SplatsPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSplats = createSetPreference(act, 'splats');
-  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // TFN EDIT ADD - confirm dialog for splat changes
+  // TFN EDIT START
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null,);
+  const whitelistSet = new Set(data.player_whitelists || []);
+  // TFN EDIT END
 
   const splats: [string, Splats][] = Object.entries(props.splats).map(
     ([splats, data]) => {
@@ -145,12 +158,16 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           <Stack.Item>
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {splats.map(([splatsKey, splats]) => {
+                // TFN EDIT START - my splat whitelists are too strong for you, traveller. you must go to a server with weaker whitelists
+                const requiredWhitelist = SPLAT_WHITELIST_REQUIREMENTS[splatsKey];
+                const isLocked = !!requiredWhitelist && !whitelistSet.has(requiredWhitelist);
+                // TFN EDIT END
                 return (
                   <Button
                     key={splatsKey}
                     // TFN EDIT START - warn + clear disciplines when switching splats
                     onClick={() => {
-                      if (splatsKey !== data.character_preferences.misc.splats) {
+                      if ( splatsKey !== data.character_preferences.misc.splats ) {
                         setPendingConfirm(() => () => {
                           act('clear_discipline_levels');
                           setSplats(splatsKey);
@@ -161,17 +178,34 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                     selected={
                       data.character_preferences.misc.splats === splatsKey
                     }
-                    tooltip={splats.name}
+                    tooltip={ isLocked ? `${splats.name} (Whitelisted, apply for it  on Discord!)` : splats.name } // TFN EDIT ADD
                     style={{
                       display: 'block',
                       height: '64px',
                       width: '64px',
+                      position: 'relative',
                     }}
                   >
                     <Box
                       className={classes(['splat64x64', splats.icon])}
                       ml={-1}
+                      style={{ opacity: isLocked ? 0.4 : 1 }}
                     />
+                    {/* TFN EDIT START */}
+                    {isLocked && (
+                      <Icon
+                        name="lock"
+                        style={{
+                          position: 'absolute',
+                          bottom: '2px',
+                          right: '2px',
+                          fontSize: '14px',
+                          color: 'rgba(255,255,255,0.85)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+                    )}
+                    {/* TFN EDIT END */}
                   </Button>
                 );
               })}
@@ -183,12 +217,10 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
               <Box>
                 <Stack fill>
                   <Stack.Item width="70%">
-                    <Section
-                      title={currentSplat.name}
-                    >
-                      <Section title="Description">
-                        {currentSplat.desc}
-                      </Section>
+                    {/* TFN EDIT START */}
+                    <Section title={currentSplat.name}>
+                      <Section title="Description">{currentSplat.desc}</Section>
+                    {/* TFN EDIT END */}
 
                       <Section title="Features">
                         <SplatsPerks perks={currentSplat.perks} />

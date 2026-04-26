@@ -1,18 +1,19 @@
+import type { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
+import { Box, Dropdown, Icon, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+import { capitalizeFirst } from 'tgui-core/string';
 import type { PreferencesMenuData } from '../../../types';
 import type { FeatureChoiced, FeatureValueProps } from '../base';
-import { FeatureIconnedDropdownInput } from '../dropdowns';
 
-// the string names of the clans in trusted_whitelist.dm
-const TRUSTED_ONLY_CLAN_NAMES = [
-  'Baali',
-  'Salubri',
-  'Healer Salubri',
-  'Warrior Salubri',
-  'True Brujah',
-  'Cappadocian',
-  'Harbinger of Skulls',
-];
+export const TRUSTED_CLAN_WHITELIST_IDS: Record<string, string> = {
+  Baali: 'baali',
+  Salubri: 'healer_salubri',
+  'Warrior Salubri': 'warrior_salubri',
+  'True Brujah': 'true_brujah',
+  Cappadocian: 'cappadocian',
+  'Harbinger of Skulls': 'harbinger_of_skulls',
+};
 
 type ClanServerData = {
   choices: string[];
@@ -24,29 +25,76 @@ export const vampire_clan: FeatureChoiced = {
   name: 'Clan',
   component: (props: FeatureValueProps<string, string, ClanServerData>) => {
     const { data } = useBackend<PreferencesMenuData>();
-    const isTrusted = !!data.discipline_trusted;
+    const { serverData, handleSetValue, value } = props;
+    const whitelistSet = new Set(data.player_whitelists || []);
+    const isTrusted = whitelistSet.has('trusted');
 
-    if (isTrusted || !props.serverData) {
-      return <FeatureIconnedDropdownInput {...props} />;
+    if (!serverData) {
+      return null;
     }
 
-    const filteredChoices = props.serverData.choices.filter(
-      (c) => !TRUSTED_ONLY_CLAN_NAMES.includes(c),
-    );
-    const filteredIcons = Object.fromEntries(
-      Object.entries(props.serverData.icons ?? {}).filter(
-        ([k]) => !TRUSTED_ONLY_CLAN_NAMES.includes(k),
-      ),
-    );
+    const { choices, icons } = serverData;
 
-    const filteredServerData = {
-      ...props.serverData,
-      choices: filteredChoices,
-      icons: filteredIcons,
-    };
+    const options = choices.map((choice) => {
+      const whitelistId = TRUSTED_CLAN_WHITELIST_IDS[choice];
+      const isLocked =
+        !!whitelistId && !isTrusted && !whitelistSet.has(whitelistId);
+
+      let displayText: ReactNode = capitalizeFirst(choice);
+
+      if (icons?.[choice]) {
+        displayText = (
+          <Stack align="center">
+            <Stack.Item>
+              <Box
+                className={classes(['preferences32x32', icons[choice]])}
+                style={{ transform: 'scale(0.8)', opacity: isLocked ? 0.4 : 1 }}
+              />
+            </Stack.Item>
+            <Stack.Item grow style={{ opacity: isLocked ? 0.4 : 1 }}>
+              {capitalizeFirst(choice)}
+            </Stack.Item>
+            {isLocked && (
+              <Stack.Item>
+                <Icon name="lock" color="label" />
+              </Stack.Item>
+            )}
+          </Stack>
+        );
+      } else if (isLocked) {
+        displayText = (
+          <Stack align="center">
+            <Stack.Item grow style={{ opacity: 0.4 }}>
+              {capitalizeFirst(choice)}
+            </Stack.Item>
+            <Stack.Item>
+              <Icon name="lock" color="label" />
+            </Stack.Item>
+          </Stack>
+        );
+      }
+
+      return { displayText, value: choice };
+    });
+
+    const selectedWhitelistId = TRUSTED_CLAN_WHITELIST_IDS[value];
+    const selectedIsLocked =
+      !!selectedWhitelistId && !isTrusted && !whitelistSet.has(selectedWhitelistId);
 
     return (
-      <FeatureIconnedDropdownInput {...props} serverData={filteredServerData} />
+      <Dropdown
+        buttons
+        displayText={
+          selectedIsLocked
+            ? `${capitalizeFirst(value)} ${<Icon name="lock" color="label" />}`
+            : capitalizeFirst(value) || ''
+        }
+        onSelected={handleSetValue}
+        options={options}
+        selected={value}
+        width="100%"
+        menuWidth="max-content"
+      />
     );
   },
 };

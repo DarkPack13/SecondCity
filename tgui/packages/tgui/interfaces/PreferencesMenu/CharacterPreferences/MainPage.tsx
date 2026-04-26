@@ -12,6 +12,7 @@ import {
   NumberInput, // DARKPACK EDIT
   Section,
   Stack,
+  Icon, // TFN EDIT ADD
 } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
@@ -37,6 +38,7 @@ import { useServerPrefs } from '../useServerPrefs';
 import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 import { VocalsInput, VoiceInput } from './darkpack_vocals'; // DARKPACK EDIT ADDITION
+import { TRUSTED_CLAN_WHITELIST_IDS } from '../preferences/features/character_preferences/tfn_trusted_whitelist'; // TFN EDIT ADD
 
 const CLOTHING_CELL_SIZE = 48;
 const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT CHANGE - ORIGINAL: 9;
@@ -106,10 +108,11 @@ type ChoicedSelectionProps = {
   supplementalFeature?: string;
   supplementalValue?: unknown;
   onSelect: (value: string) => void;
+  isLocked?: (choice: string) => boolean; // TFN EDIT ADD
 };
 
 function ChoicedSelection(props: ChoicedSelectionProps) {
-  const { catalog, supplementalFeature, supplementalValue } = props;
+  const { catalog, supplementalFeature, supplementalValue, isLocked } = props;
   const [searchText, setSearchText] = useState('');
 
   if (!catalog.icons) {
@@ -155,6 +158,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
             <Stack wrap>
               {searchInCatalog(searchText, catalog.icons).map(
                 ([name, image], index) => {
+                  const locked = isLocked?.(name) ?? false; // TFN EDIT ADD
                   return (
                     <Button
                       key={index}
@@ -162,11 +166,12 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                         props.onSelect(name);
                       }}
                       selected={name === props.selected}
-                      tooltip={name}
+                      tooltip={locked ? `${name} (Whitelisted, apply on Discord!)` : name} // TFN EDIT ADD
                       tooltipPosition="right"
                       style={{
                         height: `${CLOTHING_SELECTION_CELL_SIZE}px`,
                         width: `${CLOTHING_SELECTION_CELL_SIZE}px`,
+                        position: 'relative', // TFN EDIT ADD
                       }}
                     >
                       <Box
@@ -178,8 +183,23 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                         style={{
                           transform:
                             'translateX(-50%) translateY(-50%) scale(0.8)',
+                          opacity: locked ? 0.4 : 1, // TFN EDIT ADD
                         }}
                       />
+                      {locked && (
+                        <Box
+                          style={{
+                            position: 'absolute',
+                            bottom: '2px',
+                            right: '2px',
+                            fontSize: '11px',
+                            color: 'rgba(255,255,255,0.85)',
+                            pointerEvents: 'none',
+                          }}
+                        >
+                          <Icon name="lock" color="label" />
+                        </Box>
+                      )}
                     </Button>
                   );
                 },
@@ -258,6 +278,7 @@ type MainFeatureProps = {
   handleSelect: (newClothing: string) => void;
   randomization?: RandomSetting;
   setRandomization: (newSetting: RandomSetting) => void;
+  isLocked?: (choice: string) => boolean; // TFN EDIT ADD
 };
 
 function MainFeature(props: MainFeatureProps) {
@@ -268,6 +289,7 @@ function MainFeature(props: MainFeatureProps) {
     handleSelect,
     randomization,
     setRandomization,
+    isLocked, // TFN EDIT ADD
   } = props;
 
   const supplementalFeature = catalog.supplemental_feature;
@@ -289,6 +311,7 @@ function MainFeature(props: MainFeatureProps) {
             ]
           }
           onSelect={handleSelect}
+          isLocked={isLocked} // TFN EDIT ADD
         />
       }
     >
@@ -465,6 +488,10 @@ export function MainPage(props: MainPageProps) {
   const [vocalsInputOpen, setVocalsInputOpen] = useState(false); // DARKPACK EDIT ADDITION
   const [randomToggleEnabled] = useRandomToggleState();
   const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // TFN EDIT ADD - for popups
+  // TFN EDIT START
+  const whitelistSet = new Set(data.player_whitelists || []);
+  const isTrusted = whitelistSet.has('trusted');
+  // TFN EDIT END
 
   const serverData = useServerPrefs();
 
@@ -686,7 +713,14 @@ export function MainPage(props: MainPageProps) {
                     }
                   : baseSelect;
               // DARKPACK EDIT END
-
+              // TFN EDIT START - lock icons for whitelisted clans
+              const isChoiceLocked = clothingKey === 'vampire_clan'
+                ? (choice: string) => {
+                    const whitelistId = TRUSTED_CLAN_WHITELIST_IDS[choice];
+                    return !!whitelistId && !isTrusted && !whitelistSet.has(whitelistId);
+                  }
+                : undefined;
+              // TFN EDIT END
               return (
                 <Stack.Item key={clothingKey}>
                   {!catalog ? (
@@ -699,6 +733,7 @@ export function MainPage(props: MainPageProps) {
                       handleSelect={handleSelect}
                       randomization={randomizationOfMainFeatures[clothingKey]}
                       setRandomization={createSetRandomization(clothingKey)}
+                      isLocked={isChoiceLocked} // TFN EDIT ADD
                     />
                   )}
                 </Stack.Item>

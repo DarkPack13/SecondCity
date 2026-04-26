@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, DmIcon, Icon, Input, Section, Stack, Tooltip, Divider } from 'tgui-core/components';
+import { Box, Button, Divider, DmIcon, Icon, Input, Section, Stack, Tooltip } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type DisciplineInfo = {
@@ -18,6 +18,13 @@ type DisciplineValidation = {
   additional_rare: number;
   valid: boolean;
   violations: string[];
+};
+
+type WhitelistDefinition = {
+  name: string;
+  description: string;
+  category: 'splat' | 'access' | 'clan';
+  is_default: boolean;
 };
 
 type Data = {
@@ -41,6 +48,8 @@ type Data = {
   splat_name: string | null;
   flavor_text: string | null;
   headshot: string | null;
+  player_whitelists: string[];
+  whitelist_definitions: Record<string, WhitelistDefinition>;
 };
 
 type DisciplineCardProps = {
@@ -158,6 +167,65 @@ function DisciplineCard(props: DisciplineCardProps) {
   );
 }
 
+const WHITELIST_CATEGORY_LABELS: Record<string, string> = {
+  splat: 'Splat Access',
+  access: 'Access Level',
+  clan: 'Clan Access',
+};
+
+function WhitelistSection(props: {
+  playerWhitelists: string[];
+  whitelistDefinitions: Record<string, WhitelistDefinition>;
+  onToggle: (id: string, currentlyHas: boolean) => void;
+}) {
+  const { playerWhitelists, whitelistDefinitions, onToggle } = props;
+  const whitelistSet = new Set(playerWhitelists);
+  const categories = ['splat', 'access', 'clan'] as const;
+
+  return (
+    <Section title="Whitelists">
+      <Stack vertical spacing={1}>
+        {categories.map((category) => {
+          const entries = Object.entries(whitelistDefinitions).filter(
+            ([, wl]) => wl.category === category,
+          );
+          if (!entries.length) return null;
+          return (
+            <Stack.Item key={category}>
+              <Box color="label" bold mb={0.5}>
+                {WHITELIST_CATEGORY_LABELS[category]}
+              </Box>
+              <Stack wrap spacing={0.5}>
+                {entries.map(([id, wl]) => {
+                  const has = whitelistSet.has(id);
+                  return (
+                    <Stack.Item key={id}>
+                      <Tooltip content={wl.description}>
+                        <Button
+                          color={has ? 'green' : 'transparent'}
+                          icon={has ? 'check-square' : 'square'}
+                          onClick={() => onToggle(id, has)}
+                        >
+                          {wl.name}
+                          {!!wl.is_default && (
+                            <Box inline color={has ? 'rgba(255,255,255,0.6)' : 'label'} ml={0.5} fontSize="0.8em">
+                              (default)
+                            </Box>
+                          )}
+                        </Button>
+                      </Tooltip>
+                    </Stack.Item>
+                  );
+                })}
+              </Stack>
+            </Stack.Item>
+          );
+        })}
+      </Stack>
+    </Section>
+  );
+}
+
 export function TFNAdminDisciplineEditor() {
   const { act, data } = useBackend<Data>();
   const {
@@ -181,6 +249,8 @@ export function TFNAdminDisciplineEditor() {
     splat_name,
     flavor_text,
     headshot,
+    player_whitelists,
+    whitelist_definitions,
   } = data;
 
   const [ckeyInput, setCkeyInput] = useState('');
@@ -198,6 +268,10 @@ export function TFNAdminDisciplineEditor() {
 
   const handleRemove = (path: string) => {
     act('set_discipline_level', { discipline: path, level: 0 });
+  };
+
+  const handleWhitelistToggle = (id: string, currentlyHas: boolean) => {
+    act('set_whitelist', { id, grant: currentlyHas ? 0 : 1 });
   };
 
   const disciplineEntries = Object.entries(allDisciplines);
@@ -261,9 +335,16 @@ export function TFNAdminDisciplineEditor() {
               )}
             </Section>
 
+            {target_ckey && !not_found && (
+              <WhitelistSection
+                playerWhitelists={player_whitelists || []}
+                whitelistDefinitions={whitelist_definitions || {}}
+                onToggle={handleWhitelistToggle}
+              />
+            )}
+
             {target_ckey && !not_found && character_slots.length > 0 && (
               <Section title={`${target_ckey}'s character slots`}>
-
                 <Stack>
                   {character_slots.map(({ slot, name }) => (
                     <Stack.Item key={slot}>
@@ -354,22 +435,28 @@ export function TFNAdminDisciplineEditor() {
                             </Box>
                           </Stack.Item>
                           <Stack.Item ml={2}>
-                            <Button
-                            color={is_trusted ? 'green' : 'transparent'}
-                            icon={is_trusted ? 'shield-halved' : 'shield'}
-                            onClick={() => act('toggle_trusted')}
-                          >
-                            {is_trusted ? 'Trusted' : 'Untrusted'}
-                          </Button>
-                          {!is_trusted && (discipline_validation.valid ? (
-                            <Box color="green"><Icon name="check" mr={0.5} /> In compliance</Box>
-                          ) : (
-                            <Tooltip content={discipline_validation.violations.join('\n')}>
-                              <Box color="red" style={{ cursor: 'help' }}>
-                                <Icon name="triangle-exclamation" mr={0.5} /> Invalid Configuration
+                            {is_trusted ? (
+                              <Box inline color="green">
+                                <Icon name="shield-halved" mr={0.5} />Trusted
                               </Box>
-                            </Tooltip>
-                          ))}
+                            ) : (
+                              <>
+                                <Box inline color="label">
+                                  <Icon name="shield" mr={0.5} />Untrusted
+                                </Box>
+                                <Box inline ml={1}>
+                                  {discipline_validation.valid ? (
+                                    <Box color="green"><Icon name="check" mr={0.5} /> In compliance</Box>
+                                  ) : (
+                                    <Tooltip content={discipline_validation.violations.join('\n')}>
+                                      <Box color="red" style={{ cursor: 'help' }}>
+                                        <Icon name="triangle-exclamation" mr={0.5} /> Invalid Configuration
+                                      </Box>
+                                    </Tooltip>
+                                  )}
+                                </Box>
+                              </>
+                            )}
                           </Stack.Item>
                         </Stack>
                       </Section>
