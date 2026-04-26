@@ -343,7 +343,7 @@ function QuirkPage() {
     }
   });
 
-  const balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - Original :   let balance = -data.default_quirk_balance;
+  const balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - ORIGINAL: let balance = -data.default_quirk_balance;
   let positiveQuirks = 0;
 
   for (const selectedQuirkName of selectedQuirks) {
@@ -549,7 +549,7 @@ function QuirkPage() {
 }
 
 export function QuirkPersonalityPage() {
-  const [contentPage, setContentPage] = useState<'quirks'>( // DARKPACK EDIT, ORIGINAL: const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
+  const [contentPage, setContentPage] = useState<'quirks'>( // DARKPACK EDIT CHANGE - ORIGINAL: const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
     'quirks',
   );
 

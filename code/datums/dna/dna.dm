@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	return ..()
 
 ///Copies the variables of a dna datum onto another.
-/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT CHANGE - added '|COPY_DNA_BLOOD_TYPE', original : /datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
+/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT CHANGE - added '|COPY_DNA_BLOOD_TYPE', ORIGINAL: /datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
 	new_dna.unique_enzymes = unique_enzymes
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
