@@ -9,7 +9,7 @@
 			if(istext(entry))
 				player_whitelists += entry
 
-	if(discipline_trusted) // backwards compatibility
+	if(discipline_trusted && !(WHITELIST_TRUSTED in player_whitelists)) // backwards compatibility
 		player_whitelists += WHITELIST_TRUSTED
 		to_chat(parent, span_notice("LOG: Great news! Your existing trusted status was successfully migrated to the new splat whitelist system."))
 
