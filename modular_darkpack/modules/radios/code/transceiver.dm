@@ -107,7 +107,7 @@
 
 	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
 		return
-	var/area/vtm/crime_area = get_area(location)
+	var/area/vtm/crime_area = astype(get_area(location))
 	if(!crime_area || crime_area.zone_type != ZONE_MASQUERADE) // prevents sewer rats from reporting crime
 		return
 	COOLDOWN_START(src, crime_reporting_cooldown, 10 SECONDS)
