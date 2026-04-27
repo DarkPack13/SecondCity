@@ -41,6 +41,8 @@
 	if(STAT_INTIMIDATION in owner_stat)
 		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
 			theirpower -= 1
+		if(HAS_TRAIT(owner, TRAIT_BRUISER))
+			theirpower -= 1
 
 	//botch
 	if(successes < 0)

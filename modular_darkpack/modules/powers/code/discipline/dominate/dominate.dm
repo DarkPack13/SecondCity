@@ -122,7 +122,9 @@
 
 	if(STAT_INTIMIDATION in owner_stat)
 		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
-			theirpower += 1
+			theirpower -= 1
+		if(HAS_TRAIT(owner, TRAIT_BRUISER))
+			theirpower -= 1
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
