@@ -42,8 +42,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CHARMER "charmer"
 
 // Mutates the apperance of auras
-#define TRAIT_COLD_AURA "cold_aura"
-#define TRAIT_WARM_AURA "warm_aura"
+#define TRAIT_PALE_AURA "pale_aura"
+#define TRAIT_DECEPTIVE_AURA "deceptive_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
 
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
@@ -88,8 +88,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VTM_MORALITY "vtm_morality"
 /// Uses Vampire: The Masquerade Clans/Bloodlines
 #define TRAIT_VTM_CLANS "vtm_clans"
-/// This species drinks blood
-#define TRAIT_BLOOD_DRINKER "blood_drinker"
 /// Does not biologically age, and so has a disconnected biological and chronological age
 #define TRAIT_UNAGING "unaging"
 // Does the mob have ghostsight?
@@ -101,7 +99,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 
 // Allows the user to pass through doors
-#define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
 // Is the mob silenced (by Quietus 1 for example)
@@ -123,6 +120,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
 #define TRAIT_NO_EYE_CONTACT "no_eye_contact"
 
+// If the splat uses the WTA renown system described in W20 p. 245
+#define TRAIT_FERA_RENOWN "wta_fera_renown"
 /// If the species has garou breeds to select.
 #define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
 // if the species has garou tribes to select.
@@ -152,11 +151,27 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_ANIMAL_MUSK "animal_musk"
 #define TRAIT_PERMAFANGS "permafangs"
+#define TRAIT_DULLFANGS "dullfangs"
 #define TRAIT_ORGANOVORE "organovore"
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
+#define TRAIT_PREY_EXCLUSION "prey_exclusion"
+#define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
+#define TRAIT_VAMPIRE_TERRITORIAL "territorial"
+#define TRAIT_BETRAYERS_MARK "betrayers_mark"
+#define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
+#define TRAIT_GRIP_OF_THE_DAMNED "grip_of_the_damned"
+#define TRAIT_THE_LARGEST_MAW "the_largest_maw"
+#define TRAIT_PIERCED_VEIL "pierced_veil"
+#define TRAIT_WEAK_WILLED "weak_willed"
+#define TRAIT_TIME_SENSE "time_sense"
+#define TRAIT_METAMORPH "metamorph"
+#define TRAIT_MERIT_UNTAMABLE "merit_untamable"
+#define TRAIT_FAIR_GLABRO "fair_glabro"
+#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 
 // END TRAIT DEFINES

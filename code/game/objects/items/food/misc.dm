@@ -270,7 +270,7 @@
 		/datum/reagent/toxin = 2,
 	)
 	tastes = list("cobwebs" = 1)
-	foodtypes = MEAT | TOXIC | BUGS
+	foodtypes = MEAT | TOXIC | BUGS | EGG
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/food/spidereggs/processed
@@ -340,7 +340,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/powercrepe
-	name = "Powercrepe"
+	name = "powercrepe"
 	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
 	icon_state = "powercrepe"
 	inhand_icon_state = "powercrepe"
@@ -468,6 +468,7 @@
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
+	custom_price = 2 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/pesto
 	name = "pesto"
@@ -595,6 +596,7 @@
 	foodtypes = VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/onigiri/Initialize(mapload)
 	. = ..()
@@ -664,6 +666,7 @@
 	foodtypes = GRAIN | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/cheese_pierogi
 	name = "cheese pierogi"

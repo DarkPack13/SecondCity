@@ -6,12 +6,19 @@
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
+	signature_clan = VAMPIRE_CLAN_GIOVANNI
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
 	ritualist.level = level
+
+/datum/discipline/necromancy/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/necromancy))
+			qdel(action)
 
 /datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
 	. = ..()
