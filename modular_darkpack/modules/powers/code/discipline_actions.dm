@@ -52,6 +52,10 @@
 	QDEL_NULL(discipline)
 	return ..()
 
+/datum/action/discipline/Destroy()
+	QDEL_NULL(discipline)
+	return ..()
+
 /datum/action/discipline/proc/register_to_availability_signals()
 	//this should only go through if it's the first Discipline gained by the mob
 	for (var/datum/action/action in owner.actions)
