@@ -181,6 +181,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GLOWING_EYES "glowing_eyes"
 #define TRAIT_ACUTE_SIGHT "acute_sight"
 #define TRAIT_ACUTE_HEARING "acute_hearing"
-#define TRAIT_BRUISER
+#define TRAIT_BRUISER "bruiser"
+#define TRAIT_ENCHANTING_VOICE "enchanting_voice"
 
 // END TRAIT DEFINES
