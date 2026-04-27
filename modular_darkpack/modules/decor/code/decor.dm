@@ -52,6 +52,21 @@
 		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
+	RegisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+	create_lights()
+
+/obj/structure/lamppost/proc/on_power_change(datum/source)
+	SIGNAL_HANDLER
+
+	var/area/A = source
+
+	if(A.power_light)
+		create_lights()
+	else
+		QDEL_LIST(my_lights)
+
+/obj/structure/lamppost/proc/create_lights()
+	QDEL_LIST(my_lights)
 	switch(number_of_lamps)
 		if(1)
 			new_light(get_step(loc, dir))
@@ -74,6 +89,7 @@
 	my_lights += new /obj/effect/decal/lamplight(location)
 
 /obj/structure/lamppost/Destroy(force)
+	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
 	QDEL_LIST(my_lights)
 	. = ..()
 

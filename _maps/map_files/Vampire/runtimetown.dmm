@@ -1095,6 +1095,10 @@
 "tY" = (
 /turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
+"uf" = (
+/obj/effect/turf_decal/bordur,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "ug" = (
 /obj/machinery/door/airlock/elevator/right{
 	elevator_mode = 1;
@@ -1507,6 +1511,13 @@
 /obj/item/gun/ballistic/automatic/darkpack/sniper,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"Ce" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/fusebox/transformer,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "Ct" = (
 /obj/structure/lamppost/one{
 	dir = 1
@@ -1792,6 +1803,9 @@
 /obj/structure/vampdoor/prison,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
+"Gr" = (
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/baywalk)
 "Gt" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/tox,
@@ -2389,6 +2403,11 @@
 /obj/effect/mapping_helpers/door/access/graveyard,
 /turf/open/floor/plating/rough,
 /area/vtm/graveyard/interior)
+"OA" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/lamppost/one,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "OB" = (
 /obj/darkpack_car/police{
 	locked = 0
@@ -2568,6 +2587,11 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"QU" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/lamppost/one,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/financialdistrict)
 "QW" = (
 /obj/machinery/light/directional/north,
 /obj/effect/spawner/random/vending/snackvend,
@@ -2856,6 +2880,13 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"Wn" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/fusebox/transformer,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/financialdistrict)
 "Ws" = (
 /obj/structure/table,
 /obj/vampire_computer,
@@ -5750,11 +5781,11 @@ NR
 NR
 NR
 NR
-cj
-ik
+uf
+Gr
 VQ
 ik
-Fs
+Ce
 qt
 FO
 Wa
@@ -5818,8 +5849,8 @@ NR
 NR
 NR
 NR
-Bq
-ik
+OA
+Gr
 VQ
 ik
 Fs
@@ -6430,11 +6461,11 @@ NR
 NR
 NR
 NR
-Bq
+QU
 ik
 VQ
 ik
-Fs
+Wn
 Wa
 Wa
 Mn
