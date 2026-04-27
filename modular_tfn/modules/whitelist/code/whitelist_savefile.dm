@@ -12,7 +12,8 @@
 	if(discipline_trusted) // backwards compatibility
 		player_whitelists += WHITELIST_TRUSTED
 		to_chat(parent, span_notice("LOG: Great news! Your existing trusted status was successfully migrated to the new splat whitelist system."))
-		discipline_trusted = null
+
+	discipline_trusted = (WHITELIST_TRUSTED in player_whitelists)
 
 /datum/preferences/save_preferences()
 	. = ..()
