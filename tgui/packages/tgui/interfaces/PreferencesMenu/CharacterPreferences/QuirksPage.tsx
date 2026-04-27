@@ -356,7 +356,7 @@ function QuirkPage() {
       positiveQuirks += 1;
     }
 
-    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - MERITS/FLAWS
+    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - MERITS_FLAWS
   }
 
   function getReasonToNotAdd(quirkName: string) {
@@ -369,11 +369,11 @@ function QuirkPage() {
         return 'You need a negative quirk to balance this out!';
       }
     }
-    // DARKPACK EDIT ADD - MERITS/FLAWS
+    // DARKPACK EDIT ADD - MERITS_FLAWS
     if (balance - quirk.value < 0) {
       return 'You need more freebie points to take this quirk!';
     }
-    // DARKPACK EDIT ADD - MERITS/FLAWS
+    // DARKPACK EDIT ADD - MERITS_FLAWS
 
     const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
       return quirkInfo[quirkKey].name;
@@ -393,8 +393,8 @@ function QuirkPage() {
         }
       }
     }
-    if (data.clan_disallowed_quirks.includes(quirk.name)) {    // DARKPACK EDIT ADD - MERITS/FLAWS
-      return 'This quirk is incompatible with your selected clan.';    // DARKPACK EDIT END - MERITS/FLAWS
+    if (data.clan_disallowed_quirks.includes(quirk.name)) {    // DARKPACK EDIT ADD - MERITS_FLAWS
+      return 'This quirk is incompatible with your selected clan.';    // DARKPACK EDIT END - MERITS_FLAWS
     }
     if (data.splat_disallowed_quirks.includes(quirk.name)) { // DARKPACK EDIT CHANGE - SPLATS
       return 'This quirk is incompatible with your selected splats.'; // DARKPACK EDIT CHANGE - SPLATS

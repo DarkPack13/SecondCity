@@ -4,7 +4,7 @@ Module ID: MERITS_FLAWS
 
 ### Description:
 
-This module implements Darkpack MERITS/FLAWS, allowing users to select negative quirks for extra freebie points to allocate on the stat sheet, or positive quirks to diminish their freebie points on the statsheet. Users cannot go below zero freebie points.
+This module implements Darkpack merits/flaws, allowing users to select negative quirks for extra freebie points to allocate on the stat sheet, or positive quirks to diminish their freebie points on the statsheet. Users cannot go below zero freebie points.
 
 ### TG Proc/File Changes:
 
