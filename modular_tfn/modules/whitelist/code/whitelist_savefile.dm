@@ -15,5 +15,5 @@
 		discipline_trusted = null
 
 /datum/preferences/save_preferences()
-	savefile.set_entry("player_whitelists", player_whitelists)
 	. = ..()
+	savefile.set_entry("player_whitelists", player_whitelists)
