@@ -182,6 +182,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ACUTE_SIGHT "acute_sight"
 #define TRAIT_ACUTE_HEARING "acute_hearing"
 #define TRAIT_BRUISER "bruiser"
+#define TRAIT_FRIENDLY_FACE "friendly_face"
 #define TRAIT_ENCHANTING_VOICE "enchanting_voice"
 
 // END TRAIT DEFINES

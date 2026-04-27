@@ -38,6 +38,9 @@
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
 		theirpower += 1
 
+	if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE))
+		theirpower -= 1
+
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		theirpower -= 2
 
