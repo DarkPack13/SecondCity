@@ -82,7 +82,7 @@
 /datum/discipline_power/bloodheal/proc/adjust_vitae_cost()
 	vitae_cost = initial(vitae_cost)
 
-	var/vitae_needed = owner.get_storyteller_damage(heal_scars = TRUE) / 2
+	var/vitae_needed = round(owner.get_storyteller_damage(heal_scars = TRUE) / 2)
 
 	//vitae used to heal is the smaller of max vitae expenditure and what's needed to heal the damage
 	vitae_cost = max(min(vitae_cost, vitae_needed), 1)
