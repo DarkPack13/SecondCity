@@ -48,12 +48,14 @@
 
 /obj/structure/lamppost/Initialize(mapload)
 	. = ..()
+	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
-	RegisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
-	create_lights()
+	if(my_area.requires_power)
+		RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+		if(my_area.powered())
+			create_lights()
 
 /obj/structure/lamppost/proc/on_power_change(datum/source)
 	SIGNAL_HANDLER
