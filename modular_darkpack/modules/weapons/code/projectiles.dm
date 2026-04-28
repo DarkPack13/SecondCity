@@ -147,6 +147,8 @@
 		var/datum/storyteller_roll/knockdown_roll = new()
 		knockdown_roll.applicable_stats = list(STAT_STRENGTH, STAT_DEXTERITY, STAT_ATHLETICS)
 		knockdown_roll.difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0)
+		if(HAS_TRAIT(target, TRAIT_HUGE_SIZE))
+			knockdown_roll.difficulty -= 1 // Debate this, but we're harder to knock down.
 		if(knockdown_roll.st_roll(target, firer ? firer : src) == ROLL_FAILURE)
 			hit_person.Knockdown(20)
 			to_chat(hit_person, span_danger("The force of a projectile sends you sprawling!"))

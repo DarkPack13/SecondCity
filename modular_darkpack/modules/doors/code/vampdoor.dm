@@ -221,6 +221,8 @@
 			if(!bash_roll)
 				bash_roll = new()
 			bash_roll.difficulty = bash_difficulty
+			if(HAS_TRAIT(user, TRAIT_HUGE_SIZE)) // There's no numbers for this listed in the book, so we're making shit up.
+				bash_roll.difficulty -= 2 // A 6 diff bash becomes a 4 diff one here.
 			bash_roll.successes_needed = bash_successes_needed
 			var/roll = bash_roll.st_roll(user, src)
 			switch(roll)
