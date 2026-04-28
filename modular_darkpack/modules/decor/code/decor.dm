@@ -55,10 +55,9 @@
 	RegisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
 	create_lights()
 
-/obj/structure/lamppost/proc/on_power_change(datum/source)
+/obj/structure/lamppost/proc/on_power_change(area/A)
 	SIGNAL_HANDLER
 
-	var/area/A = source
 
 	if(A.power_light)
 		create_lights()
