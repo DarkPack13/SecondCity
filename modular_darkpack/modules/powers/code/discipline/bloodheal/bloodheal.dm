@@ -64,7 +64,7 @@
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
 
-	// 2 to represent leathal***
+	// 2 to represent lethal***
 	owner.heal_storyteller_health(vitae_cost * 2, heal_scars = TRUE)
 
 	//healing too quickly attracts attention
@@ -82,7 +82,7 @@
 /datum/discipline_power/bloodheal/proc/adjust_vitae_cost()
 	vitae_cost = initial(vitae_cost)
 
-	var/vitae_needed = owner.get_storyteller_damage(heal_scars = TRUE)
+	var/vitae_needed = owner.get_storyteller_damage(heal_scars = TRUE) / 2
 
 	//vitae used to heal is the smaller of max vitae expenditure and what's needed to heal the damage
 	vitae_cost = max(min(vitae_cost, vitae_needed), 1)

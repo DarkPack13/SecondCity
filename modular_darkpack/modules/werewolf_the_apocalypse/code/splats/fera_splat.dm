@@ -141,7 +141,7 @@
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return
-		// 2 to represent leathal***
+		// 2 to represent lethal***
 		owner.heal_storyteller_health(2, heal_scars = TRUE, heal_blood = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
