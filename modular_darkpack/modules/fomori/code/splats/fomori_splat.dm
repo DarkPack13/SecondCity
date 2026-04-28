@@ -10,11 +10,13 @@
 /mob/living/carbon/human/splat/fomori
 	auto_splats = list(/datum/splat/fomori)
 
-/datum/splat/fomori/on_gain()
+/datum/splat/fomori/on_gain() // WIP: Will be pointbuy eventually
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1)
 
 /datum/splat/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)
