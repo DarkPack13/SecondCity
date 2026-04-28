@@ -17,4 +17,5 @@
 
 /datum/preferences/save_preferences()
 	. = ..()
-	savefile.set_entry("player_whitelists", player_whitelists)
+	if(!isnull(player_whitelists))
+		savefile.set_entry("player_whitelists", player_whitelists)
