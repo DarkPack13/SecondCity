@@ -17,4 +17,4 @@
 		human_holder.rot_body(1)
 		ADD_TRAIT(human_holder, TRAIT_MASQUERADE_VIOLATING_FACE, "Monstrous")
 		if(human_holder.st_get_stat(STAT_APPEARANCE) > 0)
-			human_holder.st_add_stat_mod(STAT_APPEARANCE, -(STAT_APPEARANCE), "Monstrous")
+			human_holder.st_add_stat_mod(STAT_APPEARANCE, -human_holder.st_get_stat(STAT_APPEARANCE), "Monstrous")
