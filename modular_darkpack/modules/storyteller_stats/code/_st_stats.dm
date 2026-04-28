@@ -106,7 +106,7 @@
 	bonus_score = initial(bonus_score)
 	for(var/source in modifiers)
 		bonus_score += modifiers[source]
-	bonus_score = clamp(bonus_score, 0, 10)
+	bonus_score = clamp(bonus_score, -max_score, 10)
 
 // Points
 
