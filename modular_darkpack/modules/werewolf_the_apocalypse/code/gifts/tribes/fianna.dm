@@ -74,7 +74,7 @@
 /datum/action/cooldown/power/gift/faerie_light
 	name = "Faerie Light"
 	desc = "Create a bobbing mote of light to light your way or attract targets for an ambush."
-	button_icon_state = null // TODO: icon
+	button_icon_state = "faerie_light"
 	click_to_activate = TRUE
 
 	rank = 1

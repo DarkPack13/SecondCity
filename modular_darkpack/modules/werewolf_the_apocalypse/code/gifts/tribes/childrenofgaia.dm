@@ -7,6 +7,7 @@
 	name = "Jam Weapon"
 	desc = "The Child may stop any Weaver-born weapons from working within the range of his voice."
 	button_icon_state = "jam_weapon"
+	rank = 1
 	gnosis_cost = 1
 	var/list/datum/weakref/jammed_mobs = list()
 
