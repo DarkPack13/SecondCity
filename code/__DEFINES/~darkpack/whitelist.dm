@@ -11,6 +11,7 @@ GLOBAL_LIST_INIT(default_player_whitelists, list(
 	WHITELIST_HUMAN,
 	WHITELIST_VAMPIRE,
 	WHITELIST_GHOUL,
+	WHITELIST_KINFOLK,
 ))
 
 GLOBAL_LIST_INIT(splat_whitelists, list(
