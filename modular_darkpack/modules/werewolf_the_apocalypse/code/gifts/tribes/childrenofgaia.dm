@@ -1,16 +1,20 @@
 /datum/storyteller_roll/gift/jam_weapon
+	bumper_text = "Jam Weapon"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
 	numerical = TRUE
 
 /datum/action/cooldown/power/gift/jam_weapon
 	name = "Jam Weapon"
 	desc = "The Child may stop any Weaver-born weapons from working within the range of his voice."
+	button_icon_state = "jam_weapon"
 	gnosis_cost = 1
 	var/list/datum/weakref/jammed_mobs = list()
 
 /datum/action/cooldown/power/gift/jam_weapon/Activate(atom/target)
 	. = ..()
 	// var/mob/living/living_owner = astype(owner)
+
+	#warn could use better flavor/sounds
 
 	// "The player rolls Willpower against a difficulty of highest Willpower of any armed individual within earshot. "
 	var/highest_willpower = 0
