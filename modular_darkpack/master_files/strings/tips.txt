@@ -1,6 +1,7 @@
-You can find a lockpick on certain NPCs and at the black market. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
+You can find a lockpick on certain NPCs and at the black market or hardware store. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
+With high enough strength, you can attempt to bash down a door, but failing can injure you.
 Cars use gasoline; you can buy more at a gas station. This can be used in the production of molotovs, as well.
-If you ever find yourself lost, look for a city map. Or just ask for directions.
+If you ever find yourself lost, look for a city map, use the navigate verb or button. Or just ask for directions.
 Discipline levels can be changed with Right-Click.
 Human players can use the "Report a Masquerade violation" button in people's examine text to report any weird supernatural stuff they shouldn't be seeing, like vampires feeding or punching people across a room.
 You can jump around by pressing MMB. You can even jump over railings while standing next to them.
@@ -39,3 +40,32 @@ You can conceal your satchel by Alt + Right-clicking it.
 Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
 Your firearm stat dramatically improves your ability to control recoil.
 Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
+You can set off a sprinkler by attacking it with any item that would light a cigarette.
+ATMs can be smashed with a high force weapon for whatever cash is inside of them.
+Duffle bags can hold two large whitelisted items that bypass their normal item weight restriction.
+Pool tables can be interacted with and let you play a mock game of billiards.
+Gun casings leave forensic evidence that can trace back to your firearm unless preventative measures are taken.
+Hovering over a dice roll with reveal what stats were used for rolls.
+@You can <i>italicize</i>, <b>embolden</b> or <u>underline</u> portions of your messages by enclosing them with |, + or _ respectively. You can also avoid this by adding backslashes (they won't show in the message) before these characters.
+♪ Hey, have you ever tried appending the % character before your messages when speaking in-game? ♫
+A thrown glass of water can make a slippery tile, allowing you to slow down your pursuers in a pinch.
+Basketball requires focus. If you don't click on your target (player or hoop) you are more likely to miss.
+Basketball requires skill. Spinning drains stamina, reduces accuracy, but gives resistance from disarm. Use it to dunk!
+Basketball requires stamina. The more you have, the less likely your ball will be stolen and the more likely you can steal from another player.
+Basketball requires strategy. The direction both players are facing affects disarms so having your back to another player that is trying to steal is ideal.
+Basketball requires teamwork. Passing the ball with LMB is instant and costs no stamina.
+Don't be afraid to ask for help, whether from your peers or from admins.
+Holding alt and left clicking a tile will allow you to see its contents in the top right window pane, which is much faster than holding shift and right clicking.
+If you're bleeding, you can apply pressure to the limb by grabbing yourself while targeting the bleeding limb. This will slow you down and take up a hand, but it'll slow down how fast you lose blood. Note this won't help the bleeding clot any faster.
+If you're using hotkey mode, you can stop pulling things using H.
+Laying down will help slow down bloodloss. Death will halt it entirely.
+Most things have special interactions with right, alt, shift, and control click. Experiment!
+The resist button will allow you to resist out of handcuffs, being buckled to a chair or bed, out of locked lockers and more. Whenever you're stuck, try resisting!
+When in doubt about technical issues, clear your cache (byond launcher > cogwheel > preferences > game prefs), update your BYOND, and relog.
+You can use :L / .L or :R / .R to speak through an item being held in your left or right hand respectively. This allows you to talk into a city-bounced radio without manually turning on its microphone!
+You can right click someone with wire cutters, jaws of life, and box cutters to instantly snap cablecuffs or zipties. The jaws can even instantly break handcuffs!
+You can board up windows by left-clicking a window with planks in hand.
+Boots can store items like knives or lighters.
+To destroy any firearm's serial number, right-click it with a screwdriver in hand.
+You can board up windows by left-clicking a window with planks in hand.
+Boots can store items like knives or lighters.

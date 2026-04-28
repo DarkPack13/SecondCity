@@ -5,7 +5,8 @@
 	word = "Reveal thy bloodline for mine eyes."
 	level = 2
 
-/obj/ritual_rune/thaumaturgy/bloodwalk/attack_hand(mob/living/user)
+/obj/ritual_rune/thaumaturgy/bloodwalk/complete()
+	. = ..()
 	for(var/obj/item/reagent_containers/syringe/S in loc)
 		for(var/datum/reagent/blood/B in S.reagents.reagent_list)
 			var/blood_data = B.data
@@ -14,14 +15,12 @@
 				var/clan = blood_data["clan"]
 				var/real_name = blood_data["real_name"]
 				var/message = generate_message(generation, clan, real_name)
-				to_chat(user, "[message]")
+				to_chat(last_activator, "[message]")
 				// Process blood collection for research points
-				if(ishuman(user))
-					SSoccult_research.process_blood_collection(user, B)
-
+				if(ishuman(last_activator))
+					SSoccult_research.process_blood_collection(last_activator, B)
 			else
-				to_chat(user, "The blood speaks not; it is empty of power!")
-		playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
+				to_chat(last_activator, "The blood speaks not; it is empty of power!")
 		color = rgb(255,0,0)
 		activated = TRUE
 		qdel(src)
@@ -49,7 +48,7 @@
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 			message += "The blood is sweet and rich. The owner must, too, be beautiful.\n"
-		if(VAMPIRE_CLAN_VENTRUE)
+		if(VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_VENTRUE_ANTITRIBU)
 			message += "The blood has kingly power in it, descending from Mithras or Hardestadt.\n"
 		if(VAMPIRE_CLAN_LASOMBRA)
 			message += "Cold and dark, this blood has a mystical connection to the Abyss.\n"
@@ -59,7 +58,7 @@
 			message += "This vitae is old and ancient. It reminds you of a more twisted and cursed blood...\n"
 		if(VAMPIRE_CLAN_GANGREL, VAMPIRE_CLAN_CITY_GANGREL)
 			message += "The blood emits a primal and feral aura. The same is likely of the owner.\n"
-		if(VAMPIRE_CLAN_MALKAVIAN)
+		if(VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_DOMINATE_MALKAVIAN)
 			message += "You can sense chaos and madness within this blood. It's owner must be maddened too.\n"
 		if(VAMPIRE_CLAN_BRUJAH)
 			message += "The blood is filled with passion and anger. So must be the owner of the blood.\n"
@@ -69,7 +68,7 @@
 			message += "The blood is filled with the power of magic. The owner must be a thaumaturge.\n"
 		if(VAMPIRE_CLAN_BAALI)
 			message += "Tainted and corrupt. Vile and filthy. You see your reflection in the blood, but something else stares back.\n"
-		if(VAMPIRE_CLAN_BANU_HAQIM)
+		if(VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_BANU_HAQIM_VIZIER)
 			message += "Potent... deadly... and cursed. You know well the curse laid by Tremere on the assassins.\n"
 		if(VAMPIRE_CLAN_TRUE_BRUJAH)
 			message += "The blood is cold and static... It's hard to feel any emotion within it.\n"
@@ -77,13 +76,13 @@
 			message += "The cursed blood of the Salubri! The owner of this blood must be slain.\n"
 		if(VAMPIRE_CLAN_WARRIOR_SALUBRI)
 			message += "The avatar of Samiel's vengeance stands before you, do you dare return their bitter hatred?\n"
-		if(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN)
+		if(VAMPIRE_CLAN_GIOVANNI, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_HARBINGER)
 			message += "The blood is very cold and filled with death. The owner must be a necromancer.\n"
 		if(VAMPIRE_CLAN_KIASYD)
 			message += "The blood is filled with traces of fae magic.\n"
 		if(VAMPIRE_CLAN_GARGOYLE)
 			message += "The blood of our stone servants.\n"
-		if(VAMPIRE_CLAN_SETITE)
+		if(VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_WARRIOR_SETITE)
 			message += "Seduction and allure are in the blood. Ah, one of the snakes.\n"
 		if(VAMPIRE_CLAN_NAGARAJA)
 			message += "This blood has an unsettling hunger to it, cold and stained with death.\n"

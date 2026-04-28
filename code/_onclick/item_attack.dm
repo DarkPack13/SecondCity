@@ -78,7 +78,8 @@
 	// This can mean nothing happened, this can mean the target took damage, etc.
 
 	if(user.client && isitem(target))
-		if(isnull(user.get_inactive_held_item()))
+		var/mob/living/living_user = astype(user)
+		if(isnull(user.get_inactive_held_item() && living_user?.num_hands > 1))
 			SStutorials.suggest_tutorial(user, /datum/tutorial/switch_hands, modifiers)
 		else
 			SStutorials.suggest_tutorial(user, /datum/tutorial/drop, modifiers)
@@ -346,6 +347,10 @@
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
 	if(mob_biotypes & (MOB_ROBOTIC|MOB_MINERAL|MOB_SKELETAL)) // this should probably check hit bodypart for humanoids
 		final_force *= attacking_item.get_demolition_modifier(src)
+
+	// DARKPACK EDIT ADD START - (Makes Melee do Something)
+	final_force += final_force * (user.st_get_stat(STAT_MELEE) * 0.1)
+	// DARKPACK EDIT ADD END
 
 	var/wounding = attacking_item.wound_bonus
 	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && HAS_TRAIT(user, TRAIT_READY_TO_OPERATE))
