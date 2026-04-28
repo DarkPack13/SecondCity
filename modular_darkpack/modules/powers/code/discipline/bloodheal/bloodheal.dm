@@ -1,6 +1,3 @@
-#define HEAL_BASHING_LETHAL_DAMAGE 30
-#define HEAL_AGGRAVATED_DAMAGE 6
-
 /datum/discipline/bloodheal
 	name = "Bloodheal"
 	desc = "Use the power of your Vitae to mend your flesh."
@@ -67,33 +64,8 @@
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
 
-	//normal bashing/lethal damage
-	owner.heal_ordered_damage(HEAL_BASHING_LETHAL_DAMAGE * vitae_cost, list(BRUTE, TOX, OXY, STAMINA))
-
-	if(length(owner.all_wounds))
-		for (var/i in 1 to min(vitae_cost, length(owner.all_wounds)))
-			var/datum/wound/wound = owner.all_wounds[i]
-			wound.remove_wound()
-
-	//aggravated damage
-	owner.heal_ordered_damage(HEAL_AGGRAVATED_DAMAGE * vitae_cost, list(BURN, AGGRAVATED))
-
-	//brain damage and traumas healing
-	var/obj/item/organ/brain/brain = owner.get_organ_slot(ORGAN_SLOT_BRAIN)
-	if (brain)
-		brain.apply_organ_damage(-HEAL_BASHING_LETHAL_DAMAGE * vitae_cost)
-
-		for (var/i in 1 to min(vitae_cost, length(brain.get_traumas_type())))
-			var/datum/brain_trauma/healing_trauma = pick(brain.get_traumas_type())
-			brain.cure_trauma_type(healing_trauma, resilience = TRAUMA_RESILIENCE_WOUND)
-
-	//miscellaneous organ damage healing
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
-	if (eyes)
-		eyes.apply_organ_damage(-HEAL_BASHING_LETHAL_DAMAGE * vitae_cost)
-
-		owner.adjust_temp_blindness(-HEAL_AGGRAVATED_DAMAGE * vitae_cost)
-		owner.adjust_eye_blur(-HEAL_AGGRAVATED_DAMAGE * vitae_cost)
+	// 2 to represent leathal***
+	owner.heal_storyteller_health(vitae_cost * 2, heal_scars = TRUE)
 
 	//healing too quickly attracts attention
 	if (violates_masquerade)
@@ -102,10 +74,6 @@
 			span_warning("Your wounds visibly heal with unnatural speed!")
 		)
 
-	//update UI
-	owner.update_damage_overlays()
-	owner.update_health_hud()
-
 /datum/discipline_power/bloodheal/spend_resources()
 	adjust_vitae_cost()
 
@@ -113,15 +81,8 @@
 
 /datum/discipline_power/bloodheal/proc/adjust_vitae_cost()
 	vitae_cost = initial(vitae_cost)
-	//tally up damage
-	var/total_bashing_lethal_damage = owner.get_brute_loss() + owner.get_tox_loss() + owner.get_oxy_loss()
-	var/total_aggravated_damage = owner.get_agg_loss() + owner.get_fire_loss()
 
-	//lower blood expenditure to what's necessary
-	var/vitae_to_heal_bashing_lethal = ceil(total_bashing_lethal_damage / HEAL_BASHING_LETHAL_DAMAGE)
-	var/vitae_to_heal_aggravated = ceil(total_aggravated_damage / HEAL_AGGRAVATED_DAMAGE)
-
-	var/vitae_needed = max(vitae_to_heal_bashing_lethal, vitae_to_heal_aggravated)
+	var/vitae_needed = owner.get_storyteller_damage(heal_scars = TRUE)
 
 	//vitae used to heal is the smaller of max vitae expenditure and what's needed to heal the damage
 	vitae_cost = max(min(vitae_cost, vitae_needed), 1)
@@ -231,6 +192,3 @@
 	vitae_cost = 10
 
 	violates_masquerade = TRUE
-
-#undef HEAL_BASHING_LETHAL_DAMAGE
-#undef HEAL_AGGRAVATED_DAMAGE
