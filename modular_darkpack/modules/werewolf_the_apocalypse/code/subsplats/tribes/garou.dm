@@ -60,8 +60,9 @@
 	name = TRIBE_CHILDREN_OF_GAIA
 	desc = "Peacekeepers, negotiators, treaty-makers and philosophers. The Children of Gaia strive as hard as they can create an understanding and unity between the disparate tribes that will allow them to form a united front against their foes."
 	gifts_provided = list(
-		/datum/action/cooldown/power/gift/mothers_touch,
-		/datum/action/cooldown/power/gift/resist_pain,
+		/datum/action/cooldown/power/gift/jam_weapon
+		// /datum/action/cooldown/power/gift/mothers_touch, // DARKPACK TODO - (Selectable Gifts)
+		// /datum/action/cooldown/power/gift/resist_pain, // DARKPACK TODO - (Selectable Gifts)
 	// 	/datum/action/cooldown/power/gift/stoic_pose,
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast

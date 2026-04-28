@@ -235,6 +235,11 @@
 		return FALSE
 
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return FALSE
@@ -288,6 +293,11 @@
 	user.changeNext_move(attack_speed)
 	if(get(src, /mob/living) == user) // telekinesis.
 		user.do_attack_animation(attacked_atom)
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(attacked_atom.attacked_by(src, user, modifiers, attack_modifiers) == ATTACK_FAILED)
 		return TRUE
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, attacked_atom, user, modifiers, attack_modifiers)

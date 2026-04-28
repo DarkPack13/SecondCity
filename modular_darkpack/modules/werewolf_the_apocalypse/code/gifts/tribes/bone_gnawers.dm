@@ -71,7 +71,7 @@
 /datum/status_effect/desperate_strength/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
 	SIGNAL_HANDLER
 
-	if(STAT_STRENGTH in roll_datum.applicable_stats)
+	if(STAT_STRENGTH in roll_datum.using_stats(roller))
 		qdel(src)
 
 /datum/status_effect/desperate_strength/on_remove()

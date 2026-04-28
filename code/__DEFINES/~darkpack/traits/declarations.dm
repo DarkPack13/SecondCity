@@ -144,6 +144,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Massivly boosts the range of your howl emote.
 #define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
+#define TRAIT_JAMMING_WEAPONS "jamming_weapons"
+#define TRAIT_NATURAL "natural"
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
