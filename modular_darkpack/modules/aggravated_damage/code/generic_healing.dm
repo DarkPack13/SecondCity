@@ -53,13 +53,13 @@
 	return healed_dots
 
 
-// Its not FULLY 1 to 1 with the amount of dots I think. but its close enough for guessing how much vitate it would cost to heal for example.
+// Its not FULLY 1 to 1 with the amount of dots I think. I think the rounding can cut off a dice or two? but its close enough for guessing how much vitate it would cost to heal for example.
 /// Returns amount of "dots" of damage the mob currently has.
 /mob/living/proc/get_storyteller_damage(heal_aggravated = FALSE, heal_scars = FALSE, heal_blood = FALSE)
 	var/damage_dots = 0
 	if(heal_aggravated)
-		damage_dots += round(get_agg_loss()+get_fire_loss(), 1 TTRPG_DAMAGE)
-	damage_dots += round(get_brute_loss()+get_tox_loss()+get_oxy_loss(), 1 TTRPG_DAMAGE)
+		damage_dots += round(get_agg_loss()+get_fire_loss(), 1 TTRPG_DAMAGE) / 1 TTRPG_DAMAGE
+	damage_dots += round(get_brute_loss()+get_tox_loss()+get_oxy_loss(), 1 TTRPG_DAMAGE) / 1 TTRPG_DAMAGE
 
 	if(heal_scars)
 		damage_dots += get_storyteller_scars_damage()
