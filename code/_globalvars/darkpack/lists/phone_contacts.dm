@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(society_network)
 #define SUPPLY_NETWORK 7
 #define VAMPIRE_LEADER_NETWORK 8
 #define ENDRON_NETWORK 9
-#define SOCIETY_OF_LEOPOLD_NETWORK 10 // CRIMSON EDIT ADD - Hunters
+#define SOCIETY_OF_LEOPOLD_NETWORK 10
 
 // An indexed list of all the different phone networks that connect the phones that are part of them together.
 GLOBAL_LIST_INIT(contact_networks, alist(
