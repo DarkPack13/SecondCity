@@ -263,9 +263,11 @@
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
+			attacker.apply_damage(30, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8.
+		else
+			attacker.apply_damage(30, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
 		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
-		attacker.apply_damage(30, BURN) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8, but there's no easy way to adjust that currently.
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/proc/powerarray_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
@@ -457,6 +459,10 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.electrocution_animation(50)
+		target.apply_damage(20, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8, but there's no easy way to adjust that currently.
+			
+	else 
+		attacker.apply_damage(30, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
 
 	if(prob(60))
 		target.Stun(1 SECONDS)
