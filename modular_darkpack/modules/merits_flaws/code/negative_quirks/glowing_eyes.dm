@@ -25,10 +25,11 @@ dark.*/
 
 /datum/quirk/darkpack/glowing_eyes/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
 	. = ..()
-	ADD_TRAIT(new_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	ADD_TRAIT(new_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+	ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
 
-/datum/quirk/darkpack/glowing_eyes/remove_from_current_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/glowing_eyes/remove()
 	. = ..()
-	REMOVE_TRAIT(new_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	REMOVE_TRAIT(new_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	. = ..()
+	REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+	REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)

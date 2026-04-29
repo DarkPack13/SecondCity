@@ -149,6 +149,8 @@
 		knockdown_roll.difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0)
 		if(HAS_TRAIT(target, TRAIT_HUGE_SIZE))
 			knockdown_roll.difficulty -= 1 // Debate this, but we're harder to knock down.
+		if(HAS_TRAIT(target, TRAIT_CATLIKE_GRACE))
+			knockdown_roll.difficulty -= 1 // Debate this, we're well balanced so it's harder to knock us down.
 		if(knockdown_roll.st_roll(target, firer ? firer : src) == ROLL_FAILURE)
 			hit_person.Knockdown(20)
 			to_chat(hit_person, span_danger("The force of a projectile sends you sprawling!"))

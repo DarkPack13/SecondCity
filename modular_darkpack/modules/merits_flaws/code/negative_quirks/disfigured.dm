@@ -20,12 +20,6 @@
 	if(human_holder.st_get_stat(STAT_APPEARANCE) > 2)
 		human_holder.st_add_stat_mod(STAT_APPEARANCE, human_holder.st_get_stat(STAT_APPEARANCE) - appearance_to_subtract, "Disfigured")// Test after the stat mod pr is in
 
-/datum/quirk/darkpack/disfigured/post_add()
+/datum/quirk/darkpack/disfigured/remove()
 	. = ..()
-	if(appearance_to_subtract > 0)
-		to_chat(quirk_holder, span_warning ("Your disfigurement takes a toll. Your appearance can't be raised above 2 dots!"))// Tell them why the dots are removed.
-		to_chat(quirk_holder, span_warning("Removed [appearance_to_subtract] appearance. Consider reallocating your stats!"))// Tell them how many dots we removed.
-
-/datum/quirk/darkpack/disfigured/remove_from_current_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	new_holder.st_remove_stat_mod(STAT_APPEARANCE, "Disfigured")
+	quirk_holder.st_remove_stat_mod(STAT_APPEARANCE, "Disfigured")

@@ -29,7 +29,6 @@
 
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
 		theirpower += 2
@@ -41,7 +40,7 @@
 		theirpower -= 2
 
 	if(STAT_INTIMIDATION in owner_stat) // TODO ACTUALLY MAKE THIs wORK
-		to_chat(owner, span_warning("Intimidation found"))
+		to_chat(owner, span_warning("Intimidation found"))// Just for me to test
 		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
 			theirpower -= 1
 		if(HAS_TRAIT(owner, TRAIT_BRUISER))
@@ -49,8 +48,9 @@
 	else
 		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE))// We can't intimidate them with this.
 			theirpower -= 1
-			to_chat(owner, span_warning("Friendly face returns"))
+			to_chat(owner, span_warning("Friendly face returns")) // Just for testing, ignore.
 
+	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
