@@ -6,7 +6,7 @@
 	gain_text = span_notice("Saulot curses you for your forefather's crime. Your third eye opens to never close again.")
 	lose_text = span_notice("Your third eye shuts once again.")
 	allowed_splats = list(SPLAT_KINDRED)
-	included_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_HEALER_SALUBRI, VAMPIRE_CLAN_WARRIOR_SALUBRI)
+	included_clans = list(VAMPIRE_CLAN_TREMERE)
 	icon = FA_ICON_EYE
 	failure_message = "Your blood resists the urge to open the third eye."
 
