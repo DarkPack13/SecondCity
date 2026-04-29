@@ -179,7 +179,12 @@
 		return
 
 	var/damage_amount = 25 + owner.thaum_damage_plus + success_count
-	target.apply_damage(damage_amount, BURN) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 7, but there's no easy way to adjust that currently.
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.apply_damage(damage_amount, BURN, soak_difficulty = 7) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 7.
+	else
+		target.apply_damage(damage_amount, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
 
 	target.adjust_fire_stacks(4 + success_count)
 	target.ignite_mob()
@@ -249,7 +254,11 @@
 			if(L == owner) // Don't damage self - but caster still gets set on fire
 				continue
 
-			L.apply_damage(base_damage, BURN) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8, but there's no easy way to adjust that currently.
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_damage(damage_amount, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8.
+			else
+				L.apply_damage(damage_amount, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
 
 			// Chance to ignite based on successes
 			if(prob(ignite_chance))
