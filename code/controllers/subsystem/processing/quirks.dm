@@ -78,6 +78,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		// DARKPACK EDIT ADD START - MERITS/FLAWS
 		if(!quirk_type::darkpack_allowed)
 			continue
+		if(quirk::roleplay_only && !CONFIG_GET(flag/roleplay_only_merits))
+			continue
 		// DARKPACK EDIT ADD END
 
 		quirk_prototypes[type] = new type
