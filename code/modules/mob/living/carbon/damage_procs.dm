@@ -35,6 +35,7 @@
 	var/species_mod = (100 - dna.species.damage_modifier) / 100
 	return ..() * species_mod
 
+//soak_difficulty - The difficulty of soaking an attack. Base is 6, adjusted by some unique effects, rare disciplines, and more. Only reference this if you've used the proper path and checked ishuman() for apply_damage() or it'll throw up errors.
 /mob/living/carbon/human/apply_damage(
 	damage = 0,
 	damagetype = BRUTE,
@@ -48,10 +49,11 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
+	soak_difficulty = 6,
 )
 
 	if(!forced)
-		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item)
+		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
 	// Add relevant DR modifiers into blocked value to pass to parent
 	blocked += physiology?.damage_resistance
 	blocked += dna?.species?.damage_modifier
@@ -398,7 +400,8 @@
 	damagetype = BRUTE,
 	def_zone = null,
 	sharpness = NONE,
-	attacking_item)
+	attacking_item,
+	soak_difficulty = 6)
 
 	var/datum/storyteller_roll/soak/soak_roll
 	var/roll_used = soak_dice_bashing
@@ -431,6 +434,7 @@
 
 	var/datum/storyteller_roll/soak/soak_roll = new()
 
+	soak_roll.difficulty = soak_difficulty //Overrides difficulty for adjustments when soak difficulty is different.
 	var/successes = soak_roll.st_roll(src, src, roll_used)
 
 	if(successes > 0)
