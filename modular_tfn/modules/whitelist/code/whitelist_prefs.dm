@@ -51,7 +51,7 @@
 		"name" = "Kinfolk",
 		"description" = "Access to play as kinfolk.",
 		"category" = "splat",
-		"is_default" = FALSE,
+		"is_default" = TRUE,
 	)
 	defs[WHITELIST_GAROU] = list(
 		"name" = "Garou",
