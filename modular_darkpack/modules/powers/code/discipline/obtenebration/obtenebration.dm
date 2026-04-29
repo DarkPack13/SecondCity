@@ -12,6 +12,12 @@
 	mystic.Grant(owner)
 	mystic.level = level
 
+/datum/discipline/obtenebration/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/mysticism))
+			qdel(action)
+
 /datum/discipline_power/obtenebration
 	name = "Obtenebration power name"
 	desc = "Obtenebration power description"
@@ -278,8 +284,8 @@
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
-	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
-	owner.pass_flags |= PASSTABLE
+	owner.pass_flags |= (PASSDOORS | PASSTABLE | PASSSTRUCTURE) // Phase through doors & fences / tables / machines, dumpsters, barrels, lampposts
+
 
 	saved_density = owner.density
 	owner.density = FALSE
@@ -299,8 +305,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
-	owner.pass_flags &= ~PASSTABLE
+	owner.pass_flags &= ~(PASSDOORS | PASSTABLE | PASSSTRUCTURE)
 
 	owner.density = saved_density
 
@@ -314,7 +319,7 @@
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
 
-/datum/action/aggro_mode/Trigger(trigger_flags)
+/datum/action/aggro_mode/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -382,8 +387,11 @@
 	. = ..()
 	power = Target
 
-/datum/action/clear_shadows/Trigger(trigger_flags)
-	if(!power)
+/datum/action/clear_shadows/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
 		return
+	if(!power)
+		return FALSE
 	power.remove_all_shadows()
-	return TRUE
+

@@ -96,10 +96,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 // Is the mob melted into a wall via Visceratika?
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
+// Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
+#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 
 
 // Allows the user to pass through doors
-#define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
 // Is the mob silenced (by Quietus 1 for example)
@@ -154,22 +155,26 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_ANIMAL_MUSK "animal_musk"
 #define TRAIT_PERMAFANGS "permafangs"
+#define TRAIT_DULLFANGS "dullfangs"
 #define TRAIT_ORGANOVORE "organovore"
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
-
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
+#define TRAIT_PREY_EXCLUSION "prey_exclusion"
+#define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
+#define TRAIT_VAMPIRE_TERRITORIAL "territorial"
+#define TRAIT_BETRAYERS_MARK "betrayers_mark"
 #define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
 #define TRAIT_GRIP_OF_THE_DAMNED "grip_of_the_damned"
 #define TRAIT_THE_LARGEST_MAW "the_largest_maw"
-
 #define TRAIT_PIERCED_VEIL "pierced_veil"
 #define TRAIT_WEAK_WILLED "weak_willed"
 #define TRAIT_TIME_SENSE "time_sense"
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
+#define TRAIT_EAT_FOOD "eat_food"
 
 
 // END TRAIT DEFINES

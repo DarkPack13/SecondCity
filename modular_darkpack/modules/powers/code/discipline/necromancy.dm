@@ -14,6 +14,12 @@
 	ritualist.Grant(owner)
 	ritualist.level = level
 
+/datum/discipline/necromancy/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/necromancy))
+			qdel(action)
+
 /datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
 	. = ..()
 	return SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_OCCULT), 6, owner)

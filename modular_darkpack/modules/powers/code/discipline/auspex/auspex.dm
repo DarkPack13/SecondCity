@@ -98,6 +98,13 @@
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "shiver", forced = TRUE)
 	owner.Stun(0.5 SECONDS)
 
+
+/datum/storyteller_roll/aura_perception
+	bumper_text = "aura reading"
+	difficulty = 8
+	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
+	roll_output_type = ROLL_PRIVATE
+
 //AURA PERCEPTION
 /datum/discipline_power/auspex/aura_perception
 	name = "Aura Perception"
@@ -109,7 +116,19 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
-	toggled = TRUE
+	cancelable = TRUE
+	var/datum/storyteller_roll/aura_perception/aura_roll
+
+/datum/discipline_power/auspex/aura_perception/pre_activation_checks(mob/living/target)
+	. = ..()
+	if(!aura_roll)
+		aura_roll = new()
+	switch(aura_roll.st_roll(owner, target))
+		if(ROLL_SUCCESS)
+			return TRUE
+		else
+			to_chat(owner, span_danger("You fail to read into anything at all..."))
+			return FALSE
 
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()

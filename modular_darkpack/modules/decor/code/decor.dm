@@ -48,10 +48,26 @@
 
 /obj/structure/lamppost/Initialize(mapload)
 	. = ..()
+	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
+	if(my_area.requires_power)
+		RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+		if(my_area.powered())
+			create_lights()
+
+/obj/structure/lamppost/proc/on_power_change(area/A)
+	SIGNAL_HANDLER
+
+
+	if(A.power_light)
+		create_lights()
+	else
+		QDEL_LIST(my_lights)
+
+/obj/structure/lamppost/proc/create_lights()
+	QDEL_LIST(my_lights)
 	switch(number_of_lamps)
 		if(1)
 			new_light(get_step(loc, dir))
@@ -74,6 +90,7 @@
 	my_lights += new /obj/effect/decal/lamplight(location)
 
 /obj/structure/lamppost/Destroy(force)
+	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
 	QDEL_LIST(my_lights)
 	. = ..()
 
@@ -359,6 +376,7 @@
 /obj/cargotrain/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(2, 5)]"
+	AddComponent(/datum/component/seethrough, SEE_THROUGH_CARGO_CRATE)
 
 /obj/cargotrain/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	for(var/mob/living/L in get_step(src, movement_dir))
@@ -383,6 +401,7 @@
 	icon_state = "[rand(1, 5)]"
 	if(icon_state != "1")
 		opacity = TRUE
+		AddComponent(/datum/component/seethrough, SEE_THROUGH_CARGO_CRATE)
 	set_density(TRUE)
 	var/atom/movable/M1 = new(get_step(loc, EAST))
 	var/atom/movable/M2 = new(get_step(M1.loc, EAST))
@@ -457,19 +476,20 @@
 	if(pole_in_use)
 		to_chat(user, "It's already in use - wait a bit.")
 		return
+
 	if(user.dancing)
 		return
-	else
-		pole_in_use = TRUE
-		user.setDir(SOUTH)
-		user.Stun(100)
-		user.forceMove(src.loc)
-		user.visible_message("<B>[user] dances on [src]!</B>")
-		animatepole(user)
-		user.layer = layer //set them to the poles layer
-		pole_in_use = FALSE
-		user.pixel_y = 0
-		icon_state = initial(icon_state)
+
+	pole_in_use = TRUE
+	user.setDir(SOUTH)
+	user.Stun(100)
+	user.forceMove(src.loc)
+	user.visible_message("<B>[user] dances on [src]!</B>")
+	animatepole(user)
+	user.layer = layer //set them to the poles layer
+	pole_in_use = FALSE
+	user.pixel_y = 0
+	icon_state = initial(icon_state)
 
 /obj/structure/pole/proc/animatepole(mob/living/user)
 	return
