@@ -20,6 +20,7 @@
 		return FALSE
 
 /datum/action/cooldown/power/gift/desperate_strength/Activate(atom/target)
+	. = ..()
 	var/mob/living/caster = owner
 	var/static/list/radial_menu_options = list(
 			"One" = icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/gifts/tribes/bone_gnawers.dmi', "radial_one"),

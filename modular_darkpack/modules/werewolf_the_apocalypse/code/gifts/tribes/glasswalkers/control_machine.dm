@@ -13,6 +13,7 @@
 
 	click_to_activate = TRUE
 
+	handles_spend_resources = TRUE
 	willpower_cost = 1
 
 	var/roll_type
@@ -129,3 +130,17 @@
 	switch(choice)
 		if("turn")
 			interact(user)
+
+
+/obj/vehicle/ridden/scooter/get_control_machine_options(mob/living/user, complex = FALSE)
+	. = ..()
+	if(!complex)
+		.["roll"] = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_rotate")
+
+/obj/vehicle/ridden/scooter/run_control_machine(mob/living/user, choice, complex = FALSE)
+	. = ..()
+	if(complex)
+		return
+	switch(choice)
+		if("roll")
+			step(src, dir)

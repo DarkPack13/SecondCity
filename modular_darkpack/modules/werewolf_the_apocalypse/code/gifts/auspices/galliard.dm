@@ -44,6 +44,7 @@
 
 
 /datum/action/cooldown/power/gift/mindspeak/Activate(atom/target)
+	. = ..()
 	var/input = tgui_input_text(usr, "What do you want to tell to your Tribe?", name, max_length = MAX_MESSAGE_LEN)
 	if(!input || !IsAvailable(feedback = TRUE))
 		return
