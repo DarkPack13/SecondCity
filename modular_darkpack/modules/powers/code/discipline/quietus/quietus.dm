@@ -202,7 +202,7 @@
 		to_chat(owner, span_warning("[victim] resists Dargon's Call."))
 		return
 
-	victim.adjust_fire_loss(10 * net_successes)
+	victim.apply_damage((10 * net_successes), BURN) //Adjustment to use proper damage application system for soak and damage modifiers.
 
 	to_chat(owner, span_boldwarning("You invoke Dagon's Call on [victim], choking them with their own blood!"))
 	to_chat(victim, span_userdanger("Your blood vessels burst as you drown in your own blood!"))
