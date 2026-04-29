@@ -96,6 +96,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 // Is the mob melted into a wall via Visceratika?
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
+// Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
+#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 
 
 // Allows the user to pass through doors
@@ -172,6 +174,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
-#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
+#define TRAIT_EAT_FOOD "eat_food"
+
 
 // END TRAIT DEFINES
