@@ -12,6 +12,15 @@
 	activate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/powers/sounds/fortitude_deactivate.ogg'
 
+/datum/discipline_power/fortitude/activate() //Override base calls.
+	SHOULD_CALL_PARENT(FALSE)
+	return
+
+/datum/discipline_power/fortitude/deactivate()
+	SHOULD_CALL_PARENT(FALSE)
+	return
+
+
 //FORTITUDE 1
 /datum/discipline_power/fortitude/one
 	name = "Fortitude 1"
@@ -30,12 +39,6 @@
 		/datum/discipline_power/fortitude/four,
 		/datum/discipline_power/fortitude/five
 	)
-
-/datum/discipline_power/fortitude/one/activate()
-	return
-
-/datum/discipline_power/fortitude/one/deactivate()
-	return
 
 /datum/discipline_power/fortitude/one/post_gain()
 	owner.st_add_stat_mod(STAT_STAMINA, 1, "Fortitude")
@@ -59,12 +62,6 @@
 		/datum/discipline_power/fortitude/five
 	)
 
-/datum/discipline_power/fortitude/two/activate()
-	return
-
-/datum/discipline_power/fortitude/two/deactivate()
-	return
-
 /datum/discipline_power/fortitude/two/post_gain()
 	owner.st_add_stat_mod(STAT_STAMINA, 2, "Fortitude")
 
@@ -86,12 +83,6 @@
 		/datum/discipline_power/fortitude/four,
 		/datum/discipline_power/fortitude/five
 	)
-
-/datum/discipline_power/fortitude/three/activate()
-	return
-
-/datum/discipline_power/fortitude/three/deactivate()
-	return
 
 /datum/discipline_power/fortitude/three/post_gain()
 	owner.st_add_stat_mod(STAT_STAMINA, 3, "Fortitude")
@@ -115,12 +106,6 @@
 		/datum/discipline_power/fortitude/five
 	)
 
-/datum/discipline_power/fortitude/four/activate()
-	return
-
-/datum/discipline_power/fortitude/four/deactivate()
-	return
-
 /datum/discipline_power/fortitude/four/post_gain()
 	owner.st_add_stat_mod(STAT_STAMINA, 4, "Fortitude")
 
@@ -142,12 +127,6 @@
 		/datum/discipline_power/fortitude/three,
 		/datum/discipline_power/fortitude/four
 	)
-
-/datum/discipline_power/fortitude/five/activate()
-	return
-
-/datum/discipline_power/fortitude/five/deactivate()
-	return
 
 /datum/discipline_power/fortitude/five/post_gain()
 	owner.st_add_stat_mod(STAT_STAMINA, 5, "Fortitude")
