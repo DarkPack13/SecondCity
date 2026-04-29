@@ -2,8 +2,8 @@
 	title = JOB_NOVICE
 	description = "You are Novice who is undergoing, or a Tertiary who has just passed, their Novitiate in the Inquisition's organization The Society of Saint Leopold. Whether you were a lay-person or undergoing official clerical or religious training, your main task in the Society is now to study, scout, document, and be educated on the various supernatural creatures that threaten God's kingdom and it's balance - as well as remaining prepared for when your name is called."
 	faction = FACTION_CITY
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = SUPERVISOR_SOCIETY_OF_LEOPOLD
 	minimal_player_age = 7
 
