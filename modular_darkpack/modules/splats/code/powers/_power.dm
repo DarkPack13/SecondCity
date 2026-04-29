@@ -7,6 +7,8 @@
 	/// Means that this action is not a real power, but some sort of innate ability we represent as a power/disc/gift mechnaicly.
 	var/innate_ability = FALSE
 
+	/// If the power manually calls `StartCooldown`, otherwise handled by Activate
+	var/handles_cooldown = FALSE
 	/// If the power manually calls `spend_resources` itself, otherwise handled by Activate
 	var/handles_spend_resources = FALSE
 
@@ -20,7 +22,8 @@
 		return FALSE
 
 /datum/action/cooldown/power/Activate(atom/target)
-	. = ..()
+	if(!handles_cooldown)
+		. = ..()
 
 	if(!handles_spend_resources)
 		spend_resources()

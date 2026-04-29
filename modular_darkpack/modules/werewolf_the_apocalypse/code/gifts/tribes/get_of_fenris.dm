@@ -39,7 +39,7 @@
 
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/visage_of_fenris.ogg', 75, FALSE)
 
-	for(var/mob/living/guy in viewers(world.view, owner))
+	for(var/mob/living/guy in viewers(DEFAULT_SIGHT_DISTANCE, owner))
 		if(guy == owner)
 			continue
 
