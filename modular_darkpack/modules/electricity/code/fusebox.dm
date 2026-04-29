@@ -9,11 +9,12 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	pixel_y = 32
+	max_integrity = 100
+	atom_integrity = 100
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 100, ACID = 100)
 
 	//Damage on the fusebox
 	var/damaged = 0
-	//If our door is open/closed. bool
-	var/open = FALSE
 	//Repairing var for the loop
 	var/repairing = FALSE
 	//Soundloop for Transformers
@@ -21,21 +22,26 @@
 
 /obj/fusebox/update_icon_state()
 	. = ..()
-	if(damaged > 100)
+	if(atom_integrity <= 0)
 		icon_state = "[base_icon_state]_off"
 	else
 		icon_state = base_icon_state
 
 /obj/fusebox/proc/update_sound_state()
 	if(!isnull(soundloop))
-		if(damaged > 100)
+		if(atom_integrity <= 0)
 			soundloop.stop()
 		else
 			soundloop.start(src)
 
-/obj/fusebox/proc/check_damage(mob/living/user)
-	if(damaged > 100 && !open)
-		open = TRUE
+/obj/fusebox/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+	. = ..()
+	if(.)
+		check_damage()
+	return PREVENT_DEATH
+
+/obj/fusebox/proc/check_damage()
+	if(atom_integrity <= 0 && !open)
 		var/area/power_area = get_area(src)
 		power_area.power_light = FALSE
 		power_area.power_equip = FALSE
@@ -59,10 +65,10 @@
 				repairing = FALSE
 				return ITEM_INTERACT_BLOCKING
 
-			damaged = 0
+			atom_integrity = max_integrity
 			update_icon_state()
 			update_sound_state()
-			playsound(get_turf(src),'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
+			playsound(get_turf(src), 'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
 			var/area/power_area = get_area(src)
 			power_area.power_light = TRUE
 			power_area.power_equip = TRUE
@@ -78,13 +84,6 @@
 
 	return NONE
 
-// This sucks. Snowflaking its own integrity system is always bad.
-/obj/fusebox/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	. = ..()
-	if(attacking_item.force)
-		damaged += attacking_item.force
-		check_damage(user)
-
 // transformers (another type of fusebox)
 /obj/fusebox/transformer
 	name = "transformer"
@@ -96,4 +95,3 @@
 /obj/fusebox/transformer/Initialize(mapload)
 	. = ..()
 	soundloop = new(src, TRUE)
-
