@@ -7549,7 +7549,6 @@
 #include "modular_darkpack\modules\powers\code\discipline\dominate\status_effects\conditioning_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\dominate\status_effects\mesmerize_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\fortitude\fortitude.dm"
-#include "modular_darkpack\modules\powers\code\discipline\fortitude\fortitude_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obeah\obeah.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obeah\shepherds_watch.dm"
 #include "modular_darkpack\modules\powers\code\discipline\obfuscate\obfuscate.dm"
