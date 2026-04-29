@@ -11,11 +11,12 @@
 
 	if(discipline_trusted && !(WHITELIST_TRUSTED in player_whitelists)) // backwards compatibility
 		player_whitelists += WHITELIST_TRUSTED
-		to_chat(parent, span_notice("LOG: Great news! Your existing trusted status was successfully migrated to the new splat whitelist system."))
+		if(!isnull(parent))
+			to_chat(parent, span_notice("LOG: Great news! Your existing trusted status was successfully migrated to the new splat whitelist system."))
 
 	discipline_trusted = (WHITELIST_TRUSTED in player_whitelists)
 
 /datum/preferences/save_preferences()
-	. = ..()
 	if(!isnull(player_whitelists))
 		savefile.set_entry("player_whitelists", player_whitelists)
+	. = ..()
