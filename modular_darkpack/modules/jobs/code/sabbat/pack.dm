@@ -1,6 +1,6 @@
 /datum/job/vampire/sabbatpack
 	title = JOB_SABBAT_PACK
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "Caine"
