@@ -403,7 +403,6 @@
 	attacking_item,
 	soak_difficulty = 6)
 
-	var/datum/storyteller_roll/soak/soak_roll
 	var/roll_used = soak_dice_bashing
 	switch(damagetype)
 		if(BRUTE)
