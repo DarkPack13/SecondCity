@@ -17,7 +17,6 @@
 		/datum/job_department/society_of_leopold,
 	)
 
-	minimal_masquerade = 3
 	allowed_splats = list(SPLAT_NONE)
 
 
