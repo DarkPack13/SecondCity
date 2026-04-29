@@ -7837,6 +7837,8 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\childrenofgaia.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\fianna.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\get_of_fenris.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\glasswalkers.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\glasswalkers\control_machine.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\auspice.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\breed.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\fur.dm"

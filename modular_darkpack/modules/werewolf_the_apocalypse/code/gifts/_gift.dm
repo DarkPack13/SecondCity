@@ -28,7 +28,7 @@
 	. = ..()
 
 	if(default_activate_message)
-		to_chat(owner, span_notice("You activate the [name]..."))
+		to_chat(owner, span_notice("You activate [name]..."))
 
 /datum/action/cooldown/power/gift/can_afford(feedback)
 	. = ..()

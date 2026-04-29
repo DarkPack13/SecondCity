@@ -1,4 +1,3 @@
-
 /datum/subsplat/werewolf/tribe/garou
 	abstract_type = /datum/subsplat/werewolf/tribe/garou
 	fera_restriction = SPLAT_GAROU
@@ -38,11 +37,9 @@
 /datum/subsplat/werewolf/tribe/garou/glasswalkers
 	name = TRIBE_GLASS_WALKERS
 	desc = "The closest to the Weaver, they find themselves deeply entrenched in modern human society, religion, technology and cities. Every new invention and every new discovery is one that aids the Glass Walkers, instead of impeding them."
-	// gifts_provided = list(
-	// 	/datum/action/cooldown/power/gift/smooth_move,
-	// 	/datum/action/cooldown/power/gift/digital_feelings,
-	// 	/datum/action/cooldown/power/gift/elemental_improvement
-	// )
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/control_machine/simple,
+	)
 	subsplat_keys = /obj/item/vamp/keys/techstore
 
 /datum/subsplat/werewolf/tribe/garou/bonegnawers
@@ -63,9 +60,6 @@
 		/datum/action/cooldown/power/gift/jam_weapon
 		// /datum/action/cooldown/power/gift/mothers_touch, // DARKPACK TODO - (Selectable Gifts)
 		// /datum/action/cooldown/power/gift/resist_pain, // DARKPACK TODO - (Selectable Gifts)
-	// 	/datum/action/cooldown/power/gift/stoic_pose,
-	// 	/datum/action/cooldown/power/gift/freezing_wind,
-	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
 	subsplat_keys = /obj/item/vamp/keys/children_of_gaia
 
@@ -73,10 +67,9 @@
 	name = TRIBE_GET_OF_FENRIS
 	desc = "Warriors, compassionate and fierce. They view themselves are Gaia's strongest heroes, but the rest of the tribes view them with caution, their violence more famous than their courage."
 	gifts_provided = list(
+		// /datum/action/cooldown/power/gift/razor_claws, // DARKPACK TODO - (Selectable Gifts)
+		// /datum/action/cooldown/power/gift/resist_pain, // DARKPACK TODO - (Selectable Gifts)
 		/datum/action/cooldown/power/gift/visage_of_fenris,
-	// 	/datum/action/cooldown/power/gift/stoic_pose,
-	// 	/datum/action/cooldown/power/gift/freezing_wind,
-	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
 	subsplat_keys = /obj/item/vamp/keys/nps
 
