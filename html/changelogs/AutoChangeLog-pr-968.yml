@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "store owners now say unique things to you when you open their store"
+  - rscadd: "store owners now have revamped outfits for unique and cool looks"

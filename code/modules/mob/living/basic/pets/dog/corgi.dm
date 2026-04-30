@@ -76,6 +76,7 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/dog/corgi)),\
+		breed_timer = 30 MINUTES, /* DARKPACK EDIT ADD - (Less baby spam)*/\
 		baby_paths = baby_paths,\
 	)
 

@@ -80,11 +80,14 @@
 
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_kindred_death))
 
-	// Make all food except raw meat repulsive
 	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
-	tongue?.liked_foodtypes = NONE
-	tongue?.disliked_foodtypes = NONE
-	tongue?.toxic_foodtypes = ~(GORE | MEAT | RAW)
+	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
+		var/mob/living/carbon/human/lick = owner
+		var/datum/st_stat/morality_path/morality/stat_morality = lick?.storyteller_stats[STAT_MORALITY]
+		if(stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5)
+			tongue?.liked_foodtypes = NONE
+			tongue?.disliked_foodtypes = NONE
+			tongue?.toxic_foodtypes = ~(GORE | MEAT | RAW) // nagarajas?
 
 	// Set blood type
 	owner.set_blood_type(BLOOD_TYPE_KINDRED)
@@ -92,6 +95,7 @@
 	// Apply temperature damage modifiers
 	owner.physiology.heat_mod *= 2
 	owner.physiology.cold_mod *= 0.25
+
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
