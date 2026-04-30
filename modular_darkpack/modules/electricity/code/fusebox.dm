@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(fuseboxes)
+
 // The way this completely bypasses the entire power system is so strange
 /obj/fusebox
 	name = "fuse box"
@@ -7,18 +9,26 @@
 	base_icon_state = "fusebox"
 	layer = SIGN_LAYER
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	pixel_y = 32
 	max_integrity = 100
-	atom_integrity = 100
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 100, ACID = 100)
-
+	prevent_destruction = TRUE
 	//Damage on the fusebox
 	var/damaged = 0
 	//Repairing var for the loop
 	var/repairing = FALSE
 	//Soundloop for Transformers
 	var/datum/looping_sound/generator/soundloop
+
+/obj/fusebox/Initialize(mapload)
+	. = ..()
+	GLOB.fuseboxes += src
+	RegisterSignal(src, COMSIG_ATOM_DESTRUCTION, PROC_REF(power_off))
+
+//they shouldnt really ever be destroyed, but...
+/obj/fusebox/Destroy()
+	GLOB.fuseboxes -= src
+	return ..()
 
 /obj/fusebox/update_icon_state()
 	. = ..()
@@ -34,26 +44,21 @@
 		else
 			soundloop.start(src)
 
-/obj/fusebox/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
-	. = ..()
-	if(.)
-		check_damage()
-	return PREVENT_DEATH
-
-/obj/fusebox/proc/check_damage()
-	if(atom_integrity <= 0 && !open)
-		var/area/power_area = get_area(src)
-		power_area.power_light = FALSE
-		power_area.power_equip = FALSE
-		power_area.power_environ = FALSE
-		power_area.power_change()
-		power_area.fire_controled = FALSE
-		var/datum/effect_system/basic/spark_spread/local_spark = new(get_turf(src), 5, 1)
-		local_spark.start()
-		for(var/obj/machinery/light/L in power_area)
-			L.update(FALSE)
-		playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
-		user?.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
+/obj/fusebox/proc/power_off()
+	SIGNAL_HANDLER
+	var/area/power_area = get_area(src)
+	power_area.power_light = FALSE
+	power_area.power_equip = FALSE
+	power_area.power_environ = FALSE
+	power_area.power_change()
+	power_area.fire_controled = FALSE
+	var/datum/effect_system/basic/spark_spread/local_spark = new(get_turf(src), 5, 1)
+	local_spark.start()
+	for(var/obj/machinery/light/L in power_area)
+		L.update(FALSE)
+	playsound(loc, 'modular_darkpack/modules/electricity/sounds/generator_break.ogg', 100, TRUE)
+	for(var/mob/living/M in range(1, src))
+		M.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
 	update_icon()
 	update_sound_state()
 
