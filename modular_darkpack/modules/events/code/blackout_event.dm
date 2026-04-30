@@ -2,9 +2,9 @@
 	name = "Blackout"
 	typepath = /datum/round_event/blackout
 	weight = 6
-	min_players = 0
-	max_occurrences = 20
-	earliest_start = 1 MINUTES
+	min_players = 5
+	max_occurrences = 2
+	earliest_start = 10 MINUTES
 	category = EVENT_CATEGORY_ENGINEERING
 	description = "A cascading failure in the city's power grid."
 	darkpack_allowed = TRUE
@@ -26,5 +26,5 @@
 	for(var/obj/fusebox/F in GLOB.fuseboxes)
 		if(prob(50))
 			continue
-
+		F.take_damage(101)
 		F.power_off()
