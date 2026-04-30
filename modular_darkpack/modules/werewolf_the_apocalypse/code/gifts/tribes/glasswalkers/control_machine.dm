@@ -43,8 +43,11 @@
 		if(nearby_atom == existing_target)
 			color = COLOR_BLUE
 
-		var/image/I = image(loc = nearby_atom.loc)
+		var/image/I = image(loc = nearby_atom)
 		I.appearance = nearby_atom.appearance
+		I.layer = nearby_atom.layer - 0.01
+		I.pixel_y = 0
+		I.pixel_x = 0
 
 		apply_wibbly_filters(I)
 
