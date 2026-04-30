@@ -38,9 +38,7 @@
 	/// Flags dictating whether this event should be run on certain kinds of map
 	var/map_flags = NONE
 
-	// DARKPACK EDIT START - Events
-	var/darkpack_allowed = FALSE
-	// DARKPACK EDIT END - Events
+	var/darkpack_allowed = FALSE // DARKPACK EDIT ADD - EVENTS
 
 /datum/round_event_control/New()
 	if(!length(admin_setup))
