@@ -41,6 +41,9 @@ SUBSYSTEM_DEF(phones)
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
 	while(frequency_to_use in frequencies_in_use)
+		if(frequency_to_use >= MAX_RADIO_FREQUENCY_FOR_PHONE_RANGE)
+			stack_trace("Phones have somehow connected over 1000 connections without being freed up. Something is wrong.")
+			break
 		frequency_to_use++
 	frequencies_in_use += frequency_to_use
 	return frequency_to_use
