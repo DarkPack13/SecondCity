@@ -1,6 +1,6 @@
 /datum/job/vampire/capo
 	title = JOB_CAPO
-	faction = FACTION_CITY
+	faction = FACTION_GIOVANNI
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Family and the Traditions"

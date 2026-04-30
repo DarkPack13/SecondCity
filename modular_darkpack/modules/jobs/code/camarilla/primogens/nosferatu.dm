@@ -2,7 +2,7 @@
 	title = JOB_PRIMOGEN_NOSFERATU
 	description = "Offer your infinite knowledge to Prince of the City, and run the warren, your domain watches over the sewers."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
