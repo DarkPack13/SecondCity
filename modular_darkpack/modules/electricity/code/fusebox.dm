@@ -23,7 +23,11 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 /obj/fusebox/Initialize(mapload)
 	. = ..()
 	GLOB.fuseboxes += src
-	RegisterSignal(src, COMSIG_ATOM_DESTRUCTION, PROC_REF(power_off))
+
+/obj/fusebox/atom_destruction(damage_flag)
+	. = ..()
+	power_off()
+
 
 //they shouldnt really ever be destroyed, but...
 /obj/fusebox/Destroy()
@@ -45,7 +49,6 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 			soundloop.start(src)
 
 /obj/fusebox/proc/power_off()
-	SIGNAL_HANDLER
 	var/area/power_area = get_area(src)
 	power_area.power_light = FALSE
 	power_area.power_equip = FALSE
@@ -62,6 +65,12 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	update_icon()
 	update_sound_state()
 
+/datum/storyteller_roll/fusebox_repair
+	bumper_text = "electrical repair"
+	applicable_stats = list(STAT_PERCEPTION, STAT_TECHNOLOGY)
+	difficulty = 7
+	numerical = TRUE
+
 /obj/fusebox/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.tool_behaviour == TOOL_WIRECUTTER)
 		if(!repairing)
@@ -70,22 +79,28 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 				repairing = FALSE
 				return ITEM_INTERACT_BLOCKING
 
-			atom_integrity = max_integrity
-			update_icon_state()
-			update_sound_state()
-			playsound(get_turf(src), 'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
-			var/area/power_area = get_area(src)
-			power_area.power_light = TRUE
-			power_area.power_equip = TRUE
-			power_area.power_environ = TRUE
-			power_area.power_change()
-			if(initial(power_area.fire_controled))
-				power_area.fire_controled = TRUE
-			for(var/obj/machinery/light/L in power_area)
-				L.update(FALSE)
+			var/datum/storyteller_roll/fusebox_repair/fusebox_roll = new()
+			var/successes = fusebox_roll.st_roll(user, src)
+			var/repair_amount = successes * 40
+			if(repair_amount > 0)
+				repair_damage(repair_amount)
+				update_icon_state()
+				update_sound_state()
+				playsound(get_turf(src), 'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
+				var/area/power_area = get_area(src)
+				power_area.power_light = TRUE
+				power_area.power_equip = TRUE
+				power_area.power_environ = TRUE
+				power_area.power_change()
+				if(initial(power_area.fire_controled))
+					power_area.fire_controled = TRUE
+				for(var/obj/machinery/light/L in power_area)
+					L.update(FALSE)
 
-			repairing = FALSE
-			return ITEM_INTERACT_SUCCESS
+				repairing = FALSE
+				return ITEM_INTERACT_SUCCESS
+			if(repair_amount <= 0)
+				user.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
 
 	return NONE
 

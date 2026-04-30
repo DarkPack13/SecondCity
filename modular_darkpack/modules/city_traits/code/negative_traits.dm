@@ -42,6 +42,4 @@
 	for(var/obj/fusebox/F in GLOB.fuseboxes)
 		if(prob(75))
 			continue
-		F.take_damage(101)
-		F.power_off()
-
+		F.take_damage(rand(50,200))

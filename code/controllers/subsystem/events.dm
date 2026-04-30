@@ -24,18 +24,17 @@ SUBSYSTEM_DEF(events)
 	var/wizardmode = FALSE
 
 /datum/controller/subsystem/events/Initialize()
-	for(var/type in typesof(/datum/round_event_control))
+	// DARKPACK EDIT CHANGE START - EVENTS
+	for(var/datum/round_event_control/type as anything in valid_subtypesof(/datum/round_event_control))
+		if(!type::darkpack_allowed)
+			continue
+	// DARKPACK EDIT CHANGE END
 		var/datum/round_event_control/event = new type()
 		if(!event.typepath)
 			continue
 		if(!event.valid_for_map())
 			nonrunning_events_by_name[event.name] = event.type
 			continue //don't want this one! leave it for the garbage collector
-		// DARKPACK EDIT ADD - Events
-		if(!initial(event.darkpack_allowed))
-			qdel(event)
-			continue
-		// DARKPACK EDIT ADD END - Events
 		control += event //add it to the list of all events (controls)
 		events_by_name[event.name] = event
 
