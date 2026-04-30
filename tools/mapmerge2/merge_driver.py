@@ -86,12 +86,12 @@ def three_way_merge(base, left, right):
             merged_turfs = left_turfs
             print(f"    Saving turf: {', '.join(left_turfs)}")
             print(f"    Alternative: {', '.join(right_turfs)}")
-            print(f"    ORIGINAL:  {', '.join(base_turfs)}")
+            print(f"    Original:  {', '.join(base_turfs)}")
         if merged_areas is None:
             merged_areas = left_areas
             print(f"    Saving area: {', '.join(left_areas)}")
             print(f"    Alternative: {', '.join(right_areas)}")
-            print(f"    ORIGINAL:  {', '.join(base_areas)}")
+            print(f"    Original:  {', '.join(base_areas)}")
 
         merged.set_tile(coord, merged_movables + merged_turfs + merged_areas)
 
