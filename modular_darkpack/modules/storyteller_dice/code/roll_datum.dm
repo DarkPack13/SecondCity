@@ -72,12 +72,10 @@
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
-		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
-
-		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
+		if(!spammy_roll)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
-		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
+		else
 			if(last_sucess_amount > 0)
 				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
