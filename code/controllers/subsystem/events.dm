@@ -25,11 +25,11 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/Initialize()
 	// DARKPACK EDIT CHANGE START - EVENTS
-	for(var/datum/round_event_control/type as anything in valid_subtypesof(/datum/round_event_control))
-		if(!type::darkpack_allowed)
+	for(var/datum/round_event_control/event_typepath as anything in valid_subtypesof(/datum/round_event_control))
+		if(!event_typepath::darkpack_allowed)
 			continue
+		var/datum/round_event_control/event = new event_typepath()
 	// DARKPACK EDIT CHANGE END
-		var/datum/round_event_control/event = new type()
 		if(!event.typepath)
 			continue
 		if(!event.valid_for_map())
