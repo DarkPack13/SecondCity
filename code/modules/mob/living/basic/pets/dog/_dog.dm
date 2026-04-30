@@ -132,7 +132,7 @@
 
 // DARKPACK EDIT ADD START - NPC - (snowflake obeys_commands abstraction proc)
 /mob/living/basic/pet/dog/proc/add_obey_commands()
-	var/static/list/pet_commands = list( // DARKPACK EDIT REMOVAL START - npc - Moving this into a proc so we can have subtypes with different commands
+	var/static/list/pet_commands = list(
 	/datum/pet_command/idle,
 	/datum/pet_command/free,
 	/datum/pet_command/move,
