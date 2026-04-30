@@ -1,6 +1,6 @@
 /datum/job/vampire/archivist
 	title = JOB_CHANTRY_ARCHIVIST
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = SUPERVISOR_REGENT

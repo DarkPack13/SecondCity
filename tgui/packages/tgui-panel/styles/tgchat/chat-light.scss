@@ -1289,6 +1289,144 @@ $border-width-px: $border-width * 1px;
   font-weight: bold;
 }
 
+.boxed_message .icon {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
+  padding: 0;
+
+  &.corplogo {
+    width: 300px !important;
+    height: 110px !important;
+  }
+}
+
+.corp_label_pentex {
+  color: hsl(317.78, 29.67%, 17.84%);
+  text-shadow: 0 0 8px #3b2033;
+  font-weight: bold;
+}
+
+.corp_label_ardus {
+  color: hsl(201.43, 16.28%, 66.27%);
+  text-shadow: 0 0 8px #9badb7;
+  font-weight: bold;
+}
+
+.corp_label_avalon {
+  color: hsl(245.96, 80.75%, 63.33%);
+  text-shadow: 0 0 8px #6556ed;
+  font-weight: bold;
+}
+
+.corp_label_circinus {
+  color: hsl(29.28, 100%, 75.49%);
+  text-shadow: 0 0 8px #ffbf82;
+  font-weight: bold;
+}
+
+.corp_label_consolidex {
+  color: hsl(290.51, 100%, 57.84%);
+  text-shadow: 0 0 8px #dd28ff;
+  font-weight: bold;
+}
+
+.corp_label_endron {
+  color: hsl(157.32, 97.62%, 16.47%);
+  text-shadow: 0 0 8px #015334;
+  font-weight: bold;
+}
+
+.corp_label_harold_harold {
+  color: hsl(8.97, 42.44%, 40.2%);
+  text-shadow: 0 0 8px #92483b;
+  font-weight: bold;
+}
+
+.corp_label_good_house {
+  color: hsl(285, 20.93%, 66.27%);
+  text-shadow: 0 0 8px #b297bb;
+  font-weight: bold;
+}
+
+.corp_label_hallahan {
+  color: hsl(257.45, 88.29%, 43.53%);
+  text-shadow: 0 0 8px #460dd1;
+  font-weight: bold;
+}
+
+.corp_label_herculean {
+  color: hsl(0, 100%, 53.14%);
+  text-shadow: 0 0 8px #ff1010;
+  font-weight: bold;
+}
+
+.corp_label_herricks {
+  color: hsl(285.51, 90.82%, 38.43%);
+  text-shadow: 0 0 8px #9009bb;
+  font-weight: bold;
+}
+
+.corp_label_king {
+  color: hsl(44.62, 53.92%, 57.45%);
+  text-shadow: 0 0 8px #cdaf58;
+  font-weight: bold;
+}
+
+.corp_label_megadon {
+  color: hsl(182.58, 100%, 63.53%);
+  text-shadow: 0 0 8px #45f7ff;
+  font-weight: bold;
+}
+
+.corp_label_nastrum {
+  color: hsl(342.92, 100%, 74.51%);
+  text-shadow: 0 0 8px #ff7da2;
+  font-weight: bold;
+}
+
+.corp_label_omni_tv {
+  color: hsl(11.33, 79.89%, 64.9%);
+  text-shadow: 0 0 8px #ed795e;
+  font-weight: bold;
+}
+
+.corp_label_otolleys {
+  color: hsl(154.47, 72.31%, 74.51%);
+  text-shadow: 0 0 8px #8fedc5;
+  font-weight: bold;
+}
+
+.corp_label_black_dog {
+  color: hsl(222.86, 100%, 94.51%);
+  text-shadow: 0 0 8px #e3ebff;
+  font-weight: bold;
+}
+
+.corp_label_rainbow_inc {
+  color: hsl(313.97, 100%, 85.69%);
+  text-shadow: 0 0 8px #ffb6ee;
+  font-weight: bold;
+}
+
+.corp_label_tellus {
+  color: hsl(102.7, 100%, 57.84%);
+  text-shadow: 0 0 8px #66ff28;
+  font-weight: bold;
+}
+
+.corp_label_vesuvius {
+  color: hsl(61.82, 41.77%, 84.51%);
+  text-shadow: 0 0 8px #e7e8c7;
+  font-weight: bold;
+}
+
+.corp_label_young_smith {
+  color: hsl(96.67, 20.93%, 66.27%);
+  text-shadow: 0 0 8px #a5bb97;
+  font-weight: bold;
+}
+
 .subtle {
   color: #000099;
 }

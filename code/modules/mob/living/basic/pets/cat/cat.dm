@@ -172,6 +172,7 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat)),\
+		breed_timer = 30 MINUTES, /* DARKPACK EDIT ADD - (Less baby spam)*/\
 		baby_paths = baby_types,\
 		post_birth = post_birth_callback,\
 	)
