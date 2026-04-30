@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/mute, /datum/quirk/darkpack/enchanting_voice), // DARKPACK EDIT ADD - MERITS/FLAWS
 	list(/datum/quirk/darkpack/dulled_bite, /datum/quirk/darkpack/infectious_bite), // DARKPACK EDIT ADD - MERITS/FLAWS
 	list(/datum/quirk/darkpack/short, /datum/quirk/darkpack/huge_size), // DARKPACK EDIT ADD - MERITS/FLAWS
+	list(/datum/quirk/darkpack/eyes_of_shadow, /datum/quirk/darkpack/glowing_eyes), // DARKPACK EDIT ADD - MERITS/FLAWS
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())

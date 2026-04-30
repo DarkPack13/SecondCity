@@ -174,7 +174,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
-#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_GRAVE_SMELL "grave_smell"
@@ -191,6 +190,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ENCHANTING_VOICE "enchanting_voice"
 #define TRAIT_HUGE_SIZE "huge_size"
 #define TRAIT_EYES_OF_SHADOW "eyes_of_shadow"
-
 
 // END TRAIT DEFINES
