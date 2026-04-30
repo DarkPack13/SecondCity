@@ -1,71 +1,71 @@
-You can find a lockpick on certain NPCs and at the black market or hardware store. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
-With high enough strength, you can attempt to bash down a door, but failing can injure you.
-Cars use gasoline; you can buy more at a gas station. This can be used in the production of molotovs, as well.
-If you ever find yourself lost, look for a city map, use the navigate verb or button. Or just ask for directions.
-Discipline levels can be changed with Right-Click.
-Human players can use the "Report a Masquerade violation" button in people's examine text to report any weird supernatural stuff they shouldn't be seeing, like vampires feeding or punching people across a room.
-You can jump around by pressing MMB. You can even jump over railings while standing next to them.
-You can send announcements as the Prince by using your computer. Other kindred can see it on other computers too.
-The Malkavian hivemind allows you to send any message, except images.
-You can find and publish your phone number on your phone.
-To use Thaumaturgy properly you should get an Arcane Tome. Some of them spawn in Chantry. Lasombra can also learn Abyss Mysticism by crafting a tome after reaching Obtenebration at level 5.
-Followers of Set, also known as Ministry, can avoid diablerie and staking by moving their heart to an urn.
-Diablerie lowers your generation by one, if your victim's is lower than yours. Diablerie is one of the vilest deeds imaginable, and any kindred who learn of this will seek your permanent death.
-Blood quality depends on the power or lifestyle of a creature. Vampire blood satisfies the most, after that lupine blood, then the wealthy, then the poor, then animals, and so on.
-You can bloodbond people as a kindred. To do so - grab them and force them to swallow your vitae with Give Vitae ability. Bloodbonds strengthen the victim's emotions towards you and create an obsession.
-You can make a ghoul by bloodbonding a non-playable character. If there are any ghosts that want to play a ghoul - they will take over the ghouled NPC.
-Ghouls are weaker than kindred, and require vitae instead of mortal blood. But they also are immune to humanity and can learn any clan's disciplines to level 1.
-If you are a mortal and do drugs, kindred can experience the same high by drinking your blood.
-Tzimisce can upgrade your body with flesh and blood. Or they can turn you into a chair. Take this risk at your own judgement.
-Magical artifacts need to be identified in order to be used. The Tremere, Garou, or those with a tremendously high Occult skill can identify them.
-As a Prince, your objectives are to rule Camarilla and the City. Follow all Six Traditions of Kindred and decide how to fight global dangers. Don't forget to call on the Primogens if you need some help.
-As a Sheriff, your objectives are to protect Masquerade in the City. Speak with Camarilla's agents and decide the best technique to liquidate Masquerade breaches and breachers.
-As a Seneschal, your objectives are to help Prince make any business in the City. You are his right hand man, and he expects you to deal with matters beneath him.
-As a Hound, your objectives are to enforce the Traditions and the Camarilla's rule of the city.
+@You can <i>italicize</i>, <b>embolden</b> or <u>underline</u> portions of your messages by enclosing them with |, + or _ respectively. You can also avoid this by adding backslashes (they won't show in the message) before these characters.
+A "Scene" in game represents 3 minutes.
+A "Turn" in game represents 5 seconds.
+A thrown glass of water can make a slippery tile, allowing you to slow down your pursuers in a pinch.
+ATMs can be smashed with a high force weapon for whatever cash is inside of them.
 As a Baron, you lead the individualistic kindred of the city. You are still part of the Camarilla, but you have more sway here. San Francisco is an Anarch domain.
 As a Bruiser, you hang out with the Baron and support him in his rebellious troublemaking.
-As a Dealer, you hold a powerful domain. You can make deals with whomever you want - but boons are always worth more than money.
 As a Chantry Regent, your objectives are to lead the Tremere of San Francisco and keep the Chantry secure, as well as hunt down any who would steal your clan's secrets.
-As an Archivist, your objectives are to protect Tremere knowledge and the Chantry.
-As a Taxi Driver, your objectives are to drive. Real human being.
-As a Primogen, your objectives are to represent your clan in the city, and make sure they are organized and loyal enough to keep you in power.
-As a Sabbat member, you must fight the enemies of the Dark Father - servants of the vile Antediluvians.
+As a Dealer, you hold a powerful domain. You can make deals with whomever you want - but boons are always worth more than money.
+As a Hound, your objectives are to enforce the Traditions and the Camarilla's rule of the city.
 As a Hunter, your objectives are to Hunt abnormal beings and night creatures in City.
-A "Turn" in game represents 5 seconds.
-A "Scene" in game represents 3 minutes.
-There are 36 turns in a scene.
-You don't need to have your keys in your hand to unlock a door. Just right-click.
-If you have a high enough strength, jumping in combat mode will create a shockwave.
-You can conceal your satchel by Alt + Right-clicking it.
-Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
-Your firearm stat dramatically improves your ability to control recoil.
-Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
-You can set off a sprinkler by attacking it with any item that would light a cigarette.
-ATMs can be smashed with a high force weapon for whatever cash is inside of them.
-Duffle bags can hold two large whitelisted items that bypass their normal item weight restriction.
-Pool tables can be interacted with and let you play a mock game of billiards.
-Gun casings leave forensic evidence that can trace back to your firearm unless preventative measures are taken.
-Hovering over a dice roll with reveal what stats were used for rolls.
-@You can <i>italicize</i>, <b>embolden</b> or <u>underline</u> portions of your messages by enclosing them with |, + or _ respectively. You can also avoid this by adding backslashes (they won't show in the message) before these characters.
-♪ Hey, have you ever tried appending the % character before your messages when speaking in-game? ♫
-A thrown glass of water can make a slippery tile, allowing you to slow down your pursuers in a pinch.
+As a Primogen, your objectives are to represent your clan in the city, and make sure they are organized and loyal enough to keep you in power.
+As a Prince, your objectives are to rule Camarilla and the City. Follow all Six Traditions of Kindred and decide how to fight global dangers. Don't forget to call on the Primogens if you need some help.
+As a Sabbat member, you must fight the enemies of the Dark Father - servants of the vile Antediluvians.
+As a Seneschal, your objectives are to help Prince make any business in the City. You are his right hand man, and he expects you to deal with matters beneath him.
+As a Sheriff, your objectives are to protect Masquerade in the City. Speak with Camarilla's agents and decide the best technique to liquidate Masquerade breaches and breachers.
+As a Taxi Driver, your objectives are to drive. Real human being.
+As an Archivist, your objectives are to protect Tremere knowledge and the Chantry.
 Basketball requires focus. If you don't click on your target (player or hoop) you are more likely to miss.
 Basketball requires skill. Spinning drains stamina, reduces accuracy, but gives resistance from disarm. Use it to dunk!
 Basketball requires stamina. The more you have, the less likely your ball will be stolen and the more likely you can steal from another player.
 Basketball requires strategy. The direction both players are facing affects disarms so having your back to another player that is trying to steal is ideal.
 Basketball requires teamwork. Passing the ball with LMB is instant and costs no stamina.
+Blood quality depends on the power or lifestyle of a creature. Vampire blood satisfies the most, after that lupine blood, then the wealthy, then the poor, then animals, and so on.
+Boots can store items like knives or lighters.
+Boots can store items like knives or lighters.
+Cars use gasoline; you can buy more at a gas station. This can be used in the production of molotovs, as well.
+Diablerie lowers your generation by one, if your victim's is lower than yours. Diablerie is one of the vilest deeds imaginable, and any kindred who learn of this will seek your permanent death.
+Discipline levels can be changed with Right-Click.
 Don't be afraid to ask for help, whether from your peers or from admins.
+Duffle bags can hold two large whitelisted items that bypass their normal item weight restriction.
+Followers of Set, also known as Ministry, can avoid diablerie and staking by moving their heart to an urn.
+Ghouls are weaker than kindred, and require vitae instead of mortal blood. But they also are immune to humanity and can learn any clan's disciplines to level 1.
+Gun casings leave forensic evidence that can trace back to your firearm unless preventative measures are taken.
 Holding alt and left clicking a tile will allow you to see its contents in the top right window pane, which is much faster than holding shift and right clicking.
+Hovering over a dice roll with reveal what stats were used for rolls.
+Human players can use the "Report a Masquerade violation" button in people's examine text to report any weird supernatural stuff they shouldn't be seeing, like vampires feeding or punching people across a room.
+If you are a mortal and do drugs, kindred can experience the same high by drinking your blood.
+If you ever find yourself lost, look for a city map, use the navigate verb or button. Or just ask for directions.
+If you have a high enough strength, jumping in combat mode will create a shockwave.
 If you're bleeding, you can apply pressure to the limb by grabbing yourself while targeting the bleeding limb. This will slow you down and take up a hand, but it'll slow down how fast you lose blood. Note this won't help the bleeding clot any faster.
 If you're using hotkey mode, you can stop pulling things using H.
 Laying down will help slow down bloodloss. Death will halt it entirely.
+Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
+Magical artifacts need to be identified in order to be used. The Tremere, Garou, or those with a tremendously high Occult skill can identify them.
 Most things have special interactions with right, alt, shift, and control click. Experiment!
+Pool tables can be interacted with and let you play a mock game of billiards.
+The Malkavian hivemind allows you to send any message, except images.
 The resist button will allow you to resist out of handcuffs, being buckled to a chair or bed, out of locked lockers and more. Whenever you're stuck, try resisting!
-When in doubt about technical issues, clear your cache (byond launcher > cogwheel > preferences > game prefs), update your BYOND, and relog.
-You can use :L / .L or :R / .R to speak through an item being held in your left or right hand respectively. This allows you to talk into a city-bounced radio without manually turning on its microphone!
-You can right click someone with wire cutters, jaws of life, and box cutters to instantly snap cablecuffs or zipties. The jaws can even instantly break handcuffs!
-You can board up windows by left-clicking a window with planks in hand.
-Boots can store items like knives or lighters.
+There are 36 turns in a scene.
 To destroy any firearm's serial number, right-click it with a screwdriver in hand.
+To use Thaumaturgy properly you should get an Arcane Tome. Some of them spawn in Chantry. Lasombra can also learn Abyss Mysticism by crafting a tome after reaching Obtenebration at level 5.
+Tzimisce can upgrade your body with flesh and blood. Or they can turn you into a chair. Take this risk at your own judgement.
+Vampires are hard to kill, but can be immobilized by driving a stake into their heart.
+When in doubt about technical issues, clear your cache (byond launcher > cogwheel > preferences > game prefs), update your BYOND, and relog.
+With high enough strength, you can attempt to bash down a door, but failing can injure you.
+You can bloodbond people as a kindred. To do so - grab them and force them to swallow your vitae with Give Vitae ability. Bloodbonds strengthen the victim's emotions towards you and create an obsession.
 You can board up windows by left-clicking a window with planks in hand.
-Boots can store items like knives or lighters.
+You can board up windows by left-clicking a window with planks in hand.
+You can conceal your satchel by Alt + Right-clicking it.
+You can find a lockpick on certain NPCs and at the black market or hardware store. Dexterity and larceny assist in your chances to succeed, and doors have varying difficulty.
+You can find and publish your phone number on your phone.
+You can jump around by pressing MMB. You can even jump over railings while standing next to them.
+You can make a ghoul by bloodbonding a non-playable character. If there are any ghosts that want to play a ghoul - they will take over the ghouled NPC.
+You can right click someone with wire cutters, jaws of life, and box cutters to instantly snap cablecuffs or zipties. The jaws can even instantly break handcuffs!
+You can send announcements as the Prince by using your computer. Other kindred can see it on other computers too.
+You can set off a sprinkler by attacking it with any item that would light a cigarette.
+You can use :L / .L or :R / .R to speak through an item being held in your left or right hand respectively. This allows you to talk into a city-bounced radio without manually turning on its microphone!
+You don't need to have your keys in your hand to unlock a door. Just right-click.
+Your firearm stat dramatically improves your ability to control recoil.
+♪ Hey, have you ever tried appending the % character before your messages when speaking in-game? ♫

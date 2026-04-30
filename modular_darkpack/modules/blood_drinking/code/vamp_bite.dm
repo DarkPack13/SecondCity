@@ -74,15 +74,7 @@
 			var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 			if(!skipface)
 				if(get_kindred_splat(src) && HAS_TRAIT(src, TRAIT_NEEDS_BLOOD))
-					var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
-					var/datum/storyteller_roll/frezy_roll = new()
-					frezy_roll.applicable_stats = list(stat_to_roll)
-					var/frenzy_result = frezy_roll.st_roll(src, bit_living)
-					if(frenzy_result != ROLL_SUCCESS)
-						to_chat(src, span_userdanger("The taste of blood sends you into a frenzy as you feed!"))
-						// DARKPACK TODO: frenzy, please put the call here
-					else
-						to_chat(src, span_green("The taste of fresh blood while hungry almost drives you into frenzy!"))
+					trigger_kindred_frenzy(bit_living, 6, 0, "The taste of blood while hungry")
 
 				if(!HAS_TRAIT(src, TRAIT_BLOODY_LOVER))
 					playsound(src, 'modular_darkpack/modules/blood_drinking/sounds/drinkblood1.ogg', 50, TRUE)

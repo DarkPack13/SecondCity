@@ -135,7 +135,7 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.show_to(owner)
 
-	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
+	var/list/heard = orange(DEFAULT_SIGHT_DISTANCE, owner)
 	for(var/mob/living/hearer in heard)
 		if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
 			hearer.apply_status_effect(/datum/status_effect/question_emotion)
