@@ -1,3 +1,7 @@
+GLOBAL_LIST_INIT(night_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/night_spirits.txt"))
+GLOBAL_LIST_INIT(darkness_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/darkness_spirits.txt"))
+GLOBAL_LIST_INIT(vengeance_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/vengeance_spirits.txt"))
+
 /obj/item/occult_artifact/werewolf
 	icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes.dmi'
 	worn_icon = 'modular_darkpack/modules/occult_artifacts/icons/fetishes_worn.dmi'
@@ -22,13 +26,8 @@
 		if(SPIRIT_VENGEANCE)
 			spirit_table = GLOB.vengeance_spirits
 
-	if(spirit_table)
+	if(length(spirit_table))
 		spirit_name = pick(spirit_table)
 		spirit_desc = "[spirit_name], a spirit of [spirit_type]"
 
 	return spirit_desc
-
-
-GLOBAL_LIST_INIT(night_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/night_spirits.txt"))
-GLOBAL_LIST_INIT(darkness_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/darkness_spirits.txt"))
-GLOBAL_LIST_INIT(vengeance_spirits, world.file2list("modular_darkpack/modules/occult_artifacts/strings/vengeance_spirits.txt"))
