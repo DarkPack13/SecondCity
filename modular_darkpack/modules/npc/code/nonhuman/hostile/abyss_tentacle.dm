@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 	speak_emote = list("writhes")
 	basic_mob_flags = DEL_ON_DEATH
 	mobility_flags = NONE
-	anchored = TRUE
+	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 
 
 	environment_smash = ENVIRONMENT_SMASH_NONE
