@@ -106,11 +106,10 @@
 /datum/subsplat/werewolf/tribe/garou/redtalons
 	name = TRIBE_RED_TALONS
 	desc = "Exclusively consisting of lupus, the Red Talons shun humanity and think of them as a blight on Gaia."
-	// gifts_provided = list(
-	// 	/datum/action/cooldown/power/gift/stoic_pose,
-	// 	/datum/action/cooldown/power/gift/freezing_wind,
-	// 	/datum/action/cooldown/power/gift/bloody_feast
-	// )
+	gifts_provided = list(
+		// /datum/action/cooldown/power/gift/beast_speech, // DARKPACK TODO - (Selectable Gifts)
+		/datum/action/cooldown/power/gift/hidden_killer,
+	)
 
 /datum/subsplat/werewolf/tribe/garou/silverfangs
 	name = TRIBE_SILVER_FANGS

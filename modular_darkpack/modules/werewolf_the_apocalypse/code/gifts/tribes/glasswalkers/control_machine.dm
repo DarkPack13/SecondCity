@@ -48,6 +48,8 @@
 		I.layer = nearby_atom.layer - 0.01
 		I.pixel_y = 0
 		I.pixel_x = 0
+		I.pixel_w = 0
+		I.pixel_z = 0
 
 		apply_wibbly_filters(I)
 
@@ -261,3 +263,18 @@
 	switch(choice)
 		if("roll")
 			step(src, dir)
+
+
+/obj/structure/vampdoor/get_control_machine_options(mob/living/user, is_complex = FALSE)
+	. = ..()
+	if(!is_complex)
+		.["lock"] = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_rotate")
+
+/obj/structure/vampdoor/run_control_machine(mob/living/user, choice, is_complex = FALSE)
+	. = ..()
+	if(is_complex)
+		return
+	switch(choice)
+		if("lock")
+			if(!locked)
+				toggle_lock(user)
