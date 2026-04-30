@@ -12,7 +12,7 @@
 /obj/item/bodypart/arm/left/fera
 	// limb_id = SPECIES_FERA
 	unarmed_sharpness = SHARP_EDGED
-	attack_type = AGGRAVATED
+	// attack_type = AGGRAVATED // SOON... Basic mobs ignore agg damage rn.
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
@@ -23,7 +23,7 @@
 /obj/item/bodypart/arm/right/fera
 	// limb_id = SPECIES_FERA
 	unarmed_sharpness = SHARP_EDGED
-	attack_type = AGGRAVATED
+	// attack_type = AGGRAVATED
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
