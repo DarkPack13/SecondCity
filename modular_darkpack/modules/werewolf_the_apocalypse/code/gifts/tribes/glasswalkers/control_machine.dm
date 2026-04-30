@@ -37,26 +37,26 @@
 
 	// Movable cause i dont feel like checking EVERY EVERY atom.
 	for(var/atom/movable/nearby_atom in oview(on_who, DEFAULT_SIGHT_DISTANCE))
-		if(length(nearby_atom.get_control_machine_options(on_who, is_complex)))
-			var/color = COLOR_BLUE_LIGHT
-			if(nearby_atom == existing_target)
-				color = COLOR_BLUE
+		if(!length(nearby_atom.get_control_machine_options(on_who, is_complex)))
+			continue
+		var/color = COLOR_BLUE_LIGHT
+		if(nearby_atom == existing_target)
+			color = COLOR_BLUE
 
-			var/image/I = image(loc = nearby_atom.loc, icon = nearby_atom.icon, icon_state = nearby_atom.icon_state)
-			I.dir = nearby_atom.dir
-			I.appearance = nearby_atom.appearance
+		var/image/I = image(loc = nearby_atom.loc)
+		I.appearance = nearby_atom.appearance
 
-			apply_wibbly_filters(I)
+		apply_wibbly_filters(I)
 
-			I.add_filter("control_machine", 1, list(
-				"type" = "outline",
-				"size" = 1,
-				"color" = color
-			))
+		I.add_filter("control_machine", 1, list(
+			"type" = "outline",
+			"size" = 1,
+			"color" = color
+		))
 
-			LAZYINITLIST(object_highlights)
-			on_who.client.images += I
-			object_highlights += I
+		LAZYINITLIST(object_highlights)
+		on_who.client.images += I
+		object_highlights += I
 
 	// SEND_SOUND(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/falling_touch.ogg')
 
