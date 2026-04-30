@@ -106,7 +106,6 @@
 		var/obj/fusebox/fuse = target
 
 		// Break the fusebox
-		fuse.take_damage(101)
 		fuse.power_off()
 
 		var/datum/effect_system/basic/spark_spread/spark_system = new(get_turf(target), 5, 1)
