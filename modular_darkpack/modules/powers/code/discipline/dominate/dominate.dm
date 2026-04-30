@@ -114,7 +114,7 @@
 	if(HAS_TRAIT(target, TRAIT_WEAK_WILLED))
 		theirpower -= 2
 
-	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
+	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE) && !(owner.obscured_slots & HIDEFACE))
 		theirpower += 2
 
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
@@ -123,14 +123,21 @@
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		theirpower -= 2
 
-	if(STAT_INTIMIDATION in owner_stat) // TODO ACTUALLY MAKE THIs wORK
-		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
+	if(discipline.current_power.name == "Possession" || discipline.current_power.name == "Command") // TODO ACTUALLY MAKE THIs wORK
+		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)) && !(owner.obscured_slots & HIDEEYES))
 			theirpower -= 1
 		if(HAS_TRAIT(owner, TRAIT_BRUISER))
 			theirpower -= 1
 	else
-		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE))
+		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE) && !(owner.obscured_slots & HIDEFACE))
 			theirpower -= 1
+
+	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_FACE) && !(owner.obscured_slots & HIDEFACE))
+		theirpower += 1
+		to_chat(owner, span_warning("test worked"))
+	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_CHEST) && !(owner.obscured_slots & HIDEJUMPSUIT))
+		theirpower += 1
+		to_chat(owner, span_warning("test 5 worked"))
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0

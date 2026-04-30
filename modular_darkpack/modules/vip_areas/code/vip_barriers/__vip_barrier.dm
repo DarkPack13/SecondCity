@@ -136,11 +136,21 @@
 	if(HAS_TRAIT(user, TRAIT_ENCHANTING_VOICE))
 		involved_social_roll -= 2
 
+	if(HAS_TRAIT(user, TRAIT_OPEN_WOUND_FACE) && !(user.obscured_slots & HIDEFACE))
+		involved_social_roll += 1
+		to_chat(user, span_warning("test worked"))
+	if(HAS_TRAIT(user, TRAIT_OPEN_WOUND_CHEST) && !(user.obscured_slots & HIDEJUMPSUIT))
+		involved_social_roll += 1
+		to_chat(user, span_warning("test 5 worked"))
+
 	if(STAT_INTIMIDATION in bypass_roll.applicable_stats)
 		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES) && (!get_kindred_splat(bouncer)))// Kindred check just in case
 			involved_social_roll -= 1 // Easier intimidation against mortals.
 		if(HAS_TRAIT(user, TRAIT_BRUISER))
 			involved_social_roll -= 1
+	else
+		if(HAS_TRAIT(user, TRAIT_FRIENDLY_FACE))
+			involved_social_roll -= 1 // Can't be used for intimidation, easier diff otherwise
 
 	var/verbage
 	bypass_roll.difficulty = involved_social_roll

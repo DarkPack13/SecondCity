@@ -7392,6 +7392,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\mute.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\nervous_tic.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\one_armed.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\open_wound.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\organovore.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_fangs.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_wound.dm"

@@ -50,8 +50,7 @@ acuity.*/
 		if("smell") // Debate adding a check for TRAIT_ANOSMIA, but we don't currently have it selectable
 			ADD_TRAIT(new_holder, TRAIT_KEEN_NOSE, QUIRK_TRAIT)
 		if("sight") // Debate adding a check, but like hearing, you can't use the benefits while blind really
-			ADD_TRAIT(new_holder, TRAIT_ACUTE_SIGHT, QUIRK_TRAIT)
-			quirk_holder.client?.view_size?.setTo(1)
+			ADD_TRAIT(new_holder, TRAIT_NIGHT_VISION, QUIRK_TRAIT) // Fuck it, zooming out is ugly, so weak night vision seems a little better
 			var/obj/item/organ/eyes/sensitive_eyes = quirk_holder.get_organ_slot(ORGAN_SLOT_EYES)
 			if(sensitive_eyes)
 				sensitive_eyes.flash_protect = max(sensitive_eyes.flash_protect += -1, FLASH_PROTECTION_SENSITIVE)
@@ -68,14 +67,13 @@ acuity.*/
 			var/obj/item/organ/ears/sensitive_ears = quirk_holder.get_organ_slot(ORGAN_SLOT_EARS)
 			sensitive_ears.damage_multiplier = sensitive_ears.damage_multiplier - 1
 		if("smell")
-			REMOVE_TRAIT(new_holder, TRAIT_KEEN_NOSE, QUIRK_TRAIT)
+			REMOVE_TRAIT(quirk_holder, TRAIT_KEEN_NOSE, QUIRK_TRAIT)
 		if("sight")
-			REMOVE_TRAIT(new_holder, TRAIT_ACUTE_SIGHT, QUIRK_TRAIT)
-			quirk_holder.client?.view_size?.resetToDefault() // Check this doesn't fuck auspex up, but it should be fine.
+			REMOVE_TRAIT(quirk_holder, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
 			var/obj/item/organ/eyes/sensitive_eyes = quirk_holder.get_organ_slot(ORGAN_SLOT_EYES)
 			if(sensitive_eyes)
 				sensitive_eyes.flash_protect = max(sensitive_eyes.flash_protect += 1, FLASH_PROTECTION_NONE)
 		if("taste")
-			REMOVE_TRAIT(new_holder, TRAIT_DETECTIVES_TASTE, QUIRK_TRAIT)
+			REMOVE_TRAIT(quirk_holder, TRAIT_DETECTIVES_TASTE, QUIRK_TRAIT)
 		if("touch")
-			REMOVE_TRAIT(new_holder, TRAIT_SELF_AWARE, QUIRK_TRAIT)
+			REMOVE_TRAIT(quirk_holder, TRAIT_SELF_AWARE, QUIRK_TRAIT)

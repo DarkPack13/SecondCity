@@ -79,10 +79,7 @@
 	var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 	kindred_ears.damage_multiplier = initial(kindred_ears.damage_multiplier)
 	// Vision
-	if(HAS_TRAIT(owner, TRAIT_ACUTE_SIGHT))
-		owner.client?.view_size?.setTo(1) // Using auspex shouldn't nuke our benefit from acute sense this way.
-	else
-		owner.client?.view_size?.resetToDefault() // Just reset if we lack the trait
+	owner.client?.view_size?.resetToDefault() // Just reset if we lack the trait
 	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)

@@ -30,7 +30,7 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
+	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE) && !(owner.obscured_slots & HIDEFACE))
 		theirpower += 2
 
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
@@ -39,14 +39,21 @@
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		theirpower -= 2
 
-	if(STAT_INTIMIDATION in owner_stat) // TODO ACTUALLY MAKE THIs wORK
+	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_FACE) && !(owner.obscured_slots & HIDEFACE))
+		theirpower += 1
+		to_chat(owner, span_warning("test worked"))
+	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_CHEST) && !(owner.obscured_slots & HIDEJUMPSUIT))
+		theirpower += 1
+		to_chat(owner, span_warning("test 5 worked"))
+
+	if(discipline.current_power.name == "Dread Gaze") // TODO ACTUALLY MAKE THIs wORK
 		to_chat(owner, span_warning("Intimidation found"))// Just for me to test
-		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))// Make sure this only affects dread gaze
+		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)) && !(owner.obscured_slots & HIDEEYES))// Make sure this only affects dread gaze
 			theirpower -= 1
 		if(HAS_TRAIT(owner, TRAIT_BRUISER))
 			theirpower -= 1
 	else
-		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE))// We can't intimidate them with this.
+		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE) && !(owner.obscured_slots & HIDEFACE))// We can't intimidate them with this.
 			theirpower -= 1
 			to_chat(owner, span_warning("Friendly face returns")) // Just for testing, ignore.
 
