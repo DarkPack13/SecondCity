@@ -31,6 +31,11 @@ SUBSYSTEM_DEF(events)
 		if(!event.valid_for_map())
 			nonrunning_events_by_name[event.name] = event.type
 			continue //don't want this one! leave it for the garbage collector
+		// DARKPACK EDIT ADD - Events
+		if(!initial(event.darkpack_allowed))
+			qdel(event)
+			continue
+		// DARKPACK EDIT ADD END - Events
 		control += event //add it to the list of all events (controls)
 		events_by_name[event.name] = event
 
