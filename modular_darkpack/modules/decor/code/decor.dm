@@ -138,12 +138,30 @@
 	pixel_w = -32
 	anchored = TRUE
 
+/obj/structure/trafficlight/standing
+	icon_state = "traffic-stand"
+
 /obj/structure/trafficlight/Initialize(mapload)
 	. = ..()
+	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
+	if(my_area.requires_power)
+		RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+		//if(!my_area.powered()) TODO - sprite animated traffic light
+			//icon_state = "[initial(icon_state)]-off"
+
+/obj/structure/trafficlight/proc/on_power_change(area/A)
+	SIGNAL_HANDLER
+	//if(A.power_light)
+	//	icon_state = initial(icon_state)
+	//else
+	//	icon_state = "[initial(icon_state)]-off"
+
+/obj/structure/trafficlight/Destroy(force)
+	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
+	. = ..()
 
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
