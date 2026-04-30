@@ -187,5 +187,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FRIENDLY_FACE "friendly_face"
 #define TRAIT_ENCHANTING_VOICE "enchanting_voice"
 #define TRAIT_HUGE_SIZE "huge_size"
+#define TRAIT_EYES_OF_SHADOW "eyes_of_shadow"
 
 // END TRAIT DEFINES

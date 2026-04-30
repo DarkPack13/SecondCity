@@ -41,21 +41,20 @@
 
 	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_FACE) && !(owner.obscured_slots & HIDEFACE))
 		theirpower += 1
-		to_chat(owner, span_warning("test worked"))
 	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_CHEST) && !(owner.obscured_slots & HIDEJUMPSUIT))
 		theirpower += 1
-		to_chat(owner, span_warning("test 5 worked"))
 
-	if(discipline.current_power.name == "Dread Gaze") // TODO ACTUALLY MAKE THIs wORK
-		to_chat(owner, span_warning("Intimidation found"))// Just for me to test
-		if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)) && !(owner.obscured_slots & HIDEEYES))// Make sure this only affects dread gaze
-			theirpower -= 1
+	if(discipline.current_power.name == "Dread Gaze")
 		if(HAS_TRAIT(owner, TRAIT_BRUISER))
 			theirpower -= 1
+		if(!owner.is_eyes_covered())
+			if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))
+				theirpower -= 1
+			if(HAS_TRAIT(owner, TRAIT_EYES_OF_SHADOW))
+				theirpower -= 1
 	else
 		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE) && !(owner.obscured_slots & HIDEFACE))// We can't intimidate them with this.
 			theirpower -= 1
-			to_chat(owner, span_warning("Friendly face returns")) // Just for testing, ignore.
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 

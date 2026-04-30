@@ -7415,6 +7415,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\deceptive_aura.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\efficient_digestion.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\enchanting_voice.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\eyes_of_shadow.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\fair_glabro.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\friendly_face.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\giovanni_sanguine_incongruity.dm"

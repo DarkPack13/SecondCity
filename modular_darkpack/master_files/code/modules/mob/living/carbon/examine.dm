@@ -66,6 +66,8 @@
 	if(!is_eyes_covered())
 		if(HAS_TRAIT(src, TRAIT_GLOWING_EYES))
 			. += span_warning("[p_Their()] eyes glow unnaturally bright!<br>")
+		if(HAS_TRAIT(src, TRAIT_EYES_OF_SHADOW))
+			. += span_warning("[p_Their()] eyes are oddly dark. Something about them feels outright uncanny.<br>")
 
 	if(!(obscured_slots & HIDEFACE))
 		switch(st_get_stat(STAT_APPEARANCE))
