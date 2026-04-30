@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 
 /datum/storyteller_roll/fusebox_repair
 	bumper_text = "electrical repair"
-	applicable_stats = list(STAT_PERCEPTION, STAT_TECHNOLOGY)
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_TECHNOLOGY)
 	difficulty = 7
 	numerical = TRUE
 
