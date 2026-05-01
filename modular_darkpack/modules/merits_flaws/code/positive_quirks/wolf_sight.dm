@@ -19,5 +19,3 @@
 
 /datum/client_colour/wolf_sight
 	color = "#e6e6e6"
-
-
