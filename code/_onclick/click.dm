@@ -164,7 +164,7 @@
 
 	// DARKPACK EDIT ADD START - COMBAT
 	// This sucks. https://github.com/tgstation/tgstation/pull/76928 looked so promising but it was closed.
-	if(client?.prefs?.read_preference(/datum/preference/toggle/swing_combat) && isliving(src))
+	if(CONFIG_GET(flag/swing_combat) && isliving(src))
 		var/mob/living/living_src = src
 		// Considering swapping the type check to use NOBLUDGEON but that would include guns.
 		if(W?.can_swing() && living_src.combat_mode)
