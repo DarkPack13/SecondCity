@@ -54,6 +54,10 @@
 		attack_roll_type = /datum/storyteller_roll/attack/kick
 		damage_roll_type = /datum/storyteller_roll/damage/kick
 		damage_bonus_dice++
+	else if(atk_effect == ATTACK_EFFECT_CLAW)
+		attack_roll_type = /datum/storyteller_roll/attack/claw
+		damage_roll_type = /datum/storyteller_roll/damage/claw
+		damage_bonus_dice += 2
 
 	user.do_attack_animation(src, atk_effect)
 
