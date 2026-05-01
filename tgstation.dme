@@ -7378,6 +7378,7 @@
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
 #include "modular_darkpack\modules\merits_flaws\code\_darkpack_quirk.dm"
+#include "modular_darkpack\modules\merits_flaws\code\config.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\amnesia.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\animal_musk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\bad_sight.dm"
