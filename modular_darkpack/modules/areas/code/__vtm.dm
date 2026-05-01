@@ -2,7 +2,7 @@
 	name = CITY_NAME
 	icon = 'modular_darkpack/modules/areas/icons/areas.dmi'
 	icon_state = "sewer"
-	requires_power = TRUE
+	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
 	var/zone_type = ZONE_MASQUERADE
