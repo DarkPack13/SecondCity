@@ -61,7 +61,7 @@
 		human.remove_movespeed_modifier(speed_mod)
 
 	if(mob_size_override)
-		human.mob_size == human::mob_size
+		human.mob_size = human::mob_size
 
 	human.remove_offsets(type)
 
