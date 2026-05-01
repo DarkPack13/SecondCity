@@ -24,7 +24,7 @@
 	species_language_holder = /datum/language_holder/garou
 	var/mob_pixel_w
 	var/mob_pixel_z
-	/// If declared Will override the mob size.
+	/// If declared will override the mob size.
 	var/mob_size_override
 	/// Stats added and removed upon gaining the species
 	var/list/form_bonus_stats = list()
