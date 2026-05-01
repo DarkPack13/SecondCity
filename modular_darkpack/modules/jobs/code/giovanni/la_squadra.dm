@@ -1,6 +1,6 @@
 /datum/job/vampire/squadra
 	title = JOB_LA_SQUADRA
-	faction = FACTION_CITY
+	faction = FACTION_GIOVANNI
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family and the Traditions"

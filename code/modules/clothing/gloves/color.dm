@@ -9,7 +9,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	cut_type = /obj/item/clothing/gloves/fingerless
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/gloves/color/black/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/radio_containing/radiogloves)
@@ -44,7 +44,7 @@
 /obj/item/clothing/gloves/fingerless/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, -4)
-	/* // DARKPACK EDIT REMOVE
+	/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/gripperoffbrand)
 
 	AddElement(

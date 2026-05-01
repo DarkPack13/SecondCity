@@ -37,7 +37,7 @@
 	dish_category = DISH_PIE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/xenopie
 	name = "Xeno pie"
 	reqs = list(
@@ -273,7 +273,7 @@
 	dish_category = DISH_PIE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/asdfpie
 	name = "Pie-flavored pie"
 	reqs = list(
