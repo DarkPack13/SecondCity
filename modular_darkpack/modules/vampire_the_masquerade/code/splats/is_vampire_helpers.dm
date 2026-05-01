@@ -4,6 +4,9 @@
 /proc/get_vampire_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
+	if(!character)
+		return null
+
 	return character.get_splat(/datum/splat/vampire)
 
 /**
@@ -11,6 +14,9 @@
  */
 /proc/get_splat_with_vitae(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
+
+	if(!character)
+		return null
 
 	return get_vampire_splat(character)
 
@@ -20,14 +26,23 @@
 /proc/get_splat_with_discipline(mob/character)
 	RETURN_TYPE(/datum/splat/vampire)
 
+	if(!character)
+		return null
+
 	return get_vampire_splat(character)
 
 /proc/get_kindred_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire/kindred)
 
+	if(!character)
+		return null
+
 	return character.get_splat(/datum/splat/vampire/kindred)
 
 /proc/get_ghoul_splat(mob/character)
 	RETURN_TYPE(/datum/splat/vampire/ghoul)
+
+	if(!character)
+		return null
 
 	return character.get_splat(/datum/splat/vampire/ghoul)
