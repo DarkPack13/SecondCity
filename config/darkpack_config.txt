@@ -60,3 +60,5 @@ LOG_STATS
 
 #EXTRA_ISSUE_URLS https://github.com/DarkPack13/SecondCity
 
+## Bool for if roleplay only merits/quirks are enabled
+ROLEPLAY_ONLY_MERITS 1

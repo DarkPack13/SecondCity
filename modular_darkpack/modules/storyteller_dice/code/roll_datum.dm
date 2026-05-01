@@ -48,15 +48,16 @@
 		return ROLL_FAILURE
 
 	var/dice_amount = calculate_used_dice(roller, bonus)
+	var/used_difficulty = calculate_used_difficulty(roller)
 
 	var/list/rolled_dice = roll_dice(dice_amount)
 
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty]."
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [used_difficulty]."
 	if(successes_needed > 1)
 		first_line += " [successes_needed] successes needed."
 	last_output_text += span_notice(first_line)
 
-	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
+	last_sucess_amount = count_success(rolled_dice, used_difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
 	var/title
@@ -72,12 +73,10 @@
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
-		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
-
-		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
+		if(!spammy_roll)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
-		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
+		else
 			if(last_sucess_amount > 0)
 				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
@@ -92,7 +91,7 @@
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
 		if(ROLL_PUBLIC)
-			return viewers(DEFAULT_MESSAGE_RANGE, roller)
+			return viewers(DEFAULT_SIGHT_DISTANCE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
 		if(ROLL_PRIVATE_AND_TARGET)
@@ -126,6 +125,9 @@
 
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
+
+/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller)
+	return difficulty
 
 /datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
 	var/output = ""

@@ -11,6 +11,8 @@
 
 /obj/item/bodypart/arm/left/fera
 	// limb_id = SPECIES_FERA
+	unarmed_sharpness = SHARP_EDGED
+	attack_type = AGGRAVATED
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
@@ -20,6 +22,8 @@
 
 /obj/item/bodypart/arm/right/fera
 	// limb_id = SPECIES_FERA
+	unarmed_sharpness = SHARP_EDGED
+	attack_type = AGGRAVATED
 	unarmed_attack_verbs = list("claw")
 	unarmed_attack_verbs_continuous = list("claws")
 	appendage_noun = "paw"
@@ -28,9 +32,11 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/leg/left/fera
+	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 
 /obj/item/bodypart/leg/right/fera
+	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 
 

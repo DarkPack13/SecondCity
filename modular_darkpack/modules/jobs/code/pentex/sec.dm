@@ -2,7 +2,7 @@
 	title = JOB_PENTEX_SEC
 	description = "You are an acting security for " + MAIN_EVIL_COMPANY + ", operating out of San Francisco. Under the chief of security's direction, your job is to keep the complex free of nosy meddlers, pick up contract violators, and to assist the chief in tackling threats to corporate assets."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_PENTEX
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Board, Branch Lead, and Chief of Security"

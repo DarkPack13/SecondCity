@@ -128,4 +128,4 @@
 	department_experience_type = EXP_TYPE_SPIRAL
 	display_order = 1
 	label_class = "pentex"
-	ui_color = COLOR_ENDRON_GREEN
+	ui_color = COLOR_CORP_ENDRON

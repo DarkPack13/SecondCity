@@ -67,14 +67,14 @@ export const MESSAGE_TYPES: MessageType[] = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .looc, .do', // DARKPACK EDIT, ORIGINAL: selector: '.say, .emote',
+    selector: '.say, .emote, .looc, .do', // DARKPACK EDIT CHANGE - ORIGINAL: selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling, .policeradio, .clinicradio, .militaryradio, .camarillaradio, .anarchradio, .endronradio', // DARKPACK EDIT, ORIGINAL: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
+      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling, .policeradio, .clinicradio, .militaryradio, .camarillaradio, .anarchradio, .endronradio', // DARKPACK EDIT CHANGE - ORIGINAL: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
   },
   {
     type: MESSAGE_TYPE_ENTERTAINMENT,

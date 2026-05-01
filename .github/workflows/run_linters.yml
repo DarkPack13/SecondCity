@@ -65,7 +65,7 @@ jobs:
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |
           bash tools/ci/check_grep.sh
-          bash modular_darkpack/tools/darkpack_check_grep.sh # DARKPACK EDIT ADDITION - checking modular_darkpack code
+          bash modular_darkpack/tools/darkpack_check_grep.sh # DARKPACK EDIT ADD - checking modular_darkpack code
       - name: Ticked File Enforcement
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |

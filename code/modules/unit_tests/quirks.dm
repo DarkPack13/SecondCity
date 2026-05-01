@@ -10,7 +10,7 @@
 		if (isnull(icon))
 			TEST_FAIL("[quirk_type] has no icon!")
 			continue
-		/* DARKPACK EDIT REMOVAL - MERITS/FLAWS
+		/* DARKPACK EDIT REMOVAL - MERITS_FLAWS
 		if (icon in used_icons)
 			TEST_FAIL("[icon] used in both [quirk_type] and [used_icons[icon]]!")
 			continue
@@ -22,7 +22,7 @@
 /datum/unit_test/quirk_initial_medical_records
 
 /datum/unit_test/quirk_initial_medical_records/Run()
-	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we don't need this and darkpack quirk splat/clan exclusion makes it impossible to add to a random test character with no splats
+	/* DARKPACK EDIT REMOVAL - MERITS_FLAWS - we don't need this and darkpack quirk splat/clan exclusion makes it impossible to add to a random test character with no splats
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human/consistent)
 
 	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
@@ -50,7 +50,7 @@
 	)
 
 /datum/unit_test/blood_deficiency_mail/Run()
-	/* DARKPACK EDIT REMOVAL - MERITS/FLAWS - we are not using /tg/ quirks
+	/* DARKPACK EDIT REMOVAL - MERITS_FLAWS - we are not using /tg/ quirks
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	dummy.add_quirk(/datum/quirk/blooddeficiency)
 	var/datum/quirk/blooddeficiency/quirk = dummy.get_quirk(/datum/quirk/blooddeficiency)
@@ -88,7 +88,7 @@
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
 	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
-		// DARKPACK EDIT ADD START - MERITS/FLAWS
+		// DARKPACK EDIT ADD START - MERITS_FLAWS
 		if(!quirk_type::darkpack_allowed)
 			continue
 		var/list/forbidden_splats_test
@@ -110,7 +110,7 @@
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
 
-		// DARKPACK EDIT ADD START - MERITS/FLAWS
+		// DARKPACK EDIT ADD START - MERITS_FLAWS
 		// if allowed splats, add the allowed splat, then test, failure if its not added
 		if(allowed_splats_test)
 			for(var/datum/splat/allowed_splat in allowed_splats_test)
@@ -131,7 +131,7 @@
 		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test && !included_clans_test)
 			if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
-		// DARKPACK EDIT ADD END - MERITS/FLAWS
+		// DARKPACK EDIT ADD END - MERITS_FLAWS
 
 		var/mob/living/carbon/human/latejoin_character = allocate(/mob/living/carbon/human/consistent)
 		var/datum/client_interface/latejoin_mock_client = new()
@@ -139,7 +139,7 @@
 		latejoin_character.mock_client = latejoin_mock_client
 		latejoin_character.mind_initialize()
 
-		// DARKPACK EDIT ADD - MERITS/FLAWS
+		// DARKPACK EDIT ADD - MERITS_FLAWS
 		// if allowed splats, add the allowed splat, then test, failure if its not added
 		if(allowed_splats_test)
 			for(var/datum/splat/allowed_splat in allowed_splats_test)
@@ -160,7 +160,7 @@
 		if(!forbidden_splats_test && !allowed_splats_test && !excluded_clans_test && !included_clans_test)
 			if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 				TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
-		// DARKPACK EDIT ADD END - MERITS/FLAWS
+		// DARKPACK EDIT ADD END - MERITS_FLAWS
 
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()
