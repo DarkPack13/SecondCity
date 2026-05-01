@@ -19,7 +19,7 @@
 	///Does the sink have a water recycler to recollect its water supply?
 	var/has_water_reclaimer = TRUE
 	///Units of water to reclaim per second
-	var/reclaim_rate = 50 // DARKPACK EDIT, ORIGINAL: var/reclaim_rate = 0.5
+	var/reclaim_rate = 50 // DARKPACK EDIT CHANGE - ORIGINAL: var/reclaim_rate = 0.5
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 

@@ -2,7 +2,7 @@
 	title = JOB_SHERIFF
 	description = "Protect the Prince and the Masquerade. You are their sword."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_PRINCE

@@ -178,7 +178,7 @@
 
 /obj/item/shield/riot/Initialize(mapload)
 	. = ..()
-	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield) // DARKPACK EDIT REMOVE
+	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield) // DARKPACK EDIT REMOVAL
 
 	AddElement(
 		/datum/element/slapcrafting,\

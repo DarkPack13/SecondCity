@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "empty bloodbags can now be bought at the pharmacy"

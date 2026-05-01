@@ -1,6 +1,6 @@
 /datum/job/vampire/famiglia
 	title = JOB_LA_FAMIGLIA
-	faction = FACTION_CITY
+	faction = FACTION_GIOVANNI
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Family"

@@ -23,7 +23,7 @@
 /datum/component/aura
 	// A list of currently selected emotions by the player
 	var/current_aura = AURA_INNOCENT
-	var/current_emotion_name = "Innocent"
+	var/current_emotion_name = ""
 	var/obj/effect/abstract/shared_particle_holder/aura_smoke
 	var/examine_message = ""
 	var/obj/effect/aura_overlay/aura_glow_image
@@ -83,10 +83,11 @@
 
 /datum/component/aura/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	if(!examine_message)
-		return
 	var/datum/atom_hud/data/auspex_aura/auspex_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	if(!(user in auspex_hud.hud_users_all_z_levels))
+		return
+	update_examine_message(null)
+	if(!examine_message)
 		return
 	examine_list += examine_message
 
@@ -178,6 +179,14 @@
 		aura_smoke.blend_mode = 2
 		aura_smoke.add_filter("particle_blur", 1, gauss_blur_filter(8))
 	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
+	if(get_kindred_splat(parent_mob))
+		var/mob/living/carbon/human/lick = parent_mob
+		var/datum/st_stat/morality_path/morality/stat_morality = lick?.storyteller_stats[STAT_MORALITY]
+		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(parent_mob, TRAIT_BLUSH_OF_HEALTH))
+			aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+	if(parent_mob.stat == DEAD)
+		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
 	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
 	update_aura_filters(aura_appearance, holder)
@@ -228,6 +237,7 @@
 		aura_glow_image.plane = ABOVE_LIGHTING_PLANE
 		aura_glow_image.add_filter("ambient_blur", 1, gauss_blur_filter(12))
 	aura_glow_image.color = aura_appearance.color
+	aura_glow_image.icon_state = aura_appearance.icon_state || "aura"
 	aura_glow_image.alpha = 20
 	holder.vis_contents += aura_glow_image
 

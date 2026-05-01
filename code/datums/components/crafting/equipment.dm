@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/strobeshield // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/strobeshield // DARKPACK EDIT REMOVAL
 	name = "Strobe Shield"
 	result = /obj/item/shield/riot/flash
 	reqs = list(
@@ -45,7 +45,7 @@
 		radio_types_blacklist = typecacheof(list(/obj/item/radio/headset, /obj/item/radio/intercom))
 	blacklist = radio_types_blacklist
 	return ..()
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/radio_containing/radiogloves
 	name = "Radio Gloves"
 	result = /obj/item/clothing/gloves/radio
@@ -156,7 +156,7 @@
 		/obj/item/stack/rods = 1,
 	)
 	category = CAT_EQUIPMENT
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
 	result = /obj/item/organ/eyes/robotic/flashlight
@@ -278,7 +278,7 @@
 	)
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/tether_anchor
 	name = "Tether Anchor"
 	result = /obj/item/tether_anchor

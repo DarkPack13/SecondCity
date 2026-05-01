@@ -36,14 +36,14 @@
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 0.8 SECONDS
 	/// Instructions you can give to dogs
-	/* // DARKPACK EDIT REMOVE START - NPC - (Moving this into a proc so we can have subtypes with different commands)
+	/* // DARKPACK EDIT REMOVAL START - NPC - (Moving this into a proc so we can have subtypes with different commands)
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
 		/datum/pet_command/move,
 		/datum/pet_command/good_boy/dog,
 		/datum/pet_command/follow/dog,
-//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVE - Might be usable later - NPC
+//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVAL - Might be usable later - NPC
 		/datum/pet_command/attack/dog,
 		/datum/pet_command/fetch,
 		/datum/pet_command/play_dead,
@@ -123,7 +123,7 @@
 	)
 	AddElement(/datum/element/ai_flee_while_injured) // DARKPACK EDIT ADD - NPC
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 30, bonus_tame_chance = 15, unique = FALSE)
-//	AddComponent(/datum/component/obeys_commands, pet_commands) // DARKPACK EDIT REMOVE - npc
+//	AddComponent(/datum/component/obeys_commands, pet_commands) // DARKPACK EDIT REMOVAL - npc
 	add_obey_commands()
 	var/dog_area = get_area(src)
 	for(var/obj/structure/bed/dogbed/dog_bed in dog_area)
@@ -132,7 +132,7 @@
 
 // DARKPACK EDIT ADD START - NPC - (snowflake obeys_commands abstraction proc)
 /mob/living/basic/pet/dog/proc/add_obey_commands()
-	var/static/list/pet_commands = list( // DARKPACK EDIT REMOVE START - npc - Moving this into a proc so we can have subtypes with different commands
+	var/static/list/pet_commands = list(
 	/datum/pet_command/idle,
 	/datum/pet_command/free,
 	/datum/pet_command/move,
