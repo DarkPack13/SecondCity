@@ -2,7 +2,7 @@
 	name = CITY_NAME
 	icon = 'modular_darkpack/modules/areas/icons/areas.dmi'
 	icon_state = "sewer"
-	requires_power = FALSE
+	requires_power = TRUE
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
 	var/zone_type = ZONE_MASQUERADE
@@ -13,11 +13,6 @@
 
 	// is this able to be classified as a domain? e.g, territorial flaw, later political implementation
 	var/domain = FALSE
-
-/area/vtm/powered(chan)
-	if (!requires_power)
-		return TRUE
-	return FALSE
 
 /area/vtm/proc/break_elysium()
 	if (zone_type != ZONE_MASQUERADE)
