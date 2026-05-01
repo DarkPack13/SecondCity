@@ -55,7 +55,7 @@
 	RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
 	// DARKPACK TODO - fuseboxes and areas aren't meaningfully connected to each other, and thusly aren't meaningfully connected to lights/devices that may need poer.
 	// TLDR we need to basically re-evaluate how we approach power... the current system is flavcode spaghetti shit.
-	if(my_area.power_light)
+	if(my_area.powered(AREA_USAGE_LIGHT))
 		create_lights()
 
 /obj/structure/lamppost/proc/on_power_change(area/A)
