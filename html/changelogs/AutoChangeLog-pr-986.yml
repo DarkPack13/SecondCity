@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - code_imp: "every job datum now has a faction"
+  - code_imp: "removes unused and useless 'is_gun_store' job on /obj/structure/retail"
