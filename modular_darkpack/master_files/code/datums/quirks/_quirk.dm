@@ -1,2 +1,2 @@
 /datum/quirk
-	var/darkpack_allowed = FALSE // MERITS/FLAWS
+	var/darkpack_allowed = FALSE // MERITS_FLAWS

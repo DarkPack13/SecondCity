@@ -25,7 +25,7 @@
 	// Only actual KAs can be converted
 	if(type != /obj/item/gun/energy/recharge/kinetic_accelerator)
 		return
-	/* // DARKPACK EDIT REMOVE
+	/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/ebow)
 
 	AddElement(

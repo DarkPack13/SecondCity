@@ -32,7 +32,7 @@
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload, vol)
 	icon_state = "bloodpack"
-	blood_type = random_human_blood_type_name() // DARKPACK EDIT, ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
+	blood_type = random_human_blood_type_name() // DARKPACK EDIT CHANGE - ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
 	return ..()
 
 /obj/item/reagent_containers/blood/a_plus

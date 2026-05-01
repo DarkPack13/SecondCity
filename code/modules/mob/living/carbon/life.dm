@@ -477,7 +477,7 @@
 		return
 
 	var/datum/blood_type/blood_type = get_bloodtype()
-	if(!(blood_type.reagent_type in typesof(chem.type))) // DARKPACK EDIT, ORIGINAL: if(blood_type.reagent_type != chem.type)
+	if(!(blood_type.reagent_type in typesof(chem.type))) // DARKPACK EDIT CHANGE - ORIGINAL: if(blood_type.reagent_type != chem.type)
 		return
 
 	var/cached_blood_volume = get_blood_volume()
