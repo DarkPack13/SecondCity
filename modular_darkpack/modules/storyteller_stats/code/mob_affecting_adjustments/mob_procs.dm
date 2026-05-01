@@ -48,7 +48,7 @@
 		if(stat_datum.stat_flags & AFFECTS_HEALTH)
 			recalculate_max_health(initial)
 			if(iscarbon(src))
-				var/mob/libing/carbon/C = src
+				var/mob/living/carbon/C = src
 				C.update_soak()
 		if(stat_datum.stat_flags & AFFECTS_SPEED)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(st_get_stat(STAT_DEXTERITY) / 20))
