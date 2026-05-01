@@ -2,7 +2,7 @@
 	title = JOB_PENTEX_LEAD
 	description = "You are the current branch leader for " + MAIN_EVIL_COMPANY + " , operating out of San Francisco. Your job is to fuel production and keep your clowns in line."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_PENTEX
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Board"

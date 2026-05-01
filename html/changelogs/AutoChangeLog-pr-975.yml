@@ -1,0 +1,4 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - bugfix: "Crime will no longer be automatically reported outside of masquerade enforced areas"

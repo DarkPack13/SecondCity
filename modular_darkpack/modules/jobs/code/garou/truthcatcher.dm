@@ -2,7 +2,7 @@
 	title = JOB_GAROU_TRUTHCATCHER
 	description = "You are the most highly regarded Philodox within the Sept, granted the honor of being the ultimate arbitrator. It is your duty to meditate matters within the Sept. Enact your judgement upon anyone who violates the Litany."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	faction = FACTION_CITY
+	faction = FACTION_GAIA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_LITANY

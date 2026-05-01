@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/ed209 // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/ed209 // DARKPACK EDIT REMOVAL
 	name = "ED209"
 	result = /mob/living/simple_animal/bot/secbot/ed209
 	reqs = list(

@@ -13,7 +13,7 @@
 	dish_category = DISH_NOODLES
 	cuisine_category = CUISINE_ITALIAN
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/copypasta
 	name = "Copypasta"
 	reqs = list(

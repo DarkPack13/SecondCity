@@ -51,7 +51,7 @@
 
 /datum/crafting_recipe/food/reaction/soup/coldchili
 	reaction = /datum/chemical_reaction/food/soup/coldchili
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/clownchili
 	reaction = /datum/chemical_reaction/food/soup/clownchili
  */
@@ -72,7 +72,7 @@
 
 /datum/crafting_recipe/food/reaction/soup/misosoup
 	reaction = /datum/chemical_reaction/food/soup/misosoup
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/slimesoup
 	reaction = /datum/chemical_reaction/food/soup/slimesoup
 
@@ -84,7 +84,7 @@
  */
 /datum/crafting_recipe/food/reaction/soup/mysterysoup
 	reaction = /datum/chemical_reaction/food/soup/mysterysoup
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/monkey
 	reaction = /datum/chemical_reaction/food/soup/monkey
  */
@@ -111,7 +111,7 @@
 
 /datum/crafting_recipe/food/reaction/soup/bungocurry
 	reaction = /datum/chemical_reaction/food/soup/bungocurry
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/electron
 	reaction = /datum/chemical_reaction/food/soup/electron
  */
