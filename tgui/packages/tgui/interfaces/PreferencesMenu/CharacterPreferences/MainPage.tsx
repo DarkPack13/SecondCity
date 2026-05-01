@@ -13,11 +13,11 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADDITION
+import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 import { CharacterPreview } from '../../common/CharacterPreview';
-import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADDITION
+import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADD
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
@@ -37,7 +37,7 @@ import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT, ORIGINAL: 9;
+const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT CHANGE - ORIGINAL: 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -353,7 +353,7 @@ type PreferenceListProps = {
   randomizations: Record<string, RandomSetting>;
   maxHeight: string;
   children?: ReactNode;
-  overrides?: Record<string, ReactNode>; // DARKPACK EDIT ADDITION
+  overrides?: Record<string, ReactNode>; // DARKPACK EDIT ADD
 };
 
 export function PreferenceList(props: PreferenceListProps) {
@@ -391,7 +391,7 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
-                tooltipPosition="right" // DARKPACK EDIT ADDITION - Swappable pref menus
+                tooltipPosition="right" // DARKPACK EDIT ADD - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
@@ -503,7 +503,7 @@ export function MainPage(props: MainPageProps) {
     delete nonContextualPreferences.random_name;
   }
 
-  // DARKPACK EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
+  // DARKPACK EDIT ADD START - SWAPPABLE PREF MENUS
   enum PrefPage {
     Visual, // The visual parts
     Profile, // Flavor Text, Age, Records, PDA ringtone, etc
@@ -558,7 +558,7 @@ export function MainPage(props: MainPageProps) {
     default:
       exhaustiveCheck(currentPrefPage);
   }
-  // DARKPACK EDIT ADDITION END
+  // DARKPACK EDIT ADD END
 
   return (
     <>
@@ -761,7 +761,7 @@ export function MainPage(props: MainPageProps) {
             */
               // DARKPACK EDIT REMOVAL END
             }
-            {/* DARKPACK EDIT ADDITION BEGIN: Swappable pref menus */}
+            {/* DARKPACK EDIT ADD START -  Swappable pref menus */}
             <Stack>
               <Stack.Item grow={2}>
                 <PageButton
@@ -785,7 +785,7 @@ export function MainPage(props: MainPageProps) {
             {prefPageContents}
           </Stack>
         </Stack.Item>
-        {/* DARKPACK EDIT ADDITION END: Swappable pref menus */}
+        {/* DARKPACK EDIT ADD END: Swappable pref menus */}
       </Stack>
     </>
   );

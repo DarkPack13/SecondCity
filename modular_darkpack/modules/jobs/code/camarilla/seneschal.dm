@@ -2,7 +2,7 @@
 	title = JOB_SENESCHAL
 	description = "You are the right hand man or woman of the most powerful vampire in the city. The Camarilla trusts you to run the city, even in their stead."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_PRINCE

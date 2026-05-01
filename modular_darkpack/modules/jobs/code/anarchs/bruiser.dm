@@ -1,6 +1,6 @@
 /datum/job/vampire/bruiser
 	title = JOB_BRUISER
-	faction = FACTION_CITY
+	faction = FACTION_ANARCHS
 	total_positions = 7
 	spawn_positions = 7
 	supervisors = SUPERVISOR_BARON

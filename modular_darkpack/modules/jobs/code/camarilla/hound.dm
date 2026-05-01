@@ -2,7 +2,7 @@
 	title = JOB_HOUND
 	description = "You are the Prince's enforcer. You report to the Sheriff and uphold the Traditions."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 7
 	spawn_positions = 7
 	supervisors = SUPERVISOR_SHERIFF

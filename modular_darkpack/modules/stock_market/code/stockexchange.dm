@@ -12,4 +12,4 @@
 	light_color = LIGHT_COLOR_GREEN
 
 //i just removed all the stupid flavcode shit that was here. it was not worth looking at.
-//DARKPACK TODO - Stock market rework
+// DARKPACK TODO - Stock market rework
