@@ -166,14 +166,13 @@
 	// This sucks. https://github.com/tgstation/tgstation/pull/76928 looked so promising but it was closed.
 	if(CONFIG_GET(flag/swing_combat) && isliving(src))
 		var/mob/living/living_src = src
-		// Considering swapping the type check to use NOBLUDGEON but that would include guns.
 		if(W?.can_swing() && living_src.combat_mode)
-			if(A && CanReach(A,W))
+			if(A?.IsReachableBy(src, W.reach))
 				living_src.melee_swing()
 				W.melee_attack_chain(src, A, modifiers)
 			else
 				A = living_src.melee_swing()
-				if(CanReach(A,W))
+				if(A?.IsReachableBy(src, W.reach))
 					W.melee_attack_chain(src, A, modifiers)
 			return
 	// DARKPACK EDIT ADD END - COMBAT
