@@ -138,9 +138,7 @@
 	else
 		visible_message(span_danger("[icon2html(src, viewers(src))] [src] detonates!"))
 
-	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	do_sparks(3, TRUE, src)
 	mineEffect(triggerer)
 	triggered = TRUE
 	SEND_SIGNAL(src, COMSIG_MINE_TRIGGERED, triggerer)
@@ -226,7 +224,7 @@
 
 /obj/effect/mine/sound/bwoink
 	name = "bwoink mine"
-	sound = 'sound/effects/adminhelp.ogg'
+	sound = 'modular_darkpack/master_files/sounds/adminhelp.ogg' // DARKPACK EDIT CHANGE
 
 /// These mines spawn pellet_clouds around them when triggered
 /obj/effect/mine/shrapnel

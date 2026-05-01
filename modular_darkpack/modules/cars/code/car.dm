@@ -58,6 +58,7 @@
 	resistance_flags = UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	throwforce = 150
 
+
 	MAP_SWITCH(pixel_x = 0, pixel_x = -32)
 	MAP_SWITCH(pixel_y = 0, pixel_y = -32)
 
@@ -102,6 +103,8 @@
 	/// If we provide extra debug information like path indicators
 	var/debug_car = FALSE
 
+	var/grant_car_keys = FALSE
+
 	/// sound loop for the engine
 	var/datum/looping_sound/car_engine/engine_sound_loop
 
@@ -116,7 +119,12 @@
 	create_storage(storage_type = car_storage_type)
 	atom_storage.set_real_location(trunk)
 
-	// TODO: [Rebase] see about reimplementing this sprite for cars
+	if(access == "none")
+		grant_car_keys = TRUE
+		access = "[rand(1,9999999)]"
+		AddComponent(/datum/component/door_ownership)
+
+	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
 	headlight_image = new(src)
 	headlight_image.icon = 'icons/effects/light_overlays/light_cone_car.dmi'
@@ -199,7 +207,7 @@
 			can_used.stored_gasoline = max(0, can_used.stored_gasoline-gas_to_transfer)
 			gas = min(CAR_TANK_MAX, gas+gas_to_transfer)
 			to_chat(user, span_notice("You transfer [gas_to_transfer] fuel to [src]."))
-			playsound(loc, 'modular_darkpack/master_files/sounds/gas_fill.ogg', 25, TRUE)
+			playsound(loc, 'modular_darkpack/master_files/sounds/effects/gas_fill.ogg', 25, TRUE)
 
 /obj/darkpack_car/proc/try_repair(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
@@ -213,14 +221,14 @@
 		span_notice("You begin repairing [src]. Stop at any time to only partially repair it."))
 	if(do_after(user, time_to_repair SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		atom_integrity = max_integrity
-		playsound(src, 'modular_darkpack/master_files/sounds/repair.ogg', 50, TRUE)
+		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		user.visible_message(span_notice("[user] repairs [src]."), \
 			span_notice("You finish repairing all the dents on [src]."))
 		color = "#ffffff"
 		return TRUE
 	else
-		take_damage((world.time - start_time) * -2 / 5) //partial repair
-		playsound(src, 'modular_darkpack/master_files/sounds/repair.ogg', 50, TRUE)
+		repair_damage((world.time - start_time) * 2 / 5) //partial repair
+		playsound(src, 'modular_darkpack/master_files/sounds/effects/repair.ogg', 50, TRUE)
 		user.visible_message(span_notice("[user] repairs [src]."), \
 			span_notice("You repair some of the dents on [src]."))
 		color = "#ffffff"
@@ -230,15 +238,18 @@
 	if(!locked)
 		to_chat(user, span_warning("The [src] is already unlocked."))
 		return
-	for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+	for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 		P.Aggro(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
-	if(do_after(user, 10 SECONDS, src, interaction_key = DOAFTER_SOURCE_CAR))
+	if(CONFIG_GET(flag/punishing_zero_dots) && total_lockpicking < 1)
+		to_chat(user, span_warning("How do I do this...?"))
+	if(do_after(user, 1 TURNS, src, interaction_key = DOAFTER_SOURCE_CAR))
 		if(!locked)
 			return
-		var/roll_result = SSroll.storyteller_roll(total_lockpicking + user.st_get_stat(STAT_DEXTERITY), lockpick_difficulty, list(user), user)
-		switch(roll_result)
+		var/datum/storyteller_roll/lockpick/our_roll = new()
+		our_roll.difficulty = lockpick_difficulty
+		switch(our_roll.st_roll(user, src))
 			if(ROLL_SUCCESS)
 				to_chat(user, span_notice("You've managed to open [src]'s lock."))
 				playsound(src, 'modular_darkpack/modules/cars/sounds/open.ogg', 50, TRUE)
@@ -246,7 +257,7 @@
 				if(initial(access) == "none") //Stealing a car with no keys assigned to it is basically robbing a random person and not an organization
 					if(ishuman(user))
 						var/mob/living/carbon/human/H = user
-						H.AdjustHumanity(-1, 6)
+						SEND_SIGNAL(H, COMSIG_PATH_HIT, -1, 6, FALSE)
 				return TRUE
 			if(ROLL_FAILURE)
 				to_chat(user, span_warning("You've failed to open [src]'s lock."))
@@ -281,7 +292,7 @@
 		if(!driver && !length(passengers) && COOLDOWN_FINISHED(src, beep_cooldown) && locked)
 			COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
-			for(var/mob/living/carbon/human/npc/police/P in oviewers(7, src))
+			for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
 				P.Aggro(user)
 
 		if(prob(10) && locked)
@@ -417,7 +428,7 @@
 	user.forceMove(src)
 	visible_message(span_notice("[user] enters [src]."), \
 		span_notice("You enter [src]."))
-	playsound(src, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(src, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 
 //Dump out all living from the car
 /obj/darkpack_car/proc/empty_car()
@@ -452,7 +463,7 @@
 	if(dumpe?.client)
 		dumpe.client.pixel_x = 0
 		dumpe.client.pixel_y = 0
-	playsound(src, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(src, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 	for(var/datum/action/darkpack_car/C in dumpe.actions)
 		qdel(C)
 
@@ -660,6 +671,8 @@
 	if(!COOLDOWN_FINISHED(src, impact_delay))
 		return
 	if(user.IsUnconscious() || HAS_TRAIT(user, TRAIT_INCAPACITATED) || HAS_TRAIT(user, TRAIT_RESTRAINED))
+		return
+	if(!ISADVANCEDTOOLUSER(user))
 		return
 	var/turn_speed = min(abs(speed_in_pixels) / 10, 3)
 	switch(direction)

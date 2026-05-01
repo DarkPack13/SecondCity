@@ -2,6 +2,7 @@
 	name = "ominous skull"
 	desc = "A stylized skull, made out of marble."
 	icon = 'modular_darkpack/modules/masquerade/icons/blood_hunt_skull.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/masquerade/icons/onfloor.dmi')
 	icon_state = "skull"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
@@ -14,6 +15,7 @@
 
 /obj/item/blood_hunt/Initialize(mapload)
 	. = ..()
+	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 	GLOB.blood_hunt_announcers += src
 	AddComponent(/datum/component/violation_observer, FALSE)
 
@@ -23,7 +25,7 @@
 
 /obj/item/blood_hunt/examine(mob/user)
 	. = ..()
-	if(iskindred(user))
+	if(get_kindred_splat(user))
 		. += span_notice("This thaumaturgically-created artifact allows you to announce a Blood Hunt to the city.")
 		. += span_notice("It also allows you to pardon a kindred's masquerade violation by <b>interacting</b> with the kindred while holding the skull.")
 
@@ -49,17 +51,17 @@
 	to_chat(user, span_danger("There is no such name in the city!"))
 
 /obj/item/blood_hunt/proc/start_hunt(mob/user, mob/target, reason)
-	to_chat(user, span_warning("You add [target] to the Hunted list."))
+	to_chat(user, span_warning("You add [target.real_name] to the Hunted list."))
 	RegisterSignals(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_LIVING_GIBBED), PROC_REF(complete_hunt))
-	log_game("[user] started a bloodhunt on [target] for: [reason]")
-	message_admins("[ADMIN_LOOKUPFLW(user)]] started a bloodhunt on [target] for: [reason]")
+	log_game("[user.real_name] started a bloodhunt on [target.real_name] for: [reason]")
+	message_admins("[ADMIN_LOOKUPFLW(user)]] started a bloodhunt on [target.real_name] for: [reason]")
 	target.start_blood_hunt(reason)
 
 /obj/item/blood_hunt/proc/end_hunt(mob/user, mob/target)
-	to_chat(user, span_warning("You remove [target] from the Hunted list."))
+	to_chat(user, span_warning("You remove [target.real_name] from the Hunted list."))
 	UnregisterSignal(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_LIVING_GIBBED))
-	log_game("[user] ended a bloodhunt on [target].")
-	message_admins("[ADMIN_LOOKUPFLW(user)]] ended a bloodhunt on [target].")
+	log_game("[user.real_name] ended a bloodhunt on [target.real_name].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]] ended a bloodhunt on [target.real_name].")
 	target.clear_blood_hunt()
 
 /obj/item/blood_hunt/proc/complete_hunt(mob/target)
@@ -69,17 +71,17 @@
 	target.clear_blood_hunt()
 
 // This code is for reinforcing a player's masquerade.
-/obj/item/blood_hunt/pre_attack(atom/A, mob/living/user, params)
-	if(!ishuman(A))
-		return
-	if(!iskindred(A))
-		return
+/obj/item/blood_hunt/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!ishuman(interacting_with))
+		return NONE
+	if(!get_kindred_splat(interacting_with))
+		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You hold the [src] up to [A]..."))
-	if(!do_after(user, 10 SECONDS, A))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
-	if(SSmasquerade.masquerade_reinforce(src, A, MASQUERADE_REASON_PREFERENCES))
-		to_chat(user, span_notice("You pardon [A]'s masquerade breach!"))
-		return COMPONENT_CANCEL_ATTACK_CHAIN
-	to_chat(user, span_notice("[A]'s masquerade breach isn't worthy enough to be pardoned!"))
-	return COMPONENT_CANCEL_ATTACK_CHAIN
+	to_chat(user, span_notice("You hold the [src] up to [interacting_with]..."))
+	if(!do_after(user, 10 SECONDS, interacting_with))
+		return ITEM_INTERACT_BLOCKING
+	if(SSmasquerade.masquerade_reinforce(src, interacting_with, MASQUERADE_REASON_PREFERENCES))
+		to_chat(user, span_notice("You pardon [interacting_with]'s masquerade breach!"))
+		return ITEM_INTERACT_SUCCESS
+	to_chat(user, span_notice("[interacting_with]'s masquerade breach isn't worthy enough to be pardoned!"))
+	return ITEM_INTERACT_BLOCKING

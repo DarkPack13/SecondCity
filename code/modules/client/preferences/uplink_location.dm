@@ -1,8 +1,9 @@
 /datum/preference/choiced/uplink_location
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null // DARKPACK EDIT CHANGE - ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "uplink_loc"
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/uplink_location/init_possible_values()
 	return list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PEN, UPLINK_IMPLANT)

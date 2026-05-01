@@ -1,13 +1,14 @@
-/area/vtm/anarch
+/area/vtm/interior/anarch
 	name = "Bar"
 	icon_state = "anarch"
-	ambience_index = AMBIENCE_INTERIOR
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/naive.ogg'
-	zone_type = "elysium"
+	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_BAR
+	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
-/area/vtm/anarch/basement
+/area/vtm/interior/anarch/basement
 	name = "Bar - Basement"
 
-/area/vtm/anarch/garage
+/area/vtm/interior/anarch/garage
 	name = "Garage"

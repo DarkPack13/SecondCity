@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 
 	var/list/candidates = list()
 	var/max_candidates = 0
-	var/datum/outfit/job/Next = null
+	var/datum/outfit/job/vampire/Next = null
 	var/go_on_next_fire = FALSE
 
 	var/setted_up = FALSE
@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 				threat = min(100, threat+60)
 				max_candidates = 1
 				go_on_next_fire = TRUE
-				Next = new /datum/outfit/job/caitiff()
+				Next = new /datum/outfit/job/vampire/caitiff()
 				setting = null
 			if("sabbat")
 				if(Next)
@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 				threat = min(100, threat+30)
 				max_candidates = 2
 				go_on_next_fire = TRUE
-				Next = new /datum/outfit/job/sabbatist()
+				Next = new /datum/outfit/job/vampire/sabbatist()
 				setting = null
 			if("hunter")
 				if(Next)
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 				threat = min(100, threat+60)
 				max_candidates = 5
 				go_on_next_fire = TRUE
-				Next = new /datum/outfit/job/hunter()
+				Next = new /datum/outfit/job/vampire/hunter()
 				setting = null
 	else if(setting == null)
 		switch(level)
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+60)
 					max_candidates = 1
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/caitiff()
+					Next = new /datum/outfit/job/vampire/caitiff()
 				else
 					//sabbat
 					if(Next)
@@ -85,7 +85,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+30)
 					max_candidates = 2
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/sabbatist()
+					Next = new /datum/outfit/job/vampire/sabbatist()
 			if(2)
 				if(prob(30))
 					//sabbat
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+90)
 					max_candidates = 4
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/sabbatist()
+					Next = new /datum/outfit/job/vampire/sabbatist()
 				else
 					//hunt
 					if(Next)
@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+60)
 					max_candidates = 2
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/hunter()
+					Next = new /datum/outfit/job/vampire/hunter()
 			/*if(3)
 				if(prob(50))
 					//hunt
@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+60)
 					max_candidates = 2
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/hunter()
+					Next = new /datum/outfit/job/vampire/hunter()
 				else
 					//sabbat
 					if(Next)
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(bad_guys_party)
 					threat = min(100, threat+90)
 					max_candidates = 3
 					go_on_next_fire = TRUE
-					Next = new /datum/outfit/job/sabbatist()*/
+					Next = new /datum/outfit/job/vampire/sabbatist()*/
 
 /mob/dead/new_player/proc/ForceLateSpawn()
 	if(SSticker.late_join_disabled)

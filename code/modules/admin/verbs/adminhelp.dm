@@ -339,9 +339,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	// send2chat(new /datum/tgs_message_conent("[initiator_ckey] | [message_content]"), "ahelp", TRUE)
 	var/list/headers = list()
 	headers["Content-Type"] = "application/json"
-	var/datum/http_request/request = new()
+	var/datum/http_request/request = new
 	request.prepare(RUSTG_HTTP_METHOD_POST, webhook, json_encode(webhook_info), headers, "tmp/response.json")
-	request.begin_async()
+	request.fire_and_forget()
 
 /datum/admin_help/Destroy()
 	RemoveActive()
@@ -416,7 +416,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//send this msg to all admins
 	for(var/client/X in GLOB.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
-			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			SEND_SOUND(X, sound('modular_darkpack/master_files/sounds/adminhelp.ogg')) // DARKPACK EDIT CHANGE
 		window_flash(X, ignorepref = TRUE)
 		to_chat(X,
 			type = MESSAGE_TYPE_ADMINPM,
@@ -524,7 +524,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.giveadminhelpverb()
 
-		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
+		SEND_SOUND(initiator, sound('modular_darkpack/master_files/sounds/adminhelp.ogg')) // DARKPACK EDIT CHANGE
 
 		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>", confidential = TRUE)
 		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>", confidential = TRUE)
@@ -665,7 +665,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			dat += "CLOSED</b>"
 		else
 			dat += "UNKNOWN</b>"
-	dat += "\n[FOURSPACES]<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];player_ticket_panel=1'>Refresh</A>"
+	dat += "\n[FOURSPACES]<A href='byond://?_src_=usr;player_ticket_panel=1'>Refresh</A>"
 	dat += "<br><br>Opened at: [gameTimestamp("hh:mm:ss", opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
 	if(closed_at)
 		dat += "<br>Closed at: [gameTimestamp("hh:mm:ss", closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"

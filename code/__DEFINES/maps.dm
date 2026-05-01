@@ -149,6 +149,14 @@ Always compile, always use that verb, and always make sure that it works for wha
 	ZTRAIT_LAVA_RUINS = TRUE, \
 	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
 	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
+
+// DARKPACK EDIT ADD START - UMBRA
+///Z level traits for the umbra
+#define ZTRAITS_UMBRA list(\
+	ZTRAIT_MINING = TRUE, \
+	ZTRAIT_BASETURF = /turf/open/umbra)
+// DARKPACK EDIT ADD END
+
 ///Z level traits for Away Missions
 #define ZTRAITS_AWAY list(ZTRAIT_AWAY = TRUE)
 ///Z level traits for Secret Away Missions
@@ -246,11 +254,10 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define AWAYSTART_BEACH "AWAYSTART_BEACH"
 #define AWAYSTART_MUSEUM "AWAYSTART_MUSEUM"
 #define AWAYSTART_RESEARCH "AWAYSTART_RESEARCH"
-#define AWAYSTART_CAVES "AWAYSTART_CAVES"
 #define AWAYSTART_MOONOUTPOST "AWAYSTART_MOONOUTPOST"
 #define AWAYSTART_SNOWCABIN "AWAYSTART_SNOWCABIN"
-#define AWAYSTART_SNOWDIN "AWAYSTART_SNOWDIN"
 #define AWAYSTART_UNDERGROUND "AWAYSTART_UNDERGROUND"
+#define AWAYSTART_HERETIC "AWAYSTART_HERETIC"
 
 // Minetypes for maps
 #define MINETYPE_NONE "none"

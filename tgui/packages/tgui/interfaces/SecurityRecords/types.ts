@@ -26,6 +26,7 @@ export type SecurityRecord = {
   trim: string;
   wanted_status: string;
   voice: string;
+  past_criminal_records: string; // DARKPACK EDIT - Flavor Text
 };
 
 export type Crime = {

@@ -9,7 +9,7 @@
 	loot = list(
 		/obj/effect/spawner/random/trash/food_packaging = 26,
 		/obj/effect/decal/cleanable/garbage = 20,
-		/obj/item/trash/can = 8,
+		/obj/effect/spawner/random/trash/crushed_can = 8,
 		/obj/item/shard = 8,
 		/obj/effect/spawner/random/trash/botanical_waste = 8,
 		/obj/effect/spawner/random/trash/cigbutt = 8,
@@ -37,11 +37,11 @@
 		/obj/item/broken_bottle = 3,
 		/obj/item/reagent_containers/cup/soda_cans/grey_bull = 1,
 		/obj/effect/spawner/random/engineering/tool = 1,
-		/mob/living/basic/mouse = 1,
+		/obj/effect/spawner/random/trash/rat = 1, // DARKPACK EDIT CHANGE
 		/mob/living/basic/snail = 1,
 		/obj/item/food/grown/cannabis = 1,
 		/obj/item/rag = 1,
-		/obj/effect/spawner/random/entertainment/drugs= 1,
+		/obj/effect/spawner/random/entertainment/drugs = 1,
 		/obj/item/modular_computer/pda = 1,
 		/obj/item/reagent_containers/syringe = 1,
 		/obj/effect/spawner/random/entertainment/cigar = 1,
@@ -51,9 +51,32 @@
 	if(mapload)
 		var/turf/location = get_turf(loc)
 		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
-			loot -= /mob/living/basic/mouse
+			loot -= /obj/effect/spawner/random/trash/rat
 			loot -= /mob/living/basic/snail
 	return ..()
+
+/obj/effect/spawner/random/trash/cigpack
+	name = "empty cigarette pack spawner"
+	loot = list(
+		/obj/item/storage/fancy/cigarettes/empty = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_uplift/empty = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_robust/empty = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_robustgold/empty = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_carp/empty = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_midori/empty = 5,
+		/obj/item/storage/fancy/rollingpapers/empty = 3,
+		/obj/item/storage/fancy/cigarettes/cigars/empty = 3,
+		/obj/item/storage/fancy/cigarettes/cigars/cohiba/empty = 3,
+		/obj/item/storage/fancy/cigarettes/cigars/havana/empty = 3,
+		/obj/item/storage/fancy/cigarettes/cigpack_greytide/empty = 3,
+		/obj/item/storage/fancy/cigarettes/dromedaryco/empty = 2,
+		/obj/item/storage/fancy/cigarettes/cigpack_shadyjims/empty = 2,
+		/obj/item/storage/fancy/cigarettes/cigpack_xeno/empty = 2,
+		/obj/item/storage/fancy/cigarettes/cigpack_candy/empty = 2,
+		/obj/item/storage/fancy/cigarettes/cigpack_cannabis/empty = 1,
+		/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker/empty = 1,
+		/obj/item/storage/fancy/cigarettes/cigpack_syndicate/empty = 1,
+	)
 
 /obj/effect/spawner/random/trash/cigbutt
 	name = "cigarette butt spawner"
@@ -72,25 +95,52 @@
 		/obj/item/trash/raisins = 2,
 		/obj/item/trash/cheesie = 2,
 		/obj/item/trash/candy = 2,
-		/obj/item/trash/chips = 2,
+		/obj/item/trash/chips = 10, // DARKPACK EDIT CHANGE
 		/obj/item/trash/sosjerky = 2,
 		/obj/item/trash/pistachios = 2,
 		/obj/item/trash/peanuts = 2,
+		/obj/item/reagent_containers/cup/glass/sillycup = 2,
 		/obj/item/trash/boritos = 1,
 		/obj/item/trash/boritos/green = 1,
 		/obj/item/trash/boritos/purple = 1,
 		/obj/item/trash/boritos/red = 1,
 		/obj/item/trash/can/food/beans = 1,
 		/obj/item/trash/can/food/peaches = 1,
-		/obj/item/trash/can/food/envirochow = 1,
-		/obj/item/trash/popcorn = 1,
-		/obj/item/trash/energybar = 1,
 		/obj/item/trash/can/food/peaches/maint = 1,
+		/obj/item/trash/can/food/tomatoes = 1,
+		/obj/item/trash/can/food/envirochow = 1,
+		/obj/item/trash/can/food/squid_ink = 1,
+		/obj/item/trash/can/food/chap = 1,
+		/obj/item/trash/can/food/jellyfish = 1,
+		/obj/item/trash/can/food/desert_snails = 1,
+		/obj/item/trash/can/food/larvae = 1,
+		/obj/item/trash/can/food/pine_nuts = 1,
+		/obj/item/trash/popcorn = 1,
+		/obj/item/trash/popcorn/salty = 1,
+		/obj/item/trash/energybar = 1,
 		/obj/item/trash/semki = 1,
+		/obj/item/trash/semki/healthy = 1,
 		/obj/item/trash/cnds = 1,
 		/obj/item/trash/syndi_cakes = 1,
 		/obj/item/trash/shrimp_chips = 1,
+		/obj/item/trash/hot_shots = 1,
+		/obj/item/trash/sticko = 1,
+		/obj/item/trash/sticko/matcha = 1,
+		/obj/item/trash/sticko/nutty = 1,
+		/obj/item/trash/sticko/pineapple = 1,
+		/obj/item/trash/sticko/yuyake = 1,
+		/obj/item/trash/shok_roks = 1,
+		/obj/item/trash/shok_roks/citrus = 1,
+		/obj/item/trash/shok_roks/berry = 1,
+		/obj/item/trash/shok_roks/tropical = 1,
+		/obj/item/trash/shok_roks/lanternfruit = 1,
+		/obj/item/trash/fleet_ration = 1,
+		/obj/item/trash/spacers_sidekick = 1,
+		/obj/item/popsicle_stick = 1,
+		/obj/item/trash/ready_donk = 1,
 		/obj/item/trash/tray = 1,
+		/obj/item/trash/vampirebar = 5, // DARKPACK EDIT ADD START
+		/obj/item/trash/vampirenugget = 1, // DARKPACK EDIT ADD END
 	)
 
 /obj/effect/spawner/random/trash/botanical_waste
@@ -136,6 +186,9 @@
 	name = "gross decal spawner"
 	icon_state = "vomit"
 	loot = list(
+		/obj/effect/decal/cleanable/trash = 20, // DARKPACK EDIT ADD START
+		/obj/effect/decal/cleanable/litter = 6,
+		/obj/effect/decal/cleanable/cardboard = 6, // DARKPACK EDIT ADD END
 		/obj/effect/decal/cleanable/dirt = 6,
 		/obj/effect/decal/cleanable/garbage = 3,
 		/obj/effect/decal/cleanable/vomit/old = 3,
@@ -154,19 +207,20 @@
 	spawn_scatter_radius = 2
 	loot = list( // This spawner will scatter garbage around a dirty site.
 		/obj/effect/spawner/random/trash/garbage = 6,
-		// DARKPACK EDIT CHANGE START
-		/mob/living/basic/cockroach = 4,
+// DARKPACK EDIT CHANGE START
 		/obj/effect/decal/cleanable/garbage = 4,
 		/obj/effect/decal/cleanable/vomit/old = 3,
 		/obj/effect/spawner/random/trash/cigbutt = 2,
+		/mob/living/basic/cockroach = 1,
 	)
 
 /obj/effect/spawner/random/trash/grime/Initialize(mapload)
 	if(mapload)
 		var/turf/location = get_turf(loc)
 		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
-			loot -= list(/mob/living/basic/cockroach, /mob/living/basic/cockroach/bloodroach)
+			loot -= /mob/living/basic/cockroach
 	return ..()
+// DARKPACK EDIT CHANGE END
 
 /obj/effect/spawner/random/trash/moisture
 	name = "water hazard spawner"
@@ -285,7 +339,8 @@
 	name = "box spawner"
 	icon_state = "box"
 	loot = list(
-		/obj/structure/closet/cardboard = 9,
+		/obj/structure/closet/cardboard = 5,
+		/obj/structure/closet/crate/cardboard = 4,
 		/obj/structure/closet/cardboard/metal = 1,
 	)
 

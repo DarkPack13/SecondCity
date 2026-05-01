@@ -1,5 +1,6 @@
 #define JUMP_DELAY 40
 #define JUMP_WINDUP 12
+#define JUMP_SLOWDOWN_MULT 1.6 // 1.5 means a jumping character and a walking character will keep pace. Increase to slow jumpers further.
 #define BASE_JUMP_DISTANCE 1
 #define MAX_JUMP_DISTANCE 6
 
@@ -55,6 +56,9 @@
 	if(HAS_TRAIT(jumper, TRAIT_FLOORED))
 		return
 
+	if(jumper.body_position == LYING_DOWN)
+		return
+
 	if(jumper.buckled)
 		return
 
@@ -67,6 +71,9 @@
 	if(istype(target, /atom/movable/screen))
 		return
 
+	if(get_turf(jumper) == get_turf(target)) // We can't jump on ourselves
+		return
+
 	if(!COOLDOWN_FINISHED(src, jump_cooldown))
 		to_chat(jumper, span_notice("You can't jump so soon!"))
 		return
@@ -74,14 +81,30 @@
 	INVOKE_ASYNC(src, PROC_REF(jump), jumper, target)
 	return COMSIG_MOB_CANCEL_CLICKON
 
+/datum/config_entry/flag/jump_windup // Config datum
+
+/datum/config_entry/flag/jump_slowdown // Config datum
+
+/mob/living/proc/post_jump_slowdown(duration)
+	if(duration < 1)
+		duration = 1
+
+	add_movespeed_modifier(/datum/movespeed_modifier/post_jump)
+	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), /datum/movespeed_modifier/post_jump), duration)
+
+/datum/movespeed_modifier/post_jump
+	multiplicative_slowdown = 2
+	flags = IGNORE_NOSLOW
+
 //Actually executes the jump
 /datum/component/jumper/proc/jump(mob/living/jumper, atom/target)
 	var/strength = jumper.st_get_stat(STAT_STRENGTH)
 	var/dexterity = jumper.st_get_stat(STAT_DEXTERITY)
 	var/athletics = jumper.st_get_stat(STAT_ATHLETICS)
 
-	if(!do_after(jumper, 12 - athletics, interaction_key = DOAFTER_SOURCE_JUMP))
-		return
+	if(CONFIG_GET(flag/jump_windup))
+		if(!do_after(jumper, JUMP_WINDUP - athletics, interaction_key = DOAFTER_SOURCE_JUMP))
+			return
 
 	var/adjusted_jump_range = clamp((BASE_JUMP_DISTANCE + 0.75 + max(0,(strength -1)) * 0.5 + athletics), 1, 6)
 
@@ -98,9 +121,9 @@
 	if(jumper.combat_mode && get_dist(jumper.loc, target) <= 3 && strength >= 8)
 		addtimer(CALLBACK(src, PROC_REF(jump_boom), jumper),(distance * 0.5))
 		jumper.visible_message(span_danger("[jumper] takes a mighty leap that shatters \the [adjusted_target] where they land!"))
-		jumper.adjustStaminaLoss(20)
+		jumper.adjust_stamina_loss(20)
 	else
-		jumper.adjustStaminaLoss(10)
+		jumper.adjust_stamina_loss(10)
 		jumper.visible_message(span_danger("[jumper] jumps towards [adjusted_target]."))
 
 	var/turf/start_T = get_turf(jumper.loc) //Get the start and target tile for the descriptors
@@ -111,7 +134,15 @@
 	jumper.newtonian_move(get_dir(adjusted_target, jumper))
 	jumper.safe_throw_at(adjusted_target, jumper.throw_range, jumper.throw_speed, jumper, null, null, null, jumper.move_force, spin = FALSE)
 
+	if(CONFIG_GET(flag/jump_slowdown))
+		jumper.post_jump_slowdown(get_dist(start_T, end_T)*JUMP_SLOWDOWN_MULT)
+
 	COOLDOWN_START(src, jump_cooldown, max(JUMP_DELAY - (0.4 * dexterity) - (1 * athletics), 1))
+
+	if(CONFIG_GET(flag/jump_slowdown))
+		jumper.add_movespeed_modifier(/datum/movespeed_modifier/post_jump)
+		spawn(get_dist(start_T, end_T)*JUMP_SLOWDOWN_MULT)
+			jumper.remove_movespeed_modifier(/datum/movespeed_modifier/post_jump)
 
 //Produces a boom effect for ludicrously high strength/physique scores
 /datum/component/jumper/proc/jump_boom(mob/living/jumper)
@@ -130,6 +161,7 @@
 
 
 #undef JUMP_DELAY
+#undef JUMP_SLOWDOWN_MULT
 #undef JUMP_WINDUP
 #undef BASE_JUMP_DISTANCE
 #undef MAX_JUMP_DISTANCE

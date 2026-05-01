@@ -1,7 +1,7 @@
 /datum/data/vending_product
 	var/icon_dimension
 
-/datum/data/vending_product/New(name = "product", path, price, amount = -1)
+/datum/data/vending_product/New(name, path, price, amount = -1)
 	src.name = name
 	src.product_path = path
 	src.price = price
@@ -11,8 +11,11 @@
 	if(!item)
 		CRASH("Retail product equipment path of [product_path] is not a valid path!")
 
+	if(!name)
+		src.name = item::name
+
 	if(!price)
-		src.price = item.custom_price
+		src.price = item.custom_price || item.custom_premium_price
 
 	var/icon_file = initial(item.icon)
 	var/icon_state = initial(item.icon_state)

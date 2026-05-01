@@ -42,19 +42,22 @@
 	return song.ui_interact(user)
 
 /obj/item/instrument/violin
-	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	name = "violin" // DARKPACK EDIT CHANGE
+	desc = "A wooden musical instrument with four strings and a bow." // DARKPACK EDIT CHANGE
 	icon_state = "violin"
 	inhand_icon_state = "violin"
 	hitsound = SFX_SWING_HIT
 	allowed_instrument_ids = "violin"
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A golden musical instrument with four strings and a bow." // DARKPACK EDIT CHANGE
 	icon_state = "golden_violin"
 	inhand_icon_state = "golden_violin"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/instrument/banjo
 	name = "banjo"
@@ -65,6 +68,7 @@
 	attack_verb_simple = list("scruggs-style", "hum-diggity", "shin-dig", "clawhammer")
 	hitsound = 'sound/items/weapons/banjoslap.ogg'
 	allowed_instrument_ids = "banjo"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/guitar
 	name = "guitar"
@@ -75,6 +79,7 @@
 	attack_verb_simple = list("play metal on", "serenade", "crash", "smash")
 	hitsound = 'sound/items/weapons/stringsmash.ogg'
 	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/eguitar
 	name = "electric guitar"
@@ -86,6 +91,7 @@
 	attack_verb_simple = list("play metal on", "shred", "crash", "smash")
 	hitsound = 'sound/items/weapons/stringsmash.ogg'
 	allowed_instrument_ids = "eguitar"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/glockenspiel
 	name = "glockenspiel"
@@ -93,6 +99,7 @@
 	icon_state = "glockenspiel"
 	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 	inhand_icon_state = "glockenspiel"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/accordion
 	name = "accordion"
@@ -100,6 +107,7 @@
 	icon_state = "accordion"
 	allowed_instrument_ids = list("crack", "crtango", "accordion")
 	inhand_icon_state = "accordion"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/trumpet
 	name = "trumpet"
@@ -135,6 +143,7 @@
 	icon_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
 	inhand_icon_state = "saxophone"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/saxophone/spectral
 	name = "spectral saxophone"
@@ -163,6 +172,7 @@
 	icon_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 	inhand_icon_state = "trombone"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/trombone/spectral
 	name = "spectral trombone"
@@ -192,10 +202,11 @@
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 	inhand_icon_state = "recorder"
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
-	desc = "For when you get a bad case of the space blues."
+	desc = "For when you get a bad case of the blues." // DARKPACK EDIT CHANGE
 	icon_state = "harmonica"
 	allowed_instrument_ids = list("crharmony", "harmonica")
 	inhand_icon_state = "harmonica"
@@ -204,6 +215,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
 	action_slots = ALL
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/harmonica/equipped(mob/user, slot, initial = FALSE)
 	. = ..()

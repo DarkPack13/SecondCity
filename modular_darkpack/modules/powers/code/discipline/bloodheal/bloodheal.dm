@@ -8,11 +8,17 @@
 	power_type = /datum/discipline_power/bloodheal
 	selectable = FALSE
 
+/datum/storyteller_roll/bloodheal
+	bumper_text = "Bloodheal"
+	difficulty = 8
+	applicable_stats = list(STAT_STAMINA, STAT_SURVIVAL)
+	roll_output_type = ROLL_PRIVATE
+
 /datum/discipline_power/bloodheal
 	name = "Bloodheal power name"
 	desc = "Bloodheal power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/bloodhealing.ogg'
+	activate_sound = 'modular_darkpack/modules/vampire_the_masquerade/sounds/bloodhealing.ogg'
 
 	level = 1
 	check_flags = DISC_CHECK_TORPORED
@@ -34,6 +40,29 @@
 		/datum/discipline_power/bloodheal/nine,
 		/datum/discipline_power/bloodheal/ten
 	)
+
+	var/datum/storyteller_roll/bloodheal/bloodheal_roll
+
+/datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED))
+		return TRUE
+	if(!bloodheal_roll)
+		bloodheal_roll = new()
+	var/roll_result = bloodheal_roll.st_roll(owner, src)
+	to_chat(owner, span_warning("You break your concentration..."))
+	switch(roll_result)
+		if(ROLL_SUCCESS)
+			to_chat(owner, span_notice("But you succeed in mending your wounds."))
+			return TRUE
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("And fail to harness your blood."))
+			return FALSE
+		if(ROLL_BOTCH)
+			to_chat(owner, span_danger("And worsen your wounds."))
+			owner.adjust_blood_pool(-1)
+			owner.apply_damage(1 TTRPG_DAMAGE, BRUTE)
+			return FALSE
 
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
@@ -77,11 +106,6 @@
 	owner.update_damage_overlays()
 	owner.update_health_hud()
 
-/datum/discipline_power/bloodheal/can_activate_untargeted(alert)
-	adjust_vitae_cost()
-
-	. = ..()
-
 /datum/discipline_power/bloodheal/spend_resources()
 	adjust_vitae_cost()
 
@@ -90,8 +114,8 @@
 /datum/discipline_power/bloodheal/proc/adjust_vitae_cost()
 	vitae_cost = initial(vitae_cost)
 	//tally up damage
-	var/total_bashing_lethal_damage = owner.getBruteLoss() + owner.getToxLoss() + owner.getOxyLoss()
-	var/total_aggravated_damage = owner.getAggLoss() + owner.getFireLoss()
+	var/total_bashing_lethal_damage = owner.get_brute_loss() + owner.get_tox_loss() + owner.get_oxy_loss()
+	var/total_aggravated_damage = owner.get_agg_loss() + owner.get_fire_loss()
 
 	//lower blood expenditure to what's necessary
 	var/vitae_to_heal_bashing_lethal = ceil(total_bashing_lethal_damage / HEAL_BASHING_LETHAL_DAMAGE)

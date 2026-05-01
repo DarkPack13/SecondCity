@@ -329,8 +329,8 @@
 	if(selected_tip)
 		message = selected_tip
 	else
-		var/list/randomtips = world.file2list("strings/tips.txt")
-		var/list/memetips = world.file2list("strings/sillytips.txt")
+		var/list/randomtips = world.file2list("modular_darkpack/master_files/strings/tips.txt") // DARKPACK EDIT CHANGE
+		var/list/memetips = world.file2list("modular_darkpack/master_files/strings/sillytips.txt") // DARKPACK EDIT CHANGE
 		if(randomtips.len && prob(95))
 			message = pick(randomtips)
 		else if(memetips.len)

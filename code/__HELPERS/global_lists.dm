@@ -2,14 +2,6 @@
 /////Initial Building/////
 //////////////////////////
 
-/// Inits GLOB.surgeries
-/proc/init_surgeries()
-	var/surgeries = list()
-	for(var/path in subtypesof(/datum/surgery))
-		surgeries += new path()
-	sort_list(surgeries, GLOBAL_PROC_REF(cmp_typepaths_asc))
-	return surgeries
-
 /// Legacy procs that really should be replaced with proper _INIT macros
 /proc/make_datum_reference_lists()
 	// I tried to eliminate this proc but I couldn't untangle their init-order interdependencies -Dominion/Cyberboss
@@ -19,11 +11,9 @@
 	init_crafting_recipes_atoms()
 
 /// Inits crafting recipe lists
-/proc/init_crafting_recipes(list/crafting_recipes)
-	for(var/path in subtypesof(/datum/crafting_recipe))
-		if(ispath(path, /datum/crafting_recipe/stack))
-			continue
-		var/datum/crafting_recipe/recipe = new path()
+/proc/init_crafting_recipes()
+	for(var/datum/crafting_recipe_path as anything in valid_subtypesof(/datum/crafting_recipe))
+		var/datum/crafting_recipe/recipe = new crafting_recipe_path()
 		var/is_cooking = (recipe.category in GLOB.crafting_category_food)
 		recipe.reqs = sort_list(recipe.reqs, GLOBAL_PROC_REF(cmp_crafting_req_priority))
 		if(recipe.name != "" && recipe.result)
@@ -34,16 +24,16 @@
 
 	var/list/global_stack_recipes = list(
 		/obj/item/stack/sheet/glass = GLOB.glass_recipes,
-		/obj/item/stack/sheet/plasmaglass = GLOB.pglass_recipes,
+	/* 	/obj/item/stack/sheet/plasmaglass = GLOB.pglass_recipes, */ // DARKPACK EDIT REMOVAL
 		/obj/item/stack/sheet/rglass = GLOB.reinforced_glass_recipes,
-		/obj/item/stack/sheet/plasmarglass = GLOB.prglass_recipes,
-		/obj/item/stack/sheet/animalhide/gondola = GLOB.gondola_recipes,
-		/obj/item/stack/sheet/animalhide/corgi = GLOB.corgi_recipes,
-		/obj/item/stack/sheet/animalhide/monkey = GLOB.monkey_recipes,
-		/obj/item/stack/sheet/animalhide/xeno = GLOB.xeno_recipes,
+	/* 	/obj/item/stack/sheet/plasmarglass = GLOB.prglass_recipes, */ // DARKPACK EDIT REMOVAL
+	/* 	/obj/item/stack/sheet/animalhide/gondola = GLOB.gondola_recipes, */ // DARKPACK EDIT REMOVAL
+	/* 	/obj/item/stack/sheet/animalhide/corgi = GLOB.corgi_recipes, */ // DARKPACK EDIT REMOVAL
+	/* 	/obj/item/stack/sheet/animalhide/carbon/monkey = GLOB.monkey_recipes, */ // DARKPACK EDIT REMOVAL
+	/* 	/obj/item/stack/sheet/animalhide/xeno = GLOB.xeno_recipes, */ // DARKPACK EDIT REMOVAL
 		/obj/item/stack/sheet/leather = GLOB.leather_recipes,
 		/obj/item/stack/sheet/sinew = GLOB.sinew_recipes,
-		/obj/item/stack/sheet/animalhide/carp = GLOB.carp_recipes,
+	/* 	/obj/item/stack/sheet/animalhide/carp = GLOB.carp_recipes, */ // DARKPACK EDIT REMOVAL
 		/obj/item/stack/sheet/mineral/sandstone = GLOB.sandstone_recipes,
 		/obj/item/stack/sheet/mineral/sandbags = GLOB.sandbag_recipes,
 		/obj/item/stack/sheet/mineral/diamond = GLOB.diamond_recipes,
@@ -56,13 +46,13 @@
 		/obj/item/stack/sheet/mineral/plastitanium = GLOB.plastitanium_recipes,
 		/obj/item/stack/sheet/mineral/snow = GLOB.snow_recipes,
 		/obj/item/stack/sheet/mineral/adamantine = GLOB.adamantine_recipes,
-		/obj/item/stack/sheet/mineral/abductor = GLOB.abductor_recipes,
+		/* /obj/item/stack/sheet/mineral/abductor = GLOB.abductor_recipes, */ // DARKPACK EDIT REMOVAL
 		/obj/item/stack/sheet/iron = GLOB.metal_recipes,
 		/obj/item/stack/sheet/plasteel = GLOB.plasteel_recipes,
 		/obj/item/stack/sheet/mineral/wood = GLOB.wood_recipes,
 		/obj/item/stack/sheet/mineral/bamboo = GLOB.bamboo_recipes,
 		/obj/item/stack/sheet/cloth = GLOB.cloth_recipes,
-		/obj/item/stack/sheet/durathread = GLOB.durathread_recipes,
+		/* /obj/item/stack/sheet/durathread = GLOB.durathread_recipes,*/ // DARKPACK EDIT REMOVAL
 		/obj/item/stack/sheet/cardboard = GLOB.cardboard_recipes,
 		/obj/item/stack/sheet/bronze = GLOB.bronze_recipes,
 		/obj/item/stack/sheet/plastic = GLOB.plastic_recipes,
@@ -137,29 +127,21 @@
 			for(var/atom/req_atom as anything in recipe.structures)
 				atom_list |= req_atom
 
-//creates every subtype of prototype (excluding prototype) and adds it to list L.
-//if no list/L is provided, one is created.
+/// Creates every subtype of prototype (excluding prototype and abstract types) and adds it to list L.
+/// If no list/L is provided, one is created.
 /proc/init_subtypes(prototype, list/L)
 	if(!istype(L))
 		L = list()
-	for(var/path in subtypesof(prototype))
+	for(var/path in valid_subtypesof(prototype))
 		L += new path()
 	return L
 
-//returns a list of paths to every subtype of prototype (excluding prototype)
-//if no list/L is provided, one is created.
-/proc/init_paths(prototype, list/L)
-	if(!istype(L))
-		L = list()
-		for(var/path in subtypesof(prototype))
-			L+= path
-		return L
-
 /// Functions like init_subtypes, but uses the subtype's path as a key for easy access
+/// If no list/L is provided, one is created.
 /proc/init_subtypes_w_path_keys(prototype, list/L)
 	if(!istype(L))
 		L = list()
-	for(var/path in subtypesof(prototype))
+	for(var/path in valid_subtypesof(prototype))
 		L[path] = new path()
 	return L
 
@@ -206,6 +188,7 @@ GLOBAL_LIST_INIT(WALLITEMS_EXTERIOR, typecacheof(list(
 	/obj/machinery/camera,
 	/obj/machinery/light,
 	/obj/structure/light_construct,
+	/obj/structure/sink,
 )))
 
 /// A static typecache of all the money-based items that can be actively used as currency.
@@ -213,7 +196,7 @@ GLOBAL_LIST_INIT(allowed_money, typecacheof(list(
 	/obj/item/coin,
 	/obj/item/holochip,
 	/obj/item/stack/spacecash,
-	/obj/item/stack/dollar, // DARKPACK EDIT ADD - Dollar Compat
+	/obj/item/stack/dollar, // DARKPACK EDIT ADD - (Dollar Compat)
 )))
 
 /// Inits GLOB.plant_traits

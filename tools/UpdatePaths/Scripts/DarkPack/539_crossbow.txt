@@ -1,0 +1,1 @@
+/obj/item/ammo_casing/caseless/bolt : /obj/item/ammo_casing/vampire/bolt

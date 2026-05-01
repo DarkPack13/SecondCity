@@ -6,11 +6,13 @@
 	register_init_signals()
 	if(unique_name)
 		set_name()
+	update_blood_status()
+	update_blood_effects()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_atom_to_hud(src)
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_atom_to_hud(src)
-	faction += "[REF(src)]"
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.add_atom_to_hud(src)
+	add_ally(src)
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
@@ -33,8 +35,9 @@
 		else
 			effect.be_replaced()
 
-	if(buckled)
-		buckled.unbuckle_mob(src,force=1)
+	clear_personalities() // must be done for the personalities which process
+
+	buckled?.unbuckle_mob(src,force=1)
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
@@ -42,8 +45,7 @@
 		imaginary_group -= src
 		QDEL_LIST(imaginary_group)
 	QDEL_LAZYLIST(diseases)
-	QDEL_LIST(surgeries)
-	QDEL_LIST(quirks)
+	QDEL_LAZYLIST(quirks)
 	return ..()
 
 /mob/living/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
@@ -73,7 +75,7 @@
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
 	if(levels <= 1 && can_help_themselves)
 		var/obj/item/organ/wings/gliders = get_organ_by_type(/obj/item/organ/wings)
-		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall()) // the power of parkour or wings allows falling short distances unscathed
+		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall() || st_get_stat(STAT_ATHLETICS) > 4) // the power of parkour or wings allows falling short distances unscathed // DARKPACK EDIT CHANGE - STORYTELLER_STATS
 			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
 
 			if(graceful_landing)
@@ -512,7 +514,7 @@
 //for more info on why this is not atom/pull, see examinate() in mob.dm
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
-	set category = "Object"
+	set category = "IC"
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
@@ -532,7 +534,7 @@
 	stop_pulling()
 
 //same as above
-/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
+/mob/living/pointed(atom/A)
 	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 		return FALSE
 
@@ -557,15 +559,15 @@
 	// DARKPACK EDIT CHANGE START - Torpor
 	if (HAS_TRAIT(src, TRAIT_CAN_ENTER_TORPOR) && !HAS_TRAIT(src, TRAIT_TORPOR))
 		log_message("Has [whispered ? "whispered his final words and" : ""]succumbed to Torpor with [round(health, 0.1)] points of health!", LOG_ATTACK)
-		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
+		adjust_oxy_loss(health - HEALTH_THRESHOLD_DEAD)
 		updatehealth()
 		if(!whispered)
 			to_chat(src, span_notice("You have succumbed to Torpor."))
 		investigate_log("has succumbed to death.", INVESTIGATE_DEATHS)
-		torpor("damage")
+		torpor(DAMAGE_TRAIT)
 	else
 		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
-		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
+		adjust_oxy_loss(health - HEALTH_THRESHOLD_DEAD)
 		updatehealth()
 		if(!whispered)
 			to_chat(src, span_notice("You have given up life and succumbed to death."))
@@ -649,11 +651,9 @@
 /**
  * Returns the access list for this mob
  */
-/mob/living/proc/get_access() as /list
+/mob/living/get_access()
 	var/list/access_list = list()
-	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_SIMPLE_ACCESS, access_list)
-	var/obj/item/card/id/id = get_idcard()
-	access_list += id?.GetAccess()
+	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_ACCESS, access_list)
 	return access_list
 
 /mob/living/proc/get_id_in_hand()
@@ -666,7 +666,7 @@
 /mob/living/proc/get_bank_account()
 	RETURN_TYPE(/datum/bank_account)
 	var/datum/bank_account/account
-	var/obj/item/card/credit/I = get_creditcard() // DARKPACK EDIT - ORIGINAL: var/obj/item/card/id/I = get_idcard()
+	var/obj/item/card/credit/I = get_creditcard() // DARKPACK EDIT CHANGE - ORIGINAL: var/obj/item/card/id/I = get_idcard()
 
 	if(I?.registered_account)
 		account = I.registered_account
@@ -754,7 +754,7 @@
 	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED, TRAIT_UNDENSE), LYING_DOWN_TRAIT)
 	if(HAS_TRAIT(src, TRAIT_FLOORED) && !(dir & (NORTH|SOUTH)))
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
-	if(rotate_on_lying)
+	if(rotate_on_lying && !HAS_TRAIT(src, TRAIT_NO_LYING_ANGLE)) // DARKPACK EDIT CHANGE - WEREWOLF
 		add_offsets(LYING_DOWN_TRAIT, y_add = PIXEL_Y_OFFSET_LYING)
 
 /// Proc to append behavior related to lying down.
@@ -772,15 +772,17 @@
 
 /mob/living/update_rest_hud_icon()
 	. = ..()
-	if(!.)
+	if(!. || !hud_used)
 		return FALSE
-	if(!hud_used.sleep_icon || HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
+
+	var/atom/movable/screen/sleep/sleep_icon = hud_used.screen_objects[HUD_MOB_SLEEP]
+	if(!sleep_icon || HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
 		return TRUE
+
 	if(resting || HAS_TRAIT(src, TRAIT_FLOORED))
-		hud_used.static_inventory |= hud_used.sleep_icon
+		sleep_icon.RemoveInvisibility(INVISIBILITY_SOURCE_SLEEP_HUD_BUTTON)
 	else
-		hud_used.static_inventory -= hud_used.sleep_icon
-	hud_used.show_hud(hud_used.hud_version)
+		sleep_icon.SetInvisibility(INVISIBILITY_ABSTRACT, INVISIBILITY_SOURCE_SLEEP_HUD_BUTTON)
 	return TRUE
 
 //Recursive function to find everything a mob is holding. Really shitty proc tbh.
@@ -833,7 +835,7 @@
 /mob/living/proc/updatehealth()
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
-	set_health(maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getAggLoss()) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
+	set_health(maxHealth - get_oxy_loss() - get_tox_loss() - get_fire_loss() - get_brute_loss() - get_agg_loss()) // DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
@@ -844,8 +846,8 @@
 /mob/living/update_health_hud()
 	var/severity = 0
 	var/healthpercent = (health/maxHealth) * 100
-	if(hud_used?.healthdoll) //to really put you in the boots of a simplemob
-		var/atom/movable/screen/healthdoll/living/livingdoll = hud_used.healthdoll
+	var/atom/movable/screen/healthdoll/living/livingdoll = hud_used?.screen_objects[HUD_MOB_HEALTHDOLL]
+	if(istype(livingdoll)) //to really put you in the boots of a simplemob
 		switch(healthpercent)
 			if(100 to INFINITY)
 				severity = 0
@@ -870,6 +872,8 @@
 				mob_mask = icon('icons/hud/screen_gen.dmi', health_doll_icon_state) //swap to something generic if they have no special doll
 			livingdoll.add_filter("mob_shape_mask", 1, alpha_mask_filter(icon = mob_mask))
 			livingdoll.add_filter("inset_drop_shadow", 2, drop_shadow_filter(size = -1))
+		livingdoll.health_overlay.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative'>[round(healthpercent, 1)]%</div>")
+
 	if(severity > 0)
 		overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
 	else
@@ -891,8 +895,8 @@
 		// Bro just like, don't ok
 		return FALSE
 	if(excess_healing)
-		adjustOxyLoss(-excess_healing, updating_health = FALSE)
-		adjustToxLoss(-excess_healing, updating_health = FALSE, forced = TRUE) //slime friendly
+		adjust_oxy_loss(-excess_healing, updating_health = FALSE)
+		adjust_tox_loss(-excess_healing, updating_health = FALSE, forced = TRUE) //slime friendly
 		updatehealth()
 
 	grab_ghost(force_grab_ghost)
@@ -936,22 +940,22 @@
 /mob/living/proc/heal_and_revive(heal_to = 50, revive_message)
 
 	// Heal their brute and burn up to the threshold we're looking for
-	var/brute_to_heal = heal_to - getBruteLoss()
-	var/burn_to_heal = heal_to - getFireLoss()
-	var/oxy_to_heal = heal_to - getOxyLoss()
-	var/tox_to_heal = heal_to - getToxLoss()
-	var/agg_to_heal = heal_to - getAggLoss() // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
+	var/brute_to_heal = heal_to - get_brute_loss()
+	var/burn_to_heal = heal_to - get_fire_loss()
+	var/oxy_to_heal = heal_to - get_oxy_loss()
+	var/tox_to_heal = heal_to - get_tox_loss()
+	var/agg_to_heal = heal_to - get_agg_loss() // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
 	if(brute_to_heal < 0)
-		adjustBruteLoss(brute_to_heal, updating_health = FALSE)
+		adjust_brute_loss(brute_to_heal, updating_health = FALSE)
 	if(burn_to_heal < 0)
-		adjustFireLoss(burn_to_heal, updating_health = FALSE)
+		adjust_fire_loss(burn_to_heal, updating_health = FALSE)
 	if(oxy_to_heal < 0)
-		adjustOxyLoss(oxy_to_heal, updating_health = FALSE)
+		adjust_oxy_loss(oxy_to_heal, updating_health = FALSE)
 	if(tox_to_heal < 0)
-		adjustToxLoss(tox_to_heal, updating_health = FALSE, forced = TRUE)
+		adjust_tox_loss(tox_to_heal, updating_health = FALSE, forced = TRUE)
 	// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 	if(agg_to_heal < 0)
-		adjustAggLoss(agg_to_heal, updating_health = FALSE)
+		adjust_agg_loss(agg_to_heal, updating_health = FALSE)
 	// DARKPACK EDIT ADD END
 
 	// Run updatehealth once to set health for the revival check
@@ -983,18 +987,18 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(heal_flags & HEAL_TOX)
-		setToxLoss(0, updating_health = FALSE, forced = TRUE)
+		set_tox_loss(0, updating_health = FALSE, forced = TRUE)
 	if(heal_flags & HEAL_OXY)
-		setOxyLoss(0, updating_health = FALSE, forced = TRUE)
+		set_oxy_loss(0, updating_health = FALSE, forced = TRUE)
 	if(heal_flags & HEAL_BRUTE)
-		setBruteLoss(0, updating_health = FALSE, forced = TRUE)
+		set_brute_loss(0, updating_health = FALSE, forced = TRUE)
 	if(heal_flags & HEAL_BURN)
-		setFireLoss(0, updating_health = FALSE, forced = TRUE)
+		set_fire_loss(0, updating_health = FALSE, forced = TRUE)
 	if(heal_flags & HEAL_STAM)
-		setStaminaLoss(0, updating_stamina = FALSE, forced = TRUE)
+		set_stamina_loss(0, updating_stamina = FALSE, forced = TRUE)
 	// DARKPACK EDIT ADD START - AGGRAVATED_DAMAGE
 	if(heal_flags & HEAL_AGGRAVATED)
-		setAggLoss(0, updating_health = FALSE, forced = TRUE)
+		set_agg_loss(0, updating_health = FALSE, forced = TRUE)
 	// DARKPACK EDIT ADD END
 
 	// I don't really care to keep this under a flag
@@ -1011,11 +1015,14 @@
 		bodytemperature = get_body_temp_normal(apply_change = FALSE)
 	if(heal_flags & HEAL_BLOOD)
 		restore_blood()
+		adjust_blood_pool(maxbloodpool, updating_health = FALSE) // DARKPACK EDIT ADD
 	if(reagents && (heal_flags & HEAL_ALL_REAGENTS))
 		reagents.clear_reagents()
 
 	if(heal_flags & HEAL_ADMIN)
 		REMOVE_TRAIT(src, TRAIT_SUICIDED, REF(src))
+
+	untorpor() // DARKPACK EDIT ADD
 
 	updatehealth()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -1026,16 +1033,16 @@
  * It uses the healing amount on brute/fire damage, and then uses the excess healing for revive
  */
 /mob/living/proc/do_strange_reagent_revival(healing_amount)
-	var/brute_loss = getBruteLoss()
+	var/brute_loss = get_brute_loss()
 	if(brute_loss)
 		var/brute_healing = min(healing_amount * 0.5, brute_loss) // 50% of the healing goes to brute
-		setBruteLoss(round(brute_loss - brute_healing, DAMAGE_PRECISION), updating_health=FALSE, forced=TRUE)
+		set_brute_loss(round(brute_loss - brute_healing, DAMAGE_PRECISION), updating_health=FALSE, forced=TRUE)
 		healing_amount = max(0, healing_amount - brute_healing)
 
-	var/fire_loss = getFireLoss()
+	var/fire_loss = get_fire_loss()
 	if(fire_loss && healing_amount)
 		var/fire_healing = min(healing_amount, fire_loss) // rest of the healing goes to fire
-		setFireLoss(round(fire_loss - fire_healing, DAMAGE_PRECISION), updating_health=TRUE, forced=TRUE)
+		set_fire_loss(round(fire_loss - fire_healing, DAMAGE_PRECISION), updating_health=TRUE, forced=TRUE)
 		healing_amount = max(0, healing_amount - fire_healing)
 
 	revive(NONE, excess_healing=max(healing_amount, 0), force_grab_ghost=FALSE) // and any excess healing is passed along
@@ -1074,19 +1081,23 @@
 
 	if(active_storage)
 		var/storage_is_important_recurisve = (active_storage.parent in important_recursive_contents?[RECURSIVE_CONTENTS_ACTIVE_STORAGE])
-		var/can_reach_active_storage = CanReach(active_storage.parent, view_only = TRUE)
+		var/can_reach_active_storage = active_storage.parent.IsReachableBy(src)
 		if(!storage_is_important_recurisve && !can_reach_active_storage)
 			active_storage.hide_contents(src)
 
 	if(!buckled && !moving_diagonally && loc != old_loc)
 		var/blood_flow = get_bleed_rate()
-		var/health_check = body_position == LYING_DOWN && prob(getBruteLoss() * 200 / maxHealth)
+		var/health_check = body_position == LYING_DOWN && prob(get_brute_loss() * 200 / maxHealth)
 		var/bleeding_check = blood_flow > 3 && prob(blood_flow * 16)
 		if(health_check || bleeding_check)
 			make_blood_trail(newloc, old_loc, old_direction, direct)
 
 ///Called by mob Move() when the lying_angle is different than zero, to better visually simulate crawling.
 /mob/living/proc/lying_angle_on_movement(direct)
+	if(buckled && buckled.buckle_lying != NO_BUCKLE_LYING)
+		set_lying_angle(buckled.buckle_lying)
+		return
+
 	if(direct & EAST)
 		set_lying_angle(LYING_ANGLE_EAST)
 	else if(direct & WEST)
@@ -1182,6 +1193,7 @@
 /mob/proc/resist_grab(moving_resist)
 	return 1 //returning 0 means we successfully broke free
 
+// DARKPACKE EDIT CHANGE START - STORYTELLER_DICE
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 
@@ -1189,8 +1201,6 @@
 	var/effective_grab_state = pulledby.grab_state
 	//The amount of damage inflicted on a failed resist attempt.
 	var/damage_on_resist_fail = rand(7, 13)
-	// Base chance to escape a grab. Divided by effective grab state
-	var/escape_chance = BASE_GRAB_RESIST_CHANCE
 
 	if(body_position == LYING_DOWN) //If prone, treat the grab state as one higher
 		effective_grab_state++
@@ -1198,7 +1208,7 @@
 	if(HAS_TRAIT(src, TRAIT_GRABWEAKNESS)) //If we have grab weakness from some source, treat the grab state as one higher
 		effective_grab_state++
 
-	if(get_timed_status_effect_duration(/datum/status_effect/staggered) && (getFireLoss() + getBruteLoss()) >= 40) //If we are staggered, and we have at least 40 damage, treat the grab state as one higher.
+	if(get_timed_status_effect_duration(/datum/status_effect/staggered) && (get_fire_loss() + get_brute_loss()) >= 40) //If we are staggered, and we have at least 40 damage, treat the grab state as one higher.
 		effective_grab_state++
 
 	if(HAS_TRAIT(src, TRAIT_GRABRESISTANCE)) //If we have grab resistance from some source, treat the grab state as one lower.
@@ -1209,26 +1219,34 @@
 		var/mob/living/carbon/human/human_puller = pulledby
 		var/obj/item/bodypart/grabbing_bodypart = human_puller.get_active_hand()
 		if(grabbing_bodypart)
-			damage_on_resist_fail += rand(grabbing_bodypart.unarmed_damage_low, grabbing_bodypart.unarmed_damage_high)
+			damage_on_resist_fail += (rand(grabbing_bodypart.unarmed_damage_low, grabbing_bodypart.unarmed_damage_high)) + grabbing_bodypart.unarmed_grab_damage_bonus
+			effective_grab_state += grabbing_bodypart.unarmed_grab_state_bonus
 
 		//If our puller is a drunken brawler, they add more damage based on their own damage taken so long as they're drunk and treat the grab state as one higher
 		var/puller_drunkenness = human_puller.get_drunk_amount()
 		if(puller_drunkenness && HAS_TRAIT(human_puller, TRAIT_DRUNKEN_BRAWLER))
-			damage_on_resist_fail += clamp((human_puller.getFireLoss() + human_puller.getBruteLoss()) / 10, 3, 20)
+			damage_on_resist_fail += clamp((human_puller.get_fire_loss() + human_puller.get_brute_loss()) / 10, 3, 20)
 			effective_grab_state++
 
 		var/datum/martial_art/puller_art = GET_ACTIVE_MARTIAL_ART(human_puller)
 		if(puller_art?.can_use(human_puller))
 			damage_on_resist_fail += puller_art.grab_damage_modifier
 			effective_grab_state += puller_art.grab_state_modifier
-			escape_chance += puller_art.grab_escape_chance_modifier
 
 	//We only resist our grab state if we are currently in a grab equal to or greater than GRAB_AGGRESSIVE (1). Otherwise, break out immediately!
 	if(effective_grab_state >= GRAB_AGGRESSIVE)
-		// see defines/combat.dm, this should be baseline 60%
-		// Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
-		var/resist_chance = clamp(escape_chance / effective_grab_state, 0, 100)
-		if(prob(resist_chance))
+		// Grabber is the "action taker" so he is the "owner"
+		var/success = ROLL_FAILURE
+		if(isliving(pulledby))
+			var/datum/storyteller_roll/grappling/pulled_roll = new()
+			var/puller_result = pulled_roll.st_roll(pulledby, src)
+			var/datum/storyteller_roll/grappled/our_roll = new()
+			var/our_result = our_roll.st_roll(src, pulledby)
+
+			if(puller_result > our_result)
+				success = ROLL_SUCCESS
+
+		if(!success)
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
 							span_danger("You break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_warning("[src] breaks free of your grip!"))
@@ -1236,15 +1254,16 @@
 			pulledby.stop_pulling()
 			return FALSE
 		else
-			adjustStaminaLoss(damage_on_resist_fail) //Do some stamina damage if we fail to resist
+			adjust_stamina_loss(damage_on_resist_fail) //Do some stamina damage if we fail to resist
 			visible_message(span_danger("[src] struggles as they fail to break free of [pulledby]'s grip!"), \
 							span_warning("You struggle as you fail to break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_danger("[src] struggles as they fail to break free of your grip!"))
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 4 SECONDS
+			client.move_delay = world.time + 1 TURNS
 	else
 		pulledby.stop_pulling()
 		return FALSE
+// DARKPACK EDIT CHANGE END
 
 /mob/living/proc/resist_buckle()
 	buckled.user_unbuckle_mob(src,src)
@@ -1345,7 +1364,7 @@
 	if(onSyndieBase() && !(ROLE_SYNDICATE in user?.faction))
 		return FALSE
 	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
-	if(!GLOB.cameranet.checkCameraVis(src))
+	if(!SScameras.is_visible_by_cameras(src))
 		return FALSE
 	return TRUE
 
@@ -1353,6 +1372,10 @@
 	return
 
 /mob/living/can_hold_items(obj/item/I)
+	// DARKPACK EDIT ADD START
+	if(I && (I.w_class <= WEIGHT_CLASS_SMALL) && HAS_TRAIT(src, TRAIT_SMALL_HANDS))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	return ..() && HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS) && usable_hands
 
 /mob/living/can_perform_action(atom/target, action_bitflags)
@@ -1390,11 +1413,7 @@
 			to_chat(src, span_warning("You don't have the hands for this action!"))
 			return FALSE
 
-	if(!(action_bitflags & ALLOW_PAI) && ispAI(src))
-		to_chat(src, span_warning("Your holochasis does not allow you to do this!"))
-		return FALSE
-
-	if(!(action_bitflags & BYPASS_ADJACENCY) && ((action_bitflags & NOT_INSIDE_TARGET) || !recursive_loc_check(src, target)) && !CanReach(target))
+	if(!(action_bitflags & BYPASS_ADJACENCY) && ((action_bitflags & NOT_INSIDE_TARGET) || !recursive_loc_check(src, target)) && !target.IsReachableBy(src))
 		if(HAS_SILICON_ACCESS(src) && !ispAI(src))
 			if(!(action_bitflags & ALLOW_SILICON_REACH)) // silicons can ignore range checks (except pAIs)
 				if(!(action_bitflags & SILENT_ADJACENCY))
@@ -1446,6 +1465,29 @@
 /mob/living/proc/update_stamina()
 	SEND_SIGNAL(src, COMSIG_LIVING_STAMINA_UPDATE)
 	update_stamina_hud()
+
+/mob/living/update_stamina_hud(shown_stamina_loss)
+	if(!client || !hud_used)
+		return
+
+	var/atom/movable/screen/stamina/stamina = hud_used.screen_objects[HUD_MOB_STAMINA]
+	if (!stamina)
+		return
+
+	if(stat == DEAD)
+		stamina.icon_state = "stamina_dead"
+		return
+
+	var/stam_crit_threshold = maxHealth - crit_threshold
+	if(shown_stamina_loss == null)
+		shown_stamina_loss = get_stamina_loss()
+
+	if(shown_stamina_loss >= stam_crit_threshold)
+		stamina.icon_state = "stamina_crit"
+	else if(shown_stamina_loss > 0 && maxHealth > 0)
+		stamina.icon_state = "stamina_[6 - ceil(shown_stamina_loss / (maxHealth * 0.2))]"
+	else
+		stamina.icon_state = "stamina_full"
 
 /mob/living/carbon/alien/update_stamina()
 	return
@@ -1520,23 +1562,23 @@
 			var/static/list/robot_options = list(
 				/mob/living/silicon/robot = 200,
 				/mob/living/basic/drone/polymorphed = 200,
+				/mob/living/silicon/robot/model/syndicate = 100,
+				/mob/living/silicon/robot/model/syndicate/medical = 100,
+				/mob/living/silicon/robot/model/syndicate/saboteur = 100,
+				/mob/living/basic/hivebot/strong = 50,
+				/mob/living/basic/hivebot/mechanic = 50,
 				/mob/living/basic/bot/dedbot = 25,
 				/mob/living/basic/bot/cleanbot = 25,
 				/mob/living/basic/bot/firebot = 25,
 				/mob/living/basic/bot/honkbot = 25,
 				/mob/living/basic/bot/hygienebot = 25,
-				/mob/living/basic/bot/medbot/mysterious = 12,
-				/mob/living/basic/bot/medbot = 13,
 				/mob/living/basic/bot/vibebot = 25,
-				/mob/living/basic/hivebot/strong = 50,
-				/mob/living/basic/hivebot/mechanic = 50,
+				/mob/living/basic/bot/medbot = 13,
+				/mob/living/basic/bot/medbot/mysterious = 12,
 				/mob/living/basic/netguardian = 1,
-				/mob/living/silicon/robot/model/syndicate = 1,
-				/mob/living/silicon/robot/model/syndicate/medical = 1,
-				/mob/living/silicon/robot/model/syndicate/saboteur = 1,
 			)
 
-			var/picked_robot = pick(robot_options)
+			var/picked_robot = pick_weight(robot_options)
 			new_mob = new picked_robot(loc)
 			if(issilicon(new_mob))
 				var/mob/living/silicon/robot/created_robot = new_mob
@@ -1645,7 +1687,6 @@
 				/mob/living/basic/pet/dog/pug,
 				/mob/living/basic/pet/gondola,
 				/mob/living/basic/pet/fox,
-				/mob/living/basic/pet/penguin,
 				/mob/living/basic/pet/penguin/baby,
 				/mob/living/basic/pet/penguin/baby/permanent,
 				/mob/living/basic/pet/penguin/emperor,
@@ -1887,6 +1928,26 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	RETURN_TYPE(/mutable_appearance)
 	return null
 
+/// Create a fire overlay using the generic fire sprites
+/mob/living/proc/make_generic_fire_overlay()
+	var/fire_key = "[base_pixel_x]_[base_pixel_y]_fire"
+	if(!GLOB.fire_appearances[fire_key])
+		var/mutable_appearance/fire = mutable_appearance(
+			'icons/mob/effects/onfire.dmi',
+			"generic_fire",
+			ABOVE_ALL_MOB_LAYER,
+			appearance_flags = RESET_COLOR|KEEP_APART,
+		)
+		fire.pixel_x = -1 * base_pixel_x
+		fire.pixel_y = -1 * base_pixel_y
+		GLOB.fire_appearances[fire_key] = fire
+
+	return GLOB.fire_appearances[fire_key]
+
+/// Takes a fire overlay and generates an emissive appearance for it
+/mob/living/proc/make_fire_emissive(mutable_appearance/fire_overlay)
+	return emissive_appearance(fire_overlay.icon, fire_overlay.icon_state, src, fire_overlay.layer)
+
 /**
  * Handles effects happening when mob is on normal fire
  *
@@ -1982,7 +2043,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	return ..()
 
 /mob/living/proc/mob_pickup(mob/living/user)
-	var/obj/item/mob_holder/holder = new(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
+	var/obj/item/mob_holder/holder = new inhand_holder_type(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
+	SEND_SIGNAL(src, COMSIG_LIVING_SCOOPED_UP, user, holder)
 	user.visible_message(span_warning("[user] scoops up [src]!"))
 	user.put_in_hands(holder)
 
@@ -1993,8 +2055,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	real_name = name
 
 /mob/living/proc/mob_try_pickup(mob/living/user, instant=FALSE)
-	if(!ishuman(user))
-		return
+	if(!ishuman(user) && (user.mob_size <= mob_size || user.num_hands == 0))
+		if (!user.num_hands)
+			return
+		if (user.mob_size <= mob_size)
+			to_chat(user, span_warning("[src] is too big to pick up!"))
+			return
 	if(!user.get_empty_held_indexes())
 		to_chat(user, span_warning("Your hands are full!"))
 		return FALSE
@@ -2090,19 +2156,19 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	. += {"
 		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
-			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
-			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[get_brute_loss()]</a>
+			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[get_fire_loss()]</a>
+			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[get_tox_loss()]</a>
+			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[get_oxy_loss()]</a>
 			BRAIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[get_organ_loss(ORGAN_SLOT_BRAIN)]</a>
-			STAMINA:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
-			AGGRAVATED:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=aggravated' id='aggravated'>[getAggLoss()]</a>
+			STAMINA:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[get_stamina_loss()]</a>
+			AGGRAVATED:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=aggravated' id='aggravated'>[get_agg_loss()]</a>
 		</font>
 	"} // DARKPACK EDIT ADD - AGGRAVATED_DAMAGE
 
 /mob/living/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION("", "--- /living ---")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "Impede Speech (Slurring, stuttering, etc)")
 	VV_DROPDOWN_OPTION(VV_HK_ADD_MOOD, "Add Mood Event")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOOD, "Remove Mood Event")
@@ -2118,33 +2184,21 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 
 	if(href_list[VV_HK_GIVE_SPEECH_IMPEDIMENT])
-		if(!check_rights(NONE))
-			return
 		admin_give_speech_impediment(usr)
 
 	if(href_list[VV_HK_ADD_MOOD])
-		if(!check_rights(NONE))
-			return
 		admin_add_mood_event(usr)
 
 	if(href_list[VV_HK_REMOVE_MOOD])
-		if(!check_rights(NONE))
-			return
 		admin_remove_mood_event(usr)
 
 	if(href_list[VV_HK_GIVE_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
 		admin_give_hallucination(usr)
 
 	if(href_list[VV_HK_GIVE_DELUSION_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
 		admin_give_delusion(usr)
 
 	if(href_list[VV_HK_GIVE_GUARDIAN_SPIRIT])
-		if(!check_rights(NONE))
-			return
 		admin_give_guardian(usr)
 
 	if(href_list[VV_HK_ADMIN_RENAME])
@@ -2314,8 +2368,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/end_look()
 	reset_perspective()
 	looking_vertically = NONE
+	if(!looking_holder)
+		return
+	on_looking_z_level_change(looking_holder.loc, get_turf(src))
 	QDEL_NULL(looking_holder)
 
+/mob/living/proc/on_looking_z_level_change(turf/old_loc, turf/new_loc)
+	SEND_SIGNAL(src, COMSIG_LIVING_LOOK_Z_CHANGE, old_loc, new_loc)
 
 /**
  * look_up Changes the perspective of the mob to any openspace turf above the mob
@@ -2338,6 +2397,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	looking_vertically = UP
 	looking_holder = new(above_turf, src, UP)
 	reset_perspective(looking_holder)
+	on_looking_z_level_change(get_turf(src), above_turf)
 
 /mob/living/proc/get_looking_turf(direction)
 	//down needs to check this floor
@@ -2405,7 +2465,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(HARD_CRIT)
 			if(stat != UNCONSCIOUS)
 				cure_blind(UNCONSCIOUS_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_dead_mob_list()
 			add_to_alive_mob_list()
 	switch(stat) //Current stat.
@@ -2433,17 +2495,14 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			if(. != UNCONSCIOUS)
 				become_blind(UNCONSCIOUS_TRAIT)
 			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			log_combat(src, src, "entered hard crit")
 		if(DEAD)
 			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_alive_mob_list()
 			add_to_dead_mob_list()
 			log_combat(src, src, "died")
-	if(!can_hear())
-		stop_sound_channel(CHANNEL_AMBIENCE)
-	refresh_looping_ambience()
-
-
 
 ///Reports the event of the change in value of the buckled variable.
 /mob/living/proc/set_buckled(new_buckled)
@@ -2508,7 +2567,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 	. = num_legs
 	num_legs = new_value
-
+	hud_used?.update_locked_slots()
 
 ///Proc to modify the value of usable_legs and hook behavior associated to this event.
 /mob/living/proc/set_usable_legs(new_value)
@@ -2558,12 +2617,15 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 	. = num_hands
 	num_hands = new_value
-
+	hud_used?.update_locked_slots()
 
 ///Proc to modify the value of usable_hands and hook behavior associated to this event.
 /mob/living/proc/set_usable_hands(new_value)
 	if(usable_hands == new_value)
 		return
+	if(new_value < 0) // Sanity check
+		stack_trace("[src] had set_usable_hands() called on them with a negative value!")
+		new_value = 0
 	. = usable_hands
 	usable_hands = new_value
 
@@ -2742,7 +2804,11 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/add_mood_event(category, type, ...)
 	if(QDELETED(mob_mood))
 		return
-	mob_mood.add_mood_event(arglist(args))
+
+	if(ispath(type, /datum/mood_event/conditional))
+		mob_mood.add_conditional_mood_event(arglist(args))
+	else
+		mob_mood.add_mood_event(arglist(args))
 
 /// Clears a mood event from the mob
 /mob/living/proc/clear_mood_event(category)
@@ -2776,8 +2842,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Proc called when TARGETED by a lazarus injector
 /mob/living/proc/lazarus_revive(mob/living/reviver, malfunctioning)
 	revive(HEAL_ALL)
-	befriend(reviver)
-	faction = (malfunctioning) ? list("[REF(reviver)]") : list(FACTION_NEUTRAL)
+	add_faction(FACTION_NEUTRAL)
+	if (!malfunctioning)
+		befriend(reviver)
 	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "The lazarus injector has brought you back to life! You are now friendly to everyone."
 	if (malfunctioning)
 		reviver.log_message("has revived mob [key_name(src)] with a malfunctioning lazarus injector.", LOG_GAME)
@@ -2794,9 +2861,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(QDELETED(new_friend))
 		return
 	var/friend_ref = REF(new_friend)
-	if (faction.Find(friend_ref))
+	if (has_ally(friend_ref))
 		return FALSE
-	faction |= friend_ref
+	add_ally(friend_ref)
 	ai_controller?.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, new_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_BEFRIENDED, new_friend)
@@ -2806,9 +2873,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/unfriend(mob/living/old_friend)
 	SHOULD_CALL_PARENT(TRUE)
 	var/friend_ref = REF(old_friend)
-	if (!faction.Find(friend_ref))
+	if (!has_ally(friend_ref))
 		return FALSE
-	faction -= friend_ref
+	remove_ally(friend_ref)
 	ai_controller?.remove_thing_from_blackboard_key(BB_FRIENDS_LIST, old_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_UNFRIENDED, old_friend)
@@ -2890,7 +2957,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(picked_theme == "Random")
 		picked_theme = null //holopara code handles not having a theme by giving a random one
 	var/picked_name = tgui_input_text(admin, "Name the guardian, leave empty to let player name it.", "Guardian Controller", max_length = MAX_NAME_LEN)
-	var/picked_color = input(admin, "Set the guardian's color, cancel to let player set it.", "Guardian Controller", "#ffffff") as color|null
+	var/picked_color = tgui_color_picker(admin, "Set the guardian's color, cancel to let player set it.", "Guardian Controller", COLOR_WHITE)
 	if(tgui_alert(admin, "Confirm creation.", "Guardian Controller", list("Yes", "No")) != "Yes")
 		return
 	var/mob/living/basic/guardian/summoned_guardian = new picked_type(src, picked_theme)
@@ -2966,7 +3033,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /// Returns an arbitrary number which very roughly correlates with how buff you look
 /mob/living/proc/calculate_fitness()
-	var/athletics_level = mind?.get_skill_level(/datum/skill/athletics) || 1
+	var/athletics_level = st_get_stat(STAT_STRENGTH) || 1 // DARKPACK EDIT CHANGE
 	var/damage = (melee_damage_lower + melee_damage_upper) / 2
 
 	return ceil(damage * (ceil(athletics_level / 2)) * maxHealth)

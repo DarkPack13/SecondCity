@@ -1,0 +1,1 @@
+/obj/item/fake_sarcophagus : /obj/fake_sarcophagus {@OLD}

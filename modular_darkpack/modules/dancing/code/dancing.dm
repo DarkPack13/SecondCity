@@ -46,7 +46,7 @@
 				initial_matrix.Translate(-3,0)
 				animate(M, transform = initial_matrix, time = 1, loop = 0)
 		sleep(0.1 SECONDS)
-	// TODO: [Rebase] reimplement dwarf/tower
+	// DARKPACK TODO - reimplement dwarf/tower
 	//M.lying_fix()
 	M.dancing = FALSE
 
@@ -86,6 +86,6 @@
 				initial_matrix.Translate(-3,0)
 				animate(M, transform = initial_matrix, time = 1, loop = 0)
 		sleep(0.1 SECONDS)
-	// TODO: [Rebase] reimplement dwarf/tower
+	// DARKPACK TODO - reimplement dwarf/tower
 	//M.lying_fix()
 	M.dancing = FALSE

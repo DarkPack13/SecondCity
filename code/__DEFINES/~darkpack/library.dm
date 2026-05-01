@@ -1,0 +1,3 @@
+#define BOOK_CATEGORY_KINDRED "Kindred"
+#define BOOK_CATEGORY_LUPINE "Lupine"
+#define BOOK_CATEGORY_KUEIJIN "Kuei-Jin"

@@ -31,6 +31,8 @@
 /// The caliber used by the desert eagle.
 #define CALIBER_50AE ".50AE"
 /// The caliber used by the gyrojet pistol.
+#define CALIBER_46 "4.6mm"
+/// The caliber used by le funni german PDW
 #define CALIBER_75 ".75"
 /// The caliber used by [one revolver variant][/obj/item/gun/ballistic/revolver/nagant].
 #define CALIBER_N762 "n762"
@@ -64,6 +66,8 @@
 #define CALIBER_JUNK "junk"
 /// The caliber used by the (gatfruit) peashooter
 #define CALIBER_PEA "pea"
+/// The caliber used in the naval cannon
+#define CALIBER_40MM_SHELL "40MM_shell"
 
 /// For gunpoints, how many tiles around the target the shooter can roam without losing their shot
 #define GUNPOINT_SHOOTER_STRAY_RANGE 2

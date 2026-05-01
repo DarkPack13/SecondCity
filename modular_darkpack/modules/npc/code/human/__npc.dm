@@ -7,6 +7,9 @@
 	// NPCs normally walk around slowly
 	move_intent = MOVE_INTENT_WALK
 
+	// NPC humans get the area of effect, player humans dont.
+	violation_aoe = TRUE
+
 	/// Until we do a full NPC refactor (see: rewriting every single bit of code)
 	/// use this to determine NPC weapons and their chances to spawn with them -- assuming you want the NPC to do that
 	/// Otherwise just set it under the NPC's type as
@@ -14,8 +17,6 @@
 	/// my_backup_weapon = type_path
 	/// This only determines my_weapon, you set my_backup_weapon yourself
 	/// The last entry in the list for a type of NPC should always have 100 as the index
-	// TODO: [Rebase] reimplement weapons
-	/*
 	var/static/list/role_weapons_chances = list(
 		BANDIT_TYPE_NPC = list(
 			/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle = 33,
@@ -27,7 +28,6 @@
 			/obj/item/gun/ballistic/automatic/darkpack/ar15 = 100,
 		)
 	)
-	*/
 	var/datum/socialrole/socialrole
 
 	var/is_talking = FALSE
@@ -37,7 +37,7 @@
 	var/aggressive = FALSE
 	var/last_antagonised = 0
 	var/mob/living/danger_source
-	var/obj/effect/fire/afraid_of_fire
+	var/obj/effect/abstract/turf_fire/afraid_of_fire
 	var/mob/living/last_attacker
 	var/last_health = 100
 	var/mob/living/last_damager
@@ -66,8 +66,6 @@
 
 	var/spawned_backup_weapon = FALSE
 
-	var/ghoulificated = FALSE
-
 	var/staying = FALSE
 
 	var/lifespan = 0	//How many cycles. He'll be deleted if over than a ten thousand
@@ -86,30 +84,21 @@
 	GLOB.npc_list += src
 	GLOB.alive_npc_list += src
 
+	AddElement(/datum/element/relay_attackers)
+	RegisterSignal(src, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(handle_attacked))
+
 	// Annoy the NPC when pushed around
 	RegisterSignal(src, COMSIG_LIVING_MOB_BUMPED, PROC_REF(handle_bumped))
-	// Aggro the NPC when shoved
-	RegisterSignal(src, COMSIG_LIVING_DISARM_HIT, PROC_REF(handle_shoved))
 	// Be annoyed if helped
 	RegisterSignal(src, COMSIG_CARBON_HELP_ACT, PROC_REF(handle_helped))
-	// Aggro if shot or hit by any projectile
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(handle_projectile_hit))
-
-	// NPC humans get the area of effect, player humans dont. This is a fucky way of doing this.
-	qdel(GetComponent(/datum/component/violation_observer))
-	AddComponent(/datum/component/violation_observer, TRUE)
-
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/npc/LateInitialize(mapload)
-	// TODO: [Rebase] reimplement weapons
-	/*
 	if (role_weapons_chances.Find(type))
 		for(var/weapon in role_weapons_chances[type])
 			if(prob(role_weapons_chances[type][weapon]))
 				my_weapon = new weapon(src)
 				break
-	*/
 
 	if (!my_weapon && my_weapon_type)
 		my_weapon = new my_weapon_type(src)
@@ -128,11 +117,24 @@
 		register_sticky_item(my_backup_weapon)
 
 /mob/living/carbon/human/npc/Destroy()
+	UnregisterSignal(src, list(COMSIG_ATOM_WAS_ATTACKED, COMSIG_LIVING_MOB_BUMPED, COMSIG_CARBON_HELP_ACT))
+	QDEL_NULL(socialrole)
+	danger_source = null
+	QDEL_NULL(afraid_of_fire)
+	last_attacker = null
+	last_damager = null
+	walktarget = null
+	tupik_loc = null
+	my_weapon_type = null
+	my_weapon = null
+	my_backup_weapon_type = null
+	my_backup_weapon = null
+	spotted_bodies = null
+	drop_on_death_list = null
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
-
-	. = ..()
+	SShumannpcpool.try_repopulate()
+	return ..()
 
 //====================Sticky Item Handling====================
 /mob/living/carbon/human/npc/proc/register_sticky_item(obj/item/my_item)
@@ -152,12 +154,6 @@
 		REMOVE_TRAIT(dropping_item, TRAIT_NODROP, NPC_ITEM_TRAIT)
 		dropItemToGround(dropping_item, TRUE)
 
-//If an npc's item has TRAIT_NODROP, we NEVER drop it, even if it is forced.
-/mob/living/carbon/human/npc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
-	if (I && HAS_TRAIT(I, TRAIT_NODROP))
-		return FALSE
-
-	. = ..()
 //============================================================
 
 /mob/living/carbon/human/npc/proc/realistic_say(message)
@@ -171,15 +167,17 @@
 		return
 	is_talking = TRUE
 
-	addtimer(CALLBACK(src, PROC_REF(start_talking), message), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start_talking), message), 1 SECONDS)
 
 /mob/living/carbon/human/npc/proc/start_talking(message)
+	ADD_TRAIT(src, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	create_typing_indicator()
 	var/typing_delay = round(length_char(message) * 0.5)
-	addtimer(CALLBACK(src, PROC_REF(finish_talking), message), max(0.1 SECONDS, typing_delay))
+	addtimer(CALLBACK(src, PROC_REF(finish_talking), message), max(3 SECONDS, typing_delay))
 
 /mob/living/carbon/human/npc/proc/finish_talking(message)
 	remove_typing_indicator()
+	REMOVE_TRAIT(src, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	say(message)
 	is_talking = FALSE
 
@@ -198,24 +196,36 @@
 	if(source)
 		addtimer(CALLBACK(src, PROC_REF(face_atom), source), rand(0.3 SECONDS, 0.7 SECONDS))
 
-	var/phrase
+	var/phrase = "Wow."
 	if (prob(50))
-		phrase = pick(socialrole.neutral_phrases)
+		phrase = pick(socialrole?.neutral_phrases)
 	else
 		if (gender == MALE)
-			phrase = pick(socialrole.male_phrases)
+			phrase = pick(socialrole?.male_phrases)
 		else
-			phrase = pick(socialrole.female_phrases)
+			phrase = pick(socialrole?.female_phrases)
 	realistic_say(phrase)
+
+/mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
+	// Only aggro nearby npcs if its lethal.
+	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
+		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
+			nearby_npcs.Aggro(attacker)
+		SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_FIREFIGHT, get_turf(src))
+	Aggro(attacker, TRUE)
 
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)
 	SIGNAL_HANDLER
 
-	if (bumping.can_mobswap_with(source))
+	if (bumping.can_mobswap_with(source) && prob(25))
 		return
 
 	source.Annoy(bumping)
 
+/mob/living/carbon/human/npc/proc/handle_helped(mob/living/carbon/human/npc/source, mob/living/helper)
+	SIGNAL_HANDLER
+
+	source.Annoy(helper)
 
 /mob/living/carbon/human/npc/Move(NewLoc, direct)
 	if (!can_npc_move())
@@ -232,93 +242,30 @@
 
 	. = ..()
 
-/mob/living/carbon/human/npc/attack_hand(mob/user, list/modifiers)
-	if (!isliving(user))
-		return
-	var/mob/living/hit_by = user
-
-	if (hit_by.combat_mode)
-		for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-			NEPIC.Aggro(user)
-		Aggro(user, TRUE)
-
-	. = ..()
-
-/mob/living/carbon/human/npc/proc/handle_helped(mob/living/carbon/human/npc/source, mob/living/helper)
-	SIGNAL_HANDLER
-
-	source.Annoy(helper)
-
-/mob/living/carbon/human/npc/proc/handle_shoved(mob/living/carbon/human/npc/source, mob/living/attacker, zone_targeted, obj/item/weapon)
-	SIGNAL_HANDLER
-
-	INVOKE_ASYNC(source, PROC_REF(Aggro), attacker, TRUE)
-
-/mob/living/carbon/human/npc/proc/handle_projectile_hit(mob/living/carbon/human/npc/source, atom/movable/firer, atom/target, angle, hit_limb, blocked, pierce_hit)
-	SIGNAL_HANDLER
-
-	if (!isliving(firer))
-		return
-
-	for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-		INVOKE_ASYNC(NEPIC, PROC_REF(Aggro), firer)
-	INVOKE_ASYNC(src, PROC_REF(Aggro), firer, TRUE)
-
-	// TODO: [Rebase] reimplement P25 radios and crime stuff
-	/*
-	var/witness_count
-
-	for (var/mob/living/carbon/human/npc/NEPIC in viewers(7, usr))
-		if (NEPIC?.stat != DEAD)
-			witness_count++
-		if (witness_count > 1)
-			for (var/obj/item/police_radio/radio in GLOB.police_radios)
-				radio.announce_crime("victim", get_turf(src))
-			for (var/obj/machinery/p25transceiver/police/radio in GLOB.p25_transceivers)
-				if (radio.p25_network == "police")
-					radio.announce_crime("victim", get_turf(src))
-					break
-	*/
-
-/mob/living/carbon/human/npc/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	. = ..()
-	if(throwingdatum?.thrower && (AM.throwforce > 5 || (AM.throwforce && src.health < src.maxHealth)))
-		Aggro(throwingdatum.thrower, TRUE)
-
-/mob/living/carbon/human/npc/attackby(obj/item/W, mob/living/user, params)
-	. = ..()
-
-	if (!user)
-		return
-	if (!W.force || ((W.force <= 5) && (health >= maxHealth)))
-		return
-
-	for (var/mob/living/carbon/human/npc/NEPIC in oviewers(7, src))
-		NEPIC.Aggro(user)
-	Aggro(user, TRUE)
-
 /mob/living/carbon/human/npc/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	. = ..()
 
 	last_grab = world.time
 
-// TODO: [Rebase] reimplement ghouls
-/*
-/mob/living/carbon/human/npc/proc/ghoulificate(mob/owner)
-	set waitfor = FALSE
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [owner]`s ghoul?", null, null, null, 50, src)
-	for(var/mob/dead/observer/G in GLOB.player_list)
-		if(G.key)
-			to_chat(G, span_ghostalert("[owner] is ghoulificating [src]."))
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
-		ghoulificated = TRUE
-		set_species(/datum/species/ghoul)
-		if(mind)
-			if(mind.enslaved_to != owner)
-				mind.enslave_mind_to_creator(owner)
-				to_chat(src, span_userdanger("<b>AS PRECIOUS VITAE ENTER YOUR MOUTH, YOU NOW ARE IN THE BLOODBOND OF [owner]. SERVE YOUR REGNANT CORRECTLY, OR YOUR ACTIONS WILL NOT BE TOLERATED.</b>"))
-				return TRUE
-	return FALSE
-*/
+/mob/living/carbon/human/npc/ghoulificate(mob/owner)
+	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
+
+	AddComponent(\
+		/datum/component/ghost_direct_control,\
+		ban_type = ROLE_GHOUL,\
+		poll_candidates = TRUE,\
+		role_name = "[owner]'s ghoul",\
+		poll_length = 30 SECONDS,\
+		poll_question = "Do you want to play as [owner]'s ghoul?",\
+
+		assumed_control_message = "You are now [owner]'s ghoul!",\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
+	)
+
+	//poll_ignore_key = POLL_IGNORE_GHOUL,
+
+	. = ..()
+	return TRUE
+
+/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
+	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")

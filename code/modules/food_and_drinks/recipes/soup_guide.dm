@@ -1,6 +1,7 @@
 /datum/crafting_recipe/food/reaction/soup
 	machinery = list(/obj/machinery/stove)
-	category = CAT_SOUP
+	dish_category = DISH_SOUP
+	meal_category = MEAL_MAIN_COURSE
 	non_craftable = TRUE
 	/// What contained is this reaction expected to be served in?
 	/// Used to determine the icon to display in the crafting UI.
@@ -19,17 +20,12 @@
 
 	return ..()
 
-/datum/crafting_recipe/food/reaction/soup/crafting_ui_data()
-	if(ispath(result, /obj/item/food))
-		return ..()
-
-	var/list/data = list()
-
+/datum/crafting_recipe/food/reaction/soup/get_food_types()
 	var/datum/glass_style/has_foodtype/soup_style = GLOB.glass_style_singletons[expected_container][result]
 	if(istype(soup_style))
-		data["foodtypes"] = bitfield_to_list(soup_style.drink_type, FOOD_FLAGS)
+		return soup_style.drink_type
 
-	return data
+	return ..()
 
 /datum/crafting_recipe/food/reaction/soup/setup_chemical_reaction_details(datum/chemical_reaction/food/soup/chemical_reaction)
 	. = ..()
@@ -55,10 +51,10 @@
 
 /datum/crafting_recipe/food/reaction/soup/coldchili
 	reaction = /datum/chemical_reaction/food/soup/coldchili
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/clownchili
 	reaction = /datum/chemical_reaction/food/soup/clownchili
-
+ */
 /datum/crafting_recipe/food/reaction/soup/tomatosoup
 	reaction = /datum/chemical_reaction/food/soup/tomatosoup
 
@@ -76,7 +72,7 @@
 
 /datum/crafting_recipe/food/reaction/soup/misosoup
 	reaction = /datum/chemical_reaction/food/soup/misosoup
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/slimesoup
 	reaction = /datum/chemical_reaction/food/soup/slimesoup
 
@@ -85,13 +81,13 @@
 
 /datum/crafting_recipe/food/reaction/soup/clownstears
 	reaction = /datum/chemical_reaction/food/soup/clownstears
-
+ */
 /datum/crafting_recipe/food/reaction/soup/mysterysoup
 	reaction = /datum/chemical_reaction/food/soup/mysterysoup
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/monkey
 	reaction = /datum/chemical_reaction/food/soup/monkey
-
+ */
 /datum/crafting_recipe/food/reaction/soup/mushroomsoup
 	reaction = /datum/chemical_reaction/food/soup/mushroomsoup
 
@@ -115,10 +111,10 @@
 
 /datum/crafting_recipe/food/reaction/soup/bungocurry
 	reaction = /datum/chemical_reaction/food/soup/bungocurry
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/reaction/soup/electron
 	reaction = /datum/chemical_reaction/food/soup/electron
-
+ */
 /datum/crafting_recipe/food/reaction/soup/peasoup
 	reaction = /datum/chemical_reaction/food/soup/peasoup
 
@@ -149,4 +145,4 @@
 		/obj/item/reagent_containers/cup/bowl = 1
 	)
 	result= /obj/item/food/bowled/wish
-	category = CAT_SOUP
+	dish_category = DISH_SOUP

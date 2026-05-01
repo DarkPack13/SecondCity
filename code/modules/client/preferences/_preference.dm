@@ -2,35 +2,38 @@
 /// The default priority level
 #define PREFERENCE_PRIORITY_DEFAULT 1
 
+/// For things that should be applied after the default prio, but before species to apply properly.
+#define PREFERENCE_PRIORITY_PRE_SPECIES 2
+
 /// The priority at which species runs, needed for external organs to apply properly.
-#define PREFERENCE_PRIORITY_SPECIES 2
+#define PREFERENCE_PRIORITY_SPECIES 3
 
 /**
  * Some preferences get applied directly to bodyparts (anything head_flags related right now).
  * These must apply after species, as species gaining might replace the bodyparts of the human.
  */
-#define PREFERENCE_PRIORITY_BODYPARTS 3
+#define PREFERENCE_PRIORITY_BODYPARTS 4
 
 /// The priority at which gender is determined, needed for proper randomization.
-#define PREFERENCE_PRIORITY_GENDER 4
+#define PREFERENCE_PRIORITY_GENDER 5
 
 /// The priority at which body type is decided, applied after gender so we can
 /// support the "use gender" option.
-#define PREFERENCE_PRIORITY_BODY_TYPE 5
+#define PREFERENCE_PRIORITY_BODY_TYPE 6
 
 /// Used for preferences that rely on body setup being finalized.
-#define PREFERENCE_PRORITY_LATE_BODY_TYPE 6
+#define PREFERENCE_PRORITY_LATE_BODY_TYPE 7
 
 /// Equpping items based on preferences.
 /// Should happen after species and body type to make sure it looks right.
 /// Mostly redundant, but a safety net for saving/loading.
-#define PREFERENCE_PRIORITY_LOADOUT 7
+#define PREFERENCE_PRIORITY_LOADOUT 8
 
 /// The priority at which names are decided, needed for proper randomization.
-#define PREFERENCE_PRIORITY_NAMES 8
+#define PREFERENCE_PRIORITY_NAMES 9
 
 /// Preferences that aren't names, but change the name changes set by PREFERENCE_PRIORITY_NAMES.
-#define PREFERENCE_PRIORITY_NAME_MODIFICATIONS 9
+#define PREFERENCE_PRIORITY_NAME_MODIFICATIONS 10
 
 // DARKPACK EDIT ADD START - TTRPG preferences
 /// Preferences that work with TTRPG mechanics but aren't magical
@@ -38,10 +41,12 @@
 
 /// Preferences relating to World of Darkness TTRPG elements
 #define PREFERENCE_PRIORITY_WORLD_OF_DARKNESS 11
+
+#define PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT 12
 // DARKPACK EDIT ADD END - TTRPG preferences
 
 /// The maximum preference priority, keep this updated, but don't use it for `priority`.
-#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_WORLD_OF_DARKNESS // DARKPACK EDIT CHANGE - TTRPG Preferences
+#define MAX_PREFERENCE_PRIORITY PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT // DARKPACK EDIT CHANGE - TTRPG Preferences
 
 /// For choiced preferences, this key will be used to set display names in constant data.
 #define CHOICED_PREFERENCE_DISPLAY_NAMES "display_names"
@@ -58,17 +63,13 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /proc/init_preference_entries()
 	var/list/output = list()
-	for (var/datum/preference/preference_type as anything in subtypesof(/datum/preference))
-		if (initial(preference_type.abstract_type) == preference_type)
-			continue
+	for (var/datum/preference/preference_type as anything in valid_subtypesof(/datum/preference))
 		output[preference_type] = new preference_type
 	return output
 
 /proc/init_preference_entries_by_key()
 	var/list/output = list()
-	for (var/datum/preference/preference_type as anything in subtypesof(/datum/preference))
-		if (initial(preference_type.abstract_type) == preference_type)
-			continue
+	for (var/datum/preference/preference_type as anything in valid_subtypesof(/datum/preference))
 		output[initial(preference_type.savefile_key)] = GLOB.preference_entries[preference_type]
 	return output
 
@@ -82,7 +83,8 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	var/list/flattened = list()
 	for (var/index in 1 to MAX_PREFERENCE_PRIORITY)
-		flattened += preferences[index]
+		if(preferences[index])
+			flattened += preferences[index]
 	return flattened
 
 /// Represents an individual preference.
@@ -121,7 +123,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	/// If the selected species has this in its /datum/species/body_markings,
 	/// will show the feature as selectable.
-	var/relevant_body_markings = null
+	var/datum/bodypart_overlay/simple/body_marking/relevant_body_markings = null
 
 	/// If the selected species has this in its /datum/species/inherent_traits,
 	/// will show the feature as selectable.
@@ -129,11 +131,15 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	/// If the selected species has this in its /datum/species/var/external_organs,
 	/// will show the feature as selectable.
-	var/relevant_external_organ = null
+	var/obj/item/organ/relevant_organ = null
 
 	/// If the selected species has this head_flag by default,
 	/// will show the feature as selectable.
 	var/relevant_head_flag = null
+
+	/// If this is a character preference, should we update the character preview
+	/// when this preference is updated?
+	var/should_update_preview = TRUE
 
 /// Called on the saved input when retrieving.
 /// Also called by the value sent from the user through UI. Do not trust it.
@@ -198,16 +204,23 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Given a savefile, writes the inputted value.
 /// Returns TRUE for a successful application.
 /// Return FALSE if it is invalid.
-/datum/preference/proc/write(list/save_data, value)
-	SHOULD_NOT_OVERRIDE(TRUE)
+/datum/preference/proc/write(list/save_data, value, datum/preferences/preferences)
+	//SHOULD_NOT_OVERRIDE(TRUE) // DARKPACK EDIT REMOVAL - I want to overide this acctually c:
 
-	if (!is_valid(value))
+	if (!is_valid(value, preferences))
 		return FALSE
 
 	if (!isnull(save_data))
 		save_data[savefile_key] = serialize(value)
 
+	post_write(value, preferences)
+
 	return TRUE
+
+/// Called after a preference has been updated
+/datum/preference/proc/post_write(value, datum/preferences/preferences)
+	SHOULD_CALL_PARENT(TRUE)
+	return
 
 /// Apply this preference onto the given client.
 /// Called when the savefile_identifier == PREFERENCE_PLAYER.
@@ -285,7 +298,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preferences/proc/write_preference(datum/preference/preference, preference_value)
 	var/save_data = get_save_data_for_savefile_identifier(preference.savefile_identifier)
 	var/new_value = preference.deserialize(preference_value, src)
-	var/success = preference.write(save_data, new_value)
+	var/success = preference.write(save_data, new_value, src)
 	if (success)
 		value_cache[preference.type] = new_value
 	return success
@@ -298,7 +311,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		return FALSE
 
 	var/new_value = preference.deserialize(preference_value, src)
-	var/success = preference.write(null, new_value)
+	var/success = preference.write(null, new_value, src)
 
 	if (!success)
 		return FALSE
@@ -308,7 +321,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	if (preference.savefile_identifier == PREFERENCE_PLAYER)
 		preference.apply_to_client_updated(parent, read_preference(preference.type))
-	else
+	else if (preference.should_update_preview)
 		character_preview_view?.update_body()
 
 	return TRUE
@@ -316,7 +329,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Checks that a given value is valid.
 /// Must be overriden by subtypes.
 /// Any type can be passed through.
-/datum/preference/proc/is_valid(value)
+/datum/preference/proc/is_valid(value, datum/preferences/preferences)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("`is_valid()` was not implemented for [type]!")
@@ -335,16 +348,25 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Checks the species currently selected by the passed preferences object to see if it has this preference's key as a feature.
 /datum/preference/proc/current_species_has_savekey(datum/preferences/preferences)
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/species_type = /datum/species/human // DARKPACK EDIT CHANGE - SPLATS - (Bandaid)
 	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return (savefile_key in species.get_features())
 
+// DARKPACK EDIT ADD START - SPLATS
+/// Checks the splat currently selected by the passed preferences object to see if it has this preference's key as a feature.
+/datum/preference/proc/current_splat_has_savekey(datum/preferences/preferences)
+	var/splat_type = preferences.read_preference(/datum/preference/choiced/splats)
+	var/datum/splat/splat = GLOB.splat_prototypes[splat_type]
+	if(splat)
+		return (savefile_key in splat.get_features())
+// DARKPACK EDIT ADD END
+
 /// Checks if this preference is relevant and thus visible to the passed preferences object.
 /datum/preference/proc/has_relevant_feature(datum/preferences/preferences)
-	if(isnull(relevant_inherent_trait) && isnull(relevant_external_organ) && isnull(relevant_head_flag) && isnull(relevant_body_markings))
+	if(isnull(relevant_inherent_trait) && isnull(relevant_organ) && isnull(relevant_head_flag) && isnull(relevant_body_markings))
 		return TRUE
 
-	return current_species_has_savekey(preferences)
+	return current_splat_has_savekey(preferences) || current_species_has_savekey(preferences) // DARKPACK EDIT CHANGE - SPLATS
 
 /// Returns whether or not this preference is accessible.
 /// If FALSE, will not show in the UI and will not be editable (by update_preference).
@@ -423,7 +445,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	SHOULD_NOT_SLEEP(TRUE)
 	CRASH("`icon_for()` was not implemented for [type], even though should_generate_icons = TRUE!")
 
-/datum/preference/choiced/is_valid(value)
+/datum/preference/choiced/is_valid(value, datum/preferences/preferences)
 	return value in get_choices()
 
 /datum/preference/choiced/deserialize(input, datum/preferences/preferences)
@@ -455,6 +477,71 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	return data
 
+/// This subtype handles a lot of boilerplate for implementing a species preference tied to a feature key / sprite accessory
+/datum/preference/choiced/species_feature
+	abstract_type = /datum/preference/choiced/species_feature
+	/// What feature key does this feature represent?
+	/// Does not need to be set, it will infer it from either relevant_organ or relevant_body_markings.
+	/// However you can set it manually if you have a more complex feature.
+	var/feature_key
+
+/datum/preference/choiced/species_feature/New()
+	. = ..()
+	if(relevant_organ && relevant_organ::bodypart_overlay)
+		feature_key ||= relevant_organ::bodypart_overlay::feature_key
+		main_feature_name ||= capitalize(relevant_organ::name)
+	if(relevant_body_markings)
+		feature_key ||= relevant_body_markings::dna_feature_key
+		main_feature_name ||= "Body markings"
+	if(isnull(feature_key))
+		CRASH("`feature_key` was not set or inferable for [type]!")
+
+/datum/preference/choiced/species_feature/init_possible_values()
+	return assoc_to_keys_features(get_accessory_list())
+
+/datum/preference/choiced/species_feature/create_default_value()
+	return get_consistent_feature_entry(get_accessory_list())
+
+/datum/preference/choiced/species_feature/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features[feature_key] = value
+
+/// Returns what acessory list to draw from
+/datum/preference/choiced/species_feature/proc/get_accessory_list() as /list
+	return SSaccessories.feature_list[feature_key]
+
+/// Get a specific accessory for a given value
+/datum/preference/choiced/species_feature/proc/get_accessory_for_value(value)
+	return get_accessory_list()[value]
+
+// DARKPACK EDIT ADD START
+/// A preference that is a choice of one option among a fixed set.
+/// Used for preferences such as clothing.
+/datum/preference/external_choiced
+	abstract_type = /datum/preference/external_choiced
+
+/datum/preference/external_choiced/proc/get_choices(datum/preferences/preferences)
+	CRASH("`get_choices()` was not implemented for [type]!")
+
+/datum/preference/external_choiced/is_valid(value, datum/preferences/preferences)
+	return value in get_choices(preferences)
+
+// This guy is evil and needs preferences for like every proc
+/datum/preference/external_choiced/write(list/save_data, value, datum/preferences/preferences)
+	if (!is_valid(value, preferences))
+		return FALSE
+
+	if (!isnull(save_data))
+		save_data[savefile_key] = serialize(value)
+
+	return TRUE
+
+/datum/preference/external_choiced/deserialize(input, datum/preferences/preferences)
+	return sanitize_inlist(input, get_choices(preferences), create_default_value(preferences))
+
+/datum/preference/external_choiced/create_default_value(datum/preferences/preferences)
+	return pick(get_choices(preferences))
+// DARKPACK EDIT ADD END
+
 /// A preference that represents an RGB color of something.
 /// Will give the value as 6 hex digits, without a hash.
 /datum/preference/color
@@ -469,7 +556,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/color/serialize(input)
 	return sanitize_hexcolor(input)
 
-/datum/preference/color/is_valid(value)
+/datum/preference/color/is_valid(value, datum/preferences/preferences)
 	return findtext(value, GLOB.is_color)
 
 /// A numeric preference with a minimum and maximum value
@@ -496,7 +583,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/numeric/create_default_value()
 	return rand(minimum, maximum)
 
-/datum/preference/numeric/is_valid(value)
+/datum/preference/numeric/is_valid(value, datum/preferences/preferences)
 	return isnum(value) && value >= round(minimum, step) && value <= round(maximum, step)
 
 /datum/preference/numeric/compile_constant_data()
@@ -519,7 +606,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/deserialize(input, datum/preferences/preferences)
 	return !!input
 
-/datum/preference/toggle/is_valid(value)
+/datum/preference/toggle/is_valid(value, datum/preferences/preferences)
 	return value == TRUE || value == FALSE
 
 
@@ -540,7 +627,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/text/create_default_value()
 	return ""
 
-/datum/preference/text/is_valid(value)
+/datum/preference/text/is_valid(value, datum/preferences/preferences)
 	return istext(value) && length(value) < maximum_value_length
 
 /datum/preference/text/compile_constant_data()

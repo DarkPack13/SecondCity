@@ -24,3 +24,18 @@
 			continue
 
 		Aggro(H, FALSE)
+
+// There was a todo here for creating a npc that stands still. But it seems like we did implement that behavoir
+/mob/living/carbon/human/npc/police/static
+	// fights_anyway = TRUE
+	staying = TRUE
+	max_stat = UNCONSCIOUS
+	my_backup_weapon_type = /obj/item/melee/baton/vamp
+
+/*
+/mob/living/carbon/human/npc/police/Initialize()
+	. = ..()
+
+	if(prob(66))
+		set_body_model(FAT_BODY_MODEL)
+*/

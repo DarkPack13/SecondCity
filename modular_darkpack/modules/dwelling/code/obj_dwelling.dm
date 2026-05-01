@@ -56,13 +56,13 @@
 	color = "#A17037"
 	density = TRUE
 	anchored = TRUE
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	var/search_tries = 0
 	var/search_hits_left = 0 // These should be automated by the system, btu tries typically are double the hits.
 	var/currently_searched = 0 // Terminator for when in use
 
 /obj/structure/vtm/dwelling_container/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.loot_containers.Add(src)
 		area_reference = current_area
@@ -143,20 +143,17 @@
 
 	base_icon_state = "wood"
 	icon_state = "wood-1"
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	locked = 1
 
 /obj/structure/vampdoor/dwelling/proc/set_security(sec_type)
 	switch(sec_type)
 		if("minor")
-			lockpick_difficulty = LOCKDIFFICULTY_3
-			lockpick_timer = LOCKTIMER_3
+			lockpick_difficulty = 5
 		if("moderate")
-			lockpick_difficulty = LOCKDIFFICULTY_5
-			lockpick_timer = LOCKTIMER_5
+			lockpick_difficulty = 6
 		if("major")
-			lockpick_difficulty = LOCKDIFFICULTY_7
-			lockpick_timer = LOCKTIMER_7
+			lockpick_difficulty = 7
 	lock_id = area_reference.area_tag
 
 /obj/structure/vampdoor/dwelling/proc/start_casing(mob/user) //Returns casing and lockpick infromation after a while.
@@ -169,7 +166,7 @@
 			if("major")
 				to_chat(user, span_notice("Both the door and the security system are top notch. Robbing this house is risky but should carry a decent reward. If triggered, the security system will need to be reset every thirty seconds."))
 			if("moderate")
-				to_chat(user, span_notice("The door and security system seem average for San Francisco. Robbing this house carries a moderate risk and moderate rewards. If triggered, the security system will need to be reset every two minutes. "))
+				to_chat(user, span_notice("The door and security system seem average for [CITY_NAME]. Robbing this house carries a moderate risk and moderate rewards. If triggered, the security system will need to be reset every two minutes. "))
 			if("minor")
 				to_chat(user, span_notice("The door and security system seem to be of poor quality. Robbing this house should provide minor rewards, but the security system can be disabled completely."))
 		area_reference.cased_by.Add(user)
@@ -185,7 +182,7 @@
 		start_casing(user)
 
 /obj/structure/vampdoor/dwelling/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.dwelling_doors.Add(src)
 		area_reference = current_area
@@ -197,7 +194,7 @@
 	area_reference = null
 
 /obj/structure/window/fulltile/dwelling
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 
 /obj/structure/window/fulltile/dwelling/process_break_in(severity)
 	if(!area_reference) return
@@ -205,7 +202,7 @@
 
 /obj/structure/window/fulltile/dwelling/Initialize(mapload, direct)
 	. = ..()
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		area_reference = current_area
 		area_reference.dwelling_windows.Add(src)
@@ -255,13 +252,13 @@
 	density = FALSE
 	anchored = TRUE
 	pixel_y = 32
-	var/area/vtm/dwelling/area_reference
+	var/area/vtm/interior/dwelling/area_reference
 	var/alarm_timer = 0
 	var/alarm_active = 0
 	var/alarm_safety = 0
 
 /obj/structure/vtm/dwelling_alarm/Initialize(mapload)
-	var/area/vtm/dwelling/current_area = get_area(src)
+	var/area/vtm/interior/dwelling/current_area = get_area(src)
 	if(current_area)
 		current_area.alarm_panel = src
 		area_reference = current_area
@@ -270,12 +267,7 @@
 /obj/structure/vtm/dwelling_alarm/proc/contact_cops() //Contains the actual act of yelling at cops
 	var/randomized_response_time = rand(1 SECONDS, 30 SECONDS)
 	sleep(randomized_response_time)
-	for(var/obj/item/police_radio/radio in GLOB.police_radios)
-		radio.announce_crime("burglary", get_turf(src))
-	for(var/obj/machinery/p25transceiver/police/transceiver in GLOB.p25_transceivers)
-		if(transceiver.p25_network == "police")
-			transceiver.announce_crime("burglary", get_turf(src))
-			break
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_BURGLARY, get_turf(src))
 
 /obj/structure/vtm/dwelling_alarm/proc/alarm_trigger() //Starts the alarm for the house, calls cops
 	area_reference.alarm_trigerred = 1

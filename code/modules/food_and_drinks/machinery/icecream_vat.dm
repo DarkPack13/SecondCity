@@ -9,7 +9,7 @@
 /obj/machinery/icecream_vat
 	name = "ice cream vat"
 	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
-	icon = 'icons/obj/service/kitchen.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "icecream_vat"
 	density = TRUE
 	anchored = FALSE
@@ -32,9 +32,9 @@
 	///List of all reagenets the icecream vat will spawn with, if preinstall_reagents is TRUE.
 	var/static/list/icecream_vat_reagents = list(
 		/datum/reagent/consumable/milk = 6,
-		/datum/reagent/consumable/korta_milk = 6,
+//		/datum/reagent/consumable/korta_milk = 6, // DARKPACK EDIT REMOVAL
 		/datum/reagent/consumable/flour = 6,
-		/datum/reagent/consumable/korta_flour = 6,
+//		/datum/reagent/consumable/korta_flour = 6, // DARKPACK EDIT REMOVAL
 		/datum/reagent/consumable/sugar = 6,
 		/datum/reagent/consumable/ice = 6,
 		/datum/reagent/consumable/coco = 6,

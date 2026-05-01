@@ -10,6 +10,7 @@
  *
  */
 /datum/emote
+	abstract_type = /datum/emote
 	/// What calls the emote.
 	var/key = ""
 	/// This will also call the emote.
@@ -50,6 +51,7 @@
 	var/stat_allowed = CONSCIOUS
 	/// Sound to play when emote is called.
 	var/sound
+	var/extra_range = 0 // DARKPACK EDIT ADD
 	/// Does this emote vary in pitch?
 	var/vary = FALSE
 	/// If this emote's sound is affected by TTS pitch
@@ -94,12 +96,18 @@
  */
 /datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE)
 	var/msg = select_message_type(user, message, intentional)
-	if(params && message_param)
-		msg = select_param(user, params)
+	if(params)
+		if(message_param)
+			msg = select_param(user, params)
+		else
+			msg = params
 
 	msg = replace_pronoun(user, msg)
 	if(!msg)
 		return
+
+	/// Use the type override if it exists
+	var/running_emote_type = type_override || emote_type
 
 	if(user.client)
 		user.log_message(msg, LOG_EMOTE)
@@ -110,24 +118,27 @@
 		TIMER_COOLDOWN_START(user, "general_emote_audio_cooldown", general_emote_audio_cooldown)
 		var/frequency = null
 		if (affected_by_pitch && SStts.tts_enabled && SStts.pitch_enabled)
-			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * SIGN(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
+			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * sign(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
 		else if(vary)
 			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH)
-		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
+		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, extrarange = get_range(user), ignore_walls = sound_wall_ignore, frequency = frequency) // DARKPACK EDIT CHANGE - (Added extrarange getter)
 
 
-	var/is_important = emote_type & EMOTE_IMPORTANT
-	var/is_visual = emote_type & EMOTE_VISIBLE
-	var/is_audible = emote_type & EMOTE_AUDIBLE
+	var/is_important = running_emote_type & EMOTE_IMPORTANT
+	var/is_visual = running_emote_type & EMOTE_VISIBLE
+	var/is_audible = running_emote_type & EMOTE_AUDIBLE
 	var/additional_message_flags = get_message_flags(intentional)
 
+	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // DARKPACK EDIT ADD
+
+	// DARKPACK EDIT CHANGE START
 	// Emote doesn't get printed to chat, runechat only
-	if(emote_type & EMOTE_RUNECHAT)
+	if(running_emote_type & EMOTE_RUNECHAT)
 		for(var/mob/viewer as anything in viewers(user))
 			if(isnull(viewer.client))
 				continue
 			if(!is_important && viewer != user && (!is_visual || !is_audible))
-				if(is_audible && !viewer.can_hear())
+				if(is_audible && HAS_TRAIT(viewer, TRAIT_DEAF))
 					continue
 				if(is_visual && viewer.is_blind())
 					continue
@@ -138,22 +149,22 @@
 					runechat_flags = EMOTE_MESSAGE,
 				)
 			else if(is_important)
-				to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+				to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT CHANGE - ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
 			else if(is_audible && is_visual)
 				viewer.show_message(
-					span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
-					span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
+					span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE, // DARKPACK EDIT CHANGE - ORIGINAL: span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
+					span_emote("You see how <b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL, // DARKPACK EDIT CHANGE - ORIGINAL: span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
 				)
 			else if(is_audible)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE) // DARKPACK EDIT CHANGE - ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
 			else if(is_visual)
-				viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL) // DARKPACK EDIT CHANGE - ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
 		return // Early exit so no dchat message
 
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+			to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT CHANGE - ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -165,7 +176,7 @@
 	else if(is_visual && is_audible)
 		user.audible_message(
 			message = msg,
-			deaf_message = span_emote("You see how <b>[user]</b> [msg]"),
+			deaf_message = span_emote("You see how <b>[user]</b>[space][msg]"),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 		)
@@ -187,13 +198,15 @@
 		CRASH("Emote [type] has no valid emote type set!")
 
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user]</b> [msg]"
+		// var/dchatmsg = "<b>[user]</b>[space][msg]" // DARKPACK EDIT REMOVAL
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
-			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)] [dchatmsg]"))
+			var/dchatmsg = "<b>[GET_GUESTBOOK_NAME(ghost, user)]</b>[space][msg]" // DARKPACK EDIT ADD
+			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)][space][dchatmsg]"))
+	// DARKPACK EDIT CHANGE END
 
 	return
 
@@ -236,6 +249,11 @@
  */
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
+
+// DARKPACK EDIT ADD START
+/datum/emote/proc/get_range()
+	return extra_range
+// DARKPACK EDIT ADD END
 
 /**
  * To get the flags visible/audible messages for ran by the emote.

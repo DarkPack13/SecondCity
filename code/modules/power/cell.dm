@@ -19,17 +19,21 @@
 	emp_damage_modifier = 1
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*7, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
-	grind_results = list(/datum/reagent/lithium = 15, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 
 /obj/item/stock_parts/power_store/cell/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_FISHING_BAIT, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_POISONOUS_BAIT, INNATE_TRAIT) //bro is fishing using lithium...
+	/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/battery_match)
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
+	*/
+
+/obj/item/stock_parts/power_store/cell/grind_results()
+	return list(/datum/reagent/lithium = 15, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 
 /* Cell variants*/
 /obj/item/stock_parts/power_store/cell/empty
@@ -97,6 +101,10 @@
 	name = "pulse pistol power cell"
 	maxcharge = STANDARD_CELL_CHARGE * 2
 
+/obj/item/stock_parts/power_store/cell/laser_pistol
+	name = "laser pistol power cell"
+	chargerate = STANDARD_CELL_RATE * 0.15
+
 /obj/item/stock_parts/power_store/cell/ninja
 	name = "black power cell"
 	icon_state = "bscell"
@@ -161,7 +169,7 @@
 	ratingdesc = FALSE
 
 /obj/item/stock_parts/power_store/cell/infinite/use(used, force = FALSE)
-	return TRUE
+	return used
 
 /obj/item/stock_parts/power_store/cell/infinite/abductor
 	name = "void core"
@@ -241,7 +249,9 @@
 	charge_light_type = null
 	connector_type = "crystal"
 	custom_materials = null
-	grind_results = null
+
+/obj/item/stock_parts/power_store/cell/crystal_cell/grind_results()
+	return null
 
 /obj/item/stock_parts/power_store/cell/ethereal
 	name = "ahelp it"
@@ -252,8 +262,10 @@
 	charge_light_type = null
 	connector_type = null
 	custom_materials = null
-	grind_results = null
 	emp_damage_modifier = 0
+
+/obj/item/stock_parts/power_store/cell/ethereal/grind_results()
+	return null
 
 /obj/item/stock_parts/power_store/cell/ethereal/examine(mob/user)
 	. = ..()

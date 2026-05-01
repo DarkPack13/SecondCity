@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(job)
 	dependencies = list(
 		/datum/controller/subsystem/processing/station,
 	)
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 
 	/// List of all jobs.
 	var/list/datum/job/all_occupations = list()
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()
 
-	var/overflow_role = /datum/job/assistant
+	var/datum/job/overflow_role = /datum/job/vampire/citizen // DARKPACK EDIT CHANGE - ORIGINAL: var/datum/job/overflow_role = /datum/job/assistant
 
 	var/list/level_order = list(JP_HIGH, JP_MEDIUM, JP_LOW)
 
@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(job)
 	 * See [/datum/controller/subsystem/ticker/proc/equip_characters]
 	 */
 	var/list/chain_of_command = list(
+		/* // DARKPACK EDIT START
 		JOB_CAPTAIN = 1,
 		JOB_HEAD_OF_PERSONNEL = 2,
 		JOB_RESEARCH_DIRECTOR = 3,
@@ -55,6 +56,9 @@ SUBSYSTEM_DEF(job)
 		JOB_CHIEF_MEDICAL_OFFICER = 5,
 		JOB_HEAD_OF_SECURITY = 6,
 		JOB_QUARTERMASTER = 7,
+		*/
+		JOB_PRINCE = 1,
+		// DARKPACK EDIT END
 	)
 
 	/// If TRUE, some player has been assigned Captaincy or Acting Captaincy at some point during the shift and has been given the spare ID safe code.
@@ -426,7 +430,7 @@ SUBSYSTEM_DEF(job)
 	job_debug("DO: Player count to assign roles to: [initial_players_to_assign]")
 
 	//Scale number of open security officer slots to population
-	setup_officer_positions()
+	//setup_officer_positions() DAKRPACK EDIT REMOVAL - JOBS
 
 	//Jobs will have fewer access permissions if the number of players exceeds the threshold defined in game_options.txt
 	var/min_access_threshold = CONFIG_GET(number/minimal_access_threshold)
@@ -595,13 +599,17 @@ SUBSYSTEM_DEF(job)
 
 //Gives the player the stuff he should have with his rank
 /datum/controller/subsystem/job/proc/equip_rank(mob/living/equipping, datum/job/job, client/player_client)
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	// The alt job title, if user picked one, or the default
+	var/alt_title = player_client?.prefs.alt_job_titles?[job.title] || job.title
+	// DARKPACK EDIT ADD END
 	equipping.job = job.title
 
 	SEND_SIGNAL(equipping, COMSIG_JOB_RECEIVED, job)
 
-	equipping.mind?.set_assigned_role_with_greeting(job, player_client)
+	equipping.mind?.set_assigned_role_with_greeting(job, player_client, alt_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: equipping.mind?.set_assigned_role_with_greeting(job, player_client)
 	equipping.on_job_equipping(job, player_client)
-	job.announce_job(equipping)
+	job.announce_job(equipping, alt_title) // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: job.announce_job(equipping)
 
 	if(player_client?.holder)
 		if(CONFIG_GET(flag/auto_deadmin_always) || (player_client.prefs?.toggles & DEADMIN_ALWAYS))
@@ -734,13 +742,19 @@ SUBSYSTEM_DEF(job)
 
 /atom/proc/JoinPlayerHere(mob/joining_mob, buckle)
 	// By default, just place the mob on the same turf as the marker or whatever.
-	joining_mob.forceMove(get_turf(src))
+	// Set joining_mob as the new mob so subtypes can use it as a proper mob.
+	if(ispath(joining_mob))
+		joining_mob = new joining_mob(get_turf(src))
+	else
+		joining_mob.forceMove(get_turf(src))
+	return joining_mob
 
 /obj/structure/chair/JoinPlayerHere(mob/joining_mob, buckle)
-	. = ..()
+	var/mob/created_joining_mob = ..()
 	// Placing a mob in a chair will attempt to buckle it, or else fall back to default.
-	if(buckle && isliving(joining_mob))
-		buckle_mob(joining_mob, FALSE, FALSE)
+	if(buckle && isliving(created_joining_mob))
+		buckle_mob(created_joining_mob, FALSE, FALSE)
+	return created_joining_mob
 
 /datum/controller/subsystem/job/proc/send_to_late_join(mob/M, buckle = TRUE)
 	var/atom/destination
@@ -978,7 +992,7 @@ SUBSYSTEM_DEF(job)
 		job_debug("[debug_prefix]: Player is qdeleted, Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_GENERIC
 
-	return JOB_AVAILABLE
+	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log) // DARKPACK EDIT CHANGE - ORIGINAL: return JOB_AVAILABLE
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type.

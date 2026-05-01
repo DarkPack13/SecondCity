@@ -156,8 +156,8 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = TRUE
 	setup_ruins()
 	loading_ruins = FALSE
-
 #endif
+
 	// Run map generation after ruin generation to prevent issues
 	run_map_terrain_generation()
 	// Generate our rivers, we do this here so the map doesn't load on top of them
@@ -279,7 +279,7 @@ SUBSYSTEM_DEF(mapping)
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	for (var/lava_z in lava_ruins)
-		spawn_rivers(lava_z, 4, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored)
+		spawn_rivers(lava_z, 3, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored) // +1 from the mapped in waypoint
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	for (var/ice_z in ice_ruins)
@@ -351,7 +351,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 
 /datum/controller/subsystem/mapping/Recover()
-	flags |= SS_NO_INIT
+	ss_flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	ruins_templates = SSmapping.ruins_templates
@@ -444,7 +444,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	// load the station
 	station_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [current_map.map_name]...")
-	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup)
+	LoadGroup(FailedZs, "City", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup) // DARKPACK EDIT CHANGE
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
@@ -455,10 +455,12 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef LOWMEMORYMODE
 
+	// DARKPACK EDIT CHANGE START - UMBRA
 	if(current_map.minetype == MINETYPE_LAVALAND)
-		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+		LoadGroup(FailedZs, "Umbra", current_map.umbra_map_path, current_map.umbra_map_file, default_traits = ZTRAITS_UMBRA)
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
+	// DARKPACK EDIT CHANGE END
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
@@ -486,7 +488,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /// Generates the global station area list, filling it with typepaths of unique areas found on the station Z.
 /datum/controller/subsystem/mapping/proc/generate_station_area_list()
 	for(var/area/station/station_area in GLOB.areas)
-		if (!(station_area.area_flags & UNIQUE_AREA))
+		if (!(station_area.area_flags_mapping & UNIQUE_AREA))
 			continue
 		if (is_station_level(station_area.z))
 			GLOB.the_station_areas += station_area.type

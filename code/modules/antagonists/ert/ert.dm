@@ -13,6 +13,7 @@
 	suicide_cry = "FOR NANOTRASEN!!"
 	// Not 'true' antags, this disables certain interactions that assume the owner is a baddie
 	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
+	desensitized_modifier = DESENSITIZED_THRESHOLD * 0.5
 	var/datum/team/ert/ert_team
 	var/leader = FALSE
 	var/datum/outfit/outfit = /datum/outfit/centcom/ert/security
@@ -250,7 +251,7 @@
 
 	to_chat(owner, "<span class='warningplain'><B><font size=3 color=red>You are the [name].</font></B></span>")
 
-	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by Nanotrasen's Security Division."
+	var/missiondesc = "Your squad is being sent on a mission to [station_name()]."  // DARKPACK EDIT CHANGE - ORIGINAL: var/missiondesc = "Your squad is being sent on a mission to [station_name()] by Nanotrasen's Security Division."
 	if(leader) //If Squad Leader
 		missiondesc += " Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready."
 	else

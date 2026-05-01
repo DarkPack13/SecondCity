@@ -75,6 +75,8 @@
 	var/minor_disabilities_desc
 	/// Physical status of this person in medical records.
 	var/physical_status
+	/// If declared dead, this is set as the cause of death, wiped once declared alive again.
+	var/cause_of_death
 	/// Mental status of this person in medical records.
 	var/mental_status
 	/// Positive and neutral quirk strings
@@ -108,6 +110,12 @@
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
+	// DARKPACK EDIT START - FLAVOR TEXT
+	background_information = "",
+	exploitable_information = "",
+	past_medical_records = "",
+	past_criminal_records = "",
+	// DARKPACK EDIT END
 )
 	. = ..()
 	src.lock_ref = lock_ref
@@ -118,6 +126,12 @@
 	src.physical_status = physical_status
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
+	// DARKPACK EDIT START - FLAVOR TEXT
+	src.background_information = background_information
+	src.exploitable_information = exploitable_information
+	src.past_medical_records = past_medical_records
+	src.past_criminal_records = past_criminal_records
+	// DARKPACK EDIT END
 
 	GLOB.manifest.general += src
 
@@ -253,7 +267,7 @@
 	if(alias != name)
 		final_paper_text += "Alias: [alias]<br>"
 
-	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
+	final_paper_text += "Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>" // DARKPACK EDIT CHANGE - ORIGINAL: 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
 
 	final_paper_text += "<center><B>Security Data</B></center><br><br>"
 

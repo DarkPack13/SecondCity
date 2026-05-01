@@ -9,6 +9,9 @@ $include interviews.txt
 $include lua.txt
 $include auxtools.txt
 $include map_vote.txt
+## DARKPACK EDIT ADD START
+$include darkpack_config.txt
+## DARKPACK EDIT ADD END
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -19,13 +22,13 @@ $include map_vote.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-# SERVERNAME tgstation
+# SERVERNAME darkpack
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-# SERVERSQLNAME tgstation
+# SERVERSQLNAME darkpack
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME San Francisco
+# STATIONNAME San Francisco
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -119,12 +122,6 @@ RETA_DEPT_COOLDOWN_DS 150
 ## allow players to initiate a map-change vote
 #ALLOW_VOTE_MAP
 
-## allow players to rock the vote, or to vote on the map again if they didn't like the last results
-#ALLOW_ROCK_THE_VOTE
-
-## the number of times you wish to allow players to rock the vote in a given shift
-MAX_ROCKING_VOTES 1
-
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
 
@@ -141,7 +138,7 @@ VOTE_PERIOD 600
 ## 0 = Cannot respawn (default)
 ## 1 = Can respawn
 ## 2 = Can respawn if choosing a different character
-ALLOW_RESPAWN 0
+ALLOW_RESPAWN 2
 
 ## Respawn delay (deciseconds), which doesn't allow to return to lobby
 RESPAWN_DELAY 0
@@ -199,7 +196,7 @@ IPINTEL_REJECT_BAD
 # FORUMURL http://tgstation13.org/phpBB/index.php
 
 ## Wiki address
-# WIKIURL http://tgstation13.org/wiki
+# WIKIURL https://wiki.tgstation13.org
 
 ## Rules address
 # RULESURL http://tgstation13.org/wiki/Rules
@@ -223,6 +220,9 @@ IPINTEL_REJECT_BAD
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://justanotherday.example.com
+
+## Config URL - Intended for servers that have a repository/public folder/etc. that show off the config that they are running
+# CONFIGURL https://github.com/tgstation-operations/server-config
 
 ## System command that invokes yt-dlp, used by Play Internet Sound.
 ## You can install yt-dlp with
@@ -651,3 +651,7 @@ TGUI_MAX_CHUNK_COUNT 32
 ## While this is uncommented, server initialization will include some asset generation usually useful for development.
 ## It increases initialization time significantly so you'll want to disable this in live environments.
 GENERATE_ASSETS_IN_INIT
+
+## Path from the config folder to the policy json
+POLICY_JSON_PATH policy.json
+

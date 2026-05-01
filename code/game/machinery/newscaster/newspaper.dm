@@ -5,7 +5,7 @@
  */
 /obj/item/newspaper
 	name = "newspaper"
-	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
+	desc = "An issue of " + NEWSPAPER_COMPANY + ", the newspaper circulating around " + CITY_NAME + " and surrounding cities." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "newspaper"
 	inhand_icon_state = "newspaper"
@@ -62,7 +62,7 @@
 		if(IS_WRITING_UTENSIL(held_item))
 			context[SCREENTIP_CONTEXT_LMB] = "Scribble"
 			return CONTEXTUAL_SCREENTIP_SET
-		if(held_item.get_temperature())
+		if(held_item.get_temperature() >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			context[SCREENTIP_CONTEXT_LMB] = "Burn"
 			return CONTEXTUAL_SCREENTIP_SET
 
@@ -234,6 +234,7 @@
 			"name" = news_channels.channel_name,
 			"page_number" = news_content.Find(news_channels),
 		))
+	data["newspaper_company"] = NEWSPAPER_COMPANY // DARKPACK EDIT ADD
 	return data
 
 /obj/item/newspaper/ui_data(mob/user)

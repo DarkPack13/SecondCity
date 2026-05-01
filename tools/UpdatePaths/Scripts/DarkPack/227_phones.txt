@@ -1,0 +1,6 @@
+/obj/item/vamp/phone/street : /obj/item/smartphone/payphone
+/obj/item/vamp/phone/clean : /obj/item/smartphone/clean
+/obj/item/vamp/phone/emergency : /obj/item/smartphone/emergency
+
+/obj/item/vamp/phone/@SUBTYPES : /obj/item/smartphone/@SUBTYPES {@OLD}
+/obj/item/vamp/phone : /obj/item/smartphone {@OLD}

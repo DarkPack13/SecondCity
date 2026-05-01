@@ -1,4 +1,6 @@
 /obj/effect/landmark/npc_spawn_point
+	icon = 'modular_darkpack/modules/deprecated/icons/effects/landmarks_static.dmi'
+	icon_state = "spawn"
 
 /obj/effect/landmark/npc_spawn_point/Initialize(mapload)
 	. = ..()
@@ -50,7 +52,7 @@
 
 /mob/living/carbon/human/npc/death()
 	GLOB.alive_npc_list -= src
-	SShumannpcpool.npclost()
+	SShumannpcpool.try_repopulate()
 	GLOB.move_manager.stop_looping(src)
 
 	if (!last_attacker || (get_dist(src, last_attacker) >= 10) || key || hostile)
@@ -59,29 +61,27 @@
 	if (istype(last_attacker, /mob/living/simple_animal/hostile))
 		var/mob/living/simple_animal/hostile/HS = last_attacker
 		if(HS.my_creator)
-			HS.my_creator.AdjustHumanity(-1, 0)
-			HS.my_creator.last_nonraid = world.time
+			SEND_SIGNAL(HS.my_creator, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 			HS.my_creator.killed_count += 1
 			if(!HS.my_creator.warrant && !HS.my_creator.ignores_warrant)
 				if(HS.my_creator.killed_count >= 5)
 					HS.my_creator.warrant = TRUE
-					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', 0, 0, 75))
+					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', volume = 75))
 					to_chat(HS.my_creator, span_userdanger("<b>POLICE ASSAULT IN PROGRESS</b>"))
 				else
-					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', 0, 0, 75))
+					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', volume = 75))
 					to_chat(HS.my_creator, span_userdanger("<b>SUSPICIOUS ACTION (murder)</b>"))
 	else if (ishuman(last_attacker))
 		var/mob/living/carbon/human/HM = last_attacker
-		HM.AdjustHumanity(-1, 0)
-		HM.last_nonraid = world.time
+		SEND_SIGNAL(HM, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 		HM.killed_count += 1
 		if(!HM.warrant && !HM.ignores_warrant)
 			if(HM.killed_count >= 5)
 				HM.warrant = TRUE
-				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', 0, 0, 75))
+				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', volume = 75))
 				to_chat(HM, span_userdanger("<b>POLICE ASSAULT IN PROGRESS</b>"))
 			else
-				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', 0, 0, 75))
+				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', volume = 75))
 				to_chat(HM, span_userdanger("<b>SUSPICIOUS ACTION (murder)</b>"))
 
 	. = ..()
@@ -122,7 +122,7 @@
 	face_atom(T)
 	step_to(src, T, 0)
 
-	if (!walktarget && old_movement)
+	if (!walktarget || old_movement)
 		return
 	if (observed_by_player())
 		return
@@ -135,7 +135,7 @@
 		if(iswallturf(location))
 			return location
 		for(var/atom/A in location)
-			// TODO: [Rebase] reimplement decor
+			// DARKPACK TODO - reimplement decor
 			/*
 			if(A.density && !istype(A, /obj/structure/lamppost))
 				return location
@@ -214,9 +214,7 @@
 		return FALSE
 	if((last_grab + 1.5 SECONDS) > world.time)
 		return FALSE
-	if(ghoulificated)
-		return FALSE
-	if(key)
+	if(mind || client)
 		return FALSE
 	if(IsSleeping())
 		return FALSE
@@ -230,19 +228,21 @@
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_IMMOBILIZED))
+		return FALSE
 	if(is_talking)
 		return FALSE
 	if(pulledby)
 		if (HAS_TRAIT(pulledby, TRAIT_CHARMER))
 			return FALSE
-		if (prob(30))
+		if (prob(10))
 			execute_resist()
 		return FALSE
 
 	return TRUE
 
 /mob/living/carbon/human/npc/proc/observed_by_player()
-	for (var/mob/observing_mob in viewers(7, src))
+	for (var/mob/observing_mob in viewers(DEFAULT_SIGHT_DISTANCE, src))
 		if (!observing_mob.client)
 			continue
 		return TRUE
@@ -265,15 +265,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// TODO: [Rebase] reimplement fire
-	/*
-	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(7, src))
-		afraid_of_fire = seen_fire
-		seeing_fire = TRUE
-	if (!seeing_fire)
-		afraid_of_fire = null
-	*/
+	afraid_of_fire = locate(/obj/effect/abstract/turf_fire) in view(DEFAULT_SIGHT_DISTANCE, src)
 
 	// Combat behaviour
 	if (danger_source)
@@ -282,7 +274,7 @@
 			GLOB.move_manager.move_away(src, danger_source, 10, cached_multiplicative_slowdown)
 		else
 			// Criminals will attack anyone, others will only attack non-police
-			// TODO: [Rebase] reimplement IDs
+			// DARKPACK TODO - reimplement IDs
 			/*
 			var/obj/item/card/id/id_card = danger_source.get_idcard(FALSE)
 			if (!istype(id_card, /obj/item/card/id/police) || is_criminal)
@@ -308,18 +300,13 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// TODO: [Rebase] reimplement fire
-	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
 		if (prob(25))
 			emote("scream")
-	*/
 
 	// Walking around behaviour
 	else if (walktarget && !staying)
-		if (prob(25))
-			toggle_move_intent(src)
 		GLOB.move_manager.move_to(src, walktarget, 0, cached_multiplicative_slowdown)
 
 	if (!has_weapon || danger_source || !spawned_weapon)

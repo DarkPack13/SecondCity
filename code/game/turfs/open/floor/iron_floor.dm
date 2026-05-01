@@ -472,7 +472,7 @@
 /turf/open/floor/iron/grimy
 	icon_state = "grimy"
 	base_icon_state = "grimy"
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 	floor_tile = /obj/item/stack/tile/iron/grimy
 
 /turf/open/floor/iron/vaporwave
@@ -485,13 +485,14 @@
 	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
 	icon_state = "plaque"
 	base_icon_state = "plaque"
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 	floor_tile = /obj/item/stack/tile/iron/goonplaque
 
 /turf/open/floor/iron/stairs
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "stairs"
 	base_icon_state = "stairs"
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/floor/iron/stairs/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -518,8 +519,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/iron/stairs/old
-	icon_state = "stairs-old"
-	base_icon_state = "stairs-old"
+	icon_state = "stairs" // DARKPACK EDIT CHANGE
+	base_icon_state = "stairs" // DARKPACK EDIT CHANGE
 
 /turf/open/floor/iron/stairs/old/airless
 	initial_gas_mix = AIRLESS_ATMOS

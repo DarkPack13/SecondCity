@@ -1,0 +1,5 @@
+directory = "_maps/map_files/Vampire/westfield_mall/modules/"
+
+
+[rooms.old_train_rail]
+modules = ["old_train_rail_1.dmm", "old_train_rail_2.dmm", "old_train_rail_3.dmm"]

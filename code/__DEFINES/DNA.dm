@@ -57,7 +57,7 @@
 #define FEATURE_MUTANT_COLOR "mcolor"
 #define FEATURE_ETHEREAL_COLOR "ethcolor"
 #define FEATURE_EARS "ears"
-#define FEATURE_TAIL "tail_cat"
+#define FEATURE_TAIL_CAT "tail_cat"
 #define FEATURE_TAIL_LIZARD "tail_lizard"
 #define FEATURE_TAIL_FISH "fish_tail"
 #define FEATURE_SNOUT "snout"
@@ -73,6 +73,7 @@
 
 // Other
 #define FEATURE_WINGS "wings"
+#define FEATURE_WINGS_OPEN "wingsopen"
 #define FEATURE_TAIL_MONKEY "tail_monkey"
 #define FEATURE_TAIL_XENO "tail_xeno"
 #define FEATURE_TAILSPINES "tailspines" // Different from regular spines, these appear on tails
@@ -84,14 +85,22 @@
 #define COPY_DNA_SPECIES (1<<1)
 ///flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the mutations.
 #define COPY_DNA_MUTATIONS (1<<2)
+// DARKPACK EDIT ADD START - Obfuscate Discipline, flag for the transfer_flag argument
+//flag for the transfer_flag argument from dna/proc/copy_dna(). This one copies the blood type
+#define COPY_DNA_BLOOD_TYPE (1<<4)
+// DARKPACK EDIT ADD END
 
 
 //organ slots
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
 #define ORGAN_SLOT_APPENDIX "appendix"
 #define ORGAN_SLOT_BRAIN "brain"
-#define ORGAN_SLOT_BRAIN_CEREBELLUM "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_CNS "brain_antistun"
+/// Brain implants that affect the mob's motor control (grabbing, moving, attacking)
+#define ORGAN_SLOT_BRAIN_CEREBELLUM "brain_motorcontrol"
+/// Brain implants that affect the mob's sensory systems (pain, vision, hearing, etc)
+#define ORGAN_SLOT_BRAIN_CNS "brain_cns"
+/// Brain implants that affect the mob's memory and cognition (skills, knowledge, etc)
+#define ORGAN_SLOT_BRAIN_HIPPOCAMPUS "brain_memory"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"

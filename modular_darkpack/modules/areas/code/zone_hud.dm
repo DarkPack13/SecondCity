@@ -1,22 +1,18 @@
-/atom/movable/screen/vtm_zone
+#define ui_zone_hud "TOP-0:-8,CENTER-0:-8"
+/atom/movable/screen/zone_hud
 	name = "zone"
-	icon = 'modular_darkpack/modules/deprecated/icons/48x48.dmi'
+	icon = 'modular_darkpack/modules/areas/icons/zone_hud.dmi'
 	icon_state = "masquerade"
-	layer = HUD_LAYER
-	plane = HUD_PLANE
-	alpha = 64
+	alpha = 32
+	screen_loc = ui_zone_hud
 
-/mob/living/proc/update_zone_hud()
-	if(!client || !hud_used)
-		return
-	if(hud_used.zone_icon)
-		if(istype(get_area(src), /area/vtm))
-			var/area/vtm/V = get_area(src)
-			hud_used.zone_icon.icon_state = "[V.zone_type]"
-			if(V.zone_type == "elysium")
-				if(!HAS_TRAIT(src, TRAIT_ELYSIUM))
-					ADD_TRAIT(src, TRAIT_ELYSIUM, "elysium")
-			else
-				elysium_checks = 0
-				if(HAS_TRAIT(src, TRAIT_ELYSIUM))
-					REMOVE_TRAIT(src, TRAIT_ELYSIUM, "elysium")
+/mob/living/proc/update_zone_hud(mob/source, area/new_area)
+	SIGNAL_HANDLER
+
+	var/atom/movable/screen/zone_hud = hud_used?.screen_objects[HUD_MOB_ZONE]
+	if(zone_hud)
+		if(!istype(new_area, /area/vtm))
+			return
+		var/area/vtm/our_area = new_area
+		zone_hud.icon_state = "[our_area.zone_type]"
+#undef ui_zone_hud

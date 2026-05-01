@@ -1,22 +1,32 @@
-// Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
-#define SPECIES_KINDRED "kindred"
-#define SPECIES_GHOUL "ghoul"
-
 /// Health level where mobs who can Torpor will actually die
 #define HEALTH_THRESHOLD_TORPOR_DEAD -200
 
-#define iskindred(A) (is_species(A, /datum/species/human/kindred))
-#define isghoul(A) (is_species(A, /datum/species/human/ghoul))
-#define issupernatural(A) (isgarou(A) || isghoul(A) || iskindred(A))
+#define isavatar(A) (istype(A, /mob/living/basic/avatar))
+#define iszomboid(A) (istype(A, /mob/living/basic/zombie) || (istype(A, /mob/living/basic/beastmaster/giovanni_zombie)))
 
+#define SPECIES_FERA "fera"
 
-// TODO: [Rebase] implement other splats
-#define isgarou(A) (FALSE)
+#define SPECIES_FERA_HOMID "homid"
+#define SPECIES_FERA_BESTIAL "bestial"
+#define SPECIES_FERA_WAR "war"
+#define SPECIES_FERA_DIRE "dire"
+#define SPECIES_FERA_FERAL "feral"
 
+// #define SPECIES_GAROU "garou"
+
+// #define isshifted(A) (istype(A, /mob/living/carbon/human/fera))
+//homid
+#define ishomid(A) (is_species(A, /datum/species/human/shifter/homid))
+//bestial e.g glabro
+#define isglabro(A) (is_species(A, /datum/species/human/shifter/bestial))
+//war e.g crinos
+#define iscrinos(A) (is_species(A, /datum/species/human/shifter/war))
+//dire e.g hispo
+#define ishispo(A) (is_species(A, /datum/species/human/shifter/dire))
+//feral e.g lupus
+#define islupus(A) (is_species(A, /datum/species/human/shifter/feral))
 
 
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))
 
-#define SOUL_PRESENT 1
-#define SOUL_ABSENT 2
-#define SOUL_PROJECTING 3
+#define INCORPOREAL_MOVE_AVATAR 4 // Avatar incorporeal movement

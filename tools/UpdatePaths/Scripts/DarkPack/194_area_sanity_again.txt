@@ -1,0 +1,9 @@
+/area/vtm/city_elevator : /area/vtm/interior/elevator
+/area/vtm/elevator : /area/vtm/interior/elevator
+/area/vtm/jazzclub : /area/vtm/interior/jazzclub
+/area/vtm/cabaret : /area/vtm/interior/cabaret
+/area/vtm/clinic : /area/vtm/interior/clinic
+/area/vtm/clinic/haven : /area/vtm/interior/clinic/haven
+/area/vtm/supply : /area/vtm/interior/supply
+/area/vtm/hotel : /area/vtm/interior/hotel
+/area/vtm/church : /area/vtm/interior/church

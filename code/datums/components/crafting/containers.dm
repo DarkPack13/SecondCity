@@ -11,7 +11,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/boh
 	name = "Bag of Holding"
 	reqs = list(
@@ -20,15 +20,16 @@
 	)
 	result = /obj/item/storage/backpack/holding
 	category = CAT_CONTAINERS
-
+*/
 /datum/crafting_recipe/underwater_basket
 	name = "Underwater Basket (Bamboo)"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/bamboo = 20
 	)
 	result = /obj/item/storage/basket
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 	category = CAT_CONTAINERS
-	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED | CRAFT_SKIP_MATERIALS_PARITY
 	steps = list(
 		"master the art of underwater basketweaving",
 		"be underwater"
@@ -47,3 +48,4 @@
 /datum/crafting_recipe/underwater_basket/wheat
 	name = "Underwater Basket (Wheat)"
 	reqs = list(/obj/item/food/grown/wheat = 50)
+

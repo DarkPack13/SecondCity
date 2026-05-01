@@ -1,4 +1,4 @@
-/datum/crafting_recipe/ed209
+/* /datum/crafting_recipe/ed209 // DARKPACK EDIT REMOVAL
 	name = "ED209"
 	result = /mob/living/simple_animal/bot/secbot/ed209
 	reqs = list(
@@ -179,7 +179,7 @@
 		/obj/item/reagent_containers/syringe = 1,
 	)
 	category = CAT_ROBOT
-
+ */
 /datum/crafting_recipe/mod_core_soul
 	name = "MOD core (Soul)"
 	result = /obj/item/mod/core/soul
@@ -192,4 +192,3 @@
 		/obj/item/soulstone = 1,
 	)
 	category = CAT_ROBOT
-	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED

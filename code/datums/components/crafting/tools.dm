@@ -1,3 +1,4 @@
+/*// DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
@@ -7,7 +8,7 @@
 		/obj/item/bikehorn = 1,
 	)
 	category = CAT_TOOLS
-
+ */
 /datum/crafting_recipe/bonfire
 	name = "Bonfire"
 	time = 6 SECONDS
@@ -16,6 +17,7 @@
 	blacklist = list(/obj/item/grown/log/steel)
 	result = /obj/structure/bonfire
 	category = CAT_TOOLS
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/boneshovel
 	name = "Serrated Bone Shovel"
@@ -42,7 +44,7 @@
 	reqs = list(
 		/obj/item/crowbar = 1,
 		/obj/item/knife = 1,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 	)
 	result = /obj/item/pickaxe/improvised
 	category = CAT_TOOLS
@@ -55,7 +57,7 @@
 	)
 	result = /obj/item/stack/medical/bandage/makeshift
 	category = CAT_TOOLS
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/bone_rod
 	name = "Bone Fishing Rod"
 	result = /obj/item/fishing_rod/bone
@@ -107,7 +109,7 @@
 		if(final_check ? crayon.use_charges(user, 10) : !crayon.check_empty(user, 10))
 			return TRUE
 	return FALSE
-
+ */
 /datum/crafting_recipe/makeshift_radio_jammer
 	name = "Makeshift Radio Jammer"
 	result = /obj/item/jammer/makeshift
@@ -118,3 +120,26 @@
 	)
 	category = CAT_TOOLS
 
+/datum/crafting_recipe/jaws_of_recovery
+	name = "Modified Jaws of Recovery"
+	desc = "This one acts like regular jaws of life, letting you pry any door and doesn't announce doors you're prying open."
+	time = 10 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	result = /obj/item/crowbar/power/paramedic/silent
+	reqs = list(
+		/obj/item/crowbar/power = 1,
+		/obj/item/bonesetter = 1,
+	)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/lantern
+	name = "Lantern"
+	result = /obj/item/flashlight/lantern
+	reqs = list(
+		/obj/item/flashlight/flare/candle = 1,
+		/obj/item/stack/rods = 1,
+		/obj/item/stack/sheet/glass = 1,
+	)
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	category = CAT_TOOLS

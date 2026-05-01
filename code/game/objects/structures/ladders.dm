@@ -7,6 +7,7 @@
 	base_icon_state = "ladder"
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 	///the ladder below this one
 	VAR_FINAL/obj/structure/ladder/down
 	///the ladder above this one
@@ -80,7 +81,7 @@
 	RegisterSignal(loc, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_ladder_rim))
 	loc.add_filter(SOURCE_LADDER(ladder), 1, alpha_mask_filter(
 		x = ladder.pixel_x + ladder.pixel_w,
-		y = ladder.pixel_y + ladder.pixel_z,
+		y = ladder.pixel_y + ladder.pixel_z + 8, // DARKPACK EDIT CHANGE
 		render_source = "*[SOURCE_LADDER(ladder)]",
 		flags = MASK_INVERSE,
 	))
@@ -136,8 +137,10 @@
 /obj/structure/ladder/proc/make_base_transparent()
 	if(!SSmapping.level_trait(z, ZTRAIT_DOWN)) // Ladders which are actually teleporting you to another z level
 		return
+	/* DARKPACK EDIT REMOVAL
 	base_pixel_z = initial(base_pixel_z) + 12
 	pixel_z = base_pixel_z
+	*/
 	new /obj/effect/abstract/ladder_hole(loc, src)
 
 /// Clears any ladder holes created by this ladder
@@ -256,7 +259,13 @@
 	show_initial_fluff_message(user, going_up)
 
 	// Our climbers athletics ability
-	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
+	// DARKPACK EDIT CHANGE START - STORYTELLER_STATS
+	// DARKPACK TODO - standardize stat doafter delays
+	var/fitness_level = 1
+	if(isliving(user))
+		var/mob/living/living_user = user
+		fitness_level = living_user.st_get_stat(STAT_DEXTERITY) + living_user.st_get_stat(STAT_ATHLETICS) * travel_time/10
+	// DARKPACK EDIT CHANGE END
 
 	// Misc bonuses to the climb speed.
 	var/misc_multiplier = 1
@@ -287,9 +296,11 @@
 	var/turf/target = get_turf(ladder)
 	user.zMove(target = target, z_move_flags = ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED|ZMOVE_INCLUDE_PULLED)
 
+	/* // DARKPACK EDIT REMOVAL
 	if(grant_exp)
 		var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
 		user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //get a little experience for our trouble
+	*/
 
 	if(!is_ghost)
 		show_final_fluff_message(user, ladder, going_up)

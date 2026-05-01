@@ -68,7 +68,7 @@
 
 /datum/loadout_item/head/cowboy_hat
 	name = "Cowboy Hat"
-	item_path = /obj/item/clothing/head/vampire/cowboy
+	item_path = /obj/item/clothing/head/vampire/cowboy/armorless
 
 /datum/loadout_item/head/top_hat
 	name = "Top Hat"
@@ -105,3 +105,6 @@
 /datum/loadout_item/head/prayer_veil
 	name = "Prayer Veil"
 	item_path = /obj/item/clothing/head/vampire/prayer_veil
+
+/datum/loadout_item/head/beret
+	item_path = /obj/item/clothing/head/beret

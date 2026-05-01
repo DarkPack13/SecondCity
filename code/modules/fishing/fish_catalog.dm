@@ -8,7 +8,7 @@
 
 /obj/item/book/manual/fish_catalog/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -7, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/adjust_fishing_difficulty, -7, ITEM_SLOT_HANDS)
 
 /obj/item/book/manual/fish_catalog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -21,7 +21,7 @@
 	var/static/fish_info
 	if(!fish_info)
 		fish_info = list()
-		for(var/obj/item/fish/fish as anything in subtypesof(/obj/item/fish))
+		for(var/obj/item/fish/fish as anything in valid_subtypesof(/obj/item/fish)) // DARKPACK EDIT CHANGE - FISHING
 			if(!(initial(fish.fish_flags) & FISH_FLAG_SHOW_IN_CATALOG))
 				continue
 			var/list/fish_data = list()

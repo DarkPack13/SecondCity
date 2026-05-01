@@ -2,34 +2,21 @@
 #define SANITIZED_PATH(path)(replacetext(replacetext("[path]", "/obj/item/", ""), "/", "-"))
 
 /obj/structure/retail
+	abstract_type = /obj/structure/retail
 	name = "retail outlet"
 	desc = "A counter for partaking in wretched capitalism. Takes cash or card."
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
-	icon_state = "menu"
+	icon_state = "register"
 	density = FALSE
 	anchored = TRUE
+	anchored_tabletop_offset = 6
 	var/owner_needed = TRUE //Does an npc need to be here for this
 	var/mob/living/carbon/human/npc/my_owner //tracks existence of owner
-	var/is_gun_store = FALSE
 	var/payment_department = ACCOUNT_SRV
 
-	var/list/products_list = list(
-		new /datum/data/vending_product("Plain Donut", /obj/item/food/donut/plain),
-		new /datum/data/vending_product("Plain Jelly Donut", /obj/item/food/donut/jelly/plain),
-		new /datum/data/vending_product("Berry Donut", /obj/item/food/donut/berry),
-		new /datum/data/vending_product("Frosted Jelly Donut", /obj/item/food/donut/jelly/berry),
-		new /datum/data/vending_product("Purple Donut", /obj/item/food/donut/trumpet),
-		new /datum/data/vending_product("Frosted Purple-Jelly Donut", /obj/item/food/donut/jelly/trumpet),
-		new /datum/data/vending_product("Apple Donut", /obj/item/food/donut/apple),
-		new /datum/data/vending_product("Apple Jelly Donut", /obj/item/food/donut/jelly/apple),
-		new /datum/data/vending_product("Caramel Donut", /obj/item/food/donut/caramel),
-		new /datum/data/vending_product("Caramel Jelly Donut", /obj/item/food/donut/jelly/caramel),
-		new /datum/data/vending_product("Chocolate Donut", /obj/item/food/donut/choco),
-		new /datum/data/vending_product("Chocolate Custard Donut", /obj/item/food/donut/jelly/choco),
-		new /datum/data/vending_product("Matcha Donut", /obj/item/food/donut/matcha),
-		new /datum/data/vending_product("Matcha Jelly Donut", /obj/item/food/donut/jelly/matcha),
-		new /datum/data/vending_product("Blueberry Muffin", /obj/item/food/muffin/berry),
-	)
+	var/list/datum/data/vending_product/products_list = list()
+	// Equivlenet to products list if you dont need to pass args. Will likely phase out the evil news in our type path definitions
+	var/list/product_types = list()
 
 /obj/structure/retail/Initialize()
 	. = ..()
@@ -57,9 +44,13 @@
 		if(owner_needed == TRUE && (!my_owner || (get_dist(src, my_owner) > 4) || (my_owner.stat >= HARD_CRIT)))
 			to_chat(user, span_alert("There's no teller here to sell you things..."))
 			return
+		else if(owner_needed == TRUE && my_owner && get_dist(src, my_owner) <= 4)
+			my_owner.say(pick(my_owner.socialrole.random_phrases))
 		ui_interact(user)
 
 /obj/structure/retail/proc/build_inventory()
+	for(var/product_path in product_types)
+		products_list += new /datum/data/vending_product(path = product_path)
 	for(var/datum/data/vending_product/product in products_list)
 		if(!product)
 			CRASH("Null retail product loaded in initialization of [src]. This should not happen!")
@@ -80,6 +71,9 @@
 			return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		if(owner_needed && my_owner)
+			my_owner.face_atom(user)
+			my_owner.realistic_say(pick(my_owner.socialrole.random_phrases))
 		ui = new(user, src, "RetailVendor", name)
 		ui.open()
 
@@ -105,6 +99,7 @@
 		)
 			product_data["icon"] = initial(printed.icon)
 			product_data["icon_state"] = initial(printed.icon_state)
+	.["money_symbol"] = MONEY_SYMBOL
 
 /obj/structure/retail/ui_data(mob/user)
 	. = list()
@@ -123,7 +118,7 @@
 			.["user"]["is_card"] = 1
 			.["user"]["payment_item"] = REF(held_item)
 			break
-		if(iscash(held_item))
+		else if(istype(held_item, /obj/item/stack/dollar))
 			var/obj/item/money = held_item
 			.["user"]["money"] = money.get_item_credit_value()
 			.["user"]["payment_item"] = REF(held_item)
@@ -159,23 +154,27 @@
 				to_chat(usr, span_alert("Error: Product is out of stock!"))
 				return
 
-			//get the money
-			if(is_creditcard(held_item))
-				var/obj/item/card/credit/creditcard = held_item
-				var/datum/bank_account/used_account = creditcard.registered_account
-				if(!used_account)
-					to_chat(user, span_alert("The [creditcard] has no linked account."))
-					return
-				if(!used_account.check_pin(user, product.price, creditcard))
-					return
-				if(!used_account.adjust_money(-1 * product.price))
-					to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
-					return
-				//used_account.process_credit_fraud(user, product.price)
+			if(product.price > 0)
+				//get the money
+				if(is_creditcard(held_item))
+					var/obj/item/card/credit/creditcard = held_item
+					var/datum/bank_account/used_account = creditcard.registered_account
+					if(!used_account)
+						to_chat(user, span_alert("The [creditcard] has no linked account."))
+						return
+					if(!used_account.check_pin(user, product.price, creditcard))
+						return
+					if(!used_account.adjust_money(-1 * product.price))
+						to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
+						return
+					//used_account.process_credit_fraud(user, product.price)
+				else if(istype(held_item, /obj/item/stack/dollar))
+					if(!held_item.use(product.price))
+						to_chat(user, span_alert("You don't have enough money in your hand."))
+						return
+				else
+					return // We have nothing we can pay with.
 
-			else if(istype(held_item, /obj/item/stack/dollar) && !held_item.use(product.price))
-				to_chat(user, span_alert("You don't have enough money in your hand."))
-				return
 			playsound(get_turf(src), 'sound/effects/cashregister.ogg', 50, TRUE)
 			new product.product_path(loc)
 			if(product.amount > 0)

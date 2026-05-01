@@ -1,0 +1,45 @@
+/mob/living/carbon/human/proc/get_gender()
+	var/visible_gender = get_visible_gender()
+	switch(visible_gender)
+		if(MALE)
+			visible_gender = "Man"
+		if(FEMALE)
+			visible_gender = "Woman"
+		else
+			visible_gender = "Person"
+	if(dna?.species.visible_gender_override)
+		visible_gender = dna.species.visible_gender_override
+
+	return visible_gender
+
+/mob/living/carbon/human/proc/get_age()
+	switch(age)
+		if(70 to INFINITY)
+			return "Geriatric"
+		if(60 to 70)
+			return "Elderly"
+		if(50 to 60)
+			return "Old"
+		if(40 to 50)
+			return "Middle-Aged"
+		if(24 to 40)
+			return "" //not necessary because this is basically the most common age range
+		if(18 to 24)
+			return "Young"
+		else
+			return "Puzzling"
+
+/mob/living/proc/get_generic_name(prefixed = FALSE, lowercase = FALSE)
+	var/final_string = name
+	if(prefixed)
+		final_string = "\A [final_string]"
+	return lowercase ? lowertext(final_string) : final_string
+
+/mob/living/carbon/human/get_generic_name(prefixed = FALSE, lowercase = FALSE)
+//	var/visible_skin = GLOB.skin_tone_names[skin_tone] ? "[GLOB.skin_tone_names[skin_tone]] " : null // Removed until we think of a way to do this without calling people "ugly brown woman"
+	var/visible_gender = get_gender()
+	var/visible_age = get_age()
+	var/final_string = "[visible_adjective ? "[visible_adjective] " : null][visible_age ? "[visible_age] " : null][visible_gender]" // removed [visible_skin]
+	if(prefixed)
+		final_string = "\A [final_string]"
+	return lowercase ? lowertext(final_string) : final_string

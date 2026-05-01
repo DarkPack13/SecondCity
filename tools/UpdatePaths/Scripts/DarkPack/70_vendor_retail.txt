@@ -1,6 +1,3 @@
-/obj/machinery/vending/cola/@SUBTYPES : /obj/machinery/vending/cola {@OLD}
-/obj/machinery/vending/snack/@SUBTYPES : /obj/machinery/vending/snack {@OLD}
-
 /obj/machinery/mineral/equipment_vendor/fastfood/snacks : /obj/machinery/vending/snack {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/coffeevendor : /obj/machinery/vending/coffee {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/sodavendor : /obj/machinery/vending/cola {@OLD}
@@ -19,3 +16,5 @@
 /obj/machinery/mineral/equipment_vendor/fastfood/illegal : /obj/structure/retail/black_market {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/america : /obj/structure/retail/gun_store {@OLD}
 /obj/machinery/mineral/equipment_vendor/fastfood/@SUBTYPES : /obj/structure/retail/@SUBTYPES {@OLD}
+
+/obj/structure/retail/grocery : /obj/structure/retail/grocery_store

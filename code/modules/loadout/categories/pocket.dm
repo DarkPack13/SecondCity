@@ -3,9 +3,9 @@
 	category_name = "Other"
 	category_ui_icon = FA_ICON_QUESTION
 	type_to_generate = /datum/loadout_item/pocket_items
-	tab_order = /datum/loadout_category/head::tab_order + 5
+	tab_order = /datum/loadout_category/head::tab_order + 11
 	/// How many pocket items are allowed
-	VAR_PRIVATE/max_allowed = 2
+	VAR_PRIVATE/max_allowed = 6 // DARKPACK EDIT CHANGE - Bumped up realtivly high as it contains a few soft "required" items for gameplay
 
 /datum/loadout_category/pocket/New()
 	. = ..()
@@ -30,25 +30,17 @@
 /datum/loadout_item/pocket_items
 	abstract_type = /datum/loadout_item/pocket_items
 
-/datum/loadout_item/pocket_items/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	// Backpack items aren't created if it's a visual equipping, so don't do any on equip stuff. It doesn't exist.
 	if(visuals_only)
 		return NONE
 
 	return ..()
 
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
-
 /datum/loadout_item/pocket_items/plush
 	group = "Plushies"
 	abstract_type = /datum/loadout_item/pocket_items/plush
-	can_be_named = TRUE
+	loadout_flags = LOADOUT_FLAG_ALLOW_NAMING
 
 /datum/loadout_item/pocket_items/plush/bee
 	name = "Plush (Bee)"
@@ -64,7 +56,7 @@
 
 /datum/loadout_item/pocket_items/plush/lizard_random
 	name = "Plush (Lizard, Random)"
-	can_be_greyscale = DONT_GREYSCALE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 	ui_icon = 'icons/obj/fluff/previews.dmi'
 	ui_icon_state = "plushie_lizard_random"
 	item_path = /obj/item/toy/plush/lizard_plushie
@@ -181,19 +173,15 @@
 	. = ..()
 	.[FA_ICON_PALETTE] = "Recolorable"
 
-/datum/loadout_item/pocket_items/lipstick/on_equip_item(
-	obj/item/lipstick/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only,
-)
+/datum/loadout_item/pocket_items/lipstick/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	. = ..()
-	var/picked_style = style_to_style(preference_list[item_path]?[INFO_LAYER])
-	var/picked_color = preference_list[item_path]?[INFO_GREYSCALE] || /obj/item/lipstick::lipstick_color
-	if(istype(equipped_item)) // can be null for visuals_only
-		equipped_item.style = picked_style
-		equipped_item.lipstick_color = picked_color
+	if(isnull(equipped_item))
+		return
+	var/picked_style = style_to_style(item_details[INFO_LAYER])
+	var/picked_color = item_details[INFO_GREYSCALE] || /obj/item/lipstick::lipstick_color
+	var/obj/item/lipstick/lipstick_item = equipped_item
+	lipstick_item.style = picked_style
+	lipstick_item.lipstick_color = picked_color
 	equipper.update_lips(picked_style, picked_color)
 
 /// Converts style (readable) to style (internal)
@@ -237,7 +225,7 @@
 		if("select_lipstick_color")
 			var/list/their_loadout = manager.preferences.read_preference(/datum/preference/loadout)
 			var/old_color = their_loadout?[item_path]?[INFO_GREYSCALE] || /obj/item/lipstick::lipstick_color
-			var/chosen = input(user, "Pick a lipstick color.", "Pick a color", old_color) as color|null
+			var/chosen = tgui_color_picker(user, "Pick a lipstick color.", "Pick a color", old_color)
 			their_loadout = manager.preferences.read_preference(/datum/preference/loadout) // after sleep: sanity check
 			if(their_loadout?[item_path]) // Validate they still have it equipped
 				their_loadout[item_path][INFO_GREYSCALE] = chosen
@@ -270,6 +258,7 @@
 	name = "Poster (Pinup)"
 	item_path = /obj/item/poster/random_contraband/pinup
 
+/* // DARKPACK EDIT REMOVAL
 /datum/loadout_item/pocket_items/holodisk
 	name = "Holodisk"
 	item_path = /obj/item/disk/holodisk
@@ -277,6 +266,7 @@
 /datum/loadout_item/pocket_items/mug_nt
 	name = "Nanotrasen Mug"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/nanotrasen
+*/
 
 /datum/loadout_item/pocket_items/britcup
 	name = "British Flag Cup"
@@ -285,18 +275,12 @@
 // The wallet loadout item is special, and puts the player's ID and other small items into it on initialize (fancy!)
 /datum/loadout_item/pocket_items/wallet
 	name = "Wallet"
-	item_path = /obj/item/storage/wallet
+	item_path = /obj/item/storage/wallet/darkpack // DARKPACK EDIT CHANGE - ORIGINAL: item_path = /obj/item/storage/wallet
 
 /datum/loadout_item/pocket_items/wallet/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	return
 
-/datum/loadout_item/pocket_items/wallet/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/wallet/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	// Do this at the very end of the setup process so we can insert quirk items and such
 	if(!visuals_only && !isdummy(equipper))
 		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
@@ -308,11 +292,11 @@
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 
 /datum/loadout_item/pocket_items/wallet/proc/equip_wallet(mob/living/carbon/human/equipper)
-	var/obj/item/card/id/advanced/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID)
-	if(istype(id_card, /obj/item/storage/wallet)) // Wallets station trait guard
+	var/obj/item/card/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID) // DARKPACK EDIT CHANGE - ORIGINAL: var/obj/item/card/id/advanced/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID)
+	if(istype(id_card, /obj/item/storage/wallet/darkpack)) // Wallets station trait guard // DARKPACK EDIT CHANGE - ORIGINAL: if(istype(id_card, /obj/item/storage/wallet)) // Wallets station trait guard
 		return
 
-	var/obj/item/storage/wallet/wallet = new(equipper)
+	var/obj/item/storage/wallet/darkpack/wallet = new(equipper) // DARKPACK EDIT CHANGE - ORIGINAL: var/obj/item/storage/wallet/wallet = new(equipper)
 	if(!istype(id_card))
 		// They must have a PDA or some other thing in their ID slot, abort
 		if(!equipper.equip_to_storage(wallet, ITEM_SLOT_BACK, indirect_action = TRUE))
@@ -331,17 +315,11 @@
 			continue
 		wallet.atom_storage.attempt_insert(thing, override = TRUE, force = STORAGE_FULLY_LOCKED, messages = FALSE)
 
-
+/* // DARKPACK EDIT REMOVAL
 /datum/loadout_item/pocket_items/borg_me_dogtag
 	item_path = /obj/item/clothing/accessory/dogtag/borg_ready
 
-/datum/loadout_item/pocket_items/borg_me_dogtag/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/borg_me_dogtag/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only)
 	// We're hooking this datum to add an extra bit of flavor to the dogtag - a pregenerated medical record
 	if(!visuals_only && !isdummy(equipper))
 		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
@@ -353,4 +331,8 @@
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/datum/record/crew/record = find_record(source.real_name)
 	record?.medical_notes += new /datum/medical_note("Central Command", "Patient is a registered brain donor for Robotics research.", null)
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories
+*/
+
+/datum/loadout_item/pocket_items/candles
+	name = "Box of Candles"
+	item_path = /obj/item/storage/fancy/candle_box

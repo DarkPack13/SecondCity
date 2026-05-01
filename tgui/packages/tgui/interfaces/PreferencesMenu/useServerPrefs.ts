@@ -16,6 +16,10 @@ export const ServerPrefs = createContext<ServerData | undefined>({
     quirk_blacklist: [],
     points_enabled: false,
   },
+  personality: {
+    personalities: [],
+    personality_incompatibilities: {},
+  },
   random: {
     randomizable: [],
   },
@@ -23,6 +27,10 @@ export const ServerPrefs = createContext<ServerData | undefined>({
     loadout_tabs: [],
   },
   species: {},
+   // DARKPACK EDIT START
+  splats: {},
+  disciplines: {},
+  // DARKPACK EDIT END
 });
 
 export function useServerPrefs() {

@@ -1,5 +1,3 @@
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
-/// Accessory Items (Moves overrided items to backpack)
 /datum/loadout_category/accessories
 	category_name = "Accessory"
 	category_ui_icon = FA_ICON_VEST
@@ -56,17 +54,13 @@
 		LAZYADD(outfit.backpack_contents, outfit.accessory)
 	outfit.accessory = item_path
 
-/datum/loadout_item/accessory/on_equip_item(
-	obj/item/clothing/accessory/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/accessory/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	. = ..()
-	if(istype(equipped_item))
-		equipped_item.above_suit = !!preference_list[item_path]?[INFO_LAYER]
-		. |= (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING)
+	if(isnull(equipped_item))
+		return .
+	var/obj/item/clothing/accessory/accessory_item = equipped_item
+	accessory_item.above_suit = !!item_details[INFO_LAYER]
+	return . | ITEM_SLOT_OCLOTHING | ITEM_SLOT_ICLOTHING
 
 /datum/loadout_item/accessory/maid_apron
 	name = "Maid Apron"
@@ -75,6 +69,10 @@
 /datum/loadout_item/accessory/waistcoat
 	name = "Waistcoat"
 	item_path = /obj/item/clothing/accessory/waistcoat
+
+/datum/loadout_item/accessory/sweatervest
+	name = "Sweater Vest"
+	item_path = /obj/item/clothing/accessory/sweatervest
 
 /datum/loadout_item/accessory/pocket_protector
 	name = "Pocket Protector"
@@ -87,5 +85,4 @@
 /datum/loadout_item/accessory/pride
 	name = "Pride Pin"
 	item_path = /obj/item/clothing/accessory/pride
-	can_be_reskinned = TRUE
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories
+	reskin_datum = /datum/atom_skin/pride_pin

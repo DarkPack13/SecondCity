@@ -4,7 +4,7 @@
 	icon_state = "wallpaper"
 	plane = GAME_PLANE
 	layer = ABOVE_NORMAL_TURF_LAYER	//WALLPAPER_LAYER dont work
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 // This sucks. Not within the scope of this pr to fix.
 /obj/effect/decal/wallpaper/NeverShouldHaveComeHere(turf/here_turf)
@@ -86,6 +86,9 @@
 
 /obj/effect/decal/wallpaper/stone/low
 	icon_state = "wallpaper-stone_low"
+
+/obj/effect/decal/wallpaper/stone/low/tilt
+	icon_state = "wallpaper-stone_low_tilt"
 
 /obj/effect/decal/wallpaper/gold
 	icon_state = "wallpaper-gold"

@@ -22,7 +22,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	base_icon_state = "match"
 	w_class = WEIGHT_CLASS_TINY
 	heat = 1000
-	grind_results = list(/datum/reagent/phosphorus = 2)
 	/// Whether this match has been lit.
 	var/lit = FALSE
 	/// Whether this match has burnt out.
@@ -31,6 +30,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 10 SECONDS
 	/// If the match is broken
 	var/broken = FALSE
+
+/obj/item/match/grind_results()
+	return list(/datum/reagent/phosphorus = 2)
 
 /obj/item/match/process(seconds_per_tick)
 	smoketime -= seconds_per_tick * (1 SECONDS)
@@ -163,8 +165,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "firebrand"
 	desc = "An unlit firebrand. It makes you wonder why it's not just called a stick."
 	smoketime = 40 SECONDS
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
-	grind_results = list(/datum/reagent/carbon = 2)
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
+
+/obj/item/match/firebrand/grind_results()
+	return list(/datum/reagent/carbon = 2)
 
 /obj/item/match/firebrand/Initialize(mapload)
 	. = ..()
@@ -175,6 +179,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A budget lighter done by using a battery and some aluminium. Hold tightly to ignite."
 	icon_state = "battery_unlit"
 	base_icon_state = "battery"
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/match/battery/attack_self(mob/living/user, modifiers)
 	. = ..()
@@ -190,7 +195,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/cigarette
 	name = "cigarette"
 	desc = "A roll of tobacco and nicotine. It is not food."
-	icon = 'modular_darkpack/master_files/icons/obj/cigarettes.dmi' // DARKPACK EDIT CHANGE
+	icon = 'icons/obj/cigarettes.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/cigarettes_onfloor.dmi') // DARKPACK EDIT ADD
 	worn_icon = 'icons/mob/clothing/mask.dmi'
 	icon_state = "cigoff"
@@ -198,7 +203,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_MASK
-	grind_results = list()
 	heat = 1000
 	light_range = 1
 	light_color = LIGHT_COLOR_FIRE
@@ -233,7 +237,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	/// Should we smoke all of the chems in the cig before it runs out. Splits each puff to take a portion of the overall chems so by the end you'll always have consumed all of the chems inside.
 	var/smoke_all = FALSE
 	/// How much damage this deals to the lungs per drag.
-	var/lung_harm = 1
+	var/lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: var/lung_harm = 1
 	/// If, when glorf'd, we will choke on this cig forever
 	var/choke_forever = FALSE
 	/// When choking, what is the maximum amount of time we COULD choke for
@@ -423,32 +427,44 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	damtype = BURN
 	force = 4
 
-	if(reagents && reagents.has_reagent(/datum/reagent/drug/methamphetamine))
+	if(reagents?.spark_act(0, NONE, banned_reagents = /datum/reagent/flash_powder) & SPARK_ACT_DESTRUCTIVE)
+		usr?.log_message("lit a rigged cigarette", LOG_VICTIM)
+		qdel(src)
+		return
+
+	// Custom handling for the hallucination effect
+	if(reagents?.has_reagent(/datum/reagent/flash_powder))
+		if(!isliving(loc))
+			loc.visible_message(span_hear("\The [src] burns up!"))
+			qdel(src)
+			return
+		var/mob/living/user = loc
+		loc.visible_message(span_hear("[user]'s [name] burns up as [p_they(user)] fall to the ground!"), span_danger("The solution violently explodes!"))
+		user.flash_act(INFINITY, visual = TRUE, length = 5 SECONDS)
+		user.playsound_local(get_turf(user), SFX_EXPLOSION, 50, TRUE)
+		user.cause_hallucination(/datum/hallucination/death, "trick trick [name]")
+		qdel(src)
+		return
+
+	if(reagents?.has_reagent(/datum/reagent/drug/methamphetamine))
 		reagents.flags |= NO_REACT
 
-	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
-		e.start(src)
-		qdel(src)
-		return
-	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) / 5, 1), get_turf(src), 0, 0)
-		e.start(src)
-		qdel(src)
-		return
 	// allowing reagents to react after being lit
+	reagents.handle_reactions()
+	if(QDELETED(src))
+		return
+	START_PROCESSING(SSobj, src)
+
 	update_appearance(UPDATE_ICON)
 	if(flavor_text)
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-	START_PROCESSING(SSobj, src)
 
 	if(iscarbon(loc))
 		var/mob/living/carbon/smoker = loc
 		if(src == smoker.wear_mask)
 			make_mob_smoke(smoker)
+		smoker.trigger_rotschreck(src, 3) // DARKPACK EDIT ADD - FRENZY
 
 /obj/item/cigarette/extinguish()
 	. = ..()
@@ -492,7 +508,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		)
 
 	else if(ishuman(guy_infront) && guy_infront.get_bodypart(BODY_ZONE_HEAD) && !guy_infront.is_pepper_proof())
-		guy_infront.visible_message(
+		smoker.visible_message(
 			span_notice("[smoker] exhales a large cloud of smoke from [src] directly at [guy_infront]'s face!"),
 			span_notice("You exhale a large cloud of smoke from [src] directly at [guy_infront]'s face."),
 			ignored_mobs = guy_infront,
@@ -501,7 +517,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		smoke_in_face(guy_infront)
 
 	else
-		guy_infront.visible_message(
+		smoker.visible_message(
 			span_notice("[smoker] exhales a large cloud of smoke from [src] at [guy_infront]."),
 			span_notice("You exhale a large cloud of smoke from [src] at [guy_infront]."),
 		)
@@ -526,6 +542,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	reagents.expose_temperature(heat, 0.05)
 	if(!reagents.total_volume) //may have reacted and gone to 0 after expose_temperature
 		return
+
 	var/to_smoke = smoke_all ? (reagents.total_volume * (dragtime / smoketime)) : REAGENTS_METABOLISM
 	var/mob/living/carbon/smoker = loc
 	// These checks are a bit messy but at least they're fairly readable
@@ -552,7 +569,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/obj/item/organ/lungs/lungs = smoker.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(lungs && IS_ORGANIC_ORGAN(lungs))
 		var/smoker_resistance = HAS_TRAIT(smoker, TRAIT_SMOKER) ? 0.5 : 1
-		smoker.adjustOrganLoss(ORGAN_SLOT_LUNGS, lung_harm * smoker_resistance)
+		smoker.adjust_organ_loss(ORGAN_SLOT_LUNGS, lung_harm * smoker_resistance)
 	if(!reagents.trans_to(smoker, to_smoke, methods = INHALE, ignore_stomach = TRUE))
 		reagents.remove_all(to_smoke)
 
@@ -652,8 +669,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 60
 	lung_harm = 2.5
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/consumable/menthol = 6, /datum/reagent/medicine/oculine = 1)
+
+/obj/item/cigarette/greytide/Initialize(mapload)
+	. = ..()
 	/// Weighted list of random reagents to add
-	var/static/list/possible_reagents = list(
+	var/list/possible_reagents = list(
 		/datum/reagent/toxin/fentanyl = 2,
 		/datum/reagent/glitter/random = 2,
 		/datum/reagent/drug/aranesp = 2,
@@ -669,9 +689,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		/datum/reagent/consumable/mintextract = 2,
 		/datum/reagent/pax = 1,
 	)
-
-/obj/item/cigarette/greytide/Initialize(mapload)
-	. = ..()
 	if(prob(40))
 		reagents.add_reagent(pick_weight(possible_reagents), rand(10, 15))
 
@@ -708,8 +725,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/cigarette/xeno
 	desc = "A Xeno Filtered brand cigarette."
-	lung_harm = 2
-	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
+	lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: lung_harm = 2
+	list_reagents = list (/datum/reagent/drug/nicotine = 20) // DARKPACK EDIT CHANGE - ORIGINAL: list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
+
+/obj/item/cigarette/flash_powder
+	desc = /obj/item/cigarette/space_cigarette::desc
+	list_reagents = list (/datum/reagent/drug/nicotine = 9, /datum/reagent/flash_powder = 5)
 
 // Rollies.
 
@@ -832,7 +853,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 65
 	list_reagents = list(/datum/reagent/drug/nicotine = 45)
 	choke_time_max = 40 SECONDS
-	lung_harm = 2
+	lung_harm = 0.1 // DARKPACK EDIT CHANGE - ORIGINAL: lung_harm = 2
 
 /obj/item/cigarette/dart/Initialize(mapload)
 	. = ..()
@@ -874,16 +895,18 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 20 MINUTES
 	chem_volume = 80
 	list_reagents = list(/datum/reagent/drug/nicotine = 40)
+	type_butt = /obj/item/cigbutt/cigarbutt/cohiba
 
 /obj/item/cigarette/cigar/havana
 	name = "premium Havanian cigar"
 	desc = "A cigar fit for only the best of the best."
-	icon_state = "cigar2off"
-	icon_on = "cigar2on"
-	icon_off = "cigar2off"
+	icon_state = "cigar3off"
+	icon_on = "cigar3on"
+	icon_off = "cigar3off"
 	smoketime = 30 MINUTES
 	chem_volume = 60
 	list_reagents = list(/datum/reagent/drug/nicotine = 45)
+	type_butt = /obj/item/cigbutt/cigarbutt/havana
 
 /obj/item/cigbutt
 	name = "cigarette butt"
@@ -892,12 +915,20 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigbutt"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
-	grind_results = list(/datum/reagent/carbon = 2)
+
+/obj/item/cigbutt/grind_results()
+	return list(/datum/reagent/carbon = 2)
 
 /obj/item/cigbutt/cigarbutt
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
+
+/obj/item/cigbutt/cigarbutt/cohiba
+	icon_state = "cigar2butt"
+
+/obj/item/cigbutt/cigarbutt/havana
+	icon_state = "cigar3butt"
 
 /////////////////
 //SMOKING PIPES//
@@ -916,6 +947,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = null
 	w_class = WEIGHT_CLASS_SMALL
 	choke_forever = TRUE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
 	///name of the stuff packed inside this pipe
 	var/packeditem
 
@@ -993,7 +1025,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	inhand_icon_on = null
 	inhand_icon_off = null
 	lung_harm = 2
-	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3)
 
 ///////////
 //ROLLING//
@@ -1105,9 +1137,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	balloon_alert(user, "voltage maximized")
 	icon_state = "vapeopen_high"
 	set_greyscale(new_config = /datum/greyscale_config/vape/open_high)
-	var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread //for effect
-	sp.set_up(5, 1, src)
-	sp.start()
+	do_sparks(5, TRUE, src)
 	return TRUE
 
 /obj/item/vape/attack_self(mob/user)
@@ -1129,8 +1159,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	to_chat(user, span_notice("You start puffing on the vape."))
 	reagents.flags &= ~(NO_REACT)
-	START_PROCESSING(SSobj, src)
+	reagents.handle_reactions()
+	if(QDELETED(src))
+		return
 	set_light_on(TRUE)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/vape/dropped(mob/user)
 	. = ..()
@@ -1153,11 +1186,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		vaper.adjust_fire_stacks(2)
 		vaper.ignite_mob()
 
-	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
-		e.start(src)
+	// Preserve old welding fuel behavior
+	if(reagents.spark_act(0, TRUE, banned_reagents = /datum/reagent/fuel) & SPARK_ACT_DESTRUCTIVE)
 		qdel(src)
+		return
 
 	if(!reagents.trans_to(vaper, REAGENTS_METABOLISM, methods = INHALE, ignore_stomach = TRUE))
 		reagents.remove_all(REAGENTS_METABOLISM)
@@ -1181,23 +1213,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	//Time to start puffing those fat vapes, yo.
 	COOLDOWN_START(src, drag_cooldown, dragtime)
 	if(obj_flags & EMAGGED)
-		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/puff = new
-		puff.set_up(4, holder = src, location = loc, carry = reagents, efficiency = 24)
-		puff.start()
+		var/smoke_amount = DIAMOND_AREA(4)
+		do_chem_smoke(amount = smoke_amount, holder = src, location = loc, carry = reagents, carry_limit = 20, smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine)
+		reagents.remove_all(smoke_amount / 24)
 		if(prob(5)) //small chance for the vape to break and deal damage if it's emagged
 			playsound(get_turf(src), 'sound/effects/pop_expl.ogg', 50, FALSE)
 			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
 			M.Paralyze(300)
-			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
-			sp.set_up(5, 1, src)
-			sp.start()
+			do_sparks(5, TRUE, src)
 			to_chat(M, span_userdanger("[src] suddenly explodes in your mouth!"))
 			qdel(src)
 			return
 	else if(super)
-		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/puff = new
-		puff.set_up(1, holder = src, location = loc, carry = reagents, efficiency = 24)
-		puff.start()
+		var/smoke_amount = DIAMOND_AREA(1)
+		do_chem_smoke(amount = smoke_amount, holder = src, location = loc, carry = reagents, carry_limit = 20, smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine)
+		reagents.remove_all(smoke_amount / 24)
 
 	handle_reagents()
 

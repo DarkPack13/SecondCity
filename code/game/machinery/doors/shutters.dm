@@ -2,13 +2,14 @@
 	gender = PLURAL
 	name = "shutters"
 	desc = "Heavy duty mechanical shutters with an atmospheric seal that keeps them airtight once closed."
-	icon = 'icons/obj/doors/shutters.dmi'
-	layer = SHUTTER_LAYER
-	closingLayer = SHUTTER_LAYER
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters.dmi' // DARKPACK EDIT CHANGE
+	layer = ABOVE_ALL_MOB_LAYER // DARKPACK EDIT CHANGE
+	closingLayer = ABOVE_ALL_MOB_LAYER // DARKPACK EDIT CHANGE
 	damage_deflection = 20
 	armor_type = /datum/armor/poddoor_shutters
 	max_integrity = 100
 	recipe_type = /datum/crafting_recipe/shutters
+	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 	animation_sound = 'sound/machines/shutter.ogg'
 	show_nav_computer_icon = FALSE
 
@@ -30,6 +31,14 @@
 		if(DOOR_CLOSING_FINISHED)
 			return 1.388 SECONDS
 
+// DARKPACK EDIT ADD START
+/obj/machinery/door/poddoor/shutters/topless
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters_topless.dmi'
+
+/obj/machinery/door/poddoor/shutters/preopen/topless
+	icon = 'modular_darkpack/master_files/icons/obj/doors/shutters_topless.dmi'
+// DARKPACK EDIT ADD END
+
 /obj/machinery/door/poddoor/shutters/preopen
 	icon_state = "open"
 	density = FALSE
@@ -37,6 +46,7 @@
 
 /obj/machinery/door/poddoor/shutters/preopen/deconstructed
 	deconstruction = BLASTDOOR_NEEDS_WIRES
+	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/machinery/door/poddoor/shutters/indestructible
 	name = "hardened shutters"

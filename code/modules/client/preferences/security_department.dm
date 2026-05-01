@@ -1,9 +1,10 @@
 /// Which department to put security officers in, when the config is enabled
 /datum/preference/choiced/security_department
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null // DARKPACK EDIT CHANGE - ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	can_randomize = FALSE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "prefered_security_department"
+	should_update_preview = FALSE
 
 // This is what that #warn wants you to remove :)
 /datum/preference/choiced/security_department/deserialize(input, datum/preferences/preferences)

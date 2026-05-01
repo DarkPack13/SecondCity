@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(title)
 	name = "Title Screen"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_EARLY
 	var/file_path
 	var/icon/icon
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(title)
 		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
 
 	if(!file_path)
-		file_path = "icons/runtime/default_title.dmi"
+		file_path = "modular_darkpack/master_files/icons/runtime/default_title.dmi" // DARKPACK EDIT CHANGE - Titlescreen
 
 	ASSERT(fexists(file_path))
 

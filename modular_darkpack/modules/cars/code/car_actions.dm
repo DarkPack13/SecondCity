@@ -71,7 +71,7 @@
 	//vamp_car.balloon_alert(owner, trunk_datum.locked ? "locked" : "unlocked")
 	to_chat(owner, span_notice("You [trunk_datum.locked ? "locked" : "unlocked"] [vamp_car]'s baggage."))
 
-	playsound(vamp_car, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(vamp_car, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 
 /datum/action/darkpack_car/engine
 	name = "Toggle Engine"
@@ -82,6 +82,15 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(isliving(owner))
+		var/mob/living/driver = owner
+		if(CONFIG_GET(flag/punishing_zero_dots) && driver.st_get_stat(STAT_DRIVE) < 1)
+			to_chat(owner, span_danger("You don't know what you're doing!"))
+			return FALSE
+
+	if(!ISADVANCEDTOOLUSER(clicker))
+		return
+
 	var/obj/darkpack_car/owned_car = owner.loc
 	if(!owned_car.on)
 		if((owned_car.get_integrity() == owned_car.max_integrity) || (prob(100*(owned_car.get_integrity()/owned_car.max_integrity))))
@@ -132,6 +141,6 @@
 	if(owner?.client)
 		owner.client.pixel_x = 0
 		owner.client.pixel_y = 0
-	playsound(owned_car, 'modular_darkpack/master_files/sounds/door.ogg', 50, TRUE)
+	playsound(owned_car, 'modular_darkpack/master_files/sounds/effects/door/door.ogg', 50, TRUE)
 	for(var/datum/action/darkpack_car/C in owner.actions)
 		qdel(C)

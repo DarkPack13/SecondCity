@@ -9,6 +9,7 @@
 	var/shell_capacity = SHELL_CAPACITY_SMALL
 	/// Can a mouse play this instrument?
 	var/mouse_playable = TRUE
+	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/instrument/piano_synth/Initialize(mapload)
 	. = ..()
@@ -119,7 +120,7 @@
 	sustain_value = add_input_port("Note Sustain Value", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_value))
 	note_decay = add_input_port("Held Note Decay", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_decay))
 
-	is_playing = add_output_port("Currently Playing", PORT_TYPE_NUMBER)
+	is_playing = add_output_port("Currently Playing", PORT_TYPE_BOOLEAN)
 	started_playing = add_output_port("Started Playing", PORT_TYPE_SIGNAL)
 	stopped_playing = add_output_port("Stopped Playing", PORT_TYPE_SIGNAL)
 

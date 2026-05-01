@@ -5,6 +5,8 @@
 #define SODA_FIZZINESS_THROWN 15
 /// How much fizziness is added to the can of soda by shaking it, in percentage points
 #define SODA_FIZZINESS_SHAKE 5
+/// At what atmospheric pressure do we burst a soda can? Empirical evidance (one googled experiment video) states that ~67.458 kPa is where a can bursts.
+#define SODA_EXPLOSION_PRESSURE 67.458
 
 /obj/item/reagent_containers/cup/soda_cans
 	name = "soda can"
@@ -13,17 +15,24 @@
 	icon_state_preview = "cola"
 	abstract_type = /obj/item/reagent_containers/cup/soda_cans
 	initial_reagent_flags = NONE
-	custom_price = PAYCHECK_CREW * 0.9
+	custom_price = 1 // DARKPACK EDIT CHANGE - ECONOMY
 	obj_flags = CAN_BE_HIT
 	possible_transfer_amounts = list(5, 10, 15, 25, 30)
 	volume = 30
 	throwforce = 12 // set to 0 upon being opened. Have you ever been domed by a soda can? Those things fucking hurt
 	/// If the can hasn't been opened yet, this is the measure of how fizzed up it is from being shaken or thrown around. When opened, this is rolled as a percentage chance to burst
 	var/fizziness = 0
+	/// Have we been sealed with tape? And if so, what color is it?
+	var/tape_color = null
+	/// Color of our fuse, if any
+	var/fuse_color = null
+	/// Timer for our explosion
+	var/fuse_timer = null
 
 /obj/item/reagent_containers/cup/soda_cans/Initialize(mapload, vol)
 	. = ..()
 	AddElement(/datum/element/slapcrafting, string_list(list(/datum/crafting_recipe/improv_explosive)))
+	AddElement(/datum/element/atmos_sensitive, mapload) //Enables soda cans to explode in vaccuum.
 
 /obj/item/reagent_containers/cup/soda_cans/random/Initialize(mapload)
 	..()
@@ -36,7 +45,7 @@
 		H.visible_message(span_warning("[H] is trying to take a big sip from [src]... The can is empty!"))
 		return SHAME
 	if(!is_drainable())
-		open_soda()
+		open_soda(H)
 		sleep(1 SECONDS)
 	H.visible_message(span_suicide("[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!"))
 	playsound(H,'sound/items/drink.ogg', 80, TRUE)
@@ -64,24 +73,24 @@
 	return TOXLOSS
 
 /obj/item/reagent_containers/cup/soda_cans/interact_with_atom(atom/target, mob/living/user, list/modifiers)
-	if(iscarbon(target) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
-		if(target == user)
-			user.visible_message(
-				span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"),
-				span_notice("You crush the can of [src] on your forehead."),
-			)
-		else
-			user.visible_message(
-				span_warning("[user] crushes the can of [src] on [target]'s forehead!"),
-				span_notice("You crush the can of [src] on [target]'s forehead."),
-			)
-		playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
-		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
-		crushed_can.icon_state = icon_state
-		qdel(src)
-		return ITEM_INTERACT_SUCCESS
+	if(!iscarbon(target) || reagents.total_volume || !user.combat_mode || user.zone_selected != BODY_ZONE_HEAD)
+		return ..()
 
-	return ..()
+	if(target == user)
+		user.visible_message(
+			span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"),
+			span_notice("You crush the can of [src] on your forehead."),
+		)
+	else
+		user.visible_message(
+			span_warning("[user] crushes the can of [src] on [target]'s forehead!"),
+			span_notice("You crush the can of [src] on [target]'s forehead."),
+		)
+	playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
+	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
+	crushed_can.icon_state = icon_state
+	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/soda_cans/bullet_act(obj/projectile/proj)
 	. = ..()
@@ -96,6 +105,14 @@
 	qdel(src)
 
 /obj/item/reagent_containers/cup/soda_cans/proc/open_soda(mob/user)
+	if(tape_color)
+		to_chat(user, "You rip off the tape covering [src]'s hole.")
+		playsound(user, 'sound/items/duct_tape/duct_tape_rip.ogg', 50, TRUE)
+		tape_color = null
+		add_container_flags(OPENCONTAINER)
+		update_appearance()
+		return
+
 	if(prob(fizziness))
 		user.visible_message(span_danger("[user] opens [src], and is suddenly sprayed by the fizzing contents!"), span_danger("You pull back the tab of [src], and are suddenly sprayed with a torrent of liquid! Ahhh!!"))
 		burst_soda(user)
@@ -132,9 +149,120 @@
 	reagents.clear_reagents()
 	throwforce = 0
 
+/obj/item/reagent_containers/cup/soda_cans/wirecutter_act(mob/living/user, obj/item/tool)
+	if (!fuse_color)
+		return NONE
+	to_chat(user, span_notice("You snip [src]'s fuse off."))
+	tool.play_tool_sound(src, 50)
+	add_fingerprint(user)
+	fuse_color = null
+	if (!isnull(fuse_timer))
+		deltimer(fuse_timer)
+		fuse_timer = null
+		log_bomber(user, "has disarmed", src)
+	if (heatable)
+		AddElement(/datum/element/reagents_item_heatable)
+	update_appearance()
+
+/obj/item/reagent_containers/cup/soda_cans/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if (istype(tool, /obj/item/stack/cable_coil))
+		if (fuse_color)
+			to_chat(user, span_warning("[src] already has a fuse attached to it!"))
+			return ITEM_INTERACT_BLOCKING
+
+		if (tape_color)
+			to_chat(user, span_warning("[src]'s hole is covered up with tape!"))
+			return ITEM_INTERACT_BLOCKING
+
+		if (!is_drainable())
+			to_chat(user, span_warning("[src] hasn't been opened yet!"))
+			return ITEM_INTERACT_BLOCKING
+
+		var/obj/item/stack/cable_coil/coil = tool
+		var/coil_color = GLOB.cable_colors[coil.cable_color]
+		add_fingerprint(user)
+		if (!coil.use(1))
+			return ITEM_INTERACT_BLOCKING
+
+		fuse_color = coil_color
+		// Heating replaced with lighting the fuse
+		RemoveElement(/datum/element/reagents_item_heatable)
+		to_chat(user, span_notice("You attach a fuse to [src]."))
+		log_bomber(user, "attached a fuse to", src)
+		update_appearance()
+		return ITEM_INTERACT_SUCCESS
+
+	if (istype(tool, /obj/item/stack/medical/wrap/sticky_tape))
+		if (tape_color)
+			to_chat(user, span_warning("[src]'s hole is already covered up with tape!"))
+			return ITEM_INTERACT_BLOCKING
+
+		if (!is_drainable())
+			to_chat(user, span_warning("[src] hasn't been opened yet!"))
+			return ITEM_INTERACT_BLOCKING
+
+		var/obj/item/stack/medical/wrap/sticky_tape/tape = tool
+		var/list/tape_colors = SSgreyscale.ParseColorString(tape.greyscale_colors)
+		add_fingerprint(user)
+		if (!tape.use(1))
+			return ITEM_INTERACT_BLOCKING
+
+		tape_color = tape_colors[1]
+		to_chat(user, span_notice("You wrap [src] up in [tape]."))
+		reset_container_flags()
+		update_appearance()
+		return ITEM_INTERACT_SUCCESS
+
+	if (!fuse_color || tool.get_temperature() < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+		return ..()
+
+	if (fuse_timer)
+		to_chat(user, span_warning("[src] is already lit!"))
+		return ITEM_INTERACT_BLOCKING
+
+	add_fingerprint(user)
+	log_bomber(user, "has primed a rigged", src)
+	to_chat(user, span_warning("You light [src]'s fuse!"))
+	fuse_timer = addtimer(CALLBACK(src, PROC_REF(try_detonate)), rand(2 SECONDS, 4 SECONDS))
+	update_appearance()
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/reagent_containers/cup/soda_cans/proc/try_detonate()
+	var/spark_flags = SPARK_ACT_WEAKEN_COMMON
+	if (tape_color)
+		spark_flags |= SPARK_ACT_ENCLOSED
+
+	playsound(src, 'sound/effects/sparks/sparks1.ogg', 50, TRUE)
+	if (reagents.spark_act(0, spark_flags) & SPARK_ACT_DESTRUCTIVE)
+		qdel(src)
+		return
+
+	// Was a dud
+	fuse_color = null
+	tape_color = null
+	add_container_flags(OPENCONTAINER)
+	if (heatable)
+		AddElement(/datum/element/reagents_item_heatable)
+	update_appearance()
+
+/obj/item/reagent_containers/cup/soda_cans/update_overlays()
+	. = ..()
+	if (fuse_color)
+		var/mutable_appearance/fuse_overlay = mutable_appearance('icons/obj/weapons/grenade.dmi', "improvised_grenade_fuse")
+		fuse_overlay.color = fuse_color
+		. += fuse_overlay
+
+	if (tape_color)
+		var/mutable_appearance/tape_overlay = mutable_appearance('icons/obj/weapons/grenade.dmi', "improvised_grenade_tape")
+		tape_overlay.color = tape_color
+		. += tape_overlay
+
+	if (fuse_timer)
+		. += mutable_appearance('icons/obj/weapons/grenade.dmi', "improvised_grenade_active")
+
 /obj/item/reagent_containers/cup/soda_cans/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(. || is_open_container() || !reagents.total_volume) // if it was caught, already opened, or has nothing in it
+	if(. || is_open_container() || !reagents.total_volume || tape_color) // if it was caught, already opened, or has nothing in it
 		return
 
 	fizziness += SODA_FIZZINESS_THROWN
@@ -149,9 +277,14 @@
 	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact
 
 /obj/item/reagent_containers/cup/soda_cans/attack_self(mob/user)
+	if(fuse_timer)
+		balloon_alert(user, "the fuse is on fire!")
+		return
+
 	if(!is_drainable())
 		open_soda(user)
 		return
+
 	return ..()
 
 /obj/item/reagent_containers/cup/soda_cans/attack_self_secondary(mob/user)
@@ -170,19 +303,27 @@
 		. += span_notice("<i>You examine [src] closer, and note the following...</i>")
 		. += "\t[span_warning("You get a menacing aura of fizziness from it...")]"
 
+/obj/item/reagent_containers/cup/soda_cans/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return ((air.return_pressure() <= SODA_EXPLOSION_PRESSURE) && !(reagents.flags & OPENCONTAINER))
+
+/obj/item/reagent_containers/cup/soda_cans/atmos_expose(datum/gas_mixture/air, exposed_temperature)
+	if(reagents.total_volume && !(reagents.flags & OPENCONTAINER))
+		burst_soda(loc)
+
 #undef SODA_FIZZINESS_THROWN
 #undef SODA_FIZZINESS_SHAKE
+#undef SODA_EXPLOSION_PRESSURE
 
 /obj/item/reagent_containers/cup/soda_cans/cola
-	name = "Space Cola"
-	desc = "Cola. in space."
+	name = "Cola" // DARKPACK EDIT CHANGE
+	desc = "Refreshing and caffinated cola." // DARKPACK EDIT CHANGE
 	icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	drink_type = SUGAR
 
 /obj/item/reagent_containers/cup/soda_cans/tonic
-	name = "T-Borg's tonic water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	name = "T-Bone's tonic water" // DARKPACK EDIT CHANGE
+	desc = "Quinine tastes funny, but at least it'll keep that Malaria away." // DARKPACK EDIT CHANGE
 	icon_state = "tonic"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/tonic = 50)
@@ -207,15 +348,15 @@
 	name = "lemon-lime soda"
 
 /obj/item/reagent_containers/cup/soda_cans/sol_dry
-	name = "Sol Dry"
+	name = "Sals Dry" // DARKPACK EDIT CHANGE
 	desc = "Maybe this will help your tummy feel better. Maybe not."
 	icon_state = "sol_dry"
 	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
 	drink_type = SUGAR
 
 /obj/item/reagent_containers/cup/soda_cans/space_up
-	name = "Space-Up!"
-	desc = "Tastes like a hull breach in your mouth."
+	name = "Six-Up!" // DARKPACK EDIT CHANGE
+	desc = "Half as good with none of the caffine!" // DARKPACK EDIT CHANGE
 	icon_state = "space-up"
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	drink_type = SUGAR | JUNKFOOD
@@ -228,15 +369,15 @@
 	drink_type = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/space_mountain_wind
-	name = "Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
+	name = "Mountain Wind" // DARKPACK EDIT CHANGE
+	desc = "Blows right through you like a steep mountain's wind." // DARKPACK EDIT CHANGE
 	icon_state = "space_mountain_wind"
 	list_reagents = list(/datum/reagent/consumable/spacemountainwind = 30)
 	drink_type = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/thirteenloko
 	name = "Thirteen Loko"
-	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
+	desc = "The FDA has advised citizens that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly." // DARKPACK EDIT CHANGE
 	icon_state = "thirteen_loko"
 	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30)
 	drink_type = SUGAR | JUNKFOOD
@@ -277,8 +418,8 @@
 	drink_type = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/grey_bull
-	name = "Grey Bull"
-	desc = "Grey Bull, it gives you gloves!"
+	name = "Red Bat" // DARKPACK EDIT CHANGE
+	desc = "Red Bat, it gives you wings!" // DARKPACK EDIT CHANGE
 	icon_state = "energy_drink"
 	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
 	drink_type = SUGAR | JUNKFOOD
@@ -313,8 +454,8 @@
 	list_reagents = list(/datum/reagent/nitrogen = 24, /datum/reagent/oxygen = 6)
 
 /obj/item/reagent_containers/cup/soda_cans/beer
-	name = "space beer"
-	desc = "Canned beer. In space."
+	name = "beer" // DARKPACK EDIT CHANGE
+	desc = "Canned beer." // DARKPACK EDIT CHANGE
 	icon_state = "space_beer"
 	volume = 40
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 40)
@@ -322,7 +463,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/beer/rice
 	name = "rice beer"
-	desc = "A light, rice-based lagered beer popular on Mars. Considered a hate crime against Bavarians under the Reinheitsgebot Act of 1516."
+	desc = "A light, rice-based lagered beer. Considered a hate crime against Bavarians under the Reinheitsgebot Act of 1516." // DARKPACK EDIT CHANGE
 	icon_state = "ebisu"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rice_beer = 40)
 
@@ -333,10 +474,10 @@
 	switch(brand)
 		if("Ebisu Super Dry")
 			icon_state = "ebisu"
-			desc = "Mars' favourite rice beer brand, 200 years running."
+			desc = "America's favourite rice beer brand, 200 years running." // DARKPACK EDIT CHANGE
 		if("Shimauma Ichiban")
 			icon_state = "shimauma"
-			desc = "Mars' most middling rice beer brand. Not as popular as Ebisu, but it's comfortable in second place."
+			desc = "America's most middling rice beer brand. Not as popular as Ebisu, but it's comfortable in second place." // DARKPACK EDIT CHANGE
 		if("Moonlabor Malt's")
 			icon_state = "moonlabor"
-			desc = "Mars' underdog rice beer brand. Popular amongst the Yakuza, for reasons unknown."
+			desc = "America's underdog rice beer brand. Popular amongst the Yakuza, for reasons unknown." // DARKPACK EDIT CHANGE

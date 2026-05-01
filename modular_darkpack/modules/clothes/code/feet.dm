@@ -15,8 +15,7 @@
 
 /obj/item/clothing/shoes/vampire/Initialize(mapload)
 	. = ..()
-	// TODO: [Rebase] reimplement selling stuff
-	//AddComponent(/datum/component/selling, 5, "shoes", FALSE)
+	AddComponent(/datum/component/selling, 5, "shoes", FALSE)
 
 /obj/item/clothing/shoes/vampire/brown
 	icon_state = "shoes_brown"
@@ -52,6 +51,21 @@
 
 /obj/item/clothing/shoes/vampire/sneakers/red
 	icon_state = "sneakers_red"
+
+/obj/item/clothing/shoes/vampire/blackfur
+	name = "black fur boots"
+	desc = "A furry pair of black and white boots"
+	icon_state = "furboots_black"
+
+/obj/item/clothing/shoes/vampire/brownfur
+	name = "brown fur boots"
+	desc = "A furry pair of brown boots"
+	icon_state = "furboots_brown"
+
+/obj/item/clothing/shoes/vampire/pumped
+	name = "knee-high sneakers"
+	desc = "Sneakers from the popular brand Converts"
+	icon_state = "pumped_up_kicks"
 
 /obj/item/clothing/shoes/vampire/heels
 	name = "heels"

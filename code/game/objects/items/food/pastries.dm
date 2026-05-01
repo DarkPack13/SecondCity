@@ -15,7 +15,7 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
-	custom_price = 1 // DARKPACK EDIT ADD - FOOD
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/muffin/berry
 	name = "berry muffin"
@@ -142,6 +142,7 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = 1 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/cookie/Initialize(mapload)
 	. = ..()
@@ -161,6 +162,7 @@
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = 0.25 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/fortunecookie/proc/get_fortune()
 	var/atom/drop_location = drop_location()
@@ -471,7 +473,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/brownie_sheet/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
 
 /obj/item/food/brownie
 	name = "brownie"
@@ -520,7 +522,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/peanut_butter_brownie_sheet/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/peanut_butter_brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/peanut_butter_brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
 
 /obj/item/food/peanut_butter_brownie
 	name = "peanut butter brownie"

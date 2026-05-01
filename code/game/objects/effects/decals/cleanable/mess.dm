@@ -82,7 +82,7 @@
 	if(!isnull(broken_flooring))
 		return
 	var/turf/T = get_turf(src)
-	if(T.tiled_dirt && is_tileable)
+	if(T.tiled_turf && is_tileable)
 		icon = 'icons/effects/dirt.dmi'
 		icon_state = "dirt-0"
 		smoothing_flags = SMOOTH_BITMASK
@@ -194,7 +194,8 @@
 	if(. || !ishuman(user))
 		return
 	var/mob/living/carbon/human/as_human = user
-	if(!isflyperson(as_human))
+	var/obj/item/organ/tongue/user_tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
+	if(!istype(user_tongue, /obj/item/organ/tongue/fly))
 		return
 	playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
 	as_human.visible_message(span_alert("[as_human] extends a small proboscis into the vomit pool, sucking it with a slurping sound."))
@@ -354,17 +355,27 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 /obj/effect/decal/cleanable/garbage
 	name = "trash bag" // DARKPACK EDIT CHANGE - ORIGINAL: name = "decomposing garbage"
 	desc = "Holds garbage inside." // DARKPACK EDIT CHANGE - ORIGINAL: desc = "A split open garbage bag, its stinking content seems to be partially liquified. Yuck!"
-	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: icon = 'icons/obj/debris.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: icon = 'icons/obj/debris.dmi'
 	icon_state = "garbage1" // DARKPACK EDIT CHANGE - ORIGINAL: icon_state = "garbage"
 	plane = GAME_PLANE
 	layer = CLEANABLE_OBJECT_LAYER
 	beauty = -150
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
+// DARKPACK EDIT ADD START
+/obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+// DARKPACK EDIT ADD END
+
 /obj/effect/decal/cleanable/garbage/Initialize(mapload)
 	. = ..()
 	icon_state = "garbage[rand(1, 6)]" // DARKPACK EDIT ADD
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 15)
+
+// DARKPACK EDIT ADD START
+/obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+// DARKPACK EDIT ADD END
 
 /obj/effect/decal/cleanable/rubble
 	name = "rubble"
@@ -383,3 +394,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	flick("rubble_bounce", src)
 	icon_state = "rubble"
 	update_appearance(UPDATE_ICON_STATE)
+
+/obj/effect/decal/cleanable/can_bits
+	name = "shredded can"
+	desc = "This story doesn't hold water anymore."

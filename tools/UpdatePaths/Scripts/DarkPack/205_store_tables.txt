@@ -1,0 +1,11 @@
+/obj/structure/rack/bubway : /obj/structure/table/countertop/bubway
+/obj/structure/rack/bubway/@SUBTYPES : /obj/structure/table/countertop/bubway
+
+/obj/structure/rack/tacobell : /obj/structure/table/countertop/bacotell
+/obj/structure/rack/tacobell/@SUBTYPES : /obj/structure/table/countertop/bacotell
+
+/obj/structure/table/bubway : /obj/structure/table/countertop/bubway
+/obj/structure/table/bubway@SUBTYPES : /obj/structure/table/countertop/bubway
+
+/obj/structure/table/bacotell : /obj/structure/table/countertop/bacotell
+/obj/structure/table/bacotell/@SUBTYPES : /obj/structure/table/countertop/bacotell

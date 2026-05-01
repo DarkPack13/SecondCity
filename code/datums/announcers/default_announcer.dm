@@ -1,5 +1,5 @@
 /datum/centcom_announcer/default
-	welcome_sounds = list('sound/announcer/default/welcome.ogg')
+	welcome_sounds = list('modular_darkpack/master_files/sounds/announce.ogg') // DARKPACK EDIT CHANGE
 	alert_sounds = list('sound/announcer/default/attention.ogg')
 	command_report_sounds = list('sound/announcer/default/commandreport.ogg')
 	event_sounds = list(ANNOUNCER_AIMALF = 'sound/announcer/default/aimalf.ogg',

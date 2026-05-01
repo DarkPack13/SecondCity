@@ -4,13 +4,19 @@
 	inherent_traits = list(
 		TRAIT_USES_SKINTONES,
 	)
-	skinned_type = /obj/item/stack/sheet/animalhide/human
+	skinned_type = /obj/item/stack/sheet/animalhide/carbon/human
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.1
 
 /datum/species/human/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.set_haircolor("#bb9966", update = FALSE) // brown
-	human.set_hairstyle("Business Hair", update = TRUE)
+	// DARKPACK EDIT CHANGE START
+	// human.set_haircolor("#bb9966", update = FALSE) // brown
+	human.set_hairstyle("Bald", update = TRUE)
+	human.set_facial_hairstyle("Beard (Goatee)", update = TRUE)
+	human.set_facial_haircolor("#7E3F00")
+	human.undershirt = "T-Shirt (Yellow)"
+	human.update_body()
+	// DARKPACK EDIT CHANGE END
 
 /datum/species/human/get_scream_sound(mob/living/carbon/human/human)
 	if(human.physique == MALE)
@@ -119,7 +125,7 @@
 		hypercorporations buy the senate votes they need and establish territory far past the Earth Government's reach. \
 		In hypercorporation territory company policy is law, giving new meaning to \"employee termination\".",
 	)
-
+/* // DARKPACK EDIT REMOVAL START - (We aren't using the AI, so this is currently useless and immersion breaking)
 /datum/species/human/create_pref_unique_perks()
 	var/list/to_add = list()
 
@@ -143,3 +149,4 @@
 		))
 
 	return to_add
+*/ // DARKPACK EDIT REMOVAL END

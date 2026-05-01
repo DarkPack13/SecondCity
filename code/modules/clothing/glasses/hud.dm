@@ -1,4 +1,5 @@
 /obj/item/clothing/glasses/hud
+	gender = NEUTER
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
@@ -93,6 +94,7 @@
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_MEDICAL_HUD)
 
 /obj/item/clothing/glasses/hud/health/sunglasses
+	gender = PLURAL
 	name = "medical HUDSunglasses"
 	desc = "Sunglasses with a medical HUD."
 	icon_state = "sunhudmed"
@@ -100,7 +102,9 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT / 2)
 
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/glasses/hud/health/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunmedremoval)
@@ -109,7 +113,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
@@ -134,6 +138,7 @@
 	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
 
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	gender = PLURAL
 	name = "diagnostic sunglasses"
 	desc = "Sunglasses with a diagnostic HUD."
 	icon_state = "sunhuddiag"
@@ -141,7 +146,9 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT / 2)
 
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsundiagremoval)
@@ -150,7 +157,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
 	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records."
@@ -177,6 +184,7 @@
 	user.update_worn_glasses()
 
 /obj/item/clothing/glasses/hud/security/sunglasses
+	gender = PLURAL
 	name = "security HUDSunglasses"
 	desc = "Sunglasses with a security HUD."
 	icon_state = "sunhudsec"
@@ -184,7 +192,9 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT / 2)
 
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunsecremoval)
@@ -193,7 +203,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
 	desc = "An advanced heads-up display that provides ID data and vision in complete darkness."
@@ -210,6 +220,7 @@
 	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
+	gender = PLURAL
 	name = "\improper HUD gar glasses"
 	desc = "GAR glasses with a HUD."
 	icon_state = "gar_sec"
@@ -243,18 +254,14 @@
 	if (wearer.glasses != src)
 		return
 
-	for(var/trait in clothing_traits)
-		REMOVE_CLOTHING_TRAIT(user, trait)
-
 	if (TRAIT_MEDICAL_HUD in clothing_traits)
-		clothing_traits = null
+		detach_clothing_traits(TRAIT_MEDICAL_HUD)
 	else if (TRAIT_SECURITY_HUD in clothing_traits)
-		clothing_traits = list(TRAIT_MEDICAL_HUD)
+		detach_clothing_traits(TRAIT_MEDICAL_HUD)
+		attach_clothing_traits(TRAIT_SECURITY_HUD)
 	else
-		clothing_traits = list(TRAIT_SECURITY_HUD)
-
-	for(var/trait in clothing_traits)
-		ADD_CLOTHING_TRAIT(user, trait)
+		detach_clothing_traits(TRAIT_MEDICAL_HUD)
+		attach_clothing_traits(TRAIT_SECURITY_HUD)
 
 /datum/action/item_action/switch_hud
 	name = "Switch HUD"
@@ -271,7 +278,7 @@
 /obj/item/clothing/glasses/hud/toggle/thermal/attack_self(mob/user)
 	..()
 	var/hud_type
-	if (!isnull(clothing_traits) && clothing_traits.len)
+	if (LAZYLEN(clothing_traits))
 		hud_type = clothing_traits[1]
 	switch (hud_type)
 		if (TRAIT_MEDICAL_HUD)
@@ -296,6 +303,7 @@
 	thermal_overload()
 
 /obj/item/clothing/glasses/hud/spacecop
+	gender = PLURAL
 	name = "police aviators"
 	desc = "For thinking you look cool while brutalizing protestors and minorities."
 	icon_state = "bigsunglasses"
@@ -306,6 +314,7 @@
 
 
 /obj/item/clothing/glasses/hud/spacecop/hidden // for the undercover cop
+	gender = PLURAL
 	name = "sunglasses"
 	desc = "These sunglasses are special, and let you view potential criminals."
 	icon_state = "sun"

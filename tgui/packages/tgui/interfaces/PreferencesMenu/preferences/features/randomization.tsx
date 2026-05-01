@@ -68,22 +68,22 @@ export const random_name: Feature<RandomSetting> = {
   },
 };
 
-export const random_species: Feature<RandomSetting> = {
-  name: 'Random species',
+export const random_splats: Feature<RandomSetting> = { // DARKPACK EDIT CHANGE - SPLATS
+  name: 'Random splats', // DARKPACK EDIT CHANGE - SPLATS
   component: (props) => {
     const { act, data } = useBackend<PreferencesMenuData>();
 
-    const species = data.character_preferences.randomization.species;
+    const splats = data.character_preferences.randomization.splats; // DARKPACK EDIT CHANGE - SPLATS
 
     return (
       <RandomizationButton
         setValue={(newValue) =>
           act('set_random_preference', {
-            preference: 'species',
+            preference: 'splats', // DARKPACK EDIT CHANGE - SPLATS
             value: newValue,
           })
         }
-        value={species || RandomSetting.Disabled}
+        value={splats || RandomSetting.Disabled} // DARKPACK EDIT CHANGE - SPLATS
       />
     );
   },

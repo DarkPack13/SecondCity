@@ -1,0 +1,4 @@
+/turf/closed/wall/vampwall : /turf/closed/wall/vampwall/brick_old {@OLD}
+/turf/closed/wall/vampwall/low : /turf/closed/wall/vampwall/brick_old/low {@OLD}
+/turf/closed/wall/vampwall/low/window : /turf/closed/wall/vampwall/brick_old/low/window {@OLD}
+/turf/closed/wall/vampwall/low/window/reinforced : /turf/closed/wall/vampwall/brick_old/low/window/reinforced {@OLD}

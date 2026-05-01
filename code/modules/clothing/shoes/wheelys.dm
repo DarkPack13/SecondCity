@@ -15,6 +15,7 @@
 	worn_y_dimension = 64
 	clothing_flags = parent_type::clothing_flags | LARGE_WORN_ICON
 	actions_types = list(/datum/action/item_action/wheelys)
+	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 	///False means wheels are not popped out
 	var/wheelToggle = FALSE
 	///The vehicle associated with the shoes
@@ -39,6 +40,7 @@
 		wheelToggle = FALSE
 		return
 	wheels.forceMove(get_turf(user))
+	wheels.setDir(user.dir)
 	wheels.buckle_mob(user)
 	wheelToggle = TRUE
 
@@ -73,7 +75,7 @@
 	slowdown = SHOES_SLOWDOWN+1
 	wheels = /obj/vehicle/ridden/scooter/skateboard/wheelys/rollerskates
 	custom_premium_price = PAYCHECK_CREW * 5
-	custom_price = PAYCHECK_CREW * 5
+	custom_price = 30 // DARKPACK EDIT CHANGE - ECONOMY
 
 /obj/item/clothing/shoes/wheelys/skishoes
 	name = "ski shoes"
@@ -89,3 +91,4 @@
 	wheels = /obj/vehicle/ridden/scooter/skateboard/wheelys/skishoes
 	custom_premium_price = PAYCHECK_CREW * 1.6
 	custom_price = PAYCHECK_CREW * 1.6
+	clothing_traits = list(TRAIT_NO_SNOWPRINTS)

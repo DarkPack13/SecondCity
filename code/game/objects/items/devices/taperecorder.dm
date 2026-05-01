@@ -29,6 +29,7 @@
 	var/time_left_warning = 60 SECONDS
 	///Sound loop that plays when recording or playing back.
 	var/datum/looping_sound/tape_recorder_hiss/soundloop
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/taperecorder/Initialize(mapload)
 	. = ..()
@@ -109,8 +110,8 @@
 	update_appearance()
 
 /obj/item/taperecorder/fire_act(exposed_temperature, exposed_volume)
-	mytape.unspool() //Fires unspool the tape, which makes sense if you don't think about it
-	..()
+	mytape?.unspool() //Fires unspool the tape, which makes sense if you don't think about it
+	return ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/taperecorder/attack_hand(mob/user, list/modifiers)
@@ -127,7 +128,6 @@
 
 /obj/item/taperecorder/verb/ejectverb()
 	set name = "Eject Tape"
-	set category = "Object"
 
 	if(!can_use(usr))
 		balloon_alert(usr, "can't use!")
@@ -135,7 +135,6 @@
 	if(!mytape)
 		balloon_alert(usr, "no tape!")
 		return
-
 	eject(usr)
 
 
@@ -153,7 +152,7 @@
 	return ..()
 
 
-/obj/item/taperecorder/Hear(atom/movable/speaker, message_langs, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, list/message_mods = list(), message_range)
+/obj/item/taperecorder/Hear(atom/movable/speaker, message_langs, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT CHANGE - ORIGINAL: /obj/item/taperecorder/Hear(atom/movable/speaker, message_langs, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, list/message_mods = list(), message_range)
 	. = ..()
 	if(message_mods[MODE_RELAY] || !mytape || istype(speaker, /obj/item/taperecorder))
 		return
@@ -164,7 +163,6 @@
 
 /obj/item/taperecorder/verb/record()
 	set name = "Start Recording"
-	set category = "Object"
 
 	if(!can_use(usr))
 		balloon_alert(usr, "can't use!")
@@ -207,7 +205,6 @@
 
 /obj/item/taperecorder/verb/stop()
 	set name = "Stop"
-	set category = "Object"
 
 	if(!can_use(usr))
 		balloon_alert(usr, "can't use!")
@@ -228,7 +225,6 @@
 
 /obj/item/taperecorder/verb/play()
 	set name = "Play Tape"
-	set category = "Object"
 
 	if(!can_use(usr))
 		balloon_alert(usr, "can't use!")
@@ -301,7 +297,6 @@
 
 /obj/item/taperecorder/verb/print_transcript()
 	set name = "Print Transcript"
-	set category = "Object"
 
 	var/list/transcribed_info = mytape.storedinfo
 	if(!length(transcribed_info))
@@ -396,6 +391,7 @@
 	var/unspooled = FALSE
 	var/list/icons_available = list()
 	var/radial_icon_file = 'icons/hud/radial_tape.dmi'
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/tape/Initialize(mapload)
 	. = ..()

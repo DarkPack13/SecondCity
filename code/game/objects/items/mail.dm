@@ -158,12 +158,12 @@
 		. += span_notice("<i>You notice the postmarking on the front of the mail...</i>")
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient)
-		. += span_info("[postmarked ? "Certified NT" : "Uncertfieid"] mail for [recipient].")
+		. += span_info("[postmarked ? "Certified [CITY_NAME]" : "Uncertfieid"] mail for [recipient].") // DARKPACK EDIT CHANGE
 	else if(postmarked)
 		. += span_info("Certified mail for [GLOB.station_name].")
 	else
 		. += span_info("This is a dead letter mail with no recipient.")
-	. += span_info("Distribute by hand or via destination tagger using the certified NT disposal system.")
+	. += span_info("Distribute by hand or via destination tagger using the certified [CITY_NAME] disposal system.") // DARKPACK EDIT CHANGE
 
 /// Accepts a mind to initialize goodies for a piece of mail.
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)
@@ -400,10 +400,18 @@
 	user.temporarilyRemoveItemFromInventory(src, force = TRUE)
 	playsound(loc, 'sound/items/poster/poster_ripped.ogg', vol = 50, vary = TRUE)
 	for(var/obj/item/stuff as anything in contents) // Mail and envelope actually can have more than 1 item.
-		if(user.put_in_hands(stuff) && armed)
-			var/whomst = made_by_cached_name ? "[made_by_cached_name] ([made_by_cached_ckey])" : "no one in particular"
-			log_bomber(user, "opened armed mail made by [whomst], activating", stuff)
-			INVOKE_ASYNC(stuff, TYPE_PROC_REF(/obj/item, attack_self), user)
+		if(!armed)
+			continue
+		var/whomst = made_by_cached_name ? "[made_by_cached_name] ([made_by_cached_ckey])" : "no one in particular"
+		log_bomber(user, "opened armed mail made by [whomst], activating", stuff)
+
+		if(SEND_SIGNAL(stuff, COMSIG_ITEM_IN_UNWRAPPED_TRAITOR_MAIL, user, src) & COMPONENT_TRAITOR_MAIL_HANDLED)
+			continue
+
+		if(!user.put_in_hands(stuff))
+			continue
+
+		INVOKE_ASYNC(stuff, TYPE_PROC_REF(/obj/item, attack_self), user)
 	qdel(src)
 	return TRUE
 
@@ -418,20 +426,18 @@
 		playsound(src, 'sound/machines/defib/defib_ready.ogg', vol = 100, vary = TRUE)
 		armed = FALSE
 		return TRUE
-	else
-		balloon_alert(user, "tinkering with something...")
+	balloon_alert(user, "tinkering with something...")
 
-		if(!do_after(user, 2 SECONDS, target = src))
-			after_unwrap(user)
-			return FALSE
-		if(prob(50))
-			balloon_alert(user, "disarmed something...?")
-			playsound(src, 'sound/machines/defib/defib_ready.ogg', vol = 100, vary = TRUE)
-			armed = FALSE
-			return TRUE
-		else
-			after_unwrap(user)
-			return TRUE
+	if(!do_after(user, 2 SECONDS, target = src))
+		after_unwrap(user)
+		return FALSE
+	if(prob(50))
+		balloon_alert(user, "disarmed something...?")
+		playsound(src, 'sound/machines/defib/defib_ready.ogg', vol = 100, vary = TRUE)
+		armed = FALSE
+		return TRUE
+	after_unwrap(user)
+	return TRUE
 
 ///Generic mail used in the mail strike shuttle loan event
 /obj/item/mail/mail_strike

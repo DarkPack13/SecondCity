@@ -27,14 +27,16 @@
 		LSATCHEL,
 		GDUFFELBAG,
 		GMESSENGER,
+		/* DARKPACK EDIT REMOVAL
 		DBACKPACK,
 		DSATCHEL,
 		DDUFFELBAG,
 		DMESSENGER,
+		*/
 	)
 
 /datum/preference/choiced/backpack/create_default_value()
-	return DBACKPACK
+	return GBACKPACK // DARKPACK EDIT CHANGE
 
 /datum/preference/choiced/backpack/icon_for(value)
 	switch (value)
@@ -70,7 +72,7 @@
 	savefile_key = "jumpsuit_style"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
-	main_feature_name = "Jumpsuit"
+	main_feature_name = "Suit or Skirt" // DARKPACK EDIT CHANGE
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
 
@@ -86,9 +88,9 @@
 /datum/preference/choiced/jumpsuit/icon_for(value)
 	switch (value)
 		if (PREF_SUIT)
-			return /obj/item/clothing/under/color/grey
+			return /obj/item/clothing/under/vampire/baali // DARKPACK EDIT CHANGE
 		if (PREF_SKIRT)
-			return /obj/item/clothing/under/color/jumpskirt/grey
+			return /obj/item/clothing/under/vampire/baali/female // DARKPACK EDIT CHANGE
 
 /datum/preference/choiced/jumpsuit/apply_to_human(mob/living/carbon/human/target, value)
 	target.jumpsuit_style = value
@@ -106,7 +108,7 @@
 	return assoc_to_keys_features(SSaccessories.socks_list)
 
 /datum/preference/choiced/socks/create_default_value()
-	return /datum/sprite_accessory/socks/nude::name
+	return /datum/sprite_accessory/clothing/socks/nude::name
 
 /datum/preference/choiced/socks/icon_for(value)
 	var/static/datum/universal_icon/lower_half
@@ -135,14 +137,14 @@
 	return assoc_to_keys_features(SSaccessories.undershirt_list)
 
 /datum/preference/choiced/undershirt/create_default_value()
-	return /datum/sprite_accessory/undershirt/nude::name
+	return /datum/sprite_accessory/clothing/undershirt/nude::name
 
 /datum/preference/choiced/undershirt/create_informed_default_value(datum/preferences/preferences)
 	switch(preferences.read_preference(/datum/preference/choiced/gender))
 		if(MALE)
-			return /datum/sprite_accessory/undershirt/nude::name
+			return /datum/sprite_accessory/clothing/undershirt/nude::name
 		if(FEMALE)
-			return /datum/sprite_accessory/undershirt/sports_bra::name
+			return /datum/sprite_accessory/clothing/undershirt/sports_bra::name
 
 	return ..()
 
@@ -183,7 +185,7 @@
 	return assoc_to_keys_features(SSaccessories.underwear_list)
 
 /datum/preference/choiced/underwear/create_default_value()
-	return /datum/sprite_accessory/underwear/male_hearts::name
+	return /datum/sprite_accessory/clothing/underwear/male_hearts::name
 
 /datum/preference/choiced/underwear/icon_for(value)
 	var/static/datum/universal_icon/lower_half

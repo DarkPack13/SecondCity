@@ -1,0 +1,2 @@
+/obj/effect/landmark/start/darkpack/law_enforcement/chief : /obj/effect/landmark/start/darkpack/law_enforcement/captain{@OLD}
+/obj/effect/mapping_helpers/door/access/police_chief : /obj/effect/mapping_helpers/door/access/police_captain{@OLD}

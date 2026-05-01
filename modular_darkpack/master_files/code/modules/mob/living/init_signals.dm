@@ -1,0 +1,5 @@
+/mob/living/register_init_signals()
+	. = ..()
+	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(update_zone_hud)) // AREAS - (Zone hud)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_OBFUSCATED), PROC_REF(make_invisible)) // POWERS - (Obfuscate Discipline)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_OBFUSCATED), PROC_REF(make_visible)) // POWERS - (Obfuscate Discipline)

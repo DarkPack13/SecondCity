@@ -83,6 +83,8 @@
 	seed.prepare_result(src)
 	transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5 //Makes the resulting produce's sprite larger or smaller based on potency!
 
+	AddElement(/datum/element/contextual_screentip_sharpness, rmb_text = "Extract Seed") // DARKPACK EDIT ADD
+
 /obj/item/food/grown/Destroy()
 	if(isatom(seed))
 		QDEL_NULL(seed)
@@ -105,11 +107,12 @@
 
 	return new trash_type(location || drop_location())
 
-/obj/item/food/grown/blend_requirements()
-	if(dry_grind && !HAS_TRAIT(src, TRAIT_DRIED))
-		to_chat(usr, span_warning("[src] needs to be dry before it can be ground up!"))
-		return
-	return TRUE
+/obj/item/food/grown/blend_requirements(atom/movable/grinder, mob/living/user)
+	if(!dry_grind || HAS_TRAIT(src, TRAIT_DRIED))
+		return TRUE
+	if (user)
+		to_chat(user, span_warning("[src] needs to be dry before it can be ground up!"))
+	return FALSE
 
 /// Turns the nutriments and vitamins into the distill reagent or fruit wine
 /obj/item/food/grown/proc/ferment()
@@ -141,13 +144,17 @@
 		reagents.del_reagent(reagent.type)
 
 /obj/item/food/grown/grind_atom(datum/reagents/target_holder, mob/user)
-	var/grind_results_num = LAZYLEN(grind_results)
+	var/list/grind_reagents = grind_results()
+	for(var/datum/reagent/result as anything in grind_reagents)
+		grind_reagents[result] = round(seed.potency)
+
+	var/grind_results_num = length(grind_reagents)
 	if(grind_results_num)
 		var/average_purity = reagents.get_average_purity()
 		var/total_nutriment_amount = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment, type_check = REAGENT_SUB_TYPE)
 		var/single_reagent_amount = grind_results_num > 1 ? round(total_nutriment_amount / grind_results_num, CHEMICAL_QUANTISATION_LEVEL) : total_nutriment_amount
 		reagents.remove_reagent(/datum/reagent/consumable/nutriment, total_nutriment_amount, include_subtypes = TRUE)
-		for(var/reagent in grind_results)
+		for(var/reagent in grind_reagents)
 			reagents.add_reagent(reagent, single_reagent_amount, added_purity = average_purity)
 
 	return reagents?.trans_to(target_holder, reagents.total_volume, transferred_by = user)
@@ -166,6 +173,18 @@
 		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
+
+// DARKPACK EDIT ADD START
+/obj/item/food/grown/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.get_sharpness())
+		playsound(src, 'sound/items/weapons/slice.ogg', 25, TRUE, -1)
+		if(do_after(user, 2 SECONDS, src))
+			to_chat(user, span_notice("You split apart the [src]!"))
+			seedify(src, 1, user = user)
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
+	. = ..()
+// DARKPACK EDIT ADD END
 
 #undef BITE_SIZE_POTENCY_MULTIPLIER
 #undef BITE_SIZE_VOLUME_MULTIPLIER

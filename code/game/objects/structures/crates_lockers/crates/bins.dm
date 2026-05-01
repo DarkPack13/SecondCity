@@ -71,3 +71,8 @@
 
 	to_chat(user, span_notice("You sweep the pile of garbage into [src]."))
 	playsound(broom.loc, 'sound/items/weapons/thudswoosh.ogg', 30, TRUE, -1)
+
+/obj/structure/closet/crate/bin/undense // DARKPACK EDIT ADD START
+	density = FALSE
+	dense_when_open = FALSE
+	dense_when_closed = FALSE // DARKPACK EDIT ADD END

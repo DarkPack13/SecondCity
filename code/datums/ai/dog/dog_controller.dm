@@ -9,6 +9,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/random_speech/dog,
 		/datum/ai_planning_subtree/pet_planning,
+		/datum/ai_planning_subtree/find_and_hunt_target/find_dog_food, // DARKPACK EDIT ADD - NPC
 		/datum/ai_planning_subtree/dog_harassment,
 	)
 
@@ -25,7 +26,7 @@
 		// With tongs in hand!
 		BB_TARGET_HELD_ITEM = /obj/item/kitchen/tongs,
 		BB_BABIES_PARTNER_TYPES = list(/mob/living/basic/pet/dog),
-		BB_BABIES_CHILD_TYPES = list(/mob/living/basic/pet/dog/corgi),
+		BB_BABIES_CHILD_TYPES = list(/mob/living/basic/pet/dog/corgi/puppy),
 	)
 
 	planning_subtrees = list(

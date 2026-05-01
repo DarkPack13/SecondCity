@@ -1,6 +1,7 @@
 /obj/machinery/button/elevator
 	name = "elevator button"
 	desc = "Go back. Go back. Go back. Can you operate the elevator."
+	icon = 'modular_darkpack/modules/elevators/icons/buttons.dmi' // DARKPACK EDIT CHANGE
 	base_icon_state = "tram"
 	icon_state = "tram"
 	can_alter_skin = FALSE

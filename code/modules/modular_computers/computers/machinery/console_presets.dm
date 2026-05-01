@@ -103,7 +103,7 @@
 	add_starting_software()
 	. = ..()
 	setup_starting_software()
-	REGISTER_REQUIRED_MAP_ITEM(1, 1)
+	//REGISTER_REQUIRED_MAP_ITEM(1, 1) // DARKPACK EDIT REMOVAL
 	if(department_type)
 		name = "[LOWER_TEXT(initial(department_type.department_name))] [name]"
 		cpu.name = name
@@ -120,7 +120,7 @@
 	cpu.idle_threads += chatprogram
 
 	var/datum/computer_file/program/department_order/orderprogram = cpu.find_file_by_name("dept_order")
-	orderprogram.set_linked_department(department_type)
+	//orderprogram.set_linked_department(department_type) // DARKPACK EDIT REMOVAL
 	cpu.active_program = orderprogram
 	update_appearance(UPDATE_ICON)
 

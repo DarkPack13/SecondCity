@@ -1,4 +1,4 @@
-/datum/crafting_recipe/strobeshield
+/* /datum/crafting_recipe/strobeshield // DARKPACK EDIT REMOVAL
 	name = "Strobe Shield"
 	result = /obj/item/shield/riot/flash
 	reqs = list(
@@ -10,15 +10,16 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/strobeshield/New()
-	..()
-	blacklist |= subtypesof(/obj/item/shield/riot)
+	LAZYADD(blacklist, typecacheof(/obj/item/shield/riot, ignore_root_path = TRUE))
+	return ..()
+ */
 
 /datum/crafting_recipe/improvisedshield
 	name = "Improvised Shield"
 	result = /obj/item/shield/improvised
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
-		/obj/item/stack/sticky_tape = 2,
+		/obj/item/stack/medical/wrap/sticky_tape = 2,
 	)
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
@@ -33,8 +34,19 @@
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
 
+/datum/crafting_recipe/radio_containing
+	abstract_type = /datum/crafting_recipe/radio_containing
+	/// Shared blacklist of all the radio types for anything that uses a radio in its construction, so we don't repeat it.
+	var/static/list/radio_types_blacklist
 
-/datum/crafting_recipe/radiogloves
+/datum/crafting_recipe/radio_containing/New()
+	if(isnull(radio_types_blacklist))
+		// because we got shit like /obj/item/radio/off ... WHY!?!
+		radio_types_blacklist = typecacheof(list(/obj/item/radio/headset, /obj/item/radio/intercom))
+	blacklist = radio_types_blacklist
+	return ..()
+/* // DARKPACK EDIT REMOVAL
+/datum/crafting_recipe/radio_containing/radiogloves
 	name = "Radio Gloves"
 	result = /obj/item/clothing/gloves/radio
 	time = 1.5 SECONDS
@@ -45,11 +57,7 @@
 	)
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	category = CAT_EQUIPMENT
-
-/datum/crafting_recipe/radiogloves/New()
-	..()
-	blacklist |= typesof(/obj/item/radio/headset)
-	blacklist |= typesof(/obj/item/radio/intercom)
+*/
 
 /datum/crafting_recipe/wheelchair
 	name = "Wheelchair"
@@ -60,6 +68,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_EQUIPMENT
+	removed_mats = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
@@ -147,7 +156,7 @@
 		/obj/item/stack/rods = 1,
 	)
 	category = CAT_EQUIPMENT
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
 	result = /obj/item/organ/eyes/robotic/flashlight
@@ -162,8 +171,8 @@
 	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/flashlight_eyes/New()
-	. = ..()
-	blacklist += typesof(/obj/item/flashlight/flare)
+	LAZYADD(blacklist, typecacheof(/obj/item/flashlight/flare))
+	return ..()
 
 /datum/crafting_recipe/extendohand_r
 	name = "Extendo-Hand (Right Arm)"
@@ -242,25 +251,11 @@
 	name = "Improvised Gripper Gloves"
 	reqs = list(
 		/obj/item/clothing/gloves/fingerless = 1,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 	)
 	result = /obj/item/clothing/gloves/tackler/offbrand
 	category = CAT_EQUIPMENT
-
-/**
- * Recipe used for upgrading fake N-spect scanners to bananium HONK-spect scanners
- */
-/datum/crafting_recipe/clown_scanner_upgrade
-	name = "Bananium HONK-spect scanner"
-	result = /obj/item/inspector/clown/bananium
-	reqs = list(
-		/obj/item/inspector/clown = 1,
-		/obj/item/stack/sticky_tape = 3,
-		/obj/item/stack/sheet/mineral/bananium = 5,
-	) //the chainsaw of prank tools
-	tool_paths = list(/obj/item/bikehorn)
-	time = 40 SECONDS
-	category = CAT_EQUIPMENT
+*/
 
 /datum/crafting_recipe/rebar_quiver
 	name = "Rebar Storage Quiver"
@@ -283,7 +278,7 @@
 	)
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/tether_anchor
 	name = "Tether Anchor"
 	result = /obj/item/tether_anchor
@@ -307,8 +302,8 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 
 /datum/crafting_recipe/morbid_surgical_toolset/New()
-	..()
-	blacklist |= subtypesof(/obj/item/organ/cyberimp/arm/toolkit/surgery)
+	LAZYADD(blacklist, typecacheof(/obj/item/organ/cyberimp/arm/toolkit/surgery, ignore_root_path = TRUE))
+	return ..()
 
 /datum/crafting_recipe/surgical_toolset
 	name = "Surgical Toolset Implant"
@@ -319,3 +314,4 @@
 	time = 10 SECONDS
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+ */

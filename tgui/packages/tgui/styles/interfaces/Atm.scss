@@ -1,0 +1,40 @@
+.Atm__atm-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.Atm__atm-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Atm__atm-button {
+  min-width: 120px;
+  flex: 3;
+}
+
+.Atm__account-list {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.Atm__account-item {
+  padding: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &.selected {
+    background-color: #007bff;
+    color: white;
+  }
+
+  &:not(.selected) {
+    background-color: #f8f9fa;
+    color: black;
+  }
+}

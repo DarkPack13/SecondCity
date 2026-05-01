@@ -83,12 +83,14 @@
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
 #define span_linkify(str) ("<span class='linkify'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_rlooc(str) ("<span class='rlooc'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_major_announcement_text(str) ("<span class='major_announcement_text'>" + str + "</span>")
 #define span_major_announcement_title(str) ("<span class='major_announcement_title'>" + str + "</span>")
 #define span_medal(str) ("<span class='medal'>" + str + "</span>")
 #define span_medradio(str) ("<span class='medradio'>" + str + "</span>")
 #define span_memo(str) ("<span class='memo'>" + str + "</span>")
 #define span_memoedit(str) ("<span class='memoedit'>" + str + "</span>")
+#define span_policy(str) ("<span class='policy'>" + str + "</span>")
 #define span_message(str) ("<span class='message'>" + str + "</span>")
 #define span_mind_control(str) ("<span class='mind_control'>" + str + "</span>")
 #define span_minorannounce(str) ("<span class='minorannounce'>" + str + "</span>")
@@ -98,7 +100,7 @@
 #define span_narsie(str) ("<span class='narsie'>" + str + "</span>")
 #define span_narsiesmall(str) ("<span class='narsiesmall'>" + str + "</span>")
 #define span_nicegreen(str) ("<span class='nicegreen'>" + str + "</span>")
-#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK ADD
+#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
 #define span_noticealien(str) ("<span class='noticealien'>" + str + "</span>")
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
@@ -156,6 +158,8 @@
 #define span_notice_ml(text) "<span class='notice ml-1'>[text]</span>"
 #define span_danger_ml(text) "<span class='danger ml-1'>[text]</span>"
 #define span_info_ml(text) "<span class='info ml-1'>[text]</span>"
+#define span_subtle(str) ("<span class='subtle'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
+#define span_subtler(str) ("<span class='subtler'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically

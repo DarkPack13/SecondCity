@@ -19,7 +19,7 @@
 		/datum/job_department/silicon,
 		)
 	random_spawns_possible = FALSE
-	job_flags = JOB_NEW_PLAYER_JOINABLE | JOB_EQUIP_RANK | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
+	job_flags = JOB_EQUIP_RANK | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS // DARKPACK EDIT CHANGE - ORIGINAL: job_flags = JOB_NEW_PLAYER_JOINABLE | JOB_EQUIP_RANK | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 	config_tag = "AI"
 
 
@@ -89,3 +89,6 @@
 
 /datum/job/ai/on_respawn(mob/new_character)
 	new_character.AIize()
+
+/datum/job/ai/get_lobby_icon()
+	return icon('icons/mob/huds/hud.dmi', "hudai")

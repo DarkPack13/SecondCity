@@ -4,14 +4,20 @@
 	var/name = "Discipline name"
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
-	///Icon for this Discipline as in disciplines.dmi
+	///Icon file for this Discipline
+	var/icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
+	///Icon state for this Discipline
 	var/icon_state
 	///If this Discipline is unique to a certain Clan.
 	var/clan_restricted = FALSE
 	///The root type of the powers this Discipline uses.
 	var/power_type = /datum/discipline_power
+	///What action type this Discipline is connected to
+	var/action_type = /datum/action/discipline
 	///If this Discipline can be selected at all, or has special handling.
 	var/selectable = TRUE
+	///Override for the number of selectable levels shown in UI. 0 = derive from all_powers length. this exists because of Thaumaturgy.
+	var/max_selectable_level = 0
 
 	/* BACKEND */
 	///What rank, or how many dots the caster has in this Discipline.
@@ -23,25 +29,36 @@
 	///All Discipline powers under this Discipline that the owner knows. Derived from all_powers.
 	var/list/datum/discipline_power/known_powers = list()
 	///The typepaths of possible powers for every rank in this Discipline.
-	var/all_powers = list()
+	var/list/all_powers = list()
 	///The mob that owns and is using this Discipline.
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
 	var/post_gain_applied
+	/// Signature clan that "owns" the discipline.
+	var/signature_clan
 
-//TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)
 	all_powers = subtypesof(power_type)
-
 	if (!level)
 		return
 
 	src.level = level
-	for (var/i in 1 to level)
+	var/amount = level // how many levels are we giving them
+	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
+		amount = length(all_powers) // so only give what exists
+	for (var/i in 1 to amount)
 		var/type_to_create = all_powers[i]
 		var/datum/discipline_power/new_power = new type_to_create(src)
 		known_powers += new_power
 	current_power = known_powers[1]
+
+/datum/discipline/Destroy(force)
+	action_type = null
+	QDEL_NULL(current_power)
+	QDEL_LIST(known_powers)
+	all_powers = null
+	owner = null
+	return ..()
 
 /**
  * Modifies a Discipline's level, updating its available powers
@@ -91,25 +108,6 @@
 		post_gain()
 	post_gain_applied = TRUE
 
-	// Destroy self and contained powers when owner is destroyed
-	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(on_owner_destroy))
-
-/**
- * When the Discipline's owner is destroyed, this deletes all
- * contained powers, clears out references to the destroyed owner,
- * and then deletes itself.
- */
-/datum/discipline/proc/on_owner_destroy(mob/living/source, force)
-	SIGNAL_HANDLER
-
-	// Clear out Discipline powers
-	current_power = null
-	QDEL_LIST(known_powers)
-
-	// Destroy self when owner is destroyed
-	owner = null
-	qdel(src)
-
 /**
  * Returns a known Discipline power in this Discipline
  * searching by type.
@@ -135,3 +133,13 @@
 
 	for (var/datum/discipline_power/power in known_powers)
 		power.post_gain()
+
+
+/**
+* Removes effects from it's owner upon loss.
+*/
+/datum/discipline/proc/post_loss()
+	SHOULD_CALL_PARENT(TRUE)
+
+	for (var/datum/discipline_power/power in known_powers)
+		power.post_loss()

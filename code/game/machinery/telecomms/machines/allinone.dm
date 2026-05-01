@@ -52,7 +52,31 @@
 		"[FREQ_SECURITY]" = list(
 			"name" = RADIO_CHANNEL_SECURITY,
 			"color" = RADIO_COLOR_SECURITY
-		)
+		), // DARKPACK EDIT ADD START
+		"[FREQ_POLICE]" = list(
+			"name" = RADIO_CHANNEL_POLICE,
+			"color" = RADIO_COLOR_POLICE
+		),
+		"[FREQ_CLINIC]" = list(
+			"name" = RADIO_CHANNEL_CLINIC,
+			"color" = RADIO_COLOR_CLINIC
+		),
+		"[FREQ_MILITARY]" = list(
+			"name" = RADIO_CHANNEL_MILITARY,
+			"color" = RADIO_COLOR_MILITARY
+		),
+		"[FREQ_CAMARILLA]" = list(
+			"name" = RADIO_CHANNEL_CAMARILLA,
+			"color" = RADIO_COLOR_CAMARILLA
+		),
+		"[FREQ_ANARCH]" = list(
+			"name" = RADIO_CHANNEL_ANARCH,
+			"color" = RADIO_COLOR_ANARCH
+		),
+		"[FREQ_ENDRON]" = list(
+			"name" = RADIO_CHANNEL_ENDRON,
+			"color" = RADIO_COLOR_ENDRON
+		) // DARKPACK EDIT ADD END
 	)
 
 /obj/machinery/telecomms/allinone/nuclear
@@ -64,11 +88,11 @@
 /obj/machinery/telecomms/allinone/indestructible
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/machinery/telecomms/allinone/indestructible/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
-	return NONE
 
-/obj/machinery/telecomms/allinone/indestructible/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
-	return NONE
+/obj/machinery/telecomms/allinone/indestructible/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/tool_blocker, TOOL_SCREWDRIVER)
+	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/subspace/signal)
 	if(!istype(signal) || signal.transmission_method != TRANSMISSION_SUBSPACE)  // receives on subspace only

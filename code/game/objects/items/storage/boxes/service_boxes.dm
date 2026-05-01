@@ -79,7 +79,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
 	pickup_sound = 'sound/items/handling/matchbox_pickup.ogg'
-	custom_price = PAYCHECK_CREW * 0.4
+	custom_price = 5 // DARKPACK EDIT CHANGE - ECONOMY
 	base_icon_state = "matchbox"
 	illustration = null
 	storage_type = /datum/storage/box/match
@@ -150,7 +150,7 @@
 	custom_premium_price = PAYCHECK_CREW * 3
 
 /obj/item/storage/box/dishdrive/PopulateContents()
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/circuitboard/machine/dish_drive = 1,
 		/obj/item/screwdriver = 1,
 		/obj/item/stack/cable_coil/five = 1,
@@ -174,7 +174,7 @@
 
 /obj/item/storage/box/tail_pin
 	name = "pin the tail on the corgi supplies"
-	desc = "For ages 10 and up. ...Why is this even on a space station? Aren't you a little old for babby games?" //Intentional typo.
+	desc = "For ages 10 and up. ...Aren't you a little old for babby games?" //Intentional typo. // DARKPACK EDIT CHANGE
 	custom_price = PAYCHECK_COMMAND * 1.25
 
 /obj/item/storage/box/tail_pin/PopulateContents()
@@ -294,3 +294,27 @@
 /obj/item/storage/box/heretic_box/PopulateContents()
 	for(var/i in 1 to rand(1,4))
 		new /obj/item/toy/reality_pierce(src)
+
+
+/obj/item/storage/box/purity_seal_box
+	name = "box of purity seals"
+	desc = "A box containing several blessed purity seals."
+
+/obj/item/storage/box/purity_seal_box/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/sticker/purity_seal(src)
+		new /obj/item/sticker/purity_seal/purity_seal_2(src)
+
+/obj/item/storage/box/stamps
+	name = "box of stamps"
+	desc = "Stamps for all kinds of documents."
+	illustration = "stamp"
+	custom_price = PAYCHECK_CREW
+
+/obj/item/storage/box/stamps/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stamp/granted = 1,
+		/obj/item/stamp/denied = 1,
+		/obj/item/stamp/void = 1,
+	)
+	generate_items_inside(items_inside,src)

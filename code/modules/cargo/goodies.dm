@@ -2,7 +2,7 @@
 /datum/supply_pack/goody
 	access = NONE
 	group = "Goodies"
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -12,6 +12,7 @@
 	cost = 100000
 	contains = list(/obj/item/modular_computer/pda/clear)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/dumdum38
 	name = ".38 DumDum Speedloader Single-Pack"
 	desc = "Contains one speedloader of .38 DumDum ammunition, good for embedding in soft targets."
@@ -99,29 +100,43 @@
 	contains = list(/obj/item/gun/energy/e_gun)
 
 /datum/supply_pack/goody/laser_single
-	name = "Laser Gun Single-Pack"
-	desc = "Contains one laser gun, the lethal workhorse of Nanotrasen security everywhere."
+	name = "Type 5 Laser Gun Single-Pack"
+	desc = "Contains one Type 5 laser gun, the lethal workhorse of Nanotrasen security everywhere."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser)
 
 /datum/supply_pack/goody/carbine_single
-	name = "Laser Carbine Single_Pack"
-	desc = "Contains one laser carbines, capable of rapidly firing weak lasers."
+	name = "Type 5/R Laser Carbine Single-Pack"
+	desc = "Contains one laser carbine. Fires a rapid burst of slightly weaker laser projectiles."
 	cost = PAYCHECK_COMMAND * 8
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
+/datum/supply_pack/goody/laser_pistol_single
+	name = "Type 5/C Laser Pistol Single-Pack"
+	desc = "Contains one Type 5C laser pistol in an energy shoulder holster. Groovy."
+	cost = PAYCHECK_COMMAND * 2
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/storage/belt/holster/energy/laser_pistol)
+
+/datum/supply_pack/goody/laser_single_soul
+	name = "Type 3 Laser Gun Single-Pack"
+	desc = "Contains one Type 3 laser gun. They don't make 'em like they used to."
+	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/laser/soul)
+
 /datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single_Pack"
-	desc = "Contains one disabler SMGs, capable of rapidly firing weak disabler beams."
+	desc = "Contains one disabler SMG, capable of rapidly firing weak disabler beams."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/hell_single
 	name = "Hellgun Kit Single-Pack"
-	desc = "Contains one hellgun degradation kit, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
+	desc = "Contains one hellgun degradation kit, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Geneva Convention when used on humanoids." // DARKPACK EDIT CHANGE
 	cost = PAYCHECK_CREW * 2
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/weaponcrafting/gunkit/hellgun)
@@ -132,6 +147,7 @@
 	cost = PAYCHECK_COMMAND * 15
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/storage/belt/holster/energy/thermal)
+*/
 
 /datum/supply_pack/goody/sologamermitts
 	name = "Insulated Gloves Single-Pack"
@@ -219,7 +235,7 @@
 
 /datum/supply_pack/goody/dog_bone
 	name = "Jumbo Dog Bone"
-	desc = "The best dog bone money can have exported to a space station. A perfect gift for a dog."
+	desc = "The best dog bone money can buy. A perfect gift for a dog." // DARKPACK EDIT CHANGE
 	cost = PAYCHECK_COMMAND * 4
 	contains = list(/obj/item/dog_bone)
 
@@ -261,6 +277,7 @@
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/food/ready_donk)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/pill_mutadone
 	name = "Emergency Mutadone Pill Single-Pack"
 	desc = "A single pill for curing genetic defects. Useful for when you can't procure one from medbay."
@@ -272,6 +289,7 @@
 	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
 	cost = PAYCHECK_CREW * 10
 	contains = list(/obj/item/construction/rld)
+*/
 
 /datum/supply_pack/goody/fishing_toolbox
 	name = "Fishing Toolbox"
@@ -317,7 +335,7 @@
 
 /datum/supply_pack/goody/naturalbait
 	name = "Freshness Jars full of Natural Bait Single-Pack"
-	desc = "Homemade in the Spinward Sector."
+	desc = "Lovingly homemade in America." // DARKPACK EDIT CHANGE
 	cost = PAYCHECK_CREW * 4 //rock on
 	contains = list(/obj/item/storage/pill_bottle/naturalbait)
 
@@ -377,16 +395,18 @@
 
 /datum/supply_pack/goody/climbing_hook
 	name = "Climbing Hook Single-Pack"
-	desc = "A less cheap imported climbing hook. Absolutely no use outside of multi-floor stations."
+	desc = "A less cheap imported climbing hook." // DARKPACK EDIT CHANGE
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/climbing_hook)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/double_barrel
 	name = "Double-barreled Shotgun Single-Pack"
 	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
 	cost = PAYCHECK_COMMAND * 18
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/shotgun/doublebarrel)
+*/
 
 /datum/supply_pack/goody/experimental_medication
 	name = "Experimental Medication Single-Pack"
@@ -400,6 +420,7 @@
 	cost = PAYCHECK_CREW * 1.5
 	contains = list(/obj/item/pet_carrier/small/mouse)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/shuttle_construction_kit
 	name = "Shuttle Construction Starter Kit"
 	desc = "Contains a set of shuttle blueprints, and the circuitboards necessary for constructing your own shuttle. \
@@ -412,3 +433,20 @@
 		/obj/item/circuitboard/computer/shuttle/docker,
 		/obj/item/circuitboard/machine/engine/propulsion = 2,
 	)
+*/
+
+/datum/supply_pack/goody/golfcart_key
+	name = "Spare Golf Cart Key"
+	desc = "If you in your carelessness lost the key to your golfcart you can purchase one. Unfortunately not covered by warranty."
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/key/golfcart)
+
+
+/datum/supply_pack/goody/handheld_crew_monitor
+	name = "Handheld Crew Monitor"
+	desc = "A crate containing a handheld crew monitor"
+	cost = /obj/item/sensor_device::custom_premium_price * 1.25 // 1.25X base vending machine value
+	contains = list(
+		/obj/item/sensor_device,
+	)
+	crate_name = "handheld crew monitor crate"

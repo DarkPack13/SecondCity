@@ -1,6 +1,9 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
+		// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+		"set_job_title" = PROC_REF(set_job_title),
+		// DARKPACK EDIT ADD END
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -15,8 +18,10 @@
 	if (isnull(job))
 		return FALSE
 
-	if (job.faction != FACTION_STATION)
+	/* DARKPACK EDIT REMOVAL - Factions - note: why do these lines even exist?
+	if (job.faction != FACTION_CITY) // DARKPACK EDIT, ORGINAL: if (job.faction != FACTION_STATION)
 		return FALSE
+	*/
 
 	if (!preferences.set_job_preference_level(job, level))
 		return FALSE
@@ -24,6 +29,24 @@
 	preferences.character_preview_view?.update_body()
 
 	return TRUE
+
+// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+/datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
+	var/job_title = params["job"]
+	var/new_job_title = params["new_title"]
+
+	var/datum/job/job = SSjob.get_job(job_title)
+
+	if (isnull(job))
+		return FALSE
+
+	if (!(new_job_title in job.alt_titles))
+		return FALSE
+
+	preferences.alt_job_titles[job_title] = new_job_title
+
+	return TRUE
+// DARKPACK EDIT ADD END
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()
@@ -54,6 +77,7 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
+			"alt_titles" = job.alt_titles, // DARKPACK EDIT ADD - ALTERNATIVE_JOB_TITLES
 		)
 
 	data["departments"] = departments
@@ -64,7 +88,15 @@
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
 
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	if(isnull(preferences.alt_job_titles))
+		preferences.alt_job_titles = list()
+	// DARKPACK EDIT ADD END
 	data["job_preferences"] = preferences.job_preferences
+
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	data["job_alt_titles"] = preferences.alt_job_titles
+	// DARKPACK EDIT ADD END
 
 	return data
 

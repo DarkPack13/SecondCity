@@ -46,6 +46,14 @@
 #define DIAG_CAMERA_HUD "21"
 /// Steady Hacked APC effect, visible only to Malf AIs
 #define MALF_APC_HUD "22"
+/// Blood volume bar, visible to blood worms
+#define BLOOD_HUD "23"
+/// Big Manipulator interaction point HUDs
+#define BIG_MANIP_HUD "24"
+// DARKPACK EDIT START
+/// Auspex aura HUD
+#define AUSPEX_AURA_HUD "25"
+// DARKPACK EDIT END
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
@@ -63,6 +71,8 @@
 #define DATA_HUD_AI_DETECT 8
 #define DATA_HUD_FAN 9
 #define DATA_HUD_MALF_APC 10
+#define DATA_HUD_BLOOD 11
+#define DATA_HUD_AUSPEX_AURAS 12 // DARKPACK EDIT ADD
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20
@@ -75,6 +85,7 @@
 #define SECHUD_SYNDICATE "hudsyndicate"
 #define SECHUD_SYNDICATE_INTERDYNE "hudsyndicateinterdyne"
 #define SECHUD_SYNDICATE_INTERDYNE_HEAD "hudsyndicateinterdynehead"
+#define SECHUD_CLOWNOPS "hudclownop"
 
 #define SECHUD_ASSISTANT "hudassistant"
 #define SECHUD_ATMOSPHERIC_TECHNICIAN "hudatmospherictechnician"

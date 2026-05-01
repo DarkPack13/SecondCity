@@ -34,19 +34,19 @@
 
 	//Hair shit
 	var/list/hair_colors = list(
-		"040404", 	//Black
-		"120b05", 	//Dark Brown
-		"342414",	//Brown
-		"554433",	//Light Brown
-		"695c3b",	//Dark Blond
-		"ad924e",	//Blond
-		"dac07f",	//Light Blond
-		"802400",	//Ginger
-		"a5380e",	//Ginger alt
-		"ffeace",	//Albino
-		"650b0b",	//Punk Red
-		"14350e",	//Punk Green
-		"080918",   //Punk Blue
+		"#040404", 	//Black
+		"#120b05", 	//Dark Brown
+		"#342414",	//Brown
+		"#554433",	//Light Brown
+		"#695c3b",	//Dark Blond
+		"#ad924e",	//Blond
+		"#dac07f",	//Light Blond
+		"#802400",	//Ginger
+		"#a5380e",	//Ginger alt
+		"#ffeace",	//Albino
+		"#650b0b",	//Punk Red
+		"#14350e",	//Punk Green
+		"#080918",   //Punk Blue
 	)
 	var/list/male_hair = list(
 		"Bald",
@@ -240,15 +240,13 @@
 
 	fully_replace_character_name(name, real_name)
 
-	storyteller_stat_holder.randomize_attributes(1, max_stat)
-	storyteller_stat_holder.randomize_abilities(0, max_stat)
 
 	maxHealth = round(initial(maxHealth)+(initial(maxHealth)/3)*(st_get_stat(STAT_STAMINA)))
 	health = round(initial(health)+(initial(health)/3)*(st_get_stat(STAT_STAMINA)))
 	last_health = health
 
 	is_criminal = socialrole.is_criminal
-	if (check_holidays(CHRISTMAS))
+	if (check_holidays(FESTIVE_SEASON))
 		if (!length(socialrole.suits))
 			socialrole.suits = list(
 				/obj/item/clothing/suit/vampire/coat/winter,
@@ -271,6 +269,7 @@
 		var/list/m_names = list()
 		var/list/f_names = list()
 		var/list/s_names = list()
+		var/random_name
 		if(socialrole.male_names)
 			m_names = socialrole.male_names
 		else
@@ -287,7 +286,7 @@
 		skin_tone = pick(socialrole.s_tones)
 
 		if (age >= 55)
-			set_haircolor("a2a2a2")
+			set_haircolor("#a2a2a2")
 			set_facial_haircolor(hair_color)
 		else
 			set_haircolor(pick(socialrole.hair_colors))
@@ -298,14 +297,16 @@
 				set_facial_hairstyle(pick(socialrole.male_facial))
 			else
 				set_facial_hairstyle("Shaved")
-			real_name = "[pick(m_names)] [pick(s_names)]"
+			random_name = "[pick(m_names)] [pick(s_names)]"
+			fully_replace_character_name(newname = random_name)
 		else
 			set_hairstyle(pick(socialrole.female_hair))
 			set_facial_hairstyle("Shaved")
-			real_name = "[pick(f_names)] [pick(s_names)]"
+			random_name = "[pick(f_names)] [pick(s_names)]"
+			fully_replace_character_name(newname = random_name)
 
 		set_eye_color(random_eye_color())
-
+		update_visible_name()
 		underwear = random_underwear(gender)
 		if (prob(50))
 			underwear_color = eye_color_left

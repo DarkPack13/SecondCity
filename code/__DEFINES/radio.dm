@@ -68,6 +68,39 @@
 #define RADIO_TOKEN_UPLINK ":z"
 #define RADIO_COLOR_UPLINK "#8f4a4b"
 
+// DARKPACK EDIT ADD START
+#define RADIO_CHANNEL_POLICE "Police"
+#define RADIO_KEY_POLICE "s"
+#define RADIO_TOKEN_POLICE ":s"
+#define RADIO_COLOR_POLICE "#1700e9"
+
+#define RADIO_CHANNEL_CLINIC "Clinic"
+#define RADIO_KEY_CLINIC "m"
+#define RADIO_TOKEN_CLINIC ":m"
+#define RADIO_COLOR_CLINIC "#05ffea"
+
+#define RADIO_CHANNEL_MILITARY "Military"
+#define RADIO_KEY_MILITARY "a"
+#define RADIO_TOKEN_MILITARY ":a"
+#define RADIO_COLOR_MILITARY "#35962d"
+
+#define RADIO_CHANNEL_CAMARILLA "Tower"
+#define RADIO_KEY_CAMARILLA "t"
+#define RADIO_TOKEN_CAMARILLA ":t"
+#define RADIO_COLOR_CAMARILLA "#8b00cc"
+
+#define RADIO_CHANNEL_ANARCH "Bar"
+#define RADIO_KEY_ANARCH "b"
+#define RADIO_TOKEN_ANARCH ":b"
+#define RADIO_COLOR_ANARCH "#d47100"
+
+#define RADIO_CHANNEL_ENDRON "Endron"
+#define RADIO_KEY_ENDRON "d"
+#define RADIO_TOKEN_ENDRON ":d"
+#define RADIO_COLOR_ENDRON "#ff4800"
+
+// DARKPACK EDIT ADD END
+
 #define RADIO_CHANNEL_CTF_RED "Red Team"
 #define RADIO_COLOR_CTF_RED "#ff0000"
 #define RADIO_CHANNEL_CTF_BLUE "Blue Team"
@@ -87,6 +120,7 @@
 #define FREQ_CTF_BLUE 1217 // CTF blue team comms frequency, blue
 #define FREQ_CTF_GREEN 1219 // CTF green team comms frequency, green
 #define FREQ_CTF_YELLOW 1221 // CTF yellow team comms frequency, yellow
+#define FREQ_FUGITIVE_HUNTER 1243
 #define FREQ_CENTCOM 1337 // CentCom comms frequency, gray
 #define FREQ_SUPPLY 1347 // Supply comms frequency, light brown
 #define FREQ_SERVICE 1349 // Service comms frequency, green
@@ -96,6 +130,7 @@
 #define FREQ_ENGINEERING 1357 // Engineering comms frequency, orange
 #define FREQ_SECURITY 1359 // Security comms frequency, red
 #define FREQ_ENTERTAINMENT 1415 // Used by entertainment monitors, cyan
+#define FREQ_INTERROGATION 1423
 #define FREQ_HOLOGRID_SOLUTION 1433
 #define FREQ_STATUS_DISPLAYS 1435
 
@@ -113,8 +148,18 @@
 #define FREQ_COMMON 1459 // Common comms frequency, dark green
 
 #define MIN_UNUSED_FREQ 1461 // Prevents rolling AI Private or Common
+#define FREQ_CONFESSIONAL 1481
 
 #define MAX_FREQ 1489 // ------------------------------------------------------
+
+// DARKPACK EDIT ADD START
+#define FREQ_POLICE 1501 // Police comms frequency, dark blue
+#define FREQ_CLINIC 1503 // Clinic comms frequency, light blue
+#define FREQ_MILITARY 1505 // Military comms frequency, dark green
+#define FREQ_CAMARILLA 1507 // Camarilla comms frequency, purple
+#define FREQ_ANARCH 1509 // Anarch comms frequency, dark orange
+#define FREQ_ENDRON 1511 // Endron comms frequency, orange
+// DARKPACK EDIT ADD END
 
 #define MAX_FREE_FREQ 1599 // -------------------------------------------------
 
@@ -152,6 +197,13 @@
 #define RADIO_FREQENCY_LOCKED 1
 /// Radio frequency is locked and unchangeable, but can be unlocked by an emag
 #define RADIO_FREQENCY_EMAGGABLE_LOCK 2
+
+/// Keyslot is unlocked and can be removed by anyone
+#define RADIO_KEYSLOT_UNLOCKED 0
+/// Keyslot is locked, unchangeable by players
+#define RADIO_KEYSLOT_LOCKED 1
+/// Keyslot is locked and unchangeable, but can be unlocked by an emag
+#define RADIO_KEYSLOT_EMAGGABLE_LOCK 2
 
 ///Bitflag for if a headset can use the syndicate radio channel
 #define RADIO_SPECIAL_SYNDIE (1<<0)

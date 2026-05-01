@@ -47,8 +47,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
-
-	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
+	// DARKPACK EDIT ADD START
+	var/list/preference_storyteller_stats = list()
+	// Associative list of disciplines and their current level. like: list("/datum/discipline/animalism" = 2)
+	var/list/discipline_levels = list()
+	// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
+	var/list/alt_job_titles = list()
+	/// Whether this player is whitelisted to bypass discipline sheet validation limits
+	var/discipline_trusted = FALSE
+	// DARKPACK EDIT ADD END
+	// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
 	var/unlock_content = 0
@@ -96,6 +104,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/New(client/parent)
 	src.parent = parent
+
+	max_save_slots = CONFIG_GET(number/max_save_slots) // DARKPACK EDIT ADD
 
 	for (var/middleware_type in subtypesof(/datum/preference_middleware))
 		middleware += new middleware_type(src)
@@ -210,6 +220,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch (action)
 		if ("change_slot")
+			// DARKPACK EDIT ADD START - (patches alot of minor exploits from midround char sheet manipulation)
+			if(!isnewplayer(usr) && ("[usr.client.prefs.default_slot]" in usr.persistent_client.joined_as_slots))
+				if(check_rights(R_ADMIN))
+					to_chat(usr, span_warning("Swapping between character slots midround is unsupported and can lead to false writes to prefrences."))
+				else
+					to_chat(usr, span_warning("You cannot be spawned in as this character to swap character slots. Return to the lobby to change characters."))
+					return FALSE
+			// DARKPACK EDIT ADD END
 			// Save existing character
 			save_character()
 			// SAFETY: `switch_to_slot` performs sanitization on the slot number
@@ -256,12 +274,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			var/new_color = input(
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			)
 
 			if (!new_color)
 				return FALSE
@@ -270,6 +288,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return FALSE
 
 			return TRUE
+		// DARKPACK EDIT ADD START
+		if ("open_external_input_list")
+			var/requested_preference_key = params["preference"]
+
+			var/datum/preference/external_choiced/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
+			if (isnull(requested_preference))
+				return FALSE
+
+			if (!istype(requested_preference))
+				return FALSE
+
+			var/default_value = read_preference(requested_preference.type)
+
+			// Yielding
+			var/new_value = tgui_input_list(usr, "Set Preference Option", "Set Preference", requested_preference.get_choices(src), default_value)
+
+			if (!new_value)
+				return FALSE
+
+			if (!update_preference(requested_preference, new_value))
+				return FALSE
+
+			return TRUE
+		// DARKPACK EDIT ADD END
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
@@ -295,7 +337,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return TRUE
 
 /datum/preferences/proc/create_character_preview_view(mob/user)
-	character_preview_view = new(null, src)
+	character_preview_view = new(null, null, src)
 	character_preview_view.generate_view("character_preview_[REF(character_preview_view)]")
 	character_preview_view.update_body()
 
@@ -348,7 +390,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
 
-/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
+/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/hud/hud_owner, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
@@ -417,7 +459,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
-	var/bal = 0
+	var/bal = CONFIG_GET(number/default_quirk_points)
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
@@ -431,6 +473,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/validate_quirks()
 	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/datum/splat/splat_type = read_preference(/datum/preference/choiced/splats) // DARKPACK EDIT ADD - SPLATS
 	var/list/quirks_removed
 	for(var/quirk_name in all_quirks)
 		var/quirk_path = SSquirks.quirks[quirk_name]
@@ -438,9 +481,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(!quirk_prototype.is_species_appropriate(species_type))
 			all_quirks -= quirk_name
 			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD START - SPLATS
+		if(!quirk_prototype.is_splat_appropriate(splat_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+		// DARKPACK EDIT ADD END
 	var/list/feedback
 	if(LAZYLEN(quirks_removed))
-		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, "The following quirks are incompatible with your species or splat:") // DARKPACK EDIT CHANGE - SPLATS
 		LAZYADD(feedback, quirks_removed)
 	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
 		LAZYADD(feedback, "Your quirks have been reset.")
@@ -503,12 +551,27 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_character_randomization_prefs(is_antag)
 	apply_prefs_to(character, icon_updates)
 
-/// Applies the given preferences to a human mob.
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+/**
+ * Applies the given preferences to a human mob.
+ *
+ * Arguments:
+ * * character - The human mob to apply the preferences to
+ * * icon_updates - Whether to update the mob's icons after applying preferences.
+ * Is often skipped to save processing when an update will happen later anyway.
+ * * do_not_apply - A list of preference types to skip when applying preferences.
+ */
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, list/do_not_apply)
 	character.dna.features = list()
+
+	// DARKPACK EDIT ADD START - STORYTELLER STATS
+	if(preference_storyteller_stats)
+		apply_stats_from_prefs(character)
+	// DARKPACK EDIT ADD END
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+		if (preference.type in do_not_apply)
 			continue
 		// DARKPACK EDIT ADD START - TTRPG preferences
 		// Preferences with must_have_relevant_trait are skipped for characters who
@@ -578,4 +641,4 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	unlock_content = !!byond_member
 	if(unlock_content)
-		max_save_slots = 8
+		max_save_slots = CONFIG_GET(number/max_save_slots) + CONFIG_GET(number/extra_save_slots_byond_member) // DARKPACK EDIT CHANGE

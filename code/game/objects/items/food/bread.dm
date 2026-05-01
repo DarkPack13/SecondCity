@@ -22,7 +22,7 @@
 
 /obj/item/food/bread/make_processable()
 	if (slice_type)
-		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice")
+		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
 		AddElement(/datum/element/processable, TOOL_SAW, slice_type, yield, 4 SECONDS, table_required = TRUE, screentip_verb = "Slice")
 
 // Abstract parent object for sliced bread items. Should not be made obtainable in game.
@@ -43,7 +43,7 @@
 
 /obj/item/food/bread/plain
 	name = "bread"
-	desc = "Some plain old earthen bread."
+	desc = "Some plain white bread." // DARKPACK EDIT CHANGE
 	icon_state = "bread"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("bread" = 10)
@@ -75,7 +75,7 @@
 
 /obj/item/food/breadslice/moldy
 	name = "moldy 'bread' slice"
-	desc = "Entire stations have been ripped apart arguing whether this is still good to eat."
+	desc = "Entire households have been ripped apart arguing whether this is still good to eat." // DARKPACK EDIT CHANGE
 	icon_state = "moldybreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -97,7 +97,7 @@
 
 /obj/item/food/bread/meat
 	name = "meatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
+	desc = "The culinary base of every self-respecting gentleman." // DARKPACK EDIT CHANGE
 	icon_state = "meatbread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -156,7 +156,7 @@
 
 /obj/item/food/bread/xenomeat
 	name = "xenomeatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman. Extra Heretical."
+	desc = "The culinary base of every self-respecting gentleman. Extra Heretical." // DARKPACK EDIT CHANGE
 	icon_state = "xenomeatbread"
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 	food_reagents = list(
@@ -240,7 +240,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/tofu
-	name = "Tofubread"
+	name = "tofubread"
 	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
 	icon_state = "tofubread"
 	food_reagents = list(
@@ -507,7 +507,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 	)
 	tastes = list("raw egg" = 2, "soaked bread" = 1)
-	foodtypes = GRAIN | RAW | BREAKFAST | MEAT
+	foodtypes = GRAIN | RAW | BREAKFAST | MEAT | EGG
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
@@ -524,7 +524,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 	)
 	tastes = list("french toast" = 1, "syrup" = 1, "golden deliciousness" = 1)
-	foodtypes = GRAIN | BREAKFAST | MEAT
+	foodtypes = GRAIN | BREAKFAST | MEAT | EGG
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 

@@ -20,7 +20,7 @@
 /datum/glass_style/drinking_glass/rum_coke
 	required_drink_type = /datum/reagent/consumable/ethanol/rum_coke
 	name = "Rum and Coke"
-	desc = "The classic go-to of space-fratboys."
+	desc = "The classic go-to of fratboys." // DARKPACK EDIT CHANGE
 	icon_state = "whiskeycolaglass"
 
 /datum/glass_style/drinking_glass/cuba_libre
@@ -168,7 +168,7 @@
 /datum/glass_style/drinking_glass/manhattan_proj
 	required_drink_type = /datum/reagent/consumable/ethanol/manhattan_proj
 	name = "Manhattan Project"
-	desc = "A scientist's drink of choice, for thinking how to blow up the station."
+	desc = "A scientist's drink of choice, for thinking how to blow up the world." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "proj_manhattanglass"
 
@@ -237,7 +237,7 @@
 /datum/glass_style/drinking_glass/singulo
 	required_drink_type = /datum/reagent/consumable/ethanol/singulo
 	name = "Singulo"
-	desc = "A blue-space beverage."
+	desc = "A black hole themed beverage." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "singulo"
 
@@ -271,7 +271,7 @@
 /datum/glass_style/drinking_glass/grog
 	required_drink_type = /datum/reagent/consumable/ethanol/grog
 	name = "Grog"
-	desc = "A fine and cepa drink for Space."
+	desc = "A fine drink for the apathetic." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "grogglass"
 
@@ -403,7 +403,7 @@
 /datum/glass_style/drinking_glass/atomicbomb
 	required_drink_type = /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Atomic Bomb"
-	desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
+	desc = "The applicable bar cannot take legal responsibility for your actions after imbibing." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "atomicbombglass"
 
@@ -907,7 +907,7 @@
 /datum/glass_style/drinking_glass/saibasan
 	required_drink_type = /datum/reagent/consumable/ethanol/saibasan
 	name = "Saibāsan"
-	desc = "A drink made in honour of Cybersun Industries' 600th year of continual business. Officially, you're meant to call this a \"Hong Kong Cooler\" on Nanotrasen stations, but that name sucks."
+	desc = "A drink made in honour of Suntory's 100th year of continual business." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "saibasan"
 
@@ -1096,7 +1096,7 @@
 /datum/glass_style/drinking_glass/blue_blazer
 	required_drink_type = /datum/reagent/consumable/ethanol/blue_blazer
 	name = "Blue Blazer"
-	desc = "A visually stunning drink created by one of the fathers of cocktail bartending, made by tossing flaming whiskey between two glasses. Not to be served if it's above fifty degrees farenheit outside, although that's not much of a concern on a space station."
+	desc = "A visually stunning drink created by one of the fathers of cocktail bartending, made by tossing flaming whiskey between two glasses." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "blue_blazer"
 
@@ -1128,6 +1128,110 @@
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "flip_cocktail"
 
+/datum/glass_style/drinking_glass/bartenders_handshake
+	required_drink_type = /datum/reagent/consumable/ethanol/bartenders_handshake
+	name = "Bartender's Handshake"
+	desc = "Truly, a drink only its mother (or father) could love."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "bartenders_handshake"
+
+/datum/glass_style/drinking_glass/brandy_crusta
+	required_drink_type = /datum/reagent/consumable/ethanol/brandy_crusta
+	name = "Brandy Crusta"
+	desc = "The encrusted rim of this drink reminds you of a saccharine snow… or just a sugary margarita."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "brandy_crusta"
+
+/datum/glass_style/drinking_glass/casino
+	required_drink_type = /datum/reagent/consumable/ethanol/casino
+	name = "Casino"
+	desc = "For when you want to feel classy while you blow your salary on slots."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "casino"
+
+/datum/glass_style/drinking_glass/garibaldi
+	required_drink_type = /datum/reagent/consumable/ethanol/garibaldi
+	name = "Garibaldi"
+	desc = "A drink for unifiers and revolutionaries."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "garibaldi"
+
+/datum/glass_style/drinking_glass/improved_whiskey
+	required_drink_type = /datum/reagent/consumable/ethanol/improved_whiskey
+	name = "Improved Whiskey Cocktail"
+	desc = "A descendent of the old fashioned, which also predates the Old Fashioned by about a decade. A student of cocktail histories can resolve this paradox."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "improved_whiskey"
+
+/datum/glass_style/drinking_glass/jungle_bird
+	required_drink_type = /datum/reagent/consumable/ethanol/jungle_bird
+	name = "Jungle Bird"
+	desc = "SQUAWK! No drunks in the engine room! SQUAWK!"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "jungle_bird"
+
+/datum/glass_style/drinking_glass/last_word
+	required_drink_type = /datum/reagent/consumable/ethanol/last_word
+	name = "Last Word"
+	desc = "It speaks for itself."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "last_word"
+
+/datum/glass_style/drinking_glass/mary_pickford
+	required_drink_type = /datum/reagent/consumable/ethanol/mary_pickford
+	name = "Mary Pickford"
+	desc = "May just leave you feeling a tad coquettish."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "mary_pickford"
+
+/datum/glass_style/drinking_glass/negroni
+	required_drink_type = /datum/reagent/consumable/ethanol/negroni
+	name = "Negroni"
+	desc = "Hail to the crimson count."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "negroni"
+
+/datum/glass_style/drinking_glass/nuclear_daiquiri
+	required_drink_type = /datum/reagent/consumable/ethanol/nuclear_daiquiri
+	name = "Nuclear daiquiri"
+	desc = "A funk bomb in a glass."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "nuclear_daiquiri"
+
+/datum/glass_style/drinking_glass/nuclear_daiquiri_thermo
+	required_drink_type = /datum/reagent/consumable/ethanol/nuclear_daiquiri_thermo
+	name = "Thermonuclear Daiquiri"
+	desc = "You seem to hear an erratic ticking noise when you look at this drink."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "nuclear_daiquiri_thermo"
+
+/datum/glass_style/drinking_glass/poets_dream
+	required_drink_type = /datum/reagent/consumable/ethanol/poets_dream
+	name = "Poet's Dream"
+	desc = "'Those which dwell beyond the veil have little time for poetry,' it is said, 'but they have a tremendous amount of time for poets.' Or was it 'have the most tremendous time with poets?'"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "poets_dream"
+
+/datum/glass_style/drinking_glass/pousse_cafe
+	required_drink_type = /datum/reagent/consumable/ethanol/pousse_cafe
+	name = "Pousse Cafe"
+	desc = "If a bartender serves you this without you ordering it, they probably want to impress you. If you ordered it yourself, they probably want to put your head on a pike."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "pousse_cafe"
+
+/datum/glass_style/drinking_glass/spritz
+	required_drink_type = /datum/reagent/consumable/ethanol/spritz
+	name = "Spritz"
+	desc = "Perhaps the best way to start a night out on the town."
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "spritz"
+
+/datum/glass_style/drinking_glass/vieux_carre
+	required_drink_type = /datum/reagent/consumable/ethanol/vieux_carre
+	name = "Vieux Carré"
+	desc = "Laissez les bons temps rouler!"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "vieux_carre"
 
 // Shot glasses
 

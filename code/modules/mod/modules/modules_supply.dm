@@ -194,7 +194,7 @@
 	if (!istype(giberal_turf) || giberal_turf.stage != GIBTONITE_UNSTRUCK)
 		last_bumpmine_tick = world.time
 		var/turf/closed/mineral/rock = bumped_into
-		INVOKE_ASYNC(rock, TYPE_PROC_REF(/atom, attackby), src, bumper, null, null, exp_multiplier)
+		INVOKE_ASYNC(src, PROC_REF(mine_rock), rock, bumper)
 		return
 
 	if (!COOLDOWN_FINISHED(src, gibtonite_warning_cd))
@@ -204,12 +204,21 @@
 	playsound(bumper, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	to_chat(bumper, span_warning("[icon2html(src, bumper)] Unstable gibtonite ore deposit detected!"))
 
+/obj/item/mod/module/drill/proc/mine_rock(turf/closed/mineral/rock, mob/living/carbon/human/bumper)
+	// Even faster if it has ore!
+	var/has_ore = !isnull(rock.mineral_type)
+	if (has_ore)
+		toolspeed /= 1.5
+	rock.attackby(src, bumper, null, null, exp_multiplier)
+	if (has_ore)
+		toolspeed *= 1.5
+
 /obj/item/mod/module/drill/proc/on_module_activated(datum/source, obj/item/mod/module/module)
 	SIGNAL_HANDLER
 	if (!istype(module, /obj/item/mod/module/sphere_transform))
 		return
-	// In sphere mode we get instamine and halved power drain
-	toolspeed = 0
+	// In sphere mode we get faster mining and halved power drain
+	toolspeed = 0.075
 	use_energy_cost *= 0.5
 	exp_multiplier *= 0.2
 	if (!active)
@@ -241,19 +250,36 @@
 	cooldown_time = 0.5 SECONDS
 	allow_flags = MODULE_ALLOW_INACTIVE
 	required_slots = list(ITEM_SLOT_BACK)
+	/// Are we currently dropping off ores? Used to prevent the bag from instantly picking up ores after dropping them
+	var/dropping_ores = FALSE
 
 /obj/item/mod/module/orebag/on_equip()
-	RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(ore_pickup))
+	RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_moved))
+	if (mod.wearer.loc)
+		RegisterSignal(mod.wearer.loc, COMSIG_ATOM_ENTERED, PROC_REF(on_obj_entered))
+		RegisterSignal(mod.wearer.loc, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_initialized_on))
 
 /obj/item/mod/module/orebag/on_unequip()
 	UnregisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED)
+	if (mod.wearer.loc)
+		UnregisterSignal(mod.wearer.loc, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON))
 
-/obj/item/mod/module/orebag/proc/ore_pickup(atom/movable/source, atom/old_loc, dir, forced)
+/obj/item/mod/module/orebag/proc/on_wearer_moved(atom/movable/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
+	if(old_loc)
+		UnregisterSignal(old_loc, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON))
 
+	if(mod.wearer.loc)
+		RegisterSignal(mod.wearer.loc, COMSIG_ATOM_ENTERED, PROC_REF(on_obj_entered))
+		RegisterSignal(mod.wearer.loc, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_initialized_on))
+
+	var/ore_found = FALSE
 	for(var/obj/item/stack/ore/ore in get_turf(mod.wearer))
+		ore_found = TRUE
 		INVOKE_ASYNC(src, PROC_REF(move_ore), ore)
-		playsound(src, SFX_RUSTLE, 50, TRUE)
+
+	if (ore_found)
+		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
 
 /obj/item/mod/module/orebag/proc/move_ore(obj/item/stack/ore)
 	for(var/obj/item/stack/ore/stored_ore as anything in src)
@@ -265,9 +291,23 @@
 	ore.forceMove(src)
 
 /obj/item/mod/module/orebag/on_use(mob/activator)
+	dropping_ores = TRUE
 	for(var/obj/item/ore as anything in src)
 		ore.forceMove(mod.drop_location())
+	dropping_ores = FALSE
 	drain_power(use_energy_cost)
+
+/obj/item/mod/module/orebag/proc/on_obj_entered(atom/new_loc, atom/movable/arrived, atom/old_loc)
+	SIGNAL_HANDLER
+	if(istype(arrived, /obj/item/stack/ore) && !dropping_ores && old_loc != mod.wearer)
+		INVOKE_ASYNC(src, PROC_REF(move_ore), arrived)
+		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
+
+/obj/item/mod/module/orebag/proc/on_atom_initialized_on(atom/loc, atom/new_atom)
+	SIGNAL_HANDLER
+	if(is_type_in_list(new_atom, /obj/item/stack/ore))
+		INVOKE_ASYNC(src, PROC_REF(move_ore), new_atom)
+		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
 
 /obj/item/mod/module/hydraulic
 	name = "MOD loader hydraulic arms module"
@@ -719,8 +759,12 @@
 /obj/structure/mining_bomb/proc/boom(atom/movable/firer)
 	visible_message(span_danger("[src] explodes!"))
 	playsound(src, 'sound/effects/magic/magic_missile.ogg', 200, vary = TRUE)
-	for(var/turf/closed/mineral/rock in circle_range_turfs(src, 1))
-		rock.gets_drilled()
+	var/turf/our_turf = get_turf(src)
+	for(var/turf/closed/mineral/rock in RANGE_TURFS(1, src))
+		if (rock == our_turf)
+			rock.gets_drilled(firer, 0)
+		else
+			rock.drill_aoe(firer, 0)
 	for(var/mob/living/victim in range(1, src))
 		if(HAS_TRAIT(victim, TRAIT_MINING_AOE_IMMUNE))
 			continue

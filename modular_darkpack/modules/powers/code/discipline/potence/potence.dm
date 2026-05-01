@@ -11,12 +11,6 @@
 	activate_sound = 'modular_darkpack/modules/powers/sounds/potence_activate.ogg'
 	deactivate_sound = 'modular_darkpack/modules/powers/sounds/potence_deactivate.ogg'
 
-/datum/discipline_power/potence/proc/apply_passive_strength_bonus(bonus)
-	if (owner.st_get_stat_mod(STAT_STRENGTH, "potence") >= bonus)
-		return
-
-	owner.st_add_stat_mod(STAT_STRENGTH, bonus, "potence")
-
 //POTENCE 1
 /datum/discipline_power/potence/one
 	name = "Potence 1"
@@ -47,7 +41,7 @@
 	owner.remove_status_effect(/datum/status_effect/potence/one)
 
 /datum/discipline_power/potence/one/post_gain()
-	apply_passive_strength_bonus(1)
+	owner.st_add_stat_mod(STAT_STRENGTH, 1, "Potence")
 
 //POTENCE 2
 /datum/discipline_power/potence/two
@@ -70,16 +64,14 @@
 
 /datum/discipline_power/potence/two/activate()
 	. = ..()
-
 	owner.apply_status_effect(/datum/status_effect/potence/two)
 
 /datum/discipline_power/potence/two/deactivate()
 	. = ..()
-
 	owner.remove_status_effect(/datum/status_effect/potence/two)
 
 /datum/discipline_power/potence/two/post_gain()
-	apply_passive_strength_bonus(2)
+	owner.st_add_stat_mod(STAT_STRENGTH, 2, "Potence")
 
 //POTENCE 3
 /datum/discipline_power/potence/three
@@ -102,16 +94,14 @@
 
 /datum/discipline_power/potence/three/activate()
 	. = ..()
-
 	owner.apply_status_effect(/datum/status_effect/potence/three)
 
 /datum/discipline_power/potence/three/deactivate()
 	. = ..()
-
 	owner.remove_status_effect(/datum/status_effect/potence/three)
 
 /datum/discipline_power/potence/three/post_gain()
-	apply_passive_strength_bonus(3)
+	owner.st_add_stat_mod(STAT_STRENGTH, 3, "Potence")
 
 //POTENCE 4
 /datum/discipline_power/potence/four
@@ -134,16 +124,14 @@
 
 /datum/discipline_power/potence/four/activate()
 	. = ..()
-
 	owner.apply_status_effect(/datum/status_effect/potence/four)
 
 /datum/discipline_power/potence/four/deactivate()
 	. = ..()
-
 	owner.remove_status_effect(/datum/status_effect/potence/four)
 
 /datum/discipline_power/potence/four/post_gain()
-	apply_passive_strength_bonus(4)
+	owner.st_add_stat_mod(STAT_STRENGTH, 4, "Potence")
 
 //POTENCE 5
 /datum/discipline_power/potence/five
@@ -166,13 +154,11 @@
 
 /datum/discipline_power/potence/five/activate()
 	. = ..()
-
 	owner.apply_status_effect(/datum/status_effect/potence/five)
 
 /datum/discipline_power/potence/five/deactivate()
 	. = ..()
-
 	owner.remove_status_effect(/datum/status_effect/potence/five)
 
 /datum/discipline_power/potence/five/post_gain()
-	apply_passive_strength_bonus(5)
+	owner.st_add_stat_mod(STAT_STRENGTH, 5, "Potence")

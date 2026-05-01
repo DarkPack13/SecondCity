@@ -58,8 +58,10 @@ export const NtosRecords = (props) => {
               <br />
               Rank: {record.rank}
               <br />
-              Species: {record.species}
-              <br />
+              {/* DARKPACK EDIT REMOVAL START */}
+              {/* Species: {record.species} */}
+              {/* <br /> */}
+              {/* DARKPACK EDIT REMOVAL END */}
               Gender: {record.gender}
               <br />
               Age: {record.age}

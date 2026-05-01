@@ -60,14 +60,16 @@
 
 /datum/shuttle_loan_situation/department_resupply/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/list/crate_types = list(
-		/datum/supply_pack/emergency/equipment,
-		/datum/supply_pack/security/supplies,
+		// /datum/supply_pack/emergency/equipment, // DARKPACK EDIT REMOVAL
+		// /datum/supply_pack/security/supplies, // DARKPACK EDIT REMOVAL
 		/datum/supply_pack/organic/food,
-		/datum/supply_pack/emergency/weedcontrol,
+		// /datum/supply_pack/emergency/weedcontrol, // DARKPACK EDIT REMOVAL
 		/datum/supply_pack/engineering/tools,
 		/datum/supply_pack/engineering/engiequipment,
+		/* // DARKPACK EDIT REMOVAL
 		/datum/supply_pack/science/robotics,
 		/datum/supply_pack/science/plasma,
+		*/
 		/datum/supply_pack/medical/supplies
 		)
 	for(var/crate in crate_types)
@@ -84,6 +86,7 @@
 	shuttle_transit_text = "Syndicate hijack team incoming."
 	logging_desc = "Syndicate boarding party"
 
+/* // DARKPACK EDIT REMOVAL
 /datum/shuttle_loan_situation/syndiehijacking/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
 	pack.generate(pick_n_take(empty_shuttle_turfs))
@@ -94,6 +97,7 @@
 		spawn_list.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator)
 	if(prob(50))
 		spawn_list.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator)
+*/
 
 /datum/shuttle_loan_situation/lots_of_bees
 	sender = "CentCom Janitorial Division"
@@ -195,8 +199,10 @@
 	logging_desc = "Shuttle full of spiders"
 
 /datum/shuttle_loan_situation/spider_gift/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
+	/* // DARKPACK EDIT REMOVAL
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
 	pack.generate(pick_n_take(empty_shuttle_turfs))
+	*/
 
 	spawn_list.Add(/mob/living/basic/spider/giant)
 	spawn_list.Add(/mob/living/basic/spider/giant)

@@ -1,0 +1,8 @@
+/obj/item/storage/belt/holster/detective/vampire : /obj/item/storage/belt/holster/detective/darkpack {@OLD}
+/obj/item/storage/belt/holster/detective/vampire/@SUBTYPES : /obj/item/storage/belt/holster/detective/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/ammo_box/vampire : /obj/item/ammo_box/darkpack {@OLD}
+/obj/item/ammo_box/vampire/@SUBTYPES : /obj/item/ammo_box/darkpack/@SUBTYPES {@OLD}
+
+/obj/item/gun/energy/taser/twoshot : /obj/item/gun/energy/taser/darkpack {@OLD}
+/obj/item/melee/baton/handtaser : /obj/item/melee/baton/security/handtaser {@OLD}

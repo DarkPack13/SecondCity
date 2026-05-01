@@ -47,6 +47,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Syndie Alert" = "alertsyndie",
 	"Alert Warning" = "alertwarning",
 	"Alien" = "alien",
+	"Anarch Radio" = "anarchradio", // DARKPACK EDIT ADD
 	"Average" = "average",
 	"Bad" = "bad",
 	"Big" = "big",
@@ -63,9 +64,11 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Bold Notice" = "boldnotice",
 	"Bold Warning" = "boldwarning",
 	"Big Bold" = "big bold",
+	"Camarilla Radio" = "camarillaradio", // DARKPACK EDIT ADD
 	"Captain-Cast" = "captaincast",
 	"Centcom Radio" = "centcomradio",
 	"Changeling" = "changeling",
+	"Clinic Radio" = "clinicradio", // DARKPACK EDIT ADD
 	"Clown" = "clown",
 	"Colossus" = "colossus",
 	"Command Headset" = "command_headset",
@@ -78,6 +81,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Deadchat" = "deadsay",
 	"Deconversion Message" = "deconversion_message",
 	"Drone Radio" = "drone",
+	"Endron Radio" = "endronradio", // DARKPACK EDIT ADD
 	"Engineering Radio" = "engradio",
 	"Extremely Big" = "extremelybig",
 	"Entertainment Radio" = "enteradio",
@@ -104,6 +108,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Medradio" = "medradio",
 	"Message" = "message",
 	"Mind Control" = "mind_control",
+	"Military Radio" = "militaryradio", // DARKPACK EDIT ADD
 	"Monkey" = "monkey",
 	"Narsie" = "narsie",
 	"Narsie Small" = "narsiesmall",
@@ -113,6 +118,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"OOC" = "ooc",
 	"Papyrus" = "papyrus",
 	"Phobia" = "phobia",
+	"Police Radio" = "policeradio", // DARKPACK EDIT ADD
 	"Prefix" = "prefix",
 	"Purple" = "purple",
 	"Radio" = "radio",

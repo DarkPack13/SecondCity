@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/inherent_traits = list()
 	/// List of biotypes the mob belongs to. Used by diseases.
 	var/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	/// The type of respiration the mob is capable of doing. Used by adjustOxyLoss.
+	/// The type of respiration the mob is capable of doing. Used by adjust_oxy_loss.
 	var/inherent_respiration_type = RESPIRATION_OXYGEN
 	///List of factions the mob gain upon gaining this species.
 	var/list/inherent_factions
@@ -189,6 +189,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		plural_form = "[name]\s"
 	if(!examine_limb_id)
 		examine_limb_id = id
+	// Carbons determine bodypart order by this list, so we need to make sure it's sorted properly
+	sortTim(bodypart_overrides, GLOBAL_PROC_REF(cmp_bodypart_by_body_part_asc), associative = TRUE)
 
 	return ..()
 
@@ -214,11 +216,21 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 		if(species.check_roundstart_eligible())
 			selectable_species += species.id
+	// DARKPACK EDIT CHANGE START - LANGUAGES
+			/*
 			var/datum/language_holder/temp_holder = GLOB.prototype_language_holders[species.species_language_holder]
 			for(var/datum/language/spoken_language as anything in temp_holder.understood_languages)
 				GLOB.uncommon_roundstart_languages |= spoken_language
+			*/
 
+	// The changes here mean this can be moved to just a glob list init but that would mean even more non-modular edits. Will do if I can get demodularization.
+	GLOB.uncommon_roundstart_languages = list()
+	for(var/datum/language/lang as anything in subtypesof(/datum/language))
+		if(lang.restricted)
+			continue
+		GLOB.uncommon_roundstart_languages |= lang
 	GLOB.uncommon_roundstart_languages -= /datum/language/common
+	// DARKPACK EDIT CHANGE END
 	if(!selectable_species.len)
 		selectable_species += SPECIES_HUMAN
 
@@ -354,8 +366,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * Normalizes blood in a human if it is excessive. If it is above BLOOD_VOLUME_NORMAL, this will clamp it to that value. It will not give the human more blodo than they have less than this value.
  */
 /datum/species/proc/normalize_blood(mob/living/carbon/human/blood_possessing_human)
-	var/normalized_blood_values = max(blood_possessing_human.blood_volume, 0, BLOOD_VOLUME_NORMAL)
-	blood_possessing_human.blood_volume = normalized_blood_values
+	blood_possessing_human.set_blood_volume(min(blood_possessing_human.get_blood_volume(), BLOOD_VOLUME_NORMAL))
 
 /**
  * Proc called when a carbon becomes this species.
@@ -380,7 +391,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	human_who_gained_species.butcher_results = knife_butcher_results?.Copy()
 
 	//update body zones to match what they are supposed to have
-	human_who_gained_species.hud_used?.healthdoll.update_body_zones()
+	var/atom/movable/screen/healthdoll/doll = human_who_gained_species.hud_used?.screen_objects[HUD_MOB_HEALTHDOLL]
+	if (doll)
+		doll.update_body_zones()
 
 	if(old_species.type != type)
 		replace_body(human_who_gained_species, src)
@@ -409,7 +422,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(inherent_factions)
 		for(var/i in inherent_factions)
-			human_who_gained_species.faction += i //Using +=/-= for this in case you also gain the faction from a different source.
+			human_who_gained_species.add_faction(i)
 
 	// All languages associated with this language holder are added with source [LANGUAGE_SPECIES]
 	// rather than source [LANGUAGE_ATOM], so we can track what to remove if our species changes again
@@ -432,7 +445,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	human_who_gained_species.living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
 
 	//we don't allow it to update during species transition, so update it now
-	human_who_gained_species.hud_used?.healthdoll.update_appearance()
+	human_who_gained_species.hud_used?.screen_objects[HUD_MOB_HEALTHDOLL]?.update_appearance()
 
 /**
  * Proc called when a carbon is no longer this species.
@@ -464,7 +477,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(inherent_factions)
 		for(var/i in inherent_factions)
-			human.faction -= i
+			human.remove_faction(i)
 
 	clear_tail_moodlets(human)
 
@@ -484,84 +497,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(human, COMSIG_SPECIES_LOSS, src)
 
 	human.living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
-
-/**
- * Handles the body of a human
- *
- * Handles lipstick, having no eyes, eye color, undergarnments like underwear, undershirts, and socks, and body layers.
- * Arguments:
- * * species_human - Human, whoever we're handling the body for
- */
-/datum/species/proc/handle_body(mob/living/carbon/human/species_human)
-	species_human.remove_overlay(BODY_LAYER)
-	species_human.remove_overlay(EYES_LAYER)
-
-	if(HAS_TRAIT(species_human, TRAIT_INVISIBLE_MAN))
-		return
-
-	if(!HAS_TRAIT(species_human, TRAIT_HUSK))
-		var/obj/item/bodypart/head/noggin = species_human.get_bodypart(BODY_ZONE_HEAD)
-		if(noggin?.head_flags & HEAD_EYESPRITES)
-			// eyes (missing eye sprites get handled by the head itself, but sadly we have to do this stupid shit here, for now)
-			var/obj/item/organ/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
-			if(eye_organ)
-				eye_organ.refresh(call_update = FALSE)
-				species_human.overlays_standing[EYES_LAYER] = eye_organ.generate_body_overlay(species_human)
-				species_human.apply_overlay(EYES_LAYER)
-
-	if(HAS_TRAIT(species_human, TRAIT_NO_UNDERWEAR))
-		return
-
-	// Underwear, Undershirts & Socks
-	var/list/standing = list()
-	if(species_human.underwear)
-		var/datum/sprite_accessory/underwear/underwear = SSaccessories.underwear_list[species_human.underwear]
-		var/mutable_appearance/underwear_overlay
-		if(underwear)
-			if(species_human.dna.species.sexes && species_human.physique == FEMALE && (underwear.gender == MALE))
-				underwear_overlay = mutable_appearance(wear_female_version(underwear.icon_state, underwear.icon, FEMALE_UNIFORM_FULL), layer = -BODY_LAYER)
-			else
-				underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
-			if(!underwear.use_static)
-				underwear_overlay.color = species_human.underwear_color
-			standing += underwear_overlay
-
-	if(species_human.undershirt)
-		var/datum/sprite_accessory/undershirt/undershirt = SSaccessories.undershirt_list[species_human.undershirt]
-		if(undershirt)
-			var/mutable_appearance/working_shirt
-			if(species_human.dna.species.sexes && species_human.physique == FEMALE)
-				working_shirt = mutable_appearance(wear_female_version(undershirt.icon_state, undershirt.icon), layer = -BODY_LAYER)
-			else
-				working_shirt = mutable_appearance(undershirt.icon, undershirt.icon_state, layer = -BODY_LAYER)
-			standing += working_shirt
-
-	if(species_human.socks && species_human.num_legs >= 2 && !(species_human.bodyshape & BODYSHAPE_DIGITIGRADE))
-		var/datum/sprite_accessory/socks/socks = SSaccessories.socks_list[species_human.socks]
-		if(socks)
-			standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
-
-	if(standing.len)
-		species_human.overlays_standing[BODY_LAYER] = standing
-
-	species_human.apply_overlay(BODY_LAYER)
-
-/// Updates face (as of now, only eye) offsets
-/datum/species/proc/update_face_offset(mob/living/carbon/human/species_human)
-	var/list/eye_overlays = species_human.overlays_standing[EYES_LAYER]
-	species_human.remove_overlay(EYES_LAYER)
-
-	if(HAS_TRAIT(species_human, TRAIT_INVISIBLE_MAN) || HAS_TRAIT(species_human, TRAIT_HUSK) || !length(eye_overlays))
-		return
-
-	var/obj/item/bodypart/head/noggin = species_human.get_bodypart(BODY_ZONE_HEAD)
-	for (var/mutable_appearance/overlay as anything in eye_overlays)
-		overlay.pixel_w = 0
-		overlay.pixel_z = 0
-		noggin.worn_face_offset.apply_offset(overlay)
-
-	species_human.overlays_standing[EYES_LAYER] = eye_overlays
-	species_human.apply_overlay(EYES_LAYER)
 
 // This exists so sprite accessories can still be per-layer without having to include that layer's
 // number in their sprite name, which causes issues when those numbers change.
@@ -604,7 +539,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/list/new_features = list()
 	var/static/list/organs_to_randomize = list()
-	for(var/obj/item/organ/organ_path as anything in mutant_organs)
+	for(var/obj/item/organ/organ_path as anything in get_organs())
 		if(!organ_path.bodypart_overlay)
 			continue
 		var/overlay_path = initial(organ_path.bodypart_overlay)
@@ -617,10 +552,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	return new_features
 
-/datum/species/proc/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
+/datum/species/proc/spec_life(mob/living/carbon/human/H, seconds_per_tick)
 	SHOULD_CALL_PARENT(TRUE)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH) && (H.health < H.crit_threshold) && !HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
-		H.adjustBruteLoss(0.5 * seconds_per_tick)
+		H.adjust_brute_loss(0.5 * seconds_per_tick)
 
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	if(no_equip_flags & slot)
@@ -840,17 +775,17 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	user.do_cpr(target)
 
+// DARKPACK EDIT CHANGE START - STORYTELLER_DICE - (This proc required a MAJOR rewrite to be more ttrpg accurate and use dice)
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && !attacker_style?.pacifist_style)
 		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return FALSE
 
-	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
-	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(user, target) || brain?.get_attacking_limb(target) || user.get_active_hand()
-
-	// Whether or not we get some protein for a successful attack. Nom.
-	var/biting = FALSE
+	var/obj/item/bodypart/attacking_bodypart = user.get_attacking_limb(target, attacker_style)
+	if(!attacking_bodypart)
+		user.balloon_alert(user, "can't attack!")
+		return FALSE
 
 	var/atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
 	var/atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
@@ -860,20 +795,26 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/atk_effect = attacking_bodypart.unarmed_attack_effect
 
+	var/attack_roll_type = /datum/storyteller_roll/attack/punch
+	var/damage_roll_type = /datum/storyteller_roll/damage/punch
+
+	var/attack_difficulty_bonus = 0
+	var/attack_bonus_dice = 0
+	var/damage_difficulty_bonus = 0
+	var/damage_bonus_dice = 0
+
 	if(atk_effect == ATTACK_EFFECT_BITE)
-		if(!user.is_mouth_covered(ITEM_SLOT_MASK))
-			biting = TRUE
-		else if(user.get_active_hand()) //In the event we can't bite, emergency swap to see if we can attack with a hand.
-			attacking_bodypart = user.get_active_hand()
-			atk_verb_index = rand(1, length(attacking_bodypart.unarmed_attack_verbs))
-			atk_verb = attacking_bodypart.unarmed_attack_verbs[atk_verb_index]
-			atk_verb_continuous = "[atk_verb]s"
-			if (length(attacking_bodypart.unarmed_attack_verbs_continuous) >= atk_verb_index) // Just in case
-				atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
-			atk_effect = attacking_bodypart.unarmed_attack_effect
-		else  //Nothing? Okay. Fail.
-			user.balloon_alert(user, "can't attack!")
-			return FALSE
+		attack_roll_type = /datum/storyteller_roll/attack/bite
+		damage_roll_type = /datum/storyteller_roll/damage/bite
+		damage_bonus_dice++
+	else if(atk_effect == ATTACK_EFFECT_KICK)
+		attack_roll_type = /datum/storyteller_roll/attack/kick
+		damage_roll_type = /datum/storyteller_roll/damage/kick
+		damage_bonus_dice++
+	else if(atk_effect == ATTACK_EFFECT_CLAW)
+		attack_roll_type = /datum/storyteller_roll/attack/claw
+		damage_roll_type = /datum/storyteller_roll/damage/claw
+		damage_bonus_dice += 2
 
 	user.do_attack_animation(target, atk_effect)
 
@@ -883,19 +824,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Someone in a grapple is much more vulnerable to being harmed by punches.
 	var/grappled = (target.pulledby && target.pulledby.grab_state >= GRAB_AGGRESSIVE)
 
-	// Our lower and upper unarmed damage values. Damage is rolled between these two values.
-	var/lower_unarmed_damage = attacking_bodypart.unarmed_damage_low
-	var/upper_unarmed_damage = attacking_bodypart.unarmed_damage_high
-
-	// The presence of TRAIT_STRENGTH increases our upper unarmed damage. This is a damage cap increase.
-	upper_unarmed_damage += HAS_TRAIT(user, TRAIT_STRENGTH) ? 2 : 0
-
-	// Out athletics skill is used to set our potential base damage roll. It won't increase our potential damage roll, but will make our unarmed attack more consistent.
-	// For a normal human arm, this would cap at 10, and for a normal human leg, this would go up to 14.
-	lower_unarmed_damage =  min(lower_unarmed_damage + (user.mind?.get_skill_level(/datum/skill/athletics) || 0), upper_unarmed_damage)
-
-	// The actual damage roll. May still be augmented by further factors.
-	var/damage = rand(lower_unarmed_damage, upper_unarmed_damage)
 	// Limb accuracy is used to determine miss probabilities (higher the value, the less likely you are to miss), armor penetration (if entitled) and the possible result from a stagger combo hit.
 	var/limb_accuracy = attacking_bodypart.unarmed_effectiveness
 	// Limb sharpness determines the type of wounds this unarmed strike could possibly roll. By default, most limbs are blunt and have no sharpness.
@@ -903,14 +831,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(grappled)
 		var/pummel_bonus = attacking_bodypart.unarmed_pummeling_bonus
-		damage = floor(damage * pummel_bonus)
-		limb_accuracy = floor(limb_accuracy * pummel_bonus)
-
-	//Get our puncher's combined brute and burn damage.
-	var/puncher_brute_and_burn = (user.getFireLoss() + user.getBruteLoss())
+		attack_bonus_dice += round(1 * pummel_bonus)
 
 	//Get our targets combined brute and burn damage.
-	var/target_brute_and_burn = (target.getFireLoss() + target.getBruteLoss())
+	var/target_brute_and_burn = (target.get_fire_loss() + target.get_brute_loss())
 
 	// In a brawl, drunkenness can make you swing more wildly and with more force, and thus catch your opponent off guard, but it could also totally throw you off if you're too intoxicated
 	// But god is it going to make you sick moving too much while drunk
@@ -918,32 +842,49 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(user_drunkenness)
 		if(HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
-			limb_accuracy += clamp(puncher_brute_and_burn / 2, 10, 200)
-			damage += damage * clamp(puncher_brute_and_burn / 100, 0.3, 2) //Basically a multiplier of how much extra damage you get based on how low your health is overall. A floor of about a 30%.
+			attack_bonus_dice++
+			damage_bonus_dice++
 			var/drunken_martial_descriptor = pick("Drunken", "Intoxicated", "Tipsy", "Inebriated", "Delirious", "Day-Drinker's", "Firegut", "Blackout")
 			atk_verb = "[drunken_martial_descriptor] [capitalize(atk_verb)]"
 			atk_verb_continuous = "[drunken_martial_descriptor] [capitalize(atk_verb_continuous)]"
 
 		else if(user_drunkenness >= 60)
-			limb_accuracy = -limb_accuracy // good luck landing a punch now, you drunk fuck
+			attack_difficulty_bonus++ // good luck landing a punch now, you drunk fuck
 			user.adjust_disgust(5)
 
 		else if(user_drunkenness >= 30)
-			limb_accuracy *= 1.2
 			user.adjust_disgust(2)
 
 	// Select a zone to hit, blacklisting the part we're attacking with if we're attacking ourselves.
 	var/hit_zone = target.get_random_valid_zone(user.zone_selected, blacklisted_parts = (user == target ? list(attacking_bodypart.body_zone) : null))
 	var/obj/item/bodypart/affecting = target.get_bodypart(hit_zone)
 
-	var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
-	if(lower_unarmed_damage)
-		if((target.body_position == LYING_DOWN) || HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || staggered || user_drunkenness && HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) //kicks and attacks against staggered targets never miss (provided your species deals more than 0 damage). Drunken brawlers while drunk also don't miss
-			miss_chance = 0
-		else
-			miss_chance = clamp(UNARMED_MISS_CHANCE_BASE - limb_accuracy + (puncher_brute_and_burn / 2), 0, UNARMED_MISS_CHANCE_MAX) //Limb miss chance + various damage. capped at 80 so there is at least a chance to land a hit.
+	if(target.body_position == LYING_DOWN)
+		attack_bonus_dice++
+	if(staggered)
+		attack_bonus_dice++
+	if(user_drunkenness && HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER))
+		attack_bonus_dice++
 
-	if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
+	var/attack_landed = FALSE
+	if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || grappled)
+		attack_landed = TRUE
+	else
+		var/datum/storyteller_roll/attack/attack_roll = new attack_roll_type()
+		attack_roll.difficulty += attack_difficulty_bonus
+		if(attack_roll.st_roll(user, target, attack_bonus_dice) == ROLL_SUCCESS)
+			attack_landed = TRUE
+
+	var/damage = 0
+	if(attack_landed)
+		if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER))
+			damage = user.st_get_stat(STAT_STRENGTH) TTRPG_DAMAGE
+		else
+			var/datum/storyteller_roll/damage/damage_roll = new damage_roll_type()
+			damage_roll.difficulty += damage_difficulty_bonus
+			damage = damage_roll.st_roll(user, target, damage_bonus_dice) TTRPG_DAMAGE
+
+	if(damage <= 0 || !affecting || !attack_landed)
 		playsound(target.loc, attacking_bodypart.unarmed_miss_sound, 25, TRUE, -1)
 		target.visible_message(span_danger("[user]'s [atk_verb] misses [target]!"), \
 						span_danger("You avoid [user]'s [atk_verb]!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, user)
@@ -988,17 +929,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
 	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
-	var/final_armor_block = armor_block
-	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
-		if(damage >= 9)
-			target.force_say()
-		log_combat(user, target, grappled ? "grapple punched" : "kicked")
-		final_armor_block -= limb_accuracy
-		target.apply_damage(damage, attack_type, affecting, final_armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
-	else // Normal attacks do not gain the benefit of armor penetration.
-		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
-		if(damage >= 9)
-			target.force_say()
+	var/biting = (atk_effect == ATTACK_EFFECT_BITE)
+
+	if(damage >= 1 TTRPG_DAMAGE)
+		target.force_say()
+	target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
+	if(grappled)
+		log_combat(user, target, "grapple punched")
+	else if(kicking)
+		log_combat(user, target, "kicked")
+	else if(biting)
+		log_combat(user, target, "bit")
+	else
 		log_combat(user, target, "punched")
 
 	if(user != target && biting && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
@@ -1006,8 +948,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
 		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
 
-	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
-	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
+	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, armor_block, kicking, limb_sharpness)
+	SEND_SIGNAL(user, COMSIG_HUMAN_PUNCHED, target, damage, attack_type, affecting, armor_block, kicking, limb_sharpness)
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
@@ -1019,6 +961,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/effective_armor = max(armor_block, UNARMED_COMBO_HIT_HEALTH_BASE) - limb_accuracy
 	if(staggered && target_brute_and_burn >= clamp(effective_armor, 0, 200))
 		stagger_combo(user, target, atk_verb, limb_accuracy, armor_block)
+// DARKPACK EDIT CHANGE END
 
 /// Handles the stagger combo effect of our punch. Follows the same logic as the above proc, target is our owner, user is our attacker.
 /datum/species/proc/stagger_combo(mob/living/carbon/human/user, mob/living/carbon/human/target, atk_verb = "hit", limb_accuracy = 0, armor_block = 0)
@@ -1116,9 +1059,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * * environment (required) The environment gas mix
  * * humi (required)(type: /mob/living/carbon/human) The mob we will target
  */
-/datum/species/proc/handle_environment(mob/living/carbon/human/humi, datum/gas_mixture/environment, seconds_per_tick, times_fired)
-	handle_environment_pressure(humi, environment, seconds_per_tick, times_fired)
-	handle_gas_interaction(humi, environment, seconds_per_tick, times_fired)
+/datum/species/proc/handle_environment(mob/living/carbon/human/humi, datum/gas_mixture/environment, seconds_per_tick)
+	handle_environment_pressure(humi, environment, seconds_per_tick)
+	handle_gas_interaction(humi, environment, seconds_per_tick)
 
 /**
  * Body temperature handler for species
@@ -1128,22 +1071,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * vars:
  * * humi (required)(type: /mob/living/carbon/human) The mob we will target
  */
-/datum/species/proc/handle_body_temperature(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/proc/handle_body_temperature(mob/living/carbon/human/humi, seconds_per_tick)
 	// When in a cryo unit we suspend all natural body regulation
 	if(istype(humi.loc, /obj/machinery/cryo_cell))
 		return
 
 	// Only stabilise core temp when alive and not in statis
 	if(humi.stat < DEAD && !HAS_TRAIT(humi, TRAIT_STASIS))
-		body_temperature_core(humi, seconds_per_tick, times_fired)
+		body_temperature_core(humi, seconds_per_tick)
 
 	// These do run in statis
-	body_temperature_skin(humi, seconds_per_tick, times_fired)
-	body_temperature_alerts(humi, seconds_per_tick, times_fired)
+	body_temperature_skin(humi, seconds_per_tick)
+	body_temperature_alerts(humi, seconds_per_tick)
 
 	// Do not cause more damage in statis
 	if(!HAS_TRAIT(humi, TRAIT_STASIS))
-		body_temperature_damage(humi, seconds_per_tick, times_fired)
+		body_temperature_damage(humi, seconds_per_tick)
 
 /**
  * Used to stabilize the core temperature back to normal on living mobs
@@ -1152,7 +1095,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * vars:
  * * humi (required) The mob we will stabilize
  */
-/datum/species/proc/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/proc/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick)
 	var/natural_change = get_temp_change_amount(humi.get_body_temp_normal() - humi.coretemperature, 0.06 * seconds_per_tick)
 	humi.adjust_coretemperature(humi.metabolism_efficiency * natural_change)
 
@@ -1166,7 +1109,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * - seconds_per_tick: The amount of time that is considered as elapsing
  * - times_fired: The number of times SSmobs has fired
  */
-/datum/species/proc/body_temperature_skin(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/proc/body_temperature_skin(mob/living/carbon/human/humi, seconds_per_tick)
 
 	// change the core based on the skin temp
 	var/skin_core_diff = humi.bodytemperature - humi.coretemperature
@@ -1278,7 +1221,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * vars:
  * * humi (required) The mob we will targeting
  */
-/datum/species/proc/body_temperature_damage(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/proc/body_temperature_damage(mob/living/carbon/human/humi, seconds_per_tick)
 
 	//If the body temp is above the wound limit start adding exposure stacks
 	if(humi.bodytemperature > BODYTEMP_HEAT_WOUND_LIMIT)
@@ -1288,7 +1231,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//when exposure stacks are greater then 10 + rand20 try to apply wounds and reset stacks
 	if(humi.heat_exposure_stacks > (10 + rand(0, 20)))
-		apply_burn_wounds(humi, seconds_per_tick, times_fired)
+		apply_burn_wounds(humi, seconds_per_tick)
 		humi.heat_exposure_stacks = 0
 
 	// Body temperature is too hot, and we do not have resist traits
@@ -1312,7 +1255,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		humi.apply_damage(burn_damage, BURN, spread_damage = TRUE, wound_clothing = FALSE)
 
 	// For cold damage, we cap at the threshold if you're dead
-	if(humi.getFireLoss() >= abs(HEALTH_THRESHOLD_DEAD) && humi.stat == DEAD)
+	if(humi.get_fire_loss() >= abs(HEALTH_THRESHOLD_DEAD) && humi.stat == DEAD)
 		return
 
 	// Apply some burn / brute damage to the body (Dependent if the person is hulk or not)
@@ -1339,7 +1282,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * vars:
  * * humi (required) The mob we will targeting
  */
-/datum/species/proc/apply_burn_wounds(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/proc/apply_burn_wounds(mob/living/carbon/human/humi, seconds_per_tick)
 	// If we are resistant to heat exit
 	if(HAS_TRAIT(humi, TRAIT_RESISTHEAT))
 		return
@@ -1349,7 +1292,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return
 
 	// Lets pick a random body part and check for an existing burn
-	var/obj/item/bodypart/bodypart = pick(humi.bodyparts)
+	var/obj/item/bodypart/bodypart = pick(humi.get_bodyparts())
 	var/datum/wound/existing_burn
 	for (var/datum/wound/iterated_wound as anything in bodypart.wounds)
 		var/datum/wound_pregen_data/pregen_data = iterated_wound.get_pregen_data()
@@ -1381,7 +1324,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	humi.apply_damage(burn_damage * seconds_per_tick, BURN, bodypart, wound_clothing = FALSE)
 
 /// Handle the air pressure of the environment
-/datum/species/proc/handle_environment_pressure(mob/living/carbon/human/H, datum/gas_mixture/environment, seconds_per_tick, times_fired)
+/datum/species/proc/handle_environment_pressure(mob/living/carbon/human/H, datum/gas_mixture/environment, seconds_per_tick)
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = H.calculate_affecting_pressure(pressure)
 
@@ -1393,7 +1336,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				H.clear_alert(ALERT_PRESSURE)
 			else
 				var/pressure_damage = min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) - 1) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod * H.physiology.brute_mod * seconds_per_tick
-				H.adjustBruteLoss(pressure_damage, required_bodytype = BODYTYPE_ORGANIC)
+				H.adjust_brute_loss(pressure_damage, required_bodytype = BODYTYPE_ORGANIC)
 				H.throw_alert(ALERT_PRESSURE, /atom/movable/screen/alert/highpressure, 2)
 
 		// High pressure, show an alert
@@ -1403,6 +1346,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		// No pressure issues here clear pressure alerts
 		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
 			H.clear_alert(ALERT_PRESSURE)
+			H.seconds_in_low_pressure = 0
 
 		// Low pressure here, show an alert
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
@@ -1411,6 +1355,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				H.clear_alert(ALERT_PRESSURE)
 			else
 				H.throw_alert(ALERT_PRESSURE, /atom/movable/screen/alert/lowpressure, 1)
+			H.seconds_in_low_pressure = 0
 
 		// Very low pressure, show an alert and take damage
 		else
@@ -1418,15 +1363,21 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert(ALERT_PRESSURE)
 			else
-				var/pressure_damage = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * H.physiology.brute_mod * seconds_per_tick
-				H.adjustBruteLoss(pressure_damage, required_bodytype = BODYTYPE_ORGANIC)
+				var/pressure_damage = min(round(1 + (H.seconds_in_low_pressure / 80 SECONDS), 0.05) * BASE_LOW_PRESSURE_DAMAGE, MAX_LOW_PRESSURE_DAMAGE)  * H.physiology.pressure_mod * H.physiology.brute_mod * seconds_per_tick
+				H.adjust_brute_loss(pressure_damage, required_bodytype = BODYTYPE_ORGANIC)
 				H.throw_alert(ALERT_PRESSURE, /atom/movable/screen/alert/lowpressure, 2)
+			H.seconds_in_low_pressure += seconds_per_tick
 
 /**
  *	Handles exposure to the skin of various gases.
  */
-/datum/species/proc/handle_gas_interaction(mob/living/carbon/human/human, datum/gas_mixture/environment, seconds_per_tick, times_fired)
-	if((human?.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE) && (human?.head?.clothing_flags & STOPSPRESSUREDAMAGE))
+/datum/species/proc/handle_gas_interaction(mob/living/carbon/human/human, datum/gas_mixture/environment, seconds_per_tick)
+	/// Some non-clothing items may end up in these slots, e.g. flowers worn on the head, so we should consider clothing_flags as potentially nonexistant as a var.
+	/// Otherwise we will get a very spammy runtime.
+	var/suit_flags = astype(human?.wear_suit, /obj/item/clothing)?.clothing_flags
+	var/head_flags = astype(human?.head, /obj/item/clothing)?.clothing_flags
+
+	if((suit_flags & STOPSPRESSUREDAMAGE) && (head_flags & STOPSPRESSUREDAMAGE))
 		return
 
 	for(var/gas_id in environment.gases)
@@ -1475,21 +1426,17 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return cached_features
 
 	var/list/features = list()
+	var/list/mut_organs = get_organs()
 
 	for (var/preference_type in GLOB.preference_entries)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
 		if ( \
 			(preference.relevant_inherent_trait in inherent_traits) \
-			|| (preference.relevant_external_organ in get_mut_organs()) \
+			|| (preference.relevant_organ in mut_organs) \
 			|| (preference.relevant_head_flag && check_head_flags(preference.relevant_head_flag)) \
 			|| (preference.relevant_body_markings in body_markings) \
 		)
 			features += preference.savefile_key
-
-	for (var/obj/item/organ/organ_type as anything in mutant_organs)
-		var/preference = initial(organ_type.preference)
-		if (!isnull(preference))
-			features += preference
 
 	GLOB.features_by_species[type] = features
 
@@ -1536,7 +1483,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_hiss_sound(mob/living/carbon/human/human)
 	return
 
-/datum/species/proc/get_mut_organs(include_brain = TRUE)
+/// Returns a list of all organ typepaths this species probably has
+/datum/species/proc/get_organs(include_brain = TRUE)
 	var/list/mut_organs = list()
 	mut_organs += mutant_organs
 	if (include_brain)
@@ -1553,7 +1501,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return mut_organs
 
 /datum/species/proc/get_types_to_preload()
-	return get_mut_organs(FALSE)
+	return get_organs(FALSE)
 
 
 /**
@@ -1749,6 +1697,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_ICON = "shield-alt",
 			SPECIES_PERK_NAME = "Shock Resilience",
 			SPECIES_PERK_DESC = "[plural_form] are resilient to being shocked.",
+		))
+
+	if(inherent_biotypes & (MOB_ROBOTIC|MOB_MINERAL))
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = FA_ICON_HAMMER,
+			SPECIES_PERK_NAME = "Tough Frame",
+			SPECIES_PERK_DESC = "[plural_form] are more resistant to slashing and stabbing, but more vulnerable to impacts.",
 		))
 
 	return to_add
@@ -2042,7 +1998,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		final_bodypart_overrides[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
 		final_bodypart_overrides[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
 
-	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
+	for(var/obj/item/bodypart/old_part as anything in target.get_bodyparts())
 		if((old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES) || (old_part.bodypart_flags & BODYPART_IMPLANTED))
 			continue
 
@@ -2050,7 +2006,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/obj/item/bodypart/new_part
 		if(path)
 			new_part = new path()
-			new_part.replace_limb(target, TRUE)
+			new_part.replace_limb(target)
 			new_part.update_limb(is_creating = TRUE)
 			new_part.set_initial_damage(old_part.brute_dam, old_part.burn_dam)
 		qdel(old_part)
@@ -2114,7 +2070,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /// Remove body markings
 /datum/species/proc/remove_body_markings(mob/living/carbon/human/hooman)
-	for(var/obj/item/bodypart/part as anything in hooman.bodyparts)
+	for(var/obj/item/bodypart/part as anything in hooman.get_bodyparts())
 		for(var/datum/bodypart_overlay/simple/body_marking/marking in part.bodypart_overlays)
 			part.remove_bodypart_overlay(marking)
 

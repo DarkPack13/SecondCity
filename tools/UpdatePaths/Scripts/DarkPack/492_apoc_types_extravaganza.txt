@@ -1,0 +1,4 @@
+# Not an apoc type but GRRRRRR xeon
+/mob/living/simple_animal/hostile/biter/lasombra : /mob/living/basic/lasombra
+/mob/living/simple_animal/hostile/biter/lasombra/better : /mob/living/basic/lasombra/better
+

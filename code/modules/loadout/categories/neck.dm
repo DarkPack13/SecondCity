@@ -11,7 +11,6 @@
 /datum/loadout_item/neck/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	outfit.neck = item_path
 
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
 /datum/loadout_item/neck/scarf_greyscale
 	name = "Scarf (Colorable)"
 	item_path = /obj/item/clothing/neck/scarf
@@ -39,4 +38,3 @@
 /datum/loadout_item/neck/bowtie
 	name = "Bowtie"
 	item_path = /obj/item/clothing/neck/bowtie
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories

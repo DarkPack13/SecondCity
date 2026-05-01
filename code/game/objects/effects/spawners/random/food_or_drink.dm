@@ -110,7 +110,7 @@
 		/obj/item/food/grown/onion,
 		/obj/item/food/grown/peanut,
 		/obj/item/food/grown/pineapple,
-		/obj/item/seeds/plum,
+		/obj/item/food/grown/plum,
 		/obj/item/food/grown/potato,
 		/obj/item/food/grown/pumpkin,
 		/obj/item/food/grown/carrot,
@@ -224,7 +224,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/pizzaparty
-	name = "pizza bomb spawner"
+	name = "pizza spawner" // DARKPACK EDIT CHANGE
 	icon_state = "pizzabox"
 	loot = list(
 		/obj/item/pizzabox/margherita = 2,
@@ -232,7 +232,7 @@
 		/obj/item/pizzabox/mushroom = 2,
 		/obj/item/pizzabox/pineapple = 2,
 		/obj/item/pizzabox/vegetable = 2,
-		/obj/item/pizzabox/bomb/armed = 1,
+		// /obj/item/pizzabox/bomb/armed = 1, // DARKPACK EDIT REMOVAL
 
 	)
 

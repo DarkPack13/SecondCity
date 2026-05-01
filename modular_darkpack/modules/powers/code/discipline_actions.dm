@@ -1,8 +1,7 @@
 /datum/action/discipline
 	check_flags = NONE
-	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"
-	button_icon = 'modular_darkpack/modules/deprecated/icons/ui/actions.dmi'
+	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	button_icon_state = "bloodheal"
 	overlay_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 
@@ -10,7 +9,7 @@
 	var/datum/discipline/discipline
 	var/targeting = FALSE
 
-/datum/action/discipline/New(datum/discipline/discipline)
+/datum/action/discipline/New(Target, datum/discipline/discipline)
 	. = ..()
 
 	src.discipline = discipline
@@ -26,6 +25,32 @@
 	discipline.assign(M)
 
 	register_to_availability_signals()
+
+/datum/action/discipline/Remove(mob/owner)
+	if(discipline)
+		discipline.post_loss()
+	end_targeting()
+	if(owner)
+		UnregisterSignal(owner, list(
+			SIGNAL_ADDTRAIT(TRAIT_TORPOR),
+			SIGNAL_REMOVETRAIT(TRAIT_TORPOR),
+			SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+			SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT),
+			SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+			SIGNAL_REMOVETRAIT(TRAIT_INCAPACITATED),
+			SIGNAL_ADDTRAIT(TRAIT_IMMOBILIZED),
+			SIGNAL_REMOVETRAIT(TRAIT_IMMOBILIZED),
+			SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+			SIGNAL_REMOVETRAIT(TRAIT_FLOORED),
+			SIGNAL_ADDTRAIT(TRAIT_MUTE),
+			SIGNAL_REMOVETRAIT(TRAIT_MUTE),
+			SIGNAL_ADDTRAIT(TRAIT_HANDS_BLOCKED),
+			SIGNAL_REMOVETRAIT(TRAIT_HANDS_BLOCKED),
+			SIGNAL_ADDTRAIT(TRAIT_PACIFISM),
+			SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
+		))
+	QDEL_NULL(discipline)
+	return ..()
 
 /datum/action/discipline/proc/register_to_availability_signals()
 	//this should only go through if it's the first Discipline gained by the mob
@@ -58,13 +83,18 @@
 		SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 	)
 
-	RegisterSignals(owner, relevant_signals, TYPE_PROC_REF(/mob, update_action_buttons))
+	RegisterSignals(owner, relevant_signals, PROC_REF(update_owner_action_buttons))
+
+/datum/action/discipline/proc/update_owner_action_buttons()
+	owner.update_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
 	return discipline.current_power.can_activate_untargeted(feedback)
 
-/datum/action/discipline/Trigger(trigger_flags)
+/datum/action/discipline/Trigger(mob/clicker, trigger_flags)
 	. = ..()
+	if(!.)
+		return
 
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
@@ -102,7 +132,7 @@
 	return .
 
 /datum/action/discipline/proc/switch_level(to_advance = 1)
-	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', 0, 0, 50))
+	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 
 	if (discipline.level_casting + to_advance > length(discipline.known_powers))
 		discipline.level_casting = 1
@@ -141,8 +171,8 @@
 	var/list/modifiers = params2list(click_parameters)
 
 	//ensure we actually need a target, or cancel on right click
-	if (!targeting || modifiers["right"])
-		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', 0, 0, 50))
+	if (!targeting || modifiers[RIGHT_CLICK])
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 		end_targeting()
 		return
 
@@ -161,7 +191,7 @@
 		return
 	if (!discipline.current_power.can_activate_untargeted(TRUE))
 		return
-	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', 0, 0, 50))
+	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	targeting = TRUE
 	client.mouse_pointer_icon = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
@@ -171,7 +201,7 @@
 		var/list/modifiers = params2list(params)
 
 		//increase on right click, decrease on shift right click
-		if(LAZYACCESS(modifiers, "right"))
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
 			var/datum/action/discipline/discipline = linked_action
 			if (LAZYACCESS(modifiers, "alt"))
 				discipline.switch_level(-1)

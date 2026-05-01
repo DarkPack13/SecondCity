@@ -62,13 +62,14 @@
 	///callback for after a kitten is born
 	var/datum/callback/post_birth_callback
 
-	// DARKPACK ADD START
+	// DARKPACK EDIT ADD START - NPC
 	bloodpool = 2
 	maxbloodpool = 2
-	// DARKPACK ADD END
+	// DARKPACK EDIT ADD END
 
 
 /datum/emote/cat
+	abstract_type = /datum/emote/cat
 	mob_type_allowed_typecache = /mob/living/basic/pet/cat
 	mob_type_blacklist_typecache = list()
 
@@ -153,12 +154,15 @@
 		return
 	update_appearance(UPDATE_ICON_STATE)
 
+// DARKPACK EDIT START - NPC
 /mob/living/basic/pet/cat/update_icon_state()
 	. = ..()
-	if (resting)
-		icon_state = "[icon_living]_rest"
-		return
-	icon_state = "[icon_living]"
+	if(stat != DEAD)
+		if(resting)
+			icon_state = "[icon_living]_rest"
+		else
+			icon_state = "[icon_living]"
+// DARKPACK EDIT END
 
 /mob/living/basic/pet/cat/proc/add_breeding_component()
 	var/static/list/partner_types = typecacheof(list(/mob/living/basic/pet/cat))
@@ -168,6 +172,7 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat)),\
+		breed_timer = 30 MINUTES, /* DARKPACK EDIT ADD - (Less baby spam)*/\
 		baby_paths = baby_types,\
 		post_birth = post_birth_callback,\
 	)

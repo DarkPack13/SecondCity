@@ -149,7 +149,13 @@
 
 /datum/config_entry/flag/no_summon_events //Allowed
 
-/datum/config_entry/flag/no_intercept_report //Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
+/// If TRUE, no roundstart report is sent
+/datum/config_entry/flag/no_intercept_report
+	default = FALSE
+
+/// If TRUE, the roundstart report will not contain dynamic information.
+/datum/config_entry/flag/no_dynamic_report
+	default = FALSE
 
 /datum/config_entry/number/arrivals_shuttle_dock_window //Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station
 	default = 55
@@ -495,6 +501,15 @@
 	default = 6
 	min_val = -1
 
+/// Freebie quirk points. Can't go negative because we have no way of enforcing a person has a quirk before they join.
+/datum/config_entry/number/default_quirk_points
+	default = 2
+	min_val = 0
+
+/// Max personalities you can have at once
+/datum/config_entry/number/max_personalities
+	default = 5
+
 /**
  * A config that skews with the random spawners weights
  * If the value is lower than 1, it'll tend to even out the odds
@@ -513,3 +528,7 @@
 
 /datum/config_entry/number/max_shuttle_size
 	default = 250
+
+/datum/config_entry/number/minimum_ascension_time
+	default = 0 // 1 minute
+	min_val = 0

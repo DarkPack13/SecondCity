@@ -8,7 +8,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
@@ -33,6 +33,51 @@
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 
+/datum/crafting_recipe/stunsword
+	name = "\improper NT-20 'Excalibur' Stunsword"
+	result = /obj/item/melee/baton/security/stunsword
+	reqs = list(
+		/obj/item/claymore = 1,
+		/obj/item/melee/baton/security = 1
+	)
+	blacklist = list(
+		/obj/item/claymore/cutlass,
+		/obj/item/claymore/cutlass/old,
+		/obj/item/claymore/carrot,
+		/obj/item/claymore/shortsword,
+		/obj/item/claymore/highlander,
+		/obj/item/claymore/weak,
+		/obj/item/claymore/weak/ceremonial,
+		/obj/item/claymore/highlander/robot
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/stunswordalt
+	name = "\improper NT-20 'Excalibur' Stunsword"
+	result = /obj/item/melee/baton/security/stunsword
+	reqs = list(
+		/obj/item/katana = 1,
+		/obj/item/melee/baton/security = 1,
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/stunswordalt2
+	name = "\improper NT-20 'Excalibur' Stunsword"
+	result = /obj/item/melee/baton/security/stunsword
+	reqs = list(
+		/obj/item/melee/sabre = 1,
+		/obj/item/melee/baton/telescopic/contractor_baton = 1,
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
+
 /datum/crafting_recipe/tailclub
 	name = "Tail Club"
 	result = /obj/item/tailclub
@@ -43,7 +88,6 @@
 	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-
 
 /datum/crafting_recipe/balloon_mallet
 	name = "Balloon Mallet"
@@ -77,7 +121,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-
+ */
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
 	result = /obj/item/chainsaw
@@ -101,6 +145,17 @@
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 
+/datum/crafting_recipe/wireprod
+	name = "Wireprod assembly"
+	result = /obj/item/wireprod
+	reqs = list(
+		/obj/item/restraints/handcuffs/cable = 1,
+		/obj/item/stack/rods = 1,
+	)
+	time = 2 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
 	reqs = list(
@@ -110,7 +165,7 @@
 	)
 	result = /obj/item/toy/sword
 	category = CAT_WEAPON_MELEE
-
+ */
 /datum/crafting_recipe/bonedagger
 	name = "Bone Dagger"
 	result = /obj/item/knife/combat/bone
@@ -154,7 +209,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/giant_wrench
 	name = "Big Slappy"
 	result = /obj/item/shovel/giant_wrench
@@ -188,7 +243,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
-
+ */
 /datum/crafting_recipe/bambostaff
 	name = "Bamboo Bo Staff"
 	result = /obj/item/bambostaff
@@ -198,7 +253,7 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/sm_sword
 	name = "Supermatter Sword"
 	result = /obj/item/melee/supermatter_sword
@@ -210,3 +265,16 @@
 	)
 	time = 120 SECONDS
 	category = CAT_WEAPON_MELEE
+ */
+
+/datum/crafting_recipe/dragonator_spear_untreated
+	name = "Untreated Giant-Killer Spear"
+	result = /obj/item/spear/dragonator_untreated
+	reqs = list(
+		/obj/item/stack/sheet/plasteel = 15,
+		/obj/item/stack/sheet/mineral/titanium = 5,
+		/obj/item/knife = 7,
+	)
+	time = 5 SECONDS
+	category = CAT_WEAPON_MELEE
+

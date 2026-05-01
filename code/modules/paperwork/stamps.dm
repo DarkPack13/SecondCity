@@ -1,8 +1,8 @@
 /obj/item/stamp
-	name = "\improper GRANTED rubber stamp"
+	name = "rubber stamp"
 	desc = "A rubber stamp for stamping important documents."
 	icon = 'icons/obj/service/bureaucracy.dmi'
-	icon_state = "stamp-ok"
+	abstract_type = /obj/item/stamp
 	worn_icon_state = "nothing"
 	inhand_icon_state = "stamp"
 	throwforce = 0
@@ -20,7 +20,7 @@
 	return OXYLOSS
 
 /obj/item/stamp/get_writing_implement_details()
-	var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
+	var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet/simple/stamps)
 	return list(
 		interaction_mode = MODE_STAMPING,
 		stamp_icon_state = icon_state,
@@ -34,11 +34,14 @@
 	dye_color = DYE_LAW
 
 /obj/item/stamp/head
+	abstract_type = /obj/item/stamp/head
 
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stamp/head/Initialize(mapload)
 	. = ..()
 	// All maps should have at least 1 of each head of staff stamp
 	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
+*/
 
 /obj/item/stamp/head/captain
 	name = "captain's rubber stamp"
@@ -74,6 +77,11 @@
 	name = "quartermaster's rubber stamp"
 	icon_state = "stamp-qm"
 	dye_color = DYE_QM
+
+/obj/item/stamp/granted
+	name = "\improper GRANTED rubber stamp"
+	icon_state = "stamp-ok"
+	dye_color = DYE_GREEN
 
 /obj/item/stamp/denied
 	name = "\improper DENIED rubber stamp"

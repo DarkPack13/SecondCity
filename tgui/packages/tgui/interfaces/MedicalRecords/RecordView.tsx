@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Box,
   Button,
+  Input,
   LabeledList,
   NoticeBox,
   RestrictedInput,
@@ -43,11 +44,13 @@ export const MedicalRecordView = (props) => {
     major_disabilities,
     minor_disabilities,
     physical_status,
+    cause_of_death,
     mental_status,
     name,
     quirk_notes,
     rank,
     species,
+    past_medical_records, // DARKPACK EDIT - Flavor Text
   } = foundRecord;
 
   const minor_disabilities_array = getQuirkStrings(minor_disabilities);
@@ -107,13 +110,15 @@ export const MedicalRecordView = (props) => {
                 value={age}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Species">
+            {/* DARKPACK EDIT REMOVAL START */}
+            {/* <LabeledList.Item label="Species">
               <EditableText
                 field="species"
                 target_ref={crew_ref}
                 text={species}
               />
-            </LabeledList.Item>
+            </LabeledList.Item> */}
+            {/* DARKPACK EDIT REMOVAL END */}
             <LabeledList.Item label="Gender">
               <EditableText
                 field="gender"
@@ -166,6 +171,23 @@ export const MedicalRecordView = (props) => {
                 {physical_status}
               </Box>
             </LabeledList.Item>
+            {physical_status === 'Deceased' && (
+              <LabeledList.Item label="Cause of Death">
+                <Box>
+                  <Input
+                    fluid
+                    placeholder="Input Cause of Death..."
+                    value={cause_of_death}
+                    onChange={(value) =>
+                      act('set_cause_of_death', {
+                        crew_ref: crew_ref,
+                        cause: value,
+                      })
+                    }
+                  />
+                </Box>
+              </LabeledList.Item>
+            )}
             <LabeledList.Item
               buttons={mental_statuses.map((button, index) => {
                 const isSelected = button === mental_status;
@@ -211,6 +233,13 @@ export const MedicalRecordView = (props) => {
                 <Box key={index}>&#8226; {quirk}</Box>
               ))}
             </LabeledList.Item>
+            {/* DARKPACK EDIT START - Flavor Text */}
+            <LabeledList.Item label="Past Medical Records">
+              <Box maxWidth="100%" preserveWhitespace>
+                {past_medical_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            {/* DARKPACK EDIT END */}
           </LabeledList>
         </Section>
       </Stack.Item>

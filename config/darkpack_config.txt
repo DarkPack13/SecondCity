@@ -1,0 +1,56 @@
+## Uncomment to use Requiem jump windup
+#JUMP_WINDUP
+## Comment to remove Apocrypha post-jump slowdown
+JUMP_SLOWDOWN
+
+## If the server has NSFW content enabled.
+#NSFW_CONTENT
+
+## Log subtle messages
+LOG_SUBTLE
+
+## Log subtler messages
+LOG_SUBTLER
+
+## Uncomment to use extra success exploding dice
+#ON_CRIT_ADDITIONAL_SUCCESS
+## Uncomment to use actual exploding dice
+ON_CRIT_ADDITIONAL_DIE
+## If having 0 dot in abilities can hardlock you out of features
+#PUNISHING_ZERO_DOTS
+
+##Artifact spawn chance from crates - note, crates usually drop random artifact subtype, so this probability is typically multiplied by the random probability
+ARTIFACT_CRATE_PROBABILITY 20
+
+##Artifact spawn chance from mapped in random spots
+ARTIFACT_RANDOM_PROBABILITY 50
+
+## Time til day define
+TIME_TILL_DAY 198000
+## Time till roundend define
+TIME_TILL_ROUNDEND 216000
+
+## World of Darkness splats
+ROUNDSTART_SPLATS splat_kindred
+ROUNDSTART_SPLATS splat_ghoul
+ROUNDSTART_SPLATS splat_kinfolk
+ROUNDSTART_SPLATS splat_garou
+
+## If dead people and ghosts can LOOC to people who are alive.
+DISABLE_GHOST_LOOC
+
+## Character slots
+## Oldcode default was 20.
+## DOWNSTREAMS! Consider leaving/setting this low to encourage people to support the service that makes this game possible. <3 BYOND <3
+MAX_SAVE_SLOTS 5
+EXTRA_SAVE_SLOTS_BYOND_MEMBER 5
+
+## log stat and pref changes
+LOG_STATS
+
+#HUMANITY_SUNLIGHT_RESISTANCE
+
+#EXTRA_ISSUE_URLS https://github.com/DarkPack13/SecondCity
+
+## Bool for if roleplay only merits/quirks are enabled
+ROLEPLAY_ONLY_MERITS 1

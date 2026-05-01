@@ -5,15 +5,18 @@
 	icon_state = "bloodpack"
 	volume = 200
 	//fill_icon_thresholds = list(10, 20, 30, 40, 50, 60, 70, 80, 90, 100) DARKPACK EDIT REMOVAL
+	obj_flags = UNIQUE_RENAME | RENAME_NO_DESC
 	var/blood_type = null
-	var/labelled = FALSE
+	var/labeled = FALSE
+	var/start_blood_amount = 200 // DARKPACK EDIT ADD
 
 /obj/item/reagent_containers/blood/Initialize(mapload, vol)
 	. = ..()
 	if (!blood_type)
 		return
 	var/datum/blood_type/bloodtype = get_blood_type(blood_type)
-	reagents.add_reagent(bloodtype.reagent_type, volume, list("blood_type" = bloodtype, "blood_DNA" = bloodtype.dna_string), creation_callback = CALLBACK(src, PROC_REF(on_blood_created)))
+	// Blood pack blood is halfway synthetic, meaning instead of a maximum of like 6 blood worms being able to become adults via 2 freezers, only 3 or so can.
+	reagents.add_reagent(bloodtype.reagent_type, start_blood_amount, list("blood_type" = bloodtype, "blood_DNA" = bloodtype.dna_string, BLOOD_DATA_SYNTH_CONTENT = 0.5), creation_callback = CALLBACK(src, PROC_REF(on_blood_created))) // DARKPACK EDIT CHANGE
 
 /obj/item/reagent_containers/blood/proc/on_blood_created(datum/reagent/new_blood)
 	new_blood.AddElement(/datum/element/blood_reagent, null, get_blood_type(blood_type))
@@ -21,7 +24,7 @@
 
 /obj/item/reagent_containers/blood/update_name(updates)
 	. = ..()
-	if(!labelled)
+	if(!labeled)
 		name = "blood pack[blood_type ? " - [blood_type]" : ""]"
 
 /obj/item/reagent_containers/blood/random
@@ -29,7 +32,7 @@
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload, vol)
 	icon_state = "bloodpack"
-	blood_type = random_human_blood_type_name() // DARKPACK EDIT, ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
+	blood_type = random_human_blood_type_name() // DARKPACK EDIT CHANGE - ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
 	return ..()
 
 /obj/item/reagent_containers/blood/a_plus
@@ -81,27 +84,7 @@
 /obj/item/reagent_containers/blood/universal
 	blood_type = BLOOD_TYPE_UNIVERSAL
 
-/obj/item/reagent_containers/blood/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!IS_WRITING_UTENSIL(tool))
-		return NONE
-
-	if(!user.can_write(tool))
-		return ITEM_INTERACT_BLOCKING
-
-	var/custom_label = tgui_input_text(user, "What would you like to label the blood pack?", "Blood Pack", name, max_length = MAX_NAME_LEN)
-	if(!user.can_perform_action(src))
-		return ITEM_INTERACT_BLOCKING
-
-	if(user.get_active_held_item() != tool)
-		return ITEM_INTERACT_BLOCKING
-
-	if(!custom_label)
-		labelled = FALSE
-		update_name()
-		return ITEM_INTERACT_SUCCESS
-
-	labelled = TRUE
-	name = "blood pack - [custom_label]"
+/obj/item/reagent_containers/blood/nameformat(input, user)
 	playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
-	balloon_alert(user, "new label set")
-	return ITEM_INTERACT_SUCCESS
+	labeled = TRUE
+	return "blood pack[input? " - [input]" : null]"

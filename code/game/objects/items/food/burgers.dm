@@ -13,6 +13,7 @@
 	eat_time = 15 //Quick snack
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/food/burger/plain
 	name = "plain burger"
@@ -36,10 +37,12 @@
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
 	visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
 	name = "steamed ham"
-	desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
+	// DARKPACK EDIT CHANGE START
+	desc = pick("Ahh, Director, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",
-		"Aurora Station 13? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",
-		"You know, these hamburgers taste quite similar to the ones they have at the Maltese Falcon.")
+		"Aurora Borealis? At this time of night, in this time of year, in this city, localized entirely within your freezer?",
+		"You know, these hamburgers taste quite similar to the ones they have at O'tolleys.")
+	// DARKPACK EDIT CHANGE END
 
 /obj/item/food/burger/human
 	name = "human burger"
@@ -466,7 +469,7 @@
 	bite_consumption = 7
 	max_volume = 100
 	tastes = list("bun" = 4, "type two diabetes" = 10)
-	foodtypes = GRAIN | MEAT | DAIRY | VEGETABLES
+	foodtypes = GRAIN | MEAT | DAIRY | VEGETABLES | EGG
 	venue_value = FOOD_PRICE_EXOTIC
 	crafting_complexity = FOOD_COMPLEXITY_5
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
@@ -586,7 +589,7 @@
 
 /obj/item/food/burger/soylent
 	name = "soylent burger"
-	desc = "An eco-friendly burger made using upcycled low value biomass."
+	desc = "An eco-friendly burger made using upcycled low value soylent." // DARKPACK EDIT CHANGE
 	icon_state = "soylentburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -600,8 +603,8 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/burger/rib
-	name = "mcrib"
-	desc = "An elusive rib shaped burger with limited availability across the galaxy. Not as good as you remember it."
+	name = "gutbuster" // DARKPACK EDIT CHANGE
+	desc = "An elusive rib shaped burger with limited availability across the country. Not as good as you remember it." // DARKPACK EDIT CHANGE
 	icon_state = "mcrib"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -626,7 +629,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 	)
 	tastes = list("muffin" = 2, "bacon" = 3)
-	foodtypes = GRAIN | MEAT | BREAKFAST | FRIED
+	foodtypes = GRAIN | MEAT | BREAKFAST | FRIED | EGG
 	venue_value = FOOD_PRICE_NORMAL
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
@@ -635,7 +638,7 @@
 	name = "chicken sandwich"
 	//Apparently the proud people of Americlapstan object to this thing being called a burger.
 	//Apparently McDonald's just calls it a burger in Europe as to not scare and confuse us.
-	desc = "A delicious chicken sandwich, it is said the proceeds from this treat helps criminalize disarming people on the space frontier."
+	desc = "A delicious chicken sandwich." // DARKPACK EDIT CHANGE
 	icon_state = "chickenburger"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -684,7 +687,12 @@
 	tastes = list("bun" = 2, "beef patty" = 4, "cheese" = 2, "beef soaked in chili" = 3, "a smoking flare" = 2)
 	foodtypes = GRAIN | MEAT | DAIRY | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
-	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2, /datum/material/plastic= SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = list(
+		/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5,
+		/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 0.5,
+		/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.5,
+	)
 
 /obj/item/food/burger/crazy/Initialize(mapload)
 	. = ..()
@@ -692,9 +700,7 @@
 
 /obj/item/food/burger/crazy/process(seconds_per_tick) // DIT EES HORRIBLE
 	if(SPT_PROB(2.5, seconds_per_tick))
-		var/datum/effect_system/fluid_spread/smoke/bad/green/smoke = new
-		smoke.set_up(0, holder = src, location = src)
-		smoke.start()
+		do_smoke(0, src, loc, smoke_type = /datum/effect_system/fluid_spread/smoke/bad/green)
 
 // empty burger you can customize
 /obj/item/food/burger/empty

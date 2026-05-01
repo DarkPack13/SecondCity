@@ -150,7 +150,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/power, 32)
 
 /obj/structure/sign/poster/contraband/space_cube
 	name = "Space Cube"
-	desc = "Ignorant of Nature's Harmonic 6 Side Space Cube Creation, the Spacemen are Dumb, Educated Singularity Stupid and Evil."
+	desc = "Ignorant of Nature's Harmonic 6 Side Space Cube Creation, the humans are Dumb, Educated Singularity Stupid and Evil." // DARKPACK EDIT CHANGE
 	icon_state = "space_cube"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/space_cube, 32)
@@ -845,3 +845,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/bojack, 32)
 	icon_state = "double_rainbow"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/double_rainbow, 32)
+
+/obj/structure/sign/poster/contraband/vodka
+	name = "Vodka"
+	desc = "The text is written entirely in Russian. You can barely read anything except the word 'BODKA'."
+	icon_state = "vodka"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/vodka, 32)
+
+/obj/structure/sign/poster/contraband/ninja
+	name = "Ninja"
+	desc = "Greetings from the Spider Clan."
+	icon_state = "ninja"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/ninja, 32)

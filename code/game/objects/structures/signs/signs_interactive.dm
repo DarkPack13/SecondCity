@@ -8,7 +8,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/clock, 32)
 /obj/structure/sign/clock/examine(mob/user)
 	. = ..()
 	. += span_info("The current CST (local) time is: [station_time_timestamp()].")
-	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss", 0)].")
+	//. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss", 0)].") DARKPACK EDIT REMOVAL
 
 /obj/structure/sign/calendar
 	name = "wall calendar"

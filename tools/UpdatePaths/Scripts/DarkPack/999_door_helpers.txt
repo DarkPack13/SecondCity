@@ -1,0 +1,64 @@
+/obj/structure/vampdoor/glass/banu_haqim : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/banu, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/bianchi_bank : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/bankboss, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clerk : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clerk, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clinic : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clinic, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/clinic/high_security : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/clinic, /obj/effect/mapping_helpers/door/lock, /obj/effect/mapping_helpers/door/lock_difficulty/eight
+/obj/structure/vampdoor/glass/jazz_club : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/laundromat : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/laundromat, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/nightwolf : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/wolftech, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex/low_security : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/pentex/low_security/unlocked : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/pentex
+/obj/structure/vampdoor/glass/police_chief : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/police_chief, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/glass/primogen_toreador : /obj/structure/vampdoor/glass {@OLD}, /obj/effect/mapping_helpers/door/access/primogen_toreador, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/glass/@SUBTYPES : /obj/structure/vampdoor/glass {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/old/chantry : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/chantry, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/old/church : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/church, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/old/graveyard : /obj/structure/vampdoor/old {@OLD}, /obj/effect/mapping_helpers/door/access/graveyard, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/old/@SUBTYPES : /obj/structure/vampdoor/old {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/oldwood/baali : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/baali, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/chantry : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/chantry, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/children_of_gaia : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/coggie, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/clan_tzimisce : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/old_clan_tzimisce, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/oldwood/salubri : /obj/structure/vampdoor/oldwood {@OLD}, /obj/effect/mapping_helpers/door/access/salubri, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/oldwood/@SUBTYPES : /obj/structure/vampdoor/oldwood {@OLD}, /obj/merge_conflict_marker
+
+#/obj/structure/vampdoor/prison/@SUBTYPES : /obj/structure/vampdoor/prison {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/reinf/cleaning : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/cleaning, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/setite : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/setite_high_sec : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/reinf/pentex : /obj/structure/vampdoor/reinf {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/reinf/@SUBTYPES : /obj/structure/vampdoor/reinf {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/simple/anarch : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/anarch, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/bar : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/bar, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/camarilla : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/camarilla, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/dispatch : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/dispatch, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/food_pantry : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/coggie, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/police : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/police, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/police/secure : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/police, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/setite : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/setite, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/strip : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/strip, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/simple/supply : /obj/structure/vampdoor/simple {@OLD}, /obj/effect/mapping_helpers/door/access/supply, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/simple/@SUBTYPES : /obj/structure/vampdoor/simple {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/wood/daughters : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/daughters, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/giovanni : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/giovanni, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/giovanni/high_security : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/giovanni, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/jazz_club : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/madman : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/millennium_common : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/jazz_club, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/nps : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/park_ranger, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/npc : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/npc, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/pentex : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/pentex, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/sabbat : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/sabbat, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/strip : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/strip, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/theatre : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/theatre, /obj/effect/mapping_helpers/door/lock
+/obj/structure/vampdoor/wood/theatre/unlocked : /obj/structure/vampdoor/wood {@OLD}, /obj/effect/mapping_helpers/door/access/theatre
+#/obj/structure/vampdoor/wood/@SUBTYPES : /obj/structure/vampdoor/wood {@OLD}, /obj/merge_conflict_marker
+
+/obj/structure/vampdoor/woodglass/prince : /obj/structure/vampdoor/woodglass {@OLD}, /obj/effect/mapping_helpers/door/access/prince, /obj/effect/mapping_helpers/door/lock
+#/obj/structure/vampdoor/woodglass/@SUBTYPES : /obj/structure/vampdoor/woodglass {@OLD}, /obj/merge_conflict_marker

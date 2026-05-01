@@ -55,6 +55,7 @@
 	// Test one breath of Nitrogen on Plasmaman lungs.
 	lungs_test_check_breath("pure Nitrogen", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
 
+/* // DARKPACK EDIT REMOVAL - Lavaland (Penumbra) will not have ashwalker breathable  air
 /// Tests the lavaland/Ashwalker lungs organ.
 /// Ensures they can breathe from the lavaland air mixture properly, and suffocate on inadequate mixture.
 /datum/unit_test/lungs/lungs_sanity_ashwalker
@@ -66,6 +67,7 @@
 	var/mob/living/carbon/human/lab_rat = allocate(/mob/living/carbon/human/consistent)
 	// Test one breath of Lavaland gas mix on Ashwalker lungs.
 	lungs_test_check_breath("Lavaland air mixture", lab_rat, test_lungs, lavaland_test_mix)
+*/
 
 /// Comprehensive unit test for [/obj/item/organ/lungs/proc/check_breath()]
 /// If "expect_failure" is set to TRUE, the test ensures the given Human suffocated.
@@ -191,7 +193,7 @@
 
 /// Set up an Lavaland gas mix which is "ideal" for Ashwalker life.
 /datum/unit_test/lungs/proc/create_lavaland_mix()
-	var/datum/gas_mixture/immutable/planetary/lavaland_mix = SSair.planetary[LAVALAND_DEFAULT_ATMOS]
+	var/datum/gas_mixture/immutable/planetary/lavaland_mix = SSair.parse_gas_string(LAVALAND_DEFAULT_ATMOS, /datum/gas_mixture/immutable/planetary)
 	var/datum/gas_mixture/test_mix = allocate(/datum/gas_mixture, 2500)
 	test_mix.copy_from(lavaland_mix)
 	return test_mix

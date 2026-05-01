@@ -183,7 +183,7 @@ type JobRowProps = {
 };
 
 function JobRow(props: JobRowProps) {
-  const { data } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>();
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
@@ -193,6 +193,13 @@ function JobRow(props: JobRowProps) {
 
   const experienceNeeded = data.job_required_experience?.[name];
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
+
+
+  // DARKPACK EDIT ADD START -  ALTERNATIVE_JOB_TITLES
+  const alt_title_selected = data.job_alt_titles[name]
+    ? data.job_alt_titles[name]
+    : name;
+  // DARKPACK EDIT ADD END
 
   let rightSide: ReactNode;
 
@@ -244,7 +251,22 @@ function JobRow(props: JobRowProps) {
               paddingLeft: '0.3em',
             }}
           >
-            {name}
+            {
+              // DARKPACK EDIT CHANGE START -  ALTERNATIVE_JOB_TITLES - ORIGINAL: {name}
+              !job.alt_titles ? (
+                name
+              ) : (
+                <Dropdown
+                  width="100%"
+                  options={job.alt_titles}
+                  selected={alt_title_selected}
+                  onSelected={(value) =>
+                    act('set_job_title', { job: name, new_title: value })
+                  }
+                />
+              )
+              // DARKPACK EDIT CHANGE END
+            }
           </Stack.Item>
         </Tooltip>
 
@@ -327,7 +349,7 @@ function JoblessRoleDropdown(props) {
 
   const selection = options?.find(
     (option) => option.value === selected,
-  )!.displayText;
+  )?.displayText;
 
   return (
     <Box position="absolute" right={0} width="30%">
@@ -348,30 +370,43 @@ export function JobsPage() {
       <Stack vertical fill>
         <Stack.Item mt={15}>
           <Stack fill g={1} className="PreferencesMenu__Jobs">
+            {
+              // DARKPACK EDIT ADD START
+            }
             <Stack.Item>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Engineering" />
-                <Department department="Science" />
-                <Department department="Silicon" />
-                <Department department="Assistant" />
+                <Department department="Prince" />
+                <Department department="Camarilla" />
+                <Department department="Anarch" />
+                <Department department="Church" />
               </Stack>
             </Stack.Item>
             <Stack.Item mt={-5.9}>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Captain" />
-                <Department department="Service" />
-                <Department department="Cargo" />
+                <Department department="Chantry" />
+                <Department department="Clinic" />
+                <Department department="Strip_Club" />
+                <Department department="Warehouse" />
+                <Department department="Police" />
+                <Department department="Pentex" />
               </Stack>
             </Stack.Item>
             <Stack.Item>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Security" />
-                <Department department="Medical" />
+                <Department department="Giovanni" />
+                <Department department="Manor" />
+                <Department department="Sabbat" />
+                <Department department="Citizen" />
+                <Department department="City_Services" />
+                <Department department="Garou_Nation" />
               </Stack>
             </Stack.Item>
+            {
+              // DARKPACK EDIT ADD END
+            }
           </Stack>
         </Stack.Item>
       </Stack>

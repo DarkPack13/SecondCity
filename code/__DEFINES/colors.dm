@@ -125,6 +125,7 @@
 #define COLOR_MOSTLY_PURE_PINK "#E4005B"
 #define COLOR_ADMIN_PINK "#D100D1"
 #define COLOR_TONGUE_PINK "#ff6ea0"
+#define COLOR_PUCE "#cc8899"
 #define COLOR_BLUSH_PINK "#DE5D83"
 #define COLOR_FADED_PINK "#ff80d5"
 #define COLOR_MAGENTA "#FF00FF"
@@ -242,7 +243,7 @@
 #define COLOR_PERIWINKLEE "#9999FF"
 
 /// Starlight!
-#define COLOR_STARLIGHT COLOR_MOONLIGHT // DARKPACK EDIT - Changes starlight to moonlight colors since we dont have space
+#define COLOR_STARLIGHT COLOR_MOONLIGHT // DARKPACK EDIT - Changes starlight to moonlight colors since we dont have space - CITY_TIME
 /**
  * Some defines to generalise colours used in lighting.
  *
@@ -375,6 +376,7 @@
 
 
 #define COLOR_CARP_PURPLE "#aba2ff"
+#define COLOR_CARP_DARK_PURPLE "#4c486e"
 #define COLOR_CARP_PINK "#da77a8"
 #define COLOR_CARP_GREEN "#70ff25"
 #define COLOR_CARP_GRAPE "#df0afb"
@@ -461,6 +463,8 @@
 #define COLOR_AMMO_ARMORPIERCE "#d9d9d9"
 #define COLOR_AMMO_HOLLOWPOINT "#ff9900"
 
+#define COLOR_DMI_MASK "#a0a0a000"
+
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,
 	CABLE_COLOR_CYAN = CABLE_HEX_COLOR_CYAN,
@@ -500,6 +504,7 @@ GLOBAL_LIST_INIT(heretic_path_to_color, list(
 #define EYE_COLOR_WEED_PRIORITY 20
 #define EYE_COLOR_HUD_PRIORITY 30
 #define EYE_COLOR_LUMINESCENT_PRIORITY 40
+#define EYE_COLOR_DISC 45 // DARKPACK EDIT ADD
 #define EYE_COLOR_CULT_PRIORITY 50
 
 // Client color priorities

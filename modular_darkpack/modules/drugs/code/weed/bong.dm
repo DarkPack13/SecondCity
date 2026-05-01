@@ -1,10 +1,14 @@
 /obj/item/bong
 	name = "bong"
 	desc = "Technically known as a water pipe."
-	icon = 'modular_darkpack/modules/deprecated/icons/items.dmi'
+	icon = 'modular_darkpack/modules/drugs/icons/items.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/drugs/icons/onfloor.dmi')
 	icon_state = "bulbulator"
-	inhand_icon_state = "bulbulator"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+
+	light_range = 1
+	light_color = LIGHT_COLOR_FIRE
+	light_system = OVERLAY_LIGHT
+	light_on = FALSE
 
 	///The icon state when the bong is lit
 	var/icon_on = "bulbulator"
@@ -20,9 +24,9 @@
 	var/moan_chance = 0
 
 	///Max units able to be stored inside the bong
-	var/chem_volume = 30
+	var/chem_volume = 100
 	///Is it filled?
-	var/packed_item = FALSE
+	var/packeditem = FALSE
 
 	///How many reagents do we transfer each use?
 	var/reagent_transfer_per_use = 0
@@ -33,70 +37,62 @@
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE | NO_REACT)
 
-/obj/item/bong/attackby(obj/item/used_item, mob/user, params)
-	if(istype(used_item, /obj/item/food/grown))
-		var/obj/item/food/grown/grown_item = used_item
-		if(packed_item)
-			to_chat(user, span_warning("Already packed!"))
-			return
-		if(!HAS_TRAIT(grown_item, TRAIT_DRIED))
-			to_chat(user, span_warning("Needs to be dried!"))
-			return
-		to_chat(user, span_notice("You stuff [grown_item] into [src]."))
+/obj/item/bong/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if((istype(tool, /obj/item/food/grown) || istype(tool, /obj/item/food/drug)))
+		if(packeditem)
+			to_chat(user, span_warning("It is already packed!"))
+			return ITEM_INTERACT_BLOCKING
+
+		if(istype(tool, /obj/item/food/grown) && !HAS_TRAIT(tool, TRAIT_DRIED))
+			to_chat(user, span_warning("It has to be dried first!"))
+			return ITEM_INTERACT_BLOCKING
+
+		to_chat(user, span_notice("You stuff [tool] into [src]."))
 		bong_hits = max_hits
-		packed_item = TRUE
-		if(grown_item.reagents)
-			grown_item.reagents.trans_to(src, grown_item.reagents.total_volume)
+		packeditem = tool.name
+		update_name()
+		if(tool.reagents)
+			tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
 			reagent_transfer_per_use = reagents.total_volume / max_hits
-		qdel(grown_item)
-	else if(istype(used_item, /obj/item/weedpack)) //for hash/dabs
-		if(packed_item)
-			to_chat(user, span_warning("Already packed!"))
-			return
-		to_chat(user, span_notice("You stuff [used_item] into [src]."))
-		bong_hits = max_hits
-		packed_item = TRUE
-		var/obj/item/food/grown/cannabis/W = new(loc)
-		if(W.reagents)
-			W.reagents.trans_to(src, W.reagents.total_volume)
-			reagent_transfer_per_use = reagents.total_volume / max_hits
-		qdel(W)
-		qdel(used_item)
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
 	else
-		var/lighting_text = used_item.ignition_effect(src, user)
+		var/lighting_text = tool.ignition_effect(src, user)
 		if(!lighting_text)
-			return ..()
+			return NONE
 		if(bong_hits <= 0)
 			to_chat(user, span_warning("Nothing to smoke!"))
-			return ..()
+			return ITEM_INTERACT_BLOCKING
 		light(lighting_text)
-		name = "lit [initial(name)]"
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/bong/attack_self(mob/user)
 	var/turf/location = get_turf(user)
 	if(lit)
 		user.visible_message(span_notice("[user] puts out [src]."), span_notice("You put out [src]."))
-		lit = FALSE
-		icon_state = icon_off
-		inhand_icon_state = icon_off
+		put_out()
 	else if(!lit && bong_hits > 0)
 		to_chat(user, span_notice("You empty [src] onto [location]."))
 		new /obj/effect/decal/cleanable/ash(location)
-		packed_item = FALSE
-		bong_hits = 0
-		reagents.clear_reagents()
+		empty_out()
 	return
 
-/obj/item/bong/attack(mob/hit_mob, mob/user, def_zone)
-	if(!packed_item || !lit)
-		return
-	hit_mob.visible_message(span_notice("[user] starts [hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"]", "[hit_mob == user ? "<span class='notice'>You start taking a hit from [src].") : span_danger("[user] starts forcing you to take a hit from [src]!")]")
-	playsound(src, 'modular_darkpack/modules/deprecated/sounds/heatdam.ogg', 50, TRUE)
-	if(!do_after(user, 40, src))
-		return
-	to_chat(hit_mob, span_notice("You finish taking a hit from [src]."))
+/obj/item/bong/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!isliving(interacting_with))
+		return NONE
+	var/mob/living/interacting_living = interacting_with
+	if(!packeditem || !lit)
+		return ITEM_INTERACT_BLOCKING
+	interacting_with.visible_message(
+		span_notice("[user] starts [interacting_with == user ? "taking a hit from [src]." : "forcing [interacting_with] to take a hit from [src]!"]"),
+		"[interacting_with == user ? span_notice("You start taking a hit from [src].") : span_danger("[user] starts forcing you to take a hit from [src]!")]"
+	)
+	playsound(src, 'modular_darkpack/modules/drugs/sounds/heatdam.ogg', 50, TRUE)
+	if(!do_after(user, 4 SECONDS, src))
+		return ITEM_INTERACT_BLOCKING
+	to_chat(interacting_with, span_notice("You finish taking a hit from [src]."))
 	if(reagents.total_volume)
-		reagents.trans_to(hit_mob, reagent_transfer_per_use, methods = VAPOR)
+		reagents.trans_to(interacting_with, reagent_transfer_per_use, methods = INHALE, ignore_stomach = TRUE)
 		bong_hits--
 	var/turf/open/pos = get_turf(src)
 	if(istype(pos))
@@ -104,40 +100,29 @@
 			spawn_cloud(pos, smoke_range)
 	if(moan_chance > 0)
 		if(prob(moan_chance))
-			playsound(hit_mob, pick('modular_darkpack/modules/deprecated/sounds/lungbust_moan1.ogg','modular_darkpack/modules/deprecated/sounds/lungbust_moan2.ogg', 'modular_darkpack/modules/deprecated/sounds/lungbust_moan3.ogg'), 50, TRUE)
-			hit_mob.emote("moan")
+			playsound(interacting_with, pick('modular_darkpack/modules/drugs/sounds/lungbust_moan1.ogg','modular_darkpack/modules/drugs/sounds/lungbust_moan2.ogg', 'modular_darkpack/modules/drugs/sounds/lungbust_moan3.ogg'), 50, TRUE)
+			interacting_living.emote("moan")
 		else
-			playsound(hit_mob, pick('modular_darkpack/modules/deprecated/sounds/lungbust_cough1.ogg','modular_darkpack/modules/deprecated/sounds/lungbust_cough2.ogg'), 50, TRUE)
-			hit_mob.emote("cough")
+			playsound(interacting_with, pick('modular_darkpack/modules/drugs/sounds/lungbust_cough1.ogg','modular_darkpack/modules/drugs/sounds/lungbust_cough2.ogg'), 50, TRUE)
+			interacting_living.emote("cough")
 	if(bong_hits <= 0)
-		to_chat(hit_mob, span_warning("Out of uses!"))
-		lit = FALSE
-		packed_item = FALSE
-		icon_state = icon_off
-		inhand_icon_state = icon_off
-		name = "[initial(name)]"
-		reagents.clear_reagents() //just to make sure
+		to_chat(interacting_with, span_warning("Out of uses!"))
+		put_out()
+		empty_out()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/bong/proc/light(flavor_text = null)
 	if(lit)
 		return
 	if(!(flags_1 & INITIALIZED_1))
 		icon_state = icon_on
-		inhand_icon_state = icon_on
 		return
 	lit = TRUE
-	name = "lit [name]"
+	name = "lit [initial(name)]"
+	set_light_on(TRUE)
 
-	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		var/datum/effect_system/reagents_explosion/explosion = new()
-		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) * 0.4, 1), get_turf(src), 0, 0)
-		explosion.start()
-		qdel(src)
-		return
-	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		var/datum/effect_system/reagents_explosion/explosion = new()
-		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) * 0.2, 1), get_turf(src), 0, 0)
-		explosion.start()
+	if(reagents.spark_act(0, NONE, list()) & SPARK_ACT_DESTRUCTIVE)
+		usr?.log_message("lit a rigged bong", LOG_VICTIM)
 		qdel(src)
 		return
 
@@ -145,10 +130,23 @@
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
-	inhand_icon_state = icon_on
 	if(flavor_text)
-		var/turf/bong_turf = get_turf(src)
-		bong_turf.visible_message(flavor_text)
+		visible_message(flavor_text)
+
+	if(iscarbon(loc))
+		var/mob/living/carbon/smoker = loc
+		smoker.trigger_rotschreck(src, 3)
+
+/obj/item/bong/proc/put_out()
+	set_light_on(FALSE)
+	lit = FALSE
+	name = "[initial(name)]"
+	icon_state = icon_off
+
+/obj/item/bong/proc/empty_out()
+	packeditem = FALSE
+	bong_hits = 0
+	reagents.clear_reagents() //just to make sure
 
 /obj/item/bong/proc/spawn_cloud(turf/open/location, smoke_range)
 	var/list/turfs_affected = list(location)

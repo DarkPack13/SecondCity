@@ -59,6 +59,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Unknot',
   },
 
+  remove_item_cuffs: {
+    icon: 'handcuffs',
+    text: 'Remove Handcuffs',
+  },
+
   enable_internals: {
     icon: 'tg-air-tank',
     text: 'Enable internals',
@@ -82,6 +87,25 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   strip_accessory: {
     icon: 'ribbon',
     text: 'Strip accessory',
+  },
+
+  deploy: {
+    icon: 'plus',
+    text: 'Deploy MOD',
+  },
+
+  undeploy: {
+    icon: 'minus',
+    text: 'Undeploy MOD',
+  },
+
+  activate_mod: {
+    icon: 'power-off',
+    text: 'Activate MOD',
+  },
+  deactivate_mod: {
+    icon: 'power-off',
+    text: 'Deactivate MOD',
   },
 };
 
@@ -317,7 +341,7 @@ export const StripMenu = (props) => {
                     );
 
                     tooltip = item.name;
-                    if (item.alternate) {
+                    if (item.alternate?.length) {
                       alternateActions = item.alternate.map(
                         (alternateKey, idx) => {
                           const alternateAction =

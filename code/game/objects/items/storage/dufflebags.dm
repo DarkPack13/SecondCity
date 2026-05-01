@@ -132,6 +132,12 @@
 	icon_state = "duffel-medical"
 	inhand_icon_state = "duffel-med"
 
+/obj/item/storage/backpack/duffelbag/chief_medic
+	name = "chief medical officer's duffel bag"
+	desc = "A large duffel bag for handling the duties of the entire medical department at once."
+	icon_state = "duffel-chiefmedical"
+	inhand_icon_state = "duffel-med"
+
 /obj/item/storage/backpack/duffelbag/coroner
 	name = "coroner duffel bag"
 	desc = "A large duffel bag for holding large amounts of organs at once."
@@ -183,6 +189,10 @@
 /obj/item/storage/backpack/duffelbag/sec/surgery
 	name = "surgical duffel bag"
 	desc = "A large duffel bag for holding extra supplies - this one has a material inlay with space for various sharp-looking tools."
+// DARKPACK EDIT START - Duffelbags & Gun Bulk (We want these to give med bag icon)
+	icon_state = "duffel-medical"
+	inhand_icon_state = "duffel-med"
+// DARKPACK EDIT END
 
 /obj/item/storage/backpack/duffelbag/sec/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -281,7 +291,7 @@
 	new /obj/item/bonesetter(src)
 	new /obj/item/blood_filter(src)
 	new /obj/item/stack/medical/bone_gel(src)
-	new /obj/item/stack/sticky_tape/surgical(src)
+	new /obj/item/stack/medical/wrap/sticky_tape/surgical(src)
 	new /obj/item/emergency_bed(src)
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)

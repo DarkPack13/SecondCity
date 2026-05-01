@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(escape_menus)
 
 #define PAGE_HOME "PAGE_HOME"
 #define PAGE_LEAVE_BODY "PAGE_LEAVE_BODY"
+#define PAGE_QUIT_GAME "PAGE_QUIT_GAME"
 
 /datum/escape_menu
 	/// The client that owns this escape menu
@@ -56,8 +57,8 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	RegisterSignal(client, COMSIG_QDELETING, PROC_REF(on_client_qdel))
 	RegisterSignal(client, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(on_client_mob_login))
 
-	SEND_SOUND(client, 'sound/misc/escape_menu/esc_open.ogg')
-	var/sound/esc_middle = sound('sound/misc/escape_menu/esc_middle.ogg', repeat = FALSE, channel = CHANNEL_ESCAPEMENU, volume = 80)
+	SEND_SOUND(client, 'modular_darkpack/master_files/sounds/effects/misc/escape_menu/esc_open.ogg') // DARKPACK EDIT CHANGE
+	var/sound/esc_middle = sound('modular_darkpack/master_files/sounds/effects/misc/escape_menu/esc_middle.ogg', repeat = FALSE, channel = CHANNEL_ESCAPEMENU, volume = 80) // DARKPACK EDIT CHANGE
 	SEND_SOUND(client, esc_middle)
 
 	if (!isnull(ckey))
@@ -76,7 +77,7 @@ GLOBAL_LIST_EMPTY(escape_menus)
 
 	var/sound/esc_clear = sound(null, repeat = FALSE, channel = CHANNEL_ESCAPEMENU) //yes, I'm doing it like this with a null, no its absolutely intentional, cuts off the sound right as needed.
 	SEND_SOUND(client, esc_clear)
-	SEND_SOUND(client, 'sound/misc/escape_menu/esc_close.ogg')
+	SEND_SOUND(client, 'modular_darkpack/master_files/sounds/effects/misc/escape_menu/esc_close.ogg') // DARKPACK EDIT CHANGE
 	client = null
 
 	return ..()
@@ -91,7 +92,7 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
 
-	if (menu_page == PAGE_LEAVE_BODY)
+	if (menu_page != PAGE_HOME)
 		qdel(src)
 	else
 		// Otherwise our client just switched bodies, let's update our hud
@@ -117,6 +118,8 @@ GLOBAL_LIST_EMPTY(escape_menus)
 			show_home_page()
 		if (PAGE_LEAVE_BODY)
 			show_leave_body_page()
+		if(PAGE_QUIT_GAME)
+			show_quit_game_page()
 		else
 			CRASH("Unknown escape menu page: [menu_page]")
 
@@ -138,12 +141,16 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	menu_page = PAGE_LEAVE_BODY
 	show_page()
 
+/datum/escape_menu/proc/quit_game_prompt()
+	PRIVATE_PROC(TRUE)
+
+	menu_page = PAGE_QUIT_GAME
+	show_page()
+
 /atom/movable/screen/escape_menu
 	plane = ESCAPE_MENU_PLANE
 	clear_with_screen = FALSE
 
-// The escape menu can be opened before SSatoms
-INITIALIZE_IMMEDIATE(/atom/movable/screen/escape_menu)
-
 #undef PAGE_HOME
 #undef PAGE_LEAVE_BODY
+#undef PAGE_QUIT_GAME

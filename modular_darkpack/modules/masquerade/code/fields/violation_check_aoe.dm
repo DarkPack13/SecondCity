@@ -29,6 +29,12 @@
 		return
 	tracking_mobs |= entered
 	RegisterSignal(entered, COMSIG_MASQUERADE_VIOLATION, PROC_REF(violation_observer_breach_callback))
+	if(iscarbon(entered))
+		var/mob/living/carbon/entered_mob = entered
+		if(HAS_TRAIT(entered_mob, TRAIT_MASQUERADE_VIOLATING_FACE) && !(entered_mob.obscured_slots & HIDEFACE))
+			SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
+		else if(HAS_TRAIT(entered_mob, TRAIT_MASQUERADE_VIOLATING_EYES) && !entered_mob.is_eyes_covered())
+			SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/proximity_monitor/advanced/violation_check_aoe/on_uncrossed(turf/source, atom/movable/gone, direction)
 	. = ..()
@@ -62,8 +68,6 @@
 /datum/proximity_monitor/advanced/violation_check_aoe/proc/violation_observer_breach_callback(mob/living/source)
 	SIGNAL_HANDLER
 
-	if(!GLOB.canon_event)
-		return
 	var/mob/living/host_mob = host
 	if(host_mob.incapacitated || host_mob.stat >= SOFT_CRIT || host_mob.IsSleeping() || host_mob.IsParalyzed())
 		return

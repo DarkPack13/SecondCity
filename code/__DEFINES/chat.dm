@@ -16,6 +16,7 @@
 #define MESSAGE_TYPE_WARNING "warning"
 #define MESSAGE_TYPE_DEADCHAT "deadchat"
 #define MESSAGE_TYPE_OOC "ooc"
+#define MESSAGE_TYPE_LOOC "looc" // DARKPACK EDIT ADD - LOOC
 #define MESSAGE_TYPE_ADMINPM "adminpm"
 #define MESSAGE_TYPE_COMBAT "combat"
 #define MESSAGE_TYPE_ADMINCHAT "adminchat"
@@ -25,25 +26,26 @@
 #define MESSAGE_TYPE_ADMINLOG "adminlog"
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
+#define MESSAGE_TYPE_SUBTLE "subtle" // DARKPACK EDIT ADD - SUBTLE
 
 /// Max length of chat message in characters
 #define CHAT_MESSAGE_MAX_LENGTH 110
 
 //debug printing macros (for development and testing)
 /// Used for debug messages to the world
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
+#define debug_world(msg) if (GLOB.debugging_enabled) to_chat(world, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the player
-#define debug_usr(msg) if (GLOB.Debug2 && usr) to_chat(usr, \
+#define debug_usr(msg) if (GLOB.debugging_enabled && usr) to_chat(usr, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the admins
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
+#define debug_admins(msg) if (GLOB.debugging_enabled) to_chat(GLOB.admins, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the server
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
+#define debug_world_log(msg) if (GLOB.debugging_enabled) log_world("DEBUG: [msg]")
 /// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define boxed_message(str) ("<div class='boxed_message'>" + str + "</div>")
 /// Adds a box around whatever message you're sending in chat. Can apply color and/or additional classes. Available colors: red, green, blue, purple. Use it like red_box

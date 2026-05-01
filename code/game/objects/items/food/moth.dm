@@ -194,7 +194,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/green_lasagne/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/green_lasagne_slice, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/green_lasagne_slice, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
 
 /obj/item/food/green_lasagne_slice
 	name = "green lasagne al forno slice"
@@ -229,8 +229,8 @@
 
 /obj/item/food/big_baked_rice
 	name = "big baked rice"
-	desc = "A mothic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share. \
-		Potatoes are also often layered on the bottom of the cooking vessel to create a flavourful crust which is hotly contested amongst diners."
+	desc = "An iconic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share. \
+		Potatoes are also often layered on the bottom of the cooking vessel to create a flavourful crust which is hotly contested amongst diners." // DARKPACK EDIT CHANGE
 	icon = 'icons/obj/food/moth.dmi'
 	icon_state = "big_baked_rice"
 	food_reagents = list(
@@ -469,7 +469,7 @@
 		/datum/reagent/consumable/nutriment/protein = 6,
 	)
 	tastes = list("bacon" = 1, "eggs" = 1)
-	foodtypes = MEAT|GRAIN|FRIED
+	foodtypes = MEAT|GRAIN|FRIED|EGG
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)

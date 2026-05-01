@@ -1,0 +1,6 @@
+/obj/item/weedseed : /obj/item/seeds/cannabis {@OLD}
+/obj/item/food/vampire/weed : /obj/item/food/grown/cannabis {@OLD}
+/obj/item/weedpack : /obj/item/food/grown/cannabis {@OLD}
+
+/obj/item/bailer : /obj/item/reagent_containers/cup/watering_can/metal {@OLD}
+/obj/structure/weedshit : /obj/machinery/hydroponics/simple/plastic {@OLD}

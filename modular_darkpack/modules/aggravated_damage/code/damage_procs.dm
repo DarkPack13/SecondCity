@@ -1,7 +1,7 @@
-/mob/living/proc/getAggLoss()
+/mob/living/proc/get_agg_loss()
 	return aggloss
 
-/mob/living/carbon/getAggLoss()
+/mob/living/carbon/get_agg_loss()
 	var/amount = 0
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		amount += bodypart.aggravated_dam
@@ -14,7 +14,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/adjustAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/adjust_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if(!can_adjust_agg_loss(amount, forced, required_bodytype))
 		return 0
 	. = aggloss
@@ -25,7 +25,7 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/carbon/adjustAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+/mob/living/carbon/adjust_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	if(!can_adjust_agg_loss(amount, forced, required_bodytype))
 		return 0
 	if(amount > 0)
@@ -33,7 +33,7 @@
 	else
 		. = heal_overall_damage(aggravated = abs(amount), required_bodytype = required_bodytype, updating_health = updating_health, forced = forced)
 
-/mob/living/simple_animal/adjustAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+/mob/living/simple_animal/adjust_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	if(!can_adjust_agg_loss(amount, forced, required_bodytype))
 		return 0
 	if(forced)
@@ -41,7 +41,7 @@
 	else if(damage_coeff[AGGRAVATED])
 		. = adjustHealth(amount * damage_coeff[AGGRAVATED] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
-/mob/living/basic/adjustAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+/mob/living/basic/adjust_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	if(!can_adjust_agg_loss(amount, forced, required_bodytype))
 		return 0
 	if(forced)
@@ -49,7 +49,7 @@
 	else if(damage_coeff[AGGRAVATED])
 		. = adjust_health(amount * damage_coeff[AGGRAVATED] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
-/mob/living/proc/setAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
+/mob/living/proc/set_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 	. = aggloss
@@ -60,14 +60,14 @@
 	if(updating_health)
 		updatehealth()
 
-/mob/living/carbon/setAggLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+/mob/living/carbon/set_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
-	var/current = getAggLoss()
+	var/current = get_agg_loss()
 	var/diff = amount - current
 	if(!diff)
 		return FALSE
-	return adjustAggLoss(diff, updating_health, forced, required_bodytype)
+	return adjust_agg_loss(diff, updating_health, forced, required_bodytype)
 
 ///Proc to hook behavior associated to the change of the aggravated_dam variable's value.
 /obj/item/bodypart/proc/set_aggravated_dam(new_value)

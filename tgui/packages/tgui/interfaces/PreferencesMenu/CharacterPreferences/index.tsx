@@ -9,16 +9,20 @@ import { AntagsPage } from './AntagsPage';
 import { JobsPage } from './JobsPage';
 import { LoadoutPage } from './loadout';
 import { MainPage } from './MainPage';
-import { QuirksPage } from './QuirksPage';
-import { SpeciesPage } from './SpeciesPage';
+import { QuirkPersonalityPage } from './QuirksPage';
+import { SplatsPage } from './SplatsPage'; // DARKPACK EDIT CHANGE - SPLATS
+import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
+import { DisciplinesPage } from './DisciplinesPage'; // DARKPACK EDIT ADD
 
 enum Page {
   Antags,
   Main,
   Jobs,
-  Species,
+  Splats, // DARKPACK EDIT CHANGE - SPLATS
   Quirks,
   Loadout,
+  Stats, // DARKPACK EDIT ADD
+  Disciplines, // DARKPACK EDIT ADD
 }
 
 type ProfileProps = {
@@ -65,23 +69,33 @@ export function CharacterPreferenceWindow(props) {
       break;
     case Page.Main:
       pageContents = (
-        <MainPage openSpecies={() => setCurrentPage(Page.Species)} />
+        <MainPage openSplats={() => setCurrentPage(Page.Splats)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
-    case Page.Species:
+    case Page.Splats: // DARKPACK EDIT CHANGE - SPLATS
       pageContents = (
-        <SpeciesPage closeSpecies={() => setCurrentPage(Page.Main)} />
+        <SplatsPage closeSplats={() => setCurrentPage(Page.Main)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
     case Page.Quirks:
-      pageContents = <QuirksPage />;
+      pageContents = <QuirkPersonalityPage />;
       break;
 
     case Page.Loadout:
       pageContents = <LoadoutPage />;
       break;
+
+    // DARKPACK EDIT ADD START - Stats / Disciplines
+    case Page.Stats:
+      pageContents = <StatsPage />;
+      break;
+
+    case Page.Disciplines:
+      pageContents = <DisciplinesPage />;
+      break;
+    // DARKPACK EDIT ADD END
 
     default:
       exhaustiveCheck(currentPage);
@@ -113,11 +127,40 @@ export function CharacterPreferenceWindow(props) {
               currentPage={currentPage}
               page={Page.Main}
               setPage={setCurrentPage}
-              otherActivePages={[Page.Species]}
+              otherActivePages={[Page.Splats]} // DARKPACK EDIT CHANGE - SPLATS
             >
               Character
             </PageButton>
           </Stack.Item>
+
+          {
+          // DARKPACK EDIT ADD START - stats / disciplines
+          }
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Stats}
+              setPage={setCurrentPage}
+            >
+              Stats
+            </PageButton>
+          </Stack.Item>
+          {['splat_kindred', 'splat_ghoul'].includes(
+            data.character_preferences.misc.splats,
+          ) && (
+            <Stack.Item grow>
+              <PageButton
+                currentPage={currentPage}
+                page={Page.Disciplines}
+                setPage={setCurrentPage}
+              >
+                Disciplines
+              </PageButton>
+            </Stack.Item>
+          )}
+          {
+          // DARKPACK EDIT END
+          }
 
           <Stack.Item grow>
             <PageButton
@@ -143,6 +186,8 @@ export function CharacterPreferenceWindow(props) {
             </PageButton>
           </Stack.Item>
 
+          {
+            /* DARKPACK EDIT REMOVAL - (We dont have antags and this is useless atm)
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
@@ -152,16 +197,24 @@ export function CharacterPreferenceWindow(props) {
               Antagonists
             </PageButton>
           </Stack.Item>
+            */
+          }
 
+          {
+          // DARKPACK EDIT ADD START - Merits
+          }
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
               page={Page.Quirks}
               setPage={setCurrentPage}
             >
-              Quirks
+              Merits / Flaws
             </PageButton>
           </Stack.Item>
+          {
+          // DARKPACK EDIT ADD END
+          }
         </Stack>
       </Stack.Item>
       <Stack.Divider />

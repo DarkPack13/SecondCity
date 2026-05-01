@@ -9,16 +9,16 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	cut_type = /obj/item/clothing/gloves/fingerless
-
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/gloves/color/black/Initialize(mapload)
 	. = ..()
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/radiogloves)
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/radio_containing/radiogloves)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/gloves/color/black/security
 	name = "security gloves"
 	desc = "These security gloves come with microchips that help the user quickly restrain suspects."
@@ -43,14 +43,15 @@
 
 /obj/item/clothing/gloves/fingerless/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/adjust_fishing_difficulty, -4)
+	/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/gripperoffbrand)
-	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-
+ */
 /obj/item/clothing/gloves/color/orange
 	name = "orange gloves"
 	desc = "A pair of gloves, they don't look special in any way."

@@ -90,7 +90,7 @@
 /obj/item/storage/fancy/donut_box
 	name = "donut box"
 	desc = "Mmm. Donuts."
-	icon = 'icons/obj/food/donuts.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/food/donuts.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "donutbox_open" //composite image used for mapping
 	base_icon_state = "donutbox"
 	spawn_type = /obj/item/food/donut/plain
@@ -176,7 +176,6 @@
 	open_status = FANCY_CONTAINER_ALWAYS_OPEN
 	contents_tag = "candle"
 	storage_type = /datum/storage/candle_box
-	custom_price = 8 // DARKPACK EDIT ADD
 
 ////////////
 //CIG PACK//
@@ -232,6 +231,8 @@
 	. = ..()
 
 	register_context()
+	if(!spawn_count)
+		update_appearance()
 
 /obj/item/storage/fancy/cigarettes/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -269,12 +270,15 @@
 	. = ..()
 	icon_state = "[base_icon_state][contents.len ? null : "_empty"]"
 
+/obj/item/storage/fancy/cigarettes/proc/open_icon_state()
+	return "[icon_state]_open"
+
 /obj/item/storage/fancy/cigarettes/update_overlays()
 	. = ..()
 	if(!open_status || !contents.len)
 		return
 
-	. += "[icon_state]_open"
+	. += open_icon_state()
 
 	if(!display_cigs)
 		return
@@ -295,12 +299,22 @@
 		. += "[use_icon_state]_[cig_position]"
 		cig_position++
 
+/obj/item/storage/fancy/cigarettes/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/dromedaryco
-	name = "\improper DromedaryCo packet"
-	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
+	name = "\improper Camel packet" // DARKPACK EDIT CHANGE
+	desc = "I'd walk a mile for a Camel!" // DARKPACK EDIT CHANGE
 	icon_state = "dromedary"
 	base_icon_state = "dromedary"
 	spawn_type = /obj/item/cigarette/dromedary
+
+/obj/item/storage/fancy/cigarettes/dromedaryco/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_uplift
 	name = "\improper Uplift Smooth packet"
@@ -309,19 +323,35 @@
 	base_icon_state = "uplift"
 	spawn_type = /obj/item/cigarette/uplift
 
+/obj/item/storage/fancy/cigarettes/cigpack_uplift/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_robust
-	name = "\improper Robust packet"
-	desc = "Smoked by the robust."
+	name = "\improper Malboro packet" // DARKPACK EDIT CHANGE
+	desc = "You get a lot to like with Malboro." // DARKPACK EDIT CHANGE
 	icon_state = "robust"
 	base_icon_state = "robust"
 	spawn_type = /obj/item/cigarette/robust
 
+/obj/item/storage/fancy/cigarettes/cigpack_robust/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold
-	name = "\improper Robust Gold packet"
-	desc = "Smoked by the truly robust."
+	name = "\improper Malboro Gold packet" // DARKPACK EDIT CHANGE
+	desc = "You get a lot to like with Malboro." // DARKPACK EDIT CHANGE
 	icon_state = "robustg"
 	base_icon_state = "robustg"
 	spawn_type = /obj/item/cigarette/robustgold
+	custom_price = 80 // DARKPACK EDIT ADD - ECONOMY
+
+/obj/item/storage/fancy/cigarettes/cigpack_robustgold/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_greytide
 	name = "\improper Mainthol Grey packet"
@@ -330,12 +360,22 @@
 	base_icon_state = "greytide"
 	spawn_type = /obj/item/cigarette/greytide
 
+/obj/item/storage/fancy/cigarettes/cigpack_greytide/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_carp
 	name = "\improper Carp Classic packet"
-	desc = "Since 2313."
+	desc = "Since 1896." // DARKPACK EDIT CHANGE
 	icon_state = "carp"
 	base_icon_state = "carp"
 	spawn_type = /obj/item/cigarette/carp
+
+/obj/item/storage/fancy/cigarettes/cigpack_carp/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	name = "cigarette packet"
@@ -344,12 +384,22 @@
 	base_icon_state = "syndie"
 	spawn_type = /obj/item/cigarette/syndicate
 
+/obj/item/storage/fancy/cigarettes/cigpack_syndicate/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_midori
 	name = "\improper Midori Tabako packet"
 	desc = "You can't understand the runes, but the packet smells funny."
 	icon_state = "midori"
 	base_icon_state = "midori"
 	spawn_type = /obj/item/cigarette/rollie/nicotine
+
+/obj/item/storage/fancy/cigarettes/cigpack_midori/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_candy
 	name = "\improper Timmy's First Candy Smokes packet"
@@ -366,6 +416,11 @@
 	if(prob(7))
 		spawn_type = /obj/item/cigarette/candy/nicotine //uh oh!
 
+/obj/item/storage/fancy/cigarettes/cigpack_candy/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_shadyjims
 	name = "\improper Shady Jim's Super Slims packet"
 	desc = "Is your weight slowing you down? Having trouble running away from gravitational singularities? Can't stop stuffing your mouth? Smoke Shady Jim's Super Slims and watch all that fat burn away. Guaranteed results!"
@@ -373,12 +428,22 @@
 	base_icon_state = "shadyjim"
 	spawn_type = /obj/item/cigarette/shadyjims
 
+/obj/item/storage/fancy/cigarettes/cigpack_shadyjims/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_xeno
-	name = "\improper Xeno Filtered packet"
-	desc = "Loaded with 100% pure slime. And also nicotine."
+	name = "\improper Newport packet" // DARKPACK EDIT CHANGE
+	desc = "Alive with pleasure!" // DARKPACK EDIT CHANGE
 	icon_state = "slime"
 	base_icon_state = "slime"
 	spawn_type = /obj/item/cigarette/xeno
+
+/obj/item/storage/fancy/cigarettes/cigpack_xeno/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigpack_cannabis
 	name = "\improper Freak Brothers' Special packet"
@@ -387,6 +452,11 @@
 	base_icon_state = "midori"
 	spawn_type = /obj/item/cigarette/rollie/cannabis
 
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
 	name = "\improper Leary's Delight packet"
 	desc = "Banned in over 36 galaxies."
@@ -394,9 +464,17 @@
 	base_icon_state = "shadyjim"
 	spawn_type = /obj/item/cigarette/rollie/mindbreaker
 
+/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker/empty
+	spawn_count = 0
+	spawn_coupon = FALSE
+	open_status = FANCY_CONTAINER_OPEN
+
+/obj/item/storage/fancy/cigarettes/flash_powder
+	spawn_type = /obj/item/cigarette/flash_powder
+
 /obj/item/storage/fancy/rollingpapers
 	name = "rolling paper pack"
-	desc = "A pack of Nanotrasen brand rolling papers."
+	desc = "A pack of Rollers brand rolling papers." // DARKPACK EDIT CHANGE
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper_pack"
@@ -408,10 +486,19 @@
 	has_open_closed_states = FALSE
 	storage_type = /datum/storage/rolling_paper_pack
 
+/obj/item/storage/fancy/rollingpapers/Initialize(mapload)
+	. = ..()
+
+	if(!spawn_count)
+		update_appearance()
+
 /obj/item/storage/fancy/rollingpapers/update_overlays()
 	. = ..()
 	if(!contents.len)
 		. += "[base_icon_state]_empty"
+
+/obj/item/storage/fancy/rollingpapers/empty
+	spawn_count = 0
 
 /////////////
 //CIGAR BOX//
@@ -430,11 +517,16 @@
 	spawn_count = 5
 	spawn_coupon = FALSE
 	display_cigs = FALSE
+	custom_price = 100 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/fancy/cigarettes/cigars/update_icon_state()
 	. = ..()
 	//reset any changes the parent call may have made
 	icon_state = base_icon_state
+
+/obj/item/storage/fancy/cigarettes/cigars/empty
+	spawn_count = 0
+	open_status = FANCY_CONTAINER_OPEN
 
 /obj/item/storage/fancy/cigarettes/cigars/update_overlays()
 	. = ..()
@@ -452,12 +544,24 @@
 	base_icon_state = "cohibacase"
 	spawn_type = /obj/item/cigarette/cigar/cohiba
 
+/obj/item/storage/fancy/cigarettes/cigars/cohiba/empty
+	spawn_count = 0
+	open_status = FANCY_CONTAINER_OPEN
+
 /obj/item/storage/fancy/cigarettes/cigars/havana
 	name = "\improper premium Havanian cigar case"
 	desc = "A case of classy Havanian cigars."
-	icon_state = "cohibacase"
-	base_icon_state = "cohibacase"
+	icon_state = "havanacase"
+	base_icon_state = "havanacase"
 	spawn_type = /obj/item/cigarette/cigar/havana
+
+
+/obj/item/storage/fancy/cigarettes/cigars/havana/open_icon_state()
+	return "cohibacase_open"
+
+/obj/item/storage/fancy/cigarettes/cigars/havana/empty
+	spawn_count = 0
+	open_status = FANCY_CONTAINER_OPEN
 
 /*
  * Heart Shaped Box w/ Chocolates
@@ -489,16 +593,58 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "nuggetbox"
 	base_icon_state = "nuggetbox"
+	inhand_icon_state = "nuggetbox"
+	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
 	contents_tag = "nugget"
 	w_class = WEIGHT_CLASS_SMALL
 	spawn_type = /obj/item/food/nugget
-	spawn_count = 6
+	spawn_count = 7
 	storage_type = /datum/storage/nugget_box
+	custom_price = 2 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/storage/fancy/nugget_box/Initialize(mapload)
 	. = ..()
 	// It's a safe place for the Fryish/Fritterish
 	AddElement(/datum/element/fish_safe_storage)
+
+/obj/item/storage/fancy/nugget_box/red
+	name = "red nugget box"
+	icon_state = "rednuggetbox"
+	base_icon_state = "rednuggetbox"
+	inhand_icon_state = "rednuggetbox"
+
+/obj/item/storage/fancy/wing_box
+	name = "red wing box"
+	desc = "A cardboard box used for holding chicken wangs."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "redwingbox5"
+	base_icon_state = "redwingbox"
+	inhand_icon_state = "redwingbox"
+	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
+	contents_tag = "wings"
+	w_class = WEIGHT_CLASS_SMALL
+	spawn_type = /obj/item/food/fried_chicken
+	spawn_count = 5
+	storage_type = /datum/storage/wing_box
+	open_status = FANCY_CONTAINER_ALWAYS_OPEN
+
+/obj/item/storage/fancy/fry_box
+	name = "red fry box"
+	desc = "A cardboard box used for holding fries."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "redfrybox2"
+	base_icon_state = "redfrybox"
+	inhand_icon_state = "redfrybox"
+	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
+	contents_tag = "fries"
+	w_class = WEIGHT_CLASS_SMALL
+	spawn_type = /obj/item/food/fries
+	spawn_count = 2
+	storage_type = /datum/storage/fry_box
+	open_status = FANCY_CONTAINER_ALWAYS_OPEN
 
 /*
  * Jar of pickles
@@ -514,7 +660,7 @@
 	spawn_count = 10
 	contents_tag = "pickle"
 	foldable_result = /obj/item/reagent_containers/cup/beaker/large
-	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)
 	open_status = FANCY_CONTAINER_ALWAYS_OPEN
 	has_open_closed_states = FALSE
 	storage_type = /datum/storage/pickles_jar

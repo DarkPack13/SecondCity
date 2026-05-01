@@ -1,7 +1,7 @@
-/area/vtm/dwelling
+/area/vtm/interior/dwelling
 	name = "NPC Dwelling Master Definition"
 	icon_state = "interior"
-	ambience_index = AMBIENCE_INTERIOR
+	ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE
 	wall_rating = 1
 	var/area_tag = "default"
@@ -22,7 +22,7 @@
 		"major" = 0,
 		)
 
-/area/vtm/dwelling/proc/add_heat(ammount = 0) //Adds heat to given area, then checks if alarm shoudl be trigerred
+/area/vtm/interior/dwelling/proc/add_heat(ammount = 0) //Adds heat to given area, then checks if alarm shoudl be trigerred
 	if(alarm_disabled == 1) return
 	if(alarm_trigerred == 1)
 		INVOKE_ASYNC(alarm_panel, TYPE_PROC_REF(/obj/structure/vtm/dwelling_alarm/, contact_cops))
@@ -32,7 +32,7 @@
 		alarm_panel.alarm_arm()
 		return
 
-/area/vtm/dwelling/proc/setup_loot_table(type) //Called during setup, this proc contains the look drop values
+/area/vtm/interior/dwelling/proc/setup_loot_table(type) //Called during setup, this proc contains the look drop values
 	switch(type)
 		if("major")
 			loot_list["type"] = "major"
@@ -53,7 +53,7 @@
 			loot_list["major"] = rand(0,1)
 			area_heat_max = 50
 
-/area/vtm/dwelling/proc/setup_loot_containers() // Called during setup
+/area/vtm/interior/dwelling/proc/setup_loot_containers() // Called during setup
 	var/loot_sum = loot_list["minor"] + loot_list["moderate"] + loot_list["major"]
 	while(loot_sum > 0)
 		var/obj/structure/vtm/dwelling_container/picked_container = pick(loot_containers)
@@ -66,7 +66,7 @@
 		if(loot_container.search_tries <= 4) loot_container.search_tries += 2
 	return
 
-/area/vtm/dwelling/proc/setup_loot() //Primary setup proc
+/area/vtm/interior/dwelling/proc/setup_loot() //Primary setup proc
 	if(forced_loot)
 		setup_loot_table(forced_loot)
 	if(loot_list["type"] == "none")
@@ -86,7 +86,7 @@
 	GLOB.dwelling_list.Add(src)
 	return
 
-/area/vtm/dwelling/proc/return_loot_value() //Used during seeding
+/area/vtm/interior/dwelling/proc/return_loot_value() //Used during seeding
 	var/list/pick_list = list()
 	if(loot_list["minor"] > 0)
 		pick_list.Add("minor")
@@ -103,11 +103,11 @@
 			loot_list[list_choice] -= 1
 			return list_choice
 
-/area/vtm/dwelling/Initialize(mapload)
+/area/vtm/interior/dwelling/Initialize(mapload)
 	. = ..()
 	GLOB.dwelling_area_list.Add(src)
 
-/area/vtm/dwelling/Destroy()
+/area/vtm/interior/dwelling/Destroy()
 	. = ..()
 	GLOB.dwelling_area_list.Remove(src)
 	if(GLOB.dwelling_list.Find(src) != 0) GLOB.dwelling_list.Remove(src)

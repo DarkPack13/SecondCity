@@ -1,3 +1,4 @@
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/durathread_vest
 	name = "Durathread Vest"
 	result = /obj/item/clothing/suit/armor/vest/durathread
@@ -116,6 +117,15 @@
 				/obj/item/stack/sheet/durathread = 1)
 	time = 4 SECONDS
 	category = CAT_CLOTHING
+ */
+
+/datum/crafting_recipe/fannypack
+	name = "Fannypack"
+	result = /obj/item/storage/belt/fannypack
+	reqs = list(/obj/item/stack/sheet/cloth = 2,
+				/obj/item/stack/sheet/leather = 1)
+	time = 2 SECONDS
+	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/grass_sheath
 	name = "Grass Sabre Sheath"
@@ -125,13 +135,32 @@
 	time = 4 SECONDS
 	category = CAT_CONTAINERS
 
-/datum/crafting_recipe/fannypack
-	name = "Fannypack"
-	result = /obj/item/storage/belt/fannypack
-	reqs = list(/obj/item/stack/sheet/cloth = 2,
-				/obj/item/stack/sheet/leather = 1)
-	time = 2 SECONDS
-	category = CAT_CONTAINERS
+/* // DARKPACK EDIT REMOVAL
+/datum/crafting_recipe/gunsheath
+	name = "Gun Powered Sabre Sheath"
+	result = /obj/item/storage/belt/sheath/sabre/gunpowered
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
+	reqs = list(/datum/reagent/gunpowder = 15,
+		/obj/item/storage/belt/sheath/sabre = 1,
+		/obj/item/weaponcrafting/receiver = 1,
+		/obj/item/stack/cable_coil = 5,
+	)
+	time = 15 SECONDS
+	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+/datum/crafting_recipe/grass_gunsheath
+	name = "Gun Powered Grass Sabre Sheath"
+	result = /obj/item/storage/belt/sheath/grass_sabre/gunpowered
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
+	reqs = list(/datum/reagent/gunpowder = 15,
+		/obj/item/storage/belt/sheath/grass_sabre = 1,
+		/obj/item/weaponcrafting/receiver = 1,
+		/obj/item/stack/cable_coil = 5,
+	)
+	time = 15 SECONDS
+	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunsec
 	name = "Security HUDsunglasses"
@@ -150,6 +179,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses = 1)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunmed
 	name = "Medical HUDsunglasses"
@@ -168,6 +198,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/health/sunglasses = 1)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsundiag
 	name = "Diagnostic HUDsunglasses"
@@ -186,6 +217,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/diagnostic/sunglasses = 1)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/scienceglasses
 	name = "Science Glasses"
@@ -204,7 +236,8 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
 	category = CAT_EQUIPMENT
-
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+ */
 /datum/crafting_recipe/ghostsheet
 	name = "Ghost Sheet"
 	result = /obj/item/clothing/suit/costume/ghost_sheet
@@ -212,11 +245,11 @@
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/bedsheet = 1)
 	category = CAT_CLOTHING
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/lizardboots
 	name = "Lizard Skin Boots"
-	result = /obj/effect/spawner/random/clothing/lizardboots
-	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1, /obj/item/stack/sheet/leather = 1)
+	result = /obj/item/clothing/shoes/cowboy/lizard
+	reqs = list(/obj/item/stack/sheet/animalhide/carbon/lizard = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_CLOTHING
 
@@ -260,9 +293,9 @@
 	name = "Lizard Cloche Hat"
 	result = /obj/item/clothing/head/costume/lizard
 	time = 1 SECONDS
-	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1)
+	reqs = list(/obj/item/stack/sheet/animalhide/carbon/lizard = 1)
 	category = CAT_CLOTHING
-
+ */
 /datum/crafting_recipe/kittyears
 	name = "Kitty Ears"
 	result = /obj/item/clothing/head/costume/kitty/genuine
@@ -282,7 +315,7 @@
 		/obj/item/stack/sheet/animalhide/goliath_hide = 3,
 	)
 	category = CAT_CLOTHING
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/bonetalisman
 	name = "Bone Talisman"
 	result = /obj/item/clothing/accessory/talisman
@@ -335,7 +368,7 @@
 		/obj/item/crusher_trophy/watcher_wing/ice_wing = 1,
 	)
 	category = CAT_CLOTHING
-
+ */
 /datum/crafting_recipe/bracers
 	name = "Bone Bracers"
 	result = /obj/item/clothing/gloves/bracer
@@ -352,7 +385,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_CLOTHING
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
@@ -393,7 +426,7 @@
 		/obj/item/clockwork_alloy = 1,
 	)
 	category = CAT_CLOTHING
-
+ */
 /datum/crafting_recipe/mummy
 	name = "Mummification Bandages (Mask)"
 	result = /obj/item/clothing/mask/mummy
@@ -417,12 +450,7 @@
 	)
 	reqs = list(/obj/item/stack/sheet/cloth = 4)
 	category = CAT_CLOTHING
-
-/datum/crafting_recipe/chaplain_hood/New()
-	. = ..()
-	//the resulting hoodie can be used to craft other hoodies.
-	//recipe blacklists should be refactored to only affect components and not tools.
-	blacklist -= result
+	blacklist_result = NEVER_BLACKLIST_RESULT //the resulting hoodie can be used to craft other hoodies.
 
 /datum/crafting_recipe/flower_garland
 	name = "Flower Garland"
@@ -480,7 +508,7 @@
 	result = /obj/item/clothing/suit/pillow_suit
 	time = 2 SECONDS
 	reqs = list(
-		/obj/item/stack/sticky_tape = 10,
+		/obj/item/stack/medical/wrap/sticky_tape = 10,
 		/obj/item/pillow = 5,
 	)
 	category = CAT_CLOTHING
@@ -491,7 +519,7 @@
 	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_KNIFE)
 	time = 2 SECONDS
 	reqs = list(
-		/obj/item/stack/sticky_tape = 5,
+		/obj/item/stack/medical/wrap/sticky_tape = 5,
 		/obj/item/pillow = 1,
 	)
 	category = CAT_CLOTHING
@@ -529,7 +557,7 @@
 	)
 
 	category = CAT_CLOTHING
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/atmospherics_gas_mask
 	name = "atmospherics gas mask"
 	result = /obj/item/clothing/mask/gas/atmos
@@ -539,9 +567,10 @@
 		/obj/item/stack/sheet/mineral/metal_hydrogen = 1,
 		/obj/item/stack/sheet/mineral/zaukerite = 1,
 	)
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY // stupid recipe, don't give every atmos gas mask these mats.
 
 	category = CAT_CLOTHING
-
+ */
 /datum/crafting_recipe/paper_hat
 	name = "Paper Hat"
 	result = /obj/item/clothing/head/costume/paper_hat
@@ -550,7 +579,7 @@
 		/obj/item/paper = 1,
 	)
 	category = CAT_CLOTHING
-
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/biohood_sec
 	name = "security biohood"
 	result = /obj/item/clothing/head/bio_hood/security
@@ -603,7 +632,7 @@
 
 /datum/crafting_recipe/balloon_vest/check_requirements(mob/user, list/collected_requirements)
 	return HAS_TRAIT(user, TRAIT_BALLOON_SUTRA)
-
+ */
 /datum/crafting_recipe/press_armor
 	name = "press armor vest"
 	result = /obj/item/clothing/suit/armor/vest/press

@@ -1,0 +1,7 @@
+/area/vtm/prince_elevator : /area/vtm/interior/prince_elevator
+
+/area/vtm/dwelling : /area/vtm/interior/dwelling
+/area/vtm/dwelling/@SUBTYPES : /area/vtm/interior/dwelling/@SUBTYPES
+
+/area/vtm/anarch : /area/vtm/interior/anarch
+/area/vtm/anarch/@SUBTYPES : /area/vtm/interior/anarch/@SUBTYPES

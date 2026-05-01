@@ -23,7 +23,6 @@
 	payment_department = ACCOUNT_SRV
 	//light_mask = "coffee-light-mask" // DARKPACK EDIT REMOVAL
 	//light_color = COLOR_DARK_MODERATE_ORANGE // DARKPACK EDIT REMOVAL
-	allow_custom = TRUE
 
 // DARKPACK EDIT ADD START
 /obj/machinery/vending/coffee/private

@@ -12,7 +12,7 @@
 	var/def_breeding_text = DisplayTimeText(def_breeding)
 
 	var/list/generated_icons = list()
-	var/list/fish_types = subtypesof(/obj/item/fish)
+	var/list/fish_types = valid_subtypesof(/obj/item/fish) // DARKPACK EDIT CHANGE - FISHING
 	sortTim(fish_types, GLOBAL_PROC_REF(cmp_fish_fluid))
 
 	for (var/obj/item/fish/fish as anything in fish_types)
@@ -50,7 +50,7 @@
 			"name" = full_capitalize(escape_value(fish::name)),
 			"icon" = filename,
 			"description" = description,
-			"size_weight" = "[fish::average_size]cm / [fish::average_weight]g",
+			"size_weight" = "[fish::average_size] cm / [fish::average_weight] kiloclam",
 			"fluid" = escape_value(fish::required_fluid_type),
 			"temperature" = "Doesn't matter",
 			"stable_population" = fish::stable_population,

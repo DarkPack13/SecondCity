@@ -9,7 +9,9 @@
 	pickup_sound = 'sound/items/handling/gun/gun_pick_up.ogg'
 	drop_sound = 'sound/items/handling/gun/gun_drop.ogg'
 	sound_vary = TRUE
-	unique_reskin_changes_base_icon_state = TRUE
+
+	min_recoil = 0.1
+	recoil = 2 // DARKPACK EDIT ADD
 
 	///sound when inserting magazine
 	var/load_sound = 'sound/items/weapons/gun/general/magazine_insert_full.ogg'
@@ -140,6 +142,20 @@
 	var/burst_fire_selection = FALSE
 	/// If it has an icon for a selector switch indicating current firemode.
 	var/selector_switch_icon = FALSE
+	/// Suppressor attached to the gun, if any
+	var/obj/item/suppressor/suppressor = null
+	/// Sound played when the burst mode is changed
+	var/burst_select_sound = SFX_FIRE_MODE_SWITCH
+	// DARKPACK EDIT ADD START - STORYTELLER_DICE
+	COOLDOWN_DECLARE(recoil_skill_check)
+	var/datum/storyteller_roll/shooting/recoil_roll
+	// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START - FORENSICS
+	/// Base serial number prefix, whatever's here will come before the numbers. Blank means no number/obliterated number.
+	var/serial_type = ""
+	/// If set to false it won't show any serial number; specifically for non-guns that are pathed as guns. (I.e - crossbows)
+	var/serial_shown = TRUE
+	// DARKPACK EDIT ADD END
 
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
@@ -149,6 +165,10 @@
 		bolt_locked = TRUE
 		update_appearance()
 		return
+	// DARKPACK EDIT ADD START - FORENSICS - (Adds serial number generation on weapons)
+	if(serial_type)
+		serial_type += "-[generate_gun_serial(pick(3,4,5,6,7,8))]"
+	// DARKPACK EDIT ADD END
 	if (!magazine)
 		magazine = new spawn_magazine_type(src)
 		if(!istype(magazine, accepted_magazine_type))
@@ -162,7 +182,13 @@
 
 /obj/item/gun/ballistic/Destroy()
 	QDEL_NULL(magazine)
+	QDEL_NULL(suppressor)
 	return ..()
+
+/obj/item/gun/ballistic/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == suppressor)
+		clear_suppressor()
 
 /obj/item/gun/ballistic/add_weapon_description()
 	AddElement(/datum/element/weapon_description, attached_proc = PROC_REF(add_notes_ballistic))
@@ -214,11 +240,10 @@
 	// DARKPACK EDIT ADD END
 
 	if(selector_switch_icon)
-		switch(burst_fire_selection)
-			if(FALSE)
-				. += "[initial(icon_state)]_semi"
-			if(TRUE)
-				. += "[initial(icon_state)]_burst"
+		if(burst_fire_selection)
+			. += "[initial(icon_state)]_burst"
+		else
+			. += "[initial(icon_state)]_semi"
 
 	if(show_bolt_icon)
 		if (bolt_type == BOLT_TYPE_LOCKING)
@@ -280,14 +305,17 @@
 	burst_fire_selection = !burst_fire_selection
 	if(!burst_fire_selection)
 		burst_size = 1
-		fire_delay = 0
+		fire_delay = 0 SECONDS
 		balloon_alert(user, "switched to semi-automatic")
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
 		balloon_alert(user, "switched to [burst_size]-round burst")
 
-	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
+	if(burst_select_sound)
+		playsound(user, burst_select_sound, 50, TRUE)
+	else
+		playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	update_item_action_buttons()
 
@@ -534,7 +562,7 @@
 			return ITEM_INTERACT_FAILURE
 
 		if(suppressed)
-			balloon_alert(user, "already has a supressor!")
+			balloon_alert(user, "already has a suppressor!")
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
@@ -551,7 +579,7 @@
 /obj/item/gun/ballistic/proc/load_gun(obj/item/ammo, mob/living/user)
 	if (chambered && !chambered.loaded_projectile)
 		chambered.forceMove(drop_location())
-		if(chambered != magazine?.stored_ammo[1])
+		if(length(magazine?.stored_ammo) && chambered != magazine.stored_ammo[1])
 			magazine.stored_ammo -= chambered
 		chambered = null
 
@@ -577,10 +605,23 @@
 	if(target != user && chambered.loaded_projectile && could_it_misfire && prob(misfire_probability) && blow_up(user))
 		to_chat(user, span_userdanger("[src] misfires!"))
 		return
-
-	if (sawn_off)
+	if(sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
 
+	// DARKPACK EDIT ADD START - STORYTELLER_DICE
+	if(!recoil_roll)
+		recoil_roll = new()
+
+	if(COOLDOWN_FINISHED(src, recoil_skill_check))
+		var/recoil_reduction = recoil_roll.st_roll(user, src)
+		recoil = max(initial(recoil) - recoil_reduction, 0)
+		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)
+	// DARKPACK EDIT ADD END
+
+	// DARKPACK EDIT ADD START - FORENSICS
+	if(serial_type && serial_shown)
+		chambered.serial_type_index = serial_type
+	// DARKPACK EDIT ADD END
 	return ..()
 
 /obj/item/gun/ballistic/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
@@ -595,27 +636,30 @@
 	return ..()
 
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
-/obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
-	suppressed = S
-	update_weight_class(w_class + S.w_class) //so pistols do not fit in pockets when suppressed
+/obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/new_suppressor)
+	suppressor = new_suppressor
+	suppressed = suppressor.suppression
+	update_weight_class(w_class + suppressor.w_class) //so pistols do not fit in pockets when suppressed
+	can_muzzle_flash = FALSE
 	update_appearance()
 
 /obj/item/gun/ballistic/clear_suppressor()
 	if(!can_unsuppress)
 		return
-	if(isitem(suppressed))
-		var/obj/item/I = suppressed
-		update_weight_class(w_class - I.w_class)
-	return ..()
+	suppressed = SUPPRESSED_NONE
+	if(suppressor)
+		update_weight_class(w_class - suppressor.w_class)
+		suppressor = null
+	can_muzzle_flash = initial(can_muzzle_flash)
+	update_appearance()
 
 /obj/item/gun/ballistic/click_alt(mob/user)
 	if(!suppressed || !can_unsuppress)
 		return CLICK_ACTION_BLOCKING
-	var/obj/item/suppressor/S = suppressed
 	if(!user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "[S.name] removed")
-	user.put_in_hands(S)
+	balloon_alert(user, "[suppressor.name] removed")
+	user.put_in_hands(suppressor)
 	clear_suppressor()
 	return CLICK_ACTION_SUCCESS
 
@@ -691,11 +735,19 @@
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
 	. += "It has <b>[get_ammo(count_chambered)]</b> round\s remaining."
 
+	// DARKPACK EDIT ADD START - FORENSICS
+	if(in_range(user, src) && serial_shown)
+		if(serial_type)
+			. += span_warning("There is a serial number on this gun, it reads [serial_type].")
+		else if(initial(serial_type)) // hopefully byond also has a way to handle this at runtime!
+			. += span_boldwarning("The serial number has been rendered illegible!")
+	// DARKPACK EDIT ADD END
+
 	if (!chambered && !hidden_chambered)
 		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
-	if (suppressed)
+	if (suppressor)
 		. += "It has a suppressor [can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."]"
 	if(can_misfire)
 		. += span_danger("You get the feeling this might explode if you fire it...")
@@ -873,3 +925,24 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
+	/// How quiet should the gun be when we're installed?
+	var/suppression = SUPPRESSED_QUIET
+
+// DARKPACK EDIT ADD START - FORENSICS - (Serial number obliteration)
+/obj/item/gun/ballistic/screwdriver_act_secondary(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
+		return
+	if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
+		return
+	if(serial_type)
+		user.visible_message(span_warning("[user] attempts to obliterate the [name]'s serial number with [I]"),
+		span_notice("You attempt to obliterate the [name]'s serial number. (It will take 5 seconds.)"), null, 3)
+		if(I.use_tool(src, user, 5 SECONDS, volume = 50))
+			if(!serial_type)	// Failsafe
+				return
+			user.visible_message(span_notice("[name]'s serial number is oblittered by [user], erasing its unique identifying numbers."),
+								span_warning("You obliterate [name]'s serial number with [I], erasing its unique identifying numbers."))
+			serial_type = null
+			return FALSE
+// DARKPACK EDIT ADD END
