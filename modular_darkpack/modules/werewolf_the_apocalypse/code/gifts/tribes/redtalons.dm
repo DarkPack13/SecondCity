@@ -6,17 +6,21 @@
 	name = "Hidden Killer"
 	desc = "The Red Talons didn't survive for so long without learning ways to conceal themselves. This Gift allows a werewolf to leave behind no physical evidence that would betray her hand (or claws, or teeth) in a slaying."
 
+	click_to_activate = TRUE
+
 	rank = 1
 
 /datum/action/cooldown/power/gift/hidden_killer/Activate(atom/target)
-	. = ..()
-
 	var/mob/living/carbon/human/human_owner = astype(owner)
 	var/mob/living/dead_guy = astype(target)
 	if(!dead_guy || dead_guy.stat != DEAD)
 		return FALSE
-	// owner.visible_message("[src] presses a hand to [dead_guy]")
+	if(!(target in range(1, owner)))
+		return FALSE
 
+	. = ..()
+
+	// owner.visible_message("[src] presses a hand to [dead_guy]")
 
 	var/datum/storyteller_roll/gift/hidden_killer/roll_datum = new()
 	var/roll_result = roll_datum.st_roll(owner)
@@ -45,3 +49,5 @@
 		for(var/bloodprint in atom_forensics.blood_DNA)
 			if(bloodprint in owner_blood_dna)
 				atom_forensics.blood_DNA -= bloodprint
+
+	return TRUE

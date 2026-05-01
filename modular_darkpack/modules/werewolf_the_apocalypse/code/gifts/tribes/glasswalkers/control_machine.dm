@@ -13,7 +13,6 @@
 
 	click_to_activate = TRUE
 
-	handles_cooldown = TRUE
 	handles_spend_resources = TRUE
 	willpower_cost = 1
 
@@ -75,7 +74,6 @@
 	object_highlights = null
 
 /datum/action/cooldown/power/gift/control_machine/Activate(atom/target)
-	. = ..()
 	var/choices = target.get_control_machine_options(owner, is_complex)
 	if(!length(choices))
 		return FALSE
@@ -83,6 +81,8 @@
 	var/choice = show_radial_menu(owner, target, choices, autopick_single_option = FALSE)
 	if(!choice)
 		return
+
+	. = ..()
 
 	if(!roll_datum)
 		roll_datum = new roll_type()
@@ -107,7 +107,6 @@
 
 	spend_resources()
 
-	StartCooldown()
 	return TRUE
 
 
