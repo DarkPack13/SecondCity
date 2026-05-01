@@ -12,7 +12,7 @@
 
 /datum/quirk/darkpack/horrific_appearance/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
-	if(human_holder)
+	if(!human_holder)
 		return
 	var/years_undead = human_holder.chronological_age - human_holder.age
 	switch(years_undead)

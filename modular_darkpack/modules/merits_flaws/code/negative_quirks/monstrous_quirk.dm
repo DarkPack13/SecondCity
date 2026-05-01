@@ -12,7 +12,7 @@
 
 /datum/quirk/darkpack/monstrous/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
-	if(human_holder)
+	if(!human_holder)
 		return
 	human_holder.rot_body(1)
 	ADD_TRAIT(human_holder, TRAIT_MASQUERADE_VIOLATING_FACE, "Monstrous")
