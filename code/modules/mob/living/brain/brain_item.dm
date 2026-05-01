@@ -739,8 +739,8 @@
 		return FALSE
 	// Now lets acctually compare them
 	if(active_hand.attack_type == AGGRAVATED)
-		return FALSE // AGG damage is gonna almost always be better dps..
-	if(active_hand.atk_effect == ATTACK_EFFECT_CLAW)
+		return FALSE // AGG damage is gonna almost always be better dps or more desired..
+	if(active_hand.unarmed_attack_effect == ATTACK_EFFECT_CLAW)
 		return FALSE // Claws get an extra bonus dice compared to kicking
 	return TRUE // Otherwise, kicking is PROBALLY better as it gets a +1 bonus to damage compared to punches.
 // DARKPACK EDIT ADD END
