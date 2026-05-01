@@ -32,7 +32,7 @@
 	var/list/symptoms = list() // The symptoms of the disease.
 	var/id = ""
 	var/processing = FALSE
-	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT, ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
+	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT CHANGE - ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
 
 /*
 

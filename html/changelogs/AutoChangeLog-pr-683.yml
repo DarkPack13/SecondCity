@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "reworks frenzying to be a role-play/fluff effect rather then stealing control of your character."
+  - bugfix: "color effect from Kiss status effect should properly clear"
