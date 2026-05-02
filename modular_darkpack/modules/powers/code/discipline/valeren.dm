@@ -496,4 +496,4 @@
 
 /datum/status_effect/vengeance_of_samiel/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
-	attack_modifiers[FORCE_MULTIPLIER] += 0.4 * bonus
+	MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 1 + (0.4 * bonus))

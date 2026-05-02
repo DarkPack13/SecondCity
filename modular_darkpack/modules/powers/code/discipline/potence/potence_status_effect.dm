@@ -53,8 +53,7 @@
 // This is bad and bypasses it being a strength dice thing.
 /datum/status_effect/potence/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
-
-	attack_modifiers[FORCE_MULTIPLIER] += 0.4 * level
+	MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 1 + (0.4 * level))
 
 // Status effect ranks
 /datum/status_effect/potence/one
