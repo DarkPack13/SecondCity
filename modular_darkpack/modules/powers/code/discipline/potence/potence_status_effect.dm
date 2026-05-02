@@ -19,15 +19,9 @@
 				continue
 
 			LAZYADD(affected_bodyparts, limb)
-
-			limb.unarmed_damage_low += 8 * level
-			limb.unarmed_damage_high += 8 * level
 			limb.unarmed_attack_sound = 'modular_darkpack/modules/powers/sounds/heavypunch.ogg'
 	else if (isbasicmob(owner))
 		var/mob/living/basic/basic_owner = owner
-
-		basic_owner.melee_damage_lower += 8 * level
-		basic_owner.melee_damage_upper += 8 * level
 		basic_owner.attack_sound = 'modular_darkpack/modules/powers/sounds/heavypunch.ogg'
 
 	RegisterSignal(owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(apply_melee_modifier))
