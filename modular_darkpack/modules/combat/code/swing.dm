@@ -1,4 +1,4 @@
-/mob/living/proc/melee_swing(visual_effect)
+/mob/living/proc/melee_swing(visual_effect, atom/swung_item)
 	playsound(loc, 'modular_darkpack/modules/combat/sounds/swing.ogg', 50, TRUE)
 	var/atom/hit_target
 	var/turf/center_turf = get_step(src, dir)
@@ -16,7 +16,7 @@
 				break
 
 	if(!visual_effect)
-		visual_effect = get_swing_visual(hit_target)
+		visual_effect = get_swing_visual(hit_target, swung_item)
 	new visual_effect(get_turf(src), dir)
 
 	// Originally this was in front of searching for turfs but SURELY you would want this after you get a target. Right?
@@ -28,16 +28,16 @@
 	else
 		changeNext_move(CLICK_CD_RANGE) // Whiff punish (to avoid people spam clicking and the visuals looking dumb)
 
-/mob/living/proc/get_swing_visual(atom/target)
+/mob/living/proc/get_swing_visual(atom/target, atom/swung_item)
 	return /obj/effect/temp_visual/dir_setting/swing_effect
 
 // unarmed_attack_effect = ATTACK_EFFECT_CLAW
 
 
-/mob/living/carbon/get_swing_visual(atom/target)
+/mob/living/carbon/get_swing_visual(atom/target, atom/swung_item)
 	. = ..()
 
-	if(target)
+	if(target && !swung_item)
 		var/obj/item/bodypart/attacking_bodypart = get_attacking_limb(target)
 		if(attacking_bodypart?.unarmed_attack_effect == ATTACK_EFFECT_CLAW)
 			return /obj/effect/temp_visual/dir_setting/claw_effect
@@ -103,7 +103,7 @@
 	if(held_item && !held_item.can_swing())
 		return
 
-	var/atom/swing_result = source.melee_swing()
+	var/atom/swing_result = source.melee_swing(swung_item = held_item)
 	if(swing_result?.IsReachableBy(source, held_item ? held_item.reach : 1))
 		//This is here to undo the +1 the click on the distant turf adds so we can click the mob near us
 		source.next_click = world.time - 1
