@@ -276,6 +276,7 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
+	speed_mod = /datum/movespeed_modifier/shifter/dire
 
 /datum/species/human/shifter/feral
 	name = "feral form"
@@ -319,6 +320,8 @@
 	abstract_type = /datum/movespeed_modifier/shifter
 	movetypes = GROUND
 
-//Adds up with dexterity to -0.5, thus caps around twice as much as a human can attain.
+/datum/movespeed_modifier/shifter/dire
+	multiplicative_slowdown = -0.2
+
 /datum/movespeed_modifier/shifter/feral
-	multiplicative_slowdown = -0.15
+	multiplicative_slowdown = -0.35
