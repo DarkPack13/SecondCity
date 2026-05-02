@@ -183,7 +183,7 @@
 	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 	// DARKPACK EDIT CHANGE START - COMBAT
 	var/obj/item/bodypart/attacking_bodypart
-	if(target)
+	if(ishuman(target))
 		attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
 	else
 		attacking_bodypart = get_active_hand()
