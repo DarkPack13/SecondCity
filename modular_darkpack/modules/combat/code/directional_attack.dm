@@ -42,5 +42,5 @@
 			continue
 		//This is here to undo the +1 the click on the distant turf adds so we can click the mob near us
 		source.next_click = world.time - 1
-		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, ClickOn), target_mob, turf_to_check, click_params)
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, ClickOn), target_mob, list2params(click_params))
 		return

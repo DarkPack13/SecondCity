@@ -1,5 +1,4 @@
-/mob/living/proc/melee_swing(visual_effect = /obj/effect/temp_visual/dir_setting/swing_effect)
-	new visual_effect(get_turf(src), dir)
+/mob/living/proc/melee_swing(visual_effect)
 	playsound(loc, 'modular_darkpack/modules/combat/sounds/swing.ogg', 50, TRUE)
 	var/atom/hit_target
 	var/turf/center_turf = get_step(src, dir)
@@ -16,6 +15,10 @@
 				hit_target = swung_object
 				break
 
+	if(!visual_effect)
+		visual_effect = get_swing_visual(hit_target)
+	new visual_effect(get_turf(src), dir)
+
 	// Originally this was in front of searching for turfs but SURELY you would want this after you get a target. Right?
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_SWING, hit_target, center_turf, left_turf, right_turf)
 
@@ -25,6 +28,21 @@
 	else
 		changeNext_move(CLICK_CD_RANGE) // Whiff punish (to avoid people spam clicking and the visuals looking dumb)
 
+/mob/living/proc/get_swing_visual(atom/target)
+	return /obj/effect/temp_visual/dir_setting/swing_effect
+
+// unarmed_attack_effect = ATTACK_EFFECT_CLAW
+
+
+/mob/living/carbon/get_swing_visual(atom/target)
+	. = ..()
+
+	if(target)
+		var/obj/item/bodypart/attacking_bodypart = get_attacking_limb(target)
+		if(attacking_bodypart?.unarmed_attack_effect == ATTACK_EFFECT_CLAW)
+			return /obj/effect/temp_visual/dir_setting/claw_effect
+
+
 /obj/item/proc/can_swing()
 	// Technicly meant for no flavor text but is semi widly used as a "noncombat" weapon check
 	if(!(item_flags & NOBLUDGEON))
@@ -32,6 +50,7 @@
 
 /obj/item/gun/can_swing()
 	return FALSE
+
 
 /obj/effect/temp_visual/dir_setting/swing_effect
 	icon = 'modular_darkpack/modules/combat/icons/swing.dmi'
@@ -88,4 +107,4 @@
 	if(swing_result?.IsReachableBy(source, held_item ? held_item.reach : 1))
 		//This is here to undo the +1 the click on the distant turf adds so we can click the mob near us
 		source.next_click = world.time - 1
-		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, ClickOn), swing_result, get_turf(swing_result), click_params)
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, ClickOn), swing_result, list2params(click_params))
