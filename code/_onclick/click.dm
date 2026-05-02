@@ -162,21 +162,6 @@
 		if((item_atom.item_flags & IN_STORAGE) && (item_atom.loc.flags_1 & HAS_DISASSOCIATED_STORAGE_1))
 			UnarmedAttack(item_atom, TRUE, modifiers)
 
-	// DARKPACK EDIT ADD START - COMBAT
-	// This sucks. https://github.com/tgstation/tgstation/pull/76928 looked so promising but it was closed.
-	if(CONFIG_GET(flag/swing_combat) && isliving(src))
-		var/mob/living/living_src = src
-		if(W?.can_swing() && living_src.combat_mode)
-			if(A?.IsReachableBy(src, W.reach))
-				living_src.melee_swing()
-				W.melee_attack_chain(src, A, modifiers)
-			else
-				A = living_src.melee_swing()
-				if(A?.IsReachableBy(src, W.reach))
-					W.melee_attack_chain(src, A, modifiers)
-			return
-	// DARKPACK EDIT ADD END - COMBAT
-
 	//Standard reach turf to turf or reaching inside storage
 	if(A.IsReachableBy(src, W?.reach))
 		if(W)
@@ -191,8 +176,13 @@
 		else
 			if(LAZYACCESS(modifiers, RIGHT_CLICK))
 				ranged_secondary_attack(A, modifiers)
+			/* // DARKPACK EDIT REMOVAL - COMBAT
 			else
 				RangedAttack(A, modifiers)
+			*/
+		// DARKPACK EDIT ADD START - COMBAT
+		RangedAttack(A, modifiers)
+		// DARKPACK EDIT ADD END
 
 /// Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()

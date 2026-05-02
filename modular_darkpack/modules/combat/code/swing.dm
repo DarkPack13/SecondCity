@@ -1,5 +1,4 @@
 /mob/living/proc/melee_swing(visual_effect = /obj/effect/temp_visual/dir_setting/swing_effect)
-	changeNext_move(CLICK_CD_RANGE)
 	new visual_effect(get_turf(src), dir)
 	playsound(loc, 'modular_darkpack/modules/combat/sounds/swing.ogg', 50, TRUE)
 	var/atom/hit_target
@@ -21,8 +20,10 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_SWING, hit_target, center_turf, left_turf, right_turf)
 
 	if(hit_target)
-		changeNext_move(CLICK_CD_MELEE)
+		// changeNext_move(CLICK_CD_MELEE)
 		return hit_target
+	else
+		changeNext_move(CLICK_CD_RANGE) // Whiff punish (to avoid people spam clicking and the visuals looking dumb)
 
 /obj/item/proc/can_swing()
 	// Technicly meant for no flavor text but is semi widly used as a "noncombat" weapon check
@@ -46,4 +47,45 @@
 	pixel_z = -32
 	duration = 0.3 SECONDS
 
-/datum/config_entry/flag/swing_combat
+
+/*!
+ * This element allows the mob its attached to the ability to click an adjacent mob by clicking a distant atom
+ * that is in the general direction relative to the parent.
+ */
+/datum/element/swing_attack/Attach(datum/target)
+	. = ..()
+	if(!isliving(target))
+		return ELEMENT_INCOMPATIBLE
+
+	RegisterSignal(target, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack))
+
+/datum/element/swing_attack/Detach(datum/source, ...)
+	. = ..()
+	UnregisterSignal(source, COMSIG_MOB_ATTACK_RANGED)
+
+/**
+ * This proc handles clicks on tiles that aren't adjacent to the source mob
+ * In addition to clicking the distant tile, it checks the tile in the direction and clicks the mob in the tile if there is one
+ * Arguments:
+ * * source - The mob clicking
+ * * clicked_atom - The atom being clicked (should be a distant one)
+ * * click_params - Miscellaneous click parameters, passed from Click itself
+ */
+/datum/element/swing_attack/proc/on_ranged_attack(mob/living/source, atom/clicked_atom, click_params)
+	SIGNAL_HANDLER
+
+	if(!source.combat_mode)
+		return
+
+	if(QDELETED(clicked_atom))
+		return
+
+	var/obj/item/held_item = source.get_active_held_item()
+	if(held_item && !held_item.can_swing())
+		return
+
+	var/atom/swing_result = source.melee_swing()
+	if(swing_result?.IsReachableBy(source, held_item ? held_item.reach : 1))
+		//This is here to undo the +1 the click on the distant turf adds so we can click the mob near us
+		source.next_click = world.time - 1
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/mob, ClickOn), swing_result, get_turf(swing_result), click_params)
