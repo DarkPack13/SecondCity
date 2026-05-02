@@ -24,6 +24,8 @@
 	species_language_holder = /datum/language_holder/garou
 	var/mob_pixel_w
 	var/mob_pixel_z
+	/// If declared will override the mob size.
+	var/mob_size_override
 	/// Stats added and removed upon gaining the species
 	var/list/form_bonus_stats = list()
 	/// Dice roll difficulty required to shift into this form
@@ -48,12 +50,18 @@
 
 	human_who_gained_species.add_offsets(type, w_add = mob_pixel_w, z_add = mob_pixel_z)
 
+	if(mob_size_override)
+		human_who_gained_species.mob_size = mob_size_override
+
 	add_buffs(human_who_gained_species)
 
 /datum/species/human/shifter/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	if(speed_mod)
 		human.remove_movespeed_modifier(speed_mod)
+
+	if(mob_size_override)
+		human.mob_size = human::mob_size
 
 	human.remove_offsets(type)
 
@@ -215,6 +223,8 @@
 
 	visible_gender_override = "beast"
 
+	mob_pixel_w = -8
+	mob_size_override = MOB_SIZE_LARGE
 	form_bonus_stats = list(
 		STAT_STRENGTH = 4,
 		STAT_STAMINA = 3,
@@ -222,7 +232,6 @@
 		STAT_MANIPULATION = -3,
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
-	mob_pixel_w = -8
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
@@ -256,6 +265,8 @@
 
 	visible_gender_override = "beast"
 
+	mob_pixel_w = -16
+	mob_pixel_z = -8
 	form_bonus_stats = list(
 		STAT_STRENGTH = 3,
 		STAT_STAMINA = 3,
@@ -263,8 +274,6 @@
 		STAT_MANIPULATION = -3,
 	)
 	shift_difficulty = 7
-	mob_pixel_w = -16
-	mob_pixel_z = -8
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
