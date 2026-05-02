@@ -6,14 +6,20 @@
 	var/turf/right_turf = get_step(center_turf, turn(dir, 90))
 
 	for(var/turf/swung_turf in list(center_turf, left_turf, right_turf))
-		hit_target = locate(/mob/living) in swung_turf
-		if(hit_target)
-			break
+		var/mob/living/living_on_turf = locate() in swung_turf
+		if(!living_on_turf)
+			continue
+		if(living_on_turf.stat == DEAD)
+			continue
+		hit_target = living_on_turf
+		break
+	/* // More likely then not, not acctually what your trying to click on. Revisit
 	if(!hit_target)
 		for(var/obj/swung_object in center_turf)
 			if(swung_object.obj_flags & CAN_BE_HIT)
 				hit_target = swung_object
 				break
+	*/
 
 	if(!visual_effect)
 		visual_effect = get_swing_visual(hit_target, swung_item)
