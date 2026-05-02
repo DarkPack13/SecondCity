@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "fera warforms are considered large mobs"
+  - balance: "Gangrel forms are downgraded to large mobs instead of huge"
