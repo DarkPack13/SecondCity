@@ -39,14 +39,9 @@
 
 	if (iscarbon(owner))
 		for (var/obj/item/bodypart/limb in affected_bodyparts)
-			limb.unarmed_damage_low -= 8 * level
-			limb.unarmed_damage_high -= 8 * level
 			limb.unarmed_attack_sound = initial(limb.unarmed_attack_sound)
 	else if (isbasicmob(owner))
 		var/mob/living/basic/basic_owner = owner
-
-		basic_owner.melee_damage_lower -= 8 * level
-		basic_owner.melee_damage_upper -= 8 * level
 		basic_owner.attack_sound = initial(basic_owner.attack_sound)
 
 	LAZYCLEARLIST(affected_bodyparts)
@@ -55,6 +50,7 @@
 
 	qdel(tackler)
 
+// This is bad and bypasses it being a strength dice thing.
 /datum/status_effect/potence/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
 
