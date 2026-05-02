@@ -102,6 +102,9 @@
 	if(!source.combat_mode)
 		return
 
+	if(!source?.client?.prefs?.read_preference(/datum/preference/toggle/ranged_click_to_melee))
+		return
+
 	if(QDELETED(clicked_atom))
 		return
 
