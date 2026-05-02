@@ -37,7 +37,7 @@
 /mob/living/carbon/get_swing_visual(atom/target, atom/swung_item)
 	. = ..()
 
-	if(target && !swung_item)
+	if(!swung_item)
 		var/obj/item/bodypart/attacking_bodypart = get_attacking_limb(target)
 		if(attacking_bodypart?.unarmed_attack_effect == ATTACK_EFFECT_CLAW)
 			return /obj/effect/temp_visual/dir_setting/claw_effect
