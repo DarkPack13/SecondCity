@@ -15,6 +15,7 @@
 /datum/unit_test/baton/Run()
 	var/mob/living/carbon/human/consistent/secoff = EASY_ALLOCATE()
 	var/mob/living/carbon/human/consistent/tider = EASY_ALLOCATE()
+	tider.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 	ADD_TRAIT(secoff, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
 
 	var/obj/item/melee/baton/stun_baton = allocate(baton_type)
