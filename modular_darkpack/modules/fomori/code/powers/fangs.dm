@@ -8,3 +8,20 @@
 
 /datum/action/cooldown/power/fomori_power/fangs/Activate(atom/target)
 	. = ..()
+	var/mob/living/carbon/carbon_owner = astype(owner, /mob/living/carbon)
+
+	if(deployed)
+		REMOVE_TRAITS_IN(owner, "fomor_fangs")
+		deployed = FALSE
+		carbon_owner.remove_overlay(MUTATIONS_LAYER)
+		carbon_owner.combat_bite_damages = carbon_owner::combat_bite_damages
+	else
+		ADD_TRAIT(owner, TRAIT_COMBAT_BITE, "fomor_fangs")
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "fomor_fangs")
+		deployed = TRUE
+		carbon_owner.combat_bite_damages = list(BRUTE = 0, BURN = 0, TOX = 0, OXY = 0, AGGRAVATED = 1 TTRPG_DAMAGE)
+		carbon_owner.remove_overlay(MUTATIONS_LAYER)
+		var/mutable_appearance/fomor_overlay = mutable_appearance('modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi', "fangs", -MUTATIONS_LAYER)
+		fomor_overlay.pixel_z = -1
+		carbon_owner.overlays_standing[MUTATIONS_LAYER] = fomor_overlay
+		carbon_owner.apply_overlay(MUTATIONS_LAYER)
