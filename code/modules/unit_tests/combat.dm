@@ -31,7 +31,7 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/weldingtool/welding_tool = allocate(/obj/item/weldingtool)
 
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
 
 	attacker.put_in_active_hand(welding_tool, forced = TRUE)
 	attacker.set_combat_mode(TRUE)
