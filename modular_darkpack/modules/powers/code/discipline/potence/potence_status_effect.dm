@@ -35,7 +35,7 @@
 	. = ..()
 
 	owner.st_remove_auto_successes(STAT_STRENGTH, "Potence")
-	owner.st_add_stat_mod(STAT_STRENGTH, level "Potence")
+	owner.st_add_stat_mod(STAT_STRENGTH, level, "Potence")
 
 	if (iscarbon(owner))
 		for (var/obj/item/bodypart/limb in affected_bodyparts)
@@ -50,7 +50,7 @@
 
 	qdel(tackler)
 
-// This is bad and bypasses it being a strength dice thing.
+// This is bad and bypasses it being a strength dice thing. Remove the second melee has any usage of strength for damage
 /datum/status_effect/potence/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
 	MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 1 + (0.4 * level))

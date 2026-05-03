@@ -53,7 +53,10 @@
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [used_difficulty]."
+	var/dice_used_text = "[dice_amount] dice"
+	if(auto_success_amount)
+		dice_used_text += " + [auto_success_amount] auto successes"
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), dice_used_text)] vs. difficulty [used_difficulty]."
 	if(successes_needed > 1)
 		first_line += " [successes_needed] successes needed."
 	last_output_text += span_notice(first_line)
