@@ -12,6 +12,9 @@
 	if (!.)
 		return
 
+	owner.st_remove_stat_mod(STAT_STRENGTH, "Potence")
+	owner.st_add_auto_successes(STAT_STRENGTH, level, "Potence")
+
 	if (iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
 		for (var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
@@ -30,6 +33,9 @@
 
 /datum/status_effect/potence/on_remove()
 	. = ..()
+
+	owner.st_remove_auto_successes(STAT_STRENGTH, "Potence")
+	owner.st_add_stat_mod(STAT_STRENGTH, level "Potence")
 
 	if (iscarbon(owner))
 		for (var/obj/item/bodypart/limb in affected_bodyparts)

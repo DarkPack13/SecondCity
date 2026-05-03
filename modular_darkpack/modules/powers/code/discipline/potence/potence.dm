@@ -30,6 +30,9 @@
 		/datum/discipline_power/potence/five
 	)
 
+/datum/discipline_power/potence/post_gain()
+	owner.st_add_stat_mod(STAT_STRENGTH, level, "Potence")
+
 /datum/discipline_power/potence/one/activate()
 	. = ..()
 
@@ -40,8 +43,6 @@
 
 	owner.remove_status_effect(/datum/status_effect/potence/one)
 
-/datum/discipline_power/potence/one/post_gain()
-	owner.st_add_stat_mod(STAT_STRENGTH, 1, "Potence")
 
 //POTENCE 2
 /datum/discipline_power/potence/two
@@ -70,8 +71,6 @@
 	. = ..()
 	owner.remove_status_effect(/datum/status_effect/potence/two)
 
-/datum/discipline_power/potence/two/post_gain()
-	owner.st_add_stat_mod(STAT_STRENGTH, 2, "Potence")
 
 //POTENCE 3
 /datum/discipline_power/potence/three
@@ -100,8 +99,6 @@
 	. = ..()
 	owner.remove_status_effect(/datum/status_effect/potence/three)
 
-/datum/discipline_power/potence/three/post_gain()
-	owner.st_add_stat_mod(STAT_STRENGTH, 3, "Potence")
 
 //POTENCE 4
 /datum/discipline_power/potence/four
@@ -130,8 +127,6 @@
 	. = ..()
 	owner.remove_status_effect(/datum/status_effect/potence/four)
 
-/datum/discipline_power/potence/four/post_gain()
-	owner.st_add_stat_mod(STAT_STRENGTH, 4, "Potence")
 
 //POTENCE 5
 /datum/discipline_power/potence/five
@@ -159,6 +154,3 @@
 /datum/discipline_power/potence/five/deactivate()
 	. = ..()
 	owner.remove_status_effect(/datum/status_effect/potence/five)
-
-/datum/discipline_power/potence/five/post_gain()
-	owner.st_add_stat_mod(STAT_STRENGTH, 5, "Potence")
