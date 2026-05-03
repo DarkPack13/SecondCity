@@ -181,7 +181,7 @@
 			sucess_amount--
 		else
 			dice_text += span_danger("[get_dice_char(roll)]")
-	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [dice_text]"
+	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [span_slightly_larger(dice_text)]"
 	return sucess_amount
 
 /datum/storyteller_roll/proc/roll_result(sucess_amount)
