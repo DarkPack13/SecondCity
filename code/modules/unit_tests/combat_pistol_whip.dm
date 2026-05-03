@@ -8,6 +8,7 @@
 
 	attacker.put_in_active_hand(gun, forced = TRUE)
 	victim.forceMove(locate(attacker.x + 1, attacker.y, attacker.z))
+	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	var/expected_ammo = gun.magazine.max_ammo + 1
 	// These assertions are just here because I don't understand gun code
