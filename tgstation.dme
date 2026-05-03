@@ -6986,6 +6986,7 @@
 #include "modular_darkpack\master_files\code\__HELPERS\maths.dm"
 #include "modular_darkpack\master_files\code\_globalvars\configuration.dm"
 #include "modular_darkpack\master_files\code\_onclick\hud\new_player.dm"
+#include "modular_darkpack\master_files\code\_onclick\hud\screen_objects\screen_objects.dm"
 #include "modular_darkpack\master_files\code\controllers\configuration\entries\game_options.dm"
 #include "modular_darkpack\master_files\code\controllers\configuration\entries\general.dm"
 #include "modular_darkpack\master_files\code\datums\actions\action.dm"
