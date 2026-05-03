@@ -211,9 +211,9 @@
 
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -235,7 +235,6 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
-	speed_mod = /datum/movespeed_modifier/shifter/war
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -253,9 +252,9 @@
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -296,7 +295,7 @@
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -321,12 +320,8 @@
 	abstract_type = /datum/movespeed_modifier/shifter
 	movetypes = GROUND
 
-// Verify these nums are ttrpg accurate.
-/datum/movespeed_modifier/shifter/war
-	multiplicative_slowdown = -0.1
-
 /datum/movespeed_modifier/shifter/dire
-	multiplicative_slowdown = -0.3
+	multiplicative_slowdown = -0.2
 
 /datum/movespeed_modifier/shifter/feral
-	multiplicative_slowdown = -0.5
+	multiplicative_slowdown = -0.35
