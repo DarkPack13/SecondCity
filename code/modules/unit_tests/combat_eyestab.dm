@@ -6,6 +6,8 @@
 	var/mob/living/carbon/human/consistent/victim = EASY_ALLOCATE()
 	var/obj/item/screwdriver/stabber = EASY_ALLOCATE()
 
+	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+
 	attacker.zone_selected = BODY_ZONE_PRECISE_EYES
 	attacker.put_in_active_hand(stabber, forced = TRUE)
 
