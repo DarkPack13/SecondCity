@@ -10,7 +10,49 @@
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
+	// Snowflake toggle behavior
+	var/deployed = FALSE
+
+	// Body feature for horns, fangs, etc.
+	var/datum/bodypart_overlay/simple/fomor_part
+	// What bodypart are we putting our feature on?
+	var/feature_bodypart = BODY_ZONE_HEAD
+
 /atom/movable/screen/alert/status_effect/fomori_power
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
 	icon_state = "bg_fomori_power"
 	overlay_icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
+
+
+///checks if we lose a limb a feature is attached to
+/datum/action/cooldown/power/fomori_power/proc/on_removed_limb(datum/source, obj/item/bodypart/removed_limb, special, dismembered)
+	SIGNAL_HANDLER
+
+	var/mob/living/carbon/human/carbon_owner = astype(owner, /mob/living/carbon)
+	var/obj/item/bodypart/bodypart =  carbon_owner.get_bodypart(feature_bodypart)
+
+	if(fomor_part && istype(removed_limb, bodypart.type))
+		remove_feature()
+
+///for adding fomor features i.e. fangs, horns
+/datum/action/cooldown/power/fomori_power/proc/add_feature()
+	var/mob/living/carbon/human/fomor = owner
+	var/obj/item/bodypart/bodypart = fomor?.get_bodypart(feature_bodypart)
+	if(isnull(bodypart))
+		return
+	fomor_part = new() //creates our overlay
+	bodypart.add_bodypart_overlay(fomor_part)
+
+///removes the fomor feature
+/datum/action/cooldown/power/fomori_power/proc/remove_feature()
+	var/mob/living/carbon/human/fomor = owner
+	var/obj/item/bodypart/bodypart = fomor?.get_bodypart(feature_bodypart)
+	bodypart?.remove_bodypart_overlay(fomor_part)
+	QDEL_NULL(fomor_part)
+
+///toggles the feature, TRUE for remove and FALSE for add
+/datum/action/cooldown/power/fomori_power/proc/toggle_feature(current_state)
+	if(current_state)
+		remove_feature()
+	else
+		add_feature()

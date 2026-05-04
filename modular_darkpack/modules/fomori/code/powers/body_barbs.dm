@@ -21,18 +21,14 @@
 	wound_bonus = 10
 	exposed_wound_bonus = 10
 	armour_penetration = 35
-	var/can_drop = FALSE
-	var/fake = FALSE
 	var/list/alt_continuous = list("stabs", "pierces", "impales")
 	var/list/alt_simple = list("stab", "pierce", "impale")
 
 	abstract_type = /obj/item/melee/body_barbs
 
-/obj/item/melee/body_barbs/Initialize(mapload,silent,synthetic) // Largely copied from changeling armblade
+/obj/item/melee/body_barbs/Initialize(mapload,silent) // Largely copied from changeling armblade
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, "body_barbs")
-	if(synthetic)
-		can_drop = TRUE
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
 	alt_continuous = string_list(alt_continuous)
 	alt_simple = string_list(alt_simple)
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -5)
@@ -47,12 +43,14 @@
 	button_icon_state = "body_barbs"
 	rank = 1 // of 10 // Determines how many extra dice we get
 	weapon_type = /obj/item/melee/body_barbs
+	sheathe_text = "Your body barbs retract into your arms."
 
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/Activate(atom/target)
 	. = ..()
-	owner.visible_message(span_warning("A pair of grotesque barbs extend from [owner]\'s arms!"), \
-		span_warning("Your body barbs extend from your arms."), \
-		span_hear("You hear organic matter ripping and tearing!"))
+	if(deployed)
+		owner.visible_message(span_warning("A pair of grotesque barbs extend from [owner]\'s arms!"), \
+			span_warning("Your body barbs extend from your arms."), \
+			span_hear("You hear organic matter ripping and tearing!"))
 
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/two
 	rank = 2
