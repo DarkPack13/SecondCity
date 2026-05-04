@@ -302,12 +302,15 @@
 		return ATTACK_FAILED
 
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
-// DARKPACK EDIT ADD START
-	if(isliving(user))
-		var/mob/living/living_user = user
-		var/stat_multiplier = living_user.st_get_stat(STAT_MELEE) * 0.4
-		final_force *= stat_multiplier
-// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START - STORYTELLER_ROLLS/STORYTELLER_STATS
+	// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
+	// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
+	var/bonus_dice = round(final_force / (1 TTRPG_DAMAGE))
+	var/datum/storyteller_roll/damage/damage_roll = new()
+	damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
+	var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
+	final_force = damage_roll_result
+	// DARKPACK EDIT ADD END
 	if(final_force <= 0)
 		return 0
 
@@ -352,8 +355,9 @@
 	var/datum/storyteller_roll/attack/attack_roll = new()
 	attack_roll.applicable_stats = list(attacking_item.st_attack_ability, attacking_item.st_attack_attribute)
 	attack_roll.difficulty = attacking_item.attack_difficulty
-	var/attack_roll_result = attack_roll.st_roll(user, src, bonus_dice)
+	var/attack_roll_result = attack_roll.st_roll(user, src)
 
+	// What i want to do is acctually have it return if not success. But that creates bad visual feedback as all the FX still play. just give them them SOME damage..
 	if(attack_roll_result == ROLL_SUCCESS)
 		// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
 		// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
@@ -362,7 +366,9 @@
 		damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
 		var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
 
-		final_force = damage_roll_result TTRPG_DAMAGE
+		final_force = max(damage_roll_result TTRPG_DAMAGE, 1 TTRPG_DAMAGE)
+	else
+		final_force = 1 TTRPG_DAMAGE // "SOME damage" in question
 	// DARKPACK EDIT ADD END
 
 	var/wounding = attacking_item.wound_bonus

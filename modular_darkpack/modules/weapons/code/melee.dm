@@ -23,6 +23,8 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT // Should really be suit storage
 	pixel_w = -8
 	custom_price = 1800
+	force = 3 LETHAL_TTRPG_DAMAGE
+	attack_difficulty = 7
 
 /obj/item/katana/vamp
 	name = "katana"
@@ -34,6 +36,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
 	custom_price = 1300
+	force = 2 LETHAL_TTRPG_DAMAGE
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()
@@ -89,7 +92,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "rapier"
-
+	force = 2 LETHAL_TTRPG_DAMAGE
 
 /obj/item/melee/sabre/rapier/Initialize(mapload)
 	. = ..()
@@ -144,6 +147,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "longsword"
 	inhand_icon_state = "longsword"
+	force = 2 LETHAL_TTRPG_DAMAGE
 
 
 /obj/item/claymore/longsword/Initialize(mapload)
@@ -181,6 +185,8 @@
 	inhand_icon_state = "baseball"
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT // Should really be suit storage
 	custom_price = 50
+	force = 2 TTRPG_DAMAGE
+	attack_difficulty = 5
 
 /obj/item/melee/baseball_bat/vamp/Initialize(mapload)
 	. = ..()
