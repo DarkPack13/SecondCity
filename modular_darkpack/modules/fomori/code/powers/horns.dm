@@ -1,24 +1,22 @@
+/datum/bodypart_overlay/simple/fomor_horns
+	icon_state = "horns"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
+	layers = MUTATIONS_LAYER
+
 /datum/action/cooldown/power/fomori_power/horns
 	name = "Horns"
 	desc = "(UNIMPLEMENTED) Use the grotesque horns atop your head to gore your enemies."
 	button_icon_state = "horns"
 	rank = 1 // of 1
 
-	var/deployed = FALSE
-
-/datum/action/cooldown/power/fomori_power/horns/Grant()
-	. = ..()
+	fomor_part = /datum/bodypart_overlay/simple/fomor_horns
 
 /datum/action/cooldown/power/fomori_power/horns/Activate(atom/target)
 	. = ..()
 	var/mob/living/carbon/carbon_owner = astype(owner, /mob/living/carbon)
+	toggle_feature(deployed)
 
 	if(deployed)
 		deployed = FALSE
-		carbon_owner.remove_overlay(MUTATIONS_LAYER)
 	else
 		deployed = TRUE
-		carbon_owner.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/fomor_overlay = mutable_appearance('modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi', "horns", -MUTATIONS_LAYER)
-		carbon_owner.overlays_standing[MUTATIONS_LAYER] = fomor_overlay
-		carbon_owner.apply_overlay(MUTATIONS_LAYER)
