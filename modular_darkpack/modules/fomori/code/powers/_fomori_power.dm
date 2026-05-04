@@ -40,7 +40,7 @@
 	var/obj/item/bodypart/bodypart = fomor?.get_bodypart(feature_bodypart)
 	if(isnull(bodypart))
 		return
-	fomor_part = new() //creates our overlay
+	fomor_part = new fomor_part() //creates our overlay
 	bodypart.add_bodypart_overlay(fomor_part)
 
 ///removes the fomor feature
@@ -54,5 +54,6 @@
 /datum/action/cooldown/power/fomori_power/proc/toggle_feature(current_state)
 	if(current_state)
 		remove_feature()
+		fomor_part = initial(fomor_part)
 	else
 		add_feature()
