@@ -118,3 +118,7 @@
 /// Returns information pertaining to this job's radio.
 /datum/job/vampire/get_radio_information()
 	return
+
+/datum/job/vampire/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	spawned.add_faction(faction)

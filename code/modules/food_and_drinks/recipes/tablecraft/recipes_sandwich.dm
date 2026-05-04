@@ -25,7 +25,7 @@
 	)
 	result = /obj/item/food/sandwich/cheese
 	dish_category = DISH_SANDWICH
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/slimesandwich
 	name = "Jelly sandwich"
 	reqs = list(

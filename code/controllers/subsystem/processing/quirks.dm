@@ -27,14 +27,14 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/numb, /datum/quirk/selfaware),
 	list(/datum/quirk/empath, /datum/quirk/evil),
 	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
-	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/untamable), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/disfigured, /datum/quirk/darkpack/monstrous, /datum/quirk/darkpack/friendly_face), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/permafangs, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/mute, /datum/quirk/darkpack/enchanting_voice), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/dulled_bite, /datum/quirk/darkpack/infectious_bite), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/short, /datum/quirk/darkpack/huge_size), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/eyes_of_shadow, /datum/quirk/darkpack/glowing_eyes), // DARKPACK EDIT ADD - MERITS/FLAWS
-	list(/datum/quirk/darkpack/bruiser, /datum/quirk/darkpack/friendly_face), // DARKPACK EDIT ADD - MERITS/FLAWS
+	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/untamable), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/disfigured, /datum/quirk/darkpack/monstrous, /datum/quirk/darkpack/friendly_face), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/permafangs, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/mute, /datum/quirk/darkpack/enchanting_voice), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/dulled_bite, /datum/quirk/darkpack/infectious_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/short, /datum/quirk/darkpack/huge_size), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/eyes_of_shadow, /datum/quirk/darkpack/glowing_eyes), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/bruiser, /datum/quirk/darkpack/friendly_face), // DARKPACK EDIT ADD - MERITS_FLAWS
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -81,8 +81,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 	for(var/type in quirk_list)
 		var/datum/quirk/quirk_type = type
-		// DARKPACK EDIT ADD START - MERITS/FLAWS
+		// DARKPACK EDIT ADD START - MERITS_FLAWS
 		if(!quirk_type::darkpack_allowed)
+			continue
+		if(quirk_type::roleplay_only && !CONFIG_GET(flag/roleplay_only_merits))
 			continue
 		// DARKPACK EDIT ADD END
 

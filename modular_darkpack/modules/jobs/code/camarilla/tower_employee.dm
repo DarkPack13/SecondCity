@@ -1,6 +1,6 @@
 /datum/job/vampire/towerwork
 	title = JOB_TOWERWORK
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = SUPERVISOR_SENESCHAL_PUBLIC

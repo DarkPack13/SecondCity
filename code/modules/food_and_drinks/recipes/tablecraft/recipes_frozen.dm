@@ -50,7 +50,7 @@
 	dish_category = DISH_FROZEN
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/honkdae
 	name ="Honkdae"
 	reqs = list(

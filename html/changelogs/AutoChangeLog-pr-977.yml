@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscdel: "Removes dice output preference in favor of always outputting to chat unless declared by the roll."
