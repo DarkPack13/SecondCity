@@ -37,7 +37,7 @@
 		if(mob.client)
 			var/atom/movable/screen/area_text/T = new()
 			mob.client.screen += T
-			T.maptext = MAPTEXT({"<span style='font-size: 200%; text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;'>[name]</span>"})
+			T.maptext = MAPTEXT({"<span style='font-size: 200%; text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black; display: block; text-align: center;'>[name]</span>"})
 			animate(T, alpha = 255, time = 10, easing = EASE_IN)
 			addtimer(CALLBACK(mob, TYPE_PROC_REF(/mob/living, clear_area_text), T), 35)
 
