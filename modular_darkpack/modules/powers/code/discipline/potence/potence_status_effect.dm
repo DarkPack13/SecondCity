@@ -3,9 +3,13 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 
-	var/level
+	var/level = 1
 	var/datum/component/tackler/tackler
 	var/list/obj/item/bodypart/affected_bodyparts
+
+/datum/status_effect/potence/on_creation(mob/living/new_owner, level)
+	src.level = level
+	. = ..()
 
 /datum/status_effect/potence/on_apply()
 	. = ..()
@@ -54,19 +58,3 @@
 /datum/status_effect/potence/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
 	MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 1 + (0.4 * level))
-
-// Status effect ranks
-/datum/status_effect/potence/one
-	level = 1
-
-/datum/status_effect/potence/two
-	level = 2
-
-/datum/status_effect/potence/three
-	level = 3
-
-/datum/status_effect/potence/four
-	level = 4
-
-/datum/status_effect/potence/five
-	level = 5
