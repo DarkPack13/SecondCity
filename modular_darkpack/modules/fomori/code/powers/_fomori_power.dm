@@ -18,6 +18,11 @@
 	// What bodypart are we putting our feature on?
 	var/feature_bodypart = BODY_ZONE_HEAD
 
+	// What organ are we adding?
+	var/obj/item/organ/fomor_organ
+	// Where are we inserting it?
+	var/fomor_organ_slot
+
 /atom/movable/screen/alert/status_effect/fomori_power
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
 	icon_state = "bg_fomori_power"
@@ -57,3 +62,14 @@
 		fomor_part = initial(fomor_part)
 	else
 		add_feature()
+
+/datum/action/cooldown/power/fomori_power/proc/add_organ()
+	var/obj/item/organ/new_organ = new fomor_organ()
+	new_organ.Insert(owner)
+
+/datum/action/cooldown/power/fomori_power/proc/remove_organ()
+	var/obj/item/organ/organ = owner.get_organ_slot(fomor_organ_slot)
+	if(organ)
+		organ.Remove(owner)
+		qdel(organ)
+		fomor_organ = initial(fomor_organ)
