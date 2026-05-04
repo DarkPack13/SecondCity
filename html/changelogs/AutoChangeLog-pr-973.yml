@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "makes lightposts go out when the area power transformer is broken"
