@@ -12,10 +12,11 @@
 	COOLDOWN_START(src, drinkblood_click_cd, 1 SECONDS)
 	if(!damage_types)
 		damage_types = combat_bite_damages
+
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
-		if(skipface)
-			to_chat(src, span_warning("Take your mask off first!"))
-			return
+	if(skipface)
+		to_chat(src, span_warning("Take your mask off first!"))
+		return
 
 	if(grab_state > GRAB_PASSIVE)
 		if(isliving(pulling))
