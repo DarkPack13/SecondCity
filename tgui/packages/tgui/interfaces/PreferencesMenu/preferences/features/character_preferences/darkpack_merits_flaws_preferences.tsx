@@ -28,8 +28,3 @@ export const acute_sense: FeatureChoiced = {
   name: 'Acute Sense',
   component: FeatureDropdownInput,
 };
-
-export const wound_location: FeatureChoiced = {
-  name: 'Wound Location',
-  component: FeatureDropdownInput,
-};

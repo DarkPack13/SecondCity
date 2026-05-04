@@ -30,8 +30,13 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE) && !(owner.obscured_slots & HIDEFACE))
-		theirpower += 2
+	if(!(owner.obscured_slots & HIDEFACE))
+		if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
+			theirpower += 2
+
+	if(!(owner.slot & ITEM_SLOT_ICLOTHING))
+		if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND))
+			theirpower += 1
 
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
 		theirpower += 1
@@ -39,22 +44,20 @@
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		theirpower -= 2
 
-	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_FACE) && !(owner.obscured_slots & HIDEFACE))
-		theirpower += 1
-	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_CHEST) && !(owner.obscured_slots & HIDEJUMPSUIT))
-		theirpower += 1
-
 	if(discipline.current_power.name == "Dread Gaze")
 		if(HAS_TRAIT(owner, TRAIT_BRUISER))
 			theirpower -= 1
 		if(!owner.is_eyes_covered())
 			if(HAS_TRAIT(owner, TRAIT_GLOWING_EYES) && (!get_kindred_splat(target)))
 				theirpower -= 1
-			if(HAS_TRAIT(owner, TRAIT_EYES_OF_SHADOW))
+			if(HAS_TRAIT(owner, TRAIT_EYES_OF_SHADOW) && (theirpower >= 3)) // we want this to reduce diff to a MINIMUM of 2
 				theirpower -= 1
 	else
 		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE) && !(owner.obscured_slots & HIDEFACE))// We can't intimidate them with this.
 			theirpower -= 1
+
+	if(theirpower <= 0)
+		theirpower = 1 // let's not have difficulties of less than 0 here?
 
 	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 

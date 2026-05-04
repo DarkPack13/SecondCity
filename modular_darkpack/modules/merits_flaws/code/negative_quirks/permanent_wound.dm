@@ -14,7 +14,9 @@ At the beginning of each night, you rise from sleep heavily wounded."}
 At the beginning of each night,
 you rise from sleep at the Wounded health level, though this may be healed by spending blood points.*/
 
-/datum/quirk/darkpack/permanent_wound/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/permanent_wound/add(client/client_source)
 	. = ..()
-	var/mob/living/carbon/human/human_holder = new_holder
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
 	human_holder.adjust_brute_loss(90, TRUE)

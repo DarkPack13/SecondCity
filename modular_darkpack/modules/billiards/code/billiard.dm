@@ -149,7 +149,7 @@
 
 		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES))
 			amount_to_hit_roll.difficulty += 1
-		if(HAS_TRAIT(user, TRAIT_GLOWING_EYES))
+		if(HAS_TRAIT(user, TRAIT_ACUTE_SIGHT))
 			amount_to_hit_roll.difficulty -= 2
 
 		var/amount_to_hit_result = amount_to_hit_roll.st_roll(user, src)

@@ -23,7 +23,7 @@ the bleeding. Any vampire who bites a Hemophiliac may
 ghoul, the vampire will put a stop to any future bashing
 damage.*/
 
-/datum/quirk/darkpack/hemophiliac/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/hemophiliac/add(client/client_source)
 	. = ..()
 	ADD_TRAIT(quirk_holder, TRAIT_EASYBLEED , QUIRK_TRAIT) // Easier to make bleed
 

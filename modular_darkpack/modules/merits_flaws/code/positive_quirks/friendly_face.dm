@@ -13,7 +13,6 @@ leaving you at -1 difficulty on all appropriate Social-based rolls
 	failure_message = span_notice("You feel like others don't look at you the same way anymore.")
 	mob_trait = TRAIT_FRIENDLY_FACE
 
-
 /*You have a face that reminds everyone of someone,
 to the point where strangers are inclined to be well
 inclined toward you because of it. The effect doesn’t

@@ -2,12 +2,13 @@
 /datum/quirk/darkpack/seizures
 	name = "Seizures"
 	desc = {"Your character suffers from seizures, most commonly triggered by stress.
-Though many types of seizures can be controlled, some people refuse or are unable to be treated for oen reason or another."}
+Though many types of seizures can be controlled, some people refuse or are unable to be treated for one reason or another."}
 	icon = FA_ICON_FACE_DIZZY
 	value = -3 // Debate on this cost. Might be too high bc it's not as bad as tabletop?
 	gain_text = span_notice("You feel dizzy.")
 	lose_text = span_notice("The dizziness fades.")
 	failure_message = span_notice("The dizziness fades.")
+	forbidden_splats = SPLAT_KINDRED // Add Garou to this if it seems fitting, but for now.
 
 /*Seizures tend to occur during moments of duress, and
 few mortals have a more stressful or terrifying existence
@@ -45,11 +46,15 @@ drop to the ground, your vision might turn black for a
 few seconds, or your arm might tremble and you cannot
 regain control*/
 
-/datum/quirk/darkpack/seizures/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	var/mob/living/carbon/human/human_holder = new_holder
+/datum/quirk/darkpack/seizures/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
 	human_holder.dna.add_mutation(/datum/mutation/epilepsy, MUTATION_SOURCE_ACTIVATED)
 
-/datum/quirk/darkpack/seizures/remove(mob/living/new_holder)
+/datum/quirk/darkpack/seizures/remove()
 	. = ..()
-	var/mob/living/carbon/human/human_holder = new_holder
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
 	human_holder.dna.remove_mutation(/datum/mutation/epilepsy, MUTATION_SOURCE_ACTIVATED)

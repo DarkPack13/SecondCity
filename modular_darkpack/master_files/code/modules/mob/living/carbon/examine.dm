@@ -54,14 +54,15 @@
 	if(!(obscured_slots & HIDEJUMPSUIT))
 		if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN)) // 'hidden by modest clothing'
 			. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
-		if(HAS_TRAIT(src, TRAIT_OPEN_WOUND_CHEST))
-			. += span_warning("Blood seeps from an open wound across [p_their()] chest.<br>")
 
 	if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
 		. += span_warning("[p_They(TRUE)] smell[p_s()] weirdly animal like...<br>")
 
 	if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
 		. += span_warning("[p_They()] smell[p_s()] like moist soil.<br>")
+
+	if(HAS_TRAIT(src, TRAIT_OPEN_WOUND) && (!(src.w_uniform))) // Easier to hide than scales-just wear a jumpsuit.
+		. += span_warning("They appear to have an open wound, blood slowly seeping from it.<br>")
 
 	if(!is_eyes_covered())
 		if(HAS_TRAIT(src, TRAIT_GLOWING_EYES))
@@ -92,5 +93,3 @@
 				var/mob/living/living_user = user
 				if(living_user.is_clan(/datum/subsplat/vampire_clan/tremere))
 					. += span_bolddanger("[p_They()] [p_have()] a glowing 'T' on [p_their()] forehead - the Mark of a traitor to Clan Tremere!<br>")
-		if(HAS_TRAIT(src, TRAIT_OPEN_WOUND_FACE))
-			. += span_warning("Blood seeps from an open wound across [p_their()] face.<br>")

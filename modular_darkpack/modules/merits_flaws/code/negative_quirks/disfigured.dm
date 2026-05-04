@@ -13,13 +13,18 @@
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_HARBINGER)
 	var/appearance_to_subtract
 
-/datum/quirk/darkpack/disfigured/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/disfigured/add(client/client_source)
 	. = ..()
-	var/mob/living/carbon/human/human_holder = new_holder
-	appearance_to_subtract = human_holder.st_get_stat(STAT_APPEARANCE)-2 //5-2=3 dots removed, ect
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
+	appearance_to_subtract = human_holder.st_get_stat(STAT_APPEARANCE)-2
 	if(human_holder.st_get_stat(STAT_APPEARANCE) > 2)
-		human_holder.st_add_stat_mod(STAT_APPEARANCE, human_holder.st_get_stat(STAT_APPEARANCE) - appearance_to_subtract, "Disfigured")// Test after the stat mod pr is in
+		human_holder.st_add_stat_mod(STAT_APPEARANCE, -appearance_to_subtract, "Disfigured")
 
 /datum/quirk/darkpack/disfigured/remove()
 	. = ..()
-	quirk_holder.st_remove_stat_mod(STAT_APPEARANCE, "Disfigured")
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
+	human_holder.st_remove_stat_mod(STAT_APPEARANCE, "Disfigured")

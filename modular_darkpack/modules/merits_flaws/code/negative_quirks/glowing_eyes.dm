@@ -23,13 +23,12 @@ the radiance emanating from your eye sockets makes
 it difficult to hide (+2 difficulty to Stealth rolls) in the
 dark.*/
 
-/datum/quirk/darkpack/glowing_eyes/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/glowing_eyes/add(client/client_source)
 	. = ..()
 	ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 	ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
 
 /datum/quirk/darkpack/glowing_eyes/remove()
-	. = ..()
 	. = ..()
 	REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 	REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)

@@ -17,14 +17,18 @@ You have difficulty reaching or manipulating objects designed for normal adult s
 and your running speed is one-half that of an average human.*/
 
 /datum/movespeed_modifier/quirk_short
-	multiplicative_slowdown = 2 // TEsT
+	multiplicative_slowdown = 2
 
-/datum/quirk/darkpack/short/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
+/datum/quirk/darkpack/short/add(client/client_source)
 	. = ..()
-	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/quirk_short)
 
 /datum/quirk/darkpack/short/remove()
 	. = ..()
-	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
 	human_holder.remove_movespeed_modifier(/datum/movespeed_modifier/quirk_short)

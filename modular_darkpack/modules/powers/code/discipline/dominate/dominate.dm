@@ -116,7 +116,9 @@
 	if(!(owner.obscured_slots & HIDEFACE))
 		if(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))
 			theirpower += 2
-		if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_FACE))
+
+	if(!(owner.slot & ITEM_SLOT_ICLOTHING))
+		if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND))
 			theirpower += 1
 
 	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target)))// Counting anyone not kindred as mortal for this, since it should be a little unnerving to them.
@@ -137,9 +139,6 @@
 		if(HAS_TRAIT(owner, TRAIT_FRIENDLY_FACE) && !(owner.obscured_slots & HIDEFACE))
 			theirpower -= 1
 
-	if(HAS_TRAIT(owner, TRAIT_OPEN_WOUND_CHEST) && !(owner.obscured_slots & HIDEJUMPSUIT))
-		theirpower += 1
-
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
 	var/mob/living/carbon/human/human_target = target
@@ -155,6 +154,9 @@
 	//if anyone else tries to dominate my conditioned servant its much harder for them but not for me
 	if(target.conditioner?.resolve())
 		theirpower += 3
+
+	if(theirpower <= 0)
+		theirpower = 1 // let's not have difficulties of less than 0 here?
 
 	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
 

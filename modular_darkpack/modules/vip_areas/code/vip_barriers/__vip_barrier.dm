@@ -137,13 +137,12 @@
 		involved_social_roll -= 2
 
 	if(!(user.obscured_slots & HIDEFACE))
-		if(HAS_TRAIT(user, TRAIT_OPEN_WOUND_FACE))
-			involved_social_roll += 1
 		if(HAS_TRAIT(user, TRAIT_DISFIGURED_APPEARANCE))
 			involved_social_roll += 2
 
-	if(HAS_TRAIT(user, TRAIT_OPEN_WOUND_CHEST) && !(user.obscured_slots & HIDEJUMPSUIT))
-		involved_social_roll += 1
+	if(!(user.slot & ITEM_SLOT_ICLOTHING))
+		if(HAS_TRAIT(user, TRAIT_OPEN_WOUND))
+			involved_social_roll += 1
 
 	if(STAT_INTIMIDATION in bypass_roll.applicable_stats)
 		if(!user.is_eyes_covered())
@@ -156,6 +155,9 @@
 	else
 		if(HAS_TRAIT(user, TRAIT_FRIENDLY_FACE) && !!(user.obscured_slots & HIDEFACE))// Gotta see the friendly face.
 			involved_social_roll -= 1 // Can't be used for intimidation, easier diff otherwise
+
+	if(involved_social_roll <= 0)
+		involved_social_roll = 1 // let's not have difficulties of less than 0 here?
 
 	var/verbage
 	bypass_roll.difficulty = involved_social_roll

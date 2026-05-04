@@ -11,6 +11,7 @@ gaze. The difficulty for any Intimidation roll is reduced by 2."} // since this 
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_LASOMBRA)
 	mob_trait = TRAIT_EYES_OF_SHADOW
+
 /*There is something about your eyes that makes you
 look dark and dangerous. Making eye contact with you
 is like staring into the Abyss. It may not be obvious why,

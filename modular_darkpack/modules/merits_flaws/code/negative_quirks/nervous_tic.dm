@@ -11,7 +11,7 @@ and so on."}
 	gain_text = span_notice("You feel an urge to do something self-soothing.")
 	lose_text = span_notice("You feel calmer.")
 	failure_message = span_notice("You feel calmer.")
-	//roleplay_only = TRUE // Relies on another PR being merged for this line, remove comment when it's merged
+	roleplay_only = TRUE
 
 /*You have some sort of repetitive motion that you
 make in times of stress, and it’s a dead giveaway as to
