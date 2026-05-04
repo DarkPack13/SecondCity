@@ -248,9 +248,9 @@
 				chosen_part.dismember(BURN)
 			else
 				target.visible_message(span_danger("[target]'s body withers under the curse!"), span_userdanger("YOUR BODY WITHERS UNDER THE CURSE!"))
-				target.apply_damage(successes * 25, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
+				target.apply_damage(150, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
 		else
-			target.apply_damage(successes * 25, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
+			target.apply_damage(150, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
 
 //NECROSIS
 /datum/discipline_power/thanatosis/necrosis
