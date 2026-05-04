@@ -62,7 +62,7 @@
 	UNLINT(surgery.success(alice.get_bodypart(BODY_ZONE_HEAD, TRUE), user, bobs_head, list()))
 
 	TEST_ASSERT(!isnull(alice.get_bodypart(BODY_ZONE_HEAD)), "Alice has no head after prosthetic replacement")
-	TEST_ASSERT_EQUAL(alice.real_name, "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob") // DARKPACK EDIT, ORIGINAL: TEST_ASSERT_EQUAL(alice.get_visible_name(), "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob")
+	TEST_ASSERT_EQUAL(alice.real_name, "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob") // DARKPACK EDIT CHANGE - ORIGINAL: TEST_ASSERT_EQUAL(alice.get_visible_name(), "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob")
 	TEST_ASSERT_EQUAL(alice.hairstyle, "Short Hair", "Bob's head was transplanted onto Alice's body, but their hairstyle is not Short Hair")
 	TEST_ASSERT_EQUAL(alice.hair_color, COLOR_LIGHT_BROWN, "Bob's head was transplanted onto Alice's body, but their hair color is not COLOR_LIGHT_BROWN")
 	TEST_ASSERT_EQUAL(alice.facial_hairstyle, "Beard (Full)", "Bob's head was transplanted onto Alice's body, but their facial hairstyle is not Beard (Full)")

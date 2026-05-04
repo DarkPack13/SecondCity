@@ -6,14 +6,14 @@
 
 #define SEPT_NAME "Sept of the Western Eye"
 
-#define EVIL_COMPANY "Pentex"
+#define EVIL_COMPANY "Pentex Group"
 
 #define MAIN_EVIL_COMPANY EVIL_OIL_COMPANY // Only effects Pentex job slots
 
 // Treated as subsidary of EVIL_COMPANY
 /* MAJOR COMPANIES - Currently or at one time held the Top 21 Company title */
 #define EVIL_TRASH_COMPANY "Ardus Enterprises"
-#define EVIL_TOY_COMPANY "Avalon Incorporated."
+#define EVIL_TOY_COMPANY "Avalon Incorporated"
 #define EVIL_CIGARETTE_COMPANY "Circinus Brands"
 #define EVIL_INVESTMENT_COMPANY "Consolidex Worldwide"
 #define EVIL_OIL_COMPANY "Endron International"
@@ -21,6 +21,7 @@
 #define EVIL_MINING_COMPANY "Harold and Harold Mining, Incorporated"
 #define EVIL_PAPER_COMPANY "Good House International"
 #define EVIL_FISHING_COMPANY "Hallahan Fishing Company"
+#define EVIL_HANDGUN_COMPANY "Herculean Firearms Incorporated"
 #define EVIL_GROCERY_COMPANY "Herrick's"
 #define EVIL_LIQUOR_COMPANY "King Breweries and Distilleries"
 #define EVIL_PHARMA_COMPANY "Magadon, Incorporated"
@@ -42,7 +43,7 @@
 #define EVIL_EGYPTIAN_OIL_COMPANY "EGPC"
 
 /* HAROLD AND HAROLD SUBSIDIARIES */
-#define EVIL_EGYPTIAN_MINING_COMPANY "Kaulet Mining"
+#define EVIL_EGYPTIAN_MINING_COMPANY "Kauket Mining"
 
 /* KING BREWERIES SUBSIDIARIES */
 #define EVIL_WATERWAY_COMPANY "AquaClear Foundation"
@@ -83,13 +84,12 @@
 #define EVIL_COSMETICS_COMPANY_3 "Pangloss Cosmetics" // Subsidiary of Siren Cosmetics
 #define EVIL_WEAPON_COMPANY "Full Force Solutions"
 #define EVIL_PR_COMPANY "Gaia Research Company"
-#define EVIL_HANDGUN_COMPANY "Herculean Firearms Incorporated"
 #define EVIL_CONSTRUCTION_COMPANY "Hi-Quality Builders"
 #define EVIL_LAW_COMPANY "Meyers, Feinstein and Hargrett"
 #define EVIL_TECH_COMPANY "NikNak Computing"
 #define EVIL_GAMING_COMPANY "Deep Dive Games" // Subsidiary of NikNak
 #define EVIL_NEWS_COMPANY "RED Network"
-#define EVIL_CONTSTRUCTION_COMPANY_2 "Safe Haven Construction"
+#define EVIL_CONSTRUCTION_COMPANY_2 "Safe Haven Construction"
 #define EVIL_INTEL_COMPANY "Shade, Inc."
 #define EVIL_HORROR_COMPANY "Slaughterhouse Video"
 #define EVIL_CONSULTING_COMPANY "Southeastern Tech Management"

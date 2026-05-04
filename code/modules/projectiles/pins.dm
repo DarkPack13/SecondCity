@@ -73,7 +73,7 @@
 	return
 
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
-	var/result = ALLOW_FIRE // DARKPACK EDIT ADD - Removes firing pin authorization - Original : 	var/result = SEND_SIGNAL(user, COMSIG_LIVING_FIRING_PIN_CHECK, src)
+	var/result = ALLOW_FIRE // DARKPACK EDIT ADD - Removes firing pin authorization - ORIGINAL: 	var/result = SEND_SIGNAL(user, COMSIG_LIVING_FIRING_PIN_CHECK, src)
 	if(result & ALLOW_FIRE)
 		return TRUE
 	if(result & BLOCK_FIRE)

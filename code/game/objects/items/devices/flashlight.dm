@@ -60,7 +60,7 @@
 	init_slapcrafting()
 
 /obj/item/flashlight/proc/init_slapcrafting()
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/flashlight_eyes)
 
 	AddElement(

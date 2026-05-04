@@ -13,7 +13,7 @@
 	result = /obj/item/food/bread/meat
 	dish_category = DISH_BREAD
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/xenomeatbread
 	name = "Xenomeat bread"
 	reqs = list(
@@ -77,7 +77,7 @@
 	result = /obj/item/food/bread/creamcheese
 	dish_category = DISH_BREAD
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/mimanabread
 	name = "Mimana bread"
 	reqs = list(
@@ -162,7 +162,7 @@
 	result = /obj/item/food/croissant/throwing
 	dish_category = DISH_BREAD
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/breaddog
 	name = "Living dog/bread hybrid"
 	reqs = list(
@@ -234,7 +234,7 @@
 	added_foodtypes = GROSS
 	dish_category = DISH_BREAD
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/breadcat
 	name = "Bread cat/bread hybrid"
 	reqs = list(
