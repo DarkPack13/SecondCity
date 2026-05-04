@@ -7719,7 +7719,6 @@
 #include "modular_darkpack\modules\storyteller_stats\code\stat_pref_middleware.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\mob_affecting_adjustments\mob_procs.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\mob_affecting_adjustments\movespeed_modifier.dm"
-#include "modular_darkpack\modules\storyteller_stats\code\mob_affecting_adjustments\recalculate_max_health.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\default_abilities.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\default_attributes.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\default_morality.dm"
