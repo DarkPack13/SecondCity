@@ -348,8 +348,21 @@
 	if(mob_biotypes & (MOB_ROBOTIC|MOB_MINERAL|MOB_SKELETAL)) // this should probably check hit bodypart for humanoids
 		final_force *= attacking_item.get_demolition_modifier(src)
 
-	// DARKPACK EDIT ADD START - (Makes Melee do Something)
-	final_force += final_force * (user.st_get_stat(STAT_MELEE) * 0.1)
+	// DARKPACK EDIT ADD START - STORYTELLER_ROLLS/STORYTELLER_STATS
+	var/datum/storyteller_roll/attack/attack_roll = new()
+	attack_roll.applicable_stats = list(attacking_item.st_attack_ability, attacking_item.st_attack_attribute)
+	attack_roll.difficulty = attacking_item.attack_difficulty
+	var/attack_roll_result = attack_roll.st_roll(user, src, bonus_dice)
+
+	if(attack_roll_result == ROLL_SUCCESS)
+		// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
+		// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
+		var/bonus_dice = round(final_force / (1 TTRPG_DAMAGE))
+		var/datum/storyteller_roll/damage/damage_roll = new()
+		damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
+		var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
+
+		final_force = damage_roll_result TTRPG_DAMAGE
 	// DARKPACK EDIT ADD END
 
 	var/wounding = attacking_item.wound_bonus
