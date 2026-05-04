@@ -22,4 +22,4 @@ This module handles everything related to Fomori and their Powers, Taints, and M
 
 ### Credits:
 
-dwinters99 (code), Major00 (sprites), Minzeyes (sprites) ((BLOCK PR IF THIS WARNING IS STILL HERE)), FalloutFallcon (troubleshooting)
+dwinters99 (code), Major00 (sprites), Minzeyes (sprites) ((BLOCK PR IF THIS WARNING IS STILL HERE)), FalloutFallcon (troubleshooting), Chazzyjazzy (for gargoyle wings), hex37 (for blood-drinking code)
