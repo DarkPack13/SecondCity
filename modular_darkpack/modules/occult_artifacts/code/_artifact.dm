@@ -103,7 +103,6 @@
 
 	if(!identify_roll)
 		identify_roll = new()
-		identify_roll.difficulty = 8
 	var/roll = identify_roll.st_roll(user, src)
 	if(roll == ROLL_SUCCESS)
 		identify(artifact_identifier)
