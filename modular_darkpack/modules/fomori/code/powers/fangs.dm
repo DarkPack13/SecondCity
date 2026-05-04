@@ -3,9 +3,12 @@
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
 	layers = MUTATIONS_LAYER
 
+/datum/bodypart_overlay/simple/fomor_fangs/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
+	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEFACE)
+
 /datum/action/cooldown/power/fomori_power/fangs
 	name = "Fangs"
-	desc = "(UNIMPLEMENTED) Use the grotesque fangs spilling from your mouth to bite your enemies."
+	desc = "Use the grotesque fangs spilling from your mouth to bite your enemies."
 	button_icon_state = "fangs"
 	rank = 1 // of 1
 
