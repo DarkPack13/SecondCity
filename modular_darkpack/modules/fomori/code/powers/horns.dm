@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/fomor_horns
 	icon_state = "horns"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = MUTATIONS_LAYER
+	layers = LOW_FACEMASK_LAYER
 
 /datum/action/cooldown/power/fomori_power/horns
 	name = "Horns"

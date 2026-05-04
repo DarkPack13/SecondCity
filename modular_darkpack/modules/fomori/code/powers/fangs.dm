@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/fomor_fangs
 	icon_state = "fangs"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = LOW_FACEMASK_LAYER
+	layers = MUTATIONS_LAYER
 
 /datum/action/cooldown/power/fomori_power/fangs
 	name = "Fangs"
