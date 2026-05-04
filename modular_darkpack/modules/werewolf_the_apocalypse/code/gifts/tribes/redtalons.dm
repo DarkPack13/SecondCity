@@ -26,7 +26,7 @@
 	var/roll_result = roll_datum.st_roll(owner)
 
 	if(roll_result != ROLL_SUCCESS)
-		return FALSE
+		return TRUE
 
 	var/list/owner_blood_dna = human_owner?.get_blood_dna_list()
 	var/full_print = md5(human_owner.dna.unique_identity)
