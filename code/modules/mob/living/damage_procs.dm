@@ -17,6 +17,8 @@
  * * attack_direction - Direction of the attack from the attacker to [src].
  * * attacking_item - Item that is attacking [src].
  * * wound_clothing - If this should cause damage to clothing.
+ * * soak_difficulty - The difficulty of soaking an attack. Base is 6, adjusted by some unique effects, rare disciplines, and more. Only reference this if you've used the proper path and checked iscarbon() for apply_damage() or it'll throw up errors.
+ * * unsoakable - Whether an attack is soakable or not. By default off, some damage types and specific effects are unsoakable.
  *
  * Returns the amount of damage dealt.
  */
@@ -33,6 +35,8 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
+	soak_difficulty = 6,
+	unsoakable = FALSE,
 )
 	SHOULD_CALL_PARENT(TRUE)
 	var/damage_amount = damage
