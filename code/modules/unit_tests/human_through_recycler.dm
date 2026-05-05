@@ -8,6 +8,8 @@
 	var/turf/open/stage = get_turf(chewer)
 	assistant.forceMove(stage) // put the assistant in the recycler, to ensure that the recycler still registers incoming input.
 
+	assistant.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+
 	// okay, let's first test the basics of how an emagged recycler should operate
 	TEST_ASSERT_NULL(QDELETED(assistant), "Assistant was deleted by the emagged recycler!") // The assistant should not be deleted by the recycler.
 	if(assistant.stat < UNCONSCIOUS)
