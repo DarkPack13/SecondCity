@@ -263,9 +263,7 @@
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
-			H.apply_damage(30, BURN, soak_difficulty = 8)
-		else
-			attacker.apply_damage(30, BURN)
+		attacker.apply_damage(30, BURN, soak_difficulty = 8)
 		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
 
@@ -458,10 +456,8 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.electrocution_animation(50)
-		H.apply_damage(20, BURN, soak_difficulty = 8)
-			
-	else 
-		target.apply_damage(20, BURN)
+
+	target.apply_damage(20, BURN, soak_difficulty = 8)
 
 	if(prob(60))
 		target.Stun(1 SECONDS)
