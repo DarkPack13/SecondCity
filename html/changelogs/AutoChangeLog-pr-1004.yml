@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "number of successes required for Fera shifting is based on how many forms your swapping between"
+  - bugfix: "Feras's shift difficulty is based on the form your currently in rather then the one your turning into"

@@ -1,5 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "gargoyles can now tuck their wings, preventing them from flying, but making them able to wear other clothes"
-  - rscadd: "gargoyle flight now makes a flapping noise"

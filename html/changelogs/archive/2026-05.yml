@@ -1,0 +1,54 @@
+2026-05-04:
+  Biplume:
+  - balance: Crinos, Hispo, and Lupus speeds were all nerfed.
+  - balance: Hispo and Lupus bites do aggravated damage.
+  FalloutFalcon:
+  - config: Adds config for if roleplay only merits are available
+  - balance: You can no longer jump while lying down
+  - qol: Street signs tell you where you are
+  - balance: Claws are prefered to kicking
+  - bugfix: Claws get intended bonus dice on basic mobs
+  - balance: Fera claws are sharp and deal aggravated damage
+  - rscadd: reworks frenzying to be a role-play/fluff effect rather then stealing
+      control of your character.
+  - bugfix: color effect from Kiss status effect should properly clear
+  - balance: fera warforms are considered large mobs
+  - balance: Gangrel forms are downgraded to large mobs instead of huge
+  - image: hair dye spray has an onfloor
+  - rscdel: Removes dice output preference in favor of always outputting to chat unless
+      declared by the roll.
+  - balance: reduces the rate at which cats breed
+  FalloutFalcon, CYBILIZE:
+  - bugfix: fixed separate phone calls occasionally sharing audio with each other
+  - code_imp: corrected secure phone frequency assignment logic
+  buffyuwu:
+  - bugfix: Crime will no longer be automatically reported outside of masquerade enforced
+      areas
+  chazzyjazzy:
+  - code_imp: every job datum now has a faction
+  - code_imp: removes unused and useless 'is_gun_store' job on /obj/structure/retail
+  - bugfix: fixes the very smallest and the very tallest height from not being applied
+  - rscadd: store owners now say unique things to you when you open their store
+  - rscadd: store owners now have revamped outfits for unique and cool looks
+  - rscadd: makes lightposts go out when the area power transformer is broken
+  - rscadd: gargoyles can now tuck their wings, preventing them from flying, but making
+      them able to wear other clothes
+  - rscadd: gargoyle flight now makes a flapping noise
+  - rscadd: fixes serpentis 1
+  - bugfix: readds bank vault door to giovanni kindred roles
+  - bugfix: adds npc subtypes for the new store owners
+  - rscadd: empty bloodbags can now be bought at the pharmacy
+  - bugfix: negative stat modifiers now work
+  chazzyjazzy, buffyuwu:
+  - rscadd: blush of health quirk
+  - rscadd: eat food quirk
+  - bugfix: aura hearts now beat only when they should
+  - bugfix: setites now get their clan keys
+  - bugfix: bloodpacks now actually increment bloodpool
+  - bugfix: sunglasses and other glasses now act in the same way masks do for masquerade
+      violating eyes
+  - bugfix: dementation's missing sprite is now patched
+  dwinters99:
+  - rscadd: company logo element
+  theselfish:
+  - rscadd: Tremere may have a Third Eye.
