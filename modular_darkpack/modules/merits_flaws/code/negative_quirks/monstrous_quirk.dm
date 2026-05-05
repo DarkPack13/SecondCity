@@ -10,11 +10,11 @@
 	icon = FA_ICON_FACE_ANGRY
 	failure_message = "Your appearance softens, as though a great weight is lifted - you may bare your face again."
 
-/datum/quirk/darkpack/monstrous/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	if(ishuman(new_holder))
-		var/mob/living/carbon/human/human_holder = new_holder
-		human_holder.rot_body(1)
-		ADD_TRAIT(human_holder, TRAIT_MASQUERADE_VIOLATING_FACE, "Monstrous")
-		if(human_holder.st_get_stat(STAT_APPEARANCE) > 0)
-			human_holder.st_add_stat_mod(STAT_APPEARANCE, -human_holder.st_get_stat(STAT_APPEARANCE), "Monstrous")
+/datum/quirk/darkpack/monstrous/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
+	human_holder.rot_body(1)
+	ADD_TRAIT(human_holder, TRAIT_MASQUERADE_VIOLATING_FACE, "Monstrous")
+	if(human_holder.st_get_stat(STAT_APPEARANCE) > 0)
+		human_holder.st_add_stat_mod(STAT_APPEARANCE, -human_holder.st_get_stat(STAT_APPEARANCE), "Monstrous")

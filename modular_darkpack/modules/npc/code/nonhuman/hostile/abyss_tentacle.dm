@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 
 /datum/ai_planning_subtree/tentacle_grab_and_crush
 
-/datum/ai_planning_subtree/tentacle_grab_and_crush/SelectBehaviors(datum/ai_controller/controller, delta_time)
+/datum/ai_planning_subtree/tentacle_grab_and_crush/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
 	if(!istype(tentacle))
 		return
