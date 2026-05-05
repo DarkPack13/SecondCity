@@ -2,6 +2,8 @@
 	. = ..()
 	if(!client)
 		return
+	for(var/atom/movable/screen/area_text/old in client.screen)
+		qdel(old)
 	var/atom/movable/screen/area_text/T = new()
 	client.screen += T
 	T.maptext = MAPTEXT({"<span style='font-size: 200%; text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black; display: block; text-align: center;'>[new_area.name]</span>"})
