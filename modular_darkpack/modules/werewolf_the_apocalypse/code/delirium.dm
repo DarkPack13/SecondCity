@@ -85,7 +85,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 
 /mob/living/carbon/human/proc/affected_by_delirium()
-	if(iswerewolfsplat(src))
+	if(get_werewolf_splat(src))
 		return FALSE
 
 	if(st_get_stat(STAT_PERMANENT_WILLPOWER) >= 10)
