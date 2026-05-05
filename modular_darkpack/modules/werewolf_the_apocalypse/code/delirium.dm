@@ -40,7 +40,8 @@
 	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
 
 	if(owner.client)
-		var/image/overlay_image = image(loc = wolf)
+		// dir SOUTH is admitting i compeletly lost the fight against this stupid bullshit and cant get the image to properly mimmic the direction of the mob.
+		var/image/overlay_image = image(loc = wolf, dir = SOUTH)
 		overlay_image.appearance = wolf.appearance
 		overlay_image.override = TRUE
 		overlay_image.name = "Unknown"
@@ -62,7 +63,7 @@
 	. = ..()
 	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
-	QDEL_NULL(scary_static)
+	QDEL_LAZYLIST(scary_static)
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
 	. = ..()
