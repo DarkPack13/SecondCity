@@ -38,8 +38,8 @@
 	var/fallback_icon
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
-	/// Causes delerium, which if the user is affected by, does not cause breaches
-	var/causes_delerium
+	/// Causes delirium, which if the user is affected by, does not cause breaches
+	var/causes_delirium
 	/// IF this form can be witnessed, causes masqurade breaches
 	var/veil_breaching_form = FALSE
 
@@ -206,7 +206,7 @@
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
-	causes_delerium = TRUE
+	causes_delirium = TRUE
 	veil_breaching_form = TRUE
 
 	mutanttongue = /obj/item/organ/tongue/fera
