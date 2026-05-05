@@ -2,4 +2,3 @@
 /area/vtm/outside
 	outdoors = TRUE
 	sound_environment = SOUND_ENVIRONMENT_CITY
-	requires_power = TRUE // set false in subtypes -- most outside areas require power and have lampposts and such in big cities
