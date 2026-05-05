@@ -49,6 +49,8 @@
 
 	var/dice_amount = calculate_used_dice(roller, bonus)
 
+	bonus += SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target)
+
 	var/list/rolled_dice = roll_dice(dice_amount)
 
 	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty]."
@@ -85,7 +87,7 @@
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
-	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, output)
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, output)
 	return output
 
 

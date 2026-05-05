@@ -148,7 +148,7 @@
 		if(AURA_ANXIOUS)
 			examine_message = "[parent_mob.p_Their()] aura appears scrambled, like static or white noise."
 		if(AURA_CONFUSED)
-			examine_message = "[parent_mob.p_Their()] aura shifts between mottled, fli7ckering colors."
+			examine_message = "[parent_mob.p_Their()] aura shifts between mottled, flickering colors."
 		if(AURA_DAYDREAMING)
 			examine_message = "[parent_mob.p_Their()] aura flickers with sharp, slow colors."
 		if(AURA_PSYCHOTIC)

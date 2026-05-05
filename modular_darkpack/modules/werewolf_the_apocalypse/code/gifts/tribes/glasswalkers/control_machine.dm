@@ -52,11 +52,7 @@
 
 		apply_wibbly_filters(I)
 
-		I.add_filter("control_machine", 1, list(
-			"type" = "outline",
-			"size" = 1,
-			"color" = color
-		))
+		I.add_filter("control_machine", 1, outline_filter(size = 1, color = color))
 
 		LAZYINITLIST(object_highlights)
 		on_who.client.images += I
