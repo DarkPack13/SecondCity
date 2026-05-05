@@ -263,9 +263,9 @@
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
-			H.apply_damage(30, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8.
+			H.apply_damage(30, BURN, soak_difficulty = 8)
 		else
-			attacker.apply_damage(30, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
+			attacker.apply_damage(30, BURN)
 		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
 
@@ -454,15 +454,14 @@
 
 	owner.Beam(target, icon_state="lightning[rand(1,12)]", time = 10)
 
-	target.apply_damage(20, BURN) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8, but there's no easy way to adjust that currently.
 	target.adjust_jitter_up_to(3 SECONDS, 15)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.electrocution_animation(50)
-		H.apply_damage(20, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8, but there's no easy way to adjust that currently.
+		H.apply_damage(20, BURN, soak_difficulty = 8)
 			
 	else 
-		target.apply_damage(30, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
+		target.apply_damage(20, BURN)
 
 	if(prob(60))
 		target.Stun(1 SECONDS)
