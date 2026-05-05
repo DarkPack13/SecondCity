@@ -42,19 +42,22 @@
 	if(owner.client)
 		var/mutable_appearance/appearance_copy = new(wolf.appearance)
 		appearance_copy.appearance_flags |= KEEP_APART|KEEP_TOGETHER
-		var/mutable_appearance/static_effect = mutable_appearance('icons/effects/effects.dmi', "static_base")
+		var/mutable_appearance/static_effect = mutable_appearance('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/big_static.dmi', "static_base")
 		static_effect.color = "#373642"
 		static_effect.blend_mode = BLEND_INSET_OVERLAY
 		appearance_copy.overlays += static_effect
 		appearance_copy.override = TRUE
 		var/image/overlay_image = image(appearance_copy, wolf)
+		overlay_image.override = TRUE
+		overlay_image.name = "Unknown"
+		SET_PLANE_EXPLICIT(overlay_image, ABOVE_GAME_PLANE, wolf)
 
 		owner.client.images += overlay_image
 		scary_static = overlay_image
 
 /datum/status_effect/delirium/on_remove()
 	. = ..()
-	to_chat(owner, span_notice("Your hightened emotions subside and you begin to calm."))
+	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
