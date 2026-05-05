@@ -15,7 +15,7 @@
 	unsoakable = FALSE,
 )
 
-	if(!forced && unsoakable = FALSE)
+	if(!forced && unsoakable == FALSE)
 		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
 
 	// Spread damage should always have def zone be null
@@ -59,8 +59,6 @@
 	unsoakable = FALSE,
 )
 
-	if(!forced && unsoakable = FALSE)
-		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
 	// Add relevant DR modifiers into blocked value to pass to parent
 	blocked += physiology?.damage_resistance
 	blocked += dna?.species?.damage_modifier
