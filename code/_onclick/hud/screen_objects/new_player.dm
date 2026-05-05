@@ -581,7 +581,8 @@
 	. = ..()
 	if(!. || !usr.client.is_localhost() || !check_rights_for(usr.client, R_SERVER))
 		return
-	SEND_SOUND(hud.mymob, sound('modular_darkpack/master_files/sounds/start_now.ogg', volume = 100)) // DARKPACK EDIT CHANGE
+	if(SSticker.start_immediately != TRUE) // DARKPACK EDIT ADD
+		SEND_SOUND(hud.mymob, sound('modular_darkpack/master_files/sounds/start_now.ogg', volume = 50)) // DARKPACK EDIT CHANGE
 	SSticker.start_immediately = TRUE
 	if(SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))
