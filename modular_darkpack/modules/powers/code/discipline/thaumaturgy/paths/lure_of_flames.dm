@@ -180,12 +180,7 @@
 
 	var/damage_amount = 25 + owner.thaum_damage_plus + success_count
 
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.apply_damage(damage_amount, BURN, soak_difficulty = 7)
-	else
-		target.apply_damage(damage_amount, BURN)
-
+	target.apply_damage(damage_amount, BURN, soak_difficulty = 7)
 	target.adjust_fire_stacks(4 + success_count)
 	target.ignite_mob()
 
@@ -254,11 +249,7 @@
 			if(L == owner) // Don't damage self - but caster still gets set on fire
 				continue
 
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				H.apply_damage(base_damage, BURN, soak_difficulty = 8)
-			else
-				L.apply_damage(base_damage, BURN)
+			L.apply_damage(base_damage, BURN, soak_difficulty = 8)
 
 			// Chance to ignite based on successes
 			if(prob(ignite_chance))
