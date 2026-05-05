@@ -40,14 +40,8 @@
 	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
 
 	if(owner.client)
-		var/mutable_appearance/appearance_copy = new(wolf.appearance)
-		appearance_copy.appearance_flags |= KEEP_APART|KEEP_TOGETHER
-		var/mutable_appearance/static_effect = mutable_appearance('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/big_static.dmi', "static_base")
-		static_effect.color = "#373642"
-		static_effect.blend_mode = BLEND_INSET_OVERLAY
-		appearance_copy.overlays += static_effect
-		appearance_copy.override = TRUE
-		var/image/overlay_image = image(appearance_copy, loc = wolf)
+		var/image/overlay_image = image(loc = wolf)
+		overlay_image.appearance = wolf.appearance
 		overlay_image.override = TRUE
 		overlay_image.name = "Unknown"
 		overlay_image.pixel_y = 0
@@ -55,6 +49,11 @@
 		overlay_image.pixel_w = 0
 		overlay_image.pixel_z = 0
 		SET_PLANE_EXPLICIT(overlay_image, ABOVE_GAME_PLANE, wolf)
+
+		var/mutable_appearance/static_effect = mutable_appearance('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/big_static.dmi', "static_base")
+		static_effect.color = "#373642"
+		static_effect.blend_mode = BLEND_INSET_OVERLAY
+		overlay_image.overlays += static_effect
 
 		owner.client.images += overlay_image
 		scary_static = overlay_image
