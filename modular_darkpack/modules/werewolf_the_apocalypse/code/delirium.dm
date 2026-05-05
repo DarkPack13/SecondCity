@@ -63,7 +63,7 @@
 	. = ..()
 	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
-	QDEL_LAZYLIST(scary_static)
+	qdel(scary_static)
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
 	. = ..()
