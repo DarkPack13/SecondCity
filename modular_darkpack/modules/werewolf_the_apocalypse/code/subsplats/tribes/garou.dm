@@ -96,11 +96,9 @@
 /datum/subsplat/werewolf/tribe/garou/shadowlords
 	name = TRIBE_SHADOW_LORDS
 	desc = "The closest one could consider a Garou to being a 'politician'. They manipulate the tribes, and their enemies, and rely on cunning and wits more than physical strength. Not to say there aren't adept warriors in their ranks, but the tribe tends towards brains than brawn."
-	// gifts_provided = list(
-	// 	/datum/action/cooldown/power/gift/stoic_pose,
-	// 	/datum/action/cooldown/power/gift/freezing_wind,
-	// 	/datum/action/cooldown/power/gift/bloody_feast
-	// )
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/aura_of_confidence
+	)
 	subsplat_keys = /obj/item/vamp/keys/techstore
 
 /datum/subsplat/werewolf/tribe/garou/redtalons
