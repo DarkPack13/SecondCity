@@ -53,6 +53,7 @@
 		return TRUE
 
 	living_owner?.apply_status_effect(/datum/status_effect/fatal_flaw, target)
+	to_chat(owner, span_notice("You study [target] and discover a weakness granting you a bonus dice to attacks."))
 
 	return TRUE
 
@@ -63,14 +64,14 @@
 
 	status_type = STATUS_EFFECT_REPLACE
 
-	alert_type = /atom/movable/screen/alert/status_effect/fatal_flaw
+	alert_type = /atom/movable/screen/alert/status_effect/gift/fatal_flaw
 
 	var/datum/weakref/target_ref
 	var/image/highlight
 
 /datum/status_effect/fatal_flaw/on_creation(mob/living/new_owner, mob/living/target)
-	. = ..()
 	target_ref = WEAKREF(target)
+	. = ..()
 
 /datum/status_effect/fatal_flaw/on_apply()
 	RegisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED, PROC_REF(on_dice_rolled))
@@ -113,7 +114,7 @@
 	. += 1 // One extra dice
 
 
-/atom/movable/screen/alert/status_effect/fatal_flaw
+/atom/movable/screen/alert/status_effect/gift/fatal_flaw
 	name = /datum/action/cooldown/power/gift/fatal_flaw::name
 	desc = /datum/action/cooldown/power/gift/fatal_flaw::desc
 	overlay_state = /datum/action/cooldown/power/gift/fatal_flaw::button_icon_state
