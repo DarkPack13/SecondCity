@@ -11,7 +11,13 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
+	soak_difficulty = 6, //soak_difficulty - The difficulty of soaking an attack. Base is 6, adjusted by some unique effects, rare disciplines, and more. Only reference this if you've used the proper path and checked iscarbon() for apply_damage() or it'll throw up errors.
+	unsoakable = FALSE, //unsoakable - Whether an attack is soakable or not. By default off, some damage types and specific effects are unsoakable.
 )
+
+	if(!forced && unsoakable = FALSE)
+		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
+
 	// Spread damage should always have def zone be null
 	if(spread_damage)
 		def_zone = null
@@ -35,7 +41,7 @@
 	var/species_mod = (100 - dna.species.damage_modifier) / 100
 	return ..() * species_mod
 
-//soak_difficulty - The difficulty of soaking an attack. Base is 6, adjusted by some unique effects, rare disciplines, and more. Only reference this if you've used the proper path and checked ishuman() for apply_damage() or it'll throw up errors.
+
 /mob/living/carbon/human/apply_damage(
 	damage = 0,
 	damagetype = BRUTE,
@@ -50,9 +56,10 @@
 	attacking_item,
 	wound_clothing = TRUE,
 	soak_difficulty = 6,
+	unsoakable = FALSE,
 )
 
-	if(!forced)
+	if(!forced && unsoakable = FALSE)
 		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
 	// Add relevant DR modifiers into blocked value to pass to parent
 	blocked += physiology?.damage_resistance
