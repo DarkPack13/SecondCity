@@ -129,10 +129,11 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 	. = ..()
 	if(summoner)
 		owner = summoner
-	var/datum/splat/vampire/vampire = get_splat_with_discipline(owner)
-	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
-	if(owner && abyss_power)
-		aggro_mode = abyss_power.aggro_mode
+	if(owner)
+		var/datum/splat/vampire/vampire = get_splat_with_discipline(owner)
+		var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
+		if(abyss_power)
+			aggro_mode = abyss_power.aggro_mode
 
 /mob/living/basic/abyss_tentacle/Destroy(force)
 	if(owner)
