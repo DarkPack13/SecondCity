@@ -21,7 +21,7 @@
 	owner.st_add_stat_mod(STAT_STRENGTH, level, "Potence")
 
 /datum/discipline_power/potence/post_loss()
-	owner.st_remove_stat_mod(STAT_STRENGTH, "Potance")
+	owner.st_remove_stat_mod(STAT_STRENGTH, "Potence")
 
 /datum/discipline_power/potence/activate()
 	. = ..()
