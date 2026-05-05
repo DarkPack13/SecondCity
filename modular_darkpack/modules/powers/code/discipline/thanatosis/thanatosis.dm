@@ -103,7 +103,7 @@
 
 /datum/discipline_power/thanatosis/putrefaction/activate(mob/living/target)
 	. = ..()
-	target.apply_damage(successes * 25) //Adjustment to use proper damage application system for soak and damage modifiers.
+	target.apply_damage(successes * 25)
 	target.apply_status_effect(STATUS_EFFECT_PUTREFACTION, owner)
 
 //ASHES TO ASHES
@@ -248,9 +248,9 @@
 				chosen_part.dismember(BURN)
 			else
 				target.visible_message(span_danger("[target]'s body withers under the curse!"), span_userdanger("YOUR BODY WITHERS UNDER THE CURSE!"))
-				target.apply_damage(150, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
+				target.apply_damage(150, unsoakable = TRUE)
 		else
-			target.apply_damage(150, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
+			target.apply_damage(150)
 
 //NECROSIS
 /datum/discipline_power/thanatosis/necrosis
@@ -301,7 +301,7 @@
 
 /datum/discipline_power/thanatosis/necrosis/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.apply_damage(3 TTRPG_DAMAGE, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable for sucessful attack here.
+	target.apply_damage(3 TTRPG_DAMAGE, unsoakable = TRUE)
 
 	if(successes <= 1)
 		to_chat(owner, span_warning("Necrosis has failed to affect [target]!"))
