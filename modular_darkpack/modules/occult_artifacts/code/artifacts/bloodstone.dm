@@ -1,4 +1,4 @@
-/obj/item/vtm_artifact/bloodstone
+/obj/item/occult_artifact/vampire/bloodstone
 	true_name = "bloodstone"
 	true_desc = "A pulsing crimson stone that creates a mystical bond with its identifier."
 	icon = 'modular_darkpack/modules/paths/icons/bloodstone_artifact.dmi'
@@ -9,7 +9,7 @@
 	var/datum/action/bloodstone_track/tracking_action
 	research_value = 15
 
-/obj/item/vtm_artifact/bloodstone/identify()
+/obj/item/occult_artifact/vampire/bloodstone/identify()
 	. = ..()
 	if(identified && !bound_identifier)
 		var/mob/living/carbon/human/user = usr
@@ -20,7 +20,7 @@
 			tracking_action = new /datum/action/bloodstone_track(user, src)
 			tracking_action.Grant(user)
 
-/obj/item/vtm_artifact/bloodstone/Destroy()
+/obj/item/occult_artifact/vampire/bloodstone/Destroy()
 	if(tracking_action)
 		var/mob/living/carbon/human/user = bound_identifier.resolve()
 		if(user)
@@ -37,7 +37,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	var/datum/weakref/tracked_stone
 
-/datum/action/bloodstone_track/New(Target, obj/item/vtm_artifact/bloodstone/stone)
+/datum/action/bloodstone_track/New(Target, obj/item/occult_artifact/vampire/bloodstone/stone)
 	. = ..()
 	tracked_stone = WEAKREF(stone)
 
@@ -46,7 +46,7 @@
 	if(!.)
 		return
 
-	var/obj/item/vtm_artifact/bloodstone/bloodstone = tracked_stone.resolve()
+	var/obj/item/occult_artifact/vampire/bloodstone/bloodstone = tracked_stone.resolve()
 	if(!bloodstone)
 		to_chat(owner, span_warning("The bloodstone bond has been severed."))
 		Remove(owner)

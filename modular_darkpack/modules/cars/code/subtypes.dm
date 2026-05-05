@@ -92,8 +92,8 @@
 /obj/darkpack_car/police/unmarked
 	icon_state = "unmarked"
 
-/obj/darkpack_car/police/process()
-    // If the light is not on, OR if we only have 1 light color, there is 0 reason to swap between light states
+/obj/darkpack_car/police/process(seconds_per_tick)
+	// If the light is not on, OR if we only have 1 light color, there is 0 reason to swap between light states
 	if(!light_on || (primary_light_color == secondary_light_color))
 		return ..()
 	if(!COOLDOWN_FINISHED(src, last_color_change))

@@ -246,6 +246,7 @@
 		TRAIT_TRANSFORM_UPDATES_ICON,
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
+		TRAIT_NO_CUFF,
 	)
 	veil_breaching_form = TRUE
 
@@ -288,6 +289,7 @@
 		TRAIT_TRANSFORM_UPDATES_ICON,
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
+		TRAIT_NO_CUFF,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
