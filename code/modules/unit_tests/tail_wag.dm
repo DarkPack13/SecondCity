@@ -7,6 +7,7 @@
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/organ/tail/cat/dummy_tail = allocate(/obj/item/organ/tail/cat)
 	dummy_tail.Insert(dummy, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	dummy.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	// SANITY TEST
 
