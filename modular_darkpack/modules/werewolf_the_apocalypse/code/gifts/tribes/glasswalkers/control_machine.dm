@@ -104,6 +104,7 @@
 		target.run_control_machine(owner, choice, is_complex)
 		last_target_ref = WEAKREF(target)
 		first_target_use = world.time
+	#warn could use better flavor/sounds
 
 	spend_resources()
 
@@ -113,6 +114,7 @@
 /datum/action/cooldown/power/gift/control_machine/simple
 	name = "Control Simple Machine"
 	desc = "The Garou may command the spirits of the simplest machines, causing levers to flip, doors to unbolt, pulleys to roll, and so on."
+	#warn no icon
 
 	rank = 1
 

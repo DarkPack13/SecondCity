@@ -97,7 +97,8 @@
 	name = TRIBE_SHADOW_LORDS
 	desc = "The closest one could consider a Garou to being a 'politician'. They manipulate the tribes, and their enemies, and rely on cunning and wits more than physical strength. Not to say there aren't adept warriors in their ranks, but the tribe tends towards brains than brawn."
 	gifts_provided = list(
-		/datum/action/cooldown/power/gift/aura_of_confidence
+		/datum/action/cooldown/power/gift/aura_of_confidence,
+		/datum/action/cooldown/power/gift/fatal_flaw,
 	)
 	subsplat_keys = /obj/item/vamp/keys/techstore
 
