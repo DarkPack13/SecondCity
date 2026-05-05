@@ -32,10 +32,14 @@
 		return FALSE
 	if(!human_owner.affected_by_delirium())
 		return FALSE
+	var/mob/living/wolf = scary_wolf_ref?.resolve()
+	if(!wolf)
+		return FALSE
+
+	to_chat(owner, span_boldwarning("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
 	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
 
-	var/mob/living/wolf = scary_wolf_ref?.resolve()
-	if(owner.client && wolf)
+	if(owner.client)
 		var/mutable_appearance/appearance_copy = new(wolf.appearance)
 		appearance_copy.appearance_flags |= KEEP_APART|KEEP_TOGETHER
 		var/mutable_appearance/static_effect = mutable_appearance('icons/effects/effects.dmi', "static_base")
@@ -50,6 +54,7 @@
 
 /datum/status_effect/delirium/on_remove()
 	. = ..()
+	to_chat(owner, span_notice("Your hightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
