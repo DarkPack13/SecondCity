@@ -47,9 +47,13 @@
 		static_effect.blend_mode = BLEND_INSET_OVERLAY
 		appearance_copy.overlays += static_effect
 		appearance_copy.override = TRUE
-		var/image/overlay_image = image(appearance_copy, wolf)
+		var/image/overlay_image = image(appearance_copy, loc = wolf)
 		overlay_image.override = TRUE
 		overlay_image.name = "Unknown"
+		overlay_image.pixel_y = 0
+		overlay_image.pixel_x = 0
+		overlay_image.pixel_w = 0
+		overlay_image.pixel_z = 0
 		SET_PLANE_EXPLICIT(overlay_image, ABOVE_GAME_PLANE, wolf)
 
 		owner.client.images += overlay_image
@@ -59,6 +63,7 @@
 	. = ..()
 	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
+	QDEL_NULL(scary_static)
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
 	. = ..()
