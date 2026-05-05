@@ -10,6 +10,7 @@
 	SSmobs.pause()
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	dummy.maxHealth = 200 // tank mode
+	dummy.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	/* The sanity tests: here we make sure that:
 	1) That damage procs are returning the expected values. They should be returning the actual amount of damage taken/healed.
