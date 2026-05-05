@@ -19,6 +19,7 @@
 		qdel(off_held)
 		to_chat(owner, span_warning(sheathe_text))
 		playsound(get_turf(owner), sheathe_sound, 50)
+		deployed = FALSE
 		return
 
 	if(held && !owner.dropItemToGround(held))
