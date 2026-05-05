@@ -17,8 +17,11 @@
 		"no reaction"
 	)
 	var/willpower_dots = 1
+	var/datum/weakref/scary_wolf_ref
+	var/image/scary_static
 
-/datum/status_effect/delirium/on_creation(mob/living/new_owner, ...)
+/datum/status_effect/delirium/on_creation(mob/living/new_owner, mob/big_wolf)
+	scary_wolf_ref = WEAKREF(big_wolf)
 	. = ..()
 	linked_alert.desc += " You are filled with <b>[willpower_levels[willpower_dots]]</b>."
 
@@ -30,6 +33,24 @@
 	if(!human_owner.affected_by_delirium())
 		return FALSE
 	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
+
+	var/mob/living/wolf = scary_wolf_ref?.resolve()
+	if(owner.client && wolf)
+		var/mutable_appearance/appearance_copy = new(wolf.appearance)
+		appearance_copy.appearance_flags |= KEEP_APART|KEEP_TOGETHER
+		var/mutable_appearance/static_effect = mutable_appearance('icons/effects/effects.dmi', "static_base")
+		static_effect.color = "#373642"
+		static_effect.blend_mode = BLEND_INSET_OVERLAY
+		appearance_copy.overlays += static_effect
+		appearance_copy.override = TRUE
+		var/image/overlay_image = image(appearance_copy, wolf)
+
+		owner.client.images += overlay_image
+		scary_static = overlay_image
+
+/datum/status_effect/delirium/on_remove()
+	. = ..()
+	owner.client?.images -= scary_static
 
 /datum/status_effect/delirium/tick(seconds_between_ticks)
 	. = ..()
@@ -78,14 +99,16 @@
 		if(10)
 			return
 
+
 /atom/movable/screen/alert/status_effect/delirium
 	name = "The Delirium"
 	desc = "A supernatural fear."
 	icon_state = "fear"
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 
+
 /mob/living/carbon/human/proc/affected_by_delirium()
-	if(get_werewolf_splat(src))
+	if(issupernatural(src))
 		return FALSE
 
 	if(st_get_stat(STAT_PERMANENT_WILLPOWER) >= 10)
