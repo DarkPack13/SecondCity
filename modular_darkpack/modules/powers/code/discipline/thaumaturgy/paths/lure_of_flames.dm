@@ -182,9 +182,9 @@
 
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.apply_damage(damage_amount, BURN, soak_difficulty = 7) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 7.
+		H.apply_damage(damage_amount, BURN, soak_difficulty = 7)
 	else
-		target.apply_damage(damage_amount, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
+		target.apply_damage(damage_amount, BURN)
 
 	target.adjust_fire_stacks(4 + success_count)
 	target.ignite_mob()
@@ -256,9 +256,9 @@
 
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				H.apply_damage(base_damage, BURN, soak_difficulty = 8) //Adjustment to use proper damage application system for soak and damage modifiers. Soakable at Diff 8.
+				H.apply_damage(base_damage, BURN, soak_difficulty = 8)
 			else
-				L.apply_damage(base_damage, BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Makes the damage forced for non-human entities.
+				L.apply_damage(base_damage, BURN)
 
 			// Chance to ignite based on successes
 			if(prob(ignite_chance))
