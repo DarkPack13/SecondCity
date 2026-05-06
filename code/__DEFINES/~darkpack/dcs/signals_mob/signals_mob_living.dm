@@ -8,6 +8,6 @@
 #define COMSIG_LIVING_CAN_ALLOW_THROUGH "living_can_allow_through"
 	#define COMPONENT_LIVING_PASSABLE (1<<0)
 //from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, atom/target)
-#define COMSIG_LIVING_PRE_DICE_ROLLED "living_dice_rolled"
+#define COMSIG_LIVING_PRE_DICE_ROLLED "living_pre_dice_rolled"
 //from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, output)
 #define COMSIG_LIVING_DICE_ROLLED "living_dice_rolled"

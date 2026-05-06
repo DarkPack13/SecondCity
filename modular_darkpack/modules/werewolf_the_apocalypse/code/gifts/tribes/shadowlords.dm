@@ -98,7 +98,7 @@
 	return TRUE
 
 /datum/status_effect/fatal_flaw/on_remove()
-	owner?.client?.images -= highlight
+	owner.client?.images -= highlight
 	QDEL_NULL(highlight)
 
 	UnregisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED)
