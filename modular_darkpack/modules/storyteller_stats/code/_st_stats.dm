@@ -13,6 +13,8 @@
 	VAR_PROTECTED/score = 0
 	/// Temporary bonus score applied to this stat from various ingame sources.
 	VAR_PROTECTED/bonus_score = 0
+	/// Temporary bonus score applied to this stat from various ingame sources. These are directly added to results rather then added to dice pool
+	VAR_PROTECTED/auto_success_score = 0
 	/// The minimum score this stat can be.
 	var/min_score = 0
 	/// The maximum score this stat can be.
@@ -26,6 +28,8 @@
 	var/editable = TRUE
 	/// A dictionary of modifiers to this attribute.
 	var/list/modifiers = list()
+	/// A dictionary of auto success scores to this attribute.
+	var/list/auto_successes = list()
 	/// What score does this stat start out with at character creation.
 	var/starting_score = 0
 	/// How many points are in this stat category that the player can use. Used in abstract classes only.
@@ -35,16 +39,23 @@
 
 // Score
 
-/datum/st_stat/proc/get_score(include_bonus = TRUE)
+/datum/st_stat/proc/get_score(include_bonus = TRUE, include_auto_sucesses = TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(include_bonus)
-		return score + bonus_score
+		if(include_auto_sucesses)
+			return score + bonus_score + auto_success_score
+		else
+			return score + bonus_score
 	else
 		return score
 
 /datum/st_stat/proc/get_bonus_score()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return bonus_score
+
+/datum/st_stat/proc/get_auto_success_score()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return auto_success_score
 
 /datum/st_stat/proc/can_set_score(amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -107,6 +118,24 @@
 	for(var/source in modifiers)
 		bonus_score += modifiers[source]
 	bonus_score = clamp(bonus_score, -max_score, 10)
+
+
+/datum/st_stat/proc/add_auto_successes(amount, source)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	LAZYSET(auto_successes, source, amount)
+	update_auto_successes()
+
+/datum/st_stat/proc/remove_auto_successes(source)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	LAZYREMOVE(auto_successes, source)
+	update_auto_successes()
+
+/datum/st_stat/proc/update_auto_successes()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	auto_success_score = initial(auto_success_score)
+	for(var/source in auto_successes)
+		auto_success_score += auto_successes[source]
+	auto_success_score = clamp(auto_success_score, 0, 10)
 
 // Points
 
