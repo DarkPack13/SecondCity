@@ -63,9 +63,16 @@
 	ammo_type = /obj/item/ammo_casing/vampire/c44/silver
 	max_ammo = 60
 
-// .50 BMG/AE
+// .50 AE
+/obj/item/ammo_box/darkpack/c50ae
+	name = "ammo box (.50 AE)"
+	icon_state = "50box"	//placeholder, needs new box
+	ammo_type = /obj/item/ammo_casing/vampire/c50ae
+	max_ammo = 40
+
+// .50 BMG
 /obj/item/ammo_box/darkpack/c50
-	name = "ammo box (.50)"
+	name = "ammo box (.50 BMG)"
 	icon_state = "50box"
 	ammo_type = /obj/item/ammo_casing/vampire/c50
 	max_ammo = 20

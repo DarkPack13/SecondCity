@@ -58,18 +58,18 @@
 	base_icon_state = "s44"
 
 // .50 BMG/AE
-/obj/item/ammo_casing/vampire/c50
+/obj/item/ammo_casing/vampire/c50ae
 	name = ".50 AE bullet casing"
 	desc = "A .50 AE bullet casing."
-	caliber = CALIBER_50CAL
+	caliber = CALIBER_50CAL_AE
 	projectile_type = /obj/projectile/bullet/darkpack/vamp50ae
-	icon_state = "50"
-	base_icon_state = "50"
+	icon_state = "44"		//placeholder
+	base_icon_state = "44"	//placeholder
 
 /obj/item/ammo_casing/vampire/c50
 	name = ".50 BMG bullet casing"
 	desc = "A .50 BMG bullet casing."
-	caliber = CALIBER_50CAL
+	caliber = CALIBER_50CAL_BMG
 	projectile_type = /obj/projectile/bullet/darkpack/vamp50
 	icon_state = "50"
 	base_icon_state = "50"
