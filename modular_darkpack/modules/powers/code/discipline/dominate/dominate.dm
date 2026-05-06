@@ -476,7 +476,7 @@
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/carbon/human/target)
 
-	if(get_kindred_splat(target) || get_garou_splat(target)) //DARKPACK TODO: reimplement Kuei-Jin
+	if(get_kindred_splat(target) || get_garou_splat(target)) // DARKPACK TODO: reimplement Kuei-Jin
 		to_chat(owner, span_warning("You cannot possess [get_kindred_splat(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 

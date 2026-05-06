@@ -70,7 +70,7 @@
 		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 		to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
 		new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
-		//target.rollfrenzy() DARKPACK TODO: Frenzy
+		target.trigger_rage_frenzy()
 	else
 		to_chat(target, span_cult("I can feel a overwhelming presence.. I NEED TO RUN!!"))
 		new /obj/effect/client_image_holder/baali_demon/wyrm(get_turf(target), list(target))

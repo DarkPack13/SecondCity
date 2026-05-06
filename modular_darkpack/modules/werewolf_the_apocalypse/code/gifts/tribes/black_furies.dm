@@ -56,6 +56,7 @@
 	owner.st_add_stat_mod(STAT_PERCEPTION, 1, type)
 	owner.st_add_stat_mod(STAT_INTELLIGENCE, 1, type)
 	owner.st_add_stat_mod(STAT_WITS, 1, type)
+	ADD_TRAIT(owner, TRAIT_DIFFICULT_RAGE, type)
 	to_chat(owner, span_notice("You feel a sense of heightened lucidity."))
 	return TRUE
 
@@ -63,10 +64,11 @@
 	owner.st_remove_stat_mod(STAT_PERCEPTION, type)
 	owner.st_remove_stat_mod(STAT_INTELLIGENCE, type)
 	owner.st_remove_stat_mod(STAT_WITS, type)
+	REMOVE_TRAIT(owner, TRAIT_DIFFICULT_RAGE, type)
 	to_chat(owner, span_warning("Your mind settles, returning to it's normal state of lucidity."))
 
 /atom/movable/screen/alert/status_effect/breath_of_the_wyld
 	name = "Breath of the Wyld"
-	desc = "Gain an additional die to all mental checks, but suffer a penalty to rage check difficulty." // TODO: rage difficulty code
+	desc = "Gain an additional die to all mental checks, but suffer a penalty to rage check difficulty."
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 	icon_state = "riddle" // TODO: get an icon for this

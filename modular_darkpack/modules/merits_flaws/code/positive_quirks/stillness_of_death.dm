@@ -10,10 +10,9 @@
 	icon = FA_ICON_MOUNTAIN
 	failure_message = "You don't want to hide as a statue anymore."
 
-/datum/quirk/darkpack/stillness_of_death/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
+/datum/quirk/darkpack/stillness_of_death/add(client/client_source)
 	var/datum/action/gargoyle_statue_form/statue_action = new()
-	statue_action.Grant(new_holder)
+	statue_action.Grant(quirk_holder)
 
 /datum/action/gargoyle_statue_form
 	name = "Statue Form"

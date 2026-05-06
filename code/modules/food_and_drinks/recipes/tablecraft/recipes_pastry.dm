@@ -306,7 +306,7 @@
 	result = /obj/item/food/soylenviridians // they look like waffles
 	dish_category = DISH_PASTRY
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/soylentgreen
 	name = "Soylent green"
 	reqs = list(
@@ -407,7 +407,7 @@
 	added_foodtypes = FRUIT|SUGAR
 	dish_category = DISH_PASTRY
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/donkpocket/gondola
 	time = 1.5 SECONDS
 	name = "Gondola-pocket"

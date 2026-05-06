@@ -10,15 +10,15 @@
 	icon = FA_ICON_SKULL
 	failure_message = "The skin on your corpsely flesh returns to normal."
 
-/datum/quirk/darkpack/horrific_appearance/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	if(ishuman(new_holder))
-		var/mob/living/carbon/human/human_holder = new_holder
-		var/years_undead = human_holder.chronological_age - human_holder.age
-		switch(years_undead)
-			if (-INFINITY to 500)
-				human_holder.rot_body(3)
-			if (500 to INFINITY)
-				human_holder.rot_body(4)
-		if(human_holder.st_get_stat(STAT_APPEARANCE) > 0)
-			human_holder.st_add_stat_mod(STAT_APPEARANCE, -(STAT_APPEARANCE), "Monstrous")
+/datum/quirk/darkpack/horrific_appearance/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
+		return
+	var/years_undead = human_holder.chronological_age - human_holder.age
+	switch(years_undead)
+		if (-INFINITY to 500)
+			human_holder.rot_body(3)
+		if (500 to INFINITY)
+			human_holder.rot_body(4)
+	if(human_holder.st_get_stat(STAT_APPEARANCE) > 0)
+		human_holder.st_add_stat_mod(STAT_APPEARANCE, -(STAT_APPEARANCE), "Monstrous")

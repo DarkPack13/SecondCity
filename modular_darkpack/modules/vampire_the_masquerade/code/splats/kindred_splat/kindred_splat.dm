@@ -42,6 +42,11 @@
 	/// Timer tracking how long before the Kindred can wake up from torpor
 	COOLDOWN_DECLARE(torpor_timer)
 
+	/// Cooldown for seeing blood or fire which will trigger a frenzy
+	COOLDOWN_DECLARE(frenzy_target_check_cooldown)
+	/// Cooldown for acctaully rolling from seeing blood or fire
+	COOLDOWN_DECLARE(frenzy_roll_cooldown)
+
 /datum/splat/vampire/kindred/New(generation, clan, mob/living/sire)
 	src.generation = generation
 	src.clan = clan
@@ -80,11 +85,14 @@
 
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_kindred_death))
 
-	// Make all food except raw meat repulsive
 	var/obj/item/organ/tongue/tongue = owner.get_organ_by_type(/obj/item/organ/tongue)
-	tongue?.liked_foodtypes = NONE
-	tongue?.disliked_foodtypes = NONE
-	tongue?.toxic_foodtypes = ~(GORE | MEAT | RAW)
+	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
+		var/mob/living/carbon/human/lick = owner
+		var/datum/st_stat/morality_path/morality/stat_morality = lick?.storyteller_stats[STAT_MORALITY]
+		if(stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5)
+			tongue?.liked_foodtypes = NONE
+			tongue?.disliked_foodtypes = NONE
+			tongue?.toxic_foodtypes = ~(GORE | MEAT | RAW) // nagarajas?
 
 	// Set blood type
 	owner.set_blood_type(BLOOD_TYPE_KINDRED)
@@ -92,6 +100,7 @@
 	// Apply temperature damage modifiers
 	owner.physiology.heat_mod *= 2
 	owner.physiology.cold_mod *= 0.25
+
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
@@ -126,6 +135,24 @@
 		return
 
 	GLOB.kindred_list -= owner
+
+/datum/splat/vampire/kindred/splat_life(seconds_per_tick)
+	. = ..()
+
+	if(COOLDOWN_FINISHED(src, frenzy_roll_cooldown) && COOLDOWN_FINISHED(src, frenzy_target_check_cooldown))
+		var/atom/nearby_fire = get_closest_atom(/atom, owner.get_fire_frenzy_targets(), owner)
+		if(nearby_fire)
+			owner.trigger_rotschreck(nearby_fire)
+			COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
+
+		else if(HAS_TRAIT(owner, TRAIT_NEEDS_BLOOD))
+			var/atom/nearby_blood = get_closest_atom(/atom, owner.get_blood_frenzy_targets(), owner)
+			if(nearby_blood)
+				owner.trigger_kindred_frenzy(nearby_blood, 4, 0, "The hunger")
+				COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
+
+		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
+
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
