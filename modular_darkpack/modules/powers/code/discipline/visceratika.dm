@@ -20,10 +20,8 @@
 	owner.update_body()
 	// since dot 4 is always active and requires no roll
 	if(level >= 4)
-		owner.physiology.brute_mod *= 0.8
+		owner.physiology.burn_mod *= 0.5 //Halves burn damage dice pools, V20 Core Page 476
 		owner.physiology.heat_mod *= 0.5
-		//owner.physiology.clone_mod *= 0.9
-		//ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 		if(!(owner.is_clan(/datum/subsplat/vampire_clan/gargoyle)))
 			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
