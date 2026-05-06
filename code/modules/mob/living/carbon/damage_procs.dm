@@ -15,7 +15,7 @@
 	unsoakable = FALSE,
 )
 
-	if(!forced && unsoakable == FALSE)
+	if(!forced && unsoakable == FALSE) //If the damage isn't forced and isn't unsoakable, run it through the soak proc.
 		damage = soak_roll(damage, damagetype, def_zone, sharpness, attack_direction, attacking_item, soak_difficulty)
 
 	// Spread damage should always have def zone be null
