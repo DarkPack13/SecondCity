@@ -18,9 +18,9 @@
 /// Checks for character whitelist.
 #define JOB_UNAVAILABLE_WHITELIST 10
 /// Checks for character kindred age. (Minium age)
-#define JOB_UNAVAILABLE_KINDRED_AGE 11
+#define JOB_UNAVAILABLE_KINDRED_AGE_MIN 11
 /// Checks for character kindred age. (Maximum age)
-#define JOB_UNAVAILABLE_KINDRED_AGE_OLD 12
+#define JOB_UNAVAILABLE_KINDRED_AGE_MAX 12
 /// Checks for character kindred generation.
 #define JOB_UNAVAILABLE_KINDRED_GENERATION 13
 /// Checks for character clan.
