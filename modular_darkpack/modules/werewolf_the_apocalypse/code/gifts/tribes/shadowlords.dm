@@ -81,7 +81,7 @@
 
 	var/mob/living/target = target_ref?.resolve()
 
-	var/image/highlight = image(loc = target)
+	highlight = image(loc = target)
 	highlight.appearance = target.appearance
 	highlight.layer = target.layer - 0.01
 	highlight.pixel_y = 0
