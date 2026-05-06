@@ -21,6 +21,8 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT // Should really be suit storage
+	force_unwielded = 10
+	force_wielded = 40
 	pixel_w = -8
 	custom_price = 1800
 
@@ -172,6 +174,10 @@
 /obj/item/melee/baseball_bat/vamp
 	name = "baseball bat"
 	desc = "There ain't a skull in the league that can withstand a swatter."
+	w_class = WEIGHT_CLASS_BULKY	//TG parent bat is huge
+	force = 30
+	exposed_wound_bonus = 10
+	wound_bonus = -5
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
@@ -287,6 +293,8 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	force_on = 60
+	force = 30
 	custom_price = 2000
 
 /obj/item/shovel/vamp
@@ -299,6 +307,21 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "shovel"
 	custom_price = 150
+	force = 30	//It's sharp.. somehow.
+
+/obj/item/shovel/vamp/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(prob(10))
+		to_chat(user, span_warning("You smash [target] over the head with the shovel!"))
+		target.visible_message(
+			span_userdanger("You are smashed over the head by [user]!"),
+			span_warning("You see stars!"),
+			span_hear("You hear a dull THUNK!"))
+		var/head_protection = target.run_armor_check(BODY_ZONE_HEAD, MELEE)
+		target.apply_effect(5 SECONDS, EFFECT_KNOCKDOWN, head_protection)
+		target.drop_all_held_items()
+		if(user.mind && is_sabbatist(user) && prob(50))	//The humble shovelhead technique; low chance still.
+			target.apply_effect(10 SECONDS, EFFECT_UNCONSCIOUS, head_protection)
 
 /obj/item/scythe/vamp
 	name = "scythe"
@@ -310,7 +333,9 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "kosa"
 	inhand_icon_state = "kosa"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
+	force = 30
+	armour_penetration = 30
 
 /obj/item/instrument/eguitar/vamp
 	name = "electric guitar"
