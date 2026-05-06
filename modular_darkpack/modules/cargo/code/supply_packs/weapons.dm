@@ -256,11 +256,17 @@
 	contains = list(/obj/item/ammo_box/darkpack/c556/silver)
 
 /datum/supply_pack/weapons/ammo50
-	name = "Ammo (.50)"
-	desc = "Contains a box of .50 ammunition."
+	name = "Ammo (.50 BMG)"
+	desc = "Contains a box of .50 BMG ammunition."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/darkpack/c50)
 	crate_name = "ammo crate"
+
+/datum/supply_pack/weapons/ammo50ae
+	name = "Ammo (.50 AE)"
+	desc = "Conmtains a box of .50 AE ammunition"
+	cost = 1000
+	contains = list(/obj/item/ammo_box/darkpack/c50ae, /obj/item/ammo_box/darkpack/c50ae)
 
 /datum/supply_pack/weapons/ammo556
 	name = "Ammo (5.56)"
