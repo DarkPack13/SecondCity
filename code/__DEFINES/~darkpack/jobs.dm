@@ -105,7 +105,7 @@
 
 // Society of Leopold
 #define JOB_NOVICE "Novice"
-#define JOB_ABBE "Abbé"
+#define JOB_ABBE "Abbe"
 #define JOB_CONDOTTIERI "Condottieri"
 #define JOB_INQUISITOR "Inquisitor"
 
