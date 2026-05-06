@@ -39,10 +39,14 @@
 	if(get_kindred_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA) //Stamina already has the Fortitude bonus added for Bashing and Lethal.
 		soak_dice_lethal = st_get_stat(STAT_STAMINA)
+		var/datum/discipline/soak_visceratika = get_discipline(/datum/discipline/visceratika)
 		var/datum/discipline/soak_fortitude = get_discipline(/datum/discipline/fortitude)
-		if(!soak_fortitude)
-			return
-		soak_dice_aggravated = soak_fortitude.level
+		if(soak_visceratika.level >= 4)
+			soak_dice_aggravated += 1 //1 Agg and Lethal soak, 2 Bashing from Armour of Terra.
+			soak_dice_lethal += 1
+			soak_dice_bashing += 2
+		if(soak_fortitude)
+			soak_dice_aggravated += soak_fortitude.level
 
 	if(get_garou_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA)
