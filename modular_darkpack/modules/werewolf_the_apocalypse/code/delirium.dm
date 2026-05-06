@@ -73,7 +73,7 @@
 	if(!human_owner.affected_by_delirium())
 		return
 	if(COOLDOWN_FINISHED(src, message_cooldown))
-		COOLDOWN_START(src, message_cooldown, 15 SECONDS)
+		COOLDOWN_START(src, message_cooldown, rand(10, 15) SECONDS)
 		var/message = get_message()
 		if(message)
 			to_chat(owner, span_boldwarning(message))
