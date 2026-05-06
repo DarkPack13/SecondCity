@@ -44,7 +44,7 @@
 		receivers -= list(echolocate_receiver)
 	return ..()
 
-/datum/component/heartbeat_sensing/process()
+/datum/component/heartbeat_sensing/process(seconds_per_tick)
 	var/mob/living/parent_mob = parent
 	if(parent_mob.stat == DEAD)
 		return

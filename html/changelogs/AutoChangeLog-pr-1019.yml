@@ -1,0 +1,6 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "fixes Thaumaturgy 4 not incrementing the target's bloodpool"
+  - bugfix: "Thaumaturgy 4 Theft of Vitae now costs 1 bloodpoint"
+  - balance: "lowers Lure of Flames and Levinbolt 'palm of flame'-type ability's damage from 25 burn (50 against kindred) per click to 15 burn (30 against kindred), 20 for 'candle' and 'illuminate'"
