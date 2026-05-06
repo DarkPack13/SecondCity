@@ -416,7 +416,7 @@
 					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
 				else 
 					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
-			if(!sharpness == NONE)	
+			else if(!sharpness == NONE)	
 				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
 			else
 				roll_used = soak_dice_bashing //Everything else should take Bashing.
