@@ -15,6 +15,8 @@
 	var/minimal_masquerade = 0
 	/// Character must be at least this age (in years) since embrace (chronological_age - age) to join as role.
 	var/minimum_immortal_age = 0
+	/// Character must not be over this age (in years) since embrace (chronological_age - age) to join as role. (Defaults 1000, lower to desired age.)
+	var/maximum_immortal_age = 1000
 	///List of Clans that are allowed to do this job.
 	var/list/allowed_clans
 	///List of Clans that are disallowed to do this job.

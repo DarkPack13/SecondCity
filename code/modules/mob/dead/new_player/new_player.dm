@@ -141,6 +141,8 @@
 			return "You aren't whitelisted for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_AGE)
 			return "Your character is too young for [jobtitle]."
+		if(JOB_UNAVAILABLE_KINDRED_AGE_OLD)
+			return "Your character is too old for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_GENERATION)
 			return "Your character's generation is too high for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_CLAN)
