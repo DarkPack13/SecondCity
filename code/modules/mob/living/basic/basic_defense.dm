@@ -136,10 +136,12 @@
 	else
 		log_combat(user, src, "punched")
 
+	/* // DARKPACK EDIT REMOVAL - (A decent amount of combat involves biting here which creates issue from being getting fat from combat)
 	if(biting && (mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
 		var/datum/reagents/tasty_meal = new()
 		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
 		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
+	*/
 	// DARKPACK EDIT CHANGE END
 	updatehealth()
 	return TRUE
