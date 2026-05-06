@@ -76,6 +76,9 @@
 /datum/status_effect/fatal_flaw/on_apply()
 	RegisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED, PROC_REF(on_dice_rolled))
 
+	if(!owner?.client)
+		return
+
 	var/mob/living/target = target_ref?.resolve()
 
 	var/image/highlight = image(loc = target)
@@ -90,15 +93,13 @@
 
 	highlight.add_filter("fatal_flaw", 1, outline_filter(size = 1, color = COLOR_PALE_GREEN_GRAY))
 
-	if(owner?.client)
-		owner.client.images += highlight
+	owner.client.images += highlight
 
 	return TRUE
 
 /datum/status_effect/fatal_flaw/on_remove()
-	if(owner?.client)
-		owner.client.images -= highlight
-	highlight = null
+	owner?.client?.images -= highlight
+	QDEL_NULL(highlight)
 
 	UnregisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED)
 

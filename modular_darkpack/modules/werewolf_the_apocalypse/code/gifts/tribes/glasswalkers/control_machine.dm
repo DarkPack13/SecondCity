@@ -67,7 +67,7 @@
 	for(var/image/I in object_highlights)
 		if(I in on_who.client.images)
 			on_who.client.images -= I
-	object_highlights = null
+	QDEL_LAZYLIST(object_highlights)
 
 /datum/action/cooldown/power/gift/control_machine/Activate(atom/target)
 	var/choices = target.get_control_machine_options(owner, is_complex)
