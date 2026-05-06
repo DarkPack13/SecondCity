@@ -55,7 +55,7 @@
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_AGE
 
-	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) > possible_job.maximum_immortal_age))
+	if((!isnull(possible_job.maximum_immortal_age) && (player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) > possible_job.maximum_immortal_age)))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE_OLD, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_KINDRED_AGE_OLD
 
