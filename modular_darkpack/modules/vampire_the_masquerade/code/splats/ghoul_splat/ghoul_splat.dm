@@ -25,6 +25,7 @@
 
 /datum/splat/vampire/ghoul/on_gain()
 	owner.give_st_power(/datum/discipline/bloodheal, 1)
+	owner.give_st_power(/datum/discipline/potence, 1)
 
 	// the below only runs if they have just been ghouled and domitor isnt null
 	// ghouls who join from the menu have their discs handled by the disc pref middleware
@@ -37,3 +38,7 @@
 			owner.give_st_power(discipline, 1)
 			if(ispath(discipline, /datum/discipline/dementation))
 				owner.add_quirk(/datum/quirk/darkpack/derangement)
+
+/datum/splat/vampire/ghoul/on_lose_or_destroy()
+	owner.remove_st_power(/datum/discipline/bloodheal)
+	owner.remove_st_power(/datum/discipline/potence)

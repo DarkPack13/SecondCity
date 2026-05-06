@@ -1,0 +1,7 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - rscadd: "ghouls now get potence 1 for free"
+  - bugfix: "ghouls can now only have level 1 in their disciplines"
+  - bugfix: "solves bloodheal and potence harddels by removing the disciplines on_lose_or_destroy"
+  - bugfix: "fixes a bug with transformation disciplines causing disciplines to become unusable"

@@ -78,7 +78,7 @@
 	SSsupermatter_cascade.can_fire = TRUE
 	SSsupermatter_cascade.cascade_initiated = TRUE
 
-/turf/open/water/bloodwave/process()
+/turf/open/water/bloodwave/process(seconds_per_tick)
 
 	if(!COOLDOWN_FINISHED(src, wave_cooldown))
 		return
