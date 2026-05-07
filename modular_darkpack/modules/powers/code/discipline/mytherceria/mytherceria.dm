@@ -38,14 +38,14 @@
 
 	SEND_SOUND(L, sound(activate_sound, 0, 0, 50)) // LOOK OUT! THERE'S A FAIRY!
 
-	var/response_w = input(L, "Does your character believe your last statement to be the truth?") in list("Yes", "No")
+	var/response_w = tgui_input_list(L, "Does your character believe your last statement to be the truth?", "Folderol", list("Yes", "No"))
 
 	if(response_w == "Yes") // Telling the truth!
-		to_chat(owner, "<span class='notice'>[L] is not intentionally lying.</span>")
+		to_chat(owner, span_notice("[L] is not intentionally lying."))
 	else if(response_w == "No") // Lying!
-		to_chat(owner, "<span class='notice'>[L] is LYING!</span>")
+		to_chat(owner, span_notice("[L] is LYING!"))
 	else // Dunno
-		to_chat(owner, "<span class='notice'>[L]'s truthfulness is difficult to determine.</span>")
+		to_chat(owner, span_notice("[L]'s truthfulness is difficult to determine."))
 
 	log_directed_talk(owner, target, "[owner] used Folderol on [target]. Response: [response_w]", LOG_SAY, "Folderol")
 	return
