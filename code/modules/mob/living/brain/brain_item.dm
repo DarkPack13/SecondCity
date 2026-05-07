@@ -133,6 +133,7 @@
 		if(!(organ_owner.living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
 			organ_owner.update_body_parts()
 		organ_owner.clear_mood_event("brain_damage")
+		organ_owner.med_hud_set_status()
 
 /obj/item/organ/brain/update_icon_state()
 	icon_state = "[initial(icon_state)][smooth_brain ? "-smooth" : ""]"
@@ -723,10 +724,26 @@
 		return found_head || active_hand // If we are a feral biter, return a usable head.
 	if(target.pulledby == owner) // if we're grabbing our target we're beating them to death with our bare hands
 		return active_hand
-	if(target.body_position == LYING_DOWN && owner.usable_legs)
+	if(should_kick(target) && target.body_position == LYING_DOWN && owner.usable_legs) // DARKPACK EDIT CHANGE
 		var/obj/item/bodypart/found_bodypart = owner.get_bodypart(IS_LEFT_INDEX(active_hand.held_index) ? BODY_ZONE_L_LEG : BODY_ZONE_R_LEG)
 		return found_bodypart || active_hand
 	return active_hand
+
+// DARKPACK EDIT ADD START
+/obj/item/organ/brain/proc/should_kick(mob/living/carbon/human/target)
+	var/obj/item/bodypart/arm/active_hand = owner.get_active_hand()
+	var/obj/item/bodypart/leg/active_leg = owner.get_bodypart(IS_LEFT_INDEX(active_hand.held_index) ? BODY_ZONE_L_LEG : BODY_ZONE_R_LEG)
+	if(!active_hand)
+		return TRUE
+	if(!active_leg)
+		return FALSE
+	// Now lets acctually compare them
+	if(active_hand.attack_type == AGGRAVATED)
+		return FALSE // AGG damage is gonna almost always be better dps or more desired..
+	if(active_hand.unarmed_attack_effect == ATTACK_EFFECT_CLAW)
+		return FALSE // Claws get an extra bonus dice compared to kicking
+	return TRUE // Otherwise, kicking is PROBALLY better as it gets a +1 bonus to damage compared to punches.
+// DARKPACK EDIT ADD END
 
 /// Brains REALLY like ghosting people. we need special tricks to avoid that, namely removing the old brain with no_id_transfer
 /obj/item/organ/brain/replace_into(mob/living/carbon/new_owner)

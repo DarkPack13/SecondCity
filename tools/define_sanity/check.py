@@ -4,7 +4,7 @@ import os
 import re
 import sys
 
-parent_directory = "**/*.dm" # DARKPACK EDIT, ORIGINAL: parent_directory = "code/**/*.dm"
+parent_directory = "**/*.dm" # DARKPACK EDIT CHANGE - ORIGINAL: parent_directory = "code/**/*.dm"
 
 output_file_name = "define_sanity_output.txt"
 how_to_fix_message = "Please #undef the above defines or remake them as global defines in the code/__DEFINES directory."
@@ -36,8 +36,8 @@ excluded_files = [
     "code/_globalvars/*.dm",
     # TGS files come from another repository so lets not worry about them.
     "code/modules/tgs/**/*.dm",
-    "tools/**/*.dm", ## DARKPACK EDIT ADDITION
-    "DMCompiler_linux-x64/**/*.dm" ## DARKPACK EDIT ADDITION
+    "tools/**/*.dm", ## DARKPACK EDIT ADD
+    "DMCompiler_linux-x64/**/*.dm" ## DARKPACK EDIT ADD
 ]
 
 define_regex = re.compile(r"(\s+)?#define\s?([A-Z0-9_]+)\(?(.+)\)?")

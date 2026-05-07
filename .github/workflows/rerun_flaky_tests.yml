@@ -4,12 +4,12 @@ on:
     workflows: [CI Suite]
     types:
       - completed
-# DARKPACK ADDITION START
+# DARKPACK EDIT ADD START
 permissions:
   actions: write
   contents: write
   issues: write
-# DARKPACK ADDITION END
+# DARKPACK EDIT ADD END
 jobs:
   rerun_flaky_tests:
     runs-on: ubuntu-24.04
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Rerun flaky tests
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { rerunFlakyTests } = await import('${{ github.workspace }}/tools/pull_request_hooks/rerunFlakyTests.js')
@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Report flaky tests
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { reportFlakyTests } = await import('${{ github.workspace }}/tools/pull_request_hooks/rerunFlakyTests.js')

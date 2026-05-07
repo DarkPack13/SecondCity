@@ -2,7 +2,7 @@
 	title = JOB_PENTEX_AFFAIRS
 	description = "You are the internal affairs agent operating for " + MAIN_EVIL_COMPANY + ". You know the bloody and vile needs commanded of destruction will lead to jeopardy, and your duty is to see excellence on task rewarded and acknowledged, and curb the invariable atrocities that could endanger the greater plans of Pentex."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_PENTEX
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Board and the Branch Lead"
@@ -17,8 +17,9 @@
 	outfit = /datum/outfit/job/vampire/affairs
 
 	allowed_splats = list(SPLAT_GAROU)
-//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	minimal_masquerade = 5
+	// minimal_renown_rank = 3
+	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_AFFAIRS
 	department_for_prefs = /datum/job_department/pentex
@@ -32,7 +33,6 @@
 		JOB_PENTEX_SEC_CHIEF
 	)
 
-//	minimal_renownrank = 3
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

@@ -365,10 +365,14 @@
 	..()
 	linked_power = power
 
-/datum/action/vampire/end_mesmerization/Trigger(trigger_flags)
+/datum/action/vampire/end_mesmerization/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
+		return
+
 	if(!linked_power)
 		Remove(owner)
-		return
+		return FALSE
 	linked_power.force_end_mesmerization()
 
 // THE FORGETFUL MIND
@@ -472,7 +476,7 @@
 
 /datum/discipline_power/dominate/possession/pre_activation_checks(mob/living/carbon/human/target)
 
-	if(get_kindred_splat(target) || get_garou_splat(target)) //DARKPACK TODO: reimplement Kuei-Jin
+	if(get_kindred_splat(target) || get_garou_splat(target)) // DARKPACK TODO: reimplement Kuei-Jin
 		to_chat(owner, span_warning("You cannot possess [get_kindred_splat(target) ? "another kindred" : "this creature - the beast within resists"]!"))
 		return FALSE
 

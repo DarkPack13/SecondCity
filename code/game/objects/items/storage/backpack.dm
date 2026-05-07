@@ -48,7 +48,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/bag_of_holding_inert/Initialize(mapload)
 	. = ..()
 	var/static/list/recipes = list(/datum/crafting_recipe/boh)

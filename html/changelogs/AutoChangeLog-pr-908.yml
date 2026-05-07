@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Adds two werewolf fetishes; Nyxs Bangle and Dagger of retribution"
+  - refactor: "Cleans up some artifact code around ownership and power granting"

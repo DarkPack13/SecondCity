@@ -48,10 +48,13 @@
 	return list("[blood_type] type blood" = 1)
 
 // DARKPACK EDIT ADD - blood increments bloodpool
-/datum/reagent/blood/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+/datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
 	. = ..()
-	if((!istype(src, /datum/reagent/blood/vitae)) && get_kindred_splat(affected_mob))
-		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
+	if((!istype(src, /datum/reagent/blood/vitae)) && get_kindred_splat(exposed_mob))
+		if(methods & INGEST)
+			if(get_splat_with_vitae(exposed_mob))
+				//100u of vitae = 1bp, keeping consistent w/ give vitae action. 200u of normal blood = 1 bp
+				exposed_mob.adjust_blood_pool(reac_volume * 0.005)
 // DARKPACK EDIT ADD END
 
 /datum/reagent/consumable/liquidgibs
@@ -3035,6 +3038,12 @@
 		target.set_custom_materials()
 	var/list/metal_dat = list((metal_ref) = metal_amount)
 	target.material_flags = applied_material_flags
+	if (target.has_material_slots())
+		var/list/new_slots = target.get_material_slots()
+		for (var/slot_type in new_slots)
+			new_slots[slot_type] = metal_ref
+		// Safe to call and doesn't do anything as no materials are currently present on the target
+		target.set_material_slots(new_slots)
 	target.set_custom_materials(metal_dat)
 
 /datum/reagent/gravitum

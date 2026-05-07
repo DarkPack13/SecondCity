@@ -7,7 +7,7 @@
 	)
 	time = 2 SECONDS //faster than crafting them by hand!
 	category = CAT_WEAPON_RANGED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"
 	result = /obj/item/restraints/legcuffs/bola/gonbola
@@ -311,7 +311,7 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/pipe_organ_gun
 	name = "Pipe Organ Gun"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -343,6 +343,7 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+*/
 
 /datum/crafting_recipe/detached_ratvarian_repeater
 	name = "Iconoclast's Repeater"
@@ -353,8 +354,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-	crafting_flags = CRAFT_CHECK_DENSITY
-*/
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/large_ballista
 	name = "Improvised Ballista"
@@ -382,7 +382,7 @@
 	)
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/laser_musket
 	name = "Laser Musket"
 	result = /obj/item/gun/energy/laser/musket
@@ -413,7 +413,7 @@
 	time = 30 SECONDS //contemplate for a bit
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/smoothbore_disabler
 	name = "Smoothbore Disabler"
 	result = /obj/item/gun/energy/disabler/smoothbore
@@ -457,7 +457,7 @@
 	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/ashenbow
 	name = "Ashen Bow"
 	result = /obj/item/gun/ballistic/bow/ashenbow
