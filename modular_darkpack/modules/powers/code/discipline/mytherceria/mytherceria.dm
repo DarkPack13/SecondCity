@@ -255,11 +255,6 @@
  * When placed on an object, anyone coming into contact with that object (such as picking it up or otherwise touching it) suffer a severe movement speed penalty
  * and a short period of randomized controls. When placed on a mob, they also suffer from this penalty. When placed on a turf, it functions as a tripmine.
  */
-/datum/storyteller_roll/chanjelin_ward // For resisting it
-	bumper_text = "resist (Chanjelin Ward)"
-	applicable_stats = list(STAT_WITS, STAT_INVESTIGATION)
-	roll_output_type = ROLL_NONE // don't dox the kiasyd if the lemming doesn't notice
-	difficulty = 8
 
 /datum/status_effect/confusion/chanjelin_ward/on_creation(mob/living/new_owner, duration = INFINITY)
 	return ..()
@@ -312,10 +307,10 @@
 	cooldown_length = 4 TURNS
 	range = 3
 
-/*/datum/discipline_power/mytherceria/the_riddle_phantastique/pre_activation_checks(atom/target)
+/datum/discipline_power/mytherceria/the_riddle_phantastique/pre_activation_checks(atom/target)
 	if(ismob(target))
 		var/mob/living/guy = target
-//		if(guy.can_hear()) // could've sworn this was a real proc... replace with real method
+		if(guy.can_hear()) // could've sworn this was a real proc... replace with real method
 			return TRUE
 
-	return FALSE*/
+	return FALSE

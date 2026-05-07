@@ -63,8 +63,14 @@
 
 	return FALSE
 
+/datum/storyteller_roll/chanjelin_ward // For resisting it
+	bumper_text = "resist (Chanjelin Ward)"
+	applicable_stats = list(STAT_WITS, STAT_INVESTIGATION)
+	roll_output_type = ROLL_NONE // don't dox the kiasyd if the lemming doesn't notice
+	difficulty = 8
 
-/datum/element/chanjelin_ward/proc/on_examine(atom/movable/source, mob/user, list/examine_list)
+
+/datum/element/chanjelin_ward/proc/on_examine(atom/movable/source, mob/living/user, list/examine_list)
 	SIGNAL_HANDLER
 
 	if(roll_check(user))
@@ -96,7 +102,7 @@
 	else
 		return
 
-/datum/element/chanjelin_ward/proc/on_attack_hand(atom/movable/source, mob/user)
+/datum/element/chanjelin_ward/proc/on_attack_hand(atom/movable/source, mob/living/user)
 	SIGNAL_HANDLER
 
 	if(roll_check(user))
@@ -104,7 +110,7 @@
 
 	do_confused(user)
 
-/datum/element/chanjelin_ward/proc/on_attacked(atom/movable/source, mob/attacked, mob/attacker)
+/datum/element/chanjelin_ward/proc/on_attacked(atom/movable/source, mob/living/attacked, mob/living/attacker)
 
 	if(roll_check(attacker))
 		return
