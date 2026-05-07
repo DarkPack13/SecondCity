@@ -7221,6 +7221,8 @@
 #include "modular_darkpack\modules\ert\code\outfits\first_team_outfits.dm"
 #include "modular_darkpack\modules\ert\code\outfits\national_guard_outfits.dm"
 #include "modular_darkpack\modules\ert\code\outfits\swat_outfits.dm"
+#include "modular_darkpack\modules\events\code\_darkpack_event.dm"
+#include "modular_darkpack\modules\events\code\blackout_event.dm"
 #include "modular_darkpack\modules\external_organs\code\gargoyle_wings.dm"
 #include "modular_darkpack\modules\external_organs\code\gargoyle_wings_sprite_accessory_datum.dm"
 #include "modular_darkpack\modules\fire\code\fire.dm"
