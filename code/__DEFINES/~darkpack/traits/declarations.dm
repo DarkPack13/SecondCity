@@ -123,12 +123,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 // If the splat uses the WTA renown system described in W20 p. 245
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
-/// If the species has garou breeds to select.
-#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
-// if the species has garou tribes to select.
-#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
-// If the species has garou auspices to select.
-#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
 /// If the fera is wyrm tainted.

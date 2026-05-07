@@ -86,9 +86,6 @@
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
-		TRAIT_WTA_GAROU_BREED,
-		TRAIT_WTA_GAROU_AUSPICE,
-		TRAIT_WTA_GAROU_TRIBE,
 		TRAIT_FERA_FUR,
 		TRAIT_FRENETIC_AURA,
 		TRAIT_FERA_RENOWN,
