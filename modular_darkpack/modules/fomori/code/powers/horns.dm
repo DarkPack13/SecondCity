@@ -13,7 +13,6 @@
 
 /datum/action/cooldown/power/fomori_power/horns/Activate(atom/target)
 	. = ..()
-	var/mob/living/carbon/carbon_owner = astype(owner, /mob/living/carbon)
 	toggle_feature(deployed)
 
 	if(deployed)

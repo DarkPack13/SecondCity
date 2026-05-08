@@ -147,6 +147,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
 
+// Fomori Traits
+#define TRAIT_FOMOR_REGEN "fomor_regen"
+
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce

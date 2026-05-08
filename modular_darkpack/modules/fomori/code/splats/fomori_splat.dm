@@ -6,6 +6,13 @@
 	splat_priority = SPLAT_PRIO_FOMORI
 
 	power_type = /datum/action/cooldown/power/fomori_power
+	COOLDOWN_DECLARE(passive_healing_cd)
+
+/datum/splat/fomori/splat_life(seconds_per_tick)
+	if(HAS_TRAIT(owner, TRAIT_FOMOR_REGEN))
+		if(COOLDOWN_FINISHED(src, passive_healing_cd))
+			owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
+			COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
 /mob/living/carbon/human/splat/fomori
 	auto_splats = list(/datum/splat/fomori)
@@ -17,6 +24,8 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1)
 
 /datum/splat/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)
