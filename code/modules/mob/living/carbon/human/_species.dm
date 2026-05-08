@@ -444,11 +444,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	human_who_gained_species.living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
 
-//we don't allow it to update during species transition, so update it now
-// DARKPACK EDIT ADD START - (soak)
-	human_who_gained_species.update_soak() //Updates Soak values.
-// DARKPACK EDIT ADD END
-
+	//we don't allow it to update during species transition, so update it now
 	human_who_gained_species.hud_used?.screen_objects[HUD_MOB_HEALTHDOLL]?.update_appearance()
 
 /**

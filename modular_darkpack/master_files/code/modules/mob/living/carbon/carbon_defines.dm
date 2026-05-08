@@ -9,8 +9,7 @@
 	var/fakediablerist = FALSE
 	var/can_be_embraced = TRUE
 
-	///The number of dice available to soak bashing, lethal, and aggravated damage
+	// The number of dice available to soak bashing, lethal, and aggravated damage
 	var/soak_dice_bashing = 0
 	var/soak_dice_lethal = 0
 	var/soak_dice_aggravated = 0
-

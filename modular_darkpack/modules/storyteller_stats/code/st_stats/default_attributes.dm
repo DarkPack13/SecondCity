@@ -7,13 +7,18 @@
 	name = "Dexterity"
 	description = "Affects your speed and melee weapon accuracy. Increases your defense against being knocked down in unarmed combat. Increases the speed of certain actions."
 	subcategory = "Physical"
-	stat_flags = AFFECTS_SPEED
+
+/datum/st_stat/attribute/dexterity/update_mob(mob/living/our_mob)
+	our_mob.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(get_score() / 20))
 
 /datum/st_stat/attribute/stamina
 	name = "Stamina"
 	description = "Affects your maximum health. Used in Quietus."
 	subcategory = "Physical"
-	stat_flags = AFFECTS_HEALTH
+
+/datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob)
+	var/mob/living/carbon/carbon_mob = astype(our_mob)
+	carbon_mob?.update_soak()
 
 /datum/st_stat/attribute/charisma
 	name = "Charisma"
