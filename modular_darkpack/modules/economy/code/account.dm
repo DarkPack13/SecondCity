@@ -1,5 +1,12 @@
 /datum/bank_account
 	var/times_used_without_pin = 0
+	var/paycheck_amount = 0
+
+/datum/bank_account/payday(amount_of_paychecks, free = FALSE, skippable = FALSE, event = "Payday")
+    if(!paycheck_amount)
+        return FALSE
+    adjust_money(paycheck_amount, "Payday")
+    return TRUE
 
 /datum/bank_account/proc/check_pin(mob/living/user, amount, obj/item/source)
 	//purchases over $20 require a pin, you have to use one eventually
