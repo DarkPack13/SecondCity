@@ -320,8 +320,6 @@
 		var/head_protection = target.run_armor_check(BODY_ZONE_HEAD, MELEE)
 		target.apply_effect(5 SECONDS, EFFECT_KNOCKDOWN, head_protection)
 		target.drop_all_held_items()
-		if(is_sabbatist(user) && prob(50))	//The humble shovelhead technique; low chance still.
-			target.apply_effect(10 SECONDS, EFFECT_UNCONSCIOUS, head_protection)
 
 /obj/item/scythe/vamp
 	name = "scythe"

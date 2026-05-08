@@ -127,8 +127,6 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/hit_person = target
 		var/datum/storyteller_roll/knockdown_roll = new()
-		if(!knockdown_roll)
-			knockdown_roll = new()
 		knockdown_roll.applicable_stats = list(STAT_STRENGTH, STAT_DEXTERITY, STAT_ATHLETICS)
 		knockdown_roll.difficulty = 3 + (!isnull(firer) ? rand(1,2) : 0)
 		if(knockdown_roll.st_roll(target, firer ? firer : src) == ROLL_FAILURE)
@@ -165,7 +163,7 @@
 
 /obj/projectile/bullet/darkpack/shotpellet/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(iscarbon(target) && !iscrinos(target))
+	if(iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.Stun(4)
 
