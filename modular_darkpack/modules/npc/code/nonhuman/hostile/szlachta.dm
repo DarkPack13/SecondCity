@@ -11,7 +11,7 @@
 	response_help_simple = "pet"
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
-	speed = -1
+	speed = -0.4
 	maxHealth = 75
 	health = 75
 	obj_damage = 50
@@ -28,6 +28,7 @@
 	maxbloodpool = 2
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
+	default_blood_volume = BLOOD_VOLUME_NORMAL
 
 /mob/living/basic/szlachta/fister
 	name = "szlachta"
@@ -42,6 +43,7 @@
 	melee_damage_upper = 30
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
+	speed = 1.5
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	combat_mode = TRUE
 	status_flags = CANPUSH
@@ -62,6 +64,7 @@
 	melee_damage_upper = 25
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
+	speed = 2
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	combat_mode = TRUE
 	bloodpool = 7
@@ -82,12 +85,15 @@
 	melee_damage_upper = 25
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
+	speed = 2
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	combat_mode = TRUE
 	bloodpool = 10
 	maxbloodpool = 10
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)
 
+
+//DARKPACK TODO - Szlachta - make this guy drain blood
 
 /mob/living/basic/szlachta/hostile
 	faction = list(FACTION_HOSTILE)

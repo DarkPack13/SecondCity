@@ -37,8 +37,19 @@
 		if(!spawn_turf)
 			continue
 
-		new /mob/living/basic/szlachta/hostile(spawn_turf)
-		new /mob/living/basic/szlachta/fister/hostile(spawn_turf)
+		// dont spawn if a player is nearby we don't need them popping in unrealistically
+		var/player_nearby = FALSE
+		for(var/mob/living/nearby_mob in view(DEFAULT_SIGHT_DISTANCE, spawn_turf))
+			if(nearby_mob.client)
+				player_nearby = TRUE
+				break
+		if(player_nearby)
+			continue
 
-		var/vozhd_type = (rand(1, 100) <= 80) ? /mob/living/basic/szlachta/tanker/hostile : /mob/living/basic/szlachta/otherthing/hostile
+		new /mob/living/basic/szlachta(spawn_turf)
+		new /mob/living/basic/szlachta/fister(spawn_turf)
+		if(prob(40))
+			new /mob/living/basic/szlachta(spawn_turf)
+
+		var/vozhd_type = (rand(1, 100) <= 80) ? /mob/living/basic/szlachta/tanker : /mob/living/basic/szlachta/otherthing
 		new vozhd_type(spawn_turf)
