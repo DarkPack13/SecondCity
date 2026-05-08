@@ -1,6 +1,7 @@
 /datum/preference/choiced/subsplat/fera_tribe
 	abstract_type = /datum/preference/choiced/subsplat/fera_tribe
 	main_feature_name = "Tribe"
+	must_be_accessible = TRUE
 	var/splat_id
 
 /datum/preference/choiced/subsplat/fera_tribe/init_possible_values()

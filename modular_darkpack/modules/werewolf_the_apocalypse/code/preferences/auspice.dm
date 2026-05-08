@@ -1,6 +1,7 @@
 /datum/preference/choiced/subsplat/fera_auspice
 	abstract_type = /datum/preference/choiced/subsplat/fera_auspice
 	main_feature_name = "Auspice"
+	must_be_accessible = TRUE
 	var/splat_id
 
 /datum/preference/choiced/subsplat/fera_auspice/init_possible_values()
