@@ -118,6 +118,8 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	)
 	var/transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms.dmi'
+	/// Type path of the animal we look like in our feral form
+	var/mob/living/basic/mimmicing_animal
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
 
@@ -209,6 +211,7 @@
 			STAT_MANIPULATION = -3,
 		)
 	)
+	mimmicing_animal = /mob/living/basic/pet/dog/wolf
 
 /datum/splat/werewolf/shifter/corax
 	name = "Corax"
@@ -245,6 +248,7 @@
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
 	transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms_corax.dmi'
+	mimmicing_animal = /mob/living/basic/corvid/raven
 
 	warcry_emote = "caw"
 

@@ -218,13 +218,15 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "beast"
-
 	mob_pixel_w = -8
 	mob_size_override = MOB_SIZE_LARGE
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
+
+/datum/species/human/shifter/war/visible_gender_override(mob/living/carbon/human/holder)
+	return "beast"
+
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -253,8 +255,6 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "beast"
-
 	mob_pixel_w = -16
 	mob_pixel_z = -8
 	shift_difficulty = 7
@@ -262,6 +262,10 @@
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
 	speed_mod = /datum/movespeed_modifier/shifter/dire
+
+/datum/species/human/shifter/dire/visible_gender_override(mob/living/carbon/human/holder)
+	return "beast"
+
 
 /datum/species/human/shifter/feral
 	name = "feral form"
@@ -289,12 +293,17 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "wolf"
-
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	speed_mod = /datum/movespeed_modifier/shifter/feral
+
+/datum/species/human/shifter/feral/visible_gender_override(mob/living/carbon/human/holder)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(holder)
+	if(shifter_splat.mimmicing_animal)
+		return shifter_splat.mimmicing_animal::name
+
+	return "beast"
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter

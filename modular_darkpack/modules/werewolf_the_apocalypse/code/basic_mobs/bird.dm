@@ -66,7 +66,7 @@
 	// eyes_overlay.layer = ABOVE_LIGHTING_LAYER
 	. += eyes_overlay
 
-/datum/action/innate/togglecorvidflight // this action handles corvid forms toggle their flight, and swaps their sprite to be of the relevant type, I'm making it a gift because it's also what Hispo is under
+/datum/action/innate/togglecorvidflight // this action handles corvid forms toggle their flight, and swaps their sprite to be of the relevant type.
 	name = "Toggle Flight"
 	desc = "Unfurl or withdraw your wings, toggling your ability to fly"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE
