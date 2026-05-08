@@ -117,6 +117,7 @@
 		SPECIES_FERA_DIRE = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	)
+	var/transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms.dmi'
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
 
@@ -214,7 +215,8 @@
 	id = SPLAT_CORAX
 	splat_traits = list(
 		TRAIT_FERA_FUR,
-		TRAIT_FRENETIC_AURA
+		TRAIT_FRENETIC_AURA,
+		TRAIT_GOLD_WEAKNESS,
 	)
 	transformation_list = list(
 		/datum/species/human/shifter/homid,
@@ -242,6 +244,7 @@
 		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/crinos.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
+	transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms_corax.dmi'
 
 	warcry_emote = "caw"
 

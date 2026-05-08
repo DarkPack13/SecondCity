@@ -137,6 +137,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
 #define TRAIT_SILVER_WEAKNESS "silver_weakness"
+#define TRAIT_GOLD_WEAKNESS "gold_weakness"
 // Delirium is effectivly two levels weaker
 #define TRAIT_WEAK_DELIRIUM "weak_delirium"
 // Massivly boosts the range of your howl emote.

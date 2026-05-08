@@ -25,7 +25,16 @@ GLOBAL_LIST_INIT(garou_fur_colors, list(
 	"red" = "red",
 	"white" = "white",
 	"ginger" = "ginger",
-	"brown" = "brown"
+	"brown" = "brown",
+))
+
+GLOBAL_LIST_INIT(corax_fur_colors, list(
+	"black" = "black",
+	"brown" = "brown",
+	"white" = "white",
+	"green" = "green",
+	"red" = "red",
+	"gray" = "gray",
 ))
 
 #define STATUS_EFFECT_DELIRIUM /datum/status_effect/delirium
