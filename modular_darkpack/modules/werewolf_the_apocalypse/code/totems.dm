@@ -105,7 +105,7 @@
 			continue
 		if(human.stat == DEAD)
 			continue
-		if(!(shifter_splat.tribe.name in tribes))
+		if(!is_friend_of_totem(human))
 			continue
 
 		if(damage_change < 0)
@@ -129,7 +129,7 @@
 		return FALSE
 	if(!friends_splat.tribe) // Dont fuck over tribeless fera. Prob need a better way to determine freinds tho
 		return TRUE
-	if(!(friends_splat.tribe.name in totem.tribes))
+	if(!(friends_splat.tribe.name in tribes))
 		return FALSE
 
 	return TRUE

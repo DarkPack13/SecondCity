@@ -178,11 +178,11 @@
 
 	var/datum/splat/werewolf/shifter/shifting = get_shifter_splat(user)
 
-	if(left_click_transform)
+	if(left_click_transform && (left_click_transform in shifting.transformation_list))
 		context[SCREENTIP_CONTEXT_LMB] = "Shift to [left_click_transform::name]"
 		if(left_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Shift using rage"
-	if(right_click_transform)
+	if(right_click_transform && (right_click_transform in shifting.transformation_list))
 		context[SCREENTIP_CONTEXT_RMB] = "Shift to [right_click_transform::name]"
 		if(right_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_RMB] = "Shift using rage"
