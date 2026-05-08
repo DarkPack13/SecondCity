@@ -9,6 +9,14 @@
 	description = "Roving, loose szlachta have found their way into the city."
 	darkpack_allowed = TRUE
 
+/datum/round_event_control/darkpack/szlachta/can_spawn_event(players_amt, allow_magic)
+	. = ..()
+	if(!.)
+		return FALSE
+	for(var/obj/effect/landmark/event_spawn/szlachta/landmark in GLOB.generic_event_spawns)
+		return TRUE
+	return FALSE
+
 /datum/round_event/szlachta
 	start_when = 1
 	announce_when = 5
