@@ -139,8 +139,10 @@
 			return "[jobtitle] doesn't have any free splat slots for you. (This can include human)"
 		if(JOB_UNAVAILABLE_WHITELIST)
 			return "You aren't whitelisted for [jobtitle]."
-		if(JOB_UNAVAILABLE_KINDRED_AGE)
+		if(JOB_UNAVAILABLE_KINDRED_AGE_MIN)
 			return "Your character is too young for [jobtitle]."
+		if(JOB_UNAVAILABLE_KINDRED_AGE_MAX)
+			return "Your character is too old for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_GENERATION)
 			return "Your character's generation is too high for [jobtitle]."
 		if(JOB_UNAVAILABLE_KINDRED_CLAN)

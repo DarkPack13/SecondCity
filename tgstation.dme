@@ -7845,6 +7845,7 @@
 #include "modular_darkpack\modules\weapons\code\sheath.dm"
 #include "modular_darkpack\modules\weapons\code\stake.dm"
 #include "modular_darkpack\modules\weather\code\effects.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\delirium.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\emotes.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\garou_languages.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gauntlet.dm"

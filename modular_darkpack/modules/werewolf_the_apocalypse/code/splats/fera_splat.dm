@@ -146,8 +146,13 @@
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
-		if(shifter_species.is_veil_breaching_form(owner) && (!shifter_species.causes_delerium || HAS_TRAIT(owner, TRAIT_PIERCED_VEIL)))
+		if(shifter_species.is_veil_breaching_form(owner) && (!shifter_species.causes_delirium || HAS_TRAIT(owner, TRAIT_PIERCED_VEIL)))
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+		if(shifter_species.causes_delirium)
+			for(var/mob/living/carbon/human/guy in oviewers(owner, DEFAULT_SIGHT_DISTANCE))
+				if(!guy.affected_by_delirium())
+					continue
+				guy.apply_status_effect(STATUS_EFFECT_DELIRIUM, owner)
 
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
