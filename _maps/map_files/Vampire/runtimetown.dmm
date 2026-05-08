@@ -45,6 +45,13 @@
 /obj/structure/roadsign/crosswalk,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
+"bs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/misc/dirt,
+/area/vtm/outside/supply)
 "bB" = (
 /obj/structure/chair/wood/darkpack/red,
 /turf/open/floor/plating/rough,
@@ -482,6 +489,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/effect/abstract/cargo_landing_spot,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "jQ" = (
@@ -612,6 +620,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/effect/abstract/cargo_landing_spot,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
 "md" = (
@@ -1671,6 +1680,11 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/cog)
+"DS" = (
+/obj/effect/decal/pallet,
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/misc/dirt,
+/area/vtm/outside/supply)
 "DT" = (
 /obj/machinery/fax/endron,
 /obj/structure/table/wood,
@@ -2207,6 +2221,11 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
+"LC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/misc/dirt,
+/area/vtm/outside/supply)
 "LG" = (
 /obj/structure/table/wood,
 /obj/item/occult_artifact/werewolf/dagger_of_retribution{
@@ -6404,7 +6423,7 @@ HJ
 Fs
 Wa
 Wa
-Mn
+bs
 Lb
 kj
 Wa
@@ -6472,7 +6491,7 @@ ik
 Fs
 Wa
 Wa
-Mn
+bs
 Lb
 kj
 Wa
@@ -6542,7 +6561,7 @@ Wa
 Wa
 Mn
 Lb
-kj
+LC
 Wa
 Lb
 Wa
@@ -6610,7 +6629,7 @@ Wa
 Wa
 Mn
 Lb
-kj
+LC
 Wa
 Lb
 sR
@@ -6883,7 +6902,7 @@ Wa
 Wa
 Lb
 Wa
-sR
+DS
 Lb
 Wa
 Wa
@@ -6951,7 +6970,7 @@ Wa
 Wa
 Lb
 Wa
-sR
+DS
 Lb
 Wa
 Wa
