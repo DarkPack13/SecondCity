@@ -41,7 +41,7 @@
 	AddElement(
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
-	) */ // DARKPACK EDIT REMOVE
+	) */ // DARKPACK EDIT REMOVAL
 
 /obj/item/analyzer/grind_results()
 	return list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)

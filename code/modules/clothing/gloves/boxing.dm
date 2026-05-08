@@ -13,7 +13,7 @@
 	var/extrapower = FALSE
 
 /obj/item/clothing/gloves/boxing/Initialize(mapload)
-	. = ..()/* // DARKPACK EDIT REMOVE
+	. = ..()/* // DARKPACK EDIT REMOVAL
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/extendohand_l, /datum/crafting_recipe/extendohand_r)
 
 	AddElement(

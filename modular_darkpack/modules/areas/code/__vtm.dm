@@ -11,10 +11,8 @@
 	/// The rating of the gauntlet, the Gauntlet is strongest near certain types of environments
 	var/gauntlet_rating = 7 // WEREWOLF
 
-/area/vtm/powered(chan)
-	if (!requires_power)
-		return TRUE
-	return FALSE
+	// is this able to be classified as a domain? e.g, territorial flaw, later political implementation
+	var/domain = FALSE
 
 /area/vtm/proc/break_elysium()
 	if (zone_type != ZONE_MASQUERADE)

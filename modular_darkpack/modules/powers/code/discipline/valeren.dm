@@ -21,6 +21,7 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
 	difficulty = 7
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_ADMIN
 
 /datum/discipline_power/valeren/sense_vitality
 	name = "Sense Vitality"
@@ -171,6 +172,7 @@
 	bumper_text = "anesthetic touch"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/storyteller_roll/anesthetic_touch/unwilling
 	bumper_text = "anesthetic touch (unwilling)"
@@ -251,11 +253,13 @@
 /datum/storyteller_roll/burning_touch_resist
 	bumper_text = "resist burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/storyteller_roll/burning_touch_focus
 	bumper_text = "focus through burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
 	spammy_roll = TRUE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/status_effect/burning_touch
 	id = "burning_touch"
@@ -322,6 +326,7 @@
 	applicable_stats = list(STAT_STAMINA, STAT_MELEE)
 	difficulty = 7
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/discipline_power/valeren/armor_of_caines_fury
 	name = "Armor of Caine's Fury"
@@ -467,13 +472,9 @@
 			if (!istype(limb, /obj/item/bodypart/arm) && !istype(limb, /obj/item/bodypart/leg))
 				continue
 			LAZYADD(affected_bodyparts, limb)
-			limb.unarmed_damage_low += 8 * bonus
-			limb.unarmed_damage_high += 8 * bonus
 			limb.unarmed_attack_sound = pick(list('sound/items/weapons/cqchit2.ogg', 'sound/items/weapons/cqchit1.ogg')) // i know kung fu
 	else if (isbasicmob(owner))
 		var/mob/living/basic/basic_owner = owner
-		basic_owner.melee_damage_lower += 8 * bonus
-		basic_owner.melee_damage_upper += 8 * bonus
 		basic_owner.attack_sound = pick(list('sound/items/weapons/cqchit2.ogg', 'sound/items/weapons/cqchit1.ogg'))
 	RegisterSignal(owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(apply_melee_modifier))
 	tackler = owner.AddComponent(/datum/component/tackler, stamina_cost=0, base_knockdown = 1 SECONDS, range = 2 + bonus, speed = 1, skill_mod = 0, min_distance = 0)
@@ -485,13 +486,9 @@
 	owner.st_remove_stat_mod(STAT_BRAWL, bonus, "vengeance_of_samiel")
 	if (iscarbon(owner))
 		for (var/obj/item/bodypart/limb in affected_bodyparts)
-			limb.unarmed_damage_low -= 8 * bonus
-			limb.unarmed_damage_high -= 8 * bonus
 			limb.unarmed_attack_sound = initial(limb.unarmed_attack_sound)
 	else if (isbasicmob(owner))
 		var/mob/living/basic/basic_owner = owner
-		basic_owner.melee_damage_lower -= 8 * bonus
-		basic_owner.melee_damage_upper -= 8 * bonus
 		basic_owner.attack_sound = initial(basic_owner.attack_sound)
 	LAZYCLEARLIST(affected_bodyparts)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
@@ -499,4 +496,4 @@
 
 /datum/status_effect/vengeance_of_samiel/proc/apply_melee_modifier(mob/source, mob/M, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
-	attack_modifiers[FORCE_MULTIPLIER] += 0.4 * bonus
+	MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 1 + (0.4 * bonus))

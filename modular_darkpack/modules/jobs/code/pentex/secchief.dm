@@ -2,7 +2,7 @@
 	title = JOB_PENTEX_SEC_CHIEF
 	description = "You are an acting chief of security for the Endron Oil Refinery, operating out of San Francisco. With discretion to the Branch Leader, your job is to keep the complex and it's proprietary information with the help of your security team, and to turn over contract violators to internal affairs or the executives."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_PENTEX
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Board and the Branch Lead"
@@ -17,8 +17,9 @@
 	outfit = /datum/outfit/job/vampire/secchief
 
 	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED)
-//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	minimal_masquerade = 4
+	// minimal_renown_rank = 3
+	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_SECCHIEF
 	department_for_prefs = /datum/job_department/pentex
@@ -32,7 +33,6 @@
 		JOB_PENTEX_AFFAIRS
 	)
 
-//	minimal_renownrank = 3
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

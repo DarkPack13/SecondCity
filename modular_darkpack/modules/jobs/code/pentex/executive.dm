@@ -2,7 +2,7 @@
 	title = JOB_PENTEX_EXEC
 	description = "You are an acting executive for " + MAIN_EVIL_COMPANY + " operating out of San Francisco. With discretion to the Branch Leader, a position you may aim for, your job is to fuel production and expand operations."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_PENTEX
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Board and the Branch Lead"
@@ -29,8 +29,9 @@
 	)
 
 	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED)
-//	allowed_tribes = list(TRIBE_WYRM, TRIBE_RONIN)
 	minimal_masquerade = 4
+	// minimal_renown_rank = 3
+	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE
 	department_for_prefs = /datum/job_department/pentex
@@ -44,7 +45,6 @@
 		JOB_PENTEX_SEC_CHIEF
 	)
 
-//	minimal_renownrank = 3
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

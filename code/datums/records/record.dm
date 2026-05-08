@@ -75,6 +75,8 @@
 	var/minor_disabilities_desc
 	/// Physical status of this person in medical records.
 	var/physical_status
+	/// If declared dead, this is set as the cause of death, wiped once declared alive again.
+	var/cause_of_death
 	/// Mental status of this person in medical records.
 	var/mental_status
 	/// Positive and neutral quirk strings
@@ -265,7 +267,7 @@
 	if(alias != name)
 		final_paper_text += "Alias: [alias]<br>"
 
-	final_paper_text += "Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>" // DARKPACK EDIT, ORIGINAL: 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
+	final_paper_text += "Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>" // DARKPACK EDIT CHANGE - ORIGINAL: 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
 
 	final_paper_text += "<center><B>Security Data</B></center><br><br>"
 

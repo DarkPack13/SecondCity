@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 	speak_emote = list("writhes")
 	basic_mob_flags = DEL_ON_DEATH
 	mobility_flags = NONE
+	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 
 
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -47,7 +48,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 
 /datum/ai_planning_subtree/tentacle_grab_and_crush
 
-/datum/ai_planning_subtree/tentacle_grab_and_crush/SelectBehaviors(datum/ai_controller/controller, delta_time)
+/datum/ai_planning_subtree/tentacle_grab_and_crush/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/mob/living/basic/abyss_tentacle/tentacle = controller.pawn
 	if(!istype(tentacle))
 		return
@@ -128,14 +129,20 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 	. = ..()
 	if(summoner)
 		owner = summoner
-	if(owner?.tentacle_aggro_mode)
-		aggro_mode = owner.tentacle_aggro_mode
+	if(owner)
+		var/datum/splat/vampire/vampire = get_splat_with_discipline(owner)
+		var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
+		if(abyss_power)
+			aggro_mode = abyss_power.aggro_mode
 
 /mob/living/basic/abyss_tentacle/Destroy(force)
 	if(owner)
 		var/datum/splat/vampire/vampire = get_splat_with_discipline(owner)
-		var/datum/discipline_power/obtenebration/arms_of_the_abyss/power = vampire.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
-		power.active_tentacles -= src
+		var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
+		if(abyss_power)
+			abyss_power.active_tentacles -= src
+		if(grabbed_mob)
+			release_grabbed_mob()
 
 	. = ..()
 
@@ -198,8 +205,8 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 		return
 
 	if(get_dist(source, src) > 0)
-		if(world.time >= source.escape_attempt)
-			source.escape_attempt = world.time + 1 TURNS
+		if(world.time >= source.tentacle_escape_attempt)
+			source.tentacle_escape_attempt = world.time + 1 TURNS
 			var/rollcheck = SSroll.storyteller_roll(source.st_get_stat(STAT_STRENGTH), 6, source)
 			switch(rollcheck)
 				if(ROLL_SUCCESS)
@@ -218,8 +225,7 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 	. = ..()
 
 /mob/living/proc/set_tentacle_grab(obj/tentacle)
-	grabbed_by_tentacle = tentacle
+	return
 
 /mob/living/proc/clear_tentacle_grab()
-	grabbed_by_tentacle = null
-	escape_attempt = 0
+	tentacle_escape_attempt = 0

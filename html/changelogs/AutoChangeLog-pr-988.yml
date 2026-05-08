@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds blackout random event"
+  - code_imp: "cleaned up fusebox damage code"

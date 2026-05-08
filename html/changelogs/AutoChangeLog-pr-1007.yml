@@ -1,0 +1,8 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Adds support for automatic successes based on the TTRPG"
+  - code_imp: "Cleans up some of the code surrounding potance"
+  - balance: "Kills some of the snowflaky effect of potance in favor of it granting automatic successes (TTRPG accuracy)"
+  - qol: "Makes the dice unicode characters to show individual dice results a little larger"
+  - bugfix: "Potance 1-2 no longer cripples melee damage and it now scales correctly with all dots."

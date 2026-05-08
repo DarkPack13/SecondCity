@@ -74,6 +74,10 @@
 	button_icon_state = "flight"
 
 /datum/action/innate/togglecorvidflight/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
+		return
+
 	var/mob/living/basic/corvid/corvid = owner
 	if(!istype(corvid))
 		return
