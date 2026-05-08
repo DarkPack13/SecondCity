@@ -49,7 +49,7 @@
 		if(soak_fortitude)
 			soak_dice_aggravated += soak_fortitude.level
 
-	if(get_garou_splat(src))
+	if(get_shifter_splat(src))
 		soak_dice_bashing = st_get_stat(STAT_STAMINA)
 		soak_dice_lethal = st_get_stat(STAT_STAMINA)
 		var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
