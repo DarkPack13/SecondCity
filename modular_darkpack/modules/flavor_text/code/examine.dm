@@ -70,7 +70,14 @@
 
 /mob/living/carbon/proc/flavor_text_creation()
 	var/flavor_text_to_show
-	var/preview_text = copytext_char(dna.features[EXAMINE_DNA_FLAVOR_TEXT], 1, FLAVOR_PREVIEW_LIMIT)
+
+	var/main_flavor_text_key = EXAMINE_DNA_FLAVOR_TEXT
+	if(iscrinos(src))
+		main_flavor_text_key = EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT
+	else if(ishispo(src) || islupus(src))
+		main_flavor_text_key = EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT
+
+	var/preview_text = copytext_char(dna.features[main_flavor_text_key], 1, FLAVOR_PREVIEW_LIMIT)
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/face_obscured = obscured_slots & HIDEFACE
 	if(!face_obscured || (face_obscured && client?.prefs.read_preference(/datum/preference/toggle/show_flavor_text_when_masked)))
