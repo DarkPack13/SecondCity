@@ -53,7 +53,7 @@
 		soak_dice_bashing = st_get_stat(STAT_STAMINA)
 		soak_dice_lethal = st_get_stat(STAT_STAMINA)
 		var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
-		if(shifter_splat.is_breed_form() && (shifter_splat.get_breed_form_species() != /datum/species/human/shifter/war)) //Garou don't soak Agg in breed form except for
+		if(shifter_splat.is_breed_form() && (shifter_splat.get_breed_form_species() != /datum/species/human/shifter/war)) //Garou don't soak Agg in breed form except for Crinos-born. Adjustment will need to be added once Corax are in for their +2 bashing soak diff.
 			soak_dice_aggravated = 0
 			return
 		soak_dice_aggravated = st_get_stat(STAT_STAMINA)
