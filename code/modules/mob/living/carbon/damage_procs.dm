@@ -442,7 +442,7 @@
 	var/successes = soak_roll.st_roll(src, src, roll_used)
 
 	if(successes > 0)
-		damage = (max(0, damage - (successes * 10)))
+		damage = (max(0, damage - (successes * (1 TTRPG_DAMAGE))))
 		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
 
 	return damage
