@@ -26,6 +26,10 @@
 
 	register_to_availability_signals()
 
+/datum/action/discipline/Destroy()
+	QDEL_NULL(discipline)
+	return ..()
+
 /datum/action/discipline/Remove(mob/owner)
 	if(discipline)
 		discipline.post_loss()
@@ -49,7 +53,6 @@
 			SIGNAL_ADDTRAIT(TRAIT_PACIFISM),
 			SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
 		))
-	QDEL_NULL(discipline)
 	return ..()
 
 /datum/action/discipline/proc/register_to_availability_signals()

@@ -19,20 +19,20 @@
 
 	// ARTIFACTS
 	// Lower tier artifacts
-	new /datum/data/vending_product("Weekapaug Thistle", /obj/item/vtm_artifact/weekapaug_thistle, 75),
-	new /datum/data/vending_product("Mummywrap Fetish", /obj/item/vtm_artifact/mummywrap_fetish, 70),
-	new /datum/data/vending_product("Galdjum", /obj/item/vtm_artifact/galdjum, 70),
-	new /datum/data/vending_product("Bloodstar", /obj/item/vtm_artifact/bloodstar, 70),
+	new /datum/data/vending_product("Weekapaug Thistle", /obj/item/occult_artifact/vampire/weekapaug_thistle, 75),
+	new /datum/data/vending_product("Mummywrap Fetish", /obj/item/occult_artifact/vampire/mummywrap_fetish, 70),
+	new /datum/data/vending_product("Galdjum", /obj/item/occult_artifact/vampire/galdjum, 70),
+	new /datum/data/vending_product("Bloodstar", /obj/item/occult_artifact/vampire/bloodstar, 70),
 
 	// Mid tier artifacts
-	new /datum/data/vending_product("Fae Charm", /obj/item/vtm_artifact/fae_charm, 120),
-	new /datum/data/vending_product("Daimonori", /obj/item/vtm_artifact/daimonori, 120),
-	new /datum/data/vending_product("Key of Alamut", /obj/item/vtm_artifact/key_of_alamut, 130),
-	new /datum/data/vending_product("Heart of Eliza", /obj/item/vtm_artifact/heart_of_eliza, 140),
-	new /datum/data/vending_product("Bloodstone", /obj/item/vtm_artifact/bloodstone, 140),
+	new /datum/data/vending_product("Fae Charm", /obj/item/occult_artifact/vampire/fae_charm, 120),
+	new /datum/data/vending_product("Daimonori", /obj/item/occult_artifact/vampire/daimonori, 120),
+	new /datum/data/vending_product("Key of Alamut", /obj/item/occult_artifact/vampire/key_of_alamut, 130),
+	new /datum/data/vending_product("Heart of Eliza", /obj/item/occult_artifact/vampire/heart_of_eliza, 140),
+	new /datum/data/vending_product("Bloodstone", /obj/item/occult_artifact/vampire/bloodstone, 140),
 
 	// High tier artifacts
-	new /datum/data/vending_product("Odious Chalice", /obj/item/vtm_artifact/odious_chalice, 180),
+	new /datum/data/vending_product("Odious Chalice", /obj/item/occult_artifact/vampire/odious_chalice, 180),
 
 )
 
@@ -262,8 +262,8 @@
 //offer artifacts to the shop for research points AND increment stock
 /obj/structure/retail/occult/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
-	if(istype(tool, /obj/item/vtm_artifact))
-		var/obj/item/vtm_artifact/artifact = tool
+	if(istype(tool, /obj/item/occult_artifact))
+		var/obj/item/occult_artifact/artifact = tool
 
 		if(!ishuman(user))
 			return ITEM_INTERACT_BLOCKING

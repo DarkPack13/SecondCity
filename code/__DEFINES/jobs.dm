@@ -17,14 +17,16 @@
 #define JOB_UNAVAILABLE_SPLAT_SLOTS 9
 /// Checks for character whitelist.
 #define JOB_UNAVAILABLE_WHITELIST 10
-/// Checks for character kindred age.
-#define JOB_UNAVAILABLE_KINDRED_AGE 11
+/// Checks for character kindred age. (Minium age)
+#define JOB_UNAVAILABLE_KINDRED_AGE_MIN 11
+/// Checks for character kindred age. (Maximum age)
+#define JOB_UNAVAILABLE_KINDRED_AGE_MAX 12
 /// Checks for character kindred generation.
-#define JOB_UNAVAILABLE_KINDRED_GENERATION 12
+#define JOB_UNAVAILABLE_KINDRED_GENERATION 13
 /// Checks for character clan.
-#define JOB_UNAVAILABLE_KINDRED_CLAN 13
-#define JOB_UNAVAILABLE_FERA_TRIBE 14
-#define JOB_UNAVAILABLE_FERA_AUSPICE 15
+#define JOB_UNAVAILABLE_KINDRED_CLAN 14
+#define JOB_UNAVAILABLE_FERA_TRIBE 15
+#define JOB_UNAVAILABLE_FERA_AUSPICE 16
 
 // DARKPACK EDIT ADD END
 

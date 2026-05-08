@@ -1,6 +1,22 @@
 #define EXPRESS_EMAG_DISCOUNT 0.72
 #define BEACON_PRINT_COOLDOWN 10 SECONDS
 
+// DARKPACK EDIT ADD START
+GLOBAL_LIST_EMPTY(cargo_landing_spots)
+/obj/effect/abstract/cargo_landing_spot
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x2"
+	invisibility = INVISIBILITY_ABSTRACT
+
+/obj/effect/abstract/cargo_landing_spot/Initialize(mapload)
+	. = ..()
+	GLOB.cargo_landing_spots += src
+
+/obj/effect/abstract/cargo_landing_spot/Destroy(force)
+	. = ..()
+	GLOB.cargo_landing_spots -= src
+// DARKPACK EDIT ADD END
+
 /obj/machinery/computer/cargo/express
 	name = "express supply console"
 	desc = "This console allows the user to purchase a package \
@@ -242,14 +258,23 @@
 			var/list/prefered_turfs = list() // DARKPACK EDIT ADD
 			if (!istype(beacon) || !using_beacon || (obj_flags & EMAGGED))
 				empty_turfs = list()
-				for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels()) // DARKPACK EDIT CHANGE - (removes floor so it can include DIRT)
+				// DARKPACK EDIT ADD START
+				for(var/obj/effect/abstract/cargo_landing_spot/spot in GLOB.cargo_landing_spots)
+					var/turf/open/open_turf = get_turf(spot)
+					if(!astype(open_turf))
+						stack_trace("[spot] is not in an open turf. Turf is [open_turf]")
 					if(!open_turf.is_blocked_turf())
-						empty_turfs += open_turf
-						// DARKPACK EDIT ADD START
-						var/obj/effect/decal/pallet/cool_spot = locate() in open_turf
-						if(cool_spot)
-							prefered_turfs += open_turf
-						// DARKPACK EDIT ADD END
+						empty_turfs |= open_turf
+				// DARKPACK EDIT ADD END
+				// DARKPACK EDIT CHANGE START
+				if(!length(empty_turfs)) // We ran out of hand-mapped markers, resort to pallets and the ground,  but we cannot ensure super sane spawns
+					for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels())
+						if(!open_turf.is_blocked_turf())
+							empty_turfs |= open_turf
+							var/obj/effect/decal/pallet/cool_spot = locate() in open_turf
+							if(cool_spot)
+								prefered_turfs += open_turf
+				// DARKPACK EDIT CHANGE END
 
 				if (!length(empty_turfs))
 					return
