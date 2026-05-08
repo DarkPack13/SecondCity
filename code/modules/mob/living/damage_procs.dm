@@ -39,6 +39,10 @@
 	unsoakable = FALSE,
 ) // DARKPACK EDIT CHANGE - (soak)
 	SHOULD_CALL_PARENT(TRUE)
+
+	if(!forced && unsoakable == FALSE) //If the damage isn't forced and isn't unsoakable, run it through the soak proc. Soak runs before damage mods.
+		damage = soak_roll(damage, damagetype, def_zone, sharpness, attacking_item, soak_difficulty)
+
 	var/damage_amount = damage
 	if(!forced)
 		damage_amount *= ((100 - blocked) / 100)
@@ -584,3 +588,55 @@
 			break
 	if(. && update_health)
 		updatehealth()
+
+// DARKPACK EDIT ADD START - (soak)
+/mob/living/proc/soak_roll(
+	damage = 0,
+	damagetype = BRUTE,
+	def_zone = null,
+	sharpness = NONE,
+	attacking_item,
+	soak_difficulty = 6)
+
+	var/roll_used = soak_dice_bashing
+	switch(damagetype)
+		if(BRUTE)
+			if(isprojectile(attacking_item))
+				if(get_kindred_splat(src) && !def_zone == HEAD)
+					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
+				else
+					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
+			else if(!sharpness == NONE)
+				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
+			else
+				roll_used = soak_dice_bashing //Everything else should take Bashing.
+		if(BURN)
+			roll_used = soak_dice_aggravated //Burning is always Agg.
+		if(TOX)
+			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
+		if(OXY)
+			roll_used = 0 //Oxygen damage is applied automatically and cannot be soaked.
+		if(STAMINA)
+			roll_used = soak_dice_bashing //Stamina damage is a little weird, but as per exhaustion rules for rituals and the like, you can soak it like Bashing. Not too sure about it though.
+		if(BRAIN)
+			roll_used = soak_dice_lethal //Not many situations where you'd take direct brain damage really, but it'd be lethal in this case.
+		if(AGGRAVATED)
+			roll_used = soak_dice_aggravated //Well, obviously.
+
+	if(roll_used < 1)
+		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
+
+	var/datum/storyteller_roll/soak/soak_roll = new()
+
+	soak_roll.difficulty = soak_difficulty //Overrides difficulty for adjustments when soak difficulty is different.
+	var/successes = soak_roll.st_roll(src, src, roll_used)
+
+	if(successes > 0)
+		damage = (max(0, damage - (successes * (1 TTRPG_DAMAGE))))
+		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
+
+	return damage
+
+/mob/living/proc/update_soak() //Pretty basic calculation for the average entity, soak is Bashing only using Stamina.
+	soak_dice_bashing = st_get_stat(STAT_STAMINA)
+// DARKPACK EDIT ADD END
