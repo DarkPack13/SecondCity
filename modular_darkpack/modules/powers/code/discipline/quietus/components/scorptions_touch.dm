@@ -67,7 +67,7 @@
 			// apply non transmittable disease to the mortal victim if they reach zero stamina
 			to_chat(victim, span_userdanger("You feel deathly ill as the poison ravages your body!"))
 
-	victim.apply_damage((2 * poison_potency), BURN, forced = TRUE) //Adjustment to use proper damage application system for soak and damage modifiers. Unsoakable.
+	victim.apply_damage((2 * poison_potency), BURN, unsoakable = TRUE)
 	//victim.AdjustKnockdown(3 SECONDS) this is from the old code?
 
 	to_chat(user, span_warning("Your venomous touch burns [victim]!"))
