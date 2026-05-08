@@ -1,5 +1,5 @@
 /obj/effect/landmark/event_spawn/szlachta
-    name = "szlachta event spawn"
+	name = "szlachta event spawn"
 	icon = 'modular_darkpack/modules/events/icons/event_landmarks.dmi'
-    icon_state = "szlachta"
+	icon_state = "szlachta"
 
