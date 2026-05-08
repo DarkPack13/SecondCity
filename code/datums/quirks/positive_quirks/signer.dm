@@ -12,6 +12,6 @@ darkpack_allowed = TRUE
 /datum/quirk/item_quirk/signer/add(client/client_source)
 	quirk_holder.AddComponent(/datum/component/sign_language)
 
-//darkpack edit change - REMOVAL
+// DARKPACK EDIT REMOVAL - MERITS_FLAWS
 /datum/quirk/item_quirk/signer/remove()
 	qdel(quirk_holder.GetComponent(/datum/component/sign_language))
