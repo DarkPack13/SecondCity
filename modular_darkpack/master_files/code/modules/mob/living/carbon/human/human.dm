@@ -42,7 +42,7 @@
 		soak_dice_aggravated = 0 //Reset it beforehand in case you had leftover agg dice.
 		var/datum/discipline/soak_visceratika = get_discipline(/datum/discipline/visceratika)
 		var/datum/discipline/soak_fortitude = get_discipline(/datum/discipline/fortitude)
-		if(soak_visceratika.level >= 4)
+		if(soak_visceratika && soak_visceratika.level >= 4)
 			soak_dice_aggravated += 1 //1 Agg and Lethal soak, 2 Bashing from Armour of Terra.
 			soak_dice_lethal += 1
 			soak_dice_bashing += 2
