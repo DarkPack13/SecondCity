@@ -7415,6 +7415,8 @@
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\giovanni_sanguine_incongruity.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\metamorph.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\pale_aura.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\sign_language.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\sign_language.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\stillness_of_death.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\time_sense.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\untamable.dm"
