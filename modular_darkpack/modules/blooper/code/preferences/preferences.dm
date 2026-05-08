@@ -75,13 +75,6 @@
 
 // Game preferences beyond this point.
 
-// Send vocal bloopers
-/datum/preference/toggle/send_blooper
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
-	savefile_key = "blooper_send"
-	default_value = TRUE
-
 // Hear vocal bloopers
 /datum/preference/toggle/hear_blooper
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
