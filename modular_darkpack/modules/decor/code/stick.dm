@@ -46,6 +46,7 @@
 				var/datum/storyteller_roll/step_roll = new()
 				step_roll.applicable_stats = list(STAT_PERCEPTION, STAT_STEALTH)
 				step_roll.roll_output_type = ROLL_PRIVATE
+				step_roll.spammy_roll = TRUE
 				var/roll_result = step_roll.st_roll(triggerer, src)
 				if(roll_result != ROLL_SUCCESS)
 					mineEffect(triggerer)
