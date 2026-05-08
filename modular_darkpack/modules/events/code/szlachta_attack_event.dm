@@ -14,13 +14,9 @@
 	announce_when = 5
 
 /datum/round_event/szlachta/announce(fake)
-	//end_post(
-	//	"A breaking news notification has appeared on your phone - rolling szlachtas are affecting your area due to inclement weather.",
-	//	"Local BREAKING NEWS Alert",
-	//	'modular_darkpack/modules/events/sounds/news_notification.ogg',
-	//	ANNOUNCEMENT_TYPE_PRIORITY,
-	//	color_override = "red",
-	//)
+	var/endpost_szlachta_author = pick("thesupernaturalguy71", "mhaley71", "justplumbin92", "illuminati_truther777", "satanwatch_now")
+	var/endpost_szlachta_post = pick("saw something soooo weird... :) new video coming soon on my channel", "just had the most terrifying moment of my life. saw some kind of monster.", "Yeap, whatever I saw, I'm just goin' right the fuck home.", "(the post has an extremely blurry image attached of what looks to be some kind monster. is it photoshopped?)")
+	endpost_announce(endpost_szlachta_post, endpost_szlachta_author)
 
 /datum/round_event/szlachta/start()
 	var/list/szlachta_spawns = list()
