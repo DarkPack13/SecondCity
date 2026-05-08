@@ -21,7 +21,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	speak_emote = list("gnashes")
-	faction = list(FACTION_SABBAT)
+	faction = list(FACTION_SABBAT, VAMPIRE_CLAN_TZIMISCE)
 	pressure_resistance = 200
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
