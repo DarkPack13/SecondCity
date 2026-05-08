@@ -100,6 +100,8 @@
 	splat_priority = SPLAT_PRIO_SHIFTER
 
 	var/list/transformation_list = list()
+	/// Stats added and removed upon gaining the species of the splat. Assoc list indexed by the species ids for each form
+	var/list/transformation_stats
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cd)
 	/**
@@ -178,6 +180,33 @@
 		/datum/species/human/shifter/dire,
 		/datum/species/human/shifter/feral
 	)
+	transformation_stats = list(
+		SPECIES_FERA_BESTIAL = list(
+			STAT_STRENGTH = 2,
+			STAT_STAMINA = 2,
+			STAT_MANIPULATION = -2,
+			STAT_APPEARANCE = -1
+		),
+		SPECIES_FERA_WAR = list(
+			STAT_STRENGTH = 4,
+			STAT_STAMINA = 3,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -3,
+			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
+		),
+		SPECIES_FERA_DIRE = list(
+			STAT_STRENGTH = 3,
+			STAT_STAMINA = 3,
+			STAT_DEXTERITY = 2,
+			STAT_MANIPULATION = -3,
+		),
+		SPECIES_FERA_FERAL = list(
+			STAT_STRENGTH = 1,
+			STAT_STAMINA = 2,
+			STAT_DEXTERITY = 2,
+			STAT_MANIPULATION = -3,
+		)
+	)
 
 /datum/splat/werewolf/shifter/corax
 	name = "Corax"
@@ -191,11 +220,27 @@
 		/datum/species/human/shifter/war,
 		/datum/species/human/shifter/feral
 	)
+	transformation_stats = list(
+		SPECIES_FERA_WAR = list(
+			STAT_STRENGTH = 1,
+			STAT_STAMINA = 1,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -2,
+			STAT_PERCEPTION = 3,
+			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
+		),
+		SPECIES_FERA_FERAL = list(
+			STAT_STRENGTH = -1,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -3,
+			STAT_PERCEPTION = 4,
+		)
+	)
+	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 	mob_icons = list(
 		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/crinos.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
-	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 
 	warcry_emote = "caw"
 

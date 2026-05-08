@@ -136,6 +136,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+// Delirium is effectivly two levels weaker
+#define TRAIT_WEAK_DELIRIUM "weak_delirium"
 // Massivly boosts the range of your howl emote.
 #define TRAIT_LOUD_WARCRY "loud_warcry"
 /// Prevents the mob from picking up items larger then small

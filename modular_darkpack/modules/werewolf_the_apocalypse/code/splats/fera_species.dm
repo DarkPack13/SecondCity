@@ -26,8 +26,6 @@
 	var/mob_pixel_z
 	/// If declared will override the mob size.
 	var/mob_size_override
-	/// Stats added and removed upon gaining the species
-	var/list/form_bonus_stats = list()
 	/// Dice roll difficulty required to shift into this form
 	var/shift_difficulty = 6
 	/// If update_body_parts is allowed to override the body render
@@ -67,8 +65,13 @@
 
 	clear_buffs(human)
 
+/datum/species/human/shifter/proc/get_buffs(mob/living/carbon/human/human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	if(shifter_splat?.transformation_stats && shifter_splat.transformation_stats[id])
+		return shifter_splat.transformation_stats[id]
+
 /datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
+	for(var/key, value in get_buffs(human))
 		if(!should_add_buff(human, key, value))
 			continue
 		human.st_add_stat_mod(key, value, type)
@@ -77,7 +80,7 @@
 	return TRUE
 
 /datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
+	for(var/key, value in get_buffs(human))
 		human.st_remove_stat_mod(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
@@ -148,12 +151,6 @@
 /datum/species/human/shifter/bestial
 	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
-	form_bonus_stats = list(
-		STAT_STRENGTH = 2,
-		STAT_STAMINA = 2,
-		STAT_MANIPULATION = -2,
-		STAT_APPEARANCE = -1
-	)
 	shift_difficulty = 7
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
@@ -225,13 +222,6 @@
 
 	mob_pixel_w = -8
 	mob_size_override = MOB_SIZE_LARGE
-	form_bonus_stats = list(
-		STAT_STRENGTH = 4,
-		STAT_STAMINA = 3,
-		STAT_DEXTERITY = 1,
-		STAT_MANIPULATION = -3,
-		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
-	)
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
@@ -267,12 +257,6 @@
 
 	mob_pixel_w = -16
 	mob_pixel_z = -8
-	form_bonus_stats = list(
-		STAT_STRENGTH = 3,
-		STAT_STAMINA = 3,
-		STAT_DEXTERITY = 2,
-		STAT_MANIPULATION = -3,
-	)
 	shift_difficulty = 7
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
@@ -307,12 +291,6 @@
 
 	visible_gender_override = "wolf"
 
-	form_bonus_stats = list(
-		STAT_STRENGTH = 1,
-		STAT_STAMINA = 2,
-		STAT_DEXTERITY = 2,
-		STAT_MANIPULATION = -3,
-	)
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
