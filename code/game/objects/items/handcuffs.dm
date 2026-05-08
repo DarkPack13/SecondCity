@@ -101,6 +101,12 @@
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
 
+// DARKPACK EDIT ADD START
+	if(HAS_TRAIT(victim, TRAIT_NO_CUFF))
+		victim.balloon_alert(user, "you can't handcuff [victim]!")
+		return
+// DARKPACK EDIT ADD END
+
 	victim.visible_message(
 		span_danger("[user] is trying to put [src] on [victim]!"),
 		span_userdanger("[user] is trying to put [src] on you!"),
@@ -233,7 +239,7 @@
 	if(new_color)
 		set_cable_color(new_color)
 
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/bola,/*/datum/crafting_recipe/gonbola */) // DARKPACK EDIT REMOVE
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/bola,/*/datum/crafting_recipe/gonbola */) // DARKPACK EDIT REMOVAL
 
 	AddElement(
 		/datum/element/slapcrafting,\

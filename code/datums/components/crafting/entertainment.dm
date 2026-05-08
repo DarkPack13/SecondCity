@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/moffers // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/moffers // DARKPACK EDIT REMOVAL
 	name = "Moffers"
 	result = /obj/item/clothing/shoes/clown_shoes/moffers
 	time = 6 SECONDS //opportunity to rethink your life
@@ -178,7 +178,7 @@
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_ENTERTAINMENT
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/toiletbong
 	name = "Toiletbong"
 	category = CAT_ENTERTAINMENT

@@ -71,8 +71,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_REPELLED_BY_HOLINESS "repelled_by_holiness"
 /// Any changes in this Kindred's Humanity will be doubled
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
-/// Duration of frenzy is doubled
-#define TRAIT_LONGER_FRENZY "longer_frenzy"
+/// Difficulty rolls to resist or guide frenzy are two higher. They can also never spend willpower to avoid frenzy
+#define TRAIT_DIFFICULT_FRENZY "difficult_frenzy"
+/// Difficulty rolls to rage roles are one higher.
+#define TRAIT_DIFFICULT_RAGE "difficult_rage"
 // Setite weakness, sunlight is particularly bad bad.
 #define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
@@ -96,10 +98,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 // Is the mob melted into a wall via Visceratika?
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
+// Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
+#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 
 
 // Allows the user to pass through doors
-#define TRAIT_PASSDOOR "trait_passdoor" // DARKPACK EDIT ADD - Obtenebration & Mysticism Rework
 #define TRAIT_IN_FRENZY "in_frenzy"
 
 // Is the mob silenced (by Quietus 1 for example)
@@ -154,11 +157,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
 #define TRAIT_ANIMAL_MUSK "animal_musk"
 #define TRAIT_PERMAFANGS "permafangs"
+#define TRAIT_DULLFANGS "dullfangs"
 #define TRAIT_ORGANOVORE "organovore"
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
+#define TRAIT_THIRD_EYE "third_eye"
 #define TRAIT_PREY_EXCLUSION "prey_exclusion"
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"
@@ -172,6 +177,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
+#define TRAIT_EAT_FOOD "eat_food"
 
 
 // END TRAIT DEFINES

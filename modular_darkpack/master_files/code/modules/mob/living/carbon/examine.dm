@@ -71,8 +71,11 @@
 				. += span_purple("[pick(four)]<br>")
 			if(5 to INFINITY)
 				. += span_rose(span_bold("[pick(five)]<br>"))
-		if(HAS_TRAIT(src, TRAIT_PERMAFANGS))
+		if(HAS_TRAIT(src, TRAIT_PERMAFANGS) && !HAS_TRAIT(src, TRAIT_DULLFANGS))
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
+	if(!src.head)
+		if(HAS_TRAIT(src, TRAIT_THIRD_EYE))
+			. += span_bolddanger("[p_They()] [p_have()] a third eye on [p_their()] forehead!<br>")
 		if(HAS_TRAIT(src, TRAIT_BETRAYERS_MARK))
 			if(isliving(user))
 				var/mob/living/living_user = user

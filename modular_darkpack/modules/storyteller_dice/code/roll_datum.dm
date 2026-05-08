@@ -48,15 +48,20 @@
 		return ROLL_FAILURE
 
 	var/dice_amount = calculate_used_dice(roller, bonus)
+	var/auto_success_amount = calculate_auto_successes(roller)
+	var/used_difficulty = calculate_used_difficulty(roller)
 
-	var/list/rolled_dice = roll_dice(dice_amount)
+	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), "[dice_amount] dice")] vs. difficulty [difficulty]."
+	var/dice_used_text = "[dice_amount] dice"
+	if(auto_success_amount)
+		dice_used_text += " + [auto_success_amount] auto successes"
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), dice_used_text)] vs. difficulty [used_difficulty]."
 	if(successes_needed > 1)
 		first_line += " [successes_needed] successes needed."
 	last_output_text += span_notice(first_line)
 
-	last_sucess_amount = count_success(rolled_dice, difficulty, last_output_text)
+	last_sucess_amount = count_success(rolled_dice, used_difficulty, last_output_text)
 	var/output = roll_result(last_sucess_amount)
 
 	var/title
@@ -72,12 +77,10 @@
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
-		var/output_pref = player_mob.client?.prefs.read_preference(/datum/preference/choiced/dice_output)
-
-		if(!spammy_roll && output_pref == DICE_OUTPUT_CHAT)
+		if(!spammy_roll)
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
-		else if(spammy_roll || (output_pref == DICE_OUTPUT_BALLOON))
+		else
 			if(last_sucess_amount > 0)
 				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
 			else
@@ -92,7 +95,7 @@
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
 		if(ROLL_PUBLIC)
-			return viewers(DEFAULT_MESSAGE_RANGE, roller)
+			return viewers(DEFAULT_SIGHT_DISTANCE, roller)
 		if(ROLL_PRIVATE)
 			return list(roller)
 		if(ROLL_PRIVATE_AND_TARGET)
@@ -110,8 +113,15 @@
 /datum/storyteller_roll/proc/calculate_used_dice(mob/living/roller, bonus = 0)
 	var/dice_amount = 0
 	for(var/stat_type in using_stats(roller))
-		dice_amount += roller.st_get_stat(stat_type)
+		dice_amount += roller.st_get_stat(stat_type, include_auto_successes = FALSE)
 	return dice_amount + bonus
+
+/datum/storyteller_roll/proc/calculate_auto_successes(mob/living/roller)
+	var/dice_amount = 0
+	for(var/stat_type in using_stats(roller))
+		var/datum/st_stat/given_stat = roller?.storyteller_stats[stat_type]
+		dice_amount += given_stat?.get_auto_success_score()
+	return dice_amount
 
 // Unused rn but can be used for overides of `using_stats()`
 /datum/storyteller_roll/proc/return_higher_stat(mob/living/roller, list/stats)
@@ -127,6 +137,9 @@
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
 
+/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller)
+	return difficulty
+
 /datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
 	var/output = ""
 	var/stuff = list()
@@ -137,7 +150,7 @@
 		output += "+[bonus]"
 	return "Rolling [output]"
 
-/datum/storyteller_roll/proc/roll_dice(dice, sides = 10)
+/datum/storyteller_roll/proc/roll_dice(dice, auto_successes, sides = 10)
 	dice = max(dice, 1)
 	var/list/rolled_dice = list()
 	for(var/i in 1 to dice)
@@ -149,6 +162,8 @@
 				extra_dice++
 		for(var/i in 1 to extra_dice)
 			rolled_dice += rand(1, sides)
+	for(var/i in 1 to auto_successes)
+		rolled_dice += 11
 	return rolled_dice
 
 //Count the number of successes.
@@ -166,7 +181,7 @@
 			sucess_amount--
 		else
 			dice_text += span_danger("[get_dice_char(roll)]")
-	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [dice_text]"
+	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [span_slightly_larger(dice_text)]"
 	return sucess_amount
 
 /datum/storyteller_roll/proc/roll_result(sucess_amount)
@@ -193,7 +208,8 @@
 				return span_bold(span_danger(("Botch -")))
 
 /datum/storyteller_roll/proc/get_dice_char(input)
-	var/static/list/dice_output = list("❶", "❷", "❸", "❹", "❺", "❻", "❼", "❽", "❾", "❿")
+	// "11" represents automatic successes
+	var/static/list/dice_output = list("❶", "❷", "❸", "❹", "❺", "❻", "❼", "❽", "❾", "❿", "☥")
 	return dice_output[input]
 	/* // This would require making it an assoc list and we dont every expect outside our given range.
 	// So if someone faces a runtime because of this just make it an actual assoc and deal with the micro preformace hit

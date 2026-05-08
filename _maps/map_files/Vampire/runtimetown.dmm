@@ -354,7 +354,6 @@
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash5"
 	},
-/obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "hK" = (
@@ -400,7 +399,7 @@
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/shop)
 "iJ" = (
-/obj/effect/spawner/random/occult/artifact,
+/mob/living/basic/pet/cat/darkpack/cain,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "iK" = (
@@ -593,7 +592,6 @@
 /area/vtm/interior/techshop)
 "lM" = (
 /obj/effect/decal/cleanable/trash,
-/obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "lN" = (
@@ -601,7 +599,10 @@
 /area/vtm/outside/supply)
 "lU" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/key_of_alamut,
+/obj/item/occult_artifact/vampire/key_of_alamut{
+	pixel_x = -2;
+	pixel_y = 3
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "lX" = (
@@ -875,7 +876,14 @@
 /area/vtm/outside/pacificheights)
 "qY" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/bloodstar,
+/obj/item/occult_artifact/vampire/bloodstone{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/occult_artifact/vampire/daimonori{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "ri" = (
@@ -1095,6 +1103,10 @@
 "tY" = (
 /turf/open/floor/plating/canal,
 /area/vtm/outside/pacificheights)
+"uf" = (
+/obj/effect/turf_decal/bordur,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "ug" = (
 /obj/machinery/door/airlock/elevator/right{
 	elevator_mode = 1;
@@ -1158,7 +1170,15 @@
 /area/vtm/graveyard)
 "va" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/fae_charm,
+/obj/effect/spawner/random/occult/artifact/werewolf_only{
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/occult/artifact/werewolf_only{
+	pixel_x = -6
+	},
+/obj/effect/spawner/random/occult/artifact/werewolf_only{
+	pixel_x = 7
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "vi" = (
@@ -1237,7 +1257,14 @@
 /area/vtm/outside/supply)
 "wr" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/odious_chalice,
+/obj/item/occult_artifact/vampire/odious_chalice{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/occult_artifact/vampire/bloodstar{
+	pixel_x = 12;
+	pixel_y = 4
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "wO" = (
@@ -1397,7 +1424,10 @@
 /area/vtm/outside/pacificheights)
 "zF" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/weekapaug_thistle,
+/obj/item/occult_artifact/vampire/weekapaug_thistle{
+	pixel_x = -1;
+	pixel_y = 2
+	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
@@ -1507,6 +1537,13 @@
 /obj/item/gun/ballistic/automatic/darkpack/sniper,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"Ce" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/fusebox/transformer,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "Ct" = (
 /obj/structure/lamppost/one{
 	dir = 1
@@ -1792,6 +1829,9 @@
 /obj/structure/vampdoor/prison,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
+"Gr" = (
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/baywalk)
 "Gt" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/tox,
@@ -2084,7 +2124,14 @@
 /area/vtm/outside/supply)
 "Kz" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/heart_of_eliza,
+/obj/item/occult_artifact/vampire/heart_of_eliza{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/occult_artifact/vampire/fae_charm{
+	pixel_x = 7;
+	pixel_y = 7
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "KB" = (
@@ -2162,7 +2209,14 @@
 /area/vtm/outside/pacificheights)
 "LG" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/daimonori,
+/obj/item/occult_artifact/werewolf/dagger_of_retribution{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/occult_artifact/werewolf/nyxs_bangle{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "LL" = (
@@ -2285,8 +2339,10 @@
 /area/vtm/outside/pacificheights)
 "Nb" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/tarulfang,
-/mob/living/basic/pet/cat/darkpack/cain,
+/obj/item/occult_artifact/vampire/tarulfang{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "Nd" = (
@@ -2389,6 +2445,11 @@
 /obj/effect/mapping_helpers/door/access/graveyard,
 /turf/open/floor/plating/rough,
 /area/vtm/graveyard/interior)
+"OA" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/lamppost/one,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/baywalk)
 "OB" = (
 /obj/darkpack_car/police{
 	locked = 0
@@ -2533,6 +2594,8 @@
 "QD" = (
 /obj/machinery/light/directional/north,
 /obj/effect/decal/cleanable/trash,
+/obj/effect/spawner/random/occult/artifact,
+/obj/ritual_rune/thaumaturgy/identification,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "QJ" = (
@@ -2548,7 +2611,6 @@
 /area/vtm/outside/pacificheights)
 "QN" = (
 /obj/effect/decal/cleanable/litter,
-/obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "QR" = (
@@ -2568,6 +2630,11 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"QU" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/lamppost/one,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/financialdistrict)
 "QW" = (
 /obj/machinery/light/directional/north,
 /obj/effect/spawner/random/vending/snackvend,
@@ -2614,7 +2681,6 @@
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash7"
 	},
-/obj/effect/spawner/random/occult/artifact,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "RV" = (
@@ -2800,7 +2866,10 @@
 /area/vtm/outside/pacificheights)
 "VH" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/galdjum,
+/obj/item/occult_artifact/vampire/galdjum{
+	pixel_x = 5;
+	pixel_y = 2
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "VJ" = (
@@ -2856,6 +2925,13 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"Wn" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/fusebox/transformer,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/financialdistrict)
 "Ws" = (
 /obj/structure/table,
 /obj/vampire_computer,
@@ -2872,11 +2948,23 @@
 /area/vtm/interior/clinic)
 "WB" = (
 /obj/structure/table/wood,
-/obj/item/vtm_artifact/mummywrap_fetish,
+/obj/item/occult_artifact/vampire/mummywrap_fetish{
+	pixel_x = -6;
+	pixel_y = 3
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "WD" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/occult/artifact/vampire_only,
+/obj/effect/spawner/random/occult/artifact/vampire_only{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/occult/artifact/vampire_only{
+	pixel_x = -9;
+	pixel_y = -2
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "WH" = (
@@ -3028,7 +3116,17 @@
 /area/vtm/outside/pacificheights)
 "YY" = (
 /obj/structure/table/reinforced,
-/obj/item/ritual_tome/arcane,
+/obj/item/ritual_tome/arcane{
+	pixel_y = 6
+	},
+/obj/item/ritual_tome/necromancy{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/ritual_tome/abyss{
+	pixel_x = 4;
+	pixel_y = 2
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "Zc" = (
@@ -3050,6 +3148,11 @@
 /area/vtm/outside/pacificheights)
 "Zz" = (
 /turf/open/misc/grass/random/grass,
+/area/vtm/outside/pacificheights)
+"ZC" = (
+/obj/effect/turf_decal/bordur,
+/obj/structure/roadsign/street,
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "ZF" = (
 /obj/structure/railing,
@@ -3216,7 +3319,7 @@ GF
 (3,1,1) = {"
 GF
 Ef
-qY
+zM
 LG
 va
 zM
@@ -3420,9 +3523,9 @@ GF
 (6,1,1) = {"
 GF
 Ef
-zM
+qY
 RP
-iJ
+zd
 lU
 Ef
 JH
@@ -3489,7 +3592,7 @@ GF
 GF
 Ef
 Nb
-iJ
+zd
 QN
 WB
 Ef
@@ -3557,8 +3660,8 @@ GF
 GF
 Ef
 zF
-iJ
-iJ
+zd
+zd
 zd
 OP
 PO
@@ -4730,7 +4833,7 @@ UJ
 NR
 Hy
 NR
-cj
+ZC
 ik
 VQ
 ik
@@ -5750,11 +5853,11 @@ NR
 NR
 NR
 NR
-cj
-ik
+uf
+Gr
 VQ
 ik
-Fs
+Ce
 qt
 FO
 Wa
@@ -5818,8 +5921,8 @@ NR
 NR
 NR
 NR
-Bq
-ik
+OA
+Gr
 VQ
 ik
 Fs
@@ -6430,11 +6533,11 @@ NR
 NR
 NR
 NR
-Bq
+QU
 ik
 VQ
 ik
-Fs
+Wn
 Wa
 Wa
 Mn

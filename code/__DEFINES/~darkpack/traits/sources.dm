@@ -12,3 +12,7 @@
 
 // used by the obfuscate ability
 #define OBFUSCATE_TRAIT "obfuscate_trait"
+
+#define FRENZY_TRAIT "frenzy" // FRENZY
+
+#define ZONE_TRAIT "zone_trait"

@@ -119,6 +119,7 @@
 	cooldown_length = 1 TURNS
 
 	var/list/active_tentacles = list()
+	var/aggro_mode = "Aggressive"
 
 /datum/discipline_power/obtenebration/arms_of_the_abyss/activate(atom/target)
 	. = ..()
@@ -137,7 +138,7 @@
 		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
 
 		if(!has_action)
-			var/datum/action/aggro_mode/A = new()
+			var/datum/action/aggro_mode/A = new(src)
 			A.Grant(owner)
 
 		// Create tentacles based on successes
@@ -155,8 +156,9 @@
 				if(open_turfs.len)
 					new_tentacle = new /mob/living/basic/abyss_tentacle(pick(open_turfs), owner)
 
-			// if we ended up making a new tentacle add it to our list
+			// if we ended up making a new tentacle add it to our list and inherit set aggro_mode
 			if(new_tentacle)
+				new_tentacle.aggro_mode = aggro_mode
 				active_tentacles += new_tentacle
 	else
 		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
@@ -284,8 +286,8 @@
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
-	ADD_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT) // Trait to phase through doors
-	owner.pass_flags |= PASSTABLE
+	owner.pass_flags |= (PASSDOORS | PASSTABLE | PASSSTRUCTURE) // Phase through doors & fences / tables / machines, dumpsters, barrels, lampposts
+
 
 	saved_density = owner.density
 	owner.density = FALSE
@@ -305,8 +307,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_PASSDOOR, MAGIC_TRAIT)
-	owner.pass_flags &= ~PASSTABLE
+	owner.pass_flags &= ~(PASSDOORS | PASSTABLE | PASSSTRUCTURE)
 
 	owner.density = saved_density
 
@@ -319,8 +320,14 @@
 	button_icon = 'icons/hud/screen_glass.dmi'
 	button_icon_state = "harm"
 	var/current_mode = "Aggressive"
+	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power
 
-/datum/action/aggro_mode/Trigger(trigger_flags)
+/datum/action/aggro_mode/New(Target)
+	. = ..()
+	abyss_power = Target
+	current_mode = abyss_power.aggro_mode
+
+/datum/action/aggro_mode/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -342,13 +349,10 @@
 	var/select = tgui_input_list(tentacle_owner, "Select tentacle behaviour", "Tentacle Mode", options)
 	if(!select || !tentacle_owner)
 		return
-
+	if(!abyss_power)
+		return
+	abyss_power.aggro_mode = select
 	current_mode = select
-	tentacle_owner.tentacle_aggro_mode = select
-
-	// need to access the discipline_power so we can grab the list
-	var/datum/splat/vampire/vampire = get_splat_with_discipline(tentacle_owner)
-	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power = vampire?.get_discipline_power(/datum/discipline_power/obtenebration/arms_of_the_abyss)
 
 	var/tentacles = 0
 	for(var/mob/living/basic/abyss_tentacle/T in abyss_power?.active_tentacles)
@@ -388,8 +392,11 @@
 	. = ..()
 	power = Target
 
-/datum/action/clear_shadows/Trigger(trigger_flags)
-	if(!power)
+/datum/action/clear_shadows/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
 		return
+	if(!power)
+		return FALSE
 	power.remove_all_shadows()
-	return TRUE
+

@@ -43,7 +43,6 @@
 /obj/item/shield/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/disarm_attack)
-	AddElement(/datum/element/cuffable_item) //I mean, it has a closed handle, right?
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	var/effective_block_chance = final_block_chance
@@ -179,7 +178,7 @@
 
 /obj/item/shield/riot/Initialize(mapload)
 	. = ..()
-	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield) // DARKPACK EDIT REMOVE
+	/* var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/strobeshield) // DARKPACK EDIT REMOVAL
 
 	AddElement(
 		/datum/element/slapcrafting,\

@@ -3,7 +3,7 @@
 	desc = "There is opium attention sign on the top."
 	spawn_count = 10
 	spawn_type = /obj/item/reagent_containers/applicator/pill/ephedrine
-	custom_price = 200 // DARKPACK EDIT ADD - ECONOMY
+	custom_price = 200
 
 /obj/item/reagent_containers/applicator/pill/ephedrine
 	name = "ephedrine pill"

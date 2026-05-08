@@ -8,7 +8,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
@@ -144,7 +144,18 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+
+/datum/crafting_recipe/wireprod
+	name = "Wireprod assembly"
+	result = /obj/item/wireprod
+	reqs = list(
+		/obj/item/restraints/handcuffs/cable = 1,
+		/obj/item/stack/rods = 1,
+	)
+	time = 2 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
 	reqs = list(
@@ -198,7 +209,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/giant_wrench
 	name = "Big Slappy"
 	result = /obj/item/shovel/giant_wrench
@@ -242,7 +253,7 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/sm_sword
 	name = "Supermatter Sword"
 	result = /obj/item/melee/supermatter_sword

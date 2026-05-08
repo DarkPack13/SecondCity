@@ -1,0 +1,4 @@
+author: "Kolibri-B"
+delete-after: True
+changes:
+  - bugfix: "Fixed Obtenebration 3 \"Arms of the Abyss\" tentacle behaviour"
