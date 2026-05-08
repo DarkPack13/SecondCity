@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// This will, for instance, update the character preference view.
 /// Performs sanity checks.
 /datum/preferences/proc/update_preference(datum/preference/preference, preference_value)
-	if (!preference.is_accessible(src))
+	if (!preference.visible_in_page(src)) // DARKPACK EDIT CHANGE - (is_accessible to visible_in_page)
 		return FALSE
 
 	var/new_value = preference.deserialize(preference_value, src)
