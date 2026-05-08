@@ -11,11 +11,8 @@
 
 /datum/round_event_control/darkpack/szlachta/can_spawn_event(players_amt, allow_magic)
 	. = ..()
-	if(!.)
+	if(!locate(/obj/effect/landmark/event_spawn/szlachta/landmark) in GLOB.generic_event_spawns)
 		return FALSE
-	for(var/obj/effect/landmark/event_spawn/szlachta/landmark in GLOB.generic_event_spawns)
-		return TRUE
-	return FALSE
 
 /datum/round_event/szlachta
 	start_when = 1
