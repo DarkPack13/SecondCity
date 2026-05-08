@@ -14,29 +14,12 @@
 	return pref_list
 
 /datum/preference/choiced/subsplat/fera_breed/icon_for(value)
-	var/datum/universal_icon/garou_icon = uni_icon('icons/effects/effects.dmi', "nothing")
-	switch(value)
-		if(BREED_HOMID)
-			var/datum/universal_icon/breed_homid = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_head_m")
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_chest_m"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_arm"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_arm"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_leg"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_leg"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_hand"), ICON_OVERLAY)
-			breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_hand"), ICON_OVERLAY)
-			breed_homid.blend_color(skintone2hex("caucasian1"), ICON_MULTIPLY)
-			breed_homid.scale(32, 32)
-			garou_icon.blend_icon(breed_homid, ICON_OVERLAY)
-		if(BREED_LUPUS)
-			var/datum/universal_icon/breed_lupus = uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi', "black")
-			breed_lupus.scale(32, 32)
-			garou_icon.blend_icon(breed_lupus, ICON_OVERLAY)
-		if(BREED_CRINOS)
-			var/datum/universal_icon/breed_crinos = uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi', "black")
-			breed_crinos.scale(32, 32)
-			garou_icon.blend_icon(breed_crinos, ICON_OVERLAY)
-	return garou_icon
+	var/datum/universal_icon/breed_icon = uni_icon('icons/effects/effects.dmi', "nothing")
+
+	var/datum/subsplat/werewolf/breed_form/breed_form = get_fera_breed_form(value)
+	breed_form.generation_pref_icon(breed_icon)
+
+	return breed_icon
 
 /datum/preference/choiced/subsplat/fera_breed/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)

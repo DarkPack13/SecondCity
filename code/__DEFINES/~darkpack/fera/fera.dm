@@ -9,10 +9,11 @@
 #define MAX_GNOSIS 10
 #define PRIMAL_URGE_PLACEHOLDER 3
 
-#define BREED_HOMID "Homid"
+#define BREED_GAROU_HOMID "Garou Homid"
 #define BREED_LUPUS "Lupus"
 #define BREED_CRINOS "Crinos"
 
+#define BREED_CORAX_HOMID "Corax Homid"
 #define BREED_CORVID "Corvid"
 
 #define FEATURE_FUR_COLOR "fera_fur"
