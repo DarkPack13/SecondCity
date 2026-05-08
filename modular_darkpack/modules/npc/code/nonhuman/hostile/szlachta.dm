@@ -1,7 +1,7 @@
 /mob/living/basic/szlachta
-	name = "biter"
+	name = "szlachta biter"
 	desc = "A ferocious, fang-bearing creature that resembles a spider."
-	icon = 'modular_darkpack/modules/deprecated/icons/mobs.dmi'
+	icon = 'modular_darkpack/modules/npc/icons/szlachta.dmi'
 	icon_state = "biter"
 	icon_living = "biter"
 	icon_dead = "biter_dead"
@@ -21,7 +21,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	speak_emote = list("gnashes")
-	faction = list(VAMPIRE_CLAN_TZIMISCE)
+	faction = list(FACTION_SABBAT)
 	pressure_resistance = 200
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
@@ -30,8 +30,8 @@
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 
 /mob/living/basic/szlachta/fister
-	name = "fister"
-	desc = "A true abomination walking on both hands."
+	name = "szlachta"
+	desc = "A true abomination walking on both hands with bright white, hollow, sad eyes."
 	icon_state = "fister"
 	icon_living = "fister"
 	icon_dead = "fister_dead"
@@ -50,8 +50,8 @@
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 5)
 
 /mob/living/basic/szlachta/tanker
-	name = "tanker"
-	desc = "The peak of abominable armor. Unbelievably undamagable..."
+	name = "vozhd"
+	desc = "A frightening tank of flesh and bone with sword like appendages and unbelievable biological padding. Seasoned vampires know them as the siege-ghouls of the Tzimisce."
 	icon_state = "tanker"
 	icon_living = "tanker"
 	icon_dead = "tanker_dead"
@@ -68,6 +68,27 @@
 	maxbloodpool = 7
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)
 
+
+/mob/living/basic/szlachta/otherthing
+	name = "sludgelike vozhd"
+	desc = "a sludgelike, fanged bulbous creature, resembling the other siege-ghouls, but this one bites and tears the flesh and drinks the blood hungrily..."
+	icon_state = "otherthing"
+	icon_living = "otherthing"
+	icon_dead = "otherthing_dead"
+	maxHealth = 350
+	health = 350
+	butcher_results = list(/obj/item/stack/sheet/meat = 4)
+	melee_damage_lower = 25
+	melee_damage_upper = 25
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
+	attack_sound = 'sound/items/weapons/slash.ogg'
+	combat_mode = TRUE
+	bloodpool = 10
+	maxbloodpool = 10
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)
+
+
 /mob/living/basic/szlachta/hostile
 	faction = list(FACTION_HOSTILE)
 
@@ -75,4 +96,7 @@
 	faction = list(FACTION_HOSTILE)
 
 /mob/living/basic/szlachta/tanker/hostile
+	faction = list(FACTION_HOSTILE)
+
+/mob/living/basic/szlachta/otherthing/hostile
 	faction = list(FACTION_HOSTILE)
