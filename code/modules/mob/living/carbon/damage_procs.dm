@@ -13,7 +13,7 @@
 	wound_clothing = TRUE,
 	soak_difficulty = 6,
 	unsoakable = FALSE,
-)
+) // DARKPACK EDIT CHANGE - (soak)
 
 	if(!forced && unsoakable == FALSE) //If the damage isn't forced and isn't unsoakable, run it through the soak proc.
 		damage = soak_roll(damage, damagetype, def_zone, sharpness, attacking_item, soak_difficulty)
@@ -57,7 +57,7 @@
 	wound_clothing = TRUE,
 	soak_difficulty = 6,
 	unsoakable = FALSE,
-)
+) // DARKPACK EDIT CHANGE - (soak)
 
 	// Add relevant DR modifiers into blocked value to pass to parent
 	blocked += physiology?.damage_resistance
@@ -411,12 +411,12 @@
 	var/roll_used = soak_dice_bashing
 	switch(damagetype)
 		if(BRUTE)
-			if(isprojectile(attacking_item))	
+			if(isprojectile(attacking_item))
 				if(get_kindred_splat(src) && !def_zone == HEAD)
 					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
-				else 
+				else
 					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
-			else if(!sharpness == NONE)	
+			else if(!sharpness == NONE)
 				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
 			else
 				roll_used = soak_dice_bashing //Everything else should take Bashing.
@@ -445,5 +445,8 @@
 		damage = (max(0, damage - (successes * 10)))
 		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
 
-	return damage 
+	return damage
+
+/mob/living/carbon/proc/update_soak() //Pretty basic calculation for the average person/being, soak is Bashing only using Stamina.
+	soak_dice_bashing = st_get_stat(STAT_STAMINA)
 // DARKPACK EDIT ADD END

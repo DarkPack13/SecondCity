@@ -195,3 +195,7 @@
 	points -= amount
 	freebie_cost_spent += amount
 	return TRUE
+
+
+/datum/st_stat/proc/update_mob(mob/living/our_mob)
+	return

@@ -537,7 +537,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		. = TRUE
 	return ..() || .
 
-/mob/living/silicon/robot/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing, soak_difficulty = 6, unsoakable = FALSE)
+/mob/living/silicon/robot/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing, soak_difficulty = 6, unsoakable = FALSE) // DARKPACK EDIT CHAGE - (soak)
 	var/mob/living/silicon/robot/borg = src
 	var/obj/item/shield_module/shield = locate() in borg
 	if(!shield)

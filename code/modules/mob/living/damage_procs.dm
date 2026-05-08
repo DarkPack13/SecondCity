@@ -37,7 +37,7 @@
 	wound_clothing = TRUE,
 	soak_difficulty = 6,
 	unsoakable = FALSE,
-)
+) // DARKPACK EDIT CHANGE - (soak)
 	SHOULD_CALL_PARENT(TRUE)
 	var/damage_amount = damage
 	if(!forced)

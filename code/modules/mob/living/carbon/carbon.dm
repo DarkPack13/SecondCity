@@ -5,7 +5,6 @@
 	living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
 
 	register_context()
-	update_soak() // DARKPACK EDIT ADDITION
 
 	GLOB.carbon_list += src
 	ADD_TRAIT(src, TRAIT_CAN_HOLD_ITEMS, INNATE_TRAIT) // Carbons are assumed to be innately capable of having arms, we check their arms count instead
@@ -1414,8 +1413,3 @@
 	if (overeatduration >= 200 SECONDS)
 		to_chat(src, span_danger("You suddenly feel blubbery!"))
 		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
-
-// DARKPACK EDIT START
-/mob/living/carbon/proc/update_soak() //Pretty basic calculation for the average person/being, soak is Bashing only using Stamina.
-	soak_dice_bashing = st_get_stat(STAT_STAMINA)
-// DARKPACK EDIT END
