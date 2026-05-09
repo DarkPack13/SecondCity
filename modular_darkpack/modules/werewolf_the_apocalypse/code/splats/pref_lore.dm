@@ -51,7 +51,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_MOON,
 			SPECIES_PERK_NAME = "Silver weakness",
-			SPECIES_PERK_DESC = "Silver weapons is unable to be soaked in non-bredforms and causes loss of Gnosis.",
+			SPECIES_PERK_DESC = "Silver weapons is unable to be soaked in non-breedforms and causes loss of Gnosis.",
 		),
 	)
 
@@ -89,9 +89,9 @@
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = FA_ICON_MOON,
+			SPECIES_PERK_ICON = FA_ICON_SUN,
 			SPECIES_PERK_NAME = "Gold weakness",
-			SPECIES_PERK_DESC = "Gold weapons is unable to be soaked in non-bredforms and causes loss of Gnosis.",
+			SPECIES_PERK_DESC = "Gold weapons is unable to be soaked in non-breedforms and causes loss of Gnosis.",
 		),
 	)
 
