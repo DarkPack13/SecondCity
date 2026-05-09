@@ -160,6 +160,13 @@
 					continue
 				guy.apply_status_effect(STATUS_EFFECT_DELIRIUM, owner)
 
+/datum/splat/werewolf/shifter/proc/causes_delirium()
+	var/datum/species/human/shifter/shifter_species = owner.dna.species
+	if(istype(shifter_species))
+		return FALSE
+	if(shifter_species.causes_delirium && !HAS_TRAIT(owner, TRAIT_PIERCED_VEIL))
+		return TRUE
+
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, gnosis_regain_cd))
@@ -251,6 +258,7 @@
 	mimmicing_animal = /mob/living/basic/corvid/raven
 
 	warcry_emote = "caw"
+
 
 /mob/living/carbon/human/splat/kinfolk
 	auto_splats = list(/datum/splat/werewolf/kinfolk)

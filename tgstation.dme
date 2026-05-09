@@ -7856,6 +7856,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\bird.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\bird_ai.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\wolf.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\changing_breeds\corax.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\_gift.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ahroun.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\galliard.dm"
