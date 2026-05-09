@@ -152,7 +152,8 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 	to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
 	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 	playsound(src, 'sound/items/weapons/armbomb.ogg', 100, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(explode)), 4 SECONDS)
+	anchored = TRUE
+	addtimer(CALLBACK(src, PROC_REF(explode)), 6 SECONDS)
 
 /obj/sarcophagus/bomb/proc/explode()
 	explosion(src, devastation_range = 2, heavy_impact_range = 7, light_impact_range = 11)
