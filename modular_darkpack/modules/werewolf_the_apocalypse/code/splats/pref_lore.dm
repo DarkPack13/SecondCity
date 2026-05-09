@@ -46,7 +46,13 @@
 			SPECIES_PERK_ICON = FA_ICON_BAND_AID,
 			SPECIES_PERK_NAME = "Passive healing",
 			SPECIES_PERK_DESC = "Garou have a strong passive healing while outside of their breed form.",
-		)
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_MOON,
+			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_DESC = "Silver weapons is unable to be soaked in non-bredforms and causes loss of Gnosis.",
+		),
 	)
 
 	return to_add
@@ -80,7 +86,13 @@
 			SPECIES_PERK_ICON = FA_ICON_BAND_AID,
 			SPECIES_PERK_NAME = "Passive healing",
 			SPECIES_PERK_DESC = "Corax have a strong passive healing while outside of their breed form.",
-		)
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_MOON,
+			SPECIES_PERK_NAME = "Gold weakness",
+			SPECIES_PERK_DESC = "Gold weapons is unable to be soaked in non-bredforms and causes loss of Gnosis.",
+		),
 	)
 
 	return to_add

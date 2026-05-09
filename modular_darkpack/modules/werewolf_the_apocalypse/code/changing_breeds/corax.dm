@@ -32,6 +32,7 @@
 				)
 				if(choice == "Yes")
 					hostiles += 1
+				guy.log_message("Answered [choice ? choice : "Nothing"] when asked if [owner] was hostile via Enemy's Ways.", LOG_GAME)
 				waiting_clients--
 		else
 			if(!guy.faction_check_atom(owner) && !guy.has_ally(owner))

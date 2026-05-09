@@ -87,8 +87,8 @@
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
 		TRAIT_FERA_FUR,
-		TRAIT_FRENETIC_AURA,
 		TRAIT_FERA_RENOWN,
+		TRAIT_FRENETIC_AURA,
 		TRAIT_SILVER_WEAKNESS,
 	)
 	// id = SPLAT_FERA
@@ -225,6 +225,7 @@
 	id = SPLAT_CORAX
 	splat_traits = list(
 		TRAIT_FERA_FUR,
+		TRAIT_FERA_RENOWN,
 		TRAIT_FRENETIC_AURA,
 		TRAIT_GOLD_WEAKNESS,
 	)
