@@ -106,9 +106,9 @@ the scar is received and an extra Gnosis point is spent.
 
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
-		if(!target.is_enlightenment())
+		if(target.is_enlightenment())
 			. = 6
-		else if(target.st_get_stat(STAT_MORALITY) <= 7)
+		else if(target.st_get_stat(STAT_MORALITY) < 7)
 			. = 6
 
 /datum/action/cooldown/power/gift/spirit_speech
