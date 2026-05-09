@@ -58,9 +58,9 @@
 	return to_add
 
 /datum/splat/werewolf/shifter/corax/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.set_haircolor("#502D15", update = FALSE)
-	human.set_hairstyle("Long Hair 3", update = TRUE)
-	human.undershirt = "Shirt (Alien)"
+	human.set_haircolor("#241e1c", update = FALSE)
+	human.set_hairstyle("Long Over Eye", update = TRUE)
+	human.undershirt = "Shirt (Black)"
 	human.update_body()
 
 /datum/splat/werewolf/shifter/corax/get_splat_description()
