@@ -36,9 +36,8 @@
 	if(!wolf)
 		return FALSE
 
-	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
-
 	to_chat(owner, span_cult_large("Something DEEP inside you fills you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
+	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
 
 	if(owner.client)
 		// dir SOUTH is admitting i compeletly lost the fight against this stupid bullshit and cant get the image to properly mimmic the direction of the mob.
