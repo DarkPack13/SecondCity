@@ -166,6 +166,13 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 		color_override = "red",
 	)
 
+/obj/sarcophagus/empty
+
+/obj/sarcophagus/empty/open_the_sarcophagus()
+	icon_state = "b_sarcophagus-open0"
+	to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
+	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+
 /obj/fake_sarcophagus
 	name = "unknown sarcophagus"
 	desc = "A shiver runs down your spine just looking at it..."

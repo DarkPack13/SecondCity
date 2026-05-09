@@ -11,8 +11,12 @@
 
 /datum/round_event_control/darkpack/sarcophagus/can_spawn_event(players_amt, allow_magic)
 	. = ..()
-	if(!locate(/obj/effect/landmark/event_spawn/sarcophagus) in GLOB.generic_event_spawns)
-		return FALSE
+	var/sarcophagus_spawns = 0
+	for(var/obj/effect/landmark/event_spawn/sarcophagus/L in GLOB.generic_event_spawns)
+		sarcophagus_spawns++
+		if(sarcophagus_spawns >= 2)
+			return TRUE
+	return FALSE
 
 /datum/round_event/sarcophagus
 	start_when = 1
@@ -30,6 +34,14 @@
 /datum/round_event/sarcophagus/start()
 	var/list/landmarks = list()
 	for(var/obj/effect/landmark/event_spawn/sarcophagus/L in GLOB.generic_event_spawns)
+		// dont spawn if a player is nearby we don't need them popping in unrealistically
+		var/player_nearby = FALSE
+		for(var/mob/living/nearby_mob in view(DEFAULT_SIGHT_DISTANCE, L.loc))
+			if(nearby_mob.client)
+				player_nearby = TRUE
+				break
+		if(player_nearby)
+			continue
 		landmarks += L
 
 	if(length(landmarks) < 2)
@@ -39,6 +51,6 @@
 	landmarks -= sarcophagus_landmark
 	var/obj/effect/landmark/event_spawn/sarcophagus/key_landmark = pick(landmarks)
 
-	var/sarcophagus_type = prob(50) ? /obj/sarcophagus/bomb : /obj/sarcophagus
+	var/sarcophagus_type = pick(list(/obj/sarcophagus/bomb, /obj/sarcophagus, /obj/sarcophagus/empty))
 	new sarcophagus_type(sarcophagus_landmark.loc)
 	new /obj/item/sarcophagus_key(key_landmark.loc)
