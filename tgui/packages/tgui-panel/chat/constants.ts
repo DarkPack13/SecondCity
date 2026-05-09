@@ -107,7 +107,7 @@ export const MESSAGE_TYPES: MessageType[] = [
     description: 'The bluewall of global OOC messages',
     selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
-  // DARKPACK EDIT ADD START
+  // DARKPACK EDIT ADD START - LOOC
   {
     type: MESSAGE_TYPE_LOOC,
     name: 'LOOC',
