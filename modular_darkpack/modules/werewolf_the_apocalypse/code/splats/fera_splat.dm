@@ -4,6 +4,8 @@
 
 	power_type = /datum/action/cooldown/power/gift
 
+	uses_veil = TRUE
+
 	// Perm is for rolls
 	// Non-perm/ or temp is for expenditure
 	var/uses_rage = FALSE

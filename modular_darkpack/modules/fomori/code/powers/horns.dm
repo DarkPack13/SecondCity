@@ -19,3 +19,4 @@
 		deployed = FALSE
 	else
 		deployed = TRUE
+		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)

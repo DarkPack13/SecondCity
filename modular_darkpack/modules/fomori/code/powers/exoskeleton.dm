@@ -27,3 +27,4 @@
 		carbon_owner.st_add_stat_mod(STAT_STAMINA, 1, "exoskeleton")
 		carbon_owner.st_add_stat_mod(STAT_STRENGTH, 1, "exoskeleton")
 		playsound(owner, 'modular_darkpack/modules/powers/sounds/potence_activate.ogg', 50)
+		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)

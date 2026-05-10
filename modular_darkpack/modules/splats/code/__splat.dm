@@ -35,6 +35,8 @@
 	var/splat_biotypes
 	/// Base type of the powers that this splat has
 	var/power_type
+	/// Whether or not we use the MASQUERADE or the VEIL
+	var/uses_veil
 
 	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats

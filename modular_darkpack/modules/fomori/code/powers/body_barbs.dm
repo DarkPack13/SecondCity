@@ -51,6 +51,7 @@
 		owner.visible_message(span_warning("A pair of grotesque barbs extend from [owner]\'s arms!"), \
 			span_warning("Your body barbs extend from your arms."), \
 			span_hear("You hear organic matter ripping and tearing!"))
+		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/two
 	rank = 2

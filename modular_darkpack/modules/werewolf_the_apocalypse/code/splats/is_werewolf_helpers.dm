@@ -27,4 +27,3 @@
 	RETURN_TYPE(/datum/splat/werewolf/kinfolk)
 
 	return character.get_splat(/datum/splat/werewolf/kinfolk)
-

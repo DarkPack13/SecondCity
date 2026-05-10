@@ -6,6 +6,8 @@
 	splat_priority = SPLAT_PRIO_FOMORI
 
 	power_type = /datum/action/cooldown/power/fomori_power
+
+	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
 
 /datum/splat/fomori/splat_life(seconds_per_tick)
@@ -26,6 +28,8 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1) // unfinished
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1) // done
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1) // done
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) //
 
 /datum/splat/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)

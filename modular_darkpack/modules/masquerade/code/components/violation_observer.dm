@@ -69,7 +69,11 @@
 
 /atom/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
-	if(get_werewolf_splat(player_breacher))
+	for(var/datum/splat in player_breacher.splats)
+		if(splat.uses_veil)
+			should_use_veil = TRUE
+
+	if(should_use_veil)
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/veil_violation.ogg', 50, FALSE, -5)
 		return
@@ -77,7 +81,11 @@
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
 /atom/proc/observe_masquerade_reinforce(player_breacher)
-	if(get_werewolf_splat(player_breacher))
+	for(var/datum/splat in player_breacher.splats)
+		if(splat.uses_veil)
+			should_use_veil = TRUE
+
+	if(should_use_veil)
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
 		return
