@@ -59,8 +59,9 @@
 		soak_dice_aggravated = st_get_stat(STAT_STAMINA)
 
 	if(get_ghoul_splat(src))
+		soak_dice_lethal = st_get_stat(STAT_STAMINA) //Ghouls and Revenants, V20, Page 42
 		var/datum/discipline/soak_fortitude = src.get_discipline(/datum/discipline/fortitude)
 		if(!soak_fortitude)
 			return
-		soak_dice_lethal = soak_fortitude.level //Ghouls can soak lethal and agg via fortitude.
+		soak_dice_lethal += soak_fortitude.level //Ghouls can soak lethal and agg via fortitude.
 		soak_dice_aggravated = soak_fortitude.level
