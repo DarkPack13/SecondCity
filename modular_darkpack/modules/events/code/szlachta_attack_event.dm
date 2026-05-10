@@ -24,14 +24,7 @@
 	endpost_announce(endpost_szlachta_post, endpost_szlachta_author)
 
 /datum/round_event/szlachta/start()
-	var/list/szlachta_spawns = list()
 	for(var/obj/effect/landmark/event_spawn/szlachta/landmark in GLOB.generic_event_spawns)
-		szlachta_spawns += landmark
-
-	if(!length(szlachta_spawns))
-		return
-
-	for(var/obj/effect/landmark/event_spawn/szlachta/landmark in szlachta_spawns)
 		if(!prob(20))
 			continue
 		var/turf/spawn_turf = get_turf(landmark)
