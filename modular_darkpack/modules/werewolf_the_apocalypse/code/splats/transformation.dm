@@ -56,6 +56,9 @@
 
 	// owner.Stun(time_to_transform, ignore_canstun = TRUE)
 
+	for(var/obj/item/clothing/equipped in owner.get_equipped_items(INCLUDE_ABSTRACT))
+		equipped.take_damage(rand(25, 50), sound_effect = FALSE)
+
 	var/matrix/ntransform = matrix(owner.transform)
 	ntransform.Scale(1.1, 1.1)
 	animate(owner, transform = ntransform, color = "#000000", time = time_to_transform * 0.9)

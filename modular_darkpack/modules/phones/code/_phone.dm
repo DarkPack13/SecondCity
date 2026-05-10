@@ -267,8 +267,8 @@
 
 	data["calling_user"] = get_number_contact_name()
 
-	data["time"] = station_time_timestamp("hh:mm")
-	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
+	data["time"] = server_timestamp("hh:mm", ic_time = TRUE)
+	data["date"] = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE)
 	data["background_url"] = phone_background
 
 	var/list/conversations_list = list()
@@ -611,8 +611,8 @@
 
 	var/new_post = list(
 		"body" = trim(body),
-		"date" = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]",
-		"time" = station_time_timestamp("hh:mm"),
+		"date" = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE),
+		"time" = server_timestamp("hh:mm", ic_time = TRUE),
 		"author" = endpost_username
 	)
 

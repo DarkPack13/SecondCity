@@ -1,0 +1,4 @@
+author: "lobotomypilled"
+delete-after: True
+changes:
+  - bugfix: "fixed transformers being unrepairable upon failing the roll\n:cl:"

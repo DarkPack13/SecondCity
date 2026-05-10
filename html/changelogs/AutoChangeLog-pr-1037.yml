@@ -1,0 +1,4 @@
+author: "Biplume"
+delete-after: True
+changes:
+  - bugfix: "Rolls to not step on sticks are now private."
