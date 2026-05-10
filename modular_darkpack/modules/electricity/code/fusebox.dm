@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 				return ITEM_INTERACT_SUCCESS
 			if(repair_amount <= 0)
 				user.electrocute_act(50, src, siemens_coeff = 1, flags = NONE)
-
+				repairing = FALSE
 	return NONE
 
 // transformers (another type of fusebox)

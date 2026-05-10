@@ -10,6 +10,18 @@ export const flavor_text: Feature<string> = {
   component: FeatureTextInput,
 };
 
+export const war_form_flavor_text: Feature<string> = {
+  name: 'Flavor Text (War form)',
+  description: "Appears when your character is examined as a war form fera (Crinos). This replaces the main flavor text section.",
+  component: FeatureTextInput,
+};
+
+export const feral_form_flavor_text: Feature<string> = {
+  name: 'Flavor Text (Feral form)',
+  description: "Appears when your character is examined as a feral and dire form fera (Hispo/Lupus). This replaces the main flavor text section.",
+  component: FeatureTextInput,
+};
+
 export const nsfw_flavor_text: Feature<string> = {
   name: 'Flavor Text (NSFW)',
   description: "Appears when your character is examined (but only if they're identifiable - try a gas mask).",
