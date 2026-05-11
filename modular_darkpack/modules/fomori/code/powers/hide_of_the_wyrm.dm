@@ -30,4 +30,4 @@
 			span_warning("Your skin becomes hard and leathery."))
 		carbon_owner.apply_status_effect(/datum/status_effect/fortitude/one) // ! if we ever plan on allowing vampiric fomor, give this it's own status effect !
 		playsound(owner, 'modular_darkpack/modules/powers/sounds/potence_activate.ogg', 50)
-		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)

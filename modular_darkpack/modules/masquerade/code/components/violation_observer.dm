@@ -67,10 +67,11 @@
 		source.observe_masquerade_reinforce(player_breacher)
 		breached_players -= player_breacher
 
-/atom/proc/observe_masquerade_violation(player_breacher)
+/atom/proc/observe_masquerade_violation(mob/living/player_breacher)
 	do_alert_animation()
-	for(var/datum/splat in player_breacher.splats)
-		if(splat.uses_veil)
+	var/should_use_veil
+	for(var/datum/splat/breacher_splat in player_breacher.splats)
+		if(breacher_splat.uses_veil)
 			should_use_veil = TRUE
 
 	if(should_use_veil)
@@ -80,9 +81,10 @@
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
-/atom/proc/observe_masquerade_reinforce(player_breacher)
-	for(var/datum/splat in player_breacher.splats)
-		if(splat.uses_veil)
+/atom/proc/observe_masquerade_reinforce(mob/living/player_breacher)
+	var/should_use_veil
+	for(var/datum/splat/breacher_splat in player_breacher.splats)
+		if(breacher_splat.uses_veil)
 			should_use_veil = TRUE
 
 	if(should_use_veil)

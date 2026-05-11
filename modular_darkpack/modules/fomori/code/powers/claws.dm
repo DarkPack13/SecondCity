@@ -34,4 +34,4 @@
 		owner.visible_message(span_warning("A pair of grotesque claws extend from [owner]\'s hands!"), \
 			span_warning("Your claws extend from your hands."), \
 			span_hear("You hear organic matter ripping and tearing!"))
-		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)

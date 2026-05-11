@@ -28,4 +28,4 @@
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, "fomor_fangs")
 		deployed = TRUE
 		carbon_owner.combat_bite_damages = list(BRUTE = 0, BURN = 0, TOX = 0, OXY = 0, AGGRAVATED = 1 TTRPG_DAMAGE)
-		SEND_SIGNAL(entered_mob, COMSIG_MASQUERADE_VIOLATION)
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)

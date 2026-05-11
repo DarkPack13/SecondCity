@@ -27,8 +27,8 @@
 
 	to_chat(owner, span_warning("You touch [defender], intending to infect them with a grotesque illness..."))
 
-	var/datum/storyteller_roll/roll_datum = new /datum/storyteller_roll/fomor_infectious_touch
-	var/datum/storyteller_roll/roll_datum_defender = new /datum/storyteller_roll/fomor_infectious_touch/defender
+	var/datum/storyteller_roll/roll_datum = new /datum/storyteller_roll/infectious_touch
+	var/datum/storyteller_roll/roll_datum_defender = new /datum/storyteller_roll/infectious_touch/defender
 	var/our_power = roll_datum.st_roll(owner)
 	var/their_power = roll_datum_defender.st_roll(defender)
 
