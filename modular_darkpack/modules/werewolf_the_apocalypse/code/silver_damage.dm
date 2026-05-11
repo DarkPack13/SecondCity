@@ -37,5 +37,5 @@
 		shot_pup_splat.adjust_gnosis(-gnosis_damage, TRUE)
 
 		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
-		if(shot_pup.is_breed_form() && (shot_pup.get_our_breed_form() != BREED_CRINOS))
+		if(!shot_pup_splat.is_breed_form() || iscrinos(shot_pup))
 			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
