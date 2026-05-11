@@ -24,7 +24,7 @@
 		var/mob/living/carbon/human/shot_pup = target
 		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
 
-		if(shot_pup.is_breed_form() && (shot_pup.get_our_breed_form() != BREED_CRINOS))
+		if(!shot_pup_splat.is_breed_form() || iscrinos(shot_pup))
 			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
 			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
 
