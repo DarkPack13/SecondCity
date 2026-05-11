@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - qol: "Makes the local host start now sound quieter and only play once"
