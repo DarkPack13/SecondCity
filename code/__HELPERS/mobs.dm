@@ -406,7 +406,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
 			override = SEE_DEADCHAT_NORMAL
 		// DARKPACK EDIT ADD START
-		if(HAS_TRAIT(M, TRAIT_LOCAL_SIXTHSENSE) && (message_type == DEADCHAT_REGULAR) && (source in orange(DEFAULT_MESSAGE_RANGE, M)))
+		if(HAS_TRAIT(M, TRAIT_LOCAL_SIXTHSENSE) && (message_type == DEADCHAT_REGULAR) && ((follow_target || turf_target) in orange(DEFAULT_MESSAGE_RANGE, M)))
 			override = SEE_DEADCHAT_NORMAL
 		// DARKPACK EDIT ADD END
 		if(SSticker.current_state == GAME_STATE_FINISHED)
