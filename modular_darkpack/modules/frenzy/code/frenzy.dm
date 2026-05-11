@@ -34,6 +34,7 @@
 	abstract_type = /datum/storyteller_roll/frenzy
 	bumper_text = "frenzy"
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_ADMIN
 
 /datum/storyteller_roll/frenzy/rotschreck
 	applicable_stats = list(STAT_COURAGE)
