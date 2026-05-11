@@ -86,7 +86,7 @@
 	.=..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE, roll_output_type = ROLL_PRIVATE)
+	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
 	if(successes > 0)
 		return TRUE
 
