@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/bluespace_vendor_mount // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/bluespace_vendor_mount // DARKPACK EDIT REMOVAL
 	name = "Bluespace Vendor Wall Mount"
 	result = /obj/item/wallframe/bluespace_vendor_mount
 	time = 6 SECONDS

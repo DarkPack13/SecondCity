@@ -4,7 +4,7 @@
 #define SILICON_NEUTER "It/Its"
 
 /datum/preference/choiced/silicon_gender
-	category = null // DARKPACK EDIT CHANGE - Original : category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null // DARKPACK EDIT CHANGE - ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_gender"
 	should_update_preview = FALSE

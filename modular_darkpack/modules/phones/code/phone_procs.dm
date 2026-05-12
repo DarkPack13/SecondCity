@@ -44,7 +44,7 @@
 	new_contact.number = dialed_number ? dialed_number : incoming_phone_number
 	new_contact.call_type = call_type
 	new_contact.call_type_tooltip = call_type_tooltip
-	new_contact.time = station_time_timestamp("hh:mm:ss")
+	new_contact.time = server_timestamp("hh:mm:ss", ic_time = TRUE)
 	phone_history_list += new_contact
 
 /obj/item/smartphone/proc/set_phone_state(new_state)

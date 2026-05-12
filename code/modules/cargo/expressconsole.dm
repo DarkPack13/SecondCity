@@ -1,6 +1,22 @@
 #define EXPRESS_EMAG_DISCOUNT 0.72
 #define BEACON_PRINT_COOLDOWN 10 SECONDS
 
+// DARKPACK EDIT ADD START
+GLOBAL_LIST_EMPTY(cargo_landing_spots)
+/obj/effect/abstract/cargo_landing_spot
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x2"
+	invisibility = INVISIBILITY_ABSTRACT
+
+/obj/effect/abstract/cargo_landing_spot/Initialize(mapload)
+	. = ..()
+	GLOB.cargo_landing_spots += src
+
+/obj/effect/abstract/cargo_landing_spot/Destroy(force)
+	. = ..()
+	GLOB.cargo_landing_spots -= src
+// DARKPACK EDIT ADD END
+
 /obj/machinery/computer/cargo/express
 	name = "express supply console"
 	desc = "This console allows the user to purchase a package \
@@ -14,7 +30,6 @@
 	interface_type = "CargoExpress"
 
 	var/message
-	var/list/meme_pack_data
 	/// The linked supplypod beacon
 	var/obj/item/supplypod_beacon/beacon
 	/// Where we droppin boys
@@ -31,16 +46,10 @@
 
 /obj/machinery/computer/cargo/express/Initialize(mapload)
 	. = ..()
-	packin_up()
 	landingzone = GLOB.areas_by_type[landingzone]
 	if (isnull(landingzone))
 		WARNING("[src] couldnt find a Quartermaster/Storage (aka cargobay) area on the station, and as such it has set the supplypod landingzone to the area it resides in.")
 		landingzone = get_area(src)
-	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(withdraw_money)) // DARKPACK EDIT ADD - Putting cash into the Cargo console
-
-/obj/machinery/computer/cargo/express/on_construction(mob/user)
-	. = ..()
-	packin_up()
 
 /obj/machinery/computer/cargo/express/Destroy()
 	if(beacon)
@@ -73,7 +82,7 @@
 		to_chat(user, span_alert("[src] is already linked to [beacon]."))
 		return ITEM_INTERACT_FAILURE
 
-	// DARKPACK EDIT ADD START - Putting cash into the cargo console
+	// DARKPACK EDIT ADD START - (Putting cash into the cargo console)
 	if(istype(tool, /obj/item/stack/dollar))
 		var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
 		if(isnull(account))
@@ -81,15 +90,15 @@
 		var/obj/item/stack/dollar/cash = tool
 		var/amount = cash.amount
 		account.adjust_money(amount)
-		to_chat(user, span_notice("You deposit [amount] dollar\s into the cargo account."))
+		to_chat(user, span_notice("You deposit [amount] [MONEY_NAME_AUTOPURAL(amount)] into the cargo account."))
 		qdel(cash)
 		return ITEM_INTERACT_SUCCESS
-	// DARKPACK EDIT ADD END - Putting cash into the cargo console
+	// DARKPACK EDIT ADD END
 
 	return NONE
 
 // DARKPACK EDIT ADD START - (Putting cash into the cargo console)
-/obj/machinery/computer/cargo/express/proc/withdraw_money(mob/living/user)
+/obj/machinery/computer/cargo/express/click_alt(mob/user)
 	var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
 	if(isnull(account))
 		return
@@ -103,7 +112,7 @@
 		var/stack_amount = min(amount, 1000)
 		new /obj/item/stack/dollar(T, stack_amount)
 		amount -= stack_amount
-	to_chat(user, span_notice("You withdraw [account.account_balance] dollar\s from the cargo account."))
+	to_chat(user, span_notice("You withdraw [account.account_balance] [MONEY_NAME_AUTOPURAL(amount)] from the cargo account."))
 // DRAKPACK EDIT ADD END
 
 /obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -119,22 +128,7 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED
 	board.contraband = TRUE
-	packin_up()
 	return TRUE
-
-/obj/machinery/computer/cargo/express/proc/packin_up(forced = FALSE) // oh shit, I'm sorry
-	meme_pack_data = list() // sorry for what?
-	if(!forced && !SSshuttle.initialized) // our quartermaster taught us not to be ashamed of our supply packs
-		SSshuttle.express_consoles += src // specially since they're such a good price and all
-		return // yeah, I see that, your quartermaster gave you good advice
-	// it gets cheaper when I return it
-	for(var/pack_id in SSshuttle.supply_packs) // mmhm
-		var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id] // sometimes, I return it so much, I rip the manifest
-		if(!meme_pack_data[pack.group]) // see, my quartermaster taught me a few things too
-			meme_pack_data[pack.group] = list( // like, how not to rip the manifest
-				"name" = pack.group, // by using someone else's crate
-				"packs" = get_packs_data(pack.group, express = TRUE), // will you show me?
-			) // i'd be right happy to
 
 /obj/machinery/computer/cargo/express/ui_data(mob/user)
 	var/canBeacon = beacon && (isturf(beacon.loc) || ismob(beacon.loc))//is the beacon in a valid location?
@@ -152,7 +146,6 @@
 	data["hasBeacon"] = beacon != null//is there a linked beacon?
 	data["beaconName"] = beacon ? beacon.name : "No Beacon Found"
 	data["printMsg"] = COOLDOWN_FINISHED(src, beacon_print_cooldown) ? "Print Beacon for [BEACON_COST] [MONEY_NAME]" : "Print Beacon for [BEACON_COST] [MONEY_NAME] ([COOLDOWN_TIMELEFT(src, beacon_print_cooldown)])" //buttontext for printing beacons
-	data["supplies"] = list()
 	message = "Sales are near-instantaneous - please choose carefully."
 	if(SSshuttle.supply_blocked)
 		message = blockade_warning
@@ -163,10 +156,6 @@
 	if(obj_flags & EMAGGED)
 		message = "(&!#@ERROR: R0UTING_#PRO7O&OL MALF(*CT#ON. $UG%ESTE@ ACT#0N: !^/PULS3-%E)ET CIR*)ITB%ARD."
 	data["message"] = message
-	if(!meme_pack_data)
-		packin_up()
-		stack_trace("There was no pack data for [src]")
-	data["supplies"] = meme_pack_data
 	return data
 
 /obj/machinery/computer/cargo/express/get_discount()
@@ -243,14 +232,23 @@
 			var/list/prefered_turfs = list() // DARKPACK EDIT ADD
 			if (!istype(beacon) || !using_beacon || (obj_flags & EMAGGED))
 				empty_turfs = list()
-				for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels()) // DARKPACK EDIT CHANGE - (removes floor so it can include DIRT)
+				// DARKPACK EDIT ADD START
+				for(var/obj/effect/abstract/cargo_landing_spot/spot in GLOB.cargo_landing_spots)
+					var/turf/open/open_turf = get_turf(spot)
+					if(!astype(open_turf))
+						stack_trace("[spot] is not in an open turf. Turf is [open_turf]")
 					if(!open_turf.is_blocked_turf())
-						empty_turfs += open_turf
-						// DARKPACK EDIT ADD START
-						var/obj/effect/decal/pallet/cool_spot = locate() in open_turf
-						if(cool_spot)
-							prefered_turfs += open_turf
-						// DARKPACK EDIT ADD END
+						empty_turfs |= open_turf
+				// DARKPACK EDIT ADD END
+				// DARKPACK EDIT CHANGE START
+				if(!length(empty_turfs)) // We ran out of hand-mapped markers, resort to pallets and the ground,  but we cannot ensure super sane spawns
+					for(var/turf/open/open_turf in landingzone.get_turfs_from_all_zlevels())
+						if(!open_turf.is_blocked_turf())
+							empty_turfs |= open_turf
+							var/obj/effect/decal/pallet/cool_spot = locate() in open_turf
+							if(cool_spot)
+								prefered_turfs += open_turf
+				// DARKPACK EDIT CHANGE END
 
 				if (!length(empty_turfs))
 					return

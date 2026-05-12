@@ -133,11 +133,13 @@
 	/// Heights above the highest and below the lowest are locked to traits/mutations/species
 	/// Actual DNA Height is stored as "index in dna_heights list"
 	var/list/dna_heights = list(
+		HUMAN_HEIGHT_DWARF, // DARKPACK EDIT ADD
 		HUMAN_HEIGHT_SHORTEST,
 		HUMAN_HEIGHT_SHORT,
 		HUMAN_HEIGHT_MEDIUM,
 		HUMAN_HEIGHT_TALL,
 		HUMAN_HEIGHT_TALLER,
+		HUMAN_HEIGHT_TALLEST, // DARKPACK EDIT ADD
 	)
 
 /datum/dna_block/identity/height/create_unique_block(mob/living/carbon/human/target)

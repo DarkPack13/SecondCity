@@ -2,7 +2,7 @@
 	title = JOB_GAROU_COUNCIL
 	description = "Veterans of the Garou Nation with the highest esteem, your word within the " + SEPT_NAME + " is law. Make sure the Litany is upheld, and that your caern does not fall prey to the Wyrm."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_GAIA
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = SUPERVISOR_LITANY
@@ -17,7 +17,7 @@
 	outfit = /datum/outfit/job/vampire/councillor
 
 	allowed_splats = list(SPLAT_GAROU)
-//	allowed_tribes = list(TRIBE_GAIA)
+	allowed_tribes = TRIBE_LIST_GAIA
 
 	display_order = JOB_DISPLAY_ORDER_COUNCIL
 	department_for_prefs = /datum/job_department/gaia

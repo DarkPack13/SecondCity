@@ -86,7 +86,7 @@
 	dish_category = DISH_CAKE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/energycake
 	name = "Energy cake"
 	reqs = list(
@@ -130,7 +130,7 @@
 	dish_category = DISH_CAKE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/holycake
 	name = "Angel food cake"
 	reqs = list(
@@ -152,7 +152,7 @@
 	dish_category = DISH_CAKE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/hardwarecake
 	name = "Hardware cake"
 	reqs = list(
@@ -250,7 +250,7 @@
 	dish_category = DISH_CAKE
 	meal_category = MEAL_DESSERT
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/cak
 	name = "Living cat/cake hybrid"
 	reqs = list(

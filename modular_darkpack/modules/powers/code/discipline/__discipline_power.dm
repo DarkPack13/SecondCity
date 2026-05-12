@@ -77,7 +77,6 @@
 		cooldown_timer = null
 	QDEL_LIST(duration_timers)
 	grouped_powers = null
-	discipline = null
 	owner = null
 	return ..()
 

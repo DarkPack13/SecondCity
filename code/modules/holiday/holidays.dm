@@ -115,6 +115,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 // JANUARY
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 //Fleet Day is celebrated on Jan 19th, the date on which moths were merged (#34498)
 /datum/holiday/fleet_day
 	name = "Fleet Day"
@@ -127,6 +128,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/fleet_day/getStationPrefix()
 	return pick("Moth", "Fleet", "Nomadic")
+*/
 
 // FEBRUARY
 
@@ -354,6 +356,21 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 /datum/holiday/anz/getStationPrefix()
 	return pick("Australian","New Zealand","Poppy", "Southern Cross")
 
+/datum/holiday/chernobyl
+	name = CHERNOBYL_ANNIVERSARY
+	begin_day = 26
+	begin_month = APRIL
+
+/datum/holiday/chernobyl/getStationPrefix()
+	if(prob(3))
+		return "Not Great, Not Terrible"
+
+	return pick("Atomic", "Nuclear", "Radiation", "Plutonium", "Uranium", "Corium", "Zirconium", "Graphite", "Scram", "Explosion")
+
+/datum/holiday/chernobyl/greet()
+	return "On this day in 1986, the Chernobyl nuclear power plant melted down, causing one of the worst nuclear disasters in human history. \
+		Today serves as a reminder to the lives lost and to the rigorous safety standards our engineers must adhere to when providing power to the station."
+
 // MAY
 
 /datum/holiday/labor
@@ -363,6 +380,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_hat = /obj/item/clothing/head/utility/hardhat
 	no_mail_holiday = TRUE
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 //Draconic Day is celebrated on May 3rd, the date on which the Draconic language was merged (#26780)
 /datum/holiday/draconic_day
 	name = "Draconic Language Day"
@@ -374,6 +392,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/draconic_day/getStationPrefix()
 	return pick("Draconic", "Literature", "Reading")
+*/
 
 /datum/holiday/firefighter
 	name = "Firefighter's Day"
@@ -418,6 +437,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 // JUNE
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 //The Festival of Atrakor's Might (Tizira's Moon) is celebrated on June 15th, the date on which the lizard visual revamp was merged (#9808)
 /datum/holiday/atrakor_festival
 	name = "Festival of Atrakor's Might"
@@ -429,6 +449,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/atrakor_festival/getStationPrefix()
 	return pick("Moon", "Night Sky", "Celebration")
+*/
 
 /// Garbage DAYYYYY
 /// Huh?.... NOOOO
@@ -603,6 +624,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 // SEPTEMBER
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 //Tiziran Unification Day is celebrated on Sept 1st, the day on which lizards were made a roundstart race
 /datum/holiday/tiziran_unification
 	name = "Tiziran Unification Day"
@@ -616,7 +638,9 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/tiziran_unification/getStationPrefix()
 	return pick("Tizira", "Lizard", "Imperial")
+*/
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 /datum/holiday/ianbirthday
 	name = IAN_HOLIDAY //github.com/tgstation/tgstation/commit/de7e4f0de0d568cd6e1f0d7bcc3fd34700598acb
 	begin_month = SEPTEMBER
@@ -638,6 +662,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/ianbirthday/getStationPrefix()
 	return pick("Ian", "Corgi", "Erro")
+*/
 
 /datum/holiday/pirate
 	name = "Talk-Like-a-Pirate Day"
@@ -793,6 +818,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 /datum/holiday/hello/greet()
 	return "[pick(list("Aloha", "Bonjour", "Hello", "Hi", "Greetings", "Salutations", "Bienvenidos", "Hola", "Howdy", "Ni hao", "Guten Tag", "Konnichiwa", "G'day cunt"))]! " + ..()
 
+/* // DARKPACK EDIT REMOVAL - (TG lore cruft)
 //The Festival of Holy Lights is celebrated on Nov 28th, the date on which ethereals were merged (#40995)
 /datum/holiday/holy_lights
 	name = "Festival of Holy Lights"
@@ -809,6 +835,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/holy_lights/getStationPrefix()
 	return pick("Ethereal", "Lantern", "Holy")
+*/
 
 // DECEMBER
 
