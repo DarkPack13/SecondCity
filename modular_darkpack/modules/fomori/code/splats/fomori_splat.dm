@@ -1,6 +1,10 @@
 /datum/splat/fomori
 	name = "Fomori"
-	desc = "An unfortunate vessel possesed by an evil spirit known as a Bane."
+	desc = "Mortals who have lost themselves to the Wyrm's corruption. \
+		A slow death of the self — most do not even realize what has happened to them before the bane takes over completely. \
+		Tools of Dancers, and wretched things to mercifully be slain by Gaians. \
+		You are but another pawn in a scheme older and grander than you could've ever imagined."
+
 	id = SPLAT_FOMORI
 
 	splat_priority = SPLAT_PRIO_FOMORI
