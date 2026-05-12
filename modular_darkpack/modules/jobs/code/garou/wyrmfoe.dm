@@ -2,7 +2,7 @@
 	title = JOB_GAROU_WYRMFOE
 	description = "You are the Warder's right hand, a promising tactician in your own right, granted the honor of coordinating the Sept's more offensive actions. "
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	faction = FACTION_CITY
+	faction = FACTION_GAIA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_LITANY

@@ -1,5 +1,0 @@
-GLOBAL_LIST_EMPTY(delivery_garage_areas)
-GLOBAL_LIST_EMPTY(delivery_available_veh_spawners)
-GLOBAL_LIST_EMPTY(delivery_available_receivers)
-GLOBAL_LIST_EMPTY(delivery_available_dispensers)
-GLOBAL_LIST_EMPTY(delivery_stats)

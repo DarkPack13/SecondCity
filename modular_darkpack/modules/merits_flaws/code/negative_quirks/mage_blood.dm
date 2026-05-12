@@ -6,8 +6,7 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_TREMERE)
 
-/datum/quirk/darkpack/mage_blood/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
+/datum/quirk/darkpack/mage_blood/add(client/client_source)
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(quirk_holder)
 	if(!kindred_splat)
 		return

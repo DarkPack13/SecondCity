@@ -25,4 +25,5 @@ GLOBAL_LIST_INIT(garou_fur_colors, list(
 	"brown" = "brown"
 ))
 
+#define STATUS_EFFECT_DELIRIUM /datum/status_effect/delirium
 #define STATUS_EFFECT_SILVER_BULLET_STACKS /datum/status_effect/stacking/silver_bullets

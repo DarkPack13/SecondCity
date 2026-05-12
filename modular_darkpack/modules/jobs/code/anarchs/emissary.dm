@@ -1,6 +1,6 @@
 /datum/job/vampire/emissary
 	title = JOB_EMISSARY
-	faction = FACTION_CITY
+	faction = FACTION_ANARCHS
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_BARON

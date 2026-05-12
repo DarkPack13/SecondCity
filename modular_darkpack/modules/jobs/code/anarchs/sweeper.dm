@@ -1,6 +1,6 @@
 /datum/job/vampire/sweeper
 	title = JOB_SWEEPER
-	faction = FACTION_CITY
+	faction = FACTION_ANARCHS
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = SUPERVISOR_BARON

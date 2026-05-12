@@ -22,7 +22,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
-	*/ // DARKPACK EDIT REMOVE
+	*/ // DARKPACK EDIT REMOVAL
 
 /obj/item/gun/energy/laser/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \

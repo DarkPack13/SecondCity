@@ -13,7 +13,8 @@
 		return
 	if(!(form_to_transform in transformation_list))
 		return
-	if(owner?.dna?.species?.type == form_to_transform)
+	var/datum/species/human/shifter/current_form = owner?.dna?.species
+	if(istype(current_form, form_to_transform))
 		return
 	if(!force && !COOLDOWN_FINISHED(src, transform_cd))
 		to_chat(owner, span_warning("Your shifting is on cooldown for one turn."))
@@ -37,7 +38,9 @@
 	// TODO: should accctually require an amount of successes equal to the forms your shifting through
 	if(requires_roll)
 		var/datum/storyteller_roll/fera_trans/transform_roll = new()
-		transform_roll.difficulty = form_to_transform::shift_difficulty
+		if(current_form)
+			transform_roll.difficulty = current_form.shift_difficulty
+			transform_roll.successes_needed = steps_between_forms(current_form.type, form_to_transform)
 		switch(transform_roll.st_roll(owner, owner, PRIMAL_URGE_PLACEHOLDER))
 			if(ROLL_SUCCESS)
 				pass()
@@ -53,6 +56,9 @@
 
 	// owner.Stun(time_to_transform, ignore_canstun = TRUE)
 
+	for(var/obj/item/clothing/equipped in owner.get_equipped_items(INCLUDE_ABSTRACT))
+		equipped.take_damage(rand(25, 50), sound_effect = FALSE)
+
 	var/matrix/ntransform = matrix(owner.transform)
 	ntransform.Scale(1.1, 1.1)
 	animate(owner, transform = ntransform, color = "#000000", time = time_to_transform * 0.9)
@@ -60,6 +66,11 @@
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 	addtimer(CALLBACK(src, PROC_REF(transform_finish), form_to_transform, time_to_transform), time_to_transform * 0.9)
+
+/datum/splat/werewolf/shifter/proc/steps_between_forms(datum/species/human/shifter/first_form, datum/species/human/shifter/second_form)
+	var/first_index = transformation_list.Find(first_form)
+	var/second_index = transformation_list.Find(second_form)
+	return abs(first_index - second_index)
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))

@@ -62,7 +62,7 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
- */ // DARKPACK EDIT REMOVE
+ */ // DARKPACK EDIT REMOVAL
 	register_context()
 
 /obj/item/extinguisher/add_context(atom/source, list/context, obj/item/held_item, mob/user)

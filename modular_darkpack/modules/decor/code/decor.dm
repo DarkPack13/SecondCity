@@ -48,10 +48,27 @@
 
 /obj/structure/lamppost/Initialize(mapload)
 	. = ..()
+	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
+	RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+	// DARKPACK TODO - fuseboxes and areas aren't meaningfully connected to each other, and thusly aren't meaningfully connected to lights/devices that may need poer.
+	// TLDR we need to basically re-evaluate how we approach power... the current system is flavcode spaghetti shit.
+	if(my_area.powered(AREA_USAGE_LIGHT))
+		create_lights()
+
+/obj/structure/lamppost/proc/on_power_change(area/A)
+	SIGNAL_HANDLER
+
+
+	if(A.power_light)
+		create_lights()
+	else
+		QDEL_LIST(my_lights)
+
+/obj/structure/lamppost/proc/create_lights()
+	QDEL_LIST(my_lights)
 	switch(number_of_lamps)
 		if(1)
 			new_light(get_step(loc, dir))
@@ -74,6 +91,7 @@
 	my_lights += new /obj/effect/decal/lamplight(location)
 
 /obj/structure/lamppost/Destroy(force)
+	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
 	QDEL_LIST(my_lights)
 	. = ..()
 

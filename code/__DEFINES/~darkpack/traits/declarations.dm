@@ -73,8 +73,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_REPELLED_BY_HOLINESS "repelled_by_holiness"
 /// Any changes in this Kindred's Humanity will be doubled
 #define TRAIT_SENSITIVE_HUMANITY "sensitive_humanity"
-/// Duration of frenzy is doubled
-#define TRAIT_LONGER_FRENZY "longer_frenzy"
+/// Difficulty rolls to resist or guide frenzy are two higher. They can also never spend willpower to avoid frenzy
+#define TRAIT_DIFFICULT_FRENZY "difficult_frenzy"
+/// Difficulty rolls to rage roles are one higher.
+#define TRAIT_DIFFICULT_RAGE "difficult_rage"
 // Setite weakness, sunlight is particularly bad bad.
 #define TRAIT_LIGHT_WEAKNESS "light_weakness"
 // DARKPACK TODO - refactor these traits into mutant bodyparts and a component maybe
@@ -98,6 +100,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SERPENTIS_SKIN "serpent_skin"
 // Is the mob melted into a wall via Visceratika?
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
+// Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
+#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 
 
 // Allows the user to pass through doors
@@ -122,6 +126,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
 #define TRAIT_NO_EYE_CONTACT "no_eye_contact"
 
+// If the splat shifts between diffrent forms as a fera
+#define TRAIT_FERA_FORMS "fera_forms"
 // If the splat uses the WTA renown system described in W20 p. 245
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
 /// If the species has garou breeds to select.
@@ -164,6 +170,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MONSTROUS "monstrous"
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
+#define TRAIT_THIRD_EYE "third_eye"
 #define TRAIT_PREY_EXCLUSION "prey_exclusion"
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"
@@ -177,6 +184,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
-#define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
+#define TRAIT_EAT_FOOD "eat_food"
+
 
 // END TRAIT DEFINES
