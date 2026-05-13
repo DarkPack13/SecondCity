@@ -78,6 +78,7 @@
 	applicable_stats = list(STAT_DEXTERITY, STAT_FIREARMS)
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
+	difficulty = 6
 
 // Physical Feats
 /datum/storyteller_roll/lockpick
