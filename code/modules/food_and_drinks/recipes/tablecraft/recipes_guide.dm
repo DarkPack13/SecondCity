@@ -12,7 +12,7 @@
 	non_craftable = TRUE
 	steps = list("Use cloth on a glass shard of any type")
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/runed_metal
 	reqs = list(/obj/item/stack/sheet/plasteel = 1)
 	requirements_mats_blacklist = list(/obj/item/stack/sheet/plasteel) // runed metal has its own material
@@ -48,7 +48,7 @@
 		qdel(chemical_reaction)
 	..()
 
-/* // DARKPACK EDIT REMOVE*
+/* // DARKPACK EDIT REMOVAL*
  * Sets up information for our recipe based on the chemical reaction we have set.
  */
 /datum/crafting_recipe/food/reaction/proc/setup_chemical_reaction_details(datum/chemical_reaction/chemical_reaction)
@@ -815,7 +815,7 @@
 /datum/crafting_recipe/food/oven/bread
 	reqs = list(/obj/item/food/dough = 1)
 	result = /obj/item/food/bread/plain
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/oven/rootbread
 	reqs = list(/obj/item/food/rootdough = 1)
 	result = /obj/item/food/bread/root
@@ -947,7 +947,7 @@
 	reqs = list(/obj/item/food/cheese/cheese_curds = 1)
 	result = /obj/item/food/cheese/firm_cheese
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/drying/headcheese
 	reqs = list(/obj/item/food/raw_headcheese = 1)
 	result = /obj/item/food/headcheese

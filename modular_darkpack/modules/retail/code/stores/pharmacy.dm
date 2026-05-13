@@ -18,4 +18,5 @@
 		new /datum/data/vending_product("white cane", /obj/item/cane/white),
 		new /datum/data/vending_product("crutch", /obj/item/cane/crutch),
 		new /datum/data/vending_product("wooden crutch", /obj/item/cane/crutch/wood),
+		new /datum/data/vending_product("empty blood bag", /obj/item/reagent_containers/blood/empty)
 	)

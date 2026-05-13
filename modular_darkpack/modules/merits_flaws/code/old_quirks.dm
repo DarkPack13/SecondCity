@@ -271,7 +271,7 @@ Dancer
 	medical_record_text = "Patient has aggressive flesh eating bacteria in their boody."
 	allowed_splats = list("Vampire", "Ghoul", "Human", "Kuei-Jin")
 
-/datum/quirk/consumption/on_process(delta_time)
+/datum/quirk/consumption/on_process(seconds_per_tick)
 	if(prob(5))
 		quirk_holder.adjust_brute_loss(5, TRUE)
 

@@ -69,6 +69,32 @@
 /datum/preference/text/flavor_text/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features[EXAMINE_DNA_FLAVOR_TEXT] = value
 
+
+/datum/preference/text/war_form_flavor_text
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	priority = PREFERENCE_PRIORITY_BODYPARTS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "war_form_flavor_text"
+	maximum_value_length = MAX_FLAVOR_LEN
+	relevant_inherent_trait = TRAIT_FERA_FORMS
+	must_have_relevant_trait = TRUE
+
+/datum/preference/text/war_form_flavor_text/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features[EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT] = value
+
+
+/datum/preference/text/feral_form_flavor_text
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	priority = PREFERENCE_PRIORITY_BODYPARTS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "feral_form_flavor_text"
+	maximum_value_length = MAX_FLAVOR_LEN
+	relevant_inherent_trait = TRAIT_FERA_FORMS
+	must_have_relevant_trait = TRUE
+
+/datum/preference/text/feral_form_flavor_text/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features[EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT] = value
+
 ///////////////////////////////////////////////////////////////////////////
 
 /datum/preference/text/nsfw_flavor_text

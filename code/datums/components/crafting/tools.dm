@@ -1,4 +1,4 @@
-/*// DARKPACK EDIT REMOVE
+/*// DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
@@ -57,7 +57,7 @@
 	)
 	result = /obj/item/stack/medical/bandage/makeshift
 	category = CAT_TOOLS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/bone_rod
 	name = "Bone Fishing Rod"
 	result = /obj/item/fishing_rod/bone
