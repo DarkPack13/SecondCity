@@ -30,10 +30,10 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1) // done
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1) // unfinished
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1) // done
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) //
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) // done
 
 /datum/splat/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)

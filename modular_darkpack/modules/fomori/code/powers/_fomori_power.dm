@@ -54,11 +54,11 @@
 	var/obj/item/bodypart/bodypart = fomor?.get_bodypart(feature_bodypart)
 	bodypart?.remove_bodypart_overlay(fomor_part)
 	QDEL_NULL(fomor_part)
+	fomor_part = initial(fomor_part)
 
 ///toggles the feature, TRUE for remove and FALSE for add
 /datum/action/cooldown/power/fomori_power/proc/toggle_feature(current_state)
 	if(current_state)
 		remove_feature()
-		fomor_part = initial(fomor_part)
 	else
 		add_feature()
