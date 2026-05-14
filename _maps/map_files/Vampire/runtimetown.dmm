@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/effect/turf_decal/bordur/corner,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "an" = (
 /obj/structure/vampfence/corner/rich{
 	dir = 8
@@ -138,6 +142,12 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
+"cD" = (
+/obj/transfer_point_vamp{
+	id = "test_4"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "cQ" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/ifak,
@@ -231,10 +241,10 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "fd" = (
-/obj/effect/turf_decal/bordur{
+/obj/item/vamp/keys/clinic,
+/obj/effect/turf_decal/bordur/corner{
 	dir = 1
 	},
-/obj/item/vamp/keys/clinic,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "fh" = (
@@ -453,6 +463,15 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
+"ji" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/pacificheights)
 "jj" = (
 /obj/structure/table,
 /obj/item/liquid_flamethrower,
@@ -511,6 +530,12 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
+"jU" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
 "jW" = (
 /obj/effect/decal/wallpaper/paper/stripe,
 /turf/closed/wall/vampwall/market,
@@ -563,6 +588,12 @@
 /obj/item/molotov,
 /obj/item/molotov,
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"kN" = (
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "kS" = (
 /turf/closed/wall/vampwall/market,
@@ -623,6 +654,12 @@
 /obj/effect/abstract/cargo_landing_spot,
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
+"lZ" = (
+/obj/transfer_point_vamp{
+	id = "test_3"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "md" = (
 /obj/structure/vampdoor{
 	dir = 4
@@ -659,7 +696,10 @@
 "mZ" = (
 /obj/machinery/fax/police,
 /obj/structure/table/wood,
-/turf/open/misc/beach/vamp,
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "nj" = (
 /turf/open/openspace,
@@ -1224,6 +1264,12 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/graveyard/interior)
+"vA" = (
+/obj/transfer_point_vamp{
+	id = "test_5"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "vD" = (
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/city/toilet,
@@ -1310,6 +1356,12 @@
 	linked_elevator_id = "DebugElevator2"
 	},
 /turf/open/floor/plating/sidewalk,
+/area/vtm/outside/pacificheights)
+"xC" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "xE" = (
 /obj/structure/table,
@@ -1553,6 +1605,12 @@
 /obj/fusebox/transformer,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/baywalk)
+"Cg" = (
+/obj/transfer_point_vamp{
+	id = "test_6"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "Ct" = (
 /obj/structure/lamppost/one{
 	dir = 1
@@ -1581,6 +1639,12 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/graveyard/interior)
+"CM" = (
+/obj/transfer_point_vamp{
+	id = "test_1"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "CP" = (
 /obj/structure/table/wood,
 /obj/item/ammo_box/darkpack/c12g{
@@ -1935,6 +1999,12 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
+"Hm" = (
+/obj/transfer_point_vamp{
+	id = "test_2"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/pacificheights)
 "Hn" = (
 /obj/effect/turf_decal/bordur{
 	dir = 4
@@ -2023,7 +2093,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/graveyard/interior)
 "ID" = (
-/turf/closed/wall/vampwall/market,
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "IL" = (
 /obj/structure/ladder/manhole/up,
@@ -2826,10 +2896,10 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/cog)
 "UC" = (
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/structure/table/wood,
-/turf/open/misc/beach/vamp,
+/obj/effect/turf_decal/bordur{
+	dir = 8
+	},
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "UH" = (
 /obj/structure/railing{
@@ -3079,7 +3149,10 @@
 "XP" = (
 /obj/machinery/fax/admin/police,
 /obj/structure/table/wood,
-/turf/open/misc/beach/vamp,
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "XW" = (
 /obj/effect/turf_decal/bordur,
@@ -3769,14 +3842,14 @@ iV
 VQ
 ik
 fd
-NR
+ji
 XP
-NR
+kN
 mZ
-NR
-NR
-NR
-NR
+kN
+kN
+kN
+Zs
 NR
 Rj
 Rj
@@ -3836,15 +3909,15 @@ cj
 ik
 VQ
 ik
-Fs
-NR
-UC
-NR
-NR
-NR
-NR
-NR
-NR
+kX
+ik
+ik
+ik
+ik
+ik
+ik
+ik
+cD
 NR
 Rj
 Rj
@@ -3904,15 +3977,15 @@ cj
 FB
 VQ
 ik
-Fs
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+kX
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+vA
 NR
 Rj
 Rj
@@ -3972,15 +4045,15 @@ bp
 ik
 VQ
 ik
-Fs
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+kX
+ik
+ik
+ik
+ik
+ik
+ik
+ik
+Cg
 NR
 Rj
 Rj
@@ -4040,15 +4113,15 @@ cj
 rW
 rW
 rW
-Fs
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-NR
+xC
+UC
+UC
+UC
+UC
+UC
+UC
+UC
+Zs
 NR
 Rj
 Rj
@@ -7783,9 +7856,9 @@ Kk
 Zs
 Zs
 qV
-qV
-qV
-qV
+CM
+Hm
+lZ
 qV
 Zs
 Zs
@@ -8266,14 +8339,14 @@ rW
 cZ
 QS
 qV
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+qV
+qV
+qV
+qV
+qV
+qV
+qV
+qV
 Ys
 Ys
 Ys
@@ -8333,15 +8406,15 @@ ik
 ik
 kX
 ik
+cD
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8401,15 +8474,15 @@ ik
 ik
 kX
 hi
+vA
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8469,15 +8542,15 @@ ik
 ik
 kX
 ik
+Cg
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8538,14 +8611,14 @@ rW
 sk
 Zc
 qV
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+Zc
+Zc
+Zc
+ah
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8605,15 +8678,15 @@ ik
 ik
 KU
 nq
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
 qV
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
 Ys
 Ys
 Ys
@@ -8673,15 +8746,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8741,15 +8814,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8809,15 +8882,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8877,15 +8950,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -8945,15 +9018,15 @@ ik
 HJ
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9013,15 +9086,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9081,15 +9154,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9149,15 +9222,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9217,15 +9290,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9285,15 +9358,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9353,15 +9426,15 @@ rW
 rW
 HO
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9421,15 +9494,15 @@ ik
 ik
 KU
 eQ
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+eQ
+eQ
+eQ
+eQ
+XJ
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9489,15 +9562,15 @@ ik
 ik
 Dr
 AU
-ID
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+QS
+QS
+QS
+QS
+jU
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9558,14 +9631,14 @@ ik
 ik
 ik
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9626,14 +9699,14 @@ ik
 ik
 ik
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9694,14 +9767,14 @@ ik
 ik
 ik
 ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+ik
+ik
+ik
+ik
+ik
+ik
+ik
+qV
 Ys
 Ys
 Ys
@@ -9761,15 +9834,15 @@ ik
 ik
 ik
 ik
-ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+XM
+ID
+ID
+ID
+ID
+ID
+ID
+ID
+qV
 Ys
 Ys
 Ys
@@ -9829,15 +9902,15 @@ ik
 ik
 ik
 ik
-ik
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
-Ys
+XM
+qV
+qV
+qV
+qV
+qV
+qV
+qV
+qV
 Ys
 Ys
 Ys
@@ -9897,7 +9970,7 @@ ik
 ik
 ik
 ik
-ik
+XM
 Ys
 Ys
 Ys
@@ -9965,7 +10038,7 @@ ik
 ik
 ik
 ik
-ik
+XM
 Ys
 Ys
 Ys
@@ -10033,7 +10106,7 @@ ik
 ik
 ik
 ik
-ik
+XM
 Ys
 Ys
 Ys
@@ -10101,7 +10174,7 @@ ik
 ik
 so
 gS
-qV
+XM
 Ys
 Ys
 Ys
@@ -10169,7 +10242,7 @@ Ak
 Ak
 cZ
 QS
-qV
+XM
 Ys
 Ys
 Ys
@@ -10237,7 +10310,7 @@ ik
 ik
 ov
 ik
-qV
+XM
 Ys
 Ys
 Ys
@@ -10305,7 +10378,7 @@ ik
 ik
 ov
 Qi
-qV
+XM
 Ys
 Ys
 Ys
@@ -10373,7 +10446,7 @@ ik
 ik
 ov
 ik
-qV
+XM
 Ys
 Ys
 Ys
@@ -10441,7 +10514,7 @@ rW
 rW
 sk
 Zc
-qV
+XM
 Ys
 Ys
 Ys
@@ -10509,7 +10582,7 @@ ik
 ik
 KU
 nq
-qV
+XM
 Ys
 Ys
 Ys
@@ -12067,9 +12140,9 @@ Zs
 Zs
 Zs
 qV
-qV
-qV
-qV
+CM
+Hm
+lZ
 qV
 xh
 XM

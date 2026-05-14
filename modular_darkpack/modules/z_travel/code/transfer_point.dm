@@ -69,12 +69,20 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 /obj/transfer_point_vamp/proc/transfer_atom(atom/movable/arrived)
 	if(!exit || one_way)
 		return
-	var/turf/T = get_step(exit, get_dir(arrived, src))
-	if(T && !T.density)
-		arrived.forceMove(T)
-	else
-		arrived.forceMove(get_turf(exit))
-	return TRUE
+	var/moved_dir = get_dir(arrived, src)
+	var/turf/exit_turf
+	if(moved_dir != 0)
+		exit_turf = get_open_turf_in_dir(exit, moved_dir)
+		if(exit_turf)
+			return arrived.forceMove(exit_turf)
+
+	var/list/other_options = get_adjacent_open_turfs(exit)
+	exit_turf = pick(other_options)
+	if(exit_turf)
+		return arrived.forceMove(exit_turf)
+
+	// Last resort. This fucks cars really heavy because they get trapped in the dense object of the matrix
+	return arrived.forceMove(get_turf(exit))
 
 // Use inside the umbra. visible
 /obj/transfer_point_vamp/umbral
