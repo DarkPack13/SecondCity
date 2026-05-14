@@ -38,4 +38,4 @@
 		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
 		if(!shot_pup_splat.is_breed_form())
 			// w20 core 256 - all damage becomes agg in non-breed form to garou and cannot be soaked
-			damage_type = AGGRAVATED
+			damtype = AGGRAVATED
