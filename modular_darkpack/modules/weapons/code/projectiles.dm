@@ -17,7 +17,7 @@
 
 /obj/projectile/bullet/darkpack/vamp9mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	fera_silver_damage(target, 2)
+	fera_silver_damage(target)
 
 // .45 ACP
 /obj/projectile/bullet/darkpack/vamp45acp
@@ -37,7 +37,7 @@
 
 /obj/projectile/bullet/darkpack/vamp45acp/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	fera_silver_damage(target, 3)
+	fera_silver_damage(target)
 
 // .44 Magnum
 /obj/projectile/bullet/darkpack/vamp44
@@ -53,7 +53,7 @@
 
 /obj/projectile/bullet/darkpack/vamp44/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	fera_silver_damage(target, 4)
+	fera_silver_damage(target)
 
 // .50 BMG/AE
 /obj/projectile/bullet/darkpack/vamp50

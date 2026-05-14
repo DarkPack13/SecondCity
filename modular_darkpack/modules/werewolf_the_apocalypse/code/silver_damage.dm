@@ -16,7 +16,7 @@
 		splat.adjust_gnosis(-1, TRUE)
 
 
-/obj/projectile/bullet/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0)
+/obj/projectile/bullet/proc/fera_silver_damage(mob/living/carbon/human/target)
 	if(!istype(target))
 		return
 	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
@@ -25,10 +25,9 @@
 		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
 
 		if(!shot_pup_splat.is_breed_form())
-			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
-			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+			damage_type = AGGRAVATED
 
-/obj/item/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0, gnosis_damage = 0)
+/obj/item/proc/fera_silver_damage(mob/living/carbon/human/target, gnosis_damage = 0)
 	if(!istype(target))
 		return
 	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
@@ -38,4 +37,5 @@
 
 		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
 		if(!shot_pup_splat.is_breed_form())
-			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+			// w20 core 256 - all damage becomes agg in non-breed form to garou and cannot be soaked
+			damage_type = AGGRAVATED

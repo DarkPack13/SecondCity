@@ -167,7 +167,7 @@
 
 /obj/item/claymore/longsword/keeper/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	fera_silver_damage(target, 5, 1)
+	fera_silver_damage(target)
 
 /obj/item/melee/baseball_bat/vamp
 	name = "baseball bat"
