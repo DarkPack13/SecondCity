@@ -24,7 +24,7 @@
 	)
 
 	minimal_masquerade = 5
-	// minimal_renown_rank = 4
+	minimal_renown_rank = 4
 	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_BRANCH_LEAD

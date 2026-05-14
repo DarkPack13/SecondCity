@@ -18,7 +18,7 @@
 
 	allowed_splats = list(SPLAT_GAROU, SPLAT_KINDRED)
 	minimal_masquerade = 4
-	// minimal_renown_rank = 3
+	minimal_renown_rank = 3
 	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
 
 	display_order = JOB_DISPLAY_ORDER_SECCHIEF

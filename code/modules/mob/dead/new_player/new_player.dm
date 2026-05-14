@@ -151,6 +151,8 @@
 			return "Your character's tribe is incompatible for [jobtitle]."
 		if(JOB_UNAVAILABLE_FERA_AUSPICE)
 			return "Your character's auspice is incompatible for [jobtitle]."
+		if(JOB_UNAVAILABLE_FERA_RENOWN)
+			return "Your character's renown is incompatible for [jobtitle]."
 		// DARKPACK EDIT END
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR

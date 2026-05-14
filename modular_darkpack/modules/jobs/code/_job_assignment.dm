@@ -72,6 +72,10 @@
 		return JOB_UNAVAILABLE_KINDRED_CLAN
 
 /datum/controller/subsystem/job/proc/check_garou_prefs(client/player_client, mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
+	if((player_client.prefs.read_preference(/datum/preference/numeric/renown) > possible_job.minimal_renown_rank))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_RENOWN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_FERA_RENOWN
+
 	var/datum/subsplat/werewolf/auspice/auspice = get_fera_auspice(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/garou_auspice))
 	if(possible_job.allowed_auspice && !(auspice.name in possible_job.allowed_auspice))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_AUSPICE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")

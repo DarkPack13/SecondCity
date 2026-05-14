@@ -25,8 +25,12 @@
 #define JOB_UNAVAILABLE_KINDRED_GENERATION 13
 /// Checks for character clan.
 #define JOB_UNAVAILABLE_KINDRED_CLAN 14
+/// Checks for character tribe.
 #define JOB_UNAVAILABLE_FERA_TRIBE 15
+/// Checks for character auspice.
 #define JOB_UNAVAILABLE_FERA_AUSPICE 16
+/// Checks for character renown.
+#define JOB_UNAVAILABLE_FERA_RENOWN 17
 
 // DARKPACK EDIT ADD END
 
