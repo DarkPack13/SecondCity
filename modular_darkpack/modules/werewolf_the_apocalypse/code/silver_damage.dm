@@ -32,7 +32,6 @@
 		return
 	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
 	if(shot_pup_splat)
-		var/mob/living/carbon/human/shot_pup = target
 		shot_pup_splat.adjust_gnosis(-gnosis_damage, TRUE)
 
 		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
