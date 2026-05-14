@@ -581,6 +581,10 @@
 			if(debug_car)
 				// For visualising path of car.
 				new /obj/effect/temp_visual/telegraphing/car(T)
+
+			if(hit_turf == get_turf(src))
+				continue // Avoid spam bumping and trapping us inside of a dense turf.
+
 			var/dist_to_hit = get_dist_in_pixels(last_pos["x"]*32+last_pos["x_pix"], last_pos["y"]*32+last_pos["y_pix"], T.x*32, T.y*32)
 			if(dist_to_hit <= abs(used_speed))
 				var/list/stuff = T.get_blocking_contents(FALSE, src)

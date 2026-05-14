@@ -71,17 +71,10 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 		return
 	var/moved_dir = get_dir(arrived, src)
 	var/turf/exit_turf
-	if(moved_dir != 0)
-		exit_turf = get_open_turf_in_dir(exit, moved_dir)
-		if(exit_turf)
-			return arrived.forceMove(exit_turf)
-
-	var/list/other_options = get_adjacent_open_turfs(exit)
-	exit_turf = pick(other_options)
+	exit_turf = get_open_turf_in_dir(exit, moved_dir)
 	if(exit_turf)
 		return arrived.forceMove(exit_turf)
 
-	// Last resort. This fucks cars really heavy because they get trapped in the dense object of the matrix
 	return arrived.forceMove(get_turf(exit))
 
 // Use inside the umbra. visible
