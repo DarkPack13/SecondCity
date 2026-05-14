@@ -110,6 +110,7 @@
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
 	applicable_stats = list(STAT_PERCEPTION, STAT_INVESTIGATION)
+	roll_output_type = ROLL_PRIVATE
 
 
 // Made up shittttt
