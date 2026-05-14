@@ -52,3 +52,73 @@
   - rscadd: company logo element
   theselfish:
   - rscadd: Tremere may have a Third Eye.
+2026-05-11:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  Biplume:
+  - bugfix: Rolls to not step on sticks are now private.
+  FalloutFalcon:
+  - rscadd: Adds Wolf Sight Merit from W20
+  - bugfix: Doors can no longer be repunched for infinite door items
+  - rscadd: Adds support for automatic successes based on the TTRPG
+  - code_imp: Cleans up some of the code surrounding potance
+  - balance: Kills some of the snowflaky effect of potance in favor of it granting
+      automatic successes (TTRPG accuracy)
+  - qol: Makes the dice unicode characters to show individual dice results a little
+      larger
+  - bugfix: Potance 1-2 no longer cripples melee damage and it now scales correctly
+      with all dots.
+  - rscadd: landmark for cargo crate delivery locations
+  - balance: Fera transformations damage worn clothing
+  - rscadd: Adds two werewolf fetishes; Nyxs Bangle and Dagger of retribution
+  - refactor: Cleans up some artifact code around ownership and power granting
+  - rscadd: Two separate fields for flavor text that overwrite existing one when your
+      in crinos or hispo/lupus respectivly
+  - rscadd: Delirium status effect
+  - balance: Removes nutriment gain from biting
+  - balance: number of successes required for Fera shifting is based on how many forms
+      your swapping between
+  - bugfix: Feras's shift difficulty is based on the form your currently in rather
+      then the one your turning into
+  - qol: Makes the local host start now sound quieter and only play once
+  - rscdel: Removed some TG holidays from appearing
+  FalloutFalcon, Major00:
+  - image: Resprites wooden drying racks
+  Kolibri-B:
+  - bugfix: Fixed Obtenebration 3 "Arms of the Abyss" tentacle behaviour
+  Magisterium2022:
+  - balance: Made Lupus and Hispo unable to be handcuffed.
+  Stutternov:
+  - rscadd: Adds maximum immortal age variable for jobs.
+  Xeonmations:
+  - rscadd: adds vocal sounds
+  buffyuwu:
+  - bugfix: Ghoul auras are no longer fully opaque
+  - rscadd: ghouls now get potence 1 for free
+  - bugfix: ghouls can now only have level 1 in their disciplines
+  - bugfix: solves bloodheal and potence harddels by removing the disciplines on_lose_or_destroy
+  - bugfix: fixes a bug with transformation disciplines causing disciplines to become
+      unusable
+  - bugfix: fera no longer feel terribly bloated all the time
+  chazzyjazzy:
+  - balance: animalism mobs now have bloodpool = 2
+  - rscadd: adds the szlachta attack random event
+  - bugfix: adds hunter landmarks
+  - qol: area title and info is displayed when crossing areas
+  - admin: adds mentors
+  - bugfix: fixes Thaumaturgy 4 not incrementing the target's bloodpool
+  - bugfix: Thaumaturgy 4 Theft of Vitae now costs 1 bloodpoint
+  - balance: lowers Lure of Flames and Levinbolt 'palm of flame'-type ability's damage
+      from 25 burn (50 against kindred) per click to 15 burn (30 against kindred),
+      20 for 'candle' and 'illuminate'
+  - rscadd: adds the Society of Leopold, the largest subdivision of the Inquisiton,
+      Vampire and Werewolf hunters
+  - rscadd: adds blackout random event
+  - code_imp: cleaned up fusebox damage code
+  - bugfix: necro 3 no longer permanently leaves bones
+  - rscadd: finance as a stat now gives steady, consistent income, rather than a lump
+      sum at roundstart
+  lobotomypilled:
+  - bugfix: 'fixed transformers being unrepairable upon failing the roll
+
+      :cl:'

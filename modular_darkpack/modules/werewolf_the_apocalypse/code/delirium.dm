@@ -8,9 +8,9 @@
 		"catatonic fear",
 		"panic",
 		"disbelief",
-		"beserk",
+		"berserk rage",
 		"terror",
-		"conciliatory",
+		"an urge to beg",
 		"controlled fear",
 		"curiosity",
 		"bloodlust",
@@ -36,7 +36,7 @@
 	if(!wolf)
 		return FALSE
 
-	to_chat(owner, span_boldwarning("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
+	to_chat(owner, span_cult_large("Something DEEP inside you fills you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
 	willpower_dots = clamp(human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER), 1, 10)
 
 	if(owner.client)
@@ -59,6 +59,9 @@
 		owner.client.images += overlay_image
 		scary_static = overlay_image
 
+	if(willpower_dots == 1)
+		owner.Unconscious(30)
+
 /datum/status_effect/delirium/on_remove()
 	. = ..()
 	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
@@ -76,7 +79,7 @@
 		COOLDOWN_START(src, message_cooldown, rand(10, 15) SECONDS)
 		var/message = get_message()
 		if(message)
-			to_chat(owner, span_boldwarning(message))
+			to_chat(owner, span_cult_bold(message))
 
 
 /datum/status_effect/delirium/proc/get_message()

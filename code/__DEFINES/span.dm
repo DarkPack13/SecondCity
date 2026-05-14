@@ -92,6 +92,8 @@
 #define span_memo(str) ("<span class='memo'>" + str + "</span>")
 #define span_memoedit(str) ("<span class='memoedit'>" + str + "</span>")
 #define span_policy(str) ("<span class='policy'>" + str + "</span>")
+#define span_mentor(str) ("<span class ='mentor'>" + str + "</span>") // DARKPACK EDIT ADD - MENTOR
+#define span_mentornotice(str) ("<span class = 'mentornotice'>" + str + "</span>") // DARKPACK EDIT ADD - MENTOR
 #define span_message(str) ("<span class='message'>" + str + "</span>")
 #define span_mind_control(str) ("<span class='mind_control'>" + str + "</span>")
 #define span_minorannounce(str) ("<span class='minorannounce'>" + str + "</span>")
