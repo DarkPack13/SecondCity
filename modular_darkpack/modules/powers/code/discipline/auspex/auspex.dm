@@ -293,7 +293,7 @@
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
 				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
-				if(get_kindred_splat(target))
+				if(get_kindred_splat(target) ||  get_shifter_splat(target))
 					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
 				if(!disguise_roll)
 					disguise_roll = new()
