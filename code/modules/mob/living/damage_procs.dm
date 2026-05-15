@@ -606,16 +606,16 @@
 					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
 				else
 					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
-				roll_used += (round(getarmor(def_zone, BULLET) / 20))
+				roll_used += round(getarmor(def_zone, BULLET) / 20)
 			else if(!sharpness == NONE)
 				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
-				roll_used += (max(round(getarmor(def_zone, MELEE) / 20) - 1), 0)
+				roll_used += max((round(getarmor(def_zone, MELEE) / 20) - 1), 0)
 			else
 				roll_used = soak_dice_bashing //Everything else should take Bashing.
-				roll_used += (round(getarmor(def_zone, MELEE) / 20))
+				roll_used += round(getarmor(def_zone, MELEE) / 20)
 		if(BURN)
 			roll_used = soak_dice_aggravated //Burning is always Agg.
-			roll_used += (round(getarmor(def_zone, FIRE) / 20))
+			roll_used += round(getarmor(def_zone, FIRE) / 20)
 		if(TOX)
 			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
 		if(OXY)
@@ -626,7 +626,7 @@
 			roll_used = soak_dice_lethal //Not many situations where you'd take direct brain damage really, but it'd be lethal in this case.
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
-			roll_used += (max(round(getarmor(def_zone, FIRE) / 20) - 1), 0)
+			roll_used += max((round(getarmor(def_zone, FIRE) / 20) - 1), 0)
 
 	if(roll_used < 1)
 		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
