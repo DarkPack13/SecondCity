@@ -365,18 +365,18 @@
 			to_chat(owner, span_notice("You read [target]'s thoughts with [successes] successes: [input_message]"))
 
 /datum/discipline_power/auspex/telepathy/proc/get_flavor_text(successes)
-	var/message = "As your mind is read, "
+	var/message
 	switch(successes)
 		if(1)
-			message += "the most surface-level thoughts or unspoken comments are easily read, but if your character was expecting their mind to be read, they can make an effort to obfuscate their true thoughts..."
+			message = "the most surface-level thoughts or unspoken comments are easily read, but if your character was expecting their mind to be read, they can make an effort to obfuscate their true thoughts..."
 		if(2)
-			message += "the person reading your mind begins to probe deeper into your subconcious, revealing deeper, or clearer, thoughts..."
+			message = "the person reading your mind begins to probe deeper into your subconcious, revealing deeper, or clearer, thoughts..."
 		if(3)
-			message += "your mind begins to be probed at a deep level, revealing verbatim thoughts, details, secrets and recent memories..."
+			message = "your mind begins to be probed at a deep level, revealing verbatim thoughts, details, secrets and recent memories..."
 		if(4)
-			message += "your mind is being deeply invaded. Hidden thoughts, suppressed emotions, and secrets you've tried to bury begin to surface. The attacker can access memories and feelings you may have forgotten without you ever knowing..."
+			message = "your mind is being deeply invaded. Hidden thoughts, suppressed emotions, and secrets you've tried to bury begin to surface. The attacker can access memories and feelings you may have forgotten without you ever knowing..."
 		if(5 to INFINITY)
-			message += "your deepest secrets and most buried memories are laid bare. The telepath can access traumatic experiences, long-forgotten events, and the darkest corners of your psyche. Nothing is hidden..."
+			message = "your deepest secrets and most buried memories are laid bare. The telepath can access traumatic experiences, long-forgotten events, and the darkest corners of your psyche. Nothing is hidden..."
 	message += " Try to reply in impression and imagery, rather than simple words. "
 	return message
 
