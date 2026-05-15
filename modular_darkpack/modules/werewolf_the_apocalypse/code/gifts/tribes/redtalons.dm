@@ -5,7 +5,7 @@
 /datum/action/cooldown/power/gift/hidden_killer
 	name = "Hidden Killer"
 	desc = "The Red Talons didn't survive for so long without learning ways to conceal themselves. This Gift allows a werewolf to leave behind no physical evidence that would betray her hand (or claws, or teeth) in a slaying."
-	#warn no icon
+	button_icon_state = "hidden_killer"
 
 	click_to_activate = TRUE
 

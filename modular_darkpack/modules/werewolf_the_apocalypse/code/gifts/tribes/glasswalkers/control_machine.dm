@@ -110,7 +110,7 @@
 /datum/action/cooldown/power/gift/control_machine/simple
 	name = "Control Simple Machine"
 	desc = "The Garou may command the spirits of the simplest machines, causing levers to flip, doors to unbolt, pulleys to roll, and so on."
-	#warn no icon
+	button_icon_state = "control_simple_machine"
 
 	rank = 1
 

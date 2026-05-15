@@ -1,8 +1,7 @@
 /datum/action/cooldown/power/gift/aura_of_confidence
 	name = "Aura of Confidence"
 	desc = "The werewolf projects an aura of superiority, preventing attempts to find flaws or read auras."
-	#warn no icon
-	// button_icon_state = "aura_of_confidence"
+	button_icon_state = "aura_of_confidence"
 	rank = 1
 
 // Effect is permenent
@@ -27,8 +26,7 @@
 /datum/action/cooldown/power/gift/fatal_flaw
 	name = "Fatal Flaw"
 	desc = "The Shadow Lord can spy a target's weakness, gaining an advantage in combat."
-	#warn no icon
-	// button_icon_state = "fatal_flaw"
+	button_icon_state = "fatal_flaw"
 	rank = 1
 	click_to_activate = TRUE
 
