@@ -265,6 +265,7 @@
 	var/telepathy_type_selected
 	var/successes
 	var/disguised_voice
+	var/reading_voice
 	var/datum/storyteller_roll/telepathy_success/telepathy_roll
 	var/datum/storyteller_roll/disguise_voice_roll/disguise_roll
 
@@ -292,23 +293,31 @@
 		switch(telepathy_type)
 			if(TELEPATHY_MIND_READING)
 				//var/supernatural_splat = issupernatural(target)??? the current issupernatural just checks for a single splat, which doesnt qualify for the -1 willpower, think its just other 'undead' p137 V20
-				if(get_kindred_splat(target) || get_shifter_splat(target))
+				if(get_kindred_splat(target))
 					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
+				if(!disguise_roll)
+					disguise_roll = new()
+					disguise_roll.difficulty = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS)
+					switch(disguise_roll.st_roll(owner))
+						if(ROLL_SUCCESS)
+							reading_voice = "somebody nearby"
+						if(ROLL_FAILURE, ROLL_BOTCH)
+							reading_voice = owner.real_name
 			if(TELEPATHY_IMPLANT_THOUGHT)
 				var/disguise_voice_prompt = tgui_input_list(owner, "Attempt to disguise the origin of the implanted thought? Requires a Manipulation + Subterfuge roll at the difficulty of the target's Perception + Awareness", "Disguise Voice", list("Yes", "No"), "No")
 				switch(disguise_voice_prompt)
 					if("Yes")
 						if(!disguise_roll)
 							disguise_roll = new()
-						disguise_roll.difficulty = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS)
+						disguise_roll.difficulty = target.st_get_stat(STAT_PERCEPTION) + target.st_get_stat(STAT_AWARENESS) //This is technically supposed to be the victim doing a roll against the vampire, this is backwards. Can't figure that out right now though.
 						switch(disguise_roll.st_roll(owner, target))
 							if(ROLL_SUCCESS)
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
 							if(ROLL_FAILURE, ROLL_BOTCH)
 								to_chat(span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
-								disguised_voice = owner.name
+								disguised_voice = owner.real_name
 					if("No")
-						disguised_voice = owner.name
+						disguised_voice = owner.real_name
 		telepathy_type_selected = telepathy_type
 		return TRUE
 	return FALSE
@@ -332,7 +341,7 @@
 			to_chat(target, span_boldannounce("You hear the voice of [disguised_voice] in your thoughts: \"[input_message]\""))
 
 		if(TELEPATHY_MIND_READING)
-			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing..." + get_flavor_text(successes)
+			var/flavor_text_telepathy = "Foreign thoughts intrude upon you, as [reading_voice] reads your mind... " + get_flavor_text(successes)
 			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information? Deeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
 			if(mind_reading_search == "Yes")
 				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = MAX_MESSAGE_LEN)
@@ -356,7 +365,7 @@
 			to_chat(owner, span_notice("You read [target]'s thoughts with [successes] successes: [input_message]"))
 
 /datum/discipline_power/auspex/telepathy/proc/get_flavor_text(successes)
-	var/message = "As your mind is read with [successes] successes, "
+	var/message = "As your mind is read, "
 	switch(successes)
 		if(1)
 			message += "the most surface-level thoughts or unspoken comments are easily read, but if your character was expecting their mind to be read, they can make an effort to obfuscate their true thoughts..."
@@ -368,6 +377,7 @@
 			message += "your mind is being deeply invaded. Hidden thoughts, suppressed emotions, and secrets you've tried to bury begin to surface. The attacker can access memories and feelings you may have forgotten without you ever knowing..."
 		if(5 to INFINITY)
 			message += "your deepest secrets and most buried memories are laid bare. The telepath can access traumatic experiences, long-forgotten events, and the darkest corners of your psyche. Nothing is hidden..."
+	message += " Try to reply in impression and imagery, rather than simple words. "
 	return message
 
 /datum/discipline_power/auspex/telepathy/proc/sanitize_input_message(input_message)
