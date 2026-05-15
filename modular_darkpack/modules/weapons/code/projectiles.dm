@@ -23,7 +23,7 @@
 /obj/projectile/bullet/darkpack/vamp45acp
 	name = ".45 ACP bullet"
 	damage = 20
-	armour_penetration = 2
+	armour_penetration = 5
 
 /obj/projectile/bullet/darkpack/vamp45acp/HP
 	name = ".45 ACP hollow point bullet"
@@ -65,7 +65,7 @@
 
 /obj/projectile/bullet/darkpack/vamp50ae
 	name = ".50 AE bullet"
-	damage = 45
+	damage = 40
 	armour_penetration = 20
 	exposed_wound_bonus = 5
 	wound_bonus = 5

@@ -82,40 +82,6 @@
 		var/mob/living/burnt_mob = target
 		burnt_mob.apply_damage(15, AGGRAVATED)
 
-/obj/item/melee/sabre/rapier
-	name = "rapier"
-	desc = "A thin, elegant sword, the rapier is a weapon of the duelist, designed for thrusting."
-	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
-	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
-	icon_state = "rapier"
-
-
-/obj/item/melee/sabre/rapier/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, 700, "rapier", FALSE)
-
-
-/obj/item/claymore/machete
-	name = "machete"
-	desc = "A certified chopper fit for the jungles...but you don't see any vines around. Well-weighted enough to be thrown."
-	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
-	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
-	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
-	icon_state = "machete"
-	inhand_icon_state = "machete"
-	pixel_w = -8
-	masquerade_violating = FALSE
-	custom_price = 500
-
-/obj/item/claymore/machete/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/selling, 70, "machete", FALSE)
-
 /obj/item/melee/sabre/vamp
 	name = "sabre"
 	desc = "A curved sword, the sabre is a weapon of the cavalry, designed for slashing and thrusting."
@@ -126,10 +92,26 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "sabre"
 	var/value = 1000 // DARKPACK TODO: Move this up at some point. I hate the selling component with all my heart.
+	armour_penetration = 50		//Normally 75 pen, that pens army armor. Instead, 50. Pens bullet proof.
 
 /obj/item/melee/sabre/vamp/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, value, "sabre", FALSE)
+
+/obj/item/melee/sabre/rapier
+	name = "rapier"
+	desc = "A thin, elegant sword, the rapier is a weapon of the duelist, designed for thrusting."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "rapier"
+	armour_penetration = 50
+
+/obj/item/melee/sabre/rapier/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 700, "rapier", FALSE)
 
 /obj/item/melee/sabre/vamp/training
 	name = "foam sabre"
@@ -147,10 +129,29 @@
 	icon_state = "longsword"
 	inhand_icon_state = "longsword"
 
-
 /obj/item/claymore/longsword/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 600, "longsword", FALSE)
+
+/obj/item/claymore/machete
+	name = "machete"
+	desc = "A certified chopper fit for the jungles...but you don't see any vines around. Well-weighted enough to be thrown."
+	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "machete"
+	inhand_icon_state = "machete"
+	pixel_w = -8
+	masquerade_violating = FALSE
+	custom_price = 500
+	force = 35			//Short equivelant of longsword. Less damage and block
+	block_chance = 30
+
+/obj/item/claymore/machete/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 70, "machete", FALSE)
 
 // "Keepers" derived from "my brother's keeper" are an epithet for Lasombra but this seems to be a wholly unqiue item not found in any book.
 /obj/item/claymore/longsword/keeper
