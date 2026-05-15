@@ -7298,6 +7298,7 @@
 #include "modular_darkpack\modules\fomori\code\powers\chameleon_coloration.dm"
 #include "modular_darkpack\modules\fomori\code\powers\claws.dm"
 #include "modular_darkpack\modules\fomori\code\powers\darksight.dm"
+#include "modular_darkpack\modules\fomori\code\powers\ectoplasmic_extrusion.dm"
 #include "modular_darkpack\modules\fomori\code\powers\exoskeleton.dm"
 #include "modular_darkpack\modules\fomori\code\powers\fangs.dm"
 #include "modular_darkpack\modules\fomori\code\powers\hide_of_the_wyrm.dm"

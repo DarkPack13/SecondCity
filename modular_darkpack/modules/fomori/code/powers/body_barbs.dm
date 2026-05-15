@@ -41,7 +41,7 @@
 	name = "Body Barbs"
 	desc = "Use the grotesque spikes on your body to amplify your brawling ability."
 	button_icon_state = "body_barbs"
-	rank = 1 // of 10 // Determines how many extra dice we get
+	rank = 1 // of 5 // Determines how many extra dice we get, 2 points and 1 dice/level
 	weapon_type = /obj/item/melee/body_barbs
 	sheathe_text = "Your body barbs retract into your arms."
 
@@ -63,3 +63,5 @@
 	rank = 4
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/five
 	rank = 5
+
+#warn BODY BARBS UNFINISHED - Need to factor rank into damage

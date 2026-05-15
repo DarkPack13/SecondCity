@@ -45,8 +45,8 @@
 	StartCooldown()
 	return TRUE
 
-/datum/action/cooldown/power/fomori_power/infectious_touch/proc/feedback(mob/living/target, net_power)
-	defender.apply_damage(30*net_power, TOX) // Rules as written it's supposed to be aggravated, but this is better for flavor I think.
+/datum/action/cooldown/power/fomori_power/infectious_touch/proc/infect(mob/living/target, net_power)
+	target.apply_damage(30*net_power, TOX) // Rules as written it's supposed to be aggravated, but this is better for flavor I think.
 	if(target.stat < DEAD)
 		to_chat(target, span_userdanger("You feel woozy."))
 		SEND_SOUND(target, 'sound/effects/wounds/sizzle2.ogg')
