@@ -35,3 +35,5 @@
 			span_warning("Your claws extend from your hands."), \
 			span_hear("You hear organic matter ripping and tearing!"))
 		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+#warn CLAWS SOFT FINISHED - Needs melee damage stats
