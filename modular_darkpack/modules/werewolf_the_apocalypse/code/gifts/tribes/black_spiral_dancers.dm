@@ -19,5 +19,5 @@
 		return
 
 	// Just summon a random shitter.
-	human_owner?.add_beastmaster_minion(/mob/living/basic/bane/suffocating)
+	human_owner?.add_beastmaster_minion(/mob/living/basic/bane/religion)
 	return TRUE

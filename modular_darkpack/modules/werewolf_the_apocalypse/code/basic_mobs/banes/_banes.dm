@@ -1,6 +1,7 @@
 /mob/living/basic/bane
 	name = "creature"
 	abstract_type = /mob/living/basic/bane
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/basic/banes.dmi'
 
 	mob_biotypes = MOB_SPIRIT
 	basic_mob_flags = DEL_ON_DEATH
@@ -17,7 +18,7 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	speak_emote = list("gnashes")
 
-	faction = list("hostile") // Could prob its own faction
+	faction = list("bane")
 
 	pressure_resistance = 200
 	bloodpool = 0
@@ -26,6 +27,6 @@
 
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 
-/mob/living/basic/bane/suffocating
-	icon_state = "suffocating_bane"
-	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/basic/suffocating_bane.dmi'
+/mob/living/basic/bane/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_WYRMTAINTED, INNATE_TRAIT)
