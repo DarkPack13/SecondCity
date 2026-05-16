@@ -1,4 +1,4 @@
-/datum/splat/fomori
+/datum/splat/werewolf/fomori
 	name = "Fomori"
 	desc = "Mortals who have lost themselves to the Wyrm's corruption. \
 		A slow death of the self — most do not even realize what has happened to them before the bane takes over completely. \
@@ -14,16 +14,17 @@
 	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
 
-/datum/splat/fomori/splat_life(seconds_per_tick)
+/datum/splat/werewolf/fomori/splat_life(seconds_per_tick)
 	if(HAS_TRAIT(owner, TRAIT_FOMOR_REGEN))
 		if(COOLDOWN_FINISHED(src, passive_healing_cd))
 			owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
 			COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
 /mob/living/carbon/human/splat/fomori
-	auto_splats = list(/datum/splat/fomori)
+	auto_splats = list(/datum/splat/werewolf/fomori)
 
-/datum/splat/fomori/on_gain() // WIP: Will be pointbuy eventually. Don't merge with this code in-tact
+/datum/splat/werewolf/fomori/on_gain() // WIP: Will be pointbuy eventually. Don't merge with this code in-tact
+	// PHYSICAL POWERS
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1) // unfinished
@@ -34,8 +35,11 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) // done
+	// MENTAL POWERS
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1)
 
-/datum/splat/fomori/get_power(power_type)
+/datum/splat/werewolf/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)
 
 	for(var/datum/action/cooldown/power/fomori_power/found_action as anything in powers)
@@ -44,7 +48,7 @@
 
 		return found_action
 
-/datum/splat/fomori/add_power(power_type, level)
+/datum/splat/werewolf/fomori/add_power(power_type, level)
 	// Prevent duplicates
 	if(get_power(power_type))
 		return FALSE
@@ -53,7 +57,7 @@
 	LAZYADD(powers, adding_action)
 	return TRUE
 
-/datum/splat/fomori/remove_power(power_type)
+/datum/splat/werewolf/fomori/remove_power(power_type)
 	var/datum/action/cooldown/power/fomori_power/found_action = get_power(power_type)
 	if(!found_action)
 		return FALSE
