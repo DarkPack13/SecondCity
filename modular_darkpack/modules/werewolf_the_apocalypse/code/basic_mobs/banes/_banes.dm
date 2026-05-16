@@ -6,12 +6,12 @@
 	mob_biotypes = MOB_SPIRIT
 	basic_mob_flags = DEL_ON_DEATH
 
-	maxHealth = 100
-	health = 100
-	combat_mode = TRUE
-	obj_damage = 10
-	melee_damage_lower = 20
+	speed = 0.35
+	maxHealth = 80
+	health = 80
+	melee_damage_lower = 10
 	melee_damage_upper = 20
+	obj_damage = 20
 
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
