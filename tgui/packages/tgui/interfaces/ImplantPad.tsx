@@ -1,3 +1,4 @@
+import { sanitizeText } from 'tgui/sanitize';
 import {
   Button,
   Collapsible,
@@ -29,6 +30,13 @@ export const ImplantPad = (props) => {
     saved_deathrattle_group,
     current_deathrattle_group,
   } = data;
+  const sanitized = sanitizeText(case_information);
+  const textHtml = {
+    __html:
+      typeof sanitized === 'object' && sanitized !== null
+        ? sanitized.sanitized
+        : sanitized,
+  };
   return (
     <Window width={300} height={350}>
       <Window.Content scrollable>
