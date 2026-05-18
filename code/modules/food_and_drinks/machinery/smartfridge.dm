@@ -537,6 +537,7 @@
 	desc = "A wooden contraption, used to dry plant products, food and hide."
 	icon_state = "drying-rack"
 	base_icon_state = "drying-rack"
+	icon = 'modular_darkpack/master_files/icons/obj/machines/smartfridge.dmi' // DARKPACK EDIT ADD
 	resistance_flags = FLAMMABLE
 	visible_contents = FALSE
 	base_build_path = /obj/machinery/smartfridge/drying/rack
@@ -586,7 +587,18 @@
 	if(drying)
 		. += "[base_icon_state]-drying"
 	if(contents.len)
-		. += "[base_icon_state]-filled"
+		// DARKPACK EDIT CHANGE START
+		var/still_drying = FALSE
+		for(var/obj/item/item_iterator in src)
+			if(!accept_check(item_iterator))
+				continue
+			still_drying = TRUE
+			break
+		if(still_drying)
+			. += "[base_icon_state]-filled"
+		else
+			. += "[base_icon_state]-filled-dried"
+		// DARKPACK EDIT CHANGE END
 
 // ----------------------------
 //  Bar drink smartfridge

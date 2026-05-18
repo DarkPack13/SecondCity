@@ -110,6 +110,7 @@
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
 	applicable_stats = list(STAT_PERCEPTION, STAT_INVESTIGATION)
+	roll_output_type = ROLL_PRIVATE
 
 
 // Made up shittttt
@@ -117,3 +118,4 @@
 	bumper_text = "identify"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
 	reroll_cooldown = 1 SCENES
+	difficulty = 8
