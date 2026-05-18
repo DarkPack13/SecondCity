@@ -46,6 +46,8 @@
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
 		. += 2
+	if(HAS_TRAIT(roller, TRAIT_CALM_HEART))
+		. -= 2
 
 /datum/storyteller_roll/frenzy/rage
 
