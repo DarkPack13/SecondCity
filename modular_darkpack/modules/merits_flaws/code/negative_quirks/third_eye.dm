@@ -9,6 +9,7 @@
 	included_clans = list(VAMPIRE_CLAN_TREMERE)
 	icon = FA_ICON_EYE
 	failure_message = "Your blood resists the urge to open the third eye."
+	quirk_flags = QUIRK_CHANGES_APPEARANCE
 
 /datum/quirk/darkpack/permanent_third_eye/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
 	. = ..()
