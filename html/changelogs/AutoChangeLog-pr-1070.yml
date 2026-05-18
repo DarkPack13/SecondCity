@@ -1,0 +1,4 @@
+author: "odisurin"
+delete-after: True
+changes:
+  - rscadd: "adds a new magadon sign"

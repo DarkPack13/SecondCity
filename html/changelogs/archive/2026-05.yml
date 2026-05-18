@@ -122,3 +122,17 @@
   - bugfix: 'fixed transformers being unrepairable upon failing the roll
 
       :cl:'
+2026-05-18:
+  Biplume:
+  - balance: You now faint from Delirium at 1 Willpower.
+  - qol: Delirium text is now large.
+  FalloutFalcon:
+  - rscadd: Added Berry Juice to Dispenser
+  - balance: Replacing Uranium with Atomic Bomb, and LDM with Mindbreaker
+  Kolibri-B:
+  - bugfix: Fixed Sense Wyrm's detection code; now properly separates Path of Humanity
+      & Path of Enlightenment
+  lobotomypilled:
+  - rscadd: 'added a 1pt merit for sign language
+
+      :cl:'
