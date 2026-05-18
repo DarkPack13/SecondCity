@@ -161,7 +161,7 @@
 	. = ..()
 	apply_presence_overlay(target)
 	if(successes >= (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))	//We check if you just flat out have more successes than their dice pool total.
-		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? Requires more Charisma + Intimidation than your target's Wits + Courage to stun and apply a debuff to them.", "Disguise Voice", list("Yes", "No"), "No")
+		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? This will take time to preform this extended action to stun and debuff your opponent!", "Disguise Voice", list("Yes", "No"), "No")
 		switch(extended_action_prompt)
 			if("Yes")
 				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
