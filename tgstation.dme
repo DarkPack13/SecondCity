@@ -7645,6 +7645,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\potence\potence_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\presence\presence.dm"
 #include "modular_darkpack\modules\powers\code\discipline\presence\status_effects\awe_status_effect.dm"
+#include "modular_darkpack\modules\powers\code\discipline\presence\status_effects\dread_gaze.dm"
 #include "modular_darkpack\modules\powers\code\discipline\presence\status_effects\entrancement_status_effect.dm"
 #include "modular_darkpack\modules\powers\code\discipline\protean\beast_form.dm"
 #include "modular_darkpack\modules\powers\code\discipline\protean\claws.dm"
