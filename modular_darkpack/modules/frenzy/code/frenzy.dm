@@ -46,8 +46,11 @@
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
 		. += 2
+
+/datum/storyteller_roll/frenzy/kindred/calculate_used_dice(mob/living/roller, bonus)
+	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_CALM_HEART))
-		. -= 2
+		. += 2
 
 /datum/storyteller_roll/frenzy/rage
 
