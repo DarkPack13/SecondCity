@@ -7464,6 +7464,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_fangs.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\pierced_veil.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\prey_exclusion.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\speech_impediment.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\territorial.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\thaumaturgically_inept.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\the_largest_maw.dm"
