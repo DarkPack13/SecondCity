@@ -1,6 +1,7 @@
 /datum/storyteller_roll/gift/mothers_touch
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /*
 From W20 p. 164
@@ -106,10 +107,9 @@ the scar is received and an extra Gnosis point is spent.
 
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
-		if(!target.is_enlightenment())
-			. = 6
-		else if(target.st_get_stat(STAT_MORALITY) <= 7)
-			. = 6
+		if(!target.is_enlightenment() && target.st_get_stat(STAT_MORALITY) >= 7)
+			return
+		. = 6
 
 /datum/action/cooldown/power/gift/spirit_speech
 	name = "Spirit Speech"

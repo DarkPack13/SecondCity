@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Two separate fields for flavor text that overwrite existing one when your in crinos or hispo/lupus respectivly"

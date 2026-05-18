@@ -30,6 +30,7 @@ export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
 export const MESSAGE_TYPE_OOC = 'ooc';
 export const MESSAGE_TYPE_LOOC = 'looc'; // DARKPACK EDIT ADD
+export const MESSAGE_TYPE_MENTOR = 'mentor'; // DARKPACK EDIT ADD - MENTOR
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
@@ -132,6 +133,12 @@ export const MESSAGE_TYPES: MessageType[] = [
     name: 'Subtle',
     description: 'Subtle and Subtler actions.',
     selector: '.subtle, .subtler',
+  }, // DARKPACK EDIT ADD END
+  {  // DARKPACK EDIT ADD START - MENTOR
+    type: MESSAGE_TYPE_MENTOR,
+    name: 'Mentor Log',
+    description: 'Mentor PMs and other mentor things.',
+    selector: '.mentor, .mentornotice',
   }, // DARKPACK EDIT ADD END
   {
     type: MESSAGE_TYPE_UNKNOWN,
