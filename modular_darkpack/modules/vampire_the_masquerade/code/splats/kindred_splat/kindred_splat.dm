@@ -145,6 +145,12 @@
 			owner.trigger_rotschreck(nearby_fire)
 			COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
 
+		if(HAS_TRAIT(owner, TRAIT_GARLIC_REPULSED))
+			var/atom/nearby_garlic = get_closest_atom(/atom, owner.get_garlic_frenzy_targets(), owner)
+			if(nearby_garlic)
+				owner.trigger_garlic_frenzy(nearby_garlic)
+				COOLDOWN_START(src, frenzy_roll_cooldown, 1 SCENES)
+
 		else if(HAS_TRAIT(owner, TRAIT_NEEDS_BLOOD))
 			var/atom/nearby_blood = get_closest_atom(/atom, owner.get_blood_frenzy_targets(), owner)
 			if(nearby_blood)

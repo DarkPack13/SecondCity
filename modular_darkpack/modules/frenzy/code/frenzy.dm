@@ -40,6 +40,9 @@
 
 /datum/storyteller_roll/frenzy/kindred
 
+/datum/storyteller_roll/frenzy/garlic
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+
 // Specificly kindred as I dont really think brujah are meant to rotschreck easier.
 /datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller)
 	. = ..()
@@ -113,6 +116,22 @@
 		enter_frenzy_mode(target, TRUE, "Rage")
 	return frenzy_result
 
+/mob/living/proc/trigger_garlic_frenzy(atom/garlic, difficulty = 6, successes = 0)
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		return
+	if(!get_kindred_splat(src))
+		return
+
+	var/datum/storyteller_roll/frenzy/garlic/frenzy_roll = new()
+	var/frenzy_result = frenzy_roll.st_roll(src)
+	if(frenzy_result <= 0)
+		enter_frenzy_mode(garlic, TRUE, "Flee")
+		return
+	successes += frenzy_result
+	if(successes >= 5)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(trigger_rotschreck), garlic, difficulty, successes), 1 TURNS)
 
 /mob/living/carbon/human/verb/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Manual Frenzy Roll"

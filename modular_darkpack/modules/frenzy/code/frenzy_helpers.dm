@@ -45,3 +45,11 @@
 			fire += guy
 
 	return fire
+
+/mob/living/proc/get_garlic_frenzy_targets(range = DEFAULT_SIGHT_DISTANCE)
+	var/list/garlic = list()
+
+	for(var/obj/item/food/grown/garlic/garlic_clove in view(range, src))
+		garlic += garlic_clove
+
+	return garlic
