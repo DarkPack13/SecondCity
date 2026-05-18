@@ -412,6 +412,8 @@
 						hardmutate(stabmut = myseed.instability >= 80 ? 5 : 0)
 					else
 						mutate(stabmut = 0)
+			else if(myseed.instability >= 20 && prob(myseed.instability) && !myseed.get_gene(/datum/plant_gene/trait/stable_stats))
+				mutate(stabmut = 0)
 			// DARKPACK EDIT CHANGE END
 
 //Health & Age///////////////////////////////////////////////////////////
