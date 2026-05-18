@@ -7453,6 +7453,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\animal_musk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\bad_sight.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\betrayers_mark.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\cast_no_reflection.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\derangement.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\dulled_bite.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\grip_of_the_damned.dm"
