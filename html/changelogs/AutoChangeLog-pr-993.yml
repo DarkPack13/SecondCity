@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - balance: "Claws are prefered to kicking"
-  - bugfix: "Claws get intended bonus dice on basic mobs"

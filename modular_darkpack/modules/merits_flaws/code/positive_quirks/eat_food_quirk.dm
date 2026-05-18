@@ -8,14 +8,11 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	icon = FA_ICON_UTENSILS
 
-/datum/quirk/darkpack/eat_food/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	if(. == FALSE)
+/datum/quirk/darkpack/eat_food/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
 		return
-
-	if(ishuman(new_holder))
-		var/mob/living/carbon/human/human_holder = new_holder
-		var/obj/item/organ/tongue/tongue = human_holder.get_organ_by_type(/obj/item/organ/tongue)
-		tongue?.liked_foodtypes = initial(tongue.liked_foodtypes)
-		tongue?.disliked_foodtypes = initial(tongue.disliked_foodtypes)
-		tongue?.toxic_foodtypes = initial(tongue.toxic_foodtypes)
+	var/obj/item/organ/tongue/tongue = human_holder.get_organ_by_type(/obj/item/organ/tongue)
+	tongue?.liked_foodtypes = initial(tongue.liked_foodtypes)
+	tongue?.disliked_foodtypes = initial(tongue.disliked_foodtypes)
+	tongue?.toxic_foodtypes = initial(tongue.toxic_foodtypes)

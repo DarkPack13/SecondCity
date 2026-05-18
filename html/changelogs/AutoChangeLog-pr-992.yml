@@ -1,5 +1,0 @@
-author: "FalloutFalcon, CYBILIZE"
-delete-after: True
-changes:
-  - bugfix: "fixed separate phone calls occasionally sharing audio with each other"
-  - code_imp: "corrected secure phone frequency assignment logic"
