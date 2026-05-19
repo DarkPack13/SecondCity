@@ -77,7 +77,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = FA_ICON_DOG,
+			SPECIES_PERK_ICON = FA_ICON_CROW,
 			SPECIES_PERK_NAME = "Shapeshifting",
 			SPECIES_PERK_DESC = "Corax can shift between 3 diffrent forms that grant them bonuses.",
 		),

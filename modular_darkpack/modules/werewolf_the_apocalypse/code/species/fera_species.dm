@@ -34,6 +34,7 @@
 	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
 	var/fallback_icon
+	var/has_flight_icon_states = FALSE
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
 	/// Causes delirium, which if the user is affected by, does not cause breaches
@@ -113,7 +114,9 @@
 	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
 		main_iconstate += "spiral"
 	main_iconstate += fur_color
-	if(human.body_position == LYING_DOWN)
+	if(has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM))
+		main_iconstate += "_flying"
+	else if(human.body_position == LYING_DOWN)
 		main_iconstate += "_rest"
 
 	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
@@ -296,6 +299,7 @@
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
+	has_flight_icon_states = TRUE
 	speed_mod = /datum/movespeed_modifier/shifter/feral
 
 /datum/species/human/shifter/feral/visible_gender_override(mob/living/carbon/human/holder)
@@ -304,6 +308,18 @@
 		return shifter_splat.mimmicing_animal::name
 
 	return "beast"
+
+/datum/species/human/shifter/feral/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
+	. = ..()
+	if(HAS_TRAIT(human_who_gained_species, TRAIT_FERA_FLIGHT))
+		var/datum/action/innate/toggle_fera_flight/ability = new(human_who_gained_species)
+		ability.Grant(human_who_gained_species)
+
+/datum/species/human/shifter/feral/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+	for(var/datum/action/innate/toggle_fera_flight/action in human.actions)
+		action.Remove(human)
+
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter

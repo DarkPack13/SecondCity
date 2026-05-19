@@ -1,7 +1,7 @@
 /datum/storyteller_roll/gift/enemy_ways
 	applicable_stats = list(STAT_PERCEPTION)
 	difficulty = 7
-	numerical = TRUE
+	numerical = TRUE // More successes can give more information but i didnt have any good ideas for rn.
 
 /datum/action/cooldown/power/gift/enemy_ways
 	name = "Enemy Ways"

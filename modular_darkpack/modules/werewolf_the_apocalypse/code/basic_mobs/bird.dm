@@ -70,8 +70,8 @@
 	name = "Toggle Flight"
 	desc = "Unfurl or withdraw your wings, toggling your ability to fly"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE
-	button_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "flight"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
+	button_icon_state = "fly"
 
 /datum/action/innate/togglecorvidflight/Trigger(mob/clicker, trigger_flags)
 	. = ..()
