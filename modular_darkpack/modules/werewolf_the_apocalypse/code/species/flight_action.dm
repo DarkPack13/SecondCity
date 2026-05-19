@@ -24,8 +24,6 @@
 	// fera_mob.update_icon(UPDATE_ICON)
 
 /datum/action/innate/toggle_fera_flight/Remove(mob/removed_from)
-	. = ..()
-
 	var/mob/living/carbon/human/fera_mob = owner
 	if(!istype(fera_mob))
 		return
@@ -33,3 +31,5 @@
 	fera_mob.remove_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
 
 	fera_mob.update_body_parts()
+
+	return ..()

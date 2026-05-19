@@ -304,7 +304,7 @@
 
 /datum/species/human/shifter/feral/visible_gender_override(mob/living/carbon/human/holder)
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(holder)
-	if(shifter_splat.mimmicing_animal)
+	if(shifter_splat?.mimmicing_animal)
 		return shifter_splat.mimmicing_animal::name
 
 	return "beast"
