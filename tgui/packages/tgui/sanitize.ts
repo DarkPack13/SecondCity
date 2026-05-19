@@ -4,6 +4,7 @@
 
 import DOMPurify from 'dompurify';
 
+// DARKPACK EDIT START - IrisStation Fancy Paperwork Port
 // Configuration interface for sanitization options
 interface SanitizeConfig {
   allowExternalUrls?: boolean;
@@ -23,6 +24,7 @@ const defaultConfig: Required<SanitizeConfig> = {
   maxDimension: 1000,
   maxZIndex: 100,
 };
+// DARKPACK EDIT END - IrisStation Fancy Paperwork Port
 
 // Default values
 const defTag = [
@@ -63,6 +65,7 @@ const defTag = [
   'tr',
   'u',
   'ul',
+  // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
   // Additional safe tags for formatting and semantics
   'sup',
   'sub',
@@ -76,11 +79,13 @@ const defTag = [
   'dfn',
   'q',
   's',
+  // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
 ];
 
 // Advanced HTML tags that we can trust admins (but not players) with
 const advTag = ['img'];
 
+// DARKPACK EDIT START - IrisStation Fancy Paperwork Port
 // Safe CSS properties that players are allowed to use
 const safeCSSProperties = [
   // Text properties
@@ -377,6 +382,7 @@ export function resetSanitizationStats() {
 export function updateSanitizeConfig(newConfig: Partial<SanitizeConfig>) {
   Object.assign(defaultConfig, newConfig);
 }
+// DARKPACK EDIT END - IrisStation Fancy Paperwork Port
 
 /**
  * Feed it a string and it should spit out a sanitized version.
@@ -386,14 +392,15 @@ export function updateSanitizeConfig(newConfig: Partial<SanitizeConfig>) {
  * @param tags - List of allowed HTML tags
  * @param forbidAttr - List of forbidden HTML attributes
  * @param advTags - List of advanced HTML tags allowed for trusted sources
- * @param config - Optional configuration overrides
+ * @param config - Optional configuration overrides | DARKPACK EDIT - IrisStation Fancy Paperwork Port
  */
 export function sanitizeText(
   input: string,
   advHtml = false,
   tags = defTag,
-  forbidAttr = forbiddenAttr,
+  forbidAttr = forbiddenAttr, // DARKPACK EDIT - IrisStation Fancy Paperwork Port
   advTags = advTag,
+  // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
   config: Partial<SanitizeConfig> = {},
 ) {
   const startTime = performance.now();
@@ -413,14 +420,17 @@ export function sanitizeText(
         return { sanitized: '', blocked: false, blockedSummary: '' };
       }
       const finalConfig = { ...defaultConfig, ...config };
+      // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
       if (advHtml) {
         tags = tags.concat(advTags);
       }
+      // DARKPACK EDIT - IrisStation Fancy Paperwork Port
       const sanitized = DOMPurify.sanitize(input, {
         ALLOWED_TAGS: tags,
-        ALLOWED_ATTR: safeAttr,
+        ALLOWED_ATTR: safeAttr, // DARKPACK EDIT - IrisStation Fancy Paperwork Port
         FORBID_ATTR: forbidAttr,
       });
+      // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
       const finalResult = postProcessStyles(sanitized, blockedItems);
       // Update statistics
       sanitizationStats.totalSanitizations++;
@@ -802,3 +812,4 @@ function safeExecuteWithContext<T>(
     return fallback;
   }
 }
+// DARKPACK EDIT END - IrisStation Fancy Paperwork Port

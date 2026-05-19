@@ -1,4 +1,4 @@
-import { sanitizeText } from 'tgui/sanitize';
+import { sanitizeText } from 'tgui/sanitize'; // DARKPACK EDIT - IrisStation Fancy Paperwork Port
 import {
   Button,
   Collapsible,
@@ -30,6 +30,7 @@ export const ImplantPad = (props) => {
     saved_deathrattle_group,
     current_deathrattle_group,
   } = data;
+  // DARKPACK EDIT START- IrisStation Fancy Paperwork Port
   const sanitized = sanitizeText(case_information);
   const textHtml = {
     __html:
@@ -37,6 +38,7 @@ export const ImplantPad = (props) => {
         ? sanitized.sanitized
         : sanitized,
   };
+  // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
   return (
     <Window width={300} height={350}>
       <Window.Content scrollable>

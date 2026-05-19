@@ -44,12 +44,14 @@ export function Upload(props) {
     return <NoticeBox>Scan in a book to upload.</NoticeBox>;
   }
 
+  // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
   const sanitized = sanitizeText(cache_content);
   const contentHtml = {
     __html:
       typeof sanitized === 'object' && sanitized !== null
         ? sanitized.sanitized
         : sanitized,
+    // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
   };
 
   return (

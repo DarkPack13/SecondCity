@@ -51,12 +51,14 @@ export function PageMessages(props) {
       );
     }
 
+    // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
     const sanitized = sanitizeText(message.content);
     const textHtml = {
       __html:
         typeof sanitized === 'object' && sanitized !== null
           ? sanitized.sanitized
           : sanitized,
+      // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
     };
 
     messageElements.push(

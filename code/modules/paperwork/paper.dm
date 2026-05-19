@@ -661,6 +661,7 @@
 	if(.)
 		return
 
+	// DARKPACK EDIT START - IrisStation Fancy Paperwork Port
 	if(action == "admin_log")
 		var/message = params["message"]
 		message_admins("[key_name(usr)] [message]")
@@ -672,6 +673,7 @@
 		message_admins("[key_name(usr)] [message]")
 		log_admin("[key_name(usr)] [message]")
 		return TRUE
+	// DARKPACK EDIT END - IrisStation Fancy Paperwork Port
 
 	var/mob/user = ui.user
 
@@ -711,9 +713,11 @@
 			return TRUE
 		if("add_text")
 			var/paper_input = params["text"]
+			// DARKPACK EDIT START - IrisStation Fancy Paperwork Port
 			var/blocked_summary = params["blocked_summary"]
 			if(blocked_summary && blocked_summary != "")
 				log_admin("[key_name(user)] had forbidden HTML/CSS sanitized from paper: [blocked_summary]")
+			// DARKPACK EDIT END - IrisStation Fancy Paperwork Port
 
 			// If the paper is on an unwritable noticeboard, this usually shouldn't be possible.
 			if(istype(loc, /obj/structure/noticeboard))
@@ -736,7 +740,7 @@
 				return TRUE
 
 			var/current_length = get_total_length()
-			var/new_length = current_length + length_char(paper_input)
+			var/new_length = current_length + length_char(paper_input) // DARKPACK EDIT - IrisStation Fancy Paperwork Port
 
 			// tgui should prevent this outcome.
 			if(new_length > MAX_PAPER_LENGTH)

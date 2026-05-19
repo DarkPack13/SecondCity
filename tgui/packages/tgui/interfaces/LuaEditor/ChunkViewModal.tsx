@@ -33,6 +33,7 @@ export const ChunkViewModal = (props: ChunkViewModalProps) => {
           </Button>
         }
       >
+        {/* DARKPACK EDIT START - IrisStation Fancy Paperwork Port */}
         {(() => {
           const sanitized = sanitizeText(viewedChunk);
           const code =
@@ -48,6 +49,7 @@ export const ChunkViewModal = (props: ChunkViewModalProps) => {
             />
           );
         })()}
+        {/* DARKPACK EDIT END - IrisStation Fancy Paperwork Port */}
       </Section>
     </Modal>
   );

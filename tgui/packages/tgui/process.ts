@@ -23,6 +23,7 @@ export function processedText(value: string | null): ProcessedText {
     )
     .parse(value, { async: false });
 
+  // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
   const sanitized = sanitizeText(parsed);
   const textHtml = {
     __html:
@@ -30,5 +31,6 @@ export function processedText(value: string | null): ProcessedText {
         ? sanitized.sanitized
         : sanitized,
   };
+  // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
   return textHtml;
 }

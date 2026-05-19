@@ -153,10 +153,12 @@ export class PreviewView extends Component<PreviewViewProps> {
   shouldComponentUpdate(nextProps: Readonly<PreviewViewProps>): boolean {
     if (!this.props.canEdit) return true;
 
+    // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
     return (
       this.props.canEdit !== nextProps.canEdit ||
       this.props.textArea !== nextProps.textArea
     );
+    // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
   }
 
   // Creates the partial inline HTML for previewing or reading the paper from
@@ -324,11 +326,13 @@ export class PreviewView extends Component<PreviewViewProps> {
     const parsedText = this.runMarkedDefault(rawText);
 
     // Third, we sanitize the text of html
+    // DARKPACK EDIT - IrisStation Fancy Paperwork Port
     const sanitizedResult = sanitizeText(parsedText, advanced_html);
     const sanitizedText =
       typeof sanitizedResult === 'object' && sanitizedResult !== null
         ? sanitizedResult.sanitized
         : sanitizedResult;
+    // DARKPACK EDIT - IrisStation Fancy Paperwork Port
 
     // Fourth we replace the [__] with fields
     const fieldedText = this.createFields(

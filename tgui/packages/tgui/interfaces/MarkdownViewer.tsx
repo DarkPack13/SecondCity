@@ -31,11 +31,13 @@ export const MarkdownRenderer = (props: MarkdownRendererProps) => {
 
   content = marked(content, { async: false });
   if (sanitize) {
+    // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
     const sanitized = sanitizeText(content, /* advHtml = */ false);
     content =
       typeof sanitized === 'object' && sanitized !== null
         ? sanitized.sanitized
         : sanitized;
+    // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
   }
 
   return <div dangerouslySetInnerHTML={{ __html: content }} />;

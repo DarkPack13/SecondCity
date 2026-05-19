@@ -2,7 +2,7 @@ import { Component, createRef, type RefObject } from 'react';
 import { Box, Button, Flex, Section, TextArea } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../../backend';
-import { sanitizeText } from '../../sanitize';
+import { sanitizeText } from '../../sanitize'; // DARKPACK EDIT - IrisStation Fancy Paperwork Port
 import { TEXTAREA_INPUT_HEIGHT } from './constants';
 import { PreviewView } from './Preview';
 import { PaperSheetStamper } from './Stamper';
@@ -111,6 +111,7 @@ export class PrimaryView extends Component {
                       disabled={!savableData || tooManyCharacters}
                       color="good"
                       onClick={() => {
+                        // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
                         const result = sanitizeText(textAreaText, false);
                         if (typeof result === 'object' && result !== null) {
                           act('add_text', {
@@ -121,6 +122,7 @@ export class PrimaryView extends Component {
                           act('add_text', { text: result });
                         }
                         setTextAreaText('');
+                        // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
                         if (Object.keys(inputFieldData).length) {
                           act('fill_input_field', {
                             field_data: inputFieldData,
