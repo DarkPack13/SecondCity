@@ -6,6 +6,7 @@
 /datum/action/cooldown/power/gift/enemy_ways
 	name = "Enemy Ways"
 	desc = "The Corax gains an acute and accurate danger sense"
+	button_icon_state = "enemy_ways"
 	cooldown_time = 1 SCENES // TTRPG accurate is 1 TURNS but no cost or prevention of spamming
 	rank = 1
 	// Put up here so the codeblock can interact with them
