@@ -23,4 +23,4 @@
 	if(!client)
 		return
 	animate(A, alpha = 0, time = 1 SECONDS, easing = EASE_OUT)
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, A), 2 SECONDS)
+	QDEL_IN(A, 1 SECONDS)
