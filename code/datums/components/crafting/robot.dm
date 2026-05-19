@@ -179,7 +179,7 @@
 		/obj/item/reagent_containers/syringe = 1,
 	)
 	category = CAT_ROBOT
- */
+
 /datum/crafting_recipe/mod_core_soul
 	name = "MOD core (Soul)"
 	result = /obj/item/mod/core/soul
@@ -192,3 +192,4 @@
 		/obj/item/soulstone = 1,
 	)
 	category = CAT_ROBOT
+*/
