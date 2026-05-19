@@ -159,18 +159,6 @@ function WindowContent(props: ContentProps) {
   const [altDown, setAltDown] = useState(false);
 
   function dragStartIfAltHeld(event: React.MouseEvent<HTMLDivElement>): void {
-    // DARKPACK EDIT START - IrisStation Fancy Paperwork Port
-    const target = event.target instanceof HTMLElement ? event.target : null;
-    if (
-      altDown &&
-      target &&
-      target.closest(
-        'input, textarea, select, button, [contenteditable="true"], [contenteditable=""]',
-      )
-    ) {
-      return;
-    }
-    // DARKPACK EDIT END - IrisStation Fancy Paperwork Port
     if (altDown) {
       dragStartHandler(event);
     }
