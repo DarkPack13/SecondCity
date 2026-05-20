@@ -6,6 +6,7 @@
 
 	ai_controller = /datum/ai_controller/basic_controller/suffocating_bane
 
+	mob_size = MOB_SIZE_SMALL
 
 /datum/ai_controller/basic_controller/suffocating_bane
 	blackboard = list(
