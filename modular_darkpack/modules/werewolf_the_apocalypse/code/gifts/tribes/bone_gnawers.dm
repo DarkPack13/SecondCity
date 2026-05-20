@@ -86,3 +86,41 @@
 	desc = "Your next roll will be made with bonus strength, at the penalty of bashing damage!"
 	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
 	icon_state = "riddle" // TODO: get an icon for this
+
+/datum/action/cooldown/power/gift/chain_talk
+	name = "Chain Talk"
+	desc = {"This Gift allows a
+Shadow Lord to supernaturally overhear conversations, giving them
+a chance to get a heads up on any potential plots against the
+Garou or their Kin."}
+	button_icon_state = "chain_talk"
+	rank = 1
+	willpower_cost = 1
+
+/datum/action/cooldown/power/gift/chain_talk/Activate(atom/target)
+	. = ..()
+	var/mob/living/living_owner = astype(owner)
+
+	living_owner.apply_status_effect(/datum/status_effect/chain_talk)
+
+/datum/status_effect/chain_talk
+	id = "chain_talk"
+	duration = 5 SCENES
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/gift/chain_talk
+
+/datum/status_effect/chain_talk/on_apply()
+	. = ..()
+	to_chat(owner, span_notice("You feel as though your voice has range it hadn't before."))
+	owner.grant_language(/datum/language/primal_tongue)
+
+/datum/status_effect/chain_talk/on_remove()
+	to_chat(owner, span_warning("Your throat aches; a sense that you may no longer speak so freely comes over you."))
+	owner.remove_language(/datum/language/primal_tongue)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/gift/chain_talk
+	name = /datum/action/cooldown/power/gift/chain_talk::name
+	desc = /datum/action/cooldown/power/gift/chain_talk::desc
+	overlay_state = /datum/action/cooldown/power/gift/chain_talk::button_icon_state
+

@@ -106,6 +106,11 @@
 	bumper_text = "climbing"
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
+/datum/storyteller_roll/climbing/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	if(roller.has_status_effect(/datum/status_effect/balance))
+		. -= 3
+
 // Mental Feats
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"

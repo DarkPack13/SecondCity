@@ -62,7 +62,7 @@
 		"sound patterns",
 		"cleaning fluid",
 		"hand sanitizer",
-		"a spider\'s web",
+		"a spider's web",
 		"silken thread",
 		"metal",
 		"a sudden drain of energy",
@@ -113,8 +113,13 @@
 			if(0)
 				to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
 			if(1)
-				to_chat(owner, span_purple("[victim] smells mundane."))
+				if(ismundane(victim))
+					to_chat(owner, span_purple("[victim] smells mundane."))
+				else
+					to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
 			if(2 to 3)
+				if(ismundane(victim))
+					to_chat(owner, span_purple("[victim] smells mundane."))
 				if(get_kindred_splat(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
 				if(get_shifter_splat(victim) && !get_garou_splat(victim))
@@ -128,7 +133,7 @@
 //				if(ismummy(victim))
 //					to_chat(owner, span_purple("[victim] smells of [pick(wyld_descriptors)]"))
 				else
-					to_chat(owner, span_purple("[victim] smells mundane."))
+					to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
 			if(4)
 				if(get_kindred_splat(victim))
 					to_chat(owner, span_purple("[victim] smells of [pick(wyrm_descriptors)]"))
@@ -147,7 +152,7 @@
 //				if(ismage(victim))
 //					to_chat(owner, span_purple("[victim] smells of pure energy."))
 				else
-					to_chat(owner, span_purple("[victim] smells mundane."))
+					to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))
 
 	caster.emote("sniff")
 

@@ -40,7 +40,7 @@
 	desc = "By invoking the power of waking dreams, the Garou can place any chosen characters into silent communion."
 	button_icon_state = "mindspeak"
 	rank = 1
-//	gnosis_cost = 1
+	willpower_cost = 1
 
 
 /datum/action/cooldown/power/gift/mindspeak/Activate(atom/target)
