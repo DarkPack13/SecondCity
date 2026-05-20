@@ -17,7 +17,7 @@ Garou or their Kin."}
 /datum/status_effect/whisper_catching
 	duration = 	1 SCENES
 	id = "whisper_catching"
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/gift/whisper_catching
 
 /datum/status_effect/whisper_catching/on_apply()
