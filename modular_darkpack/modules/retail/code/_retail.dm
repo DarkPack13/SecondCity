@@ -12,7 +12,6 @@
 	anchored_tabletop_offset = 6
 	var/owner_needed = TRUE //Does an npc need to be here for this
 	var/mob/living/carbon/human/npc/my_owner //tracks existence of owner
-	var/is_gun_store = FALSE
 	var/payment_department = ACCOUNT_SRV
 
 	var/list/datum/data/vending_product/products_list = list()
@@ -45,6 +44,8 @@
 		if(owner_needed == TRUE && (!my_owner || (get_dist(src, my_owner) > 4) || (my_owner.stat >= HARD_CRIT)))
 			to_chat(user, span_alert("There's no teller here to sell you things..."))
 			return
+		else if(owner_needed == TRUE && my_owner && get_dist(src, my_owner) <= 4)
+			my_owner.say(pick(my_owner.socialrole.random_phrases))
 		ui_interact(user)
 
 /obj/structure/retail/proc/build_inventory()
@@ -70,6 +71,9 @@
 			return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		if(owner_needed && my_owner)
+			my_owner.face_atom(user)
+			my_owner.realistic_say(pick(my_owner.socialrole.random_phrases))
 		ui = new(user, src, "RetailVendor", name)
 		ui.open()
 
@@ -95,6 +99,7 @@
 		)
 			product_data["icon"] = initial(printed.icon)
 			product_data["icon_state"] = initial(printed.icon_state)
+	.["money_symbol"] = MONEY_SYMBOL
 
 /obj/structure/retail/ui_data(mob/user)
 	. = list()
@@ -113,7 +118,7 @@
 			.["user"]["is_card"] = 1
 			.["user"]["payment_item"] = REF(held_item)
 			break
-		if(iscash(held_item))
+		else if(istype(held_item, /obj/item/stack/dollar))
 			var/obj/item/money = held_item
 			.["user"]["money"] = money.get_item_credit_value()
 			.["user"]["payment_item"] = REF(held_item)
@@ -149,23 +154,27 @@
 				to_chat(usr, span_alert("Error: Product is out of stock!"))
 				return
 
-			//get the money
-			if(is_creditcard(held_item))
-				var/obj/item/card/credit/creditcard = held_item
-				var/datum/bank_account/used_account = creditcard.registered_account
-				if(!used_account)
-					to_chat(user, span_alert("The [creditcard] has no linked account."))
-					return
-				if(!used_account.check_pin(user, product.price, creditcard))
-					return
-				if(!used_account.adjust_money(-1 * product.price))
-					to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
-					return
-				//used_account.process_credit_fraud(user, product.price)
+			if(product.price > 0)
+				//get the money
+				if(is_creditcard(held_item))
+					var/obj/item/card/credit/creditcard = held_item
+					var/datum/bank_account/used_account = creditcard.registered_account
+					if(!used_account)
+						to_chat(user, span_alert("The [creditcard] has no linked account."))
+						return
+					if(!used_account.check_pin(user, product.price, creditcard))
+						return
+					if(!used_account.adjust_money(-1 * product.price))
+						to_chat(user, span_alert("The transaction is declined - Insufficient funds."))
+						return
+					//used_account.process_credit_fraud(user, product.price)
+				else if(istype(held_item, /obj/item/stack/dollar))
+					if(!held_item.use(product.price))
+						to_chat(user, span_alert("You don't have enough money in your hand."))
+						return
+				else
+					return // We have nothing we can pay with.
 
-			else if(istype(held_item, /obj/item/stack/dollar) && !held_item.use(product.price))
-				to_chat(user, span_alert("You don't have enough money in your hand."))
-				return
 			playsound(get_turf(src), 'sound/effects/cashregister.ogg', 50, TRUE)
 			new product.product_path(loc)
 			if(product.amount > 0)

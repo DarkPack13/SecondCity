@@ -592,7 +592,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/sewer)
 "acc" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
 /turf/open/misc/dirt,
@@ -1146,7 +1146,7 @@
 /turf/open/floor/carpet/darkpack/bluesilver,
 /area/vtm/westfield_mall/interior/theatre)
 "adX" = (
-/obj/structure/chair/plastic,
+/obj/structure/chair/plastic/darkpack,
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall/forest)
 "adY" = (
@@ -1921,7 +1921,7 @@
 "agI" = (
 /obj/effect/decal/rugs,
 /obj/effect/decal/rugs,
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 1
 	},
 /obj/effect/landmark/start/darkpack/primogen/nosferatu,
@@ -2072,7 +2072,7 @@
 /turf/open/floor/carpet/darkpack/orangesilver,
 /area/vtm/interior/supply)
 "ahf" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 4
 	},
 /obj/effect/landmark/start/darkpack/chantry/archivist,
@@ -2406,7 +2406,7 @@
 /turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/police)
 "aif" = (
-/obj/structure/chair/office,
+/obj/structure/chair/office/darkpack/green,
 /obj/effect/landmark/start/darkpack/chantry/archivist,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/chantry)
@@ -4143,7 +4143,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/church)
 "anQ" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 8
 	},
 /turf/open/floor/carpet/darkpack/redsilver,
@@ -9001,7 +9001,7 @@
 /turf/open/floor/city/factory,
 /area/vtm/westfield_mall/interior/theatre)
 "aDK" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 4;
 	pixel_y = 7
 	},
@@ -9640,7 +9640,7 @@
 /area/vtm/interior/shop)
 "aFH" = (
 /obj/effect/decal/cleanable/trash,
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 8
 	},
 /turf/open/floor/plating/concrete,
@@ -9713,7 +9713,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/westfield_mall/skatepark)
 "aFW" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 4
 	},
 /turf/open/floor/carpet/darkpack/redsilver,
@@ -10389,6 +10389,7 @@
 /area/vtm/interior/sewer/nosferatu_town)
 "aIg" = (
 /obj/effect/turf_decal/loading_area,
+/obj/effect/abstract/cargo_landing_spot,
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall/interior/supply)
 "aIh" = (
@@ -11510,7 +11511,7 @@
 /turf/closed/wall/vampwall/painted,
 /area/vtm/westfield_mall/interior)
 "aLX" = (
-/obj/structure/chair/plastic,
+/obj/structure/chair/plastic/darkpack,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
@@ -11917,7 +11918,7 @@
 /turf/open/floor/city/gummaguts,
 /area/vtm/westfield_mall/interior/foodcourt/restaurant)
 "aNn" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/poor,
@@ -12779,7 +12780,7 @@
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/interior/shop)
 "aQe" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 8
 	},
 /obj/effect/landmark/start/darkpack/chantry/archivist,
@@ -13530,7 +13531,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/westfield_mall/interior/camarilla)
 "aSs" = (
-/obj/structure/chair/plastic,
+/obj/structure/chair/plastic/darkpack,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "aSt" = (
@@ -14060,10 +14061,6 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/wood/smooth,
 /area/vtm/westfield_mall/interior/candy_store)
-"aUv" = (
-/obj/transfer_point_vamp/backrooms/map,
-/turf/open/openspace,
-/area/vtm/westfield_mall)
 "aUw" = (
 /obj/item/instrument/eguitar/vamp{
 	pixel_y = -10;
@@ -14668,11 +14665,11 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall/interior/supply)
 "aWz" = (
-/obj/item/chair/plastic,
-/obj/item/chair/plastic{
+/obj/item/chair/plastic/darkpack,
+/obj/item/chair/plastic/darkpack{
 	pixel_y = 2
 	},
-/obj/item/chair/plastic{
+/obj/item/chair/plastic/darkpack{
 	pixel_y = 4
 	},
 /obj/machinery/light/dim/directional/west,
@@ -14742,7 +14739,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "aWI" = (
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 8
 	},
 /turf/open/floor/plating/concrete,
@@ -15028,7 +15025,7 @@
 /area/vtm/westfield_mall/interior)
 "aXB" = (
 /mob/living/carbon/human/npc/shop,
-/obj/structure/chair/office,
+/obj/structure/chair/office/darkpack/green,
 /obj/effect/mapping_helpers/mob_buckler,
 /obj/machinery/light/directional/north,
 /turf/open/floor/city/plating,
@@ -15499,7 +15496,7 @@
 /area/vtm/westfield_mall/forest)
 "aZe" = (
 /mob/living/carbon/human/npc/shop,
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/mob_buckler,
@@ -15600,7 +15597,7 @@
 /area/vtm/westfield_mall/interior/clothing_store)
 "aZv" = (
 /mob/living/carbon/human/npc/shop,
-/obj/structure/chair/office{
+/obj/structure/chair/office/darkpack/green{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/mob_buckler,
@@ -17401,7 +17398,7 @@
 /turf/open/floor/carpet/green,
 /area/vtm/westfield_mall/interior/law_office)
 "ngU" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/poor,
@@ -17756,7 +17753,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "qhs" = (
-/obj/structure/chair/office,
+/obj/structure/chair/office/darkpack/green,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/skatepark)
@@ -17836,6 +17833,10 @@
 /obj/effect/decal/rugs,
 /turf/open/floor/iron/dark,
 /area/vtm/westfield_mall/interior/art_store)
+"rtM" = (
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/supply)
 "rus" = (
 /obj/machinery/sprinkler,
 /turf/open/floor/wood/smooth/old,
@@ -17913,6 +17914,11 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"rSA" = (
+/obj/effect/decal/pallet,
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/supply)
 "rSN" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -18263,7 +18269,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior)
 "uMr" = (
-/obj/structure/chair/plastic{
+/obj/structure/chair/plastic/darkpack{
 	dir = 8
 	},
 /obj/effect/turf_decal/bordur{
@@ -26047,11 +26053,11 @@ aFc
 (49,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
-ars
+rtM
 agx
 ars
 aNJ
@@ -27267,7 +27273,7 @@ ars
 aZf
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aVT
@@ -28175,7 +28181,7 @@ aFc
 (63,1,1) = {"
 aFc
 aOe
-aiq
+rSA
 aZf
 aaV
 aZf
@@ -28787,7 +28793,7 @@ ars
 aZf
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aeW
@@ -30003,7 +30009,7 @@ ars
 aZf
 aaV
 aIg
-ars
+rtM
 apX
 aOe
 aeW
@@ -30155,7 +30161,7 @@ ars
 aZf
 aaV
 aIg
-ars
+rtM
 apX
 aOe
 aeW
@@ -30459,7 +30465,7 @@ ars
 aXD
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aeW
@@ -30911,7 +30917,7 @@ aFc
 (81,1,1) = {"
 aFc
 aOe
-aiq
+rSA
 aZf
 aaV
 aZf
@@ -31671,7 +31677,7 @@ aFc
 (86,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
@@ -32583,7 +32589,7 @@ aFc
 (92,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
@@ -32735,7 +32741,7 @@ aFc
 (93,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
@@ -101556,7 +101562,7 @@ ahY
 ahY
 ahY
 ahY
-aUv
+ahY
 ahY
 ahY
 ahY

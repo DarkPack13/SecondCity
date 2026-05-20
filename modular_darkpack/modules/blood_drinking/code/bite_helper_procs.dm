@@ -5,7 +5,7 @@
 
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
 	if(kindred_splat)
-		var/hunger_threshold = 7 - (kindred_splat.enlightenment ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
+		var/hunger_threshold = 7 - (is_enlightenment() ? st_get_stat(STAT_INSTINCT) : st_get_stat(STAT_SELF_CONTROL))
 		var/previous_hunger = HAS_TRAIT(src, TRAIT_NEEDS_BLOOD)
 		var/will_be_hungry = (clamp(bloodpool + amount, 0, maxbloodpool) < hunger_threshold)
 
@@ -17,8 +17,6 @@
 			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, TRAIT_GENERIC)
 			to_chat(src, span_notice("Your hunger is satisfied as the Beast inside retreats."))
 
-		//DARKPACK TODO: roll for frenzy when hungry and seeing, smelling, tasting blood, maybe like the old system where you roll every once in a while. the roll is
-		//self control 3 for seeing blood, 4 for smelling it, i think 6 for tasting it, all while hungry?
 	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
 	if(updating_health)
 		update_blood_hud()
@@ -47,6 +45,8 @@
 	var/drink_mod = 1
 	if(HAS_TRAIT(src, TRAIT_HUNGRY))
 		drink_mod *= 0.5
+	if(HAS_TRAIT(src, TRAIT_EFFICIENT_DIGESTION))
+		drink_mod *= 1.5
 
 	return drink_mod
 

@@ -2,7 +2,7 @@
 	SIGNAL_HANDLER
 
 	// "Enlightenment" is essentially the Path of Pure Evil. Inverts Humanity changes and limits.
-	var/is_enlightenment = enlightenment
+	var/is_enlightenment = owner.is_enlightenment()
 	var/path = is_enlightenment ? "Enlightenment" : "Humanity"
 	if (is_enlightenment && !forced)
 		value = -value
@@ -37,6 +37,7 @@
 		var/datum/storyteller_roll/degeneration_roll = new()
 		degeneration_roll.applicable_stats = list(stat_to_roll)
 		degeneration_roll.difficulty = difficulty
+		degeneration_roll.roll_output_type = ROLL_PRIVATE_ADMIN
 		var/roll_result = degeneration_roll.st_roll(owner)
 
 		if(roll_result == ROLL_SUCCESS)

@@ -9,14 +9,15 @@ import {
   Floating,
   Input,
   LabeledList,
+  NumberInput, // DARKPACK EDIT
   Section,
   Stack,
 } from 'tgui-core/components';
-import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADDITION
+import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 import { CharacterPreview } from '../../common/CharacterPreview';
-import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADDITION
+import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADD
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
@@ -34,9 +35,10 @@ import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
 import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
+import { VocalsInput, VoiceInput } from './darkpack_vocals'; // DARKPACK EDIT ADDITION
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT, ORIGINAL: 9;
+const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT CHANGE - ORIGINAL: 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -352,11 +354,12 @@ type PreferenceListProps = {
   randomizations: Record<string, RandomSetting>;
   maxHeight: string;
   children?: ReactNode;
+  overrides?: Record<string, ReactNode>; // DARKPACK EDIT ADD
 };
 
 export function PreferenceList(props: PreferenceListProps) {
   const { act } = useBackend<PreferencesMenuData>();
-  const { preferences, randomizations, maxHeight, children } = props;
+  const { preferences, randomizations, maxHeight, children, overrides } = props;
 
   return (
     <Stack.Item
@@ -389,7 +392,7 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
-                tooltipPosition="right" // DARKPACK EDIT ADDITION - Swappable pref menus
+                tooltipPosition="right" // DARKPACK EDIT ADD - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
@@ -401,13 +404,16 @@ export function PreferenceList(props: PreferenceListProps) {
                       />
                     </Stack.Item>
                   )}
-
+                  {/* DARKPACK EDIT START - Overrides so we can capture input. For use in detecting if a player has changed their clan, immortal age, etc*/}
                   <Stack.Item grow>
-                    <FeatureValueInput
-                      feature={feature}
-                      featureId={featureId}
-                      value={value}
-                    />
+                    {overrides?.[featureId] ?? (
+                      <FeatureValueInput
+                        feature={feature}
+                        featureId={featureId}
+                        value={value}
+                      />
+                    )}
+                  {/*DARKPACK EDIT END */}
                   </Stack.Item>
                 </Stack>
               </LabeledList.Item>
@@ -455,8 +461,9 @@ export function MainPage(props: MainPageProps) {
   const [deleteCharacterPopupOpen, setDeleteCharacterPopupOpen] =
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
+  const [vocalsInputOpen, setVocalsInputOpen] = useState(false); // DARKPACK EDIT ADDITION
   const [randomToggleEnabled] = useRandomToggleState();
-  const [pendingClanValue, setPendingClanValue] = useState<string | null>(null);
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // DARKPACK EDIT ADD - for popups
 
   const serverData = useServerPrefs();
 
@@ -484,6 +491,10 @@ export function MainPage(props: MainPageProps) {
   const nonContextualPreferences = {
     ...data.character_preferences.non_contextual,
   };
+  // DARKPACK EDIT ADD START - tracking age changes
+  const immortalAgeValue = nonContextualPreferences.immortal_age as number | undefined;
+  const immortalAgeServerData = serverData?.immortal_age as { minimum: number; maximum: number; step: number } | undefined;
+  // DARKPACK EDIT ADD END
 
   if (randomBodyEnabled) {
     nonContextualPreferences.random_splats = // DARKPACK EDIT CHANGE - SPLATS
@@ -494,7 +505,7 @@ export function MainPage(props: MainPageProps) {
     delete nonContextualPreferences.random_name;
   }
 
-  // DARKPACK EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
+  // DARKPACK EDIT ADD START - SWAPPABLE PREF MENUS
   enum PrefPage {
     Visual, // The visual parts
     Profile, // Flavor Text, Age, Records, PDA ringtone, etc
@@ -527,13 +538,29 @@ export function MainPage(props: MainPageProps) {
           )}
           preferences={nonContextualPreferences}
           maxHeight="auto"
+          // DARKPACK EDIT ADD START
+          overrides={{
+            immortal_age: immortalAgeValue !== undefined ? (
+              <NumberInput
+                value={immortalAgeValue}
+                minValue={immortalAgeServerData?.minimum ?? 0}
+                maxValue={immortalAgeServerData?.maximum ?? 1000}
+                step={immortalAgeServerData?.step ?? 1}
+                onChange={(value) => setPendingConfirm(() => () => {
+                  createSetPreference(act, 'immortal_age')(value);
+                  act('clear_discipline_levels');
+                })}
+              />
+            ) : undefined,
+          }}
+          // DARKPACK EDIT ADD END
         />
       );
       break;
     default:
       exhaustiveCheck(currentPrefPage);
   }
-  // DARKPACK EDIT ADDITION END
+  // DARKPACK EDIT ADD END
 
   return (
     <>
@@ -554,14 +581,22 @@ export function MainPage(props: MainPageProps) {
           names={data.character_preferences.names}
         />
       )}
+      {/* DARKPACK EDIT ADDITION START */}
+      {vocalsInputOpen && (
+        <VocalsInput
+          handleClose={() => setVocalsInputOpen(false)}
+          vocals={data.character_preferences.vocals}
+        />
+      )}
+      {/* DARKPACK EDIT ADDITION END */}
 
       {deleteCharacterPopupOpen && (
         <DeleteCharacterPopup
           close={() => setDeleteCharacterPopupOpen(false)}
         />
       )}
-      {/* DARKPACK EDIT START - Clan Change Disciplines reset popup*/}
-      {pendingClanValue !== null && (
+      {/* DARKPACK EDIT START - popup for clan, age, etc. changes */}
+      {pendingConfirm !== null && (
         <Box
           style={{
             position: 'fixed',
@@ -586,17 +621,17 @@ export function MainPage(props: MainPageProps) {
             }}
           >
             <Box bold textAlign="center" fontSize={1.1} mb={1} mt={-1}>
-              Change Clan?
+              Change Character Details?
             </Box>
             <Box color="label" mb={2}>
-              Changing your clan will wipe ALL of your existing disciplines.
+              Changing significant character details (Clan, age, etc.) will wipe ALL of your existing disciplines.
               This cannot be undone. Are you sure?
             </Box>
             <Stack textAlign="center" justify="center">
               <Stack.Item>
                 <Button
                   textAlign="center"
-                  onClick={() => setPendingClanValue(null)}
+                  onClick={() => setPendingConfirm(null)}
                 >
                   Cancel
                 </Button>
@@ -606,9 +641,8 @@ export function MainPage(props: MainPageProps) {
                   textAlign="center"
                   color="bad"
                   onClick={() => {
-                    createSetPreference(act, 'vampire_clan')(pendingClanValue);
-                    act('clear_discipline_levels');
-                    setPendingClanValue(null);
+                    pendingConfirm?.();
+                    setPendingConfirm(null);
                   }}
                 >
                   Proceed
@@ -658,6 +692,16 @@ export function MainPage(props: MainPageProps) {
                   setMultiNameInputOpen(true);
                 }}
               />
+
+            {/* DARKPACK EDIT ADDITION START */}
+            <Stack.Item position="relative">
+              <VoiceInput
+                openVocalsInput={() => {
+                  setVocalsInputOpen(true);
+                }}
+              />
+            </Stack.Item>
+            {/* DARKPACK EDIT ADDITION END */}
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -678,7 +722,10 @@ export function MainPage(props: MainPageProps) {
                 clothingKey === 'vampire_clan'
                   ? (newValue: string) => {
                       if (newValue !== clothing) {
-                        setPendingClanValue(newValue);
+                        setPendingConfirm(() => () => {
+                          createSetPreference(act, 'vampire_clan')(newValue);
+                          act('clear_discipline_levels');
+                        });
                       } else {
                         baseSelect(newValue);
                       }
@@ -734,7 +781,7 @@ export function MainPage(props: MainPageProps) {
             */
               // DARKPACK EDIT REMOVAL END
             }
-            {/* DARKPACK EDIT ADDITION BEGIN: Swappable pref menus */}
+            {/* DARKPACK EDIT ADD START -  Swappable pref menus */}
             <Stack>
               <Stack.Item grow={2}>
                 <PageButton
@@ -758,7 +805,7 @@ export function MainPage(props: MainPageProps) {
             {prefPageContents}
           </Stack>
         </Stack.Item>
-        {/* DARKPACK EDIT ADDITION END: Swappable pref menus */}
+        {/* DARKPACK EDIT ADD END: Swappable pref menus */}
       </Stack>
     </>
   );

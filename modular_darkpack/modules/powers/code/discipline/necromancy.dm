@@ -6,12 +6,19 @@
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
+	signature_clan = VAMPIRE_CLAN_GIOVANNI
 
 /datum/discipline/necromancy/post_gain()
 	. = ..()
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
 	ritualist.level = level
+
+/datum/discipline/necromancy/post_loss()
+	. = ..()
+	for(var/datum/action/action as anything in owner.actions)
+		if(istype(action, /datum/action/ritual_drawing/necromancy))
+			qdel(action)
 
 /datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -27,6 +34,7 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
 	difficulty = 7
 	reroll_cooldown = 1 SCENES
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/necromancy/shroudsight
 	name = "Shroudsight"
@@ -89,22 +97,9 @@
 
 /datum/discipline_power/necromancy/ethereal_horde/activate()
 	. = ..()
-
-	//var/limit = 2 + owner.st_get_stat(STAT_LEADERSHIP)
-	//var/diff = limit - length(owner.beastmaster)
-	//if(diff <= 0)
-		//to_chat(owner, span_warning("The vitae cools - you cannot extend your will to any more followers."))
-		//return
-
 	owner.visible_message(span_warning("Wailing shades step forth from [owner]'s shadow."))
 	owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level1)
 	owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level1)
-	//if(diff != 1)
-		//var/mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/zombie2 = new /mob/living/simple_animal/hostile/beastmaster/giovanni_zombie/level1(owner.loc)
-		//zombie2.my_creator = owner
-		//owner.beastmaster |= zombie2
-		//zombie2.beastmaster_owner = owner
-
 
 //ASHES TO ASHES
 /datum/discipline_power/necromancy/ashes_to_ashes
@@ -157,7 +152,7 @@
 		owner.visible_message(span_warning("[owner] motions towards [target]."))
 		dusted.visible_message(span_danger("[target]'s body dissolves into dust before your very eyes!"))
 		to_chat(owner, span_warning("You've absorbed the body's residual lifeforce. You gain <b>BLOOD</b> and <b>A SOUL</b>."))
-		dusted.dust()
+		dusted.dust(just_ash = TRUE)
 		owner.adjust_blood_pool(2) // corpses = 2 blood
 		if(isliving(owner))
 			owner.collected_souls += 1
@@ -279,11 +274,7 @@
 
 /datum/discipline_power/necromancy/shambling_horde/activate(mob/living/target)
 	. = ..()
-	//var/limit = 2 + owner.st_get_stat(STAT_LEADERSHIP)
-	//var/diff = limit - length(owner.beastmaster)
 	if (target.stat == DEAD)
-			//to_chat(owner, span_warning("The vitae cools - you cannot extend your will to any more followers."))
-			//return
 		owner.visible_message(span_warning("[owner] gestures over [target]'s carcass."))
 		target.visible_message(span_danger("[target] twitches and rises, puppeteered by an invisible force."))
 		if(iscarbon(target))

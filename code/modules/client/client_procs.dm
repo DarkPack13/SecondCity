@@ -38,6 +38,11 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if(!usr || usr != mob) //stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	// DARKPACK EDIT ADD BEGIN - MENTOR
+	if(mentor_client_procs(href_list))
+		return
+	// DARKPACK EDIT ADD END
+
 #ifndef TESTING
 	if (LOWER_TEXT(hsrc_command) == "_debug") //disable the integrated byond vv in the client side debugging tools since it doesn't respect vv read protections
 		return
@@ -646,8 +651,6 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	QDEL_NULL(tooltips)
 	QDEL_NULL(loot_panel)
 	QDEL_NULL(parallax_rock)
-	QDEL_LIST(parallax_layers_cached)
-	parallax_layers = null
 	seen_messages = null
 	Master.UpdateTickRate()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening

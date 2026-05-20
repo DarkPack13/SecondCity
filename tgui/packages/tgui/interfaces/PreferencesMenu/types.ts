@@ -30,6 +30,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+  Egg = 'EGG',
 }
 
 export enum JobPriority {
@@ -190,6 +191,7 @@ export type CharacterPreferencesData = {
   manually_rendered_features: Record<string, string>;
 
   names: Record<string, string>;
+  vocals: Record<string, string | number | boolean>; // DARKPACK EDIT ADD - BLOOPERS
 
   misc: {
     gender: Gender;
@@ -239,6 +241,10 @@ export type PreferencesMenuData = {
   discipline_points_spent: number;
   discipline_tier: string;
   discipline_tier_details: string;
+  is_trusted: BooleanLike;
+  max_trusted_generation: number;
+  max_public_generation: number;
+  highest_generation_limit: number;
   // DARKPACK EDIT ADD END - DISCIPLINES
 
   // DARKPACK EDIT ADD START

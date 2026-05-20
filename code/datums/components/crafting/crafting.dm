@@ -15,20 +15,29 @@
 
 /datum/component/personal_crafting/Initialize(screen_loc_override)
 	src.screen_loc_override = screen_loc_override
-	if(ismob(parent))
-		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 
-/datum/component/personal_crafting/proc/create_mob_button(mob/user, client/user_client)
+/datum/component/personal_crafting/RegisterWithParent()
+	if(!ismob(parent))
+		return
+
+	var/mob/user = parent
+	RegisterSignal(parent, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+	if(user.hud_used)
+		on_hud_created()
+
+/datum/component/personal_crafting/UnregisterFromParent()
+	if(!ismob(parent))
+		return
+	var/mob/user = parent
+	UnregisterSignal(parent, COMSIG_MOB_HUD_CREATED)
+	user.hud_used?.remove_screen_object(HUD_MOB_CRAFTING_MENU)
+
+/datum/component/personal_crafting/proc/on_hud_created(datum/source)
 	SIGNAL_HANDLER
 
-	var/datum/hud/hud = user.hud_used
-	var/atom/movable/screen/craft/craft_ui = new()
-	craft_ui.icon = hud.ui_style
-	if (screen_loc_override)
-		craft_ui.screen_loc = screen_loc_override
-	hud.static_inventory += craft_ui
-	user_client.screen += craft_ui
-	RegisterSignal(craft_ui, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(component_ui_interact))
+	var/mob/user = parent
+	var/atom/movable/screen/screen_obj = user.hud_used.add_screen_object(/atom/movable/screen/craft, HUD_MOB_CRAFTING_MENU, HUD_GROUP_STATIC, user.hud_used.ui_style, screen_loc_override, update_screen = TRUE)
+	RegisterSignal(screen_obj, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(component_ui_interact))
 
 #define COOKING TRUE
 #define CRAFTING FALSE
@@ -171,7 +180,8 @@
 	for(var/obj/item/item in source.contents)
 		within_source += item
 		if(item.atom_storage)
-			within_source += item.contents
+			for(var/obj/item/item_stored_within in item.contents)
+				within_source += item_stored_within
 
 	for(var/obj/item/item as anything in within_source)
 		if(!item.tool_behaviour)
@@ -243,9 +253,12 @@
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter
-			if(CONFIG_GET(flag/punishing_zero_dots) && human_crafter.st_get_stat(STAT_CRAFTS) < 1)
-				return ", you dont know how to craft!"
-			recipe_time = recipe_time / max(human_crafter.st_get_stat(STAT_CRAFTS), 1)
+			var/datum/st_stat/recipe_skill = recipe.skill_required_for_use
+			var/level_required = recipe.skill_dots_minimum
+			if(recipe_skill)
+				if(!isnull(level_required) && human_crafter.st_get_stat(recipe_skill) < level_required)
+					return ", you dont know how to craft! You need at least [level_required] in [recipe_skill::name]!"
+				recipe_time = recipe_time / max(human_crafter.st_get_stat(recipe_skill), 1)
 		// DARKPACK EDIT ADD END
 
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))

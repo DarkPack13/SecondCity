@@ -24,6 +24,8 @@
 	species_language_holder = /datum/language_holder/garou
 	var/mob_pixel_w
 	var/mob_pixel_z
+	/// If declared will override the mob size.
+	var/mob_size_override
 	/// Stats added and removed upon gaining the species
 	var/list/form_bonus_stats = list()
 	/// Dice roll difficulty required to shift into this form
@@ -36,8 +38,8 @@
 	var/fallback_icon
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
-	/// Causes delerium, which if the user is affected by, does not cause breaches
-	var/causes_delerium
+	/// Causes delirium, which if the user is affected by, does not cause breaches
+	var/causes_delirium
 	/// IF this form can be witnessed, causes masqurade breaches
 	var/veil_breaching_form = FALSE
 
@@ -48,19 +50,38 @@
 
 	human_who_gained_species.add_offsets(type, w_add = mob_pixel_w, z_add = mob_pixel_z)
 
-	for(var/key, value in form_bonus_stats)
-		human_who_gained_species.st_add_stat_mod(key, value, type)
+	if(mob_size_override)
+		human_who_gained_species.mob_size = mob_size_override
+
+	add_buffs(human_who_gained_species)
 
 /datum/species/human/shifter/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	if(speed_mod)
 		human.remove_movespeed_modifier(speed_mod)
 
+	if(mob_size_override)
+		human.mob_size = human::mob_size
+
 	human.remove_offsets(type)
 
+	clear_buffs(human)
+
+/datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
+	for(var/key, value in form_bonus_stats)
+		if(!should_add_buff(human, key, value))
+			continue
+		human.st_add_stat_mod(key, value, type)
+
+/datum/species/human/shifter/proc/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
+	return TRUE
+
+/datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
 	for(var/key, value in form_bonus_stats)
 		human.st_remove_stat_mod(key, type)
 
+/datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
+	return veil_breaching_form
 
 /// Fetch the mobs fur color from their features.
 /datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
@@ -137,20 +158,28 @@
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
 
+/datum/species/human/shifter/bestial/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
+	. = ..()
+	// Raw string check instead of a define or type path is pretty bleak
+	if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO) && (buff_type::subcategory == "Social") && (amount < 0))
+		return FALSE
+
+/datum/species/human/shifter/bestial/is_veil_breaching_form(mob/living/carbon/human/human)
+	if(HAS_TRAIT(human, TRAIT_FAIR_GLABRO))
+		return FALSE
+	return ..()
+
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	human_who_gained_species.update_mob_height()
 	human_who_gained_species.update_transform(1.25)
 
-
-	human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
-
-	var/fur_color = get_fur_color(human_who_gained_species)
-	var/mob_icon = get_mob_icon(human_who_gained_species)
-
-	human_who_gained_species.overlays_standing[BODY_ADJ_LAYER] = list(image(mob_icon, fur_color))
-
-	human_who_gained_species.apply_overlay(BODY_ADJ_LAYER)
+	if(!HAS_TRAIT(human_who_gained_species, TRAIT_FAIR_GLABRO))
+		human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
+		var/fur_color = get_fur_color(human_who_gained_species)
+		var/mob_icon = get_mob_icon(human_who_gained_species)
+		human_who_gained_species.overlays_standing[BODY_ADJ_LAYER] = list(image(mob_icon, fur_color))
+		human_who_gained_species.apply_overlay(BODY_ADJ_LAYER)
 
 /datum/species/human/shifter/bestial/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
@@ -177,14 +206,14 @@
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
 	)
-	causes_delerium = TRUE
+	causes_delirium = TRUE
 	veil_breaching_form = TRUE
 
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -194,6 +223,8 @@
 
 	visible_gender_override = "beast"
 
+	mob_pixel_w = -8
+	mob_size_override = MOB_SIZE_LARGE
 	form_bonus_stats = list(
 		STAT_STRENGTH = 4,
 		STAT_STAMINA = 3,
@@ -201,11 +232,9 @@
 		STAT_MANIPULATION = -3,
 		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 	)
-	mob_pixel_w = -8
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
-	speed_mod = /datum/movespeed_modifier/shifter/war
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -217,15 +246,16 @@
 		TRAIT_TRANSFORM_UPDATES_ICON,
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
+		TRAIT_NO_CUFF,
 	)
 	veil_breaching_form = TRUE
 
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -235,6 +265,8 @@
 
 	visible_gender_override = "beast"
 
+	mob_pixel_w = -16
+	mob_pixel_z = -8
 	form_bonus_stats = list(
 		STAT_STRENGTH = 3,
 		STAT_STAMINA = 3,
@@ -242,8 +274,6 @@
 		STAT_MANIPULATION = -3,
 	)
 	shift_difficulty = 7
-	mob_pixel_w = -16
-	mob_pixel_z = -8
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
@@ -259,6 +289,7 @@
 		TRAIT_TRANSFORM_UPDATES_ICON,
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
+		TRAIT_NO_CUFF,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
@@ -266,7 +297,7 @@
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
@@ -291,12 +322,8 @@
 	abstract_type = /datum/movespeed_modifier/shifter
 	movetypes = GROUND
 
-// Verify these nums are ttrpg accurate.
-/datum/movespeed_modifier/shifter/war
-	multiplicative_slowdown = -0.1
-
 /datum/movespeed_modifier/shifter/dire
-	multiplicative_slowdown = -0.3
+	multiplicative_slowdown = -0.2
 
 /datum/movespeed_modifier/shifter/feral
-	multiplicative_slowdown = -0.5
+	multiplicative_slowdown = -0.35

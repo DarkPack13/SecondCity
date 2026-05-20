@@ -1,9 +1,9 @@
-#define UI_LIVING_BLOODPOOL "EAST-1:28,CENTER-4:14"
+#define UI_LIVING_BLOODPOOL "EAST-2:29,CENTER-4:4"
 /atom/movable/screen/bloodpool
 	name = "bloodpool"
 	//icon = 'modular_darkpack/modules/blood_drinking/icons/bloodpool.dmi'
 	//32x32 version
-	icon = 'modular_darkpack/modules/blood_drinking/icons/old_bloodpool.dmi'
+	icon = 'modular_darkpack/modules/blood_drinking/icons/bloodpool.dmi'
 	icon_state = "blood0"
 	screen_loc = UI_LIVING_BLOODPOOL
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -37,6 +37,10 @@
 /atom/movable/screen/bloodpool/update_icon_state()
 	var/mob/living/owner = hud?.mymob
 	if(!istype(owner))
+		icon_state = null
+		return
+	if(owner.maxbloodpool <= 0)
+		icon_state = null
 		return
 	var/bp_amount = clamp(round((owner.bloodpool/owner.maxbloodpool)*10), 0, 10)
 	icon_state = "blood[bp_amount]"
@@ -45,6 +49,6 @@
 /mob/living/proc/update_blood_hud()
 	if(!hud_used)
 		return
-	hud_used.bloodpool_icon?.update_icon()
+	hud_used.screen_objects[HUD_MOB_BLOODPOOL]?.update_icon()
 
 #undef UI_LIVING_BLOODPOOL

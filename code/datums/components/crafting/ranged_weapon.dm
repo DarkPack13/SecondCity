@@ -7,7 +7,7 @@
 	)
 	time = 2 SECONDS //faster than crafting them by hand!
 	category = CAT_WEAPON_RANGED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"
 	result = /obj/item/restraints/legcuffs/bola/gonbola
@@ -18,7 +18,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/receiver
 	name = "Modular Rifle Receiver"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
@@ -31,6 +31,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/riflestock
 	name = "Wooden Rifle Stock"
@@ -42,6 +43,7 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/gun_maint_kit
 	name = "Makeshift Gun Maintenance Kit"
@@ -55,7 +57,9 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/advancedegun
 	name = "Advanced Energy Gun"
 	result = /obj/item/gun/energy/e_gun/nuclear
@@ -158,7 +162,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
@@ -170,7 +174,8 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
-
+	skill_dots_minimum = 5 // DARKPACK EDIT ADD - STORYTELER_STATS
+/*
 /datum/crafting_recipe/flamethrower
 	name = "Flamethrower"
 	result = /obj/item/flamethrower
@@ -186,6 +191,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
+*/
 
 /datum/crafting_recipe/pipegun
 	name = "Pipegun"
@@ -200,6 +206,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol"
@@ -216,6 +223,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/rebarxbow
 	name = "Heated Rebar Crossbow"
@@ -231,6 +239,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/rebarxbowforced
 	name = "Forced Rebar Crossbow"
@@ -246,7 +255,8 @@
 	tool_behaviors = list(TOOL_CROWBAR)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
-*/
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
+
 /datum/crafting_recipe/pipegun_prime
 	name = "Regal Pipegun"
 	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
@@ -311,7 +321,7 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+
 /datum/crafting_recipe/pipe_organ_gun
 	name = "Pipe Organ Gun"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -327,7 +337,9 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+	skill_dots_minimum = 5 // DARKPACK EDIT ADD - STORYTELER_STATS
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/ratvarian_repeater
 	name = "Emplaced Ratvarian Repeater"
 	tool_behaviors = list(TOOL_SCREWDRIVER,TOOL_WRENCH)
@@ -343,6 +355,7 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+*/
 
 /datum/crafting_recipe/detached_ratvarian_repeater
 	name = "Iconoclast's Repeater"
@@ -353,8 +366,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-	crafting_flags = CRAFT_CHECK_DENSITY
-*/
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/large_ballista
 	name = "Improvised Ballista"
@@ -368,6 +380,7 @@
 	time = 8 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/trash_cannon
 	name = "Trash Cannon"
@@ -382,7 +395,7 @@
 	)
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/laser_musket
 	name = "Laser Musket"
 	result = /obj/item/gun/energy/laser/musket
@@ -413,7 +426,7 @@
 	time = 30 SECONDS //contemplate for a bit
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/smoothbore_disabler
 	name = "Smoothbore Disabler"
 	result = /obj/item/gun/energy/disabler/smoothbore
@@ -457,7 +470,7 @@
 	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/ashenbow
 	name = "Ashen Bow"
 	result = /obj/item/gun/ballistic/bow/ashenbow

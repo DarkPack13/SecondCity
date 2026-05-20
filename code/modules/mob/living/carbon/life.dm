@@ -477,7 +477,7 @@
 		return
 
 	var/datum/blood_type/blood_type = get_bloodtype()
-	if(!(blood_type.reagent_type in typesof(chem.type))) // DARKPACK EDIT, ORIGINAL: if(blood_type.reagent_type != chem.type)
+	if(!(blood_type.reagent_type in typesof(chem.type))) // DARKPACK EDIT CHANGE - ORIGINAL: if(blood_type.reagent_type != chem.type)
 		return
 
 	var/cached_blood_volume = get_blood_volume()
@@ -502,7 +502,7 @@
 	return COMPONENT_NO_EXPOSE_REAGENTS
 
 /mob/living/carbon/proc/handle_bodyparts(seconds_per_tick)
-	for(var/obj/item/bodypart/limb as anything in bodyparts)
+	for(var/obj/item/bodypart/limb as anything in get_bodyparts(include_stumps = TRUE))
 		. |= limb.on_life(seconds_per_tick)
 
 /mob/living/carbon/proc/handle_organs(seconds_per_tick)

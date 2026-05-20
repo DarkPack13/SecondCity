@@ -21,19 +21,19 @@
 	surnames = null
 
 	hair_colors = list(
-		"040404",	//Black
-		"120b05",	//Dark Brown
-		"342414",	//Brown
-		"554433",	//Light Brown
-		"695c3b",	//Dark Blond
-		"ad924e",	//Blond
-		"dac07f",	//Light Blond
-		"802400",	//Ginger
-		"a5380e",	//Ginger alt
-		"ffeace",	//Albino
-		"650b0b",	//Punk Red
-		"14350e",	//Punk Green
-		"080918"	//Punk Blue
+		"#040404",	//Black
+		"#120b05",	//Dark Brown
+		"#342414",	//Brown
+		"#554433",	//Light Brown
+		"#695c3b",	//Dark Blond
+		"#ad924e",	//Blond
+		"#dac07f",	//Light Blond
+		"#802400",	//Ginger
+		"#a5380e",	//Ginger alt
+		"#ffeace",	//Albino
+		"#650b0b",	//Punk Red
+		"#14350e",	//Punk Green
+		"#080918"	//Punk Blue
 	)
 	male_hair = list(
 		"Balding Hair",
@@ -78,7 +78,17 @@
 		/obj/item/clothing/shoes/vampire,
 		/obj/item/clothing/shoes/vampire/brown
 	)
-	uniforms = list(/obj/item/clothing/under/vampire/mechanic)
+	uniforms = list(
+		/obj/item/clothing/under/vampire/mechanic,
+		/obj/item/clothing/under/vampire/brujah,
+		/obj/item/clothing/under/vampire/emo,
+		/obj/item/clothing/under/vampire/suit,
+		/obj/item/clothing/under/vampire/turtleneck_black,
+		/obj/item/clothing/under/vampire/office,
+		/obj/item/clothing/under/vampire/gangrel,
+		/obj/item/clothing/under/vampire/tremere,
+		/obj/item/clothing/under/vampire/supply,
+	)
 	pockets = list(
 		/obj/item/vamp/keys/npc,
 		// /obj/item/stack/dollar/rand
@@ -95,9 +105,23 @@
 		"Hey, wanna buy it?"
 	)
 	random_phrases = list(
-		"Check this!",
-		"Can I help?",
-		"Hey, wanna buy it?"
+		"Can I help you find something?",
+		"Let me know if you need anything.",
+		"Take your time.",
+		"Good eye, that one's popular.",
+		"Cash or card, don't matter to me.",
+		"We just got a new shipment in.",
+		"You look like you know what you want.",
+		"That one's on sale. Don't ask why.",
+		"Been a slow day. Glad you stopped in.",
+		"I've been running this place twelve years. Feels like thirty.",
+		"My last employee quit without notice. Hence... this.",
+		"Everything's priced fair. Mostly.",
+		"Take a look around, no pressure.",
+		"The owner's never here. I basically run this place.",
+		"We don't do refunds.",
+		"You need a bag? Bags are five cents. City law. Don't blame me!",
+		"Holler if you need me, I'll be pretending to do inventory.",
 	)
 	answer_phrases = list("I just work here...")
 	help_phrases = list(

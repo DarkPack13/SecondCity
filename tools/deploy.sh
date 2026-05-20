@@ -23,12 +23,12 @@ if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
   cp -r .git/logs/* $1/.git/logs/
 fi
-# DARKPACK EDIT ADDITION START - Get all the .dmis from modular_darkpack
+# DARKPACK EDIT ADD START - Get all the .dmis from modular_darkpack
 mkdir -p \
 		$1/modular_darkpack \
 
 find modular_darkpack/ -name \*.dmi -exec cp --parents {} $1 \;
-# DARKPACK EDIT ADDITION END
+# DARKPACK EDIT ADD END
 
 cp tgstation.dmb tgstation.rsc $1/
 cp -r _maps/* $1/_maps/

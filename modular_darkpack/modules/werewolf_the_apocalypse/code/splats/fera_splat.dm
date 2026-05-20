@@ -77,16 +77,22 @@
 	splat_priority = SPLAT_PRIO_KINFOLK
 	half_splat = TRUE
 
+	splat_traits = list(
+		TRAIT_FERA_RENOWN,
+	)
+
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
+		TRAIT_FERA_FORMS,
 		TRAIT_WTA_GAROU_BREED,
 		TRAIT_WTA_GAROU_AUSPICE,
 		TRAIT_WTA_GAROU_TRIBE,
 		TRAIT_FERA_FUR,
-		TRAIT_FRENETIC_AURA
+		TRAIT_FRENETIC_AURA,
+		TRAIT_FERA_RENOWN,
 	)
 	// id = SPLAT_FERA
 	incompatible_splats = list(
@@ -136,12 +142,18 @@
 		// their fast healing is represented in day/days in breed-form so we just dont.
 		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 			return
-		owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
+		// 2 to represent leathal***
+		owner.heal_storyteller_health(2, heal_scars = TRUE, heal_blood = TRUE)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
-		if(shifter_species.veil_breaching_form && !shifter_species.causes_delerium)
+		if(shifter_species.is_veil_breaching_form(owner) && (!shifter_species.causes_delirium || HAS_TRAIT(owner, TRAIT_PIERCED_VEIL)))
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+		if(shifter_species.causes_delirium)
+			for(var/mob/living/carbon/human/guy in oviewers(owner, DEFAULT_SIGHT_DISTANCE))
+				if(!guy.affected_by_delirium())
+					continue
+				guy.apply_status_effect(STATUS_EFFECT_DELIRIUM, owner)
 
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
@@ -150,7 +162,7 @@
 	for(var/obj/structure/werewolf_totem/totem in GLOB.totems)
 		if(totem.broken)
 			continue
-		if(!(tribe.name in totem.tribes))
+		if(!(tribe?.name in totem.tribes))
 			continue
 		if(get_area(totem) != get_area(owner))
 			continue

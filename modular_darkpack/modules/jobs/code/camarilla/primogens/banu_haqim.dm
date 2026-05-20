@@ -2,7 +2,7 @@
 	title = JOB_PRIMOGEN_BANU_HAQIM
 	description = "Offer your infinite knowledge to Prince of the City, while overseeing the Banu Haqim in the city. Monitor their contracts and ensure they remain true to the ways of the Clan. You have an official cover with the Police Department as a local civilian consultant, ensure things run smoothly, on either end."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
@@ -26,7 +26,7 @@
 	minimum_immortal_age = 50
 	minimal_masquerade = 5
 	allowed_splats = list(SPLAT_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_BANU_HAQIM)
+	allowed_clans = list(VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_BANU_HAQIM_VIZIER)
 
 	known_contacts = list("Prince")
 

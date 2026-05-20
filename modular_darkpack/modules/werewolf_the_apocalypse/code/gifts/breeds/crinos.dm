@@ -65,10 +65,9 @@
 
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
 	if(kindred_splat)
-		if(!kindred_splat.enlightenment)
-			. = 6
-		else if(target.st_get_stat(STAT_MORALITY) <= 7)
-			. = 6
+		if(!target.is_enlightenment() && target.st_get_stat(STAT_MORALITY) >= 7)
+			return
+		. = 6
 
 
 // /datum/action/cooldown/power/gift/shed

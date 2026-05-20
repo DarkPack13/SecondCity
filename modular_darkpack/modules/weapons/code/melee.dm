@@ -386,6 +386,7 @@
 	lefthand_file = 'modular_darkpack/modules/weapons/icons/melee_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/weapons/icons/melee_righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	force = 45
 	throwforce = 10
 	w_class = WEIGHT_CLASS_BULKY
@@ -400,7 +401,6 @@
 	resistance_flags = FIRE_PROOF
 	masquerade_violating = FALSE
 	custom_price = 1200
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi') // DARKPACK EDIT ADD
 
 /obj/item/darkpack/spear/Initialize()
 	. = ..()
