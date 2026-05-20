@@ -513,19 +513,17 @@
 	REMOVE_TRAIT(src, TRAIT_HUSK, source)
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		return FALSE
-	update_body()
 	UnregisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE))
 	return TRUE
 
 /mob/living/proc/become_husk(source)
 	if(HAS_TRAIT(src, TRAIT_UNHUSKABLE))
-		return
+		return FALSE
 	var/was_husk = HAS_TRAIT(src, TRAIT_HUSK)
 	ADD_TRAIT(src, TRAIT_HUSK, source)
-	if (was_husk)
-		return
-	update_body()
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE), PROC_REF(became_unhuskable))
+	if (!was_husk)
+		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE), PROC_REF(became_unhuskable))
+	return TRUE
 
 /// Called when we become unhuskable while already husked
 /mob/living/proc/became_unhuskable()
@@ -541,8 +539,8 @@
 /mob/living/proc/fakedeath(source, silent = FALSE)
 	if(stat != DEAD)
 		if(!silent)
-			INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp")
-		station_timestamp_timeofdeath = station_time_timestamp()
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp") // DARKPACK EDIT CHANGE - (Made aysnc)
+		station_timestamp_timeofdeath = round_timestamp()
 
 	if(!HAS_TRAIT(src, TRAIT_FAKEDEATH) && !silent)
 		send_death_moodlets()

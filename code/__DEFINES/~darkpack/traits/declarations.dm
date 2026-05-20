@@ -124,6 +124,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // If the vampire can't perform mental abilities that require eye contact, as an example: dominate.
 #define TRAIT_NO_EYE_CONTACT "no_eye_contact"
 
+// If the splat shifts between diffrent forms as a fera
+#define TRAIT_FERA_FORMS "fera_forms"
 // If the splat uses the WTA renown system described in W20 p. 245
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
 // This mob has fur!
@@ -178,6 +180,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_EAT_FOOD "eat_food"
+#define TRAIT_CALM_HEART "calm_heart"
 
 
 // END TRAIT DEFINES

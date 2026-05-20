@@ -143,7 +143,6 @@
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 	duration_length = 10 SECONDS
-	vitae_cost = 1 //no mention of literally any cost for using this in V20
 	var/successes = 0
 
 

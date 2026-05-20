@@ -53,7 +53,7 @@
 	// Start gathering
 
 	log_entry.scan_target = scanned_atom.name
-	log_entry.scan_time = station_time_timestamp()
+	log_entry.scan_time = server_timestamp(ic_time = TRUE)
 
 	var/list/atom_fibers = GET_ATOM_FIBRES(scanned_atom)
 	if(length(atom_fibers))

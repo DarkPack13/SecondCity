@@ -295,6 +295,7 @@
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
 		aura_smoke_image.color = hsv2rgb(hsv_color_value)
 		aura_classic_image.icon_state = "old_aura_ghoul"
+		aura_smoke_image.alpha = 50
 
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		holder.opacity = holder.opacity * 0.5

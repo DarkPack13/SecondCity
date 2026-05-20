@@ -29,6 +29,10 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
 	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/untamable), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/permafangs, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/grip_of_the_damned, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/thaumaturgically_inept, /datum/quirk/darkpack/mage_blood), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/mute, /datum/quirk/darkpack/the_largest_maw), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/mute, /datum/quirk/darkpack/speech_impediment), // DARKPACK EDIT ADD - MERITS_FLAWS
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -56,8 +60,17 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_points = list() //Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	///An assoc list of quirks that can be obtained as a hardcore character, and their hardcore value.
 	var/list/hardcore_quirks = list()
+	/// Whether or not quirk points are enabled, per server config
+	var/points_enabled
+	/// The number of max positive quirks that we allow, per server config
+	var/max_positive_quirks
+	// The default number of quirk points that you get to spend, per server config
+	var/default_quirk_points
 
 /datum/controller/subsystem/processing/quirks/Initialize()
+	points_enabled = !CONFIG_GET(flag/disable_quirk_points)
+	max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
+	default_quirk_points = CONFIG_GET(number/default_quirk_points)
 	get_quirks()
 	return SS_INIT_SUCCESS
 
@@ -118,7 +131,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	///Cached list of possible quirks
 	var/list/possible_quirks = quirks.Copy()
 
-	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
 	if(max_positive_quirks < 0)
 		max_positive_quirks = 6
 
@@ -182,9 +194,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks)
 	var/list/new_quirks = list()
 	var/list/positive_quirks = list()
-	var/points_enabled = !CONFIG_GET(flag/disable_quirk_points)
-	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
-	var/balance = -CONFIG_GET(number/default_quirk_points)
+	var/balance = -default_quirk_points
 
 	var/list/all_quirks = get_quirks()
 
