@@ -49,7 +49,9 @@
 	if(!can_roll(roller))
 		return ROLL_FAILURE
 
-	var/dice_amount = calculate_used_dice(roller, bonus)
+	var/bonus = using_bonus(roller, target, bonus_added)
+
+	var/dice_amount = using_dice(roller, target, bonus)
 	var/auto_success_amount = calculate_auto_successes(roller)
 	var/used_difficulty = calculate_used_difficulty(roller)
 
