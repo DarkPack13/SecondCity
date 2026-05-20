@@ -214,6 +214,13 @@
 	contains = list(/obj/item/ammo_box/darkpack/c12g/buck, /obj/item/ammo_box/darkpack/c12g/buck)
 	crate_name = "ammo crate"
 
+/datum/supply_pack/weapons/ammo12gsilver
+	name = "Ammo (12g, silver)"
+	desc = "Contains a box of 12g silver shotgun slugs."
+	cost = 4000
+	contains = list(/obj/item/ammo_box/darkpack/c12g/silver)
+	crate_name = "ammo crate"
+
 /datum/supply_pack/weapons/ammo545
 	name = "Ammo (5.45)"
 	desc = "Contains a box of 5.45 ammunition."
