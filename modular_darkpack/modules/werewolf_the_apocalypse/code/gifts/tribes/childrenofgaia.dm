@@ -13,7 +13,7 @@
 
 /datum/action/cooldown/power/gift/jam_weapon/Activate(atom/target)
 	. = ..()
-	#warn could use better flavor/sounds
+	// could use better flavor/sounds
 
 	// "The player rolls Willpower against a difficulty of highest Willpower of any armed individual within earshot. "
 	var/highest_willpower = 0

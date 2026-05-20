@@ -69,6 +69,7 @@
 			on_who.client.images -= I
 	QDEL_LAZYLIST(object_highlights)
 
+// could use sounds
 /datum/action/cooldown/power/gift/control_machine/Activate(atom/target)
 	var/choices = target.get_control_machine_options(owner, is_complex)
 	if(!length(choices))
@@ -100,7 +101,6 @@
 		target.run_control_machine(owner, choice, is_complex)
 		last_target_ref = WEAKREF(target)
 		first_target_use = world.time
-	#warn could use better flavor/sounds
 
 	spend_resources()
 
