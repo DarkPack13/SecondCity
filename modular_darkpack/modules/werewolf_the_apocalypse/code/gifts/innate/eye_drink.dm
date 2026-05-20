@@ -82,5 +82,9 @@
 	else
 		to_chat(owner, "Visions flood your mind: <i>[deathdesc]</i>")
 
+	if(isnpc(human_target)) // Dont have granuliaty for removing one eye and this shows the empty sockets
+		qdel(victim_eyeballs)
+	else // Fuck a real player a little less.
+		victim_eyeballs.apply_scar(pick(LEFT_EYE_SCAR, RIGHT_EYE_SCAR))
 
 	return TRUE
