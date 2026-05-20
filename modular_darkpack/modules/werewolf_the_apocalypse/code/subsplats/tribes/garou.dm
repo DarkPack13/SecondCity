@@ -152,6 +152,9 @@
 	/datum/action/cooldown/power/gift/resist_pain,
 	/datum/action/cooldown/power/gift/sense_wyrm,
 	)
+	kinfolk_gifts_provided = list(
+		/datum/action/cooldown/power/gift/resist_pain,
+	)
 
 /datum/subsplat/werewolf/tribe/garou/blackspiraldancers/psychomania_effect(mob/living/target, mob/living/owner)
 	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
