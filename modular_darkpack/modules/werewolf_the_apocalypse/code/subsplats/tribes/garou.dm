@@ -72,9 +72,6 @@
 	// 	/datum/action/cooldown/power/gift/freezing_wind,
 	// 	/datum/action/cooldown/power/gift/bloody_feast
 	)
-	kinfolk_gifts_provided = list(
-		/datum/action/cooldown/power/gift/resist_pain
-	)
 	subsplat_keys = /obj/item/vamp/keys/children_of_gaia
 
 /datum/subsplat/werewolf/tribe/garou/getoffenris
