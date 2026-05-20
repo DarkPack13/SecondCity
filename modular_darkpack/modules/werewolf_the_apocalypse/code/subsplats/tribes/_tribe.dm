@@ -42,30 +42,30 @@
 	// Handle losing tribe
 	previous_tribe?.on_lose(src)
 
-	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(src)
-	if (!shifter)
+	var/datum/splat/werewolf/werewolf = get_werewolf_splat(src)
+	if (!werewolf)
 		return
 
-	shifter.tribe = new_tribe
+	werewolf.tribe = new_tribe
 
 	// tribe's been cleared, don't apply effects
 	if (!new_tribe)
 		return
 
 	// Gaining tribe effects
-	new_tribe.on_gain(src, shifter, joining_round)
+	new_tribe.on_gain(src, werewolf, joining_round)
 
 /mob/living/proc/get_our_tribe()
 	RETURN_TYPE(/datum/subsplat/werewolf/tribe)
 
-	return get_shifter_splat(src)?.tribe
+	return get_werewolf_splat(src)?.tribe
 
 /mob/living/proc/is_tribe(tribe_type)
 	return istype(get_our_tribe(), tribe_type)
 
 
 /datum/subsplat/werewolf/tribe/proc/psychomania_effect(mob/living/target, mob/living/owner)
-	var/datum/splat/werewolf/shifter/garou_splat = get_shifter_splat(target)
+	var/datum/splat/werewolf/garou_splat = get_werewolf_splat(target)
 	if(garou_splat?.rage > 4)
 		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 		to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
