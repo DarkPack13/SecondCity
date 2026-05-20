@@ -7863,6 +7863,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\philodox.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ragabash.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\theurge.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\eye_drink.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\howling.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\black_furies.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\black_spiral_dancer.dm"

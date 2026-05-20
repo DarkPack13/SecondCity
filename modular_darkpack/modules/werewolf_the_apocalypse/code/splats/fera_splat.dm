@@ -138,6 +138,7 @@
 	if(!QDELETED(owner))
 		owner.set_species(/datum/species/human)
 
+	remove_power(/datum/action/cooldown/power/gift/howling)
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
@@ -260,6 +261,14 @@
 	mimmicing_animal = /mob/living/basic/corvid/raven
 
 	warcry_emote = "caw"
+
+/datum/splat/werewolf/shifter/corax/on_gain()
+	. = ..()
+	add_power(/datum/action/cooldown/power/gift/eye_drink)
+
+/datum/splat/werewolf/shifter/corax/on_lose_or_destroy()
+	. = ..()
+	remove_power(/datum/action/cooldown/power/gift/eye_drink)
 
 
 /mob/living/carbon/human/splat/kinfolk
