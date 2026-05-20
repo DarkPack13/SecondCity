@@ -62,7 +62,7 @@
 	UNLINT(surgery.success(alice.get_bodypart(BODY_ZONE_HEAD, TRUE), user, bobs_head, list()))
 
 	TEST_ASSERT(!isnull(alice.get_bodypart(BODY_ZONE_HEAD)), "Alice has no head after prosthetic replacement")
-	TEST_ASSERT_EQUAL(alice.real_name, "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob") // DARKPACK EDIT, ORIGINAL: TEST_ASSERT_EQUAL(alice.get_visible_name(), "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob")
+	TEST_ASSERT_EQUAL(alice.real_name, "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob") // DARKPACK EDIT CHANGE - ORIGINAL: TEST_ASSERT_EQUAL(alice.get_visible_name(), "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob")
 	TEST_ASSERT_EQUAL(alice.hairstyle, "Short Hair", "Bob's head was transplanted onto Alice's body, but their hairstyle is not Short Hair")
 	TEST_ASSERT_EQUAL(alice.hair_color, COLOR_LIGHT_BROWN, "Bob's head was transplanted onto Alice's body, but their hair color is not COLOR_LIGHT_BROWN")
 	TEST_ASSERT_EQUAL(alice.facial_hairstyle, "Beard (Full)", "Bob's head was transplanted onto Alice's body, but their facial hairstyle is not Beard (Full)")
@@ -244,6 +244,10 @@
 	var/obj/item/clothing/under/jumpsuit = test_mob.get_item_by_slot(ITEM_SLOT_ICLOTHING)
 	jumpsuit.adjust_to_alt()
 	TEST_ASSERT(test_mob.is_location_accessible(BODY_ZONE_CHEST), "Chest should be accessible after rolling jumpsuit down")
+	jumpsuit.adjust_to_alt()
+
+	jumpsuit.flags_cover |= ALLOW_SURGERY_THROUGH
+	TEST_ASSERT(test_mob.is_location_accessible(BODY_ZONE_CHEST), "Chest should be accessible if it has the ALLOW_SURGERY_THROUGH flag")
 
 /// Tests surgeries which just modify basic surgical states
 /datum/unit_test/state_surgeries

@@ -2,7 +2,7 @@
 	title = JOB_GAROU_COUNCIL
 	description = "Veterans of the Garou Nation with the highest esteem, your word within the " + SEPT_NAME + " is law. Make sure the Litany is upheld, and that your caern does not fall prey to the Wyrm."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_GAIA
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = SUPERVISOR_LITANY

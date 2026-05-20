@@ -30,6 +30,7 @@ export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
 export const MESSAGE_TYPE_OOC = 'ooc';
 export const MESSAGE_TYPE_LOOC = 'looc'; // DARKPACK EDIT ADD
+export const MESSAGE_TYPE_MENTOR = 'mentor'; // DARKPACK EDIT ADD - MENTOR
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
@@ -66,14 +67,14 @@ export const MESSAGE_TYPES: MessageType[] = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .looc, .do', // DARKPACK EDIT, ORIGINAL: selector: '.say, .emote',
+    selector: '.say, .emote, .looc, .do', // DARKPACK EDIT CHANGE - ORIGINAL: selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling, .policeradio, .clinicradio, .militaryradio, .camarillaradio, .anarchradio, .endronradio', // DARKPACK EDIT, ORIGINAL: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
+      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling, .policeradio, .clinicradio, .militaryradio, .camarillaradio, .anarchradio, .endronradio', // DARKPACK EDIT CHANGE - ORIGINAL: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
   },
   {
     type: MESSAGE_TYPE_ENTERTAINMENT,
@@ -107,7 +108,7 @@ export const MESSAGE_TYPES: MessageType[] = [
     description: 'The bluewall of global OOC messages',
     selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
-  // DARKPACK EDIT ADD START
+  // DARKPACK EDIT ADD START - LOOC
   {
     type: MESSAGE_TYPE_LOOC,
     name: 'LOOC',
@@ -132,6 +133,12 @@ export const MESSAGE_TYPES: MessageType[] = [
     name: 'Subtle',
     description: 'Subtle and Subtler actions.',
     selector: '.subtle, .subtler',
+  }, // DARKPACK EDIT ADD END
+  {  // DARKPACK EDIT ADD START - MENTOR
+    type: MESSAGE_TYPE_MENTOR,
+    name: 'Mentor Log',
+    description: 'Mentor PMs and other mentor things.',
+    selector: '.mentor, .mentornotice',
   }, // DARKPACK EDIT ADD END
   {
     type: MESSAGE_TYPE_UNKNOWN,

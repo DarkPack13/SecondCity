@@ -8,7 +8,8 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
@@ -124,7 +125,7 @@
  */
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
-	result = /obj/item/chainsaw
+	result = /obj/item/chainsaw/vamp // DARKPACK EDIT CHANGE
 	reqs = list(
 		/obj/item/circular_saw = 1,
 		/obj/item/stack/cable_coil = 3,
@@ -133,6 +134,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/spear
 	name = "Spear"
@@ -144,6 +146,7 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/wireprod
 	name = "Wireprod assembly"
@@ -155,7 +158,7 @@
 	time = 2 SECONDS
 	category = CAT_WEAPON_MELEE
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
 	reqs = list(
@@ -172,6 +175,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/bonespear
 	name = "Bone Spear"
@@ -182,6 +186,7 @@
 		/obj/item/stack/sheet/sinew = 1,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/boneaxe
 	name = "Bone Axe"
@@ -192,6 +197,7 @@
 		/obj/item/stack/sheet/sinew = 3,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/house_edge
 	name = "House Edge"
@@ -209,7 +215,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/giant_wrench
 	name = "Big Slappy"
 	result = /obj/item/shovel/giant_wrench
@@ -253,7 +259,9 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
+
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/sm_sword
 	name = "Supermatter Sword"
 	result = /obj/item/melee/supermatter_sword
@@ -265,7 +273,6 @@
 	)
 	time = 120 SECONDS
 	category = CAT_WEAPON_MELEE
- */
 
 /datum/crafting_recipe/dragonator_spear_untreated
 	name = "Untreated Giant-Killer Spear"
@@ -277,4 +284,4 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
-
+*/

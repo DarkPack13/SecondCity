@@ -1,14 +1,15 @@
 /area/vtm/planetgeneration
-	name = "forest generation area"
+	name = "Forest"
 	icon_state = "park"
-	outdoors = TRUE
 	map_generator = /datum/map_generator/jungle_generator
+	zone_type = ZONE_NO_MASQUERADE
+	sound_environment = SOUND_ENVIRONMENT_FOREST
 	gauntlet_rating = 6
-
+	requires_power = FALSE
+	domain = TRUE
+	outdoors = TRUE
 
 /area/vtm/planetgeneration/woodland
-	name = "woodland generation area"
+	name = "Woodland"
 	icon_state = "cog_caern"
-	outdoors = TRUE
 	map_generator = /datum/map_generator/jungle_generator/woodland
-	gauntlet_rating = 6

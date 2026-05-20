@@ -1,13 +1,13 @@
-/obj/item/vtm_artifact/daimonori
+/obj/item/occult_artifact/vampire/daimonori
 	true_name = "Daimonori"
 	true_desc = "Increases thaumaturgy damage."
 	icon_state = "daimonori"
 	research_value = 20
 
-/obj/item/vtm_artifact/daimonori/get_powers()
+/obj/item/occult_artifact/vampire/daimonori/grant_powers()
 	. = ..()
 	owner.thaum_damage_plus = 20
 
-/obj/item/vtm_artifact/daimonori/remove_powers()
+/obj/item/occult_artifact/vampire/daimonori/ungrant_powers()
 	. = ..()
 	owner.thaum_damage_plus = 0

@@ -7,14 +7,17 @@
 	medical_record_text = "Patient can communicate with sign language."
 	mail_goodies = list(/obj/item/clothing/gloves/radio)
 
+	darkpack_allowed = TRUE
+
 /datum/quirk/item_quirk/signer/add(client/client_source)
 	quirk_holder.AddComponent(/datum/component/sign_language)
 
+/* // DARKPACK EDIT REMOVAL START - MERITS_FLAWS
 /datum/quirk/item_quirk/signer/add_unique(client/client_source)
 	var/obj/item/clothing/gloves/gloves_type = /obj/item/clothing/gloves/radio
 	if(isplasmaman(quirk_holder))
 		gloves_type = /obj/item/clothing/gloves/color/plasmaman/radio
 	give_item_to_holder(gloves_type, list(LOCATION_GLOVES, LOCATION_HANDS))
-
+*/ // DARKPACK EDIT REMOVAL END
 /datum/quirk/item_quirk/signer/remove()
 	qdel(quirk_holder.GetComponent(/datum/component/sign_language))

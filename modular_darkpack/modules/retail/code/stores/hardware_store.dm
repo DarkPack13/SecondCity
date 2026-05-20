@@ -8,6 +8,7 @@
 		new /datum/data/vending_product("knife", /obj/item/knife/vamp, 100),
 		new /datum/data/vending_product("stake", /obj/item/vampire_stake, 100),
 		new /datum/data/vending_product("box of light bulbs", /obj/item/storage/box/lights/mixed, 80),
+		new /datum/data/vending_product("construction vest", /obj/item/clothing/suit/hazardvest, 80)
 	)
 	product_types = list(
 		/obj/item/fishing_rod,

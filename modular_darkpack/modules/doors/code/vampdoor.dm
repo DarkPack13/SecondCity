@@ -112,14 +112,15 @@
 
 /obj/structure/vampdoor/atom_break(damage_flag)
 	. = ..()
-	if(!door_broken)
-		break_door()
+	break_door()
 
 /obj/structure/vampdoor/atom_fix()
 	. = ..()
 	fix_door()
 
 /obj/structure/vampdoor/proc/break_door(mob/user)
+	if(door_broken)
+		return FALSE
 	playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
@@ -136,6 +137,7 @@
 	locked = FALSE
 	icon_state = "[base_icon_state]-b"
 	update_icon()
+	return TRUE
 
 /obj/structure/vampdoor/proc/fix_door()
 	name = initial(name)
@@ -194,10 +196,10 @@
 	. = ..()
 	if(.)
 		return
-	var/mob/living/living_user = user
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to use here."))
 		return
+	var/mob/living/living_user = user
 	if(living_user.combat_mode)
 		pixel_z = pixel_z+rand(-1, 1)
 		pixel_w = pixel_w+rand(-1, 1)
@@ -213,6 +215,9 @@
 /obj/structure/vampdoor/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(door_broken)
+		to_chat(user, span_warning("There is no door to use here."))
 		return
 	var/mob/living/living_user = user
 	if(living_user.combat_mode)

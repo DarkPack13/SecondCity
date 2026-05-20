@@ -115,7 +115,7 @@
 	cuisine_category = CUISINE_MEXICAN
 	dish_category = DISH_BURRITO
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/stuffedlegion
 	name = "Stuffed legion"
 	time = 4 SECONDS

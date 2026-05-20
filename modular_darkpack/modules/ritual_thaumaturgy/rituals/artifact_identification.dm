@@ -6,7 +6,7 @@
 
 /obj/ritual_rune/thaumaturgy/identification/complete()
 	. = ..()
-	for(var/obj/item/vtm_artifact/VA in loc)
+	for(var/obj/item/occult_artifact/VA in loc)
 		var/mob/living/carbon/human/identifier = usr
 		if(VA.identified)
 			to_chat(identifier, span_warning("You have already identified this artifact."))
