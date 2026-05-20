@@ -51,7 +51,7 @@
 			var/datum/splat/checking_type = splat_prio_list["[splat_prio]"]
 			var/datum/splat/real_splat = GLOB.splat_prototypes[checking_type::id]
 			if(!real_splat)
-				TEST_FAIL("splat.id [checking_type::id] does not have a prototype in the splat global.")
+				TEST_FAIL("splat.id: [checking_type::id] from [checking_type] does not have a prototype in the splat global.")
 				continue
 			if(splat_type in real_splat.incompatible_splats)
 				continue
