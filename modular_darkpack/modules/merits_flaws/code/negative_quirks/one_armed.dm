@@ -6,6 +6,7 @@
 	value = -3
 	gain_text = span_warning("You can't feel your arm!")
 	lose_text = span_notice("Huh? Your arm is back...")
+	quirk_flags = QUIRK_CHANGES_APPEARANCE
 
 	var/arm_missing
 
