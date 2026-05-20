@@ -1,6 +1,6 @@
 /datum/preference/choiced/fera_fur_color
 	abstract_type = /datum/preference/choiced/fera_fur_color
-	savefile_key = "garou_fur_color"
+	savefile_key = "fur_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
@@ -20,12 +20,14 @@
 
 
 /datum/preference/choiced/fera_fur_color/garou
+	savefile_key = "garou_fur_color"
 	splat_id = SPLAT_GAROU
 
 /datum/preference/choiced/fera_fur_color/garou/init_possible_values()
 	return assoc_to_keys(GLOB.garou_fur_colors)
 
 /datum/preference/choiced/fera_fur_color/corax
+	savefile_key = "corax_fur_color"
 	splat_id = SPLAT_CORAX
 
 /datum/preference/choiced/fera_fur_color/corax/init_possible_values()
