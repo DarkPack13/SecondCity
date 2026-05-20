@@ -154,7 +154,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RAZOR_CLAWS "razor_claws"
 
 // Fomori Traits
-#define TRAIT_FOMOR_REGEN "fomor_regen"
+#define TRAIT_FOMORI_REGEN "fomor_regen"
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
@@ -185,6 +185,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_EAT_FOOD "eat_food"
-
+#define TRAIT_FOMORI_STIGMATA "fomori_stigmata"
 
 // END TRAIT DEFINES

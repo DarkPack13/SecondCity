@@ -16,6 +16,8 @@
 	var/permanent_gnosis = 10
 	var/gnosis = 0
 
+	var/uses_hud = FALSE
+
 	var/list/renown = list()
 	var/renown_rank = RANK_CUB
 
@@ -102,6 +104,8 @@
 	) // We dont support being multiple fera or gaining kinfolk as a fera
 	uses_rage = TRUE
 	uses_gnosis = TRUE
+
+	uses_hud = TRUE
 
 	splat_priority = SPLAT_PRIO_SHIFTER
 

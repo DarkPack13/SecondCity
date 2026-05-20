@@ -15,7 +15,7 @@
 	COOLDOWN_DECLARE(passive_healing_cd)
 
 /datum/splat/werewolf/fomori/splat_life(seconds_per_tick)
-	if(HAS_TRAIT(owner, TRAIT_FOMOR_REGEN))
+	if(HAS_TRAIT(owner, TRAIT_FOMORI_REGEN))
 		if(COOLDOWN_FINISHED(src, passive_healing_cd))
 			owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
 			COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
@@ -37,7 +37,10 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) // done
 	// MENTAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1)
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1) // done
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
+
 
 /datum/splat/werewolf/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)

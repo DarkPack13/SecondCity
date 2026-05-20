@@ -13,7 +13,7 @@
 
 /datum/action/cooldown/power/fomori_power/regeneration/Grant(mob/granted_to)
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_FOMOR_REGEN, "regeneration")
+	ADD_TRAIT(owner, TRAIT_FOMORI_REGEN, "regeneration")
 
 /datum/action/cooldown/power/fomori_power/regeneration/Activate(atom/target)
 	. = ..()

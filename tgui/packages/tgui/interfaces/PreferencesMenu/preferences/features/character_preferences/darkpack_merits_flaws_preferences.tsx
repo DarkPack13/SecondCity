@@ -11,10 +11,15 @@ export const territorial: FeatureChoiced = {
 export const prey_exclusion: FeatureChoiced = {
   name: 'Prey Exclusion',
   description: 'The Prey Exclusion of this character.',
-  component: FeatureDropdownInput
-}
+  component: FeatureDropdownInput,
+};
 
 export const missing_arm: FeatureChoiced = {
   name: 'Missing Arm',
+  component: FeatureDropdownInput,
+};
+
+export const stigmata_of_the_wyrm: FeatureChoiced = {
+  name: 'Stigmata of the Wyrm',
   component: FeatureDropdownInput,
 };

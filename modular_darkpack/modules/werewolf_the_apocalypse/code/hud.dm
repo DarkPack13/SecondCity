@@ -13,7 +13,8 @@
 
 
 /datum/splat/werewolf/add_relevent_huds(datum/hud/hud_used)
-	hud_used.add_werewolf_elements()
+	if(uses_hud)
+		hud_used.add_werewolf_elements()
 
 /atom/movable/screen/auspice
 	name = "auspice"
