@@ -89,10 +89,12 @@
 
 /datum/action/cooldown/power/gift/chain_talk
 	name = "Chain Talk"
-	desc = {"This Gift allows a
-Shadow Lord to supernaturally overhear conversations, giving them
-a chance to get a heads up on any potential plots against the
-Garou or their Kin."}
+	desc = {"This Gift enables a human
+Kinfolk to participate in the Bone Gnawer's Barking Chain
+for a brief time. Because they cannot change shape, Kin do
+not have the ability to shape lupine noises. For the duration
+of this Gift, the human Kinfolk's normal voice can mimic
+that of a wolf's."}
 	button_icon_state = "chain_talk"
 	rank = 1
 	willpower_cost = 1
