@@ -333,6 +333,7 @@
 	icon_state = "kosa"
 	inhand_icon_state = "kosa"
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 30
 	armour_penetration = 30
 
