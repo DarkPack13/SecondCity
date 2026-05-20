@@ -1,0 +1,5 @@
+author: "Marshmellow105"
+delete-after: True
+changes:
+  - rscadd: "adds the FBI SWAT Response Team"
+  - rscadd: "three new uniform bits for FBI agents, a turtleneck, fatigues, and fatigue pants"
