@@ -11,9 +11,6 @@
 	name = BREED_CRINOS
 	start_gnosis = 3
 	breed_species = /datum/species/human/shifter/war
-	gifts_provided = list(
-		/datum/action/cooldown/power/gift/sense_wyrm
-	)
 
 /datum/subsplat/werewolf/breed_form/garou/lupus
 	name = BREED_LUPUS
