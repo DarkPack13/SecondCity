@@ -40,6 +40,7 @@
 /datum/storyteller_roll/gift/scent_of_the_true_form
 	applicable_stats = list(STAT_PERCEPTION)
 	numerical = TRUE
+	roll_output_type = ROLL_PRIVATE
 
 /datum/action/cooldown/power/gift/scent_of_the_true_form
 	name = "Scent Of The True Form"
@@ -171,6 +172,7 @@
 	var/datum/storyteller_roll/roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
 	roll_datum.difficulty = living_target.st_get_stat(STAT_MANIPULATION) + living_target.st_get_stat(STAT_SUBTERFUGE)
+	roll_datum.roll_output_type = ROLL_PRIVATE_AND_TARGET
 	var/roll_result = roll_datum.st_roll(owner)
 
 	if(roll_result != ROLL_SUCCESS)

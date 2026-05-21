@@ -1,0 +1,4 @@
+author: "Biplume"
+delete-after: True
+changes:
+  - rscadd: "Cast No Reflection flaw for Kindred"

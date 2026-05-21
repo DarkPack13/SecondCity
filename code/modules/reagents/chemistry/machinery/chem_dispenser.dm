@@ -609,6 +609,7 @@
 		/datum/reagent/consumable/menthol,
 		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/berryjuice, // DARKPACK EDIT ADD
 		/datum/reagent/consumable/pwr_game,
 		/datum/reagent/consumable/shamblers,
 		/datum/reagent/consumable/spacemountainwind,

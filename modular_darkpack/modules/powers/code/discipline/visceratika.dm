@@ -73,6 +73,7 @@
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
 	. = ..()

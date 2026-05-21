@@ -31,6 +31,7 @@
 	/// Multiplier for how efficently bloodpool is spent for BLOODPOWER SPECIFICLY
 	var/blood_efficiency = 1
 	var/thaum_damage_plus = 0
+	// DARKPACK TODO - FRENZY - (This never did FUCK anything.)
 	var/frenzy_chance_boost = 10
 
 	var/resistant_to_disciplines = FALSE
@@ -52,3 +53,5 @@
 	//thaumaturgy & necro path stuff
 	var/research_points = 0
 	var/collected_souls = 0
+
+	var/last_shown_area_name // AREAS
