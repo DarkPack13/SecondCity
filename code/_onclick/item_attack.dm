@@ -309,7 +309,7 @@
 	var/datum/storyteller_roll/damage/damage_roll = new()
 	damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
 	var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
-	final_force = damage_roll_result
+	final_force = damage_roll_result TTRPG_DAMAGE
 	// DARKPACK EDIT ADD END
 	if(final_force <= 0)
 		return 0
