@@ -29,4 +29,5 @@
 
 /mob/living/basic/bane/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/ai_retaliate)
 	ADD_TRAIT(src, TRAIT_WYRMTAINTED, INNATE_TRAIT)
