@@ -14,6 +14,8 @@
 	var/max_music_cooldown = 2 MINUTES
 	// END - AMBIENCE
 
+	var/show_area_name = TRUE // AREAS
+
 /area/Initialize(mapload)
 	// START - AMBIENCE
 	if(!musictracks)

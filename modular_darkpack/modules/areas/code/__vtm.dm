@@ -14,11 +14,6 @@
 	// is this able to be classified as a domain? e.g, territorial flaw, later political implementation
 	var/domain = FALSE
 
-/area/vtm/powered(chan)
-	if (!requires_power)
-		return TRUE
-	return FALSE
-
 /area/vtm/proc/break_elysium()
 	if (zone_type != ZONE_MASQUERADE)
 		return

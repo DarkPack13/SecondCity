@@ -167,15 +167,17 @@
 		return
 	is_talking = TRUE
 
-	addtimer(CALLBACK(src, PROC_REF(start_talking), message), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start_talking), message), 1 SECONDS)
 
 /mob/living/carbon/human/npc/proc/start_talking(message)
+	ADD_TRAIT(src, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	create_typing_indicator()
 	var/typing_delay = round(length_char(message) * 0.5)
 	addtimer(CALLBACK(src, PROC_REF(finish_talking), message), max(3 SECONDS, typing_delay))
 
 /mob/living/carbon/human/npc/proc/finish_talking(message)
 	remove_typing_indicator()
+	REMOVE_TRAIT(src, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	say(message)
 	is_talking = FALSE
 

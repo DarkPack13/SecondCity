@@ -19,7 +19,7 @@
 	if(!LAZYLEN(incompatible_quirks))
 		return
 	var/list/message = list("The following quirks are incompatible with your selected species and will be removed: [incompatible_quirks.Join(", ")].")
-	if(CONFIG_GET(flag/disable_quirk_points))
+	if(!SSquirks.points_enabled)
 		message += "Would you like to continue?"
 	else
 		message += "If you do not have enough points to cover the removed quirks, your quirks will be reset. Would you like to continue?"
@@ -59,12 +59,12 @@
 	var/list/data = list()
 
 	data["selected_quirks"] = get_selected_quirks()
-	data["default_quirk_balance"] = CONFIG_GET(number/default_quirk_points)
+	data["default_quirk_balance"] = SSquirks.default_quirk_points
 	data["species_disallowed_quirks"] = get_species_compatibility()
 	data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - MERITS/FLAWS
-	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS/FLAWS
-	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS/FLAWS
+	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - MERITS_FLAWS
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS_FLAWS
+	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS_FLAWS
 
 	return data
 
@@ -76,8 +76,8 @@
 		data["selected_quirks"] = get_selected_quirks()
 		data["species_disallowed_quirks"] = get_species_compatibility()
 		data["splat_disallowed_quirks"] = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
-	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS/FLAWS
-	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS/FLAWS
+	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS_FLAWS
+	data["clan_disallowed_quirks"] = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS_FLAWS
 
 	return data
 
@@ -86,7 +86,7 @@
 
 	var/list/quirks = SSquirks.get_quirks()
 
-	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
+	var/max_positive_quirks = SSquirks.max_positive_quirks
 	var/positive_quirks_disabled = max_positive_quirks == 0
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = quirks[quirk_name]
@@ -109,7 +109,7 @@
 		"max_positive_quirks" = max_positive_quirks,
 		"quirk_info" = quirk_info,
 		"quirk_blacklist" = GLOB.quirk_string_blacklist,
-		"points_enabled" = !CONFIG_GET(flag/disable_quirk_points),
+		"points_enabled" = SSquirks.points_enabled,
 	)
 
 /datum/preference_middleware/quirks/on_new_character(mob/user)
@@ -117,11 +117,11 @@
 
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-	// DARKPACK EDIT ADD - MERITS/FLAWS
+	// DARKPACK EDIT ADD - MERITS_FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.decrease_points(quirk_type.value)
-	// DARKPACK EDIT END - MERITS/FLAWS
+	// DARKPACK EDIT END - MERITS_FLAWS
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks) != new_quirks)
@@ -139,11 +139,11 @@
 
 /datum/preference_middleware/quirks/proc/remove_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-	// DARKPACK EDIT ADD - MERITS/FLAWS
+	// DARKPACK EDIT ADD - MERITS_FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
 	freebie_points.increase_points(quirk_type.value)
-	// DARKPACK EDIT END - MERITS/FLAWS
+	// DARKPACK EDIT END - MERITS_FLAWS
 	var/list/new_quirks = preferences.all_quirks - quirk_name
 	if ( \
 		!(quirk_name in preferences.all_quirks) \
@@ -169,7 +169,7 @@
 
 	return selected_quirks
 
-//DARKPACK EDIT ADD - MERITS/FLAWS
+// DARKPACK EDIT ADD - MERITS_FLAWS
 
 /datum/preference_middleware/quirks/proc/get_freebie_points()
 	var/datum/st_stat/freebie/freebie_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
@@ -211,4 +211,4 @@
 
 	return clan_blacklist
 
-//DARKPACK EDIT END - MERITS/FLAWS
+// DARKPACK EDIT END - MERITS_FLAWS

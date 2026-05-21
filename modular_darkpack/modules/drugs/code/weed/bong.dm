@@ -133,6 +133,10 @@
 	if(flavor_text)
 		visible_message(flavor_text)
 
+	if(iscarbon(loc))
+		var/mob/living/carbon/smoker = loc
+		smoker.trigger_rotschreck(src, 3)
+
 /obj/item/bong/proc/put_out()
 	set_light_on(FALSE)
 	lit = FALSE

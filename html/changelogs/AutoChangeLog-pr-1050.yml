@@ -1,0 +1,7 @@
+author: "Stutternov"
+delete-after: True
+changes:
+  - rscadd: "Adds recoil calc stat check to reduce spread as well"
+  - rscadd: "Adds difficulty to recoil calc"
+  - rscdel: "Removes bonus damage random chance for firearm damage based on skill probability check"
+  - balance: "Redoes some weapons recoil and spread slightly; overall changes ranged from 1-2 recoil/spread so very minor."

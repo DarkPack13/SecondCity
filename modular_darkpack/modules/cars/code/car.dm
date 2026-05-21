@@ -476,20 +476,20 @@
 	if(istype(bumped_atom, /mob/living))
 		var/mob/living/hit_mob = bumped_atom
 		switch(hit_mob.mob_size)
-			if(MOB_SIZE_HUGE) 	//gangrel warforms, werewolves, bears, ppl with fortitude
+			if(MOB_SIZE_HUGE) // zulo form
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 75, TRUE)
 				speed_in_pixels = 0
 				COOLDOWN_START(src, impact_delay, 2 SECONDS)
 				hit_mob.Paralyze(1 SECONDS)
-			if(MOB_SIZE_LARGE)	//ppl with fat bodytype
+			if(MOB_SIZE_LARGE) // gangrel warforms, werewolves, bears
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 60, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.35)
 				hit_mob.Knockdown(1 SECONDS)
-			if(MOB_SIZE_SMALL)	//small animals
+			if(MOB_SIZE_SMALL) //small animals
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 40, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.75)
 				hit_mob.Knockdown(1 SECONDS)
-			else				//everything else
+			else //everything else
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 50, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.5)
 				hit_mob.Knockdown(1 SECONDS)
