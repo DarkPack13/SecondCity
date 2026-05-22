@@ -584,7 +584,7 @@
 /turf/open/floor/wood/old,
 /area/vtm/interior)
 "aca" = (
-/obj/effect/spawner/random/structure/billboard,
+/obj/effect/spawner/random/structure/billboard/darkpack,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
 "acb" = (
@@ -9805,7 +9805,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/smokeshop)
 "aGm" = (
-/obj/effect/spawner/random/structure/billboard,
+/obj/effect/spawner/random/structure/billboard/darkpack,
 /turf/open/misc/grass/random/grass,
 /area/vtm/westfield_mall)
 "aGn" = (

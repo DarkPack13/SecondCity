@@ -7139,6 +7139,7 @@
 #include "modular_darkpack\modules\beastmaster\code\beastmaster_commands.dm"
 #include "modular_darkpack\modules\beastmaster\code\beastmaster_minion_management.dm"
 #include "modular_darkpack\modules\beastmaster\code\beastmaster_signals.dm"
+#include "modular_darkpack\modules\billboard\code\billboard.dm"
 #include "modular_darkpack\modules\billiards\code\billiard.dm"
 #include "modular_darkpack\modules\bitcoinminer\code\bitcoinminer.dm"
 #include "modular_darkpack\modules\blood_drinking\code\bite_helper_procs.dm"
