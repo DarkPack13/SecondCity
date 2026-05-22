@@ -9,6 +9,7 @@
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_HARBINGER)
 	icon = FA_ICON_FACE_ANGRY
 	failure_message = "Your appearance softens, as though a great weight is lifted - you may bare your face again."
+	quirk_flags = QUIRK_CHANGES_APPEARANCE
 
 /datum/quirk/darkpack/monstrous/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)

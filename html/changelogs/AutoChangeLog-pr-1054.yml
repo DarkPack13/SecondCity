@@ -1,0 +1,4 @@
+author: "Magisterium2022"
+delete-after: True
+changes:
+  - bugfix: "Fixed incorrect BP cost for Presence 2"

@@ -54,6 +54,10 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
 
+/obj/item/clothing/suit/vampire/darkpack_ert/swat_armor/fbi
+	name = "\improper FBI SWAT vest"
+	icon_state = "fbivest"
+
 /obj/item/clothing/head/vampire/darkpack_ert/swat_helmet
 	name = "\improper SWAT Helmet"
 	desc = "Modified SFPD helmet with improved performance. Isnt it great to be on the good side of police militarization?"
@@ -63,3 +67,7 @@
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+
+/obj/item/clothing/head/vampire/darkpack_ert/swat_helmet/fbi
+	name = "\improper FBI SWAT Helmet"
+	icon_state = "fbihelmet"
