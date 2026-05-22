@@ -161,19 +161,17 @@
 	. = ..()
 	apply_presence_overlay(target)
 	if(successes >= (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))	//We check if you just flat out have more successes than their dice pool total.
-		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? This will take time to preform this extended action to stun and debuff your opponent!", "Disguise Voice", list("Yes", "No"), "No")
+		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? This will take time to preform this extended action to stun and debuff your opponent!", "Terrifying Presence", list("Yes", "No"), "No")
 		switch(extended_action_prompt)
 			if("Yes")
 				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 				if(do_after(owner, 3 SECONDS))
 					to_chat(owner, span_warning("You force [target] to cower to your mere presence!"))
+					to_chat(target, span_userdanger("You are consumed with an overhwelming sense of dread, forced to cower before [owner] as even your legs betray you and your very being is rocked to its core!"))
 					target.Stun(1 TURNS)	//~5 seconds
 					target.emote("tremble")	//Shaking emote for visibility
 					target.emote(pick("scream","cry"))	//Audible emote
 					target.apply_status_effect(/datum/status_effect/dread_gaze)	//Debuffs for set time
-				else	//Failsafe if you somehow got the prompt but not the successes needed
-					do_cooldown(cooldown_length)
-					return FALSE
 				REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 				return TRUE
 	if(successes <= 3) // already checked for above 0 in pre_activation
