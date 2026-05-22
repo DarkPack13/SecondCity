@@ -96,7 +96,7 @@
 
 /obj/projectile/bullet/darkpack/vamp556mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	fera_silver_damage(target, 4)
+	fera_silver_damage(target, 2)
 
 // 5.45x39mm
 /obj/projectile/bullet/darkpack/vamp545mm
