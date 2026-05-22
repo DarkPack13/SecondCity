@@ -7299,6 +7299,8 @@
 #include "modular_darkpack\modules\fomori\code\powers\mental\corrupted_visions.dm"
 #include "modular_darkpack\modules\fomori\code\powers\mental\deception.dm"
 #include "modular_darkpack\modules\fomori\code\powers\mental\eyes_of_the_wyrm.dm"
+#include "modular_darkpack\modules\fomori\code\powers\mental\mind_blast.dm"
+#include "modular_darkpack\modules\fomori\code\powers\mental\mind_reave.dm"
 #include "modular_darkpack\modules\fomori\code\powers\physical\body_barbs.dm"
 #include "modular_darkpack\modules\fomori\code\powers\physical\chameleon_coloration.dm"
 #include "modular_darkpack\modules\fomori\code\powers\physical\claws.dm"
