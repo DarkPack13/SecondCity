@@ -6,7 +6,7 @@
 		// Perception is not real yet.
 		// You also notice movement more readily. You gain an extra die to all visually-based Perception rolls that involve movement or take place at night."}
 	value = 1
-	mob_trait = TRAIT_NIGHT_VISION
+	mob_trait = TRAIT_TRUE_NIGHT_VISION
 	icon = FA_ICON_DOG
 	allowed_splats = list(SPLAT_GAROU)
 
@@ -16,6 +16,6 @@
 /datum/quirk/darkpack/wolf_sight/remove()
 	quirk_holder.remove_client_colour(REF(src))
 
+
 /datum/client_colour/wolf_sight
 	color = "#e6e6e6"
-

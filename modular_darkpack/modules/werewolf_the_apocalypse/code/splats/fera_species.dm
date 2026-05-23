@@ -205,8 +205,6 @@
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
-		TRAIT_NIGHT_VISION,
-		TRAIT_KEEN_NOSE,
 	)
 	causes_delirium = TRUE
 	veil_breaching_form = TRUE
@@ -250,8 +248,6 @@
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
 		TRAIT_NO_CUFF,
-		TRAIT_MINOR_NIGHT_VISION,
-		TRAIT_KEEN_NOSE,
 	)
 	veil_breaching_form = TRUE
 
@@ -295,8 +291,6 @@
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
 		TRAIT_NO_CUFF,
-		TRAIT_NIGHT_VISION,
-		TRAIT_KEEN_NOSE,
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
