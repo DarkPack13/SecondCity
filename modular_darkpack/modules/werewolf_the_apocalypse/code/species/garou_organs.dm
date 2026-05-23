@@ -77,7 +77,7 @@
 	name = "feral tongue"
 	languages_native = list(/datum/language/primal_tongue)
 	liked_foodtypes = MEAT | SEAFOOD | GORE
-	tongue.disliked_foodtypes = VEGETABLES | GRAIN | NUTS | CLOTH | GROSS
+	disliked_foodtypes = VEGETABLES | GRAIN | NUTS | CLOTH | GROSS
 
 // Feral tongues can speak Primal Tongue.
 /obj/item/organ/tongue/lupine/get_possible_languages()
