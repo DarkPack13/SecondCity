@@ -41,11 +41,15 @@
 /obj/item/bodypart/leg/left/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
+	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
+
 
 /obj/item/bodypart/leg/right/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
-
+	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 // Specificly to restrict use of tools... because that was moved to the brain..
 /obj/item/organ/brain/fera
@@ -60,6 +64,8 @@
 /obj/item/organ/tongue/garou
 	name = "exotic tongue"
 	languages_native = list(/datum/language/garou_tongue)
+	liked_foodtypes = MEAT | SEAFOOD | GORE
+	disliked_foodtypes = VEGETABLES | GRAIN | NUTS | CLOTH | GROSS
 
 // Crinos tongues can speak Garou Tongue.
 /obj/item/organ/tongue/garou/get_possible_languages()
@@ -70,6 +76,8 @@
 /obj/item/organ/tongue/lupine
 	name = "feral tongue"
 	languages_native = list(/datum/language/primal_tongue)
+	liked_foodtypes = MEAT | SEAFOOD | GORE
+	tongue.disliked_foodtypes = VEGETABLES | GRAIN | NUTS | CLOTH | GROSS
 
 // Feral tongues can speak Primal Tongue.
 /obj/item/organ/tongue/lupine/get_possible_languages()
