@@ -7488,6 +7488,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\efficient_digestion.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\fair_glabro.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\giovanni_sanguine_incongruity.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\hidden_diablerie.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\metamorph.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\pale_aura.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\stillness_of_death.dm"
