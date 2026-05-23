@@ -57,4 +57,4 @@ ROLEPLAY_ONLY_MERITS 1
 
 ## Configs for the type of attack we use when we click at a ranged distance. Only one can be enabled at a time.
 #DIRECTIONAL_COMBAT
-#SWING_COMBAT
+SWING_COMBAT
