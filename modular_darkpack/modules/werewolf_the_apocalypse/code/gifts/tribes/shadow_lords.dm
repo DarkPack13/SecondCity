@@ -15,7 +15,7 @@ Garou or their Kin."}
 	living_owner.apply_status_effect(/datum/status_effect/whisper_catching)
 
 /datum/status_effect/whisper_catching
-	duration = 	1 SCENES
+	duration = 1 SCENES
 	id = "whisper_catching"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/gift/whisper_catching
