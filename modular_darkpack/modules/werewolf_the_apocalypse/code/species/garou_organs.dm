@@ -73,14 +73,12 @@
 		/datum/language/garou_tongue
 	)
 
-/obj/item/organ/tongue/lupine
+/obj/item/organ/tongue/garou/lupine
 	name = "feral tongue"
 	languages_native = list(/datum/language/primal_tongue)
-	liked_foodtypes = MEAT | SEAFOOD | GORE
-	disliked_foodtypes = VEGETABLES | GRAIN | NUTS | CLOTH | GROSS
 
 // Feral tongues can speak Primal Tongue.
-/obj/item/organ/tongue/lupine/get_possible_languages()
+/obj/item/organ/tongue/garou/lupine/get_possible_languages()
 	return list(
 		/datum/language/primal_tongue
 	)

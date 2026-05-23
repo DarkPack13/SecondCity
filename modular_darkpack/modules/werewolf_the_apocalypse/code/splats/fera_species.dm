@@ -256,7 +256,7 @@
 	veil_breaching_form = TRUE
 
 	mutantbrain = /obj/item/organ/brain/fera
-	mutanttongue = /obj/item/organ/tongue/lupine
+	mutanttongue = /obj/item/organ/tongue/garou/lupine
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
@@ -300,7 +300,7 @@
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
-	mutanttongue = /obj/item/organ/tongue/lupine
+	mutanttongue = /obj/item/organ/tongue/garou/lupine
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
