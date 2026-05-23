@@ -39,7 +39,6 @@
 	name = "Primal Tongue"
 	desc = "A language inherently known to all Garou breeds at birth, able to be spoken only in Lupus and Hispo forms."
 	key = "p"
-	flags = TONGUELESS_SPEECH
 	space_chance = 40
 	syllables = list (
 		"gra", "grr", "gru", "gha", "sha", "zho", "yip", "whu", "zar", "ruk",
