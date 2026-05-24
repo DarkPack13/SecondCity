@@ -1,0 +1,4 @@
+author: "Marshmellow105"
+delete-after: True
+changes:
+  - rscadd: "adds new mannequin subtypes to be used by mappers"
