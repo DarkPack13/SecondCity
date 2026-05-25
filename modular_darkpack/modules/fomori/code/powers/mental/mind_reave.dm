@@ -11,15 +11,15 @@
 	numerical = FALSE
 	roll_output_type = ROLL_NONE
 
-/datum/action/cooldown/power/fomori_power/mind_blast
-	name = "Mind Blast"
+/datum/action/cooldown/power/fomori_power/mind_reave
+	name = "Mind Reave"
 	desc = "Spend a willpower point to rest thoughts and memories from a victim's mind."
-	button_icon_state = "mind_blast"
+	button_icon_state = "mind_reave"
 	rank = 1 // of 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 
-/datum/action/cooldown/power/fomori_power/mind_blast/Activate(atom/target)
+/datum/action/cooldown/power/fomori_power/mind_reave/Activate(atom/target)
 	if(!isliving(target))
 		return FALSE
 

@@ -40,6 +40,7 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1) // done
 
 
 /datum/splat/werewolf/fomori/get_power(power_type)
