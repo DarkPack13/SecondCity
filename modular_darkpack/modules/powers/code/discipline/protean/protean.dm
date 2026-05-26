@@ -76,7 +76,7 @@
 	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		return TRUE
 	else
-		to_chat(owner, span_warning("You are unable rendered unable to transform!"))
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
 		return FALSE
 
 /datum/discipline_power/protean/feral_claws/activate()
