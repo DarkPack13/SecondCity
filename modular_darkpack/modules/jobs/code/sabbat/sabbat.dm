@@ -3,7 +3,8 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/flashlight
 	suit = /obj/item/clothing/suit/vampire/trench
-	backpack_contents = list(/obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/scythe/vamp=1, /obj/item/vamp/keys/sabbat=1)
+	belt = /obj/item/scythe/vamp
+	backpack_contents = list(/obj/item/vampire_stake=3, /obj/item/gun/ballistic/revolver/darkpack/magnum=1, /obj/item/knife/vamp=1, /obj/item/vamp/keys/hack=1, /obj/item/vamp/keys/sabbat=1)
 
 /datum/outfit/job/vampire/sabbatist/post_equip(mob/living/carbon/human/H)
 	..()

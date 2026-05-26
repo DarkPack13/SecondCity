@@ -1,5 +1,0 @@
-author: "Biplume"
-delete-after: True
-changes:
-  - balance: "You now faint from Delirium at 1 Willpower."
-  - qol: "Delirium text is now large."

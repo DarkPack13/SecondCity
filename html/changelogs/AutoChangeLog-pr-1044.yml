@@ -1,4 +1,0 @@
-author: "Kolibri-B"
-delete-after: True
-changes:
-  - bugfix: "Fixed Sense Wyrm's detection code; now properly separates Path of Humanity & Path of Enlightenment"

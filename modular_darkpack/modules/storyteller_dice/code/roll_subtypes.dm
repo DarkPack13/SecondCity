@@ -14,6 +14,7 @@
 /datum/storyteller_roll/attack
 	bumper_text = "attack"
 	spammy_roll = TRUE
+	alert_prefix = "⚔"
 	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
 
 /datum/storyteller_roll/attack/punch
@@ -39,6 +40,9 @@
 	bumper_text = "damage"
 	numerical = TRUE
 	spammy_roll = TRUE
+	// Ok listen I know this is just an emoji but it looks fine ingame.
+	alert_prefix = "✊"
+	alert_delay = 0.2 SECONDS
 	applicable_stats = list(STAT_STRENGTH)
 
 /datum/storyteller_roll/damage/punch

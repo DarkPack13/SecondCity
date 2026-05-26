@@ -39,7 +39,7 @@
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/revolver.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 85
-	recoil = 4
+	recoil = 3
 
 /obj/item/gun/ballistic/revolver/darkpack/magnum
 	name = "magnum revolver"
@@ -55,6 +55,7 @@
 	initial_caliber = CALIBER_9MM
 	fire_sound_volume = 65
 	projectile_damage_multiplier = 1.2 //21.6 damage, slightly higher than the m1911, just so it is possible to kill NPCs within 6 bullets
+	recoil = 2
 	serial_type = "SN"
 
 /obj/item/ammo_box/magazine/internal/cylinder/rev9mm
@@ -91,7 +92,7 @@
 	inhand_icon_state = "deagle"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m44
-	recoil = 3
+	recoil = 4
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/deagle.ogg'
 	serial_type = "MR"
 
@@ -100,8 +101,8 @@
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "deagle"
-	ammo_type = /obj/item/ammo_casing/vampire/c50
-	caliber = CALIBER_50CAL
+	ammo_type = /obj/item/ammo_casing/vampire/c50ae
+	caliber = CALIBER_50CAL_AE
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -112,6 +113,7 @@
 	inhand_icon_state = "deagle"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m50
 	fire_sound_volume = 125 //MY EARS
+	recoil = 5
 	weapon_weight = WEAPON_MEDIUM	//Firing .50 at 70 dam, think this is fair.
 
 /obj/item/ammo_box/magazine/darkpack45acp
@@ -182,6 +184,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/glock45acp
 	burst_size = 3
 	fire_delay = 1
+	recoil = 4
 	actions_types = list()
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/glock.ogg'
@@ -342,7 +345,7 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mac10_super"
-	recoil = 4
+	recoil = 5
 	spread = 8 //magic stock
 	suppressed = SUPPRESSED_QUIET
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/mac10suppress.ogg'  //mac-10 recording
@@ -481,7 +484,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack545
 	recoil = 5
 	burst_size = 1
-	spread = 8
+	spread = 5
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
 	mag_display = TRUE
@@ -592,7 +595,7 @@
 	rack_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_out.ogg'
 	bolt_drop_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_in.ogg'
 	tac_reloads = FALSE
-	recoil = 2
+	recoil = 3
 	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
 	burst_size = 1
 	slot_flags = ITEM_SLOT_BACK
@@ -604,7 +607,7 @@
 	name = "sniper rifle internal magazine"
 	desc = "Oh god, this shouldn't be here"
 	ammo_type = /obj/item/ammo_casing/vampire/c50
-	caliber = CALIBER_50CAL
+	caliber = CALIBER_50CAL_BMG
 	max_ammo = 5
 	//multiload = TRUE
 
@@ -630,7 +633,7 @@
 	bolt_drop_sound = 'sound/items/weapons/gun/rifle/bolt_in.ogg'
 	tac_reloads = FALSE
 	fire_delay = 40
-	recoil = 7
+	recoil = 10
 	burst_size = 1
 	//zoomable = TRUE
 	//zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
@@ -711,7 +714,6 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampshotgun
 	can_be_sawn_off	= FALSE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/pomp.ogg'
-	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	custom_price = 1000
@@ -744,7 +746,8 @@
 	burst_fire_selection = TRUE
 	burst_size = 2	//So you can fire both barrels at once.
 	burst_delay = 2
-	recoil = 4
+	recoil = 5
+	spread = 2
 	fire_delay = 3
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	can_be_sawn_off	= TRUE
