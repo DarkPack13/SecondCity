@@ -13,3 +13,10 @@
 /datum/preference/choiced/subsplat/vampire_clan/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)
 	target.set_clan(value, joining_round)
+
+/datum/preference/choiced/subsplat/vampire_clan/post_set_preference(mob/user, value)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(value)
+	if(!clan)
+		return
+	to_chat(user, span_notice("[uppertext(clan.name)]<br>[clan.desc]"))
+	// to_chat(user, span_notice("<br>Roleplay levels, or, the difficulty to play and portray a character from that clan, are as follows: Beginner Friendly, Intermediate, Advanced"))
