@@ -34,3 +34,12 @@
 /datum/preference/choiced/subsplat/garou_breed/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)
 	target.set_breed_form(value, joining_round)
+
+/datum/preference/choiced/subsplat/garou_breed/post_set_preference(mob/user, value)
+	var/datum/subsplat/werewolf/breed_form/breed = get_fera_breed_form(value)
+	if(!breed)
+		return
+	if(breed.desc)
+		to_chat(user, span_notice("[uppertext(breed.name)]<br>[breed.desc]"))
+	if(breed.roleplay_level)
+		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [breed.roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that breed, are as follows: Beginner Friendly, Intermediate, Advanced."))

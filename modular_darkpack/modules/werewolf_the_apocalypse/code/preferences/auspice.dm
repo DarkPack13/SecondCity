@@ -14,3 +14,12 @@
 /datum/preference/choiced/subsplat/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)
 	target.set_auspice(value, joining_round)
+
+/datum/preference/choiced/subsplat/garou_auspice/post_set_preference(mob/user, value)
+	var/datum/subsplat/werewolf/auspice/auspice = get_fera_auspice(value)
+	if(!auspice)
+		return
+	if(auspice.desc)
+		to_chat(user, span_notice("[uppertext(auspice.name)]<br>[auspice.desc]"))
+	if(auspice.roleplay_level)
+		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [auspice.roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that auspice, are as follows: Beginner Friendly, Intermediate, Advanced."))
