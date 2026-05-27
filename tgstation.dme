@@ -7961,6 +7961,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\breeds\garou.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\tribes\_tribe.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\subsplats\tribes\garou.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\weapons\klaives.dm"
 #include "modular_darkpack\modules\westfield_mall\code\mall_areas.dm"
 #include "modular_darkpack\modules\westfield_mall\code\modular_rooms.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
