@@ -23,8 +23,8 @@
 	abstract_type = /obj/item/occult_artifact
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/owner
-	var/true_name = "artifact"
-	var/true_desc = "Debug"
+	var/true_name
+	var/true_desc
 	var/identified = FALSE
 	var/research_value = 0
 	var/can_be_identified_without_ritual = TRUE
@@ -38,8 +38,10 @@
 
 /obj/item/occult_artifact/proc/identify(mob/living/artifact_identifier)
 	if(!identified)
-		name = true_name
-		desc = true_desc
+		if(true_name)
+			name = true_name
+		if(true_desc)
+			desc = true_desc
 		identified = TRUE
 		if(src in artifact_identifier?.get_all_contents())
 			bind(artifact_identifier)

@@ -1,3 +1,5 @@
+#warn need a spirit_type...
+
 /obj/item/occult_artifact/werewolf/klaive
 	name = "klaive"
 	desc = "A ritual weapon crafted by the Garou out of silver. This blade has a blue tint, due to the way it was crafted."
