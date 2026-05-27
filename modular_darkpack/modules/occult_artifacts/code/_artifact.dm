@@ -110,23 +110,45 @@
 	else
 		to_chat(artifact_identifier, span_warning("You stop examining [src]."))
 
+
 /obj/effect/spawner/random/occult
 	name = "occult spawner"
 	icon = 'modular_darkpack/modules/occult_artifacts/icons/artifacts.dmi'
 	icon_state = "art_rand"
 
+
 /obj/effect/spawner/random/occult/artifact
 	name = "random occult artifact"
-	loot_subtype_path = /obj/item/occult_artifact
+	loot = list(
+		/obj/effect/spawner/random/occult/artifact/vampire_only = 55,
+		/obj/effect/spawner/random/occult/artifact/werewolf_only = 45,
+	)
 
 /obj/effect/spawner/random/occult/artifact/Initialize(mapload)
-	spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
+	if(isnull(spawn_loot_chance))
+		spawn_loot_chance = CONFIG_GET(number/artifact_random_probability)
 	. = ..()
+
 
 /obj/effect/spawner/random/occult/artifact/vampire_only
 	name = "random vampire artifact"
 	loot_subtype_path = /obj/item/occult_artifact/vampire
 
+
 /obj/effect/spawner/random/occult/artifact/werewolf_only
 	name = "random garou fetish"
-	loot_subtype_path = /obj/item/occult_artifact/werewolf
+	loot = list(
+		/obj/item/occult_artifact/werewolf/nyxs_bangle = 45,
+		/obj/item/occult_artifact/werewolf/dagger_of_retribution = 45,
+		/obj/effect/spawner/random/occult/artifact/klaive = 10,
+	)
+
+
+/obj/effect/spawner/random/occult/artifact/klaive
+	name = "random klaive"
+	loot = list(
+		/obj/item/occult_artifact/werewolf/klaive = 30,
+		/obj/item/occult_artifact/werewolf/klaive/bane = 30,
+		/obj/item/occult_artifact/werewolf/klaive/karambit = 30,
+		/obj/item/occult_artifact/werewolf/klaive/grand = 10,
+	)
