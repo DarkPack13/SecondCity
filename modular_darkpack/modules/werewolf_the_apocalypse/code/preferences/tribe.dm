@@ -17,9 +17,4 @@
 
 /datum/preference/choiced/subsplat/garou_tribe/post_set_preference(mob/user, value)
 	var/datum/subsplat/werewolf/tribe/tribe = get_fera_tribe(value)
-	if(!tribe)
-		return
-	if(tribe.desc)
-		to_chat(user, span_notice("[uppertext(tribe.name)]<br>[tribe.desc]"))
-	if(tribe.roleplay_level)
-		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [tribe.roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that tribe, are as follows: Beginner Friendly, Intermediate, Advanced."))
+	tribe?.show_lore(user)

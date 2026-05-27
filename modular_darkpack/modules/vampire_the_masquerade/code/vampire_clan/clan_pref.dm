@@ -16,9 +16,4 @@
 
 /datum/preference/choiced/subsplat/vampire_clan/post_set_preference(mob/user, value)
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(value)
-	if(!clan)
-		return
-	if(clan.desc)
-		to_chat(user, span_notice("[uppertext(clan.name)]<br>[clan.desc]"))
-	if(clan.roleplay_level)
-		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [clan.roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that clan, are as follows: Beginner Friendly, Intermediate, Advanced."))
+	clan?.show_lore(user)

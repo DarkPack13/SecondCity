@@ -66,3 +66,10 @@
 		joining.put_in_r_hand(new subsplat_keys(joining))
 
 	UnregisterSignal(joining, COMSIG_MOB_LOGIN)
+
+/// Displays description and roleplay level of the subsplat.
+/datum/subsplat/proc/show_lore(mob/user)
+	if(desc)
+		to_chat(user, span_notice("[uppertext(name)]<br>[desc]"))
+	if(roleplay_level)
+		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that auspice, are as follows: Beginner Friendly, Intermediate, Advanced."))
