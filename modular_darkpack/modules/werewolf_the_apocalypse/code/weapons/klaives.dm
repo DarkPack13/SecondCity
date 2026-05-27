@@ -4,7 +4,7 @@
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/weapons.dmi'
 	lefthand_file = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/righthand.dmi'
-	// ONFLOOR_ICON_HELPER('modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/weapons.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/weapon_onfloors.dmi')
 	icon_state = "klaive"
 	inhand_icon_state = null // Please default to the icon_state.
 	force = 2 TTRPG_DAMAGE
@@ -33,7 +33,6 @@
 	name = "grand klaive"
 	desc = "A ritual weapon crafted by the Garou out of silver. This one is HUGE!."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/48x32weapons.dmi'
-	// ONFLOOR_ICON_HELPER('modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/48x32weapons.dmi')
 	icon_state = "klaive_grand"
 	force = 4 TTRPG_DAMAGE // Should be 5 but needs the extra difficulty as part of https://github.com/DarkPack13/SecondCity/pull/1015 to balance it out.
 	w_class = WEIGHT_CLASS_HUGE
