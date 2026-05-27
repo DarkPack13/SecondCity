@@ -149,8 +149,8 @@
 /obj/effect/spawner/random/occult/artifact/klaive
 	name = "random klaive"
 	loot = list(
-		/obj/item/occult_artifact/werewolf/klaive = 30,
-		/obj/item/occult_artifact/werewolf/klaive/bane = 30,
-		/obj/item/occult_artifact/werewolf/klaive/karambit = 30,
-		/obj/item/occult_artifact/werewolf/klaive/grand = 10,
+		/obj/item/occult_artifact/werewolf/klaive = 32,
+		/obj/item/occult_artifact/werewolf/klaive/bane = 32,
+		/obj/item/occult_artifact/werewolf/klaive/karambit = 32,
+		/obj/item/occult_artifact/werewolf/klaive/grand = 4, // Idk this thing is mega scary and mabye even doesnt belong here.
 	)
