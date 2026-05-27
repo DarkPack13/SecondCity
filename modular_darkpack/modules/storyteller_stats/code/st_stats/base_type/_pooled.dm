@@ -3,4 +3,4 @@
 	category = "Pooled"
 	min_score = 0
 	max_score = 10
-	freebie_point_cost = FREEBIE_COST_WILLPOWER
+	// freebie_point_cost = FREEBIE_COST_WILLPOWER

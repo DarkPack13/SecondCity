@@ -8,10 +8,23 @@
 /datum/preference_middleware/stats/get_ui_data(mob/user)
 	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return list()
+	// Kinda weird. Dunno where else to get stuff like splats from consistantly.
+	// Reading from the pref directily would mean we can use any helpers since its just an ID.
+	var/mob/mob_to_check = preferences.character_preview_view.body
+	if(!mob_to_check)
+		return list()
+
 	var/list/data = list()
 	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
+
+		if((stat.abstract_type == stat.type) && (stat.abstract_type != stat.freebie_pool_stat))
+			continue
+
+		if(!stat.can_have_stat(mob_to_check))
+			continue
+
 		var/list/stat_data = list()
 		stat_data["name"] = stat.name
 		stat_data["desc"] = stat.description
@@ -22,7 +35,7 @@
 		stat_data["points"] = stat.get_points()
 		stat_data["score"] = stat.get_score(include_bonus = FALSE)
 		stat_data["bonus_score"] = max(stat.get_bonus_score(), 0) // Dont go below 0 as this is to display bonuses and doesnt have handling for negative bonus score atm
-		stat_data["abstract_type"] = "[stat.abstract_type]"
+		stat_data["freebie_type"] = "[stat.freebie_pool_stat]"
 		data["stats"]["[stat.type]"] = stat_data
 	return data
 
@@ -34,7 +47,7 @@
 		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
-	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats[stat_path.abstract_type]
+	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat ? stat_path.freebie_pool_stat : stat_path.abstract_type]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
@@ -43,8 +56,8 @@
 		return FALSE // If we have, then return early.
 
 	if((stat_path.get_score(include_bonus = FALSE) + 1) > stat_path.starting_score)
-		if(abstract_stat.can_decrease_points(1)) // Can we spend points on this stat?
-			abstract_stat.decrease_points(1) // Spend a point.
+		if(parent_point_stat.can_decrease_points(1)) // Can we spend points on this stat?
+			parent_point_stat.decrease_points(1) // Spend a point.
 		else
 			if(freebie_point_stat.can_decrease_freebie_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
 				freebie_point_stat.decrease_freebie_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
@@ -70,7 +83,7 @@
 		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
-	var/datum/st_stat/abstract_stat = preferences.preference_storyteller_stats[stat_path.abstract_type]
+	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat ? stat_path.freebie_pool_stat : stat_path.abstract_type]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
@@ -81,7 +94,7 @@
 		if(freebie_point_stat.can_increase_freebie_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
 			freebie_point_stat.increase_freebie_points(stat_path.freebie_point_cost) // Regain freebie points.
 		else
-			abstract_stat.increase_points(1) // Regain a score point.
+			parent_point_stat.increase_points(1) // Regain a score point.
 
 	stat_path.decrease_score(1) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 

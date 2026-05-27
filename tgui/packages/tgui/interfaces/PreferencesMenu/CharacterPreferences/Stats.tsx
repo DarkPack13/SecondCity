@@ -12,7 +12,7 @@ export function StatsPage() {
   if (!stats || Object.keys(stats).length === 0) return null;
 
   const pointStats = Object.entries(stats)
-    .filter(([path, statData]) => path === statData.abstract_type && statData.name)
+    .filter(([path, statData]) => path === statData.freebie_type && statData.name)
     .map(([path, statData]) => ({
       path,
       name: statData.name, // Display name for the points stat
@@ -22,7 +22,7 @@ export function StatsPage() {
   // Group by category → subcategory using subtypes() order
   const grouped: Record<string, Record<string, string[]>> = {};
   Object.entries(stats).forEach(([path, statData]) => {
-    if (path === statData.abstract_type) return;
+    if (path === statData.freebie_type) return;
     const category = statData.category;
     const subcategory = statData.subcategory ?? 'General';
     if (!grouped[category]) grouped[category] = {};

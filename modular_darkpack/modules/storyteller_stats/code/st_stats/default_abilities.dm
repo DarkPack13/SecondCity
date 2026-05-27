@@ -9,10 +9,18 @@
 	name = "Athletics"
 	description = "Affects your character's physical wellbeing and endurance, as well as their ability to climb walls and jump."
 
+
 /datum/st_stat/ability/awareness
 	subcategory = "Talents"
 	name = "Awareness"
 	description = "Affects your character's attention to extreme detail. Used in Auspex."
+
+// Awareness is functionally equivelent and replaced by primal urge.
+/datum/st_stat/ability/awareness/can_have_stat(mob/owner)
+	if(get_werewolf_splat(owner))
+		return FALSE
+	return TRUE
+
 
 /datum/st_stat/ability/brawl
 	subcategory = "Talents"
@@ -38,6 +46,17 @@
 	subcategory = "Talents"
 	name = "Leadership"
 	description = "Affects your character's natural affinity to lead, direct, take responsibility, and strategize. Increases your maximum follower/minion limit."
+
+
+/datum/st_stat/ability/primary_urge
+	name = "Primal-Urge"
+	subcategory = "Talents"
+
+/datum/st_stat/ability/primary_urge/can_have_stat(mob/owner)
+	if(!get_werewolf_splat(owner))
+		return FALSE
+	return TRUE
+
 
 /datum/st_stat/ability/streetwise
 	subcategory = "Talents"
@@ -151,6 +170,17 @@
 	name = "Politics"
 	description = "Affects your character's talent with regards to political manuevers."
 
+
+/datum/st_stat/ability/rituals
+	name = "Rituals"
+	subcategory = "Knowledges"
+
+/datum/st_stat/ability/rituals/can_have_stat(mob/owner)
+	if(!get_werewolf_splat(owner))
+		return FALSE
+	return TRUE
+
+
 /datum/st_stat/ability/science
 	subcategory = "Knowledges"
 	name = "Science"
@@ -166,3 +196,9 @@
 	You must always choose a specialization in Technology, even though you possess some skill in multiple fields.
 	*/
 	description = "Affects your character's familiarity with machines, devices, and electrical systems."
+
+// I guess wolfs just use computer or science???
+/datum/st_stat/ability/technology/can_have_stat(mob/owner)
+	if(get_werewolf_splat(owner))
+		return FALSE
+	return TRUE

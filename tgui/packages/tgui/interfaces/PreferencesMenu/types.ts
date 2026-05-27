@@ -260,7 +260,7 @@ export type PreferencesMenuData = {
       category: string;
       subcategory: string;
       points: number;
-      abstract_type: string;
+      freebie_type: string;
     }
   >;
   // DARKPACK EDIT ADD END

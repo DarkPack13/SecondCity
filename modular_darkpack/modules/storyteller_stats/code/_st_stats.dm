@@ -30,11 +30,13 @@
 	var/list/modifiers = list()
 	/// A dictionary of auto success scores to this attribute.
 	var/list/auto_successes = list()
+	/// What parent stat we use for freebie points
+	var/freebie_pool_stat
 	/// What score does this stat start out with at character creation.
 	var/starting_score = 0
-	/// How many points are in this stat category that the player can use. Used in abstract classes only.
+	/// How many points are in this stat category that the player can use.
 	VAR_PROTECTED/points = 0
-	/// How many freebie points were spent on this stat. Used in abstract classes only.
+	/// How many freebie points were spent on this stat.
 	var/freebie_cost_spent = 0
 
 // Score
@@ -194,4 +196,8 @@
 		return FALSE
 	points -= amount
 	freebie_cost_spent += amount
+	return TRUE
+
+
+/datum/st_stat/proc/can_have_stat(mob/owner)
 	return TRUE
