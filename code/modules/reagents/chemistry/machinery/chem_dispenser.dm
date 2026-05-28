@@ -419,15 +419,10 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
-		update_appearance()
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_crowbar(tool))
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/chem_dispenser/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!tool.can_insert_container(user, src))
@@ -614,6 +609,7 @@
 		/datum/reagent/consumable/menthol,
 		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/berryjuice, // DARKPACK EDIT ADD
 		/datum/reagent/consumable/pwr_game,
 		/datum/reagent/consumable/shamblers,
 		/datum/reagent/consumable/spacemountainwind,

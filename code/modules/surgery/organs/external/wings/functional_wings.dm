@@ -1,12 +1,11 @@
 #define FUNCTIONAL_WING_FORCE 2.25 NEWTONS
-#define FUNCTIONAL_WING_STABILIZATION 4.5 NEWTONS
 
 ///hud action for starting and stopping flight
 /datum/action/innate/flight
 	name = "Toggle Flight"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE|AB_CHECK_INCAPACITATED
-	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi' // DARKPACK EDIT CHANGE - Original : button_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "fly" // DARKPACK EDIT CHANGE - Original : button_icon_state = "flight"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi' // DARKPACK EDIT CHANGE - ORIGINAL: button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "fly" // DARKPACK EDIT CHANGE - ORIGINAL: button_icon_state = "flight"
 
 /datum/action/innate/flight/Activate()
 	var/mob/living/carbon/human/human = owner
@@ -29,7 +28,6 @@
 	food_reagents = list(/datum/reagent/flightpotion = 5)
 
 	var/drift_force = FUNCTIONAL_WING_FORCE
-	var/stabilizer_force = FUNCTIONAL_WING_STABILIZATION
 
 /obj/item/organ/wings/functional/Initialize(mapload)
 	. = ..()
@@ -37,7 +35,6 @@
 		/datum/component/jetpack, \
 		TRUE, \
 		drift_force, \
-		stabilizer_force, \
 		COMSIG_WINGS_OPENED, \
 		COMSIG_WINGS_CLOSED, \
 		null, \
@@ -245,4 +242,3 @@
 	sprite_accessory_override = /datum/sprite_accessory/wings/slime
 
 #undef FUNCTIONAL_WING_FORCE
-#undef FUNCTIONAL_WING_STABILIZATION

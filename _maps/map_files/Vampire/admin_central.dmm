@@ -11710,10 +11710,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/admin/storage,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supply)
-"ZZ" = (
-/obj/transfer_point_vamp/backrooms/map,
-/turf/open/floor/carpet,
-/area/awaymission/errorroom)
 
 (1,1,1) = {"
 TJ
@@ -14683,7 +14679,7 @@ aa
 LW
 ik
 LV
-ZZ
+LV
 LV
 LV
 LV

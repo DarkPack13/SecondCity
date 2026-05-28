@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	plane = GHOST_PLANE
 	stat = DEAD
 	density = FALSE
-	see_invisible = OBSERVER_SIGHT //DARKPACK EDIT, Original : see_invisible = SEE_INVISIBLE_OBSERVER
+	see_invisible = OBSERVER_SIGHT // DARKPACK EDIT CHANGE - ORIGINAL: see_invisible = SEE_INVISIBLE_OBSERVER
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
@@ -221,18 +221,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(ghost_accs == GHOST_ACCS_FULL && (icon_state in GLOB.ghost_forms_with_accessories_list)) //check if this form supports accessories and if the client wants to show them
 		if(facial_hairstyle)
 			var/datum/sprite_accessory/S = SSaccessories.facial_hairstyles_list[facial_hairstyle]
-			if(S)
-				facial_hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
-				if(facial_hair_color)
-					facial_hair_overlay.color = facial_hair_color
+			if(S && S.icon_state != SPRITE_ACCESSORY_NONE)
+				facial_hair_overlay = mutable_appearance(S.icon, S.icon_state, -HAIR_LAYER)
+				facial_hair_overlay.color = facial_hair_color
 				facial_hair_overlay.alpha = 200
 				add_overlay(facial_hair_overlay)
 		if(hairstyle)
 			var/datum/sprite_accessory/hair/S = SSaccessories.hairstyles_list[hairstyle]
-			if(S)
-				hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
-				if(hair_color)
-					hair_overlay.color = hair_color
+			if(S && S.icon_state != SPRITE_ACCESSORY_NONE)
+				hair_overlay = mutable_appearance(S.icon, S.icon_state, -HAIR_LAYER)
+				hair_overlay.color = hair_color
 				hair_overlay.alpha = 200
 				hair_overlay.pixel_z = S.y_offset
 				add_overlay(hair_overlay)
@@ -644,8 +642,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		remove_data_huds()
 	update_sight()
-	for(var/atom/movable/screen/ghost/hudbox/hud in hud_used?.static_inventory)
-		if(hud.relevant_flag & toggled)
+	for(var/hud_key in hud_used?.screen_objects)
+		var/atom/movable/screen/ghost/hudbox/hud = hud_used.screen_objects[hud_key]
+		if(istype(hud) && (hud.relevant_flag & toggled))
 			hud.update_appearance(UPDATE_ICON_STATE)
 
 // This is the ghost's follow verb with an argument
@@ -712,7 +711,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!(ghost_hud_flags & GHOST_VISION))
 		set_invis_see(SEE_INVISIBLE_LIVING)
 	else
-		set_invis_see(OBSERVER_SIGHT) //DARKPACK EDIT, Original : see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(OBSERVER_SIGHT) // DARKPACK EDIT CHANGE - ORIGINAL: see_invisible = SEE_INVISIBLE_OBSERVER
 
 	updateghostimages()
 	..()

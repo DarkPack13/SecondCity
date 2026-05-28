@@ -57,13 +57,13 @@ SUBSYSTEM_DEF(dynamic)
 	/// Rulesets in this list will be excluded from the roundend report
 	var/list/datum/dynamic_ruleset/unreported_rulesets = list()
 	/// Whether random events that spawn antagonists or modify dynamic are enabled
-	var/antag_events_enabled = FALSE // DARKPACK EDIT, ORIGINAL: var/antag_events_enabled = TRUE
+	var/antag_events_enabled = FALSE // DARKPACK EDIT CHANGE - ORIGINAL: var/antag_events_enabled = TRUE
 
-// DARKPACK EDIT ADDITION START
+// DARKPACK EDIT ADD START
 /datum/controller/subsystem/dynamic/Initialize()
 	admin_disabled_rulesets |= subtypesof(/datum/dynamic_ruleset)
 	return SS_INIT_SUCCESS
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
 
 /datum/controller/subsystem/dynamic/fire(resumed)
 	if(!COOLDOWN_FINISHED(src, midround_cooldown) || EMERGENCY_PAST_POINT_OF_NO_RETURN)
@@ -284,9 +284,9 @@ SUBSYSTEM_DEF(dynamic)
 		log_dynamic("Roundstart: Ruleset [picked_ruleset.config_tag] (Chance: [round(rulesets_weighted[picked_ruleset] / total_weight * 100, 0.01)]%)")
 		if(picked_ruleset.solo)
 			log_dynamic("Roundstart: Ruleset is a solo ruleset. Cancelling other picks.")
-			QDEL_LIST(picked_rulesets)
+			picked_rulesets.Cut()
 			rulesets_weighted -= picked_ruleset
-			picked_rulesets += picked_ruleset
+			picked_rulesets += picked_ruleset.type
 			break
 		if(current_tier.tier != DYNAMIC_TIER_HIGH && (picked_ruleset.ruleset_flags & RULESET_HIGH_IMPACT))
 			for(var/datum/dynamic_ruleset/roundstart/high_impact_ruleset as anything in rulesets_weighted)
@@ -296,7 +296,7 @@ SUBSYSTEM_DEF(dynamic)
 				rulesets_weighted -= high_impact_ruleset
 		if(!picked_ruleset.repeatable)
 			rulesets_weighted -= picked_ruleset
-			picked_rulesets += picked_ruleset
+			picked_rulesets += picked_ruleset.type
 			continue
 
 		rulesets_weighted[picked_ruleset] -= picked_ruleset.repeatable_weight_decrease

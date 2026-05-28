@@ -109,21 +109,21 @@
 
 /mob/living/basic/pet/cat/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.)
+		return
 
 	if(istype(target, /obj/machinery/oven/range) && can_interact_with_stove)
 		target.attack_hand(src)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(!can_hold_item)
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 
 	if(!is_type_in_list(target, huntable_items) || held_food)
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/atom/movable/movable_target = target
 	movable_target.forceMove(src)
-	return FALSE
+	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 /mob/living/basic/pet/cat/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -172,6 +172,7 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat)),\
+		breed_timer = 30 MINUTES, /* DARKPACK EDIT ADD - (Less baby spam)*/\
 		baby_paths = baby_types,\
 		post_birth = post_birth_callback,\
 	)

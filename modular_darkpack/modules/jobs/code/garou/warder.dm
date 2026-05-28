@@ -2,7 +2,7 @@
 	title = JOB_GAROU_WARDER
 	description = "You are the most respected Ahroun within the" + SEPT_NAME + ", granted the honor of coordinating the caern's security. The Wyrmfoe and Guardians answer to you."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	faction = FACTION_CITY
+	faction = FACTION_GAIA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_LITANY
@@ -17,8 +17,8 @@
 	outfit = /datum/outfit/job/vampire/warder
 
 	allowed_splats = list(SPLAT_GAROU)
-//	allowed_tribes = list(TRIBE_GAIA)
-//	allowed_auspice = list(AUSPICE_AHROUN)
+	allowed_tribes = TRIBE_LIST_GAIA
+	allowed_auspice = list(AUSPICE_AHROUN)
 
 	display_order = JOB_DISPLAY_ORDER_WARDER
 	department_for_prefs = /datum/job_department/gaia
