@@ -11,6 +11,7 @@
 /area/vtm/interior/giovanni
 	name = "Giovanni Mansion"
 	icon_state = "giovanni"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/giovanni_moldy_old_world.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 	domain = TRUE
@@ -198,8 +199,10 @@
 	name = "Theatre"
 	icon_state = "theatre"
 	music_index = MUSIC_CITY
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/theatre.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	forced_music = TRUE // need that epic theatre intro as soon as you walk in
 
 /area/vtm/interior/oldchurch
 	name = "Old Seaside Church"
