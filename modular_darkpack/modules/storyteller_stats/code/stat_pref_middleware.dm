@@ -18,10 +18,6 @@
 	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
-
-		if((stat.abstract_type == stat.type) && (stat.abstract_type != stat.freebie_pool_stat))
-			continue
-
 		if(!stat.can_have_stat(mob_to_check))
 			continue
 
