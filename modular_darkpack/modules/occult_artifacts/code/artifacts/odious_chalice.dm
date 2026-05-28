@@ -13,7 +13,7 @@
 	. = ..()
 	if(!get_kindred_splat(M))
 		return
-	if(!stored_blood)
+	if(stored_blood <= 0)
 		return
 	if(!identified)
 		return
@@ -21,5 +21,6 @@
 	M.adjust_fire_loss(-5*stored_blood, TRUE)
 	M.update_damage_overlays()
 	M.update_health_hud()
+	stored_blood--
 	playsound(M.loc,'sound/items/drink.ogg', 50, TRUE)
 	return
