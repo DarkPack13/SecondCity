@@ -1,7 +1,7 @@
 /datum/st_stat/attribute
 	name = "Attribute Points"
 	abstract_type = /datum/st_stat/attribute
-	category = "Attribute"
+	category = STAT_CATEGORY_ATTRIBUTE
 	starting_score = 1
 	score = 1
 	freebie_pool_stat = /datum/st_stat/attribute

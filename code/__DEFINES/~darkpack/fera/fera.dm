@@ -7,7 +7,6 @@
 
 #define MAX_RAGE 10
 #define MAX_GNOSIS 10
-#define PRIMAL_URGE_PLACEHOLDER 3
 
 #define BREED_HOMID "Homid"
 #define BREED_LUPUS "Lupus"

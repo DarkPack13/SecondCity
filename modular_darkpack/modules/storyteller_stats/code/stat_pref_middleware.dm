@@ -47,7 +47,7 @@
 		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
-	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat ? stat_path.freebie_pool_stat : stat_path.abstract_type]
+	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
@@ -56,7 +56,7 @@
 		return FALSE // If we have, then return early.
 
 	if((stat_path.get_score(include_bonus = FALSE) + 1) > stat_path.starting_score)
-		if(parent_point_stat.can_decrease_points(1)) // Can we spend points on this stat?
+		if(parent_point_stat?.can_decrease_points(1)) // Can we spend points on this stat?
 			parent_point_stat.decrease_points(1) // Spend a point.
 		else
 			if(freebie_point_stat.can_decrease_freebie_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
@@ -83,7 +83,7 @@
 		return FALSE
 
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
-	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat ? stat_path.freebie_pool_stat : stat_path.abstract_type]
+	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_score(include_bonus = FALSE)
 
@@ -93,8 +93,10 @@
 	if((stat_path.get_score(include_bonus = FALSE) - 1) >= stat_path.starting_score)
 		if(freebie_point_stat.can_increase_freebie_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
 			freebie_point_stat.increase_freebie_points(stat_path.freebie_point_cost) // Regain freebie points.
-		else
+		else if(parent_point_stat)
 			parent_point_stat.increase_points(1) // Regain a score point.
+		else
+			return FALSE
 
 	stat_path.decrease_score(1) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 

@@ -2,7 +2,7 @@
 
 /datum/storyteller_roll/fera_trans
 	bumper_text = "transformation"
-	applicable_stats = list(STAT_STAMINA)
+	applicable_stats = list(STAT_STAMINA, STAT_PRIMAL_URGE)
 
 
 // Remeber if you remove homid being species that this will break.
@@ -41,7 +41,7 @@
 		if(current_form)
 			transform_roll.difficulty = current_form.shift_difficulty
 			transform_roll.successes_needed = steps_between_forms(current_form.type, form_to_transform)
-		switch(transform_roll.st_roll(owner, owner, PRIMAL_URGE_PLACEHOLDER))
+		switch(transform_roll.st_roll(owner, owner))
 			if(ROLL_SUCCESS)
 				pass()
 			if(ROLL_FAILURE, ROLL_BOTCH)
@@ -75,7 +75,7 @@
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))
 		var/datum/storyteller_roll/metamorph/roll_datum = new()
-		if(roll_datum.st_roll(owner, bonus = PRIMAL_URGE_PLACEHOLDER) == ROLL_SUCCESS)
+		if(roll_datum.st_roll(owner) == ROLL_SUCCESS)
 			// First valid use of timeout discovered (we dont want to be able to hold it out)
 			var/choice = tgui_input_list(owner, "Revert to your choosen form", "Metamorph", transformation_list, get_breed_form_species(), 1 TURNS)
 			if(choice in transformation_list)
