@@ -15,6 +15,7 @@
 /datum/st_stat/pooled/gnosis
 	name = "Permenent Gnosis"
 	subcategory = "Gnosis"
+	freebie_point_cost = FREEBIE_COST_GNOSIS
 
 /datum/st_stat/pooled/gnosis/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
@@ -36,6 +37,7 @@
 /datum/st_stat/pooled/rage
 	name = "Permenent Rage"
 	subcategory = "Rage"
+	freebie_point_cost = FREEBIE_COST_RAGE
 
 /datum/st_stat/pooled/rage/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))

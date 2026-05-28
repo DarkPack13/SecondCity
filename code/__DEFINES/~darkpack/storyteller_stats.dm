@@ -89,7 +89,7 @@
 #define STAT_SUBCATEGORY_KNOWLEDGES "Knowledges"
 
 #define STAT_CATEGORY_POOLED "Pooled"
-#define STAT_SUBCATEGORY_VIRTUES "Virtues"
+#define STAT_CATEGORY_VIRTUES "Virtues"
 
 // Defines used for saving of stats.
 #define STAT_SCORE "score"

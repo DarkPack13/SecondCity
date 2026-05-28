@@ -24,16 +24,17 @@
 	/// Flags for stats, such as if it affects health.
 	var/stat_flags = NONE
 
-	/// If the user can spend points on that stat.
-	var/editable = TRUE
 	/// A dictionary of modifiers to this attribute.
 	var/list/modifiers = list()
 	/// A dictionary of auto success scores to this attribute.
 	var/list/auto_successes = list()
-	/// What parent stat we use for freebie points
-	var/freebie_pool_stat
+
+	/// If the user can spend points on that stat.
+	var/editable = TRUE
 	/// What score does this stat start out with at character creation.
 	var/starting_score = 0
+	/// What parent stat we use for freebie points
+	var/freebie_pool_stat
 	/// How many points are in this stat category that the player can use.
 	VAR_PROTECTED/points = 0
 	/// How many freebie points were spent on this stat.
