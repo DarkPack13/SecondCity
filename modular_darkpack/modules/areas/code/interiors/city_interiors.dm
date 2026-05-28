@@ -73,6 +73,7 @@
 /area/vtm/interior/strip
 	name = "Strip Club"
 	icon_state = "strip"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/strip_club.ogg')
 	fire_controled = TRUE
 	domain = TRUE
 
