@@ -57,6 +57,8 @@
 	grant_powers()
 
 /obj/item/occult_artifact/proc/unbind(mob/user)
+	if(src in owner?.get_all_contents()) // dont unbind if the user has just placed the artifact in their bag - which counts as dropping it
+		return
 	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
 	STOP_PROCESSING(subsystem, src)
 
