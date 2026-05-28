@@ -58,10 +58,18 @@
 	base_icon_state = "s44"
 
 // .50 BMG/AE
+/obj/item/ammo_casing/vampire/c50ae
+	name = ".50 AE bullet casing"
+	desc = "A .50 AE bullet casing."
+	caliber = CALIBER_50CAL_AE
+	projectile_type = /obj/projectile/bullet/darkpack/vamp50ae
+	icon_state = "44"		//placeholder
+	base_icon_state = "44"	//placeholder
+
 /obj/item/ammo_casing/vampire/c50
-	name = ".50 bullet casing"
-	desc = "A .50 bullet casing."
-	caliber = CALIBER_50CAL
+	name = ".50 BMG bullet casing"
+	desc = "A .50 BMG bullet casing."
+	caliber = CALIBER_50CAL_BMG
 	projectile_type = /obj/projectile/bullet/darkpack/vamp50
 	icon_state = "50"
 	base_icon_state = "50"
@@ -112,6 +120,13 @@
 	icon_state = "12"
 	base_icon_state = "12"
 
+/obj/item/ammo_casing/vampire/c12g/silver
+	name = "12g silver shell casing"
+	desc = "A 12g silver shell casing."
+	icon_state = "s12"
+	base_icon_state = "s12"
+	projectile_type = /obj/projectile/bullet/shotgun_slug/vamp/silver
+
 /obj/item/ammo_casing/vampire/c12g/buck
 	desc = "A 12g shell casing (00 buck)."
 	projectile_type = /obj/projectile/bullet/darkpack/shotpellet
@@ -129,24 +144,6 @@
 	projectile_type = /obj/projectile/bullet/darkpack/incap
 	icon_state = "12i"
 	base_icon_state = "12i"
-
-// DARKPACK TODO - GAROU
-/*
-/obj/item/ammo_casing/vampire/c12g/buck/silver
-	name = "silver 12g shell casing"
-	desc = "A silver filled 12g shell casing."
-	icon_state = "s12"
-/obj/item/ammo_casing/vampire/c12g/buck/silver/on_hit(atom/target, blocked = 0, pierce_hit)
-	. = ..()
-	if(iswerewolf(target) || get_garou_splat(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(40))
-				adjust_gnosis(-1, M)
-		else
-			M.Stun(10)
-			M.adjust_brute_loss(50, TRUE)
-*/
 
 // Crossbow Bolt
 /obj/item/ammo_casing/caseless/bolt
@@ -181,7 +178,7 @@
 
 /obj/item/ammo_casing/vampire/c75
 	name = ".75 cartrige"
-	desc = "A .75 musket cartridge containing a musket ball and powder."
+	desc = "A .75 musket cartridge containing a musket ball and gunpowder."
 	caliber = CALIBER_75BALL
 	projectile_type = /obj/projectile/bullet/darkpack/vamp75
 	icon_state = "cartridge"
@@ -190,3 +187,10 @@
 /obj/item/ammo_casing/vampire/c75/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/caseless)
+
+/obj/item/ammo_casing/vampire/c75/silver
+	name = ".75 silver cartrige"
+	desc = "A .75 musket cartridge containing a musket ball, made in pure silver, and gunpowder."
+	projectile_type = /obj/projectile/bullet/darkpack/vamp75/silver
+	icon_state = "scartridge"
+	base_icon_state = "scartridge"

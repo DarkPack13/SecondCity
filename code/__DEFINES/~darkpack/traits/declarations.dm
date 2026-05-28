@@ -45,6 +45,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PALE_AURA "pale_aura"
 #define TRAIT_DECEPTIVE_AURA "deceptive_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
+#define TRAIT_HIDDEN_DIABLERIE "hidden_diablerie"
 
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
 /// The mob will automatically breach the Masquerade when seen by others, with no exceptions
@@ -180,6 +181,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_EAT_FOOD "eat_food"
+#define TRAIT_CALM_HEART "calm_heart"
 
 
 // END TRAIT DEFINES

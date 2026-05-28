@@ -34,6 +34,7 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
 	difficulty = 7
 	reroll_cooldown = 1 SCENES
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/necromancy/shroudsight
 	name = "Shroudsight"

@@ -20,11 +20,6 @@
 	whitelisted = TRUE
 	subsplat_keys = /obj/item/vamp/keys/baali
 
-/datum/subsplat/vampire_clan/baali/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	. = ..()
-	gaining_mob.AddElement(/datum/element/holy_weakness)
-	gaining_mob.gain_trauma(new /datum/brain_trauma/mild/phobia/religion, TRAUMA_RESILIENCE_ABSOLUTE)
-
 /datum/subsplat/vampire_clan/baali/psychomania_effect(mob/living/target, mob/living/owner)
 	to_chat(target, span_notice("The sacred icons appearing before you lack the true substance of faith"))
 	new /datum/hallucination/delusion(target, TRUE, "repent", 200, 0)
