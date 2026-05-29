@@ -95,9 +95,7 @@
 			/datum/language/sylvan,
 			/datum/language/shadowtongue,
 			/datum/language/terrum,
-			/datum/language/nekomimetic,
-			/datum/language/garou_tongue,
-			/datum/language/primal_tongue
+			/datum/language/nekomimetic
 		)
 		for(var/datum/language/lang as anything in subtypesof(/datum/language))
 			if(lang.restricted)

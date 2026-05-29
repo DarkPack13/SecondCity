@@ -61,10 +61,22 @@
 		return owner.get_bodypart(BODY_ZONE_HEAD)
 	return ..()
 
-/obj/item/organ/tongue/fera
+/obj/item/organ/tongue/garou
 	name = "exotic tongue"
 	languages_native = list(/datum/language/garou_tongue)
 
-// Garou tongues can speak all default + garou tongue
-/obj/item/organ/tongue/fera/get_possible_languages()
-	return ..() + /datum/language/garou_tongue
+// Crinos tongues can speak Garou Tongue.
+/obj/item/organ/tongue/garou/get_possible_languages()
+	return list(
+		/datum/language/garou_tongue
+	)
+
+/obj/item/organ/tongue/garou/lupine
+	name = "feral tongue"
+	languages_native = list(/datum/language/primal_tongue)
+
+// Feral tongues can speak Primal Tongue.
+/obj/item/organ/tongue/garou/lupine/get_possible_languages()
+	return list(
+		/datum/language/primal_tongue
+	)

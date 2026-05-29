@@ -209,7 +209,7 @@
 	causes_delirium = TRUE
 	veil_breaching_form = TRUE
 
-	mutanttongue = /obj/item/organ/tongue/fera
+	mutanttongue = /obj/item/organ/tongue/garou
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
@@ -223,6 +223,7 @@
 
 	visible_gender_override = "beast"
 
+	mutanttongue = /obj/item/organ/tongue/garou
 	mob_pixel_w = -8
 	mob_size_override = MOB_SIZE_LARGE
 	form_bonus_stats = list(
@@ -251,7 +252,7 @@
 	veil_breaching_form = TRUE
 
 	mutantbrain = /obj/item/organ/brain/fera
-	mutanttongue = /obj/item/organ/tongue/fera
+	mutanttongue = /obj/item/organ/tongue/garou/lupine
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
@@ -293,7 +294,7 @@
 	)
 
 	mutantbrain = /obj/item/organ/brain/fera
-	mutanttongue = /obj/item/organ/tongue/fera
+	mutanttongue = /obj/item/organ/tongue/garou/lupine
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,

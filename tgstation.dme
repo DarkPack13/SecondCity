@@ -7395,7 +7395,6 @@
 #include "modular_darkpack\modules\languages\code\languages\english.dm"
 #include "modular_darkpack\modules\languages\code\languages\farsi.dm"
 #include "modular_darkpack\modules\languages\code\languages\french.dm"
-#include "modular_darkpack\modules\languages\code\languages\garou_tongue.dm"
 #include "modular_darkpack\modules\languages\code\languages\german.dm"
 #include "modular_darkpack\modules\languages\code\languages\greek.dm"
 #include "modular_darkpack\modules\languages\code\languages\hebrew.dm"
