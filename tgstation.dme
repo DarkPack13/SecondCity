@@ -7493,6 +7493,8 @@
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\pale_aura.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\stillness_of_death.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\time_sense.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\touch_of_the_wyld.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\unbondable.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\untamable.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\wolf_sight.dm"
 #include "modular_darkpack\modules\mob_spawners\code\citizen.dm"
