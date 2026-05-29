@@ -21,12 +21,12 @@
 	if(!uses_rage)
 		return FALSE
 
-	var/rage = owner.st_get_stat(STAT_PERMANENT_RAGE)
+	var/rage = owner.st_get_stat(STAT_PERMANENT_RAGE, FALSE)
 	var/permanent_rage = owner.st_get_stat(STAT_TEMPORARY_RAGE)
 
 	if(amount > 0)
 		if(rage < permanent_rage)
-			owner.st_change_stat(STAT_TEMPORARY_RAGE, amount)
+			owner.st_set_stat(STAT_TEMPORARY_RAGE, min(permanent_rage, rage+amount))
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_increase.ogg', volume = 50))
 			to_chat(owner, span_userdanger("<b>RAGE INCREASES</b>"))
@@ -34,7 +34,7 @@
 			return FALSE
 	if(amount < 0)
 		if(rage > 0)
-			owner.st_change_stat(STAT_TEMPORARY_RAGE, amount)
+			owner.st_set_stat(STAT_TEMPORARY_RAGE, min(permanent_rage, rage+amount))
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
 			to_chat(owner, span_userdanger("<b>RAGE DECREASES</b>"))
@@ -48,12 +48,12 @@
 	if(!uses_gnosis)
 		return FALSE
 
-	var/gnosis = owner.st_get_stat(STAT_PERMANENT_GNOSIS)
+	var/gnosis = owner.st_get_stat(STAT_PERMANENT_GNOSIS, FALSE)
 	var/permanent_gnosis = owner.st_get_stat(STAT_TEMPORARY_GNOSIS)
 
 	if(amount > 0)
 		if(gnosis < permanent_gnosis)
-			owner.st_change_stat(STAT_TEMPORARY_GNOSIS, amount)
+			owner.st_set_stat(STAT_TEMPORARY_GNOSIS, min(permanent_gnosis, gnosis+amount))
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS INCREASES</b>"))
@@ -61,7 +61,7 @@
 			return FALSE
 	if(amount < 0)
 		if(gnosis > 0)
-			owner.st_change_stat(STAT_TEMPORARY_GNOSIS, amount)
+			owner.st_set_stat(STAT_TEMPORARY_GNOSIS, min(permanent_gnosis, gnosis+amount))
 			if(sound)
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
 			to_chat(owner, span_boldnotice("<b>GNOSIS DECREASES</b>"))
