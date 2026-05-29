@@ -127,6 +127,7 @@
 	name = "Jazz Club"
 	icon_state = "camarilla"
 	ambience_index = AMBIENCE_OFFICE
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/elysium.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 	domain = TRUE
