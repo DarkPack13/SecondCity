@@ -33,11 +33,12 @@
 /datum/action/cooldown/power/gift/can_afford(feedback)
 	. = ..()
 	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(owner)
+	var/mob/living/living_owner = astype(owner)
 
 	if(get_rage_cost())
 		if(!casting_splat)
 			return FALSE
-		if(casting_splat.rage < get_rage_cost())
+		if(living_owner?.st_get_stat(STAT_TEMPORARY_RAGE) < get_rage_cost())
 			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>RAGE</b> to do that!"))
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', volume = 50))
@@ -45,7 +46,7 @@
 	if(gnosis_cost)
 		if(!casting_splat)
 			return FALSE
-		if(casting_splat.gnosis < gnosis_cost)
+		if(living_owner?.st_get_stat(STAT_TEMPORARY_GNOSIS) < gnosis_cost)
 			if(feedback)
 				to_chat(owner, span_warning("You don't have enough <b>GNOSIS</b> to do that!"))
 				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/werewolf_cast_failed.ogg', volume = 50))

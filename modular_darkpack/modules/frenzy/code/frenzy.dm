@@ -53,6 +53,7 @@
 		. += 2
 
 /datum/storyteller_roll/frenzy/rage
+	applicable_stats = list(STAT_TEMPORARY_RAGE)
 
 /datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller)
 	. = ..()
@@ -113,7 +114,7 @@
 
 	var/datum/storyteller_roll/frenzy/rage/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
-	var/frenzy_result = frenzy_roll.st_roll(src, target, shifter_splat.rage)
+	var/frenzy_result = frenzy_roll.st_roll(src, target)
 	if(frenzy_result >= 5)
 		enter_frenzy_mode(target, TRUE, "Rage")
 	return frenzy_result

@@ -123,11 +123,11 @@
 	if(!istype(our_splat))
 		return
 
-	icon_state = "rage[our_splat.rage]"
+	icon_state = "rage[owner.st_get_stat(STAT_TEMPORARY_RAGE)]"
 
 	// Should really be in update_overlays but i wanted to keep it to one get_werewolf_splat fetch
 	cut_overlays()
-	add_overlay("gnosis[our_splat.gnosis]")
+	add_overlay("gnosis[owner.st_get_stat(STAT_TEMPORARY_GNOSIS)]")
 
 	return ..()
 

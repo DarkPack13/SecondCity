@@ -11,13 +11,18 @@
  * TODO: Rage check difficulty and audio. Use a horse sound.
 */
 
+/datum/storyteller_roll/breath_of_the_wyld
+	bumper_text = "Breath of the Wyld"
+	applicable_stats = list(STAT_TEMPORARY_GNOSIS)
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
+
 /datum/action/cooldown/power/gift/breath_of_the_wyld
 	name = "Breath of the Wyld"
 	desc = "The Fury instills a target with a rush of lucidity."
 	button_icon_state = "breath_of_the_wyld"
 	click_to_activate = TRUE
 	rank = 1
-	var/datum/storyteller_roll/roll_datum
+	var/datum/storyteller_roll/breath_of_the_wyld/roll_datum
 
 /datum/action/cooldown/power/gift/breath_of_the_wyld/Activate(atom/target)
 	if(!isliving(target))
@@ -29,13 +34,11 @@
 
 	var/mob/living/victim = target
 	var/mob/living/caster = owner
-	var/datum/splat/werewolf/casting_splat = get_werewolf_splat(caster)
 	var/roll_difficulty = get_werewolf_splat(target) ? 5 : 6
 	if(!roll_datum)
 		roll_datum = new()
 	roll_datum.difficulty = roll_difficulty
-	roll_datum.roll_output_type = ROLL_PRIVATE_AND_TARGET
-	var/roll_result = roll_datum.st_roll(caster, target, casting_splat.gnosis)
+	var/roll_result = roll_datum.st_roll(caster, target)
 
 	if(roll_result != ROLL_SUCCESS)
 		return

@@ -24,14 +24,4 @@
 		adjust_renown(result, amount)
 
 
-/datum/splat/werewolf/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(!.)
-		return
-	switch(var_name)
-		if(NAMEOF(src, rage))
-			owner.update_werewolf_hud()
-		if(NAMEOF(src, gnosis))
-			owner.update_werewolf_hud()
-
 #undef VV_HK_EDIT_RENOWN

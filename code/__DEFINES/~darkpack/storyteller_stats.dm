@@ -60,9 +60,9 @@
 // Advantages
 #define STAT_PERMANENT_WILLPOWER /datum/st_stat/pooled/permanent_willpower
 #define STAT_TEMPORARY_WILLPOWER /datum/st_stat/pooled/temporary_willpower
-#define STAT_PERMANENT_RAGE /datum/st_stat/pooled/permanent_rage // WEREWOLF
+#define STAT_PERMANENT_RAGE /datum/st_stat/pooled/rage // WEREWOLF
 #define STAT_TEMPORARY_RAGE /datum/st_stat/pooled/temporary_rage // WEREWOLF
-#define STAT_PERMANENT_GNOSIS /datum/st_stat/pooled/permanent_gnosis // WEREWOLF
+#define STAT_PERMANENT_GNOSIS /datum/st_stat/pooled/gnosis // WEREWOLF
 #define STAT_TEMPORARY_GNOSIS /datum/st_stat/pooled/temporary_gnosis // WEREWOLF
 
 // Virtues

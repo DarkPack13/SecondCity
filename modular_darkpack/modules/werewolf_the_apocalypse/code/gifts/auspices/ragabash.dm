@@ -87,10 +87,7 @@
 	var/list/hearers = oviewers(DEFAULT_MESSAGE_RANGE, owner)
 	var/highest_diff = 0
 	for(var/mob/living/dice_guy in hearers)
-		var/datum/splat/werewolf/rage_haver = get_werewolf_splat(dice_guy)
-		if(!rage_haver)
-			continue
-		highest_diff = max(highest_diff, rage_haver.rage)
+		highest_diff = max(highest_diff, dice_guy.st_get_stat(STAT_TEMPORARY_RAGE))
 	var/datum/storyteller_roll/roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_MANIPULATION, STAT_EMPATHY)
 	roll_datum.difficulty = highest_diff
@@ -107,6 +104,7 @@
 
 
 /datum/storyteller_roll/gift/open_seal
+	applicable_stats = list(STAT_PERMANENT_GNOSIS)
 	roll_output_type = ROLL_PRIVATE
 
 /datum/action/cooldown/power/gift/open_seal
@@ -120,9 +118,7 @@
 /datum/action/cooldown/power/gift/open_seal/Activate(atom/target)
 	. = ..()
 
-	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
-
-	var/roll_result = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/open_seal, bonus = our_splat.permanent_gnosis, difficulty = target.get_gauntlet_rating())
+	var/roll_result = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/open_seal, difficulty = target.get_gauntlet_rating())
 	if(roll_result == ROLL_SUCCESS)
 		var/turf/target_turf = get_turf(target)
 		SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, owner)
