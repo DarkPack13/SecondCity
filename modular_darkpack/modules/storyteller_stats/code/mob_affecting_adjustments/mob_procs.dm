@@ -25,7 +25,7 @@
 	if(amount > 0)
 		score = given_stat?.increase_score(amount)
 	else
-		score = given_stat?.decrease_score(amount)
+		score = given_stat?.decrease_score(-amount)
 	update_modifiers_from_stats()
 	return score
 
