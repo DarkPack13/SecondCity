@@ -36,6 +36,9 @@
 	/// Base type of the powers that this splat has
 	var/power_type
 
+	/// Can frenzy and is given a verb to manually do it.
+	var/can_frenzy = TRUE
+
 	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats
 

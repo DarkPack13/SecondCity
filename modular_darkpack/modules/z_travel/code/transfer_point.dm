@@ -69,12 +69,13 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 /obj/transfer_point_vamp/proc/transfer_atom(atom/movable/arrived)
 	if(!exit || one_way)
 		return
-	var/turf/T = get_step(exit, get_dir(arrived, src))
-	if(T && !T.density)
-		arrived.forceMove(T)
-	else
-		arrived.forceMove(get_turf(exit))
-	return TRUE
+	var/moved_dir = get_dir(arrived, src)
+	var/turf/exit_turf
+	exit_turf = get_open_turf_in_dir(exit, moved_dir)
+	if(exit_turf)
+		return arrived.forceMove(exit_turf)
+
+	return arrived.forceMove(get_turf(exit))
 
 // Use inside the umbra. visible
 /obj/transfer_point_vamp/umbral

@@ -11,6 +11,9 @@
 	var/roll_output_type = ROLL_PUBLIC
 	/// This is a roll that can proc multiple times in rapid sucession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
 	var/spammy_roll = FALSE
+	/// If set, a character or unicode appended to the front of balloon alerts to help convey what the roll is for.
+	var/alert_prefix
+	var/alert_delay
 
 	/// A lazy list of times indexed by a weakref to a mob
 	var/list/mobs_last_rolled
@@ -81,16 +84,27 @@
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		else
-			if(last_sucess_amount > 0)
-				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
+			if(alert_delay)
+				var/using_number = last_sucess_amount
+				spawn(alert_delay)
+					create_balloon_alert(roller, player_mob, using_number)
 			else
-				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+				create_balloon_alert(roller, player_mob, last_sucess_amount)
+
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
 	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, output)
 	return output
 
+/datum/storyteller_roll/proc/create_balloon_alert(mob/living/roller, mob/player_mob, number)
+	if(QDELETED(roller) || QDELETED(player_mob))
+		return
+
+	if(number > 0)
+		roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[alert_prefix][number]</span>", TRUE)
+	else
+		roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[alert_prefix][number]</span>", TRUE)
 
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)

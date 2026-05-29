@@ -1,8 +1,0 @@
-author: "Stutternov"
-delete-after: True
-changes:
-  - rscadd: "Adds in 5.56 silver to have Agg damage to Garou. 7.62, 12g slug, and .75 have received silver variant ammo as well."
-  - balance: "Rebalanced multiple bullets (.50 AE now exists, 5.45, 12g slug, 12g buck, 12g rubber) in rather small ways. Except .50 AE, larger rebalance. (70 -> 45)"
-  - balance: "Rebalanced multiple melee weapons (shovel, scythe, chainsaw, baseball bat, fireaxe)"
-  - balance: "Hard-buffs the .44 deagle by giving it ONE more round in its magazine..."
-  - bugfix: "Fixed shotgun slug knockdown not rolling. Not sure why this fixed it but - it managed to."
