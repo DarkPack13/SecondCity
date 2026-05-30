@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 	if(!main_source)
 		return TRUE
 
-	if(GLOB.source_book_priority[main_source] < GLOB.source_book_priority[source_cutoff])
+	if(GLOB.source_book_priority[main_source] > GLOB.source_book_priority[source_cutoff])
 		return FALSE
 
 	return TRUE
