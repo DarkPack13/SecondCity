@@ -82,9 +82,15 @@
 	///break if moved, if false also makes it ignore if the wall its on breaks
 	var/break_if_moved = TRUE
 
+	var/datum/looping_sound/light_hum/light_hum
+	var/hum_chance = 10
+
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
+
+	if(prob(hum_chance))
+	light_hum = new(src, TRUE)
 
 	// Detect and scream about double stacked lights
 	if(PERFORM_ALL_TESTS(maptest_log_mapping))
