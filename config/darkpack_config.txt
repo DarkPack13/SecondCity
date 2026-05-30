@@ -62,3 +62,6 @@ LOG_STATS
 
 ## Bool for if roleplay only merits/quirks are enabled
 ROLEPLAY_ONLY_MERITS 1
+
+## String for how ttrpg accurate our merits must be. Offical, Storyteller Vault, or Homebrew
+TTRPG_ACCURATE_CUTOFF_MERITS Homebrew

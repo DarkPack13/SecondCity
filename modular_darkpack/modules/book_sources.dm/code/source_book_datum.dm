@@ -1,3 +1,9 @@
+GLOBAL_LIST_INIT(source_book_priority, list(
+	SOURCE_OFFICAL = 1,
+	SOURCE_STORYTELLER_VAULT = 2,
+	SOURCE_HOMEBREW = 3,
+))
+
 /datum/source_book
 	var/name
 	/// Determiner for how accurate it is to whitewolf published media.
@@ -26,17 +32,23 @@
 	offical_status = SOURCE_HOMEBREW
 
 /datum/proc/highest_source_offical_status()
-	var/static/list/priority = list(
-		SOURCE_OFFICAL = 1,
-		SOURCE_STORYTELLER_VAULT = 2,
-		SOURCE_HOMEBREW = 3,
-	)
 	var/highest_book
 	for(var/datum/source_book/book, page_number in ttrpg_sources)
-		if(!highest_book || priority[book] < highest_book)
-			highest_book = priority[book]
+		if(!highest_book || GLOB.source_book_priority[book] < highest_book)
+			highest_book = GLOB.source_book_priority[book]
 
 	return highest_book
+
+/datum/proc/soure_book_allowed(source_cutoff)
+	var/main_source = highest_source_offical_status()
+	if(!main_source)
+		return TRUE
+
+	if(GLOB.source_book_priority[main_source] < GLOB.source_book_priority[source_cutoff])
+		return FALSE
+
+	return TRUE
+
 
 /datum/proc/get_book_sources_readable()
 	var/books = list()
