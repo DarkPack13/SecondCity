@@ -47,6 +47,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
 #define TRAIT_HIDDEN_DIABLERIE "hidden_diablerie"
 
+#define TRAIT_HIDDEN_WYRMTAINT "hidden_wyrmtaint"
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
 /// The mob will automatically breach the Masquerade when seen by others, with no exceptions
 #define TRAIT_UNMASQUERADE "unmasquerade"

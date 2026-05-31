@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "5 pt merit: Unbondable"
+  - rscadd: "5 pt merit: Touch of the Wyld"
+  - qol: "merits wont be displayed if you cant take them"
