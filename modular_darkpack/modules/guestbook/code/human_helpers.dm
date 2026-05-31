@@ -7,8 +7,9 @@
 			visible_gender = "Woman"
 		else
 			visible_gender = "Person"
-	if(dna?.species.visible_gender_override)
-		visible_gender = dna.species.visible_gender_override
+	var/override = dna?.species.visible_gender_override(src)
+	if(override)
+		visible_gender = override
 
 	return visible_gender
 

@@ -129,12 +129,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FERA_FORMS "fera_forms"
 // If the splat uses the WTA renown system described in W20 p. 245
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
-/// If the species has garou breeds to select.
-#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
-// if the species has garou tribes to select.
-#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
-// If the species has garou auspices to select.
-#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
 /// If the fera is wyrm tainted.
@@ -145,11 +139,17 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+// Fera both grants a flight ability, and has the sprites to support such a thing. (Presently only designed to supprot feral form.)
+#define TRAIT_FERA_FLIGHT "fera_flight"
+#define TRAIT_SILVER_WEAKNESS "silver_weakness"
+#define TRAIT_GOLD_WEAKNESS "gold_weakness"
+// Delirium is effectivly two levels weaker
+#define TRAIT_WEAK_DELIRIUM "weak_delirium"
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_WARCRY "loud_warcry"
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
 // Traits granted via gifts
-// Massivly boosts the range of your howl emote.
-#define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
 
 /// Sixth sense restricted to view range

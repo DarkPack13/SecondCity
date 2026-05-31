@@ -7,7 +7,6 @@
 
 #define TYPE_MUNDANE "wolf"
 #define TYPE_KINFOLK "kinfolk"
-#define TYPE_SPIRAL "spiral"
 
 #define WOLF_COAT_HELPER(wolf_type)	\
 	##wolf_type/black {	\
@@ -41,7 +40,7 @@
 	icon_state = "wolf1"
 	desc = "That's a big, scary wolf. Might be best to steer clear."
 	base_icon_state = "wolf"
-	icon = 'modular_darkpack/modules/npc/icons/wolf.dmi'
+	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/wolf.dmi'
 	var/random_wolf_color = TRUE
 	var/coat_color = COAT_BLACK
 	var/wolf_type = TYPE_MUNDANE
@@ -80,26 +79,25 @@
 /mob/living/basic/pet/dog/wolf/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/toggle_resting)
-	var/coat_type
-
-/*	if(user.auspice == AUSPICE_PHILODOX && wolf_type != TYPE_MUNDANE) // uncomment when dogs
-		switch(wolf_type)
-			if(TYPE_KINFOLK)
-				. += span_purple("On closer inspection, they appear to be kin.")
-			if(TYPE_SPIRAL)
-				. += span_warn("They are strongly wyrm-tainted.") // Remove when we have a wyrm-tainted element or something
-				coat_type = TYPE_SPIRAL
-*/
-
 	if(random_wolf_color)
 		coat_color = rand(1, 6)
 
-	icon_state = "[base_icon_state][coat_type][coat_color]"
-	icon_living = "[base_icon_state][coat_type][coat_color]"
-	icon_dead = "[base_icon_state][coat_type][coat_color]_dead"
+	icon_state = "[base_icon_state][coat_color]"
+	icon_living = "[base_icon_state][coat_color]"
+	icon_dead = "[base_icon_state][coat_color]_dead"
 
 //	AddElement(/datum/element/ai_retaliate)
 	update_appearance(UPDATE_ICON)
+
+/mob/living/basic/pet/dog/wolf/examine(mob/user)
+	. = ..()
+	var/datum/splat/werewolf/wolp_splat = get_werewolf_splat(user)
+	if(istype(wolp_splat?.auspice, /datum/subsplat/werewolf/auspice/garou/philodox))
+		if(wolf_type == TYPE_KINFOLK)
+			. += span_purple("On closer inspection, they appear to be kin.")
+		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
+			. += span_warning("They are strongly wyrm-tainted.")
+
 
 /mob/living/basic/pet/dog/wolf/add_obey_commands()
 	var/static/list/pet_commands = list(
@@ -158,7 +156,10 @@
 	real_name = "tainted kinfolk"
 	icon_state = "wolfspiral1"
 	base_icon_state = "wolfspiral"
-	wolf_type = TYPE_SPIRAL
+
+/mob/living/basic/pet/dog/wolf/kinfolk/spiral/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_WYRMTAINTED, INNATE_TRAIT)
 
 // STATIC COLORS
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)
@@ -176,4 +177,3 @@ WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf/kinfolk/spiral)
 
 #undef TYPE_MUNDANE
 #undef TYPE_KINFOLK
-#undef TYPE_SPIRAL

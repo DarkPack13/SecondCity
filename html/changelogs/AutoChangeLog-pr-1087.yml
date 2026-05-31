@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "fixes artifacts from being unbinded from the user when placed into a satchel"
+  - bugfix: "fixes the odious chalice so that it works"
