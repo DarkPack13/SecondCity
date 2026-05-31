@@ -49,8 +49,8 @@
 			splat_prio_list["[splat_prio]"] = splat_type
 		else
 			var/datum/splat/checking_type = splat_prio_list["[splat_prio]"]
-			var/datum/splat/real_splat = GLOB.splat_prototypes[checking_type::id]
-			if(splat_type in real_splat.incompatible_splats)
+			var/datum/splat/real_splat = GLOB.splat_prototypes[checking_type]
+			if(is_path_in_list(checking_type, real_splat.incompatible_splats))
 				continue
 			TEST_FAIL("[splat_type] has the same splat priority as [splat_prio_list["[splat_prio]"]] yet is somehow compatible. priority is [splat_prio].")
 

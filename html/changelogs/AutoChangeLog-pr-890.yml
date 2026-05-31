@@ -1,0 +1,10 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "The changing breed: Corax"
+  - rscadd: "Corax gift \"Enemy Ways\" which gives an assessment of nearby enemies"
+  - rscadd: "Corax \"eye drinking\" a pseudo-gift that allows the fera to speak to the dead and see there death"
+  - balance: "Razor claws lower the difficulty of claw attacks along with the existing bonuses"
+  - refactor: "Splits up alot of stuff onto vars and procs to be overrided by other changing breeds"
+  - code_imp: "Deaths now record some information for use in powers that speak to the dead"
+  - code_imp: "Fixes the splat prio unit test"

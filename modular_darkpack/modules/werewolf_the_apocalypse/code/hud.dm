@@ -4,16 +4,19 @@
 #define UI_LIVING_TRANSFORM_WAR "EAST-1,CENTER+1:40"
 #define UI_LIVING_TRANSFORM_FERAL "EAST,CENTER+1:40"
 
-/datum/hud/proc/add_werewolf_elements()
+/datum/hud/proc/add_werewolf_elements(datum/splat/werewolf/werewolf_splat)
+	// if(werewolf_splat.uses_rage || werewolf_splat.uses_gnosis)
 	add_screen_object(/atom/movable/screen/auspice, HUD_MOB_AUSPICE, HUD_GROUP_INFO)
 	add_screen_object(/atom/movable/screen/rage_and_gnosis, HUD_MOB_RAGE_AND_GNOSIS, HUD_GROUP_INFO)
-	add_screen_object(/atom/movable/screen/fera_transform/homid, HUD_MOB_HOMID_TRANS, HUD_GROUP_INFO)
-	add_screen_object(/atom/movable/screen/fera_transform/war, HUD_MOB_WAR_TRANS, HUD_GROUP_INFO)
-	add_screen_object(/atom/movable/screen/fera_transform/feral, HUD_MOB_FERAL_TRANS, HUD_GROUP_INFO)
+	if(istype(werewolf_splat, /datum/splat/werewolf/shifter))
+		add_screen_object(/atom/movable/screen/fera_transform/homid, HUD_MOB_HOMID_TRANS, HUD_GROUP_INFO)
+		add_screen_object(/atom/movable/screen/fera_transform/war, HUD_MOB_WAR_TRANS, HUD_GROUP_INFO)
+		add_screen_object(/atom/movable/screen/fera_transform/feral, HUD_MOB_FERAL_TRANS, HUD_GROUP_INFO)
 
 
 /datum/splat/werewolf/add_relevent_huds(datum/hud/hud_used)
-	hud_used.add_werewolf_elements()
+	hud_used.add_werewolf_elements(src)
+
 
 /atom/movable/screen/auspice
 	name = "auspice"
@@ -131,6 +134,7 @@
 
 	return ..()
 
+
 /atom/movable/screen/fera_transform
 	abstract_type = /atom/movable/screen/fera_transform
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms.dmi'
@@ -157,22 +161,35 @@
 	// Right click for alt forms like glabro and hispo. Ctrl click to use rage to do it instantly (doesnt matter if its breed form tho)
 	shifting.transform_fera(LAZYACCESS(modifiers, RIGHT_CLICK) ? right_click_transform : left_click_transform, LAZYACCESS(modifiers, CTRL_CLICK))
 
+/atom/movable/screen/fera_transform/update_icon(updates)
+	. = ..()
+
+	var/mob/living/owner = hud?.mymob
+	if(!istype(owner))
+		return
+
+	var/datum/splat/werewolf/shifter/our_splat = get_shifter_splat(owner)
+	if(!istype(our_splat))
+		return
+
+	icon = our_splat.transform_hud_icon
 
 /atom/movable/screen/fera_transform/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
 	var/datum/splat/werewolf/shifter/shifting = get_shifter_splat(user)
 
-	if(left_click_transform)
+	if(left_click_transform && (left_click_transform in shifting.transformation_list))
 		context[SCREENTIP_CONTEXT_LMB] = "Shift to [left_click_transform::name]"
 		if(left_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Shift using rage"
-	if(right_click_transform)
+	if(right_click_transform && (right_click_transform in shifting.transformation_list))
 		context[SCREENTIP_CONTEXT_RMB] = "Shift to [right_click_transform::name]"
 		if(right_click_transform != shifting.get_breed_form_species())
 			context[SCREENTIP_CONTEXT_CTRL_RMB] = "Shift using rage"
 
 	return CONTEXTUAL_SCREENTIP_SET
+
 
 /atom/movable/screen/fera_transform/homid
 	name = "homid form"
@@ -181,11 +198,13 @@
 	left_click_transform = /datum/species/human/shifter/homid
 	right_click_transform = /datum/species/human/shifter/bestial
 
+
 /atom/movable/screen/fera_transform/war
 	name = "war form"
 	icon_state = "war"
 	screen_loc = UI_LIVING_TRANSFORM_WAR
 	left_click_transform = /datum/species/human/shifter/war
+
 
 /atom/movable/screen/fera_transform/feral
 	name = "feral form"

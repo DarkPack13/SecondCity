@@ -11,6 +11,20 @@
 	var/datum/splat/werewolf/werewolf_splat = astype(gaining_splat)
 	werewolf_splat?.adjust_gnosis(start_gnosis)
 
+/datum/subsplat/werewolf/breed_form/proc/generation_pref_icon(datum/universal_icon/main_icon)
+	var/datum/universal_icon/breed_homid = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_head_m")
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_chest_m"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_arm"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_arm"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_leg"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_leg"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_hand"), ICON_OVERLAY)
+	breed_homid.blend_icon(uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_hand"), ICON_OVERLAY)
+	breed_homid.blend_color(skintone2hex("caucasian1"), ICON_MULTIPLY)
+	breed_homid.scale(32, 32)
+	main_icon.blend_icon(breed_homid, ICON_OVERLAY)
+
+
 /**
  * Gets the singleton of an breed_form
  * from its name, typepath, or returns the
