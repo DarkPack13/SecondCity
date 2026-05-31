@@ -82,15 +82,19 @@
 	///break if moved, if false also makes it ignore if the wall its on breaks
 	var/break_if_moved = TRUE
 
+	// DARKPACK EDIT ADD START - AMBIENCE
 	var/datum/looping_sound/light_hum/light_hum
-	var/hum_chance = 10
+	var/hum_chance = 50
+	// DARKPACK EDIT ADD END
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
 
+	// DARKPACK EDIT ADD START - AMBIENCE
 	if(prob(hum_chance))
-	light_hum = new(src, TRUE)
+		light_hum = new(src, on)
+	// DARKPACK EDIT ADD END
 
 	// Detect and scream about double stacked lights
 	if(PERFORM_ALL_TESTS(maptest_log_mapping))
@@ -147,6 +151,7 @@
 	if(local_area)
 		on = FALSE
 	QDEL_NULL(cell)
+	QDEL_NULL(light_hum) // DARKPACK EDIT ADD - AMBIENCE
 	return ..()
 
 /obj/machinery/light/Move()
@@ -284,6 +289,10 @@
 					l_power = power_set,
 					l_color = color_set
 					)
+		// DARKPACK EDIT ADD START - AMBIENCE
+		if(light_hum)
+			light_hum.start()
+		// DARKPACK EDIT ADD END
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE * SSMACHINES_DT) && !turned_off())
 		use_power = IDLE_POWER_USE
 		low_power_mode = TRUE
@@ -295,6 +304,10 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(l_range = 0)
+		// DARKPACK EDIT ADD START - AMBIENCE
+		if(light_hum)
+			light_hum.stop()
+		// DARKPACK EDIT ADD END
 	update_appearance()
 	update_current_power_usage()
 	broken_sparks(start_only=TRUE)
