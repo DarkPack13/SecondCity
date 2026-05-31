@@ -7761,6 +7761,7 @@
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\chime_of_the_unseen_spirits.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\deflection_wooden_doom.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\gargoyle_transformation.dm"
+#include "modular_darkpack\modules\ritual_thaumaturgy\rituals\inscription.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\question_to_the_ancestors.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\self_gib.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\teleport.dm"
