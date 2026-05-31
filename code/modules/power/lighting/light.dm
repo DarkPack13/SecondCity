@@ -83,6 +83,7 @@
 	var/break_if_moved = TRUE
 
 	// DARKPACK EDIT ADD START - AMBIENCE
+	var/flourescent = TRUE // Bulbs are flouresenct and likely to hum.
 	var/datum/looping_sound/light_hum/light_hum
 	var/hum_chance = 50
 	// DARKPACK EDIT ADD END
