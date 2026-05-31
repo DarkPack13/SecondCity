@@ -11,12 +11,17 @@
 
 /datum/round_event_control/darkpack/sarcophagus/can_spawn_event(players_amt, allow_magic)
 	. = ..()
-	var/sarcophagus_spawns = 0
+	var/list/valid_landmarks = list()
 	for(var/obj/effect/landmark/event_spawn/sarcophagus/L in GLOB.generic_event_spawns)
-		sarcophagus_spawns++
-		if(sarcophagus_spawns >= 2)
-			return TRUE
-	return FALSE
+		var/player_nearby = FALSE
+		for(var/mob/living/nearby_mob in view(DEFAULT_SIGHT_DISTANCE, L.loc))
+			if(nearby_mob.client)
+				player_nearby = TRUE
+				break
+		if(!player_nearby)
+			valid_landmarks += L
+
+	return length(valid_landmarks) >= 2
 
 /datum/round_event/sarcophagus
 	start_when = 1
