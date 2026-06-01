@@ -374,13 +374,17 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/effect/spawner/random/occult/artifact = 10, // DARKPACK EDIT ADD
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 1,
+		/* // DARKPACK EDIT REMOVAL
 		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1,
 		/obj/item/book/granter/crafting_recipe/dusting/detached_ratvarian_repeater = 1,
 		/obj/item/book/granter/sign_language = 1,
+		*/
 		/obj/item/disk/nuclear/fake = 1,
 		/obj/item/disk/surgery/advanced_plastic_surgery = 1,
+		/* // DARKPACK EDIT REMOVAL
 		/obj/item/skillchip/brainwashing = 1,
 		/obj/item/skillchip/intj = 1,
+		*/
 		/obj/item/tattoo_kit = 1,
 		/obj/item/folder/ancient_paperwork = 1,
 		) = 1,
