@@ -7,8 +7,8 @@
 	outdoors = TRUE
 
 	// Most of our tracks dont make sense to have random downtime.
-	min_ambience_cooldown = 0
-	max_ambience_cooldown = 0
+	min_ambience_cooldown = 0 SECONDS
+	max_ambience_cooldown = 0 SECONDS
 
 	var/zone_type = ZONE_MASQUERADE
 
