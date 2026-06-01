@@ -5,6 +5,11 @@
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
+
+	// Most of our tracks dont make sense to have random downtime.
+	min_ambience_cooldown = 0
+	max_ambience_cooldown = 0
+
 	var/zone_type = ZONE_MASQUERADE
 
 	// 7 is an average city street.
