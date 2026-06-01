@@ -169,8 +169,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 
 GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	list(//tools
-		/obj/effect/spawner/random/loot/weapon/small_melee = 10, // DARKPACK EDIT ADD START - LOOT
-		/obj/effect/spawner/random/loot/weapon/weak_large_melee = 5, // DARKPACK EDIT ADD END
+		/obj/effect/spawner/random/weapon/small_melee = 10, // DARKPACK EDIT ADD START - LOOT
+		/obj/effect/spawner/random/weapon/weak_large_melee = 5, // DARKPACK EDIT ADD END
 		/obj/item/grenade/iedcasing/spawned = 1,
 		/obj/item/hatchet = 1,
 		/obj/item/melee/baton/security/cattleprod = 1,
