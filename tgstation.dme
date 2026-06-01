@@ -7425,6 +7425,7 @@
 #include "modular_darkpack\modules\looc\code\keybinds.dm"
 #include "modular_darkpack\modules\looc\code\looc_preference.dm"
 #include "modular_darkpack\modules\looc\code\verbs.dm"
+#include "modular_darkpack\modules\loot\code\random_spawners.dm"
 #include "modular_darkpack\modules\mannequin\code\mannequin_subtypes.dm"
 #include "modular_darkpack\modules\mapping_helpers\code\viewport_helper.dm"
 #include "modular_darkpack\modules\masquerade\code\blood_hunt_skull.dm"
