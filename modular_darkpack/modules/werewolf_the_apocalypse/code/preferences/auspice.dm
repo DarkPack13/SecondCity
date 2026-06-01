@@ -1,16 +1,34 @@
-/datum/preference/choiced/subsplat/garou_auspice
-	savefile_key = "garou_auspice"
+/datum/preference/choiced/subsplat/fera_auspice
+	abstract_type = /datum/preference/choiced/subsplat/fera_auspice
 	main_feature_name = "Auspice"
-	relevant_inherent_trait = TRAIT_WTA_GAROU_AUSPICE
+	must_be_accessible = TRUE
+	var/splat_id
 
-/datum/preference/choiced/subsplat/garou_auspice/init_possible_values()
-	return assoc_to_keys(GLOB.auspices_list) // This would be inclusive of ALL auspices so many need to be reworked when adding other fera
+/datum/preference/choiced/subsplat/fera_auspice/init_possible_values()
+	var/list/pref_list = list()
+	// Key is type path not singleton
+	for(var/datum/subsplat/werewolf/auspice/key as anything in GLOB.auspices)
+		if(key::fera_restriction != splat_id)
+			continue
+		UNTYPED_LIST_ADD(pref_list, key::name)
+	return pref_list
 
-/datum/preference/choiced/subsplat/garou_auspice/icon_for(value)
+/datum/preference/choiced/subsplat/fera_auspice/icon_for(value)
 	var/datum/universal_icon/auspice_icon = uni_icon('icons/effects/effects.dmi', "nothing")
 	auspice_icon.blend_icon(uni_icon('modular_darkpack/modules/werewolf_the_apocalypse/icons/auspices.dmi', replacetext(LOWER_TEXT(value), " ", "_")), ICON_OVERLAY)
 	return auspice_icon
 
-/datum/preference/choiced/subsplat/garou_auspice/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/subsplat/fera_auspice/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)
 	target.set_auspice(value, joining_round)
+
+/datum/preference/choiced/subsplat/fera_auspice/is_accessible(datum/preferences/preferences)
+	. = ..()
+	var/datum/splat/splat_path = preferences.read_preference(/datum/preference/choiced/splats)
+	if(!ispath(splat_path) || splat_path::id != splat_id)
+		return FALSE
+
+
+/datum/preference/choiced/subsplat/fera_auspice/garou
+	savefile_key = "garou_auspice"
+	splat_id = SPLAT_GAROU

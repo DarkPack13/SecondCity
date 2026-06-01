@@ -2,3 +2,5 @@
 	/// If set to TRUE, this preference will not be applied unless the character has the preference's relevant inherent trait
 	var/must_have_relevant_trait = FALSE
 
+	/// If set to TRUE, only apply preference to the mob if it acctually shows up on there sheet
+	var/must_be_accessible = FALSE

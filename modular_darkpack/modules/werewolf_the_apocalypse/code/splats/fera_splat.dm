@@ -87,12 +87,10 @@
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
 		TRAIT_FERA_FORMS,
-		TRAIT_WTA_GAROU_BREED,
-		TRAIT_WTA_GAROU_AUSPICE,
-		TRAIT_WTA_GAROU_TRIBE,
 		TRAIT_FERA_FUR,
-		TRAIT_FRENETIC_AURA,
 		TRAIT_FERA_RENOWN,
+		TRAIT_FRENETIC_AURA,
+		TRAIT_SILVER_WEAKNESS,
 	)
 	// id = SPLAT_FERA
 	incompatible_splats = list(
@@ -104,6 +102,8 @@
 	splat_priority = SPLAT_PRIO_SHIFTER
 
 	var/list/transformation_list = list()
+	/// Stats added and removed upon gaining the species of the splat. Assoc list indexed by the species ids for each form
+	var/list/transformation_stats
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cd)
 	/**
@@ -118,8 +118,14 @@
 		SPECIES_FERA_DIRE = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
 	)
+	var/transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms.dmi'
+	/// Type path of the animal we look like in our feral form
+	var/mob/living/basic/mimmicing_animal
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
+
+	/// Emote uses for activations of gifts and other things
+	var/warcry_emote = "howl"
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
@@ -133,6 +139,7 @@
 	if(!QDELETED(owner))
 		owner.set_species(/datum/species/human)
 
+	remove_power(/datum/action/cooldown/power/gift/howling)
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
@@ -155,6 +162,13 @@
 					continue
 				guy.apply_status_effect(STATUS_EFFECT_DELIRIUM, owner)
 
+/datum/splat/werewolf/shifter/proc/causes_delirium()
+	var/datum/species/human/shifter/shifter_species = owner.dna.species
+	if(istype(shifter_species))
+		return FALSE
+	if(shifter_species.causes_delirium && !HAS_TRAIT(owner, TRAIT_PIERCED_VEIL))
+		return TRUE
+
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, gnosis_regain_cd))
@@ -162,7 +176,7 @@
 	for(var/obj/structure/werewolf_totem/totem in GLOB.totems)
 		if(totem.broken)
 			continue
-		if(!(tribe?.name in totem.tribes))
+		if(!totem.is_friend_of_totem(owner))
 			continue
 		if(get_area(totem) != get_area(owner))
 			continue
@@ -179,22 +193,83 @@
 		/datum/species/human/shifter/dire,
 		/datum/species/human/shifter/feral
 	)
+	transformation_stats = list(
+		SPECIES_FERA_BESTIAL = list(
+			STAT_STRENGTH = 2,
+			STAT_STAMINA = 2,
+			STAT_MANIPULATION = -2,
+			STAT_APPEARANCE = -1
+		),
+		SPECIES_FERA_WAR = list(
+			STAT_STRENGTH = 4,
+			STAT_STAMINA = 3,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -3,
+			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
+		),
+		SPECIES_FERA_DIRE = list(
+			STAT_STRENGTH = 3,
+			STAT_STAMINA = 3,
+			STAT_DEXTERITY = 2,
+			STAT_MANIPULATION = -3,
+		),
+		SPECIES_FERA_FERAL = list(
+			STAT_STRENGTH = 1,
+			STAT_STAMINA = 2,
+			STAT_DEXTERITY = 2,
+			STAT_MANIPULATION = -3,
+		)
+	)
+	mimmicing_animal = /mob/living/basic/pet/dog/wolf
 
-/* // DARKPACK TODO - CORAX
 /datum/splat/werewolf/shifter/corax
 	name = "Corax"
 	id = SPLAT_CORAX
+	splat_traits = list(
+		TRAIT_FERA_FUR,
+		TRAIT_FERA_RENOWN,
+		TRAIT_FERA_FLIGHT,
+		TRAIT_FRENETIC_AURA,
+		TRAIT_GOLD_WEAKNESS,
+	)
 	transformation_list = list(
 		/datum/species/human/shifter/homid,
 		/datum/species/human/shifter/war,
 		/datum/species/human/shifter/feral
 	)
+	transformation_stats = list(
+		SPECIES_FERA_WAR = list(
+			STAT_STRENGTH = 1,
+			STAT_STAMINA = 1,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -2,
+			STAT_PERCEPTION = 3,
+			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
+		),
+		SPECIES_FERA_FERAL = list(
+			STAT_STRENGTH = -1,
+			STAT_DEXTERITY = 1,
+			STAT_MANIPULATION = -3,
+			STAT_PERCEPTION = 4,
+		)
+	)
+	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 	mob_icons = list(
 		SPECIES_FERA_WAR = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/crinos.dmi',
 		SPECIES_FERA_FERAL = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/corax_forms/corvid.dmi'
 	)
-	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
-*/
+	transform_hud_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/hud_transforms_corax.dmi'
+	mimmicing_animal = /mob/living/basic/corvid/raven
+
+	warcry_emote = "caw"
+
+/datum/splat/werewolf/shifter/corax/on_gain()
+	. = ..()
+	add_power(/datum/action/cooldown/power/gift/eye_drink)
+
+/datum/splat/werewolf/shifter/corax/on_lose_or_destroy()
+	. = ..()
+	remove_power(/datum/action/cooldown/power/gift/eye_drink)
 
 
 /mob/living/carbon/human/splat/kinfolk
@@ -202,3 +277,6 @@
 
 /mob/living/carbon/human/splat/garou
 	auto_splats = list(/datum/splat/werewolf/shifter/garou)
+
+/mob/living/carbon/human/splat/corax
+	auto_splats = list(/datum/splat/werewolf/shifter/corax)

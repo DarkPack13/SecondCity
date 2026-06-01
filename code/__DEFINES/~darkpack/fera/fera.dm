@@ -9,9 +9,12 @@
 #define MAX_GNOSIS 10
 #define PRIMAL_URGE_PLACEHOLDER 3
 
-#define BREED_HOMID "Homid"
+#define BREED_GAROU_HOMID "Garou Homid"
 #define BREED_LUPUS "Lupus"
 #define BREED_CRINOS "Crinos"
+
+#define BREED_CORAX_HOMID "Corax Homid"
+#define BREED_CORVID "Corvid"
 
 #define FEATURE_FUR_COLOR "fera_fur"
 
@@ -22,7 +25,16 @@ GLOBAL_LIST_INIT(garou_fur_colors, list(
 	"red" = "red",
 	"white" = "white",
 	"ginger" = "ginger",
-	"brown" = "brown"
+	"brown" = "brown",
+))
+
+GLOBAL_LIST_INIT(corax_fur_colors, list(
+	"black" = "black",
+	"brown" = "brown",
+	"white" = "white",
+	"green" = "green",
+	"red" = "red",
+	"gray" = "gray",
 ))
 
 #define STATUS_EFFECT_DELIRIUM /datum/status_effect/delirium

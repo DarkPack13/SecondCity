@@ -41,10 +41,14 @@
 /obj/item/bodypart/leg/left/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
+	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /obj/item/bodypart/leg/right/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
+	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 
 // Specificly to restrict use of tools... because that was moved to the brain..
