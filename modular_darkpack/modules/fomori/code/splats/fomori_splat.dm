@@ -36,11 +36,12 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) // done
 	// MENTAL POWERS
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1) // done
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1) // done
+	owner.give_st_power(/datum/storyteller_roll/mind_reave, 1) // need 2 client testing
 
 
 /datum/splat/werewolf/fomori/get_power(power_type)
