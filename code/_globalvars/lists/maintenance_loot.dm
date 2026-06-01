@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		) = 1,
 
 	list(//misc
-		/obj/effect/spawner/random/occult = 10, // DARKPACK EDIT ADD
+		/obj/effect/spawner/random/occult/artifact = 10, // DARKPACK EDIT ADD
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 1,
 		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1,
