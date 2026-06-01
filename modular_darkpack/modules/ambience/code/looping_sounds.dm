@@ -17,16 +17,15 @@
 
 /datum/looping_sound/slow_drip
 	mid_sounds = list(
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-01.ogg'
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-02.ogg'
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-03.ogg'
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-04.ogg'
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-05.ogg'
-		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-06.ogg'
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-01.ogg',
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-02.ogg',
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-03.ogg',
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-04.ogg',
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-05.ogg',
+		'modular_darkpack/modules/ambience/sounds/ambient_objects/drip-06.ogg',
 	)
 	mid_length = 20 SECONDS
 	mid_length_vary = 3 SECONDS
 	volume = 45
-	vary = TRUE
 	ignore_walls = FALSE
 	falloff_distance = 5
