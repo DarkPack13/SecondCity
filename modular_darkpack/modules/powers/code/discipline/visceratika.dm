@@ -68,17 +68,21 @@
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SEE
 	toggled = TRUE
-	var/area/starting_area
 	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
+
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
 	roll_output_type = ROLL_PRIVATE
 
+/datum/discipline_power/visceratika/scry_the_hearthstone/New(datum/discipline/discipline)
+	. = ..()
+
+	scry_roll = new()
+
 /datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
 	. = ..()
-	if(!scry_roll)
-		scry_roll = new()
+
 	if(scry_roll.st_roll(owner, owner) == ROLL_SUCCESS)
 		return TRUE
 	else
@@ -86,27 +90,32 @@
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/activate()
 	. = ..()
-	for(var/mob/living/player in GLOB.player_list)
+
+	// This is resisted when targets are trying to hide in the TTRPG (V20 p. 476), but there is no roll to resist here
+	var/found_anyone = FALSE
+	for(var/mob/living/player in (GLOB.player_list - owner))
 		if(get_area(player) == get_area(owner))
-			var/their_name = player.name
-			if(ishuman(player))
-				var/mob/living/carbon/human/human_player = player
-				their_name = human_player.name
-			to_chat(owner, "- [their_name]")
-	starting_area = get_area(owner)
+			to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)]")
+			found_anyone = TRUE
+	if (!found_anyone)
+		to_chat(owner, span_notice("You don't sense anyone interesting in the area."))
+
 	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
 	owner.update_sight()
 	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
 	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
 
+/datum/discipline_power/visceratika/scry_the_hearthstone/deactivate(atom/target, direct)
+	. = ..()
+
+	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
+	owner.update_sight()
+	UnregisterSignal(owner, COMSIG_EXIT_AREA)
+
 /datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_exited(atom/movable/source, area/old_area)
 	SIGNAL_HANDLER
 
 	to_chat(owner, span_warning("You lose your connection to the stone as you leave the area."))
-	starting_area = null
-	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
-	owner.update_sight()
-	UnregisterSignal(owner, COMSIG_EXIT_AREA)
 	try_deactivate()
 
 //BOND WITH THE MOUNTAIN
