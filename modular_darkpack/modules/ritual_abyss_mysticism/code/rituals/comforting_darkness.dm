@@ -38,7 +38,7 @@
 	if(ckey in roll_cache)
 		roll = roll_cache[ckey]
 	else
-		roll = SSroll.storyteller_roll(invoker, roll_datum = /datum/storyteller_roll/comforting_darkness)
+		roll = SSroll.storyteller_roll_datum(invoker, roll_datum = /datum/storyteller_roll/comforting_darkness)
 		roll_cache[ckey] = roll
 
 	if(roll >= 1)

@@ -43,7 +43,7 @@
 		to_chat(user, span_warning("[target_name] not found."))
 		return
 
-	var/roll_result = SSroll.storyteller_roll(user, roll_datum = /datum/storyteller_roll/reflections_of_hollow)
+	var/roll_result = SSroll.storyteller_roll_datum(user, roll_datum = /datum/storyteller_roll/reflections_of_hollow)
 	switch(roll_result)
 		if(ROLL_SUCCESS)
 			scry_target(window_target, user)
@@ -68,7 +68,7 @@
 	if(get_kindred_splat(target))
 		var/datum/splat/vampire/vampire = get_splat_with_discipline(target)
 		if(vampire?.get_discipline(/datum/discipline/obtenebration) || vampire?.get_discipline(/datum/discipline/auspex))
-			if(SSroll.storyteller_roll(target, roll_datum = /datum/storyteller_roll/reflections_of_hollow, difficulty = 8) == ROLL_SUCCESS)
+			if(SSroll.storyteller_roll_datum(target, roll_datum = /datum/storyteller_roll/reflections_of_hollow, difficulty = 8) == ROLL_SUCCESS)
 				to_chat(target, span_warning("You notice the nearby shadows flicker... something is watching you."))
 
 	shadowview(target, user)

@@ -30,7 +30,7 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
+	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -92,7 +92,7 @@
 	. = ..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner, roll_datum = /datum/storyteller_roll/presence_awe)
+	successes = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/presence_awe)
 	if(successes > 0)
 		return TRUE
 
@@ -322,7 +322,7 @@
 
 		var/roll_difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION)
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer, owner, difficulty = roll_difficulty, applic_stats = list(STAT_COURAGE), numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll_datum(hearer, owner, difficulty = roll_difficulty, applic_stats = list(STAT_COURAGE), numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)

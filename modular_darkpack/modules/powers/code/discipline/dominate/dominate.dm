@@ -105,7 +105,7 @@
 			return TRUE
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
+	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))

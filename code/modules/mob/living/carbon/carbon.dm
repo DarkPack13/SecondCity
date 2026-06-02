@@ -62,8 +62,8 @@
 		if(isliving(thrower))
 			var/mob/living/attacker = thrower
 
-			var/attacker_roll = SSroll.storyteller_roll(attacker, victim, /datum/storyteller_roll/tackle_attacker)
-			var/victim_roll = SSroll.storyteller_roll(victim, attacker, /datum/storyteller_roll/tackle_defender)
+			var/attacker_roll = SSroll.storyteller_roll_datum(attacker, victim, /datum/storyteller_roll/tackle_attacker)
+			var/victim_roll = SSroll.storyteller_roll_datum(victim, attacker, /datum/storyteller_roll/tackle_defender)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE

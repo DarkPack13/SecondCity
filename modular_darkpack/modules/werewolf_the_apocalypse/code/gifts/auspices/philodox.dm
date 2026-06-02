@@ -108,7 +108,7 @@
 				secondary_descriptor = "[pick(wyrm_descriptors)]"
 		to_chat(owner, span_purple("[victim] smells like kin[secondary_descriptor ? "...<br>...and of [secondary_descriptor]." : "."]"))
 	else
-		var/successes = SSroll.storyteller_roll(owner, null, /datum/storyteller_roll/gift/scent_of_the_true_form, bonus = PRIMAL_URGE_PLACEHOLDER)
+		var/successes = SSroll.storyteller_roll_datum(owner, null, /datum/storyteller_roll/gift/scent_of_the_true_form, bonus = PRIMAL_URGE_PLACEHOLDER)
 		switch(successes)
 			if(0)
 				to_chat(owner, span_purple("You can't exactly tell what [victim] smells like."))

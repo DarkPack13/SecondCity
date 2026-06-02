@@ -54,7 +54,7 @@
 
 /datum/discipline_power/quietus/scorpions_touch/pre_activation_checks(atom/target)
 	. = ..()
-	var/success_count = SSroll.storyteller_roll(owner, roll_datum = /datum/storyteller_roll/scorpions_touch)
+	var/success_count = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/scorpions_touch)
 
 	if(success_count <= 0)
 		to_chat(owner, span_warning("Your blood fails to transform into poison!"))
@@ -195,8 +195,8 @@
 /datum/discipline_power/quietus/dagons_call/proc/strike_victim(mob/living/carbon/human/victim)
 	var/victim_willpower = victim.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
-	var/attacker_successes = SSroll.storyteller_roll(owner, victim, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
-	var/victim_successes = SSroll.storyteller_roll(victim, owner, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
+	var/attacker_successes = SSroll.storyteller_roll_datum(owner, victim, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
+	var/victim_successes = SSroll.storyteller_roll_datum(victim, owner, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
 
 	var/net_successes = attacker_successes - victim_successes
 
@@ -347,7 +347,7 @@
 
 /datum/discipline_power/quietus/taste_of_death/pre_activation_checks(atom/target)
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner, target, /datum/storyteller_roll/taste_of_death)
+	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/taste_of_death)
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	else

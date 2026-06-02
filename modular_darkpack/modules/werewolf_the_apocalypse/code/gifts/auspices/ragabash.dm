@@ -122,7 +122,7 @@
 
 	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
 
-	var/roll_result = SSroll.storyteller_roll(owner, target, /datum/storyteller_roll/gift/open_seal, bonus = our_splat.permanent_gnosis, difficulty = target.get_gauntlet_rating())
+	var/roll_result = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/gift/open_seal, bonus = our_splat.permanent_gnosis, difficulty = target.get_gauntlet_rating())
 	if(roll_result == ROLL_SUCCESS)
 		var/turf/target_turf = get_turf(target)
 		SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, owner)

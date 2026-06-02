@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(roll)
  * * applic_stats - A list of types/defines for what stats will be used in the roll.
  * * numerical - whether the proc returns number of successes or outcome (botch, failure, success)
  */
-/datum/controller/subsystem/roll/proc/storyteller_roll(mob/living/roller, atom/target, roll_datum = /datum/storyteller_roll, bonus = 0, difficulty, applic_stats, numerical)
+/datum/controller/subsystem/roll/proc/storyteller_roll_datum(mob/living/roller, atom/target, roll_datum = /datum/storyteller_roll, bonus = 0, difficulty, applic_stats, numerical)
 	var/datum/storyteller_roll/dice_roll = new roll_datum()
 	if(!isnull(difficulty))
 		dice_roll.difficulty = difficulty
