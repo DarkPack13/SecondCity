@@ -627,9 +627,14 @@
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
 			roll_used += max((round(getarmor(def_zone, FIRE) / 20) - 1), 0)
+			if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN))
+				roll_used += st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
 	if(roll_used < 1)
 		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
+
+	if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN))
+		soak_difficulty -= 1 //Technically RAW sets it to 5 no matter what, but this seems more reasonable.
 
 	var/datum/storyteller_roll/soak/soak_roll = new()
 

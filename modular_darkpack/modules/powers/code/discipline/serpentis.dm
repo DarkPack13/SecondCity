@@ -124,7 +124,7 @@
 //THE SKIN OF THE ADDER
 /datum/discipline_power/serpentis/the_skin_of_the_adder
 	name = "The Skin of the Adder"
-	desc = "Become like a snake and harden your skin into scales."
+	desc = "Become like a snake and harden your skin into scales. Spend willpower to do so subtly."
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
 	toggled = TRUE
@@ -135,19 +135,20 @@
 /datum/discipline_power/serpentis/the_skin_of_the_adder/pre_activation_checks()
 	. = ..()
 	owner.adjust_blood_pool(-1)
+	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
+	if(choice == "Subtle" && owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 0)
+		to_chat(owner, span_warning("You don't have enough willpower to do that!"))
+		return
 
 /datum/discipline_power/serpentis/the_skin_of_the_adder/activate()
 	. = ..()
-	//this needs a sprite
-	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
 	if(choice == "Obvious")
 		owner.st_add_stat_mod(STAT_INTIMIDATION, 2, "Serpentis") // 'reduce intimidation difficulties by two' placeholder
-		owner.st_add_stat_mod(STAT_STAMINA, 3, "Serpentis") // 'reduces all soak difficulty to 5' placeholder
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
+		owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
 	else
-		owner.st_add_stat_mod(STAT_STAMINA, 2, "Serpentis") // permanently on with no downsides according to dav20. its staying at fort one bro
+		owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
 	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type)) //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
-	owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
 	/*
 	owner.Stun(duration_length)
 	owner.petrify(duration_length, "Serpentis")
