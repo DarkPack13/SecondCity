@@ -61,17 +61,9 @@
 // DARKPACK EDIT ADD START
 		if(isliving(thrower))
 			var/mob/living/attacker = thrower
-			var/attacker_strengthbrawl = attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)
-			var/attacker_dexathletics = attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_ATHLETICS)
-			var/attacker_keephigher = max(attacker_strengthbrawl, attacker_dexathletics)
 
-			var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
-			var/victim_stambrawl = victim_stamina + victim.st_get_stat(STAT_BRAWL)
-			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
-			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
-
-			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, roller = thrower, numerical = TRUE)
-			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, roller = victim, numerical = TRUE)
+			var/attacker_roll = SSroll.storyteller_roll_datum(attacker, victim, /datum/storyteller_roll/tackle_attacker)
+			var/victim_roll = SSroll.storyteller_roll_datum(victim, attacker, /datum/storyteller_roll/tackle_defender)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE

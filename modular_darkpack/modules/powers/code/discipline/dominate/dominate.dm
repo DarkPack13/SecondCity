@@ -72,7 +72,7 @@
 
 //dicerolling
 //all dominate rolls involve rolling some stat against the victim's permanent willpower with many caveats. this proc rolls and considers those caveats
-/datum/discipline_power/dominate/proc/dominate_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, numerical = FALSE)
+/datum/discipline_power/dominate/proc/dominate_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat = list(), numerical = FALSE)
 	var/datum/discipline/dominate/parent_disc = discipline
 
 	if(HAS_TRAIT(owner, TRAIT_NO_EYE_CONTACT))
@@ -105,7 +105,7 @@
 			return TRUE
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
+	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
@@ -213,7 +213,7 @@
 	custom_command = tgui_input_text(owner, "Dominate Command", "What is your command?", encode = FALSE)
 	owner.say(custom_command)
 
-	successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), numerical = TRUE)
+	successes = dominate_check(owner, target, list(STAT_MANIPULATION, STAT_INTIMIDATION), numerical = TRUE)
 	if(successes > 0)
 		var/command_strength = get_success_message(successes)
 		to_chat(owner, span_notice("You have the power to Command your target with [command_strength]!"))
@@ -266,7 +266,7 @@
 		to_chat(owner, span_warning("You already have an active mesmerization!"))
 		return FALSE
 
-	var/successes = dominate_check(owner, target, owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_LEADERSHIP), numerical = TRUE)
+	var/successes = dominate_check(owner, target, list(STAT_MANIPULATION, STAT_LEADERSHIP), numerical = TRUE)
 	if(successes > 0)
 		custom_message = tgui_input_text(owner, "Hypnotic Suggestion", "What hypnotic message will echo in their mind?", encode = FALSE)
 		if(!custom_message)
@@ -403,7 +403,7 @@
 
 /datum/discipline_power/dominate/the_forgetful_mind/pre_activation_checks(mob/living/carbon/human/target)
 
-	successes = dominate_check(owner, target, owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_SUBTERFUGE), numerical = TRUE)
+	successes = dominate_check(owner, target, list(STAT_WITS, STAT_SUBTERFUGE), numerical = TRUE)
 	if(successes > 0)
 		var/mindwipe_strength = get_success_message(successes)
 		to_chat(owner, span_notice("Your hypnotic glare captures [target] to the point where [mindwipe_strength]"))
@@ -443,7 +443,7 @@
 
 /datum/discipline_power/dominate/conditioning/pre_activation_checks(mob/living/carbon/human/target)
 
-	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_LEADERSHIP))
+	var/roll_success = dominate_check(owner, target, list(STAT_CHARISMA, STAT_LEADERSHIP))
 	if(!roll_success)
 		to_chat(owner, span_warning("[target]'s mind has resisted your domination!"))
 		do_cooldown(cooldown_length)
@@ -484,7 +484,7 @@
 		to_chat(owner, span_warning("This mortal is already possessed!"))
 		return FALSE
 
-	var/roll_success = dominate_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION))
+	var/roll_success = dominate_check(owner, target, list(STAT_CHARISMA, STAT_INTIMIDATION))
 	if(!roll_success)
 		to_chat(owner, span_warning("[target] has resisted your domination!"))
 		to_chat(target, span_warning("[owner] intensely stares at you."))

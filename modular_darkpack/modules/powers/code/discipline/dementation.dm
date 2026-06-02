@@ -57,7 +57,7 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/carbon/human/target)
 	//var/theirpower = target.st_get_stat(STAT_MORALITY)
-	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + target.st_get_stat(STAT_EMPATHY), 6, owner)
+	var/mypower = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_CHARISMA, STAT_EMPATHY))
 	switch(mypower)
 		if(ROLL_FAILURE, ROLL_BOTCH)
 			to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
@@ -142,7 +142,7 @@ pools for a turn or two after the manifestation.
 	if(get_kindred_splat(target))
 		resistence_stat = target.st_get_stat(owner.is_enlightenment() ? STAT_CONVICTION : STAT_SELF_CONTROL)
 	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + resistence_stat
-	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
+	mypower = SSroll.storyteller_roll_datum(owner, difficulty = theirpower, applic_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE), numerical = TRUE)
 	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
 		return FALSE
@@ -270,7 +270,7 @@ Methuselah.”
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
-	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_OCCULT), 7, owner, numerical = FALSE)
+	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	switch(mypower)
 		if(ROLL_SUCCESS)
 			return TRUE
@@ -356,7 +356,7 @@ normal. If the roll to invoke this power is a botch, the
 frenzy or Rötschreck response is automatic.
 */
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_EMPATHY), numerical = TRUE)
 	if(successes >= 0)
 		dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
 		if(!dementation_phrase)
@@ -430,7 +430,7 @@ determines the duration.
 
 /datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/carbon/human/target)
 	theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), theirpower, owner, numerical = TRUE)
+	mypower = SSroll.storyteller_roll_datum(owner, difficulty = theirpower, applic_stats = list(STAT_MANIPULATION, STAT_INTIMIDATION), numerical = TRUE)
 	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE

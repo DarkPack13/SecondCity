@@ -212,12 +212,12 @@
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
 	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
 		audience += member
-		var/their_power = SSroll.storyteller_roll(member.st_get_stat(STAT_WITS) + member.st_get_stat(STAT_AWARENESS), 7, member, numerical = TRUE)
+		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
 

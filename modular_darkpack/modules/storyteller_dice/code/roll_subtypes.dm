@@ -83,6 +83,26 @@
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
 
+
+/datum/storyteller_roll/tackle_attacker
+	numerical = TRUE
+	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
+
+/*
+/datum/storyteller_roll/tackle_attacker/using_stats(mob/living/roller)
+	. = ..()
+	var/strength_brawl = roller.st_get_stat(STAT_STRENGTH) + roller.st_get_stat(STAT_BRAWL)
+	var/dex_athletics = roller.st_get_stat(STAT_DEXTERITY) + roller.st_get_stat(STAT_ATHLETICS)
+	if(strength_brawl >= dex_athletics)
+		. = list(STAT_STRENGTH, STAT_BRAWL)
+	else
+		. = list(STAT_DEXTERITY, STAT_ATHLETICS)
+*/
+
+/datum/storyteller_roll/tackle_defender
+	numerical = TRUE
+	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
+
 // Physical Feats
 /datum/storyteller_roll/lockpick
 	bumper_text = "lockpicking"

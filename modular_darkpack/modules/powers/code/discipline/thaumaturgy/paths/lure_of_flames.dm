@@ -1,3 +1,7 @@
+/datum/storyteller_roll/lure_of_flames
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	numerical = TRUE
+
 /datum/discipline/path/flames
 	name = "Lure of Flames"
 	desc = "A mystical path of Thaumaturgy that allows the summoning of fire and flame. Violates Masquerade."
@@ -19,7 +23,7 @@
 	. = ..()
 	if(src.ranged == FALSE)
 		return TRUE
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
+	range_successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/lure_of_flames, difficulty = (level + 3))
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")

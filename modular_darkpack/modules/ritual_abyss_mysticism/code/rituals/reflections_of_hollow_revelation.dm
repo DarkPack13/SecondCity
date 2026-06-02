@@ -1,3 +1,7 @@
+/datum/storyteller_roll/reflections_of_hollow
+	difficulty = 7
+	applicable_stats = list(STAT_PERCEPTION, STAT_OCCULT)
+
 /obj/ritual_rune/abyss/reflections_of_hollow_revelation
 	name = "reflections of hollow revelation"
 	desc = "Use a conjured Nocturne to spy on a target through nearby shadows"
@@ -39,8 +43,7 @@
 		to_chat(user, span_warning("[target_name] not found."))
 		return
 
-	var/mypower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
-	var/roll_result = SSroll.storyteller_roll(mypower, 7, user, numerical = FALSE)
+	var/roll_result = SSroll.storyteller_roll_datum(user, roll_datum = /datum/storyteller_roll/reflections_of_hollow)
 	switch(roll_result)
 		if(ROLL_SUCCESS)
 			scry_target(window_target, user)
@@ -65,8 +68,7 @@
 	if(get_kindred_splat(target))
 		var/datum/splat/vampire/vampire = get_splat_with_discipline(target)
 		if(vampire?.get_discipline(/datum/discipline/obtenebration) || vampire?.get_discipline(/datum/discipline/auspex))
-			var/theirpower = (user.st_get_stat(STAT_PERCEPTION) + user.st_get_stat(STAT_OCCULT))
-			if(SSroll.storyteller_roll(theirpower, 8, target) == ROLL_SUCCESS)
+			if(SSroll.storyteller_roll_datum(target, roll_datum = /datum/storyteller_roll/reflections_of_hollow, difficulty = 8) == ROLL_SUCCESS)
 				to_chat(target, span_warning("You notice the nearby shadows flicker... something is watching you."))
 
 	shadowview(target, user)
