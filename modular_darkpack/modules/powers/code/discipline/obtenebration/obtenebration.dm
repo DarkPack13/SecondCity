@@ -96,7 +96,7 @@
 	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/obtenebration/shroud_of_night/pre_activation_checks(atom/target)
-	if(SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT)))
+	if(SSroll.storyteller_roll(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT)))
 		return TRUE
 	return FALSE
 
@@ -133,7 +133,7 @@
 				qdel(T)
 		active_tentacles.Cut()
 
-		var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT), numerical = TRUE)
+		var/roll = SSroll.storyteller_roll(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT), numerical = TRUE)
 		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
 
 		if(!has_action)
@@ -199,7 +199,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_COURAGE))
+	var/roll = SSroll.storyteller_roll(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_COURAGE))
 	switch(roll)
 		if(ROLL_SUCCESS)
 			successful = TRUE

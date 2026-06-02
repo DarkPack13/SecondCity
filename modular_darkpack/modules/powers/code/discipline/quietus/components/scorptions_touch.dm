@@ -49,7 +49,7 @@
 		return
 
 	// victim resists the posion with stamina + fortitude
-	var/resistance = SSroll.storyteller_roll_datum(victim, roll_datum = /datum/storyteller_roll/scorpions_touch_poison, bonus = victim.get_discipline_dots(/datum/discipline/fortitude))
+	var/resistance = SSroll.storyteller_roll(victim, roll_datum = /datum/storyteller_roll/scorpions_touch_poison, bonus = victim.get_discipline_dots(/datum/discipline/fortitude))
 
 	// each resistance success subtracts from the duration
 	var/effective_duration = max(0, poison_duration - resistance)

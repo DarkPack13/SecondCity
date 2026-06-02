@@ -122,7 +122,7 @@
 /datum/discipline_power/vicissitude/bonecrafting/activate(mob/living/target)
 	. = ..()
 
-	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/bonecrafting)
+	var/roll = SSroll.storyteller_roll(owner, target, /datum/storyteller_roll/bonecrafting)
 
 	if(target.stat >= HARD_CRIT)
 		if(target.stat != DEAD)

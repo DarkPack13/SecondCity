@@ -212,12 +212,12 @@
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
+	var/our_power = SSroll.storyteller_roll(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
 	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
 		audience += member
-		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
+		var/their_power = SSroll.storyteller_roll(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
 
@@ -321,9 +321,9 @@
 		listener_list = ohearers(owner, 7)
 
 	for(var/mob/living/carbon/listener in listener_list)
-		var/our_power = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
+		var/our_power = SSroll.storyteller_roll(owner, target, /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
 		cumulative_our_power[listener] += our_power
-		var/their_power = SSroll.storyteller_roll_datum(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE))
+		var/their_power = SSroll.storyteller_roll(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE))
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
