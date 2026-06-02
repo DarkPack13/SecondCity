@@ -19,7 +19,9 @@
 /obj/projectile/bullet/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0)
 	if(!istype(target))
 		return
-	var/datum/splat/werewolf/shifter/shot_pup_splat = get_garou_splat(target)
+	if(!HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
+		return
+	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
 	if(shot_pup_splat)
 		var/mob/living/carbon/human/shot_pup = target
 		shot_pup.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
@@ -31,7 +33,9 @@
 /obj/item/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0, gnosis_damage = 0)
 	if(!istype(target))
 		return
-	var/datum/splat/werewolf/shifter/shot_pup_splat = get_garou_splat(target)
+	if(!HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
+		return
+	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
 	if(shot_pup_splat)
 		var/mob/living/carbon/human/shot_pup = target
 		shot_pup_splat.adjust_gnosis(-gnosis_damage, TRUE)

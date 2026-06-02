@@ -17,7 +17,7 @@
 /datum/ai_planning_subtree/random_speech/corvid
 	speech_chance = 5
 	speak = list("Caw!")
-	sound = list('modular_darkpack/modules/npc/sound/caw.ogg')
+	sound = list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg')
 	emote_hear = list("Caws.")
 
 /datum/ai_planning_subtree/find_and_hunt_target/find_shiney
