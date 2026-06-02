@@ -92,6 +92,7 @@
 	. = ..()
 
 	// This is resisted when targets are trying to hide in the TTRPG (V20 p. 476), but there is no roll to resist here
+	// This also bypasses magical invisibility (e.g. Obfuscate) without comparing Discipline dots like in the TTRPG
 	var/found_anyone = FALSE
 	for(var/mob/living/player in (GLOB.player_list - owner))
 		if(get_area(player) == get_area(owner))
