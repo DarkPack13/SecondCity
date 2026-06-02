@@ -134,11 +134,11 @@
 
 /datum/discipline_power/serpentis/the_skin_of_the_adder/pre_activation_checks()
 	. = ..()
-	owner.adjust_blood_pool(-1)
 	choice = tgui_alert(owner, "How do you manifest the scales along your body?", "Scales", list("Subtle", "Obvious"))
 	if(choice == "Subtle" && owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 0)
 		to_chat(owner, span_warning("You don't have enough willpower to do that!"))
 		return
+	owner.adjust_blood_pool(-1)
 
 /datum/discipline_power/serpentis/the_skin_of_the_adder/activate()
 	. = ..()
