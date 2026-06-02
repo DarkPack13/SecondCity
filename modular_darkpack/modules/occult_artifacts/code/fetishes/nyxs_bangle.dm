@@ -18,9 +18,7 @@
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/ungrant_powers()
 	. = ..()
-
 	owner.alpha = 255
-
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/process(seconds_per_tick)
 	. = ..()
