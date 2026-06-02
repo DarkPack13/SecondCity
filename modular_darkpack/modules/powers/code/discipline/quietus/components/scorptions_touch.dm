@@ -34,7 +34,6 @@
 /datum/component/scorpions_touch_poison/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
 
-// get_discipline_dots
 
 /datum/storyteller_roll/scorpions_touch_poison
 	applicable_stats = list(STAT_STAMINA)
