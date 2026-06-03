@@ -119,10 +119,9 @@
 	return frenzy_result
 
 
-/mob/living/carbon/human/verb/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+/mob/living/carbon/human/proc/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Manual Frenzy Roll"
 	set desc = "Trigger a roll for a frenzy"
-	set category = "Object"
 
 	if(!istype(AM))
 		return
@@ -138,7 +137,6 @@
 /mob/living/carbon/human/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Manual Frenzy"
 	set desc = "Enter a frenzy at will"
-	set category = "Object"
 
 	if(!istype(AM))
 		return

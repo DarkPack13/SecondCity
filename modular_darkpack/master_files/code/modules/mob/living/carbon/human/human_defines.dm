@@ -10,3 +10,5 @@
 	// Visible adjectives, used for Guestbooks.
 	var/visible_adjective = ""
 
+	/// A datum that tracks all the information at the time of there death. Used for powers that tell you the sitatuons of there demise.
+	var/datum/death_report/last_death_info

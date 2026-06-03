@@ -198,7 +198,7 @@
 	name = "7.62x51mm silver bullet"
 	armour_penetration = 20
 
-/obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/darkpack/vamp762x51mm/silver/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	fera_silver_damage(target, 4)
 
@@ -213,6 +213,6 @@
 	name = ".75 silver ball"
 	armour_penetration = 0
 
-/obj/projectile/bullet/darkpack/vamp75/silver/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/darkpack/vamp75/silver/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
-	fera_silver_damage(target, 5)	//Same as silver longsword; it's a solid silver ball. As the founding fathers intended.
+	fera_silver_damage(target, 5) //Same as silver longsword; it's a solid silver ball. As the founding fathers intended.

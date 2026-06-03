@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscdel: "Removes a few more TG crafting recipes"
-  - balance: "Gives varried skill requirments to a buncha recipes (most are set to only need 0, a ton of the funny ones need 1-5)"
