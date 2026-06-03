@@ -2,7 +2,7 @@
 	name = "Financial District"
 	icon_state = "financialdistrict"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -10,14 +10,14 @@
 	name = "Ghetto"
 	icon_state = "ghetto"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
 /area/vtm/outside/pacificheights
 	name = "Pacific Heights"
 	icon_state = "pacificheights"
-	ambience_index = AMBIENCE_NATURE
+	ambience_index = AMBIENCE_CITY
 	music_index = MUSIC_HOLLYWOOD
 	domain = TRUE
 
@@ -37,7 +37,7 @@
 	name = "Chinatown"
 	icon_state = "chinatown"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	musictracks = list('modular_darkpack/modules/ambience/sounds/music/chinatown.ogg')
 	domain = TRUE
 
@@ -45,7 +45,7 @@
 	name = "Fisherman's Wharf"
 	icon_state = "fishermanswharf"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -78,7 +78,7 @@
 	name = "Union Square"
 	icon_state = "unionsquare"
 	ambience_index = AMBIENCE_CITY
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
