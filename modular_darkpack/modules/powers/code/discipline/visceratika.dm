@@ -18,15 +18,6 @@
 	owner.set_body_sprite("gargoyle")
 	owner.update_body_parts()
 	owner.update_body()
-	// since dot 4 is always active and requires no roll
-	if(level >= 4)
-		owner.physiology.brute_mod *= 0.8
-		owner.physiology.heat_mod *= 0.5
-		//owner.physiology.clone_mod *= 0.9
-		//ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
-		ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
-		if(!(owner.is_clan(/datum/subsplat/vampire_clan/gargoyle)))
-			ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 //SKIN OF THE CHAMELEON
 /datum/discipline_power/visceratika/skin_of_the_chameleon
@@ -91,8 +82,6 @@
 		if (alert)
 			to_chat(owner, span_warning("You can only use [name] indoors!"))
 		return FALSE
-
-	return .
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
 	. = ..()
@@ -212,10 +201,16 @@
 
 	vitae_cost = 0
 
+/datum/discipline_power/visceratika/armor_of_terra/post_gain()
+	owner.physiology.brute_mod *= 0.8
+	owner.physiology.heat_mod *= 0.5
+	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
+	if (!owner.is_clan(/datum/subsplat/vampire_clan/gargoyle))
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
+
 /datum/discipline_power/visceratika/armor_of_terra/activate()
 	. = ..()
-	to_chat(owner, span_danger("This is a passive ability. The effects are already active!"))
-
+	to_chat(owner, span_danger("[name] is a passive ability. The effects are already active!"))
 
 //FLOW WITHIN THE MOUNTAIN
 /datum/discipline_power/visceratika/flow_within_the_mountain
@@ -231,12 +226,14 @@
 	duration_length = 1 SCENES // might be too long...
 	cooldown_length = 10 SECONDS
 
-/datum/discipline_power/visceratika/flow_within_the_mountain/try_activate()
-	// placed in try_activate instead of pre_activation_checks so as to not consume blood while running this check
+/datum/discipline_power/visceratika/flow_within_the_mountain/can_activate(atom/target, alert)
+	. = ..()
+	if (!.)
+		return.
+
 	if(!HAS_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN))
-		to_chat(owner, span_notice("You must cast Bond with the Mountain first before using Flow within the Mountain"))
+		to_chat(owner, span_notice("You must cast Bond with the Mountain before using Flow within the Mountain"))
 		return FALSE
-	..()
 
 /datum/discipline_power/visceratika/flow_within_the_mountain/activate()
 	. = ..()
