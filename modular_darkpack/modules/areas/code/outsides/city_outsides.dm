@@ -18,6 +18,7 @@
 	name = "Pacific Heights"
 	icon_state = "pacificheights"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_03.ogg'
 	music_index = MUSIC_HOLLYWOOD
 	domain = TRUE
 
