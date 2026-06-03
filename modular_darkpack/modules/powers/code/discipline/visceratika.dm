@@ -101,9 +101,9 @@
 		var/distance = get_dist(owner, player)
 		var/location_description
 		if (distance == 0)
-			location_description = "in your tile"
+			location_description = "close to you"
 		else
-			location_description = "[distance] [distance == 1 ? "tile" : "tiles"] [dir2text(get_dir(owner, player))]""
+			location_description = "[distance] [distance == 1 ? "yard" : "yards"] [dir2text(get_dir(owner, player))]""
 
 		to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)] is [location_description]")
 		found_anyone = TRUE
