@@ -80,6 +80,20 @@
 
 	scry_roll = new()
 
+/datum/discipline_power/visceratika/scry_the_hearthstone/can_activate(atom/target, alert)
+	. = ..()
+	if (!.)
+		return .
+
+	// Can only be used to detect people 'inside a given structure'
+	var/area/in_area = get_area(owner)
+	if (in_area.outdoors)
+		if (alert)
+			to_chat(owner, span_warning("You can only use [name] indoors!"))
+		return FALSE
+
+	return .
+
 /datum/discipline_power/visceratika/scry_the_hearthstone/pre_activation_checks()
 	. = ..()
 
