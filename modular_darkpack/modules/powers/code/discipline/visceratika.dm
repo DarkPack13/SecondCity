@@ -91,13 +91,23 @@
 /datum/discipline_power/visceratika/scry_the_hearthstone/activate()
 	. = ..()
 
-	// This is resisted when targets are trying to hide in the TTRPG (V20 p. 476), but there is no roll to resist here
+	// In the TTRPG this is resisted when targets are hiding (V20 p. 476), but there is no roll to resist here
 	// This also bypasses magical invisibility (e.g. Obfuscate) without comparing Discipline dots like in the TTRPG
 	var/found_anyone = FALSE
 	for(var/mob/living/player in (GLOB.player_list - owner))
-		if(get_area(player) == get_area(owner))
-			to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)]")
-			found_anyone = TRUE
+		if(get_area(player) != get_area(owner))
+			continue
+
+		var/distance = get_dist(owner, player)
+		var/location_description
+		if (distance == 0)
+			location_description = "in your tile"
+		else
+			location_description = "[distance] [distance == 1 ? "tile" : "tiles"] [dir2text(get_dir(owner, player))]""
+
+		to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)] is [location_description]")
+		found_anyone = TRUE
+
 	if (!found_anyone)
 		to_chat(owner, span_notice("You don't sense anyone interesting in the area."))
 
