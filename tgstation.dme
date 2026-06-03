@@ -7162,7 +7162,7 @@
 #include "modular_darkpack\modules\blooper\code\changeling.dm"
 #include "modular_darkpack\modules\blooper\code\preferences\preferences.dm"
 #include "modular_darkpack\modules\blooper\code\preferences\middleware\blooper.dm"
-#include "modular_darkpack\modules\book_sources.dm\code\source_book_datum.dm"
+#include "modular_darkpack\modules\book_sources\code\source_book_datum.dm"
 #include "modular_darkpack\modules\books\code\bookcases.dm"
 #include "modular_darkpack\modules\books\code\books.dm"
 #include "modular_darkpack\modules\brain_damage\code\phobia.dm"
