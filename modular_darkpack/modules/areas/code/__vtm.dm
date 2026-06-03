@@ -6,9 +6,8 @@
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
 
-	// Most of our tracks dont make sense to have random downtime.
-	min_ambience_cooldown = 0 SECONDS
-	max_ambience_cooldown = 0 SECONDS
+	ambience_index = null
+	ambient_buzz = null
 
 	var/zone_type = ZONE_MASQUERADE
 

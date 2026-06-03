@@ -3,5 +3,5 @@
 	name = "Interior"
 	icon_state = "interior"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
-	ambience_index = AMBIENCE_OFFICE
+	// ambience_index = AMBIENCE_OFFICE
 	outdoors = FALSE

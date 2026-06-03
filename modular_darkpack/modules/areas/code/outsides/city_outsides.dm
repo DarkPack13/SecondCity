@@ -2,6 +2,7 @@
 	name = "Financial District"
 	icon_state = "financialdistrict"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -9,6 +10,7 @@
 	name = "Ghetto"
 	icon_state = "ghetto"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -35,6 +37,7 @@
 	name = "Chinatown"
 	icon_state = "chinatown"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
 	musictracks = list('modular_darkpack/modules/ambience/sounds/music/chinatown.ogg')
 	domain = TRUE
 
@@ -42,6 +45,7 @@
 	name = "Fisherman's Wharf"
 	icon_state = "fishermanswharf"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -58,9 +62,7 @@
 	name = "North Beach"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
-	//The waves dont really stop.
-	min_ambience_cooldown = 0 SECONDS
-	max_ambience_cooldown = 5 SECONDS
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/beach.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -68,6 +70,7 @@
 	name = "Baywalk District"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/beach.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -75,6 +78,7 @@
 	name = "Union Square"
 	icon_state = "unionsquare"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/street2.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -89,6 +93,9 @@
 	name = "Supply"
 	icon_state = "supply"
 	domain = TRUE
+
+
+/area/vtm/outside/giovanni
 
 /area/vtm/outside/giovanni/courtyard
 	name = "Giovanni Mansion - Courtyard"
