@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds the bomb trapped sarcophagus"
+  - rscadd: "adds the sarcophagus & key random event"

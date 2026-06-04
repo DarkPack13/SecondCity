@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "The same area name wont be shown twice when entering areas"
-  - bugfix: "Generate forest has a correct area name"

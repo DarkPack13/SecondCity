@@ -26,8 +26,6 @@
 	var/mob_pixel_z
 	/// If declared will override the mob size.
 	var/mob_size_override
-	/// Stats added and removed upon gaining the species
-	var/list/form_bonus_stats = list()
 	/// Dice roll difficulty required to shift into this form
 	var/shift_difficulty = 6
 	/// If update_body_parts is allowed to override the body render
@@ -36,6 +34,7 @@
 	var/custom_damage_render = FALSE
 	/// Fallback dmi to refrence if we fail to get one from our splat
 	var/fallback_icon
+	var/has_flight_icon_states = FALSE
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
 	/// Causes delirium, which if the user is affected by, does not cause breaches
@@ -67,8 +66,13 @@
 
 	clear_buffs(human)
 
+/datum/species/human/shifter/proc/get_buffs(mob/living/carbon/human/human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	if(shifter_splat?.transformation_stats && shifter_splat.transformation_stats[id])
+		return shifter_splat.transformation_stats[id]
+
 /datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
+	for(var/key, value in get_buffs(human))
 		if(!should_add_buff(human, key, value))
 			continue
 		human.st_add_stat_mod(key, value, type)
@@ -77,7 +81,7 @@
 	return TRUE
 
 /datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
+	for(var/key, value in get_buffs(human))
 		human.st_remove_stat_mod(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
@@ -110,7 +114,9 @@
 	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
 		main_iconstate += "spiral"
 	main_iconstate += fur_color
-	if(human.body_position == LYING_DOWN)
+	if(has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM))
+		main_iconstate += "_flying"
+	else if(human.body_position == LYING_DOWN)
 		main_iconstate += "_rest"
 
 	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
@@ -148,12 +154,6 @@
 /datum/species/human/shifter/bestial
 	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
-	form_bonus_stats = list(
-		STAT_STRENGTH = 2,
-		STAT_STAMINA = 2,
-		STAT_MANIPULATION = -2,
-		STAT_APPEARANCE = -1
-	)
 	shift_difficulty = 7
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
@@ -221,20 +221,15 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "beast"
-
 	mob_pixel_w = -8
 	mob_size_override = MOB_SIZE_LARGE
-	form_bonus_stats = list(
-		STAT_STRENGTH = 4,
-		STAT_STAMINA = 3,
-		STAT_DEXTERITY = 1,
-		STAT_MANIPULATION = -3,
-		// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
-	)
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/crinos.dmi'
+
+/datum/species/human/shifter/war/visible_gender_override(mob/living/carbon/human/holder)
+	return "beast"
+
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -263,21 +258,17 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "beast"
-
 	mob_pixel_w = -16
 	mob_pixel_z = -8
-	form_bonus_stats = list(
-		STAT_STRENGTH = 3,
-		STAT_STAMINA = 3,
-		STAT_DEXTERITY = 2,
-		STAT_MANIPULATION = -3,
-	)
 	shift_difficulty = 7
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/hispo.dmi'
 	speed_mod = /datum/movespeed_modifier/shifter/dire
+
+/datum/species/human/shifter/dire/visible_gender_override(mob/living/carbon/human/holder)
+	return "beast"
+
 
 /datum/species/human/shifter/feral
 	name = "feral form"
@@ -305,18 +296,30 @@
 
 	no_equip_flags = ITEM_SLOT_ON_BODY
 
-	visible_gender_override = "wolf"
-
-	form_bonus_stats = list(
-		STAT_STRENGTH = 1,
-		STAT_STAMINA = 2,
-		STAT_DEXTERITY = 2,
-		STAT_MANIPULATION = -3,
-	)
 	custom_body_render = TRUE
 	custom_damage_render = TRUE
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/lupus.dmi'
+	has_flight_icon_states = TRUE
 	speed_mod = /datum/movespeed_modifier/shifter/feral
+
+/datum/species/human/shifter/feral/visible_gender_override(mob/living/carbon/human/holder)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(holder)
+	if(shifter_splat?.mimmicing_animal)
+		return shifter_splat.mimmicing_animal::name
+
+	return "beast"
+
+/datum/species/human/shifter/feral/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
+	. = ..()
+	if(HAS_TRAIT(human_who_gained_species, TRAIT_FERA_FLIGHT))
+		var/datum/action/innate/toggle_fera_flight/ability = new(human_who_gained_species)
+		ability.Grant(human_who_gained_species)
+
+/datum/species/human/shifter/feral/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+	for(var/datum/action/innate/toggle_fera_flight/action in human.actions)
+		action.Remove(human)
+
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter

@@ -34,5 +34,6 @@
 	r_pocket = /obj/item/vamp/keys/regent
 	l_pocket = /obj/item/smartphone/tremere_regent
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	backpack_contents = list(/obj/item/phone_book=1, /obj/item/ritual_tome/arcane=1, /obj/item/card/credit/elder=1, /obj/item/scythe/vamp=1)
+	belt = /obj/item/scythe/vamp
+	backpack_contents = list(/obj/item/phone_book=1, /obj/item/ritual_tome/arcane=1, /obj/item/card/credit/elder=1)
 
