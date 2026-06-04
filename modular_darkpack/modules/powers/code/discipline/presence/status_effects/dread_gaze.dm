@@ -3,8 +3,6 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread_gaze
-	var/mob/living/carbon/human/source
-	var/stored_dexterity
 
 /datum/status_effect/dread_gaze/on_creation(mob/living/new_owner, generation, time)
 	. = ..()
