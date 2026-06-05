@@ -35,9 +35,6 @@
 /obj/ritual_rune/thaumaturgy/inscription/complete()
 	. = ..()
 
-	if(!ritual_roll_datum)
-		return
-
 	if(!ritual_selected)
 		to_chat(last_activator, span_cult("You haven't chosen a ritual to inscribe."))
 		return
