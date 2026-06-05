@@ -1,3 +1,5 @@
+// from clanbook tremere revised page 58
+
 /obj/ritual_rune/thaumaturgy/inscription
 	name = "inscription"
 	desc = "Create a scroll inscribed with vitae to allow unskilled thaumaturgists or those without thaumaturgy to use a level one or two ritual."
@@ -16,6 +18,11 @@
 
 	// gonna inscription the inscription ritual
 	ritual_selection -= "inscription"
+
+	for(var/ritual_name in ritual_selection)
+		var/ritual_level = ritual_selection[ritual_name]["level"]
+		if(ritual_level > 2)
+			ritual_selection -= ritual_name
 
 	var/selection = tgui_input_list(user, "What ritual do you wish to inscribe onto the scroll?", "Ritual Inscription", ritual_selection)
 	if(!selection)
@@ -37,7 +44,7 @@
 
 	var/obj/item/thaumaturgy_scroll/ritual_scroll = new(loc)
 	ritual_scroll.name = "thaumaturgy scroll ([initial(ritual_selected:name)])"
-	ritual_scroll.desc = "A scroll inscribed with vitae, allowing its holder to perform the '[initial(ritual_selected:name)]' ritual without thaumaturgical skill."
+	ritual_scroll.desc = "A scroll inscribed with vitae, allowing its holder to perform the '[initial(ritual_selected:name)]' ritual without thaumaturgical skill. The ritual is described as follows: [initial(ritual_selected:desc)]."
 	ritual_scroll.ritual = ritual_selected
 
 	to_chat(last_activator, span_cult("You inscribe your vitae onto the paper using Thaumaturgy, allowing the scroll, and the ritual inscribed, to be used by unskilled thaumaturgists, or those without any skill in Thaumaturgy at all."))
@@ -59,7 +66,7 @@
 	to_chat(user, span_cult("You unfurl the scroll and follow the instructions, invoking the '[initial(ritual:name)]' ritual."))
 
 	var/obj/ritual_rune/R = new ritual(user.loc)
-	R.required_discipline = null
+	R.required_discipline = null // no discipline required to use the ritual
 	R.attack_hand(user)
 
 	qdel(src)
