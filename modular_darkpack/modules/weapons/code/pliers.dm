@@ -81,11 +81,12 @@
 	if(roll_result == ROLL_SUCCESS)
 		if(owners_splat)
 			var/datum/splat/splat_type = GLOB.splat_list[owners_splat]
-			to_chat(user, span_notice("You examine [src] carefully and your fairly confident its a tooth from a [splat_type::name]."))
+			. += span_notice("Your fairly confident its a tooth from a [splat_type::name].")
+			to_chat(user, )
 		else
-			to_chat(user, span_notice("You examine [src] carefully and your fairly confident its a normal human tooth."))
+			. += span_notice("You fairly confident its a normal human tooth.")
 	else
-		to_chat(user, span_notice("You examine [src] and dont notice anything abnormal."))
+		. += span_notice("You dont notice anything abnormal about it.")
 
 /datum/storyteller_roll/tooth_investigation
 	difficulty = 8
