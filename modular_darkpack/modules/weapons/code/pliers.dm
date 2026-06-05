@@ -81,9 +81,9 @@
 	if(roll_result == ROLL_SUCCESS)
 		if(owners_splat)
 			var/datum/splat/splat_type = GLOB.splat_list[owners_splat]
-			to_chat(user, span_notice("You examine carefully [src] and your fairly confident its a tooth from a [splat_type::name]."))
+			to_chat(user, span_notice("You examine [src] carefully and your fairly confident its a tooth from a [splat_type::name]."))
 		else
-			to_chat(user, span_notice("You examine carefully [src] and your fairly confident its a normal human tooth."))
+			to_chat(user, span_notice("You examine [src] carefully and your fairly confident its a normal human tooth."))
 	else
 		to_chat(user, span_notice("You examine [src] and dont notice anything abnormal."))
 
