@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(occult_research)
 	var/blood_splat = blood_data["splat"]
 	var/blood_name = blood_data["real_name"]
 
-	var/list/allowed_splats = list(SPLAT_KINDRED, SPLAT_GAROU, SPLAT_GHOUL/*, SPLAT_KUEI_JIN*/)
+	var/list/allowed_splats = list(SPLAT_KINDRED, SPLAT_GAROU, SPLAT_CORAX, SPLAT_GHOUL/*, SPLAT_KUEI_JIN*/)
 	if(!(blood_splat in allowed_splats))
 		return
 
