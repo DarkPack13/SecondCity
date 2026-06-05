@@ -26,11 +26,11 @@
 
 /datum/status_effect/dull_fangs/on_apply()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_DULLFANGS, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_DULLFANGS, TRAIT_GENERIC)
 
 /datum/status_effect/dull_fangs/on_remove()
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_DULLFANGS, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_DULLFANGS, TRAIT_GENERIC)
 
 /datum/status_effect/dull_fangs/permanent // Applied when pliers are used on vampires without the dulled bite quirk.
 	id = "dulled_fangs_permanent"

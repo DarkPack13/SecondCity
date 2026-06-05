@@ -40,7 +40,7 @@
 			user.visible_message(span_warning("[user] rips out one of [target]'s teeth!"), span_warning("You rip out one of [target]'s teeth!"))
 			if(!HAS_TRAIT(target, TRAIT_TOOTH_PULLED) && !HAS_TRAIT(target, TRAIT_DULLFANGS)) // Only spawn 1~ tooth per person
 				should_spawn_tooth = TRUE
-				ADD_TRAIT(target, TRAIT_TOOTH_PULLED, INNATE_TRAIT)
+				ADD_TRAIT(target, TRAIT_TOOTH_PULLED, TRAIT_GENERIC)
 
 		if(should_spawn_tooth)
 			var/obj/item/tooth/pulled/tooth = new(interacting_with.loc)
