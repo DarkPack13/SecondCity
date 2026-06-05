@@ -42,11 +42,11 @@
 	return successes
 
 /datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target)
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -POWERS_LAYER)
 	presence_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = presence_overlay
+	target.apply_overlay(POWERS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
 //used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
@@ -128,7 +128,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
-		target.remove_overlay(MUTATIONS_LAYER)
+		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
 // DREAD GAZE
@@ -174,7 +174,7 @@
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // ENTRANCEMENT
 /datum/discipline_power/presence/entrancement
@@ -218,7 +218,7 @@
 
 /datum/discipline_power/presence/entrancement/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // SUMMON
 /datum/discipline_power/presence/summon
@@ -287,7 +287,7 @@
 
 /datum/discipline_power/presence/summon/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	summon_target?.remove_overlay(MUTATIONS_LAYER)
+	summon_target?.remove_overlay(POWERS_LAYER)
 
 // MAJESTY
 /datum/discipline_power/presence/majesty
@@ -347,7 +347,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 	for(var/mob/living/carbon/human/affected_target in affected_targets)
 		if(affected_target)
-			affected_target.remove_overlay(MUTATIONS_LAYER)
+			affected_target.remove_overlay(POWERS_LAYER)
 			to_chat(affected_target, span_hypnophrase("The overwhelming presence of [owner] fades, and your will returns to normal."))
 			REMOVE_TRAIT(affected_target, TRAIT_PACIFISM, "Majesty")
 	affected_targets.Cut()

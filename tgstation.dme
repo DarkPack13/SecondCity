@@ -7811,7 +7811,6 @@
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_morality.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_pooled.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\st_stats\base_type\_virtue.dm"
-#include "modular_darkpack\modules\strings\global_strings.dm"
 #include "modular_darkpack\modules\subtle\code\chat_helper.dm"
 #include "modular_darkpack\modules\subtle\code\subtle.dm"
 #include "modular_darkpack\modules\taser\code\taser.dm"
