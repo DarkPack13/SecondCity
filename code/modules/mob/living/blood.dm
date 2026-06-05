@@ -477,8 +477,8 @@
 	blood_data["factions"] = faction
 
 	blood_data["splat"] = get_primary_splat()?.id// DARKPACK EDIT ADD - SPLATS
+	blood_data["donor"] = WEAKREF(src) // DARKPACK EDIT ADD - VITAE
 	// DARKPACK EDIT ADD START
-	blood_data["donor"] = WEAKREF(src)
 	blood_data["generation"] = get_generation()
 	blood_data["clan"] = get_clan()?.name
 	blood_data["real_name"] = real_name
@@ -517,8 +517,8 @@
 		blood_data["quirks"] += quirk.type
 
 	blood_data["splat"] = get_primary_splat()?.id// DARKPACK EDIT ADD - SPLATS
+	blood_data["donor"] = WEAKREF(src) // DARKPACK EDIT ADD - VITAE
 	// DARKPACK EDIT ADD START
-	blood_data["donor"] = WEAKREF(src)
 	blood_data["generation"] = get_generation()
 	blood_data["clan"] = get_clan()?.name
 	blood_data["real_name"] = real_name
