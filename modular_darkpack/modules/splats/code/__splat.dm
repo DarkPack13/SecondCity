@@ -36,6 +36,9 @@
 	/// Base type of the powers that this splat has
 	var/power_type
 
+	/// If examining the pulled tooth of the splat can gain some indication of what it is.
+	var/tooth_fingerprint = FALSE
+
 	/// Can frenzy and is given a verb to manually do it.
 	var/can_frenzy = TRUE
 

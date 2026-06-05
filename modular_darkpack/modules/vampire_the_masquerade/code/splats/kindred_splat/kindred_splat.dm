@@ -23,6 +23,7 @@
 		/datum/action/cooldown/blood_power,
 	)
 	splat_biotypes = MOB_UNDEAD
+	tooth_fingerprint = TRUE
 
 	incompatible_splats = list(
 		/datum/splat/vampire/ghoul

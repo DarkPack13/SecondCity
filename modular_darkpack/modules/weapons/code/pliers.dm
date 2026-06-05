@@ -31,14 +31,16 @@
 			if(permanent) // If the pliers are permanent, apply the permanent dull fangs status effect. Otherwise, just apply the regular one.
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS_PERMANENT)
 				visible_message(span_warning("[user] rips out [target]'s canines! It doesn't look like they'll be growing back anytime soon..."))
-				return ITEM_INTERACT_SUCCESS
 			else
 				user.visible_message(span_warning("[user] rips out [target]'s canines!"), span_warning("You rip out [target]'s canines!"))
 				target.apply_status_effect(STATUS_EFFECT_DULL_FANGS)
-				return ITEM_INTERACT_SUCCESS
 		else // If they aren't kindred/have dull fangs, just give an alternate message instead of the fang specific one.
 			user.visible_message(span_warning("[user] rips out one of [target]'s teeth!"), span_warning("You rip out one of [target]'s teeth!"))
-			return ITEM_INTERACT_SUCCESS
+
+		var/obj/item/tooth/pulled/tooth = new(interacting_with.loc)
+		user.put_in_hands(tooth)
+
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/wirecutters/pliers/bad
 	name = "pliers"
@@ -47,3 +49,17 @@
 	inhand_icon_state = "ripper"
 	toolspeed = 1.2 //is an actual tool but can't actually cut
 	permanent = TRUE
+
+
+/obj/item/tooth
+	name = "tooth"
+	desc = "A human tooth."
+	icon = 'modular_darkpack/modules/weapons/icons/tooth.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/tooth_onfloor.dmi')
+
+/obj/item/tooth/pulled
+	desc = "The recently pulled tooth of a poor sod."
+
+
+/datum/storyteller_roll/tooth_investigation
+	applicable_stats = list(STAT_PERCEPTION, STAT_OCCULT)
