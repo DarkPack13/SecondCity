@@ -29,7 +29,7 @@
 		to_chat(user, span_cult("You decide not to inscribe a ritual onto the parchment."))
 		return FALSE
 
-	ritual_selected = ritual_selection[selection]["path"] // extract the typepath
+	ritual_selected = ritual_selection[selection]["path"]
 	. = ..()
 
 /obj/ritual_rune/thaumaturgy/inscription/complete()
