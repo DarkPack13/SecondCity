@@ -73,28 +73,31 @@ SUBSYSTEM_DEF(occult_research)
 	LAZYADD(collected_blood, blood_identifier)
 
 	var/research_award = 0
-	var/species_name = ""
+	var/splat_name = ""
 	var/research_message = ""
+
+	if(blood_splat)
+		var/datum/splat/splat_type = GLOB.splat_list[blood_splat]
+		splat_name = splat_type::name
 
 	switch(blood_splat)
 		if(SPLAT_KINDRED)
 			var/generation = blood_data["generation"]
 			var/clan = blood_data["clan"]
 			research_award = (GHOUL_GENERATION - generation) * 5
-			species_name = "Kindred"
-			research_message = "You gain new insights into the [species_name] from clan [clan]! You gain [research_award] research points."
+			research_message = "You gain new insights into the [splat_name] from clan [clan]! You gain [research_award] research points."
 		if(SPLAT_GAROU)
 			research_award = 30
-			species_name = "Garou"
+			research_message = "You gain [research_award] research points."
+		if(SPLAT_CORAX)
+			research_award = 30
 			research_message = "You gain [research_award] research points."
 		if(SPLAT_GHOUL)
 			research_award = 5
-			species_name = "Ghoul"
 			research_message = "You gain [research_award] research points."
 		/*
 		if(SPLAT_KUEI_JIN)
 			research_award = 15
-			species_name = "Kuei-Jin"
 			research_message = "You gain [research_award] research points."
 		*/
 
