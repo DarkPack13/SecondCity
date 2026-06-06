@@ -140,6 +140,11 @@
 //	icon_state = "s12box_buck"
 //	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/silver
 
+/obj/item/ammo_box/darkpack/c12g/buck/incendiary
+	name = "ammo box (12g, Dragon's Breath)"
+	icon_state = "12box_dragon"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/incendiary
+
 // Crossbow Bolt
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
