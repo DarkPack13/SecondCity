@@ -451,7 +451,6 @@
 	name = "underplate"
 	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "underplate"
-	layer = LOW_ITEM_LAYER
 	anchored = TRUE
 
 /obj/underplate/stuff
