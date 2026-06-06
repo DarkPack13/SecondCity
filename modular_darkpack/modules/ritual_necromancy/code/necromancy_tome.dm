@@ -8,6 +8,7 @@
 	var/list/products_list = list(
 		// placeholder, idea is that its similar to thaumaturgy archives
 	)
+	discipline_type = /datum/discipline/necromancy
 
 /obj/item/ritual_tome/necromancy/attack_self(mob/user)
 	var/mob/living/living_user = astype(user)
