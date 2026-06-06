@@ -8,6 +8,8 @@
 
 	ambience_index = null
 	ambient_buzz = null
+	min_ambience_cooldown = 5 SECONDS
+	max_ambience_cooldown = 20 SECONDS
 
 	var/zone_type = ZONE_MASQUERADE
 
