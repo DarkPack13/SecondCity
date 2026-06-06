@@ -32,8 +32,6 @@
 		if(reader.st_get_stat(STAT_OCCULT) < 3)
 			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
 			return
-	if(!isliving(user)) // guarding against reader needing to be living in display_rituals but not needing that in attack_self
-		return
 	display_rituals(reader)
 
 // code/_HELPERS/_lists.dm. used in sort_list to sort a list by ritual level
