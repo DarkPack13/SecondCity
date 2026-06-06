@@ -519,17 +519,6 @@
 	sleep(6)
 	user.dir = 2
 
-/obj/structure/fire_barrel
-	name = "barrel"
-	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/fires.dmi'
-	icon_state = "fire_barrel_on_fire"
-	anchored = TRUE
-	density = TRUE
-	light_range = 3
-	light_power = 2
-	light_color = "#ffa800"
-
 /obj/structure/fountain
 	name = "fountain"
 	desc = "Gothic water structure."

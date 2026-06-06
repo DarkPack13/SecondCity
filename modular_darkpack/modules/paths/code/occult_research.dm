@@ -56,14 +56,14 @@ SUBSYSTEM_DEF(occult_research)
 		return
 
 	var/blood_data = blood_sample.data
-	var/blood_species = blood_data["species"]
+	var/blood_splat = blood_data["splat"]
 	var/blood_name = blood_data["real_name"]
 
-	var/list/allowed_splats = list(SPLAT_KINDRED, /*PECIES_GAROU,*/ SPLAT_GHOUL/*, SPLAT_KUEI_JIN*/)
-	if(!(blood_species in allowed_splats))
+	var/list/allowed_splats = list(SPLAT_KINDRED, SPLAT_GAROU, SPLAT_CORAX, SPLAT_GHOUL/*, SPLAT_KUEI_JIN*/)
+	if(!(blood_splat in allowed_splats))
 		return
 
-	var/blood_identifier = "[blood_name]_[blood_species]"
+	var/blood_identifier = "[blood_name]_[blood_splat]"
 
 	// check if the bloods already been collected
 	if(LAZYFIND(collected_blood, blood_identifier))
@@ -73,30 +73,31 @@ SUBSYSTEM_DEF(occult_research)
 	LAZYADD(collected_blood, blood_identifier)
 
 	var/research_award = 0
-	var/species_name = ""
+	var/splat_name = ""
 	var/research_message = ""
 
-	switch(lowertext(blood_species))
+	if(blood_splat)
+		var/datum/splat/splat_type = GLOB.splat_list[blood_splat]
+		splat_name = splat_type::name
+
+	switch(blood_splat)
 		if(SPLAT_KINDRED)
 			var/generation = blood_data["generation"]
 			var/clan = blood_data["clan"]
 			research_award = (GHOUL_GENERATION - generation) * 5
-			species_name = "Kindred"
-			research_message = "You gain new insights into the [species_name] from clan [clan]! You gain [research_award] research points."
-		/*
+			research_message = "You gain new insights into the [splat_name] from clan [clan]! You gain [research_award] research points."
 		if(SPLAT_GAROU)
 			research_award = 30
-			species_name = "Garou"
 			research_message = "You gain [research_award] research points."
-		*/
+		if(SPLAT_CORAX)
+			research_award = 30
+			research_message = "You gain [research_award] research points."
 		if(SPLAT_GHOUL)
 			research_award = 5
-			species_name = "Ghoul"
 			research_message = "You gain [research_award] research points."
 		/*
 		if(SPLAT_KUEI_JIN)
 			research_award = 15
-			species_name = "Kuei-Jin"
 			research_message = "You gain [research_award] research points."
 		*/
 
