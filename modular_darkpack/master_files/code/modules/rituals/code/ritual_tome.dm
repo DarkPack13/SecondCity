@@ -39,7 +39,7 @@
 	return A.level - B.level
 
 /obj/item/ritual_tome/proc/display_rituals(mob/living/user)
-	var/list/sorted_rituals = sort_list(rituals.Copy(), GLOBAL_PROC_REF(compare_ritual_levels_ascend))
+	var/list/sorted_rituals = sort_list(rituals, GLOBAL_PROC_REF(compare_ritual_levels_ascend))
 	var/user_level = discipline_type ? (user.get_discipline_level(discipline_type) || user.st_get_stat(STAT_OCCULT)) : user.st_get_stat(STAT_OCCULT)
 	for(var/obj/ritual_rune/R in sorted_rituals)
 		if(R.level > user_level)
