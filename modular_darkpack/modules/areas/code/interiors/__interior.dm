@@ -5,4 +5,5 @@
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 	// ambience_index = AMBIENCE_OFFICE
 	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/interior_generic.ogg'
+	ambient_buzz_vol = 30
 	outdoors = FALSE
