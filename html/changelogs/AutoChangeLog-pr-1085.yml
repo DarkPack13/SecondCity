@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Descriptions of subsplats are now displayed when you select them"

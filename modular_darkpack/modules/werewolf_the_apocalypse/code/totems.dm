@@ -105,7 +105,7 @@
 			continue
 		if(human.stat == DEAD)
 			continue
-		if(!(shifter_splat.tribe.name in tribes))
+		if(!is_friend_of_totem(human))
 			continue
 
 		if(damage_change < 0)
@@ -121,6 +121,18 @@
 			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
 			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
+
+/// Returns true or false wether or not the totems benificial affects will target this mob
+/obj/structure/werewolf_totem/proc/is_friend_of_totem(mob/living/potential_friend)
+	var/datum/splat/werewolf/friends_splat = get_werewolf_splat(potential_friend)
+	if(!friends_splat) // RN the only totem effect relys on a werewolf splat
+		return FALSE
+	if(!friends_splat.tribe) // Dont fuck over tribeless fera. Prob need a better way to determine freinds tho
+		return TRUE
+	if(!(friends_splat.tribe.name in tribes))
+		return FALSE
+
+	return TRUE
 
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

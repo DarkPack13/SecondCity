@@ -1,4 +1,3 @@
-// DARKPACK TODO - CORAX - (Corax kinfolk and thus should be grouped into WTA soon.)
 /mob/living/basic/corvid
 	name = "corvid"
 	desc = "Caw."
@@ -67,12 +66,12 @@
 	// eyes_overlay.layer = ABOVE_LIGHTING_LAYER
 	. += eyes_overlay
 
-/datum/action/innate/togglecorvidflight // this action handles corvid forms toggle their flight, and swaps their sprite to be of the relevant type, I'm making it a gift because it's also what Hispo is under
+/datum/action/innate/togglecorvidflight // this action handles corvid forms toggle their flight, and swaps their sprite to be of the relevant type.
 	name = "Toggle Flight"
 	desc = "Unfurl or withdraw your wings, toggling your ability to fly"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE
-	button_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "flight"
+	button_icon = 'modular_darkpack/master_files/icons/hud/actions.dmi'
+	button_icon_state = "fly"
 
 /datum/action/innate/togglecorvidflight/Trigger(mob/clicker, trigger_flags)
 	. = ..()
@@ -108,8 +107,7 @@
 	message = "caws!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
-	// DARKPACK TODO - CORAX - (Move to wta folder)
-	sound = 'modular_darkpack/modules/npc/sound/caw.ogg'
+	sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg'
 
 /mob/living/basic/corvid/crow
 	name = "crow"

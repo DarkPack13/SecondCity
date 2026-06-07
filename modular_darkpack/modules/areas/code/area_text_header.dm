@@ -7,3 +7,8 @@
 	maptext = ""
 	layer = SCREENTIP_LAYER
 	alpha = 0
+	var/timer_id
+
+/atom/movable/screen/area_text/Destroy()
+	deltimer(timer_id)
+	return ..()

@@ -1,0 +1,25 @@
+2026-06-01:
+  Biplume:
+  - rscadd: Garou now have their feet set as claws in Crinos, Hispo, and Lupus
+  FalloutFalcon:
+  - rscadd: 'The changing breed: Corax'
+  - rscadd: Corax gift "Enemy Ways" which gives an assessment of nearby enemies
+  - rscadd: Corax "eye drinking" a pseudo-gift that allows the fera to speak to the
+      dead and see there death
+  - balance: Razor claws lower the difficulty of claw attacks along with the existing
+      bonuses
+  - refactor: Splits up alot of stuff onto vars and procs to be overrided by other
+      changing breeds
+  - code_imp: Deaths now record some information for use in powers that speak to the
+      dead
+  - code_imp: Fixes the splat prio unit test
+  - bugfix: Spirit speech now works
+  - rscadd: '5 pt merit: Unbondable'
+  - rscadd: '5 pt merit: Touch of the Wyld'
+  - qol: merits wont be displayed if you cant take them
+  Stutternov:
+  - balance: Protean 2, 4, and 5 have proper delays added in accordance with TT discipline
+      use.
+  chazzyjazzy:
+  - bugfix: fixes artifacts from being unbinded from the user when placed into a satchel
+  - bugfix: fixes the odious chalice so that it works

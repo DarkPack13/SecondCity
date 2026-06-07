@@ -24,7 +24,7 @@
 
 	renown_rank = auspice_rank_check()
 	if(old_rank != renown_rank)
-		to_chat(owner, span_boldnotice("You are now a [fera_rank_name(renown_rank)]."))
+		to_chat(owner, span_boldnotice("You are now a [fera_rank_name(renown_rank, id)]."))
 
 	// Not acctually used ANYWHERE rn. Its super easy to just calculate it from our renown anyway.
 	// owner.write_preference_midround(/datum/preference/numeric/fera_rank, renown_rank)
@@ -65,39 +65,38 @@
 
 // Pretty iffy on this. This could likely just be moved onto the splat itself so corax and other breeds can override it.
 /proc/fera_rank_name(rank, breed)
-
-	// if(breed != "Corax") DARKPACK TODO - CORAX
-	switch(rank)
-		if(RANK_CUB)
-			return "cub" // in lowercase so that \a might function during the character examine
-		if(RANK_CLIATH)
-			return "cliath"
-		if(RANK_FOSTERN)
-			return "fostern"
-		if(RANK_ADREN)
-			return "adren"
-		if(RANK_ATHRO)
-			return "athro"
-		if(RANK_ELDER)
-			return "elder"
-		if(RANK_LEGEND)
-			return "legend"
-/* DARKPACK TODO - CORAX
-	switch(rank)
-		if(0)
-			return "fledgling"
-		if(1)
-			return "oviculum"
-		if(2)
-			return "neocornix"
-		if(3)
-			return "ales"
-		if(4)
-			return "volucris"
-		if(5)
-			return "corvus"
-		if(6)
-			return "grey eminence"
-*/
+	switch(breed)
+		if(SPLAT_CORAX)
+			switch(rank)
+				if(RANK_CUB)
+					return "fledgling"
+				if(RANK_CLIATH)
+					return "oviculum"
+				if(RANK_FOSTERN)
+					return "neocornix"
+				if(RANK_ADREN)
+					return "ales"
+				if(RANK_ATHRO)
+					return "volucris"
+				if(RANK_ELDER)
+					return "corvus"
+				if(RANK_LEGEND)
+					return "grey eminence"
+		else
+			switch(rank)
+				if(RANK_CUB)
+					return "cub" // in lowercase so that \a might function during the character examine
+				if(RANK_CLIATH)
+					return "cliath"
+				if(RANK_FOSTERN)
+					return "fostern"
+				if(RANK_ADREN)
+					return "adren"
+				if(RANK_ATHRO)
+					return "athro"
+				if(RANK_ELDER)
+					return "elder"
+				if(RANK_LEGEND)
+					return "legend"
 
 #undef MAX_RENOWN

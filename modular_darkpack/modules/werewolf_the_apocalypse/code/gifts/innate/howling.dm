@@ -54,7 +54,7 @@
 	. = ..()
 
 	var/mob/living/living_mob = owner
-	var/datum/splat/werewolf/shifter = get_shifter_splat(owner)
+	var/datum/splat/werewolf/shifter/shifter = get_shifter_splat(owner)
 	var/list/menu_options = list()
 	for(var/howl_key in howls)
 		menu_options += howls[howl_key]["menu"]
@@ -76,9 +76,9 @@
 		garou_message = replacetext(garou_message, "tribe", tribe)
 	*/
 	var/origin_turf = get_turf(living_mob)
-	ADD_TRAIT(living_mob, TRAIT_LOUD_HOWLER, GIFT_TRAIT)
-	living_mob.emote("howl")
-	REMOVE_TRAIT(living_mob, TRAIT_LOUD_HOWLER, GIFT_TRAIT)
+	ADD_TRAIT(living_mob, TRAIT_LOUD_WARCRY, GIFT_TRAIT)
+	living_mob.emote(shifter.warcry_emote)
+	REMOVE_TRAIT(living_mob, TRAIT_LOUD_WARCRY, GIFT_TRAIT)
 
 	var/howl_details
 	var/final_message
