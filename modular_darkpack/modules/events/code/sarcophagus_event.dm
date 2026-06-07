@@ -30,13 +30,14 @@
 	announce_when = 5
 
 /datum/round_event/sarcophagus/announce(fake)
-	priority_announce(
-		"You receive a notification about a viral Endpost - a respected archaeologist notes that the location of a long-lost Assyrian sarcophagus alongside it's key, which was famously stolen, seems to be in your city according to newly published criminological records tracking the suspected thief.",
-		"Viral News Story",
-		'modular_darkpack/modules/events/sounds/news_notification.ogg',
-		ANNOUNCEMENT_TYPE_PRIORITY,
-		color_override = "yellow",
-	)
+	if(prob(20))
+		priority_announce(
+			"You receive a notification about a viral Endpost - a respected archaeologist notes that the location of a long-lost Assyrian sarcophagus alongside it's key, which was famously stolen, seems to be in your city according to newly published criminological records tracking the suspected thief.",
+			"Viral News Story",
+			'modular_darkpack/modules/events/sounds/news_notification.ogg',
+			ANNOUNCEMENT_TYPE_PRIORITY,
+			color_override = "yellow",
+		)
 
 /datum/round_event/sarcophagus/start()
 	var/list/landmarks = list()
