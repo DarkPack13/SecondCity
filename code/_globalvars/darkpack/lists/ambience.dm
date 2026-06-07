@@ -89,6 +89,22 @@ GLOBAL_LIST_INIT(sewer_ambience, list(
 
 GLOBAL_LIST_INIT(office_ambience, list())
 
+GLOBAL_LIST_INIT(tower_ambience, list(
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_01.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_02.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_03.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_04.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_05.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_06.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_07.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_08.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_09.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_10.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_11.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_12.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_13.ogg',
+))
+
 GLOBAL_LIST_INIT(music_assoc,list(
 	MUSIC_CITY = list('modular_darkpack/modules/ambience/sounds/music/downtown.ogg', 'modular_darkpack/modules/ambience/sounds/music/downtown_alt.ogg', 'modular_darkpack/modules/ambience/sounds/music/what_comes_next.ogg'),
 	MUSIC_FOREST = list('modular_darkpack/modules/ambience/sounds/music/night_ambience.ogg', 'modular_darkpack/modules/ambience/sounds/music/for_my_clan.ogg'),
