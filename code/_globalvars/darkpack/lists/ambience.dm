@@ -102,7 +102,6 @@ GLOBAL_LIST_INIT(tower_ambience, list(
 	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_10.ogg',
 	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_11.ogg',
 	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_12.ogg',
-	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_13.ogg',
 ))
 
 GLOBAL_LIST_INIT(music_assoc,list(
