@@ -11,6 +11,8 @@
 
 /datum/round_event_control/darkpack/sarcophagus/can_spawn_event(players_amt, allow_magic)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/list/valid_landmarks = list()
 	for(var/obj/effect/landmark/event_spawn/sarcophagus/L in GLOB.generic_event_spawns)
 		var/player_nearby = FALSE
