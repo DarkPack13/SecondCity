@@ -149,26 +149,30 @@
 
 /obj/projectile/bullet/darkpack/vamp556mm/bale/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(get_kindred_splat(target) || get_ghoul_splat(target))
-		var/mob/living/carbon/human/H = target
-		if(H.bloodpool == 0)
-			to_chat(H, span_warning("Only ash remains in my veins!"))
-			H.apply_damage(20, BURN)
+	bale_fire_damage(target, 4, bloodloss)
+
+/obj/projectile/bullet/proc/bale_fire_damage(mob/living/carbon/human/target, dice = 0, bloodloss = 1)
+	if(!istype(target))
+		return
+
+	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
+	if(shot_pup_splat)
+		target.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
+		target.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+		playsound(target, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
+		return
+
+	var/datum/splat/vampire/shot_vampire_splat = get_vampire_splat(target)
+	if(shot_vampire_splat)
+		if(target.bloodpool <= 0)
+			to_chat(target, span_warning("Only ash remains in my veins!"))
+			target.apply_damage(dice TTRPG_DAMAGE, BURN)
 			return
-		H.adjust_blood_pool(-bloodloss)
-		playsound(H, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
-		to_chat(H, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
-// DARKPACK TODO - GAROU
-/*
-	if(iswerewolf(target) || get_garou_splat(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
-		M.apply_damage(20, CLONE)
-		playsound(M, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
+		target.adjust_blood_pool(-bloodloss)
+		playsound(target, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
+		to_chat(target, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
+
+
 /obj/item/ammo_casing/vampire/c12g/f12g
 	name = "Frag-12g shell casing"
 	desc = "A 12g explosive shell casing."

@@ -7,6 +7,7 @@
 	main_feature_name = "Fera Fur Color"
 	relevant_inherent_trait = TRAIT_FERA_FUR
 	must_have_relevant_trait = TRUE
+	must_be_accessible = TRUE
 	var/splat_id
 
 /datum/preference/choiced/fera_fur_color/apply_to_human(mob/living/carbon/human/target, value)
