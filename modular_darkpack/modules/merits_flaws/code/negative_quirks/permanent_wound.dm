@@ -19,4 +19,4 @@ you rise from sleep at the Wounded health level, though this may be healed by sp
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
 	if(!human_holder)
 		return
-	human_holder.adjust_brute_loss(90, TRUE)
+	human_holder.adjust_agg_loss(90, TRUE)

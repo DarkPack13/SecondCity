@@ -4,7 +4,7 @@
 	desc = {"You're more sensitive to the sun than others.
 Sunlight deals double damage to you."}
 	icon = FA_ICON_SUN
-	value = -5 // Debate on this? Not as awful as the book version, I think. Literally just our current setite flaw.
+	value = -1 // A lot less awful than in the ttrpg
 	mob_trait = TRAIT_LIGHT_WEAKNESS
 	allowed_splats = list(SPLAT_KINDRED)
 	excluded_clans = list(VAMPIRE_CLAN_SETITE, VAMPIRE_CLAN_WARRIOR_SETITE, VAMPIRE_CLAN_TLACIQUE)

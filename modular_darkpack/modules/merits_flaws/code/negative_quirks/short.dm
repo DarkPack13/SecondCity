@@ -5,7 +5,7 @@
 You have difficulty reaching or manipulating objects designed for normal adult size,
 and your running speed is one-half that of an average human."}
 	icon = FA_ICON_ARROW_DOWN
-	value = -1
+	value = -4 // Higher than in the ttrpg because it's a round-lasting debuff that'll be painful.
 	mob_trait = TRAIT_DWARF // Grants passtable too, but it seems like the simplest way to lock them into being short?
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	gain_text = span_notice("You feel shorter than average.")
