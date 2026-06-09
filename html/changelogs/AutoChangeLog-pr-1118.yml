@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "sarcophagus event's announcement now only fires 20% of the time for added stealth"
+  - bugfix: "sarcophagus event will now fire only once per round max"
