@@ -23,3 +23,23 @@
   chazzyjazzy:
   - bugfix: fixes artifacts from being unbinded from the user when placed into a satchel
   - bugfix: fixes the odious chalice so that it works
+2026-06-08:
+  FalloutFalcon:
+  - bugfix: Occult blood research should now work
+  - spellcheck: Tree stumps dont reference ss13
+  - rscadd: Descriptions of subsplats are now displayed when you select them
+  - code_imp: Removes old useless fire barrel subtype in favor of interactive one
+  - bugfix: Fixes corax "fur" color entry
+  TheCarnalest:
+  - bugfix: Garou no longer go upside down when transforming into Homid while resting
+  - bugfix: The Mage Blood disadvantage no longer removes Bloodheal
+  chazzyjazzy:
+  - rscadd: adds the bomb trapped sarcophagus
+  - rscadd: adds the sarcophagus & key random event
+  - code_imp: removes hard deletes on area texts by cutting out the qdeletion method
+      for making the text disappear, just setting the text to be invisible instead
+  - rscadd: sarcophagus event's announcement now only fires 20% of the time for added
+      stealth
+  - bugfix: sarcophagus event will now fire only once per round max
+  ellie:
+  - rscadd: adds dragon's breath shotgun ammo
