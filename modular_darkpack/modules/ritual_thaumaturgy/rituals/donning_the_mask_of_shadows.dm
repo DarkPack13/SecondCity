@@ -1,3 +1,4 @@
+// v20 core rulebook page 233
 /obj/ritual_rune/thaumaturgy/donning_the_mask_of_shadows
 	name = "donning the mask of shadows"
 	desc = "Renders the caster's visage smoky and footsteps muffled. Requires a glass shard."
