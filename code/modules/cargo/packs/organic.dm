@@ -88,6 +88,7 @@
 		/obj/item/food/grown/cucumber,
 	)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/organic/exoticseeds
 	name = "Exotic Seeds Crate"
 	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, \
@@ -110,6 +111,7 @@
 	)
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
+*/
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"

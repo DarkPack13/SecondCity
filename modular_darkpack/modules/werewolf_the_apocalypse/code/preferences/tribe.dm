@@ -22,6 +22,10 @@
 	var/joining_round = !isdummy(target)
 	target.set_fera_tribe(value, joining_round)
 
+/datum/preference/choiced/subsplat/fera_tribe/post_set_preference(mob/user, value)
+	var/datum/subsplat/werewolf/tribe/tribe = get_fera_tribe(value)
+	tribe?.show_lore(user)
+
 /datum/preference/choiced/subsplat/fera_tribe/is_accessible(datum/preferences/preferences)
 	. = ..()
 	var/datum/splat/splat_path = preferences.read_preference(/datum/preference/choiced/splats)

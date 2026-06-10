@@ -1,4 +1,4 @@
 author: "FalloutFalcon"
 delete-after: True
 changes:
-  - bugfix: "Fixes corax \"fur\" color entry"
+  - bugfix: "underplates layer above tables again"
