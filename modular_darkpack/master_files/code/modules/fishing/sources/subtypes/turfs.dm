@@ -7,6 +7,7 @@
 		/obj/item/fish/darkpack/tuna = 20,
 		/obj/item/fish/darkpack/crab = 5,
 		/obj/item/fish/darkpack/shark = 5,
+		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fish_counts = list(
 		///obj/structure/mystery_box/fishing = 1,
@@ -20,6 +21,7 @@
 		FISHING_DUD = 4,
 		/obj/effect/spawner/random/trash/garbage = 1,
 		/obj/item/fish/darkpack/catfish = 20,
+		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fish_counts = list()
 	fish_count_regen = list()
@@ -29,4 +31,5 @@
 		FISHING_DUD = 15,
 		/obj/effect/spawner/random/trash/garbage = 5,
 		/obj/item/fish/darkpack/crab = 10,
+		/obj/effect/spawner/random/occult/artifact = 1,
 	)

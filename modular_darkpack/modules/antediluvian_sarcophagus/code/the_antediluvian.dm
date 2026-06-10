@@ -1,7 +1,7 @@
 #define ANTEDILUVIAN_SCORE "Antediluvians Killed"
 #define BOSS_MEDAL_ANTEDILUVIAN "Antediluvian Killer"
 /mob/living/simple_animal/hostile/megafauna/wendigo/antediluvian
-	name = "Unknown Antediluvian"
+	name = "Unknown Methuselah"
 	desc = "A mythological legendary kindred, you probably aren't going to survive this."
 	health = 2500
 	maxHealth = 2500
@@ -18,7 +18,7 @@
 	score_achievement_type = /datum/award/score/antediluvian_score
 
 /mob/living/simple_animal/hostile/megafauna/colossus/antediluvian
-	name = "Unknown Antediluvian"
+	name = "Unknown Methuselah"
 	desc = "A mythological legendary kindred, you probably aren't going to survive this."
 	health = 2500
 	maxHealth = 2500
@@ -32,13 +32,13 @@
 	score_achievement_type = /datum/award/score/antediluvian_score
 
 /datum/award/achievement/boss/antediluvian_kill
-	name = "Antediluvian Killer"
+	name = "Methuselah Killer"
 	desc = "The bigger they are... the better the loot"
 	database_id = BOSS_MEDAL_ANTEDILUVIAN
 	icon_state = "firstboss"
 
 /datum/award/score/antediluvian_score
-	name = "Antediluvian Killed"
+	name = "Methuselah Killed"
 	desc = "You've killed HOW many?"
 	database_id = ANTEDILUVIAN_SCORE
 

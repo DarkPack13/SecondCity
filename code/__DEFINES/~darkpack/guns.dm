@@ -1,7 +1,8 @@
 #define CALIBER_9MMPARA "9x19mm Parabellum"
 #define CALIBER_45ACP ".45 ACP"
 #define CALIBER_44MAG ".44 Magnum"
-#define CALIBER_50CAL ".50" // DARKPACK TODO: Seperate into .50 BMG and .50 AE
+#define CALIBER_50CAL_BMG ".50 BMG"
+#define CALIBER_50CAL_AE ".50 AE"
 #define CALIBER_545SOVIET "5.45x39mm"
 #define CALIBER_556NATO "5.56mm NATO"
 #define CALIBER_46HK "4.6x30mm HK"

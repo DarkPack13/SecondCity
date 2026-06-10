@@ -161,15 +161,3 @@
 	// 	/datum/action/cooldown/power/gift/smooth_move,
 	// 	/datum/action/cooldown/power/gift/shroud
 	// )
-
-/* // DARKPACK TODO - CORAX
-/datum/subsplat/werewolf/tribe/garou/corax
-	name = TRIBE_CORAX
-	desc = "<b>{CONSIDER : THIS IS A PLACEHOLDER, FEATURES WILL BE MISSING.}</B> \nMessengers of Gaia, children of Raven, and scions of Helios; the wereravens travel accross the globe, guided by their innate curiosity and insatiable thirst for gossip. \nThey are renowned for their ability to gather useful intelligence, and the difficulty of making them stop talking."
-	gifts_provided = list(
-		/datum/action/cooldown/power/gift/eye_drink,
-		/datum/action/cooldown/power/gift/smooth_move,
-		/datum/action/cooldown/power/gift/suns_guard
-	)
-	tribe_trait = TRAIT_CORAX
-*/
