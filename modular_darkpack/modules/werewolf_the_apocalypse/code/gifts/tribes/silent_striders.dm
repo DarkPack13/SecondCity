@@ -21,10 +21,6 @@
 
 	alert_type = /atom/movable/screen/alert/status_effect/gift/speed_of_thought
 
-/datum/status_effect/speed_of_thought/on_creation(mob/living/owner, duration)
-	src.duration = duration
-	return ..()
-
 /datum/status_effect/speed_of_thought/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/speed_of_thought)
