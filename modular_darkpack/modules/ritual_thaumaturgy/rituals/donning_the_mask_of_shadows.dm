@@ -27,6 +27,7 @@
 	owner.color = "#5f5f5f"
 	mask_action = new(owner)
 	mask_action.Grant(owner)
+	ADD_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, src)
 
 /datum/status_effect/mask_of_shadows/on_remove()
 	owner.alpha = 255
@@ -34,6 +35,7 @@
 	if(mask_action)
 		mask_action.Remove(owner)
 		qdel(mask_action)
+	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, src)
 	return ..()
 
 /datum/action/remove_mask_of_shadows_action
