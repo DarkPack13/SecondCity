@@ -19,16 +19,18 @@
 	var/datum/splat/vampire/vampire = get_splat_with_discipline(src)
 	return vampire?.get_discipline(discipline_type)
 
-/datum/splat/vampire/proc/get_discipline_level(power_type)
-	var/datum/action/discipline/found_action = get_power(power_type)
-	if(!found_action)
-		return 0
+/datum/splat/vampire/proc/get_discipline_dots(discipline_type)
+    var/datum/discipline/discipline = get_discipline(discipline_type)
+    if(!discipline)
+        return 0
+    return discipline.level
 
-	return found_action.discipline.level
-
-/mob/living/proc/get_discipline_level(discipline_type)
-	var/datum/splat/vampire/vampire = get_splat_with_discipline(src)
-	return vampire?.get_discipline_level(discipline_type) || 0
+/mob/living/proc/get_discipline_dots(discipline_type)
+    var/datum/splat/vampire/vampire = get_splat_with_discipline(src)
+    var/dots = vampire?.get_discipline_dots(discipline_type)
+    if(isnull(dots))
+        return 0
+    return dots
 
 /datum/splat/vampire/get_power(power_type)
 	RETURN_TYPE(/datum/action/discipline)
