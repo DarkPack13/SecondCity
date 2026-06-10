@@ -7292,6 +7292,7 @@
 #include "modular_darkpack\modules\flavor_text\code\preferences\masked_flavor_text_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\nsfw_content_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\record_preferences.dm"
+#include "modular_darkpack\modules\fomori\code\positive_quirks\hidden_power.dm"
 #include "modular_darkpack\modules\fomori\code\positive_quirks\stigmata_of_the_wyrm.dm"
 #include "modular_darkpack\modules\fomori\code\powers\_fomori_power.dm"
 #include "modular_darkpack\modules\fomori\code\powers\_fomori_power_weapon.dm"

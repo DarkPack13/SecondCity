@@ -5,6 +5,8 @@
 
 	shared_cooldown = MOB_SHARED_COOLDOWN_2
 
+	feature_bodypart = null // Makes the overlay code skip us unless we define on subtype
+
 	var/sheathe_text = "Your skub melts back into your skin."
 
 	var/weapon_type = /obj/item/skub

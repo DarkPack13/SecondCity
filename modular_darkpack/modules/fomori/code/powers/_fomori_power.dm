@@ -22,6 +22,8 @@
 	var/obj/item/organ/fomor_organ
 	// Where are we inserting it?
 	var/fomor_organ_slot
+	// Do we violate the veil if seen? Only used for the overlays
+	var/masq_violating_overlay = TRUE
 
 /atom/movable/screen/alert/status_effect/fomori_power
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
@@ -43,10 +45,17 @@
 /datum/action/cooldown/power/fomori_power/proc/add_feature()
 	var/mob/living/carbon/human/fomor = owner
 	var/obj/item/bodypart/bodypart = fomor?.get_bodypart(feature_bodypart)
+
 	if(isnull(bodypart))
 		return
+
+	if(isnull(fomor_part))
+		return
+
 	fomor_part = new fomor_part() //creates our overlay
 	bodypart.add_bodypart_overlay(fomor_part)
+	if(masq_violating_overlay)
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 ///removes the fomor feature
 /datum/action/cooldown/power/fomori_power/proc/remove_feature()
@@ -58,7 +67,12 @@
 
 ///toggles the feature, TRUE for remove and FALSE for add
 /datum/action/cooldown/power/fomori_power/proc/toggle_feature(current_state)
+	if(!HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER))
+		return FALSE
+
 	if(current_state)
 		remove_feature()
 	else
 		add_feature()
+
+	return TRUE

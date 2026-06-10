@@ -37,6 +37,18 @@
 	effectiveness = 80, \
 	)
 
+/datum/bodypart_overlay/simple/fomor_body_barbs
+	icon_state = "body_barb"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
+	layers = MUTATIONS_LAYER
+	var/bodyzone = BODY_ZONE_R_ARM
+	var/obj/item/bodypart/assigned_bodyzone
+
+/datum/bodypart_overlay/simple/fomor_body_barbs/l_arm
+	icon_state = "body_barb"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_left.dmi'
+	bodyzone = BODY_ZONE_L_ARM
+
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs
 	name = "Body Barbs"
 	desc = "Use the grotesque spikes on your body to amplify your brawling ability."
@@ -44,6 +56,10 @@
 	rank = 1 // of 5 // Determines how many extra dice we get, 2 points and 1 dice/level
 	weapon_type = /obj/item/melee/body_barbs
 	sheathe_text = "Your body barbs retract into your arms."
+
+	var/list/overlay_list = list()
+	var/r_arm_overlay = /datum/bodypart_overlay/simple/fomor_body_barbs
+	var/l_arm_overlay = /datum/bodypart_overlay/simple/fomor_body_barbs/l_arm
 
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/Activate(atom/target)
 	. = ..()
@@ -63,5 +79,27 @@
 	rank = 4
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/five
 	rank = 5
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/add_feature()
+	var/mob/living/carbon/human/fomor = owner
+
+	overlay_list = list(new r_arm_overlay, new l_arm_overlay)
+
+	for(var/datum/bodypart_overlay/simple/fomor_body_barbs/bp_overlay in overlay_list)
+		bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+		if(isnull(bp_overlay.assigned_bodyzone))
+			qdel(bp_overlay)
+			continue
+		bp_overlay.assigned_bodyzone.add_bodypart_overlay(bp_overlay)
+
+///removes the fomor feature
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/remove_feature()
+	var/mob/living/carbon/human/fomor = owner
+	if(HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER))
+		for(var/datum/bodypart_overlay/simple/fomor_body_barbs/bp_overlay in overlay_list)
+			bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+			bp_overlay.assigned_bodyzone.remove_bodypart_overlay(bp_overlay)
+			qdel(bp_overlay)
+		overlay_list = list()
 
 #warn BODY BARBS UNFINISHED - Need to factor rank into damage

@@ -34,6 +34,12 @@
 			SPECIES_PERK_NAME = "Hunted and Subservient",
 			SPECIES_PERK_DESC = "Fomori are hunted by Gaians and expected to serve the Wyrm.",
 		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_GHOST,
+			SPECIES_PERK_NAME = "Grotesque",
+			SPECIES_PERK_DESC = "Without a special merit, many powers and taints cause the fomor to violate the veil just be being seen.",
+		),
 	)
 
 	return to_add

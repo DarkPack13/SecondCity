@@ -19,6 +19,19 @@
 	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
 	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -5)
 
+/datum/bodypart_overlay/simple/fomor_claws
+	icon_state = "claw"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
+	layers = MUTATIONS_LAYER
+	var/bodyzone = BODY_ZONE_R_ARM
+	var/obj/item/bodypart/assigned_bodyzone
+
+/datum/bodypart_overlay/simple/fomor_claws/l_arm
+	icon_state = "claw"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_left.dmi'
+	bodyzone = BODY_ZONE_L_ARM
+
+
 /datum/action/cooldown/power/fomori_power/weapon/claws
 	name = "Claws"
 	desc = "Use the grotesque claws on your hands to slice and dice."
@@ -28,12 +41,35 @@
 	unsheathe_sound = 'sound/items/weapons/parry.ogg'
 	sheathe_text = "Your claws retract into your arms."
 
+	var/list/overlay_list = list()
+	var/r_arm_overlay = /datum/bodypart_overlay/simple/fomor_claws
+	var/l_arm_overlay = /datum/bodypart_overlay/simple/fomor_claws/l_arm
+
 /datum/action/cooldown/power/fomori_power/weapon/claws/Activate(atom/target)
 	. = ..()
 	if(deployed)
 		owner.visible_message(span_warning("A pair of grotesque claws extend from [owner]\'s hands!"), \
 			span_warning("Your claws extend from your hands."), \
 			span_hear("You hear organic matter ripping and tearing!"))
-		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+/datum/action/cooldown/power/fomori_power/weapon/claws/add_feature()
+	var/mob/living/carbon/human/fomor = owner
+
+	overlay_list = list(new r_arm_overlay, new l_arm_overlay)
+
+	for(var/datum/bodypart_overlay/simple/fomor_claws/bp_overlay in overlay_list)
+		bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+		if(isnull(bp_overlay.assigned_bodyzone))
+			qdel(bp_overlay)
+			continue
+		bp_overlay.assigned_bodyzone.add_bodypart_overlay(bp_overlay)
+
+/datum/action/cooldown/power/fomori_power/weapon/claws/remove_feature()
+	var/mob/living/carbon/human/fomor = owner
+	for(var/datum/bodypart_overlay/simple/fomor_claws/bp_overlay in overlay_list)
+		bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+		bp_overlay.assigned_bodyzone.remove_bodypart_overlay(bp_overlay)
+		qdel(bp_overlay)
+	overlay_list = list()
 
 #warn CLAWS SOFT FINISHED - Needs melee damage stats

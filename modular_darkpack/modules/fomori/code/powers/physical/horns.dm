@@ -19,5 +19,5 @@
 		deployed = FALSE
 	else
 		deployed = TRUE
-		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
 #warn HORNS UNFINISHED
