@@ -45,9 +45,13 @@ SUBSYSTEM_DEF(music)
 
 		//Check to see if the client exists and isn't held by a new player
 		var/mob/client_mob = client_iterator?.mob
-		if(isnull(client_iterator) || !client_mob || isnewplayer(client_mob))
+		if(isnull(client_iterator) || !client_mob)
 			music_listening_clients -= client_iterator
 			client_old_areas -= client_iterator
+			continue
+
+		// skip them this tick if they're on the lobby screen
+		if(isnewplayer(client_mob))
 			continue
 
 		// These are non-diagetic
