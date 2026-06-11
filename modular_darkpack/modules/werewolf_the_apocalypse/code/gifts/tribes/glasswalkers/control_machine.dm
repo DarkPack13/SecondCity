@@ -58,7 +58,7 @@
 		on_who.client.images += I
 		object_highlights += I
 
-	// SEND_SOUND(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/falling_touch.ogg')
+	// Could probaly use a sound.
 
 /datum/action/cooldown/power/gift/control_machine/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
 	. = ..()
