@@ -21,7 +21,7 @@
 
 	. = ..()
 
-	// owner.visible_message("[src] presses a hand to [dead_guy]")
+	owner.visible_message("[src] presses a hand to [dead_guy]")
 
 	var/datum/storyteller_roll/gift/hidden_killer/roll_datum = new()
 	var/roll_result = roll_datum.st_roll(owner)
