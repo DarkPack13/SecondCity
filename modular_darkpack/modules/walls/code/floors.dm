@@ -147,7 +147,7 @@
 
 /turf/open/floor/plating/stone/Initialize(mapload)
 	. = ..()
-	icon_state = "cave[rand(1, 7)]"
+	icon_state = "stone[rand(1, 7)]"
 
 /turf/open/floor/plating/grate
 	name = "grate"
