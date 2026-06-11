@@ -36,6 +36,7 @@
 	button_icon_state = "exoskeleton"
 	rank = 1 // of 1
 
+	fomor_part = "none" // So we get caught by code that checks if we have a fomor_part
 	//Snowflake code
 	var/list/overlay_list = list()
 

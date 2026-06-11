@@ -30,6 +30,10 @@
 	icon_state = "bg_fomori_power"
 	overlay_icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
 
+/datum/action/cooldown/power/fomori_power/Grant(mob/granted_to)
+	. = ..()
+	if(!istype(granted_to, /mob/living/carbon/human/dummy) && !isnull(fomor_part))
+		add_feature()
 
 ///checks if we lose a limb a feature is attached to
 /datum/action/cooldown/power/fomori_power/proc/on_removed_limb(datum/source, obj/item/bodypart/removed_limb, special, dismembered)
@@ -67,10 +71,9 @@
 
 ///toggles the feature, TRUE for remove and FALSE for add
 /datum/action/cooldown/power/fomori_power/proc/toggle_feature(current_state)
-	if(!HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER))
-		return FALSE
-
 	if(current_state)
+		if(!HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER))
+			return FALSE
 		remove_feature()
 	else
 		add_feature()

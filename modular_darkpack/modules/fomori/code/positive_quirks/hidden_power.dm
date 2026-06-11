@@ -8,3 +8,8 @@
 	icon = FA_ICON_GHOST
 	allowed_splats = list(SPLAT_FOMORI)
 	failure_message =  "Your corruption is too strong to hide your powers."
+
+/datum/quirk/darkpack/hidden_power/add()
+	for(var/datum/action/cooldown/power/fomori_power/power in quirk_holder.actions)
+		if(power.fomor_part)
+			power.remove_feature()

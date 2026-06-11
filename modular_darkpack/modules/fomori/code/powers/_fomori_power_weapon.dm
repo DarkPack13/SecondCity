@@ -7,6 +7,8 @@
 
 	feature_bodypart = null // Makes the overlay code skip us unless we define on subtype
 
+	fomor_part = "none" // So code that checks for fomor_part catches us
+
 	var/sheathe_text = "Your skub melts back into your skin."
 
 	var/weapon_type = /obj/item/skub
