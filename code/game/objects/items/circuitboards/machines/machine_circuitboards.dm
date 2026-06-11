@@ -1345,6 +1345,11 @@
 		/obj/item/stack/sheet/glass = 1
 	)
 
+// DARKPACK EDIT ADD START
+/obj/item/circuitboard/machine/hydroponics/tainted
+	build_path = /obj/machinery/hydroponics/constructable/tainted
+// DARKPACK EDIT ADD END
+
 /obj/item/circuitboard/machine/microwave
 	name = "Microwave"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE

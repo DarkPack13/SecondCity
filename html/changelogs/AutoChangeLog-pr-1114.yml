@@ -1,4 +1,4 @@
 author: "FalloutFalcon"
 delete-after: True
 changes:
-  - bugfix: "Occult blood research should now work"
+  - bugfix: "underplates layer above tables again"

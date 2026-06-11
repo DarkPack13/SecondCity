@@ -68,6 +68,7 @@
 	var/alt_tray = FALSE
 	///Soil things
 	var/obj/machinery/hydroponics/soil/current_soil
+	var/mutating_tray = FALSE // DARKPACK EDIT ADD
 
 /obj/machinery/hydroponics/Initialize(mapload)
 	//ALRIGHT YOU DEGENERATES. YOU HAD REAGENT HOLDERS FOR AT LEAST 4 YEARS AND NONE OF YOU MADE HYDROPONICS TRAYS HOLD NUTRIENT CHEMS INSTEAD OF USING "Points".
@@ -177,6 +178,14 @@
 	name = "deluxe hydroponics tray"
 	desc = "A basin used to grown plants in, packed full of cutting-edge technology."
 	circuit = /obj/item/circuitboard/machine/hydroponics/fullupgrade
+
+// DARKPACK EDIT ADD START
+/obj/machinery/hydroponics/constructable/tainted
+	name = "strange hydroponics tray"
+	desc = "A strange modified basic used to grow plants. It has many nozzles and tanks full of bubbling liquid you cant understand."
+	circuit = /obj/item/circuitboard/machine/hydroponics/tainted
+	mutating_tray = TRUE
+// DARKPACK EDIT ADD END
 
 /obj/machinery/hydroponics/constructable/Initialize(mapload)
 	. = ..()
@@ -407,17 +416,22 @@
 			pollinate()
 
 //This is where stability mutations exist now.
-			if(myseed.instability >= 80)
-				traitmutate(myseed.instability - 75) //Scaling odds of a random trait or chemical
-			if(myseed.instability >= 60)
-				if(prob((myseed.instability)/2) && !self_sustaining && LAZYLEN(myseed.mutatelist) && !myseed.get_gene(/datum/plant_gene/trait/never_mutate)) //Minimum 30%, Maximum 50% chance of mutating every age tick when not on autogrow or having Prosophobic Inclination trait.
-					mutatespecie()
-					myseed.set_instability(myseed.instability/2)
-			if(myseed.instability >= 20 && prob(myseed.instability) && !myseed.get_gene(/datum/plant_gene/trait/stable_stats)) //No hardmutation if Symbiotic Resilience trait is present.
-				if(myseed.instability >= 40)
-					hardmutate(stabmut = myseed.instability >= 80 ? 5 : 0)
-				else
-					mutate(stabmut = 0)
+			// DARKPACK EDIT CHANGE START - (Locks mutating through process to a specifc type of tray)
+			if(mutating_tray)
+				if(myseed.instability >= 80)
+					traitmutate(myseed.instability - 75) //Scaling odds of a random trait or chemical
+				if(myseed.instability >= 60)
+					if(prob((myseed.instability)/2) && !self_sustaining && LAZYLEN(myseed.mutatelist) && !myseed.get_gene(/datum/plant_gene/trait/never_mutate)) //Minimum 30%, Maximum 50% chance of mutating every age tick when not on autogrow or having Prosophobic Inclination trait.
+						mutatespecie()
+						myseed.set_instability(myseed.instability/2)
+				if(myseed.instability >= 20 && prob(myseed.instability) && !myseed.get_gene(/datum/plant_gene/trait/stable_stats)) //No hardmutation if Symbiotic Resilience trait is present.
+					if(myseed.instability >= 40)
+						hardmutate(stabmut = myseed.instability >= 80 ? 5 : 0)
+					else
+						mutate(stabmut = 0)
+			else if(myseed.instability >= 20 && prob(myseed.instability) && !myseed.get_gene(/datum/plant_gene/trait/stable_stats))
+				mutate(stabmut = 0)
+			// DARKPACK EDIT CHANGE END
 
 //Health & Age///////////////////////////////////////////////////////////
 
