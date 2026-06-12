@@ -14,3 +14,8 @@
 #define ROLL_ADMIN "admin"
 /// Output is show to no one and is not logged
 #define ROLL_NONE "none"
+
+/// Time at which the roll was recorded
+#define OLD_ROLL_TIME 1
+/// Dice output of the old roll (roll define or just raw number depending on numerical)
+#define OLD_ROLL_OUTPUT 2

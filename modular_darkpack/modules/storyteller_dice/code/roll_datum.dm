@@ -15,7 +15,7 @@
 	var/alert_prefix
 	var/alert_delay
 
-	/// A lazy list of times indexed by a weakref to a mob
+	/// A lazy list of roll results indexed by a weakref to a mob. list(OLD_ROLL_TIME, OLD_ROLL_OUTPUT)
 	var/list/mobs_last_rolled
 	var/reroll_cooldown
 	/// If the roll as a reroll_cooldown, return the mobs stored result if it has one.
@@ -49,7 +49,7 @@
 	if(reroll_cooldown && roll_use_last_result)
 		var/list/old_roll = get_old_roll(roller)
 		if(old_roll)
-			return get_old_roll_result(old_roll)
+			return old_roll[OLD_ROLL_OUTPUT]
 
 	last_sucess_amount = 0
 	last_output_text = list()
@@ -251,7 +251,7 @@
 				continue
 			if(guy != roller)
 				continue
-			if(roll_info[1] + reroll_cooldown > world.time)
+			if(roll_info[OLD_ROLL_TIME] + reroll_cooldown > world.time)
 				return roll_info
 			else
 				mobs_last_rolled.Remove(guy_ref) // Clear rolls that expired
@@ -262,9 +262,6 @@
 		return TRUE
 
 	if(feedback)
-		to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((old_mob_roll[1] + reroll_cooldown - world.time)/10)]s left."))
+		to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((old_mob_roll[OLD_ROLL_TIME] + reroll_cooldown - world.time)/10)]s left."))
 
 	return FALSE
-
-/datum/storyteller_roll/proc/get_old_roll_result(list/old_roll)
-	return old_roll[2]
