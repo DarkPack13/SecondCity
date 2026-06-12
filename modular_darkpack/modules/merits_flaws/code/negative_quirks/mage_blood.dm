@@ -11,6 +11,7 @@
 	if(!kindred_splat)
 		return
 	for(var/datum/action/discipline/action as anything in kindred_splat.powers)
-		if(!istype(action.discipline, /datum/discipline/thaumaturgy))
+		// Unselectable Disciplines have special handling (e.g. Bloodheal) and are excluded
+		if(!istype(action.discipline, /datum/discipline/thaumaturgy) && action.discipline.selectable)
 			kindred_splat.remove_power(action.discipline.type)
 
