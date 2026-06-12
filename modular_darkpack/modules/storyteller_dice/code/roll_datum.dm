@@ -55,7 +55,7 @@
 	last_output_text = list()
 
 	if(!can_roll(roller))
-		return ROLL_FAILURE
+		return ROLL_COOLDOWN
 
 	var/dice_amount = calculate_used_dice(roller, bonus)
 	var/auto_success_amount = calculate_auto_successes(roller)
