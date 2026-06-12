@@ -40,7 +40,7 @@
 ) // DARKPACK EDIT CHANGE - (soak)
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(!forced && unsoakable == FALSE) //If the damage isn't forced and isn't unsoakable, run it through the soak proc. Soak runs before damage mods.
+	if(!forced && unsoakable == FALSE && !HAS_TRAIT(src, TRAIT_NO_SOAK)) //If the damage isn't forced and isn't unsoakable and the target can soak, run it through the soak proc. Soak runs before damage mods.
 		damage = soak_roll(damage, damagetype, def_zone, sharpness, attacking_item, soak_difficulty)
 
 	var/damage_amount = damage
