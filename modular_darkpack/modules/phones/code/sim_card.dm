@@ -21,7 +21,7 @@
 /obj/item/sim_card/Destroy(force)
 	. = ..()
 	SSphones.assigned_phone_numbers.Remove(src)
-	for(var/contact as anything in SSphones.published_phone_numbers)
+	for(var/contact in SSphones.published_phone_numbers)
 		if(SSphones.published_phone_numbers[contact] == phone_number)
 			SSphones.published_phone_numbers.Remove(src)
 	phone_weakref = null

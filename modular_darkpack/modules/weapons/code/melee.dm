@@ -427,6 +427,6 @@
 	masquerade_violating = FALSE
 	custom_price = 1200
 
-/obj/item/darkpack/spear/Initialize()
+/obj/item/darkpack/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 400, "spear", FALSE)

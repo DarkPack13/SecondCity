@@ -2,11 +2,11 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dic
 	M.roll_dice_custom()
 	BLACKBOX_LOG_ADMIN_VERB("Storyteller dice")
 
-/mob/living/verb/roll_dice_custom()
+/mob/living/verb/do_roll_dice_custom()
 	set name = "Roll custom dice"
-	set category = "IC"
-	set desc = "Roll dice!"
+	set hidden = TRUE
 
+/mob/living/proc/roll_dice_custom(atom/movable/roll_target)
 	var/list/allowed_stats = list()
 	for(var/stat_path, dots_in in storyteller_stats)
 		var/datum/st_stat/stat = stat_path
@@ -43,7 +43,25 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(roll_storyteller_dice, R_FUN, "Roll storyteller dic
 	custom_roll.difficulty = difficulty
 	custom_roll.successes_needed = successes_needed
 	custom_roll.roll_output_type = roll_type
-	return custom_roll.st_roll(src, src, bonus_dice)
+	return custom_roll.st_roll(src, roll_target, bonus_dice)
+
 
 /datum/storyteller_roll/custom_roll
 	bumper_text = "custom roll"
+
+#define UI_MOB_DICE_ROLL "EAST-4:22,SOUTH+1:24"
+
+/atom/movable/screen/dice_roll
+	name = "roll custom dice"
+	icon = 'icons/hud/screen_midnight.dmi'
+	icon_state = "dice"
+	screen_loc = UI_MOB_DICE_ROLL
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/atom/movable/screen/dice_roll/Click()
+	. = ..()
+
+	var/mob/living/roller = astype(usr)
+	roller?.roll_dice_custom()
+
+#undef UI_MOB_DICE_ROLL

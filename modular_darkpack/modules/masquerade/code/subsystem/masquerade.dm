@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(masquerade)
  */
 /datum/controller/subsystem/masquerade/proc/masquerade_reinforce(atom/source, mob/living/player_breacher, reason)
 	. = FALSE
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/breach_sources = masquerade_breach[2]
 		var/breach_reasons = masquerade_breach[3]
 
@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(masquerade)
 
 // This is for clearing the round's masquerade because a player matrix'd
 /datum/controller/subsystem/masquerade/proc/matrix_masquerade_breacher(mob/living/player_breacher, update_preferences)
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)
 			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(masquerade)
 /datum/controller/subsystem/masquerade/proc/player_masquerade_reinforce(datum/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])
@@ -166,13 +166,13 @@ SUBSYSTEM_DEF(masquerade)
 	if((masquerade_level != 0) || ending)
 		return
 	ending = TRUE
-	for(var/player as anything in GLOB.player_list)
+	for(var/player in GLOB.player_list)
 		SEND_SOUND(player, 'modular_darkpack/modules/masquerade/sound/masquerade_failure.ogg') //Alerting them of their demise.
 	addtimer(CALLBACK(src, PROC_REF(end_round)), 65 SECONDS)
 
 // Ending the actual round.
 /datum/controller/subsystem/masquerade/proc/end_round()
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])

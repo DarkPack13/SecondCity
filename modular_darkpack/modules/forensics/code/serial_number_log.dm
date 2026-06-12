@@ -3,7 +3,7 @@
 	desc = "Checks all the guns in the placed area then prints their name and numbers on a generated piece of paper!"
 
 // Needs to load AFTER everything else so it properly checks guns in the defined area.
-/obj/effect/mapping_helpers/serial_number_log/Initialize()
+/obj/effect/mapping_helpers/serial_number_log/Initialize(mapload)
 	..()
 	. = INITIALIZE_HINT_LATELOAD
 

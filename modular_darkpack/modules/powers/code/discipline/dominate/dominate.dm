@@ -57,11 +57,11 @@
 	. = ..()
 
 	var/mob/living/carbon/human/dominate_target = target
-	dominate_target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dominate_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dominate.dmi', "dominate", -MUTATIONS_LAYER)
+	dominate_target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dominate_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dominate.dmi', "dominate", -POWERS_LAYER)
 	dominate_overlay.pixel_z = 2
-	dominate_target.overlays_standing[MUTATIONS_LAYER] = dominate_overlay
-	dominate_target.apply_overlay(MUTATIONS_LAYER)
+	dominate_target.overlays_standing[POWERS_LAYER] = dominate_overlay
+	dominate_target.apply_overlay(POWERS_LAYER)
 
 	//dominate compels the target to have their gaze absolutely entrapped by the dominator
 	dominate_target.face_atom(owner)
@@ -177,7 +177,7 @@
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 
 /mob/living/carbon/human/proc/post_dominate_checks(mob/living/carbon/human/dominate_target)
-	dominate_target?.remove_overlay(MUTATIONS_LAYER)
+	dominate_target?.remove_overlay(POWERS_LAYER)
 
 //COMMAND
 /datum/discipline_power/dominate/command
