@@ -16,7 +16,7 @@
 	TEST_ASSERT_EQUAL(mrbones.has_reagent(/datum/reagent/toxin/bonehurtingjuice), FALSE, "Skeleton somehow has bone hurting juice before drinking")
 	TEST_ASSERT_EQUAL(mrbones.has_reagent(/datum/reagent/consumable/milk), FALSE, "Skeleton somehow has milk before drinking")
 
-	mrbones.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(mrbones, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	// Test bone hurting juice reactions
 
