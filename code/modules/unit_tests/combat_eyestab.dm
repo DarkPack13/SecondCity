@@ -6,7 +6,7 @@
 	var/mob/living/carbon/human/consistent/victim = EASY_ALLOCATE()
 	var/obj/item/screwdriver/stabber = EASY_ALLOCATE()
 
-	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	attacker.zone_selected = BODY_ZONE_PRECISE_EYES
 	attacker.put_in_active_hand(stabber, forced = TRUE)

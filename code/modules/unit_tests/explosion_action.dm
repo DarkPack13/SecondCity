@@ -23,7 +23,7 @@
 	var/mob/living/simple_animal/test_simple_animal = allocate(/mob/living/simple_animal)
 	test_simple_animal.maxHealth = MAX_LIVING_HEALTH
 	test_simple_animal.health = MAX_LIVING_HEALTH
-	ADD_TRAIT(test_simple_animal, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(test_simple_animal, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	EX_ACT(test_simple_animal, EXPLODE_NONE) // should do nothing.
 	TEST_ASSERT_EQUAL(test_simple_animal.health, MAX_LIVING_HEALTH, "EX_ACT() with EXPLODE_NONE severity should not affect the health of a simple animal! Something has gone terribly wrong!")
@@ -63,7 +63,7 @@
 	var/mob/living/carbon/alien/test_alien = allocate(/mob/living/carbon/alien)
 	test_alien.maxHealth = MAX_LIVING_HEALTH
 	test_alien.health = MAX_LIVING_HEALTH
-	ADD_TRAIT(test_alien, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(test_alien, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 
 	EX_ACT(test_alien, EXPLODE_NONE) // should do nothing.
@@ -87,7 +87,7 @@
 
 	// Let's check to make sure the armor system works as expected. Corgi dogs are the only one that have this implemented on the basic level, so let's use that.
 	var/mob/living/basic/pet/dog/corgi/test_dog = set_up_test_dog()
-	ADD_TRAIT(test_dog, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(test_dog, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	// those two items should give us a 100% armor rating, so let's test that to make sure it works (all ex_act checks should now be prob(100)), no room for error.
 	EX_ACT(test_dog, EXPLODE_LIGHT) // should do 20 damage (basic animals do a prob() check based on the armor rating, and divide the expected brute loss by 1.5).

@@ -9,7 +9,7 @@
 	victim.put_in_active_hand(chair, forced = TRUE)
 	attacker.set_combat_mode(TRUE)
 	ADD_TRAIT(attacker, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
-	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
 
 	click_wrapper(attacker, victim)
 	TEST_ASSERT_EQUAL(victim.get_brute_loss(), 0, "Victim took damage from being punched despite having a 100% block chance chair in their hands.")
@@ -25,7 +25,7 @@
 	victim.put_in_active_hand(shield, forced = TRUE)
 	attacker.set_combat_mode(TRUE)
 	ADD_TRAIT(attacker, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
-	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
 
 	click_wrapper(attacker, victim)
 	TEST_ASSERT_EQUAL(victim.get_brute_loss(), 0, "Victim took damage from being punched despite having a 100% block chance shield in their hands.")

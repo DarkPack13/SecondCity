@@ -1,7 +1,7 @@
 /// This test is used to make sure a flesh-and-bone base human can suffer all the types of wounds, and that suffering more severe wounds removes and replaces the lesser wound. Also tests that [/mob/living/carbon/proc/fully_heal] removes all wounds
 /datum/unit_test/test_human_base/Run()
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
-	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	/// the limbs have no wound resistance like the chest and head do, so let's go with the r_arm
 	var/obj/item/bodypart/tested_part = victim.get_bodypart(BODY_ZONE_R_ARM)

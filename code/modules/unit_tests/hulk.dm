@@ -7,7 +7,7 @@
 	var/mob/living/carbon/human/hulk = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 
-	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	RegisterSignal(dummy, COMSIG_ATOM_HULK_ATTACK, PROC_REF(hulk_sig_fire))
 	RegisterSignal(dummy, COMSIG_ATOM_ATTACK_HAND, PROC_REF(hand_sig_fire))

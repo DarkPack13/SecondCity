@@ -7,7 +7,7 @@
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/organ/tail/cat/dummy_tail = allocate(/obj/item/organ/tail/cat)
 	dummy_tail.Insert(dummy, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	ADD_TRAIT(dummy, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(dummy, TRAIT_NO_SOAK, ADMIN_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	// SANITY TEST
 
