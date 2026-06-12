@@ -3,7 +3,7 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 
 	puncher.st_set_stat(STAT_STRENGTH, 1) // DARKPACK EDIT ADD
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 	// Avoid all randomness in tests
 	ADD_TRAIT(puncher, TRAIT_PERFECT_ATTACKER, INNATE_TRAIT)
 
@@ -18,7 +18,7 @@
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
 
 
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 
 	tider.put_in_active_hand(toolbox, forced = TRUE)
 	tider.set_combat_mode(TRUE)
@@ -31,7 +31,7 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/weldingtool/welding_tool = allocate(/obj/item/weldingtool)
 
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
 
 	attacker.put_in_active_hand(welding_tool, forced = TRUE)
 	attacker.set_combat_mode(TRUE)
@@ -112,7 +112,7 @@
 
 /datum/unit_test/self_punch/Run()
 	var/mob/living/carbon/human/dummy = allocate(/mob/living/carbon/human/consistent)
-	dummy.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(dummy, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 	ADD_TRAIT(dummy, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
 	dummy.set_combat_mode(TRUE)
 	dummy.ClickOn(dummy)
@@ -126,7 +126,7 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	ADD_TRAIT(attacker, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
 	ADD_TRAIT(attacker, TRAIT_HANDS_BLOCKED, TRAIT_SOURCE_UNIT_TESTS)
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Prevents potential issue with soak absorbing hit and causing this to fail to runtime properly.
 	attacker.set_combat_mode(TRUE)
 	attacker.ClickOn(victim)
 	TEST_ASSERT_EQUAL(victim.get_brute_loss(), 0, "Victim took brute damage from being punched by a handcuffed attacker")
@@ -141,7 +141,7 @@
 /datum/unit_test/handcuff_bite/Run()
 	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
-	victim.st_set_stat(STAT_STAMINA, 0) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
+	ADD_TRAIT(victim, TRAIT_NO_SOAK, TEST_TRAIT) // DARKPACK EDIT ADD //Avoids reading as broken because damage was soaked.
 	ADD_TRAIT(attacker, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS)
 	ADD_TRAIT(attacker, TRAIT_HANDS_BLOCKED, TRAIT_SOURCE_UNIT_TESTS)
 	attacker.set_combat_mode(TRUE)
