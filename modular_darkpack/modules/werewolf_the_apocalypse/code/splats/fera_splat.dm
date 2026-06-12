@@ -226,6 +226,7 @@
 	name = "Corax"
 	id = SPLAT_CORAX
 	splat_traits = list(
+		TRAIT_FERA_FORMS,
 		TRAIT_FERA_FUR,
 		TRAIT_FERA_RENOWN,
 		TRAIT_FERA_FLIGHT,

@@ -174,6 +174,9 @@
 			new /obj/effect/spawner/random/maintenance(src)
 	if(prob(external_trash_chance))
 		new /obj/effect/spawner/random/trash/grime(loc)
+	//artifacts
+	if(prob(CONFIG_GET(number/artifact_crate_probability)))
+		new /obj/effect/spawner/random/occult/artifact(src)
 
 /obj/structure/closet/crate/dumpster/empty
 	internal_trash_chance = 0
@@ -451,7 +454,6 @@
 	name = "underplate"
 	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "underplate"
-	layer = TABLE_LAYER
 	anchored = TRUE
 
 /obj/underplate/stuff
@@ -518,17 +520,6 @@
 	user.do_jitter_animation()
 	sleep(6)
 	user.dir = 2
-
-/obj/structure/fire_barrel
-	name = "barrel"
-	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/fires.dmi'
-	icon_state = "fire_barrel_on_fire"
-	anchored = TRUE
-	density = TRUE
-	light_range = 3
-	light_power = 2
-	light_color = "#ffa800"
 
 /obj/structure/fountain
 	name = "fountain"

@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Corax and Garou fur colors wont override one another"

@@ -22,6 +22,10 @@
 	var/joining_round = !isdummy(target)
 	target.set_auspice(value, joining_round)
 
+/datum/preference/choiced/subsplat/fera_auspice/post_set_preference(mob/user, value)
+	var/datum/subsplat/werewolf/auspice/auspice = get_fera_auspice(value)
+	auspice?.show_lore(user)
+
 /datum/preference/choiced/subsplat/fera_auspice/is_accessible(datum/preferences/preferences)
 	. = ..()
 	var/datum/splat/splat_path = preferences.read_preference(/datum/preference/choiced/splats)
