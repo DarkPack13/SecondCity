@@ -14,7 +14,7 @@
 		'modular_darkpack/modules/decor/sound/stick_snap5.ogg',
 		'modular_darkpack/modules/decor/sound/stick_snap6.ogg')
 
-/obj/effect/mine/stick/Initialize()
+/obj/effect/mine/stick/Initialize(mapload)
 	. = ..()
 	if(!stick_type)
 		stick_type = rand(1,variants)

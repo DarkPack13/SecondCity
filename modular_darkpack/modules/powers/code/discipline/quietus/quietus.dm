@@ -316,12 +316,12 @@
 			target.adjust_blood_points(-transfered)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/quietus_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "quietus", -MUTATIONS_LAYER)
-		H.overlays_standing[MUTATIONS_LAYER] = quietus_overlay
-		H.apply_overlay(MUTATIONS_LAYER)
+		H.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/quietus_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "quietus", -POWERS_LAYER)
+		H.overlays_standing[POWERS_LAYER] = quietus_overlay
+		H.apply_overlay(POWERS_LAYER)
 		spawn(5*level_casting)
-			H.remove_overlay(MUTATIONS_LAYER)
+			H.remove_overlay(POWERS_LAYER)
 */
 
 /datum/discipline_power/quietus/taste_of_death

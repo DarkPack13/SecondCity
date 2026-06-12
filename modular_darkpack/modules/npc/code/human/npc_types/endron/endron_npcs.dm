@@ -4,7 +4,7 @@
 	my_weapon_type = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
 
-/mob/living/carbon/human/npc/endronsecurity/Initialize()
+/mob/living/carbon/human/npc/endronsecurity/Initialize(mapload)
 	. = ..()
 	AssignSocialRole(/datum/socialrole/endronsecurity)
 
@@ -15,7 +15,7 @@
 	my_weapon_type = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
 
-/mob/living/carbon/human/npc/endronlabsecurity/Initialize()
+/mob/living/carbon/human/npc/endronlabsecurity/Initialize(mapload)
 	. = ..()
 	AssignSocialRole(/datum/socialrole/endronlabsecurity)
 
@@ -26,6 +26,6 @@
 	my_weapon_type = /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
 
-/mob/living/carbon/human/npc/endronexecsecurity/Initialize()
+/mob/living/carbon/human/npc/endronexecsecurity/Initialize(mapload)
 	. = ..()
 	AssignSocialRole(/datum/socialrole/endronexecsecurity)
