@@ -29,7 +29,7 @@
 			output_user = contact.name
 	// If we dont have a contact name, refer to the published listings.
 	if(!output_user)
-		for(var/contact as anything in SSphones.published_phone_numbers)
+		for(var/contact in SSphones.published_phone_numbers)
 			if(calling == SSphones.published_phone_numbers[contact])
 				output_user = contact
 	// Not in our contacts or published listings? Then resolve to showing the phone number.

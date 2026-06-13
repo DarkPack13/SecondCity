@@ -167,6 +167,24 @@
 		var/mob/living/carbon/M = target
 		M.Stun(4)
 
+/obj/projectile/bullet/darkpack/dragonsbreath
+	name = "12g shotgun incendiary pellet"
+	damage = 6
+	damage_type = BURN
+	range = 22 //range of where you can see + one screen after
+	armour_penetration = 0
+	exposed_wound_bonus = 0
+	wound_bonus = 0
+	var/fire_stacks = 1 // 1 stack per pellet but we have 9 pellets so it adds up
+
+/obj/projectile/bullet/darkpack/dragonsbreath/on_hit(atom/target, blocked = 0, pierce_hit)
+	. = ..()
+	do_sparks(2, TRUE, src)
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.ignite_mob()
+
 // Crossbow Bolt
 /obj/projectile/bullet/crossbow_bolt
 	name = "bolt"

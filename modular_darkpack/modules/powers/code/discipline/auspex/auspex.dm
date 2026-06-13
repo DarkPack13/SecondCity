@@ -305,7 +305,7 @@
 							if(ROLL_SUCCESS)
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
 							if(ROLL_FAILURE, ROLL_BOTCH)
-								to_chat(span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
+								to_chat(owner, span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
 								disguised_voice = owner.name
 					if("No")
 						disguised_voice = owner.name

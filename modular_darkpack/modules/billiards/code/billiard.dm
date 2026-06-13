@@ -76,7 +76,7 @@
 
 	var/start_with_balls = TRUE
 
-/obj/structure/table/wood/billiard/Initialize()
+/obj/structure/table/wood/billiard/Initialize(mapload)
 	. = ..()
 
 	var/turf/my_turf = get_turf(src)
@@ -135,12 +135,12 @@
 		if(!choice)
 			return ITEM_INTERACT_BLOCKING
 		if(!length(get_balls_on_table(choice)))
-			to_chat(user, span_warning("You cant aim for a [lowertext(choice)] because they are all sunk!"))
+			to_chat(user, span_warning("You cant aim for a [LOWER_TEXT(choice)] because they are all sunk!"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] begins lining up a shot to hit a [lowertext(choice)]."), span_notice("You begin lining up a shot to hit a [lowertext(choice)]."))
+		user.visible_message(span_notice("[user] begins lining up a shot to hit a [LOWER_TEXT(choice)]."), span_notice("You begin lining up a shot to hit a [LOWER_TEXT(choice)]."))
 		if(!do_after(user, 1 TURNS, src))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] strikes a [lowertext(choice)]!"), span_notice("You strike your target!"))
+		user.visible_message(span_notice("[user] strikes a [LOWER_TEXT(choice)]!"), span_notice("You strike your target!"))
 		playsound(src, 'modular_darkpack/modules/billiards/sounds/poolball_strike.ogg', 75)
 
 		var/datum/storyteller_roll/pool_aiming/accuracy_roll = new()

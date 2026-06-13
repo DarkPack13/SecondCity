@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds artifacts to dumpsters and the fishing loot table"

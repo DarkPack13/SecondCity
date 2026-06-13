@@ -18,7 +18,7 @@
 	// Equivlenet to products list if you dont need to pass args. Will likely phase out the evil news in our type path definitions
 	var/list/product_types = list()
 
-/obj/structure/retail/Initialize()
+/obj/structure/retail/Initialize(mapload)
 	. = ..()
 	if(owner_needed == TRUE)
 		my_owner = locate(/mob/living/carbon/human/npc) in range(2, src)

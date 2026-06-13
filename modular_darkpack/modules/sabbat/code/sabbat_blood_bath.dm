@@ -9,7 +9,7 @@
 	var/max_blood = 500
 	var/list/blood_donors = list()
 
-/obj/structure/bath/sabbatbath/Initialize()
+/obj/structure/bath/sabbatbath/Initialize(mapload)
 	. = ..()
 	create_reagents(max_blood, INJECTABLE)
 	update_icon()
