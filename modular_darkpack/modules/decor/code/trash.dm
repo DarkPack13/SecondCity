@@ -7,7 +7,8 @@
 
 /obj/effect/decal/cleanable/trash/Initialize(mapload)
 	. = ..()
-	icon_state = "trash[rand(1, 30)]"
+	if(icon_state == src::icon_state)
+		icon_state = "trash[rand(1, 30)]"
 
 /obj/effect/decal/cleanable/trash/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
@@ -20,7 +21,8 @@
 
 /obj/effect/decal/cleanable/litter/Initialize(mapload)
 	. = ..()
-	icon_state = "paper[rand(1, 6)]"
+	if(icon_state == src::icon_state)
+		icon_state = "paper[rand(1, 6)]"
 
 /obj/effect/decal/cleanable/litter/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
@@ -33,7 +35,8 @@
 
 /obj/effect/decal/cleanable/cardboard/Initialize(mapload)
 	. = ..()
-	icon_state = "cardboard[rand(1, 5)]"
+	if(icon_state == src::icon_state)
+		icon_state = "cardboard[rand(1, 5)]"
 	var/matrix/M = matrix()
 	M.Turn(rand(0, 360))
 	transform = M
