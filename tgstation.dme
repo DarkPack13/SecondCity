@@ -7241,6 +7241,7 @@
 #include "modular_darkpack\modules\decor\code\carwash.dm"
 #include "modular_darkpack\modules\decor\code\cigarette_shelf.dm"
 #include "modular_darkpack\modules\decor\code\city_map.dm"
+#include "modular_darkpack\modules\decor\code\commercial_freezer.dm"
 #include "modular_darkpack\modules\decor\code\decals.dm"
 #include "modular_darkpack\modules\decor\code\decor.dm"
 #include "modular_darkpack\modules\decor\code\fallout_shelter_sign.dm"
