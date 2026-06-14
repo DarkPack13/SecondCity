@@ -192,7 +192,7 @@
 
 /obj/structure/trashbag/Initialize(mapload)
 	. = ..()
-	icon_state = "garbage[rand(7, 9)]"
+	icon_state = "garbage[rand(3, 6)]"
 
 /obj/structure/trashbag/Destroy()
 	new /obj/effect/spawner/random/trash/garbage(loc)
@@ -331,7 +331,7 @@
 
 /obj/structure/barrels
 	name = "barrel"
-	desc = "Storage some liquids."
+	desc = "Store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrel1"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -345,6 +345,38 @@
 	. = ..()
 	icon_state = "barrel[rand(1, 12)]"
 
+/obj/structure/barrels/plural
+	name = "barrels"
+	desc = "Store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "barrels1"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/plural/rand
+	icon_state = "barrels2"
+
+/obj/structure/barrels/plural/rand/Initialize(mapload)
+	. = ..()
+	icon_state = "barrels[rand(1, 18)]"
+
+/obj/structure/barrels/rusty
+	name = "barrels"
+	desc = "Used to store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "rustybarrels1"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/rusty/rand
+	icon_state = "rustybarrels2"
+
+/obj/structure/barrels/plural/rand/Initialize(mapload)
+	. = ..()
+	icon_state = "rustybarrels[rand(1, 6)]"
+
 /obj/structure/bricks
 	name = "bricks"
 	desc = "Building material."
@@ -353,6 +385,43 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+
+/obj/structure/tire
+	name = "tire"
+	desc = "It's a tire."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
+	icon_state = "tire"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/tire/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/elevation, pixel_shift = 14)
+
+/obj/structure/tire/big
+	icon_state = "bigtire"
+	density = TRUE
+
+/obj/structure/tire/big/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
+/obj/structure/pallets
+	name = "pallets"
+	desc = "Great for burning and blocking the player in cheap 2005 FPS games."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway_32x48.dmi'
+	icon_state = "pallets1"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/pallets/rand
+	icon_state = "pallets2"
+
+/obj/structure/pallets/rand/Initialize(mapload)
+	. = ..()
+	if(icon_state = src::icon_state)
+		icon_state = "pallets[rand(1, 2)]"
 
 /obj/effect/decal/pallet
 	name = "pallet"

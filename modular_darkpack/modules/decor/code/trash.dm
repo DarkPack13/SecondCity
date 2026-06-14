@@ -40,3 +40,31 @@
 
 /obj/effect/decal/cleanable/cardboard/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
+
+/obj/effect/decal/cleanable/trash/big
+	name = "trash"
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
+	icon_state = "bigtrash1"
+	clean_type = CLEAN_TYPE_HARD_DECAL
+
+/obj/effect/decal/cleanable/trash/big/Initialize(mapload)
+	. = ..()
+	if(icon_state == src::icon_state)
+		icon_state = "bigtrash[rand(1, 12)]"
+
+/obj/effect/decal/cleanable/trash/big/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
+/obj/effect/decal/cleanable/trash/books
+	name = "trash"
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
+	icon_state = "books1"
+	clean_type = CLEAN_TYPE_HARD_DECAL
+
+/obj/effect/decal/cleanable/trash/big/Initialize(mapload)
+	. = ..()
+	if(icon_state == src::icon_state)
+		icon_state = "books[rand(1, 13)]"
+
+/obj/effect/decal/cleanable/trash/books/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
