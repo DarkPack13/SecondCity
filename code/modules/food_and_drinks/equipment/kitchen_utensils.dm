@@ -22,6 +22,7 @@
 
 /obj/item/kitchen/fork
 	name = "fork"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Pointy."
 	icon_state = "fork"
 	icon_angle = -90
@@ -197,6 +198,7 @@
 
 /obj/item/kitchen/spoon
 	name = "spoon"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Just be careful your food doesn't melt the spoon first."
 	icon_state = "spoon"
 	base_icon_state = "spoon"

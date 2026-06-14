@@ -7,6 +7,7 @@
 // Knife Template, should not appear in game normaly //
 /obj/item/knife
 	name = "knife"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "knife"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
