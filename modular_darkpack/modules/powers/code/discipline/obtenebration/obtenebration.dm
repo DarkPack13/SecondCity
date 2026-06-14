@@ -289,7 +289,7 @@
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
-	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
 	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags |= (PASSDOORS | PASSTABLE | PASSSTRUCTURE) // Phase through doors & fences / tables / machines, dumpsters, barrels, lampposts
 
@@ -312,7 +312,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags &= ~(PASSDOORS | PASSTABLE | PASSSTRUCTURE)
 
