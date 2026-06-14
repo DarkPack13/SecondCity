@@ -4,7 +4,7 @@
 
 /datum/subsplat/werewolf/breed_form/corax/homid
 	name = BREED_CORAX_HOMID
-	start_gnosis = 1
+	start_gnosis = 6
 	breed_species = /datum/species/human/shifter/homid
 	gifts_provided = list(
 		/datum/action/cooldown/power/gift/enemy_ways,
@@ -14,7 +14,7 @@
 
 /datum/subsplat/werewolf/breed_form/corax/corvid
 	name = BREED_CORVID
-	start_gnosis = 5
+	start_gnosis = 6
 	breed_species = /datum/species/human/shifter/feral
 	gifts_provided = list(
 		/datum/action/cooldown/power/gift/enemy_ways,
