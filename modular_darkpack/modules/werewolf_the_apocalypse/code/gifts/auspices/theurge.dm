@@ -26,9 +26,9 @@ the scar is received and an extra Gnosis point is spent.
 
 /datum/action/cooldown/power/gift/mothers_touch/Activate(atom/target)
 	if(!isliving(target))
-		return
+		return FALSE
 	if(!(target in range(1, owner)))
-		return
+		return FALSE
 
 	. = ..()
 
@@ -40,7 +40,6 @@ the scar is received and an extra Gnosis point is spent.
 	living_target.heal_storyteller_health(successes, TRUE, TRUE, TRUE)
 
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
-	StartCooldown()
 	return TRUE
 
 /datum/action/cooldown/power/gift/sense_wyrm
