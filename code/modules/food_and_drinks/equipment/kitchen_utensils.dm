@@ -248,6 +248,10 @@
 
 /obj/item/kitchen/spoon/update_overlays()
 	. = ..()
+	// DARKPACK EDIT ADD START - WORLD_ICON
+	if(item_flags & ACTIVE_WORLD_ICON) // World icons have nothing but the base state atm
+		return
+	// DARKPACK EDIT ADD END
 	if(reagents.total_volume <= 0)
 		return
 	var/mutable_appearance/filled_overlay = mutable_appearance(icon, "[base_icon_state]_filled")
