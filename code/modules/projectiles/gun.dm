@@ -452,6 +452,11 @@
 
 /obj/item/gun/can_trigger_gun(mob/living/user, akimbo_usage)
 	. = ..()
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(!handle_pins(user))
 		return FALSE
 
