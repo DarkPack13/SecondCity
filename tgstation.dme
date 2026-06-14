@@ -7246,6 +7246,7 @@
 #include "modular_darkpack\modules\decor\code\railing.dm"
 #include "modular_darkpack\modules\decor\code\road_signs.dm"
 #include "modular_darkpack\modules\decor\code\signs_city.dm"
+#include "modular_darkpack\modules\decor\code\sleeping_bag.dm"
 #include "modular_darkpack\modules\decor\code\stick.dm"
 #include "modular_darkpack\modules\decor\code\swaying.dm"
 #include "modular_darkpack\modules\decor\code\tables.dm"
