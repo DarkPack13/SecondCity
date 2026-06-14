@@ -91,6 +91,7 @@
 
 /obj/item/knife/kitchen
 	name = "kitchen knife"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "A general purpose Chef's Knife made by Cookoff Incorporated. Guaranteed to stay sharp for years to come." // DARKPACK EDIT CHANGE
 
 /obj/item/knife/plastic
