@@ -3,6 +3,8 @@
 	desc = "Shiny. Is that a hairball?"
 	icon = 'modular_darkpack/modules/decor/icons/grate.dmi'
 	icon_state = "grate"
+	plane = FLOOR_PLANE
+	layer = BELOW_CATWALK_LAYER
 
 /obj/structure/fluff/grate/rusty
 	desc = "Rusty. Is that a hairball?"

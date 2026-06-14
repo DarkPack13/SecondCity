@@ -334,48 +334,48 @@
 	desc = "Store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrel1"
+	base_icon_state = "barrel"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	var/variants = 12
 
 /obj/structure/barrels/rand
 	icon_state = "barrel2"
 
 /obj/structure/barrels/rand/Initialize(mapload)
 	. = ..()
-	icon_state = "barrel[rand(1, 12)]"
+	icon_state = "[base_icon_state][rand(1, variants)]"
 
 /obj/structure/barrels/plural
 	name = "barrels"
 	desc = "Store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrels1"
+	base_icon_state = "barrels"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
-/obj/structure/barrels/plural/rand
+/obj/structure/barrels/rand/plural
 	icon_state = "barrels2"
-
-/obj/structure/barrels/plural/rand/Initialize(mapload)
-	. = ..()
-	icon_state = "barrels[rand(1, 18)]"
+	base_icon_state = "barrels"
+	variants = 18
 
 /obj/structure/barrels/rusty
 	name = "barrels"
 	desc = "Used to store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "rustybarrels1"
+	base_icon_state = "rustybarrels"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
-/obj/structure/barrels/rusty/rand
+/obj/structure/barrels/rand/rusty
 	icon_state = "rustybarrels2"
-
-/obj/structure/barrels/plural/rand/Initialize(mapload)
-	. = ..()
-	icon_state = "rustybarrels[rand(1, 6)]"
+	base_icon_state = "rustybarrels"
+	variants = 6
 
 /obj/structure/bricks
 	name = "bricks"
@@ -420,7 +420,7 @@
 
 /obj/structure/pallets/rand/Initialize(mapload)
 	. = ..()
-	if(icon_state = src::icon_state)
+	if(icon_state == src::icon_state)
 		icon_state = "pallets[rand(1, 2)]"
 
 /obj/effect/decal/pallet

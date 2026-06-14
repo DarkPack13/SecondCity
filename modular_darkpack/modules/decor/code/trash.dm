@@ -3,11 +3,13 @@
 	name = "trash"
 	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "trash1"
+	base_icon_state = "trash"
 	clean_type = CLEAN_TYPE_HARD_DECAL
+	var/variants = 30
 
 /obj/effect/decal/cleanable/trash/Initialize(mapload)
 	. = ..()
-	icon_state = "trash[rand(1, 30)]"
+	icon_state = "[base_icon_state][rand(1, variants)]"
 
 /obj/effect/decal/cleanable/trash/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
@@ -45,26 +47,14 @@
 	name = "trash"
 	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "bigtrash1"
+	base_icon_state = "bigtrash"
 	clean_type = CLEAN_TYPE_HARD_DECAL
-
-/obj/effect/decal/cleanable/trash/big/Initialize(mapload)
-	. = ..()
-	if(icon_state == src::icon_state)
-		icon_state = "bigtrash[rand(1, 12)]"
-
-/obj/effect/decal/cleanable/trash/big/NeverShouldHaveComeHere(turf/here_turf)
-	return isclosedturf(here_turf)
+	variants = 12
 
 /obj/effect/decal/cleanable/trash/books
 	name = "trash"
 	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "books1"
+	base_icon_state = "books"
 	clean_type = CLEAN_TYPE_HARD_DECAL
-
-/obj/effect/decal/cleanable/trash/big/Initialize(mapload)
-	. = ..()
-	if(icon_state == src::icon_state)
-		icon_state = "books[rand(1, 13)]"
-
-/obj/effect/decal/cleanable/trash/books/NeverShouldHaveComeHere(turf/here_turf)
-	return isclosedturf(here_turf)
+	variants = 13
