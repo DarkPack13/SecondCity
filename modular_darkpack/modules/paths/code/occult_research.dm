@@ -41,8 +41,8 @@ SUBSYSTEM_DEF(occult_research)
 
 /mob/living/carbon/human/proc/check_research_points()
 	set name = "Check Research Points"
-	set category = "IC"
 	set desc = "Check your current research point balance."
+	set hidden = TRUE
 
 	if(!get_discipline(/datum/discipline/thaumaturgy))
 		to_chat(src, span_alert("You lack occult knowledge."))

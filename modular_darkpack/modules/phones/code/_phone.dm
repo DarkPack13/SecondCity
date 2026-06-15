@@ -348,7 +348,7 @@
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
 				return
 			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					to_chat(usr, span_danger("Error: This number is already published."))
 					return TRUE
@@ -360,7 +360,7 @@
 			return TRUE
 
 		if("unpublish_number")
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					log_phone("[key_name(usr)] unpublished their number ([contact])/[sim_card.phone_number] from the phonebook.")
 					SSphones.published_phone_numbers.Remove(contact)

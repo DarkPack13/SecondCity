@@ -67,10 +67,10 @@
 	target.visible_message(span_hypnophrase("<b>[owner] hypnotizes [target] with [owner.p_their()] eyes!</b>"), span_warning("<b>[owner] hypnotizes you! Their words seem to become more convincing and hypnotic...</b>"))
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/serpentis_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/serpentis.dmi', "serpentis", -MUTATIONS_LAYER)
-		H.overlays_standing[MUTATIONS_LAYER] = serpentis_overlay
-		H.apply_overlay(MUTATIONS_LAYER)
+		H.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/serpentis_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/serpentis.dmi', "serpentis", -POWERS_LAYER)
+		H.overlays_standing[POWERS_LAYER] = serpentis_overlay
+		H.apply_overlay(POWERS_LAYER)
 	immobilize_target(target)
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/deactivate(mob/living/target)
@@ -78,7 +78,7 @@
 	release_target(target)
 	if (ishuman(target))
 		var/mob/living/carbon/human/human_target = target
-		human_target.remove_overlay(MUTATIONS_LAYER)
+		human_target.remove_overlay(POWERS_LAYER)
 
 //THE TONGUE OF THE ASP
 /datum/discipline_power/serpentis/the_tongue_of_the_asp

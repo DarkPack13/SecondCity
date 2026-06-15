@@ -9,7 +9,7 @@
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
 	var/static/list/ritual_cache = list()
 
-/obj/item/ritual_tome/Initialize()
+/obj/item/ritual_tome/Initialize(mapload)
 	. = ..()
 	if(!rune_type)
 		return

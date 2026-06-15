@@ -10,7 +10,7 @@
 	var/datum/looping_sound/logging_machine/clearing_sound
 	COOLDOWN_DECLARE(printing_noise)
 
-/obj/machinery/logging_machine/Initialize()
+/obj/machinery/logging_machine/Initialize(mapload)
 	. = ..()
 	saved_logs = new()
 	clearing_sound = new(src,  FALSE)

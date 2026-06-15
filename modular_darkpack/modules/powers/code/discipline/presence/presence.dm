@@ -42,11 +42,11 @@
 	return successes
 
 /datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target)
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -POWERS_LAYER)
 	presence_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = presence_overlay
+	target.apply_overlay(POWERS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
 //used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
@@ -128,7 +128,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
-		target.remove_overlay(MUTATIONS_LAYER)
+		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
 // DREAD GAZE
@@ -159,7 +159,20 @@
 /datum/discipline_power/presence/dread_gaze/activate(mob/living/carbon/human/target)
 	. = ..()
 	apply_presence_overlay(target)
-
+	if(successes >= (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))	//We check if you just flat out have more successes than their dice pool total.
+		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? This will take time to preform this extended action to stun and debuff your opponent!", "Terrifying Presence", list("Yes", "No"), "No")
+		switch(extended_action_prompt)
+			if("Yes")
+				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				if(do_after(owner, 3 SECONDS))
+					to_chat(owner, span_warning("You force [target] to cower to your mere presence!"))
+					to_chat(target, span_userdanger("You are consumed with an overhwelming sense of dread, forced to cower before [owner] as even your legs betray you and your very being is rocked to its core!"))
+					target.Stun(1 TURNS)	//~5 seconds
+					target.emote("tremble")	//Shaking emote for visibility
+					target.emote(pick("scream","cry"))	//Audible emote
+					target.apply_status_effect(/datum/status_effect/dread_gaze)	//Debuffs for set time
+				REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				return TRUE
 	if(successes <= 3) // already checked for above 0 in pre_activation
 		to_chat(target, span_userdanger("You are consumed with terror toward [owner]!"))
 		to_chat(owner, span_warning("You've struck terror into [target]'s heart with your dreadful gaze!"))
@@ -168,13 +181,11 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
-		//for(var/i in 1 to 30)
-			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
+		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown)
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // ENTRANCEMENT
 /datum/discipline_power/presence/entrancement
@@ -218,7 +229,7 @@
 
 /datum/discipline_power/presence/entrancement/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // SUMMON
 /datum/discipline_power/presence/summon
@@ -287,7 +298,7 @@
 
 /datum/discipline_power/presence/summon/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	summon_target?.remove_overlay(MUTATIONS_LAYER)
+	summon_target?.remove_overlay(POWERS_LAYER)
 
 // MAJESTY
 /datum/discipline_power/presence/majesty
@@ -347,7 +358,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 	for(var/mob/living/carbon/human/affected_target in affected_targets)
 		if(affected_target)
-			affected_target.remove_overlay(MUTATIONS_LAYER)
+			affected_target.remove_overlay(POWERS_LAYER)
 			to_chat(affected_target, span_hypnophrase("The overwhelming presence of [owner] fades, and your will returns to normal."))
 			REMOVE_TRAIT(affected_target, TRAIT_PACIFISM, "Majesty")
 	affected_targets.Cut()

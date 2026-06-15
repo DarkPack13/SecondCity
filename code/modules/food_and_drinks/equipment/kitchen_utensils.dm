@@ -22,6 +22,7 @@
 
 /obj/item/kitchen/fork
 	name = "fork"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Pointy."
 	icon_state = "fork"
 	icon_angle = -90
@@ -90,6 +91,7 @@
 
 /obj/item/knife/kitchen
 	name = "kitchen knife"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "A general purpose Chef's Knife made by Cookoff Incorporated. Guaranteed to stay sharp for years to come." // DARKPACK EDIT CHANGE
 
 /obj/item/knife/plastic
@@ -197,6 +199,7 @@
 
 /obj/item/kitchen/spoon
 	name = "spoon"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Just be careful your food doesn't melt the spoon first."
 	icon_state = "spoon"
 	base_icon_state = "spoon"
@@ -245,6 +248,10 @@
 
 /obj/item/kitchen/spoon/update_overlays()
 	. = ..()
+	// DARKPACK EDIT ADD START - WORLD_ICON
+	if(item_flags & ACTIVE_WORLD_ICON) // World icons have nothing but the base state atm
+		return
+	// DARKPACK EDIT ADD END
 	if(reagents.total_volume <= 0)
 		return
 	var/mutable_appearance/filled_overlay = mutable_appearance(icon, "[base_icon_state]_filled")
