@@ -340,6 +340,7 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/mustard
+	name = "mustard"
 	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/food/containers.dmi') // DARKPACK EDIT ADD
 	desc = "A spicy and tangy sauce made out of the mustard plant. Great on hotdogs!"
 	icon_state = "mustard"
