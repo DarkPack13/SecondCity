@@ -48,11 +48,11 @@
 /obj/item/sleeping_bag
 	name = "sleeping bag"
 	desc = "A rolled up bed that can be carried around. A bedroll if you will."
-	icon = 'modular_darkpack/modules/decor/icons/bed.dmi'
+	icon = 'modular_darkpack/master_files/icons/obj/bed.dmi'
 	icon_state = "bedroll_inv"
-	inhand_icon_state = "emergencybed" // TODO: Get sprites for these
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	inhand_icon_state = "bedroll"
+	lefthand_file = 'modular_darkpack/master_files/icons/obj/bed_inhand_left.dmi'
+	righthand_file = 'modular_darkpack/master_files/icons/obj/bed_inhand_right.dmi'
 	w_class = WEIGHT_CLASS_NORMAL // No more excuses, stop getting blood everywhere
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/decor/icons/bed_onfloor.dmi')
 

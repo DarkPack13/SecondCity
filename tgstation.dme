@@ -7247,6 +7247,7 @@
 #include "modular_darkpack\modules\decor\code\fallout_shelter_sign.dm"
 #include "modular_darkpack\modules\decor\code\flora.dm"
 #include "modular_darkpack\modules\decor\code\grate.dm"
+#include "modular_darkpack\modules\decor\code\lectern.dm"
 #include "modular_darkpack\modules\decor\code\posters.dm"
 #include "modular_darkpack\modules\decor\code\racks.dm"
 #include "modular_darkpack\modules\decor\code\railing.dm"
