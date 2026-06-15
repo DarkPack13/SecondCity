@@ -1,9 +1,0 @@
-author: "FalloutFalcon, Major00"
-delete-after: True
-changes:
-  - rscadd: "Adds new gifts: Jam Weapon (Children of Gaia), Control Simple Machine (Glasswalker), Hidden Killer (Red Talon), Aura of confidence & Fatal Flaw (Shadow Lords), Speed of Thought (Silent Striders), Bane Protector (BSD)"
-  - rscadd: "Adds some little lesser banes"
-  - qol: "powers that spend willpower log it to chat"
-  - qol: "removes pointless to_chat that just says \"you cast gift\" as most have better built in feedback"
-  - image: "\"Tribe gifts: Part 1\" gifts now have unique icons"
-  - code_imp: "adds signal that code can hook onto to change bonus dice of rolls"
