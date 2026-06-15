@@ -11,9 +11,11 @@
 
 /datum/component/door_ownership/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(try_award_key))
+	RegisterSignal(parent, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM, PROC_REF(add_context))
 
 /datum/component/door_ownership/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_CLICK_ALT)
+	UnregisterSignal(parent, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM)
 
 /datum/component/door_ownership/proc/try_award_key(atom/source, mob/user)
 	SIGNAL_HANDLER
@@ -75,3 +77,10 @@
 	human.received_ownership_keys += ownership_type
 	qdel(src)
 
+/datum/component/door_ownership/proc/add_context(datum/source, list/context, obj/item/held_item, mob/user)
+	SIGNAL_HANDLER
+
+	if(ishuman(user))
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "Claim Keys"
+		return CONTEXTUAL_SCREENTIP_SET
+	return NONE
