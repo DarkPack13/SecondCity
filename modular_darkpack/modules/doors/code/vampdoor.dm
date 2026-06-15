@@ -365,10 +365,12 @@
 /obj/structure/vampdoor/proc/toggle_lock(mob/living/user)
 	playsound(src, lock_sound, 75, TRUE)
 	if(!locked)
-		to_chat(user, span_notice("[src] is now locked."))
+		if(user)
+			to_chat(user, span_notice("[src] is now locked."))
 		locked = TRUE
 	else
-		to_chat(user, span_notice("[src] is now unlocked."))
+		if(user)
+			to_chat(user, span_notice("[src] is now unlocked."))
 		proc_unlock("key")
 		locked = FALSE
 	return TRUE
