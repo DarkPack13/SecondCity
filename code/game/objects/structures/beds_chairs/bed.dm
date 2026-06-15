@@ -11,8 +11,7 @@
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
 	icon_state = "bed"
-	icon = 'icons/obj/bed.dmi'
-	anchored = TRUE
+	icon = 'modular_darkpack/master_files/icons/obj/bed.dmi' // DARKPACK EDIT CHANGE
 	can_buckle = TRUE
 	buckle_lying = 90
 	buckle_dir = SOUTH
