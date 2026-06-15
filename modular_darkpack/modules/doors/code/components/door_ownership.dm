@@ -6,8 +6,15 @@
 
 	if(istype(parent, /obj/darkpack_car))
 		ownership_type = LOCK_OWNERSHIP_CAR
+		var/obj/darkpack_car/car = parent
+		car.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
 	else if(istype(parent, /obj/structure/vampdoor))
 		ownership_type = LOCK_OWNERSHIP_APARTMENT
+		var/obj/structure/vampdoor/door = parent
+		door.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
+	else
+		return COMPONENT_INCOMPATIBLE
+
 
 /datum/component/door_ownership/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(try_award_key))
@@ -80,7 +87,10 @@
 /datum/component/door_ownership/proc/add_context(datum/source, list/context, obj/item/held_item, mob/user)
 	SIGNAL_HANDLER
 
-	if(ishuman(user))
+	var/mob/living/carbon/human/human_user = astype(user)
+	if(human_user)
+		if(ownership_type in human_user.received_ownership_keys)
+			return NONE
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Claim Keys"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
