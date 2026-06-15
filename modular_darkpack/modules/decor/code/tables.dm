@@ -121,7 +121,7 @@
 	var/list/possible_base_icon_states = list("fastfood_table", "fastfood_table_addon1",
 		"fastfood_table_addon2", "fastfood_table_addon3")
 
-/obj/structure/table/countertop/fastfood/rand/Initialize()
+/obj/structure/table/countertop/fastfood/rand/Initialize(mapload)
 	. = ..()
 	icon = pick(possible_icons)
 	icon_state = possible_icon_states[possible_icons.Find(icon)]
