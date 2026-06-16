@@ -54,6 +54,8 @@
 	var/auto_success_amount = calculate_auto_successes(roller)
 	var/used_difficulty = calculate_used_difficulty(roller)
 
+	bonus += SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target)
+
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
 	var/dice_used_text = "[dice_amount] dice"
@@ -94,7 +96,7 @@
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
-	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, output)
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, output)
 	return output
 
 /datum/storyteller_roll/proc/create_balloon_alert(mob/living/roller, mob/player_mob, number)

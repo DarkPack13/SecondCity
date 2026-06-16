@@ -239,6 +239,8 @@
 	cooldown_length = 1 TURNS
 	var/activating = FALSE
 	var/saved_brute_mod = 1
+	var/saved_burn_mod = 1
+	var/saved_aggravated_mod = 1
 	var/saved_clone_mod = 1
 	var/saved_stamina_mod = 1
 	var/saved_brain_mod = 1
@@ -273,8 +275,10 @@
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	saved_brute_mod = owner.physiology.brute_mod
 	owner.physiology.brute_mod = 0
-	//saved_clone_mod = owner.physiology.clone_mod
-	//owner.physiology.clone_mod = 0
+	saved_burn_mod = owner.physiology.burn_mod
+	owner.physiology.burn_mod = 2
+	saved_aggravated_mod= owner.physiology.aggravated_mod
+	owner.physiology.aggravated_mod = 0
 	saved_stamina_mod = owner.physiology.stamina_mod
 	owner.physiology.stamina_mod = 0
 	saved_brain_mod = owner.physiology.brain_mod
@@ -286,6 +290,7 @@
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags |= (PASSDOORS | PASSTABLE | PASSSTRUCTURE) // Phase through doors & fences / tables / machines, dumpsters, barrels, lampposts
 
 
@@ -297,7 +302,8 @@
 	to_chat(owner, span_notice("You return to your normal form."))
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.brute_mod = saved_brute_mod
-	//owner.physiology.clone_mod = saved_clone_mod
+	owner.physiology.burn_mod = saved_burn_mod
+	owner.physiology.aggravated_mod = saved_aggravated_mod
 	owner.physiology.stamina_mod = saved_stamina_mod
 	owner.physiology.brain_mod = saved_brain_mod
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
@@ -307,6 +313,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags &= ~(PASSDOORS | PASSTABLE | PASSSTRUCTURE)
 
 	owner.density = saved_density

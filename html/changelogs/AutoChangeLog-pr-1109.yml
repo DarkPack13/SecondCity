@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - code_imp: "ritual book pulls vars from runes in a same method"

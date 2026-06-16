@@ -152,6 +152,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SMALL_HANDS "small_hands"
 // Traits granted via gifts
 #define TRAIT_RAZOR_CLAWS "razor_claws"
+#define TRAIT_JAMMING_WEAPONS "jamming_weapons"
+#define TRAIT_NATURAL "natural"
+#define TRAIT_AURA_OF_CONFIDENCE "aura_of_confidence"
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
