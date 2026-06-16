@@ -279,7 +279,7 @@
 	alpha = 150
 	duration = 2 SECONDS // Matches the channel time
 
-/obj/effect/temp_visual/inferno_warning/Initialize()
+/obj/effect/temp_visual/inferno_warning/Initialize(mapload)
 	. = ..()
 	// pulsing animation
 	animate(src, alpha = 50, time = 10, loop = -1)

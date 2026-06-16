@@ -114,7 +114,7 @@
 		disc_data["name"] = discipline.name
 		disc_data["desc"] = discipline.desc
 		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
-		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
+		disc_data["rarity"] = (discipline_type in GLOB.rare_discipline_types) ? "rare" : "common"
 		disc_data["icon"] = initial(discipline.icon)
 		disc_data["icon_state"] = discipline.icon_state
 		discipline_cache["[discipline_type]"] = disc_data

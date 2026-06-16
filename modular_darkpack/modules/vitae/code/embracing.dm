@@ -1,13 +1,13 @@
 /mob/living/carbon/human/proc/attempt_embrace_target(mob/living/carbon/human/childe, second_party_embrace)
-	var/chat_message_reciever = src
+	var/chat_message_receiver = src
 	if(second_party_embrace)
-		chat_message_reciever = second_party_embrace
+		chat_message_receiver = second_party_embrace
 	if(!childe.can_be_embraced || !childe.mind)
-		to_chat(chat_message_reciever, span_notice("[childe.name] doesn't respond to the Vitae."))
+		to_chat(chat_message_receiver, span_notice("[childe.name] doesn't respond to the Vitae."))
 		return
 	// If they've been dead for more than 5 minutes, then nothing happens.
 	if(!((childe.timeofdeath + 5 MINUTES) > world.time))
-		to_chat(chat_message_reciever, span_notice("[childe] is totally <b>DEAD</b>!"))
+		to_chat(chat_message_receiver, span_notice("[childe] is totally <b>DEAD</b>!"))
 		return FALSE
 
 	embrace_target(childe, second_party_embrace)

@@ -1,14 +1,16 @@
 //discipline stuff
-var/global/list/RARE_DISCIPLINE_TYPES = list(
+GLOBAL_LIST_INIT(rare_discipline_types, list(
 	/datum/discipline/quietus,
 	/datum/discipline/temporis,
 	/datum/discipline/serpentis,
 	/datum/discipline/dementation,
 	/datum/discipline/obtenebration,
 	/datum/discipline/thaumaturgy,
-	/datum/discipline/necromancy
-	// daimonion, valeren, melpominee not yet implemented but will go here
-)
+	/datum/discipline/necromancy,
+	/datum/discipline/daimoinon,
+	/datum/discipline/valeren,
+	// melpominee not yet implemented but will go here
+))
 
 // warns a player if they have no discipline dots assigned before joining
 // returns TRUE if they want to proceed, FALSE if they want to go back and fix their disciplines
@@ -42,7 +44,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		total++
 		if(!(disc_path in clan_disciplines))
 			additional++
-			if(text2path(disc_path) in RARE_DISCIPLINE_TYPES)
+			if(text2path(disc_path) in GLOB.rare_discipline_types)
 				additional_rare++
 
 	if(!is_trusted)
@@ -197,7 +199,7 @@ var/global/list/RARE_DISCIPLINE_TYPES = list(
 		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
 		disc_data["icon"] = initial(discipline.icon)
 		disc_data["icon_state"] = discipline.icon_state
-		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
+		disc_data["rarity"] = (discipline_type in GLOB.rare_discipline_types) ? "rare" : "common"
 		data["[discipline_type]"] = disc_data
 		qdel(discipline)
 

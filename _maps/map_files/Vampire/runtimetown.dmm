@@ -2388,6 +2388,8 @@
 /obj/structure/vampdoor{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/claimable,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/techshop)
 "Mg" = (

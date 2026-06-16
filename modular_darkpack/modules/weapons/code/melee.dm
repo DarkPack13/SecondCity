@@ -36,6 +36,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	pixel_w = -8
 	custom_price = 1300
+	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()
@@ -427,6 +428,6 @@
 	masquerade_violating = FALSE
 	custom_price = 1200
 
-/obj/item/darkpack/spear/Initialize()
+/obj/item/darkpack/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 400, "spear", FALSE)

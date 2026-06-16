@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Wolf Sight merit properly updates vision"

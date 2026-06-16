@@ -17,7 +17,7 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/insanity.ogg'
 
 /datum/discipline_power/dementation/proc/remove_dementation_overlay(mob/living/carbon/human/target)
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 /*
 From V20:
@@ -71,11 +71,11 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	target.apply_overlay(POWERS_LAYER)
 	target.Stun(duration_length)
 	target.emote(pick("laugh","scream","cry")) // pick a random emotion for them to experience
 	var/attack_text = spooky_font_replace(dementation_phrase) // malk-ify what the attacker said
@@ -87,7 +87,7 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 
 /*
@@ -154,11 +154,11 @@ pools for a turn or two after the manifestation.
 
 /datum/discipline_power/dementation/the_haunting/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	target.apply_overlay(POWERS_LAYER)
 	target.cause_hallucination( \
 			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
 			"the haunting", \
@@ -172,7 +172,7 @@ pools for a turn or two after the manifestation.
 
 /datum/discipline_power/dementation/the_haunting/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 /*
 From V20:
@@ -385,11 +385,11 @@ frenzy or Rötschreck response is automatic.
 		chosen.emote("scream")
 		GLOB.move_manager.move_away(moving = chosen, chasing = owner, max_dist = 10, timeout = (duration_length * 2), delay = chosen.cached_multiplicative_slowdown)
 
-		chosen.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+		chosen.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 		dementation_overlay.pixel_z = 1
-		chosen.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-		chosen.apply_overlay(MUTATIONS_LAYER)
+		chosen.overlays_standing[POWERS_LAYER] = dementation_overlay
+		chosen.apply_overlay(POWERS_LAYER)
 		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length)
 
 /*
@@ -454,11 +454,11 @@ determines the duration.
 /datum/discipline_power/dementation/total_insanity/activate(mob/living/carbon/human/target)
 	. = ..()
 	attack_target = target
-	attack_target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	attack_target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	attack_target.apply_overlay(MUTATIONS_LAYER)
+	attack_target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	attack_target.apply_overlay(POWERS_LAYER)
 
 	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
 	attack_target.cause_hallucination( \

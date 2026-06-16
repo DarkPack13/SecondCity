@@ -88,3 +88,41 @@
 	base_icon_state = "yellowtop_table"
 	smoothing_groups = SMOOTH_GROUP_COLOR_COUNTERTOP
 	canSmoothWith = SMOOTH_GROUP_COLOR_COUNTERTOP
+
+/obj/structure/table/countertop/fastfood
+	icon = 'icons/obj/smooth_structures/darkpack/fastfood_table.dmi'
+	icon_state = "fastfood_table-0"
+	base_icon_state = "fastfood_table"
+	smoothing_groups = SMOOTH_GROUP_FF_TABLES
+	canSmoothWith = SMOOTH_GROUP_FF_TABLES
+
+/obj/structure/table/countertop/fastfood/addon1
+	icon = 'icons/obj/smooth_structures/darkpack/fastfood_table_addon1.dmi'
+	icon_state = "fastfood_table_addon1-0"
+	base_icon_state = "fastfood_table_addon1"
+
+/obj/structure/table/countertop/fastfood/addon2
+	icon = 'icons/obj/smooth_structures/darkpack/fastfood_table_addon2.dmi'
+	icon_state = "fastfood_table_addon2-0"
+	base_icon_state = "fastfood_table_addon2"
+
+/obj/structure/table/countertop/fastfood/addon3
+	icon = 'icons/obj/smooth_structures/darkpack/fastfood_table_addon3.dmi'
+	icon_state = "fastfood_table_addon3-0"
+	base_icon_state = "fastfood_table_addon3"
+
+/obj/structure/table/countertop/fastfood/rand // Should probably use sparingly...
+	var/list/possible_icons = list('icons/obj/smooth_structures/darkpack/fastfood_table.dmi',
+		'icons/obj/smooth_structures/darkpack/fastfood_table_addon1.dmi',
+		'icons/obj/smooth_structures/darkpack/fastfood_table_addon2.dmi',
+		'icons/obj/smooth_structures/darkpack/fastfood_table_addon3.dmi')
+	var/list/possible_icon_states = list("fastfood_table-0", "fastfood_table_addon1-0",
+		"fastfood_table_addon2-0", "fastfood_table_addon3-0")
+	var/list/possible_base_icon_states = list("fastfood_table", "fastfood_table_addon1",
+		"fastfood_table_addon2", "fastfood_table_addon3")
+
+/obj/structure/table/countertop/fastfood/rand/Initialize(mapload)
+	. = ..()
+	icon = pick(possible_icons)
+	icon_state = possible_icon_states[possible_icons.Find(icon)]
+	base_icon_state = possible_base_icon_states[possible_icons.Find(icon)]

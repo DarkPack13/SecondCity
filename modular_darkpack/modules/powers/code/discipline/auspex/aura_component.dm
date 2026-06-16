@@ -65,6 +65,9 @@
 /datum/component/aura/proc/update_emotions(mob/changed_mob, new_emotion)
 	SIGNAL_HANDLER
 
+	if(HAS_TRAIT(changed_mob, TRAIT_AURA_OF_CONFIDENCE))
+		new_emotion = "Confidence"
+
 	if(current_aura == new_emotion)
 		return
 
@@ -93,6 +96,10 @@
 
 /datum/component/aura/proc/update_examine_message(mutable_appearance/aura_appearance)
 	var/mob/parent_mob = parent
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		examine_message = "[parent_mob.p_Their()] aura is swamped in so much superiority nothing else can be made out."
+		return
 
 	switch(current_aura)
 		if(AURA_AFRAID)
@@ -214,6 +221,9 @@
 	holder.color = null
 
 	var/mob/parent_mob = parent
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
 	if(output_color && has_pale_aura(parent_mob))
 		var/list/hsv_color_value = rgb2hsv(output_color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
@@ -273,6 +283,20 @@
 	aura_smoke_image.color = aura_appearance.color
 	aura_smoke_image.alpha = 50
 
+	var/matrix/smoke_transform = matrix()
+	smoke_transform.Scale(1, pick(1.25, 1.5))
+	aura_smoke_image.transform = smoke_transform
+
+	var/matrix/classic_aura_transform = matrix()
+	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
+	aura_classic_image.transform = classic_aura_transform
+
+	holder.vis_contents += aura_classic_image
+	holder.vis_contents += aura_smoke_image
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
 	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE) && !HAS_TRAIT(parent_mob, TRAIT_HIDDEN_DIABLERIE))
 		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "diab", ABOVE_MOB_LAYER + 1, parent_mob, ABOVE_GAME_PLANE)
 		holder.add_overlay(diablerie_image)
@@ -299,17 +323,6 @@
 
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		holder.opacity = holder.opacity * 0.5
-
-	var/matrix/smoke_transform = matrix()
-	smoke_transform.Scale(1, pick(1.25, 1.5))
-	aura_smoke_image.transform = smoke_transform
-
-	var/matrix/classic_aura_transform = matrix()
-	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
-	aura_classic_image.transform = classic_aura_transform
-
-	holder.vis_contents += aura_classic_image
-	holder.vis_contents += aura_smoke_image
 
 
 /datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)

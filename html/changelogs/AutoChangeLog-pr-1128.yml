@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "Characters who have tzimisce selectected internally will not have a zulo preference if not the proper splat"

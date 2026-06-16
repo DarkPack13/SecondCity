@@ -79,7 +79,7 @@
 	resistance_flags = NONE
 	brand = "pentex"
 
-/obj/item/clothing/suit/vampire/darkpack_ert/Initialize()
+/obj/item/clothing/suit/vampire/darkpack_ert/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "suit", FALSE)
 
@@ -108,7 +108,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	brand = "pentex"
 
-/obj/item/clothing/under/vampire/darkpack_ert/Initialize()
+/obj/item/clothing/under/vampire/darkpack_ert/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 100, "undersuit", FALSE)
 
@@ -311,7 +311,7 @@
 	masquerade_violating = TRUE
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
-/obj/item/gun/ballistic/automatic/darkpack/px66f/Initialize()
+/obj/item/gun/ballistic/automatic/darkpack/px66f/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
