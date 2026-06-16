@@ -28,7 +28,7 @@ acuity.*/
 		if("smell")
 			ADD_TRAIT(quirk_holder, TRAIT_KEEN_NOSE, QUIRK_TRAIT)
 		if("sight")
-			ADD_TRAIT(quirk_holder, TRAIT_TRUE_NIGHT_VISION, QUIRK_TRAIT) // Using TRUE night vision as normal night vision appeared the same as normal vision for me
+			ADD_TRAIT(quirk_holder, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
 			human_holder.update_sight()
 			var/obj/item/organ/eyes/good_eyes = human_holder.get_organ_by_type(/obj/item/organ/eyes)
 			if(good_eyes)
@@ -52,7 +52,7 @@ acuity.*/
 		if("smell")
 			REMOVE_TRAIT(quirk_holder, TRAIT_KEEN_NOSE, QUIRK_TRAIT)
 		if("sight")
-			REMOVE_TRAIT(quirk_holder, TRAIT_TRUE_NIGHT_VISION, QUIRK_TRAIT)
+			REMOVE_TRAIT(quirk_holder, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
 			human_holder.update_sight()
 			var/obj/item/organ/eyes/good_eyes = human_holder.get_organ_slot(ORGAN_SLOT_EYES)
 			if(good_eyes)
