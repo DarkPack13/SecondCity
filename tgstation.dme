@@ -7521,6 +7521,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\victim_of_the_masquerade.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\weak_willed.dm"
 #include "modular_darkpack\modules\merits_flaws\code\neutral_quirks\illegal_identity.dm"
+#include "modular_darkpack\modules\merits_flaws\code\positive_quirks\acute_sense.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\beserker.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\blush_of_health_quirk.dm"
 #include "modular_darkpack\modules\merits_flaws\code\positive_quirks\calm_heart.dm"
