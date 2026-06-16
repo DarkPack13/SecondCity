@@ -10,7 +10,7 @@
 /obj/effect/decal/cleanable/trash/Initialize(mapload)
 	. = ..()
 	if(icon_state == src::icon_state)
-	  icon_state = "[base_icon_state][rand(1, variants)]"
+		icon_state = "[base_icon_state][rand(1, variants)]"
 
 /obj/effect/decal/cleanable/trash/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
