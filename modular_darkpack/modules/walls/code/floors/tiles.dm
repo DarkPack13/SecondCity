@@ -22,7 +22,8 @@
 
 /turf/open/floor/city/toilet/Initialize(mapload)
 	. = ..()
-	icon_state = "toilet[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "toilet[rand(1, 9)]"
 
 /turf/open/floor/city/toilet/large
 	name = "plating"
@@ -30,7 +31,8 @@
 
 /turf/open/floor/city/toilet/large/Initialize(mapload)
 	. = ..()
-	icon_state = "toilet_large[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "toilet_large[rand(1, 9)]"
 
 /turf/open/floor/city/clinic
 	name = "plating"
@@ -38,7 +40,8 @@
 
 /turf/open/floor/city/clinic/Initialize(mapload)
 	. = ..()
-	icon_state = "clinic[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "clinic[rand(1, 9)]"
 
 /turf/open/floor/city/factory
 	name = "plating"
@@ -46,7 +49,8 @@
 
 /turf/open/floor/city/factory/Initialize(mapload)
 	. = ..()
-	icon_state = "factory[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "factory[rand(1, 9)]"
 
 /turf/open/floor/city/industrial
 	name = "plating"
@@ -54,7 +58,8 @@
 
 /turf/open/floor/city/industrial/Initialize(mapload)
 	. = ..()
-	icon_state = "industrial[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "industrial[rand(1, 9)]"
 
 /turf/open/floor/city/industrial/large
 	name = "plating"
@@ -62,7 +67,8 @@
 
 /turf/open/floor/city/industrial/large/Initialize(mapload)
 	. = ..()
-	icon_state = "industrial_large[rand(1, 9)]"
+	if(icon_state == src::icon_state)
+		icon_state = "industrial_large[rand(1, 9)]"
 
 /turf/open/floor/city/circled
 	name = "fancy plating"
@@ -70,7 +76,8 @@
 
 /turf/open/floor/city/circled/Initialize(mapload)
 	. = ..()
-	icon_state = "circle[rand(1, 8)]"
+	if(icon_state == src::icon_state)
+		icon_state = "circle[rand(1, 8)]"
 
 /turf/open/floor/city/circled/large
 	name = "fancy plating"
@@ -84,7 +91,8 @@
 
 /turf/open/floor/city/church/Initialize(mapload)
 	. = ..()
-	icon_state = "church[rand(1, 4)]"
+	if(icon_state == src::icon_state)
+		icon_state = "church[rand(1, 4)]"
 
 /turf/open/floor/city/saint
 	name = "fancy plating"
@@ -94,7 +102,8 @@
 
 /turf/open/floor/city/saint/Initialize(mapload)
 	. = ..()
-	icon_state = "saint[rand(1, 2)]"
+	if(icon_state == src::icon_state)
+		icon_state = "saint[rand(1, 2)]"
 
 /turf/open/floor/city/bacotell
 	name = "plating"
@@ -103,7 +112,8 @@
 
 /turf/open/floor/city/bacotell/Initialize(mapload)
 	. = ..()
-	icon_state = "[base_icon_state][rand(1, 4)]"
+	if(icon_state == src::icon_state)
+		icon_state = "[base_icon_state][rand(1, 4)]"
 
 /turf/open/floor/city/gummaguts
 	name = "plating"
@@ -112,7 +122,8 @@
 
 /turf/open/floor/city/gummaguts/Initialize(mapload)
 	. = ..()
-	icon_state = "[base_icon_state][rand(1, 4)]"
+	if(icon_state == src::icon_state)
+		icon_state = "[base_icon_state][rand(1, 4)]"
 
 /turf/open/floor/iron/stairs/black
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
