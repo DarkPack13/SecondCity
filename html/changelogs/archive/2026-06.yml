@@ -43,3 +43,58 @@
   - bugfix: sarcophagus event will now fire only once per round max
   ellie:
   - rscadd: adds dragon's breath shotgun ammo
+2026-06-15:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  Dusk-a:
+  - balance: Gives Corax the proper amount of gnosis they should have
+  FalloutFalcon:
+  - bugfix: Characters who have tzimisce selectected internally will not have a zulo
+      preference if not the proper splat
+  - bugfix: underplates layer above tables again
+  - bugfix: Corax can have form specific flavor text like Garou
+  - bugfix: Corax and Garou fur colors wont override one another
+  - balance: Locks plants mutating behind a "strange" tray. (To be mapped inside pentex
+      labs)
+  - balance: Removes the exotic seed crate from cargo
+  - code_imp: ritual book pulls vars from runes in a same method
+  - balance: Reworks melee to roll damage based off two rolls (to parody the TTRPG
+      and brawl)
+  - balance: Protean claws use brawl
+  - refactor: Removes snowflake protean claws damage buff in favor of generic melee
+      code
+  - bugfix: balefire no longer runtimes
+  FalloutFalcon, Major00:
+  - rscadd: 'Adds new gifts: Jam Weapon (Children of Gaia), Control Simple Machine
+      (Glasswalker), Hidden Killer (Red Talon), Aura of confidence & Fatal Flaw (Shadow
+      Lords), Speed of Thought (Silent Striders), Bane Protector (BSD)'
+  - rscadd: Adds some little lesser banes
+  - qol: powers that spend willpower log it to chat
+  - qol: removes pointless to_chat that just says "you cast gift" as most have better
+      built in feedback
+  - image: '"Tribe gifts: Part 1" gifts now have unique icons'
+  - code_imp: adds signal that code can hook onto to change bonus dice of rolls
+  FalloutFalcon, somniworld:
+  - image: Replaces the corax war form hud icon with a better icon
+  Icarus-The-Sun:
+  - rscadd: Adds Hemophiliac, Lame, Light Sensitive, Permanent Wound, and Short flaws
+  Marshmellow105:
+  - bugfix: fixed stone floors using cave floor icons
+  Stutternov:
+  - rscadd: Adds forced-flee movement to terrifying presence.
+  - rscadd: Adds extended action debuff+stun to terrifying presence.
+  chazzyjazzy:
+  - rscadd: adds artifacts to dumpsters and the fishing loot table
+  dwinters99, Major00, INFRARED_BARON:
+  - rscadd: sleeping bags
+  - rscadd: carwash rollers, torches, and grates (2 kinds)
+  - rscadd: fallout shelter signs (2 kinds)
+  - rscadd: bollards (4 kinds)
+  - image: new urinal sprite
+  - rscadd: new table type + addons
+  - rscadd: cigarette shelves
+  - rscadd: metal rack
+  - rscadd: commercial freezers
+  - image: onfloors for ketchup, mustard, forks, knives, and spoons
+  - rscadd: new trash and alleyway sprites (all by INFRARED_BARON)
+  - rscadd: lectern and pulpit
