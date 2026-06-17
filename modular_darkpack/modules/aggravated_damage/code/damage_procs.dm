@@ -26,6 +26,9 @@
 		updatehealth()
 
 /mob/living/carbon/adjust_agg_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+	if(ismundane(src) && !forced)
+		return adjust_brute_loss(amount, updating_health, forced, required_bodytype)
+
 	if(!can_adjust_agg_loss(amount, forced, required_bodytype))
 		return 0
 	if(amount > 0)
