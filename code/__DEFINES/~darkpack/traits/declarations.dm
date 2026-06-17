@@ -156,6 +156,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NATURAL "natural"
 #define TRAIT_AURA_OF_CONFIDENCE "aura_of_confidence"
 
+/// Mob has had atleast one tooth yanked out while having no method of regenerating it.
+#define TRAIT_TOOTH_PULLED "tooth_pulled"
+
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce
