@@ -8,7 +8,6 @@
 
 	// VTM pg. 280
 	force = 1 TTRPG_DAMAGE
-	/// Grrr this should be twohanded.
 
 	sharpness = SHARP_POINTY
 	attack_verb_continuous = list("pierces", "cuts")
