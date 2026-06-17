@@ -43,7 +43,8 @@
 	desc = "A ritual weapon crafted by the Garou out of silver. This one is HUGE!."
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/weapons/48x32weapons.dmi'
 	icon_state = "klaive_grand"
-	force = 4 TTRPG_DAMAGE // Should be 5 but needs the extra difficulty as part of https://github.com/DarkPack13/SecondCity/pull/1015 to balance it out.
+	force = 5 TTRPG_DAMAGE
+	attack_difficulty = 7
 	w_class = WEIGHT_CLASS_HUGE
 	custom_materials = list(/datum/material/silver = (4 * SHEET_MATERIAL_AMOUNT))
 
