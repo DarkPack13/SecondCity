@@ -392,6 +392,8 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+
+	// WTA pg. 302
 	force = 1 LETHAL_TTRPG_DAMAGE
 	attack_difficulty = 4
 
@@ -455,7 +457,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
-	masquerade_violating = FALSE
 	custom_price = 1200
 
 /obj/item/darkpack/spear/Initialize(mapload)
