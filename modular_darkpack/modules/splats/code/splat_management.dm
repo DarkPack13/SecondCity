@@ -55,7 +55,7 @@
  */
 /mob/living/proc/is_splat_compatible(splat_type)
 	for (var/datum/splat/splat as anything in splats)
-		if (splat_type in splat.incompatible_splats)
+		if (is_type_in_list(splat_type, splat.incompatible_splats))
 			return FALSE
 		if (splat.type == splat_type)
 			return FALSE

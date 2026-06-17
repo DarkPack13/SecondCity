@@ -93,5 +93,6 @@
 /area/vtm/outside/giovanni/courtyard
 	name = "Giovanni Mansion - Courtyard"
 	icon_state = "giovanni"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/giovanni_moldy_old_world.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = FALSE

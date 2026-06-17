@@ -246,7 +246,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "aaS" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "aaT" = (
@@ -8903,7 +8903,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall)
 "aDt" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "aDu" = (
@@ -10150,7 +10150,7 @@
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
 "aHr" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/sewer)
 "aHs" = (

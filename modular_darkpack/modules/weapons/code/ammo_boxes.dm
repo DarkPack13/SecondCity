@@ -104,7 +104,11 @@
 	max_ammo = 60
 
 // 4.6mm HK // DARKPACK TODO: Ammo box for 4.6mm NATO
-///obj/item/ammo_box/darkpack/c46pdw
+/obj/item/ammo_box/darkpack/c46pdw
+	name = "ammo box (4.6mm)"
+	icon_state = "46box"
+	ammo_type = /obj/item/ammo_casing/vampire/c46pdw
+	max_ammo = 100
 
 // 12 Gauge
 /obj/item/ammo_box/darkpack/c12g
@@ -139,6 +143,11 @@
 //	name = "ammo box (12g, 00 buck silver)"
 //	icon_state = "s12box_buck"
 //	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/silver
+
+/obj/item/ammo_box/darkpack/c12g/buck/incendiary
+	name = "ammo box (12g, Dragon's Breath)"
+	icon_state = "12box_dragon"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/incendiary
 
 // Crossbow Bolt
 /obj/item/ammo_box/darkpack/arrows

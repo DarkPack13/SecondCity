@@ -331,6 +331,7 @@
 
 /obj/item/reagent_containers/condiment/ketchup
 	name = "ketchup"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/food/containers.dmi') // DARKPACK EDIT ADD
 	// At time of writing, "ketchup" mechanically, is just ground tomatoes,
 	// rather than // tomatoes plus vinegar plus sugar.
 	desc = "A tomato slurry in a tall plastic bottle. Somehow still vaguely American."
@@ -340,6 +341,7 @@
 
 /obj/item/reagent_containers/condiment/mustard
 	name = "mustard"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/food/containers.dmi') // DARKPACK EDIT ADD
 	desc = "A spicy and tangy sauce made out of the mustard plant. Great on hotdogs!"
 	icon_state = "mustard"
 	list_reagents = list(/datum/reagent/consumable/mustard = 50)

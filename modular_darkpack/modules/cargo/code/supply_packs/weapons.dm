@@ -221,6 +221,13 @@
 	contains = list(/obj/item/ammo_box/darkpack/c12g/silver)
 	crate_name = "ammo crate"
 
+/datum/supply_pack/weapons/ammo12g/incendiary
+	name = "Ammo (12g, Dragon's Breath)"
+	desc = "Contains a box of 12g incendiary shells."
+	cost = 4000
+	contains = list(/obj/item/ammo_box/darkpack/c12g/buck/incendiary)
+	crate_name = "ammo crate"
+
 /datum/supply_pack/weapons/ammo545
 	name = "Ammo (5.45)"
 	desc = "Contains a box of 5.45 ammunition."

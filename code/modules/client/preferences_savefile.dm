@@ -187,8 +187,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 /datum/preferences/proc/update_character_darkpack(current_version, list/save_data)
 	if (current_version < 2)
-		if(read_preference(/datum/preference/choiced/subsplat/garou_breed) == "Metis")
-			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/garou_breed], BREED_CRINOS)
+		if(read_preference(/datum/preference/choiced/subsplat/fera_breed/garou) == "Metis")
+			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/fera_breed/garou], BREED_CRINOS)
 // DARKPACK EDIT ADD END
 
 /// checks through keybindings for outdated unbound keys and updates them

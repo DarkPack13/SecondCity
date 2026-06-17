@@ -13,3 +13,7 @@
 /datum/preference/choiced/subsplat/vampire_clan/apply_to_human(mob/living/carbon/human/target, value)
 	var/joining_round = !isdummy(target)
 	target.set_clan(value, joining_round)
+
+/datum/preference/choiced/subsplat/vampire_clan/post_set_preference(mob/user, value)
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(value)
+	clan?.show_lore(user)
