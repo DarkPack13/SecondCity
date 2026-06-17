@@ -9,7 +9,7 @@
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
 	var/static/list/ritual_cache = list()
 
-/obj/item/ritual_tome/Initialize()
+/obj/item/ritual_tome/Initialize(mapload)
 	. = ..()
 	if(!rune_type)
 		return
@@ -24,10 +24,11 @@
 
 /obj/item/ritual_tome/attack_self(mob/user)
 	. = ..()
-	if(!isliving(user))
+	var/mob/living/reader = astype(user)
+	if(!reader)
 		return
-	var/mob/living/reader = user
-	if(!get_kindred_splat(user) && !get_ghoul_splat(user))
+
+	if(!get_splat_with_discipline(user))
 		if(reader.st_get_stat(STAT_OCCULT) < 3)
 			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
 			return
@@ -43,21 +44,17 @@
 
 		to_chat(user, span_cult("[level] <b>[ritual_name]</b> - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))
 
-/obj/item/ritual_tome/proc/get_ritual_requirements(obj/rune)
-	if(!islist(rune.vars["sacrifices"]))
-		return ""
-
-	var/list/sacrifices = rune.vars["sacrifices"]
-	if(!length(sacrifices))
+/obj/item/ritual_tome/proc/get_ritual_requirements(obj/ritual_rune/rune)
+	if(!islist(rune.sacrifices) || !length(rune.sacrifices))
 		return ""
 
 	var/list/required_items = list()
-	for(var/obj/item/item_type as anything in sacrifices)
+	for(var/obj/item/item_type as anything in rune.sacrifices)
 		required_items += item_type::name
 
 	return required_items.Join("\n")
 
-/obj/item/ritual_tome/proc/get_ritual_level(obj/rune)
-	if(rune.vars["level"])
-		return rune.vars["level"]
+/obj/item/ritual_tome/proc/get_ritual_level(obj/ritual_rune/rune)
+	if(rune.level)
+		return rune.level
 	return ""

@@ -223,7 +223,7 @@
 	if(!is_seen_check())
 		return FALSE
 
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_PERFORMANCE))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 
@@ -313,7 +313,7 @@
 	)
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/pre_activation_checks(atom/target)
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_CHARISMA, STAT_STEALTH))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	return FALSE

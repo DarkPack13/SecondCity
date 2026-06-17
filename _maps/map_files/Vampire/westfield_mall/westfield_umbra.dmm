@@ -1220,7 +1220,7 @@
 /turf/open/water/vamp_sewer,
 /area/vtm/outside/penumbra)
 "si" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/penumbra)
 "sl" = (
