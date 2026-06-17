@@ -57,7 +57,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(src)] has turned [ADMIN_LOOKUPFLW(childe)] into an Abomination through an admin setting the force_abomination var. [second_party_embrace ? "Using [second_party_embrace]'s vitae!" : null]")
 		log_game("[key_name(src)] has turned [key_name(childe)] into an Abomination through an admin setting the force_abomination var. [second_party_embrace ? "Using [second_party_embrace]'s vitae!" : null]")
 	else
-		switch(SSroll.storyteller_roll(childe.auspice.level))
+		switch(SSroll.storyteller_roll_datum(childe.auspice.level))
 			if(ROLL_BOTCH)
 				to_chat(src, span_danger("Something terrible is happening."))
 				to_chat(childe, span_userdanger("Gaia has forsaken you."))

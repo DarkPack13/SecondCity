@@ -19,7 +19,7 @@
 //lets not have people be able to cast this through walls
 
 
-/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, difficulty)
+/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, using_stats, difficulty)
 	if(!ishuman(target))
 		return FALSE
 
@@ -30,7 +30,7 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
+	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -67,6 +67,12 @@
 			sorted += target
 	return sorted
 
+
+/datum/storyteller_roll/presence_awe
+	difficulty = 7
+	applicable_stats = list(STAT_CHARISMA, STAT_PERFORMANCE)
+	numerical = TRUE
+
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
@@ -83,10 +89,10 @@
 	var/list/affected_targets = list()
 
 /datum/discipline_power/presence/awe/pre_activation_checks()
-	.=..()
+	. = ..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/presence_awe)
 	if(successes > 0)
 		return TRUE
 
@@ -149,7 +155,7 @@
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, list(STAT_CHARISMA, STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -203,7 +209,7 @@
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
 
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_EMPATHY))
+	successes = presence_check(owner, target, list(STAT_APPEARANCE, STAT_EMPATHY))
 	if(successes > 0)
 		return TRUE
 
@@ -262,7 +268,7 @@
 
 	//this ability has a difficulty of 4 or 5 or something for people the summoner has met, and 8 for those they've only met briefly.
 	//i thought that was too low and the ability for the misuse of this disc caused me to raise it to 7 difficulty
-	successes = presence_check(owner, summon_target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_SUBTERFUGE), 7)
+	successes = presence_check(owner, summon_target, list(STAT_CHARISMA, STAT_SUBTERFUGE), 7)
 	if(successes > 0)
 		return TRUE
 
@@ -325,8 +331,9 @@
 		if(hearer == owner)
 			continue
 
+		var/roll_difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION)
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), roller = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll_datum(hearer, owner, difficulty = roll_difficulty, applic_stats = list(STAT_COURAGE), numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)

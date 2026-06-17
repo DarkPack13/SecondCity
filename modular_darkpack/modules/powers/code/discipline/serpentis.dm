@@ -106,7 +106,7 @@
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/pre_activation_checks(mob/living/target)
 	. = ..()
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_STRENGTH), 6, owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_STRENGTH), numerical = TRUE)
 	if(successes > 0)
 		return TRUE
 	else

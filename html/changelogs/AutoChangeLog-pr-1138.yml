@@ -1,0 +1,4 @@
+author: "dwinters99"
+delete-after: True
+changes:
+  - code_imp: "randomized trash and SOME randomized turfs now retain icon_state var-edits"

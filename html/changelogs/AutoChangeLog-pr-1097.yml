@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "All discs should now display what stats they rolled with"
+  - bugfix: "scorpions touch poison will properly consider fortitude"
+  - refactor: "replaces `SSroll.storyteller_roll` completly with `SSroll.storyteller_roll_datum`"
