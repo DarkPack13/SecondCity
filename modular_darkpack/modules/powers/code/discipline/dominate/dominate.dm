@@ -105,7 +105,6 @@
 			return TRUE
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
 
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
@@ -113,6 +112,12 @@
 
 	if(HAS_TRAIT(target, TRAIT_WEAK_WILLED))
 		theirpower -= 2
+
+	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
+		theirpower += 2
+
+	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target))) // Are we stinky with a mortal target?
+		theirpower += 1
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
@@ -129,6 +134,15 @@
 	//if anyone else tries to dominate my conditioned servant its much harder for them but not for me
 	if(target.conditioner?.resolve())
 		theirpower += 3
+
+	// Probably a better way to do this.
+	if(theirpower > 2)
+		theirpower = 2
+	if(theirpower < 10)
+		theirpower = 10
+
+	// This var needs to go after everything that changes theirpower.
+	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
 
 	//i've botched so now this person is immune to dominate for the rest of the round
 	if(mypower < 0)

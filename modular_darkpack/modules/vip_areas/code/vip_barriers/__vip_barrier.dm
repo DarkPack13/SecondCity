@@ -126,6 +126,18 @@
 	if(used_badge)
 		involved_social_roll -= 1
 
+	if((!(user.obscured_slots & HIDEFACE))&(HAS_TRAIT(user, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
+		involved_social_roll += 2
+
+	if(HAS_TRAIT(user, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(bouncer))) // our bouncer is probably mortal, but let's check anyways.
+		involved_social_roll += 1
+
+	// Probably a better way to do this.
+	if(involved_social_roll > 2)
+		involved_social_roll = 2
+	if(involved_social_roll < 10)
+		involved_social_roll = 10
+
 	if(!bypass_roll)
 		bypass_roll = new()
 		bypass_roll.bumper_text = "persuade guard"

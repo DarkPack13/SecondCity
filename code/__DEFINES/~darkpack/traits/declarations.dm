@@ -189,6 +189,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_CALM_HEART "calm_heart"
-
+#define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
+#define TRAIT_GRAVE_SMELL "grave_smell"
 
 // END TRAIT DEFINES
