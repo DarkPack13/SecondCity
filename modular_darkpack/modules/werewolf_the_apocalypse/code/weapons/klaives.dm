@@ -36,7 +36,7 @@
 			to_chat(user, span_warning("[src]'s spirit is already awake!"))
 			return
 		if(werewolf_splat)
-			awaken(user)
+			awaken(user, werewolf_splat)
 	else
 		to_chat(user, span_notice("[src]'s is just a dead piece of silver."))
 
