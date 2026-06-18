@@ -197,7 +197,7 @@
 	desc = "This power requires no roll and is always active. Your stony skin has hardened to the point where nearly all damage against you is lessened."
 
 	level = 4
-	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	check_flags = NONE
 
 	vitae_cost = 0
 
@@ -208,9 +208,19 @@
 	if (!owner.is_clan(/datum/subsplat/vampire_clan/gargoyle))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
-/datum/discipline_power/visceratika/armor_of_terra/activate()
+/datum/discipline_power/visceratika/armor_of_terra/post_loss()
+	owner.physiology.brute_mod *= 1.25
+	owner.physiology.heat_mod *= 2
+	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
+	REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
+
+/datum/discipline_power/visceratika/armor_of_terra/can_activate_untargeted(alert)
 	. = ..()
-	to_chat(owner, span_danger("[name] is a passive ability. The effects are already active!"))
+
+	if (alert)
+		to_chat(owner, span_danger("[name] is a passive ability. The effects are already active!"))
+
+	return FALSE
 
 //FLOW WITHIN THE MOUNTAIN
 /datum/discipline_power/visceratika/flow_within_the_mountain
