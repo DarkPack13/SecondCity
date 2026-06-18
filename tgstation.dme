@@ -7811,6 +7811,7 @@
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\chime_of_the_unseen_spirits.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\deflection_wooden_doom.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\donning_the_mask_of_shadows.dm"
+#include "modular_darkpack\modules\ritual_thaumaturgy\rituals\eyes_of_the_night_hawk.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\gargoyle_transformation.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\inscription.dm"
 #include "modular_darkpack\modules\ritual_thaumaturgy\rituals\question_to_the_ancestors.dm"
