@@ -20,10 +20,19 @@
 	armor_type = /datum/armor/item_claymore
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/silver = (2 * SHEET_MATERIAL_AMOUNT))
+	spirit_type = SPIRIT_VENGEANCE
 	var/stirred_spirit = FALSE
 	var/silver_damage = 2
 	var/awakened_force = 3 LETHAL_TTRPG_DAMAGE
 	var/awakened_bonus_silver_damage = 1
+
+/obj/item/occult_artifact/werewolf/klaive/Initialize(mapload)
+	. = ..()
+	spirit_name = generate_spirit_name(spirit_type)
+
+/obj/item/occult_artifact/werewolf/klaive/identify()
+	. = ..()
+	say("I am [spirit_name]... Wield me against your foes...")
 
 /obj/item/occult_artifact/werewolf/klaive/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
