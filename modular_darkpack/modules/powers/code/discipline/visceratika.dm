@@ -229,7 +229,7 @@
 /datum/discipline_power/visceratika/flow_within_the_mountain/can_activate(atom/target, alert)
 	. = ..()
 	if (!.)
-		return.
+		return .
 
 	if(!HAS_TRAIT(owner, TRAIT_BOND_WITHIN_THE_MOUNTAIN))
 		to_chat(owner, span_notice("You must cast Bond with the Mountain before using Flow within the Mountain"))
