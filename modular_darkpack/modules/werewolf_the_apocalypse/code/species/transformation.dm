@@ -17,7 +17,7 @@
 	if(istype(current_form, form_to_transform))
 		return
 	if(!force && !COOLDOWN_FINISHED(src, transform_cd))
-		to_chat(owner, span_warning("Your shifting is on cooldown for one turn."))
+		to_chat(owner, span_warning("Your shifting is on cooldown for [DisplayTimeText(COOLDOWN_TIMELEFT(src, transform_cd))]."))
 		return
 
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))
@@ -86,6 +86,14 @@
 
 /datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform, time_taken = DOGGY_ANIMATION_TIME)
 	animate(owner, transform = null, color = "#FFFFFF", time = time_taken * 0.1)
+
+	// Hacky fix for angle getting messed up when transforming into a human while resting
+	if (owner.body_position == LYING_DOWN && ispath(form_to_transform, /datum/species/human/shifter/homid))
+		var/previous_angle = owner.set_lying_angle(0)
+		owner.set_species(form_to_transform)
+		owner.set_lying_angle(previous_angle)
+		return
+
 	owner.set_species(form_to_transform)
 
 /datum/splat/werewolf/shifter/proc/is_breed_form()

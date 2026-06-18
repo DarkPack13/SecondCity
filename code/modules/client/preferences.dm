@@ -260,6 +260,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 				preference_middleware.post_set_preference(ui.user, requested_preference_key, value)
+			requested_preference.post_set_preference(ui.user, value) // DARKPACK EDIT ADD - SPLATS - (lore primers)
 			return TRUE
 		if ("set_color_preference")
 			var/requested_preference_key = params["preference"]

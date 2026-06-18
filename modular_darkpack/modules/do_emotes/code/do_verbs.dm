@@ -1,6 +1,6 @@
 /mob/verb/do_verb()
 	set name = "Do"
-	set category = "IC"
+	set hidden = TRUE
 	if(GLOB.say_disabled) // This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -44,9 +44,9 @@
 		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers))
 			to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [span_emote(message_with_name)]")
 
-	for(var/mob/reciever in viewers)
-		name_stub = " (<b>[GET_GUESTBOOK_NAME(reciever, user)]</b>)"
+	for(var/mob/receiver in viewers)
+		name_stub = " (<b>[GET_GUESTBOOK_NAME(receiver, user)]</b>)"
 		message_with_name = message + name_stub
-		reciever.show_message(span_emote(message_with_name), alt_msg = span_emote(message_with_name))
-		if (reciever.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
-			reciever.create_chat_message(user, null, message, null, EMOTE_MESSAGE)
+		receiver.show_message(span_emote(message_with_name), alt_msg = span_emote(message_with_name))
+		if (receiver.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
+			receiver.create_chat_message(user, null, message, null, EMOTE_MESSAGE)

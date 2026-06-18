@@ -17,7 +17,7 @@
 	activate_sound = 'modular_darkpack/modules/deprecated/sounds/insanity.ogg'
 
 /datum/discipline_power/dementation/proc/remove_dementation_overlay(mob/living/carbon/human/target)
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 /*
 From V20:
@@ -57,7 +57,7 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/pre_activation_checks(mob/living/carbon/human/target)
 	//var/theirpower = target.st_get_stat(STAT_MORALITY)
-	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + target.st_get_stat(STAT_EMPATHY), 6, owner)
+	var/mypower = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_CHARISMA, STAT_EMPATHY))
 	switch(mypower)
 		if(ROLL_FAILURE, ROLL_BOTCH)
 			to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
@@ -71,11 +71,11 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	target.apply_overlay(POWERS_LAYER)
 	target.Stun(duration_length)
 	target.emote(pick("laugh","scream","cry")) // pick a random emotion for them to experience
 	var/attack_text = spooky_font_replace(dementation_phrase) // malk-ify what the attacker said
@@ -87,7 +87,7 @@ Presence powers, etc
 
 /datum/discipline_power/dementation/passion/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 
 /*
@@ -142,7 +142,7 @@ pools for a turn or two after the manifestation.
 	if(get_kindred_splat(target))
 		resistence_stat = target.st_get_stat(owner.is_enlightenment() ? STAT_CONVICTION : STAT_SELF_CONTROL)
 	var/theirpower = target.st_get_stat(STAT_PERCEPTION) + resistence_stat
-	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_SUBTERFUGE), theirpower, owner, numerical = TRUE)
+	mypower = SSroll.storyteller_roll_datum(owner, difficulty = theirpower, applic_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE), numerical = TRUE)
 	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to influence!"))
 		return FALSE
@@ -154,11 +154,11 @@ pools for a turn or two after the manifestation.
 
 /datum/discipline_power/dementation/the_haunting/activate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	target.apply_overlay(POWERS_LAYER)
 	target.cause_hallucination( \
 			get_random_valid_hallucination_subtype(/datum/hallucination/delusion/preset), \
 			"the haunting", \
@@ -172,7 +172,7 @@ pools for a turn or two after the manifestation.
 
 /datum/discipline_power/dementation/the_haunting/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 /*
 From V20:
@@ -270,7 +270,7 @@ Methuselah.”
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
-	var/mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_OCCULT), 7, owner, numerical = FALSE)
+	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	switch(mypower)
 		if(ROLL_SUCCESS)
 			return TRUE
@@ -356,7 +356,7 @@ normal. If the roll to invoke this power is a botch, the
 frenzy or Rötschreck response is automatic.
 */
 /datum/discipline_power/dementation/voice_of_madness/pre_activation_checks(mob/living/target)
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_EMPATHY), 7, owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_EMPATHY), numerical = TRUE)
 	if(successes >= 0)
 		dementation_phrase = tgui_input_text(owner, "What will you say to cause people nearby to flee?")
 		if(!dementation_phrase)
@@ -385,11 +385,11 @@ frenzy or Rötschreck response is automatic.
 		chosen.emote("scream")
 		GLOB.move_manager.move_away(moving = chosen, chasing = owner, max_dist = 10, timeout = (duration_length * 2), delay = chosen.cached_multiplicative_slowdown)
 
-		chosen.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+		chosen.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 		dementation_overlay.pixel_z = 1
-		chosen.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-		chosen.apply_overlay(MUTATIONS_LAYER)
+		chosen.overlays_standing[POWERS_LAYER] = dementation_overlay
+		chosen.apply_overlay(POWERS_LAYER)
 		addtimer(CALLBACK(src, PROC_REF(remove_dementation_overlay), chosen), duration_length)
 
 /*
@@ -430,7 +430,7 @@ determines the duration.
 
 /datum/discipline_power/dementation/total_insanity/pre_activation_checks(mob/living/carbon/human/target)
 	theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
-	mypower = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_INTIMIDATION), theirpower, owner, numerical = TRUE)
+	mypower = SSroll.storyteller_roll_datum(owner, difficulty = theirpower, applic_stats = list(STAT_MANIPULATION, STAT_INTIMIDATION), numerical = TRUE)
 	if(mypower <= 0)
 		to_chat(owner, span_warning("[target]'s mind is too powerful to corrupt!"))
 		return FALSE
@@ -454,11 +454,11 @@ determines the duration.
 /datum/discipline_power/dementation/total_insanity/activate(mob/living/carbon/human/target)
 	. = ..()
 	attack_target = target
-	attack_target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -MUTATIONS_LAYER)
+	attack_target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/dementation_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/dementation.dmi', "dementation", -POWERS_LAYER)
 	dementation_overlay.pixel_z = 1
-	attack_target.overlays_standing[MUTATIONS_LAYER] = dementation_overlay
-	attack_target.apply_overlay(MUTATIONS_LAYER)
+	attack_target.overlays_standing[POWERS_LAYER] = dementation_overlay
+	attack_target.apply_overlay(POWERS_LAYER)
 
 	addtimer(CALLBACK(src, PROC_REF(self_attack), max(mypower)), 0) // attack_target will attack themselves n times equaling the caster's manipulation + intimidation subtracted by the attack_target's willpower
 	attack_target.cause_hallucination( \

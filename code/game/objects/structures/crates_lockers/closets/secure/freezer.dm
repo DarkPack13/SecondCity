@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/master_files/icons/obj/storage/closet32x32.dmi' // DARKPACK EDIT ADD
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	// DARKPACK EDIT CHANGE START
+	base_icon_state = "freezer"
 	door_anim_time = 0
 	enable_door_overlay = FALSE
 	has_opened_overlay = FALSE
@@ -23,7 +24,7 @@
 // DARKPACK EDIT ADD START - handles fridge open/close states since parent type handles it alot differently
 /obj/structure/closet/secure_closet/freezer/update_icon_state()
 	. = ..()
-	icon_state = opened ? "freezeropen" : "freezer"
+	icon_state = opened ? "[base_icon_state]open" : "[base_icon_state]"
 // DARKPACK EDIT ADD END
 
 /obj/structure/closet/secure_closet/freezer/process_internal_air(seconds_per_tick)

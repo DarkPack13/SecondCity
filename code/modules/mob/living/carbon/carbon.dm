@@ -61,17 +61,9 @@
 // DARKPACK EDIT ADD START
 		if(isliving(thrower))
 			var/mob/living/attacker = thrower
-			var/attacker_strengthbrawl = attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)
-			var/attacker_dexathletics = attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_ATHLETICS)
-			var/attacker_keephigher = max(attacker_strengthbrawl, attacker_dexathletics)
 
-			var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
-			var/victim_stambrawl = victim_stamina + victim.st_get_stat(STAT_BRAWL)
-			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
-			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
-
-			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, roller = thrower, numerical = TRUE)
-			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, roller = victim, numerical = TRUE)
+			var/attacker_roll = SSroll.storyteller_roll_datum(attacker, victim, /datum/storyteller_roll/tackle_attacker)
+			var/victim_roll = SSroll.storyteller_roll_datum(victim, attacker, /datum/storyteller_roll/tackle_defender)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE
@@ -213,14 +205,15 @@
  * @param {number} breakouttime - The time it takes to break the cuffs. Use SECONDS/MINUTES defines
  * @param {number} cuff_break - Speed multiplier, 0 is default, see _DEFINES\combat.dm
  */
-/mob/living/carbon/proc/cuff_resist(obj/item/cuffs, breakouttime = 1 MINUTES, cuff_break = 0)
+/mob/living/carbon/proc/cuff_resist(obj/item/cuffs, breakouttime = null, cuff_break = 0)
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(cuffs.item_flags & BEING_REMOVED)
 		to_chat(src, span_warning("You're already attempting to remove [cuffs]!"))
 		return
 	cuffs.item_flags |= BEING_REMOVED
-	breakouttime = cuffs.breakouttime
+	if (isnull(breakouttime))
+		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [cuffs]!"))
 		to_chat(src, span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
@@ -745,7 +738,6 @@
 		clear_mood_event("handcuffed")
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_worn_handcuffs()
-	update_hud_handcuffed()
 
 /mob/living/carbon/revive(full_heal_flags = NONE, excess_healing = 0, force_grab_ghost = FALSE)
 	if(excess_healing)
@@ -984,6 +976,7 @@
 			var/obj/item/bodypart/stump = new old_bodypart.stump_typepath()
 			stump.bodyshape = old_bodypart.bodyshape
 			stump.bodytype = old_bodypart.bodytype
+			stump.add_biostate(old_bodypart.biological_state & ~BIO_JOINTED)
 			if(!stump.try_attach_limb(src, special = TRUE))
 				// the only way this can happen is if the stump is rejected via signal
 				// not much we can do about that besides hope they know what they're doing

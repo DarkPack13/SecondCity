@@ -4,3 +4,7 @@
 
 	/// If set to TRUE, only apply preference to the mob if it acctually shows up on there sheet
 	var/must_be_accessible = FALSE
+
+/datum/preference/proc/post_set_preference(mob/user, value)
+	SHOULD_CALL_PARENT(FALSE)
+	return
