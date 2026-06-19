@@ -17,6 +17,7 @@
 		TRAIT_UNAGING,
 		TRAIT_DRINKS_BLOOD,
 		TRAIT_PALE_AURA,
+		TRAIT_SCARRING_RESISTANT,
 	)
 	splat_actions = list(
 		/datum/action/cooldown/mob_cooldown/give_vitae,

@@ -102,7 +102,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 // Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
 #define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
-
+#define TRAIT_SCARRING_RESISTANT "scarring_resistant"// Temporal scars wont save
 
 // Allows the user to pass through doors
 #define TRAIT_IN_FRENZY "in_frenzy"
