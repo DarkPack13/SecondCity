@@ -96,7 +96,7 @@
 	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/obtenebration/shroud_of_night/pre_activation_checks(atom/target)
-	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT), 7, owner))
+	if(SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT)))
 		return TRUE
 	return FALSE
 
@@ -124,7 +124,6 @@
 /datum/discipline_power/obtenebration/arms_of_the_abyss/activate(atom/target)
 	. = ..()
 	var/turf/target_turf = get_turf(target)
-	var/dice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT))
 
 	if(target_turf && target_turf.get_lumcount() <= 0.4)
 		// Remove any existing tentacles first
@@ -134,7 +133,7 @@
 				qdel(T)
 		active_tentacles.Cut()
 
-		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
+		var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT), numerical = TRUE)
 		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
 
 		if(!has_action)
@@ -200,7 +199,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_COURAGE), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_COURAGE))
 	switch(roll)
 		if(ROLL_SUCCESS)
 			successful = TRUE
