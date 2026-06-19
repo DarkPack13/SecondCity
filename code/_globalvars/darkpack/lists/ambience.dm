@@ -87,7 +87,10 @@ GLOBAL_LIST_INIT(sewer_ambience, list(
 	'modular_darkpack/modules/ambience/sounds/nature/rat_squeak_08.ogg',
 ))
 
-GLOBAL_LIST_INIT(office_ambience, list())
+GLOBAL_LIST_INIT(office_ambience, list(
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/wood_creak_01.ogg',
+	'modular_darkpack/modules/ambience/sounds/city_oneshots/wood_creak_02.ogg',
+))
 
 GLOBAL_LIST_INIT(tower_ambience, list(
 	'modular_darkpack/modules/ambience/sounds/city_oneshots/woodtower_creak_01.ogg',
