@@ -141,7 +141,7 @@
 		/obj/item/trash/ready_donk = 1,
 		/obj/item/trash/tray = 1,
 		*/
-		 // DARKPACK EDIT ADD START
+		// DARKPACK EDIT ADD START
 		/obj/item/trash/vampirebar = 5,
 		/obj/item/trash/chips = 10,
 		/obj/item/trash/vampirenugget = 1,
