@@ -1,5 +1,6 @@
 /datum/keybinding/client/communication/subtle
 	hotkey_keys = list(UNBOUND_KEY)
+	name = "Subtle"
 	full_name = "Subtle Emote"
 	keybind_signal = COMSIG_KB_CLIENT_SUBTLE_DOWN
 
@@ -12,10 +13,11 @@
 
 /datum/keybinding/client/communication/subtler
 	hotkey_keys = list(UNBOUND_KEY)
+	name = "Subtler"
 	full_name = "Subtler Anti-Ghost"
 	keybind_signal = COMSIG_KB_CLIENT_SUBTLER_ANTIGHOST_DOWN
 
-/datum/keybinding/client/communication/subtle/down(client/user, turf/target, mousepos_x, mousepos_y)
+/datum/keybinding/client/communication/subtler/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
 	if(.)
 		return

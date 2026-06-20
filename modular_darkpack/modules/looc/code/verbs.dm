@@ -7,7 +7,7 @@
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg))
 
 /client/verb/looc_wallpierce(msg as text)
-	set name = "LOOC (Wallpierce)"
+	set name = VERB_LOOC_WALLPIERCE
 	set desc = "Local OOC, seen by anyone within 7 tiles of you."
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg, TRUE))

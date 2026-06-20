@@ -18,7 +18,7 @@
 
 /datum/keybinding/client/communication/looc_wallpierce
 	hotkey_keys = list("ShiftL")
-	name = LOOC_CHANNEL
+	name "LOOC Wallpierce"
 	full_name = "Local OOC Wallpierce (LOOC)"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_WALLPIERCE_DOWN
 
@@ -26,5 +26,5 @@
 	. = ..()
 	if(.)
 		return
-	user.looc_wallpierce()
+	winset(user, null, "command=[VERB_LOOC_WALLPIERCE]")
 	return TRUE

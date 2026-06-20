@@ -22,4 +22,5 @@
 
 
 #define VERB_LOOC "LOOC"
+#define VERB_LOOC_WALLPIERCE "LOOC (Wallpierce)"
 #define VERB_DO "Do"
