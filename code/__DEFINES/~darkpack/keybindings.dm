@@ -18,7 +18,7 @@
 
 // SUBTLE_EMOTES
 #define COMSIG_KB_CLIENT_SUBTLE_DOWN "keybinding_client_subtle_down"
-#define COMSIG_KB_CLIENT_SUBTLE_ANITGHOST_DOWN "keybinding_client_subtle_antighost_down"
+#define COMSIG_KB_CLIENT_SUBTLER_ANTIGHOST_DOWN "keybinding_client_subtler_antighost_down"
 
 
 #define VERB_LOOC "LOOC"
