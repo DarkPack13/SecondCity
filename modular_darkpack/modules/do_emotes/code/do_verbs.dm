@@ -6,12 +6,12 @@
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, emote), "do_emote", NONE, message, TRUE), SSspeech_controller)
+	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, emote), "custom_do", NONE, message, TRUE), SSspeech_controller)
 
 
 /datum/emote/living/custom/do_emote
-	key = "do_emote"
-	key_third_person = "do_emote"
+	key = "custom_do"
+	key_third_person = "custom_do"
 	message = null
 
 

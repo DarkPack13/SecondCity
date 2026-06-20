@@ -6,11 +6,9 @@
 #define SUBTLE_ONE_TILE_TEXT "1-Tile Range"
 #define SUBTLE_SAME_TILE_TEXT "Same Tile"
 
-/datum/emote/living/subtle
+/datum/emote/living/custom/subtle
 	key = "subtle"
 	key_third_person = "subtle"
-	message = null
-	mob_type_blacklist_typecache = list(/mob/living/brain)
 
 // DARKPACK TODO: Replace to be in line with the rest of our talking sound
 /datum/preference/toggle/subtler_sound
@@ -28,7 +26,7 @@
 /datum/log_category/subtle
 	category = LOG_CATEGORY_SUBTLE
 
-/datum/emote/living/subtle/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/custom/subtle/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
 		to_chat(user, span_warning("You can't emote at this time."))
 		return FALSE
@@ -87,13 +85,11 @@
 *	SUBTLE 2: NO GHOST BOOGALOO
 */
 
-/datum/emote/living/subtler
+/datum/emote/living/custom/subtler
 	key = "subtler"
 	key_third_person = "subtler"
-	message = null
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
-/datum/emote/living/subtler/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/custom/subtler/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
 		to_chat(user, span_warning("You can't emote at this time."))
 		return FALSE
