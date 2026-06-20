@@ -1,16 +1,14 @@
 #define LOOC_RANGE 7
 
 /client/verb/looc(msg as text)
-	set name = "LOOC"
+	set name = VERB_LOOC
 	set desc = "Local OOC, seen only by those in view."
-	set category = "OOC"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg))
 
 /client/verb/looc_wallpierce(msg as text)
 	set name = "LOOC (Wallpierce)"
 	set desc = "Local OOC, seen by anyone within 7 tiles of you."
-	set category = "OOC"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg, TRUE))
 

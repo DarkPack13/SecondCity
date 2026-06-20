@@ -11,7 +11,15 @@
 
 // LOOC
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
+#define COMSIG_KB_CLIENT_LOOC_WALLPIERCE_DOWN "keybinding_client_looc_wallpierce_down"
 
 // DO_EMOTES
 #define COMSIG_KB_CLIENT_DO_DOWN "keybinding_client_do_down"
-#define COMSIG_KB_CLIENT_DO_LONGER_DOWN "keybinding_client_do_longer_down"
+
+// SUBTLE_EMOTES
+#define COMSIG_KB_CLIENT_SUBTLE_DOWN "keybinding_client_subtle_down"
+#define COMSIG_KB_CLIENT_SUBTLE_ANITGHOST_DOWN "keybinding_client_subtle_antighost_down"
+
+
+#define VERB_LOOC "LOOC"
+#define VERB_DO "Do"

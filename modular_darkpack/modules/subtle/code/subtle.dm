@@ -91,7 +91,7 @@
 	key = "subtler"
 	key_third_person = "subtler"
 	message = null
-	mob_type_blacklist_typecache = list(/mob/living/brain)
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/subtler/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
@@ -188,25 +188,32 @@
 *	VERB CODE
 */
 
-/mob/living/verb/subtle_verb()
+/mob/verb/subtle_verb(message as text)
 	set name = "Subtle"
-	set category = "IC"
-	if(GLOB.say_disabled)	// This is here to try to identify lag problems
+
+	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "subtle"))
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, emote), "subtle", NONE, message, TRUE), SSspeech_controller)
 
 /*
 *	VERB CODE 2
 */
 
-/mob/living/verb/subtler_verb()
+/mob/verb/subtler_verb(message as text)
 	set name = "Subtler Anti-Ghost"
-	set category = "IC"
-	if(GLOB.say_disabled)	// This is here to try to identify lag problems
+
+	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(emote), "subtler"))
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, emote), "subtler", NONE, message, TRUE), SSspeech_controller)
+
 
 #undef SUBTLE_DEFAULT_DISTANCE
 #undef SUBTLE_MESSAGE_LEN
