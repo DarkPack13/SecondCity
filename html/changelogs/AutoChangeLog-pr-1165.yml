@@ -1,0 +1,4 @@
+author: "Ambrose997"
+delete-after: True
+changes:
+  - bugfix: "Daimonori damage now also applies to the blood curse ritual."
