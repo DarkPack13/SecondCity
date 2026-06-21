@@ -129,14 +129,11 @@
 	if((!(user.obscured_slots & HIDEFACE))&(HAS_TRAIT(user, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
 		involved_social_roll += 2
 
-	if(HAS_TRAIT(user, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(bouncer))) // our bouncer is probably mortal, but let's check anyways.
-		involved_social_roll += 1
-
-	// Probably a better way to do this.
-	if(involved_social_roll > 2)
-		involved_social_roll = 2
-	if(involved_social_roll < 10)
-		involved_social_roll = 10
+	if(!get_kindred_splat(bouncer))// our bouncer is probably mortal, but let's check anyways.
+		if(HAS_TRAIT(user, TRAIT_GRAVE_SMELL))
+			involved_social_roll += 1
+		if((HAS_TRAIT(user, TRAIT_GLOWING_EYES)) && (!user.is_eyes_covered()) && (used_stat == STAT_INTIMIDATION))
+			involved_social_roll -= 1
 
 	if(!bypass_roll)
 		bypass_roll = new()

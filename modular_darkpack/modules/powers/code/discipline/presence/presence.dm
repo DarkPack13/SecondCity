@@ -34,14 +34,11 @@
 	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
 		theirpower += 2 // Increase the difficulty by two.
 
-	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target))) // Are we stinky with a mortal target?
-		theirpower +=1
-
-	// Probably a better way to do this.
-	if(theirpower > 2)
-		theirpower = 2
-	if(theirpower < 10)
-		theirpower = 10
+	if(!get_kindred_splat(target)) // Is our target mortal?
+		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
+			theirpower += 1
+		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in using_stats)) // Are we intimidating a mortal with uncovered eyes?
+			theirpower -= 1
 
 	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 

@@ -116,8 +116,11 @@
 	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
 		theirpower += 2
 
-	if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL) && (!get_kindred_splat(target))) // Are we stinky with a mortal target?
-		theirpower += 1
+	if(!get_kindred_splat(target)) // Is our target mortal?
+		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
+			theirpower += 1
+		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in owner_stat)) // Are we intimidating a mortal with uncovered eyes?
+			theirpower -= 1
 
 	//wearing dark sunglasses makes it harder for the Dominator to capture the victim's gaze and raises difficulty -- V20 'Dominate' section titled 'Eye Contact'
 	var/total_tint = 0
@@ -134,12 +137,6 @@
 	//if anyone else tries to dominate my conditioned servant its much harder for them but not for me
 	if(target.conditioner?.resolve())
 		theirpower += 3
-
-	// Probably a better way to do this.
-	if(theirpower > 2)
-		theirpower = 2
-	if(theirpower < 10)
-		theirpower = 10
 
 	// This var needs to go after everything that changes theirpower.
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)

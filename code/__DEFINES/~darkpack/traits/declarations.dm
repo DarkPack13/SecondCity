@@ -191,5 +191,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CALM_HEART "calm_heart"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_GRAVE_SMELL "grave_smell"
+#define TRAIT_GLOWING_EYES "glowing_eyes"
 
 // END TRAIT DEFINES
