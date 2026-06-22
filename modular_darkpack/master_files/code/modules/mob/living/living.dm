@@ -1,6 +1,6 @@
 /mob/living/Initialize(mapload)
 	. = ..()
-	storyteller_stats = create_new_stat_prefs(storyteller_stats)
+	storyteller_stats = create_new_st_stats(storyteller_stats)
 	become_area_sensitive(ZONE_TRAIT)
 	update_zone_hud(src, get_area(src)) // AREAS - (Zone hud)
 
