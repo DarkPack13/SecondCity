@@ -181,7 +181,13 @@
 
 /mob/living/carbon/get_attacking_limb(atom/target, datum/martial_art/attacker_style)
 	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
+	// DARKPACK EDIT CHANGE START - COMBAT
+	var/obj/item/bodypart/attacking_bodypart
+	if(ishuman(target))
+		attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
+	else
+		attacking_bodypart = get_active_hand()
+	// DARKPACK EDIT CHANGE END
 
 	if(attacking_bodypart.unarmed_attack_effect == ATTACK_EFFECT_BITE)
 		if(is_mouth_covered(ITEM_SLOT_MASK))

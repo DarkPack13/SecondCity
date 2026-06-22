@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "The masquerade will no longer breach from any message spoken near an NPC"

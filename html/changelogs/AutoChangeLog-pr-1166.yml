@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - bugfix: "fixes protean 1 not making eyes glow red"
