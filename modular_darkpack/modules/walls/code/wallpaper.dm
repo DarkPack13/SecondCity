@@ -126,7 +126,8 @@
 
 /obj/effect/decal/wallpaper/papers/random/Initialize(mapload)
 	. = ..()
-	icon_state = "wallpapers_[rand(1, 8)]"
+	if(icon_state == src::icon_state)
+		icon_state = "wallpapers_[rand(1, 8)]"
 
 /obj/effect/decal/wallpaper/papers/one
 	icon_state = "wallpapers_1"

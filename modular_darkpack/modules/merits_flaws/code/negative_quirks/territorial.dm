@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(territorial_type_choices, init_territorial_type_choices())
 	var/list/choices = list()
 	for(var/area/vtm/area_type as anything in subtypesof(/area/vtm))
 		var/area/vtm/typed = area_type
-		var/area/vtm/parent = type2parent(area_type)
+		var/area/vtm/parent = area_type::parent_type
 		if(initial(typed.domain) && !initial(parent.domain))
 			choices[initial(typed.name)] = area_type
 	return choices

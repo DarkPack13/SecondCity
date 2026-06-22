@@ -142,7 +142,7 @@
 		if(!subspace_radio.can_receive(frequency, RADIO_NO_Z_LEVEL_RESTRICTION))
 			radios -= subspace_radio
 
-	for(var/called_radio as anything in radios)
+	for(var/called_radio in radios)
 		playsound(get_turf(called_radio), 'modular_darkpack/modules/radios/sounds/panic.ogg', 50, TRUE)
 
 /obj/machinery/radio_tranceiver/clinic

@@ -220,6 +220,10 @@
 		if(st_get_stat(STAT_FINANCE))
 			var/finance = st_get_stat(STAT_FINANCE)
 			switch(finance)
+				if(0)
+					if(!CONFIG_GET(flag/punishing_zero_dots))
+						bank_account.account_balance = rand(50, 100)
+						bank_account.paycheck_amount = 15
 				if(1)
 					bank_account.account_balance = rand(100, 200)
 					bank_account.paycheck_amount = 40
@@ -258,7 +262,7 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only)
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES 
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 	if(human)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = human.job), null, channels, null, TRUE), 1))
@@ -512,7 +516,7 @@
 				hangover_landmark.used = TRUE
 				break
 			return hangover_spawn_point || get_latejoin_spawn_point()
-	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES 
+	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES
 	if(length(GLOB.jobspawn_overrides[job_spawn_title]))
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
 	// DARKPACK EDIT CHANGE END

@@ -44,7 +44,6 @@
 		else
 			if(generation >= 14)
 				message += "This is the vitae of a thinblood!\n"
-	clan = lowertext(clan)
 	switch(clan)
 		if(VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 			message += "The blood is sweet and rich. The owner must, too, be beautiful.\n"
