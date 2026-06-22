@@ -415,6 +415,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	preference_storyteller_stats = list() // Ensure we dont have our stats from our old char slot.
 	if(!stats_list)
 		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
+
+	var/list/failed_loads = list()
 	for(var/stat_path in stats_list)
 		var/proper_stat_path
 		if(ispath(stat_path, /datum/st_stat))
@@ -424,12 +426,21 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		else
 			proper_stat_path = text2path(stat_path)
 		if(!proper_stat_path)
+			failed_loads += "[stat_path] ([stats_list[stat_path][STAT_SCORE]])"
 			continue
 		var/datum/st_stat/stat = new proper_stat_path()
 		stat.set_score(stats_list[stat_path][STAT_SCORE])
 		stat.set_points(stats_list[stat_path][STAT_POINTS])
 		stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
 		preference_storyteller_stats[proper_stat_path] = stat
+
+	if(failed_loads.len)
+		var/real_name = read_preference(/datum/preference/name/real_name)
+		if(parent)
+			to_chat(parent, span_warning("Some stats on [real_name] failed to load and wont be saved. You likely need to reset your stats. Bad entries:<br>[jointext(failed_loads, "<br>")]"))
+
+		log_stats("Game loaded [real_name] but had bad stats saved: <br> [jointext(failed_loads, " <br> ")]")
+
 	update_middleware_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 
