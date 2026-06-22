@@ -1,5 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "adds 'eyes of the night hawk' ritual for thaumaturgy where thaumaturgists can posess a crow"
-  - qol: "all ritual tomes now print a sorted list rather than a mishmash"

@@ -44,7 +44,7 @@
 
 /obj/item/katana/vamp/fire
 	name = "burning katana"
-	icon_state = "firetana"
+	icon_state = "katana_burning"
 	item_flags = DROPDEL
 	obj_flags = NONE
 	masquerade_violating = TRUE
