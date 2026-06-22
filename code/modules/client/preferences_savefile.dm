@@ -436,8 +436,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if(failed_loads.len)
 		var/real_name = read_preference(/datum/preference/name/real_name)
-		if(parent)
-			to_chat(parent, span_warning("Some stats on [real_name] failed to load and wont be saved. You likely need to reset your stats. Bad entries:<br>[jointext(failed_loads, "<br>")]"))
+		var/message = span_warning("Some stats on [real_name] failed to load and wont be saved. You likely need to reset your stats. Bad entries:<br>[jointext(failed_loads, "<br>")]")
+
+		if(parent.mob)
+			to_chat(parent, message)
+		else
+			SPAWN(3 SECONDS)
+				to_chat(parent, message)
 
 		log_stats("Game loaded [real_name] but had bad stats saved: <br> [jointext(failed_loads, " <br> ")]")
 
