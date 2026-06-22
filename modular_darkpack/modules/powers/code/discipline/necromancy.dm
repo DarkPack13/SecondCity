@@ -22,7 +22,7 @@
 
 /datum/discipline_power/necromancy/pre_activation_checks(mob/living/target)
 	. = ..()
-	return SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_OCCULT), 6, owner)
+	return SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_WITS, STAT_OCCULT))
 
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"

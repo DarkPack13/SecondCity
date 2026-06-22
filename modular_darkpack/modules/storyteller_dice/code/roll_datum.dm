@@ -11,10 +11,15 @@
 	var/roll_output_type = ROLL_PUBLIC
 	/// This is a roll that can proc multiple times in rapid sucession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
 	var/spammy_roll = FALSE
+	/// If set, a character or unicode appended to the front of balloon alerts to help convey what the roll is for.
+	var/alert_prefix
+	var/alert_delay
 
-	/// A lazy list of times indexed by a weakref to a mob
+	/// A lazy list of roll results indexed by a weakref to a mob. list(OLD_ROLL_TIME, OLD_ROLL_OUTPUT)
 	var/list/mobs_last_rolled
 	var/reroll_cooldown
+	/// If the roll as a reroll_cooldown, return the mobs stored result if it has one.
+	var/roll_use_last_result = TRUE
 
 	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
 	var/last_sucess_amount
@@ -41,15 +46,22 @@
  * Returns: The sucess of the roll, either a define or the raw amount of sucesses if `numerical = TRUE`
  */
 /datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus = 0)
+	if(reroll_cooldown && roll_use_last_result)
+		var/list/old_roll = get_old_roll(roller)
+		if(old_roll)
+			return old_roll[OLD_ROLL_OUTPUT]
+
 	last_sucess_amount = 0
 	last_output_text = list()
 
 	if(!can_roll(roller))
-		return ROLL_FAILURE
+		return ROLL_COOLDOWN
 
 	var/dice_amount = calculate_used_dice(roller, bonus)
 	var/auto_success_amount = calculate_auto_successes(roller)
 	var/used_difficulty = calculate_used_difficulty(roller)
+
+	bonus += SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target)
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
@@ -81,16 +93,27 @@
 			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		else
-			if(last_sucess_amount > 0)
-				roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[last_sucess_amount]</span>", TRUE)
+			if(alert_delay)
+				var/using_number = last_sucess_amount
+				spawn(alert_delay)
+					create_balloon_alert(roller, player_mob, using_number)
 			else
-				roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[last_sucess_amount]</span>", TRUE)
+				create_balloon_alert(roller, player_mob, last_sucess_amount)
+
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
-	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, output)
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, output)
 	return output
 
+/datum/storyteller_roll/proc/create_balloon_alert(mob/living/roller, mob/player_mob, number)
+	if(QDELETED(roller) || QDELETED(player_mob))
+		return
+
+	if(number > 0)
+		roller.balloon_alert(player_mob, "<span style='color: #14a833;'>[alert_prefix][number]</span>", TRUE)
+	else
+		roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[alert_prefix][number]</span>", TRUE)
 
 /datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
 	switch(roll_output_type)
@@ -220,7 +243,8 @@
 		return dice_output[input]
 	*/
 
-/datum/storyteller_roll/proc/can_roll(mob/living/roller, feedback = TRUE)
+
+/datum/storyteller_roll/proc/get_old_roll(mob/living/roller)
 	if(reroll_cooldown && mobs_last_rolled)
 		for(var/datum/weakref/guy_ref, roll_info in mobs_last_rolled)
 			var/mob/living/guy = guy_ref.resolve()
@@ -229,13 +253,17 @@
 				continue
 			if(guy != roller)
 				continue
-			if(roll_info[1] + reroll_cooldown > world.time)
-				if(roll_info[2] > 0)
-					return TRUE
-					//return roll_info[2] // We really should support directly returning the output..?
-				if(feedback)
-					to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((roll_info[1] + reroll_cooldown - world.time)/10)]s left."))
-				return FALSE
+			if(roll_info[OLD_ROLL_TIME] + reroll_cooldown > world.time)
+				return roll_info
+			else
+				mobs_last_rolled.Remove(guy_ref) // Clear rolls that expired
 
-	return TRUE
+/datum/storyteller_roll/proc/can_roll(mob/living/roller, feedback = TRUE)
+	var/list/old_mob_roll = get_old_roll(roller)
+	if(!old_mob_roll)
+		return TRUE
 
+	if(feedback)
+		to_chat(roller, span_warning("You cannot reroll [bumper_text] yet. [round((old_mob_roll[OLD_ROLL_TIME] + reroll_cooldown - world.time)/10)]s left."))
+
+	return FALSE

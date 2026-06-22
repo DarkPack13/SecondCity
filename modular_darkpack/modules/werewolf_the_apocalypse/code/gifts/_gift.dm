@@ -10,8 +10,6 @@
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
-	var/default_activate_message = TRUE
-
 	var/rage_cost = 0
 	var/gnosis_cost = 0
 
@@ -23,12 +21,6 @@
 		if(feedback)
 			owner.balloon_alert(owner, "not a gift user!")
 		return FALSE
-
-/datum/action/cooldown/power/gift/Activate(atom/target)
-	. = ..()
-
-	if(default_activate_message)
-		to_chat(owner, span_notice("You activate the [name]..."))
 
 /datum/action/cooldown/power/gift/can_afford(feedback)
 	. = ..()

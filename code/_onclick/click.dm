@@ -176,8 +176,13 @@
 		else
 			if(LAZYACCESS(modifiers, RIGHT_CLICK))
 				ranged_secondary_attack(A, modifiers)
+			/* // DARKPACK EDIT REMOVAL - COMBAT
 			else
 				RangedAttack(A, modifiers)
+			*/
+		// DARKPACK EDIT ADD START - COMBAT
+		RangedAttack(A, modifiers)
+		// DARKPACK EDIT ADD END
 
 /// Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()

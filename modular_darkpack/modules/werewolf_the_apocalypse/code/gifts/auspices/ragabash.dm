@@ -77,10 +77,10 @@
 		return FALSE
 
 /datum/action/cooldown/power/gift/infectious_laughter/Activate(atom/target)
-	. = ..()
-
 	if(!last_spoken_message || (when_spoken + 3 TURNS < world.time))
 		return
+
+	. = ..()
 
 	owner.emote("laugh")
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/infectious_laughter.ogg', 50, FALSE)

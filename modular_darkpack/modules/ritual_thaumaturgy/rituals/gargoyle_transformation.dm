@@ -199,7 +199,7 @@
 	maxbloodpool = 15
 	ai_controller = null // Start with no AI, will be assigned if no player takes it
 
-/mob/living/basic/gargoyle/perfect/Initialize()
+/mob/living/basic/gargoyle/perfect/Initialize(mapload)
 	. = ..()
 	// Make the perfect gargoyle slightly larger
 	transform = transform.Scale(1.10, 1.10)
