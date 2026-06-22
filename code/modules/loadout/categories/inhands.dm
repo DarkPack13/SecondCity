@@ -28,6 +28,8 @@
 	name = "Briefcase (Leather)"
 	item_path = /obj/item/storage/briefcase
 
+/* // DARKPACK EDIT REMOVAL
 /datum/loadout_item/inhand/briefcase_secure
 	name = "Briefcase (Secure)"
 	item_path = /obj/item/storage/briefcase/secure
+*/
