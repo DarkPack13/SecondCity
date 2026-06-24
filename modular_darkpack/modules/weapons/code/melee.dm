@@ -428,10 +428,7 @@
 		w_class = WEIGHT_CLASS_SMALL
 		force = 1 TTRPG_DAMAGE
 		throwforce = 1 TTRPG_DAMAGE
-		armour_penetration = 0
 		icon_state = "red_brick2"
-		attack_verb_continuous = list("bludgeons", "bashes", "beats")
-		attack_verb_simple = list("bludgeon", "bash", "beat", "smacks", "whacks")
 		hitsound = 'sound/items/weapons/genhit1.ogg'
 		//grid_width = 1 GRID_BOXES
 		//grid_height = 1 GRID_BOXES
