@@ -359,9 +359,9 @@
 	inhand_icon_state = "kosa"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
-	#warn hrm.
-	force = 30
-	armour_penetration = 30
+	// Made up
+	force = 2 LETHAL_TTRPG_DAMAGE
+
 
 /obj/item/instrument/eguitar/vamp
 	name = "electric guitar"
@@ -374,7 +374,9 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	icon_state = "rock0"
 	inhand_icon_state = "rock0"
-	#warn was this like sharpened or something lmao.
+	// Made up
+	force = 2 TTRPG_DAMAGE
+	attack_difficulty = 7
 
 /obj/item/melee/baton/vamp
 	name = "police baton"
@@ -406,15 +408,15 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	w_class = WEIGHT_CLASS_NORMAL
-	#warn GUH
-	force = 10
-	armour_penetration = 0
-	throwforce = 15
+
+	// Made up
+	force = 2 TTRPG_DAMAGE
+	throwforce = 2 TTRPG_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "bashes", "beats")
 	attack_verb_simple = list("bludgeon", "bash", "beat", "smacks")
 	hitsound = 'sound/items/weapons/genhit3.ogg'
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
-	w_class = WEIGHT_CLASS_NORMAL
 	//grid_width = 2 GRID_BOXES
 	//grid_height = 1 GRID_BOXES
 	var/broken = FALSE
@@ -423,9 +425,9 @@
 	if(prob(75))
 		broken = FALSE
 	if(broken)
-		force = 6
 		w_class = WEIGHT_CLASS_SMALL
-		throwforce = 10
+		force = 1 TTRPG_DAMAGE
+		throwforce = 1 TTRPG_DAMAGE
 		armour_penetration = 0
 		icon_state = "red_brick2"
 		attack_verb_continuous = list("bludgeons", "bashes", "beats")
