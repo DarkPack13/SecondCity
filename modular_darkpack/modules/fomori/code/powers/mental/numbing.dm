@@ -42,3 +42,4 @@
 	var/obj/item/organ/tongue/our_tongue = owner.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(our_tongue)
 		our_tongue.on_failure_recovery()
+#warn numb quirk isn't being applied correctly
