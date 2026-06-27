@@ -34,16 +34,21 @@
 /datum/component/scorpions_touch_poison/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
 
+
+/datum/storyteller_roll/scorpions_touch_poison
+	applicable_stats = list(STAT_STAMINA)
+	numerical = TRUE
+
+
 /datum/component/scorpions_touch_poison/proc/apply_poison(obj/item/source, atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
 
-	if(!ishuman(target))
+	var/mob/living/carbon/human/victim = astype(target)
+	if(!victim)
 		return
 
-	var/mob/living/carbon/human/victim = target
-
 	// victim resists the posion with stamina + fortitude
-	var/resistance = SSroll.storyteller_roll(dice = (victim.st_get_stat(STAT_STAMINA)/* + victim.st_get_stat(STAT_FORTITUDE)*/), difficulty = 6, numerical = TRUE, roller = victim)
+	var/resistance = SSroll.storyteller_roll_datum(victim, roll_datum = /datum/storyteller_roll/scorpions_touch_poison, bonus = victim.get_discipline_dots(/datum/discipline/fortitude))
 
 	// each resistance success subtracts from the duration
 	var/effective_duration = max(0, poison_duration - resistance)

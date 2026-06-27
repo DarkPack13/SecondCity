@@ -12,10 +12,11 @@
 
 /datum/quirk/darkpack/wolf_sight/add(client/client_source)
 	quirk_holder.add_client_colour(/datum/client_colour/wolf_sight, REF(src))
+	quirk_holder.update_sight()
 
 /datum/quirk/darkpack/wolf_sight/remove()
 	quirk_holder.remove_client_colour(REF(src))
-
+	quirk_holder.update_sight()
 
 /datum/client_colour/wolf_sight
 	color = "#e6e6e6"
