@@ -50,6 +50,20 @@
 	/// How many zones (body parts, not precise) we have disabled so far, for naming purposes
 	var/zones_disabled
 
+
+	/// Soak values for equipment. Differentiated from armour to avoid losing TG base armour systems
+	/// Generic non-sharp impact defence
+	var/bashing_soak = 0
+	/// Generic sharp impact defence
+	var/lethal_melee_soak = 0
+	/// Bullet soak, in case you want armour that's good vs swords but not guns, or similar.
+	var/lethal_bullet_soak = 0
+	/// Fire resistance.
+	var/agg_fire_soak = 0
+	/// Resistance to other supernatural effects.
+	var/agg_supernatural_soak = 0
+
+
 	/// A lazily initiated "food" version of the clothing for moths.
 	// This intentionally does not use the edible component, for a few reasons.
 	// 1. Effectively everything that wants something edible, from now and into the future,
