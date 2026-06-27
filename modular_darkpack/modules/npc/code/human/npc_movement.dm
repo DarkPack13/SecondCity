@@ -110,6 +110,8 @@
 		return
 	if (!walktarget)
 		walktarget = ChoosePath()
+	if(walktarget)
+		EVLOG_PATH(src, EVLOG_CATEGORY_MOVELOOPS, "Set walktarget: [walktarget]", list(loc, get_turf(walktarget)))
 	if (loc == tupik_loc)
 		tupik_steps += 1
 	else
@@ -126,7 +128,10 @@
 		return
 	if (observed_by_player())
 		return
-	forceMove(get_turf(walktarget))
+	var/turf/old_loc = loc
+	var/turf/new_loc = get_turf(walktarget)
+	forceMove(new_loc)
+	EVLOG_PATH(src, EVLOG_CATEGORY_MOVELOOPS, "Teleported using evil russian shitcode", list(old_loc, new_loc))
 
 /mob/living/carbon/human/npc/proc/CreateWay(direction)
 	var/turf/location = get_turf(src)

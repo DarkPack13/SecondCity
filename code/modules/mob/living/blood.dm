@@ -91,7 +91,6 @@
 
 /// Updates effects that rely on blood volume or status, like blood HUDs.
 /mob/living/proc/update_blood_effects()
-	living_flags &= ~BLOOD_UPDATE_QUEUED
 	blood_hud_set_status()
 
 /// Updates effects that rely on whether the mob can have blood.
@@ -161,16 +160,16 @@
 	if((sigreturn & HANDLE_BLOOD_HANDLED) || !CAN_HAVE_BLOOD(src))
 		return
 
+	var/heart_blood_multiplier = get_heart_blood_regeneration_multiplier()
 	//Blood regeneration if there is some space
-	if(!(sigreturn & HANDLE_BLOOD_NO_NUTRITION_DRAIN) && get_blood_volume() < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+	if(heart_blood_multiplier && !(sigreturn & HANDLE_BLOOD_NO_NUTRITION_DRAIN) && get_blood_volume() < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
 		var/nutrition_ratio = round(nutrition / NUTRITION_LEVEL_WELL_FED, 0.2)
 
 		if(satiety > 80)
 			nutrition_ratio *= 1.25
 
-		var/blood_to_restore = BLOOD_REGEN_FACTOR * physiology.blood_regen_mod * nutrition_ratio * seconds_per_tick
+		var/blood_to_restore = BLOOD_REGEN_FACTOR * physiology.blood_regen_mod * heart_blood_multiplier * nutrition_ratio * seconds_per_tick
 		var/blood_restored = adjust_blood_volume(blood_to_restore, maximum = BLOOD_VOLUME_NORMAL)
-
 		if (blood_restored > 0)
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR * seconds_per_tick * (blood_restored / blood_to_restore))
 
@@ -192,7 +191,7 @@
 	var/modified_blood_volume = get_blood_volume(apply_modifiers = TRUE)
 
 	// Some effects are halved mid-combat.
-	var/determined_mod = has_status_effect(/datum/status_effect/determined) ? 0.5 : 0
+	var/determined_mod = has_status_effect(/datum/status_effect/determined) ? 0.5 : 1
 
 	var/word = pick("dizzy","woozy","faint")
 	switch(modified_blood_volume)
@@ -476,17 +475,12 @@
 
 	blood_data["factions"] = faction
 
-	// DARKPACK EDIT ADD - Store kindred clan and generation in blood data
-	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(src)
-	if(kindred_splat)
-		blood_data["generation"] = kindred_splat.generation
-		blood_data["clan"] = kindred_splat.clan
+	blood_data["splat"] = get_primary_splat()?.id// DARKPACK EDIT ADD - SPLATS
+	blood_data["donor"] = WEAKREF(src) // DARKPACK EDIT ADD - VITAE
+	// DARKPACK EDIT ADD START
+	blood_data["generation"] = get_generation()
+	blood_data["clan"] = get_clan()?.name
 	blood_data["real_name"] = real_name
-
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
-		if(H.dna && H.dna.species)
-			blood_data["species"] = LOWER_TEXT(H.dna.species.name)
 	// DARKPACK EDIT ADD END
 
 	return blood_data
@@ -521,11 +515,13 @@
 	for(var/datum/quirk/quirk as anything in quirks)
 		blood_data["quirks"] += quirk.type
 
-	// DARKPACK EDIT START - Vitae
-	blood_data["donor"] = WEAKREF(src)
+	blood_data["splat"] = get_primary_splat()?.id// DARKPACK EDIT ADD - SPLATS
+	blood_data["donor"] = WEAKREF(src) // DARKPACK EDIT ADD - VITAE
+	// DARKPACK EDIT ADD START
 	blood_data["generation"] = get_generation()
 	blood_data["clan"] = get_clan()?.name
-	// DARKPACK EDIT END
+	blood_data["real_name"] = real_name
+	// DARKPACK EDIT ADD END
 
 	return blood_data
 

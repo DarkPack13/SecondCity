@@ -97,6 +97,12 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/datum/storyteller_roll/bonecrafting
+	difficulty = 7
+	applicable_stats = list(STAT_STRENGTH, STAT_MEDICINE)
+	numerical = TRUE
+
+
 /datum/discipline_power/vicissitude/bonecrafting
 	name = "Bonecrafting"
 	desc = "Forcefully injure a body."
@@ -116,7 +122,7 @@
 /datum/discipline_power/vicissitude/bonecrafting/activate(mob/living/target)
 	. = ..()
 
-	var/roll = SSroll.storyteller_roll((owner.st_get_stat(STAT_STRENGTH) + owner.st_get_stat(STAT_MEDICINE)), 7, owner, target, TRUE)
+	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/bonecrafting)
 
 	if(target.stat >= HARD_CRIT)
 		if(target.stat != DEAD)

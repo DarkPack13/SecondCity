@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Aggravated damage now transfers to limbs when changing species (such as via fera shapeshifting)"

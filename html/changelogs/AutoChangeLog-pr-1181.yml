@@ -1,0 +1,6 @@
+author: "Ambrose997"
+delete-after: True
+changes:
+  - rscadd: "adds a clarification for the victim that they should respond in vague thoughts or symbolism"
+  - admin: "admins now see every usage of auspex 4 mind reading"
+  - balance: "Increases telepathy cooldown to 9 minutes."

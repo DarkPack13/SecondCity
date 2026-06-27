@@ -37,6 +37,9 @@
 	add_actions()
 	add_biotypes()
 
+	if(can_frenzy)
+		add_verb(owner, /mob/living/carbon/human/proc/manual_frenzy_roll)
+
 	on_gain()
 
 	if(owner.hud_used)

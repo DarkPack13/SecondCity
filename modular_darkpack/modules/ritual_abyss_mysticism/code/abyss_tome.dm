@@ -5,6 +5,7 @@
 	icon = 'modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_tome.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_onfloor.dmi')
 	rune_type = /obj/ritual_rune/abyss
+	discipline_type = /datum/discipline/obtenebration
 
 /obj/item/ritual_tome/abyss/attack_self(mob/user)
 	var/mob/living/living_user = astype(user)

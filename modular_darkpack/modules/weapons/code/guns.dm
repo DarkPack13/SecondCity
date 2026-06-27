@@ -101,8 +101,8 @@
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
 	icon_state = "deagle"
-	ammo_type = /obj/item/ammo_casing/vampire/c50
-	caliber = CALIBER_50CAL
+	ammo_type = /obj/item/ammo_casing/vampire/c50ae
+	caliber = CALIBER_50CAL_AE
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
@@ -607,7 +607,7 @@
 	name = "sniper rifle internal magazine"
 	desc = "Oh god, this shouldn't be here"
 	ammo_type = /obj/item/ammo_casing/vampire/c50
-	caliber = CALIBER_50CAL
+	caliber = CALIBER_50CAL_BMG
 	max_ammo = 5
 	//multiload = TRUE
 

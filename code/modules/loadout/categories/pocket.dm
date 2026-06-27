@@ -3,7 +3,7 @@
 	category_name = "Other"
 	category_ui_icon = FA_ICON_QUESTION
 	type_to_generate = /datum/loadout_item/pocket_items
-	tab_order = /datum/loadout_category/head::tab_order + 11
+	tab_order = /datum/loadout_category/head::tab_order + 12 // DARKPACK EDIT CHANGE
 	/// How many pocket items are allowed
 	VAR_PRIVATE/max_allowed = 6 // DARKPACK EDIT CHANGE - Bumped up realtivly high as it contains a few soft "required" items for gameplay
 

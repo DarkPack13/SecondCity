@@ -1,0 +1,1 @@
+/obj/structure/fire_barrel : /obj/structure/bonfire/fire_barrel {@OLD}

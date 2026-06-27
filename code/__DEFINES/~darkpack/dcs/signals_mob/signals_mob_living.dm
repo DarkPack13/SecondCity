@@ -1,3 +1,6 @@
+///from base of /mob/living/proc/melee_swing()
+#define COMSIG_LIVING_MELEE_SWING "mob_melee_swing"
+
 #define COMSIG_LIVING_JUMP_PREP_TOGGLE "living_jump_prep_toggle"
 
 //from base of living/set_pull_offset(): (mob/living/pull_target, grab_state)
@@ -7,5 +10,7 @@
 //from base of living/CanAllowThrough(): (atom/movable/mover, border_dir)
 #define COMSIG_LIVING_CAN_ALLOW_THROUGH "living_can_allow_through"
 	#define COMPONENT_LIVING_PASSABLE (1<<0)
-//from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, output)
+//from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, atom/target)
+#define COMSIG_LIVING_PRE_DICE_ROLLED "living_pre_dice_rolled"
+//from base of /datum/storyteller_roll/proc/st_roll(): (mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, output)
 #define COMSIG_LIVING_DICE_ROLLED "living_dice_rolled"

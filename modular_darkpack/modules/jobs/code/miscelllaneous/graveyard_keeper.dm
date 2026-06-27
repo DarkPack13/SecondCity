@@ -31,7 +31,8 @@
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/graveyard
 	r_hand = /obj/item/shovel/vamp
-	backpack_contents = list(/obj/item/card/credit=1, /obj/item/scythe/vamp=1)
+	belt = /obj/item/scythe/vamp
+	backpack_contents = list(/obj/item/card/credit=1)
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel

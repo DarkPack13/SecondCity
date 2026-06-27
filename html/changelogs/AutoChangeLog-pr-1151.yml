@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "Going through transfer points brings items your dragging or buckled to with you"
