@@ -2003,7 +2003,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			new_part = new path()
 			new_part.replace_limb(target)
 			new_part.update_limb(is_creating = TRUE)
-			new_part.set_initial_damage(old_part.brute_dam, old_part.burn_dam)
+			new_part.set_initial_damage(old_part.brute_dam, old_part.burn_dam, old_part.aggravated_dam)// DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 		qdel(old_part)
 
 /// Creates body parts for the target completely from scratch based on the species

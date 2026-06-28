@@ -1,0 +1,4 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - qol: "Country of Origin now grants the appropriate languages"
