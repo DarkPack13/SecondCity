@@ -506,18 +506,23 @@
 	strip_delay = 8 SECONDS
 	dog_fashion = null
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
+	armor_type = null  //DARKPACK EDIT ADDITION (Soak) - Removing normal armour for soak mechanics instead, but preserving for reference.
+	bashing_soak = 4
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 1
+	agg_supernatural_soak = 1
 
 /obj/item/clothing/head/helmet/knight/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, 3)
 
-/datum/armor/helmet_knight
+/*/datum/armor/helmet_knight
 	melee = 50
 	bullet = 10
 	laser = 10
 	energy = 10
 	fire = 80
-	acid = 80
+	acid = 80*/
 
 /obj/item/clothing/head/helmet/knight/blue
 	icon_state = "knight_blue"
@@ -533,8 +538,12 @@
 	desc = "A classic medieval helmet, if you hold it upside down you could see that it's actually a bucket."
 	icon_state = "knight_greyscale"
 	inhand_icon_state = null
-	armor_type = /datum/armor/knight_greyscale
+	//armor_type = /datum/armor/knight_greyscale
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS //Can change color and add prefix
+	bashing_soak = 4
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 1
+	agg_supernatural_soak = 1
 
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
