@@ -1,5 +1,5 @@
 //------------EQUIPMENT------------
-/datum/armor/first_team
+/*/datum/armor/first_team  //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 	melee = 70
 	bullet = 70
 	laser = 70
@@ -7,7 +7,7 @@
 	fire = 70
 	bomb = 70
 	acid = 70
-	wound = 70
+	wound = 70*/
 
 //------------SHOES------------
 /obj/item/clothing/shoes/vampire/darkpack_ert
@@ -55,11 +55,16 @@
 /obj/item/clothing/head/vampire/darkpack_ert/firstteam_helmet
 	name = "\improper First Team helmet"
 	desc = "A black helmet with two, green-glowing eye-pieces that seem to stare through your soul."
-	armor_type = /datum/armor/first_team
+	//armor_type = /datum/armor/first_team
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+	bashing_soak = 4
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 4
+	agg_fire_soak = 2
+	agg_supernatural_soak = 0
 
 //------------ARMOR------------
 
@@ -88,11 +93,16 @@
 	name = "\improper First Team Armoured Vest"
 	desc = "A strong looking, armoured-vest with a large '1' engraved onto the breast."
 	inhand_icon_state = null
-	armor_type = /datum/armor/first_team
+	//armor_type = /datum/armor/first_team
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
+	bashing_soak = 4
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 4
+	agg_fire_soak = 2
+	agg_supernatural_soak = 0
 
 //------------SUIT------------
 
@@ -107,6 +117,10 @@
 	worn_icon = 'modular_darkpack/modules/ert/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	brand = "pentex"
+	bashing_soak = 1
+	lethal_melee_soak = 1
+	lethal_bullet_soak = 1
+	agg_supernatural_soak = 1
 
 /obj/item/clothing/under/vampire/darkpack_ert/Initialize(mapload)
 	. = ..()
