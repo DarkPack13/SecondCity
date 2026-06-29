@@ -253,9 +253,12 @@
 		var/mob/living/carbon/human/human_crafter
 		if(ishuman(crafter))
 			human_crafter = crafter
-			if(CONFIG_GET(flag/punishing_zero_dots) && human_crafter.st_get_stat(STAT_CRAFTS) < 1)
-				return ", you dont know how to craft!"
-			recipe_time = recipe_time / max(human_crafter.st_get_stat(STAT_CRAFTS), 1)
+			var/datum/st_stat/recipe_skill = recipe.skill_required_for_use
+			var/level_required = recipe.skill_dots_minimum
+			if(recipe_skill)
+				if(!isnull(level_required) && human_crafter.st_get_stat(recipe_skill) < level_required)
+					return ", you dont know how to craft! You need at least [level_required] in [recipe_skill::name]!"
+				recipe_time = recipe_time / max(human_crafter.st_get_stat(recipe_skill), 1)
 		// DARKPACK EDIT ADD END
 
 		if(!do_after(crafter, round(recipe_time, 0.1 SECONDS), target = crafter))

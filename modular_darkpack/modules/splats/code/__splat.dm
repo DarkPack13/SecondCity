@@ -38,6 +38,12 @@
 	/// Whether or not we use the MASQUERADE or the VEIL
 	var/uses_veil
 
+	/// If examining the pulled tooth of the splat can gain some indication of what it is.
+	var/tooth_fingerprint = FALSE
+
+	/// Can frenzy and is given a verb to manually do it.
+	var/can_frenzy = TRUE
+
 	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats
 

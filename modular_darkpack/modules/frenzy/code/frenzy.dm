@@ -33,9 +33,11 @@
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy
 	bumper_text = "frenzy"
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 	numerical = TRUE
 
 /datum/storyteller_roll/frenzy/rotschreck
+	bumper_text = "rotschrek"
 	applicable_stats = list(STAT_COURAGE)
 
 /datum/storyteller_roll/frenzy/kindred
@@ -45,6 +47,11 @@
 	. = ..()
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
+		. += 2
+
+/datum/storyteller_roll/frenzy/kindred/calculate_used_dice(mob/living/roller, bonus)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_CALM_HEART))
 		. += 2
 
 /datum/storyteller_roll/frenzy/rage
@@ -114,10 +121,9 @@
 	return frenzy_result
 
 
-/mob/living/carbon/human/verb/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+/mob/living/carbon/human/proc/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Manual Frenzy Roll"
 	set desc = "Trigger a roll for a frenzy"
-	set category = "Object"
 
 	if(!istype(AM))
 		return
@@ -133,7 +139,6 @@
 /mob/living/carbon/human/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	set name = "Manual Frenzy"
 	set desc = "Enter a frenzy at will"
-	set category = "Object"
 
 	if(!istype(AM))
 		return

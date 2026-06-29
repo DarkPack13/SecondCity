@@ -16,12 +16,10 @@
 
 	return character.get_splat(/datum/splat/werewolf/shifter/garou)
 
-/* // DARKPACK TODO - CORAX
 /proc/get_corax_splat(mob/character)
-	RETURN_TYPE(/datum/splat/werewolf/shifter/cora
+	RETURN_TYPE(/datum/splat/werewolf/shifter/corax)
 
 	return character.get_splat(/datum/splat/werewolf/shifter/corax)
-*/
 
 /proc/get_kinfolk_splat(mob/character)
 	RETURN_TYPE(/datum/splat/werewolf/kinfolk)

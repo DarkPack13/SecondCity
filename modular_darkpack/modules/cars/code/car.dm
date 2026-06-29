@@ -85,7 +85,7 @@
 	var/list/passengers = list()
 	var/max_passengers = 3
 
-	var/speed = 1	//Future
+	var/speed = 1 //Future
 	var/stage = 1
 	var/on = FALSE
 	var/locked = TRUE
@@ -473,6 +473,17 @@
 	if(!prev_speed)
 		return
 
+	if(istype(bumped_atom, /obj/transfer_point_vamp))
+		COOLDOWN_START(src, impact_delay, 0.75 SECONDS)
+		/*
+		speed_in_pixels = 0
+		last_pos["x_pix"] = 0
+		last_pos["y_pix"] = 0
+		last_pos["x_frwd"] = 0
+		last_pos["y_frwd"] = 0
+		*/
+		return
+
 	if(istype(bumped_atom, /mob/living))
 		var/mob/living/hit_mob = bumped_atom
 		switch(hit_mob.mob_size)
@@ -553,6 +564,7 @@
 	pixel_y = last_pos["y_pix"]
 	var/moved_x = round(sin(used_vector)*used_speed)
 	var/moved_y = round(cos(used_vector)*used_speed)
+	var/bump_target
 	if(used_speed != 0)
 		var/true_movement_angle = used_vector
 		if(used_speed < 0)
@@ -569,6 +581,10 @@
 			if(debug_car)
 				// For visualising path of car.
 				new /obj/effect/temp_visual/telegraphing/car(T)
+
+			if(hit_turf == get_turf(src))
+				continue // Avoid spam bumping and trapping us inside of a dense turf.
+
 			var/dist_to_hit = get_dist_in_pixels(last_pos["x"]*32+last_pos["x_pix"], last_pos["y"]*32+last_pos["y_pix"], T.x*32, T.y*32)
 			if(dist_to_hit <= abs(used_speed))
 				var/list/stuff = T.get_blocking_contents(FALSE, src)
@@ -579,7 +595,8 @@
 							// For visualising hit tile of car.
 							new /obj/effect/temp_visual/telegraphing(T)
 		if(hit_turf)
-			Bump(pick(hit_turf.get_blocking_contents(FALSE, src)))
+			if(COOLDOWN_FINISHED(src, impact_delay))
+				bump_target = pick(hit_turf.get_blocking_contents(FALSE, src))
 			// to_chat(world, "I can't pass that [hit_turf] at [hit_turf.x] x [hit_turf.y] cause of [pick(hit_turf.unpassable)] FUCK")
 			// var/bearing = get_angle_raw(x, y, pixel_x, pixel_y, hit_turf.x, hit_turf.y, 0, 0)
 			var/actual_distance = get_dist_in_pixels(last_pos["x"]*32+last_pos["x_pix"], last_pos["y"]*32+last_pos["y_pix"], hit_turf.x*32, hit_turf.y*32)-32
@@ -610,6 +627,9 @@
 
 	animate(src, pixel_x = last_pos["x_pix"]+moved_x, pixel_y = last_pos["y_pix"]+moved_y, SScarpool.wait, 1)
 	update_last_pos(moved_x, moved_y)
+
+	if(bump_target)
+		Bump(bump_target)
 
 /obj/darkpack_car/proc/handle_npc_dodge(turf/target, angle)
 	for(var/turf/T in get_line(src, target))
@@ -723,8 +743,10 @@
 				movement_vector = SIMPLIFY_DEGREES(movement_vector+adjust_true*drift)
 
 /obj/darkpack_car/proc/apply_vector_angle()
+	var/new_dir = angle2dir(movement_vector)
+	setDir(new_dir)
+
 	var/turn_state = round(SIMPLIFY_DEGREES(movement_vector + 22.5) / 45)
-	setDir(GLOB.modulo_angle_to_dir[turn_state + 1])
 	var/minus_angle = turn_state * 45
 
 	var/matrix/M = matrix()

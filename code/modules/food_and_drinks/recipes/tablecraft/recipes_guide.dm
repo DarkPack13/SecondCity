@@ -48,7 +48,7 @@
 		qdel(chemical_reaction)
 	..()
 
-/* // DARKPACK EDIT REMOVAL*
+/*
  * Sets up information for our recipe based on the chemical reaction we have set.
  */
 /datum/crafting_recipe/food/reaction/proc/setup_chemical_reaction_details(datum/chemical_reaction/chemical_reaction)

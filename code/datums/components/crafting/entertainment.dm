@@ -83,7 +83,8 @@
 		/datum/reagent/water/holywater = 10,
 	)
 	category = CAT_ENTERTAINMENT
-
+	skill_required_for_use = STAT_OCCULT // DARKPACK EDIT ADD - STORYTELER_STATS
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/skateboard
 	name = "Skateboard"
@@ -94,6 +95,7 @@
 		/obj/item/stack/rods = 10,
 	)
 	category = CAT_ENTERTAINMENT
+	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/scooter
 	name = "Scooter"
@@ -104,6 +106,7 @@
 		/obj/item/stack/rods = 12,
 	)
 	category = CAT_ENTERTAINMENT
+	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"

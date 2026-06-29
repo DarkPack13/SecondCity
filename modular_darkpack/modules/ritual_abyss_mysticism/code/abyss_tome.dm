@@ -5,6 +5,7 @@
 	icon = 'modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_tome.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_abyss_mysticism/icons/abyss_mysticism_onfloor.dmi')
 	rune_type = /obj/ritual_rune/abyss
+	discipline_type = /datum/discipline/obtenebration
 
 /obj/item/ritual_tome/abyss/attack_self(mob/user)
 	var/mob/living/living_user = astype(user)
@@ -21,11 +22,12 @@
 	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 1)
 	result = /obj/item/ritual_tome/abyss
 	category = CAT_MISC
+	skill_required_for_use = STAT_OCCULT
+	skill_dots_minimum = 1
 
 /datum/crafting_recipe/mystome/is_recipe_available(mob/user)
+	. = ..()
 	var/mob/living/living_user = astype(user)
-	if(living_user?.get_discipline(/datum/discipline/obtenebration))
-		return TRUE
-
-	return FALSE
+	if(!living_user?.get_discipline(/datum/discipline/obtenebration))
+		return FALSE
 
