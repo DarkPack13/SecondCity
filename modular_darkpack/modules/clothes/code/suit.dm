@@ -16,7 +16,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	max_integrity = 250
 	resistance_flags = NONE
-	//armor_type = /*/datum/armor/vampire_suit //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
+	//armor_type = /datum/armor/vampire_suit //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 
 //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 /*/datum/armor/vampire_suit
@@ -44,7 +44,7 @@
 	body_parts_covered = CHEST | GROIN | ARMS
 	cold_protection = CHEST | GROIN | ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	//armor_type = /*/datum/armor/chemical_costume
+	//armor_type = /datum/armor/chemical_costume
 	hoodtype = /obj/item/clothing/head/hooded/heisenberg_hood
 
 /*/datum/armor/chemical_costume
@@ -66,7 +66,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	flags_inv = HIDEHAIR | HIDEEARS
-	//armor_type = /*/datum/armor/chemical_costume
+	//armor_type = /datum/armor/chemical_costume
 
 //** SPOOOOKY ROBES FROM THE CAPPADOCIAN UPDATE **//
 /obj/item/clothing/suit/hooded/robes
@@ -268,7 +268,7 @@
 	name = "opulent coat"
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
 	icon_state = "slickbackcoat"
-	//armor_type = /*/datum/armor/opulent_coat
+	//armor_type = /datum/armor/opulent_coat
 
 /*/datum/armor/opulent_coat
 	melee = 5
@@ -279,7 +279,7 @@
 	name = "black leather jacket"
 	desc = "True clothing for any punk. Provides some kind of protection."
 	icon_state = "jacket1"
-	//armor_type = /*/datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
 	bashing_soak = 1
 	lethal_melee_soak = 1
 
@@ -297,11 +297,11 @@
 	name = "Federal Bureau of Investigation jacket"
 	desc = "\"FBI OPEN UP!!\""
 	icon_state = "fbi"
-	//armor_type = /*/datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
 
 /obj/item/clothing/suit/vampire/jacket/punk
 	icon_state = "punk"
-	//armor_type = /*/datum/armor/punk_jacket
+	//armor_type = /datum/armor/punk_jacket
 
 /*/datum/armor/punk_jacket
 	melee = 50
@@ -316,7 +316,7 @@
 /obj/item/clothing/suit/vampire/jacket/better
 	name = "brown leather jacket"
 	icon_state = "jacket2"
-	//armor_type = /*/datum/armor/brown_leather_jacket
+	//armor_type = /datum/armor/brown_leather_jacket
 
 /*/datum/armor/brown_leather_jacket
 	melee = 35
@@ -332,7 +332,7 @@
 	name = "armored leather jacket"
 	bashing_soak = 2
 	lethal_melee_soak = 2
-	//armor_type = /*/datum/armor/armored_jackets
+	//armor_type = /datum/armor/armored_jackets
 
 /*/datum/armor/armored_jackets
 	melee = 50
@@ -349,14 +349,14 @@
 	name = "armored brown trenchcoat"
 	icon_state = "trench2"
 	max_integrity = 400
-	//armor_type = /*/datum/armor/armored_jackets
+	//armor_type = /datum/armor/armored_jackets
 	bashing_soak = 2
 	lethal_melee_soak = 2
 
 /obj/item/clothing/suit/vampire/trench/armored
 	name = "armored black trenchcoat"
 	max_integrity = 400
-	//armor_type = /*/datum/armor/armored_jackets
+	//armor_type = /datum/armor/armored_jackets
 	bashing_soak = 2
 	lethal_melee_soak = 2
 
@@ -364,7 +364,7 @@
 	name = "trenchcoat"
 	desc = "Best noir clothes for night. Provides some kind of protection."
 	icon_state = "trench1"
-	//armor_type = /*/datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
 	bashing_soak = 1
 	lethal_melee_soak = 1
 
@@ -386,7 +386,7 @@
 	name = "regal coat"
 	desc = "A beautiful jacket. Whoever owns this must be important."
 	icon_state = "voicoat"
-	//armor_type = /*/datum/armor/regal_coat
+	//armor_type = /datum/armor/regal_coat
 	bashing_soak = 2
 	lethal_melee_soak = 2
 
@@ -404,7 +404,7 @@
 	name = "bulletproof vest"
 	desc = "Durable, lightweight vest designed to protect against most threats efficiently."
 	icon_state = "vest"
-	//armor_type = /*/datum/armor/bulletproof_vest
+	//armor_type = /datum/armor/bulletproof_vest
 	allowed = list(
 		/obj/item/card/id,
 		/obj/item/flashlight,
@@ -458,7 +458,7 @@
 	name = "police captain duty vest"
 	icon_state = "capvest"
 	desc = "Composite bulletproof vest with SFPD markings, tailored for improved protection. This one has captain insignia on it."
-	//armor_type = /*/datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
 	bashing_soak = 4
 	lethal_melee_soak = 3 //Bulletproof vests tend to underperform against blades.
 	lethal_bullet_soak = 4
@@ -479,7 +479,7 @@
 	desc = "Army equipment. Provides great protection against blunt force."
 	icon_state = "army"
 	w_class = WEIGHT_CLASS_BULKY
-	//armor_type = /*/datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
 	masquerade_violating = TRUE
 	bashing_soak = 4
 	lethal_melee_soak = 3 //Bulletproof vests tend to underperform against blades.
@@ -497,7 +497,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 2
 	w_class = WEIGHT_CLASS_BULKY
-	//armor_type = /*/datum/armor/eod_suit
+	//armor_type = /datum/armor/eod_suit
 	masquerade_violating = TRUE
 	bashing_soak = 5
 	lethal_melee_soak = 4
@@ -526,7 +526,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1
 	w_class = WEIGHT_CLASS_BULKY
-	//armor_type = /*/datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
 	bashing_soak = 4
 	lethal_melee_soak = 4
 	lethal_bullet_soak = 4
@@ -536,7 +536,7 @@
 	name = "labcoat"
 	desc = "For medicine and research purposes."
 	icon_state = "labcoat"
-	//armor_type = /*/datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
 
 /*/datum/armor/labcoat
 	acid = 90
@@ -598,10 +598,10 @@
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
 	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
-	//armor_type = /*/datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
-	//armor_type = /*/datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
