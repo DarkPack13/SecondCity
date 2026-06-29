@@ -728,3 +728,45 @@
 		if(methods == NONE)
 			return
 	return ..()
+
+//Checking soak values. Mostly copied from armour checks.
+/mob/living/carbon/human/getsoak(def_zone, type)
+	var/soakval = 0
+	var/organnum = 0
+
+	if(def_zone)
+		if(isbodypart(def_zone))
+			var/obj/item/bodypart/bp = def_zone
+			if(bp)
+				return check_soak(def_zone, type)
+		var/obj/item/bodypart/affecting = get_bodypart(check_zone(def_zone))
+		if(affecting)
+			return check_soak(affecting, type)
+		//If a specific bodypart is targeted, check how that bodypart is protected and return the value.
+
+	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
+	for(var/obj/item/bodypart/BP as anything in get_bodyparts())
+		soakval += check_soak(BP, type)
+		organnum++
+	return (max((armorval/max(organnum, 1)), 0))
+
+
+/mob/living/carbon/human/proc/check_soak(obj/item/bodypart/def_zone, damage_type)
+	if(!damage_type)
+		return 0
+	var/soaked = 0
+	var/list/covering_clothing = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	for(var/obj/item/clothing/clothing_item in covering_clothing)
+		if(clothing_item.body_parts_covered & def_zone.body_part)
+			switch(damage_type)
+				if(bashing_soak)
+					soaked = clothing_item.bashing_soak
+				if(lethal_melee_soak)
+					soaked = clothing_item.lethal_melee_soak
+				if(lethal_bullet_soak)
+					soaked = clothing_item.lethal_bullet_soak
+				if(agg_fire_soak)
+					soaked = clothing_item.agg_fire_soak
+				if(agg_supernatural_soak)
+					soaked = clothing_item.agg_supernatural_soak
+	return soaked
