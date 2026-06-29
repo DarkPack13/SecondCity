@@ -8,15 +8,15 @@
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
-	armor_type = /datum/armor/vampire_hat
+	//armor_type = /datum/armor/vampire_hat  //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 
-/datum/armor/vampire_hat
+/*/datum/armor/vampire_hat
 	melee = 10
 	laser = 10
 	energy = 10
 	bomb = 10
 	acid = 10
-	wound = 10
+	wound = 10*/  //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 
 /obj/item/clothing/head/vampire/Initialize(mapload)
 	. = ..()
@@ -24,18 +24,18 @@
 
 /obj/item/clothing/head/vampire/malkav
 	name = "weirdo hat"
-	desc = "Can look dangerous or sexy despite the circumstances. Provides some kind of protection."
+	desc = "Can look dangerous or sexy despite the circumstances."
 	icon_state = "malkav_hat"
-	armor_type = /datum/armor/malkavian_hat
+	//armor_type = /datum/armor/malkavian_hat
 
-/datum/armor/malkavian_hat
+/*/datum/armor/malkavian_hat
 	melee = 25
 	bullet = 25
 	laser = 10
 	energy = 10
 	bomb = 10
 	acid = 10
-	wound = 10
+	wound = 10*/
 
 /obj/item/clothing/head/vampire/bandana
 	name = "brown bandana"
@@ -122,62 +122,67 @@
 	name = "police hat"
 	desc = "Can look dangerous or sexy despite the circumstances. Provides some kind of protection."
 	icon_state = "law"
-	armor_type = /datum/armor/armored_hat
+	//armor_type = /datum/armor/armored_hat
+	bashing_soak = 1
 
-/datum/armor/armored_hat
+/*/datum/armor/armored_hat
 	melee = 20
 	bullet = 20
 	laser = 10
 	energy = 10
 	bomb = 10
 	acid = 10
-	wound = 10
+	wound = 10*/
 
 /obj/item/clothing/head/vampire/cowboy
 	name = "cowboy hat"
 	desc = "Looks cool anyway. Provides some kind of protection."
 	icon_state = "cowboy"
-	armor_type = /datum/armor/armored_hat
+	//armor_type = /datum/armor/armored_hat
 
 /obj/item/clothing/head/vampire/cowboy/armorless
 	name = "cowboy hat"
 	desc = "Yee, and I do not often say this, haw."
-	armor_type = /datum/armor/none
+	//armor_type = /datum/armor/none
 
 /obj/item/clothing/head/vampire/british
 	name = "british police hat"
 	desc = "Want some tea? Provides some kind of protection."
 	icon_state = "briish"
-	armor_type = /datum/armor/armored_hat
+	//armor_type = /datum/armor/armored_hat
 
 /obj/item/clothing/head/vampire/napoleon
 	name = "french admiral hat"
 	desc = "Dans mon esprit tout divague, je me perds dans tes yeux... Je me noie dans la vague de ton regard amoureux..."
 	icon_state = "french"
-	armor_type = /datum/armor/none
+	//armor_type = /datum/armor/none
 
 /obj/item/clothing/head/vampire/top
 	name = "top hat"
 	desc = "Want some tea? Provides some kind of protection."
 	icon_state = "top"
-	armor_type = /datum/armor/none
+	//armor_type = /datum/armor/none
 
 /obj/item/clothing/head/vampire/skull
 	name = "skull helmet"
 	desc = "Damn... Provides some kind of protection."
 	icon_state = "skull"
-	armor_type = /datum/armor/armored_hat
+	//armor_type = /datum/armor/armored_hat
 
 /obj/item/clothing/head/vampire/helmet
 	name = "police helmet"
 	desc = "Looks dangerous. Provides good protection."
 	icon_state = "helmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
-	armor_type = /datum/armor/police_helmet
+	//armor_type = /datum/armor/police_helmet
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	masquerade_violating = TRUE
+	bashing_soak = 3
+	lethal_melee_soak = 2
+	lethal_bullet_soak = 3
+	agg_supernatural_soak = 2
 
-/datum/armor/police_helmet
+/*/datum/armor/police_helmet
 	melee = 40
 	bullet = 40
 	laser = 40
@@ -185,7 +190,7 @@
 	bomb = 20
 	fire = 20
 	acid = 40
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/head/vampire/helmet/egorium
 	name = "strange mask"
@@ -196,6 +201,10 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	masquerade_violating = FALSE
+	bashing_soak = 3
+	lethal_melee_soak = 3
+	lethal_bullet_soak = 1
+	agg_supernatural_soak = 1
 
 /obj/item/clothing/head/vampire/helmet/spain
 	name = "spain helmet"
@@ -204,16 +213,24 @@
 	flags_inv = HIDEEARS
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	masquerade_violating = FALSE
+	bashing_soak = 3
+	lethal_melee_soak = 3
+	lethal_bullet_soak = 1
+	agg_supernatural_soak = 1
 
 /obj/item/clothing/head/vampire/army
 	name = "army helmet"
 	desc = "Looks dangerous. Provides great protection against blunt force."
 	icon_state = "viet"
 	flags_inv = HIDEEARS|HIDEHAIR
-	armor_type = /datum/armor/army_helmet
+	//armor_type = /datum/armor/army_helmet
 	masquerade_violating = TRUE
+	bashing_soak = 4
+	lethal_melee_soak = 3
+	lethal_bullet_soak = 4
+	agg_supernatural_soak = 2
 
-/datum/armor/army_helmet
+/*/datum/armor/army_helmet
 	melee = 60
 	bullet = 60
 	laser = 60
@@ -221,35 +238,39 @@
 	bomb = 40
 	fire = 20
 	acid = 40
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/head/vampire/hardhat
 	name = "construction helmet"
 	desc = "A thermoplastic hard helmet used to protect the head from injury."
 	icon_state = "hardhat"
-	armor_type = /datum/armor/construction_helmet
+	//armor_type = /datum/armor/construction_helmet
 	custom_price = 50
 
-/datum/armor/construction_helmet
+/*/datum/armor/construction_helmet
 	melee = 20
 	bullet = 5
 	bomb = 10
 	fire = 5
-	wound = 15
+	wound = 15*/
 
 /obj/item/clothing/head/vampire/eod
 	name = "EOD helmet"
 	desc = "Looks dangerous. Provides best protection against nearly everything."
 	icon_state = "bomb"
-	armor_type = /datum/armor/eod_helmet
+	//armor_type = /datum/armor/eod_helmet
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	w_class = WEIGHT_CLASS_BULKY
 	masquerade_violating = TRUE
+	bashing_soak = 5
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 5
+	agg_supernatural_soak = 3
 
-/datum/armor/eod_helmet
+/*/datum/armor/eod_helmet
 	melee = 70
 	bullet = 70
 	laser = 90
@@ -257,20 +278,24 @@
 	bomb = 100
 	fire = 50
 	acid = 90
-	wound = 40
+	wound = 40*/
 
 /obj/item/clothing/head/vampire/bogatyr
 	name = "Bogatyr helmet"
 	desc = "A regal helmet made of unknown materials."
 	icon_state = "bogatyr_helmet"
-	armor_type = /datum/armor/bogatyr_helmet
+	//armor_type = /datum/armor/bogatyr_helmet
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	w_class = WEIGHT_CLASS_BULKY
+	bashing_soak = 3
+	lethal_melee_soak = 3
+	lethal_bullet_soak = 3
+	agg_supernatural_soak = 2
 
-/datum/armor/bogatyr_helmet
+/*/datum/armor/bogatyr_helmet
 	melee = 55
 	bullet = 50
 	laser = 60
@@ -278,7 +303,7 @@
 	bomb = 20
 	fire = 40
 	acid = 70
-	wound = 30
+	wound = 30*/
 
 /obj/item/clothing/head/vampire/bahari_mask
 	name = "Dark mother's mask"
