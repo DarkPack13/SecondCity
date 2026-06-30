@@ -13,6 +13,8 @@
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BLACKOUT))
 		return FALSE // Dont piss in my soup twice.
+	if(!round_has_engineers())
+		return FALSE
 
 /datum/round_event/blackout
 	start_when = 1
@@ -33,3 +35,16 @@
 			continue
 		F.take_damage(rand(75,200))
 		F.power_off()
+
+/// Future proofing for only triggering city damage if someone is around to repair it
+/proc/round_has_engineers()
+	return TRUE
+	/*
+	// Check if graveyard keeper is online
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!H.mind)
+			continue
+		if(istype(H.mind.assigned_role, /datum/job/vampire/city_engineer) && !considered_afk(H.mind))
+			return TRUE
+	return FALSE
+	*/
