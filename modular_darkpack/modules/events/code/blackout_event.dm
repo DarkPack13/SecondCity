@@ -36,15 +36,11 @@
 		F.take_damage(rand(75,200))
 		F.power_off()
 
-/// Future proofing for only triggering city damage if someone is around to repair it
+/// Check for if anyone is around to repair damage done to the city.
 /proc/round_has_engineers()
-	return TRUE
-	/*
-	// Check if graveyard keeper is online
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!H.mind)
 			continue
-		if(istype(H.mind.assigned_role, /datum/job/vampire/city_engineer) && !considered_afk(H.mind))
+		if(istype(H.mind.assigned_role, /datum/job/vampire/janitor) && !considered_afk(H.mind)) // IF we add an engieneer role make it that.
 			return TRUE
 	return FALSE
-	*/
