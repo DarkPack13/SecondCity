@@ -1,7 +1,0 @@
-author: "bomby, enchantedcrocolisk"
-delete-after: True
-changes:
-  - rscadd: "readds 4.6mm ammoboxes and the sprites for them and associated bullets"
-  - bugfix: "pistols now fit back into dutybelts"
-  - map: "added mp7 to runtimetown gun table"
-  - code_imp: "dutybelts have had their contents changed to include pepperspray batons and handcuffs"
