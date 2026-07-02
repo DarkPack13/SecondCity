@@ -136,7 +136,7 @@
 	var/study_research_value = 50
 	var/required_discipline = /datum/discipline/thaumaturgy
 	var/no_trait_message = "The text is incomprehensible to you without the proper knowledge."
-	var/cooldown_message = "You have recently studied this tome extensively. You need %TIME% more minutes before you can gain further insight from it."
+	var/cooldown_message = "You have recently studied this tome extensively. You need to wait a few more minutes before you can gain further insight from it."
 	var/study_start_message = "You begin studying the occult text..."
 	var/study_interrupted_message = "Your concentration was broken. You failed to absorb any meaningful knowledge from the text."
 	var/research_gain_message = "You gain %POINTS% research points from studying this tome!"
@@ -166,7 +166,8 @@
 
 /obj/item/occult_book/proc/check_cooldown(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, study_cooldown))
-		to_chat(user, span_warning(cooldown_message))
+		var/cooldown_message_formatted = replacetext(cooldown_message, "a few more minutes", study_cooldown)
+		to_chat(user, span_warning(cooldown_message_formatted))
 		return FALSE
 	return TRUE
 

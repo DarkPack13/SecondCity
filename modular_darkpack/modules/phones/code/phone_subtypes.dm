@@ -107,7 +107,7 @@
 		alist(NETWORK_ID = TREMERE_NETWORK, OUR_ROLE = "Library Archivist", USE_JOB_TITLE = FALSE)
 		)
 
-/obj/item/smartphone/gargoyle
+/obj/item/smartphone/acolyte
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = TREMERE_NETWORK, OUR_ROLE = "Library Maintenance", USE_JOB_TITLE = FALSE)
 		)

@@ -108,7 +108,7 @@ JOB_START_HELPER(sabbat/sabbatist, JOB_SABBAT_SABBATIST)
 
 JOB_START_HELPER(chantry/regent, JOB_CHANTRY_REGENT)
 JOB_START_HELPER(chantry/archivist, JOB_CHANTRY_ARCHIVIST)
-JOB_START_HELPER(chantry/gargoyle, JOB_CHANTRY_GARGOYLE)
+JOB_START_HELPER(chantry/acolyte, JOB_CHANTRY_ACOLYTE)
 
 /* Forest Wolves */
 /obj/effect/landmark/start/darkpack/forest_wolves

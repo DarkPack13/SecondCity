@@ -131,7 +131,7 @@
 		if(!tremere_member.mind)
 			continue
 		var/datum/job/role = tremere_member.mind.assigned_role
-		if(is_type_in_list(role, list(/datum/job/vampire/archivist, /datum/job/vampire/gargoyle, /datum/job/vampire/regent)))
+		if(is_type_in_list(role, list(/datum/job/vampire/archivist, /datum/job/vampire/acolyte, /datum/job/vampire/regent)))
 			.["tremere_members"] += list(list(
 				"name" = tremere_member.real_name,
 				"role" = role.title,

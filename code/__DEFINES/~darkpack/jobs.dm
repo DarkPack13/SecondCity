@@ -45,7 +45,7 @@
 //Tremere
 #define JOB_CHANTRY_ARCHIVIST "Chantry Archivist"
 #define JOB_CHANTRY_REGENT "Chantry Regent"
-#define JOB_CHANTRY_GARGOYLE "Chantry Gargoyle"
+#define JOB_CHANTRY_ACOLYTE "Chantry Acolyte"
 
 //Tzimisce
 #define JOB_BOGATYR "Bogatyr"
@@ -148,7 +148,7 @@
 
 #define JOB_DISPLAY_ORDER_REGENT 29
 #define JOB_DISPLAY_ORDER_ARCHIVIST 30
-#define JOB_DISPLAY_ORDER_GARGOYLE 31
+#define JOB_DISPLAY_ORDER_ACOLYTE 31
 
 #define JOB_DISPLAY_ORDER_GIOVANNI 32
 
