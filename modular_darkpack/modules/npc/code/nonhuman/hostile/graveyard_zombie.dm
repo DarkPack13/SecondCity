@@ -10,6 +10,7 @@
 	health = 50
 	melee_damage_lower = 21
 	melee_damage_upper = 21
+	blood_volume = 100
 	obj_damage = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"

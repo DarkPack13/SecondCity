@@ -7,6 +7,7 @@
 	rune_type = /obj/ritual_rune/necromancy
 	var/list/products_list = list(
 		// placeholder, idea is that its similar to thaumaturgy archives
+		new /datum/data/vending_product("graveyard keys", /obj/item/vamp/keys/graveyard, 1),
 	)
 	discipline_type = /datum/discipline/necromancy
 
