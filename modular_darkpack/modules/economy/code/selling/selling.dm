@@ -13,6 +13,8 @@
 	var/humanity_loss
 	///Down to what point humanity can be reduced when selling the item.
 	var/humanity_loss_limit
+	///Does selling this object threaten the masquerade? if so, make a (stat) + subterfuge roll to avoid losing masq
+	var/masquerade_violating
 
 /datum/component/selling/Initialize(new_cost, new_object_category, new_illegal, new_humanity_loss, new_humanity_loss_limit)
 	if(!isobj(parent)) //Only items can be sold
