@@ -45,7 +45,7 @@
 		if(werewolf_splat)
 			awaken(user, werewolf_splat)
 	else
-		to_chat(user, span_notice("[src]'s is just a dead piece of silver."))
+		to_chat(user, span_notice("[src] is just a dead piece of silver."))
 
 /obj/item/occult_artifact/werewolf/klaive/proc/awaken(mob/living/carbon/human/user, datum/splat/werewolf/werewolf_splat)
 	if(werewolf_splat.adjust_gnosis(-1))
