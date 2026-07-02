@@ -1,12 +1,12 @@
 /datum/round_event_control/darkpack/graveyard
 	name = "Graveyard "
 	typepath = /datum/round_event/graveyard
-	weight = 3
+	weight = 1
 	min_players = 10
 	max_occurrences = 2
 	earliest_start = 90 MINUTES
 	category = EVENT_CATEGORY_INVASION
-	description = "Roving, loose graveyard have found their way into the city."
+	description = "Zombies rise at the Graveyard - giving Necromancers an opportunity to control, or suppress, the restless dead."
 	darkpack_allowed = TRUE
 
 /datum/round_event_control/darkpack/graveyard/can_spawn_event(players_amt, allow_magic)
@@ -17,6 +17,7 @@
 /datum/round_event/graveyard
 	start_when = 1
 	announce_when = 5
+	end_when = 155 // 5 minutes of zombies
 
 /datum/round_event/graveyard/announce(fake)
 	var/endpost_graveyard_author = pick("thesupernaturalguy71", "mhaley71", "justplumbin92", "illuminati_truther777", "satanwatch_now")
@@ -24,6 +25,13 @@
 	endpost_announce(endpost_graveyard_post, endpost_graveyard_author)
 
 /datum/round_event/graveyard/start()
-	for(var/obj/vampgrave in GLOB.generic_event_spawns)
+	for(var/obj/vampgrave/grave in GLOB.generic_event_spawns)
 		if(!prob(20))
 			continue
+		grave.zombies_rising = TRUE
+
+/datum/round_event/graveyard/end()
+	for(var/obj/vampgrave/grave in GLOB.generic_event_spawns)
+		grave.zombies_rising = FALSE
+	return ..()
+

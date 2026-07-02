@@ -1,7 +1,7 @@
 /mob/living/basic/zombie/darkpack
 	name = "Shambling Corpse"
 	desc = "When there is no more room in Hell, the dead will walk on Earth."
-	icon = 'modular_darkpack/modules/graveyard/icons/zombies.dmi'
+	icon = 'modular_darkpack/modules/npc/icons/zombies.dmi'
 	icon_state = "zombie"
 	icon_living = "zombie"
 	icon_dead = "zombie_dead"
@@ -15,18 +15,19 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/zombuzi.ogg'
 	status_flags = CANPUSH
-	basic_mob_flags = DEL_ON_DEATH
+	basic_mob_flags = NONE
 	speed = 1
 	faction = list("zombie")
 	ai_controller = /datum/ai_controller/basic_controller/zombie/darkpack
 	outfit = null
+	death_message = null
 
 	var/obj/vampgrave/source_grave
 
 /mob/living/basic/zombie/darkpack/Initialize(mapload)
 	. = ..()
 	// the parent is causing them to appear as space station 13 zombies - this removes that.
-	icon = 'modular_darkpack/modules/graveyard/icons/zombies.dmi'
+	icon = 'modular_darkpack/modules/npc/icons/zombies.dmi'
 	icon_state = icon_living
 	cut_overlays()
 	update_body()
@@ -37,6 +38,32 @@
 		source_grave.spawned_zombies -= src
 	source_grave = null
 	return ..()
+
+/mob/living/basic/zombie/darkpack/skeleton
+	name = "Skeleton"
+	health = 30
+	maxHealth = 30
+	icon_living = "skeleton"
+	icon_state = "skeleton"
+	icon_dead = "skeleton_dead"
+	speed = 2
+
+/mob/living/basic/zombie/darkpack/fat_zombie
+	name = "Fat Zombie"
+	health = 70
+	maxHealth = 70
+	melee_damage_lower = 31
+	melee_damage_upper = 31
+	icon_living = "zombietop"
+	icon_state = "zombietop"
+	icon_dead = "zombietop_dead"
+	speed = 0.5
+
+/mob/living/basic/zombie/darkpack/suit_zombie
+	icon_living = "zombieup"
+	icon_state = "zombieup"
+	icon_dead = "zombieup_dead"
+
 
 // need a custom targeting strategy so they don't kill other zombies
 /datum/targeting_strategy/basic/zombie_darkpack

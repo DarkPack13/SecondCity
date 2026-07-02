@@ -59,6 +59,25 @@
 		attempt_repair(user)
 		return ITEM_INTERACT_SUCCESS
 
+	if(istype(tool, /obj/item/vamp/keys/graveyard))
+		if(!density)
+			to_chat(user, span_notice("You start closing the gate..."))
+			if(do_after(user, 5 SECONDS, src))
+				density = TRUE
+				icon_state = "gate"
+				to_chat(user, span_notice("You close the gate."))
+			else
+				to_chat(user, span_notice("You walk away from the gate."))
+		else
+			to_chat(user, span_notice("You start opening the gate..."))
+			if(do_after(user, 5 SECONDS, src))
+				density = FALSE
+				icon_state = "gate-open"
+				to_chat(user, span_notice("You open the gate."))
+			else
+				to_chat(user, span_notice("You walk away from the gate."))
+		return ITEM_INTERACT_SUCCESS
+
 	return NONE
 
 /obj/structure/vampgate/proc/attempt_repair(mob/living/user)

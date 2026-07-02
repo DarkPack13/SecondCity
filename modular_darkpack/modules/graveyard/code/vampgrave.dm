@@ -8,15 +8,17 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
-	var/spawn_interval = 15 MINUTES
+	var/spawn_interval = 2 MINUTES
 	var/max_zombies_per_grave = 2
 	var/list/spawned_zombies = list()
+	/// Whether this grave is currently allowed to spawn zombies, typically flipped by the graveyard event
+	var/zombies_rising = FALSE
 
 /obj/vampgrave/Initialize(mapload)
 	. = ..()
 	GLOB.generic_event_spawns += src
 	randomize_appearance()
-	spawn_interval += rand(-10 SECONDS, 10 SECONDS) // Prevent them from all spawning at the same time.
+	spawn_interval += rand(-20 SECONDS, 20 SECONDS) // Prevent them from all spawning at the same time.
 	addtimer(CALLBACK(src, PROC_REF(try_spawn_zombie)), spawn_interval, TIMER_STOPPABLE | TIMER_LOOP)
 
 //they have the indestructible flag so this should never happen but just in case
@@ -26,31 +28,27 @@
 	return ..()
 
 /obj/vampgrave/proc/try_spawn_zombie()
-
-	clean_zombie_list()
-	if(!should_spawn())
+	if(!zombies_rising)
 		return
+	clean_zombie_list()
 	if(length(spawned_zombies) >= max_zombies_per_grave)
 		return
 
 	spawn_zombie()
 
-/obj/vampgrave/proc/should_spawn()
-	// Check if graveyard keeper is online
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!H.mind)
-			continue
-		if(istype(H.mind.assigned_role, /datum/job/vampire/graveyard) && !considered_afk(H.mind))
-			return TRUE
-	return FALSE
-
 /obj/vampgrave/proc/clean_zombie_list()
 	for(var/mob/living/basic/zombie/darkpack/Z in spawned_zombies)
-		if(QDELETED(Z))
+		if(QDELETED(Z) || Z.stat == DEAD)
 			spawned_zombies -= Z
 
 /obj/vampgrave/proc/spawn_zombie()
-	var/mob/living/basic/zombie/darkpack/Z = new(loc)
+	var/zombie_type = pick(
+		/mob/living/basic/zombie/darkpack,
+		/mob/living/basic/zombie/darkpack/skeleton,
+		/mob/living/basic/zombie/darkpack/fat_zombie,
+		/mob/living/basic/zombie/darkpack/suit_zombie,
+	)
+	var/mob/living/basic/zombie/darkpack/Z = new zombie_type(loc)
 	Z.source_grave = src
 	spawned_zombies += Z
 
