@@ -62,7 +62,7 @@
 	return roll_result == ROLL_SUCCESS
 
 /datum/discipline_power/necromancy/shroudsight/activate()
-
+	. = ..()
 
 	ADD_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_LOCAL_SIXTHSENSE, NECROMANCY_TRAIT)

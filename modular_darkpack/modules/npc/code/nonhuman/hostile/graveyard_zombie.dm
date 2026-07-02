@@ -11,6 +11,9 @@
 	melee_damage_lower = 21
 	melee_damage_upper = 21
 	blood_volume = 100
+	bloodpool = 2
+	maxbloodpool = 2
+	living_flags = LIVING_CAN_HAVE_BLOOD
 	obj_damage = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -44,6 +47,9 @@
 	name = "Skeleton"
 	health = 30
 	maxHealth = 30
+	bloodpool = 0
+	maxbloodpool = 0
+	blood_volume = 0
 	icon_living = "skeleton"
 	icon_state = "skeleton"
 	icon_dead = "skeleton_dead"
@@ -55,6 +61,8 @@
 	maxHealth = 70
 	melee_damage_lower = 31
 	melee_damage_upper = 31
+	bloodpool = 5
+	maxbloodpool = 5
 	icon_living = "zombietop"
 	icon_state = "zombietop"
 	icon_dead = "zombietop_dead"

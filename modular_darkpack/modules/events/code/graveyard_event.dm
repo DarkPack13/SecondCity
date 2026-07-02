@@ -1,5 +1,5 @@
 /datum/round_event_control/darkpack/graveyard
-	name = "Graveyard "
+	name = "Zombie Attack"
 	typepath = /datum/round_event/graveyard
 	weight = 1
 	min_players = 10
@@ -11,6 +11,8 @@
 
 /datum/round_event_control/darkpack/graveyard/can_spawn_event(players_amt, allow_magic)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(!locate(/obj/vampgrave) in GLOB.generic_event_spawns)
 		return FALSE
 
