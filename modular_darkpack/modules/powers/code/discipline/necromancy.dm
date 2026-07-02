@@ -13,6 +13,8 @@
 	var/datum/action/ritual_drawing/necromancy/ritualist = new()
 	ritualist.Grant(owner)
 	ritualist.level = level
+	var/obj/item/vamp/keys/graveyard/keys = new(owner)
+	keys.equip_to_best_slot(owner)
 
 /datum/discipline/necromancy/post_loss()
 	. = ..()
