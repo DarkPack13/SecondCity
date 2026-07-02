@@ -1233,6 +1233,12 @@
 				outline_color = COLOR_THEME_TRASENKNOX
 			if("detective")
 				outline_color = COLOR_THEME_DETECTIVE
+			// DARKPACK EDIT ADD START
+			if("pentex-knox")
+				outline_color = COLOR_THEME_TRASENKNOX
+			if("world-of-darkness")
+				outline_color = COLOR_WHITE
+			// DARKPACK EDIT ADD END
 			else //this should never happen, hopefully
 				outline_color = COLOR_WHITE
 	if(color)

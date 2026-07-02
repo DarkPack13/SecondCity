@@ -257,9 +257,9 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS
-	target_type = TARGET_LIVING
+	target_type = TARGET_PLAYER
 	vitae_cost = 0
-	cooldown_length = 1 TURNS
+	cooldown_length = 3 SCENES
 	range = 7
 	var/telepathy_types = list(TELEPATHY_MIND_READING, TELEPATHY_IMPLANT_THOUGHT)
 	var/telepathy_type_selected
@@ -306,12 +306,14 @@
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
 							if(ROLL_FAILURE, ROLL_BOTCH)
 								to_chat(owner, span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
-								disguised_voice = owner.name
+								disguised_voice = owner.real_name
 					if("No")
-						disguised_voice = owner.name
+						disguised_voice = owner.real_name
 		telepathy_type_selected = telepathy_type
 		return TRUE
-	return FALSE
+	else
+		do_cooldown()
+		return FALSE
 
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
@@ -328,20 +330,21 @@
 				return
 
 			log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
-			to_chat(owner, span_notice("You project your thoughts into [target]'s mind: \"[input_message]\""))
-			to_chat(target, span_boldannounce("You hear the voice of [disguised_voice] in your thoughts: \"[input_message]\""))
+			to_chat(owner, span_notice("You project your thoughts into [GET_GUESTBOOK_NAME(owner, target)]'s mind: \"[input_message]\""))
+			to_chat(target, span_boldannounce("You hear the voice of [target?.mind?.guestbook?.get_known_name(target, disguised_voice) ? target?.mind?.guestbook?.get_known_name(target, disguised_voice) : disguised_voice] in your thoughts: \"[input_message]\""))
 
 		if(TELEPATHY_MIND_READING)
 			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing..." + get_flavor_text(successes)
 			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information? Deeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
 			if(mind_reading_search == "Yes")
-				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = MAX_MESSAGE_LEN)
+				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = (MAX_MESSAGE_LEN * 10))
 				if(!specific_search)
 					specific_search = "something specific"
 
 			var/prompt_message = flavor_text_telepathy
 			if(specific_search)
 				prompt_message += "The telepath specifically scans your mind for : [specific_search]"
+				message_admins("[owner.real_name] (ckey: [owner.key]) uses Auspex 4 'Telepathy' to read the mind of [target.real_name] (ckey: [target.key]) searching for '[specific_search]' with [successes] successes.")
 			else
 				prompt_message += "The telepath searches your recent thoughts and emotions..."
 
@@ -353,7 +356,8 @@
 				return
 
 			log_directed_talk(target, owner, input_message, LOG_SAY, "Telepathy (Mind Reading)")
-			to_chat(owner, span_notice("You read [target]'s thoughts with [successes] successes: [input_message]"))
+			message_admins("[target.real_name]'s (ckey: [target.key]) mind is read by [owner.real_name] (ckey: [owner.key]) who searched their mind for '[specific_search ? specific_search : "recent thoughts and emotions"]'. The owner intercepted the following thoughts or memories : [input_message]")
+			to_chat(owner, span_notice("You read [GET_GUESTBOOK_NAME(owner, target)]'s thoughts with [successes] successes: [input_message]"))
 
 /datum/discipline_power/auspex/telepathy/proc/get_flavor_text(successes)
 	var/message = "As your mind is read with [successes] successes, "
@@ -372,7 +376,7 @@
 
 /datum/discipline_power/auspex/telepathy/proc/sanitize_input_message(input_message)
 	//sanitisation!
-	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, MAX_MESSAGE_LEN) : input_message
+	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, (MAX_MESSAGE_LEN * 10)) : input_message
 	var/list/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ooc_filtered(input_message)
 	if(filter_result)
 		REPORT_CHAT_FILTER_TO_USER(owner, filter_result)
