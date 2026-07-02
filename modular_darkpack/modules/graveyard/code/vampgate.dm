@@ -60,7 +60,10 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/vamp/keys/graveyard))
-		if(!density)
+		if(!density && broken)
+			to_chat(user, span_warning("The gate is broken and hanging open, in desperate need of repair."))
+			return ITEM_INTERACT_SUCCESS
+		if(!density && !broken)
 			to_chat(user, span_notice("You start closing the gate..."))
 			if(do_after(user, 5 SECONDS, src))
 				density = TRUE
