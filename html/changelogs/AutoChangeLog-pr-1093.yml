@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - code_imp: "Removes old useless fire barrel subtype in favor of interactive one"

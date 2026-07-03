@@ -10,7 +10,7 @@
 
 /datum/proximity_monitor/advanced/violation_check_aoe/Destroy()
 	violation_observer_callback = null
-	for(var/mob as anything in tracking_mobs)
+	for(var/mob in tracking_mobs)
 		UnregisterSignal(mob, COMSIG_MASQUERADE_VIOLATION)
 	tracking_mobs = null
 	return ..()
@@ -54,7 +54,7 @@
 /datum/proximity_monitor/advanced/violation_check_aoe/on_z_change()
 	if(QDELETED(src))
 		return
-	for(var/mob as anything in tracking_mobs)
+	for(var/mob in tracking_mobs)
 		UnregisterSignal(mob, COMSIG_MASQUERADE_VIOLATION)
 		tracking_mobs -= mob
 

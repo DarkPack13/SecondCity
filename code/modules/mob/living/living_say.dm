@@ -286,6 +286,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	else
 		deaf_type = MSG_AUDIBLE
 
+// DARKPACK EDIT ADD START - MERITS_FLAWS - (acute sense)
+	if (HAS_TRAIT(src, TRAIT_ACUTE_HEARING) && !HAS_TRAIT(speaker, TRAIT_SIGN_LANG))// we can't HEAR sign, so we don't care for it
+		message_range += 3 // Increase how far we can hear
+// DARKPACK EDIT ADD END
+
 	var/atom/movable/virtualspeaker/holopad_speaker = speaker
 	var/avoid_highlight = src == (istype(holopad_speaker) ? holopad_speaker.source : speaker)
 

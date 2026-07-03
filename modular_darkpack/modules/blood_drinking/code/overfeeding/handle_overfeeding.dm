@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/handle_overfeeding(var/mob/living/carbon/human/human_mob)
+/mob/living/carbon/human/proc/handle_overfeeding(mob/living/carbon/human/human_mob)
 	human_mob.blood_volume = 0
 	if(human_mob.stat != DEAD)
 		if(isnpc(human_mob))
