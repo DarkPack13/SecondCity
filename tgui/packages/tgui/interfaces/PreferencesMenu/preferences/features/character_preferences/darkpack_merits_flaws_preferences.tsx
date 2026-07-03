@@ -21,7 +21,9 @@ export const missing_arm: FeatureChoiced = {
 
 export const stigmata_of_the_wyrm: FeatureChoiced = {
   name: 'Stigmata of the Wyrm',
-  
+  component: FeatureDropdownInput,
+};
+
 export const lame_leg: FeatureChoiced = {
   name: 'Lame Leg',
   component: FeatureDropdownInput,
