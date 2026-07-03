@@ -14,6 +14,12 @@
 		return FALSE
 	if(!locate(/obj/vampgrave) in GLOB.generic_event_spawns)
 		return FALSE
+	// run the event if at least one player has necromancy
+	for(var/mob/living/player in GLOB.player_list)
+		if(!player.get_discipline(/datum/discipline/necromancy))
+			continue
+		return TRUE
+	return FALSE
 
 /datum/round_event/graveyard
 	start_when = 1
@@ -21,9 +27,10 @@
 	end_when = 155 // 5 minutes of zombies
 
 /datum/round_event/graveyard/announce(fake)
-	var/endpost_graveyard_author = pick("thesupernaturalguy71", "mhaley71", "justplumbin92", "illuminati_truther777", "satanwatch_now")
-	var/endpost_graveyard_post = pick("saw something soooo weird... :) new video coming soon on my channel", "just had the most terrifying moment of my life. saw some kind of monster.", "Yeap, whatever I saw, I'm just goin' right the fuck home.", "(the post has an extremely blurry image attached of what looks to be some kind monster. is it photoshopped?)")
-	endpost_announce(endpost_graveyard_post, endpost_graveyard_author)
+	for(var/mob/living/player in GLOB.player_list)
+		if(!player.get_discipline(/datum/discipline/necromancy))
+			continue
+		to_chat(player, span_hypnophrase("You feel uneasiness from across the Shroud... a great mass of spirits awaken."))
 
 /datum/round_event/graveyard/start()
 	for(var/obj/vampgrave/grave in GLOB.generic_event_spawns)
