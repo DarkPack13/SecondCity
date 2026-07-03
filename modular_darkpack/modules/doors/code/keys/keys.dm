@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(key_access_by_types, init_key_access_by_types())
-GLOBAL_LIST_EMPTY(city_door_lock_ids)
+GLOBAL_LIST_INIT(city_door_lock_ids, list())
 
 /// Builds a list of the access locks because we cant pull lists from un initlizied keys and we dont want to qdel a key for every spawn.
 /proc/init_key_access_by_types()
