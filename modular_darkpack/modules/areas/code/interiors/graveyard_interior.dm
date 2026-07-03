@@ -1,4 +1,4 @@
-/area/vtm/graveyard/interior
+/area/vtm/interior/graveyard
 	name = "Graveyard Interior"
 	icon_state = "interior"
 	outdoors = FALSE

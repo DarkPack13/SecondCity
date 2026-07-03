@@ -11,7 +11,7 @@
 /datum/storyteller_roll/selling_masquerade_sensitive
 	bumper_text = "selling supernatural items"
 	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
-	difficulty = 7
+	difficulty = 8
 
 /obj/lombard
 	name = "pawnshop"
