@@ -7,7 +7,6 @@
 	earliest_start = 90 MINUTES
 	category = EVENT_CATEGORY_INVASION
 	description = "Zombies rise at the Graveyard - giving Necromancers an opportunity to control, or suppress, the restless dead."
-	darkpack_allowed = TRUE
 
 /datum/round_event_control/darkpack/graveyard/can_spawn_event(players_amt, allow_magic)
 	. = ..()
