@@ -124,6 +124,9 @@
 		access = "[rand(1,9999999)]"
 		AddComponent(/datum/component/door_ownership)
 
+	if(mapload)
+		GLOB.city_door_lock_ids |= access
+
 	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
 	headlight_image = new(src)
