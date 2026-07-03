@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(city_door_lock_ids, list())
 
 		var/matching_door = FALSE
 		for(var/access in temp_key.accesslocks)
-			if(access in temp_key.accesslocks)
+			if(access in GLOB.city_door_lock_ids)
 				matching_door = TRUE
 				break
 
