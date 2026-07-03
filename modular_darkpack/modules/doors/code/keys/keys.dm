@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(city_door_lock_ids, list())
 /proc/init_key_access_by_types()
 	var/list/keys_by_type = list()
 	for(var/subtype in valid_subtypesof(/obj/item/vamp/keys))
-		var/obj/item/vamp/keys/temp_key = new()
+		var/obj/item/vamp/keys/temp_key = new subtype()
 		keys_by_type[subtype] = temp_key.accesslocks
 		qdel(temp_key)
 
