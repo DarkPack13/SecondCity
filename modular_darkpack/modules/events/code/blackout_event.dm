@@ -13,8 +13,6 @@
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BLACKOUT))
 		return FALSE // Dont piss in my soup twice.
-	if(!round_has_engineers())
-		return FALSE
 
 /datum/round_event/blackout
 	start_when = 1
@@ -35,12 +33,3 @@
 			continue
 		F.take_damage(rand(75,200))
 		F.power_off()
-
-/// Check for if anyone is around to repair damage done to the city.
-/proc/round_has_engineers()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!H.mind)
-			continue
-		if(istype(H.mind.assigned_role, /datum/job/vampire/janitor) && !considered_afk(H.mind)) // IF we add an engieneer role make it that.
-			return TRUE
-	return FALSE
