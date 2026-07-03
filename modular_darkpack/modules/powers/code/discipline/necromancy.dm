@@ -53,12 +53,12 @@
 	var/datum/storyteller_roll/shroudsight/roll_datum
 
 /datum/discipline_power/necromancy/shroudsight/pre_activation_checks(mob/living/target)
-	. = ..()
 	if(!roll_datum)
 		roll_datum = new()
 
 	var/roll_result = roll_datum.st_roll(owner)
-
+	if(roll_result == ROLL_COOLDOWN)
+		return FALSE
 	return roll_result == ROLL_SUCCESS
 
 /datum/discipline_power/necromancy/shroudsight/activate()
