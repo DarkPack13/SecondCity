@@ -10,6 +10,7 @@
 	health = 50
 	melee_damage_lower = 21
 	melee_damage_upper = 21
+	default_blood_volume = 100
 	blood_volume = 100
 	bloodpool = 2
 	maxbloodpool = 2
@@ -49,6 +50,7 @@
 	maxHealth = 30
 	bloodpool = 0
 	maxbloodpool = 0
+	default_blood_volume = 0
 	blood_volume = 0
 	icon_living = "skeleton"
 	icon_state = "skeleton"
