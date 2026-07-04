@@ -41,6 +41,9 @@
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
 
+	if(mapload)
+		GLOB.city_door_lock_ids |= lock_id
+
 	register_context()
 
 	var/static/list/loc_connections = list(

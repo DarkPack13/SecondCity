@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "Clan and Tribe keys wont spawn if the map does not have any corresponding doors"
