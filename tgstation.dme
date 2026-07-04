@@ -7677,6 +7677,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\animalism.dm"
 #include "modular_darkpack\modules\powers\code\discipline\dementation.dm"
 #include "modular_darkpack\modules\powers\code\discipline\melpominee.dm"
+#include "modular_darkpack\modules\powers\code\discipline\mytherceria.dm"
 #include "modular_darkpack\modules\powers\code\discipline\necromancy.dm"
 #include "modular_darkpack\modules\powers\code\discipline\serpentis.dm"
 #include "modular_darkpack\modules\powers\code\discipline\torpor.dm"
