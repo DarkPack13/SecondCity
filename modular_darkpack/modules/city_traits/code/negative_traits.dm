@@ -37,7 +37,7 @@
 	can_revert = FALSE
 	darkpack_allowed = TRUE
 	trait_to_give = STATION_TRAIT_BLACKOUT
-	newspaper_message = "We continue to recive delays from city officals on estimates when power will be returned city-wide."
+	newspaper_message = "We continue to receive delays from city officals on estimates when power will be returned city-wide."
 	newspaper_chance = 60
 
 /datum/station_trait/faulty_power_grid/on_round_start()
