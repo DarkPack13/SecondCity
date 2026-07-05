@@ -112,6 +112,7 @@
 		COMSIG_MOB_VAMPIRE_SUCKED,
 		COMSIG_MOB_APPLY_DAMAGE_MODIFIERS,
 		COMSIG_HUMAN_ON_HANDLE_BLOOD,
+		COMSIG_PATH_HIT,
 		COMSIG_LIVING_DEATH
 	))
 
@@ -219,6 +220,8 @@
 	return HANDLE_BLOOD_NO_NUTRITION_DRAIN|HANDLE_BLOOD_NO_OXYLOSS
 
 /datum/splat/vampire/kindred/proc/on_kindred_death(mob/living/carbon/human/kindred, gibbed)
+	SIGNAL_HANDLER
+
 	if(gibbed)
 		return
 

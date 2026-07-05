@@ -73,6 +73,8 @@
 	return abs(first_index - second_index)
 
 /datum/splat/werewolf/shifter/proc/revert_to_breed_form()
+	SIGNAL_HANDLER
+	
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))
 		var/datum/storyteller_roll/metamorph/roll_datum = new()
 		if(roll_datum.st_roll(owner, bonus = PRIMAL_URGE_PLACEHOLDER) == ROLL_SUCCESS)

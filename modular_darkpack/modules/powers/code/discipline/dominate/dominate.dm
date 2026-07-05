@@ -12,6 +12,10 @@
 	if(level >= 4)
 		RegisterSignal(owner, COMSIG_MOB_EMOTE, PROC_REF(on_snap))
 
+/datum/discipline/dominate/post_loss()
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_EMOTE)
+
 /datum/discipline/dominate/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(handle_snap), source, emote_args)
