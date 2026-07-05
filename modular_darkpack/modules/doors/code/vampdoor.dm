@@ -166,7 +166,8 @@
 	set_density(FALSE)
 	set_opacity(FALSE)
 	layer = OPEN_DOOR_LAYER
-	to_chat(user, span_notice("You open [src]."))
+	if(user)
+		to_chat(user, span_notice("You open [src]."))
 	closed = FALSE
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN)
 
