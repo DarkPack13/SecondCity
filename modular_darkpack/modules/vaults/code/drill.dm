@@ -146,10 +146,9 @@
 
 /obj/structure/drill/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(active)
 		var/mutable_appearance/sparks = mutable_appearance('modular_darkpack/modules/deprecated/icons/particle_effects.dmi', "welding_sparks", ABOVE_ALL_MOB_LAYER, src, ABOVE_LIGHTING_PLANE)
-		add_overlay(sparks)
+		. += sparks
 
 /obj/structure/drill/proc/process_drill()
 	while(active && ready && gas > 0)
