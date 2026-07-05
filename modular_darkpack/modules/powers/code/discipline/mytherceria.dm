@@ -25,13 +25,10 @@
 
 /datum/discipline_power/mytherceria/fey_sight/activate(mob/living/target)
 	. = ..()
-	var/list/total_list = list()
-	for(var/obj/item/item in target.contents)
-		if(istype(item, /obj/item/storage))
-			total_list |= item.contents
-		total_list |= item
 	to_chat(owner, span_purple("Your fae senses reach out to detect what they're carrying..."))
-	for(var/obj/item/item in total_list)
+	for(var/obj/item/item in target.get_all_contents())
+		if(isorgan(item) || isbodypart(item))
+			continue
 		to_chat(owner, "- [item.name]")
 
 //DARKLING TRICKERY
