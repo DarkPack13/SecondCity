@@ -105,7 +105,7 @@
 			continue
 		if(human.stat == DEAD)
 			continue
-		if(!(shifter_splat.tribe.name in tribes))
+		if(!is_friend_of_totem(human))
 			continue
 
 		if(damage_change < 0)
@@ -121,6 +121,18 @@
 			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
 			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
+
+/// Returns true or false wether or not the totems benificial affects will target this mob
+/obj/structure/werewolf_totem/proc/is_friend_of_totem(mob/living/potential_friend)
+	var/datum/splat/werewolf/friends_splat = get_werewolf_splat(potential_friend)
+	if(!friends_splat) // RN the only totem effect relys on a werewolf splat
+		return FALSE
+	if(!friends_splat.tribe) // Dont fuck over tribeless fera. Prob need a better way to determine freinds tho
+		return TRUE
+	if(!(friends_splat.tribe.name in tribes))
+		return FALSE
+
+	return TRUE
 
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -197,27 +209,27 @@
 
 /obj/structure/werewolf_totem/generic
 	light_color = "#81ff4f"
-	tribes = TRIBE_GAIA
+	tribes = TRIBE_LIST_GAIA
 
 /obj/structure/werewolf_totem/generic/wyld
 	light_color = "#81ff4f"
-	tribes = TRIBE_WYLD
+	tribes = TRIBE_LIST_WYLD
 
 /obj/structure/werewolf_totem/generic/weaver
 	icon_state = "glassw"
 	base_icon_state = "glassw"
 	light_color = "#35b0ff"
-	tribes = TRIBE_WEAVER
+	tribes = TRIBE_LIST_WEAVER
 
 /obj/structure/werewolf_totem/generic/wyrm
 	icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/spiral_totem.dmi'
 	icon_state = "spiral"
 	base_icon_state = "spiral"
 	light_color = "#ff5235"
-	tribes = TRIBE_WYRM
+	tribes = TRIBE_LIST_WYRM
 
 /obj/structure/werewolf_totem/generic/alltribes
-	tribes = TRIBE_ALL
+	tribes = TRIBE_LIST_ALL
 
 
 // This things type path sucks
@@ -227,16 +239,16 @@
 	var/tribes = list()
 
 /obj/effect/landmark/teleport_mark/gaia
-	tribes = TRIBE_GAIA
+	tribes = TRIBE_LIST_GAIA
 
 /obj/effect/landmark/teleport_mark/wyld
-	tribes = TRIBE_WYLD
+	tribes = TRIBE_LIST_WYLD
 
 /obj/effect/landmark/teleport_mark/weaver
-	tribes = TRIBE_WEAVER
+	tribes = TRIBE_LIST_WEAVER
 
 /obj/effect/landmark/teleport_mark/wyrm
-	tribes = TRIBE_WYRM
+	tribes = TRIBE_LIST_WYRM
 
 /obj/effect/landmark/teleport_mark/alltribes
-	tribes = TRIBE_ALL
+	tribes = TRIBE_LIST_ALL

@@ -1,3 +1,7 @@
+/obj/structure/stairs
+	plane = GAME_PLANE
+	layer = ABOVE_NORMAL_TURF_LAYER
+
 /obj/structure/stairs/ramp
 	name = "ramp"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'

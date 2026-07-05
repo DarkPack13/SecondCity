@@ -11,8 +11,10 @@
 /area/vtm/interior/giovanni
 	name = "Giovanni Mansion"
 	icon_state = "giovanni"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/giovanni_moldy_old_world.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/giovanni/basement
 	name = "Giovanni Mansion - Basement"
@@ -30,11 +32,13 @@
 	icon_state = "giovanni"
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/police
 	name = "\improper Police Station"
 	icon_state = "police"
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/police/morgue
 	name = "Police Station - Morgue"
@@ -69,17 +73,21 @@
 /area/vtm/interior/strip
 	name = "Strip Club"
 	icon_state = "strip"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/strip_club.ogg')
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/mansion
 	name = "Abandoned Mansion"
 	icon_state = "mansion"
 	zone_type = ZONE_NO_MASQUERADE
+	domain = TRUE
 
 /area/vtm/interior/apartment
 	name = "Millenium Apartments"
 	icon_state = "camarilla_interior"
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/glasswalker
 	name = "Glasswalker's Lab"
@@ -107,6 +115,7 @@
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
 	music_index = MUSIC_PRINCE
+	domain = TRUE
 
 /area/vtm/interior/strip_elysium
 	name = "Strip Club - Elysium"
@@ -118,8 +127,10 @@
 	name = "Jazz Club"
 	icon_state = "camarilla"
 	ambience_index = AMBIENCE_OFFICE
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/elysium.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/cabaret
 	name = "Siren's Cabaret"
@@ -133,21 +144,24 @@
 	ambience_index = AMBIENCE_OFFICE
 	music_index = MUSIC_SAFE
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/clinic/haven
 	name = "Clinic - Psych Ward"
 	zone_type = ZONE_ELYSIUM
 
 /area/vtm/interior/supply
-	name = "Supply"
+	name = "Supply Offices"
 	icon_state = "supply"
 	ambience_index = AMBIENCE_OFFICE
+	domain = TRUE
 
 /area/vtm/interior/hotel
 	name = "Hotel"
 	icon_state = "hotel"
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/cabdepot
 	name = "Cab Depot"
@@ -162,6 +176,7 @@
 	ambience_index = AMBIENCE_OFFICE
 	music_index = MUSIC_CHURCH
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/church/staff
 	name = "Church - Backrooms"
@@ -186,8 +201,10 @@
 	name = "Theatre"
 	icon_state = "theatre"
 	music_index = MUSIC_CITY
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/theatre.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	forced_music = TRUE // need that epic theatre intro as soon as you walk in
 
 /area/vtm/interior/oldchurch
 	name = "Old Seaside Church"
@@ -199,6 +216,7 @@
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/trujah
 	name = "Antique Shop"
@@ -222,6 +240,7 @@
 	name = "Coffee House"
 	icon_state = "old_clan_tzimisce"
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/banu/haven
 	name = "Coffee House - Employee Only"
@@ -229,10 +248,12 @@
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
+// line 111. someone fucked up.
 /area/vtm/interior/tzimisce_manor
 	name = "Clan Tzimisce Manor"
 	icon_state = "old_clan_tzimisce"
 	zone_type = ZONE_ELYSIUM
+	domain = TRUE
 
 /area/vtm/interior/tzimisce_sanctum
 	name = "Clan Tzimisce Sanctum"
@@ -243,6 +264,7 @@
 	name = "Community Center"
 	icon_state = "hotel"
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/setite/basement
 	name = "Community Center Basement"
@@ -257,6 +279,7 @@
 	name = "Little Italy - Store"
 	icon_state = "shop"
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/littleitaly/apartments
 	name = "Little Italy - Apartments"
@@ -272,20 +295,13 @@
 /area/vtm/interior/sabbat_lair
 	name = "Interior"
 	zone_type = "elysium"
+	domain = TRUE
 
 /area/vtm/interior/subway
 	name = "Subway Station"
 	icon_state = "financialdistrict"
 	fire_controled = TRUE
-
-/area/vtm/interior/setite
-	name = "Community Center"
-	icon_state = "hotel"
-	fire_controled = TRUE
-
-/area/vtm/interior/setite/basement
-	name = "Community Center Basement"
-	zone_type = "elysium"
+	domain = TRUE
 
 /area/vtm/interior/substation
 	name = "Grid Substation"
@@ -294,3 +310,4 @@
 	music_index = MUSIC_CITY
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
+	domain = TRUE

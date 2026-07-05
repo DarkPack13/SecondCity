@@ -1,14 +1,6 @@
 GLOBAL_LIST_INIT(zulo_forms, list(
-	"Fiend" = "fiend",
-	"Leviathan" = "leviathan",
-	"Shrikebush" = "shrikebush",
-	"Impaler Steed" = "impalersteed",
-	"Black Fiend" = "black_fiend",
-	"Doctor" = "doctor",
-	"Dog" = "dog",
-	"Emily" = "emily",
-	"Dragon" = "dragon",
-	"Tendril Dragon" = "tendrildragon",
+	"Beast" = "weretzi",
+	"Brust" = "4armstzi",
 ))
 
 /datum/action/cooldown/spell/shapeshift/zulo
@@ -56,10 +48,10 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 
 /mob/living/basic/zulo/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_UNMASQUERADE, type)
+	ADD_TRAIT(src, TRAIT_UNMASQUERADE, INNATE_TRAIT)
 
 /mob/living/basic/zulo/mind_initialize()
 	. = ..()
-	var/preffered_form = client?.prefs.read_preference(/datum/preference/choiced/subsplat/zulo_form)
+	var/preffered_form = client?.prefs.read_preference(/datum/preference/choiced/zulo_form)
 	var/new_icon_state = GLOB.zulo_forms[preffered_form]
 	icon_state = new_icon_state ? new_icon_state : "fiend"

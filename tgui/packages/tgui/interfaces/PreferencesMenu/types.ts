@@ -30,6 +30,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+  Egg = 'EGG',
 }
 
 export enum JobPriority {
@@ -190,6 +191,7 @@ export type CharacterPreferencesData = {
   manually_rendered_features: Record<string, string>;
 
   names: Record<string, string>;
+  vocals: Record<string, string | number | boolean>; // DARKPACK EDIT ADD - BLOOPERS
 
   misc: {
     gender: Gender;

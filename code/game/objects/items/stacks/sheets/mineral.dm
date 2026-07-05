@@ -24,7 +24,7 @@ Mineral Sheets
  */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
-	/* new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVE
+	/* new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVAL
 	new/datum/stack_recipe("sandstone platform", /obj/structure/platform/sandstone, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("Breakdown into sand", /obj/item/stack/ore/glass, 1, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_NO_MATERIALS, category = CAT_MISC), \
 ))
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	material_type = /datum/material/sandstone
 	drop_sound = SFX_STONE_DROP
 	pickup_sound = SFX_STONE_PICKUP
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/sandstone/get_main_recipes()
 	. = ..()
 	. += GLOB.sandstone_recipes
@@ -187,10 +187,10 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	return TOXLOSS//dont you kids know that stuff is toxic?
 
 GLOBAL_LIST_INIT(plasma_recipes, list ( \
-	/* new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVE
+	/* new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVAL
 	new/datum/stack_recipe("plasma tile", /obj/item/stack/tile/mineral/plasma, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	))
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/plasma/get_main_recipes()
 	. = ..()
 	. += GLOB.plasma_recipes
@@ -220,14 +220,14 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/gold
 
 GLOBAL_LIST_INIT(gold_recipes, list ( \
-	/* new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVE
+	/* new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVAL
 	new/datum/stack_recipe("golden platform", /obj/structure/platform/gold, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("gold tile", /obj/item/stack/tile/mineral/gold, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	new/datum/stack_recipe("blank plaque", /obj/item/plaque, 1, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("Simple Crown", /obj/item/clothing/head/costume/crown, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
 	))
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/gold/get_main_recipes()
 	. = ..()
 	. += GLOB.gold_recipes
@@ -252,13 +252,13 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/silver
 
 GLOBAL_LIST_INIT(silver_recipes, list ( \
-	/* new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVE
+	/* new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVAL
 	new/datum/stack_recipe("silver platform", /obj/structure/platform/silver, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("silver tile", /obj/item/stack/tile/mineral/silver, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	))
 
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/silver/get_main_recipes()
 	. = ..()
 	. += GLOB.silver_recipes
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	new/datum/stack_recipe("bananium tile", /obj/item/stack/tile/mineral/bananium, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	))
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/bananium/get_main_recipes()
 	. = ..()
 	. += GLOB.bananium_recipes
@@ -317,9 +317,9 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	new /datum/stack_recipe("Titanium tile", /obj/item/stack/tile/mineral/titanium, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	new/datum/stack_recipe("Titanium Platform", /obj/structure/platform/titanium, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	/* new /datum/stack_recipe("Shuttle seat", /obj/structure/chair/comfy/shuttle, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
-	new /datum/stack_recipe("Tram door assembly", /obj/structure/door_assembly/multi_tile/door_assembly_tram, 8, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVE
+	new /datum/stack_recipe("Tram door assembly", /obj/structure/door_assembly/multi_tile/door_assembly_tram, 8, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_DOORS), \ */ // DARKPACK EDIT REMOVAL
 	))
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/titanium/get_main_recipes()
 	. = ..()
 	. += GLOB.titanium_recipes
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/plastitanium
 	material_flags = NONE
 	walltype = /turf/closed/wall/mineral/plastitanium
-// DARKPACK EDIT REMOVE START
+// DARKPACK EDIT REMOVAL START
 GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	new/datum/stack_recipe("plastitanium tile", /obj/item/stack/tile/mineral/plastitanium, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	))
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	singular_name = "adamantine sheet"
 	mats_per_unit = list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/adamantine
-/*  // DARKPACK EDIT REMOVE
+/*  // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/adamantine/get_main_recipes()
 	. = ..()
 	. += GLOB.adamantine_recipes
@@ -474,7 +474,7 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	merge_type = /obj/item/stack/sheet/mineral/abductor
 	material_type = /datum/material/alloy/alien
 	walltype = /turf/closed/wall/mineral/abductor
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 GLOBAL_LIST_INIT(abductor_recipes, list ( \
 	new/datum/stack_recipe("alien bed", /obj/structure/bed/abductor, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("alien locker", /obj/structure/closet/abductor, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
@@ -547,7 +547,7 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	merge_type = /obj/item/stack/sheet/mineral/metal_hydrogen
 	armor_type = /datum/armor/metal_hydrogen_sheet
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/mineral/metal_hydrogen/get_main_recipes()
 	. = ..()
 	. += GLOB.metalhydrogen_recipes

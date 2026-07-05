@@ -14,5 +14,5 @@
 
 /obj/item/watch/examine(mob/user)
 	. = ..()
-	. += "The watch reads: <b>[station_time_timestamp("hh:mm:ss, MMM DD")]</b>"
-	. += "That should make it <b>[station_time_timestamp("Day")]</b>"
+	. += "[src]: <b>[server_timestamp("hh:mm:ss", ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))], [server_timestamp("MMM DD", ic_time = TRUE)]</b>"
+	. += "That should make it <b>[server_timestamp("Day", ic_time = TRUE)]</b>"

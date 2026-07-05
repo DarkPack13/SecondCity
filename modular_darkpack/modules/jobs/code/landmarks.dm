@@ -140,4 +140,13 @@ JOB_START_HELPER(voivode/voivode, JOB_VOIVODE)
 JOB_START_HELPER(voivode/bogatyr, JOB_BOGATYR)
 JOB_START_HELPER(voivode/zadruga, JOB_ZADRUGA)
 
+/* Society of Leopold */
+/obj/effect/landmark/start/darkpack/society_of_leopold
+	name = "generic hunter start"
+
+JOB_START_HELPER(society_of_leopold/abbe, JOB_ABBE)
+JOB_START_HELPER(society_of_leopold/condittieri, JOB_CONDOTTIERI)
+JOB_START_HELPER(society_of_leopold/inquisitor, JOB_INQUISITOR)
+JOB_START_HELPER(society_of_leopold/novice, JOB_NOVICE)
+
 #undef JOB_START_HELPER

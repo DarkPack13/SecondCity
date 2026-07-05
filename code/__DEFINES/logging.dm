@@ -161,6 +161,7 @@
 #define LOG_CATEGORY_GAME_VOTE "game-vote"
 #define LOG_CATEGORY_GAME_WHISPER "game-whisper"
 #define LOG_CATEGORY_GAME_GHOST_POLLS "game-ghost-polls"
+#define LOG_CATEGORY_GAME_MENTOR "game-mentor" // DARKPACK EDIT ADD - Mentors
 
 // HREF categories
 #define LOG_CATEGORY_HREF "href"

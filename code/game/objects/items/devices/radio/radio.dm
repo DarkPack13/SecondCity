@@ -2,7 +2,7 @@
 
 /obj/item/radio
 	icon = 'icons/obj/devices/voice.dmi'
-	name = "city bounced radio" // DARKPACK EDIT, ORIGINAL: name = "station bounced radio"
+	name = "city bounced radio" // DARKPACK EDIT CHANGE - ORIGINAL: name = "station bounced radio"
 	icon_state = "walkietalkie"
 	inhand_icon_state = "walkietalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -373,7 +373,7 @@
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, radio_message, spans, message_mods)
 
 	// Independent radios, on the CentCom frequency, reach all independent radios
-	if ((special_channels & RADIO_SPECIAL_CENTCOM) && (freq == FREQ_CENTCOM || freq == FREQ_STATUS_DISPLAYS || freq == FREQ_MILITARY)) // DARKPACK EDIT, ORIGINAL: if ((special_channels & RADIO_SPECIAL_CENTCOM) && (freq == FREQ_CENTCOM || freq == FREQ_STATUS_DISPLAYS))
+	if ((special_channels & RADIO_SPECIAL_CENTCOM) && (freq == FREQ_CENTCOM || freq == FREQ_STATUS_DISPLAYS || freq == FREQ_MILITARY)) // DARKPACK EDIT CHANGE - ORIGINAL: if ((special_channels & RADIO_SPECIAL_CENTCOM) && (freq == FREQ_CENTCOM || freq == FREQ_STATUS_DISPLAYS))
 		signal.data["compression"] = 0
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
 		signal.levels = list(0)
@@ -411,7 +411,7 @@
 	signal.levels = SSmapping.get_connected_levels(T)
 	signal.broadcast()
 
-/obj/item/radio/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT, ORIGINAL: /obj/item/radio/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
+/obj/item/radio/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range, source) // DARKPACK EDIT CHANGE - ORIGINAL: /obj/item/radio/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range || message_mods[MODE_RELAY])
 		return

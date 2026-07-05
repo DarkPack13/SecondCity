@@ -1,5 +1,5 @@
 // THIS IS A DARKPACK UI FILE
-import { FeatureNumeric, FeatureValueProps, FeatureNumericData, FeatureNumberInput } from '../base';
+import { type FeatureNumeric, type FeatureValueProps, type FeatureNumericData, FeatureNumberInput } from '../base';
 import { Stack, Box } from 'tgui-core/components';
 
 type HeightServerData = FeatureNumericData & {

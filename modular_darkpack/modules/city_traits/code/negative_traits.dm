@@ -39,10 +39,7 @@
 
 /datum/station_trait/faulty_power_grid/on_round_start()
 	. = ..()
-	// Fuck I hate it, rework fusebox code
-	for(var/obj/fusebox/broken_box in world)
+	for(var/obj/fusebox/F in GLOB.fuseboxes)
 		if(prob(75))
 			continue
-		broken_box.damaged += rand(50, 200)
-		broken_box.check_damage()
-
+		F.take_damage(rand(50,200))

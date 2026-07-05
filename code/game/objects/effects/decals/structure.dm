@@ -5,7 +5,7 @@
 	icon_state = "lattice-255"
 	density = TRUE
 
-// DARKPACK EDIT ADDITION START
+// DARKPACK EDIT ADD START
 /obj/effect/decal/fakelattice/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END

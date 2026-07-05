@@ -267,8 +267,8 @@
 
 	data["calling_user"] = get_number_contact_name()
 
-	data["time"] = station_time_timestamp("hh:mm")
-	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
+	data["time"] = server_timestamp("hh:mm", ic_time = TRUE)
+	data["date"] = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE)
 	data["background_url"] = phone_background
 
 	var/list/conversations_list = list()
@@ -348,7 +348,7 @@
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
 				return
 			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					to_chat(usr, span_danger("Error: This number is already published."))
 					return TRUE
@@ -360,7 +360,7 @@
 			return TRUE
 
 		if("unpublish_number")
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					log_phone("[key_name(usr)] unpublished their number ([contact])/[sim_card.phone_number] from the phonebook.")
 					SSphones.published_phone_numbers.Remove(contact)
@@ -611,8 +611,8 @@
 
 	var/new_post = list(
 		"body" = trim(body),
-		"date" = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]",
-		"time" = station_time_timestamp("hh:mm"),
+		"date" = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE),
+		"time" = server_timestamp("hh:mm", ic_time = TRUE),
 		"author" = endpost_username
 	)
 

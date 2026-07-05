@@ -5,7 +5,7 @@
  */
 /datum/preference/text/pda_ringtone
 	savefile_key = "pda_ringtone"
-	category = null // DARKPACK EDIT CHANGE - Original : category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null // DARKPACK EDIT CHANGE - ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MESSENGER_RINGTONE_MAX_LENGTH
 	should_update_preview = FALSE
@@ -23,7 +23,7 @@
  */
 /datum/preference/choiced/pda_theme
 	savefile_key = "pda_theme"
-	category = null // DARKPACK EDIT CHANGE - Original : category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = null // DARKPACK EDIT CHANGE - ORIGINAL: category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	should_update_preview = FALSE
 

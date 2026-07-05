@@ -1,5 +1,5 @@
 // A 10% chance that out of a group of 25 people, one person will get appendicitis in 1 hour.
-#define APPENDICITIS_PROB 100 * (0.1 * (1 / 25) / 3600)
+#define APPENDICITIS_PROB 100 * (0.1 * (1 / 1000) / 3600) // DARKPACK EDIT CHANGE - (Makes it WAY WAY fucking rarer. 1/1000 instead of 1/25.. a LIFETIME risk irl is less then 10% man per person.)
 #define INFLAMATION_ADVANCEMENT_PROB 2
 
 /obj/item/organ/appendix
@@ -15,6 +15,7 @@
 
 	now_failing = span_warning("An explosion of pain erupts in your lower right abdomen!")
 	now_fixed = span_info("The pain in your abdomen has subsided.")
+	visual = FALSE
 
 	var/inflamation_stage = 0
 
@@ -43,6 +44,10 @@
 		become_inflamed()
 
 /obj/item/organ/appendix/proc/become_inflamed()
+	// DARKPACK EDIT ADD START - (Removes Appendicitis for Kindred)
+	if(get_kindred_splat(owner))
+		return
+	// DARKPACK EDIT ADD END
 	inflamation_stage = 1
 	update_appearance()
 	if(isnull(owner))

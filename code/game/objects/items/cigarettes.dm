@@ -464,6 +464,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/mob/living/carbon/smoker = loc
 		if(src == smoker.wear_mask)
 			make_mob_smoke(smoker)
+		smoker.trigger_rotschreck(src, 3) // DARKPACK EDIT ADD - FRENZY
 
 /obj/item/cigarette/extinguish()
 	. = ..()

@@ -15,6 +15,13 @@
 	icon_state = "russian"
 	default_priority = 90
 
+	mutual_understanding = list(
+		/datum/language/polish = 35,
+		/datum/language/czech = 20,
+		/datum/language/ukrainian = 60,
+		/datum/language/common = 10,
+	)
+
 	restricted = FALSE
 
 // Overides so the BODA machine uses real russian

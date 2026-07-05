@@ -8,9 +8,9 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 	var/ref_month = 1
 	var/ref_day = 20
 
-	var/year = text2num(station_time_timestamp("YYYY"))
-	var/month = text2num(station_time_timestamp("MM"))
-	var/day = text2num(station_time_timestamp("DD"))
+	var/year = text2num(server_timestamp("YYYY", ic_time = TRUE))
+	var/month = text2num(server_timestamp("MM", ic_time = TRUE))
+	var/day = text2num(server_timestamp("DD", ic_time = TRUE))
 
 	var/ref_days = ref_year * 365 + ref_month * 30 + ref_day
 	var/current_days = year * 365 + month * 30 + day

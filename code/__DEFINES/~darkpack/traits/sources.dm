@@ -2,7 +2,6 @@
 
 /// Trait given by a vampire's Clan
 #define CLAN_TRAIT "clan"
-#define DISCIPLINE_TRAIT "discipline"
 
 #define GIFT_TRAIT "gift"
 
@@ -13,3 +12,7 @@
 
 // used by the obfuscate ability
 #define OBFUSCATE_TRAIT "obfuscate_trait"
+
+#define FRENZY_TRAIT "frenzy" // FRENZY
+
+#define ZONE_TRAIT "zone_trait"

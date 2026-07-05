@@ -17,7 +17,10 @@
 	overflow_control = locate(/datum/round_event_control/scrubber_overflow/every_vent) in SSevents.control
 
 /obj/machinery/nuclearbomb/beer/Destroy()
-	UnregisterSignal(overflow_control, COMSIG_CREATED_ROUND_EVENT)
+	// DARKPACK EDIT CHANGE - this was causing runtimes as overflow_control is null if the associated event is not in SSevents
+	if(!isnull(overflow_control))
+		UnregisterSignal(overflow_control, COMSIG_CREATED_ROUND_EVENT)
+	// DARKPACK EDIT CHANGE END
 	. = ..()
 
 /obj/machinery/nuclearbomb/beer/examine(mob/user)

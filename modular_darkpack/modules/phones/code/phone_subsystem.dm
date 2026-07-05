@@ -4,7 +4,7 @@
  */
 SUBSYSTEM_DEF(phones)
 	name = "Phones"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	ss_flags = SS_NO_FIRE|SS_NO_INIT
 
 	// Seven digits, always start with 5
 	var/list/assigned_phone_numbers = list()
@@ -40,9 +40,11 @@ SUBSYSTEM_DEF(phones)
 // Returns a valid frequency for a phone to use for a phone call.
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
-	for(var/i in length(frequencies_in_use))
-		if(frequency_to_use == (USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE + i))
-			frequency_to_use++
+	while(frequency_to_use in frequencies_in_use)
+		if(frequency_to_use >= MAX_RADIO_FREQUENCY_FOR_PHONE_RANGE)
+			stack_trace("Phones have somehow connected over [MAX_RADIO_FREQUENCY_FOR_PHONE_RANGE - USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE] connections without being freed up. Something is wrong.")
+			break
+		frequency_to_use++
 	frequencies_in_use += frequency_to_use
 	return frequency_to_use
 

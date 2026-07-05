@@ -85,7 +85,7 @@
 	var/list/passengers = list()
 	var/max_passengers = 3
 
-	var/speed = 1	//Future
+	var/speed = 1 //Future
 	var/stage = 1
 	var/on = FALSE
 	var/locked = TRUE
@@ -123,6 +123,9 @@
 		grant_car_keys = TRUE
 		access = "[rand(1,9999999)]"
 		AddComponent(/datum/component/door_ownership)
+
+	if(mapload)
+		GLOB.city_door_lock_ids |= access
 
 	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
@@ -469,23 +472,34 @@
 	if(!prev_speed)
 		return
 
+	if(istype(bumped_atom, /obj/transfer_point_vamp))
+		COOLDOWN_START(src, impact_delay, 0.75 SECONDS)
+		/*
+		speed_in_pixels = 0
+		last_pos["x_pix"] = 0
+		last_pos["y_pix"] = 0
+		last_pos["x_frwd"] = 0
+		last_pos["y_frwd"] = 0
+		*/
+		return
+
 	if(istype(bumped_atom, /mob/living))
 		var/mob/living/hit_mob = bumped_atom
 		switch(hit_mob.mob_size)
-			if(MOB_SIZE_HUGE) 	//gangrel warforms, werewolves, bears, ppl with fortitude
+			if(MOB_SIZE_HUGE) // zulo form
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 75, TRUE)
 				speed_in_pixels = 0
 				COOLDOWN_START(src, impact_delay, 2 SECONDS)
 				hit_mob.Paralyze(1 SECONDS)
-			if(MOB_SIZE_LARGE)	//ppl with fat bodytype
+			if(MOB_SIZE_LARGE) // gangrel warforms, werewolves, bears
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 60, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.35)
 				hit_mob.Knockdown(1 SECONDS)
-			if(MOB_SIZE_SMALL)	//small animals
+			if(MOB_SIZE_SMALL) //small animals
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 40, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.75)
 				hit_mob.Knockdown(1 SECONDS)
-			else				//everything else
+			else //everything else
 				playsound(src, 'modular_darkpack/modules/cars/sounds/bump.ogg', 50, TRUE)
 				speed_in_pixels = round(speed_in_pixels * 0.5)
 				hit_mob.Knockdown(1 SECONDS)
@@ -545,6 +559,7 @@
 	pixel_y = last_pos["y_pix"]
 	var/moved_x = round(sin(used_vector)*used_speed)
 	var/moved_y = round(cos(used_vector)*used_speed)
+	var/bump_target
 	if(used_speed != 0)
 		var/true_movement_angle = used_vector
 		if(used_speed < 0)
@@ -559,6 +574,10 @@
 			if(debug_car)
 				// For visualising path of car.
 				new /obj/effect/temp_visual/telegraphing/car(T)
+
+			if(hit_turf == get_turf(src))
+				continue // Avoid spam bumping and trapping us inside of a dense turf.
+
 			var/dist_to_hit = get_dist_in_pixels(last_pos["x"]*32+last_pos["x_pix"], last_pos["y"]*32+last_pos["y_pix"], T.x*32, T.y*32)
 			if(dist_to_hit <= abs(used_speed))
 				var/list/stuff = T.get_blocking_contents(FALSE, src)
@@ -569,7 +588,8 @@
 							// For visualising hit tile of car.
 							new /obj/effect/temp_visual/telegraphing(T)
 		if(hit_turf)
-			Bump(pick(hit_turf.get_blocking_contents(FALSE, src)))
+			if(COOLDOWN_FINISHED(src, impact_delay))
+				bump_target = pick(hit_turf.get_blocking_contents(FALSE, src))
 			// to_chat(world, "I can't pass that [hit_turf] at [hit_turf.x] x [hit_turf.y] cause of [pick(hit_turf.unpassable)] FUCK")
 			// var/bearing = get_angle_raw(x, y, pixel_x, pixel_y, hit_turf.x, hit_turf.y, 0, 0)
 			var/actual_distance = get_dist_in_pixels(last_pos["x"]*32+last_pos["x_pix"], last_pos["y"]*32+last_pos["y_pix"], hit_turf.x*32, hit_turf.y*32)-32
@@ -600,6 +620,31 @@
 
 	animate(src, pixel_x = last_pos["x_pix"]+moved_x, pixel_y = last_pos["y_pix"]+moved_y, SScarpool.wait, 1)
 	update_last_pos(moved_x, moved_y)
+
+	if(bump_target)
+		Bump(bump_target)
+
+/obj/darkpack_car/proc/handle_npc_dodge(turf/target, angle)
+	for(var/turf/T in get_line(src, target))
+		var/list/unpassable = T.get_blocking_contents(FALSE, src)
+		if(!length(unpassable))
+			continue
+		for(var/mob/living/carbon/human/npc/NPC in unpassable)
+			if(COOLDOWN_FINISHED(NPC, car_dodge) && !HAS_TRAIT(NPC, TRAIT_INCAPACITATED))
+				var/list/dodge_direction = list(
+					SIMPLIFY_DEGREES(angle + 45),
+					SIMPLIFY_DEGREES(angle - 45),
+					SIMPLIFY_DEGREES(angle + 90),
+					SIMPLIFY_DEGREES(angle - 90),
+				)
+				for(var/dir_angle in dodge_direction)
+					if(get_step(NPC, angle2dir(dir_angle)).density)
+						dodge_direction.Remove(dir_angle)
+				if(length(dodge_direction))
+					step(NPC, angle2dir(pick(dodge_direction)), NPC.cached_multiplicative_slowdown)
+					COOLDOWN_START(NPC, car_dodge, 2 SECONDS)
+					if(prob(50))
+						NPC.realistic_say(pick(NPC.socialrole.car_dodged))
 
 /// Moves the client cameras of living inside of the car.
 /obj/darkpack_car/proc/move_car_riders(moved_x, moved_y)
@@ -691,8 +736,10 @@
 				movement_vector = SIMPLIFY_DEGREES(movement_vector+adjust_true*drift)
 
 /obj/darkpack_car/proc/apply_vector_angle()
+	var/new_dir = angle2dir(movement_vector)
+	setDir(new_dir)
+
 	var/turn_state = round(SIMPLIFY_DEGREES(movement_vector + 22.5) / 45)
-	setDir(GLOB.modulo_angle_to_dir[turn_state + 1])
 	var/minus_angle = turn_state * 45
 
 	var/matrix/M = matrix()

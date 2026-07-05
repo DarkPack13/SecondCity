@@ -40,7 +40,7 @@
 	name = get_visible_name()
 
 /// Combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a separate proc as it'll be useful elsewhere
-/mob/living/carbon/human/get_visible_name(add_id_name = TRUE, force_real_name = FALSE, mob/examiner) // DARKPACK EDIT, ORIGINAL: /mob/living/carbon/human/get_visible_name(add_id_name = TRUE, force_real_name = FALSE)
+/mob/living/carbon/human/get_visible_name(add_id_name = TRUE, force_real_name = FALSE, mob/examiner) // DARKPACK EDIT CHANGE - ORIGINAL: /mob/living/carbon/human/get_visible_name(add_id_name = TRUE, force_real_name = FALSE)
 	var/list/identity = list(null, null, null)
 	SEND_SIGNAL(src, COMSIG_HUMAN_GET_VISIBLE_NAME, identity)
 	var/signal_face = LAZYACCESS(identity, VISIBLE_NAME_FACE)
@@ -49,7 +49,7 @@
 	if(force_set) // our name is overriden by something
 		return signal_face // no need to null-check, because force_set will always set a signal_face
 
-	var/face_name = isnull(signal_face) ? get_face_name() : signal_face // DARKPACK EDIT, ORIGINAL: var/face_name = isnull(signal_face) ? get_face_name("") : signal_face
+	var/face_name = isnull(signal_face) ? get_face_name() : signal_face // DARKPACK EDIT CHANGE - ORIGINAL: var/face_name = isnull(signal_face) ? get_face_name("") : signal_face
 	var/id_name = isnull(signal_id) ? get_id_name("",  honorifics = add_id_name) : signal_id
 
 	// We need to account for real name
@@ -59,7 +59,7 @@
 
 	// We're just some unknown guy
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
-		return get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return "Unknown"
+		return get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT CHANGE - ORIGINAL: return "Unknown"
 
 	// We have a face and an ID
 	if(face_name && id_name)
@@ -74,7 +74,7 @@
 	// DARKPACK EDIT ADD END
 
 	// Just go down the list of stuff we recorded
-	return known_name || face_name || id_name || get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT, ORIGINAL: return face_name || id_name || "Unknown"
+	return known_name || face_name || id_name || get_generic_name(prefixed = TRUE, lowercase = TRUE) // DARKPACK EDIT CHANGE - ORIGINAL: return face_name || id_name || "Unknown"
 
 /**
  * Gets what the face of this mob looks like
@@ -82,12 +82,12 @@
  * * if_no_face - What to return if we have no face or our face is obscured/disfigured
  */
 /mob/living/carbon/proc/get_face_name(if_no_face = "Unknown")
-	return // DARKPACK EDIT, ORIGINAL: return real_name
+	return // DARKPACK EDIT CHANGE - ORIGINAL: return real_name
 
 /mob/living/carbon/human/get_face_name(if_no_face = "Unknown")
 	if(!real_name || is_face_obscured())
 		return if_no_face
-	return // DARKPACK EDIT, ORIGINAL: return real_name
+	return // DARKPACK EDIT CHANGE - ORIGINAL: return real_name
 
 /mob/living/carbon/human/proc/is_face_obscured()
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
@@ -269,13 +269,14 @@
 /**
  * Setter for mob height - updates the base height of the mob (which is then adjusted by traits or species)
  *
- * Exists so that the update is done immediately
- *
- * Returns TRUE if changed, FALSE otherwise
+ * * new_height - The new base height for this mob, should be one of the HUMAN_HEIGHT defines
+ * * update_dna - if TRUE (default), updates the mob's DNA with the new height value
  */
-/mob/living/carbon/human/proc/set_mob_height(new_height)
+/mob/living/carbon/human/proc/set_mob_height(new_height = HUMAN_HEIGHT_MEDIUM, update_dna = TRUE)
 	base_mob_height = new_height
 	update_mob_height()
+	if(update_dna)
+		dna?.update_ui_block(/datum/dna_block/identity/height)
 
 /**
  * Updates the mob's height
@@ -290,6 +291,13 @@
 	if(old_height != mob_height)
 		regenerate_icons()
 	SEND_SIGNAL(src, COMSIG_HUMAN_HEIGHT_UPDATED, old_height)
+
+/**
+ * Gets the mob's base height, ignoring adjustments from traits or species
+ * Necessary due to VAR_PRIVATE (it's not used in hot code anyways)
+ */
+/mob/living/carbon/human/proc/get_base_mob_height()
+	return base_mob_height
 
 /**
  * Makes a full copy of src and returns it.

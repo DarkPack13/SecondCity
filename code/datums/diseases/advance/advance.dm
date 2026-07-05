@@ -25,13 +25,14 @@
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cures = null
+	visibility_flags = HIDDEN_BOOK // we have unique handling for advance diseases in the book
 
 	// NEW VARS
 	var/list/properties = list()
 	var/list/symptoms = list() // The symptoms of the disease.
 	var/id = ""
 	var/processing = FALSE
-	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT, ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
+	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT CHANGE - ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
 
 /*
 

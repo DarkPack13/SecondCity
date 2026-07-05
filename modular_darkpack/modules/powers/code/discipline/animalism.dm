@@ -138,6 +138,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 8
 	obj_damage = 10
+	bloodpool = 2
 
 /mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
@@ -153,6 +154,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 	obj_damage = 15
+	bloodpool = 2
 
 /mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
 	. = ..()
@@ -176,6 +178,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
 	random_wolf_color = FALSE
+	bloodpool = 2
 
 /mob/living/basic/pet/dog/wolf/summoned/Initialize(mapload)
 	. = ..()
@@ -192,6 +195,7 @@
 	obj_damage = 10
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
+	bloodpool = 2
 
 /mob/living/basic/bat/summoned/Initialize(mapload)
 	. = ..()

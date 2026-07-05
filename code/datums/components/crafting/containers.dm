@@ -11,7 +11,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/boh
 	name = "Bag of Holding"
 	reqs = list(

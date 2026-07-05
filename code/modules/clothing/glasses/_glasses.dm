@@ -386,7 +386,7 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	add_glasses_slapcraft_component()
@@ -412,7 +412,7 @@
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT / 2)
 
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/clothing/glasses/sunglasses/chemical/add_glasses_slapcraft_component()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/scienceglassesremoval)
 
@@ -492,7 +492,7 @@
 	inhand_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
 	flash_protect = FLASH_PROTECTION_WELDER
-	flags_cover = GLASSESCOVERSEYES
+	visor_flags_cover = GLASSESCOVERSEYES
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5)
 	tint = 2
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT

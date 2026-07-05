@@ -1,6 +1,6 @@
 /datum/job/vampire/tapster
 	title = JOB_TAPSTER
-	faction = FACTION_CITY
+	faction = FACTION_ANARCHS
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = SUPERVISOR_BARON_PUBLIC

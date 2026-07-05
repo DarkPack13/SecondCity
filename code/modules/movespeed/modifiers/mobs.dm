@@ -1,6 +1,6 @@
 /datum/movespeed_modifier/obesity
 	// large weight slows even if flying and floating
-	multiplicative_slowdown = 1.5
+	multiplicative_slowdown = 1.2 // DARKPACK EDIT CHANGE - ORIGINAL: multiplicative_slowdown = 1.2
 
 /datum/movespeed_modifier/monkey_reagent_speedmod
 	variable = TRUE
@@ -163,7 +163,7 @@
 	variable = TRUE
 
 /datum/movespeed_modifier/goliath_mount
-	multiplicative_slowdown = -27.5
+	multiplicative_slowdown = -9.5
 
 /datum/movespeed_modifier/goldgrub_mount
 	multiplicative_slowdown = -4.5

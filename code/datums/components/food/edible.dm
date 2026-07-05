@@ -508,7 +508,9 @@ Behavior that's still missing from this component that original food items had t
 	var/fraction = 0.3
 	fraction = min(bite_consumption / owner.reagents.total_volume, 1)
 	owner.reagents.trans_to(eater, bite_consumption, transferred_by = feeder, methods = INGEST)
-	eater.hud_used?.hunger?.update_hunger_bar()
+	var/atom/movable/screen/hunger/hunger_bar = eater.hud_used?.screen_objects[HUD_MOB_HUNGER]
+	if (istype(hunger_bar))
+		hunger_bar.update_hunger_bar()
 	bitecount++
 
 	checkLiked(fraction, eater)
@@ -702,7 +704,7 @@ Behavior that's still missing from this component that original food items had t
 	SEND_SIGNAL(parent, COMSIG_FOOD_CONSUMED, eater, feeder)
 	SEND_SIGNAL(eater, COMSIG_LIVING_FINISH_EAT, parent, feeder)
 
-	// DARKPACK EDIT ADD START - MERITS/FLAWS - (Organovore)
+	// DARKPACK EDIT ADD START - MERITS_FLAWS - (Organovore)
 	if(HAS_TRAIT(eater, TRAIT_ORGANOVORE) && (foodtypes & GORE))
 		if(get_kindred_splat(eater))
 			eater.adjust_blood_pool(1, FALSE)

@@ -45,7 +45,7 @@
 
 /datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE))
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED))
 		return TRUE
 	if(!bloodheal_roll)
 		bloodheal_roll = new()

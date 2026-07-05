@@ -4,7 +4,7 @@
 	desc = "The Kiasyd are a bloodline of the Lasombra founded after a mysterious \"accident\" involving the Lasombra Marconius of Strasbourg. The \"accident\", involving faeries and the blood of \"Zeernebooch, a god of the Underworld\", resulted in Marconius gaining several feet in height, turning chalky white and developing large, elongated black eyes."
 	icon = "kiasyd"
 	curse = "At a glance they look unsettling or perturbing to most, their appearance closely resembles fae from old folklore. Kiasyd are also in some way connected with changelings and they are vulnerable to cold iron."
-
+	sense_the_sin_text = "is afraid of cold iron."
 	clan_disciplines = list(
 		/datum/discipline/dominate,
 		/datum/discipline/obtenebration,

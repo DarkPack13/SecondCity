@@ -8,7 +8,7 @@
 	var/healed_dots = 0
 
 	if(heal_blood)
-		adjust_blood_volume(dots_to_heal * 2)
+		adjust_blood_volume(dots_to_heal * 2, maximum = BLOOD_VOLUME_NORMAL)
 
 	if(heal_scars && dots_to_heal > 0)
 		healed_dots += heal_storyteller_scars(dots_to_heal)

@@ -72,18 +72,10 @@
 /obj/structure/chair/stool {dir=2} : /obj/structure/chair/stool/directional/south {@OLD;dir=@SKIP}
 /obj/structure/chair/stool {dir=4} : /obj/structure/chair/stool/directional/east {@OLD;dir=@SKIP}
 /obj/structure/chair/stool {dir=8} : /obj/structure/chair/stool/directional/west {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/directional/south : /obj/structure/chair/stool/directional/north {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/directional/north : /obj/structure/chair/stool/directional/south {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/directional/west : /obj/structure/chair/stool/directional/east {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/directional/east : /obj/structure/chair/stool/directional/west {@OLD;dir=@SKIP}
 /obj/structure/chair/stool/bar {dir=1} : /obj/structure/chair/stool/bar/directional/north {@OLD;dir=@SKIP}
 /obj/structure/chair/stool/bar {dir=2} : /obj/structure/chair/stool/bar/directional/south {@OLD;dir=@SKIP}
 /obj/structure/chair/stool/bar {dir=4} : /obj/structure/chair/stool/bar/directional/east {@OLD;dir=@SKIP}
 /obj/structure/chair/stool/bar {dir=8} : /obj/structure/chair/stool/bar/directional/west {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/bar/directional/south : /obj/structure/chair/stool/bar/directional/north {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/bar/directional/north : /obj/structure/chair/stool/bar/directional/south {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/bar/directional/west : /obj/structure/chair/stool/bar/directional/east {@OLD;dir=@SKIP}
-/obj/structure/chair/stool/bar/directional/east : /obj/structure/chair/stool/bar/directional/west {@OLD;dir=@SKIP}
 /obj/machinery/power/apc/auto_name/north : /obj/machinery/power/apc/auto_name/directional/north {@OLD;dir=@SKIP;pixel_y=@SKIP}
 /obj/machinery/power/apc/auto_name/south : /obj/machinery/power/apc/auto_name/directional/south {@OLD;dir=@SKIP;pixel_y=@SKIP}
 /obj/machinery/power/apc/auto_name/east : /obj/machinery/power/apc/auto_name/directional/east {@OLD;dir=@SKIP;pixel_x=@SKIP}

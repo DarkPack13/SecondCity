@@ -5,7 +5,8 @@
 
 /datum/crafting_recipe/food/pizza
 	added_foodtypes = RAW
-	category = CAT_PIZZA
+	cuisine_category = CUISINE_ITALIAN
+	dish_category = DISH_PIZZA
 
 /datum/crafting_recipe/food/pizza/margherita
 	reqs = list(
@@ -98,7 +99,7 @@
 	)
 	result = /obj/item/food/pizzaslice/ants
 	added_foodtypes = BUGS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/food/pizza/energy
 	reqs = list(
 		/obj/item/food/flatdough = 1,

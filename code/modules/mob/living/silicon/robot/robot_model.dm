@@ -389,7 +389,6 @@
 		/obj/item/construction/rcd/borg,
 		/obj/item/pipe_dispenser,
 		/obj/item/extinguisher,
-		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/t_scanner,
@@ -651,6 +650,9 @@
 
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		our_turf.wash(CLEAN_SCRUB)
+		var/datum/component/bloodysoles/bot/trackfilth = robot_owner.GetComponent(/datum/component/bloodysoles/bot)
+		if(trackfilth)
+			trackfilth.change_blood_amount(-trackfilth.total_bloodiness)
 
 	reagents.expose(our_turf, TOUCH, min(1, 10 / reagents.total_volume))
 	// We use more water doing this then mopping
@@ -901,7 +903,7 @@
 	name = "Syndicate Assault"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/melee/energy/sword/cyborg,
+		/obj/item/melee/energy/sword/saber/cyborg,
 		/obj/item/gun/energy/printer,
 		/obj/item/gun/ballistic/revolver/grenadelauncher/cyborg,
 		/obj/item/card/emag,
@@ -934,7 +936,7 @@
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/blood_filter,
-		/obj/item/melee/energy/sword/cyborg/saw,
+		/obj/item/melee/energy/sword/saber/cyborg/saw,
 		/obj/item/emergency_bed/silicon,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
@@ -958,7 +960,6 @@
 		/obj/item/pipe_dispenser,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher,
-		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/analyzer,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,

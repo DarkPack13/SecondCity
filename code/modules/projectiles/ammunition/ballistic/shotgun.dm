@@ -185,7 +185,7 @@
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/ammo_casing/shotgun/techshell/Initialize(mapload)
 	. = ..()
 

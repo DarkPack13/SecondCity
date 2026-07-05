@@ -46,7 +46,7 @@
 
 /datum/preference/name/real_name/apply_to_human(mob/living/carbon/human/target, value)
 	target.real_name = value
-	target.update_visible_name() // DARKPACK EDIT, ORIGINAL: target.name = value
+	target.update_visible_name() // DARKPACK EDIT CHANGE - ORIGINAL: target.name = value
 	target.log_mob_tag("TAG: [target.tag] RENAMED: [key_name(target)]")
 
 /datum/preference/name/real_name/create_informed_default_value(datum/preferences/preferences)
@@ -174,7 +174,7 @@
 		return FALSE
 
 	// If one of the roles is ticked in the antag prefs menu, this option will show.
-	var/static/list/ops_roles = list(ROLE_OPERATIVE, ROLE_LONE_OPERATIVE, ROLE_OPERATIVE_MIDROUND, ROLE_CLOWN_OPERATIVE)
+	var/static/list/ops_roles = list(ROLE_OPERATIVE, ROLE_LONE_OPERATIVE, ROLE_OPERATIVE_MIDROUND, ROLE_CLOWN_OPERATIVE, ROLE_CLOWN_OPERATIVE_MIDROUND)
 	if(length(ops_roles & preferences.be_special))
 		return TRUE
 

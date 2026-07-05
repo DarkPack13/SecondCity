@@ -8,15 +8,15 @@
 	basic_mob_flags = DEL_ON_DEATH
 
 	speed = 0
-	maxHealth = 150
-	health = 150
+	maxHealth = 100
+	health = 100
 
 	obj_damage = 50
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 15
+	melee_damage_upper = 15
 
-	bloodpool = 1
-	maxbloodpool = 1
+	bloodpool = 5
+	maxbloodpool = 5
 
 	faction = list(VAMPIRE_CLAN_TREMERE)
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon

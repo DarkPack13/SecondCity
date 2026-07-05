@@ -176,8 +176,13 @@
 		else
 			if(LAZYACCESS(modifiers, RIGHT_CLICK))
 				ranged_secondary_attack(A, modifiers)
+			/* // DARKPACK EDIT REMOVAL - COMBAT
 			else
 				RangedAttack(A, modifiers)
+			*/
+		// DARKPACK EDIT ADD START - COMBAT
+		RangedAttack(A, modifiers)
+		// DARKPACK EDIT ADD END
 
 /// Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -478,7 +483,7 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	// DARKPACK EDIT REMOVAL START - remove middle click swapping hands.
+	// DARKPACK EDIT REMOVAL START - (remove middle click swapping hands.)
 	/*
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && iscarbon(usr))
 		var/mob/living/carbon/C = usr

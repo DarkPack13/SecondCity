@@ -3,7 +3,7 @@
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "God"
+	supervisors = "your faith"
 	config_tag = "PRIEST"
 	outfit = /datum/outfit/job/vampire/priest
 	job_flags = CITY_JOB_FLAGS

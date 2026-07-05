@@ -103,6 +103,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt4, 0)
 	icon_state = "chinese6"
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt5, 0)
 
+// Hrm. Not synced with PRIMARY_NIGHTCLUB_COMPANY and it cant really be..
 /obj/structure/sign/city/strip_club
 	name = "sign"
 	desc = "It says DO RA. Maybe it's some kind of strip club..."
@@ -196,3 +197,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/reddragon, 32)
 	icon_state = "otolleys"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/otolleys, 32)
+
+/obj/structure/sign/city/store/magadon
+	name = "Magadon, Incorporated"
+	desc = "Magadon: Building a better you."
+	icon_state = "magadon"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/magadon, 32)

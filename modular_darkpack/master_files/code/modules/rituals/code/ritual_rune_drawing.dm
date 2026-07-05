@@ -15,8 +15,11 @@
 	//stat to use for rune drawing speed
 	var/speed_stat = STAT_OCCULT
 
-/datum/action/ritual_drawing/Trigger(trigger_flags)
+/datum/action/ritual_drawing/Trigger(mob/clicker, trigger_flags)
 	. = ..()
+	if(!.)
+		return
+
 	if(!rune_type || !tome_type)
 		stack_trace("[type] has no rune_type or tome_type set!")
 		return
@@ -50,7 +53,7 @@
 	for(var/rune_path in subtypesof(rune_type))
 		var/obj/ritual_rune/R = new rune_path(owner)
 		if(R.level <= level)
-			runes[R.ritual_name] = list("path" = rune_path, "cost" = R.cost)
+			runes[R.ritual_name] = list("path" = rune_path, "cost" = R.cost, "level" = R.level)
 		qdel(R)
 	return runes
 

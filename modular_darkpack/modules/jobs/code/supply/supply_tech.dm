@@ -15,7 +15,6 @@
 		/datum/job_department/supply,
 	)
 
-	allowed_splats = SPLAT_ALL
 
 	description = "You work at the warehouse, moving boxes and selling not-quite legal goods to anyone who has the money."
 	minimal_masquerade = 0

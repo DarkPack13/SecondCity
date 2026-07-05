@@ -28,3 +28,10 @@
 	rename_team = "First Team" //For when you need a death-squad on a budget
 	mission = "Remove all hostile anomolous entities"
 	polldesc = "an 'elite' FIRST Team"
+
+/datum/ert/darkpack/fbi
+	leader_role = /datum/antagonist/ert/darkpack/fbi/leader
+	roles = list(/datum/antagonist/ert/darkpack/fbi/medic, /datum/antagonist/ert/darkpack/fbi/rifleman, /datum/antagonist/ert/darkpack/fbi/marksman)
+	rename_team = "FBI SWAT Unit"
+	mission = "Assess the situation and assist the deployed FBI Special Agents."
+	polldesc = "the FBI's Special Weapons and Tactics Unit"

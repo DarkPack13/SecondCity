@@ -1,6 +1,6 @@
 /datum/job/vampire/zadruga
 	title = JOB_ZADRUGA
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = " the Laws of Hospitality"

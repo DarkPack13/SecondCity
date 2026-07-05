@@ -214,7 +214,7 @@
 	if(!is_seen_check())
 		return FALSE
 
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_PERFORMANCE))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 
@@ -260,9 +260,9 @@
 		owner.set_body_sprite(target_splat.clan.alt_sprite, target_splat.clan.alt_sprite_greyscale, TRUE)
 	else
 		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
-			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, CLAN_TRAIT)
 		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
-			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, CLAN_TRAIT)
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
@@ -274,9 +274,9 @@
 	owner.name = original_name
 
 	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, CLAN_TRAIT)
 	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, MAGIC_TRAIT)
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, CLAN_TRAIT)
 
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
 	owner.updateappearance(mutcolor_update = TRUE)
@@ -289,7 +289,7 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CAPABLE
-	vitae_cost = 2
+	vitae_cost = 0 //No Vitae cost
 
 	toggled = TRUE
 
@@ -300,7 +300,7 @@
 	)
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/pre_activation_checks(atom/target)
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_CHARISMA, STAT_STEALTH))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	return FALSE

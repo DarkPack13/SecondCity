@@ -36,6 +36,18 @@
 		/datum/stock_part/servo/tier3 = 5,
 		/obj/item/stack/cable_coil = 2)
 
+/obj/item/circuitboard/machine/dna_vault/completion_requirements(obj/structure/frame/install_frame)
+	var/turf/center = get_turf(install_frame)
+	var/blocked = FALSE
+	for(var/turf/potential_turf as anything in CORNER_BLOCK_OFFSET(center, 3, 3, -1, -2))
+		if(potential_turf.density)
+			new /obj/effect/temp_visual/point(potential_turf)
+			blocked = TRUE
+	if(blocked)
+		balloon_alert_to_viewers("no room! (3x3)")
+		return FALSE
+	return TRUE
+
 //Engineering
 
 /obj/item/circuitboard/machine/announcement_system
@@ -1304,6 +1316,26 @@
 		/obj/item/stack/sheet/glass = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/hydroponics/proc/changeindicators(mob/living/user, obj/item/I)
+	if(build_path == /obj/machinery/hydroponics/constructable/oldstyle)
+		name = "Hydroponics Tray [name_extension]"
+		build_path = /obj/machinery/hydroponics/constructable
+		balloon_alert(user, "defaulting indicator location")
+	else
+		name = "Hydroponics Tray (Alt) [name_extension]"
+		build_path = /obj/machinery/hydroponics/constructable/oldstyle
+		balloon_alert(user, "moved indicators location")
+
+/obj/item/circuitboard/machine/hydroponics/item_interaction(mob/living/user, obj/item/I, list/modifiers)
+	if(istype(I, /obj/item/plant_analyzer))
+		changeindicators(user)
+		return ITEM_INTERACT_SUCCESS
+	return ..()
+
+/obj/item/circuitboard/machine/hydroponics/screwdriver_act(mob/living/user, obj/item/tool)
+	changeindicators(user)
+	return ITEM_INTERACT_SUCCESS
+
 /obj/item/circuitboard/machine/hydroponics/fullupgrade
 	build_path = /obj/machinery/hydroponics/constructable/fullupgrade
 	specific_parts = TRUE
@@ -1312,6 +1344,11 @@
 		/datum/stock_part/servo/tier4 = 1,
 		/obj/item/stack/sheet/glass = 1
 	)
+
+// DARKPACK EDIT ADD START
+/obj/item/circuitboard/machine/hydroponics/tainted
+	build_path = /obj/machinery/hydroponics/constructable/tainted
+// DARKPACK EDIT ADD END
 
 /obj/item/circuitboard/machine/microwave
 	name = "Microwave"
@@ -1691,6 +1728,7 @@
 		/obj/item/assembly/igniter/condenser = 1,
 		/datum/stock_part/servo = 2,
 		/datum/stock_part/matter_bin = 2,
+		/obj/item/reagent_containers/cup/beaker = 1,
 	)
 
 /obj/item/circuitboard/machine/smelter
@@ -1701,6 +1739,7 @@
 		/obj/item/assembly/igniter = 1,
 		/datum/stock_part/servo = 2,
 		/datum/stock_part/matter_bin = 2,
+		/obj/item/reagent_containers/cup/beaker = 1,
 	)
 
 /obj/item/circuitboard/machine/shieldwallgen

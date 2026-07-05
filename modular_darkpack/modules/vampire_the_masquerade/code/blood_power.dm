@@ -1,7 +1,7 @@
 /datum/action/cooldown/blood_power
 	name = "Blood Power"
 	desc = "Use vitae to gain supernatural abilities."
-	button_icon = 'modular_darkpack/modules/deprecated/icons/ui/actions.dmi'
+	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	button_icon_state = "bloodpower"
 	background_icon = 'modular_darkpack/master_files/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_discipline"

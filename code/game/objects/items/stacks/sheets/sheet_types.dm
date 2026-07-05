@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 
 /obj/item/stack/sheet/cloth/five
 	amount = 5
-// DARKPACK EDIT REMOVE
+// DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/durathread
 	name = "durathread"
 	desc = "A fabric sown from incredibly durable threads, known for its usefulness in armor production."
@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/durathread
 	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
 	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/durathread/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/durathread_helmet, /datum/crafting_recipe/durathread_vest)
@@ -615,6 +615,9 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("nugget box", /obj/item/storage/fancy/nugget_box, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new /datum/stack_recipe("red nugget box", /obj/item/storage/fancy/nugget_box/red, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new /datum/stack_recipe("red wing box", /obj/item/storage/fancy/wing_box, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new /datum/stack_recipe("red fry box", /obj/item/storage/fancy/fry_box, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("drinking glasses box", /obj/item/storage/box/drinkingglasses, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("paper cups box", /obj/item/storage/box/cups, crafting_flags = NONE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("cigar case", /obj/item/storage/fancy/cigarettes/cigars, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -669,7 +672,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	material_type = /datum/material/cardboard
 	pickup_sound = 'sound/items/handling/materials/cardboard_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/cardboard_drop.ogg'
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/cardboard_id)
@@ -887,7 +890,7 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 	desc = "Something's bloody meat compressed into a nice solid sheet."
 	singular_name = "meat sheet"
 	icon_state = "sheet-meat"
-	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_NO_DESCRIPTORS
 	mats_per_unit = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/meat
 	material_type = /datum/material/meat
@@ -934,7 +937,7 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	desc = "These sheets seem cursed."
 	singular_name = "haunted sheet"
 	icon_state = "sheet-meat"
-	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_NO_DESCRIPTORS
 	mats_per_unit = list(/datum/material/hauntium = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/hauntium
 	material_type = /datum/material/hauntium

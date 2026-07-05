@@ -22,27 +22,21 @@
 /datum/species/human/shifter/feral/get_growl_sound(mob/living/carbon/human/human)
 	return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/lupus_growl.ogg'
 
-/* // DARKPACK TODO - CORAX
-/datum/emote/living/caw
-	key = "caw"
-	key_third_person = "caws"
-message = "caws!"
+/datum/emote/living/warcry
+	abstract_type = /datum/emote/living/warcry
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
-/datum/emote/living/caw/get_sound(mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-	return user.dna.species.get_caw_sound(user)
-*/
+/datum/emote/living/warcry/get_range(mob/living/user)
+	if(HAS_TRAIT(user, TRAIT_LOUD_WARCRY))
+		return 60
 
-/datum/emote/living/howl
+/datum/emote/living/warcry/howl
 	key = "howl"
 	key_third_person = "howls"
 	message = "howls!"
 	message_param = "howls for %t!"
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
-/datum/emote/living/howl/get_sound(mob/living/user)
+/datum/emote/living/warcry/howl/get_sound(mob/living/user)
 	var/static/list/howl_sounds = list(
 		'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo1.ogg',
 		'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo2.ogg',
@@ -56,9 +50,8 @@ message = "caws!"
 	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))
 		return pick(howl_sounds)
 
-/datum/emote/living/howl/get_range(mob/living/user)
-	if(HAS_TRAIT(user, TRAIT_LOUD_HOWLER))
-		return 60
+/datum/emote/living/warcry/howl/get_range(mob/living/user)
+	. = ..()
 
 	if(isdog(user) || istype(user, /mob/living/basic/mining/wolf))
 		return 7
@@ -68,3 +61,25 @@ message = "caws!"
 
 	if(user.is_clan(/datum/subsplat/vampire_clan/gangrel))
 		return 7
+
+
+/datum/emote/living/warcry/caw
+	key = "caw"
+	key_third_person = "caws"
+	message = "caws!"
+
+/datum/emote/living/warcry/caw/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_caw_sound(user)
+
+/datum/species/proc/get_caw_sound(mob/living/carbon/human/human)
+	return
+
+/datum/species/human/shifter/get_caw_sound(mob/living/carbon/human/human)
+	if(get_corax_splat(human))
+		return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/caw.ogg'
+
+/datum/species/human/shifter/war/get_caw_sound(mob/living/carbon/human/human)
+	if(get_corax_splat(human))
+		return 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/cawcrinos.ogg'

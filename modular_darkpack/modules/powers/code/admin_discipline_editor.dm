@@ -114,7 +114,7 @@
 		disc_data["name"] = discipline.name
 		disc_data["desc"] = discipline.desc
 		disc_data["max_level"] = discipline.max_selectable_level || length(discipline.all_powers)
-		disc_data["rarity"] = (discipline_type in RARE_DISCIPLINE_TYPES) ? "rare" : "common"
+		disc_data["rarity"] = (discipline_type in GLOB.rare_discipline_types) ? "rare" : "common"
 		disc_data["icon"] = initial(discipline.icon)
 		disc_data["icon_state"] = discipline.icon_state
 		discipline_cache["[discipline_type]"] = disc_data
@@ -163,7 +163,6 @@
 				target_prefs.discipline_levels -= disc_path
 			else
 				target_prefs.discipline_levels[disc_path] = new_level
-			target_prefs.save_character()
 			var/client/target_client = GLOB.directory[target_ckey]
 			if(target_client?.mob && ishuman(target_client.mob))
 				var/mob/living/carbon/human/target_mob = target_client.mob
@@ -173,6 +172,7 @@
 				else if(!target_mob.change_st_power_level(discipline_path, new_level))
 					target_mob.give_st_power(discipline_path, new_level) // and add them immediately, too
 			var/character_name = target_prefs.read_preference(/datum/preference/name/real_name)
+			target_prefs.save_character()
 			message_admins("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [character_name]).")
 			log_admin("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [character_name]).")
 			return TRUE

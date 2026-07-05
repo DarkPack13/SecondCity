@@ -8,7 +8,7 @@
 
 /obj/structure/coclock/examine(mob/user)
 	. = ..()
-	. += "The clock reads: <b>[station_time_timestamp()]</b>"
+	. += "[src] reads: <b>[server_timestamp("hh:mm:ss", ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))]"
 
 /obj/structure/coclock/grandpa
 	icon = 'modular_darkpack/modules/city_time/icons/grandpa_cock.dmi'

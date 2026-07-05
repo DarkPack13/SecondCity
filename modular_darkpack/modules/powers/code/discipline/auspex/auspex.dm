@@ -50,18 +50,18 @@
 
 	if(SENSE_VISION in output_senses)
 		owner.client?.view_size?.setTo(2) // This increases the view size of the player by 2 tiles in each direction. I dont know why it's called Set if it Adds.
-		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 		if(kindred_eyes)
 			kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += -2, FLASH_PROTECTION_HYPER_SENSITIVE)
 	if(SENSE_HEARING in output_senses)
-		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT(type))
 		var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 		kindred_ears.damage_multiplier = kindred_ears.damage_multiplier + 1
 	if(SENSE_SMELL in output_senses)
-		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT)
+		owner.dna?.add_mutation(/datum/mutation/olfaction, DISCIPLINE_TRAIT(type))
 	if(SENSE_TASTE in output_senses)
-		ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+		ADD_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT(type))
 	if(SENSE_TOUCH in output_senses)
 		RegisterSignals(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL), PROC_REF(on_touch))
 		owner.AddComponent(/datum/component/heartbeat_sensing, color_path = /datum/client_colour/psyker)
@@ -75,17 +75,17 @@
 	if(mutation)
 		owner.dna?.remove_mutation(mutation, mutation.sources)
 	// Hearing
-	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_GOOD_HEARING, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/ears/kindred_ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 	kindred_ears.damage_multiplier = initial(kindred_ears.damage_multiplier)
 	// Vision
 	owner.client?.view_size?.resetToDefault()
-	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_REFLECTIVE_EYES, DISCIPLINE_TRAIT(type))
 	var/obj/item/organ/eyes/kindred_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(kindred_eyes)
 		kindred_eyes.flash_protect = max(kindred_eyes.flash_protect += 2, FLASH_PROTECTION_NONE)
 	// Taste
-	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_REAGENT_SCANNER, DISCIPLINE_TRAIT(type))
 	// Touch
 	UnregisterSignal(owner, list(COMSIG_CARBON_HELP_ACT, COMSIG_ON_CARBON_SLIP, COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_TRYING_TO_PULL))
 	qdel(owner.GetComponent(/datum/component/heartbeat_sensing))
@@ -98,6 +98,13 @@
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "shiver", forced = TRUE)
 	owner.Stun(0.5 SECONDS)
 
+
+/datum/storyteller_roll/aura_perception
+	bumper_text = "aura reading"
+	difficulty = 8
+	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
+	roll_output_type = ROLL_PRIVATE
+
 //AURA PERCEPTION
 /datum/discipline_power/auspex/aura_perception
 	name = "Aura Perception"
@@ -109,14 +116,26 @@
 	cooldown_length = 1 SCENES
 	vitae_cost = 0
 
-	toggled = TRUE
+	cancelable = TRUE
+	var/datum/storyteller_roll/aura_perception/aura_roll
+
+/datum/discipline_power/auspex/aura_perception/pre_activation_checks(mob/living/target)
+	. = ..()
+	if(!aura_roll)
+		aura_roll = new()
+	switch(aura_roll.st_roll(owner, target))
+		if(ROLL_SUCCESS)
+			return TRUE
+		else
+			to_chat(owner, span_danger("You fail to read into anything at all..."))
+			return FALSE
 
 /datum/discipline_power/auspex/aura_perception/activate()
 	. = ..()
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.show_to(owner)
 
-	var/list/heard = orange(DEFAULT_MESSAGE_RANGE, owner)
+	var/list/heard = orange(DEFAULT_SIGHT_DISTANCE, owner)
 	for(var/mob/living/hearer in heard)
 		if(!HAS_TRAIT(src, TRAIT_FORCED_EMOTION))
 			hearer.apply_status_effect(/datum/status_effect/question_emotion)
@@ -238,9 +257,9 @@
 
 	level = 4
 	check_flags = DISC_CHECK_CONSCIOUS
-	target_type = TARGET_LIVING
+	target_type = TARGET_PLAYER
 	vitae_cost = 0
-	cooldown_length = 1 TURNS
+	cooldown_length = 3 SCENES
 	range = 7
 	var/telepathy_types = list(TELEPATHY_MIND_READING, TELEPATHY_IMPLANT_THOUGHT)
 	var/telepathy_type_selected
@@ -286,13 +305,15 @@
 							if(ROLL_SUCCESS)
 								disguised_voice = tgui_input_text(owner, "What will be the 'voice' of this implanted thought?", "Implanted Voice Selection")
 							if(ROLL_FAILURE, ROLL_BOTCH)
-								to_chat(span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
-								disguised_voice = owner.name
+								to_chat(owner, span_danger("You fail to disguise your voice - the subject hears your voice in their head!"))
+								disguised_voice = owner.real_name
 					if("No")
-						disguised_voice = owner.name
+						disguised_voice = owner.real_name
 		telepathy_type_selected = telepathy_type
 		return TRUE
-	return FALSE
+	else
+		do_cooldown()
+		return FALSE
 
 
 /datum/discipline_power/auspex/telepathy/activate(mob/living/target)
@@ -309,20 +330,21 @@
 				return
 
 			log_directed_talk(owner, target, input_message, LOG_SAY, "Telepathy")
-			to_chat(owner, span_notice("You project your thoughts into [target]'s mind: \"[input_message]\""))
-			to_chat(target, span_boldannounce("You hear the voice of [disguised_voice] in your thoughts: \"[input_message]\""))
+			to_chat(owner, span_notice("You project your thoughts into [GET_GUESTBOOK_NAME(owner, target)]'s mind: \"[input_message]\""))
+			to_chat(target, span_boldannounce("You hear the voice of [target?.mind?.guestbook?.get_known_name(target, disguised_voice) ? target?.mind?.guestbook?.get_known_name(target, disguised_voice) : disguised_voice] in your thoughts: \"[input_message]\""))
 
 		if(TELEPATHY_MIND_READING)
 			var/flavor_text_telepathy = "Someone nearby reads your mind without your knowing..." + get_flavor_text(successes)
 			var/mind_reading_search = tgui_input_list(owner, "Are you searching their mind for specific information? Deeper secrets and long-past memories require more successes.", "Mind Reading Specifics", list("Yes", "No"), "No")
 			if(mind_reading_search == "Yes")
-				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = MAX_MESSAGE_LEN)
+				specific_search = tgui_input_text(owner, "What are you trying to mind read from your victim?", "Mind Reading Search Input", max_length = (MAX_MESSAGE_LEN * 10))
 				if(!specific_search)
 					specific_search = "something specific"
 
 			var/prompt_message = flavor_text_telepathy
 			if(specific_search)
 				prompt_message += "The telepath specifically scans your mind for : [specific_search]"
+				message_admins("[owner.real_name] (ckey: [owner.key]) uses Auspex 4 'Telepathy' to read the mind of [target.real_name] (ckey: [target.key]) searching for '[specific_search]' with [successes] successes.")
 			else
 				prompt_message += "The telepath searches your recent thoughts and emotions..."
 
@@ -334,7 +356,8 @@
 				return
 
 			log_directed_talk(target, owner, input_message, LOG_SAY, "Telepathy (Mind Reading)")
-			to_chat(owner, span_notice("You read [target]'s thoughts with [successes] successes: [input_message]"))
+			message_admins("[target.real_name]'s (ckey: [target.key]) mind is read by [owner.real_name] (ckey: [owner.key]) who searched their mind for '[specific_search ? specific_search : "recent thoughts and emotions"]'. The owner intercepted the following thoughts or memories : [input_message]")
+			to_chat(owner, span_notice("You read [GET_GUESTBOOK_NAME(owner, target)]'s thoughts with [successes] successes: [input_message]"))
 
 /datum/discipline_power/auspex/telepathy/proc/get_flavor_text(successes)
 	var/message = "As your mind is read with [successes] successes, "
@@ -353,7 +376,7 @@
 
 /datum/discipline_power/auspex/telepathy/proc/sanitize_input_message(input_message)
 	//sanitisation!
-	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, MAX_MESSAGE_LEN) : input_message
+	input_message = CAN_BYPASS_FILTER(owner) ? strip_html_full(input_message, (MAX_MESSAGE_LEN * 10)) : input_message
 	var/list/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ooc_filtered(input_message)
 	if(filter_result)
 		REPORT_CHAT_FILTER_TO_USER(owner, filter_result)
@@ -374,7 +397,7 @@
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_PERCEPTION) + owner.st_get_stat(STAT_AWARENESS), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_AWARENESS))
 	if(roll == ROLL_SUCCESS)
 		owner.enter_avatar()
 	else

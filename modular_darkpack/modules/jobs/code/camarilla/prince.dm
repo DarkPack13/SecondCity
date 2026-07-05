@@ -2,7 +2,7 @@
 	title = JOB_PRINCE
 	description = "You are the top dog of this city. You hold Praxis over " + CITY_NAME + ", and your word is law. Make sure the Masquerade is upheld, and your status is respected."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
@@ -26,7 +26,7 @@
 	minimum_immortal_age = 75
 	minimal_masquerade = 5
 	allowed_splats = list(SPLAT_KINDRED)
-	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_BANU_HAQIM)
+	allowed_clans = list(VAMPIRE_CLAN_TREMERE, VAMPIRE_CLAN_VENTRUE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_DOMINATE_MALKAVIAN, VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_BANU_HAQIM, VAMPIRE_CLAN_BANU_HAQIM_VIZIER)
 
 	known_contacts = list(
 		"Sheriff",

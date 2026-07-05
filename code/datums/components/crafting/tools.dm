@@ -1,4 +1,4 @@
-/*// DARKPACK EDIT REMOVE
+/*// DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
@@ -57,7 +57,7 @@
 	)
 	result = /obj/item/stack/medical/bandage/makeshift
 	category = CAT_TOOLS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/bone_rod
 	name = "Bone Fishing Rod"
 	result = /obj/item/fishing_rod/bone
@@ -131,6 +131,10 @@
 		/obj/item/bonesetter = 1,
 	)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/jaws_of_recovery/New()
+	LAZYADD(blacklist, typecacheof(/obj/item/crowbar/power/paramedic, ignore_root_path = TRUE))
+	return ..()
 
 /datum/crafting_recipe/lantern
 	name = "Lantern"

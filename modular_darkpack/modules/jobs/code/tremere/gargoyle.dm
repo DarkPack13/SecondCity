@@ -1,6 +1,6 @@
 /datum/job/vampire/gargoyle
 	title = JOB_CHANTRY_GARGOYLE
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = SUPERVISOR_REGENT
@@ -30,11 +30,11 @@
 	uniform = /obj/item/clothing/under/vampire/turtleneck_black
 	suit = /obj/item/clothing/suit/hooded/robes/tremere
 	mask = /obj/item/clothing/mask/vampire/venetian_mask
+	belt = /obj/item/scythe/vamp
 	r_pocket = /obj/item/vamp/keys/archive
 	l_pocket = /obj/item/smartphone/gargoyle
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
 		/obj/item/ritual_tome/arcane = 1,
 		/obj/item/card/credit = 1,
-		/obj/item/scythe/vamp = 1,
 	)

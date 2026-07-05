@@ -6,11 +6,11 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/typhon_brew/is_recipe_available(mob/user)
+	. = ..()
+
 	if(!ishuman(user))
 		return FALSE
 
 	var/datum/splat/vampire/vampire = get_splat_with_discipline(user)
-	if(vampire?.get_discipline(/datum/discipline/serpentis))
-		return TRUE
-
-	return FALSE
+	if(!vampire?.get_discipline(/datum/discipline/serpentis))
+		return FALSE

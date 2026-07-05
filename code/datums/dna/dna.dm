@@ -4,7 +4,7 @@
  */
 GLOBAL_LIST_INIT(total_ui_len_by_block, populate_total_ui_len_by_block())
 
-GLOBAL_LIST_INIT(standard_mutation_sources, list(MUTATION_SOURCE_ACTIVATED, MUTATION_SOURCE_MUTATOR, MUTATION_SOURCE_TIMED_INJECTOR))
+GLOBAL_LIST_INIT(standard_mutation_sources, list(MUTATION_SOURCE_ACTIVATED, MUTATION_SOURCE_MUTATOR))
 
 /proc/populate_total_ui_len_by_block()
 	. = list()
@@ -44,10 +44,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/real_name
 	///All mutations are from now on here
 	var/list/mutations
-	///Temporary changes to the UE
-	var/list/temporary_mutations
-	///For temporary name/ui/ue/blood_type modifications
-	var/list/previous
 	var/mob/living/holder
 	///List of which mutations this carbon has and its assigned block
 	var/mutation_index[DNA_MUTATION_BLOCKS]
@@ -77,21 +73,19 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	QDEL_NULL(species)
 
 	LAZYNULL(mutations) //This only references mutations, just dereference.
-	LAZYNULL(temporary_mutations) //^
-	LAZYNULL(previous) //^
 
 	return ..()
 
 ///Copies the variables of a dna datum onto another.
-/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT CHANGE - added '|COPY_DNA_BLOOD_TYPE', original : /datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
+/datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_BLOOD_TYPE) // DARKPACK EDIT CHANGE - added '|COPY_DNA_BLOOD_TYPE', ORIGINAL: /datum/dna/proc/copy_dna(datum/dna/new_dna, transfer_flags = COPY_DNA_SE|COPY_DNA_SPECIES)
 	new_dna.unique_enzymes = unique_enzymes
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
 	new_dna.features = features.Copy()
 	new_dna.real_name = real_name
-	new_dna.temporary_mutations = LAZYLISTDUPLICATE(temporary_mutations)
-	new_dna.mutation_index = mutation_index
-	new_dna.default_mutation_genes = default_mutation_genes
+	if(transfer_flags & COPY_DNA_SE)
+		new_dna.mutation_index = mutation_index
+		new_dna.default_mutation_genes = default_mutation_genes
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
 		if (iscarbon(new_dna.holder) && (transfer_flags & COPY_DNA_BLOOD_TYPE)) // DARKPACK EDIT CHANGE - added & COPY_DNA_BLOOD_TYPE
@@ -100,10 +94,10 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.holder.set_species(species.type, icon_update = FALSE)
 	else
-		//DARKPACK EDIT CHANGE START - flag for copying blood type, we don't want to remove vampire blood from vampires using certain abilities
+		// DARKPACK EDIT CHANGE START - flag for copying blood type, we don't want to remove vampire blood from vampires using certain abilities
 		if(transfer_flags & COPY_DNA_BLOOD_TYPE)
 			new_dna.blood_type = blood_type
-		//DARKPACK EDIT CHANGE END
+		// DARKPACK EDIT CHANGE END
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.species = new species.type
 	if(transfer_flags & COPY_DNA_MUTATIONS && holder?.can_mutate())
@@ -158,7 +152,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/datum/mutation/actual_mutation = get_mutation(mutation_to_remove)
 
 	if(!actual_mutation || !(sources & actual_mutation.sources))
-		return
+		return FALSE
 
 	actual_mutation.sources -= sources
 
@@ -172,6 +166,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		qdel(actual_mutation)
 
 	update_instability(FALSE)
+	return TRUE
 
 /datum/dna/proc/check_mutation(mutation_type)
 	return get_mutation(mutation_type)
@@ -622,7 +617,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		return
 	var/datum/mutation/mutation = dna.get_mutation(mutation_path)
 	if(mutation)
-		mutation.scrambled = TRUE
+		mutation.scrambled = FALSE	//set to FALSE to allow easy_random_mutate obtained genes to be saved in DNA consoles
 
 /mob/living/carbon/proc/random_mutate_unique_identity()
 	if(!has_dna())

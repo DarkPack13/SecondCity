@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	if(!isnull(oldname))
-		desc = "The sad remains of what used to be [oldname]"
+		desc = "The sad remains of what used to be \a [oldname]."
 	. = ..()
 
 /obj/effect/decal/cleanable/glitter
@@ -362,20 +362,20 @@ GLOBAL_LIST_EMPTY(nebula_vomits)
 	beauty = -150
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
-// DARKPACK EDIT ADDITION START
+// DARKPACK EDIT ADD START
 /obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
 
 /obj/effect/decal/cleanable/garbage/Initialize(mapload)
 	. = ..()
 	icon_state = "garbage[rand(1, 6)]" // DARKPACK EDIT ADD
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 15)
 
-// DARKPACK EDIT ADDITION START
+// DARKPACK EDIT ADD START
 /obj/effect/decal/cleanable/garbage/NeverShouldHaveComeHere(turf/here_turf)
 	return isclosedturf(here_turf)
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
 
 /obj/effect/decal/cleanable/rubble
 	name = "rubble"

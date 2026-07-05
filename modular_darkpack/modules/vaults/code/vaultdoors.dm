@@ -36,10 +36,15 @@
 	desc = "A massive reinforced vault door protecting the bank's reserves."
 	lock_id = "bank_vault"
 
-/obj/structure/vaultdoor/New()
-	..()
+/obj/structure/vaultdoor/Initialize(mapload)
+	. = ..()
 	pincode = create_unique_pincode()
+	GLOB.vault_doors += src
 	is_locked = TRUE
+
+/obj/structure/vaultdoor/Destroy()
+	GLOB.vault_doors -= src
+	return ..()
 
 /obj/structure/vaultdoor/attack_hand(mob/user)
 	. = ..()
@@ -135,8 +140,3 @@
 			playsound(src, 'sound/machines/terminal/terminal_error.ogg', 50, TRUE)
 		. = TRUE
 
-/proc/find_door_pin(door_type)
-	for(var/obj/structure/vaultdoor/vdoor in world)
-		if(istype(vdoor, door_type))
-			return vdoor
-	return null

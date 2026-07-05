@@ -7,8 +7,8 @@
 	level = 1
 
 /obj/ritual_rune/thaumaturgy/chime_of_unseen_spirits/complete()
+	. = ..()
 	new /obj/item/spirit_chime(loc)
-	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	qdel(src)
 
 // The spirit chime item itself
@@ -76,7 +76,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 
-/obj/item/spirit_chime/Initialize()
+/obj/item/spirit_chime/Initialize(mapload)
 	. = ..()
 	// Sets up a field with a range of 10
 	chime_field = new /datum/proximity_monitor/advanced/spirit_chime(src, detection_range)
@@ -89,7 +89,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/item/spirit_chime/process(delta_time)
+/obj/item/spirit_chime/process(seconds_per_tick)
 	var/valid_targets = FALSE
 	if(!ringing || !anchored || !chime_field)
 		ringing = FALSE

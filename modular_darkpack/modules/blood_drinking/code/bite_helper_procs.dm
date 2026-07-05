@@ -17,8 +17,6 @@
 			REMOVE_TRAIT(src, TRAIT_NEEDS_BLOOD, TRAIT_GENERIC)
 			to_chat(src, span_notice("Your hunger is satisfied as the Beast inside retreats."))
 
-		//DARKPACK TODO: roll for frenzy when hungry and seeing, smelling, tasting blood, maybe like the old system where you roll every once in a while. the roll is
-		//self control 3 for seeing blood, 4 for smelling it, i think 6 for tasting it, all while hungry?
 	bloodpool = clamp(bloodpool+amount, 0, maxbloodpool)
 	if(updating_health)
 		update_blood_hud()
@@ -47,6 +45,8 @@
 	var/drink_mod = 1
 	if(HAS_TRAIT(src, TRAIT_HUNGRY))
 		drink_mod *= 0.5
+	if(HAS_TRAIT(src, TRAIT_EFFICIENT_DIGESTION))
+		drink_mod *= 1.5
 
 	return drink_mod
 

@@ -19,12 +19,11 @@
 	inhand_icon_state = null
 	gender = PLURAL
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
-
+	brand = "pentex"
 
 /obj/item/clothing/shoes/vampire/darkpack_ert/firstteam
 	name = "\improper First team boots"
 	desc = "Pitch-black boots with hard, industrial laces."
-	icon_state = "ftboots"
 	armor_type = /datum/armor/shoes_jackboots
 
 //------------GLOVES------------
@@ -35,12 +34,11 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	icon_state = "ftgloves"
 	undyeable = TRUE
-
+	brand = "pentex"
 
 /obj/item/clothing/gloves/vampire/darkpack_ert/firstteam
 	name = "\improper First Team gloves"
 	desc = "Provides protection from the good, the bad and the ugly."
-	icon_state = "ftgloves"
 	body_parts_covered = HANDS
 	armor_type = /datum/armor/gloves_combat
 
@@ -52,11 +50,11 @@
 	inhand_icon_state = null
 	worn_icon = 'modular_darkpack/modules/ert/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
+	brand = "pentex"
 
 /obj/item/clothing/head/vampire/darkpack_ert/firstteam_helmet
 	name = "\improper First Team helmet"
 	desc = "A black helmet with two, green-glowing eye-pieces that seem to stare through your soul."
-	icon_state = "fthelmet"
 	armor_type = /datum/armor/first_team
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	visor_flags_inv = HIDEFACE|HIDESNOUT
@@ -66,7 +64,7 @@
 //------------ARMOR------------
 
 /obj/item/clothing/suit/vampire/darkpack_ert
-	icon_state = "ftuni"
+	icon_state = "ftarmor"
 	icon = 'modular_darkpack/modules/ert/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/ert/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
@@ -79,8 +77,9 @@
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	max_integrity = 250
 	resistance_flags = NONE
+	brand = "pentex"
 
-/obj/item/clothing/suit/vampire/darkpack_ert/Initialize()
+/obj/item/clothing/suit/vampire/darkpack_ert/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "suit", FALSE)
 
@@ -88,7 +87,6 @@
 /obj/item/clothing/suit/vampire/darkpack_ert/firstteam_armor
 	name = "\improper First Team Armoured Vest"
 	desc = "A strong looking, armoured-vest with a large '1' engraved onto the breast."
-	icon_state = "ftarmor"
 	inhand_icon_state = null
 	armor_type = /datum/armor/first_team
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -108,22 +106,23 @@
 	icon = 'modular_darkpack/modules/ert/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/ert/icons/worn.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
+	brand = "pentex"
 
-
-/obj/item/clothing/under/vampire/darkpack_ert/Initialize()
+/obj/item/clothing/under/vampire/darkpack_ert/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 100, "undersuit", FALSE)
 
 /obj/item/clothing/under/vampire/darkpack_ert/firstteam_uniform
 	name = "First Team uniform"
 	desc = "A completely blacked out uniform with a large '1' symbol sewn onto the shoulder-pad."
-	icon_state = "ftuni"
 	armor_type = /datum/armor/clothing_under/security_head_of_security
+	brand = "pentex"
 
 //------------Glasses------------
 
 /obj/item/clothing/glasses/night/thermal
 	vision_flags = SEE_MOBS
+//	brand = "mars" // TODO: implement the rest of the non-top 21 pentex subsids
 
 //------------Weapons------------/obj/item/ammo_casing/vampire/c12gvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 /obj/item/ammo_box/darkpack/c556/bale //DONT EVER PUT THIS IN A MAP
@@ -150,26 +149,30 @@
 
 /obj/projectile/bullet/darkpack/vamp556mm/bale/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(get_kindred_splat(target) || get_ghoul_splat(target))
-		var/mob/living/carbon/human/H = target
-		if(H.bloodpool == 0)
-			to_chat(H, span_warning("Only ash remains in my veins!"))
-			H.apply_damage(20, BURN)
+	bale_fire_damage(target, 4, bloodloss)
+
+/obj/projectile/bullet/proc/bale_fire_damage(mob/living/carbon/human/target, dice = 0, bloodloss = 1)
+	if(!istype(target))
+		return
+
+	var/datum/splat/werewolf/shifter/shot_pup_splat = get_shifter_splat(target)
+	if(shot_pup_splat)
+		target.apply_status_effect(STATUS_EFFECT_SILVER_BULLET_STACKS)
+		target.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+		playsound(target, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
+		return
+
+	var/datum/splat/vampire/shot_vampire_splat = get_vampire_splat(target)
+	if(shot_vampire_splat)
+		if(target.bloodpool <= 0)
+			to_chat(target, span_warning("Only ash remains in my veins!"))
+			target.apply_damage(dice TTRPG_DAMAGE, BURN)
 			return
-		H.adjust_blood_pool(-bloodloss)
-		playsound(H, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
-		to_chat(H, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
-// DARKPACK TODO - GAROU
-/*
-	if(iswerewolf(target) || get_garou_splat(target))
-		var/mob/living/carbon/M = target
-		if(M.auspice.gnosis)
-			if(prob(50))
-				adjust_gnosis(-1, M)
-		M.apply_damage(20, CLONE)
-		playsound(M, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
-		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
-*/
+		target.adjust_blood_pool(-bloodloss)
+		playsound(target, 'modular_darkpack/modules/ert/sounds/balefire.ogg', rand(10,15), TRUE)
+		to_chat(target, span_warning("Green flames errupt from the bullets impact, boiling your blood!"))
+
+
 /obj/item/ammo_casing/vampire/c12g/f12g
 	name = "Frag-12g shell casing"
 	desc = "A 12g explosive shell casing."
@@ -179,6 +182,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	icon_state = "f12"
 	base_icon_state = "f12"
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/projectile/bullet/darkpack/f12g
 	name = "12g explosive slug"
@@ -186,6 +190,7 @@
 	armour_penetration = 50
 	exposed_wound_bonus = 10
 	wound_bonus = 5
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/projectile/bullet/darkpack/f12g/on_hit(atom/target, blocked = 0, pierce_hit)
 	..()
@@ -199,6 +204,7 @@
 	icon_state = "12box_frag"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
 	max_ammo = 40
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/item/ammo_box/magazine/darkpack/px66f
 	name = "\improper PX66F magazine (5.56mm)"
@@ -212,6 +218,7 @@
 	caliber = CALIBER_556NATO
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/item/ammo_box/magazine/darkpack/px249f
 	name = "\improper PX249F box magazine (5.56mm)"
@@ -225,6 +232,7 @@
 	caliber = CALIBER_556NATO
 	max_ammo = 200
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/item/ammo_box/magazine/internal/px12r
 	name = "shotgun internal magazine"
@@ -243,14 +251,17 @@
 	caliber = CALIBER_45
 	max_ammo = 12
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	brand = "herculean"
 
 /obj/item/ammo_box/magazine/darkpack/mk23/silver
 	name = "automatic pistol magazine (.45 ACP Silver)"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp/silver
+	brand = "herculean"
 
 /obj/item/ammo_box/magazine/darkpack/mk23/hp
 	name = "automatic pistol magazine (.45 ACP HP)"
 	ammo_type = /obj/item/ammo_casing/vampire/c45acp/HP
+	brand = "herculean"
 
 /obj/item/gun/ballistic/automatic/pistol/darkpack/mk23_socom
 	name = "\improper Mark 23 SOCOM Pistol"
@@ -273,6 +284,7 @@
 	can_suppress = FALSE
 	can_unsuppress = FALSE
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/glock.ogg' //Doesnt matter when it's always using the supressed SFX
+	brand = "herculean"
 
 /obj/item/gun/ballistic/automatic/darkpack/px66f //DO NOT DISTRIBUTE IN MAPPING
 	name = "\improper PX66F Rifle"
@@ -297,8 +309,9 @@
 	can_suppress = FALSE
 	fire_sound = 'modular_darkpack/modules/ert/sounds/silenced_rifle.ogg'
 	masquerade_violating = TRUE
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
-/obj/item/gun/ballistic/automatic/darkpack/px66f/Initialize()
+/obj/item/gun/ballistic/automatic/darkpack/px66f/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
@@ -325,7 +338,7 @@
 	rack_sound = 'modular_darkpack/modules/ert/sounds/cycling.ogg'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/item/gun/ballistic/automatic/l6_saw/darkpack
 	name = "\improper PX249F Light Machine Gun"
@@ -349,6 +362,7 @@
 	spread = 6
 	fire_sound = 'modular_darkpack/modules/ert/sounds/m249fire.ogg'
 	rack_sound = 'modular_darkpack/modules/ert/sounds/m249rack.ogg'
+//	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
 
 /obj/item/gun/ballistic/automatic/l6_saw/darkpack/update_icon_state()
 	. = ..()

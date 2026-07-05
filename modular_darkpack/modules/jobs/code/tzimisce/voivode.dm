@@ -1,6 +1,6 @@
 /datum/job/vampire/voivode
 	title = JOB_VOIVODE
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = " the Laws of Hospitality"

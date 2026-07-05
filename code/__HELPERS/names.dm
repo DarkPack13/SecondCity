@@ -113,7 +113,7 @@ GLOBAL_VAR(command_name)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_STATION_NAME_CHANGED, new_name, old_name)
 
 /proc/new_station_name()
-	return "[CITY_NAME] [CURRENT_STATION_YEAR]"
+	return "[CITY_NAME] [CURRENT_STATION_YEAR]" // DARKPACK EDIT CHANGE
 	/* // DARKPACK EDIT REMOVAL - This aint no station
 	var/random = rand(1,5)
 	var/name = ""

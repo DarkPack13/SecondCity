@@ -527,7 +527,7 @@
 
 // ~~ Pump-Action Grenade Launcher Kit ~~
 
-/datum/uplink_item/weapon_kits/moderate_cost/china_lake
+/datum/uplink_item/weapon_kits/medium_cost/china_lake
 	name = "Pump-Action Grenade Launcher Kit (Moderate)"
 	desc = "A weapon case containing a 40mm pump-action grenade launcher and a bandolier of 40mm grenades. Less versatile than the pneumatic grenade launcher kit, but no less dangerous. \
 		Though try to be careful about danger close. If you even care. A favourite of the Tiger Cooperative."
@@ -667,6 +667,16 @@
 	cost = 16
 	restricted = FALSE
 	refundable = FALSE
+
+
+/datum/uplink_item/reinforcements/ed209
+	name = "Modified ED209"
+	desc = "Stolen Nanotrasen tech, slightly tweaked and modified to fit a greater purpose."
+	item = /obj/item/antag_spawner/nuke_ops/ed209_nukie
+	cost = 20
+	restricted = FALSE
+	refundable = FALSE
+
 
 // Bundles
 

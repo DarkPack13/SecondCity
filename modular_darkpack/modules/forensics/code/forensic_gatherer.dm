@@ -20,7 +20,7 @@
 	desc = "A kit used to detect and gather evidence; particularly that of biomass for DNA, recovery of fingerprints, or closer examination of bullet casings. Can be used to print reports of your findings."
 	icon = 'modular_darkpack/modules/forensics/icons/forensics_kit.dmi'
 	icon_state = "magnifier"
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/forensics/icons/onfloor.dmi')
 	inhand_icon_state = "electronic"
 	worn_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -53,7 +53,7 @@
 	// Start gathering
 
 	log_entry.scan_target = scanned_atom.name
-	log_entry.scan_time = station_time_timestamp()
+	log_entry.scan_time = server_timestamp(ic_time = TRUE)
 
 	var/list/atom_fibers = GET_ATOM_FIBRES(scanned_atom)
 	if(length(atom_fibers))

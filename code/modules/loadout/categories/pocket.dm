@@ -3,7 +3,7 @@
 	category_name = "Other"
 	category_ui_icon = FA_ICON_QUESTION
 	type_to_generate = /datum/loadout_item/pocket_items
-	tab_order = /datum/loadout_category/head::tab_order + 11
+	tab_order = /datum/loadout_category/head::tab_order + 12 // DARKPACK EDIT CHANGE
 	/// How many pocket items are allowed
 	VAR_PRIVATE/max_allowed = 6 // DARKPACK EDIT CHANGE - Bumped up realtivly high as it contains a few soft "required" items for gameplay
 
@@ -275,7 +275,7 @@
 // The wallet loadout item is special, and puts the player's ID and other small items into it on initialize (fancy!)
 /datum/loadout_item/pocket_items/wallet
 	name = "Wallet"
-	item_path = /obj/item/storage/wallet/darkpack // DARKPACK EDIT CHANGE - Original : item_path = /obj/item/storage/wallet
+	item_path = /obj/item/storage/wallet/darkpack // DARKPACK EDIT CHANGE - ORIGINAL: item_path = /obj/item/storage/wallet
 
 /datum/loadout_item/pocket_items/wallet/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	return
@@ -292,11 +292,11 @@
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 
 /datum/loadout_item/pocket_items/wallet/proc/equip_wallet(mob/living/carbon/human/equipper)
-	var/obj/item/card/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID) // DARKPACK EDIT CHANGE - Original : var/obj/item/card/id/advanced/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID)
-	if(istype(id_card, /obj/item/storage/wallet/darkpack)) // Wallets station trait guard // DARKPACK EDIT CHANGE - Original : if(istype(id_card, /obj/item/storage/wallet)) // Wallets station trait guard
+	var/obj/item/card/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID) // DARKPACK EDIT CHANGE - ORIGINAL: var/obj/item/card/id/advanced/id_card = equipper.get_item_by_slot(ITEM_SLOT_ID)
+	if(istype(id_card, /obj/item/storage/wallet/darkpack)) // Wallets station trait guard // DARKPACK EDIT CHANGE - ORIGINAL: if(istype(id_card, /obj/item/storage/wallet)) // Wallets station trait guard
 		return
 
-	var/obj/item/storage/wallet/darkpack/wallet = new(equipper) // DARKPACK EDIT CHANGE - Original : var/obj/item/storage/wallet/wallet = new(equipper)
+	var/obj/item/storage/wallet/darkpack/wallet = new(equipper) // DARKPACK EDIT CHANGE - ORIGINAL: var/obj/item/storage/wallet/wallet = new(equipper)
 	if(!istype(id_card))
 		// They must have a PDA or some other thing in their ID slot, abort
 		if(!equipper.equip_to_storage(wallet, ITEM_SLOT_BACK, indirect_action = TRUE))

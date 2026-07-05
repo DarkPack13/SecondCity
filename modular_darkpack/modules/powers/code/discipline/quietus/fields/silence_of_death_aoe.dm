@@ -9,13 +9,13 @@
 	. = ..()
 	silenced_mobs = list()
 	if(ishuman(_host))
-		ADD_TRAIT(_host, TRAIT_SILENCED, DISCIPLINE_TRAIT)
+		ADD_TRAIT(_host, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
 		silenced_mobs |= _host
 
 /datum/proximity_monitor/advanced/silence_of_death/Destroy()
 	for(var/mob/living/carbon/human/H in silenced_mobs)
-		REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT)
-		REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT)
+		REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
+		REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT(type))
 	silenced_mobs = null
 	return ..()
 
@@ -29,10 +29,10 @@
 		return
 
 	var/mob/living/carbon/human/H = entered
-	ADD_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT)
+	ADD_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
 
 	if(H != host)
-		ADD_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT)
+		ADD_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT(type))
 
 	H.adjust_confusion_up_to(15 SECONDS, 15 SECONDS)
 
@@ -50,16 +50,16 @@
 		return
 
 	var/mob/living/carbon/human/H = gone
-	REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT)
-	REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT)
+	REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
+	REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT(type))
 	silenced_mobs -= H
 
 /datum/proximity_monitor/advanced/silence_of_death/on_z_change()
 	if(QDELETED(src))
 		return
 	for(var/mob/living/carbon/human/H in silenced_mobs)
-		REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT)
-		REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT)
+		REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
+		REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT(type))
 	silenced_mobs.Cut()
 
 /datum/proximity_monitor/advanced/silence_of_death/cleanup_field_turf(turf/target)
@@ -67,6 +67,6 @@
 		return
 	for(var/mob/living/carbon/human/H in target.contents)
 		if((H in silenced_mobs) && H != host)
-			REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT)
-			REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT)
+			REMOVE_TRAIT(H, TRAIT_SILENCED, DISCIPLINE_TRAIT(type))
+			REMOVE_TRAIT(H, TRAIT_MUTE, DISCIPLINE_TRAIT(type))
 			silenced_mobs -= H

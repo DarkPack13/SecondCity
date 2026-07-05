@@ -1,4 +1,3 @@
-// DARKPACK EDIT ADD START
 /datum/unit_test/apply_all_clans
 
 /datum/unit_test/apply_all_clans/Run()
@@ -17,4 +16,3 @@
 		human.set_clan(type)
 		TEST_ASSERT(human.is_clan(type), "[type] was somehow not applied to the human without a client")
 
-// DARKPACK EDIT ADD END

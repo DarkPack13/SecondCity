@@ -2,7 +2,7 @@
 	title = JOB_PRIMOGEN_TOREADOR
 	description = "Offer your infinite knowledge to Prince of the City. Take care of the Strip Club and its Elysium, for it is your domain and a social center within the city."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
