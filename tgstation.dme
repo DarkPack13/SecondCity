@@ -7527,6 +7527,7 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\permanent_wound.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\pierced_veil.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\prey_exclusion.dm"
+#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\seizures.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\short.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\smell_of_the_grave.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\speech_impediment.dm"
