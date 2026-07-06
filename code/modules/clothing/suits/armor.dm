@@ -308,13 +308,13 @@
 	AddComponent(/datum/component/item_equipped_movement_rustle)
 
 /datum/armor/armor_riot
-	melee = 75
-	bullet = 50
+	melee = 75 // DARKPACK EDIT CHANGE
+	bullet = 50 // DARKPACK EDIT CHANGE
 	laser = 10
 	energy = 10
 	fire = 80
 	acid = 80
-	wound = 30
+	wound = 30 // DARKPACK EDIT CHANGE
 
 /obj/item/clothing/suit/armor/balloon_vest
 	name = "balloon vest"
