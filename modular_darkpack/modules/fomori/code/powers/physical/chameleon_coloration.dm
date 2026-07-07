@@ -1,4 +1,4 @@
-/datum/action/cooldown/power/fomori_power/chameleon_coloration
+/datum/action/cooldown/power/fomori_power/chameleon_coloration // Freak Legion pg.31
 	name = "Chameleon Coloration"
 	desc = "Blend into the background to strike unseen."
 	button_icon_state = "chameleon_coloration"

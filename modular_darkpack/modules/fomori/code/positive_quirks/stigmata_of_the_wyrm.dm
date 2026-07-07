@@ -1,4 +1,4 @@
-/datum/quirk/darkpack/stigmata_of_the_wyrm
+/datum/quirk/darkpack/stigmata_of_the_wyrm // Freak Legion pg.32
 	name = "Stigmata of the Wyrm"
 	desc = {"You have undergone some immense test or trial after total and complete devotion to the Wyrm,
 		leaving you with some kind of bodily mark that is known to other servants of the Wyrm."}

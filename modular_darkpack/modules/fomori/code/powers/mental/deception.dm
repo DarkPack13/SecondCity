@@ -1,4 +1,4 @@
-/datum/storyteller_roll/deception
+/datum/storyteller_roll/deception // Freak Legion pg.32
 	bumper_text = "deception"
 	difficulty = 8
 	applicable_stats = list(STAT_WITS, STAT_SUBTERFUGE)

@@ -1,4 +1,4 @@
-/datum/storyteller_roll/fomor_regeneration
+/datum/storyteller_roll/fomor_regeneration // Freak Legion pg.37
 	bumper_text = "regeneration"
 	difficulty = 6
 	applicable_stats = list(STAT_STAMINA)

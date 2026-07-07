@@ -1,4 +1,4 @@
-/datum/action/cooldown/power/fomori_power/darksight // TODO: Make this work with more light sources
+/datum/action/cooldown/power/fomori_power/darksight // Freak Legion pg.32 // TODO: Make this work with more light sources
 	name = "Darksight"
 	desc = "See in the dark unbidden, but beware bright lights."
 	button_icon_state = "darksight"

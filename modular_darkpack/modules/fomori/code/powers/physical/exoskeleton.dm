@@ -1,4 +1,4 @@
-/datum/bodypart_overlay/simple/fomor_exoskeleton
+/datum/bodypart_overlay/simple/fomor_exoskeleton // Freak Legion pg.32
 	icon_state = "exoskeleton"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
 	layers = BENEATH_HAIR_LAYER

@@ -1,4 +1,4 @@
-/datum/storyteller_roll/corrupted_visions
+/datum/storyteller_roll/corrupted_visions // Freak Legion pg.31-32
 	bumper_text = "corrupted visions"
 	difficulty = 8
 	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)

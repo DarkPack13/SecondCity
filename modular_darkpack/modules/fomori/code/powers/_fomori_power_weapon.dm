@@ -15,6 +15,9 @@
 	var/unsheathe_sound = 'sound/effects/blob/blobattack.ogg'
 	var/sheathe_sound = 'sound/effects/meatslap.ogg'
 
+	var/obj/item/weapon // The item we spawned of type weapon_type
+	var/obj/item/weapon_offhand // The item we spawned in our offhand of type weapon_type
+
 /datum/action/cooldown/power/fomori_power/weapon/Activate(atom/target)
 	var/obj/item/held = owner.get_active_held_item()
 	var/obj/item/off_held = owner.get_inactive_held_item()
@@ -35,8 +38,8 @@
 
 	. = ..()
 
-	var/obj/item/weapon = new weapon_type(owner)
-	var/obj/item/weapon_offhand = new weapon_type(owner)
+	weapon = new weapon_type(owner)
+	weapon_offhand = new weapon_type(owner)
 
 	deployed = TRUE
 

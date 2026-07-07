@@ -1,4 +1,4 @@
-/datum/quirk/darkpack/hidden_power
+/datum/quirk/darkpack/hidden_power // Freak Legion pg.22
 	name = "Hidden Power"
 	desc = {"None of your powers or taints are physically obvious, and can be retracted or otherwise hidden."}
 	value = 4

@@ -1,4 +1,4 @@
-/datum/storyteller_roll/infectious_touch
+/datum/storyteller_roll/infectious_touch // Freak Legion pg.34
 	bumper_text = "infectious touch"
 	difficulty = 7
 	applicable_stats = list(STAT_STAMINA, STAT_MEDICINE)

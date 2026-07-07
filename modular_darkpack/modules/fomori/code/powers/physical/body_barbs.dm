@@ -1,4 +1,4 @@
-/obj/item/melee/body_barbs // Largely copied from changeling armblade
+/obj/item/melee/body_barbs // Largely copied from changeling armblade // Freak Legion pg.30
 	name = "body barb"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_items48x32.dmi'
 	icon_state = "body_barb"
@@ -7,7 +7,8 @@
 	righthand_file = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
-	force = 40 // Identical to Machete
+	force = 10
+	damtype = AGGRAVATED
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
@@ -23,6 +24,8 @@
 	armour_penetration = 35
 	var/list/alt_continuous = list("stabs", "pierces", "impales")
 	var/list/alt_simple = list("stab", "pierce", "impale")
+
+	attack_difficulty = 7
 
 	abstract_type = /obj/item/melee/body_barbs
 
@@ -63,6 +66,9 @@
 
 /datum/action/cooldown/power/fomori_power/weapon/body_barbs/Activate(atom/target)
 	. = ..()
+	weapon.force = rank LETHAL_TTRPG_DAMAGE
+	weapon_offhand.force = rank LETHAL_TTRPG_DAMAGE
+
 	if(deployed)
 		owner.visible_message(span_warning("A pair of grotesque barbs extend from [owner]\'s arms!"), \
 			span_warning("Your body barbs extend from your arms."), \

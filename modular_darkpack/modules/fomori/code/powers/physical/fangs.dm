@@ -1,4 +1,4 @@
-/datum/bodypart_overlay/simple/fomor_fangs
+/datum/bodypart_overlay/simple/fomor_fangs // Freak Legion pg.31
 	icon_state = "fangs"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
 	layers = MUTATIONS_LAYER

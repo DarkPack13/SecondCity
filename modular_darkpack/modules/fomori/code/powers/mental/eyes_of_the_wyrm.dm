@@ -1,4 +1,4 @@
-/datum/storyteller_roll/eyes_of_the_wyrm // For defending
+/datum/storyteller_roll/eyes_of_the_wyrm // For defending // Freak Legion pg.32-33
 	bumper_text = "eyes_of_the_wyrm"
 	difficulty = 8
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)

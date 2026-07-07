@@ -1,4 +1,4 @@
-/obj/item/knife/fomor_claws // Just a normal knife, but part of our hands!
+/obj/item/knife/fomor_claws // Just a normal knife, but part of our hands! // Freak Legion pg.31
 	name = "claw"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_items48x32.dmi'
 	icon_state = "claw"

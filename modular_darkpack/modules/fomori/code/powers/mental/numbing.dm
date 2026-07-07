@@ -20,7 +20,8 @@
 
 	if(roll_result == ROLL_SUCCESS)
 		if(!caster.has_quirk(/datum/quirk/numb))
-			caster.add_quirk(/datum/quirk/numb)
+			caster.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
+			caster.add_traits(list(TRAIT_ANALGESIA, TRAIT_NO_DAMAGE_OVERLAY), "fomor_numbing")
 			addtimer(CALLBACK(src, PROC_REF(end_numbness)), 1 SCENES)
 
 			beforehealth = caster.health
@@ -36,10 +37,10 @@
 /datum/action/cooldown/power/fomori_power/numbing/proc/end_numbness()
 	var/mob/living/caster = owner
 
-	caster.remove_quirk(/datum/quirk/numb)
+	caster.remove_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
+	caster.remove_traits(list(TRAIT_ANALGESIA, TRAIT_NO_DAMAGE_OVERLAY), "fomor_numbing")
 	caster.take_overall_damage(brute = abs(afterhealth-beforehealth))
 
 	var/obj/item/organ/tongue/our_tongue = owner.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(our_tongue)
 		our_tongue.on_failure_recovery()
-#warn numb quirk isn't being applied correctly
