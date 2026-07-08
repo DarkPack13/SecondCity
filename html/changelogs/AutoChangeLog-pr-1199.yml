@@ -1,0 +1,5 @@
+author: "SirSwagmeyer"
+delete-after: True
+changes:
+  - balance: "buffed the bolt projectile and leopoldite armor a bit."
+  - bugfix: "fixed the crossbow reloading issue"

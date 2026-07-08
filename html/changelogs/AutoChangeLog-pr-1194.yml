@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds back oldbase's Mytherceria"
+  - rscdel: "removes the Mytherceria wards since there were only three of them and one of them gave people motion sickness"
