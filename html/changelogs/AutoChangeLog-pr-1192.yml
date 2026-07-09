@@ -1,4 +1,0 @@
-author: "Magisterium2022"
-delete-after: True
-changes:
-  - bugfix: "Fixes Sense the Sin outputting text to target instead of user."

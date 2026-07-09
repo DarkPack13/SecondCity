@@ -1,0 +1,14 @@
+2026-07-06:
+  FalloutFalcon:
+  - bugfix: Rainstorms work again
+  - balance: All current events can now only trigger once
+  - balance: if the faulty grid city trait is active it wont ALSO trigger the blackout
+      event. Fuse-boxes should only break once therefore.
+  - balance: Small chance for blackout to only MOSTLY fuck up a fusebox
+  - rscadd: Klaives; the silvered blades of the fera
+  - qol: Clan and Tribe keys wont spawn if the map does not have any corresponding
+      doors
+  Icarus-The-Sun:
+  - bugfix: grocery store sells real spaghetti
+  Magisterium2022:
+  - bugfix: Fixes Sense the Sin outputting text to target instead of user.

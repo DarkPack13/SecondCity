@@ -8,12 +8,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 // CITY_TRAITS
-#define STATION_TRAIT_RED_STAR "station_trait_red_star"
-#define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
+#define STATION_TRAIT_BLACKOUT "station_trait_blackout"
+#define STATION_TRAIT_COSPLAY_CONVENTION "station_trait_cosplay_convention"
 #define STATION_TRAIT_INFESTATION "station_trait_infestation"
 #define STATION_TRAIT_PEST_CONTROL "station_trait_pest_control"
+#define STATION_TRAIT_RED_STAR "station_trait_red_star"
 #define STATION_TRAIT_STRAY_MIGRATION "station_trait_stray_migration"
-#define STATION_TRAIT_COSPLAY_CONVENTION "station_trait_cosplay_convention"
+#define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
 
 // Mob traits
 
