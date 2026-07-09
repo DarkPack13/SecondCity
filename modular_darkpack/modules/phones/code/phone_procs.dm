@@ -169,7 +169,7 @@
 		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
 	if(ringer)
 		playsound(src, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE, 0, 2) // This could prob use a better notification
-	balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE) // Does this emoji look good ingame? Flip a coin.
+	balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
 
 #undef VIBRATION_LOOP_DURATION
 
