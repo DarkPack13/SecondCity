@@ -376,7 +376,7 @@
 			// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
 			// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
 			var/bonus_dice = FORCE_TO_DICE_POOL(final_force)
-			if(prob(LEFTOVER_FORCE_TO_PERECENT(final_force)))
+			if(prob(LEFTOVER_FORCE_TO_PERCENT(final_force)))
 				bonus_dice++
 			var/datum/storyteller_roll/damage/damage_roll = new()
 			damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
