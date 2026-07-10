@@ -14,7 +14,7 @@
 
 #define FORCE_TO_DICE_POOL(force) round(force / (1 TTRPG_DAMAGE))
 #define FORCE_TO_DICE_POOL_UNROUNDED(force) (force / (1 TTRPG_DAMAGE))
-#define LEFTOVER_FORCE_TO_PERECENT(force) ((force % (1 TTRPG_DAMAGE) / (1 TTRPG_DAMAGE)) * 100)
+#define LEFTOVER_FORCE_TO_PERCENT(force) ((force % (1 TTRPG_DAMAGE) / (1 TTRPG_DAMAGE)) * 100)
 
 // Unused for now
 #define BASHING "bashing"
