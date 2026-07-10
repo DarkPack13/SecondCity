@@ -105,25 +105,41 @@
 	if(!custom_body_render)
 		return FALSE
 
-	human.remove_overlay(BODYPARTS_LAYER)
-
 	var/fur_color = get_fur_color(human)
 	var/mob_icon = get_mob_icon(human)
 
+	human.remove_overlay(BODYPARTS_LAYER)
 	var/main_iconstate = ""
 	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
 		main_iconstate += "spiral"
 	main_iconstate += fur_color
-	if(has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM))
+	if(should_append_flying_to_icon(human))
 		main_iconstate += "_flying"
 	else if(human.body_position == LYING_DOWN)
 		main_iconstate += "_rest"
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, icon_state = main_iconstate, layer = -BODYPARTS_LAYER))
 	human.apply_overlay(BODYPARTS_LAYER)
 
+
+	human.remove_overlay(EYES_LAYER)
+	var/mutable_appearance/eyes_overlay = mutable_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", -EYES_LAYER)
+	eyes_overlay.color = COLOR_PUCE
+	var/mutable_appearance/emissive_overlay = emissive_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", human, effect_type = EMISSIVE_SPECULAR)
+	emissive_overlay.color = COLOR_PUCE
+	human.overlays_standing[EYES_LAYER] = list(eyes_overlay, emissive_overlay)
+	human.apply_overlay(EYES_LAYER)
+
+
+	human.remove_overlay(HAIR_LAYER)
+	var/mutable_appearance/hair_layer = mutable_appearance(mob_icon, "hair1", -HAIR_LAYER)
+	human.overlays_standing[HAIR_LAYER] = list(hair_layer)
+	human.apply_overlay(HAIR_LAYER)
+
 	return TRUE
+
+/datum/species/human/shifter/proc/should_append_flying_to_icon(mob/living/carbon/human/human)
+	return has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM)
 
 /datum/species/human/shifter/update_damage_overlays(mob/living/carbon/human/human)
 	if(!custom_damage_render)
