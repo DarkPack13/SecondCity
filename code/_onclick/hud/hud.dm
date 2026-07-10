@@ -6,7 +6,7 @@
 
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
-	"World of Darkness" = 'modular_darkpack/master_files/icons/hud/screen_darkness_new.dmi', // DARKPACK EDIT ADD - (Put at the top because it has almost full coverage now!)
+	"World-of-Darkness" = 'modular_darkpack/master_files/icons/hud/screen_darkness_new.dmi', // DARKPACK EDIT ADD - (Put at the top because it has almost full coverage now!)
 	"Pentex-Knox" = 'modular_darkpack/master_files/icons/hud/screen_pentexknox.dmi', // DARKPACK EDIT ADD - (Trasen-Knox logo with a Pentex logo)
 	/* // DARKPACK EDIT REMOVAL
 	"Midnight" = 'icons/hud/screen_midnight.dmi',

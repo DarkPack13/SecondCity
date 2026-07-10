@@ -1,0 +1,18 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds the 'graveyard' random event in place of what we had before which fires once per round with about the same rarity as the sarcophagus event. in this event, 20% of the graves across the map will spawn 2 zombies max each"
+  - rscadd: "artifacts and all tremere spellbooks can now be sold at pawn shops"
+  - rscadd: "masquerade sensitive items can now be sold at pawnshops, but you may breach if you don't pass a manip + subterfuge diff 8 roll"
+  - rscadd: "adds three new zombie types, the fat zombie, the skeleton, and the suit zombie"
+  - rscadd: "the graveyard zombies now have bloodpoints and can be bitten"
+  - rscadd: "necromancy users can now purchase an 'obolus' (a coin forged from a Wraith's soul) from the necromancy tome, which can be sold"
+  - rscadd: "necromancy users can now purchase graveyard keys from their necromancy tome, giovanni start with them as they are assumed to control the graveyard's mortal front"
+  - rscadd: "adds being able to speak to observer ghosts to necromancy 1 Shroudsight similar to spirit speech for Garou"
+  - balance: "Shroudsight now has triple the cooldown (3 minutes -> 9 minutes) to compensate for the 'talking to ghosts' trait which has been shown to be too powerful, it also now has a vitae cost of 1"
+  - rscadd: "graveyard keys can now open and shut the graveyard gate"
+  - bugfix: "fixes shroudsight double-rolling, it now only rolls it's appropriate roll datum (perception) + awareness"
+  - rscdel: "removes the 'graveyard keeper' role"
+  - code_imp: "deletes the 'graveyard' subsystem"
+  - config: "extends the lobby time to 5 minutes, 2 minutes was too short"
+  - config: "multiplies the time between events by 10x since they were firing once every 2.5 minutes which is way too short in a 3 hour round"
