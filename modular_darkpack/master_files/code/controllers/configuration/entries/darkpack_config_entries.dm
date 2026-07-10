@@ -7,7 +7,7 @@
 
 /datum/config_entry/flag/passive_bp_drain
 	name = "PASSIVE_BP_DRAIN"
-	default = FALSE // off by default; server owners opt in
+	default = FALSE
 
 /datum/config_entry/number/passive_bp_drain_timer
 	name = "PASSIVE_BP_DRAIN_TIMER"
