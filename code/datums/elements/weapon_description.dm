@@ -79,7 +79,7 @@
 			readout += "It's pointy and could cause piercing wounds."
 		// DARKPACK EDIT ADD START - STORYTELLER_STATS
 		readout += "It has an attack difficulty of [span_warning("[source.attack_difficulty]")] and uses [source.st_attack_ability::name]+[source.st_attack_attribute::name] to attack."
-		readout += "It has an dice bonus of [span_warning("[FORCE_TO_DICE_POOL_UNROUNDED(source.force)]")] and uses [source.st_damage_stat::name] for damage."
+		readout += "It has a dice bonus of [span_warning("[FORCE_TO_DICE_POOL_UNROUNDED(source.force)]")] and uses [source.st_damage_stat::name] for damage."
 		// DARKPACK EDIT ADD END
 		// Make sure not to divide by 0 on accident
 		if(source.force > 0)
