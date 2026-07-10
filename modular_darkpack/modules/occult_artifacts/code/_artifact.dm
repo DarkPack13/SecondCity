@@ -36,6 +36,10 @@
 
 	var/datum/storyteller_roll/identify_occult/identify_roll
 
+/obj/item/occult_artifact/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 200, "artifact", FALSE, 0, 10, TRUE)
+
 /obj/item/occult_artifact/proc/identify(mob/living/artifact_identifier)
 	if(!identified)
 		if(true_name)

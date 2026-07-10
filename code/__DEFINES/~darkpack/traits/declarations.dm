@@ -104,6 +104,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
 #define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
 #define TRAIT_SCARRING_RESISTANT "scarring_resistant"// Temporal scars wont save
+/// Stepping on glass shards immunity. Currently used for a couple Garou forms but could be used elsewhere.
+#define TRAIT_HARDENED_SOLES "hardened_soles"
+
 
 // Allows the user to pass through doors
 #define TRAIT_IN_FRENZY "in_frenzy"
