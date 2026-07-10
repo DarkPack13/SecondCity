@@ -67,3 +67,7 @@ ROLEPLAY_ONLY_MERITS 1
 ## Configs for the type of attack we use when we click at a ranged distance. Only one can be enabled at a time.
 #DIRECTIONAL_COMBAT
 SWING_COMBAT
+
+## Configs for passive bloodpool drain, if this is enabled, then the below timer can be adjusted to make vampires and ghouls lose 1 blood point when the timer is up
+#PASSIVE_BP_DRAIN
+PASSIVE_BP_DRAIN_TIMER 12000
