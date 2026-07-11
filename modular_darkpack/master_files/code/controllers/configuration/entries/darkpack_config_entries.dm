@@ -6,10 +6,8 @@
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/passive_bp_drain
-	name = "PASSIVE_BP_DRAIN"
 	default = FALSE
 
 /datum/config_entry/number/passive_bp_drain_timer
-	name = "PASSIVE_BP_DRAIN_TIMER"
 	default = 20 MINUTES
 	min_val = 1 MINUTES
