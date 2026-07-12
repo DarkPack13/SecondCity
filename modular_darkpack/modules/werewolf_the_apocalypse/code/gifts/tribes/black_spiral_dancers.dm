@@ -13,10 +13,12 @@
 	rage_cost = 1
 
 /datum/action/cooldown/power/gift/bane_protector/Activate(atom/target)
-	. = ..()
-
 	var/mob/living/carbon/human/human_owner = astype(owner)
 	var/mob/living/basic/basic_target = astype(target)
+	if(!(human_owner?.can_tame_beastmaster_minion(basic_target, TRUE)))
+		return FALSE
+
+	. = ..()
 
 	var/datum/storyteller_roll/gift/bane_protector/roll_datum = new()
 	if(roll_datum.st_roll(owner, target) != ROLL_SUCCESS)

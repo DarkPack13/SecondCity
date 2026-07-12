@@ -9,18 +9,11 @@
 )
 
 /mob/living/carbon/human/proc/add_beastmaster_minion(mob/living/minion_or_type, turf/spawn_location)
-	if(istype(minion_or_type))
-		if(minion_or_type in beastmaster_minions)
-			to_chat(src, span_warning("[minion_or_type] already heads your commands."))
-			return FALSE
-		else
-			minion_or_type.wipe_old_beastmasters()
-
-	//limit of (leadership) + 1
-	var/max_minions = st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(beastmaster_minions) >= max_minions)
-		to_chat(src, span_warning("You cannot control more than [max_minions] minion[max_minions > 1 ? "s" : ""]!"))
+	if(!can_tame_beastmaster_minion(minion_or_type, TRUE))
 		return FALSE
+
+	if(istype(minion_or_type))
+		minion_or_type.wipe_old_beastmasters()
 
 	//does the mob exist? if not, spawn it. if its already spawned in, just reference them
 	var/mob/living/minion
@@ -103,6 +96,22 @@
 
 	if(!length(beastmaster_minions))
 		unregister_beastmaster_signals()
+
+/mob/living/carbon/human/proc/can_tame_beastmaster_minion(mob/living/living_minion, feedback)
+	if(istype(living_minion))
+		if(living_minion in beastmaster_minions)
+			if(feedback)
+				to_chat(src, span_warning("[living_minion] already heads your commands."))
+			return FALSE
+
+	//limit of (leadership) + 1
+	var/max_minions = st_get_stat(STAT_LEADERSHIP) + 1
+	if(length(beastmaster_minions) >= max_minions)
+		if(feedback)
+			to_chat(src, span_warning("You cannot control more than [max_minions] minion[max_minions > 1 ? "s" : ""]!"))
+		return FALSE
+
+	return TRUE
 
 /mob/proc/wipe_old_beastmasters()
 	SEND_SIGNAL(src, COMSIG_MOB_WIPE_BEASTMASTER)
