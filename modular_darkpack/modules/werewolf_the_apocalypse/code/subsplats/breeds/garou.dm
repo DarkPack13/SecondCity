@@ -15,7 +15,7 @@
 /datum/subsplat/werewolf/breed_form/garou/crinos
 	name = BREED_CRINOS
 	gifts_provided = list(
-		/datum/action/cooldown/power/gift/sense_wyrm,
+		// /datum/action/cooldown/power/gift/sense_wyrm, // DARKPACK TODO - (Selectable Gifts)
 	)
 	start_gnosis = 3
 	breed_species = /datum/species/human/shifter/war
@@ -28,6 +28,9 @@
 
 /datum/subsplat/werewolf/breed_form/garou/lupus
 	name = BREED_LUPUS
+	gifts_provided = list(
+		/datum/action/cooldown/power/gift/hares_leap,
+	)
 	start_gnosis = 5
 	breed_species = /datum/species/human/shifter/feral
 

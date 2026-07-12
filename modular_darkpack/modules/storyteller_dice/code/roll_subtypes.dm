@@ -139,7 +139,7 @@
 
 /datum/storyteller_roll/climbing/calculate_used_difficulty(mob/living/roller, atom/target)
 	. = ..()
-	if(HAS_TRAIT(roller, TRAIT_CITY_RUNNING)) // In theory could check for if its the city...
+	if(roller.has_status_effect(/datum/status_effect/city_running)) // In theory could check for if its the city...
 		. -= 2
 
 // Mental Feats
