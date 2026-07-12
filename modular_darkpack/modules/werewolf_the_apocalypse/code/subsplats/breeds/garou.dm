@@ -15,6 +15,7 @@
 /datum/subsplat/werewolf/breed_form/garou/crinos
 	name = BREED_CRINOS
 	gifts_provided = list(
+		/datum/action/cooldown/power/gift/primal_anger,
 		// /datum/action/cooldown/power/gift/sense_wyrm, // DARKPACK TODO - (Selectable Gifts)
 	)
 	start_gnosis = 3

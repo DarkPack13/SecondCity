@@ -1,6 +1,3 @@
-// /datum/action/cooldown/power/gift/primal_anger
-
-
 /datum/action/cooldown/power/gift/sense_wyrm
 	name = "Sense Wyrm"
 	desc = "This Gift allows the werewolf to trace the location of all wyrm-tainted entities within the area."
@@ -71,6 +68,3 @@
 		if(!target.is_enlightenment() && target.st_get_stat(STAT_MORALITY) >= 7)
 			return
 		. = 6
-
-
-// /datum/action/cooldown/power/gift/shed
