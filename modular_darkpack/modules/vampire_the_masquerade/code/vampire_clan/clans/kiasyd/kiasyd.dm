@@ -8,7 +8,7 @@
 	clan_disciplines = list(
 		/datum/discipline/dominate,
 		/datum/discipline/obtenebration,
-		///datum/discipline/mytherceria
+		/datum/discipline/mytherceria
 	)
 	clan_traits = list(
 		TRAIT_MASQUERADE_VIOLATING_EYES

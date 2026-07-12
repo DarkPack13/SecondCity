@@ -405,8 +405,8 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			override = SEE_DEADCHAT_ADMIN
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
 			override = SEE_DEADCHAT_NORMAL
-		// DARKPACK EDIT ADD START
-		if(HAS_TRAIT(M, TRAIT_LOCAL_SIXTHSENSE) && (message_type == DEADCHAT_REGULAR) && (source in orange(DEFAULT_MESSAGE_RANGE, M)))
+		// DARKPACK EDIT ADD START - WEREWOLF - (Spirit Speech)
+		if(HAS_TRAIT(M, TRAIT_LOCAL_SIXTHSENSE) && (message_type == DEADCHAT_REGULAR) && ((follow_target || turf_target) in orange(DEFAULT_MESSAGE_RANGE, M)))
 			override = SEE_DEADCHAT_NORMAL
 		// DARKPACK EDIT ADD END
 		if(SSticker.current_state == GAME_STATE_FINISHED)
@@ -456,7 +456,6 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			M.create_chat_message(follow_target, /datum/language/common, original_message, list(SPAN_ITALICS))
 #undef SEE_DEADCHAT_ADMIN
 #undef SEE_DEADCHAT_NORMAL
-
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

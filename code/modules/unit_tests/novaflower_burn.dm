@@ -20,6 +20,7 @@
 	botanist.adjust_fire_loss(-100)
 	// And give them the plant safe trait so we don't have to worry about attacks being cancelled
 	ADD_TRAIT(botanist, TRAIT_PLANT_SAFE, "unit_test")
+	ADD_TRAIT(botanist, TRAIT_PERFECT_ATTACKER, TRAIT_SOURCE_UNIT_TESTS) // DARKPACK EDIT ADD - (Ensure melee rolls dont skew damage)
 
 	// Now, let's get a smack with the novaflower and see what happens.
 	weapon.melee_attack_chain(botanist, victim)

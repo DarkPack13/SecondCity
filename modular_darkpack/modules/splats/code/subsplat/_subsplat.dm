@@ -16,11 +16,15 @@
 	var/name
 	/// Description of what the splat is and what it does
 	var/desc
+	/// If set, the roleplay level that is displayed in prefrences as a guide to players.
+	var/roleplay_level
 	/// ID for trait sources and whatnot
 	var/id
 
-	/// Keys for this subsplats's exclusive hideout
-	var/subsplat_keys
+	/// Typepath of keys for this subsplats's exclusive hideout
+	var/obj/item/vamp/keys/subsplat_keys
+	/// If we check the list of ids of city doors before granting the subsplat key
+	var/check_doors_for_keys = TRUE
 
 /datum/subsplat/proc/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	SHOULD_CALL_PARENT(TRUE)
@@ -60,7 +64,14 @@
 
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(subsplat_keys)
+	if(subsplat_keys && check_doors_for_keys && key_has_matching_door(subsplat_keys))
 		joining.put_in_r_hand(new subsplat_keys(joining))
 
 	UnregisterSignal(joining, COMSIG_MOB_LOGIN)
+
+/// Displays description and roleplay level of the subsplat.
+/datum/subsplat/proc/show_lore(mob/user)
+	if(desc)
+		to_chat(user, span_notice("[uppertext(name)]<br>[desc]"))
+	if(roleplay_level)
+		to_chat(user, span_notice("<br>ROLEPLAY LEVEL: [roleplay_level] <br>Roleplay levels, or, the difficulty to play and portray a character from that auspice, are as follows: Beginner Friendly, Intermediate, Advanced."))

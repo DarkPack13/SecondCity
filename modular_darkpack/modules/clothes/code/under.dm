@@ -279,6 +279,19 @@
 	name = "police fatigues"
 	icon_state = "policeutil"
 
+/obj/item/clothing/under/vampire/police/fbi
+	name = "\improper FBI turtleneck"
+	desc = "The uniform of the Bureau's finest. Features durable and stretchy pants for door-kicking."
+	icon_state = "fbiturtleneck"
+
+/obj/item/clothing/under/vampire/police/fbi/utility
+	name = "\improper FBI fatigues"
+	icon_state = "fbiutil"
+
+/obj/item/clothing/under/vampire/police/fbi/pants
+	name = "\improper FBI fatigue pants"
+	icon_state = "fbipants"
+
 /obj/item/clothing/under/vampire/guard
 	name = "security guard uniform"
 	desc = "Never let the stale, spongy cake of life keep you from getting to the tasty cream filling of success."

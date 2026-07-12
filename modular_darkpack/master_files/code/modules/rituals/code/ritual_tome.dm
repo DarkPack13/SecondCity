@@ -8,8 +8,9 @@
 	var/list/rituals = list()
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
 	var/static/list/ritual_cache = list()
+	var/discipline_type // set in subtypes, such as arcane tome having discipline_type = /datum/discipline/thaumaturgy
 
-/obj/item/ritual_tome/Initialize()
+/obj/item/ritual_tome/Initialize(mapload)
 	. = ..()
 	if(!rune_type)
 		return
@@ -24,40 +25,40 @@
 
 /obj/item/ritual_tome/attack_self(mob/user)
 	. = ..()
-	if(!isliving(user))
+	var/mob/living/reader = astype(user)
+	if(!reader)
 		return
-	var/mob/living/reader = user
-	if(!get_kindred_splat(user) && !get_ghoul_splat(user))
+
+	if(!get_splat_with_discipline(user))
 		if(reader.st_get_stat(STAT_OCCULT) < 3)
 			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
 			return
-
 	display_rituals(reader)
 
-/obj/item/ritual_tome/proc/display_rituals(mob/user)
-	for(var/obj/ritual_rune/R in rituals)
+// code/_HELPERS/_lists.dm. used in sort_list to sort a list by ritual level
+/proc/compare_ritual_levels_ascend(obj/ritual_rune/A, obj/ritual_rune/B)
+	return A.level - B.level
+
+/obj/item/ritual_tome/proc/display_rituals(mob/living/user)
+	var/list/sorted_rituals = sort_list(rituals, GLOBAL_PROC_REF(compare_ritual_levels_ascend))
+	var/user_level = discipline_type ? (user.get_discipline_dots(discipline_type) || user.st_get_stat(STAT_OCCULT)) : user.st_get_stat(STAT_OCCULT)
+	for(var/obj/ritual_rune/R in sorted_rituals)
+		if(R.level > user_level)
+			continue
 		var/requirements = get_ritual_requirements(R)
-		var/level = get_ritual_level(R)
-		var/ritual_name = R.ritual_name
-		var/ritual_desc = R.desc
+		to_chat(user, span_cult("[get_ritual_level(R)] <b>[R.ritual_name]</b> - [R.desc][requirements ? " Requirements: [requirements]." : ""]"))
 
-		to_chat(user, span_cult("[level] <b>[ritual_name]</b> - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))
-
-/obj/item/ritual_tome/proc/get_ritual_requirements(obj/rune)
-	if(!islist(rune.vars["sacrifices"]))
-		return ""
-
-	var/list/sacrifices = rune.vars["sacrifices"]
-	if(!length(sacrifices))
+/obj/item/ritual_tome/proc/get_ritual_requirements(obj/ritual_rune/rune)
+	if(!islist(rune.sacrifices) || !length(rune.sacrifices))
 		return ""
 
 	var/list/required_items = list()
-	for(var/obj/item/item_type as anything in sacrifices)
+	for(var/obj/item/item_type as anything in rune.sacrifices)
 		required_items += item_type::name
 
 	return required_items.Join("\n")
 
-/obj/item/ritual_tome/proc/get_ritual_level(obj/rune)
-	if(rune.vars["level"])
-		return rune.vars["level"]
+/obj/item/ritual_tome/proc/get_ritual_level(obj/ritual_rune/rune)
+	if(rune.level)
+		return rune.level
 	return ""

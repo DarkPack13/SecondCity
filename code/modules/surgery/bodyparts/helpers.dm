@@ -181,7 +181,13 @@
 
 /mob/living/carbon/get_attacking_limb(atom/target, datum/martial_art/attacker_style)
 	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-	var/obj/item/bodypart/attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
+	// DARKPACK EDIT CHANGE START - COMBAT
+	var/obj/item/bodypart/attacking_bodypart
+	if(ishuman(target))
+		attacking_bodypart = attacker_style?.get_attacking_limb(src, target) || brain?.get_attacking_limb(target) || get_active_hand()
+	else
+		attacking_bodypart = get_active_hand()
+	// DARKPACK EDIT CHANGE END
 
 	if(attacking_bodypart.unarmed_attack_effect == ATTACK_EFFECT_BITE)
 		if(is_mouth_covered(ITEM_SLOT_MASK))
@@ -301,17 +307,10 @@
 			all_limb_flags |= organ.external_bodyshapes
 		all_limb_flags |= limb.bodyshape
 
-	bodyshape = all_limb_flags
+	if(obscured_slots & HIDESNOUT)
+		all_limb_flags &= ~BODYSHAPE_SNOUTED
 
-/// Get all bodyshapes but filter out bodyshapes that are currently being hidden
-/mob/living/carbon/proc/get_active_bodyshapes()
-	var/active_shapes = bodyshape
-	// future todo: both of these are state based, maybe we can just remove relevant bodyshapes directly. would remove the need for this proc
-	if((active_shapes & BODYSHAPE_DIGITIGRADE) && is_digitigrade_squished())
-		active_shapes &= ~BODYSHAPE_DIGITIGRADE
-	if((active_shapes & BODYSHAPE_SNOUTED) && (obscured_slots & HIDESNOUT))
-		active_shapes &= ~BODYSHAPE_SNOUTED
-	return active_shapes
+	bodyshape = all_limb_flags
 
 /proc/skintone2hex(skin_tone)
 	. = 0

@@ -21,6 +21,7 @@
 #define AURA_SAD COLOR_SILVER // Silver
 #define AURA_SPIRITUAL COLOR_GOLD // Gold
 #define AURA_SUSPICIOUS COLOR_STRONG_BLUE // Dark Blue
+#define AURA_CONFIDENCE COLOR_VIVID_YELLOW // Primarly for the Shadow Lords gift "Aura of Confidence"
 
 // Modifier auras.
 #define AURA_ANXIOUS "Anxious" // Auras appear scrambled like static or white noise
@@ -65,7 +66,8 @@ GLOBAL_LIST_INIT(aura_list, sort_list(list(
 	"Anxious" = AURA_ANXIOUS,
 	"Confused" = AURA_CONFUSED,
 	"Daydreaming" = AURA_DAYDREAMING,
-	"Psychotic" = AURA_PSYCHOTIC
+	"Psychotic" = AURA_PSYCHOTIC,
+	"Confidence" = AURA_CONFIDENCE,
 )))
 
 GLOBAL_LIST_INIT(emotion_to_quality, sort_list(list(
@@ -94,5 +96,6 @@ GLOBAL_LIST_INIT(emotion_to_quality, sort_list(list(
 	"Anxious" = "anxiety",
 	"Confused" = "confusion",
 	"Daydreaming" = "absentmindedness",
-	"Psychotic" = "psychosis"
+	"Psychotic" = "psychosis",
+	"Confidence" = "confidence",
 )))

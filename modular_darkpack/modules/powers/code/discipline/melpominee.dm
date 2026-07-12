@@ -212,12 +212,12 @@
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	var/our_power = SSroll.storyteller_roll(owner.st_get_stat(STAT_WITS) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner, numerical = TRUE)
+	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
 	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
 		audience += member
-		var/their_power = SSroll.storyteller_roll(member.st_get_stat(STAT_WITS) + member.st_get_stat(STAT_AWARENESS), 7, member, numerical = TRUE)
+		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
 
@@ -329,7 +329,7 @@
 			effect(listener)
 		else
 			listener_list -= listener
-			listener.remove_overlay(MUTATIONS_LAYER)
+			listener.remove_overlay(POWERS_LAYER)
 			cumulative_our_power[listener] = null
 			cumulative_list[listener] = null
 
@@ -345,10 +345,10 @@
 
 /datum/discipline_power/melpominee/sirens_beckoning/proc/effect(mob/living/carbon/listener)
 	listener.Stun(1 TURNS)
-	listener.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
-	listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
-	listener.apply_overlay(MUTATIONS_LAYER)
+	listener.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -POWERS_LAYER)
+	listener.overlays_standing[POWERS_LAYER] = song_overlay
+	listener.apply_overlay(POWERS_LAYER)
 	if(cumulative_our_power[listener] >= 20)
 		listener.add_quirk(/datum/quirk/darkpack/derangement)
 
@@ -362,7 +362,7 @@
 /datum/discipline_power/melpominee/sirens_beckoning/deactivate(mob/living/carbon/target)
 	. = ..()
 	for(var/mob/living/carbon/listener in listener_list)
-		listener.remove_overlay(MUTATIONS_LAYER)
+		listener.remove_overlay(POWERS_LAYER)
 
 	owner.visible_message(span_purple("[owner]'s haunting melody ceases."), span_purple("You stop singing."))
 	channeling = FALSE
@@ -444,13 +444,13 @@
 				listener.apply_damage(15, AGGRAVATED, BODY_ZONE_HEAD)
 
 
-		listener.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -MUTATIONS_LAYER)
-		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
-		listener.apply_overlay(MUTATIONS_LAYER)
+		listener.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -POWERS_LAYER)
+		listener.overlays_standing[POWERS_LAYER] = song_overlay
+		listener.apply_overlay(POWERS_LAYER)
 
 		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 1 TURNS)
 
 /datum/discipline_power/melpominee/death_of_the_drum/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)

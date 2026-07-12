@@ -124,6 +124,7 @@
 
 	add_seclight_point()
 	add_bayonet_point()
+	add_deep_lore()
 	RegisterSignal(src, COMSIG_ITEM_IN_UNWRAPPED_TRAITOR_MAIL, PROC_REF(on_mail_unwrap))
 
 /obj/item/gun/Destroy()
@@ -152,6 +153,10 @@
 
 /// Similarly to add_seclight_point(), handles [the bayonet attachment component][/datum/component/bayonet_attachable]
 /obj/item/gun/proc/add_bayonet_point()
+	return
+
+/// For when you want to add the lore element to a gun, this is the proc to use.
+/obj/item/gun/proc/add_deep_lore()
 	return
 
 /obj/item/gun/Exited(atom/movable/gone, direction)
@@ -447,6 +452,11 @@
 
 /obj/item/gun/can_trigger_gun(mob/living/user, akimbo_usage)
 	. = ..()
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(!handle_pins(user))
 		return FALSE
 

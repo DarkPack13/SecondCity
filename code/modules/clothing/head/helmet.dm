@@ -500,7 +500,7 @@
 	icon_state = "knight_green"
 	inhand_icon_state = "knight_helmet"
 	armor_type = /datum/armor/helmet_knight
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR // DARKPACK EDIT CHANGE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	strip_delay = 8 SECONDS
@@ -512,12 +512,13 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 3)
 
 /datum/armor/helmet_knight
-	melee = 50
-	bullet = 10
+	melee = 75 // DARKPACK EDIT CHANGE
+	bullet = 50 // DARKPACK EDIT CHANGE
 	laser = 10
 	energy = 10
 	fire = 80
 	acid = 80
+	wound = 25 // DARKPACK EDIT CHANGE 
 
 /obj/item/clothing/head/helmet/knight/blue
 	icon_state = "knight_blue"

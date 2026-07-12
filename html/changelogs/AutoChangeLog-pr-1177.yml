@@ -1,0 +1,11 @@
+author: "Ambrose997"
+delete-after: True
+changes:
+  - code_imp: "Mind reading success rolls after it's picked from the telepathy menu rather than before."
+  - code_imp: "Undisguised Implant Thought usage no longer requires a roll."
+  - code_imp: "Separates the mind reading and implant thought cooldowns."
+  - balance: "Mind Reading cooldown set to 3 Minutes."
+  - balance: "Implant Thought cooldown set to 5 seconds."
+  - balance: "Increases message length for the specific thought searches via mind reading (From TFN)."
+  - bugfix: "Clicking \"Cancel\" on the telepathy menu no longer runs the highlighted option anyway."
+  - bugfix: "fixed previously unnoticed bug resulting from nested quotes clashing."

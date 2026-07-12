@@ -63,9 +63,16 @@
 	ammo_type = /obj/item/ammo_casing/vampire/c44/silver
 	max_ammo = 60
 
-// .50 BMG/AE
+// .50 AE
+/obj/item/ammo_box/darkpack/c50ae
+	name = "ammo box (.50 AE)"
+	icon_state = "50box"	//placeholder, needs new box
+	ammo_type = /obj/item/ammo_casing/vampire/c50ae
+	max_ammo = 40
+
+// .50 BMG
 /obj/item/ammo_box/darkpack/c50
-	name = "ammo box (.50)"
+	name = "ammo box (.50 BMG)"
 	icon_state = "50box"
 	ammo_type = /obj/item/ammo_casing/vampire/c50
 	max_ammo = 20
@@ -97,13 +104,23 @@
 	max_ammo = 60
 
 // 4.6mm HK // DARKPACK TODO: Ammo box for 4.6mm NATO
-///obj/item/ammo_box/darkpack/c46pdw
+/obj/item/ammo_box/darkpack/c46pdw
+	name = "ammo box (4.6mm)"
+	icon_state = "46box"
+	ammo_type = /obj/item/ammo_casing/vampire/c46pdw
+	max_ammo = 100
 
 // 12 Gauge
 /obj/item/ammo_box/darkpack/c12g
 	name = "ammo box (12g)"
 	icon_state = "12box"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
+	max_ammo = 30
+
+/obj/item/ammo_box/darkpack/c12g/silver
+	name = "silver ammo box (12g)"
+	icon_state = "12box_silver"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/silver
 	max_ammo = 30
 
 /obj/item/ammo_box/darkpack/c12g/buck
@@ -127,6 +144,11 @@
 //	icon_state = "s12box_buck"
 //	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/silver
 
+/obj/item/ammo_box/darkpack/c12g/buck/incendiary
+	name = "ammo box (12g, Dragon's Breath)"
+	icon_state = "12box_dragon"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/buck/incendiary
+
 // Crossbow Bolt
 /obj/item/ammo_box/darkpack/arrows
 	name = "ammo box (arrows)"
@@ -145,3 +167,20 @@
 	name = "incendiary ammo box (7.62x51)"
 	icon_state = "762box-incendiary"
 	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm/incendiary
+
+/obj/item/ammo_box/darkpack/c762x51mm/incendiary
+	name = "silver ammo box (7.62x51)"
+	icon_state = "762box-silver"
+	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm/silver
+
+// .75 Ball
+/obj/item/ammo_box/darkpack/c75
+	name = "cartriage bag (.75 ball)"
+	icon_state = "cartridge_bag"
+	ammo_type = /obj/item/ammo_casing/vampire/c75
+	max_ammo = 5
+
+/obj/item/ammo_box/darkpack/c75/silver
+	name = "cartriage bag (.75 silver ball)"
+	ammo_type = /obj/item/ammo_casing/vampire/c75/silver
+

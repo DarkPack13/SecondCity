@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - balance: "Bashing a door of its hinges scales distance thrown based on strength and roll difficulty"
