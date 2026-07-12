@@ -164,13 +164,10 @@
 /datum/storyteller_roll/proc/using_bonus(mob/living/roller, atom/target, bonus_added)
 	return bonus + bonus_added
 
-/datum/storyteller_roll/proc/using_difficulty(mob/living/roller, atom/target)
-	return difficulty
-
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
 
-/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller)
+/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller, atom/target)
 	return difficulty
 
 /datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)

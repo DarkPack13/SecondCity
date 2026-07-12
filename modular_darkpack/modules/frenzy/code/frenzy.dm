@@ -43,7 +43,7 @@
 /datum/storyteller_roll/frenzy/kindred
 
 // Specificly kindred as I dont really think brujah are meant to rotschreck easier.
-/datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller)
+/datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
@@ -56,7 +56,7 @@
 
 /datum/storyteller_roll/frenzy/rage
 
-/datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller)
+/datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_RAGE))
 		. += 1
