@@ -23,9 +23,9 @@
 		return TRUE
 
 	if(istype(basic_target, /mob/living/basic/bane))
-		qdel(basic_target.GetComponent(/datum/component/obeys_commands))
-		human_owner?.add_beastmaster_minion(target)
+		QDEL_NULL(basic_target.ai_controller)
 		basic_target.ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(basic_target)
+		human_owner?.add_beastmaster_minion(target)
 		return TRUE
 
 	// Just summon a random shitter.

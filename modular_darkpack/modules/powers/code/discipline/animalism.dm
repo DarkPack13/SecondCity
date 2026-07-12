@@ -9,24 +9,6 @@
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
 
-/datum/discipline_power/animalism/activate()
-	. = ..()
-
-	if(!ishuman(owner))
-		return
-
-	for(var/mob/living/minion in owner.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			owner.beastmaster_minions -= minion
-
-	var/max_minions = owner.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(owner.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = owner.beastmaster_minions[1]
-		if(oldest)
-			owner.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-
 //SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
 	name = "Summon Rat"
