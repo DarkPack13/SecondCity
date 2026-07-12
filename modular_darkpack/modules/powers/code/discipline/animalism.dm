@@ -125,9 +125,6 @@
 /mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
 	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
 
 /mob/living/basic/pet/cat/darkpack/summoned
 	name = "cat"
@@ -137,12 +134,6 @@
 	melee_damage_upper = 12
 	obj_damage = 15
 	bloodpool = 2
-
-/mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
 
 /mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
@@ -162,12 +153,6 @@
 	random_wolf_color = FALSE
 	bloodpool = 2
 
-/mob/living/basic/pet/dog/wolf/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
-
 /mob/living/basic/bat/summoned
 	name = "bat"
 	desc = "A bat bound to its master's will."
@@ -178,9 +163,3 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	bloodpool = 2
-
-/mob/living/basic/bat/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)

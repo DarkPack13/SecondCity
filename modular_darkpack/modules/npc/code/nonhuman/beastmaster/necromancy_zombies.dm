@@ -23,9 +23,6 @@
 /mob/living/basic/beastmaster/giovanni_zombie/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
 
 /mob/living/basic/beastmaster/giovanni_zombie/level1 // Low health, low damage distraction unit
 	name = "drone"
