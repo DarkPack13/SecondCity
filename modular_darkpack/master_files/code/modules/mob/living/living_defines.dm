@@ -55,3 +55,6 @@
 	var/collected_souls = 0
 
 	var/last_shown_area_name // AREAS
+
+	/// Lazy list of weakrefs for mobs the user has tasted the blood of
+	var/list/mobs_tasted_blood_of // WEREWOLF

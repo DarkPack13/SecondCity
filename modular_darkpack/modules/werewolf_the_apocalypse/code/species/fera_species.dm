@@ -89,7 +89,7 @@
 
 /// Fetch the mobs fur color from their features.
 /datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
-	return human.dna.features[FEATURE_FUR_COLOR] ? human.dna.features[FEATURE_FUR_COLOR] : "black"
+	return human.dna.features[FEATURE_FUR_COLOR] || "black"
 
 
 /// Fetch the mob dmi from our splat
@@ -99,7 +99,7 @@
 	if(shifter_splat)
 		icon_to_use = shifter_splat.mob_icons[id]
 
-	return icon_to_use ? icon_to_use : fallback_icon
+	return icon_to_use || fallback_icon
 
 /datum/species/human/shifter/update_body_parts(mob/living/carbon/human/human)
 	if(!custom_body_render)

@@ -8,4 +8,4 @@
 /// We will not be known by others, even if they pass checks in any way otherwise
 #define GUESTBOOK_FORGETMENOT (1 << 3)
 
-#define GET_GUESTBOOK_NAME(mob, guest) (mob?.mind?.guestbook?.get_known_name(mob, guest) ? mob?.mind?.guestbook?.get_known_name(mob, guest) : guest.name)
+#define GET_GUESTBOOK_NAME(mob, guest) (mob?.mind?.guestbook?.get_known_name(mob, guest) || guest.name)
