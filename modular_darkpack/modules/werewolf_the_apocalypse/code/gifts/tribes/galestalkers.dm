@@ -36,7 +36,22 @@
 
 	var/tracking_name = show_radial_menu(owner, owner, choices, radius = 40, tooltips = TRUE, autopick_single_option = FALSE)
 
-	to_chat(owner, "Tracking [tracking_name]")
+	to_chat(owner, span_notice("Tracking [tracking_name]"))
+
+
+/datum/status_effect/beat_of_the_heartdrum
+	id = "beat_of_the_heartdrum"
+	duration = 1 SCENES
+
+	status_type = STATUS_EFFECT_REPLACE
+
+	alert_type = /atom/movable/screen/alert/status_effect/beat_of_the_heartdrum
+
+
+/atom/movable/screen/alert/status_effect/gift/beat_of_the_heartdrum
+	name = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::name
+	desc = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::desc
+	overlay_state = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::button_icon_state
 
 
 /datum/storyteller_roll/gift/beat_of_the_heartdrum
