@@ -1,6 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscadd: "adds passive blood drain as a mechanic for vampires and ghouls which can be toggled on in darkpack_config.txt with the default timer of 20 minutes"
-  - config: "adds passive blood drain config option"
-  - config: "adds passive blood drain timer config option"

@@ -18,8 +18,7 @@
 	male_clothes = /obj/item/clothing/under/vampire/archivist
 	female_clothes = /obj/item/clothing/under/vampire/archivist
 	whitelisted = TRUE
-	accessories = list("fae_ears", "none")
-	accessories_layers = list("fae_ears" = BODY_FRONT_LAYER, "none" = BODY_FRONT_LAYER)
+	clan_marks = list(/datum/bodypart_overlay/simple/clan_mark/fae_ears)
 
 /datum/subsplat/vampire_clan/kiasyd/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
