@@ -140,6 +140,7 @@
 
 /obj/effect/spawner/random/occult/artifact/vampire_only
 	name = "random vampire artifact"
+	loot = null
 	loot_subtype_path = /obj/item/occult_artifact/vampire
 
 
