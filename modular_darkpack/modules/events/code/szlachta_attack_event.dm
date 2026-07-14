@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/szlachta
 	weight = 3
 	min_players = 10
-	max_occurrences = 2
+	max_occurrences = 1
 	earliest_start = 90 MINUTES
 	category = EVENT_CATEGORY_INVASION
 	description = "Roving, loose szlachta have found their way into the city."

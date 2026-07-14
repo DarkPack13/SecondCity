@@ -65,7 +65,7 @@
 	desc = "A blue armor vest used to distinguish <i>non-combatant</i> \"PRESS\" members, like if anyone cares."
 	icon_state = "armor_press"
 
-/obj/item/clothing/suit/armor/vest/press/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/suit/armor/vest/press/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -225,7 +225,7 @@
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
 
-/obj/item/clothing/suit/armor/vest/secjacket/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/suit/armor/vest/secjacket/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -308,13 +308,13 @@
 	AddComponent(/datum/component/item_equipped_movement_rustle)
 
 /datum/armor/armor_riot
-	melee = 50
-	bullet = 10
+	melee = 75 // DARKPACK EDIT CHANGE
+	bullet = 50 // DARKPACK EDIT CHANGE
 	laser = 10
 	energy = 10
 	fire = 80
 	acid = 80
-	wound = 20
+	wound = 30 // DARKPACK EDIT CHANGE
 
 /obj/item/clothing/suit/armor/balloon_vest
 	name = "balloon vest"

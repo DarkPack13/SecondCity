@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	 */
 	var/plural_form
 
-	///Whether or not the race has sexual characteristics (biological genders). At the moment this is only FALSE for skeletons and shadows
+	/// Whether or not the race has sexual characteristics (biological genders). At the moment this is only FALSE for skeletons and shadows
 	var/sexes = TRUE
 
 	///The maximum number of bodyparts this species can have.
@@ -2003,7 +2003,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			new_part = new path()
 			new_part.replace_limb(target)
 			new_part.update_limb(is_creating = TRUE)
-			new_part.set_initial_damage(old_part.brute_dam, old_part.burn_dam)
+			new_part.set_initial_damage(old_part.brute_dam, old_part.burn_dam, old_part.aggravated_dam)// DARKPACK EDIT CHANGE - AGGRAVATED_DAMAGE
 		qdel(old_part)
 
 /// Creates body parts for the target completely from scratch based on the species
@@ -2065,9 +2065,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /// Remove body markings
 /datum/species/proc/remove_body_markings(mob/living/carbon/human/hooman)
+	var/needs_update = FALSE
 	for(var/obj/item/bodypart/part as anything in hooman.get_bodyparts())
 		for(var/datum/bodypart_overlay/simple/body_marking/marking in part.bodypart_overlays)
-			part.remove_bodypart_overlay(marking)
+			part.remove_bodypart_overlay(marking, update = FALSE)
+			needs_update = TRUE
+
+	if(needs_update && !(hooman.living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		hooman.update_body_parts()
 
 /**
  * Calculates the expected height values for this species
