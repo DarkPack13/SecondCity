@@ -171,21 +171,17 @@
 
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
+	RegisterSignal(human_who_gained_species, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_fluff))
+	human_who_gained_species.update_appearance(UPDATE_OVERLAYS)
 	human_who_gained_species.update_mob_height()
 	human_who_gained_species.update_transform(1.25)
 
-	if(!HAS_TRAIT(human_who_gained_species, TRAIT_FAIR_GLABRO))
-		human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
-		var/fur_color = get_fur_color(human_who_gained_species)
-		var/mob_icon = get_mob_icon(human_who_gained_species)
-		human_who_gained_species.overlays_standing[BODY_ADJ_LAYER] = list(image(mob_icon, fur_color))
-		human_who_gained_species.apply_overlay(BODY_ADJ_LAYER)
-
 /datum/species/human/shifter/bestial/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
-	human.update_mob_height()
+	UnregisterSignal(human, COMSIG_ATOM_UPDATE_OVERLAYS)
+	human.update_appearance(UPDATE_OVERLAYS)
 	human.update_transform()
-	human.remove_overlay(BODY_ADJ_LAYER)
+	human.update_mob_height()
 
 /datum/species/human/shifter/bestial/update_species_heights(mob/living/carbon/human/holder)
 	if(HAS_TRAIT(holder, TRAIT_DWARF))
@@ -195,6 +191,19 @@
 		return HUMAN_HEIGHT_TALLEST
 
 	return HUMAN_HEIGHT_TALL
+
+/datum/species/human/shifter/bestial/proc/add_fluff(datum/source, list/overlay_list)
+	SIGNAL_HANDLER
+
+	var/mob/living/carbon/human/guy = astype(source)
+	if(!guy)
+		return
+
+	if(!HAS_TRAIT(guy, TRAIT_FAIR_GLABRO))
+		var/fur_color = get_fur_color(guy)
+		var/mob_icon = get_mob_icon(guy)
+		var/image/fluff = image(mob_icon, fur_color, layer = -BODY_ADJ_LAYER)
+		overlay_list += fluff
 
 
 /datum/species/human/shifter/war
