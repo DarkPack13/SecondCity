@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "Attack information as it relates to rolls is now displayed in a weapons combat information"
+  - qol: "Attacking with a weapon BELOW a single bonus dice no longer makes a roll that includes your entire dice pool"
+  - balance: "Weapons with a dice pool that is not rounded turns the remainder into a chance for a bonus dice."

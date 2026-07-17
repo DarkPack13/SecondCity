@@ -12,6 +12,10 @@
 // Heavy placeholder to represent that lethal is ... twice as bad as bashing (brute basiclly)
 #define LETHAL_TTRPG_DAMAGE * 20
 
+#define FORCE_TO_DICE_POOL(force) round(force / (1 TTRPG_DAMAGE))
+#define FORCE_TO_DICE_POOL_UNROUNDED(force) (force / (1 TTRPG_DAMAGE))
+#define LEFTOVER_FORCE_TO_PERCENT(force) ((force % (1 TTRPG_DAMAGE) / (1 TTRPG_DAMAGE)) * 100)
+
 // Unused for now
 #define BASHING "bashing"
 #define LETHAL "lethal"

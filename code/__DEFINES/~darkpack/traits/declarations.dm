@@ -103,6 +103,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 // Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
 #define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
+/// Stepping on glass shards immunity. Currently used for a couple Garou forms but could be used elsewhere.
+#define TRAIT_HARDENED_SOLES "hardened_soles"
 
 
 // Allows the user to pass through doors
