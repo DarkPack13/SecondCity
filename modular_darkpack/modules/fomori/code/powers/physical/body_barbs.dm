@@ -107,5 +107,3 @@
 			bp_overlay.assigned_bodyzone.remove_bodypart_overlay(bp_overlay)
 			qdel(bp_overlay)
 		overlay_list = list()
-
-#warn BODY BARBS UNFINISHED - Need to factor rank into damage

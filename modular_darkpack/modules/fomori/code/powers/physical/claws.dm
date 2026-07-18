@@ -77,5 +77,3 @@
 		bp_overlay.assigned_bodyzone.remove_bodypart_overlay(bp_overlay)
 		qdel(bp_overlay)
 	overlay_list = list()
-
-#warn CLAWS UNFINISHED - going to rework this to use fallcon's claw roll datum
