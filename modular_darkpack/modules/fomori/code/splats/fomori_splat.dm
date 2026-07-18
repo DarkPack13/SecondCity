@@ -30,7 +30,7 @@
 /datum/splat/werewolf/fomori/on_gain() // WIP: Will be pointbuy eventually. Don't merge with this code in-tact
 	// PHYSICAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1) // done, needs melee rework
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1) // done, needs melee rework
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/claws, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
@@ -44,7 +44,7 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1)

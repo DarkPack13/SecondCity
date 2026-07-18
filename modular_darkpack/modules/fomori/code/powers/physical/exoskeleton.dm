@@ -12,7 +12,7 @@
 /datum/bodypart_overlay/simple/fomor_exoskeleton/r_arm
 	icon_state = "exoskeleton-r_arm"
 	bodyzone = BODY_ZONE_R_ARM
-	layers = MUTATIONS_LAYER
+	layers = POWERS_LAYER
 
 /datum/bodypart_overlay/simple/fomor_exoskeleton/l_arm
 	icon_state = "exoskeleton-l_arm"

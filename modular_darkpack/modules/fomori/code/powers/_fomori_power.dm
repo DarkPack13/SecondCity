@@ -52,7 +52,6 @@
 
 	if(isnull(bodypart))
 		return
-
 	if(isnull(fomor_part))
 		return
 	if(ispath(fomor_part))

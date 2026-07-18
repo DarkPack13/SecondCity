@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/fomor_fangs // Freak Legion pg.31
 	icon_state = "fangs"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = MUTATIONS_LAYER
+	layers = POWERS_LAYER
 
 /datum/bodypart_overlay/simple/fomor_fangs/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
 	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEFACE)
