@@ -55,8 +55,8 @@
 
 	if(isnull(fomor_part))
 		return
-
-	fomor_part = new fomor_part() //creates our overlay
+	if(ispath(fomor_part))
+		fomor_part = new fomor_part() //creates our overlay
 	bodypart.add_bodypart_overlay(fomor_part)
 	if(masq_violating_overlay)
 		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)

@@ -195,6 +195,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_FOMORI_STIGMATA "fomori_stigmata"
 #define TRAIT_FOMORI_HIDDEN_POWER "fomori_hidden_power"
+#define TRAIT_FOMORI_SCARY_PRESENCE "fomori_scary_presence"
 #define TRAIT_CALM_HEART "calm_heart"
 #define TRAIT_ACUTE_HEARING "acute_hearing"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"

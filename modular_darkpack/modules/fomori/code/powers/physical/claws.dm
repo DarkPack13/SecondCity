@@ -72,4 +72,4 @@
 		qdel(bp_overlay)
 	overlay_list = list()
 
-#warn CLAWS SOFT FINISHED - Needs melee damage stats
+#warn CLAWS UNFINISHED - going to rework this to use fallcon's claw roll datum

@@ -20,29 +20,35 @@
 			owner.heal_storyteller_health(1, heal_scars = TRUE, heal_blood = TRUE)
 			COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
 
+	if(HAS_TRAIT(owner, TRAIT_FOMORI_SCARY_PRESENCE)) // thanks abby
+		for(var/mob/living/carbon/human/guy in oviewers(owner, 4))
+			guy.apply_status_effect(/datum/status_effect/scary_presence, owner)
+
 /mob/living/carbon/human/splat/fomori
 	auto_splats = list(/datum/splat/werewolf/fomori)
 
 /datum/splat/werewolf/fomori/on_gain() // WIP: Will be pointbuy eventually. Don't merge with this code in-tact
 	// PHYSICAL POWERS
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1) // done, needs melee rework
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1) // done, needs melee rework
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1) // unfinished
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1) // done
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1) // done
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/body_barbs, 1) // done, needs melee rework
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/weapon/claws, 1) // done, needs melee rework
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/horns, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1)
+
 	// MENTAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1) // done
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1) // done
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1)
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1) // need testing
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
 
 
 

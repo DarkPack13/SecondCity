@@ -15,7 +15,7 @@
 	fomor_part = /datum/bodypart_overlay/simple/ectoplasmic_extrusion
 	feature_bodypart = BODY_ZONE_CHEST
 
-/datum/action/cooldown/power/fomori_power/horns/Activate(atom/target)
+/datum/action/cooldown/power/fomori_power/ectoplasmic_extrusion/Activate(atom/target)
 	. = ..()
 	toggle_feature(deployed)
 
