@@ -133,7 +133,7 @@
 	if (!active)
 		return
 
-	to_chat(owner, span_warning("\A [GET_GUESTBOOK_NAME(owner, source)] left your monitored area [get_relative_location_description(source)]."))
+	to_chat(owner, span_warning("[GET_GUESTBOOK_NAME(owner, source)] left your monitored area [get_relative_location_description(source)]."))
 	UnregisterSignal(source, COMSIG_EXIT_AREA)
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_entered(area/source, atom/movable/arrived, area/old_area)
