@@ -28,7 +28,7 @@
 		return TRUE
 
 	var/datum/splat/werewolf/wolp_splat = get_werewolf_splat(owner)
-	var/range = round(((wolp_splat?.renown[RENOWN_WISDOM] ? wolp_splat.renown[RENOWN_WISDOM] : 1) YARDS) * 20)
+	var/range = (wolp_splat?.renown[RENOWN_WISDOM] ? wolp_splat.renown[RENOWN_WISDOM] : 1) * 20
 
 	var/list/old_answers_resolved = list()
 	for(var/datum/weakref/guy_ref, old_choice in old_answers)
