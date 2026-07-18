@@ -53,13 +53,14 @@
 //SCRY THE HEARTHSTONE
 /datum/discipline_power/visceratika/scry_the_hearthstone
 	name = "Scry the Hearthstone"
-	desc = "Sense the exact locations of individuals around you."
+	desc = "Sense the exact locations of everyone within a structure."
 	willpower_cost = 1
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_SEE
 	toggled = TRUE
 	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
+	var/area/monitoring_area
 
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
@@ -94,21 +95,16 @@
 /datum/discipline_power/visceratika/scry_the_hearthstone/activate()
 	. = ..()
 
+	monitoring_area = get_area(owner)
+
 	// In the TTRPG this is resisted when targets are hiding (V20 p. 476), but there is no roll to resist here
-	// This also bypasses magical invisibility (e.g. Obfuscate) without comparing Discipline dots like in the TTRPG
 	var/found_anyone = FALSE
-	for(var/mob/living/player in (GLOB.player_list - owner))
-		if(get_area(player) != get_area(owner))
+	for (var/mob/living/player in (GLOB.player_list - owner))
+		if (get_area(player) != monitoring_area)
 			continue
 
-		var/distance = get_dist(owner, player)
-		var/location_description
-		if (distance == 0)
-			location_description = "close to you"
-		else
-			location_description = "[distance] [distance == 1 ? "yard" : "yards"] [dir2text(get_dir(owner, player))]"
-
-		to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)] is [location_description]")
+		to_chat(owner, "- [GET_GUESTBOOK_NAME(owner, player)] is [get_relative_location_description(player)].")
+		RegisterSignal(player, COMSIG_EXIT_AREA, PROC_REF(on_target_exit_area))
 		found_anyone = TRUE
 
 	if (!found_anyone)
@@ -117,7 +113,48 @@
 	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, DISCIPLINE_TRAIT(type))
 	owner.update_sight()
 	//visceratika 2 gives a gargoyle a heatmap of all living people in a building. if they leave the building, they need to re-cast it.
-	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_area_exited))
+	RegisterSignal(owner, COMSIG_EXIT_AREA, PROC_REF(on_caster_exit_area))
+	// Also alert the user when someone enters the building
+	RegisterSignal(monitoring_area, COMSIG_AREA_ENTERED, PROC_REF(on_area_entered))
+
+/**
+ * Returns a text description of the distance and direction from the owner to the target
+ */
+/datum/discipline_power/visceratika/scry_the_hearthstone/proc/get_relative_location_description(mob/living/target)
+	var/distance = get_dist(owner, target)
+	if (distance == 0)
+		return "close to you"
+	else
+		return "[distance] [distance == 1 ? "yard" : "yards"] [dir2text(get_dir(owner, target))]"
+
+/datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_target_exit_area(mob/living/source, area/old_area)
+	SIGNAL_HANDLER
+
+	if (!active)
+		return
+
+	to_chat(owner, span_warning("\A [GET_GUESTBOOK_NAME(owner, source)] left your monitored area [get_relative_location_description(source)]."))
+	UnregisterSignal(source, COMSIG_EXIT_AREA)
+
+/datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_entered(area/source, atom/movable/arrived, area/old_area)
+	SIGNAL_HANDLER
+
+	if (!isliving(arrived))
+		return
+	var/mob/living/entering_mob = arrived
+
+	// Only players are interesting enough to alert the caster of
+	if (!GET_CLIENT(entering_mob))
+		return
+
+	to_chat(owner, span_warning("[GET_GUESTBOOK_NAME(owner, entering_mob)] entered your monitored area [get_relative_location_description(entering_mob)]."))
+	RegisterSignal(entering_mob, COMSIG_EXIT_AREA, PROC_REF(on_target_exit_area))
+
+/datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_caster_exit_area(mob/living/source, area/old_area)
+	SIGNAL_HANDLER
+
+	to_chat(owner, span_warning("You lose your connection to the stone as you leave the area."))
+	try_deactivate()
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/deactivate(atom/target, direct)
 	. = ..()
@@ -126,11 +163,8 @@
 	owner.update_sight()
 	UnregisterSignal(owner, COMSIG_EXIT_AREA)
 
-/datum/discipline_power/visceratika/scry_the_hearthstone/proc/on_area_exited(atom/movable/source, area/old_area)
-	SIGNAL_HANDLER
-
-	to_chat(owner, span_warning("You lose your connection to the stone as you leave the area."))
-	try_deactivate()
+	UnregisterSignal(monitoring_area, COMSIG_AREA_ENTERED)
+	monitoring_area = null
 
 //BOND WITH THE MOUNTAIN
 /datum/discipline_power/visceratika/bond_with_the_mountain
