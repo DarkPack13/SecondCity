@@ -6,6 +6,7 @@
 			continue
 		add_keybinding(new keybinding)
 	init_emote_keybinds()
+	init_discipline_keybinds() // DARKPACK EDIT ADD - POWERS
 
 /// Adds an instanced keybinding to the global tracker
 /proc/add_keybinding(datum/keybinding/instance)

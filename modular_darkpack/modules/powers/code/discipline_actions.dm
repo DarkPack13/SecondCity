@@ -180,7 +180,7 @@
 		return
 
 	//actually try to use the Discipline on the target
-	spawn()
+	ASYNC
 		if (discipline.current_power.try_activate(target))
 			end_targeting()
 

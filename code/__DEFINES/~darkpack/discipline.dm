@@ -47,3 +47,11 @@
 #define POWER_TYPE_DISCIPLINE "discipline"
 ///Power is a Chi Art of the Kindred of the East game line
 #define POWER_TYPE_CHI_ART "chi_art"
+
+/// The maximum amount of Disciplines a Kindred is capable of having
+#define MAXIMUM_DISCIPLINES 5
+/// The highest level in a Discipline that can be used
+#define MAXIMUM_DISCIPLINE_LEVEL 6
+
+// Defines for Discipline keybindings
+#define CATEGORY_DISCIPLINES "DISCIPLINES"
