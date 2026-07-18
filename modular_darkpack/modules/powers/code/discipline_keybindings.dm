@@ -45,8 +45,8 @@
 	hotkey_keys = list()
 	classic_keys = list()
 	src.level = level
-	name = "select power [level]"
-	full_name = "Select power [level]"
+	name = "activate Discipline level [level]"
+	full_name = "Activate Discipline level [level]"
 
 /datum/keybinding/discipline_activate/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
