@@ -175,6 +175,8 @@
 	var/list/species_exception = null
 	///This is a bitfield that defines what variations exist for bodyparts like Digi legs. See: code\_DEFINES\inventory.dm
 	var/supports_variations_flags = NONE
+	/// This is a bitfield that defines which bodyshapes this item is capable of rendering, used by build_worn_icon()
+	var/bodyshapes_with_variations = NONE
 
 	///Items can by default thrown up to 10 tiles by TK users
 	tk_throw_range = 10
@@ -1233,6 +1235,12 @@
 				outline_color = COLOR_THEME_TRASENKNOX
 			if("detective")
 				outline_color = COLOR_THEME_DETECTIVE
+			// DARKPACK EDIT ADD START
+			if("pentex-knox")
+				outline_color = COLOR_THEME_TRASENKNOX
+			if("world-of-darkness")
+				outline_color = COLOR_WHITE
+			// DARKPACK EDIT ADD END
 			else //this should never happen, hopefully
 				outline_color = COLOR_WHITE
 	if(color)

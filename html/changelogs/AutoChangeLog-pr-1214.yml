@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - refactor: "refactors beastmaster to handle taming a existing mob rather then spawning a new one"
+  - code_imp: "deleting or killing a summon is handled much better"
