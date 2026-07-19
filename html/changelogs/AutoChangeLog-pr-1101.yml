@@ -1,0 +1,5 @@
+author: "TheCarnalest"
+delete-after: True
+changes:
+  - bugfix: "Scry the Hearthstone now displays guestbook names."
+  - rscadd: "Scry the Hearthstone now gives you direction and distance to players in your area as well as alerting you when they leave and enter, but can no longer be used outdoors."

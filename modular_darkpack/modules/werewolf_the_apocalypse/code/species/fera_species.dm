@@ -157,6 +157,14 @@
 	shift_difficulty = 7
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera/bestial,
+	)
 
 /datum/species/human/shifter/bestial/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	. = ..()
@@ -173,7 +181,6 @@
 	. = ..()
 	RegisterSignal(human_who_gained_species, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_fluff))
 	human_who_gained_species.update_appearance(UPDATE_OVERLAYS)
-	human_who_gained_species.update_mob_height()
 	human_who_gained_species.update_transform(1.25)
 
 /datum/species/human/shifter/bestial/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
@@ -181,16 +188,6 @@
 	UnregisterSignal(human, COMSIG_ATOM_UPDATE_OVERLAYS)
 	human.update_appearance(UPDATE_OVERLAYS)
 	human.update_transform()
-	human.update_mob_height()
-
-/datum/species/human/shifter/bestial/update_species_heights(mob/living/carbon/human/holder)
-	if(HAS_TRAIT(holder, TRAIT_DWARF))
-		return HUMAN_HEIGHT_MEDIUM
-
-	if(HAS_TRAIT(holder, TRAIT_TOO_TALL))
-		return HUMAN_HEIGHT_TALLEST
-
-	return HUMAN_HEIGHT_TALL
 
 /datum/species/human/shifter/bestial/proc/add_fluff(datum/source, list/overlay_list)
 	SIGNAL_HANDLER

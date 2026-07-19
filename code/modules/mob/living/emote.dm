@@ -125,13 +125,12 @@
 	// Prevent mobs in a deathcoma from revealing they actually died
 	if (HAS_TRAIT(user, TRAIT_DEATHCOMA))
 		return
-	// DARKPACK EDIT ADD END - Torpor
-	var/mob/living/carbon/carbon_user = user
+	// DARKPACK EDIT ADD END
 	// For masks that give unique death sounds
-	if(istype(carbon_user) && isclothing(carbon_user.wear_mask) && carbon_user.wear_mask.unique_death)
-		playsound(carbon_user, carbon_user.wear_mask.unique_death, 200, TRUE, TRUE)
-		return
-	if(user.death_sound)
+	var/obj/item/clothing/mask/mask = astype(user.get_item_by_slot(ITEM_SLOT_MASK), /obj/item/clothing/mask)
+	if(mask?.unique_death)
+		playsound(user, mask.unique_death, 200, TRUE, TRUE)
+	else if(user.death_sound)
 		playsound(user, user.death_sound, 200, TRUE, TRUE)
 
 /datum/emote/living/drool

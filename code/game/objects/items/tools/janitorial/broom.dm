@@ -19,6 +19,7 @@
 	attack_verb_simple = list("sweep", "brush off", "bludgeon", "whack")
 	resistance_flags = FLAMMABLE
 	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pushbroom/Initialize(mapload)
 	. = ..()
