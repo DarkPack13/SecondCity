@@ -33,22 +33,25 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/item/toy/plush/goatplushie/attackby(obj/item/cigarette/rollie/fat_dart, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/toy/plush/goatplushie/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	var/obj/item/cigarette/rollie/fat_dart = tool
 	if(!istype(fat_dart))
 		return ..()
 	if(splat)
 		to_chat(user, span_notice("[src] doesn't seem to be able to go hard right now."))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(going_hard)
 		to_chat(user, span_notice("[src] is already going too hard!"))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(!fat_dart.lit)
 		to_chat(user, span_notice("You'll have to light that first!"))
-		return
+		return ITEM_INTERACT_BLOCKING
 	to_chat(user, span_notice("You put [fat_dart] into [src]'s mouth."))
 	qdel(fat_dart)
 	going_hard = TRUE
 	update_icon(UPDATE_OVERLAYS)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/toy/plush/goatplushie/proc/splat(datum/source)
 	SIGNAL_HANDLER
@@ -62,7 +65,7 @@
 	visible_message(span_danger("[src] gets absolutely flattened!"))
 	splat = TRUE
 
-/obj/item/toy/plush/goatplushie/examine()
+/obj/item/toy/plush/goatplushie/examine(mob/user)
 	. = ..()
 	if(splat)
 		. += span_notice("[src] might need medical attention.")
