@@ -13,6 +13,7 @@
 
 	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
+	COOLDOWN_DECLARE(worms_cd)
 
 /datum/splat/werewolf/fomori/splat_life(seconds_per_tick)
 	if(HAS_TRAIT(owner, TRAIT_FOMORI_REGEN))
@@ -23,6 +24,13 @@
 	if(HAS_TRAIT(owner, TRAIT_FOMORI_SCARY_PRESENCE)) // thanks abby
 		for(var/mob/living/carbon/human/guy in oviewers(owner, 4))
 			guy.apply_status_effect(/datum/status_effect/scary_presence, owner)
+
+	if(HAS_TRAIT(owner, TRAIT_FOMORI_WORMS))
+		if(COOLDOWN_FINISHED(src, worms_cd) && prob(50)) // Roughly once per min
+			owner.visible_message(span_warning("Something beneath [owner]'s skin writhes grotesquely."), \
+				span_warning("The corrupted worms beneath your skin writhe as they devour you from the inside."))
+			owner.apply_damage(1, BRUTE, forced = TRUE, spread_damage = TRUE, wound_clothing = FALSE)
+			COOLDOWN_START(src, worms_cd, 6 TURNS)
 
 /mob/living/carbon/human/splat/fomori
 	auto_splats = list(/datum/splat/werewolf/fomori)
@@ -49,6 +57,9 @@
 	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
+
+	// TAINTS
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/worms, 1)
 
 
 

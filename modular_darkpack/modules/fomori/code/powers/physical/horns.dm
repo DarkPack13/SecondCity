@@ -1,5 +1,7 @@
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/fomor_horns
 	name = "Gore"
+	button_icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
+	button_icon_state = "horns_charge"
 	cooldown_time = 1 TURNS
 	recoil_duration = 1 SECONDS
 	destroy_objects = FALSE

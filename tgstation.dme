@@ -7445,6 +7445,7 @@
 #include "modular_darkpack\modules\fomori\code\splats\fomori_splat.dm"
 #include "modular_darkpack\modules\fomori\code\splats\is_fomori_helpers.dm"
 #include "modular_darkpack\modules\fomori\code\splats\pref_lore.dm"
+#include "modular_darkpack\modules\fomori\code\taints\worms.dm"
 #include "modular_darkpack\modules\font_adjustments\font_procs.dm"
 #include "modular_darkpack\modules\food\code\drinking_glass.dm"
 #include "modular_darkpack\modules\food\code\drinks.dm"
