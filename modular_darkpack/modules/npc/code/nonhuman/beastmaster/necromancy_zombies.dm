@@ -63,7 +63,6 @@
 	response_disarm_simple = "knock aside"
 	response_harm_continuous = "stamps"
 	response_harm_simple = "stamp"
-	can_be_held = TRUE
 	density = FALSE
 	speed = 0
 	maxHealth = 20
@@ -78,8 +77,8 @@
 
 /mob/living/basic/beastmaster/giovanni_zombie/level2/Initialize(mapload)
 	. = ..()
-	pixel_w = rand(-8, 8)
-	pixel_z = rand(-8, 8)
+	AddComponent(/datum/component/swarming, 16, 16) //max_x, max_y
+	AddElement(/datum/element/can_be_held)
 
 /mob/living/basic/beastmaster/giovanni_zombie/level3 // Middling dog-level threat
 	name = "compagno"
