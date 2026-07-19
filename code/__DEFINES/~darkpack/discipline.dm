@@ -55,3 +55,4 @@
 
 // Defines for Discipline keybindings
 #define CATEGORY_DISCIPLINES "DISCIPLINES"
+#define CATEGORY_DISCIPLINE_POWERS "DISCIPLINE POWERS"

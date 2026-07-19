@@ -19,3 +19,4 @@
 // Disciplines
 #define COMSIG_KB_DISCIPLINE_SELECT "keybinding_discipline_select"
 #define COMSIG_KB_DISCIPLINE_ACTIVATE "keybinding_discipline_activate"
+#define COMSIG_KB_DISCIPLINE_POWER_ACTIVATE "keybinding_discipline_power_activate"

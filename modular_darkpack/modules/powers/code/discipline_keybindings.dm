@@ -9,15 +9,19 @@
 	classic_keys = list()
 	src.slot = slot
 	// Bloodheal is technically counted as a Discipline and it always takes slot 1, so slot 2 will be displayed as Discipline 1 and so on
-	name = "select Discipline [slot - 1]"
-	full_name = "Select Discipline [slot - 1]"
+	if (slot == 1)
+		name = "select Bloodheal"
+		full_name = "Select Bloodheal"
+	else
+		name = "select Discipline [slot - 1]"
+		full_name = "Select Discipline [slot - 1]"
 
 /datum/keybinding/discipline_select/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
 	if (.)
 		return
 
-	var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(user.mob)
+	var/datum/splat/vampire/vampirism = get_splat_with_discipline(user.mob)
 	if (!vampirism)
 		return
 
@@ -26,14 +30,6 @@
 	vampirism.selected_power = vampirism.powers[slot]
 
 	return TRUE
-
-// Bloodheal will always be the first Discipline, so this is a special case of Discipline selection
-/datum/keybinding/discipline_select/bloodheal
-	hotkey_keys = list()
-	classic_keys = list()
-	slot = 1
-	name = "select Bloodheal"
-	full_name = "Select Bloodheal"
 
 /datum/keybinding/discipline_activate
 	category = CATEGORY_DISCIPLINES
@@ -53,7 +49,7 @@
 	if (.)
 		return
 
-	var/datum/splat/vampire/kindred/vampirism = get_kindred_splat(user.mob)
+	var/datum/splat/vampire/vampirism = get_splat_with_discipline(user.mob)
 	if (!vampirism?.selected_power)
 		return
 
@@ -64,9 +60,48 @@
 	activating_power.switch_level(level - activating_power.discipline.level_casting, TRUE)
 	return activating_power.Trigger(user.mob)
 
-/proc/init_discipline_keybinds()
-	// Bloodheal is an extra first Discipline in code
-	for (var/slot in 2 to MAXIMUM_DISCIPLINES + 1)
+/datum/keybinding/discipline_power
+	category = CATEGORY_DISCIPLINE_POWERS
+	keybind_signal = COMSIG_KB_DISCIPLINE_POWER_ACTIVATE
+	/// Which Discipline the power falls under
+	var/datum/discipline/discipline_type
+	/// Which level of the Discipline the power is
+	var/level
+
+/datum/keybinding/discipline_power/proc/assign_power(datum/discipline/discipline_type, level)
+	hotkey_keys = list()
+	classic_keys = list()
+	src.discipline_type = discipline_type
+	src.level = level
+	name = "activate [discipline_type::name] [level]"
+	full_name = "Activate [discipline_type::name] [level]"
+
+/datum/keybinding/discipline_power/down(client/user, turf/target, mousepos_x, mousepos_y)
+	. = ..()
+	if (.)
+		return
+
+	var/datum/splat/vampire/vampirism = get_splat_with_discipline(user.mob)
+	if (!vampirism)
+		return
+
+	var/datum/action/discipline/discipline_action = vampirism.get_power(discipline_type)
+	if (!discipline_action)
+		return
+
+	if (discipline_action.discipline.level < level)
+		return
+
+	discipline_action.switch_level(level - discipline_action.discipline.level_casting, TRUE)
+	return discipline_action.Trigger(user.mob)
+
+// These are called when the configs for them are set rather than on keybind init because keybind init happens before configs are loaded
+/proc/init_normal_discipline_keybinds()
+	if (!CONFIG_GET(flag/discipline_keybinds))
+		return
+
+	// Bloodheal counts as an extra Discipline
+	for (var/slot in 1 to MAXIMUM_DISCIPLINES + 1)
 		var/datum/keybinding/discipline_select/selection_kb = new
 		selection_kb.assign_slot(slot)
 		add_keybinding(selection_kb)
@@ -75,3 +110,13 @@
 		var/datum/keybinding/discipline_activate/activation_kb = new
 		activation_kb.assign_level(level)
 		add_keybinding(activation_kb)
+
+/proc/init_individual_power_keybinds()
+	if (!CONFIG_GET(flag/individual_power_keybinds))
+		return
+
+	for (var/discipline_type in (valid_subtypesof(/datum/discipline) - /datum/discipline/torpor))
+		for (var/level in 1 to MAXIMUM_DISCIPLINE_LEVEL)
+			var/datum/keybinding/discipline_power/power_kb = new
+			power_kb.assign_power(discipline_type, level)
+			add_keybinding(power_kb)
