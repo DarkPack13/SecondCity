@@ -51,7 +51,7 @@
 /// The maximum amount of Disciplines a Kindred is capable of having
 #define MAXIMUM_DISCIPLINES 5
 /// The highest level in a Discipline that can be used
-#define MAXIMUM_DISCIPLINE_LEVEL 6
+#define MAXIMUM_DISCIPLINE_LEVEL 5
 
 // Defines for Discipline keybindings
 #define CATEGORY_DISCIPLINES "DISCIPLINES"
