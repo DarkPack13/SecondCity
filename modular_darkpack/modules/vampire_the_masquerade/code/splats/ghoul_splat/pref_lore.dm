@@ -6,7 +6,7 @@
 	human.update_body()
 
 /datum/splat/vampire/ghoul/get_splat_description()
-	return "Servents of kindred, often bound through blood-bond to such."
+	return "Mortals sustained and Bound by vampiric vitae, gaining unnatural vitality, slowed aging, and an emotional dependency on their domitors. Some serve willingly out of loyalty, love, or ambition, while others remain trapped by addiction and blood bonds they can't escape.\n\nIn San Francisco, ghouls act as bodyguards, servants, agents, and intermediaries for Kindred across every sect and faction. Though stronger than ordinary humans, they remain vulnerable to the whims and politics of Kindred Society and their masters."
 
 // Pulled straight from the wiki https://whitewolf.fandom.com/wiki/Ghoul_(VTM)
 /datum/splat/vampire/ghoul/get_splat_lore()
