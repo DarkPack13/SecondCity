@@ -6,7 +6,7 @@
  * * pulling - The mob we're biting
  * * damage_type - What kind of damage we're doing as a list. If blank, grabs from vars. (ex. list(BRUTE = 0, BURN = 0, TOX = 0, OXY = 0, AGGRAVATED = 0))
  */
-/mob/living/carbon/proc/combat_bite(list/damage_types)
+/mob/living/carbon/human/proc/combat_bite(list/damage_types)
 	if(!COOLDOWN_FINISHED(src, drinkblood_use_cd) || !COOLDOWN_FINISHED(src, drinkblood_click_cd))
 		return
 	COOLDOWN_START(src, drinkblood_click_cd, 1 SECONDS)
@@ -29,7 +29,7 @@
 
 			do_combat_bite(bit_living, damage_types, TRUE)
 
-/mob/living/carbon/proc/do_combat_bite(mob/living/chewed_on, list/damage_types, first_bite = FALSE)
+/mob/living/carbon/human/proc/do_combat_bite(mob/living/chewed_on, list/damage_types, first_bite = FALSE)
 
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 
@@ -65,7 +65,7 @@
 		stop_sound_channel(CHANNEL_BLOOD)
 		do_combat_bite(chewed_on, damage_types)
 
-/mob/living/carbon/proc/stop_chewing()
+/mob/living/carbon/human/proc/stop_chewing()
 	stop_sound_channel(CHANNEL_BLOOD)
 	COOLDOWN_RESET(src, drinkblood_use_cd)
 	return
