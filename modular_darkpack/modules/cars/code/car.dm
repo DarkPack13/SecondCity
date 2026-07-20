@@ -460,7 +460,7 @@
 	if(length(exit_side))
 		dumpe.Move(get_step(dumpe, angle2dir(pick(exit_side))))
 	else if(length(exit_alt))
-		dumpe.Move(get_step(dumpe, exit_alt))
+		dumpe.Move(get_step(dumpe, pick(exit_alt)))
 
 	to_chat(dumpe, span_notice("You exit [src]."))
 	if(dumpe?.client)

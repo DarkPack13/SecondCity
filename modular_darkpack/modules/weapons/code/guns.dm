@@ -490,6 +490,7 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/ak.ogg'
 	masquerade_violating = TRUE
+	can_be_sawn_off	= TRUE
 	serial_type = "KA"
 	var/rof = 0.2 SECONDS //300 RPM
 

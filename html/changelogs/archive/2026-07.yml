@@ -74,3 +74,45 @@
   - config: extends the lobby time to 5 minutes, 2 minutes was too short
   - config: multiplies the time between events by 10x since they were firing once
       every 2.5 minutes which is way too short in a 3 hour round
+2026-07-20:
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  FalloutFalcon:
+  - refactor: refactors beastmaster to handle taming a existing mob rather then spawning
+      a new one
+  - code_imp: deleting or killing a summon is handled much better
+  - qol: Attack information as it relates to rolls is now displayed in a weapons combat
+      information
+  - qol: Attacking with a weapon BELOW a single bonus dice no longer makes a roll
+      that includes your entire dice pool
+  - balance: Weapons with a dice pool that is not rounded turns the remainder into
+      a chance for a bonus dice.
+  - bugfix: Private rolling to admins properly displays to them
+  - bugfix: Vampire artifact spawner should only spawn vampire artifacts
+  Fghj240:
+  - qol: Ghosts can see alien embryo stage and all virus symptoms when health scanning
+  - code_imp: Health scanners now support multiple scan levels
+  - bugfix: Fixes medical kiosks not being able to identify advanced disease cures.
+  - rscdel: Removed ImmunoSilence and its trait
+  - balance: Aggressive healing has much lower stats
+  - map: Added sepsisillin pills to virology
+  - spellcheck: Clarified the description of aggressive healing
+  LT3:
+  - bugfix: Tram signs only update on signals from their linked tram
+  Lotte103:
+  - map: Added Thermomachines and Plasma Cannister to the HFR Room on Catwalk
+  - map: Replaced glass windows with reinforced plasmaglass windows in Atmos and Ordnance
+      on Catwalk. Improving safety and allowing Atmos to operate the gas turbine without
+      breaching the Atmos pump room.
+  Stutternov:
+  - bugfix: Fixes AK sawing oversight.
+  TealSeer:
+  - bugfix: fixed FaxBond not sending notifications when faxes are received
+  TheCarnalest:
+  - bugfix: Scry the Hearthstone now displays guestbook names.
+  - rscadd: Scry the Hearthstone now gives you direction and distance to players in
+      your area as well as alerting you when they leave and enter, but can no longer
+      be used outdoors.
+  lelandkemble:
+  - rscadd: Added craftable anti-mech tripwires. A mech that foolishly steps on one
+      will fall down and be immobilized temporarily. Don't let it fall on you!
