@@ -7120,6 +7120,7 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
+#include "modular_darkpack\code\modules\mob\living\carbon\carbon.dm"
 #include "modular_darkpack\master_files\code\world.dm"
 #include "modular_darkpack\master_files\code\__HELPERS\maths.dm"
 #include "modular_darkpack\master_files\code\_globalvars\configuration.dm"
