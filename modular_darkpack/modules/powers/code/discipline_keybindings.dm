@@ -1,3 +1,9 @@
+/**
+ * Keybind for generically selecting which Discipline to select, used in tandem with
+ * /datum/keybinding/discipline_activate to activate a power of the selected Discipline
+ *
+ * Enabled by the DISCIPLINE_KEYBINDS config
+ */
 /datum/keybinding/discipline_select
 	category = CATEGORY_DISCIPLINES
 	keybind_signal = COMSIG_KB_DISCIPLINE_SELECT
@@ -31,6 +37,12 @@
 
 	return TRUE
 
+/**
+ * Keybind for activating a specified level of the Discipline previously selected
+ * with /datum/keybinding/discipline_select
+ *
+ * Enabled by the DISCIPLINE_KEYBINDS config
+ */
 /datum/keybinding/discipline_activate
 	category = CATEGORY_DISCIPLINES
 	keybind_signal = COMSIG_KB_DISCIPLINE_ACTIVATE
@@ -60,6 +72,12 @@
 	activating_power.switch_level(level - activating_power.discipline.level_casting, TRUE)
 	return activating_power.Trigger(user.mob)
 
+/**
+ * Keybind for activating a specified Discipline power, with a keybind for every
+ * possible power.
+ *
+ * Enabled by the INDIVIDUAL_POWER_KEYBINDS config, off by default due to keybind spam
+ */
 /datum/keybinding/discipline_power
 	category = CATEGORY_DISCIPLINE_POWERS
 	keybind_signal = COMSIG_KB_DISCIPLINE_POWER_ACTIVATE
