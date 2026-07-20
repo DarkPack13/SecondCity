@@ -167,9 +167,6 @@
 	var/strip_delay = 4 SECONDS
 	///How long it takes to resist out of the item (cuffs and such)
 	var/breakouttime = 0
-	///How strong must we be to break this item on resist? (also cuffs and such)
-	///Set to null to disallow breaking.
-	var/cuff_break_strength_needed = null
 
 	///Used in [atom/proc/attackby] to say how something was attacked `"[x] has been [z.attack_verb] by [y] with [z]"`
 	var/list/attack_verb_continuous
