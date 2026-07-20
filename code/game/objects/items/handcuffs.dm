@@ -48,7 +48,6 @@
 	throw_range = 5
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 5)
 	breakouttime = 1 MINUTES
-	cuff_break_strength_needed = 6
 	armor_type = /datum/armor/restraints_handcuffs
 	custom_price = PAYCHECK_COMMAND * 0.35
 	pickup_sound = 'sound/items/handling/handcuffs/handcuffs_pick_up.ogg'
@@ -187,7 +186,6 @@
 */
 /obj/item/restraints/handcuffs/alien
 	icon_state = "handcuffAlien"
-	cuff_break_strength_needed = 8
 	ONFLOOR_ICON_HELPER(null) // DARKPACK EDIT ADD
 	icon = 'icons/obj/weapons/restraints.dmi' // DARKPACK EDIT ADD
 
@@ -201,7 +199,6 @@
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
 	breakouttime = 1 SECONDS
-	cuff_break_strength_needed = 5 // our lock is fake, not the bind itself
 	restraint_strength = HANDCUFFS_TYPE_WEAK
 	resist_cooldown = CLICK_CD_SLOW
 
@@ -222,7 +219,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
 	breakouttime = 30 SECONDS
-	cuff_break_strength_needed = 5
 	cuffsound = 'sound/items/weapons/cablecuff.ogg'
 	pickup_sound = null
 	drop_sound = null
@@ -285,7 +281,6 @@
 	custom_materials = null
 	color = null
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
-	cuff_break_strength_needed = 4
 
 /**
  * Red cable restraints
@@ -365,7 +360,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	custom_materials = null
 	breakouttime = 45 SECONDS
-	cuff_break_strength_needed = 4
 	color = null
 	cable_color = null
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2.5)
@@ -437,7 +431,6 @@
 	slowdown = 7
 	breakouttime = 30 SECONDS
 	slot_flags = ITEM_SLOT_LEGCUFFED
-	cuff_break_strength_needed = 6
 	/// Icon state for the legcuff overlay
 	var/legcuff_state = "legcuff"
 
@@ -453,7 +446,6 @@
 	icon_state = "beartrap"
 	desc = "A trap used to catch bears and other legged creatures."
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
-	cuff_break_strength_needed = null // please no
 	///If true, the trap is "open" and can trigger.
 	var/armed = FALSE
 	///How much damage the trap deals when triggered.
@@ -622,7 +614,6 @@
 	breakouttime = 3.5 SECONDS//easy to apply, easy to break out of
 	gender = NEUTER
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.1, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
-	cuff_break_strength_needed = null // PLEASE no
 	///Amount of time to knock the target down for once it's hit in deciseconds.
 	var/knockdown = 0
 	///Reference of the mob we will attempt to snare
