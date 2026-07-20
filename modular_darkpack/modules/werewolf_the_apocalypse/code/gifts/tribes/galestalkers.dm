@@ -45,7 +45,7 @@
 
 	status_type = STATUS_EFFECT_REPLACE
 
-	alert_type = /atom/movable/screen/alert/status_effect/beat_of_the_heartdrum
+	alert_type = /atom/movable/screen/alert/status_effect/gift/beat_of_the_heartdrum
 
 
 /atom/movable/screen/alert/status_effect/gift/beat_of_the_heartdrum
