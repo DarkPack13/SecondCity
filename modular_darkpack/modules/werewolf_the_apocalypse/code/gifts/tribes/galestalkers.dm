@@ -43,7 +43,7 @@
 
 	if(!tracking_name)
 		return
-	
+
 	to_chat(owner, span_notice("Tracking [tracking_name]"))
 	living_owner.apply_status_effect(/datum/status_effect/beat_of_the_heartdrum, valid_targets[tracking_name])
 
@@ -105,7 +105,7 @@
 
 /mob/living/carbon/human/heart_is_beating()
 	var/obj/item/organ/heart/beating_heart = get_organ_slot(ORGAN_SLOT_HEART)
-	if(!istype(beating_heart) && !(beating_heart.is_beating()))
+	if(!istype(beating_heart) || !(beating_heart.is_beating()))
 		return FALSE
 
 	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!

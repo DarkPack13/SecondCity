@@ -76,13 +76,11 @@
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. += 2
 
-
-/* DARKPACK TODO - (Requires https://github.com/DarkPack13/SecondCity/pull/683)
 /datum/storyteller_roll/damage/claw/calculate_used_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. -= 1
-*/
+
 
 /datum/storyteller_roll/shooting
 	bumper_text = "shooting"
