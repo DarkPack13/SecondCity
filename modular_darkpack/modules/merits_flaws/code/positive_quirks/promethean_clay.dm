@@ -10,3 +10,6 @@
 	included_clans = list(VAMPIRE_CLAN_TZIMISCE)
 	icon = FA_ICON_PERSON_BURST
 	failure_message = "Something is wrong. The preternatural responsiveness of your flesh fades."
+	roleplay_only = TRUE // REMOVE THIS WHEN PROMETHEAN CLAY MERIT IS IMPLEMENTED IN FULL
+
+// hey, have you removed roleplay only after fully developing this merit? remove this too. did you remove it yet?
