@@ -1,6 +1,4 @@
-/mob/living/basic/avatar/verb/reenter_corpse()
-	set name = "Re-enter Corpse"
-
+GAME_VERB(/mob/living/basic/avatar, reenter_corpse, "Re-enter Corpse", null)
 	exit_avatar(force = FALSE)
 
 /mob/living/basic/avatar/proc/exit_avatar(force = FALSE)
@@ -25,16 +23,10 @@
 	return TRUE
 
 /mob/living/basic/avatar/down()
-	set name = "Move Down"
-	set category = "IC"
-
 	if(zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move down."))
 
 /mob/living/basic/avatar/up()
-	set name = "Move Upwards"
-	set category = "IC"
-
 	if(zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move upwards."))
 

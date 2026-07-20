@@ -10,7 +10,6 @@
 
 	display_order = JOB_DISPLAY_ORDER_DEALER
 	exp_required_type_department = EXP_TYPE_WAREHOUSE
-	department_for_prefs = /datum/job_department/supply
 	departments_list = list(
 		/datum/job_department/supply,
 	)
@@ -19,7 +18,7 @@
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU, SPLAT_NONE)
 	splat_slots = list(SPLAT_NONE = 1)
 	description = "You provide both legal and illegal supplies to those that get busy during the night. You are your own person yet you know people are out for you. Time to buckle in..."
-	minimal_masquerade = 0
+	minimum_masquerade = 0
 
 /datum/outfit/job/vampire/dealer
 	name = "Dealer"

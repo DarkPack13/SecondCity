@@ -10,4 +10,4 @@
 
 /obj/item/occult_artifact/vampire/heart_of_eliza/ungrant_powers()
 	. = ..()
-	owner.st_remove_stat_mod(STAT_STRENGTH, 1, type)
+	owner.st_remove_stat_mod(STAT_STRENGTH, type)

@@ -21,18 +21,14 @@ SUBSYSTEM_DEF(roll)
  * number if false.
  *
  * Arguments:
- * * dice - number of 10-sided dice to roll.
- * * difficulty - the number that a dice must come up as to count as a success.
  * * roller - the mob who is making the role and owns the dice
+ * * target - the target we roll against, used selectivly in logic primarly based on what roll_datum you used
+ * * roll_datum - path of the datum used for all roll logic. can suppliment many of the args by defining it in this
+ * * bonus - amount of dice added ontop of applic stats, can consitute all of the dice if applic stats is left blank.
+ * * difficulty - the number that a dice must come up as to count as a success.
+ * * applic_stats - A list of types/defines for what stats will be used in the roll.
  * * numerical - whether the proc returns number of successes or outcome (botch, failure, success)
  */
-/datum/controller/subsystem/roll/proc/storyteller_roll(dice = 1, difficulty = 6, mob/living/roller = null, numerical = FALSE)
-	var/datum/storyteller_roll/dice_roll = new()
-	dice_roll.difficulty = difficulty
-	dice_roll.numerical = numerical
-	return dice_roll.st_roll(roller, roller, dice)
-
-/// Alternative syntax for if you dont need to set a ton and also dont store your datum.
 /datum/controller/subsystem/roll/proc/storyteller_roll_datum(mob/living/roller, atom/target, roll_datum = /datum/storyteller_roll, bonus = 0, difficulty, applic_stats, numerical)
 	var/datum/storyteller_roll/dice_roll = new roll_datum()
 	if(!isnull(difficulty))

@@ -1,12 +1,14 @@
-/datum/preference/choiced/subsplat/zulo_form
+/datum/preference/choiced/zulo_form
 	savefile_key = "zulo_form"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	priority = PREFERENCE_PRIORITY_REQUIRES_SUBSPLAT
 	main_feature_name = "Zulo Form"
+	relevant_inherent_trait = TRAIT_VTM_CLANS
+	must_have_relevant_trait = TRUE
 	should_generate_icons = TRUE
 
-/datum/preference/choiced/subsplat/zulo_form/has_relevant_feature(datum/preferences/preferences)
+/datum/preference/choiced/zulo_form/has_relevant_feature(datum/preferences/preferences)
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
@@ -19,7 +21,7 @@
 			return TRUE
 	return FALSE
 
-/datum/preference/choiced/subsplat/zulo_form/init_possible_values()
+/datum/preference/choiced/zulo_form/init_possible_values()
 	var/list/values = list()
 	for(var/name in GLOB.zulo_forms)
 		values[name] = GLOB.zulo_forms[name]

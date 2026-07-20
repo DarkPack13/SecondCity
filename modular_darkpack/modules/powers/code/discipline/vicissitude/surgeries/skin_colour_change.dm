@@ -33,7 +33,7 @@
 	var/mob/living/carbon/human/patient = get_patient(operating_on)
 
 	var/list/skin_tones = list()
-	for(var/skin_tone as anything in GLOB.skin_tone_names)
+	for(var/skin_tone in GLOB.skin_tone_names)
 		var/skin_tone_name = GLOB.skin_tone_names[skin_tone]
 		skin_tones[skin_tone_name] = skin_tone
 
@@ -46,7 +46,7 @@
 	patient.skin_tone = new_s_tone
 	patient.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
 	patient.update_body(is_creating = TRUE)
-	patient.update_mutations_overlay()
+	patient.update_appearance(UPDATE_OVERLAYS)
 	SEND_SIGNAL(surgeon, COMSIG_MASQUERADE_VIOLATION)
 	playsound(patient, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 

@@ -9,6 +9,7 @@
 	included_clans = list(VAMPIRE_CLAN_CAPPADOCIAN)
 	icon = FA_ICON_SKULL
 	failure_message = "The skin on your corpsely flesh returns to normal."
+	quirk_flags = QUIRK_CHANGES_APPEARANCE
 
 /datum/quirk/darkpack/horrific_appearance/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)

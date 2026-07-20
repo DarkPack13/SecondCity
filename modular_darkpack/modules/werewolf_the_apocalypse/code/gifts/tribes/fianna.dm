@@ -74,7 +74,7 @@
 /datum/action/cooldown/power/gift/faerie_light
 	name = "Faerie Light"
 	desc = "Create a bobbing mote of light to light your way or attract targets for an ambush."
-	button_icon_state = null // TODO: icon
+	button_icon_state = "faerie_light"
 	click_to_activate = TRUE
 
 	rank = 1
@@ -88,6 +88,7 @@
 		roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_WITS, STAT_OCCULT)
 	roll_datum.difficulty = 6
+	roll_datum.roll_output_type = ROLL_PRIVATE
 	var/roll_result = roll_datum.st_roll(owner)
 
 	if(roll_result <= ROLL_FAILURE)

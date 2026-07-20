@@ -120,7 +120,7 @@
 
 /datum/crafting_recipe/vim
 	name = "Vim"
-	result = /obj/vehicle/sealed/car/vim
+	result = /obj/vehicle/sealed/mecha/vim
 	reqs = list(
 		/obj/item/clothing/head/helmet/space/eva = 1,
 		/obj/item/bodypart/leg/left/robot = 1,
@@ -179,7 +179,7 @@
 		/obj/item/reagent_containers/syringe = 1,
 	)
 	category = CAT_ROBOT
- */
+
 /datum/crafting_recipe/mod_core_soul
 	name = "MOD core (Soul)"
 	result = /obj/item/mod/core/soul
@@ -192,3 +192,4 @@
 		/obj/item/soulstone = 1,
 	)
 	category = CAT_ROBOT
+*/

@@ -33,7 +33,7 @@
 
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
-	if(!(lowertext(extension) in valid_extensions))
+	if(!(LOWER_TEXT(extension) in valid_extensions))
 		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
 		return
 

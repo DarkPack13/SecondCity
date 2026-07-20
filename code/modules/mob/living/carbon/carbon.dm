@@ -61,17 +61,9 @@
 // DARKPACK EDIT ADD START
 		if(isliving(thrower))
 			var/mob/living/attacker = thrower
-			var/attacker_strengthbrawl = attacker.st_get_stat(STAT_STRENGTH) + attacker.st_get_stat(STAT_BRAWL)
-			var/attacker_dexathletics = attacker.st_get_stat(STAT_DEXTERITY) + attacker.st_get_stat(STAT_ATHLETICS)
-			var/attacker_keephigher = max(attacker_strengthbrawl, attacker_dexathletics)
 
-			var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
-			var/victim_stambrawl = victim_stamina + victim.st_get_stat(STAT_BRAWL)
-			var/victim_stamathletics = victim_stamina + victim.st_get_stat(STAT_ATHLETICS)
-			var/victim_keephigher = max(victim_stambrawl, victim_stamathletics)
-
-			var/attacker_roll = SSroll.storyteller_roll(dice = attacker_keephigher, difficulty = 6, roller = thrower, numerical = TRUE)
-			var/victim_roll = SSroll.storyteller_roll(dice = victim_keephigher, difficulty = 6, roller = victim, numerical = TRUE)
+			var/attacker_roll = SSroll.storyteller_roll_datum(attacker, victim, /datum/storyteller_roll/tackle_attacker)
+			var/victim_roll = SSroll.storyteller_roll_datum(victim, attacker, /datum/storyteller_roll/tackle_defender)
 
 			if(victim_roll > attacker_roll)
 				blocked = TRUE
@@ -213,14 +205,15 @@
  * @param {number} breakouttime - The time it takes to break the cuffs. Use SECONDS/MINUTES defines
  * @param {number} cuff_break - Speed multiplier, 0 is default, see _DEFINES\combat.dm
  */
-/mob/living/carbon/proc/cuff_resist(obj/item/cuffs, breakouttime = 1 MINUTES, cuff_break = 0)
+/mob/living/carbon/proc/cuff_resist(obj/item/cuffs, breakouttime = null, cuff_break = 0)
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(cuffs.item_flags & BEING_REMOVED)
 		to_chat(src, span_warning("You're already attempting to remove [cuffs]!"))
 		return
 	cuffs.item_flags |= BEING_REMOVED
-	breakouttime = cuffs.breakouttime
+	if (isnull(breakouttime))
+		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [cuffs]!"))
 		to_chat(src, span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
@@ -495,38 +488,7 @@
 		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
 			return
 
-	if(glasses)
-		new_sight |= glasses.vision_flags
-		if(glasses.invis_override)
-			set_invis_see(glasses.invis_override)
-		else
-			set_invis_see(min(glasses.invis_view, see_invisible))
-		if(!isnull(glasses.lighting_cutoff))
-			lighting_cutoff = max(lighting_cutoff, glasses.lighting_cutoff)
-		if(length(glasses.color_cutoffs))
-			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
-
-
-	if(HAS_TRAIT(src, TRAIT_TRUE_NIGHT_VISION))
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)
-
-	if(HAS_TRAIT(src, TRAIT_MESON_VISION))
-		new_sight |= SEE_TURFS
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
-
-	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
-		new_sight |= SEE_MOBS
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
-
-	if (HAS_TRAIT(src, TRAIT_MINOR_NIGHT_VISION))
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_LOW)
-
-	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
-		new_sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-
-	if(HAS_TRAIT(src, TRAIT_ECHOLOCATOR))
-		new_sight |= SEE_MOBS|SEE_TURFS
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_FULLBRIGHT)
+	new_sight |= get_sight_and_cutoffs()
 
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
 		new_sight = NONE
@@ -538,6 +500,30 @@
 
 	set_sight(new_sight)
 	return ..()
+
+/// Modifies lighting_cutoff/lighting_color_cutoffs/see_invisible and returns additional sight flags to apply
+/mob/living/carbon/proc/get_sight_and_cutoffs()
+	. = NONE
+	if(HAS_TRAIT(src, TRAIT_TRUE_NIGHT_VISION))
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)
+
+	if(HAS_TRAIT(src, TRAIT_MESON_VISION))
+		. |= SEE_TURFS
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
+
+	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
+		. |= SEE_MOBS
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
+
+	if (HAS_TRAIT(src, TRAIT_MINOR_NIGHT_VISION))
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_LOW)
+
+	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
+		. |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+
+	if(HAS_TRAIT(src, TRAIT_ECHOLOCATOR))
+		. |= SEE_MOBS|SEE_TURFS
+		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_FULLBRIGHT)
 
 /**
  * Calculates how visually impaired the mob is by their equipment and other factors
@@ -745,7 +731,6 @@
 		clear_mood_event("handcuffed")
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_worn_handcuffs()
-	update_hud_handcuffed()
 
 /mob/living/carbon/revive(full_heal_flags = NONE, excess_healing = 0, force_grab_ghost = FALSE)
 	if(excess_healing)
@@ -984,6 +969,7 @@
 			var/obj/item/bodypart/stump = new old_bodypart.stump_typepath()
 			stump.bodyshape = old_bodypart.bodyshape
 			stump.bodytype = old_bodypart.bodytype
+			stump.add_biostate(old_bodypart.biological_state & ~BIO_JOINTED)
 			if(!stump.try_attach_limb(src, special = TRUE))
 				// the only way this can happen is if the stump is rejected via signal
 				// not much we can do about that besides hope they know what they're doing
@@ -1204,9 +1190,6 @@
 	if (ismecha(loc))
 		return FALSE
 
-	if (wearing_shock_proof_gloves())
-		return FALSE
-
 	if(!get_powernet_info_from_source(power_source))
 		return FALSE
 
@@ -1214,10 +1197,6 @@
 		return FALSE
 
 	return TRUE
-
-/// Returns if the carbon is wearing shock proof gloves
-/mob/living/carbon/proc/wearing_shock_proof_gloves()
-	return gloves?.siemens_coefficient == 0
 
 /// Modifies max_skillchip_count and updates active skillchips
 /mob/living/carbon/proc/adjust_skillchip_complexity_modifier(delta)
@@ -1303,8 +1282,6 @@
 		return TRUE
 	if((acid_power * acid_volume) < ACID_LEVEL_HANDBURN)
 		return TRUE
-	if(gloves?.resistance_flags & (UNACIDABLE | ACID_PROOF))
-		return TRUE
 	return FALSE
 
 /**
@@ -1315,8 +1292,6 @@
 	if((burning_atom == src) || (burning_atom.loc == src))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_RESISTHEAT) || HAS_TRAIT(src, TRAIT_RESISTHEATHANDS))
-		return TRUE
-	if(gloves?.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE)
 		return TRUE
 	return FALSE
 
@@ -1384,7 +1359,8 @@
 	if(!can_bleed())
 		to_chat(src, span_notice("You get a headache."))
 		return
-	head.adjustBleedStacks(5)
+	var/add_stacks = HAS_TRAIT(src, TRAIT_BLOOD_FOUNTAIN) ? 7 : 5
+	head.adjustBleedStacks(add_stacks)
 	visible_message(span_notice("[src] gets a nosebleed."), span_warning("You get a nosebleed."))
 
 /mob/living/carbon/check_hit_limb_zone_name(hit_zone)
@@ -1403,13 +1379,13 @@
 	. = ..()
 	// Force a weight update in case we're stasis'd and don't tick
 	if (HAS_TRAIT_FROM(src, TRAIT_FAT, OBESITY))
-		if (overeatduration >= 200 SECONDS)
+		if (overeatduration >= OVEREAT_TIME_LIMIT)
 			return
 
 		to_chat(src, span_notice("You feel fit again!"))
 		remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 		return
 
-	if (overeatduration >= 200 SECONDS)
+	if (overeatduration >= OVEREAT_TIME_LIMIT)
 		to_chat(src, span_danger("You suddenly feel blubbery!"))
 		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)

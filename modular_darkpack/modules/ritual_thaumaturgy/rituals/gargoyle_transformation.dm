@@ -163,6 +163,7 @@
 	if(!G || QDELETED(G))
 		return
 	if(!G.key || !G.client)
+		QDEL_NULL(G.ai_controller)
 		G.ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(G)
 		if(activator)
 			activator.add_beastmaster_minion(G)
@@ -199,7 +200,7 @@
 	maxbloodpool = 15
 	ai_controller = null // Start with no AI, will be assigned if no player takes it
 
-/mob/living/basic/gargoyle/perfect/Initialize()
+/mob/living/basic/gargoyle/perfect/Initialize(mapload)
 	. = ..()
 	// Make the perfect gargoyle slightly larger
 	transform = transform.Scale(1.10, 1.10)

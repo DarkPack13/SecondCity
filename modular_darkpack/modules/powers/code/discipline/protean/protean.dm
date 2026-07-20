@@ -71,6 +71,14 @@
 
 	grouped_powers = list()
 
+/datum/discipline_power/protean/feral_claws/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
+
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
 	owner.drop_all_held_items()
@@ -158,6 +166,14 @@
 
 	var/datum/action/cooldown/spell/shapeshift/gangrel/beast_form/gangy_form
 
+/datum/discipline_power/protean/shape_of_the_beast/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
+
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
 	if(gangy_form)
@@ -197,6 +213,14 @@
 	)
 
 	var/datum/action/cooldown/spell/shapeshift/gangrel/mist/mist_form
+
+/datum/discipline_power/protean/mist_form/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
 
 /datum/discipline_power/protean/mist_form/activate()
 	. = ..()

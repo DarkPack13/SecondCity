@@ -2,7 +2,7 @@
 	name = "Russian"
 	desc = "The language of Mother Russia."
 	key = "r"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 40
 	syllables = list(
 		"da", "net", "blin", "suka", "ho", "ya", "ty", "on", "ona", "vy", "oni",
@@ -14,6 +14,13 @@
 	)
 	icon_state = "russian"
 	default_priority = 90
+
+	mutual_understanding = list(
+		/datum/language/polish = 35,
+		/datum/language/czech = 20,
+		/datum/language/ukrainian = 60,
+		/datum/language/common = 10,
+	)
 
 	restricted = FALSE
 

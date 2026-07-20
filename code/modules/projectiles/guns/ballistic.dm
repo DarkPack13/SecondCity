@@ -613,8 +613,20 @@
 		recoil_roll = new()
 
 	if(COOLDOWN_FINISHED(src, recoil_skill_check))
+		for(var/obj/item/gun/gun in user.held_items)
+			if(gun == src || gun.weapon_weight >= WEAPON_MEDIUM)
+				continue
+			else if(can_trigger_gun(user, akimbo_usage = TRUE))
+				recoil_roll.difficulty += 1	//Akimboing gains +1 difficulty
+		if(firing_burst == TRUE)
+			recoil_roll.difficulty += 1	//Bursts gains +1 difficulty
+		var/datum/component/automatic_fire/automatic_check = src.GetComponent(/datum/component/automatic_fire)
+		if(automatic_check)
+			recoil_roll.difficulty += 2	//Full-auto gains +2 difficulty
+
 		var/recoil_reduction = recoil_roll.st_roll(user, src)
 		recoil = max(initial(recoil) - recoil_reduction, 0)
+		spread = max(initial(spread) - recoil_reduction, 0)
 		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)
 	// DARKPACK EDIT ADD END
 
@@ -925,6 +937,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 	/// How quiet should the gun be when we're installed?
 	var/suppression = SUPPRESSED_QUIET
 

@@ -99,6 +99,7 @@
 
 //flask of unholy water is a beaker for some reason, I will try making it a bottle and add it here once the antag freeze is over. t. kryson
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/nothingbottle
 	name = "Nothing Bottle"
 	time = 3 SECONDS
@@ -108,6 +109,7 @@
 	)
 	result = /obj/item/reagent_containers/cup/glass/bottle/bottleofnothing
 	category = CAT_DRINK
+*/
 
 /datum/crafting_recipe/smallcarton
 	name = "Small Carton"
