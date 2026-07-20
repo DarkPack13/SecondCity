@@ -115,7 +115,14 @@
 	if (!CONFIG_GET(flag/individual_power_keybinds))
 		return
 
-	for (var/discipline_type in (valid_subtypesof(/datum/discipline) - /datum/discipline/torpor))
+	for (var/discipline_type in valid_subtypesof(/datum/discipline))
+		// Special case since Torpor has only one level
+		if (discipline_type == /datum/discipline/torpor)
+			var/datum/keybinding/discipline_power/torpor_kb = new
+			torpor_kb.assign_power(discipline_type, 1)
+			add_keybinding(torpor_kb)
+			continue
+
 		for (var/level in 1 to MAXIMUM_DISCIPLINE_LEVEL)
 			var/datum/keybinding/discipline_power/power_kb = new
 			power_kb.assign_power(discipline_type, level)
