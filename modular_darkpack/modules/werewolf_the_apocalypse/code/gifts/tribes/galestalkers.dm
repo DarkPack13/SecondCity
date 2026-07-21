@@ -1,6 +1,7 @@
-#warn do
+// "Ownership" of an object is impossible to determine so fingerpints were used instead
 /datum/action/cooldown/power/gift/beat_of_the_heartdrum
 	name = "Beat of the Heart-Drum"
+	desc = {"The werewolf becomes an inescapable hunter, drawn ever onward by the beat of his prey's heart until that heart grows still."}
 	rank = 1
 	gnosis_cost = 1
 
@@ -9,19 +10,28 @@
 	if(!living_owner)
 		return FALSE
 
+	// Tasted blood
 	var/list/valid_targets = list()
 	for(var/datum/weakref/blood_ref in living_owner.mobs_tasted_blood_of)
 		var/mob/blood_guy = blood_ref.resolve()
-		if(blood_guy)
+		if(blood_guy && (blood_guy != owner))
 			valid_targets[GET_GUESTBOOK_NAME(living_owner, blood_guy)] = blood_guy
 
 	var/obj/item/held_item = living_owner.get_active_held_item()
 	if(held_item)
+		// Ownership (fingerprints)
 		var/list/prints = GET_ATOM_FINGERPRINTS(held_item)
 		if(prints)
-			for(var/mob/living/carbon/to_check as anything in GLOB.carbon_list)
+			for(var/mob/living/carbon/to_check as anything in GLOB.carbon_list - owner)
 				if(prints[md5(to_check.dna?.unique_identity)])
 					valid_targets[GET_GUESTBOOK_NAME(living_owner, to_check)] = to_check
+
+		// Sample of the victum
+		var/datum/reagent/blood/blood = held_item.reagents?.has_reagent(/datum/reagent/blood, check_subtypes = TRUE)
+		var/datum/weakref/donor_ref = blood?.data["donor"]
+		var/mob/living/carbon/human/blood_owner = donor_ref?.resolve()
+		if(blood_owner && (blood_owner != owner))
+			valid_targets[GET_GUESTBOOK_NAME(living_owner, blood_owner)] = blood_owner
 
 	if(!length(valid_targets))
 		to_chat(owner, span_notice("You cant think of any targets you could track at this current moment"))
