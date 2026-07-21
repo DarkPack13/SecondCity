@@ -7816,7 +7816,7 @@
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\shapeshifting.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\vicissitude.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\zulo.dm"
-#include "modular_darkpack\modules\powers\code\discipline\vicissitude\zulo_oldbasicmob.dm"
+#include "modular_darkpack\modules\powers\code\discipline\vicissitude\zulo_organs.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\zulo_preferences.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\objects\flesh_items.dm"
 #include "modular_darkpack\modules\powers\code\discipline\vicissitude\objects\surgery_tools.dm"

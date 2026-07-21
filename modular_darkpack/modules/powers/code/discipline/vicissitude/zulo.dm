@@ -1,116 +1,77 @@
-/* Sabby:
-This is a project to rebase the oldcode Zulo from The Final Nights, originally coded by Magisterium into the Dark Pack rebase.
+////////////////////
+// Sabby:
+// Zulo Form refactored in Jul-2026 from Basicmob into a carbon species for better functionality.
+// Fera_species.dm code was used as a base template, whilst also taking cues from Blood Form and other vicissitude code.
+////////////////////
 
-The reason for this project is because old code Zulo functioned very, very well, and works as a carbon species rather than a basicmob.
+////////////////////
+// If you'd like to create and add new Zulo form sprites in the future, follow this process:
+// 1. Below assumes you followed the instructions on line 41 of zulo_organs.dm;
+// 2. Update the zulo_forms GLOBAL_LIST below:
+// 3. Create a name for your list item, such as "Beast" and = to the exact same sprite name you used in zulo_organs.dm and the .dmi you updated.
+// 4. Update the second GLOBAL_LIST below:
+// 5. Use the exact name you added to the first list and = to /datum/species/tzimisce_zulo_form/[use the same name here but lowercase]
+// 6. Scroll do the bottom of this code and create the new /datum/ there, make sure to use the correct format above.
+// 7. If your sprite is 32x32, then add the sprite_size_transform = 1.50. If it is 64x64, do not add.
+// 8. Copy the bodypart overrides list from the datums above for ease of use.
+// 9. Update each of the objs to BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo/[name of the obj you created in zulo_organs.dm],
+// 10. Save and test.
+////////////////////
 
-I used the fera_species.dm code as a base template
-*/
+// Sabby: This list holds icon for the character screen form selection UI
+GLOBAL_LIST_INIT(zulo_forms, list(
+	"Beast" = "weretzi",
+	"Brust" = "4armstzi",
+	"Noble" = "nobletzi",
+))
 
-/* Sabby: Okay. I commented rows below (19 to 32) for a specific reason: /mob/living/carbon/human/ is already inherent to base TG code, correct? And I'm using, as stated above,
-the fera_species.dm file as a basis for the new zulo refactor, as recommended by Abby. The thing is that, since that original fera_species.dm is already defining
-for /mob/living/carbon/human an update_pode_parts proc, then if I keep this duplicated in the new zulo file, it will cause errors because it's a duplicate of
-something being created for a universal human carbon mob, right?
+// Sabby: This list is used to point the above selection to the right species inheriting datums at bottom of this code.
+GLOBAL_LIST_INIT(zulo_species, list(
+	"Noble" = /datum/species/tzimisce_zulo_form/noble,
+	"Beast" = /datum/species/tzimisce_zulo_form/beast,
+	"Brust" = /datum/species/tzimisce_zulo_form/brust,
+))
 
-And these rows basically allow the carbon mob to override the original base tg human sprite in favor of, for example, the weretzi sprite, correct?
-
-Please correct me if I'm wrong! And if that's also the case, could it maybe be a good idea to move those original rows from fera_species.dm out into a sort of
-universal 'human carbon mob utilities' sort of .dm file for people to reference? */
-
-// /mob/living/carbon/human/update_body_parts(update_limb_data)
-// 	if(dna?.species?.update_body_parts(src))
-// 		return
-// 	return ..()
-// /datum/species/proc/update_body_parts(mob/living/carbon/human/human)
-// 	return
-
-// /mob/living/carbon/human/update_damage_overlays()
-// 	if(dna?.species?.update_damage_overlays(src))
-// 		return
-// 	return ..()
-
-// /datum/species/proc/update_damage_overlays(mob/living/carbon/human/human)
-// 	return
-
-/*Sabby: okay, so, the way this works pulling from the original fera_species.dm, is that the code that first defines a base datum/species/human/shifter type,
-and it is basically a base shifter form full of declared vars. Then it builds the subsequent glabro, crinos, etc. by inheriting from the base shifter
-type and modifying the declared vars in the shifter type.
-
-This is not needed for Zulo form, because it's one zulo form. So is it acceptable practice to just do the single species datum, declare its vars and already
-set the var values in its declarations (such as, for example, the list of stat bonuses)?
-*/
-
-
-/*
-Sabby:
-IMPORTANT QUESTION:
-
-The following, below, is implemented in the Kindred SPLAT to account for the canonical damage reductions that Kindred have:
-
-if ((damagetype == BRUTE) && (sharpness != SHARP_EDGED))
-    damage_mods += 0.5
-
-HOWEVER, this is /datum/splat/, not /datum/species/. Do I need to replicate the above lines somewhere below down in Zulo code?
-
-*/
-
-/* Learning notes to self:
-1. DO NOT define on_species_gain and loss for the exact same species datum more than once for that datum, ever.
-	Consolidate everything into the same gain/loss define.
-2. Masquerade_Violating_Face seems to do what any veil_breaching_form declarations that exited for fera_species.dm did
-*/
 /datum/species/tzimisce_zulo_form
 	name = "Zulo"
 	plural_form = "Zulo"
-	id = SPECIES_TZIMISCE_ZULO_FORM // we need to add this to the definitions dm files?
-	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID /* Sabby: I admit I'm trying to understand what 'inherent_biotypes' does, I took it as a cue from bloodform code,
-	and, through testing, saw that we have 'MOB_UNDEAD' as an option, so I figured it would be appropriate for Zulo as a species due to being, well, undead. */
-	inherent_traits = list(
-		TRAIT_ADVANCEDTOOLUSER, // Sabby: present in oldcode. should allow for equiping tools/items in hand?
-		TRAIT_LIMBATTACHMENT, // Sabby: present in oldcode. learned its functionality from bodyparts.dm line 600. Allows easy limb reattachment. Is this needed, given Kindred splat?
-		TRAIT_VIRUSIMMUNE, // Sabby: present in oldcode. should make immune to disease. It seems to check mob living carbon human with CanContractDisease.
-		TRAIT_NOBLOOD, // Sabby: present in oldcode. again from living carbon traits. Should prevent bleeding and blood loss? Makes sense for anything vampire/undead
-		TRAIT_NOHUNGER, // Sabby: present in oldcode. pulls in nutrition toggle from mob.dm row 1494. Used to prevent undead from conventional food hunger?
-		TRAIT_NOBREATH, // Sabby: present in oldcode. found functionality to study/understand on _lungs.dm it simply untoggles check_breath from lungs if = TRAT_NOBREATH.
-		TRAIT_TOXIMMUNE, // Sabby: present in oldcode. studed functionality on damage_procs.dm. Basically untoggles toxic damage?
-		TRAIT_NOCRITDAMAGE, // Sabby: present in oldcode. still a bit fuzzy on how this works. life.dm has functionality description. Basically keeps from going into critical?
-		TRAIT_MASQUERADE_VIOLATING_FACE, // Sabby: present in oldcode. pretty self-explanatory I feel
-		TRAIT_STRONG_GRABBER, // Sabby: present in oldcode. struggling to understand functionality from living.dm (~ line 410). Sensible for big war form to be strong at grabs, however.
-		TRAIT_GIANT, // Sabby: present in oldcode. simple functionality at tackle.dm row 380. Makes target harder to tackle. It's a giant war form, complete with sprite and pixel offset.
-		TRAIT_PUSHIMMUNE, // Sabby: present in oldcode. According to living_devense.dm, it prevents an agg grab. By name, I thought it would prevents shove. I still believe it makes sense for a war form to not be agg grabbed. However, a crinos should be able to?
-		TRAIT_HARDLY_WOUNDED, // Sabby: present in oldcode. Functionality found in wounds.dm line 61. I don't quite understand what it does, however. Reduces wounds from damage? What does that mean?
-		TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, // Sabby: new feature. Found from declarations list and studied from item_attack.dm line 463 and tackle.dm. Basically keeps target from getting knocked down on hand-to-hand? Makes sense for a war form, however would like to add excpetion for attacks coming from a crinos.
-		TRAIT_NO_STAGGER, // Sabby: new feature. Found from declarations list and studied from staggered.dm. Prevents application of /datum/status_effect/staggered (which is basically a daze sort of effect). Reason: large, lumbering war form. Again, exception vs crinos?
+	id = SPECIES_ZULO_FORM
+	examine_limb_id = SPECIES_ZULO_FORM
+	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
+	inherent_traits = list( // Sabby: note, a lot of traits came from my painstakingly looking at trait definitions, tracking them down in the code and checking what they seem to do.
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_VIRUSIMMUNE,
+		TRAIT_NOHUNGER,
+		TRAIT_NOBREATH,
+		TRAIT_TOXIMMUNE,
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_MASQUERADE_VIOLATING_FACE,
+		TRAIT_STRONG_GRABBER, // Sabby: feels appropriate for a large warform to be able to skip passive grab and go into Agg grab.
+		TRAIT_GIANT, // Sabby:  functionality at tackle.dm row 380. Makes target harder to tackle. Feels appropriate for large warform.
+		TRAIT_PUSHIMMUNE, // Sabby: present in oldcode. According to living_defense.dm, it prevents an agg grab. By name, I thought it would prevents shove. I still believe it makes sense for a war form to not be agg grabbed.
+		TRAIT_HARDLY_WOUNDED, // Sabby: present in oldcode. Functionality found in wounds.dm line 61.
+		TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, // Sabby: new feature. Found from declarations list and studied from item_attack.dm line 463 and tackle.dm. Basically keeps target from getting knocked down on hand-to-hand.
+		TRAIT_NO_STAGGER, // Sabby: new feature. Found from declarations list and studied from staggered.dm. Prevents application of /datum/status_effect/staggered (which is basically a daze sort of effect). Same reasoning as above.
 		TRAIT_NO_THROW_HITPUSH, // Sabby: new feature. Found from declarations list and studied from staggered.dm line 1330. Basically: prevents application of hitpush when hit by thrown items. Reasoning: same as above.
-		TRAIT_NO_UNDERWEAR, // Sabby: saw this on Fera code. Is it relevant, considering I added setting underwear to none manually below on species gain?
-		TRAIT_NO_BLOOD_OVERLAY, // Sabby: got this from Fera code. Seems like it prevents bloody footprints? Might remove for Zulo.
-		TRAIT_NO_LYING_ANGLE, // Sabby: got this from Fera code. Seems to just prevent sprite from going horizontal? Could be relevant.
-		TRAIT_TRANSFORM_UPDATES_ICON, // Sabby: taken from fera code. Honestly not sure what it does. Need some assist.
-		TRAIT_PULL_BLOCKED, // Sabby: found this in declarations, but it seems to have no code anywhere? By the name, would make sense for zulo.
-		TRAIT_NO_CUFF, // Sabby: huge, monstrous warform probably impossible to cuff
-		TRAIT_USES_SKINTONES // Sabby: noticed it present in many living/carbon/ species (vampire.dm, humans.dm, etc.). Important? Still not sure what it does.
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_BLOOD_OVERLAY,
+		TRAIT_TRANSFORM_UPDATES_ICON,
+		TRAIT_NO_CUFF, // Sabby: hard to put cuffs on a warform that might even have multiple arms or be a were-beast. Waiting for cuffbreaking code.
+		TRAIT_MUTANT_COLORS // Sabby: paired with fixed_mut_color below to give Zulo its own fixed sprite color rather than the character's skin tone
 	)
-	no_equip_flags = ITEM_SLOT_ON_BODY | ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE
-	changesource_flags = NONE /* Sabby: doesn't this need to be set to the individual flags, using Blood form as example? */
-/* Sabby: Needs to make sure to maintain Kindred blood type, as this is speciescode and doesn't derive from the splat */
+	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE | ITEM_SLOT_HEAD | ITEM_SLOT_EYES | ITEM_SLOT_EARS
+	var/obj/item/zulo_backpack_to_hide
+	// Sabby: important to retain at least backpack slot - the Tzimisce soil bag needs to remain on the character.
 	exotic_bloodtype = BLOOD_TYPE_KINDRED
-
-/* Sabby: note - old code Zulo manually listed toxic_food and liked_food types, this is obselete now as I noticed everything is declared in the vampire
-organ tongue, and can be brought in via mutant similarly to how it works for werewolf code */
-	mutanttongue = /obj/item/organ/tongue/vampire // there is such a thing in vampire.dm - need to study it
-
-/* Visible gender override, I believe, is just fluff stuff? Do we care about this for zulo, given it may eventually have many diverse sprites */
-	visible_gender_override = "beast"
-
-/* Sabby: necessary var for capturing pre-Zulo appearance stat for transformation appearance change/restore */
+	// Sabby: necessary vars for capturing pre-Zulo social stats and size
 	var/old_appearance
-
-/* form what i understand, this has to do with a procedure called update_body_parts and update_damage_parts to allow it to override renders. Do we want that?*/
-	var/custom_body_render = TRUE
-	var/custom_damage_render = TRUE
-
-/* Below was also borrowed from shifter/dire. We might have to do limb overrides for zulo, considering most don't look distinctly human?
-The zulo bodypart items and zulo organs/limbs do not exist at all in code, for purposes of damage, etc.
-*/
+	var/old_manipulation
+	var/old_charisma
+	var/old_size
+	var/mob_pixel_w = 0
+	var/mob_pixel_z = 0
+	var/sprite_size_transform = 1 //Sabby: in case any new future sprites are 32x32, not 64x64, overwrite this with 1.50 on the new form's datum.
+	// Sabby: Zulo-specific bodyparts are defined in zulo_organs.dm.
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zulo,
@@ -119,185 +80,112 @@ The zulo bodypart items and zulo organs/limbs do not exist at all in code, for p
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zulo,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zulo,
 	)
+	// Sabby: mut_color to work with TRAIT_MUTANT_COLORS to keep sprite color from being changed by base character skin colors.
+	fixed_mut_color = "#e5e0d0"
 
-/* Do we want to set specific pixel offsets? Check oldcode. Below values are placeholders */
-	var/mob_pixel_w = -1
-	var/mob_pixel_z = -1
-
-	/// Sabby: +3 stat boots to all physical stats, as per V20 - pages: 242
-	/// Sabby: note - Zulo should set appearance to 0. This is handled in code below on species gain, works differently from this list.
-	var/list/form_bonus_stats = list(
-	STAT_STRENGTH = 3,
-	STAT_DEXTERITY = 3,
-	STAT_STAMINA = 3
-	)
-	/// Fallback dmi to refrence if we fail to get one from our splat (this is what original comment said. Confused on how to implement for zulo?)
-	var/fallback_icon = 'path/to/zulo.dmi'
-
-	/* do we need to set speedmod's value into a var to be used below, or do we just want to declare the var value here and that's it? */
-	/// Speed mod applied and removed upon gaining this species
-	var/speed_mod = /datum/movespeed_modifier/tzimisce_zulo_form
-
-/* Sabby: okay, so, again, still learning and this will probably take a good long while. But from what i'm understanding of the below code,
-on_species_gain and similar things apply to the datum being defined. So, previously, it was /datum/species/human/shifter/on_species_gain.
-
-From my understanding, translating into simple terms, that meant: 'when something gaints the /shifter/ species first ever defined here
-in fera_species.dm, then do XYZ.
-
-This means that I had to redefine it, for zulo, into /datum/species/tzimisce_zulo_form/on_species_gain to say:
-
-'when something first gains the zulo form species, then apply XYZ'.
-
-And vars and procs (such as add_buffs) don't necesarily have to come before the /datum/, in the code, for it to work?
-
-On_Species_loss just reverts the character to baseline carbon human, undoes all changes.
-
-Am I correct in this?
-
-And then, all that the code below does is:
-Apply on_species_gain to zulo form. And it does not need a /proc/ here because it already exists as a proc for /datum/species as a base,
-in _species.dm, right? Defines human_who_gained_species for the code following
-
-I do not understand why it needs the "old_species" definition
-Do not yet understand what pref_load and regenerate_icons do
-*/
 /datum/species/tzimisce_zulo_form/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	if(speed_mod)
-		human_who_gained_species.add_movespeed_modifier(speed_mod)
-	human_who_gained_species.hairstyle = "Bald" // Sabby: same as oldcode. Necessary?
-	human_who_gained_species.facial_hairstyle = "Shaved" // Sabby: same as oldcode. Necessary?
-	human_who_gained_species.undershirt = "Nude" // Sabby: same as oldcode. Necessary?
-	human_who_gained_species.underwear = "Nude" // Sabby: same as oldcode. Necessary?
-	human_who_gained_species.socks = "Nude" // Sabby: same as oldcode. Necessary?
-	/*Sabby: looking through the code, I noticed that such things exists in buffs.dm and and so on. Basically,
-	they work to prevent a given datum from suffering from any damage-based movespeed penalties? It seems fair to apply
-	to zulo, given it's a large warform? Possibly same for Crinos, in fact.
-
-	In OldCode Zulo on TFN, it had 'TRAIT_IGNOREDAMAGESLOWDOW', which was the equivalent of this.
-
-	I came across this solution while researching how to implement a similar functionality in the new code.*/
+	human_who_gained_species.hairstyle = "Bald"
+	human_who_gained_species.facial_hairstyle = "Shaved"
 	human_who_gained_species.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	human_who_gained_species.add_offsets(type, w_add = mob_pixel_w, z_add = mob_pixel_z)
-	/* Sabby: below should configure any sprite and mob size changes which we may want for zulo */
 	human_who_gained_species.update_mob_height()
-	human_who_gained_species.update_transform(1.25)
-	add_buffs(human_who_gained_species)
-	old_appearance = human_who_gained_species.st_get_stat(STAT_APPEARANCE) //Sabby: grabs and feeds into old_appearance var the user's appearance stat
-	old_manipulation = human_who_gained_species.st_get_stat(STAT_MANIPULATION) //Sabby: grabs and feeds into old_appearance var the user's appearance stat
-	old_charisma = human_who_gained_species.st_get_stat(STAT_CHARISMA) //Sabby: grabs and feeds into old_appearance var the user's appearance stat
-	human_who_gained_species.st_set_stat(STAT_APPEARANCE,0) //Sabby: all Social stats drop to 0, as per V20 - pages: 242
-	human_who_gained_species.st_set_stat(STAT_MANIPULATION,0) //Sabby: all Social stats drop to 0, as per V20 - pages: 242
-	human_who_gained_species.st_set_stat(STAT_CHARISMA,0) //Sabby: all Social stats drop to 0, as per V20 - pages: 242
-
+	old_size = human_who_gained_species.current_size
+	human_who_gained_species.update_transform(sprite_size_transform)
+	old_appearance = human_who_gained_species.st_get_stat(STAT_APPEARANCE)
+	old_manipulation = human_who_gained_species.st_get_stat(STAT_MANIPULATION)
+	old_charisma = human_who_gained_species.st_get_stat(STAT_CHARISMA)
+	// Sabby: +3 stat boots to all physical stats, and socials to 0 as per V20 - pages: 242
+	// Sabby: below is the most reliable way I found of doing something I struggled with: set social stats to 0 and restore when out of Zulo.
+	if(old_appearance > 0)
+		human_who_gained_species.st_add_stat_mod(STAT_APPEARANCE, -old_appearance, type)
+	if(old_manipulation > 0)
+		human_who_gained_species.st_add_stat_mod(STAT_MANIPULATION, -old_manipulation, type)
+	if(old_charisma > 0)
+		human_who_gained_species.st_add_stat_mod(STAT_CHARISMA, -old_charisma, type)
+	human_who_gained_species.st_add_stat_mod(STAT_STRENGTH, 3, type)
+	human_who_gained_species.st_add_stat_mod(STAT_DEXTERITY, 3, type)
+	human_who_gained_species.st_add_stat_mod(STAT_STAMINA, 3, type)
+	human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
+	zulo_backpack_to_hide = human_who_gained_species.get_item_by_slot(ITEM_SLOT_BACK)
+	if(zulo_backpack_to_hide)
+		zulo_backpack_to_hide.worn_icon_state = "empty"
+		human_who_gained_species.update_worn_back()
+	// Sabby: learned from fera code. Needed for revert on death.
+	RegisterSignal(human_who_gained_species, COMSIG_LIVING_DEATH, PROC_REF(revert_on_zulo_death))
 
 /datum/species/tzimisce_zulo_form/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
-	if(speed_mod)
-		human.remove_movespeed_modifier(speed_mod)
-	/* Sabby: below is taken from oldcode to revert the = "bald" and = "nude" on_gain settinge from above. Does it work?
-	From my understanding, the /choiced/hairstyle, etc. stuff is what's needed to call the player's selected things?
-	*/
+	// Sabby: below is taken from oldcode to revert the = "bald" on_gain setting from above.
 	if(human.client)
 		human.hairstyle = human.client.prefs.read_preference(/datum/preference/choiced/hairstyle)
 		human.facial_hairstyle = human.client.prefs.read_preference(/datum/preference/choiced/facial_hairstyle)
-		human.undershirt = human.client.prefs.read_preference(/datum/preference/choiced/undershirt)
-		human.underwear = human.client.prefs.read_preference(/datum/preference/choiced/underwear)
-		human.socks = human.client.prefs.read_preference(/datum/preference/choiced/socks)
-	/*Sabby: I couldn't find by searching the codebase a 'remove' equivalent to the movespeed immunities from above.
-	Does this work?*/
 	human.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	human.remove_offsets(type)
-	human.update_mob_height()
-	human.update_transform()
-	clear_buffs(human)
-	human.st_set_stat(STAT_APPEARANCE,old_appearance) //Sabby: this should restore user's social stats when exiting Zulo
-	human.st_set_stat(STAT_MANIPULATION,old_manipulation) //Sabby: this should restore user's social stats when exiting Zulo
-	human.st_set_stat(STAT_CHARISMA,old_charisma) //Sabby: this should restore user's social stats when exiting Zulo
+	human.update_mob_height() // Sabby: restores character pre-transform height.
+	human.update_transform(old_size/human.current_size)
+	human.st_remove_stat_mod(STAT_APPEARANCE, type) //Sabby: restores social stats when exiting Zulo
+	human.st_remove_stat_mod(STAT_MANIPULATION, type)
+	human.st_remove_stat_mod(STAT_CHARISMA, type)
+	human.st_remove_stat_mod(STAT_STRENGTH, type)
+	human.st_remove_stat_mod(STAT_DEXTERITY, type)
+	human.st_remove_stat_mod(STAT_STAMINA, type)
+	if(zulo_backpack_to_hide)
+		zulo_backpack_to_hide.worn_icon_state = initial(zulo_backpack_to_hide.worn_icon_state)
+		human.update_worn_back()
+		zulo_backpack_to_hide = null
+	// Sabby: learned from fera code. Needed for revert on death.
+	UnregisterSignal(human, COMSIG_LIVING_DEATH)
 
-/datum/movespeed_modifier/tzimisce_zulo_form
-	multiplicative_slowdown = -0.25
-	movetypes = GROUND
+// Sabby: learned from fera code, feeds into the registered signal gained/lost with species
+/datum/species/tzimisce_zulo_form/proc/revert_on_zulo_death(mob/living/carbon/human/source)
+	source.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 
-/*Sabby: okay. So, time for me to start understanding for loops. Let me see if I got this straight for this below loop:
-First, we're defining the add_buffs proc for the zulo species.
-Next, we're setting the for loop.
-First, var/key is necessary because a for loop does not understand, automatically, that a variable being called into it is a key?
-Second, it sets 'value', that's because that's what it needs to apply.
-Third: it needed to set var/key for it to understand that the first amount is a key, then the second one is a value. This is because it's
-going to take the buff amounts from a LIST type created in form_bonus_stats. And that list in there is set as an associative list with key = value pattern?
-Fourth: for each instance in that list, it runs a check if should add buff is true.
-Fifth: if it is, it runs st_add_stat_mod
+// Sabby: similar to fera_organs line 17, this applies the height adjustment to the chest part (avoids pixel distortion in Zulo sprites)
+/obj/item/bodypart/chest/zulo/update_mob_heights(mob/living/carbon/human/holder)
+	if(HAS_TRAIT(holder, TRAIT_DWARF))
+		return HUMAN_HEIGHT_MEDIUM
 
-So the rows below are first defining the add_buffs procedure to be called somewhere.
-Should_add_buff is called internally by this first one.
-Then it sets up clear_buffs which just *also8 runs through the form_bonus_stats list and reverses them.
-*/
-/datum/species/tzimisce_zulo_form/proc/add_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
-		if(!should_add_buff(human, key, value))
-			continue
-		human.st_add_stat_mod(key, value, type) //Sabby: this is throwing me for a loop (eheheh). What is the 'type' part here of this procedure? Is that tzimisce_zulo_form?
+	if(HAS_TRAIT(holder, TRAIT_TOO_TALL))
+		return HUMAN_HEIGHT_MEDIUM
 
-/datum/species/tzimisce_zulo_form/proc/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
-	return TRUE
+	return HUMAN_HEIGHT_MEDIUM
 
-/datum/species/tzimisce_zulo_form/proc/clear_buffs(mob/living/carbon/human/human)
-	for(var/key, value in form_bonus_stats)
-		human.st_remove_stat_mod(key, type)
+////////////////////
+// Sabby: This is a very clumsy solution that I'd love help improving in the future.
+// Basically, the only way I could figure out to account for multiple future sprites while
+// maintaining a carbon form was to create species datums for each (and future) sprite.
+// Each inherits from the parent zulo datum, and all each does is simply override.
+////////////////////
 
-/* Sabby: NEED TO STILL REVIEW AND ADAPT THIS BASED ON HOW WEREWOLF CODE WORKS */
-
-/* Sabby: This below comes from werewolf code. And says it's to fetch the mob.dmi from the splat?
-Completely lost here.
-*/
-// /datum/species/human/shifter/proc/get_mob_icon(mob/living/carbon/human/human)
-// 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
-// 	var/icon_to_use
-// 	if(shifter_splat)
-// 		icon_to_use = shifter_splat.mob_icons[id]
-
-// 	return icon_to_use ? icon_to_use : fallback_icon
-
-// /datum/species/human/shifter/update_body_parts(mob/living/carbon/human/human)
-// 	if(!custom_body_render)
-// 		return FALSE
-
-// 	human.remove_overlay(BODYPARTS_LAYER)
-
-// 	var/fur_color = get_fur_color(human)
-// 	var/mob_icon = get_mob_icon(human)
-
-// 	var/main_iconstate = ""
-// 	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
-// 		main_iconstate += "spiral"
-// 	main_iconstate += fur_color
-// 	if(human.body_position == LYING_DOWN)
-// 		main_iconstate += "_rest"
-
-// 	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
-// 	human.apply_overlay(BODYPARTS_LAYER)
-
-// 	return TRUE
-
-// /datum/species/human/shifter/update_damage_overlays(mob/living/carbon/human/human)
-// 	if(!custom_damage_render)
-// 		return FALSE
-
-// 	human.remove_overlay(DAMAGE_LAYER)
-
-// 	var/dam_amount
-// 	switch(human.get_brute_loss() + human.get_fire_loss() + human.get_agg_loss())
-// 		if(25 to 100)
-// 			dam_amount = 1
-// 		if(100 to 250)
-// 			dam_amount = 2
-// 		if(250 to INFINITY)
-// 			dam_amount = 3
-// 	if(dam_amount)
-// 		human.overlays_standing[DAMAGE_LAYER] = mutable_appearance(get_mob_icon(human), "damage[dam_amount][human.body_position == LYING_DOWN ? "_rest" : ""]")
-
-// 	human.apply_overlay(DAMAGE_LAYER)
-
-// 	return TRUE
+// Sabby: Beast form uses weretzi limb sprites
+/datum/species/tzimisce_zulo_form/beast
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo/beast,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zulo/beast,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zulo/beast,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/zulo/beast,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zulo/beast,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zulo/beast,
+	)
+// Sabby: Brust form uses 4armstzi limb sprites
+/datum/species/tzimisce_zulo_form/brust
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo/brust,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zulo/brust,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zulo/brust,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/zulo/brust,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zulo/brust,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zulo/brust,
+	)
+// Sabby: Noble form uses nobletzi limb sprites
+/datum/species/tzimisce_zulo_form/noble
+	sprite_size_transform = 1.50 //Sabby: good to apply size transform to 32x32 sprites so Zulo looks a bit bigger than regular character sprites.
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo/noble,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zulo/noble,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zulo/noble,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/zulo/noble,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zulo/noble,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zulo/noble,
+	)

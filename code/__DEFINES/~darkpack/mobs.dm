@@ -30,3 +30,6 @@
 #define isnpc(A) (istype(A, /mob/living/carbon/human/npc))
 
 #define INCORPOREAL_MOVE_AVATAR 4 // Avatar incorporeal movement
+
+// Required definition for Zulo carbon form rework
+#define SPECIES_ZULO_FORM "zulo"
