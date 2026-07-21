@@ -25,6 +25,7 @@
 		else
 			name = "select Discipline [slot - 1]"
 			full_name = "Select Discipline [slot - 1]"
+			description = "Select your [slot - 1]\th Discipline in the order you were given them"
 
 /datum/keybinding/discipline_select/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
@@ -55,6 +56,7 @@
 	src.level = level
 	name = "activate Discipline level [level]"
 	full_name = "Activate Discipline level [level]"
+	description = "Activate the [level]\th level power of your selected Discipline"
 
 /datum/keybinding/discipline_activate/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
