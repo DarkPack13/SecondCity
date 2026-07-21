@@ -76,7 +76,7 @@
 
 /**
  * Keybind for activating a specified Discipline power, with a keybind for every
- * possible power.
+ * possible power
  *
  * Enabled by the INDIVIDUAL_POWER_KEYBINDS config, off by default due to keybind spam
  */
