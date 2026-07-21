@@ -14,13 +14,17 @@
 	hotkey_keys = list()
 	classic_keys = list()
 	src.slot = slot
-	// Bloodheal is technically counted as a Discipline and it always takes slot 1, so slot 2 will be displayed as Discipline 1 and so on
-	if (slot == 1)
-		name = "select Bloodheal"
-		full_name = "Select Bloodheal"
-	else
-		name = "select Discipline [slot - 1]"
-		full_name = "Select Discipline [slot - 1]"
+	switch (slot)
+		if (0)
+			name = "unselect Discipline"
+			full_name = "Unselect Discipline"
+		if (1)
+			// Bloodheal is technically counted as a Discipline and it always takes slot 1
+			name = "select Bloodheal"
+			full_name = "Select Bloodheal"
+		else
+			name = "select Discipline [slot - 1]"
+			full_name = "Select Discipline [slot - 1]"
 
 /datum/keybinding/discipline_select/down(client/user, turf/target, mousepos_x, mousepos_y)
 	. = ..()
@@ -31,11 +35,7 @@
 	if (!vampirism)
 		return
 
-	if (slot > length(vampirism.powers))
-		return
-	vampirism.selected_power = vampirism.powers[slot]
-
-	return TRUE
+	return vampirism.set_selected_power(slot)
 
 /**
  * Keybind for activating a specified level of the Discipline previously selected
@@ -118,8 +118,8 @@
 	if (!CONFIG_GET(flag/discipline_keybinds))
 		return
 
-	// Bloodheal counts as an extra Discipline
-	for (var/slot in 1 to MAXIMUM_DISCIPLINES + 1)
+	// Bloodheal counts as an extra Discipline, slot 0 is unselecting
+	for (var/slot in 0 to MAXIMUM_DISCIPLINES + 1)
 		var/datum/keybinding/discipline_select/selection_kb = new
 		selection_kb.assign_slot(slot)
 		add_keybinding(selection_kb)

@@ -199,6 +199,18 @@
 	targeting = TRUE
 	client.mouse_pointer_icon = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
 
+/datum/action/discipline/proc/select()
+	background_icon_state = "bg_discipline_selected"
+	build_all_button_icons()
+	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
+
+/datum/action/discipline/proc/unselect(swapping = TRUE)
+	background_icon_state = "bg_discipline"
+	build_all_button_icons()
+	// If you're activating another at the same time, this isn't necessary
+	if (!swapping)
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
+
 /atom/movable/screen/movable/action_button/Click(location, control, params)
 	if(istype(linked_action, /datum/action/discipline))
 		var/list/modifiers = params2list(params)
