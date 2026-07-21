@@ -84,6 +84,7 @@
 
 /datum/splat/vampire/set_selected_power(slot)
 	if (!slot)
+		// Just try to unselect
 		if (!get_selected_power())
 			return FALSE
 		get_selected_power().unselect(FALSE)
