@@ -37,6 +37,9 @@
 	fera_silver_damage(target, silver_damage, 1) // Copyed the other silver weapon. Not super accurate.
 
 /obj/item/occult_artifact/werewolf/klaive/attack_self(mob/user, modifiers)
+	if(!identified)
+		return ..()
+
 	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
 	if(owner && identified)
 		if(stirred_spirit)
