@@ -41,7 +41,7 @@
 		return ..()
 
 	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
-	if(owner && identified)
+	if(owner)
 		if(stirred_spirit)
 			to_chat(user, span_warning("[src]'s spirit is already awake!"))
 			return
