@@ -7,6 +7,7 @@
 	name = BREED_GAROU_HOMID
 	gifts_provided = list(
 		/datum/action/cooldown/power/gift/city_running,
+		// /datum/action/cooldown/power/gift/master_of_fire // DARKPACK TODO - (Selectable Gifts)
 	)
 	start_gnosis = 1
 	breed_species = /datum/species/human/shifter/homid

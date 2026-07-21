@@ -26,4 +26,53 @@
 	overlay_state = /datum/action/cooldown/power/gift/city_running::button_icon_state
 
 
-// /datum/action/cooldown/power/gift/master_of_fire
+/*
+ * Once humans tamed fire to keep them warm and to drive off the wild beasts,
+ * they were humanity’s ancient pact with the spirits of fire.
+ * The spirits of flame agree to hold back their hunger when the werewolf touches them. An ancestor spirit or a fire-spirit grants this Gift.
+
+ * This Gift allows a werewolf to heal fire damage as if it were bashing.
+ * This requires the expenditure of a Gnosis point; the effects last for a scene.
+*/
+/datum/action/cooldown/power/gift/master_of_fire
+	name = "Master of Fire"
+	desc = "The spirits of flame agree to hold back their hunger, letting you regenerate fire damage for a scene."
+	#warn placeholder asset.
+	button_icon_state = "master_of_fire" // TODO: get an icon for this
+	rank = 1
+
+/datum/action/cooldown/power/gift/master_of_fire/Activate(atom/target)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(owner)
+	if(isnull(shifter_splat))
+		return FALSE // huh?
+
+	if(shifter_splat.gnosis <= 0)
+		to_chat(owner, span_warning("You don't have enough gnosis to do that."))
+		return FALSE
+
+	shifter_splat.adjust_gnosis(-1)
+	shifter_splat.owner.apply_status_effect(/datum/status_effect/master_of_fire)
+	StartCooldown()
+	return TRUE
+
+/datum/status_effect/master_of_fire
+	id = "master_of_fire"
+	duration = 1 SCENES
+
+	status_type = STATUS_EFFECT_REPLACE
+
+	alert_type = /atom/movable/screen/alert/status_effect/master_of_fire
+
+/datum/status_effect/master_of_fire/on_apply()
+	to_chat(owner, span_notice("The spirits of flame agree to hold back their hunger, for a while."))
+	return TRUE
+
+/datum/status_effect/master_of_fire/on_remove()
+	to_chat(owner, span_warning("The spirits of flame grow hungry yet again."))
+
+/atom/movable/screen/alert/status_effect/master_of_fire
+	name = "Master of Fire"
+	desc = "Lets you heal fire damage as if it were bashing."
+	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
+	#warn placeholder asset.
+	icon_state = "riddle" // TODO: get an icon for this
