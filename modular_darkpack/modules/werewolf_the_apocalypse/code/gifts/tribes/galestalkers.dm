@@ -2,6 +2,7 @@
 /datum/action/cooldown/power/gift/beat_of_the_heartdrum
 	name = "Beat of the Heart-Drum"
 	rank = 1
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/beat_of_the_heartdrum/Activate(atom/target)
 	var/mob/living/living_owner = astype(owner)
@@ -14,21 +15,18 @@
 		if(blood_guy)
 			valid_targets[GET_GUESTBOOK_NAME(living_owner, blood_guy)] = blood_guy
 
-	#warn TESTING BLOCK
-	for(var/mob/living/guy in view(7, living_owner))
-		valid_targets[GET_GUESTBOOK_NAME(living_owner, guy)] = guy
-
+	var/obj/item/held_item = living_owner.get_active_held_item()
+	if(held_item)
+		var/list/prints = GET_ATOM_FINGERPRINTS(held_item)
+		if(prints)
+			for(var/mob/living/carbon/to_check as anything in GLOB.carbon_list)
+				if(prints[md5(to_check.dna?.unique_identity)])
+					valid_targets[GET_GUESTBOOK_NAME(living_owner, to_check)] = to_check
 
 	if(!length(valid_targets))
 		to_chat(owner, span_notice("You cant think of any targets you could track at this current moment"))
 		return FALSE
 
-	. = ..()
-
-	var/datum/storyteller_roll/gift/beat_of_the_heartdrum/roll_datum = new()
-	var/roll_successes = roll_datum.st_roll(owner, target)
-	if(roll_successes <= 0)
-		return TRUE
 
 	var/list/choices = list()
 	for(var/name, entry in valid_targets)
@@ -44,8 +42,16 @@
 	if(!tracking_name)
 		return
 
+	. = ..()
+
+	var/datum/storyteller_roll/gift/beat_of_the_heartdrum/roll_datum = new()
+	var/roll_successes = roll_datum.st_roll(owner, target)
+	if(roll_successes <= 0)
+		return TRUE
+
 	to_chat(owner, span_notice("Tracking [tracking_name]"))
-	living_owner.apply_status_effect(/datum/status_effect/beat_of_the_heartdrum, valid_targets[tracking_name])
+	// Would normally be days but thats commical and 1 day is already the entire round.
+	living_owner.apply_status_effect(/datum/status_effect/beat_of_the_heartdrum, valid_targets[tracking_name], roll_successes HOURS)
 
 
 /datum/status_effect/beat_of_the_heartdrum
@@ -57,9 +63,10 @@
 	alert_type = /atom/movable/screen/alert/status_effect/gift/beat_of_the_heartdrum
 	var/datum/weakref/hunting_ref
 
-/datum/status_effect/beat_of_the_heartdrum/on_creation(mob/living/new_owner, mob/living/target)
-	. = ..()
+/datum/status_effect/beat_of_the_heartdrum/on_creation(mob/living/new_owner, mob/living/target, duration = 1 SCENES)
+	src.duration = duration
 	hunting_ref = WEAKREF(target)
+	. = ..()
 
 /datum/status_effect/beat_of_the_heartdrum/tick(seconds_between_ticks)
 	if(!owner.client)
@@ -70,13 +77,14 @@
 		return
 
 	var/dist = get_dist_euclidean(owner, target) || 0
-	var/sound_volume = clamp(100 - dist * 3, 5, 100)
+	var/dist_modifier = clamp(dist * 2 - world.maxx / world.maxx, 0.1, 1)
+	var/sound_volume = 100 * dist_modifier
 	SEND_SOUND(owner, sound('sound/effects/singlebeat.ogg', volume = sound_volume))
 
 	var/turf/current_turf = get_step_towards(owner, target)
 	var/image/blip_image = image(icon = 'icons/effects/effects.dmi', icon_state = "blip", layer = HIGH_PIPE_LAYER, loc = current_turf)
 	SET_PLANE(blip_image, GAME_PLANE, current_turf)
-	blip_image.alpha = sound_volume
+	blip_image.alpha = 255 * dist_modifier
 
 	current_turf.flick_overlay(blip_image, list(owner.client), 0.6 SECONDS)
 
@@ -85,7 +93,12 @@
 	name = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::name
 	desc = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::desc
 	overlay_state = /datum/action/cooldown/power/gift/beat_of_the_heartdrum::button_icon_state
+	clickable_glow = TRUE
 
+/atom/movable/screen/alert/status_effect/gift/beat_of_the_heartdrum/Click(location, control, params)
+	. = ..()
+	to_chat(owner, span_notice("You dispel [name]."))
+	qdel(attached_effect)
 
 /datum/storyteller_roll/gift/beat_of_the_heartdrum
 	bumper_text = "Beat of the Heart-Drum"
