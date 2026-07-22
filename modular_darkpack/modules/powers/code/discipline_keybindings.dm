@@ -18,6 +18,7 @@
 		if (0)
 			name = "unselect Discipline"
 			full_name = "Unselect Discipline"
+			description = "Unselect the Discipline you previously used keybinds to select."
 		if (1)
 			// Bloodheal is technically counted as a Discipline and it always takes slot 1
 			name = "select Bloodheal"
@@ -120,13 +121,13 @@
 	if (!CONFIG_GET(flag/discipline_keybinds))
 		return
 
-	// Bloodheal counts as an extra Discipline, slot 0 is unselecting
-	for (var/slot in 0 to MAXIMUM_DISCIPLINES + 1)
+	// Slot 0 is for unselecting, and Bloodheal counts as an extra Discipline
+	for (var/slot in 0 to DISCIPLINE_SELECTION_KEYBINDS_AMOUNT + 1)
 		var/datum/keybinding/discipline_select/selection_kb = new
 		selection_kb.assign_slot(slot)
 		add_keybinding(selection_kb)
 
-	for (var/level in 1 to MAXIMUM_DISCIPLINE_LEVEL)
+	for (var/level in 1 to DISCIPLINE_ACTIVATION_KEYBINDS_AMOUNT)
 		var/datum/keybinding/discipline_activate/activation_kb = new
 		activation_kb.assign_level(level)
 		add_keybinding(activation_kb)
@@ -143,7 +144,7 @@
 			add_keybinding(torpor_kb)
 			continue
 
-		for (var/level in 1 to MAXIMUM_DISCIPLINE_LEVEL)
+		for (var/level in 1 to DISCIPLINE_ACTIVATION_KEYBINDS_AMOUNT)
 			var/datum/keybinding/discipline_power/power_kb = new
 			power_kb.assign_power(discipline_type, level)
 			add_keybinding(power_kb)
