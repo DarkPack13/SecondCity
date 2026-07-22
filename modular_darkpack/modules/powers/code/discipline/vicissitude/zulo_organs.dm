@@ -4,6 +4,7 @@
 ////////////////////
 
 /obj/item/bodypart/head/zulo
+	abstract_type = /obj/item/bodypart/head/zulo
 	head_flags = NONE
 	is_dimorphic = FALSE
 
