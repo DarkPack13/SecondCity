@@ -94,6 +94,14 @@
 /datum/action/discipline/IsAvailable(feedback)
 	return discipline.current_power.can_activate_untargeted(feedback)
 
+/datum/action/discipline/proc/trigger_level(mob/user, level, trigger_flags)
+	// This proc is for specific levels only, unlike switch_level() it should never roll over to 1 or the max level
+	if (discipline.level < level || level < 0)
+		return
+
+	switch_level(level - discipline.level_casting, TRUE)
+	return Trigger(user, trigger_flags)
+
 /datum/action/discipline/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)

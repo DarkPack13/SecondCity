@@ -18,7 +18,7 @@
 		if (0)
 			name = "unselect Discipline"
 			full_name = "Unselect Discipline"
-			description = "Unselect the Discipline you previously used keybinds to select."
+			description = "Unselect the Discipline you previously used keybinds to select"
 		if (1)
 			// Bloodheal is technically counted as a Discipline and it always takes slot 1
 			name = "select Bloodheal"
@@ -34,10 +34,8 @@
 		return
 
 	var/datum/splat/vampire/vampirism = get_splat_with_discipline(user.mob)
-	if (!vampirism)
-		return
 
-	return vampirism.set_selected_power(slot)
+	return vampirism?.set_selected_power(slot)
 
 /**
  * Keybind for activating a specified level of the Discipline previously selected
@@ -65,19 +63,11 @@
 		return
 
 	var/datum/splat/vampire/vampirism = get_splat_with_discipline(user.mob)
-	if (!vampirism?.selected_power)
-		return
 
-	var/datum/action/discipline/activating_power = vampirism.selected_power
-	if (activating_power.discipline.level < level)
-		return
-
-	activating_power.switch_level(level - activating_power.discipline.level_casting, TRUE)
-	return activating_power.Trigger(user.mob)
+	return vampirism?.get_selected_power()?.trigger_level(user.mob, level)
 
 /**
- * Keybind for activating a specified Discipline power, with a keybind for every
- * possible power
+ * Keybind for activating a specified Discipline power, with a keybind for every possible power
  *
  * Enabled by the INDIVIDUAL_POWER_KEYBINDS config, off by default due to keybind spam
  */
@@ -107,14 +97,8 @@
 		return
 
 	var/datum/action/discipline/discipline_action = vampirism.get_power(discipline_type)
-	if (!discipline_action)
-		return
 
-	if (discipline_action.discipline.level < level)
-		return
-
-	discipline_action.switch_level(level - discipline_action.discipline.level_casting, TRUE)
-	return discipline_action.Trigger(user.mob)
+	return discipline_action?.trigger_level(user.mob, level)
 
 // These are called when the configs for them are set rather than on keybind init because keybind init happens before configs are loaded
 /proc/init_normal_discipline_keybinds()
