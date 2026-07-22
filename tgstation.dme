@@ -7205,6 +7205,7 @@
 #include "modular_darkpack\master_files\code\modules\rituals\code\ritual_rune_drawing.dm"
 #include "modular_darkpack\master_files\code\modules\rituals\code\ritual_tome.dm"
 #include "modular_darkpack\master_files\code\modules\surgery\bodyparts\_bodyparts.dm"
+#include "modular_darkpack\master_files\code\modules\surgery\bodyparts\organs\_organ.dm"
 #include "modular_darkpack\master_files\code\modules\surgery\bodyparts\organs\internal\_appendix.dm"
 #include "modular_darkpack\master_files\code\modules\surgery\bodyparts\organs\internal\_ears.dm"
 #include "modular_darkpack\master_files\code\modules\surgery\bodyparts\organs\internal\_eyes.dm"

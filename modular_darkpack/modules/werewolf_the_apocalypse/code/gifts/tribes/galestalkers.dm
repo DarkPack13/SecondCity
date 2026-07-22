@@ -10,31 +10,41 @@
 	if(!living_owner)
 		return FALSE
 
-	// Tasted blood
+	/// Non-assoc list while we build a list so we dont have to filter for our own mob every time and can standerdize the name check.
+	var/list/temp_valid_targets = list()
 	var/list/valid_targets = list()
+	// Tasted blood
 	for(var/datum/weakref/blood_ref in living_owner.mobs_tasted_blood_of)
 		var/mob/blood_guy = blood_ref.resolve()
-		if(blood_guy && (blood_guy != owner))
-			valid_targets[GET_GUESTBOOK_NAME(living_owner, blood_guy)] = blood_guy
+		if(blood_guy)
+			temp_valid_targets |= blood_guy
 
 	var/obj/item/held_item = living_owner.get_active_held_item()
 	if(held_item)
 		// Ownership (fingerprints)
 		var/list/prints = GET_ATOM_FINGERPRINTS(held_item)
 		if(prints)
-			for(var/mob/living/carbon/to_check as anything in GLOB.carbon_list - owner)
+			for(var/mob/living/carbon/to_check as anything in GLOB.carbon_list)
 				if(prints[md5(to_check.dna?.unique_identity)])
-					valid_targets[GET_GUESTBOOK_NAME(living_owner, to_check)] = to_check
+					temp_valid_targets |= to_check
 
 		// Sample of the victum
 		var/datum/reagent/blood/blood = held_item.reagents?.has_reagent(/datum/reagent/blood, check_subtypes = TRUE)
 		var/datum/weakref/donor_ref = blood?.data["donor"]
 		var/mob/living/carbon/human/blood_owner = donor_ref?.resolve()
-		if(blood_owner && (blood_owner != owner))
-			valid_targets[GET_GUESTBOOK_NAME(living_owner, blood_owner)] = blood_owner
+		if(blood_owner)
+			temp_valid_targets |= blood_owner
+		var/mob/last_owner = held_item.get_last_inserted_owner()
+		if(last_owner)
+			temp_valid_targets |= last_owner
+
+	for(var/mob/guy in temp_valid_targets)
+		if(guy == living_owner)
+			continue
+		valid_targets[GET_GUESTBOOK_NAME(living_owner, guy)] = guy
 
 	if(!length(valid_targets))
-		to_chat(owner, span_notice("You cant think of any targets you could track at this current moment"))
+		to_chat(owner, span_notice("You cant think of any targets you could track at this current moment. Try holding a sample of a target or something they have touched."))
 		return FALSE
 
 
@@ -140,3 +150,12 @@
 	return TRUE
 
 
+/// Returns the last mob we would be considered a "sample" off.
+/obj/item/proc/get_last_inserted_owner()
+	return
+
+/obj/item/organ/get_last_inserted_owner()
+	return last_owner?.resolve()
+
+/obj/item/bodypart/get_last_inserted_owner()
+	return last_owner?.resolve()
