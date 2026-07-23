@@ -136,8 +136,9 @@
 	if(guest)
 		if(user == guest)
 			return guest.real_name
-		else
-			checked_name = guest.real_name
+		if(guest.get_face_name() == "Unknown")
+			return NONE
+		checked_name = guest.real_name
 	return LAZYACCESS(known_names, checked_name)
 
 /datum/guestbook/proc/visibility_checks(mob/user, mob/living/carbon/human/guest, silent = FALSE)
