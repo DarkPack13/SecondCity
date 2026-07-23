@@ -7484,6 +7484,7 @@
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\club_worker.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\janitor.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\priest.dm"
+#include "modular_darkpack\modules\jobs\code\miscelllaneous\red_news.dm"
 #include "modular_darkpack\modules\jobs\code\miscelllaneous\taxi.dm"
 #include "modular_darkpack\modules\jobs\code\pentex\affairs.dm"
 #include "modular_darkpack\modules\jobs\code\pentex\branch_lead.dm"
