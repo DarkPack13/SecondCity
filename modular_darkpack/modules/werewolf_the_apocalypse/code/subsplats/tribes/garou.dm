@@ -116,12 +116,15 @@
 		// /datum/action/cooldown/power/gift/resist_pain, // DARKPACK TODO - (Selectable Gifts)
 		// /datum/action/cooldown/power/gift/sense_wyrm, // DARKPACK TODO - (Selectable Gifts)
 	)
-	// tribe_trait = TRAIT_WYRMTAINTED_SPRITE
 
 /datum/subsplat/werewolf/tribe/garou/blackspiraldancers/psychomania_effect(mob/living/target, mob/living/owner)
 	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
 	target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"))
 	target.Paralyze(5 SECONDS)
+
+/datum/subsplat/werewolf/tribe/garou/blackspiraldancers/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
+	. = ..()
+	ADD_TRAIT(gaining_mob, TRAIT_WYRMTAINTED_SPRITE, INNATE_TRAIT)
 
 /datum/subsplat/werewolf/tribe/garou/ronin
 	name = TRIBE_RONIN
