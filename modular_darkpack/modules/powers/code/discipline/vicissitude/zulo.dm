@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(zulo_species, list(
 
 /datum/species/tzimisce_zulo_form
 	abstract_type = /datum/species/tzimisce_zulo_form
+	abstract_type = /datum/species/tzimisce_zulo_form
 	name = "Zulo"
 	plural_form = "Zulo"
 	id = SPECIES_ZULO_FORM
