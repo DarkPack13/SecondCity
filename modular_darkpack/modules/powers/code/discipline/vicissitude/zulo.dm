@@ -145,12 +145,6 @@ GLOBAL_LIST_INIT(zulo_species, list(
 
 // Sabby: similar to fera_organs line 17, this applies the height adjustment to the chest part (avoids pixel distortion in Zulo sprites)
 /obj/item/bodypart/chest/zulo/update_mob_heights(mob/living/carbon/human/holder)
-	if(HAS_TRAIT(holder, TRAIT_DWARF))
-		return HUMAN_HEIGHT_MEDIUM
-
-	if(HAS_TRAIT(holder, TRAIT_TOO_TALL))
-		return HUMAN_HEIGHT_MEDIUM
-
 	return HUMAN_HEIGHT_MEDIUM
 
 ////////////////////
