@@ -7416,7 +7416,7 @@
 #include "modular_darkpack\modules\flavor_text\code\examine.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences.dm"
 #include "modular_darkpack\modules\flavor_text\code\record.dm"
-#include "modular_darkpack\modules\flavor_text\code\preferences\masked_flavor_text_preference.dm"
+#include "modular_darkpack\modules\flavor_text\code\preferences\masked_identity_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\nsfw_content_preference.dm"
 #include "modular_darkpack\modules\flavor_text\code\preferences\record_preferences.dm"
 #include "modular_darkpack\modules\font_adjustments\font_procs.dm"
