@@ -136,3 +136,6 @@
       out of them
   SabKatTemp2:
   - rscadd: Adds promethean clay merit
+2026-07-23:
+  Art-gif-dotcom:
+  - bugfix: fixed klaives not working properly

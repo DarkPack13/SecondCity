@@ -76,3 +76,24 @@
 
 	found_action.discipline.set_level(new_level)
 	return TRUE
+
+/datum/splat/vampire/get_selected_power()
+	RETURN_TYPE(/datum/action/discipline)
+
+	return selected_power
+
+/datum/splat/vampire/set_selected_power(slot)
+	if (!slot)
+		// Just try to unselect
+		if (!get_selected_power())
+			return FALSE
+		get_selected_power().unselect(FALSE)
+		return TRUE
+
+	if (length(powers) < slot)
+		return FALSE
+	get_selected_power()?.unselect()
+	selected_power = powers[slot]
+	get_selected_power()?.select()
+
+	return TRUE
