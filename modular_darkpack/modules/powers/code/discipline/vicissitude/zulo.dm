@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(zulo_species, list(
 	)
 // Sabby: Noble form uses nobletzi limb sprites
 /datum/species/tzimisce_zulo_form/noble
-	sprite_size_transform = 1.50 //Sabby: good to apply size transform to 32x32 sprites so Zulo looks a bit bigger than regular character sprites.
+	sprite_size_transform = 1.5 //Sabby: good to apply size transform to 32x32 sprites so Zulo looks a bit bigger than regular character sprites.
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo/noble,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zulo/noble,
