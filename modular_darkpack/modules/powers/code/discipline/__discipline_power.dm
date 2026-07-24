@@ -50,6 +50,9 @@
 	/// List of Discipline power types that cannot be activated alongside this power and share a cooldown with it.
 	var/list/grouped_powers
 
+	var/magic_type = MAGIC_TYPE_BLOOD
+	var/spawns_magic_effect = TRUE
+
 	/* NOT MEANT TO BE OVERRIDDEN */
 	/// Timer(s) tracking the duration of the power. Can have multiple if multi_activate is true.
 	var/list/duration_timers = list()
@@ -448,6 +451,11 @@
 
 	do_caster_notification(target)
 	do_logging(target)
+
+	if(spawns_magic_effect && magic_type)
+		var/turf/used_turf = get_turf(discipline.owner)
+		if(used_turf)
+			spawn_magic_after_effect(used_turf, discipline.owner, level, magic_type)
 
 	owner.update_action_buttons()
 
