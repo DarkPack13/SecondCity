@@ -9,9 +9,11 @@ brujah
 trujah
 malkavian
 gangrel
+gangrels
 tremere
 lasombra
 assamite
+assamites
 caitiff
 caitiffs
 kiasyd
@@ -205,10 +207,8 @@ del'roh
 ghemalish
 molochim
 nergali
-assamites
 follower of set
 followers of set
-gangrels
 malkavians
 ravnos
 daughters of cacophony
