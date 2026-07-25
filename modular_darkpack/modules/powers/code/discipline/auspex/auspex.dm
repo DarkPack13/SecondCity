@@ -5,6 +5,7 @@
 #define SENSE_TOUCH "Touch"
 #define TELEPATHY_MIND_READING "Mind Reading"
 #define TELEPATHY_IMPLANT_THOUGHT "Implant Thoughts"
+#define PROJECTION_TIMER_LENGTH 9 SCENES
 
 /datum/discipline/auspex
 	name = "Auspex"
@@ -402,23 +403,59 @@
 	return TRUE
 
 //PSYCHIC PROJECTION
+/datum/storyteller_roll/psychic_projection
+	bumper_text = "psychic projection"
+	difficulty = 7
+	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
+	roll_output_type = ROLL_PRIVATE
+
 /datum/discipline_power/auspex/psychic_projection
 	name = "Psychic Projection"
-	desc = "Leave your body behind and fly across the land."
-
+	desc = "Leave your body behind and fly across the land. It takes a mighty amount of willpower for your body to withstand the strain of being souless, \
+	push too hard and you'll lose yourself permanently in limbo."
 	willpower_cost = 1
 	level = 5
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
 	cooldown_length = 1 TURNS
+	var/datum/storyteller_roll/psychic_projection/projection_roll
+	var/mob/living/basic/avatar/playing_with_fire
 
 /datum/discipline_power/auspex/psychic_projection/activate()
 	. = ..()
-	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_AWARENESS))
-	if(roll == ROLL_SUCCESS)
-		owner.enter_avatar()
+	if(!projection_roll)
+		projection_roll = new()
+	switch(projection_roll)
+		if(ROLL_SUCCESS)
+			playing_with_fire = owner.enter_avatar()
+			addtimer(CALLBACK(src, PROC_REF(exhaust_timer)), PROJECTION_TIMER_LENGTH)
+
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("Your mind fails to leave your body."))
+
+		if(ROLL_BOTCH)
+			playing_with_fire = owner.enter_avatar()
+			to_chat(playing_with_fire, span_cult_large("Your mind violently leaves your body, leaving you disoriented on where you are!"))
+
+			var/turf/ending_turfs = get_safe_random_station_turf_equal_weight()
+			do_teleport(playing_with_fire, ending_turfs, channel = TELEPORT_CHANNEL_MAGIC)
+			playsound(playing_with_fire, 'modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg', vol = 15, falloff_distance = 2, vary = TRUE)
+
+			addtimer(CALLBACK(src, PROC_REF(exhaust_timer)), PROJECTION_TIMER_LENGTH)
+
+/datum/discipline_power/auspex/psychic_projection/proc/exhaust_timer()
+	if(!playing_with_fire)
+		return
+	playsound(playing_with_fire, 'modular_darkpack/modules/powers/sounds/daimonion_laughs/eldritchlaugh.ogg', vol = 15, falloff_distance = 2, vary = TRUE)
+
+	if(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 0)
+		to_chat(playing_with_fire, span_cult_large("The strain of psychic projection is too much for you, and you lose yourself in the astral plane permanently..."))
+		playing_with_fire.ghostize(can_reenter_corpse = FALSE)
+		qdel(playing_with_fire)
 	else
-		to_chat(owner, span_warning("Your mind fails to leave your body."))
+		owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
+		addtimer(CALLBACK(src, PROC_REF(exhaust_timer)), PROJECTION_TIMER_LENGTH)
+		to_chat(playing_with_fire, span_cult_large("The strain of psychic projection exhausts you. You lose 1 temporary willpower point. You have [owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) + 1] temporary willpower points left. If you run out, you will lose yourself in the astral plane permanently..."))
 
 #undef TELEPATHY_MIND_READING
 #undef TELEPATHY_IMPLANT_THOUGHT
@@ -427,3 +464,4 @@
 #undef SENSE_SMELL
 #undef SENSE_TASTE
 #undef SENSE_TOUCH
+#undef PROJECTION_TIMER_LENGTH
