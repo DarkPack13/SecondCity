@@ -60,6 +60,7 @@
 
 	// TAINTS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/worms, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/walking_bomb, 1)
 
 
 
