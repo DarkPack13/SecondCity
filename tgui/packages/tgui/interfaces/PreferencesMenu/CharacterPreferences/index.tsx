@@ -35,7 +35,7 @@ function CharacterProfiles(props: ProfileProps) {
   const { activeSlot, onClick, profiles } = props;
 
   // DARKPACK EDIT CHANGE START
-  if (profiles.length > 5)
+  if (profiles.length <= 5)
     // TG Version
     return (
       <Stack justify="center" wrap>
