@@ -171,7 +171,8 @@
 
 /obj/item/occult_book/proc/check_cooldown(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, study_cooldown))
-		to_chat(user, span_warning(cooldown_message))
+		var/replaced_text_cooldown_message = replacetext(cooldown_message, "%TIME%", "[COOLDOWN_TIMELEFT(src, study_cooldown) / 10] seconds")
+		to_chat(user, span_warning(replaced_text_cooldown_message))
 		return FALSE
 	return TRUE
 
