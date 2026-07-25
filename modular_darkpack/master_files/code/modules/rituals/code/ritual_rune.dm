@@ -22,6 +22,7 @@
 	var/required_discipline
 
 	var/datum/storyteller_roll/ritual_roll/ritual_roll_datum
+	var/last_sucess_amount = 0
 
 /datum/storyteller_roll/ritual_roll
 	bumper_text = "ritual"
@@ -79,6 +80,7 @@
 		ritual_roll_datum.difficulty = difficulty
 
 	var/roll_result = ritual_roll_datum.st_roll(last_activator, last_activator)
+	last_sucess_amount = roll_result
 	switch(roll_result)
 		if(ROLL_SUCCESS)
 			complete()
