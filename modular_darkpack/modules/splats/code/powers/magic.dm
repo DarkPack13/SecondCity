@@ -23,6 +23,11 @@
 	magic_info.magic_strength = magic_strength
 	magic_info.magic_type = magic_type
 
+/obj/effect/abstract/magic_after_effect/get_magic_sources()
+	. = ..()
+
+	if(magic_info)
+		. += magic_info
 
 /obj/effect/abstract/magic_after_effect/proc/get_time_alive()
 	return world.time - creation_time
@@ -33,7 +38,7 @@
 	if(old_effect)
 		qdel(old_effect)
 	var/obj/effect/abstract/magic_after_effect/new_effect = new(loc, creating_mob, magic_strength, magic_type)
-
+	return new_effect
 
 /datum/magic_information
 	/// Rough estimate of the power of the effect. Ballparked to powerscale to the rank of the gifts/discs/powers.
@@ -55,6 +60,11 @@
 	magic_info.magic_type = magic_type
 	. += magic_info
 
+/obj/item/ritual_tome/get_magic_sources()
+	. = ..()
+	var/datum/magic_information/magic_info = new()
+	magic_info.magic_type = MAGIC_TYPE_BLOOD
+	. += magic_info
 
 /*
 /datum/magic_source
