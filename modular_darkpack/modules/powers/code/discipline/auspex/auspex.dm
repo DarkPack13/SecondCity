@@ -453,7 +453,7 @@
 		playing_with_fire.ghostize(can_reenter_corpse = FALSE)
 		qdel(playing_with_fire)
 	else
-		owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
+		owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -1)
 		addtimer(CALLBACK(src, PROC_REF(exhaust_timer)), PROJECTION_TIMER_LENGTH)
 		to_chat(playing_with_fire, span_cult_large("The strain of psychic projection exhausts you. You lose 1 temporary willpower point. You have [owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) + 1] temporary willpower points left. If you run out, you will lose yourself in the astral plane permanently..."))
 
