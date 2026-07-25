@@ -70,11 +70,12 @@
 		to_chat(owner, span_danger("You can't emote with [name]!"))
 		return
 
-	var/obj/dummy = new /obj/effect/the_missing_voice(get_turf(target)) // snowflake code but it's more robust than engineering some evil to_chat mechanism
-	if(!(dummy in view(world.view, owner)))
+	var/turf/voice_turf = get_turf(target)
+	if(!(voice_turf in view(world.view, owner)))
 		to_chat(owner, span_warning("You need line of sight to the location your voice is coming from."))
 		return
 
+	var/obj/dummy = new /obj/effect/the_missing_voice(voice_turf) // snowflake code but it's more robust than engineering some evil to_chat mechanism
 	dummy.name = owner.get_generic_name(TRUE, TRUE) + "'s voice"
 	dummy.say(message = new_say, forced = "melpominee 1")
 	QDEL_IN(dummy, 2 TURNS)
@@ -109,33 +110,43 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_SPEAK
 
 	cooldown_length = 5 SECONDS
-	// the guys we last talked to
+	/// real_name = remaining free (no roll, no vitae) messages to that person
 	var/list/free_speakers
 
 /datum/discipline_power/melpominee/phantom_speaker/activate()
 	. = ..()
-	if(!owner.mind.guestbook.known_names) // Who do we know
+	// Everyone we know who's still around, as guestbook name = mob
+	var/list/targets = list()
+	for(var/mob/living/character in GLOB.player_list)
+		if(character == owner || !character.client) // Skip ourselves and the clientless
+			continue
+		var/known_as = LAZYACCESS(owner.mind?.guestbook?.known_names, character.real_name)
+		if(!known_as)
+			continue
+		if(targets[known_as]) // two guests under the same name
+			known_as = "[known_as] ([length(targets)])"
+		targets[known_as] = character
+
+	if(!length(targets))
 		to_chat(owner, span_warning("You don't seem to know anyone you can speak to right now...")) // You have no friends.
 		return
-	// Guys we add to the input below
-	var/list/targets
-
-	for(var/mob/living/character in GLOB.player_list)
-		if(character == owner) // Skip ourselves
-			continue
-		if(owner.mind.guestbook.known_names[character.real_name] && character.client) // Everyone we know who has a client
-			targets += character
 
 	var/list/mob/living/listener_list = list()
-	var/mob/living/listener
+	var/list/picked = list()
 
-	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, type))
-		listener = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
-		if(!listener)
+	if(!HAS_TRAIT(owner, TRAIT_VIRTUOSA))
+		var/choice = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		if(!choice)
 			return
-		listener_list[WEAKREF(listener)] = 0
+		picked += choice
 	else // We can talk to mulitple people (Melpominee 5)
-		listener_list = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		var/checked = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		if(!islist(checked)) // non-tgui input falls back to a single choice
+			checked = checked ? list(checked) : list()
+		picked = checked
+
+	for(var/hearer_name in picked)
+		listener_list += targets[hearer_name]
 
 	if(!length(listener_list)) // We didn't pick anyone
 		return
@@ -155,39 +166,41 @@
 
 	var/language = owner.get_selected_language()
 	var/message = owner.compose_message(owner, language, input_message)
-	// Composed message of all the people in listener_list
-	var/those_who_hear = "[jointext(listener_list, ", ", 1, length(listener_list))], and [listener_list[length(listener_list)]]."
+	// Everyone we're projecting to, as we know them
+	var/those_who_hear = english_list(picked)
 
-	// The roll itself; wits+perception against diff 7
-	var/mob/living/caster = owner
-
-	var/datum/storyteller_roll/phantom_speaker/roll_datum = new()
-	var/roll_result = roll_datum.st_roll(caster)
-
-	if(roll_result < ROLL_SUCCESS)
-		to_chat(owner, span_notice("Your voice fails to reach the ears of [those_who_hear]"))
-		return
-
+	// Anybody we don't already have a free line to needs a roll
+	var/list/mob/living/needs_roll = list()
 	for(var/mob/living/guy in listener_list)
-		if(guy in free_speakers)
-			if(free_speakers[guy] > 0)
-				free_speakers[guy] = free_speakers[guy]-1
-			else
-				free_speakers -= guy
-		else
-			free_speakers += guy
-			free_speakers[guy] = roll_result
+		if(LAZYACCESS(free_speakers, guy.real_name) <= 0)
+			needs_roll += guy
 
-	if(!(listener_list ~= free_speakers)) // if we're talking to anybody new
-		var/bp_to_use = (length(listener_list)-length(free_speakers))-6 // (The amount of people we're talking to - people we can talk to for free) - 6
-		var/bp_used = max(1, bp_to_use) // How much BP we're actually using
-		owner.adjust_blood_pool(bp_used)
+	if(length(needs_roll))
+		// The roll itself; wits+performance against diff 7
+		var/datum/storyteller_roll/phantom_speaker/roll_datum = new()
+		var/roll_result = roll_datum.st_roll(owner)
+
+		if(roll_result < ROLL_SUCCESS)
+			to_chat(owner, span_notice("Your voice fails to reach the ears of [those_who_hear]."))
+			return
+
+		for(var/mob/living/newcomer in needs_roll) // the next roll_result messages to them are free
+			LAZYSET(free_speakers, newcomer.real_name, roll_result)
+	else
+		owner.adjust_blood_pool(vitae_cost) // free speakers cost no vitae, refund what pre_activation spent
+
+	for(var/mob/living/regular in listener_list - needs_roll)
+		var/free_left = free_speakers[regular.real_name] - 1
+		if(free_left > 0)
+			free_speakers[regular.real_name] = free_left
+		else
+			LAZYREMOVE(free_speakers, regular.real_name)
 
 	for(var/mob/living/final_listeners in listener_list)
 		to_chat(final_listeners, span_boldannounce("<i>You hear a voice in your head...</i>"))
 		final_listeners.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
 
-	to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
+	to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]."))
 
 /**
  * ••• Madrigal - p453-454
@@ -208,20 +221,28 @@
 
 	cooldown_length = 1 SCENES
 	duration_length = 1 SCENES
+	/// affected listener = the emotion they were feeling before we sang
 	var/list/audience = list()
+	/// The emotion being sung about, picked before the song starts
+	var/chosen_emotion
+
+/datum/discipline_power/melpominee/madrigal/pre_activation_checks(atom/target)
+	chosen_emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
+	if(!chosen_emotion)
+		return FALSE
+	return TRUE
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
 	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
-	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
-		audience += member
 		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
-			set_emotion(member, emotion)
+			set_emotion(member, chosen_emotion)
 
 /datum/discipline_power/melpominee/madrigal/proc/set_emotion(mob/living/target, emotion)
+	audience[target] = target.current_emotion // so we can put it back when the song ends
 	target.set_emotion(emotion)
 	ADD_TRAIT(target, TRAIT_FORCED_EMOTION, type)
 
@@ -238,6 +259,7 @@
 		else if(HAS_TRAIT(member, TRAIT_FORCED_EMOTION))
 			to_chat(member, span_nicegreen("You feel your [GLOB.emotion_to_quality[member.current_emotion]] weakening."))
 			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
+		member.set_emotion(audience[member]) // back to whatever they were feeling before
 
 	audience = list()
 
@@ -377,7 +399,7 @@
 	cumulative_our_power = list()
 
 /**
- * ••••• Shattering Crescendo - p454
+ * ••••• Virtuosa - p454
  *
  * Most of the low-level Melpominee powers can only be used on one target at a time.
  * When the Daughter reaches this level of mastery in her Discipline, she can "entertain” a
@@ -420,7 +442,7 @@
 
 	level = 6
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
-	target_type = TARGET_MOB
+	target_type = TARGET_HUMAN
 
 	effect_sound = null // Sound handled by activate
 
@@ -428,28 +450,25 @@
 	duration_length = 1 TURNS
 	cooldown_length = 3 TURNS
 
-/datum/discipline_power/melpominee/death_of_the_drum/activate()
+/datum/discipline_power/melpominee/death_of_the_drum/activate(mob/living/carbon/human/target)
 	. = ..()
 	playsound(owner, 'modular_darkpack/modules/powers/sounds/melpominee/melpominee.ogg', 50)
-	for(var/mob/living/carbon/human/listener in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
-		listener.Stun(1 TURNS)
-		switch(listener.get_ear_protection(TRUE))
-			if(0)
-				listener.apply_damage(50, AGGRAVATED, BODY_ZONE_HEAD)
-				listener.sound_damage(50, 3 TURNS)
-			if(1)
-				listener.apply_damage(25, AGGRAVATED, BODY_ZONE_HEAD)
-				listener.sound_damage(25, 10 TURNS)
-			if(2)
-				listener.apply_damage(15, AGGRAVATED, BODY_ZONE_HEAD)
+	target.Stun(1 TURNS)
+	switch(target.get_ear_protection(TRUE))
+		if(0)
+			target.apply_damage(50, AGGRAVATED, BODY_ZONE_HEAD)
+			target.sound_damage(50, 3 TURNS)
+		if(1)
+			target.apply_damage(25, AGGRAVATED, BODY_ZONE_HEAD)
+			target.sound_damage(25, 10 TURNS)
+		if(2)
+			target.apply_damage(15, AGGRAVATED, BODY_ZONE_HEAD)
 
-
-		listener.remove_overlay(POWERS_LAYER)
-		var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -POWERS_LAYER)
-		listener.overlays_standing[POWERS_LAYER] = song_overlay
-		listener.apply_overlay(POWERS_LAYER)
-
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 1 TURNS)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/song_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "song", -POWERS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = song_overlay
+	target.apply_overlay(POWERS_LAYER)
+	// duration_length expiring calls deactivate(target), which clears the overlay
 
 /datum/discipline_power/melpominee/death_of_the_drum/deactivate(mob/living/carbon/human/target)
 	. = ..()
