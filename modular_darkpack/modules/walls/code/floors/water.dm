@@ -21,7 +21,7 @@
 //Make a pr to TG eventually adding acid from shiptest mabye.
 /turf/open/water/acid
 	name = "goop"
-	desc = "highly acidic goop. Please dont stand it this."
+	desc = "highly acidic goop. Please dont stand in this."
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "acid"
 	light_color = "#1b7c4c"
