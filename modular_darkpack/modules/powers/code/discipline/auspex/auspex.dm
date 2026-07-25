@@ -5,7 +5,7 @@
 #define SENSE_TOUCH "Touch"
 #define TELEPATHY_MIND_READING "Mind Reading"
 #define TELEPATHY_IMPLANT_THOUGHT "Implant Thoughts"
-#define PROJECTION_TIMER_LENGTH 9 SCENES
+#define PROJECTION_TIMER_LENGTH 3 SCENES
 
 /datum/discipline/auspex
 	name = "Auspex"
