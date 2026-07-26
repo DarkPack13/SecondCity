@@ -15,7 +15,7 @@
 /datum/admin_discipline_editor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "TFNAdminDisciplineEditor") // DARKPACK EDIT, ORIGINAL: ui = new(user, src, "AdminDisciplineEditor")
+		ui = new(user, src, "AdminDisciplineEditor")
 		ui.open()
 
 /datum/admin_discipline_editor/ui_state(mob/user)

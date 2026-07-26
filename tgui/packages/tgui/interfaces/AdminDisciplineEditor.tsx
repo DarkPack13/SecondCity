@@ -1,7 +1,6 @@
 import { useState } from 'react';
-
 import { useBackend } from 'tgui/backend';
-import { Box, Button, DmIcon, Icon, Input, Section, Stack, Tooltip } from 'tgui-core/components';
+import { Box, Button, Divider, DmIcon, Icon, Input, Section, Stack, Tooltip } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type DisciplineInfo = {
@@ -21,6 +20,13 @@ type DisciplineValidation = {
   violations: string[];
 };
 
+type WhitelistDefinition = {
+  name: string;
+  description: string;
+  category: 'splat' | 'access' | 'clan';
+  is_default: boolean;
+};
+
 type Data = {
   target_ckey: string;
   selected_slot: number;
@@ -34,6 +40,7 @@ type Data = {
   connected_ckeys: string[];
   invalid_ckeys: string[];
   trusted_ckeys: string[];
+  is_editing_character: boolean;
   character_name: string | null;
   character_age: number | null;
   immortal_age: number | null;
@@ -41,20 +48,24 @@ type Data = {
   splat_name: string | null;
   flavor_text: string | null;
   headshot: string | null;
+  player_whitelists: string[];
+  whitelist_definitions: Record<string, WhitelistDefinition>;
 };
 
 type DisciplineCardProps = {
   path: string;
   discipline: DisciplineInfo;
   level: number;
+  isOwned: boolean;
   isClanDiscipline: boolean;
   clanName: string | null;
   isAdditional: boolean;
   onDotClick: (position: number) => void;
+  onRemove: (path: string) => void;
 };
 
 function DisciplineCard(props: DisciplineCardProps) {
-  const { discipline, level, isClanDiscipline, clanName, isAdditional, onDotClick } = props;
+  const { discipline, level, isOwned, isClanDiscipline, clanName, path, isAdditional, onDotClick, onRemove } = props;
   const isRare = discipline.rarity === 'rare';
 
   return (
@@ -66,7 +77,23 @@ function DisciplineCard(props: DisciplineCardProps) {
         boxSizing: 'border-box',
       }}
     >
-      <Section style={{ height: '100%' }}>
+
+      <Section style={{ height: '100%', position: 'relative' }}>
+        {isOwned && (
+          <Icon
+            name="times"
+            color="red"
+            style={{
+              position: 'absolute',
+              top: '4px',
+              left: '4px',
+              cursor: 'pointer',
+              zIndex: 1,
+            }}
+            onClick={() => onRemove(path)}
+          />
+        )}
+
         <Stack vertical align="center">
           {discipline.icon && discipline.icon_state && (
             <Stack.Item>
@@ -127,7 +154,7 @@ function DisciplineCard(props: DisciplineCardProps) {
                       name="circle"
                       color={filled ? 'white' : 'rgba(255,255,255,0.18)'}
                       onClick={() => onDotClick(position)}
-                      style={{ cursor: 'pointer', fontSize: '13px', margin: '0 2px' }}
+                      style={{ cursor: 'pointer', fontSize: '11px', margin: '0 1px' }}
                     />
                   </Stack.Item>
                 );
@@ -140,7 +167,66 @@ function DisciplineCard(props: DisciplineCardProps) {
   );
 }
 
-export function AdminDisciplineEditor() {
+const WHITELIST_CATEGORY_LABELS: Record<string, string> = {
+  splat: 'Splat Access',
+  access: 'Access Level',
+  clan: 'Clan Access',
+};
+
+function WhitelistSection(props: {
+  playerWhitelists: string[];
+  whitelistDefinitions: Record<string, WhitelistDefinition>;
+  onToggle: (id: string, currentlyHas: boolean) => void;
+}) {
+  const { playerWhitelists, whitelistDefinitions, onToggle } = props;
+  const whitelistSet = new Set(playerWhitelists);
+  const categories = ['splat', 'access', 'clan'] as const;
+
+  return (
+    <Section title="Whitelists">
+      <Stack vertical>
+        {categories.map((category) => {
+          const entries = Object.entries(whitelistDefinitions).filter(
+            ([, wl]) => wl.category === category,
+          );
+          if (!entries.length) return null;
+          return (
+            <Stack.Item key={category}>
+              <Box color="label" bold mb={0.5}>
+                {WHITELIST_CATEGORY_LABELS[category]}
+              </Box>
+              <Stack wrap>
+                {entries.map(([id, wl]) => {
+                  const has = whitelistSet.has(id);
+                  return (
+                    <Stack.Item key={id}>
+                      <Tooltip content={wl.description}>
+                        <Button
+                          color={has ? 'green' : 'transparent'}
+                          icon={has ? 'check-square' : 'square'}
+                          onClick={() => onToggle(id, has)}
+                        >
+                          {wl.name}
+                          {!!wl.is_default && (
+                            <Box inline color={has ? 'rgba(255,255,255,0.6)' : 'label'} ml={0.5} fontSize="0.8em">
+                              (default)
+                            </Box>
+                          )}
+                        </Button>
+                      </Tooltip>
+                    </Stack.Item>
+                  );
+                })}
+              </Stack>
+            </Stack.Item>
+          );
+        })}
+      </Stack>
+    </Section>
+  );
+}
+
+export function TFNAdminDisciplineEditor() {
   const { act, data } = useBackend<Data>();
   const {
     target_ckey,
@@ -155,6 +241,7 @@ export function AdminDisciplineEditor() {
     connected_ckeys,
     invalid_ckeys,
     trusted_ckeys,
+    is_editing_character,
     character_name,
     character_age,
     immortal_age,
@@ -162,6 +249,8 @@ export function AdminDisciplineEditor() {
     splat_name,
     flavor_text,
     headshot,
+    player_whitelists,
+    whitelist_definitions,
   } = data;
 
   const [ckeyInput, setCkeyInput] = useState('');
@@ -177,10 +266,18 @@ export function AdminDisciplineEditor() {
     act('set_discipline_level', { discipline: path, level: newLevel });
   };
 
+  const handleRemove = (path: string) => {
+    act('set_discipline_level', { discipline: path, level: 0 });
+  };
+
+  const handleWhitelistToggle = (id: string, currentlyHas: boolean) => {
+    act('set_whitelist', { id, grant: currentlyHas ? 0 : 1 });
+  };
+
   const disciplineEntries = Object.entries(allDisciplines);
 
   return (
-    <Window title="Discipline Editor" width={1100} height={700}>
+    <Window title="Discipline Editor" width={1100} height={850}>
       <Window.Content>
         <Stack fill>
           <Stack.Item
@@ -192,17 +289,8 @@ export function AdminDisciplineEditor() {
               flexDirection: 'column',
             }}
           >
-            <Section
-              title={`Online (${connected.length})`}
-              fill
-              scrollable
-              style={{ height: '100%' }}
-            >
-              {connected.length === 0 && (
-                <Box color="label" italic>
-                  No players online.
-                </Box>
-              )}
+            <Section title={`Online (${connected.length})`} fill scrollable>
+              {connected.length === 0 && <Box color="label" italic>No players online.</Box>}
               {connected.map((ckey) => (
                 <Box key={ckey} mb={0.5}>
                   <Button
@@ -211,12 +299,8 @@ export function AdminDisciplineEditor() {
                     onClick={() => act('search_ckey', { ckey })}
                     style={{ textAlign: 'left' }}
                   >
-                    {trustedSet.has(ckey) && (
-                      <Icon name="shield-halved" color="green" mr={0.5} />
-                    )}
-                    {invalidSet.has(ckey) && (
-                      <Icon name="triangle-exclamation" color="red" mr={0.5} />
-                    )}
+                    {trustedSet.has(ckey) && <Icon name="shield-halved" color="green" mr={0.5} />}
+                    {invalidSet.has(ckey) && <Icon name="triangle-exclamation" color="red" mr={0.5} />}
                     {ckey}
                   </Button>
                 </Box>
@@ -250,36 +334,23 @@ export function AdminDisciplineEditor() {
                 </Box>
               )}
             </Section>
+
+            {target_ckey && !not_found && (
+              <WhitelistSection
+                playerWhitelists={player_whitelists || []}
+                whitelistDefinitions={whitelist_definitions || {}}
+                onToggle={handleWhitelistToggle}
+              />
+            )}
+
             {target_ckey && !not_found && character_slots.length > 0 && (
-              <Section
-                title={
-                  <Stack align="center">
-                    <Stack.Item>{target_ckey}'s character slots</Stack.Item>
-                    <Stack.Item>
-                      <Tooltip
-                        content={
-                          is_trusted
-                            ? 'Trusted Whitelist'
-                            : 'No Whitelists Found' // todo: maybe add more than just trusted whitelist
-                        }
-                      >
-                        <Button
-                          color={is_trusted ? 'green' : 'transparent'}
-                          icon={is_trusted ? 'shield-halved' : 'shield'}
-                          onClick={() => act('toggle_trusted')}
-                        >
-                          {is_trusted ? 'Trusted' : 'Untrusted'}
-                        </Button>
-                      </Tooltip>
-                    </Stack.Item>
-                  </Stack>
-                }
-              >
+              <Section title={`${target_ckey}'s character slots`}>
                 <Stack>
                   {character_slots.map(({ slot, name }) => (
                     <Stack.Item key={slot}>
                       <Button
                         selected={selected_slot === slot}
+                        disabled={is_editing_character}
                         onClick={() => act('select_slot', { slot })}
                       >
                         {name}
@@ -290,174 +361,135 @@ export function AdminDisciplineEditor() {
               </Section>
             )}
             {selected_slot > 0 && character_name && (
-              <Section>
-                <Stack align="flex-start">
-                  <Stack.Item grow>
-                    <Box bold fontSize={1.2} mb={0.5}>
-                      {character_name}
-                    </Box>
-                    <Stack wrap>
-                      {character_age !== null && (
+              <>
+                <Section>
+                  <Stack align="flex-start">
+                    <Stack.Item grow>
+                      <Box bold fontSize={1.2} mb={0.5}>{character_name}</Box>
+                      <Stack wrap>
                         <Stack.Item>
-                          <Box color="label" inline>
-                            Living Age:
-                          </Box>
-                          <Box inline bold ml={0.5}>
-                            {character_age}
-                          </Box>
+                          <Box color="label" inline>Living Age:</Box>
+                          <Box inline bold ml={0.5}>{character_age}</Box>
                         </Stack.Item>
-                      )}
-                      {immortal_age !== null && (
                         <Stack.Item ml={2}>
-                          <Box color="label" inline>
-                            Immortal Age:
-                          </Box>
-                          <Box inline bold ml={0.5}>
-                            {immortal_age}
-                          </Box>
+                          <Box color="label" inline>Immortal Age:</Box>
+                          <Box inline bold ml={0.5}>{immortal_age}</Box>
                         </Stack.Item>
-                      )}
-                      {character_age !== null && immortal_age !== null && (
                         <Stack.Item ml={2}>
-                          <Box color="label" inline>
-                            Chronological Age:
-                          </Box>
-                          <Box inline bold ml={0.5}>
-                            {character_age + immortal_age}
-                          </Box>
+                          <Box color="label" inline>Clan:</Box>
+                          <Box inline bold ml={0.5} color="gold">{clan_name}</Box>
                         </Stack.Item>
-                      )}
-                      {splat_name && (
                         <Stack.Item ml={2}>
-                          <Box color="label" inline>
-                            Splat:
-                          </Box>
-                          <Box inline bold ml={0.5}>
-                            {splat_name}
-                          </Box>
+                          <Box color="label" inline>Splat:</Box>
+                          <Box inline bold ml={0.5}>{splat_name}</Box>
                         </Stack.Item>
+                      </Stack>
+                      {flavor_text && (
+                        <Box color="label" mt={1} italic fontSize="0.9em">
+                          {flavor_text}
+                        </Box>
                       )}
-                      {clan_name && (
-                        <Stack.Item ml={2}>
-                          <Box color="label" inline>
-                            Clan:
-                          </Box>
-                          <Box inline bold ml={0.5} color="gold">
-                            {clan_name}
-                          </Box>
-                        </Stack.Item>
-                      )}
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Box style={{ width: '60px', height: '60px', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+                        {headshot && <img src={headshot} style={{ width: '60px', height: '60px', objectFit: 'cover' }} />}
+                      </Box>
+                    </Stack.Item>
+                  </Stack>
+                </Section>
+                <Divider />
+                {is_editing_character ? (
+                  <Section>
+                    <Stack vertical align="center" py={4}>
+                      <Stack.Item>
+                        <Icon name="spinner" spin size={3} color="red" />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Box bold fontSize="1.2em" color="red">
+                          CHARACTER IS BEING EDITED
+                        </Box>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Box italic color="label">
+                          <center>For safety, you cannot make changes to {target_ckey}'s sheet while they have the character setup menu open. <br />
+                          You should probably ask {target_ckey} to spawn in, just to be safe.</center>
+                        </Box>
+                      </Stack.Item>
                     </Stack>
-                    {flavor_text && (
-                      <Box color="label" mt={3} italic>
-                        {flavor_text}
-                      </Box>
+                  </Section>
+                ) : (
+                  <>
+                    {discipline_validation && (
+                      <Section>
+                        <Stack align="center" wrap>
+                          <Stack.Item>
+                            <Box color="label" inline>Total disciplines:</Box>
+                            <Box inline bold ml={0.5} color={discipline_validation.total > 5 ? 'red' : 'white'}>
+                              {discipline_validation.total} / 5
+                            </Box>
+                          </Stack.Item>
+                          <Stack.Item ml={2}>
+                            <Box color="label" inline>Non-Clan Rares:</Box>
+                            <Box inline bold ml={0.5} color={discipline_validation.additional_rare >= 2 ? 'red' : 'white'}>
+                              {discipline_validation.additional_rare}
+                            </Box>
+                          </Stack.Item>
+                          <Stack.Item ml={2}>
+                            {is_trusted ? (
+                              <Box inline color="green">
+                                <Icon name="shield-halved" mr={0.5} />Trusted
+                              </Box>
+                            ) : (
+                              <>
+                                <Box inline color="label">
+                                  <Icon name="shield" mr={0.5} />Untrusted
+                                </Box>
+                                <Box inline ml={1}>
+                                  {discipline_validation.valid ? (
+                                    <Box color="green"><Icon name="check" mr={0.5} /> In compliance</Box>
+                                  ) : (
+                                    <Tooltip content={discipline_validation.violations.join('\n')}>
+                                      <Box color="red" style={{ cursor: 'help' }}>
+                                        <Icon name="triangle-exclamation" mr={0.5} /> Invalid Configuration
+                                      </Box>
+                                    </Tooltip>
+                                  )}
+                                </Box>
+                              </>
+                            )}
+                          </Stack.Item>
+                        </Stack>
+                      </Section>
                     )}
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Box
-                      style={{
-                        width: '80px',
-                        height: '80px',
-                        flexShrink: 0,
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {headshot && (
-                        <img
-                          src={headshot}
-                          style={{
-                            width: '80px',
-                            height: '80px',
-                            objectFit: 'cover',
-                          }}
-                        />
-                      )}
-                    </Box>
-                  </Stack.Item>
-                </Stack>
-              </Section>
-            )}
-            {discipline_validation && (
-              <Section>
-                <Stack align="center" wrap>
-                  <Stack.Item>
-                    <Box color="label" inline>
-                      Total disciplines:
-                    </Box>
-                    <Box inline bold ml={0.5} color={discipline_validation.total > 5 ? 'red' : 'white'}>
-                      {discipline_validation.total} / 5
-                    </Box>
-                  </Stack.Item>
-                  <Stack.Item ml={2}>
-                    <Box color="label" inline>
-                      Non-Clan Rares in Use:
-                    </Box>
-                    <Box
-                      inline
-                      bold
-                      ml={0.5}
-                      color={discipline_validation.additional_rare >= 2 ? 'red' : 'white'}
-                    >
-                      {discipline_validation.additional_rare}
-                    </Box>
-                  </Stack.Item>
-                  <Stack.Item ml={2}>
-                    {is_trusted ? (
-                      <Box color="green">
-                        <Icon name="shield-halved" mr={0.5} />
-                        Trusted
-                      </Box>
-                    ) : discipline_validation.valid ? (
-                      <Box color="green">
-                        <Icon name="check" mr={0.5} />
-                        In compliance
+                    {splat_name === 'Human' ? (
+                      <Box color="label" textAlign="center" mt={4}>
+                        This character cannot be assigned disciplines or gifts.
                       </Box>
                     ) : (
-                      <Tooltip content={discipline_validation.violations.join('\n')}>
-                        <Box color="red" style={{ cursor: 'help' }}>
-                          <Icon name="triangle-exclamation" mr={0.5} />
-                          Invalid!
-                        </Box>
-                      </Tooltip>
+                      <Box style={{ display: 'flex', flexWrap: 'wrap', padding: '4px' }}>
+                        {disciplineEntries.map(([path, discipline]) => {
+                          const level = levels[path] ?? 0;
+                          const isOwned = path in levels;
+                          return (
+                            <DisciplineCard
+                              key={path}
+                              path={path}
+                              discipline={discipline}
+                              level={level}
+                              isOwned={isOwned}
+                              isClanDiscipline={clanSet.has(path)}
+                              clanName={clan_name}
+                              isAdditional={!clanSet.has(path)}
+                              onDotClick={(position) => handleDotClick(path, position, level)}
+                              onRemove={handleRemove}
+                            />
+                          );
+                        })}
+                      </Box>
                     )}
-                  </Stack.Item>
-                </Stack>
-              </Section>
-            )}
-
-            {selected_slot > 0 && splat_name === 'Human' && (
-              <Box color="label" textAlign="center" mt={2}>
-                This character cannot be assigned disciplines or gifts.
-              </Box>
-            )}
-            {selected_slot > 0 && splat_name !== 'Human' && (
-              <Box
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: 'center',
-                  alignItems: 'stretch',
-                  padding: '4px',
-                }}
-              >
-                {disciplineEntries.map(([path, discipline]) => {
-                  const level = levels[path] ?? 0;
-                  return (
-                    <DisciplineCard
-                      key={path}
-                      path={path}
-                      discipline={discipline}
-                      level={level}
-                      isClanDiscipline={clanSet.has(path)}
-                      clanName={clan_name}
-                      isAdditional={!clanSet.has(path)}
-                      onDotClick={(position) => handleDotClick(path, position, level)}
-                    />
-                  );
-                })}
-              </Box>
+                  </>
+                )}
+              </>
             )}
           </Stack.Item>
         </Stack>
