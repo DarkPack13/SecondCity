@@ -32,7 +32,7 @@
 	data["player_whitelists"] = player_wl ? player_wl.Copy() : list()
 	return data
 
-/datum/admin_discipline_editor/proc/get_whitelist_definitions()
+/datum/admin_preference_editor/proc/get_whitelist_definitions()
 	var/list/defs = list()
 
 	defs[WHITELIST_VAMPIRE] = list(

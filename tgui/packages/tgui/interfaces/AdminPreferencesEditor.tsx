@@ -226,7 +226,7 @@ function WhitelistSection(props: {
   );
 }
 
-export function TFNAdminDisciplineEditor() {
+export function AdminPreferenceEditor() {
   const { act, data } = useBackend<Data>();
   const {
     target_ckey,
@@ -277,7 +277,7 @@ export function TFNAdminDisciplineEditor() {
   const disciplineEntries = Object.entries(allDisciplines);
 
   return (
-    <Window title="Discipline Editor" width={1100} height={850}>
+    <Window title="Preference Editor" width={1100} height={850}>
       <Window.Content>
         <Stack fill>
           <Stack.Item

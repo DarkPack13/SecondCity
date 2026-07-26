@@ -1,4 +1,4 @@
-/datum/admin_discipline_editor
+/datum/admin_preference_editor
 	var/target_ckey = ""
 	var/selected_slot = 0
 	var/datum/preferences/target_prefs = null
@@ -6,22 +6,22 @@
 	var/not_found = FALSE
 	var/list/discipline_cache = null
 
-/datum/admin_discipline_editor/Destroy()
+/datum/admin_preference_editor/Destroy()
 	if(loaded_offline)
 		QDEL_NULL(target_prefs)
 	target_prefs = null
 	return ..()
 
-/datum/admin_discipline_editor/ui_interact(mob/user, datum/tgui/ui)
+/datum/admin_preference_editor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "AdminDisciplineEditor")
+		ui = new(user, src, "AdminPreferenceEditor")
 		ui.open()
 
-/datum/admin_discipline_editor/ui_state(mob/user)
+/datum/admin_preference_editor/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)
 
-/datum/admin_discipline_editor/ui_data(mob/user)
+/datum/admin_preference_editor/ui_data(mob/user)
 	var/list/data = list()
 	data["target_ckey"] = target_ckey
 	data["selected_slot"] = selected_slot
@@ -110,7 +110,7 @@
 
 	return data
 
-/datum/admin_discipline_editor/proc/build_discipline_cache()
+/datum/admin_preference_editor/proc/build_discipline_cache()
 	if(discipline_cache)
 		return discipline_cache
 
@@ -135,7 +135,7 @@
 
 	return discipline_cache
 
-/datum/admin_discipline_editor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/admin_preference_editor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -219,7 +219,7 @@
 			message_admins("[key_name_admin(ui.user)] [target_prefs.has_whitelist(WHITELIST_TRUSTED) ? "granted" : "revoked"] trusted whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
 			return TRUE
 
-/datum/admin_discipline_editor/proc/load_target(search_ckey)
+/datum/admin_preference_editor/proc/load_target(search_ckey)
 	if(loaded_offline && target_prefs)
 		qdel(target_prefs)
 		target_prefs = null
@@ -249,6 +249,6 @@
 	return TRUE
 
 ADMIN_VERB(discipline_menu, R_ADMIN, "Discipline Menu", "Edit a player's disciplines.", ADMIN_CATEGORY_SECOND_CITY)
-	var/datum/admin_discipline_editor/editor = new
+	var/datum/admin_preference_editor/editor = new
 	editor.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Discipline Menu")
