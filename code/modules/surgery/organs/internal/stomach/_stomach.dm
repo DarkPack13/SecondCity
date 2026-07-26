@@ -169,6 +169,7 @@
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= hunger_modifier
 		hunger_rate *= human.physiology.hunger_mod
+		hunger_rate *= CONFIG_GET(number/hunger_modifier) // DARKPACK EDIT ADD
 		human.adjust_nutrition(-hunger_rate * seconds_per_tick)
 
 	var/nutrition = human.nutrition
