@@ -248,7 +248,7 @@
 	selected_slot = 1
 	return TRUE
 
-ADMIN_VERB(discipline_menu, R_ADMIN, "Discipline Menu", "Edit a player's disciplines.", ADMIN_CATEGORY_SECOND_CITY)
+ADMIN_VERB(admin_preference_editor, R_ADMIN, "Discipline/Preference Menu", "Edit and view a player's disciplines and preferences.", ADMIN_CATEGORY_SECOND_CITY)
 	var/datum/admin_preference_editor/editor = new
 	editor.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Discipline Menu")
