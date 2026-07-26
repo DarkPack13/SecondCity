@@ -15,7 +15,7 @@
 /datum/admin_discipline_editor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "TFNAdminDisciplineEditor") // TFN EDIT, ORIGINAL: ui = new(user, src, "AdminDisciplineEditor")
+		ui = new(user, src, "TFNAdminDisciplineEditor") // DARKPACK EDIT, ORIGINAL: ui = new(user, src, "AdminDisciplineEditor")
 		ui.open()
 
 /datum/admin_discipline_editor/ui_state(mob/user)
@@ -94,6 +94,19 @@
 							clan_discs += disc_str
 
 			data["discipline_validation"] = validate_discipline_sheet(target_prefs.discipline_levels, clan_discs, target_prefs.discipline_trusted)
+
+	var/splat_path = target_prefs?.read_preference(/datum/preference/choiced/splats)
+	if(!ispath(splat_path, /datum/splat/vampire))
+		data["clan_name"] = null
+		data["clan_disciplines"] = list()
+
+	var/client/target_client = GLOB.directory[target_ckey]
+	// if they have a value for screen_maps, they are in the character creator.
+	// an admin shouldnt be editing the same slot at the same time or it will risk wiping the slot
+	data["is_editing_character"] = target_client && length(target_client.screen_maps) > 0
+	var/list/target_wl = target_prefs ? target_prefs.get_player_whitelists() : null
+	data["player_whitelists"] = target_wl || list()
+	data["whitelist_definitions"] = get_whitelist_definitions()
 
 	return data
 
@@ -177,12 +190,33 @@
 			log_admin("[key_name_admin(ui.user)] set [disc_path] to level [new_level] for [ADMIN_LOOKUPFLW(target_ckey)]'s character [character_name]).")
 			return TRUE
 
+		if("set_whitelist")
+			if(!target_prefs)
+				return FALSE
+			var/whitelist_id = params["id"]
+			if(!istext(whitelist_id) || !length(whitelist_id))
+				return FALSE
+			var/should_grant = text2num(params["grant"])
+			if(should_grant)
+				target_prefs.grant_whitelist(whitelist_id)
+			else
+				target_prefs.revoke_whitelist(whitelist_id)
+			target_prefs.save_preferences()
+			var/granted_revoked = should_grant ? "granted" : "revoked"
+			message_admins("[key_name_admin(ui.user)] [granted_revoked] whitelist '[whitelist_id]' for [ADMIN_LOOKUPFLW(target_ckey)].")
+			log_admin("[key_name_admin(ui.user)] [granted_revoked] whitelist '[whitelist_id]' for [ADMIN_LOOKUPFLW(target_ckey)].")
+			// SSoverwatch.record_action(null, "[key_name_admin(ui.user)] [granted_revoked] whitelist '[whitelist_id]' for [ADMIN_LOOKUPFLW(target_ckey)].")
+			return TRUE
+
 		if("toggle_trusted")
 			if(!target_prefs)
 				return FALSE
-			target_prefs.discipline_trusted = !target_prefs.discipline_trusted
+			if(target_prefs.has_whitelist(WHITELIST_TRUSTED))
+				target_prefs.revoke_whitelist(WHITELIST_TRUSTED)
+			else
+				target_prefs.grant_whitelist(WHITELIST_TRUSTED)
 			target_prefs.save_preferences()
-			message_admins("[ui.user] [target_prefs.discipline_trusted ? "granted" : "revoked"] trusted discipline whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
+			message_admins("[key_name_admin(ui.user)] [target_prefs.has_whitelist(WHITELIST_TRUSTED) ? "granted" : "revoked"] trusted whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
 			return TRUE
 
 /datum/admin_discipline_editor/proc/load_target(search_ckey)

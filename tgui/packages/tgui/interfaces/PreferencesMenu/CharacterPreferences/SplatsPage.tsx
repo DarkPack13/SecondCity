@@ -1,8 +1,8 @@
 // THIS IS A DARKPACK UI FILE
 
-import { useState } from 'react'; // TFN EDIT ADD
+import { useState } from 'react'; // DARKPACK EDIT ADD
 import { useBackend } from 'tgui/backend';
-import { ConfirmModal } from '../components/ConfirmModal'; // TFN EDIT ADD
+import { ConfirmModal } from '../components/ConfirmModal'; // DARKPACK EDIT ADD
 import {
   BlockQuote,
   Box,
@@ -111,7 +111,7 @@ type SplatsPageInnerProps = {
   splats: ServerData['splats'];
 };
 
-// TFN EDIT START
+// DARKPACK EDIT START
 const SPLAT_WHITELIST_REQUIREMENTS: Record<string, string> = {
   none: 'human',
   splat_kindred: 'vampire',
@@ -119,15 +119,15 @@ const SPLAT_WHITELIST_REQUIREMENTS: Record<string, string> = {
   splat_garou: 'garou',
   splat_kinfolk: 'kinfolk',
 };
-// TFN EDIT END
+// DARKPACK EDIT END
 
 function SplatsPageInner(props: SplatsPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSplats = createSetPreference(act, 'splats');
-  // TFN EDIT START
+  // DARKPACK EDIT START
   const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null,);
   const whitelistSet = new Set(data.player_whitelists || []);
-  // TFN EDIT END
+  // DARKPACK EDIT END
 
   const splats: [string, Splats][] = Object.entries(props.splats).map(
     ([splats, data]) => {
@@ -158,14 +158,14 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           <Stack.Item>
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {splats.map(([splatsKey, splats]) => {
-                // TFN EDIT START - my splat whitelists are too strong for you, traveller. you must go to a server with weaker whitelists
+                // DARKPACK EDIT START - my splat whitelists are too strong for you, traveller. you must go to a server with weaker whitelists
                 const requiredWhitelist = SPLAT_WHITELIST_REQUIREMENTS[splatsKey];
                 const isLocked = !!requiredWhitelist && !whitelistSet.has(requiredWhitelist);
-                // TFN EDIT END
+                // DARKPACK EDIT END
                 return (
                   <Button
                     key={splatsKey}
-                    // TFN EDIT START - warn + clear disciplines when switching splats
+                    // DARKPACK EDIT START - warn + clear disciplines when switching splats
                     onClick={() => {
                       if ( splatsKey !== data.character_preferences.misc.splats ) {
                         setPendingConfirm(() => () => {
@@ -174,11 +174,11 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                         });
                       }
                     }}
-                    // TFN EDIT END
+                    // DARKPACK EDIT END
                     selected={
                       data.character_preferences.misc.splats === splatsKey
                     }
-                    tooltip={ isLocked ? `${splats.name} (Whitelisted, apply for it  on Discord!)` : splats.name } // TFN EDIT ADD
+                    tooltip={ isLocked ? `${splats.name} (Whitelisted, apply for it  on Discord!)` : splats.name } // DARKPACK EDIT ADD
                     style={{
                       display: 'block',
                       height: '64px',
@@ -191,7 +191,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                       ml={-1}
                       style={{ opacity: isLocked ? 0.4 : 1 }}
                     />
-                    {/* TFN EDIT START */}
+                    {/* DARKPACK EDIT START */}
                     {isLocked && (
                       <Icon
                         name="lock"
@@ -205,7 +205,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                         }}
                       />
                     )}
-                    {/* TFN EDIT END */}
+                    {/* DARKPACK EDIT END */}
                   </Button>
                 );
               })}
@@ -217,10 +217,10 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
               <Box>
                 <Stack fill>
                   <Stack.Item width="70%">
-                    {/* TFN EDIT START */}
+                    {/* DARKPACK EDIT START */}
                     <Section title={currentSplat.name}>
                       <Section title="Description">{currentSplat.desc}</Section>
-                    {/* TFN EDIT END */}
+                    {/* DARKPACK EDIT END */}
 
                       <Section title="Features">
                         <SplatsPerks perks={currentSplat.perks} />
@@ -258,7 +258,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      {/* TFN EDIT START - confirm dialog for splat changes */}
+      {/* DARKPACK EDIT START - confirm dialog for splat changes */}
       {pendingConfirm !== null && (
         <ConfirmModal
           onConfirm={() => {
@@ -268,7 +268,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           onCancel={() => setPendingConfirm(null)}
         />
       )}
-      {/* TFN EDIT END */}
+      {/* DARKPACK EDIT END */}
     </Stack>
   );
 }

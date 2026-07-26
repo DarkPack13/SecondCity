@@ -249,7 +249,7 @@ export type PreferencesMenuData = {
   discipline_tier: string;
   discipline_tier_details: string;
   is_trusted: BooleanLike;
-  player_whitelists: string[]; // TFN EDIT ADD - WHITELIST
+  player_whitelists: string[]; // DARKPACK EDIT ADD - WHITELIST
   max_trusted_generation: number;
   max_public_generation: number;
   highest_generation_limit: number;

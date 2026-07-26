@@ -1,15 +1,15 @@
 // THIS IS A DARKPACK UI FILE
-// TFN EDIT START
+// DARKPACK EDIT START
 import { useState } from 'react';
 import { Button, Slider, Stack } from 'tgui-core/components';
 import { type FeatureNumeric, type FeatureValueProps, type FeatureNumericData } from '../base';
-// TFN EDIT END
+// DARKPACK EDIT END
 type HeightServerData = FeatureNumericData & {
   height_labels: Record<string, string>;
 };
-// TFN EDIT START - height slider v2
+// DARKPACK EDIT START - height slider v2
 // on the back end, the height value 6 is around 4'10, which is 58 inches according to google so thats our baseline
-const minimum_height = 58; // // TFN EDIT - heights are integers on the back end, which sucks, but we cope by doing math on the front end i guess
+const minimum_height = 58; // // DARKPACK EDIT - heights are integers on the back end, which sucks, but we cope by doing math on the front end i guess
 
 function HeightInput(props: FeatureValueProps<number, number, HeightServerData>) {
   const { serverData, handleSetValue, value } = props;
@@ -56,7 +56,7 @@ function HeightInput(props: FeatureValueProps<number, number, HeightServerData>)
     </>
   );
 }
-// TFN EDIT END
+// DARKPACK EDIT END
 
 export const height: FeatureNumeric = {
   name: 'Height',

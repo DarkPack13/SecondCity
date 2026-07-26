@@ -1,4 +1,4 @@
-// THIS IS A TFN UI FILE
+// THIS IS A DARKPACK UI FILE
 
 import { Box, Button, Stack } from 'tgui-core/components';
 

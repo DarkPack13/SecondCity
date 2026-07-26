@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	data["clan_disciplines"] = list()
 	data["clan_name"] = null
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
-	/* // TFN EDIT REMOVAL - dont automatically give them their clan disciplines in the UI actually. sometimes people want to be dominate malks or otherwise go homebrew
+	/* // DARKPACK EDIT REMOVAL - dont automatically give them their clan disciplines in the UI actually. sometimes people want to be dominate malks or otherwise go homebrew
 	if(clan_value)
 		var/datum/subsplat/vampire_clan/clan_datum = get_vampire_clan(clan_value)
 		if(clan_datum)
@@ -260,8 +260,8 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
 		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round."))
 		return FALSE
-	// preferences.discipline_levels = list() // TFN EDIT REMOVAL
-	// TFN EDIT START
+	// preferences.discipline_levels = list() // DARKPACK EDIT REMOVAL
+	// DARKPACK EDIT START
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	if(!clan_value)
 		return FALSE
@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 		for(var/disc_type in clan_datum.clan_disciplines)
 			if(ispath(disc_type, /datum/discipline))
 				preferences.discipline_levels += disc_type
-	// TFN EDIT END
+	// DARKPACK EDIT END
 	preferences.save_character()
 	return TRUE
 
