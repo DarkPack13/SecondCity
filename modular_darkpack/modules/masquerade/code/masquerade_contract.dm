@@ -72,10 +72,8 @@
 
 /obj/item/intel_report/attack_self(mob/user, modifiers)
 	. = ..()
-	if(issupernatural(user))
-		return
 	var/turf/current_location = get_turf(user)
-	to_chat(user, "[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]")
+	to_chat(user, span_info("[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]"))
 	for(var/mob/living/breacher in GLOB.supernatural_breakers_list)
 		var/location_info
 		var/turf/turf = get_turf(breacher)
