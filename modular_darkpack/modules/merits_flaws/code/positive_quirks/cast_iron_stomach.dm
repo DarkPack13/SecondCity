@@ -9,7 +9,6 @@
 	gain_text = span_notice("You feel like you could eat anything!")
 	lose_text = span_danger("Looking at food on the ground makes you feel a little queasy.")
 	forbidden_splats = list(SPLAT_KINDRED)
-	darkpack_allowed = TRUE
 
 /datum/quirk/darkpack/cast_iron_stomach/add(client/client_source)
 	var/obj/item/organ/tongue/tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
