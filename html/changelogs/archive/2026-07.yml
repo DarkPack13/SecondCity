@@ -145,3 +145,6 @@
 2026-07-25:
   chazzyjazzy:
   - image: adds one pixel to most clothing items to fix toes poking out
+2026-07-26:
+  Hardly:
+  - bugfix: Fixes guestbook revealing names even on masked people

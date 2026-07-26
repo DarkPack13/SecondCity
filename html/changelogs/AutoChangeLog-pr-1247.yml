@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - qol: "If you have more then 5 character profiles in preferences, it displays as a dropdown instead."

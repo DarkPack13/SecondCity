@@ -1,4 +1,0 @@
-author: "Hardly"
-delete-after: True
-changes:
-  - bugfix: "Fixes guestbook revealing names even on masked people"

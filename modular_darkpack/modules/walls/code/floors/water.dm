@@ -21,6 +21,7 @@
 //Make a pr to TG eventually adding acid from shiptest mabye.
 /turf/open/water/acid
 	name = "goop"
+	desc = "highly acidic goop. Please dont stand in this."
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "acid"
 	light_color = "#1b7c4c"
@@ -28,6 +29,7 @@
 	light_power = 0.5
 	baseturfs = /turf/open/water/acid
 	reagent_to_extract = /datum/reagent/toxin/acid
+	var/damage_modifer = 1
 
 /turf/open/water/acid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -40,8 +42,8 @@
 			return TRUE // We still want to keep processing incase something changes
 		if(burnt_mob.movement_type & FLYING)
 			return TRUE
-		burnt_mob.apply_damage(1 TTRPG_DAMAGE, AGGRAVATED)
-		burnt_mob.apply_damage(2 TTRPG_DAMAGE, TOX)
+		burnt_mob.apply_damage(damage_modifer * 1 TTRPG_DAMAGE, AGGRAVATED)
+		burnt_mob.apply_damage(damage_modifer * 2 TTRPG_DAMAGE, TOX)
 		to_chat(burnt_mob, span_warning("Your flesh burns!"))
 		return TRUE
 
@@ -50,6 +52,12 @@
 		return PROCESS_KILL
 	for(var/mob/living/burnt_guy in contents)
 		acid_burn(burnt_guy)
+
+/turf/open/water/acid/weak
+	name = "weak goop"
+	desc = "heavily diluted acidic goop."
+	damage_modifer = 0.25
+
 
 //Code mostly taken from /obj/crystal_mass
 /turf/open/water/bloodwave

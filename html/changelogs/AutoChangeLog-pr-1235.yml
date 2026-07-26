@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "New weaker variant of acid turf."
+  - bugfix: "Mobs with no defined AGG damage modifier will default to 100% taken."
+  - balance: "Removed brawl/fist immunity from tendrils and golaith so they can be used for adminbus/umbra"
