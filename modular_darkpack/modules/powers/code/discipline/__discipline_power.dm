@@ -51,6 +51,7 @@
 	var/list/grouped_powers
 
 	var/magic_type = MAGIC_TYPE_BLOOD
+	var/magic_subtype
 	var/spawns_magic_effect = TRUE
 
 	/* NOT MEANT TO BE OVERRIDDEN */
@@ -455,7 +456,7 @@
 	if(spawns_magic_effect && magic_type)
 		var/turf/used_turf = get_turf(discipline.owner)
 		if(used_turf)
-			spawn_magic_after_effect(used_turf, discipline.owner, level, magic_type)
+			spawn_magic_after_effect(used_turf, discipline.owner, level, magic_type, magic_subtype)
 
 	owner.update_action_buttons()
 

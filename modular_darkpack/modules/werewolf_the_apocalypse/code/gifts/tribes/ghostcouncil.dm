@@ -11,6 +11,7 @@
 	bumper_text = /datum/action/cooldown/power/gift/sense_magic::name
 	applicable_stats = list(STAT_PERCEPTION, STAT_INVESTIGATION) // DARKPACK TODO - STAT_ENIGMA is not real yet.
 	numerical = TRUE
+	hide_result = TRUE
 
 
 /datum/action/cooldown/power/gift/sense_magic/Activate(atom/target)

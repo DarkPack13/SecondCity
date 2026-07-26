@@ -13,7 +13,7 @@
 	var/datum/weakref/creation_mob
 	var/datum/magic_information/magic_info
 
-/obj/effect/abstract/magic_after_effect/Initialize(mapload, creating_mob, magic_strength = 1, magic_type)
+/obj/effect/abstract/magic_after_effect/Initialize(mapload, creating_mob, magic_strength = 1, magic_type, magic_subtype)
 	. = ..()
 	creation_time = world.time
 	if(creating_mob)
@@ -22,6 +22,7 @@
 	magic_info = new()
 	magic_info.magic_strength = magic_strength
 	magic_info.magic_type = magic_type
+	magic_info.magic_subtype = magic_subtype
 
 /obj/effect/abstract/magic_after_effect/get_magic_sources()
 	. = ..()
@@ -33,17 +34,18 @@
 	return world.time - creation_time
 
 
-/proc/spawn_magic_after_effect(loc, creating_mob, magic_strength, magic_type)
+/proc/spawn_magic_after_effect(loc, creating_mob, magic_strength, magic_type, magic_subtype)
 	var/obj/effect/abstract/magic_after_effect/old_effect = locate() in loc
 	if(old_effect)
 		qdel(old_effect)
-	var/obj/effect/abstract/magic_after_effect/new_effect = new(loc, creating_mob, magic_strength, magic_type)
+	var/obj/effect/abstract/magic_after_effect/new_effect = new(loc, creating_mob, magic_strength, magic_type, magic_subtype)
 	return new_effect
 
 /datum/magic_information
 	/// Rough estimate of the power of the effect. Ballparked to powerscale to the rank of the gifts/discs/powers.
 	var/magic_strength = 1
 	var/magic_type
+	var/magic_subtype
 
 
 /// Returns lists of abstract information about "magic" affecting the atom (including the atom itself being said magic)
@@ -65,10 +67,3 @@
 	var/datum/magic_information/magic_info = new()
 	magic_info.magic_type = MAGIC_TYPE_BLOOD
 	. += magic_info
-
-/*
-/datum/magic_source
-
-/datum/magic_source/New()
-	. = ..()
-*/
