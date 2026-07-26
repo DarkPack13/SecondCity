@@ -1,3 +1,4 @@
+#warn merge this into whitelist config.
 // splat whitelist defines
 #define WHITELIST_HUMAN    "human"
 #define WHITELIST_VAMPIRE  "vampire"

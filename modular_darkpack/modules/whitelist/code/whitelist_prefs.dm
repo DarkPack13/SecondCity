@@ -35,6 +35,7 @@
 /datum/admin_preference_editor/proc/get_whitelist_definitions()
 	var/list/defs = list()
 
+	#warn merge this down into splat_whitelists, built this menu programticly
 	defs[WHITELIST_VAMPIRE] = list(
 		"name" = "Vampire",
 		"description" = "Access to play as a vampire.",
@@ -59,6 +60,7 @@
 		"category" = "splat",
 		"is_default" = FALSE,
 	)
+
 	defs[WHITELIST_TRUSTED] = list(
 		"name" = "Trusted",
 		"description" = "Bypasses discipline sheet limits, unlocks all trusted-only clans, and allows them to be a lower generation kindred.",

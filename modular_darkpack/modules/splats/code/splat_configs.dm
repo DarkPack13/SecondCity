@@ -1,5 +1,6 @@
 /// List of roundstart splats' their splat_id's
 GLOBAL_LIST_EMPTY(roundstart_splats)
+GLOBAL_LIST_EMPTY(whitelisted_splats)
 
 /datum/config_entry/keyed_list/roundstart_splats //splats you can play as from the get go.
 	key_mode = KEY_MODE_TEXT
@@ -12,6 +13,19 @@ GLOBAL_LIST_EMPTY(roundstart_splats)
 	log_config("ERROR: [key_name] is not a valid race ID.")
 	return FALSE
 
+
+/datum/config_entry/keyed_list/whitelisted_splats //splats you can play as from the get go.
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
+/datum/config_entry/keyed_list/whitelisted_splats/ValidateListEntry(key_name, key_value)
+	if(key_name in GLOB.splat_list)
+		return TRUE
+
+	log_config("ERROR: [key_name] is not a valid race ID.")
+	return FALSE
+
+
 /**
  * Checks if a splat is eligible to be picked at roundstart.
  *
@@ -22,6 +36,12 @@ GLOBAL_LIST_EMPTY(roundstart_splats)
 	if(id in (CONFIG_GET(keyed_list/roundstart_splats)))
 		return TRUE
 	return FALSE
+
+/datum/splat/proc/check_whitelist_requirement()
+	if(id in (CONFIG_GET(keyed_list/whitelisted_splats)))
+		return TRUE
+	return FALSE
+
 
 /**
  * Generates splat available to choose in character setup at roundstart

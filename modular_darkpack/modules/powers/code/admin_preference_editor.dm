@@ -4,7 +4,7 @@
 	var/datum/preferences/target_prefs = null
 	var/loaded_offline = FALSE
 	var/not_found = FALSE
-	var/list/discipline_cache = null
+	var/static/list/discipline_cache = null
 
 /datum/admin_preference_editor/Destroy()
 	if(loaded_offline)
@@ -248,7 +248,7 @@
 	selected_slot = 1
 	return TRUE
 
-ADMIN_VERB(admin_preference_editor, R_ADMIN, "Discipline/Preference Menu", "Edit and view a player's disciplines and preferences.", ADMIN_CATEGORY_SECOND_CITY)
+ADMIN_VERB(admin_preference_editor, R_ADMIN, "Discipline/Preference Editor", "Edit and view a player's disciplines and preferences.", ADMIN_CATEGORY_SECOND_CITY)
 	var/datum/admin_preference_editor/editor = new
 	editor.ui_interact(user.mob)
-	BLACKBOX_LOG_ADMIN_VERB("Discipline Menu")
+	BLACKBOX_LOG_ADMIN_VERB("Discipline/Preference Editor")
