@@ -12,9 +12,9 @@
 	///If the delay is equal or lower to 3 TURNS (15 sec), the explosion will be instantaneous.
 	var/instant_explosion = TRUE
 	///Radius of weak devastation explosive impact
-	var/explosion_light = 3
+	var/explosion_light = 4
 	///Radius of medium devastation explosive impact
-	var/explosion_heavy = 1
+	var/explosion_heavy = 0
 	///Radius of heavy devastation explosive impact
 	var/explosion_devastate = 0
 	///Whether the confirmation UI popup is active or not
@@ -105,7 +105,14 @@
 			sleep(delay * 0.25)
 		explode()
 	else
-		addtimer(CALLBACK(src, PROC_REF(explode)), delay)
+		addtimer(CALLBACK(src, PROC_REF(explode)), delay) // TODO: make the below filter blink
+		imp_in.add_filter(name = "detonation_filter", priority = 1, params = list(
+			type = "rays",
+			y = 0,
+			size = 32,
+			color = COLOR_RED,
+			density = 20))
+		imp_in.set_light(3, 1, COLOR_RED)
 		while(delay > 1) //so we dont accidentally enter an infinite sleep
 			var/beep_volume = 35
 			playsound(loc, 'sound/items/timer.ogg', beep_volume, vary = FALSE)
@@ -121,15 +128,15 @@
 	explosion(override_explode_target || src, devastation_range = explosion_devastate, heavy_impact_range = explosion_heavy, light_impact_range = explosion_light, flame_range = explosion_light, flash_range = explosion_light, explosion_cause = src)
 	var/mob/living/kill_mob = isliving(override_explode_target) ? override_explode_target : imp_in
 	if(!isnull(kill_mob))
+		imp_in.remove_filter("detonation_filter")
 		kill_mob.investigate_log("has been gibbed by an explosive implant.", INVESTIGATE_DEATHS)
 		kill_mob.gib(DROP_ORGANS|DROP_BODYPARTS)
 	qdel(src)
 
 /datum/action/cooldown/power/fomori_power/walking_bomb // Freak Legion pg. 47
 	name = "Walking Bomb"
-	desc = "There's a bomb in your head"
+	desc = "There's a bomb in your head!"
 	rank = 1 // of 1
-	cooldown_time = 5 SCENES // 15 minutes
 
 /datum/action/cooldown/power/fomori_power/walking_bomb/Grant(mob/granted_to)
 	. = ..()
