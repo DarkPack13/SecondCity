@@ -44,6 +44,7 @@
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
 	breached_players += player_breacher
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
+	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_masquerade_violation_reinforced))
 
 	return TRUE
 
