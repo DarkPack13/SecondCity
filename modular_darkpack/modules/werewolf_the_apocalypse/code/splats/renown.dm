@@ -99,4 +99,52 @@
 				if(RANK_LEGEND)
 					return "legend"
 
+/datum/action/cooldown/modify_renown
+	name = "Award/Remove Renown"
+	button_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
+	button_icon_state = "wip"
+	click_to_activate = TRUE
+
+/datum/action/cooldown/modify_renown/Activate(atom/target)
+	if(target == owner)
+		return
+	var/mob/living/living_target = astype(target)
+	if(!living_target)
+		return
+
+	. = ..()
+
+	var/datum/splat/werewolf/werewolf_spalt = get_werewolf_splat(living_target)
+	if(!werewolf_spalt)
+		return TRUE
+
+	var/datum/splat/werewolf/our_werewolf_spalt = get_werewolf_splat(owner)
+	if(!our_werewolf_spalt)
+		return TRUE
+
+	if(werewolf_spalt.renown_rank >= our_werewolf_spalt.renown_rank)
+		to_chat(owner, span_warning("They have a rank equal or greater then yours."))
+		return TRUE
+
+	to_chat(owner, span_warning("This adjusts the renown permently of the selected mob. This is logged to admins and should be used with care."))
+
+	var/renown_input = tgui_alert(owner, "Choose Renown to adjust.", "Modify Renown", ALL_RENOWNS)
+	if(!renown_input)
+		return TRUE
+
+	var/renown_amount = tgui_input_number(owner, "Choose amount to adjust.", "Modify Renown", 1, MAX_RENOWN, -MAX_RENOWN)
+	if(!renown_amount)
+		return TRUE
+
+	var/renown_reason = tgui_input_text(owner, "Declare a reason for this shift. A table for sample renown awards can be found in Werewolf The Apocalypse 20th Anniversary Edition p. 246", "Modify Renown")
+	if(!renown_reason)
+		return TRUE
+
+	werewolf_spalt.adjust_renown(renown_input, renown_amount)
+	to_chat(owner, span_notice("[renown_input] adjusted!"))
+
+	message_admins("[ADMIN_LOOKUPFLW(owner)] adjusted [renown_input] of [ADMIN_LOOKUPFLW(target)] by [renown_amount] for reason: \"[renown_reason]\".")
+	owner.log_message(" adjusted [renown_input] of [key_name(target)] by [renown_amount] for reason: \"[renown_reason]\".", LOG_GAME)
+	return TRUE
+
 #undef MAX_RENOWN

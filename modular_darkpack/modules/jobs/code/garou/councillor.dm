@@ -31,6 +31,11 @@
 		"Guardian"
 	)
 
+/datum/job/vampire/councillor/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	var/datum/action/ability = new /datum/action/cooldown/modify_renown(spawned)
+	ability.Grant(spawned)
+
 /datum/outfit/job/vampire/councillor
 	name = "Sept Councillor"
 	jobtype = /obj/item/card/park_ranger/oversight
