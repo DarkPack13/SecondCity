@@ -5,8 +5,7 @@
 	name = "lingering magic"
 	icon_state = "purplesparkles"
 	anchored = TRUE
-	#warn for testing
-	// invisibility = INVISIBILITY_ABSTRACT
+	invisibility = INVISIBILITY_MAXIMUM
 
 	var/creation_time
 	/// IF this effect can be sourced from a mob, a weakref of them.
