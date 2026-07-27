@@ -20,7 +20,7 @@
 			break
 
 	if(!found_spawn)
-		message_admins("ERROR: Hunter event called but coulnd't find an npcactivity spawn landmark. Tell Nimi.")
+		message_admins("ERROR: Hunter event called but couldn't find an npcactivity spawn landmark.")
 		return FALSE
 	if(length(GLOB.living_hunters) >= 10)
 		return FALSE
@@ -72,4 +72,3 @@
 	for(var/i in 1 to hunter_count)
 		var/mob/living/carbon/human/npc/walkby/hunter/spawned = new(entry_point.loc)
 		SSpoints_of_interest.make_point_of_interest(spawned)
-

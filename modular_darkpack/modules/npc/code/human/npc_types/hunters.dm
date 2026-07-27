@@ -275,7 +275,7 @@ once the player is either dead or staked, the hunter will guard their 'kill' for
 /mob/living/carbon/human/npc/walkby/hunter/proc/hunter_handle_combat()
 	cleared_targets = null // something aggro'd the hunter, so it should be suspicious of everyone now
 	guard_turf = null
-	var/mob/living/target = danger_source?.resolve()
+	var/mob/living/target = danger_source
 	if(!target || QDELETED(target))
 		end_combat()
 		return
