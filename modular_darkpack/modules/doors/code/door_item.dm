@@ -2,7 +2,6 @@
 	name = "\improper door"
 	desc = "It opens and closes."
 	icon_state = "door"
-	inhand_icon_state = "door"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons.dmi'
 	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
