@@ -66,25 +66,25 @@
  * adding and removing powers.
  *
  * Arguments:
- * * level - the level to set the Discipline as, powers included
+ * * new_level - the level to set the Discipline as, powers included
  */
-/datum/discipline/proc/set_level(level)
-	level = clamp(level, 0, length(all_powers))
-	if (level == src.level)
+/datum/discipline/proc/set_level(new_level)
+	new_level = clamp(new_level, 0, length(all_powers))
+	if (new_level == level)
 		return
 
-	for (var/i in length(known_powers) + 1 to level)
+	for (var/i in length(known_powers) + 1 to new_level)
 		var/adding_power_type = all_powers[i]
 		var/datum/discipline_power/new_power = new adding_power_type(src)
 		known_powers += new_power
 		new_power.post_gain()
 
-	if (length(known_powers) > level)
-		var/list/datum/discipline_power/leftover_powers = known_powers.Copy(level + 1)
-		known_powers.Cut(level + 1)
+	if (length(known_powers) > new_level)
+		var/list/datum/discipline_power/leftover_powers = known_powers.Copy(new_level + 1)
+		known_powers.Cut(new_level + 1)
 		QDEL_LIST(leftover_powers)
 
-	src.level = level
+	level = new_level
 	update_current_power()
 
 /datum/discipline/proc/update_current_power()
