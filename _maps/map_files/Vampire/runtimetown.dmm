@@ -2823,7 +2823,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/computer/security,
+/obj/structure/city_map,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "SW" = (
