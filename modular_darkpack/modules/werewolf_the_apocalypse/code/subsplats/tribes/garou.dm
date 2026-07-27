@@ -17,6 +17,7 @@
 	name = TRIBE_UKTENA
 	desc = "Seekers of mystery and highly secretive, the Uktena is one of the most misunderstood tribes. Their ranks include guides, academics and the religious."
 	gifts_provided = list(
+		/datum/action/cooldown/power/gift/sense_magic,
 		// /datum/action/cooldown/power/gift/spirit_speech, // DARKPACK TODO - (Selectable Gifts)
 	)
 	subsplat_keys = /obj/item/vamp/keys/nps
