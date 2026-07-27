@@ -15,7 +15,7 @@
 		new /datum/data/vending_product("cabbage", /obj/item/food/grown/cabbage),
 		new /datum/data/vending_product("garlic", /obj/item/food/grown/garlic),
 		new /datum/data/vending_product("onion", /obj/item/food/grown/onion),
-		new /datum/data/vending_product("parsnip", /obj/item/food/grown/parsnip),
+		new /datum/data/vending_product("parsnip", /obj/item/food/grown/carrotlike/parsnip),
 		new /datum/data/vending_product("peas", /obj/item/food/grown/peas),
 		new /datum/data/vending_product("corn", /obj/item/food/grown/corn),
 		new /datum/data/vending_product("apple", /obj/item/food/grown/apple),

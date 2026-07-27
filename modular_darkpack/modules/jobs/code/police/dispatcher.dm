@@ -7,9 +7,8 @@
 	config_tag = "DISPATCHER"
 	outfit = /datum/outfit/job/vampire/dispatcher
 	job_flags = CITY_JOB_FLAGS
-	display_order = JOB_DISPLAY_ORDER_POLICE
+	display_order = JOB_DISPLAY_ORDER_DISPATCHER
 	exp_required_type_department = EXP_TYPE_POLICE
-	department_for_prefs = /datum/job_department/police
 	departments_list = list(
 		/datum/job_department/police,
 		/datum/job_department/clinic,
@@ -19,7 +18,7 @@
 	splat_slots = list(SPLAT_GHOUL = 1, SPLAT_KINFOLK = 1)
 
 	description = "Report emergencies to the correct emergency service."
-	minimal_masquerade = 0
+	minimum_masquerade = 0
 	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/dispatcher
