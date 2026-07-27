@@ -87,17 +87,13 @@
 ///Turns the camera on. Will be silent if 'user' is null, but it REQUIRES either a user or a provided ID.
 ///Because cameras are named after the ID, or person if there isn't one, then having neither means we can't turn
 ///on at all.
-/obj/item/bodycam_upgrade/proc/turn_on(mob/living/user, obj/item/card/id/id_card)
-	if(!id_card && !user)
+/obj/item/bodycam_upgrade/proc/turn_on(mob/living/user, obj/item/card/police/police_badge)
+	if(!police_badge && !user)
 		return
 	if(!builtin_bodycamera)
 		builtin_bodycamera = new(loc) //made in the vest it's located in.
-	if(!id_card)
-		id_card = user.get_idcard() || null
-	if(id_card)
-		builtin_bodycamera.c_tag = "-Body Camera: [(id_card.registered_name)] ([id_card.assignment])"
 	else
-		builtin_bodycamera.c_tag = "-Body Camera: [(user.name)]"
+		builtin_bodycamera.c_tag = "-Body Camera: [(user.real_name)]"
 	if(user)
 		user.balloon_alert(user, "bodycamera activated")
 		playsound(loc, 'sound/machines/beep/beep.ogg', get_clamped_volume(), TRUE, -1)
@@ -135,7 +131,7 @@
  */
 /obj/item/bodycam_upgrade/proc/on_examine_more(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("It has [name] installed. You can toggle it with an [EXAMINE_HINT("ID card")] or remove it with a [EXAMINE_HINT("screwdriver")].")
+	examine_list += span_notice("It has [name] installed. You can toggle it with a [EXAMINE_HINT("badge")] or remove it with a [EXAMINE_HINT("screwdriver")].")
 
 /**
  * Screwdriver act
