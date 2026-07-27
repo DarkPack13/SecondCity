@@ -3,6 +3,10 @@
  *
  * An item that can be inserted into any piece of clothing that goes on the Exosuit slot.
  * Allows you to turn it on/off with an ID card to add the suit & the wearer's name into the security camera system.
+ *
+ * I chopped this shit up to remove ID cards from the equation so forgive me if it sucks.
+ *
+ * Credit due to johnfulpwillard who contributed code to monkestation #2239 and cannibalhunter who authored the PR.
  */
 /obj/item/bodycam_upgrade
 	name = "\improper body camera"
@@ -15,16 +19,12 @@
 	var/list/network = list("ss13")
 	///The camera itself, made when we need it and deleted on Destroy. Installed into the clothing item directly.
 	var/obj/machinery/camera/bodycamera/builtin_bodycamera
-	/**
-	 * Sprites by: @Partheo from Yogstation, colors very, very slightly edited.
-	 * A static overlay put onto any clothing item that has the camera installed.
-	 */
 	var/static/mutable_appearance/equipped_overlay = mutable_appearance('modular_darkpack/modules/bodycameras/icons/bodycamera_overlay.dmi', "bodycamera")
 
 /obj/item/bodycam_upgrade/examine_more(mob/user)
 	. = ..()
 	. += list(span_notice("You can use [name] on any outerwear to install it, automatically turning on if the outerwear is equipped."))
-	. += list(span_notice("Once installed, you can use an [EXAMINE_HINT("ID card")] to turn the camera on and off."))
+	. += list(span_notice("Once installed, you can use a [EXAMINE_HINT("badge")] to turn the camera on and off."))
 
 /obj/item/bodycam_upgrade/Destroy(force)
 	if(!isnull(builtin_bodycamera))
@@ -86,7 +86,7 @@
 		user.update_worn_oversuit()
 
 ///Turns the camera on. Will be silent if 'user' is null, but it REQUIRES either a user or a provided ID.
-///Because cameras are named after the ID, or person if there isn't one, then having neither means we can't turn
+///Because cameras are named after the person, then having none means we can't turn
 ///on at all.
 /obj/item/bodycam_upgrade/proc/turn_on(mob/living/user, obj/item/card/police/police_badge)
 	if(!police_badge && !user)
@@ -150,7 +150,7 @@
  * On Attackby
  *
  * Called when the piece of clothing the bodycamera is installed into is attacked by an item.
- * If the item is an ID card, it will turn the camera on/off.
+ * If the item is a police badge, it will turn the camera on/off.
  */
 /obj/item/bodycam_upgrade/proc/on_attackby(datum/source, obj/item/item, mob/living/user)
 	SIGNAL_HANDLER
