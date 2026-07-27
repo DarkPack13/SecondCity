@@ -1,9 +1,6 @@
-#define MAX_RENOWN 10
-
 /datum/splat/werewolf/proc/adjust_renown(attribute, amount)
 	if(!renown[attribute])
 		renown[attribute] = 0
-
 
 	var/old_rank = renown_rank
 	var/new_amount = clamp(renown[attribute] + amount, 0, MAX_RENOWN)
@@ -146,5 +143,3 @@
 	message_admins("[ADMIN_LOOKUPFLW(owner)] adjusted [renown_input] of [ADMIN_LOOKUPFLW(target)] by [renown_amount] for reason: \"[renown_reason]\".")
 	owner.log_message(" adjusted [renown_input] of [key_name(target)] by [renown_amount] for reason: \"[renown_reason]\".", LOG_GAME)
 	return TRUE
-
-#undef MAX_RENOWN

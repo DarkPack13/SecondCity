@@ -11,3 +11,5 @@
 #define RANK_ATHRO 4
 #define RANK_ELDER 5
 #define RANK_LEGEND 6
+
+#define MAX_RENOWN 10
