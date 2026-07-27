@@ -9,6 +9,7 @@
 	desc = "A body camera device attachable to most outerwear. There's an instructions tag if you look a little closer..."
 	icon = 'modular_darkpack/modules/bodycameras/icons/bodycamera.dmi'
 	icon_state = "bodycamera"
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/bodycameras/icons/bodycamera_onfloor.dmi')
 
 	///The network we give to the builtin body camera while it's on and active.
 	var/list/network = list("ss13")
