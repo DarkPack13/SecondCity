@@ -17,7 +17,7 @@
 /obj/item/smartphone/ui_close(mob/user)
 	. = ..()
 	// Lock sound!
-	playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Lock.ogg', 30, TRUE)
+	playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Lock.ogg', 20, TRUE)
 
 	if(phone_flags & PHONE_OPEN)
 		phone_flags &= ~PHONE_OPEN
@@ -30,7 +30,7 @@
 	var/new_flags = phone_flags
 
 	if (!(prev_flags & PHONE_OPEN) && (new_flags & PHONE_OPEN))
-		playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Unlock.ogg', 30)
+		playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Unlock.ogg', 20)
 
 /obj/item/smartphone/ui_data(mob/user)
 	. = ..()
@@ -76,7 +76,7 @@
 			else
 				sound_to_play = 'modular_vcg/master_files/sounds/item/smartphone/aosp/KeypressInvalid.ogg'
 
-			playsound(loc, sound_to_play, 18, FALSE)
+			playsound(loc, sound_to_play, 15 FALSE)
 			return TRUE
 		if("set_notification_sound")
 			var/new_sound = params["sound"]
@@ -87,7 +87,7 @@
 
 			// Plays a preview of the sound selected
 			if(COOLDOWN_FINISHED(src, ringtone_set_cooldown))
-				playsound(loc, GLOB.pda_ringtone_sounds[new_sound], 35, TRUE, extrarange = - 4)
+				playsound(loc, GLOB.pda_ringtone_sounds[new_sound], 25, TRUE, extrarange = - 4)
 				COOLDOWN_START(src, ringtone_set_cooldown, 0.4 SECONDS)
 
 			return TRUE
@@ -105,7 +105,7 @@
 	var/sound_file = GLOB.pda_ringtone_sounds[ringtone_sound]
 	if(!sound_file)
 		sound_file = 'modular_darkpack/modules/phones/sounds/text_send.ogg'
-	playsound(src, sound_file, 35, TRUE, 0, 2)
+	playsound(src, sound_file, 30, TRUE, 0, 2)
 
 /obj/item/smartphone/start_phone_call(mob/user, called_phone_number)
 	. = ..()

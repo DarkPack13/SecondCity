@@ -152,7 +152,7 @@
 		if(!COOLDOWN_FINISHED(src, paging_cooldown))
 			return
 		COOLDOWN_START(src, paging_cooldown, 2.5 SECONDS)
-		playsound(src, 'modular_vcg/master_files/sounds/item/smartphone/ringing.ogg', 30, FALSE, 0, 2)
+		playsound(src, 'modular_vcg/master_files/sounds/item/smartphone/ringing.ogg', 25, FALSE, 0, 2)
 	else if (current_state == PHONE_RINGING)
 	// CRIMSON EDIT ADDITION END - Ringing tone
 		if(!COOLDOWN_FINISHED(src, ringer_cooldown))
@@ -214,13 +214,13 @@
 /obj/item/smartphone/proc/terminate_call_connection()
 	PROTECTED_PROC(TRUE)
 
-	playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/hangup.ogg', 45, TRUE) // CRIMSON EDIT ADDITION - hangup tone
+	playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/hangup.ogg', 35, TRUE) // CRIMSON EDIT ADDITION - hangup tone
 	var/obj/item/smartphone/calling_smartphone = SSphones.get_phone_from_number(incoming_phone_number)
 	if(!calling_smartphone)
 		calling_smartphone = SSphones.get_phone_from_number(dialed_number)
 	if(!calling_smartphone)
 		return
-	playsound(calling_smartphone, 'modular_vcg/master_files/sounds/item/smartphone/hangup.ogg', 45, TRUE) // CRIMSON EDIT ADDITION - hangup tone
+	playsound(calling_smartphone, 'modular_vcg/master_files/sounds/item/smartphone/hangup.ogg', 35, TRUE) // CRIMSON EDIT ADDITION - hangup tone
 
 	// Free up the secure connection.
 	SSphones.free_secure_frequency(secure_frequency)

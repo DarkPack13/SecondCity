@@ -329,7 +329,7 @@
 		)
 
 		if(!(action in ignored_actions_for_clicksound) && ringer)
-			playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Effect_Tick.ogg', 20, FALSE)
+			playsound(loc, 'modular_vcg/master_files/sounds/item/smartphone/aosp/Effect_Tick.ogg', 10, FALSE)
 			COOLDOWN_START(src, tap_sound_cooldown, 0.1 SECONDS)
 		if(action == "clicksound")
 			return
