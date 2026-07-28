@@ -25,6 +25,8 @@
 	UnregisterSignal(source, COMSIG_EXIT_AREA)
 
 	LAZYREMOVE(exposed_to_holiness, source)
+	if (!exposed_to_holiness)
+		STOP_PROCESSING(SSdcs, src)
 
 	return ..()
 

@@ -140,7 +140,8 @@
 			return
 		picked += choice
 	else // We can talk to mulitple people (Melpominee 5)
-		var/checked = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		// checkboxes hands its items list straight to tgui, so it needs a flat list of names
+		var/checked = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", assoc_to_keys(targets))
 		if(!islist(checked)) // non-tgui input falls back to a single choice
 			checked = checked ? list(checked) : list()
 		picked = checked
@@ -229,6 +230,7 @@
 /datum/discipline_power/melpominee/madrigal/pre_activation_checks(atom/target)
 	chosen_emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 	if(!chosen_emotion)
+		owner.adjust_blood_pool(vitae_cost) // pre_activation() already spent it, give it back on a cancelled song
 		return FALSE
 	return TRUE
 
@@ -253,12 +255,11 @@
 /datum/discipline_power/melpominee/madrigal/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/member in audience)
-		if(HAS_TRAIT_FROM(member, TRAIT_FORCED_EMOTION, type))
-			to_chat(member, span_nicegreen("You are no longer overwhelmed with [GLOB.emotion_to_quality[member.current_emotion]]."))
-			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
-		else if(HAS_TRAIT(member, TRAIT_FORCED_EMOTION))
+		REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
+		if(HAS_TRAIT(member, TRAIT_FORCED_EMOTION)) // another song still holds them, leave their emotion alone
 			to_chat(member, span_nicegreen("You feel your [GLOB.emotion_to_quality[member.current_emotion]] weakening."))
-			REMOVE_TRAIT(member, TRAIT_FORCED_EMOTION, type)
+			continue
+		to_chat(member, span_nicegreen("You are no longer overwhelmed with [GLOB.emotion_to_quality[member.current_emotion]]."))
 		member.set_emotion(audience[member]) // back to whatever they were feeling before
 
 	audience = list()

@@ -156,11 +156,11 @@
 /datum/discipline_power/serpentis/the_skin_of_the_adder/deactivate()
 	. = ..()
 	if(choice == "Obvious")
-		owner.st_remove_stat_mod(STAT_INTIMIDATION, 2, "Serpentis")
-		owner.st_remove_stat_mod(STAT_STAMINA, 3, "Serpentis")
+		owner.st_remove_stat_mod(STAT_INTIMIDATION, "Serpentis")
+		owner.st_remove_stat_mod(STAT_STAMINA, "Serpentis")
 		REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 	else
-		owner.st_remove_stat_mod(STAT_STAMINA, 2, "Serpentis")
+		owner.st_remove_stat_mod(STAT_STAMINA, "Serpentis")
 	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type))
 	owner.st_remove_stat_mod(STAT_APPEARANCE, "Serpentis")
 

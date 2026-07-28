@@ -10,4 +10,4 @@
 
 /obj/item/occult_artifact/vampire/fae_charm/ungrant_powers()
 	. = ..()
-	owner.st_remove_stat_mod(STAT_DEXTERITY, 1, type)
+	owner.st_remove_stat_mod(STAT_DEXTERITY, type)
