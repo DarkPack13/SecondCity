@@ -152,9 +152,10 @@
 /obj/effect/spawner/random/occult/artifact/werewolf_only
 	name = "random garou fetish"
 	loot = list(
-		/obj/item/occult_artifact/werewolf/nyxs_bangle = 48,
-		/obj/item/occult_artifact/werewolf/dagger_of_retribution = 48,
-		/obj/effect/spawner/random/occult/artifact/klaive = 4,
+		/obj/item/occult_artifact/werewolf/nyxs_bangle = 33,
+		/obj/item/occult_artifact/werewolf/dagger_of_retribution = 33,
+		/obj/item/occult_artifact/werewolf/magpies_ears = 33,
+		/obj/effect/spawner/random/occult/artifact/klaive = 1,
 	)
 
 /obj/effect/spawner/random/occult/artifact/klaive
