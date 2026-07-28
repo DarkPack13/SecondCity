@@ -215,10 +215,10 @@
 	data["muted"] = muted
 
 	var/list/published_numbers = list()
-	for(var/contact in SSphones.published_phone_numbers)
+	for(var/contact, number in SSphones.published_phone_numbers)
 		UNTYPED_LIST_ADD(published_numbers, list(
 			"name" = contact,
-			"number" = SSphones.published_phone_numbers[contact],
+			"number" = number,
 		))
 	data["published_numbers"] = published_numbers
 	data["sim_published"] = sim_card.published
