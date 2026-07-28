@@ -72,6 +72,8 @@ SWING_COMBAT
 #PASSIVE_BP_DRAIN
 PASSIVE_BP_DRAIN_TIMER 12000
 
+#HUNGER_MODIFIER 0.5
+
 ## Configs for which Discipline keybinds are enabled (unbound by default) and how they behave
 ## Default keybinds where you select a Discipline then activate a power
 DISCIPLINE_KEYBINDS

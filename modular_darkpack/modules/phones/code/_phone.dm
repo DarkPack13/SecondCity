@@ -81,13 +81,6 @@
 	AddComponent(/datum/component/violation_observer, FALSE)
 	phone_background = "BG_[rand(1,18)]" // pick a random phone background when spawned
 
-/// Index to a define to point at a runtime-global list at compile-time.
-#define NETWORK_ID 1
-/// Index to a string, for the contact title.
-#define OUR_ROLE 2
-/// Index to a boolean, on whether to replace role with job title (or alt-title).
-#define USE_JOB_TITLE 3
-
 /obj/item/smartphone/proc/update_initialized_contacts()
 	var/mob/living/carbon/owner = owner_weakref.resolve()
 	if(LAZYLEN(contact_networks_pre_init))
@@ -111,10 +104,6 @@
 
 	if(important_contact_of && owner && sim_card.phone_number)
 		GLOB.important_contacts[important_contact_of] = new /datum/phonecontact(owner.real_name, sim_card.phone_number)
-
-#undef NETWORK_ID
-#undef OUR_ROLE
-#undef USE_JOB_TITLE
 
 /obj/item/smartphone/Destroy(force)
 	GLOB.phones_list -= src

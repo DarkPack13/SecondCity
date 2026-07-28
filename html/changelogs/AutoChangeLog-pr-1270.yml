@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Guestbook should handle text macros better"
+  - bugfix: "Dogs are treated as an improper noun"
