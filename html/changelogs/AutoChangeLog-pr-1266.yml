@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Hunger is no longer accidentally soft-removed"
+  - config: "Hunger rate is on a config for easier tweaking"
