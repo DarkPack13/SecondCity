@@ -9,7 +9,7 @@
 	name = "Corrupted Visions"
 	desc = "Spend a willpower point to induce hallucinations in your prey."
 	button_icon_state = "corrupted_visions"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 

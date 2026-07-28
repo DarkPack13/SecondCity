@@ -2,7 +2,7 @@
 	name = "Darksight"
 	desc = "See in the dark unbidden, but beware bright lights."
 	button_icon_state = "darksight"
-	rank = 1 // of 1
+	rank = 1
 
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 SECONDS // So we don't click too fast

@@ -34,7 +34,7 @@
 	name = "Exoskeleton"
 	desc = "Form a thick carapace around your body, protecting you from harm and increasing your strength."
 	button_icon_state = "exoskeleton"
-	rank = 1 // of 1
+	rank = 1
 
 	fomor_part = "none" // So we get caught by code that checks if we have a fomor_part
 	//Snowflake code

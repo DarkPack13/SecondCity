@@ -6,7 +6,7 @@
 	name = "Numbing"
 	desc = "Spend a willpower point to temporarily feel no pain."
 	button_icon_state = "numbing"
-	rank = 1 // of 1
+	rank = 1
 	willpower_cost = 1
 	cooldown_time = 1 SCENES
 	var/beforehealth

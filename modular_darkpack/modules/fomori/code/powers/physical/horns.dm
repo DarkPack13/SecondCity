@@ -52,7 +52,7 @@
 	name = "Horns"
 	desc = "Use the grotesque horns atop your head to charge and gore your enemies."
 	button_icon_state = "horns"
-	rank = 1 // of 1
+	rank = 1
 
 	fomor_part = /datum/bodypart_overlay/simple/fomor_horns
 

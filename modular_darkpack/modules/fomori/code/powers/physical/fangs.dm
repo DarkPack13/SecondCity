@@ -10,7 +10,7 @@
 	name = "Fangs"
 	desc = "Use the grotesque fangs spilling from your mouth to bite your enemies."
 	button_icon_state = "fangs"
-	rank = 1 // of 1
+	rank = 1
 
 	fomor_part = /datum/bodypart_overlay/simple/fomor_fangs
 

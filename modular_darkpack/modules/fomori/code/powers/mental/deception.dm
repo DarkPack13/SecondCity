@@ -9,7 +9,7 @@
 	name = "Deception"
 	desc = "Spend a willpower point to disguise your taint from those capable of percieving it."
 	button_icon_state = "deception"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 

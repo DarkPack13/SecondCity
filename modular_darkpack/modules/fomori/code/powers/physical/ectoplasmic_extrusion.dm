@@ -7,7 +7,7 @@
 	name = "Ectoplasmic Extrusion"
 	desc = "(UNIMPLEMENTED) Sprout grotesque tendrils from your back to use as extra hands or as a weapon."
 	button_icon_state = "ectoplasmic_extrusion"
-	rank = 1 // of 1
+	rank = 1
 
 //	weapon_type = /obj/item/melee/ectoplasmic_extrusion
 	sheathe_text = "Your ectoplasmic tendrils retract into your body."

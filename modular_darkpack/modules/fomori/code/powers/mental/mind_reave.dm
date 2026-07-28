@@ -15,7 +15,7 @@
 	name = "Mind Reave"
 	desc = "Spend a willpower point to rest thoughts and memories from a victim's mind."
 	button_icon_state = "mind_reave"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 

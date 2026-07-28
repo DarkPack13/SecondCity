@@ -24,7 +24,7 @@
 	name = "Mind Blast"
 	desc = "Spend a willpower point to shock the mind of a victim."
 	button_icon_state = "mind_blast"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 

@@ -13,7 +13,7 @@
 	name = "Infectious Touch"
 	desc = "Spend a willpower point to cause an unnatural sickness to set in to your target's body."
 	button_icon_state = "infectious_touch"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 	willpower_cost = 1
 

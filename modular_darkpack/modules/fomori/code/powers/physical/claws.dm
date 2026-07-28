@@ -15,7 +15,7 @@
 	name = "Claws"
 	desc = "Use the grotesque claws on your hands to slice and dice."
 	button_icon_state = "claws"
-	rank = 1 // of 1
+	rank = 1
 	fomor_part = "none" // So we get caught by code that checks if we have a fomor_part
 
 	var/list/overlay_list = list()

@@ -8,7 +8,7 @@
 	name = "Eyes of the Wyrm"
 	desc = "Spend a willpower point to shock your prey into immobility with the Wyrm's Damnation. You cannot fight for a short time afterwards."
 	button_icon_state = "eyes_of_the_wyrm"
-	rank = 1 // of 1
+	rank = 1
 	click_to_activate = TRUE
 
 /datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm/Activate(atom/target) // TODO: "The fomor itself cannot attack its victim, but its friends can."

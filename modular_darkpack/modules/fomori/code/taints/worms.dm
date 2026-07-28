@@ -9,7 +9,7 @@
 	name = "Worms"
 	desc = "Expel the worms that writhe in your flesh, tearing you apart from the inside."
 	button_icon_state = "worm_puke"
-	rank = 1 // of 1
+	rank = 1
 	cooldown_time = 5 SCENES // 15 minutes
 
 /datum/action/cooldown/power/fomori_power/worms/Grant(mob/granted_to)

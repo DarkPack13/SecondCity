@@ -9,7 +9,7 @@
 	name = "Regeneration"
 	desc = "Recover from your wounds much the same as the bestial Garou do."
 	button_icon_state = "regeneration"
-	rank = 1 // of 1
+	rank = 1
 
 /datum/action/cooldown/power/fomori_power/regeneration/Grant(mob/granted_to)
 	. = ..()

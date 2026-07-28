@@ -2,7 +2,7 @@
 	name = "Chameleon Coloration"
 	desc = "Blend into the background to strike unseen."
 	button_icon_state = "chameleon_coloration"
-	rank = 1 // of 1
+	rank = 1
 
 	var/activated = FALSE
 
