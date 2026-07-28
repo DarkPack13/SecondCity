@@ -56,6 +56,7 @@
 		SSmasquerade.masquerade_reinforce(source, player_breacher)
 		source.observe_masquerade_reinforce(player_breacher)
 		breached_players -= player_breacher
+		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
 		return TRUE
 
@@ -67,6 +68,7 @@
 		SSmasquerade.masquerade_reinforce(source, player_breacher)
 		source.observe_masquerade_reinforce(player_breacher)
 		breached_players -= player_breacher
+		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
 /datum/component/violation_observer/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
@@ -77,6 +79,7 @@
 		SSmasquerade.masquerade_reinforce(parent, dead_breacher)
 		parent_atom.observe_masquerade_reinforce(dead_breacher)
 		breached_players -= dead_breacher
+		UnregisterSignal(dead_breacher, COMSIG_LIVING_DEATH)
 
 /atom/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
