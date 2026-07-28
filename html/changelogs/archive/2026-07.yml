@@ -157,3 +157,6 @@
   - bugfix: Non-water turfs now have the correct scoop-able material
   - qol: If you have more then 5 character profiles in preferences, it displays as
       a dropdown instead.
+2026-07-28:
+  Faengi:
+  - rscadd: Added Monochrome Vision flaw for Garou
