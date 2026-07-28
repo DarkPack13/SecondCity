@@ -38,7 +38,8 @@
 
 
 	if(!living_character) // no storyteller stats on anything thats not mob/living, check prefs
-		var/datum/morality/morality_path = character.client?.prefs.preference_storyteller_stats[STAT_MORALITY].morality_path
+		var/datum/st_stat/morality_path/morality/morality_stat_datum = character.client?.prefs.preference_storyteller_stats[STAT_MORALITY]
+		var/datum/morality/morality_path = morality_stat_datum.morality_path
 		if(!morality_path)
 			return null
 		return morality_path
@@ -46,7 +47,8 @@
 
 	if(!get_vampire_splat(living_character))
 		return
-	var/datum/morality/morality_path = living_character.storyteller_stats[STAT_MORALITY].morality_path
+	var/datum/st_stat/morality_path/morality/morality_stat_datum = living_character.storyteller_stats[STAT_MORALITY]
+	var/datum/morality/morality_path = morality_stat_datum.morality_path
 	if(!morality_path)
 		return null
 
