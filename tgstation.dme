@@ -7142,6 +7142,7 @@
 #include "modular_darkpack\master_files\code\datums\storage\subtypes\dufflebags.dm"
 #include "modular_darkpack\master_files\code\game\atoms_movable.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
+#include "modular_darkpack\master_files\code\game\atom\atom_examine.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
 #include "modular_darkpack\master_files\code\game\objects\objs.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\handcuffs.dm"
