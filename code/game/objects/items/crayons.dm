@@ -698,6 +698,7 @@
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5,  /datum/reagent/colorful_reagent/powder/white/crayon = 1.5)
 	dye_color = DYE_WHITE
 	outline_strength = 1
+	custom_price = 5 // DARKPACK EDIT ADD - Police Store
 
 /obj/item/toy/crayon/mime
 	name = "mime crayon"

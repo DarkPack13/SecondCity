@@ -97,6 +97,7 @@
 	name = "body bags"
 	desc = "The label indicates that it contains body bags."
 	illustration = "bodybags"
+	custom_price = 10 // DARKPACK EDIT ADD - Police Store
 
 /obj/item/storage/box/bodybags/PopulateContents()
 	..()

@@ -32,3 +32,4 @@
 	silent = TRUE
 	pictures_max = 30
 	pictures_left = 30
+	custom_price = 10 // DARKPACK EDIT ADD - Police Store
