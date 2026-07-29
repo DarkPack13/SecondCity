@@ -3032,6 +3032,13 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/cog/caern)
+"aSr" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "aSs" = (
 /obj/structure/lamppost/one{
 	dir = 4
@@ -5400,6 +5407,13 @@
 /obj/structure/platform/lowwall/rich/window,
 /turf/open/floor/plating/rough,
 /area/vtm/interior)
+"bAW" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "bAY" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave{
@@ -18885,6 +18899,14 @@
 /obj/item/folder/blue,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/banu/haven)
+"fyu" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/landmark/start/darkpack/anarch/bruiser,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "fyy" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/wood/smooth/old,
@@ -23748,6 +23770,9 @@
 "gSg" = (
 /obj/structure/chair/stool/bar,
 /mob/living/carbon/human/npc/walkby/club,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
 /turf/open/floor/carpet,
 /area/vtm/interior/anarch)
 "gSh" = (
@@ -36864,6 +36889,12 @@
 	},
 /turf/open/floor/iron/stairs/right,
 /area/vtm/interior/millennium_tower/f2)
+"kRn" = (
+/obj/structure/platform/lowwall/city,
+/obj/structure/table,
+/obj/structure/retail/hardware_store,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "kRo" = (
 /obj/machinery/light/small/directional/east,
 /obj/structure/table/wood,
@@ -41898,7 +41929,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior)
 "mqX" = (
-/obj/structure/chair/sofa/corp/right{
+/obj/structure/chair/sofa/corp/left{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
@@ -43811,6 +43842,13 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/mineral/plastitanium/red,
 /area/vtm/interior/millennium_tower/ventrue)
+"mSt" = (
+/obj/machinery/sprinkler/area_managed,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "mSu" = (
 /obj/structure/rack,
 /obj/item/clothing/glasses/vampire/sun,
@@ -44889,6 +44927,13 @@
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior)
+"nib" = (
+/obj/machinery/sprinkler/area_managed,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "nij" = (
 /obj/structure/vampdoor/old,
 /obj/effect/mapping_helpers/door/access/malkavian,
@@ -51371,6 +51416,9 @@
 /area/vtm/outside/financialdistrict)
 "oZb" = (
 /obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
 /turf/open/floor/carpet,
 /area/vtm/interior/anarch)
 "oZc" = (
@@ -51622,6 +51670,9 @@
 "pcy" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/landmark/start/darkpack/anarch/bruiser,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
 /turf/open/floor/carpet,
 /area/vtm/interior/anarch)
 "pcA" = (
@@ -54295,6 +54346,13 @@
 /obj/effect/decal/cleanable/litter,
 /turf/open/floor/carpet,
 /area/vtm/interior/cog/caern)
+"pMQ" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "pMW" = (
 /obj/structure/chair/wood/wings{
 	dir = 8;
@@ -59146,6 +59204,11 @@
 /obj/structure/barrels/rand,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/ghetto)
+"rgI" = (
+/obj/machinery/light/small/directional/south,
+/mob/living/carbon/human/npc/hardwarestore,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/shop)
 "rgN" = (
 /obj/structure/curtain/cloth/fancy/mechanical{
 	id = 2006
@@ -59647,6 +59710,13 @@
 /mob/living/basic/pet/dog/darkpack/black,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
+"rmI" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "rmJ" = (
 /obj/structure/table,
 /turf/open/floor/plating/concrete,
@@ -61879,6 +61949,13 @@
 /obj/item/shovel/vamp,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/graveyard)
+"rTW" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "rTZ" = (
 /obj/effect/turf_decal/bordur{
 	dir = 4
@@ -69907,7 +69984,7 @@
 /area/vtm/outside/fishermanswharf/lower)
 "uqI" = (
 /obj/machinery/light/directional/south,
-/obj/structure/chair/sofa/corp{
+/obj/structure/chair/sofa/corp/right{
 	dir = 1
 	},
 /turf/open/floor/wood/smooth/old,
@@ -70472,6 +70549,14 @@
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/wood/old,
 /area/vtm)
+"uzo" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/landmark/start/darkpack/anarch/bruiser,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "uzp" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -75776,6 +75861,10 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/anarch/basement)
+"wbR" = (
+/obj/structure/platform/lowwall/rich/old/window,
+/turf/open/floor/carpet/darkpack/redsilver,
+/area/vtm/interior/chantry)
 "wbT" = (
 /obj/structure/table,
 /turf/open/floor/city/toilet,
@@ -76732,6 +76821,13 @@
 	},
 /turf/open/floor/carpet,
 /area/vtm/outside/pacificheights/forest)
+"wrt" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/vtm/interior/anarch)
 "wrw" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -165726,8 +165822,8 @@ oRi
 jAr
 wsX
 oZb
-bGN
-bGN
+rTW
+rmI
 mNA
 fkk
 nXI
@@ -165985,7 +166081,7 @@ pcy
 jFZ
 bGN
 qLB
-pKp
+nib
 fkk
 dbW
 pJU
@@ -166238,7 +166334,7 @@ rza
 rza
 nzB
 pMC
-oZb
+aSr
 bGN
 qLB
 qLB
@@ -166495,7 +166591,7 @@ wsX
 wsX
 iZB
 pMC
-oZb
+aSr
 bGN
 qLB
 qLB
@@ -166741,7 +166837,7 @@ kGg
 xnx
 rvo
 bnD
-tKo
+pho
 kGg
 nts
 wsX
@@ -166998,7 +167094,7 @@ kGg
 dLq
 rvo
 tbF
-pho
+tKo
 kGg
 ofk
 wsX
@@ -167009,7 +167105,7 @@ xaQ
 wsX
 iZB
 pMC
-pcy
+fyu
 uXV
 qLB
 qLB
@@ -167266,7 +167362,7 @@ wsX
 wsX
 iZB
 pMC
-oZb
+aSr
 xNY
 qLB
 qLB
@@ -167780,7 +167876,7 @@ vRT
 vRT
 iFM
 pMC
-oZb
+aSr
 pDs
 qLB
 qLB
@@ -168037,11 +168133,11 @@ pMC
 pMC
 pMC
 pMC
-pcy
+uzo
 jFZ
 bGN
 qLB
-pKp
+mSt
 fkk
 vFQ
 agH
@@ -168295,9 +168391,9 @@ pMC
 oTi
 pMC
 kfO
-oZb
-bGN
-bGN
+pMQ
+wrt
+bAW
 mNA
 fkk
 vdV
@@ -196352,7 +196448,7 @@ xtG
 jfg
 fEW
 cHq
-jHi
+wbR
 sxJ
 sxJ
 sxJ
@@ -201047,7 +201143,7 @@ ewI
 ewI
 xVH
 xVH
-xVH
+kRn
 fDZ
 jTk
 rtY
@@ -201304,7 +201400,7 @@ ewI
 ewI
 nYr
 fCk
-oaO
+rgI
 fDZ
 jTk
 rtY
