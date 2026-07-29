@@ -7152,6 +7152,7 @@
 #include "modular_darkpack\master_files\code\game\objects\items\devices\radio\radio.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\food\snacks.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\backpack.dm"
+#include "modular_darkpack\master_files\code\game\objects\items\storage\boxes\medical_boxes.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\bags.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\boxes\security_boxes.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\dufflebag.dm"
