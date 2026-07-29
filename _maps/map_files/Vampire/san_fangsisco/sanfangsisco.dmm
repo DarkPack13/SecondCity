@@ -54570,7 +54570,6 @@
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/interior/strip)
 "pQq" = (
-/obj/fusebox,
 /obj/structure/mannequin/plastic,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/giovanni)
