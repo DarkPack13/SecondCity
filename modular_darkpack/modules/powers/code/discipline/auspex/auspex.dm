@@ -425,7 +425,7 @@
 	. = ..()
 	if(!projection_roll)
 		projection_roll = new()
-	switch(projection_roll)
+	switch(projection_roll.st_roll(owner, owner))
 		if(ROLL_SUCCESS)
 			playing_with_fire = owner.enter_avatar()
 			addtimer(CALLBACK(src, PROC_REF(exhaust_timer)), PROJECTION_TIMER_LENGTH)
