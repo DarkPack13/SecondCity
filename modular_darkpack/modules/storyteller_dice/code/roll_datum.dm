@@ -39,11 +39,12 @@
 
  * * roller - the mob who is making the role and owns the dice
  * * target - who this dice is being rolled against, can be the roller, determines if its considered "important" to the mob to display.
- * * dice - bonus dice that are added to the roll.
+ * * bonus_added - bonus dice that are added to the roll.
+ * * using_item - optional arg for an item employed for the roll.
  *
  * Returns: The success of the roll, either a define or the raw amount of successes if `numerical = TRUE`
  */
-/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus_added = 0)
+/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus_added = 0, atom/using_item)
 	if(reroll_cooldown && roll_use_last_result)
 		var/list/old_roll = get_old_roll(roller)
 		if(old_roll)
@@ -52,17 +53,18 @@
 	if(!can_roll(roller))
 		return ROLL_COOLDOWN
 
-	var/bonus = using_bonus(roller, target, bonus_added)
+	var/bonus_amount = using_bonus(roller, target, bonus_added)
 	var/dice_amount = using_dice(roller, target)
-	var/auto_success_amount = calculate_auto_successes(roller)
-	var/used_difficulty = calculate_used_difficulty(roller)
+	var/auto_success_amount = using_auto_successes(roller)
+	var/difficulty_amount = using_difficulty(roller)
 
-	bonus += SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target)
-	dice_amount += bonus
+	SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target, using_item, &bonus_amount, &difficulty_amount)
+
+	dice_amount += bonus_amount
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
-	var/success_amount = count_success(rolled_dice, used_difficulty)
+	var/success_amount = count_success(rolled_dice, difficulty_amount)
 	var/output = roll_result(success_amount)
 
 	for(var/mob/player_mob in get_mobs_to_show(roller, target))
@@ -71,7 +73,7 @@
 			roll_important_to_me = TRUE
 
 		if(!spammy_roll)
-			var/message = build_output_message(roller, player_mob, dice_amount, auto_success_amount, used_difficulty, success_amount, rolled_dice, hide_result)
+			var/message = build_output_message(roller, player_mob, dice_amount, bonus_amount, auto_success_amount, difficulty_amount, success_amount, rolled_dice, hide_result)
 			to_chat(player_mob, message, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		else
@@ -84,15 +86,16 @@
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
-	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, output)
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, using_item, output)
 	return output
 
 /datum/storyteller_roll/proc/build_output_message(
 	mob/living/roller,
 	mob/displayed_to,
 	dice_amount,
+	bonus_amount,
 	auto_success_amount,
-	used_difficulty,
+	difficulty_amount,
 	success_amount,
 	list/rolled_dice,
 	hide_result
@@ -101,10 +104,10 @@
 	var/dice_used_text = "[dice_amount] dice"
 	if(auto_success_amount)
 		dice_used_text += " + [auto_success_amount] auto successes"
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), dice_used_text)][hide_result ? "" : " vs. difficulty [used_difficulty]"]."
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus_amount), dice_used_text)][hide_result ? "" : " vs. difficulty [difficulty_amount]"]."
 	output_text += span_notice(first_line)
 
-	output_text += get_dice_display(rolled_dice, used_difficulty, success_amount, hide_result)
+	output_text += get_dice_display(rolled_dice, difficulty_amount, success_amount, hide_result)
 
 	var/title
 	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN) && (displayed_to.client in GLOB.admins))
@@ -157,7 +160,7 @@
 		dice_amount += roller.st_get_stat(stat_type, include_auto_successes = FALSE)
 	return dice_amount
 
-/datum/storyteller_roll/proc/calculate_auto_successes(mob/living/roller)
+/datum/storyteller_roll/proc/using_auto_successes(mob/living/roller)
 	var/dice_amount = 0
 	for(var/stat_type in using_stats(roller))
 		var/datum/st_stat/given_stat = roller?.storyteller_stats[stat_type]
@@ -181,17 +184,17 @@
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
 
-/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller, atom/target)
+/datum/storyteller_roll/proc/using_difficulty(mob/living/roller, atom/target)
 	return difficulty
 
-/datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
+/datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus_amount = 0)
 	var/output = ""
 	var/stuff = list()
 	for(var/datum/st_stat/stat_type as anything in using_stats(roller))
 		stuff += "[LOWER_TEXT(stat_type::name)]:[roller.st_get_stat(stat_type)]"
 	output += jointext(stuff, "+")
-	if(bonus)
-		output += "+[bonus]"
+	if(bonus_amount)
+		output += "+[bonus_amount]"
 	return "Rolling [output]"
 
 /datum/storyteller_roll/proc/roll_dice(dice, auto_successes, sides = 10)

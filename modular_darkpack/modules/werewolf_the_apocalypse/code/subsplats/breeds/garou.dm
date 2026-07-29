@@ -30,6 +30,7 @@
 /datum/subsplat/werewolf/breed_form/garou/lupus
 	name = BREED_LUPUS
 	gifts_provided = list(
+		/datum/action/cooldown/power/gift/apecrafts_blessings,
 		/datum/action/cooldown/power/gift/hares_leap,
 	)
 	start_gnosis = 5

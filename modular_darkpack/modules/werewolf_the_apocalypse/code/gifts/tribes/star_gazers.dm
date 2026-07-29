@@ -45,10 +45,10 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED, PROC_REF(on_dice_rolled))
 	return ..()
 
-/datum/status_effect/channeling/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
+/datum/status_effect/channeling/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, atom/using_item, bonus, difficulty)
 	SIGNAL_HANDLER
 
-	. += value
+	*bonus += value
 
 	qdel(src)
 

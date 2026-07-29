@@ -63,7 +63,7 @@
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/desperate_strength_activate.ogg', 75, FALSE)
 	return TRUE
 
-/datum/status_effect/desperate_strength/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
+/datum/status_effect/desperate_strength/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, atom/using_item, output)
 	SIGNAL_HANDLER
 
 	if(STAT_STRENGTH in roll_datum.using_stats(roller))

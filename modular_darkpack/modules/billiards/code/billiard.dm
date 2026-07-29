@@ -144,7 +144,7 @@
 		playsound(src, 'modular_darkpack/modules/billiards/sounds/poolball_strike.ogg', 75)
 
 		var/datum/storyteller_roll/pool_aiming/accuracy_roll = new()
-		var/accuracy_result = accuracy_roll.st_roll(user, src)
+		var/accuracy_result = accuracy_roll.st_roll(user, src, using_item = tool)
 		var/datum/storyteller_roll/pool_hits/amount_to_hit_roll = new()
 		var/amount_to_hit_result = amount_to_hit_roll.st_roll(user, src)
 		var/list/balls_sunk = list()
