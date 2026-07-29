@@ -6,7 +6,6 @@
 	handles_spend_resources = TRUE
 
 /datum/action/cooldown/power/gift/channeling/Activate(atom/target)
-	. = ..()
 	var/mob/living/caster = astype(owner)
 	if(!caster)
 		return
@@ -20,6 +19,8 @@
 	var/pick = show_radial_menu(owner, owner, radial_menu_options)
 	if(!pick)
 		return
+
+	. = ..()
 
 	rage_cost = word_to_int(pick)
 

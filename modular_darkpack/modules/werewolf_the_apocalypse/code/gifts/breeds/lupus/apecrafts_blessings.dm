@@ -26,6 +26,7 @@
 	if(roll_result >= 1)
 		living_owner.apply_status_effect(/datum/status_effect/apecrafts_blessings, roll_result)
 
+
 /datum/storyteller_roll/gift/apecrafts_blessings
 	bumper_text = /datum/action/cooldown/power/gift/apecrafts_blessings::name
 	applicable_stats = list(STAT_WITS, STAT_CRAFTS)
