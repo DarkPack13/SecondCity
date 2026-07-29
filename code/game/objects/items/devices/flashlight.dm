@@ -406,7 +406,6 @@
 	hitsound = 'sound/items/weapons/genhit1.ogg'
 	has_closed_handle = FALSE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25)
-	custom_price = 10 // DARKPACK EDIT ADD - Police Store
 
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp
