@@ -37,12 +37,11 @@ SUBSYSTEM_DEF(humannpcpool)
 
 		if (QDELETED(NPC))
 			GLOB.npc_list -= NPC
-			stack_trace("Found a null in npc_list [NPC.type]!")
-			continue
+		else
+			NPC.handle_automated_movement()
 
 		if (MC_TICK_CHECK)
 			return
-		NPC.handle_automated_movement()
 
 /datum/controller/subsystem/humannpcpool/proc/try_repopulate()
 	if (!length(GLOB.npc_spawn_points))
