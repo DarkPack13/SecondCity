@@ -10,11 +10,10 @@
  * TODO: less placeholder sound
 */
 
-/datum/storyteller_roll/visage_of_fenris
+/datum/storyteller_roll/gift/visage_of_fenris
 	bumper_text = "Visage of Fenris"
 	applicable_stats = list(STAT_CHARISMA, STAT_INTIMIDATION)
 	numerical = TRUE
-	roll_output_type = ROLL_PUBLIC
 
 /datum/movespeed_modifier/visage_of_fenris
 	multiplicative_slowdown = 0.75
@@ -31,7 +30,7 @@
 	. = ..()
 	var/datum/splat/werewolf/our_splat = get_werewolf_splat(owner)
 
-	var/datum/storyteller_roll/visage_of_fenris/roll_datum = new()
+	var/datum/storyteller_roll/gift/visage_of_fenris/roll_datum = new()
 	var/successes = roll_datum.st_roll(owner)
 
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
@@ -39,7 +38,7 @@
 
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/visage_of_fenris.ogg', 75, FALSE)
 
-	for(var/mob/living/guy in viewers(world.view, owner))
+	for(var/mob/living/guy in viewers(DEFAULT_SIGHT_DISTANCE, owner))
 		if(guy == owner)
 			continue
 

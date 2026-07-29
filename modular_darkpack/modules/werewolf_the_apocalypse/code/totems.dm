@@ -105,7 +105,7 @@
 			continue
 		if(human.stat == DEAD)
 			continue
-		if(!(shifter_splat.tribe.name in tribes))
+		if(!is_friend_of_totem(human))
 			continue
 
 		if(damage_change < 0)
@@ -122,6 +122,18 @@
 			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
+/// Returns true or false wether or not the totems benificial affects will target this mob
+/obj/structure/werewolf_totem/proc/is_friend_of_totem(mob/living/potential_friend)
+	var/datum/splat/werewolf/friends_splat = get_werewolf_splat(potential_friend)
+	if(!friends_splat) // RN the only totem effect relys on a werewolf splat
+		return FALSE
+	if(!friends_splat.tribe) // Dont fuck over tribeless fera. Prob need a better way to determine freinds tho
+		return TRUE
+	if(!(friends_splat.tribe.name in tribes))
+		return FALSE
+
+	return TRUE
+
 /obj/structure/werewolf_totem/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(user.combat_mode)
@@ -135,7 +147,7 @@
 			return
 		var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
 		if(!prev)
-			if(shifter_splat.auspice.name == AUSPICE_THEURGE)
+			if(shifter_splat.auspice?.name == AUSPICE_THEURGE)
 				if(!opening)
 					opening = TRUE
 					if(do_after(user, 10 SECONDS, src))
@@ -144,7 +156,7 @@
 			else
 				to_chat(user, span_warning("You need a Theurge to open the Moon Gates!"))
 		else
-			if(shifter_splat.auspice.name == AUSPICE_THEURGE)
+			if(shifter_splat.auspice?.name == AUSPICE_THEURGE)
 				collapse_portal(prev)
 
 /obj/structure/werewolf_totem/proc/spawn_portal()

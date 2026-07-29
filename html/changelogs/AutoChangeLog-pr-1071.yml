@@ -1,4 +1,0 @@
-author: "Biplume"
-delete-after: True
-changes:
-  - bugfix: "Certain merits and flaws are now mutually exclusive; e.g. you can no longer be banned from Thaumaturgy and also banned from everything except Thaumaturgy"

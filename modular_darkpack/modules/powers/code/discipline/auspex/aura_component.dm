@@ -65,6 +65,9 @@
 /datum/component/aura/proc/update_emotions(mob/changed_mob, new_emotion)
 	SIGNAL_HANDLER
 
+	if(HAS_TRAIT(changed_mob, TRAIT_AURA_OF_CONFIDENCE))
+		new_emotion = "Confidence"
+
 	if(current_aura == new_emotion)
 		return
 
@@ -93,6 +96,10 @@
 
 /datum/component/aura/proc/update_examine_message(mutable_appearance/aura_appearance)
 	var/mob/parent_mob = parent
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		examine_message = "[parent_mob.p_Their()] aura is swamped in so much superiority nothing else can be made out."
+		return
 
 	switch(current_aura)
 		if(AURA_AFRAID)
@@ -153,7 +160,7 @@
 	if(examine_message && quality)
 		examine_message += " You sense [quality]."
 	examine_message += "\n \n" // makes the below stand out more
-	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
+	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE) && !HAS_TRAIT(parent_mob, TRAIT_HIDDEN_DIABLERIE))
 		examine_message += "Black veins pulse through [parent_mob.p_their()] aura."
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		examine_message += "[parent_mob.p_Their()] aura appears especially energetic."
@@ -178,14 +185,10 @@
 		aura_smoke = new /obj/effect/abstract/shared_particle_holder(null, /particles/smoke/aura)
 		aura_smoke.blend_mode = 2
 		aura_smoke.add_filter("particle_blur", 1, gauss_blur_filter(8))
-	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
-	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
-	if(get_kindred_splat(parent_mob))
-		var/mob/living/carbon/human/lick = parent_mob
-		var/datum/st_stat/morality_path/morality/stat_morality = lick?.storyteller_stats[STAT_MORALITY]
-		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(parent_mob, TRAIT_BLUSH_OF_HEALTH))
-			aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
-	if(parent_mob.stat == DEAD)
+	var/mutable_appearance/aura_appearance
+	if(parent_mob.heart_is_beating())
+		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+	else
 		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
 	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
@@ -214,6 +217,9 @@
 	holder.color = null
 
 	var/mob/parent_mob = parent
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
 	if(output_color && has_pale_aura(parent_mob))
 		var/list/hsv_color_value = rgb2hsv(output_color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
@@ -273,7 +279,21 @@
 	aura_smoke_image.color = aura_appearance.color
 	aura_smoke_image.alpha = 50
 
-	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
+	var/matrix/smoke_transform = matrix()
+	smoke_transform.Scale(1, pick(1.25, 1.5))
+	aura_smoke_image.transform = smoke_transform
+
+	var/matrix/classic_aura_transform = matrix()
+	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
+	aura_classic_image.transform = classic_aura_transform
+
+	holder.vis_contents += aura_classic_image
+	holder.vis_contents += aura_smoke_image
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
+	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE) && !HAS_TRAIT(parent_mob, TRAIT_HIDDEN_DIABLERIE))
 		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "diab", ABOVE_MOB_LAYER + 1, parent_mob, ABOVE_GAME_PLANE)
 		holder.add_overlay(diablerie_image)
 		aura_classic_image.color = "#1717178b"
@@ -300,17 +320,6 @@
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		holder.opacity = holder.opacity * 0.5
 
-	var/matrix/smoke_transform = matrix()
-	smoke_transform.Scale(1, pick(1.25, 1.5))
-	aura_smoke_image.transform = smoke_transform
-
-	var/matrix/classic_aura_transform = matrix()
-	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
-	aura_classic_image.transform = classic_aura_transform
-
-	holder.vis_contents += aura_classic_image
-	holder.vis_contents += aura_smoke_image
-
 
 /datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
 	remove_wibbly_filters(holder)
@@ -331,3 +340,26 @@
 /datum/component/aura/proc/has_pale_blotches(mob/parent_mob)
 	if(!HAS_TRAIT(parent_mob, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
 		return TRUE
+
+
+/mob/proc/heart_is_beating()
+	return FALSE
+
+/mob/living/heart_is_beating()
+	if(stat == DEAD)
+		return FALSE
+
+	return TRUE
+
+/mob/living/carbon/human/heart_is_beating()
+	var/obj/item/organ/heart/beating_heart = get_organ_slot(ORGAN_SLOT_HEART)
+	if(!istype(beating_heart) || !(beating_heart.is_beating()))
+		return FALSE
+
+	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
+	if(get_kindred_splat(src))
+		var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
+		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(src, TRAIT_BLUSH_OF_HEALTH))
+			return FALSE
+
+	return TRUE

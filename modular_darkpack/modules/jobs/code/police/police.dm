@@ -9,7 +9,6 @@
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE
 	exp_required_type_department = EXP_TYPE_POLICE
-	department_for_prefs = /datum/job_department/police
 	departments_list = list(
 		/datum/job_department/police,
 	)
@@ -24,7 +23,7 @@
 	splat_slots = list(SPLAT_GHOUL = 2, SPLAT_KINFOLK = 2)
 
 	description = "Enforce the Law."
-	minimal_masquerade = 0
+	minimum_masquerade = 0
 
 	known_contacts = list("Police Captain")
 
@@ -40,7 +39,7 @@
 	id = /obj/item/card/police
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/police
-	backpack_contents = list(/obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c9mm = 1, /obj/item/restraints/handcuffs = 1, /obj/item/melee/baton/vamp = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
+	backpack_contents = list(/obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c9mm = 1, /obj/item/storage/medkit/darkpack/ifak = 1)
 
 /datum/outfit/job/vampire/police_officer/post_equip(mob/living/carbon/human/H)
 	..()

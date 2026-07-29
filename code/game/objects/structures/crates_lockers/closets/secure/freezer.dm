@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/master_files/icons/obj/storage/closet32x32.dmi' // DARKPACK EDIT ADD
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	// DARKPACK EDIT CHANGE START
+	base_icon_state = "freezer"
 	door_anim_time = 0
 	enable_door_overlay = FALSE
 	has_opened_overlay = FALSE
@@ -23,7 +24,7 @@
 // DARKPACK EDIT ADD START - handles fridge open/close states since parent type handles it alot differently
 /obj/structure/closet/secure_closet/freezer/update_icon_state()
 	. = ..()
-	icon_state = opened ? "freezeropen" : "freezer"
+	icon_state = opened ? "[base_icon_state]open" : "[base_icon_state]"
 // DARKPACK EDIT ADD END
 
 /obj/structure/closet/secure_closet/freezer/process_internal_air(seconds_per_tick)
@@ -67,6 +68,7 @@
 		new /obj/item/reagent_containers/condiment/flour(src)
 	new /obj/item/reagent_containers/condiment/rice(src)
 	new /obj/item/reagent_containers/condiment/sugar(src)
+	new /obj/effect/spawner/holiday/powdered_ingredient(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/all_access
 	req_access = null
@@ -83,6 +85,7 @@
 		new /obj/item/reagent_containers/condiment/soymilk(src)
 	for(var/i in 1 to 2)
 		new /obj/item/storage/fancy/egg_box(src)
+	new /obj/effect/spawner/holiday/liquid_ingredient(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = null
@@ -91,10 +94,16 @@
 	name = "meat fridge"
 	req_access = list(ACCESS_KITCHEN)
 
+/obj/structure/closet/secure_closet/freezer/meat/update_name()
+	name = check_holidays(VEGAN_DAY) ? "vegan fridge" : "meat fridge"
+	return ..()
+
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
 	..()
-	for(var/i in 1 to 4)
-		new /obj/item/food/meat/slab/monkey(src)
+	if(!check_holidays(VEGAN_DAY))
+		for(var/i in 1 to 4)
+			new /obj/item/food/meat/slab/monkey(src)
+	new /obj/effect/spawner/holiday/meat_ingredient(src) //this contains holiday specials (and vegan day stuff)
 
 /obj/structure/closet/secure_closet/freezer/meat/open
 	locked = FALSE
@@ -122,6 +131,7 @@
 		new /obj/item/reagent_containers/condiment/soymilk(src)
 	for(var/i in 1 to 2)
 		new /obj/item/storage/fancy/egg_box(src)
+	new /obj/effect/spawner/holiday/liquid_ingredient(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/all_access
 	req_access = null

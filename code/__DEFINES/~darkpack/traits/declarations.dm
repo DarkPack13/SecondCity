@@ -8,12 +8,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 // CITY_TRAITS
-#define STATION_TRAIT_RED_STAR "station_trait_red_star"
-#define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
+#define STATION_TRAIT_BLACKOUT "station_trait_blackout"
+#define STATION_TRAIT_COSPLAY_CONVENTION "station_trait_cosplay_convention"
 #define STATION_TRAIT_INFESTATION "station_trait_infestation"
 #define STATION_TRAIT_PEST_CONTROL "station_trait_pest_control"
+#define STATION_TRAIT_RED_STAR "station_trait_red_star"
 #define STATION_TRAIT_STRAY_MIGRATION "station_trait_stray_migration"
-#define STATION_TRAIT_COSPLAY_CONVENTION "station_trait_cosplay_convention"
+#define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
 
 // Mob traits
 
@@ -45,7 +46,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PALE_AURA "pale_aura"
 #define TRAIT_DECEPTIVE_AURA "deceptive_aura"
 #define TRAIT_FRENETIC_AURA "frenetic_aura"
+#define TRAIT_HIDDEN_DIABLERIE "hidden_diablerie"
 
+#define TRAIT_HIDDEN_WYRMTAINT "hidden_wyrmtaint"
 #define TRAIT_BLUSH_OF_HEALTH "blush_of_health"
 /// The mob will automatically breach the Masquerade when seen by others, with no exceptions
 #define TRAIT_UNMASQUERADE "unmasquerade"
@@ -100,6 +103,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 // Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
 #define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
+#define TRAIT_SCARRING_RESISTANT "scarring_resistant"// Temporal scars wont save
+/// Stepping on glass shards immunity. Currently used for a couple Garou forms but could be used elsewhere.
+#define TRAIT_HARDENED_SOLES "hardened_soles"
 
 
 // Allows the user to pass through doors
@@ -128,12 +134,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FERA_FORMS "fera_forms"
 // If the splat uses the WTA renown system described in W20 p. 245
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
-/// If the species has garou breeds to select.
-#define TRAIT_WTA_GAROU_BREED "wta_garou_breeds"
-// if the species has garou tribes to select.
-#define TRAIT_WTA_GAROU_TRIBE "wta_garou_tribes"
-// If the species has garou auspices to select.
-#define TRAIT_WTA_GAROU_AUSPICE "wta_garou_auspice"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
 /// If the fera is wyrm tainted.
@@ -144,12 +144,24 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+// Fera both grants a flight ability, and has the sprites to support such a thing. (Presently only designed to supprot feral form.)
+#define TRAIT_FERA_FLIGHT "fera_flight"
+#define TRAIT_SILVER_WEAKNESS "silver_weakness"
+#define TRAIT_GOLD_WEAKNESS "gold_weakness"
+// Delirium is effectivly two levels weaker
+#define TRAIT_WEAK_DELIRIUM "weak_delirium"
+// Massivly boosts the range of your howl emote.
+#define TRAIT_LOUD_WARCRY "loud_warcry"
 /// Prevents the mob from picking up items larger then small
 #define TRAIT_SMALL_HANDS "small_hands"
 // Traits granted via gifts
-// Massivly boosts the range of your howl emote.
-#define TRAIT_LOUD_HOWLER "loud_howler"
 #define TRAIT_RAZOR_CLAWS "razor_claws"
+#define TRAIT_JAMMING_WEAPONS "jamming_weapons"
+#define TRAIT_NATURAL "natural"
+#define TRAIT_AURA_OF_CONFIDENCE "aura_of_confidence"
+
+/// Mob has had atleast one tooth yanked out while having no method of regenerating it.
+#define TRAIT_TOOTH_PULLED "tooth_pulled"
 
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
@@ -181,6 +193,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_CALM_HEART "calm_heart"
-
+#define TRAIT_ACUTE_HEARING "acute_hearing"
+#define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
+#define TRAIT_GRAVE_SMELL "grave_smell"
+#define TRAIT_GLOWING_EYES "glowing_eyes"
+#define TRAIT_PROMETHEAN_CLAY "promethean_clay"
 
 // END TRAIT DEFINES

@@ -34,6 +34,11 @@
 	. = ..()
 	QDEL_NULL(silence_field)
 
+
+/datum/storyteller_roll/scorpions_touch
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	numerical = TRUE
+
 //SCORPIONS TOUCH
 /datum/discipline_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
@@ -49,7 +54,7 @@
 
 /datum/discipline_power/quietus/scorpions_touch/pre_activation_checks(atom/target)
 	. = ..()
-	var/success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = 6, roller = owner, numerical = TRUE)
+	var/success_count = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/scorpions_touch)
 
 	if(success_count <= 0)
 		to_chat(owner, span_warning("Your blood fails to transform into poison!"))
@@ -188,13 +193,10 @@
 	strike_victim(victim)
 
 /datum/discipline_power/quietus/dagons_call/proc/strike_victim(mob/living/carbon/human/victim)
-	var/attacker_stamina = owner.st_get_stat(STAT_STAMINA)
-	var/victim_stamina = victim.st_get_stat(STAT_STAMINA)
 	var/victim_willpower = victim.st_get_stat(STAT_PERMANENT_WILLPOWER)
 
-	var/attacker_successes = SSroll.storyteller_roll(attacker_stamina, victim_willpower, numerical = TRUE, roller = owner)
-
-	var/victim_successes = SSroll.storyteller_roll(victim_stamina, victim_willpower, numerical = TRUE, roller = victim)
+	var/attacker_successes = SSroll.storyteller_roll_datum(owner, victim, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
+	var/victim_successes = SSroll.storyteller_roll_datum(victim, owner, difficulty = victim_willpower, applic_stats = list(STAT_STAMINA), numerical = TRUE)
 
 	var/net_successes = attacker_successes - victim_successes
 
@@ -316,13 +318,17 @@
 			target.adjust_blood_points(-transfered)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.remove_overlay(MUTATIONS_LAYER)
-		var/mutable_appearance/quietus_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "quietus", -MUTATIONS_LAYER)
-		H.overlays_standing[MUTATIONS_LAYER] = quietus_overlay
-		H.apply_overlay(MUTATIONS_LAYER)
+		H.remove_overlay(POWERS_LAYER)
+		var/mutable_appearance/quietus_overlay = mutable_appearance('modular_darkpack/modules/deprecated/icons/icons.dmi', "quietus", -POWERS_LAYER)
+		H.overlays_standing[POWERS_LAYER] = quietus_overlay
+		H.apply_overlay(POWERS_LAYER)
 		spawn(5*level_casting)
-			H.remove_overlay(MUTATIONS_LAYER)
+			H.remove_overlay(POWERS_LAYER)
 */
+
+
+/datum/storyteller_roll/taste_of_death
+	applicable_stats = list(STAT_STAMINA, STAT_ATHLETICS)
 
 /datum/discipline_power/quietus/taste_of_death
 	name = "Taste of Death"
@@ -341,7 +347,7 @@
 
 /datum/discipline_power/quietus/taste_of_death/pre_activation_checks(atom/target)
 	. = ..()
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_STAMINA) + owner.st_get_stat(STAT_ATHLETICS), 6, owner, numerical = FALSE)
+	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/taste_of_death)
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	else

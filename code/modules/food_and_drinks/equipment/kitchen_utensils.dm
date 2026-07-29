@@ -22,6 +22,7 @@
 
 /obj/item/kitchen/fork
 	name = "fork"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Pointy."
 	icon_state = "fork"
 	icon_angle = -90
@@ -30,7 +31,7 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.8)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT)
 	obj_flags = CONDUCTS_ELECTRICITY
 	attack_verb_continuous = list("attacks", "stabs", "pokes")
 	attack_verb_simple = list("attack", "stab", "poke")
@@ -51,7 +52,7 @@
 	. = ..()
 	AddElement(/datum/element/eyestab)
 
-/obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
+/obj/item/kitchen/fork/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	return BRUTELOSS
@@ -79,7 +80,7 @@
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
-	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.8)
+	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT)
 	custom_price = PAYCHECK_LOWER * 1
 	pickup_sound = null
 	drop_sound = null
@@ -90,6 +91,7 @@
 
 /obj/item/knife/kitchen
 	name = "kitchen knife"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "A general purpose Chef's Knife made by Cookoff Incorporated. Guaranteed to stay sharp for years to come." // DARKPACK EDIT CHANGE
 
 /obj/item/knife/plastic
@@ -190,13 +192,14 @@
 	custom_price = PAYCHECK_CREW * 2
 	exposed_wound_bonus = 14
 
-/obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
+/obj/item/kitchen/rollingpin/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 /* Trays  moved to /obj/item/storage/bag */
 
 /obj/item/kitchen/spoon
 	name = "spoon"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/service/kitchen/kitchen.dmi') // DARKPACK EDIT ADD
 	desc = "Just be careful your food doesn't melt the spoon first."
 	icon_state = "spoon"
 	base_icon_state = "spoon"
@@ -245,6 +248,10 @@
 
 /obj/item/kitchen/spoon/update_overlays()
 	. = ..()
+	// DARKPACK EDIT ADD START - WORLD_ICON
+	if(item_flags & ACTIVE_WORLD_ICON) // World icons have nothing but the base state atm
+		return
+	// DARKPACK EDIT ADD END
 	if(reagents.total_volume <= 0)
 		return
 	var/mutable_appearance/filled_overlay = mutable_appearance(icon, "[base_icon_state]_filled")
@@ -366,6 +373,7 @@
 	icon_angle = -45
 	attack_verb_continuous = list("pinches", "tongs", "nips")
 	attack_verb_simple = list("pinch", "tong", "nip")
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2)
 	/// What are we holding in our tongs?
 	var/obj/item/tonged
 	/// Sound to play when we click our tongs together
