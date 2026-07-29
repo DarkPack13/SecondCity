@@ -289,7 +289,6 @@
 /obj/item/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
-	custom_price = 10 // DARKPACK EDIT ADD - Police Store
 
 /obj/item/storage/box/evidence/PopulateContents()
 	for(var/i in 1 to 6)
