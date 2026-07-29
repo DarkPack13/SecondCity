@@ -14443,6 +14443,13 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"eji" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/bookcase/random/kindred,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/millennium_tower/f2)
 "ejm" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
@@ -39657,6 +39664,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/asphalt,
 /area/vtm/interior/police)
+"lGV" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/millennium_tower/f4)
 "lGY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -45505,12 +45516,6 @@
 /obj/item/knife/kitchen,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/clinic)
-"nsf" = (
-/obj/machinery/shuttle_scrambler{
-	desc = "Some sort of jury-rigged telnet system; it looks like it's harvesting someone's data illegally."
-	},
-/turf/open/floor/carpet/darkpack/old,
-/area/vtm/interior/techshop)
 "nsp" = (
 /mob/living/basic/pet/dog/wolf/kinfolk/black,
 /turf/open/misc/dirt,
@@ -49055,6 +49060,12 @@
 /obj/structure/chair/comfy/brown{
 	color = "#50C878";
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /turf/open/floor/carpet/lone,
 /area/vtm/interior/chantry)
@@ -54214,6 +54225,12 @@
 	color = "#50C878";
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
 /turf/open/floor/carpet/lone,
 /area/vtm/interior/chantry)
 "pMg" = (
@@ -58265,15 +58282,6 @@
 	},
 /turf/open/floor/wood/ornate,
 /area/vtm/interior/millennium_tower/f4)
-"qTz" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm)
 "qTD" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -71424,6 +71432,10 @@
 /obj/item/paper{
 	pixel_y = 8
 	},
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/carpet/lone,
 /area/vtm/interior/chantry)
 "uNJ" = (
@@ -79845,15 +79857,6 @@
 /obj/effect/landmark/npcwall,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/supply)
-"xnM" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/interior/library)
 "xnR" = (
 /mob/living/basic/pet/dog/darkpack/red,
 /turf/open/floor/plating/sidewalk,
@@ -238469,7 +238472,7 @@ kno
 ruG
 ruG
 ruG
-ixd
+pnE
 ntq
 ntq
 ntq
@@ -238726,7 +238729,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -238983,7 +238986,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -239240,7 +239243,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -239497,7 +239500,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -239754,7 +239757,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -240011,7 +240014,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -241829,7 +241832,7 @@ ruG
 ruG
 ruG
 ruG
-ixd
+pnE
 ntq
 ntq
 ntq
@@ -242086,7 +242089,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -242343,7 +242346,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -242600,7 +242603,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -242857,7 +242860,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -243114,7 +243117,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -243371,7 +243374,7 @@ hRA
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -243628,7 +243631,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -243885,7 +243888,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -244142,7 +244145,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -244399,7 +244402,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -244656,7 +244659,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -244913,7 +244916,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -245170,7 +245173,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -245427,7 +245430,7 @@ exm
 hIT
 hIT
 pEQ
-cEq
+foR
 ntq
 ntq
 ntq
@@ -245684,7 +245687,7 @@ iTZ
 iTZ
 hIT
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -245941,7 +245944,7 @@ iTZ
 iTZ
 hIT
 pEQ
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246168,7 +246171,7 @@ ruG
 ruG
 ruG
 ruG
-ixd
+pnE
 ntq
 ntq
 ntq
@@ -246179,7 +246182,7 @@ ruG
 ruG
 ruG
 ruG
-ixd
+pnE
 ntq
 ntq
 ntq
@@ -246198,7 +246201,7 @@ iTZ
 wKD
 hIT
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246425,7 +246428,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246436,7 +246439,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246455,7 +246458,7 @@ hIT
 hIT
 hIT
 wol
-ogR
+rYl
 ntq
 ntq
 ntq
@@ -246682,7 +246685,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246693,7 +246696,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -246950,7 +246953,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -247207,7 +247210,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -247464,7 +247467,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -247721,7 +247724,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -247978,7 +247981,7 @@ kno
 kno
 hRA
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -248235,7 +248238,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -248492,7 +248495,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -248511,7 +248514,7 @@ ruG
 ruG
 ruG
 ruG
-qTz
+ezd
 ntq
 ntq
 ntq
@@ -248749,7 +248752,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -248768,7 +248771,7 @@ kno
 pEQ
 kno
 pEQ
-cEq
+foR
 ntq
 ntq
 ntq
@@ -248789,7 +248792,7 @@ hKl
 sQH
 sQH
 mWt
-xCJ
+eji
 bsy
 mKd
 mZu
@@ -249006,7 +249009,7 @@ kno
 fuh
 kno
 fuh
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249025,7 +249028,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249263,7 +249266,7 @@ kno
 bgM
 kno
 bgM
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249282,7 +249285,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249303,7 +249306,7 @@ wPq
 wPq
 vlj
 mWt
-xCJ
+eji
 bsy
 etd
 agl
@@ -249520,7 +249523,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249539,7 +249542,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249777,7 +249780,7 @@ kno
 vqu
 kno
 vqu
-cEq
+foR
 ntq
 ntq
 ntq
@@ -249796,7 +249799,7 @@ kno
 hRA
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250034,7 +250037,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250053,7 +250056,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250291,7 +250294,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250310,7 +250313,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250548,7 +250551,7 @@ kno
 pEQ
 kno
 pEQ
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250567,7 +250570,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250805,7 +250808,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -250824,7 +250827,7 @@ kno
 kno
 kno
 kno
-cEq
+foR
 ntq
 ntq
 ntq
@@ -251062,7 +251065,7 @@ kno
 pEQ
 kno
 pEQ
-cEq
+foR
 ntq
 ntq
 ntq
@@ -251081,7 +251084,7 @@ kno
 kno
 kno
 vqu
-cEq
+foR
 ntq
 ntq
 ntq
@@ -251319,7 +251322,7 @@ cEq
 cEq
 cEq
 cEq
-ogR
+rYl
 ntq
 ntq
 ntq
@@ -251338,7 +251341,7 @@ cEq
 cEq
 cEq
 cEq
-ogR
+rYl
 ntq
 ntq
 ntq
@@ -254618,9 +254621,9 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
+kno
+kno
+kno
 kno
 kno
 foR
@@ -254683,7 +254686,7 @@ utG
 utG
 utG
 utG
-xnM
+pgR
 ntq
 ntq
 ntq
@@ -254848,7 +254851,7 @@ ntq
 ntq
 ntq
 oAP
-nsf
+jai
 rbC
 eyx
 tPH
@@ -254875,11 +254878,11 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
 kno
-ntq
+kno
+kno
+kno
+kno
 foR
 ntq
 ntq
@@ -254940,7 +254943,7 @@ kFo
 kFo
 kFo
 kFo
-rEb
+jdy
 ntq
 ntq
 ntq
@@ -255136,7 +255139,7 @@ kno
 kno
 kno
 kno
-ntq
+kno
 foR
 ntq
 ntq
@@ -255393,7 +255396,7 @@ kno
 kno
 kno
 kno
-ntq
+kno
 foR
 ntq
 ntq
@@ -255903,10 +255906,10 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
-ntq
+kno
+kno
+kno
+kno
 kno
 foR
 ntq
@@ -256160,10 +256163,10 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
-ntq
+kno
+kno
+kno
+kno
 kno
 foR
 ntq
@@ -256417,10 +256420,10 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
-ntq
+kno
+kno
+kno
+kno
 kno
 foR
 ntq
@@ -376534,7 +376537,7 @@ uyr
 kno
 kno
 gZL
-qYc
+lGV
 qYc
 qYc
 qYc
