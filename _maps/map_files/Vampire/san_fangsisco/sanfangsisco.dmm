@@ -1123,9 +1123,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/railing{
-	dir = 4
-	},
+/obj/structure/railing,
 /obj/structure/railing{
 	dir = 8
 	},
@@ -22114,10 +22112,7 @@
 /area/vtm/interior/giovanni/basement)
 "gtk" = (
 /obj/structure/hedge,
-/obj/structure/railing{
-	dir = 4;
-	pixel_x = -2
-	},
+/obj/structure/railing,
 /obj/structure/railing{
 	dir = 4
 	},
@@ -56682,12 +56677,12 @@
 /turf/open/floor/city/toilet,
 /area/vtm/interior)
 "qxp" = (
-/obj/structure/railing{
-	dir = 1;
-	pixel_y = 16
-	},
 /obj/structure/hedge,
 /obj/structure/flora/bush/flowers_pp/style_random,
+/obj/structure/railing{
+	dir = 1;
+	pixel_y = 1
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
 "qxs" = (
@@ -70230,9 +70225,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/railing{
-	dir = 4
-	},
+/obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
 "uvH" = (
@@ -82126,18 +82119,11 @@
 /area/vtm/outside/forest)
 "xWJ" = (
 /obj/structure/hedge,
-/obj/structure/railing{
-	dir = 4;
-	pixel_x = -2
-	},
-/obj/structure/railing{
-	dir = 1;
-	pixel_y = 12
-	},
-/obj/structure/railing{
-	pixel_y = -2
-	},
 /obj/machinery/light/prince/directional/west,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
 "xWK" = (
@@ -82548,6 +82534,15 @@
 /obj/structure/closet/cabinet,
 /turf/open/floor/carpet/green,
 /area/vtm/interior/millennium_tower)
+"yda" = (
+/obj/structure/hedge,
+/obj/structure/railing{
+	dir = 4;
+	pixel_x = -2
+	},
+/obj/structure/railing,
+/turf/open/floor/mineral/plastitanium,
+/area/vtm/interior/tzimisce_manor)
 "ydf" = (
 /obj/machinery/light/small/directional/west,
 /obj/structure/table/wood,
@@ -206188,7 +206183,7 @@ rOo
 bxd
 rOo
 bNn
-rXa
+yda
 gVE
 gVE
 gVE
