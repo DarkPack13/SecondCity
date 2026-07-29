@@ -62,8 +62,5 @@
 
 /obj/structure/retail/police_equipment/can_shop(mob/user)
 	var/datum/job/vampire/assigned_role = user.mind?.assigned_role
-	if(istype(assigned_role, /datum/job/vampire/police_officer) \
-		|| istype(assigned_role, /datum/job/vampire/police_sergeant) \
-		|| istype(assigned_role, /datum/job/vampire/fbi) \
-		|| istype(assigned_role, /datum/job/vampire/police_captain))
+	if(assigned_role && (/datum/job_department/police in assigned_role.departments_list))
 		return TRUE
