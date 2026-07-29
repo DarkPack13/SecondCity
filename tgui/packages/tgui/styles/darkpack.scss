@@ -11,3 +11,8 @@
 .Layout__content {
   background-image: url('assets/bg-vtm.svg');
 }
+
+// wider tooltips for things like discipline descriptions
+.Tooltip {
+  max-width: 30em;
+}
