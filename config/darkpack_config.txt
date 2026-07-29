@@ -29,9 +29,12 @@ ON_CRIT_ADDITIONAL_DIE
 
 ##Artifact spawn chance from crates - note, crates usually drop random artifact subtype, so this probability is typically multiplied by the random probability
 ARTIFACT_CRATE_PROBABILITY 20
-
 ##Artifact spawn chance from mapped in random spots
 ARTIFACT_RANDOM_PROBABILITY 50
+## Min amount of initiallly placed corpses with banes and artifacts around them
+UMBRA_ARTIFACT_MIN 1
+## Max amount of initiallly placed corpses with banes and artifacts around them
+UMBRA_ARTIFACT_MAX 3
 
 ## Time til day define
 TIME_TILL_DAY 198000

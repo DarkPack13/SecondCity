@@ -160,3 +160,13 @@
 2026-07-28:
   Faengi:
   - rscadd: Added Monochrome Vision flaw for Garou
+2026-07-29:
+  Faengi:
+  - rscadd: Added Cast-Iron Stomach as a merit
+  FalloutFalcon:
+  - bugfix: Guestbook should handle text macros better
+  - bugfix: Dogs are treated as an improper noun
+  - bugfix: Hunger is no longer accidentally soft-removed
+  - config: Hunger rate is on a config for easier tweaking
+  kimesik:
+  - bugfix: Fixed Condottieri's supervisor property.
