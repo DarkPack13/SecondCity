@@ -88,7 +88,6 @@
 	icon_state = "guerrilla"
 	siemens_coefficient = 0
 	armor_type = /datum/armor/combat_insulated
-	custom_price = 50 // DARKPACK EDIT ADD - Police Store
 
 /datum/armor/combat_insulated
 	bio = 50

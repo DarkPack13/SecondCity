@@ -7167,6 +7167,7 @@
 #include "modular_darkpack\master_files\code\game\turfs\open\space\space.dm"
 #include "modular_darkpack\master_files\code\modules\cargo\expressconsole.dm"
 #include "modular_darkpack\master_files\code\modules\client\preferences_savefile.dm"
+#include "modular_darkpack\master_files\code\modules\clothing\gloves\tacklers.dm"
 #include "modular_darkpack\master_files\code\modules\client\preferences\_admin.dm"
 #include "modular_darkpack\master_files\code\modules\client\preferences\_preference.dm"
 #include "modular_darkpack\master_files\code\modules\client\preferences\auto_dementor.dm"
