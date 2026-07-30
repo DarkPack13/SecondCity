@@ -53,8 +53,7 @@
  * at roundstart. Anything that's not innate
  * to the subsplat and more part of its social
  * structure or whatnot should go in here.
- * Will teleport Masquerade-breaching Clans to
- * safe areas and give them their subsplat keys by
+ * Will give them their subsplat keys by
  * default.
  *
  * Arguments:
@@ -69,6 +68,13 @@
 
 	UnregisterSignal(joining, COMSIG_MOB_LOGIN)
 
+/**
+ * Applies anything that should only be applied when joining the round through late-start or round-start
+ * This exludes spawning as a ghost and other such sources. This is for stuff like outfits or teleporting players to locations.
+ *
+ * Arguments:
+ * * source - Human with this subsplat joining the round.
+ */
 /datum/subsplat/proc/apply_after_setup(mob/living/carbon/human/source)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
