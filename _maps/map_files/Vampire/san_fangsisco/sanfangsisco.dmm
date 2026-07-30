@@ -21421,6 +21421,10 @@
 /obj/effect/decal/wallpaper/paper,
 /turf/closed/wall/vampwall/painted,
 /area/vtm/interior/clinic/haven)
+"giX" = (
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/chinatown)
 "gja" = (
 /mob/living/carbon/human/npc/hobo,
 /obj/structure/bed/maint,
@@ -29825,6 +29829,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
+"iLJ" = (
+/obj/effect/turf_decal/asphaltline{
+	dir = 8
+	},
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior)
 "iMa" = (
 /obj/structure/vampdoor/old{
 	dir = 4
@@ -37463,6 +37474,7 @@
 /area/vtm/interior/shop)
 "kYW" = (
 /obj/effect/decal/graffiti/large,
+/obj/effect/landmark/ert_spawn,
 /turf/open/floor/plating/asphalt,
 /area/vtm/interior)
 "kZk" = (
@@ -48051,6 +48063,13 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/millennium_tower)
+"ocA" = (
+/obj/effect/turf_decal/asphaltline{
+	dir = 8
+	},
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/chinatown)
 "ocM" = (
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/structure/hedge,
@@ -64282,6 +64301,10 @@
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/anarch/basement)
+"sCc" = (
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior)
 "sCi" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 9
@@ -211603,11 +211626,11 @@ lZF
 jlv
 jlv
 avt
-dlm
-dlm
-wWI
-dlm
-dlm
+giX
+giX
+ocA
+giX
+giX
 aYG
 gSG
 gSG
@@ -211860,11 +211883,11 @@ qGw
 qGw
 qGw
 qGw
-xtV
-xtV
-rqg
-xtV
-xtV
+sCc
+sCc
+iLJ
+sCc
+sCc
 qGw
 qGw
 qGw
@@ -212118,10 +212141,10 @@ kno
 kno
 qGw
 kYW
-xtV
-rqg
-xtV
-xtV
+sCc
+iLJ
+sCc
+sCc
 qGw
 qHD
 qHD
