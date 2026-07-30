@@ -24,7 +24,7 @@
 
 /datum/component/violation_observer/proc/toggle_area_of_effect()
 	if(area_of_effect)
-		qdel(area_of_effect)
+		QDEL_NULL(area_of_effect)
 	else
 		area_of_effect = new(parent, 7)
 

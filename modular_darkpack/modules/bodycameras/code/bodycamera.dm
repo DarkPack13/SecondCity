@@ -21,6 +21,10 @@
 	var/obj/machinery/camera/bodycamera/builtin_bodycamera
 	var/static/mutable_appearance/equipped_overlay = mutable_appearance('modular_darkpack/modules/bodycameras/icons/bodycamera_overlay.dmi', "bodycamera")
 
+/obj/item/bodycam_upgrade/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/violation_observer, FALSE)
+
 /obj/item/bodycam_upgrade/examine_more(mob/user)
 	. = ..()
 	. += list(span_notice("You can use [name] on any outerwear to install it, automatically turning on if the outerwear is equipped."))
@@ -100,6 +104,8 @@
 		playsound(loc, 'sound/machines/beep/beep.ogg', get_clamped_volume(), TRUE, -1)
 	builtin_bodycamera.network = network //sync the network of the camera to us, the upgrade.
 	builtin_bodycamera.camera_enabled = TRUE
+	var/datum/component/violation_observer/violation_component = src.GetComponent(/datum/component/violation_observer)
+	violation_component.toggle_area_of_effect()
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned ON [src] ([builtin_bodycamera.c_tag]) at [loc_name(src)].")
 
 ///Turns the camera off. Will be silent if 'user' is null.
@@ -109,6 +115,8 @@
 		playsound(loc, 'sound/machines/beep/beep.ogg', get_clamped_volume(), TRUE, -1)
 	if(builtin_bodycamera)
 		builtin_bodycamera.camera_enabled = FALSE
+	var/datum/component/violation_observer/violation_component = src.GetComponent(/datum/component/violation_observer)
+	violation_component.toggle_area_of_effect()
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned OFF [src] at [loc_name(src)].")
 
 /**
