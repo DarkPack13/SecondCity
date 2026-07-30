@@ -19803,6 +19803,10 @@
 	},
 /turf/open/floor/wood/old,
 /area/vtm/interior)
+"fLt" = (
+/obj/machinery/logging_machine,
+/turf/open/floor/wood/ornate,
+/area/vtm/interior/police/upstairs)
 "fLw" = (
 /obj/effect/decal/wallpaper/low,
 /obj/structure/platform/lowwall/market/window,
@@ -265584,7 +265588,7 @@ pPQ
 aSu
 xKN
 mhF
-mhF
+fLt
 pwI
 ntq
 ntq
