@@ -33,7 +33,7 @@
 		if(!INCAPACITATED_IGNORING(mob_parent, INCAPABLE_RESTRAINTS))
 			mob_parent.face_atom(player_breacher)
 	source.observe_masquerade_violation(player_breacher)
-//test
+
 	var/mutable_appearance/alert = mutable_appearance('icons/obj/storage/closet.dmi', "cardboard_special")
 	SET_PLANE_EXPLICIT(alert, ABOVE_LIGHTING_PLANE, source)
 	var/atom/movable/flick_visual/exclamation = source.flick_overlay_view(alert, 1 SECONDS)
