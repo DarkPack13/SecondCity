@@ -45,7 +45,7 @@ You can of course, as always, ask for help on the Discord channels or the forums
 Darkpack does not accept any AI-generated code. This to all aspects like use of any inbuilt Gen-AI features in IDEs. **All use of AI in the process of contributing to the project should be disclosed.**
 #### Why?
 For communication (pr bodies, reviews, etc.), AI creates a large burden on maintainers. It creates a communication barrier between the contributor and maintainer, as you now have to filter every response. We want YOUR thoughts on why you added something or why it's good for the game.
-For Code, while applicable to many projects, it's especially true that AI is bad at writing DM or SS13 code. It's a language with a very small set of data that's mostly SS13-derived projects. It makes frequent hallucinations and assumptions from hodgepodging together every SS13 codebase. Code written by AI instantly suffers from a bus factor of 0; if even you don't understand your code, how is anyone meant to maintain it?
+For code, while applicable to many projects, it's especially true that AI is bad at writing DM or SS13 code. It's a language with a very small set of data that's mostly SS13-derived projects. It makes frequent hallucinations and assumptions from hodgepodging together every SS13 codebase. Code written by AI instantly suffers from a bus factor of 0; if even you don't understand your code, how is anyone meant to maintain it?
 In general its a big resource drain for a project of volunteers and I would ask you please respect the time of them.
 
 ## Meet the Team
