@@ -217,10 +217,12 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
               <Box>
                 <Stack fill>
                   <Stack.Item width="70%">
-                    {/* DARKPACK EDIT START */}
                     <Section title={currentSplat.name}>
-                      <Section title="Description">{currentSplat.desc}</Section>
-                    {/* DARKPACK EDIT END */}
+                      <Section title="Description">
+                        <Box style={{ whiteSpace: 'pre-wrap' }}>
+                          {currentSplat.desc}
+                        </Box>
+                      </Section>
 
                       <Section title="Features">
                         <SplatsPerks perks={currentSplat.perks} />
