@@ -7149,6 +7149,7 @@
 #include "modular_darkpack\master_files\code\game\objects\items\crayons.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\handcuffs.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\trash.dm"
+#include "modular_darkpack\master_files\code\game\objects\items\weaponry.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\devices\flashlight.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\devices\radio\radio.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\food\snacks.dm"
