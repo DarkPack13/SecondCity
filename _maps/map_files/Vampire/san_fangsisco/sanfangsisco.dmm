@@ -48332,7 +48332,6 @@
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/structure/hedge,
 /obj/structure/flora/bush/flowers_pp/style_random,
-/obj/structure/flora/bush/flowers_pp/style_random,
 /obj/structure/flora/bush/flowers_br/style_random,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
@@ -59945,7 +59944,6 @@
 /obj/machinery/light/prince/directional/south,
 /obj/structure/hedge,
 /obj/structure/flora/bush/flowers_yw/style_random,
-/obj/machinery/light/prince/directional/south,
 /obj/structure/railing{
 	dir = 1;
 	pixel_y = 2;
@@ -63679,7 +63677,6 @@
 /obj/structure/railing{
 	pixel_y = -2
 	},
-/obj/machinery/light/prince/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
 "soM" = (
@@ -70950,7 +70947,6 @@
 	pixel_y = 2;
 	pixel_x = 0
 	},
-/obj/machinery/light/prince/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
 "uAq" = (
