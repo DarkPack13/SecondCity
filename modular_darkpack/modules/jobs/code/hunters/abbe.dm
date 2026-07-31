@@ -12,6 +12,7 @@
 	outfit = /datum/outfit/job/vampire/abbe
 
 	exp_requirements = EXP_REQ_HEAD
+	exp_required_type_department = EXP_TYPE_SOCIETY_OF_LEOPOLD
 
 	display_order = JOB_DISPLAY_ORDER_ABBE
 	departments_list = list(

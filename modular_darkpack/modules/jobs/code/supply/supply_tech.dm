@@ -8,7 +8,6 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/supply_tech
 
-	// exp_required_type_department = EXP_TYPE_WAREHOUSE
 
 	display_order = JOB_DISPLAY_ORDER_SUPPLY
 	departments_list = list(

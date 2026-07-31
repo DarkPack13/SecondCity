@@ -13,8 +13,8 @@
 		/datum/job_department/supply,
 	)
 
-	exp_requirements = EXP_REQ_HEAD
-	// exp_required_type_department = EXP_TYPE_WAREHOUSE
+	exp_requirements = EXP_REQ_MINOR
+	exp_required_type_department = EXP_TYPE_WAREHOUSE
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU, SPLAT_NONE)

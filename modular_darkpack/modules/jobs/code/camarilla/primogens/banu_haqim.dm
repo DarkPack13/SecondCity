@@ -9,7 +9,7 @@
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = EXP_REQ_HEAD
-	exp_required_type_department = EXP_TYPE_CAMARILLA
+	// exp_required_type_department = EXP_TYPE_CAMARILLA
 	config_tag = "PRIMOGEN_BANU_HAQIM"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/banuprim

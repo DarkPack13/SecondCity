@@ -1,6 +1,7 @@
 /// List of roundstart splats' their splat_id's
 GLOBAL_LIST_EMPTY(roundstart_splats)
 GLOBAL_LIST_EMPTY(whitelisted_splats)
+GLOBAL_LIST_EMPTY(default_player_whitelists)
 
 /datum/config_entry/keyed_list/roundstart_splats //splats you can play as from the get go.
 	key_mode = KEY_MODE_TEXT
@@ -37,7 +38,7 @@ GLOBAL_LIST_EMPTY(whitelisted_splats)
 		return TRUE
 	return FALSE
 
-/datum/splat/proc/check_whitelist_requirement()
+/datum/splat/proc/requires_whitelist()
 	if(id in (CONFIG_GET(keyed_list/whitelisted_splats)))
 		return TRUE
 	return FALSE
@@ -67,3 +68,24 @@ GLOBAL_LIST_EMPTY(whitelisted_splats)
 		GLOB.roundstart_splats = generate_selectable_splats()
 
 	return GLOB.roundstart_splats
+
+
+/proc/get_default_player_whitelists()
+	RETURN_TYPE(/alist)
+
+	if (!GLOB.default_player_whitelists.len)
+		var/alist/defs = alist(
+			WHITELIST_TRUSTED = FALSE,
+			WHITELIST_TIMELIMITS = FALSE,
+			SPLAT_NONE = TRUE,
+		)
+
+		for(var/splat_id in get_selectable_splats())
+			var/splat_type = GLOB.splat_list[splat_id]
+			var/datum/splat/splat = GLOB.splat_prototypes[splat_type]
+
+			defs[splat_id] = !splat.requires_whitelist()
+
+		GLOB.default_player_whitelists = defs
+
+	return GLOB.default_player_whitelists

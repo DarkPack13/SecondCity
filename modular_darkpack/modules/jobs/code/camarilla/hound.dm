@@ -11,8 +11,6 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/hound
 
-	exp_required_type_department = EXP_TYPE_CAMARILLA
-
 	display_order = JOB_DISPLAY_ORDER_HOUND
 	departments_list = list(
 		/datum/job_department/camarilla,

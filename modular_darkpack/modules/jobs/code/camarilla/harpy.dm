@@ -10,8 +10,8 @@
 	req_admin_notify = 1
 	minimal_player_age = 10
 
-	exp_requirements = EXP_REQ_MINOR
-	exp_required_type_department = EXP_TYPE_CAMARILLA
+	// exp_requirements = EXP_REQ_MINOR
+	// exp_required_type_department = EXP_TYPE_CAMARILLA
 
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/harpy

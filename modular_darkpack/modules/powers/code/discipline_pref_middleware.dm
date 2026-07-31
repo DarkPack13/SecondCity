@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	data["discipline_points_spent"] = points_spent
 	data["discipline_tier"] = budget_info["tier"]
 	data["discipline_tier_details"] = budget_info["details"]
-	data["is_trusted"] = preferences.discipline_trusted || FALSE
+	data["is_trusted"] = preferences?.has_whitelist(WHITELIST_TRUSTED)
 	data["max_trusted_generation"] = MAX_TRUSTED_GENERATION
 	data["max_public_generation"] = MAX_PUBLIC_GENERATION
 	data["highest_generation_limit"] = HIGHEST_GENERATION_LIMIT

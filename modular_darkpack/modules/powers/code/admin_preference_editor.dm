@@ -26,7 +26,7 @@
 	data["target_ckey"] = target_ckey
 	data["selected_slot"] = selected_slot
 	data["not_found"] = not_found
-	data["is_trusted"] = target_prefs?.discipline_trusted || FALSE
+	data["is_trusted"] = target_prefs?.has_whitelist(WHITELIST_TRUSTED) || FALSE
 	data["character_slots"] = list()
 	data["discipline_levels"] = list()
 	data["clan_disciplines"] = list()
@@ -49,7 +49,7 @@
 		if(!C || !C.mob)
 			continue
 		connected += ckey
-		if(C.prefs?.discipline_trusted)
+		if(C.prefs?.has_whitelist(WHITELIST_TRUSTED))
 			trusted_ckeys += ckey
 		if(ishuman(C.mob))
 			var/list/validation = validate_mob_sheet(C.mob)
@@ -95,7 +95,7 @@
 							data["clan_disciplines"] += disc_str
 							clan_discs += disc_str
 
-			data["discipline_validation"] = validate_discipline_sheet(target_prefs.discipline_levels, clan_discs, target_prefs.discipline_trusted)
+			data["discipline_validation"] = validate_discipline_sheet(target_prefs.discipline_levels, clan_discs, target_prefs.has_whitelist(WHITELIST_TRUSTED))
 
 	var/splat_path = target_prefs?.read_preference(/datum/preference/choiced/splats)
 	if(!ispath(splat_path, /datum/splat/vampire))
@@ -106,7 +106,10 @@
 	// if they have a value for screen_maps, they are in the character creator.
 	// an admin shouldnt be editing the same slot at the same time or it will risk wiping the slot
 	data["is_editing_character"] = target_client && length(target_client.screen_maps) > 0
-	var/list/target_wl = target_prefs ? target_prefs.get_player_whitelists() : null
+	var/list/target_wl
+	if(target_prefs)
+		target_wl = target_prefs.get_all_whitelisted_entries()
+
 	data["player_whitelists"] = target_wl || list()
 	data["whitelist_definitions"] = get_whitelist_definitions()
 
@@ -231,16 +234,6 @@
 			// SSoverwatch.record_action(null, "[key_name_admin(ui.user)] [granted_revoked] whitelist '[whitelist_id]' for [ADMIN_LOOKUPFLW(target_ckey)].")
 			return TRUE
 
-		if("toggle_trusted")
-			if(!target_prefs)
-				return FALSE
-			if(target_prefs.has_whitelist(WHITELIST_TRUSTED))
-				target_prefs.revoke_whitelist(WHITELIST_TRUSTED)
-			else
-				target_prefs.grant_whitelist(WHITELIST_TRUSTED)
-			target_prefs.save_preferences()
-			message_admins("[key_name_admin(ui.user)] [target_prefs.has_whitelist(WHITELIST_TRUSTED) ? "granted" : "revoked"] trusted whitelist for [ADMIN_LOOKUPFLW(target_ckey)].")
-			return TRUE
 
 /datum/admin_preference_editor/proc/load_target(search_ckey)
 	if(loaded_offline && target_prefs)

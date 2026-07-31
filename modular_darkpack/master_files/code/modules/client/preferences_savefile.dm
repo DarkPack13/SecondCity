@@ -7,7 +7,7 @@
 	var/list/discipline_levels = list()
 	// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
 	var/list/alt_job_titles = list()
-	/// Whether this player is whitelisted to bypass discipline sheet validation limits
+	/// Whether this player is whitelisted to bypass discipline sheet validation limits /// LEGACY
 	var/discipline_trusted = FALSE
 
 
