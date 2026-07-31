@@ -111,16 +111,6 @@ type SplatsPageInnerProps = {
   splats: ServerData['splats'];
 };
 
-// DARKPACK EDIT START
-const SPLAT_WHITELIST_REQUIREMENTS: Record<string, string> = {
-  none: 'human',
-  splat_kindred: 'vampire',
-  splat_ghoul: 'ghoul',
-  splat_garou: 'garou',
-  splat_kinfolk: 'kinfolk',
-};
-// DARKPACK EDIT END
-
 function SplatsPageInner(props: SplatsPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSplats = createSetPreference(act, 'splats');
@@ -158,10 +148,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           <Stack.Item>
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {splats.map(([splatsKey, splats]) => {
-                // DARKPACK EDIT START - my splat whitelists are too strong for you, traveller. you must go to a server with weaker whitelists
-                const requiredWhitelist = SPLAT_WHITELIST_REQUIREMENTS[splatsKey];
-                const isLocked = !!requiredWhitelist && !whitelistSet.has(requiredWhitelist);
-                // DARKPACK EDIT END
+                const isLocked = !!splatsKey && !whitelistSet.has(splatsKey);
                 return (
                   <Button
                     key={splatsKey}

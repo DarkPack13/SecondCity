@@ -4,14 +4,13 @@
 		return null
 	var/splat_path = C.prefs.read_preference(/datum/preference/choiced/splats)
 	if(!ispath(splat_path, /datum/splat))
-		if(!C.prefs.has_whitelist(WHITELIST_HUMAN))
+		if(!C.prefs.has_whitelist(SPLAT_NONE))
 			return "Human"
 		return null
 	var/datum/splat/splat = GLOB.splat_prototypes[splat_path]
 	if(!splat)
 		return null
-	var/required = GLOB.splat_whitelists[splat.id]
-	if(!isnull(required) && !C.prefs.has_whitelist(required))
+	if(!isnull(splat.id) && !C.prefs.has_whitelist(splat.id))
 		return splat.name
 	return null
 
@@ -38,11 +37,6 @@
 		if(ispath(value, /datum/splat))
 			var/datum/splat/splat = GLOB.splat_prototypes[value]
 			splat_id = splat?.id || SPLAT_NONE
-		var/required
-		if(splat_id == SPLAT_NONE)
-			required = WHITELIST_HUMAN
-		else
-			required = GLOB.splat_whitelists[splat_id]
-		if(!isnull(required) && !preferences.has_whitelist(required))
+		if(!isnull(splat_id) && !preferences.has_whitelist(splat_id))
 			return FALSE
 	return ..()

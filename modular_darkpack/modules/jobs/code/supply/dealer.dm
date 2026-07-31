@@ -9,10 +9,12 @@
 	outfit = /datum/outfit/job/vampire/dealer
 
 	display_order = JOB_DISPLAY_ORDER_DEALER
-	exp_required_type_department = EXP_TYPE_WAREHOUSE
-	departments_list = list(
+		departments_list = list(
 		/datum/job_department/supply,
 	)
+
+	exp_requirements = EXP_REQ_HEAD
+	// exp_required_type_department = EXP_TYPE_WAREHOUSE
 
 	known_contacts = list("Prince", "Seneschal", "Sheriff", "Baron")
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU, SPLAT_NONE)

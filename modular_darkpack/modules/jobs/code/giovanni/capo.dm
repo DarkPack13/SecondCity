@@ -13,6 +13,8 @@
 		/datum/job_department/giovanni,
 	)
 
+	exp_requirements = EXP_REQ_HEAD
+
 	description = "Pure blood runs through your veins and, with it, old power. Throughout your long life you have learnt to hold onto two things and never let go: money, and family."
 	minimum_masquerade = 0
 	allowed_splats = list(SPLAT_KINDRED)

@@ -8,7 +8,10 @@
 	outfit = /datum/outfit/job/vampire/sabbatpriest
 	allowed_splats = list(SPLAT_KINDRED)
 	job_flags = CITY_JOB_FLAGS
+
+	exp_requirements = EXP_REQ_HEAD
 	exp_required_type_department = EXP_TYPE_SABBAT
+
 	departments_list = list(
 		/datum/job_department/sabbat,
 	)
@@ -17,6 +20,7 @@
 	minimum_masquerade = 0
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
+
 
 /datum/outfit/job/vampire/sabbatpriest
 	name = "Sabbat Priest"
