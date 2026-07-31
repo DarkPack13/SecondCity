@@ -2680,6 +2680,10 @@
 	},
 /turf/open/floor/plating/canalplating,
 /area/vtm/interior/sabbat_lair)
+"aIu" = (
+/obj/machinery/status_display/evac/directional/east,
+/turf/open/floor/mineral/plastitanium,
+/area/vtm/interior/millennium_tower/f2)
 "aID" = (
 /obj/effect/turf_decal/siding/wideplating/blue{
 	dir = 8
@@ -14018,7 +14022,6 @@
 	},
 /obj/effect/mapping_helpers/door/lock_difficulty/four,
 /obj/structure/vampdoor/reinf,
-/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "duG" = (
@@ -27531,6 +27534,13 @@
 /obj/structure/railing/corner,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
+"gJW" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/machinery/status_display/evac/directional/west,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/anarch)
 "gKc" = (
 /obj/effect/decal/cleanable/trash,
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire,
@@ -35061,6 +35071,11 @@
 /obj/machinery/recharger,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police/fed)
+"izH" = (
+/obj/item/kirbyplants/darkpack/random,
+/obj/machinery/status_display/evac/directional/north,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/littleitaly)
 "izN" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/flare/candle/infinite{
@@ -41668,6 +41683,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/millennium_tower/f2)
+"kgg" = (
+/obj/structure/chair/office/darkpack/green{
+	dir = 8
+	},
+/obj/effect/landmark/start/darkpack/citizen/red_news,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior)
 "kgi" = (
 /obj/machinery/vending/cola,
 /obj/machinery/light/cold/directional/north,
@@ -48990,6 +49012,10 @@
 	icon_state = "stone8"
 	},
 /area/vtm/interior/sewer)
+"lUM" = (
+/obj/machinery/status_display/evac/directional/east,
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/strip)
 "lUP" = (
 /obj/effect/decal/wallpaper/paper,
 /turf/closed/wall/vampwall/old,
@@ -50459,6 +50485,13 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/library)
+"mlk" = (
+/obj/effect/turf_decal/siding/wood/light{
+	dir = 8
+	},
+/obj/structure/sign/poster/greenscreen/directional/north,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior)
 "mlm" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -59406,6 +59439,13 @@
 /obj/structure/flora/bush/grassy/style_random,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/interior/millennium_tower/f3)
+"orp" = (
+/obj/effect/turf_decal/siding/wood/light{
+	dir = 4
+	},
+/obj/structure/sign/poster/greenscreen/directional/north,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior)
 "orq" = (
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 4
@@ -60091,7 +60131,6 @@
 /obj/structure/vampdoor/glass{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/door/unlock,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "oAm" = (
@@ -60239,6 +60278,13 @@
 /obj/machinery/sprinkler,
 /turf/open/floor/city/plating_stone,
 /area/vtm/interior/shop)
+"oBw" = (
+/obj/effect/turf_decal/siding/grey{
+	dir = 1
+	},
+/obj/machinery/status_display/evac/directional/south,
+/turf/open/floor/plating/granite/black,
+/area/vtm/interior/millennium_tower/f3)
 "oBy" = (
 /obj/structure/railing{
 	dir = 1
@@ -71470,6 +71516,10 @@
 /obj/machinery/light/small/broken/directional/west,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/hotel)
+"rmi" = (
+/obj/machinery/status_display/evac/directional/west,
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/clinic)
 "rmk" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 8
@@ -86544,6 +86594,11 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm)
+"uVu" = (
+/obj/effect/turf_decal/siding/wood/light/end,
+/obj/machinery/status_display/evac/directional/north,
+/turf/open/floor/wood/smooth,
+/area/vtm/interior/jazzclub)
 "uVz" = (
 /obj/effect/turf_decal/bordur/corner,
 /obj/structure/hedge,
@@ -90963,6 +91018,7 @@
 /area/vtm/interior)
 "weB" = (
 /obj/structure/table,
+/obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/millennium_tower)
 "weN" = (
@@ -91694,7 +91750,6 @@
 /obj/structure/vampdoor/reinf{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "woi" = (
@@ -94145,6 +94200,8 @@
 /area/vtm/interior/caves)
 "wOp" = (
 /obj/structure/chair/office/darkpack/green,
+/obj/effect/landmark/start/darkpack/citizen/red_news,
+/obj/structure/sign/poster/greenscreen/directional/north,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
 "wOr" = (
@@ -143743,7 +143800,7 @@ hZi
 hZi
 edG
 hEB
-jOc
+gJW
 fTk
 igf
 qle
@@ -173765,7 +173822,7 @@ mJv
 sdB
 kaD
 kaD
-kaD
+rmi
 wGE
 eCH
 sQi
@@ -174283,7 +174340,7 @@ cVG
 qUn
 gnp
 fdE
-cVG
+lUM
 eZz
 tra
 tra
@@ -177814,7 +177871,7 @@ pkS
 hRR
 eHH
 scH
-eIx
+izH
 fUZ
 uGL
 fUZ
@@ -177990,7 +178047,7 @@ oug
 yjC
 ucp
 die
-opA
+uVu
 mST
 vuR
 die
@@ -180693,7 +180750,7 @@ iwl
 iEh
 iEh
 bFq
-aiK
+mlk
 iQC
 eaz
 fcQ
@@ -181101,7 +181158,7 @@ iwl
 lxz
 iEh
 bFq
-mBS
+orp
 cwo
 eaz
 fcQ
@@ -181311,7 +181368,7 @@ oZt
 pqR
 vam
 rEz
-knc
+kgg
 baE
 baE
 baE
@@ -208183,7 +208240,7 @@ oLX
 egw
 oLX
 oLX
-oLX
+aIu
 oLX
 qOb
 oLX
@@ -248376,7 +248433,7 @@ eFK
 veU
 fMm
 nMc
-wxZ
+oBw
 uMZ
 mxS
 rOU
