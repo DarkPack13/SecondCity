@@ -253,7 +253,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 
 // Playtime tracking system, see jobs_exp.dm
 // weird one.
-#define EXP_TYPE_CITIZEN "Citizen"
+#define EXP_TYPE_PLAYTIME "Playtime"
 #define EXP_TYPE_GAIA "Garou Nation"
 #define EXP_TYPE_SPIRAL "Pentex"
 #define EXP_TYPE_CAMARILLA "Camarilla Authorities"

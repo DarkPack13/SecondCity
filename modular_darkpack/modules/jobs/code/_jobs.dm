@@ -110,8 +110,8 @@
 
 /datum/job/vampire
 	abstract_type = /datum/job/vampire
-	exp_required_type = EXP_TYPE_CITIZEN
-	exp_granted_type = EXP_TYPE_CITIZEN
+	exp_required_type = EXP_TYPE_PLAYTIME
+	exp_granted_type = EXP_TYPE_PLAYTIME
 
 /**
  * This type is used to indicate a lack of a job.
