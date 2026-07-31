@@ -76,7 +76,7 @@
 			else
 				sound_to_play = 'modular_vcg/master_files/sounds/item/smartphone/aosp/KeypressInvalid.ogg'
 
-			playsound(loc, sound_to_play, 15 FALSE)
+			playsound(loc, sound_to_play, 15, FALSE)
 			return TRUE
 		if("set_notification_sound")
 			var/new_sound = params["sound"]
