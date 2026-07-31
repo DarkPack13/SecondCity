@@ -7159,7 +7159,6 @@
 #include "modular_darkpack\master_files\code\game\objects\items\storage\boxes\security_boxes.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\dufflebag.dm"
 #include "modular_darkpack\master_files\code\game\objects\items\storage\fancy.dm"
-#include "modular_darkpack\master_files\code\game\objects\items\weaponry.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\flora.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\ladders.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures\railings.dm"
