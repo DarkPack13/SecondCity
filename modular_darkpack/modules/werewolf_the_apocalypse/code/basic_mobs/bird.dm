@@ -44,6 +44,7 @@
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/pet_bonus, "caw")
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
+	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 	update_appearance(UPDATE_ICON)
 
 /mob/living/basic/corvid/update_icon_state()
@@ -94,6 +95,7 @@
 	else
 		to_chat(corvid, span_notice("You settle gently back onto the ground..."))
 		corvid.remove_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
+		corvid.remove_traits(list(TRAIT_WADDLING), INNATE_TRAIT)
 
 	corvid.update_icon(UPDATE_ICON)
 
