@@ -96,7 +96,7 @@
 	else
 		to_chat(corvid, span_notice("You settle gently back onto the ground..."))
 		corvid.remove_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
-		corvid.add_traits(list(TRAIT_WADDLING), INNATE_TRAIT)
+		corvid.AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 
 	corvid.update_icon(UPDATE_ICON)
 
