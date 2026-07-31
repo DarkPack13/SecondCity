@@ -12023,6 +12023,18 @@
 /area/vtm/interior/laundromat)
 "dwc" = (
 /obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 7
+	},
+/obj/item/flashlight/lamp{
+	light_color = "#FFA500";
+	light_range = 3;
+	pixel_x = -8;
+	pixel_y = 11
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "dwg" = (
@@ -41403,11 +41415,6 @@
 /obj/structure/sink/directional/south,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/bianchiBank)
-"mht" = (
-/obj/structure/table/wood,
-/obj/item/phone_book,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior/police)
 "mhC" = (
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/plating/sidewalk/poor,
@@ -54996,15 +55003,8 @@
 /area/vtm/interior/shop)
 "pWC" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen{
-	pixel_y = 7
-	},
-/obj/item/flashlight/lamp{
-	light_color = "#FFA500";
-	light_range = 3;
-	pixel_x = -8;
-	pixel_y = 11
+/obj/machinery/computer/security{
+	dir = 4
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
@@ -75238,9 +75238,8 @@
 /area/vtm/interior/sewer)
 "vTc" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen{
-	pixel_y = 7
+/obj/machinery/computer/security{
+	dir = 8
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
@@ -76880,6 +76879,17 @@
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/mapping_helpers/door/lock_difficulty/eight,
 /turf/open/floor/plating/concrete,
+/area/vtm/interior/police)
+"wrz" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	light_color = "#FFA500";
+	light_range = 3;
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/obj/item/phone_book,
+/turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "wrA" = (
 /obj/structure/coclock,
@@ -194900,9 +194910,9 @@ bAA
 jlv
 dci
 qTP
-vDw
+wrz
 vTc
-mht
+abf
 pAp
 uZV
 jkY
