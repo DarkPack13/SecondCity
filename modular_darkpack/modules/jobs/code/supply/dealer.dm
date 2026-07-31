@@ -9,7 +9,7 @@
 	outfit = /datum/outfit/job/vampire/dealer
 
 	display_order = JOB_DISPLAY_ORDER_DEALER
-		departments_list = list(
+	departments_list = list(
 		/datum/job_department/supply,
 	)
 
