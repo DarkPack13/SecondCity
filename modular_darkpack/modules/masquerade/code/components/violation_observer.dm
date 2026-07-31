@@ -22,11 +22,11 @@
 	breached_players = null
 	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
-/datum/component/violation_observer/proc/toggle_area_of_effect()
+/datum/component/violation_observer/proc/toggle_area_of_effect(origin = parent)
 	if(area_of_effect)
 		QDEL_NULL(area_of_effect)
 	else
-		area_of_effect = new(parent, 7)
+		area_of_effect = new(origin, 7)
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
