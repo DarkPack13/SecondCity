@@ -17160,6 +17160,10 @@
 	},
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/chantry/basement)
+"ehR" = (
+/obj/effect/landmark/start/darkpack/supply/dealer,
+/turf/open/floor/city/plating,
+/area/vtm/interior/setite)
 "ehW" = (
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/graveyard)
@@ -22650,6 +22654,7 @@
 /obj/effect/turf_decal/siding/grey{
 	dir = 8
 	},
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/city/factory,
 /area/vtm/interior/setite)
 "fxU" = (
@@ -31950,6 +31955,16 @@
 /obj/structure/sink/basin/directional/west,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/littleitaly/apartments)
+"hOI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/grey{
+	dir = 4
+	},
+/obj/effect/landmark/start/darkpack/voivode/zadruga,
+/turf/open/floor/city/circled/large,
+/area/vtm/interior/subway)
 "hON" = (
 /obj/effect/turf_decal/bordur,
 /mob/living/carbon/human/npc/walkby,
@@ -33705,6 +33720,16 @@
 	},
 /turf/open/floor/wood/smooth,
 /area/vtm/interior)
+"ilD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/grey{
+	dir = 4
+	},
+/obj/effect/landmark/start/darkpack/voivode/voivode,
+/turf/open/floor/city/circled/large,
+/area/vtm/interior/subway)
 "ilF" = (
 /obj/structure/vampdoor/old,
 /obj/effect/mapping_helpers/door/access/brujah,
@@ -40696,6 +40721,10 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer/nosferatu_warren)
+"jUd" = (
+/obj/effect/landmark/start/darkpack/forest_wolves/wyrmfoe,
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/outside/baywalk)
 "jUf" = (
 /obj/effect/decal/cleanable/litter,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -59688,6 +59717,11 @@
 /obj/effect/mapping_helpers/door/access/federal,
 /turf/open/floor/wood/rough,
 /area/vtm/interior/police/fed)
+"ovU" = (
+/obj/machinery/light/directional/north,
+/obj/effect/landmark/start/darkpack/primogen/lasombra,
+/turf/open/floor/mineral/plastitanium,
+/area/vtm/interior/millennium_tower)
 "ovZ" = (
 /obj/effect/turf_decal/crosswalk{
 	dir = 1
@@ -70986,6 +71020,16 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/anarch)
+"rgc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/grey{
+	dir = 8
+	},
+/obj/effect/landmark/start/darkpack/voivode/bogatyr,
+/turf/open/floor/city/circled/large,
+/area/vtm/interior/subway)
 "rgn" = (
 /turf/open/floor/plating/grate,
 /area/vtm/interior/sewer/nosferatu_warren)
@@ -138786,7 +138830,7 @@ iQY
 iQY
 iQY
 iQY
-ulL
+rgc
 ulL
 ulL
 ulL
@@ -139808,8 +139852,8 @@ iQY
 iQY
 iHI
 blr
-blr
-blr
+ilD
+hOI
 blr
 blr
 mBU
@@ -166320,7 +166364,7 @@ git
 git
 git
 dda
-mUD
+ovU
 waj
 mcG
 git
@@ -169445,7 +169489,7 @@ fzy
 jVN
 fzy
 jVN
-fzy
+jUd
 fzy
 djk
 gtD
@@ -181355,7 +181399,7 @@ nPK
 uxF
 eZB
 dFm
-dFm
+ehR
 xNr
 jFu
 gyg
