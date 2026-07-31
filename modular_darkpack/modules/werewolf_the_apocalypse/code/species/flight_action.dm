@@ -16,10 +16,12 @@
 	if (!(HAS_TRAIT(fera_mob, TRAIT_MOVE_FLYING)))
 		to_chat(fera_mob, span_notice("You beat your wings and begin to hover gently above the ground..."))
 		fera_mob.add_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
+		fera_mob.remove_traits(list(TRAIT_WADDLING), INNATE_TRAIT)
 		playsound(fera_mob, 'modular_darkpack/modules/external_organs/sounds/wing_flap_flying.ogg', 50, TRUE)
 	else
 		to_chat(fera_mob, span_notice("You settle gently back onto the ground..."))
 		fera_mob.remove_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
+		fera_mob.add_traits(list(TRAIT_WADDLING), INNATE_TRAIT)
 		playsound(fera_mob, 'modular_darkpack/modules/external_organs/sounds/wing_flap_flying.ogg', 50, TRUE)
 
 	fera_mob.update_body_parts()
@@ -31,6 +33,7 @@
 		return
 	to_chat(fera_mob, span_notice("You settle gently back onto the ground..."))
 	fera_mob.remove_traits(list(TRAIT_MOVE_FLYING, TRAIT_NO_FLOATING_ANIM), ACTION_TRAIT)
+	fera_mob.add_traits(list(TRAIT_WADDLING), INNATE_TRAIT)
 	playsound(fera_mob, 'modular_darkpack/modules/external_organs/sounds/wing_flap_flying.ogg', 50, TRUE)
 
 	fera_mob.update_body_parts()
