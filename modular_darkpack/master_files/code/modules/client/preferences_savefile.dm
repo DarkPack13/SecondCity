@@ -13,10 +13,43 @@
 
 /datum/preferences/load_preferences()
 	discipline_trusted = savefile.get_entry("discipline_trusted", FALSE) // deserialization and its consequences
+
+	// WHITELIST
+	var/list/saved = savefile.get_entry("player_whitelists")
+	if(isnull(saved) || !islist(saved) || !length(saved))
+		player_whitelists = get_default_player_whitelists().Copy()
+	else
+		player_whitelists = saved
+
+	var/alist/defaults = get_default_player_whitelists()
+	for(var/key, bool in defaults)
+		if(!(key in player_whitelists))
+			to_chat(parent, span_boldnotice("New whitelist key added to whitelists: [key] [bool ? "TRUE": "FALSE"]."))
+			player_whitelists[key] = bool
+
+	for(var/key in saved)
+		if(!(key in defaults))
+			to_chat(parent, span_boldnotice("Bad whitelist key has been removed from whitelists"))
+			player_whitelists[key] = null
+
+	if(discipline_trusted && !(WHITELIST_TRUSTED in player_whitelists)) // backwards compatibility
+		player_whitelists[WHITELIST_TRUSTED] = TRUE
+		if(!isnull(parent))
+			to_chat(parent, span_boldnotice("Great news! Your existing trusted status was successfully migrated to the new splat whitelist system."))
+
+	discipline_trusted = (WHITELIST_TRUSTED in player_whitelists)
+	// WHITELIST
+
 	. = ..()
 
 /datum/preferences/save_preferences()
 	savefile.set_entry("discipline_trusted", discipline_trusted) // since existing load/save is per character, save and load it from a level above that
+
+	// WHITELIST
+	if(!isnull(player_whitelists))
+		savefile.set_entry("player_whitelists", player_whitelists)
+	// WHITELIST
+
 	. = ..()
 
 /datum/preferences/load_character(slot)

@@ -86,13 +86,13 @@
 
 	for(var/clan_name in GLOB.vampire_clan_list)
 		var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_name)
-		if(!clan || !(clan.id in GLOB.trusted_only_clans))
+		if(!clan || !defaults[clan.id])
 			continue
 		defs[clan.id] = list(
 			"name" = clan.name,
 			"description" = "Access to play [clan.name] without requiring trusted whitelist",
 			"category" = "clan",
-			"is_default" = FALSE,
+			"is_default" = defaults[clan.id]
 		)
 
 	return defs

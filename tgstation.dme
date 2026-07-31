@@ -8139,7 +8139,6 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\weapons\klaives.dm"
 #include "modular_darkpack\modules\westfield_mall\code\mall_areas.dm"
 #include "modular_darkpack\modules\whitelist\code\whitelist_enforcement.dm"
-#include "modular_darkpack\modules\whitelist\code\whitelist_savefile.dm"
 #include "modular_darkpack\modules\whitelist\code\whitelist_prefs.dm"
 #include "modular_darkpack\modules\westfield_mall\code\modular_rooms.dm"
 #include "modular_darkpack\modules\z_travel\code\helpers.dm"

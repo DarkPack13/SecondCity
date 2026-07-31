@@ -9,9 +9,6 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 
-	exp_requirements = EXP_REQ_HEAD
-	exp_required_type_department = EXP_TYPE_SABBAT
-
 	departments_list = list(
 		/datum/job_department/sabbat,
 	)

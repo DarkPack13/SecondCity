@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(default_player_whitelists)
 	if(key_name in GLOB.splat_list)
 		return TRUE
 
-	log_config("ERROR: [key_name] is not a valid race ID.")
+	log_config("ERROR: [key_name] is not a valid splat ID.")
 	return FALSE
 
 
@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(default_player_whitelists)
 	if(key_name in GLOB.splat_list)
 		return TRUE
 
-	log_config("ERROR: [key_name] is not a valid race ID.")
+	log_config("ERROR: [key_name] is not a valid splat ID.")
 	return FALSE
 
 
@@ -85,6 +85,15 @@ GLOBAL_LIST_EMPTY(default_player_whitelists)
 			var/datum/splat/splat = GLOB.splat_prototypes[splat_type]
 
 			defs[splat_id] = !splat.requires_whitelist()
+
+		for(var/clan_name in GLOB.vampire_clan_list)
+			var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_name)
+			if(!clan)
+				continue
+
+			if(clan.id in CONFIG_GET(keyed_list/whitelisted_clans))
+				defs[clan.id] = FALSE
+			// defs[clan.id] = !(clan.id in CONFIG_GET(keyed_list/whitelisted_clans))
 
 		GLOB.default_player_whitelists = defs
 
