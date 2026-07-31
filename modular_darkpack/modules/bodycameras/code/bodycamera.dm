@@ -46,6 +46,9 @@
 	if(interacting_item.item_flags & (ABSTRACT|DROPDEL)) //things like changeling suits don't get body cameras.
 		user.balloon_alert(user, "cannot attach!")
 		return ITEM_INTERACT_BLOCKING
+	if(!ismob(interacting_with.loc))
+		user.balloon_alert(user, "must be wearing item!")
+		return ITEM_INTERACT_BLOCKING
 	if(install_camera(interacting_item, user))
 		return ITEM_INTERACT_SUCCESS
 
@@ -105,7 +108,13 @@
 	builtin_bodycamera.network = network //sync the network of the camera to us, the upgrade.
 	builtin_bodycamera.camera_enabled = TRUE
 	var/datum/component/violation_observer/violation_component = src.GetComponent(/datum/component/violation_observer)
-	violation_component.toggle_area_of_effect(user)
+	var/atom/movable/current = loc
+	var/mob/living/wearer
+	while(current && !ismob(current))
+		current = current.loc
+	if(ismob(current))
+		wearer = current
+	violation_component.toggle_area_of_effect(wearer)
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned ON [src] ([builtin_bodycamera.c_tag]) at [loc_name(src)].")
 
 ///Turns the camera off. Will be silent if 'user' is null.
@@ -116,7 +125,7 @@
 	if(builtin_bodycamera)
 		builtin_bodycamera.camera_enabled = FALSE
 	var/datum/component/violation_observer/violation_component = src.GetComponent(/datum/component/violation_observer)
-	violation_component.toggle_area_of_effect(user)
+	violation_component.toggle_area_of_effect()
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned OFF [src] at [loc_name(src)].")
 
 /**
