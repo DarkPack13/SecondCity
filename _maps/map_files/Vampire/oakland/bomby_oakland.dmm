@@ -12969,6 +12969,13 @@
 /obj/structure/dresser,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/tzimisce_manor)
+"dhQ" = (
+/obj/structure/bookcase/random/religion{
+	pixel_y = 22;
+	density = 0
+	},
+/turf/open/floor/city/factory,
+/area/vtm/interior/church/staff)
 "dia" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood/smooth/old,
@@ -25005,11 +25012,6 @@
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/jazzclub)
-"gbY" = (
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/cardboard,
-/turf/open/floor/city/factory,
-/area/vtm/interior/church/staff)
 "gca" = (
 /obj/structure/chair/wood/darkpack{
 	dir = 8
@@ -25465,6 +25467,10 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/westfield_mall/interior)
+"ghS" = (
+/obj/effect/landmark/start/darkpack/primogen/lasombra,
+/turf/open/floor/city/factory,
+/area/vtm/interior/church/staff)
 "ghV" = (
 /obj/effect/turf_decal/siding/grey{
 	dir = 4
@@ -28511,9 +28517,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/shop)
 "gWD" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/large,
+/obj/structure/fireplace,
 /turf/open/floor/city/factory,
 /area/vtm/interior/church/staff)
 "gWF" = (
@@ -28675,12 +28679,6 @@
 /obj/machinery/light/prince/directional/south,
 /turf/open/water/bloodwave,
 /area/vtm/interior/giovanni/basement)
-"gYN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/pallet,
-/obj/structure/closet/cardboard,
-/turf/open/floor/city/factory,
-/area/vtm/interior/church/staff)
 "gYP" = (
 /obj/machinery/sprinkler/area_managed,
 /turf/open/floor/wood/ornate,
@@ -30551,6 +30549,9 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/camarilla{
+	pixel_y = 5
+	},
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/millennium_tower/f2)
 "hwc" = (
@@ -42476,6 +42477,18 @@
 /obj/effect/decal/shadow,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
+"kpC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/coffin,
+/obj/item/claymore/longsword/keeper,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/structure/bookcase/random/religion{
+	pixel_y = 22;
+	density = 0
+	},
+/turf/open/floor/city/factory,
+/area/vtm/interior/church/staff)
 "kpD" = (
 /obj/structure/railing{
 	dir = 8
@@ -50535,11 +50548,13 @@
 	},
 /area/vtm/interior/nosferatu_office)
 "mlG" = (
-/turf/closed/wall/vampwall/rich/old{
-	density = 0;
-	desc = "A wall with a crack in it";
-	color = "#BBBBBB"
+/obj/structure/vampdoor/wood{
+	dir = 4
 	},
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/lock_difficulty/eight,
+/obj/effect/mapping_helpers/door/access/lasombra_primogen,
+/turf/open/floor/city/factory,
 /area/vtm/interior/church/staff)
 "mlL" = (
 /obj/effect/turf_decal/bordur,
@@ -59140,6 +59155,19 @@
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/supply)
+"onF" = (
+/obj/structure/table,
+/obj/structure/platform/lowwall/painted,
+/obj/item/storage/box/lights/mixed{
+	pixel_y = 9;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/clinic)
 "onK" = (
 /turf/open/misc/grass/nosmooth,
 /area/vtm/interior/bianchiBank)
@@ -60956,15 +60984,6 @@
 /obj/fusebox,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/apartment)
-"oJR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2{
-	pixel_y = 24
-	},
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/large,
-/turf/open/floor/city/factory,
-/area/vtm/interior/church/staff)
 "oJS" = (
 /obj/structure/lattice/grate{
 	dir = 4
@@ -62141,6 +62160,9 @@
 	},
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 8
+	},
+/obj/machinery/radio_tranceiver/endron{
+	pixel_y = 5
 	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/endron_facility)
@@ -72103,6 +72125,17 @@
 	},
 /turf/open/floor/plating/rough,
 /area/vtm/outside/park)
+"rtM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_y = 8
+	},
+/turf/open/floor/city/factory,
+/area/vtm/interior/church/staff)
 "rtO" = (
 /obj/structure/closet/cabinet,
 /obj/item/gun/ballistic/automatic/darkpack/huntrifle,
@@ -77914,12 +77947,7 @@
 /area/vtm/interior/apartment)
 "sQi" = (
 /obj/structure/table,
-/obj/item/storage/box/lights/mixed{
-	pixel_y = 9;
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -7;
+/obj/machinery/radio_tranceiver/clinic{
 	pixel_y = 6
 	},
 /turf/open/floor/wood/smooth,
@@ -88032,11 +88060,6 @@
 /obj/structure/roadsign/crosswalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/library)
-"vpY" = (
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/large,
-/turf/open/floor/city/factory,
-/area/vtm/interior/church/staff)
 "vqb" = (
 /obj/structure/vampipe{
 	icon_state = "piping35"
@@ -88693,6 +88716,9 @@
 /area/vtm/interior/clinic)
 "vAE" = (
 /obj/structure/table/wood,
+/obj/machinery/radio_tranceiver/anarch{
+	pixel_y = 5
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/anarch)
 "vAM" = (
@@ -93443,8 +93469,10 @@
 /obj/effect/decal/cleanable/cobweb{
 	pixel_y = 24
 	},
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/large,
+/obj/structure/bookcase/random/religion{
+	pixel_y = 22;
+	density = 0
+	},
 /turf/open/floor/city/factory,
 /area/vtm/interior/church/staff)
 "wFP" = (
@@ -97142,11 +97170,6 @@
 /obj/weapon_showcase,
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/shop)
-"xAN" = (
-/obj/machinery/light/directional/north,
-/obj/effect/landmark/start/darkpack/primogen/lasombra,
-/turf/open/floor/mineral/plastitanium,
-/area/vtm/interior/millennium_tower)
 "xAO" = (
 /obj/structure/closet/mini_fridge,
 /obj/item/reagent_containers/cup/glass/waterbottle,
@@ -97476,6 +97499,12 @@
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood/rough,
 /area/vtm/interior/ghetto)
+"xFq" = (
+/obj/structure/chair/wood/darkpack{
+	dir = 4
+	},
+/turf/open/floor/city/factory,
+/area/vtm/interior/church/staff)
 "xFs" = (
 /obj/effect/turf_decal/bordur,
 /obj/structure/chair/pew/left,
@@ -97885,6 +97914,13 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/library)
+"xJo" = (
+/obj/structure/platform/lowwall/rich/old/window,
+/obj/structure/curtain/bounty{
+	pixel_y = 15
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/church/staff)
 "xJt" = (
 /turf/open/floor/plating/concrete,
 /area/vtm/outside/pacificheights)
@@ -98487,12 +98523,6 @@
 /obj/structure/platform/lowwall/city,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/laundromat)
-"xRW" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/pallet,
-/obj/structure/closet/crate/wooden,
-/turf/open/floor/city/factory,
-/area/vtm/interior/church/staff)
 "xRY" = (
 /obj/structure/arc,
 /obj/effect/turf_decal/bordur,
@@ -166422,7 +166452,7 @@ git
 git
 git
 dda
-xAN
+mUD
 waj
 mcG
 git
@@ -174437,7 +174467,7 @@ teJ
 uTB
 kaD
 aSw
-aSw
+onF
 mJv
 mUP
 kMt
@@ -233740,7 +233770,7 @@ aOJ
 xny
 muT
 flR
-iQU
+ghS
 wWk
 xny
 aOJ
@@ -234353,7 +234383,7 @@ xny
 wFA
 pJf
 iQU
-xRW
+iQU
 xny
 aOJ
 aOJ
@@ -234555,9 +234585,9 @@ mED
 xny
 xny
 gWD
-gbY
-pJf
 iQU
+pJf
+uPb
 xny
 aOJ
 aOJ
@@ -234757,11 +234787,11 @@ mjT
 mjT
 mjT
 xny
+xny
+dhQ
 pJf
-iQU
-pJf
-iQU
-gYN
+xFq
+bhD
 xny
 umF
 umF
@@ -234961,11 +234991,11 @@ mjT
 mjT
 mjT
 xny
-oJR
-pJf
-pJf
-vpY
-gWD
+xny
+kpC
+rtM
+bhD
+bhD
 xny
 gHI
 gHI
@@ -235166,9 +235196,9 @@ mjT
 mjT
 xny
 xny
-xny
-xny
-xny
+xJo
+xJo
+xJo
 xny
 xny
 mjT
