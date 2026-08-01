@@ -14,7 +14,7 @@
 		"african2")
 
 	min_age = 18
-	max_age = 85
+	max_age = 40
 	preferred_gender = MALE
 	male_names = null
 	surnames = null
@@ -83,7 +83,16 @@
 		/obj/item/clothing/under/vampire/office,
 		/obj/item/clothing/under/vampire/sexy,
 		/obj/item/clothing/under/vampire/slickback,
-		/obj/item/clothing/under/vampire/emo
+		/obj/item/clothing/under/vampire/emo,
+		/obj/item/clothing/under/vampire/black,
+		/obj/item/clothing/under/vampire/biker,
+		/obj/item/clothing/under/vampire/fancy_gray,
+		/obj/item/clothing/under/vampire/fancy_red,
+		/obj/item/clothing/under/vampire/punk,
+		/obj/item/clothing/under/vampire/turtleneck_black,
+		/obj/item/clothing/under/vampire/turtleneck_navy,
+		/obj/item/clothing/under/vampire/turtleneck_red,
+		/obj/item/clothing/under/vampire/turtleneck_white
 	)
 	pockets = list(
 		/obj/item/vamp/keys/npc,

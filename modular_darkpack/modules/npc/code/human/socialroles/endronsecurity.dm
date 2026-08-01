@@ -102,7 +102,7 @@
 	)
 
 	min_age = 18
-	max_age = 45
+	max_age = 40
 	male_names = null
 	surnames = null
 

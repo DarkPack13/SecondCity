@@ -15,7 +15,7 @@
 	)
 
 	min_age = 18
-	max_age = 85
+	max_age = 40
 	preferred_gender = FEMALE
 	female_names = null
 	surnames = null
@@ -90,7 +90,14 @@
 	uniforms = list(
 		/obj/item/clothing/under/vampire/black,
 		/obj/item/clothing/under/vampire/red,
-		/obj/item/clothing/under/vampire/gothic
+		/obj/item/clothing/under/vampire/gothic,
+		/obj/item/clothing/under/vampire/business,
+		/obj/item/clothing/under/vampire/emo,
+		/obj/item/clothing/under/vampire/punk,
+		/obj/item/clothing/under/vampire/sceneleopard,
+		/obj/item/clothing/under/vampire/scenemoody,
+		/obj/item/clothing/under/vampire/scenepink,
+		/obj/item/clothing/under/vampire/scenezim,
 	)
 	pockets = list(
 		/obj/item/vamp/keys/npc,

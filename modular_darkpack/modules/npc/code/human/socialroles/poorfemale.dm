@@ -13,7 +13,7 @@
 		"african2")
 
 	min_age = 45
-	max_age = 85
+	max_age = 60
 	preferred_gender = FEMALE
 	female_names = null
 	surnames = null

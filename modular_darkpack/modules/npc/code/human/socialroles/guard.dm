@@ -7,7 +7,7 @@
 	)
 
 	min_age = 18
-	max_age = 85
+	max_age = 40
 	preferred_gender = MALE
 	male_names = null
 	surnames = null

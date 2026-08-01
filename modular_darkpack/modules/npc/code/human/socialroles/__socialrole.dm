@@ -15,7 +15,7 @@
 		"african2",
 	)
 	var/min_age = 18
-	var/max_age = 85
+	var/max_age = 40
 	var/preferred_gender
 	var/list/male_names = list(
 		"Jack",

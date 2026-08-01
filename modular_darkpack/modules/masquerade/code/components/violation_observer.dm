@@ -43,8 +43,15 @@
 
 	if(isliving(source))
 		var/mob/living/mob_parent = source
+		if(HAS_CONNECTED_PLAYER(mob_parent)) // only NPC mobs have these components, so a player is driving an NPC if this fires
+			return
 		if(!INCAPACITATED_IGNORING(mob_parent, INCAPABLE_RESTRAINTS))
 			mob_parent.face_atom(player_breacher)
+	else // observer is an object, so lets make sure its close enough to actually see or hear the breach. mostly for phones
+		if(get_dist(source, player_breacher) >= 3)
+			return
+	message_admins("VIOLATION: [ADMIN_LOOKUPFLW(source)] observed a masquerade violation.")
+	to_chat(player_breacher, span_userdanger(span_bold("[source] observed a masquerade violation.")))
 	source.observe_masquerade_violation(player_breacher)
 
 	var/mutable_appearance/alert = mutable_appearance('icons/obj/storage/closet.dmi', "cardboard_special")
@@ -70,6 +77,8 @@
 		source.observe_masquerade_reinforce(player_breacher)
 		breached_players -= player_breacher
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
+		message_admins("REINFORCED: [ADMIN_LOOKUPFLW(source)] is no longer tracking a breach for [ADMIN_LOOKUPFLW(player_breacher)]")
+		to_chat(player_breacher, span_boldnicegreen("[source] is no longer aware of your masquerade violation."))
 
 		return TRUE
 
