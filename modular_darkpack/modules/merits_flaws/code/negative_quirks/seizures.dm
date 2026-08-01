@@ -1,11 +1,3 @@
-/datum/storyteller_roll/seizures
-	bumper_text = "seizures"
-	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
-	difficulty = 8
-	successes_needed = 3
-	roll_output_type = ROLL_PRIVATE
-
-
 /datum/quirk/darkpack/seizures
 	name = "Seizures"
 	desc = {"When you're under the gun, you lose control of your body.
@@ -50,6 +42,15 @@
 	roller.apply_status_effect(/datum/status_effect/seizure/flaw)
 	COOLDOWN_START(src, seizure_cooldown, 1 SCENES)
 
+
 /datum/status_effect/seizure/flaw
 	dur_min = 25 SECONDS
 	dur_max = 35 SECONDS
+
+
+/datum/storyteller_roll/seizures
+	bumper_text = "seizures"
+	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
+	difficulty = 8
+	successes_needed = 3
+	roll_output_type = ROLL_PRIVATE
