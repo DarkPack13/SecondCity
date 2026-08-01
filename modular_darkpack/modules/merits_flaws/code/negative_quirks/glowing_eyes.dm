@@ -5,7 +5,8 @@
 However, you MUST constantly disguise your condition in the dark, and the glow impairs your vision."}
 	icon = FA_ICON_EYE
 	value = -3
-	gain_text = span_notice("Your eyes shimmer with unnatural light in the dark.")
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
+	gain_text = span_notice("Your eyes glow with unnatural light in the dark.")
 	lose_text = span_notice("The light in your eyes fades.")
 	failure_message = span_notice("The light in your eyes fades.")
 	mob_trait = TRAIT_GLOWING_EYES
@@ -40,8 +41,7 @@ dark.*/
 	if(!human_holder)
 		return
 	REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	if(HAS_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES))
-		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
 	human_holder.st_remove_stat_mod(STAT_PERCEPTION, "Glowing Eyes")
 
 /datum/quirk/darkpack/glowing_eyes/process(seconds_per_tick)
