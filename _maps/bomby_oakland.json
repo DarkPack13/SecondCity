@@ -37,7 +37,7 @@
 			"Baseturf": "/turf/open/openspace"
 		}
 	],
-	"max_npcs": 100,
+	"max_npcs": 50,
 	"umbra_map_path": "map_files/Vampire/oakland",
 	"umbra_map_file": "oakland_umbra.dmm"
 }
