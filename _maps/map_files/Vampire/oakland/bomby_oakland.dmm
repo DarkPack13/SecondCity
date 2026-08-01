@@ -529,7 +529,7 @@
 /obj/structure/chair/sofa/middle/brown{
 	color = "#525252"
 	},
-/obj/machinery/light/broken/directional/north,
+/obj/machinery/light/blacklight/directional/north,
 /obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
@@ -2276,6 +2276,7 @@
 /obj/structure/chair/sofa/corner/brown{
 	color = "#525252"
 	},
+/obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "aBC" = (
@@ -6657,6 +6658,7 @@
 "bGt" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/box/lights/tubes,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "bGv" = (
@@ -42760,6 +42762,12 @@
 "ksk" = (
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/setite)
+"ksl" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "kso" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 4
@@ -44513,7 +44521,7 @@
 /area/vtm/interior/endron_facility)
 "kOV" = (
 /obj/machinery/photocopier/gratis/prebuilt,
-/obj/machinery/light/broken/directional/north,
+/obj/machinery/light/blacklight/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/supply)
 "kOW" = (
@@ -44609,6 +44617,11 @@
 /obj/effect/mapping_helpers/door/lock_difficulty/four,
 /turf/open/floor/city/industrial,
 /area/vtm/westfield_mall/interior)
+"kQi" = (
+/obj/effect/decal/pallet,
+/obj/machinery/light/blacklight/directional/north,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "kQj" = (
 /obj/item/flashlight/flare/candle/infinite{
 	anchored = 1
@@ -64369,6 +64382,10 @@
 "pwS" = (
 /turf/open/misc/dirt,
 /area/vtm/interior/anarch/basement)
+"pxj" = (
+/obj/machinery/light/blacklight/directional/north,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "pxk" = (
 /obj/machinery/sprinkler,
 /turf/open/floor/city/factory,
@@ -72151,7 +72168,7 @@
 /turf/open/floor/city/factory,
 /area/vtm/interior/giovanni/basement)
 "rtp" = (
-/obj/machinery/light/broken/directional/north,
+/obj/machinery/light/blacklight/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
@@ -89138,10 +89155,8 @@
 	pixel_y = 12;
 	pixel_x = 9
 	},
-/obj/structure/fluff/tv{
-	pixel_y = 39;
-	icon_state = "tv_off"
-	},
+/obj/item/storage/box/lights/bulbs,
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "vFf" = (
@@ -90681,6 +90696,11 @@
 /obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/ghetto)
+"vZA" = (
+/obj/machinery/light/blacklight/directional/north,
+/obj/effect/decal/cleanable/cardboard,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "vZC" = (
 /obj/structure/railing{
 	dir = 1
@@ -96838,7 +96858,7 @@
 /area/vtm/outside/ghetto)
 "xwa" = (
 /obj/effect/decal/rugs,
-/obj/warehouse_generator,
+/obj/fusebox/transformer,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "xwc" = (
@@ -144788,7 +144808,7 @@ uDw
 aAY
 gze
 qtA
-lXf
+vZA
 rhT
 rhT
 kZn
@@ -145604,7 +145624,7 @@ uDw
 tow
 fPM
 qtA
-bNs
+kQi
 rhT
 iMs
 kZn
@@ -146420,7 +146440,7 @@ uDw
 aAY
 fPM
 qtA
-fGO
+pxj
 rhT
 lIY
 kZn
@@ -147242,7 +147262,7 @@ lIq
 lIq
 lIq
 lIq
-fGO
+pxj
 rLy
 tIy
 fMQ
@@ -148058,7 +148078,7 @@ xpi
 rhT
 suw
 lIq
-fGO
+pxj
 rLy
 tIy
 nJW
@@ -148461,7 +148481,7 @@ iDT
 oqM
 lIq
 agE
-bGt
+ksl
 eID
 rhT
 eYD
