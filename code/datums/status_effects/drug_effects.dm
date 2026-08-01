@@ -53,7 +53,7 @@
 /datum/status_effect/seizure/on_apply()
 	if(!iscarbon(owner))
 		return FALSE
-	var/amplitude = rand(dur_min, dur_max)
+	var/amplitude = rand(dur_min, dur_max) // DARKPACK EDIT CHANGE
 	duration = amplitude
 	owner.set_jitter_if_lower(100 SECONDS)
 	owner.Paralyze(duration)
