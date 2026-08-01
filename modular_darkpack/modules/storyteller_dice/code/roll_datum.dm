@@ -11,7 +11,8 @@
 	var/numerical = FALSE
 
 	var/roll_output_type = ROLL_PUBLIC
-	/// This is a roll that can proc multiple times in rapid sucession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
+	var/hide_result = FALSE
+	/// This is a roll that can proc multiple times in rapid succession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
 	var/spammy_roll = FALSE
 	/// If set, a character or unicode appended to the front of balloon alerts to help convey what the roll is for.
 	var/alert_prefix
@@ -22,11 +23,6 @@
 	var/reroll_cooldown
 	/// If the roll as a reroll_cooldown, return the mobs stored result if it has one.
 	var/roll_use_last_result = TRUE
-
-	// Mutable vars to store the outputs of any given roll. Expect everything past here to be mutated between each roll.
-	var/last_sucess_amount
-	var/list/last_output_text = list()
-
 
 /**
  * Rolls a number of dice according to Storyteller system rules to find
@@ -43,72 +39,86 @@
 
  * * roller - the mob who is making the role and owns the dice
  * * target - who this dice is being rolled against, can be the roller, determines if its considered "important" to the mob to display.
- * * dice - bonus dice that are added to the roll.
+ * * bonus_added - bonus dice that are added to the roll.
+ * * using_item - optional arg for an item employed for the roll.
  *
- * Returns: The sucess of the roll, either a define or the raw amount of sucesses if `numerical = TRUE`
+ * Returns: The success of the roll, either a define or the raw amount of successes if `numerical = TRUE`
  */
-/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus_added = 0)
+/datum/storyteller_roll/proc/st_roll(mob/living/roller, atom/target, bonus_added = 0, atom/using_item)
 	if(reroll_cooldown && roll_use_last_result)
 		var/list/old_roll = get_old_roll(roller)
 		if(old_roll)
 			return old_roll[OLD_ROLL_OUTPUT]
 
-	last_sucess_amount = 0
-	last_output_text = list()
-
 	if(!can_roll(roller))
 		return ROLL_COOLDOWN
 
-	var/bonus = using_bonus(roller, target, bonus_added)
+	var/bonus_amount = using_bonus(roller, target, bonus_added)
 	var/dice_amount = using_dice(roller, target)
-	var/auto_success_amount = calculate_auto_successes(roller)
-	var/used_difficulty = calculate_used_difficulty(roller)
+	var/auto_success_amount = using_auto_successes(roller)
+	var/difficulty_amount = using_difficulty(roller)
 
-	bonus += SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target)
-	dice_amount += bonus
+	SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target, using_item, &bonus_amount, &difficulty_amount)
+
+	dice_amount += bonus_amount
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
-	var/dice_used_text = "[dice_amount] dice"
-	if(auto_success_amount)
-		dice_used_text += " + [auto_success_amount] auto successes"
-	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus), dice_used_text)] vs. difficulty [used_difficulty]."
-	if(successes_needed > 1)
-		first_line += " [successes_needed] successes needed."
-	last_output_text += span_notice(first_line)
+	var/success_amount = count_success(rolled_dice, difficulty_amount)
+	var/output = roll_result(success_amount)
 
-	last_sucess_amount = count_success(rolled_dice, used_difficulty, last_output_text)
-	var/output = roll_result(last_sucess_amount)
-
-	var/title
-	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN))
-		title = "[ADMIN_LOOKUPFLW(roller)]"
-	else
-		title = "[roller]"
-	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
-
-	var/output_combined = fieldset_block(title, jointext(last_output_text, "<br>"), "boxed_message")
 	for(var/mob/player_mob in get_mobs_to_show(roller, target))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
 		if(!spammy_roll)
-			to_chat(player_mob, output_combined, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
+			var/message = build_output_message(roller, player_mob, dice_amount, bonus_amount, auto_success_amount, difficulty_amount, success_amount, rolled_dice, hide_result)
+			to_chat(player_mob, message, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
 		else
 			if(alert_delay)
-				var/using_number = last_sucess_amount
+				var/using_number = success_amount
 				spawn(alert_delay)
 					create_balloon_alert(roller, player_mob, using_number)
 			else
-				create_balloon_alert(roller, player_mob, last_sucess_amount)
-
+				create_balloon_alert(roller, player_mob, success_amount)
 
 	LAZYADDASSOC(mobs_last_rolled, WEAKREF(roller), list(world.time, output))
 
-	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, output)
+	SEND_SIGNAL(roller, COMSIG_LIVING_DICE_ROLLED, src, target, using_item, output)
 	return output
+
+/datum/storyteller_roll/proc/build_output_message(
+	mob/living/roller,
+	mob/displayed_to,
+	dice_amount,
+	bonus_amount,
+	auto_success_amount,
+	difficulty_amount,
+	success_amount,
+	list/rolled_dice,
+	hide_result
+)
+	var/output_text = list()
+	var/dice_used_text = "[dice_amount] dice"
+	if(auto_success_amount)
+		dice_used_text += " + [auto_success_amount] auto successes"
+	var/first_line = "[span_tooltip(show_rolling_with(roller, bonus_amount), dice_used_text)][hide_result ? "" : " vs. difficulty [difficulty_amount]"]."
+	output_text += span_notice(first_line)
+
+	output_text += get_dice_display(rolled_dice, difficulty_amount, success_amount, hide_result)
+
+	var/title
+	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN) && (displayed_to.client in GLOB.admins))
+		title = "[ADMIN_LOOKUPFLW(roller)]"
+	else
+		title = GET_GUESTBOOK_NAME(displayed_to, roller)
+	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
+
+	var/output_combined = fieldset_block(title, jointext(output_text, "<br>"), "boxed_message")
+
+	return output_combined
 
 /datum/storyteller_roll/proc/create_balloon_alert(mob/living/roller, mob/player_mob, number)
 	if(QDELETED(roller) || QDELETED(player_mob))
@@ -150,7 +160,7 @@
 		dice_amount += roller.st_get_stat(stat_type, include_auto_successes = FALSE)
 	return dice_amount
 
-/datum/storyteller_roll/proc/calculate_auto_successes(mob/living/roller)
+/datum/storyteller_roll/proc/using_auto_successes(mob/living/roller)
 	var/dice_amount = 0
 	for(var/stat_type in using_stats(roller))
 		var/datum/st_stat/given_stat = roller?.storyteller_stats[stat_type]
@@ -174,17 +184,17 @@
 /datum/storyteller_roll/proc/using_stats(mob/living/roller)
 	return applicable_stats
 
-/datum/storyteller_roll/proc/calculate_used_difficulty(mob/living/roller, atom/target)
+/datum/storyteller_roll/proc/using_difficulty(mob/living/roller, atom/target)
 	return difficulty
 
-/datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus = 0)
+/datum/storyteller_roll/proc/show_rolling_with(mob/living/roller, bonus_amount = 0)
 	var/output = ""
 	var/stuff = list()
 	for(var/datum/st_stat/stat_type as anything in using_stats(roller))
 		stuff += "[LOWER_TEXT(stat_type::name)]:[roller.st_get_stat(stat_type)]"
 	output += jointext(stuff, "+")
-	if(bonus)
-		output += "+[bonus]"
+	if(bonus_amount)
+		output += "+[bonus_amount]"
 	return "Rolling [output]"
 
 /datum/storyteller_roll/proc/roll_dice(dice, auto_successes, sides = 10)
@@ -204,30 +214,59 @@
 	return rolled_dice
 
 //Count the number of successes.
-/datum/storyteller_roll/proc/count_success(list/rolled_dice, difficulty = 6, last_output_text)
-	var/sucess_amount = 0
+/datum/storyteller_roll/proc/count_success(list/rolled_dice, difficulty)
+	var/success_amount = 0
+	for(var/roll in rolled_dice)
+		switch(dice_face_success_type(roll, difficulty))
+			if(2)
+				success_amount += 2
+			if(1)
+				success_amount++
+			if(-1)
+				success_amount--
+	return success_amount
+
+//Count the number of successes.
+/datum/storyteller_roll/proc/get_dice_display(list/rolled_dice, difficulty, success_amount, hide_result)
 	var/dice_text = ""
 	for(var/roll in rolled_dice)
-		if(roll >= difficulty)
-			dice_text += span_nicegreen("[get_dice_char(roll)]")
-			sucess_amount++
-			if(SSroll.on_crit_extra_success_enabled && roll == 10)
-				sucess_amount++
-		else if(roll == 1)
-			dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
-			sucess_amount--
-		else
-			dice_text += span_danger("[get_dice_char(roll)]")
-	last_output_text += "[roll_result_text(roll_result(sucess_amount))] [span_slightly_larger(dice_text)]"
-	return sucess_amount
+		if(hide_result)
+			dice_text += span_notice("[get_dice_char(roll)]")
+			continue
 
-/datum/storyteller_roll/proc/roll_result(sucess_amount)
-	if(numerical)
-		return sucess_amount
+		switch(dice_face_success_type(roll, difficulty))
+			if(2)
+				dice_text += span_green("[get_dice_char(roll)]")
+			if(1)
+				dice_text += span_nicegreen("[get_dice_char(roll)]")
+			if(-1)
+				dice_text += span_bold(span_danger("[get_dice_char(roll)]"))
+			else
+				dice_text += span_danger("[get_dice_char(roll)]")
+
+	if(hide_result)
+		return "[span_slightly_larger(dice_text)]"
+
+	return "[roll_result_text(roll_result(success_amount))] [span_slightly_larger(dice_text)]"
+
+/datum/storyteller_roll/proc/dice_face_success_type(dice_face, difficulty)
+	if(dice_face >= difficulty)
+		if(SSroll.on_crit_extra_success_enabled && dice_face == 10)
+			return 2
+		return 1
+	else if(dice_face == 1)
+		return -1
 	else
-		if(sucess_amount < 0)
+		return 0
+
+
+/datum/storyteller_roll/proc/roll_result(success_amount)
+	if(numerical)
+		return success_amount
+	else
+		if(success_amount < 0)
 			return ROLL_BOTCH
-		else if(sucess_amount < successes_needed)
+		else if(success_amount < successes_needed)
 			return ROLL_FAILURE
 		else
 			return ROLL_SUCCESS

@@ -32,7 +32,7 @@
 	bumper_text = "attack (claw)"
 
 // Cant tell wether this is meant to be to land or for damage dice.
-/datum/storyteller_roll/attack/claw/calculate_used_difficulty(mob/living/roller, atom/target)
+/datum/storyteller_roll/attack/claw/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. -= 1
@@ -76,7 +76,7 @@
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. += 2
 
-/datum/storyteller_roll/damage/claw/calculate_used_difficulty(mob/living/roller, atom/target)
+/datum/storyteller_roll/damage/claw/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. -= 1
@@ -135,7 +135,7 @@
 	bumper_text = "climbing"
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
-/datum/storyteller_roll/climbing/calculate_used_difficulty(mob/living/roller, atom/target)
+/datum/storyteller_roll/climbing/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(roller.has_status_effect(/datum/status_effect/city_running)) // In theory could check for if its the city...
 		. -= 2

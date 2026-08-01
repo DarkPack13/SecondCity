@@ -1,6 +1,3 @@
-// /datum/action/cooldown/power/gift/apecrafts_blessings
-
-
 /datum/action/cooldown/power/gift/city_running
 	name = "City Running"
 	desc = {"The player spends a point of Rage. For the rest of the scene, the character may climb at her full movement speed,

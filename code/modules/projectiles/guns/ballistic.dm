@@ -624,7 +624,7 @@
 		if(automatic_check)
 			recoil_roll.difficulty += 2	//Full-auto gains +2 difficulty
 
-		var/recoil_reduction = recoil_roll.st_roll(user, src)
+		var/recoil_reduction = recoil_roll.st_roll(user, src, using_item = src)
 		recoil = max(initial(recoil) - recoil_reduction, 0)
 		spread = max(initial(spread) - recoil_reduction, 0)
 		COOLDOWN_START(src, recoil_skill_check, 1 SCENES)

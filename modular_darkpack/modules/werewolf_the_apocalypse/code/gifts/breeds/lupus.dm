@@ -45,7 +45,9 @@
 	overlay_state = /datum/action/cooldown/power/gift/hares_leap::button_icon_state
 
 
+#warn do
 // /datum/action/cooldown/power/gift/heightened_senses
 
 
+#warn do
 // /datum/action/cooldown/power/gift/predators_arsenal

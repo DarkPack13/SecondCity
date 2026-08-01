@@ -156,7 +156,7 @@
 	var/language = owner.get_selected_language()
 	var/message = owner.compose_message(owner, language, input_message)
 	// Composed message of all the people in listener_list
-	var/those_who_hear = "[jointext(listener_list, ", ", 1, length(listener_list))], and [listener_list[length(listener_list)]]."
+	var/those_who_hear = "[english_list(listener_list)]."
 
 	// The roll itself; wits+perception against diff 7
 	var/mob/living/caster = owner
