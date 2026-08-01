@@ -7,11 +7,11 @@ find a translator or rely on written word."}
 	darkpack_allowed = TRUE
 	ttrpg_sources = list(/datum/source_book/htr3/pg = 121)
 
-/datum/quirk/csl/language_barrier/add(client/client_source)
+/datum/quirk/csl/language_barrier/add(client/client_source) //Ugly copypasta to avoid being assigned Uncommon
 	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
 	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_ATOM)
 
-	quirk_holder.grant_partial_language(/datum/language/common, text2num(client_source?.prefs?.read_preference(/datum/preference/choiced/csl_strength)) || 90, type)
+	quirk_holder.grant_partial_language(/datum/language/common, 50, type)
 
 /datum/quirk/csl/language_barrier/remove()
 	UnregisterSignal(quirk_holder, COMSIG_SPECIES_GAIN)
@@ -29,9 +29,3 @@ find a translator or rely on written word."}
 			quirk_holder.grant_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
 	else
 		quirk_holder.grant_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_ATOM)
-
-/datum/quirk_constant_data/csl/language_barrier
-	associated_typepath = /datum/quirk/csl/language_barrier
-	customization_options = list(
-		/datum/preference/choiced/csl_strength,
-	)
