@@ -7,6 +7,7 @@
 	value = -4 // Made up since its not a "real" flaw and is instead listed in the crinos-born section
 	gain_text = span_warning("You feel less in control of your body...")
 	lose_text = span_notice("You feel more in control of yourself.")
+	ttrpg_sources = list(/datum/source_book/wta20 = 75)
 	COOLDOWN_DECLARE(seizure_cooldown)
 
 /datum/quirk/darkpack/seizures/add(client/client_source)
@@ -30,8 +31,6 @@
 	else
 		if(output != ROLL_BOTCH)
 			return
-
-
 
 	var/datum/storyteller_roll/seizures/seizure_roll_datum = new()
 	var/result = seizure_roll_datum.st_roll(roller)
