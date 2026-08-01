@@ -2,6 +2,7 @@
 	name = "Financial District"
 	icon_state = "financialdistrict"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -9,13 +10,15 @@
 	name = "Ghetto"
 	icon_state = "ghetto"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
 /area/vtm/outside/pacificheights
 	name = "Pacific Heights"
 	icon_state = "pacificheights"
-	ambience_index = AMBIENCE_NATURE
+	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_03.ogg'
 	music_index = MUSIC_HOLLYWOOD
 	domain = TRUE
 
@@ -35,6 +38,7 @@
 	name = "Chinatown"
 	icon_state = "chinatown"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	musictracks = list('modular_darkpack/modules/ambience/sounds/music/chinatown.ogg')
 	domain = TRUE
 
@@ -42,6 +46,7 @@
 	name = "Fisherman's Wharf"
 	icon_state = "fishermanswharf"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -58,9 +63,7 @@
 	name = "North Beach"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
-	//The waves dont really stop.
-	min_ambience_cooldown = 0 SECONDS
-	max_ambience_cooldown = 5 SECONDS
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/beach.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -68,6 +71,7 @@
 	name = "Baywalk District"
 	icon_state = "northbeach"
 	ambience_index = AMBIENCE_BEACH
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/beach.ogg'
 	music_index = MUSIC_SANTAMONICA
 	domain = TRUE
 
@@ -75,6 +79,7 @@
 	name = "Union Square"
 	icon_state = "unionsquare"
 	ambience_index = AMBIENCE_CITY
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/city_01.ogg'
 	music_index = MUSIC_CITY
 	domain = TRUE
 
@@ -90,8 +95,12 @@
 	icon_state = "supply"
 	domain = TRUE
 
+
+/area/vtm/outside/giovanni
+
 /area/vtm/outside/giovanni/courtyard
 	name = "Giovanni Mansion - Courtyard"
 	icon_state = "giovanni"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/giovanni_moldy_old_world.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = FALSE

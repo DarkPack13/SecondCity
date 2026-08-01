@@ -62,12 +62,18 @@
 	var/cooldown = 0.8 SECONDS
 	/// Does this message have a message that can be modified by the user?
 	var/can_message_change = FALSE
-	/// How long is the shared emote cooldown triggered by this emote?
-	var/general_emote_audio_cooldown = 2 SECONDS
-	/// How long is the specific emote cooldown triggered by this emote?
-	var/specific_emote_audio_cooldown = 5 SECONDS
+	/// How long is the shared emote cooldown triggered by this emote when used intentionally?
+	var/manual_general_emote_audio_cooldown = 2 SECONDS
+	/// How long is the specific emote cooldown triggered by this emote when used intentionally?
+	var/manual_specific_emote_audio_cooldown = 5 SECONDS
+	/// How long is the shared emote cooldown triggered by this emote when forced?
+	var/forced_general_emote_audio_cooldown = 2 SECONDS
+	/// How long is the specific emote cooldown triggered by this emote when forced?
+	var/forced_specific_emote_audio_cooldown = 2 SECONDS
 	/// Does this emote's sound ignore walls?
 	var/sound_wall_ignore = FALSE
+	///Does this emote use sound tokens? this means it also ignores walls.
+	var/use_sound_tokens = FALSE
 
 /datum/emote/New()
 	switch(mob_type_allowed_typecache)
@@ -113,15 +119,27 @@
 		user.log_message(msg, LOG_EMOTE)
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && should_play_sound(user, intentional) && TIMER_COOLDOWN_FINISHED(user, "general_emote_audio_cooldown") && TIMER_COOLDOWN_FINISHED(user, type))
-		TIMER_COOLDOWN_START(user, type, specific_emote_audio_cooldown)
-		TIMER_COOLDOWN_START(user, "general_emote_audio_cooldown", general_emote_audio_cooldown)
+	if(tmp_sound && should_play_sound(user, intentional))
+		if(intentional)
+			if(!TIMER_COOLDOWN_FINISHED(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)) || !TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
+				return FALSE
+		else
+			if(!TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
+				return FALSE
+		TIMER_COOLDOWN_START(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type), manual_specific_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN, manual_general_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type), forced_specific_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN, forced_general_emote_audio_cooldown)
+
 		var/frequency = null
 		if (affected_by_pitch && SStts.tts_enabled && SStts.pitch_enabled)
-			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * SIGN(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
+			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * sign(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
 		else if(vary)
 			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH)
-		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, extrarange = get_range(user), ignore_walls = sound_wall_ignore, frequency = frequency) // DARKPACK EDIT CHANGE - (Added extrarange getter)
+		if(use_sound_tokens && sound_wall_ignore)
+			playsoundtoken(source = user, soundin = tmp_sound, range = SOUND_RANGE, volume = 50)
+		else
+			playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, extrarange = get_range(user), ignore_walls = sound_wall_ignore, frequency = frequency) // DARKPACK EDIT CHANGE - (Added extrarange getter)
 
 
 	var/is_important = running_emote_type & EMOTE_IMPORTANT
@@ -149,22 +167,22 @@
 					runechat_flags = EMOTE_MESSAGE,
 				)
 			else if(is_important)
-				to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT, ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
+				to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT CHANGE - ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
 			else if(is_audible && is_visual)
 				viewer.show_message(
-					span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE, // DARKPACK EDIT, ORIGINAL: span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
-					span_emote("You see how <b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL, // DARKPACK EDIT, ORIGINAL: span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
+					span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE, // DARKPACK EDIT CHANGE - ORIGINAL: span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE,
+					span_emote("You see how <b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL, // DARKPACK EDIT CHANGE - ORIGINAL: span_emote("You see how <b>[user]</b> [msg]"), MSG_VISUAL,
 				)
 			else if(is_audible)
-				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE) // DARKPACK EDIT, ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_AUDIBLE) // DARKPACK EDIT CHANGE - ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_AUDIBLE)
 			else if(is_visual)
-				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL) // DARKPACK EDIT, ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
+				viewer.show_message(span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]"), MSG_VISUAL) // DARKPACK EDIT CHANGE - ORIGINAL: viewer.show_message(span_emote("<b>[user]</b> [msg]"), MSG_VISUAL)
 		return // Early exit so no dchat message
 
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT, ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
+			to_chat(viewer, span_emote("<b>[GET_GUESTBOOK_NAME(viewer, user)]</b>[space][msg]")) // DARKPACK EDIT CHANGE - ORIGINAL: to_chat(viewer, span_emote("<b>[user]</b>[space][msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -204,7 +222,7 @@
 				continue
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
-			var/dchatmsg = "<b>[GET_GUESTBOOK_NAME(ghost, user)]</b>[space][msg]" // DARKPACK EDIT ADDITION
+			var/dchatmsg = "<b>[GET_GUESTBOOK_NAME(ghost, user)]</b>[space][msg]" // DARKPACK EDIT ADD
 			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)][space][dchatmsg]"))
 	// DARKPACK EDIT CHANGE END
 

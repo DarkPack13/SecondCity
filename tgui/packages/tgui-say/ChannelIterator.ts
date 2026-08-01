@@ -1,4 +1,4 @@
-export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'LOOC' | 'Do'; // DARKPACK EDIT, ORIGINAL: export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin';
+export type Channel = 'Say' | 'Radio' | 'Me' | 'Do' | 'OOC' | 'LOOC' | 'Admin' | 'Pray'; // DARKPACK EDIT CHANGE - LOOC,DO_EMOTES
 
 /**
  * ### ChannelIterator
@@ -8,9 +8,9 @@ export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'LOOC' | 'Do'; 
  */
 export class ChannelIterator {
   private index: number = 0;
-  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'Do', 'LOOC', 'OOC', 'Admin']; // DARKPACK EDIT, ORIGINAL: private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'OOC', 'Admin'];
+  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'Do', 'OOC', 'LOOC', 'Admin', 'Pray']; // DARKPACK EDIT CHANGE - LOOC,DO_EMOTES
   private readonly blacklist: Channel[] = ['Admin'];
-  private readonly quiet: Channel[] = ['OOC', 'LOOC', 'Admin']; // DARKPACK EDIT, ORIGINAL: private readonly quiet: Channel[] = ['OOC', 'Admin'];
+  private readonly quiet: Channel[] = ['OOC', 'LOOC', 'Admin', 'Pray']; // DARKPACK EDIT CHANGE - LOOC
 
   public next(): Channel {
     if (this.blacklist.includes(this.channels[this.index])) {

@@ -140,6 +140,8 @@ CREATE TABLE `connection_log` (
   `ckey` varchar(32) DEFAULT NULL,
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
+  `byond_version` varchar(8) DEFAULT NULL,
+  `byond_build` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -261,7 +263,7 @@ CREATE TABLE `library` (
   `author` varchar(45) NOT NULL,
   `title` varchar(45) NOT NULL,
   `content` text NOT NULL,
-  `category` VARCHAR(255) NOT NULL, /* DARKPACK EDIT, ORIGINAL: `category` enum('Any','Fiction','Non-Fiction','Adult','Reference','Religion') NOT NULL, */
+  `category` VARCHAR(255) NOT NULL, /* DARKPACK EDIT CHANGE - ORIGINAL: `category` enum('Any','Fiction','Non-Fiction','Adult','Reference','Religion') NOT NULL, */
   `ckey` varchar(32) NOT NULL DEFAULT 'LEGACY',
   `datetime` datetime NOT NULL,
   `deleted` tinyint(1) unsigned DEFAULT NULL,

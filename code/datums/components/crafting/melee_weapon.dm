@@ -8,7 +8,8 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
@@ -124,7 +125,7 @@
  */
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
-	result = /obj/item/chainsaw
+	result = /obj/item/chainsaw/vamp // DARKPACK EDIT CHANGE
 	reqs = list(
 		/obj/item/circular_saw = 1,
 		/obj/item/stack/cable_coil = 3,
@@ -133,6 +134,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/spear
 	name = "Spear"
@@ -144,7 +146,19 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+	skill_dots_minimum = 1 // DARKPACK EDIT ADD - STORYTELER_STATS
+
+/datum/crafting_recipe/wireprod
+	name = "Wireprod assembly"
+	result = /obj/item/wireprod
+	reqs = list(
+		/obj/item/restraints/handcuffs/cable = 1,
+		/obj/item/stack/rods = 1,
+	)
+	time = 2 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/toysword
 	name = "Toy Sword"
 	reqs = list(
@@ -161,6 +175,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/bonespear
 	name = "Bone Spear"
@@ -171,6 +186,7 @@
 		/obj/item/stack/sheet/sinew = 1,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/boneaxe
 	name = "Bone Axe"
@@ -181,6 +197,7 @@
 		/obj/item/stack/sheet/sinew = 3,
 	)
 	category = CAT_WEAPON_MELEE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/house_edge
 	name = "House Edge"
@@ -198,7 +215,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_MELEE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/giant_wrench
 	name = "Big Slappy"
 	result = /obj/item/shovel/giant_wrench
@@ -242,7 +259,9 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-/* // DARKPACK EDIT REMOVE
+	skill_dots_minimum = 2 // DARKPACK EDIT ADD - STORYTELER_STATS
+
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/sm_sword
 	name = "Supermatter Sword"
 	result = /obj/item/melee/supermatter_sword
@@ -254,7 +273,6 @@
 	)
 	time = 120 SECONDS
 	category = CAT_WEAPON_MELEE
- */
 
 /datum/crafting_recipe/dragonator_spear_untreated
 	name = "Untreated Giant-Killer Spear"
@@ -267,3 +285,78 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
 
+// Crusher trophies
+/datum/crafting_recipe/crusher_trophy
+	abstract_type = /datum/crafting_recipe/crusher_trophy
+	tool_paths = list(/obj/item/kinetic_crusher)
+	time = 5 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/crusher_trophy/watcher_wing
+	name = "Watcher Wing Trophy"
+	result = /obj/item/crusher_trophy/watcher_wing
+	reqs = list(
+		/obj/item/stack/sheet/sinew = 7,
+		/obj/item/stack/ore/diamond = 10,
+		/obj/item/stack/sheet/bone = 5,
+	)
+
+/datum/crafting_recipe/crusher_trophy/icewing_watcher_wing
+	name = "Icewing Watcher Wing Trophy"
+	result = /obj/item/crusher_trophy/ice_wing
+	reqs = list(
+		/obj/item/stack/sheet/sinew/icewing = 3,
+		/obj/item/stack/ore/diamond = 6,
+		/obj/item/stack/sheet/bone = 3,
+	)
+
+/datum/crafting_recipe/crusher_trophy/magmawing_watcher_wing
+	name = "Magmawing Watcher Wing Trophy"
+	result = /obj/item/crusher_trophy/magma_wing
+	reqs = list(
+		/obj/item/stack/sheet/sinew/magmawing = 3,
+		/obj/item/stack/ore/diamond = 6,
+		/obj/item/stack/sheet/bone = 3,
+	)
+
+/datum/crafting_recipe/crusher_trophy/goliath_tentacle
+	name = "Goliath Tentacle Trophy"
+	result = /obj/item/crusher_trophy/goliath_tentacle
+	reqs = list(
+		/obj/item/stack/sheet/animalhide/goliath_hide = 3,
+		/obj/item/stack/sheet/bone = 8,
+	)
+
+/datum/crafting_recipe/crusher_trophy/legion_skull
+	name = "Legion Skull Trophy"
+	result = /obj/item/crusher_trophy/legion_skull
+	reqs = list(
+		/obj/item/organ/monster_core/regenerative_core/legion = 3, // Good sink for expired cores
+		/obj/item/stack/sheet/bone = 5,
+	)
+
+/datum/crafting_recipe/crusher_trophy/lobster_claw
+	name = "Lobster Claw Trophy"
+	result = /obj/item/crusher_trophy/lobster_claw
+	reqs = list(
+		/obj/item/organ/monster_core/rush_gland = 3,
+		/obj/item/stack/sheet/bone = 5,
+		/obj/item/food/meat/slab/rawcrab = 3,
+	)
+
+/datum/crafting_recipe/crusher_trophy/brimdemon_fang
+	name = "Brimdemon Fang Trophy"
+	result = /obj/item/crusher_trophy/brimdemon_fang
+	reqs = list(
+		/obj/item/organ/monster_core/brimdust_sac = 3,
+		/datum/reagent/brimdust = 45,
+	)
+
+/datum/crafting_recipe/crusher_trophy/bileworm_spewlet
+	name = "Bileworm Spewlet Trophy"
+	result = /obj/item/crusher_trophy/bileworm_spewlet
+	reqs = list(
+		/obj/item/stack/sheet/animalhide/bileworm = 3,
+		/obj/item/stack/ore/gold = 12,
+	)
+*/

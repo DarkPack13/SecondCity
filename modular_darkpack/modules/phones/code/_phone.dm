@@ -81,13 +81,6 @@
 	AddComponent(/datum/component/violation_observer, FALSE)
 	phone_background = "BG_[rand(1,18)]" // pick a random phone background when spawned
 
-/// Index to a define to point at a runtime-global list at compile-time.
-#define NETWORK_ID 1
-/// Index to a string, for the contact title.
-#define OUR_ROLE 2
-/// Index to a boolean, on whether to replace role with job title (or alt-title).
-#define USE_JOB_TITLE 3
-
 /obj/item/smartphone/proc/update_initialized_contacts()
 	var/mob/living/carbon/owner = owner_weakref.resolve()
 	if(LAZYLEN(contact_networks_pre_init))
@@ -112,11 +105,8 @@
 	if(important_contact_of && owner && sim_card.phone_number)
 		GLOB.important_contacts[important_contact_of] = new /datum/phonecontact(owner.real_name, sim_card.phone_number)
 
-#undef NETWORK_ID
-#undef OUR_ROLE
-#undef USE_JOB_TITLE
-
 /obj/item/smartphone/Destroy(force)
+	SEND_SIGNAL(src, COMSIG_ALL_MASQUERADE_REINFORCE)
 	GLOB.phones_list -= src
 	for(var/datum/contact_network/contact_network as anything in contact_networks)
 		for(var/datum/contact/our_contact in contact_network.contacts)
@@ -226,12 +216,11 @@
 	data["muted"] = muted
 
 	var/list/published_numbers = list()
-	for(var/contact in SSphones.published_phone_numbers)
+	for(var/contact, number in SSphones.published_phone_numbers)
 		UNTYPED_LIST_ADD(published_numbers, list(
 			"name" = contact,
-			"number" = SSphones.published_phone_numbers[contact],
+			"number" = number,
 		))
-	published_numbers = sort_list(published_numbers)
 	data["published_numbers"] = published_numbers
 	data["sim_published"] = sim_card.published
 	data["sim_published_name"] = sim_card.published_name
@@ -242,7 +231,6 @@
 			"name" = contact.name,
 			"number" = contact.number,
 		))
-	our_contacts = sort_list(our_contacts)
 	data["our_contacts"] = our_contacts
 
 	var/list/our_blocked_contacts = list()
@@ -251,7 +239,6 @@
 			"name" = contact.name,
 			"number" = contact.number,
 		))
-	our_blocked_contacts = sort_list(our_blocked_contacts)
 	data["our_blocked_contacts"] = our_blocked_contacts
 
 	var/list/phone_history = list()
@@ -265,10 +252,14 @@
 		))
 	data["phone_history"] = phone_history
 
-	data["calling_user"] = get_number_contact_name()
+	var/calling_user = incoming_phone_number ? incoming_phone_number : dialed_number
+	if(calling_user)
+		data["calling_user"] = get_number_contact_name(calling_user)
+	else
+		data["calling_user"] = ""
 
-	data["time"] = station_time_timestamp("hh:mm")
-	data["date"] = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]"
+	data["time"] = server_timestamp("hh:mm", ic_time = TRUE)
+	data["date"] = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE)
 	data["background_url"] = phone_background
 
 	var/list/conversations_list = list()
@@ -348,7 +339,7 @@
 				to_chat(usr, span_danger("You must insert a SIM card to publish your number."))
 				return
 			name = trim(copytext_char(sanitize(name), 1, MAX_MESSAGE_LEN))
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					to_chat(usr, span_danger("Error: This number is already published."))
 					return TRUE
@@ -360,7 +351,7 @@
 			return TRUE
 
 		if("unpublish_number")
-			for(var/contact as anything in SSphones.published_phone_numbers)
+			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					log_phone("[key_name(usr)] unpublished their number ([contact])/[sim_card.phone_number] from the phonebook.")
 					SSphones.published_phone_numbers.Remove(contact)
@@ -547,7 +538,7 @@
 	if(!contact_number || !message_text)
 		return FALSE
 
-	var/contact_name = get_number_contact_name()
+	var/contact_name = get_number_contact_name(contact_number)
 	var/datum/phone_conversation/conversation = get_conversation(contact_number)
 
 	if(!conversation)
@@ -558,22 +549,20 @@
 
 	var/obj/item/smartphone/receiving_phone = SSphones.get_phone_from_number(contact_number)
 	if(receiving_phone)
-		var/recv_contact_name = receiving_phone.get_number_contact_name()
+		var/recv_contact_name = receiving_phone.get_number_contact_name(sim_card.phone_number)
 		var/datum/phone_conversation/recv_conversation = receiving_phone.get_conversation(sim_card.phone_number)
 		if(!recv_conversation)
 			recv_conversation = new(recv_contact_name, sim_card.phone_number)
 			receiving_phone.conversations += recv_conversation
 		recv_conversation.add_message(message_text, FALSE)
-		addtimer(CALLBACK(receiving_phone, PROC_REF(after_text_received)), rand(2 SECONDS, 6 SECONDS)) //simulate random delay before sending an audible/visible alert
+		addtimer(CALLBACK(receiving_phone, PROC_REF(after_text_received), contact_name, message_text), rand(1 SECONDS, 2 SECONDS)) //simulate random delay before sending an audible/visible alert
 		log_phone("[key_name(usr)] sent a text to [contact_number]: [message_text]", list("sender" = contact_name, "receiver" = recv_contact_name, "message" = message_text))
 	return TRUE
 
 //stuff to do after a text is received
-/obj/item/smartphone/proc/after_text_received()
-	if(ringer) //only play the receive sound if sounds are on
-		playsound(loc, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE)
-		balloon_alert_to_viewers(message = "New Message!", vision_distance = SAMETILE_MESSAGE_RANGE)
-	return TRUE
+/obj/item/smartphone/proc/after_text_received(contact_name, message_text)
+	// This should support having your notifiactions set to hidden to not show detials without opening the app.
+	receive_notification("Message+", contact_name, message_text)
 
 /obj/item/smartphone/proc/format_conversation(contact_number)
 	var/datum/phone_conversation/conversation = get_conversation(contact_number)
@@ -611,8 +600,8 @@
 
 	var/new_post = list(
 		"body" = trim(body),
-		"date" = station_time_timestamp("Day, Month DD, ") + "[CURRENT_STATION_YEAR]",
-		"time" = station_time_timestamp("hh:mm"),
+		"date" = server_timestamp("Day, Month DD, YYYY", ic_time = TRUE),
+		"time" = server_timestamp("hh:mm", ic_time = TRUE),
 		"author" = endpost_username
 	)
 

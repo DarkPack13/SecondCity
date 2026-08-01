@@ -78,7 +78,17 @@
 		/obj/item/clothing/shoes/vampire,
 		/obj/item/clothing/shoes/vampire/brown
 	)
-	uniforms = list(/obj/item/clothing/under/vampire/mechanic)
+	uniforms = list(
+		/obj/item/clothing/under/vampire/mechanic,
+		/obj/item/clothing/under/vampire/brujah,
+		/obj/item/clothing/under/vampire/emo,
+		/obj/item/clothing/under/vampire/suit,
+		/obj/item/clothing/under/vampire/turtleneck_black,
+		/obj/item/clothing/under/vampire/office,
+		/obj/item/clothing/under/vampire/gangrel,
+		/obj/item/clothing/under/vampire/tremere,
+		/obj/item/clothing/under/vampire/supply,
+	)
 	pockets = list(
 		/obj/item/vamp/keys/npc,
 		// /obj/item/stack/dollar/rand
@@ -95,9 +105,23 @@
 		"Hey, wanna buy it?"
 	)
 	random_phrases = list(
-		"Check this!",
-		"Can I help?",
-		"Hey, wanna buy it?"
+		"Can I help you find something?",
+		"Let me know if you need anything.",
+		"Take your time.",
+		"Good eye, that one's popular.",
+		"Cash or card, don't matter to me.",
+		"We just got a new shipment in.",
+		"You look like you know what you want.",
+		"That one's on sale. Don't ask why.",
+		"Been a slow day. Glad you stopped in.",
+		"I've been running this place twelve years. Feels like thirty.",
+		"My last employee quit without notice. Hence... this.",
+		"Everything's priced fair. Mostly.",
+		"Take a look around, no pressure.",
+		"The owner's never here. I basically run this place.",
+		"We don't do refunds.",
+		"You need a bag? Bags are five cents. City law. Don't blame me!",
+		"Holler if you need me, I'll be pretending to do inventory.",
 	)
 	answer_phrases = list("I just work here...")
 	help_phrases = list(
@@ -106,4 +130,14 @@
 		"What is happening?!",
 		"Stop doing this!",
 		"Someone, call the ambulance!"
+	)
+	var/masquerade_item_phrases = list(
+		"Eh? You get this from a garage sale?",
+		"Looks funny. I'll give it to my uncle for his birthday.",
+		"Take the money and go. I don't do business with Satanists."
+	)
+	var/masquerade_item_failure_phrases = list(
+		"What the hell? Buddy, you're creeping me out.",
+		"Where did you get this?!",
+		"Ok, I'll buy it, but please leave..."
 	)

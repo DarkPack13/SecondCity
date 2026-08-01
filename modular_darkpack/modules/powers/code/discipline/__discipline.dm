@@ -29,15 +29,14 @@
 	///All Discipline powers under this Discipline that the owner knows. Derived from all_powers.
 	var/list/datum/discipline_power/known_powers = list()
 	///The typepaths of possible powers for every rank in this Discipline.
-	var/all_powers = list()
+	var/list/all_powers = list()
 	///The mob that owns and is using this Discipline.
 	var/mob/living/carbon/human/owner
 	///If this Discipline has been assigned before and post_gain effects have already been applied.
 	var/post_gain_applied
-	/// Signature clan that "owns" the discipline. 
+	/// Signature clan that "owns" the discipline.
 	var/signature_clan
 
-//TODO: rework this and set_level to use proper loadouts instead of a default set every time
 /datum/discipline/New(level)
 	all_powers = subtypesof(power_type)
 	if (!level)
@@ -47,11 +46,18 @@
 	var/amount = level // how many levels are we giving them
 	if(level > length(all_powers)) // the amount of disc levels we are trying to give is greater than the amount of subtypes that exist for it
 		amount = length(all_powers) // so only give what exists
-	for (var/i in 1 to amount)
+	for(var/i in 1 to amount)
 		var/type_to_create = all_powers[i]
-		var/datum/discipline_power/new_power = new type_to_create(src)
-		known_powers += new_power
+		known_powers += new type_to_create(src)
 	current_power = known_powers[1]
+
+/datum/discipline/Destroy(force)
+	action_type = null
+	current_power = null
+	QDEL_LIST(known_powers)
+	all_powers = null
+	owner = null
+	return ..()
 
 /**
  * Modifies a Discipline's level, updating its available powers
@@ -60,29 +66,30 @@
  * adding and removing powers.
  *
  * Arguments:
- * * level - the level to set the Discipline as, powers included
+ * * new_level - the level to set the Discipline as, powers included
  */
-/datum/discipline/proc/set_level(level)
-	if (level == src.level)
+/datum/discipline/proc/set_level(new_level)
+	new_level = clamp(new_level, 0, length(all_powers))
+	if (new_level == level)
 		return
 
-	var/list/datum/discipline_power/new_known_powers = list()
-	for (var/i in 1 to level)
-		if (length(known_powers) >= level)
-			new_known_powers.Add(known_powers[i])
-		else
-			var/adding_power_type = all_powers[i]
-			var/datum/discipline_power/new_power = new adding_power_type(src)
-			new_known_powers.Add(new_power)
-			new_power.post_gain()
+	for (var/i in length(known_powers) + 1 to new_level)
+		var/adding_power_type = all_powers[i]
+		var/datum/discipline_power/new_power = new adding_power_type(src)
+		known_powers += new_power
+		new_power.post_gain()
 
-	//delete orphaned powers
-	var/list/datum/discipline_power/leftover_powers = known_powers - new_known_powers
-	if (length(leftover_powers))
+	if (length(known_powers) > new_level)
+		var/list/datum/discipline_power/leftover_powers = known_powers.Copy(new_level + 1)
+		known_powers.Cut(new_level + 1)
 		QDEL_LIST(leftover_powers)
 
-	known_powers = new_known_powers
-	src.level = level
+	level = new_level
+	update_current_power()
+
+/datum/discipline/proc/update_current_power()
+	level_casting = clamp(level_casting, 1, length(known_powers))
+	current_power = length(known_powers) ? known_powers[level_casting] : null
 
 /**
  * Assigns the Discipline to a mob, setting its owner and applying
@@ -100,25 +107,6 @@
 	if (!post_gain_applied)
 		post_gain()
 	post_gain_applied = TRUE
-
-	// Destroy self and contained powers when owner is destroyed
-	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(on_owner_destroy))
-
-/**
- * When the Discipline's owner is destroyed, this deletes all
- * contained powers, clears out references to the destroyed owner,
- * and then deletes itself.
- */
-/datum/discipline/proc/on_owner_destroy(mob/living/source, force)
-	SIGNAL_HANDLER
-
-	// Clear out Discipline powers
-	current_power = null
-	QDEL_LIST(known_powers)
-
-	// Destroy self when owner is destroyed
-	owner = null
-	qdel(src)
 
 /**
  * Returns a known Discipline power in this Discipline

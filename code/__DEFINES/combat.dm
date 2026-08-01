@@ -119,8 +119,13 @@ DEFINE_BITFIELD(status_flags, list(
 #define GRAB_NECK 2
 #define GRAB_KILL 3
 
+// Grab attack chain results
+#define GRAB_SKIP 0
+#define GRAB_FAILURE 1
+#define GRAB_SUCCESS 2
+
 //Grab breakout odds
-//#define BASE_GRAB_RESIST_CHANCE 60 //base chance for whether or not you can escape from a grab // DARKPACK EDIT REMOVAL - STORYTELLER_DICE
+#define BASE_GRAB_RESIST_CHANCE 60 //base chance for whether or not you can escape from a grab
 
 //slowdown when in softcrit. Note that crawling slowdown will also apply at the same time!
 #define SOFTCRIT_ADD_SLOWDOWN 2

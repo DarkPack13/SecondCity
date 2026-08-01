@@ -69,6 +69,18 @@
 	src.discipline = discipline
 	src.owner = discipline.owner
 
+/datum/discipline_power/Destroy(force)
+	for(var/timer_id in duration_timers)
+		deltimer(timer_id)
+	duration_timers = null
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+		cooldown_timer = null
+	grouped_powers = null
+	discipline = null
+	owner = null
+	return ..()
+
 /**
  * Returns the time left the cooldown timer, or
  * 0 if there is none. Returning 0 means not on

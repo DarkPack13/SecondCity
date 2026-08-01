@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 	///How much reagent capacity should the shower begin with when built.
 	var/reagent_capacity = 200
 	///How many units the shower refills every second.
-	var/refill_rate = 0.5
+	var/refill_rate = 50 // DARKPACK EDIT CHANGE - ORIGINAL: var/reclaim_rate = 0.5
 	///Does the shower have a water recycler to recollect its water supply?
 	var/has_water_reclaimer = TRUE
 	///Which mode the shower is operating in.
@@ -87,7 +87,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	if(src.has_water_reclaimer)
 		reagents.add_reagent(reagent_id, reagent_capacity)
 	soundloop = new(src, FALSE)
-	AddComponent(/datum/component/plumbing/simple_demand/extended)
+	// AddComponent(/datum/component/plumbing/simple_demand/extended) // DARKPACK EDIT REMOVAL
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
@@ -138,18 +138,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	begin_processing()
 	return TRUE
 
-/obj/machinery/shower/attackby(obj/item/tool, mob/user, list/modifiers, list/attack_modifiers)
-	if(istype(tool, /obj/item/stock_parts/water_recycler))
-		if(has_water_reclaimer)
-			to_chat(user, span_warning("There is already has a water recycler installed."))
-			return
+/obj/machinery/shower/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/stock_parts/water_recycler))
+		return NONE
 
-		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
-		qdel(tool)
-		has_water_reclaimer = TRUE
-		begin_processing()
+	if(has_water_reclaimer)
+		to_chat(user, span_warning("There is already has a water recycler installed."))
+		return ITEM_INTERACT_BLOCKING
 
-	return ..()
+	playsound(src, 'sound/machines/click.ogg', 20, TRUE)
+	qdel(tool)
+	has_water_reclaimer = TRUE
+	begin_processing()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/shower/multitool_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -390,14 +391,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	. = ..()
 	AddElement(/datum/element/simple_rotation)
 
-/obj/structure/showerframe/attackby(obj/item/tool, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(istype(tool, /obj/item/stock_parts/water_recycler))
-		qdel(tool)
-		var/obj/machinery/shower/shower = new(loc, REVERSE_DIR(dir), TRUE)
-		qdel(src)
-		playsound(shower, 'sound/machines/click.ogg', 20, TRUE)
-		return
-	return ..()
+/obj/structure/showerframe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/stock_parts/water_recycler))
+		return NONE
+
+	qdel(tool)
+	var/obj/machinery/shower/shower = new(loc, REVERSE_DIR(dir), TRUE)
+	qdel(src)
+	playsound(shower, 'sound/machines/click.ogg', 20, TRUE)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/showerframe/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

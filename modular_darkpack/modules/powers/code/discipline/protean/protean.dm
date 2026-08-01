@@ -32,17 +32,23 @@
 	. = ..()
 	var/obj/item/organ/eyes/owners_eyes = owner.get_organ_by_type(/obj/item/organ/eyes)
 	ADD_TRAIT(owner, TRAIT_TRUE_NIGHT_VISION, type)
+	ADD_TRAIT(owner, TRAIT_LUMINESCENT_EYES, type)
+	ADD_TRAIT(owner, TRAIT_UNNATURAL_RED_GLOWY_EYES, type)
+	ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, type)
 	owners_eyes?.refresh()
 	owner.st_add_stat_mod(STAT_CHARISMA, -1, type) // 20th edition
 	owner.st_add_stat_mod(STAT_MANIPULATION, -1, type) // 20th edition
 	owner.st_add_stat_mod(STAT_APPEARANCE, -1, type) // 20th edition
 	owner.st_add_stat_mod(STAT_INTIMIDATION, 2, type) // 5th edition
-	owner.add_eye_color("#ff0000", EYE_COLOR_DISC)
+	owner.add_eye_color(COLOR_RED, EYE_COLOR_DISC)
 
 /datum/discipline_power/protean/eyes_of_the_beast/deactivate()
 	. = ..()
 	var/obj/item/organ/eyes/owners_eyes = owner.get_organ_by_type(/obj/item/organ/eyes)
 	REMOVE_TRAIT(owner, TRAIT_TRUE_NIGHT_VISION, type)
+	REMOVE_TRAIT(owner, TRAIT_LUMINESCENT_EYES, type)
+	REMOVE_TRAIT(owner, TRAIT_UNNATURAL_RED_GLOWY_EYES, type)
+	REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, type)
 	owners_eyes?.refresh()
 	owner.st_remove_stat_mod(STAT_CHARISMA, type) // 20th edition
 	owner.st_remove_stat_mod(STAT_MANIPULATION, type) // 20th edition
@@ -64,6 +70,14 @@
 	duration_length = 1 SCENES
 
 	grouped_powers = list()
+
+/datum/discipline_power/protean/feral_claws/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
 
 /datum/discipline_power/protean/feral_claws/activate()
 	. = ..()
@@ -152,6 +166,14 @@
 
 	var/datum/action/cooldown/spell/shapeshift/gangrel/beast_form/gangy_form
 
+/datum/discipline_power/protean/shape_of_the_beast/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
+
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
 	if(gangy_form)
@@ -191,6 +213,14 @@
 	)
 
 	var/datum/action/cooldown/spell/shapeshift/gangrel/mist/mist_form
+
+/datum/discipline_power/protean/mist_form/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return TRUE
+	else
+		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		return FALSE
 
 /datum/discipline_power/protean/mist_form/activate()
 	. = ..()

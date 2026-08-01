@@ -1,17 +1,9 @@
 #define LOOC_RANGE 7
 
-/client/verb/looc(msg as text)
-	set name = "LOOC"
-	set desc = "Local OOC, seen only by those in view."
-	set category = "OOC"
-
+GAME_VERB_DESC(/client, looc, "LOOC", "Local OOC, seen only by those in view.", "OOC", msg as text)
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg))
 
-/client/verb/looc_wallpierce(msg as text)
-	set name = "LOOC (Wallpierce)"
-	set desc = "Local OOC, seen by anyone within 7 tiles of you."
-	set category = "OOC"
-
+GAME_VERB_DESC(/client, looc_wallpierce, "LOOC (Wallpierce)", "Local OOC, seen by anyone within 7 tiles of you.", "OOC" , msg as text)
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(looc_message), msg, TRUE))
 
 /client/proc/looc_message(msg, wall_pierce)
@@ -77,10 +69,20 @@
 		var/client/hearing_client = hearing.client
 		if(hearing_client.holder)
 			admin_seen[hearing_client] = TRUE
-			continue //they are handled after that
+		/* // CRIMSON REMOVAL START - no no, ghosts should be able to.
+			// dont continue here, still need to show runechat
 
 		if(isobserver(hearing))
 			continue //Also handled later.
+		*/ // CRIMSON REMOVAL END
+
+		// CRIMSON EDIT ADDITION START
+		// do the runetext here so admins can still get the runetext
+		if(mob.runechat_prefs_check(hearing_client.mob) && hearing_client.prefs.read_preference(/datum/preference/toggle/enable_looc_runechat))
+			// EMOTE is close enough. We don't want it to treat the raw message with languages.
+			// I wish it didn't include the asterisk but it's modular this way.
+			hearing_client.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [msg]\]", list("looc", "italics"))
+		// CRIMSON EDIT ADDITION END
 
 		to_chat(hearing_client, span_looc(span_prefix("LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]")))
 

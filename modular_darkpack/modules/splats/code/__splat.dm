@@ -36,10 +36,18 @@
 	/// Base type of the powers that this splat has
 	var/power_type
 
+	/// If examining the pulled tooth of the splat can gain some indication of what it is.
+	var/tooth_fingerprint = FALSE
+
+	/// Can frenzy and is given a verb to manually do it.
+	var/can_frenzy = TRUE
+
 	/// Splats that someone with this splat cannot gain
 	var/list/incompatible_splats
 
 	/// Powers unique to this splat possessed by the owner
 	var/list/datum/action/powers
+	/// Which power is currently selected by keybinds
+	var/datum/action/selected_power
 	/// Mob this splat belongs to
 	var/mob/living/carbon/human/owner

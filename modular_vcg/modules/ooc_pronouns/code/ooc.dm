@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(pronouns_valid, list(
 	"hyr", "hyrs",
 	"they", "them", "their","theirs",
 	"it", "its",
+	"any", "all",
 	"xey", "xe", "xem", "xyr", "xyrs",
 	"ze", "zir", "zirs",
 	"ey", "em", "eir", "eirs",
@@ -22,7 +23,7 @@ GLOBAL_LIST_INIT(pronouns_valid, list(
 
 // at least ONE is required
 GLOBAL_LIST_INIT(pronouns_required, list(
-	"he", "her", "she", "they", "them", "it", "fae", "its"
+	"he", "her", "she", "they", "them", "fae", "faer", "it", "its", "any", "all",
 ))
 
 /datum/preference/text/ooc_pronouns
@@ -34,7 +35,7 @@ GLOBAL_LIST_INIT(pronouns_required, list(
 	return ""
 
 /datum/preference/text/ooc_pronouns/is_valid(value)
-	value = lowertext(value)
+	value = LOWER_TEXT(value)
 
 	if (!value || trim(value) == "")
 		return TRUE

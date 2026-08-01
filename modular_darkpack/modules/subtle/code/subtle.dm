@@ -1,3 +1,5 @@
+/* CRIMSON EDIT REMOVE - Removes ERP
+
 #define SUBTLE_DEFAULT_DISTANCE world.view
 #define SUBTLE_MESSAGE_LEN MAX_MESSAGE_LEN * 2 // 4000 at the time of writing
 #define SUBTLE_ONE_TILE 1
@@ -187,10 +189,7 @@
 /*
 *	VERB CODE
 */
-
-/mob/living/verb/subtle_verb()
-	set name = "Subtle"
-	set category = "IC"
+GAME_VERB(/mob/living, subtle_verb, "Subtle", "IC")
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -199,10 +198,7 @@
 /*
 *	VERB CODE 2
 */
-
-/mob/living/verb/subtler_verb()
-	set name = "Subtler Anti-Ghost"
-	set category = "IC"
+GAME_VERB(/mob/living, subtler_verb, "Subtler Anti-Ghost", "IC")
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -215,3 +211,4 @@
 
 #undef SUBTLE_ONE_TILE_TEXT
 #undef SUBTLE_SAME_TILE_TEXT
+*/ // CRIMSON EDIT REMOVE - Removes ERP

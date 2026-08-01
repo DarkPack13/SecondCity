@@ -14,7 +14,7 @@
 	dye_color = DYE_PRISONER
 	icon = 'icons/obj/weapons/restraints.dmi'
 
-/obj/item/restraints/suicide_act(mob/living/carbon/user)
+/obj/item/restraints/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
@@ -100,6 +100,12 @@
 	if(!victim.canBeHandcuffed())
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
+
+// DARKPACK EDIT ADD START
+	if(HAS_TRAIT(victim, TRAIT_NO_CUFF))
+		victim.balloon_alert(user, "you can't handcuff [victim]!")
+		return
+// DARKPACK EDIT ADD END
 
 	victim.visible_message(
 		span_danger("[user] is trying to put [src] on [victim]!"),
@@ -233,7 +239,7 @@
 	if(new_color)
 		set_cable_color(new_color)
 
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/bola,/*/datum/crafting_recipe/gonbola */) // DARKPACK EDIT REMOVE
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/bola,/*/datum/crafting_recipe/gonbola */) // DARKPACK EDIT REMOVAL
 
 	AddElement(
 		/datum/element/slapcrafting,\
@@ -356,6 +362,7 @@
 	breakouttime = 45 SECONDS
 	color = null
 	cable_color = null
+	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/restraints/handcuffs/cable/zipties/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
@@ -424,6 +431,8 @@
 	slowdown = 7
 	breakouttime = 30 SECONDS
 	slot_flags = ITEM_SLOT_LEGCUFFED
+	/// Icon state for the legcuff overlay
+	var/legcuff_state = "legcuff"
 
 /**
  * # Bear trap
@@ -436,6 +445,7 @@
 	throw_range = 1
 	icon_state = "beartrap"
 	desc = "A trap used to catch bears and other legged creatures."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	///If true, the trap is "open" and can trigger.
 	var/armed = FALSE
 	///How much damage the trap deals when triggered.
@@ -566,6 +576,7 @@
 	breakouttime = 3 SECONDS
 	item_flags = DROPDEL
 	flags_1 = NONE
+	custom_materials = null // cannot be recycled anyway
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
@@ -671,7 +682,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	breakouttime = 6 SECONDS
 	custom_price = PAYCHECK_COMMAND * 0.35
-	custom_materials = null
+	custom_materials = list(/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/restraints/legcuffs/bola/energy/Initialize(mapload)
 	. = ..()

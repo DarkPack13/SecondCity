@@ -41,6 +41,9 @@
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
 
+	if(mapload)
+		GLOB.city_door_lock_ids |= lock_id
+
 	register_context()
 
 	var/static/list/loc_connections = list(
@@ -112,20 +115,23 @@
 
 /obj/structure/vampdoor/atom_break(damage_flag)
 	. = ..()
-	if(!door_broken)
-		break_door()
+	break_door()
 
 /obj/structure/vampdoor/atom_fix()
 	. = ..()
 	fix_door()
 
-/obj/structure/vampdoor/proc/break_door(mob/user)
+/obj/structure/vampdoor/proc/break_door(mob/living/user)
+	if(door_broken)
+		return FALSE
 	playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
 	if(user)
+		var/strength_dots = user.st_get_stat(STAT_STRENGTH)
+		var/throw_distance = clamp(rand(strength_dots - 1, strength_dots + 1) - bash_successes_needed, 0, 5)
 		var/atom/throw_target = get_edge_target_turf(src, user.dir)
-		broken_door.throw_at(throw_target, rand(2, 4), 4, user)
+		broken_door.throw_at(throw_target, throw_distance, 4, user)
 	name = "door frame"
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
@@ -136,6 +142,7 @@
 	locked = FALSE
 	icon_state = "[base_icon_state]-b"
 	update_icon()
+	return TRUE
 
 /obj/structure/vampdoor/proc/fix_door()
 	name = initial(name)
@@ -194,10 +201,10 @@
 	. = ..()
 	if(.)
 		return
-	var/mob/living/living_user = user
 	if(door_broken)
 		to_chat(user, span_warning("There is no door to use here."))
 		return
+	var/mob/living/living_user = user
 	if(living_user.combat_mode)
 		pixel_z = pixel_z+rand(-1, 1)
 		pixel_w = pixel_w+rand(-1, 1)
@@ -213,6 +220,9 @@
 /obj/structure/vampdoor/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(door_broken)
+		to_chat(user, span_warning("There is no door to use here."))
 		return
 	var/mob/living/living_user = user
 	if(living_user.combat_mode)
@@ -360,10 +370,12 @@
 /obj/structure/vampdoor/proc/toggle_lock(mob/living/user)
 	playsound(src, lock_sound, 75, TRUE)
 	if(!locked)
-		to_chat(user, span_notice("[src] is now locked."))
+		if(user)
+			to_chat(user, span_notice("[src] is now locked."))
 		locked = TRUE
 	else
-		to_chat(user, span_notice("[src] is now unlocked."))
+		if(user)
+			to_chat(user, span_notice("[src] is now unlocked."))
 		proc_unlock("key")
 		locked = FALSE
 	return TRUE

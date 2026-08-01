@@ -25,7 +25,7 @@
 	/// Does the toilet have a water recycler to recollect its water supply?
 	var/has_water_reclaimer = TRUE
 	/// Units of water to reclaim per second
-	var/reclaim_rate = 0.5
+	var/reclaim_rate = 50 // DARKPACK EDIT CHANGE - ORIGINAL: var/reclaim_rate = 0.5
 	/// What reagent does the toilet flush with
 	var/reagent_id = /datum/reagent/water
 	/// How much reagent can the cistern contain
@@ -46,7 +46,7 @@
 	create_reagents(reagent_capacity)
 	if(src.has_water_reclaimer)
 		reagents.add_reagent(reagent_id, reagent_capacity)
-	AddComponent(/datum/component/plumbing/simple_demand/extended)
+	// AddComponent(/datum/component/plumbing/simple_demand/extended) // DARKPACK EDIT REMOVAL
 
 /obj/structure/toilet/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -417,7 +417,7 @@
 	desc = "A horrendous mass of fused flesh resembling a standard-issue HT-451 model toilet. How it manages to function as one is beyond you. \
 	This one seems to be made out of the flesh of a devoted employee of the RnD department."
 
-/obj/structure/toilet/greyscale/flesh/Initialize(mapload, mob/living/carbon/suicide)
+/obj/structure/toilet/greyscale/flesh/Initialize(mapload, mob/living/suicide)
 	. = ..()
 	///The suicide victim's brain that will be placed inside the toilet's cistern
 	var/obj/item/organ/brain/toilet_brain
@@ -432,8 +432,9 @@
 		toilet_brain = new(drop_location())
 		set_custom_materials(list(/datum/material/meat = SHEET_MATERIAL_AMOUNT))
 
-	toilet_brain.forceMove(src)
-	add_cistern_item(toilet_brain)
+	if (toilet_brain)
+		toilet_brain.forceMove(src)
+		add_cistern_item(toilet_brain)
 
 //this also prevents the toilet from dropping meat sheets. if you want to cheese the meat exepriments, sacrifice more people
 /obj/structure/toilet/greyscale/flesh/atom_deconstruct(dissambled = TRUE)

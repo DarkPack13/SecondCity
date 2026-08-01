@@ -51,7 +51,7 @@
 	)
 	category = CAT_STRUCTURE
 
-/*// DARKPACK EDIT REMOVE
+/*// DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/mechcabinet
 	name = "Mech Removal Cabinet"
 	result = /obj/item/wallframe/fireaxecabinet/mechremoval
@@ -73,7 +73,7 @@
 	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/adam_pedestal
 	name = "Adamantine Pedestal"
 	result = /obj/item/adamantine_pedestal
@@ -171,3 +171,18 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND
+
+/datum/crafting_recipe/tripwire_post
+	name = "Tripwire Post"
+	result = /obj/structure/tripwire/post
+	reqs = list(
+		/obj/item/stack/rods = 3,
+		/obj/item/stack/sheet/iron = 5,
+	)
+	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
+	time = 5 SECONDS
+	category = CAT_STRUCTURE
+	removed_mats = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	crafting_flags = CRAFT_ON_SOLID_GROUND

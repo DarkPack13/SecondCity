@@ -29,7 +29,6 @@
 	var/signal_return = SEND_SIGNAL(owner, COMSIG_LIVING_GAINING_SPLAT, src)
 	if (signal_return & SPLAT_PREVENT_GAIN)
 		return
-	SEND_SIGNAL(owner, COMSIG_LIVING_GAINED_SPLAT, src)
 
 	src.owner = owner
 	LAZYADD(owner.splats, src)
@@ -38,11 +37,15 @@
 	add_actions()
 	add_biotypes()
 
+	if(can_frenzy)
+		add_verb(owner, /mob/living/carbon/human/proc/manual_frenzy_roll)
+
 	on_gain()
 
 	if(owner.hud_used)
 		add_relevent_huds(owner.hud_used)
 
+	SEND_SIGNAL(owner, COMSIG_LIVING_GAINED_SPLAT, src)
 	return src
 
 /**

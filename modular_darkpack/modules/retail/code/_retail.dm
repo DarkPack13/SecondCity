@@ -12,14 +12,13 @@
 	anchored_tabletop_offset = 6
 	var/owner_needed = TRUE //Does an npc need to be here for this
 	var/mob/living/carbon/human/npc/my_owner //tracks existence of owner
-	var/is_gun_store = FALSE
 	var/payment_department = ACCOUNT_SRV
 
 	var/list/datum/data/vending_product/products_list = list()
 	// Equivlenet to products list if you dont need to pass args. Will likely phase out the evil news in our type path definitions
 	var/list/product_types = list()
 
-/obj/structure/retail/Initialize()
+/obj/structure/retail/Initialize(mapload)
 	. = ..()
 	if(owner_needed == TRUE)
 		my_owner = locate(/mob/living/carbon/human/npc) in range(2, src)
@@ -28,6 +27,8 @@
 	build_inventory()
 
 /obj/structure/retail/proc/cleanup_owner()
+	SIGNAL_HANDLER
+
 	my_owner = null
 
 //whether or not the user can shop at this store.
@@ -45,6 +46,8 @@
 		if(owner_needed == TRUE && (!my_owner || (get_dist(src, my_owner) > 4) || (my_owner.stat >= HARD_CRIT)))
 			to_chat(user, span_alert("There's no teller here to sell you things..."))
 			return
+		else if(owner_needed == TRUE && my_owner && get_dist(src, my_owner) <= 4)
+			my_owner.say(pick(my_owner.socialrole.random_phrases))
 		ui_interact(user)
 
 /obj/structure/retail/proc/build_inventory()
@@ -70,6 +73,9 @@
 			return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		if(owner_needed && my_owner)
+			my_owner.face_atom(user)
+			my_owner.realistic_say(pick(my_owner.socialrole.random_phrases))
 		ui = new(user, src, "RetailVendor", name)
 		ui.open()
 

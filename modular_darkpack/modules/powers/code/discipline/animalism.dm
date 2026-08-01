@@ -9,24 +9,6 @@
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
 
-/datum/discipline_power/animalism/activate()
-	. = ..()
-
-	if(!ishuman(owner))
-		return
-
-	for(var/mob/living/minion in owner.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			owner.beastmaster_minions -= minion
-
-	var/max_minions = owner.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(owner.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = owner.beastmaster_minions[1]
-		if(oldest)
-			owner.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
-
 //SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
 	name = "Summon Rat"
@@ -138,13 +120,11 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 8
 	obj_damage = 10
+	bloodpool = 2
 
 /mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
 	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
 
 /mob/living/basic/pet/cat/darkpack/summoned
 	name = "cat"
@@ -153,12 +133,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 	obj_damage = 15
-
-/mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
+	bloodpool = 2
 
 /mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
@@ -176,12 +151,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
 	random_wolf_color = FALSE
-
-/mob/living/basic/pet/dog/wolf/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
+	bloodpool = 2
 
 /mob/living/basic/bat/summoned
 	name = "bat"
@@ -192,9 +162,4 @@
 	obj_damage = 10
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-
-/mob/living/basic/bat/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
+	bloodpool = 2

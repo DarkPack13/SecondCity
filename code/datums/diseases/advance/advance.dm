@@ -25,13 +25,14 @@
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cures = null
+	visibility_flags = HIDDEN_BOOK // we have unique handling for advance diseases in the book
 
 	// NEW VARS
 	var/list/properties = list()
 	var/list/symptoms = list() // The symptoms of the disease.
 	var/id = ""
 	var/processing = FALSE
-	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT, ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
+	var/mutable = FALSE //set to FALSE to prevent most in-game methods of altering the disease via virology // DARKPACK EDIT CHANGE - ORIGINAL: ar/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
 
 /*
 
@@ -500,3 +501,15 @@
 /datum/disease/advance/proc/make_visible()
 	visibility_flags &= ~HIDDEN_SCANNER
 	affected_mob.med_hud_set_status()
+
+/datum/disease/advance/proc/generate_cure_text(cure_count)
+	var/remedies = list()
+	for(var/datum/symptom/each_symptom as anything in symptoms)
+		if(length(remedies) >= cure_count)
+			break
+		if(!each_symptom.symptom_cure)
+			continue
+		var/datum/reagent/each_cure = each_symptom.symptom_cure
+		if(!each_symptom.neutered && !(each_cure::name in remedies))
+			remedies += each_cure::name
+	return english_list(remedies, nothing_text = "Nothing")

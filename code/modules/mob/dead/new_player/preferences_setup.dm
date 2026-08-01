@@ -86,15 +86,15 @@
 	var/datum/job/preview_job
 	var/highest_pref = 0
 
-	for(var/job in job_preferences)
-		if(job_preferences[job] > highest_pref)
+	for(var/job, priority in job_preferences)
+		if(priority > highest_pref)
 			preview_job = SSjob.get_job(job)
-			highest_pref = job_preferences[job]
+			highest_pref = priority
 
 	return preview_job
 
 /datum/preferences/proc/render_new_preview_appearance(mob/living/carbon/human/dummy/mannequin, show_job_clothes = TRUE)
-	var/datum/job/no_job = SSjob.get_job_type(/datum/job/vampire/unassigned) // DARKPACK EDIT, ORIGINAL: var/datum/job/no_job = SSjob.get_job_type(/datum/job/unassigned)
+	var/datum/job/no_job = SSjob.get_job_type(/datum/job/vampire/unassigned) // DARKPACK EDIT CHANGE - ORIGINAL: var/datum/job/no_job = SSjob.get_job_type(/datum/job/unassigned)
 	var/datum/job/preview_job = get_highest_priority_job() || no_job
 
 	if(preview_job)
@@ -126,4 +126,6 @@
 				continue
 			mannequin.add_quirk(quirk_type, parent, announce = FALSE)
 
+	// Height is applied universally once to save on filters
+	mannequin.apply_height(mannequin, ENTIRE_BODY)
 	return mannequin.appearance

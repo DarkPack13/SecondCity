@@ -6,3 +6,4 @@
 	lose_text = span_notice("Oh, I remember now.")
 	icon = FA_ICON_BRAIN
 	failure_message = "Oh, I remember now."
+	roleplay_only = TRUE

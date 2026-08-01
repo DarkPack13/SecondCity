@@ -23,7 +23,7 @@
 	target = null
 	return ..()
 
-/obj/effect/client_image_holder/baali_demon/process()
+/obj/effect/client_image_holder/baali_demon/process(seconds_per_tick)
 	if(QDELETED(target) || target.stat == DEAD)
 		qdel(src)
 		return

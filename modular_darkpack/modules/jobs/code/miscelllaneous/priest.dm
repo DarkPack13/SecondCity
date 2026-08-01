@@ -9,11 +9,13 @@
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_PRIEST
 	exp_required_type_department = EXP_TYPE_CHURCH
-	department_for_prefs = /datum/job_department/church
 	departments_list = list(
 		/datum/job_department/church,
 	)
-	allowed_splats = list(SPLAT_NONE)
+	allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINDRED)
+	allowed_clans = list(VAMPIRE_CLAN_LASOMBRA, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_BANU_HAQIM_VIZIER) //Each have pretty big religious influences, so!
+	maximal_generation = 11
+	maximum_immortal_age = 100
 	description = "Be the shepherd of the flock in " + CITY_NAME + ", lead them to salvation, piety and righteousness."
 
 	alt_titles = list(

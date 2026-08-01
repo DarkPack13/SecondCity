@@ -40,8 +40,8 @@
 
 /obj/item/storage/belt/holster/detective/darkpack/fbi/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21(src)
-	new /obj/item/ammo_box/magazine/glock45acp(src)
-	new /obj/item/ammo_box/magazine/glock45acp(src)
+	new /obj/item/ammo_box/magazine/glock45acp/hp(src)
+	new /obj/item/ammo_box/magazine/glock45acp/hp(src)
 
 /obj/item/storage/belt/holster/detective/darkpack/endron
 
@@ -56,7 +56,10 @@
 
 /obj/item/storage/belt/security/police/PopulateContents()
 	new /obj/item/gun/energy/taser/darkpack(src)
-	new /obj/item/gun/ballistic/automatic/pistol/darkpack/m1911(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/melee/baton/vamp(src)
+	new /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19(src)
 
 /obj/item/storage/belt/security/police/swat
 
@@ -86,4 +89,5 @@
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/gun/energy/taser,
+		/obj/item/gun/ballistic/automatic/pistol,
 	))

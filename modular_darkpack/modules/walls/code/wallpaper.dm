@@ -80,6 +80,12 @@
 /obj/effect/decal/wallpaper/paper/darkgreen/low
 	icon_state = "wallpaper-dgreen_low"
 
+/obj/effect/decal/wallpaper/paper/purple
+	icon_state = "wallpaper-dpurple"
+
+/obj/effect/decal/wallpaper/paper/purple/low
+	icon_state = "wallpaper-dpurple_low"
+
 /obj/effect/decal/wallpaper/stone
 	name = "wall decoration"
 	icon_state = "wallpaper-stone"
@@ -120,7 +126,8 @@
 
 /obj/effect/decal/wallpaper/papers/random/Initialize(mapload)
 	. = ..()
-	icon_state = "wallpapers_[rand(1, 8)]"
+	if(icon_state == src::icon_state)
+		icon_state = "wallpapers_[rand(1, 8)]"
 
 /obj/effect/decal/wallpaper/papers/one
 	icon_state = "wallpapers_1"
@@ -145,3 +152,18 @@
 
 /obj/effect/decal/wallpaper/papers/eight
 	icon_state = "wallpapers_8"
+
+/obj/effect/decal/wallpaper/trim
+	icon_state = "trimgrey"
+
+/obj/effect/decal/wallpaper/trim/green
+	icon_state = "trimgreen"
+
+/obj/effect/decal/wallpaper/trim/purple
+	icon_state = "trimpurple"
+
+/obj/effect/decal/wallpaper/stripes
+	icon_state = "stripesgreen"
+
+/obj/effect/decal/wallpaper/stripes/purple
+	icon_state = "stripespurple"

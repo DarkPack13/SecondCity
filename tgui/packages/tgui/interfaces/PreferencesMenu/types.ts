@@ -30,6 +30,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+  Egg = 'EGG',
 }
 
 export enum JobPriority {
@@ -37,6 +38,12 @@ export enum JobPriority {
   Medium = 2,
   High = 3,
 }
+
+type JobPreference = {
+  job: string;
+  priority: JobPriority | null;
+  assigned_profile_slot: number | null;
+};
 
 export type Name = {
   can_randomize: BooleanLike;
@@ -111,6 +118,7 @@ export type Perk = {
 
 export type Department = {
   head?: string;
+  color?: string;
 };
 
 export type Job = {
@@ -190,6 +198,7 @@ export type CharacterPreferencesData = {
   manually_rendered_features: Record<string, string>;
 
   names: Record<string, string>;
+  vocals: Record<string, string | number | boolean>; // DARKPACK EDIT ADD - BLOOPERS
 
   misc: {
     gender: Gender;
@@ -220,7 +229,7 @@ export type PreferencesMenuData = {
       required_playtime: number;
     }
   >;
-  job_preferences: Record<string, JobPriority>;
+  job_preferences: JobPreference[];
 // DARKPACK EDIT ADD -  ALTERNATIVE_JOB_TITLES
   job_alt_titles: Record<string, string>;
   keybindings: Record<string, string[]>;

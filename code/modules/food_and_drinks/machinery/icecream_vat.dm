@@ -32,9 +32,9 @@
 	///List of all reagenets the icecream vat will spawn with, if preinstall_reagents is TRUE.
 	var/static/list/icecream_vat_reagents = list(
 		/datum/reagent/consumable/milk = 6,
-//		/datum/reagent/consumable/korta_milk = 6, // DARKPACK EDIT REMOVE
+//		/datum/reagent/consumable/korta_milk = 6, // DARKPACK EDIT REMOVAL
 		/datum/reagent/consumable/flour = 6,
-//		/datum/reagent/consumable/korta_flour = 6, // DARKPACK EDIT REMOVE
+//		/datum/reagent/consumable/korta_flour = 6, // DARKPACK EDIT REMOVAL
 		/datum/reagent/consumable/sugar = 6,
 		/datum/reagent/consumable/ice = 6,
 		/datum/reagent/consumable/coco = 6,
@@ -276,7 +276,7 @@
 		if(isnull(cone.crafted_food_buff))
 			cone.crafted_food_buff = /datum/status_effect/food/chilling
 		if(user.mind)
-			ADD_TRAIT(cone, TRAIT_FOOD_CHEF_MADE, REF(user.mind))
+			ADD_TRAIT(cone, TRAIT_HANDMADE, REF(user.mind))
 
 ///Swaps the mode to the next one meant to be selected, then tells the user who changed it.
 /obj/machinery/icecream_vat/proc/swap_modes(mob/user)

@@ -1,7 +1,7 @@
 
 /datum/job/vampire/bogatyr
 	title = JOB_BOGATYR
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = " the Laws of Hospitality"
@@ -9,7 +9,6 @@
 	outfit = /datum/outfit/job/vampire/bogatyr
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
-	department_for_prefs = /datum/job_department/manor
 	departments_list = list(
 		/datum/job_department/manor,
 	)
@@ -19,7 +18,9 @@
 	allowed_clans = list(VAMPIRE_CLAN_TZIMISCE)
 
 	description = "Whether you are of Voivode-in-Waiting's blood or if you've been honored, you are one of the Kin of the Voivode. Protect your Family, as your Family would protect you."
-	minimal_masquerade = 2
+	maximal_generation = 9
+	maximum_immortal_age = 200
+	minimum_masquerade = 2
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 

@@ -176,42 +176,42 @@
 ///ZOMBIE
 /obj/item/bodypart/head/zombie
 	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	is_dimorphic = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: is_dimorphic = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN
 	can_dismember = TRUE
 
 /obj/item/bodypart/chest/zombie
 	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = TRUE // DARKPACK EDIT -- original : is_dimorphic = FALSE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	is_dimorphic = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: is_dimorphic = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 	wing_types = null
 
 /obj/item/bodypart/arm/left/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 
 /obj/item/bodypart/arm/right/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/left/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/right/zombie
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
 
 /obj/item/bodypart/leg/left/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
-	speed_modifier = 0.8 //braaaaains
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
+	speed_modifier = 0.5 //braaaaains
 
 /obj/item/bodypart/leg/right/zombie/infectious
 	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = TRUE // DARKPACK EDIT -- original : should_draw_grayscale = FALSE
-	speed_modifier = 0.8 //braaaaains
+	should_draw_greyscale = TRUE // DARKPACK EDIT CHANGE - ORIGINAL: should_draw_grayscale = FALSE
+	speed_modifier = 0.5 //braaaaains
 
 ///PODPEOPLE
 /obj/item/bodypart/head/pod
@@ -434,6 +434,7 @@
 	limb_id = BODYPART_ID_BONE
 	// These are always disabled
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/head/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
@@ -442,6 +443,7 @@
 /obj/item/bodypart/chest/skeleton/nonfunctional
 	limb_id = BODYPART_ID_BONE
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/chest/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
@@ -460,6 +462,7 @@
 /obj/item/bodypart/arm/left/skeleton/nonfunctional
 	limb_id = BODYPART_ID_BONE
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/arm/left/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
@@ -468,6 +471,7 @@
 /obj/item/bodypart/arm/right/skeleton/nonfunctional
 	limb_id = BODYPART_ID_BONE
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/arm/right/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
@@ -476,26 +480,20 @@
 /obj/item/bodypart/leg/left/skeleton/nonfunctional
 	limb_id = BODYPART_ID_BONE
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/leg/left/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/blood_limb_overlay)
 
-/obj/item/bodypart/leg/left/skeleton/nonfunctional/update_limb(dropping_limb = FALSE, is_creating = FALSE)
-	. = ..()
-	limb_id = ((bodyshape & BODYSHAPE_DIGITIGRADE) && owner?.is_digitigrade_squished()) ? initial(limb_id) : "[initial(limb_id)]_[BODYPART_ID_DIGITIGRADE]"
-
 /obj/item/bodypart/leg/right/skeleton/nonfunctional
 	limb_id = BODYPART_ID_BONE
 	disabling_threshold_percentage = 0
+	bodypart_disabled = TRUE
 
 /obj/item/bodypart/leg/right/skeleton/nonfunctional/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/blood_limb_overlay)
-
-/obj/item/bodypart/leg/right/skeleton/nonfunctional/update_limb(dropping_limb = FALSE, is_creating = FALSE)
-	. = ..()
-	limb_id = ((bodyshape & BODYSHAPE_DIGITIGRADE) && owner?.is_digitigrade_squished()) ? initial(limb_id) : "[initial(limb_id)]_[BODYPART_ID_DIGITIGRADE]"
 
 ///MUSHROOM
 /obj/item/bodypart/head/mushroom

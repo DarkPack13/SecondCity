@@ -170,7 +170,7 @@
 	var/datum/dimension_theme/theme = SSmaterials.dimensional_themes[new_theme_path]
 	for(var/turf/turf as anything in RANGE_TURFS(1, our_turf))
 		theme.apply_theme(turf, show_effect = TRUE)
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /obj/item/assembly/signaler/anomaly/dimensional/Initialize(mapload)
 	. = ..()
 	var/static/list/recipes = list(/datum/crafting_recipe/dimensional_bombcore)
@@ -206,7 +206,7 @@
 	if(!length(possible_targets))
 		return
 	var/turf/target = pick(possible_targets)
-	new /obj/effect/temp_visual/telegraphing/thunderbolt(target)
+	new /obj/effect/temp_visual/telegraphing/circle(target)
 	addtimer(CALLBACK(src, PROC_REF(strike), target), 1 SECONDS)
 
 /obj/item/assembly/signaler/anomaly/weather/proc/strike(turf/target)

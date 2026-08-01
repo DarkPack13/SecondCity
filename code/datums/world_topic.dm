@@ -89,6 +89,11 @@
 		if(PRcounts[id] > CONFIG_GET(number/pr_announcements_per_round))
 			return
 
+	// CRIMSON EDIT ADDITION START
+	if(findtext(input[keyword], @"[s]"))
+		return
+	// CRIMSON EDIT ADDITION END
+
 	var/final_composed = span_announce("PR: [input[keyword]]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
@@ -206,7 +211,7 @@
 	.["respawn"] = config ? !!CONFIG_GET(flag/allow_respawn) : FALSE // show respawn as true regardless of "respawn as char" or "free respawn"
 	.["enter"] = !LAZYACCESS(SSlag_switch.measures, DISABLE_NON_OBSJOBS)
 	.["ai"] = CONFIG_GET(flag/allow_ai)
-	.["host"] = world.host ? world.host : null
+	.["host"] = world?.host || CONFIG_GET(string/hostedby)
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
 	.["revision"] = GLOB.revdata.commit

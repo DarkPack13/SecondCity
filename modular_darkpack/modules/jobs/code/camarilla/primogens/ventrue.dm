@@ -2,7 +2,7 @@
 	title = JOB_PRIMOGEN_VENTRUE
 	description = "Offer your infinite knowledge to Prince of the City. Maintain the local Jazz Club, in front of the Tower, and its Elysium."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
@@ -17,14 +17,13 @@
 	outfit = /datum/outfit/job/vampire/ventrue
 
 	display_order = JOB_DISPLAY_ORDER_VENTRUE
-	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
 		/datum/job_department/camarilla,
 	)
 
 	minimal_generation = 12
 	minimum_immortal_age = 50
-	minimal_masquerade = 5
+	minimum_masquerade = 5
 	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_VENTRUE)
 

@@ -22,7 +22,6 @@
 				valid_bodies += H
 			else
 				H.adjust_agg_loss(50)
-				playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 10, FALSE)
 				to_chat(usr, "Your specimen must be incapacitated! The ritual has merely hurt them!")
 				return
 
@@ -36,7 +35,6 @@
 	to_chat(usr, span_notice("You begin invoking the ritual of Gargoyle Creation with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 	usr.visible_message(span_notice("[usr] begins invoking a ritual with [body_count] vampire bod[body_count == 1 ? "y" : "ies"]..."))
 
-	playsound(loc, 'modular_darkpack/modules/powers/sounds/thaum.ogg', 50, FALSE)
 	playsound(loc, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, FALSE)
 
 	// Apply stun so that they cant just crawl away in crit - caster must also stay still
@@ -165,6 +163,7 @@
 	if(!G || QDELETED(G))
 		return
 	if(!G.key || !G.client)
+		QDEL_NULL(G.ai_controller)
 		G.ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(G)
 		if(activator)
 			activator.add_beastmaster_minion(G)
@@ -201,7 +200,7 @@
 	maxbloodpool = 15
 	ai_controller = null // Start with no AI, will be assigned if no player takes it
 
-/mob/living/basic/gargoyle/perfect/Initialize()
+/mob/living/basic/gargoyle/perfect/Initialize(mapload)
 	. = ..()
 	// Make the perfect gargoyle slightly larger
 	transform = transform.Scale(1.10, 1.10)

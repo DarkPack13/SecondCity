@@ -4,8 +4,10 @@
 #define FACTION_ANARCHS "anarchs"
 #define FACTION_CAMARILLA "camarilla"
 #define FACTION_SABBAT "sabbat"
+#define FACTION_GIOVANNI "giovanni-faction"
 
 // City faction
 #define FACTION_CITY "city"
 
 #define FACTION_GAIA "gaia"
+#define FACTION_PENTEX "pentex"

@@ -1,4 +1,5 @@
 /datum/job
+	abstract_type = /datum/job
 	/// The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
@@ -216,21 +217,29 @@
 		bank_account.payday(STARTING_PAYCHECKS, free = TRUE)
 		account_id = bank_account.account_id
 		bank_account.replaceable = FALSE
-		// DARKPACK EDIT ADD - Finance affects starting money
-		if(st_get_stat(STAT_FINANCE))
-			var/finance = st_get_stat(STAT_FINANCE)
-			switch(finance)
-				if(1)
-					bank_account.account_balance = rand(800, 1200)
-				if(2)
-					bank_account.account_balance = rand(2000, 3000)
-				if(3)
-					bank_account.account_balance = rand(4000, 6000)
-				if(4)
-					bank_account.account_balance = rand(7000, 9000)
-				if(5)
-					bank_account.account_balance = rand(11000, 14000)
-		// DARKPACK EDIT ADD END - Finance affects starting money
+		// DARKPACK EDIT ADD - (Finance affects starting money)
+		var/finance = st_get_stat(STAT_FINANCE)
+		switch(finance)
+			if(0)
+				if(!CONFIG_GET(flag/punishing_zero_dots))
+					bank_account.account_balance = rand(50, 100)
+					bank_account.paycheck_amount = 15
+			if(1)
+				bank_account.account_balance = rand(100, 200)
+				bank_account.paycheck_amount = 40
+			if(2)
+				bank_account.account_balance = rand(300, 600)
+				bank_account.paycheck_amount = 80
+			if(3)
+				bank_account.account_balance = rand(800, 1200)
+				bank_account.paycheck_amount = 120
+			if(4)
+				bank_account.account_balance = rand(1200, 1600)
+				bank_account.paycheck_amount = 160
+			if(5)
+				bank_account.account_balance = rand(2000, 3000)
+				bank_account.paycheck_amount = 250
+		// DARKPACK EDIT ADD END
 		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
 		add_mob_memory(/datum/memory/key/bank_pin, remembered_id = bank_account.bank_pin) // DARKPACK EDIT ADD
 
@@ -253,7 +262,7 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only)
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES 
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 	if(human)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = human.job), null, channels, null, TRUE), 1))
@@ -507,7 +516,7 @@
 				hangover_landmark.used = TRUE
 				break
 			return hangover_spawn_point || get_latejoin_spawn_point()
-	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES 
+	// DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES
 	if(length(GLOB.jobspawn_overrides[job_spawn_title]))
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
 	// DARKPACK EDIT CHANGE END
@@ -544,7 +553,7 @@
 	var/mob/living/spawn_instance
 	if(ispath(spawn_type, /mob/living/silicon/ai))
 		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
-		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob, TRUE)
 	else
 		spawn_instance = spawn_point.JoinPlayerHere(spawn_type, TRUE)
 	spawn_instance.apply_prefs_job(player_client, src)
@@ -695,3 +704,10 @@
 		CRASH("[src.type] has no job icon state.")
 
 	return icon('icons/mob/huds/hud.dmi', icon_state)
+
+/datum/job/proc/display_order_with_department()
+	var/datum/job_department/main_department = departments_list?[1]
+	if(!main_department)
+		main_department = /datum/job_department/undefined
+
+	return display_order + (main_department::display_order * 1000)

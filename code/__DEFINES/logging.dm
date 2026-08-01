@@ -151,6 +151,7 @@
 #define LOG_CATEGORY_GAME_ACCESS "game-access"
 #define LOG_CATEGORY_GAME_BLOOD_WORM "game-blood-worm"
 #define LOG_CATEGORY_GAME_EMOTE "game-emote"
+#define LOG_CATEGORY_GAME_MINIMAP_DRAWING "game-minimap-drawing"
 #define LOG_CATEGORY_GAME_INTERNET_REQUEST "game-internet-request"
 #define LOG_CATEGORY_GAME_OOC "game-ooc"
 #define LOG_CATEGORY_GAME_PRAYER "game-prayer"
@@ -161,6 +162,7 @@
 #define LOG_CATEGORY_GAME_VOTE "game-vote"
 #define LOG_CATEGORY_GAME_WHISPER "game-whisper"
 #define LOG_CATEGORY_GAME_GHOST_POLLS "game-ghost-polls"
+#define LOG_CATEGORY_GAME_MENTOR "game-mentor" // DARKPACK EDIT ADD - Mentors
 
 // HREF categories
 #define LOG_CATEGORY_HREF "href"

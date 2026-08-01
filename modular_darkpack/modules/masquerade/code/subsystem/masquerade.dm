@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(masquerade)
  */
 /datum/controller/subsystem/masquerade/proc/masquerade_reinforce(atom/source, mob/living/player_breacher, reason)
 	. = FALSE
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/breach_sources = masquerade_breach[2]
 		var/breach_reasons = masquerade_breach[3]
 
@@ -58,8 +58,8 @@ SUBSYSTEM_DEF(masquerade)
 		else
 			source_matches = (source == breach_sources)
 
-		if(source_matches)
-			if(!reason || (reason in masquerade_breach) || (reason == MASQUERADE_REASON_PREFERENCES))
+		if(source_matches || reason == "debug")
+			if(!reason || (reason in masquerade_breach) || (reason == MASQUERADE_REASON_PREFERENCES) || (reason == "debug"))
 				// Only require blood hunt skull for "Preferences" (round-persistent) breaches
 				if(breach_reasons == MASQUERADE_REASON_PREFERENCES && !istype(source, /obj/item/blood_hunt))
 					continue
@@ -72,6 +72,7 @@ SUBSYSTEM_DEF(masquerade)
 	if(player_breacher.masquerade_score == 5) //Doesn't matter if they weren't in one of these lists.
 		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher
+		GLOB.supernatural_breakers_list -= player_breacher
 
 	/*
 	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(player_breacher)
@@ -98,8 +99,10 @@ SUBSYSTEM_DEF(masquerade)
 	masquerade_breachers += list(list(player_breacher, source, reason))
 	if(get_vampire_splat(player_breacher))
 		GLOB.masquerade_breakers_list |= player_breacher
+		GLOB.supernatural_breakers_list |= player_breacher
 	else if(get_werewolf_splat(player_breacher))
 		GLOB.veil_breakers_list |= player_breacher
+		GLOB.supernatural_breakers_list |= player_breacher
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
@@ -127,12 +130,13 @@ SUBSYSTEM_DEF(masquerade)
 
 // This is for clearing the round's masquerade because a player matrix'd
 /datum/controller/subsystem/masquerade/proc/matrix_masquerade_breacher(mob/living/player_breacher, update_preferences)
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		if((player_breacher in masquerade_breach))
 			masquerade_breachers -= list(masquerade_breach)
 			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
 	GLOB.masquerade_breakers_list -= player_breacher
 	GLOB.veil_breakers_list -= player_breacher
+	GLOB.supernatural_breakers_list -= player_breacher
 	if(update_preferences)
 		save_persistent_masquerade(player_breacher)
 
@@ -141,16 +145,19 @@ SUBSYSTEM_DEF(masquerade)
 	if(player_breacher.masquerade_score < 5)
 		if(get_vampire_splat(player_breacher))
 			GLOB.masquerade_breakers_list |= player_breacher
+			GLOB.supernatural_breakers_list |= player_breacher
 		else if(get_werewolf_splat(player_breacher))
 			GLOB.veil_breakers_list |= player_breacher
+			GLOB.supernatural_breakers_list |= player_breacher
 	else
 		GLOB.masquerade_breakers_list -= player_breacher
 		GLOB.veil_breakers_list -= player_breacher
+		GLOB.supernatural_breakers_list -= player_breacher
 
 /datum/controller/subsystem/masquerade/proc/player_masquerade_reinforce(datum/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])
@@ -166,13 +173,13 @@ SUBSYSTEM_DEF(masquerade)
 	if((masquerade_level != 0) || ending)
 		return
 	ending = TRUE
-	for(var/player as anything in GLOB.player_list)
+	for(var/player in GLOB.player_list)
 		SEND_SOUND(player, 'modular_darkpack/modules/masquerade/sound/masquerade_failure.ogg') //Alerting them of their demise.
 	addtimer(CALLBACK(src, PROC_REF(end_round)), 65 SECONDS)
 
 // Ending the actual round.
 /datum/controller/subsystem/masquerade/proc/end_round()
-	for(var/masquerade_breach as anything in masquerade_breachers)
+	for(var/masquerade_breach in masquerade_breachers)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])

@@ -50,12 +50,16 @@ endmap
 	votable
 endmap
 
-#map wawastation
+#map kilostation
 	votable
-	minplayers 40
+	maxplayers 40
 endmap
 
-map westfieldmall
+#map westfieldmall
+    votable
+endmap
+
+map sanfangsisco
     votable
     default
 endmap
@@ -69,4 +73,7 @@ map multiz_debug
 endmap
 
 map runtimestation
+endmap
+
+map runtimestation_minimal
 endmap

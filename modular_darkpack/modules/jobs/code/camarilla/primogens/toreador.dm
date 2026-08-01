@@ -2,7 +2,7 @@
 	title = JOB_PRIMOGEN_TOREADOR
 	description = "Offer your infinite knowledge to Prince of the City. Take care of the Strip Club and its Elysium, for it is your domain and a social center within the city."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
@@ -17,15 +17,14 @@
 	outfit = /datum/outfit/job/vampire/toreador
 
 	display_order = JOB_DISPLAY_ORDER_TOREADOR
-	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
-		/datum/job_department/camarilla,
 		/datum/job_department/strip_club,
+		/datum/job_department/camarilla,
 	)
 
 	minimal_generation = 12
 	minimum_immortal_age = 50
-	minimal_masquerade = 5
+	minimum_masquerade = 5
 	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_TOREADOR)
 

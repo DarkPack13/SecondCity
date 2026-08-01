@@ -9,7 +9,7 @@
 	var/datum/discipline/discipline
 	var/targeting = FALSE
 
-/datum/action/discipline/New(datum/discipline/discipline)
+/datum/action/discipline/New(Target, datum/discipline/discipline)
 	. = ..()
 
 	src.discipline = discipline
@@ -26,11 +26,34 @@
 
 	register_to_availability_signals()
 
-/datum/action/discipline/Remove(mob/remove_from)
+/datum/action/discipline/Destroy()
+	QDEL_NULL(discipline)
+	return ..()
+
+/datum/action/discipline/Remove(mob/owner)
 	if(discipline)
 		discipline.post_loss()
-
-	. = ..()
+	end_targeting()
+	if(owner)
+		UnregisterSignal(owner, list(
+			SIGNAL_ADDTRAIT(TRAIT_TORPOR),
+			SIGNAL_REMOVETRAIT(TRAIT_TORPOR),
+			SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+			SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT),
+			SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+			SIGNAL_REMOVETRAIT(TRAIT_INCAPACITATED),
+			SIGNAL_ADDTRAIT(TRAIT_IMMOBILIZED),
+			SIGNAL_REMOVETRAIT(TRAIT_IMMOBILIZED),
+			SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+			SIGNAL_REMOVETRAIT(TRAIT_FLOORED),
+			SIGNAL_ADDTRAIT(TRAIT_MUTE),
+			SIGNAL_REMOVETRAIT(TRAIT_MUTE),
+			SIGNAL_ADDTRAIT(TRAIT_HANDS_BLOCKED),
+			SIGNAL_REMOVETRAIT(TRAIT_HANDS_BLOCKED),
+			SIGNAL_ADDTRAIT(TRAIT_PACIFISM),
+			SIGNAL_REMOVETRAIT(TRAIT_PACIFISM),
+		))
+	return ..()
 
 /datum/action/discipline/proc/register_to_availability_signals()
 	//this should only go through if it's the first Discipline gained by the mob
@@ -69,10 +92,20 @@
 	owner.update_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
-	return discipline.current_power.can_activate_untargeted(feedback)
+	return discipline.current_power?.can_activate_untargeted(feedback)
 
-/datum/action/discipline/Trigger(trigger_flags)
+/datum/action/discipline/proc/trigger_level(mob/user, level, trigger_flags)
+	// This proc is for specific levels only, unlike switch_level() it should never roll over to 1 or the max level
+	if (discipline.level < level || level < 0)
+		return
+
+	switch_level(level - discipline.level_casting, TRUE)
+	return Trigger(user, trigger_flags)
+
+/datum/action/discipline/Trigger(mob/clicker, trigger_flags)
 	. = ..()
+	if(!.)
+		return
 
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
@@ -122,11 +155,13 @@
 	if (targeting)
 		end_targeting()
 
-	discipline.current_power = discipline.known_powers[discipline.level_casting]
+	discipline.update_current_power()
+	refresh_power_display()
 
-	// Update name and icon to the new power's
-	name = discipline.current_power.name
-	desc = discipline.current_power.desc
+// Update name, desc, and icon to the new power's
+/datum/action/discipline/proc/refresh_power_display()
+	name = discipline.current_power?.name || discipline.name
+	desc = discipline.current_power?.desc || discipline.desc
 
 	overlay_icon_state = num2text(discipline.level_casting)
 
@@ -155,7 +190,7 @@
 		return
 
 	//actually try to use the Discipline on the target
-	spawn()
+	ASYNC
 		if (discipline.current_power.try_activate(target))
 			end_targeting()
 
@@ -173,6 +208,18 @@
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	targeting = TRUE
 	client.mouse_pointer_icon = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
+
+/datum/action/discipline/proc/select()
+	background_icon_state = "bg_discipline_selected"
+	build_all_button_icons()
+	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
+
+/datum/action/discipline/proc/unselect(swapping = TRUE)
+	background_icon_state = "bg_discipline"
+	build_all_button_icons()
+	// If you're activating another at the same time, this isn't necessary
+	if (!swapping)
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 
 /atom/movable/screen/movable/action_button/Click(location, control, params)
 	if(istype(linked_action, /datum/action/discipline))

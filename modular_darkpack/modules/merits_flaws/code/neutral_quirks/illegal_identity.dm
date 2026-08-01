@@ -14,9 +14,10 @@
 
 /datum/quirk/darkpack/illegal_identity/add()
 	. = ..()
-	if(!ishuman(quirk_holder))
+	var/mob/living/carbon/human/criminal = astype(quirk_holder)
+	if(!criminal)
 		return
-	var/mob/living/carbon/human/criminal = quirk_holder
+
 	var/obj/item/passport/passport = locate() in criminal // In pockets
 	if(!passport && criminal.back)
 		passport = locate() in criminal.back // In backpack

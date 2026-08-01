@@ -21,7 +21,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/abstract/fake_steam/process()
+/obj/effect/abstract/fake_steam/process(seconds_per_tick)
 	if(next_stage_down > world.time)
 		return
 	stage_down()

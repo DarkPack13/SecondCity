@@ -13,6 +13,7 @@
 	var/datum/storyteller_roll/roll_datum = new()
 	roll_datum.applicable_stats = list(STAT_MANIPULATION, STAT_STEALTH)
 	roll_datum.difficulty = 8
+	roll_datum.roll_output_type = ROLL_PRIVATE
 	var/roll_result = roll_datum.st_roll(owner)
 
 	if(roll_result == ROLL_SUCCESS)
@@ -76,10 +77,10 @@
 		return FALSE
 
 /datum/action/cooldown/power/gift/infectious_laughter/Activate(atom/target)
-	. = ..()
-
 	if(!last_spoken_message || (when_spoken + 3 TURNS < world.time))
 		return
+
+	. = ..()
 
 	owner.emote("laugh")
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/infectious_laughter.ogg', 50, FALSE)
@@ -106,6 +107,7 @@
 
 
 /datum/storyteller_roll/gift/open_seal
+	roll_output_type = ROLL_PRIVATE
 
 /datum/action/cooldown/power/gift/open_seal
 	name = "Open Seal"

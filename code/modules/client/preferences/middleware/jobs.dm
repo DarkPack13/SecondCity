@@ -1,6 +1,7 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
+		"set_job_to_profile" = PROC_REF(set_job_to_profile),
 		// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 		"set_job_title" = PROC_REF(set_job_title),
 		// DARKPACK EDIT ADD END
@@ -18,8 +19,10 @@
 	if (isnull(job))
 		return FALSE
 
+	/* DARKPACK EDIT REMOVAL - Factions - note: why do these lines even exist?
 	if (job.faction != FACTION_CITY) // DARKPACK EDIT, ORGINAL: if (job.faction != FACTION_STATION)
 		return FALSE
+	*/
 
 	if (!preferences.set_job_preference_level(job, level))
 		return FALSE
@@ -28,7 +31,7 @@
 
 	return TRUE
 
-// DARKPACK EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
+// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
@@ -44,7 +47,18 @@
 	preferences.alt_job_titles[job_title] = new_job_title
 
 	return TRUE
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
+
+/datum/preference_middleware/jobs/proc/set_job_to_profile(list/params, mob/user)
+	var/job_title = params["job"]
+	var/profile_slot = params["profile"]
+
+	if (!isnum(profile_slot) || profile_slot == -1)
+		LAZYREMOVE(preferences.job_assigned_profiles, job_title)
+		return TRUE
+
+	LAZYSET(preferences.job_assigned_profiles, job_title, profile_slot)
+	return TRUE
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()
@@ -70,6 +84,7 @@
 
 			departments[department_name] = list(
 				"head" = department_head_type && initial(department_head_type.title),
+				"color" = department_type.ui_color, // Prob shouldnt be here.
 			)
 
 		jobs[job.title] = list(
@@ -86,13 +101,25 @@
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
 
+	data["job_preferences"] = list()
+	for(var/job, priority in preferences.job_preferences)
+		data["job_preferences"] += list(list(
+			"job" = job,
+			"priority" = priority,
+			"assigned_profile_slot" = LAZYACCESS(preferences.job_assigned_profiles, job),
+		))
+
+	for(var/job, slot in SANITIZE_LIST(preferences.job_assigned_profiles) - SANITIZE_LIST(preferences.job_preferences))
+		data["job_preferences"] += list(list(
+			"job" = job,
+			"priority" = null,
+			"assigned_profile_slot" = slot,
+		))
+
 	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	if(isnull(preferences.alt_job_titles))
 		preferences.alt_job_titles = list()
-	// DARKPACK EDIT ADD END
-	data["job_preferences"] = preferences.job_preferences
 
-	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	data["job_alt_titles"] = preferences.alt_job_titles
 	// DARKPACK EDIT ADD END
 

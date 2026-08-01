@@ -6,3 +6,4 @@
 	lose_text = span_notice("You don't really care about vengeance anymore.")
 	icon = FA_ICON_FACE_ANGRY
 	failure_message = "You don't really care about vengeance anymore."
+	roleplay_only = TRUE

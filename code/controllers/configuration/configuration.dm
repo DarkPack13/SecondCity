@@ -110,6 +110,7 @@
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()
+	LoadMisc()
 	if(CONFIG_GET(flag/load_jobs_from_txt))
 		validate_job_config()
 		if(SSjob.initialized) // in case we're reloading from disk after initialization, wanna make sure the changes update in the ongoing shift
@@ -123,6 +124,13 @@
 	if (Master)
 		Master.OnConfigLoad()
 	process_config_errors()
+
+
+// CRIMSON EDIT ADDITION START
+// Function for modules to override if they need to add addiitonal config stuff.
+/datum/controller/configuration/proc/LoadMisc()
+	return
+// CRIMSON EDIT ADDITION END
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -365,12 +373,13 @@ Example config:
 */
 /datum/controller/configuration/proc/LoadPolicy()
 	policy = list()
-	var/rawpolicy = file2text("[directory]/policy.json")
+	var/json_path = CONFIG_GET(string/policy_json_path)
+	var/rawpolicy = file2text("[directory]/[json_path]")
 	if(rawpolicy)
 		var/parsed = safe_json_decode(rawpolicy)
 		if(!parsed)
-			log_config("JSON parsing failure for policy.json")
-			DelayedMessageAdmins("JSON parsing failure for policy.json")
+			log_config("JSON parsing failure for policy.json {[json_path]}")
+			DelayedMessageAdmins("JSON parsing failure for policy.json {[json_path]}")
 		else
 			policy = parsed
 

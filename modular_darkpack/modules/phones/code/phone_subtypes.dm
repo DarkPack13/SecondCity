@@ -1,10 +1,3 @@
-/// Index to a define to point at a runtime-global list at compile-time.
-#define NETWORK_ID 1
-/// Index to a string, for the contact title.
-#define OUR_ROLE 2
-/// Index to a boolean, on whether to replace role with job title (or alt-title).
-#define USE_JOB_TITLE 3
-
 /obj/item/smartphone/prince
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = MILLENIUM_TOWER_NETWORK, OUR_ROLE = "C.E.O.", USE_JOB_TITLE = FALSE)
@@ -52,7 +45,7 @@
 /obj/item/smartphone/toreador_primo
 	important_contact_of = VAMPIRE_CLAN_TOREADOR
 	contact_networks_pre_init = list(
-		alist(NETWORK_ID = VAMPIRE_LEADER_NETWORK, OUR_ROLE = "Rosebud Night Club Owner", USE_JOB_TITLE = FALSE)
+		alist(NETWORK_ID = VAMPIRE_LEADER_NETWORK, OUR_ROLE = (PRIMARY_NIGHTCLUB_COMPANY + " Night Club Owner"), USE_JOB_TITLE = FALSE)
 		)
 
 // NOSFERATU
@@ -229,6 +222,22 @@
 		alist(NETWORK_ID = ENDRON_NETWORK, OUR_ROLE = "Endron Employee", USE_JOB_TITLE = TRUE)
 		)
 
-#undef NETWORK_ID
-#undef OUR_ROLE
-#undef USE_JOB_TITLE
+/obj/item/smartphone/novice
+	contact_networks_pre_init = list(
+		alist(NETWORK_ID = SOCIETY_OF_LEOPOLD_NETWORK, OUR_ROLE = "Novice", USE_JOB_TITLE = TRUE)
+		)
+
+/obj/item/smartphone/condottieri
+	contact_networks_pre_init = list(
+		alist(NETWORK_ID = SOCIETY_OF_LEOPOLD_NETWORK, OUR_ROLE = "Condottieri", USE_JOB_TITLE = TRUE)
+		)
+
+/obj/item/smartphone/inquisitor
+	contact_networks_pre_init = list(
+		alist(NETWORK_ID = SOCIETY_OF_LEOPOLD_NETWORK, OUR_ROLE = "Inquisitor", USE_JOB_TITLE = TRUE)
+		)
+
+/obj/item/smartphone/abbe
+	contact_networks_pre_init = list(
+		alist(NETWORK_ID = SOCIETY_OF_LEOPOLD_NETWORK, OUR_ROLE = "Abbé", USE_JOB_TITLE = TRUE)
+		)

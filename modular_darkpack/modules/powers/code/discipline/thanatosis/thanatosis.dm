@@ -78,7 +78,7 @@
 	bumper_text = "putrefaction"
 	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/discipline_power/thanatosis/putrefaction/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -199,7 +199,7 @@
 	bumper_text = "withering"
 	applicable_stats = list(STAT_MANIPULATION, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/discipline_power/thanatosis/withering/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -276,7 +276,7 @@
 	bumper_text = "necrosis"
 	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 
 /datum/discipline_power/thanatosis/necrosis/pre_activation_checks(mob/living/carbon/human/target)
 	. = ..()

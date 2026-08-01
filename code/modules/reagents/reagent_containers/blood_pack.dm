@@ -6,6 +6,7 @@
 	volume = 200
 	//fill_icon_thresholds = list(10, 20, 30, 40, 50, 60, 70, 80, 90, 100) DARKPACK EDIT REMOVAL
 	obj_flags = UNIQUE_RENAME | RENAME_NO_DESC
+	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 	var/blood_type = null
 	var/labeled = FALSE
 	var/start_blood_amount = 200 // DARKPACK EDIT ADD
@@ -15,8 +16,7 @@
 	if (!blood_type)
 		return
 	var/datum/blood_type/bloodtype = get_blood_type(blood_type)
-	// Blood pack blood is halfway synthetic, meaning instead of a maximum of like 6 blood worms being able to become adults via 2 freezers, only 3 or so can.
-	reagents.add_reagent(bloodtype.reagent_type, start_blood_amount, list("blood_type" = bloodtype, "blood_DNA" = bloodtype.dna_string, BLOOD_DATA_SYNTH_CONTENT = 0.5), creation_callback = CALLBACK(src, PROC_REF(on_blood_created))) // DARKPACK EDIT CHANGE
+	reagents.add_reagent(bloodtype.reagent_type, start_blood_amount, list("blood_type" = bloodtype, "blood_DNA" = bloodtype.dna_string, BLOOD_DATA_SYNTH_CONTENT = 1), creation_callback = CALLBACK(src, PROC_REF(on_blood_created))) // DARKPACK EDIT CHANGE - (start_blood_volume)
 
 /obj/item/reagent_containers/blood/proc/on_blood_created(datum/reagent/new_blood)
 	new_blood.AddElement(/datum/element/blood_reagent, null, get_blood_type(blood_type))
@@ -32,7 +32,7 @@
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload, vol)
 	icon_state = "bloodpack"
-	blood_type = random_human_blood_type_name() // DARKPACK EDIT, ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
+	blood_type = random_human_blood_type_name() // DARKPACK EDIT CHANGE - ORIGINAL: blood_type = pick(BLOOD_TYPE_A_PLUS, BLOOD_TYPE_A_MINUS, BLOOD_TYPE_B_PLUS, BLOOD_TYPE_B_MINUS, BLOOD_TYPE_O_PLUS, BLOOD_TYPE_O_MINUS, BLOOD_TYPE_LIZARD)
 	return ..()
 
 /obj/item/reagent_containers/blood/a_plus

@@ -5,6 +5,13 @@
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	outdoors = TRUE
+
+	ambience_index = null
+	ambient_buzz = null
+	ambient_buzz_vol = 8
+	min_ambience_cooldown = 3 SECONDS
+	max_ambience_cooldown = 10 SECONDS
+
 	var/zone_type = ZONE_MASQUERADE
 
 	// 7 is an average city street.
@@ -13,11 +20,6 @@
 
 	// is this able to be classified as a domain? e.g, territorial flaw, later political implementation
 	var/domain = FALSE
-
-/area/vtm/powered(chan)
-	if (!requires_power)
-		return TRUE
-	return FALSE
 
 /area/vtm/proc/break_elysium()
 	if (zone_type != ZONE_MASQUERADE)

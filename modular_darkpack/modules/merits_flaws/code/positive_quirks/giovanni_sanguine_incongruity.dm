@@ -10,12 +10,11 @@
 	icon = FA_ICON_SKULL_CROSSBONES
 	failure_message = "Somehow the Giovanni's Curse of Lamia returns, and your bite becomes far more painful. At least now your skin is more flush with life."
 
-/datum/quirk/darkpack/giovanni_sanguine_incongruity/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
-	if(!ishuman(new_holder))
+/datum/quirk/darkpack/giovanni_sanguine_incongruity/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
+	if(!human_holder)
 		return
-
-	var/mob/living/carbon/human/human_holder = new_holder
+	
 	var/datum/splat/vampire/kindred/kindred = get_kindred_splat(human_holder)
 	if(kindred)
 		if(istype(kindred.clan, /datum/subsplat/vampire_clan/giovanni))

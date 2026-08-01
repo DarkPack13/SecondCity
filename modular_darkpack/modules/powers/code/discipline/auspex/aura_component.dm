@@ -23,7 +23,7 @@
 /datum/component/aura
 	// A list of currently selected emotions by the player
 	var/current_aura = AURA_INNOCENT
-	var/current_emotion_name = "Innocent"
+	var/current_emotion_name = ""
 	var/obj/effect/abstract/shared_particle_holder/aura_smoke
 	var/examine_message = ""
 	var/obj/effect/aura_overlay/aura_glow_image
@@ -39,7 +39,7 @@
 	target_hud.add_atom_to_hud(parent_mob)
 
 	RegisterSignal(parent_mob, COMSIG_MOB_EMOTION_CHANGED, PROC_REF(update_emotions))
-	RegisterSignal(parent_mob, COMSIG_MOB_UPDATE_AURA, PROC_REF(update_aura))
+	RegisterSignals(parent_mob, list(COMSIG_MOB_UPDATE_AURA, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)), PROC_REF(update_aura))
 	RegisterSignal(parent_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	if(isnpc(parent_mob))
 		RegisterSignal(parent_mob, COMSIG_COMBAT_MODE_TOGGLED, PROC_REF(on_combat_mode_toggled))
@@ -51,7 +51,7 @@
 	var/datum/atom_hud/data/auspex_aura/target_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	target_hud.remove_atom_from_hud(parent_mob)
 	examine_message = ""
-	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_ATOM_EXAMINE))
+	UnregisterSignal(parent_mob, list(COMSIG_MOB_EMOTION_CHANGED, COMSIG_MOB_UPDATE_AURA, COMSIG_LIVING_GAINED_SPLAT, COMSIG_LIVING_LOSE_SPLAT, SIGNAL_ADDTRAIT(TRAIT_IN_FRENZY), SIGNAL_REMOVETRAIT(TRAIT_IN_FRENZY)), COMSIG_ATOM_EXAMINE)
 	if(isnpc(parent_mob))
 		UnregisterSignal(parent_mob, list(COMSIG_COMBAT_MODE_TOGGLED))
 	QDEL_NULL(aura_smoke)
@@ -64,6 +64,9 @@
 
 /datum/component/aura/proc/update_emotions(mob/changed_mob, new_emotion)
 	SIGNAL_HANDLER
+
+	if(HAS_TRAIT(changed_mob, TRAIT_AURA_OF_CONFIDENCE))
+		new_emotion = "Confidence"
 
 	if(current_aura == new_emotion)
 		return
@@ -83,15 +86,20 @@
 
 /datum/component/aura/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	if(!examine_message)
-		return
 	var/datum/atom_hud/data/auspex_aura/auspex_hud = GLOB.huds[DATA_HUD_AUSPEX_AURAS]
 	if(!(user in auspex_hud.hud_users_all_z_levels))
+		return
+	update_examine_message(null)
+	if(!examine_message)
 		return
 	examine_list += examine_message
 
 /datum/component/aura/proc/update_examine_message(mutable_appearance/aura_appearance)
 	var/mob/parent_mob = parent
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		examine_message = "[parent_mob.p_Their()] aura is swamped in so much superiority nothing else can be made out."
+		return
 
 	switch(current_aura)
 		if(AURA_AFRAID)
@@ -152,17 +160,16 @@
 	if(examine_message && quality)
 		examine_message += " You sense [quality]."
 	examine_message += "\n \n" // makes the below stand out more
-	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
+	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE) && !HAS_TRAIT(parent_mob, TRAIT_HIDDEN_DIABLERIE))
 		examine_message += "Black veins pulse through [parent_mob.p_their()] aura."
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		examine_message += "[parent_mob.p_Their()] aura appears especially energetic."
-	if(!HAS_TRAIT(parent, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
+
+	if(has_pale_aura(parent_mob))
+		examine_message += "[parent_mob.p_Their()] aura colors appear pale."
+	else if(has_pale_blotches(parent_mob))
 		examine_message += "Pale blotches mark [parent_mob.p_their()] aura."
-	if(get_kindred_splat(parent_mob))
-		var/mob/living/carbon/human/lick = parent_mob
-		var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats[STAT_MORALITY]
-		if(!stat_morality.morality_path.alignment == MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
-			examine_message += "[parent_mob.p_Their()] aura colors appear pale."
+
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		examine_message += "[parent_mob.p_Their()] aura is weak and intermittent, fading in and out."
 
@@ -178,7 +185,11 @@
 		aura_smoke = new /obj/effect/abstract/shared_particle_holder(null, /particles/smoke/aura)
 		aura_smoke.blend_mode = 2
 		aura_smoke.add_filter("particle_blur", 1, gauss_blur_filter(8))
-	var/mutable_appearance/aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+	var/mutable_appearance/aura_appearance
+	if(parent_mob.heart_is_beating())
+		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+	else
+		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
 	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
 	update_aura_filters(aura_appearance, holder)
@@ -206,13 +217,13 @@
 	holder.color = null
 
 	var/mob/parent_mob = parent
-	if(HAS_TRAIT(parent, TRAIT_PALE_AURA) && !HAS_TRAIT(parent, TRAIT_DECEPTIVE_AURA) && output_color)
-		var/mob/living/carbon/human/lick = parent_mob
-		var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats[STAT_MORALITY]
-		if(!stat_morality?.morality_path.alignment == MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away
-			var/list/hsv_color_value = rgb2hsv(output_color)
-			hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
-			aura_appearance.color = hsv2rgb(hsv_color_value)
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
+	if(output_color && has_pale_aura(parent_mob))
+		var/list/hsv_color_value = rgb2hsv(output_color)
+		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for kindred
+		aura_appearance.color = hsv2rgb(hsv_color_value)
 
 	if(HAS_TRAIT(parent_mob, TRAIT_FRENETIC_AURA))
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color || "#ffffff")
@@ -232,6 +243,7 @@
 		aura_glow_image.plane = ABOVE_LIGHTING_PLANE
 		aura_glow_image.add_filter("ambient_blur", 1, gauss_blur_filter(12))
 	aura_glow_image.color = aura_appearance.color
+	aura_glow_image.icon_state = aura_appearance.icon_state || "aura"
 	aura_glow_image.alpha = 20
 	holder.vis_contents += aura_glow_image
 
@@ -267,7 +279,21 @@
 	aura_smoke_image.color = aura_appearance.color
 	aura_smoke_image.alpha = 50
 
-	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE))
+	var/matrix/smoke_transform = matrix()
+	smoke_transform.Scale(1, pick(1.25, 1.5))
+	aura_smoke_image.transform = smoke_transform
+
+	var/matrix/classic_aura_transform = matrix()
+	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
+	aura_classic_image.transform = classic_aura_transform
+
+	holder.vis_contents += aura_classic_image
+	holder.vis_contents += aura_smoke_image
+
+	if(HAS_TRAIT(parent_mob, TRAIT_AURA_OF_CONFIDENCE))
+		return
+
+	if(HAS_TRAIT(parent_mob, TRAIT_DIABLERIE) && !HAS_TRAIT(parent_mob, TRAIT_HIDDEN_DIABLERIE))
 		var/mutable_appearance/diablerie_image = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "diab", ABOVE_MOB_LAYER + 1, parent_mob, ABOVE_GAME_PLANE)
 		holder.add_overlay(diablerie_image)
 		aura_classic_image.color = "#1717178b"
@@ -284,28 +310,56 @@
 		static_image.alpha = 150
 		holder.vis_contents += static_image
 
-	if(!HAS_TRAIT(parent, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
+	if(has_pale_blotches(parent_mob))
 		var/list/hsv_color_value = rgb2hsv(aura_appearance.color)
 		hsv_color_value[2] = hsv_color_value[2] * 0.7 // Reduce saturation for ghouls
 		aura_smoke_image.color = hsv2rgb(hsv_color_value)
 		aura_classic_image.icon_state = "old_aura_ghoul"
+		aura_smoke_image.alpha = 50
 
 	if(isavatar(parent_mob) || isobserver(parent_mob))
 		holder.opacity = holder.opacity * 0.5
-
-	var/matrix/smoke_transform = matrix()
-	smoke_transform.Scale(1, pick(1.25, 1.5))
-	aura_smoke_image.transform = smoke_transform
-
-	var/matrix/classic_aura_transform = matrix()
-	classic_aura_transform.Scale(pick(0.65, 0.75), 1)
-	aura_classic_image.transform = classic_aura_transform
-
-	holder.vis_contents += aura_classic_image
-	holder.vis_contents += aura_smoke_image
 
 
 /datum/component/aura/proc/update_aura_filters(mutable_appearance/aura_appearance, image/holder)
 	remove_wibbly_filters(holder)
 	apply_wibbly_filters(holder)
 	holder.add_filter("aura_glow", 1, gauss_blur_filter(2))
+
+/datum/component/aura/proc/has_pale_aura(mob/parent_mob)
+	if(HAS_TRAIT(parent, TRAIT_PALE_AURA) && !HAS_TRAIT(parent, TRAIT_DECEPTIVE_AURA))
+		if(get_kindred_splat(parent_mob))
+			var/mob/living/carbon/human/lick = parent_mob
+			var/datum/st_stat/morality_path/morality/stat_morality = lick.storyteller_stats[STAT_MORALITY]
+			var/alignment = stat_morality?.morality_path?.alignment
+			if(alignment != MORALITY_HUMANITY) // non-humanity licks have standard kindred auras that give them away // Also catches a null value.
+				return TRUE
+
+		return TRUE
+
+/datum/component/aura/proc/has_pale_blotches(mob/parent_mob)
+	if(!HAS_TRAIT(parent_mob, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
+		return TRUE
+
+
+/mob/proc/heart_is_beating()
+	return FALSE
+
+/mob/living/heart_is_beating()
+	if(stat == DEAD)
+		return FALSE
+
+	return TRUE
+
+/mob/living/carbon/human/heart_is_beating()
+	var/obj/item/organ/heart/beating_heart = get_organ_slot(ORGAN_SLOT_HEART)
+	if(!istype(beating_heart) || !(beating_heart.is_beating()))
+		return FALSE
+
+	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
+	if(get_kindred_splat(src))
+		var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
+		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(src, TRAIT_BLUSH_OF_HEALTH))
+			return FALSE
+
+	return TRUE

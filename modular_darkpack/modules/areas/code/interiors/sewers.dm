@@ -1,8 +1,11 @@
 /area/vtm/interior/sewer
 	name = "Sewer"
 	icon_state = "sewer"
+	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/canalization.ogg'
 	ambience_index = AMBIENCE_SEWER
-	musictracks = list('modular_darkpack/modules/ambience/sounds/music/nosferatu.ogg')
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/nosferatu.ogg', 'modular_darkpack/modules/ambience/sounds/music/enterlair.ogg')
+	forced_music = TRUE
 	outdoors = FALSE
 	zone_type = ZONE_NO_MASQUERADE
 	domain = TRUE

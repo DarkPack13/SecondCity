@@ -55,7 +55,7 @@
 	icon_state = "gangrel_f"
 	icon_living = "gangrel_f"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	mob_size = MOB_SIZE_HUGE
+	mob_size = MOB_SIZE_LARGE
 	speed = -0.4
 	maxHealth = 275
 	health = 275

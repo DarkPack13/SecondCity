@@ -19,7 +19,7 @@
 //lets not have people be able to cast this through walls
 
 
-/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, difficulty)
+/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, using_stats, difficulty)
 	if(!ishuman(target))
 		return FALSE
 
@@ -30,7 +30,17 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
+	// Do we have traits to modify our difficulties?
+	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
+		theirpower += 2 // Increase the difficulty by two.
+
+	if(!get_kindred_splat(target)) // Is our target mortal?
+		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
+			theirpower += 1
+		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in using_stats)) // Are we intimidating a mortal with uncovered eyes?
+			theirpower -= 1
+
+	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -42,11 +52,11 @@
 	return successes
 
 /datum/discipline_power/presence/proc/apply_presence_overlay(mob/living/carbon/target)
-	target.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
+	var/mutable_appearance/presence_overlay = mutable_appearance('modular_darkpack/modules/powers/icons/presence.dmi', "presence", -POWERS_LAYER)
 	presence_overlay.pixel_z = 1
-	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
-	target.apply_overlay(MUTATIONS_LAYER)
+	target.overlays_standing[POWERS_LAYER] = presence_overlay
+	target.apply_overlay(POWERS_LAYER)
 	SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/presence_activate.ogg'))
 
 //used in awe - v20 book states that awe affects the targets of lowest willpower first if affecting multiple targets.
@@ -67,6 +77,12 @@
 			sorted += target
 	return sorted
 
+
+/datum/storyteller_roll/presence_awe
+	difficulty = 7
+	applicable_stats = list(STAT_CHARISMA, STAT_PERFORMANCE)
+	numerical = TRUE
+
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
@@ -83,10 +99,10 @@
 	var/list/affected_targets = list()
 
 /datum/discipline_power/presence/awe/pre_activation_checks()
-	.=..()
+	. = ..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/presence_awe)
 	if(successes > 0)
 		return TRUE
 
@@ -128,7 +144,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
-		target.remove_overlay(MUTATIONS_LAYER)
+		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
 // DREAD GAZE
@@ -143,14 +159,13 @@
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 	duration_length = 10 SECONDS
-	vitae_cost = 1 //no mention of literally any cost for using this in V20
 	var/successes = 0
 
 
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, list(STAT_CHARISMA, STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -160,7 +175,20 @@
 /datum/discipline_power/presence/dread_gaze/activate(mob/living/carbon/human/target)
 	. = ..()
 	apply_presence_overlay(target)
-
+	if(successes >= (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))	//We check if you just flat out have more successes than their dice pool total.
+		var/extended_action_prompt = tgui_input_list(owner, "Attempt to force your target to cower in fear? This will take time to preform this extended action to stun and debuff your opponent!", "Terrifying Presence", list("Yes", "No"), "No")
+		switch(extended_action_prompt)
+			if("Yes")
+				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				if(do_after(owner, 3 SECONDS))
+					to_chat(owner, span_warning("You force [target] to cower to your mere presence!"))
+					to_chat(target, span_userdanger("You are consumed with an overhwelming sense of dread, forced to cower before [owner] as even your legs betray you and your very being is rocked to its core!"))
+					target.Stun(1 TURNS)	//~5 seconds
+					target.emote("tremble")	//Shaking emote for visibility
+					target.emote(pick("scream","cry"))	//Audible emote
+					target.apply_status_effect(/datum/status_effect/dread_gaze)	//Debuffs for set time
+				REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
+				return TRUE
 	if(successes <= 3) // already checked for above 0 in pre_activation
 		to_chat(target, span_userdanger("You are consumed with terror toward [owner]!"))
 		to_chat(owner, span_warning("You've struck terror into [target]'s heart with your dreadful gaze!"))
@@ -169,13 +197,11 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		//var/datum/cb = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, step_away_caster), owner)
-		//for(var/i in 1 to 30)
-			//addtimer(cb, (i - 1) * target.total_multiplicative_slowdown())
+		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown)
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // ENTRANCEMENT
 /datum/discipline_power/presence/entrancement
@@ -193,7 +219,7 @@
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
 
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_EMPATHY))
+	successes = presence_check(owner, target, list(STAT_APPEARANCE, STAT_EMPATHY))
 	if(successes > 0)
 		return TRUE
 
@@ -219,7 +245,7 @@
 
 /datum/discipline_power/presence/entrancement/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target.remove_overlay(POWERS_LAYER)
 
 // SUMMON
 /datum/discipline_power/presence/summon
@@ -252,7 +278,7 @@
 
 	//this ability has a difficulty of 4 or 5 or something for people the summoner has met, and 8 for those they've only met briefly.
 	//i thought that was too low and the ability for the misuse of this disc caused me to raise it to 7 difficulty
-	successes = presence_check(owner, summon_target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_SUBTERFUGE), 7)
+	successes = presence_check(owner, summon_target, list(STAT_CHARISMA, STAT_SUBTERFUGE), 7)
 	if(successes > 0)
 		return TRUE
 
@@ -288,7 +314,7 @@
 
 /datum/discipline_power/presence/summon/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	summon_target?.remove_overlay(MUTATIONS_LAYER)
+	summon_target?.remove_overlay(POWERS_LAYER)
 
 // MAJESTY
 /datum/discipline_power/presence/majesty
@@ -315,8 +341,9 @@
 		if(hearer == owner)
 			continue
 
+		var/roll_difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION)
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), roller = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll_datum(hearer, owner, difficulty = roll_difficulty, applic_stats = list(STAT_COURAGE), numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)
@@ -348,7 +375,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "Majesty")
 	for(var/mob/living/carbon/human/affected_target in affected_targets)
 		if(affected_target)
-			affected_target.remove_overlay(MUTATIONS_LAYER)
+			affected_target.remove_overlay(POWERS_LAYER)
 			to_chat(affected_target, span_hypnophrase("The overwhelming presence of [owner] fades, and your will returns to normal."))
 			REMOVE_TRAIT(affected_target, TRAIT_PACIFISM, "Majesty")
 	affected_targets.Cut()

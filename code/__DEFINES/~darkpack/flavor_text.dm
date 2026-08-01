@@ -4,6 +4,8 @@
 #define EXAMINE_DNA_HEADSHOT "headshot"
 /// Examine Panel flavor text
 #define EXAMINE_DNA_FLAVOR_TEXT "flavor_text"
+#define EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT "war_form_flavor_text"
+#define EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT "feral_form_flavor_text"
 /// Examine Panel flavor text
 #define EXAMINE_DNA_NSFW_FLAVOR_TEXT "nsfw_flavor_text"
 /// Examine Panel OOC notes

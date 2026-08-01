@@ -19,6 +19,12 @@
 		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
 			qdel(action)
 
+
+/datum/storyteller_roll/thaumaturgy
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	numerical = TRUE
+
+
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
@@ -36,7 +42,7 @@
 /datum/discipline_power/thaumaturgy/activate(atom/target)
 	. = ..()
 	//Thaumaturgy powers have different effects based off the amount of successes. I dont want to copy paste the code, so this is being put here.
-	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
+	success_count = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/thaumaturgy, difficulty = (level + 3))
 	if(success_count < 0)
 		thaumaturgy_botch_effect()
 		return TRUE
@@ -239,7 +245,7 @@
 
 	level = 4
 
-	vitae_cost = 0 //Since 1 success should give one vitae, balancing.
+	vitae_cost = 1
 	effect_sound = 'sound/effects/magic/enter_blood.ogg'
 	range = 8 // Within 50 feet (15 meters).
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED | DISC_CHECK_SEE | DISC_CHECK_DIRECT_SEE // The subject must be visible to the thaumaturge
@@ -267,6 +273,8 @@
 		var/blood_gained = blood_taken * max(1, target.bloodquality-1)
 		owner.adjust_blood_pool(blood_gained)
 	else
+		if(!target.bloodpool || !target.blood_volume)
+			return
 		var/blood_coefficient = (5 / target.bloodpool)
 		// DARKPACK TODO - reimplement quirks -- potent blood
 		/*
@@ -277,6 +285,7 @@
 		target.blood_volume = max (0, (target.blood_volume - (blood_taken * (70*blood_coefficient))))
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality - 1)
+		target.adjust_blood_pool(-blood_gained)
 		owner.adjust_blood_pool(blood_gained)
 
 //------------------------------------------------------------------------------------------------
@@ -287,7 +296,7 @@
 	desc = "Boil your target's blood in their body, killing almost anyone."
 
 	level = 5
-	range = 1 //The Kindred must touch the subject
+	range = 1
 	check_flags = DISC_CHECK_FREE_HAND | DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_TORPORED
 	target_type = TARGET_MOB | TARGET_SELF
 	aggravating = TRUE

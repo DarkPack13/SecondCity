@@ -246,7 +246,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
 "aaS" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer)
 "aaT" = (
@@ -584,7 +584,7 @@
 /turf/open/floor/wood/old,
 /area/vtm/interior)
 "aca" = (
-/obj/effect/spawner/random/structure/billboard,
+/obj/effect/spawner/random/structure/billboard/darkpack,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/westfield_mall)
 "acb" = (
@@ -8903,7 +8903,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/westfield_mall)
 "aDt" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
 "aDu" = (
@@ -9805,7 +9805,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/westfield_mall/interior/smokeshop)
 "aGm" = (
-/obj/effect/spawner/random/structure/billboard,
+/obj/effect/spawner/random/structure/billboard/darkpack,
 /turf/open/misc/grass/random/grass,
 /area/vtm/westfield_mall)
 "aGn" = (
@@ -10150,7 +10150,7 @@
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall)
 "aHr" = (
-/obj/structure/fire_barrel,
+/obj/structure/bonfire/fire_barrel,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/sewer)
 "aHs" = (
@@ -10389,6 +10389,7 @@
 /area/vtm/interior/sewer/nosferatu_town)
 "aIg" = (
 /obj/effect/turf_decal/loading_area,
+/obj/effect/abstract/cargo_landing_spot,
 /turf/open/misc/dirt,
 /area/vtm/westfield_mall/interior/supply)
 "aIh" = (
@@ -17832,6 +17833,10 @@
 /obj/effect/decal/rugs,
 /turf/open/floor/iron/dark,
 /area/vtm/westfield_mall/interior/art_store)
+"rtM" = (
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/supply)
 "rus" = (
 /obj/machinery/sprinkler,
 /turf/open/floor/wood/smooth/old,
@@ -17909,6 +17914,11 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm/westfield_mall)
+"rSA" = (
+/obj/effect/decal/pallet,
+/obj/effect/abstract/cargo_landing_spot,
+/turf/open/floor/plating/concrete,
+/area/vtm/westfield_mall/interior/supply)
 "rSN" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -26043,11 +26053,11 @@ aFc
 (49,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
-ars
+rtM
 agx
 ars
 aNJ
@@ -27263,7 +27273,7 @@ ars
 aZf
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aVT
@@ -28171,7 +28181,7 @@ aFc
 (63,1,1) = {"
 aFc
 aOe
-aiq
+rSA
 aZf
 aaV
 aZf
@@ -28783,7 +28793,7 @@ ars
 aZf
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aeW
@@ -29999,7 +30009,7 @@ ars
 aZf
 aaV
 aIg
-ars
+rtM
 apX
 aOe
 aeW
@@ -30151,7 +30161,7 @@ ars
 aZf
 aaV
 aIg
-ars
+rtM
 apX
 aOe
 aeW
@@ -30455,7 +30465,7 @@ ars
 aXD
 aaV
 aZf
-aiq
+rSA
 aOe
 aeW
 aeW
@@ -30907,7 +30917,7 @@ aFc
 (81,1,1) = {"
 aFc
 aOe
-aiq
+rSA
 aZf
 aaV
 aZf
@@ -31667,7 +31677,7 @@ aFc
 (86,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
@@ -32579,7 +32589,7 @@ aFc
 (92,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf
@@ -32731,7 +32741,7 @@ aFc
 (93,1,1) = {"
 aFc
 aOe
-ars
+rtM
 aZf
 aaV
 aZf

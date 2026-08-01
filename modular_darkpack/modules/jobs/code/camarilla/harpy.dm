@@ -2,7 +2,7 @@
 	title = JOB_HARPY
 	description = "You are an expert on the nightlife of Cainite society. Acting as one of the chief advisors on all things related to boons and diplomacy, the Prince defers quite the amount of judgement to you. Don't squander it."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = SUPERVISOR_PRINCE
@@ -17,13 +17,14 @@
 	outfit = /datum/outfit/job/vampire/harpy
 
 	display_order = JOB_DISPLAY_ORDER_HARPY
-	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
 		/datum/job_department/camarilla,
 	)
 
 	minimal_generation = 12	//Uncomment when players get exp enough
-	minimal_masquerade = 5
+	maximal_generation = 9
+	maximum_immortal_age = 200
+	minimum_masquerade = 5
 
 	allowed_splats = list(SPLAT_KINDRED)
 

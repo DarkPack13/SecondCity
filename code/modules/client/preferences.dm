@@ -45,18 +45,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Quirk list
 	var/list/all_quirks = list()
 
-	//Job preferences 2.0 - indexed by job title , no key or value implies never
+	/**
+	 * List of job titles to their priority level, JP_LOW, JP_MEDIUM, JP_HIGH
+	 * If a job is absent from the list, it is considered to be "JP_NEVER"
+	 */
 	var/list/job_preferences = list()
-	// DARKPACK EDIT ADD START
-	var/list/preference_storyteller_stats = list()
-	// Associative list of disciplines and their current level. like: list("/datum/discipline/animalism" = 2)
-	var/list/discipline_levels = list()
-	// Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
-	var/list/alt_job_titles = list()
-	/// Whether this player is whitelisted to bypass discipline sheet validation limits
-	var/discipline_trusted = FALSE
-	// DARKPACK EDIT ADD END
-	// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
+	/**
+	 * Lazylist of job titles to character slot numbers
+	 * When rolling for a job, if that job is present in this list, we load that slot instead of the active slot
+	 */
+	var/list/job_assigned_profiles
+
+	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
 	var/unlock_content = 0
@@ -93,8 +93,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Used to avoid expensive READ_FILE every time a preference is retrieved.
 	var/value_cache = list()
 
-	/// If set to TRUE, will update character_profiles on the next ui_data tick.
+	/// If set to TRUE, will update cached_character_profiles on the next ui_data tick.
 	var/tainted_character_profiles = FALSE
+	/// The character profiles, saved so we can cheaply recompute them in ui_data only when necessary, without having to use expensive update_static_data calls.
+	var/list/cached_character_profiles
 
 /datum/preferences/Destroy(force)
 	QDEL_NULL(character_preview_view)
@@ -132,6 +134,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	randomise = get_default_randomization()
 
 	var/loaded_preferences_successfully = load_preferences()
+	discipline_trusted = TRUE // CRIMSON EDIT - Remove Trusted Whitelist
 	if(loaded_preferences_successfully)
 		if(load_character())
 			return
@@ -156,6 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		tainted_character_profiles = TRUE
 		character_preview_view = create_character_preview_view(user)
 		ui = new(user, src, "PreferencesMenu")
 		ui.set_autoupdate(FALSE)
@@ -173,9 +177,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/ui_data(mob/user)
 	var/list/data = list()
 
-	if (tainted_character_profiles)
-		data["character_profiles"] = create_character_profiles()
+	if (tainted_character_profiles || isnull(cached_character_profiles))
+		cached_character_profiles = create_character_profiles()
 		tainted_character_profiles = FALSE
+
+	data["character_profiles"] = cached_character_profiles
 
 	data["character_preferences"] = compile_character_preferences(user)
 
@@ -188,8 +194,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/ui_static_data(mob/user)
 	var/list/data = list()
-
-	data["character_profiles"] = create_character_profiles()
 
 	data["character_preview_view"] = character_preview_view.assigned_map
 	data["overflow_role"] = SSjob.get_job_type(SSjob.overflow_role).title
@@ -260,6 +264,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 				preference_middleware.post_set_preference(ui.user, requested_preference_key, value)
+			requested_preference.post_set_preference(ui.user, value) // DARKPACK EDIT ADD - SPLATS - (lore primers)
 			return TRUE
 		if ("set_color_preference")
 			var/requested_preference_key = params["preference"]
@@ -324,6 +329,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	save_character()
 	save_preferences()
 	QDEL_NULL(character_preview_view)
+	cached_character_profiles = null
 
 /datum/preferences/Topic(href, list/href_list)
 	. = ..()
@@ -337,7 +343,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return TRUE
 
 /datum/preferences/proc/create_character_preview_view(mob/user)
-	character_preview_view = new(null, src)
+	character_preview_view = new(null, null, src)
 	character_preview_view.generate_view("character_preview_[REF(character_preview_view)]")
 	character_preview_view.update_body()
 
@@ -347,7 +353,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/preferences = list()
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
-		if (!preference.is_accessible(src))
+		if (!preference.visible_in_page(src)) // DARKPACK EDIT CHANGE - (is_accessible to visible_in_page)
 			continue
 
 		var/value = read_preference(preference.type)
@@ -390,7 +396,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
 
-/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
+/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/hud/hud_owner, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
@@ -443,15 +449,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/overflow_role = SSjob.overflow_role
 		var/overflow_role_title = initial(overflow_role.title)
 
-		for(var/other_job in job_preferences)
-			if(job_preferences[other_job] == JP_HIGH)
+		for(var/other_job, other_level in job_preferences)
+			if(other_level == JP_HIGH)
 				// Overflow role needs to go to NEVER, not medium!
 				if(other_job == overflow_role_title)
-					job_preferences[other_job] = null
+					job_preferences -= other_job
 				else
 					job_preferences[other_job] = JP_MEDIUM
 
-	if(level == null)
+	if(isnull(level))
 		job_preferences -= job.title
 	else
 		job_preferences[job.title] = level
@@ -459,7 +465,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
-	var/bal = CONFIG_GET(number/default_quirk_points)
+	var/bal = SSquirks.default_quirk_points
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
@@ -490,7 +496,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(LAZYLEN(quirks_removed))
 		LAZYADD(feedback, "The following quirks are incompatible with your species or splat:") // DARKPACK EDIT CHANGE - SPLATS
 		LAZYADD(feedback, quirks_removed)
-	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
+	if(SSquirks.points_enabled && GetQuirkBalance() < 0)
 		LAZYADD(feedback, "Your quirks have been reset.")
 		all_quirks = list()
 	if(LAZYLEN(feedback))
@@ -579,6 +585,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (preference.must_have_relevant_trait && preference.relevant_inherent_trait)
 			if (!HAS_TRAIT(character, preference.relevant_inherent_trait))
 				continue
+
+		if (preference.must_be_accessible && !preference.is_accessible(src))
+			continue
 		// DARKPACK EDIT ADD END - TTRPG preferences
 
 		preference.apply_to_human(character, read_preference(preference.type))

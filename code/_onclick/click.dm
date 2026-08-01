@@ -176,8 +176,13 @@
 		else
 			if(LAZYACCESS(modifiers, RIGHT_CLICK))
 				ranged_secondary_attack(A, modifiers)
+			/* // DARKPACK EDIT REMOVAL - COMBAT
 			else
 				RangedAttack(A, modifiers)
+			*/
+		// DARKPACK EDIT ADD START - COMBAT
+		RangedAttack(A, modifiers)
+		// DARKPACK EDIT ADD END
 
 /// Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -354,6 +359,13 @@
 /mob/proc/RangedAttack(atom/A, modifiers)
 	if(SEND_SIGNAL(src, COMSIG_MOB_ATTACK_RANGED, A, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
+	A.RangedAttackOn(src, modifiers)
+
+/**
+ * Atom's version of RangedAttack, for when you want to do something when a mob clicks on this with more sanity than just Click()
+ */
+/atom/proc/RangedAttackOn(mob/attacker, list/modifiers)
+	return null
 
 /**
  * Ranged secondary attack
@@ -478,7 +490,7 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	// DARKPACK EDIT REMOVAL START - remove middle click swapping hands.
+	// DARKPACK EDIT REMOVAL START - (remove middle click swapping hands.)
 	/*
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && iscarbon(usr))
 		var/mob/living/carbon/C = usr

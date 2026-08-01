@@ -151,7 +151,7 @@
 
 #ifdef LOWMEMORYMODE
 #ifndef ABSOLUTE_MINIMUM
-#define FORCE_MAP "runtimetown" // DARKPACK EDIT, ORIGINAL: #define FORCE_MAP "runtimestation"
+#define FORCE_MAP "runtimetown" // DARKPACK EDIT CHANGE - ORIGINAL: #define FORCE_MAP "runtimestation"
 #else
 #define FORCE_MAP "runtimestation_minimal"
 #endif
@@ -181,6 +181,11 @@
 #define DO_NOT_DEFER_ASSETS
 //Test at full capacity, the extra cost doesn't matter
 #define TIMER_DEBUG
+
+// Checks if unit tests are being run locally or well, not
+#if !defined(CIBUILDING) && !defined(SPACEMAN_DMM) && !defined(OPENDREAM)
+#define RUNNING_LOCAL_TESTS
+#endif
 #endif
 
 #ifdef TGS

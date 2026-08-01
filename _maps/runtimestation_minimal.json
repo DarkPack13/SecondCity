@@ -1,5 +1,6 @@
 {
 	"version": 1,
+	"exclude_from_ci": true,
 	"map_name": "Minimal Runtime Station",
 	"map_path": "map_files/debug",
 	"map_file": "runtimestation_minimal.dmm",
@@ -16,5 +17,6 @@
 		"/datum/unit_test/modify_fantasy_variable",
 		"/datum/unit_test/create_and_destroy",
 		"/datum/unit_test/unallocated_transfer_points"
-	]
+	],
+	"is_unit_test_map": true
 }

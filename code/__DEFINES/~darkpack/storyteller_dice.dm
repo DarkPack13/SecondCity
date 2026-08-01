@@ -1,10 +1,7 @@
+#define ROLL_COOLDOWN -2
 #define ROLL_BOTCH -1
 #define ROLL_FAILURE 0
 #define ROLL_SUCCESS 1
-
-//Used for /datum/preference/choiced/dice_output
-#define DICE_OUTPUT_BALLOON "Balloon"
-#define DICE_OUTPUT_CHAT "Chat"
 
 /// Output is shown to everyone near you
 #define ROLL_PUBLIC "public"
@@ -18,3 +15,8 @@
 #define ROLL_ADMIN "admin"
 /// Output is show to no one and is not logged
 #define ROLL_NONE "none"
+
+/// Time at which the roll was recorded
+#define OLD_ROLL_TIME 1
+/// Dice output of the old roll (roll define or just raw number depending on numerical)
+#define OLD_ROLL_OUTPUT 2

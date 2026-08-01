@@ -46,6 +46,7 @@
 
 /obj/item/reagent_containers/blood/empty
 	blood_type = null
+	custom_price = 5
 
 /obj/item/reagent_containers/blood/ab_plus
 	blood_type = BLOOD_TYPE_AB_PLUS

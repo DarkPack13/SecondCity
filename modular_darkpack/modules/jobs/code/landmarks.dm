@@ -19,13 +19,6 @@ JOB_START_HELPER(anarch/emissary, JOB_EMISSARY)
 JOB_START_HELPER(anarch/sweeper, JOB_SWEEPER)
 JOB_START_HELPER(anarch/tapster, JOB_TAPSTER)
 
-/* Axe Gang */
-/obj/effect/landmark/start/darkpack/axe
-	name = "generic axe gang start"
-
-JOB_START_HELPER(axe/leader, JOB_AXE_LEADER)
-JOB_START_HELPER(axe/gang, JOB_AXE_GANG)
-
 /* Supply */
 /obj/effect/landmark/start/darkpack/axe
 	name = "generic warehouse start"
@@ -66,8 +59,6 @@ JOB_START_HELPER(hospital/doctor, JOB_DOCTOR)
 /obj/effect/landmark/start/darkpack/law_enforcement
 	name = "generic police start"
 
-JOB_START_HELPER(law_enforcement/national_guard, JOB_NATIONAL_GUARD)
-JOB_START_HELPER(law_enforcement/swat, JOB_POLICE_SWAT)
 JOB_START_HELPER(law_enforcement/captain, JOB_POLICE_CAPTAIN)
 JOB_START_HELPER(law_enforcement/sergeant, JOB_POLICE_SERGEANT)
 JOB_START_HELPER(law_enforcement/officer, JOB_POLICE_OFFICER)
@@ -91,7 +82,6 @@ JOB_START_HELPER(citizen/club_worker, JOB_CLUB_WORKER)
 JOB_START_HELPER(citizen/janitor, JOB_STREET_JANITOR)
 JOB_START_HELPER(citizen/priest, JOB_PRIEST)
 JOB_START_HELPER(citizen/taxi, JOB_TAXI_DRIVER)
-JOB_START_HELPER(citizen/graveyardkeeper, JOB_GRAVEYARD_KEEPER)
 
 /* Sabbat */
 /obj/effect/landmark/start/darkpack/sabbat
@@ -100,7 +90,6 @@ JOB_START_HELPER(citizen/graveyardkeeper, JOB_GRAVEYARD_KEEPER)
 JOB_START_HELPER(sabbat/ductus, JOB_SABBAT_DUCTUS)
 JOB_START_HELPER(sabbat/pack, JOB_SABBAT_PACK)
 JOB_START_HELPER(sabbat/priest, JOB_SABBAT_PRIEST)
-JOB_START_HELPER(sabbat/sabbatist, JOB_SABBAT_SABBATIST)
 
 /* Chantry */
 /obj/effect/landmark/start/darkpack/chantry
@@ -124,7 +113,6 @@ JOB_START_HELPER(forest_wolves/guardian, JOB_GAROU_GUARDIAN)
 /obj/effect/landmark/start/darkpack/pentex
 	name = "generic evil dog start"
 
-JOB_START_HELPER(pentex/first_team, JOB_PENTEX_FIRST)
 JOB_START_HELPER(pentex/lead, JOB_PENTEX_LEAD)
 JOB_START_HELPER(pentex/executive, JOB_PENTEX_EXEC)
 JOB_START_HELPER(pentex/affairs, JOB_PENTEX_AFFAIRS)
@@ -139,5 +127,14 @@ JOB_START_HELPER(pentex/employee, JOB_PENTEX_EMPLOYEE)
 JOB_START_HELPER(voivode/voivode, JOB_VOIVODE)
 JOB_START_HELPER(voivode/bogatyr, JOB_BOGATYR)
 JOB_START_HELPER(voivode/zadruga, JOB_ZADRUGA)
+
+/* Society of Leopold */
+/obj/effect/landmark/start/darkpack/society_of_leopold
+	name = "generic hunter start"
+
+JOB_START_HELPER(society_of_leopold/abbe, JOB_ABBE)
+JOB_START_HELPER(society_of_leopold/condittieri, JOB_CONDOTTIERI)
+JOB_START_HELPER(society_of_leopold/inquisitor, JOB_INQUISITOR)
+JOB_START_HELPER(society_of_leopold/novice, JOB_NOVICE)
 
 #undef JOB_START_HELPER

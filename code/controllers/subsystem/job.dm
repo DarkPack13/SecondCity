@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()
 
-	var/datum/job/overflow_role = /datum/job/vampire/citizen // DARKPACK EDIT, ORIGINAL: var/datum/job/overflow_role = /datum/job/assistant
+	var/datum/job/overflow_role = /datum/job/vampire/citizen // DARKPACK EDIT CHANGE - ORIGINAL: var/datum/job/overflow_role = /datum/job/assistant
 
 	var/list/level_order = list(JP_HIGH, JP_MEDIUM, JP_LOW)
 
@@ -195,7 +195,7 @@ SUBSYSTEM_DEF(job)
 					new_joinable_departments_by_type[department_type] = department
 				department.add_job(job)
 
-	sortTim(new_all_occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
+	sortTim(new_all_occupations, GLOBAL_PROC_REF(cmp_job_display_with_departments_asc))
 	for(var/datum/job/job as anything in new_all_occupations)
 		if(!job.exp_granted_type)
 			continue
@@ -204,13 +204,13 @@ SUBSYSTEM_DEF(job)
 	sortTim(new_joinable_departments_by_type, GLOBAL_PROC_REF(cmp_department_display_asc), associative = TRUE)
 	for(var/department_type in new_joinable_departments_by_type)
 		var/datum/job_department/department = new_joinable_departments_by_type[department_type]
-		sortTim(department.department_jobs, GLOBAL_PROC_REF(cmp_job_display_asc))
+		sortTim(department.department_jobs, GLOBAL_PROC_REF(cmp_job_display_with_departments_asc))
 		new_joinable_departments += department
 		if(department.department_experience_type)
 			new_experience_jobs_map[department.department_experience_type] = department.department_jobs.Copy()
 
 	all_occupations = new_all_occupations
-	joinable_occupations = sortTim(new_joinable_occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
+	joinable_occupations = sortTim(new_joinable_occupations, GLOBAL_PROC_REF(cmp_job_display_with_departments_asc))
 	joinable_departments = new_joinable_departments
 	joinable_departments_by_type = new_joinable_departments_by_type
 	experience_jobs_map = new_experience_jobs_map
@@ -599,10 +599,10 @@ SUBSYSTEM_DEF(job)
 
 //Gives the player the stuff he should have with his rank
 /datum/controller/subsystem/job/proc/equip_rank(mob/living/equipping, datum/job/job, client/player_client)
-	// DARKPACK EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
 	var/alt_title = player_client?.prefs.alt_job_titles?[job.title] || job.title
-	// DARKPACK EDIT ADDITION END
+	// DARKPACK EDIT ADD END
 	equipping.job = job.title
 
 	SEND_SIGNAL(equipping, COMSIG_JOB_RECEIVED, job)
@@ -992,7 +992,7 @@ SUBSYSTEM_DEF(job)
 		job_debug("[debug_prefix]: Player is qdeleted, Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_GENERIC
 
-	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log) // DARKPACK EDIT, ORIGINAL: return JOB_AVAILABLE
+	return check_job_eligibility_darkpack(player, possible_job, debug_prefix, add_job_to_log) // DARKPACK EDIT CHANGE - ORIGINAL: return JOB_AVAILABLE
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type.

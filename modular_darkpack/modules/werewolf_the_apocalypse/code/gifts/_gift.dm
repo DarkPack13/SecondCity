@@ -2,6 +2,7 @@
 /datum/storyteller_roll/gift
 
 /datum/action/cooldown/power/gift
+	abstract_type = /datum/action/cooldown/power/gift
 	background_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 	background_icon_state = "bg_gift"
 	button_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
@@ -9,8 +10,6 @@
 	overlay_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/werewolf_abilities.dmi'
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
-
-	var/default_activate_message = TRUE
 
 	var/rage_cost = 0
 	var/gnosis_cost = 0
@@ -23,12 +22,6 @@
 		if(feedback)
 			owner.balloon_alert(owner, "not a gift user!")
 		return FALSE
-
-/datum/action/cooldown/power/gift/Activate(atom/target)
-	. = ..()
-
-	if(default_activate_message)
-		to_chat(owner, span_notice("You activate the [name]..."))
 
 /datum/action/cooldown/power/gift/can_afford(feedback)
 	. = ..()

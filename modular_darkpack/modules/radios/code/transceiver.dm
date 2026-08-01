@@ -107,6 +107,9 @@
 
 	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
 		return
+	var/area/vtm/crime_area = astype(get_area(location))
+	if(!crime_area || crime_area.zone_type != ZONE_MASQUERADE) // prevents sewer rats from reporting crime
+		return
 	COOLDOWN_START(src, crime_reporting_cooldown, 10 SECONDS)
 	switch(crime)
 		if(CRIME_GUNSHOTS)
@@ -139,7 +142,7 @@
 		if(!subspace_radio.can_receive(frequency, RADIO_NO_Z_LEVEL_RESTRICTION))
 			radios -= subspace_radio
 
-	for(var/called_radio as anything in radios)
+	for(var/called_radio in radios)
 		playsound(get_turf(called_radio), 'modular_darkpack/modules/radios/sounds/panic.ogg', 50, TRUE)
 
 /obj/machinery/radio_tranceiver/clinic

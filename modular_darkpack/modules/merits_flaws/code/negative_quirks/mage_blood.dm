@@ -6,12 +6,12 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	included_clans = list(VAMPIRE_CLAN_TREMERE)
 
-/datum/quirk/darkpack/mage_blood/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
-	. = ..()
+/datum/quirk/darkpack/mage_blood/add(client/client_source)
 	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(quirk_holder)
 	if(!kindred_splat)
 		return
 	for(var/datum/action/discipline/action as anything in kindred_splat.powers)
-		if(!istype(action.discipline, /datum/discipline/thaumaturgy))
+		// Unselectable Disciplines have special handling (e.g. Bloodheal) and are excluded
+		if(!istype(action.discipline, /datum/discipline/thaumaturgy) && action.discipline.selectable)
 			kindred_splat.remove_power(action.discipline.type)
 

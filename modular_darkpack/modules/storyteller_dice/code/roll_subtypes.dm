@@ -14,6 +14,7 @@
 /datum/storyteller_roll/attack
 	bumper_text = "attack"
 	spammy_roll = TRUE
+	alert_prefix = "⚔"
 	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
 
 /datum/storyteller_roll/attack/punch
@@ -39,10 +40,18 @@
 	bumper_text = "damage"
 	numerical = TRUE
 	spammy_roll = TRUE
+	// Ok listen I know this is just an emoji but it looks fine ingame.
+	alert_prefix = "✊"
+	alert_delay = 0.2 SECONDS
 	applicable_stats = list(STAT_STRENGTH)
 
 /datum/storyteller_roll/damage/punch
 	bumper_text = "damage (punch)"
+
+/datum/storyteller_roll/damage/punch/calculate_used_dice(mob/living/roller, bonus)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS)) // Your still using claws. A bit homebrew tho.
+		. += 1
 
 /datum/storyteller_roll/damage/bite
 	bumper_text = "damage (bite)"
@@ -55,6 +64,44 @@
 /datum/storyteller_roll/damage/claw
 	bumper_text = "damage (claw)"
 	// + 2
+
+/datum/storyteller_roll/damage/claw/calculate_used_dice(mob/living/roller, bonus)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
+		. += 2
+
+/* DARKPACK TODO - (Requires https://github.com/DarkPack13/SecondCity/pull/683)
+/datum/storyteller_roll/damage/claw/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
+		. -= 1
+*/
+
+/datum/storyteller_roll/shooting
+	bumper_text = "shooting"
+	applicable_stats = list(STAT_DEXTERITY, STAT_FIREARMS)
+	reroll_cooldown = 1 TURNS
+	numerical = TRUE
+
+
+/datum/storyteller_roll/tackle_attacker
+	numerical = TRUE
+	applicable_stats = list(STAT_STRENGTH, STAT_BRAWL)
+
+/*
+/datum/storyteller_roll/tackle_attacker/using_stats(mob/living/roller)
+	. = ..()
+	var/strength_brawl = roller.st_get_stat(STAT_STRENGTH) + roller.st_get_stat(STAT_BRAWL)
+	var/dex_athletics = roller.st_get_stat(STAT_DEXTERITY) + roller.st_get_stat(STAT_ATHLETICS)
+	if(strength_brawl >= dex_athletics)
+		. = list(STAT_STRENGTH, STAT_BRAWL)
+	else
+		. = list(STAT_DEXTERITY, STAT_ATHLETICS)
+*/
+
+/datum/storyteller_roll/tackle_defender
+	numerical = TRUE
+	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
 // Physical Feats
 /datum/storyteller_roll/lockpick
@@ -83,28 +130,11 @@
 	bumper_text = "climbing"
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
-/datum/storyteller_roll/shooting
-	bumper_text = "shooting"
-	applicable_stats = list(STAT_DEXTERITY, STAT_FIREARMS)
-	reroll_cooldown = 1 TURNS
-	numerical = TRUE
-
-// DARKPACK TODO - (Attacks need a rework on how they calcuate landing a hit.)
-/datum/storyteller_roll/punch
-	bumper_text = "punch"
-	applicable_stats = list(STAT_DEXTERITY, STAT_BRAWL)
-	spammy_roll = TRUE
-
-/datum/storyteller_roll/damage
-	bumper_text = "damage"
-	applicable_stats = list(STAT_STRENGTH)
-	numerical = TRUE
-	spammy_roll = TRUE
-
 // Mental Feats
 /datum/storyteller_roll/investigation
 	bumper_text = "investigation"
 	applicable_stats = list(STAT_PERCEPTION, STAT_INVESTIGATION)
+	roll_output_type = ROLL_PRIVATE
 
 
 // Made up shittttt
@@ -112,3 +142,10 @@
 	bumper_text = "identify"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
 	reroll_cooldown = 1 SCENES
+	difficulty = 8
+
+/datum/storyteller_roll/restraint_break
+	bumper_text = "breaking restraints"
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	reroll_cooldown = 1 TURNS
+	difficulty = 9
