@@ -24242,6 +24242,10 @@
 /obj/effect/realistic_fog/dense/strong,
 /turf/open/water/vamp_sewer,
 /area/vtm/interior/setite)
+"fSt" = (
+/obj/effect/landmark/start/darkpack/chantry/gargoyle,
+/turf/open/floor/carpet/red,
+/area/vtm/interior/library)
 "fSv" = (
 /obj/darkpack_car/retro/rand,
 /turf/open/floor/plating/asphalt,
@@ -46310,6 +46314,11 @@
 /obj/structure/flora/bush/fullgrass/style_random,
 /turf/open/misc/dirt,
 /area/vtm/interior/sewer/nosferatu_warren)
+"lkk" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/landmark/start/darkpack/chantry/gargoyle,
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/library)
 "lkn" = (
 /turf/closed/wall/vampwall/old,
 /area/vtm/outside/financialdistrict)
@@ -166397,7 +166406,7 @@ xuu
 vTS
 wlJ
 vTS
-oBA
+lkk
 rZH
 tWD
 ksU
@@ -167215,9 +167224,9 @@ eWS
 eWS
 vTS
 oKi
+fSt
 rZH
-rZH
-rZH
+fSt
 aAH
 onr
 iTA
