@@ -83,6 +83,10 @@
 	reroll_cooldown = 1 TURNS
 	numerical = TRUE
 
+/datum/storyteller_roll/shooting/calculate_used_difficulty(mob/living/roller)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_GLOWING_EYES))
+		. += 1
 
 /datum/storyteller_roll/tackle_attacker
 	numerical = TRUE
