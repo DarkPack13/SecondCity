@@ -2,7 +2,7 @@
 /datum/st_stat/ability/alertness
 	subcategory = "Talents"
 	name = "Alertness"
-	description = "Affects your character's intuition."
+	description = "Affects your character's vigilance, alongside their ability to understand and react to threats."
 
 /datum/st_stat/ability/athletics
 	subcategory = "Talents"
@@ -12,7 +12,7 @@
 /datum/st_stat/ability/awareness
 	subcategory = "Talents"
 	name = "Awareness"
-	description = "Affects your character's attention to extreme detail. Used in Auspex."
+	description = "Affects your character's ability to notice otherworldly and supernatural events for what they are."
 
 /datum/st_stat/ability/brawl
 	subcategory = "Talents"
@@ -32,12 +32,12 @@
 /datum/st_stat/ability/intimidation
 	subcategory = "Talents"
 	name = "Intimidation"
-	description = "Affects your character's ability to persuade via coercion and violence. Used in Dominate, Presence and other mental and social disciplines."
+	description = "Affects your character's ability to persuade via coercion and violence."
 
 /datum/st_stat/ability/leadership
 	subcategory = "Talents"
 	name = "Leadership"
-	description = "Affects your character's natural affinity to lead, direct, take responsibility, and strategize. Increases your maximum follower/minion limit."
+	description = "Affects your character's ability to lead, direct, and organize groups."
 
 /datum/st_stat/ability/streetwise
 	subcategory = "Talents"
@@ -47,23 +47,23 @@
 /datum/st_stat/ability/subterfuge
 	subcategory = "Talents"
 	name = "Subterfuge"
-	description = "Affects your character's ability to sabotage and strike with stealth and deception. Used in Dominate, Presence, and Obfuscate."
+	description = "Affects your character's ability to sabotage and strike with stealth and deception."
 
 // Skills
 /datum/st_stat/ability/animal_ken
 	subcategory = "Skills"
 	name = "Animal Ken"
-	description = "Affects your character's affinity with animals and creatures."
+	description = "Affects your character's relationship to animals and creatures."
 
 /datum/st_stat/ability/crafts
 	subcategory = "Skills"
 	name = "Crafts"
-	description = "Affects your character's ability to craft certain items."
+	description = "Affects your character's ability to create iteams or structures."
 
 /datum/st_stat/ability/drive
 	subcategory = "Skills"
 	name = "Drive"
-	description = "Determines how well your character can drive. At 0 points, you won't be able to drive at all."
+	description = "Determines how well your character can operate vehicles."
 
 /datum/st_stat/ability/etiquette
 	subcategory = "Skills"
@@ -73,12 +73,12 @@
 /datum/st_stat/ability/firearms
 	subcategory = "Skills"
 	name = "Firearms"
-	description = "Affects your character's skill with guns. Lowers the recoil of certain weapons. Each dot grants a 10% chance you deal 40% more damage from each bullet you shoot to a maximum of 50%."
+	description = "Affects your character's skill with guns. Lowers the recoil of certain weapons."
 
 /datum/st_stat/ability/larceny
 	subcategory = "Skills"
 	name = "Larceny"
-	description = "Affects your character's ability to steal and lockpick. At 0 points, you won't be able to use lockpicks at all."
+	description = "Affects your character's ability to steal and pick locks."
 
 /datum/st_stat/ability/melee
 	subcategory = "Skills"
@@ -88,23 +88,23 @@
 /datum/st_stat/ability/performance
 	subcategory = "Skills"
 	name = "Performance"
-	description = "Affects your character's ability to act with talent. Used in Presence and Obfuscate."
+	description = "Affects your character's ability to dance, sing, or execute other demanding and precise tasks."
 
 /datum/st_stat/ability/stealth
 	subcategory = "Skills"
 	name = "Stealth"
-	description = "Affects your character's ability to sneak and go unnoticed. Used in Obfuscate."
+	description = "Affects your character's ability to sneak and go unnoticed."
 
 /datum/st_stat/ability/survival
 	subcategory = "Skills"
 	name = "Survival"
-	description = "Affects your character's ability to be survive on their own - whether thats in the wild or on cold, unforgiving city streets."
+	description = "Affects your character's ability to stay alive outside or in extreme environments."
 
 // Knowledges
 /datum/st_stat/ability/academics
 	subcategory = "Knowledges"
 	name = "Academics"
-	description = "Affects your character's familiarity with academics and literature. Affects how many languages your character knows. At 0 points, your character will only know one language."
+	description = "Affects your character's familiarity with scholarly activities such as literature, socieology, and the political sciences."
 
 /datum/st_stat/ability/computer
 	subcategory = "Knowledges"
@@ -119,12 +119,12 @@
 /datum/st_stat/ability/computer/New()
 	. = ..()
 	if(CONFIG_GET(flag/punishing_zero_dots))
-		description += " At 0 points, you won't be able to use a computer."
+		description += "Affects your ability to use and interact with computerized devices."
 
 /datum/st_stat/ability/finance
 	subcategory = "Knowledges"
 	name = "Finance"
-	description = "Affects your character's wealth and business acumen. Affects the starting balance of your character's bank account, as well as how much money they receive from selling items."
+	description = "Affects your character's wealth and business acumen."
 
 /datum/st_stat/ability/investigation
 	subcategory = "Knowledges"
@@ -139,22 +139,22 @@
 /datum/st_stat/ability/medicine
 	subcategory = "Knowledges"
 	name = "Medicine"
-	description = "Affects your character's knowledge of anatomy, medicine, and emergency first aid protocols. Used in Vicissitude."
+	description = "Affects your character's knowledge of anatomy, diagnosis, and first aid."
 
 /datum/st_stat/ability/occult
 	subcategory = "Knowledges"
 	name = "Occult"
-	description = "Affects your character's knowledge of esoteric and occult knowledge and concepts. Used in magic disciplines and affects your magical rituals. At occult 3 or higher, you can identify magical artifacts."
+	description = "Affects your character's knowledge of the esoteric and occult."
 
 /datum/st_stat/ability/politics
 	subcategory = "Knowledges"
 	name = "Politics"
-	description = "Affects your character's talent with regards to political manuevers."
+	description = "Affects your character's knowlege of society, the government, and large scale cooperation."
 
 /datum/st_stat/ability/science
 	subcategory = "Knowledges"
 	name = "Science"
-	description = "Affects your character's talent in the sciences, and their ability to synthesize chemicals."
+	description = "Affects your character's knowledge of the material world, chemistry, and physics."
 
 /datum/st_stat/ability/technology
 	subcategory = "Knowledges"

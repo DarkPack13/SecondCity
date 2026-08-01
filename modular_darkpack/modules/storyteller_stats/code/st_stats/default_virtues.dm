@@ -8,15 +8,15 @@
 	name = "Self-Control"
 	starting_score = 1 //All vampires by default start out with this.
 	score = 1
-	description = "Discipline and mastery over the Beast and other dark impulses. Requires Instinct to be zero."
+	description = "Discipline and mastery over dark impulses. Requires Instinct to be zero."
 
 /datum/st_stat/virtue/conviction
 	name = "Conviction"
-	description = "Represents the reconciliation of the predatory urge with the character's capacity for atrocity. Where Conscience represents guilt, Conviction represents moral resolve and acceptance. Requires Conscience to be zero."
+	description = "Represents the reconciliation of your character's capacity for atrocity. Where Conscience represents guilt, Conviction represents moral resolve and acceptance. Requires Conscience to be zero."
 
 /datum/st_stat/virtue/instinct
 	name = "Instinct"
-	description = "The ability to control the Beast by familiarity rather than denial. Requires Self-Control to be zero."
+	description = "Shows how in tune you are with your base needs and desires. Requires Self-Control to be zero."
 
 /datum/st_stat/virtue/courage
 	name = "Courage"
