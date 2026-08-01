@@ -530,6 +530,7 @@
 	color = "#525252"
 	},
 /obj/machinery/light/broken/directional/north,
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "agF" = (
@@ -19222,6 +19223,11 @@
 /obj/item/kirbyplants/darkpack/random,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/littleitaly)
+"eID" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/start/darkpack/supply/tech,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "eIF" = (
 /obj/effect/turf_decal/bordur/corner{
 	dir = 1
@@ -26412,10 +26418,6 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
-"gua" = (
-/obj/effect/landmark/start/darkpack/supply/dealer,
-/turf/open/floor/city/plating,
-/area/vtm/interior/setite)
 "guf" = (
 /turf/open/floor/city/toilet,
 /area/vtm/interior/clinic/haven)
@@ -32905,6 +32907,7 @@
 "ibj" = (
 /obj/structure/chair/office/darkpack/green,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/landmark/start/darkpack/supply/dealer,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/supply)
 "ibp" = (
@@ -68543,7 +68546,7 @@
 /obj/effect/turf_decal/siding/grey{
 	dir = 8
 	},
-/mob/living/carbon/human/npc/police/static,
+/mob/living/carbon/human/npc/police_armory_guy,
 /turf/open/floor/city/factory,
 /area/vtm/interior/police/upstairs)
 "qzu" = (
@@ -86006,7 +86009,6 @@
 /obj/effect/turf_decal/siding/grey{
 	dir = 8
 	},
-/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/city/factory,
 /area/vtm/interior/setite)
 "uLT" = (
@@ -96372,6 +96374,7 @@
 "xpi" = (
 /obj/machinery/sprinkler,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/start/darkpack/supply/tech,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/supply)
 "xpw" = (
@@ -148459,7 +148462,7 @@ oqM
 lIq
 agE
 bGt
-suw
+eID
 rhT
 eYD
 lIq
@@ -181581,7 +181584,7 @@ nPK
 uxF
 eZB
 dFm
-gua
+dFm
 xNr
 jFu
 gyg
