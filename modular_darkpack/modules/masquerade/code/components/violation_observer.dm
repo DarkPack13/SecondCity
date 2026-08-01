@@ -16,16 +16,29 @@
 	RegisterSignal(parent, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
 	RegisterSignal(parent, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
 	RegisterSignals(parent, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_death))
+	if(area_of_effect)
+		RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(on_life_rescan))
 
 /datum/component/violation_observer/UnregisterFromParent(force, silent)
 	QDEL_NULL(area_of_effect)
 	breached_players = null
-	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
+	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE, COMSIG_LIVING_LIFE))
+
+/datum/component/violation_observer/proc/on_life_rescan(mob/living/source, seconds_per_tick)
+	SIGNAL_HANDLER
+	if(!area_of_effect || !COOLDOWN_FINISHED(src, scan_cooldown))
+		return
+	COOLDOWN_START(src, scan_cooldown, 2 SECONDS)
+	for(var/mob/living/carbon/tracked_mob in area_of_effect.tracking_mobs)
+		if(HAS_TRAIT(tracked_mob, TRAIT_MASQUERADE_VIOLATING_FACE) && !(tracked_mob.obscured_slots & HIDEFACE))
+			SEND_SIGNAL(tracked_mob, COMSIG_MASQUERADE_VIOLATION)
+		else if(HAS_TRAIT(tracked_mob, TRAIT_MASQUERADE_VIOLATING_EYES) && !tracked_mob.is_eyes_covered())
+			SEND_SIGNAL(tracked_mob, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	if(!source || !player_breacher || ismundane(player_breacher) || player_breacher in breached_players)
+	if(!source || !player_breacher || ismundane(player_breacher) || (player_breacher in breached_players))
 		return
 
 	if(isliving(source))
