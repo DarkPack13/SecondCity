@@ -21,11 +21,11 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 /datum/source_book/vtm20/lotb
 	name = "Lore of the Bloodlines"
 
-/datum/source_book/hunterhunted2
+/datum/source_book/vtm20/hunterhunted2
 	name = "The Hunters Hunted II"
 	offical_status = SOURCE_OFFICAL
 
-/datum/source_book/ghouls_and_revenants
+/datum/source_book/vtm20/ghouls_and_revenants
 	name = "Ghouls & Revenants"
 	offical_status = SOURCE_OFFICAL
 

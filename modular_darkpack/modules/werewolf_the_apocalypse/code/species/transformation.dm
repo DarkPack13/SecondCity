@@ -47,9 +47,8 @@
 			var/datum/storyteller_roll/banned_transformation/bypass_roll = new()
 			to_chat(owner, span_notice("You expend your willpower trying to transform!"))
 			owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -1)
-			switch(bypass_roll.st_roll(owner, owner))
-				if(!ROLL_SUCCESS)
-					return
+			if(bypass_roll.st_roll(owner, owner) != ROLL_SUCCESS)
+				return
 
 	// TODO: should accctually require an amount of successes equal to the forms your shifting through
 	if(requires_roll)
