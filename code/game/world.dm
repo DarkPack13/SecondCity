@@ -427,9 +427,10 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 		*/
 		// DARKPACK EDIT ADD START
 
+		var/list/splats = get_selectable_splats()
 		var/static/splat_name
-		if(!splat_name)
-			var/splat_id = pick(get_selectable_splats())
+		if(!splat_name && length(splats))
+			var/splat_id = pick(splats)
 			var/splats_type = GLOB.splat_list[splat_id]
 			var/datum/splat/splats = GLOB.splat_prototypes[splats_type]
 			splat_name = splats?.name
