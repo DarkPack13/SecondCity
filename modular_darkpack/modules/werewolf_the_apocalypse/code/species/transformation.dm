@@ -4,6 +4,11 @@
 	bumper_text = "transformation"
 	applicable_stats = list(STAT_STAMINA)
 
+/datum/storyteller_roll/banned_transformation
+	bumper_text = "banned transformation bypass"
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	difficulty = 8
+	roll_output_type = ROLL_PRIVATE
 
 // Remeber if you remove homid being species that this will break.
 /datum/splat/werewolf/shifter/proc/transform_fera(datum/species/human/shifter/form_to_transform, costs_rage = FALSE, requires_roll = TRUE, force = FALSE)
@@ -20,6 +25,17 @@
 		to_chat(owner, span_warning("Your shifting is on cooldown for [DisplayTimeText(COOLDOWN_TIMELEFT(src, transform_cd))]."))
 		return
 
+	if(HAS_TRAIT(owner, TRAIT_BANNED_TRANSFORMATION))
+		if(owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) <= 1)
+			to_chat(owner, span_warning("You don't have enough <b>WILLPOWER</b> to do that!"))
+			return
+		else
+			var/datum/storyteller_roll/banned_transformation/bypass_roll = new()
+			to_chat(owner, span_notice("You expend your willpower trying to transform!"))
+			owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -1)
+			switch(bypass_roll.st_roll(owner, owner))
+				if(!ROLL_SUCCESS)
+					return
 	if(HAS_TRAIT(owner, TRAIT_METAMORPH))
 		requires_roll = FALSE
 	else if(ispath(get_breed_form_species(), form_to_transform))
