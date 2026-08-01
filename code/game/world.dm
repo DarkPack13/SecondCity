@@ -430,7 +430,7 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 		var/static/splat_name
 		if(!splat_name)
 			var/splat_id = pick(get_selectable_splats())
-			var/splats_type = GLOB.splat_list[splats_id]
+			var/splats_type = GLOB.splat_list[splat_id]
 			var/datum/splat/splats = GLOB.splat_prototypes[splats_type]
 			splat_name = splats?.name
 		if(splat_name)
