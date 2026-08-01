@@ -94,26 +94,12 @@
 /obj/item/clothing/gloves/vampire/brassknuckles/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
-		var/mob/living/carbon/carbon_owner = user
-		for(var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
-			if(istype(limb, /obj/item/bodypart/arm))
-				limb.unarmed_damage_low += 10
-				limb.unarmed_damage_high += 10
-				limb.unarmed_effectiveness += 5
-				limb.unarmed_pummeling_bonus += 0.5
-				to_chat(user, span_notice("You fit your fingers into the brass knuckle's loops.."))
+		ADD_TRAIT(user, TRAIT_BRASSKNUCKLES, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/vampire/brassknuckles/dropped(mob/living/carbon/human/user, slot)
 	..()
 	if(user.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
-		var/mob/living/carbon/carbon_owner = user
-		for(var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
-			if(istype(limb, /obj/item/bodypart/arm))
-				limb.unarmed_damage_low -= 10
-				limb.unarmed_damage_high -= 10
-				limb.unarmed_effectiveness -= 5
-				limb.unarmed_pummeling_bonus -= 0.5
-				to_chat(user, span_notice("You take off the brass knuckles.."))
+		REMOVE_TRAIT(user, TRAIT_BRASSKNUCKLES, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/vampire/brassknuckles/spiked
 	name = "spiked steel knuckles"
