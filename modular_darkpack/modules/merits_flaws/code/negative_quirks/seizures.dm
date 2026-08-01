@@ -16,7 +16,7 @@
 /datum/quirk/darkpack/seizures/remove()
 	UnregisterSignal(quirk_holder, COMSIG_LIVING_DICE_ROLLED)
 
-/datum/quirk/darkpack/seizures/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, output)
+/datum/quirk/darkpack/seizures/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, output)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, seizure_cooldown))
