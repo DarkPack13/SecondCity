@@ -7541,6 +7541,7 @@
 #include "modular_darkpack\modules\languages\code\languages\tagalog.dm"
 #include "modular_darkpack\modules\languages\code\languages\ukrainian.dm"
 #include "modular_darkpack\modules\languages\code\languages\welsh.dm"
+#include "modular_darkpack\modules\lights\code\light_toggle.dm"
 #include "modular_darkpack\modules\loadout\code\categories\glasses.dm"
 #include "modular_darkpack\modules\loadout\code\categories\hands.dm"
 #include "modular_darkpack\modules\loadout\code\categories\heads.dm"
