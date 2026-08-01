@@ -48,6 +48,8 @@
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
 		. += 2
+	if(HAS_TRAIT(roller, TRAIT_UNCONTROLLABLE))
+		. = 10
 
 /datum/storyteller_roll/frenzy/kindred/calculate_used_dice(mob/living/roller, bonus)
 	. = ..()
@@ -121,10 +123,7 @@
 	return frenzy_result
 
 
-/mob/living/carbon/human/proc/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Manual Frenzy Roll"
-	set desc = "Trigger a roll for a frenzy"
-
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy_roll, "Manual Frenzy Roll", "Trigger a roll for a frenzy", null, atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	if(!istype(AM))
 		return
 	if(!issupernatural(src))
@@ -136,10 +135,7 @@
 		trigger_kindred_frenzy(AM)
 
 // Used by the berserker merit. or possibly even for that one vampire thing of riding the frenzy in future?
-/mob/living/carbon/human/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Manual Frenzy"
-	set desc = "Enter a frenzy at will"
-
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy, "Manual Frenzy", "Enter a frenzy at will", null, atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
 	if(!istype(AM))
 		return
 	if(!issupernatural(src))

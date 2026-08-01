@@ -124,6 +124,9 @@
 		access = "[rand(1,9999999)]"
 		AddComponent(/datum/component/door_ownership)
 
+	if(mapload)
+		GLOB.city_door_lock_ids |= access
+
 	// DARKPACK TODO - see about reimplementing this sprite for cars
 	/*
 	headlight_image = new(src)
@@ -457,7 +460,7 @@
 	if(length(exit_side))
 		dumpe.Move(get_step(dumpe, angle2dir(pick(exit_side))))
 	else if(length(exit_alt))
-		dumpe.Move(get_step(dumpe, exit_alt))
+		dumpe.Move(get_step(dumpe, pick(exit_alt)))
 
 	to_chat(dumpe, span_notice("You exit [src]."))
 	if(dumpe?.client)
@@ -525,7 +528,8 @@
 		if(!HAS_TRAIT(L, TRAIT_TOUGH_FLESH))
 			hit_dam = hit_dam*2
 		L.apply_damage(hit_dam, BRUTE, BODY_ZONE_CHEST)
-		log_combat(driver, L, "hit with", src)
+		if(driver)
+			log_combat(driver, L, "hit with", src)
 	var/dam = prev_speed
 	if(driver)
 		var/driver_skill = clamp(driver.st_get_stat(STAT_DRIVE)/2, 1, 4)
