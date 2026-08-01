@@ -2,15 +2,16 @@
 /datum/quirk/darkpack/glowing_eyes
 	name = "Glowing Eyes"
 	desc = {"You have the stereotypical glowing eyes of vampire legend, giving you a -1 difficulty when intimidating mortals.
-However, you MUST constantly disguise your condition, and the glow impairs your vision."}
+However, you MUST constantly disguise your condition in the dark, and the glow impairs your vision."}
 	icon = FA_ICON_EYE
 	value = -3
-	gain_text = span_notice("Your eyes glow with an unnatural light!")
+	gain_text = span_notice("Your eyes shimmer with unnatural light in the dark.")
 	lose_text = span_notice("The light in your eyes fades.")
 	failure_message = span_notice("The light in your eyes fades.")
 	mob_trait = TRAIT_GLOWING_EYES
 	allowed_splats = list(SPLAT_KINDRED)
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD)// They already have masq violating eyes!
+	COOLDOWN_DECLARE(check_eye_glow)
 
 /*You have the stereotypical glowing eyes of vampire
 legend, which gives you a -1 difficulty on Intimidation
@@ -29,8 +30,7 @@ dark.*/
 	if(!human_holder)
 		return
 	ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
-	human_holder.st_add_stat_mod(STAT_PERCEPTION, -1, "Glowing Eyes") // I guess this works. what would count as a sight-based roll is beyond me rn
+	human_holder.st_add_stat_mod(STAT_PERCEPTION, -1, "Glowing Eyes")
 	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(human_holder.loc) // Give them glasses so they aren't immediately breaching on spawn or anything
 	human_holder.equip_to_appropriate_slot(new_glasses, TRUE)
 
@@ -40,6 +40,20 @@ dark.*/
 	if(!human_holder)
 		return
 	REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	if(HAS_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES))
+		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
 	human_holder.st_remove_stat_mod(STAT_PERCEPTION, "Glowing Eyes")
 
+/datum/quirk/darkpack/glowing_eyes/process(seconds_per_tick)
+	if(quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
+		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+		return
+	if(!COOLDOWN_FINISHED(src, check_eye_glow))
+		return
+	COOLDOWN_START(src, check_eye_glow, 5 SECONDS)
+	var/turf/holder_turf = get_turf(quirk_holder)
+	var/light_amount = holder_turf.get_lumcount()
+	if(light_amount < 0.2) // you can only tell someone's eyes are glowing if it's dark enough
+		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	else
+		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)

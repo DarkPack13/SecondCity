@@ -57,10 +57,18 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	quirk_flags = QUIRK_PROCESSES
 	mob_trait = TRAIT_SHIFTY_EYES // they're deranged, so give them the trait that tells people around them about their crazy eyes
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics) // happy pills! :)
-	excluded_clans = list(VAMPIRE_CLAN_MALKAVIAN)
 	var/process_interval = 3 SECONDS
 	var/list/derangements
 	COOLDOWN_DECLARE(next_process)
+	darkpack_allowed = FALSE // hidden in character setup so the subtype shows up instead
+
+/datum/quirk/darkpack/derangement/quirk_version
+	darkpack_allowed = TRUE
+	excluded_clans = list(VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_DOMINATE_MALKAVIAN)
+
+/datum/quirk/darkpack/derangement/quirk_version/post_add() // gives madness speech to anyone with derangement
+	var/datum/action/cooldown/malk_speech/malk_font = new(quirk_holder)
+	malk_font.Grant(quirk_holder)
 
 /datum/quirk/darkpack/derangement/add()
 	derangements = subtypesof(/datum/hallucination/malk)

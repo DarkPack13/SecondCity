@@ -22,12 +22,12 @@
 /mob/living/carbon/human/display_darkpack_examine_text(mob/user)
 	. = ..()
 
-	var/list/zero = list("Startlingly ugly. [p_are()] [p_they()] doing some awful cosplay...?", "JESUS, [p_they()] look like [p_they()] [p_are()] straight out of a horror movie!", "GOODNESS [p_they()] [p_are()] ugly.", "So ugly you could almost cry.")
+	var/list/zero = list("Startlingly ugly, [p_are()] [p_they()] doing some awful cosplay...?", "JESUS, [p_they()] look like [p_they()] [p_are()] straight out of a horror movie!", "GOODNESS [p_they()] [p_are()] ugly.", "So ugly you could almost cry.", "Ough. A face only a mother could love.")
 	var/list/one = list("Yikes. [p_They()] [p_are()] not easy on the eyes.", "You wince slightly just looking at [p_them()].", "Someone clearly didn't win the genetic lottery.", "Definitely not winning any beauty contests.")
 	var/list/two = list("Pretty average looking. Nothing to write home about.", "Neither here nor there in the looks department.", "Completely ordinary in appearance.", "The very definition of 'plain'.", "Not attractive, but not unattractive, either.")
 	var/list/three = list("[p_They()] seem[p_s()] fairly attractive.", "A pleasant face, all things considered.", "Fairly attractive.", "[p_They()] [p_are()] [p_handsome_gorgeous()].")
-	var/list/four = list("[p_They()] [p_are()] quite attractive.", "Easy on the eyes.", "Notably good looking.", "You find yourself staring at [p_them()].")
-	var/list/five = list("[p_They()] [p_are()] very striking.", "[p_They()] [p_are()] [p_handsome_gorgeous()].", "Passersby struggle not to notice [p_them()].", "You find your eyes drawn to [p_them()].", "[p_They()] [p_are()] remarkably good looking.", "Heads turn as [p_they()] walk[p_s()] by.")
+	var/list/four = list("[p_They()] [p_are()] quite attractive.", "Easy on the eyes.", "Notably good looking.", "You find yourself staring at [p_them()].", "[p_They()] [p_are()] [p_handsome_gorgeous()].")
+	var/list/five = list("[p_They()] [p_are()] very striking.", "[p_They()] [p_are()] [p_handsome_gorgeous()].", "Passersby struggle not to notice [p_them()].", "You find your eyes drawn to [p_them()].", "[p_They()] [p_are()] remarkably good looking.", "Heads turn as [p_they()] walk[p_s()] by.", "[p_They()] [p_are()] [p_handsome_gorgeous()].")
 	if(obscured_slots & HIDEFACE)
 		return
 
@@ -55,7 +55,8 @@
 		. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
 
 	if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
-		. += span_warning("[p_they(TRUE)] smell[p_s()] weirdly animal like...<br>")
+		var/list/animal_smell_descriptions = list("like wet dog.", "like a kennel.", "like a wild animal.")
+		. += span_notice("<br>[p_They()] smell[p_s()] [pick(animal_smell_descriptions)]<br>")
 
 	if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
 		. += span_warning("[p_They()] smell[p_s()] like petrichor and freshly turned soil.<br>")
@@ -64,7 +65,8 @@
 		. += span_warning("[p_Their()] eyes glow unnaturally!<br>")
 
 	if(!(obscured_slots & HIDEFACE))
-		switch(st_get_stat(STAT_APPEARANCE))
+		var/appearance_stat = clamp(0, st_get_stat(STAT_APPEARANCE), 5)
+		switch(appearance_stat)
 			if(0)
 				. += span_bolddanger("[pick(zero)]<br>")
 			if(1)
@@ -75,7 +77,7 @@
 				. += span_nicegreen("[pick(three)]<br>")
 			if(4)
 				. += span_purple("[pick(four)]<br>")
-			if(5 to INFINITY)
+			if(5)
 				. += span_rose(span_bold("[pick(five)]<br>"))
 		if(HAS_TRAIT(src, TRAIT_PERMAFANGS) && !HAS_TRAIT(src, TRAIT_DULLFANGS))
 			. += span_warning("[p_They()] [p_have()] visible fangs in [p_their()] mouth.<br>")
