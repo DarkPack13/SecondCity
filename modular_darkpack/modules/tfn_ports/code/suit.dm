@@ -1,7 +1,7 @@
 #define TFN_PORTS_SUIT_ICONS \
 	icon = 'modular_darkpack/modules/tfn_ports/icons/clothing.dmi'; \
 	worn_icon = 'modular_darkpack/modules/tfn_ports/icons/worn.dmi'; \
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/tfn_ports/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER(null)
 
 // Bombers
 /obj/item/clothing/suit/vampire/bomber
