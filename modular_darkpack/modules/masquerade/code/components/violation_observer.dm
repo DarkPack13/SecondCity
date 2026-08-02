@@ -30,10 +30,8 @@
 	if(!area_of_effect || !COOLDOWN_FINISHED(src, scan_cooldown))
 		return
 	COOLDOWN_START(src, scan_cooldown, 2 SECONDS)
-	for(var/mob/living/carbon/tracked_mob in area_of_effect.tracking_mobs)
-		if(HAS_TRAIT(tracked_mob, TRAIT_MASQUERADE_VIOLATING_FACE) && !(tracked_mob.obscured_slots & HIDEFACE))
-			SEND_SIGNAL(tracked_mob, COMSIG_MASQUERADE_VIOLATION)
-		else if(HAS_TRAIT(tracked_mob, TRAIT_MASQUERADE_VIOLATING_EYES) && !tracked_mob.is_eyes_covered())
+	for(var/mob/living/carbon/human/tracked_mob in area_of_effect.tracking_mobs)
+		if(tracked_mob.check_violating_appearance())
 			SEND_SIGNAL(tracked_mob, COMSIG_MASQUERADE_VIOLATION)
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher, player_report)

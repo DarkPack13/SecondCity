@@ -14,3 +14,10 @@
 	for(var/player_mob in GLOB.kindred_list)
 		to_chat(player_mob, span_bold("The Blood Hunt after [span_green("[real_name]")] is over!"))
 		SEND_SOUND(player_mob, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+
+/mob/living/carbon/human/proc/check_violating_appearance()
+	if(HAS_TRAIT(src, TRAIT_MASQUERADE_VIOLATING_FACE) && !(src.obscured_slots & HIDEFACE))
+		return TRUE
+	else if(HAS_TRAIT(src, TRAIT_MASQUERADE_VIOLATING_EYES) && !src.is_eyes_covered())
+		return TRUE
+	return FALSE
