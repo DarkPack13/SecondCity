@@ -36,7 +36,7 @@ export const ScreenSoundSettingsNotificationSound = (props: {
           msOverflowStyle: 'none',
         }}
       >
-        <Stack vertical>
+        <Stack vertical mb="24px">
           {notification_sounds.map((sound) => {
             const selected = sound === notification_sound;
 
