@@ -439,6 +439,14 @@
 	name = "police raincoat"
 	icon_state = "policecoat"
 	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+	allowed = list(
+		/obj/item/card/id,
+		/obj/item/flashlight,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser/darkpack,
+		/obj/item/melee/baton/security/handtaser,
+		/obj/item/restraints/handcuffs
+	)
 
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
