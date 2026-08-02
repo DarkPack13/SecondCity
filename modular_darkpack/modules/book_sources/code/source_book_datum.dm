@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 
 	return highest_book
 
-/datum/proc/soure_book_allowed(source_cutoff)
+/datum/proc/source_book_allowed(source_cutoff)
 	var/main_source = highest_source_offical_status()
 	if(!main_source)
 		return TRUE

@@ -60,10 +60,12 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	var/process_interval = 3 SECONDS
 	var/list/derangements
 	COOLDOWN_DECLARE(next_process)
-	darkpack_allowed = FALSE // hidden in character setup so the subtype shows up instead
+	darkpack_allowed = TRUE
+	hide_in_setup = TRUE // hidden in character setup so the subtype shows up instead
 
 /datum/quirk/darkpack/derangement/quirk_version
 	darkpack_allowed = TRUE
+	hide_in_setup = FALSE
 	excluded_clans = list(VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_DOMINATE_MALKAVIAN)
 
 /datum/quirk/darkpack/derangement/quirk_version/post_add() // gives madness speech to anyone with derangement
