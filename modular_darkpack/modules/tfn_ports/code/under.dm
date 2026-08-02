@@ -88,11 +88,6 @@
 	desc = "A delicate maiden's dress."
 	icon_state = "maiden"
 
-/obj/item/clothing/under/vampire/dress/matron
-	name = "luxurious dress"
-	desc = "A dignified matron's dress."
-	icon_state = "matron"
-
 /obj/item/clothing/under/vampire/dress/pentagram
 	name = "pentagram dress"
 	desc = "A black dress with straps over the chest in the shape of a pentagram."

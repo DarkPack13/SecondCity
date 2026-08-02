@@ -80,11 +80,6 @@
 	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/dress/maiden
 
-/datum/loadout_item/uniform/matron_dress
-	name = "Dress (Matron)"
-	group = "Dresses & Skirts"
-	item_path = /obj/item/clothing/under/vampire/dress/matron
-
 /datum/loadout_item/uniform/pentagram_dress
 	name = "Dress (Pentagram)"
 	group = "Dresses & Skirts"
