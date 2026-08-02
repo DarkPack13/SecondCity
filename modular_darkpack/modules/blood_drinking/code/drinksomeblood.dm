@@ -114,6 +114,3 @@
 /mob/living/carbon/human/proc/update_bloodquality_from_appearance()
 	bloodquality = clamp(st_get_stat(STAT_APPEARANCE), BLOOD_QUALITY_LOW, BLOOD_QUALITY_HIGH)
 
-/datum/preferences/apply_stats_from_prefs(mob/living/carbon/human/character)
-	. = ..()
-	character.update_bloodquality_from_appearance()

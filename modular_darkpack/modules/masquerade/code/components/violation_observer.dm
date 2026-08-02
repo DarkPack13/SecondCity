@@ -6,10 +6,11 @@
 	/// Time between us checking for violations
 	COOLDOWN_DECLARE(scan_cooldown)
 	var/list/breached_players
+	var/aoe_range = 7
 
-/datum/component/violation_observer/Initialize(add_area_of_effect) //Only add the AOE checker for NPCs and camera objects.
+/datum/component/violation_observer/Initialize(add_area_of_effect, range) //Only add the AOE checker for NPCs and camera objects.
 	if(add_area_of_effect)
-		area_of_effect = new(parent, 7)
+		area_of_effect = new(parent, (range || aoe_range))
 	breached_players = new()
 
 /datum/component/violation_observer/RegisterWithParent()
@@ -35,23 +36,24 @@
 		else if(HAS_TRAIT(tracked_mob, TRAIT_MASQUERADE_VIOLATING_EYES) && !tracked_mob.is_eyes_covered())
 			SEND_SIGNAL(tracked_mob, COMSIG_MASQUERADE_VIOLATION)
 
-/datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
+/datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher, player_report)
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher) || (player_breacher in breached_players))
 		return
-
+	var/reporter_descriptor = source
 	if(isliving(source))
 		var/mob/living/mob_parent = source
-		if(HAS_CONNECTED_PLAYER(mob_parent)) // only NPC mobs have these components, so a player is driving an NPC if this fires
+		if(HAS_CONNECTED_PLAYER(mob_parent) && !player_report) // return here if a player is piloting the npc and did NOT make a manual report
 			return
 		if(!INCAPACITATED_IGNORING(mob_parent, INCAPABLE_RESTRAINTS))
 			mob_parent.face_atom(player_breacher)
-	else // observer is an object, so lets make sure its close enough to actually see or hear the breach. mostly for phones
-		if(get_dist(source, player_breacher) >= 3)
-			return
+		if(ishuman(source))
+			var/mob/living/carbon/human/reporting_human = source
+			reporter_descriptor = GET_GUESTBOOK_NAME(reporting_human, player_breacher)
+
 	message_admins("VIOLATION: [ADMIN_LOOKUPFLW(source)] observed a masquerade violation.")
-	to_chat(player_breacher, span_userdanger(span_bold("[source] observed a masquerade violation.")))
+	to_chat(player_breacher, span_userdanger(span_bold("[reporter_descriptor] observed a masquerade violation.")))
 	source.observe_masquerade_violation(player_breacher)
 
 	var/mutable_appearance/alert = mutable_appearance('icons/obj/storage/closet.dmi', "cardboard_special")
