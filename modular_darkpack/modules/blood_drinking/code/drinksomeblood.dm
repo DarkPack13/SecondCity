@@ -112,5 +112,5 @@
 		adjust_blood_pool(pool_delta)
 
 /mob/living/carbon/human/proc/update_bloodquality_from_appearance()
+	st_set_stat(STAT_APPEARANCE, rand(1,5))
 	bloodquality = clamp(st_get_stat(STAT_APPEARANCE), BLOOD_QUALITY_LOW, BLOOD_QUALITY_HIGH)
-
