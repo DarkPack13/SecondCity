@@ -17,7 +17,7 @@
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 	minimal_generation = 10
 	minimum_immortal_age = 200
-	description = "Your long tenure in the Family has granted you a respectable position. Use your wisdom to guide them, teach the Traditions and family trades, and advise the Capo."
+	description = "Your long tenure has made you an honorary head of household. Use your wisdom to guide the Family, teach the Traditions and family trades, and advise the Capo."
 	minimum_masquerade = 0
 
 /datum/outfit/job/vampire/nonni
