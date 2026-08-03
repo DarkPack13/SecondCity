@@ -13,10 +13,11 @@
 		/datum/job_department/giovanni,
 	)
 
-	allowed_splats = list(SPLAT_KINDRED)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE, SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_GIOVANNI)
 	minimal_generation = 10
 	minimum_immortal_age = 200
+	required_character_age = 80
 	description = "Your long tenure has made you an honorary head of household. Use your wisdom to guide the Family, teach the Traditions and family trades, and advise the Capo."
 	minimum_masquerade = 0
 
