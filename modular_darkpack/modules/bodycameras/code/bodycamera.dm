@@ -9,7 +9,7 @@
  * Credit due to johnfulpwillard who contributed code to monkestation #2239 and cannibalhunter who authored the PR.
  */
 /obj/item/bodycam_upgrade
-	name = "\improper body camera"
+	name = "body camera"
 	desc = "A body camera device attachable to most outerwear. There's an instructions tag if you look a little closer..."
 	icon = 'modular_darkpack/modules/bodycameras/icons/bodycamera.dmi'
 	icon_state = "bodycamera"
