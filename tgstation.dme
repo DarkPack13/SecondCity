@@ -7479,6 +7479,7 @@
 #include "modular_darkpack\modules\jobs\code\garou\warder.dm"
 #include "modular_darkpack\modules\jobs\code\garou\wyrmfoe.dm"
 #include "modular_darkpack\modules\jobs\code\giovanni\capo.dm"
+#include "modular_darkpack\modules\jobs\code\giovanni\i_nonni.dm"
 #include "modular_darkpack\modules\jobs\code\giovanni\la_famiglia.dm"
 #include "modular_darkpack\modules\jobs\code\giovanni\la_squadra.dm"
 #include "modular_darkpack\modules\jobs\code\hunters\abbe.dm"
