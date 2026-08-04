@@ -1,0 +1,5 @@
+author: "buffyuwu"
+delete-after: True
+changes:
+  - rscadd: "plays a sound when corax toggle flight"
+  - rscadd: "gives corax a waddle when walking in bird form"
