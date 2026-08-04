@@ -51649,11 +51649,9 @@
 /area/vtm/interior/wyrm_corrupted)
 "oYk" = (
 /obj/effect/decal/rugs,
-/obj/machinery/camera{
+/obj/machinery/camera/directional/north{
 	network = list("Endron");
-	dir = 1;
-	pixel_x = 10;
-	pixel_y = 0
+	c_tag = Endron Office
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -53269,11 +53267,9 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/giovanni/basement)
 "pwq" = (
-/obj/machinery/camera{
+/obj/machinery/camera/directional/north{
 	network = list("Endron");
-	dir = 1;
-	pixel_x = 10;
-	pixel_y = 0
+	c_tag = Endron Storage
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -74579,9 +74575,9 @@
 /turf/open/misc/beach/vamp,
 /area/vtm)
 "vBQ" = (
-/obj/machinery/camera{
+/obj/machinery/camera/directional/north{
 	network = list("Endron");
-	dir = 1
+	c_tag = Endron Hallway 1
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
