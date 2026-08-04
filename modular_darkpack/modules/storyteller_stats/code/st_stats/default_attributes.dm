@@ -37,11 +37,8 @@
 	description = "A measure of how well a character makes a first impression. Used in social disciplines and makes your character more attractive."
 	subcategory = "Social"
 
-/* For the bimbo in the audience
-/datum/st_stat/attribute/appearance/update_mob(mob/living/our_mob, initial)
-	update_bloodquality_from_appearance()
-*/
-
+/datum/st_stat/attribute/appearance/update_mob(mob/living/carbon/human/our_mob, initial)
+	our_mob.update_bloodquality_from_appearance()
 
 /datum/st_stat/attribute/perception
 	name = "Perception"
