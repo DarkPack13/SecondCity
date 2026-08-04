@@ -14903,12 +14903,6 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/interior/jazzclub)
-"epm" = (
-/obj/machinery/camera{
-	network = list("Endron")
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "epq" = (
 /obj/structure/flora/bush/style_random,
 /obj/structure/flora/rock/darkpack_big,
@@ -20347,12 +20341,6 @@
 	},
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/interior/church)
-"fSp" = (
-/obj/machinery/computer/camera_advanced{
-	networks = list("Endron")
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "fSv" = (
 /obj/structure/flora/tree/vamp/pine,
 /obj/structure/flora/bush/flowers_yw/style_random,
@@ -26618,6 +26606,12 @@
 /obj/structure/chair/sofa/right/brown,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/ghetto)
+"hKT" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "hLc" = (
 /obj/effect/landmark/npc_spawn_point,
 /turf/open/floor/plating/asphalt,
@@ -30348,11 +30342,10 @@
 /area/vtm/interior/church/staff)
 "iSu" = (
 /obj/structure/table,
-/obj/machinery/button/curtain{
+/obj/machinery/button/door{
 	pixel_x = 0;
-	pixel_y = 4;
-	id = "Pentex_front";
-	name = "Security Doors"
+	pixel_y = 5;
+	id = "Pentex_front"
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -51654,6 +51647,16 @@
 	},
 /turf/open/floor/city/circled,
 /area/vtm/interior/wyrm_corrupted)
+"oYk" = (
+/obj/effect/decal/rugs,
+/obj/machinery/camera{
+	network = list("Endron");
+	dir = 1;
+	pixel_x = 10;
+	pixel_y = 0
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "oYn" = (
 /obj/effect/turf_decal/bordur{
 	dir = 4
@@ -53265,6 +53268,15 @@
 /obj/machinery/light/small/red/dim/directional/north,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/giovanni/basement)
+"pwq" = (
+/obj/machinery/camera{
+	network = list("Endron");
+	dir = 1;
+	pixel_x = 10;
+	pixel_y = 0
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "pww" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/vampire/venetian_mask,
@@ -66727,6 +66739,12 @@
 /obj/effect/landmark/npcwall,
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights/forest)
+"tkS" = (
+/obj/machinery/computer/security{
+	network = list("Endron")
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "tkY" = (
 /obj/effect/turf_decal/bordur,
 /obj/effect/landmark/npcwall,
@@ -74560,6 +74578,13 @@
 	},
 /turf/open/misc/beach/vamp,
 /area/vtm)
+"vBQ" = (
+/obj/machinery/camera{
+	network = list("Endron");
+	dir = 1
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "vBT" = (
 /obj/structure/railing{
 	dir = 8
@@ -80418,16 +80443,6 @@
 /obj/machinery/hydroponics/simple/plastic,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
-"xlW" = (
-/obj/structure/table,
-/obj/machinery/button/door/selfdestructs{
-	pixel_x = 0;
-	pixel_y = 5;
-	id = "Pentex_Turrets";
-	name = "Turrets"
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "xlX" = (
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/floor/city/toilet,
@@ -130386,7 +130401,7 @@ kfi
 kfi
 oIa
 tzz
-xBs
+oYk
 psI
 psI
 rnU
@@ -132690,7 +132705,7 @@ nrq
 nrq
 nrq
 jaA
-psI
+pwq
 psI
 psI
 psI
@@ -136807,7 +136822,7 @@ eEL
 psI
 psI
 tzz
-psI
+vBQ
 psI
 psI
 tzz
@@ -137066,12 +137081,12 @@ tzz
 tzz
 urP
 psI
-epm
+psI
 tzz
 psI
 psI
 psI
-fSp
+psI
 psI
 psI
 fxE
@@ -137844,7 +137859,7 @@ ohc
 psI
 suP
 psI
-suP
+hKT
 fgr
 tzz
 ucv
@@ -138100,8 +138115,8 @@ sDi
 hsj
 rVl
 tEt
-xlW
-feZ
+oKK
+tkS
 xXS
 tzz
 tuB
