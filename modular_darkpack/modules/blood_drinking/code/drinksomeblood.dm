@@ -111,6 +111,8 @@
 	if(pool_delta > 0)
 		adjust_blood_pool(pool_delta)
 
+/datum/st_stat/attribute/appearance/update_mob(mob/living/our_mob, initial)
+	update_bloodquality_from_appearance()
+
 /mob/living/carbon/human/proc/update_bloodquality_from_appearance()
-	st_set_stat(STAT_APPEARANCE, rand(1,5))
 	bloodquality = clamp(st_get_stat(STAT_APPEARANCE), BLOOD_QUALITY_LOW, BLOOD_QUALITY_HIGH)
