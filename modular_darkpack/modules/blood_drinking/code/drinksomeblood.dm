@@ -112,7 +112,7 @@
 		adjust_blood_pool(pool_delta)
 
 /datum/st_stat/attribute/appearance/update_mob(mob/living/our_mob, initial)
-	update_bloodquality_from_appearance()
+	our_mob.update_bloodquality_from_appearance()
 
 /mob/living/carbon/human/proc/update_bloodquality_from_appearance()
 	bloodquality = clamp(st_get_stat(STAT_APPEARANCE), BLOOD_QUALITY_LOW, BLOOD_QUALITY_HIGH)
