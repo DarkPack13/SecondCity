@@ -1,5 +1,0 @@
-author: "KCartridge"
-delete-after: True
-changes:
-  - rscadd: "proper TV subtypes"
-  - rscadd: "directionals for TV"

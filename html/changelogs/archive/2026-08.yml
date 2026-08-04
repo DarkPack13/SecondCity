@@ -5,3 +5,14 @@
   - code_imp: new var on datum level for storing info on what source book it comes
       from
   - config: Adds config for limiting merit based on official status
+2026-08-04:
+  Absolucy:
+  - rscadd: Open Seal can now unlock cars.
+  FalloutFalcon:
+  - code_imp: makes some stat lists properly lazylists
+  - code_imp: Changing stats based on stamina or dexterity is handled smarter
+  KCartridge:
+  - rscadd: proper TV subtypes
+  - rscadd: directionals for TV
+  chazzyjazzy:
+  - code_imp: adds a landmark for the red news reporter
