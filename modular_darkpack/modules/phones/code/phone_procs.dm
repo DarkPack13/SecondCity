@@ -1,3 +1,6 @@
+/obj/item/radio/phone/can_receive(input_frequency, list/levels)
+	return ..(input_frequency, RADIO_NO_Z_LEVEL_RESTRICTION) // without this, phones only work on their own Z level
+
 // Updates the phone's contacts, for when a new contact joins the game.
 /obj/item/smartphone/proc/update_contacts()
 	for(var/datum/contact_network/contact_network as anything in contact_networks)
