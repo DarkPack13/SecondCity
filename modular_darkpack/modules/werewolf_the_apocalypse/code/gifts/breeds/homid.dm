@@ -37,15 +37,12 @@
 	#warn placeholder asset.
 	button_icon_state = "master_of_fire" // TODO: get an icon for this
 	rank = 1
+	gnosis_cost = 1
 
 /datum/action/cooldown/power/gift/master_of_fire/Activate(atom/target)
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(owner)
 	if(isnull(shifter_splat))
 		return FALSE // huh?
-
-	if(shifter_splat.gnosis <= 0)
-		to_chat(owner, span_warning("You don't have enough gnosis to do that."))
-		return FALSE
 
 	shifter_splat.adjust_gnosis(-1)
 	shifter_splat.owner.apply_status_effect(/datum/status_effect/master_of_fire)

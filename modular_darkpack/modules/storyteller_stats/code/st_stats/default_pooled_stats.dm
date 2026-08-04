@@ -15,7 +15,7 @@
 		return 0
 	#warn placeholder asset.
 	var/choices = list(
-		"Burn Willpower" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_use"),
+		"Burn Willpower" = image(icon = 'modular_darkpack/modules/storyteller_stats/icons/assets.dmi', icon_state = "willpower"),
 		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
 	)
 
