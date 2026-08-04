@@ -534,6 +534,16 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plating/rough,
 /area/vtm/interior)
+"air" = (
+/obj/transfer_point_vamp{
+	icon = 'icons/obj/stairs.dmi';
+	icon_state = "stairs";
+	id = 899;
+	name = "stairs";
+	dir = 1
+	},
+/turf/open/floor/plating/canal,
+/area/vtm/interior/wyrm_corrupted)
 "aiu" = (
 /obj/effect/landmark/npcwall,
 /obj/machinery/light/directional/north,
@@ -18229,6 +18239,10 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/light,
 /area/vtm/interior)
+"foN" = (
+/obj/machinery/light/warm/directional/west,
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/endron_facility/restricted)
 "foR" = (
 /obj/structure/railing{
 	pixel_y = -2
@@ -26073,7 +26087,7 @@
 /obj/structure/sink{
 	dir = 1;
 	pixel_x = 0;
-	pixel_y = -20
+	pixel_y = -10
 	},
 /obj/effect/decal/rugs,
 /turf/open/floor/city/plating_mono,
@@ -27014,6 +27028,11 @@
 /obj/structure/coclock,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/millennium_tower/f2)
+"hRw" = (
+/obj/structure/fluff/shower_drain,
+/obj/machinery/door/window/left/directional/west,
+/turf/open/floor/city/toilet,
+/area/vtm/interior/endron_facility/restricted)
 "hRA" = (
 /mob/living/basic/corvid/crow,
 /turf/open/floor/plating/sidewalk/poor,
@@ -29338,11 +29357,6 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/setite)
-"iDk" = (
-/obj/machinery/porta_turret,
-/obj/machinery/porta_turret/pentex/c9mm,
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "iDl" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -30309,10 +30323,11 @@
 /area/vtm/interior/church/staff)
 "iSu" = (
 /obj/structure/table,
-/obj/machinery/button/door/selfdestructs{
+/obj/machinery/button/curtain{
 	pixel_x = 0;
-	pixel_y = 5;
-	id = "Pentex_front"
+	pixel_y = 4;
+	id = "Pentex_front";
+	name = "Security Doors"
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -30473,6 +30488,12 @@
 /obj/machinery/sprinkler/area_managed,
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/tzimisce_manor)
+"iUd" = (
+/obj/structure/fence/end{
+	dir = 4
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior/endron_facility)
 "iUf" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -36901,7 +36922,8 @@
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
 	id = 899;
-	name = "stairs"
+	name = "stairs";
+	dir = 1
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -43317,7 +43339,6 @@
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/interior/church)
 "mJi" = (
-/obj/structure/closet/crate/bin,
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/endron_facility/restricted)
@@ -53211,11 +53232,6 @@
 /obj/item/clothing/mask/vampire/venetian_mask,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/giovanni/basement)
-"pwD" = (
-/obj/machinery/porta_turret,
-/obj/machinery/porta_turret/pentex,
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "pwI" = (
 /obj/structure/platform/lowwall/market/window/reinforced,
 /turf/open/floor/plating/rough,
@@ -56298,6 +56314,16 @@
 /obj/weapon_showcase,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior)
+"qnX" = (
+/obj/transfer_point_vamp{
+	icon = 'icons/obj/stairs.dmi';
+	icon_state = "stairs";
+	id = 836;
+	name = "stairs";
+	dir = 1
+	},
+/turf/open/floor/plating/canal,
+/area/vtm/interior/wyrm_corrupted)
 "qob" = (
 /turf/closed/wall/vampwall/metal,
 /area/space)
@@ -74556,6 +74582,12 @@
 /obj/structure/hedge,
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/millennium_tower/f2)
+"vDi" = (
+/obj/structure/fence/end{
+	dir = 8
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior/endron_facility)
 "vDv" = (
 /obj/machinery/shower/directional/west,
 /obj/structure/curtain,
@@ -77786,13 +77818,13 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/pacificheights/forest)
 "wAL" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/food/burger,
 /obj/item/food/burger,
 /obj/item/food/burger,
 /obj/item/food/cheesyburrito,
 /obj/item/food/cheesyburrito,
 /obj/item/food/cheesyburrito,
+/obj/structure/closet/secure_closet/freezer/fridge/all_access,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
 "wAM" = (
@@ -78620,7 +78652,8 @@
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
 	id = 836;
-	name = "stairs"
+	name = "stairs";
+	dir = 1
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
@@ -83418,6 +83451,12 @@
 /obj/item/ammo_box/darkpack/c44,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/millennium_tower/f4)
+"yht" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior/endron_facility)
 "yhv" = (
 /obj/structure/chair/old/tzimisce,
 /turf/open/indestructible/necropolis/air,
@@ -131319,19 +131358,19 @@ psI
 imA
 tzz
 psI
-pwD
-psI
-tzz
-psI
-psI
-fmj
-fmj
-fmj
 psI
 psI
 tzz
 psI
-pwD
+psI
+fmj
+fmj
+fmj
+psI
+psI
+tzz
+psI
+psI
 psI
 dQN
 nTz
@@ -131837,11 +131876,11 @@ psI
 psI
 tzz
 psI
+eEL
 psI
 psI
 psI
-psI
-psI
+eEL
 psI
 tzz
 psI
@@ -132593,7 +132632,7 @@ nrq
 nrq
 nrq
 nrq
-nrq
+yht
 nrq
 nrq
 nrq
@@ -133648,7 +133687,7 @@ psI
 psI
 dQN
 ilc
-cgb
+hRw
 cgb
 ilc
 dQN
@@ -135149,7 +135188,7 @@ hAL
 hAL
 hAL
 hAL
-asb
+vDi
 biz
 biz
 biz
@@ -135688,7 +135727,7 @@ psI
 psI
 nkF
 psI
-pwD
+psI
 psI
 hWq
 psI
@@ -135944,20 +135983,20 @@ psI
 psI
 psI
 tzz
-psI
-psI
-psI
-tzz
-psI
-psI
-psI
-psI
-psI
+urP
 psI
 psI
 tzz
 psI
-iDk
+eEL
+psI
+psI
+psI
+eEL
+psI
+tzz
+psI
+psI
 psI
 psI
 psI
@@ -136177,7 +136216,7 @@ hAL
 hAL
 hAL
 hAL
-asb
+iUd
 ygs
 biz
 biz
@@ -138529,7 +138568,7 @@ tzz
 psI
 psI
 psI
-psI
+aSR
 psI
 psI
 psI
@@ -138761,7 +138800,7 @@ nrq
 nrq
 nrq
 nrq
-nrq
+dhw
 nrq
 nrq
 nrq
@@ -139029,7 +139068,7 @@ tzz
 tzz
 tzz
 psI
-pwD
+psI
 psI
 tzz
 psI
@@ -139042,7 +139081,7 @@ psI
 tzz
 psI
 psI
-pwD
+psI
 psI
 psI
 psI
@@ -140569,11 +140608,11 @@ dQN
 nNN
 nNN
 nNN
+foN
 nNN
 nNN
 nNN
-nNN
-nNN
+foN
 nNN
 nNN
 nNN
@@ -144954,7 +144993,7 @@ rVK
 oIa
 oIa
 gOG
-vAd
+air
 vAd
 vAd
 qoQ
@@ -145211,7 +145250,7 @@ oIa
 oIa
 oIa
 gOG
-vAd
+qnX
 vAd
 vAd
 qoQ
