@@ -59,7 +59,6 @@
 /obj/effect/landmark/start/giovanni : /obj/effect/landmark/start/darkpack/hecata/famiglia
 /obj/effect/landmark/start/giovannimafia : /obj/effect/landmark/start/darkpack/hecata/squadra
 /obj/effect/landmark/start/capo : /obj/effect/landmark/start/darkpack/hecata/capo
-/obj/effect/landmark/start/nonni : /obj/effect/landmark/start/darkpack/hecata/nonni
 /obj/effect/landmark/start/famiglia : /obj/effect/landmark/start/darkpack/hecata/famiglia
 /obj/effect/landmark/start/squadra : /obj/effect/landmark/start/darkpack/hecata/squadra
 
