@@ -5,7 +5,7 @@
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = SUPERVISOR_SHERIFF
+	supervisors = SUPERVISOR_SOCIETY_OF_LEOPOLD
 	minimal_player_age = 7
 
 	config_tag = "CONDOTTIERI"
@@ -32,4 +32,4 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	r_pocket = /obj/item/vamp/keys/hunter
 	l_pocket = /obj/item/smartphone/condottieri
-	backpack_contents = list(/obj/item/vampire_stake=1, /obj/item/card/credit=1, /obj/item/vampirebook/bible=1)
+	backpack_contents = list(/obj/item/vampire_stake=1,  /obj/item/intel_report=1, /obj/item/card/credit=1, /obj/item/vampirebook/bible=1)
