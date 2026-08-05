@@ -36238,6 +36238,8 @@
 	lock_id = "pentex";
 	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/wyrm_corrupted)
 "kCX" = (
