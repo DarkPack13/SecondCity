@@ -89,7 +89,7 @@
 
 /// Fetch the mobs fur color from their features.
 /datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
-	return human.dna.features[FEATURE_FUR_COLOR] ? human.dna.features[FEATURE_FUR_COLOR] : "black"
+	return human.dna.features[FEATURE_FERA_FUR_COLOR] || "black"
 
 
 /// Fetch the mob dmi from our splat
@@ -124,17 +124,29 @@
 
 	human.remove_overlay(EYES_LAYER)
 	var/mutable_appearance/eyes_overlay = mutable_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", -EYES_LAYER)
-	eyes_overlay.color = COLOR_PUCE
+	eyes_overlay.color = human.eye_color_left
 	var/mutable_appearance/emissive_overlay = emissive_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", human, effect_type = EMISSIVE_SPECULAR)
-	emissive_overlay.color = COLOR_PUCE
+	emissive_overlay.color = COLOR_WHITE
 	human.overlays_standing[EYES_LAYER] = list(eyes_overlay, emissive_overlay)
 	human.apply_overlay(EYES_LAYER)
 
 
+	human.remove_overlay(BODY_ADJ_LAYER)
+	var/mutable_appearance/scar_image = mutable_appearance(mob_icon, "scar1", -BODY_ADJ_LAYER)
+	human.overlays_standing[BODY_ADJ_LAYER] = list(scar_image)
+	human.apply_overlay(BODY_ADJ_LAYER)
+
 	human.remove_overlay(HAIR_LAYER)
 	var/mutable_appearance/hair_layer = mutable_appearance(mob_icon, "hair1", -HAIR_LAYER)
+	hair_layer.color = human.hair_color
 	human.overlays_standing[HAIR_LAYER] = list(hair_layer)
 	human.apply_overlay(HAIR_LAYER)
+
+
+	human.remove_overlay(UNIFORM_LAYER)
+	var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, "green_tribal", -UNIFORM_LAYER)
+	human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
+	human.apply_overlay(UNIFORM_LAYER)
 
 	return TRUE
 
