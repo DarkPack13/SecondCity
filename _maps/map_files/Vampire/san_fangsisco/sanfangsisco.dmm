@@ -27829,15 +27829,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/city/circled,
 /area/vtm/interior/wyrm_corrupted)
-"icX" = (
-/obj/machinery/turretid{
-	pixel_x = 0;
-	pixel_y = 30;
-	control_area = /area/vtm/interior/endron_facility/restricted;
-	turrets = list("Endron")
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "icY" = (
 /obj/machinery/light/cold/directional/east,
 /obj/structure/table,
@@ -137842,7 +137833,7 @@ psI
 psI
 psI
 tzz
-icX
+psI
 psI
 psI
 psI
