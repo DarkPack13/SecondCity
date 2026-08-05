@@ -57269,9 +57269,6 @@
 /obj/structure/curtain/bounty,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer/nosferatu_town)
-"qxH" = (
-/turf/open/space/basic,
-/area/vtm/interior/endron_facility/restricted)
 "qxL" = (
 /obj/structure/table,
 /obj/item/food/donut/jelly/berry,
@@ -139122,7 +139119,7 @@ psI
 psI
 psI
 psI
-qxH
+psI
 psI
 psI
 vFe
