@@ -91,15 +91,6 @@
 /datum/armor/brassknuckles
 	acid = 50
 
-/obj/item/clothing/gloves/vampire/brassknuckles/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, TRAIT_BRASSKNUCKLES, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/vampire/brassknuckles/dropped(mob/living/carbon/human/user, slot)
-	..()
-	if(user.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
-		REMOVE_TRAIT(user, TRAIT_BRASSKNUCKLES, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/vampire/brassknuckles/spiked
 	name = "spiked steel knuckles"
