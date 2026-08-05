@@ -16,11 +16,22 @@
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
 	custom_price = 100
+	var/datum/storyteller_roll/stake/stake_roll
+
+/datum/storyteller_roll/stake
+	bumper_text = "staking"
+	applicable_stats = list(STAT_DEXTERITY, STAT_MELEE)
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	spammy_roll = TRUE
+	successes_needed = 3
+	difficulty = 9
 
 /obj/item/vampire_stake/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(.)
 		return TRUE
+	if(!get_vampire_splat(target))
+		return FALSE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return TRUE
 
@@ -31,9 +42,16 @@
 		return TRUE
 
 	visible_message(span_danger("[user] aims [src] straight to the [target]'s heart!"), span_danger("You aim [src] straight to the [target]'s heart!"))
-	if(!do_after(user, 1 TURNS, target))
-		return TRUE
-	user.do_attack_animation(target)
+	if(!stake_roll)
+		stake_roll = new()
+	if(user.zone_selected != BODY_ZONE_CHEST)
+		return FALSE
+	if(target.suit.get_armor_rating(MELEE) >= 55) // bulletproof vest, army vest, voivode's coat, EOD as reasonably assumed to be 'impossible to pierce with wood'
+		user.balloon_alert("can't pierce armor!")
+	var/roll_result = stake_roll.st_roll(user, target)
+	if(roll_result != ROLL_SUCCESS)
+		return FALSE
+
 	visible_message(span_danger("[user] pierces [target]'s torso!"), span_danger("You pierce [target]'s torso!"))
 
 	user.do_attack_animation(target, used_item = src)
