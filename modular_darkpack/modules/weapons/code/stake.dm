@@ -31,7 +31,10 @@
 	if(.)
 		return TRUE
 	if(!get_vampire_splat(target))
-		return FALSE
+		return TRUE
+	if(!ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/target_human = target
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return TRUE
 
@@ -45,12 +48,14 @@
 	if(!stake_roll)
 		stake_roll = new()
 	if(user.zone_selected != BODY_ZONE_CHEST)
-		return FALSE
-	if(target.suit.get_armor_rating(MELEE) >= 55) // bulletproof vest, army vest, voivode's coat, EOD as reasonably assumed to be 'impossible to pierce with wood'
+		return TRUE
+	var/obj/item/clothing/suit/outer_suit = target_human.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(outer_suit && outer_suit.get_armor_rating(MELEE) >= 55) // bulletproof vest, army vest, voivode's coat, EOD as reasonably assumed to be 'impossible to pierce with wood'
 		user.balloon_alert("can't pierce armor!")
-	var/roll_result = stake_roll.st_roll(user, target)
+		return TRUE
+	var/roll_result = stake_roll.st_roll(user, target_human)
 	if(roll_result != ROLL_SUCCESS)
-		return FALSE
+		return TRUE
 
 	visible_message(span_danger("[user] pierces [target]'s torso!"), span_danger("You pierce [target]'s torso!"))
 
