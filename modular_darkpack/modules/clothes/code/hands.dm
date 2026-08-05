@@ -87,7 +87,7 @@
 	icon_state = "brassknuckles"
 	resistance_flags = FIRE_PROOF
 	armor_type = /datum/armor/brassknuckles
-	clothing_traits = list(TRAIT_BRASSKNUCKLE)
+	clothing_traits = list(TRAIT_BRASSKNUCKLES)
 
 /datum/armor/brassknuckles
 	acid = 50
