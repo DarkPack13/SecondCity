@@ -7331,15 +7331,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/shop)
-"cdI" = (
-/obj/transfer_point_vamp{
-	icon = 'icons/obj/stairs.dmi';
-	icon_state = "stairs";
-	id = Endron3;
-	name = "stairs"
-	},
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/endron_facility/restricted)
 "cdZ" = (
 /obj/effect/turf_decal/bordur{
 	dir = 4
@@ -24084,9 +24075,8 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = Endron1;
-	name = "stairs";
-	dir = 1
+	id = 899;
+	name = "stairs"
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/interior/wyrm_corrupted)
@@ -36972,12 +36962,11 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/park)
 "kLI" = (
-/obj/transfer_point_vamp{
-	icon = 'icons/obj/stairs.dmi';
-	icon_state = "stairs";
-	id = Endron3;
-	name = "stairs";
-	dir = 1
+/obj/structure/railing/darkpack/metal/industrial/solo{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/interior/wyrm_corrupted)
@@ -41452,15 +41441,6 @@
 /obj/effect/decal/cleanable/litter,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/police)
-"mak" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/railing/darkpack/metal/industrial/solo{
-	dir = 8
-	},
-/turf/open/floor/plating/canal,
-/area/vtm/interior/wyrm_corrupted)
 "map" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
@@ -56484,7 +56464,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = Endron2;
+	id = 836;
 	name = "stairs"
 	},
 /turf/open/floor/city/plating_mono,
@@ -61868,9 +61848,8 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = Endron2;
-	name = "stairs";
-	dir = 1
+	id = 836;
+	name = "stairs"
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/interior/wyrm_corrupted)
@@ -78621,7 +78600,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = Endron1;
+	id = 899;
 	name = "stairs"
 	},
 /turf/open/floor/city/plating_mono,
@@ -140583,7 +140562,7 @@ pQj
 dQN
 psI
 psI
-cdI
+uKW
 dQN
 kfi
 kfi
@@ -140840,7 +140819,7 @@ nNN
 dQN
 psI
 ptZ
-uKW
+psI
 dQN
 kfi
 kfi
@@ -145982,7 +145961,7 @@ kfi
 oIa
 gOG
 kLI
-wfT
+kPG
 wfT
 kcq
 nDs
@@ -146238,8 +146217,8 @@ kfi
 kfi
 oIa
 gOG
-mak
-kPG
+wfT
+wfT
 wfT
 squ
 wfT
