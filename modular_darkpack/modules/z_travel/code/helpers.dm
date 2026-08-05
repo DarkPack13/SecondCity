@@ -10,4 +10,4 @@
 			. |= buckled.pulling
 	//we pass in the list from this proc to ensure we dont reach an infinite loop due to mobs grabbed in a loop or two mobs grabing eachother.
 	if(pulling && !(pulling in .))
-		. |= pulling.get_z_move_affected(.)
+		. |= pulling.get_teleport_move_affected(.)
