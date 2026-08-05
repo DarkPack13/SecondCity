@@ -1,7 +1,7 @@
 /datum/language/german
 	name = "German"
 	desc = "A precise and powerful language spoken in Germany and beyond."
-	key = "g"
+	key = "G"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 30
 	syllables = list(

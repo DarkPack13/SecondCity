@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(!try_speak(original_message, ignore_spam, forced, filterproof))
 		return
 
-	language ||= message_mods[LANGUAGE_EXTENSION] || get_selected_language()
+	language = message_mods[LANGUAGE_EXTENSION] || get_selected_language()
 
 	var/succumbed = FALSE
 
@@ -289,7 +289,6 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		to_chat(src, compose_message(src, language, message, null, null, null, spans, message_mods))
 
 	return TRUE
-
 
 /mob/living/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0, source) // DARKPACK EDIT CHANGE - ORIGINAL: /mob/living/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
 	if((SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_HEAR, args) & COMSIG_MOVABLE_CANCEL_HEARING) || !GET_CLIENT(src))

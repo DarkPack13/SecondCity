@@ -169,7 +169,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null, message as text)
 	return FALSE
 
 ///The amount of items we are looking for in the message
-#define MESSAGE_MODS_LENGTH 7
+#define MESSAGE_MODS_LENGTH 6
 
 /mob/proc/check_for_custom_say_emote(message, list/mods)
 	var/customsaypos = findtext(message, "*")

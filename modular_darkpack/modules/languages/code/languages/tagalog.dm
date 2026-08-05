@@ -2,7 +2,7 @@
 	name = "Tagalog"
 	desc = "Filipino is the most common form of the Tagalog language in the Philippines, and is fourth most spoken language in San Francisco."
 	flags = LANGUAGE_TONGUELESS_SPEECH
-	key = "t"
+	key = "T"
 	space_chance = 100
 	sentence_chance = 10
 	between_word_sentence_chance = 10

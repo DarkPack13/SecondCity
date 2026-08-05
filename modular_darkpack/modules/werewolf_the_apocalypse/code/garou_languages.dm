@@ -1,4 +1,4 @@
-/datum/language_holder/garou
+/datum/language_holder/garou //for homid and glabro
 	understood_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
 		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
@@ -9,10 +9,26 @@
 		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
 	)
 
-/datum/language_holder/primal
+/datum/language_holder/crinos
+	understood_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
+		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
+	)
+	spoken_languages = list(
+		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
+		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
+	)
+	//necessary, to ensure no human tongue talking
+	blocked_speaking = list(
+
+	)
+
+/datum/language_holder/primal //for lupus and hispos form
 	understood_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
 		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
+		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
 	)
 	spoken_languages = list(
 		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
