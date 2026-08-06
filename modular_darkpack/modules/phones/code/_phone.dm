@@ -27,6 +27,8 @@
 	var/obj/machinery/newscaster/irc_channel
 	// Do we have a SIM card?
 	var/obj/item/sim_card/sim_card
+	/// If we should spawn a SIM card as init, what should its type be?
+	var/default_sim_card_type = /obj/item/sim_card
 	// There's a wiki in our phone. Literally.
 	var/obj/item/book/manual/wiki/wiki_book
 	// Is the phone opened?
@@ -68,8 +70,8 @@
 /obj/item/smartphone/Initialize(mapload)
 	. = ..()
 	GLOB.phones_list += src
-	if(!sim_card)
-		sim_card = new()
+	if(!sim_card && default_sim_card_type)
+		sim_card = new default_sim_card_type(src)
 		sim_card.phone_weakref = WEAKREF(src)
 	phone_radio = new(src)
 	phone_radio.keyslot = new

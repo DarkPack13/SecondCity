@@ -8,11 +8,7 @@
 	anchored = TRUE
 	opened = TRUE
 	always_open = TRUE
-
-/obj/item/smartphone/payphone/Initialize(mapload)
-	sim_card = new /obj/item/sim_card/landline()
-	sim_card.phone_weakref = WEAKREF(src)
-	return ..()
+	default_sim_card_type = /obj/item/sim_card/landline
 
 /obj/item/smartphone/payphone/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -28,11 +24,7 @@
 	anchored = TRUE
 	opened = TRUE
 	always_open = TRUE
-
-/obj/item/smartphone/clean/Initialize(mapload)
-	sim_card = new /obj/item/sim_card/cleaner()
-	sim_card.phone_weakref = WEAKREF(src)
-	return ..()
+	default_sim_card_type = /obj/item/sim_card/cleaner
 
 /obj/item/smartphone/clean/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -48,11 +40,7 @@
 	anchored = TRUE
 	opened = TRUE
 	always_open = TRUE
-
-/obj/item/smartphone/emergency/Initialize(mapload)
-	sim_card = new /obj/item/sim_card/emergency()
-	sim_card.phone_weakref = WEAKREF(src)
-	return ..()
+	default_sim_card_type = /obj/item/sim_card/emergency
 
 /obj/item/smartphone/emergency/attack_hand(mob/user, list/modifiers)
 	. = ..()
