@@ -35,19 +35,12 @@ SUBSYSTEM_DEF(humannpcpool)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	while(currentrun.len)
-		var/mob/living/carbon/human/npc/NPC = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/mob/living/carbon/human/npc/NPC = currentrun[length(currentrun)]
 		--currentrun.len
-
-		if (QDELETED(NPC))
-			GLOB.npc_list -= NPC
-			if(isnull(NPC))
-				stack_trace("Found a null in npc_list [NPC.type]!")
-			continue
-
-		if (MC_TICK_CHECK)
+		NPC?.handle_automated_movement()
+		if(MC_TICK_CHECK)
 			return
-		NPC.handle_automated_movement()
 
 /datum/controller/subsystem/humannpcpool/proc/try_repopulate()
 #ifndef UNIT_TESTS
