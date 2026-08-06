@@ -61,10 +61,11 @@
 		if(ringer)
 			add_shared_particles(/particles/phone_ringing, particle_flags = PARTICLE_ATTACH_MOB)
 
-	if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
+	else if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
 		if(phone_ringing_timer)
 			deltimer(phone_ringing_timer)
 			phone_ringing_timer = null
+		remove_shared_particles(/particles/phone_ringing, delete_on_empty = FALSE)
 		STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
