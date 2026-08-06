@@ -155,7 +155,6 @@
 	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
 	shift_difficulty = 7
-	species_language_holder = /datum/language_holder/garou
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
 	bodypart_overrides = list(
@@ -217,7 +216,6 @@
 	form_causes_delirium = TRUE
 	veil_breaching_form = TRUE
 
-	species_language_holder = /datum/language_holder/crinos
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
@@ -239,10 +237,6 @@
 /datum/species/human/shifter/war/visible_gender_override(mob/living/carbon/human/holder)
 	return "beast"
 
-/*
-/datum/species/human/shifter/war/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
-	. = ..()
-*/
 
 /datum/species/human/shifter/dire
 	name = "dire form"
@@ -259,7 +253,6 @@
 	)
 	veil_breaching_form = TRUE
 
-	species_language_holder = /datum/language_holder/primal
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -283,15 +276,8 @@
 
 /datum/species/human/shifter/dire/visible_gender_override(mob/living/carbon/human/holder)
 	return "beast"
-/*
-/datum/species/human/shifter/dire/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
-	. = ..()
-	human_who_gained_species.grant_language(/datum/language/primal_tongue, SPOKEN_LANGUAGE, LANGUAGE_ATOM)
 
-/datum/species/human/shifter/dire/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
-	. = ..()
-	human_who_gained_species.remove_language(/datum/language/primal_tongue, SPOKEN_LANGUAGE, LANGUAGE_ATOM)
-*/
+
 /datum/species/human/shifter/feral
 	name = "feral form"
 	id = SPECIES_FERA_FERAL
@@ -304,7 +290,7 @@
 		TRAIT_SMALL_HANDS,
 		TRAIT_NO_CUFF,
 	)
-	species_language_holder = /datum/language_holder/primal
+
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -336,14 +322,15 @@
 	if(HAS_TRAIT(human_who_gained_species, TRAIT_FERA_FLIGHT))
 		var/datum/action/innate/toggle_fera_flight/ability = new(human_who_gained_species)
 		ability.Grant(human_who_gained_species)
-
-	//human_who_gained_species.grant_language(/datum/language/primal_tongue, SPOKEN_LANGUAGE, LANGUAGE_ATOM)
+		human_who_gained_species.AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 
 /datum/species/human/shifter/feral/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	for(var/datum/action/innate/toggle_fera_flight/action in human.actions)
 		action.Remove(human)
-	//human_who_gained_species.remove_language(/datum/language/primal_tongue, SPOKEN_LANGUAGE, LANGUAGE_ATOM)
+
+	if(HAS_TRAIT(human, TRAIT_FERA_FLIGHT))
+		REMOVE_TRAIT(human, TRAIT_WADDLING, INNATE_TRAIT)
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter
