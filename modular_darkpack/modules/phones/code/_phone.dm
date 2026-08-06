@@ -197,8 +197,8 @@
 
 /obj/item/smartphone/update_icon_state()
 	. = ..()
-	icon_state = opened ? "[base_icon_state]_on" : base_icon_state
-	inhand_icon_state = opened ? "[base_icon_state]_on" : base_icon_state
+	icon_state = (opened && !always_open) ? "[base_icon_state]_on" : base_icon_state
+	inhand_icon_state = (opened && !always_open) ? "[base_icon_state]_on" : base_icon_state
 
 /obj/item/smartphone/ui_status(mob/user, datum/ui_state/state)
 	if(!opened)
