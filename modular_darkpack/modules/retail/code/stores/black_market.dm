@@ -21,7 +21,7 @@
 		new /datum/data/vending_product("morphine syringe", /obj/item/reagent_containers/syringe/contraband/morphine, 800),
 		new /datum/data/vending_product("meth package", /obj/item/reagent_containers/cup/glass/baggie/meth, 800),
 		new /datum/data/vending_product("cocaine package", /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine, 800),
-		new /datum/data/vending_product("high velocity 9mm ammo", /obj/item/ammo_box/darkpack/c9mm/plus, 2000),
+		new /datum/data/vending_product("high velocity 9mm ammo", /obj/item/ammo_box/darkpack/c9mm/plus, 2500),
 		new /datum/data/vending_product("silver 9mm ammo", /obj/item/ammo_box/darkpack/c9mm/silver, 5000),
 		new /datum/data/vending_product("silver .45 ACP ammo", /obj/item/ammo_box/darkpack/c45acp/silver, 6000),
 		new /datum/data/vending_product("silver .44 ammo", /obj/item/ammo_box/darkpack/c44/silver, 7000),

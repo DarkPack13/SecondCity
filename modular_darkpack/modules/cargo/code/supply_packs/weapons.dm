@@ -280,7 +280,7 @@
 /datum/supply_pack/weapons/ammo9/plus
 	name = "Ammo (9mm, +P)"
 	desc = "Contains a box of +P 9mm ammunition."
-	cost = 600
+	cost = 800
 	contains = list(/obj/item/ammo_box/darkpack/c9mm/plus)
 	crate_name = "ammo crate"
 
