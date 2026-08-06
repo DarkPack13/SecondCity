@@ -1,11 +1,3 @@
-/datum/preference/choiced/fera_feature
-	abstract_type = /datum/preference/choiced/fera_feature/fur_color
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	priority = PREFERENCE_PRIORITY_WORLD_OF_DARKNESS
-	must_have_relevant_trait = TRUE
-	must_be_accessible = TRUE
-
 /datum/preference/choiced/fera_feature/fur_color
 	abstract_type = /datum/preference/choiced/fera_feature/fur_color
 	savefile_key = "fur_color"
@@ -39,3 +31,6 @@
 
 /datum/dna_block/feature/fera_fur_color
 	feature_key = FEATURE_FERA_FUR_COLOR
+
+
+/datum/sprite_accessory/fera_feature

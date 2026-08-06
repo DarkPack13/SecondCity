@@ -26,7 +26,7 @@ GLOBAL_ALIST_INIT(fera_fur_colors, alist(
 		"white" = "white",
 		"ginger" = "ginger",
 		"brown" = "brown",
-	)
+	),
 	SPLAT_CORAX = list(
 		"black" = "black",
 		"brown" = "brown",
