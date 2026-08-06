@@ -96,6 +96,13 @@
 	contains = list(/obj/item/gun/ballistic/revolver/darkpack/magnum)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/weapons/weaponlever
+	name = "Weapon (lever action rifle)"
+	desc = "Contains a lever action rifle."
+	cost = 1500
+	contains = list(/obj/item/gun/ballistic/rifle/darkpack/lever)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/weapons/weapondeagle
 	name = "Weapon (desert eagle)"
 	desc = "Contains a desert eagle."
@@ -135,6 +142,13 @@
 	desc = "Contains a pump shotgun."
 	cost = 800
 	contains = list(/obj/item/gun/ballistic/shotgun/vampire)
+	crate_name = "weapon crate"
+
+/datum/supply_pack/weapons/weapondbshotgun
+	name = "Weapon (double barrel shotgun)"
+	desc = "Contains a double barrel shotgun."
+	cost = 1000
+	contains = list(/obj/item/gun/ballistic/shotgun/vampire/doublebarrel)
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/thompson
@@ -242,6 +256,13 @@
 	contains = list(/obj/item/ammo_box/darkpack/c44, /obj/item/ammo_box/darkpack/c44)
 	crate_name = "ammo crate"
 
+/datum/supply_pack/weapons/ammo45
+	name = "Ammo (.45 ACP ammo)"
+	desc = "Contains a box of .45 ACP ammo"
+	cost = 700
+	contains = list(/obj/item/ammo_box/darkpack/c45acp, /obj/item/ammo_box/darkpack/c45acp)
+	crate_name = "ammo crate"
+
 /datum/supply_pack/weapons/ammo556
 	name = "Ammo (5.56)"
 	desc = "Contains a box of 5.56 ammunition."
@@ -256,6 +277,13 @@
 	contains = list(/obj/item/ammo_box/darkpack/c9mm/silver)
 	crate_name = "ammo crate"
 
+/datum/supply_pack/weapons/ammo9/plus
+	name = "Ammo (9mm, +P)"
+	desc = "Contains a box of +P 9mm ammunition."
+	cost = 600
+	contains = list(/obj/item/ammo_box/darkpack/c9mm/plus)
+	crate_name = "ammo crate"
+
 /datum/supply_pack/weapons/ammo44/silver
 	name = "Ammo (.44, silver)"
 	desc = "Contains a box of silver .44 ammunition."
@@ -268,6 +296,13 @@
 	desc = "Contains a box of silver .45 ammunition."
 	cost = 2000
 	contains = list(/obj/item/ammo_box/darkpack/c45acp/silver)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/weapons/ammo45/hp
+	name = "Ammo (.45, hollow point)"
+	desc = "Contains a box of hollow point .45 ammunition."
+	cost = 1000
+	contains = list(/obj/item/ammo_box/darkpack/c45acp/hp)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/weapons/ammo556/silver
