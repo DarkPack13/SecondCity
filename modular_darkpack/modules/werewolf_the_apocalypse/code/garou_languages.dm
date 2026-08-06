@@ -16,6 +16,7 @@
 		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
 	)
 	spoken_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
 		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
 		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
 	)
