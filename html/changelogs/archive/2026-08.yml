@@ -1,29 +1,13 @@
 2026-08-01:
-  Faengi:
-  - rscadd: Added the Uncontrollable flaw for Brujah
-  FalloutFalcon:
-  - code_imp: new var on datum level for storing info on what source book it comes
-      from
-  - config: Adds config for limiting merit based on official status
-2026-08-04:
-  Absolucy:
-  - rscadd: Open Seal can now unlock cars.
-  FalloutFalcon:
-  - code_imp: makes some stat lists properly lazylists
-  - code_imp: Changing stats based on stamina or dexterity is handled smarter
+  dwinters99:
+  - bugfix: BSD totem in the endron ruin no longer counts as an actual totem
+2026-08-03:
   KCartridge:
-  - rscadd: proper TV subtypes
-  - rscadd: directionals for TV
-  chazzyjazzy:
-  - code_imp: adds a landmark for the red news reporter
-2026-08-05:
-  FalloutFalcon:
-  - rscadd: Seizure Flaw/Deformity
-  breadcrombs:
-  - qol: see through can be toggled on the vicissitude horror form
-  buffyuwu:
-  - rscadd: ported discipline stat descriptions from TFN
-  - rscadd: plays a sound when corax toggle flight
-  - rscadd: gives corax a waddle when walking in bird form
-  cam_dev:
-  - rscadd: '"I Nonni" role for Giovanni elders'
+  - rscadd: P25 radio to Endronites Loadouts
+  Marshmellow105:
+  - map: adds a det camera and missing decal to pd
+  - map: changes all /obj/item/detective_scanner to /obj/item/detective_scanner/darkpack
+  - map: changes all photocopiers on specialfran to gratis subtype so you can use
+      them
+  Potatocrip:
+  - code_imp: lets ghouls pick bruiser and sweeper
