@@ -1,6 +1,10 @@
 SUBSYSTEM_DEF(humannpcpool)
 	name = "Human NPC Pool"
-	ss_flags = SS_POST_FIRE_TIMING|SS_BACKGROUND
+#ifndef UNIT_TESTS
+	ss_flags = SS_POST_FIRE_TIMING | SS_BACKGROUND
+#else
+	ss_flags = SS_NO_INIT | SS_NO_FIRE
+#endif
 	priority = FIRE_PRIORITY_NPC
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 0.3 SECONDS
@@ -45,6 +49,7 @@ SUBSYSTEM_DEF(humannpcpool)
 		NPC.handle_automated_movement()
 
 /datum/controller/subsystem/humannpcpool/proc/try_repopulate()
+#ifndef UNIT_TESTS
 	if (!length(GLOB.npc_spawn_points))
 		return
 
@@ -58,3 +63,4 @@ SUBSYSTEM_DEF(humannpcpool)
 			/mob/living/carbon/human/npc/business \
 		)
 		new creating_npc(get_turf(chosen_spawn_point))
+#endif
