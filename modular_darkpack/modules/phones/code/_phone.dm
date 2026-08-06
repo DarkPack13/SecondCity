@@ -31,6 +31,8 @@
 	var/obj/item/book/manual/wiki/wiki_book
 	// Is the phone opened?
 	var/opened = FALSE
+	/// Is this phone always open?
+	var/always_open = FALSE
 	// The phone's current state.
 	VAR_PRIVATE/current_state = PHONE_AVAILABLE
 	// The number the phone has dialed.
@@ -599,7 +601,7 @@
 	return formatted_messages
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
-	opened = !opened
+	opened = always_open || !opened
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/smartphone/proc/submit_post(mob/user, body)
