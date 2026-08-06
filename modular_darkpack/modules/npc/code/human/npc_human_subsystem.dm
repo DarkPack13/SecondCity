@@ -41,7 +41,8 @@ SUBSYSTEM_DEF(humannpcpool)
 
 		if (QDELETED(NPC))
 			GLOB.npc_list -= NPC
-			stack_trace("Found a null in npc_list [NPC.type]!")
+			if(isnull(NPC))
+				stack_trace("Found a null in npc_list [NPC.type]!")
 			continue
 
 		if (MC_TICK_CHECK)
