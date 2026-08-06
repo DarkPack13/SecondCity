@@ -173,6 +173,7 @@
 		user.put_in_hands(sim_card)
 		sim_card.phone_weakref = null
 		sim_card = null
+		SStgui.update_uis(src)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -189,6 +190,7 @@
 	sim_card = tool
 	sim_card.phone_weakref = WEAKREF(src)
 	log_phone("[key_name(user)] inserted a SIM card with the number [sim_card.phone_number].")
+	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/smartphone/update_icon_state()
