@@ -150,6 +150,11 @@
 	add_overlay(image(icon = src.icon, icon_state = src.icon_state, pixel_x = -32, pixel_y = -32))
 	icon_state = "empty"
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/darkpack_car/Destroy()
 	STOP_PROCESSING(SScarpool, src)
 	QDEL_NULL(engine_sound_loop)
@@ -528,7 +533,8 @@
 		if(!HAS_TRAIT(L, TRAIT_TOUGH_FLESH))
 			hit_dam = hit_dam*2
 		L.apply_damage(hit_dam, BRUTE, BODY_ZONE_CHEST)
-		log_combat(driver, L, "hit with", src)
+		if(driver)
+			log_combat(driver, L, "hit with", src)
 	var/dam = prev_speed
 	if(driver)
 		var/driver_skill = clamp(driver.st_get_stat(STAT_DRIVE)/2, 1, 4)
@@ -768,6 +774,15 @@
 		return
 	on = FALSE
 	engine_sound_loop.stop()
+
+/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
+/obj/darkpack_car/proc/on_magic_unlock(datum/source, datum/spell, atom/caster)
+	SIGNAL_HANDLER
+
+	if(locked)
+		return
+	playsound(src, 'modular_darkpack/modules/cars/sounds/open.ogg', 50, TRUE)
+	locked = FALSE
 
 #undef DOAFTER_SOURCE_CAR
 #undef CAR_TANK_MAX

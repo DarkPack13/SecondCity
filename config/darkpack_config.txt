@@ -27,11 +27,17 @@ ON_CRIT_ADDITIONAL_DIE
 ## If having 0 dot in abilities can hardlock you out of features
 #PUNISHING_ZERO_DOTS
 
+#If you can be barred from jobs for having too high of an age/generation
+#MAX_GEN_LIMITS
+
 ##Artifact spawn chance from crates - note, crates usually drop random artifact subtype, so this probability is typically multiplied by the random probability
 ARTIFACT_CRATE_PROBABILITY 20
-
 ##Artifact spawn chance from mapped in random spots
 ARTIFACT_RANDOM_PROBABILITY 50
+## Min amount of initiallly placed corpses with banes and artifacts around them
+UMBRA_ARTIFACT_MIN 1
+## Max amount of initiallly placed corpses with banes and artifacts around them
+UMBRA_ARTIFACT_MAX 3
 
 ## Time til day define
 TIME_TILL_DAY 198000
@@ -64,6 +70,9 @@ LOG_STATS
 ## Bool for if roleplay only merits/quirks are enabled
 ROLEPLAY_ONLY_MERITS 1
 
+## String for how ttrpg accurate our merits must be. Offical, Storyteller Vault, or Homebrew
+TTRPG_ACCURATE_CUTOFF_MERITS Homebrew
+
 ## Configs for the type of attack we use when we click at a ranged distance. Only one can be enabled at a time.
 #DIRECTIONAL_COMBAT
 SWING_COMBAT
@@ -71,6 +80,8 @@ SWING_COMBAT
 ## Configs for passive bloodpool drain, if this is enabled, then the below timer can be adjusted to make vampires and ghouls lose 1 blood point when the timer is up
 #PASSIVE_BP_DRAIN
 PASSIVE_BP_DRAIN_TIMER 12000
+
+#HUNGER_MODIFIER 0.5
 
 ## Configs for which Discipline keybinds are enabled (unbound by default) and how they behave
 ## Default keybinds where you select a Discipline then activate a power
