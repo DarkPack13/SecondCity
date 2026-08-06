@@ -27,14 +27,11 @@ SUBSYSTEM_DEF(humannpcpool)
 	return ..()
 
 /datum/controller/subsystem/humannpcpool/fire(resumed = FALSE)
-
-	if (!resumed)
-		var/list/activelist = GLOB.npc_list
-		src.currentrun = activelist.Copy()
+	if(!resumed)
+		src.currentrun = GLOB.npc_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-
 	while(length(currentrun))
 		var/mob/living/carbon/human/npc/NPC = currentrun[length(currentrun)]
 		--currentrun.len
