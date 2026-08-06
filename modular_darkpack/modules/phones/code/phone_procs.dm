@@ -69,7 +69,7 @@
 		STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
-	if(phone_flags & PHONE_NO_SIM)
+	if(QDELETED(sim_card))
 		balloon_alert(user, "no SIM!")
 		return TRUE
 	return FALSE

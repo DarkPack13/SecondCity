@@ -29,8 +29,8 @@
 	var/obj/item/sim_card/sim_card
 	// There's a wiki in our phone. Literally.
 	var/obj/item/book/manual/wiki/wiki_book
-	// Phone flags, for things like if its open or if it has no sim card.
-	var/phone_flags = NONE
+	// Is the phone opened?
+	var/opened = FALSE
 	// The phone's current state.
 	VAR_PRIVATE/current_state = PHONE_AVAILABLE
 	// The number the phone has dialed.
@@ -144,7 +144,7 @@
 
 /obj/item/smartphone/attack_self(mob/user, modifiers)
 	. = ..()
-	if(!(phone_flags & PHONE_OPEN))
+	if(!opened)
 		toggle_screen(user)
 	ui_interact(user)
 
@@ -173,7 +173,6 @@
 		user.put_in_hands(sim_card)
 		sim_card.phone_weakref = null
 		sim_card = null
-		phone_flags |= PHONE_NO_SIM
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -189,17 +188,16 @@
 	balloon_alert(user, "you insert \the [tool]!")
 	sim_card = tool
 	sim_card.phone_weakref = WEAKREF(src)
-	phone_flags &= ~PHONE_NO_SIM
 	log_phone("[key_name(user)] inserted a SIM card with the number [sim_card.phone_number].")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/smartphone/update_icon_state()
 	. = ..()
-	icon_state = (phone_flags & PHONE_OPEN) ? "[base_icon_state]_on" : base_icon_state
-	inhand_icon_state = (phone_flags & PHONE_OPEN) ? "[base_icon_state]_on" : base_icon_state
+	icon_state = opened ? "[base_icon_state]_on" : base_icon_state
+	inhand_icon_state = opened ? "[base_icon_state]_on" : base_icon_state
 
 /obj/item/smartphone/ui_status(mob/user, datum/ui_state/state)
-	if(!(phone_flags & PHONE_OPEN))
+	if(!opened)
 		return UI_CLOSE
 	return ..()
 
@@ -216,8 +214,12 @@
 
 /obj/item/smartphone/ui_data(mob/living/user)
 	var/list/data = list()
-	data["my_number"] = sim_card ? sim_card.phone_number : "No SIM card inserted."
-	data["no_sim_card"] = (phone_flags & PHONE_NO_SIM) ? TRUE : FALSE
+	if(sim_card)
+		data["my_number"] = sim_card.phone_number
+		data["no_sim_card"] = FALSE
+	else
+		data["my_number"] = "No SIM card inserted"
+		data["no_sim_card"] = TRUE
 	data["phone_in_call"] = (current_state == PHONE_IN_CALL) ? TRUE : FALSE
 	data["phone_ringing"] = (current_state == PHONE_RINGING) ? TRUE : FALSE
 	data["phone_calling"] = (current_state == PHONE_CALLING) ? TRUE : FALSE
@@ -595,10 +597,7 @@
 	return formatted_messages
 
 /obj/item/smartphone/proc/toggle_screen(mob/user)
-	if(phone_flags & PHONE_OPEN)
-		phone_flags &= ~PHONE_OPEN
-	else
-		phone_flags |= PHONE_OPEN
+	opened = !opened
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/smartphone/proc/submit_post(mob/user, body)

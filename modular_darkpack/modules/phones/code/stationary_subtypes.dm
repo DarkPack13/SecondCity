@@ -5,12 +5,12 @@
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "payphone"
 	anchored = TRUE
+	opened = TRUE
 
 /obj/item/smartphone/payphone/Initialize(mapload)
 	sim_card = new /obj/item/sim_card/landline()
 	sim_card.phone_weakref = WEAKREF(src)
-	phone_flags |= PHONE_OPEN
-	. = ..()
+	return ..()
 
 /obj/item/smartphone/payphone/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -23,12 +23,12 @@
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "phone_black"
 	anchored = TRUE
+	opened = TRUE
 
 /obj/item/smartphone/clean/Initialize(mapload)
 	sim_card = new /obj/item/sim_card/cleaner()
 	sim_card.phone_weakref = WEAKREF(src)
-	phone_flags |= PHONE_OPEN
-	. = ..()
+	return ..()
 
 /obj/item/smartphone/clean/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -41,12 +41,12 @@
 	icon = 'modular_darkpack/modules/phones/icons/phone.dmi'
 	icon_state = "phone_red"
 	anchored = TRUE
+	opened = TRUE
 
 /obj/item/smartphone/emergency/Initialize(mapload)
 	sim_card = new /obj/item/sim_card/emergency()
 	sim_card.phone_weakref = WEAKREF(src)
-	phone_flags |= PHONE_OPEN
-	. = ..()
+	return ..()
 
 /obj/item/smartphone/emergency/attack_hand(mob/user, list/modifiers)
 	. = ..()
