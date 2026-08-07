@@ -20,10 +20,6 @@
 		/datum/language/garou_tongue = list(LANGUAGE_ATOM),
 		/datum/language/primal_tongue = list(LANGUAGE_ATOM),
 	)
-	//necessary, to ensure no human tongue talking
-	blocked_speaking = list(
-
-	)
 
 /datum/language_holder/primal //for lupus and hispos form
 	understood_languages = list(
