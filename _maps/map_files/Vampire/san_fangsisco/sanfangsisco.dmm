@@ -10808,7 +10808,7 @@
 /area/vtm/interior/police)
 "dbp" = (
 /obj/item/clothing/mask/vampire/fomori_chaser,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "dbz" = (
 /obj/effect/turf_decal/bordur,
@@ -12382,7 +12382,7 @@
 /area/vtm/outside/pacificheights/community)
 "dyR" = (
 /obj/item/clothing/suit/hooded/robes/black,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "dyT" = (
 /obj/structure/table/wood/fancy/green,
@@ -18151,7 +18151,7 @@
 	pixel_x = -15;
 	pixel_y = 6
 	},
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "fkt" = (
 /obj/machinery/light/small/directional/east,
@@ -41419,7 +41419,7 @@
 /turf/open/floor/carpet/red,
 /area/vtm/interior/millennium_tower/ventrue)
 "lUD" = (
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "lUE" = (
 /obj/effect/turf_decal/siding/white{
@@ -42261,7 +42261,7 @@
 /area/vtm/interior)
 "mhm" = (
 /obj/structure/statue/bone/rib,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "mhn" = (
 /obj/structure/hedge,
@@ -42483,6 +42483,7 @@
 "mlI" = (
 /obj/structure/mop_bucket,
 /obj/item/mop,
+/obj/item/reagent_containers/cup/bucket,
 /turf/open/floor/iron/small,
 /area/vtm/interior/wyrm_corrupted)
 "mlK" = (
@@ -43848,7 +43849,7 @@
 /obj/structure/statue/bone/rib{
 	dir = 1
 	},
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "mGa" = (
 /obj/machinery/light/prince/directional/south,
@@ -64096,8 +64097,9 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/interior/millennium_tower)
 "sgV" = (
-/obj/structure/mop_bucket,
 /obj/item/mop,
+/obj/structure/mop_bucket/janitorialcart,
+/obj/item/reagent_containers/cup/bucket,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
 "she" = (
@@ -70818,7 +70820,7 @@
 /area/vtm/outside/pacificheights/community)
 "uig" = (
 /obj/machinery/light/small/red/directional/north,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "uii" = (
 /turf/open/openspace,
@@ -72037,11 +72039,10 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 1
 	},
-/obj/machinery/button/door{
-	pixel_x = -23;
-	pixel_y = 0;
+/obj/machinery/button/crematorium{
 	id = "EndronCrem";
-	name = "Crematorium"
+	pixel_x = -23;
+	pixel_y = 0
 	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/wyrm_corrupted)
@@ -78604,7 +78605,7 @@
 /area/vtm/outside/ghetto)
 "wtz" = (
 /obj/machinery/light/small/red/directional/south,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "wtE" = (
 /obj/structure/hedge,
@@ -80178,7 +80179,7 @@
 /area/vtm/interior/giovanni)
 "wRq" = (
 /obj/item/reagent_containers/cup/glass/baggie/meth,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "wRw" = (
 /obj/effect/turf_decal/trimline/dark_green/warning{
@@ -84272,7 +84273,7 @@
 /area/vtm/interior/millennium_tower)
 "xZA" = (
 /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine,
-/turf/open/indestructible/necropolis,
+/turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "xZB" = (
 /obj/structure/table,
