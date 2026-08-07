@@ -3686,7 +3686,9 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/pacificheights/community)
 "baV" = (
-/obj/structure/bodycontainer/crematorium,
+/obj/structure/bodycontainer/crematorium{
+	id = "EndronCrem"
+	},
 /obj/machinery/light/directional/north,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 8
@@ -9637,7 +9639,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 899;
+	id = 355;
 	name = "stairs";
 	dir = 1
 	},
@@ -11126,7 +11128,9 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/pacificheights/forest)
 "dfG" = (
-/obj/structure/vampdoor,
+/obj/structure/vampdoor{
+	name = "Maintenance"
+	},
 /obj/effect/mapping_helpers/door/access/pentex,
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/city/plating_mono,
@@ -11262,7 +11266,7 @@
 /area/vtm/interior/endron_facility)
 "dhF" = (
 /obj/machinery/door/poddoor/shutters{
-	id = "Airlock1";
+	id = "Airlock2";
 	max_integrity = 3000
 	},
 /turf/open/floor/iron/small,
@@ -15867,7 +15871,9 @@
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights/community)
 "eCT" = (
-/obj/structure/vampdoor/reinf,
+/obj/structure/vampdoor/reinf{
+	name = "Surgery"
+	},
 /obj/effect/mapping_helpers/door/access/pentex,
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/iron/textured_edge{
@@ -15909,6 +15915,7 @@
 	pixel_x = 0;
 	pixel_y = 6
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/small,
 /area/vtm/interior/wyrm_corrupted)
 "eDn" = (
@@ -16719,6 +16726,14 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/giovanni/courtyard)
+"eOR" = (
+/obj/structure/vampdoor{
+	name = "Changing Room"
+	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "eOW" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 8
@@ -19547,6 +19562,13 @@
 	},
 /turf/open/water,
 /area/vtm/outside/forest)
+"fDf" = (
+/obj/structure/vampdoor/glass{
+	name = "Office"
+	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "fDk" = (
 /obj/structure/table/wood,
 /obj/item/masquerade_contract,
@@ -22014,7 +22036,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 899;
+	id = 355;
 	name = "stairs"
 	},
 /turf/open/floor/city/plating_mono,
@@ -32030,10 +32052,11 @@
 /area/vtm/interior/ghetto)
 "jkE" = (
 /obj/machinery/button/door{
-	pixel_y = 0;
+	pixel_y = 1;
 	id = "Airlock1";
 	pixel_x = 0
 	},
+/obj/effect/decal/wallpaper/stripes,
 /turf/closed/wall/vampwall/metal,
 /area/vtm/interior/wyrm_corrupted)
 "jkG" = (
@@ -38021,7 +38044,9 @@
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior)
 "kVa" = (
-/obj/structure/vampdoor,
+/obj/structure/vampdoor{
+	name = "Bathroom"
+	},
 /obj/effect/mapping_helpers/door/access/pentex,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/endron_facility/restricted)
@@ -40198,11 +40223,16 @@
 /area/vtm/outside/financialdistrict)
 "lDm" = (
 /obj/machinery/button/door{
-	pixel_y = -32;
-	id = "Airlock1";
+	pixel_y = -38;
+	id = "Airlock2";
 	pixel_x = 0
 	},
 /obj/effect/turf_decal/trimline/dark_green/corner,
+/obj/machinery/button/door{
+	pixel_y = -30;
+	id = "Airlock1";
+	pixel_x = 0
+	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/wyrm_corrupted)
 "lDn" = (
@@ -49608,6 +49638,17 @@
 	},
 /turf/open/floor/wood/old,
 /area/vtm/outside/northbeach)
+"okr" = (
+/obj/effect/turf_decal/trimline/dark_green/corner{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	pixel_y = 25;
+	id = "Airlock2";
+	pixel_x = 0
+	},
+/turf/open/floor/iron/small,
+/area/vtm/interior/wyrm_corrupted)
 "oku" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
@@ -56018,7 +56059,8 @@
 "pWK" = (
 /obj/structure/vampdoor{
 	lock_id = "pentex";
-	dir = 4
+	dir = 4;
+	name = "Control Room"
 	},
 /obj/effect/mapping_helpers/door/access/pentex,
 /obj/effect/mapping_helpers/door/lock,
@@ -63086,7 +63128,7 @@
 /obj/effect/decal/rugs,
 /obj/machinery/button/door{
 	pixel_y = 5;
-	id = "containment1Door";
+	id = "containment2Door";
 	pixel_x = -2
 	},
 /turf/open/floor/iron/small,
@@ -65473,7 +65515,9 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "sAz" = (
-/obj/structure/vampdoor/reinf,
+/obj/structure/vampdoor/reinf{
+	name = "Observation"
+	},
 /obj/effect/mapping_helpers/door/access/pentex,
 /obj/effect/mapping_helpers/door/lock,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
@@ -71989,6 +72033,18 @@
 	},
 /turf/open/floor/carpet/red,
 /area/vtm/interior/millennium_tower/ventrue)
+"uzy" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	pixel_x = -23;
+	pixel_y = 0;
+	id = "EndronCrem";
+	name = "Crematorium"
+	},
+/turf/open/floor/iron/small,
+/area/vtm/interior/wyrm_corrupted)
 "uzD" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/city/toilet,
@@ -133913,7 +133969,7 @@ gWJ
 psI
 psI
 psI
-kaW
+fDf
 psI
 psI
 psI
@@ -134700,7 +134756,7 @@ tzz
 psI
 psI
 psI
-dfG
+eOR
 psI
 psI
 psI
@@ -141612,9 +141668,9 @@ hTk
 uCL
 vwu
 pdM
-gOG
+hTk
 baV
-rfs
+uzy
 iNM
 gOG
 oIa
@@ -141856,10 +141912,10 @@ kfi
 cZp
 gOG
 gOG
-gOG
+hTk
 uEz
 kol
-gOG
+hTk
 jhe
 uCL
 uCL
@@ -141869,7 +141925,7 @@ bnS
 uCL
 uCL
 uCL
-gOG
+hTk
 uJF
 rfs
 mlI
@@ -142116,7 +142172,7 @@ onl
 sDl
 uCL
 uNe
-gOG
+hTk
 fsh
 uCL
 pVV
@@ -142126,7 +142182,7 @@ mMr
 ohr
 qAL
 uCL
-gOG
+hTk
 uJF
 rfs
 xQG
@@ -142373,7 +142429,7 @@ uVj
 plc
 uCL
 uCL
-gOG
+hTk
 tNn
 uCL
 uCL
@@ -142383,7 +142439,7 @@ bnS
 uCL
 tEG
 uCL
-gOG
+hTk
 fvn
 rfs
 uCL
@@ -142630,7 +142686,7 @@ dqG
 dpg
 uCL
 uCL
-gOG
+hTk
 bcD
 kMa
 uCL
@@ -142897,7 +142953,7 @@ hTk
 nRW
 tEG
 uCL
-gOG
+hTk
 kZA
 uCL
 hXL
@@ -143154,7 +143210,7 @@ hTk
 uCL
 tEG
 aGy
-gOG
+hTk
 uCL
 eMF
 uMV
@@ -143668,7 +143724,7 @@ eCT
 cmc
 hsn
 iEK
-gOG
+hTk
 uCL
 eMF
 azp
@@ -143925,7 +143981,7 @@ hTk
 ayp
 tEG
 uCL
-gOG
+hTk
 ekn
 uCL
 azp
@@ -144430,11 +144486,11 @@ gOG
 vWh
 gOG
 gOG
-hTk
+gOG
 glF
 hBh
 hBh
-hTk
+gOG
 hTk
 nRW
 tEG
@@ -147010,7 +147066,7 @@ jbn
 tEG
 aGy
 jkE
-jbn
+okr
 lDm
 hTk
 xIh
@@ -147523,7 +147579,7 @@ hTk
 ayp
 tEG
 jVq
-gOG
+hTk
 ayp
 jVq
 hTk
