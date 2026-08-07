@@ -27,9 +27,7 @@
 	var/female_clothes
 
 	/// List of unnatural features that members of this Clan can choose
-	var/list/accessories
-	/// Associative list of layers for unnatural features that members of this Clan can choose
-	var/list/accessories_layers
+	var/list/clan_marks
 	/// Clan accessory that's selected by default
 	var/default_accessory
 
@@ -89,30 +87,33 @@
 	if (alt_sprite)
 		losing_mob.set_body_sprite(ignore_clan = TRUE)
 
-	// DARKPACK TODO - reimplement clan accessories
-	/*
-	// Remove Clan accessories
-	if (losing_mob.client?.prefs?.clan_accessory)
-		var/equipped_accessory = accessories_layers[losing_mob.client.prefs.clan_accessory]
-		losing_mob.remove_overlay(equipped_accessory)
-	*/
+	clear_old_overlays(losing_mob)
 
 	losing_mob.remove_faction(id)
 
-/datum/subsplat/vampire_clan/on_join_round(mob/living/carbon/human/joining)
+/datum/subsplat/vampire_clan/apply_after_setup(mob/living/carbon/human/source)
 	. = ..()
 
-	if (HAS_TRAIT(joining, TRAIT_MASQUERADE_VIOLATING_FACE))
+	// if they spawn with the masquerade violating face trait, give them the things to cover up so they aren't stuck in the sewer.
+	if (HAS_TRAIT(source, TRAIT_MASQUERADE_VIOLATING_FACE) || HAS_TRAIT(source, TRAIT_MASQUERADE_VIOLATING_EYES))
 		if (length(GLOB.masquerade_latejoin))
-			var/obj/effect/landmark/latejoin_masquerade/LM = pick(GLOB.masquerade_latejoin)
-			if (LM)
-				joining.forceMove(get_turf(LM))
-		// if they spawn with the masquerade violating face trait, give them the things to cover up so they aren't stuck in the sewer.
-		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(joining.loc)
-		joining.equip_to_appropriate_slot(new_robe, FALSE)
+			var/turf/join_spot = pick(GLOB.masquerade_latejoin)
+			if(join_spot)
+				source.forceMove(join_spot)
 
-		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(joining.loc)
-		joining.equip_to_appropriate_slot(new_mask, FALSE)
+	if(HAS_TRAIT(source, TRAIT_MASQUERADE_VIOLATING_FACE) && !(source.obscured_slots & HIDEFACE))
+		var/obj/item/clothing/mask/vampire/venetian_mask/fancy/new_mask = new(source.loc)
+		source.equip_to_appropriate_slot(new_mask, FALSE)
+	if(HAS_TRAIT(source, TRAIT_MASQUERADE_VIOLATING_EYES) && !source.is_eyes_covered())
+		var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(source.loc)
+		source.equip_to_appropriate_slot(new_glasses, FALSE)
+
+	// We dont have masquerade breaching body. YET.
+	/*
+		var/obj/item/clothing/suit/hooded/robes/darkred/new_robe = new(source.loc)
+		source.equip_to_appropriate_slot(new_robe, FALSE)
+	*/
+
 
 /// effect from daimonion psychomania
 /datum/subsplat/vampire_clan/proc/psychomania_effect(mob/living/target, mob/living/owner)
@@ -161,4 +162,19 @@
 
 /mob/living/proc/is_clan(clan_type)
 	return istype(get_clan(), clan_type)
+
+/datum/subsplat/vampire_clan/proc/clear_old_overlays(mob/living/carbon/human/losing_mob)
+	var/needs_update = FALSE
+	for(var/obj/item/bodypart/part as anything in losing_mob.get_bodyparts())
+		for(var/clan_mark in clan_marks)
+			part.remove_bodypart_overlay(clan_mark, update = FALSE)
+			needs_update = TRUE
+
+	if(needs_update && !(losing_mob.living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		losing_mob.update_body_parts()
+
+/datum/subsplat/vampire_clan/show_lore(mob/user)
+	. = ..()
+	if(curse)
+		to_chat(user, span_danger("<br>CURSE: [curse]"))
 

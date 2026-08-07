@@ -19,13 +19,7 @@
 	announce_when = 5
 
 /datum/round_event/blackout/announce(fake)
-	priority_announce(
-		"A breaking news notification has appeared on your phone - rolling blackouts are affecting your area due to inclement weather.",
-		"Local BREAKING NEWS Alert",
-		'modular_darkpack/modules/events/sounds/news_notification.ogg',
-		ANNOUNCEMENT_TYPE_PRIORITY,
-		color_override = "red",
-	)
+	endpost_announce("Rolling blackouts are impacting your area due to inclement weather. City workers are delayed due to widespread outages across the city.")
 
 /datum/round_event/blackout/start()
 	for(var/obj/fusebox/F in GLOB.fuseboxes)

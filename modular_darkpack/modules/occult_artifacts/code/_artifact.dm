@@ -23,10 +23,15 @@
 	abstract_type = /obj/item/occult_artifact
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/owner
+	/// Name set upon identifying the artifact
 	var/true_name
+	/// Desc set upon identifying the artifact
 	var/true_desc
 	var/identified = FALSE
+	/// How many points this grants when fed into the treme artifact muncher
 	var/research_value = 0
+	/// "Rank" of artifact as used in the TTRPG.
+	var/rank = 1
 	var/can_be_identified_without_ritual = TRUE
 
 	var/grant_sound // = 'sound/effects/magic/swap.ogg'
@@ -35,6 +40,10 @@
 	var/datum/controller/subsystem/processing/subsystem_type = /datum/controller/subsystem/processing/obj
 
 	var/datum/storyteller_roll/identify_occult/identify_roll
+
+/obj/item/occult_artifact/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 200, "artifact", FALSE, 0, 10, TRUE)
 
 /obj/item/occult_artifact/proc/identify(mob/living/artifact_identifier)
 	if(!identified)
@@ -136,23 +145,25 @@
 
 /obj/effect/spawner/random/occult/artifact/vampire_only
 	name = "random vampire artifact"
+	loot = null
 	loot_subtype_path = /obj/item/occult_artifact/vampire
 
 
 /obj/effect/spawner/random/occult/artifact/werewolf_only
 	name = "random garou fetish"
 	loot = list(
-		/obj/item/occult_artifact/werewolf/nyxs_bangle = 45,
-		/obj/item/occult_artifact/werewolf/dagger_of_retribution = 45,
-		/obj/effect/spawner/random/occult/artifact/klaive = 10,
+		/obj/item/occult_artifact/werewolf/nyxs_bangle = 33,
+		/obj/item/occult_artifact/werewolf/dagger_of_retribution = 33,
+		/obj/item/occult_artifact/werewolf/magpies_ears = 33,
+		/obj/effect/spawner/random/occult/artifact/klaive = 1,
 	)
-
 
 /obj/effect/spawner/random/occult/artifact/klaive
 	name = "random klaive"
 	loot = list(
-		/obj/item/occult_artifact/werewolf/klaive = 32,
-		/obj/item/occult_artifact/werewolf/klaive/bane = 32,
-		/obj/item/occult_artifact/werewolf/klaive/karambit = 32,
-		/obj/item/occult_artifact/werewolf/klaive/grand = 4, // Idk this thing is mega scary and mabye even doesnt belong here.
+		/obj/item/occult_artifact/werewolf/klaive = 33,
+		/obj/item/occult_artifact/werewolf/klaive/bane = 33,
+		/obj/item/occult_artifact/werewolf/klaive/karambit = 33,
 	)
+// I've elected to remove grand klaives in favor of making them something you have to kill a real boss for.
+

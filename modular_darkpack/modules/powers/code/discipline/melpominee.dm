@@ -1,6 +1,12 @@
 /datum/discipline/melpominee
 	name = "Melpominee"
-	desc = "Named for the Greek Muse of Tragedy, Melpominee is a unique discipline of the Daughters of Cacophony. It explores the power of the voice, shaking the very soul of those nearby and allowing the vampire to perform sonic feats otherwise impossible."
+	desc = {"Named for the Greek Muse of Tragedy, Melpominee is a unique discipline of the Daughters of Cacophony. It explores the power of the voice, shaking the very soul of those nearby and allowing the vampire to perform sonic feats otherwise impossible.
+● The Missing Voice: Passive
+●● Phantom Speaker: Wits + Performance (difficulty 7)
+●●● Madrigal: Wits + Performance vs. target's Wits + Awareness
+●●●● Siren's Beckoning: Wits + Performance vs. target's Willpower
+●●●●● Virtuosa: Passive toggle
+●●●●●● Shattering Crescendo: Passive"}
 	icon_state = "melpominee"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/melpominee
@@ -126,7 +132,7 @@
 		if(owner.mind.guestbook.known_names[character.real_name] && character.client) // Everyone we know who has a client
 			targets += character
 
-	var/list/mob/living/listener_list
+	var/list/mob/living/listener_list = list()
 	var/mob/living/listener
 
 	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, type))

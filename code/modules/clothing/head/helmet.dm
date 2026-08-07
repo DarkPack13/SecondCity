@@ -45,30 +45,30 @@
 	. = ..()
 	AddComponent(/datum/component/seclite_attachable, light_icon_state = "flight")
 
-/obj/item/clothing/head/helmet/sec/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	if(issignaler(attacking_item))
-		var/obj/item/assembly/signaler/attached_signaler = attacking_item
-		// There's a flashlight in us. Remove it first, or it'll be lost forever!
-		var/obj/item/flashlight/seclite/blocking_us = locate() in src
-		if(blocking_us)
-			to_chat(user, span_warning("[blocking_us] is in the way, remove it first!"))
-			return TRUE
+/obj/item/clothing/head/helmet/sec/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!issignaler(tool))
+		return ..()
 
-		if(!attached_signaler.secured)
-			to_chat(user, span_warning("Secure [attached_signaler] first!"))
-			return TRUE
+	var/obj/item/assembly/signaler/attached_signaler = tool
+	// There's a flashlight in us. Remove it first, or it'll be lost forever!
+	var/obj/item/flashlight/seclite/blocking_us = locate() in src
+	if(blocking_us)
+		to_chat(user, span_warning("[blocking_us] is in the way, remove it first!"))
+		return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You add [attached_signaler] to [src]."))
+	if(!attached_signaler.secured)
+		to_chat(user, span_warning("Secure [attached_signaler] first!"))
+		return ITEM_INTERACT_BLOCKING
 
-		qdel(attached_signaler)
-		var/obj/item/bot_assembly/secbot/secbot_frame = new(drop_location())
-		var/held_index = user.is_holding(src)
-		qdel(src)
-		if (held_index)
-			user.put_in_hand(secbot_frame, held_index)
-		return TRUE
+	to_chat(user, span_notice("You add [attached_signaler] to [src]."))
 
-	return ..()
+	qdel(attached_signaler)
+	var/obj/item/bot_assembly/secbot/secbot_frame = new(drop_location())
+	var/held_index = user.is_holding(src)
+	qdel(src)
+	if (held_index)
+		user.put_in_hand(secbot_frame, held_index)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/head/helmet/sec/attack_self(mob/user)
 	. = ..()
@@ -110,7 +110,7 @@
 	. = ..()
 	AddComponent(/datum/component/seclite_attachable, light_icon_state = "flight")
 
-/obj/item/clothing/head/helmet/press/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/head/helmet/press/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -283,6 +283,7 @@
 	flags_inv = HIDEHAIR|HIDEEARS|HIDESNOUT
 	resistance_flags = FIRE_PROOF
 	dog_fashion = null
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3.6)
 
 /datum/armor/balloon
 	melee = 10
@@ -500,7 +501,7 @@
 	icon_state = "knight_green"
 	inhand_icon_state = "knight_helmet"
 	armor_type = /datum/armor/helmet_knight
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR // DARKPACK EDIT CHANGE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	strip_delay = 8 SECONDS
@@ -512,13 +513,13 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 3)
 
 /datum/armor/helmet_knight
-	melee = 75
-	bullet = 50
+	melee = 75 // DARKPACK EDIT CHANGE
+	bullet = 50 // DARKPACK EDIT CHANGE
 	laser = 10
 	energy = 10
 	fire = 80
 	acid = 80
-	wound = 25
+	wound = 25 // DARKPACK EDIT CHANGE 
 
 /obj/item/clothing/head/helmet/knight/blue
 	icon_state = "knight_blue"

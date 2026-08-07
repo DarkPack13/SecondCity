@@ -9,13 +9,13 @@
 	config_tag = "TAXI_DRIVER"
 	display_order = JOB_DISPLAY_ORDER_TAXI
 	exp_required_type_department = EXP_TYPE_SERVICES
-	department_for_prefs = /datum/job_department/city_services
 	departments_list = list(
 		/datum/job_department/city_services,
 	)
 
 	description = "Drive people in the city."
-	minimal_masquerade = 0
+	minimum_masquerade = 0
+	//Not including a max generation for reasons of Caine.
 
 /datum/outfit/job/vampire/taxi
 	name = "Taxi Driver"
