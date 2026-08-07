@@ -105,6 +105,10 @@
 	numerical = TRUE
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
 
+/datum/storyteller_roll/attacker_disarm
+	numerical = TRUE
+	applicable_stats = list(STAT_STRENGTH)
+
 // Physical Feats
 /datum/storyteller_roll/lockpick
 	bumper_text = "lockpicking"
