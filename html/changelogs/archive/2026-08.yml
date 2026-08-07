@@ -40,3 +40,11 @@
   - rscadd: added crosses to loadout menu
   - qol: crosses can be worn on belt and neck
   - image: added two new cross sprites
+2026-08-07:
+  FalloutFalcon:
+  - bugfix: Masquerade breaches no longer get smuggled out of deathmatch arena and
+      other spawns not meant to send them to the sewers
+  - bugfix: Loadout items wont get replaced by robes and masks assuming they cover
+      your breaches
+  flleeppyy:
+  - rscadd: Detective UI is now a possible UI to choose from in preferences.
