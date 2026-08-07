@@ -10,3 +10,9 @@ export const corax_fur_color: FeatureChoiced = {
   name: 'Corax Feather Color',
   component: FeatureDropdownInput,
 };
+
+
+export const garou_hair: FeatureChoiced = {
+  name: 'Garou Hair',
+  component: FeatureDropdownInput,
+};

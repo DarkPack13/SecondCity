@@ -8022,6 +8022,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\renown.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\tribe.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\customization\_customization.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\customization\fera_hair.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\customization\fur_color.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\fera_organs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\fera_species.dm"

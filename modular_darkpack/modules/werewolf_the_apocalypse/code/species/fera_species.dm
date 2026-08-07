@@ -92,6 +92,19 @@
 	return human.dna.features[FEATURE_FERA_FUR_COLOR] || "black"
 
 
+/datum/species/human/shifter/proc/get_feature_icon_state(mob/living/carbon/human/human, feature_key)
+	var/feature_dna = human.dna.features[feature_key]
+	if(!feature_dna)
+		return
+	var/alist/splat_feature_styles = SSaccessories.feature_list[feature_key]
+	if(!splat_feature_styles)
+		return
+	var/datum/sprite_accessory/feature_sprite_datum = splat_feature_styles[feature_dna]
+	if(!feature_sprite_datum)
+		return
+	return feature_sprite_datum::icon_state
+
+
 /// Fetch the mob dmi from our splat
 /datum/species/human/shifter/proc/get_mob_icon(mob/living/carbon/human/human)
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
@@ -105,46 +118,53 @@
 	if(!custom_body_render)
 		return FALSE
 
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	var/splat_id = shifter_splat.id || SPLAT_GAROU
+
 	var/fur_color = get_fur_color(human)
 	var/mob_icon = get_mob_icon(human)
 
-	human.remove_overlay(BODYPARTS_LAYER)
-	var/main_iconstate = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
-		main_iconstate += "spiral"
-	main_iconstate += fur_color
-	if(should_append_flying_to_icon(human))
-		main_iconstate += "_flying"
-	else if(human.body_position == LYING_DOWN)
-		main_iconstate += "_rest"
+	var/postfix_info = ""
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, icon_state = main_iconstate, layer = -BODYPARTS_LAYER))
+	human.remove_overlay(BODYPARTS_LAYER)
+	var/main_icon_state = ""
+	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
+		main_icon_state += "spiral"
+	main_icon_state += fur_color
+	if(should_append_flying_to_icon(human))
+		postfix_info += "_flying"
+	else if(human.body_position == LYING_DOWN)
+		postfix_info += "_rest"
+
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, icon_state = main_icon_state + postfix_info, layer = -BODYPARTS_LAYER))
 	human.apply_overlay(BODYPARTS_LAYER)
 
 
 	human.remove_overlay(EYES_LAYER)
-	var/mutable_appearance/eyes_overlay = mutable_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", -EYES_LAYER)
+	var/mutable_appearance/eyes_overlay = mutable_appearance(mob_icon, "eyes" + postfix_info, -EYES_LAYER)
 	eyes_overlay.color = human.eye_color_left
-	var/mutable_appearance/emissive_overlay = emissive_appearance(mob_icon, "eyes[should_append_flying_to_icon(human) ? "_flying" : ""]", human, effect_type = EMISSIVE_SPECULAR)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(mob_icon, "eyes" + postfix_info, human, effect_type = EMISSIVE_SPECULAR)
 	emissive_overlay.color = COLOR_WHITE
 	human.overlays_standing[EYES_LAYER] = list(eyes_overlay, emissive_overlay)
 	human.apply_overlay(EYES_LAYER)
 
 
 	human.remove_overlay(BODY_ADJ_LAYER)
-	var/mutable_appearance/scar_image = mutable_appearance(mob_icon, "scar1", -BODY_ADJ_LAYER)
+	var/mutable_appearance/scar_image = mutable_appearance(mob_icon, "scar1" + postfix_info, -BODY_ADJ_LAYER)
 	human.overlays_standing[BODY_ADJ_LAYER] = list(scar_image)
 	human.apply_overlay(BODY_ADJ_LAYER)
 
 	human.remove_overlay(HAIR_LAYER)
-	var/mutable_appearance/hair_layer = mutable_appearance(mob_icon, "hair1", -HAIR_LAYER)
-	hair_layer.color = human.hair_color
-	human.overlays_standing[HAIR_LAYER] = list(hair_layer)
-	human.apply_overlay(HAIR_LAYER)
+	var/hair_icon_state = get_feature_icon_state(human, FEATURE_FERA_HAIR(splat_id))
+	if(hair_icon_state)
+		var/mutable_appearance/hair_layer = mutable_appearance(mob_icon, hair_icon_state + postfix_info, -HAIR_LAYER)
+		hair_layer.color = human.hair_color
+		human.overlays_standing[HAIR_LAYER] = list(hair_layer)
+		human.apply_overlay(HAIR_LAYER)
 
 
 	human.remove_overlay(UNIFORM_LAYER)
-	var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, "green_tribal", -UNIFORM_LAYER)
+	var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, "green_tribal" + postfix_info, -UNIFORM_LAYER)
 	human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
 	human.apply_overlay(UNIFORM_LAYER)
 
