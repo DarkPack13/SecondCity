@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - code_imp: "Changing stats based on stamina or dexterity is handled smarter"
