@@ -996,7 +996,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(user.loc == target.loc)
 		return FALSE
 
-	//DARKPACK EDIT ADD - POTENCE
+	// DARKPACK EDIT ADD START - POTENCE
 	if(user.has_status_effect(/datum/status_effect/potence))	//We check if potence is active, then base off strength
 		var/shove_strength = user.st_get_stat(STAT_STRENGTH)
 		var/shove_distance = round(shove_strength / 2)
@@ -1005,7 +1005,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.throw_at(throw_target, shove_distance, 4, user, spin = TRUE)
 		if(shove_strength <= 5)		// If you have 5 or less strength, you knockback people slightly - nothing fancy, and they don't take damage on collision with objects.
 			target.throw_at(throw_target, rand(1, 2), 4, user, gentle = TRUE)
-	//DAKRPACK EDIT END
+	// DAKRPACK EDIT ADD END
 
 	user.disarm(target)
 
