@@ -10,6 +10,7 @@
 	desc = "Recover from your wounds much the same as the bestial Garou do."
 	button_icon_state = "regeneration"
 	rank = 1
+	ttrpg_sources = list(/datum/source_book/freak_legion = 37)
 
 /datum/action/cooldown/power/fomori_power/regeneration/Grant(mob/granted_to)
 	. = ..()

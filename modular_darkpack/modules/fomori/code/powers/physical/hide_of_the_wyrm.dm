@@ -9,6 +9,8 @@
 	button_icon_state = "hide_of_the_wyrm"
 	rank = 1 // of 5
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 33)
+
 	fomor_part = /datum/bodypart_overlay/simple/hide_of_the_wyrm
 	feature_bodypart = BODY_ZONE_CHEST
 

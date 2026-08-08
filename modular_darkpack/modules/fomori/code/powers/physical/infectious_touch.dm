@@ -5,6 +5,8 @@
 	numerical = TRUE
 	roll_output_type = ROLL_PRIVATE
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 34)
+
 /datum/storyteller_roll/infectious_touch/defender
 	applicable_stats = list(STAT_STAMINA)
 	roll_output_type = ROLL_NONE

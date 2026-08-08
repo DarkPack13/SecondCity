@@ -27,7 +27,7 @@
 	icon_state = "exoskeleton-l_leg"
 	bodyzone = BODY_ZONE_L_LEG
 
-/datum/bodypart_overlay/simple/fomor_fangs/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
+/datum/bodypart_overlay/simple/fomor_exoskeleton/head/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
 	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEFACE)
 
 /datum/action/cooldown/power/fomori_power/exoskeleton
@@ -35,6 +35,8 @@
 	desc = "Form a thick carapace around your body, protecting you from harm and increasing your strength."
 	button_icon_state = "exoskeleton"
 	rank = 1
+
+	ttrpg_sources = list(/datum/source_book/freak_legion = 32)
 
 	fomor_part = "none" // So we get caught by code that checks if we have a fomor_part
 	//Snowflake code

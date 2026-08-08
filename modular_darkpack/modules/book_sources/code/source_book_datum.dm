@@ -27,6 +27,10 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 	name = "Werewolf The Apocalypse 20th Anniversary Edition"
 	offical_status = SOURCE_OFFICAL
 
+/datum/source_book/freak_legion
+	name = "Freak Legion: A Player's Guide to Fomori"
+	offical_status = SOURCE_OFFICAL
+
 /datum/source_book/vampire_wild_west
 	name = "Vampire The Wild West"
 	offical_status = SOURCE_STORYTELLER_VAULT

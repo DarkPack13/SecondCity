@@ -10,6 +10,8 @@
 
 	check_flags = AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
+	ttrpg_sources = list(/datum/source_book/freak_legion) // Everything here is from Freak Legion
+
 	// Snowflake toggle behavior
 	var/deployed = FALSE
 

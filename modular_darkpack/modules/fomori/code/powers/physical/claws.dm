@@ -18,6 +18,8 @@
 	rank = 1
 	fomor_part = "none" // So we get caught by code that checks if we have a fomor_part
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 31)
+
 	var/list/overlay_list = list()
 	var/r_arm_overlay = /datum/bodypart_overlay/simple/fomor_claws
 	var/l_arm_overlay = /datum/bodypart_overlay/simple/fomor_claws/l_arm

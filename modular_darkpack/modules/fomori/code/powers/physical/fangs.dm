@@ -12,6 +12,8 @@
 	button_icon_state = "fangs"
 	rank = 1
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 31)
+
 	fomor_part = /datum/bodypart_overlay/simple/fomor_fangs
 
 /datum/action/cooldown/power/fomori_power/fangs/Activate(atom/target)

@@ -54,6 +54,8 @@
 	button_icon_state = "horns"
 	rank = 1
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 31)
+
 	fomor_part = /datum/bodypart_overlay/simple/fomor_horns
 
 	var/datum/action/cooldown/mob_cooldown/charge/basic_charge/fomor_horns/linked_charge

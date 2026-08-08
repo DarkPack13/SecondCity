@@ -29,6 +29,8 @@
 
 	abstract_type = /obj/item/melee/body_barbs
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 30)
+
 /obj/item/melee/body_barbs/Initialize(mapload,silent) // Largely copied from changeling armblade
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)

@@ -9,6 +9,8 @@
 	button_icon_state = "ectoplasmic_extrusion"
 	rank = 1
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 32)
+
 //	weapon_type = /obj/item/melee/ectoplasmic_extrusion
 	sheathe_text = "Your ectoplasmic tendrils retract into your body."
 

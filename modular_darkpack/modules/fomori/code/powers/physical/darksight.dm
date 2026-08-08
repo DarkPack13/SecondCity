@@ -7,6 +7,8 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 SECONDS // So we don't click too fast
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 32)
+
 	var/activated = FALSE
 
 /datum/action/cooldown/power/fomori_power/darksight/Activate(atom/target)

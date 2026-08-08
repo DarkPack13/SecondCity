@@ -11,6 +11,8 @@
 
 	power_type = /datum/action/cooldown/power/fomori_power
 
+	ttrpg_sources = list(/datum/source_book/freak_legion = 1)
+
 	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(worms_cd)
@@ -51,10 +53,10 @@
 	// MENTAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/corrupted_visions, 1)
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/deception, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_blast, 1)
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
 
