@@ -849,7 +849,7 @@
 	var/target_held_item = target.get_active_held_item()
 	var/append_message = weapon ? " with [weapon]" : ""
 
-	//DARKPACK EDIT ADD - DISARM ROLLING
+	// DARKPACK EDIT ADD START - DISARM ROLLING
 	if(target_held_item)
 		var/disarm_difficulty = target.st_get_stat(STAT_STRENGTH)
 		var/disarm_roll = SSroll.storyteller_roll_datum(src, target, /datum/storyteller_roll/attacker_disarm)
@@ -859,7 +859,7 @@
 			target.visible_message(span_danger("[target.name] drops \the [target_held_item]!"),
 				span_warning("You have the \the [target_held_item] yanked from your hand!"), null, COMBAT_MESSAGE_RANGE)
 
-	//DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	// If it's in our typecache, they're staggered and it exists, disarm. If they're knocked down, disarm too.
 	if(target_held_item && target.get_timed_status_effect_duration(/datum/status_effect/staggered) && is_type_in_typecache(target_held_item, GLOB.shove_disarming_types) || target_held_item && target.body_position == LYING_DOWN)
