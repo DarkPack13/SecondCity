@@ -58126,11 +58126,6 @@
 /obj/machinery/sprinkler/area_managed,
 /turf/open/floor/iron/grimy,
 /area/vtm/interior/millennium_tower/f4)
-"qvX" = (
-/obj/machinery/light/directional/north,
-/mob/living/carbon/human/npc/endronlabsecurity,
-/turf/open/floor/iron/small,
-/area/vtm/interior/endron_facility/restricted)
 "qvZ" = (
 /obj/structure/rack/clothing/rand{
 	dir = 8
@@ -62037,9 +62032,6 @@
 /area/vtm/interior/hotel)
 "rwF" = (
 /obj/machinery/light/directional/east,
-/mob/living/carbon/human/npc/endronlabsecurity{
-	dir = 8
-	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
 "rwG" = (
@@ -75959,9 +75951,6 @@
 /area/vtm/interior/tzimisce_manor)
 "vwu" = (
 /obj/machinery/light/directional/west,
-/mob/living/carbon/human/npc/endronlabsecurity{
-	dir = 4
-	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
 "vwv" = (
@@ -145097,7 +145086,7 @@ vWh
 dQN
 dQN
 dQN
-glF
+hBh
 hBh
 hBh
 dQN
@@ -145605,7 +145594,7 @@ kfi
 kfi
 cZp
 jxS
-qvX
+nRW
 uCL
 qnq
 ohr
