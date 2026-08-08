@@ -7437,7 +7437,7 @@
 "cel" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway6";
+	c_tag = "Endron Hallway 6";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -9838,7 +9838,7 @@
 "cMN" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway7";
+	c_tag = "Endron Hallway 7";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -12449,7 +12449,7 @@
 "dzU" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison1";
+	c_tag = "Endron Prison 1";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -12677,7 +12677,7 @@
 "dEd" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway2";
+	c_tag = "Endron Hallway 2";
 	pixel_x = 12;
 	pixel_y = 24
 	},
@@ -14645,7 +14645,7 @@
 "eiE" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway1";
+	c_tag = "Endron Hallway 1";
 	pixel_x = 12;
 	pixel_y = 24
 	},
@@ -17129,7 +17129,7 @@
 "eUi" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronCanteen";
+	c_tag = "Endron Canteen";
 	pixel_x = 11;
 	pixel_y = 23
 	},
@@ -18028,7 +18028,7 @@
 	},
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab4";
+	c_tag = "Endron Lab 4";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -22512,12 +22512,14 @@
 /obj/machinery/button/door{
 	pixel_y = 5;
 	id = "containment1";
-	pixel_x = -7
+	pixel_x = -7;
+	name = "window shutters"
 	},
 /obj/machinery/button/door{
 	pixel_y = 5;
 	id = "containment1Door";
-	pixel_x = 3
+	pixel_x = 3;
+	name = "door shutters"
 	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
@@ -24507,7 +24509,7 @@
 "gWJ" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronOffice";
+	c_tag = "Endron Office";
 	pixel_x = 10;
 	pixel_y = 24
 	},
@@ -24819,7 +24821,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison4";
+	c_tag = "Endron Prison 4";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -29478,7 +29480,8 @@
 /area/vtm/interior/shop)
 "iwu" = (
 /obj/machinery/camera/directional/east{
-	c_tag = "EndronLab2"
+	c_tag = "Endron Lab 2";
+	network = list("Endron")
 	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
@@ -31668,7 +31671,7 @@
 /obj/machinery/camera/directional/east{
 	pixel_x = -17;
 	pixel_y = -7;
-	c_tag = EndronParking2;
+	c_tag = "Endron Parking 2";
 	network = list("Endron")
 	},
 /turf/open/floor/plating/asphalt,
@@ -32833,7 +32836,7 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab1";
+	c_tag = "Endron Lab 1";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -34236,7 +34239,7 @@
 	},
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronProcessingPlant1";
+	c_tag = "Endron Processing Plant1";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -35848,7 +35851,7 @@
 "kmz" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab7";
+	c_tag = "Endron Lab 7";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -37835,7 +37838,7 @@
 /obj/machinery/camera/directional/west{
 	pixel_x = 19;
 	pixel_y = -7;
-	c_tag = EndronParking3;
+	c_tag = "Endron Parking 3";
 	network = list("Endron")
 	},
 /turf/open/floor/plating/asphalt,
@@ -38470,7 +38473,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison7";
+	c_tag = "Endron Prison 7";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -41670,7 +41673,7 @@
 /obj/effect/decal/rugs,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronStorage";
+	c_tag = "Endron Storage";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -41939,7 +41942,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison6";
+	c_tag = "Endron Prison 6";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -42638,7 +42641,7 @@
 /obj/structure/table,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronControlRoom";
+	c_tag = "Endron Control Room";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -49076,7 +49079,7 @@
 	},
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab6";
+	c_tag = "Endron Lab 6";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -57800,7 +57803,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison3";
+	c_tag = "Endron Prison 3";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -59806,7 +59809,7 @@
 /obj/structure/barrels,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronProcessingPlant2";
+	c_tag = "Endron Processing Plant2";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -60074,7 +60077,7 @@
 "qVV" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway5";
+	c_tag = "Endron Hallway 5";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -61401,7 +61404,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison2";
+	c_tag = "Endron Prison 2";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -63503,13 +63506,15 @@
 /obj/machinery/button/door{
 	pixel_y = 5;
 	id = "containment2";
-	pixel_x = 8
+	pixel_x = 8;
+	name = "window shutters"
 	},
 /obj/effect/decal/rugs,
 /obj/machinery/button/door{
 	pixel_y = 5;
 	id = "containment2Door";
-	pixel_x = -2
+	pixel_x = -2;
+	name = "door shutters"
 	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
@@ -66272,7 +66277,7 @@
 "sGo" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab3";
+	c_tag = "Endron Lab 3";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -68420,7 +68425,7 @@
 "tpd" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronSecurityOffice";
+	c_tag = "Endron Security Office";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -70028,7 +70033,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLab5";
+	c_tag = "Endron Lab 5";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -71541,7 +71546,7 @@
 /obj/structure/bed,
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronPrison5";
+	c_tag = "Endron Prison 5";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -79757,7 +79762,7 @@
 	},
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = EndronParking1;
+	c_tag = "Endron Parking 1";
 	pixel_x = 11;
 	pixel_y = 24
 	},
@@ -79950,7 +79955,7 @@
 "wFD" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronHallway4";
+	c_tag = "Endron Hallway 4";
 	pixel_x = 12;
 	pixel_y = 24
 	},
@@ -84175,7 +84180,7 @@
 "xPa" = (
 /obj/machinery/camera/directional/north{
 	network = list("Endron");
-	c_tag = "EndronLobby";
+	c_tag = "Endron Lobby";
 	pixel_x = 11;
 	pixel_y = 24
 	},
