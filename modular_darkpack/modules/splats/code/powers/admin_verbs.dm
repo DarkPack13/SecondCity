@@ -121,11 +121,11 @@ ADMIN_VERB(cure_breach, R_FUN, "Cure Masquerade Breach", ADMIN_VERB_NO_DESCRIPTI
 	var/atom/chosen_breach_to_restore = tgui_input_list(user, "Cure Masquerade Breach", "Choose a breach source to cure", breaches)
 	if(!chosen_breach_to_restore)
 		return
-	chosen_breach_to_restore.observe_masquerade_reinforce(breached_player)
+	SEND_SIGNAL(chosen_breach_to_restore, COMSIG_MASQUERADE_REINFORCE, breached_player)
 
 ADMIN_VERB(cure_all_breaches, R_FUN, "Cure All Masquerade Breaches", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/breached_player)
 	for(var/list/masquerade_breach in SSmasquerade.masquerade_breachers)
 		if(masquerade_breach[1] != breached_player)
 			continue
 		var/atom/masquerade_breach_source = masquerade_breach[2]
-		masquerade_breach_source.observe_masquerade_reinforce(breached_player)
+		SEND_SIGNAL(masquerade_breach_source, COMSIG_MASQUERADE_REINFORCE, breached_player)
