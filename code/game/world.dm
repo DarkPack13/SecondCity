@@ -432,8 +432,8 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 		if(!splat_name && length(splats))
 			var/splat_id = pick(splats)
 			var/splats_type = GLOB.splat_list[splat_id]
-			var/datum/splat/splats = GLOB.splat_prototypes[splats_type]
-			splat_name = splats?.name
+			var/datum/splat/splat = GLOB.splat_prototypes[splats_type]
+			splat_name = splat?.name
 		if(splat_name)
 			features += "try [splat_name]"
 		// DARKPACK EDIT ADD END
