@@ -137,7 +137,7 @@
 /datum/storage/proc/generate_bound_underlay(grid_width = world.icon_size, grid_height = world.icon_size)
 	var/mutable_appearance/final_appearance = mutable_appearance()
 	final_appearance.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	var/icon/final_icon = icon('icons/hud/storage.dmi', "blank")
+	var/icon/final_icon = icon('modular_darkpack/master_files/icons/hud/storage.dmi', "blank")
 	final_icon.Scale(grid_width, grid_height)
 
 	var/static/list/scale_both = list("block_under")
@@ -149,30 +149,30 @@
 
 	var/icon/scaled_icon
 	for(var/scaled_both in scale_both)
-		scaled_icon = icon('icons/hud/storage.dmi', scaled_both)
+		scaled_icon = icon('modular_darkpack/master_files/icons/hud/storage.dmi', scaled_both)
 		scaled_icon.Scale(grid_width, grid_height)
 		final_icon.Blend(scaled_icon, ICON_OVERLAY)
 
 	var/multiplier = 0
 	for(var/scaled_x in scale_x_states)
 		multiplier = !multiplier
-		scaled_icon = icon('icons/hud/storage.dmi', scaled_x)
+		scaled_icon = icon('modular_darkpack/master_files/icons/hud/storage.dmi', scaled_x)
 		scaled_icon.Scale(grid_width, world.icon_size)
 		final_icon.Blend(scaled_icon, ICON_OVERLAY, 1, 1 + (height_offset * multiplier))
 
 	multiplier = 0
 	for(var/scaled_y in scale_y_states)
 		multiplier = !multiplier
-		scaled_icon = icon('icons/hud/storage.dmi', scaled_y)
+		scaled_icon = icon('modular_darkpack/master_files/icons/hud/storage.dmi', scaled_y)
 		scaled_icon.Scale(world.icon_size, grid_height)
 		final_icon.Blend(scaled_icon, ICON_OVERLAY, 1 + (width_offset * multiplier), 1)
 
 	var/corner_pos_x = 1 + (grid_width - world.icon_size)
 	var/corner_pos_y = 1 + (grid_height - world.icon_size)
-	final_icon.Blend(icon('icons/hud/storage.dmi', "corner_left_down"), ICON_OVERLAY, 1, 1)
-	final_icon.Blend(icon('icons/hud/storage.dmi', "corner_right_down"), ICON_OVERLAY, corner_pos_x, 1)
-	final_icon.Blend(icon('icons/hud/storage.dmi', "corner_left_up"), ICON_OVERLAY, 1, corner_pos_y)
-	final_icon.Blend(icon('icons/hud/storage.dmi', "corner_right_up"), ICON_OVERLAY, corner_pos_x, corner_pos_y)
+	final_icon.Blend(icon('modular_darkpack/master_files/icons/hud/storage.dmi', "corner_left_down"), ICON_OVERLAY, 1, 1)
+	final_icon.Blend(icon('modular_darkpack/master_files/icons/hud/storage.dmi', "corner_right_down"), ICON_OVERLAY, corner_pos_x, 1)
+	final_icon.Blend(icon('modular_darkpack/master_files/icons/hud/storage.dmi', "corner_left_up"), ICON_OVERLAY, 1, corner_pos_y)
+	final_icon.Blend(icon('modular_darkpack/master_files/icons/hud/storage.dmi', "corner_right_up"), ICON_OVERLAY, corner_pos_x, corner_pos_y)
 
 	final_appearance.icon = final_icon
 	final_appearance.transform = final_appearance.transform.Translate(-width_offset / 2, -height_offset / 2)

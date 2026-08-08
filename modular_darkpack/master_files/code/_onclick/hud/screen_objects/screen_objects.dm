@@ -26,7 +26,7 @@
 	ui.update_hover(usr, params)
 
 /atom/movable/screen/storage_hover
-	icon = 'icons/hud/storage.dmi'
+	icon = 'modular_darkpack/master_files/icons/hud/storage.dmi'
 	icon_state = "white"
 	plane = ABOVE_HUD_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
