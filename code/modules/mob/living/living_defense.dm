@@ -852,7 +852,7 @@
 	// DARKPACK EDIT ADD START - DISARM ROLLING
 	if(target_held_item)
 		var/disarm_difficulty = target.st_get_stat(STAT_STRENGTH)
-		var/disarm_roll = SSroll.storyteller_roll_datum(src, target, /datum/storyteller_roll/attacker_disarm)
+		var/disarm_roll = SSroll.storyteller_roll_datum(src, target, /datum/storyteller_roll/damage/attacker_disarm)
 		if(disarm_roll >= disarm_difficulty)
 			target.dropItemToGround(target_held_item)
 			append_message = "causing [target.p_them()] to drop [target_held_item]"

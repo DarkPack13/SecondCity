@@ -79,6 +79,10 @@
 		. -= 1
 */
 
+/datum/storyteller_roll/damage/attacker_disarm
+	numerical = TRUE
+	applicable_stats = list(STAT_STRENGTH)
+
 /datum/storyteller_roll/shooting
 	bumper_text = "shooting"
 	applicable_stats = list(STAT_DEXTERITY, STAT_FIREARMS)
@@ -104,10 +108,6 @@
 /datum/storyteller_roll/tackle_defender
 	numerical = TRUE
 	applicable_stats = list(STAT_DEXTERITY, STAT_ATHLETICS)
-
-/datum/storyteller_roll/attacker_disarm
-	numerical = TRUE
-	applicable_stats = list(STAT_STRENGTH)
 
 // Physical Feats
 /datum/storyteller_roll/lockpick
