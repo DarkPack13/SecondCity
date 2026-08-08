@@ -7321,11 +7321,6 @@
 /obj/structure/filingcabinet/security,
 /turf/open/floor/wood/ornate,
 /area/vtm/interior/banu/haven)
-"ccU" = (
-/obj/structure/lattice/pentex,
-/obj/structure/lattice/pentex,
-/turf/open/floor/city/plating_mono,
-/area/vtm/interior/wyrm_corrupted)
 "ccX" = (
 /obj/structure/railing{
 	dir = 1;
@@ -128130,7 +128125,7 @@ cIX
 igS
 igS
 igS
-ccU
+igS
 wwu
 lUD
 lUD
