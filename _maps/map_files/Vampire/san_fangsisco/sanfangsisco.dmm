@@ -12179,7 +12179,6 @@
 /area/vtm/interior/laundromat)
 "dwb" = (
 /obj/structure/rack,
-/obj/machinery/light/directional/east,
 /obj/item/clothing/suit/hazardvest,
 /obj/machinery/light/directional/south,
 /turf/open/floor/city/plating,
@@ -29253,6 +29252,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/effect/decal/rugs,
+/obj/machinery/light/directional/east,
 /turf/open/floor/city/plating,
 /area/vtm/interior/endron_facility/restricted)
 "itp" = (
@@ -31659,15 +31659,6 @@
 	},
 /turf/open/floor/bronze,
 /area/vtm/interior/giovanni)
-"jds" = (
-/obj/machinery/camera/directional/east{
-	pixel_x = -17;
-	pixel_y = -7;
-	c_tag = "Endron Parking 2";
-	network = list("Endron")
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/interior/endron_facility)
 "jdw" = (
 /obj/structure/jesuscross,
 /turf/open/floor/city/plating_mono,
@@ -37826,15 +37817,6 @@
 	},
 /turf/closed/wall/vampwall/rock,
 /area/vtm/outside/forest)
-"kQB" = (
-/obj/machinery/camera/directional/west{
-	pixel_x = 19;
-	pixel_y = -7;
-	c_tag = "Endron Parking 3";
-	network = list("Endron")
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/interior/endron_facility)
 "kQC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/gas_can/full,
@@ -50226,6 +50208,13 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm)
+"ooQ" = (
+/obj/machinery/camera/directional/south{
+	network = list("Endron");
+	c_tag = "Endron Parking 2"
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior/endron_facility)
 "ooV" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -135045,7 +135034,7 @@ biz
 kdS
 biz
 nkB
-kQB
+biz
 biz
 kdS
 biz
@@ -136850,7 +136839,7 @@ biz
 biz
 asb
 iYy
-biz
+ooQ
 tzz
 mvR
 fUo
@@ -140180,7 +140169,7 @@ biz
 kpV
 biz
 biz
-jds
+biz
 biz
 kpV
 biz
