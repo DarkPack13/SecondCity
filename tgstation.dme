@@ -475,6 +475,7 @@
 #include "code\__DEFINES\~darkpack\spirit_defines.dm"
 #include "code\__DEFINES\~darkpack\splats.dm"
 #include "code\__DEFINES\~darkpack\status_effects_debuffs.dm"
+#include "code\__DEFINES\~darkpack\storage.dm"
 #include "code\__DEFINES\~darkpack\storyteller_dice.dm"
 #include "code\__DEFINES\~darkpack\storyteller_stats.dm"
 #include "code\__DEFINES\~darkpack\subsystems.dm"

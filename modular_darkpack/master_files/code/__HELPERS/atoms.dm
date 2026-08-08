@@ -1,4 +1,4 @@
-/proc/generate_items_inside(list/items_list, atom/where_to)
+/generate_items_inside(list/items_list, atom/where_to)
 	for(var/each_item in items_list)
 		for(var/i in 1 to items_list[each_item])
 			if(!where_to?.atom_storage)
