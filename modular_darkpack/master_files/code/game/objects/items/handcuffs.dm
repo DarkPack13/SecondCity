@@ -25,3 +25,7 @@
 
 /obj/item/restraints/legcuffs/bola
 	cuff_break_strength_needed = null // PLEASE no
+
+/obj/item/restraints
+	grid_width = 1 GRID_BOXES
+	grid_height = 1 GRID_BOXES

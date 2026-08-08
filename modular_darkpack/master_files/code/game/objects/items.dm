@@ -12,3 +12,9 @@
 	var/datum/st_stat/st_attack_attribute = STAT_MELEE
 	var/attack_difficulty = 6
 	var/datum/st_stat/st_damage_stat = STAT_STRENGTH
+
+	// ~Grid INVENTORY VARIABLES
+	/// Width we occupy on the hud - Keep null to generate based on w_class
+	var/grid_width
+	/// Height we occupy on the hud - Keep null to generate based on w_class
+	var/grid_height

@@ -19,6 +19,7 @@
 	var/datum/hud/owner_hud = user.hud_used
 	closer = new(null, owner_hud, parent_storage)
 	cells = new(null, owner_hud, parent_storage)
+	cells.owner_interface = src // DARKPACK EDIT ADD - Gridventory
 	corner_top_left = new(null, owner_hud, parent_storage)
 	corner_top_right = new(null, owner_hud, parent_storage)
 	corner_bottom_left = new(null, owner_hud, parent_storage)
@@ -27,6 +28,12 @@
 	rowjoin_right = new(null, owner_hud, parent_storage)
 	for (var/atom/movable/screen/ui_elem as anything in list_ui_elements(initializing = TRUE))
 		ui_elem.icon = ui_style
+	// DARKPACK EDIT ADD - Gridventory
+	if(parent_storage.grid)
+		hovering = new(null, owner_hud)
+	for (var/atom/movable/screen/ui_elem as anything in list_ui_elements(initializing = TRUE))
+		ui_elem.icon = ui_style
+	// DARKPACK EDIT END - Gridventory
 
 /// Returns all UI elements under this theme
 /datum/storage_interface/proc/list_ui_elements(initializing = FALSE)
@@ -41,6 +48,7 @@
 	QDEL_NULL(corner_bottom_right)
 	QDEL_NULL(rowjoin_left)
 	QDEL_NULL(rowjoin_right)
+	QDEL_NULL(hovering) // DARKPACK EDIT ADD - Gridventory
 	parent_storage = null
 	return ..()
 
@@ -96,6 +104,11 @@
 	atom/real_location,
 	list/datum/numbered_display/numbered_contents,
 )
+	// DARKPACK EDIT ADD - Gridventory
+	if(parent_storage.grid)
+		add_items_grid(screen_start_x, screen_pixel_x, screen_start_y, screen_pixel_y, real_location)
+		return
+	// DARKPACK EDIT END - Gridventory
 
 	var/current_x = screen_start_x
 	var/current_y = screen_start_y

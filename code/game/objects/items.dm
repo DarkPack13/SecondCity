@@ -252,6 +252,13 @@
 	if(species_exception)
 		species_exception = string_list(species_exception)
 
+	// DARKPACK EDIT ADD - Gridventory
+	if(grid_width <= 0)
+		grid_width = 1 GRID_BOXES
+	if(grid_height <= 0)
+		grid_height = 1 GRID_BOXES
+	// DARKPACK EDIT END - Gridventory
+
 	if(sharpness && force > 5) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, speed = 8 SECONDS * toolspeed)
 
