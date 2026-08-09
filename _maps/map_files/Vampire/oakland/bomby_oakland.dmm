@@ -5069,6 +5069,7 @@
 /area/vtm/interior)
 "boi" = (
 /obj/machinery/light/prince/directional/west,
+/obj/effect/landmark/start/darkpack/hecata/nonni,
 /turf/open/floor/wood/herring,
 /area/vtm/interior/giovanni)
 "bok" = (
@@ -28566,6 +28567,10 @@
 	},
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/westfield_mall/interior)
+"gWp" = (
+/obj/effect/landmark/start/darkpack/hecata/nonni,
+/turf/open/floor/wood/herring,
+/area/vtm/interior/giovanni)
 "gWv" = (
 /obj/structure/platform/lowwall/rich/old/window,
 /obj/effect/decal/wallpaper/red/low,
@@ -53254,6 +53259,7 @@
 /area/vtm/interior/anarch)
 "mTS" = (
 /obj/machinery/light/prince/directional/east,
+/obj/effect/landmark/start/darkpack/hecata/nonni,
 /turf/open/floor/wood/herring,
 /area/vtm/interior/giovanni)
 "mTX" = (
@@ -154237,7 +154243,7 @@ ijU
 jcn
 ydi
 baO
-nIQ
+gWp
 boi
 nIQ
 vhO
