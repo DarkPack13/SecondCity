@@ -284,8 +284,8 @@
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 
@@ -322,8 +322,8 @@
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 

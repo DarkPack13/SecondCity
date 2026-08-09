@@ -53,14 +53,17 @@
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
+
+/obj/item/bodypart/leg/left/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 /obj/item/bodypart/leg/right/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
 
+/obj/item/bodypart/leg/right/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 // Specificly to restrict use of tools... because that was moved to the brain..
 /obj/item/organ/brain/fera
