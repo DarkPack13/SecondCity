@@ -1,4 +1,0 @@
-author: "lpeapnni"
-delete-after: True
-changes:
-  - bugfix: "Fixes targets list never being properly initialized for Phantom Speaker"

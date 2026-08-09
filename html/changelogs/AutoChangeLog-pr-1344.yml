@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "You can now see your phone number by examining your phone."
-  - code_imp: "Cleaned up a lot of phone shitcode."
