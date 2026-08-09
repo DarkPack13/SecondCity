@@ -15,10 +15,11 @@
 	pixel_w = -16
 	fish_id = "darkpack_shark"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/territorial)
 
 	average_size = 135
 	average_weight = 180
-	stable_population = 4
+	stable_population = 6
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#33302e"
@@ -35,9 +36,10 @@
 	icon_state = "fish"
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+	fish_traits = list(/datum/fish_trait/predator)
 	num_fillets = 3
 
-	stable_population = 3
+	stable_population = 4
 	average_size = 225
 	average_weight = 600
 
@@ -55,6 +57,7 @@
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
+	fish_traits = list(/datum/fish_trait/predator)
 
 	stable_population = 3
 	average_size = 30
@@ -75,6 +78,7 @@
 	fillet_type = /obj/item/food/meat/slab/rawcrab
 	fish_id = "darkpack_crab"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+	fish_traits = list(/datum/fish_trait/amphibious)
 
 	stable_population = 8
 	average_size = 160
@@ -136,6 +140,7 @@
 	fish_id = "darkpack_crappie"
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
 	w_class = WEIGHT_CLASS_TINY
+	fish_traits = list(/datum/fish_trait/predator)
 
 	stable_population = 16
 	average_size = 15
@@ -157,6 +162,7 @@
 	icon_state = "trout"
 	fish_id = "darkpack_trout"
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
+	fish_traits = list(/datum/fish_trait/predator)
 
 	stable_population = 8
 	average_size = 30
@@ -177,6 +183,7 @@
 	icon_state = "eagle ray"
 	fish_id = "darkpack_eagle_ray"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
+	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs)
 
 	stable_population = 2
 	average_size = 150
