@@ -45,6 +45,7 @@
 	)
 
 /datum/fish_source/sewer
+	catalog_description = "Sewage"
 	fish_table = list(
 		FISHING_DUD = 5,
 		/obj/effect/spawner/random/trash/garbage = 30,
@@ -57,8 +58,10 @@
 		/obj/item/coin/iron = 2,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
+	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
 
 /datum/fish_source/blood
+	catalog_description = "Blood Pool"
 	fish_table = list(
 		FISHING_DUD = 10,
 		/obj/item/food/darkpack/leech = 20,
@@ -68,3 +71,4 @@
 		/mob/living/basic/szlachta = 1,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
+	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30

@@ -242,7 +242,6 @@
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	icon_state = "horn snail"
-	possible_colors = list(COLOR_WHITE = 1, COLOR_BROWN = 1)
 
 /*
 /obj/item/fishing_rod
