@@ -42,9 +42,9 @@
 	break_if_moved = FALSE
 	allow_break_on_init = FALSE
 	plane = GAME_PLANE
-	density = TRUE
 	pixel_w = -32
 	anchored = TRUE
+	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/machinery/light/floor/lamppost/Initialize(mapload)
