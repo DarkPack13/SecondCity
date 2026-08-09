@@ -49,6 +49,7 @@
 		FISHING_DUD = 5,
 		/obj/effect/spawner/random/trash/garbage = 30,
 		/obj/item/food/darkpack/leech = 10,
+		/mob/living/basic/mouse/vampire = 5,
 		/obj/item/fish/darkpack/stickleback = 5,
 		/obj/item/fish/darkpack/crappie = 4,
 		/obj/item/fish/darkpack/trout = 3,
@@ -63,6 +64,7 @@
 		/obj/item/food/darkpack/leech = 20,
 		/obj/item/stack/sheet/bone = 10,
 		/obj/item/clothing/head/vampire/skull = 5,
-		/obj/item/storage/wallet/darkpack = 1,
+		/obj/item/storage/wallet/darkpack = 2,
+		/mob/living/basic/szlachta = 1,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
