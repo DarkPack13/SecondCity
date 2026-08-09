@@ -59,6 +59,7 @@
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
+	associated_safe_turfs = list(/turf/open/water/vamp_sewer, /turf/open/water/vamp_sewer/border)
 
 /datum/fish_source/blood
 	catalog_description = "Blood Pool"
@@ -72,3 +73,4 @@
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30
+	associated_safe_turfs = list(/turf/open/water/bloodwave)
