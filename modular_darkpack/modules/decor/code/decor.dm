@@ -33,69 +33,49 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
-/obj/structure/lamppost
+/obj/machinery/light/floor/lamppost
 	name = "lamppost"
 	desc = "Gives some light to the streets."
 	icon = 'modular_darkpack/modules/decor/icons/lamppost.dmi'
-	base_icon_state = "base"
-	layer = SPACEVINE_LAYER // Cant even with flav bro - Fallcon
+	icon_state = "base"
+	bulb_colour = "#ffde9b"
+	break_if_moved = FALSE
+	allow_break_on_init = FALSE
+	plane = GAME_PLANE
+	density = TRUE
 	pixel_w = -32
 	anchored = TRUE
-	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/number_of_lamps
-	var/obj/machinery/light/floor/lamppost/my_light
 
-/obj/structure/lamppost/Initialize(mapload)
+/obj/machinery/light/floor/lamppost/Initialize(mapload)
 	. = ..()
 	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
-	my_light = new /obj/machinery/light/floor/lamppost(loc)
+	update_appearance()
 
-/obj/machinery/light/floor/lamppost
-	name = "lamppost light"
-	desc = "A lamp fixture mounted on a lamppost."
-	bulb_colour = "#ffde9b"
-	break_if_moved = FALSE
+// note - change this when we get more robust lamppost sprites - for now we only have one for each lamppost type
+/obj/machinery/light/floor/lamppost/update_icon_state()
+	.=..()
+	icon_state = initial(icon_state)
 
-/obj/structure/lamppost/Destroy(force)
-	QDEL_NULL(my_light)
-	. = ..()
-
-/obj/effect/decal/lamplight
-	alpha = 0
-
-// DARKPACK TODO - Fix lol.
-/obj/effect/decal/lamplight/NeverShouldHaveComeHere(turf/here_turf)
-	return FALSE
-
-/obj/effect/decal/lamplight/Initialize(mapload)
-	. = ..()
-	set_light(4, 3, "#ffde9b")
-
-/obj/structure/lamppost/one
+/obj/machinery/light/floor/lamppost/one
 	icon_state = "one"
-	number_of_lamps = 1
 
-/obj/structure/lamppost/two
+/obj/machinery/light/floor/lamppost/two
 	icon_state = "two"
-	number_of_lamps = 2
 
-/obj/structure/lamppost/three
+/obj/machinery/light/floor/lamppost/three
 	icon_state = "three"
-	number_of_lamps = 3
 
-/obj/structure/lamppost/four
+/obj/machinery/light/floor/lamppost/four
 	icon_state = "four"
-	number_of_lamps = 4
 
-/obj/structure/lamppost/sidewalk
+/obj/machinery/light/floor/lamppost/sidewalk
 	icon_state = "civ"
-	number_of_lamps = 5
 
-/obj/structure/lamppost/sidewalk/chinese
+/obj/machinery/light/floor/lamppost/sidewalk/chinese
 	icon_state = "chinese"
 
 /obj/structure/trafficlight
