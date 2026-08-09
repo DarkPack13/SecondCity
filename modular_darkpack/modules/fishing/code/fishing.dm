@@ -22,7 +22,7 @@
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#33302e"
-	beauty = FISH_BEAUTY_GOOD
+	beauty = FISH_BEAUTY_GREAT
 	sprite_width = 5
 	sprite_height = 3
 
@@ -61,6 +61,7 @@
 	average_weight = 160
 
 	dedicated_in_aquarium_icon_state = "catfish_small"
+	beauty = FISH_BEAUTY_GOOD
 	sprite_width = 4
 	sprite_height = 2
 
@@ -100,7 +101,7 @@
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#9c8527"
-	beauty = FISH_BEAUTY_BAD
+	beauty = FISH_BEAUTY_NULL
 	sprite_height = 1
 	sprite_width = 2
 
@@ -182,7 +183,7 @@
 	average_weight = 1100
 
 	dedicated_in_aquarium_icon_state = "stingray_small"
-	beauty = FISH_BEAUTY_GREAT
+	beauty = FISH_BEAUTY_EXCELLENT
 	sprite_height = 7
 	sprite_width = 9
 
