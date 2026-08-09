@@ -5,7 +5,7 @@
 		/obj/item/fish/darkpack/anchovy = 15,
 		/obj/item/fish/darkpack/tuna = 10,
 		/obj/item/fish/darkpack/crab = 10,
-		/obj/item/fish/darkpack/horn_snail = 10,
+		/obj/item/food/darkpack/horn_snail = 10,
 		/obj/item/fish/darkpack/trout = 10,
 		/obj/item/fish/darkpack/shark = 5,
 		/obj/item/fish/darkpack/eagle_ray = 3,
@@ -28,7 +28,7 @@
 		/obj/item/fish/darkpack/crappie = 15,
 		/obj/item/fish/darkpack/trout = 10,
 		/obj/item/fish/darkpack/catfish = 5,
-		/obj/item/fish/darkpack/leech = 1,
+		/obj/item/food/darkpack/leech = 1,
 		/obj/effect/spawner/random/trash/garbage = 1,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
@@ -39,7 +39,7 @@
 	fish_table = list(
 		FISHING_DUD = 15,
 		/obj/item/fish/darkpack/crab = 10,
-		/obj/item/fish/darkpack/horn_snail = 5,
+		/obj/item/food/darkpack/horn_snail = 5,
 		/obj/effect/spawner/random/trash/garbage = 5,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
@@ -48,7 +48,7 @@
 	fish_table = list(
 		FISHING_DUD = 5,
 		/obj/effect/spawner/random/trash/garbage = 30,
-		/obj/item/fish/darkpack/leech = 10,
+		/obj/item/food/darkpack/leech = 10,
 		/obj/item/fish/darkpack/stickleback = 5,
 		/obj/item/fish/darkpack/crappie = 4,
 		/obj/item/fish/darkpack/trout = 3,
@@ -59,8 +59,8 @@
 
 /datum/fish_source/blood
 	fish_table = list(
-		FISHING_DUD = 15,
-		/obj/item/fish/darkpack/leech = 20,
+		FISHING_DUD = 10,
+		/obj/item/food/darkpack/leech = 20,
 		/obj/item/stack/sheet/bone = 10,
 		/obj/item/clothing/head/vampire/skull = 5,
 		/obj/item/storage/wallet/darkpack = 1,

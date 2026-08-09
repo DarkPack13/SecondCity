@@ -191,11 +191,12 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 100, "fish", FALSE)
 
-/obj/item/fish/darkpack/leech
+/obj/item/food/darkpack/leech
 	name = "leech"
+	desc = "A vile creature known to feast on the blood of others."
 	icon_state = "leech"
-	fish_id = "darkpack_leech"
-	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	w_class = WEIGHT_CLASS_TINY
 
 	bite_consumption = 1
@@ -203,16 +204,6 @@
 	foodtypes = GROSS | MEAT | RAW
 	eat_time = 5
 	food_reagents = list(/datum/reagent/consumable/nutriment/leech = 1)
-
-	stable_population = 8
-	average_size = 5
-	average_weight = 10
-
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#1f2921"
-	beauty = FISH_BEAUTY_UGLY
-	sprite_height = 1
-	sprite_width = 2
 
 /obj/item/fish/darkpack/leech/Initialize(mapload)
 	. = ..()
@@ -230,23 +221,18 @@
 			M.adjust_blood_pool(0.25)
 	return ..()
 
-/obj/item/fish/darkpack/horn_snail
+/obj/item/food/darkpack/horn_snail
 	name = "horn snail"
+	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	icon_state = "horn snail"
-	fish_id = "darkpack_horn_snail"
-	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	trash_type = /obj/item/toy/seashell/vampire/horn_snail
 	w_class = WEIGHT_CLASS_TINY
 
-	stable_population = 5
-	average_size = 4
-	average_weight = 5
-
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#e0dabf"
-	beauty = FISH_BEAUTY_GOOD
-	sprite_height = 1
-	sprite_width = 1
+	bite_consumption = 1
+	tastes = list("snail" = 1)
+	foodtypes = MEAT | RAW
+	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 1)
 
 /obj/item/fish/darkpack/horn_snail/Initialize(mapload)
 	. = ..()
