@@ -224,10 +224,12 @@
 	fire_controled = TRUE
 
 /area/vtm/interior/salubri
-	name = "Veterinary Clinic"
-	icon_state = "old_clan_tzimisce"
-	zone_type = ZONE_ELYSIUM
+	name = "Vet Clinic"
+	icon_state = "clinic"
+	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_SAFE
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/banu
 	name = "Coffee House"
