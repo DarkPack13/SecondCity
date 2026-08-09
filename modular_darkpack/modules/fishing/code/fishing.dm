@@ -18,7 +18,7 @@
 	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/territorial)
 
 	average_size = 135
-	average_weight = 180
+	average_weight = 10000
 	stable_population = 6
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
@@ -29,7 +29,7 @@
 
 /obj/item/fish/darkpack/shark/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 60, "fish", FALSE)
+	AddComponent(/datum/component/selling, 100, "fish", FALSE)
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
@@ -40,8 +40,8 @@
 	num_fillets = 3
 
 	stable_population = 4
-	average_size = 225
-	average_weight = 600
+	average_size = 150
+	average_weight = 60000
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#33302e"
@@ -50,7 +50,7 @@
 
 /obj/item/fish/darkpack/tuna/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 100, "fish", FALSE)
+	AddComponent(/datum/component/selling, 200, "fish", FALSE)
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
@@ -60,8 +60,8 @@
 	fish_traits = list(/datum/fish_trait/predator)
 
 	stable_population = 3
-	average_size = 30
-	average_weight = 160
+	average_size = 35
+	average_weight = 1350
 
 	dedicated_in_aquarium_icon_state = "catfish_small"
 	beauty = FISH_BEAUTY_GOOD
@@ -81,8 +81,8 @@
 	fish_traits = list(/datum/fish_trait/amphibious)
 
 	stable_population = 8
-	average_size = 160
-	average_weight = 110
+	average_size = 16
+	average_weight = 900
 
 	dedicated_in_aquarium_icon_state = "crab_small"
 	sprite_height = 4
@@ -100,8 +100,8 @@
 	w_class = WEIGHT_CLASS_TINY
 
 	stable_population = 8
-	average_size = 10
-	average_weight = 30
+	average_size = 5
+	average_weight = 1
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#9c8527"
@@ -121,8 +121,8 @@
 	w_class = WEIGHT_CLASS_TINY
 
 	stable_population = 12
-	average_size = 15
-	average_weight = 50
+	average_size = 7
+	average_weight = 9
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#818493"
@@ -143,8 +143,8 @@
 	fish_traits = list(/datum/fish_trait/predator)
 
 	stable_population = 16
-	average_size = 15
-	average_weight = 50
+	average_size = 23
+	average_weight = 700
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#819390"
@@ -166,7 +166,7 @@
 
 	stable_population = 8
 	average_size = 30
-	average_weight = 250
+	average_weight = 1500
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#c7c5d2"
@@ -186,8 +186,8 @@
 	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs)
 
 	stable_population = 2
-	average_size = 150
-	average_weight = 1100
+	average_size = 200
+	average_weight = 11000
 
 	dedicated_in_aquarium_icon_state = "stingray_small"
 	beauty = FISH_BEAUTY_EXCELLENT
@@ -196,11 +196,11 @@
 
 /obj/item/fish/darkpack/eagle_ray/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 100, "fish", FALSE)
+	AddComponent(/datum/component/selling, 150, "fish", FALSE)
 
 /obj/item/food/darkpack/leech
 	name = "leech"
-	desc = "A vile creature known to feast on the blood of others."
+	desc = "A vile creature that feasts on the blood of other animals."
 	icon_state = "leech"
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
@@ -230,6 +230,7 @@
 
 /obj/item/food/darkpack/horn_snail
 	name = "horn snail"
+	desc = "Looks like something's in there!"
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
 	icon_state = "horn snail"
@@ -243,7 +244,7 @@
 
 /obj/item/fish/darkpack/horn_snail/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 15, "fish", FALSE)
+	AddComponent(/datum/component/selling, 5, "fish", FALSE)
 
 /obj/item/toy/seashell/vampire/horn_snail
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'

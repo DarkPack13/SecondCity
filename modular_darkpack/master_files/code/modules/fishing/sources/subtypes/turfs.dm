@@ -3,10 +3,10 @@
 		FISHING_DUD = 10,
 		/obj/item/fish/darkpack/stickleback = 20,
 		/obj/item/fish/darkpack/anchovy = 15,
-		/obj/item/fish/darkpack/tuna = 10,
 		/obj/item/fish/darkpack/crab = 10,
 		/obj/item/food/darkpack/horn_snail = 10,
 		/obj/item/fish/darkpack/trout = 10,
+		/obj/item/fish/darkpack/tuna = 5,
 		/obj/item/fish/darkpack/shark = 5,
 		/obj/item/fish/darkpack/eagle_ray = 3,
 		/obj/item/coin/gold = 3,
@@ -38,8 +38,8 @@
 /datum/fish_source/sand
 	fish_table = list(
 		FISHING_DUD = 15,
+		/obj/item/food/darkpack/horn_snail = 15,
 		/obj/item/fish/darkpack/crab = 10,
-		/obj/item/food/darkpack/horn_snail = 5,
 		/obj/effect/spawner/random/trash/garbage = 5,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
