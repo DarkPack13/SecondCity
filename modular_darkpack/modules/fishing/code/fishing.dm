@@ -259,7 +259,7 @@
 	foodtypes = MEAT | RAW
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/protein = 1)
 
-/obj/item/fish/darkpack/horn_snail/Initialize(mapload)
+/obj/item/food/darkpack/horn_snail/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 5, "fish", FALSE)
 
