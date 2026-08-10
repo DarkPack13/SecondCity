@@ -8,6 +8,7 @@
 
 /obj/item/fish/darkpack/shark
 	name = "leopard shark"
+	desc = "Often found in groups foraging for clams, crabs, shrimp, and worms in intertidal mudflats found along the west coast, these sharks are rarely found bigger than 2 meters."
 	icon_state = "shark"
 	icon = 'modular_darkpack/modules/fishing/icons/fish48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
@@ -33,6 +34,7 @@
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
+	desc = "The mighty tuna fuels a robust fishing economy."
 	icon_state = "fish"
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
@@ -54,6 +56,7 @@
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
+	desc = "The channel cat loves to eat snails, crabs, bugs, algae, nuts, even small birds or mammals it can get its mouth on."
 	icon_state = "catfish"
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
@@ -74,6 +77,7 @@
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
+	desc = "An economically important crab prized for its tasty innards."
 	icon_state = "crab"
 	fillet_type = /obj/item/food/meat/slab/rawcrab
 	fish_id = "darkpack_crab"
@@ -90,10 +94,11 @@
 
 /obj/item/fish/darkpack/crab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 15, "fish", FALSE)
+	AddComponent(/datum/component/selling, 65, "fish", FALSE)
 
 /obj/item/fish/darkpack/stickleback
 	name = "three-spined stickleback"
+	desc = "A hardy, tiny, prolific little fish. Often used itself for bait."
 	icon_state = "stickleback"
 	fish_id = "darkpack_stickleback"
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
@@ -115,6 +120,7 @@
 
 /obj/item/fish/darkpack/anchovy
 	name = "anchovy"
+	desc = "A filter-feeder that travels in schools, which are often netted to be sold in great quantities."
 	icon_state = "anchovy"
 	fish_id = "darkpack_anchovy"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
@@ -136,6 +142,7 @@
 
 /obj/item/fish/darkpack/crappie
 	name = "crappie"
+	desc = "Ironically well-regarded for its flavor."
 	icon_state = "crappie"
 	fish_id = "darkpack_crappie"
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
@@ -154,11 +161,12 @@
 
 /obj/item/fish/darkpack/crappie/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 10, "fish", FALSE)
+	AddComponent(/datum/component/selling, 65, "fish", FALSE)
 
 
 /obj/item/fish/darkpack/trout
 	name = "rainbow trout"
+	desc = "An anadromous fish, meaning it lives normally in the ocean but returns to freshwater to spawn."
 	icon_state = "trout"
 	fish_id = "darkpack_trout"
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
@@ -180,6 +188,7 @@
 
 /obj/item/fish/darkpack/eagle_ray
 	name = "bat ray"
+	desc = "Bottom feeders that use their wings to brush sand to expose their prey. Uses its venomous spine for defense."
 	icon_state = "eagle ray"
 	fish_id = "darkpack_eagle_ray"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
