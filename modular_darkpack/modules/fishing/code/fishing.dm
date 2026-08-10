@@ -213,7 +213,7 @@
 
 /obj/item/fish/darkpack/eagle_ray/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 300, "fish", FALSE)
+	AddComponent(/datum/component/selling, 200, "fish", FALSE)
 
 /obj/item/food/darkpack/leech
 	name = "leech"
