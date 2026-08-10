@@ -34,6 +34,7 @@
 	)
 	fish_counts = list()
 	fish_count_regen = list()
+	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach, /turf/open/water/vamp_sewer, /turf/open/water/bloodwave)
 
 /datum/fish_source/sand
 	fish_table = list(

@@ -70,7 +70,7 @@
 
 /obj/item/fish/darkpack/catfish/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 50, "fish", FALSE)
+	AddComponent(/datum/component/selling, 75, "fish", FALSE)
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
