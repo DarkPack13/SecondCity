@@ -203,4 +203,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_WEAK_WILLED "weak_willed"
 
+// Below are traits given by items/clothing being equiped or worn
+#define TRAIT_BRASSKNUCKLES "brassknuckles"
+
 // END TRAIT DEFINES
