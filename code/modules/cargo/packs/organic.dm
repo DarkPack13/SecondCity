@@ -17,6 +17,7 @@
 	crate_name = "beekeeper suits"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
+/* // DARKPACK EDIT REMOVE - Removing Monkey Cubes and Bees
 /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	name = "Beekeeping Starter Crate"
 	desc = "BEES BEES BEES. Contains three honey frames, a beekeeper suit and helmet, \
@@ -31,6 +32,7 @@
 				)
 	crate_name = "beekeeping starter crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
+*/
 
 /datum/supply_pack/organic/randomized
 	test_ignored = TRUE
