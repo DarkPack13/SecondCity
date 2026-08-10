@@ -161,6 +161,11 @@
 	name = "Robes (Blue)"
 	item_path = /obj/item/clothing/suit/hooded/robes/blue
 
+
+/// Shawls
+/datum/loadout_item/suit/shawl
+	abstract_type = /datum/loadout_item/suit/shawl
+
 /datum/loadout_item/suit/shawl/black
 	name = "Black Shawl"
 	item_path = /obj/item/clothing/suit/vampire/shawl_black
