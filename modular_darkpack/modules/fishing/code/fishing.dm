@@ -229,7 +229,7 @@
 	eat_time = 5
 	food_reagents = list(/datum/reagent/consumable/nutriment/leech = 1)
 
-/obj/item/fish/darkpack/leech/Initialize(mapload)
+/obj/item/food/darkpack/leech/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 1, "fish", FALSE)
 
