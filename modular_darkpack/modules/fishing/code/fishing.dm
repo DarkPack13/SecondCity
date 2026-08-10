@@ -234,6 +234,7 @@
 	AddComponent(/datum/component/selling, 1, "fish", FALSE)
 
 /datum/reagent/consumable/nutriment/leech
+	name = "leech guts"
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	taste_description = "copper"
 
