@@ -66,3 +66,12 @@
       and werewolves
   lpeapnni:
   - bugfix: Fixes targets list never being properly initialized for Phantom Speaker
+2026-08-10:
+  Stutternov:
+  - rscadd: Adjusts size of 1,000 dollar stack from normal to small.
+  chazzyjazzy:
+  - bugfix: fixes infinite blindness from Pierce the Veil
+  dwinters99:
+  - rscadd: submarine sandwiches (4 types)
+  flleeppyy:
+  - admin: Removed Darkpack Ban Options and moved LOOC ban to the Abstract category.
