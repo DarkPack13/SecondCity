@@ -101,7 +101,7 @@
 
 	stable_population = 8
 	average_size = 5
-	average_weight = 1
+	average_weight = 2
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#9c8527"
