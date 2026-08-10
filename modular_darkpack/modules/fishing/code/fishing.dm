@@ -29,7 +29,7 @@
 
 /obj/item/fish/darkpack/shark/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 100, "fish", FALSE)
+	AddComponent(/datum/component/selling, 150, "fish", FALSE)
 
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
@@ -50,7 +50,7 @@
 
 /obj/item/fish/darkpack/tuna/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 200, "fish", FALSE)
+	AddComponent(/datum/component/selling, 250, "fish", FALSE)
 
 /obj/item/fish/darkpack/catfish
 	name = "channel catfish"
@@ -70,7 +70,7 @@
 
 /obj/item/fish/darkpack/catfish/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 20, "fish", FALSE)
+	AddComponent(/datum/component/selling, 50, "fish", FALSE)
 
 /obj/item/fish/darkpack/crab
 	name = "dungeness crab"
@@ -90,7 +90,7 @@
 
 /obj/item/fish/darkpack/crab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 30, "fish", FALSE)
+	AddComponent(/datum/component/selling, 15, "fish", FALSE)
 
 /obj/item/fish/darkpack/stickleback
 	name = "three-spined stickleback"
@@ -196,7 +196,7 @@
 
 /obj/item/fish/darkpack/eagle_ray/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 150, "fish", FALSE)
+	AddComponent(/datum/component/selling, 300, "fish", FALSE)
 
 /obj/item/food/darkpack/leech
 	name = "leech"
