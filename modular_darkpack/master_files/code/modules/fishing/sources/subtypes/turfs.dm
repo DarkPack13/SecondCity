@@ -34,7 +34,7 @@
 	)
 	fish_counts = list()
 	fish_count_regen = list()
-	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach, /turf/open/water/vamp_sewer, /turf/open/water/bloodwave)
+	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
 
 /datum/fish_source/sand
 	fish_table = list(
@@ -60,7 +60,6 @@
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
-	associated_safe_turfs = list(/turf/open/water/vamp_sewer, /turf/open/water/vamp_sewer/border)
 
 /datum/fish_source/blood
 	catalog_description = "Blood Pool"
@@ -74,4 +73,3 @@
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30
-	associated_safe_turfs = list(/turf/open/water/bloodwave)
