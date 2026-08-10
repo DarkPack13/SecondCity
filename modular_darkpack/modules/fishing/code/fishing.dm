@@ -37,21 +37,23 @@
 /obj/item/fish/darkpack/tuna
 	name = "bluefin tuna"
 	desc = "The mighty tuna fuels a robust fishing economy."
-	icon_state = "fish"
+	icon = 'modular_darkpack/modules/fishing/icons/fish48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
+	icon_state = "bluefin_tuna"
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/predator)
 	fish_movement_type = /datum/fish_movement/choppy
 	fishing_difficulty_modifier = 45
 
-	stable_population = 4
+	stable_population = 3
 	average_size = 150
 	average_weight = 60000
 
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#33302e"
-	sprite_width = 5
-	sprite_height = 3
+	aquarium_vc_color = "#22244e"
+	sprite_width = 8
+	sprite_height = 6
 
 /obj/item/fish/darkpack/tuna/Initialize(mapload)
 	. = ..()
@@ -214,6 +216,27 @@
 /obj/item/fish/darkpack/eagle_ray/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 200, "fish", FALSE)
+
+/obj/item/fish/darkpack/salmon
+	name = "cherry salmon"
+	desc = "A favorite that's especially abundant in the Pacific Northwest but has become quite rare as of late."
+	icon_state = "fish"
+	fish_id = "darkpack_salmon"
+	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
+	fishing_difficulty_modifier = 15
+
+	stable_population = 6
+	average_size = 50
+	average_weight = 2250
+
+	dedicated_in_aquarium_icon_state = "fish_greyscale"
+	beauty = FISH_BEAUTY_GOOD
+	sprite_width = 5
+	sprite_height = 3
+
+/obj/item/fish/darkpack/salmon/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 70, "fish", FALSE)
 
 /obj/item/food/darkpack/leech
 	name = "leech"
