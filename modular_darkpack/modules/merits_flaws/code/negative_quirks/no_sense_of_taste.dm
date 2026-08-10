@@ -9,13 +9,13 @@ food and drink."}
 	forbidden_splats = list(SPLAT_KINDRED)
 	ttrpg_sources = list(/datum/source_book/htr3/pg = 118)
 
-/datum/quirk/darkpack/cast_iron_stomach/add(client/client_source)
+/datum/quirk/darkpack/no_sense_of_taste/add(client/client_source)
 	var/obj/item/organ/tongue/tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(!tongue)
 		return
 	tongue.sense_of_taste = FALSE
 
-/datum/quirk/darkpack/cast_iron_stomach/remove()
+/datum/quirk/darkpack/no_sense_of_taste/remove()
 	var/obj/item/organ/tongue/tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(!tongue)
 		return
