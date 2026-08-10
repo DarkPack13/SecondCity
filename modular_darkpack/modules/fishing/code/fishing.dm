@@ -17,6 +17,8 @@
 	fish_id = "darkpack_shark"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/territorial)
+	fish_movement_type = /datum/fish_movement/accelerando
+	fishing_difficulty_modifier = 15
 
 	average_size = 135
 	average_weight = 10000
@@ -39,7 +41,8 @@
 	fish_id = "darkpack_tuna"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/predator)
-	num_fillets = 3
+	fish_movement_type = /datum/fish_movement/choppy
+	fishing_difficulty_modifier = 45
 
 	stable_population = 4
 	average_size = 150
@@ -61,6 +64,7 @@
 	fish_id = "darkpack_catfish"
 	required_fluid_type = AQUARIUM_FLUID_FRESHWATER
 	fish_traits = list(/datum/fish_trait/predator)
+	fishing_difficulty_modifier = 10
 
 	stable_population = 3
 	average_size = 35
@@ -83,6 +87,7 @@
 	fish_id = "darkpack_crab"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/amphibious)
+	fish_movement_type = /datum/fish_movement/slow
 
 	stable_population = 8
 	average_size = 16
@@ -103,6 +108,7 @@
 	fish_id = "darkpack_stickleback"
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
 	w_class = WEIGHT_CLASS_TINY
+	fish_movement_type = /datum/fish_movement/slow
 
 	stable_population = 8
 	average_size = 5
@@ -125,6 +131,7 @@
 	fish_id = "darkpack_anchovy"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	w_class = WEIGHT_CLASS_TINY
+	fish_movement_type = /datum/fish_movement/slow
 
 	stable_population = 12
 	average_size = 7
@@ -188,11 +195,12 @@
 
 /obj/item/fish/darkpack/eagle_ray
 	name = "bat ray"
-	desc = "Bottom feeders that use their wings to brush sand to expose their prey. Uses its venomous spine for defense."
+	desc = "Bottom feeders that use their wings to brush sand to expose their prey. Uses its venomous spine for defense. Prized in saltwater aquariums."
 	icon_state = "eagle ray"
 	fish_id = "darkpack_eagle_ray"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs)
+	fish_movement_type = /datum/fish_movement/zippy
 
 	stable_population = 2
 	average_size = 200
