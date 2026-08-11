@@ -10,18 +10,18 @@
 /datum/outfit/job/assistant/gimmick/give_jumpsuit(mob/living/carbon/human/target)
 	return //dont do colorized and stuff, it messes with our uniforms
 
-/* // DARKPACK EDIT REMOVAL - Removes Monkey Cubes and Bees
+/* // DARKPACK EDIT REMOVAL START - (Removes Monkey Cubes and Bees)
 /datum/outfit/job/assistant/gimmick/bee
 	name = "Gimmick Assistant - Bee"
 	suit = /obj/item/clothing/suit/hooded/bee_costume
 	uniform = /obj/item/clothing/under/color/yellow
 
 	l_pocket = /obj/item/coupon/bee
-/* // DARKPACK EDIT REMOVAL START - (Removes Monkey Cubes and Bees)
-/datum/outfit/job/assistant/gimmick/bee
-	name = "Gimmick Assistant - Bee"
-	suit = /obj/item/clothing/suit/hooded/bee_costume
-@@ -24,6 +25,7 @@
+
+	outfit_weight = 2
+
+/obj/item/coupon/bee
+	desc = "BEEEES???? AT AN AFFORDAbLE PORICE?!!!" //wordcoders seething
 
 	discounted_pack = /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	discount_pct_off = 0.7
