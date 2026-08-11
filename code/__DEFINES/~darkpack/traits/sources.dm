@@ -3,8 +3,7 @@
 /// Trait given by a vampire's Clan
 #define CLAN_TRAIT "clan"
 
-/// Trait given by a Werewolf's tribe
-#define TRIBE_TRAIT "tribe"
+
 
 #define GIFT_TRAIT "gift"
 

@@ -8247,6 +8247,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\fur.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\renown.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\tribe.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\wyrm_taint.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\fera_organs.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\fera_species.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\species\flight_action.dm"
