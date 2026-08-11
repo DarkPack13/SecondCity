@@ -261,12 +261,10 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	taste_description = "copper"
 
-/datum/reagent/consumable/nutriment/leech/on_mob_life(mob/living/carbon/M)
-	if(prob(25))
-		if(get_kindred_splat(M))
-			M.adjust_blood_pool(0.25)
-		if(get_ghoul_splat(M))
-			M.adjust_blood_pool(0.25)
+/datum/reagent/consumable/nutriment/leech/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+	if(SPT_PROB(25, seconds_per_tick))
+		if(get_splat_with_vitae(affected_mob))
+			affected_mob.adjust_blood_pool(0.25)
 	return ..()
 
 /obj/item/food/darkpack/horn_snail
