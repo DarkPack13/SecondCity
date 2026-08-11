@@ -75,3 +75,13 @@
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30
+
+/datum/fish_source/acid
+	catalog_description = "Acid"
+	fish_table = list(
+		FISHING_DUD = 30,
+		/obj/item/stack/sheet/bone = 10,
+		/obj/item/clothing/head/vampire/skull = 5,
+		/obj/effect/spawner/random/occult/artifact = 1,
+	)
+	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30
