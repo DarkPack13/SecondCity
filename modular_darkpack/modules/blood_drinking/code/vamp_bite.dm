@@ -64,7 +64,7 @@
 
 			// Thirst Of Ages flaw.
 			if(HAS_TRAIT(src, TRAIT_THIRST_OF_AGES))
-				if(!(get_werewolf_splat(bit_living) || get_kindred_splat(bit_living)))
+				if(!get_full_splat(bit_living))
 					to_chat(src, span_warning("Their blood isn't potent enough!"))
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					return
