@@ -50,15 +50,20 @@
 /datum/fish_source/sewer
 	catalog_description = "Sewage"
 	fish_table = list(
-		FISHING_DUD = 5,
-		/obj/effect/spawner/random/trash/garbage = 30,
+		FISHING_DUD = 20,
+		/obj/effect/spawner/random/trash/garbage = 35,
 		/obj/item/food/darkpack/leech = 10,
 		/mob/living/basic/mouse/vampire = 5,
+		/obj/item/coin/iron = 5,
 		/obj/item/fish/darkpack/stickleback = 5,
 		/obj/item/fish/darkpack/crappie = 4,
 		/obj/item/fish/darkpack/trout = 3,
+		/obj/item/coin/silver = 2,
 		/obj/item/fish/darkpack/catfish = 2,
-		/obj/item/coin/iron = 2,
+		/obj/effect/spawner/random/weapon/small_melee = 2,
+		/obj/effect/spawner/random/weapon/weak_large_melee = 2,
+		/obj/item/coin/gold = 1,
+		/obj/effect/spawner/random/weapon/good_large_melee = 1,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
