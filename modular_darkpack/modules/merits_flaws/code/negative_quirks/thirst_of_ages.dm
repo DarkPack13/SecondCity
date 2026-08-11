@@ -4,4 +4,5 @@
 	value = -15
 	mob_trait = TRAIT_THIRST_OF_AGES
 	allowed_splats = list(SPLAT_KINDRED)
+	excluded_clans = list(VAMPIRE_CLAN_NAGARAJA)
 	icon = FA_ICON_TEETH
