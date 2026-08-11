@@ -1,7 +1,7 @@
 /datum/subsplat/werewolf/tribe
 	abstract_type = /datum/subsplat/werewolf/tribe
 
-
+	//var/tribe_trait
 
 /**
  * Gets the singleton of an tribe
