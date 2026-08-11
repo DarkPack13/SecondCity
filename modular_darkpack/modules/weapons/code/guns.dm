@@ -341,7 +341,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/mac10/super
 	name = "\improper Cleaner Custom"
-	desc = "A .45 submachine gun with a suppressor installed on the tip, which helps balance it out when firing. Dark Blood magic has enabled the wire stock to be used"
+	desc = "A .45 submachine gun with a suppressor installed on the tip, which helps balance it out when firing. Dark Blood magic has enabled the wire stock to be extended, further increasing accuracy."
 	icon = 'modular_darkpack/modules/deprecated/icons/64x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mac10_super"

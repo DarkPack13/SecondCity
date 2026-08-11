@@ -2,8 +2,9 @@
  * # Janicart
  */
 /obj/vehicle/ridden/janicart
-	name = "janicart (pimpin' ride)"
-	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
+	name = "street sweeper"
+	desc = "A man-portable cleaning device used to keep the streets clean. Needs a key to be used."
+	icon = 'modular_darkpack/modules/deprecated/icons/vehicles.dmi'
 	icon_state = "pussywagon"
 	key_type = /obj/item/key/janitor
 	movedelay = 1
