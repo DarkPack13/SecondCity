@@ -461,6 +461,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	// DARKPACK EDIT CHANGE START - UMBRA
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Umbra", current_map.umbra_map_path, current_map.umbra_map_file, default_traits = ZTRAITS_UMBRA)
+		LoadGroup(FailedZs, "Advzones", current_map.advzone_map_path, current_map.advzone_map_file, default_traits = ZTRAITS_ADVZONES) // CRIMSON GRID EDIT ADD
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
 	// DARKPACK EDIT CHANGE END
