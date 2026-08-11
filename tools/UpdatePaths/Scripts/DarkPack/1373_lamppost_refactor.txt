@@ -1,7 +1,2 @@
 /obj/structure/lamppost : /obj/machinery/light/floor/lamppost{@OLD}
-/obj/structure/lamppost/one : /obj/machinery/light/floor/lamppost/one{@OLD}
-/obj/structure/lamppost/two : /obj/machinery/light/floor/lamppost/two{@OLD}
-/obj/structure/lamppost/three : /obj/machinery/light/floor/lamppost/three{@OLD}
-/obj/structure/lamppost/four : /obj/machinery/light/floor/lamppost/four{@OLD}
-/obj/structure/lamppost/sidewalk : /obj/machinery/light/floor/lamppost/sidewalk{@OLD}
-/obj/structure/lamppost/sidewalk/chinese : /obj/machinery/light/floor/lamppost/sidewalk/chinese{@OLD}
+/obj/structure/lamppost/@SUBTYPES : /obj/machinery/light/floor/lamppost/@SUBTYPES {@OLD}
