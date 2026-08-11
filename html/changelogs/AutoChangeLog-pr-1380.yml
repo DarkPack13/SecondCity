@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "auspex 5 ghosts can no longer talk, grab, emote, or be seein from Auspex 3"
