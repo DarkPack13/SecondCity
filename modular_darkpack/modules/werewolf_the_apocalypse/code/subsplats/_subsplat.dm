@@ -8,9 +8,12 @@
 	// /datum/action/cooldown/power/gift
 	/// All gifts avalible via this subsplat.
 	var/list/gifts_provided = list()
+	var/tribe_traits = list()//Used for BSD stuff currently but essentially used for any special tribe stuff
 
 /datum/subsplat/werewolf/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
 	// Placeholder!
 	for(var/gift in gifts_provided)
 		gaining_splat.add_power(gift)
+	for(var/traits in tribe_traits)
+		ADD_TRAIT(gaining_mob, traits, TRIBE_TRAIT) //Adds all the tribe traits
