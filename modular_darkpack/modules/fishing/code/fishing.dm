@@ -198,7 +198,7 @@
 /obj/item/fish/darkpack/eagle_ray
 	name = "bat ray"
 	desc = "Bottom feeders that use their wings to brush sand to expose their prey. Uses its venomous spine for defense. Prized in saltwater aquariums."
-	icon_state = "eagle ray"
+	icon_state = "eagle_ray"
 	fish_id = "darkpack_eagle_ray"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	fish_traits = list(/datum/fish_trait/predator, /datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs)
@@ -261,9 +261,19 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	taste_description = "copper"
 
+/datum/reagent/consumable/nutriment/leech/expose_mob(mob/living/exposed_mob, methods=INGEST, reac_volume, show_message, touch_protection)
+	if(get_kindred_splat(exposed_mob))
+		var/survival_skill = exposed_mob.st_get_stat(STAT_SURVIVAL)
+		var/animal_skill = exposed_mob.st_get_stat(STAT_ANIMAL_KEN)
+		if(prob(max(25,((survival_skill+animal_skill)*10))))
+			exposed_mob.adjust_blood_pool(reac_volume/2)
+	return ..()
+
 /datum/reagent/consumable/nutriment/leech/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
-	if(SPT_PROB(25, seconds_per_tick))
-		if(get_splat_with_vitae(affected_mob))
+	if(get_splat_with_vitae(affected_mob))
+		var/survival_skill = affected_mob.st_get_stat(STAT_SURVIVAL)
+		var/animal_skill = affected_mob.st_get_stat(STAT_ANIMAL_KEN)
+		if(SPT_PROB(max(25,((survival_skill+animal_skill)*10)), seconds_per_tick))
 			affected_mob.adjust_blood_pool(0.25)
 	return ..()
 
@@ -272,8 +282,8 @@
 	desc = "Looks like something's in there!"
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
-	icon_state = "horn snail"
-	trash_type = /obj/item/toy/seashell/vampire/horn_snail
+	icon_state = "horn_snail"
+	trash_type = /obj/item/toy/darkpack/seashell/horn_snail
 	w_class = WEIGHT_CLASS_TINY
 
 	bite_consumption = 1
@@ -285,10 +295,15 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 5, "fish", FALSE)
 
-/obj/item/toy/seashell/vampire/horn_snail
+/obj/item/toy/darkpack/seashell/
+	name = "seashell"
+	desc = "If you put it to your ear, you can hear the ocean! No, wait, that's just the blood in your ears."
+	floor_placeable = TRUE
+
+/obj/item/toy/darkpack/seashell/horn_snail
 	icon = 'modular_darkpack/modules/fishing/icons/fish.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/fishing/icons/fish_onfloor.dmi')
-	icon_state = "horn snail"
+	icon_state = "horn_snail"
 
 /*
 /obj/item/fishing_rod
