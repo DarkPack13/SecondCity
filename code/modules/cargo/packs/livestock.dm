@@ -171,7 +171,7 @@
 	contains = list(/mob/living/basic/mothroach)
 	crate_name = "mothroach crate"
 
-/* // DARKPACK EDIT REMOVE - Removes Monkey Cubes and Bees
+/* // DARKPACK EDIT REMOVAL - (Removes Monkey Cubes and Bees)
 /datum/supply_pack/critter/monkey
 	name = "Monkey Cube Crate"
 	desc = "Stop monkeying around! Contains seven monkey cubes. Just add water!"
