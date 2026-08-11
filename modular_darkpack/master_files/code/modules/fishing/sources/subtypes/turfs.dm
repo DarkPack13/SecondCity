@@ -82,6 +82,8 @@
 		FISHING_DUD = 30,
 		/obj/item/stack/sheet/bone = 10,
 		/obj/item/clothing/head/vampire/skull = 5,
+		/obj/effect/mob_spawn/corpse/human/charredskeleton = 4,
+		/obj/effect/decal/remains/human = 3,
 		/obj/effect/spawner/random/occult/artifact = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 30
