@@ -3,10 +3,8 @@
 /// Trait given by a vampire's Clan
 #define CLAN_TRAIT "clan"
 
-//START OF CRIMSON GRID CHANGE
 /// Trait given by a Werewolf's tribe
 #define TRIBE_TRAIT "tribe"
-//END OF CRIMSON GRID CHANGE
 
 #define GIFT_TRAIT "gift"
 
