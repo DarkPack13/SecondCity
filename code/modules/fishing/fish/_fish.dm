@@ -139,9 +139,12 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	/// The maximum size this fish can reach, calculated the first time update_size_and_weight() is called.
 	var/maximum_size
 
-	/// Weight in grams. Null until update_size_and_weight is called. Grind results scale with it. Don't think too hard how a trout could fit in a blender. DARKPACK EDIT START= kiloclams to grams
+	//DARKPACK CHANGE START: kiloclams to grams
+	/// Weight in grams. Null until update_size_and_weight is called. Grind results scale with it. Don't think too hard how a trout could fit in a blender.
 	var/weight
-	/// Average weight for this fish type in grams DARKPACK EDIT END
+	/// Average weight for this fish type in grams
+	//DARKPACK CHANGE END
+
 	var/average_weight = 1000
 	/// Temporarily stores the new weight of the fish from randomize_size_and_weight() to be used by update_size_weight() later, so that it can be deferred.
 	var/temp_weight
