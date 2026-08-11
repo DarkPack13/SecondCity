@@ -17,15 +17,15 @@
 	uniform = /obj/item/clothing/under/color/yellow
 
 	l_pocket = /obj/item/coupon/bee
-
-	outfit_weight = 2
-
-/obj/item/coupon/bee
-	desc = "BEEEES???? AT AN AFFORDAbLE PORICE?!!!" //wordcoders seething
+/* // DARKPACK EDIT REMOVAL START - (Removes Monkey Cubes and Bees)
+/datum/outfit/job/assistant/gimmick/bee
+	name = "Gimmick Assistant - Bee"
+	suit = /obj/item/clothing/suit/hooded/bee_costume
+@@ -24,6 +25,7 @@
 
 	discounted_pack = /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	discount_pct_off = 0.7
-*/ // DARKPACK EDIT REMOVAL - Removes Monkey Cubes and Bees
+*/ // DARKPACK EDIT REMOVAL END
 
 /datum/outfit/job/assistant/gimmick/chicken
 	name = "Gimmick Assistant - Chicken"
