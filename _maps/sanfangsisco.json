@@ -36,12 +36,6 @@
 		{
 			"Down": -1,
 			"Baseturf": "/turf/open/openspace"
-		},
-		{
-			"Baseturf": "/turf/open/openspace"
-		},
-		{
-			"Baseturf": "/turf/open/misc/dirt"
 		}
 	],
 	"max_npcs": 60,
