@@ -14,7 +14,7 @@
 
 	var/mob/living/carbon/human/H = user
 
-	if(!is_sabbat_ductus(user) && !is_sabbat_priest(user))
+	if(!is_sabbat_ductus(H.mind.assigned_role) && !is_sabbat_priest(H.mind.assigned_role))
 		to_chat(H, span_cult("Only the Ductus or the Priest may call a War Party from the Totem!"))
 		return
 
