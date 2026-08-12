@@ -748,6 +748,12 @@
 /obj/effect/turf_decal/weather/dirt,
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
+"kf" = (
+/obj/transfer_point_vamp/umbral{
+	id = 666
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/outside/penumbra)
 "kk" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
@@ -2591,7 +2597,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/penumbra)
 "Kn" = (
-/obj/effect/landmark/teleport_mark/weaver,
+/obj/effect/landmark/teleport_mark/alltribes,
 /turf/open/floor/plating/rough/cave,
 /area/vtm/outside/penumbra)
 "Ks" = (
@@ -34786,7 +34792,7 @@ Ca
 VC
 wI
 FS
-Yn
+kf
 qF
 ZH
 ST

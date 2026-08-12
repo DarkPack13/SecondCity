@@ -615,6 +615,12 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"ajz" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_street"
+	},
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/outside/park)
 "ajA" = (
 /obj/machinery/light/directional/west,
 /obj/structure/vampfence{
@@ -765,7 +771,7 @@
 /turf/open/floor/city/toilet,
 /area/vtm/interior/hotel)
 "akY" = (
-/obj/structure/chair/sofa/corp/right{
+/obj/structure/chair/sofa/corp/left{
 	dir = 1
 	},
 /turf/open/floor/plating/granite/black,
@@ -11854,6 +11860,12 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/culture)
+"dDL" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_tower"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/vtm/interior/millennium_tower)
 "dDN" = (
 /obj/effect/decal/rugs,
 /turf/open/floor/plating/concrete,
@@ -16205,6 +16217,12 @@
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
+"eVJ" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = 666
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/vtm/interior/millennium_tower)
 "eVP" = (
 /obj/effect/decal/wallpaper/light,
 /turf/closed/wall/vampwall/old,
@@ -22403,6 +22421,12 @@
 /obj/structure/roadsign,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/ghetto)
+"gMp" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_supply"
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/supply)
 "gMs" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/white{
@@ -26666,8 +26690,8 @@
 	pixel_y = 10
 	},
 /obj/effect/bump_teleporter{
-	id = 69;
-	id_target = 96
+	id = "glasswalker_techshop";
+	id_target = "glasswalker_basement"
 	},
 /obj/machinery/light/small/pink/directional/north,
 /turf/open/floor/carpet/darkpack/old,
@@ -27243,9 +27267,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/theatre)
-"iqx" = (
-/turf/cordon/secret,
-/area/vtm/outside/pacificheights/forest)
 "iqB" = (
 /obj/structure/statue/bone/rib{
 	dir = 1
@@ -27719,8 +27740,8 @@
 	pixel_y = 10
 	},
 /obj/effect/bump_teleporter{
-	id = 96;
-	id_target = 69;
+	id = "glasswalker_basement";
+	id_target = "glasswalker_techshop";
 	mouse_opacity = 0
 	},
 /obj/structure/cable/layer1,
@@ -47668,6 +47689,12 @@
 /obj/structure/rack/clothing_hanger,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/shop)
+"oDY" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_sewers"
+	},
+/turf/open/water/vamp_sewer,
+/area/vtm/interior/sewer)
 "oEe" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/wood/smooth/old,
@@ -49448,6 +49475,12 @@
 /obj/item/ritual_tome/abyss,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/church/haven)
+"pcF" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_bar"
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/anarch)
 "pcM" = (
 /obj/structure/table/wood,
 /obj/item/camera/detective,
@@ -51001,6 +51034,9 @@
 /area/vtm/outside/pacificheights/community)
 "pzS" = (
 /obj/machinery/sprinkler/area_managed,
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_church"
+	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/church)
 "pzU" = (
@@ -51958,6 +51994,12 @@
 /obj/item/food/cake/chocolate,
 /turf/open/floor/carpet/lone,
 /area/vtm/interior/millennium_tower/ventrue)
+"pMj" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_china"
+	},
+/turf/open/floor/plating/sidewalk/rich,
+/area/vtm/outside/chinatown)
 "pMq" = (
 /obj/structure/table,
 /obj/item/cardboard_cutout,
@@ -56300,6 +56342,12 @@
 /mob/living/carbon/human/npc/shop,
 /turf/open/floor/city/circled,
 /area/vtm/outside/financialdistrict)
+"rbI" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_police"
+	},
+/turf/open/floor/plating/concrete,
+/area/vtm/interior/police)
 "rbS" = (
 /obj/effect/decal/cleanable/litter,
 /obj/structure/cable/layer1,
@@ -60292,6 +60340,12 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/clinic/haven)
+"skC" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_theatre"
+	},
+/turf/open/floor/wood/old,
+/area/vtm/interior/theatre)
 "skH" = (
 /obj/structure/vampipe{
 	icon_state = "piping32"
@@ -62706,6 +62760,12 @@
 /obj/structure/table/optable,
 /turf/open/indestructible/necropolis/air,
 /area/vtm/interior/tzimisce_sanctum)
+"sYI" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_dora"
+	},
+/turf/open/floor/plating/granite/black,
+/area/vtm/interior/strip)
 "sYL" = (
 /obj/structure/city_map,
 /turf/open/floor/plating/sidewalk,
@@ -63189,6 +63249,12 @@
 "tgt" = (
 /turf/open/floor/city/plating_stone,
 /area/vtm)
+"tgz" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_beach"
+	},
+/turf/open/misc/beach/vamp,
+/area/vtm/outside/northbeach)
 "tgE" = (
 /obj/structure/vampdoor/simple{
 	lock_id = "baali";
@@ -64623,6 +64689,12 @@
 "tEg" = (
 /turf/open/floor/carpet/green,
 /area/vtm/interior/jazzclub)
+"tEk" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_forest"
+	},
+/turf/open/misc/grass,
+/area/vtm/outside/pacificheights/forest)
 "tEm" = (
 /obj/effect/decal/cleanable/cardboard,
 /turf/open/floor/plating/sidewalk,
@@ -67970,6 +68042,12 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/shop)
+"uHz" = (
+/obj/transfer_point_vamp/umbral/exit{
+	id = "umbra_hospital"
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/clinic)
 "uHE" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
@@ -112254,7 +112332,7 @@ isZ
 isZ
 isZ
 fPR
-isZ
+oDY
 fPR
 isZ
 isZ
@@ -150996,7 +151074,7 @@ ohL
 qIX
 qIX
 qIX
-qIX
+tgz
 qIX
 qIX
 qIX
@@ -161849,7 +161927,7 @@ lKj
 aTm
 aTm
 aTm
-aKX
+sYI
 akY
 lzL
 lJh
@@ -164601,7 +164679,7 @@ mzn
 xCP
 pMC
 oTi
-pMC
+pcF
 kfO
 pMQ
 wrt
@@ -166557,7 +166635,7 @@ dnm
 dnm
 atu
 atu
-iqx
+atu
 atu
 dnm
 dnm
@@ -168572,7 +168650,7 @@ ujA
 ujA
 ujA
 ujA
-ujA
+ajz
 ujA
 ujA
 ujA
@@ -170434,7 +170512,7 @@ atu
 atu
 atu
 atu
-atu
+tEk
 atu
 atu
 atu
@@ -175466,9 +175544,9 @@ oZm
 lfr
 xfJ
 jBz
-noM
+dDL
 nDq
-noM
+eVJ
 vCC
 yhp
 xZU
@@ -177439,7 +177517,7 @@ sqQ
 jcx
 mSx
 jcx
-jcx
+uHz
 vhU
 dwF
 idz
@@ -179864,7 +179942,7 @@ vop
 grt
 ror
 bkd
-bkd
+skC
 bkd
 cLl
 hnz
@@ -195018,7 +195096,7 @@ cej
 mVW
 vPv
 vPv
-vPv
+pMj
 vPv
 vPv
 vPv
@@ -197503,7 +197581,7 @@ oCM
 qTP
 fFg
 yhf
-yhf
+rbI
 yhf
 yhf
 hoH
@@ -204589,7 +204667,7 @@ hun
 pxg
 gHS
 sAm
-sAm
+gMp
 xTh
 xTh
 xTh
