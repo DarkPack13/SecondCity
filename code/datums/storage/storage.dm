@@ -150,9 +150,6 @@
 	set_real_location(parent)
 
 	// DARKPACK EDIT ADD - Gridventory
-	set_parent(parent)
-	set_real_location(parent)
-
 	if(grid && !grid_box_size)
 		grid_box_size = get_grid_box_size()
 	// DARKPACK EDIT END - Gridventory
