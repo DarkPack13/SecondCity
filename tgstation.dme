@@ -7239,6 +7239,7 @@
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "modular_darkpack\master_files\code\world.dm"
 #include "modular_darkpack\master_files\code\__HELPERS\maths.dm"
+#include "modular_darkpack\master_files\code\__DEFINES\language.dm"
 #include "modular_darkpack\master_files\code\_globalvars\configuration.dm"
 #include "modular_darkpack\master_files\code\_onclick\hud\new_player.dm"
 #include "modular_darkpack\master_files\code\controllers\configuration\entries\darkpack_config_entries.dm"
