@@ -8,6 +8,8 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/darkpack)
 	charge_sections = 2
 	custom_price = 50
+	grid_width = 2 GRID_BOXES
+	grid_height = 1 GRID_BOXES
 
 
 /obj/item/ammo_casing/energy/electrode/darkpack
@@ -32,6 +34,8 @@
 	cell_hit_cost = STANDARD_CELL_CHARGE * 0.5
 	active_changes_inhand = FALSE // TODO: different sprites for cells?
 	custom_price = 200
+	grid_width = 2 GRID_BOXES
+	grid_height = 1 GRID_BOXES
 
 
 /obj/item/melee/baton/security/handtaser/turn_on(mob/user)
