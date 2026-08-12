@@ -2,10 +2,10 @@
  * # Janicart
  */
 /obj/vehicle/ridden/janicart
-	name = "street sweeper"
-	desc = "A man-portable cleaning device used to keep the streets clean. Needs a key to be used."
-	icon = 'modular_darkpack/modules/deprecated/icons/vehicles.dmi'
-	icon_state = "pussywagon"
+	name = "street sweeper" //dark pack edit
+	desc = "A man-portable cleaning device used to keep the streets clean, nicknamed the 'Pussy Wagon'. Needs a key to be used."
+	icon = 'modular_darkpack/master_files/icons/mob/rideables/vehicles.dmi'//dark pack master folder
+	icon_state = "pussywagon" //darkpack edit
 	key_type = /obj/item/key/janitor
 	movedelay = 1
 	/// The attached garbage bag, if present
