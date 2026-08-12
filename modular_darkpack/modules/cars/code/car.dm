@@ -382,9 +382,6 @@
 
 /obj/darkpack_car/mouse_drop_receive(mob/living/dropped, mob/user, params)
 	. = ..()
-	if(istype(dropped, mob/living/basic/avatar))
-		return
-
 	if(!isliving(dropped))
 		return
 
