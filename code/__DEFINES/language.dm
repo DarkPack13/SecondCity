@@ -55,8 +55,6 @@
 #define LANGUAGE_TONGUE "tongue"
 #define LANGUAGE_BLOOD_WORM "blood_worm"
 
-
-
 // Language flags. Used in granting and removing languages.
 /// This language can be spoken.
 #define SPOKEN_LANGUAGE (1<<0)
