@@ -287,6 +287,12 @@
 /obj/item/food/cheese/wheel,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/laundromat)
+"aen" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/endron_facility/restricted)
 "aeo" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -1692,6 +1698,9 @@
 /obj/item/clipboard{
 	pixel_y = 7;
 	pixel_x = -11
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 8
 	},
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility/restricted)
@@ -8813,6 +8822,9 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/ghetto)
 "cxf" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 9
+	},
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility/restricted)
 "cxl" = (
@@ -16881,6 +16893,12 @@
 /obj/item/bedsheet/black,
 /turf/open/floor/carpet/black,
 /area/vtm/interior/banu/haven)
+"eQu" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "eQw" = (
 /turf/open/floor/iron/stairs/right{
 	dir = 4
@@ -21286,6 +21304,9 @@
 "gcp" = (
 /obj/structure/chair/greyscale{
 	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 10
 	},
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility/restricted)
@@ -36472,6 +36493,9 @@
 	pixel_x = 0;
 	pixel_y = 6
 	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 4
+	},
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility/restricted)
 "kwd" = (
@@ -38170,6 +38194,9 @@
 	name = "Bathroom"
 	},
 /obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
 /turf/open/floor/city/toilet,
 /area/vtm/interior/endron_facility/restricted)
 "kVv" = (
@@ -56593,6 +56620,12 @@
 /obj/structure/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
+"pZV" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/city/plating,
+/area/vtm/interior/endron_facility/restricted)
 "qab" = (
 /obj/structure/table/wood,
 /obj/item/vamp/keys/nosferatu,
@@ -58633,6 +58666,15 @@
 "qCd" = (
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/millennium_tower)
+"qCe" = (
+/obj/structure/chair/greyscale{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 6
+	},
+/turf/open/floor/carpet/darkpack/greengold,
+/area/vtm/interior/endron_facility/restricted)
 "qCh" = (
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/forest)
@@ -66297,6 +66339,9 @@
 "sHf" = (
 /obj/structure/chair/office,
 /obj/effect/landmark/start/darkpack/pentex/executive,
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 1
+	},
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility/restricted)
 "sHg" = (
@@ -66658,6 +66703,13 @@
 /obj/structure/roadsign/noparking,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights/old)
+"sNB" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "lab_shutter"
+	},
+/turf/closed/wall/vampwall/metal/glass,
+/area/vtm/interior/endron_facility/restricted)
 "sNC" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/bronze,
@@ -66980,6 +67032,20 @@
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/carpet/red,
 /area/vtm/interior/millennium_tower/f2)
+"sTP" = (
+/obj/structure/vampdoor/reinf,
+/obj/machinery/door/poddoor/preopen{
+	id = "Pentex_front"
+	},
+/obj/effect/mapping_helpers/door/access/pentex,
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/bash_difficulty/eight,
+/obj/effect/mapping_helpers/door/lock_difficulty/eight,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/city/plating_mono,
+/area/vtm/interior/endron_facility/restricted)
 "sTQ" = (
 /obj/structure/table/wood,
 /obj/item/paper{
@@ -71014,6 +71080,13 @@
 	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/endron_facility/restricted)
+"udn" = (
+/obj/structure/chair/greyscale{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/dark,
+/turf/open/floor/carpet/darkpack/greengold,
+/area/vtm/interior/endron_facility/restricted)
 "udo" = (
 /obj/structure/table,
 /obj/item/clothing/suit/costume/hawaiian,
@@ -72455,6 +72528,9 @@
 /obj/structure/railing/darkpack/metal/industrial/solo{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/city/plating,
 /area/vtm/interior/endron_facility/restricted)
 "uzd" = (
@@ -73620,8 +73696,8 @@
 /area/vtm/interior/vjanitor)
 "uPC" = (
 /obj/item/flashlight/lamp{
-	pixel_y = 6;
-	pixel_x = 0
+	pixel_y = 13;
+	pixel_x = -8
 	},
 /obj/item/taperecorder{
 	pixel_x = -9;
@@ -73631,6 +73707,11 @@
 /obj/item/clipboard{
 	pixel_y = -2;
 	pixel_x = 7
+	},
+/obj/machinery/button/door{
+	pixel_y = 10;
+	id = "lab_shutter";
+	pixel_x = 10
 	},
 /turf/open/floor/iron/small,
 /area/vtm/interior/endron_facility/restricted)
@@ -83328,6 +83409,12 @@
 /obj/item/reagent_containers/cup/bucket,
 /turf/open/misc/dirt,
 /area/vtm/interior/hotel)
+"xEr" = (
+/obj/effect/turf_decal/siding/wood/dark{
+	dir = 5
+	},
+/turf/open/floor/carpet/darkpack/greengold,
+/area/vtm/interior/endron_facility/restricted)
 "xEu" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
@@ -133249,21 +133336,21 @@ jJt
 piG
 kQE
 tzz
-piG
+aen
 xkh
-piG
+tqT
 tzz
 piG
-piG
+aen
 xkh
 xkh
 xkh
-piG
+tqT
 piG
 tzz
-piG
+aen
 xkh
-piG
+tqT
 dQN
 uaJ
 lJD
@@ -135321,10 +135408,10 @@ piG
 lMZ
 piG
 eOR
-psI
-psI
-psI
-psI
+eQu
+eQu
+eQu
+eQu
 dQN
 oIa
 kfi
@@ -137379,7 +137466,7 @@ piG
 piG
 piG
 piG
-piG
+pIy
 tzz
 tzz
 vec
@@ -137611,7 +137698,7 @@ biz
 pbt
 biz
 biz
-brg
+sTP
 cMj
 cMj
 cMj
@@ -137893,7 +137980,7 @@ piG
 piG
 piG
 piG
-piG
+aen
 tzz
 tzz
 vec
@@ -139928,7 +140015,7 @@ ygs
 tzz
 sHf
 tnH
-gcp
+udn
 piG
 hdK
 piG
@@ -140183,9 +140270,9 @@ hFe
 biz
 biz
 tzz
-cxf
+xEr
 kvV
-gcp
+qCe
 piG
 tzz
 piG
@@ -140967,9 +141054,9 @@ qVV
 piG
 piG
 piG
-piG
+pIy
 ptZ
-piG
+pZV
 tzz
 cel
 tcD
@@ -142256,7 +142343,7 @@ nNN
 nNN
 nNN
 jxS
-piG
+pIy
 ptZ
 uzb
 dQN
@@ -146077,7 +146164,7 @@ dQN
 dQN
 bUm
 dQN
-ctu
+sNB
 jxS
 kvI
 uCL
