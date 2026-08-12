@@ -54,7 +54,7 @@
 #define LANGUAGE_EMP "emp"
 #define LANGUAGE_TONGUE "tongue"
 #define LANGUAGE_BLOOD_WORM "blood_worm"
-#define LANGUAGE_SPLAT "splat" //Specifically for splat related languages that aren't tied to a language pack. like Kinfolk garou tongues
+
 
 
 // Language flags. Used in granting and removing languages.
