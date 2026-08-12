@@ -16217,12 +16217,6 @@
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
-"eVJ" = (
-/obj/transfer_point_vamp/umbral/exit{
-	id = 666
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/vtm/interior/millennium_tower)
 "eVP" = (
 /obj/effect/decal/wallpaper/light,
 /turf/closed/wall/vampwall/old,
@@ -175546,7 +175540,7 @@ xfJ
 jBz
 dDL
 nDq
-eVJ
+noM
 vCC
 yhp
 xZU
