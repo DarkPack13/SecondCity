@@ -84,3 +84,7 @@
       purchased from the supply console.
   - rscadd: 45 ACP can now be bought from the supply console.
   - balance: The lever action rifle can now be stored in the belt slot.
+2026-08-12:
+  chazzyjazzy:
+  - bugfix: auspex 5 ghosts can no longer talk, grab, emote, or be seein from Auspex
+      3
