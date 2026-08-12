@@ -16,7 +16,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 727;
+	id = "Endron_Stairs3";
 	name = "stairs";
 	dir = 1
 	},
@@ -119,7 +119,7 @@
 /area/vtm/outside/forest)
 "bI" = (
 /obj/transfer_point_vamp{
-	id = 66
+	id = "Forest_Transfer1"
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/forest)
@@ -150,7 +150,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 726;
+	id = "Endron_Stairs2";
 	name = "stairs";
 	dir = 1
 	},
@@ -1250,14 +1250,6 @@
 /obj/structure/flora/rock/darkpack_big,
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights/forest)
-"oi" = (
-/obj/effect/bump_teleporter{
-	density = 0;
-	id = 229;
-	mouse_opacity = 0
-	},
-/turf/open/floor/plating/rough/cave,
-/area/vtm/interior)
 "om" = (
 /obj/machinery/button/door{
 	id = "pentexhq_BSD"
@@ -1273,7 +1265,7 @@
 /area/vtm/graveyard)
 "oE" = (
 /obj/transfer_point_vamp{
-	id = 77
+	id = "Forest_Transfer2"
 	},
 /turf/open/misc/grass,
 /area/vtm/outside/forest)
@@ -2834,7 +2826,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 725;
+	id = "Endron_Stairs1";
 	name = "stairs";
 	dir = 1
 	},
@@ -3073,9 +3065,8 @@
 	},
 /area/vtm/interior/wyrm_corrupted)
 "If" = (
-/obj/effect/bump_teleporter{
-	id = 230;
-	id_target = 231
+/obj/transfer_point_vamp{
+	id = "Wedding1"
 	},
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior)
@@ -114480,7 +114471,7 @@ Hf
 Hf
 If
 cK
-oi
+cK
 cK
 cK
 Jg

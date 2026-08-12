@@ -9035,7 +9035,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 727;
+	id = "Endron_Stairs3";
 	name = "stairs"
 	},
 /turf/open/floor/plating/asphalt,
@@ -10390,7 +10390,7 @@
 /area/vtm/outside/fishermanswharf/lower)
 "dfF" = (
 /obj/transfer_point_vamp{
-	id = 77
+	id = "Forest_Transfer2"
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/pacificheights/forest)
@@ -28263,7 +28263,7 @@
 /obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/flare/candle,
 /obj/item/book/bible,
-/obj/machinery/light/small/directional/south,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/oldchurch)
 "iGD" = (
@@ -30558,7 +30558,7 @@
 	pixel_y = 17
 	},
 /obj/transfer_point_vamp{
-	id = 701
+	id = "Cam_Sewers1"
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/interior/sewer)
@@ -31294,7 +31294,7 @@
 	pixel_y = 11
 	},
 /obj/transfer_point_vamp{
-	id = 701
+	id = "Cam_Sewers1"
 	},
 /turf/open/floor/plating/canal,
 /area/vtm/interior/sewer)
@@ -38435,14 +38435,6 @@
 /obj/structure/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/chinatown)
-"lOi" = (
-/obj/effect/bump_teleporter{
-	density = 0;
-	id = 231;
-	mouse_opacity = 0
-	},
-/turf/open/misc/grass,
-/area/vtm/outside/giovanni/courtyard)
 "lOt" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -47899,9 +47891,8 @@
 /turf/open/floor/carpet/black,
 /area/vtm/interior)
 "oHy" = (
-/obj/effect/bump_teleporter{
-	id = 228;
-	id_target = 229
+/obj/transfer_point_vamp{
+	id = "Wedding1"
 	},
 /turf/open/misc/grass,
 /area/vtm/interior)
@@ -50267,7 +50258,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 725;
+	id = "Endron_Stairs1";
 	name = "stairs"
 	},
 /turf/open/floor/plating/asphalt,
@@ -54442,7 +54433,7 @@
 /area/vtm/interior/cog/caern)
 "qzs" = (
 /obj/transfer_point_vamp{
-	id = 66
+	id = "Forest_Transfer1"
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/pacificheights/forest)
@@ -54555,7 +54546,7 @@
 /obj/transfer_point_vamp{
 	icon = 'icons/obj/stairs.dmi';
 	icon_state = "stairs";
-	id = 726;
+	id = "Endron_Stairs2";
 	name = "stairs"
 	},
 /turf/open/floor/plating/asphalt,
@@ -153230,7 +153221,7 @@ utD
 bhk
 utD
 utD
-lOi
+utD
 oHy
 dvN
 vPZ
