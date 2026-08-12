@@ -43938,6 +43938,9 @@
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/toy/crayon/spraycan,
 /obj/item/toy/crayon/spraycan,
+/obj/structure/sign/painting/large/library{
+	dir = 1
+	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/techshop)
 "nzq" = (
