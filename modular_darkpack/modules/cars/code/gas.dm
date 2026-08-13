@@ -43,7 +43,7 @@
 /obj/item/gas_can/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/darkpack_car) || istype(interacting_with, /obj/structure/fuelstation) || istype(interacting_with, /mob/living/carbon/human))
 		return NONE
-	if(istype(get_turf(interacting_with), /turf/open/floor))
+	if(!isgroundlessturf(get_turf(interacting_with)))
 		if(locate(/obj/effect/decal/cleanable/gasoline) in get_turf(interacting_with))
 			return ITEM_INTERACT_BLOCKING
 		if(stored_gasoline < 50)
@@ -51,6 +51,7 @@
 		stored_gasoline = max(0, stored_gasoline-50)
 		new /obj/effect/decal/cleanable/gasoline(get_turf(interacting_with))
 		playsound(get_turf(src), 'modular_darkpack/modules/cars/sounds/gas_splat.ogg', 50, TRUE)
+		user.log_message("poured gasoline on [interact_with_atom].", LOG_GAME)
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/gas_can/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
@@ -63,6 +64,7 @@
 		H.fire_stacks = min(10, H.fire_stacks+10)
 		playsound(get_turf(H), 'modular_darkpack/modules/cars/sounds/gas_splat.ogg', 50, TRUE)
 		user.visible_message(span_warning("[user] covers [target] in something flammable!"))
+		user.log_combat(user, target, "poured gasoline on")
 
 /obj/effect/decal/cleanable/gasoline
 	name = "gasoline"
