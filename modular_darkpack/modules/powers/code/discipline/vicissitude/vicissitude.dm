@@ -147,8 +147,8 @@
 		new /obj/item/spine(target.loc)
 		qdel(target)
 	else
-		var/target_zone = owner.zone_selected
 		target.emote("scream")
+		var/target_zone = owner.zone_selected
 		var/obj/item/bodypart/limb = target.get_bodypart(target_zone)
 		if(!limb)
 			target.apply_damage(roll LETHAL_TTRPG_DAMAGE, BRUTE, BODY_ZONE_CHEST, wound_bonus = 10)
