@@ -57,7 +57,7 @@
 	if(roll_result != ROLL_SUCCESS)
 		return TRUE
 
-	if(!do_after(user, 1 TURNS - stake_roll.last_success_rolled SECONDS, target))
+	if(!do_after(user, 1 TURNS - stake_roll.last_sucess_amount SECONDS, target))
 		return TRUE
 
 	visible_message(span_danger("[user] pierces [target]'s torso!"), span_danger("You pierce [target]'s torso!"))
