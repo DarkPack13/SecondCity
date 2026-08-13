@@ -236,7 +236,7 @@
 	var/is_criminal = FALSE
 
 /mob/living/carbon/human/npc/proc/AssignSocialRole(datum/socialrole/S, dont_random)
-	socialrole = new S()
+	socialrole = GLOB.npc_social_roles[S]
 
 	fully_replace_character_name(name, real_name)
 
