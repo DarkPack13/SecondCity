@@ -331,8 +331,8 @@
 		O.r_hand = pick(socialrole.inhand_items)
 
 	if (check_holidays(FESTIVE_SEASON))
-		if (!length(O.suits))
-			O.suits = list(
+		if (!length(O.suit))
+			O.suit = list(
 				/obj/item/clothing/suit/vampire/coat/winter,
 				/obj/item/clothing/suit/vampire/coat/winter/alt
 			)
