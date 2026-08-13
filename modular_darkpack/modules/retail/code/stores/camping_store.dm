@@ -15,7 +15,7 @@
 		new /datum/data/vending_product("12ga shotgun shells, buckshot",/obj/item/ammo_box/darkpack/c12g/buck),
 		new /datum/data/vending_product("machete", /obj/item/claymore/machete),
 		new /datum/data/vending_product("hunting shotgun", /obj/item/gun/ballistic/shotgun/vampire),
-		new	/datum/data/vending_product("beretta handgun", /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta),
+		new	/datum/data/vending_product("Elite 92G", /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta),
 		new /datum/data/vending_product("rescue fireaxe", /obj/item/fireaxe/vamp),
 		new /datum/data/vending_product("chainsaw", /obj/item/chainsaw/vamp),
 		new /datum/data/vending_product("hunting rifle", /obj/item/gun/ballistic/automatic/darkpack/huntrifle),
