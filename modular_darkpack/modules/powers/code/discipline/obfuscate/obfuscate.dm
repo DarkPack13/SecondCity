@@ -70,7 +70,7 @@
 			continue
 
 		//the corpses are not watching you
-		if (viewer.is_blind() || (viewer.stat >= UNCONSCIOUS))
+		if (viewer.is_blind() || IS_UNCONSCIOUS(viewer))
 			continue
 
 		to_chat(owner, span_warning("You cannot use [src] while you're being observed!"))
