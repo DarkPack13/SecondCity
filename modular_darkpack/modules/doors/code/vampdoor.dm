@@ -128,6 +128,7 @@
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
 	if(user)
+		user.log_message("lockpicked [src] with a access of [lock_id] in [get_area(src)].", LOG_GAME)
 		var/strength_dots = user.st_get_stat(STAT_STRENGTH)
 		var/throw_distance = clamp(rand(strength_dots - 1, strength_dots + 1) - bash_successes_needed, 0, 5)
 		var/atom/throw_target = get_edge_target_turf(src, user.dir)
@@ -327,6 +328,7 @@
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
 					locked = FALSE
+					user.log_message("lockpicked [src] with a access of [lock_id] in [get_area(src)].", LOG_GAME)
 					return TRUE
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))
