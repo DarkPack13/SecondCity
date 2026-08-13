@@ -41,7 +41,7 @@
 	if(chewed_on.health < (values_sum(damage_types)*1.5))
 		to_chat(src, span_userdanger("Your victim is near death."))
 
-	if(!do_after(src, 2 SECONDS, target = chewed_on, timed_action_flags = NONE, progress = FALSE))
+	if(!do_after(src, 2 SECONDS, target = chewed_on, timed_action_flags = NONE, show_progress = FALSE))
 		stop_chewing(chewed_on)
 		return
 
