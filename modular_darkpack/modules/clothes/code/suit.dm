@@ -577,3 +577,23 @@
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
+
+/obj/item/clothing/suit/vampire/bomber_jacket_classic
+	name = "classic bomber jacket"
+	desc = "A classic bomber jacket."
+	icon_state = "bomber_classic"
+
+/obj/item/clothing/suit/vampire/bomber_jacket_gray
+	name = "gray bomber jacket"
+	desc = "A gray bomber jacket."
+	icon_state = "bomber_gray"
+
+/obj/item/clothing/suit/vampire/shawl_black
+	name = "black shawl"
+	desc = "A black shawl."
+	icon_state = "shawl_black"
+
+/obj/item/clothing/suit/vampire/shawl_white
+	name = "white shawl"
+	desc = "A white shawl."
+	icon_state = "shawl_white"

@@ -1,0 +1,4 @@
+author: "Marshmellow105"
+delete-after: True
+changes:
+  - rscadd: "adds bodycams for police officers, when worn, police dispatchers can watch their camera feed from the police station from a security console, and vampires using disciplines get an un-restorable breach when in front of a police officer with the bodycamera on"
