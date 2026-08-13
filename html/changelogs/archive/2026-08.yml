@@ -88,3 +88,13 @@
   chazzyjazzy:
   - bugfix: auspex 5 ghosts can no longer talk, grab, emote, or be seein from Auspex
       3
+2026-08-13:
+  FalloutFalcon:
+  - balance: Basic mob bosses take aggrevated damage
+  buffyuwu:
+  - rscadd: Adds 2 new jackets, 2 new shawls, and 2 new dresses made by @Major00 and
+      @Imaginos16
+  cornercube:
+  - rscadd: consistency in naming convention
+  - bugfix: deagle .50AE crate
+  - rscadd: obtainable mac-10
