@@ -223,6 +223,7 @@
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
 
+//CRIMSON GRID EDIT: Updates the Salubri domain to be like other domains
 /area/vtm/interior/salubri
 	name = "Vet Clinic"
 	icon_state = "clinic"
