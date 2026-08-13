@@ -11534,15 +11534,6 @@
 /obj/effect/landmark/npcwall,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights/old)
-"djr" = (
-/obj/effect/turf_decal/darkpack/grass{
-	dir = 8
-	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 1
-	},
-/turf/open/misc/dirt,
-/area/vtm)
 "djt" = (
 /obj/structure/closet/cardboard,
 /turf/open/misc/beach/vamp,
@@ -16258,13 +16249,11 @@
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights/community)
 "eCR" = (
-/obj/effect/turf_decal/darkpack/grass{
-	dir = 10
+/obj/structure/lattice/catwalk{
+	pixel_x = 1
 	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 1
-	},
-/turf/open/misc/dirt,
+/obj/structure/ladder/manhole/down,
+/turf/open/openspace,
 /area/vtm)
 "eCU" = (
 /obj/effect/landmark/npcbeacon,
@@ -17962,11 +17951,13 @@
 /turf/open/floor/city/toilet,
 /area/vtm/interior/millennium_tower)
 "fbt" = (
-/mob/living/basic/corvid/crow,
-/obj/effect/turf_decal/bordur{
-	dir = 10
+/obj/effect/turf_decal/darkpack/grass{
+	dir = 1
 	},
-/turf/open/floor/plating/roofwalk,
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 8
+	},
+/turf/open/misc/dirt,
 /area/vtm)
 "fbu" = (
 /obj/structure/hedge,
@@ -22591,13 +22582,11 @@
 /turf/open/floor/carpet/black,
 /area/vtm/interior/banu/haven)
 "gkz" = (
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 4
+/mob/living/basic/corvid/crow,
+/obj/effect/turf_decal/bordur{
+	dir = 10
 	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 1
-	},
-/turf/open/misc/dirt,
+/turf/open/floor/plating/roofwalk,
 /area/vtm)
 "gkA" = (
 /obj/structure/closet/crate/bin,
@@ -24158,11 +24147,9 @@
 /turf/open/water,
 /area/vtm/interior/millennium_tower)
 "gHR" = (
-/obj/structure/lattice/catwalk{
-	pixel_x = 1
-	},
-/obj/structure/ladder/manhole/down,
-/turf/open/openspace,
+/obj/effect/turf_decal/darkpack/grass,
+/obj/effect/turf_decal/darkpack/grass/corner,
+/turf/open/misc/dirt,
 /area/vtm)
 "gHS" = (
 /obj/structure/extinguisher_cabinet/directional/north,
@@ -27036,8 +27023,14 @@
 /turf/open/floor/carpet/black,
 /area/vtm/interior/laundromat)
 "hxX" = (
-/turf/open/openspace,
-/area/vtm/interior/salubri)
+/obj/effect/turf_decal/darkpack/grass{
+	dir = 1
+	},
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 4
+	},
+/turf/open/misc/dirt,
+/area/vtm)
 "hye" = (
 /obj/structure/chair/sofa/corp{
 	dir = 1
@@ -39732,22 +39725,6 @@
 /obj/effect/turf_decal/siding/wood/dark/end{
 	dir = 4
 	},
-/obj/item/food/grown/moonflower{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/food/grown/moonflower{
-	pixel_x = 1;
-	pixel_y = -14
-	},
-/obj/item/food/grown/moonflower{
-	pixel_x = 11;
-	pixel_y = -10
-	},
-/obj/item/food/grown/moonflower{
-	pixel_x = 5;
-	pixel_y = 4
-	},
 /turf/open/floor/carpet/darkpack/bluesilver,
 /area/vtm/interior/salubri)
 "lfr" = (
@@ -43340,8 +43317,12 @@
 /turf/open/floor/city/toilet,
 /area/vtm/interior)
 "mhl" = (
-/obj/effect/turf_decal/darkpack/grass,
-/obj/effect/turf_decal/darkpack/grass/corner,
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 8
+	},
 /turf/open/misc/dirt,
 /area/vtm)
 "mhm" = (
@@ -46568,10 +46549,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/glasswalker)
-"nbH" = (
-/obj/structure/ladder/manhole/up,
-/turf/open/floor/plating/sidewalk/poor,
-/area/vtm/outside/ghetto)
 "nbP" = (
 /mob/living/carbon/human/npc/walkby,
 /obj/effect/landmark/npcactivity,
@@ -48586,21 +48563,14 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/supply)
 "nGg" = (
-/obj/structure/vampdoor/wood{
+/obj/effect/turf_decal/darkpack/grass/corner{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/door/lock,
-/obj/effect/mapping_helpers/door/access/salubri,
-/obj/effect/mapping_helpers/door/lock_difficulty/seven,
-/obj/effect/mapping_helpers/door/bash_difficulty/seven,
-/obj/effect/turf_decal/siding/grey{
-	dir = 4
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 1
 	},
-/obj/effect/turf_decal/siding/grey{
-	dir = 8
-	},
-/turf/open/floor/plating/rough,
-/area/vtm/interior/salubri)
+/turf/open/misc/dirt,
+/area/vtm)
 "nGh" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/darkpack/grass{
@@ -54981,6 +54951,12 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/vjanitor)
+"prU" = (
+/obj/effect/turf_decal/bordur{
+	dir = 10
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/interior/clinic)
 "prY" = (
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/plating/concrete,
@@ -58870,6 +58846,15 @@
 	},
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/setite/basement)
+"quN" = (
+/obj/effect/turf_decal/darkpack/grass{
+	dir = 8
+	},
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 1
+	},
+/turf/open/misc/dirt,
+/area/vtm)
 "quR" = (
 /obj/structure/table,
 /obj/item/pen,
@@ -59911,6 +59896,10 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/millennium_tower/f2)
+"qIa" = (
+/obj/structure/ladder/manhole/up,
+/turf/open/floor/plating/sidewalk/poor,
+/area/vtm/outside/ghetto)
 "qIc" = (
 /obj/machinery/sprinkler/area_managed,
 /turf/open/floor/carpet/royalblue,
@@ -66142,14 +66131,8 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "spO" = (
-/obj/effect/turf_decal/darkpack/grass{
-	dir = 1
-	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 8
-	},
-/turf/open/misc/dirt,
-/area/vtm)
+/turf/open/openspace,
+/area/vtm/interior/salubri)
 "spR" = (
 /obj/structure/table,
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire,
@@ -69065,11 +69048,21 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "thL" = (
-/obj/effect/turf_decal/bordur{
-	dir = 10
+/obj/structure/vampdoor/wood{
+	dir = 4
 	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/interior/clinic)
+/obj/effect/mapping_helpers/door/lock,
+/obj/effect/mapping_helpers/door/access/salubri,
+/obj/effect/mapping_helpers/door/lock_difficulty/seven,
+/obj/effect/mapping_helpers/door/bash_difficulty/seven,
+/obj/effect/turf_decal/siding/grey{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/grey{
+	dir = 8
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/salubri)
 "thO" = (
 /obj/effect/landmark/event_spawn/szlachta,
 /turf/open/floor/plating/rough,
@@ -69424,15 +69417,6 @@
 	},
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/park)
-"tnQ" = (
-/obj/effect/turf_decal/darkpack/grass{
-	dir = 1
-	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 4
-	},
-/turf/open/misc/dirt,
-/area/vtm)
 "tnZ" = (
 /obj/effect/decal/cleanable/trash,
 /obj/effect/decal/graffiti,
@@ -72321,6 +72305,15 @@
 	},
 /turf/open/floor/plating/rough/cave,
 /area/vtm/interior/sewer)
+"ugo" = (
+/obj/effect/turf_decal/darkpack/grass{
+	dir = 10
+	},
+/obj/effect/turf_decal/darkpack/grass/corner{
+	dir = 1
+	},
+/turf/open/misc/dirt,
+/area/vtm)
 "ugp" = (
 /obj/effect/decal/cleanable/trash,
 /turf/open/floor/plating/rough/cave,
@@ -81931,15 +81924,6 @@
 /obj/effect/mapping_helpers/door/lock,
 /turf/open/floor/carpet/red,
 /area/vtm/interior/tzimisce_manor)
-"wTd" = (
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/darkpack/grass/corner{
-	dir = 8
-	},
-/turf/open/misc/dirt,
-/area/vtm)
 "wTk" = (
 /obj/structure/chair/sofa/corp/corner{
 	dir = 4;
@@ -186865,7 +186849,7 @@ ipA
 uDj
 kco
 uDj
-thL
+prU
 rpz
 jcx
 bkT
@@ -201011,7 +200995,7 @@ jlv
 jlv
 jlv
 jlv
-nbH
+qIa
 jlv
 jlv
 jlv
@@ -253700,11 +253684,11 @@ bUt
 nmZ
 vOn
 fft
-wTd
+mhl
 eYK
 eYK
 eYK
-eCR
+ugo
 jmo
 ntq
 ntq
@@ -253956,7 +253940,7 @@ bUt
 fvd
 lAv
 vOn
-tnQ
+hxX
 lEq
 rZD
 vOn
@@ -254210,10 +254194,10 @@ jcx
 jcx
 jcx
 rVN
-spO
+fbt
 xye
 xye
-mhl
+gHR
 eKx
 tCd
 rzl
@@ -254468,10 +254452,10 @@ jcx
 jcx
 bkT
 owV
-gkz
+nGg
 pnf
 hVI
-djr
+quN
 bab
 tCd
 tCd
@@ -266547,7 +266531,7 @@ ntq
 ntq
 ntq
 dMu
-gHR
+eCR
 dMu
 ntq
 ntq
@@ -267063,7 +267047,7 @@ jQN
 lTQ
 iQG
 lTQ
-fbt
+gkz
 iex
 ntq
 ntq
@@ -268089,7 +268073,7 @@ ntq
 vMH
 iNT
 iNT
-nGg
+thL
 iNT
 iNT
 ctC
@@ -269116,7 +269100,7 @@ iNT
 jEd
 iNT
 rzi
-hxX
+spO
 ejX
 hdh
 hew
@@ -269373,7 +269357,7 @@ hiq
 hdh
 iNT
 rzi
-hxX
+spO
 gfC
 hdh
 hdh
