@@ -26042,6 +26042,11 @@
 /area/vtm/interior/millennium_tower/f4)
 "hiq" = (
 /obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/vampire/heels,
+/obj/item/clothing/under/vampire/salubri,
+/obj/item/clothing/under/vampire/salubri/female,
+/obj/item/clothing/suit/vampire/trench,
+/obj/item/clothing/under/vampire/office,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/salubri)
 "hir" = (
@@ -38103,6 +38108,14 @@
 /obj/effect/turf_decal/siding/wood/dark{
 	dir = 1
 	},
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_x = 10;
+	pixel_y = 9
+	},
 /turf/open/floor/carpet/darkpack/bluesilver,
 /area/vtm/interior/salubri)
 "kIn" = (
@@ -38875,6 +38888,14 @@
 /obj/structure/roadsign/warningpedestrian,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights/community)
+"kUi" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 11;
+	pixel_y = 13
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/salubri)
 "kUk" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/suit/vampire/trench/malkav{
@@ -72423,6 +72444,14 @@
 /obj/effect/mapping_helpers/door/access/clinic,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/clinic)
+"uhD" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/salubri)
 "uhH" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -81346,6 +81375,18 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/police)
+"wJY" = (
+/obj/structure/table/wood,
+/obj/item/vampirebook/bible{
+	pixel_x = 11;
+	pixel_y = 11
+	},
+/obj/item/vampirebook/quran{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/salubri)
 "wKf" = (
 /obj/structure/vampipe{
 	icon_state = "piping32"
@@ -86386,6 +86427,14 @@
 /obj/item/detective_scanner,
 /turf/open/floor/carpet/royalblack,
 /area/vtm/interior/police/fed)
+"yfr" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior/salubri)
 "yft" = (
 /obj/effect/decal/shadow,
 /obj/structure/flora/bush/style_random,
@@ -269868,7 +269917,7 @@ kno
 kno
 iNT
 eSm
-cHt
+yfr
 iNT
 fae
 hdh
@@ -270130,7 +270179,7 @@ iNT
 piC
 hdh
 kIg
-cHt
+kUi
 hpV
 iNT
 ntq
@@ -270896,7 +270945,7 @@ kno
 kno
 iNT
 eSm
-cHt
+uhD
 iNT
 nYp
 hdh
@@ -271412,7 +271461,7 @@ lTQ
 lTQ
 lTQ
 iNT
-cHt
+wJY
 hdh
 hdh
 iNT
