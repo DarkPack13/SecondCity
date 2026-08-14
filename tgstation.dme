@@ -7367,6 +7367,7 @@
 #include "modular_darkpack\modules\areas\code\interiors\library.dm"
 #include "modular_darkpack\modules\areas\code\interiors\millennium_tower.dm"
 #include "modular_darkpack\modules\areas\code\interiors\sewers.dm"
+#include "modular_darkpack\modules\areas\code\interiors\shops.dm"
 #include "modular_darkpack\modules\areas\code\outsides\__outside.dm"
 #include "modular_darkpack\modules\areas\code\outsides\city_outsides.dm"
 #include "modular_darkpack\modules\areas\code\outsides\forest.dm"
