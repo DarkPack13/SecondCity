@@ -67,6 +67,8 @@
 	list/attack_verb_continuous_on,
 	list/attack_verb_simple_on,
 	inhand_icon_change = TRUE,
+	grid_width_on, // DARKPACK EDIT ADD - Gridventory
+	grid_height_on, // DARKPACK EDIT ADD - Gridventory
 )
 
 	if(!isitem(parent))
@@ -84,6 +86,20 @@
 	src.clumsy_check = clumsy_check
 	src.clumsy_damage = clumsy_damage
 	src.inhand_icon_change = inhand_icon_change
+
+	// DARKPACK EDIT ADD - Gridventory
+	if(!grid_width_on)
+		src.grid_width_on = item_parent.grid_width
+	else
+		src.grid_width_on = grid_width_on
+	if(!grid_height_on)
+		src.grid_height_on = item_parent.grid_height
+	else
+		src.grid_height_on = grid_height_on
+
+	grid_height_off = item_parent.grid_height
+	grid_width_off = item_parent.grid_width
+	// DARKPACK EDIT ADD - Gridventory
 
 	src.force_off = item_parent.force
 	src.throwforce_off = item_parent.throwforce
@@ -261,6 +277,11 @@
 	if(LAZYLEN(attack_verb_simple_on))
 		source.attack_verb_simple = attack_verb_simple_on
 
+	// DARKPACK EDIT ADD - Gridventory
+	source.grid_width = grid_width_on
+	source.grid_height = grid_height_on
+	// DARKPACK EDIT ADD - Gridventory
+
 	source.hitsound = hitsound_on
 	source.update_weight_class(w_class_on)
 	source.icon_state = "[source.icon_state]_on"
@@ -290,6 +311,11 @@
 		source.attack_verb_continuous = attack_verb_continuous_off
 	if(LAZYLEN(attack_verb_simple_off))
 		source.attack_verb_simple = attack_verb_simple_off
+
+	// DARKPACK EDIT ADD - Gridventory
+	source.grid_width = grid_width_off
+	source.grid_height = grid_height_off
+	// DARKPACK EDIT ADD END - Gridventory
 
 	source.hitsound = initial(source.hitsound)
 	source.update_weight_class(w_class_off)

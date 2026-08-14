@@ -149,6 +149,11 @@
 	set_parent(parent)
 	set_real_location(parent)
 
+	// DARKPACK EDIT ADD - Gridventory
+	if(grid && !grid_box_size)
+		grid_box_size = get_grid_box_size()
+	// DARKPACK EDIT END - Gridventory
+
 	src.max_slots = max_slots
 	src.max_specific_storage = max_specific_storage
 	src.max_total_storage = max_total_storage
@@ -396,7 +401,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * * messages - if TRUE, will print out a message if the item is not valid
  * * force - bypass locked storage up to a certain level. See [code/__DEFINES/storage.dm]
  */
-/datum/storage/proc/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED)
+/datum/storage/proc/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED, list/modifiers) // DARKPACK EDIT CHANGE - Original: /datum/storage/proc/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED)
 	if(QDELETED(to_insert) || !istype(to_insert))
 		return FALSE
 
@@ -465,6 +470,28 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				user.balloon_alert(user, "too big!")
 			return FALSE
 
+	// DARKPACK EDIT ADD - Gridventory
+	if(grid)
+		var/coordinates = LAZYACCESS(modifiers, SCREEN_LOC)
+		if(coordinates)
+			coordinates = screen_loc_to_grid_coordinates(coordinates)
+		if(!coordinates || !validate_grid_coordinates(coordinates, to_insert.grid_width, to_insert.grid_height, to_insert))
+			// fall back: scan for first open cell
+			var/found = FALSE
+			for(var/cy in 0 to screen_max_rows - 1)
+				for(var/cx in 0 to screen_max_columns - 1)
+					var/candidate = "[cx],[cy]"
+					if(validate_grid_coordinates(candidate, to_insert.grid_width, to_insert.grid_height, to_insert))
+						coordinates = candidate
+						found = TRUE
+						break
+				if(found)
+					break
+			if(!found)
+				if(messages && user)
+					user.balloon_alert(user, "no room!")
+				return FALSE
+	// DARKPACK EDIT END - Gridventory
 	return TRUE
 
 /// Returns a count of how many items held due to exception_hold we have
@@ -492,15 +519,36 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * * force - bypass locked storage up to a certain level. See [code/__DEFINES/storage.dm]
  * * messages - if TRUE, we will create balloon alerts for the user.
  */
-/datum/storage/proc/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
+/datum/storage/proc/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE, list/modifiers) // DARKPACK EDIT CHANGE - Original: /datum/storage/proc/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(!can_insert(to_insert, user, messages = messages, force = force))
+	// DARKPACK EDIT ADD - Gridventory
+	var/grid_coords
+	if(grid)
+		var/coords = LAZYACCESS(modifiers, SCREEN_LOC)
+		coords = coords ? screen_loc_to_grid_coordinates(coords) : null
+		var/used_gridwidth = get_used_grid_size(to_insert, TRUE)
+		var/used_gridheight = get_used_grid_size(to_insert, FALSE)
+		if(!coords || !validate_grid_coordinates(coords, used_gridwidth, used_gridheight, to_insert))
+			coords = find_first_open_grid_coordinates(to_insert)
+		if(!coords)
+			if(messages && user)
+				user.balloon_alert(user, "no room!")
+			return FALSE
+		grid_coords = coords
+	// DARKPACK EDIT END - Gridventory
+
+	if(!can_insert(to_insert, user, messages = messages, force = force, modifiers = modifiers)) // DARKPACK EDIT CHANGE - Original: 	if(!can_insert(to_insert, user, messages = messages, force = force))
 		return FALSE
 	if(SEND_SIGNAL(parent, COMSIG_ATOM_PRE_STORED_ITEM, to_insert, user, force, messages) & BLOCK_STORAGE_INSERT)
 		return FALSE
 	if(SEND_SIGNAL(to_insert, COMSIG_ITEM_PRE_STORAGE_INSERTION, parent, user, force, messages) & BLOCK_STORAGE_INSERT)
 		return FALSE
+
+	// DARKPACK EDIT ADD - Gridventory
+	if(grid)
+		grid_add_item(to_insert, grid_coords)
+	// DARKPACK EDIT END - Gridventory
 
 	SEND_SIGNAL(parent, COMSIG_ATOM_STORED_ITEM, to_insert, user, force)
 	SEND_SIGNAL(src, COMSIG_STORAGE_STORED_ITEM, to_insert, user, force)
@@ -620,7 +668,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(istype(thing) && ismob(parent.loc))
 		var/mob/mob_parent = parent.loc
 		thing.dropped(mob_parent, /*silent = */TRUE)
-
+	// DARKPACK EDIT ADD - Gridventory
+	if(grid)
+		grid_remove_item(thing)
+	// DARKPACK EDIT END - Gridventory
 	if(remove_to_loc)
 		thing.forceMove(remove_to_loc)
 
@@ -1151,11 +1202,26 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		numbered_contents = process_numerical_display()
 		adjusted_contents = length(numbered_contents)
 
+	/* DARKPACK EDIT REMOVAL - Gridventory
 	//if the ammount of contents reaches some multiplier of the final column (and its not the last slot), let the player view an additional row
 	var/additional_row = (!(adjusted_contents % screen_max_columns) && adjusted_contents < max_slots)
 
 	var/columns = clamp(max_slots, 1, screen_max_columns)
 	var/rows = clamp(ceil(adjusted_contents / columns) + additional_row, 1, screen_max_rows)
+	*/ // DARKPACK EDIT REMOVAL - Gridventory
+
+	// DARKPACK EDIT ADD - Gridventory
+	var/columns
+	var/rows
+	if(grid)
+		// grid mode: the box is always the full fixed footprint, not sized to content
+		columns = screen_max_columns
+		rows = screen_max_rows
+	else
+		var/additional_row = (!(adjusted_contents % screen_max_columns) && adjusted_contents < max_slots)
+		columns = clamp(max_slots, 1, screen_max_columns)
+		rows = clamp(ceil(adjusted_contents / columns) + additional_row, 1, screen_max_rows)
+	// DARKPACK EDIT END - Gridventory
 
 	for (var/mob/ui_user as anything in storage_interfaces)
 		if (isnull(storage_interfaces[ui_user]))

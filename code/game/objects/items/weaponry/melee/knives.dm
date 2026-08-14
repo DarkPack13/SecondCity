@@ -382,6 +382,7 @@
 	effectiveness = 100, \
 	)
 
+	// DARKPACK EDIT CHANGE - Gridventory - Added grid_height_on = 2 GRID_BOXES,
 	AddComponent( \
 		/datum/component/transforming, \
 		start_transformed = start_extended, \
@@ -391,9 +392,11 @@
 		sharpness_on = SHARP_EDGED, \
 		hitsound_on = 'sound/items/weapons/bladeslice.ogg', \
 		w_class_on = WEIGHT_CLASS_NORMAL, \
+		grid_height_on = 2 GRID_BOXES,\
 		attack_verb_continuous_on = list("slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts"), \
 		attack_verb_simple_on = list("slash", "slice", "tear", "lacerate", "rip", "dice", "cut"), \
 	)
+	// DARKPACK EDIT CHANGE - Gridventory
 
 	alt_continuous = string_list(alt_continuous)
 	alt_simple = string_list(alt_simple)
